@@ -12,17 +12,16 @@ app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
 
-var simulation = require('./lib/simulation');
-var Context = require('./lib/context');
+var Situation = require('./lib/situation');
 
 app.post('/process', function(req, res) {
-    var ctx = new Context(req.body.situation, simulation);
-    var resp = ctx.get('simulation');
+    var situ = new Situation(req.body.situation);
+    var resp = situ.get('simulation');
     res.send({
         params: req.body.situation,
-        situation: _.extend({}, ctx.computedValues, ctx.userValues),
+        situation: _.extend({}, situ.computedValues, situ.userValues),
         response: resp,
-        claimedValues: ctx.claimedValues
+        claimedValues: situ.claimedValues
     });
 });
 

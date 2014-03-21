@@ -30,6 +30,22 @@ var questions = {
         ]
     },
 
+    'demandeur.nbEnfantsÀCharge': {
+        type: 'radios',
+        label: 'Avez-vous des enfants à charge ?',
+        values: [
+            0,
+            1,
+            2,
+            3
+        ]
+    },
+
+    'demandeur.enceinte': {
+        type: 'yesno',
+        label: 'Attendez-vous un enfant ?'
+    },
+
     'logement.emprunt': {
         type: 'yesno',
         label: 'Remboursez-vous un emprunt financer votre logement ?'

@@ -1,7 +1,8 @@
 module.exports = function(grunt) {
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.initConfig({
+
         jshint: {
             all: [
                 '*.js',
@@ -11,7 +12,17 @@ module.exports = function(grunt) {
             options: {
                 
             }
+        },
+
+        // ## //
+
+        watch: {
+            jshint: {
+                files: ['lib/**/*.js', 'public/js/**/*.js', '*.js'],
+                tasks: ['jshint:all']
+            }
         }
+
     });
 
     grunt.registerTask('default', [

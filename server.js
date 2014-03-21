@@ -11,17 +11,13 @@ app.use(express.bodyParser());
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
-var Engine = require('./lib/engine');
-var engine = new Engine();
-require('./lib/legislation/rsa')(engine);
-require('./lib/legislation/al')(engine);
-require('./lib/models/person')(engine);
 
+var simulation = require('./lib/simulation');
 var Context = require('./lib/context');
 
 app.post('/process', function(req, res) {
-    var ctx = new Context(req.body.situation, engine);
-    var resp = ctx.get('rsa.conditionÂge');
+    var ctx = new Context(req.body.situation, simulation);
+    var resp = ctx.get('simulation');
     res.send({
         params: req.body.situation,
         situation: _.extend({}, ctx.computedValues, ctx.userValues),

@@ -31,14 +31,10 @@ var questions = {
     },
 
     'demandeur.nbEnfantsÀCharge': {
-        type: 'radios',
-        label: 'Avez-vous des enfants à charge ?',
-        values: [
-            0,
-            1,
-            2,
-            3
-        ]
+        type: 'number',
+        label: 'Combien d\'enfants avez-vous à charge ?',
+        placeholder: 'Aucun',
+        defaultValue: 0
     },
 
     'demandeur.enceinte': {

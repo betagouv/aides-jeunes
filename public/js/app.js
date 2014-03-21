@@ -62,6 +62,20 @@ var typesDef = {
         pick: function(group) {
             return group.find('input').val();
         }
+    },
+
+    number: {
+        build: function(qdef, group) {
+            $(document.createElement('input'))
+                .addClass('input-lg form-control')
+                .attr('type', 'number')
+                .attr('placeholder', qdef.placeholder)
+                .attr('default-value', 0)
+                .appendTo(group);
+        },
+        pick: function(group) {
+            return group.find('input').val() || group.find('input').attr('default-value');
+        }
     }
 
 };

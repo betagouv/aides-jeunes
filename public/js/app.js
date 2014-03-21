@@ -101,6 +101,7 @@ function updateSummary(situation) {
     var summary = $('#situation');
     summary.empty();
     _.each(situation, function(v, k) {
+        v = _.isObject(v) ? JSON.stringify(v) : v;
         summary.append($(document.createElement('div')).text(k + ' : ' + v));
     });
 }

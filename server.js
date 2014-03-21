@@ -3,6 +3,7 @@ var _ = require('lodash');
 
 var app = express();
 
+app.use(express.favicon('public/img/favicon.ico'));
 app.use(express.static('public'));
 app.use(express.logger('dev'));
 app.use(express.bodyParser());

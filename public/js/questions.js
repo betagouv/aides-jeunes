@@ -21,7 +21,7 @@ var questions = {
 
     'demandeur.situationLogement': {
         type: 'radios',
-        label: 'Êtes-vous ?',
+        label: 'Concernant votre logement, êtes-vous ?',
         values: [
             'locataire',
             'occupant à titre gratuit',

@@ -120,6 +120,8 @@ function updateSummary(situation) {
     });
 }
 
+var questionKeys = _.keys(questions);
+
 function processSituation() {
     $.ajax({
         type: 'POST',
@@ -129,10 +131,10 @@ function processSituation() {
     }).done(function(data) {
         updateSummary(data.situation);
 
-        var claimedKeys = _.keys(data.claimedValues);
-        if (claimedKeys.length === 0) return $('#question').text('Nous n\'avons plus de questions à vous poser.');
+        var claimedValues = data.claimedValues;
+        if (claimedValues.length === 0) return $('#question').text('Nous n\'avons plus de questions à vous poser.');
 
-        var matchingQuestions = _.intersection(questionKeys, claimedKeys);
+        var matchingQuestions = _.intersection(questionKeys, claimedValues);
         if (matchingQuestions.length === 0) return $('#question').text('Votre situation est incomplète mais cet outil ne nous permet pas d\'aller plus loin pour le moment.');
         if (matchingQuestions.length === 0) {
             
@@ -142,8 +144,6 @@ function processSituation() {
         
     });
 }
-
-var questionKeys = _.keys(questions);
 
 $(function() {
     processSituation();

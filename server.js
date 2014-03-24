@@ -1,5 +1,4 @@
 var express = require('express');
-var _ = require('lodash');
 
 var app = express();
 
@@ -16,13 +15,22 @@ var Situation = require('./lib/situation');
 
 app.post('/process', function(req, res) {
     var situ = new Situation(req.body.situation);
-    var resp = situ.get('simulation');
-    res.send({
-        params: req.body.situation,
-        situation: _.extend({}, situ.computedValues, situ.userValues),
-        response: resp,
-        claimedValues: situ.claimedValues
-    });
+    situ.get('simulation').then(
+        function(resp) {
+            res.send({
+                params: req.body.situation,
+                situation: situ.toJSON(),
+                response: resp
+            });
+        },
+        function(reason) {
+            res.send({
+                params: req.body.situation,
+                situation: situ.toJSON(),
+                claimedValues: reason.claimedValues
+            });
+        }
+    );
 });
 
 app.get('/', function(req, res){

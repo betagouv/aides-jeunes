@@ -6,7 +6,7 @@ var app = express();
 app.use(express.favicon('public/img/favicon.ico'));
 app.use(express.static('public'));
 app.use(express.logger('dev'));
-app.use(express.bodyParser());
+app.use(express.json());
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');

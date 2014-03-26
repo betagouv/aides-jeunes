@@ -37,6 +37,12 @@ var questions = {
         defaultValue: 0
     },
 
+    'logement.loyer': {
+        type: 'number',
+        label: 'À combien s\'élève votre loyer (ou votre mensualité d\'emprunt) ?',
+        defaultValue: 0
+    },
+
     'demandeur.enceinte': {
         type: 'yesno',
         label: 'Attendez-vous un enfant ?'

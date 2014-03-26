@@ -43,6 +43,13 @@ var questions = {
         defaultValue: 0
     },
 
+    'salaire3DerniersMois': {
+        type: 'number',
+        label: 'En moyenne, quel revenu mensuel avez-vous perçu au cours des 3 derniers mois ?',
+        defaultValue: 0,
+        placeholder: 'Aucun'
+    },
+
     'demandeur.enceinte': {
         type: 'yesno',
         label: 'Attendez-vous un enfant ?'

@@ -19,6 +19,19 @@ var questions = {
         ]
     },
 
+    'demandeur.situationPro': {
+        type: 'radios',
+        label: 'Quelle est votre situation professionnelle actuelle ?',
+        values: [
+            'salarié',
+            'travailleur non-salarié',
+            'demandeur d\'emploi',
+            'apprenti',
+            'conjoint collaborateur',
+            'retraité'
+        ]
+    },
+
     'demandeur.situationLogement': {
         type: 'radios',
         label: 'Concernant votre logement, êtes-vous ?',
@@ -43,7 +56,7 @@ var questions = {
         defaultValue: 0
     },
 
-    'salaire3DerniersMois': {
+    'demandeur.salaire3DerniersMois': {
         type: 'number',
         label: 'En moyenne, quel revenu mensuel avez-vous perçu au cours des 3 derniers mois ?',
         defaultValue: 0,

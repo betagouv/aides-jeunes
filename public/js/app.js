@@ -127,7 +127,7 @@ function updateSummary(s) {
     if (b2.length > 0) p.push(_.str.capitalize(_.str.toSentence(b2, ', ', ' et ')) + '.');
 
     var b3 = [];
-    if (s['demandeur.parentIsolé']) b3.push('vous êtes considéré comme parentIsolé');
+    if (s['demandeur.parentIsolé']) b3.push('vous êtes considéré comme parent isolé');
     if (b3.length > 0) p.push(_.str.capitalize(_.str.toSentence(b3, ', ', ' et ')) + '.');
 
     var b4 = [];

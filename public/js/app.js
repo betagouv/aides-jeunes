@@ -167,7 +167,7 @@ function processSituation() {
         updateSummary(data.situation);
 
         var claimedValues = data.claimedValues;
-        if (claimedValues.length === 0) return $('#question').text('Nous n\'avons plus de questions à vous poser.');
+        if (!claimedValues || claimedValues.length === 0) return $('#question').text('Nous n\'avons plus de questions à vous poser.');
 
         var matchingQuestions = _.intersection(questionKeys, claimedValues);
         if (matchingQuestions.length === 0) return $('#question').text('Votre situation est incomplète mais cet outil ne nous permet pas d\'aller plus loin pour le moment.');

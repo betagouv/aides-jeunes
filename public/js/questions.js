@@ -28,7 +28,8 @@ var questions = {
             'demandeur d\'emploi',
             'apprenti',
             'conjoint collaborateur',
-            'retraité'
+            'retraité',
+            'étudiant, autre inactif'
         ]
     },
 

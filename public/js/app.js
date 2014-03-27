@@ -144,7 +144,7 @@ function updateSummary(s) {
         if (_.size(aides) === 0) {
             p.push('Selon nos informations, vous n\'avez droit à aucune aide.');
         } else {
-            p.push('Selon nos informations, vous avez droit aux aides suivantes : ' + _.str.toSentence(_.map(aides, function(montant, aide) {
+            p.push('Selon nos informations, vous avez potentiellement droit aux aides suivantes : ' + _.str.toSentence(_.map(aides, function(montant, aide) {
                 return 'un <strong>' + aide + '</strong> de <strong>' + montant + ' euros</strong>';
             })));
         }

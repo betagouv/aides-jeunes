@@ -136,6 +136,11 @@ function updateSummary(s) {
     if (s['logement.parentPropriétaireLogementLoué']) b4.push('un parent est propriétaire de votre logement');
     if (b4.length > 0) p.push(_.str.capitalize(_.str.toSentence(b4, ', ', ' et ')) + '.');
 
+    var b5 = [];
+    if (s['demandeur.situationPro']) b5.push('vous êtes ' + s['demandeur.situationPro']);
+    if (s['demandeur.salaire3DerniersMois']) b5.push('vous avez perçu en moyenne ' + s['demandeur.salaire3DerniersMois'] + ' euros au cours des 3 derniers mois');
+    if (b5.length > 0) p.push(_.str.capitalize(_.str.toSentence(b5, ', ', ' et ')) + '.');
+
     if (s.simulation) {
         var aides = {};
         _.forEach(s.simulation, function(v, k) {

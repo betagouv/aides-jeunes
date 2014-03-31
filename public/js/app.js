@@ -1,4 +1,4 @@
-/* global document, $, _ */
+/* global document, $, _, moment */
 
 var situation = {};
 
@@ -60,7 +60,7 @@ var typesDef = {
                 .appendTo(group);
         },
         pick: function(group) {
-            return group.find('input').val();
+            return moment(group.find('input').val());
         }
     },
 

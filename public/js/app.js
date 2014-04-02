@@ -150,7 +150,8 @@ function buildQuestion(key) {
         });
 }
 
-function updateSummary(s) {
+function updateSummary() {
+    var s = situation;
     var summary = $('#situation');
     summary.empty();
     var p = [];
@@ -208,7 +209,8 @@ function processSituation() {
         contentType: 'application/json',
         data: JSON.stringify({ situation: situation })
     }).done(function(data) {
-        updateSummary(data.situation);
+        _.extend(situation, data.situation);
+        updateSummary();
 
         var claimedValues = data.claimedValues;
         if (!claimedValues || claimedValues.length === 0) return $('#question').text('Nous n\'avons plus de questions à vous poser.');

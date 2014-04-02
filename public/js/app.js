@@ -79,6 +79,37 @@ var typesDef = {
             var val = group.find('input').val() || group.find('input').attr('default-value');
             if (!_.isUndefined(val)) situation[key] = val;
         }
+    },
+
+    checkboxes: {
+        build: function(qdef, group) {
+            var values = _.isFunction(qdef.values) ? qdef.values(situation) : qdef.values;
+            _.each(values, function(v, k) {
+                var cbDiv = $(document.createElement('div'))
+                    .addClass('checkbox')
+                    .appendTo(group);
+
+                var cbLabel = $(document.createElement('label'))
+                    .appendTo(cbDiv);
+
+                $(document.createElement('input'))
+                    .attr('type', 'checkbox')
+                    .attr('name', k)
+                    .attr('value', v)
+                    .appendTo(cbLabel);
+
+                $(document.createElement('span')).html(_.str.capitalize(v)).appendTo(cbLabel);
+            });
+        },
+        set: function(situation, key, group) {
+            var one = false;
+            group.find('input:checkbox').each(function() {
+                var val = !!$(this).is(':checked');
+                situation[$(this).attr('name')] = val;
+                if (val) one = true;
+            });
+            if (one) situation[key] = true;
+        }
     }
 
 };

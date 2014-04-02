@@ -9,13 +9,9 @@ var questions = {
         type: 'radios',
         label: 'Quelle est votre situation familiale actuelle ?',
         values: [
-            'célibataire',
-            'en couple',
-            'pacsé(e)',
-            'marié(e)',
-            'divorcé(e)',
-            'séparé(e)',
-            'veuf/veuve'
+            'seul',
+            'en couple (concubinage)',
+            'en couple (mariage ou PACS)'
         ]
     },
 

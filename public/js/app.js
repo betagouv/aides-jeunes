@@ -129,6 +129,13 @@ function buildQuestion(key) {
         .text(qdef.label)
         .appendTo(group);
 
+    // Sub
+    if (qdef.sub) {
+        $(document.createElement('p'))
+            .html('<em>' + qdef.sub + '</em><br>&nbsp;')
+            .appendTo(group);
+    }
+
     // Input
     typesDef[qdef.type].build(qdef, group);
 

@@ -1,4 +1,4 @@
-/* global document, $, _, moment */
+/* global document, $, _, moment, questions */
 
 var situation = {};
 
@@ -23,8 +23,9 @@ var typesDef = {
                 $(document.createElement('span')).text(_.str.capitalize(v)).appendTo(radioLabel);
             });
         },
-        pick: function(group) {
-            return group.find('input:radio:checked').val();
+        set: function(situation, key, group) {
+            var val = group.find('input:radio:checked').val();
+            if (!_.isUndefined(val)) situation[key] = group.find('input:radio:checked').val();
         }
     },
 
@@ -47,8 +48,8 @@ var typesDef = {
                 $(document.createElement('span')).text(_.str.capitalize(v)).appendTo(radioLabel);
             });
         },
-        pick: function(group) {
-            return group.find('input:radio:checked').val() === 'oui';
+        set: function(situation, key, group) {
+            situation[key] = group.find('input:radio:checked').val() === 'oui';
         }
     },
 
@@ -59,8 +60,9 @@ var typesDef = {
                 .attr('type', 'date')
                 .appendTo(group);
         },
-        pick: function(group) {
-            return moment(group.find('input').val());
+        set: function(situation, key, group) {
+            var val = group.find('input').val();
+            if (!_.isUndefined(val)) situation[key] = moment(val);
         }
     },
 
@@ -73,8 +75,9 @@ var typesDef = {
                 .attr('default-value', 0)
                 .appendTo(group);
         },
-        pick: function(group) {
-            return group.find('input').val() || group.find('input').attr('default-value');
+        set: function(situation, key, group) {
+            var val = group.find('input').val() || group.find('input').attr('default-value');
+            if (!_.isUndefined(val)) situation[key] = val;
         }
     }
 
@@ -104,9 +107,7 @@ function buildQuestion(key) {
         .text('Suivant')
         .appendTo(q)
         .on('click', function() {
-            var value = typesDef[qdef.type].pick(group);
-            if (_.isUndefined(value)) return;
-            situation[key] = value;
+            typesDef[qdef.type].set(situation, key, group);
             processSituation();
         });
 }

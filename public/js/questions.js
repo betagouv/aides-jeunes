@@ -29,6 +29,24 @@ var questions = {
         ]
     },
 
+    'demandeur.revenus': {
+        type: 'checkboxes',
+        label: 'Au cours des 3 derniers mois, cochez la ou les situations qui vous concernent :',
+        sub: 'Laissez vide si aucune des situations ne vous correspond',
+        values: function(situation) {
+            var values = {
+                'demandeur.travailSalarié': 'Vous avez travaillé',
+                'demandeur.rsa': 'Vous avez perçu le RSA',
+                'demandeur.allocationsChômage': 'Vous avez perçu des allocations chômage',
+                'demandeur.pensionAlimentaire': 'Vous avez perçu une pension alimentaire'
+            };
+            if (situation['demandeur.âge'] && situation['demandeur.âge'] > 32) { // Militaire 17 ans + 15 ans de service
+                values['demandeur.pensionRetraite'] = 'Vous avez perçu une pension retraite';
+            }
+            return values;
+        }
+    },
+
     'demandeur.situationLogement': {
         type: 'radios',
         label: 'Concernant votre logement, êtes-vous ?',

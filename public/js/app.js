@@ -102,13 +102,10 @@ var typesDef = {
             });
         },
         set: function(situation, key, group) {
-            var one = false;
             group.find('input:checkbox').each(function() {
-                var val = !!$(this).is(':checked');
-                situation[$(this).attr('name')] = val;
-                if (val) one = true;
+                situation[$(this).attr('name')] = !!$(this).is(':checked');
             });
-            if (one) situation[key] = true;
+            situation[key] = true;
         }
     }
 

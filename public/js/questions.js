@@ -35,10 +35,10 @@ var questions = {
         sub: 'Laissez vide si aucune des situations ne vous correspond',
         values: function(situation) {
             var values = {
-                'demandeur.travailSalarié': 'Vous avez travaillé',
-                'demandeur.rsa': 'Vous avez perçu le RSA',
-                'demandeur.allocationsChômage': 'Vous avez perçu des allocations chômage',
-                'demandeur.pensionAlimentaire': 'Vous avez perçu une pension alimentaire'
+                'demandeur.travailSalarié': 'Vous avez travaillé.',
+                'demandeur.rsa': 'Vous avez perçu le RSA.',
+                'demandeur.allocationsChômage': 'Vous avez perçu des allocations chômage.',
+                'demandeur.pensionAlimentaire': 'Vous avez perçu une pension alimentaire.'
             };
             if (situation['demandeur.âge'] && situation['demandeur.âge'] > 32) { // Militaire 17 ans + 15 ans de service
                 values['demandeur.pensionRetraite'] = 'Vous avez perçu une pension retraite';
@@ -74,6 +74,34 @@ var questions = {
     'demandeur.salaire3DerniersMois': {
         type: 'number',
         label: 'En moyenne, quel revenu mensuel avez-vous perçu au cours des 3 derniers mois ?',
+        defaultValue: 0,
+        placeholder: 'Aucun'
+    },
+
+    'demandeur.travailSalarié': {
+        type: 'number',
+        label: 'En moyenne, quel salaire avez-vous perçu au cours des 3 derniers mois ?',
+        defaultValue: 0,
+        placeholder: 'Aucun'
+    },
+
+    'demandeur.rsa': {
+        type: 'number',
+        label: 'À combien s\'élève le RSA que vous percevez chaque mois ?',
+        defaultValue: 0,
+        placeholder: 'Aucun'
+    },
+
+    'demandeur.allocationsChômage': {
+        type: 'number',
+        label: 'En moyenne, quel est le montant de l\'allocation chômage que vous avez perçu au cours des 3 derniers mois ?',
+        defaultValue: 0,
+        placeholder: 'Aucun'
+    },
+
+   'demandeur.pensionRetraite': {
+        type: 'number',
+        label: 'Quel est le montant de votre pension retraire ?',
         defaultValue: 0,
         placeholder: 'Aucun'
     },

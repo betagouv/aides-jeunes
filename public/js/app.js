@@ -77,7 +77,7 @@ var typesDef = {
         },
         set: function(situation, key, group) {
             var val = group.find('input').val() || group.find('input').attr('default-value');
-            if (!_.isUndefined(val)) situation[key] = val;
+            if (!_.isUndefined(val)) situation[key] = parseInt(val);
         }
     },
 

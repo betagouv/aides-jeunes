@@ -71,6 +71,11 @@ var questions = {
         defaultValue: 0
     },
 
+   'logement.codePostal': {
+        type: 'number',
+        label: 'Quel est le code postal de votre lieu de résidence ?'
+    },
+
     'demandeur.salaire3DerniersMois': {
         type: 'number',
         label: 'En moyenne, quel revenu mensuel avez-vous perçu au cours des 3 derniers mois ?',

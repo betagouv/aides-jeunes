@@ -85,7 +85,7 @@ var questions = {
 
     'demandeur.travailSalarié': {
         type: 'number',
-        label: 'En moyenne, quel salaire avez-vous perçu au cours des 3 derniers mois ?',
+        label: 'En moyenne, quel salaire mensuel avez-vous perçu au cours des 3 derniers mois ?',
         defaultValue: 0,
         placeholder: 'Aucun'
     },
@@ -99,7 +99,7 @@ var questions = {
 
     'demandeur.allocationsChômage': {
         type: 'number',
-        label: 'En moyenne, quel est le montant de l\'allocation chômage que vous avez perçu au cours des 3 derniers mois ?',
+        label: 'En moyenne, quel est le montant mensuel de l\'allocation chômage que vous avez perçu au cours des 3 derniers mois ?',
         defaultValue: 0,
         placeholder: 'Aucun'
     },

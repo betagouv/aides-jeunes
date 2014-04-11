@@ -15,17 +15,31 @@ module.exports = function(grunt) {
 
         // ## //
 
+        browserify: {
+            dist: {
+                src: 'lib/client/main.js',
+                dest: 'dist/main.js'
+            }
+        },
+
+        // ## //
+
         watch: {
             jshint: {
                 files: ['lib/**/*.js', 'public/js/**/*.js', '*.js'],
                 tasks: ['jshint:all']
+            },
+            browserify: {
+                files: ['lib/**/*.js', 'public/js/**/*.js', '*.js'],
+                tasks: ['browserify:dist']
             }
         }
 
     });
 
     grunt.registerTask('default', [
-        'jshint:all'
+        'jshint:all',
+        'browserify:dist'
     ]);
 
 };

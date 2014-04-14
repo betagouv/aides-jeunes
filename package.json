@@ -7,7 +7,9 @@
     "express": "~3.4.8",
     "jade": "~1.3.0",
     "moment": "~2.5.1",
-    "situation-modeler": "git://github.com/jdesboeufs/situation-modeler.git#v0.0.2"
+    "situation-modeler": "git://github.com/jdesboeufs/situation-modeler.git#v0.0.2",
+    "mongoose": "^3.8.8",
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

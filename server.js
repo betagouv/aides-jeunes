@@ -1,4 +1,8 @@
 var express = require('express');
+var mongoose = require('mongoose');
+var _ = require('lodash');
+
+mongoose.connect(process.env.MONGODB_URL || process.env.MONGOHQ_URL);
 
 var app = express();
 
@@ -10,6 +14,8 @@ app.use(express.json());
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
+
+var SituationModel = require('./lib/models/situation');
 
 
 var Situation = require('./lib/situation');
@@ -34,12 +40,28 @@ var Situation = require('./lib/situation');
 //     );
 // });
 
-app.get('/:situationId', function(req, res) {
-  res.render('index', { situationId: req.params.situationId });
+app.get('/api/situations/:situationId', function(req, res, next) {
+    SituationModel.findById(req.params.situationId, function(err, situation) {
+        if (err) return next(err);
+        if (!situation) return res.send(404);
+        res.send(situation);
+    });
+});
+
+app.put('/api/situations/:situationId', function(req, res, next) {
+    SituationModel.findByIdAndUpdate(req.params.situationId, _.omit(req.body, '_id'), { upsert: true }, function(err, situation) {
+        if (err) return next(err);
+        if (!situation) return res.send(400);
+        res.send(situation);
+    });
+});
+
+app.get('/situation/:situationCode', function(req, res) {
+  res.render('index', { situationId: req.params.situationCode });
 });
 
 app.get('/', function(req, res) {
-  res.redirect('/' + Math.floor(Math.random() * 100000));
+  res.redirect('/situation/' + mongoose.Types.ObjectId());
 });
 
 app.listen(process.env.PORT || 5000);

@@ -34,8 +34,12 @@ var Situation = require('./lib/situation');
 //     );
 // });
 
-app.get('/', function(req, res){
-  res.render('index');
+app.get('/:situationId', function(req, res) {
+  res.render('index', { situationId: req.params.situationId });
+});
+
+app.get('/', function(req, res) {
+  res.redirect('/' + Math.floor(Math.random() * 100000));
 });
 
 app.listen(process.env.PORT || 5000);

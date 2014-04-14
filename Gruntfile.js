@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    require('matchdep').filter('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.initConfig({
 
@@ -38,6 +38,11 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', [
+        'jshint:all',
+        'browserify:dist'
+    ]);
+
+    grunt.registerTask('heroku:development', [
         'jshint:all',
         'browserify:dist'
     ]);

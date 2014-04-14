@@ -9,9 +9,7 @@
     "moment": "~2.5.1",
     "situation-modeler": "git://github.com/jdesboeufs/situation-modeler.git#1a96a92",
     "mongoose": "^3.8.8",
-    "lodash": "^2.4.1"
-  },
-  "devDependencies": {
+    "lodash": "^2.4.1",
     "grunt": "~0.4.4",
     "grunt-contrib-jshint": "~0.9.2",
     "grunt-contrib-watch": "~0.6.1",

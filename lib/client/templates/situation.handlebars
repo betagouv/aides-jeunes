@@ -1,0 +1,16 @@
+<h4>Éligibilité</h4>
+<ul>
+    {{#if eligib.RSA}}<li>Vous êtes éligible au Revenu de solidarité active</li>{{/if}}
+    {{#if eligib.AL}}<li>Vous êtes éligible aux Aides au logement</li>{{/if}}
+</ul>
+<p>&nbsp;</p>
+
+<h4>Simulation avec OpenFisca</h4>
+<ul>
+    {{#if result.ASPA}}<li>Allocation de solidarité aux personnes âgées : <b>{{result.ASPA}} euros</b></li>{{/if}}
+    {{#if result.RSA}}<li>Revenu de solidarité active : <b>{{result.RSA}} euros</b></li>{{/if}}
+    {{#if result.ALS}}<li>Allocation de logement social : <b>{{result.ALS}} euros</b></li>{{/if}}
+    {{#if result.APL}}<li>Aide personnalisée au logement : <b>{{result.APL}} euros</b></li>{{/if}}
+    {{#if result.ALE}}<li>Aide au logement étudiant : <b>{{result.ALE}} euros</b></li>{{/if}}
+    {{#if result.ALF}}<li>Allocation de logement familial : <b>{{result.ALF}} euros</b></li>{{/if}}
+</ul>

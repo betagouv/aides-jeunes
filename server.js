@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var _ = require('lodash');
+var openfisca = require('./lib/openfisca');
 
 mongoose.connect(process.env.MONGODB_URL || process.env.MONGOHQ_URL);
 
@@ -53,6 +54,19 @@ app.put('/api/situations/:situationId', function(req, res, next) {
         if (err) return next(err);
         if (!situation) return res.send(400);
         res.send(situation);
+    });
+});
+
+app.get('/api/situations/:situationId/simulation', function(req, res, next) {
+    SituationModel.findById(req.params.situationId).lean().exec(function(err, situation) {
+        if (err) return next(err);
+        if (!situation) return res.send(404);
+        var s = new Situation(req.params.situationId);
+        s.import(situation);
+        openfisca.simulate(s, function(err, result) {
+            if (err) next(err);
+            res.send(result);
+        });
     });
 });
 

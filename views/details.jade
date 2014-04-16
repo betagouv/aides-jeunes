@@ -1,0 +1,60 @@
+doctype html
+html(lang="fr")
+  head
+    meta(charset="utf-8")
+    title Dossier de Demande Simplifié
+    link(rel="shortcut icon", href="/img/favicon.ico", type="image/vnd.microsoft.icon")
+    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css")
+    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css")
+  body
+    nav.navbar.navbar-default(role="navigation")
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href="/") Dossier de Demande Simplifié
+          ul.navbar-nav.nav
+            li: a(href="/admin/situations") Situations en cours
+
+    .container
+
+      .page-header
+        h1 Dossier / !{id}
+
+      h2 Individus déclarés
+      each person in people
+        h3= person.id
+        table.table.table-striped.table-bordered
+          tr
+            th Champs
+            th Valeur
+            th Type
+          if person.userAttributes
+            each val, key in person.userAttributes
+              tr
+                td= key
+                td= val
+                td Saisie utilisateur
+          if person.computedAttributes
+            each val, key in person.computedAttributes
+              tr
+                td= key
+                td= val
+                td Calculé
+
+      h2 Logements déclarés
+      each dwelling in dwellings
+        h3= dwelling.id
+        table.table.table-striped.table-bordered
+          tr
+            th Champs
+            th Valeur
+          if dwelling.userAttributes
+            each val, key in dwelling.userAttributes
+              tr
+                td= key
+                td= val
+          if dwelling.computedAttributes
+            each val, key in dwelling.computedAttributes
+              tr
+                td= key
+                td= val
+                td Calculé

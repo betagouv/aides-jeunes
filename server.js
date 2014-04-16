@@ -2,10 +2,15 @@ var express = require('express');
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var openfisca = require('./lib/openfisca');
+var moment = require('moment');
+
+moment.lang('fr');
 
 mongoose.connect(process.env.MONGODB_URL || process.env.MONGOHQ_URL);
 
 var app = express();
+
+app.locals.moment = moment;
 
 app.use(express.favicon('public/img/favicon.ico'));
 app.use(express.static('public'));
@@ -50,7 +55,7 @@ app.get('/api/situations/:situationId', function(req, res, next) {
 });
 
 app.put('/api/situations/:situationId', function(req, res, next) {
-    SituationModel.findByIdAndUpdate(req.params.situationId, _.omit(req.body, '_id'), { upsert: true }, function(err, situation) {
+    SituationModel.findByIdAndUpdate(req.params.situationId, _.extend({ updatedAt: Date.now() }, _.omit(req.body, '_id')), { upsert: true }, function(err, situation) {
         if (err) return next(err);
         if (!situation) return res.send(400);
         res.send(situation);
@@ -67,6 +72,21 @@ app.get('/api/situations/:situationId/simulation', function(req, res, next) {
             if (err) next(err);
             res.send(result);
         });
+    });
+});
+
+app.get('/admin/situations', function(req, res, next) {
+    SituationModel.find({}).sort('-updatedAt').exec(function(err, situations) {
+        if (err) return next(err);
+        res.render('list', { situations: situations });
+    });
+});
+
+app.get('/admin/situation/:situationId', function(req, res, next) {
+    SituationModel.findById(req.params.situationId, function(err, situation) {
+        if (err) return next(err);
+        if (!situation) return res.send(404);
+        res.render('details', situation);
     });
 });
 

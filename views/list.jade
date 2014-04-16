@@ -24,8 +24,10 @@ html(lang="fr")
           th Code du dossier
           th État
           th Dernière mise à jour
+          th Vue utilisateur
         each situation in situations
           tr
             td: a(href="/admin/situation/" + situation.id)= situation.id
             td Nouveau
             td= moment(situation.updatedAt).fromNow()
+            td: a(href="/situation/" + situation.id) Accéder

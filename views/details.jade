@@ -27,18 +27,12 @@ html(lang="fr")
             th Champs
             th Valeur
             th Type
-          if person.userAttributes
-            each val, key in person.userAttributes
+          if person.attributes
+            each val, key in person.attributes
               tr
                 td= key
                 td= val
-                td Saisie utilisateur
-          if person.computedAttributes
-            each val, key in person.computedAttributes
-              tr
-                td= key
-                td= val
-                td Calculé
+                td= (person.computedAttributes && person.computedAttributes[key]) ? "Calculé" : "Saisie utilisateur"
 
       h2 Logements déclarés
       each dwelling in dwellings
@@ -47,14 +41,10 @@ html(lang="fr")
           tr
             th Champs
             th Valeur
-          if dwelling.userAttributes
-            each val, key in dwelling.userAttributes
+            th Type
+          if dwelling.attributes
+            each val, key in dwelling.attributes
               tr
                 td= key
                 td= val
-          if dwelling.computedAttributes
-            each val, key in dwelling.computedAttributes
-              tr
-                td= key
-                td= val
-                td Calculé
+                td= (dwelling.computedAttributes && dwelling.computedAttributes[key]) ? "Calculé" : "Saisie utilisateur"

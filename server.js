@@ -75,6 +75,16 @@ app.get('/api/situations/:situationId/simulation', function(req, res, next) {
     });
 });
 
+app.get('/api/situations/:situationId/openfisca-request', function(req, res, next) {
+    SituationModel.findById(req.params.situationId).lean().exec(function(err, situation) {
+        if (err) return next(err);
+        if (!situation) return res.send(404);
+        var s = new Situation(req.params.situationId);
+        s.import(situation);
+        res.send(openfisca.buildRequest(s));
+    });
+});
+
 app.get('/admin/situations', function(req, res, next) {
     SituationModel.find({}).sort('-updatedAt').exec(function(err, situations) {
         if (err) return next(err);

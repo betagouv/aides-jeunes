@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+  <tr>
+    <th>Type de ressource</th>
+    <th>Janvier 2014</th>
+    <th>Février 2014</th>
+    <th>Mars 2014</th>
+  </tr>
+  {{#each resourceTypes}}
+    <tr>
+      <td>{{label}}</td>
+      <td><input type="number" class="form-control input-sm" data-resource-type="{{@key}}" data-period="{{../months.[0]}}" value="{{m1}}" /></td>
+      <td><input type="number" class="form-control input-sm" data-resource-type="{{@key}}" data-period="{{../months.[1]}}" value="{{m2}}" /></td>
+      <td><input type="number" class="form-control input-sm" data-resource-type="{{@key}}" data-period="{{../months.[2]}}" value="{{m3}}" /></td>
+    </tr>
+  {{/each}}
+</table>

@@ -21,7 +21,7 @@ build/Release
 
 # Dependency directory
 node_modules
-bower_components
+app/bower_components
 
 # Project data
 .env

@@ -36,6 +36,16 @@ module.exports = function(grunt) {
                 files: ['lib/**/*.js', 'public/js/**/*.js', '*.js'],
                 tasks: ['browserify:dist']
             }
+        },
+
+        // ## //
+
+        bower: {
+            install: {
+                options: {
+                    copy: false
+                }
+            }
         }
 
     });
@@ -46,6 +56,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('heroku:development', [
+        'bower:install',
         'jshint:all',
         'browserify:dist'
     ]);

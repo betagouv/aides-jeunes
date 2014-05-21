@@ -1,0 +1,21 @@
+{
+  "name": "dds",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jdesboeufs/dds",
+  "authors": [
+    "Jérôme Desboeufs <jerome.desboeufs@gmail.com>"
+  ],
+  "description": "Dossier de Demande Simplifié",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}

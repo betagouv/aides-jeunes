@@ -15,6 +15,7 @@ app.locals.moment = moment;
 app.use(express.favicon('public/img/favicon.ico'));
 app.use(express.static('public'));
 app.use('/js', express.static('dist'));
+app.use(express.static('app'));
 app.use(express.logger('dev'));
 app.use(express.json());
 

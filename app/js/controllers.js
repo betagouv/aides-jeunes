@@ -57,7 +57,7 @@ var questions = {
                 this.enfants.forEach(function(enfant) {
                     if (!enfant.prenom || !enfant.prenom.length) error = true;
                     if (!enfant.dateDeNaissance) error = true;
-                })
+                });
                 return !error;
             }
         },
@@ -93,7 +93,7 @@ var questions = {
             }
         }
     }
-}
+};
 
 var statusQuestion = {
     type: 'checkboxes',
@@ -184,9 +184,9 @@ ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
     };
 });
 
-ddsApp.controller('yesNoQuestionCtrl', function ($scope) {});
-ddsApp.controller('dateQuestionCtrl', function ($scope) {});
-ddsApp.controller('numberQuestionCtrl', function ($scope) {});
-ddsApp.controller('radiosQuestionCtrl', function ($scope) {});
-ddsApp.controller('checkboxesQuestionCtrl', function ($scope) {});
-ddsApp.controller('enfantsQuestionCtrl', function ($scope) {});
+ddsApp.controller('yesNoQuestionCtrl', function () {});
+ddsApp.controller('dateQuestionCtrl', function () {});
+ddsApp.controller('numberQuestionCtrl', function () {});
+ddsApp.controller('radiosQuestionCtrl', function () {});
+ddsApp.controller('checkboxesQuestionCtrl', function () {});
+ddsApp.controller('enfantsQuestionCtrl', function () {});

@@ -1,0 +1,21 @@
+<div class="form-group" ng-controller="enfantsQuestionCtrl">
+    <label>{{question.label}}</label>
+
+    <div class="alert alert-info" ng-if="!targetEntity.enfants.length">
+        <i class="fa fa-info-circle"></i> Vous n'avez pas ajouté d'enfants à votre situation. Si vous n'en avez pas cliquez sur <strong>Suivant</strong>.
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4" ng-repeat="enfant in targetEntity.enfants">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    Prénom : <input type="text" class="form-control" ng-model="enfant.prenom" /> <br>
+                    Date de naissance : <input type="date" class="form-control" ng-model="enfant.dateDeNaissance" />
+                    <button class="btn btn-link" ng-click="targetEntity.retireEnfant(enfant)">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" ng-click="targetEntity.ajouteEnfant()">Ajouter un enfant</button>
+</div>

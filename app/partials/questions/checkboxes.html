@@ -1,0 +1,8 @@
+<div class="form-group" ng-controller="checkboxesQuestionCtrl">
+    <label>{{question.label}}</label>
+
+    <div class="checkbox" ng-repeat="(attribute, def) in question.values">
+        <label><input type="checkbox" ng-model='targetEntity[attribute]'> {{def.label}}</label>
+    </div>
+
+</div>

@@ -1,0 +1,14 @@
+<h4>Compte-tenu des informations fournies :</h4>
+<ul>
+    {{#if result.ASPA}}<li>Vous êtes éligible à l'Allocation de solidarité aux personnes âgées pour un montant de <b>{{result.ASPA}} euros</b></li>{{/if}}
+    {{#if result.RSA}}<li>Vous êtes éligible au Revenu de Solidarité Active pour un montant de <b>{{result.RSA}} euros</b></li>{{/if}}
+    {{#if result.ALS}}<li>Vous êtes éligible à l'Allocation de Logement Social pour un montant de <b>{{result.ALS}} euros</b></li>{{/if}}
+    {{#if result.APL}}<li>Vous êtes éligible à l'Aide Personnalisée au Logement pour un montant de <b>{{result.APL}} euros</b></li>{{/if}}
+    {{#if result.ALE}}<li>Vous êtes éligible à l'Aide au Logement Étudiant pour un montant de <b>{{result.ALE}} euros</b></li>{{/if}}
+    {{#if result.ALF}}<li>Vous êtes éligible à l'Allocation de Logement Familial pour un montant de <b>{{result.ALF}} euros</b></li>{{/if}}
+    {{#unless eligib}}<li>Vous n'êtes éligible à aucune aide.</li>{{/unless}}
+</ul>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="text-align:right"><em>Simulation effectuée par <a href="http://www.openfisca.fr">OpenFisca</a></em></p>

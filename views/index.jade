@@ -1,5 +1,5 @@
 doctype html
-html(lang="fr")
+html(lang="fr", ng-app="ddsApp")
   head
     meta(charset="utf-8")
     title Dossier de Demande Simplifié
@@ -8,6 +8,10 @@ html(lang="fr")
     link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css")
     script.
       window.situationId = '!{situationId}';
+    script(src="/js/common.js")
+    script(src="/bower_components/angular/angular.js")
+    script(src="/bower_components/angular-route/angular-route.js")
+    script(src="/js/controllers.js")
 
   body
     nav.navbar.navbar-default(role="navigation")
@@ -15,3 +19,4 @@ html(lang="fr")
         .navbar-header
           a.navbar-brand(href="/") Dossier de Demande Simplifié
 
+    #main.container(ng-controller="mainCtrl", ng-include="'/partials/main.html'")

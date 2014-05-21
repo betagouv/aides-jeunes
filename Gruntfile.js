@@ -16,7 +16,10 @@ module.exports = function(grunt) {
         // ## //
 
         browserify: {
-            dist: {}
+            dist: {
+                src: 'lib/client/common.js',
+                dest: 'dist/common.js'
+            }
         },
 
         // ## //

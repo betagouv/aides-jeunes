@@ -1,0 +1,35 @@
+<div class="form-group" ng-controller="ressourcesQuestionCtrl">
+    <label>{{question.label}}</label>
+
+    <div>
+      <div ng-repeat="(name, def) in ressources">
+        <div ng-if="!ressourcesSelected[name]">
+          <button class="btn btn-link" ng-click="selectRessource(name)"><i class="fa fa-plus-circle"></i></button> {{def.label}}
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div ng-if="ressourcesCount">
+      <table class="table table-bordered">
+        <tr>
+          <th>Type de ressource</th>
+          <th ng-repeat="periode in periodes">{{_s.capitalize(moment(periode, 'YYYY-MM').format('MMMM YYYY'))}}</th>
+          <th></th>
+        </tr>
+        <tr ng-repeat="(ressource, val) in ressourcesSelected">
+            <td>{{ressources[ressource].label}}</td>
+            <td ng-repeat="periode in periodes">
+              <input type="number" class="form-control input-sm" ng-model="individu.ressources[periode][ressource]" />
+            </td>
+            <td><button class="btn btn-link" ng-click="removeRessource(ressource)"><i class="fa fa-trash-o"></i></button>
+          </tr>
+      </table>
+    </div>
+
+    <div class="alert alert-info" ng-if="!ressourcesCount">
+      Vous n'avez pas déclaré de ressource. Vous pouvez néanmoins poursuivre la procédure.
+    </div>
+
+</div>

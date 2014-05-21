@@ -85,21 +85,6 @@ app.get('/api/situations/:situationId/openfisca-request', function(req, res, nex
     });
 });
 
-app.get('/admin/situations', function(req, res, next) {
-    SituationModel.find({}).sort('-updatedAt').exec(function(err, situations) {
-        if (err) return next(err);
-        res.render('list', { situations: situations });
-    });
-});
-
-app.get('/admin/situation/:situationId', function(req, res, next) {
-    SituationModel.findById(req.params.situationId, function(err, situation) {
-        if (err) return next(err);
-        if (!situation) return res.send(404);
-        res.render('details', situation);
-    });
-});
-
 app.get('/situation/:situationCode', function(req, res) {
   res.render('index', { situationId: req.params.situationCode });
 });

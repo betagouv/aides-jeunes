@@ -1,20 +1,5 @@
+/* global angular, situation, _, situationId, rsa, aideLogement, moment, _s */
 var ddsApp = angular.module('ddsApp', []);
-var s = { demandeur: new situation.Individu(), elig: {} };
-s.demandeur.ajouteLogement();
-
-function updateSituation() {
-    s.elig = {};
-    s.computingError = null;
-
-    try {
-        throw new situation.ComputingError(['ressources'], s.demandeur);
-        s.elig.rsa = rsa.estÉligibleRSA(s.demandeur);
-        s.elig.aideLogement = aideLogement.estEligibleAideLogement(s.demandeur);
-    } catch(e) {
-        if (!(e instanceof situation.ComputingError)) throw e;
-        s.computingError = e;
-    }
-}
 
 var questions = {
     Individu: {
@@ -113,9 +98,48 @@ function findBestQuestion(computingError) {
     return questions[entityType][claimedAttribute];
 }
 
-ddsApp.controller('mainCtrl', function ($scope) {
-    $scope.situation = s;
-    updateSituation();
+ddsApp.controller('mainCtrl', function ($scope, $http) {
+    function overrideDemandeur(data) {
+        $scope.demandeur = situation.expand(data);
+        $scope.computeSituation();
+    }
+
+    $http.get('/api/situations/' + situationId).success(overrideDemandeur).error(function(data, status) {
+        if (status === 404) {
+            $scope.demandeur = new situation.Individu();
+            $scope.demandeur.ajouteLogement();
+            $scope.computeSituation();
+        }
+    });
+
+    $scope.updateSituation = function () {
+        $http.put('/api/situations/' + situationId, situation.flatten($scope.demandeur)).success(overrideDemandeur);
+    };
+
+    $scope.computeSituation = function() {
+        console.log('Computing...');
+        $scope.elig = {};
+        try {
+            $scope.elig.rsa = rsa.estEligibleRSA($scope.demandeur);
+            $scope.elig.aideLogement = aideLogement.estEligibleAideLogement($scope.demandeur);
+            $scope.demandeur.ressourcesTroisDerniersMois();
+            delete $scope.computingError;
+            console.log('Computed!', $scope.elig);
+            $scope.simulate();
+        } catch(e) {
+            if (!(e instanceof situation.ComputingError)) throw e;
+            console.log('Computing error', e);
+            $scope.computingError = e;
+        }
+    };
+
+    $scope.simulate = function () {
+        console.log('Simulating...');
+        $http.get('/api/situations/' + situationId + '/simulation').success(function(data) {
+            $scope.results = data;
+            console.log('Simulated!', data);
+        });
+    };
 });
 
 var iconMap = {
@@ -125,29 +149,29 @@ var iconMap = {
 
 ddsApp.controller('questionCtrl', function ($scope) {
     function updateQuestion() {
-        $scope.question = angular.copy(findBestQuestion($scope.situation.computingError));
+        $scope.question = angular.copy(findBestQuestion($scope.computingError));
         $scope.questionTmpl = '/partials/questions/' + $scope.question.type + '.html';
-        $scope.targetEntity = $scope.situation.computingError.entity;
+        $scope.targetEntity = $scope.computingError.entity;
         $scope.question.icon = iconMap[$scope.targetEntity.constructor.name];
 
-        if ($scope.targetEntity === s.demandeur) $scope.question.mainTitle = 'Vous';
-        if ($scope.targetEntity === s.demandeur.conjoint) $scope.question.mainTitle = 'Votre conjoint';
-        if ($scope.targetEntity === s.demandeur.logement) $scope.question.mainTitle = 'Votre logement principal';
+        if ($scope.targetEntity === $scope.demandeur) $scope.question.mainTitle = 'Vous';
+        if ($scope.targetEntity === $scope.demandeur.conjoint) $scope.question.mainTitle = 'Votre conjoint';
+        if ($scope.targetEntity === $scope.demandeur.logement) $scope.question.mainTitle = 'Votre logement principal';
         if ($scope.targetEntity.prenom) $scope.question.mainTitle = $scope.targetEntity.prenom;
 
-        $scope.claimedAttribute = $scope.situation.computingError.claimedAttributes[0];
+        $scope.claimedAttribute = $scope.computingError.claimedAttributes[0];
         $scope.next = function() {
             if ($scope.question.afterCallback) {
                 if($scope.question.afterCallback.apply($scope.targetEntity) !== false) {
-                    updateSituation();
+                    $scope.updateSituation();
                 }
             } else {
-                updateSituation();
+                $scope.updateSituation();
             }
-        }
+        };
     }
 
-    $scope.$watch('situation.computingError', function() {
+    $scope.$watch('computingError', function() {
         updateQuestion();
     });
 

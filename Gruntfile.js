@@ -16,13 +16,7 @@ module.exports = function(grunt) {
         // ## //
 
         browserify: {
-            dist: {
-                src: 'lib/client/main.js',
-                dest: 'dist/main.js',
-                options: {
-                    transform: ['hbsfy']
-                }
-            }
+            dist: {}
         },
 
         // ## //

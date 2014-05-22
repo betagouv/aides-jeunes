@@ -11,7 +11,7 @@ var questions = {
             type: 'yes-no',
             label: 'Percevez-vous une bourse de l\'enseignement supérieur ?'
         },
-        statusMarital: {
+        statutMarital: {
             type: 'radios',
             label: 'Quelle est votre situation familiale actuelle ?',
             values: {
@@ -21,11 +21,11 @@ var questions = {
                 'marié': 'Marié(e)'
             },
             afterCallback: function() {
-                if (!this.statusMarital) return;
-                if (this.statusMarital === 'seul') {
+                if (!this.statutMarital) return;
+                if (this.statutMarital === 'seul') {
                     this.seul();
                 } else {
-                    this.enCouple(this.statusMarital);
+                    this.enCouple(this.statutMarital);
                 }
             }
         },

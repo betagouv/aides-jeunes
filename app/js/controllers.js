@@ -120,9 +120,17 @@ ddsApp.controller('mainCtrl', function ($scope, $http) {
         console.log('Computing...');
         $scope.elig = {};
         try {
+            $scope.demandeur.get('statutMarital');
+            $scope.demandeur.get('dateDeNaissance');
+            if ($scope.demandeur.conjoint) $scope.demandeur.conjoint.get('dateDeNaissance');
+            $scope.demandeur.get('enfants');
             $scope.elig.rsa = rsa.estEligibleRSA($scope.demandeur);
             $scope.elig.aideLogement = aideLogement.estEligibleAideLogement($scope.demandeur);
             $scope.demandeur.ressourcesTroisDerniersMois();
+            if ($scope.demandeur.conjoint) $scope.demandeur.conjoint.ressourcesTroisDerniersMois();
+            if ($scope.demandeur.enfants) _.forEach($scope.demandeur.enfants, function(enfant) {
+                enfant.ressourcesTroisDerniersMois();
+            });
             delete $scope.computingError;
             console.log('Computed!', $scope.elig);
             $scope.simulate();

@@ -179,7 +179,7 @@ ddsApp.controller('questionCtrl', function ($scope) {
         };
     }
 
-    $scope.$watch('computingError', function() {
+    $scope.$watchGroup(['computingError', 'targetEntity'], function() {
         updateQuestion();
     });
 
@@ -189,15 +189,18 @@ ddsApp.controller('questionCtrl', function ($scope) {
 
 
 ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
-    $scope.individu = $scope.targetEntity;
-    $scope.individu.construitTroisDerniersMois();
     $scope.periodes = situation.troisDerniersMois();
     $scope.moment = moment;
     $scope._s = _s;
-    $scope.selecting = true;
-    $scope.ressourcesSelected = {};
-    $scope.ressources = situation.Individu.ressources;
-    $scope.ressourcesCount = 0;
+
+    function updateIndividu() {
+        $scope.individu = $scope.targetEntity;
+        $scope.individu.construitTroisDerniersMois();
+        $scope.selecting = true;
+        $scope.ressourcesSelected = {};
+        $scope.ressources = situation.Individu.ressources;
+        $scope.ressourcesCount = 0;
+    }
 
     $scope.selectRessource = function(ressource) {
         $scope.ressourcesSelected[ressource] = true;
@@ -214,6 +217,12 @@ ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
         });
         $scope.ressourcesCount--;
     };
+
+    updateIndividu();
+
+    $scope.$watch('targetEntity', function() {
+        updateIndividu();
+    });
 });
 
 ddsApp.controller('yesNoQuestionCtrl', function () {});

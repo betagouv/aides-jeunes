@@ -4,7 +4,7 @@
         <ul>
             <li ng-repeat="aide in aides">
                 Vous êtes éligible {{ aide.partial }}
-                <span ng-if="aide.montant">pour un montant de <strong>{{ aide.montant | number:0 }} euros</b>
+                <span ng-if="aide.montant">pour un montant de <strong>{{ aide.montant | number:0 }} euros</strong></span>
             </li>
             <li ng-if="aides.length === 0">
                 Vous n'êtes éligible à aucune aide.

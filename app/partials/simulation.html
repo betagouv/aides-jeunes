@@ -2,26 +2,11 @@
     <div class="col-lg-8 col-lg-offset-2">
         <h4>Compte-tenu des informations fournies :</h4>
         <ul>
-            <li ng-if="results.aspa">
-                Vous êtes éligible à l'Allocation de solidarité aux personnes âgées pour un montant de <b>{{ results.aspa | number:0 }} euros</b>
+            <li ng-repeat="aide in aides">
+                Vous êtes éligible {{ aide.partial }}
+                <span ng-if="aide.montant">pour un montant de <strong>{{ aide.montant | number:0 }} euros</b>
             </li>
-            <li ng-if="results.rsa">
-                Vous êtes éligible au Revenu de Solidarité Active pour un montant de <b>{{ results.rsa | number:0 }} euros</b>
-            </li>
-            <li ng-if="results.als">
-                Vous êtes éligible à l'Allocation de Logement Social pour un montant de <b>{{ results.als | number:0 }} euros</b>
-            </li>
-            <li ng-if="results.apl">
-                Vous êtes éligible à l'Aide Personnalisée au Logement pour un montant de <b>{{ results.apl | number:0 }} euros</b>
-            </li>
-            <li ng-if="results.ale">
-                Vous êtes éligible à l'Aide au Logement Étudiant pour un montant de <b>{{ results.ale | number:0 }} euros</b>
-            </li>
-            <li ng-if="results.alf">
-                Vous êtes éligible à l'Allocation de Logement Familial pour un montant de <b>{{ results.alf | number:0 }} euros</b>
-            </li>
-
-            <li ng-if="results.aspa + results.apl + results.alf + results.als + results.rsa === 0">
+            <li ng-if="aides.length === 0">
                 Vous n'êtes éligible à aucune aide.
             </li>
         </ul>

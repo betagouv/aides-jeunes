@@ -8,6 +8,37 @@ function findBestQuestion(computingError) {
     return questions[entityType][claimedAttribute];
 }
 
+var aides = {
+    aspa: {
+        type: Number,
+        partial: 'à l\'Allocation de solidarité aux personnes âgées'
+    },
+    acs: {
+        type: Number,
+        partial: 'à l\'Aide pour une Complémentaire Santé'
+    },
+    cmu_c: {
+        type: Boolean,
+        partial: 'à la Couverture Maladie Universelle complémentaire'
+    },
+    apl: {
+        type: Number,
+        partial: 'à l\'Aide Personnalisée au Logement'
+    },
+    als: {
+        type: Number,
+        partial: 'l\'Allocation de Logement Social'
+    },
+    alf: {
+        type: Number,
+        partial: 'l\'Allocation de Logement Familial'
+    },
+    rsa: {
+        type: Number,
+        partial: 'au Revenu de Solidarité Active'
+    }
+};
+
 ddsApp.controller('mainCtrl', function ($scope, $http) {
     function overrideDemandeur(data) {
         $scope.demandeur = situation.expand(data);
@@ -59,7 +90,18 @@ ddsApp.controller('mainCtrl', function ($scope, $http) {
     $scope.simulate = function () {
         console.log('Simulating...');
         $http.get('/api/situations/' + situationId + '/simulation').success(function(data) {
-            $scope.results = data;
+            $scope.aides = [];
+            _.forEach(data, function(value, aide) {
+                if (!(aide in aides)) return;
+                var obj = { partial: aides[aide].partial };
+                if (aides[aide].type === Number && value > 0) {
+                    obj.montant = value;
+                    $scope.aides.push(obj);
+                }
+                if (aides[aide].type === Boolean && value === true) {
+                    $scope.aides.push(obj);
+                }
+            });
             console.log('Simulated!', data);
         });
     };

@@ -1,6 +1,6 @@
 {
   "name": "dds",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Dossier de Demande Simplifié",
   "author": "Jérôme Desboeufs <jerome.desboeufs@gmail.com>",
   "dependencies": {

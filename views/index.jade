@@ -1,5 +1,5 @@
 doctype html
-html(lang="fr", ng-app="ddsApp")
+html(lang="fr")
   head
     meta(charset="utf-8")
     title Dossier de Demande Simplifié
@@ -18,4 +18,5 @@ html(lang="fr", ng-app="ddsApp")
         .navbar-header
           a.navbar-brand(href="/") Dossier de Demande Simplifié
 
-    #main.container(ng-view)
+    #main(ng-app="ddsApp")
+      .container(ng-view)

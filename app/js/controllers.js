@@ -78,7 +78,7 @@ ddsApp.controller('mainCtrl', function ($scope, $http, $routeParams, $location) 
             $scope.simulate();
         } catch(e) {
             if (!(e instanceof situation.ComputingError)) throw e;
-            $location.path('/situation/' + $routeParams.situationId + '/' + e.entity.id + '/' + _s.dasherize(e.claimedAttributes[0]));
+            $location.path('/s/' + $routeParams.situationId + '/' + e.entity.id + '/' + _s.dasherize(e.claimedAttributes[0]));
             console.log('Computing error', e);
         }
     };

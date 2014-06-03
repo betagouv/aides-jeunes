@@ -65,15 +65,15 @@ function renderIndex(req, res) {
     res.render('index');
 }
 
-app.get('/situation/:situationCode', renderIndex);
-app.get('/situation/:situationCode/*', renderIndex);
+app.get('/s/:situationCode', renderIndex);
+app.get('/s/:situationCode/*', renderIndex);
 
 app.get('/', function(req, res, next) {
     var demandeur = new Individu();
     demandeur.ajouteLogement();
     SituationModel.create(flatten(demandeur), function(err, situation) {
         if (err) return next(err);
-        res.redirect('/situation/' + situation.id);
+        res.redirect('/s/' + situation.id);
     });
 });
 

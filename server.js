@@ -3,6 +3,10 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 var openfisca = require('./lib/simulation/openfisca');
 var moment = require('moment');
+var Individu = require('./lib/situation').Individu;
+var expand = require('./lib/situation').expand;
+var flatten = require('./lib/situation').flatten;
+var SituationModel = require('./lib/models/situation');
 
 moment.lang('fr');
 
@@ -21,9 +25,6 @@ app.use(express.json());
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
-
-var SituationModel = require('./lib/models/situation');
-var expand = require('./lib/situation').expand;
 
 app.get('/api/situations/:situationId', function(req, res, next) {
     SituationModel.findById(req.params.situationId, function(err, situation) {
@@ -60,12 +61,20 @@ app.get('/api/situations/:situationId/openfisca-request', function(req, res, nex
     });
 });
 
-app.get('/situation/:situationCode', function(req, res) {
-  res.render('index', { situationId: req.params.situationCode });
-});
+function renderIndex(req, res) {
+    res.render('index');
+}
 
-app.get('/', function(req, res) {
-  res.redirect('/situation/' + mongoose.Types.ObjectId());
+app.get('/situation/:situationCode', renderIndex);
+app.get('/situation/:situationCode/*', renderIndex);
+
+app.get('/', function(req, res, next) {
+    var demandeur = new Individu();
+    demandeur.ajouteLogement();
+    SituationModel.create(flatten(demandeur), function(err, situation) {
+        if (err) return next(err);
+        res.redirect('/situation/' + situation.id);
+    });
 });
 
 app.listen(process.env.PORT || 5000);

@@ -1,11 +1,10 @@
-/* global angular, situation, _, situationId, rsa, aideLogement, moment, _s */
-var ddsApp = angular.module('ddsApp', []);
+/* global ddsApp, angular, situation, _, rsa, aideLogement, moment, _s */
 
-function findBestQuestion(computingError) {
-    var entity = computingError.entity;
+
+function findBestQuestion(entity, questionName) {
+    console.log(entity);
     var entityType = entity instanceof situation.Individu ? 'Individu' : 'Logement';
-    var claimedAttribute = computingError.claimedAttributes[0];
-    return questions[entityType][claimedAttribute];
+    return questions[entityType][questionName];
 }
 
 var aides = {
@@ -39,22 +38,20 @@ var aides = {
     }
 };
 
-ddsApp.controller('mainCtrl', function ($scope, $http) {
-    function overrideDemandeur(data) {
-        $scope.demandeur = situation.expand(data);
-        $scope.computeSituation();
-    }
+ddsApp.controller('mainCtrl', function ($scope, $http, $routeParams, $location) {
+    $scope.questionName = $routeParams.questionName ? _s.camelize($routeParams.questionName) : undefined;
+    $scope.entityId = $routeParams.entityId;
 
-    $http.get('/api/situations/' + situationId).success(overrideDemandeur).error(function(data, status) {
-        if (status === 404) {
-            $scope.demandeur = new situation.Individu();
-            $scope.demandeur.ajouteLogement();
-            $scope.computeSituation();
-        }
+    $http.get('/api/situations/' + $routeParams.situationId).success(function(data) {
+        $scope.demandeur = situation.expand(data);
+        if (!$routeParams.entityId || !$routeParams.questionName) $scope.computeSituation();
     });
 
     $scope.updateSituation = function () {
-        $http.put('/api/situations/' + situationId, situation.flatten($scope.demandeur)).success(overrideDemandeur);
+        $http.put('/api/situations/' + $routeParams.situationId, situation.flatten($scope.demandeur)).success(function(data) {
+            $scope.demandeur = situation.expand(data);
+            $scope.computeSituation();
+        });
     };
 
     $scope.computeSituation = function() {
@@ -77,19 +74,18 @@ ddsApp.controller('mainCtrl', function ($scope, $http) {
                 enfant.get('retraite');
                 enfant.ressourcesTroisDerniersMois();
             });
-            delete $scope.computingError;
             console.log('Computed!', $scope.elig);
             $scope.simulate();
         } catch(e) {
             if (!(e instanceof situation.ComputingError)) throw e;
+            $location.path('/situation/' + $routeParams.situationId + '/' + e.entity.id + '/' + _s.dasherize(e.claimedAttributes[0]));
             console.log('Computing error', e);
-            $scope.computingError = e;
         }
     };
 
     $scope.simulate = function () {
         console.log('Simulating...');
-        $http.get('/api/situations/' + situationId + '/simulation').success(function(data) {
+        $http.get('/api/situations/' + $routeParams.situationId + '/simulation').success(function(data) {
             $scope.aides = [];
             _.forEach(data, function(value, aide) {
                 if (!(aide in aides)) return;
@@ -114,9 +110,10 @@ var iconMap = {
 
 ddsApp.controller('questionCtrl', function ($scope) {
     function updateQuestion() {
-        $scope.question = angular.copy(findBestQuestion($scope.computingError));
+        if (!$scope.demandeur || !$scope.entityId || !$scope.questionName) return;
+        $scope.targetEntity = situation.searchByEntityId($scope.demandeur, $scope.entityId);
+        $scope.question = angular.copy(findBestQuestion($scope.targetEntity, $scope.questionName));
         $scope.questionTmpl = '/partials/questions/' + $scope.question.type + '.html';
-        $scope.targetEntity = $scope.computingError.entity;
         $scope.question.icon = iconMap[$scope.targetEntity.constructor.name];
 
         if ($scope.targetEntity === $scope.demandeur) $scope.question.mainTitle = 'Vous';
@@ -124,7 +121,7 @@ ddsApp.controller('questionCtrl', function ($scope) {
         if ($scope.targetEntity === $scope.demandeur.logement) $scope.question.mainTitle = 'Votre logement principal';
         if ($scope.targetEntity.prenom) $scope.question.mainTitle = $scope.targetEntity.prenom;
 
-        $scope.claimedAttribute = $scope.computingError.claimedAttributes[0];
+        $scope.claimedAttribute = $scope.questionName;
         $scope.next = function() {
             if ($scope.question.afterCallback) {
                 if($scope.question.afterCallback.apply($scope.targetEntity) !== false) {
@@ -136,7 +133,7 @@ ddsApp.controller('questionCtrl', function ($scope) {
         };
     }
 
-    $scope.$watchGroup(['computingError', 'targetEntity'], function() {
+    $scope.$watchGroup(['demandeur', 'questionName', 'entityId'], function() {
         updateQuestion();
     });
 

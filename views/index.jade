@@ -6,11 +6,10 @@ html(lang="fr", ng-app="ddsApp")
     link(rel="shortcut icon", href="/img/favicon.ico", type="image/vnd.microsoft.icon")
     link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css")
     link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css")
-    script.
-      window.situationId = '!{situationId}';
     script(src="/js/common.js")
     script(src="/bower_components/angular/angular.js")
     script(src="/bower_components/angular-route/angular-route.js")
+    script(src="/js/app.js")
     script(src="/js/controllers.js")
 
   body
@@ -19,4 +18,4 @@ html(lang="fr", ng-app="ddsApp")
         .navbar-header
           a.navbar-brand(href="/") Dossier de Demande Simplifié
 
-    #main.container(ng-controller="mainCtrl", ng-include="'/partials/main.html'")
+    #main.container(ng-view)

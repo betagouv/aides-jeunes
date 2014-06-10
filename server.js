@@ -8,6 +8,10 @@ var expand = require('./lib/situation').expand;
 var flatten = require('./lib/situation').flatten;
 var SituationModel = require('./lib/models/situation');
 
+// Ping OpenFisca
+openfisca.ping();
+setInterval(openfisca.ping, 30*1000);
+
 moment.lang('fr');
 
 mongoose.connect(process.env.MONGODB_URL || process.env.MONGOHQ_URL);

@@ -80,15 +80,14 @@ function renderIndex(req, res) {
     res.render('index');
 }
 
-app.get('/s/:situationCode', renderIndex);
-app.get('/s/:situationCode/*', renderIndex);
+app.get('/s/*', renderIndex);
 
 app.get('/', function(req, res, next) {
     var demandeur = new Individu();
     demandeur.ajouteLogement();
     SituationModel.create(flatten(demandeur), function(err, situation) {
         if (err) return next(err);
-        res.redirect('/s/' + situation.id);
+        res.redirect('/s/configuration/' + situation.id);
     });
 });
 

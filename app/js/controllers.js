@@ -45,6 +45,8 @@ ddsApp.controller('mainCtrl', function ($scope, $http, $routeParams, $location) 
         if (!$routeParams.entityId || !$routeParams.questionName) $scope.computeSituation();
     });
 
+    $scope.situationId = $routeParams.situationId;
+
     $scope.updateSituation = function () {
         $http.put('/api/situations/' + $routeParams.situationId, situation.flatten($scope.demandeur)).success(function(data) {
             $scope.demandeur = situation.expand(data);
@@ -79,7 +81,7 @@ ddsApp.controller('mainCtrl', function ($scope, $http, $routeParams, $location) 
             $scope.simulate();
         } catch(e) {
             if (!(e instanceof situation.ComputingError)) throw e;
-            $location.path('/s/' + $routeParams.situationId + '/' + e.entity.id + '/' + _s.dasherize(e.claimedAttributes[0]));
+            $location.path('/s/configuration/' + $routeParams.situationId + '/' + e.entity.id + '/' + _s.dasherize(e.claimedAttributes[0]));
             console.log('Computing error', e);
         }
     };
@@ -125,7 +127,7 @@ ddsApp.controller('questionCtrl', function ($scope) {
         $scope.claimedAttribute = $scope.questionName;
         $scope.next = function() {
             if ($scope.question.afterCallback) {
-                if($scope.question.afterCallback.apply($scope.targetEntity) !== false) {
+                if ($scope.question.afterCallback.apply($scope.targetEntity) !== false) {
                     $scope.updateSituation();
                 }
             } else {
@@ -178,6 +180,14 @@ ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
     $scope.$watch('targetEntity', function() {
         updateIndividu();
     });
+});
+
+ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, situationId) {
+    $scope.contact = {};
+    $scope.send = function () {
+      debugger;
+        $http.put('/api/situations/' + situationId, {contact: $scope.contact});
+    };
 });
 
 ddsApp.controller('yesNoQuestionCtrl', function () {});

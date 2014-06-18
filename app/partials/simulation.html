@@ -1,18 +1,17 @@
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <h4>Compte-tenu des informations fournies :</h4>
-        <ul>
-            <li ng-repeat="aide in aides">
-                Vous êtes éligible {{ aide.partial }}
-                <span ng-if="aide.montant">pour un montant de <strong>{{ aide.montant | number:0 }} euros</strong></span>
-            </li>
-            <li ng-if="aides.length === 0">
-                Vous n'êtes éligible à aucune aide.
-            </li>
-        </ul>
-
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p style="text-align:right"><em>Simulation effectuée par <a href="http://www.openfisca.fr">OpenFisca</a></em></p>
+        <div ng-if="aides.length">
+          <ul>
+              <li ng-repeat="aide in aides">
+                  Vous êtes éligible {{ aide.partial }}
+                  <span ng-if="aide.montant">pour un montant de <strong>{{ aide.montant | number:0 }} euros</strong></span>
+              </li>
+          </ul>
+          <p class="text-center"><a class="btn btn-primary btn-lg" href="/s/envoi-demande/{{situationId}}">Faire mes demandes en ligne</a></p>
+        </div>
+        <p ng-if="!aides.length">Vous n'êtes éligible à aucune aide.</p>
+        <hr>
+        <p class="text-right"><em>Simulation effectuée par <a href="http://www.openfisca.fr">OpenFisca</a></em></p>
     </div>
 </div>

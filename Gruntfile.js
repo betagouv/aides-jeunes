@@ -4,13 +4,46 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         jshint: {
-            all: [
-                '*.js',
-                'lib/**/*.js',
-                'app/js/**/*.js'
-            ],
+            server: {
+                files: {
+                    src: ['*.js', 'lib/**/*.js']
+                },
+                options: {
+                    node: true
+                }
+            },
+            browser: {
+                files: {
+                    src: ['app/js/**/*.js']
+                },
+                options: {
+                    browser: true,
+                    devel: true,
+                    globals: {
+                        angular: true,
+                        situation: true,
+                        questions: true,
+                        rsa: true,
+                        aideLogement: true,
+                        moment: true,
+                        _: true,
+                        _s: true
+                    }
+                }
+            },
             options: {
-                
+                bitwise: true,
+                eqeqeq: true,
+                freeze: true,
+                immed: true,
+                indent: 4,
+                latedef: true,
+                newcap: true,
+                nonew: true,
+                quotmark: 'single',
+                undef: true,
+                unused: true,
+                trailing: true,
             }
         },
 
@@ -49,13 +82,13 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', [
-        'jshint:all',
+        'jshint',
         'browserify:dist'
     ]);
 
     grunt.registerTask('heroku:development', [
         'bower:install',
-        'jshint:all',
+        'jshint',
         'browserify:dist'
     ]);
 

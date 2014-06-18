@@ -27,9 +27,6 @@ app.use(express.static('app'));
 app.use(express.logger('dev'));
 app.use(express.json());
 
-app.set('view engine', 'jade');
-app.set('views', __dirname + '/views');
-
 app.get('/api/situations/:situationId', function(req, res, next) {
     SituationModel.findById(req.params.situationId, function(err, situation) {
         if (err) return next(err);
@@ -77,7 +74,7 @@ app.get('/api/situations/:situationId/openfisca-request', function(req, res, nex
 });
 
 function renderIndex(req, res) {
-    res.render('index');
+    res.sendfile('views/index.html');
 }
 
 app.get('/s/*', renderIndex);

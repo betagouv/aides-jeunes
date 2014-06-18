@@ -196,6 +196,22 @@ ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, $routeParams) {
     };
 });
 
+ddsApp.controller('homepageCtrl', function($scope, $window, $http, $location) {
+    $scope.checkConfirmation = function(e) {
+        if (!$scope.acceptConditions) {
+            $window.alert('Vous devez accepter les conditions pour continuer');
+            return false;
+        }
+        return true;
+    };
+
+    $scope.startSimulation = function() {
+        $http.post('/api/situations').success(function(situationId) {
+            $location.path('/s/configuration/' + situationId);
+        });
+    };
+});
+
 ddsApp.controller('yesNoQuestionCtrl', function () {});
 ddsApp.controller('dateQuestionCtrl', function () {});
 ddsApp.controller('numberQuestionCtrl', function () {});

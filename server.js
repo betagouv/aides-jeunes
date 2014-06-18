@@ -35,6 +35,15 @@ app.get('/api/situations/:situationId', function(req, res, next) {
     });
 });
 
+app.post('/api/situations', function(req, res, next) {
+    var demandeur = new Individu();
+    demandeur.ajouteLogement();
+    SituationModel.create(flatten(demandeur), function(err, situation) {
+        if (err) return next(err);
+        res.send(situation.id);
+    });
+});
+
 app.put('/api/situations/:situationId', function(req, res, next) {
     SituationModel.findByIdAndUpdate(req.params.situationId, _.extend({ _updated: Date.now() }, _.omit(req.body, '_id')), { upsert: true }, function(err, situation) {
         if (err) return next(err);
@@ -78,14 +87,6 @@ function renderIndex(req, res) {
 }
 
 app.get('/s/*', renderIndex);
-
-app.get('/', function(req, res, next) {
-    var demandeur = new Individu();
-    demandeur.ajouteLogement();
-    SituationModel.create(flatten(demandeur), function(err, situation) {
-        if (err) return next(err);
-        res.redirect('/s/configuration/' + situation.id);
-    });
-});
+app.get('/', renderIndex);
 
 app.listen(process.env.PORT || 5000);

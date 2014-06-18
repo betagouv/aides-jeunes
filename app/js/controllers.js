@@ -184,8 +184,13 @@ ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
 
 ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, $routeParams) {
     $scope.contact = {};
-    $scope.send = function () {
-        $http.put('/api/situations/' + $routeParams.situationId, {contact: $scope.contact}).success(function() {
+    $scope.send = function (form) {
+        if (form.$invalid) {
+            $scope.invalidForm = true;
+            return;
+        }
+
+        $http.put('/api/situations/' + $routeParams.situationId, {contact: $scope.contact}).success(function(form) {
             $scope.formSent = true;
         });
     };

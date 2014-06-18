@@ -86,6 +86,12 @@ module.exports = function(grunt) {
         'browserify:dist'
     ]);
 
+    grunt.registerTask('build', [
+        'bower:install',
+        'jshint',
+        'browserify:dist'
+    ]);
+
     grunt.registerTask('heroku:development', [
         'bower:install',
         'jshint',

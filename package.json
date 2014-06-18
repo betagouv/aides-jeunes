@@ -3,6 +3,9 @@
   "version": "0.1.1",
   "description": "Dossier de Demande Simplifié",
   "author": "Jérôme Desboeufs <jerome.desboeufs@gmail.com>",
+  "scripts": {
+    "test": "grunt build"
+  },
   "dependencies": {
     "express": "~3.4.8",
     "jade": "~1.3.0",

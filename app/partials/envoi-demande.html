@@ -3,75 +3,76 @@
 </div>
 
 <div ng-if="!formSent">
-  <p>Veuillez remplir les informations suivantes pour faire vos demandes en ligne.</p>
+  <p class="alert alert-info">Veuillez remplir les informations suivantes pour faire vos demandes en ligne.</p>
 
   <form novalidate name="form" class="form-horizontal" ng-submit="send(form)">
     <div class="row">
       <div class="col-lg-6">
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error': form.lastName.$invalid && invalidForm }">
           <label class="col-lg-4 control-label">Nom</label>
           <div class="col-lg-8">
-            <input type="text" class="form-control" ng-model="contact.lastName" ng-model-options="{ updateOn: 'blur' }" required>
+            <input type="text" class="form-control" name="lastName" ng-model="contact.lastName" ng-model-options="{ updateOn: 'blur' }" required>
           </div>
         </div>
       </div>
       <div class="col-lg-6">
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error': form.firstName.$invalid && invalidForm }">
           <label class="col-lg-2 control-label">Prénom</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" ng-model="contact.firstName" ng-model-options="{ updateOn: 'blur' }" required>
+            <input type="text" class="form-control" name="firstName" ng-model="contact.firstName" ng-model-options="{ updateOn: 'blur' }" required>
           </div>
         </div>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-class="{ 'has-error': form.address.$invalid && invalidForm}">
       <label class="col-lg-2 control-label">Adresse</label>
       <div class="col-lg-10">
-        <textarea class="form-control" rows="4" ng-model="contact.address" ng-model-options="{ updateOn: 'blur' }" required></textarea>
+        <textarea class="form-control" rows="4" name="address" ng-model="contact.address" ng-model-options="{ updateOn: 'blur' }" required></textarea>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-6">
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error': form.postalCode.$invalid && invalidForm }">
           <label class="col-lg-4 control-label">Code postal</label>
           <div class="col-lg-8">
-            <input type="text" class="form-control" ng-model="contact.postalCode" ng-model-options="{ updateOn: 'blur' }" required>
+            <input type="text" class="form-control" name="postalCode" ng-model="contact.postalCode" ng-model-options="{ updateOn: 'blur' }" required>
           </div>
         </div>
       </div>
       <div class="col-lg-6">
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error': form.city.$invalid && invalidForm }">
           <label class="col-lg-2 control-label">Ville</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" ng-model="contact.city" ng-model-options="{ updateOn: 'blur' }" required>
+            <input type="text" class="form-control" name="city" ng-model="contact.city" ng-model-options="{ updateOn: 'blur' }" required>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-6">
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error': form.numeroSecu.$invalid && invalidForm }">
           <label class="col-lg-4 control-label">Numéro sécurité sociale</label>
           <div class="col-lg-8">
-            <input type="text" class="form-control" ng-model="contact.numeroSecu" ng-model-options="{ updateOn: 'blur' }" required>
+            <input type="text" class="form-control" name="numeroSecu" ng-model="contact.numeroSecu" ng-model-options="{ updateOn: 'blur' }" required>
           </div>
         </div>
       </div>
       <div class="col-lg-6">
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error': form.email.$invalid && invalidForm }">
           <label class="col-lg-2 control-label">Email</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" ng-model="contact.email" ng-model-options="{ updateOn: 'blur' }">
-            <p class="help-block">Facultatif, utilisé pour vous informer sur l'avancement de votre dossier.</p>
+            <input type="email" class="form-control" name="email" ng-model="contact.email" ng-model-options="{ updateOn: 'blur' }">
+            <p class="help-block" ng-if="form.email.$error.email">Ce n'est pas un email valide.</p>
+            <p class="help-block">Facultatif, utilisé pour vous informer plus rapidement de l'avancement de votre dossier.</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-class="{ 'has-error': form.confirm.$invalid && invalidForm }">
       <div class="col-sm-offset-2 col-sm-10">
         <div class="checkbox">
           <label>
-            <input type="checkbox" name="confirm" required>
+            <input type="checkbox" name="confirm" ng-required="true">
             Oui, je souhaite que les services concernés instruisent mon dossier et vérifient les informations personnelles
             que l'administration possède à mon sujet pour m'éviter d'en produire les justificatifs.
           </label>

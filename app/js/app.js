@@ -1,4 +1,3 @@
-/* global angular */
 var ddsApp = angular.module('ddsApp', ['ngRoute']);
 
 ddsApp.config(function($routeProvider, $locationProvider) {

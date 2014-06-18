@@ -1,6 +1,4 @@
-/* global ddsApp, angular, situation, _, rsa, aideLogement, moment, _s */
-
-
+/* global ddsApp */
 function findBestQuestion(entity, questionName) {
     console.log(entity);
     var entityType = entity instanceof situation.Individu ? 'Individu' : 'Logement';
@@ -70,10 +68,13 @@ ddsApp.controller('mainCtrl', function ($scope, $http, $routeParams, $location) 
             $scope.elig.aideLogement = aideLogement.estEligibleAideLogement($scope.demandeur);
             $scope.demandeur.ressourcesTroisDerniersMois();
             if ($scope.demandeur.conjoint) $scope.demandeur.conjoint.ressourcesTroisDerniersMois();
-            if ($scope.demandeur.enfants) _.forEach($scope.demandeur.enfants, function(enfant) {
-                enfant.get('retraite');
-                enfant.ressourcesTroisDerniersMois();
-            });
+            if ($scope.demandeur.enfants) {
+                _.forEach($scope.demandeur.enfants, function(enfant) {
+                    enfant.get('retraite');
+                    enfant.ressourcesTroisDerniersMois();
+                });
+            }
+
             console.log('Computed!', $scope.elig);
             $scope.simulate();
         } catch(e) {

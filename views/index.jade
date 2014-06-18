@@ -11,12 +11,17 @@ html(lang="fr")
     script(src="/bower_components/angular-route/angular-route.js")
     script(src="/js/app.js")
     script(src="/js/controllers.js")
+    link(rel="stylesheet", href="/css/main.css")
 
   body
-    nav.navbar.navbar-default(role="navigation")
-      .container-fluid
+    nav.navbar.navbar-default.main-navbar(role="navigation")
+      .container
         .navbar-header
-          a.navbar-brand(href="/") Dossier de Demande Simplifié
+          a.navbar-brand.logo(href="/")
+            img(src="/img/logo_secours_populaire.png")
+        ul.nav.navbar-nav
+          li
+            a.navbar-brand.title(href="/") Dossier de Demande Simplifié
 
     #main(ng-app="ddsApp")
       .container(ng-view)

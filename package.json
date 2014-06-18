@@ -15,7 +15,6 @@
     "matchdep": "~0.3.0",
     "browserify": "~3.40.1",
     "grunt-browserify": "~2.0.5",
-    "jquery": "^2.1.0",
     "underscore.string": "^2.3.3",
     "superagent": "^0.17.0",
     "grunt-bower-task": "^0.3.4"

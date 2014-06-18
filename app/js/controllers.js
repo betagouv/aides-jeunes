@@ -185,8 +185,9 @@ ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
 ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, situationId) {
     $scope.contact = {};
     $scope.send = function () {
-      debugger;
-        $http.put('/api/situations/' + situationId, {contact: $scope.contact});
+        $http.put('/api/situations/' + situationId, {contact: $scope.contact}).success(function() {
+            $scope.formSent = true;
+        });
     };
 });
 

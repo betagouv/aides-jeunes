@@ -5,20 +5,10 @@ ddsApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when('/s/configuration/:situationId/:entityId?/:questionName?', {
             templateUrl: '/partials/main.html',
-            controller: 'mainCtrl',
-            resolve: {
-              situationId: function($routeParams) {
-                return $routeParams.situationId;
-              }
-            }
+            controller: 'mainCtrl'
         })
         .when('/s/envoi-demande/:situationId', {
             templateUrl: '/partials/envoi-demande.html',
-            controller: 'envoiDemandeCtrl',
-            resolve: {
-                situationId: function($route) {
-                    return $route.current.params.situationId;
-                }
-            }
+            controller: 'envoiDemandeCtrl'
         });
 });

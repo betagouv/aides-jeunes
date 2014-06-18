@@ -182,10 +182,10 @@ ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
     });
 });
 
-ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, situationId) {
+ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, $routeParams) {
     $scope.contact = {};
     $scope.send = function () {
-        $http.put('/api/situations/' + situationId, {contact: $scope.contact}).success(function() {
+        $http.put('/api/situations/' + $routeParams.situationId, {contact: $scope.contact}).success(function() {
             $scope.formSent = true;
         });
     };

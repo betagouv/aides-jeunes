@@ -60,11 +60,11 @@ module.exports = function(grunt) {
 
         watch: {
             jshint: {
-                files: ['lib/**/*.js', 'public/js/**/*.js', '*.js'],
-                tasks: ['jshint:all']
+                files: ['lib/**/*.js', 'app/js/**/*.js', '*.js'],
+                tasks: ['jshint']
             },
             browserify: {
-                files: ['lib/**/*.js', 'public/js/**/*.js', '*.js'],
+                files: ['lib/**/*.js', 'app/js/**/*.js', '*.js'],
                 tasks: ['browserify:dist']
             }
         },

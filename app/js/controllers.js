@@ -185,8 +185,8 @@ ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
 ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, $routeParams) {
     $scope.contact = {};
     $scope.send = function (form) {
+        $scope.formSubmitted = true;
         if (form.$invalid) {
-            $scope.invalidForm = true;
             return;
         }
 

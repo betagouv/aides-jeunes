@@ -30,3 +30,4 @@ app/bower_components
 
 # Compiled assets
 dist
+/.project

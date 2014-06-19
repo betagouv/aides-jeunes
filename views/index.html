@@ -15,19 +15,23 @@
     <script src="/js/marqueblanche.js"></script>
   </head>
   <body>
-    <nav role="navigation" class="navbar navbar-default main-navbar">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="/" class="navbar-brand logo"><img src="/img/logo_secours_populaire.png"></a>
+    <header>
+      <nav role="navigation" class="navbar navbar-default main-navbar" ng-controller="marqueBlancheCtrl">
+        <div class="container">
+          <div class="navbar-header" ng-if="logo">
+            <a href="#" class="navbar-brand logo"><img src="/img/{{ logo }}"></a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="#" class="navbar-brand title">Dossier de Demande Simplifié</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" class="navbar-brand logo"><img src="/img/logo_marianne.png"></a></li>
+          </ul>
         </div>
-        <ul class="nav navbar-nav">
-          <li><a href="/" class="navbar-brand title">Dossier de Demande Simplifié</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/" class="navbar-brand logo"><img src="/img/logo_marianne.png"></a></li>
-        </ul>
-      </div>
-    </nav>
-    <div ng-view class="container"></div>
+      </nav>
+    </header>
+    <div class="content">
+      <div ng-view class="container"></div>
+    </div>
   </body>
 </html>

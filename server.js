@@ -86,10 +86,6 @@ function renderIndex(req, res) {
     res.sendfile('views/index.html');
 }
 
-app.get('/secours-populaire/*', renderIndex);
-app.get('/secours-populaire', renderIndex);
-app.get('/', function(req, res) {
-  res.redirect('/secours-populaire');
-});
+app.get('/*', renderIndex);
 
 app.listen(process.env.PORT || 5000);

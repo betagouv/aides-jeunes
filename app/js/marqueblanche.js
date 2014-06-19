@@ -1,5 +1,7 @@
-var url = document.location.href;
-if (url.lastIndexOf('/') !== url.length - 1) {
-  url += '/';
+var baseUrl = '/';
+if (window.location.pathname.indexOf('/secours-populaire') === 0) {
+    baseUrl += 'secours-populaire/';
 }
-document.write('<base href="' + url + '">');
+
+var docHead = document.getElementsByTagName('head')[0];
+docHead.insertAdjacentHTML('beforeend', '<base href="' + baseUrl + '">');

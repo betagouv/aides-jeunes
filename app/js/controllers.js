@@ -170,7 +170,7 @@ ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, $routeParams) {
 ddsApp.controller('homepageCtrl', function($scope, $window, $http, $location) {
     $scope.checkConfirmation = function() {
         if (!$scope.acceptConditions) {
-            $window.alert('Vous devez accepter les conditions pour continuer');
+            $window.alert('Vous devez cocher la case pour continuer');
             return false;
         }
         return true;
@@ -183,8 +183,10 @@ ddsApp.controller('homepageCtrl', function($scope, $window, $http, $location) {
     };
 });
 
-ddsApp.controller('marqueBlancheCtrl', function ($scope, $rootScope) {
-    $scope.coucou = $rootScope.coucou;
+ddsApp.controller('marqueBlancheCtrl', function ($scope, $window) {
+    if ($window.location.pathname.indexOf('/secours-populaire/') === 0) {
+        $scope.logo = 'logo_secours_populaire.png';
+    }
 });
 
 ddsApp.controller('yesNoQuestionCtrl', function () {});

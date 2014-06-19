@@ -197,7 +197,7 @@ ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, $routeParams) {
 });
 
 ddsApp.controller('homepageCtrl', function($scope, $window, $http, $location) {
-    $scope.checkConfirmation = function(e) {
+    $scope.checkConfirmation = function() {
         if (!$scope.acceptConditions) {
             $window.alert('Vous devez accepter les conditions pour continuer');
             return false;

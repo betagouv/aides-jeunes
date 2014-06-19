@@ -21,7 +21,10 @@
         <tr ng-repeat="(ressource, val) in ressourcesSelected">
             <td>{{ressources[ressource].label}}</td>
             <td ng-repeat="periode in periodes">
-              <input type="number" class="form-control input-sm" ng-model="individu.ressources[periode][ressource]" />
+                <div class="input-group">
+                    <input type="number" class="form-control input-sm" ng-model="individu.ressources[periode][ressource]">
+                    <span class="input-group-addon">€</span>
+                </div>
             </td>
             <td><button class="btn btn-link" ng-click="removeRessource(ressource)"><i class="fa fa-trash-o"></i></button>
           </tr>
@@ -31,5 +34,4 @@
     <div class="alert alert-info" ng-if="!ressourcesCount">
       Vous n'avez pas déclaré de ressource. Vous pouvez néanmoins poursuivre la procédure.
     </div>
-
 </div>

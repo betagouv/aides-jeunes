@@ -121,12 +121,22 @@ ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
     $scope.moment = moment;
     $scope._s = _s;
 
+    $scope.sections = [
+        { name: 'revenusActivite', label: 'Revenus d\'activité', pos: 1 },
+        { name: 'allocations', label: 'Allocations', pos: 2 },
+        { name: 'indemnites', label: 'Indemnités', pos: 3 },
+        { name: 'pensions', label: 'Pensions', pos: 4 }
+    ];
+
     function updateIndividu() {
         $scope.individu = $scope.targetEntity;
         $scope.individu.construitTroisDerniersMois();
         $scope.selecting = true;
         $scope.ressourcesSelected = {};
+
+        $scope.ressourcesParSection = _.groupBy(situation.Individu.ressources, 'section');
         $scope.ressources = situation.Individu.ressources;
+
         $scope.ressourcesCount = 0;
     }
 
@@ -148,9 +158,7 @@ ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
 
     updateIndividu();
 
-    $scope.$watch('targetEntity', function() {
-        updateIndividu();
-    });
+    $scope.$watch('targetEntity', updateIndividu);
 });
 
 ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, $routeParams) {

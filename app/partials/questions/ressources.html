@@ -1,34 +1,30 @@
 <div class="form-group" ng-controller="ressourcesQuestionCtrl">
     <label>{{question.label}}</label>
 
-    <div>
-      <div ng-repeat="(name, def) in ressources">
-        <div ng-if="!ressourcesSelected[name]">
-          <button class="btn btn-link" ng-click="selectRessource(name)"><i class="fa fa-plus-circle"></i></button> {{def.label}}
+    <div ng-repeat="section in sections | orderBy:pos">
+
+      <h5>{{section.label}}</h5>
+
+      <div ng-repeat="ressource in ressourcesParSection[section.name]" class="form-inline">
+        <div ng-if="!ressourcesSelected[ressource.name]">
+          <button class="btn btn-link" ng-click="selectRessource(ressource.name)"><i class="fa fa-plus-circle"></i></button> {{ressource.label}}
+        </div>
+        <div ng-if="ressourcesSelected[ressource.name]" class="row">
+          <div class="col-lg-5">
+            <button class="btn btn-link" ng-click="removeRessource(ressource.name)"><i class="fa fa-trash-o"></i></button>
+            {{ressource.label}}
+          </div>
+          <div class="col-lg-7">
+            <span ng-repeat="periode in periodes" style="padding-right:10px">
+              {{_s.capitalize(moment(periode, 'YYYY-MM').format('MMMM'))}} :
+              <input style="width: 70px" type="number" class="form-control input-sm" ng-model="individu.ressources[periode][ressource.name]" />
+            </span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <hr>
+      <br>
 
-    <div ng-if="ressourcesCount">
-      <table class="table table-bordered">
-        <tr>
-          <th>Type de ressource</th>
-          <th ng-repeat="periode in periodes">{{_s.capitalize(moment(periode, 'YYYY-MM').format('MMMM YYYY'))}}</th>
-          <th></th>
-        </tr>
-        <tr ng-repeat="(ressource, val) in ressourcesSelected">
-            <td>{{ressources[ressource].label}}</td>
-            <td ng-repeat="periode in periodes">
-                <div class="input-group">
-                    <input type="number" class="form-control input-sm" ng-model="individu.ressources[periode][ressource]">
-                    <span class="input-group-addon">€</span>
-                </div>
-            </td>
-            <td><button class="btn btn-link" ng-click="removeRessource(ressource)"><i class="fa fa-trash-o"></i></button>
-          </tr>
-      </table>
     </div>
 
     <div class="alert alert-info" ng-if="!ressourcesCount">

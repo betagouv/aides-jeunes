@@ -7,11 +7,11 @@ ddsApp.config(function($routeProvider, $locationProvider) {
             templateUrl: '/partials/homepage.html',
             controller: 'homepageCtrl'
         })
-        .when('/s/configuration/:situationId/:entityId?/:questionName?', {
+        .when('/configuration/:situationId/:entityId?/:questionName?', {
             templateUrl: '/partials/main.html',
             controller: 'mainCtrl'
         })
-        .when('/s/envoi-demande/:situationId', {
+        .when('/envoi-demande/:situationId', {
             templateUrl: '/partials/envoi-demande.html',
             controller: 'envoiDemandeCtrl'
         });

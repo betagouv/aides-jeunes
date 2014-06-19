@@ -52,7 +52,7 @@ ddsApp.controller('mainCtrl', function ($scope, $http, $routeParams, $location) 
             $scope.simulate();
         } catch(e) {
             if (!(e instanceof situation.ComputingError)) throw e;
-            $location.path('/s/configuration/' + $routeParams.situationId + '/' + e.entity.id + '/' + _s.dasherize(e.claimedAttributes[0]));
+            $location.path('/configuration/' + $routeParams.situationId + '/' + e.entity.id + '/' + _s.dasherize(e.claimedAttributes[0]));
             console.log('Computing error', e);
         }
     };
@@ -178,9 +178,13 @@ ddsApp.controller('homepageCtrl', function($scope, $window, $http, $location) {
 
     $scope.startSimulation = function() {
         $http.post('/api/situations').success(function(situationId) {
-            $location.path('/s/configuration/' + situationId);
+            $location.path('/configuration/' + situationId);
         });
     };
+});
+
+ddsApp.controller('marqueBlancheCtrl', function ($scope, $rootScope) {
+    $scope.coucou = $rootScope.coucou;
 });
 
 ddsApp.controller('yesNoQuestionCtrl', function () {});

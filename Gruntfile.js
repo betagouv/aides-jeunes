@@ -23,6 +23,7 @@ module.exports = function(grunt) {
                         angular: true,
                         situation: true,
                         questions: true,
+                        prestations: true,
                         rsa: true,
                         aideLogement: true,
                         moment: true,

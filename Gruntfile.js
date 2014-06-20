@@ -532,11 +532,6 @@ module.exports = function (grunt) {
     'usemin'
   ]);
 
-  grunt.registerTask('heroku', function () {
-    grunt.log.warn('The `heroku` task has been deprecated. Use `grunt build` to build for deployment.');
-    grunt.task.run(['build']);
-  });
-
   grunt.registerTask('default', [
     'newer:jshint',
     'browserify:dist',

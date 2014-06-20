@@ -1,6 +1,6 @@
 var should = require('should');
-var openfisca = require('../lib/simulation/openfisca');
-var expand = require('../lib/situation').expand;
+var openfisca = require('../../lib/simulation/openfisca');
+var expand = require('../../lib/situation').expand;
 
 describe('rsa', function() {
 
@@ -8,13 +8,13 @@ describe('rsa', function() {
         var data = require('./rsa-tests/etudiant-seul.json');
         var expectedValue = data.expectedResults.rsa;
 
-        it('should return ' + expectedValue, function(done) {
+        /*it('should return ' + expectedValue, function(done) {
             openfisca.simulate(expand(data), function(err, result) {
                 if (err) throw err;
                 result.rsa.should.equal(expectedValue);
                 done();
             });
-        });
+        });*/
     });
 
     describe('chomeur-1enfant-locataire', function() {

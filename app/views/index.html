@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr" ng-app="ddsApp">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dossier de Demande Simplifié</title>
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/vnd.microsoft.icon">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="/js/common.js"></script>
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-route/angular-route.js"></script>
-    <script src="/js/app.js"></script>
-    <script src="/js/controllers.js"></script>
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="/styles/main.css">
+    <!-- endbuild -->
     <script src="/js/marqueblanche.js"></script>
   </head>
-  <body>
+  <body ng-app="ddsApp">
     <header>
       <nav role="navigation" class="navbar navbar-default main-navbar" ng-controller="marqueBlancheCtrl">
         <div class="container">
-          <div class="navbar-header" ng-if="logo">
+          <div class="navbar-header" ng-cloak ng-if="logo">
             <a href="#" class="navbar-brand logo"><img src="/img/{{ logo }}"></a>
           </div>
           <ul class="nav navbar-nav">
@@ -33,5 +30,18 @@
     <div class="content">
       <div ng-view class="container"></div>
     </div>
+
+    <!-- build:js(app) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="/js/common.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/controllers.js"></script>
+    <!-- endbuild -->
   </body>
 </html>

@@ -1,94 +1,34 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var _ = require('lodash');
-var openfisca = require('./lib/simulation/openfisca');
-var moment = require('moment');
-var Individu = require('./lib/situation').Individu;
-var expand = require('./lib/situation').expand;
-var flatten = require('./lib/situation').flatten;
-var SituationModel = require('./lib/models/situation');
+'use strict';
 
-// Ping OpenFisca
-openfisca.ping();
-setInterval(openfisca.ping, 30*1000);
+var express = require('express'),
+    path = require('path'),
+    fs = require('fs'),
+    mongoose = require('mongoose'),
+    openfisca = require('./lib/simulation/openfisca');;
 
-moment.lang('fr');
+// Set default node environment to development
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-mongoose.connect(process.env.MONGODB_URL || process.env.MONGOHQ_URL);
+var config = require('./lib/config/config');
+var db = mongoose.connect(config.mongo.uri, config.mongo.options);
 
+// Bootstrap models
+var modelsPath = path.join(__dirname, 'lib/models');
+fs.readdirSync(modelsPath).forEach(function (file) {
+  if (/(.*)\.(js$|coffee$)/.test(file)) {
+    require(modelsPath + '/' + file);
+  }
+});
+
+// Setup Express
 var app = express();
+require('./lib/config/express')(app);
+require('./lib/routes')(app);
 
-app.locals.moment = moment;
-
-app.use(express.favicon('app/img/favicon.ico'));
-app.use('/js', express.static('dist'));
-app.use(express.static('app'));
-app.use(express.logger('dev'));
-app.use(express.json());
-
-app.get('/api/situations/:situationId', function(req, res, next) {
-    SituationModel.findById(req.params.situationId, function(err, situation) {
-        if (err) return next(err);
-        if (!situation) return res.send(404);
-        res.send(situation);
-    });
+// Start server
+app.listen(config.port, config.ip, function () {
+  console.log('Express server listening on %s:%d, in %s mode', config.ip, config.port, app.get('env'));
 });
 
-app.post('/api/situations', function(req, res, next) {
-    var demandeur = new Individu();
-    demandeur.ajouteLogement();
-    SituationModel.create(flatten(demandeur), function(err, situation) {
-        if (err) return next(err);
-        res.send(situation.id);
-    });
-});
-
-app.put('/api/situations/:situationId', function(req, res, next) {
-    SituationModel.findByIdAndUpdate(req.params.situationId, _.extend({ _updated: Date.now() }, _.omit(req.body, '_id')), { upsert: true }, function(err, situation) {
-        if (err) return next(err);
-        if (!situation) return res.send(400);
-        res.send(situation);
-    });
-});
-
-app.get('/api/situations/:situationId/simulation', function(req, res, next) {
-    SituationModel.findById(req.params.situationId).lean().exec(function(err, situation) {
-        if (err) return next(err);
-        if (!situation) return res.send(404);
-        openfisca.simulate(expand(situation), function(err, result) {
-            if (err) next(err);
-            res.send(result);
-        });
-    });
-});
-
-app.get('/api/situations/:situationId/openfisca-response', function(req, res, next) {
-    SituationModel.findById(req.params.situationId).lean().exec(function(err, situation) {
-        if (err) return next(err);
-        if (!situation) return res.send(404);
-        openfisca.calculate(expand(situation), function(err, result) {
-            if (err) next(err);
-            res.send(result);
-        });
-    });
-});
-
-app.get('/api/situations/:situationId/openfisca-request', function(req, res, next) {
-    SituationModel.findById(req.params.situationId).lean().exec(function(err, situation) {
-        if (err) return next(err);
-        if (!situation) return res.send(404);
-        res.send(openfisca.buildRequest(expand(situation)));
-    });
-});
-
-app.get('/api/*', function(req, res) {
-    res.send(404);
-});
-
-function renderIndex(req, res) {
-    res.sendfile('app/views/index.html');
-}
-
-app.get('/*', renderIndex);
-
-app.listen(process.env.PORT || 5000);
+// Expose app
+exports = module.exports = app;

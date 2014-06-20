@@ -30,4 +30,8 @@ app/bower_components
 
 # Compiled assets
 dist
-/.project
+
+.project
+.sass-cache
+.tmp
+app/js/common.js

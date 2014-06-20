@@ -87,7 +87,7 @@ ddsApp.controller('questionCtrl', function ($scope) {
         if (!$scope.demandeur || !$scope.entityId || !$scope.questionName) return;
         $scope.targetEntity = situation.searchByEntityId($scope.demandeur, $scope.entityId);
         $scope.question = angular.copy(findBestQuestion($scope.targetEntity, $scope.questionName));
-        $scope.questionTmpl = '/partials/questions/' + $scope.question.type + '.html';
+        $scope.questionTmpl = '/views/partials/questions/' + $scope.question.type + '.html';
         $scope.question.icon = iconMap[$scope.targetEntity.constructor.name];
 
         if ($scope.targetEntity === $scope.demandeur) $scope.question.mainTitle = 'Vous';

@@ -81,8 +81,12 @@ app.get('/api/situations/:situationId/openfisca-request', function(req, res, nex
     });
 });
 
+app.get('/api/*', function(req, res) {
+    res.send(404);
+});
+
 function renderIndex(req, res) {
-    res.sendfile('app/index.html');
+    res.sendfile('app/views/index.html');
 }
 
 app.get('/*', renderIndex);

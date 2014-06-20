@@ -4,15 +4,15 @@ ddsApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider
         .when('/', {
-            templateUrl: '/partials/homepage.html',
+            templateUrl: '/views/partials/homepage.html',
             controller: 'homepageCtrl'
         })
         .when('/configuration/:situationId/:entityId?/:questionName?', {
-            templateUrl: '/partials/main.html',
+            templateUrl: '/views/partials/main.html',
             controller: 'mainCtrl'
         })
         .when('/envoi-demande/:situationId', {
-            templateUrl: '/partials/envoi-demande.html',
+            templateUrl: '/views/partials/envoi-demande.html',
             controller: 'envoiDemandeCtrl'
         });
 });

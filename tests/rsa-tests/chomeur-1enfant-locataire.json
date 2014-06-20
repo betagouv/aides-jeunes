@@ -1,0 +1,62 @@
+{
+  "startId": "ind-6661",
+  "logements": [
+    {
+      "loyer": 500,
+      "statusOccupation": "locataire",
+      "occupants": [
+        "ind-6661"
+      ],
+      "id": "log-976",
+      "prochePropriétaire": false,
+      "codePostal": 92500
+    }
+  ],
+  "individus": [
+    {
+      "retraite": false,
+      "etudiant": false,
+      "demandeurEmploi": true,
+      "statutMarital": "seul",
+      "logement": "log-976",
+      "ressources": {
+        "2014-05": {
+          "pensionsAlimentaires": 200,
+          "allocationLogement": 200
+        },
+        "2014-04": {
+          "pensionsAlimentaires": 200,
+          "allocationLogement": 200
+        },
+        "2014-03": {
+          "pensionsAlimentaires": 200,
+          "allocationLogement": 200
+        }
+      },
+      "id": "ind-6661",
+      "dateDeNaissance": "1979-12-31T23:00:00.000Z",
+      "enfants": [
+        "ind-3855"
+      ]
+    },
+    {
+      "id": "ind-3855",
+      "ressources": {
+        "2014-05": {},
+        "2014-04": {},
+        "2014-03": {}
+      },
+      "parents": [
+        "ind-6661"
+      ],
+      "prenom": "Bob",
+      "dateDeNaissance": "2009-12-31T23:00:00.000Z",
+      "etudiant": false,
+      "demandeurEmploi": false,
+      "retraite": false
+    }
+  ],
+  "expectedResults": {
+    "rsa": 429.13
+  }
+}

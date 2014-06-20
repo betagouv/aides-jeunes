@@ -3,8 +3,7 @@
 var express = require('express'),
     path = require('path'),
     fs = require('fs'),
-    mongoose = require('mongoose'),
-    openfisca = require('./lib/simulation/openfisca');;
+    mongoose = require('mongoose');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 

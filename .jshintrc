@@ -26,6 +26,7 @@
     "rsa": true,
     "aideLogement": true,
     "moment": true,
+    "_": true,
     "_s": true
   }
 }

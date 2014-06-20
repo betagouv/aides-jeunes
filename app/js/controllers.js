@@ -1,4 +1,3 @@
-/* global ddsApp */
 function findBestQuestion(entity, questionName) {
     console.log(entity);
     var entityType = entity instanceof situation.Individu ? 'Individu' : 'Logement';
@@ -7,7 +6,7 @@ function findBestQuestion(entity, questionName) {
 
 var aides = prestations;
 
-ddsApp.controller('mainCtrl', function ($scope, $http, $routeParams, $location) {
+angular.module('ddsApp').controller('mainCtrl', function ($scope, $http, $routeParams, $location) {
     $scope.questionName = $routeParams.questionName ? _s.camelize($routeParams.questionName) : undefined;
     $scope.entityId = $routeParams.entityId;
 
@@ -82,7 +81,7 @@ var iconMap = {
     Logement: 'home'
 };
 
-ddsApp.controller('questionCtrl', function ($scope) {
+angular.module('ddsApp').controller('questionCtrl', function ($scope) {
     function updateQuestion() {
         if (!$scope.demandeur || !$scope.entityId || !$scope.questionName) return;
         $scope.targetEntity = situation.searchByEntityId($scope.demandeur, $scope.entityId);
@@ -116,7 +115,7 @@ ddsApp.controller('questionCtrl', function ($scope) {
 
 
 
-ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
+angular.module('ddsApp').controller('ressourcesQuestionCtrl', function ($scope) {
     $scope.periodes = situation.troisDerniersMois();
     $scope.moment = moment;
     $scope._s = _s;
@@ -161,7 +160,7 @@ ddsApp.controller('ressourcesQuestionCtrl', function ($scope) {
     $scope.$watch('targetEntity', updateIndividu);
 });
 
-ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, $routeParams) {
+angular.module('ddsApp').controller('envoiDemandeCtrl', function ($http, $scope, $routeParams) {
     $scope.contact = {};
     $scope.send = function (form) {
         $scope.formSubmitted = true;
@@ -175,7 +174,7 @@ ddsApp.controller('envoiDemandeCtrl', function ($http, $scope, $routeParams) {
     };
 });
 
-ddsApp.controller('homepageCtrl', function($scope, $window, $http, $location) {
+angular.module('ddsApp').controller('homepageCtrl', function($scope, $window, $http, $location) {
     $scope.checkConfirmation = function() {
         if (!$scope.acceptConditions) {
             $window.alert('Vous devez cocher la case pour continuer');
@@ -191,15 +190,15 @@ ddsApp.controller('homepageCtrl', function($scope, $window, $http, $location) {
     };
 });
 
-ddsApp.controller('marqueBlancheCtrl', function ($scope, $window) {
+angular.module('ddsApp').controller('marqueBlancheCtrl', function ($scope, $window) {
     if ($window.location.pathname.indexOf('/secours-populaire/') === 0) {
         $scope.logo = 'logo_secours_populaire.png';
     }
 });
 
-ddsApp.controller('yesNoQuestionCtrl', function () {});
-ddsApp.controller('dateQuestionCtrl', function () {});
-ddsApp.controller('numberQuestionCtrl', function () {});
-ddsApp.controller('radiosQuestionCtrl', function () {});
-ddsApp.controller('checkboxesQuestionCtrl', function () {});
-ddsApp.controller('enfantsQuestionCtrl', function () {});
+angular.module('ddsApp').controller('yesNoQuestionCtrl', function () {});
+angular.module('ddsApp').controller('dateQuestionCtrl', function () {});
+angular.module('ddsApp').controller('numberQuestionCtrl', function () {});
+angular.module('ddsApp').controller('radiosQuestionCtrl', function () {});
+angular.module('ddsApp').controller('checkboxesQuestionCtrl', function () {});
+angular.module('ddsApp').controller('enfantsQuestionCtrl', function () {});

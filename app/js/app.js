@@ -1,3 +1,5 @@
+'use strict';
+
 var ddsApp = angular.module('ddsApp', ['ngRoute']);
 
 ddsApp.config(function($routeProvider, $locationProvider) {

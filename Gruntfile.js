@@ -206,7 +206,7 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     'bower-install': {
       app: {
-        html: '<%= yeoman.app %>/views/index.html',
+        html: '<%= yeoman.app %>/views/front.html',
         ignorePath: '<%= yeoman.app %>/',
         exclude: ['bootstrap-sass']
       }
@@ -258,8 +258,7 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: ['<%= yeoman.app %>/views/index.html',
-             '<%= yeoman.app %>/views/index.jade'],
+      html: ['<%= yeoman.app %>/views/front.html'],
       options: {
         dest: '<%= yeoman.dist %>/public'
       }

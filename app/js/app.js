@@ -2,7 +2,7 @@
 
 var ddsApp = angular.module('ddsApp', ['ngRoute']);
 
-ddsApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+ddsApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider
         .when('/', {
@@ -17,4 +17,4 @@ ddsApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
             templateUrl: '/partials/envoi-demande.html',
             controller: 'envoiDemandeCtrl'
         });
-}]);
+});

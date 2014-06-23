@@ -12,7 +12,7 @@ var iconMap = {
 };
 
 angular.module('ddsApp')
-  .controller('mainCtrl', ['$scope', '$http', '$routeParams', '$location', function ($scope, $http, $routeParams, $location) {
+  .controller('mainCtrl', function ($scope, $http, $routeParams, $location) {
     $scope.questionName = $routeParams.questionName ? _s.camelize($routeParams.questionName) : undefined;
     $scope.entityId = $routeParams.entityId;
 
@@ -80,9 +80,9 @@ angular.module('ddsApp')
             console.log('Simulated!', data);
         });
     };
-}])
+})
 
-.controller('questionCtrl', ['$scope', function ($scope) {
+.controller('questionCtrl', function ($scope) {
     function updateQuestion() {
         if (!$scope.demandeur || !$scope.entityId || !$scope.questionName) return;
         $scope.targetEntity = situation.searchByEntityId($scope.demandeur, $scope.entityId);
@@ -112,9 +112,9 @@ angular.module('ddsApp')
     });
 
     updateQuestion();
-}])
+})
 
-.controller('ressourcesQuestionCtrl', ['$scope', function ($scope) {
+.controller('ressourcesQuestionCtrl', function ($scope) {
     $scope.periodes = situation.troisDerniersMois();
     $scope.moment = moment;
     $scope._s = _s;
@@ -157,9 +157,9 @@ angular.module('ddsApp')
     updateIndividu();
 
     $scope.$watch('targetEntity', updateIndividu);
-}])
+})
 
-.controller('envoiDemandeCtrl', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
+.controller('envoiDemandeCtrl', function ($http, $scope, $routeParams) {
     $scope.contact = {};
     $scope.send = function (form) {
         $scope.formSubmitted = true;
@@ -171,9 +171,9 @@ angular.module('ddsApp')
             $scope.formSent = true;
         });
     };
-}])
+})
 
-.controller('homepageCtrl', ['$scope', '$window', '$http', '$location', function($scope, $window, $http, $location) {
+.controller('homepageCtrl', function($scope, $window, $http, $location) {
     $scope.checkConfirmation = function() {
         if (!$scope.acceptConditions) {
             $window.alert('Vous devez cocher la case pour continuer');
@@ -187,13 +187,13 @@ angular.module('ddsApp')
             $location.path('/configuration/' + situationId);
         });
     };
-}])
+})
 
-.controller('marqueBlancheCtrl', ['$scope', '$window', function ($scope, $window) {
+.controller('marqueBlancheCtrl', function ($scope, $window) {
     if ($window.location.pathname.indexOf('/secours-populaire/') === 0) {
         $scope.logo = 'logo_secours_populaire.png';
     }
-}]);
+});
 
 angular.module('ddsApp').controller('yesNoQuestionCtrl', function () {});
 angular.module('ddsApp').controller('dateQuestionCtrl', function () {});

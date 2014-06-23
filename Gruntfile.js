@@ -509,6 +509,7 @@ module.exports = function (grunt) {
     else if (target === 'client') {
       return grunt.task.run([
         'clean:server',
+        'bower-install',
         'concurrent:test',
         'autoprefixer',
         'karma'

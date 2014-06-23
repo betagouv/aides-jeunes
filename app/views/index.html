@@ -15,7 +15,7 @@
   </head>
   <body ng-app="ddsApp">
     <header>
-      <nav role="navigation" class="navbar navbar-default main-navbar" ng-controller="marqueBlancheCtrl">
+      <nav role="navigation" class="navbar navbar-default main-navbar" ng-controller="MarqueBlancheCtrl">
         <div class="container">
           <div class="navbar-header" ng-cloak ng-if="logo">
             <a href="#" class="navbar-brand logo"><img ng-src="img/{{ logo }}"></a>
@@ -43,7 +43,12 @@
     <!-- build:js({.tmp,app}) js/scripts.js -->
     <script src="js/common.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
+    <script src="js/controllers/homepage.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/controllers/marqueBlanche.js"></script>
+    <script src="js/controllers/question.js"></script>
+    <script src="js/controllers/ressourcesQuestion.js"></script>
+    <script src="js/controllers/envoiDemande.js"></script>
     <!-- endbuild -->
   </body>
 </html>

@@ -7,14 +7,14 @@ ddsApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '/partials/homepage.html',
-            controller: 'homepageCtrl'
+            controller: 'HomepageCtrl'
         })
         .when('/configuration/:situationId/:entityId?/:questionName?', {
             templateUrl: '/partials/main.html',
-            controller: 'mainCtrl'
+            controller: 'MainCtrl'
         })
         .when('/envoi-demande/:situationId', {
             templateUrl: '/partials/envoi-demande.html',
-            controller: 'envoiDemandeCtrl'
+            controller: 'EnvoiDemandeCtrl'
         });
 });

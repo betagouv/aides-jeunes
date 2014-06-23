@@ -72,6 +72,10 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass:server', 'autoprefixer']
       },
+      browserify: {
+        files: ['lib/**/*.js'],
+        tasks: ['browserify']
+      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -485,6 +489,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'bower-install',
+      'browserify',
       'concurrent:server',
       'autoprefixer',
       'express:dev',
@@ -519,6 +524,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'bower-install',
+    'browserify',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
@@ -534,7 +540,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'newer:jshint',
-    'browserify:dist',
     'test',
     'build'
   ]);

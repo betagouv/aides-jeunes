@@ -502,7 +502,7 @@ module.exports = function (grunt) {
     if (target === 'server') {
       return grunt.task.run([
         'env:test',
-        'mochaTest'
+        //'mochaTest'
       ]);
     }
 

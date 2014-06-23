@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dossier de Demande Simplifié</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <!-- build:css({.tmp,app}) /styles/main.css -->
+    <link rel="stylesheet" href="/styles/main.css">
+    <!-- endbuild -->
+    <base href="/back/">
+  </head>
+  <body ng-app="ddsBackend">
+    <header>
+      <nav role="navigation" class="navbar navbar-default main-navbar">
+        <div class="container">
+          <ul class="nav navbar-nav">
+            <li><a href="" class="navbar-brand title">Backend DDS</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="" class="navbar-brand logo"><img src="img/logo_marianne.png"></a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="content">
+      <div ng-view class="container"></div>
+    </div>
+
+    <!-- build:js(app) /js/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) /js/scripts.js -->
+    <script src="js/back.js"></script>
+    <script src="js/controllers/backend.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

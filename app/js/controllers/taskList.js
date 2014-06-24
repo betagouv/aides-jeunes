@@ -23,5 +23,5 @@ angular.module('ddsBackend').controller('TaskListCtrl', function($scope, $http) 
         for (var j in situations) {
             $scope.situations.push(situations[j]);
         }
-    })
+    });
 });

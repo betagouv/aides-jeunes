@@ -1,14 +1,34 @@
 <div class="page-header">
-  <h1>Liste des demandes</h1>
+  <h1>{{ situationsNb }} demande(s) à prendre en charge</h1>
 </div>
 
 <table class="table table-bordered table-striped">
-  <tr>
-    <th>Nom</th>
-    <th>Ville</th>
-  </tr>
-  <tr>
-    <td>Patrice Martin</td>
-    <td>Orléans</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Ville</th>
+      <th>Tâches</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="situation in situations">
+      <td>{{ situation.contact.firstName }} {{ situation.contact.lastName }}</td>
+      <td>{{ situation.contact.city || 'Inconnue' }}</td>
+      <td>
+        <div ng-repeat="task in situation.tasks">
+          {{ taskLabels[task.type] }} : <span ng-class="{ 'task-error': task.status === 'ko', 'task-ok': task.status === 'ok' }"></span>
+        </div>
+      </td>
+      <td><a href="situations/{{ situation._id }}">Prendre en charge cette demande</a></td>
+    </tr>
+  </tbody>
 </table>
+
+<div class="text-center">
+  <ul class="pagination pagination-lg">
+    <li class="disabled"><a href="#">&laquo;</a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li class="disabled"><a href="#">&raquo;</a></li>
+  </ul>
+</div>

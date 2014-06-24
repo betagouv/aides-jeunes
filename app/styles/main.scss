@@ -13,3 +13,15 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
     padding-top: 3px;
   }
 }
+
+.task-error {
+  @extend .glyphicon;
+  @extend .glyphicon-remove-circle;
+  color: $alert-danger-text;
+}
+
+.task-ok {
+  @extend .glyphicon;
+  @extend .glyphicon-ok-circle;
+  color: $alert-success-text;
+}

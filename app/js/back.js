@@ -7,6 +7,6 @@ ddsApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '/back/partials/taskList.html',
-            controller: 'BackendCtrl'
+            controller: 'TaskListCtrl'
         });
 });

@@ -17,7 +17,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 .task-error {
   @extend .glyphicon;
   @extend .glyphicon-remove-circle;
-  color: $alert-danger-text;
+  color: $alert-warning-text;
 }
 
 .task-ok {

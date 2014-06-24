@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>{{ situationsNb }} demande(s) à prendre en charge</h1>
+  <h1><span ng-if="situationsNb === 0">Aucune demande</span><span ng-if="situationsNb > 0">{{ situationsNb }} demande(s)</span> à prendre en charge</h1>
 </div>
 
 <table class="table table-bordered table-striped">
@@ -7,20 +7,20 @@
     <tr>
       <th>Nom</th>
       <th>Ville</th>
-      <th>Tâches</th>
+      <th>Tâche</th>
+      <th>Affectée à</th>
       <th>Action</th>
     </tr>
   </thead>
-  <tbody>
-    <tr ng-repeat="situation in situations">
-      <td>{{ situation.contact.firstName }} {{ situation.contact.lastName }}</td>
-      <td>{{ situation.contact.city || 'Inconnue' }}</td>
+  <tbody ng-repeat="situation in situations">
+    <tr ng-repeat="task in situation.tasks">
+      <td ng-if="$first" rowspan="{{ situation.tasks.length }}">{{ situation.contact.firstName }} {{ situation.contact.lastName }}</td>
+      <td ng-if="$first" rowspan="{{ situation.tasks.length }}">{{ situation.contact.city || 'Inconnue' }}</td>
       <td>
-        <div ng-repeat="task in situation.tasks">
-          {{ taskLabels[task.type] }} : <span ng-class="{ 'task-error': task.status === 'ko', 'task-ok': task.status === 'ok' }"></span>
-        </div>
+        {{ taskLabels[task.type] }} <span ng-class="{ 'task-error': task.status === 'ko', 'task-ok': task.status === 'ok' }"></span>
       </td>
-      <td><a href="situations/{{ situation._id }}">Prendre en charge cette demande</a></td>
+      <td>{{ taskAuthorities[task.type] }}</td>
+      <td><a href="situations/{{ situation._id }}">Prendre en charge cette tâche</a></td>
     </tr>
   </tbody>
 </table>

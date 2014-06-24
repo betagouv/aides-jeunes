@@ -1,10 +1,15 @@
 'use strict';
 
 angular.module('ddsBackend').controller('TaskListCtrl', function($scope, $http) {
-    $scope.situationsNb = 2;
+    $scope.situationsNb = 0;
     $scope.taskLabels = {
         'nir_validation': 'Validation du code NIR',
         'revenus_dgfip': 'Vérification des revenus'
+    };
+
+    $scope.taskAuthorities = {
+        'nir_validation': 'CNAM',
+        'revenus_dgfip': 'DGFIP'
     };
 
     $http.get('/api/situations').then(function(result) {
@@ -23,5 +28,6 @@ angular.module('ddsBackend').controller('TaskListCtrl', function($scope, $http) 
         for (var j in situations) {
             $scope.situations.push(situations[j]);
         }
+        $scope.situationsNb = $scope.situations.length;
     });
 });

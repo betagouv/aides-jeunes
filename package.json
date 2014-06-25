@@ -3,7 +3,6 @@
   "version": "0.1.1",
   "dependencies": {
     "body-parser": "~1.0.0",
-    "connect-mongo": "kcbanner/connect-mongo#76c958a",
     "cookie-parser": "~1.0.1",
     "errorhandler": "~1.0.0",
     "express": "~4.0.0",

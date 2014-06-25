@@ -16,5 +16,8 @@ ddsApp.config(function($routeProvider, $locationProvider) {
         .when('/envoi-demande/:situationId', {
             templateUrl: '/partials/envoi-demande.html',
             controller: 'EnvoiDemandeCtrl'
+        })
+        .otherwise({
+            redirectTo: '/'
         });
 });

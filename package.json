@@ -2,6 +2,7 @@
   "name": "dds",
   "version": "0.1.1",
   "dependencies": {
+    "bcrypt": "^0.7.8",
     "body-parser": "~1.0.0",
     "cookie-parser": "~1.0.1",
     "errorhandler": "~1.0.0",
@@ -11,6 +12,8 @@
     "moment": "~2.5.1",
     "mongoose": "~3.8.12",
     "morgan": "~1.0.0",
+    "passport": "^0.2.0",
+    "passport-local": "^1.0.0",
     "static-favicon": "~1.0.1",
     "superagent": "^0.18.0",
     "underscore.string": "^2.3.3"

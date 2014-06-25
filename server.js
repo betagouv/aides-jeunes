@@ -3,7 +3,8 @@
 var express = require('express'),
     path = require('path'),
     fs = require('fs'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    passport = require('passport');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -18,10 +19,13 @@ fs.readdirSync(modelsPath).forEach(function (file) {
     }
 });
 
+// Setup Passport
+require('./lib/config/passport')(passport);
+
 // Setup Express
 var app = express();
-require('./lib/config/express')(app);
-require('./lib/routes')(app, config);
+require('./lib/config/express')(app, passport);
+require('./lib/routes')(app, passport, config);
 
 // Start server
 app.listen(config.port, config.ip, function () {

@@ -5,7 +5,6 @@
     "body-parser": "~1.0.0",
     "connect-mongo": "~0.4.1",
     "cookie-parser": "~1.0.1",
-    "ejs": "~0.8.4",
     "errorhandler": "~1.0.0",
     "express": "~4.0.0",
     "express-session": "~1.0.2",

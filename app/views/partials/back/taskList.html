@@ -1,5 +1,9 @@
 <div class="page-header">
-  <h1><span ng-if="situationsNb === 0">Aucune demande</span><span ng-if="situationsNb > 0">{{ situationsNb }} demande(s)</span> à prendre en charge</h1>
+  <h1>
+    <span ng-if="situationsNb === 0">Aucune demande</span>
+    <span ng-if="situationsNb > 0">{{ situationsNb }} demande(s)</span>
+    à traiter
+  </h1>
 </div>
 
 <table class="table table-bordered table-striped">
@@ -8,16 +12,20 @@
       <th>Nom</th>
       <th>Ville</th>
       <th>Tâche</th>
+      <th>Statut</th>
       <th>Affectée à</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody ng-repeat="situation in situations">
-    <tr ng-repeat="task in situation.tasks">
+    <tr ng-repeat="task in situation.tasks" ng-init="status = task.status">
       <td ng-if="$first" rowspan="{{ situation.tasks.length }}">{{ situation.contact.firstName }} {{ situation.contact.lastName }}</td>
-      <td ng-if="$first" rowspan="{{ situation.tasks.length }}">{{ situation.contact.city || 'Inconnue' }}</td>
+      <td ng-if="$first" rowspan="{{ situation.tasks.length }}">{{ situation.contact.city }}</td>
+      <td>{{ taskLabels[task.type] }}</td>
       <td>
-        {{ taskLabels[task.type] }} <span ng-class="{ 'task-error': task.status === 'ko', 'task-ok': task.status === 'ok' }"></span>
+        <span class="label" ng-class="{ 'label-danger': status === 'ko', 'label-success': status === 'ok', 'label-info': status === 'todo', 'label-warning': status === 'pending' }">
+          {{ statusLabels[status] }}
+        </span>
       </td>
       <td>{{ taskAuthorities[task.type] }}</td>
       <td><a href="situations/{{ situation._id }}">Prendre en charge cette tâche</a></td>

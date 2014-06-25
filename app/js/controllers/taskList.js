@@ -12,6 +12,13 @@ angular.module('ddsBackend').controller('TaskListCtrl', function($scope, $http) 
         'revenus_dgfip': 'DGFIP'
     };
 
+    $scope.statusLabels = {
+        todo: 'À traiter',
+        pending: 'En cours de traitement',
+        ok: 'Validé',
+        ko: 'Invalidé'
+    };
+
     $http.get('/api/situations').then(function(result) {
         var situations = {};
         for (var i in result.data) {

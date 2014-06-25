@@ -1,3 +1,5 @@
+/* jshint indent: 2 */
+
 // Generated on 2014-06-19 using generator-angular-fullstack 1.4.3
 'use strict';
 
@@ -115,7 +117,7 @@ module.exports = function (grunt) {
         options: {
           jshintrc: 'lib/.jshintrc'
         },
-        src: ['lib/{,*/}*.js']
+        src: ['lib/{,*/}*.js', '*.js']
       },
       all: [
         '<%= yeoman.app %>/js/{,*/}*.js'
@@ -514,10 +516,12 @@ module.exports = function (grunt) {
       ]);
     }
 
-    else grunt.task.run([
-      'test:server',
-      'test:client'
-    ]);
+    else {
+      grunt.task.run([
+        'test:server',
+        'test:client'
+      ]);
+    }
   });
 
   grunt.registerTask('build', [

@@ -25,7 +25,8 @@ require('./lib/config/passport')(passport);
 // Setup Express
 var app = express();
 require('./lib/config/express')(app, passport);
-require('./lib/routes')(app, passport, config);
+require('./lib/config/api')(app, passport);
+require('./lib/config/client')(app, config);
 
 // Start server
 app.listen(config.port, config.ip, function () {

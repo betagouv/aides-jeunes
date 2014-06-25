@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('ddsApp').controller('TaskCtrl', function() {
-
+angular.module('ddsBackend').controller('TaskCtrl', function($scope, task) {
+    $scope.task = task;
 });

@@ -1,11 +1,8 @@
 'use strict';
 
-angular.module('ddsBackend').controller('TaskListCtrl', function($scope, $http) {
+angular.module('ddsBackend').controller('TaskListCtrl', function($scope, $http, TaskService) {
     $scope.situationsNb = 0;
-    $scope.taskLabels = {
-        'nir_validation': 'Validation du code NIR',
-        'revenus_dgfip': 'Vérification des revenus'
-    };
+    $scope.taskLabels = TaskService.labels;
 
     $scope.taskAuthorities = {
         'nir_validation': 'CNAM',

@@ -24,8 +24,8 @@ require('./lib/config/passport')(passport);
 
 // Setup Express
 var app = express();
-require('./lib/config/express')(app, passport);
-require('./lib/config/api')(app, passport);
+require('./lib/config/express')(app, passport, config);
+require('./lib/config/api')(app, passport, config);
 require('./lib/config/client')(app, config);
 
 // Start server

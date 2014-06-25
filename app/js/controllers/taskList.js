@@ -19,7 +19,7 @@ angular.module('ddsBackend').controller('TaskListCtrl', function($scope, $http) 
         ko: 'Invalidé'
     };
 
-    $http.get('/api/situations').then(function(result) {
+    $http.get('/api/tasks').then(function(result) {
         var situations = {};
         for (var i in result.data) {
             var task = result.data[i];

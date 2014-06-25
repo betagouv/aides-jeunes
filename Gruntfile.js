@@ -268,8 +268,8 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/views/{,*/}*.html',
-             '<%= yeoman.dist %>/views/{,*/}*.jade'],
+      html: ['<%= yeoman.dist %>/public/views/{,*/}*.html',
+             '<%= yeoman.dist %>/public/views/{,*/}*.jade'],
       css: ['<%= yeoman.dist %>/public/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>/public']
@@ -314,7 +314,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/views',
           src: ['*.html', 'partials/**/*.html'],
-          dest: '<%= yeoman.dist %>/views'
+          dest: '<%= yeoman.dist %>/public/views'
         }]
       }
     },
@@ -335,7 +335,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/views/*.html']
+        html: ['<%= yeoman.dist %>/public/views/*.html']
       }
     },
 
@@ -358,7 +358,7 @@ module.exports = function (grunt) {
           expand: true,
           dot: true,
           cwd: '<%= yeoman.app %>/views',
-          dest: '<%= yeoman.dist %>/views',
+          dest: '<%= yeoman.dist %>/public/views',
           src: '**/*.jade'
         }, {
           expand: true,

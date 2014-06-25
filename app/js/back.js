@@ -12,6 +12,15 @@ ddsApp.config(function($routeProvider, $locationProvider) {
         .when('/login', {
             templateUrl: '/back/partials/login.html',
             controller: 'LoginCtrl'
+        })
+        .when('/taches/:taskId', {
+            templateUrl: '/back/partials/task.html',
+            controller: 'TaskCtrl',
+            resolve: {
+                task: function($route, $http) {
+                    return $http.get('/api/tasks/' + $route.current.params.taskId);
+                }
+            }
         });
 });
 

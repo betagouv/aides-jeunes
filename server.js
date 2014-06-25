@@ -1,10 +1,10 @@
-'use strict';
-
-var express = require('express'),
-    path = require('path'),
-    fs = require('fs'),
-    mongoose = require('mongoose'),
-    passport = require('passport');
+var express = require('express');
+var path = require('path');
+var fs = require('fs');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var errorHandler = require('errorhandler');
+var morgan = require('morgan');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -24,9 +24,22 @@ require('./lib/config/passport')(passport);
 
 // Setup Express
 var app = express();
-require('./lib/config/express')(app, passport, config);
+var env = app.get('env');
+
+if ('development' === env) {
+    app.use(morgan('dev'));
+}
+
+if ('production' === env) {
+    app.use(morgan());
+}
+
 require('./lib/config/api')(app, passport, config);
 require('./lib/config/client')(app, config);
+
+if ('development' === env) {
+    app.use(errorHandler());
+}
 
 // Start server
 app.listen(config.port, config.ip, function () {

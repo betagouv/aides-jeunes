@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('ddsBackend').controller('LoginCtrl', function($scope, UserService) {
+angular.module('ddsBackend').controller('LoginCtrl', function($scope, $location, UserService) {
     $scope.badCredentials = false;
-    $scope.username = 'test@test.com';
-    $scope.password = 'coucou';
+    $scope.email = 'jerome.desboeufs@gmail.com';
+    $scope.password = 'sgmap2014';
 
     $scope.connect = function() {
         $scope.badCredentials = false;
-        UserService.authenticate($scope.username, $scope.password)
+        UserService.authenticate($scope.email, $scope.password)
             .then(function() {
                 $location.path('/');
             }, function() {

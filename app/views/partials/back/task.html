@@ -1,3 +1,40 @@
-<h1>{{ taskLabels[task.type] }}</h1>
+<div class="page-header">
+  <h1>{{ taskLabels[task.type] }}</h1>
+</div>
 
-<p>Coucou</p>
+<div class="row">
+  <div class="col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Contact</h2>
+      </div>
+      <div class="panel-body">
+        <p><b>{{ task.situation.contact.firstName }} {{ task.situation.contact.lastName }}</b></p>
+
+        <p>{{ task.situation.contact.address }}<br>{{ task.situation.contact.postalCode }} {{ task.situation.contact.city }}</p>
+
+        <p ng-if="task.situation.contact.email">Email : {{ task.situation.contact.email }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Informations à vérifier</h2>
+      </div>
+      <div class="panel-body">
+        <p>Code NIR : <b>{{ task.situation.contact.numeroSecu }}</b></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Action</h2>
+      </div>
+      <div class="panel-body">
+        <p><a href="" class="btn btn-success btn-lg btn-block">Valider</a><a href="" class="btn btn-danger btn-lg btn-block">Invalider</a></p>
+      </div>
+    </div>
+  </div>
+</div>

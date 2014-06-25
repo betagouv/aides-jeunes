@@ -17,8 +17,8 @@ ddsApp.config(function($routeProvider, $locationProvider) {
             templateUrl: '/back/partials/task.html',
             controller: 'TaskCtrl',
             resolve: {
-                task: function($route, $http) {
-                    return $http.get('/api/tasks/' + $route.current.params.taskId);
+                task: function($route, TaskService) {
+                    return TaskService.find($route.current.params.taskId);
                 }
             }
         });

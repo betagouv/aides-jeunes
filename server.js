@@ -8,8 +8,14 @@ var morgan = require('morgan');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+var openfisca = require('./lib/simulation/openfisca');
+
 var config = require('./lib/config/config');
 mongoose.connect(config.mongo.uri, config.mongo.options);
+
+// Ping OpenFisca
+openfisca.ping();
+setInterval(openfisca.ping, 30*1000);
 
 // Bootstrap models
 var modelsPath = path.join(__dirname, 'lib/models');

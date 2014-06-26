@@ -8,8 +8,11 @@ angular.module('ddsApp').controller('EnvoiDemandeCtrl', function ($http, $scope,
             return;
         }
 
-        $http.put('/api/situations/' + $routeParams.situationId, {contact: $scope.contact}).success(function() {
-            $scope.formSent = true;
+        var baseSituationUrl = '/api/situations/' + $routeParams.situationId;
+        $http.put(baseSituationUrl, {contact: $scope.contact}).success(function() {
+            $http.post(baseSituationUrl + '/submit').success(function() {
+                $scope.formSent = true;
+            })
         });
     };
 });

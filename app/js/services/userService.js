@@ -1,17 +1,17 @@
 'use strict';
 
-angular.module('ddsBackend').factory('UserService', function($http, $cookieStore, $rootScope) {
+angular.module('ddsBackend').factory('UserService', function($http, $sessionStorage, $rootScope) {
     var user;
 
     return {
         init: function() {
-            user = $cookieStore.get('user');
+            user = $sessionStorage.user;
         },
 
         authenticate: function(email, password) {
             return $http.post('/api/login', {email: email, password: password}).success(function(_user) {
                 user = _user;
-                $cookieStore.put('user', _user);
+                $sessionStorage.user = _user;
                 $rootScope.$broadcast('userLoggedIn', user);
             });
         },
@@ -30,7 +30,7 @@ angular.module('ddsBackend').factory('UserService', function($http, $cookieStore
 
         logout: function() {
             user = null;
-            $cookieStore.remove('user');
+            delete $sessionStorage.user;
             return $http.post('/api/logout');
         }
     };

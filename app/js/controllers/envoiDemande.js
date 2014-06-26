@@ -12,7 +12,7 @@ angular.module('ddsApp').controller('EnvoiDemandeCtrl', function ($http, $scope,
         $http.put(baseSituationUrl, {contact: $scope.contact}).success(function() {
             $http.post(baseSituationUrl + '/submit').success(function() {
                 $scope.formSent = true;
-            })
+            });
         });
     };
 });

@@ -20,12 +20,13 @@ angular.module('ddsBackend').controller('TaskListCtrl', function($scope, $http, 
         var situations = {};
         for (var i in result.data) {
             var task = result.data[i];
-            var situation = task.situation;
-            if (!situations[situation._id]) {
-                situations[situation._id] = situation;
-                situations[situation._id].tasks = [];
+            var situationId = task.situation._id;
+            var situation = situations[situationId];
+            if (!situation) {
+                situations[situationId] = situation = task.situation;
+                situation.tasks = [];
             }
-            situations[situation._id].tasks.push(task);
+            situation.tasks.push(task);
         }
 
         $scope.situations = [];

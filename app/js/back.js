@@ -1,6 +1,6 @@
 'use strict';
 
-var ddsApp = angular.module('ddsBackend', ['ngRoute']);
+var ddsApp = angular.module('ddsBackend', ['ngRoute', 'ngCookies']);
 
 ddsApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -27,6 +27,7 @@ ddsApp.config(function($routeProvider, $locationProvider) {
 ddsApp.run(function($rootScope, $location, UserService) {
     var routeChangeLoginListener = function() {
         var isRouteLogin = ('/login' === $location.path());
+        UserService.init();
         if (!UserService.isLoggedIn() && !isRouteLogin) {
             $location.path('/login');
         } else if (isRouteLogin && UserService.isLoggedIn()) {

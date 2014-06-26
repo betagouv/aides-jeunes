@@ -12,14 +12,16 @@
     <base href="/back/">
   </head>
   <body ng-app="ddsBackend">
-    <header>
+    <header ng-controller="HeaderCtrl">
       <nav role="navigation" class="navbar navbar-default main-navbar">
         <div class="container">
           <div class="navbar-header">
-            <a href="" class="navbar-brand title">Back-Office DDS</a>
+            <a href="/back" class="navbar-brand title">Back-Office DDS</a>
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="" class="navbar-brand logo"><img src="img/logo_marianne.png"></a></li>
+            <li ng-if="user" class="navbar-text">{{ user.firstName }} {{ user.lastName }} - {{ user.organization.name }}</li>
+            <li ng-if="user"><button type="button" ng-click="logout()" class="btn btn-default navbar-btn">Déconnexion</button></li>
+            <li><a href="/back" class="navbar-brand logo"><img src="img/logo_marianne.png"></a></li>
           </ul>
         </div>
       </nav>
@@ -32,6 +34,7 @@
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -40,6 +43,7 @@
     <script src="js/controllers/taskList.js"></script>
     <script src="js/controllers/login.js"></script>
     <script src="js/controllers/task.js"></script>
+    <script src="js/controllers/header.js"></script>
 
     <script src="js/services/userService.js"></script>
     <script src="js/services/taskService.js"></script>

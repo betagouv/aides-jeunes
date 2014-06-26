@@ -2,15 +2,25 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 
-.main-navbar .navbar-brand {
-  height: 75px;
+.main-navbar {
+  .navbar-brand {
+    &.title {
+      padding-top: 30px;
+      padding-bottom: 45px;
+    }
 
-  &.title {
-    padding-top: 28px;
+    &.logo {
+      padding-top: 3px;
+    }
   }
 
-  &.logo {
-    padding-top: 3px;
+  .navbar-text {
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+
+  .navbar-nav > li > .navbar-btn {
+    margin: 21px 10px 21px 0;
   }
 }
 

@@ -8,5 +8,5 @@ angular.module('ddsBackend').filter('nl2br', function() {
                 .replace(/</g, '&lt;');
 
         return text.replace(/\n/g, '<br>');
-    }
+    };
 });

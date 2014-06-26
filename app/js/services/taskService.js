@@ -7,6 +7,13 @@ angular.module('ddsBackend').factory('TaskService', function($http) {
             'revenus_dgfip': 'Vérification des revenus'
         },
 
+        statusLabels: {
+            todo: 'À traiter',
+            pending: 'En cours de traitement',
+            ok: 'Validé',
+            ko: 'Invalidé'
+        },
+
         find: function(taskId) {
             return $http.get('/api/tasks/' + taskId).then(function(result) {
                 return result.data;

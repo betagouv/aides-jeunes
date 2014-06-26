@@ -24,6 +24,10 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
   }
 }
 
+.label-lg {
+  font-size: 20px;
+}
+
 .task-error {
   @extend .glyphicon;
   @extend .glyphicon-remove-circle;

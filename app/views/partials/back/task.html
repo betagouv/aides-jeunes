@@ -33,10 +33,20 @@
         <h2 class="panel-title">Action</h2>
       </div>
       <div class="panel-body">
-        <p>
+        <p ng-show="!invalidating">
           <a href="" class="btn btn-success btn-lg btn-block" ng-click="validate()">Valider</a>
-          <a href="" class="btn btn-danger btn-lg btn-block" ng-click="invalidate()">Invalider</a>
+          <a href="" class="btn btn-danger btn-lg btn-block" ng-click="invalidating = true">Invalider</a>
         </p>
+        <div ng-show="invalidating">
+          <form ng-submit="invalidate()">
+            <div class="form-group">
+              <label for="invalidationMessage">Merci d'indiquer au demandeur la nature du problème et ce qu'il convient de faire pour le résoudre</label>
+              <textarea class="form-control" ng-model="$parent.invalidationMessage" id="invalidationMessage" placeholder="Décrivez ici le problème" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Valider</button>
+            <button type="button" class="btn btn-default" ng-click="invalidating=false">Annuler</button>
+          </form>
+        </div>
       </div>
     </div>
     <div class="panel panel-default" ng-if="!isTaskEditable()">
@@ -50,6 +60,10 @@
             {{ statusLabels[task.status] }}
           </span>
         </p>
+        <div ng-if="task.invalidationMessage">
+          <h4>Message à l'attention du demandeur</h4>
+          <p class="well" ng-bind-html="task.invalidationMessage | nl2br"></p>
+        </div>
       </div>
     </div>
   </div>

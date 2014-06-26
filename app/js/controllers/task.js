@@ -12,7 +12,7 @@ angular.module('ddsBackend').controller('TaskCtrl', function($scope, TaskService
     };
 
     $scope.invalidate = function() {
-        TaskService.invalidate(task).success(function(_task) {
+        TaskService.invalidate(task, $scope.invalidationMessage).success(function(_task) {
             $scope.task = task = _task;
         });
     };

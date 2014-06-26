@@ -1,6 +1,6 @@
 'use strict';
 
-var ddsApp = angular.module('ddsBackend', ['ngRoute', 'ngCookies', 'ngStorage']);
+var ddsApp = angular.module('ddsBackend', ['ngRoute', 'ngCookies', 'ngStorage', 'ngSanitize']);
 
 ddsApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);

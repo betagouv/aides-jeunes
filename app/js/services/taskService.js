@@ -24,12 +24,17 @@ angular.module('ddsBackend').factory('TaskService', function($http) {
             return this.changeTaskStatus(task, 'ok');
         },
 
-        invalidate: function(task) {
-            return this.changeTaskStatus(task, 'ko');
+        invalidate: function(task, invalidationMessage) {
+            return this.changeTaskStatus(task, 'ko', invalidationMessage);
         },
 
-        changeTaskStatus: function(task, status) {
-            return $http.post('/api/tasks/' + task._id + '/change-status', {status: status});
+        changeTaskStatus: function(task, status, invalidationMessage) {
+            var data = {status: status};
+            if (angular.isString(invalidationMessage)) {
+                data.invalidationMessage = invalidationMessage;
+            }
+
+            return $http.post('/api/tasks/' + task._id + '/change-status', data);
         }
     };
 });

@@ -2,6 +2,10 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 
+html {
+  overflow-y: scroll;
+}
+
 .main-navbar {
   .navbar-brand {
     &.title {

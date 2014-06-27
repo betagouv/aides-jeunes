@@ -35,6 +35,6 @@ ddsApp.run(function($rootScope, $location, UserService) {
         }
     };
 
-    $rootScope.$on('$routeChangeStart', routeChangeLoginListener);
+    $rootScope.$on('$locationChangeStart', routeChangeLoginListener);
     routeChangeLoginListener();
 });

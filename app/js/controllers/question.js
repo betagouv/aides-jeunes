@@ -7,7 +7,6 @@ angular.module('ddsApp').controller('QuestionCtrl', function ($scope) {
     };
 
     function findBestQuestion(entity, questionName) {
-        console.log(entity);
         var entityType = entity instanceof situation.Individu ? 'Individu' : 'Logement';
         return questions[entityType][questionName];
     }

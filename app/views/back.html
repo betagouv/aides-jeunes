@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dossier de Demande Simplifié</title>
+    <title>Back-Office DDS</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
     <!-- build:css({.tmp,app}) /styles/main.css -->
@@ -19,8 +19,8 @@
             <a href="/back" class="navbar-brand title">Back-Office DDS</a>
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li ng-if="user" class="navbar-text">{{ user.firstName }} {{ user.lastName }} - {{ user.organization.name }}</li>
-            <li ng-if="user"><button type="button" ng-click="logout()" class="btn btn-default navbar-btn">Déconnexion</button></li>
+            <li ng-cloak ng-if="user" class="navbar-text">{{ user.firstName }} {{ user.lastName }} - {{ user.organization.name }}</li>
+            <li ng-cloak ng-if="user"><button type="button" ng-click="logout()" class="btn btn-default navbar-btn">Déconnexion</button></li>
             <li><a href="/back" class="navbar-brand logo"><img src="img/logo_marianne.png"></a></li>
           </ul>
         </div>

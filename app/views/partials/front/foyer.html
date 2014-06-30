@@ -1,7 +1,143 @@
 <div class="page-header">
-  <h1>Décrivez-nous votre foyer</h1>
+  <h1><i class="fa fa-home"></i> Votre foyer</h1>
 </div>
 
-<div class="col-lg-6">
+<div class="form-foyer">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Vous</h2>
+        </div>
+        <div class="panel-body">
+          <p>Date de naissance : <strong>{{ situation.demandeur.birthDate }}</strong></p>
+          <p ng-if="situation.demandeur.statuses">
+            Situation :
+            <ul>
+              <li ng-repeat="situation.demandeur.statuses"></li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div ng-if="!conjoint">
+        <div class="text-center">
+          <p class="lead">Vous vivez avec quelqu'un ?</p>
+          <button class="btn btn-default btn-lg" ng-click="$parent.conjoint = {}">
+            Inclure mon conjoint dans la simulation
+            <br><i class="fa fa-plus"></i>
+          </button>
+          <br><br>
+          <p>Cette personne doit vivre avec vous et être votre conjoint actuel.<br>Ne l'ajoutez pas si vous êtes actuellement séparés.</p>
+        </div>
+      </div>
+      <div ng-if="conjoint" class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Votre conjoint <button type="button" class="close" ng-click="$parent.conjoint = null"><span aria-hidden="true">&times;</span></button></h2>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label class="col-lg-4 control-label" for="conjoint-birth-date">Date de naissance</label>
+              <div class="col-lg-8">
+                <input type="text" id="conjoint-birth-date" class="form-control" placeholder="jj/mm/aaaa">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Situation</label>
+              <div class="col-lg-8">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="">
+                    Inscrit à Pôle Emploi
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="">
+                    Étudiant
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="">
+                    Retraité
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-lg-6">
+      <h2><i class="fa fa-child"></i> Vos enfants à charge</h2>
+      <div class="text-center">
+        <button class="btn btn-default btn-lg" ng-click="children.push({})">
+          Ajouter un enfant à charge
+          <br><i class="fa fa-plus"></i>
+        </button>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-6" ng-repeat="child in children">
+          <div class="panel panel-default form-children">
+            <div class="panel-heading">
+              <h2 class="panel-title">
+                {{ child.firstName || 'Enfant' }}
+                <button type="button" class="close" ng-click="removeChild(child)"><span aria-hidden="true">&times;</span></button>
+              </h2>
+            </div>
+            <div class="panel-body">
+              <form role="form">
+                <div class="form-group">
+                  <label class="control-label">Prénom</label>
+                  <div class="">
+                    <input type="text" class="form-control" ng-model="child.firstName">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Date de naissance</label>
+                  <div class="">
+                    <input type="text" class="form-control" ng-model="child.birthDate" placeholder="jj/mm/aaaa">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <h2><i class="fa fa-ambulance"></i> Autres personnes à charge</h2>
+      <div class="text-center">
+        <button class="btn btn-default btn-lg">
+          Ajouter une personne à charge
+          <br><i class="fa fa-plus"></i>
+        </button>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <h2>Récapitulatif des revenus du foyer</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Personne</th>
+        <th>Revenus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vous</td>
+        <td>1200 €</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

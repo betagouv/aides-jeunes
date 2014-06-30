@@ -43,3 +43,9 @@ html {
   @extend .glyphicon-ok-circle;
   color: $alert-success-text;
 }
+
+.form-foyer {
+  .checkbox {
+    height: 27px;
+  }
+}

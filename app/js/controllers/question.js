@@ -24,16 +24,17 @@ angular.module('ddsApp').controller('QuestionCtrl', function ($scope) {
         if ($scope.targetEntity.prenom) $scope.question.mainTitle = $scope.targetEntity.prenom;
 
         $scope.claimedAttribute = $scope.questionName;
-        $scope.next = function() {
-            if ($scope.question.afterCallback) {
-                if ($scope.question.afterCallback.apply($scope.targetEntity) !== false) {
-                    $scope.updateSituation();
-                }
-            } else {
+    }
+
+    $scope.next = function() {
+        if ($scope.question.afterCallback) {
+            if ($scope.question.afterCallback.apply($scope.targetEntity) !== false) {
                 $scope.updateSituation();
             }
-        };
-    }
+        } else {
+            $scope.updateSituation();
+        }
+    };
 
     $scope.$watchGroup(['demandeur', 'questionName', 'entityId'], function() {
         updateQuestion();

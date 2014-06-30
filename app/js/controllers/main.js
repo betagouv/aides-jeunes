@@ -1,20 +1,14 @@
 'use strict';
 
-angular.module('ddsApp').controller('MainCtrl', function ($scope, $http, $routeParams, $location) {
+angular.module('ddsApp').controller('MainCtrl', function ($scope, $routeParams, $location, situationData, SituationService, SimulationService) {
     var aides = prestations;
 
     $scope.questionName = $routeParams.questionName ? _s.camelize($routeParams.questionName) : undefined;
     $scope.entityId = $routeParams.entityId;
-
-    $http.get('/api/situations/' + $routeParams.situationId).success(function(data) {
-        $scope.demandeur = situation.expand(data);
-        if (!$routeParams.entityId || !$routeParams.questionName) $scope.computeSituation();
-    });
-
-    $scope.situationId = $routeParams.situationId;
+    $scope.situationId = situationData._id;
 
     $scope.updateSituation = function () {
-        $http.put('/api/situations/' + $routeParams.situationId, situation.flatten($scope.demandeur)).success(function(data) {
+        SituationService.update($scope.situationId, situation.flatten($scope.demandeur)).success(function(data) {
             $scope.demandeur = situation.expand(data);
             $scope.computeSituation();
         });
@@ -44,7 +38,9 @@ angular.module('ddsApp').controller('MainCtrl', function ($scope, $http, $routeP
             }
 
             console.log('Computed!', $scope.elig);
-            $scope.simulate();
+            SimulationService.simulate($scope.situationId).then(function(result) {
+                $scope.aides = result;
+            });
         } catch(e) {
             if (!(e instanceof situation.ComputingError)) throw e;
             $location.path('/configuration/' + $routeParams.situationId + '/' + e.entity.id + '/' + _s.dasherize(e.claimedAttributes[0]));
@@ -52,22 +48,6 @@ angular.module('ddsApp').controller('MainCtrl', function ($scope, $http, $routeP
         }
     };
 
-    $scope.simulate = function () {
-        console.log('Simulating...');
-        $http.get('/api/situations/' + $routeParams.situationId + '/simulation').success(function(data) {
-            $scope.aides = [];
-            _.forEach(data, function(value, aide) {
-                if (!(aide in aides)) return;
-                var obj = { partial: aides[aide].partial };
-                if (aides[aide].type === Number && value > 0) {
-                    obj.montant = value;
-                    $scope.aides.push(obj);
-                }
-                if (aides[aide].type === Boolean && value === true) {
-                    $scope.aides.push(obj);
-                }
-            });
-            console.log('Simulated!', data);
-        });
-    };
+    $scope.demandeur = situation.expand(situationData);
+    if (!$routeParams.entityId || !$routeParams.questionName) $scope.computeSituation();
 });

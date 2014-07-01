@@ -1,0 +1,28 @@
+<form name="form" class="form-horizontal" ng-submit="submit(form)" novalidate>
+  <div class="modal-header">
+    <h3 class="modal-title">Votre conjoint</h3>
+  </div>
+  <div class="modal-body">
+    <div class="form-group form-group-lg" ng-class="{'has-error': formSubmitted && form.birthDate.$invalid}">
+      <label class="control-label col-lg-4" for="birth-date">Date de naissance</label>
+      <div class="col-lg-8">
+        <input type="text" class="form-control" name="birthDate" id="birth-date" required ng-model="$parent.birthDate" dds-date placeholder="jj/mm/aaaa">
+        <p class="help-block" ng-if="formSubmitted && form.birthDate.$invalid">Date de naissance invalide</p>
+      </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <label class="control-label col-lg-4" for="lien-conjoint">Votre relation</label>
+      <div class="col-lg-8">
+        <select class="form-control" name="lien" ng-model="$parent.lien" id="lien-conjoint">
+          <option value="0">Marié</option>
+          <option value="1">Pacsé</option>
+          <option value="2">Relation libre</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-lg btn-default" ng-click="cancel()">Annuler</button>
+    <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+  </div>
+</form>

@@ -1,9 +1,13 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 
-@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import 'bootstrap-sass-official/assets/stylesheets/bootstrap';
 
 html {
   overflow-y: scroll;
+}
+
+.table-borderless > tbody > tr > td {
+  border-top: none;
 }
 
 .main-navbar {
@@ -47,5 +51,17 @@ html {
 .form-foyer {
   .checkbox {
     height: 27px;
+  }
+}
+
+.icon-lg {
+  font-size: 80px;
+}
+
+.form-selection-revenus {
+  font-size: 20px;
+
+  .btn {
+    font-size: 30px;
   }
 }

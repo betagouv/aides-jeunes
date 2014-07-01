@@ -1,8 +1,6 @@
 'use strict';
 
 angular.module('ddsApp').controller('MainCtrl', function ($scope, $routeParams, $location, situationData, SituationService, SimulationService) {
-    var aides = prestations;
-
     $scope.questionName = $routeParams.questionName ? _s.camelize($routeParams.questionName) : undefined;
     $scope.entityId = $routeParams.entityId;
     $scope.situationId = situationData._id;

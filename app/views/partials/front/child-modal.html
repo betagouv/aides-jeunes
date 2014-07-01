@@ -1,0 +1,25 @@
+<form name="form" class="form-horizontal" ng-submit="submit(form)" novalidate>
+  <div class="modal-header">
+    <h3 class="modal-title">{{ modalTitle }}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="form-group form-group-lg" ng-class="{'has-error': formSubmitted && form.firstName.$invalid}">
+      <label class="control-label col-lg-4" for="first-name">Prénom</label>
+      <div class="col-lg-8">
+        <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="$parent.firstName">
+        <p class="help-block" ng-if="formSubmitted && form.firstName.$invalid">Ce champ est obligatoire</p>
+      </div>
+    </div>
+    <div class="form-group form-group-lg" ng-class="{'has-error': formSubmitted && form.birthDate.$invalid}">
+      <label class="control-label col-lg-4" for="birth-date">Date de naissance</label>
+      <div class="col-lg-8">
+        <input type="text" class="form-control" name="birthDate" id="birth-date" required ng-model="$parent.birthDate" dds-date placeholder="jj/mm/aaaa">
+        <p class="help-block" ng-if="formSubmitted && form.birthDate.$invalid">Date de naissance invalide</p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-lg btn-default" ng-click="cancel()">Annuler</button>
+    <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+  </div>
+</form>

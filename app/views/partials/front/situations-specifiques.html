@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1>Situations spécifiques</h1>
+</div>
+
+<form role="form">
+  <label>L'une des personnes de votre foyer est-elle dans une de ces situations spécifiques ?</label>
+  <table class="table table-striped table-borderless">
+    <tr ng-repeat="situation in situations">
+      <td>
+        <label class="btn btn-default" ng-model="selectedSituations[situation.id]" btn-checkbox>{{ situation.label }}</label>
+      </td>
+      <td>
+        <div ng-show="selectedSituations[situation.id]">
+          <label>Quelles sont les personnes concernées ?</label>
+          <label class="checkbox-inline" ng-repeat="individu in individus">
+            <input type="checkbox"> {{ individu.name }}
+          </label>
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<p class="text-center"><a href="/configuration/revenus-aides/selection-personnes" class="btn btn-lg btn-primary" ng-click="saveSituation()">Suivant</a></p>

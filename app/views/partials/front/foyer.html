@@ -2,142 +2,141 @@
   <h1><i class="fa fa-home"></i> Votre foyer</h1>
 </div>
 
-<div class="form-foyer">
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">Vous</h2>
-        </div>
-        <div class="panel-body">
-          <p>Date de naissance : <strong>{{ situation.demandeur.birthDate }}</strong></p>
-          <p ng-if="situation.demandeur.statuses">
-            Situation :
-            <ul>
-              <li ng-repeat="situation.demandeur.statuses"></li>
-            </ul>
-          </p>
-        </div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Vous</h2>
       </div>
-    </div>
-    <div class="col-lg-6">
-      <div ng-if="!conjoint">
-        <div class="text-center">
-          <p class="lead">Vous vivez avec quelqu'un ?</p>
-          <button class="btn btn-default btn-lg" ng-click="$parent.conjoint = {}">
-            Inclure mon conjoint dans la simulation
-            <br><i class="fa fa-plus"></i>
-          </button>
-          <br><br>
-          <p>Cette personne doit vivre avec vous et être votre conjoint actuel.<br>Ne l'ajoutez pas si vous êtes actuellement séparés.</p>
-        </div>
-      </div>
-      <div ng-if="conjoint" class="panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">Votre conjoint <button type="button" class="close" ng-click="$parent.conjoint = null"><span aria-hidden="true">&times;</span></button></h2>
-        </div>
-        <div class="panel-body">
-          <form class="form-horizontal" role="form">
-            <div class="form-group">
-              <label class="col-lg-4 control-label" for="conjoint-birth-date">Date de naissance</label>
-              <div class="col-lg-8">
-                <input type="text" id="conjoint-birth-date" class="form-control" placeholder="jj/mm/aaaa">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-4 control-label">Situation</label>
-              <div class="col-lg-8">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" value="">
-                    Inscrit à Pôle Emploi
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" value="">
-                    Étudiant
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" value="">
-                    Retraité
-                  </label>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
+      <div class="panel-body text-center">
+        <i class="fa fa-male icon-lg"></i>
+        Né(e) le <strong>{{ situation.demandeur.birthDate.format('DD/MM/YYYY') }}</strong>
       </div>
     </div>
   </div>
 
+  <div class="col-sm-6" >
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Votre situation familiale</h2>
+      </div>
+      <div class="panel-body text-center">
+        <div ng-show="true !== livesAlone && !conjoint">
+          <label>Vivez-vous seul(e) ou en couple ?</label>
+          <label class="btn btn-primary" ng-model="livesAlone" btn-radio="true">Seul</label>
+          <label class="btn btn-primary" ng-model="livesAlone" btn-radio="false" ng-click="openConjointModal()">En couple</label>
+        </div>
+        <div ng-if="livesAlone">
+          <p>Vous vivez seul(e).</p>
+        </div>
+        <div ng-if="conjoint">
+          <p>
+            <i class="fa fa-male icon-lg"></i>
+            Vous êtes <strong>{{ typeRelationLabels[conjoint.lien] }}</strong> avec votre conjoint, né(e) le <strong>{{ conjoint.birthDate.format('DD/MM/YYYY') }}</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="conjoint || livesAlone">
+  <h2>
+    <i class="fa fa-child"></i>
+    Vos enfants
+  </h2>
+
+  <div ng-show="undefined === awaitingChild">
+    <label>Attendez-vous un enfant ?</label>
+    <label class="btn btn-primary" ng-model="awaitingChild" btn-radio="true">Oui</label>
+    <label class="btn btn-primary" ng-model="awaitingChild" btn-radio="false">Non</label>
+  </div>
+
+  <p>
+    <span ng-if="true === awaitingChild"><i class="fa fa-reddit"></i> Vous attendez un enfant</span>
+    <span ng-if="false === awaitingChild">Vous n'attendez pas d'enfant</span>
+    <span ng-if="false === hasChildren">- Vous n'avez pas d'enfant à charge</span>
+    <span ng-if="true === hasChildren && 0 < children.length">- Vous avez {{ children.length }} enfant<span ng-if="children.length > 1">s</span></span>
+  </p>
+
+  <div ng-show="undefined !== awaitingChild && undefined === hasChildren">
+    <label>Avez-vous des enfants à charge ?</label>
+    <label class="btn btn-primary" ng-model="hasChildren" btn-radio="true">Oui</label>
+    <label class="btn btn-primary" ng-model="hasChildren" btn-radio="false" ng-click="childConfigDone = true">Non</label>
+  </div>
+
+  <div ng-show="true === hasChildren && !childConfigDone">
+    <p class="text-center">
+      <button class="btn btn-lg btn-default" ng-click="newChild()">
+        Ajouter un enfant
+        <br><i class="fa fa-plus"></i>
+      </button>
+      <button type="button" class="btn btn-lg btn-primary" ng-click="endChildConfig()">
+        Suivant
+        <br><i class="fa fa-arrow-circle-right"></i>
+      </button>
+    </p>
+  </div>
   <div class="row">
-    <div class="col-lg-6">
-      <h2><i class="fa fa-child"></i> Vos enfants à charge</h2>
-      <div class="text-center">
-        <button class="btn btn-default btn-lg" ng-click="children.push({})">
-          Ajouter un enfant à charge
+    <div class="col-sm-4" ng-repeat="child in children">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            {{ child.firstName }}
+            <button type="button" class="close" ng-if="!childConfigDone" ng-click="removeChild(child)"><span aria-hidden="true">&times;</span></button>
+          </h4>
+        </div>
+        <div class="panel-body">
+          <i class="fa fa-child icon-lg"></i> Né(e) le <strong>{{ child.birthDate.format('DD/MM/YYYY') }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-show="childConfigDone">
+    <h2><i class="fa fa-users"></i> Autres personnes à charge</h2>
+
+    <div ng-show="undefined === hasPersonneACharge">
+      <label>Avez-vous d'autres personnes à votre charge ?</label>
+      <label class="btn btn-primary" ng-model="hasPersonneACharge" btn-radio="true">Oui</label>
+      <label class="btn btn-primary" ng-model="hasPersonneACharge" btn-radio="false" ng-click="personneAChargeConfigDone = true">Non</label>
+    </div>
+
+    <p>
+      <span ng-if="false === hasPersonneACharge">Vous n'avez pas de personne à charge</span>
+      <span ng-if="true === hasPersonneACharge && 0 < personnes.length">Vous avez {{ personnes.length }} personne<span ng-if="children.length > 1">s</span> à charge</span>
+    </p>
+
+    <div ng-show="true === hasPersonneACharge && !personneAChargeConfigDone">
+      <p class="text-center">
+        <button class="btn btn-lg btn-default" ng-click="newPersonneACharge()">
+          Ajouter une personne à charge
           <br><i class="fa fa-plus"></i>
         </button>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-lg-6" ng-repeat="child in children">
-          <div class="panel panel-default form-children">
-            <div class="panel-heading">
-              <h2 class="panel-title">
-                {{ child.firstName || 'Enfant' }}
-                <button type="button" class="close" ng-click="removeChild(child)"><span aria-hidden="true">&times;</span></button>
-              </h2>
-            </div>
-            <div class="panel-body">
-              <form role="form">
-                <div class="form-group">
-                  <label class="control-label">Prénom</label>
-                  <div class="">
-                    <input type="text" class="form-control" ng-model="child.firstName">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Date de naissance</label>
-                  <div class="">
-                    <input type="text" class="form-control" ng-model="child.birthDate" placeholder="jj/mm/aaaa">
-                  </div>
-                </div>
-              </form>
-            </div>
+        <button type="button" class="btn btn-lg btn-primary" ng-click="endPersonneAChargeConfig()">
+          Suivant
+          <br><i class="fa fa-arrow-circle-right"></i>
+        </button>
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4" ng-repeat="personne in personnes">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              {{ personne.firstName }}
+              <button type="button" class="close" ng-if="!personneAChargeConfigDone" ng-click="removePersonneACharge(personne)"><span aria-hidden="true">&times;</span></button>
+            </h4>
+          </div>
+          <div class="panel-body">
+            <i class="fa fa-child icon-lg"></i> Né(e) le <strong>{{ personne.birthDate.format('DD/MM/YYYY') }}</strong>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-lg-6">
-      <h2><i class="fa fa-ambulance"></i> Autres personnes à charge</h2>
-      <div class="text-center">
-        <button class="btn btn-default btn-lg">
-          Ajouter une personne à charge
-          <br><i class="fa fa-plus"></i>
-        </button>
-      </div>
-      <br>
+    <div ng-show="personneAChargeConfigDone" class="text-center">
+      <a href="/configuration/situations-specifiques" class="btn btn-lg btn-primary" ng-click="saveSituation()">Suivant</a>
     </div>
   </div>
-
-  <h2>Récapitulatif des revenus du foyer</h2>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Personne</th>
-        <th>Revenus</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Vous</td>
-        <td>1200 €</td>
-      </tr>
-    </tbody>
-  </table>
 </div>

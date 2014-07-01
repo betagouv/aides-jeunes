@@ -1,5 +1,7 @@
 'use strict';
 
+/* global aides */
+
 angular.module('ddsApp').factory('SimulationService', function($http) {
     return {
         simulate: function(situationId) {

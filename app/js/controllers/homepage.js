@@ -10,8 +10,8 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $window, $h
     };
 
     $scope.startSimulation = function() {
-        $http.post('/api/situations').success(function(situation) {
-            $location.path('/configuration/' + situation._id);
+        $http.post('/api/situations').success(function() {
+            $location.path('/configuration/date-naissance');
         });
     };
 });

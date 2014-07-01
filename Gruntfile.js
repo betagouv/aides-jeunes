@@ -43,12 +43,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    browserify: {
-      dist: {
-        src: 'lib/client/common.js',
-        dest: 'app/js/common.js'
-      }
-    },
     open: {
       server: {
         url: 'http://localhost:<%= express.options.port %>'
@@ -73,10 +67,6 @@ module.exports = function (grunt) {
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass:server', 'autoprefixer']
-      },
-      browserify: {
-        files: ['lib/**/*.js'],
-        tasks: ['browserify']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -489,7 +479,6 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'bower-install',
-      'browserify',
       'concurrent:server',
       'autoprefixer',
       'express:dev',
@@ -526,7 +515,6 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'bower-install',
-    'browserify',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

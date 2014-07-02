@@ -51,20 +51,20 @@
       Vos enfants
     </h2>
 
-    <div ng-show="undefined === situation.awaitingChild">
+    <div ng-show="undefined === situation.demandeur.enceinte">
       <label>Attendez-vous un enfant ?</label>
-      <label class="btn btn-primary" ng-model="situation.awaitingChild" btn-radio="true" ng-click="awaitingChildDefined()">Oui</label>
-      <label class="btn btn-primary" ng-model="situation.awaitingChild" btn-radio="false" ng-click="awaitingChildDefined()">Non</label>
+      <label class="btn btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="true">Oui</label>
+      <label class="btn btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="false">Non</label>
     </div>
 
     <p>
-      <span ng-if="true === situation.awaitingChild"><i class="fa fa-reddit"></i> Vous attendez un enfant</span>
-      <span ng-if="false === situation.awaitingChild">Vous n'attendez pas d'enfant</span>
+      <span ng-if="true === situation.demandeur.enceinte"><i class="fa fa-reddit"></i> Vous attendez un enfant</span>
+      <span ng-if="false === situation.demandeur.enceinte">Vous n'attendez pas d'enfant</span>
       <span ng-if="false === situation.hasChildren">- Vous n'avez pas d'enfant à charge</span>
       <span ng-if="true === situation.hasChildren && 0 < situation.children.length">- Vous avez {{ situation.children.length }} enfant<span ng-if="situation.children.length > 1">s</span></span>
     </p>
 
-    <div ng-show="undefined !== situation.awaitingChild && undefined === situation.hasChildren">
+    <div ng-show="undefined !== situation.demandeur.enceinte && undefined === situation.hasChildren">
       <label>Avez-vous des enfants à charge ?</label>
       <label class="btn btn-primary" ng-model="situation.hasChildren" btn-radio="true">Oui</label>
       <label class="btn btn-primary" ng-model="situation.hasChildren" btn-radio="false" ng-click="situation.childConfigDone = true">Non</label>

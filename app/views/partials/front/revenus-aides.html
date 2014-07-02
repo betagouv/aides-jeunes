@@ -2,4 +2,48 @@
   <h1>Revenus de votre foyer</h1>
 </div>
 
-<p class="text-center"><i class="fa fa-question icon-lg"></i></p>
+<accordion close-others="false">
+  <accordion-group ng-repeat="section in sections" is-open="section.open">
+    <accordion-heading>
+      {{ section.label }} <i class="pull-right fa" ng-class="{'fa-chevron-down': section.open, 'fa-chevron-right': !section.open}"></i>
+    </accordion-heading>
+    <table class="table">
+      <thead>
+        <tr>
+          <th colspan="2"></th>
+          <th>Mars</th>
+          <th>Avril</th>
+          <th>Mai</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="subsection in section.subSections" ng-init="isFirstSubsection">
+        <tr ng-repeat="individu in individus">
+          <td ng-if="$first" rowspan="{{ individus.length }}"><b>{{ subsection.label }}</b></td>
+          <td>{{ individu.name }}</td>
+          <td style="max-width: 200px;">
+            <div class="input-group">
+              <input type="number" class="form-control" size="3" value="0">
+              <span class="input-group-addon">€</span>
+            </div>
+          </td>
+          <td style="max-width: 200px;">
+            <div class="input-group">
+              <input type="number" class="form-control" size="3" value="0">
+              <span class="input-group-addon">€</span>
+            </div>
+          </td>
+          <td style="max-width: 200px;">
+            <div class="input-group">
+              <input type="number" class="form-control" size="3" value="0">
+              <span class="input-group-addon">€</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </accordion-group>
+</accordion>
+
+<div class="text-center">
+  <a href="" class="btn btn-lg btn-primary">Etape suivante</a>
+</div>

@@ -80,7 +80,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
     };
 
     $scope.endChildConfig = function() {
-        $scope.childConfigDone = true;
+        $scope.situation.childConfigDone = true;
         if ($scope.situation.children.length === 0) {
             $scope.situation.hasChildren = false;
         }
@@ -112,7 +112,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
     };
 
     $scope.endPersonneAChargeConfig = function() {
-        $scope.personneAChargeConfigDone = true;
+        $scope.situation.personneAChargeConfigDone = true;
         if ($scope.situation.personnes.length === 0) {
             $scope.situation.hasPersonneACharge = false;
         }

@@ -27,6 +27,14 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 if (situation.conjoint) {
                     situation.conjoint.birthDate = moment(situation.conjoint.birthDate);
                 }
+
+                _.forEach(situation.children, function(child) {
+                    child.birthDate = moment(child.birthDate);
+                });
+
+                _.forEach(situation.personnes, function(personne) {
+                    personne.birthDate = moment(personne.birthDate);
+                });
             }
 
             return situation;

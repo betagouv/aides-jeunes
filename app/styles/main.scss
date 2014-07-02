@@ -32,6 +32,10 @@ html {
   }
 }
 
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
+}
+
 .label-lg {
   font-size: 20px;
 }
@@ -74,9 +78,4 @@ html {
 
 .animate-show.ng-hide {
   opacity: 0;
-}
-
-.animate-show.ng-hide-add.ng-hide-add-active,
-.animate-show.ng-hide-remove.ng-hide-remove-active {
-  
 }

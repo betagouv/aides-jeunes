@@ -67,7 +67,7 @@
     <div ng-show="undefined !== situation.awaitingChild && undefined === situation.hasChildren">
       <label>Avez-vous des enfants à charge ?</label>
       <label class="btn btn-primary" ng-model="situation.hasChildren" btn-radio="true">Oui</label>
-      <label class="btn btn-primary" ng-model="situation.hasChildren" btn-radio="false" ng-click="childConfigDone = true">Non</label>
+      <label class="btn btn-primary" ng-model="situation.hasChildren" btn-radio="false" ng-click="situation.childConfigDone = true">Non</label>
     </div>
 
     <div class="row">
@@ -76,15 +76,22 @@
           <div class="panel-heading">
             <h4 class="panel-title">
               {{ child.firstName }}
-              <button type="button" class="close" ng-if="!childConfigDone" ng-click="removeChild(child)"><span aria-hidden="true">&times;</span></button>
+              <button type="button" class="close" ng-if="!situation.childConfigDone" ng-click="removeChild(child)"><span aria-hidden="true">&times;</span></button>
             </h4>
           </div>
           <div class="panel-body">
-            <i class="fa fa-child icon-lg"></i> Né(e) le <strong>{{ child.birthDate.format('DD/MM/YYYY') }}</strong>
+            <div class="row">
+              <div class="col-md-4">
+                <i class="fa fa-child icon-lg"></i>
+              </div>
+              <div class="col-md-8">
+                Né(e) le <strong>{{ child.birthDate.format('DD/MM/YYYY') }}</strong>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6" ng-show="true === situation.hasChildren && !childConfigDone">
+      <div class="col-md-6" ng-show="true === situation.hasChildren && !situation.childConfigDone">
         <div class="panel panel-default" style="border-style: dashed;">
           <div class="panel-heading">
             <h4 class="panel-title">Ajouter un enfant</h4>
@@ -98,7 +105,7 @@
       </div>
     </div>
 
-    <div class="text-right" ng-show="true === situation.hasChildren && !childConfigDone">
+    <div class="text-right" ng-show="true === situation.hasChildren && !situation.childConfigDone">
       <button type="button" class="btn btn-lg btn-primary" ng-click="endChildConfig()">
         Terminé
         <br><i class="fa fa-arrow-circle-right"></i>
@@ -110,13 +117,13 @@
   </div>
 
   <div class="col-md-5">
-    <div class="animate-show" ng-show="childConfigDone">
+    <div class="animate-show" ng-show="situation.childConfigDone">
       <h2><i class="fa fa-users"></i> Autres personnes à charge</h2>
 
       <div ng-show="undefined === situation.hasPersonneACharge">
         <label>Avez-vous d'autres personnes à votre charge ?</label>
         <label class="btn btn-primary" ng-model="situation.hasPersonneACharge" btn-radio="true">Oui</label>
-        <label class="btn btn-primary" ng-model="situation.hasPersonneACharge" btn-radio="false" ng-click="personneAChargeConfigDone = true">Non</label>
+        <label class="btn btn-primary" ng-model="situation.hasPersonneACharge" btn-radio="false" ng-click="situation.personneAChargeConfigDone = true">Non</label>
       </div>
 
       <p>
@@ -130,18 +137,25 @@
             <div class="panel-heading">
               <h4 class="panel-title">
                 {{ personne.firstName }}
-                <button type="button" class="close" ng-if="!personneAChargeConfigDone" ng-click="removePersonneACharge(personne)"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" ng-if="!situation.personneAChargeConfigDone" ng-click="removePersonneACharge(personne)"><span aria-hidden="true">&times;</span></button>
               </h4>
             </div>
             <div class="panel-body">
-              <i class="fa fa-male icon-lg"></i> Né(e) le <strong>{{ personne.birthDate.format('DD/MM/YYYY') }}</strong>
+              <div class="row">
+                <div class="col-md-4">
+                  <i class="fa fa-male icon-lg"></i>
+                </div>
+                <div class="col-md-8">
+                  Né(e) le <strong>{{ personne.birthDate.format('DD/MM/YYYY') }}</strong>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6" ng-show="true === situation.hasPersonneACharge && !personneAChargeConfigDone">
+        <div class="col-md-6" ng-show="true === situation.hasPersonneACharge && !situation.personneAChargeConfigDone">
           <div class="panel panel-default" style="border-style: dashed;">
             <div class="panel-heading">
-              <h4 class="panel-title">Ajouter une personne à charge</h4>
+              <h4 class="panel-title">Ajouter une personne</h4>
             </div>
             <div class="panel-body" style="padding: 0;">
               <button class="btn btn-lg btn-default btn-block" ng-click="newPersonneACharge()" style="border: none; padding: 15px; border-radius: 0;">
@@ -152,7 +166,7 @@
         </div>
       </div>
 
-      <div class="text-right" ng-show="true === situation.hasPersonneACharge && !personneAChargeConfigDone">
+      <div class="text-right" ng-show="true === situation.hasPersonneACharge && !situation.personneAChargeConfigDone">
         <button type="button" class="btn btn-lg btn-primary" ng-click="endPersonneAChargeConfig()">
           Terminé
           <br><i class="fa fa-arrow-circle-right"></i>
@@ -162,6 +176,6 @@
   </div>
 </div>
 
-<div ng-show="personneAChargeConfigDone" class="text-center">
+<div ng-show="situation.personneAChargeConfigDone" class="text-center">
   <a href="/configuration/situations-specifiques" class="btn btn-lg btn-primary" ng-click="saveSituation()">Etape suivante</a>
 </div>

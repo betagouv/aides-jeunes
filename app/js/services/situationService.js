@@ -32,7 +32,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                     child.birthDate = moment(child.birthDate);
                 });
 
-                _.forEach(situation.personnes, function(personne) {
+                _.forEach(situation.personnesACharge, function(personne) {
                     personne.birthDate = moment(personne.birthDate);
                 });
             }
@@ -59,7 +59,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 individus.push({name: child.firstName, type: 'child'});
             });
 
-            _.forEach(situation.personnes, function(personne) {
+            _.forEach(situation.personnesACharge, function(personne) {
                 individus.push({name: personne.firstName, type: 'personneACharge'});
             });
 

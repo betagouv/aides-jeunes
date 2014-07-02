@@ -128,11 +128,11 @@
 
       <p>
         <span ng-if="false === situation.hasPersonneACharge">Vous n'avez pas de personne à charge</span>
-        <span ng-if="true === situation.hasPersonneACharge && 0 < situation.personnes.length">Vous avez {{ situation.personnes.length }} personne<span ng-if="situation.personnes.length > 1">s</span> à charge</span>
+        <span ng-if="true === situation.hasPersonneACharge && 0 < situation.personnesACharge.length">Vous avez {{ situation.personnesACharge.length }} personne<span ng-if="situation.personnesACharge.length > 1">s</span> à charge</span>
       </p>
 
       <div class="row">
-        <div class="col-md-6" ng-repeat="personne in situation.personnes">
+        <div class="col-md-6" ng-repeat="personne in situation.personnesACharge">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">

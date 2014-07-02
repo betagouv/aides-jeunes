@@ -5,8 +5,8 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
     if (!$scope.situation.children) {
         $scope.situation.children = [];
     }
-    if (!$scope.situation.personnes) {
-        $scope.situation.personnes = [];
+    if (!$scope.situation.personnesACharge) {
+        $scope.situation.personnesACharge = [];
     }
 
     $scope.relationTypeLabels = {
@@ -99,21 +99,21 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
         });
 
         modalInstance.result.then(function(personne) {
-            $scope.situation.personnes.push(personne);
+            $scope.situation.personnesACharge.push(personne);
         });
     };
 
     $scope.removePersonneACharge = function(personne) {
-        var index = $scope.situation.personnes.indexOf(personne);
-        $scope.situation.personnes.splice(index, 1);
-        if (0 === $scope.situation.personnes.length) {
+        var index = $scope.situation.personnesACharge.indexOf(personne);
+        $scope.situation.personnesACharge.splice(index, 1);
+        if (0 === $scope.situation.personnesACharge.length) {
             $scope.situation.hasPersonneACharge = undefined;
         }
     };
 
     $scope.endPersonneAChargeConfig = function() {
         $scope.situation.personneAChargeConfigDone = true;
-        if ($scope.situation.personnes.length === 0) {
+        if ($scope.situation.personnesACharge.length === 0) {
             $scope.situation.hasPersonneACharge = false;
         }
     };

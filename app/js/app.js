@@ -1,6 +1,6 @@
 'use strict';
 
-var ddsApp = angular.module('ddsApp', ['ngRoute', 'ui.bootstrap', 'ngStorage']);
+var ddsApp = angular.module('ddsApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngStorage']);
 
 ddsApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -9,9 +9,8 @@ ddsApp.config(function($routeProvider, $locationProvider) {
             templateUrl: '/partials/homepage.html',
             controller: 'HomepageCtrl'
         })
-        .when('/configuration/date-naissance', {
-            templateUrl: '/partials/birth-date.html',
-            controller: 'BirthDateCtrl'
+        .when('/teaser', {
+            templateUrl: '/partials/teaser.html'
         })
         .when('/configuration/foyer', {
             templateUrl: '/partials/foyer.html',

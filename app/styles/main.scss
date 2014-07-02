@@ -65,3 +65,18 @@ html {
     font-size: 30px;
   }
 }
+
+.animate-show {
+  opacity: 1;
+  -webkit-transition: opacity linear 1s;
+  transition: opacity linear 1s;
+}
+
+.animate-show.ng-hide {
+  opacity: 0;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  
+}

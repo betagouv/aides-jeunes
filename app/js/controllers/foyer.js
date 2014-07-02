@@ -1,23 +1,58 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $modal, SituationService) {
-    $scope.situation = SituationService.restoreLocal();
-    $scope.typeRelationLabels = ['marié(e)', 'pacsé(e)', 'en relation libre'];
+    $scope.situation = SituationService.restoreLocal() || {};
+    if (!$scope.situation.children) {
+      $scope.situation.children = [];
+    }
+    if (!$scope.situation.personnes) {
+        $scope.situation.personnes = [];
+    }
+
+    $scope.relationTypeLabels = {
+        mariage: 'marié(e)',
+        pacs: 'pacsé(e)',
+        relationLibre: 'en relation libre'
+    };
+
+    $scope.openDemandeurModal = function() {
+        var modalInstance = $modal.open({
+            templateUrl: '/partials/conjoint-modal.html',
+            controller: 'ConjointModalCtrl',
+            backdrop: 'static',
+            resolve: {
+                individuType: function() {
+                    return 'demandeur';
+                }
+            }
+        });
+
+        modalInstance.result.then(function(demandeur) {
+            $scope.situation.demandeur = demandeur;
+            SituationService.saveLocal($scope.situation);
+        });
+    };
+
+    if (!$scope.situation.demandeur) {
+        $scope.openDemandeurModal();
+    }
 
     $scope.openConjointModal = function() {
         var modalInstance = $modal.open({
             templateUrl: '/partials/conjoint-modal.html',
             controller: 'ConjointModalCtrl',
             backdrop: 'static',
+            resolve: {
+                individuType: function() {
+                    return 'conjoint';
+                }
+            }
         });
 
         modalInstance.result.then(function(conjoint) {
-            $scope.conjoint = conjoint;
+            $scope.situation.conjoint = conjoint;
         });
     };
-
-    $scope.children = [];
-    $scope.personnes = [];
 
     $scope.newChild = function() {
         var modalInstance = $modal.open({
@@ -32,22 +67,22 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
         });
 
         modalInstance.result.then(function(child) {
-            $scope.children.push(child);
+            $scope.situation.children.push(child);
         });
     };
 
     $scope.removeChild = function(child) {
-        var index = $scope.children.indexOf(child);
-        $scope.children.splice(index, 1);
-        if (0 === $scope.children.length) {
-            $scope.hasChildren = undefined;
+        var index = $scope.situation.children.indexOf(child);
+        $scope.situation.children.splice(index, 1);
+        if (0 === $scope.situation.children.length) {
+            $scope.situation.hasChildren = undefined;
         }
     };
 
     $scope.endChildConfig = function() {
         $scope.childConfigDone = true;
-        if ($scope.children.length === 0) {
-            $scope.hasChildren = false;
+        if ($scope.situation.children.length === 0) {
+            $scope.situation.hasChildren = false;
         }
     };
 
@@ -64,32 +99,26 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
         });
 
         modalInstance.result.then(function(personne) {
-            $scope.personnes.push(personne);
+            $scope.situation.personnes.push(personne);
         });
     };
 
     $scope.removePersonneACharge = function(personne) {
-        var index = $scope.personnes.indexOf(personne);
-        $scope.personnes.splice(index, 1);
-        if (0 === $scope.personnes.length) {
-            $scope.hasPersonneACharge = undefined;
+        var index = $scope.situation.personnes.indexOf(personne);
+        $scope.situation.personnes.splice(index, 1);
+        if (0 === $scope.situation.personnes.length) {
+            $scope.situation.hasPersonneACharge = undefined;
         }
     };
 
     $scope.endPersonneAChargeConfig = function() {
         $scope.personneAChargeConfigDone = true;
-        if ($scope.personnes.length === 0) {
-            $scope.hasPersonneACharge = false;
+        if ($scope.situation.personnes.length === 0) {
+            $scope.situation.hasPersonneACharge = false;
         }
     };
 
     $scope.saveSituation = function() {
-        if ($scope.conjoint) {
-            $scope.situation.conjoint = $scope.conjoint;
-        }
-
-        $scope.situation.children = $scope.children;
-        $scope.situation.personnes = $scope.personnes;
         SituationService.saveLocal($scope.situation);
     };
 });

@@ -1,11 +1,13 @@
 <div class="page-header">
-  <h1>Revenus et aides</h1>
+  <h1><i class="fa fa-eur"></i> Revenus et aides</h1>
 </div>
 
 <form role="form" class="form-selection-revenus">
   <label>Sélectionnez les personnes percevant des revenus ou des aides dans votre foyer</label>
   <div class="text-center">
-    <label class="btn btn-default btn-lg" ng-repeat="individu in individus" ng-model="selectedIndividus[$index]" btn-checkbox="individu"><i class="fa fa-male"></i> {{ individu.name }}</label>
+    <div class="btn-group">
+      <label class="btn btn-default btn-lg" ng-repeat="individu in individus" ng-model="selectedIndividus[$index]" btn-checkbox="individu"><i class="fa fa-male"></i> {{ individu.name }}</label>
+    </div>
   </div>
 </form>
 <br>

@@ -1,6 +1,6 @@
 <form name="form" class="form-horizontal" ng-submit="submit(form)" novalidate>
   <div class="modal-header">
-    <h3 class="modal-title">Votre conjoint</h3>
+    <h3 class="modal-title">{{ modalTitle }}</h3>
   </div>
   <div class="modal-body">
     <div class="form-group form-group-lg" ng-class="{'has-error': formSubmitted && form.birthDate.$invalid}">
@@ -10,19 +10,19 @@
         <p class="help-block" ng-if="formSubmitted && form.birthDate.$invalid">Date de naissance invalide</p>
       </div>
     </div>
-    <div class="form-group form-group-lg">
-      <label class="control-label col-lg-4" for="lien-conjoint">Votre relation</label>
+    <div class="form-group form-group-lg" ng-show="askRelationType">
+      <label class="control-label col-lg-4" for="relation-conjoint">Votre relation</label>
       <div class="col-lg-8">
-        <select class="form-control" name="lien" ng-model="$parent.lien" id="lien-conjoint">
-          <option value="0">Marié</option>
-          <option value="1">Pacsé</option>
-          <option value="2">Relation libre</option>
+        <select class="form-control" name="relationType" ng-model="$parent.relationType" id="relation-conjoint">
+          <option value="mariage">Marié</option>
+          <option value="pacs">Pacsé</option>
+          <option value="relationLibre">Relation libre</option>
         </select>
       </div>
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-lg btn-default" ng-click="cancel()">Annuler</button>
+    <button type="button" ng-if="askRelationType" class="btn btn-lg btn-default" ng-click="cancel()">Annuler</button>
     <button type="submit" class="btn btn-lg btn-primary">Valider</button>
   </div>
 </form>

@@ -10,8 +10,10 @@
         <label class="btn btn-default" ng-model="selectedSituations[situation.id]" btn-checkbox>{{ situation.label }}</label>
       </td>
       <td>
-        <div ng-show="selectedSituations[situation.id]">
-          <label>Quelles sont les personnes concernées ?</label>
+        <b ng-if="selectedSituations[situation.id]">Quelles sont les personnes concernées ?</b>
+      </td>
+      <td>
+        <div ng-if="selectedSituations[situation.id]">
           <label class="checkbox-inline" ng-repeat="individu in individus">
             <input type="checkbox"> {{ individu.name }}
           </label>
@@ -21,4 +23,4 @@
   </table>
 </form>
 
-<p class="text-center"><a href="/configuration/revenus-aides/selection-personnes" class="btn btn-lg btn-primary" ng-click="saveSituation()">Suivant</a></p>
+<p class="text-center"><a href="/configuration/revenus-aides/selection-personnes" class="btn btn-lg btn-primary" ng-click="saveSituation()">Etape suivante</a></p>

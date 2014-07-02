@@ -12,13 +12,22 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             return $http.put('/api/situations/' + situationId, data);
         },
 
+        newSituation: function() {
+            delete $sessionStorage.situation;
+        },
+
         saveLocal: function(situation) {
             $sessionStorage.situation = situation;
         },
 
         restoreLocal: function() {
             var situation = $sessionStorage.situation;
-            situation.demandeur.birthDate = moment(situation.demandeur.birthDate);
+            if (situation) {
+                situation.demandeur.birthDate = moment(situation.demandeur.birthDate);
+                if (situation.conjoint) {
+                    situation.conjoint.birthDate = moment(situation.conjoint.birthDate);
+                }
+            }
 
             return situation;
         },

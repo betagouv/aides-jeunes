@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('HomepageCtrl', function($scope, $window, $http, $location) {
+angular.module('ddsApp').controller('HomepageCtrl', function($scope, $window, $http, $location, SituationService) {
     $scope.checkConfirmation = function() {
         if (!$scope.acceptConditions) {
             $window.alert('Vous devez cocher la case pour continuer');
@@ -10,8 +10,7 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $window, $h
     };
 
     $scope.startSimulation = function() {
-        $http.post('/api/situations').success(function() {
-            $location.path('/configuration/date-naissance');
-        });
+        SituationService.newSituation();
+        $location.path('/teaser');
     };
 });

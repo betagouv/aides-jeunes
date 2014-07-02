@@ -1,12 +1,25 @@
 'use strict';
 
-angular.module('ddsApp').controller('ConjointModalCtrl', function($scope, $modalInstance) {
-    $scope.lien = 0;
+angular.module('ddsApp').controller('ConjointModalCtrl', function($scope, $modalInstance, individuType) {
+    var modalTitles = {
+        demandeur: 'Commençons par vous',
+        conjoint: 'Votre conjoint'
+    };
+    $scope.modalTitle = modalTitles[individuType];
 
-    $scope.submit = function (form) {
+    if ('conjoint' === individuType) {
+        $scope.askRelationType = true;
+    }
+    $scope.relationType = 'mariage';
+
+    $scope.submit = function(form) {
         $scope.formSubmitted = true;
         if (form.$valid) {
-            $modalInstance.close({ birthDate: $scope.birthDate, lien: $scope.lien });
+            var result = {birthDate: $scope.birthDate};
+            if ('conjoint' === individuType) {
+                result.relationType = $scope.relationType;
+            }
+            $modalInstance.close(result);
         }
     };
 

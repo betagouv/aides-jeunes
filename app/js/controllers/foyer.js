@@ -3,7 +3,7 @@
 angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $modal, SituationService) {
     $scope.situation = SituationService.restoreLocal() || {};
     if (!$scope.situation.children) {
-      $scope.situation.children = [];
+        $scope.situation.children = [];
     }
     if (!$scope.situation.personnes) {
         $scope.situation.personnes = [];

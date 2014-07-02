@@ -1,25 +1,29 @@
 'use strict';
 
 angular.module('ddsApp').controller('RevenusAidesCtrl', function($scope, SituationService) {
-    $scope.sections = [{
+    $scope.sections = [
+        {
             name: 'revenusActivite',
             label: 'Revenus d\'activité',
             open: true,
-            subSections: [{
-                  name: 'revenusSalarie',
-                  label: 'Salaires'
-              }, {
-                  name: 'revenusNonSalarie',
-                  label: 'Revenus non-salarié'
-              }, {
-                  name: 'revenusAutoEntrepreneur',
-                  label: 'Revenus auto-entrepreneur'
-              },
+            subSections: [
+                {
+                    name: 'revenusSalarie',
+                    label: 'Salaires'
+                }, {
+                    name: 'revenusNonSalarie',
+                    label: 'Revenus non-salarié'
+                }, {
+                    name: 'revenusAutoEntrepreneur',
+                    label: 'Revenus auto-entrepreneur'
+                },
             ]
-        }, {
+        },
+        {
             name: 'allocations',
             label: 'Allocations',
-            subSections: [{
+            subSections: [
+                {
                     name: 'allocationsChomage',
                     label: 'Chômage'
                 }, {
@@ -36,10 +40,12 @@ angular.module('ddsApp').controller('RevenusAidesCtrl', function($scope, Situati
                     label: 'Solidarité spécifique'
                 }
             ]
-        }, {
+        },
+        {
             name: 'indemnites',
             label: 'Indemnités',
-            subSections: [{
+            subSections: [
+                {
                     name: 'indJourMaternite',
                     label: 'Maternité'
                 }, {
@@ -62,10 +68,12 @@ angular.module('ddsApp').controller('RevenusAidesCtrl', function($scope, Situati
                     label: 'Chômage partiel'
                 }
             ]
-        }, {
-            name: 'pensions', 
+        },
+        {
+            name: 'pensions',
             label: 'Pensions',
-            subSections: [{
+            subSections: [
+                {
                     name: 'pensionsAlimentaires',
                     label: 'Alimentaires'
                 }, {

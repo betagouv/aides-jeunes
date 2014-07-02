@@ -8,7 +8,7 @@ angular.module('ddsApp').directive('ddsDate', function() {
                 var date = moment(viewValue, 'DD/MM/YYYY', true);
                 if (date.isValid()) {
                     ctrl.$setValidity('ddsDate', true);
-                    return date;
+                    return viewValue;
                 } else {
                     ctrl.$setValidity('ddsDate', false);
                     return undefined;

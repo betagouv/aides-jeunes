@@ -21,23 +21,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         restoreLocal: function() {
-            var situation = $sessionStorage.situation;
-            if (situation) {
-                situation.demandeur.birthDate = moment(situation.demandeur.birthDate);
-                if (situation.conjoint) {
-                    situation.conjoint.birthDate = moment(situation.conjoint.birthDate);
-                }
-
-                _.forEach(situation.children, function(child) {
-                    child.birthDate = moment(child.birthDate);
-                });
-
-                _.forEach(situation.personnesACharge, function(personne) {
-                    personne.birthDate = moment(personne.birthDate);
-                });
-            }
-
-            return situation;
+            return $sessionStorage.situation;
         },
 
         createIndividusList: function(situation) {

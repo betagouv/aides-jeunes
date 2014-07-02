@@ -2,7 +2,7 @@
 
 angular.module('ddsApp').controller('ConjointModalCtrl', function($scope, $modalInstance, individuType) {
     var modalTitles = {
-        demandeur: 'Commençons par vous',
+        demandeur: 'Vous',
         conjoint: 'Votre conjoint'
     };
     $scope.modalTitle = modalTitles[individuType];

@@ -120,5 +120,6 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
 
     $scope.saveSituation = function() {
         SituationService.saveLocal($scope.situation);
+        SituationService.saveRemote($scope.situation);
     };
 });

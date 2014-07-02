@@ -26,7 +26,9 @@
     "angular-bootstrap": "0.11.0",
     "ngstorage": "~0.3.0",
     "angular-sanitize": "~1.2.18",
-    "angular-animate": "~1.2.19"
+    "angular-animate": "~1.2.19",
+    "moment": "~2.7.0",
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
     "angular-mocks": ">=1.3.*",

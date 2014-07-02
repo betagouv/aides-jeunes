@@ -8,8 +8,8 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             });
         },
 
-        update: function(situationId, data) {
-            return $http.put('/api/situations/' + situationId, data);
+        saveRemote: function(situation) {
+            return $http.post('/api/situations', situation);
         },
 
         newSituation: function() {

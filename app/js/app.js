@@ -28,14 +28,9 @@ ddsApp.config(function($routeProvider, $locationProvider) {
             templateUrl: '/partials/revenus-aides.html',
             controller: 'RevenusAidesCtrl'
         })
-        .when('/configuration/:situationId/:entityId?/:questionName?', {
-            templateUrl: '/partials/main.html',
-            controller: 'MainCtrl',
-            resolve: {
-                situationData: function($route, SituationService) {
-                    return SituationService.find($route.current.params.situationId);
-                }
-            }
+        .when('/configuration/logement', {
+            templateUrl: '/partials/logement.html',
+            controller: 'LogementCtrl'
         })
         .when('/envoi-demande/:situationId', {
             templateUrl: '/partials/envoi-demande.html',

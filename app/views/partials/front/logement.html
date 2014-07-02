@@ -1,0 +1,60 @@
+<div class="page-header">
+  <h1><i class="fa fa-home"></i> Votre logement principal</h1>
+</div>
+
+<form class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-6 control-label">J'arrive pas à formuler cette question</label>
+    <div class="col-sm-6">
+      <label class="radio-inline">
+        <input type="radio" name="logementType" ng-model="logementType" value="locataire">
+        Locataire
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="logementType" ng-model="logementType" value="proprietaire">
+        Propriétaire
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="logementType" ng-model="logementType" value="gratuit">
+        Occupant à titre gratuit
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group" ng-show="logementType === 'locataire'">
+    <label class="col-sm-6 control-label">Un membre de votre famille est-il le propriétaire de votre logement ?</label>
+    <div class="col-sm-6">
+      <label class="btn btn-primary" ng-model="membreFamilleProprietaire" btn-radio="true">Oui</label>
+      <label class="btn btn-primary" ng-model="membreFamilleProprietaire" btn-radio="false">Non</label>
+    </div>
+  </div>
+
+  <div class="form-group" ng-show="logementType === 'proprietaire'">
+    <label class="col-sm-6 control-label">Etes-vous primo-accédant pour votre propriété ?</label>
+    <div class="col-sm-6">
+      <label class="btn btn-primary" ng-model="primoAccedant" btn-radio="true">Oui</label>
+      <label class="btn btn-primary" ng-model="primoAccedant" btn-radio="false">Non</label>
+    </div>
+  </div>
+
+  <div ng-show="undefined !== primoAccedant || undefined !== membreFamilleProprietaire">
+    <div class="form-group" ng-show="'gratuit' !== logementType">
+      <label class="col-sm-6 control-label" for="loyer">À combien s'élève {{ 'proprietaire' === logementType ? 'votre loyer' : 'votre mensualité d\'emprunt' }} ?</label>
+      <div class="col-sm-3">
+       <div class="input-group">
+          <input class="form-control" id="loyer" ng-model="loyer" type="number">
+          <div class="input-group-addon">€</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-6 control-label" for="postal-code">Quel est le code postal de votre résidence ?</label>
+      <div class="col-sm-3">
+        <input class="form-control" id="postal-code" ng-model="postalCode" type="number">
+      </div>
+    </div>
+  </div>
+</form>
+
+<p class="text-center" ng-if="postalCode"><a class="btn btn-lg btn-primary" href="">Etape suivante</a></p>

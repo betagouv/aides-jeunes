@@ -11,6 +11,14 @@
     "etudiant": false,
     "demandeurEmploi": true,
     "statutMarital": "seul",
+    "ressources": [
+      { "periode": "2014-05", "type": "pensionsAlimentaires", "montant": 200 },
+      { "periode": "2014-05", "type": "allocationLogement", "montant": 200 },
+      { "periode": "2014-04", "type": "pensionsAlimentaires", "montant": 200 },
+      { "periode": "2014-04", "type": "allocationLogement", "montant": 200 },
+      { "periode": "2014-03", "type": "pensionsAlimentaires", "montant": 200 },
+      { "periode": "2014-03", "type": "allocationLogement", "montant": 200 }
+    ],
     "ressources": {
       "2014-05": {
         "pensionsAlimentaires": 200,
@@ -31,11 +39,6 @@
   "enfants": [
     {
       "id": "ind-3855",
-      "ressources": {
-        "2014-05": {},
-        "2014-04": {},
-        "2014-03": {}
-      },
       "prenom": "Bob",
       "dateDeNaissance": "2009-12-31T23:00:00.000Z",
       "etudiant": false,

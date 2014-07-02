@@ -6,11 +6,6 @@
   "demandeur": {
     "dateDeNaissance": "1979-12-31T23:00:00.000Z",
     "id": "ind-7279",
-    "ressources": {
-      "2014-05": {},
-      "2014-04": {},
-      "2014-03": {}
-    },
     "logement": "log-3799",
     "statutMarital": "seul",
     "etudiant": true,

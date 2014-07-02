@@ -2,7 +2,7 @@
   "logement": {
     "loyer": 500,
     "statusOccupation": "locataire",
-    "id": "log-976",
+    "_id": "log-976",
     "procheProprietaire": false,
     "codePostal": 92500
   },
@@ -33,12 +33,12 @@
         "allocationLogement": 200
       }
     },
-    "id": "ind-6661",
+    "_id": "ind-6661",
     "dateDeNaissance": "1979-12-31T23:00:00.000Z"
   },
   "enfants": [
     {
-      "id": "ind-3855",
+      "_id": "ind-3855",
       "prenom": "Bob",
       "dateDeNaissance": "2009-12-31T23:00:00.000Z",
       "etudiant": false,

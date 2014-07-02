@@ -8,9 +8,18 @@
       <div class="panel-heading">
         <h2 class="panel-title">Vous</h2>
       </div>
-      <div class="panel-body text-center">
-        <i class="fa fa-male icon-lg"></i>
-        Né(e) le <strong>{{ situation.demandeur.birthDate.format('DD/MM/YYYY') }}</strong>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <i class="fa fa-male icon-lg"></i>
+          </div>
+          <div class="col-md-8">
+            Né(e) le <strong>{{ situation.demandeur.birthDate.format('DD/MM/YYYY') }}</strong>
+            <br>Nationalité <strong>{{ nationaliteLabels[situation.demandeur.nationalite] }}</strong>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -24,20 +33,27 @@
       <div class="panel-heading">
         <h2 class="panel-title">{{ situation.conjoint ? 'Votre conjoint' : 'Votre situation familiale' }}</h2>
       </div>
-      <div class="panel-body text-center">
+      <div class="panel-body">
         <div ng-show="true !== situation.livesAlone && !situation.conjoint">
           <label>Vivez-vous seul(e) ou en couple ?</label>
           <label class="btn btn-primary" ng-model="situation.livesAlone" btn-radio="true">Seul</label>
           <label class="btn btn-primary" ng-model="situation.livesAlone" btn-radio="false" ng-click="openConjointModal()">En couple</label>
         </div>
         <div ng-if="situation.livesAlone">
-          <p>Vous vivez seul(e).</p>
+          <p class="text-center">Vous vivez seul(e).</p>
         </div>
         <div ng-if="situation.conjoint">
-          <p>
-            <i class="fa fa-male icon-lg"></i>
-            Né(e) le <strong>{{ situation.conjoint.birthDate.format('DD/MM/YYYY') }}</strong>
-          </p>
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-3">
+              <i class="fa fa-male icon-lg"></i>
+            </div>
+            <div class="col-md-8">
+              Né(e) le <strong>{{ situation.conjoint.birthDate.format('DD/MM/YYYY') }}</strong>
+              <br>Nationalité <strong>{{ nationaliteLabels[situation.conjoint.nationalite] }}</strong>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -86,6 +102,7 @@
               </div>
               <div class="col-md-8">
                 Né(e) le <strong>{{ child.birthDate.format('DD/MM/YYYY') }}</strong>
+                <br>Nationalité <strong>{{ nationaliteLabels[child.nationalite] }}</strong>
               </div>
             </div>
           </div>

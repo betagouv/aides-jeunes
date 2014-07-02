@@ -15,6 +15,12 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
         relationLibre: 'en relation libre'
     };
 
+    $scope.nationaliteLabels = {
+        francaise: 'française',
+        ue: 'UE',
+        autre: 'hors UE'
+    };
+
     $scope.openDemandeurModal = function() {
         var modalInstance = $modal.open({
             templateUrl: '/partials/conjoint-modal.html',

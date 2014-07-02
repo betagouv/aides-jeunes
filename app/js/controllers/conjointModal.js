@@ -9,13 +9,15 @@ angular.module('ddsApp').controller('ConjointModalCtrl', function($scope, $modal
 
     if ('conjoint' === individuType) {
         $scope.askRelationType = true;
+        $scope.relationType = 'mariage';
     }
-    $scope.relationType = 'mariage';
+
+    $scope.nationalite = 'francaise';
 
     $scope.submit = function(form) {
         $scope.formSubmitted = true;
         if (form.$valid) {
-            var result = {birthDate: $scope.birthDate};
+            var result = {birthDate: $scope.birthDate, nationalite: $scope.nationalite};
             if ('conjoint' === individuType) {
                 result.relationType = $scope.relationType;
             }

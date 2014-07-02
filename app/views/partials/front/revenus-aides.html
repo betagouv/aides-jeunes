@@ -10,7 +10,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th colspan="2"></th>
+          <th colspan="3"></th>
           <th>Mars</th>
           <th>Avril</th>
           <th>Mai</th>
@@ -18,23 +18,28 @@
       </thead>
       <tbody ng-repeat="subsection in section.subSections" ng-init="isFirstSubsection">
         <tr ng-repeat="individu in individus">
-          <td ng-if="$first" rowspan="{{ individus.length }}"><b>{{ subsection.label }}</b></td>
-          <td>{{ individu.name }}</td>
+          <td ng-if="$first" rowspan="{{ individus.length }}" style="width: 300px;"><b>{{ subsection.label }}</b></td>
+          <td style="width: 100px;">{{ individu.name }}</td>
+          <td style="width: 50px;">
+            <button class="btn btn-link" style="padding: 1px 5px;" btn-checkbox ng-model="individu.hasResources[subsection.name]">
+              <i class="fa" ng-class="{'fa-plus-circle': !individu.hasResources[subsection.name], 'fa-trash-o': individu.hasResources[subsection.name]}"></i>
+            </button>
+          </td>
           <td style="max-width: 200px;">
-            <div class="input-group">
-              <input type="number" class="form-control" size="3" value="0">
+            <div class="input-group" ng-if="individu.hasResources[subsection.name]">
+              <input type="number" class="form-control text-right" value="0">
               <span class="input-group-addon">€</span>
             </div>
           </td>
           <td style="max-width: 200px;">
-            <div class="input-group">
-              <input type="number" class="form-control" size="3" value="0">
+            <div class="input-group" ng-if="individu.hasResources[subsection.name]">
+              <input type="number" class="form-control text-right" value="0">
               <span class="input-group-addon">€</span>
             </div>
           </td>
           <td style="max-width: 200px;">
-            <div class="input-group">
-              <input type="number" class="form-control" size="3" value="0">
+            <div class="input-group" ng-if="individu.hasResources[subsection.name]">
+              <input type="number" class="form-control text-right" value="0">
               <span class="input-group-addon">€</span>
             </div>
           </td>

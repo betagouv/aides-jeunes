@@ -17,6 +17,23 @@
         <p class="help-block" ng-if="formSubmitted && form.birthDate.$invalid">Date de naissance invalide</p>
       </div>
     </div>
+    <div class="form-group">
+      <label class="control-label col-lg-4">Nationalité</label>
+      <div class="col-lg-8">
+        <label class="radio-inline">
+          <input type="radio" name="nationalite" ng-model="$parent.nationalite" value="francaise">
+          Française
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="nationalite" ng-model="$parent.nationalite" value="ue">
+          UE
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="nationalite" ng-model="$parent.nationalite" value="autre">
+          Hors UE
+        </label>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-lg btn-default" ng-click="cancel()">Annuler</button>

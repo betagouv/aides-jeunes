@@ -86,4 +86,7 @@ angular.module('ddsApp').controller('RevenusAidesCtrl', function($scope, Situati
 
     $scope.situation = SituationService.restoreLocal();
     $scope.individus = SituationService.createIndividusList($scope.situation);
+    _.forEach($scope.individus, function(individu) {
+        individu.hasResources = {};
+    });
 });

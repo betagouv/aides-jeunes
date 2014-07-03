@@ -39,8 +39,6 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
         var modalInstance = $modal.open({
             templateUrl: '/partials/conjoint-modal.html',
             controller: 'ConjointModalCtrl',
-            backdrop: 'static',
-            keyboard: false,
             resolve: {
                 individuType: function() {
                     return 'conjoint';
@@ -57,8 +55,6 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
         var modalInstance = $modal.open({
             templateUrl: '/partials/child-modal.html',
             controller: 'ChildModalCtrl',
-            backdrop: 'static',
-            keyboard: false,
             resolve: {
                 modalTitle: function() {
                     return 'Votre enfant';
@@ -90,8 +86,6 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
         var modalInstance = $modal.open({
             templateUrl: '/partials/child-modal.html',
             controller: 'ChildModalCtrl',
-            backdrop: 'static',
-            keyboard: false,
             resolve: {
                 modalTitle: function() {
                     return 'Personne à charge';

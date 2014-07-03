@@ -1,6 +1,8 @@
 'use strict';
 
 angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage) {
+    var situation;
+
     return {
         nationaliteLabels: {
             francaise: 'française',
@@ -26,6 +28,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         newSituation: function() {
             delete $sessionStorage.situation;
+            situation = null;
         },
 
         saveLocal: function(situation) {
@@ -33,7 +36,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         restoreLocal: function() {
-            return $sessionStorage.situation;
+            if (!situation) {
+                situation = $sessionStorage.situation || {};
+            }
+
+            return situation;
         },
 
         createIndividusList: function(situation) {
@@ -51,7 +58,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 });
             }
 
-            _.forEach(situation.children, function(child) {
+            _.forEach(situation.enfants, function(child) {
                 individus.push({name: child.firstName, type: 'child'});
             });
 

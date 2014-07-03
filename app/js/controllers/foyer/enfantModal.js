@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ChildModalCtrl', function($scope, $modalInstance, modalTitle) {
+angular.module('ddsApp').controller('FoyerEnfantModalCtrl', function($scope, $modalInstance, modalTitle) {
     $scope.modalTitle = modalTitle;
     $scope.nationalite = 'francaise';
 

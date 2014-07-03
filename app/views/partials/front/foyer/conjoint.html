@@ -1,0 +1,34 @@
+<div class="col-sm-2" style="padding-top: 40px;">
+  <p class="text-center" ng-if="situation.conjoint"><strong>{{ relationTypeLabels[situation.conjoint.relationType] }}</strong> avec
+</div>
+
+<div class="col-sm-5 animate-show" ng-show="visible">
+  <div class="panel panel-default" style="height: 150px;">
+    <div class="panel-heading">
+      <h2 class="panel-title">{{ situation.conjoint ? 'Votre conjoint' : 'Votre situation familiale' }}</h2>
+    </div>
+    <div class="panel-body">
+      <div ng-show="undefined === situation.livesAlone">
+        <label>Vivez-vous seul(e) ou en couple ?</label>
+        <button class="btn btn-primary" ng-model="situation.livesAlone" btn-radio="true" ng-click="livesAlone()">Seul</button>
+        <button class="btn btn-primary" ng-model="situation.livesAlone" btn-radio="false" ng-click="$state.go('foyer.conjoint_modal')">En couple</button>
+      </div>
+      <div ng-if="situation.livesAlone">
+        <p class="text-center">Vous vivez seul(e).</p>
+      </div>
+      <div ng-if="situation.conjoint">
+        <div class="row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-3">
+            <i class="fa fa-male icon-lg"></i>
+          </div>
+          <div class="col-md-8">
+            Né(e) le <strong>{{ situation.conjoint.birthDate }}</strong>
+            <br>Nationalité <strong>{{ nationaliteLabels[situation.conjoint.nationalite] }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

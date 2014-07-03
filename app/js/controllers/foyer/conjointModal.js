@@ -17,11 +17,12 @@ angular.module('ddsApp').controller('ConjointModalCtrl', function($scope, $modal
     $scope.submit = function(form) {
         $scope.formSubmitted = true;
         if (form.$valid) {
-            var result = {birthDate: $scope.birthDate, nationalite: $scope.nationalite};
+            var individu = {birthDate: $scope.birthDate, nationalite: $scope.nationalite};
             if ('conjoint' === individuType) {
-                result.relationType = $scope.relationType;
+                individu.relationType = $scope.relationType;
             }
-            $modalInstance.close(result);
+            $scope.$emit('individu.' + individuType, individu);
+            $modalInstance.close(individu);
         }
     };
 

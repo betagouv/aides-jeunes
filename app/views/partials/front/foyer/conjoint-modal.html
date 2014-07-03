@@ -2,6 +2,7 @@
   <div class="modal-header">
     <h3 class="modal-title">{{ modalTitle }}</h3>
   </div>
+
   <div class="modal-body">
     <div class="form-group form-group-lg" ng-class="{'has-error': formSubmitted && form.birthDate.$invalid}">
       <label class="control-label col-lg-4" for="birth-date">Date de naissance</label>
@@ -10,6 +11,7 @@
         <p class="help-block" ng-if="formSubmitted && form.birthDate.$invalid">Date de naissance invalide</p>
       </div>
     </div>
+
     <div class="form-group">
       <label class="control-label col-lg-4">Nationalité</label>
       <div class="col-lg-8">
@@ -27,6 +29,7 @@
         </label>
       </div>
     </div>
+
     <div class="form-group form-group-lg" ng-show="askRelationType">
       <label class="control-label col-lg-4" for="relation-conjoint">Votre relation</label>
       <div class="col-lg-8">
@@ -38,6 +41,7 @@
       </div>
     </div>
   </div>
+
   <div class="modal-footer">
     <button type="button" ng-if="askRelationType" class="btn btn-lg btn-default" ng-click="cancel()">Annuler</button>
     <button type="submit" class="btn btn-lg btn-primary">Valider</button>

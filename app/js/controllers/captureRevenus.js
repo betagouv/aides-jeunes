@@ -9,7 +9,7 @@ angular.module('ddsApp').controller('CaptureRevenusCtrl', function($scope, $time
     }, 700);
 
     $timeout(function() {
-        var modalInstance = $modal.open({
+        $modal.open({
             templateUrl: '/partials/capture-revenus-modal.html',
             controller: 'CaptureRevenusModalCtrl',
             backdrop: 'static',

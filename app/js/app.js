@@ -1,42 +1,45 @@
 'use strict';
 
-var ddsApp = angular.module('ddsApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngStorage']);
+var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngStorage']);
 
-ddsApp.config(function($routeProvider, $locationProvider) {
+ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
     $locationProvider.html5Mode(true);
-    $routeProvider
-        .when('/', {
+
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+        .state('home', {
+            url: '/',
             templateUrl: '/partials/homepage.html',
             controller: 'HomepageCtrl'
         })
-        .when('/teaser', {
-            templateUrl: '/partials/teaser.html'
+        .state('teaser', {
+            url: '/teaser',
+            templateUrl:'/partials/teaser.html'
         })
-        .when('/configuration/foyer', {
+        .state('foyer', {
+            url: '/configuration/foyer',
             templateUrl: '/partials/foyer.html',
             controller: 'FoyerCtrl'
         })
-        .when('/configuration/situations-specifiques', {
+        .state('situations_specifiques', {
+            url: '/configuration/situations-specifiques',
             templateUrl: '/partials/situations-specifiques.html',
             controller: 'SituationsSpecifiquesCtrl'
         })
-        .when('/configuration/capture-revenus', {
+        .state('capture_revenus', {
+            url: '/configuration/capture-revenus',
             templateUrl: '/partials/capture-revenus.html',
             controller: 'CaptureRevenusCtrl'
         })
-        .when('/configuration/revenus-aides', {
-            templateUrl: '/partials/revenus-aides.html',
-            controller: 'RevenusAidesCtrl'
-        })
-        .when('/configuration/logement', {
+        .state('logement', {
+            url: '/configuration/logement',
             templateUrl: '/partials/logement.html',
             controller: 'LogementCtrl'
         })
-        .when('/envoi-demande/:situationId', {
+        .state('envoi_demande', {
+            url: '/envoi-demande/:situationId',
             templateUrl: '/partials/envoi-demande.html',
             controller: 'EnvoiDemandeCtrl'
-        })
-        .otherwise({
-            redirectTo: '/'
         });
 });

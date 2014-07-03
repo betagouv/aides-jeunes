@@ -2,6 +2,18 @@
 
 angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage) {
     return {
+        nationaliteLabels: {
+            francaise: 'française',
+            ue: 'UE',
+            autre: 'hors UE'
+        },
+
+        relationTypeLabels: {
+            mariage: 'marié(e)',
+            pacs: 'pacsé(e)',
+            relationLibre: 'en relation libre'
+        },
+
         find: function(situationId) {
             return $http.get('/api/situations/' + situationId).then(function(result) {
                 return result.data;

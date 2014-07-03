@@ -2,9 +2,9 @@
   <h1><i class="fa fa-home"></i> Votre logement principal</h1>
 </div>
 
-<form class="form-horizontal">
+<form name="form" class="form-horizontal">
   <div class="form-group">
-    <label class="col-sm-6 control-label">J'arrive pas à formuler cette question</label>
+    <label class="col-sm-6 control-label">Etes-vous</label>
     <div class="col-sm-6">
       <label class="radio-inline">
         <input type="radio" name="logementType" ng-model="situation.logement.type" value="locataire">
@@ -24,16 +24,16 @@
   <div class="form-group" ng-show="situation.logement.type === 'locataire'">
     <label class="col-sm-6 control-label">Un membre de votre famille est-il le propriétaire de votre logement ?</label>
     <div class="col-sm-6">
-      <label class="btn btn-primary" ng-model="situation.logement.membreFamilleProprietaire" btn-radio="true">Oui</label>
-      <label class="btn btn-primary" ng-model="situation.logement.membreFamilleProprietaire" btn-radio="false">Non</label>
+      <buttton class="btn btn-primary" ng-model="situation.logement.membreFamilleProprietaire" btn-radio="true">Oui</buttton>
+      <buttton class="btn btn-primary" ng-model="situation.logement.membreFamilleProprietaire" btn-radio="false">Non</buttton>
     </div>
   </div>
 
   <div class="form-group" ng-show="situation.logement.type === 'proprietaire'">
     <label class="col-sm-6 control-label">Etes-vous primo-accédant pour votre propriété ?</label>
     <div class="col-sm-6">
-      <label class="btn btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="true">Oui</label>
-      <label class="btn btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="false">Non</label>
+      <buttton class="btn btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="true">Oui</buttton>
+      <buttton class="btn btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="false">Non</buttton>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
       <label class="col-sm-6 control-label" for="loyer">À combien s'élève {{ 'locataire' === situation.logement.type ? 'votre loyer' : 'votre mensualité d\'emprunt' }} ?</label>
       <div class="col-sm-3">
        <div class="input-group">
-          <input class="form-control" id="loyer" ng-model="situation.logement.loyer" type="number">
+          <input class="form-control" id="loyer" name="loyer" ng-model="situation.logement.loyer" type="number" required>
           <div class="input-group-addon">€</div>
         </div>
       </div>
@@ -51,7 +51,7 @@
     <div class="form-group">
       <label class="col-sm-6 control-label" for="postal-code">Quel est le code postal de votre résidence ?</label>
       <div class="col-sm-3">
-        <input class="form-control" id="postal-code" ng-model="situation.logement.postalCode" type="number">
+        <input class="form-control" id="postal-code" name="postalCode" ng-model="situation.logement.postalCode" type="number" required>
       </div>
     </div>
   </div>

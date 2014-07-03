@@ -72,10 +72,25 @@ html {
 
 .animate-show {
   opacity: 1;
-  -webkit-transition: opacity linear 1s;
   transition: opacity linear 1s;
 }
 
 .animate-show.ng-hide {
   opacity: 0;
+}
+
+.shadow-apparition {
+  transition: all .5s linear;
+}
+
+.capture-revenus {
+
+  .block-demandeur {
+    position: relative;
+    z-index: 700;
+  }
+
+  .shadow {
+    box-shadow: 0 0 30px black;
+  }
 }

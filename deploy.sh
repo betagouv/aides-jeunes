@@ -4,8 +4,7 @@ set -o errexit
 
 grunt
 cd dist
-git add -u
-git add .
+git add --all
 git commit -m "livraison"
 git push heroku master
 cd ..

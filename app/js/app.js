@@ -20,9 +20,9 @@ ddsApp.config(function($routeProvider, $locationProvider) {
             templateUrl: '/partials/situations-specifiques.html',
             controller: 'SituationsSpecifiquesCtrl'
         })
-        .when('/configuration/revenus-aides/selection-personnes', {
-            templateUrl: '/partials/selection-personnes-revenus.html',
-            controller: 'SelectionPersonnesRevenusCtrl'
+        .when('/configuration/capture-revenus', {
+            templateUrl: '/partials/capture-revenus.html',
+            controller: 'CaptureRevenusCtrl'
         })
         .when('/configuration/revenus-aides', {
             templateUrl: '/partials/revenus-aides.html',

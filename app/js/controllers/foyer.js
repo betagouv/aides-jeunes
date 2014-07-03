@@ -9,23 +9,15 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
         $scope.situation.personnesACharge = [];
     }
 
-    $scope.relationTypeLabels = {
-        mariage: 'marié(e)',
-        pacs: 'pacsé(e)',
-        relationLibre: 'en relation libre'
-    };
-
-    $scope.nationaliteLabels = {
-        francaise: 'française',
-        ue: 'UE',
-        autre: 'hors UE'
-    };
+    $scope.relationTypeLabels = SituationService.relationTypeLabels;
+    $scope.nationaliteLabels = SituationService.nationaliteLabels;
 
     $scope.openDemandeurModal = function() {
         var modalInstance = $modal.open({
             templateUrl: '/partials/conjoint-modal.html',
             controller: 'ConjointModalCtrl',
             backdrop: 'static',
+            keyboard: false,
             resolve: {
                 individuType: function() {
                     return 'demandeur';
@@ -48,6 +40,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
             templateUrl: '/partials/conjoint-modal.html',
             controller: 'ConjointModalCtrl',
             backdrop: 'static',
+            keyboard: false,
             resolve: {
                 individuType: function() {
                     return 'conjoint';
@@ -65,6 +58,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
             templateUrl: '/partials/child-modal.html',
             controller: 'ChildModalCtrl',
             backdrop: 'static',
+            keyboard: false,
             resolve: {
                 modalTitle: function() {
                     return 'Votre enfant';
@@ -97,6 +91,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function ($scope, $location, $m
             templateUrl: '/partials/child-modal.html',
             controller: 'ChildModalCtrl',
             backdrop: 'static',
+            keyboard: false,
             resolve: {
                 modalTitle: function() {
                     return 'Personne à charge';

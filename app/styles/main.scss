@@ -1,6 +1,8 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 
+@import 'variables';
 @import 'bootstrap-sass-official/assets/stylesheets/bootstrap';
+@import 'theme';
 
 html {
   overflow-y: scroll;

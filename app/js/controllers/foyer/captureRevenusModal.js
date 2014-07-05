@@ -8,7 +8,7 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
             name: 'revenusActivite',
             label: 'Revenus d\'activité',
             open: true,
-            subSections: [
+            subsections: [
                 {
                     name: 'revenusSalarie',
                     label: 'Salaires'
@@ -24,7 +24,7 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
         {
             name: 'allocations',
             label: 'Allocations',
-            subSections: [
+            subsections: [
                 {
                     name: 'allocationsChomage',
                     label: 'Chômage'
@@ -46,7 +46,7 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
         {
             name: 'indemnites',
             label: 'Indemnités',
-            subSections: [
+            subsections: [
                 {
                     name: 'indJourMaternite',
                     label: 'Maternité'
@@ -74,7 +74,7 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
         {
             name: 'pensions',
             label: 'Pensions',
-            subSections: [
+            subsections: [
                 {
                     name: 'pensionsAlimentaires',
                     label: 'Alimentaires'
@@ -85,4 +85,6 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
             ]
         }
     ];
+
+    $scope.selectedSubsections = {};
 });

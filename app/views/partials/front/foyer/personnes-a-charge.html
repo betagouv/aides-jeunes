@@ -9,7 +9,9 @@
 
   <p>
     <span ng-if="false === situation.hasPersonnesACharge">Vous n'avez pas de personne à charge</span>
-    <span ng-if="true === situation.hasPersonnesACharge && 0 < situation.personnesACharge.length">Vous avez {{ situation.personnesACharge.length }} personne<span ng-if="situation.personnesACharge.length > 1">s</span> à charge</span>
+    <span ng-if="true === situation.hasPersonnesACharge && 0 < situation.personnesACharge.length">
+      Vous avez {{ situation.personnesACharge.length }} personne<span ng-if="situation.personnesACharge.length > 1">s</span> à charge
+    </span>
   </p>
 
   <div class="row">
@@ -18,7 +20,9 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             {{ personne.firstName }}
-            <button type="button" class="close" ng-if="!situation.personnesAChargeConfigDone" ng-click="removePersonneACharge(personne)"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" ng-if="!situation.personnesAChargeConfigDone" ng-click="removePersonneACharge(personne)">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </h4>
         </div>
         <div class="panel-body">

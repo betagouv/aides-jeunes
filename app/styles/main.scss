@@ -81,20 +81,18 @@ html {
   opacity: 0;
 }
 
-.shadow-apparition {
-  transition: all .5s linear;
+.highlight-apparition {
+  opacity: 0.5;
+  transition: opacity .7s linear;
 }
 
-.capture-revenus {
+.highlight-apparition.ng-hide {
+  opacity: 0;
+}
 
-  .block-demandeur {
-    position: relative;
-    z-index: 700;
-  }
-
-  .shadow {
-    box-shadow: 0 0 30px black;
-  }
+.block-demandeur.highlight {
+  position: relative;
+  z-index: 1100;
 }
 
 .btn-new-entity {

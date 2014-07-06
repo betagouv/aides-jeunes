@@ -123,30 +123,34 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('foyer.capture_revenus', {
             url: '/capture-revenus',
-            onEnter: function($state, $modal, SituationService) {
-                $modal.open({
-                    templateUrl: '/partials/foyer/capture-revenus.html',
-                    controller: 'CaptureRevenusModalCtrl',
-                    size: 'lg',
-                    resolve: {
-                        modalTitle: function() {
-                            return 'Vos revenus et aides';
+            onEnter: function($state, $modal, $timeout, $rootScope, SituationService) {
+                $timeout(function() {
+                    $rootScope.$broadcast('animateCaptureRevenusStart');
+                }, 700);
+
+                $timeout(function() {
+                    $rootScope.$broadcast('animateCaptureRevenusEnd');
+                    $modal.open({
+                        templateUrl: '/partials/foyer/capture-revenus-modal.html',
+                        controller: 'CaptureRevenusModalCtrl',
+                        size: 'lg',
+                        backdrop: 'static',
+                        keyboard: false,
+                        resolve: {
+                            modalTitle: function() {
+                                return 'Vos revenus et aides';
+                            }
                         }
-                    }
-                }).result.then(function(personne) {
-                    return $state.go("foyer");
-                });
+                    }).result.then(function(personne) {
+                        return $state.go("logement");
+                    });
+                }, 2500);
             }
         })
         .state('situations_specifiques', {
             url: '/configuration/situations-specifiques',
             templateUrl: '/partials/situations-specifiques.html',
             controller: 'SituationsSpecifiquesCtrl'
-        })
-        .state('capture_revenus', {
-            url: '/configuration/capture-revenus',
-            templateUrl: '/partials/capture-revenus.html',
-            controller: 'CaptureRevenusCtrl'
         })
         .state('logement', {
             url: '/configuration/logement',

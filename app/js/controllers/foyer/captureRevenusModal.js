@@ -1,7 +1,10 @@
 'use strict';
 
-angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, modalTitle) {
+angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, $modalInstance, modalTitle) {
     $scope.modalTitle = modalTitle;
+    $scope.submit = function() {
+        $modalInstance.close();
+    };
 
     $scope.sections = [
         {

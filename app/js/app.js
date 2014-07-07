@@ -57,7 +57,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     }
                 }).result.then(function(demandeur) {
                     SituationService.saveLocal({demandeur: demandeur});
-                    return $state.go("foyer");
+                    return $state.go('foyer');
                 });
             }
         })
@@ -77,7 +77,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     situation.conjoint = conjoint;
                     SituationService.saveLocal(situation);
 
-                    return $state.go("foyer");
+                    return $state.go('foyer');
                 });
             }
         })
@@ -97,7 +97,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     situation.enfants.push(enfant);
                     SituationService.saveLocal(situation);
 
-                    return $state.go("foyer");
+                    return $state.go('foyer');
                 });
             }
         })
@@ -117,13 +117,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     situation.personnesACharge.push(personne);
                     SituationService.saveLocal(situation);
 
-                    return $state.go("foyer");
+                    return $state.go('foyer');
                 });
             }
         })
         .state('foyer.capture_revenus', {
             url: '/capture-revenus',
-            onEnter: function($state, $modal, $timeout, $rootScope, SituationService) {
+            onEnter: function($state, $modal, $timeout, $rootScope) {
                 $timeout(function() {
                     $rootScope.$broadcast('animateCaptureRevenusStart');
                 }, 700);
@@ -141,8 +141,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                                 return 'Vos revenus et aides';
                             }
                         }
-                    }).result.then(function(personne) {
-                        return $state.go("logement");
+                    }).result.then(function() {
+                        return $state.go('logement');
                     });
                 }, 2500);
             }

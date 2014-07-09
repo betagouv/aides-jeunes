@@ -101,7 +101,7 @@ html {
   border-radius: 0;
 }
 
-.btn-revenus {
+.btn-revenus, .btn-revenus:focus {
   @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
   border: none;
 }

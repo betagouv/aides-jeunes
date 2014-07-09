@@ -131,13 +131,14 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('foyer.capture_revenus', {
             url: '/capture-revenus',
-            onEnter: function($state, $modal, $timeout, $rootScope) {
+            onEnter: function($state, $modal, $timeout, $rootScope, SituationService) {
                 $timeout(function() {
                     $rootScope.$broadcast('animateCaptureRevenusStart');
                 }, 700);
 
                 $timeout(function() {
                     $rootScope.$broadcast('animateCaptureRevenusEnd');
+                    var situation = SituationService.restoreLocal();
                     $modal.open({
                         templateUrl: '/partials/foyer/capture-revenus-modal.html',
                         controller: 'CaptureRevenusModalCtrl',
@@ -147,9 +148,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                         resolve: {
                             modalTitle: function() {
                                 return 'Vos revenus et aides';
+                            },
+                            individu: function() {
+                                return situation.demandeur;
                             }
                         }
                     }).result.then(function() {
+                        SituationService.saveLocal(situation);
                         return $state.go('logement');
                     });
                 }, 2500);
@@ -164,6 +169,10 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/configuration/logement',
             templateUrl: '/partials/logement.html',
             controller: 'LogementCtrl'
+        })
+        .state('resultat', {
+            url: '/resultat',
+            templateUrl: '/partials/resultat.html'
         })
         .state('envoi_demande', {
             url: '/envoi-demande/:situationId',

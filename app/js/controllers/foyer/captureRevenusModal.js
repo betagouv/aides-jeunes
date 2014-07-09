@@ -1,10 +1,19 @@
 'use strict';
 
-angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, $modalInstance, modalTitle) {
+angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, $modalInstance, modalTitle, individu) {
     $scope.modalTitle = modalTitle;
+    $scope.individu = individu;
+
+    if (!individu.selectedRessources) {
+        individu.selectedRessources = {};
+    }
+
     $scope.submit = function() {
-        if (!$scope.revenusSelected) {
-            $scope.revenusSelected = true;
+        if (!individu.ressources) {
+            individu.ressources = [];
+            for (var i in individu.selectedRessources) {
+                individu.ressources.push(new Array(3));
+            }
         } else {
             $modalInstance.close();
         }
@@ -102,6 +111,4 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
             $scope.subsectionsIndex[subsection.name] = subsection;
         }
     }
-
-    $scope.selectedSubsections = {};
 });

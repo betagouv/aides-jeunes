@@ -3,15 +3,15 @@
     <h1 class="modal-title">{{ modalTitle }}</h1>
   </div>
   <div class="modal-body">
-    <div ng-show="!revenusSelected">
+    <div ng-show="!individu.ressources">
       <p>Veuillez cliquer sur les revenus et/ou aides que vous percevez. Vous saisirez les montants dans l'écran suivant.</p>
       <p><i class="glyphicon glyphicon-info"></i> Ne sélectionnez pas les éventuels revenus de votre conjoint ou vos personnes à charge, vous pourrez les indiquer plus tard.</p>
-      <div ng-repeat="section in sections" class="btn-group">
-        <button type="button" class="btn btn-sm btn-revenus capture-{{ section.name }}" ng-repeat="subsection in section.subsections" btn-checkbox ng-model="$parent.selectedSubsections[subsection.name]">{{ subsection.label }}</button>
-      </div>
+      <span ng-repeat="section in sections">
+        <button type="button" class="btn btn-sm btn-revenus capture-{{ section.name }}" ng-repeat="subsection in section.subsections" btn-checkbox ng-model="$parent.individu.selectedRessources[subsection.name]">{{ subsection.label }}</button>
+      </span>
     </div>
 
-    <div ng-show="revenusSelected">
+    <div ng-show="individu.ressources">
       <p>Veuillez entrer les montants des revenus ou aides sélectionné(e)s.</p>
       <table class="table table-bordered">
         <thead>
@@ -23,23 +23,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="(subsectionName,value) in selectedSubsections" class="capture-{{ subsectionsIndex[subsectionName].section.name }}">
+          <tr ng-repeat="(subsectionName,value) in individu.selectedRessources" class="capture-{{ subsectionsIndex[subsectionName].section.name }}">
             <td style="width: 200px; vertical-align: middle; color: white;">{{ subsectionsIndex[subsectionName].label }}</td>
             <td>
               <span class="input-group">
-                <input type="number" class="form-control">
+                <input type="number" class="form-control text-right" ng-model="$parent.individu.ressources[$index][1]">
                 <span class="input-group-addon">€</span>
               </span>
             </td>
             <td>
               <span class="input-group">
-                <input type="number" class="form-control">
+                <input type="number" class="form-control text-right" ng-model="$parent.individu.ressources[$index][2]">
                 <span class="input-group-addon">€</span>
               </span>
             </td>
             <td>
               <span class="input-group">
-                <input type="number" class="form-control">
+                <input type="number" class="form-control text-right" ng-model="$parent.individu.ressources[$index][3]">
                 <span class="input-group-addon">€</span>
               </span>
             </td>

@@ -40,7 +40,7 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
                     label: 'Allocation logement'
                 }, {
                     name: 'rsa',
-                    label: 'Revenu de Solidarité Active'
+                    label: 'Revenu de solidarité active'
                 }, {
                     name: 'aspa',
                     label: 'Allocation de solidarité aux personnes âgées'
@@ -92,6 +92,16 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
             ]
         }
     ];
+
+    $scope.subsectionsIndex = {};
+    for (var i in $scope.sections) {
+        var section = $scope.sections[i];
+        for (var j in section.subsections) {
+            var subsection = section.subsections[j];
+            subsection.section = section;
+            $scope.subsectionsIndex[subsection.name] = subsection;
+        }
+    }
 
     $scope.selectedSubsections = {};
 });

@@ -64,6 +64,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         .state('foyer.conjoint_modal', {
             url: '/conjoint',
             onEnter: function($state, $modal, SituationService) {
+                var situation = SituationService.restoreLocal();
                 $modal.open({
                     templateUrl: '/partials/foyer/conjoint-modal.html',
                     controller: 'ConjointModalCtrl',
@@ -73,11 +74,14 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                         }
                     }
                 }).result.then(function(conjoint) {
-                    var situation = SituationService.restoreLocal();
                     situation.conjoint = conjoint;
                     SituationService.saveLocal(situation);
 
-                    return $state.go('foyer');
+                    return conjoint;
+                }, function() {
+                    situation.livesAlone = undefined;
+                }).finally(function() {
+                    $state.go('foyer');
                 });
             }
         })
@@ -99,7 +103,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
 
                     return enfant;
                 }).finally(function() {
-                    $state.go('foyer')
+                    $state.go('foyer');
                 });
             }
         })
@@ -121,7 +125,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
 
                     return personne;
                 }).finally(function() {
-                    $state.go('foyer')
+                    $state.go('foyer');
                 });
             }
         })

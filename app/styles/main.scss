@@ -101,23 +101,32 @@ html {
   border-radius: 0;
 }
 
-.btn-info.active {
-  background-color: $brand-warning;
-  border-color: $brand-warning;
+.btn-revenus {
+  @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
+  border: none;
 }
 
-.well-indemnites {
+.btn-revenus.active {
+  background-color: $brand-info;
+  border-color: $brand-info;
 }
 
-.well-pensions {
+.capture-indemnites {
+  background-color: #ee7326;
 }
 
-.well-allocations {
+.capture-pensions {
+  background-color: #dd3e74;
 }
 
-.well-revenusActivite {
+.capture-allocations {
+  background-color: #59bd7f;
+}
+
+.capture-revenusActivite {
+  background-color: #395668;
 }
 
 .btn-revenus {
-
+  margin: 3px;
 }

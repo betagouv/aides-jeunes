@@ -3,7 +3,7 @@
 angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, $modalInstance, modalTitle) {
     $scope.modalTitle = modalTitle;
     $scope.submit = function() {
-        $modalInstance.close();
+        $scope.revenusSelected = true;
     };
 
     $scope.sections = [
@@ -30,19 +30,19 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
             subsections: [
                 {
                     name: 'allocationsChomage',
-                    label: 'Chômage'
+                    label: 'Allocation chômage'
                 }, {
                     name: 'allocationLogement',
-                    label: 'Logement'
+                    label: 'Allocation logement'
                 }, {
                     name: 'rsa',
                     label: 'Revenu de Solidarité Active'
                 }, {
                     name: 'aspa',
-                    label: 'Solidarité aux personnes âgées'
+                    label: 'Allocation de solidarité aux personnes âgées'
                 }, {
                     name: 'ass',
-                    label: 'Solidarité spécifique'
+                    label: 'Allocation de solidarité spécifique'
                 }
             ]
         },
@@ -52,25 +52,25 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
             subsections: [
                 {
                     name: 'indJourMaternite',
-                    label: 'Maternité'
+                    label: 'Indemnités de maternité'
                 }, {
                     name: 'indJourPaternite',
-                    label: 'Paternité'
+                    label: 'Indemnités de paternité'
                 }, {
                     name: 'indJourAdoption',
-                    label: 'Adoption'
+                    label: 'Indemnités d\'adoption'
                 }, {
                     name: 'indJourMaladie',
-                    label: 'Maladie'
+                    label: 'Indemnités maladie'
                 }, {
                     name: 'indJourMaladieProf',
-                    label: 'Maladie professionnelle'
+                    label: 'Indemnités maladie professionnelle'
                 }, {
                     name: 'indJourAccidentDuTravail',
-                    label: 'Accident du travail'
+                    label: 'Indemnités accident du travail'
                 }, {
                     name: 'indChomagePartiel',
-                    label: 'Chômage partiel'
+                    label: 'Indemnités de chômage partiel'
                 }
             ]
         },
@@ -80,7 +80,7 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
             subsections: [
                 {
                     name: 'pensionsAlimentaires',
-                    label: 'Alimentaires'
+                    label: 'Pensions alimentaires'
                 }, {
                     name: 'pensionsRetraitesRentes',
                     label: 'Retraites, rentes'

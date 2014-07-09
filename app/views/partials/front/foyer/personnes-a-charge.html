@@ -3,8 +3,8 @@
 
   <div ng-show="undefined === situation.hasPersonnesACharge">
     <label>Avez-vous d'autres personnes à votre charge ?</label>
-    <button class="btn btn-primary" ng-model="situation.hasPersonnesACharge" btn-radio="true">Oui</button>
-    <button class="btn btn-primary" ng-model="situation.hasPersonnesACharge" btn-radio="false" ng-click="endPersonnesAChargeConfig()">Non</button>
+    <button class="btn btn-sm btn-primary" ng-model="situation.hasPersonnesACharge" btn-radio="true">Oui</button>
+    <button class="btn btn-sm btn-primary" ng-model="situation.hasPersonnesACharge" btn-radio="false" ng-click="endPersonnesAChargeConfig()">Non</button>
   </div>
 
   <p>
@@ -54,7 +54,7 @@
   </div>
 
   <div class="text-right" ng-show="situation.hasPersonnesACharge && !situation.personnesAChargeConfigDone">
-    <button type="button" class="btn btn-lg btn-primary" ng-click="endPersonnesAChargeConfig()">
+    <button type="button" class="btn btn-primary" ng-click="endPersonnesAChargeConfig()">
       Terminé
       <br><i class="fa fa-arrow-circle-right"></i>
     </button>

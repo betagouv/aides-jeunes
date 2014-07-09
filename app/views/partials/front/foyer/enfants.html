@@ -6,8 +6,8 @@
 
   <div ng-show="undefined === situation.demandeur.enceinte">
     <label>Attendez-vous un enfant ?</label>
-    <button class="btn btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="true">Oui</button>
-    <button class="btn btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="false">Non</button>
+    <button class="btn btn-sm btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="true">Oui</button>
+    <button class="btn btn-sm btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="false">Non</button>
   </div>
 
   <p>
@@ -19,8 +19,8 @@
 
   <div ng-show="undefined !== situation.demandeur.enceinte && undefined === situation.hasChildren">
     <label>Avez-vous des enfants à charge ?</label>
-    <button class="btn btn-primary" ng-model="situation.hasChildren" btn-radio="true">Oui</button>
-    <button class="btn btn-primary" ng-model="situation.hasChildren" btn-radio="false" ng-click="endChildConfig()">Non</button>
+    <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="true">Oui</button>
+    <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="false" ng-click="endChildConfig()">Non</button>
   </div>
 
   <div class="row">
@@ -61,7 +61,7 @@
   </div>
 
   <div class="text-right" ng-show="true === situation.hasChildren && !situation.childConfigDone">
-    <button type="button" class="btn btn-lg btn-primary" ng-click="endChildConfig()">
+    <button type="button" class="btn btn-primary" ng-click="endChildConfig()">
       Terminé
       <br><i class="fa fa-arrow-circle-right"></i>
     </button>

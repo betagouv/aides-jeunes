@@ -1,13 +1,21 @@
 <form name="form" class="form-horizontal" novalidate ng-submit="submit()">
   <div class="modal-header">
-    <h3 class="modal-title">{{ modalTitle }}</h3>
+    <h1 class="modal-title">{{ modalTitle }}</h1>
   </div>
   <div class="modal-body">
-    <div ng-repeat="section in sections" class="well {{ section.name }}">
-      <button class="btn btn-lg btn-primary btn-checkbox" btn-checkbox ng-model="selectedSubsections[subsection.name]" ng-repeat="subsection in section.subsections">{{ subsection.label }}</button>
+    <div ng-show="!revenusSelected">
+      <p>Merci de cliquer sur les revenus et/ou aides que vous percevez. Vous allez rentrer les montants dans l'écran suivant.</p>
+      <div ng-repeat="section in sections" class="well well-{{ section.name }}">
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-info" btn-checkbox ng-model="$parent.selectedSubsections[subsection.name]" ng-repeat="subsection in section.subsections">{{ subsection.label }}</button>
+        </div>
+      </div>
+    </div>
+    <div ng-show="revenusSelected">
+
     </div>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+    <button type="submit" class="btn btn-primary">Valider</button>
   </div>
 </form>

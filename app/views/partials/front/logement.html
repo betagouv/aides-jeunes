@@ -4,7 +4,7 @@
 
 <form name="form" class="form-horizontal">
   <div class="form-group">
-    <label class="col-sm-3 control-label">Etes-vous</label>
+    <label class="col-sm-3 control-label">Êtes-vous</label>
     <div class="col-sm-6">
       <label class="radio-inline">
         <input type="radio" name="logementType" ng-model="situation.logement.type" value="locataire">
@@ -30,7 +30,7 @@
   </div>
 
   <div class="form-group" ng-show="situation.logement.type === 'proprietaire'">
-    <label class="col-sm-3 control-label">Etes-vous primo-accédant pour votre propriété ?</label>
+    <label class="col-sm-3 control-label">Êtes-vous primo-accédant pour votre propriété ?</label>
     <div class="col-sm-6">
       <buttton class="btn btn-sm btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="true">Oui</buttton>
       <buttton class="btn btn-sm btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="false">Non</buttton>
@@ -57,4 +57,4 @@
   </div>
 </form>
 
-<p class="text-center"><a class="btn btn-lg btn-primary" href="">Etape suivante</a></p>
+<p class="text-center"><a class="btn btn-lg btn-primary" href="">Étape suivante</a></p>

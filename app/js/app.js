@@ -97,7 +97,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     situation.enfants.push(enfant);
                     SituationService.saveLocal(situation);
 
-                    return $state.go('foyer');
+                    return enfant;
+                }).finally(function() {
+                    $state.go('foyer')
                 });
             }
         })
@@ -117,7 +119,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     situation.personnesACharge.push(personne);
                     SituationService.saveLocal(situation);
 
-                    return $state.go('foyer');
+                    return personne;
+                }).finally(function() {
+                    $state.go('foyer')
                 });
             }
         })

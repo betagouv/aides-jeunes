@@ -12,7 +12,9 @@
       </div>
     </div>
     <div ng-show="revenusSelected">
-
+      <div ng-repeat="(section,value) in selectedSubsections">
+        {{ section }}
+      </div>
     </div>
   </div>
   <div class="modal-footer">

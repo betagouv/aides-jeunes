@@ -3,7 +3,11 @@
 angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, $modalInstance, modalTitle) {
     $scope.modalTitle = modalTitle;
     $scope.submit = function() {
-        $scope.revenusSelected = true;
+        if (!$scope.revenusSelected) {
+            $scope.revenusSelected = true;
+        } else {
+            $modalInstance.close();
+        }
     };
 
     $scope.sections = [

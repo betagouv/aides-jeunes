@@ -2,8 +2,14 @@
   <div class="modal-header">
     <h3 class="modal-title">{{ modalTitle }}</h3>
   </div>
-
   <div class="modal-body">
+    <div ng-if="askFirstName" class="form-group form-group-lg" ng-class="{'has-error': formSubmitted && form.firstName.$invalid}">
+      <label class="control-label col-lg-4" for="first-name">Prénom</label>
+      <div class="col-lg-8">
+        <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="$parent.$parent.firstName">
+        <p class="help-block" ng-if="formSubmitted && form.firstName.$invalid">Ce champ est obligatoire</p>
+      </div>
+    </div>
     <div class="form-group form-group-lg" ng-class="{'has-error': formSubmitted && form.birthDate.$invalid}">
       <label class="control-label col-lg-4" for="birth-date">Date de naissance</label>
       <div class="col-lg-8">
@@ -11,7 +17,6 @@
         <p class="help-block" ng-if="formSubmitted && form.birthDate.$invalid">Date de naissance invalide</p>
       </div>
     </div>
-
     <div class="form-group">
       <label class="control-label col-lg-4">Nationalité</label>
       <div class="col-lg-8">
@@ -25,15 +30,14 @@
         </label>
         <label class="radio-inline">
           <input type="radio" name="nationalite" ng-model="$parent.nationalite" value="autre">
-          Autre
+          Hors UE
         </label>
       </div>
     </div>
-
-    <div class="form-group form-group-lg" ng-show="askRelationType">
+    <div class="form-group form-group-lg" ng-if="askRelationType">
       <label class="control-label col-lg-4" for="relation-conjoint">Votre relation</label>
       <div class="col-lg-8">
-        <select class="form-control" name="relationType" ng-model="$parent.relationType" id="relation-conjoint">
+        <select class="form-control" name="relationType" ng-model="$parent.$parent.relationType" id="relation-conjoint">
           <option value="mariage">Marié</option>
           <option value="pacs">Pacsé</option>
           <option value="relationLibre">Relation libre</option>
@@ -41,9 +45,8 @@
       </div>
     </div>
   </div>
-
   <div class="modal-footer">
-    <button type="button" ng-if="askRelationType" class="btn btn-default" ng-click="cancel()">Annuler</button>
+    <button type="button" ng-if="cancelable" class="btn btn-default" ng-click="cancel()">Annuler</button>
     <button type="submit" class="btn btn-primary">Valider</button>
   </div>
 </form>

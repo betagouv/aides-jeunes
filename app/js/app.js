@@ -46,13 +46,16 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/demandeur',
             onEnter: function($state, $modal, SituationService) {
                 $modal.open({
-                    templateUrl: '/partials/foyer/conjoint-modal.html',
-                    controller: 'ConjointModalCtrl',
+                    templateUrl: '/partials/foyer/individu-modal.html',
+                    controller: 'FoyerIndividuModalCtrl',
                     backdrop: 'static',
                     keyboard: false,
                     resolve: {
-                        individuType: function() {
-                            return 'demandeur';
+                        options: function() {
+                            return {
+                                individuType: 'demandeur',
+                                modalTitle: 'Vous'
+                            };
                         }
                     }
                 }).result.then(function(demandeur) {
@@ -66,11 +69,15 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             onEnter: function($state, $modal, SituationService) {
                 var situation = SituationService.restoreLocal();
                 $modal.open({
-                    templateUrl: '/partials/foyer/conjoint-modal.html',
-                    controller: 'ConjointModalCtrl',
+                    templateUrl: '/partials/foyer/individu-modal.html',
+                    controller: 'FoyerIndividuModalCtrl',
                     resolve: {
-                        individuType: function() {
-                            return 'conjoint';
+                        options: function() {
+                            return {
+                                individuType: 'conjoint',
+                                modalTitle: 'Votre conjoint',
+                                askRelationType: true
+                            };
                         }
                     }
                 }).result.then(function(conjoint) {
@@ -89,11 +96,15 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/enfant',
             onEnter: function($state, $modal, SituationService) {
                 $modal.open({
-                    templateUrl: '/partials/foyer/enfant-modal.html',
-                    controller: 'FoyerEnfantModalCtrl',
+                    templateUrl: '/partials/foyer/individu-modal.html',
+                    controller: 'FoyerIndividuModalCtrl',
                     resolve: {
-                        modalTitle: function() {
-                            return 'Votre enfant';
+                        options: function() {
+                            return {
+                                individuType: 'enfant',
+                                modalTitle: 'Votre enfant',
+                                askFirstName: true
+                            };
                         }
                     }
                 }).result.then(function(enfant) {
@@ -111,11 +122,15 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/personne-a-charge',
             onEnter: function($state, $modal, SituationService) {
                 $modal.open({
-                    templateUrl: '/partials/foyer/enfant-modal.html',
-                    controller: 'FoyerEnfantModalCtrl',
+                    templateUrl: '/partials/foyer/individu-modal.html',
+                    controller: 'FoyerIndividuModalCtrl',
                     resolve: {
-                        modalTitle: function() {
-                            return 'Personne à charge';
+                        options: function() {
+                            return {
+                                individuType: 'personneACharge',
+                                modalTitle: 'Personne à charge',
+                                askFirstName: true
+                            };
                         }
                     }
                 }).result.then(function(personne) {

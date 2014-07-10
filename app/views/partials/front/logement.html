@@ -42,7 +42,7 @@
       <label class="col-sm-4 control-label" for="loyer">À combien s'élève {{ 'locataire' === situation.logement.type ? 'votre loyer' : 'votre mensualité d\'emprunt' }} ?</label>
       <div class="col-sm-3">
        <div class="input-group">
-          <input class="form-control" id="loyer" name="loyer" ng-model="situation.logement.loyer" type="number" required>
+          <input class="form-control text-right" id="loyer" name="loyer" ng-model="situation.logement.loyer" type="number" required>
           <div class="input-group-addon">€</div>
         </div>
       </div>

@@ -11,11 +11,23 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
     $scope.submit = function() {
         if (!individu.ressources) {
             individu.ressources = [];
-            for (var i in individu.selectedRessources) {
-                individu.ressources.push(new Array(3));
+            $scope.revenus = {};
+            for (var ressourceType in individu.selectedRessources) {
+                $scope.revenus[ressourceType] = new Array(0, 0, 0);
             }
         } else {
-            $modalInstance.close();
+            for (var ressourceType in $scope.revenus) {
+                var montants = $scope.revenus[ressourceType];
+                for (var i = 0; i < 3; i++) {
+                    var ressource = {
+                        type: ressourceType,
+                        periode: '2014-04',
+                        montant: montants[i]
+                    };
+                    individu.ressources.push(ressource);
+                }
+            }
+            $modalInstance.close($scope.revenus);
         }
     };
 

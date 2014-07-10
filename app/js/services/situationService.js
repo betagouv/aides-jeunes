@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage) {
+angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage, $filter) {
     var situation;
 
     return {
@@ -80,7 +80,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             }
 
             statuses = statuses.join(', ');
-            statuses = statuses.charAt(0).toUpperCase() + statuses.substring(1);
+            statuses = $filter('uppercaseFirst')(statuses);
 
             return statuses;
         },

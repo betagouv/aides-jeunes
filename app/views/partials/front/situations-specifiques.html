@@ -6,10 +6,10 @@
   <label>L'une des personnes de votre foyer est-elle dans une de ces situations spécifiques ?</label>
   <table class="table table-striped table-borderless">
     <tr ng-repeat="(id, situation) in situations">
-      <td style="max-width: 155px;">
-        <button class="btn btn-sm btn-default" ng-model="selectedSituations[id]" btn-checkbox>{{ displaySituation(situation) }}</button>
+      <td style="width: 240px;">
+        <button class="btn btn-sm btn-default" ng-model="selectedSituations[id]" btn-checkbox>{{ situation | uppercaseFirst }}</button>
       </td>
-      <td style="vertical-align: middle; max-width: 150px;">
+      <td style="vertical-align: middle; width: 265px;">
         <b ng-if="selectedSituations[id]">Quelles sont les personnes concernées ?</b>
       </td>
       <td style="vertical-align: middle;">

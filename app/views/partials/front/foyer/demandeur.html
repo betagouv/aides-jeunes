@@ -13,7 +13,7 @@
         <div class="col-md-8" ng-if="situation.demandeur">
           Né(e) le <strong>{{ situation.demandeur.birthDate }}</strong>
           <br>Nationalité <strong>{{ nationaliteLabels[situation.demandeur.nationalite] }}</strong>
-          <br>{{ statutsSpecifiques(situation.demandeur) }}
+          <br><i>{{ statutsSpecifiques(situation.demandeur) }}</i>
         </div>
       </div>
     </div>

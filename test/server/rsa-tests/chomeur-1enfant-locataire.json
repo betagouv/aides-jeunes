@@ -12,27 +12,13 @@
     "demandeurEmploi": true,
     "statutMarital": "seul",
     "ressources": [
+      { "periode": "2014-06", "type": "pensionsAlimentaires", "montant": 200 },
+      { "periode": "2014-06", "type": "allocationLogement", "montant": 200 },
       { "periode": "2014-05", "type": "pensionsAlimentaires", "montant": 200 },
       { "periode": "2014-05", "type": "allocationLogement", "montant": 200 },
       { "periode": "2014-04", "type": "pensionsAlimentaires", "montant": 200 },
-      { "periode": "2014-04", "type": "allocationLogement", "montant": 200 },
-      { "periode": "2014-03", "type": "pensionsAlimentaires", "montant": 200 },
-      { "periode": "2014-03", "type": "allocationLogement", "montant": 200 }
+      { "periode": "2014-04", "type": "allocationLogement", "montant": 200 }
     ],
-    "ressources": {
-      "2014-05": {
-        "pensionsAlimentaires": 200,
-        "allocationLogement": 200
-      },
-      "2014-04": {
-        "pensionsAlimentaires": 200,
-        "allocationLogement": 200
-      },
-      "2014-03": {
-        "pensionsAlimentaires": 200,
-        "allocationLogement": 200
-      }
-    },
     "_id": "ind-6661",
     "dateDeNaissance": "1979-12-31T23:00:00.000Z"
   },

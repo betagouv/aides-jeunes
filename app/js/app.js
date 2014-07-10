@@ -44,104 +44,63 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('foyer.demandeur_modal', {
             url: '/demandeur',
-            onEnter: function($state, $modal, SituationService) {
-                $modal.open({
-                    templateUrl: '/partials/foyer/individu-modal.html',
-                    controller: 'FoyerIndividuModalCtrl',
-                    backdrop: 'static',
-                    keyboard: false,
-                    resolve: {
-                        options: function() {
-                            return {
-                                individuType: 'demandeur',
-                                modalTitle: 'Vous'
-                            };
-                        }
-                    }
-                }).result.then(function(demandeur) {
-                    SituationService.saveLocal({demandeur: demandeur});
-                    return $state.go('foyer');
-                });
+            onEnter: function($state, $modal, SituationService, IndividuModalService) {
+                IndividuModalService
+                    .open({individuType: 'demandeur', modalTitle: 'Vous', cancelable: false})
+                    .then(function(demandeur) {
+                        SituationService.saveLocal({demandeur: demandeur});
+                        return $state.go('foyer');
+                    });
             }
         })
         .state('foyer.conjoint_modal', {
             url: '/conjoint',
-            onEnter: function($state, $modal, SituationService) {
+            onEnter: function($state, $modal, SituationService, IndividuModalService) {
                 var situation = SituationService.restoreLocal();
-                $modal.open({
-                    templateUrl: '/partials/foyer/individu-modal.html',
-                    controller: 'FoyerIndividuModalCtrl',
-                    resolve: {
-                        options: function() {
-                            return {
-                                individuType: 'conjoint',
-                                modalTitle: 'Votre conjoint',
-                                askRelationType: true
-                            };
-                        }
-                    }
-                }).result.then(function(conjoint) {
-                    situation.conjoint = conjoint;
-                    SituationService.saveLocal(situation);
+                IndividuModalService
+                    .open({individuType: 'conjoint', modalTitle: 'Votre conjoint', askRelationType: true})
+                    .then(function(conjoint) {
+                        situation.conjoint = conjoint;
+                        SituationService.saveLocal(situation);
 
-                    return conjoint;
-                }, function() {
-                    situation.livesAlone = undefined;
-                }).finally(function() {
-                    $state.go('foyer');
-                });
+                        return conjoint;
+                    }, function() {
+                        situation.livesAlone = undefined;
+                    }).finally(function() {
+                        $state.go('foyer');
+                    });
             }
         })
         .state('foyer.enfant_modal', {
             url: '/enfant',
-            onEnter: function($state, $modal, SituationService) {
-                $modal.open({
-                    templateUrl: '/partials/foyer/individu-modal.html',
-                    controller: 'FoyerIndividuModalCtrl',
-                    resolve: {
-                        options: function() {
-                            return {
-                                individuType: 'enfant',
-                                modalTitle: 'Votre enfant',
-                                askFirstName: true
-                            };
-                        }
-                    }
-                }).result.then(function(enfant) {
-                    var situation = SituationService.restoreLocal();
-                    situation.enfants.push(enfant);
-                    SituationService.saveLocal(situation);
+            onEnter: function($state, $modal, SituationService, IndividuModalService) {
+                IndividuModalService
+                    .open({individuType: 'enfant', modalTitle: 'Votre enfant', askFirstName: true})
+                    .then(function(enfant) {
+                        var situation = SituationService.restoreLocal();
+                        situation.enfants.push(enfant);
+                        SituationService.saveLocal(situation);
 
-                    return enfant;
-                }).finally(function() {
-                    $state.go('foyer');
-                });
+                        return enfant;
+                    }).finally(function() {
+                        $state.go('foyer');
+                    });
             }
         })
         .state('foyer.personne_a_charge_modal', {
             url: '/personne-a-charge',
-            onEnter: function($state, $modal, SituationService) {
-                $modal.open({
-                    templateUrl: '/partials/foyer/individu-modal.html',
-                    controller: 'FoyerIndividuModalCtrl',
-                    resolve: {
-                        options: function() {
-                            return {
-                                individuType: 'personneACharge',
-                                modalTitle: 'Personne à charge',
-                                askFirstName: true
-                            };
-                        }
-                    }
-                }).result.then(function(personne) {
-                    var situation = SituationService.restoreLocal();
-                    situation.personnesACharge.push(personne);
-                    SituationService.saveLocal(situation);
+            onEnter: function($state, $modal, SituationService, IndividuModalService) {
+                IndividuModalService
+                    .open({individuType: 'personneACharge', modalTitle: 'Personne à charge', askFirstName: true})
+                    .then(function(personne) {
+                        var situation = SituationService.restoreLocal();
+                        situation.personnesACharge.push(personne);
+                        SituationService.saveLocal(situation);
 
-                    return personne;
-                }).finally(function() {
-                    $state.go('foyer');
-                });
+                        return personne;
+                    }).finally(function() {
+                        $state.go('foyer');
+                    });
             }
         })
         .state('foyer.capture_revenus', {

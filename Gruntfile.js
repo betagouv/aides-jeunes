@@ -50,7 +50,7 @@ module.exports = function (grunt) {
     },
     watch: {
       js: {
-        files: ['<%= yeoman.app %>/js/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/js/**/*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: true
@@ -61,7 +61,7 @@ module.exports = function (grunt) {
         tasks: ['env:test', 'mochaTest']
       },
       jsTest: {
-        files: ['test/client/spec/{,*/}*.js'],
+        files: ['test/client/spec/**/*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
       compass: {
@@ -73,7 +73,7 @@ module.exports = function (grunt) {
       },
       livereload: {
         files: [
-          '<%= yeoman.app %>/views/{,*//*}*.{html,jade}',
+          '<%= yeoman.app %>/views/{,*//*}*.html',
           '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
           '{.tmp,<%= yeoman.app %>}/js/{,*//*}*.js',
           '<%= yeoman.app %>/img/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'

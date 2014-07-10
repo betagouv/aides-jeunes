@@ -12,12 +12,7 @@ angular.module('ddsApp').factory('IndividuModalService', function($modal) {
                 controller: 'FoyerIndividuModalCtrl',
                 resolve: {
                     options: function() {
-                        return {
-                            individuType: options.individuType,
-                            modalTitle: options.modalTitle,
-                            askFirstName: options.askFirstName,
-                            cancelable: options.cancelable
-                        };
+                        return options;
                     }
                 }
             };

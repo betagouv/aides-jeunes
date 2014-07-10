@@ -21,6 +21,11 @@ html {
 
     &.logo {
       padding-top: 3px;
+      padding-bottom: 72px;
+    }
+
+    &.logo, &.logo:hover {
+      background-color: white;
     }
   }
 

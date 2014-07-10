@@ -10,9 +10,10 @@
         <div class="col-md-3">
           <i class="fa fa-male icon-lg"></i>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8" ng-if="situation.demandeur">
           Né(e) le <strong>{{ situation.demandeur.birthDate }}</strong>
           <br>Nationalité <strong>{{ nationaliteLabels[situation.demandeur.nationalite] }}</strong>
+          <br>{{ statutsSpecifiques(situation.demandeur) }}
         </div>
       </div>
     </div>

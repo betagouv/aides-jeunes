@@ -5,17 +5,17 @@
 <form role="form">
   <label>L'une des personnes de votre foyer est-elle dans une de ces situations spécifiques ?</label>
   <table class="table table-striped table-borderless">
-    <tr ng-repeat="situation in situations">
+    <tr ng-repeat="(id, situation) in situations">
       <td>
-        <label class="btn btn-default" ng-model="selectedSituations[situation.id]" btn-checkbox>{{ situation.label }}</label>
+        <button class="btn btn-sm btn-default" ng-model="selectedSituations[id]" btn-checkbox>{{ situation }}</button>
       </td>
-      <td>
-        <b ng-if="selectedSituations[situation.id]">Quelles sont les personnes concernées ?</b>
+      <td style="vertical-align: middle;">
+        <b ng-if="selectedSituations[id]">Quelles sont les personnes concernées ?</b>
       </td>
-      <td>
-        <div ng-if="selectedSituations[situation.id]">
+      <td style="vertical-align: middle;">
+        <div ng-if="selectedSituations[id]">
           <label class="checkbox-inline" ng-repeat="individu in individus">
-            <input type="checkbox"> {{ individu.name }}
+            <input type="checkbox" ng-model="individu.individu[id]"> {{ individu.name }}
           </label>
         </div>
       </td>

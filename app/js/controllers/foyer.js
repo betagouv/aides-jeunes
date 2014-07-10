@@ -14,4 +14,8 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $location, $mo
     $scope.$on('animateCaptureRevenusEnd', function() {
         $scope.animate = false;
     });
+
+    $scope.statutsSpecifiques = function(individu) {
+        return SituationService.formatStatutsSpecifiques(individu);
+    };
 });

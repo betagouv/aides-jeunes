@@ -1,8 +1,10 @@
 'use strict';
 
-angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, $modalInstance, modalTitle, individu) {
+angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, $modalInstance, modalTitle, individu, SituationService) {
     $scope.modalTitle = modalTitle;
     $scope.individu = individu;
+    $scope.sections = SituationService.revenusSections;
+    $scope.sections[0].isOpen = true;
 
     $scope.cleanSelectedRessources = function() {
         for (var i in individu.selectedRessources) {
@@ -12,11 +14,25 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
         }
     };
 
+    $scope.updateSelectedRessources = function() {
+        $scope.selectedRessources = [];
+        for (var i in $scope.sections) {
+            var section = $scope.sections[i];
+            for (var j in section.subsections) {
+                var subsection = section.subsections[j];
+                if (individu.selectedRessources[subsection.name]) {
+                    $scope.selectedRessources.push(subsection.name);
+                }
+            }
+        }
+    };
+
     if (!individu.selectedRessources) {
         individu.selectedRessources = {};
     } else {
         $scope.ressourcesSelected = true;
         $scope.cleanSelectedRessources();
+        $scope.updateSelectedRessources();
     }
 
     $scope.initMonths = function() {
@@ -35,9 +51,8 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
 
     $scope.initMonths();
 
-    $scope.initRevenusFromIndividu = function() {
+    $scope.zerofillRevenus = function() {
         $scope.revenus = {};
-
         // remplissage des cases des types de revenus sélectionnés avec des 0
         for (var ressourceType in individu.selectedRessources) {
             var ressource = $scope.revenus[ressourceType] = {};
@@ -45,7 +60,10 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
             ressource[$scope.month2] = 0;
             ressource[$scope.month3] = 0;
         }
+    };
 
+    $scope.initRevenusFromIndividu = function() {
+        $scope.zerofillRevenus();
         // récupération des éventuelles valeurs rentrées précédemment
         for (var i in individu.ressources) {
             var ressource = individu.ressources[i];
@@ -62,6 +80,7 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
         if (!$scope.ressourcesSelected) {
             $scope.ressourcesSelected = true;
             $scope.cleanSelectedRessources();
+            $scope.updateSelectedRessources();
             $scope.mergeRevenusWithNewRessources();
         } else {
             individu.ressources = [];
@@ -83,15 +102,7 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
 
     $scope.mergeRevenusWithNewRessources = function() {
         var previousRevenus = $scope.revenus;
-        $scope.revenus = {};
-
-        // remplissage des cases des types de revenus sélectionnés avec des 0
-        for (var ressourceType in individu.selectedRessources) {
-            var ressource = $scope.revenus[ressourceType] = {};
-            ressource[$scope.month1] = 0;
-            ressource[$scope.month2] = 0;
-            ressource[$scope.month3] = 0;
-        }
+        $scope.zerofillRevenus();
 
         // récupération des éventuelles valeurs rentrées précédemment
         for (var i in previousRevenus) {
@@ -107,88 +118,6 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
             }
         }
     };
-
-    $scope.sections = [
-        {
-            name: 'revenusActivite',
-            label: 'Revenus d\'activité',
-            subsections: [
-                {
-                    name: 'revenusSalarie',
-                    label: 'Salaires'
-                }, {
-                    name: 'revenusNonSalarie',
-                    label: 'Revenus non-salarié'
-                }, {
-                    name: 'revenusAutoEntrepreneur',
-                    label: 'Revenus auto-entrepreneur'
-                },
-            ]
-        },
-        {
-            name: 'allocations',
-            label: 'Allocations',
-            subsections: [
-                {
-                    name: 'allocationsChomage',
-                    label: 'Allocation chômage'
-                }, {
-                    name: 'allocationLogement',
-                    label: 'Allocation logement'
-                }, {
-                    name: 'rsa',
-                    label: 'Revenu de solidarité active'
-                }, {
-                    name: 'aspa',
-                    label: 'Allocation de solidarité aux personnes âgées'
-                }, {
-                    name: 'ass',
-                    label: 'Allocation de solidarité spécifique'
-                }
-            ]
-        },
-        {
-            name: 'indemnites',
-            label: 'Indemnités',
-            subsections: [
-                {
-                    name: 'indJourMaternite',
-                    label: 'Indemnités de maternité'
-                }, {
-                    name: 'indJourPaternite',
-                    label: 'Indemnités de paternité'
-                }, {
-                    name: 'indJourAdoption',
-                    label: 'Indemnités d\'adoption'
-                }, {
-                    name: 'indJourMaladie',
-                    label: 'Indemnités maladie'
-                }, {
-                    name: 'indJourMaladieProf',
-                    label: 'Indemnités maladie professionnelle'
-                }, {
-                    name: 'indJourAccidentDuTravail',
-                    label: 'Indemnités accident du travail'
-                }, {
-                    name: 'indChomagePartiel',
-                    label: 'Indemnités de chômage partiel'
-                }
-            ]
-        },
-        {
-            name: 'pensions',
-            label: 'Pensions',
-            subsections: [
-                {
-                    name: 'pensionsAlimentaires',
-                    label: 'Pensions alimentaires'
-                }, {
-                    name: 'pensionsRetraitesRentes',
-                    label: 'Retraites, rentes'
-                }
-            ]
-        }
-    ];
 
     $scope.subsectionsIndex = {};
     for (var i in $scope.sections) {

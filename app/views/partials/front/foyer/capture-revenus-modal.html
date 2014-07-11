@@ -6,8 +6,12 @@
     <div ng-show="!ressourcesSelected">
       <p>Veuillez cliquer sur les revenus et/ou aides que vous percevez. Vous saisirez les montants dans l'écran suivant.</p>
       <p><i class="fa fa-info-circle"></i> Ne sélectionnez pas les éventuels revenus de votre conjoint ou vos personnes à charge, vous pourrez les indiquer plus tard.</p>
-      <div class="text-center">
-        <span ng-repeat="section in sections">
+      <accordion close-others="false">
+        <accordion-group ng-repeat="section in sections" is-open="section.open">
+          <accordion-heading>
+            {{ section.label }}
+            <i class="pull-right fa" ng-class="{'fa-chevron-down': section.open, 'fa-chevron-right': !section.open}"></i>
+          </accordion-heading>
           <span ng-repeat="subsection in section.subsections">
             <button
               type="button"
@@ -16,9 +20,8 @@
               btn-checkbox
               ng-model="individu.selectedRessources[subsection.name]">{{ subsection.label }}</button>
           </span>
-          <br>
-        </span>
-      </div>
+        </accordion-group>
+      </accordion>
     </div>
 
     <div ng-show="ressourcesSelected">
@@ -33,7 +36,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="(subsectionName,value) in individu.selectedRessources" class="capture-{{ subsectionsIndex[subsectionName].section.name }}">
+          <tr ng-repeat="subsectionName in selectedRessources" class="capture-{{ subsectionsIndex[subsectionName].section.name }}">
             <td style="width: 200px; vertical-align: middle; color: white;">{{ subsectionsIndex[subsectionName].label }}</td>
             <td>
               <span class="input-group">

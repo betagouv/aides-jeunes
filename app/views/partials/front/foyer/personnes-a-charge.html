@@ -1,4 +1,4 @@
-<div class="col-md-5 animate-show" ng-show="visible">
+<div class="col-lg-5 animate-show" ng-show="visible">
   <h2><i class="fa fa-users"></i> Autres personnes à charge</h2>
 
   <div ng-show="undefined === situation.hasPersonnesACharge">
@@ -15,7 +15,7 @@
   </p>
 
   <div class="row">
-    <div class="col-md-6" ng-repeat="personne in situation.personnesACharge">
+    <div class="col-xs-6" ng-repeat="personne in situation.personnesACharge">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -27,10 +27,10 @@
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-xs-4">
               <i class="fa fa-male icon-lg"></i>
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8">
               Né(e) le <strong>{{ personne.birthDate }}</strong>
               <br>Nationalité <strong>{{ nationaliteLabels[personne.nationalite] }}</strong>
               <br><i>{{ statutsSpecifiques(personne) }}</i>
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="col-md-6" ng-show="situation.hasPersonnesACharge && !situation.personnesAChargeConfigDone">
+    <div class="col-xs-6" ng-show="situation.hasPersonnesACharge && !situation.personnesAChargeConfigDone">
       <div class="panel panel-default" style="border-style: dashed;">
         <div class="panel-heading">
           <h4 class="panel-title">Ajouter une personne</h4>

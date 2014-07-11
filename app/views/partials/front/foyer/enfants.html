@@ -1,4 +1,4 @@
-<div class="col-md-5 animate-show" ng-show="visible">
+<div class="col-lg-5 animate-show" ng-show="visible">
   <h2>
     <i class="fa fa-child"></i>
     Vos enfants
@@ -24,7 +24,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6" ng-repeat="child in situation.enfants">
+    <div class="col-xs-6" ng-repeat="child in situation.enfants">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -34,10 +34,10 @@
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-xs-4">
               <i class="fa fa-child icon-lg"></i>
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8">
               Né(e) le <strong>{{ child.birthDate }}</strong>
               <br>Nationalité <strong>{{ nationaliteLabels[child.nationalite] }}</strong>
               <br><i>{{ statutsSpecifiques(child) }}</i>
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="col-md-6" ng-show="true === situation.hasChildren && !situation.childConfigDone">
+    <div class="col-xs-6" ng-show="true === situation.hasChildren && !situation.childConfigDone">
       <div class="panel panel-default" style="border-style: dashed;">
         <div class="panel-heading">
           <h4 class="panel-title">Ajouter un enfant</h4>

@@ -1,8 +1,9 @@
-<div class="col-sm-2" style="padding-top: 40px;">
+<div class="col-md-2">
+  <div class="hidden-sm hidden-xs" style="padding-top: 40px;"></div>
   <p class="text-center" ng-if="situation.conjoint"><strong>{{ relationTypeLabels[situation.conjoint.relationType] }}</strong> avec
 </div>
 
-<div class="col-sm-5 animate-show" ng-show="visible">
+<div class="col-md-5 animate-show" ng-show="visible">
   <div class="panel panel-default" style="height: 150px;">
     <div class="panel-heading">
       <h2 class="panel-title">{{ situation.conjoint ? 'Votre conjoint' : 'Votre situation familiale' }}</h2>
@@ -18,12 +19,12 @@
       </div>
       <div ng-if="situation.conjoint">
         <div class="row">
-          <div class="col-md-1">
+          <div class="col-sm-1 hidden-xs">
           </div>
-          <div class="col-md-3">
+          <div class="col-xs-3">
             <i class="fa fa-male icon-lg"></i>
           </div>
-          <div class="col-md-8">
+          <div class="col-xs-8">
             Né(e) le <strong>{{ situation.conjoint.birthDate }}</strong>
             <br>Nationalité <strong>{{ nationaliteLabels[situation.conjoint.nationalite] }}</strong>
             <br><i>{{ statutsSpecifiques(situation.conjoint) }}</i>

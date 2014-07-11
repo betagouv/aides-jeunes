@@ -1,16 +1,16 @@
-<div class="col-sm-5">
+<div class="col-md-5">
   <div class="panel panel-default block-demandeur" ng-class="{'highlight': animate}">
     <div class="panel-heading">
       <h2 class="panel-title">Vous</h2>
     </div>
     <div class="panel-body">
       <div class="row">
-        <div class="col-md-1">
+        <div class="col-sm-1 hidden-xs">
         </div>
-        <div class="col-md-3">
+        <div class="col-xs-3">
           <i class="fa fa-male icon-lg"></i>
         </div>
-        <div class="col-md-8" ng-if="situation.demandeur">
+        <div class="col-xs-8" ng-if="situation.demandeur">
           Né(e) le <strong>{{ situation.demandeur.birthDate }}</strong>
           <br>Nationalité <strong>{{ nationaliteLabels[situation.demandeur.nationalite] }}</strong>
           <br><i>{{ statutsSpecifiques(situation.demandeur) }}</i>

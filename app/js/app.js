@@ -45,18 +45,18 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('foyer.demandeur_modal', {
             url: '/demandeur',
-            onEnter: function($state, $modal, SituationService, IndividuModalService) {
+            onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
                 IndividuModalService
                     .open({individuType: 'demandeur', modalTitle: 'Vous', cancelable: false})
                     .then(function(demandeur) {
                         SituationService.saveLocal({demandeur: demandeur});
                         return $state.go('foyer');
                     });
-            }
+            }]
         })
         .state('foyer.conjoint_modal', {
             url: '/conjoint',
-            onEnter: function($state, $modal, SituationService, IndividuModalService) {
+            onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
                 var situation = SituationService.restoreLocal();
                 IndividuModalService
                     .open({individuType: 'conjoint', modalTitle: 'Votre conjoint', askRelationType: true})
@@ -70,11 +70,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     }).finally(function() {
                         $state.go('foyer');
                     });
-            }
+            }]
         })
         .state('foyer.enfant_modal', {
             url: '/enfant',
-            onEnter: function($state, $modal, SituationService, IndividuModalService) {
+            onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
                 IndividuModalService
                     .open({individuType: 'enfant', modalTitle: 'Votre enfant', askFirstName: true})
                     .then(function(enfant) {
@@ -86,11 +86,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     }).finally(function() {
                         $state.go('foyer');
                     });
-            }
+            }]
         })
         .state('foyer.personne_a_charge_modal', {
             url: '/personne-a-charge',
-            onEnter: function($state, $modal, SituationService, IndividuModalService) {
+            onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
                 IndividuModalService
                     .open({individuType: 'personneACharge', modalTitle: 'Personne à charge', askFirstName: true})
                     .then(function(personne) {
@@ -102,11 +102,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     }).finally(function() {
                         $state.go('foyer');
                     });
-            }
+            }]
         })
         .state('foyer.capture_revenus', {
             url: '/capture-revenus',
-            onEnter: function($state, $modal, $timeout, $rootScope, SituationService) {
+            onEnter: ['$state', '$modal', '$timeout', '$rootScope', 'SituationService', function($state, $modal, $timeout, $rootScope, SituationService) {
                 $timeout(function() {
                     $rootScope.$broadcast('animateCaptureRevenusStart');
                 }, 700);
@@ -133,7 +133,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                         return $state.go('logement');
                     });
                 }, 2500);
-            }
+            }]
         })
         .state('situations_specifiques', {
             url: '/configuration/situations-specifiques',

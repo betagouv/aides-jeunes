@@ -3,23 +3,33 @@
     <h1 class="modal-title">{{ modalTitle }}</h1>
   </div>
   <div class="modal-body">
-    <div ng-show="!individu.ressources">
+    <div ng-show="!ressourcesSelected">
       <p>Veuillez cliquer sur les revenus et/ou aides que vous percevez. Vous saisirez les montants dans l'écran suivant.</p>
-      <p><i class="glyphicon glyphicon-info"></i> Ne sélectionnez pas les éventuels revenus de votre conjoint ou vos personnes à charge, vous pourrez les indiquer plus tard.</p>
-      <span ng-repeat="section in sections">
-        <button type="button" class="btn btn-sm btn-revenus capture-{{ section.name }}" ng-repeat="subsection in section.subsections" btn-checkbox ng-model="$parent.individu.selectedRessources[subsection.name]">{{ subsection.label }}</button>
-      </span>
+      <p><i class="fa fa-info-circle"></i> Ne sélectionnez pas les éventuels revenus de votre conjoint ou vos personnes à charge, vous pourrez les indiquer plus tard.</p>
+      <div class="text-center">
+        <span ng-repeat="section in sections">
+          <span ng-repeat="subsection in section.subsections">
+            <button
+              type="button"
+              class="btn btn-sm btn-revenus"
+              ng-class="'capture-' + section.name"
+              btn-checkbox
+              ng-model="individu.selectedRessources[subsection.name]">{{ subsection.label }}</button>
+          </span>
+          <br>
+        </span>
+      </div>
     </div>
 
-    <div ng-show="individu.ressources">
+    <div ng-show="ressourcesSelected">
       <p>Veuillez entrer les montants des revenus ou aides sélectionné(e)s.</p>
       <table class="table table-bordered">
         <thead>
           <tr>
             <th style="width: 200px;"></th>
-            <th>Mars 2014</th>
-            <th>Avril 2014</th>
-            <th>Mai 2014</th>
+            <th>{{ month1Label | uppercaseFirst }}</th>
+            <th>{{ month2Label | uppercaseFirst }}</th>
+            <th>{{ month3Label | uppercaseFirst }}</th>
           </tr>
         </thead>
         <tbody>
@@ -27,19 +37,19 @@
             <td style="width: 200px; vertical-align: middle; color: white;">{{ subsectionsIndex[subsectionName].label }}</td>
             <td>
               <span class="input-group">
-                <input type="number" class="form-control text-right" select-on-focus ng-model="$parent.$parent.revenus[subsectionName][0]">
+                <input type="number" class="form-control text-right" select-on-focus ng-model="$parent.$parent.revenus[subsectionName][month1]">
                 <span class="input-group-addon">€</span>
               </span>
             </td>
             <td>
               <span class="input-group">
-                <input type="number" class="form-control text-right" select-on-focus ng-model="$parent.$parent.revenus[subsectionName][1]">
+                <input type="number" class="form-control text-right" select-on-focus ng-model="$parent.$parent.revenus[subsectionName][month2]">
                 <span class="input-group-addon">€</span>
               </span>
             </td>
             <td>
               <span class="input-group">
-                <input type="number" class="form-control text-right" select-on-focus ng-model="$parent.$parent.revenus[subsectionName][2]">
+                <input type="number" class="form-control text-right" select-on-focus ng-model="$parent.$parent.revenus[subsectionName][month3]">
                 <span class="input-group-addon">€</span>
               </span>
             </td>
@@ -49,6 +59,7 @@
     </div>
   </div>
   <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-show="ressourcesSelected" ng-click="$parent.ressourcesSelected = false">&lt; Sélectionner des revenus différents</button>
     <button type="submit" class="btn btn-primary">Valider</button>
   </div>
 </form>

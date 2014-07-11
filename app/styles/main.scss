@@ -1,5 +1,3 @@
-$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
-
 @import 'variables';
 @import 'bootstrap-sass-official/assets/stylesheets/bootstrap';
 @import 'theme';
@@ -106,32 +104,27 @@ html {
   border-radius: 0;
 }
 
-.btn-revenus, .btn-revenus:focus {
-  @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
-  border: none;
-}
-
-.btn-revenus.active {
-  background-color: $brand-info;
-  border-color: $brand-info;
-}
-
 .capture-indemnites {
-  background-color: #ee7326;
+  @include button-variant(white, #f07818, #f07818);
 }
 
 .capture-pensions {
-  background-color: #dd3e74;
+  @include button-variant(white, #5e412f, #5e412f);
 }
 
 .capture-allocations {
-  background-color: #59bd7f;
+  @include button-variant(white, #78c0a8, #78c0a8);
 }
 
 .capture-revenusActivite {
-  background-color: #395668;
+  @include button-variant(white, #395668, #395668);
 }
 
-.btn-revenus {
+.btn-revenus, .btn-revenus:hover {
+  border: 4px solid white;
   margin: 3px;
+}
+
+.btn.btn-sm.btn-revenus.active, .btn.btn-sm.btn-revenus.active:focus {
+  border: 4px solid black;
 }

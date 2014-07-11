@@ -2,6 +2,9 @@
 @import 'bootstrap-sass-official/assets/stylesheets/bootstrap';
 @import 'theme';
 
+$fa-font-path: "/bower_components/font-awesome/fonts";
+@import "font-awesome/scss/font-awesome";
+
 html {
   overflow-y: scroll;
 }

@@ -4,7 +4,7 @@
     "statusOccupation": "gratuit"
   },
   "demandeur": {
-    "dateDeNaissance": "1979-12-31T23:00:00.000Z",
+    "dateDeNaissance": "1980-01-01",
     "_id": "ind-7279",
     "logement": "log-3799",
     "statutMarital": "seul",

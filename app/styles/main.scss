@@ -87,20 +87,6 @@ html {
   opacity: 0;
 }
 
-.highlight-apparition {
-  opacity: 0.5;
-  transition: opacity .7s linear;
-}
-
-.highlight-apparition.ng-hide {
-  opacity: 0;
-}
-
-.block-demandeur.highlight {
-  position: relative;
-  z-index: 1100;
-}
-
 .btn-new-entity {
   border: none;
   padding: 15px;
@@ -123,11 +109,20 @@ html {
   @include button-variant(white, #395668, #395668);
 }
 
-.btn-revenus, .btn-revenus:hover {
+.btn-ressources, .btn-ressources:hover, .btn-ressources:focus {
   border: 4px solid white;
   margin: 3px;
 }
 
-.btn.btn-sm.btn-revenus.active, .btn.btn-sm.btn-revenus.active:focus {
+.btn.btn-sm.btn-ressources.active, .btn.btn-sm.btn-ressources.active:focus {
   border: 4px solid black;
+}
+
+.row-situations-specifiques {
+  margin-bottom: 5px;
+}
+
+.ressources-selection .checkbox-inline.ressources-selection-individu {
+  padding-top: 0;
+  margin-left: 15px;
 }

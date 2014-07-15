@@ -43,7 +43,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             return situation;
         },
 
-        createIndividusList: function(situation) {
+        createIndividusList: function() {
             var individus = [
                 {
                     name: 'Vous',

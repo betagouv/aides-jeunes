@@ -3,24 +3,22 @@
 </div>
 
 <form role="form">
-  <label>L'une des personnes de votre foyer est-elle dans une de ces situations spécifiques ?</label>
-  <table class="table table-striped table-borderless">
-    <tr ng-repeat="(id, situation) in situations">
-      <td style="width: 240px;">
-        <button class="btn btn-sm btn-default" ng-model="selectedSituations[id]" btn-checkbox>{{ situation | uppercaseFirst }}</button>
-      </td>
-      <td style="vertical-align: middle; width: 265px;">
-        <b ng-if="selectedSituations[id]">Quelles sont les personnes concernées ?</b>
-      </td>
-      <td style="vertical-align: middle;">
-        <div ng-if="selectedSituations[id]">
-          <label class="checkbox-inline" ng-repeat="individu in individus">
-            <input type="checkbox" ng-model="individu.individu[id]"> {{ individu.name }}
-          </label>
-        </div>
-      </td>
-    </tr>
-  </table>
+  <p>L'une des personnes de votre foyer est-elle dans une de ces situations spécifiques ?</p>
+  <div class="row row-situations-specifiques" ng-repeat="(id, situation) in situations">
+    <div class="col-md-3">
+      <button class="btn btn-sm btn-default" ng-model="selectedSituations[id]" btn-checkbox>{{ situation | uppercaseFirst }}</button>
+    </div>
+    <div class="col-md-4">
+      <b ng-if="selectedSituations[id]">Quelles sont les personnes concernées ?</b>
+    </div>
+    <div class="col-md-5">
+      <div ng-if="selectedSituations[id]">
+        <label class="checkbox-inline" ng-repeat="individu in individus">
+          <input type="checkbox" ng-model="individu.individu[id]"> {{ individu.name }}
+        </label>
+      </div>
+    </div>
+  </div>
 </form>
 
 <p class="text-center"><a ui-sref="foyer.capture_revenus" class="btn btn-lg btn-primary" ng-click="saveSituation()">Étape suivante</a></p>

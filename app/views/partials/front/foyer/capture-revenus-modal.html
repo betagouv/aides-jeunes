@@ -1,25 +1,37 @@
 <form name="form" class="form-horizontal" novalidate ng-submit="submit()">
   <div class="modal-header">
-    <h1 class="modal-title">{{ modalTitle }}</h1>
+    <h1 class="modal-title">Revenus et aides</h1>
   </div>
   <div class="modal-body">
     <div ng-show="!ressourcesSelected">
-      <p>Veuillez cliquer sur les revenus et/ou aides que vous percevez. Vous saisirez les montants dans l'écran suivant.</p>
-      <p><i class="fa fa-info-circle"></i> Ne sélectionnez pas les éventuels revenus de votre conjoint ou vos personnes à charge, vous pourrez les indiquer plus tard.</p>
-      <accordion close-others="false">
+      <p>
+        Pour calculer les droits auxquels vous pouvez prétendre, nous avons besoin de connaître l'ensemble des revenus et aides que vous percevez.
+        <br>Cliquez sur les types de revenus ou aides et sélectionnez les personnes qui les perçoivent.
+        <br>Nous vous demanderons de préciser le montant de chaque type de revenu ou aide sélectionnés dans l'écran suivant.
+      </p>
+
+      <accordion close-others="false" class="ressources-selection">
         <accordion-group ng-repeat="section in sections" is-open="section.open">
           <accordion-heading>
             {{ section.label }}
             <i class="pull-right fa" ng-class="{'fa-chevron-down': section.open, 'fa-chevron-right': !section.open}"></i>
           </accordion-heading>
-          <span ng-repeat="subsection in section.subsections">
+          <div ng-repeat="subsection in section.subsections">
             <button
               type="button"
-              class="btn btn-sm btn-revenus"
+              class="btn btn-sm btn-ressources"
               ng-class="'capture-' + section.name"
               btn-checkbox
-              ng-model="individu.selectedRessources[subsection.name]">{{ subsection.label }}</button>
-          </span>
+              ng-model="selectedRessourcesMap[subsection.name]">
+              {{ subsection.label }}
+            </button>
+            <span ng-if="selectedRessourcesMap[subsection.name]">
+              Qui ?
+              <label class="checkbox-inline ressources-selection-individu" ng-repeat="individu in individus">
+                <input type="checkbox"> {{ individu.name }}
+              </label>
+            </span>
+          </div>
         </accordion-group>
       </accordion>
     </div>
@@ -30,30 +42,16 @@
         <thead>
           <tr>
             <th style="width: 200px;"></th>
-            <th>{{ month1Label | uppercaseFirst }}</th>
-            <th>{{ month2Label | uppercaseFirst }}</th>
-            <th>{{ month3Label | uppercaseFirst }}</th>
+            <th ng-repeat="month in months">{{ month.label | uppercaseFirst }}</th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="subsectionName in selectedRessources" class="capture-{{ subsectionsIndex[subsectionName].section.name }}">
             <td style="width: 200px; vertical-align: middle; color: white;">{{ subsectionsIndex[subsectionName].label }}</td>
-            <td>
+            <td ng-repeat="month in months">
               <span class="input-group">
-                <input type="number" class="form-control text-right" select-on-focus ng-model="$parent.$parent.revenus[subsectionName][month1]">
-                <span class="input-group-addon">€</span>
-              </span>
-            </td>
-            <td>
-              <span class="input-group">
-                <input type="number" class="form-control text-right" select-on-focus ng-model="$parent.$parent.revenus[subsectionName][month2]">
-                <span class="input-group-addon">€</span>
-              </span>
-            </td>
-            <td>
-              <span class="input-group">
-                <input type="number" class="form-control text-right" select-on-focus ng-model="$parent.$parent.revenus[subsectionName][month3]">
-                <span class="input-group-addon">€</span>
+                <input type="number" class="form-control text-right" select-on-focus ng-model="revenus[subsectionName][month.id]">
+                <span class="input-group-addon hidden-xs">€</span>
               </span>
             </td>
           </tr>
@@ -62,7 +60,9 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-show="ressourcesSelected" ng-click="$parent.ressourcesSelected = false">&lt; Sélectionner des revenus différents</button>
+    <button type="button" class="btn btn-default" ng-show="ressourcesSelected" ng-click="$parent.ressourcesSelected = false">
+      &lt; Sélectionner des revenus différents
+    </button>
     <button type="submit" class="btn btn-primary">Valider</button>
   </div>
 </form>

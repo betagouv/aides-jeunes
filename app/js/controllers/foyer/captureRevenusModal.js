@@ -1,34 +1,36 @@
 'use strict';
 
-angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, $modalInstance, modalTitle, individu, SituationService) {
-    $scope.modalTitle = modalTitle;
-    $scope.individu = individu;
+angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, $modalInstance, SituationService) {
+    var situation = SituationService.restoreLocal();
     $scope.sections = SituationService.revenusSections;
-    $scope.sections[0].isOpen = true;
+    $scope.sections[0].open = true;
+    $scope.individus = SituationService.createIndividusList();
 
+    // suppression des clés dont la valeur est "false"
     $scope.cleanSelectedRessources = function() {
-        for (var i in individu.selectedRessources) {
-            if (!individu.selectedRessources[i]) {
-                delete individu.selectedRessources[i];
+        for (var i in $scope.selectedRessourcesMap) {
+            if (!$scope.selectedRessourcesMap[i]) {
+                delete $scope.selectedRessourcesMap[i];
             }
         }
     };
 
+    // on recrée l'array de type de ressources sélectionnées pour ordonner correctement
     $scope.updateSelectedRessources = function() {
         $scope.selectedRessources = [];
         for (var i in $scope.sections) {
             var section = $scope.sections[i];
             for (var j in section.subsections) {
                 var subsection = section.subsections[j];
-                if (individu.selectedRessources[subsection.name]) {
+                if ($scope.selectedRessourcesMap[subsection.name]) {
                     $scope.selectedRessources.push(subsection.name);
                 }
             }
         }
     };
 
-    if (!individu.selectedRessources) {
-        individu.selectedRessources = {};
+    if (!$scope.selectedRessourcesMap) {
+        $scope.selectedRessourcesMap = {};
     } else {
         $scope.ressourcesSelected = true;
         $scope.cleanSelectedRessources();
@@ -36,17 +38,15 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
     }
 
     $scope.initMonths = function() {
-        var month1 = moment().subtract('months', 3);
-        var month2 = moment().subtract('months', 2);
-        var month3 = moment().subtract('months', 1);
-
-        $scope.month1 = month1.format('YYYY-MM');
-        $scope.month2 = month2.format('YYYY-MM');
-        $scope.month3 = month3.format('YYYY-MM');
-
-        $scope.month1Label = month1.format('MMMM YYYY');
-        $scope.month2Label = month2.format('MMMM YYYY');
-        $scope.month3Label = month3.format('MMMM YYYY');
+        $scope.months = [];
+        for (var i = 3; i > 0; i--) {
+            var date = moment().subtract('months', i);
+            var month = {
+                id: date.format('YYYY-MM'),
+                label: date.format('MMMM YYYY')
+            };
+            $scope.months.push(month);
+        }
     };
 
     $scope.initMonths();
@@ -54,19 +54,19 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
     $scope.zerofillRevenus = function() {
         $scope.revenus = {};
         // remplissage des cases des types de revenus sélectionnés avec des 0
-        for (var ressourceType in individu.selectedRessources) {
+        for (var ressourceType in $scope.selectedRessourcesMap) {
             var ressource = $scope.revenus[ressourceType] = {};
-            ressource[$scope.month1] = 0;
-            ressource[$scope.month2] = 0;
-            ressource[$scope.month3] = 0;
+            for (var i in $scope.months) {
+                ressource[$scope.months[i].id] = 0;
+            }
         }
     };
 
     $scope.initRevenusFromIndividu = function() {
         $scope.zerofillRevenus();
         // récupération des éventuelles valeurs rentrées précédemment
-        for (var i in individu.ressources) {
-            var ressource = individu.ressources[i];
+        for (var i in $scope.ressources) {
+            var ressource = $scope.ressources[i];
             var revenu = $scope.revenus[ressource.type]
             if (!!revenu && angular.isDefined(revenu[ressource.periode])) {
                 revenu[ressource.periode] = ressource.montant;
@@ -83,7 +83,7 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
             $scope.updateSelectedRessources();
             $scope.mergeRevenusWithNewRessources();
         } else {
-            individu.ressources = [];
+            $scope.ressources = [];
             for (var ressourceType in $scope.revenus) {
                 var montants = $scope.revenus[ressourceType];
                 for (var month in montants) {
@@ -93,7 +93,7 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
                         periode: month,
                         montant: montant
                     };
-                    individu.ressources.push(ressource);
+                    $scope.ressources.push(ressource);
                 }
             }
             $modalInstance.close($scope.revenus);

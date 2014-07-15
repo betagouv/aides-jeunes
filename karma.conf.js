@@ -17,14 +17,14 @@ module.exports = function(config) {
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-cookies/angular-cookies.js',
-      'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'app/bower_components/ngstorage/ngStorage.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-animate/angular-animate.js',
-      'app/bower_components/moment/moment.js',
+      'app/bower_components/moment/min/moment.min.js',
       'app/bower_components/lodash/dist/lodash.compat.js',
       'app/bower_components/angular-ui-router/release/angular-ui-router.js',
-      'app/js/*.js',
+      'app/bower_components/angular-bootstrap/ui-bootstrap.js',
       'app/js/**/*.js',
       'test/client/spec/**/*.js'
     ],
@@ -35,7 +35,7 @@ module.exports = function(config) {
     ],
 
     // web server port
-    port: 8001,
+    port: 8002,
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG

@@ -11,7 +11,28 @@ describe('Controller: CaptureRevenusModalCtrl', function() {
         });
     });
 
-    it('Should init an array with the last 3 months', function() {
+    describe('Map of selected resources', function() {
+        beforeEach(function() {
+            inject(function($controller, SituationService) {
+                spyOn(SituationService, 'createIndividusList').andReturn([
+                    {name: 'Vous'}
+                ]);
+                $controller('CaptureRevenusModalCtrl', {
+                    $scope: scope,
+                    $modalInstance: {},
+                    SituationService: SituationService
+                });
+            });
+        });
+
+        it('should be initialized with the individus list', function() {
+            expect(scope.selectedRessourcesByIndividu).toEqual({
+                'Vous': {},
+            });
+        });
+    });
+
+    it('Should init an array of the last 3 months', function() {
         function isoDate(minusMonths) {
             var date = new Date();
             var result = date.setMonth(date.getMonth() - minusMonths);

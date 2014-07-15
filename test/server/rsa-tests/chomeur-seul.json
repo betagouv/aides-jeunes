@@ -1,0 +1,23 @@
+{
+  "logement": {
+    "_id": "log-3799",
+    "statusOccupation": "gratuit"
+  },
+  "demandeur": {
+    "dateDeNaissance": "1980-01-01",
+    "_id": "ind-7279",
+    "logement": "log-3799",
+    "statutMarital": "seul",
+    "etudiant": false,
+    "demandeurEmploi": true,
+    "retraite": false,
+    "ressources": [
+      { "periode": "2014-06", "type": "pensionsAlimentaires", "montant": 434 },
+      { "periode": "2014-05", "type": "pensionsAlimentaires", "montant": 434 },
+      { "periode": "2014-04", "type": "pensionsAlimentaires", "montant": 434 }
+    ]
+  },
+  "expectedResults": {
+    "rsa": 0
+  }
+}

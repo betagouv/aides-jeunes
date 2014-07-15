@@ -1,0 +1,48 @@
+{
+  "logement": {
+    "_id": "log-3799",
+    "statusOccupation": "gratuit"
+  },
+  "demandeur": {
+    "dateDeNaissance": "1980-01-01T00:00:00.000Z",
+    "_id": "ind-7279",
+    "statutMarital": "en couple",
+    "etudiant": false,
+    "demandeurEmploi": false,
+    "retraite": false,
+    "ressources": [
+      { "periode": "2014-06", "type": "indJourMaternite", "montant": 200 },
+      { "periode": "2014-05", "type": "indJourMaternite", "montant": 200 },
+      { "periode": "2014-04", "type": "indJourMaternite", "montant": 200 }
+    ]
+  },
+  "conjoint": {
+    "dateDeNaissance": "1980-01-01T00:00:00.000Z",
+    "_id": "ind-7280",
+    "statutMarital": "en couple",
+    "etudiant": false,
+    "demandeurEmploi": false,
+    "retraite": false
+  },
+  "enfants": [
+    {
+      "_id": "ind-3855",
+      "prenom": "Bob",
+      "dateDeNaissance": "2010-01-01T00:00:00.000Z",
+      "etudiant": false,
+      "demandeurEmploi": false,
+      "retraite": false
+    },
+    {
+      "_id": "ind-3856",
+      "prenom": "Bob",
+      "dateDeNaissance": "2010-01-01T00:00:00.000Z",
+      "etudiant": false,
+      "demandeurEmploi": false,
+      "retraite": false
+    }
+  ],
+  "expectedResults": {
+    "rsa": 694.26
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "logement": {
+    "statusOccupation": "gratuit",
+    "_id": "log-976",
+    "procheProprietaire": false,
+    "codePostal": 92500
+  },
+  "demandeur": {
+    "retraite": false,
+    "etudiant": false,
+    "demandeurEmploi": false,
+    "statutMarital": "seul",
+    "_id": "ind-6661",
+    "dateDeNaissance": "1950-01-01",
+    "ressources": [
+      { "periode": "2014-06", "type": "revenusSalarie", "montant": 500 },
+      { "periode": "2014-05", "type": "revenusSalarie", "montant": 500 },
+      { "periode": "2014-04", "type": "revenusSalarie", "montant": 500 }
+    ]
+  },
+  "enfants": [
+    {
+      "_id": "ind-3858",
+      "prenom": "Bob",
+      "dateDeNaissance": "1993-01-01",
+      "etudiant": false,
+      "demandeurEmploi": false,
+      "retraite": false
+    },
+    {
+      "_id": "ind-3855",
+      "prenom": "Bob",
+      "dateDeNaissance": "1993-01-01",
+      "etudiant": false,
+      "demandeurEmploi": false,
+      "retraite": false
+    }
+  ],
+  "expectedResults": {
+    "rsa": 750.46
+  }
+}

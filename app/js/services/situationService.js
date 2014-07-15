@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage, $filter) {
-    var situation;
+    var situation, months;
 
     return {
         nationaliteLabels: {
@@ -73,11 +73,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         formatStatutsSpecifiques: function(individu) {
             var statuses = [];
-            for (var i in this.statutsSpecifiquesLabels) {
-                if (individu[i]) {
-                    statuses.push(this.statutsSpecifiquesLabels[i]);
+            _.forEach(this.statutsSpecifiquesLabels, function(statut, statutId) {
+                if (individu[statutId]) {
+                    statuses.push(statut);
                 }
-            }
+            });
 
             statuses = statuses.join(', ');
             statuses = $filter('uppercaseFirst')(statuses);
@@ -91,6 +91,40 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             'demandeurEmploi': 'demandeur d\'emploi',
             'retraite': 'retraité'
         },
+
+        getMonths: function() {
+            if (months) {
+                return months;
+            }
+
+            months = [];
+            for (var i = 3; i > 0; i--) {
+                // FIXME prendre la date du serveur
+                var date = moment().subtract('months', i);
+                var month = {
+                    id: date.format('YYYY-MM'),
+                    label: date.format('MMMM YYYY')
+                };
+                months.push(month);
+            }
+
+            return months;
+        },
+
+        logementTypes: [
+            {
+                label: 'locataire',
+                value: 'locataire'
+            },
+            {
+                label: 'propriétaire',
+                value: 'proprietaire'
+            },
+            {
+                label: 'occupant à titre gratuit',
+                value: 'gratuit'
+            }
+        ],
 
         revenusSections: [
             {

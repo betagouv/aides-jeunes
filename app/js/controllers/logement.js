@@ -5,4 +5,5 @@ angular.module('ddsApp').controller('LogementCtrl', function($scope, SituationSe
     if (!$scope.situation.logement) {
         $scope.situation.logement = {};
     }
+    $scope.logementTypes = SituationService.logementTypes;
 });

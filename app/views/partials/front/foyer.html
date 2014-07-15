@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><i class="fa fa-home"></i> Votre foyer</h1>
+  <h1><i class="fa fa-users"></i> Votre foyer</h1>
 </div>
 
 <div class="row">
@@ -14,5 +14,13 @@
 </div>
 
 <div ng-show="situation.personnesAChargeConfigDone" class="text-center">
-  <a ui-sref="situations_specifiques" class="btn btn-lg btn-primary" ng-click="saveSituation()">Étape suivante</a>
+  <a ui-sref="situations_specifiques" ng-if="!situation.situationsSpecifiquesCaptured" class="btn btn-lg btn-primary">
+    Étape suivante : saisie de vos situations spécifiques
+  </a>
+  <a ui-sref="foyer.capture_revenus" ng-if="situation.situationsSpecifiquesCaptured && !situation.revenusCaptured" class="btn btn-lg btn-primary">
+    Étape suivante : capture de vos ressources
+  </a>
 </div>
+
+<div ui-view="ressources"></div>
+<div ui-view="logement"></div>

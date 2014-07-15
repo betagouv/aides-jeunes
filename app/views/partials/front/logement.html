@@ -6,17 +6,9 @@
   <div class="form-group">
     <label class="col-sm-4 control-label">Êtes-vous</label>
     <div class="col-sm-6">
-      <label class="radio-inline">
-        <input type="radio" name="logementType" ng-model="situation.logement.type" value="locataire">
-        Locataire
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="logementType" ng-model="situation.logement.type" value="proprietaire">
-        Propriétaire
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="logementType" ng-model="situation.logement.type" value="gratuit">
-        Occupant à titre gratuit
+      <label class="radio-inline" ng-repeat="logementType in logementTypes">
+        <input type="radio" name="logementType" ng-model="situation.logement.type" ng-value="logementType.value">
+        {{ logementType.label|uppercaseFirst }}
       </label>
     </div>
   </div>
@@ -57,4 +49,4 @@
   </div>
 </form>
 
-<p class="text-center"><a class="btn btn-lg btn-primary" ui-sref="resultat">Étape suivante</a></p>
+<p class="text-center"><a class="btn btn-lg btn-primary" ui-sref="foyer">Étape suivante</a></p>

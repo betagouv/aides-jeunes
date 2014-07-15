@@ -13,6 +13,10 @@ html {
   border-top: none;
 }
 
+.table td.align-middle {
+  vertical-align: middle;
+}
+
 .main-navbar {
   .navbar-brand {
     &.title {

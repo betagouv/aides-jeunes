@@ -1,0 +1,35 @@
+<div ng-if="situation.revenusCaptured">
+  <h2>
+    <i class="fa fa-eur"></i>
+    Récapitulatif ressources
+  </h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th>Type de ressource</th>
+          <th>Personne</th>
+          <th ng-repeat="month in months">{{ month.label|uppercaseFirst }}</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="ressource in ressources">
+        <tr ng-repeat="individu in ressource.byIndividu">
+          <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.category }}">{{ ressource.type }}</td>
+          <td>{{ individu.name }}</td>
+          <td ng-repeat="month in months">{{ individu.ressources[$index] }} €</td>
+        </tr>
+        <tr>
+          <th>Total</th>
+          <th ng-repeat="month in months">{{ ressource.total[$index] }} €</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-center">
+    <a ui-sref="logement" ng-if="!situation.logement" class="btn btn-lg btn-primary">
+      Étape suivante : saisie de votre logement
+    </a>
+  </div>
+</div>

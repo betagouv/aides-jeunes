@@ -8,9 +8,9 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
 
     $scope.selectedRessourcesMap = {};
     $scope.selectedRessourcesByIndividu = {};
-    for (var i in $scope.individus) {
-        $scope.selectedRessourcesByIndividu[$scope.individus[i].name] = {};
-    }
+    _.forEach($scope.individus, function(individu) {
+        $scope.selectedRessourcesByIndividu[individu.name] = {};
+    });
 
     // suppression des clés dont la valeur est "false" dans la map de sélection par individu
     $scope.cleanSelectedRessources = function() {
@@ -23,17 +23,19 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
         });
     };
 
-    // initialisation des mois
-    // FIXME prendre la date du serveur
-    $scope.months = [];
-    for (var i = 3; i > 0; i--) {
-        var date = moment().subtract('months', i);
-        var month = {
-            id: date.format('YYYY-MM'),
-            label: date.format('MMMM YYYY')
-        };
-        $scope.months.push(month);
-    }
+    $scope.createOrderedSelectedRessources = function() {
+        $scope.orderedSelectedRessources = {};
+        _.forEach($scope.selectedRessourcesByIndividu, function(selection, individuName) {
+            var ressources = $scope.orderedSelectedRessources[individuName] = [];
+            _.forEach($scope.orderedSubsections, function(subsection) {
+                if ($scope.selectedRessourcesByIndividu[individuName][subsection.name]) {
+                    ressources.push(subsection.name);
+                }
+            });
+        });
+    };
+
+    $scope.months = SituationService.getMonths();
 
     $scope.hasIndividuRevenus = function(individu) {
         return _.keys($scope.selectedRessourcesByIndividu[individu.name]).length > 0;
@@ -44,19 +46,20 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
             $scope.ressourcesSelected = true;
             $scope.cleanSelectedRessources();
             $scope.zerofillRevenus();
+            $scope.createOrderedSelectedRessources();
         } else {
             $modalInstance.close();
         }
     };
 
     $scope.zerofillRevenus = function() {
-      _.forEach($scope.individus, function(individu) {
-            individu.ressources = {};
+        _.forEach($scope.individus, function(individu) {
+            individu.individu.ressources = {};
             _.forEach($scope.orderedSubsections, function(subsection) {
                 if ($scope.selectedRessourcesByIndividu[individu.name][subsection.name]) {
-                    individu.ressources[subsection.name] = {};
+                    individu.individu.ressources[subsection.name] = {};
                     _.forEach($scope.months, function(month) {
-                        individu.ressources[subsection.name][month.id] = 0;
+                        individu.individu.ressources[subsection.name][month.id] = 0;
                     });
                 }
             });

@@ -41,15 +41,24 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     templateUrl: '/partials/foyer/personnes-a-charge.html',
                     controller: 'FoyerPersonnesAChargeCtrl'
                 },
+                'ressources@foyer': {
+                    templateUrl: '/partials/foyer/recap-ressources.html',
+                    controller: 'FoyerRecapRessourcesCtrl'
+                },
+                'logement@foyer': {
+                    templateUrl: '/partials/foyer/recap-logement.html',
+                    controller: 'FoyerRecapLogementCtrl'
+                }
             }
         })
         .state('foyer.demandeur_modal', {
             url: '/demandeur',
             onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
+                var situation = SituationService.restoreLocal();
                 IndividuModalService
                     .open({individuType: 'demandeur', modalTitle: 'Vous', cancelable: false})
                     .then(function(demandeur) {
-                        SituationService.saveLocal({demandeur: demandeur});
+                        SituationService.saveLocal(situation);
                         return $state.go('foyer');
                     });
             }]
@@ -80,7 +89,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     .then(function(enfant) {
                         var situation = SituationService.restoreLocal();
                         situation.enfants.push(enfant);
-                        SituationService.saveLocal(situation);
 
                         return enfant;
                     }).finally(function() {
@@ -96,7 +104,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     .then(function(personne) {
                         var situation = SituationService.restoreLocal();
                         situation.personnesACharge.push(personne);
-                        SituationService.saveLocal(situation);
 
                         return personne;
                     }).finally(function() {
@@ -106,7 +113,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('foyer.capture_revenus', {
             url: '/capture-revenus',
-            onEnter: ['$state', '$modal', '$timeout', '$rootScope', 'SituationService', function($state, $modal, $timeout, $rootScope, SituationService) {
+            onEnter: ['$state', '$modal', '$rootScope', 'SituationService', function($state, $modal, $rootScope, SituationService) {
                 var situation = SituationService.restoreLocal();
                 $modal.open({
                     templateUrl: '/partials/foyer/capture-revenus-modal.html',
@@ -115,8 +122,10 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     backdrop: 'static',
                     keyboard: false
                 }).result.then(function() {
-                    SituationService.saveLocal(situation);
-                    return $state.go('logement');
+                    situation.revenusCaptured = true;
+                    $rootScope.$broadcast('ressourcesCaptured');
+
+                    return $state.go('foyer');
                 });
             }]
         })

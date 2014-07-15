@@ -116,7 +116,7 @@ module.exports = function (grunt) {
         options: {
           jshintrc: 'test/client/.jshintrc'
         },
-        src: ['test/client/spec/{,*/}*.js']
+        src: ['test/client/spec/**/*.js']
       }
     },
 
@@ -498,8 +498,6 @@ module.exports = function (grunt) {
     else if (target === 'client') {
       return grunt.task.run([
         'clean:server',
-        'concurrent:test',
-        'autoprefixer',
         'karma'
       ]);
     }

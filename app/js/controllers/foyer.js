@@ -7,14 +7,6 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $location, $mo
         SituationService.saveRemote($scope.situation);
     };
 
-    $scope.$on('animateCaptureRevenusStart', function() {
-        $scope.animate = true;
-    });
-
-    $scope.$on('animateCaptureRevenusEnd', function() {
-        $scope.animate = false;
-    });
-
     $scope.statutsSpecifiques = function(individu) {
         return SituationService.formatStatutsSpecifiques(individu);
     };

@@ -107,32 +107,17 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         .state('foyer.capture_revenus', {
             url: '/capture-revenus',
             onEnter: ['$state', '$modal', '$timeout', '$rootScope', 'SituationService', function($state, $modal, $timeout, $rootScope, SituationService) {
-                $timeout(function() {
-                    $rootScope.$broadcast('animateCaptureRevenusStart');
-                }, 700);
-
-                $timeout(function() {
-                    $rootScope.$broadcast('animateCaptureRevenusEnd');
-                    var situation = SituationService.restoreLocal();
-                    $modal.open({
-                        templateUrl: '/partials/foyer/capture-revenus-modal.html',
-                        controller: 'CaptureRevenusModalCtrl',
-                        size: 'lg',
-                        backdrop: 'static',
-                        keyboard: false,
-                        resolve: {
-                            modalTitle: function() {
-                                return 'Vos revenus et aides';
-                            },
-                            individu: function() {
-                                return situation.demandeur;
-                            }
-                        }
-                    }).result.then(function() {
-                        SituationService.saveLocal(situation);
-                        return $state.go('logement');
-                    });
-                }, 2500);
+                var situation = SituationService.restoreLocal();
+                $modal.open({
+                    templateUrl: '/partials/foyer/capture-revenus-modal.html',
+                    controller: 'CaptureRevenusModalCtrl',
+                    size: 'lg',
+                    backdrop: 'static',
+                    keyboard: false
+                }).result.then(function() {
+                    SituationService.saveLocal(situation);
+                    return $state.go('logement');
+                });
             }]
         })
         .state('situations_specifiques', {

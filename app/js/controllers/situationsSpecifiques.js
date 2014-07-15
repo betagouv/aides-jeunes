@@ -7,14 +7,14 @@ angular.module('ddsApp').controller('SituationsSpecifiquesCtrl', function($scope
 
     $scope.selectedSituations = {};
     _.forEach($scope.individus, function(individu) {
-      _.forEach($scope.situations, function(situation, k) {
-          if (individu.individu[k]) {
-              $scope.selectedSituations[k] = true;
-          }
-      });
+        _.forEach($scope.situations, function(situation, k) {
+            if (individu.individu[k]) {
+                $scope.selectedSituations[k] = true;
+            }
+        });
     });
 
     $scope.done = function() {
-      situation.situationsSpecifiquesCaptured = true;
+        situation.situationsSpecifiquesCaptured = true;
     };
 });

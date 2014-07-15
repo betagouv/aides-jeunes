@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, $modalInstance, SituationService) {
-    var situation = SituationService.restoreLocal();
+    SituationService.restoreLocal();
     $scope.sections = SituationService.revenusSections;
     $scope.sections[0].open = true;
     $scope.individus = SituationService.createIndividusList();
@@ -64,7 +64,7 @@ angular.module('ddsApp').controller('CaptureRevenusModalCtrl', function($scope, 
                 }
             });
         });
-    }
+    };
 
     $scope.subsectionsIndex = {};
     $scope.orderedSubsections = [];

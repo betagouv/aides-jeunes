@@ -57,7 +57,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 var situation = SituationService.restoreLocal();
                 IndividuModalService
                     .open({individuType: 'demandeur', modalTitle: 'Vous', cancelable: false})
-                    .then(function(demandeur) {
+                    .then(function() {
                         SituationService.saveLocal(situation);
                         return $state.go('foyer');
                     });

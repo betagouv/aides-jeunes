@@ -12,7 +12,7 @@ angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $rootSc
         $scope.visible = true;
     }
 
-    $rootScope.$on('individu.conjoint', function(e, conjoint) {
+    $rootScope.$on('individu.conjoint', function() {
         $scope.visible = true;
     });
 

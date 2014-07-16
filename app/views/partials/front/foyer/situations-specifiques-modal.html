@@ -4,23 +4,28 @@
   </div>
   <div class="modal-body">
     <p>L'une des personnes de votre foyer est-elle dans une de ces situations spécifiques ?</p>
-    <div class="row row-situations-specifiques" ng-repeat="(id, situation) in situations">
-      <div class="col-md-3">
-        <button type="button" class="btn btn-sm btn-default" ng-model="$parent.selectedSituations[id]" btn-checkbox>{{ situation | uppercaseFirst }}</button>
-      </div>
-      <div class="col-md-4">
-        <b ng-if="selectedSituations[id]">Quelles sont les personnes concernées ?</b>
-      </div>
-      <div class="col-md-5">
-        <div ng-if="selectedSituations[id]">
-          <label class="checkbox-inline" ng-repeat="individu in individus">
-            <input type="checkbox" ng-model="individu.individu[id]"> {{ individu.name }}
-          </label>
+    <div class="row" ng-repeat="situation in situations">
+      <div class="col-md-6" ng-repeat="(id, sit) in situation">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <a ng-model="$parent.selectedSituations[id]" btn-checkbox>
+                {{ sit | uppercaseFirst }}
+                <i class="pull-right fa" ng-class="{'fa-chevron-down': selectedSituations[id], 'fa-chevron-right': !selectedSituations[id]}"></i>
+              </a>
+            </h3>
+          </div>
+          <div class="panel-body" ng-if="selectedSituations[id]">
+            <b>Quelles sont les personnes concernées ?</b>
+            <br>
+            <label class="checkbox-inline" ng-repeat="individu in individus">
+              <input type="checkbox" ng-model="individu.individu[id]"> {{ individu.name }}
+            </label>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
   <div class="modal-footer">
     <button type="submit" class="btn btn-lg btn-primary">Valider</button>
   </div>

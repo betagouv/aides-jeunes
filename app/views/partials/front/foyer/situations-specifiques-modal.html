@@ -1,0 +1,27 @@
+<form role="form" ng-submit="submit()">
+  <div class="modal-header">
+    <h1 class="modal-title">Situations spécifiques</h1>
+  </div>
+  <div class="modal-body">
+    <p>L'une des personnes de votre foyer est-elle dans une de ces situations spécifiques ?</p>
+    <div class="row row-situations-specifiques" ng-repeat="(id, situation) in situations">
+      <div class="col-md-3">
+        <button type="button" class="btn btn-sm btn-default" ng-model="$parent.selectedSituations[id]" btn-checkbox>{{ situation | uppercaseFirst }}</button>
+      </div>
+      <div class="col-md-4">
+        <b ng-if="selectedSituations[id]">Quelles sont les personnes concernées ?</b>
+      </div>
+      <div class="col-md-5">
+        <div ng-if="selectedSituations[id]">
+          <label class="checkbox-inline" ng-repeat="individu in individus">
+            <input type="checkbox" ng-model="individu.individu[id]"> {{ individu.name }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+  </div>
+</form>

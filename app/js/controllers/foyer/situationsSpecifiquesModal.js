@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('SituationsSpecifiquesCtrl', function($scope, SituationService) {
+angular.module('ddsApp').controller('FoyerSituationsSpecifiquesModalCtrl', function($scope, $modalInstance, SituationService) {
     $scope.situations = SituationService.statutsSpecifiquesLabels;
     var situation = SituationService.restoreLocal();
     $scope.individus = SituationService.createIndividusList(situation);
@@ -14,7 +14,8 @@ angular.module('ddsApp').controller('SituationsSpecifiquesCtrl', function($scope
         });
     });
 
-    $scope.done = function() {
+    $scope.submit = function() {
         situation.situationsSpecifiquesCaptured = true;
+        $modalInstance.close();
     };
 });

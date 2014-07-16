@@ -113,26 +113,34 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('foyer.capture_revenus', {
             url: '/capture-revenus',
-            onEnter: ['$state', '$modal', '$rootScope', 'SituationService', function($state, $modal, $rootScope, SituationService) {
+            onEnter: ['$state', '$modal', 'SituationService', function($state, $modal, SituationService) {
                 var situation = SituationService.restoreLocal();
                 $modal.open({
                     templateUrl: '/partials/foyer/capture-revenus-modal.html',
-                    controller: 'CaptureRevenusModalCtrl',
+                    controller: 'FoyerCaptureRevenusModalCtrl',
                     size: 'lg',
                     backdrop: 'static',
                     keyboard: false
                 }).result.then(function() {
-                    situation.revenusCaptured = true;
-                    $rootScope.$broadcast('ressourcesCaptured');
-
                     return $state.go('foyer');
                 });
             }]
         })
-        .state('situations_specifiques', {
-            url: '/configuration/situations-specifiques',
-            templateUrl: '/partials/situations-specifiques.html',
-            controller: 'SituationsSpecifiquesCtrl'
+        .state('foyer.situations_specifiques', {
+            url: '/situations-specifiques',
+            templateUrl: '/partials/foyer/situations-specifiques-modal.html',
+            onEnter: ['$state', '$modal', 'SituationService', function($state, $modal, SituationService) {
+                var situation = SituationService.restoreLocal();
+                $modal.open({
+                    templateUrl: '/partials/foyer/situations-specifiques-modal.html',
+                    controller: 'FoyerSituationsSpecifiquesModalCtrl',
+                    size: 'lg',
+                    backdrop: 'static',
+                    keyboard: false
+                }).result.then(function() {
+                    return $state.go('foyer');
+                });
+            }]
         })
         .state('logement', {
             url: '/configuration/logement',

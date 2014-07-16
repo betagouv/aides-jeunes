@@ -11,7 +11,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $http, Situ
     $http.post('/api/situations', situation).then(function(result) {
         console.log(situation);
         $http.get('/api/situations/' + result.data._id + '/simulation').then(function() {
-            $scope.awaitingResults = false;
         }, function() {
             $scope.error = true;
         }).finally(function() {

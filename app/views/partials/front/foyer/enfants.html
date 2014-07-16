@@ -20,9 +20,11 @@
   </p>
 
   <div ng-show="undefined !== situation.demandeur.enceinte && undefined === situation.hasChildren">
-    <label>Avez-vous des enfants à charge ?</label>
-    <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="true">Oui</button>
-    <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="false" ng-click="endChildConfig()">Non</button>
+    <p>
+      Avez-vous des enfants à charge ?
+      <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="true">Oui</button>
+      <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="false" ng-click="endChildConfig()">Non</button>
+    </p>
   </div>
 
   <div class="row">

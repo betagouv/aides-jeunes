@@ -2,9 +2,11 @@
   <h2><i class="fa fa-users"></i> Autres personnes à charge</h2>
 
   <div ng-show="undefined === situation.hasPersonnesACharge">
-    <label>Avez-vous d'autres personnes à votre charge ?</label>
-    <button class="btn btn-sm btn-primary" ng-model="situation.hasPersonnesACharge" btn-radio="true">Oui</button>
-    <button class="btn btn-sm btn-primary" ng-model="situation.hasPersonnesACharge" btn-radio="false" ng-click="endPersonnesAChargeConfig()">Non</button>
+    <p>
+      Avez-vous d'autres personnes à votre charge ?
+      <button class="btn btn-sm btn-primary" ng-model="situation.hasPersonnesACharge" btn-radio="true">Oui</button>
+      <button class="btn btn-sm btn-primary" ng-model="situation.hasPersonnesACharge" btn-radio="false" ng-click="endPersonnesAChargeConfig()">Non</button>
+    </p>
   </div>
 
   <p>

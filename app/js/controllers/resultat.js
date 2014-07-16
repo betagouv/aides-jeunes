@@ -5,7 +5,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $http, Situ
     var situation = SituationService.restoreLocal();
     situation.demandeur.dateDeNaissance = moment(situation.demandeur.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
     if (situation.conjoint) {
-        situation.conjoint.dateDeNaissance = situation.conjoint.birthDate.format('YYYY-MM-DD');
+        situation.conjoint.dateDeNaissance = moment(situation.conjoint.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
     }
 
     $http.post('/api/situations', situation).then(function(result) {

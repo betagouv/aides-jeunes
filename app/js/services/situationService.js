@@ -60,11 +60,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 });
             }
 
-            _.forEach(situation.enfants, function(child) {
+            situation.enfants.forEach(function(child) {
                 individus.push({name: child.firstName, type: 'child', individu: child});
             });
 
-            _.forEach(situation.personnesACharge, function(personne) {
+            situation.personnesACharge.forEach(function(personne) {
                 individus.push({name: personne.firstName, type: 'personneACharge', individu: personne});
             });
 
@@ -97,18 +97,14 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 return months;
             }
 
-            months = [];
-            for (var i = 3; i > 0; i--) {
-                // FIXME prendre la date du serveur
+            // FIXME prendre la date du serveur
+            return _.map([3, 2, 1], function(i) {
                 var date = moment().subtract('months', i);
-                var month = {
+                return {
                     id: date.format('YYYY-MM'),
                     label: date.format('MMMM YYYY')
                 };
-                months.push(month);
-            }
-
-            return months;
+            });
         },
 
         logementTypes: [

@@ -28,7 +28,7 @@
   </div>
 
   <div class="text-center">
-    <a ui-sref="logement" ng-if="!situation.logement" class="btn btn-lg btn-primary">
+    <button type="button" ng-if="!situation.logement" ng-click="situation.logement = {}" class="btn btn-lg btn-primary">
       Étape suivante : votre logement
     </a>
   </div>

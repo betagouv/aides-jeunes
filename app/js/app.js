@@ -46,8 +46,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     controller: 'FoyerRecapRessourcesCtrl'
                 },
                 'logement@foyer': {
-                    templateUrl: '/partials/foyer/recap-logement.html',
-                    controller: 'FoyerRecapLogementCtrl'
+                    templateUrl: '/partials/foyer/logement.html',
+                    controller: 'FoyerLogementCtrl'
                 }
             }
         })
@@ -141,11 +141,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     return $state.go('foyer');
                 });
             }]
-        })
-        .state('logement', {
-            url: '/configuration/logement',
-            templateUrl: '/partials/logement.html',
-            controller: 'LogementCtrl'
         })
         .state('resultat', {
             url: '/resultat',

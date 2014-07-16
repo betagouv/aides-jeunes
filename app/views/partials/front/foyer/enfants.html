@@ -5,9 +5,11 @@
   </h2>
 
   <div ng-show="undefined === situation.demandeur.enceinte">
-    <label>Attendez-vous un enfant ?</label>
-    <button class="btn btn-sm btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="true">Oui</button>
-    <button class="btn btn-sm btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="false">Non</button>
+    <p>
+      Attendez-vous un enfant ?
+      <button class="btn btn-sm btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="true">Oui</button>
+      <button class="btn btn-sm btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="false">Non</button>
+    </p>
   </div>
 
   <p>

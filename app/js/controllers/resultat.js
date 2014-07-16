@@ -14,10 +14,10 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $http, Situ
             $scope.awaitingResults = false;
         }, function() {
             $scope.error = true;
+        }).finally(function() {
+            $scope.awaitingResults = false;
         });
     }, function() {
         $scope.error = true;
-    }).finally(function() {
-        $scope.awaitingResults = false;
     });
 });

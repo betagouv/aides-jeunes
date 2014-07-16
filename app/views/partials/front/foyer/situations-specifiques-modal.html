@@ -4,13 +4,13 @@
   </div>
   <div class="modal-body">
     <p>L'une des personnes de votre foyer est-elle dans une de ces situations spécifiques ?</p>
-    <div class="row" ng-repeat="situation in situations">
-      <div class="col-md-6" ng-repeat="(id, sit) in situation">
+    <div class="row" ng-repeat="situationMap in situations">
+      <div class="col-md-6" ng-repeat="(id, situation) in situationMap">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
               <a ng-model="$parent.selectedSituations[id]" btn-checkbox>
-                {{ sit | uppercaseFirst }}
+                {{ situation | uppercaseFirst }}
                 <i class="pull-right fa" ng-class="{'fa-chevron-down': selectedSituations[id], 'fa-chevron-right': !selectedSituations[id]}"></i>
               </a>
             </h3>

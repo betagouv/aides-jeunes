@@ -4,12 +4,32 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, Situat
     $scope.situation = SituationService.restoreLocal();
 
     $scope.logementTypes = SituationService.logementTypes;
+    $scope.locationTypes = [
+        {
+            value: 'nonmeuble',
+            label: 'non meublé'
+        },
+        {
+            value: 'meublehotel',
+            label: 'meublé / hôtel'
+        },
+        {
+            value: 'hlm',
+            label: 'HLM'
+        }
+    ];
+
+    $scope.locationTypesLabels = {};
+    $scope.locationTypes.forEach(function(locationType) {
+        $scope.locationTypesLabels[locationType.value] = locationType.label;
+    });
+
     $scope.logementLabels = {};
-    _.forEach($scope.logementTypes, function(logementType) {
+    $scope.logementTypes.forEach(function(logementType) {
         $scope.logementLabels[logementType.value] = logementType.label;
     });
 
     $scope.submit = function() {
-        $scope.formSubmitted = true;
+        $scope.situation.logement.formCompleted = true;
     };
 });

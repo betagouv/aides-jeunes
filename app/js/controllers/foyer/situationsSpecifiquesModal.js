@@ -5,16 +5,17 @@ angular.module('ddsApp').controller('FoyerSituationsSpecifiquesModalCtrl', funct
     var situation = SituationService.restoreLocal();
     $scope.individus = SituationService.createIndividusList(situation);
 
+    // pré initialisation des statuts sélectionnés si on a déjà rempli les statuts avant
     $scope.selectedSituations = {};
     _.forEach($scope.individus, function(individu) {
-        _.forEach(statuts, function(situation, k) {
+        _.forEach(statuts, function(statut, k) {
             if (individu.individu[k]) {
                 $scope.selectedSituations[k] = true;
             }
         });
     });
 
-    // création d'un array avec deux situations par ligne
+    // création d'un array spécial opur afficher deux situations par ligne
     $scope.situations = [];
     var i = 0;
     var arr;

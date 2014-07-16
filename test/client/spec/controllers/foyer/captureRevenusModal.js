@@ -1,13 +1,13 @@
 'use strict';
 
-describe('Controller: CaptureRevenusModalCtrl', function() {
+describe('Controller: FoyerCaptureRevenusModalCtrl', function() {
 
     var scope = {};
 
     beforeEach(function() {
         module('ddsApp');
         inject(function($controller) {
-            $controller('CaptureRevenusModalCtrl', {$scope: scope, $modalInstance: {}});
+            $controller('FoyerCaptureRevenusModalCtrl', {$scope: scope, $modalInstance: {}});
         });
     });
 
@@ -17,7 +17,7 @@ describe('Controller: CaptureRevenusModalCtrl', function() {
                 spyOn(SituationService, 'createIndividusList').andReturn([
                     {name: 'Vous'}
                 ]);
-                $controller('CaptureRevenusModalCtrl', {
+                $controller('FoyerCaptureRevenusModalCtrl', {
                     $scope: scope,
                     $modalInstance: {},
                     SituationService: SituationService

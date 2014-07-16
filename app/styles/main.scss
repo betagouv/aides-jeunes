@@ -44,6 +44,12 @@ html {
   }
 }
 
+.main-footer {
+  margin-top: 20px;
+  background-color: $navbar-default-bg;
+  color: $navbar-default-color;
+}
+
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer;
 }

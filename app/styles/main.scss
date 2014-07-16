@@ -48,6 +48,11 @@ html {
   margin-top: 20px;
   background-color: $navbar-default-bg;
   color: $navbar-default-color;
+
+  .info {
+    padding-top: 35px;
+    padding-bottom: 45px;
+  }
 }
 
 .nav, .pagination, .carousel, .panel-title a {

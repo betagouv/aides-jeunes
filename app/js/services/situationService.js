@@ -60,11 +60,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 });
             }
 
-            situation.enfants.forEach(function(child) {
+            _.forEach(situation.enfants, function(child) {
                 individus.push({name: child.firstName, type: 'child', individu: child});
             });
 
-            situation.personnesACharge.forEach(function(personne) {
+            _.forEach(situation.personnesACharge, function(personne) {
                 individus.push({name: personne.firstName, type: 'personneACharge', individu: personne});
             });
 

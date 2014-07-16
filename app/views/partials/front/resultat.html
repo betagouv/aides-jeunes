@@ -1,15 +1,24 @@
 <div class="page-header">
   <h1><i class="fa fa-gears"></i> Résultats de la simulation</h1>
 </div>
-<div ng-if="aides.length">
-  <ul>
-    <li ng-repeat="aide in aides">
-      Vous êtes éligible {{ aide.partial }}
-      <span ng-if="aide.montant">pour un montant de <strong>{{ aide.montant | number:0 }} euros</strong></span>
-    </li>
-  </ul>
-  <p class="text-center"><a class="btn btn-primary btn-lg" ui-sref="envoi_demande({situationId: situationId})">Poursuivre ma demande en ligne</a></p>
+
+<p ng-if="awaitingResults"><i class="fa fa-spinner fa-spin"></i> Calcul en cours de vos droits...</p>
+
+<p class="alert alert-danger" ng-if="error">Une erreur est survenue.</p>
+
+<div ng-if="droits">
+  <div ng-if="aides.length">
+    <ul>
+      <li ng-repeat="aide in aides">
+        Vous êtes éligible {{ aide.partial }}
+        <span ng-if="aide.montant">pour un montant de <strong>{{ aide.montant | number:0 }} euros</strong></span>
+      </li>
+    </ul>
+    <p class="text-center"><a class="btn btn-primary btn-lg" ui-sref="envoi_demande({situationId: situationId})">Poursuivre ma demande en ligne</a></p>
+  </div>
+  <p ng-if="!aides.length">Vous n'êtes éligible à aucune aide.</p>
 </div>
-<p ng-if="!aides.length">Vous n'êtes éligible à aucune aide.</p>
+
 <hr>
+
 <p class="text-right"><em>Simulation effectuée par <a href="http://www.openfisca.fr">OpenFisca</a></em></p>

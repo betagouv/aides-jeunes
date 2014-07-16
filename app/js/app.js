@@ -113,8 +113,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('foyer.capture_revenus', {
             url: '/capture-revenus',
-            onEnter: ['$state', '$modal', 'SituationService', function($state, $modal, SituationService) {
-                var situation = SituationService.restoreLocal();
+            onEnter: ['$state', '$modal', function($state, $modal) {
                 $modal.open({
                     templateUrl: '/partials/foyer/capture-revenus-modal.html',
                     controller: 'FoyerCaptureRevenusModalCtrl',
@@ -129,8 +128,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         .state('foyer.situations_specifiques', {
             url: '/situations-specifiques',
             templateUrl: '/partials/foyer/situations-specifiques-modal.html',
-            onEnter: ['$state', '$modal', 'SituationService', function($state, $modal, SituationService) {
-                var situation = SituationService.restoreLocal();
+            onEnter: ['$state', '$modal', function($state, $modal) {
                 $modal.open({
                     templateUrl: '/partials/foyer/situations-specifiques-modal.html',
                     controller: 'FoyerSituationsSpecifiquesModalCtrl',
@@ -144,7 +142,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('resultat', {
             url: '/resultat',
-            templateUrl: '/partials/resultat.html'
+            templateUrl: '/partials/resultat.html',
+            controller: 'ResultatCtrl'
         })
         .state('envoi_demande', {
             url: '/envoi-demande/:situationId',

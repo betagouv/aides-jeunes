@@ -18,6 +18,10 @@ html {
   vertical-align: middle;
 }
 
+.label {
+  font-size: 12px;
+}
+
 .main-navbar {
   .navbar-brand {
     &.title {
@@ -41,7 +45,7 @@ html {
   }
 
   .navbar-nav > li > .navbar-btn {
-    margin: 21px 10px 21px 0;
+    margin: 21px 25px 21px 0;
   }
 }
 

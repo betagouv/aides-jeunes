@@ -18,8 +18,8 @@
     <div class="form-group" ng-show="situation.logement.type === 'locataire'">
       <label class="col-sm-4 control-label">Le propriétaire de votre logement est-il un membre de votre famille ?</label>
       <div class="col-sm-6">
-        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.membreFamilleProprietaire" btn-radio="true">Oui</buttton>
-        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.membreFamilleProprietaire" btn-radio="false">Non</buttton>
+        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.membreFamilleProprietaire" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.membreFamilleProprietaire" btn-radio="false">Non</button>
       </div>
     </div>
 
@@ -36,12 +36,12 @@
     <div class="form-group" ng-show="situation.logement.type === 'proprietaire'">
       <label class="col-sm-4 control-label">Êtes-vous primo-accédant pour votre propriété ?</label>
       <div class="col-sm-6">
-        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="true">Oui</buttton>
-        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="false">Non</buttton>
+        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="false">Non</button>
       </div>
     </div>
 
-    <div ng-show="'gratuit' !== situation.logement.type && (undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType)">
+    <div ng-if="'gratuit' !== situation.logement.type && (undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType)">
       <div class="form-group">
         <label class="col-sm-4 control-label" for="loyer">
           À combien s'élève {{ 'locataire' === situation.logement.type ? 'votre loyer' : 'votre mensualité d\'emprunt' }} ?

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage, $filter, $q) {
+angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage, $filter) {
     var situation, months;
 
     return {
@@ -105,72 +105,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                     label: date.format('MMMM YYYY')
                 };
             });
-        },
-
-        simulate: function() {
-            this.restoreLocal();
-            var deferred = $q.defer();
-            var apiSituation = this.createApiCompatibleSituation();
-            console.log(apiSituation);
-
-            $http.post('/api/situations', apiSituation).then(function(result) {
-                $http.get('/api/situations/' + result.data._id + '/simulation').then(function(result) {
-                    deferred.resolve(result.data);
-                }, function() {
-                    deferred.reject();
-                });
-            }, function() {
-                deferred.reject();
-            });
-
-            return deferred.promise;
-        },
-
-        createApiCompatibleSituation: function() {
-            var individus = [situation.demandeur];
-            situation.demandeur.role = 'demandeur';
-            if (situation.conjoint) {
-                individus.push(situation.conjoint);
-                situation.conjoint.role = 'conjoint';
-            }
-
-            situation.enfants.forEach(function(enfant) {
-                enfant.role = 'enfant';
-            });
-
-            situation.personnesACharge.forEach(function(personne) {
-                personne.role = 'personneACharge';
-            });
-
-            individus = individus.concat(situation.enfants).concat(situation.personnesACharge);
-
-            individus = _.map(individus, this.createApiCompatibleIndividu);
-
-            var result = {
-                individus: individus,
-                logement: situation.logement
-            };
-
-            return result;
-        },
-
-        createApiCompatibleIndividu: function(individu) {
-            individu = _.cloneDeep(individu);
-            individu.dateDeNaissance = moment(individu.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
-            var ressources = individu.ressources;
-            individu.ressources = [];
-
-            _.forEach(ressources, function(months, type) {
-                _.forEach(months, function(montant, month) {
-                    individu.ressources.push({
-                        montant: montant,
-                        periode: month,
-                        type: type
-                    });
-                });
-            });
-
-            return individu;
         },
 
         logementTypes: [

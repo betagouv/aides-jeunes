@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, SituationService) {
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, SimulationService) {
     $scope.awaitingResults = true;
-    SituationService.simulate().then(function(result) {
-        console.log(result);
+    SimulationService.simulate().then(function(droits) {
+        $scope.droits = droits;
     }, function() {
         $scope.error = true;
     }).finally(function() {

@@ -34,14 +34,14 @@
       </div>
       <div class="panel-body">
         <p ng-show="!invalidating">
-          <a href="" class="btn btn-success btn-lg btn-block" ng-click="validate()">Valider</a>
-          <a href="" class="btn btn-danger btn-lg btn-block" ng-click="invalidating = true">Invalider</a>
+          <button class="btn btn-success btn-lg btn-block" ng-click="validate()">Valider</button>
+          <button class="btn btn-danger btn-lg btn-block" ng-click="invalidating = true">Invalider</button>
         </p>
         <div ng-show="invalidating">
           <form ng-submit="invalidate()">
             <div class="form-group">
-              <label for="invalidationMessage">Merci d'indiquer au demandeur la nature du problème et ce qu'il convient de faire pour le résoudre</label>
-              <textarea class="form-control" ng-model="$parent.invalidationMessage" id="invalidationMessage" placeholder="Décrivez ici le problème" rows="5"></textarea>
+              <label for="invalidation-message">Merci d'indiquer au demandeur la nature du problème et ce qu'il convient de faire pour le résoudre</label>
+              <textarea class="form-control" ng-model="$parent.invalidationMessage" id="invalidation-message" placeholder="Décrivez ici le problème" rows="5"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Valider</button>
             <button type="button" class="btn btn-default" ng-click="invalidating=false">Annuler</button>
@@ -56,7 +56,7 @@
       <div class="panel-body">
         <p class="text-center">
           <span class="label label-lg" ng-class="{'label-success': task.status === 'ok', 'label-danger': task.status === 'ko'}">
-            <span class="glyphicon" ng-class="{'glyphicon-ok': task.status === 'ok', 'glyphicon-remove': task.status === 'ko'}"></span>
+            <span class="fa" ng-class="{'fa-check': task.status === 'ok', 'fa-times': task.status === 'ko'}"></span>
             {{ statusLabels[task.status] }}
           </span>
         </p>

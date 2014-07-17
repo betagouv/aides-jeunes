@@ -206,5 +206,12 @@ describe('openfisca', function() {
 
             result.should.not.have.property('so');
         });
+
+        it('should cast postal code to number', function() {
+            var logement = { codePostal: '75011' };
+            var result ={};
+            openfisca.mapLogement(logement, result);
+            result.code_postal.should.be.exactly(75011);
+        });
     });
 });

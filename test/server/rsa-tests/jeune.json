@@ -3,20 +3,23 @@
     "_id": "log-3799",
     "statusOccupation": "gratuit"
   },
-  "demandeur": {
-    "dateDeNaissance": "1994-01-01T00:00:00.000Z",
-    "_id": "ind-7279",
-    "logement": "log-3799",
-    "statutMarital": "seul",
-    "etudiant": false,
-    "demandeurEmploi": false,
-    "retraite": false,
-    "ressources": [
-      { "periode": "2014-06", "type": "revenusSalarie", "montant": 800 },
-      { "periode": "2014-05", "type": "revenusSalarie", "montant": 800 },
-      { "periode": "2014-04", "type": "revenusSalarie", "montant": 800 }
-    ]
-  },
+  "individus": [
+    {
+      "dateDeNaissance": "1994-01-01T00:00:00.000Z",
+      "_id": "ind-7279",
+      "logement": "log-3799",
+      "statutMarital": "seul",
+      "etudiant": false,
+      "demandeurEmploi": false,
+      "retraite": false,
+      "ressources": [
+        { "periode": "2014-06", "type": "revenusSalarie", "montant": 800 },
+        { "periode": "2014-05", "type": "revenusSalarie", "montant": 800 },
+        { "periode": "2014-04", "type": "revenusSalarie", "montant": 800 }
+      ],
+      "role": "demandeur"
+    }
+  ],
   "expectedResults": {
     "rsa": 0
   }

@@ -3,15 +3,18 @@
     "_id": "log-3799",
     "statusOccupation": "gratuit"
   },
-  "demandeur": {
-    "dateDeNaissance": "1980-01-01",
-    "_id": "ind-7279",
-    "logement": "log-3799",
-    "statutMarital": "seul",
-    "etudiant": true,
-    "demandeurEmploi": false,
-    "retraite": false
-  },
+  "individus": [
+    {
+      "dateDeNaissance": "1980-01-01",
+      "_id": "ind-7279",
+      "logement": "log-3799",
+      "statutMarital": "seul",
+      "etudiant": true,
+      "demandeurEmploi": false,
+      "retraite": false,
+      "role": "demandeur"
+    }
+  ],
   "expectedResults": {
     "rsa": 0
   }

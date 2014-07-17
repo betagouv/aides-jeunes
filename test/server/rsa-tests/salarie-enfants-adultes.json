@@ -5,27 +5,29 @@
     "procheProprietaire": false,
     "codePostal": 92500
   },
-  "demandeur": {
-    "retraite": false,
-    "etudiant": false,
-    "demandeurEmploi": false,
-    "statutMarital": "seul",
-    "_id": "ind-6661",
-    "dateDeNaissance": "1950-01-01",
-    "ressources": [
-      { "periode": "2014-06", "type": "revenusSalarie", "montant": 500 },
-      { "periode": "2014-05", "type": "revenusSalarie", "montant": 500 },
-      { "periode": "2014-04", "type": "revenusSalarie", "montant": 500 }
-    ]
-  },
-  "enfants": [
+  "individus": [
+    {
+      "retraite": false,
+      "etudiant": false,
+      "demandeurEmploi": false,
+      "statutMarital": "seul",
+      "_id": "ind-6661",
+      "dateDeNaissance": "1950-01-01",
+      "ressources": [
+        { "periode": "2014-06", "type": "revenusSalarie", "montant": 500 },
+        { "periode": "2014-05", "type": "revenusSalarie", "montant": 500 },
+        { "periode": "2014-04", "type": "revenusSalarie", "montant": 500 }
+      ],
+      "role": "demandeur"
+    },
     {
       "_id": "ind-3858",
       "prenom": "Bob",
       "dateDeNaissance": "1993-01-01",
       "etudiant": false,
       "demandeurEmploi": false,
-      "retraite": false
+      "retraite": false,
+      "role": "enfant"
     },
     {
       "_id": "ind-3855",
@@ -33,7 +35,8 @@
       "dateDeNaissance": "1993-01-01",
       "etudiant": false,
       "demandeurEmploi": false,
-      "retraite": false
+      "retraite": false,
+      "role": "enfant"
     }
   ],
   "expectedResults": {

@@ -3,16 +3,19 @@
     "_id": "log-3799",
     "statusOccupation": "gratuit"
   },
-  "demandeur": {
-    "dateDeNaissance": "2010-01-01T00:00:00.000Z",
-    "_id": "ind-7279",
-    "logement": "log-3799",
-    "statutMarital": "seul",
-    "etudiant": false,
-    "demandeurEmploi": false,
-    "retraite": false
-  },
+  "individus": [
+    {
+      "dateDeNaissance": "2010-01-01T00:00:00.000Z",
+      "_id": "ind-7279",
+      "logement": "log-3799",
+      "statutMarital": "seul",
+      "etudiant": false,
+      "demandeurEmploi": false,
+      "retraite": false,
+      "role": "demandeur"
+    }
+  ],
   "expectedResults": {
-    "exception": "Declarant is under 18"
+    "exception": "Le déclarant de role \"demandeur\" a moins de 18 ans"
   }
 }

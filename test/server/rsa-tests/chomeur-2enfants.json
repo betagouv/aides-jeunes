@@ -5,22 +5,24 @@
     "procheProprietaire": false,
     "codePostal": 92500
   },
-  "demandeur": {
-    "retraite": false,
-    "etudiant": false,
-    "demandeurEmploi": true,
-    "statutMarital": "seul",
-    "_id": "ind-6661",
-    "dateDeNaissance": "1979-12-31T23:00:00.000Z"
-  },
-  "enfants": [
+  "individus": [
+    {
+      "retraite": false,
+      "etudiant": false,
+      "demandeurEmploi": true,
+      "statutMarital": "seul",
+      "_id": "ind-6661",
+      "dateDeNaissance": "1979-12-31T23:00:00.000Z",
+      "role": "demandeur"
+    },
     {
       "_id": "ind-3857",
       "prenom": "Bob",
       "dateDeNaissance": "2009-12-31T23:00:00.000Z",
       "etudiant": false,
       "demandeurEmploi": false,
-      "retraite": false
+      "retraite": false,
+      "role": "enfant"
     },
     {
       "_id": "ind-3855",
@@ -28,7 +30,8 @@
       "dateDeNaissance": "2009-12-31T23:00:00.000Z",
       "etudiant": false,
       "demandeurEmploi": false,
-      "retraite": false
+      "retraite": false,
+      "role": "enfant"
     }
   ],
   "expectedResults": {

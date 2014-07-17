@@ -99,30 +99,6 @@ describe('openfisca', function() {
             var result = openfisca.mapMenages(situation);
             result.should.eql([{personne_de_reference: 'demandeur', enfants: ['enfant']}]);
         });
-
-        it('should map logement data if provided', function() {
-            var situation = {
-                logement: {
-                    codePostal: '75011',
-                    loyer: '567',
-                    statusOccupation: 'locataire'
-                },
-                individus: [
-                    {
-                        _id: 'demandeur',
-                        role: 'demandeur'
-                    },
-                ]
-            };
-            var result = openfisca.mapMenages(situation);
-            result.should.eql([{
-                personne_de_reference: 'demandeur',
-                enfants: [],
-                so: 4,
-                loyer: '567',
-                code_postal: '75011'
-            }]);
-        });
     });
 
     describe('mapFoyersFiscaux', function() {
@@ -195,6 +171,40 @@ describe('openfisca', function() {
             };
             var result = openfisca.mapIndividus.bind(null, situation);
             result.should.throw('L\'individu de role "demandeur" n\'a pas de date de naissance renseignée');
+        });
+    });
+
+    describe('mapLogement', function() {
+        it('should set menage status occupation to 4 when location non meublée', function() {
+            var logement = {
+                type: 'locataire',
+                locationType: 'nonmeuble'
+            };
+            var result ={};
+            openfisca.mapLogement(logement, result);
+
+            result.so.should.be.exactly(4);
+        });
+
+        it('should set menage status occupation to 1 when proprietaire primo-accédant', function() {
+            var logement = {
+                type: 'proprietaire',
+                primoAccedant: true
+            };
+            var result ={};
+            openfisca.mapLogement(logement, result);
+
+            result.so.should.be.exactly(1);
+        });
+
+        it('should not set menage.so when logement type is unknown', function() {
+            var logement = {
+                type: 'unknown'
+            };
+            var result ={};
+            openfisca.mapLogement(logement, result);
+
+            result.should.not.have.property('so');
         });
     });
 });

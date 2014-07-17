@@ -5,7 +5,7 @@ var openfisca = require('../../lib/simulation/openfisca');
 
 var testsPath = path.join(__dirname, 'rsa-tests');
 
-describe('rsa', function() {
+xdescribe('rsa', function() {
     fs.readdirSync(testsPath).forEach(function (file) {
         if (/(.*)\.(json$)/.test(file)) {
             describe(file, function() {

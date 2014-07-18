@@ -9,7 +9,7 @@ angular.module('ddsApp').factory('SimulationService', function($http, $q, Situat
             var that = this;
 
             $http.post('/api/situations', apiSituation).then(function(result) {
-                situation._id = result.data._id
+                situation._id = result.data._id;
                 $http.get('/api/situations/' + result.data._id + '/simulation').then(function(droits) {
                     deferred.resolve({
                         situationId: result.data._id,

@@ -321,13 +321,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Replace Google CDN references
-    cdnify: {
-      dist: {
-        html: ['<%= yeoman.dist %>/public/views/*.html']
-      }
-    },
-
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -498,7 +491,7 @@ module.exports = function (grunt) {
     else if (target === 'client') {
       return grunt.task.run([
         'clean:server',
-        // 'karma'
+        'karma'
       ]);
     }
 
@@ -519,7 +512,6 @@ module.exports = function (grunt) {
     'concat',
     'ngmin',
     'copy:dist',
-    'cdnify',
     'cssmin',
     'uglify',
     'rev',

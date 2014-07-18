@@ -14,9 +14,8 @@ describe('Controller: FoyerCaptureRevenusModalCtrl', function() {
     describe('Map of selected resources', function() {
         beforeEach(function() {
             inject(function($controller, SituationService) {
-                spyOn(SituationService, 'createIndividusList').andReturn([
-                    {name: 'Vous'}
-                ]);
+                var individus = {name: 'Vous'};
+                spyOn(SituationService, 'createIndividusList').andReturn([individus]);
                 $controller('FoyerCaptureRevenusModalCtrl', {
                     $scope: scope,
                     $modalInstance: {},
@@ -25,7 +24,7 @@ describe('Controller: FoyerCaptureRevenusModalCtrl', function() {
             });
         });
 
-        it('should be initialized with the individus list', function() {
+        it('should be initialized with a map of individus indexed by their name', function() {
             expect(scope.selectedRessourcesByIndividu).toEqual({
                 'Vous': {},
             });

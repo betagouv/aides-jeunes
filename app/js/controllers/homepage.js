@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('HomepageCtrl', function($scope, $window, $http, $location, SituationService) {
+angular.module('ddsApp').controller('HomepageCtrl', function($scope, $window, $http, $state, SituationService) {
     $scope.checkConfirmation = function() {
         if (!$scope.acceptConditions) {
             $window.alert('Vous devez cocher la case pour continuer');
@@ -11,6 +11,6 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $window, $h
 
     $scope.startSimulation = function() {
         SituationService.newSituation();
-        $location.path('/teaser');
+        $state.go('teaser');
     };
 });

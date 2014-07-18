@@ -14,19 +14,22 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             templateUrl: '/acceptance-tests/partials/index.html',
             controller: 'IndexCtrl'
         })
-        .state('index.new', {
+        .state('new', {
             url: '/new/:situationId',
-            onEnter: ['$state', '$modal', function($state, $modal) {
-                $modal.open({
-                    templateUrl: '/acceptance-tests/partials/new.html',
-                    controller: 'FoyerSituationsSpecifiquesModalCtrl',
-                    size: 'lg',
-                    backdrop: 'static',
-                    keyboard: false
-                }).result.then(function() {
-                    return $state.go('foyer');
-                });
-            }]
+            templateUrl: '/acceptance-tests/partials/new.html',
+            controller: 'FormCtrl',
+            resolve: {
+                situation: ['$http', '$stateParams', function($http, $stateParams) {
+                    return $http.get('/api/situations/' + $stateParams.situationId).then(function(result) {
+                        return result.data;
+                    });
+                }],
+                droits: ['$http', '$stateParams', function($http, $stateParams) {
+                    return $http.get('/api/situations/' + $stateParams.situationId + '/simulation').then(function(result) {
+                        return result.data;
+                    });
+                }]
+            }
         });
 });
 

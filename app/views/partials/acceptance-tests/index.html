@@ -20,7 +20,7 @@
       <th rowspan="{{ test.droits.length }}" ng-if="$first">{{ test.name }}</th>
       <td rowspan="{{ test.droits.length }}" ng-if="$first">{{ test.description }}</td>
       <td>{{ droit.name }}</td>
-      <td>{{ displayDroitValue(droit.value) }}</td>
+      <td>{{ displayDroitValue(droit.expectedValue) }}</td>
       <td>{{ displayDroitValue(droit.actualValue) }}</td>
       <td rowspan="{{ test.droits.length }}" ng-if="$first">
         <button type="button" class="btn btn-default btn-xs" ng-click="launchSingle(test)">

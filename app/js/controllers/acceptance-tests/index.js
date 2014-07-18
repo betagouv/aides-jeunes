@@ -28,24 +28,24 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
             var droits = result.data;
             test.droits.forEach(function(droit) {
                 var actualValue = droits[droit.name];
-                if (actualValue) {
+                if (angular.isDefined(actualValue)) {
                     delete droits[droit.name];
                     droit.actualValue = actualValue;
-                    if (droit.actualValue === droit.value) {
+                    if (droit.actualValue === droit.expectedValue) {
                         droit.status = 'ok';
                     } else {
                         droit.status = 'ko';
                     }
                 }
-                _.forEach(droits, function(value, name) {
-                    if (value) {
-                        test.droits.push({name: name, value: undefined, actualValue: value, status: 'unknown'});
-                    }
-                });
-                _.where(test.droits, {status: undefined}).forEach(function(droit) {
-                    droit.status = 'ko';
-                    droit.actualValue = false;
-                });
+            });
+            _.forEach(droits, function(value, name) {
+                if (value) {
+                    test.droits.push({name: name, expectedValue: undefined, actualValue: value, status: 'unknown'});
+                }
+            });
+            _.where(test.droits, {status: undefined}).forEach(function(droit) {
+                droit.status = 'ko';
+                droit.actualValue = false;
             });
         }, function() {
             test.droits.forEach(function(droit) {

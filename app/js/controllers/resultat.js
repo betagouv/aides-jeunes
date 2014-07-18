@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, SimulationService) {
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, SimulationService, SituationService) {
+    var situation = SituationService.restoreLocal();
     $scope.awaitingResults = true;
     SimulationService.simulate().then(function(simulation) {
         $scope.situationId = simulation.situationId;
@@ -12,6 +13,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, Si
     });
 
     $scope.createTest = function() {
-        $window.location.href = '/acceptance-tests/new';
+        $window.location.href = '/acceptance-tests/new/' + situation._id;
     };
 });

@@ -20,11 +20,6 @@
   "smarttabs": true,
   "globals": {
     "angular": true,
-    "situation": true,
-    "questions": true,
-    "prestations": true,
-    "rsa": true,
-    "aideLogement": true,
     "moment": true,
     "_": true,
     "_s": true

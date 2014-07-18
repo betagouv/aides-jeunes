@@ -13,5 +13,8 @@
   "undef": true,
   "unused": true,
   "trailing": true,
-  "smarttabs": true
+  "smarttabs": true,
+  "globals": {
+    "_": true
+  }
 }

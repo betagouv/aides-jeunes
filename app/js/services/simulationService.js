@@ -6,8 +6,6 @@ angular.module('ddsApp').factory('SimulationService', function($http, $q, Situat
             var situation = SituationService.restoreLocal();
             var deferred = $q.defer();
             var apiSituation = this.createApiCompatibleSituation(situation);
-            console.log(apiSituation);
-
             var that = this;
 
             $http.post('/api/situations', apiSituation).then(function(result) {

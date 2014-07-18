@@ -10,7 +10,10 @@ angular.module('ddsApp').factory('SimulationService', function($http, $q, Situat
 
             $http.post('/api/situations', apiSituation).then(function(result) {
                 $http.get('/api/situations/' + result.data._id + '/simulation').then(function(droits) {
-                    deferred.resolve(that.createDroitsFromApiResult(droits.data));
+                    deferred.resolve({
+                        situationId: result.data._id,
+                        droits: that.createDroitsFromApiResult(droits.data)
+                    });
                 }, function() {
                     deferred.reject();
                 });

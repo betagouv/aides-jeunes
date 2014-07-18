@@ -46,6 +46,18 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
             imgSrc: 'logo_caf.png'
         },
         {
+            id: 'cf',
+            label: 'Complément Familial',
+            shortLabel: 'CF',
+            imgSrc: 'logo_caf.png'
+        },
+        {
+            id: 'asf',
+            label: 'Allocation de Soutien Familial',
+            shortLabel: 'ASF',
+            imgSrc: 'logo_caf.png'
+        },
+        {
             id: 'rsa',
             label: 'Revenu de Solidarité Active',
             shortLabel: 'RSA',

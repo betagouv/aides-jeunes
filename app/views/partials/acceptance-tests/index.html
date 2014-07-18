@@ -2,15 +2,25 @@
   <h1><i class="fa fa-tasks"></i> Tests d'acceptance DDS</h1>
 </div>
 
+<p><button type="button" class="btn btn-default">Relancer tout</button></p>
+
 <table class="table table-bordered">
   <thead>
     <tr>
       <th>Test</th>
+      <th colspan="2">Résultats attendus</th>
+      <th colspan="2">Résultats obtenus</th>
+      <th>Action</th>
     </tr>
   </thead>
-  <tbody>
-    <tr ng-repeat="test in tests">
-      <td>{{ test.name }}</td>
+  <tbody ng-repeat="test in tests">
+    <tr ng-repeat="droit in test.droitsAttendus" ng-class="{'success': !$first, 'danger': $first}">
+      <td rowspan="{{ test.droitsAttendus.length }}" ng-if="$first">{{ test.name }}</td>
+      <td>{{ droit.name }}</td>
+      <td>{{ displayDroitValue(droit.value) }}</td>
+      <td></td>
+      <td></td>
+      <td><button type="button" class="btn btn-default btn-xs">Relancer</button></td>
     </tr>
   </tbody>
 </table>

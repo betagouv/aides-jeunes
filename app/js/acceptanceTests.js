@@ -2,7 +2,7 @@
 
 var ddsApp = angular.module('acceptanceTests', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngStorage']);
 
-ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
+ddsApp.config(function($locationProvider, $stateProvider) {
     moment.lang('fr');
 
     $locationProvider.html5Mode(true);

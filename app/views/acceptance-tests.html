@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dossier de Demande Simplifié</title>
+    <meta name="viewport" content="width=device-width">
+    <!-- build:css({.tmp,app}) /styles/main.css -->
+    <link rel="stylesheet" href="/styles/main.css">
+    <!-- endbuild -->
+    <base href="/acceptance-tests/">
+  </head>
+  <body ng-app="acceptanceTests">
+    <header>
+      <nav role="navigation" class="navbar navbar-default">
+        <div class="container">
+          <ul class="nav navbar-nav">
+            <li><a href="#" class="navbar-brand title">Tests d'acceptance DDS</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div class="content">
+      <div class="container">
+        <ui-view>
+          <p class="text-center"><i class="fa fa-spinner fa-spin"></i> Chargement en cours...</p>
+        </ui-view>
+      </div>
+    </div>
+
+    <footer class="main-footer">
+      <div class="container">
+        <div class="info text-center">
+          By @jdesboeufs &amp; @nanocom
+          <br><a href="https://github.com/sgmap/dds">sgmap/dds</a>
+          <a href="http://travis-ci.org/sgmap/dds"><img src="https://secure.travis-ci.org/sgmap/dds.svg"></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- build:js(app) /js/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) /js/scripts.js -->
+    <script src="bower_components/moment/lang/fr.js"></script>
+
+    <script src="js/acceptanceTests.js"></script>
+
+    <script src="js/controllers/acceptance-tests/index.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

@@ -2,7 +2,16 @@
   <h1><i class="fa fa-tasks"></i> Tests d'acceptance DDS</h1>
 </div>
 
-<p><button type="button" class="btn btn-default" ng-click="launchAll()">Lancer tous les tests</button></p>
+<p>
+  <button type="button" ng-disabled="pendingTests > 0" class="btn btn-default" ng-click="launchAll()">
+    <span ng-if="pendingTests > 0">
+      <i class="fa fa-spinner fa-spin"></i> Tests en cours...
+    </span>
+    <span ng-if="pendingTests === 0">
+      Lancer tous les tests
+    </span>
+  </button>
+</p>
 
 <table class="table table-bordered">
   <thead>

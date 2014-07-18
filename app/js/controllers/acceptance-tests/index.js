@@ -5,6 +5,8 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
         $scope.tests = result.data;
     });
 
+    $scope.pendingTests = 0;
+
     $scope.displayDroitValue = function(value) {
         if (typeof value === 'boolean') {
             return !!value ? 'Oui' : 'Non';
@@ -57,8 +59,11 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
     };
 
     $scope.launchAll = function() {
+        $scope.pendingTests = $scope.tests.length;
         $scope.tests.forEach(function(test) {
-            $scope.launchSingle(test);
+            $scope.launchSingle(test).finally(function() {
+                $scope.pendingTests--;
+            });
         });
     };
 });

@@ -186,6 +186,17 @@ describe('openfisca', function() {
             result.so.should.be.exactly(4);
         });
 
+        it('should set menage status occupation to 5 when location meublée/hotel', function() {
+            var logement = {
+                type: 'locataire',
+                locationType: 'meublehotel'
+            };
+            var result ={};
+            openfisca.mapLogement(logement, result);
+
+            result.so.should.be.exactly(5);
+        });
+
         it('should set menage status occupation to 1 when proprietaire primo-accédant', function() {
             var logement = {
                 type: 'proprietaire',

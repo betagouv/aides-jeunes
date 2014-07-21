@@ -20,7 +20,7 @@ describe('openfisca', function() {
                 ]
             };
             var result = openfisca.mapFamilles(situation);
-            result.should.eql([{parents: ['demandeur', 'conjoint'], enfants: []}]);
+            result.should.eql([{ parents: ['demandeur', 'conjoint'], enfants: [] }]);
         });
 
         it('should map children', function() {
@@ -41,7 +41,7 @@ describe('openfisca', function() {
                 ]
             };
             var result = openfisca.mapFamilles(situation);
-            result.should.eql([{parents: [], enfants: ['enfant1', 'enfant2']}]);
+            result.should.eql([{ parents: [], enfants: ['enfant1', 'enfant2'] }]);
         });
     });
 
@@ -57,7 +57,7 @@ describe('openfisca', function() {
                 ]
             };
             var result = openfisca.mapMenages(situation);
-            result.should.eql([{personne_de_reference: 'demandeur', enfants: []}]);
+            result.should.eql([{ personne_de_reference: 'demandeur', enfants: [] }]);
         });
 
         it('should map conjoint if provided', function() {
@@ -75,7 +75,7 @@ describe('openfisca', function() {
                 ]
             };
             var result = openfisca.mapMenages(situation);
-            result.should.eql([{personne_de_reference: 'demandeur', conjoint: 'conjoint', enfants: []}]);
+            result.should.eql([{ personne_de_reference: 'demandeur', conjoint: 'conjoint', enfants: [] }]);
         });
 
         it('should map children', function() {
@@ -97,7 +97,7 @@ describe('openfisca', function() {
                 ]
             };
             var result = openfisca.mapMenages(situation);
-            result.should.eql([{personne_de_reference: 'demandeur', enfants: ['enfant']}]);
+            result.should.eql([{ personne_de_reference: 'demandeur', enfants: ['enfant'] }]);
         });
     });
 
@@ -118,7 +118,7 @@ describe('openfisca', function() {
                 ]
             };
             var result = openfisca.mapFoyersFiscaux(situation);
-            result.should.eql([{declarants: ['demandeur', 'conjoint'], personnes_a_charge: []}]);
+            result.should.eql([{ declarants: ['demandeur', 'conjoint'], personnes_a_charge: [] }]);
         });
 
         it('should throw an exception if one of the declarants is less than 18', function() {

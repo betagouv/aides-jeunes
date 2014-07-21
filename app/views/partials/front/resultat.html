@@ -11,7 +11,7 @@
     <h3>Vos droits</h3>
     <div class="media" ng-repeat="droit in droits">
       <a class="pull-left" href="{{ droit.description.url }}">
-        <img class="media-object" src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
+        <img class="media-object" ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
       </a>
       <div class="media-body">
         <h4 class="media-heading">

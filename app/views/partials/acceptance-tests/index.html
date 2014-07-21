@@ -5,15 +5,15 @@
 <div class="row">
   <div class="col-lg-3">
     <p>
-    <button type="button" ng-disabled="pendingTests > 0" class="btn btn-default" ng-click="launchAll()">
-      <span ng-if="pendingTests > 0">
-        <i class="fa fa-spinner fa-spin"></i> Tests en cours...
-      </span>
-      <span ng-if="pendingTests === 0">
-        Lancer tous les tests
-      </span>
-    </button>
-  </p>
+      <button type="button" ng-disabled="pendingTests > 0" class="btn btn-default" ng-click="launchAll()">
+        <span ng-if="pendingTests > 0">
+          <i class="fa fa-spinner fa-spin"></i> Tests en cours...
+        </span>
+        <span ng-if="pendingTests === 0">
+          Lancer tous les tests
+        </span>
+      </button>
+    </p>
   </div>
   <div class="col-lg-9">
     <progressbar ng-if="tests" ng-class="{'progress-striped active': pendingTests}" max="tests.length" value="tests.length - pendingTests">
@@ -59,6 +59,14 @@
             </tr>
           </tbody>
         </table>
+
+        <p>
+          <button type="button" class="btn btn-default btn-xs" ng-click="toggleSituation(test)">
+            Détail de la situation
+            <i class="fa" ng-class="{'fa-chevron-down': test.showSituation, 'fa-chevron-right': !test.showSituation}"></i>
+          </button>
+        </p>
+        <pre ng-if="test.showSituation">{{ test.situationObject | json }}</pre>
       </accordion-group>
     </accordion>
   </div>

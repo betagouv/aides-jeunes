@@ -69,7 +69,7 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
                     test.droitsAttendus.push({ id: id, expectedValue: undefined, actualValue: value, status: 'unknown' });
                 }
             });
-            _.where(test.droitsAttendus, {status: undefined}).forEach(function(droit) {
+            _.where(test.droitsAttendus, { status: undefined }).forEach(function(droit) {
                 droit.status = 'ko';
                 test.status = 'ko';
                 droit.actualValue = false;
@@ -112,5 +112,14 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
                 $state.go($state.current, {}, {reload: true});
             });
         }
+    };
+
+    $scope.toggleSituation = function(test) {
+        if (!test.situationObject) {
+            $http.get('/api/situations/' + test.situation).then(function(result) {
+                test.situationObject = result.data;
+            });
+        }
+        test.showSituation = !test.showSituation;
     };
 });

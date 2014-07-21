@@ -19,12 +19,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             templateUrl: '/acceptance-tests/partials/form.html',
             controller: 'FormCtrl',
             resolve: {
-                situation: ['$http', '$stateParams', function($http, $stateParams) {
-                    return $http.get('/api/situations/' + $stateParams.situationId).then(function(result) {
-                        return result.data;
-                    });
-                }],
-                droits: ['$http', '$stateParams', function($http, $stateParams) {
+                droitsObtenus: ['$http', '$stateParams', function($http, $stateParams) {
                     return $http.get('/api/situations/' + $stateParams.situationId + '/simulation').then(function(result) {
                         return result.data;
                     });
@@ -39,10 +34,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             templateUrl: '/acceptance-tests/partials/form.html',
             controller: 'FormCtrl',
             resolve: {
-                situation: function() {
-                    return null;
-                },
-                droits: function() {
+                droitsObtenus: function() {
                     return null;
                 },
                 test: ['$http', '$stateParams', function($http, $stateParams) {

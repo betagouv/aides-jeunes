@@ -22,6 +22,10 @@ html {
   font-size: 12px;
 }
 
+.panel.panel-default *:last-child {
+  margin: 0;
+}
+
 .main-navbar {
   .navbar-brand {
     &.title {
@@ -141,8 +145,4 @@ html {
 .ressources-selection .checkbox-inline.ressources-selection-individu {
   padding-top: 0;
   margin-left: 15px;
-}
-
-.panel.panel-default .table:last-child {
-  margin: 0;
 }

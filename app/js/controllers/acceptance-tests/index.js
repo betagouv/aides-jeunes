@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $timeout) {
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http) {
     $http.get('/api/acceptance-tests').then(function(result) {
         $scope.tests = result.data;
     });

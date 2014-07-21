@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q, $window, $state, $sanitize) {
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q, $window, $state) {
     $http.get('/api/acceptance-tests').then(function(result) {
         $scope.tests = result.data;
     });
@@ -31,7 +31,6 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
                 .replace(/&/g, '&amp;')
                 .replace(/>/g, '&gt;')
                 .replace(/</g, '&lt;');
-                console.log(text);
 
         return text.replace(/\n/g, '<br>');
     };

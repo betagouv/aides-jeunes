@@ -16,7 +16,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('new', {
             url: '/new/:situationId',
-            templateUrl: '/acceptance-tests/partials/new.html',
+            templateUrl: '/acceptance-tests/partials/form.html',
             controller: 'FormCtrl',
             resolve: {
                 situation: ['$http', '$stateParams', function($http, $stateParams) {

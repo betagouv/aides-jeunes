@@ -16,8 +16,8 @@
     </div>
   </div>
   <h3>Droits attendus</h3>
-  <p><button class="btn btn-default btn-xs" ng-click="test.droits.push({})">Ajouter un autre droit attendu</button></p>
-  <div class="row" ng-repeat="droit in test.droits">
+  <p><button type="button" class="btn btn-default btn-xs" ng-click="test.droitsAttendus.push({})">Ajouter un autre droit attendu</button></p>
+  <div class="row" ng-repeat="droit in test.droitsAttendus">
     <div class="col-md-1">
       <button type="button" class="btn btn-default btn-xs" ng-click="removeDroit(droit)"><i class="fa fa-times"></i></button>
     </div>

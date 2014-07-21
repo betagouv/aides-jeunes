@@ -8,12 +8,16 @@ angular.module('ddsApp').factory('SimulationService', function($http, $q, Situat
             var apiSituation = this.createApiCompatibleSituation(situation);
             var that = this;
 
-            $http.post('/api/situations', apiSituation).then(function(result) {
-                situation._id = result.data._id;
-                $http.get('/api/situations/' + result.data._id + '/simulation').then(function(droits) {
-                    deferred.resolve({
-                        situationId: result.data._id,
-                        droits: that.createDroitsFromApiResult(droits.data)
+            $http.get('/resources/droits.json').then(function(res) {
+                $http.post('/api/situations', apiSituation).then(function(result) {
+                    situation._id = result.data._id;
+                    $http.get('/api/situations/' + result.data._id + '/simulation').then(function(droits) {
+                        deferred.resolve({
+                            situationId: result.data._id,
+                            droits: that.createDroitsFromApiResult(droits.data, res.data)
+                        });
+                    }, function() {
+                        deferred.reject();
                     });
                 }, function() {
                     deferred.reject();
@@ -21,6 +25,7 @@ angular.module('ddsApp').factory('SimulationService', function($http, $q, Situat
             }, function() {
                 deferred.reject();
             });
+           
 
             return deferred.promise;
         },
@@ -71,84 +76,20 @@ angular.module('ddsApp').factory('SimulationService', function($http, $q, Situat
             return individu;
         },
 
-        createDroitsFromApiResult: function(result) {
+        createDroitsFromApiResult: function(result, droitsList) {
             var droits = [];
-            this.droits.forEach(function(droit) {
+            droitsList.forEach(function(droit) {
                 var value = result[droit.id];
                 if (value) {
-                    var insert = {description: droit};
+                    var toInsert = { description: droit };
                     if (_.isNumber(value)) {
-                        insert.montant = value;
+                        toInsert.montant = value;
                     }
-                    droits.push(insert);
+                    droits.push(toInsert);
                 }
             });
 
             return droits;
-        },
-
-        droits: [
-            {
-                id: 'aspa',
-                label: 'Allocation de Solidarité aux Personnes Âgées',
-                shortLabel: 'ASPA',
-                imgSrc: 'logo_caf.png'
-            },
-            {
-                id: 'acs',
-                label: 'Aide pour une Complémentaire Santé',
-                shortLabel: 'ACS',
-                imgSrc: 'logo_caf.png'
-            },
-            {
-                id: 'cmu_c',
-                hasMontant: false,
-                label: 'Couverture Maladie Universelle Complémentaire',
-                shortLabel: 'CMU-C',
-                imgSrc: 'logo_cmu.png'
-            },
-            {
-                id: 'apl',
-                label: 'Aide Personnalisée au Logement',
-                shortLabel: 'APL',
-                imgSrc: 'logo_caf.png'
-            },
-            {
-                id: 'als',
-                label: 'Allocation de Logement Social',
-                shortLabel: 'ALS',
-                imgSrc: 'logo_caf.png'
-            },
-            {
-                id: 'alf',
-                label: 'Allocation de Logement Familial',
-                shortLabel: 'ALF',
-                imgSrc: 'logo_caf.png'
-            },
-            {
-                id: 'af',
-                label: 'Allocations Familiales',
-                shortLabel: 'AF',
-                imgSrc: 'logo_caf.png'
-            },
-            {
-                id: 'cf',
-                label: 'Complément Familial',
-                shortLabel: 'CF',
-                imgSrc: 'logo_caf.png'
-            },
-            {
-                id: 'asf',
-                label: 'Allocation de Soutien Familial',
-                shortLabel: 'ASF',
-                imgSrc: 'logo_caf.png'
-            },
-            {
-                id: 'rsa',
-                label: 'Revenu de Solidarité Active',
-                shortLabel: 'RSA',
-                imgSrc: 'logo_caf.png'
-            }
-        ]
+        }
     };
 });

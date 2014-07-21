@@ -25,13 +25,13 @@
     </tr>
   </thead>
   <tbody ng-repeat="test in tests">
-    <tr ng-repeat="droit in test.droits" ng-class="{'success': droit.status === 'ok', 'danger': droit.status === 'ko', 'info': droit.status === 'unknown'}">
-      <th rowspan="{{ test.droits.length }}" ng-if="$first">{{ test.name }}</th>
-      <td rowspan="{{ test.droits.length }}" ng-if="$first">{{ test.description }}</td>
+    <tr ng-repeat="droit in test.droitsAttendus" ng-class="{'success': droit.status === 'ok', 'danger': droit.status === 'ko', 'info': droit.status === 'unknown'}">
+      <th rowspan="{{ test.droitsAttendus.length }}" ng-if="$first">{{ test.name }}</th>
+      <td rowspan="{{ test.droitsAttendus.length }}" ng-if="$first">{{ test.description }}</td>
       <td>{{ droit.name }}</td>
       <td>{{ displayDroitValue(droit.expectedValue) }}</td>
       <td>{{ displayDroitValue(droit.actualValue) }}</td>
-      <td rowspan="{{ test.droits.length }}" ng-if="$first">
+      <td rowspan="{{ test.droitsAttendus.length }}" ng-if="$first">
         <button type="button" class="btn btn-default btn-xs" ng-click="launchSingle(test)">
           Relancer
         </button>

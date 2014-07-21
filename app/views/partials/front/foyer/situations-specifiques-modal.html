@@ -18,9 +18,13 @@
           <div class="panel-body" ng-if="selectedSituations[id]">
             <b>Quelles sont les personnes concernées ?</b>
             <br>
-            <label class="checkbox-inline" ng-repeat="individu in individus">
-              <input type="checkbox" ng-model="individu.individu[id]"> {{ individu.name }}
-            </label>
+            <div class="form-inline">
+              <div class="checkbox" ng-repeat="individu in individus">
+                <label>
+                  <input type="checkbox" ng-model="individu.individu[id]"> {{ individu.name }}
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>

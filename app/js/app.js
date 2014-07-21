@@ -152,7 +152,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    $rootScope.$on('$locationChangeStart', function(e, location) {
+        if (0 === location.indexOf($window.location.origin + '/api')) {
+            $window.location.href = location;
+        }
+    });
 });

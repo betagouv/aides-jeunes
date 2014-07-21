@@ -11,9 +11,9 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         relationTypeLabels: {
-            mariage: 'marié(e)',
-            pacs: 'pacsé(e)',
-            relationLibre: 'en relation libre'
+            'mariage': 'marié(e)',
+            'pacs': 'pacsé(e)',
+            'relation_libre': 'en relation libre'
         },
 
         find: function(situationId) {

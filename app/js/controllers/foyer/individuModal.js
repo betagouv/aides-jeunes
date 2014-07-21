@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $modalInstance, options) {
+angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $modalInstance, SituationService, options) {
     $scope.modalTitle = options.modalTitle;
     $scope.nationalite = 'francaise';
     $scope.askFirstName = !!options.askFirstName;
     $scope.cancelable = !!options.cancelable;
+    $scope.relationTypes = SituationService.relationTypeLabels;
 
     if (true === ($scope.askRelationType = !!options.askRelationType)) {
         $scope.relationType = 'mariage';
@@ -13,7 +14,7 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
     $scope.submit = function(form) {
         $scope.formSubmitted = true;
         if (form.$valid) {
-            var individu = {birthDate: $scope.birthDate, nationalite: $scope.nationalite};
+            var individu = { birthDate: $scope.birthDate, nationalite: $scope.nationalite };
             if ($scope.askFirstName) {
                 individu.firstName = $scope.firstName;
             }

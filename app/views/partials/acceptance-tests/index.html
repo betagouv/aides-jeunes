@@ -13,29 +13,37 @@
   </button>
 </p>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Test</th>
-      <th>Description</th>
-      <th>Droit</th>
-      <th>Résultat attendu</th>
-      <th>Résultat obtenu</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody ng-repeat="test in tests">
-    <tr ng-repeat="droit in test.droitsAttendus" ng-class="{'success': droit.status === 'ok', 'danger': droit.status === 'ko', 'info': droit.status === 'unknown'}">
-      <th rowspan="{{ test.droitsAttendus.length }}" ng-if="$first">{{ test.name }}</th>
-      <td rowspan="{{ test.droitsAttendus.length }}" ng-if="$first">{{ test.description }}</td>
-      <td>{{ droit.name }}</td>
-      <td>{{ displayDroitValue(droit.expectedValue) }}</td>
-      <td>{{ displayDroitValue(droit.actualValue) }}</td>
-      <td rowspan="{{ test.droitsAttendus.length }}" ng-if="$first">
-        <button type="button" class="btn btn-default btn-xs" ng-click="launchSingle(test)">
-          Relancer
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<progressbar ng-if="tests && pendingTests" class="progress-striped active" max="tests.length" value="tests.length - pendingTests">
+  {{ tests.length - pendingTests }} / {{ tests.length }}
+</progressbar>
+
+<accordion close-others="false">
+  <accordion-group ng-repeat="test in tests" is-open="test.open" ng-class="{'panel-success': test.status === 'ok', 'panel-danger': test.status === 'ko'}">
+    <accordion-heading>
+       {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
+    </accordion-heading>
+    <p>Description : <i>{{ test.description }}</i></p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Droit</th>
+          <th>Valeur attendue</th>
+          <th>Valeur obtenue</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="droit in test.droitsAttendus" ng-class="{'success': droit.status === 'ok', 'danger': droit.status === 'ko', 'info': droit.status === 'unknown'}">
+          <td>{{ droit.name }}</td>
+          <td>{{ displayDroitValue(droit.expectedValue) }}</td>
+          <td>{{ displayDroitValue(droit.actualValue) }}</td>
+          <td rowspan="{{ test.droitsAttendus.length }}" ng-if="$first">
+            <button type="button" class="btn btn-default btn-xs" ng-disabled="pendingTests" ng-click="launchSingle(test)">
+              Relancer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </accordion-group>
+</accordion>

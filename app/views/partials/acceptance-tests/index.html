@@ -34,14 +34,12 @@
            {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
         </accordion-heading>
         <p class="pull-right">
-          <a class="btn btn-default btn-xs" href="{{ test.id }}/edit">Modifier ce test</a>
-          <button type="button" class="btn btn-default btn-xs" ng-disabled="pendingTests" ng-click="launchSingle(test)">
+          <a class="btn btn-default btn-xs" href="{{ test._id }}/edit">Modifier ce test</a>
+          <button type="button" class="btn btn-default btn-xs" ng-disabled="test.running" ng-click="launchSingle(test)">
             Relancer
           </button>
         </p>
-        <blockquote>
-          <p>{{ test.description }}</p>
-        </blockquote>
+        <p ng-if="test.description">{{ test.description }}</p>
 
         <table class="table table-bordered">
           <thead>
@@ -53,7 +51,7 @@
           </thead>
           <tbody>
             <tr ng-repeat="expectedDroit in test.droitsAttendus" ng-class="{'success': expectedDroit.status === 'ok', 'danger': expectedDroit.status === 'ko', 'info': expectedDroit.status === 'unknown'}">
-              <td>{{ droits[expectedDroit.name].shortLabel }}</td>
+              <td>{{ droits[expectedDroit.id].shortLabel }}</td>
               <td>{{ displayDroitValue(expectedDroit.expectedValue) }}</td>
               <td>{{ displayDroitValue(expectedDroit.actualValue) }}</td>
             </tr>

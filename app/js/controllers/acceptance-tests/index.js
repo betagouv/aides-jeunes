@@ -28,6 +28,7 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
 
     $scope.launchSingle = function(test) {
         delete test.status;
+        test.running = true;
         test.droitsAttendus.forEach(function(droit) {
             delete droit.status;
             delete droit.actualValue;
@@ -40,9 +41,9 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
             var droits = result.data;
             test.status = 'ok';
             test.droitsAttendus.forEach(function(droit) {
-                var actualValue = droits[droit.name];
+                var actualValue = droits[droit.id];
                 if (angular.isDefined(actualValue)) {
-                    delete droits[droit.name];
+                    delete droits[droit.id];
                     droit.actualValue = actualValue;
                     if (_.isUndefined(droit.expectedValue)) {
                         droit.status = 'unknown';
@@ -54,9 +55,9 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
                     }
                 }
             });
-            _.forEach(droits, function(value, name) {
+            _.forEach(droits, function(value, id) {
                 if (value) {
-                    test.droitsAttendus.push({ name: name, expectedValue: undefined, actualValue: value, status: 'unknown' });
+                    test.droitsAttendus.push({ id: id, expectedValue: undefined, actualValue: value, status: 'unknown' });
                 }
             });
             _.where(test.droitsAttendus, {status: undefined}).forEach(function(droit) {
@@ -75,6 +76,10 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
                 droit.status = 'ko';
             });
             deferred.reject();
+        });
+
+        deferred.promise.finally(function() {
+            test.running = false;
         });
 
         return deferred.promise;

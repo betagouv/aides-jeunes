@@ -28,6 +28,27 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     return $http.get('/api/situations/' + $stateParams.situationId + '/simulation').then(function(result) {
                         return result.data;
                     });
+                }],
+                test: function() {
+                    return null;
+                }
+            }
+        })
+        .state('edit', {
+            url: '/:testId/edit',
+            templateUrl: '/acceptance-tests/partials/form.html',
+            controller: 'FormCtrl',
+            resolve: {
+                situation: function() {
+                    return null;
+                },
+                droits: function() {
+                    return null;
+                },
+                test: ['$http', '$stateParams', function($http, $stateParams) {
+                    return $http.get('/api/acceptance-tests/' + $stateParams.testId).then(function(result) {
+                        return result.data;
+                    });
                 }]
             }
         });

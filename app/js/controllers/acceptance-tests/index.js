@@ -1,8 +1,15 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http) {
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q) {
     $http.get('/api/acceptance-tests').then(function(result) {
         $scope.tests = result.data;
+    });
+
+    $http.get('/resources/droits.json').then(function(result) {
+        $scope.droits = {};
+        result.data.forEach(function(droit) {
+            $scope.droits[droit.id] = droit;
+        });
     });
 
     $scope.pendingTests = 0;
@@ -20,10 +27,13 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
     };
 
     $scope.launchSingle = function(test) {
+        delete test.status;
         test.droitsAttendus.forEach(function(droit) {
             delete droit.status;
             delete droit.actualValue;
         });
+
+        var deferred = $q.defer();
 
         var promise = $http.get('/api/situations/' + test.situation + '/simulation');
         promise.then(function(result) {
@@ -54,20 +64,29 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
                 test.status = 'ko';
                 droit.actualValue = false;
             });
+            if (test.status === 'ko') {
+                deferred.reject();
+            } else {
+                deferred.resolve();
+            }
         }, function() {
             test.status = 'ko';
             test.droitsAttendus.forEach(function(droit) {
                 droit.status = 'ko';
             });
+            deferred.reject();
         });
 
-        return promise;
+        return deferred.promise;
     };
 
     $scope.launchAll = function() {
         $scope.pendingTests = $scope.tests.length;
+        $scope.errors = 0;
         $scope.tests.forEach(function(test) {
-            $scope.launchSingle(test).finally(function() {
+            $scope.launchSingle(test).then(function() {}, function() {
+                $scope.errors++;
+            }).finally(function() {
                 $scope.pendingTests--;
             });
         });

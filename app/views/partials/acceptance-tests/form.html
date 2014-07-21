@@ -3,10 +3,10 @@
 </div>
 
 <form name="form" class="form-horizontal" ng-submit="submit()">
-  <div class="form-group">
+  <div class="form-group" ng-class="{'has-error': form.name.$invalid, 'has-success': form.name.$valid}">
     <label class="control-label col-md-3" for="test-name">Nom du test</label>
     <div class="col-md-6">
-      <input type="text" name="name" class="form-control" id="test-name" ng-model="test.name" placeholder="Exemple : chômeur seul 3 enfants">
+      <input type="text" name="name" class="form-control" id="test-name" ng-model="test.name" placeholder="Exemple : chômeur seul 3 enfants" required>
     </div>
   </div>
   <div class="form-group">

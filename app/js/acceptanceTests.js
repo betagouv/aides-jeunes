@@ -1,6 +1,6 @@
 'use strict';
 
-var ddsApp = angular.module('acceptanceTests', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngStorage']);
+var ddsApp = angular.module('acceptanceTests', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngStorage', 'ngSanitize']);
 
 ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
     moment.lang('fr');

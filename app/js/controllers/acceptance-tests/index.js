@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q) {
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q, $window, $state, $sanitize) {
     $http.get('/api/acceptance-tests').then(function(result) {
         $scope.tests = result.data;
     });
@@ -24,6 +24,16 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
         }
 
         return '';
+    };
+
+    $scope.newLineToBr = function(text) {
+        text = text
+                .replace(/&/g, '&amp;')
+                .replace(/>/g, '&gt;')
+                .replace(/</g, '&lt;');
+                console.log(text);
+
+        return text.replace(/\n/g, '<br>');
     };
 
     $scope.launchSingle = function(test) {
@@ -95,5 +105,13 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
                 $scope.pendingTests--;
             });
         });
+    };
+
+    $scope.deleteTest = function(test) {
+        if ($window.confirm('Êtes-vous sûr de vouloir supprimer ce test ?')) {
+            $http.delete('/api/acceptance-tests/' + test._id).then(function() {
+                $state.go($state.current, {}, {reload: true});
+            });
+        }
     };
 });

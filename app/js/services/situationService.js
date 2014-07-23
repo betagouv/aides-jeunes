@@ -148,7 +148,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                         label: 'Allocation chômage'
                     }, {
                         name: 'allocationLogement',
-                        label: 'Allocation logement'
+                        label: 'Aide au logement'
                     }, {
                         name: 'rsa',
                         label: 'Revenu de solidarité active (RSA)'
@@ -158,6 +158,9 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                     }, {
                         name: 'ass',
                         label: 'Allocation de solidarité spécifique (ASS)'
+                    }, {
+                        name: 'aah',
+                        label: 'Allocation Adulte Handicapé'
                     }
                 ]
             },
@@ -199,6 +202,19 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                     }, {
                         name: 'pensionsRetraitesRentes',
                         label: 'Retraites, rentes'
+                    }, {
+                        name: 'pensionsInvalidite',
+                        label: 'Pensions d\'invalidité'
+                    }
+                ]
+            },
+            {
+                name: 'autre',
+                label: 'Autres',
+                subsections: [
+                    {
+                        name: 'bourseEnseignementSup',
+                        label: 'Bourses de l\'enseignement supérieur'
                     }
                 ]
             }

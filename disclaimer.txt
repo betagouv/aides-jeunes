@@ -1,0 +1,15 @@
+CMU-C
+=====
+
+On suppose :
+* Que le demandeur réside en France de manière stable et régulière
+* Que les enfants mineurs déclarés ne sont pas en résidence alternée
+
+On ne gère pas :
+* Les cas particuliers pour les personnes de moins de 25 ans, on considère par défaut qu'ils sont éligibles
+* Les ressources perçues sur l'année entière : on fait une projection des ressources des 3 derniers mois sur l'année
+* Le "train de vie"
+* Les cas particuliers pour les travailleurs non salariés
+
+On gère :
+* Le forfait logement

@@ -157,6 +157,7 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window) {
     $rootScope.$stateParams = $stateParams;
     $rootScope.$on('$locationChangeStart', function(e, location) {
         if (0 === location.indexOf($window.location.origin + '/api')) {
+            e.preventDefault();
             $window.location.href = location;
         }
     });

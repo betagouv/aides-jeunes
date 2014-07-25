@@ -36,5 +36,5 @@ On suppose :
 * Que le demandeur réside en france de manière régulière
 
 On ne gère pas :
-* L'ascendance/descandance pour le propriétaire du logement : on ne gère que partiellement avec une question simple
+* L'ascendance/descendance pour le propriétaire du logement : on ne gère que partiellement avec une question simple
 * Les enfants mineurs émancipés

@@ -2,7 +2,8 @@ CMU-C
 =====
 
 On suppose :
-* Que le demandeur réside en France de manière stable et régulière
+* Que le demandeur réside en France de manière stable
+* Que le demandeur réside en France de manière régulière
 * Que les enfants mineurs déclarés ne sont pas en résidence alternée
 
 On ne gère pas :
@@ -23,8 +24,17 @@ On suppose :
 On ne gère pas :
 * Les cas particuliers pour les personnes de moins de 65 ans (handicap/incapacité de travail)
 * Les revenus mobiliers ou immobiliers dont le demandeur a fait donation au cours des 10 années précédant sa demande d'allocation
-* Les ressources exclues spéciales (résidence secondaire...)
+* Les ressources spéciales (du type valeur de la résidence secondaire...)
+* Le cas des couples dont l'un touche l'allocation supplémentaire
 
-On gère :
-* 
-* 
+APL
+===
+
+On suppose :
+* Que le logement répond aux caractéristiques de décence et de conditions minimales d'occupation
+* Que le demandeur respecte la loi 89-462 relative aux conditions de résidence principale
+* Que le demandeur réside en france de manière régulière
+
+On ne gère pas :
+* L'ascendance/descandance pour le propriétaire du logement : on ne gère que partiellement avec une question simple
+* Les enfants mineurs émancipés

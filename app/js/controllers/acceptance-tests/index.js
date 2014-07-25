@@ -1,15 +1,10 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q, $window, $state) {
-    $http.get('/api/acceptance-tests').then(function(result) {
-        $scope.tests = result.data;
-    });
-
-    $http.get('/resources/droits.json').then(function(result) {
-        $scope.droits = {};
-        result.data.forEach(function(droit) {
-            $scope.droits[droit.id] = droit;
-        });
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q, $window, $state, acceptanceTests, droits) {
+    $scope.tests = acceptanceTests;
+    $scope.droits = {};
+    droits.forEach(function(droit) {
+        $scope.droits[droit.id] = droit;
     });
 
     $scope.pendingTests = 0;

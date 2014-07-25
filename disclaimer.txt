@@ -13,3 +13,18 @@ On ne gère pas :
 
 On gère :
 * Le forfait logement
+
+ASPA
+====
+
+On suppose :
+* Que le demandeur respecte les conditions de résidence et de régularité de séjour
+
+On ne gère pas :
+* Les cas particuliers pour les personnes de moins de 65 ans (handicap/incapacité de travail)
+* Les revenus mobiliers ou immobiliers dont le demandeur a fait donation au cours des 10 années précédant sa demande d'allocation
+* Les ressources exclues spéciales (résidence secondaire...)
+
+On gère :
+* 
+* 

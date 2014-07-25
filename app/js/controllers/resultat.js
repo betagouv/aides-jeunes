@@ -3,12 +3,12 @@
 angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, SimulationService, SituationService) {
     var situation = SituationService.restoreLocal();
     $scope.awaitingResults = true;
-    SimulationService.simulate().then(function(simulation) {
-        $scope.situationId = simulation.situationId;
-        $scope.droits = simulation.droits;
+    SimulationService.simulate().then(function(droits) {
+        $scope.droits = droits;
     }, function() {
         $scope.error = true;
     }).finally(function() {
+        $scope.situationId = situation._id;
         $scope.awaitingResults = false;
     });
 

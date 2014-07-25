@@ -22,10 +22,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             });
         },
 
-        saveRemote: function(situation) {
-            return $http.post('/api/situations', situation);
-        },
-
         newSituation: function() {
             delete $sessionStorage.situation;
             situation = null;

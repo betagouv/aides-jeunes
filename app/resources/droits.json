@@ -1,22 +1,22 @@
 [
   {
-    "id":"aspa",
-    "label":"Allocation de Solidarité aux Personnes Âgées",
-    "shortLabel":"ASPA",
-    "imgSrc":"logo_caf.png"
-  },
-  {
-    "id":"acs",
-    "label":"Aide pour une Complémentaire Santé",
-    "shortLabel":"ACS",
-    "imgSrc":"logo_caf.png"
-  },
-  {
     "id":"cmu_c",
     "hasMontant":false,
     "label":"Couverture Maladie Universelle Complémentaire",
     "shortLabel":"CMU-C",
     "imgSrc":"logo_cmu.png"
+  },
+  {
+    "id":"acs",
+    "label":"Aide pour une Complémentaire Santé",
+    "shortLabel":"ACS",
+    "imgSrc":"logo_cmu.png"
+  },
+  {
+    "id":"aspa",
+    "label":"Allocation de Solidarité aux Personnes Âgées",
+    "shortLabel":"ASPA",
+    "imgSrc":"logo_caf.png"
   },
   {
     "id":"apl",

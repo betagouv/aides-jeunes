@@ -10,7 +10,7 @@
         <br>Nous vous demanderons de préciser le montant de chaque type de revenu ou aide sélectionnés sur les 3 derniers mois dans l'écran suivant.
       </p>
 
-      <accordion close-others="false" class="ressources-selection">
+      <accordion close-others="false">
         <accordion-group ng-repeat="section in sections" is-open="section.open">
           <accordion-heading>
             {{ section.label }}
@@ -27,7 +27,7 @@
             </button>
             <span ng-if="selectedRessourcesMap[subsection.name]">
               Qui ?
-              <label class="checkbox-inline ressources-selection-individu" ng-repeat="individu in individus">
+              <label class="checkbox-inline" ng-repeat="individu in individus">
                 <input type="checkbox" ng-model="selectedRessourcesByIndividu[individu.name][subsection.name]"> {{ individu.name }}
               </label>
             </span>

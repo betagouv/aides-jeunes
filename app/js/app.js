@@ -163,7 +163,7 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack) {
         }
     });
 
-    $rootScope.$on('$stateChangeStart', function(event) {
+    $rootScope.$on('$stateChangeStart', function() {
         var top = $modalStack.getTop();
         if (top) {
             $modalStack.dismiss(top.key);

@@ -162,8 +162,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('envoi_demande', {
             url: '/envoi-demande/:situationId',
-            templateUrl: '/partials/envoi-demande-teaser.html',
-            controller: 'EnvoiDemandeCtrl'
+            templateUrl: '/partials/envoi-demande-teaser.html'
         });
 });
 

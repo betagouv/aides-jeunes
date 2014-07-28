@@ -4,22 +4,23 @@
     "hasMontant":false,
     "label":"Couverture Maladie Universelle Complémentaire",
     "shortLabel":"CMU-C",
+    "description": "La CMU-C est une protection complémentaire santé gratuite accordée aux personnes remplissant certaines conditions de résidence et de ressources.",
     "imgSrc":"logo_cmu.png",
     "links":[
       {
-        "label":"Démarches",
+        "label":"Démarche",
         "url":"http://www.cmu.fr/cmu-c-demarche.php",
         "type":"link"
       },
       {
-        "label":"Formulaire de choix de l'organisme pour le demandeur",
+        "label":"Formulaire de choix de l'organisme",
         "url":"http://www.cmu.fr/fichier-utilisateur/fichiers/FORMULAIRE_CHOIX_CMUC_Demandeur_S3712.pdf",
         "type":"pdf"
       },
       {
         "label":"Formulaire de demande",
         "url":"http://www.cmu.fr/fichier-utilisateur/fichiers/FORMULAIRE_CMUC_ACS_S3711e.pdf",
-        "type":"link"
+        "type":"pdf"
       }
     ]
   },
@@ -27,6 +28,7 @@
     "id":"acs",
     "label":"Aide pour une Complémentaire Santé",
     "shortLabel":"ACS",
+    "description": "L'aide pour l'acquisition d'une assurance complémentaire santé, dite ACS, est une aide financière pour payer une complémentaire santé (exemple : une mutuelle).",
     "imgSrc":"logo_cmu.png",
     "links":[
       {
@@ -45,30 +47,47 @@
     "id":"aspa",
     "label":"Allocation de Solidarité aux Personnes Âgées",
     "shortLabel":"ASPA",
-    "imgSrc":"logo_caf.png"
+    "description":"L'allocation de solidarité aux personnes âgées (Aspa) est une allocation destinée aux personnes âgées disposant de faibles revenus en vue de leur assurer un niveau minimum de ressources. Elle remplace le minimum vieillesse depuis 2006.",
+    "imgSrc":"logo_caf.png",
+    "links":[
+      {
+        "label":"Formulaire de demande auprès de la CNAV",
+        "url":"https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14957.do",
+        "type":"pdf"
+      },
+      {
+        "label":"Formulaire de demande auprès de la MSA",
+        "url":"https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14953.do",
+        "type":"pdf"
+      }
+    ]
   },
   {
     "id":"apl",
     "label":"Aide Personnalisée au Logement",
     "shortLabel":"APL",
+    "description":"L'aide personnalisée au logement (APL) est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.",
     "imgSrc":"logo_caf.png"
   },
   {
     "id":"als",
-    "label":"Allocation de Logement Social",
+    "label":"Allocation de Logement Sociale",
     "shortLabel":"ALS",
+    "description":"L'allocation de logement sociale (ALS) est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.",
     "imgSrc":"logo_caf.png"
   },
   {
     "id":"alf",
-    "label":"Allocation de Logement Familial",
+    "label":"Allocation de Logement Familiale",
     "shortLabel":"ALF",
+    "description":"L'allocation de logement familiale (ALF) est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.",
     "imgSrc":"logo_caf.png"
   },
   {
     "id":"af",
     "label":"Allocations Familiales",
     "shortLabel":"AF",
+    "description":"Les allocations familiales sont versées, sans condition de ressources, aux personnes ayant au moins 2 enfants de moins de 20 ans à charge. Le parent allocataire doit accomplir certaines démarches auprès de sa caisse d'allocations familiales (Caf) (ou de la Mutualité sociale agricole - MSA s'il relève du régime agricole). Le montant des prestations dépend du nombre d'enfants à charge et de leur âge. Les allocations sont versées tous les mois.",
     "imgSrc":"logo_caf.png"
   },
   {
@@ -87,6 +106,7 @@
     "id":"rsa",
     "label":"Revenu de Solidarité Active",
     "shortLabel":"RSA",
+    "description":"Le revenu de solidarité active (RSA) est destiné à assurer aux personnes sans ressource ou disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer. Le RSA est ouvert, sous certaines conditions, aux personnes âgées d’au moins 25 ans et aux personnes âgées de 18 à 24 ans si elles sont parents isolés ou justifient d’une certaine durée d’activité professionnelle. Ce dossier ne détaille pas les règles spécifiques prévues pour Mayotte.",
     "imgSrc":"logo_rsa.png"
   }
 ]

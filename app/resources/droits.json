@@ -4,13 +4,42 @@
     "hasMontant":false,
     "label":"Couverture Maladie Universelle Complémentaire",
     "shortLabel":"CMU-C",
-    "imgSrc":"logo_cmu.png"
+    "imgSrc":"logo_cmu.png",
+    "links":[
+      {
+        "label":"Démarches",
+        "url":"http://www.cmu.fr/cmu-c-demarche.php",
+        "type":"link"
+      },
+      {
+        "label":"Formulaire de choix de l'organisme pour le demandeur",
+        "url":"http://www.cmu.fr/fichier-utilisateur/fichiers/FORMULAIRE_CHOIX_CMUC_Demandeur_S3712.pdf",
+        "type":"pdf"
+      },
+      {
+        "label":"Formulaire de demande",
+        "url":"http://www.cmu.fr/fichier-utilisateur/fichiers/FORMULAIRE_CMUC_ACS_S3711e.pdf",
+        "type":"link"
+      }
+    ]
   },
   {
     "id":"acs",
     "label":"Aide pour une Complémentaire Santé",
     "shortLabel":"ACS",
-    "imgSrc":"logo_cmu.png"
+    "imgSrc":"logo_cmu.png",
+    "links":[
+      {
+        "label":"Démarches",
+        "url":"http://www.cmu.fr/acs-demarche.php",
+        "type":"link"
+      },
+      {
+        "label": "Formulaire de demande",
+        "url":"http://www.cmu.fr/fichier-utilisateur/fichiers/FORMULAIRE_ACS_S3715a.pdf",
+        "type":"pdf"
+      }
+    ]
   },
   {
     "id":"aspa",

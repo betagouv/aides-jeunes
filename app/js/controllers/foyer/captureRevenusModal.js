@@ -42,16 +42,31 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
     };
 
     $scope.submit = function() {
+        var closeModal = true;
         if (!$scope.ressourcesSelected) {
             $scope.ressourcesSelected = true;
             $scope.cleanSelectedRessources();
             $scope.zerofillRevenus();
             $scope.createOrderedSelectedRessources();
-        } else {
+            closeModal = !$scope.hasRessources();
+        }
+
+        if (closeModal) {
             situation.revenusCaptured = true;
             $rootScope.$broadcast('ressourcesCaptured');
             $modalInstance.close();
         }
+    };
+
+    $scope.hasRessources = function() {
+        var result = false;
+        _.forEach($scope.selectedRessourcesByIndividu, function(values) {
+            if (!_.isEmpty(values)) {
+                result = true;
+            }
+        });
+
+        return result;
     };
 
     $scope.zerofillRevenus = function() {

@@ -48,6 +48,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 'logement@foyer': {
                     templateUrl: '/partials/foyer/logement.html',
                     controller: 'FoyerLogementCtrl'
+                },
+                'patrimoine@foyer': {
+                    templateUrl: '/partials/foyer/recap-patrimoine.html'
                 }
             }
         })
@@ -111,8 +114,22 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     });
             }]
         })
+        .state('foyer.situations_specifiques', {
+            url: '/situations-specifiques',
+            onEnter: ['$state', '$modal', function($state, $modal) {
+                $modal.open({
+                    templateUrl: '/partials/foyer/situations-specifiques-modal.html',
+                    controller: 'FoyerSituationsSpecifiquesModalCtrl',
+                    size: 'lg',
+                    backdrop: 'static',
+                    keyboard: false
+                }).result.then(function() {
+                    return $state.go('foyer');
+                });
+            }]
+        })
         .state('foyer.capture_revenus', {
-            url: '/capture-revenus',
+            url: '/ressources',
             onEnter: ['$state', '$modal', function($state, $modal) {
                 $modal.open({
                     templateUrl: '/partials/foyer/capture-revenus-modal.html',
@@ -125,14 +142,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 });
             }]
         })
-        .state('foyer.situations_specifiques', {
-            url: '/situations-specifiques',
-            templateUrl: '/partials/foyer/situations-specifiques-modal.html',
+        .state('foyer.capture_patrimoine', {
+            url: '/patrimoine',
             onEnter: ['$state', '$modal', function($state, $modal) {
                 $modal.open({
-                    templateUrl: '/partials/foyer/situations-specifiques-modal.html',
-                    controller: 'FoyerSituationsSpecifiquesModalCtrl',
-                    size: 'lg',
+                    templateUrl: '/partials/foyer/capture-patrimoine-modal.html',
+                    controller: 'FoyerCapturePatrimoineModalCtrl',
                     backdrop: 'static',
                     keyboard: false
                 }).result.then(function() {

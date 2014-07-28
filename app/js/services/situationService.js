@@ -118,6 +118,48 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             }
         ],
 
+        patrimoineMobilierOptions: [
+            {
+                value: 0,
+                label: 'Moins de 1000 euros'
+            },
+            {
+                value: 1,
+                label: 'Entre 1000 et 5000 euros'
+            },
+            {
+                value: 2,
+                label: 'Entre 5000 et 20000 euros'
+            },
+            {
+                value: 3,
+                label: 'Entre 20000 et 100000 euros'
+            },
+            {
+                value: 4,
+                label: 'Plus de 100000 euros'
+            },
+        ],
+
+        patrimoineImmobilierOptions: [
+            {
+                value: 0,
+                label: 'Moins de 10000 euros'
+            },
+            {
+                value: 1,
+                label: 'Entre 10000 et 50000 euros'
+            },
+            {
+                value: 2,
+                label: 'Entre 50000 et 200000 euros'
+            },
+            {
+                value: 3,
+                label: 'Plus de 200000 euros'
+            },
+        ],
+
         revenusSections: [
             {
                 name: 'revenusActivite',

@@ -5,6 +5,8 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
 
     $scope.initRessources = function() {
         $scope.tempRessources = {};
+        $scope.hasRessources = false;
+        $scope.globalAmount = 0;
         $scope.fillIndividuRessources($scope.situation.demandeur, 'Vous');
         if ($scope.situation.conjoint) {
             $scope.fillIndividuRessources($scope.situation.conjoint, 'Votre conjoint');
@@ -12,9 +14,13 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
         $scope.situation.enfants.map($scope.fillIndividuRessources);
         $scope.situation.personnesACharge.map($scope.fillIndividuRessources);
 
+        if ($scope.globalAmount > 0) {
+            $scope.hasRessources = true;
+        }
+
         $scope.ressources = [];
-        _.forEach(SituationService.revenusSections, function(section) {
-            _.forEach(section.subsections, function(subsection) {
+        SituationService.revenusSections.forEach(function(section) {
+            section.subsections.forEach(function(subsection) {
                 if ($scope.tempRessources[subsection.name]) {
                     $scope.ressources.push({
                         type: subsection.label,
@@ -46,6 +52,7 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
             });
             _.forEach(ressources, function(amount, i) {
                 $scope.tempRessources[subsectionName].total[i] += amount;
+                $scope.globalAmount += amount;
             });
         });
     };

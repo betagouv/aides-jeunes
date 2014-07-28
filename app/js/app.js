@@ -152,13 +152,21 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+
     $rootScope.$on('$locationChangeStart', function(e, location) {
         if (0 === location.indexOf($window.location.origin + '/api')) {
             e.preventDefault();
             $window.location.href = location;
+        }
+    });
+
+    $rootScope.$on('$stateChangeStart', function(event) {
+        var top = $modalStack.getTop();
+        if (top) {
+            $modalStack.dismiss(top.key);
         }
     });
 });

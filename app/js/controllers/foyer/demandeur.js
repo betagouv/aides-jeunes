@@ -5,12 +5,6 @@ angular.module('ddsApp').controller('FoyerDemandeurCtrl', function($scope, $root
     $scope.relationTypeLabels = SituationService.relationTypeLabels;
     $scope.nationaliteLabels = SituationService.nationaliteLabels;
 
-    if (!$scope.situation.demandeur) {
-        $timeout(function() {
-            $state.go('foyer.demandeur_modal');
-        });
-    }
-
     $rootScope.$on('individu.demandeur', function(e, demandeur) {
         $scope.situation.demandeur = demandeur;
     });

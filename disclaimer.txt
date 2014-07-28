@@ -27,8 +27,8 @@ On ne gère pas :
 * Les ressources spéciales (du type valeur de la résidence secondaire...)
 * Le cas des couples dont l'un touche l'allocation supplémentaire
 
-APL
-===
+AL (APL, ALF, ALS)
+==================
 
 On suppose :
 * Que le logement répond aux caractéristiques de décence et de conditions minimales d'occupation
@@ -36,5 +36,7 @@ On suppose :
 * Que le demandeur réside en france de manière régulière
 
 On ne gère pas :
-* L'ascendance/descendance pour le propriétaire du logement : on ne gère que partiellement avec une question simple
 * Les enfants mineurs émancipés
+* ALF : Les cas particuliers pour les personnes à charge entre 60 et 65 ans
+* ALF : Les cas particuliers pour les personnes à charge invalides/infirmes
+* ALF : Le cas particlier de la femme enceinte

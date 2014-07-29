@@ -40,3 +40,5 @@ On ne gère pas :
 * ALF : Les cas particuliers pour les personnes à charge entre 60 et 65 ans
 * ALF : Les cas particuliers pour les personnes à charge invalides/infirmes
 * ALF : Le cas particlier de la femme enceinte
+* ALS : Les résidents en foyer d'hébergement
+* ALS : Caractéristiques de décence et de conditions minimales d'occupation

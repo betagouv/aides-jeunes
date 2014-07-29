@@ -22,8 +22,8 @@ html {
   font-size: 12px;
 }
 
-.panel.panel-default > *:last-child {
-  margin: 0;
+.panel-body > *:last-child {
+  margin-bottom: 0;
 }
 
 body.change-state-progress, body.change-state-progress * {

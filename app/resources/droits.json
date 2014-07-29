@@ -73,8 +73,30 @@
     "id":"als",
     "label":"Allocation de Logement Sociale",
     "shortLabel":"ALS",
-    "description":"L'allocation de logement sociale (ALS) est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.",
-    "imgSrc":"logo_caf.png"
+    "description":"L'ALS est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.",
+    "imgSrc":"logo_caf.png",
+    "links":[
+      {
+        "label":"Plus d'informations",
+        "url":"https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0",
+        "type":"link"
+      },
+      {
+        "label":"Formulaire de demande en ligne",
+        "url":"https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/accederaunedemandeenligne/demanderlaideaulogement/",
+        "type":"link"
+      },
+      {
+        "label":"Formulaire de demande (métropole)",
+        "url":"https://wwwd.caf.fr/pdfj/al0.pdf",
+        "type":"pdf"
+      },
+      {
+        "label":"Formulaire de déclaration de situation",
+        "url":"http://wwwd.caf.fr/pdfj/af.pdf",
+        "type":"pdf"
+      }
+    ]
   },
   {
     "id":"alf",
@@ -100,13 +122,38 @@
     "id":"asf",
     "label":"Allocation de Soutien Familial",
     "shortLabel":"ASF",
-    "imgSrc":"logo_caf.png"
+    "description":"L'ASF est versée par la CAF ou la MSA au parent qui élève seul son enfant ou à la personne qui a recueilli un enfant, qu'elle vive seule ou en couple.",
+    "imgSrc":"logo_caf.png",
+    "links":[
+      {
+        "label":"Formulaire de demande",
+        "url":"https://wwwd.caf.fr/pdfj/asf2.pdf",
+        "type":"pdf"
+      },
+      {
+        "label":"Formulaire de déclaration de situation",
+        "url":"https://wwwd.caf.fr/pdfj/af.pdf",
+        "type":"pdf"
+      }
+    ]
   },
   {
     "id":"rsa",
     "label":"Revenu de Solidarité Active",
     "shortLabel":"RSA",
     "description":"Le RSA est destiné à assurer aux personnes disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer. Le RSA est ouvert, sous certaines conditions, aux personnes âgées d’au moins 25 ans et aux personnes âgées de 18 à 24 ans si elles sont parents isolés ou justifient d’une certaine durée d’activité professionnelle.",
-    "imgSrc":"logo_rsa.png"
+    "imgSrc":"logo_rsa.png",
+    "links":[
+      {
+        "label":"Plus d'informations",
+        "url":"http://vosdroits.service-public.fr/particuliers/N19775.xhtml",
+        "type":"link"
+      },
+      {
+        "label":"Formulaire de demande",
+        "url":"https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13880.do",
+        "type":"pdf"
+      }
+    ]
   }
 ]

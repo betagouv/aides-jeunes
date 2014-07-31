@@ -32,19 +32,13 @@ describe('Controller: FoyerCaptureRevenusModalCtrl', function() {
     });
 
     it('Should init an array of the last 3 months', function() {
-        function isoDate(minusMonths) {
-            var date = new Date();
-            var result = date.setMonth(date.getMonth() - minusMonths);
-            var month = date.getMonth() + 1;
-            var prefix = month < 10 ? '0' : '';
-            month = prefix + month;
-            result = '' + date.getFullYear() + '-' + month;
-
-            return result;
-        }
-
         expect(scope.months.length).toBe(3);
-        expect(scope.months[0].id).toBe(isoDate(3));
-        expect(scope.months[2].id).toBe(isoDate(1));
+        var date = new Date();
+        var month = '' + (date.getMonth() - 2);
+        if (month.length === 1) {
+            month = '0' + month;
+        }
+        var expectedDate = '' + date.getFullYear() + '-' + month;
+        expect(scope.months[0].id).toBe(expectedDate);
     });
 });

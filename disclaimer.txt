@@ -42,3 +42,10 @@ On ne gère pas :
 * ALF : Le cas particlier de la femme enceinte
 * ALS : Les résidents en foyer d'hébergement
 * ALS : Caractéristiques de décence et de conditions minimales d'occupation
+
+CF
+==
+
+On ne gère pas :
+* Le montant majoré
+* L'outre-mer

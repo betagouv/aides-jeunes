@@ -1,6 +1,4 @@
 var express = require('express');
-var path = require('path');
-var fs = require('fs');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var errorHandler = require('errorhandler');
@@ -11,19 +9,13 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var openfisca = require('./lib/simulation/openfisca');
 
 var config = require('./lib/config/config');
-mongoose.connect(config.mongo.uri, config.mongo.options);
 
 // Ping OpenFisca
 openfisca.ping();
 setInterval(openfisca.ping, 30*1000);
 
-// Bootstrap models
-var modelsPath = path.join(__dirname, 'lib/models');
-fs.readdirSync(modelsPath).forEach(function (file) {
-    if (/(.*)\.(js$|coffee$)/.test(file)) {
-        require(modelsPath + '/' + file);
-    }
-});
+// Setup mongoose
+require('./lib/config/mongoose')(mongoose, config);
 
 // Setup Passport
 require('./lib/config/passport')(passport);
@@ -40,6 +32,7 @@ if ('production' === env) {
     app.use(morgan());
 }
 
+// Setup app
 require('./lib/config/api')(app, passport, config);
 require('./lib/config/client')(app, config);
 

@@ -156,9 +156,18 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             }]
         })
         .state('resultat', {
-            url: '/resultat',
+            url: '/resultat/:situationId',
             templateUrl: '/partials/resultat.html',
-            controller: 'ResultatCtrl'
+            controller: 'ResultatCtrl',
+            resolve: {
+                situation: ['$stateParams', 'SituationService', function($stateParams, SituationService) {
+                    if ('current' === $stateParams.situationId) {
+                        return SituationService.restoreLocal();
+                    }
+
+                    return SituationService.find($stateParams.situationId);
+                }]
+            }
         })
         .state('envoi_demande', {
             url: '/envoi-demande/:situationId',

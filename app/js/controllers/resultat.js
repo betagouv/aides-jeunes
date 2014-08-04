@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $http, SimulationService, SituationService) {
-    var situation = SituationService.restoreLocal();
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $http, SimulationService, SituationService, situation) {
     $scope.awaitingResults = true;
-    SimulationService.simulate().then(function(droits) {
+    SimulationService.simulate(situation).then(function(droits) {
         $scope.droits = droits;
     }, function() {
         $scope.error = true;

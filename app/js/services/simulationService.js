@@ -2,27 +2,33 @@
 
 angular.module('ddsApp').factory('SimulationService', function($http, $q, SituationService) {
     return {
-        simulate: function() {
-            var situation = SituationService.restoreLocal();
+        simulate: function(situation) {
             var deferred = $q.defer();
-            var apiSituation = this.createApiCompatibleSituation(situation);
             var that = this;
 
             $http.get('/resources/droits.json').then(function(res) {
-                $http.post('/api/situations', apiSituation).then(function(result) {
-                    situation._id = result.data._id;
-                    $http.get('/api/situations/' + result.data._id + '/simulation').then(function(droits) {
+                if (situation._id) {
+                    $http.get('/api/situations/' + situation._id + '/simulation').then(function(droits) {
                         deferred.resolve(that.createDroitsFromApiResult(droits.data, res.data));
                     }, function() {
                         deferred.reject();
                     });
-                }, function() {
-                    deferred.reject();
-                });
+                } else {
+                    var apiSituation = this.createApiCompatibleSituation(situation);
+                    $http.post('/api/situations', apiSituation).then(function(result) {
+                        situation._id = result.data._id;
+                        $http.get('/api/situations/' + result.data._id + '/simulation').then(function(droits) {
+                            deferred.resolve(that.createDroitsFromApiResult(droits.data, res.data));
+                        }, function() {
+                            deferred.reject();
+                        });
+                    }, function() {
+                        deferred.reject();
+                    });
+                }
             }, function() {
                 deferred.reject();
             });
-           
 
             return deferred.promise;
         },

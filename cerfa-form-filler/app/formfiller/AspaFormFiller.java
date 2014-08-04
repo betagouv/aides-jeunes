@@ -8,6 +8,7 @@ import java.util.Map;
 import models.Situation;
 import models.Situation.Individu;
 import models.Situation.IndividuRole;
+import models.Situation.Logement;
 import models.Situation.Nationalite;
 import models.Situation.StatutMarital;
 
@@ -52,6 +53,7 @@ public class AspaFormFiller extends FormFiller {
                 fillConjoint(individu);
             }
         }
+        fillLogement(situation.logement);
         fillMonthsLabels();
         fillCurrentDate();
     }
@@ -64,9 +66,6 @@ public class AspaFormFiller extends FormFiller {
         if (Nationalite.FRANCAISE == demandeur.nationalite) {
             appendText("française", 390, 635);
         }
-        appendText(demandeur.address, 100, 565);
-        appendNumber(demandeur.postalCode, 91, 543);
-        appendText(demandeur.city, 210, 545);
         appendText("FRANCE", 470, 545);
         appendNumber(demandeur.numeroSecu.substring(0, 13), 155, 523);
         appendNumber(demandeur.numeroSecu.substring(13, 15), 323, 523);
@@ -86,10 +85,16 @@ public class AspaFormFiller extends FormFiller {
         appendNumber(conjoint.numeroSecu.substring(13, 15), 318, 275);
     }
 
+    private void fillLogement(Logement logement) {
+        appendText(logement.adresse, 100, 565);
+        appendNumber(logement.codePostal, 91, 543);
+        appendText(logement.ville, 210, 545);
+    }
+
     private StatutMarital statutMarital() {
         for (Individu individu : situation.individus) {
             if (IndividuRole.CONJOINT == individu.role) {
-                return individu.statutMarital;
+                return individu.statusMarital;
             }
         }
 
@@ -114,9 +119,8 @@ public class AspaFormFiller extends FormFiller {
 
     private void fillCurrentDate() {
         currentPage = 7;
-        LocalDate now = LocalDate.now();
-        String formattedDate = now.toString("ddMMyyyy");
-        appendNumber(formattedDate, 198, 141);
+        String currentDate = LocalDate.now().toString("ddMMyyyy");
+        appendNumber(currentDate, 198, 141);
     }
 
     private void appendText(String text, float x, float y, float fontSize) {

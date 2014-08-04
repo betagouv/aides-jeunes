@@ -17,7 +17,8 @@ On gère :
 
 Champs non remplis cerfa :
 * Numéro d'allocataire CAF (demandeur et conjoint)
-* Organisme auqual le demandeur a élu domicile
+* Adresse, commune, numéro de téléphone
+* Organisme auquel le demandeur a élu domicile
 * Date de situation familiale ("depuis le")
 * Résidence alternée (enfants)
 * Numéro de sécurité sociale (pour tous les individus)

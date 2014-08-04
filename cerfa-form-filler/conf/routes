@@ -2,6 +2,6 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /cmu                           controllers.Application.cmu()
-GET     /aspa                          controllers.Application.aspa()
-OPTIONS  /*anyroute                    controllers.Application.options(anyroute)
+POST     /cmu                           controllers.Application.cmu()
+POST     /aspa                          controllers.Application.aspa()
+OPTIONS  /*anyroute                     controllers.Application.options(anyroute)

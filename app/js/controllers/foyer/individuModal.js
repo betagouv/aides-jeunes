@@ -2,7 +2,7 @@
 
 angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $modalInstance, SituationService, options) {
     $scope.modalTitle = options.modalTitle;
-    $scope.nationalite = 'francaise';
+    $scope.nationalite = 'fr';
     $scope.askFirstName = !!options.askFirstName;
     $scope.cancelable = !!options.cancelable;
     $scope.relationTypes = SituationService.relationTypeLabels;

@@ -34,6 +34,8 @@ angular.module('ddsApp').factory('SimulationService', function($http, $q, Situat
                 individus.push(situation.conjoint);
                 situation.conjoint.role = 'conjoint';
                 situation.demandeur.statusMarital = situation.conjoint.relationType;
+            } else {
+                situation.demandeur.statusMarital = 'celibat';
             }
 
             situation.enfants.forEach(function(enfant) {

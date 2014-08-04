@@ -15,9 +15,17 @@
         <img class="media-object" ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
       </a>
       <div class="list-group pull-right">
-        <a href="{{ link.url }}" class="list-group-item" ng-repeat="link in droit.description.links" target="_blank">
+        <a
+          href="{{ link.url }}"
+          class="list-group-item"
+          ng-repeat="link in droit.description.links"
+          target="_blank">
           <i class="fa" ng-class="{'fa-external-link': link.type === 'link', 'fa-file-pdf-o': link.type === 'pdf'}"></i>
           {{ link.label }}
+        </a>
+        <a href="http://localhost:9001/{{ cerfa.id }}" target="_blank" class="list-group-item list-group-item-success" ng-repeat="cerfa in droit.description.cerfa">
+          <i class="fa fa-file-pdf-o"></i>
+          {{ cerfa.label }}
         </a>
       </div>
       <div class="media-body">

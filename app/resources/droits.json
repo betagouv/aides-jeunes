@@ -22,6 +22,12 @@
         "url":"http://www.cmu.fr/fichier-utilisateur/fichiers/FORMULAIRE_CMUC_ACS_S3711e.pdf",
         "type":"pdf"
       }
+    ],
+    "cerfa": [
+      {
+        "id":"cmu",
+        "label":"Formulaire de demande pré-rempli"
+      }
     ]
   },
   {
@@ -59,6 +65,12 @@
         "label":"Formulaire de demande auprès de la MSA",
         "url":"https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14953.do",
         "type":"pdf"
+      }
+    ],
+    "cerfa": [
+      {
+        "id":"aspa",
+        "label":"Formulaire de demande pré-rempli"
       }
     ]
   },

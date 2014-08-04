@@ -2,8 +2,6 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /                           controllers.Application.index()
-
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /cmu                           controllers.Application.cmu()
+GET     /aspa                          controllers.Application.aspa()
+OPTIONS  /*anyroute                    controllers.Application.options(anyroute)

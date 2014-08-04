@@ -15,6 +15,16 @@ On ne gère pas :
 On gère :
 * Le forfait logement
 
+Champs non remplis cerfa :
+* Numéro d'allocataire CAF (demandeur et conjoint)
+* Organisme auqual le demandeur a élu domicile
+* Date de situation familiale ("depuis le")
+* Résidence alternée (enfants)
+* Numéro de sécurité sociale (pour tous les individus)
+* Situations particulières RSA
+* Situations pour lesquelles il est inutile de remplir les ressources perçues
+* Toutes les ressources
+
 ASPA
 ====
 
@@ -26,6 +36,15 @@ On ne gère pas :
 * Les revenus mobiliers ou immobiliers dont le demandeur a fait donation au cours des 10 années précédant sa demande d'allocation
 * Les ressources spéciales (du type valeur de la résidence secondaire...)
 * Le cas des couples dont l'un touche l'allocation supplémentaire
+
+Champs non remplis cerfa :
+* Civilité
+* Nom d'épouse (demandeur et conjoint)
+* Lieu de naissance (demandeur et conjoint)
+* Date de situation familiale ("depuis le")
+* Divorcé, séparé, veuf
+* Revenus
+* Biens mobiliers / immobiliers à cause de la séparation des biens personnels/communs
 
 AL (APL, ALF, ALS)
 ==================

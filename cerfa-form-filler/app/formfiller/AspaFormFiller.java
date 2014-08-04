@@ -60,45 +60,39 @@ public class AspaFormFiller extends FormFiller {
 
     private void fillDemandeur(Individu demandeur) {
         currentPage = 4;
-        appendText(demandeur.lastName, 140, 715);
-        appendText(demandeur.firstName, 225, 655);
+        appendOptionalText(demandeur.lastName, 140, 715);
+        appendOptionalText(demandeur.firstName, 225, 655);
         appendDate(demandeur.dateDeNaissance, 140, 634);
         if (Nationalite.FRANCAISE == demandeur.nationalite) {
             appendText("française", 390, 635);
         }
         appendText("FRANCE", 470, 545);
-        appendNumber(demandeur.numeroSecu.substring(0, 13), 155, 523);
-        appendNumber(demandeur.numeroSecu.substring(13, 15), 323, 523);
-        Point statutMaritalCheckbox = statutMaritalCheckboxes.get(statutMarital());
+        if (null != demandeur.numeroSecu) {
+            appendNumber(demandeur.numeroSecu.substring(0, 13), 155, 523);
+            appendNumber(demandeur.numeroSecu.substring(13, 15), 323, 523);
+        }
+        Point statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
         checkbox(statutMaritalCheckbox.x, statutMaritalCheckbox.y);
     }
 
     private void fillConjoint(Individu conjoint) {
         currentPage = 4;
-        appendText(conjoint.lastName, 140, 367);
-        appendText(conjoint.firstName, 220, 347);
+        appendOptionalText(conjoint.lastName, 140, 367);
+        appendOptionalText(conjoint.firstName, 220, 347);
         appendDate(conjoint.dateDeNaissance, 129, 325);
         if (Nationalite.FRANCAISE == conjoint.nationalite) {
             appendText("française", 380, 327);
         }
-        appendNumber(conjoint.numeroSecu.substring(0, 13), 150, 275);
-        appendNumber(conjoint.numeroSecu.substring(13, 15), 318, 275);
+        if (null != conjoint.numeroSecu) {
+            appendNumber(conjoint.numeroSecu.substring(0, 13), 150, 275);
+            appendNumber(conjoint.numeroSecu.substring(13, 15), 318, 275);
+        }
     }
 
     private void fillLogement(Logement logement) {
-        appendText(logement.adresse, 100, 565);
+        appendOptionalText(logement.adresse, 100, 565);
         appendNumber(logement.codePostal, 91, 543);
-        appendText(logement.ville, 210, 545);
-    }
-
-    private StatutMarital statutMarital() {
-        for (Individu individu : situation.individus) {
-            if (IndividuRole.CONJOINT == individu.role) {
-                return individu.statusMarital;
-            }
-        }
-
-        return StatutMarital.SEUL;
+        appendOptionalText(logement.ville, 210, 545);
     }
 
     private void fillMonthsLabels() {
@@ -143,9 +137,21 @@ public class AspaFormFiller extends FormFiller {
         appendText(text, x, y, 12);
     }
 
+    private void appendOptionalText(String text, float x, float y) {
+        if (null != text) {
+            appendText(text, x, y);
+        }
+    }
+
     private void appendNumber(String number, float x, float y) {
         for (int i = 0; i < number.length(); i++) {
             appendText(number.substring(i, i+1), x + i*12, y);
+        }
+    }
+
+    private void appendOptionalNumber(String number, float x, float y) {
+        if (null != number) {
+            appendNumber(number, x, y);
         }
     }
 

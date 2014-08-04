@@ -12,6 +12,7 @@ import models.Situation.StatutMarital;
 import org.apache.pdfbox.exceptions.COSVisitorException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 
+import play.Logger;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -38,8 +39,13 @@ public class Application extends Controller {
         JSON_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
+    public static Result options(String options) {
+        return ok();
+    }
+
     @BodyParser.Of(BodyParser.Json.class)
     public static Result cmu() throws COSVisitorException, IOException {
+        Logger.info("Génération formulaire CMU");
         PDDocument document = PDDocument.load("resources/cmuc.pdf");
         Individu demandeur = createDummyIndividu();
         demandeur.role = IndividuRole.DEMANDEUR;
@@ -64,7 +70,9 @@ public class Application extends Controller {
         return result;
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result aspa() throws IOException, COSVisitorException {
+        Logger.info("Génération formulaire ASPA");
         PDDocument document = PDDocument.load("resources/aspa.pdf");
         Individu demandeur = createDummyIndividu();
         demandeur.role = IndividuRole.DEMANDEUR;
@@ -103,10 +111,6 @@ public class Application extends Controller {
         individu.phoneNumber = "0685644221";
 
         return individu;
-    }
-
-    public static Result options(String options) {
-        return ok();
     }
 
     protected static <T> T getRequest(Class<T> requestClass) {

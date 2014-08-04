@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('SimulationService', function($http, $q, SituationService) {
+angular.module('ddsApp').factory('SimulationService', function($http, $q) {
     return {
         simulate: function(situation) {
             var deferred = $q.defer();
@@ -14,7 +14,7 @@ angular.module('ddsApp').factory('SimulationService', function($http, $q, Situat
                         deferred.reject();
                     });
                 } else {
-                    var apiSituation = this.createApiCompatibleSituation(situation);
+                    var apiSituation = that.createApiCompatibleSituation(situation);
                     $http.post('/api/situations', apiSituation).then(function(result) {
                         situation._id = result.data._id;
                         $http.get('/api/situations/' + result.data._id + '/simulation').then(function(droits) {

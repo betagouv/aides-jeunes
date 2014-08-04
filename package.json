@@ -18,6 +18,7 @@
     "morgan": "~1.0.0",
     "passport": "^0.2.0",
     "passport-local": "^1.0.0",
+    "request": "^2.39.0",
     "requirejs": "^2.1.14",
     "static-favicon": "~1.0.1",
     "superagent": "^0.18.0",

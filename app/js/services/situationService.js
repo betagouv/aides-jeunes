@@ -103,6 +103,62 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             });
         },
 
+        save: function(situation) {
+            var apiSituation = this.createApiCompatibleSituation(situation);
+            return $http.post('/api/situations', apiSituation).then(function(result) {
+                return result.data;
+            });
+        },
+
+        createApiCompatibleSituation: function(situation) {
+            var individus = [situation.demandeur];
+            situation.demandeur.role = 'demandeur';
+            if (situation.conjoint) {
+                individus.push(situation.conjoint);
+                situation.conjoint.role = 'conjoint';
+                situation.demandeur.statusMarital = situation.conjoint.relationType;
+            } else {
+                situation.demandeur.statusMarital = 'celibat';
+            }
+
+            situation.enfants.forEach(function(enfant) {
+                enfant.role = 'enfant';
+            });
+
+            situation.personnesACharge.forEach(function(personne) {
+                personne.role = 'personneACharge';
+            });
+
+            individus = individus.concat(situation.enfants).concat(situation.personnesACharge);
+            individus = _.map(individus, this.createApiCompatibleIndividu);
+
+            var result = {
+                individus: individus,
+                logement: situation.logement
+            };
+
+            return result;
+        },
+
+        createApiCompatibleIndividu: function(individu) {
+            individu = _.cloneDeep(individu);
+            individu.dateDeNaissance = moment(individu.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            var ressources = individu.ressources;
+            individu.ressources = [];
+
+            _.forEach(ressources, function(months, type) {
+                _.forEach(months, function(montant, month) {
+                    individu.ressources.push({
+                        montant: montant,
+                        periode: month,
+                        type: type
+                    });
+                });
+            });
+
+            return individu;
+        },
+
         logementTypes: [
             {
                 label: 'locataire',

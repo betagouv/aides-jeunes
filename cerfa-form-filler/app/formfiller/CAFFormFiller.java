@@ -46,7 +46,7 @@ public class CAFFormFiller extends FormFiller {
 
     @Override
     protected float getNumberSpacing() {
-        return 15.5f;
+        return 15.4f;
     }
 
     @Override
@@ -85,6 +85,12 @@ public class CAFFormFiller extends FormFiller {
         if (demandeur.demandeurEmploi) {
             checkbox(221, 494);
         }
+        if (demandeur.etudiant) {
+            checkbox(221, 305);
+        }
+        if (demandeur.retraite) {
+            checkbox(221, 450);
+        }
     }
 
     private void fillConjoint(Individu conjoint) {
@@ -103,6 +109,12 @@ public class CAFFormFiller extends FormFiller {
         if (conjoint.demandeurEmploi) {
             checkbox(405, 494);
         }
+        if (conjoint.etudiant) {
+            checkbox(405, 305);
+        }
+        if (conjoint.retraite) {
+            checkbox(405, 450);
+        }
     }
 
     private void fillLogement() {
@@ -120,10 +132,9 @@ public class CAFFormFiller extends FormFiller {
     }
 
     private void fillPersonneACharge(Individu individu) {
-        individu.lastName = "Kleinpeter";
-        individu.firstName = "Arnaud";
-        float verticalCoordinateTop = 398 + currentPersonneACharge * 28.5f;
-        float verticalCoordinateBottom = 384 + currentPersonneACharge * 28.5f;
+        individu.lastName = "kleinpeter";
+        float verticalCoordinateTop = 454.0f - currentPersonneACharge * 28.1f;
+        float verticalCoordinateBottom = 440.0f - currentPersonneACharge * 28.1f;
         appendOptionalText(individu.lastName, 37, verticalCoordinateTop);
         appendOptionalText(individu.firstName, 37, verticalCoordinateBottom);
         appendDate(individu.dateDeNaissance, 144, verticalCoordinateTop + 1);

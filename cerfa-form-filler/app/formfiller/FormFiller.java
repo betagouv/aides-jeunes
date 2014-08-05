@@ -19,7 +19,7 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDTextbox;
 
 public abstract class FormFiller {
 
-    private static final PDFont FONT = PDType1Font.TIMES_ROMAN;
+    protected static final PDFont FONT = PDType1Font.TIMES_ROMAN;
 
     protected final PDDocument document;
     protected final PDAcroForm form;
@@ -77,7 +77,7 @@ public abstract class FormFiller {
         PDPage page = (PDPage) document.getDocumentCatalog().getAllPages().get(currentPage);
         PDPageContentStream contentStream;
         try {
-            contentStream = new PDPageContentStream(document, page, true, true);
+            contentStream = new PDPageContentStream(document, page, true, true, true);
             contentStream.beginText();
             contentStream.setFont(FONT, fontSize);
             contentStream.moveTextPositionByAmount(x, y);

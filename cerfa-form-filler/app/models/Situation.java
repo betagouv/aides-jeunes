@@ -21,13 +21,14 @@ public class Situation {
         public String lastName;
         public String numeroSecu;
         public String dateDeNaissance;
-        public Nationalite nationalite = Nationalite.FRANCAISE;
+        public Nationalite nationalite;
         public IndividuRole role;
         public String email;
         public String phoneNumber;
         public StatutMarital statusMarital;
         public boolean demandeurEmploi;
         public boolean etudiant;
+        public boolean retraite;
     }
 
     public static class Logement {

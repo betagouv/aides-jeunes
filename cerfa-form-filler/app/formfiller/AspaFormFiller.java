@@ -44,6 +44,7 @@ public class AspaFormFiller extends FormFiller {
                 fillConjoint(individu);
             }
         }
+
         fillLogement(situation.logement);
         fillMonthsLabels();
         fillCurrentDate();

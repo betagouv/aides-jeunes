@@ -1,6 +1,6 @@
 'use strict';
 
-var ddsApp = angular.module('acceptanceTests', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngStorage', 'ngSanitize']);
+var ddsApp = angular.module('acceptanceTests', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngStorage', 'ngSanitize', 'ddsCommon']);
 
 ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
     moment.lang('fr');
@@ -16,11 +16,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             resolve: {
                 acceptanceTests: ['$http', function($http) {
                     return $http.get('/api/acceptance-tests').then(function(result) {
-                        return result.data;
-                    });
-                }],
-                droits: ['$http', function($http) {
-                    return $http.get('/resources/droits.json').then(function(result) {
                         return result.data;
                     });
                 }]

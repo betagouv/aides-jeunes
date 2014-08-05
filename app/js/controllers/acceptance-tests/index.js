@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q, $window, $state, acceptanceTests, droits) {
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q, $window, $state, droitsDescription, acceptanceTests) {
     $scope.tests = acceptanceTests;
     $scope.droits = {};
-    droits.forEach(function(droit) {
+    droitsDescription.forEach(function(droit) {
         $scope.droits[droit.id] = droit;
     });
 

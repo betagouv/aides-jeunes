@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http, $state, $stateParams, droitsObtenus, test) {
+angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http, $state, $stateParams, droitsDescription, droitsObtenus, test) {
     var editMode = !!test;
     if (editMode) {
         $scope.pageTitle = 'Modification du cas de test "' + test.name + '"';
@@ -10,22 +10,20 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
         $scope.submitLabel = 'Créer ce cas de test';
     }
 
-    $http.get('/resources/droits.json').then(function(result) {
-        $scope.droitsChoices = result.data;
-        if (editMode) {
-            $scope.test = test;
-            $scope.test.droitsAttendus.forEach(function(droit) {
-                droit.ref = _.find($scope.droitsChoices, { id: droit.id });
-            });
-        } else {
-            $scope.test = { situation: $stateParams.situationId, droitsAttendus: [] };
-            _.forEach(droitsObtenus, function(value, name) {
-                if (_.isBoolean(value) || (_.isNumber(value) && 0 !== value)) {
-                    $scope.test.droitsAttendus.push({ ref: _.find($scope.droitsChoices, {id: name}), expectedValue: value });
-                }
-            });
-        }
-    });
+    $scope.droitsChoices = droitsDescription;
+    if (editMode) {
+        $scope.test = test;
+        $scope.test.droitsAttendus.forEach(function(droit) {
+            droit.ref = _.find($scope.droitsChoices, { id: droit.id });
+        });
+    } else {
+        $scope.test = { situation: $stateParams.situationId, droitsAttendus: [] };
+        _.forEach(droitsObtenus, function(value, name) {
+            if (_.isBoolean(value) || (_.isNumber(value) && 0 !== value)) {
+                $scope.test.droitsAttendus.push({ ref: _.find($scope.droitsChoices, {id: name}), expectedValue: value });
+            }
+        });
+    }
 
     $scope.removeDroit = function(droit) {
         var index = $scope.test.droitsAttendus.indexOf(droit);

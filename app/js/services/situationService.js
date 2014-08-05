@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage, $filter) {
-    var situation, months;
+    var situation;
 
     return {
         nationaliteLabels: {
-            francaise: 'française',
+            fr: 'française',
             ue: 'UE',
             autre: 'hors UE'
         },
@@ -89,10 +89,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         getMonths: function() {
-            if (months) {
-                return months;
-            }
-
             // FIXME prendre la date du serveur
             return _.map([3, 2, 1], function(i) {
                 var date = moment().subtract('months', i);

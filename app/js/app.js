@@ -1,6 +1,6 @@
 'use strict';
 
-var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngStorage']);
+var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngStorage', 'ddsCommon']);
 
 ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
     moment.lang('fr');

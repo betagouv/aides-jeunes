@@ -1,27 +1,18 @@
 'use strict';
 
-angular.module('ddsApp').factory('SimulationService', function($http, $q) {
+angular.module('ddsApp').factory('SimulationService', function($http, $q, droitsDescription) {
     return {
         simulate: function(situation) {
-            var deferred = $q.defer();
             var that = this;
 
-            $http.get('/resources/droits.json').then(function(res) {
-                $http.get('/api/situations/' + situation._id + '/simulation').then(function(droits) {
-                    deferred.resolve(that.createDroitsFromApiResult(droits.data, res.data));
-                }, function() {
-                    deferred.reject();
-                });
-            }, function() {
-                deferred.reject();
+            return $http.get('/api/situations/' + situation._id + '/simulation').then(function(result) {
+                return that.createDroitsFromApiResult(result.data);
             });
-
-            return deferred.promise;
         },
 
-        createDroitsFromApiResult: function(result, droitsList) {
+        createDroitsFromApiResult: function(result) {
             var droits = [];
-            droitsList.forEach(function(droit) {
+            droitsDescription.forEach(function(droit) {
                 var value = result[droit.id];
                 if (value) {
                     var toInsert = { description: droit };

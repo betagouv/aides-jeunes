@@ -1,6 +1,5 @@
 package formfiller;
 
-import java.io.IOException;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -13,26 +12,17 @@ import models.Situation.Nationalite;
 import models.Situation.StatutMarital;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 public class AspaFormFiller extends FormFiller {
 
-    private static final PDFont FONT = PDType1Font.TIMES_ROMAN;
     private static final EnumMap<StatutMarital, Point> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
     private static DateTimeFormatter monthFormatter;
 
-    private final Situation situation;
-    private int currentPage = 0;
-
     public AspaFormFiller(PDDocument document, Situation situation) {
-        super(document);
-        this.situation = situation;
+        super(document, situation);
         initStatutMaritalCheckboxesCoordinates();
         monthFormatter = DateTimeFormat.forPattern("MMMM yyyy");
     }
@@ -115,62 +105,5 @@ public class AspaFormFiller extends FormFiller {
         currentPage = 7;
         String currentDate = LocalDate.now().toString("ddMMyyyy");
         appendNumber(currentDate, 198, 141);
-    }
-
-    private void appendText(String text, float x, float y, float fontSize) {
-        PDPage page = (PDPage) document.getDocumentCatalog().getAllPages().get(currentPage);
-        PDPageContentStream contentStream;
-        try {
-            contentStream = new PDPageContentStream(document, page, true, true);
-            contentStream.beginText();
-            contentStream.setFont(FONT, fontSize);
-            contentStream.moveTextPositionByAmount(x, y);
-            contentStream.drawString(text.toUpperCase());
-            contentStream.endText();
-            contentStream.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void appendText(String text, float x, float y) {
-        appendText(text, x, y, 12);
-    }
-
-    private void appendOptionalText(String text, float x, float y) {
-        if (null != text) {
-            appendText(text, x, y);
-        }
-    }
-
-    private void appendNumber(String number, float x, float y) {
-        for (int i = 0; i < number.length(); i++) {
-            appendText(number.substring(i, i+1), x + i*12, y);
-        }
-    }
-
-    private void appendOptionalNumber(String number, float x, float y) {
-        if (null != number) {
-            appendNumber(number, x, y);
-        }
-    }
-
-    private void appendDate(String date, float x, float y) {
-        appendNumber(date.replaceAll("/", ""), x, y);
-    }
-
-    private void checkbox(float x, float y) {
-        appendText("x", x, y);
-    }
-
-    private static class Point {
-
-        public float x;
-        public float y;
-
-        public Point(float x, float y) {
-            this.x = x;
-            this.y = y;
-        }
     }
 }

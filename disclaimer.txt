@@ -69,3 +69,27 @@ CF
 On ne gère pas :
 * Le montant majoré
 * L'outre-mer
+
+Cerfa déclaration de situation CAF
+==================================
+
+Champs non remplis :
+* Civilités
+* Nom de famille
+* Prénoms
+* Lieu de naissance
+* NIRs
+* Date d'entrée en France
+* Organisme allocataire actuel
+* Adresse, ville
+* Email
+* Téléphone
+* Date depuis laquelle il réside à cette adresse
+* Lieu de résidence du conjoint
+* Date de situation familiale
+* Divorcé, séparé, veuf
+* Date et lieu de naissance des enfants
+* Date d'arrivée au foyer et lien de parenté
+* Situation des enfants, résidents à l'étranger, en résidence alternée
+* Moins de 25 ans : est-ce que les parents touchent des allocs
+* Situation professionnelle et date

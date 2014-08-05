@@ -106,9 +106,15 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
                 'type':'pdf'
             },
             {
-                'label':'Formulaire de déclaration de situation',
+                'label':'Formulaire de déclaration de situation vierge',
                 'url':'http://wwwd.caf.fr/pdfj/af.pdf',
                 'type':'pdf'
+            }
+        ],
+        'cerfa': [
+            {
+                'id':'caf',
+                'label':'Formulaire de déclaration de situation pré-rempli'
             }
         ]
     },
@@ -117,14 +123,40 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'label':'Allocation de Logement Familiale',
         'shortLabel':'ALF',
         'description':'L\'allocation de logement familiale (ALF) est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d\'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
-        'imgSrc':'logo_caf.png'
+        'imgSrc':'logo_caf.png',
+        'links':[
+            {
+                'label':'Formulaire de déclaration de situation vierge',
+                'url':'https://wwwd.caf.fr/pdfj/af.pdf',
+                'type':'pdf'
+            }
+        ],
+        'cerfa': [
+            {
+                'id':'caf',
+                'label':'Formulaire de déclaration de situation pré-rempli'
+            }
+        ]
     },
     {
         'id':'af',
         'label':'Allocations Familiales',
         'shortLabel':'AF',
         'description':'Les allocations familiales sont versées, sans condition de ressources, aux personnes ayant au moins 2 enfants de moins de 20 ans à charge. Le montant des prestations dépend du nombre d\'enfants à charge et de leur âge.',
-        'imgSrc':'logo_caf.png'
+        'imgSrc':'logo_caf.png',
+        'links':[
+            {
+                'label':'Formulaire de déclaration de situation vierge',
+                'url':'https://wwwd.caf.fr/pdfj/af.pdf',
+                'type':'pdf'
+            }
+        ],
+        'cerfa': [
+            {
+                'id':'caf',
+                'label':'Formulaire de déclaration de situation pré-rempli'
+            }
+        ]
     },
     {
         'id':'cf',
@@ -134,9 +166,15 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'links':[
             {
-                'label':'Déclaration de situation',
+                'label':'Formulaire de déclaration de situation vierge',
                 'url':'https://wwwd.caf.fr/pdfj/af.pdf',
                 'type':'pdf'
+            }
+        ],
+        'cerfa': [
+            {
+                'id':'caf',
+                'label':'Formulaire de déclaration de situation pré-rempli'
             }
         ]
     },
@@ -153,9 +191,15 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
                 'type':'pdf'
             },
             {
-                'label':'Formulaire de déclaration de situation',
+                'label':'Formulaire de déclaration de situation vierge',
                 'url':'https://wwwd.caf.fr/pdfj/af.pdf',
                 'type':'pdf'
+            }
+        ],
+        'cerfa': [
+            {
+                'id':'caf',
+                'label':'Formulaire de déclaration de situation pré-rempli'
             }
         ]
     },

@@ -10,12 +10,10 @@ import org.joda.time.LocalDate;
 
 public class CmuFormFiller extends FormFiller {
 
-    private final Situation situation;
     private int currentChildIndex = 1;
 
     public CmuFormFiller(PDDocument document, Situation situation) {
-        super(document);
-        this.situation = situation;
+        super(document, situation);
     }
 
     @Override

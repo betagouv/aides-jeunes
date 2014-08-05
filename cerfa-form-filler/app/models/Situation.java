@@ -73,7 +73,7 @@ public class Situation {
 
         public final String jsonValue;
         public final String formRadioValue;
-        public String formStringValue;
+        public final String formStringValue;
 
         Nationalite(String jsonValue, String formRadioValue, String formStringValue) {
             this.jsonValue = jsonValue;

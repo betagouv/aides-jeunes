@@ -2,10 +2,16 @@ package formfiller;
 
 import java.io.IOException;
 
+import models.Situation;
+
 import org.apache.pdfbox.cos.COSDictionary;
 import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.cos.COSString;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDCheckbox;
 import org.apache.pdfbox.pdmodel.interactive.form.PDRadioCollection;
@@ -13,12 +19,17 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDTextbox;
 
 public abstract class FormFiller {
 
-    protected final PDAcroForm form;
-    protected final PDDocument document;
+    private static final PDFont FONT = PDType1Font.TIMES_ROMAN;
 
-    public FormFiller(PDDocument document) {
+    protected final PDDocument document;
+    protected final PDAcroForm form;
+    protected final Situation situation;
+    protected int currentPage = 0;
+
+    public FormFiller(PDDocument document, Situation situation) {
         this.document = document;
         this.form = document.getDocumentCatalog().getAcroForm();
+        this.situation = situation;
     }
 
     public abstract void fill();
@@ -60,5 +71,60 @@ public abstract class FormFiller {
         }
 
         throw new RuntimeException(String.format("Le champ radio \"%s\" n'a pas de valeur \"%s\" sélectionnable", fieldName, value));
+    }
+
+    protected void appendText(String text, float x, float y, float fontSize) {
+        PDPage page = (PDPage) document.getDocumentCatalog().getAllPages().get(currentPage);
+        PDPageContentStream contentStream;
+        try {
+            contentStream = new PDPageContentStream(document, page, true, true);
+            contentStream.beginText();
+            contentStream.setFont(FONT, fontSize);
+            contentStream.moveTextPositionByAmount(x, y);
+            contentStream.drawString(text.toUpperCase());
+            contentStream.endText();
+            contentStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected void appendText(String text, float x, float y) {
+        appendText(text, x, y, 12);
+    }
+
+    protected void appendOptionalText(String text, float x, float y) {
+        if (null != text) {
+            appendText(text, x, y);
+        }
+    }
+
+    protected void appendNumber(String number, float x, float y) {
+        for (int i = 0; i < number.length(); i++) {
+            appendText(number.substring(i, i+1), x + i * getNumberSpacing(), y);
+        }
+    }
+
+    protected float getNumberSpacing() {
+        return 12;
+    }
+
+    protected void appendDate(String date, float x, float y) {
+        appendNumber(date.replaceAll("/", ""), x, y);
+    }
+
+    protected void checkbox(float x, float y) {
+        appendText("x", x, y);
+    }
+
+    protected static class Point {
+
+        public final float x;
+        public final float y;
+
+        public Point(float x, float y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }

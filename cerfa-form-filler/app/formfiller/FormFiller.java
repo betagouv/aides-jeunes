@@ -93,6 +93,12 @@ public abstract class FormFiller {
         appendText(text, x, y, 12);
     }
 
+    protected void appendOptionalText(String text, float x, float y, float fontSize) {
+        if (null != text) {
+            appendText(text, x, y, fontSize);
+        }
+    }
+
     protected void appendOptionalText(String text, float x, float y) {
         if (null != text) {
             appendText(text, x, y);

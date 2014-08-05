@@ -29,6 +29,7 @@ public class Situation {
         public boolean demandeurEmploi;
         public boolean etudiant;
         public boolean retraite;
+        public boolean enceinte;
     }
 
     public static class Logement {
@@ -36,6 +37,7 @@ public class Situation {
         public String adresse;
         public String codePostal;
         public String ville;
+        public LogementType type;
     }
 
     @JsonDeserialize(using = IndividuRoleDeserializer.class)
@@ -127,6 +129,34 @@ public class Situation {
             }
 
             throw new RuntimeException(String.format("Statut marital inconnu : %s", jp.getText()));
+        }
+    }
+
+    @JsonDeserialize(using = LogementTypeDeserializer.class)
+    public static enum LogementType {
+
+        LOCATAIRE("locataire"),
+        PROPRIETAIRE("proprietaire"),
+        GRATUIT("gratuit");
+
+        public final String jsonValue;
+
+        LogementType(String jsonValue) {
+            this.jsonValue = jsonValue;
+        }
+    }
+
+    public static class LogementTypeDeserializer extends JsonDeserializer<LogementType> {
+
+        @Override
+        public LogementType deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            for (LogementType type : LogementType.values()) {
+                if (type.jsonValue.equals(jp.getText())) {
+                    return type;
+                }
+            }
+
+            throw new RuntimeException(String.format("Type de logement inconnu : %s", jp.getText()));
         }
     }
 }

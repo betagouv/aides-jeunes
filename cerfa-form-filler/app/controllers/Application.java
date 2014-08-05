@@ -52,7 +52,7 @@ public class Application extends Controller {
         File file = File.createTempFile("tmp", ".pdf");
         document.save(file);
 
-        Status result = ok(file, true);
+        Status result = ok(file, "cmuc.pdf");
         file.delete();
 
         return result;
@@ -68,7 +68,7 @@ public class Application extends Controller {
         File file = File.createTempFile("tmp", ".pdf");
         document.save(file);
 
-        Status result = ok(file, true);
+        Status result = ok(file, "aspa.pdf");
         file.delete();
 
         return result;
@@ -84,7 +84,7 @@ public class Application extends Controller {
         File file = File.createTempFile("tmp", ".pdf");
         document.save(file);
 
-        Status result = ok(file, true);
+        Status result = ok(file, "caf.pdf");
         file.delete();
 
         return result;
@@ -92,7 +92,7 @@ public class Application extends Controller {
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result rsa() throws IOException, COSVisitorException {
-        Logger.info("Génération formulaire CAF");
+        Logger.info("Génération formulaire RSA");
         PDDocument document = PDDocument.load("resources/rsa.pdf");
         Situation situation = getRequest(Situation.class);
         RSAFormFiller filler = new RSAFormFiller(document, situation);
@@ -100,7 +100,7 @@ public class Application extends Controller {
         File file = File.createTempFile("tmp", ".pdf");
         document.save(file);
 
-        Status result = ok(file, true);
+        Status result = ok(file, "rsa.pdf");
         file.delete();
 
         return result;

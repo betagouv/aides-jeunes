@@ -5,4 +5,5 @@
 POST     /cmu                           controllers.Application.cmu()
 POST     /aspa                          controllers.Application.aspa()
 POST     /caf                           controllers.Application.caf()
+POST     /rsa                           controllers.Application.rsa()
 OPTIONS  /*anyroute                     controllers.Application.options(anyroute)

@@ -56,7 +56,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'label':'Allocation de Solidarité aux Personnes Âgées',
         'shortLabel':'ASPA',
         'description':'L\'allocation de solidarité aux personnes âgées (Aspa) est une allocation destinée aux personnes âgées disposant de faibles revenus en vue de leur assurer un niveau minimum de ressources. Elle remplace le minimum vieillesse depuis 2006.',
-        'imgSrc':'logo_caf.png',
+        'imgSrc':'logo_aspa.png',
         'links':[
             {
                 'label':'Formulaire de demande auprès de la CNAV',
@@ -216,9 +216,15 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
                 'type':'link'
             },
             {
-                'label':'Formulaire de demande',
+                'label':'Formulaire de demande vierge',
                 'url':'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13880.do',
                 'type':'pdf'
+            }
+        ],
+        'cerfa': [
+            {
+                'id':'rsa',
+                'label':'Formulaire de demande pré-rempli'
             }
         ]
     }

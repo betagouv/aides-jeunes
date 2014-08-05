@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import formfiller.AspaFormFiller;
 import formfiller.CAFFormFiller;
 import formfiller.CmuFormFiller;
+import formfiller.RSAFormFiller;
 
 @With(AddAccessControlHeadersAction.class)
 public class Application extends Controller {
@@ -79,6 +80,22 @@ public class Application extends Controller {
         PDDocument document = PDDocument.load("resources/caf.pdf");
         Situation situation = getRequest(Situation.class);
         CAFFormFiller filler = new CAFFormFiller(document, situation);
+        filler.fill();
+        File file = File.createTempFile("tmp", ".pdf");
+        document.save(file);
+
+        Status result = ok(file, true);
+        file.delete();
+
+        return result;
+    }
+
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result rsa() throws IOException, COSVisitorException {
+        Logger.info("Génération formulaire CAF");
+        PDDocument document = PDDocument.load("resources/rsa.pdf");
+        Situation situation = getRequest(Situation.class);
+        RSAFormFiller filler = new RSAFormFiller(document, situation);
         filler.fill();
         File file = File.createTempFile("tmp", ".pdf");
         document.save(file);

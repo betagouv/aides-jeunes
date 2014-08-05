@@ -26,6 +26,8 @@ public class Situation {
         public String email;
         public String phoneNumber;
         public StatutMarital statusMarital;
+        public boolean demandeurEmploi;
+        public boolean etudiant;
     }
 
     public static class Logement {

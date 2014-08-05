@@ -9,6 +9,7 @@ import models.Situation.Nationalite;
 import models.Situation.StatutMarital;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.joda.time.LocalDate;
 
 public class CAFFormFiller extends FormFiller {
 
@@ -44,6 +45,11 @@ public class CAFFormFiller extends FormFiller {
     }
 
     @Override
+    protected float getNumberSpacing() {
+        return 15.5f;
+    }
+
+    @Override
     public void fill() {
         for (Individu individu : situation.individus) {
             if (IndividuRole.DEMANDEUR == individu.role) {
@@ -54,6 +60,7 @@ public class CAFFormFiller extends FormFiller {
         }
         fillLogement();
         fillPersonnesACharge();
+        fillCurrentDate();
     }
 
     private void fillDemandeur(Individu demandeur) {
@@ -73,6 +80,11 @@ public class CAFFormFiller extends FormFiller {
         if (null != statutMaritalCheckbox) {
             checkbox(statutMaritalCheckbox.x, statutMaritalCheckbox.y);
         }
+
+        currentPage = 2;
+        if (demandeur.demandeurEmploi) {
+            checkbox(221, 494);
+        }
     }
 
     private void fillConjoint(Individu conjoint) {
@@ -85,6 +97,11 @@ public class CAFFormFiller extends FormFiller {
         if (null != conjoint.numeroSecu) {
             appendNumber(conjoint.numeroSecu.substring(0, 13), 330, 465);
             appendNumber(conjoint.numeroSecu.substring(13, 15), 535, 465);
+        }
+
+        currentPage = 2;
+        if (conjoint.demandeurEmploi) {
+            checkbox(405, 494);
         }
     }
 
@@ -109,12 +126,13 @@ public class CAFFormFiller extends FormFiller {
         float verticalCoordinateBottom = 384 + currentPersonneACharge * 28.5f;
         appendOptionalText(individu.lastName, 37, verticalCoordinateTop);
         appendOptionalText(individu.firstName, 37, verticalCoordinateBottom);
-        appendDate(individu.dateDeNaissance, 144, verticalCoordinateTop);
+        appendDate(individu.dateDeNaissance, 144, verticalCoordinateTop + 1);
         currentPersonneACharge++;
     }
 
-    @Override
-    protected float getNumberSpacing() {
-        return 15.5f;
+    private void fillCurrentDate() {
+        currentPage = 2;
+        String currentDate = LocalDate.now().toString("ddMMyyyy");
+        appendNumber(currentDate, 307, 233);
     }
 }

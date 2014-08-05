@@ -2,6 +2,7 @@ package formfiller;
 
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import models.Situation;
@@ -24,7 +25,7 @@ public class AspaFormFiller extends FormFiller {
     public AspaFormFiller(PDDocument document, Situation situation) {
         super(document, situation);
         initStatutMaritalCheckboxesCoordinates();
-        monthFormatter = DateTimeFormat.forPattern("MMMM yyyy");
+        monthFormatter = DateTimeFormat.forPattern("MMMM yyyy").withLocale(Locale.FRANCE);
     }
 
     private static void initStatutMaritalCheckboxesCoordinates() {

@@ -44,7 +44,6 @@ public class Application extends Controller {
     @BodyParser.Of(BodyParser.Json.class)
     public static Result cmu() throws COSVisitorException, IOException {
         Logger.info("Génération formulaire CMU");
-        Logger.info(request().body().toString());
         PDDocument document = PDDocument.load("resources/cmuc.pdf");
         Situation situation = getRequest(Situation.class);
         CmuFormFiller filler = new CmuFormFiller(document, situation);

@@ -78,8 +78,6 @@ public class CmuFormFiller extends FormFiller {
         fillOptionalTextField("personne à charge" + currentChildIndex, nomPrenom);
         fillTextField("nationalité personne à charge" + currentChildIndex, enfant.nationalite.formStringValue);
         fillDateField("date naissance personne à charge" + currentChildIndex, enfant.dateDeNaissance);
-        fillOptionalTextField("Nom" + (currentChildIndex + 2), enfant.lastName);
-        fillOptionalTextField("prénom" + (currentChildIndex + 2), enfant.firstName);
         currentChildIndex++;
     }
 

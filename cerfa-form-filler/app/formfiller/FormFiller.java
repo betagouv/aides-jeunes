@@ -42,6 +42,10 @@ public abstract class FormFiller {
             throw new RuntimeException(e);
         }
 
+        if (null == field) {
+            throw new RuntimeException(String.format("Le champ %s n'existe pas dans le formulaire", fieldName));
+        }
+
         COSDictionary dictionary = (COSDictionary) field.getCOSObject();
         dictionary.setItem(COSName.V, new COSString(fieldValue.toUpperCase()));
     }

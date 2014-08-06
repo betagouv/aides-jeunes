@@ -132,11 +132,10 @@ public class CAFFormFiller extends FormFiller {
     }
 
     private void fillPersonneACharge(Individu individu) {
-        individu.lastName = "kleinpeter";
         float verticalCoordinateTop = 454.0f - currentPersonneACharge * 28.1f;
         float verticalCoordinateBottom = 440.0f - currentPersonneACharge * 28.1f;
-        appendOptionalText(individu.lastName, 37, verticalCoordinateTop);
-        appendOptionalText(individu.firstName, 37, verticalCoordinateBottom);
+        appendOptionalText(individu.lastName, 37, verticalCoordinateTop, 7);
+        appendOptionalText(individu.firstName, 37, verticalCoordinateBottom, 7);
         appendDate(individu.dateDeNaissance, 144, verticalCoordinateTop + 1);
         currentPersonneACharge++;
     }

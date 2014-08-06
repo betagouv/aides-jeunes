@@ -8,6 +8,7 @@ import models.Situation;
 import org.apache.pdfbox.exceptions.COSVisitorException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 
+import pdfwriter.PdfWriter;
 import play.Logger;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
@@ -111,12 +112,14 @@ public class Application extends Controller {
         Logger.info("Génération formulaire ASF");
         PDDocument document = PDDocument.load("resources/asf.pdf");
         Situation situation = getRequest(Situation.class);
-        ASFFormFiller filler = new ASFFormFiller(document, situation);
+        PdfWriter writer = new PdfWriter(document);
+        ASFFormFiller filler = new ASFFormFiller(writer, situation);
         filler.fill();
+        writer.flush();
         File file = File.createTempFile("tmp", ".pdf");
         document.save(file);
 
-        Status result = ok(file, "rsa.pdf");
+        Status result = ok(file, "asf.pdf");
         file.delete();
 
         return result;

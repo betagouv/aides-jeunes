@@ -169,6 +169,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 }]
             }
         })
+        .state('form_infos_complementaires', {
+            url: '/infos-complementaires',
+            templateUrl: '/partials/form-infos-complementaires.html',
+            controller: 'FormInfosComplementairesCtrl'
+        })
         .state('envoi_demande', {
             url: '/envoi-demande/:situationId',
             templateUrl: '/partials/envoi-demande-teaser.html'

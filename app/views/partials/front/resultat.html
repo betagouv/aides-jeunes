@@ -23,7 +23,7 @@
           <i class="fa" ng-class="{'fa-external-link': link.type === 'link', 'fa-file-pdf-o': link.type === 'pdf'}"></i>
           {{ link.label }}
         </a>
-        <a href="/api/situations/{{ situationId }}/cerfa/{{ cerfa.id }}" target="_blank" class="list-group-item list-group-item-success" ng-repeat="cerfa in droit.description.cerfa">
+        <a ui-sref="form_infos_complementaires" class="list-group-item list-group-item-success" ng-repeat="cerfa in droit.description.cerfa">
           <i class="fa fa-file-pdf-o"></i>
           {{ cerfa.label }}
         </a>

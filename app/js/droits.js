@@ -186,7 +186,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'links':[
             {
-                'label':'Formulaire de demande',
+                'label':'Formulaire de demande vierge',
                 'url':'https://wwwd.caf.fr/pdfj/asf2.pdf',
                 'type':'pdf'
             },
@@ -200,6 +200,10 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
             {
                 'id':'caf',
                 'label':'Formulaire de déclaration de situation pré-rempli'
+            },
+            {
+                'id':'asf',
+                'label':'Formulaire de demande pré-rempli'
             }
         ]
     },

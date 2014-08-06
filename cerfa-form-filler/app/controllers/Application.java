@@ -27,6 +27,7 @@ import formfiller.ASFFormFiller;
 import formfiller.AspaFormFiller;
 import formfiller.CAFFormFiller;
 import formfiller.CmuFormFiller;
+import formfiller.FormFiller;
 import formfiller.RSAFormFiller;
 
 @With(AddAccessControlHeadersAction.class)
@@ -44,85 +45,79 @@ public class Application extends Controller {
     }
 
     @BodyParser.Of(BodyParser.Json.class)
-    public static Result cmu() throws COSVisitorException, IOException {
-        Logger.info("Génération formulaire CMU");
-        PDDocument document = PDDocument.load("resources/cmuc.pdf");
-        Situation situation = getRequest(Situation.class);
-        CmuFormFiller filler = new CmuFormFiller(document, situation);
-        filler.fill();
-        File file = File.createTempFile("tmp", ".pdf");
-        document.save(file);
+    public static Result generate(String formId) throws IOException, COSVisitorException {
+        Forms form = null;
+        for (Forms val : Forms.values()) {
+            if (val.id.equals(formId)) {
+                form = val;
+            }
+        }
 
-        Status result = ok(file, "cmuc.pdf");
-        file.delete();
+        if (null == form) {
+            return badRequest(String.format("Formulaire inconnu : %s", formId));
+        }
 
-        return result;
-    }
-
-    @BodyParser.Of(BodyParser.Json.class)
-    public static Result aspa() throws IOException, COSVisitorException {
-        Logger.info("Génération formulaire ASPA");
-        PDDocument document = PDDocument.load("resources/aspa.pdf");
-        Situation situation = getRequest(Situation.class);
-        AspaFormFiller filler = new AspaFormFiller(document, situation);
-        filler.fill();
-        File file = File.createTempFile("tmp", ".pdf");
-        document.save(file);
-
-        Status result = ok(file, "aspa.pdf");
-        file.delete();
-
-        return result;
-    }
-
-    @BodyParser.Of(BodyParser.Json.class)
-    public static Result caf() throws IOException, COSVisitorException {
-        Logger.info("Génération formulaire CAF");
-        PDDocument document = PDDocument.load("resources/caf.pdf");
-        Situation situation = getRequest(Situation.class);
-        CAFFormFiller filler = new CAFFormFiller(document, situation);
-        filler.fill();
-        File file = File.createTempFile("tmp", ".pdf");
-        document.save(file);
-
-        Status result = ok(file, "caf.pdf");
-        file.delete();
-
-        return result;
-    }
-
-    @BodyParser.Of(BodyParser.Json.class)
-    public static Result rsa() throws IOException, COSVisitorException {
-        Logger.info("Génération formulaire RSA");
-        PDDocument document = PDDocument.load("resources/rsa.pdf");
-        Situation situation = getRequest(Situation.class);
-        RSAFormFiller filler = new RSAFormFiller(document, situation);
-        filler.fill();
-        File file = File.createTempFile("tmp", ".pdf");
-        document.save(file);
-
-        Status result = ok(file, "rsa.pdf");
-        file.delete();
-
-        return result;
-    }
-
-    @BodyParser.Of(BodyParser.Json.class)
-    public static Result asf() throws IOException, COSVisitorException {
-        Logger.info("Génération formulaire ASF");
-        PDDocument document = PDDocument.load("resources/asf.pdf");
+        Logger.info(String.format("Génération formulaire %s", formId));
+        PDDocument document = PDDocument.load(String.format("resources/%s.pdf", formId));
         Situation situation = getRequest(Situation.class);
         PdfWriter writer = new PdfWriter(document);
-        ASFFormFiller filler = new ASFFormFiller(writer, situation);
+        FormFiller filler = form.createFormFiller(writer, situation);
         filler.fill();
         writer.flush();
         File file = File.createTempFile("tmp", ".pdf");
         document.save(file);
 
-        Status result = ok(file, "asf.pdf");
+        Status result = ok(file, formId.concat(".pdf"));
         file.delete();
 
         return result;
+    }
+
+    private static enum Forms {
+
+        CMUC("cmuc") {
+
+            @Override
+            public FormFiller createFormFiller(PdfWriter writer, Situation situation) {
+                return new CmuFormFiller(writer, situation);
+            }
+        },
+        ASPA("aspa") {
+
+            @Override
+            public FormFiller createFormFiller(PdfWriter writer, Situation situation) {
+                return new AspaFormFiller(writer, situation);
+            }
+        },
+        CAF("caf") {
+
+            @Override
+            public FormFiller createFormFiller(PdfWriter writer, Situation situation) {
+                return new CAFFormFiller(writer, situation);
+            }
+        },
+        RSA("rsa") {
+
+            @Override
+            public FormFiller createFormFiller(PdfWriter writer, Situation situation) {
+                return new RSAFormFiller(writer, situation);
+            }
+        },
+        ASF("asf") {
+
+            @Override
+            public FormFiller createFormFiller(PdfWriter writer, Situation situation) {
+                return new ASFFormFiller(writer, situation);
+            }
+        };
+
+        public final String id;
+
+        Forms(String id) {
+            this.id = id;
+        }
+
+        public abstract FormFiller createFormFiller(PdfWriter writer, Situation situation);
     }
 
     protected static <T> T getRequest(Class<T> requestClass) {

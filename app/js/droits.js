@@ -27,7 +27,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         ],
         'cerfa': [
             {
-                'id':'cmu',
+                'id':'cmuc',
                 'label':'Formulaire de demande pré-rempli'
             }
         ]

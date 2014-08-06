@@ -9,8 +9,9 @@ import models.Situation.LogementType;
 import models.Situation.Nationalite;
 import models.Situation.StatutMarital;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
 import org.joda.time.LocalDate;
+
+import pdfwriter.PdfWriter;
 
 public class RSAFormFiller extends FormFiller {
 
@@ -20,8 +21,8 @@ public class RSAFormFiller extends FormFiller {
 
     private int currentPersonneACharge = 0;
 
-    public RSAFormFiller(PDDocument document, Situation situation) {
-        super(document, situation);
+    public RSAFormFiller(PdfWriter writer, Situation situation) {
+        super(writer, situation);
         initNationaliteCheckboxes();
         initLogementTypeCheckboxes();
         initStatutMaritalCheckboxes();
@@ -53,12 +54,8 @@ public class RSAFormFiller extends FormFiller {
     }
 
     @Override
-    protected float getNumberSpacing() {
-        return 15.5f;
-    }
-
-    @Override
     public void fill() {
+        writer.setNumberSpacing(15.5f);
         for (Individu individu : situation.individus) {
             if (IndividuRole.DEMANDEUR == individu.role) {
                 fillDemandeur(individu);
@@ -74,40 +71,40 @@ public class RSAFormFiller extends FormFiller {
     }
 
     private void fillDemandeur(Individu demandeur) {
-        currentPage = 0;
-        appendOptionalText(demandeur.lastName, 155, 687);
-        appendOptionalText(demandeur.firstName, 170, 648);
-        appendDate(demandeur.dateDeNaissance, 113, 635);
+        writer.setPage(0);
+        writer.appendOptionalText(demandeur.lastName, 155, 687);
+        writer.appendOptionalText(demandeur.firstName, 170, 648);
+        writer.appendDate(demandeur.dateDeNaissance, 113, 635);
         Point checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
-        checkbox(checkboxNationalite.x, checkboxNationalite.y);
+        writer.checkbox(checkboxNationalite.x, checkboxNationalite.y);
 
-        currentPage = 1;
+        writer.setPage(1);
         if (StatutMarital.SEUL == demandeur.statusMarital) {
-            checkbox(31, 670);
+            writer.checkbox(31, 670);
         } else {
-            checkbox(31, 746);
+            writer.checkbox(31, 746);
             Point statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
-            checkbox(statutMaritalCheckbox.x, statutMaritalCheckbox.y);
+            writer.checkbox(statutMaritalCheckbox.x, statutMaritalCheckbox.y);
         }
 
         if (demandeur.enceinte) {
-            checkbox(155, 551);
+            writer.checkbox(155, 551);
         } else {
-            checkbox(193, 551);
+            writer.checkbox(193, 551);
         }
     }
 
     private void fillConjoint(Individu conjoint) {
-        currentPage = 0;
-        appendOptionalText(conjoint.lastName, 430, 687);
-        appendOptionalText(conjoint.firstName, 442, 648);
-        appendDate(conjoint.dateDeNaissance, 389, 635);
+        writer.setPage(0);
+        writer.appendOptionalText(conjoint.lastName, 430, 687);
+        writer.appendOptionalText(conjoint.firstName, 442, 648);
+        writer.appendDate(conjoint.dateDeNaissance, 389, 635);
         Point checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);
-        checkbox(checkboxNationalite.x, checkboxNationalite.y);
+        writer.checkbox(checkboxNationalite.x, checkboxNationalite.y);
     }
 
     private void fillEnfant(Individu individu) {
-        currentPage = 1;
+        writer.setPage(1);
         individu.lastName = "kleinpeter";
         individu.firstName = "arnaud";
         String nomPrenom = null;
@@ -117,24 +114,24 @@ public class RSAFormFiller extends FormFiller {
                 nomPrenom += " " + individu.firstName;
             }
         }
-        appendOptionalText(nomPrenom, 117 + currentPersonneACharge * 113, 515, 7);
+        writer.appendOptionalText(nomPrenom, 117 + currentPersonneACharge * 113, 515, 7);
         if (Nationalite.FRANCAISE == individu.nationalite) {
-            appendText("Française", 117 + currentPersonneACharge * 113, 453, 7);
+            writer.appendText("Française", 117 + currentPersonneACharge * 113, 453, 7);
         }
         currentPersonneACharge++;
     }
 
     private void fillLogement() {
-        currentPage = 0;
-        appendNumber(situation.logement.codePostal, 88, 352);
+        writer.setPage(0);
+        writer.appendNumber(situation.logement.codePostal, 88, 352);
         Point logementTypeCheckbox = logementTypeCheckboxes.get(situation.logement.type);
         if (null != logementTypeCheckbox) {
-            checkbox(logementTypeCheckbox.x, logementTypeCheckbox.y);
+            writer.checkbox(logementTypeCheckbox.x, logementTypeCheckbox.y);
         }
     }
     private void fillCurrentDate() {
-        currentPage = 4;
+        writer.setPage(4);
         String currentDate = LocalDate.now().toString("dd/MM/yyyy");
-        appendText(currentDate, 150, 200);
+        writer.appendText(currentDate, 150, 200);
     }
 }

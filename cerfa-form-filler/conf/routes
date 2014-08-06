@@ -2,9 +2,5 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-POST     /cmu                           controllers.Application.cmu()
-POST     /aspa                          controllers.Application.aspa()
-POST     /caf                           controllers.Application.caf()
-POST     /rsa                           controllers.Application.rsa()
-POST     /asf                           controllers.Application.asf()
+POST     /form/:formId                  controllers.Application.generate(formId)
 OPTIONS  /*anyroute                     controllers.Application.options(anyroute)

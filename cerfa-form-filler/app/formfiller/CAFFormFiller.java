@@ -8,8 +8,9 @@ import models.Situation.IndividuRole;
 import models.Situation.Nationalite;
 import models.Situation.StatutMarital;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
 import org.joda.time.LocalDate;
+
+import pdfwriter.PdfWriter;
 
 public class CAFFormFiller extends FormFiller {
 
@@ -18,8 +19,8 @@ public class CAFFormFiller extends FormFiller {
 
     private int currentPersonneACharge = 0;
 
-    public CAFFormFiller(PDDocument document, Situation situation) {
-        super(document, situation);
+    public CAFFormFiller(PdfWriter writer, Situation situation) {
+        super(writer, situation);
         initNationaliteCheckboxes();
         initStatutMaritalCheckboxes();
     }
@@ -45,12 +46,8 @@ public class CAFFormFiller extends FormFiller {
     }
 
     @Override
-    protected float getNumberSpacing() {
-        return 15.4f;
-    }
-
-    @Override
     public void fill() {
+        writer.setNumberSpacing(15.4f);
         for (Individu individu : situation.individus) {
             if (IndividuRole.DEMANDEUR == individu.role) {
                 fillDemandeur(individu);
@@ -64,66 +61,66 @@ public class CAFFormFiller extends FormFiller {
     }
 
     private void fillDemandeur(Individu demandeur) {
-        currentPage = 0;
-        appendOptionalText(demandeur.lastName, 160, 627);
-        appendOptionalText(demandeur.firstName, 170, 587);
-        appendDate(demandeur.dateDeNaissance, 114, 557);
+        writer.setPage(0);
+        writer.appendOptionalText(demandeur.lastName, 160, 627);
+        writer.appendOptionalText(demandeur.firstName, 170, 587);
+        writer.appendDate(demandeur.dateDeNaissance, 114, 557);
         Point checkboxCoordinates = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
-        checkbox(checkboxCoordinates.x, checkboxCoordinates.y);
+        writer.checkbox(checkboxCoordinates.x, checkboxCoordinates.y);
         if (null != demandeur.numeroSecu) {
-            appendNumber(demandeur.numeroSecu.substring(0, 13), 55, 465);
-            appendNumber(demandeur.numeroSecu.substring(13, 15), 260, 465);
+            writer.appendNumber(demandeur.numeroSecu.substring(0, 13), 55, 465);
+            writer.appendNumber(demandeur.numeroSecu.substring(13, 15), 260, 465);
         }
 
-        currentPage = 1;
+        writer.setPage(1);
         Point statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
         if (null != statutMaritalCheckbox) {
-            checkbox(statutMaritalCheckbox.x, statutMaritalCheckbox.y);
+            writer.checkbox(statutMaritalCheckbox.x, statutMaritalCheckbox.y);
         }
 
-        currentPage = 2;
+        writer.setPage(2);
         if (demandeur.demandeurEmploi) {
-            checkbox(221, 494);
+            writer.checkbox(221, 494);
         }
         if (demandeur.etudiant) {
-            checkbox(221, 305);
+            writer.checkbox(221, 305);
         }
         if (demandeur.retraite) {
-            checkbox(221, 450);
+            writer.checkbox(221, 450);
         }
     }
 
     private void fillConjoint(Individu conjoint) {
-        currentPage = 0;
-        appendOptionalText(conjoint.lastName, 435, 627);
-        appendOptionalText(conjoint.firstName, 445, 587);
-        appendDate(conjoint.dateDeNaissance, 389, 557);
+        writer.setPage(0);
+        writer.appendOptionalText(conjoint.lastName, 435, 627);
+        writer.appendOptionalText(conjoint.firstName, 445, 587);
+        writer.appendDate(conjoint.dateDeNaissance, 389, 557);
         Point checkboxCoordinates = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);
-        checkbox(checkboxCoordinates.x, checkboxCoordinates.y);
+        writer.checkbox(checkboxCoordinates.x, checkboxCoordinates.y);
         if (null != conjoint.numeroSecu) {
-            appendNumber(conjoint.numeroSecu.substring(0, 13), 330, 465);
-            appendNumber(conjoint.numeroSecu.substring(13, 15), 535, 465);
+            writer.appendNumber(conjoint.numeroSecu.substring(0, 13), 330, 465);
+            writer.appendNumber(conjoint.numeroSecu.substring(13, 15), 535, 465);
         }
 
-        currentPage = 2;
+        writer.setPage(2);
         if (conjoint.demandeurEmploi) {
-            checkbox(405, 494);
+            writer.checkbox(405, 494);
         }
         if (conjoint.etudiant) {
-            checkbox(405, 305);
+            writer.checkbox(405, 305);
         }
         if (conjoint.retraite) {
-            checkbox(405, 450);
+            writer.checkbox(405, 450);
         }
     }
 
     private void fillLogement() {
-        currentPage = 0;
-        appendNumber(situation.logement.codePostal, 89, 243);
+        writer.setPage(0);
+        writer.appendNumber(situation.logement.codePostal, 89, 243);
     }
 
     private void fillPersonnesACharge() {
-        currentPage = 1;
+        writer.setPage(1);
         for (Individu individu : situation.individus) {
             if (IndividuRole.ENFANT == individu.role || IndividuRole.PERSONNE_A_CHARGE == individu.role) {
                 fillPersonneACharge(individu);
@@ -134,15 +131,15 @@ public class CAFFormFiller extends FormFiller {
     private void fillPersonneACharge(Individu individu) {
         float verticalCoordinateTop = 454.0f - currentPersonneACharge * 28.1f;
         float verticalCoordinateBottom = 440.0f - currentPersonneACharge * 28.1f;
-        appendOptionalText(individu.lastName, 37, verticalCoordinateTop, 7);
-        appendOptionalText(individu.firstName, 37, verticalCoordinateBottom, 7);
-        appendDate(individu.dateDeNaissance, 144, verticalCoordinateTop + 1);
+        writer.appendOptionalText(individu.lastName, 37, verticalCoordinateTop, 7);
+        writer.appendOptionalText(individu.firstName, 37, verticalCoordinateBottom, 7);
+        writer.appendDate(individu.dateDeNaissance, 144, verticalCoordinateTop + 1);
         currentPersonneACharge++;
     }
 
     private void fillCurrentDate() {
-        currentPage = 2;
+        writer.setPage(2);
         String currentDate = LocalDate.now().toString("ddMMyyyy");
-        appendNumber(currentDate, 307, 233);
+        writer.appendNumber(currentDate, 307, 233);
     }
 }

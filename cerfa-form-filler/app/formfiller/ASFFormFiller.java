@@ -3,19 +3,20 @@ package formfiller;
 import models.Situation;
 import models.Situation.Individu;
 import models.Situation.IndividuRole;
+
+import org.joda.time.LocalDate;
+
 import pdfwriter.PdfWriter;
 
-public class ASFFormFiller {
+public class ASFFormFiller extends FormFiller {
 
-    private PdfWriter writer;
-    private Situation situation;
     private int currentEnfant = 0;
 
     public ASFFormFiller(PdfWriter writer, Situation situation) {
-        this.writer = writer;
-        this.situation = situation;
+        super(writer, situation);
     }
 
+    @Override
     public void fill() {
         for (Individu individu : situation.individus) {
             if (IndividuRole.DEMANDEUR == individu.role) {
@@ -24,6 +25,8 @@ public class ASFFormFiller {
                 fillEnfant(individu);
             }
         }
+
+        fillCurrentDate();
     }
 
     private void fillDemandeur(Individu demandeur) {
@@ -47,5 +50,11 @@ public class ASFFormFiller {
         writer.setNumberSpacing(15.5f);
         writer.appendDate(enfant.dateDeNaissance, 430, 144 - currentEnfant * 10);
         currentEnfant++;
+    }
+
+    private void fillCurrentDate() {
+        writer.setPage(2);
+        String currentDate = LocalDate.now().toString("dd/MM/yyyy");
+        writer.appendText(currentDate, 310, 385);
     }
 }

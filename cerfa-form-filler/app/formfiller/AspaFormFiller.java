@@ -72,7 +72,15 @@ public class AspaFormFiller extends FormFiller {
         if (Nationalite.FRANCAISE == demandeur.nationalite) {
             writer.appendText("française", 390, 635);
         }
-        writer.appendText("FRANCE", 470, 545);
+
+        writer.appendOptionalText(demandeur.villeNaissance, 140, 615);
+        if (null != demandeur.departementNaissance) {
+            writer.appendText(String.valueOf(demandeur.departementNaissance), 375, 615);
+        }
+        writer.appendOptionalText(demandeur.paysNaissance, 465, 615, 10);
+
+        writer.appendText("France", 470, 545);
+
         if (null != demandeur.nir) {
             writer.appendNumber(demandeur.nir.substring(0, 13), 155, 523);
             writer.appendNumber(demandeur.nir.substring(13, 15), 323, 523);
@@ -90,6 +98,13 @@ public class AspaFormFiller extends FormFiller {
         if (Nationalite.FRANCAISE == conjoint.nationalite) {
             writer.appendText("française", 380, 327);
         }
+
+        writer.appendOptionalText(conjoint.villeNaissance, 140, 307);
+        if (null != conjoint.departementNaissance) {
+            writer.appendText(String.valueOf(conjoint.departementNaissance), 375, 307);
+        }
+        writer.appendOptionalText(conjoint.paysNaissance, 465, 307, 10);
+
         if (null != conjoint.nir) {
             writer.appendNumber(conjoint.nir.substring(0, 13), 150, 275);
             writer.appendNumber(conjoint.nir.substring(13, 15), 318, 275);

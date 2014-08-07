@@ -95,6 +95,17 @@ public class RSAFormFiller extends FormFiller {
         writer.appendOptionalText(demandeur.nomUsage, 133, 670);
         writer.appendOptionalText(demandeur.firstName, 170, 648);
         writer.appendDate(demandeur.dateDeNaissance, 113, 635);
+
+        if (null != demandeur.paysNaissance) {
+            writer.appendText(demandeur.paysNaissance, 115, 620, 9);
+            if ("france".equals(demandeur.paysNaissance.toLowerCase())) {
+                writer.appendOptionalText(demandeur.villeNaissance, 83, 605, 7);
+                if (null != demandeur.departementNaissance) {
+                    writer.appendOptionalNumber(String.valueOf(demandeur.departementNaissance), 261, 608);
+                }
+            }
+        }
+
         Point checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
         writer.checkbox(checkboxNationalite.x, checkboxNationalite.y);
         writer.setNumberSpacing(15.1f);
@@ -125,6 +136,17 @@ public class RSAFormFiller extends FormFiller {
         writer.appendOptionalText(conjoint.nomUsage, 408, 670);
         writer.appendOptionalText(conjoint.firstName, 442, 648);
         writer.appendDate(conjoint.dateDeNaissance, 389, 635);
+
+        if (null != conjoint.paysNaissance) {
+            writer.appendText(conjoint.paysNaissance, 390, 620, 9);
+            if ("france".equals(conjoint.paysNaissance.toLowerCase())) {
+                writer.appendOptionalText(conjoint.villeNaissance, 358, 605, 7);
+                if (null != conjoint.departementNaissance) {
+                    writer.appendOptionalNumber(String.valueOf(conjoint.departementNaissance), 537, 608);
+                }
+            }
+        }
+
         Point checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);
         writer.checkbox(checkboxNationalite.x, checkboxNationalite.y);
         writer.setNumberSpacing(15.1f);
@@ -134,6 +156,7 @@ public class RSAFormFiller extends FormFiller {
 
     private void fillEnfant(Individu individu) {
         writer.setPage(1);
+        writer.setFontSize(7);
         String nomPrenom = null;
         if (null != individu.lastName) {
             nomPrenom = individu.lastName;
@@ -141,13 +164,14 @@ public class RSAFormFiller extends FormFiller {
                 nomPrenom += " " + individu.firstName;
             }
         }
-        writer.appendOptionalText(nomPrenom, 117 + currentPersonneACharge * 113, 515, 7);
+        writer.appendOptionalText(nomPrenom, 117 + currentPersonneACharge * 113, 515);
 
-        writer.appendText(individu.dateDeNaissance, 117 + currentPersonneACharge * 113, 484, 7);
+        writer.appendText(individu.dateDeNaissance, 117 + currentPersonneACharge * 113, 484);
 
         if (Nationalite.FRANCAISE == individu.nationalite) {
-            writer.appendText("Française", 117 + currentPersonneACharge * 113, 453, 7);
+            writer.appendText("Française", 117 + currentPersonneACharge * 113, 453);
         }
+        writer.setFontSize(12);
         currentPersonneACharge++;
     }
 

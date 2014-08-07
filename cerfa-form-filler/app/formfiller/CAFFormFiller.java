@@ -70,6 +70,7 @@ public class CAFFormFiller extends FormFiller {
                 fillConjoint(individu);
             }
         }
+
         fillLogement();
         fillPersonnesACharge();
         fillCurrentDate();
@@ -83,6 +84,18 @@ public class CAFFormFiller extends FormFiller {
         writer.appendOptionalText(demandeur.nomUsage, 85, 611);
         writer.appendOptionalText(demandeur.firstName, 170, 587);
         writer.appendDate(demandeur.dateDeNaissance, 115, 557);
+
+        if (null != demandeur.paysNaissance) {
+            if ("france".equals(demandeur.paysNaissance.toLowerCase())) {
+                writer.appendOptionalText(demandeur.villeNaissance, 122, 538, 7);
+                if (null != demandeur.departementNaissance) {
+                    writer.appendOptionalNumber(String.valueOf(demandeur.departementNaissance), 265, 541);
+                }
+            } else {
+                writer.appendText(demandeur.paysNaissance, 202, 524, 9);
+            }
+        }
+
         Point checkboxCoordinates = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
         writer.checkbox(checkboxCoordinates.x, checkboxCoordinates.y);
         if (null != demandeur.nir) {
@@ -116,6 +129,18 @@ public class CAFFormFiller extends FormFiller {
         writer.appendOptionalText(conjoint.nomUsage, 360, 611);
         writer.appendOptionalText(conjoint.firstName, 445, 587);
         writer.appendDate(conjoint.dateDeNaissance, 391, 557);
+
+        if (null != conjoint.paysNaissance) {
+            if ("france".equals(conjoint.paysNaissance.toLowerCase())) {
+                writer.appendOptionalText(conjoint.villeNaissance, 397, 538, 7);
+                if (null != conjoint.departementNaissance) {
+                    writer.appendOptionalNumber(String.valueOf(conjoint.departementNaissance), 540, 541);
+                }
+            } else {
+                writer.appendText(conjoint.paysNaissance, 479, 524, 9);
+            }
+        }
+
         Point checkboxCoordinates = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);
         writer.checkbox(checkboxCoordinates.x, checkboxCoordinates.y);
         if (null != conjoint.nir) {

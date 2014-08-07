@@ -16,6 +16,9 @@ public class Individu {
     public String nomUsage;
     public String nir;
     public String dateDeNaissance;
+    public String paysNaissance;
+    public String villeNaissance;
+    public Integer departementNaissance;
     public Nationalite nationalite;
     public IndividuRole role;
     public String email;

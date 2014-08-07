@@ -1,8 +1,8 @@
 package formfiller;
 
+import models.Individu;
+import models.Individu.IndividuRole;
 import models.Situation;
-import models.Situation.Individu;
-import models.Situation.IndividuRole;
 
 import org.joda.time.LocalDate;
 

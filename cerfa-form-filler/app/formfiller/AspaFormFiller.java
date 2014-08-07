@@ -5,12 +5,12 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import models.Individu;
+import models.Individu.IndividuRole;
+import models.Individu.Nationalite;
+import models.Individu.StatutMarital;
+import models.Logement;
 import models.Situation;
-import models.Situation.Individu;
-import models.Situation.IndividuRole;
-import models.Situation.Logement;
-import models.Situation.Nationalite;
-import models.Situation.StatutMarital;
 
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;

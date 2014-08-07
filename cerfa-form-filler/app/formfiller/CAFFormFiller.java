@@ -2,11 +2,11 @@ package formfiller;
 
 import java.util.EnumMap;
 
+import models.Individu;
+import models.Individu.IndividuRole;
+import models.Individu.Nationalite;
+import models.Individu.StatutMarital;
 import models.Situation;
-import models.Situation.Individu;
-import models.Situation.IndividuRole;
-import models.Situation.Nationalite;
-import models.Situation.StatutMarital;
 
 import org.joda.time.LocalDate;
 

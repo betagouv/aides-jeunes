@@ -10,6 +10,8 @@ import models.Individu.StatutMarital;
 import models.Logement.LogementType;
 import models.Situation;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
 
 import pdfwriter.PdfWriter;
@@ -148,12 +150,30 @@ public class RSAFormFiller extends FormFiller {
 
     private void fillLogement() {
         writer.setPage(0);
+        if (null != situation.logement.adresse) {
+            String[] addressTokens = situation.logement.adresse.split(" ");
+            if (addressTokens.length > 1) {
+                String number = addressTokens[0];
+                if (StringUtils.isNumeric(number)) {
+                    writer.appendText(number, 45, 378);
+                }
+                addressTokens = ArrayUtils.remove(addressTokens, 0);
+                if (addressTokens[0].toLowerCase().equals("rue")) {
+                    addressTokens = ArrayUtils.remove(addressTokens, 0);
+                }
+                String address = StringUtils.join(addressTokens, " ");
+                writer.appendText(address, 135, 378);
+            }
+        }
+
         writer.appendNumber(situation.logement.codePostal, 88, 352);
+        writer.appendOptionalText(situation.logement.ville, 253, 350);
         Point logementTypeCheckbox = logementTypeCheckboxes.get(situation.logement.type);
         if (null != logementTypeCheckbox) {
             writer.checkbox(logementTypeCheckbox.x, logementTypeCheckbox.y);
         }
     }
+
     private void fillCurrentDate() {
         writer.setPage(4);
         String currentDate = LocalDate.now().toString("dd/MM/yyyy");

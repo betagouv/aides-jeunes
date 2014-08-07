@@ -137,7 +137,10 @@ public class CAFFormFiller extends FormFiller {
 
     private void fillLogement() {
         writer.setPage(0);
+        writer.appendOptionalText(situation.logement.adresse, 134, 257);
         writer.appendNumber(situation.logement.codePostal, 89, 243);
+        writer.appendOptionalText(situation.logement.ville, 220, 240);
+        writer.appendText("France", 438, 240);
     }
 
     private void fillPersonnesACharge() {

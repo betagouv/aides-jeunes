@@ -36,10 +36,10 @@
           <span class="help-block">S'il y a lieu, laisser vide sinon</span>
         </div>
       </div>
-      <div class="form-group" ng-class="{'has-error': error && individusForm.nirDemandeur.$invalid}">
+      <div class="form-group">
         <label class="col-sm-4 control-label" for="nir-demandeur">Numéro de sécurité sociale</label>
         <div class="col-sm-8">
-          <input type="text" required name="nirDemandeur" id="nir-demandeur" class="form-control" ng-model="situation.demandeur.nir">
+          <input type="text" name="nirDemandeur" id="nir-demandeur" class="form-control" ng-model="situation.demandeur.nir">
         </div>
       </div>
     </div>
@@ -74,10 +74,10 @@
           <span class="help-block">S'il y a lieu, laisser vide sinon</span>
         </div>
       </div>
-      <div class="form-group" ng-class="{'has-error': error && individusForm.nirConjoint.$invalid}">
+      <div class="form-group">
         <label class="col-sm-4 control-label" for="nir-conjoint">Numéro de sécurité sociale</label>
         <div class="col-sm-8">
-          <input type="text" required name="nirConjoint" id="nir-conjoint" class="form-control" ng-model="situation.conjoint.nir">
+          <input type="text" name="nirConjoint" id="nir-conjoint" class="form-control" ng-model="situation.conjoint.nir">
         </div>
       </div>
     </div>
@@ -107,10 +107,10 @@
               <input type="text" required name="nomEnfant" id="nom-enfant{{ $index }}" class="form-control" ng-model="enfant.lastName">
             </div>
           </div>
-          <div class="form-group" ng-class="{'has-error': error && individuForm.nirEnfant.$invalid}">
+          <div class="form-group">
             <label class="col-sm-4 control-label" for="nir-enfant{{ $index }}">Numéro de sécurité sociale</label>
             <div class="col-sm-8">
-              <input type="text" required name="nirEnfant" id="nir-enfant{{ $index }}" class="form-control" ng-model="enfant.nir">
+              <input type="text" name="nirEnfant" id="nir-enfant{{ $index }}" class="form-control" ng-model="enfant.nir">
             </div>
           </div>
         </ng-form>

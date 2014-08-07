@@ -142,6 +142,9 @@ public class RSAFormFiller extends FormFiller {
             }
         }
         writer.appendOptionalText(nomPrenom, 117 + currentPersonneACharge * 113, 515, 7);
+
+        writer.appendText(individu.dateDeNaissance, 117 + currentPersonneACharge * 113, 484, 7);
+
         if (Nationalite.FRANCAISE == individu.nationalite) {
             writer.appendText("Française", 117 + currentPersonneACharge * 113, 453, 7);
         }

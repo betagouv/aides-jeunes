@@ -70,9 +70,9 @@ public class AspaFormFiller extends FormFiller {
             writer.appendText("française", 390, 635);
         }
         writer.appendText("FRANCE", 470, 545);
-        if (null != demandeur.numeroSecu) {
-            writer.appendNumber(demandeur.numeroSecu.substring(0, 13), 155, 523);
-            writer.appendNumber(demandeur.numeroSecu.substring(13, 15), 323, 523);
+        if (null != demandeur.nir) {
+            writer.appendNumber(demandeur.nir.substring(0, 13), 155, 523);
+            writer.appendNumber(demandeur.nir.substring(13, 15), 323, 523);
         }
         Point statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
         writer.checkbox(statutMaritalCheckbox.x, statutMaritalCheckbox.y);
@@ -86,9 +86,9 @@ public class AspaFormFiller extends FormFiller {
         if (Nationalite.FRANCAISE == conjoint.nationalite) {
             writer.appendText("française", 380, 327);
         }
-        if (null != conjoint.numeroSecu) {
-            writer.appendNumber(conjoint.numeroSecu.substring(0, 13), 150, 275);
-            writer.appendNumber(conjoint.numeroSecu.substring(13, 15), 318, 275);
+        if (null != conjoint.nir) {
+            writer.appendNumber(conjoint.nir.substring(0, 13), 150, 275);
+            writer.appendNumber(conjoint.nir.substring(13, 15), 318, 275);
         }
     }
 

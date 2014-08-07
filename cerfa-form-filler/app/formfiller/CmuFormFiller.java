@@ -29,6 +29,7 @@ public class CmuFormFiller extends FormFiller {
                 fillEnfant(individu);
             }
         }
+
         fillLogement(situation.logement);
         String currentDate = LocalDate.now().toString("ddMMyyyy");
         writer.fillDateField("date demande", currentDate);
@@ -40,9 +41,9 @@ public class CmuFormFiller extends FormFiller {
             nomPrenom = String.format("%s %s", demandeur.lastName, demandeur.firstName);
         }
         writer.fillOptionalTextField("nom prénom demandeur", nomPrenom);
-        if (null != demandeur.numeroSecu) {
-            writer.fillTextField("n° sécu demandeur", demandeur.numeroSecu.substring(0, 13));
-            writer.fillTextField("clé n° sécu demandeur", demandeur.numeroSecu.substring(13, 15));
+        if (null != demandeur.nir) {
+            writer.fillTextField("n° sécu demandeur", demandeur.nir.substring(0, 13));
+            writer.fillTextField("clé n° sécu demandeur", demandeur.nir.substring(13, 15));
         }
         writer.fillDateField("date naissance demandeur", demandeur.dateDeNaissance);
         writer.fillRadioField("nationalité", demandeur.nationalite.formRadioValue);
@@ -59,9 +60,9 @@ public class CmuFormFiller extends FormFiller {
             nomPrenom = String.format("%s %s", conjoint.lastName, conjoint.firstName);
         }
         writer.fillOptionalTextField("nom prénom conjoint", nomPrenom);
-        if (null != conjoint.numeroSecu) {
-            writer.fillTextField("n° sécu conjoint", conjoint.numeroSecu.substring(0, 13));
-            writer.fillTextField("clé n° sécu conjoint", conjoint.numeroSecu.substring(13, 15));
+        if (null != conjoint.nir) {
+            writer.fillTextField("n° sécu conjoint", conjoint.nir.substring(0, 13));
+            writer.fillTextField("clé n° sécu conjoint", conjoint.nir.substring(13, 15));
         }
         writer.fillDateField("date naissance conjoint", conjoint.dateDeNaissance);
         writer.fillRadioField("nationalité conjoint", conjoint.nationalite.formRadioValue);
@@ -77,6 +78,10 @@ public class CmuFormFiller extends FormFiller {
         writer.fillOptionalTextField("personne à charge" + currentChildIndex, nomPrenom);
         writer.fillTextField("nationalité personne à charge" + currentChildIndex, enfant.nationalite.formStringValue);
         writer.fillDateField("date naissance personne à charge" + currentChildIndex, enfant.dateDeNaissance);
+        if (null != enfant.nir) {
+            writer.fillTextField("n° sécu personne à charge" + currentChildIndex, enfant.nir.substring(0, 13));
+            writer.fillTextField("clé n° sécu personne à charge" + currentChildIndex, enfant.nir.substring(13, 15));
+        }
         currentChildIndex++;
     }
 

@@ -14,7 +14,7 @@ public class Individu {
     public String firstName;
     public String lastName;
     public String nomUsage;
-    public String numeroSecu;
+    public String nir;
     public String dateDeNaissance;
     public Nationalite nationalite;
     public IndividuRole role;

@@ -35,10 +35,10 @@ public class ASFFormFiller extends FormFiller {
         writer.appendOptionalText(demandeur.firstName, 402, 290, 9);
         writer.setNumberSpacing(15.5f);
         writer.appendDate(demandeur.dateDeNaissance, 112, 247);
-        if (null != demandeur.numeroSecu) {
+        if (null != demandeur.nir) {
             writer.setNumberSpacing(14.8f);
-            writer.appendNumber(demandeur.numeroSecu.substring(0, 13), 149, 214);
-            writer.appendNumber(demandeur.numeroSecu.substring(13, 15), 344, 214);
+            writer.appendNumber(demandeur.nir.substring(0, 13), 149, 214);
+            writer.appendNumber(demandeur.nir.substring(13, 15), 344, 214);
         }
     }
 

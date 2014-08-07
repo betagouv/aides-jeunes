@@ -100,6 +100,12 @@ public class PdfWriter {
         appendNumber(number, x, y, this.fontSize);
     }
 
+    public void appendOptionalNumber(String number, float x, float y) {
+        if (null != number) {
+            appendNumber(number, x, y);
+        }
+    }
+
     public void appendDate(String date, float x, float y) {
         appendNumber(date.replaceAll("/", ""), x, y);
     }

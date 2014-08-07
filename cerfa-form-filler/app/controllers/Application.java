@@ -60,6 +60,7 @@ public class Application extends Controller {
         Logger.info(String.format("Génération formulaire %s", formId));
         PDDocument document = PDDocument.load(String.format("resources/%s.pdf", formId));
         Situation situation = getRequest(Situation.class);
+        Logger.info(request().body().toString());
         PdfWriter writer = new PdfWriter(document);
         FormFiller filler = form.createFormFiller(writer, situation);
         filler.fill();

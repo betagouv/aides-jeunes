@@ -84,9 +84,9 @@ public class CAFFormFiller extends FormFiller {
         writer.appendDate(demandeur.dateDeNaissance, 115, 557);
         Point checkboxCoordinates = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
         writer.checkbox(checkboxCoordinates.x, checkboxCoordinates.y);
-        if (null != demandeur.numeroSecu) {
-            writer.appendNumber(demandeur.numeroSecu.substring(0, 13), 55, 465);
-            writer.appendNumber(demandeur.numeroSecu.substring(13, 15), 260, 465);
+        if (null != demandeur.nir) {
+            writer.appendNumber(demandeur.nir.substring(0, 13), 55, 465);
+            writer.appendNumber(demandeur.nir.substring(13, 15), 260, 465);
         }
 
         writer.setPage(1);
@@ -116,9 +116,9 @@ public class CAFFormFiller extends FormFiller {
         writer.appendDate(conjoint.dateDeNaissance, 391, 557);
         Point checkboxCoordinates = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);
         writer.checkbox(checkboxCoordinates.x, checkboxCoordinates.y);
-        if (null != conjoint.numeroSecu) {
-            writer.appendNumber(conjoint.numeroSecu.substring(0, 13), 330, 465);
-            writer.appendNumber(conjoint.numeroSecu.substring(13, 15), 535, 465);
+        if (null != conjoint.nir) {
+            writer.appendNumber(conjoint.nir.substring(0, 13), 330, 465);
+            writer.appendNumber(conjoint.nir.substring(13, 15), 535, 465);
         }
 
         writer.setPage(2);

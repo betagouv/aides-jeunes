@@ -33,7 +33,6 @@ public class RSAFormFiller extends FormFiller {
 
     private void initCiviliteCheckboxes() {
         EnumMap<Civilite, Point> demandeurCheckboxes = new EnumMap<>(Civilite.class);
-        // 102 30
         demandeurCheckboxes.put(Civilite.HOMME, new Point(102, 703));
         demandeurCheckboxes.put(Civilite.FEMME, new Point(30, 703));
         civiliteCheckboxes.put(IndividuRole.DEMANDEUR, demandeurCheckboxes);
@@ -95,6 +94,9 @@ public class RSAFormFiller extends FormFiller {
         writer.appendDate(demandeur.dateDeNaissance, 113, 635);
         Point checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
         writer.checkbox(checkboxNationalite.x, checkboxNationalite.y);
+        writer.setNumberSpacing(15.1f);
+        writer.appendOptionalNumber(demandeur.nir, 31, 507);
+        writer.setNumberSpacing(15.5f);
 
         writer.setPage(1);
         if (StatutMarital.SEUL == demandeur.statusMarital) {
@@ -121,6 +123,9 @@ public class RSAFormFiller extends FormFiller {
         writer.appendDate(conjoint.dateDeNaissance, 389, 635);
         Point checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);
         writer.checkbox(checkboxNationalite.x, checkboxNationalite.y);
+        writer.setNumberSpacing(15.1f);
+        writer.appendOptionalNumber(conjoint.nir, 308, 507);
+        writer.setNumberSpacing(15.5f);
     }
 
     private void fillEnfant(Individu individu) {

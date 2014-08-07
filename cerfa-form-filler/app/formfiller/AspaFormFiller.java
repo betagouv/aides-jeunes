@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import models.Individu;
+import models.Individu.Civilite;
 import models.Individu.IndividuRole;
 import models.Individu.Nationalite;
 import models.Individu.StatutMarital;
@@ -20,13 +21,20 @@ import pdfwriter.PdfWriter;
 
 public class AspaFormFiller extends FormFiller {
 
+    private static final EnumMap<Civilite, Point> civiliteCheckboxes = new EnumMap<>(Civilite.class);
     private static final EnumMap<StatutMarital, Point> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
     private static DateTimeFormatter monthFormatter;
 
     public AspaFormFiller(PdfWriter writer, Situation situation) {
         super(writer, situation);
+        initCiviliteCheckboxesCoordinates();
         initStatutMaritalCheckboxesCoordinates();
         monthFormatter = DateTimeFormat.forPattern("MMMM yyyy").withLocale(Locale.FRANCE);
+    }
+
+    private static void initCiviliteCheckboxesCoordinates() {
+        civiliteCheckboxes.put(Civilite.FEMME, new Point(67, 731));
+        civiliteCheckboxes.put(Civilite.HOMME, new Point(286, 731));
     }
 
     private static void initStatutMaritalCheckboxesCoordinates() {
@@ -53,6 +61,8 @@ public class AspaFormFiller extends FormFiller {
 
     private void fillDemandeur(Individu demandeur) {
         writer.setPage(4);
+        Point civiliteCheckbox = civiliteCheckboxes.get(demandeur.civilite);
+        writer.checkbox(civiliteCheckbox.x, civiliteCheckbox.y);
         writer.appendOptionalText(demandeur.lastName, 140, 715);
         writer.appendOptionalText(demandeur.firstName, 225, 655);
         writer.appendDate(demandeur.dateDeNaissance, 140, 634);

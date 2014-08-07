@@ -23,10 +23,14 @@
           <i class="fa" ng-class="{'fa-external-link': link.type === 'link', 'fa-file-pdf-o': link.type === 'pdf'}"></i>
           {{ link.label }}
         </a>
-        <button type="button" class="list-group-item list-group-item-success" ng-repeat="cerfa in droit.description.cerfa" ng-click="downloadCerfa(cerfa)">
+        <a
+          href=""
+          class="list-group-item list-group-item-success"
+          ng-repeat="cerfa in droit.description.cerfa"
+          ng-click="downloadCerfa(cerfa)">
           <i class="fa fa-file-pdf-o"></i>
           {{ cerfa.label }}
-        </button>
+        </a>
       </div>
       <div class="media-body">
         <h3 class="media-heading">

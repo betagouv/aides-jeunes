@@ -2,14 +2,14 @@
 
 angular.module('ddsApp').controller('FormInfosComplementairesNomsPrenomsCtrl', function($scope, $state, SituationService) {
     var situation = $scope.situation = SituationService.restoreLocal();
-    situation.demandeur.sexe = 'm';
+    situation.demandeur.civilite = 'h';
     if (situation.conjoint) {
-        situation.conjoint.sexe = 'f';
+        situation.conjoint.civilite = 'f';
     }
 
     $scope.individus = situation.enfants.concat(situation.personnesACharge);
     $scope.individus.forEach(function(individu) {
-        individu.sexe = 'm';
+        individu.civilite = 'h';
     });
 
     $scope.submit = function(form) {

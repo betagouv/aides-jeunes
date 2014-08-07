@@ -10,9 +10,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class Individu {
 
+    public Civilite civilite;
     public String firstName;
     public String lastName;
-    public String nomEpouse;
+    public String nomUsage;
     public String numeroSecu;
     public String dateDeNaissance;
     public Nationalite nationalite;
@@ -24,6 +25,33 @@ public class Individu {
     public boolean etudiant;
     public boolean retraite;
     public boolean enceinte;
+
+    @JsonDeserialize(using = CiviliteDeserializer.class)
+    public static enum Civilite {
+
+        HOMME("h"),
+        FEMME("f");
+
+        public final String value;
+
+        Civilite(String value) {
+            this.value = value;
+        }
+    }
+
+    public static class CiviliteDeserializer extends JsonDeserializer<Civilite> {
+
+        @Override
+        public Civilite deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            for (Civilite civilite : Civilite.values()) {
+                if (civilite.value.equals(jp.getText())) {
+                    return civilite;
+                }
+            }
+
+            throw new RuntimeException(String.format("Civilité inconnue : %s", jp.getText()));
+        }
+    }
 
     @JsonDeserialize(using = IndividuRoleDeserializer.class)
     public static enum IndividuRole {

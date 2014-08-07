@@ -3,12 +3,12 @@
 <form name="form" class="form-horizontal" novalidate ng-submit="submit(form)" ng-if="!capturedIndividus">
   <div class="row">
     <div class="col-sm-6">
-      <h2><i class="fa" ng-class="{'fa-male': 'm' === situation.demandeur.sexe, 'fa-female': 'f' === situation.demandeur.sexe}"></i> Vous</h2>
+      <h2><i class="fa" ng-class="{'fa-male': 'h' === situation.demandeur.civilite, 'fa-female': 'f' === situation.demandeur.civilite}"></i> Vous</h2>
       <div class="form-group">
-        <label class="col-sm-4 control-label" for="sexe-demandeur">Sexe</label>
+        <label class="col-sm-4 control-label" for="civilite-demandeur">Sexe</label>
         <div class="col-sm-4">
-          <select id="sexe-demandeur" name="sexeDemandeur" class="form-control" ng-model="situation.demandeur.sexe">
-            <option value="m">Homme</option>
+          <select id="civilite-demandeur" name="civiliteDemandeur" class="form-control" ng-model="situation.demandeur.civilite">
+            <option value="h">Homme</option>
             <option value="f">Femme</option>
           </select>
         </div>
@@ -20,15 +20,16 @@
         </div>
       </div>
       <div class="form-group" ng-class="{'has-error': error && form.nomDemandeur.$invalid}">
-        <label class="col-sm-4 control-label" for="nom-demandeur">Nom de naissance</label>
+        <label class="col-sm-4 control-label" for="nom-demandeur">Nom de famille</label>
         <div class="col-sm-8">
           <input type="text" required name="nomDemandeur" id="nom-demandeur" class="form-control" ng-model="situation.demandeur.lastName">
+          <span class="help-block">De naissance</span>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-4 control-label" for="nom-epouse-demandeur">Nom d'épou{{ 'm' === situation.demandeur.sexe ? 'x' : 'se' }}</label>
+        <label class="col-sm-4 control-label" for="nom-usage-demandeur">Nom d'usage</label>
         <div class="col-sm-8">
-          <input type="text" id="nom-epouse-demandeur" class="form-control" ng-model="situation.demandeur.nomEpouse">
+          <input type="text" id="nom-usage-demandeur" class="form-control" ng-model="situation.demandeur.nomUsage">
           <span class="help-block">S'il y a lieu, laisser vide sinon</span>
         </div>
       </div>
@@ -41,12 +42,12 @@
     </div>
 
     <div class="col-sm-6" ng-if="situation.conjoint">
-      <h2><i class="fa" ng-class="{'fa-male': 'm' === situation.conjoint.sexe, 'fa-female': 'f' === situation.conjoint.sexe}"></i> Votre conjoint</h2>
+      <h2><i class="fa" ng-class="{'fa-male': 'h' === situation.conjoint.civilite, 'fa-female': 'f' === situation.conjoint.civilite}"></i> Votre conjoint</h2>
       <div class="form-group">
-        <label class="col-sm-4 control-label" for="sexe-conjoint">Sexe</label>
+        <label class="col-sm-4 control-label" for="civilite-conjoint">Sexe</label>
         <div class="col-sm-4">
-          <select id="sexe-conjoint" class="form-control" ng-model="situation.conjoint.sexe">
-            <option value="m">Homme</option>
+          <select id="civilite-conjoint" class="form-control" ng-model="situation.conjoint.civilite">
+            <option value="h">Homme</option>
             <option value="f">Femme</option>
           </select>
         </div>
@@ -58,15 +59,16 @@
         </div>
       </div>
       <div class="form-group" ng-class="{'has-error': error && form.nomConjoint.$invalid}">
-        <label class="col-sm-4 control-label" for="nom-conjoint">Nom de naissance</span></label>
+        <label class="col-sm-4 control-label" for="nom-conjoint">Nom de famille</span></label>
         <div class="col-sm-8">
           <input type="text" required name="nomConjoint" id="nom-conjoint" class="form-control" ng-model="situation.conjoint.lastName">
+          <span class="help-block">De naissance</span>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-4 control-label" for="nom-epouse-conjoint">Nom d'épou{{ 'm' === situation.conjoint.sexe ? 'x' : 'se' }}</label>
+        <label class="col-sm-4 control-label" for="nom-usage-conjoint">Nom d'usage</label>
         <div class="col-sm-8">
-          <input type="text" id="nom-epouse-conjoint" class="form-control" ng-model="situation.conjoint.nomEpouse">
+          <input type="text" id="nom-usage-conjoint" class="form-control" ng-model="situation.conjoint.nomUsage">
           <span class="help-block">S'il y a lieu, laisser vide sinon</span>
         </div>
       </div>
@@ -84,10 +86,10 @@
       <ng-form name="individuForm">
         <h2><i class="fa fa-child"></i> {{ enfant.firstName|uppercaseFirst }}</h2>
         <div class="form-group">
-          <label class="col-sm-4 control-label" for="sexe-enfant{{ $index }}">Sexe</label>
+          <label class="col-sm-4 control-label" for="civilite-enfant{{ $index }}">Sexe</label>
           <div class="col-sm-4">
-            <select id="sexe-enfant{{ $index }}" class="form-control" ng-model="enfant.sexe">
-              <option value="m">Homme</option>
+            <select id="civilite-enfant{{ $index }}" class="form-control" ng-model="enfant.civilite">
+              <option value="h">Homme</option>
               <option value="f">Femme</option>
             </select>
           </div>

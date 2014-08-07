@@ -45,8 +45,8 @@ public class ASFFormFiller extends FormFiller {
     private void fillEnfant(Individu enfant) {
         writer.setPage(0);
         writer.setFontSize(10);
-        writer.appendOptionalText(enfant.lastName, 45, 142 - currentEnfant * 10);
-        writer.appendOptionalText(enfant.firstName, 240, 142 - currentEnfant * 10);
+        writer.appendOptionalText(enfant.lastName, 45, 143 - currentEnfant * 10);
+        writer.appendOptionalText(enfant.firstName, 240, 143 - currentEnfant * 10);
         writer.setNumberSpacing(15.5f);
         writer.appendDate(enfant.dateDeNaissance, 430, 144 - currentEnfant * 10);
         currentEnfant++;

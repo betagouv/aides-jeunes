@@ -3,6 +3,7 @@ package formfiller;
 import java.util.EnumMap;
 
 import models.Individu;
+import models.Individu.Civilite;
 import models.Individu.IndividuRole;
 import models.Individu.Nationalite;
 import models.Individu.StatutMarital;
@@ -14,6 +15,7 @@ import pdfwriter.PdfWriter;
 
 public class CAFFormFiller extends FormFiller {
 
+    private static final EnumMap<IndividuRole, EnumMap<Civilite, Point>> civiliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<IndividuRole, EnumMap<Nationalite, Point>> nationaliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<StatutMarital, Point> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
 
@@ -21,8 +23,21 @@ public class CAFFormFiller extends FormFiller {
 
     public CAFFormFiller(PdfWriter writer, Situation situation) {
         super(writer, situation);
+        initCiviliteCheckboxes();
         initNationaliteCheckboxes();
         initStatutMaritalCheckboxes();
+    }
+
+    private void initCiviliteCheckboxes() {
+        EnumMap<Civilite, Point> demandeurCheckboxes = new EnumMap<>(Civilite.class);
+        demandeurCheckboxes.put(Civilite.HOMME, new Point(31, 644));
+        demandeurCheckboxes.put(Civilite.FEMME, new Point(103, 644));
+        civiliteCheckboxes.put(IndividuRole.DEMANDEUR, demandeurCheckboxes);
+
+        EnumMap<Civilite, Point> conjointCheckboxes = new EnumMap<>(Civilite.class);
+        conjointCheckboxes.put(Civilite.HOMME, new Point(306, 644));
+        conjointCheckboxes.put(Civilite.FEMME, new Point(378, 644));
+        civiliteCheckboxes.put(IndividuRole.CONJOINT, conjointCheckboxes);
     }
 
     private void initNationaliteCheckboxes() {
@@ -62,9 +77,11 @@ public class CAFFormFiller extends FormFiller {
 
     private void fillDemandeur(Individu demandeur) {
         writer.setPage(0);
-        writer.appendOptionalText(demandeur.lastName, 160, 627);
+        Point civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.civilite);
+        writer.checkbox(civiliteCheckbox.x, civiliteCheckbox.y);
+        writer.appendOptionalText(demandeur.lastName, 153, 627);
         writer.appendOptionalText(demandeur.firstName, 170, 587);
-        writer.appendDate(demandeur.dateDeNaissance, 114, 557);
+        writer.appendDate(demandeur.dateDeNaissance, 115, 557);
         Point checkboxCoordinates = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
         writer.checkbox(checkboxCoordinates.x, checkboxCoordinates.y);
         if (null != demandeur.numeroSecu) {
@@ -92,9 +109,11 @@ public class CAFFormFiller extends FormFiller {
 
     private void fillConjoint(Individu conjoint) {
         writer.setPage(0);
-        writer.appendOptionalText(conjoint.lastName, 435, 627);
+        Point civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.civilite);
+        writer.checkbox(civiliteCheckbox.x, civiliteCheckbox.y);
+        writer.appendOptionalText(conjoint.lastName, 428, 627);
         writer.appendOptionalText(conjoint.firstName, 445, 587);
-        writer.appendDate(conjoint.dateDeNaissance, 389, 557);
+        writer.appendDate(conjoint.dateDeNaissance, 391, 557);
         Point checkboxCoordinates = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);
         writer.checkbox(checkboxCoordinates.x, checkboxCoordinates.y);
         if (null != conjoint.numeroSecu) {

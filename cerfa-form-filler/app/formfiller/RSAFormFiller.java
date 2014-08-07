@@ -3,6 +3,7 @@ package formfiller;
 import java.util.EnumMap;
 
 import models.Individu;
+import models.Individu.Civilite;
 import models.Individu.IndividuRole;
 import models.Individu.Nationalite;
 import models.Individu.StatutMarital;
@@ -15,6 +16,7 @@ import pdfwriter.PdfWriter;
 
 public class RSAFormFiller extends FormFiller {
 
+    private static final EnumMap<IndividuRole, EnumMap<Civilite, Point>> civiliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<IndividuRole, EnumMap<Nationalite, Point>> nationaliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<LogementType, Point> logementTypeCheckboxes = new EnumMap<>(LogementType.class);
     private static final EnumMap<StatutMarital, Point> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
@@ -23,9 +25,23 @@ public class RSAFormFiller extends FormFiller {
 
     public RSAFormFiller(PdfWriter writer, Situation situation) {
         super(writer, situation);
+        initCiviliteCheckboxes();
         initNationaliteCheckboxes();
         initLogementTypeCheckboxes();
         initStatutMaritalCheckboxes();
+    }
+
+    private void initCiviliteCheckboxes() {
+        EnumMap<Civilite, Point> demandeurCheckboxes = new EnumMap<>(Civilite.class);
+        // 102 30
+        demandeurCheckboxes.put(Civilite.HOMME, new Point(102, 703));
+        demandeurCheckboxes.put(Civilite.FEMME, new Point(30, 703));
+        civiliteCheckboxes.put(IndividuRole.DEMANDEUR, demandeurCheckboxes);
+
+        EnumMap<Civilite, Point> conjointCheckboxes = new EnumMap<>(Civilite.class);
+        conjointCheckboxes.put(Civilite.HOMME, new Point(378, 703));
+        conjointCheckboxes.put(Civilite.FEMME, new Point(306, 703));
+        civiliteCheckboxes.put(IndividuRole.CONJOINT, conjointCheckboxes);
     }
 
     private void initNationaliteCheckboxes() {
@@ -72,6 +88,8 @@ public class RSAFormFiller extends FormFiller {
 
     private void fillDemandeur(Individu demandeur) {
         writer.setPage(0);
+        Point civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.civilite);
+        writer.checkbox(civiliteCheckbox.x, civiliteCheckbox.y);
         writer.appendOptionalText(demandeur.lastName, 155, 687);
         writer.appendOptionalText(demandeur.firstName, 170, 648);
         writer.appendDate(demandeur.dateDeNaissance, 113, 635);
@@ -96,6 +114,8 @@ public class RSAFormFiller extends FormFiller {
 
     private void fillConjoint(Individu conjoint) {
         writer.setPage(0);
+        Point civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.civilite);
+        writer.checkbox(civiliteCheckbox.x, civiliteCheckbox.y);
         writer.appendOptionalText(conjoint.lastName, 430, 687);
         writer.appendOptionalText(conjoint.firstName, 442, 648);
         writer.appendDate(conjoint.dateDeNaissance, 389, 635);

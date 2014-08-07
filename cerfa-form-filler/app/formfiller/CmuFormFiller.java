@@ -31,6 +31,8 @@ public class CmuFormFiller extends FormFiller {
         }
 
         fillLogement(situation.logement);
+        writer.fillOptionalTextField("email demandeur", situation.email);
+        writer.fillOptionalTextField("téléphone demandeur", situation.phoneNumber);
         String currentDate = LocalDate.now().toString("ddMMyyyy");
         writer.fillDateField("date demande", currentDate);
     }

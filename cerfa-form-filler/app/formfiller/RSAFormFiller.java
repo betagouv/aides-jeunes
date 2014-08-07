@@ -84,6 +84,7 @@ public class RSAFormFiller extends FormFiller {
         }
 
         fillLogement();
+        fillContact();
         fillCurrentDate();
     }
 
@@ -198,6 +199,27 @@ public class RSAFormFiller extends FormFiller {
         Point logementTypeCheckbox = logementTypeCheckboxes.get(situation.logement.type);
         if (null != logementTypeCheckbox) {
             writer.checkbox(logementTypeCheckbox.x, logementTypeCheckbox.y);
+        }
+    }
+
+    private void fillContact() {
+        writer.setPage(0);
+        if (null != situation.phoneNumber) {
+            if (StringUtils.startsWithAny(situation.phoneNumber, "06", "+336", "07", "+337")) {
+                writer.appendNumber(situation.phoneNumber, 374, 338);
+            } else {
+                writer.appendNumber(situation.phoneNumber, 90, 338);
+            }
+        }
+
+        if (null != situation.email) {
+            String[] parts =  situation.email.split("@");
+            if (parts.length > 1) {
+                writer.appendOptionalText(parts[0], 92, 321, 10);
+                writer.appendOptionalText(parts[1], 267, 321, 10);
+            } else {
+                writer.appendOptionalText(situation.email, 92, 321, 10);
+            }
         }
     }
 

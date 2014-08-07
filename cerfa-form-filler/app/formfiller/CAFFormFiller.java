@@ -9,6 +9,7 @@ import models.Individu.Nationalite;
 import models.Individu.StatutMarital;
 import models.Situation;
 
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
 
 import pdfwriter.PdfWriter;
@@ -18,6 +19,8 @@ public class CAFFormFiller extends FormFiller {
     private static final EnumMap<IndividuRole, EnumMap<Civilite, Point>> civiliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<IndividuRole, EnumMap<Nationalite, Point>> nationaliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<StatutMarital, Point> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
+
+    private static final float DEFAULT_NUMBER_SPACING = 15.4f;
 
     private int currentPersonneACharge = 0;
 
@@ -62,7 +65,7 @@ public class CAFFormFiller extends FormFiller {
 
     @Override
     public void fill() {
-        writer.setNumberSpacing(15.4f);
+        writer.setNumberSpacing(DEFAULT_NUMBER_SPACING);
         for (Individu individu : situation.individus) {
             if (IndividuRole.DEMANDEUR == individu.role) {
                 fillDemandeur(individu);
@@ -72,6 +75,7 @@ public class CAFFormFiller extends FormFiller {
         }
 
         fillLogement();
+        fillContact();
         fillPersonnesACharge();
         fillCurrentDate();
     }
@@ -166,6 +170,30 @@ public class CAFFormFiller extends FormFiller {
         writer.appendNumber(situation.logement.codePostal, 89, 243);
         writer.appendOptionalText(situation.logement.ville, 220, 240);
         writer.appendText("France", 438, 240);
+    }
+
+    private void fillContact() {
+        writer.setPage(0);
+        writer.setNumberSpacing(14.2f);
+        if (null != situation.phoneNumber) {
+            if (StringUtils.startsWithAny(situation.phoneNumber, "06", "+336", "07", "+337")) {
+                writer.appendNumber(situation.phoneNumber, 400, 228);
+            } else {
+                writer.appendNumber(situation.phoneNumber, 163, 228);
+            }
+        }
+
+        if (null != situation.email) {
+            String[] parts =  situation.email.split("@");
+            if (parts.length > 1) {
+                writer.appendOptionalText(parts[0], 87, 211, 10);
+                writer.appendOptionalText(parts[1], 302, 211, 10);
+            } else {
+                writer.appendOptionalText(situation.email, 87, 211, 10);
+            }
+        }
+
+        writer.setNumberSpacing(DEFAULT_NUMBER_SPACING);
     }
 
     private void fillPersonnesACharge() {

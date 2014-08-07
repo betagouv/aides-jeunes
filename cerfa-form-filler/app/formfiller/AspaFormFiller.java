@@ -73,6 +73,8 @@ public class AspaFormFiller extends FormFiller {
             writer.appendText("française", 390, 635);
         }
 
+        writer.appendOptionalNumber(situation.phoneNumber, 320, 582);
+
         writer.appendOptionalText(demandeur.villeNaissance, 140, 615);
         if (null != demandeur.departementNaissance) {
             writer.appendText(String.valueOf(demandeur.departementNaissance), 375, 615);

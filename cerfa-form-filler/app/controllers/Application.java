@@ -64,13 +64,15 @@ public class Application extends Controller {
         FormFiller filler = form.createFormFiller(writer, situation);
         filler.fill();
         writer.flush();
+
         File file = File.createTempFile("tmp", ".pdf");
-        document.save(file);
+        try {
+            document.save(file);
 
-        Status result = ok(file, formId.concat(".pdf"));
-        file.delete();
-
-        return result;
+            return ok(file, formId.concat(".pdf"));
+        } finally {
+            file.delete();
+        }
     }
 
     private static enum Forms {

@@ -12,6 +12,7 @@ public class Individu {
 
     public String firstName;
     public String lastName;
+    public String nomEpouse;
     public String numeroSecu;
     public String dateDeNaissance;
     public Nationalite nationalite;

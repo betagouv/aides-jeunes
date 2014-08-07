@@ -37,7 +37,7 @@ public class CmuFormFiller extends FormFiller {
     private void fillDemandeur(Individu demandeur) {
         String nomPrenom = null;
         if (null != demandeur.firstName && null != demandeur.lastName) {
-            nomPrenom = String.format("%s %s", demandeur.firstName, demandeur.lastName);
+            nomPrenom = String.format("%s %s", demandeur.lastName, demandeur.firstName);
         }
         writer.fillOptionalTextField("nom prénom demandeur", nomPrenom);
         if (null != demandeur.numeroSecu) {
@@ -56,7 +56,7 @@ public class CmuFormFiller extends FormFiller {
     private void fillConjoint(Individu conjoint) {
         String nomPrenom = null;
         if (null != conjoint.firstName && null != conjoint.lastName) {
-            nomPrenom = String.format("%s %s", conjoint.firstName, conjoint.lastName);
+            nomPrenom = String.format("%s %s", conjoint.lastName, conjoint.firstName);
         }
         writer.fillOptionalTextField("nom prénom conjoint", nomPrenom);
         if (null != conjoint.numeroSecu) {
@@ -71,11 +71,8 @@ public class CmuFormFiller extends FormFiller {
 
     private void fillEnfant(Individu enfant) {
         String nomPrenom = null;
-        if (null != enfant.firstName) {
-            nomPrenom = enfant.firstName;
-            if (null != enfant.lastName) {
-                nomPrenom = nomPrenom.concat(" ").concat(enfant.lastName);
-            }
+        if (null != enfant.firstName && null != enfant.lastName) {
+            nomPrenom = String.format("%s %s", enfant.lastName, enfant.firstName);
         }
         writer.fillOptionalTextField("personne à charge" + currentChildIndex, nomPrenom);
         writer.fillTextField("nationalité personne à charge" + currentChildIndex, enfant.nationalite.formStringValue);

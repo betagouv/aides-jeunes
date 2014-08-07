@@ -90,6 +90,7 @@ public class RSAFormFiller extends FormFiller {
         Point civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.civilite);
         writer.checkbox(civiliteCheckbox.x, civiliteCheckbox.y);
         writer.appendOptionalText(demandeur.lastName, 155, 687);
+        writer.appendOptionalText(demandeur.nomUsage, 133, 670);
         writer.appendOptionalText(demandeur.firstName, 170, 648);
         writer.appendDate(demandeur.dateDeNaissance, 113, 635);
         Point checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
@@ -119,6 +120,7 @@ public class RSAFormFiller extends FormFiller {
         Point civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.civilite);
         writer.checkbox(civiliteCheckbox.x, civiliteCheckbox.y);
         writer.appendOptionalText(conjoint.lastName, 430, 687);
+        writer.appendOptionalText(conjoint.nomUsage, 408, 670);
         writer.appendOptionalText(conjoint.firstName, 442, 648);
         writer.appendDate(conjoint.dateDeNaissance, 389, 635);
         Point checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);

@@ -39,6 +39,9 @@ public class CmuFormFiller extends FormFiller {
         String nomPrenom = null;
         if (null != demandeur.firstName && null != demandeur.lastName) {
             nomPrenom = String.format("%s %s", demandeur.lastName, demandeur.firstName);
+            if (null != demandeur.nomUsage) {
+                nomPrenom = String.format("%s (nom d'usage %s)", nomPrenom, demandeur.nomUsage);
+            }
         }
         writer.fillOptionalTextField("nom prénom demandeur", nomPrenom);
         if (null != demandeur.nir) {
@@ -58,6 +61,9 @@ public class CmuFormFiller extends FormFiller {
         String nomPrenom = null;
         if (null != conjoint.firstName && null != conjoint.lastName) {
             nomPrenom = String.format("%s %s", conjoint.lastName, conjoint.firstName);
+            if (null != conjoint.nomUsage) {
+                nomPrenom = String.format("%s (nom d'usage %s)", nomPrenom, conjoint.nomUsage);
+            }
         }
         writer.fillOptionalTextField("nom prénom conjoint", nomPrenom);
         if (null != conjoint.nir) {

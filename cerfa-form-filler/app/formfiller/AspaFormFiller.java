@@ -64,6 +64,9 @@ public class AspaFormFiller extends FormFiller {
         Point civiliteCheckbox = civiliteCheckboxes.get(demandeur.civilite);
         writer.checkbox(civiliteCheckbox.x, civiliteCheckbox.y);
         writer.appendOptionalText(demandeur.lastName, 140, 715);
+        if (null != demandeur.nomUsage) {
+            writer.appendText("Nom d'usage ".concat(demandeur.nomUsage), 225, 681);
+        }
         writer.appendOptionalText(demandeur.firstName, 225, 655);
         writer.appendDate(demandeur.dateDeNaissance, 140, 634);
         if (Nationalite.FRANCAISE == demandeur.nationalite) {
@@ -81,6 +84,7 @@ public class AspaFormFiller extends FormFiller {
     private void fillConjoint(Individu conjoint) {
         writer.setPage(4);
         writer.appendOptionalText(conjoint.lastName, 140, 367);
+        writer.appendOptionalText(conjoint.nomUsage, 400, 367);
         writer.appendOptionalText(conjoint.firstName, 220, 347);
         writer.appendDate(conjoint.dateDeNaissance, 129, 325);
         if (Nationalite.FRANCAISE == conjoint.nationalite) {

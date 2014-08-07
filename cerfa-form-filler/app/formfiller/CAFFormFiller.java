@@ -80,6 +80,7 @@ public class CAFFormFiller extends FormFiller {
         Point civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.civilite);
         writer.checkbox(civiliteCheckbox.x, civiliteCheckbox.y);
         writer.appendOptionalText(demandeur.lastName, 153, 627);
+        writer.appendOptionalText(demandeur.nomUsage, 85, 611);
         writer.appendOptionalText(demandeur.firstName, 170, 587);
         writer.appendDate(demandeur.dateDeNaissance, 115, 557);
         Point checkboxCoordinates = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
@@ -112,6 +113,7 @@ public class CAFFormFiller extends FormFiller {
         Point civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.civilite);
         writer.checkbox(civiliteCheckbox.x, civiliteCheckbox.y);
         writer.appendOptionalText(conjoint.lastName, 428, 627);
+        writer.appendOptionalText(conjoint.nomUsage, 360, 611);
         writer.appendOptionalText(conjoint.firstName, 445, 587);
         writer.appendDate(conjoint.dateDeNaissance, 391, 557);
         Point checkboxCoordinates = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);

@@ -33,6 +33,7 @@ public class ASFFormFiller extends FormFiller {
         writer.setPage(0);
         writer.appendOptionalText(demandeur.lastName, 100, 290, 9);
         writer.appendOptionalText(demandeur.firstName, 402, 290, 9);
+        writer.appendOptionalText(demandeur.nomUsage, 95, 267, 9);
         writer.setNumberSpacing(15.5f);
         writer.appendDate(demandeur.dateDeNaissance, 112, 247);
         if (null != demandeur.nir) {

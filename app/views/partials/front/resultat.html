@@ -10,36 +10,43 @@
   <div ng-if="droits.length">
     <h2>Vos droits</h2>
 
-    <div class="media" ng-repeat="droit in droits">
-      <a class="pull-left" href="{{ droit.description.url }}">
-        <img class="media-object" ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
-      </a>
-      <div class="list-group pull-right">
-        <a
-          href="{{ link.url }}"
-          class="list-group-item"
-          ng-repeat="link in droit.description.links"
-          target="_blank">
-          <i class="fa" ng-class="{'fa-external-link': link.type === 'link', 'fa-file-pdf-o': link.type === 'pdf'}"></i>
-          {{ link.label }}
-        </a>
-        <a
-          href=""
-          class="list-group-item list-group-item-success"
-          ng-repeat="cerfa in droit.description.cerfa"
-          ng-click="downloadCerfa(cerfa)">
-          <i class="fa fa-file-pdf-o"></i>
-          {{ cerfa.label }}
-        </a>
+    <div class="row" ng-repeat="droit in droits">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="pull-left">
+            <img class="media-object" ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">
+              {{ droit.description.label }}
+              ({{ droit.description.shortLabel }})
+              <span ng-if="false !== droit.description.hasMontant">: <strong>{{ droit.montant }} €</strong></span>
+            </h3>
+            <p>{{ droit.description.description }}</p>
+          </div>
+        </div>
       </div>
-      <div class="media-body">
-        <h3 class="media-heading">
-          {{ droit.description.label }}
-          ({{ droit.description.shortLabel }})
-          <span ng-if="false !== droit.description.hasMontant">: <strong>{{ droit.montant }} €</strong></span>
-        </h3>
-        <p>{{ droit.description.description }}</p>
+      <div class="col-sm-4">
+        <div class="list-group">
+          <a
+            href="{{ link.url }}"
+            class="list-group-item"
+            ng-repeat="link in droit.description.links"
+            target="_blank">
+            <i class="fa" ng-class="{'fa-external-link': link.type === 'link', 'fa-file-pdf-o': link.type === 'pdf'}"></i>
+            {{ link.label }}
+          </a>
+          <a
+            href=""
+            class="list-group-item list-group-item-success"
+            ng-repeat="cerfa in droit.description.cerfa"
+            ng-click="downloadCerfa(cerfa)">
+            <i class="fa fa-file-pdf-o"></i>
+            {{ cerfa.label }}
+          </a>
+        </div>
       </div>
+      <hr>
     </div>
 
     <p class="text-center">

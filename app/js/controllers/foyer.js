@@ -6,7 +6,8 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $location, $mo
         return SituationService.formatStatutsSpecifiques(individu);
     };
     $scope.goToSimulation = function() {
-        SituationService.save($scope.situation).then(function(situation) {
+        SituationService.create($scope.situation).then(function(situation) {
+            $scope.situation._id = situation._id;
             $state.go('resultat', {'situationId': situation._id});
         });
     };

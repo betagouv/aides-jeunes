@@ -99,9 +99,16 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             });
         },
 
-        save: function(situation) {
+        create: function(situation) {
             var apiSituation = this.createApiCompatibleSituation(situation);
             return $http.post('/api/situations', apiSituation).then(function(result) {
+                return result.data;
+            });
+        },
+
+        update: function(situation) {
+            var apiSituation = this.createApiCompatibleSituation(situation);
+            return $http.put('/api/situations/' + situation._id, apiSituation).then(function(result) {
                 return result.data;
             });
         },

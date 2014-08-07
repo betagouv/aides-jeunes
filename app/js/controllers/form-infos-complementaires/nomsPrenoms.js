@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FormInfosComplementairesCtrl', function($scope, SituationService) {
+angular.module('ddsApp').controller('FormInfosComplementairesNomsPrenomsCtrl', function($scope, $state, SituationService) {
     var situation = $scope.situation = SituationService.restoreLocal();
     situation.demandeur.sexe = 'm';
     if (situation.conjoint) {
@@ -12,14 +12,11 @@ angular.module('ddsApp').controller('FormInfosComplementairesCtrl', function($sc
         individu.sexe = 'm';
     });
 
-    $scope.submitIndividus = function(form) {
+    $scope.submit = function(form) {
         if (form.$invalid) {
             $scope.error = true;
         } else {
-            $scope.capturedIndividus = true;
+            $state.go('form_infos_complementaires_address');
         }
-    };
-
-    $scope.submitLogement = function() {
     };
 });

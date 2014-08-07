@@ -105,8 +105,6 @@ public class RSAFormFiller extends FormFiller {
 
     private void fillEnfant(Individu individu) {
         writer.setPage(1);
-        individu.lastName = "kleinpeter";
-        individu.firstName = "arnaud";
         String nomPrenom = null;
         if (null != individu.lastName) {
             nomPrenom = individu.lastName;

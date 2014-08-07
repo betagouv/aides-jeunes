@@ -169,10 +169,15 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 }]
             }
         })
-        .state('form_infos_complementaires', {
-            url: '/infos-complementaires',
-            templateUrl: '/partials/form-infos-complementaires.html',
-            controller: 'FormInfosComplementairesCtrl'
+        .state('form_infos_complementaires_noms_prenoms', {
+            url: '/infos-complementaires/noms-prenoms',
+            templateUrl: '/partials/form-infos-complementaires/noms-prenoms.html',
+            controller: 'FormInfosComplementairesNomsPrenomsCtrl'
+        })
+        .state('form_infos_complementaires_address', {
+            url: '/infos-complementaires/adresse',
+            templateUrl: '/partials/form-infos-complementaires/address.html',
+            controller: 'FormInfosComplementairesAddressCtrl'
         })
         .state('envoi_demande', {
             url: '/envoi-demande/:situationId',

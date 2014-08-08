@@ -158,6 +158,8 @@ public class RSAFormFiller extends FormFiller {
     private void fillEnfant(Individu individu) {
         writer.setPage(1);
         writer.setFontSize(7);
+        float x = 117 + currentPersonneACharge * 113;
+
         String nomPrenom = null;
         if (null != individu.lastName) {
             nomPrenom = individu.lastName;
@@ -165,13 +167,16 @@ public class RSAFormFiller extends FormFiller {
                 nomPrenom += " " + individu.firstName;
             }
         }
-        writer.appendOptionalText(nomPrenom, 117 + currentPersonneACharge * 113, 515);
+        writer.appendOptionalText(nomPrenom, x, 515);
 
-        writer.appendText(individu.dateDeNaissance, 117 + currentPersonneACharge * 113, 484);
+        writer.appendText(individu.dateDeNaissance, x, 484);
 
         if (Nationalite.FRANCAISE == individu.nationalite) {
-            writer.appendText("Française", 117 + currentPersonneACharge * 113, 453);
+            writer.appendText("Française", x, 453);
         }
+
+        writer.appendOptionalText(individu.nir, x, 430);
+
         writer.setFontSize(12);
         currentPersonneACharge++;
     }

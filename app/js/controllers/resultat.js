@@ -14,7 +14,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $h
         if (situation.logement.adresse) {
             $window.open('/api/situations/' + situation._id + '/cerfa/' + cerfa.id, '_blank');
         } else {
-            $state.go('form_infos_complementaires_noms_prenoms');
+            $state.go('form_infos_complementaires_individus');
         }
     };
 

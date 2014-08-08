@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FormInfosComplementairesAddressCtrl', function($scope, $state, SituationService) {
+angular.module('ddsApp').controller('FormInfosComplementairesAddressContactCtrl', function($scope, $state, SituationService) {
     $scope.situation = SituationService.restoreLocal();
 
     $scope.submit = function() {

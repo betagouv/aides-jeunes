@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FormInfosComplementairesNomsPrenomsCtrl', function($scope, $state, SituationService) {
+angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', function($scope, $state, SituationService) {
     var situation = $scope.situation = SituationService.restoreLocal();
     situation.demandeur.civilite = 'h';
     situation.demandeur.choicePaysNaissance = 'france';
@@ -27,6 +27,6 @@ angular.module('ddsApp').controller('FormInfosComplementairesNomsPrenomsCtrl', f
     };
 
     $scope.submit = function(form) {
-        $state.go('form_infos_complementaires_address');
+        $state.go('form_infos_complementaires_address_contact');
     };
 });

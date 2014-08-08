@@ -27,10 +27,6 @@ angular.module('ddsApp').controller('FormInfosComplementairesNomsPrenomsCtrl', f
     };
 
     $scope.submit = function(form) {
-        if (form.$invalid) {
-            $scope.error = true;
-        } else {
-            $state.go('form_infos_complementaires_address');
-        }
+        $state.go('form_infos_complementaires_address');
     };
 });

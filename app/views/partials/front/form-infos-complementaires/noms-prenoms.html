@@ -1,6 +1,6 @@
 <div ng-include="'/partials/form-infos-complementaires/header.html'"></div>
 
-<form name="form" class="form-horizontal" novalidate ng-submit="submit(form)" ng-if="!capturedIndividus">
+<form name="form" class="form-horizontal" novalidate ng-submit="submit()" ng-if="!capturedIndividus">
   <div class="row">
     <div class="col-sm-6">
       <h2><i class="fa" ng-class="{'fa-male': 'h' === situation.demandeur.civilite, 'fa-female': 'f' === situation.demandeur.civilite}"></i> Vous</h2>
@@ -13,16 +13,16 @@
           </select>
         </div>
       </div>
-      <div class="form-group" ng-class="{'has-error': error && form.prenomDemandeur.$invalid}">
+      <div class="form-group">
         <label class="col-sm-4 control-label" for="prenom-demandeur">Prénom</label>
         <div class="col-sm-8">
-          <input type="text" required name="prenomDemandeur" id="prenom-demandeur" class="form-control" ng-model="situation.demandeur.firstName">
+          <input type="text" name="prenomDemandeur" id="prenom-demandeur" class="form-control" ng-model="situation.demandeur.firstName">
         </div>
       </div>
-      <div class="form-group" ng-class="{'has-error': error && form.nomDemandeur.$invalid}">
+      <div class="form-group">
         <label class="col-sm-4 control-label" for="nom-demandeur">Nom de famille</label>
         <div class="col-sm-8">
-          <input type="text" required name="nomDemandeur" id="nom-demandeur" class="form-control" ng-model="situation.demandeur.lastName">
+          <input type="text" name="nomDemandeur" id="nom-demandeur" class="form-control" ng-model="situation.demandeur.lastName">
           <span class="help-block">De naissance</span>
         </div>
       </div>
@@ -74,16 +74,16 @@
           </select>
         </div>
       </div>
-      <div class="form-group" ng-class="{'has-error': error && form.prenomConjoint.$invalid}">
+      <div class="form-group">
         <label class="col-sm-4 control-label" for="prenom-conjoint">Prénom</label>
         <div class="col-sm-8">
-          <input type="text" required name="prenomConjoint" id="prenom-conjoint" class="form-control" ng-model="situation.conjoint.firstName">
+          <input type="text" name="prenomConjoint" id="prenom-conjoint" class="form-control" ng-model="situation.conjoint.firstName">
         </div>
       </div>
-      <div class="form-group" ng-class="{'has-error': error && form.nomConjoint.$invalid}">
+      <div class="form-group">
         <label class="col-sm-4 control-label" for="nom-conjoint">Nom de famille</span></label>
         <div class="col-sm-8">
-          <input type="text" required name="nomConjoint" id="nom-conjoint" class="form-control" ng-model="situation.conjoint.lastName">
+          <input type="text" name="nomConjoint" id="nom-conjoint" class="form-control" ng-model="situation.conjoint.lastName">
           <span class="help-block">De naissance</span>
         </div>
       </div>
@@ -138,16 +138,16 @@
             </select>
           </div>
         </div>
-        <div class="form-group" ng-class="{'has-error': error && individuForm.prenomEnfant.$invalid}">
+        <div class="form-group">
           <label class="col-sm-4 control-label" for="prenom-enfant{{ $index }}">Prénom</label>
           <div class="col-sm-8">
-            <input type="text" required name="prenomEnfant" id="prenom-enfant{{ $index }}" class="form-control" ng-model="enfant.firstName">
+            <input type="text" name="prenomEnfant" id="prenom-enfant{{ $index }}" class="form-control" ng-model="enfant.firstName">
           </div>
         </div>
-        <div class="form-group" ng-class="{'has-error': error && individuForm.nomEnfant.$invalid}">
+        <div class="form-group">
           <label class="col-sm-4 control-label" for="nom-enfant{{ $index }}">Nom</span></label>
           <div class="col-sm-8">
-            <input type="text" required name="nomEnfant" id="nom-enfant{{ $index }}" class="form-control" ng-model="enfant.lastName">
+            <input type="text" name="nomEnfant" id="nom-enfant{{ $index }}" class="form-control" ng-model="enfant.lastName">
           </div>
         </div>
         <div class="form-group">

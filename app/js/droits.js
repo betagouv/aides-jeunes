@@ -46,8 +46,14 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
             },
             {
                 'label': 'Formulaire de demande',
-                'url':'http://www.cmu.fr/fichier-utilisateur/fichiers/FORMULAIRE_ACS_S3715a.pdf',
+                'url':'http://www.cmu.fr/fichier-utilisateur/fichiers/FORMULAIRE_CMUC_ACS_S3711e.pdf',
                 'type':'pdf'
+            }
+        ],
+        'cerfa': [
+            {
+                'id':'cmuc',
+                'label':'Formulaire de demande pré-rempli'
             }
         ]
     },
@@ -97,7 +103,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
             },
             {
                 'label':'Formulaire de demande en ligne',
-                'url':'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/accederaunedemandeenligne/demanderlaideaulogement/',
+                'url':'http://www.caf.fr/aides-et-services/les-services-en-ligne/acceder-a-une-demande-en-ligne',
                 'type':'link'
             },
             {

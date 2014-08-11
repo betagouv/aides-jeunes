@@ -1,6 +1,0 @@
-<div ng-if="situation.patrimoine.formCompleted">
-  <h2><i class="fa fa-money"></i> Votre patrimoine</h2>
-  <p>Vous avez <strong>{{ situation.patrimoine.mobilier.label|lowercaseFirst }}</strong> d'argent de côté</p>
-  <p ng-if="situation.patrimoine.hasImmobilier">Valeur de votre patrimoine immobilier : <strong>{{ situation.patrimoine.immobilier.label|lowercaseFirst }}</strong> (résidence principale exclue)</p>
-  <p ng-if="!situation.patrimoine.hasImmobilier">Vous n'avez aucun patrimoine immobilier (résidence principale exclue)</p>
-</div>

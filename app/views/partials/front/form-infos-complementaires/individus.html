@@ -2,7 +2,7 @@
 
 <form name="form" class="form-horizontal" novalidate ng-submit="submit()">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-md-6">
       <h2><i class="fa" ng-class="{'fa-male': 'h' === situation.demandeur.civilite, 'fa-female': 'f' === situation.demandeur.civilite}"></i> Vous</h2>
       <div class="form-group">
         <label class="col-sm-4 control-label" for="civilite-demandeur">Sexe</label>
@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <div class="col-sm-6" ng-if="situation.conjoint">
+    <div class="col-md-6" ng-if="situation.conjoint">
       <h2><i class="fa" ng-class="{'fa-male': 'h' === situation.conjoint.civilite, 'fa-female': 'f' === situation.conjoint.civilite}"></i> Votre conjoint</h2>
       <div class="form-group">
         <label class="col-sm-4 control-label" for="civilite-conjoint">Sexe</label>
@@ -126,7 +126,7 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-6" ng-repeat="enfant in individus">
+    <div class="col-md-6" ng-repeat="enfant in individus">
       <ng-form name="individuForm">
         <h2><i class="fa fa-child"></i> {{ enfant.firstName|uppercaseFirst }}</h2>
         <div class="form-group">
@@ -154,6 +154,28 @@
           <label class="col-sm-4 control-label" for="nir-enfant{{ $index }}">Numéro de sécurité sociale</label>
           <div class="col-sm-8">
             <input type="text" name="nirEnfant" id="nir-enfant{{ $index }}" class="form-control" ng-model="enfant.nir">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="pays-naissance-enfant-{{ $index }}">Pays de naissance</label>
+          <div class="col-sm-3">
+            <select id="pays-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.choicePaysNaissance" ng-change="choicePaysNaissance(enfant)">
+              <option value="france">France</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="col-sm-5" ng-if="'autre' === enfant.choicePaysNaissance">
+            <input type="text"class="form-control" ng-model="enfant.paysNaissance" placeholder="Nom du pays">
+          </div>
+        </div>
+        <div class="form-group" ng-if="'france' === enfant.choicePaysNaissance">
+          <label class="col-sm-4 control-label" for="ville-naissance-enfant-{{ $index }}">Ville de naissance</label>
+          <div class="col-sm-4">
+            <input type="text" id="ville-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.villeNaissance">
+          </div>
+          <label class="col-sm-2 control-label" for="departement-naissance-enfant-{{ $index }}">Département</label>
+          <div class="col-sm-2">
+            <input type="number" id="departement-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.departementNaissance">
           </div>
         </div>
       </ng-form>

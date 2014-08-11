@@ -48,9 +48,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 'logement@foyer': {
                     templateUrl: '/partials/foyer/logement.html',
                     controller: 'FoyerLogementCtrl'
-                },
-                'patrimoine@foyer': {
-                    templateUrl: '/partials/foyer/recap-patrimoine.html'
                 }
             }
         })

@@ -193,7 +193,10 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                     }, {
                         name: 'revenusAutoEntrepreneur',
                         label: 'Revenus auto-entrepreneur'
-                    },
+                    }, {
+                        name: 'revenusStage',
+                        label: 'Rémunération de stage'
+                    }
                 ]
             },
             {
@@ -217,7 +220,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                         label: 'Allocation de solidarité spécifique (ASS)'
                     }, {
                         name: 'aah',
-                        label: 'Allocation Adulte Handicapé'
+                        label: 'Allocation adulte handicapé'
                     }
                 ]
             },

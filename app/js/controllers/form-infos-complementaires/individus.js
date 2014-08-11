@@ -2,18 +2,23 @@
 
 angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', function($scope, $state, SituationService) {
     var situation = $scope.situation = SituationService.restoreLocal();
+
+    function initPaysNaissance(individu) {
+      individu.choicePaysNaissance = 'france';
+      individu.paysNaissance = 'France';
+    }
+
+    initPaysNaissance(situation.demandeur);
     situation.demandeur.civilite = 'h';
-    situation.demandeur.choicePaysNaissance = 'france';
-    situation.demandeur.paysNaissance = 'France';
     if (situation.conjoint) {
         situation.conjoint.civilite = 'f';
-        situation.conjoint.choicePaysNaissance = 'france';
-        situation.conjoint.paysNaissance = 'France';
+        initPaysNaissance(situation.conjoint);
     }
 
     $scope.individus = situation.enfants.concat(situation.personnesACharge);
     $scope.individus.forEach(function(individu) {
         individu.civilite = 'h';
+        initPaysNaissance(individu);
     });
 
     $scope.choicePaysNaissance = function(individu) {

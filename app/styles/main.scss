@@ -18,10 +18,6 @@ html {
   vertical-align: middle;
 }
 
-.label {
-  font-size: 12px;
-}
-
 .panel-body > *:last-child {
   margin-bottom: 0;
 }
@@ -143,10 +139,6 @@ body.change-state-progress, body.change-state-progress * {
 }
 
 .ressource-individus-selector {
-  .checkbox-inline {
-    padding-top: 0px;
-  }
-
   input[type="checkbox"] {
     margin-left: -15px;
   }

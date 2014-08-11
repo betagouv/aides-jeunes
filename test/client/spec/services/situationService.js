@@ -1,5 +1,7 @@
 'use strict';
 
+/* global _ */
+
 describe('Service: situationService', function () {
 
     var service;

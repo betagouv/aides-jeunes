@@ -1,5 +1,7 @@
 'use strict';
 
+/* global _ */
+
 angular.module('ddsApp').factory('SimulationService', function($http, $q, droitsDescription) {
     return {
         simulate: function(situation) {

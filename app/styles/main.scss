@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  margin-bottom: 100px;
+  margin-bottom: 120px;
 }
 
 body.change-state-progress, body.change-state-progress * {
@@ -78,6 +78,10 @@ body.change-state-progress, body.change-state-progress * {
 
 .label-lg {
   font-size: 20px;
+}
+
+.btn-next {
+  margin-top: 15px;
 }
 
 .task-error {

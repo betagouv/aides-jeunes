@@ -5,11 +5,11 @@
   </h2>
 
   <div ng-show="undefined === situation.demandeur.enceinte">
-    <p>
-      Attendez-vous un enfant ?
+    <div class="pull-right">
       <button class="btn btn-sm btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="true">Oui</button>
       <button class="btn btn-sm btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="false">Non</button>
-    </p>
+    </div>
+    <p>Attendez-vous un enfant ?</p>
   </div>
 
   <p>
@@ -20,11 +20,11 @@
   </p>
 
   <div ng-show="undefined !== situation.demandeur.enceinte && undefined === situation.hasChildren">
-    <p>
-      Avez-vous des enfants à charge ?
+    <div class="pull-right">
       <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="true">Oui</button>
       <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="false" ng-click="endChildConfig()">Non</button>
-    </p>
+    </div>
+    <p>Avez-vous des enfants à charge ?</p>
   </div>
 
   <div class="row">

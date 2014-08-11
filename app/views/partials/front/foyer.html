@@ -14,10 +14,10 @@
 </div>
 
 <div ng-show="situation.personnesAChargeConfigDone" class="text-center">
-  <a ui-sref="foyer.situations_specifiques" ng-if="!situation.situationsSpecifiquesCaptured" class="btn btn-lg btn-primary">
+  <a ui-sref="foyer.situations_specifiques" ng-if="!situation.situationsSpecifiquesCaptured" class="btn btn-lg btn-primary btn-next">
     Étape suivante : situations spécifiques
   </a>
-  <a ui-sref="foyer.capture_revenus" ng-if="situation.situationsSpecifiquesCaptured && !situation.revenusCaptured" class="btn btn-lg btn-primary">
+  <a ui-sref="foyer.capture_revenus" ng-if="situation.situationsSpecifiquesCaptured && !situation.revenusCaptured" class="btn btn-lg btn-primary btn-next">
     Étape suivante : vos ressources
   </a>
 </div>

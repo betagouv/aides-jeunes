@@ -19,6 +19,9 @@ angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', fun
     $scope.individus.forEach(function(individu) {
         individu.civilite = 'h';
         initPaysNaissance(individu);
+        if (individu.demandeurEmploi) {
+            individu.situation = 'demandeur_emploi';
+        }
     });
 
     $scope.choicePaysNaissance = function(individu) {

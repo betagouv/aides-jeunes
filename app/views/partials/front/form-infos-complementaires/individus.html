@@ -41,7 +41,7 @@
       </div>
       <div class="form-group">
         <label class="col-sm-4 control-label" for="pays-naissance-demandeur">Pays de naissance</label>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <select id="pays-naissance-demandeur" class="form-control" ng-model="situation.demandeur.choicePaysNaissance" ng-change="choicePaysNaissance(situation.demandeur)">
             <option value="france">France</option>
             <option value="autre">Autre</option>
@@ -102,7 +102,7 @@
       </div>
       <div class="form-group">
         <label class="col-sm-4 control-label" for="pays-naissance-conjoint">Pays de naissance</label>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <select id="pays-naissance-conjoint" class="form-control" ng-model="situation.conjoint.choicePaysNaissance" ng-change="choicePaysNaissance(situation.conjoint)">
             <option value="france">France</option>
             <option value="autre">Autre</option>
@@ -158,7 +158,7 @@
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label" for="pays-naissance-enfant-{{ $index }}">Pays de naissance</label>
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <select id="pays-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.choicePaysNaissance" ng-change="choicePaysNaissance(enfant)">
               <option value="france">France</option>
               <option value="autre">Autre</option>
@@ -176,6 +176,27 @@
           <label class="col-sm-2 control-label" for="departement-naissance-enfant-{{ $index }}">Département</label>
           <div class="col-sm-2">
             <input type="number" id="departement-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.departementNaissance">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="date-arrivee-foyer-enfant-{{ $index }}">Date d'arrivée au foyer</label>
+          <div class="col-sm-4">
+            <input type="text" id="date-arrivee-foyer-enfant-{{ $index }}" class="form-control" ng-model="enfant.dateArriveeFoyer" placeholder="jj/mm/aaaa" date-autocomplete>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="situation-enfant-{{ $index }}">Situation</label>
+          <div class="col-sm-8">
+            <select id="situation-enfant-{{ $index }}" class="form-control" ng-model="enfant.situation">
+              <option value="scolarise">Scolarisé</option>
+              <option value="apprenti">Apprenti</option>
+              <option value="salarie">Salarié</option>
+              <option value="formation_pro">En formation professionnelle</option>
+              <option value="demandeur_emploi">Demandeur d'emploi</option>
+              <option value="chomage_indemnise">En chômage indemnisé</option>
+              <option value="sans_activite">Sans activité</option>
+              <option value="autre">Autre</option>
+            </select>
           </div>
         </div>
       </ng-form>

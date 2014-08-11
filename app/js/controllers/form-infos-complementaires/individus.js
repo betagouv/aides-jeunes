@@ -26,7 +26,7 @@ angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', fun
         }
     };
 
-    $scope.submit = function(form) {
+    $scope.submit = function() {
         $state.go('form_infos_complementaires_address_contact');
     };
 });

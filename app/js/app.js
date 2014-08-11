@@ -142,19 +142,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 });
             }]
         })
-        .state('foyer.capture_patrimoine', {
-            url: '/patrimoine',
-            onEnter: ['$state', '$modal', function($state, $modal) {
-                $modal.open({
-                    templateUrl: '/partials/foyer/capture-patrimoine-modal.html',
-                    controller: 'FoyerCapturePatrimoineModalCtrl',
-                    backdrop: 'static',
-                    keyboard: false
-                }).result.then(function() {
-                    return $state.go('foyer');
-                });
-            }]
-        })
         .state('resultat', {
             url: '/resultat/:situationId',
             templateUrl: '/partials/resultat.html',
@@ -176,7 +163,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('form_infos_complementaires_address_contact', {
             url: '/infos-complementaires/adresse',
-            templateUrl: '/partials/form-infos-complementaires/address.html',
+            templateUrl: '/partials/form-infos-complementaires/address-contact.html',
             controller: 'FormInfosComplementairesAddressContactCtrl'
         })
         .state('envoi_demande', {

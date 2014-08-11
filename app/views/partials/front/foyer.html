@@ -23,23 +23,9 @@
 </div>
 
 <div ui-view="ressources"></div>
+<div ui-view="logement"></div>
 
-<div class="row">
-  <div ng-class="{'col-lg-5': situation.patrimoine.formCompleted, 'col-lg-12': !situation.patrimoine.formCompleted}">
-    <div ui-view="logement"></div>
-    <div ng-if="situation.logement.formCompleted && !situation.patrimoine.formCompleted" class="text-center">
-      <a ui-sref="foyer.capture_patrimoine" class="btn btn-lg btn-primary">
-        Étape suivante : votre patrimoine
-      </a>
-    </div>
-  </div>
-  <div class="col-lg-2"></div>
-  <div class="col-lg-5">
-    <div ui-view="patrimoine"></div>
-  </div>
-</div>
-
-<div ng-if="situation.patrimoine.formCompleted" class="panel panel-primary">
+<div ng-if="situation.logement.formCompleted" class="panel panel-primary">
   <div class="panel-heading">
     <h2 class="panel-title">C'est terminé !</h2>
   </div>

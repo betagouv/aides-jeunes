@@ -227,13 +227,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 subsections: [
                     {
                         name: 'indJourMaternite',
-                        label: 'Indemnités de maternité'
-                    }, {
-                        name: 'indJourPaternite',
-                        label: 'Indemnités de paternité'
-                    }, {
-                        name: 'indJourAdoption',
-                        label: 'Indemnités d\'adoption'
+                        label: 'Indemnités de maternité, paternité, adoption'
                     }, {
                         name: 'indJourMaladie',
                         label: 'Indemnités maladie'
@@ -258,7 +252,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                         label: 'Pensions alimentaires'
                     }, {
                         name: 'pensionsRetraitesRentes',
-                        label: 'Retraites, rentes'
+                        label: 'Retraites (y compris reversion), rentes'
                     }, {
                         name: 'pensionsInvalidite',
                         label: 'Pensions d\'invalidité'

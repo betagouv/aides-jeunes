@@ -8,6 +8,16 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 
 html {
   overflow-y: scroll;
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 100px;
+}
+
+body.change-state-progress, body.change-state-progress * {
+  cursor: progress;
 }
 
 .table-borderless > tbody > tr > td {
@@ -20,10 +30,6 @@ html {
 
 .panel-body > *:last-child {
   margin-bottom: 0;
-}
-
-body.change-state-progress, body.change-state-progress * {
-  cursor: progress;
 }
 
 .main-navbar {
@@ -54,13 +60,15 @@ body.change-state-progress, body.change-state-progress * {
 }
 
 .main-footer {
-  margin-top: 20px;
   background-color: $navbar-default-bg;
   color: $navbar-default-color;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
 
   .info {
     padding-top: 35px;
-    padding-bottom: 45px;
   }
 }
 

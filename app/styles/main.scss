@@ -142,6 +142,16 @@ body.change-state-progress, body.change-state-progress * {
   margin: 3px;
 }
 
+.ressource-individus-selector {
+  .checkbox-inline {
+    padding-top: 0px;
+  }
+
+  input[type="checkbox"] {
+    margin-left: -15px;
+  }
+}
+
 .btn.btn-sm.btn-ressources.active, .btn.btn-sm.btn-ressources.active:focus {
   border: 4px solid black;
 }

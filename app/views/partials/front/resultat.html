@@ -10,47 +10,49 @@
   <div ng-if="droits.length">
     <h2>Vos droits</h2>
 
-    <div class="row" ng-repeat="droit in droits">
-      <div class="col-sm-8">
-        <div class="media">
-          <div class="pull-left">
-            <img class="media-object" ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
-          </div>
-          <div class="media-body">
-            <h3 class="media-heading">
-              {{ droit.description.label }}
-              ({{ droit.description.shortLabel }})
-              <span ng-if="false !== droit.description.hasMontant">: <strong>{{ droit.montant }} €</strong></span>
-            </h3>
-            <p>{{ droit.description.description }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="list-group">
-          <a
-            href="{{ link.url }}"
-            class="list-group-item"
-            ng-repeat="link in droit.description.links"
-            target="_blank">
-            <i class="fa" ng-class="{'fa-external-link': link.type === 'link', 'fa-file-pdf-o': link.type === 'pdf'}"></i>
-            {{ link.label }}
-          </a>
-          <a
-            href=""
-            class="list-group-item list-group-item-success"
-            ng-repeat="cerfa in droit.description.cerfa"
-            ng-click="downloadCerfa(cerfa)">
-            <i class="fa fa-file-pdf-o"></i>
-            {{ cerfa.label }}
-          </a>
-        </div>
-      </div>
+    <div ng-repeat="droit in droits">
       <hr>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="media">
+            <div class="pull-left">
+              <img class="media-object" ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
+            </div>
+            <div class="media-body">
+              <h3 class="media-heading">
+                {{ droit.description.label }}
+                ({{ droit.description.shortLabel }})
+                <span ng-if="false !== droit.description.hasMontant">: <strong>{{ droit.montant }} €</strong></span>
+              </h3>
+              <p>{{ droit.description.description }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="list-group">
+            <a
+              href="{{ link.url }}"
+              class="list-group-item"
+              ng-repeat="link in droit.description.links"
+              target="_blank">
+              <i class="fa" ng-class="{'fa-external-link': link.type === 'link', 'fa-file-pdf-o': link.type === 'pdf'}"></i>
+              {{ link.label }}
+            </a>
+            <a
+              href=""
+              class="list-group-item list-group-item-success"
+              ng-repeat="cerfa in droit.description.cerfa"
+              ng-click="downloadCerfa(cerfa)">
+              <i class="fa fa-file-pdf-o"></i>
+              {{ cerfa.label }}
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <p class="text-center">
-      <a class="btn btn-primary btn-lg" ui-sref="envoi_demande({situationId: situationId})">
+      <a class="btn btn-primary btn-lg" ui-sref="envoi_demande({situationId: situation._id})">
         Poursuivre ma demande en ligne
       </a>
     </p>
@@ -66,7 +68,7 @@
 <p class="text-right">
   <em>Simulation effectuée par <a href="http://www.openfisca.fr">OpenFisca</a></em>
   <br>
-  <small>[<a href="/api/situations/{{ situationId }}">Situation DDS</a>]
-  [<a href="/api/situations/{{ situationId }}/openfisca-request">Requête OpenFisca</a>]
-  [<a href="/api/situations/{{ situationId }}/openfisca-response">Réponse OpenFisca</a>]</small>
+  <small>[<a href="/api/situations/{{ situation._id }}">Situation DDS</a>]
+  [<a href="/api/situations/{{ situation._id }}/openfisca-request">Requête OpenFisca</a>]
+  [<a href="/api/situations/{{ situation._id }}/openfisca-response">Réponse OpenFisca</a>]</small>
 </p>

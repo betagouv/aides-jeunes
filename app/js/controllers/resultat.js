@@ -2,6 +2,7 @@
 
 angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $http, $state, SimulationService, situation) {
     $scope.awaitingResults = true;
+    $scope.situation = situation;
     SimulationService.simulate(situation).then(function(droits) {
         $scope.droits = droits;
     }, function() {

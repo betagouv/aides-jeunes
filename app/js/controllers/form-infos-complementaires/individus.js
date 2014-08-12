@@ -5,8 +5,8 @@ angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', fun
     $scope.relationTypeLabels = SituationService.relationTypeLabels;
 
     function initPaysNaissance(individu) {
-      individu.choicePaysNaissance = 'france';
-      individu.paysNaissance = 'France';
+        individu.choicePaysNaissance = 'france';
+        individu.paysNaissance = 'France';
     }
 
     initPaysNaissance(situation.demandeur);

@@ -62,6 +62,7 @@ public class RSAFormFiller extends FormFiller {
 
     private void initLogementTypeCheckboxes() {
         logementTypeCheckboxes.put(LogementType.LOCATAIRE, new Point(30, 175));
+        logementTypeCheckboxes.put(LogementType.PAYANT, new Point(30, 161));
         logementTypeCheckboxes.put(LogementType.GRATUIT, new Point(30, 133));
     }
 
@@ -241,9 +242,17 @@ public class RSAFormFiller extends FormFiller {
 
         writer.appendNumber(situation.logement.codePostal, 88, 352);
         writer.appendOptionalText(situation.logement.ville, 253, 350);
+
         Point logementTypeCheckbox = logementTypeCheckboxes.get(situation.logement.type);
         if (null != logementTypeCheckbox) {
             writer.checkbox(logementTypeCheckbox.x, logementTypeCheckbox.y);
+        }
+        if (LogementType.PROPRIETAIRE == situation.logement.type) {
+            if (null == situation.logement.loyer || Integer.valueOf(0).equals(situation.logement.loyer)) {
+                writer.checkbox(203, 147);
+            } else {
+                writer.checkbox(30, 147);
+            }
         }
 
         writer.appendDate(situation.logement.dateArrivee, 184, 293);

@@ -46,29 +46,31 @@
     </div>
 
     <div class="form-group" ng-show="situation.logement.type === 'proprietaire'">
-      <label class="col-sm-3 control-label" popover="{{ primoAccedantTooltip }}" popover-trigger="mouseenter">Êtes-vous primo-accédant pour votre propriété&nbsp;?</label>
+      <label class="col-sm-3 control-label" popover="{{ primoAccedantTooltip }}" popover-trigger="mouseenter">
+        Êtes-vous primo-accédant pour votre propriété&nbsp;?
+      </label>
       <div class="col-sm-6">
         <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="true">Oui</button>
         <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="false">Non</button>
       </div>
     </div>
 
-    <div ng-if="'gratuit' !== situation.logement.type && (undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType)">
-      <div class="form-group">
-        <label class="col-sm-3 control-label" for="loyer">
-          {{ 'proprietaire' === situation.logement.type ? 'Votre mensualité d\'emprunt' : 'Votre loyer' }} ?
-        </label>
-        <div class="col-sm-2">
-         <div class="input-group">
-            <input class="form-control text-right" id="loyer" name="loyer" ng-model="situation.logement.loyer" type="number" required>
-            <div class="input-group-addon">€</div>
-          </div>
-          <span class="help-block" ng-if="'proprietaire' === situation.logement.type">Mettre 0 si vous n'avez pas d'emprunt pour votre propriété</span>
+    <div class="form-group" ng-if="'gratuit' !== situation.logement.type && (undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || ('payant' === situation.logement.type && undefined !== situation.logement.membreFamilleProprietaire))">
+      <label class="col-sm-3 control-label" for="loyer">
+        {{ 'proprietaire' === situation.logement.type ? 'Votre mensualité d\'emprunt' : 'Votre loyer' }} ?
+      </label>
+      <div class="col-sm-2">
+       <div class="input-group">
+          <input class="form-control text-right" id="loyer" name="loyer" ng-model="situation.logement.loyer" type="number" required>
+          <div class="input-group-addon">€</div>
         </div>
+        <span class="help-block" ng-if="'proprietaire' === situation.logement.type">Mettre 0 si vous n'avez pas d'emprunt pour votre propriété</span>
       </div>
     </div>
 
-    <div class="form-group" ng-show="undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || 'gratuit' === situation.logement.type">
+    <div
+      class="form-group"
+      ng-show="undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || 'gratuit' === situation.logement.type || (situation.logement.type === 'payant' && undefined !== situation.logement.membreFamilleProprietaire)">
       <label class="col-sm-3 control-label" for="postal-code">Quel est le code postal de votre résidence&nbsp;?</label>
       <div class="col-sm-2">
         <input class="form-control" id="postal-code" name="codePostal" ng-model="situation.logement.codePostal" type="number" required>
@@ -79,7 +81,7 @@
       <button
         type="submit"
         class="btn btn-lg btn-primary"
-        ng-if="undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || 'gratuit' === situation.logement.type">
+        ng-if="undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || 'gratuit' === situation.logement.type || ('payant' === situation.logement.type && undefined !== situation.logement.membreFamilleProprietaire)">
         Valider
       </button>
     </div>

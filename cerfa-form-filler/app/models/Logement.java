@@ -14,6 +14,7 @@ public class Logement {
     public String codePostal;
     public String ville;
     public LogementType type;
+    public Integer loyer;
     public String dateArrivee;
     public boolean conjointMemeAdresse;
     public LogementConjoint conjoint;
@@ -23,7 +24,8 @@ public class Logement {
 
         LOCATAIRE("locataire"),
         PROPRIETAIRE("proprietaire"),
-        GRATUIT("gratuit");
+        GRATUIT("gratuit"),
+        PAYANT("payant");
 
         public final String jsonValue;
 

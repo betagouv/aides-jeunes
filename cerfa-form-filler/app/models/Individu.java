@@ -14,16 +14,20 @@ public class Individu {
     public String firstName;
     public String lastName;
     public String nomUsage;
+    public LienParente lienParente;
     public String nir;
     public String dateDeNaissance;
     public String paysNaissance;
     public String villeNaissance;
     public Integer departementNaissance;
     public Nationalite nationalite;
+    public String dateArriveeFoyer;
     public IndividuRole role;
     public String email;
     public String phoneNumber;
     public StatutMarital statusMarital;
+    public String dateSituationFamiliale;
+    public SituationEnfant situation;
     public boolean demandeurEmploi;
     public boolean etudiant;
     public boolean retraite;
@@ -120,17 +124,28 @@ public class Individu {
     @JsonDeserialize(using = StatutMaritalDeserializer.class)
     public static enum StatutMarital {
 
-        MARIAGE("mariage", "marié"),
-        PACS("pacs", "pacsé"),
-        RELATION_LIBRE("relation_libre", "vie maritale"),
-        SEUL("celibat", "célibataire");
+        MARIAGE("mariage", "marié", false),
+        PACS("pacs", "pacsé", false),
+        RELATION_LIBRE("relation_libre", "vie maritale", false),
+        CELIBATAIRE("celibataire", "célibataire"),
+        VEUF("veuf", "veuf"),
+        SEPARE("separe", "séparé"),
+        DIVORCE("divorce", "divorcé"),
+        CONCUBINAGE_ROMPU("concubinage_rompu", "concubinage rompu"),
+        PACS_ROMPU("pacs_rompu", "pacs rompu");
 
         public final String jsonValue;
         public final String formValue;
+        public final boolean isAlone;
 
-        StatutMarital(String jsonValue, String formValue) {
+        StatutMarital(String jsonValue, String formValue, boolean isAlone) {
             this.jsonValue = jsonValue;
             this.formValue = formValue;
+            this.isAlone = isAlone;
+        }
+
+        StatutMarital(String jsonValue, String formValue) {
+            this(jsonValue, formValue, true);
         }
     }
 
@@ -145,6 +160,72 @@ public class Individu {
             }
 
             throw new RuntimeException(String.format("Statut marital inconnu : %s", jp.getText()));
+        }
+    }
+
+    @JsonDeserialize(using = SituationEnfantDeserializer.class)
+    public static enum SituationEnfant {
+
+        SCOLARISE("scolarise", "scolarisé"),
+        APPRENTI("apprenti", "apprenti"),
+        SALARIE("salarie", "salarié"),
+        FORMATION_PRO("formation_pro", "en formation professionnelle"),
+        DEMANDEUR_EMPLOI("demandeur_emploi", "demandeur d'emploi"),
+        CHOMAGE_INDEMNISE("chomage_indemnise", "en chômage indemnisé"),
+        SANS_ACTIVITE("sans_activite", "sans activité"),
+        AUTRE("autre", "autre");
+
+        public final String jsonValue;
+        public final String formValue;
+
+        SituationEnfant(String jsonValue, String formValue) {
+            this.jsonValue = jsonValue;
+            this.formValue = formValue;
+        }
+    }
+
+    public static class SituationEnfantDeserializer extends JsonDeserializer<SituationEnfant> {
+
+        @Override
+        public SituationEnfant deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            for (SituationEnfant situation : SituationEnfant.values()) {
+                if (situation.jsonValue.equals(jp.getText())) {
+                    return situation;
+                }
+            }
+
+            throw new RuntimeException(String.format("Situation inconnue d'une personne à charge : %s", jp.getText()));
+        }
+    }
+
+    @JsonDeserialize(using = LienParenteDeserializer.class)
+    public static enum LienParente {
+
+        FILS("fils", "fils"),
+        NEVEU("neveu", "neveu"),
+        AUCUN("aucun", "aucun"),
+        AUTRE("autre", "autre");
+
+        public final String jsonValue;
+        public final String formValue;
+
+        LienParente(String jsonValue, String formValue) {
+            this.jsonValue = jsonValue;
+            this.formValue = formValue;
+        }
+    }
+
+    public static class LienParenteDeserializer extends JsonDeserializer<LienParente> {
+
+        @Override
+        public LienParente deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            for (LienParente lien : LienParente.values()) {
+                if (lien.jsonValue.equals(jp.getText())) {
+                    return lien;
+                }
+            }
+
+            throw new RuntimeException(String.format("Lien de parenté d'une personne à charge inconnue : %s", jp.getText()));
         }
     }
 }

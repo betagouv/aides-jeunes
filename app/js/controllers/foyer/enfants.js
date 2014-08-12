@@ -8,7 +8,7 @@ angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $rootSc
         $scope.situation.enfants = [];
     }
 
-    if (!!$scope.situation.conjoint || null === $scope.situation.conjoint) {
+    if (angular.isDefined($scope.situation.conjoint)) {
         $scope.visible = true;
     }
 

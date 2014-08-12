@@ -22,6 +22,7 @@ public class RSAFormFiller extends FormFiller {
     private static final EnumMap<IndividuRole, EnumMap<Nationalite, Point>> nationaliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<LogementType, Point> logementTypeCheckboxes = new EnumMap<>(LogementType.class);
     private static final EnumMap<StatutMarital, Point> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
+    private static final EnumMap<StatutMarital, Point> statutMaritalDates = new EnumMap<>(StatutMarital.class);
 
     private int currentPersonneACharge = 0;
 
@@ -30,7 +31,7 @@ public class RSAFormFiller extends FormFiller {
         initCiviliteCheckboxes();
         initNationaliteCheckboxes();
         initLogementTypeCheckboxes();
-        initStatutMaritalCheckboxes();
+        initStatutMaritalFields();
     }
 
     private void initCiviliteCheckboxes() {
@@ -64,10 +65,25 @@ public class RSAFormFiller extends FormFiller {
         logementTypeCheckboxes.put(LogementType.GRATUIT, new Point(30, 133));
     }
 
-    private void initStatutMaritalCheckboxes() {
+    private void initStatutMaritalFields() {
         statutMaritalCheckboxes.put(StatutMarital.MARIAGE, new Point(45, 731));
         statutMaritalCheckboxes.put(StatutMarital.PACS, new Point(45, 716));
-        statutMaritalCheckboxes.put(StatutMarital.RELATION_LIBRE, new Point(45, 71));
+        statutMaritalCheckboxes.put(StatutMarital.RELATION_LIBRE, new Point(45, 701));
+        statutMaritalCheckboxes.put(StatutMarital.SEPARE, new Point(45, 656));
+        statutMaritalCheckboxes.put(StatutMarital.PACS_ROMPU, new Point(45, 641));
+        statutMaritalCheckboxes.put(StatutMarital.DIVORCE, new Point(45, 626));
+        statutMaritalCheckboxes.put(StatutMarital.VEUF, new Point(45, 611));
+        statutMaritalCheckboxes.put(StatutMarital.CONCUBINAGE_ROMPU, new Point(45, 596));
+        statutMaritalCheckboxes.put(StatutMarital.CELIBATAIRE, new Point(45, 581));
+
+        statutMaritalDates.put(StatutMarital.MARIAGE, new Point(172, 732));
+        statutMaritalDates.put(StatutMarital.PACS, new Point(172, 717));
+        statutMaritalDates.put(StatutMarital.RELATION_LIBRE, new Point(334, 702));
+        statutMaritalDates.put(StatutMarital.SEPARE, new Point(216, 657));
+        statutMaritalDates.put(StatutMarital.PACS_ROMPU, new Point(230, 642));
+        statutMaritalDates.put(StatutMarital.DIVORCE, new Point(187, 627));
+        statutMaritalDates.put(StatutMarital.VEUF, new Point(180, 612));
+        statutMaritalDates.put(StatutMarital.CONCUBINAGE_ROMPU, new Point(278, 597));
     }
 
     @Override
@@ -114,12 +130,18 @@ public class RSAFormFiller extends FormFiller {
         writer.setNumberSpacing(15.5f);
 
         writer.setPage(1);
-        if (StatutMarital.SEUL == demandeur.statusMarital) {
-            writer.checkbox(31, 670);
+        if (demandeur.statusMarital.isAlone) {
+            writer.checkbox(31, 671);
         } else {
             writer.checkbox(31, 746);
-            Point statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
-            writer.checkbox(statutMaritalCheckbox.x, statutMaritalCheckbox.y);
+        }
+
+        Point statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
+        writer.checkbox(statutMaritalCheckbox.x, statutMaritalCheckbox.y);
+
+        Point statutMaritalDate = statutMaritalDates.get(demandeur.statusMarital);
+        if (null != statutMaritalDate) {
+            writer.appendDate(demandeur.dateSituationFamiliale, statutMaritalDate.x, statutMaritalDate.y);
         }
 
         if (demandeur.enceinte) {
@@ -169,13 +191,34 @@ public class RSAFormFiller extends FormFiller {
         }
         writer.appendOptionalText(nomPrenom, x, 515);
 
+        if (null != individu.lienParente) {
+            writer.appendOptionalText(individu.lienParente.formValue, x, 496);
+        }
+
         writer.appendText(individu.dateDeNaissance, x, 484);
+        if (null != individu.paysNaissance) {
+            if ("france".equals(individu.paysNaissance.toLowerCase())) {
+                if (null != individu.villeNaissance) {
+                    String lieuNaissance = individu.villeNaissance;
+                    if (null != individu.departementNaissance) {
+                        lieuNaissance = String.format("%s (%d)", individu.villeNaissance, individu.departementNaissance);
+                    }
+                    writer.appendOptionalText(lieuNaissance, x, 472);
+                }
+            } else {
+                writer.appendText(individu.paysNaissance, x, 472);
+            }
+        }
 
         if (Nationalite.FRANCAISE == individu.nationalite) {
             writer.appendText("Française", x, 453);
         }
 
         writer.appendOptionalText(individu.nir, x, 430);
+        writer.appendOptionalText(individu.dateArriveeFoyer, x, 406);
+        if (null != individu.situation) {
+            writer.appendOptionalText(individu.situation.formValue, x, 387, 6);
+        }
 
         writer.setFontSize(12);
         currentPersonneACharge++;
@@ -187,13 +230,10 @@ public class RSAFormFiller extends FormFiller {
             String[] addressTokens = situation.logement.adresse.split(" ");
             if (addressTokens.length > 1) {
                 String number = addressTokens[0];
-                if (StringUtils.isNumeric(number)) {
+                if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
                     writer.appendText(number, 45, 378);
                 }
                 addressTokens = ArrayUtils.remove(addressTokens, 0);
-                if (addressTokens[0].toLowerCase().equals("rue")) {
-                    addressTokens = ArrayUtils.remove(addressTokens, 0);
-                }
                 String address = StringUtils.join(addressTokens, " ");
                 writer.appendText(address, 135, 378);
             }
@@ -204,6 +244,25 @@ public class RSAFormFiller extends FormFiller {
         Point logementTypeCheckbox = logementTypeCheckboxes.get(situation.logement.type);
         if (null != logementTypeCheckbox) {
             writer.checkbox(logementTypeCheckbox.x, logementTypeCheckbox.y);
+        }
+
+        writer.appendDate(situation.logement.dateArrivee, 184, 293);
+
+        if (false == situation.logement.conjointMemeAdresse && null != situation.logement.conjoint) {
+            String[] addressTokens = situation.logement.conjoint.adresse.split(" ");
+            if (addressTokens.length > 1) {
+                String number = addressTokens[0];
+                if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
+                    writer.appendText(number, 45, 235);
+                }
+                addressTokens = ArrayUtils.remove(addressTokens, 0);
+                String address = StringUtils.join(addressTokens, " ");
+                writer.appendText(address, 135, 235);
+            }
+
+            writer.appendNumber(situation.logement.conjoint.codePostal, 88, 209);
+            writer.appendOptionalText(situation.logement.conjoint.ville, 253, 207);
+            writer.appendText(situation.logement.conjoint.pays, 480, 207);
         }
     }
 

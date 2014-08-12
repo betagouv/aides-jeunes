@@ -107,7 +107,9 @@ public class PdfWriter {
     }
 
     public void appendDate(String date, float x, float y) {
-        appendNumber(date.replaceAll("/", ""), x, y);
+        if (null != date) {
+            appendNumber(date.replaceAll("/", ""), x, y);
+        }
     }
 
     public void checkbox(float x, float y) {

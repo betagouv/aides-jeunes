@@ -2,6 +2,7 @@
 
 angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', function($scope, $state, SituationService) {
     var situation = $scope.situation = SituationService.restoreLocal();
+    $scope.relationTypeLabels = SituationService.relationTypeLabels;
 
     function initPaysNaissance(individu) {
       individu.choicePaysNaissance = 'france';

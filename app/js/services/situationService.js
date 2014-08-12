@@ -116,12 +116,16 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         createApiCompatibleSituation: function(situation) {
             var individus = [situation.demandeur];
             situation.demandeur.role = 'demandeur';
+            if (situation.demandeur.dateSituationFamilialeString) {
+                situation.demandeur.dateSituationFamiliale = moment(situation.demandeur.dateSituationFamilialeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            }
+
             if (situation.conjoint) {
                 individus.push(situation.conjoint);
                 situation.conjoint.role = 'conjoint';
                 situation.demandeur.statusMarital = situation.conjoint.relationType;
             } else {
-                situation.demandeur.statusMarital = 'celibat';
+                situation.demandeur.statusMarital = situation.demandeur.situationFamiliale;
             }
 
             situation.enfants.forEach(function(enfant) {
@@ -134,6 +138,10 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
             individus = individus.concat(situation.enfants).concat(situation.personnesACharge);
             individus = _.map(individus, this.createApiCompatibleIndividu);
+
+            if (situation.logement.dateArriveeString) {
+                situation.logement.dateArrivee = moment(situation.logement.dateArriveeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            }
 
             var result = {
                 individus: individus,
@@ -148,6 +156,9 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         createApiCompatibleIndividu: function(individu) {
             individu = _.cloneDeep(individu);
             individu.dateDeNaissance = moment(individu.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            if (individu.dateArriveeFoyerString) {
+                individu.dateArriveeFoyer = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            }
             var ressources = individu.ressources;
             individu.ressources = [];
 
@@ -212,6 +223,9 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                     }, {
                         name: 'rsa',
                         label: 'Revenu de solidarité active (RSA)'
+                    }, {
+                        name: 'asf',
+                        label: 'Allocation de soutien familial (ASF)'
                     }, {
                         name: 'aspa',
                         label: 'Allocation de solidarité aux personnes âgées (ASPA)'

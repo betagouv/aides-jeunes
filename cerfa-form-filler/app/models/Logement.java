@@ -14,6 +14,9 @@ public class Logement {
     public String codePostal;
     public String ville;
     public LogementType type;
+    public String dateArrivee;
+    public boolean conjointMemeAdresse;
+    public LogementConjoint conjoint;
 
     @JsonDeserialize(using = LogementTypeDeserializer.class)
     public static enum LogementType {
@@ -41,5 +44,13 @@ public class Logement {
 
             throw new RuntimeException(String.format("Type de logement inconnu : %s", jp.getText()));
         }
+    }
+
+    public static class LogementConjoint {
+
+        public String adresse;
+        public String codePostal;
+        public String ville;
+        public String pays;
     }
 }

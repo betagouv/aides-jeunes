@@ -38,7 +38,7 @@ public class AspaFormFiller extends FormFiller {
     }
 
     private static void initStatutMaritalCheckboxesCoordinates() {
-        statutMaritalCheckboxes.put(StatutMarital.SEUL, new Point(75, 475));
+        // statutMaritalCheckboxes.put(StatutMarital.SEUL, new Point(75, 475));
         statutMaritalCheckboxes.put(StatutMarital.MARIAGE, new Point(144, 475));
         statutMaritalCheckboxes.put(StatutMarital.PACS, new Point(388, 435));
         statutMaritalCheckboxes.put(StatutMarital.RELATION_LIBRE, new Point(228, 435));

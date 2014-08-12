@@ -10,6 +10,7 @@
         <p class="help-block" ng-if="formSubmitted && form.firstName.$invalid">Ce champ est obligatoire</p>
       </div>
     </div>
+
     <div class="form-group form-group-lg" ng-class="{'has-error': formSubmitted && form.birthDate.$invalid}">
       <label class="control-label col-sm-4" for="birth-date">Date de naissance</label>
       <div class="col-sm-8">
@@ -24,9 +25,10 @@
           date-autocomplete
           placeholder="jj/mm/aaaa"
           >
-        <p class="help-block" ng-if="formSubmitted && form.birthDate.$error.ddsDate">Date de naissance invalide</p>
+        <p class="help-block" ng-if="formSubmitted && form.birthDate.$invalid">Date de naissance invalide.</p>
       </div>
     </div>
+
     <div class="form-group">
       <label class="control-label col-sm-4">Nationalité</label>
       <div class="col-sm-8">
@@ -44,6 +46,33 @@
         </label>
       </div>
     </div>
+
+    <div class="form-group" ng-if="checkResidenceStability && 'ue' === nationalite" ng-class="{'has-error': formSubmitted && form.disclaimerUe.$invalid}">
+      <div class="col-sm-offset-4 col-sm-8">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
+            Détenteur d'un droit au séjour valide et
+            <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France</a>.
+          </label>
+        </div>
+        <span class="help-block" ng-if="formSubmitted && form.disclaimerUe.$invalid">Vous devez cocher cette case pour continuer.</span>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="checkResidenceStability && 'autre' === nationalite" ng-class="{'has-error': formSubmitted && form.disclaimerNonUe.$invalid}">
+      <div class="col-sm-offset-4 col-sm-8">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="disclaimerNonUe" ng-model="disclaimerNonUe" required>
+            Détenteur d'une carte de résident ou d'un titre de séjour valide et
+            <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France.</a>
+          </label>
+        </div>
+        <span class="help-block" ng-if="formSubmitted && form.disclaimerNonUe.$invalid">Vous devez cocher cette case pour continuer.</span>
+      </div>
+    </div>
+
     <div class="form-group form-group-lg" ng-if="askRelationType">
       <label class="control-label col-sm-4" for="relation-conjoint">Votre relation</label>
       <div class="col-sm-8">
@@ -55,6 +84,7 @@
       </div>
     </div>
   </div>
+
   <div class="modal-footer">
     <button type="button" ng-if="cancelable" class="btn btn-default" ng-click="cancel()">Annuler</button>
     <button type="submit" class="btn btn-primary">Valider</button>

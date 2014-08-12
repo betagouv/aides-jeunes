@@ -150,6 +150,8 @@ public class RSAFormFiller extends FormFiller {
         } else {
             writer.checkbox(193, 551);
         }
+
+        fillPensionAlimentaire(demandeur);
     }
 
     private void fillConjoint(Individu conjoint) {
@@ -247,6 +249,7 @@ public class RSAFormFiller extends FormFiller {
         if (null != logementTypeCheckbox) {
             writer.checkbox(logementTypeCheckbox.x, logementTypeCheckbox.y);
         }
+
         if (LogementType.PROPRIETAIRE == situation.logement.type) {
             if (null == situation.logement.loyer || Integer.valueOf(0).equals(situation.logement.loyer)) {
                 writer.checkbox(203, 147);
@@ -294,6 +297,28 @@ public class RSAFormFiller extends FormFiller {
                 writer.appendOptionalText(situation.email, 92, 321, 10);
             }
         }
+    }
+
+    private void fillPensionAlimentaire(Individu demandeur) {
+        writer.setPage(1);
+        if (StatutMarital.SEPARE == demandeur.statusMarital) {
+            writer.checkbox(31, 338);
+        }
+
+        if (demandeur.statusMarital.isAlone && childrenNb() > 0) {
+            writer.checkbox(31, 308);
+        }
+    }
+
+    private int childrenNb() {
+        int nb = 0;
+        for (Individu individu : situation.individus) {
+            if (IndividuRole.ENFANT == individu.role) {
+                nb++;
+            }
+        }
+
+        return nb;
     }
 
     private void fillCurrentDate() {

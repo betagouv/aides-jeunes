@@ -11,6 +11,8 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
         $scope.relationType = 'mariage';
     }
 
+    $scope.checkResidenceStability = options.checkResidenceStability;
+
     $scope.submit = function(form) {
         $scope.formSubmitted = true;
         if (form.$valid) {

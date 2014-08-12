@@ -56,7 +56,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
                 var situation = SituationService.restoreLocal();
                 IndividuModalService
-                    .open({individuType: 'demandeur', modalTitle: 'Vous', cancelable: false})
+                    .open({individuType: 'demandeur', modalTitle: 'Vous', cancelable: false, checkResidenceStability: true})
                     .then(function() {
                         SituationService.saveLocal(situation);
                         return $state.go('foyer');
@@ -68,7 +68,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
                 var situation = SituationService.restoreLocal();
                 IndividuModalService
-                    .open({individuType: 'conjoint', modalTitle: 'Votre conjoint', askRelationType: true})
+                    .open({individuType: 'conjoint', modalTitle: 'Votre conjoint', askRelationType: true, checkResidenceStability: true})
                     .then(function(conjoint) {
                         situation.conjoint = conjoint;
                         SituationService.saveLocal(situation);

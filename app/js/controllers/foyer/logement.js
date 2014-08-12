@@ -29,6 +29,8 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, Situat
         $scope.logementLabels[logementType.value] = logementType.label;
     });
 
+    $scope.primoAccedantTooltip = 'Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler.';
+
     $scope.submit = function() {
         $scope.situation.logement.formCompleted = true;
     };

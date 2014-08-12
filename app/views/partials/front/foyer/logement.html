@@ -6,35 +6,47 @@
 
   <form name="form" class="form-horizontal" ng-submit="submit()" ng-if="!situation.logement.formCompleted">
     <div class="form-group">
-      <label class="col-sm-4 control-label">Êtes-vous</label>
-      <div class="col-sm-6">
-        <label class="radio-inline" ng-repeat="logementType in logementTypes">
-          <input type="radio" name="logementType" ng-model="situation.logement.type" ng-value="logementType.value">
+      <label class="col-sm-3 control-label">Êtes-vous</label>
+      <div class="col-sm-8">
+        <button
+          type="button"
+          ng-repeat="logementType in logementTypes"
+          name="logementType"
+          class="btn btn-sm btn-primary"
+          ng-model="situation.logement.type"
+          btn-radio="logementType.value"
+          popover-placement="top"
+          popover="{{ logementType.helpText }}"
+          popover-trigger="mouseenter">
           {{ logementType.label|uppercaseFirst }}
-        </label>
+        </button>
       </div>
     </div>
 
-    <div class="form-group" ng-show="situation.logement.type === 'locataire'">
-      <label class="col-sm-4 control-label">Le propriétaire de votre logement est-il un membre de votre famille ?</label>
-      <div class="col-sm-6">
+    <div class="form-group" ng-show="situation.logement.type === 'locataire' || situation.logement.type === 'payant'">
+      <label class="col-sm-3 control-label">Le propriétaire de votre logement est-il un membre de votre famille&nbsp;?</label>
+      <div class="col-sm-8">
         <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.membreFamilleProprietaire" btn-radio="true">Oui</button>
         <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.membreFamilleProprietaire" btn-radio="false">Non</button>
       </div>
     </div>
 
-    <div class="form-group" ng-show="undefined !== situation.logement.membreFamilleProprietaire">
-      <label class="col-sm-4 control-label">Quel type de logement louez-vous ?</label>
+    <div class="form-group" ng-show="situation.logement.type === 'locataire' && undefined !== situation.logement.membreFamilleProprietaire">
+      <label class="col-sm-3 control-label">Quel type de logement louez-vous&nbsp;?</label>
       <div class="col-sm-6">
-        <label class="radio-inline" ng-repeat="locationType in locationTypes">
-          <input type="radio" name="locationType" ng-model="situation.logement.locationType" ng-value="locationType.value">
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          ng-model="situation.logement.locationType"
+          btn-radio="locationType.value"
+          ng-repeat="locationType in locationTypes">
           {{ locationType.label|uppercaseFirst }}
-        </label>
+        </button>
       </div>
     </div>
 
     <div class="form-group" ng-show="situation.logement.type === 'proprietaire'">
-      <label class="col-sm-4 control-label">Êtes-vous primo-accédant pour votre propriété ?</label>
+      <label class="col-sm-3 control-label" popover="{{ primoAccedantTooltip }}" popover-trigger="mouseenter">Êtes-vous primo-accédant pour votre propriété&nbsp;?</label>
       <div class="col-sm-6">
         <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="true">Oui</button>
         <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.primoAccedant" btn-radio="false">Non</button>
@@ -43,21 +55,22 @@
 
     <div ng-if="'gratuit' !== situation.logement.type && (undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType)">
       <div class="form-group">
-        <label class="col-sm-4 control-label" for="loyer">
-          À combien s'élève {{ 'locataire' === situation.logement.type ? 'votre loyer' : 'votre mensualité d\'emprunt' }} ?
+        <label class="col-sm-3 control-label" for="loyer">
+          {{ 'proprietaire' === situation.logement.type ? 'Votre mensualité d\'emprunt' : 'Votre loyer' }} ?
         </label>
-        <div class="col-sm-3">
+        <div class="col-sm-2">
          <div class="input-group">
             <input class="form-control text-right" id="loyer" name="loyer" ng-model="situation.logement.loyer" type="number" required>
             <div class="input-group-addon">€</div>
           </div>
+          <span class="help-block" ng-if="'proprietaire' === situation.logement.type">Mettre 0 si vous n'avez pas d'emprunt pour votre propriété</span>
         </div>
       </div>
     </div>
 
     <div class="form-group" ng-show="undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || 'gratuit' === situation.logement.type">
-      <label class="col-sm-4 control-label" for="postal-code">Quel est le code postal de votre résidence ?</label>
-      <div class="col-sm-3">
+      <label class="col-sm-3 control-label" for="postal-code">Quel est le code postal de votre résidence&nbsp;?</label>
+      <div class="col-sm-2">
         <input class="form-control" id="postal-code" name="codePostal" ng-model="situation.logement.codePostal" type="number" required>
       </div>
     </div>
@@ -74,8 +87,9 @@
 
   <div ng-if="situation.logement.formCompleted">
     <p>
-      Vous êtes <b>{{ logementLabels[situation.logement.type] }}</b> <span ng-if="'locataire' === situation.logement.type">d'un logement de type <b>{{ locationTypesLabels[situation.logement.locationType] }}</b></span>
-      - Votre {{ 'locataire' === situation.logement.type ? 'loyer' : 'mensualité d\'emprunt' }} s'élève à <b>{{ situation.logement.loyer }} €</b>
+      Vous êtes <b>{{ logementLabels[situation.logement.type] }}</b>
+      <span ng-if="'locataire' === situation.logement.type">d'un logement de type <b>{{ locationTypesLabels[situation.logement.locationType] }}</b></span>
+      <span ng-if="situation.logement.type !== 'gratuit'">- Votre {{ 'locataire' === situation.logement.type ? 'loyer' : 'mensualité d\'emprunt' }} s'élève à <b>{{ situation.logement.loyer }} €</b></span>
       - Code postal <b>{{ situation.logement.codePostal }}</b>
       <div ng-show="undefined !== situation.logement.primoAccedant">
         Vous {{ situation.logement.primoAccedant ? 'êtes' : 'n\'êtes pas' }} primo-accédant pour votre propriété

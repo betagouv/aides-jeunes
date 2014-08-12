@@ -189,7 +189,7 @@ public class RSAFormFiller extends FormFiller {
                 nomPrenom += " " + individu.firstName;
             }
         }
-        writer.appendOptionalText(nomPrenom, x, 515);
+        writer.appendOptionalText(nomPrenom, x, 515, 5);
 
         if (null != individu.lienParente) {
             writer.appendOptionalText(individu.lienParente.formValue, x, 496);

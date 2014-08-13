@@ -130,6 +130,14 @@ public class RSAFormFiller extends FormFiller {
         writer.appendOptionalNumber(demandeur.nir, 31, 507);
         writer.setNumberSpacing(15.5f);
 
+        if (null != demandeur.inscritCaf) {
+            if (demandeur.inscritCaf) {
+                writer.checkbox(30, 475);
+            } else {
+                writer.checkbox(102, 475);
+            }
+        }
+
         writer.setPage(1);
         if (demandeur.statusMarital.isAlone) {
             writer.checkbox(31, 671);

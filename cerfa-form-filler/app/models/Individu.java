@@ -32,6 +32,8 @@ public class Individu {
     public boolean etudiant;
     public boolean retraite;
     public boolean enceinte;
+    public Boolean inscritCaf;
+    public String numeroAllocataire;
 
     @JsonDeserialize(using = CiviliteDeserializer.class)
     public static enum Civilite {

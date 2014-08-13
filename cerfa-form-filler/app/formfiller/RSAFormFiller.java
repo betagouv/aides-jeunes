@@ -87,8 +87,6 @@ public class RSAFormFiller extends FormFiller {
         {"adresse.conjoint.ville",  0, 253, 207},
         {"adresse.conjoint.pays",   0, 480, 207},
 
-        {"current_date", 4, 150, 200},
-
         {"enfant.1.nom",            1, 117, 515, 5},
         {"enfant.1.lien_parente",   1, 117, 496, 5},
         {"enfant.1.date_naissace",  1, 117, 484, 5},
@@ -124,6 +122,8 @@ public class RSAFormFiller extends FormFiller {
         {"enfant.4.nir",            1, 456, 430, 5},
         {"enfant.4.date_arrivee",   1, 456, 406, 5},
         {"enfant.4.situation",      1, 456, 387, 5},
+
+        {"current_date", 4, 150, 200},
     };
 
     private static final EnumMap<IndividuRole, EnumMap<Civilite, String>> civiliteCheckboxes = new EnumMap<>(IndividuRole.class);

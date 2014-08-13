@@ -133,24 +133,27 @@ public class RSAFormFiller extends FormFiller {
         if (null != demandeur.inscritCaf) {
             if (demandeur.inscritCaf) {
                 writer.checkbox(30, 475);
+                writer.appendOptionalText(demandeur.numeroAllocataire, 100, 460);
             } else {
                 writer.checkbox(102, 475);
             }
         }
 
         writer.setPage(1);
-        if (demandeur.statusMarital.isAlone) {
-            writer.checkbox(31, 671);
-        } else {
-            writer.checkbox(31, 746);
-        }
+        if (null != demandeur.statusMarital) {
+            if (demandeur.statusMarital.isAlone) {
+                writer.checkbox(31, 671);
+            } else {
+                writer.checkbox(31, 746);
+            }
 
-        Point statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
-        writer.checkbox(statutMaritalCheckbox.x, statutMaritalCheckbox.y);
+            Point statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
+            writer.checkbox(statutMaritalCheckbox.x, statutMaritalCheckbox.y);
 
-        Point statutMaritalDate = statutMaritalDates.get(demandeur.statusMarital);
-        if (null != statutMaritalDate) {
-            writer.appendDate(demandeur.dateSituationFamiliale, statutMaritalDate.x, statutMaritalDate.y);
+            Point statutMaritalDate = statutMaritalDates.get(demandeur.statusMarital);
+            if (null != statutMaritalDate) {
+                writer.appendDate(demandeur.dateSituationFamiliale, statutMaritalDate.x, statutMaritalDate.y);
+            }
         }
 
         if (demandeur.enceinte) {
@@ -186,6 +189,15 @@ public class RSAFormFiller extends FormFiller {
         writer.setNumberSpacing(15.1f);
         writer.appendOptionalNumber(conjoint.nir, 308, 507);
         writer.setNumberSpacing(15.5f);
+
+        if (null != conjoint.inscritCaf) {
+            if (conjoint.inscritCaf) {
+                writer.checkbox(306, 475);
+                writer.appendOptionalText(conjoint.numeroAllocataire, 375, 460);
+            } else {
+                writer.checkbox(378, 475);
+            }
+        }
     }
 
     private void fillEnfant(Individu individu) {
@@ -313,7 +325,7 @@ public class RSAFormFiller extends FormFiller {
             writer.checkbox(31, 338);
         }
 
-        if (demandeur.statusMarital.isAlone && childrenNb() > 0) {
+        if (null != demandeur.statusMarital && demandeur.statusMarital.isAlone && childrenNb() > 0) {
             writer.checkbox(31, 308);
         }
     }

@@ -1,4 +1,4 @@
-<div ng-show="situation.logement">
+<div ng-class="{'col-lg-5': situation.logement.formCompleted}" ng-show="situation.logement">
   <h2>
     <i class="fa fa-home"></i>
     Votre logement principal
@@ -93,14 +93,16 @@
     <p>
       Vous êtes <b>{{ logementLabels[situation.logement.type] }}</b>
       <span ng-if="'locataire' === situation.logement.type">d'un logement de type <b>{{ locationTypesLabels[situation.logement.locationType] }}</b></span>
-      <span ng-if="situation.logement.type !== 'gratuit'">- Votre {{ 'locataire' === situation.logement.type ? 'loyer' : 'mensualité d\'emprunt' }} s'élève à <b>{{ situation.logement.loyer }} €</b></span>
-      - Code postal <b>{{ situation.logement.codePostal }}</b>
-      <div ng-show="undefined !== situation.logement.primoAccedant">
-        Vous {{ situation.logement.primoAccedant ? 'êtes' : 'n\'êtes pas' }} primo-accédant pour votre propriété
-      </div>
-      <div ng-show="undefined !== situation.logement.membreFamilleProprietaire">
-        Le propriétaire de votre logement {{ situation.logement.membreFamilleProprietaire ? 'est' : 'n\'est pas' }} un membre de votre famille
-      </div>
+      <span ng-if="situation.logement.type !== 'gratuit'">
+        <br>Votre {{ 'locataire' === situation.logement.type ? 'loyer' : 'mensualité d\'emprunt' }} s'élève à <b>{{ situation.logement.loyer }} €</b>
+      </span>
+      <br>Code postal <b>{{ situation.logement.codePostal }}</b>
+      <span ng-show="undefined !== situation.logement.primoAccedant">
+        <br>Vous {{ situation.logement.primoAccedant ? 'êtes' : 'n\'êtes pas' }} primo-accédant pour votre propriété
+      </span>
+      <span ng-show="undefined !== situation.logement.membreFamilleProprietaire">
+        <br>Le propriétaire de votre logement {{ situation.logement.membreFamilleProprietaire ? 'est' : 'n\'est pas' }} un membre de votre famille
+      </span>
     </p>
   </div>
 </div>

@@ -48,6 +48,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 'logement@foyer': {
                     templateUrl: '/partials/foyer/logement.html',
                     controller: 'FoyerLogementCtrl'
+                },
+                'immobilier@foyer': {
+                    templateUrl: '/partials/foyer/immobilier.html'
                 }
             }
         })
@@ -131,6 +134,20 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 $modal.open({
                     templateUrl: '/partials/foyer/capture-revenus-modal.html',
                     controller: 'FoyerCaptureRevenusModalCtrl',
+                    size: 'lg',
+                    backdrop: 'static',
+                    keyboard: false
+                }).result.then(function() {
+                    return $state.go('foyer');
+                });
+            }]
+        })
+        .state('foyer.capture_immobilier', {
+            url: '/biens-mobiliers-immobiliers',
+            onEnter: ['$state', '$modal', function($state, $modal) {
+                $modal.open({
+                    templateUrl: '/partials/foyer/capture-immobilier-modal.html',
+                    controller: 'FoyerCaptureImmobilierModalCtrl',
                     size: 'lg',
                     backdrop: 'static',
                     keyboard: false

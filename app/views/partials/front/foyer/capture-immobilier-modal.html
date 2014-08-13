@@ -1,0 +1,50 @@
+<form name="form" class="form-horizontal" ng-submit="submit()">
+  <div class="modal-header">
+    <h1 class="modal-title">Vos biens mobiliers/immobiliers</h1>
+  </div>
+
+  <div class="modal-body">
+    <p>
+      Nous allons évaluer ici l'ensemble des biens immobliers et mobiliers que vous possédez à titre personnel<span ng-if="!situation.conjoint">.</span>
+      <span ng-if="situation.conjoint">et au titre de votre conjoint/concubin/partenaire PACS.</span>
+    </p>
+
+    <div class="form-group">
+      <label class="col-sm-4 control-label">Êtes-vous propriétaire d'un bien immobilier ?</label>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.hasImmobilier" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.hasImmobilier" btn-radio="false">Non</button>
+      </div>
+      <div class="col-sm-4">
+        <em class="help-block">Terrain, résidence secondaire, commerce...</em>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="situation.hasImmobilier">
+      <label class="col-sm-4 control-label" for="immobilier-value">Quelle est la valeur de revente actuelle estimée de l'ensemble de ces biens immobiliers ?</label>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="number" id="immobilier-value" class="form-control text-right" ng-model="situation.immobilierValue">
+          <span class="input-group-addon">€</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="mobilier-value">Quel est le montant total de votre épargne bancaire ?</label>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="number" id="mobilier-value" class="form-control text-right" ng-model="situation.mobilierValue">
+          <span class="input-group-addon">€</span>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <em class="help-block">Livret A, PEL, CEL, PEP, LDD, Assurance-Vie, compte titres, PEA</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Valider</button>
+  </div>
+</div>

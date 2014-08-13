@@ -84,7 +84,7 @@ describe('Service: situationService', function () {
     describe('function createApiCompatibleSituation', function() {
         it('Should return a cloned version of the situation', function() {
             // given
-            var situation = { demandeur: {}, enfants: [], personnesACharge: [] };
+            var situation = { demandeur: {}, enfants: [], personnesACharge: [], logement: {} };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -95,7 +95,7 @@ describe('Service: situationService', function () {
 
         it('Should set the role of the demandeur', function() {
             // given
-            var situation = { demandeur: {}, enfants: [], personnesACharge: [] };
+            var situation = { demandeur: {}, enfants: [], personnesACharge: [], logement: {} };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -107,7 +107,7 @@ describe('Service: situationService', function () {
 
         it('Should include the conjoint if defined and set its role', function() {
             // given
-            var situation = { demandeur: {}, conjoint: {}, enfants: [], personnesACharge: [] };
+            var situation = { demandeur: {}, conjoint: {}, enfants: [], personnesACharge: [], logement: {} };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -119,7 +119,7 @@ describe('Service: situationService', function () {
 
         it('Should include the children and set their role', function() {
             // given
-            var situation = { demandeur: {}, enfants: [{}], personnesACharge: [] };
+            var situation = { demandeur: {}, enfants: [{}], personnesACharge: [], logement: {} };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -131,7 +131,7 @@ describe('Service: situationService', function () {
 
         it('Should include the children and set their role', function() {
             // given
-            var situation = { demandeur: {}, enfants: [], personnesACharge: [{}] };
+            var situation = { demandeur: {}, enfants: [], personnesACharge: [{}], logement: {} };
 
             // when
             var result = service.createApiCompatibleSituation(situation);

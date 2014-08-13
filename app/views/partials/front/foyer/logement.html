@@ -60,11 +60,13 @@
         {{ 'proprietaire' === situation.logement.type ? 'Votre mensualité d\'emprunt' : 'Votre loyer' }} ?
       </label>
       <div class="col-sm-2">
-       <div class="input-group">
+        <div class="input-group">
           <input class="form-control text-right" id="loyer" name="loyer" ng-model="situation.logement.loyer" type="number" required>
           <div class="input-group-addon">€</div>
         </div>
-        <span class="help-block" ng-if="'proprietaire' === situation.logement.type">Mettre 0 si vous n'avez pas d'emprunt pour votre propriété</span>
+      </div>
+      <div class="col-sm-7">
+        <span class="help-block" ng-if="'proprietaire' === situation.logement.type"><em>Mettre 0 si vous n'avez pas d'emprunt pour votre propriété.</em></span>
       </div>
     </div>
 

@@ -284,8 +284,12 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             },
             {
                 name: 'autre',
-                label: 'Autres',
+                label: 'Autres ressources',
                 subsections: [
+                    {
+                        name: 'revenusLocatifs',
+                        label: 'Revenus locatifs'
+                    },
                     {
                         name: 'bourseEnseignementSup',
                         label: 'Bourses de l\'enseignement supérieur'

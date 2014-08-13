@@ -145,6 +145,10 @@ body.change-state-progress, body.change-state-progress * {
   @include button-variant(white, #395668, #395668);
 }
 
+.capture-autre {
+  @include button-variant(white, #878309, #878309);
+}
+
 .btn-ressources, .btn-ressources:hover, .btn-ressources:focus {
   border: 4px solid white;
   margin: 3px;

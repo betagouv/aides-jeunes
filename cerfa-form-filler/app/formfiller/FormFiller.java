@@ -72,7 +72,12 @@ public abstract class FormFiller {
                 float x = textField[2] instanceof Float ? (float) textField[2] : ((Integer) textField[2]).floatValue();
                 float y = textField[3] instanceof Float ? (float) textField[3] : ((Integer) textField[3]).floatValue();
                 writer.setPage(page);
-                writer.appendOptionalText(textValue, x, y);
+
+                if (textField.length >= 5) {
+                    writer.appendOptionalText(textValue, x, y, (Integer) textField[4]);
+                } else {
+                    writer.appendOptionalText(textValue, x, y);
+                }
 
                 return;
             }

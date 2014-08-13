@@ -2,19 +2,12 @@ package formfiller;
 
 import models.Individu;
 import models.Individu.IndividuRole;
-import models.Situation;
 
 import org.joda.time.LocalDate;
-
-import pdfwriter.PdfWriter;
 
 public class ASFFormFiller extends FormFiller {
 
     private int currentEnfant = 0;
-
-    public ASFFormFiller(PdfWriter writer, Situation situation) {
-        super(writer, situation);
-    }
 
     @Override
     public void fill() {

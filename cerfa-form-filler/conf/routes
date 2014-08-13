@@ -3,4 +3,5 @@
 # ~~~~
 
 POST     /form/:formId                  controllers.Application.generate(formId)
+GET      /form-fake/:formId             controllers.Application.generateFake(formId)
 OPTIONS  /*anyroute                     controllers.Application.options(anyroute)

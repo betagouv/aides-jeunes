@@ -8,13 +8,12 @@ import models.Individu.IndividuRole;
 import models.Individu.Nationalite;
 import models.Individu.StatutMarital;
 import models.Logement.LogementType;
-import models.Situation;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
 
-import pdfwriter.PdfWriter;
+import pdfwriter.Point;
 
 public class RSAFormFiller extends FormFiller {
 
@@ -26,8 +25,7 @@ public class RSAFormFiller extends FormFiller {
 
     private int currentPersonneACharge = 0;
 
-    public RSAFormFiller(PdfWriter writer, Situation situation) {
-        super(writer, situation);
+    public RSAFormFiller() {
         initCiviliteCheckboxes();
         initNationaliteCheckboxes();
         initLogementTypeCheckboxes();

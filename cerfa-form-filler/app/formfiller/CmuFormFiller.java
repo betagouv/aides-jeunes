@@ -2,19 +2,24 @@ package formfiller;
 
 import models.Individu;
 import models.Individu.IndividuRole;
+import models.Individu.Nationalite;
 import models.Logement;
-import models.Situation;
 
 import org.joda.time.LocalDate;
 
-import pdfwriter.PdfWriter;
-
 public class CmuFormFiller extends FormFiller {
+
+    private static final Object[][] checkboxes = {
+        {"demandeur_francais", 4, 150, 543},
+        {"demandeur_ue",       4, 392, 543},
+        {"demandeur_non_ue",   4, 444, 543},
+    };
 
     private int currentChildIndex = 1;
 
-    public CmuFormFiller(PdfWriter writer, Situation situation) {
-        super(writer, situation);
+    @Override
+    public Object[][] getCheckboxes() {
+        return checkboxes;
     }
 
     @Override
@@ -51,12 +56,22 @@ public class CmuFormFiller extends FormFiller {
             writer.fillTextField("clé n° sécu demandeur", demandeur.nir.substring(13, 15));
         }
         writer.fillDateField("date naissance demandeur", demandeur.dateDeNaissance);
-        writer.fillRadioField("nationalité", demandeur.nationalite.formRadioValue);
+
+        if (Nationalite.FRANCAISE == demandeur.nationalite) {
+            checkbox("demandeur_francais");
+        } else if (Nationalite.EEE_UE_SUISSE == demandeur.nationalite) {
+            checkbox("demandeur_ue");
+        } else if (Nationalite.AUTRE == demandeur.nationalite) {
+            checkbox("demandeur_non_ue");
+        }
+
         writer.fillOptionalTextField("email demandeur", demandeur.email);
         writer.fillOptionalTextField("téléphone demandeur", demandeur.phoneNumber);
         writer.fillOptionalTextField("Nom", demandeur.lastName);
         writer.fillOptionalTextField("prénom", demandeur.firstName);
-        writer.fillRadioField("situation famille", demandeur.statusMarital.formValue);
+        if (null != demandeur.statusMarital) {
+            writer.fillRadioField("situation famille", demandeur.statusMarital.formValue);
+        }
     }
 
     private void fillConjoint(Individu conjoint) {

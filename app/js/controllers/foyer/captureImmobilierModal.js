@@ -6,7 +6,19 @@ angular.module('ddsApp').controller('FoyerCaptureImmobilierModalCtrl', function(
         $scope.situation.mobilierValue = 0;
     }
 
-    $scope.conjointTitle = 
+    $scope.conjointTitle = function() {
+        if ($scope.situation.conjoint.relationType === 'mariage') {
+            return 'conjoint';
+        }
+
+        if ($scope.situation.conjoint.relationType === 'pacs') {
+            return 'partenaire PACS';
+        }
+
+        if ($scope.situation.conjoint.relationType === 'relation_libre') {
+            return 'concubin';
+        }
+    };
 
     $scope.submit = function() {
         $scope.situation.immobilierCaptured = true;

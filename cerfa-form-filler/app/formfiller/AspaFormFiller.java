@@ -11,13 +11,12 @@ import models.Individu.IndividuRole;
 import models.Individu.Nationalite;
 import models.Individu.StatutMarital;
 import models.Logement;
-import models.Situation;
 
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import pdfwriter.PdfWriter;
+import pdfwriter.Point;
 
 public class AspaFormFiller extends FormFiller {
 
@@ -25,8 +24,7 @@ public class AspaFormFiller extends FormFiller {
     private static final EnumMap<StatutMarital, Point> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
     private static DateTimeFormatter monthFormatter;
 
-    public AspaFormFiller(PdfWriter writer, Situation situation) {
-        super(writer, situation);
+    public AspaFormFiller() {
         initCiviliteCheckboxesCoordinates();
         initStatutMaritalCheckboxesCoordinates();
         monthFormatter = DateTimeFormat.forPattern("MMMM yyyy").withLocale(Locale.FRANCE);

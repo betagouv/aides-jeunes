@@ -6,7 +6,7 @@
   <div class="modal-body">
     <p>
       Nous allons évaluer ici l'ensemble des biens immobliers et mobiliers que vous possédez à titre personnel<span ng-if="!situation.conjoint">.</span>
-      <span ng-if="situation.conjoint">et au titre de votre {{ conjointTitle }}.</span>
+      <span ng-if="situation.conjoint">et au titre de votre {{ conjointTitle() }}.</span>
     </p>
 
     <div class="form-group">

@@ -58,12 +58,43 @@ public class Application extends Controller {
         }
 
         Logger.info(String.format("Génération formulaire %s", formId));
+
+        FormFiller filler = form.createFormFiller();
         PDDocument document = PDDocument.load(String.format("resources/%s.pdf", formId));
-        Situation situation = getRequest(Situation.class);
-        Logger.info(request().body().toString());
         PdfWriter writer = new PdfWriter(document);
-        FormFiller filler = form.createFormFiller(writer, situation);
+        filler.setWriter(writer);
+        Situation situation = getRequest(Situation.class);
+        filler.setSituation(situation);
         filler.fill();
+        writer.flush();
+
+        File file = File.createTempFile("tmp", ".pdf");
+        try {
+            document.save(file);
+
+            return ok(file, formId.concat(".pdf"));
+        } finally {
+            file.delete();
+        }
+    }
+
+    public static Result generateFake(String formId) throws IOException, COSVisitorException {
+        Forms form = null;
+        for (Forms val : Forms.values()) {
+            if (val.id.equals(formId)) {
+                form = val;
+            }
+        }
+
+        if (null == form) {
+            return badRequest(String.format("Formulaire inconnu : %s", formId));
+        }
+
+        FormFiller filler = form.createFormFiller();
+        PDDocument document = PDDocument.load(String.format("resources/%s.pdf", formId));
+        PdfWriter writer = new PdfWriter(document);
+        filler.setWriter(writer);
+        filler.fillFake();
         writer.flush();
 
         File file = File.createTempFile("tmp", ".pdf");
@@ -81,36 +112,36 @@ public class Application extends Controller {
         CMUC("cmuc") {
 
             @Override
-            public FormFiller createFormFiller(PdfWriter writer, Situation situation) {
-                return new CmuFormFiller(writer, situation);
+            public FormFiller createFormFiller() {
+                return new CmuFormFiller();
             }
         },
         ASPA("aspa") {
 
             @Override
-            public FormFiller createFormFiller(PdfWriter writer, Situation situation) {
-                return new AspaFormFiller(writer, situation);
+            public FormFiller createFormFiller() {
+                return new AspaFormFiller();
             }
         },
         CAF("caf") {
 
             @Override
-            public FormFiller createFormFiller(PdfWriter writer, Situation situation) {
-                return new CAFFormFiller(writer, situation);
+            public FormFiller createFormFiller() {
+                return new CAFFormFiller();
             }
         },
         RSA("rsa") {
 
             @Override
-            public FormFiller createFormFiller(PdfWriter writer, Situation situation) {
-                return new RSAFormFiller(writer, situation);
+            public FormFiller createFormFiller() {
+                return new RSAFormFiller();
             }
         },
         ASF("asf") {
 
             @Override
-            public FormFiller createFormFiller(PdfWriter writer, Situation situation) {
-                return new ASFFormFiller(writer, situation);
+            public FormFiller createFormFiller() {
+                return new ASFFormFiller();
             }
         };
 
@@ -120,7 +151,7 @@ public class Application extends Controller {
             this.id = id;
         }
 
-        public abstract FormFiller createFormFiller(PdfWriter writer, Situation situation);
+        public abstract FormFiller createFormFiller();
     }
 
     protected static <T> T getRequest(Class<T> requestClass) {

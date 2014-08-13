@@ -7,12 +7,11 @@ import models.Individu.Civilite;
 import models.Individu.IndividuRole;
 import models.Individu.Nationalite;
 import models.Individu.StatutMarital;
-import models.Situation;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
 
-import pdfwriter.PdfWriter;
+import pdfwriter.Point;
 
 public class CAFFormFiller extends FormFiller {
 
@@ -24,8 +23,7 @@ public class CAFFormFiller extends FormFiller {
 
     private int currentPersonneACharge = 0;
 
-    public CAFFormFiller(PdfWriter writer, Situation situation) {
-        super(writer, situation);
+    public CAFFormFiller() {
         initCiviliteCheckboxes();
         initNationaliteCheckboxes();
         initStatutMaritalCheckboxes();

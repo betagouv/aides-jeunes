@@ -1,14 +1,14 @@
 <div class="col-lg-5" ng-if="situation.immobilierCaptured">
   <h2>
-  <i class="fa fa-money"></i>
-    Vos biens immobiliers/mobiliers
+    <i class="fa fa-money"></i>
+    Votre patrimoine
   </h2>
 
   <p>
     <span ng-if="!situation.hasImmobilier">Vous n'avez déclaré aucun bien immobilier.</span>
-    <span ng-if="situation.hasImmobilier">Vous avez déclaré des biens immobiliers dont la valeur estimée totale s'élève à <strong>{{ situation.immobilierValue }} €</strong>.</span>
+    <span ng-if="situation.hasImmobilier">Vous avez déclaré des biens immobiliers d'une valeur totale de <strong>{{ situation.immobilierValue }} €</strong>.</span>
     <br>
-    <span ng-if="!situation.mobilierValue">Vous n'avez déclaré aucun bien mobilier.</span>
-    <span ng-if="situation.mobilierValue">Vous avez déclaré des biens mobiliers dont la valeur estimée totale s'élève à <strong>{{ situation.mobilierValue }} €</strong>.</span>
+    <span ng-if="!situation.mobilierValue">Vous n'avez déclaré aucune épargne.</span>
+    <span ng-if="situation.mobilierValue">Vous avez déclaré une épargne de <strong>{{ situation.mobilierValue }} €</strong>.</span>
   </p>
 </div>

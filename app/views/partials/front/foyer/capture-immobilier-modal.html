@@ -1,12 +1,12 @@
 <form name="form" class="form-horizontal" ng-submit="submit()">
   <div class="modal-header">
-    <h1 class="modal-title">Vos biens mobiliers/immobiliers</h1>
+    <h1 class="modal-title">Votre patrimoine</h1>
   </div>
 
   <div class="modal-body">
     <p>
       Nous allons évaluer ici l'ensemble des biens immobliers et mobiliers que vous possédez à titre personnel<span ng-if="!situation.conjoint">.</span>
-      <span ng-if="situation.conjoint">et au titre de votre conjoint/concubin/partenaire PACS.</span>
+      <span ng-if="situation.conjoint">et au titre de votre {{ conjointTitle }}.</span>
     </p>
 
     <div class="form-group">

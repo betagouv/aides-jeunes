@@ -6,6 +6,8 @@ angular.module('ddsApp').controller('FoyerCaptureImmobilierModalCtrl', function(
         $scope.situation.mobilierValue = 0;
     }
 
+    $scope.conjointTitle = 
+
     $scope.submit = function() {
         $scope.situation.immobilierCaptured = true;
         $modalInstance.close();

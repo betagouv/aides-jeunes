@@ -20,6 +20,10 @@ public abstract class FormFiller {
         return new Object[][]{};
     }
 
+    public Object[][] getTextFields() {
+        return new Object[][]{};
+    }
+
     public abstract void fill();
 
     public void fillFake() {
@@ -30,6 +34,18 @@ public abstract class FormFiller {
             writer.setPage(page);
             writer.checkbox(x, y);
             writer.appendText((String) checkbox[0], x, y + 10, 5);
+        }
+
+        for (Object[] textField : getTextFields()) {
+            int page = (int) textField[1];
+            float x = textField[2] instanceof Float ? (float) textField[2] : ((Integer) textField[2]).floatValue();
+            float y = textField[3] instanceof Float ? (float) textField[3] : ((Integer) textField[3]).floatValue();
+            int fontSize = 12;
+            if (textField.length > 5) {
+                fontSize = (Integer) textField[4];
+            }
+            writer.setPage(page);
+            writer.appendText((String) textField[0], x, y, fontSize);
         }
     }
 
@@ -47,5 +63,21 @@ public abstract class FormFiller {
         }
 
         throw new RuntimeException(String.format("Checkbox inexistante : \"%s\"", checkboxName));
+    }
+
+    protected void appendText(String textFieldName, String textValue) {
+        for (Object[] textField : getTextFields()) {
+            if (textFieldName.equals(textField[0])) {
+                int page = (int) textField[1];
+                float x = textField[2] instanceof Float ? (float) textField[2] : ((Integer) textField[2]).floatValue();
+                float y = textField[3] instanceof Float ? (float) textField[3] : ((Integer) textField[3]).floatValue();
+                writer.setPage(page);
+                writer.appendOptionalText(textValue, x, y);
+
+                return;
+            }
+        }
+
+        throw new RuntimeException(String.format("Champ texte inexistant : \"%s\"", textFieldName));
     }
 }

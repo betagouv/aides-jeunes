@@ -61,13 +61,78 @@ public class RSAFormFiller extends FormFiller {
         {"pension_alimentaire.has_child_alone", 1, 31, 308},
     };
 
+    private static final Object[][] textFields = {
+        {"demandeur.nom",             0, 155, 687},
+        {"demandeur.nom_usage",       0, 133, 670},
+        {"demandeur.prenom",          0, 170, 648},
+        {"demandeur.pays_naissance",  0, 115, 620, 9},
+        {"demandeur.ville_naissance", 0, 83, 605, 7},
+        {"demandeur.num_allocataire", 0, 100, 460},
+
+        {"conjoint.nom",             0, 430, 687},
+        {"conjoint.nom_usage",       0, 408, 670},
+        {"conjoint.prenom",          0, 442, 648},
+        {"conjoint.pays_naissance",  0, 390, 620, 9},
+        {"conjoint.ville_naissance", 0, 358, 605, 7},
+        {"conjoint.num_allocataire", 0, 375, 460},
+
+        {"adresse.numero",      0, 45, 378},
+        {"adresse.rue",         0, 135, 378},
+        {"adresse.ville",       0, 253, 350},
+        {"adresse.mail.gauche", 0, 92, 321, 10},
+        {"adresse.mail.droite", 0, 267, 321, 10},
+
+        {"adresse.conjoint.numero", 0, 45, 235},
+        {"adresse.conjoint.rue",    0, 135, 235},
+        {"adresse.conjoint.ville",  0, 253, 207},
+        {"adresse.conjoint.pays",   0, 480, 207},
+
+        {"current_date", 4, 150, 200},
+
+        {"enfant.1.nom",            1, 117, 515, 5},
+        {"enfant.1.lien_parente",   1, 117, 496, 5},
+        {"enfant.1.date_naissace",  1, 117, 484, 5},
+        {"enfant.1.lieu_naissance", 1, 117, 472, 5},
+        {"enfant.1.nationalite",    1, 117, 453, 5},
+        {"enfant.1.nir",            1, 117, 430, 5},
+        {"enfant.1.date_arrivee",   1, 117, 406, 5},
+        {"enfant.1.situation",      1, 117, 387, 5},
+
+        {"enfant.2.nom",            1, 230, 515, 5},
+        {"enfant.2.lien_parente",   1, 230, 496, 5},
+        {"enfant.2.date_naissace",  1, 230, 484, 5},
+        {"enfant.2.lieu_naissance", 1, 230, 472, 5},
+        {"enfant.2.nationalite",    1, 230, 453, 5},
+        {"enfant.2.nir",            1, 230, 430, 5},
+        {"enfant.2.date_arrivee",   1, 230, 406, 5},
+        {"enfant.2.situation",      1, 230, 387, 5},
+
+        {"enfant.3.nom",            1, 343, 515, 5},
+        {"enfant.3.lien_parente",   1, 343, 496, 5},
+        {"enfant.3.date_naissace",  1, 343, 484, 5},
+        {"enfant.3.lieu_naissance", 1, 343, 472, 5},
+        {"enfant.3.nationalite",    1, 343, 453, 5},
+        {"enfant.3.nir",            1, 343, 430, 5},
+        {"enfant.3.date_arrivee",   1, 343, 406, 5},
+        {"enfant.3.situation",      1, 343, 387, 5},
+
+        {"enfant.4.nom",            1, 456, 515, 5},
+        {"enfant.4.lien_parente",   1, 456, 496, 5},
+        {"enfant.4.date_naissace",  1, 456, 484, 5},
+        {"enfant.4.lieu_naissance", 1, 456, 472, 5},
+        {"enfant.4.nationalite",    1, 456, 453, 5},
+        {"enfant.4.nir",            1, 456, 430, 5},
+        {"enfant.4.date_arrivee",   1, 456, 406, 5},
+        {"enfant.4.situation",      1, 456, 387, 5},
+    };
+
     private static final EnumMap<IndividuRole, EnumMap<Civilite, String>> civiliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<IndividuRole, EnumMap<Nationalite, String>> nationaliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<LogementType, String> logementTypeCheckboxes = new EnumMap<>(LogementType.class);
     private static final EnumMap<StatutMarital, String> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
     private static final EnumMap<StatutMarital, Point> statutMaritalDates = new EnumMap<>(StatutMarital.class);
 
-    private int currentPersonneACharge = 0;
+    private int currentEnfant = 1;
 
     public RSAFormFiller() {
         initCiviliteCheckboxes();
@@ -135,6 +200,11 @@ public class RSAFormFiller extends FormFiller {
     }
 
     @Override
+    public Object[][] getTextFields() {
+        return textFields;
+    }
+
+    @Override
     public void fill() {
         writer.setNumberSpacing(15.5f);
         for (Individu individu : situation.individus) {
@@ -156,15 +226,15 @@ public class RSAFormFiller extends FormFiller {
         writer.setPage(0);
         String civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.civilite);
         checkbox(civiliteCheckbox);
-        writer.appendOptionalText(demandeur.lastName, 155, 687);
-        writer.appendOptionalText(demandeur.nomUsage, 133, 670);
-        writer.appendOptionalText(demandeur.firstName, 170, 648);
+        appendText("demandeur.nom", demandeur.lastName);
+        appendText("demandeur.nom_usage", demandeur.nomUsage);
+        appendText("demandeur.prenom", demandeur.firstName);
         writer.appendDate(demandeur.dateDeNaissance, 113, 635);
 
         if (null != demandeur.paysNaissance) {
-            writer.appendText(demandeur.paysNaissance, 115, 620, 9);
+            appendText("demandeur.pays_naissance", demandeur.paysNaissance);
             if ("france".equals(demandeur.paysNaissance.toLowerCase())) {
-                writer.appendOptionalText(demandeur.villeNaissance, 83, 605, 7);
+                appendText("demandeur.ville_naissance", demandeur.villeNaissance);
                 if (null != demandeur.departementNaissance) {
                     writer.appendOptionalNumber(String.valueOf(demandeur.departementNaissance), 261, 608);
                 }
@@ -180,7 +250,7 @@ public class RSAFormFiller extends FormFiller {
         if (null != demandeur.inscritCaf) {
             if (demandeur.inscritCaf) {
                 checkbox("demandeur_inscrit_caf_oui");
-                writer.appendOptionalText(demandeur.numeroAllocataire, 100, 460);
+                appendText("demandeur.num_allocataire", demandeur.numeroAllocataire);
             } else {
                 checkbox("demandeur_inscrit_caf_non");
             }
@@ -216,15 +286,15 @@ public class RSAFormFiller extends FormFiller {
         writer.setPage(0);
         String civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.civilite);
         checkbox(civiliteCheckbox);
-        writer.appendOptionalText(conjoint.lastName, 430, 687);
-        writer.appendOptionalText(conjoint.nomUsage, 408, 670);
-        writer.appendOptionalText(conjoint.firstName, 442, 648);
+        appendText("conjoint.nom", conjoint.lastName);
+        appendText("conjoint.nom_usage", conjoint.nomUsage);
+        appendText("conjoint.prenom", conjoint.firstName);
         writer.appendDate(conjoint.dateDeNaissance, 389, 635);
 
         if (null != conjoint.paysNaissance) {
-            writer.appendText(conjoint.paysNaissance, 390, 620, 9);
+            appendText("conjoint.pays_naissance", conjoint.paysNaissance);
             if ("france".equals(conjoint.paysNaissance.toLowerCase())) {
-                writer.appendOptionalText(conjoint.villeNaissance, 358, 605, 7);
+                appendText("conjoint.ville_naissance", conjoint.villeNaissance);
                 if (null != conjoint.departementNaissance) {
                     writer.appendOptionalNumber(String.valueOf(conjoint.departementNaissance), 537, 608);
                 }
@@ -240,7 +310,7 @@ public class RSAFormFiller extends FormFiller {
         if (null != conjoint.inscritCaf) {
             if (conjoint.inscritCaf) {
                 checkbox("conjoint_inscrit_caf_oui");
-                writer.appendOptionalText(conjoint.numeroAllocataire, 375, 460);
+                appendText("conjoint.num_allocataire", conjoint.numeroAllocataire);
             } else {
                 checkbox("conjoint_inscrit_caf_non");
             }
@@ -248,9 +318,12 @@ public class RSAFormFiller extends FormFiller {
     }
 
     private void fillEnfant(Individu individu) {
+        if (currentEnfant > 4) {
+            return;
+        }
+
         writer.setPage(1);
         writer.setFontSize(7);
-        float x = 117 + currentPersonneACharge * 113;
 
         String nomPrenom = null;
         if (null != individu.lastName) {
@@ -259,13 +332,13 @@ public class RSAFormFiller extends FormFiller {
                 nomPrenom += " " + individu.firstName;
             }
         }
-        writer.appendOptionalText(nomPrenom, x, 515, 5);
+        appendText(String.format("enfant.%d.nom", currentEnfant), nomPrenom);
 
         if (null != individu.lienParente) {
-            writer.appendOptionalText(individu.lienParente.formValue, x, 496);
+            appendText(String.format("enfant.%d.lien_parente", currentEnfant), individu.lienParente.formValue);
         }
 
-        writer.appendText(individu.dateDeNaissance, x, 484);
+        appendText(String.format("enfant.%d.date_naissance", currentEnfant), individu.dateDeNaissance);
         if (null != individu.paysNaissance) {
             if ("france".equals(individu.paysNaissance.toLowerCase())) {
                 if (null != individu.villeNaissance) {
@@ -273,25 +346,25 @@ public class RSAFormFiller extends FormFiller {
                     if (null != individu.departementNaissance) {
                         lieuNaissance = String.format("%s (%d)", individu.villeNaissance, individu.departementNaissance);
                     }
-                    writer.appendOptionalText(lieuNaissance, x, 472);
+                    appendText(String.format("enfant.%d.lieu_naissance", currentEnfant), lieuNaissance);
                 }
             } else {
-                writer.appendText(individu.paysNaissance, x, 472);
+                appendText(String.format("enfant.%d.lieu_naissance", currentEnfant), individu.paysNaissance);
             }
         }
 
         if (Nationalite.FRANCAISE == individu.nationalite) {
-            writer.appendText("Française", x, 453);
+            appendText(String.format("enfant.%d.nationalite", currentEnfant), "Française");
         }
 
-        writer.appendOptionalText(individu.nir, x, 430);
-        writer.appendOptionalText(individu.dateArriveeFoyer, x, 406);
+        appendText(String.format("enfant.%d.nir", currentEnfant), individu.nir);
+        appendText(String.format("enfant.%d.date_arrivee", currentEnfant), individu.dateArriveeFoyer);
         if (null != individu.situation) {
-            writer.appendOptionalText(individu.situation.formValue, x, 387, 6);
+            appendText(String.format("enfant.%d.situation", currentEnfant), individu.situation.formValue);
         }
 
         writer.setFontSize(12);
-        currentPersonneACharge++;
+        currentEnfant++;
     }
 
     private void fillLogement() {
@@ -301,16 +374,16 @@ public class RSAFormFiller extends FormFiller {
             if (addressTokens.length > 1) {
                 String number = addressTokens[0];
                 if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
-                    writer.appendText(number, 45, 378);
+                    appendText("adresse.numero", number);
                 }
                 addressTokens = ArrayUtils.remove(addressTokens, 0);
                 String address = StringUtils.join(addressTokens, " ");
-                writer.appendText(address, 135, 378);
+                appendText("adresse.rue", address);
             }
         }
 
         writer.appendNumber(situation.logement.codePostal, 88, 352);
-        writer.appendOptionalText(situation.logement.ville, 253, 350);
+        appendText("adresse.ville", situation.logement.ville);
 
         String logementTypeCheckbox = logementTypeCheckboxes.get(situation.logement.type);
         checkbox(logementTypeCheckbox);
@@ -330,16 +403,16 @@ public class RSAFormFiller extends FormFiller {
             if (addressTokens.length > 1) {
                 String number = addressTokens[0];
                 if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
-                    writer.appendText(number, 45, 235);
+                    appendText("adresse.conjoint.numero", number);
                 }
                 addressTokens = ArrayUtils.remove(addressTokens, 0);
                 String address = StringUtils.join(addressTokens, " ");
-                writer.appendText(address, 135, 235);
+                appendText("adresse.conjoint.rue", address);
             }
 
             writer.appendNumber(situation.logement.conjoint.codePostal, 88, 209);
-            writer.appendOptionalText(situation.logement.conjoint.ville, 253, 207);
-            writer.appendText(situation.logement.conjoint.pays, 480, 207);
+            appendText("adresse.conjoint.ville", situation.logement.conjoint.ville);
+            appendText("adresse.conjoint.pays", situation.logement.conjoint.pays);
         }
     }
 
@@ -356,10 +429,10 @@ public class RSAFormFiller extends FormFiller {
         if (null != situation.email) {
             String[] parts =  situation.email.split("@");
             if (parts.length > 1) {
-                writer.appendOptionalText(parts[0], 92, 321, 10);
-                writer.appendOptionalText(parts[1], 267, 321, 10);
+                appendText("adresse.mail.gauche", parts[0]);
+                appendText("adresse.mail.droite", parts[1]);
             } else {
-                writer.appendOptionalText(situation.email, 92, 321, 10);
+                appendText("adresse.mail.gauche", situation.email);
             }
         }
     }
@@ -386,8 +459,7 @@ public class RSAFormFiller extends FormFiller {
     }
 
     private void fillCurrentDate() {
-        writer.setPage(4);
         String currentDate = LocalDate.now().toString("dd/MM/yyyy");
-        writer.appendText(currentDate, 150, 200);
+        appendText("current_date", currentDate);
     }
 }

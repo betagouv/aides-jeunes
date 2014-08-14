@@ -1,4 +1,4 @@
-<form name="form" class="form-horizontal" ng-submit="submit()">
+<form name="form" novalidate class="form-horizontal" ng-submit="submit(form)">
   <div class="modal-header">
     <h1 class="modal-title">Votre patrimoine</h1>
   </div>
@@ -20,26 +20,32 @@
       </div>
     </div>
 
-    <div class="form-group" ng-if="situation.hasImmobilier">
+    <div class="form-group" ng-if="situation.hasImmobilier" ng-class="{'has-error': submitted && form.immobilierValue.$invalid}">
       <label class="col-sm-4 control-label" for="immobilier-value">Quelle est la valeur de revente actuelle estimée de l'ensemble de ces biens immobiliers ?</label>
       <div class="col-sm-3">
         <div class="input-group">
-          <input type="number" id="immobilier-value" class="form-control text-right" ng-model="situation.immobilierValue">
+          <input type="number" name="immobilierValue" required id="immobilier-value" class="form-control text-right" ng-model="situation.immobilierValue">
           <span class="input-group-addon">€</span>
         </div>
       </div>
+      <div class="col-sm-offset-4 col-sm-8">
+        <p class="help-block" ng-if="submitted && form.immobilierValue.$invalid">Montant invalide</p>
+      </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" ng-class="{'has-error': submitted && form.mobilierValue.$invalid}">
       <label class="col-sm-4 control-label" for="mobilier-value">Quel est le montant total de votre épargne bancaire ?</label>
       <div class="col-sm-3">
         <div class="input-group">
-          <input type="number" id="mobilier-value" class="form-control text-right" ng-model="situation.mobilierValue">
+          <input type="number" name="mobilierValue" required id="mobilier-value" class="form-control text-right" ng-model="situation.mobilierValue">
           <span class="input-group-addon">€</span>
         </div>
       </div>
       <div class="col-sm-5">
-        <em class="help-block">Livret A, PEL, CEL, PEP, LDD, Assurance-Vie, compte titres, PEA</em>
+        <p class="help-block"><em>Livret A, PEL, CEL, PEP, LDD, Assurance-Vie, compte titres, PEA</em></p>
+      </div>
+      <div class="col-sm-offset-4 col-sm-8">
+        <p class="help-block" ng-if="submitted && form.mobilierValue.$invalid">Montant invalide</p>
       </div>
     </div>
   </div>

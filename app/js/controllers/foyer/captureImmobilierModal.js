@@ -6,6 +6,10 @@ angular.module('ddsApp').controller('FoyerCaptureImmobilierModalCtrl', function(
         $scope.situation.mobilierValue = 0;
     }
 
+    if (angular.isUndefined($scope.situation.hasImmobilier)) {
+        $scope.situation.hasImmobilier = false;
+    }
+
     $scope.conjointTitle = function() {
         if ($scope.situation.conjoint.relationType === 'mariage') {
             return 'conjoint';
@@ -20,8 +24,11 @@ angular.module('ddsApp').controller('FoyerCaptureImmobilierModalCtrl', function(
         }
     };
 
-    $scope.submit = function() {
-        $scope.situation.immobilierCaptured = true;
-        $modalInstance.close();
+    $scope.submit = function(form) {
+        $scope.submitted = true;
+        if (form.$valid) {
+            $scope.situation.immobilierCaptured = true;
+            $modalInstance.close();
+        }
     };
 });

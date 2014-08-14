@@ -7,7 +7,7 @@ angular.module('ddsApp').controller('FoyerSituationsSpecifiquesModalCtrl', funct
 
     // pré initialisation des statuts sélectionnés si on a déjà rempli les statuts avant
     $scope.selectedSituations = {};
-    _.forEach($scope.individus, function(individu) {
+    $scope.individus.forEach(function(individu) {
         _.forEach(statuts, function(statut, k) {
             if (individu.individu[k]) {
                 $scope.selectedSituations[k] = true;
@@ -15,7 +15,7 @@ angular.module('ddsApp').controller('FoyerSituationsSpecifiquesModalCtrl', funct
         });
     });
 
-    // création d'un array spécial opur afficher deux situations par ligne
+    // création d'un array spécial pour afficher deux situations par ligne
     $scope.situations = [];
     var i = 0;
     var arr;

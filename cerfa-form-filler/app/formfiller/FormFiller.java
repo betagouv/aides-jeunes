@@ -10,6 +10,7 @@ public abstract class FormFiller {
 
     public void setWriter(PdfWriter writer) {
         this.writer = writer;
+        writer.setFontSize(getDefaultFontSize());
     }
 
     public void setSituation(Situation situation) {
@@ -22,6 +23,10 @@ public abstract class FormFiller {
 
     public Object[][] getTextFields() {
         return new Object[][]{};
+    }
+
+    protected int getDefaultFontSize() {
+        return 8;
     }
 
     public abstract void fill();

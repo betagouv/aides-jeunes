@@ -15,11 +15,20 @@ public class CmuFormFiller extends FormFiller {
         {"demandeur_non_ue",   4, 444, 543},
     };
 
+    private static final Object[][] textFields = {
+        {"demandeur.nom", 4, 268, 602},
+    };
+
     private int currentChildIndex = 1;
 
     @Override
     public Object[][] getCheckboxes() {
         return checkboxes;
+    }
+
+    @Override
+    public Object[][] getTextFields() {
+        return textFields;
     }
 
     @Override
@@ -50,11 +59,13 @@ public class CmuFormFiller extends FormFiller {
                 nomPrenom = String.format("%s (nom d'usage %s)", nomPrenom, demandeur.nomUsage);
             }
         }
-        writer.fillOptionalTextField("nom prénom demandeur", nomPrenom);
+        appendText("demandeur.nom", nomPrenom);
+
         if (null != demandeur.nir) {
             writer.fillTextField("n° sécu demandeur", demandeur.nir.substring(0, 13));
             writer.fillTextField("clé n° sécu demandeur", demandeur.nir.substring(13, 15));
         }
+
         writer.fillDateField("date naissance demandeur", demandeur.dateDeNaissance);
 
         if (Nationalite.FRANCAISE == demandeur.nationalite) {
@@ -69,8 +80,9 @@ public class CmuFormFiller extends FormFiller {
         writer.fillOptionalTextField("téléphone demandeur", demandeur.phoneNumber);
         writer.fillOptionalTextField("Nom", demandeur.lastName);
         writer.fillOptionalTextField("prénom", demandeur.firstName);
+
         if (null != demandeur.statusMarital) {
-            writer.fillRadioField("situation famille", demandeur.statusMarital.formValue);
+            // writer.fillRadioField("situation famille", demandeur.statusMarital.formValue);
         }
     }
 

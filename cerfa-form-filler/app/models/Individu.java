@@ -126,28 +126,26 @@ public class Individu {
     @JsonDeserialize(using = StatutMaritalDeserializer.class)
     public static enum StatutMarital {
 
-        MARIAGE("mariage", "marié", false),
-        PACS("pacs", "pacsé", false),
-        RELATION_LIBRE("relation_libre", "vie maritale", false),
-        CELIBATAIRE("celibataire", "célibataire"),
-        VEUF("veuf", "veuf"),
-        SEPARE("separe", "séparé"),
-        DIVORCE("divorce", "divorcé"),
-        CONCUBINAGE_ROMPU("concubinage_rompu", "concubinage rompu"),
-        PACS_ROMPU("pacs_rompu", "pacs rompu");
+        MARIAGE("mariage", false),
+        PACS("pacs", false),
+        RELATION_LIBRE("relation_libre", false),
+        CELIBATAIRE("celibataire"),
+        VEUF("veuf"),
+        SEPARE("separe"),
+        DIVORCE("divorce"),
+        CONCUBINAGE_ROMPU("concubinage_rompu"),
+        PACS_ROMPU("pacs_rompu");
 
         public final String jsonValue;
-        public final String formValue;
         public final boolean isAlone;
 
-        StatutMarital(String jsonValue, String formValue, boolean isAlone) {
+        StatutMarital(String jsonValue, boolean isAlone) {
             this.jsonValue = jsonValue;
-            this.formValue = formValue;
             this.isAlone = isAlone;
         }
 
-        StatutMarital(String jsonValue, String formValue) {
-            this(jsonValue, formValue, true);
+        StatutMarital(String jsonValue) {
+            this(jsonValue, true);
         }
     }
 

@@ -157,7 +157,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             }]
         })
         .state('resultat', {
-            url: '/resultat/:situationId',
+            url: '/resultat/:situationId?requestedCerfa',
             templateUrl: '/partials/resultat.html',
             controller: 'ResultatCtrl',
             resolve: {
@@ -171,17 +171,17 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             }
         })
         .state('form_infos_complementaires_individus', {
-            url: '/infos-complementaires/noms-prenoms',
+            url: '/infos-complementaires/noms-prenoms?requestedCerfa',
             templateUrl: '/partials/form-infos-complementaires/individus.html',
             controller: 'FormInfosComplementairesIndividusCtrl'
         })
         .state('form_infos_complementaires_address_contact', {
-            url: '/infos-complementaires/adresse',
+            url: '/infos-complementaires/adresse?requestedCerfa',
             templateUrl: '/partials/form-infos-complementaires/address-contact.html',
             controller: 'FormInfosComplementairesAddressContactCtrl'
         })
         .state('envoi_demande', {
-            url: '/envoi-demande/:situationId',
+            url: '/envoi-demande/:situationId?requestedCerfa',
             templateUrl: '/partials/envoi-demande-teaser.html'
         });
 });

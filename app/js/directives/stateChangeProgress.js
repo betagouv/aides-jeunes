@@ -5,10 +5,11 @@ angular.module('ddsApp').directive('stateChangeProgress', function() {
         restrict: 'A',
         link: function(scope, element) {
             var pendingChanges = 0;
-            scope.$on('$stateChangeStart', function() {
+            var stateChangeStart = function() {
                 pendingChanges++;
                 element.addClass('change-state-progress');
-            });
+            };
+            scope.$on('$stateChangeStart', stateChangeStart);
 
             var stateChangeEnd = function() {
                 pendingChanges--;

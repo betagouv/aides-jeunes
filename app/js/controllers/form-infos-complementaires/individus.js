@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', function($scope, $state, SituationService) {
+angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', function($scope, $state, $stateParams, SituationService) {
     var situation = $scope.situation = SituationService.restoreLocal();
     $scope.relationTypeLabels = SituationService.relationTypeLabels;
 
-    function initPaysNaissance(individu) {
+    var initPaysNaissance = function(individu) {
         individu.choicePaysNaissance = 'france';
         individu.paysNaissance = 'France';
-    }
+    };
 
     initPaysNaissance(situation.demandeur);
     situation.demandeur.civilite = 'h';
@@ -36,6 +36,6 @@ angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', fun
     };
 
     $scope.submit = function() {
-        $state.go('form_infos_complementaires_address_contact');
+        $state.go('form_infos_complementaires_address_contact', {requestedCerfa: $stateParams.requestedCerfa});
     };
 });

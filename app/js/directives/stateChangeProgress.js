@@ -1,5 +1,21 @@
 'use strict';
 
+angular.module('ddsApp').config(function($provide) {
+    $provide.decorator('$modal', function($delegate, $rootScope, $timeout) {
+        return {
+            open: function(modalOptions) {
+                $rootScope.$broadcast('modalOpenStart');
+                var modal = $delegate.open(modalOptions);
+                modal.opened.finally(function() {
+                    $rootScope.$broadcast('modalOpenEnd');
+                });
+
+                return modal;
+            }
+        };
+    });
+});
+
 angular.module('ddsApp').directive('stateChangeProgress', function() {
     return {
         restrict: 'A',
@@ -10,6 +26,7 @@ angular.module('ddsApp').directive('stateChangeProgress', function() {
                 element.addClass('change-state-progress');
             };
             scope.$on('$stateChangeStart', stateChangeStart);
+            scope.$on('modalOpenStart', stateChangeStart);
 
             var stateChangeEnd = function() {
                 pendingChanges--;
@@ -20,6 +37,7 @@ angular.module('ddsApp').directive('stateChangeProgress', function() {
 
             scope.$on('$stateChangeSuccess', stateChangeEnd);
             scope.$on('$stateChangeError', stateChangeEnd);
+            scope.$on('modalOpenEnd', stateChangeEnd);
         }
     };
 });

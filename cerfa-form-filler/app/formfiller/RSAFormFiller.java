@@ -262,7 +262,7 @@ public class RSAFormFiller extends FormFiller {
             if ("france".equals(demandeur.paysNaissance.toLowerCase())) {
                 appendText("demandeur.ville_naissance", demandeur.villeNaissance);
                 if (null != demandeur.departementNaissance) {
-                    appendNumber("demandeur.departementNaissance", String.valueOf(demandeur.departementNaissance));
+                    appendNumber("demandeur.departement_naissance", String.valueOf(demandeur.departementNaissance));
                 }
             }
         }
@@ -390,7 +390,6 @@ public class RSAFormFiller extends FormFiller {
                 String number = addressTokens[0];
                 if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
                     appendText("adresse.numero", number);
-                } else {
                     addressTokens = ArrayUtils.remove(addressTokens, 0);
                 }
                 String address = StringUtils.join(addressTokens, " ");

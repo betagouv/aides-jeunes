@@ -7,5 +7,6 @@ angular.module('ddsApp').controller('FoyerDemandeurCtrl', function($scope, $root
 
     $rootScope.$on('individu.demandeur', function(e, demandeur) {
         $scope.situation.demandeur = demandeur;
+        demandeur.role = 'demandeur';
     });
 });

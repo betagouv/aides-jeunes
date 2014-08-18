@@ -2,36 +2,39 @@
 
 describe('Controller: FoyerCaptureRevenusModalCtrl', function() {
 
-    var scope = {};
-
     beforeEach(function() {
         module('ddsApp');
-        inject(function($controller) {
-            $controller('FoyerCaptureRevenusModalCtrl', {$scope: scope, $modalInstance: {}});
-        });
     });
 
-    describe('Map of selected resources', function() {
-        beforeEach(function() {
-            inject(function($controller, SituationService) {
-                var individus = {name: 'Vous'};
-                spyOn(SituationService, 'createIndividusList').andReturn([individus]);
-                $controller('FoyerCaptureRevenusModalCtrl', {
-                    $scope: scope,
-                    $modalInstance: {},
-                    SituationService: SituationService
-                });
+    it('Should initialize the map of selected resources by individus indexed by the individus labels', function() {
+        // given
+        var scope = {};
+
+        // when
+        inject(function($controller, SituationService) {
+            spyOn(SituationService, 'createIndividusList').andReturn([{role: 'demandeur'}, {role: 'conjoint'}]);
+            $controller('FoyerCaptureRevenusModalCtrl', {
+                $scope: scope,
+                $modalInstance: {},
+                SituationService: SituationService
             });
         });
 
-        it('should be initialized with a map of individus indexed by their name', function() {
-            expect(scope.selectedRessourcesByIndividu).toEqual({
-                'Vous': {},
-            });
-        });
+        // then
+        expect(scope.selectedRessourcesByIndividu).toEqual({'Vous': {}, 'Votre conjoint': {}});
     });
 
     it('Should init an array of the last 3 months', function() {
+        // given
+        var scope = {};
+
+        // when
+        inject(function($controller, SituationService) {
+            spyOn(SituationService, 'createIndividusList').andReturn([]);
+            $controller('FoyerCaptureRevenusModalCtrl', {$scope: scope, $modalInstance: {}});
+        });
+
+        // then
         expect(scope.months.length).toBe(3);
         var date = new Date();
         var month = '' + (date.getMonth() - 2);

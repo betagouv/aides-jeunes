@@ -375,8 +375,9 @@ public class RSAFormFiller extends FormFiller {
                 String number = addressTokens[0];
                 if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
                     appendText("adresse.numero", number);
+                } else {
+                    addressTokens = ArrayUtils.remove(addressTokens, 0);
                 }
-                addressTokens = ArrayUtils.remove(addressTokens, 0);
                 String address = StringUtils.join(addressTokens, " ");
                 appendText("adresse.rue", address);
             }

@@ -10,18 +10,14 @@ angular.module('ddsApp').controller('FoyerCaptureImmobilierModalCtrl', function(
         $scope.situation.hasImmobilier = false;
     }
 
+    var conjointTitles = {
+        'mariage': 'conjoint',
+        'pacs': 'partenaire PACS',
+        'relation_libre': 'concubin',
+    };
+
     $scope.conjointTitle = function() {
-        if ($scope.situation.conjoint.relationType === 'mariage') {
-            return 'conjoint';
-        }
-
-        if ($scope.situation.conjoint.relationType === 'pacs') {
-            return 'partenaire PACS';
-        }
-
-        if ($scope.situation.conjoint.relationType === 'relation_libre') {
-            return 'concubin';
-        }
+        return conjointTitles[$scope.situation.conjoint.relationType];
     };
 
     $scope.submit = function(form) {

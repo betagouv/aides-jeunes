@@ -4,13 +4,14 @@ angular.module('ddsApp').controller('FoyerSituationsSpecifiquesModalCtrl', funct
     var statuts = SituationService.statutsSpecifiquesLabels;
     var situation = SituationService.restoreLocal();
     $scope.individus = SituationService.createIndividusList(situation);
+    $scope.individuLabel = SituationService.individuLabel;
 
     // pré initialisation des statuts sélectionnés si on a déjà rempli les statuts avant
-    $scope.selectedSituations = {};
+    $scope.openedSituations = {};
     $scope.individus.forEach(function(individu) {
         _.forEach(statuts, function(statut, k) {
-            if (individu.individu[k]) {
-                $scope.selectedSituations[k] = true;
+            if (individu[k]) {
+                $scope.openedSituations[k] = true;
             }
         });
     });

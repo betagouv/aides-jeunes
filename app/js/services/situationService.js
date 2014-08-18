@@ -39,32 +39,28 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             return situation;
         },
 
-        createIndividusList: function() {
-            var individus = [
-                {
-                    name: 'Vous',
-                    type: 'demandeur',
-                    individu: situation.demandeur
-                }
-            ];
+        createIndividusList: function(situation) {
+            var individus = [situation.demandeur];
 
             if (situation.conjoint) {
-                individus.push({
-                    name: 'Votre conjoint',
-                    type: 'conjoint',
-                    individu: situation.conjoint
-                });
+                individus.push(situation.conjoint);
             }
 
-            _.forEach(situation.enfants, function(child) {
-                individus.push({name: child.firstName, type: 'child', individu: child});
-            });
-
-            _.forEach(situation.personnesACharge, function(personne) {
-                individus.push({name: personne.firstName, type: 'personneACharge', individu: personne});
-            });
+            individus = individus.concat(situation.enfants).concat(situation.personnesACharge);
 
             return individus;
+        },
+
+        individuLabel: function(individu) {
+            if ('demandeur' === individu.role) {
+                return 'Vous';
+            }
+
+            if ('conjoint' === individu.role) {
+                return 'Votre conjoint';
+            }
+
+            return individu.firstName;
         },
 
         formatStatutsSpecifiques: function(individu) {

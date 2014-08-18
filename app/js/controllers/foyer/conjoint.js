@@ -15,6 +15,9 @@ angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $rootS
 
     $rootScope.$on('individu.conjoint', function(e, conjoint) {
         $scope.situation.conjoint = conjoint;
+        if (conjoint) {
+            conjoint.role = 'conjoint';
+        }
     });
 
     $scope.livesAlone = function() {

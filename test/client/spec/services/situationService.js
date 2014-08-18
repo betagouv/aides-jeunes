@@ -141,4 +141,104 @@ describe('Service: situationService', function () {
             expect(result.individus[1].role).toBe('personneACharge');
         });
     });
+
+    describe('function createIndividusList', function() {
+        it('Should create an array of individuals including demandeur', function() {
+            // given
+            var demandeur = {};
+            var situation = {demandeur: demandeur, enfants: [], personnesACharge: []};
+
+            // when
+            var result = service.createIndividusList(situation);
+
+            // then
+            expect(result.length).toBe(1);
+            expect(result[0]).toBe(demandeur);
+        });
+
+        it('Should include conjoint if defined', function() {
+            // given
+            var conjoint = {};
+            var situation = {demandeur: {}, conjoint: conjoint, enfants: [], personnesACharge: []};
+
+            // when
+            var result = service.createIndividusList(situation);
+
+            // then
+            expect(result.length).toBe(2);
+            expect(result[1]).toBe(conjoint);
+        });
+
+        it('Should include children', function() {
+            // given
+            var enfant = {};
+            var situation = {demandeur: {}, enfants: [enfant], personnesACharge: []};
+
+            // when
+            var result = service.createIndividusList(situation);
+
+            // then
+            expect(result.length).toBe(2);
+            expect(result[1]).toBe(enfant);
+        });
+
+        it('Should include personnes à charge', function() {
+            // given
+            var personne = {};
+            var situation = {demandeur: {}, enfants: [], personnesACharge: [personne]};
+
+            // when
+            var result = service.createIndividusList(situation);
+
+            // then
+            expect(result.length).toBe(2);
+            expect(result[1]).toBe(personne);
+        });
+    });
+
+    describe('function individuLabel', function() {
+        it('Should return "Vous" if individu has role demandeur', function() {
+            // given
+            var individu = {role: 'demandeur', firstName: 'Arnaud'};
+
+            // when
+            var result = service.individuLabel(individu);
+
+            // then
+            expect(result).toBe('Vous');
+        });
+
+        it('Should return "Votre conjoint" if individu has role conjoint', function() {
+            // given
+            var individu = {role: 'conjoint', firstName: 'Arnaud'};
+
+            // when
+            var result = service.individuLabel(individu);
+
+            // then
+            expect(result).toBe('Votre conjoint');
+        });
+
+        it('Should return the individu\'s first name if individu has role enfant', function() {
+            // given
+            var individu = {role: 'enfant', firstName: 'Arnaud'};
+
+            // when
+            var result = service.individuLabel(individu);
+
+            // then
+            expect(result).toBe('Arnaud');
+        });
+
+        it('Should return the individu\'s first name if individu has role personneACharge', function() {
+            // given
+            var individu = {role: 'personneACharge', firstName: 'Arnaud'};
+
+            // when
+            var result = service.individuLabel(individu);
+
+            // then
+            expect(result).toBe('Arnaud');
+        });
+    });
 });

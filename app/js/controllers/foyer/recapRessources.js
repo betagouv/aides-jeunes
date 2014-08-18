@@ -2,17 +2,15 @@
 
 angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope, SituationService) {
     $scope.months = SituationService.getMonths();
+    $scope.individuLabel = SituationService.individuLabel;
 
     $scope.initRessources = function() {
         $scope.tempRessources = {};
         $scope.hasRessources = false;
         $scope.globalAmount = 0;
-        $scope.fillIndividuRessources($scope.situation.demandeur, 'Vous');
-        if ($scope.situation.conjoint) {
-            $scope.fillIndividuRessources($scope.situation.conjoint, 'Votre conjoint');
-        }
-        $scope.situation.enfants.map($scope.fillIndividuRessources);
-        $scope.situation.personnesACharge.map($scope.fillIndividuRessources);
+
+        var individus = SituationService.createIndividusList($scope.situation);
+        individus.map($scope.fillIndividuRessources);
 
         if ($scope.globalAmount > 0) {
             $scope.hasRessources = true;
@@ -33,10 +31,8 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
         });
     };
 
-    $scope.fillIndividuRessources = function(individu, label) {
-        if (!label) {
-            label = individu.firstName;
-        }
+    $scope.fillIndividuRessources = function(individu) {
+        var individuLabel = SituationService.individuLabel(individu);
 
         _.forEach(individu.ressources, function(ressource, subsectionName) {
             if (!$scope.tempRessources[subsectionName]) {
@@ -47,7 +43,7 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
             }
             var ressources = _.values(ressource);
             $scope.tempRessources[subsectionName].byIndividu.push({
-                name: label,
+                label: individuLabel,
                 ressources: ressources
             });
             _.forEach(ressources, function(amount, i) {

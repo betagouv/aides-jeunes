@@ -4,12 +4,14 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
     var situation = SituationService.restoreLocal();
     $scope.sections = SituationService.revenusSections;
     $scope.sections[0].open = true;
-    $scope.individus = SituationService.createIndividusList();
+    $scope.individus = SituationService.createIndividusList(situation);
+    $scope.individuLabel = SituationService.individuLabel;
 
     $scope.selectedRessourcesMap = {};
     $scope.selectedRessourcesByIndividu = {};
     _.forEach($scope.individus, function(individu) {
-        $scope.selectedRessourcesByIndividu[individu.name] = {};
+        var individuLabel = SituationService.individuLabel(individu);
+        $scope.selectedRessourcesByIndividu[individuLabel] = {};
     });
 
     // suppression des clés dont la valeur est "false" dans la map de sélection par individu
@@ -25,10 +27,10 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
 
     $scope.createOrderedSelectedRessources = function() {
         $scope.orderedSelectedRessources = {};
-        _.forEach($scope.selectedRessourcesByIndividu, function(selection, individuName) {
-            var ressources = $scope.orderedSelectedRessources[individuName] = [];
+        _.forEach($scope.selectedRessourcesByIndividu, function(selection, individuLabel) {
+            var ressources = $scope.orderedSelectedRessources[individuLabel] = [];
             _.forEach($scope.orderedSubsections, function(subsection) {
-                if ($scope.selectedRessourcesByIndividu[individuName][subsection.name]) {
+                if ($scope.selectedRessourcesByIndividu[individuLabel][subsection.name]) {
                     ressources.push(subsection.name);
                 }
             });
@@ -38,7 +40,7 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
     $scope.months = SituationService.getMonths();
 
     $scope.hasIndividuRevenus = function(individu) {
-        return _.keys($scope.selectedRessourcesByIndividu[individu.name]).length > 0;
+        return _.keys($scope.selectedRessourcesByIndividu[SituationService.individuLabel(individu)]).length > 0;
     };
 
     $scope.submit = function() {
@@ -71,12 +73,12 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
 
     $scope.zerofillRevenus = function() {
         _.forEach($scope.individus, function(individu) {
-            individu.individu.ressources = {};
+            individu.ressources = {};
             _.forEach($scope.orderedSubsections, function(subsection) {
-                if ($scope.selectedRessourcesByIndividu[individu.name][subsection.name]) {
-                    individu.individu.ressources[subsection.name] = {};
+                if ($scope.selectedRessourcesByIndividu[SituationService.individuLabel(individu)][subsection.name]) {
+                    individu.ressources[subsection.name] = {};
                     _.forEach($scope.months, function(month) {
-                        individu.individu.ressources[subsection.name][month.id] = 0;
+                        individu.ressources[subsection.name][month.id] = 0;
                     });
                 }
             });

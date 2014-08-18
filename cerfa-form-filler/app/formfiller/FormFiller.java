@@ -112,7 +112,11 @@ public abstract class FormFiller {
                 float y = numberField[3] instanceof Float ? (float) numberField[3] : ((Integer) numberField[3]).floatValue();
                 writer.setPage(page);
 
-                number = number.substring(0, (int) numberField[4]);
+                int fieldLength = (int) numberField[4];
+                if (number.length() > fieldLength) {
+                    number = number.substring(0, fieldLength);
+                }
+
                 if (numberField.length >= 6) {
                     writer.setNumberSpacing((float) numberField[5]);
                     writer.appendNumber(number, x, y);

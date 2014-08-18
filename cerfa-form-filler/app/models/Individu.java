@@ -24,7 +24,6 @@ public class Individu {
     public String dateArriveeFoyer;
     public IndividuRole role;
     public String email;
-    public String phoneNumber;
     public StatutMarital statusMarital;
     public String dateSituationFamiliale;
     public SituationEnfant situation;

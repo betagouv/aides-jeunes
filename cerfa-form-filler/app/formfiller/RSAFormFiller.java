@@ -13,33 +13,31 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
 
-import pdfwriter.Point;
-
 public class RSAFormFiller extends FormFiller {
 
     private static final Object[][] checkboxes = {
-        {"demandeur_homme", 0, 102, 703},
-        {"demandeur_femme", 0,  30, 703},
-        {"conjoint_homme",  0, 378, 703},
-        {"conjoint_femme",  0, 306, 703},
+        {"demandeur.homme", 0, 102, 703},
+        {"demandeur.femme", 0,  30, 703},
+        {"conjoint.homme",  0, 378, 703},
+        {"conjoint.femme",  0, 306, 703},
 
-        {"demandeur_francais", 0, 30, 578},
-        {"demandeur_ue",       0, 91, 578},
-        {"demandeur_non_ue",   0, 178, 578},
-        {"conjoint_francais",  0, 306, 578},
-        {"conjoint_ue",        0, 368, 578},
-        {"conjoint_non_ue",    0, 457, 578},
+        {"demandeur.francais", 0, 30, 578},
+        {"demandeur.ue",       0, 91, 578},
+        {"demandeur.non_ue",   0, 178, 578},
+        {"conjoint.francais",  0, 306, 578},
+        {"conjoint.ue",        0, 368, 578},
+        {"conjoint.non_ue",    0, 457, 578},
 
-        {"demandeur_inscrit_caf_oui", 0, 30, 475},
-        {"demandeur_inscrit_caf_non", 0, 102, 475},
-        {"conjoint_inscrit_caf_oui",  0, 306, 475},
-        {"conjoint_inscrit_caf_non",  0, 378, 475},
+        {"demandeur.inscrit_caf.oui", 0, 30, 475},
+        {"demandeur.inscrit_caf.non", 0, 102, 475},
+        {"conjoint.inscrit_caf.oui",  0, 306, 475},
+        {"conjoint.inscrit_caf.non",  0, 378, 475},
 
-        {"logement_locataire",       0, 30, 175},
-        {"logement_payant",          0, 30, 161},
-        {"logement_gratuit",         0, 30, 133},
-        {"logement_proprio_pret",    0, 30, 147},
-        {"logement_proprio_no_pret", 0, 203, 147},
+        {"logement.locataire",       0, 30, 175},
+        {"logement.payant",          0, 30, 161},
+        {"logement.gratuit",         0, 30, 133},
+        {"logement.proprio_pret",    0, 30, 147},
+        {"logement.proprio_no_pret", 0, 203, 147},
 
         {"seul", 1, 31, 671},
         {"en_couple", 1, 31, 746},
@@ -58,7 +56,7 @@ public class RSAFormFiller extends FormFiller {
         {"enceinte.non", 1, 193, 551},
 
         {"pension_alimentaire.separe",          1, 31, 338},
-        {"pension_alimentaire.has_child_alone", 1, 31, 308},
+        {"pension_alimentaire.has_child_alone", 1, 31, 310},
     };
 
     private static final Object[][] textFields = {
@@ -126,11 +124,36 @@ public class RSAFormFiller extends FormFiller {
         {"current_date", 4, 150, 200},
     };
 
+    private static final Object[][] numberFields = {
+        {"demandeur.date_naissance",        0, 114, 635,  8, 15.7f},
+        {"demandeur.departement_naissance", 0, 261, 608,  2},
+        {"demandeur.nir",                   0,  31, 507, 15, 15.1f},
+        {"conjoint.date_naissance",         0, 390, 635,  8, 15.7f},
+        {"conjoint.departement_naissance",  0, 537, 608,  2},
+        {"conjoint.nir",                    0, 308, 507, 15, 15.1f},
+
+        {"adresse.code_postal",  0, 90, 352, 5, 14.9f},
+        {"adresse.date_arrivee", 0, 184, 293, 8},
+        {"adresse.conjoint.code_postal", 0, 90, 209, 5, 14.9f},
+
+        {"tel.fixe",   0,  94, 338, 10, 14.9f},
+        {"tel.mobile", 0, 378, 338, 10, 14.9f},
+
+        {"statut_marital.date.mariage",           1, 172, 732, 8},
+        {"statut_marital.date.pacs",              1, 172, 717, 8},
+        {"statut_marital.date.relation_libre",    1, 334, 702, 8},
+        {"statut_marital.date.separe",            1, 216, 657, 8},
+        {"statut_marital.date.pacs_rompu",        1, 230, 642, 8},
+        {"statut_marital.date.divorce",           1, 187, 627, 8},
+        {"statut_marital.date.veuf",              1, 180, 612, 8},
+        {"statut_marital.date.concubinage_rompu", 1, 278, 597, 8},
+    };
+
     private static final EnumMap<IndividuRole, EnumMap<Civilite, String>> civiliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<IndividuRole, EnumMap<Nationalite, String>> nationaliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<LogementType, String> logementTypeCheckboxes = new EnumMap<>(LogementType.class);
     private static final EnumMap<StatutMarital, String> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
-    private static final EnumMap<StatutMarital, Point> statutMaritalDates = new EnumMap<>(StatutMarital.class);
+    private static final EnumMap<StatutMarital, String> statutMaritalDates = new EnumMap<>(StatutMarital.class);
 
     private int currentEnfant = 1;
 
@@ -143,34 +166,34 @@ public class RSAFormFiller extends FormFiller {
 
     private void initCiviliteCheckboxes() {
         EnumMap<Civilite, String> demandeurCheckboxes = new EnumMap<>(Civilite.class);
-        demandeurCheckboxes.put(Civilite.HOMME, "demandeur_homme");
-        demandeurCheckboxes.put(Civilite.FEMME, "demandeur_femme");
+        demandeurCheckboxes.put(Civilite.HOMME, "demandeur.homme");
+        demandeurCheckboxes.put(Civilite.FEMME, "demandeur.femme");
         civiliteCheckboxes.put(IndividuRole.DEMANDEUR, demandeurCheckboxes);
 
         EnumMap<Civilite, String> conjointCheckboxes = new EnumMap<>(Civilite.class);
-        conjointCheckboxes.put(Civilite.HOMME, "conjoint_homme");
-        conjointCheckboxes.put(Civilite.FEMME, "conjoint_femme");
+        conjointCheckboxes.put(Civilite.HOMME, "conjoint.homme");
+        conjointCheckboxes.put(Civilite.FEMME, "conjoint.femme");
         civiliteCheckboxes.put(IndividuRole.CONJOINT, conjointCheckboxes);
     }
 
     private void initNationaliteCheckboxes() {
         EnumMap<Nationalite, String> demandeurCheckboxes = new EnumMap<>(Nationalite.class);
-        demandeurCheckboxes.put(Nationalite.FRANCAISE, "demandeur_francais");
-        demandeurCheckboxes.put(Nationalite.EEE_UE_SUISSE, "demandeur_ue");
-        demandeurCheckboxes.put(Nationalite.AUTRE, "demandeur_non_ue");
+        demandeurCheckboxes.put(Nationalite.FRANCAISE, "demandeur.francais");
+        demandeurCheckboxes.put(Nationalite.EEE_UE_SUISSE, "demandeur.ue");
+        demandeurCheckboxes.put(Nationalite.AUTRE, "demandeur.non_ue");
         nationaliteCheckboxes.put(IndividuRole.DEMANDEUR, demandeurCheckboxes);
 
         EnumMap<Nationalite, String> conjointCheckboxes = new EnumMap<>(Nationalite.class);
-        conjointCheckboxes.put(Nationalite.FRANCAISE, "conjoint_francais");
-        conjointCheckboxes.put(Nationalite.EEE_UE_SUISSE, "conjoint_ue");
-        conjointCheckboxes.put(Nationalite.AUTRE, "conjoint_non_ue");
+        conjointCheckboxes.put(Nationalite.FRANCAISE, "conjoint.francais");
+        conjointCheckboxes.put(Nationalite.EEE_UE_SUISSE, "conjoint.ue");
+        conjointCheckboxes.put(Nationalite.AUTRE, "conjoint.non_ue");
         nationaliteCheckboxes.put(IndividuRole.CONJOINT, conjointCheckboxes);
     }
 
     private void initLogementTypeCheckboxes() {
-        logementTypeCheckboxes.put(LogementType.LOCATAIRE, "logement_locataire");
-        logementTypeCheckboxes.put(LogementType.PAYANT, "logement_payant");
-        logementTypeCheckboxes.put(LogementType.GRATUIT, "logement_gratuit");
+        logementTypeCheckboxes.put(LogementType.LOCATAIRE, "logement.locataire");
+        logementTypeCheckboxes.put(LogementType.PAYANT, "logement.payant");
+        logementTypeCheckboxes.put(LogementType.GRATUIT, "logement.gratuit");
     }
 
     private void initStatutMaritalFields() {
@@ -184,14 +207,14 @@ public class RSAFormFiller extends FormFiller {
         statutMaritalCheckboxes.put(StatutMarital.CONCUBINAGE_ROMPU, "concubinage_rompu");
         statutMaritalCheckboxes.put(StatutMarital.CELIBATAIRE, "celibataire");
 
-        statutMaritalDates.put(StatutMarital.MARIAGE, new Point(172, 732));
-        statutMaritalDates.put(StatutMarital.PACS, new Point(172, 717));
-        statutMaritalDates.put(StatutMarital.RELATION_LIBRE, new Point(334, 702));
-        statutMaritalDates.put(StatutMarital.SEPARE, new Point(216, 657));
-        statutMaritalDates.put(StatutMarital.PACS_ROMPU, new Point(230, 642));
-        statutMaritalDates.put(StatutMarital.DIVORCE, new Point(187, 627));
-        statutMaritalDates.put(StatutMarital.VEUF, new Point(180, 612));
-        statutMaritalDates.put(StatutMarital.CONCUBINAGE_ROMPU, new Point(278, 597));
+        statutMaritalDates.put(StatutMarital.MARIAGE, "statut_marital.date.mariage");
+        statutMaritalDates.put(StatutMarital.PACS, "statut_marital.date.pacs");
+        statutMaritalDates.put(StatutMarital.RELATION_LIBRE, "statut_marital.date.relation_libre");
+        statutMaritalDates.put(StatutMarital.SEPARE, "statut_marital.date.separe");
+        statutMaritalDates.put(StatutMarital.PACS_ROMPU, "statut_marital.date.pacs_rompu");
+        statutMaritalDates.put(StatutMarital.DIVORCE, "statut_marital.date.divorce");
+        statutMaritalDates.put(StatutMarital.VEUF, "statut_marital.date.veuf");
+        statutMaritalDates.put(StatutMarital.CONCUBINAGE_ROMPU, "statut_marital.date.concubinage_rompu");
     }
 
     @Override
@@ -205,8 +228,12 @@ public class RSAFormFiller extends FormFiller {
     }
 
     @Override
+    public Object[][] getNumberFields() {
+        return numberFields;
+    }
+
+    @Override
     public void fill() {
-        writer.setNumberSpacing(15.5f);
         for (Individu individu : situation.individus) {
             if (IndividuRole.DEMANDEUR == individu.role) {
                 fillDemandeur(individu);
@@ -223,40 +250,36 @@ public class RSAFormFiller extends FormFiller {
     }
 
     private void fillDemandeur(Individu demandeur) {
-        writer.setPage(0);
         String civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.civilite);
         checkbox(civiliteCheckbox);
         appendText("demandeur.nom", demandeur.lastName);
         appendText("demandeur.nom_usage", demandeur.nomUsage);
         appendText("demandeur.prenom", demandeur.firstName);
-        writer.appendDate(demandeur.dateDeNaissance, 113, 635);
+        appendNumber("demandeur.date_naissance", demandeur.dateDeNaissance.replaceAll("/", ""));
 
         if (null != demandeur.paysNaissance) {
             appendText("demandeur.pays_naissance", demandeur.paysNaissance);
             if ("france".equals(demandeur.paysNaissance.toLowerCase())) {
                 appendText("demandeur.ville_naissance", demandeur.villeNaissance);
                 if (null != demandeur.departementNaissance) {
-                    writer.appendOptionalNumber(String.valueOf(demandeur.departementNaissance), 261, 608);
+                    appendNumber("demandeur.departementNaissance", String.valueOf(demandeur.departementNaissance));
                 }
             }
         }
 
         String checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
         checkbox(checkboxNationalite);
-        writer.setNumberSpacing(15.1f);
-        writer.appendOptionalNumber(demandeur.nir, 31, 507);
-        writer.setNumberSpacing(15.5f);
+        appendNumber("demandeur.nir", demandeur.nir);
 
         if (null != demandeur.inscritCaf) {
             if (demandeur.inscritCaf) {
-                checkbox("demandeur_inscrit_caf_oui");
+                checkbox("demandeur.inscrit_caf.oui");
                 appendText("demandeur.num_allocataire", demandeur.numeroAllocataire);
             } else {
-                checkbox("demandeur_inscrit_caf_non");
+                checkbox("demandeur.inscrit_caf.non");
             }
         }
 
-        writer.setPage(1);
         if (null != demandeur.statusMarital) {
             if (demandeur.statusMarital.isAlone) {
                 checkbox("seul");
@@ -267,9 +290,9 @@ public class RSAFormFiller extends FormFiller {
             String statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
             checkbox(statutMaritalCheckbox);
 
-            Point statutMaritalDate = statutMaritalDates.get(demandeur.statusMarital);
-            if (null != statutMaritalDate) {
-                writer.appendDate(demandeur.dateSituationFamiliale, statutMaritalDate.x, statutMaritalDate.y);
+            String statutMaritalDateField = statutMaritalDates.get(demandeur.statusMarital);
+            if (null != statutMaritalDateField && null != demandeur.dateSituationFamiliale) {
+                appendNumber(statutMaritalDateField, demandeur.dateSituationFamiliale.replaceAll("/", ""));
             }
         }
 
@@ -283,36 +306,33 @@ public class RSAFormFiller extends FormFiller {
     }
 
     private void fillConjoint(Individu conjoint) {
-        writer.setPage(0);
         String civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.civilite);
         checkbox(civiliteCheckbox);
         appendText("conjoint.nom", conjoint.lastName);
         appendText("conjoint.nom_usage", conjoint.nomUsage);
         appendText("conjoint.prenom", conjoint.firstName);
-        writer.appendDate(conjoint.dateDeNaissance, 389, 635);
+        appendNumber("conjoint.date_naissance", conjoint.dateDeNaissance.replaceAll("/", ""));
 
         if (null != conjoint.paysNaissance) {
             appendText("conjoint.pays_naissance", conjoint.paysNaissance);
             if ("france".equals(conjoint.paysNaissance.toLowerCase())) {
                 appendText("conjoint.ville_naissance", conjoint.villeNaissance);
                 if (null != conjoint.departementNaissance) {
-                    writer.appendOptionalNumber(String.valueOf(conjoint.departementNaissance), 537, 608);
+                    appendNumber("conjoint.departement_naissance", String.valueOf(conjoint.departementNaissance));
                 }
             }
         }
 
         String checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);
         checkbox(checkboxNationalite);
-        writer.setNumberSpacing(15.1f);
-        writer.appendOptionalNumber(conjoint.nir, 308, 507);
-        writer.setNumberSpacing(15.5f);
+        appendNumber("conjoint.nir", conjoint.nir);
 
         if (null != conjoint.inscritCaf) {
             if (conjoint.inscritCaf) {
-                checkbox("conjoint_inscrit_caf_oui");
+                checkbox("conjoint.inscrit_caf.oui");
                 appendText("conjoint.num_allocataire", conjoint.numeroAllocataire);
             } else {
-                checkbox("conjoint_inscrit_caf_non");
+                checkbox("conjoint.inscrit_caf.non");
             }
         }
     }
@@ -321,9 +341,6 @@ public class RSAFormFiller extends FormFiller {
         if (currentEnfant > 4) {
             return;
         }
-
-        writer.setPage(1);
-        writer.setFontSize(7);
 
         String nomPrenom = null;
         if (null != individu.lastName) {
@@ -363,12 +380,10 @@ public class RSAFormFiller extends FormFiller {
             appendText(String.format("enfant.%d.situation", currentEnfant), individu.situation.formValue);
         }
 
-        writer.setFontSize(12);
         currentEnfant++;
     }
 
     private void fillLogement() {
-        writer.setPage(0);
         if (null != situation.logement.adresse) {
             String[] addressTokens = situation.logement.adresse.split(" ");
             if (addressTokens.length > 1) {
@@ -383,7 +398,7 @@ public class RSAFormFiller extends FormFiller {
             }
         }
 
-        writer.appendNumber(situation.logement.codePostal, 88, 352);
+        appendNumber("adresse.code_postal", situation.logement.codePostal);
         appendText("adresse.ville", situation.logement.ville);
 
         String logementTypeCheckbox = logementTypeCheckboxes.get(situation.logement.type);
@@ -391,13 +406,15 @@ public class RSAFormFiller extends FormFiller {
 
         if (LogementType.PROPRIETAIRE == situation.logement.type) {
             if (null == situation.logement.loyer || Integer.valueOf(0).equals(situation.logement.loyer)) {
-                checkbox("logement_proprio_no_pret");
+                checkbox("logement.proprio_no_pret");
             } else {
-                checkbox("logement_proprio_pret");
+                checkbox("logement.proprio_pret");
             }
         }
 
-        writer.appendDate(situation.logement.dateArrivee, 184, 293);
+        if (null != situation.logement.dateArrivee) {
+            appendNumber("adresse.date_arrivee", situation.logement.dateArrivee.replaceAll("/", ""));
+        }
 
         if (false == situation.logement.conjointMemeAdresse && null != situation.logement.conjoint) {
             String[] addressTokens = situation.logement.conjoint.adresse.split(" ");
@@ -411,19 +428,18 @@ public class RSAFormFiller extends FormFiller {
                 appendText("adresse.conjoint.rue", address);
             }
 
-            writer.appendNumber(situation.logement.conjoint.codePostal, 88, 209);
+            appendNumber("adresse.conjoint.code_postal", situation.logement.conjoint.codePostal);
             appendText("adresse.conjoint.ville", situation.logement.conjoint.ville);
             appendText("adresse.conjoint.pays", situation.logement.conjoint.pays);
         }
     }
 
     private void fillContact() {
-        writer.setPage(0);
         if (null != situation.phoneNumber) {
             if (StringUtils.startsWithAny(situation.phoneNumber, "06", "+336", "07", "+337")) {
-                writer.appendNumber(situation.phoneNumber, 374, 338);
+                appendNumber("tel.mobile", situation.phoneNumber);
             } else {
-                writer.appendNumber(situation.phoneNumber, 90, 338);
+                appendNumber("tel.fixe", situation.phoneNumber);
             }
         }
 

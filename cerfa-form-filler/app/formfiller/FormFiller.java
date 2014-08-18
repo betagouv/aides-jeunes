@@ -11,6 +11,7 @@ public abstract class FormFiller {
     public void setWriter(PdfWriter writer) {
         this.writer = writer;
         writer.setFontSize(getDefaultFontSize());
+        writer.setNumberSpacing(getDefaultNumberSpacing());
     }
 
     public void setSituation(Situation situation) {
@@ -25,8 +26,16 @@ public abstract class FormFiller {
         return new Object[][]{};
     }
 
+    public Object[][] getNumberFields() {
+        return new Object[][]{};
+    }
+
     protected int getDefaultFontSize() {
         return 8;
+    }
+
+    protected float getDefaultNumberSpacing() {
+        return 15.5f;
     }
 
     public abstract void fill();
@@ -51,6 +60,10 @@ public abstract class FormFiller {
             }
             writer.setPage(page);
             writer.appendText((String) textField[0], x, y, fontSize);
+        }
+
+        for (Object[] numberField : getNumberFields()) {
+            appendNumber((String)numberField[0], "00000000000000000000");
         }
     }
 
@@ -89,5 +102,29 @@ public abstract class FormFiller {
         }
 
         throw new RuntimeException(String.format("Champ texte inexistant : \"%s\"", textFieldName));
+    }
+
+    protected void appendNumber(String numberFieldName, String number) {
+        for (Object[] numberField : getNumberFields()) {
+            if (numberFieldName.equals(numberField[0])) {
+                int page = (int) numberField[1];
+                float x = numberField[2] instanceof Float ? (float) numberField[2] : ((Integer) numberField[2]).floatValue();
+                float y = numberField[3] instanceof Float ? (float) numberField[3] : ((Integer) numberField[3]).floatValue();
+                writer.setPage(page);
+
+                number = number.substring(0, (int) numberField[4]);
+                if (numberField.length >= 6) {
+                    writer.setNumberSpacing((float) numberField[5]);
+                    writer.appendNumber(number, x, y);
+                    writer.setNumberSpacing(getDefaultNumberSpacing());
+                } else {
+                    writer.appendNumber(number, x, y);
+                }
+
+                return;
+            }
+        }
+
+        throw new RuntimeException(String.format("Champ nombre inexistant : \"%s\"", numberFieldName));
     }
 }

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').config(function($provide) {
-    $provide.decorator('$modal', function($delegate, $rootScope) {
+    $provide.decorator('$modal', ['$delegate', '$rootScope', function($delegate, $rootScope) {
         return {
             open: function(modalOptions) {
                 $rootScope.$broadcast('modalOpenStart');
@@ -13,7 +13,7 @@ angular.module('ddsApp').config(function($provide) {
                 return modal;
             }
         };
-    });
+    }]);
 });
 
 angular.module('ddsApp').directive('stateChangeProgress', function() {

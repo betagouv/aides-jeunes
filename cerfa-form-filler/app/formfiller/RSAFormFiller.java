@@ -25,7 +25,7 @@ public class RSAFormFiller extends FormFiller {
         {"demandeur.ue",       0, 91, 578},
         {"demandeur.non_ue",   0, 178, 578},
         {"conjoint.francais",  0, 306, 578},
-        {"conjoint.ue",        0, 368, 578},
+        {"conjoint.ue",        0, 367, 578},
         {"conjoint.non_ue",    0, 457, 578},
 
         {"demandeur.inscrit_caf.oui", 0,  30, 475},
@@ -127,10 +127,12 @@ public class RSAFormFiller extends FormFiller {
     private static final Object[][] numberFields = {
         {"demandeur.date_naissance",        0, 114, 635,  8, 15.7f},
         {"demandeur.departement_naissance", 0, 261, 608,  2},
-        {"demandeur.nir",                   0,  31, 507, 15, 15.1f},
+        {"demandeur.nir",                   0,  34, 507, 13, 14.8f},
+        {"demandeur.nir2",                  0,  229, 507,  2, 14.8f},
         {"conjoint.date_naissance",         0, 390, 635,  8, 15.7f},
         {"conjoint.departement_naissance",  0, 537, 608,  2},
-        {"conjoint.nir",                    0, 308, 507, 15, 15.1f},
+        {"conjoint.nir",                    0, 310, 507, 13, 14.8f},
+        {"conjoint.nir2",                   0, 506, 507,  2, 14.8f},
 
         {"adresse.code_postal",          0,  90, 352, 5, 14.9f},
         {"adresse.date_arrivee",         0, 184, 293, 8},
@@ -269,7 +271,11 @@ public class RSAFormFiller extends FormFiller {
 
         String checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
         checkbox(checkboxNationalite);
-        appendNumber("demandeur.nir", demandeur.nir);
+
+        if (null != demandeur.nir) {
+            appendNumber("demandeur.nir", demandeur.nir.substring(0, 13));
+            appendNumber("demandeur.nir2", demandeur.nir.substring(13, 15));
+        }
 
         if (null != demandeur.inscritCaf) {
             if (demandeur.inscritCaf) {
@@ -325,7 +331,11 @@ public class RSAFormFiller extends FormFiller {
 
         String checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);
         checkbox(checkboxNationalite);
-        appendNumber("conjoint.nir", conjoint.nir);
+
+        if (null != conjoint.nir) {
+            appendNumber("conjoint.nir", conjoint.nir.substring(0, 13));
+            appendNumber("conjoint.nir2", conjoint.nir.substring(13, 15));
+        }
 
         if (null != conjoint.inscritCaf) {
             if (conjoint.inscritCaf) {

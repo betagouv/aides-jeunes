@@ -28,18 +28,18 @@ public class RSAFormFiller extends FormFiller {
         {"conjoint.ue",        0, 368, 578},
         {"conjoint.non_ue",    0, 457, 578},
 
-        {"demandeur.inscrit_caf.oui", 0, 30, 475},
+        {"demandeur.inscrit_caf.oui", 0,  30, 475},
         {"demandeur.inscrit_caf.non", 0, 102, 475},
         {"conjoint.inscrit_caf.oui",  0, 306, 475},
         {"conjoint.inscrit_caf.non",  0, 378, 475},
 
-        {"logement.locataire",       0, 30, 175},
-        {"logement.payant",          0, 30, 161},
-        {"logement.gratuit",         0, 30, 133},
-        {"logement.proprio_pret",    0, 30, 147},
+        {"logement.locataire",       0,  30, 175},
+        {"logement.payant",          0,  30, 161},
+        {"logement.gratuit",         0,  30, 133},
+        {"logement.proprio_pret",    0,  30, 147},
         {"logement.proprio_no_pret", 0, 203, 147},
 
-        {"seul", 1, 31, 671},
+        {"seul",      1, 31, 671},
         {"en_couple", 1, 31, 746},
 
         {"mariage",           1, 45, 731},
@@ -64,7 +64,7 @@ public class RSAFormFiller extends FormFiller {
         {"demandeur.nom_usage",       0, 133, 670},
         {"demandeur.prenom",          0, 170, 648},
         {"demandeur.pays_naissance",  0, 115, 620, 9},
-        {"demandeur.ville_naissance", 0, 83, 605, 7},
+        {"demandeur.ville_naissance", 0,  83, 605, 7},
         {"demandeur.num_allocataire", 0, 100, 460},
 
         {"conjoint.nom",             0, 430, 687},
@@ -132,9 +132,9 @@ public class RSAFormFiller extends FormFiller {
         {"conjoint.departement_naissance",  0, 537, 608,  2},
         {"conjoint.nir",                    0, 308, 507, 15, 15.1f},
 
-        {"adresse.code_postal",  0, 90, 352, 5, 14.9f},
-        {"adresse.date_arrivee", 0, 184, 293, 8},
-        {"adresse.conjoint.code_postal", 0, 90, 209, 5, 14.9f},
+        {"adresse.code_postal",          0,  90, 352, 5, 14.9f},
+        {"adresse.date_arrivee",         0, 184, 293, 8},
+        {"adresse.conjoint.code_postal", 0,  90, 209, 5, 14.9f},
 
         {"tel.fixe",   0,  94, 338, 10, 14.9f},
         {"tel.mobile", 0, 378, 338, 10, 14.9f},

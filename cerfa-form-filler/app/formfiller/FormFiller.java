@@ -68,6 +68,10 @@ public abstract class FormFiller {
     }
 
     protected void checkbox(String checkboxName) {
+        if (null == checkboxName) {
+            return;
+        }
+
         for (Object[] checkbox : getCheckboxes()) {
             if (checkboxName.equals(checkbox[0])) {
                 int page = (int) checkbox[1];
@@ -105,6 +109,10 @@ public abstract class FormFiller {
     }
 
     protected void appendNumber(String numberFieldName, String number) {
+        if (null == number) {
+            return;
+        }
+
         for (Object[] numberField : getNumberFields()) {
             if (numberFieldName.equals(numberField[0])) {
                 int page = (int) numberField[1];

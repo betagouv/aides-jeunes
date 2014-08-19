@@ -38,7 +38,7 @@ public class CmuFormFiller extends FormFiller {
 
     private static final Object[][] textFields = {
         {"demandeur.nom",     4, 268, 602},
-        {"demandeur.adresse", 4, 95, 530},
+        {"demandeur.adresse", 4,  95, 530},
         {"demandeur.email",   4, 384, 530},
         {"demandeur.ville",   4, 220, 515},
 
@@ -184,7 +184,7 @@ public class CmuFormFiller extends FormFiller {
 
         appendText("demandeur.email", demandeur.email);
 
-        if (demandeur.statusMarital.isAlone) {
+        if (null != demandeur.statusMarital && demandeur.statusMarital.isAlone) {
             checkbox("statut_marital.celibataire");
         } else {
             String statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);

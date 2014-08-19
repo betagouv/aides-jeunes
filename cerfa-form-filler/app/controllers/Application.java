@@ -107,7 +107,7 @@ public class Application extends Controller {
         }
     }
 
-    private static enum Forms {
+    public static enum Forms {
 
         CMUC("cmuc") {
 

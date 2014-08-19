@@ -43,7 +43,7 @@ public class CAFFormFiller extends FormFiller {
     };
 
     private static final Object[][] textFields = {
-        {"demandeur.nom",             0, 153,  62},
+        {"demandeur.nom",             0, 153,  627},
         {"demandeur.nom_usage",       0,  85, 611},
         {"demandeur.prenom",          0, 170, 587},
         {"demandeur.ville_naissance", 0, 122, 538},

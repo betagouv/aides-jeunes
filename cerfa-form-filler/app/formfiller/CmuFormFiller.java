@@ -222,7 +222,9 @@ public class CmuFormFiller extends FormFiller {
         appendText(String.format("enfant.%d.nom", currentChildIndex), nomPrenom);
 
         appendText(String.format("enfant.%d.nationalite", currentChildIndex), enfant.nationalite.formStringValue);
-        appendText(String.format("enfant.%d.lien_parente", currentChildIndex), enfant.lienParente.formValue);
+        if (null != enfant.lienParente) {
+            appendText(String.format("enfant.%d.lien_parente", currentChildIndex), enfant.lienParente.formValue);
+        }
         appendNumber(String.format("enfant.%d.date_naissance", currentChildIndex), enfant.dateDeNaissance.replaceAll("/", ""));
         appendNumber(String.format("enfant.%d.nir", currentChildIndex), enfant.nir);
 

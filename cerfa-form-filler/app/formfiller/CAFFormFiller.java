@@ -308,7 +308,9 @@ public class CAFFormFiller extends FormFiller {
         appendText(String.format("enfant.%d.nom", currentPersonneACharge + 1), individu.lastName);
         appendText(String.format("enfant.%d.prenom", currentPersonneACharge + 1), individu.firstName);
         appendNumber(String.format("enfant.%d.date_naissance", currentPersonneACharge + 1), individu.dateDeNaissance.replaceAll("/", ""));
-        appendNumber(String.format("enfant.%d.date_arrivee", currentPersonneACharge + 1), individu.dateArriveeFoyer.replaceAll("/", ""));
+        if (null != individu.dateArriveeFoyer) {
+            appendNumber(String.format("enfant.%d.date_arrivee", currentPersonneACharge + 1), individu.dateArriveeFoyer.replaceAll("/", ""));
+        }
         currentPersonneACharge++;
     }
 

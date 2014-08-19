@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import models.Individu;
 import models.Individu.Civilite;
 import models.Individu.IndividuRole;
+import models.Individu.LienParente;
 import models.Individu.Nationalite;
 import models.Individu.StatutMarital;
 import models.Logement;
@@ -33,8 +34,18 @@ public class IntegrationTest {
     }
 
     @Test
+    public void testAllForms_PartialSituationIncludingChildren() throws IOException {
+        fillAllFormsWithSituation(createIncompleteSituationIncludingChildren());
+    }
+
+    @Test
     public void testAllForms_CompleteSituation() throws IOException {
         fillAllFormsWithSituation(createCompleteSituation());
+    }
+
+    @Test
+    public void testAllForms_CompleteSituationIncludingChildren() throws IOException {
+        fillAllFormsWithSituation(createCompleteSituationIncludingChildren());
     }
 
     private void fillAllFormsWithSituation(Situation situation) throws IOException {
@@ -69,6 +80,21 @@ public class IntegrationTest {
         Individu conjoint = createIncompleteIndividu();
         conjoint.role = IndividuRole.CONJOINT;
         situation.individus.add(conjoint);
+
+        return situation;
+    }
+
+    private Situation createIncompleteSituationIncludingChildren() {
+        Situation situation = createIncompleteSituationIncludingConjoint();
+        Individu individu = createIncompleteIndividu();
+        individu.role = IndividuRole.ENFANT;
+        situation.individus.add(individu);
+        individu = createIncompleteIndividu();
+        individu.role = IndividuRole.ENFANT;
+        situation.individus.add(individu);
+        individu = createIncompleteIndividu();
+        individu.role = IndividuRole.ENFANT;
+        situation.individus.add(individu);
 
         return situation;
     }
@@ -108,6 +134,15 @@ public class IntegrationTest {
         return situation;
     }
 
+    private Situation createCompleteSituationIncludingChildren() {
+        Situation situation = createIncompleteSituationIncludingChildren();
+        fillEnfant(situation.individus.get(2));
+        fillEnfant(situation.individus.get(3));
+        fillEnfant(situation.individus.get(4));
+
+        return situation;
+    }
+
     private void fillIndividu(Individu individu) {
         individu.civilite = Civilite.HOMME;
         individu.firstName = "Bernard";
@@ -124,5 +159,11 @@ public class IntegrationTest {
         individu.etudiant = true;
         individu.inscritCaf = true;
         individu.numeroAllocataire = "1234567";
+    }
+
+    private void fillEnfant(Individu enfant) {
+        fillIndividu(enfant);
+        enfant.dateArriveeFoyer = "12/07/2010";
+        enfant.lienParente = LienParente.FILS;
     }
 }

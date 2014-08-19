@@ -180,7 +180,7 @@ public class AspaFormFiller extends FormFiller {
             dateStatutMaritalField = "pacs";
         }
 
-        if (null != dateStatutMaritalField) {
+        if (null != dateStatutMaritalField && null != demandeur.dateSituationFamiliale) {
             appendNumber(String.format("date_situation_familiale.%s", dateStatutMaritalField), demandeur.dateSituationFamiliale.replaceAll("/", ""));
         }
     }

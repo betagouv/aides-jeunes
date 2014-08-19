@@ -182,7 +182,7 @@ public class CmuFormFiller extends FormFiller {
         String nationaliteCheckbox = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
         checkbox(nationaliteCheckbox);
 
-        appendText("demandeur.email", demandeur.email);
+        appendText("demandeur.email", situation.email);
 
         if (null != demandeur.statusMarital && demandeur.statusMarital.isAlone) {
             checkbox("statut_marital.celibataire");

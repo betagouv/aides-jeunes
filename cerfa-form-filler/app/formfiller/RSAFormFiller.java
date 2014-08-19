@@ -42,15 +42,15 @@ public class RSAFormFiller extends FormFiller {
         {"seul",      1, 31, 671},
         {"en_couple", 1, 31, 746},
 
-        {"mariage",           1, 45, 731},
-        {"pacs",              1, 45, 716},
-        {"relation_libre",    1, 45, 701},
-        {"separe",            1, 45, 656},
-        {"pacs_rompu",        1, 45, 641},
-        {"divorce",           1, 45, 626},
-        {"veuf",              1, 45, 611},
-        {"concubinage_rompu", 1, 45, 596},
-        {"celibataire",       1, 45, 581},
+        {"statut_marital.mariage",           1, 45, 731},
+        {"statut_marital.pacs",              1, 45, 716},
+        {"statut_marital.relation_libre",    1, 45, 701},
+        {"statut_marital.separe",            1, 45, 656},
+        {"statut_marital.pacs_rompu",        1, 45, 641},
+        {"statut_marital.divorce",           1, 45, 626},
+        {"statut_marital.veuf",              1, 45, 611},
+        {"statut_marital.concubinage_rompu", 1, 45, 596},
+        {"statut_marital.celibataire",       1, 45, 581},
 
         {"enceinte.oui", 1, 155, 551},
         {"enceinte.non", 1, 193, 551},
@@ -197,15 +197,15 @@ public class RSAFormFiller extends FormFiller {
     }
 
     private void initStatutMaritalFields() {
-        statutMaritalCheckboxes.put(StatutMarital.MARIAGE, "mariage");
+        statutMaritalCheckboxes.put(StatutMarital.MARIAGE, "statut_marital.mariage");
         statutMaritalCheckboxes.put(StatutMarital.PACS, "pacs");
-        statutMaritalCheckboxes.put(StatutMarital.RELATION_LIBRE, "relation_libre");
-        statutMaritalCheckboxes.put(StatutMarital.SEPARE, "separe");
-        statutMaritalCheckboxes.put(StatutMarital.PACS_ROMPU, "pacs_rompu");
-        statutMaritalCheckboxes.put(StatutMarital.DIVORCE, "divorce");
-        statutMaritalCheckboxes.put(StatutMarital.VEUF, "veuf");
-        statutMaritalCheckboxes.put(StatutMarital.CONCUBINAGE_ROMPU, "concubinage_rompu");
-        statutMaritalCheckboxes.put(StatutMarital.CELIBATAIRE, "celibataire");
+        statutMaritalCheckboxes.put(StatutMarital.RELATION_LIBRE, "statut_marital.relation_libre");
+        statutMaritalCheckboxes.put(StatutMarital.SEPARE, "statut_marital.separe");
+        statutMaritalCheckboxes.put(StatutMarital.PACS_ROMPU, "statut_marital.pacs_rompu");
+        statutMaritalCheckboxes.put(StatutMarital.DIVORCE, "statut_marital.divorce");
+        statutMaritalCheckboxes.put(StatutMarital.VEUF, "statut_marital.veuf");
+        statutMaritalCheckboxes.put(StatutMarital.CONCUBINAGE_ROMPU, "statut_marital.concubinage_rompu");
+        statutMaritalCheckboxes.put(StatutMarital.CELIBATAIRE, "statut_marital.celibataire");
 
         statutMaritalDates.put(StatutMarital.MARIAGE, "statut_marital.date.mariage");
         statutMaritalDates.put(StatutMarital.PACS, "statut_marital.date.pacs");

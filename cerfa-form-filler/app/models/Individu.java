@@ -23,7 +23,6 @@ public class Individu {
     public Nationalite nationalite;
     public String dateArriveeFoyer;
     public IndividuRole role;
-    public String email;
     public StatutMarital statusMarital;
     public String dateSituationFamiliale;
     public SituationEnfant situation;

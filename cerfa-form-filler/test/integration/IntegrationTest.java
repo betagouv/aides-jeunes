@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import models.Individu;
+import models.Individu.Civilite;
 import models.Individu.IndividuRole;
 import models.Individu.Nationalite;
+import models.Individu.StatutMarital;
 import models.Logement;
+import models.Logement.LogementConjoint;
 import models.Logement.LogementType;
 import models.Situation;
 
@@ -21,12 +24,17 @@ public class IntegrationTest {
 
     @Test
     public void testAllForms_PartialSituation() throws IOException {
-        fillAllFormsWithSituation(createPartialSituation());
+        fillAllFormsWithSituation(createIncompleteSituation());
     }
 
     @Test
     public void testAllForms_PartialSituationIncludingConjoint() throws IOException {
-        fillAllFormsWithSituation(createPartialSituationIncludingConjoint());
+        fillAllFormsWithSituation(createIncompleteSituationIncludingConjoint());
+    }
+
+    @Test
+    public void testAllForms_CompleteSituation() throws IOException {
+        fillAllFormsWithSituation(createCompleteSituation());
     }
 
     private void fillAllFormsWithSituation(Situation situation) throws IOException {
@@ -43,10 +51,10 @@ public class IntegrationTest {
     /**
      * Crée une situation dont seuls les champs obligatoires sont remplis.
      */
-    private Situation createPartialSituation() {
+    private Situation createIncompleteSituation() {
         Situation situation = new Situation();
         situation.individus = new ArrayList<>();
-        Individu demandeur = createPartialIndividu();
+        Individu demandeur = createIncompleteIndividu();
         demandeur.role = IndividuRole.DEMANDEUR;
         situation.individus.add(demandeur);
         situation.logement = new Logement();
@@ -56,20 +64,65 @@ public class IntegrationTest {
         return situation;
     }
 
-    private Situation createPartialSituationIncludingConjoint() {
-        Situation situation = createPartialSituation();
-        Individu conjoint = createPartialIndividu();
+    private Situation createIncompleteSituationIncludingConjoint() {
+        Situation situation = createIncompleteSituation();
+        Individu conjoint = createIncompleteIndividu();
         conjoint.role = IndividuRole.CONJOINT;
         situation.individus.add(conjoint);
 
         return situation;
     }
 
-    private Individu createPartialIndividu() {
+    private Individu createIncompleteIndividu() {
         Individu individu = new Individu();
         individu.dateDeNaissance = "14/09/1989";
         individu.nationalite = Nationalite.FRANCAISE;
 
         return individu;
+    }
+
+    private Situation createCompleteSituation() {
+        Situation situation = createIncompleteSituationIncludingConjoint();
+        situation.email = "prenom.nom@gmail.com";
+        situation.phoneNumber = "0685644221";
+
+        situation.logement.adresse = "10 avenue du Général de Gaulle";
+        situation.logement.dateArrivee = "12/07/2009";
+        situation.logement.ville = "Paris";
+        situation.logement.type = LogementType.LOCATAIRE;
+        situation.logement.loyer = 450;
+
+        situation.logement.conjointMemeAdresse = false;
+        LogementConjoint logementConjoint = new LogementConjoint();
+        situation.logement.conjoint = logementConjoint;
+        logementConjoint.adresse = "12 avenue des Champs-Elysées";
+        logementConjoint.codePostal = "32256";
+        logementConjoint.ville = "Montluchon";
+        logementConjoint.pays = "France";
+
+        Individu demandeur = situation.individus.get(0);
+        fillIndividu(demandeur);
+        Individu conjoint = situation.individus.get(1);
+        fillIndividu(conjoint);
+
+        return situation;
+    }
+
+    private void fillIndividu(Individu individu) {
+        individu.civilite = Civilite.HOMME;
+        individu.firstName = "Bernard";
+        individu.lastName = "Dupont";
+        individu.nomUsage = "Martin";
+        individu.villeNaissance = "Montluçon";
+        individu.paysNaissance = "France";
+        individu.departementNaissance = 67;
+        individu.nir = "189090909090909";
+        individu.statusMarital = StatutMarital.MARIAGE;
+        individu.dateSituationFamiliale = "12/07/2009";
+        individu.demandeurEmploi = true;
+        individu.enceinte = true;
+        individu.etudiant = true;
+        individu.inscritCaf = true;
+        individu.numeroAllocataire = "1234567";
     }
 }

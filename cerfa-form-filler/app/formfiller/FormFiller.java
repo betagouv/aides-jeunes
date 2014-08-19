@@ -88,6 +88,10 @@ public abstract class FormFiller {
     }
 
     protected void appendText(String textFieldName, String textValue) {
+        if (null == textValue) {
+            return;
+        }
+
         for (Object[] textField : getTextFields()) {
             if (textFieldName.equals(textField[0])) {
                 int page = (int) textField[1];
@@ -96,9 +100,9 @@ public abstract class FormFiller {
                 writer.setPage(page);
 
                 if (textField.length >= 5) {
-                    writer.appendOptionalText(textValue, x, y, (Integer) textField[4]);
+                    writer.appendText(textValue, x, y, (Integer) textField[4]);
                 } else {
-                    writer.appendOptionalText(textValue, x, y);
+                    writer.appendText(textValue, x, y);
                 }
 
                 return;

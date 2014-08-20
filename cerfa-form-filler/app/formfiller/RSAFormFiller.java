@@ -71,6 +71,8 @@ public class RSAFormFiller extends FormFiller {
         {"pro.demandeur.stagiaire.remunere.oui", 2, 230, 578},
         {"pro.demandeur.stagiaire.remunere.non", 2, 266, 578},
         {"pro.demandeur.independant",   2, 230, 443},
+        {"pro.demandeur.etudiant",      2, 230, 267},
+        {"pro.demandeur.retraite",      2, 230, 252},
         {"pro.conjoint.sans_activite",  2, 398, 723},
         {"pro.conjoint.salarie",        2, 398, 693},
         {"pro.conjoint.salarie.contrat.cdi",     2, 398, 678},
@@ -81,6 +83,8 @@ public class RSAFormFiller extends FormFiller {
         {"pro.conjoint.stagiaire.remunere.oui", 2, 398, 578},
         {"pro.conjoint.stagiaire.remunere.non", 2, 434, 578},
         {"pro.conjoint.independant",    2, 398, 443},
+        {"pro.conjoint.etudiant",       2, 398, 267},
+        {"pro.conjoint.retraite",       2, 398, 252},
     };
 
     private static final Object[][] textFields = {
@@ -150,11 +154,15 @@ public class RSAFormFiller extends FormFiller {
         {"pro.demandeur.apprenti.since",      2, 285, 623},
         {"pro.demandeur.stagiaire.since",     2, 285, 593},
         {"pro.demandeur.independant.since",   2, 285, 443},
+        {"pro.demandeur.etudiant.since",      2, 285, 267},
+        {"pro.demandeur.retraite.since",      2, 285, 252},
         {"pro.conjoint.sans_activite.since",  2, 453, 723},
         {"pro.conjoint.salarie.since",        2, 453, 693},
         {"pro.conjoint.apprenti.since",       2, 453, 623},
         {"pro.conjoint.stagiaire.since",      2, 453, 593},
         {"pro.conjoint.independant.since",    2, 453, 443},
+        {"pro.conjoint.etudiant.since",       2, 453, 267},
+        {"pro.conjoint.retraite.since",       2, 453, 252},
 
         {"current_date", 4, 150, 200},
     };
@@ -266,6 +274,8 @@ public class RSAFormFiller extends FormFiller {
         demandeurCheckboxes.put(SituationProType.INDEPENDANT, "pro.demandeur.independant");
         demandeurCheckboxes.put(SituationProType.APPRENTI, "pro.demandeur.apprenti");
         demandeurCheckboxes.put(SituationProType.STAGIAIRE, "pro.demandeur.stagiaire");
+        demandeurCheckboxes.put(SituationProType.ETUDIANT, "pro.demandeur.etudiant");
+        demandeurCheckboxes.put(SituationProType.RETRAITE, "pro.demandeur.retraite");
 
         EnumMap<SituationProType, String> conjointCheckboxes = new EnumMap<>(SituationProType.class);
         situationsProCheckboxes.put(IndividuRole.CONJOINT, conjointCheckboxes);
@@ -274,6 +284,8 @@ public class RSAFormFiller extends FormFiller {
         conjointCheckboxes.put(SituationProType.INDEPENDANT, "pro.conjoint.independant");
         conjointCheckboxes.put(SituationProType.APPRENTI, "pro.conjoint.apprenti");
         conjointCheckboxes.put(SituationProType.STAGIAIRE, "pro.conjoint.stagiaire");
+        conjointCheckboxes.put(SituationProType.ETUDIANT, "pro.conjoint.etudiant");
+        conjointCheckboxes.put(SituationProType.RETRAITE, "pro.conjoint.retraite");
     }
 
     private void initSalarieContractCheckboxes() {

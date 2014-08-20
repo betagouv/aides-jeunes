@@ -245,7 +245,9 @@ public class Individu {
         AUTO_ENTREPRENEUR("auto_entrepreneur"),
         APPRENTI("apprenti"),
         STAGIAIRE("stagiaire"),
-        INDEPENDANT("independant");
+        INDEPENDANT("independant"),
+        ETUDIANT("etudiant"),
+        RETRAITE("retraite");
 
         public final String jsonValue;
 

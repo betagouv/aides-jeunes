@@ -43,6 +43,14 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
         {
             id: 'independant',
             label: 'Travailleur indépendant ou employeur, y compris exploitant agricole'
+        },
+        {
+            id: 'etudiant',
+            label: 'Étudiant'
+        },
+        {
+            id: 'retraite',
+            label: 'Retraité'
         }
     ];
 

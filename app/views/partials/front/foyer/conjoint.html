@@ -10,8 +10,7 @@
     </div>
     <div class="panel-body">
       <div ng-show="undefined === situation.livesAlone" class="text-center">
-        <label>Vivez-vous seul(e) ou en couple ?</label>
-        <br>
+        <p>Vivez-vous seul(e) ou en couple ?</p>
         <button class="btn btn-sm btn-primary" ng-model="situation.livesAlone" btn-radio="true" ng-click="livesAlone()">Seul</button>
         <button class="btn btn-sm btn-primary" ng-model="situation.livesAlone" btn-radio="false" ng-click="$state.go('foyer.conjoint_modal')">En couple</button>
       </div>

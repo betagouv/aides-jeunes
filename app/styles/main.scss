@@ -106,6 +106,16 @@ body.change-state-progress, body.change-state-progress * {
   font-size: 80px;
 }
 
+.panel-enfant {
+  @extend .panel;
+  @extend .panel-default;
+  min-height: 155px;
+}
+
+.panel-new-enfant {
+  border-style: dashed;
+}
+
 .form-selection-revenus {
   font-size: 20px;
 

@@ -39,10 +39,27 @@
               </div>
 
               <div class="form-group" ng-if="'stagiaire' === situationPro.id">
-                <label class="col-sm-5 control-label">Êtes-vous rémunéré ?</label>
+                <label class="col-sm-5 control-label">Stage rémunéré ?</label>
                 <div class="col-sm-7">
                   <button type="button" class="btn btn-sm btn-primary" ng-model="isStagiaireRemunere[individu.id]" btn-radio="true">Oui</button>
                   <button type="button" class="btn btn-sm btn-primary" ng-model="isStagiaireRemunere[individu.id]" btn-radio="false">Non</button>
+                </div>
+              </div>
+
+              <div ng-if="'demandeur_emploi' === situationPro.id">
+                <div class="form-group">
+                  <label class="col-sm-5 control-label">Chômeur indemnisé ?</label>
+                  <div class="col-sm-7">
+                    <button type="button" class="btn btn-sm btn-primary" ng-model="isChomeurIndemnise[individu.id]" btn-radio="true">Oui</button>
+                    <button type="button" class="btn btn-sm btn-primary" ng-model="isChomeurIndemnise[individu.id]" btn-radio="false">Non</button>
+                  </div>
+                </div>
+
+                <div class="form-group" ng-if="true === isChomeurIndemnise[individu.id]">
+                  <label class="col-sm-5 control-label" for="date-chomeur-indemnise-{{ individu.id }}">Depuis quand ?</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="date-chomeur-indemnise-{{ individu.id }}" class="form-control" ng-model="chomeurIndemniseSince[individu.id]" date-autocomplete placeholder="jj/mm/aaaa">
+                  </div>
                 </div>
               </div>
             </div>

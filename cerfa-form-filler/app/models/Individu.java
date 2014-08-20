@@ -235,6 +235,8 @@ public class Individu {
         public String since;
         public SalarieContractType contractType;
         public Boolean isRemunere;
+        public Boolean isIndemnise;
+        public String indemniseSince;
     }
 
     @JsonDeserialize(using = SituationProTypeDeserializer.class)

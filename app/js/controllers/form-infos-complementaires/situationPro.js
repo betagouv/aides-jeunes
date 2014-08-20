@@ -4,20 +4,21 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
     $scope.situation = situation;
 
     $scope.individus = [{id: 'demandeur', label: 'Vous'}];
-
     if (situation.conjoint) {
         $scope.individus.push({id: 'conjoint', label: 'Votre partenaire'});
     }
 
     $scope.selectedSituations = {};
     $scope.datesSelectedSituations = {};
-    $scope.salarieContractTypes = {};
-    $scope.isStagiaireRemunere = {};
-
     $scope.individus.forEach(function(individu) {
         $scope.selectedSituations[individu.id] = {};
         $scope.datesSelectedSituations[individu.id] = {};
     });
+
+    $scope.salarieContractTypes = {};
+    $scope.isStagiaireRemunere = {};
+    $scope.isChomeurIndemnise = {};
+    $scope.chomeurIndemniseSince = {};
 
     $scope.situationsPro = [
         {
@@ -60,7 +61,7 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
 
     $scope.submit = function() {
         $scope.individus.forEach(function(individu) {
-            var situations = situation[individu.id].situationsPro = [];
+            var situationsPro = situation[individu.id].situationsPro = [];
             _.forEach($scope.selectedSituations[individu.id], function(selected, situationPro) {
                 if (selected) {
                     var situationToAppend = {situation: situationPro, since: $scope.datesSelectedSituations[individu.id][situationPro]};
@@ -68,8 +69,13 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
                         situationToAppend.contractType = $scope.salarieContractTypes[individu.id];
                     } else if ('stagiaire' === situationPro) {
                         situationToAppend.isRemunere = $scope.isStagiaireRemunere[individu.id];
+                    } else if ('demandeur_emploi' === situationPro) {
+                        situationToAppend.isIndemnise = $scope.isChomeurIndemnise[individu.id];
+                        if (situationToAppend.isIndemnise) {
+                            situationToAppend.indemniseSince = $scope.chomeurIndemniseSince[individu.id];
+                        }
                     }
-                    situations.push(situationToAppend);
+                    situationsPro.push(situationToAppend);
                 }
             });
         });

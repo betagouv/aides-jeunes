@@ -116,6 +116,20 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
             expect(demandeur.situationsPro[0].isRemunere).toBe(true);
         });
 
+        it('Should save the "is indemnise" and "indemnise since" fields for the special case of "demandeur d\'emploi" situation', function() {
+            // given
+            scope.selectedSituations.demandeur.demandeur_emploi = true;
+            scope.isChomeurIndemnise.demandeur = true;
+            scope.chomeurIndemniseSince.demandeur = '12/07/2012';
+
+            // when
+            scope.submit();
+
+            // then
+            expect(demandeur.situationsPro[0].isIndemnise).toBe(true);
+            expect(demandeur.situationsPro[0].indemniseSince).toBe('12/07/2012');
+        });
+
         it('Should update the situation', function() {
             // when
             scope.submit();

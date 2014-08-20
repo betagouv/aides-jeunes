@@ -246,6 +246,7 @@ public class Individu {
         APPRENTI("apprenti"),
         STAGIAIRE("stagiaire"),
         INDEPENDANT("independant"),
+        DEMANDEUR_EMPLOI("demandeur_emploi"),
         ETUDIANT("etudiant"),
         RETRAITE("retraite");
 

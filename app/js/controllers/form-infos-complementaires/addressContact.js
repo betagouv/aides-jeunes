@@ -4,8 +4,6 @@ angular.module('ddsApp').controller('FormInfosComplementairesAddressContactCtrl'
     $scope.situation = SituationService.restoreLocal();
 
     $scope.submit = function() {
-        SituationService.update($scope.situation).then(function() {
-            $state.go('resultat', {situationId: $scope.situation._id, requestedCerfa: $stateParams.requestedCerfa});
-        });
+        $state.go('form_infos_complementaires_situation_pro', {requestedCerfa: $stateParams.requestedCerfa});
     };
 });

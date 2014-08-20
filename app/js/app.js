@@ -180,6 +180,16 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             templateUrl: '/partials/form-infos-complementaires/address-contact.html',
             controller: 'FormInfosComplementairesAddressContactCtrl'
         })
+        .state('form_infos_complementaires_situation_pro', {
+            url: '/infos-complementaires/situation-professionnelle?requestedCerfa',
+            templateUrl: '/partials/form-infos-complementaires/situation-pro.html',
+            controller: 'FormInfosComplementairesSituationProCtrl',
+            resolve: {
+                situation: ['SituationService', function(SituationService) {
+                    return SituationService.restoreLocal();
+                }]
+            }
+        })
         .state('envoi_demande', {
             url: '/envoi-demande/:situationId?requestedCerfa',
             templateUrl: '/partials/envoi-demande-teaser.html'

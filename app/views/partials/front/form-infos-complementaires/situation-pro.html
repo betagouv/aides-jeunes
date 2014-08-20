@@ -1,0 +1,64 @@
+<div ng-include="'/partials/form-infos-complementaires/header.html'"></div>
+
+<form name="form" class="form-horizontal" novalidate ng-submit="submit()">
+  <h2>Votre situation professionnelle</h2>
+
+  <div class="row">
+    <div class="col-md-6" ng-repeat="individu in individus">
+      <h3>
+        {{ individu.label }}
+      </h3>
+
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Situation(s)</label>
+        <div class="col-sm-9">
+          <div ng-repeat="situationPro in situationsPro">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="selectedSituations[individu.id][situationPro.id]" ng-value="situationPro.id">
+                {{ situationPro.label }}
+              </label>
+            </div>
+
+            <div ng-if="selectedSituations[individu.id][situationPro.id]">
+              <div class="form-group">
+                <label class="col-sm-5 control-label" for="date-situation-{{ individu.id }}-{{ situationPro.id }}">Depuis quand ?</label>
+                <div class="col-sm-7">
+                  <input type="text" id="date-situation-{{ individu.id }}-{{ situationPro.id }}" class="form-control" ng-model="datesSelectedSituations[individu.id][situationPro.id]" date-autocomplete placeholder="jj/mm/aaaa">
+                </div>
+              </div>
+
+              <div class="form-group" ng-if="'salarie' === situationPro.id">
+                <label class="col-sm-5 control-label" for="type-contrat-salarie-{{ individu.id }}">Type de contrat</label>
+                <div class="col-sm-7">
+                  <select class="form-control" ng-model="salarieContractTypes[individu.id]" id="type-contrat-salarie-{{ individu.id }}">
+                    <option value=""></option>
+                    <option value="cdi">CDI</option>
+                    <option value="cdd">CDD</option>
+                    <option value="interim">Intérim</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group" ng-if="'stagiaire' === situationPro.id">
+                <label class="col-sm-5 control-label">Êtes-vous rémunéré ?</label>
+                <div class="col-sm-7">
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="isStagiaireRemunere[individu.id]" btn-radio="true">Oui</button>
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="isStagiaireRemunere[individu.id]" btn-radio="false">Non</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" ng-if="error">
+    Le formulaire comporte des erreurs, merci de les corriger.
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+  </div>
+</form>

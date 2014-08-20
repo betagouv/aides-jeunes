@@ -39,7 +39,7 @@ describe('Controller: FoyerSituationsSpecifiquesModalCtrl', function() {
             });
         });
 
-        it('var situationsSpecifiquesCaptured should be initially undefined', function() {
+        it('Should be marked as not captured initially', function() {
             // then
             expect(situation.situationsSpecifiquesCaptured).toBeUndefined();
         });

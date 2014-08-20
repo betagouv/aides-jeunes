@@ -33,11 +33,11 @@ public class RSAFormFiller extends FormFiller {
         {"conjoint.inscrit_caf.oui",  0, 306, 475},
         {"conjoint.inscrit_caf.non",  0, 378, 475},
 
-        {"logement.locataire",       0,  30, 175},
-        {"logement.payant",          0,  30, 161},
-        {"logement.gratuit",         0,  30, 133},
-        {"logement.proprio_pret",    0,  30, 147},
-        {"logement.proprio_no_pret", 0, 203, 147},
+        {"logement.locataire",       0,  29, 175},
+        {"logement.payant",          0,  29, 161},
+        {"logement.gratuit",         0,  29, 133},
+        {"logement.proprio_avec_pret",    0,  29, 147},
+        {"logement.proprio_sans_pret", 0, 203, 147},
 
         {"seul",      1, 31, 671},
         {"en_couple", 1, 31, 746},
@@ -415,9 +415,9 @@ public class RSAFormFiller extends FormFiller {
 
         if (LogementType.PROPRIETAIRE == situation.logement.type) {
             if (null == situation.logement.loyer || Integer.valueOf(0).equals(situation.logement.loyer)) {
-                checkbox("logement.proprio_no_pret");
+                checkbox("logement.proprio_sans_pret");
             } else {
-                checkbox("logement.proprio_pret");
+                checkbox("logement.proprio_avec_pret");
             }
         }
 

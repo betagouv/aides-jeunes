@@ -6,6 +6,8 @@ import models.Individu;
 import models.Individu.Civilite;
 import models.Individu.IndividuRole;
 import models.Individu.Nationalite;
+import models.Individu.SituationPro;
+import models.Individu.SituationProType;
 import models.Individu.StatutMarital;
 import models.Logement.LogementType;
 
@@ -57,6 +59,17 @@ public class RSAFormFiller extends FormFiller {
 
         {"pension_alimentaire.separe",          1, 31, 338},
         {"pension_alimentaire.has_child_alone", 1, 31, 310},
+
+        {"pro.demandeur.sans_activite", 2, 230, 723},
+        {"pro.demandeur.salarie",       2, 230, 693},
+        {"pro.demandeur.apprenti",      2, 230, 623},
+        {"pro.demandeur.stagiaire",     2, 230, 593},
+        {"pro.demandeur.independant",   2, 230, 443},
+        {"pro.conjoint.sans_activite",  2, 398, 723},
+        {"pro.conjoint.salarie",        2, 398, 693},
+        {"pro.conjoint.apprenti",       2, 398, 623},
+        {"pro.conjoint.stagiaire",      2, 398, 593},
+        {"pro.conjoint.independant",    2, 398, 443},
     };
 
     private static final Object[][] textFields = {
@@ -156,6 +169,7 @@ public class RSAFormFiller extends FormFiller {
     private static final EnumMap<LogementType, String> logementTypeCheckboxes = new EnumMap<>(LogementType.class);
     private static final EnumMap<StatutMarital, String> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
     private static final EnumMap<StatutMarital, String> statutMaritalDates = new EnumMap<>(StatutMarital.class);
+    private static final EnumMap<IndividuRole, EnumMap<SituationProType, String>> situationsProCheckboxes = new EnumMap<>(IndividuRole.class);
 
     private int currentEnfant = 1;
 
@@ -164,6 +178,7 @@ public class RSAFormFiller extends FormFiller {
         initNationaliteCheckboxes();
         initLogementTypeCheckboxes();
         initStatutMaritalFields();
+        initSituationsProCheckboxes();
     }
 
     private void initCiviliteCheckboxes() {
@@ -217,6 +232,24 @@ public class RSAFormFiller extends FormFiller {
         statutMaritalDates.put(StatutMarital.DIVORCE, "statut_marital.date.divorce");
         statutMaritalDates.put(StatutMarital.VEUF, "statut_marital.date.veuf");
         statutMaritalDates.put(StatutMarital.CONCUBINAGE_ROMPU, "statut_marital.date.concubinage_rompu");
+    }
+
+    private void initSituationsProCheckboxes() {
+        EnumMap<SituationProType, String> demandeurCheckboxes = new EnumMap<>(SituationProType.class);
+        situationsProCheckboxes.put(IndividuRole.DEMANDEUR, demandeurCheckboxes);
+        demandeurCheckboxes.put(SituationProType.SALARIE, "pro.demandeur.salarie");
+        demandeurCheckboxes.put(SituationProType.SANS_ACTIVITE, "pro.demandeur.sans_activite");
+        demandeurCheckboxes.put(SituationProType.INDEPENDANT, "pro.demandeur.independant");
+        demandeurCheckboxes.put(SituationProType.APPRENTI, "pro.demandeur.apprenti");
+        demandeurCheckboxes.put(SituationProType.STAGIAIRE, "pro.demandeur.stagiaire");
+
+        EnumMap<SituationProType, String> conjointCheckboxes = new EnumMap<>(SituationProType.class);
+        situationsProCheckboxes.put(IndividuRole.CONJOINT, conjointCheckboxes);
+        conjointCheckboxes.put(SituationProType.SALARIE, "pro.conjoint.salarie");
+        conjointCheckboxes.put(SituationProType.SANS_ACTIVITE, "pro.conjoint.sans_activite");
+        conjointCheckboxes.put(SituationProType.INDEPENDANT, "pro.conjoint.independant");
+        conjointCheckboxes.put(SituationProType.APPRENTI, "pro.conjoint.apprenti");
+        conjointCheckboxes.put(SituationProType.STAGIAIRE, "pro.conjoint.stagiaire");
     }
 
     @Override
@@ -309,6 +342,11 @@ public class RSAFormFiller extends FormFiller {
         }
 
         fillPensionAlimentaire(demandeur);
+
+        for (SituationPro situationPro : demandeur.situationsPro) {
+            String situationProCheckbox = situationsProCheckboxes.get(IndividuRole.DEMANDEUR).get(situationPro.situation);
+            checkbox(situationProCheckbox);
+        }
     }
 
     private void fillConjoint(Individu conjoint) {
@@ -344,6 +382,11 @@ public class RSAFormFiller extends FormFiller {
             } else {
                 checkbox("conjoint.inscrit_caf.non");
             }
+        }
+
+        for (SituationPro situationPro : conjoint.situationsPro) {
+            String situationProCheckbox = situationsProCheckboxes.get(IndividuRole.CONJOINT).get(situationPro.situation);
+            checkbox(situationProCheckbox);
         }
     }
 

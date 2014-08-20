@@ -1,6 +1,7 @@
 package models;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -32,6 +33,7 @@ public class Individu {
     public boolean enceinte;
     public Boolean inscritCaf;
     public String numeroAllocataire;
+    public List<SituationPro> situationsPro;
 
     @JsonDeserialize(using = CiviliteDeserializer.class)
     public static enum Civilite {
@@ -235,6 +237,7 @@ public class Individu {
         public Boolean isRemunere;
     }
 
+    @JsonDeserialize(using = SituationProTypeDeserializer.class)
     public static enum SituationProType {
 
         SANS_ACTIVITE("sans_activite"),
@@ -251,6 +254,21 @@ public class Individu {
         }
     }
 
+    public static class SituationProTypeDeserializer extends JsonDeserializer<SituationProType> {
+
+        @Override
+        public SituationProType deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            for (SituationProType situationPro : SituationProType.values()) {
+                if (situationPro.jsonValue.equals(jp.getText())) {
+                    return situationPro;
+                }
+            }
+
+            throw new RuntimeException(String.format("Situation professionnelle inconnue : %s", jp.getText()));
+        }
+    }
+
+    @JsonDeserialize(using = SalarieContractTypeDeserializer.class)
     public static enum SalarieContractType {
 
         CDI("cdi"),

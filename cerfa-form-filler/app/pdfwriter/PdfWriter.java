@@ -72,14 +72,10 @@ public class PdfWriter {
         appendText(text, x, y, this.fontSize);
     }
 
-    public void appendNumber(String number, float x, float y, int fontSize) {
+    public void appendNumber(String number, float x, float y) {
         for (int i = 0; i < number.length(); i++) {
             appendText(number.substring(i, i + 1), x + i * numberSpacing, y, fontSize);
         }
-    }
-
-    public void appendNumber(String number, float x, float y) {
-        appendNumber(number, x, y, this.fontSize);
     }
 
     public void checkbox(float x, float y) {

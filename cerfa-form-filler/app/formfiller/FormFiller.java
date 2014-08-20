@@ -31,7 +31,7 @@ public abstract class FormFiller {
     }
 
     protected int getDefaultFontSize() {
-        return 8;
+        return 7;
     }
 
     protected float getDefaultNumberSpacing() {
@@ -54,7 +54,7 @@ public abstract class FormFiller {
             int page = (int) textField[1];
             float x = textField[2] instanceof Float ? (float) textField[2] : ((Integer) textField[2]).floatValue();
             float y = textField[3] instanceof Float ? (float) textField[3] : ((Integer) textField[3]).floatValue();
-            int fontSize = 9;
+            int fontSize = getDefaultFontSize();
             if (textField.length >= 5) {
                 fontSize = (Integer) textField[4];
             }

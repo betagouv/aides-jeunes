@@ -6,6 +6,7 @@ import models.Individu;
 import models.Individu.Civilite;
 import models.Individu.IndividuRole;
 import models.Individu.Nationalite;
+import models.Individu.SalarieContractType;
 import models.Individu.SituationPro;
 import models.Individu.SituationProType;
 import models.Individu.StatutMarital;
@@ -62,13 +63,23 @@ public class RSAFormFiller extends FormFiller {
 
         {"pro.demandeur.sans_activite", 2, 230, 723},
         {"pro.demandeur.salarie",       2, 230, 693},
+        {"pro.demandeur.salarie.contrat.cdi",     2, 230, 678},
+        {"pro.demandeur.salarie.contrat.cdd",     2, 289, 678},
+        {"pro.demandeur.salarie.contrat.interim", 2, 347, 678},
         {"pro.demandeur.apprenti",      2, 230, 623},
         {"pro.demandeur.stagiaire",     2, 230, 593},
+        {"pro.demandeur.stagiaire.remunere.oui", 2, 230, 578},
+        {"pro.demandeur.stagiaire.remunere.non", 2, 266, 578},
         {"pro.demandeur.independant",   2, 230, 443},
         {"pro.conjoint.sans_activite",  2, 398, 723},
         {"pro.conjoint.salarie",        2, 398, 693},
+        {"pro.conjoint.salarie.contrat.cdi",     2, 398, 678},
+        {"pro.conjoint.salarie.contrat.cdd",     2, 457, 678},
+        {"pro.conjoint.salarie.contrat.interim", 2, 519, 678},
         {"pro.conjoint.apprenti",       2, 398, 623},
         {"pro.conjoint.stagiaire",      2, 398, 593},
+        {"pro.conjoint.stagiaire.remunere.oui", 2, 398, 578},
+        {"pro.conjoint.stagiaire.remunere.non", 2, 434, 578},
         {"pro.conjoint.independant",    2, 398, 443},
     };
 
@@ -76,22 +87,22 @@ public class RSAFormFiller extends FormFiller {
         {"demandeur.nom",             0, 155, 687},
         {"demandeur.nom_usage",       0, 133, 670},
         {"demandeur.prenom",          0, 170, 648},
-        {"demandeur.pays_naissance",  0, 115, 620, 9},
-        {"demandeur.ville_naissance", 0,  83, 605, 7},
+        {"demandeur.pays_naissance",  0, 115, 620},
+        {"demandeur.ville_naissance", 0,  83, 605},
         {"demandeur.num_allocataire", 0, 100, 460},
 
         {"conjoint.nom",             0, 430, 687},
         {"conjoint.nom_usage",       0, 408, 670},
         {"conjoint.prenom",          0, 442, 648},
-        {"conjoint.pays_naissance",  0, 390, 620, 9},
-        {"conjoint.ville_naissance", 0, 358, 605, 7},
+        {"conjoint.pays_naissance",  0, 390, 620},
+        {"conjoint.ville_naissance", 0, 358, 605},
         {"conjoint.num_allocataire", 0, 375, 460},
 
         {"adresse.numero",      0, 45, 378},
         {"adresse.rue",         0, 135, 378},
         {"adresse.ville",       0, 253, 350},
-        {"adresse.mail.gauche", 0, 92, 321, 10},
-        {"adresse.mail.droite", 0, 267, 321, 10},
+        {"adresse.mail.gauche", 0, 92, 321},
+        {"adresse.mail.droite", 0, 267, 321},
 
         {"adresse.conjoint.numero", 0, 45, 235},
         {"adresse.conjoint.rue",    0, 135, 235},
@@ -134,6 +145,17 @@ public class RSAFormFiller extends FormFiller {
         {"enfant.4.date_arrivee",   1, 456, 406, 7},
         {"enfant.4.situation",      1, 456, 387, 6},
 
+        {"pro.demandeur.sans_activite.since", 2, 285, 723},
+        {"pro.demandeur.salarie.since",       2, 285, 693},
+        {"pro.demandeur.apprenti.since",      2, 285, 623},
+        {"pro.demandeur.stagiaire.since",     2, 285, 593},
+        {"pro.demandeur.independant.since",   2, 285, 443},
+        {"pro.conjoint.sans_activite.since",  2, 453, 723},
+        {"pro.conjoint.salarie.since",        2, 453, 693},
+        {"pro.conjoint.apprenti.since",       2, 453, 623},
+        {"pro.conjoint.stagiaire.since",      2, 453, 593},
+        {"pro.conjoint.independant.since",    2, 453, 443},
+
         {"current_date", 4, 150, 200},
     };
 
@@ -170,6 +192,7 @@ public class RSAFormFiller extends FormFiller {
     private static final EnumMap<StatutMarital, String> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
     private static final EnumMap<StatutMarital, String> statutMaritalDates = new EnumMap<>(StatutMarital.class);
     private static final EnumMap<IndividuRole, EnumMap<SituationProType, String>> situationsProCheckboxes = new EnumMap<>(IndividuRole.class);
+    private static final EnumMap<IndividuRole, EnumMap<SalarieContractType, String>> salarieContractCheckboxes = new EnumMap<>(IndividuRole.class);
 
     private int currentEnfant = 1;
 
@@ -179,6 +202,7 @@ public class RSAFormFiller extends FormFiller {
         initLogementTypeCheckboxes();
         initStatutMaritalFields();
         initSituationsProCheckboxes();
+        initSalarieContractCheckboxes();
     }
 
     private void initCiviliteCheckboxes() {
@@ -250,6 +274,20 @@ public class RSAFormFiller extends FormFiller {
         conjointCheckboxes.put(SituationProType.INDEPENDANT, "pro.conjoint.independant");
         conjointCheckboxes.put(SituationProType.APPRENTI, "pro.conjoint.apprenti");
         conjointCheckboxes.put(SituationProType.STAGIAIRE, "pro.conjoint.stagiaire");
+    }
+
+    private void initSalarieContractCheckboxes() {
+        EnumMap<SalarieContractType, String> demandeurCheckboxes = new EnumMap<>(SalarieContractType.class);
+        salarieContractCheckboxes.put(IndividuRole.DEMANDEUR, demandeurCheckboxes);
+        demandeurCheckboxes.put(SalarieContractType.CDI, "pro.demandeur.salarie.contrat.cdi");
+        demandeurCheckboxes.put(SalarieContractType.CDD, "pro.demandeur.salarie.contrat.cdd");
+        demandeurCheckboxes.put(SalarieContractType.INTERIM, "pro.demandeur.salarie.contrat.interim");
+
+        EnumMap<SalarieContractType, String> conjointCheckboxes = new EnumMap<>(SalarieContractType.class);
+        salarieContractCheckboxes.put(IndividuRole.CONJOINT, conjointCheckboxes);
+        conjointCheckboxes.put(SalarieContractType.CDI, "pro.conjoint.salarie.contrat.cdi");
+        conjointCheckboxes.put(SalarieContractType.CDD, "pro.conjoint.salarie.contrat.cdd");
+        conjointCheckboxes.put(SalarieContractType.INTERIM, "pro.conjoint.salarie.contrat.interim");
     }
 
     @Override
@@ -346,6 +384,19 @@ public class RSAFormFiller extends FormFiller {
         for (SituationPro situationPro : demandeur.situationsPro) {
             String situationProCheckbox = situationsProCheckboxes.get(IndividuRole.DEMANDEUR).get(situationPro.situation);
             checkbox(situationProCheckbox);
+            if (null != situationProCheckbox) {
+                appendText(situationProCheckbox + ".since", situationPro.since);
+            }
+
+            if (SituationProType.STAGIAIRE == situationPro.situation) {
+                if (null != situationPro.isRemunere) {
+                    String checkboxRemunere = "pro.demandeur.stagiaire.remunere." + (situationPro.isRemunere ? "oui" : "non");
+                    checkbox(checkboxRemunere);
+                }
+            } else if (SituationProType.SALARIE == situationPro.situation) {
+                String checkboxContrat = salarieContractCheckboxes.get(IndividuRole.DEMANDEUR).get(situationPro.contractType);
+                checkbox(checkboxContrat);
+            }
         }
     }
 
@@ -387,6 +438,19 @@ public class RSAFormFiller extends FormFiller {
         for (SituationPro situationPro : conjoint.situationsPro) {
             String situationProCheckbox = situationsProCheckboxes.get(IndividuRole.CONJOINT).get(situationPro.situation);
             checkbox(situationProCheckbox);
+            if (null != situationProCheckbox) {
+                appendText(situationProCheckbox + ".since", situationPro.since);
+            }
+
+            if (SituationProType.STAGIAIRE == situationPro.situation) {
+                if (null != situationPro.isRemunere) {
+                    String checkboxRemunere = "pro.conjoint.stagiaire.remunere." + (situationPro.isRemunere ? "oui" : "non");
+                    checkbox(checkboxRemunere);
+                }
+            } else if (SituationProType.SALARIE == situationPro.situation) {
+                String checkboxContrat = salarieContractCheckboxes.get(IndividuRole.CONJOINT).get(situationPro.contractType);
+                checkbox(checkboxContrat);
+            }
         }
     }
 

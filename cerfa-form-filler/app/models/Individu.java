@@ -226,4 +226,55 @@ public class Individu {
             throw new RuntimeException(String.format("Lien de parenté d'une personne à charge inconnue : %s", jp.getText()));
         }
     }
+
+    public static class SituationPro {
+
+        public SituationProType situation;
+        public String since;
+        public SalarieContractType contractType;
+        public Boolean isRemunere;
+    }
+
+    public static enum SituationProType {
+
+        SANS_ACTIVITE("sans_activite"),
+        SALARIE("salarie"),
+        AUTO_ENTREPRENEUR("auto_entrepreneur"),
+        APPRENTI("apprenti"),
+        STAGIAIRE("stagiaire"),
+        INDEPENDANT("independant");
+
+        public final String jsonValue;
+
+        SituationProType(String jsonValue) {
+            this.jsonValue = jsonValue;
+        }
+    }
+
+    public static enum SalarieContractType {
+
+        CDI("cdi"),
+        CDD("cdd"),
+        INTERIM("interim");
+
+        public final String jsonValue;
+
+        SalarieContractType(String jsonValue) {
+            this.jsonValue = jsonValue;
+        }
+    }
+
+    public static class SalarieContractTypeDeserializer extends JsonDeserializer<SalarieContractType> {
+
+        @Override
+        public SalarieContractType deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            for (SalarieContractType contract : SalarieContractType.values()) {
+                if (contract.jsonValue.equals(jp.getText())) {
+                    return contract;
+                }
+            }
+
+            throw new RuntimeException(String.format("Type de contrat salarié inconnu : %s", jp.getText()));
+        }
+    }
 }

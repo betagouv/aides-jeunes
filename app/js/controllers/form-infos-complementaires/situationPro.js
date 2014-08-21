@@ -15,6 +15,7 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
         $scope.datesSelectedSituations[individu.id] = {};
     });
 
+    $scope.isActiviteCesseeVolontairement = {};
     $scope.salarieContractTypes = {};
     $scope.isStagiaireRemunere = {};
     $scope.isChomeurIndemnise = {};
@@ -65,7 +66,9 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
             _.forEach($scope.selectedSituations[individu.id], function(selected, situationPro) {
                 if (selected) {
                     var situationToAppend = {situation: situationPro, since: $scope.datesSelectedSituations[individu.id][situationPro]};
-                    if ('salarie' === situationPro) {
+                    if ('sans_activite' === situationPro) {
+                        situationToAppend.volontairementSansActivite = $scope.isActiviteCesseeVolontairement[individu.id];
+                    } else if ('salarie' === situationPro) {
                         situationToAppend.contractType = $scope.salarieContractTypes[individu.id];
                     } else if ('stagiaire' === situationPro) {
                         situationToAppend.isRemunere = $scope.isStagiaireRemunere[individu.id];

@@ -92,6 +92,18 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
             expect(conjoint.situationsPro[0].since).toBe('16/09/1989');
         });
 
+        it('Should save the "activite cessee volontairement" field for the special case of "sans activite" situation', function() {
+            // given
+            scope.selectedSituations.demandeur.sans_activite = true;
+            scope.isActiviteCesseeVolontairement.demandeur = true;
+
+            // when
+            scope.submit();
+
+            // then
+            expect(demandeur.situationsPro[0].volontairementSansActivite).toBe(true);
+        });
+
         it('Should save the contract type for the special case of "salarie" situation', function() {
             // given
             scope.selectedSituations.demandeur.salarie = true;

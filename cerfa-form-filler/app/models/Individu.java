@@ -233,6 +233,7 @@ public class Individu {
 
         public SituationProType situation;
         public String since;
+        public Boolean volontairementSansActivite;
         public SalarieContractType contractType;
         public Boolean isRemunere;
         public Boolean isIndemnise;

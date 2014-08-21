@@ -62,6 +62,8 @@ public class RSAFormFiller extends FormFiller {
         {"pension_alimentaire.has_child_alone", 1, 31, 310},
 
         {"pro.demandeur.sans_activite", 2, 230, 723},
+        {"pro.demandeur.sans_activite.volontairement.oui", 2, 230, 708},
+        {"pro.demandeur.sans_activite.volontairement.non", 2, 266, 708},
         {"pro.demandeur.salarie",       2, 230, 693},
         {"pro.demandeur.salarie.contrat.cdi",     2, 230, 678},
         {"pro.demandeur.salarie.contrat.cdd",     2, 289, 678},
@@ -78,6 +80,8 @@ public class RSAFormFiller extends FormFiller {
         {"pro.demandeur.etudiant",      2, 230, 267},
         {"pro.demandeur.retraite",      2, 230, 252},
         {"pro.conjoint.sans_activite",  2, 398, 723},
+        {"pro.conjoint.sans_activite.volontairement.oui", 2, 398, 708},
+        {"pro.conjoint.sans_activite.volontairement.non", 2, 434, 708},
         {"pro.conjoint.salarie",        2, 398, 693},
         {"pro.conjoint.salarie.contrat.cdi",     2, 398, 678},
         {"pro.conjoint.salarie.contrat.cdd",     2, 457, 678},
@@ -438,6 +442,11 @@ public class RSAFormFiller extends FormFiller {
                     if (situationPro.isIndemnise) {
                         appendText(String.format("pro.%s.demandeur_emploi.indemnise_since", fieldPrefix), situationPro.indemniseSince);
                     }
+                }
+            case SANS_ACTIVITE:
+                if (null != situationPro.volontairementSansActivite) {
+                    String checkboxSansActivite = String.format("pro.%s.sans_activite.volontairement.%s", fieldPrefix, (situationPro.volontairementSansActivite ? "oui" : "non"));
+                    checkbox(checkboxSansActivite);
                 }
             default:
                 break;

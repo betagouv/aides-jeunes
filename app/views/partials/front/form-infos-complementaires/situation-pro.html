@@ -26,6 +26,14 @@
                 </div>
               </div>
 
+              <div class="form-group" ng-if="'sans_activite' === situationPro.id">
+                <label class="col-sm-5 control-label">Activité cessée volontairement ?</label>
+                <div class="col-sm-7">
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="isActiviteCesseeVolontairement[individu.id]" btn-radio="true">Oui</button>
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="isActiviteCesseeVolontairement[individu.id]" btn-radio="false">Non</button>
+                </div>
+              </div>
+
               <div class="form-group" ng-if="'salarie' === situationPro.id">
                 <label class="col-sm-5 control-label" for="type-contrat-salarie-{{ individu.id }}">Type de contrat</label>
                 <div class="col-sm-7">

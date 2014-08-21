@@ -5,16 +5,17 @@ angular.module('ddsApp').directive('ddsDate', function() {
         require: 'ngModel',
         link: function(scope, elm, attrs, ctrl) {
             ctrl.$parsers.unshift(function(viewValue) {
+                debugger;
                 if (angular.isString(viewValue) && viewValue.length > 0) {
                     var date = moment(viewValue, 'DD/MM/YYYY', true);
                     if (!date.isValid()) {
-                        ctrl.$setValidity('ddsDate', true);
+                        ctrl.$setValidity('ddsDate', false);
 
                         return viewValue;
                     }
                 }
 
-                ctrl.$setValidity('ddsDate', false);
+                ctrl.$setValidity('ddsDate', true);
 
                 return undefined;
             });

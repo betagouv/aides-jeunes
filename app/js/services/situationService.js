@@ -208,7 +208,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                         label: 'Revenus auto-entrepreneur'
                     }, {
                         name: 'revenusStage',
-                        label: 'Rémunération de stage'
+                        label: 'Revenus de stage de formation professionnelle'
                     }
                 ]
             },

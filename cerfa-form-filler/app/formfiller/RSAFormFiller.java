@@ -11,6 +11,9 @@ import models.Individu.SituationPro;
 import models.Individu.SituationProType;
 import models.Individu.StatutMarital;
 import models.Logement.LogementType;
+import models.Ressource.RessourcePeriode;
+import models.Ressource.RessourceType;
+import models.SituationService;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -101,6 +104,13 @@ public class RSAFormFiller extends FormFiller {
         {"pro.conjoint.demandeur_emploi.indemnise.non", 2, 434, 297},
         {"pro.conjoint.etudiant",       2, 398, 267},
         {"pro.conjoint.retraite",       2, 398, 252},
+
+        {"ressources.demandeur.1.aucune", 3, 250, 637},
+        {"ressources.demandeur.2.aucune", 3, 307, 637},
+        {"ressources.demandeur.3.aucune", 3, 363, 637},
+        {"ressources.conjoint.1.aucune",  3, 420, 637},
+        {"ressources.conjoint.2.aucune",  3, 477, 637},
+        {"ressources.conjoint.3.aucune",  3, 533, 637},
     };
 
     private static final Object[][] textFields = {
@@ -190,6 +200,49 @@ public class RSAFormFiller extends FormFiller {
         {"pro.conjoint.etudiant.since",                    2, 453, 267},
         {"pro.conjoint.retraite.since",                    2, 453, 252},
 
+        {"ressources.demandeur.1.revenusSalarie",          3, 229, 614},
+        {"ressources.demandeur.1.revenusNonSalarie",       3, 229, 502},
+        {"ressources.demandeur.1.pensionsAlimentaires",    3, 229, 489},
+        {"ressources.demandeur.1.pensionsRetraitesRentes", 3, 229, 448},
+        {"ressources.demandeur.1.allocationsChomage",      3, 229, 435},
+        {"ressources.demandeur.1.indChomagePartiel",       3, 229, 412},
+        {"ressources.demandeur.1.indJourMaternite",        3, 229, 376},
+        {"ressources.demandeur.2.revenusSalarie",          3, 285, 614},
+        {"ressources.demandeur.2.revenusNonSalarie",       3, 285, 502},
+        {"ressources.demandeur.2.pensionsAlimentaires",    3, 285, 489},
+        {"ressources.demandeur.2.pensionsRetraitesRentes", 3, 285, 448},
+        {"ressources.demandeur.2.allocationsChomage",      3, 285, 435},
+        {"ressources.demandeur.2.indChomagePartiel",       3, 285, 412},
+        {"ressources.demandeur.2.indJourMaternite",        3, 285, 376},
+        {"ressources.demandeur.3.revenusSalarie",          3, 341, 614},
+        {"ressources.demandeur.3.revenusNonSalarie",       3, 341, 502},
+        {"ressources.demandeur.3.pensionsAlimentaires",    3, 341, 489},
+        {"ressources.demandeur.3.pensionsRetraitesRentes", 3, 341, 448},
+        {"ressources.demandeur.3.allocationsChomage",      3, 341, 435},
+        {"ressources.demandeur.3.indChomagePartiel",       3, 341, 412},
+        {"ressources.demandeur.3.indJourMaternite",        3, 341, 376},
+        {"ressources.conjoint.1.revenusSalarie",           3, 399, 614},
+        {"ressources.conjoint.1.revenusNonSalarie",        3, 399, 502},
+        {"ressources.conjoint.1.pensionsAlimentaires",     3, 399, 489},
+        {"ressources.conjoint.1.pensionsRetraitesRentes",  3, 399, 448},
+        {"ressources.conjoint.1.allocationsChomage",       3, 399, 435},
+        {"ressources.conjoint.1.indChomagePartiel",        3, 399, 412},
+        {"ressources.conjoint.1.indJourMaternite",         3, 399, 376},
+        {"ressources.conjoint.2.revenusSalarie",           3, 455, 614},
+        {"ressources.conjoint.2.revenusNonSalarie",        3, 455, 502},
+        {"ressources.conjoint.2.pensionsAlimentaires",     3, 455, 489},
+        {"ressources.conjoint.2.pensionsRetraitesRentes",  3, 455, 448},
+        {"ressources.conjoint.2.allocationsChomage",       3, 455, 435},
+        {"ressources.conjoint.2.indChomagePartiel",        3, 455, 412},
+        {"ressources.conjoint.2.indJourMaternite",         3, 455, 376},
+        {"ressources.conjoint.3.revenusSalarie",           3, 512, 614},
+        {"ressources.conjoint.3.revenusNonSalarie",        3, 512, 502},
+        {"ressources.conjoint.3.pensionsAlimentaires",     3, 512, 489},
+        {"ressources.conjoint.3.pensionsRetraitesRentes",  3, 512, 448},
+        {"ressources.conjoint.3.allocationsChomage",       3, 512, 435},
+        {"ressources.conjoint.3.indChomagePartiel",        3, 512, 412},
+        {"ressources.conjoint.3.indJourMaternite",         3, 512, 376},
+
         {"current_date", 4, 150, 200},
     };
 
@@ -228,6 +281,7 @@ public class RSAFormFiller extends FormFiller {
     private static final EnumMap<IndividuRole, EnumMap<SituationProType, String>> situationsProCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<IndividuRole, EnumMap<SalarieContractType, String>> salarieContractCheckboxes = new EnumMap<>(IndividuRole.class);
 
+    private SituationService situationService;
     private int currentEnfant = 1;
 
     public RSAFormFiller() {
@@ -237,6 +291,7 @@ public class RSAFormFiller extends FormFiller {
         initStatutMaritalFields();
         initSituationsProCheckboxes();
         initSalarieContractCheckboxes();
+        situationService = new SituationService();
     }
 
     private void initCiviliteCheckboxes() {
@@ -424,8 +479,8 @@ public class RSAFormFiller extends FormFiller {
         }
 
         fillPensionAlimentaire(demandeur);
-
         fillSituationsPro(demandeur);
+        fillRessources(demandeur);
     }
 
     private void fillSituationsPro(Individu individu) {
@@ -476,6 +531,25 @@ public class RSAFormFiller extends FormFiller {
         }
     }
 
+    private void fillRessources(Individu individu) {
+        String fieldPrefix = IndividuRole.DEMANDEUR == individu.role ? "demandeur" : "conjoint";
+        int periodeId = 1;
+        for (RessourcePeriode periode : RessourcePeriode.values()) {
+            int sum = situationService.sumRessourcesOfType(individu, periode, RessourceType.values());
+            if (0 == sum) {
+                checkbox(String.format("ressources.%s.%d.aucune", fieldPrefix, periodeId));
+            } else {
+                for (RessourceType ressourceType : RessourceType.values()) {
+                    sum = situationService.sumRessourcesOfType(individu, periode, ressourceType);
+                    if (0 != sum) {
+                        appendText(String.format("ressources.%s.%d.%s", fieldPrefix, periodeId, ressourceType.jsonValue), String.valueOf(sum));
+                    }
+                }
+            }
+            periodeId++;
+        }
+    }
+
     private void fillConjoint(Individu conjoint) {
         String civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.civilite);
         checkbox(civiliteCheckbox);
@@ -512,6 +586,7 @@ public class RSAFormFiller extends FormFiller {
         }
 
         fillSituationsPro(conjoint);
+        fillRessources(conjoint);
     }
 
     private void fillEnfant(Individu individu) {

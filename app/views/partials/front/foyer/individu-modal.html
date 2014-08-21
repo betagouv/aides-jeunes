@@ -23,9 +23,13 @@
           ng-model="$parent.birthDate"
           dds-date
           date-autocomplete
+          date-naissance-max-age="maxAge"
           placeholder="jj/mm/aaaa"
           >
-        <p class="help-block" ng-if="formSubmitted && form.birthDate.$invalid">Date de naissance invalide.</p>
+        <p class="help-block" ng-if="formSubmitted && form.birthDate.$error.ddsDate">Date de naissance invalide.</p>
+        <p class="help-block" ng-if="formSubmitted && form.birthDate.$error.dateNaissanceMaxAge">
+          Veuillez déclarer uniquement les personnes de moins de 25 ans.
+        </p>
       </div>
     </div>
 

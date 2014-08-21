@@ -6,6 +6,7 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
     $scope.askFirstName = !!options.askFirstName;
     $scope.cancelable = !!options.cancelable;
     $scope.relationTypes = SituationService.relationTypeLabels;
+    $scope.maxAge = options.maxAge;
 
     if (true === ($scope.askRelationType = !!options.askRelationType)) {
         $scope.relationType = 'mariage';

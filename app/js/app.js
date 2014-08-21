@@ -88,7 +88,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/enfant',
             onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
                 IndividuModalService
-                    .open({individuType: 'enfant', modalTitle: 'Votre enfant', askFirstName: true})
+                    .open({individuType: 'enfant', modalTitle: 'Votre enfant', askFirstName: true, maxAge: 25})
                     .then(function(enfant) {
                         var situation = SituationService.restoreLocal();
                         situation.enfants.push(enfant);
@@ -103,7 +103,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/personne-a-charge',
             onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
                 IndividuModalService
-                    .open({individuType: 'personneACharge', modalTitle: 'Personne à charge', askFirstName: true})
+                    .open({individuType: 'personneACharge', modalTitle: 'Personne à charge', askFirstName: true, maxAge: 25})
                     .then(function(personne) {
                         var situation = SituationService.restoreLocal();
                         situation.personnesACharge.push(personne);

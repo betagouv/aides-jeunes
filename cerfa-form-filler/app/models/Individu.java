@@ -247,6 +247,7 @@ public class Individu {
         SANS_ACTIVITE("sans_activite"),
         SALARIE("salarie"),
         AUTO_ENTREPRENEUR("auto_entrepreneur"),
+        TRAVAILLEUR_SAISONNIER("travailleur_saisonnier"),
         APPRENTI("apprenti"),
         STAGIAIRE("stagiaire"),
         INDEPENDANT("independant"),

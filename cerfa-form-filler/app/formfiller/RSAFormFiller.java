@@ -69,6 +69,7 @@ public class RSAFormFiller extends FormFiller {
         {"pro.demandeur.salarie.contrat.cdd",     2, 289, 678},
         {"pro.demandeur.salarie.contrat.interim", 2, 347, 678},
         {"pro.demandeur.apprenti",      2, 230, 623},
+        {"pro.demandeur.travailleur_saisonnier", 2, 230, 608},
         {"pro.demandeur.stagiaire",     2, 230, 593},
         {"pro.demandeur.stagiaire.remunere.oui", 2, 230, 578},
         {"pro.demandeur.stagiaire.remunere.non", 2, 266, 578},
@@ -88,6 +89,7 @@ public class RSAFormFiller extends FormFiller {
         {"pro.conjoint.salarie.contrat.cdd",     2, 457, 678},
         {"pro.conjoint.salarie.contrat.interim", 2, 519, 678},
         {"pro.conjoint.apprenti",       2, 398, 623},
+        {"pro.conjoint.travailleur_saisonnier", 2, 398, 608},
         {"pro.conjoint.stagiaire",      2, 398, 593},
         {"pro.conjoint.stagiaire.remunere.oui", 2, 398, 578},
         {"pro.conjoint.stagiaire.remunere.non", 2, 434, 578},
@@ -166,6 +168,7 @@ public class RSAFormFiller extends FormFiller {
         {"pro.demandeur.sans_activite.since",              2, 285, 723},
         {"pro.demandeur.salarie.since",                    2, 285, 693},
         {"pro.demandeur.apprenti.since",                   2, 285, 623},
+        {"pro.demandeur.travailleur_saisonnier.since",     2, 285, 608},
         {"pro.demandeur.stagiaire.since",                  2, 285, 593},
         {"pro.demandeur.independant.since",                2, 285, 443},
         {"pro.demandeur.gerant_salarie.since",             2, 292, 357},
@@ -177,6 +180,7 @@ public class RSAFormFiller extends FormFiller {
         {"pro.conjoint.sans_activite.since",               2, 453, 723},
         {"pro.conjoint.salarie.since",                     2, 453, 693},
         {"pro.conjoint.apprenti.since",                    2, 453, 623},
+        {"pro.conjoint.travailleur_saisonnier.since",      2, 453, 608},
         {"pro.conjoint.stagiaire.since",                   2, 453, 593},
         {"pro.conjoint.independant.since",                 2, 453, 443},
         {"pro.conjoint.gerant_salarie.since",              2, 460, 357},
@@ -294,6 +298,7 @@ public class RSAFormFiller extends FormFiller {
         demandeurCheckboxes.put(SituationProType.SALARIE, "pro.demandeur.salarie");
         demandeurCheckboxes.put(SituationProType.SANS_ACTIVITE, "pro.demandeur.sans_activite");
         demandeurCheckboxes.put(SituationProType.INDEPENDANT, "pro.demandeur.independant");
+        demandeurCheckboxes.put(SituationProType.TRAVAILLEUR_SAISONNIER, "pro.demandeur.travailleur_saisonnier");
         demandeurCheckboxes.put(SituationProType.APPRENTI, "pro.demandeur.apprenti");
         demandeurCheckboxes.put(SituationProType.STAGIAIRE, "pro.demandeur.stagiaire");
         demandeurCheckboxes.put(SituationProType.GERANT_SALARIE, "pro.demandeur.gerant_salarie");
@@ -306,6 +311,7 @@ public class RSAFormFiller extends FormFiller {
         conjointCheckboxes.put(SituationProType.SALARIE, "pro.conjoint.salarie");
         conjointCheckboxes.put(SituationProType.SANS_ACTIVITE, "pro.conjoint.sans_activite");
         conjointCheckboxes.put(SituationProType.INDEPENDANT, "pro.conjoint.independant");
+        conjointCheckboxes.put(SituationProType.TRAVAILLEUR_SAISONNIER, "pro.conjoint.travailleur_saisonnier");
         conjointCheckboxes.put(SituationProType.APPRENTI, "pro.conjoint.apprenti");
         conjointCheckboxes.put(SituationProType.STAGIAIRE, "pro.conjoint.stagiaire");
         conjointCheckboxes.put(SituationProType.GERANT_SALARIE, "pro.conjoint.gerant_salarie");

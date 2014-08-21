@@ -47,7 +47,7 @@ public abstract class FormFiller {
             float y = checkbox[3] instanceof Float ? (float) checkbox[3] : ((Integer) checkbox[3]).floatValue();
             writer.setPage(page);
             writer.checkbox(x, y);
-            writer.appendText((String) checkbox[0], x, y + 10, 5);
+            writer.appendText((String) checkbox[0], x, y + 10, 3);
         }
 
         for (Object[] textField : getTextFields()) {

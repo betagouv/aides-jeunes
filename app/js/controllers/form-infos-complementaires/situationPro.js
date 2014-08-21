@@ -36,6 +36,10 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
             label: 'Auto-entrepreneur'
         },
         {
+            id: 'travailleur_saisonnier',
+            label: 'Travailleur saisonnier'
+        },
+        {
             id: 'apprenti',
             label: 'Apprenti'
         },

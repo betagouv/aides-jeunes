@@ -32,6 +32,10 @@ body.change-state-progress, body.change-state-progress * {
   margin-bottom: 0;
 }
 
+.jumbotron > *:first-child {
+  margin-top: 0;
+}
+
 .main-navbar {
   .navbar-brand {
     &.title {

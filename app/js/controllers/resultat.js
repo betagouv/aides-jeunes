@@ -4,14 +4,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $h
     $scope.awaitingResults = true;
     $scope.situation = situation;
 
-    var doDownloadCerfa = function(cerfa) {
-        $window.open('/api/situations/' + situation._id + '/cerfa/' + cerfa, '_blank');
-    };
-
-    if ($stateParams.requestedCerfa) {
-        doDownloadCerfa($stateParams.requestedCerfa);
-    }
-
     SimulationService.simulate(situation).then(function(droits) {
         $scope.droits = droits;
     }, function() {
@@ -22,7 +14,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $h
 
     $scope.downloadCerfa = function(cerfa) {
         if (situation.logement.adresse) {
-            doDownloadCerfa(cerfa.id);
+            $state.go('download_cerfa', {cerfa: cerfa.id});
         } else {
             $state.go('form_infos_complementaires_individus', {requestedCerfa: cerfa.id});
         }

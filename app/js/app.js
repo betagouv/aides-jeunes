@@ -190,6 +190,19 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 }]
             }
         })
+        .state('download_cerfa', {
+            url: '/telecharger-formulaire/:cerfa',
+            templateUrl: '/partials/download-cerfa.html',
+            controller: 'DownloadCerfaCtrl',
+            resolve: {
+                situation: ['SituationService', function(SituationService) {
+                    return SituationService.restoreLocal();
+                }],
+                cerfa: ['$stateParams', function($stateParams) {
+                    return $stateParams.cerfa;
+                }]
+            }
+        })
         .state('envoi_demande', {
             url: '/envoi-demande/:situationId?requestedCerfa',
             templateUrl: '/partials/envoi-demande-teaser.html'

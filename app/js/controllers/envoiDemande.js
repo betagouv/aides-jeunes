@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('EnvoiDemandeCtrl', function ($http, $scope, $stateParams) {
+angular.module('ddsApp').controller('EnvoiDemandeCtrl', function($http, $scope, $stateParams) {
     $scope.contact = {};
     $scope.send = function (form) {
         $scope.formSubmitted = true;

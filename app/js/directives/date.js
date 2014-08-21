@@ -10,7 +10,7 @@ angular.module('ddsApp').directive('ddsDate', function() {
                     if (!date.isValid()) {
                         ctrl.$setValidity('ddsDate', false);
 
-                        return undefined;
+                        return viewValue;
                     }
                 }
 

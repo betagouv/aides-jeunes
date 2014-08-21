@@ -128,6 +128,18 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
             expect(demandeur.situationsPro[0].isRemunere).toBe(true);
         });
 
+        it('Should save the "affiliation" field for the special case of "gerant salarie" situation', function() {
+            // given
+            scope.selectedSituations.demandeur.gerant_salarie = true;
+            scope.gerantSalarieAffiliation.demandeur = 'test';
+
+            // when
+            scope.submit();
+
+            // then
+            expect(demandeur.situationsPro[0].gerantSalarieAffiliation).toBe('test');
+        });
+
         it('Should save the "is indemnise" and "indemnise since" fields for the special case of "demandeur d\'emploi" situation', function() {
             // given
             scope.selectedSituations.demandeur.demandeur_emploi = true;

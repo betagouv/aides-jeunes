@@ -236,6 +236,7 @@ public class Individu {
         public Boolean volontairementSansActivite;
         public SalarieContractType contractType;
         public Boolean isRemunere;
+        public String gerantSalarieAffiliation;
         public Boolean isIndemnise;
         public String indemniseSince;
     }
@@ -249,6 +250,7 @@ public class Individu {
         APPRENTI("apprenti"),
         STAGIAIRE("stagiaire"),
         INDEPENDANT("independant"),
+        GERANT_SALARIE("gerant_salarie"),
         DEMANDEUR_EMPLOI("demandeur_emploi"),
         ETUDIANT("etudiant"),
         RETRAITE("retraite");

@@ -18,6 +18,7 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
     $scope.isActiviteCesseeVolontairement = {};
     $scope.salarieContractTypes = {};
     $scope.isStagiaireRemunere = {};
+    $scope.gerantSalarieAffiliation = {};
     $scope.isChomeurIndemnise = {};
     $scope.chomeurIndemniseSince = {};
 
@@ -47,6 +48,10 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
             label: 'Travailleur indépendant ou employeur, y compris exploitant agricole'
         },
         {
+            id: 'gerant_salarie',
+            label: 'Gérant salarié'
+        },
+        {
             id: 'demandeur_emploi',
             label: 'Demandeur d\'emploi'
         },
@@ -72,6 +77,8 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
                         situationToAppend.contractType = $scope.salarieContractTypes[individu.id];
                     } else if ('stagiaire' === situationPro) {
                         situationToAppend.isRemunere = $scope.isStagiaireRemunere[individu.id];
+                    } else if ('gerant_salarie' === situationPro) {
+                        situationToAppend.gerantSalarieAffiliation = $scope.gerantSalarieAffiliation[individu.id];
                     } else if ('demandeur_emploi' === situationPro) {
                         situationToAppend.isIndemnise = $scope.isChomeurIndemnise[individu.id];
                         if (situationToAppend.isIndemnise) {

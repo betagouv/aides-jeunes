@@ -73,6 +73,7 @@ public class RSAFormFiller extends FormFiller {
         {"pro.demandeur.stagiaire.remunere.oui", 2, 230, 578},
         {"pro.demandeur.stagiaire.remunere.non", 2, 266, 578},
         {"pro.demandeur.independant",   2, 230, 443},
+        {"pro.demandeur.gerant_salarie", 2, 230, 357},
         {"pro.demandeur.demandeur_emploi",     2, 230, 327},
         {"pro.demandeur.demandeur_emploi.non", 2, 266, 327},
         {"pro.demandeur.demandeur_emploi.indemnise.oui", 2, 230, 297},
@@ -91,6 +92,7 @@ public class RSAFormFiller extends FormFiller {
         {"pro.conjoint.stagiaire.remunere.oui", 2, 398, 578},
         {"pro.conjoint.stagiaire.remunere.non", 2, 434, 578},
         {"pro.conjoint.independant",    2, 398, 443},
+        {"pro.conjoint.gerant_salarie", 2, 398, 357},
         {"pro.conjoint.demandeur_emploi",     2, 398, 327},
         {"pro.conjoint.demandeur_emploi.non", 2, 434, 327},
         {"pro.conjoint.demandeur_emploi.indemnise.oui", 2, 398, 297},
@@ -161,24 +163,28 @@ public class RSAFormFiller extends FormFiller {
         {"enfant.4.date_arrivee",   1, 456, 406, 7},
         {"enfant.4.situation",      1, 456, 387, 6},
 
-        {"pro.demandeur.sans_activite.since",        2, 285, 723},
-        {"pro.demandeur.salarie.since",              2, 285, 693},
-        {"pro.demandeur.apprenti.since",             2, 285, 623},
-        {"pro.demandeur.stagiaire.since",            2, 285, 593},
-        {"pro.demandeur.independant.since",          2, 285, 443},
-        {"pro.demandeur.demandeur_emploi.since",     2, 285, 312},
+        {"pro.demandeur.sans_activite.since",              2, 285, 723},
+        {"pro.demandeur.salarie.since",                    2, 285, 693},
+        {"pro.demandeur.apprenti.since",                   2, 285, 623},
+        {"pro.demandeur.stagiaire.since",                  2, 285, 593},
+        {"pro.demandeur.independant.since",                2, 285, 443},
+        {"pro.demandeur.gerant_salarie.since",             2, 292, 357},
+        {"pro.demandeur.gerant_salarie.affiliation",       2, 230, 341},
+        {"pro.demandeur.demandeur_emploi.since",           2, 285, 312},
         {"pro.demandeur.demandeur_emploi.indemnise_since", 2, 285, 282},
-        {"pro.demandeur.etudiant.since",             2, 285, 267},
-        {"pro.demandeur.retraite.since",             2, 285, 252},
-        {"pro.conjoint.sans_activite.since",         2, 453, 723},
-        {"pro.conjoint.salarie.since",               2, 453, 693},
-        {"pro.conjoint.apprenti.since",              2, 453, 623},
-        {"pro.conjoint.stagiaire.since",             2, 453, 593},
-        {"pro.conjoint.independant.since",           2, 453, 443},
-        {"pro.conjoint.demandeur_emploi.since",      2, 453, 312},
-        {"pro.conjoint.demandeur_emploi.indemnise_since", 2, 453, 282},
-        {"pro.conjoint.etudiant.since",              2, 453, 267},
-        {"pro.conjoint.retraite.since",              2, 453, 252},
+        {"pro.demandeur.etudiant.since",                   2, 285, 267},
+        {"pro.demandeur.retraite.since",                   2, 285, 252},
+        {"pro.conjoint.sans_activite.since",               2, 453, 723},
+        {"pro.conjoint.salarie.since",                     2, 453, 693},
+        {"pro.conjoint.apprenti.since",                    2, 453, 623},
+        {"pro.conjoint.stagiaire.since",                   2, 453, 593},
+        {"pro.conjoint.independant.since",                 2, 453, 443},
+        {"pro.conjoint.gerant_salarie.since",              2, 460, 357},
+        {"pro.conjoint.gerant_salarie.affiliation",        2, 398, 341},
+        {"pro.conjoint.demandeur_emploi.since",            2, 453, 312},
+        {"pro.conjoint.demandeur_emploi.indemnise_since",  2, 453, 282},
+        {"pro.conjoint.etudiant.since",                    2, 453, 267},
+        {"pro.conjoint.retraite.since",                    2, 453, 252},
 
         {"current_date", 4, 150, 200},
     };
@@ -290,6 +296,7 @@ public class RSAFormFiller extends FormFiller {
         demandeurCheckboxes.put(SituationProType.INDEPENDANT, "pro.demandeur.independant");
         demandeurCheckboxes.put(SituationProType.APPRENTI, "pro.demandeur.apprenti");
         demandeurCheckboxes.put(SituationProType.STAGIAIRE, "pro.demandeur.stagiaire");
+        demandeurCheckboxes.put(SituationProType.GERANT_SALARIE, "pro.demandeur.gerant_salarie");
         demandeurCheckboxes.put(SituationProType.DEMANDEUR_EMPLOI, "pro.demandeur.demandeur_emploi");
         demandeurCheckboxes.put(SituationProType.ETUDIANT, "pro.demandeur.etudiant");
         demandeurCheckboxes.put(SituationProType.RETRAITE, "pro.demandeur.retraite");
@@ -301,6 +308,7 @@ public class RSAFormFiller extends FormFiller {
         conjointCheckboxes.put(SituationProType.INDEPENDANT, "pro.conjoint.independant");
         conjointCheckboxes.put(SituationProType.APPRENTI, "pro.conjoint.apprenti");
         conjointCheckboxes.put(SituationProType.STAGIAIRE, "pro.conjoint.stagiaire");
+        conjointCheckboxes.put(SituationProType.GERANT_SALARIE, "pro.conjoint.gerant_salarie");
         conjointCheckboxes.put(SituationProType.DEMANDEUR_EMPLOI, "pro.conjoint.demandeur_emploi");
         conjointCheckboxes.put(SituationProType.ETUDIANT, "pro.conjoint.etudiant");
         conjointCheckboxes.put(SituationProType.RETRAITE, "pro.conjoint.retraite");
@@ -435,10 +443,14 @@ public class RSAFormFiller extends FormFiller {
                 String checkboxContrat = salarieContractCheckboxes.get(individu.role).get(situationPro.contractType);
                 checkbox(checkboxContrat);
                 break;
+            case GERANT_SALARIE:
+                appendText(String.format("pro.%s.gerant_salarie.affiliation", fieldPrefix), situationPro.gerantSalarieAffiliation);
+                break;
             case DEMANDEUR_EMPLOI:
                 isDemandeurEmploi = true;
                 if (null != situationPro.isIndemnise) {
-                    checkbox(String.format("pro.%s.demandeur_emploi.indemnise.%s", fieldPrefix, (situationPro.isIndemnise ? "oui" : "non")));
+                    String checkboxIndemnise = String.format("pro.%s.demandeur_emploi.indemnise.%s", fieldPrefix, (situationPro.isIndemnise ? "oui" : "non"));
+                    checkbox(checkboxIndemnise);
                     if (situationPro.isIndemnise) {
                         appendText(String.format("pro.%s.demandeur_emploi.indemnise_since", fieldPrefix), situationPro.indemniseSince);
                     }

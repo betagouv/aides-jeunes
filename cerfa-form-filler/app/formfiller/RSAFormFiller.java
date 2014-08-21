@@ -328,7 +328,7 @@ public class RSAFormFiller extends FormFiller {
 
     private void initStatutMaritalFields() {
         statutMaritalCheckboxes.put(StatutMarital.MARIAGE, "statut_marital.mariage");
-        statutMaritalCheckboxes.put(StatutMarital.PACS, "pacs");
+        statutMaritalCheckboxes.put(StatutMarital.PACS, "statut_marital.pacs");
         statutMaritalCheckboxes.put(StatutMarital.RELATION_LIBRE, "statut_marital.relation_libre");
         statutMaritalCheckboxes.put(StatutMarital.SEPARE, "statut_marital.separe");
         statutMaritalCheckboxes.put(StatutMarital.PACS_ROMPU, "statut_marital.pacs_rompu");

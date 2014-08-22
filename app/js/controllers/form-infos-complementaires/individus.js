@@ -4,6 +4,33 @@ angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', fun
     var situation = $scope.situation = SituationService.restoreLocal();
     $scope.relationTypeLabels = SituationService.relationTypeLabels;
 
+    $scope.situationsFamiliales = [
+        {
+            value: 'celibataire',
+            label: 'Célibataire depuis toujours'
+        },
+        {
+            value: 'divorce',
+            label: 'Divorcé'
+        },
+        {
+            value: 'veuf',
+            label: 'Veuf'
+        },
+        {
+            value: 'separe',
+            label: 'Séparé de fait'
+        },
+        {
+            value: 'pacs_rompu',
+            label: 'Pacs rompu'
+        },
+        {
+            value: 'concubinage_rompu',
+            label: 'Concubinage rompu'
+        }
+    ];
+
     var initPaysNaissance = function(individu) {
         if (individu.paysNaissance) {
             individu.choicePaysNaissance = 'France' === individu.paysNaissance ? 'france' : 'autre';
@@ -47,6 +74,9 @@ angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', fun
     };
 
     $scope.submit = function() {
+        if (null === situation.demandeur.situationFamiliale) {
+            delete situation.demandeur.situationFamiliale;
+        }
         $state.go('form_infos_complementaires_address_contact', {requestedCerfa: $stateParams.requestedCerfa});
     };
 });

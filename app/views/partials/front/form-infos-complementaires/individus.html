@@ -21,14 +21,12 @@
         <div class="form-group">
           <label class="col-sm-4 control-label" for="situation-familiale">Votre situation familiale</label>
           <div class="col-sm-8">
-            <select id="situation-familiale" class="form-control" ng-model="situation.demandeur.situationFamiliale">
+            <select
+              id="situation-familiale"
+              class="form-control"
+              ng-options="situationFamiliale.value as situationFamiliale.label for situationFamiliale in situationsFamiliales"
+              ng-model="situation.demandeur.situationFamiliale">
               <option value=""></option>
-              <option value="celibataire">Célibataire depuis toujours</option>
-              <option value="divorce">Divorcé</option>
-              <option value="veuf">Veuf</option>
-              <option value="separe">Séparé de fait</option>
-              <option value="pacs_rompu">Pacs rompu</option>
-              <option value="concubinage_rompu">Concubinage rompu</option>
             </select>
           </div>
         </div>

@@ -23,6 +23,13 @@
 </div>
 
 <div ui-view="ressources"></div>
+
+<div class="text-center" ng-if="situation.revenusCaptured && !situation.formLogement">
+  <button type="button" ng-click="situation.formLogement = true" class="btn btn-lg btn-primary btn-next">
+    Étape suivante : votre logement
+  </button>
+</div>
+
 <div class="row">
   <div ui-view="logement"></div>
   <div class="col-lg-2 visible-lg"></div>

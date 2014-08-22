@@ -3,6 +3,9 @@
 angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, SituationService) {
     $scope.situation = SituationService.restoreLocal();
 
+    if (!$scope.situation.logement) {
+        $scope.situation.logement = {};
+    }
     if (!$scope.situation.logement.adresse) {
         $scope.situation.logement.adresse = {};
     }

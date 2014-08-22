@@ -3,9 +3,9 @@
 angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', function($scope, $state, $stateParams, situation, SituationService) {
     $scope.situation = situation;
 
-    $scope.individusRef = [{id: 'demandeur', label: 'Vous', situationsPro: []}];
+    $scope.individusRef = [{id: 'demandeur', label: 'Vous', individu: situation.demandeur, situationsPro: []}];
     if (situation.conjoint) {
-        $scope.individusRef.push({id: 'conjoint', label: 'Votre partenaire', situationsPro: []});
+        $scope.individusRef.push({id: 'conjoint', label: 'Votre partenaire', individu: situation.conjoint, situationsPro: []});
     }
 
     $scope.situationsPro = [
@@ -57,15 +57,20 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
 
     $scope.individusRef.forEach(function(individuRef) {
         $scope.situationsPro.forEach(function(situationPro) {
-            individuRef.situationsPro.push({situation: situationPro.id, label: situationPro.label, selected: false});
+            var situationProIndividu = _.find(individuRef.individu.situationsPro, {situation: situationPro.id});
+            if (situationProIndividu) {
+                situationProIndividu.selected = true;
+                individuRef.situationsPro.push(situationProIndividu);
+            } else {
+                individuRef.situationsPro.push({situation: situationPro.id, label: situationPro.label, selected: false});
+            }
         });
     });
 
     $scope.submit = function() {
-        situation.demandeur.situationsPro = _.filter($scope.individusRef[0].situationsPro, 'selected');
-        if (situation.conjoint) {
-            situation.conjoint.situationsPro = _.filter($scope.individusRef[1].situationsPro, 'selected');
-        }
+        $scope.individusRef.forEach(function(individuRef) {
+            individuRef.individu.situationsPro = _.filter(individuRef.situationsPro, 'selected');
+        });
 
         SituationService.update(situation).then(function() {
             situation.infosComplementairesCaptured = true;

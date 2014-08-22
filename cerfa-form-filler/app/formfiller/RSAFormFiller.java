@@ -685,7 +685,7 @@ public class RSAFormFiller extends FormFiller {
     }
 
     private void fillLogement() {
-        if (null != situation.logement.adresse) {
+        if (null != situation.logement.adresse.adresse) {
             String[] addressTokens = situation.logement.adresse.adresse.split(" ");
             if (addressTokens.length > 1) {
                 String number = addressTokens[0];
@@ -717,15 +717,17 @@ public class RSAFormFiller extends FormFiller {
         }
 
         if (false == situation.logement.conjointMemeAdresse && null != situation.logement.adresseConjoint) {
-            String[] addressTokens = situation.logement.adresseConjoint.adresse.split(" ");
-            if (addressTokens.length > 1) {
-                String number = addressTokens[0];
-                if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
-                    appendText("adresse.conjoint.numero", number);
+            if (null != situation.logement.adresseConjoint.adresse) {
+                String[] addressTokens = situation.logement.adresseConjoint.adresse.split(" ");
+                if (addressTokens.length > 1) {
+                    String number = addressTokens[0];
+                    if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
+                        appendText("adresse.conjoint.numero", number);
+                    }
+                    addressTokens = ArrayUtils.remove(addressTokens, 0);
+                    String address = StringUtils.join(addressTokens, " ");
+                    appendText("adresse.conjoint.rue", address);
                 }
-                addressTokens = ArrayUtils.remove(addressTokens, 0);
-                String address = StringUtils.join(addressTokens, " ");
-                appendText("adresse.conjoint.rue", address);
             }
 
             appendNumber("adresse.conjoint.code_postal", situation.logement.adresseConjoint.codePostal);

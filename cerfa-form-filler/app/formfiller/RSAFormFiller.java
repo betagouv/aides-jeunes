@@ -692,7 +692,7 @@ public class RSAFormFiller extends FormFiller {
 
     private void fillLogement() {
         if (null != situation.logement.adresse) {
-            String[] addressTokens = situation.logement.adresse.split(" ");
+            String[] addressTokens = situation.logement.adresse.adresse.split(" ");
             if (addressTokens.length > 1) {
                 String number = addressTokens[0];
                 if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
@@ -704,8 +704,8 @@ public class RSAFormFiller extends FormFiller {
             }
         }
 
-        appendNumber("adresse.code_postal", situation.logement.codePostal);
-        appendText("adresse.ville", situation.logement.ville);
+        appendNumber("adresse.code_postal", situation.logement.adresse.codePostal);
+        appendText("adresse.ville", situation.logement.adresse.ville);
 
         String logementTypeCheckbox = logementTypeCheckboxes.get(situation.logement.type);
         checkbox(logementTypeCheckbox);
@@ -722,8 +722,8 @@ public class RSAFormFiller extends FormFiller {
             appendNumber("adresse.date_arrivee", situation.logement.dateArrivee.replaceAll("/", ""));
         }
 
-        if (false == situation.logement.conjointMemeAdresse && null != situation.logement.conjoint) {
-            String[] addressTokens = situation.logement.conjoint.adresse.split(" ");
+        if (false == situation.logement.conjointMemeAdresse && null != situation.logement.adresseConjoint) {
+            String[] addressTokens = situation.logement.adresseConjoint.adresse.split(" ");
             if (addressTokens.length > 1) {
                 String number = addressTokens[0];
                 if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
@@ -734,9 +734,9 @@ public class RSAFormFiller extends FormFiller {
                 appendText("adresse.conjoint.rue", address);
             }
 
-            appendNumber("adresse.conjoint.code_postal", situation.logement.conjoint.codePostal);
-            appendText("adresse.conjoint.ville", situation.logement.conjoint.ville);
-            appendText("adresse.conjoint.pays", situation.logement.conjoint.pays);
+            appendNumber("adresse.conjoint.code_postal", situation.logement.adresseConjoint.codePostal);
+            appendText("adresse.conjoint.ville", situation.logement.adresseConjoint.ville);
+            appendText("adresse.conjoint.pays", situation.logement.adresseConjoint.pays);
         }
     }
 

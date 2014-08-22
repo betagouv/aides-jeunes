@@ -6,7 +6,7 @@
   <div class="form-group">
     <label class="col-sm-3 control-label" for="address">Adresse</label>
     <div class="col-sm-9">
-      <input type="text" name="address" id="address" class="form-control" ng-model="situation.logement.adresse">
+      <input type="text" name="address" id="address" class="form-control" ng-model="situation.logement.adresse.adresse">
     </div>
   </div>
 
@@ -15,7 +15,7 @@
       <div class="form-group">
         <label class="col-sm-6 control-label" for="postalCode">Code postal</label>
         <div class="col-sm-4">
-          <input type="number" name="postalCode" id="postalCode" class="form-control" ng-model="situation.logement.codePostal">
+          <input type="number" name="postalCode" id="postalCode" class="form-control" ng-model="situation.logement.adresse.codePostal">
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
       <div class="form-group">
         <label class="col-sm-1 control-label" for="city">Ville</label>
         <div class="col-sm-11">
-          <input type="text" name="city" id="city" class="form-control" ng-model="situation.logement.ville">
+          <input type="text" name="city" id="city" class="form-control" ng-model="situation.logement.adresse.ville">
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label" for="address-conjoint">Adresse</label>
       <div class="col-sm-9">
-        <input type="text" id="address-conjoint" class="form-control" ng-model="situation.logement.conjoint.adresse">
+        <input type="text" id="address-conjoint" class="form-control" ng-model="situation.logement.adresseConjoint.adresse">
       </div>
     </div>
 
@@ -66,7 +66,7 @@
         <div class="form-group">
           <label class="col-sm-6 control-label" for="postal-code-conjoint">Code postal</label>
           <div class="col-sm-4">
-            <input type="number" id="postal-code-conjoint" class="form-control" ng-model="situation.logement.conjoint.codePostal">
+            <input type="number" id="postal-code-conjoint" class="form-control" ng-model="situation.logement.adresseConjoint.codePostal">
           </div>
         </div>
       </div>
@@ -75,7 +75,7 @@
         <div class="form-group">
           <label class="col-sm-1 control-label" for="city-conjoint">Ville</label>
           <div class="col-sm-11">
-            <input type="text" name="city" id="city-conjoint" class="form-control" ng-model="situation.logement.conjoint.ville">
+            <input type="text" name="city" id="city-conjoint" class="form-control" ng-model="situation.logement.adresseConjoint.ville">
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label" for="pays-conjoint">Pays</label>
       <div class="col-sm-2">
-        <input type="text" id="pays-conjoint" class="form-control" ng-model="situation.logement.conjoint.pays">
+        <input type="text" id="pays-conjoint" class="form-control" ng-model="situation.logement.adresseConjoint.pays">
       </div>
     </div>
   </div>

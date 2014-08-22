@@ -10,7 +10,7 @@ import models.Individu.LienParente;
 import models.Individu.Nationalite;
 import models.Individu.StatutMarital;
 import models.Logement;
-import models.Logement.LogementConjoint;
+import models.Logement.Adresse;
 import models.Logement.LogementType;
 import models.Situation;
 
@@ -70,7 +70,8 @@ public class IntegrationTest {
         situation.individus.add(demandeur);
         situation.logement = new Logement();
         situation.logement.type = LogementType.GRATUIT;
-        situation.logement.codePostal = "75011";
+        situation.logement.adresse = new Adresse();
+        situation.logement.adresse.codePostal = "75011";
 
         return situation;
     }
@@ -112,19 +113,20 @@ public class IntegrationTest {
         situation.email = "prenom.nom@gmail.com";
         situation.phoneNumber = "0685644221";
 
-        situation.logement.adresse = "10 avenue du Général de Gaulle";
+        situation.logement.adresse = new Adresse();
+        situation.logement.adresse.adresse = "10 avenue du Général de Gaulle";
+        situation.logement.adresse.ville = "Paris";
         situation.logement.dateArrivee = "12/07/2009";
-        situation.logement.ville = "Paris";
         situation.logement.type = LogementType.LOCATAIRE;
         situation.logement.loyer = 450;
 
         situation.logement.conjointMemeAdresse = false;
-        LogementConjoint logementConjoint = new LogementConjoint();
-        situation.logement.conjoint = logementConjoint;
-        logementConjoint.adresse = "12 avenue des Champs-Elysées";
-        logementConjoint.codePostal = "32256";
-        logementConjoint.ville = "Montluchon";
-        logementConjoint.pays = "France";
+        Adresse adresseConjoint = new Adresse();
+        situation.logement.adresseConjoint = adresseConjoint;
+        adresseConjoint.adresse = "12 avenue des Champs-Elysées";
+        adresseConjoint.codePostal = "32256";
+        adresseConjoint.ville = "Montluchon";
+        adresseConjoint.pays = "France";
 
         Individu demandeur = situation.individus.get(0);
         fillIndividu(demandeur);

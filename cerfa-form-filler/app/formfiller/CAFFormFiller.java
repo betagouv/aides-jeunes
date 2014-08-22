@@ -270,9 +270,9 @@ public class CAFFormFiller extends FormFiller {
     }
 
     private void fillLogement() {
-        appendText("adresse.adresse", situation.logement.adresse);
-        appendNumber("adresse.code_postal", situation.logement.codePostal);
-        appendText("adresse.ville", situation.logement.ville);
+        appendText("adresse.adresse", situation.logement.adresse.adresse);
+        appendNumber("adresse.code_postal", situation.logement.adresse.codePostal);
+        appendText("adresse.ville", situation.logement.adresse.ville);
         appendText("adresse.pays", "France");
     }
 

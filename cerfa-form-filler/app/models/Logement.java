@@ -10,14 +10,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class Logement {
 
-    public String adresse;
-    public String codePostal;
-    public String ville;
+    public Adresse adresse;
     public LogementType type;
     public Integer loyer;
     public String dateArrivee;
     public boolean conjointMemeAdresse;
-    public LogementConjoint conjoint;
+    public Adresse adresseConjoint;
 
     @JsonDeserialize(using = LogementTypeDeserializer.class)
     public static enum LogementType {
@@ -48,7 +46,7 @@ public class Logement {
         }
     }
 
-    public static class LogementConjoint {
+    public static class Adresse {
 
         public String adresse;
         public String codePostal;

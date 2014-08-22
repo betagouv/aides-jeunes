@@ -232,8 +232,8 @@ public class CmuFormFiller extends FormFiller {
     }
 
     private void fillLogement(Logement logement) {
-        appendText("demandeur.adresse", logement.adresse);
-        appendNumber("demandeur.code_postal", logement.codePostal);
-        appendText("demandeur.ville", logement.ville);
+        appendText("demandeur.adresse", logement.adresse.adresse);
+        appendNumber("demandeur.code_postal", logement.adresse.codePostal);
+        appendText("demandeur.ville", logement.adresse.ville);
     }
 }

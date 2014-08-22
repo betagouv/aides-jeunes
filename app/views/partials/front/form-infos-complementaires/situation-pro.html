@@ -4,40 +4,40 @@
   <h2>Votre situation professionnelle</h2>
 
   <div class="row">
-    <div class="col-md-6" ng-repeat="individu in individus">
-      <h3>{{ individu.label }}</h3>
+    <div class="col-md-6" ng-repeat="individuRef in individusRef">
+      <h3>{{ individuRef.label }}</h3>
 
       <div class="form-group">
         <label class="col-sm-3 control-label">Situation(s)</label>
         <div class="col-sm-9">
-          <div ng-repeat="situationPro in situationsPro">
+          <div ng-repeat="situationPro in individuRef.situationsPro">
             <div class="checkbox">
               <label>
-                <input type="checkbox" ng-model="selectedSituations[individu.id][situationPro.id]" ng-value="situationPro.id">
+                <input type="checkbox" ng-model="situationPro.selected">
                 {{ situationPro.label }}
               </label>
             </div>
 
-            <div ng-if="selectedSituations[individu.id][situationPro.id]">
+            <div ng-if="situationPro.selected">
               <div class="form-group">
-                <label class="col-sm-5 control-label" for="date-situation-{{ individu.id }}-{{ situationPro.id }}">Depuis quand ?</label>
+                <label class="col-sm-5 control-label" for="date-situation-{{ individuRef.id }}-{{ situationPro.id }}">Depuis quand ?</label>
                 <div class="col-sm-7">
-                  <input type="text" id="date-situation-{{ individu.id }}-{{ situationPro.id }}" class="form-control" ng-model="datesSelectedSituations[individu.id][situationPro.id]" date-autocomplete placeholder="jj/mm/aaaa">
+                  <input type="text" id="date-situation-{{ individuRef.id }}-{{ situationPro.id }}" class="form-control" ng-model="situationPro.since" date-autocomplete placeholder="jj/mm/aaaa">
                 </div>
               </div>
 
               <div class="form-group" ng-if="'sans_activite' === situationPro.id">
                 <label class="col-sm-5 control-label">Activité cessée volontairement ?</label>
                 <div class="col-sm-7">
-                  <button type="button" class="btn btn-sm btn-primary" ng-model="isActiviteCesseeVolontairement[individu.id]" btn-radio="true">Oui</button>
-                  <button type="button" class="btn btn-sm btn-primary" ng-model="isActiviteCesseeVolontairement[individu.id]" btn-radio="false">Non</button>
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isActiviteCesseeVolontairement" btn-radio="true">Oui</button>
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isActiviteCesseeVolontairement" btn-radio="false">Non</button>
                 </div>
               </div>
 
               <div class="form-group" ng-if="'salarie' === situationPro.id">
-                <label class="col-sm-5 control-label" for="type-contrat-salarie-{{ individu.id }}">Type de contrat</label>
+                <label class="col-sm-5 control-label" for="type-contrat-salarie-{{ individuRef.id }}">Type de contrat</label>
                 <div class="col-sm-7">
-                  <select class="form-control" ng-model="salarieContractTypes[individu.id]" id="type-contrat-salarie-{{ individu.id }}">
+                  <select class="form-control" ng-model="situationPro.contractType" id="type-contrat-salarie-{{ individuRef.id }}">
                     <option value=""></option>
                     <option value="cdi">CDI</option>
                     <option value="cdd">CDD</option>
@@ -49,15 +49,15 @@
               <div class="form-group" ng-if="'stagiaire' === situationPro.id">
                 <label class="col-sm-5 control-label">Stage rémunéré ?</label>
                 <div class="col-sm-7">
-                  <button type="button" class="btn btn-sm btn-primary" ng-model="isStagiaireRemunere[individu.id]" btn-radio="true">Oui</button>
-                  <button type="button" class="btn btn-sm btn-primary" ng-model="isStagiaireRemunere[individu.id]" btn-radio="false">Non</button>
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isStagiaireRemunere" btn-radio="true">Oui</button>
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isStagiaireRemunere" btn-radio="false">Non</button>
                 </div>
               </div>
 
               <div class="form-group" ng-if="'gerant_salarie' === situationPro.id">
-                <label class="col-sm-5 control-label" for="gerant-salarie-affiliation-{{ individu.id }}">Où êtes-vous/est-il affilié ?</label>
+                <label class="col-sm-5 control-label" for="gerant-salarie-affiliation-{{ individuRef.id }}">Où êtes-vous/est-il affilié ?</label>
                 <div class="col-sm-7">
-                  <input type="text" id="gerant-salarie-affiliation-{{ individu.id }}" class="form-control" ng-model="gerantSalarieAffiliation[individu.id]">
+                  <input type="text" id="gerant-salarie-affiliation-{{ individuRef.id }}" class="form-control" ng-model="situationPro.gerantSalarieAffiliation">
                 </div>
               </div>
 
@@ -65,15 +65,15 @@
                 <div class="form-group">
                   <label class="col-sm-5 control-label">Chômeur indemnisé ?</label>
                   <div class="col-sm-7">
-                    <button type="button" class="btn btn-sm btn-primary" ng-model="isChomeurIndemnise[individu.id]" btn-radio="true">Oui</button>
-                    <button type="button" class="btn btn-sm btn-primary" ng-model="isChomeurIndemnise[individu.id]" btn-radio="false">Non</button>
+                    <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isChomeurIndemnise" btn-radio="true">Oui</button>
+                    <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isChomeurIndemnise" btn-radio="false">Non</button>
                   </div>
                 </div>
 
-                <div class="form-group" ng-if="true === isChomeurIndemnise[individu.id]">
-                  <label class="col-sm-5 control-label" for="date-chomeur-indemnise-{{ individu.id }}">Depuis quand ?</label>
+                <div class="form-group" ng-if="true === situationPro.isChomeurIndemnise">
+                  <label class="col-sm-5 control-label" for="date-chomeur-indemnise-{{ individuRef.id }}">Depuis quand ?</label>
                   <div class="col-sm-7">
-                    <input type="text" id="date-chomeur-indemnise-{{ individu.id }}" class="form-control" ng-model="chomeurIndemniseSince[individu.id]" date-autocomplete placeholder="jj/mm/aaaa">
+                    <input type="text" id="date-chomeur-indemnise-{{ individuRef.id }}" class="form-control" ng-model="situationPro.chomeurIndemniseSince" date-autocomplete placeholder="jj/mm/aaaa">
                   </div>
                 </div>
               </div>

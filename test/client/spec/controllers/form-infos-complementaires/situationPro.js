@@ -1,5 +1,7 @@
 'use strict';
 
+/* global _ */
+
 describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
 
     var scope;
@@ -10,56 +12,52 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
     });
 
     describe('initialization', function() {
-        var demandeur, conjoint;
-
-        beforeEach(function() {
-            demandeur = {};
-            conjoint = {};
-            inject(function($controller) {
-                $controller('FormInfosComplementairesSituationProCtrl', {$scope: scope, situation: {demandeur: demandeur, conjoint: conjoint}});
-            });
-        });
-
-        it('Should create an array of individus containing infos on the demandeur and its conjoint if defined', function() {
-            // then
-            expect(scope.individus.length).toBe(2);
-            expect(scope.individus[1].id).toBe('conjoint');
-            expect(scope.individus[1].label).toBeDefined();
-        });
-
-        it('Should create an array of individus containing infos only on the demandeur if no conjoint', function() {
+        it('Should create an array of individus references containing id and label of the demandeur and its conjoint if defined', function() {
             // when
             inject(function($controller) {
-                $controller('FormInfosComplementairesSituationProCtrl', {$scope: scope, situation: {demandeur: demandeur}});
+                $controller('FormInfosComplementairesSituationProCtrl', {$scope: scope, situation: {demandeur: {}, conjoint: {}}});
             });
 
             // then
-            expect(scope.individus.length).toBe(1);
-            expect(scope.individus[0].id).toBe('demandeur');
-            expect(scope.individus[0].label).toBeDefined();
+            expect(scope.individusRef.length).toBe(2);
+            expect(scope.individusRef[1].id).toBe('conjoint');
+            expect(scope.individusRef[1].label).toBeDefined();
         });
 
-        it('Should create a map of selected situations for each individu', function() {
+        it('Should create an array of individus containing id and label of the demandeur only if no conjoint', function() {
+            // when
+            inject(function($controller) {
+                $controller('FormInfosComplementairesSituationProCtrl', {$scope: scope, situation: {demandeur: {}}});
+            });
+
             // then
-            expect(scope.selectedSituations.demandeur).toEqual({});
-            expect(scope.selectedSituations.conjoint).toEqual({});
+            expect(scope.individusRef.length).toBe(1);
+            expect(scope.individusRef[0].id).toBe('demandeur');
+            expect(scope.individusRef[0].label).toBeDefined();
         });
 
-        it('Should create a map of dates for selected situations', function() {
+        it('Should init each situation as not selected for each individu', function() {
+            // given
+            var situation = {demandeur: {}, conjoint: {}};
+
+            // when
+            inject(function($controller) {
+                $controller('FormInfosComplementairesSituationProCtrl', {$scope: scope, situation: situation});
+            });
+
             // then
-            expect(scope.datesSelectedSituations.demandeur).toEqual({});
-            expect(scope.datesSelectedSituations.conjoint).toEqual({});
+            expect(scope.individusRef[0].situationsPro.length).toBe(scope.situationsPro.length);
+            expect(_.filter(scope.individusRef[0].situationsPro, 'selected').length).toBe(0);
+            expect(scope.individusRef[1].situationsPro.length).toBe(scope.situationsPro.length);
+            expect(_.filter(scope.individusRef[1].situationsPro, 'selected').length).toBe(0);
         });
     });
 
     describe('function submit()', function() {
-        var situation, demandeur, conjoint, SituationService;
+        var situation, SituationService;
 
         beforeEach(function() {
-            demandeur = {};
-            conjoint = {};
-            situation = {demandeur: demandeur, conjoint: conjoint};
-
+            situation = {demandeur: {}, conjoint: {}};
             inject(function($controller, _SituationService_) {
                 SituationService = _SituationService_;
                 spyOn(SituationService, 'update').andReturn({then: function() {}});
@@ -71,87 +69,16 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
             });
         });
 
-        it('Should save selected situations as an array into each individu object', function() {
+        it('Should append selected situations to each individu', function() {
             // given
-            scope.selectedSituations.demandeur.situation1 = true;
-            scope.selectedSituations.demandeur.situation2 = false;
-            scope.selectedSituations.conjoint.situation3 = true;
-            scope.datesSelectedSituations.demandeur.situation1 = '14/09/1989';
-            scope.datesSelectedSituations.demandeur.situation2 = '15/09/1989';
-            scope.datesSelectedSituations.conjoint.situation3 = '16/09/1989';
+            scope.individusRef[0].situationsPro[3].selected = true;
 
             // when
             scope.submit();
 
             // then
-            expect(demandeur.situationsPro.length).toBe(1);
-            expect(demandeur.situationsPro[0].situation).toBe('situation1');
-            expect(demandeur.situationsPro[0].since).toBe('14/09/1989');
-            expect(conjoint.situationsPro.length).toBe(1);
-            expect(conjoint.situationsPro[0].situation).toBe('situation3');
-            expect(conjoint.situationsPro[0].since).toBe('16/09/1989');
-        });
-
-        it('Should save the "activite cessee volontairement" field for the special case of "sans activite" situation', function() {
-            // given
-            scope.selectedSituations.demandeur.sans_activite = true;
-            scope.isActiviteCesseeVolontairement.demandeur = true;
-
-            // when
-            scope.submit();
-
-            // then
-            expect(demandeur.situationsPro[0].volontairementSansActivite).toBe(true);
-        });
-
-        it('Should save the contract type for the special case of "salarie" situation', function() {
-            // given
-            scope.selectedSituations.demandeur.salarie = true;
-            scope.salarieContractTypes.demandeur = 'cdi';
-
-            // when
-            scope.submit();
-
-            // then
-            expect(demandeur.situationsPro[0].contractType).toBe('cdi');
-        });
-
-        it('Should save the "is payed" field for the special case of "stagiaire" situation', function() {
-            // given
-            scope.selectedSituations.demandeur.stagiaire = true;
-            scope.isStagiaireRemunere.demandeur = true;
-
-            // when
-            scope.submit();
-
-            // then
-            expect(demandeur.situationsPro[0].isRemunere).toBe(true);
-        });
-
-        it('Should save the "affiliation" field for the special case of "gerant salarie" situation', function() {
-            // given
-            scope.selectedSituations.demandeur.gerant_salarie = true;
-            scope.gerantSalarieAffiliation.demandeur = 'test';
-
-            // when
-            scope.submit();
-
-            // then
-            expect(demandeur.situationsPro[0].gerantSalarieAffiliation).toBe('test');
-        });
-
-        it('Should save the "is indemnise" and "indemnise since" fields for the special case of "demandeur d\'emploi" situation', function() {
-            // given
-            scope.selectedSituations.demandeur.demandeur_emploi = true;
-            scope.isChomeurIndemnise.demandeur = true;
-            scope.chomeurIndemniseSince.demandeur = '12/07/2012';
-
-            // when
-            scope.submit();
-
-            // then
-            expect(demandeur.situationsPro[0].isIndemnise).toBe(true);
-            expect(demandeur.situationsPro[0].indemniseSince).toBe('12/07/2012');
+            expect(situation.demandeur.situationsPro.length).toBe(1);
+            expect(situation.demandeur.situationsPro[0]).toBe(scope.individusRef[0].situationsPro[3]);
         });
 
         it('Should update the situation', function() {

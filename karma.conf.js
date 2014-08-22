@@ -24,6 +24,7 @@ module.exports = function(config) {
       'app/bower_components/lodash/dist/lodash.compat.js',
       'app/bower_components/angular-ui-router/release/angular-ui-router.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap.js',
+      'app/bower_components/lodash/dist/lodash.compat.js',
       'app/js/**/*.js',
       'test/client/spec/**/*.js'
     ],

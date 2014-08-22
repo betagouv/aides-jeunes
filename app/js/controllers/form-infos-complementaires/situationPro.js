@@ -3,24 +3,10 @@
 angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', function($scope, $state, $stateParams, situation, SituationService) {
     $scope.situation = situation;
 
-    $scope.individus = [{id: 'demandeur', label: 'Vous'}];
+    $scope.individusRef = [{id: 'demandeur', label: 'Vous', situationsPro: []}];
     if (situation.conjoint) {
-        $scope.individus.push({id: 'conjoint', label: 'Votre partenaire'});
+        $scope.individusRef.push({id: 'conjoint', label: 'Votre partenaire', situationsPro: []});
     }
-
-    $scope.selectedSituations = {};
-    $scope.datesSelectedSituations = {};
-    $scope.individus.forEach(function(individu) {
-        $scope.selectedSituations[individu.id] = {};
-        $scope.datesSelectedSituations[individu.id] = {};
-    });
-
-    $scope.isActiviteCesseeVolontairement = {};
-    $scope.salarieContractTypes = {};
-    $scope.isStagiaireRemunere = {};
-    $scope.gerantSalarieAffiliation = {};
-    $scope.isChomeurIndemnise = {};
-    $scope.chomeurIndemniseSince = {};
 
     $scope.situationsPro = [
         {
@@ -69,30 +55,17 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
         }
     ];
 
-    $scope.submit = function() {
-        $scope.individus.forEach(function(individu) {
-            var situationsPro = situation[individu.id].situationsPro = [];
-            _.forEach($scope.selectedSituations[individu.id], function(selected, situationPro) {
-                if (selected) {
-                    var situationToAppend = {situation: situationPro, since: $scope.datesSelectedSituations[individu.id][situationPro]};
-                    if ('sans_activite' === situationPro) {
-                        situationToAppend.volontairementSansActivite = $scope.isActiviteCesseeVolontairement[individu.id];
-                    } else if ('salarie' === situationPro) {
-                        situationToAppend.contractType = $scope.salarieContractTypes[individu.id];
-                    } else if ('stagiaire' === situationPro) {
-                        situationToAppend.isRemunere = $scope.isStagiaireRemunere[individu.id];
-                    } else if ('gerant_salarie' === situationPro) {
-                        situationToAppend.gerantSalarieAffiliation = $scope.gerantSalarieAffiliation[individu.id];
-                    } else if ('demandeur_emploi' === situationPro) {
-                        situationToAppend.isIndemnise = $scope.isChomeurIndemnise[individu.id];
-                        if (situationToAppend.isIndemnise) {
-                            situationToAppend.indemniseSince = $scope.chomeurIndemniseSince[individu.id];
-                        }
-                    }
-                    situationsPro.push(situationToAppend);
-                }
-            });
+    $scope.individusRef.forEach(function(individuRef) {
+        $scope.situationsPro.forEach(function(situationPro) {
+            individuRef.situationsPro.push({situation: situationPro.id, label: situationPro.label, selected: false});
         });
+    });
+
+    $scope.submit = function() {
+        situation.demandeur.situationsPro = _.filter($scope.individusRef[0].situationsPro, 'selected');
+        if (situation.conjoint) {
+            situation.conjoint.situationsPro = _.filter($scope.individusRef[1].situationsPro, 'selected');
+        }
 
         SituationService.update(situation).then(function() {
             situation.infosComplementairesCaptured = true;

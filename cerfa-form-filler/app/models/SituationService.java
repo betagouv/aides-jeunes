@@ -27,6 +27,19 @@ public class SituationService {
         return sumRessourcesOfType(Arrays.asList(individu), periode, resourceTypes);
     }
 
+    public int sumAllRessources(Individu individu, RessourcePeriode periode) {
+        return sumRessourcesOfType(individu, periode, RessourceType.values());
+    }
+
+    public int sumAllRessources(Individu individu) {
+        int result = 0;
+        for (RessourcePeriode periode : RessourcePeriode.values()) {
+            result += sumAllRessources(individu, periode);
+        }
+
+        return result;
+    }
+
     private boolean isRessourceInScope(Ressource ressource, RessourcePeriode periode, RessourceType... resourceTypes) {
         if (ressource.periode == periode) {
             if (ArrayUtils.contains(resourceTypes, ressource.type)) {

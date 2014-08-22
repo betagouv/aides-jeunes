@@ -111,6 +111,12 @@ public class RSAFormFiller extends FormFiller {
         {"ressources.conjoint.1.aucune",  3, 420, 637},
         {"ressources.conjoint.2.aucune",  3, 477, 637},
         {"ressources.conjoint.3.aucune",  3, 533, 637},
+        {"ressources.enfant.1.1.aucune",  4, 250, 739},
+        {"ressources.enfant.1.2.aucune",  4, 307, 739},
+        {"ressources.enfant.1.3.aucune",  4, 363, 739},
+        {"ressources.enfant.2.1.aucune",  4, 420, 739},
+        {"ressources.enfant.2.2.aucune",  4, 477, 739},
+        {"ressources.enfant.2.3.aucune",  4, 533, 739},
     };
 
     private static final Object[][] textFields = {
@@ -242,26 +248,68 @@ public class RSAFormFiller extends FormFiller {
         {"ressources.conjoint.3.allocationsChomage",       3, 512, 435},
         {"ressources.conjoint.3.indChomagePartiel",        3, 512, 412},
         {"ressources.conjoint.3.indJourMaternite",         3, 512, 376},
+        {"ressources.enfant.1.1.revenusSalarie",           4, 229, 717},
+        {"ressources.enfant.1.1.revenusNonSalarie",        4, 229, 613},
+        {"ressources.enfant.1.1.pensionsAlimentaires",     4, 229, 601},
+        {"ressources.enfant.1.1.pensionsRetraitesRentes",  4, 229, 553},
+        {"ressources.enfant.1.1.allocationsChomage",       4, 229, 541},
+        {"ressources.enfant.1.1.indChomagePartiel",        4, 229, 518},
+        {"ressources.enfant.1.1.indJourMaternite",         4, 229, 482},
+        {"ressources.enfant.1.2.revenusSalarie",           4, 285, 717},
+        {"ressources.enfant.1.2.revenusNonSalarie",        4, 285, 613},
+        {"ressources.enfant.1.2.pensionsAlimentaires",     4, 285, 601},
+        {"ressources.enfant.1.2.pensionsRetraitesRentes",  4, 285, 553},
+        {"ressources.enfant.1.2.allocationsChomage",       4, 285, 541},
+        {"ressources.enfant.1.2.indChomagePartiel",        4, 285, 518},
+        {"ressources.enfant.1.2.indJourMaternite",         4, 285, 482},
+        {"ressources.enfant.1.3.revenusSalarie",           4, 341, 717},
+        {"ressources.enfant.1.3.revenusNonSalarie",        4, 341, 613},
+        {"ressources.enfant.1.3.pensionsAlimentaires",     4, 341, 601},
+        {"ressources.enfant.1.3.pensionsRetraitesRentes",  4, 341, 553},
+        {"ressources.enfant.1.3.allocationsChomage",       4, 341, 541},
+        {"ressources.enfant.1.3.indChomagePartiel",        4, 341, 518},
+        {"ressources.enfant.1.3.indJourMaternite",         4, 341, 482},
+        {"ressources.enfant.2.1.revenusSalarie",           4, 399, 717},
+        {"ressources.enfant.2.1.revenusNonSalarie",        4, 399, 613},
+        {"ressources.enfant.2.1.pensionsAlimentaires",     4, 399, 601},
+        {"ressources.enfant.2.1.pensionsRetraitesRentes",  4, 399, 553},
+        {"ressources.enfant.2.1.allocationsChomage",       4, 399, 541},
+        {"ressources.enfant.2.1.indChomagePartiel",        4, 399, 518},
+        {"ressources.enfant.2.1.indJourMaternite",         4, 399, 482},
+        {"ressources.enfant.2.2.revenusSalarie",           4, 455, 717},
+        {"ressources.enfant.2.2.revenusNonSalarie",        4, 455, 613},
+        {"ressources.enfant.2.2.pensionsAlimentaires",     4, 455, 601},
+        {"ressources.enfant.2.2.pensionsRetraitesRentes",  4, 455, 553},
+        {"ressources.enfant.2.2.allocationsChomage",       4, 455, 541},
+        {"ressources.enfant.2.2.indChomagePartiel",        4, 455, 518},
+        {"ressources.enfant.2.2.indJourMaternite",         4, 455, 482},
+        {"ressources.enfant.2.3.revenusSalarie",           4, 512, 717},
+        {"ressources.enfant.2.3.revenusNonSalarie",        4, 512, 613},
+        {"ressources.enfant.2.3.pensionsAlimentaires",     4, 512, 601},
+        {"ressources.enfant.2.3.pensionsRetraitesRentes",  4, 512, 553},
+        {"ressources.enfant.2.3.allocationsChomage",       4, 512, 541},
+        {"ressources.enfant.2.3.indChomagePartiel",        4, 512, 518},
+        {"ressources.enfant.2.3.indJourMaternite",         4, 512, 482},
 
         {"current_date", 4, 150, 200},
     };
 
     private static final Object[][] numberFields = {
         {"demandeur.date_naissance",        0, 114, 635,  8, 15.7f},
-        {"demandeur.departement_naissance", 0, 261, 608,  2},
+        {"demandeur.departement_naissance", 0, 262, 608,  2},
         {"demandeur.nir",                   0,  34, 507, 13, 14.8f},
         {"demandeur.nir2",                  0,  229, 507,  2, 14.8f},
         {"conjoint.date_naissance",         0, 390, 635,  8, 15.7f},
-        {"conjoint.departement_naissance",  0, 537, 608,  2},
+        {"conjoint.departement_naissance",  0, 538, 608,  2},
         {"conjoint.nir",                    0, 310, 507, 13, 14.8f},
         {"conjoint.nir2",                   0, 506, 507,  2, 14.8f},
 
         {"adresse.code_postal",          0,  90, 352, 5, 14.9f},
-        {"adresse.date_arrivee",         0, 184, 293, 8},
+        {"adresse.date_arrivee",         0, 185, 293, 8},
         {"adresse.conjoint.code_postal", 0,  90, 209, 5, 14.9f},
 
-        {"tel.fixe",   0,  94, 338, 10, 14.9f},
-        {"tel.mobile", 0, 378, 338, 10, 14.9f},
+        {"tel.fixe",   0,  93, 338, 10, 14.9f},
+        {"tel.mobile", 0, 377, 338, 10, 14.9f},
 
         {"statut_marital.date.mariage",           1, 172, 732, 8},
         {"statut_marital.date.pacs",              1, 172, 717, 8},
@@ -283,6 +331,7 @@ public class RSAFormFiller extends FormFiller {
 
     private SituationService situationService;
     private int currentEnfant = 1;
+    private int currentEnfantWithRessources = 1;
 
     public RSAFormFiller() {
         initCiviliteCheckboxes();
@@ -422,39 +471,7 @@ public class RSAFormFiller extends FormFiller {
     }
 
     private void fillDemandeur(Individu demandeur) {
-        String civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.civilite);
-        checkbox(civiliteCheckbox);
-        appendText("demandeur.nom", demandeur.lastName);
-        appendText("demandeur.nom_usage", demandeur.nomUsage);
-        appendText("demandeur.prenom", demandeur.firstName);
-        appendNumber("demandeur.date_naissance", demandeur.dateDeNaissance.replaceAll("/", ""));
-
-        if (null != demandeur.paysNaissance) {
-            appendText("demandeur.pays_naissance", demandeur.paysNaissance);
-            if ("france".equals(demandeur.paysNaissance.toLowerCase())) {
-                appendText("demandeur.ville_naissance", demandeur.villeNaissance);
-                if (null != demandeur.departementNaissance) {
-                    appendNumber("demandeur.departement_naissance", String.valueOf(demandeur.departementNaissance));
-                }
-            }
-        }
-
-        String checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.DEMANDEUR).get(demandeur.nationalite);
-        checkbox(checkboxNationalite);
-
-        if (null != demandeur.nir) {
-            appendNumber("demandeur.nir", demandeur.nir.substring(0, 13));
-            appendNumber("demandeur.nir2", demandeur.nir.substring(13, 15));
-        }
-
-        if (null != demandeur.inscritCaf) {
-            if (demandeur.inscritCaf) {
-                checkbox("demandeur.inscrit_caf.oui");
-                appendText("demandeur.num_allocataire", demandeur.numeroAllocataire);
-            } else {
-                checkbox("demandeur.inscrit_caf.non");
-            }
-        }
+        fillParent(demandeur);
 
         if (null != demandeur.statusMarital) {
             if (demandeur.statusMarital.isAlone) {
@@ -479,13 +496,73 @@ public class RSAFormFiller extends FormFiller {
         }
 
         fillPensionAlimentaire(demandeur);
-        fillSituationsPro(demandeur);
-        fillRessources(demandeur);
+    }
+
+    private void fillParent(Individu individu) {
+        String civiliteCheckbox = civiliteCheckboxes.get(individu.role).get(individu.civilite);
+        checkbox(civiliteCheckbox);
+
+        String fieldPrefix = getFieldPrefix(individu.role);
+        appendText(String.format("%s.nom", fieldPrefix), individu.lastName);
+        appendText(String.format("%s.nom_usage", fieldPrefix), individu.nomUsage);
+        appendText(String.format("%s.prenom", fieldPrefix), individu.firstName);
+        appendNumber(String.format("%s.date_naissance", fieldPrefix), individu.dateDeNaissance.replaceAll("/", ""));
+
+        if (null != individu.paysNaissance) {
+            appendText(String.format("%s.pays_naissance", fieldPrefix), individu.paysNaissance);
+            if ("france".equals(individu.paysNaissance.toLowerCase())) {
+                appendText(String.format("%s.ville_naissance", fieldPrefix), individu.villeNaissance);
+                if (null != individu.departementNaissance) {
+                    appendNumber(String.format("%s.departement_naissance", fieldPrefix), String.valueOf(individu.departementNaissance));
+                }
+            }
+        }
+
+        String checkboxNationalite = nationaliteCheckboxes.get(individu.role).get(individu.nationalite);
+        checkbox(checkboxNationalite);
+
+        if (null != individu.nir) {
+            appendNumber(String.format("%s.nir", fieldPrefix), individu.nir.substring(0, 13));
+            appendNumber(String.format("%s.nir2", fieldPrefix), individu.nir.substring(13, 15));
+        }
+
+        if (null != individu.inscritCaf) {
+            if (individu.inscritCaf) {
+                checkbox(String.format("%s.inscrit_caf.oui", fieldPrefix));
+                appendText(String.format("%s.num_allocataire", fieldPrefix), individu.numeroAllocataire);
+            } else {
+                checkbox(String.format("%s.inscrit_caf.non", fieldPrefix));
+            }
+        }
+
+        fillSituationsPro(individu);
+        fillRessources(individu);
+    }
+
+    private String getFieldPrefix(IndividuRole role) {
+        String fieldPrefix;
+        switch (role) {
+        case DEMANDEUR:
+            fieldPrefix = "demandeur";
+            break;
+        case CONJOINT:
+            fieldPrefix = "conjoint";
+            break;
+        case ENFANT:
+        case PERSONNE_A_CHARGE:
+            fieldPrefix = "enfant." + currentEnfant;
+            break;
+        default:
+            throw new RuntimeException();
+        }
+
+        return fieldPrefix;
     }
 
     private void fillSituationsPro(Individu individu) {
         boolean isDemandeurEmploi = false;
-        String fieldPrefix = IndividuRole.DEMANDEUR == individu.role ? "demandeur" : "conjoint";
+        String fieldPrefix = getFieldPrefix(individu.role);
+
         for (SituationPro situationPro : individu.situationsPro) {
             String situationProCheckbox = situationsProCheckboxes.get(individu.role).get(situationPro.situation);
             checkbox(situationProCheckbox);
@@ -532,61 +609,37 @@ public class RSAFormFiller extends FormFiller {
     }
 
     private void fillRessources(Individu individu) {
-        String fieldPrefix = IndividuRole.DEMANDEUR == individu.role ? "demandeur" : "conjoint";
+        String fieldPrefix = getFieldPrefix(individu.role);
+
+        if (IndividuRole.ENFANT == individu.role) {
+            int ressources = situationService.sumAllRessources(individu);
+            if (0 == ressources || currentEnfantWithRessources > 2) {
+                return;
+            }
+        }
+
         int periodeId = 1;
         for (RessourcePeriode periode : RessourcePeriode.values()) {
-            int sum = situationService.sumRessourcesOfType(individu, periode, RessourceType.values());
+            int sum = situationService.sumAllRessources(individu, periode);
             if (0 == sum) {
                 checkbox(String.format("ressources.%s.%d.aucune", fieldPrefix, periodeId));
             } else {
                 for (RessourceType ressourceType : RessourceType.values()) {
                     sum = situationService.sumRessourcesOfType(individu, periode, ressourceType);
                     if (0 != sum) {
-                        appendText(String.format("ressources.%s.%d.%s", fieldPrefix, periodeId, ressourceType.jsonValue), String.valueOf(sum));
+                        String textField = String.format("ressources.%s.%d.%s", fieldPrefix, periodeId, ressourceType.jsonValue);
+                        appendText(textField, String.valueOf(sum));
                     }
                 }
             }
             periodeId++;
         }
+
+        currentEnfantWithRessources++;
     }
 
     private void fillConjoint(Individu conjoint) {
-        String civiliteCheckbox = civiliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.civilite);
-        checkbox(civiliteCheckbox);
-        appendText("conjoint.nom", conjoint.lastName);
-        appendText("conjoint.nom_usage", conjoint.nomUsage);
-        appendText("conjoint.prenom", conjoint.firstName);
-        appendNumber("conjoint.date_naissance", conjoint.dateDeNaissance.replaceAll("/", ""));
-
-        if (null != conjoint.paysNaissance) {
-            appendText("conjoint.pays_naissance", conjoint.paysNaissance);
-            if ("france".equals(conjoint.paysNaissance.toLowerCase())) {
-                appendText("conjoint.ville_naissance", conjoint.villeNaissance);
-                if (null != conjoint.departementNaissance) {
-                    appendNumber("conjoint.departement_naissance", String.valueOf(conjoint.departementNaissance));
-                }
-            }
-        }
-
-        String checkboxNationalite = nationaliteCheckboxes.get(IndividuRole.CONJOINT).get(conjoint.nationalite);
-        checkbox(checkboxNationalite);
-
-        if (null != conjoint.nir) {
-            appendNumber("conjoint.nir", conjoint.nir.substring(0, 13));
-            appendNumber("conjoint.nir2", conjoint.nir.substring(13, 15));
-        }
-
-        if (null != conjoint.inscritCaf) {
-            if (conjoint.inscritCaf) {
-                checkbox("conjoint.inscrit_caf.oui");
-                appendText("conjoint.num_allocataire", conjoint.numeroAllocataire);
-            } else {
-                checkbox("conjoint.inscrit_caf.non");
-            }
-        }
-
-        fillSituationsPro(conjoint);
-        fillRessources(conjoint);
+        fillParent(conjoint);
     }
 
     private void fillEnfant(Individu individu) {
@@ -631,6 +684,8 @@ public class RSAFormFiller extends FormFiller {
         if (null != individu.situation) {
             appendText(String.format("enfant.%d.situation", currentEnfant), individu.situation.formValue);
         }
+
+        fillRessources(individu);
 
         currentEnfant++;
     }

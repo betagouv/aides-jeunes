@@ -10,6 +10,7 @@ import models.Individu.SalarieContractType;
 import models.Individu.SituationPro;
 import models.Individu.SituationProType;
 import models.Individu.StatutMarital;
+import models.Logement.Adresse;
 import models.Logement.LogementType;
 import models.Ressource.RessourcePeriode;
 import models.Ressource.RessourceType;
@@ -680,26 +681,15 @@ public class RSAFormFiller extends FormFiller {
         }
 
         fillRessources(individu);
-
         currentEnfant++;
     }
 
     private void fillLogement() {
-        if (null != situation.logement.adresse.adresse) {
-            String[] addressTokens = situation.logement.adresse.adresse.split(" ");
-            if (addressTokens.length > 1) {
-                String number = addressTokens[0];
-                if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
-                    appendText("adresse.numero", number);
-                    addressTokens = ArrayUtils.remove(addressTokens, 0);
-                }
-                String address = StringUtils.join(addressTokens, " ");
-                appendText("adresse.rue", address);
-            }
+        fillAdresse(situation.logement.adresse, "adresse");
+        if (false == situation.logement.conjointMemeAdresse && null != situation.logement.adresseConjoint) {
+            fillAdresse(situation.logement.adresseConjoint, "adresse.conjoint");
+            appendText("adresse.conjoint.pays", situation.logement.adresseConjoint.pays);
         }
-
-        appendNumber("adresse.code_postal", situation.logement.adresse.codePostal);
-        appendText("adresse.ville", situation.logement.adresse.ville);
 
         String logementTypeCheckbox = logementTypeCheckboxes.get(situation.logement.type);
         checkbox(logementTypeCheckbox);
@@ -715,25 +705,24 @@ public class RSAFormFiller extends FormFiller {
         if (null != situation.logement.dateArrivee) {
             appendNumber("adresse.date_arrivee", situation.logement.dateArrivee.replaceAll("/", ""));
         }
+    }
 
-        if (false == situation.logement.conjointMemeAdresse && null != situation.logement.adresseConjoint) {
-            if (null != situation.logement.adresseConjoint.adresse) {
-                String[] addressTokens = situation.logement.adresseConjoint.adresse.split(" ");
-                if (addressTokens.length > 1) {
-                    String number = addressTokens[0];
-                    if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
-                        appendText("adresse.conjoint.numero", number);
-                    }
+    private void fillAdresse(Adresse adresse, String fieldPrefix) {
+        if (null != adresse.adresse) {
+            String[] addressTokens = adresse.adresse.split(" ");
+            if (addressTokens.length > 1) {
+                String number = addressTokens[0];
+                if (StringUtils.isNumeric(String.valueOf(number.charAt(0)))) {
+                    appendText(String.format("%s.numero", fieldPrefix), number);
                     addressTokens = ArrayUtils.remove(addressTokens, 0);
-                    String address = StringUtils.join(addressTokens, " ");
-                    appendText("adresse.conjoint.rue", address);
                 }
+                String address = StringUtils.join(addressTokens, " ");
+                appendText(String.format("%s.rue", fieldPrefix), address);
             }
-
-            appendNumber("adresse.conjoint.code_postal", situation.logement.adresseConjoint.codePostal);
-            appendText("adresse.conjoint.ville", situation.logement.adresseConjoint.ville);
-            appendText("adresse.conjoint.pays", situation.logement.adresseConjoint.pays);
         }
+
+        appendNumber(String.format("%s.code_postal", fieldPrefix), adresse.codePostal);
+        appendText(String.format("%s.ville", fieldPrefix), adresse.ville);
     }
 
     private void fillContact() {

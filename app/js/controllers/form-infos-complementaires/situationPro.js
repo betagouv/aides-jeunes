@@ -95,6 +95,7 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
         });
 
         SituationService.update(situation).then(function() {
+            situation.infosComplementairesCaptured = true;
             $state.go('download_cerfa', {cerfa: $stateParams.requestedCerfa});
         });
     };

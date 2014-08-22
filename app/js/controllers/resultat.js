@@ -13,7 +13,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $h
     });
 
     $scope.downloadCerfa = function(cerfa) {
-        if (situation.logement.adresse.adresse) {
+        if (situation.infosComplementairesCaptured) {
             $state.go('download_cerfa', {cerfa: cerfa.id});
         } else {
             $state.go('form_infos_complementaires_individus', {requestedCerfa: cerfa.id});

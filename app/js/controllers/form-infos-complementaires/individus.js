@@ -5,27 +5,38 @@ angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', fun
     $scope.relationTypeLabels = SituationService.relationTypeLabels;
 
     var initPaysNaissance = function(individu) {
-        individu.choicePaysNaissance = 'france';
-        individu.paysNaissance = 'France';
+        if (individu.paysNaissance) {
+            individu.choicePaysNaissance = 'France' === individu.paysNaissance ? 'france' : 'autre';
+        } else {
+            individu.choicePaysNaissance = 'france';
+            individu.paysNaissance = 'France';
+        }
     };
 
     initPaysNaissance(situation.demandeur);
-    situation.demandeur.civilite = 'h';
+    if (!situation.demandeur.civilite) {
+        situation.demandeur.civilite = 'h';
+    }
+
     if (situation.conjoint) {
-        situation.conjoint.civilite = 'f';
+        if (!situation.conjoint.civilite) {
+            situation.conjoint.civilite = 'f';
+        }
         initPaysNaissance(situation.conjoint);
     }
 
-    $scope.individus = situation.enfants.concat(situation.personnesACharge);
-    $scope.individus.forEach(function(individu) {
-        individu.civilite = 'h';
+    $scope.enfantsEtPersonnesACharges = situation.enfants.concat(situation.personnesACharge);
+    $scope.enfantsEtPersonnesACharges.forEach(function(individu) {
+        if (!individu.civilite) {
+            individu.civilite = 'h';
+        }
         initPaysNaissance(individu);
         if (individu.demandeurEmploi) {
             individu.situation = 'demandeur_emploi';
         }
     });
 
-    $scope.choicePaysNaissance = function(individu) {
+    $scope.changePaysNaissance = function(individu) {
         if ('autre' === individu.choicePaysNaissance) {
             individu.paysNaissance = '';
             individu.villeNaissance = null;

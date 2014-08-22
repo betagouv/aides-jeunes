@@ -20,7 +20,7 @@
       <div ng-if="!situation.conjoint">
         <div class="form-group">
           <label class="col-sm-4 control-label" for="situation-familiale">Votre situation familiale</label>
-          <div class="col-sm-4">
+          <div class="col-sm-8">
             <select id="situation-familiale" class="form-control" ng-model="situation.demandeur.situationFamiliale">
               <option value=""></option>
               <option value="celibataire">Célibataire depuis toujours</option>
@@ -84,7 +84,7 @@
       <div class="form-group">
         <label class="col-sm-4 control-label" for="pays-naissance-demandeur">Pays de naissance</label>
         <div class="col-sm-4">
-          <select id="pays-naissance-demandeur" class="form-control" ng-model="situation.demandeur.choicePaysNaissance" ng-change="choicePaysNaissance(situation.demandeur)">
+          <select id="pays-naissance-demandeur" class="form-control" ng-model="situation.demandeur.choicePaysNaissance" ng-change="changePaysNaissance(situation.demandeur)">
             <option value="france">France</option>
             <option value="autre">Autre</option>
           </select>
@@ -170,7 +170,7 @@
       <div class="form-group">
         <label class="col-sm-4 control-label" for="pays-naissance-conjoint">Pays de naissance</label>
         <div class="col-sm-4">
-          <select id="pays-naissance-conjoint" class="form-control" ng-model="situation.conjoint.choicePaysNaissance" ng-change="choicePaysNaissance(situation.conjoint)">
+          <select id="pays-naissance-conjoint" class="form-control" ng-model="situation.conjoint.choicePaysNaissance" ng-change="changePaysNaissance(situation.conjoint)">
             <option value="france">France</option>
             <option value="autre">Autre</option>
           </select>
@@ -209,7 +209,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6" ng-repeat="enfant in individus">
+    <div class="col-md-6" ng-repeat="enfant in enfantsEtPersonnesACharges">
       <ng-form name="individuForm">
         <h2><i class="fa fa-child"></i> {{ enfant.firstName|uppercaseFirst }}</h2>
 

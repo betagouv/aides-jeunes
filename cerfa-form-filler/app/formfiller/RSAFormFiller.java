@@ -207,6 +207,7 @@ public class RSAFormFiller extends FormFiller {
         {"pro.conjoint.retraite.since",                    2, 453, 252},
 
         {"ressources.demandeur.1.revenusSalarie",          3, 229, 614},
+        {"ressources.demandeur.1.revenusStage",            3, 229, 589},
         {"ressources.demandeur.1.revenusNonSalarie",       3, 229, 502},
         {"ressources.demandeur.1.pensionsAlimentaires",    3, 229, 489},
         {"ressources.demandeur.1.pensionsRetraitesRentes", 3, 229, 448},
@@ -214,20 +215,23 @@ public class RSAFormFiller extends FormFiller {
         {"ressources.demandeur.1.indChomagePartiel",       3, 229, 412},
         {"ressources.demandeur.1.indJourMaternite",        3, 229, 376},
         {"ressources.demandeur.2.revenusSalarie",          3, 285, 614},
+        {"ressources.demandeur.2.revenusStage",            3, 285, 589},
         {"ressources.demandeur.2.revenusNonSalarie",       3, 285, 502},
         {"ressources.demandeur.2.pensionsAlimentaires",    3, 285, 489},
         {"ressources.demandeur.2.pensionsRetraitesRentes", 3, 285, 448},
         {"ressources.demandeur.2.allocationsChomage",      3, 285, 435},
         {"ressources.demandeur.2.indChomagePartiel",       3, 285, 412},
         {"ressources.demandeur.2.indJourMaternite",        3, 285, 376},
-        {"ressources.demandeur.3.revenusSalarie",          3, 341, 614},
-        {"ressources.demandeur.3.revenusNonSalarie",       3, 341, 502},
-        {"ressources.demandeur.3.pensionsAlimentaires",    3, 341, 489},
-        {"ressources.demandeur.3.pensionsRetraitesRentes", 3, 341, 448},
-        {"ressources.demandeur.3.allocationsChomage",      3, 341, 435},
-        {"ressources.demandeur.3.indChomagePartiel",       3, 341, 412},
-        {"ressources.demandeur.3.indJourMaternite",        3, 341, 376},
+        {"ressources.demandeur.3.revenusSalarie",          3, 342, 614},
+        {"ressources.demandeur.3.revenusStage",            3, 342, 589},
+        {"ressources.demandeur.3.revenusNonSalarie",       3, 342, 502},
+        {"ressources.demandeur.3.pensionsAlimentaires",    3, 342, 489},
+        {"ressources.demandeur.3.pensionsRetraitesRentes", 3, 342, 448},
+        {"ressources.demandeur.3.allocationsChomage",      3, 342, 435},
+        {"ressources.demandeur.3.indChomagePartiel",       3, 342, 412},
+        {"ressources.demandeur.3.indJourMaternite",        3, 342, 376},
         {"ressources.conjoint.1.revenusSalarie",           3, 399, 614},
+        {"ressources.conjoint.1.revenusStage",             3, 399, 589},
         {"ressources.conjoint.1.revenusNonSalarie",        3, 399, 502},
         {"ressources.conjoint.1.pensionsAlimentaires",     3, 399, 489},
         {"ressources.conjoint.1.pensionsRetraitesRentes",  3, 399, 448},
@@ -235,6 +239,7 @@ public class RSAFormFiller extends FormFiller {
         {"ressources.conjoint.1.indChomagePartiel",        3, 399, 412},
         {"ressources.conjoint.1.indJourMaternite",         3, 399, 376},
         {"ressources.conjoint.2.revenusSalarie",           3, 455, 614},
+        {"ressources.conjoint.2.revenusStage",             3, 455, 589},
         {"ressources.conjoint.2.revenusNonSalarie",        3, 455, 502},
         {"ressources.conjoint.2.pensionsAlimentaires",     3, 455, 489},
         {"ressources.conjoint.2.pensionsRetraitesRentes",  3, 455, 448},
@@ -242,6 +247,7 @@ public class RSAFormFiller extends FormFiller {
         {"ressources.conjoint.2.indChomagePartiel",        3, 455, 412},
         {"ressources.conjoint.2.indJourMaternite",         3, 455, 376},
         {"ressources.conjoint.3.revenusSalarie",           3, 512, 614},
+        {"ressources.conjoint.3.revenusStage",             3, 512, 589},
         {"ressources.conjoint.3.revenusNonSalarie",        3, 512, 502},
         {"ressources.conjoint.3.pensionsAlimentaires",     3, 512, 489},
         {"ressources.conjoint.3.pensionsRetraitesRentes",  3, 512, 448},
@@ -249,6 +255,7 @@ public class RSAFormFiller extends FormFiller {
         {"ressources.conjoint.3.indChomagePartiel",        3, 512, 412},
         {"ressources.conjoint.3.indJourMaternite",         3, 512, 376},
         {"ressources.enfant.1.1.revenusSalarie",           4, 229, 717},
+        {"ressources.enfant.1.1.revenusStage",             4, 229, 693},
         {"ressources.enfant.1.1.revenusNonSalarie",        4, 229, 613},
         {"ressources.enfant.1.1.pensionsAlimentaires",     4, 229, 601},
         {"ressources.enfant.1.1.pensionsRetraitesRentes",  4, 229, 553},
@@ -256,20 +263,23 @@ public class RSAFormFiller extends FormFiller {
         {"ressources.enfant.1.1.indChomagePartiel",        4, 229, 518},
         {"ressources.enfant.1.1.indJourMaternite",         4, 229, 482},
         {"ressources.enfant.1.2.revenusSalarie",           4, 285, 717},
+        {"ressources.enfant.1.2.revenusStage",             4, 285, 693},
         {"ressources.enfant.1.2.revenusNonSalarie",        4, 285, 613},
         {"ressources.enfant.1.2.pensionsAlimentaires",     4, 285, 601},
         {"ressources.enfant.1.2.pensionsRetraitesRentes",  4, 285, 553},
         {"ressources.enfant.1.2.allocationsChomage",       4, 285, 541},
         {"ressources.enfant.1.2.indChomagePartiel",        4, 285, 518},
         {"ressources.enfant.1.2.indJourMaternite",         4, 285, 482},
-        {"ressources.enfant.1.3.revenusSalarie",           4, 341, 717},
-        {"ressources.enfant.1.3.revenusNonSalarie",        4, 341, 613},
-        {"ressources.enfant.1.3.pensionsAlimentaires",     4, 341, 601},
-        {"ressources.enfant.1.3.pensionsRetraitesRentes",  4, 341, 553},
-        {"ressources.enfant.1.3.allocationsChomage",       4, 341, 541},
-        {"ressources.enfant.1.3.indChomagePartiel",        4, 341, 518},
-        {"ressources.enfant.1.3.indJourMaternite",         4, 341, 482},
+        {"ressources.enfant.1.3.revenusSalarie",           4, 342, 717},
+        {"ressources.enfant.1.3.revenusStage",             4, 342, 693},
+        {"ressources.enfant.1.3.revenusNonSalarie",        4, 342, 613},
+        {"ressources.enfant.1.3.pensionsAlimentaires",     4, 342, 601},
+        {"ressources.enfant.1.3.pensionsRetraitesRentes",  4, 342, 553},
+        {"ressources.enfant.1.3.allocationsChomage",       4, 342, 541},
+        {"ressources.enfant.1.3.indChomagePartiel",        4, 342, 518},
+        {"ressources.enfant.1.3.indJourMaternite",         4, 342, 482},
         {"ressources.enfant.2.1.revenusSalarie",           4, 399, 717},
+        {"ressources.enfant.2.1.revenusStage",             4, 399, 693},
         {"ressources.enfant.2.1.revenusNonSalarie",        4, 399, 613},
         {"ressources.enfant.2.1.pensionsAlimentaires",     4, 399, 601},
         {"ressources.enfant.2.1.pensionsRetraitesRentes",  4, 399, 553},
@@ -277,6 +287,7 @@ public class RSAFormFiller extends FormFiller {
         {"ressources.enfant.2.1.indChomagePartiel",        4, 399, 518},
         {"ressources.enfant.2.1.indJourMaternite",         4, 399, 482},
         {"ressources.enfant.2.2.revenusSalarie",           4, 455, 717},
+        {"ressources.enfant.2.2.revenusStage",             4, 455, 693},
         {"ressources.enfant.2.2.revenusNonSalarie",        4, 455, 613},
         {"ressources.enfant.2.2.pensionsAlimentaires",     4, 455, 601},
         {"ressources.enfant.2.2.pensionsRetraitesRentes",  4, 455, 553},
@@ -284,6 +295,7 @@ public class RSAFormFiller extends FormFiller {
         {"ressources.enfant.2.2.indChomagePartiel",        4, 455, 518},
         {"ressources.enfant.2.2.indJourMaternite",         4, 455, 482},
         {"ressources.enfant.2.3.revenusSalarie",           4, 512, 717},
+        {"ressources.enfant.2.3.revenusStage",             4, 512, 693},
         {"ressources.enfant.2.3.revenusNonSalarie",        4, 512, 613},
         {"ressources.enfant.2.3.pensionsAlimentaires",     4, 512, 601},
         {"ressources.enfant.2.3.pensionsRetraitesRentes",  4, 512, 553},
@@ -324,8 +336,6 @@ public class RSAFormFiller extends FormFiller {
     private static final EnumMap<IndividuRole, EnumMap<Civilite, String>> civiliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<IndividuRole, EnumMap<Nationalite, String>> nationaliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<LogementType, String> logementTypeCheckboxes = new EnumMap<>(LogementType.class);
-    private static final EnumMap<StatutMarital, String> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
-    private static final EnumMap<StatutMarital, String> statutMaritalDates = new EnumMap<>(StatutMarital.class);
     private static final EnumMap<IndividuRole, EnumMap<SituationProType, String>> situationsProCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<IndividuRole, EnumMap<SalarieContractType, String>> salarieContractCheckboxes = new EnumMap<>(IndividuRole.class);
 
@@ -337,7 +347,6 @@ public class RSAFormFiller extends FormFiller {
         initCiviliteCheckboxes();
         initNationaliteCheckboxes();
         initLogementTypeCheckboxes();
-        initStatutMaritalFields();
         initSituationsProCheckboxes();
         initSalarieContractCheckboxes();
         situationService = new SituationService();
@@ -373,27 +382,6 @@ public class RSAFormFiller extends FormFiller {
         logementTypeCheckboxes.put(LogementType.LOCATAIRE, "logement.locataire");
         logementTypeCheckboxes.put(LogementType.PAYANT, "logement.payant");
         logementTypeCheckboxes.put(LogementType.GRATUIT, "logement.gratuit");
-    }
-
-    private void initStatutMaritalFields() {
-        statutMaritalCheckboxes.put(StatutMarital.MARIAGE, "statut_marital.mariage");
-        statutMaritalCheckboxes.put(StatutMarital.PACS, "statut_marital.pacs");
-        statutMaritalCheckboxes.put(StatutMarital.RELATION_LIBRE, "statut_marital.relation_libre");
-        statutMaritalCheckboxes.put(StatutMarital.SEPARE, "statut_marital.separe");
-        statutMaritalCheckboxes.put(StatutMarital.PACS_ROMPU, "statut_marital.pacs_rompu");
-        statutMaritalCheckboxes.put(StatutMarital.DIVORCE, "statut_marital.divorce");
-        statutMaritalCheckboxes.put(StatutMarital.VEUF, "statut_marital.veuf");
-        statutMaritalCheckboxes.put(StatutMarital.CONCUBINAGE_ROMPU, "statut_marital.concubinage_rompu");
-        statutMaritalCheckboxes.put(StatutMarital.CELIBATAIRE, "statut_marital.celibataire");
-
-        statutMaritalDates.put(StatutMarital.MARIAGE, "statut_marital.date.mariage");
-        statutMaritalDates.put(StatutMarital.PACS, "statut_marital.date.pacs");
-        statutMaritalDates.put(StatutMarital.RELATION_LIBRE, "statut_marital.date.relation_libre");
-        statutMaritalDates.put(StatutMarital.SEPARE, "statut_marital.date.separe");
-        statutMaritalDates.put(StatutMarital.PACS_ROMPU, "statut_marital.date.pacs_rompu");
-        statutMaritalDates.put(StatutMarital.DIVORCE, "statut_marital.date.divorce");
-        statutMaritalDates.put(StatutMarital.VEUF, "statut_marital.date.veuf");
-        statutMaritalDates.put(StatutMarital.CONCUBINAGE_ROMPU, "statut_marital.date.concubinage_rompu");
     }
 
     private void initSituationsProCheckboxes() {
@@ -480,11 +468,11 @@ public class RSAFormFiller extends FormFiller {
                 checkbox("en_couple");
             }
 
-            String statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
+            String statutMaritalCheckbox = String.format("statut_marital.%s", demandeur.statusMarital.jsonValue);
             checkbox(statutMaritalCheckbox);
 
-            String statutMaritalDateField = statutMaritalDates.get(demandeur.statusMarital);
-            if (null != statutMaritalDateField && null != demandeur.dateSituationFamiliale) {
+            if (null != demandeur.dateSituationFamiliale) {
+                String statutMaritalDateField = String.format("statut_marital.date.%s", demandeur.statusMarital.jsonValue);
                 appendNumber(statutMaritalDateField, demandeur.dateSituationFamiliale.replaceAll("/", ""));
             }
         }
@@ -539,7 +527,7 @@ public class RSAFormFiller extends FormFiller {
         fillRessources(individu);
     }
 
-    private String getFieldPrefix(IndividuRole role) {
+    private String getFieldPrefix(IndividuRole role, int enfantIndex) {
         String fieldPrefix;
         switch (role) {
         case DEMANDEUR:
@@ -550,13 +538,17 @@ public class RSAFormFiller extends FormFiller {
             break;
         case ENFANT:
         case PERSONNE_A_CHARGE:
-            fieldPrefix = "enfant." + currentEnfant;
+            fieldPrefix = "enfant." + enfantIndex;
             break;
         default:
             throw new RuntimeException();
         }
 
         return fieldPrefix;
+    }
+
+    private String getFieldPrefix(IndividuRole role) {
+        return getFieldPrefix(role, 0);
     }
 
     private void fillSituationsPro(Individu individu) {
@@ -609,7 +601,7 @@ public class RSAFormFiller extends FormFiller {
     }
 
     private void fillRessources(Individu individu) {
-        String fieldPrefix = getFieldPrefix(individu.role);
+        String fieldPrefix = getFieldPrefix(individu.role, currentEnfantWithRessources);
 
         if (IndividuRole.ENFANT == individu.role) {
             int ressources = situationService.sumAllRessources(individu);
@@ -635,7 +627,9 @@ public class RSAFormFiller extends FormFiller {
             periodeId++;
         }
 
-        currentEnfantWithRessources++;
+        if (IndividuRole.ENFANT == individu.role) {
+            currentEnfantWithRessources++;
+        }
     }
 
     private void fillConjoint(Individu conjoint) {

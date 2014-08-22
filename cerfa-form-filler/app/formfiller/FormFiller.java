@@ -78,7 +78,7 @@ public abstract class FormFiller {
                 float x = checkbox[2] instanceof Float ? (float) checkbox[2] : ((Integer) checkbox[2]).floatValue();
                 float y = checkbox[3] instanceof Float ? (float) checkbox[3] : ((Integer) checkbox[3]).floatValue();
                 writer.setPage(page);
-                writer.checkbox(x, y);
+                writer.checkbox(x + 2, y + 2);
 
                 return;
             }

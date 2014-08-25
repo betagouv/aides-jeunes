@@ -3,7 +3,9 @@
     "statusOccupation": "gratuit",
     "_id": "log-976",
     "procheProprietaire": false,
-    "codePostal": 92500
+    "adresse": {
+      "codePostal": 92500
+    }
   },
   "individus": [
     {

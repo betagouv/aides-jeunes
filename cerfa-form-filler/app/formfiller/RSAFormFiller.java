@@ -304,6 +304,8 @@ public class RSAFormFiller extends FormFiller {
         {"ressources.enfant.2.3.indChomagePartiel",        4, 512, 518},
         {"ressources.enfant.2.3.indJourMaternite",         4, 512, 482},
 
+        {"ressources.demandeur.argent_place", 3, 285, 247},
+
         {"current_date", 4, 150, 200},
     };
 
@@ -485,6 +487,10 @@ public class RSAFormFiller extends FormFiller {
         }
 
         fillPensionAlimentaire(demandeur);
+
+        if (null != situation.mobilierValue && 0 != situation.mobilierValue) {
+            appendText("ressources.demandeur.argent_place", String.valueOf(situation.mobilierValue));
+        }
     }
 
     private void fillParent(Individu individu) {

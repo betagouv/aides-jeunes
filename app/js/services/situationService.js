@@ -142,6 +142,8 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             var result = {
                 individus: individus,
                 logement: situation.logement,
+                mobilierValue: situation.mobilierValue,
+                immobilierValue: situation.immobilierValue,
                 phoneNumber: situation.phoneNumber,
                 email: situation.email
             };

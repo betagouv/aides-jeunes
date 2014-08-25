@@ -29,7 +29,7 @@
 <div class="row">
   <div class="col-lg-12">
     <accordion close-others="false">
-      <accordion-group ng-repeat="test in tests" is-open="test.open" ng-class="{'panel-success': test.status === 'ok', 'panel-danger': test.status === 'ko'}">
+      <accordion-group ng-repeat="test in tests" is-open="test.open" ng-class="{'panel-success': test.status === 'ok', 'panel-danger': test.status === 'ko', 'panel-warning': test.status === 'near' }">
         <accordion-heading>
            {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
         </accordion-heading>
@@ -52,7 +52,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="expectedDroit in test.droitsAttendus" ng-class="{'success': expectedDroit.status === 'ok', 'danger': expectedDroit.status === 'ko', 'info': expectedDroit.status === 'unknown'}">
+            <tr ng-repeat="expectedDroit in test.droitsAttendus" ng-class="{'success': expectedDroit.status === 'ok', 'danger': expectedDroit.status === 'ko', 'info': expectedDroit.status === 'unknown', 'warning': expectedDroit.status === 'near' }">
               <td>{{ droits[expectedDroit.id].shortLabel }}</td>
               <td>{{ displayDroitValue(expectedDroit.expectedValue) }}</td>
               <td>{{ displayDroitValue(expectedDroit.actualValue) }}</td>

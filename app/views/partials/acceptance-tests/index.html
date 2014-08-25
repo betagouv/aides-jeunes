@@ -65,6 +65,11 @@
             Détail de la situation
             <i class="fa" ng-class="{'fa-chevron-down': test.showSituation, 'fa-chevron-right': !test.showSituation}"></i>
           </button>
+          <small>
+            [<a href="/api/situations/{{ test.situation }}">Situation DDS</a>]
+            [<a href="/api/situations/{{ test.situation }}/openfisca-request">Requête OpenFisca</a>]
+            [<a href="/api/situations/{{ test.situation }}/openfisca-response">Réponse OpenFisca</a>]
+          </small>
         </p>
         <pre ng-if="test.showSituation">{{ test.situationObject | json }}</pre>
       </accordion-group>

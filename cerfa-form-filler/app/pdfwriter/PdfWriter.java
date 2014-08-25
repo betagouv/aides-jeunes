@@ -1,7 +1,9 @@
 package pdfwriter;
 
+import java.io.File;
 import java.io.IOException;
 
+import org.apache.pdfbox.exceptions.COSVisitorException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
@@ -80,5 +82,14 @@ public class PdfWriter {
 
     public void checkbox(float x, float y) {
         appendText("x", x, y);
+    }
+
+    public void save(File file) {
+        flush();
+        try {
+            document.save(file);
+        } catch (IOException|COSVisitorException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

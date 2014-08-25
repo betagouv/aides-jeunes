@@ -46,31 +46,21 @@ public class Application extends Controller {
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result generate(String formId) throws IOException, COSVisitorException {
-        Forms form = null;
-        for (Forms val : Forms.values()) {
-            if (val.id.equals(formId)) {
-                form = val;
-            }
-        }
-
+        Forms form = getForm(formId);
         if (null == form) {
             return badRequest(String.format("Formulaire inconnu : %s", formId));
         }
 
         Logger.info(String.format("Génération formulaire %s", formId));
 
-        FormFiller filler = form.createFormFiller();
-        PDDocument document = PDDocument.load(String.format("resources/%s.pdf", formId));
-        PdfWriter writer = new PdfWriter(document);
-        filler.setWriter(writer);
+        FormFiller filler = createFormFiller(form);
         Situation situation = getRequest(Situation.class);
         filler.setSituation(situation);
         filler.fill();
-        writer.flush();
 
         File file = File.createTempFile("tmp", ".pdf");
         try {
-            document.save(file);
+            filler.getWriter().save(file);
 
             return ok(file, formId.concat(".pdf"));
         } finally {
@@ -79,32 +69,40 @@ public class Application extends Controller {
     }
 
     public static Result generateFake(String formId) throws IOException, COSVisitorException {
-        Forms form = null;
-        for (Forms val : Forms.values()) {
-            if (val.id.equals(formId)) {
-                form = val;
-            }
-        }
-
+        Forms form = getForm(formId);
         if (null == form) {
             return badRequest(String.format("Formulaire inconnu : %s", formId));
         }
 
-        FormFiller filler = form.createFormFiller();
-        PDDocument document = PDDocument.load(String.format("resources/%s.pdf", formId));
-        PdfWriter writer = new PdfWriter(document);
-        filler.setWriter(writer);
+        FormFiller filler = createFormFiller(form);
         filler.fillFake();
-        writer.flush();
 
         File file = File.createTempFile("tmp", ".pdf");
         try {
-            document.save(file);
+            filler.getWriter().save(file);
 
             return ok(file, formId.concat(".pdf"));
         } finally {
             file.delete();
         }
+    }
+
+    private static Forms getForm(String formId) {
+        for (Forms val : Forms.values()) {
+            if (val.id.equals(formId)) {
+                return val;
+            }
+        }
+
+        return null;
+    }
+
+    private static FormFiller createFormFiller(Forms form) throws IOException {
+        FormFiller filler = form.createFormFiller();
+        PDDocument document = PDDocument.load(String.format("resources/%s.pdf", form.id));
+        filler.setWriter(new PdfWriter(document));
+
+        return filler;
     }
 
     public static enum Forms {

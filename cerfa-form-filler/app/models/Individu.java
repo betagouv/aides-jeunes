@@ -25,7 +25,7 @@ public class Individu {
     public Nationalite nationalite;
     public String dateArriveeFoyer;
     public IndividuRole role;
-    public StatutMarital statusMarital;
+    public StatutMarital statutMarital;
     public String dateSituationFamiliale;
     public SituationEnfant situation;
     public boolean demandeurEmploi;
@@ -96,18 +96,14 @@ public class Individu {
     @JsonDeserialize(using = NationaliteDeserializer.class)
     public static enum Nationalite {
 
-        FRANCAISE("fr", "française", "FRA"),
-        EEE_UE_SUISSE("ue", "UE_EEE_Suisse", "EEE"),
-        AUTRE("autre", "autre", "AUT");
+        FRANCAISE("fr"),
+        EEE_UE_SUISSE("ue"),
+        AUTRE("autre");
 
         public final String jsonValue;
-        public final String formRadioValue;
-        public final String formStringValue;
 
-        Nationalite(String jsonValue, String formRadioValue, String formStringValue) {
+        Nationalite(String jsonValue) {
             this.jsonValue = jsonValue;
-            this.formRadioValue = formRadioValue;
-            this.formStringValue = formStringValue;
         }
     }
 
@@ -178,11 +174,11 @@ public class Individu {
         AUTRE("autre", "autre");
 
         public final String jsonValue;
-        public final String formValue;
+        public final String textValue;
 
-        SituationEnfant(String jsonValue, String formValue) {
+        SituationEnfant(String jsonValue, String textValue) {
             this.jsonValue = jsonValue;
-            this.formValue = formValue;
+            this.textValue = textValue;
         }
     }
 
@@ -209,11 +205,11 @@ public class Individu {
         AUTRE("autre", "autre");
 
         public final String jsonValue;
-        public final String formValue;
+        public final String textValue;
 
-        LienParente(String jsonValue, String formValue) {
+        LienParente(String jsonValue, String textValue) {
             this.jsonValue = jsonValue;
-            this.formValue = formValue;
+            this.textValue = textValue;
         }
     }
 

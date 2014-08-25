@@ -216,7 +216,7 @@ public class CAFFormFiller extends FormFiller {
             appendNumber("demandeur.nir2", demandeur.nir.substring(13, 15));
         }
 
-        String statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
+        String statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statutMarital);
         checkbox(statutMaritalCheckbox);
 
         if (demandeur.demandeurEmploi) {

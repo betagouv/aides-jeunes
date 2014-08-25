@@ -156,7 +156,7 @@ public class IntegrationTest {
         individu.paysNaissance = "France";
         individu.departementNaissance = 67;
         individu.nir = "189090909090909";
-        individu.statusMarital = StatutMarital.MARIAGE;
+        individu.statutMarital = StatutMarital.MARIAGE;
         individu.dateSituationFamiliale = "12/07/2009";
         individu.demandeurEmploi = true;
         individu.enceinte = true;

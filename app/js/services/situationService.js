@@ -119,9 +119,9 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             if (situation.conjoint) {
                 individus.push(situation.conjoint);
                 situation.conjoint.role = 'conjoint';
-                situation.demandeur.statusMarital = situation.conjoint.relationType;
+                situation.demandeur.statutMarital = situation.conjoint.relationType;
             } else {
-                situation.demandeur.statusMarital = situation.demandeur.situationFamiliale;
+                situation.demandeur.statutMarital = situation.demandeur.situationFamiliale;
             }
 
             situation.enfants.forEach(function(enfant) {

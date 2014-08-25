@@ -14,6 +14,10 @@ public abstract class FormFiller {
         writer.setNumberSpacing(getDefaultNumberSpacing());
     }
 
+    public PdfWriter getWriter() {
+        return writer;
+    }
+
     public void setSituation(Situation situation) {
         this.situation = situation;
     }

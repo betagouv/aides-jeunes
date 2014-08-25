@@ -462,18 +462,18 @@ public class RSAFormFiller extends FormFiller {
     private void fillDemandeur(Individu demandeur) {
         fillParent(demandeur);
 
-        if (null != demandeur.statusMarital) {
-            if (demandeur.statusMarital.isAlone) {
+        if (null != demandeur.statutMarital) {
+            if (demandeur.statutMarital.isAlone) {
                 checkbox("seul");
             } else {
                 checkbox("en_couple");
             }
 
-            String statutMaritalCheckbox = String.format("statut_marital.%s", demandeur.statusMarital.jsonValue);
+            String statutMaritalCheckbox = String.format("statut_marital.%s", demandeur.statutMarital.jsonValue);
             checkbox(statutMaritalCheckbox);
 
             if (null != demandeur.dateSituationFamiliale) {
-                String statutMaritalDateField = String.format("statut_marital.date.%s", demandeur.statusMarital.jsonValue);
+                String statutMaritalDateField = String.format("statut_marital.date.%s", demandeur.statutMarital.jsonValue);
                 appendNumber(statutMaritalDateField, demandeur.dateSituationFamiliale.replaceAll("/", ""));
             }
         }
@@ -652,7 +652,7 @@ public class RSAFormFiller extends FormFiller {
         appendText(String.format("enfant.%d.nom", currentEnfant), nomPrenom);
 
         if (null != individu.lienParente) {
-            appendText(String.format("enfant.%d.lien_parente", currentEnfant), individu.lienParente.formValue);
+            appendText(String.format("enfant.%d.lien_parente", currentEnfant), individu.lienParente.textValue);
         }
 
         appendText(String.format("enfant.%d.date_naissance", currentEnfant), individu.dateDeNaissance);
@@ -677,7 +677,7 @@ public class RSAFormFiller extends FormFiller {
         appendText(String.format("enfant.%d.nir", currentEnfant), individu.nir);
         appendText(String.format("enfant.%d.date_arrivee", currentEnfant), individu.dateArriveeFoyer);
         if (null != individu.situation) {
-            appendText(String.format("enfant.%d.situation", currentEnfant), individu.situation.formValue);
+            appendText(String.format("enfant.%d.situation", currentEnfant), individu.situation.textValue);
         }
 
         fillRessources(individu);
@@ -746,11 +746,11 @@ public class RSAFormFiller extends FormFiller {
     }
 
     private void fillPensionAlimentaire(Individu demandeur) {
-        if (StatutMarital.SEPARE == demandeur.statusMarital) {
+        if (StatutMarital.SEPARE == demandeur.statutMarital) {
             checkbox("pension_alimentaire.separe");
         }
 
-        if (null != demandeur.statusMarital && demandeur.statusMarital.isAlone && childrenNb() > 0) {
+        if (null != demandeur.statutMarital && demandeur.statutMarital.isAlone && childrenNb() > 0) {
             checkbox("pension_alimentaire.has_child_alone");
         }
     }

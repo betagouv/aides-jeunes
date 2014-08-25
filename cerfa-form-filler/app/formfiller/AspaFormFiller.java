@@ -165,18 +165,18 @@ public class AspaFormFiller extends FormFiller {
             appendNumber("demandeur.nir2", demandeur.nir.substring(13, 15));
         }
 
-        String statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
+        String statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statutMarital);
         checkbox(statutMaritalCheckbox);
 
         String dateStatutMaritalField = null;
 
-        if (StatutMarital.MARIAGE == demandeur.statusMarital) {
+        if (StatutMarital.MARIAGE == demandeur.statutMarital) {
             dateStatutMaritalField = "mariage";
-        } else if (ArrayUtils.contains(statutMaritalSepare, demandeur.statusMarital)) {
+        } else if (ArrayUtils.contains(statutMaritalSepare, demandeur.statutMarital)) {
             dateStatutMaritalField = "separe";
-        } else if (StatutMarital.RELATION_LIBRE == demandeur.statusMarital) {
+        } else if (StatutMarital.RELATION_LIBRE == demandeur.statutMarital) {
             dateStatutMaritalField = "relation_libre";
-        } else if (StatutMarital.PACS == demandeur.statusMarital) {
+        } else if (StatutMarital.PACS == demandeur.statutMarital) {
             dateStatutMaritalField = "pacs";
         }
 

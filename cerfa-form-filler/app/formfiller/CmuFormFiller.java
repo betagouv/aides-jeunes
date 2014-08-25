@@ -95,12 +95,14 @@ public class CmuFormFiller extends FormFiller {
 
     private static final EnumMap<IndividuRole, EnumMap<Nationalite, String>> nationaliteCheckboxes = new EnumMap<>(IndividuRole.class);
     private static final EnumMap<StatutMarital, String> statutMaritalCheckboxes = new EnumMap<>(StatutMarital.class);
+    private static final EnumMap<Nationalite, String> nationalitesEnfants = new EnumMap<>(Nationalite.class);
 
     private int currentChildIndex = 1;
 
     public CmuFormFiller() {
         initNationaliteCheckboxes();
         initStatutMaritalCheckboxes();
+        initNationalitesEnfants();
     }
 
     private static void initNationaliteCheckboxes() {
@@ -124,6 +126,12 @@ public class CmuFormFiller extends FormFiller {
         statutMaritalCheckboxes.put(StatutMarital.SEPARE, "statut_marital.separe");
         statutMaritalCheckboxes.put(StatutMarital.DIVORCE, "statut_marital.divorce");
         statutMaritalCheckboxes.put(StatutMarital.VEUF, "statut_marital.veuf");
+    }
+
+    private static void initNationalitesEnfants() {
+        nationalitesEnfants.put(Nationalite.FRANCAISE, "FRA");
+        nationalitesEnfants.put(Nationalite.EEE_UE_SUISSE, "EEE");
+        nationalitesEnfants.put(Nationalite.AUTRE, "AUT");
     }
 
     @Override
@@ -184,10 +192,10 @@ public class CmuFormFiller extends FormFiller {
 
         appendText("demandeur.email", situation.email);
 
-        if (null != demandeur.statusMarital && demandeur.statusMarital.isAlone) {
+        if (null != demandeur.statutMarital && demandeur.statutMarital.isAlone) {
             checkbox("statut_marital.celibataire");
         } else {
-            String statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statusMarital);
+            String statutMaritalCheckbox = statutMaritalCheckboxes.get(demandeur.statutMarital);
             checkbox(statutMaritalCheckbox);
         }
 
@@ -221,9 +229,9 @@ public class CmuFormFiller extends FormFiller {
         }
         appendText(String.format("enfant.%d.nom", currentChildIndex), nomPrenom);
 
-        appendText(String.format("enfant.%d.nationalite", currentChildIndex), enfant.nationalite.formStringValue);
+        appendText(String.format("enfant.%d.nationalite", currentChildIndex), nationalitesEnfants.get(enfant.nationalite));
         if (null != enfant.lienParente) {
-            appendText(String.format("enfant.%d.lien_parente", currentChildIndex), enfant.lienParente.formValue);
+            appendText(String.format("enfant.%d.lien_parente", currentChildIndex), enfant.lienParente.textValue);
         }
         appendNumber(String.format("enfant.%d.date_naissance", currentChildIndex), enfant.dateDeNaissance.replaceAll("/", ""));
         appendNumber(String.format("enfant.%d.nir", currentChildIndex), enfant.nir);

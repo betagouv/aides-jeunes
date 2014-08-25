@@ -201,7 +201,7 @@ public class CAFFormFiller extends FormFiller {
             if ("france".equals(demandeur.paysNaissance.toLowerCase())) {
                 appendText("demandeur.ville_naissance", demandeur.villeNaissance);
                 if (null != demandeur.departementNaissance) {
-                    appendNumber("demandeur.departement_naissance", String.valueOf(demandeur.departementNaissance));
+                    appendNumber("demandeur.departement_naissance", demandeur.departementNaissance);
                 }
             } else {
                 appendText("demandeur.pays_naissance", demandeur.paysNaissance);
@@ -243,7 +243,7 @@ public class CAFFormFiller extends FormFiller {
             if ("france".equals(conjoint.paysNaissance.toLowerCase())) {
                 appendText("conjoint.ville_naissance", conjoint.villeNaissance);
                 if (null != conjoint.departementNaissance) {
-                    appendNumber("conjoint.departement_naissance", String.valueOf(conjoint.departementNaissance));
+                    appendNumber("conjoint.departement_naissance", conjoint.departementNaissance);
                 }
             } else {
                 appendText("conjoint.pays_naissance", conjoint.paysNaissance);

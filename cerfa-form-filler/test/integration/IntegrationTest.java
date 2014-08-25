@@ -154,7 +154,7 @@ public class IntegrationTest {
         individu.nomUsage = "Martin";
         individu.villeNaissance = "Montluçon";
         individu.paysNaissance = "France";
-        individu.departementNaissance = 67;
+        individu.departementNaissance = "67";
         individu.nir = "189090909090909";
         individu.statutMarital = StatutMarital.MARIAGE;
         individu.dateSituationFamiliale = "12/07/2009";

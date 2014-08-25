@@ -502,7 +502,7 @@ public class RSAFormFiller extends FormFiller {
             if ("france".equals(individu.paysNaissance.toLowerCase())) {
                 appendText(String.format("%s.ville_naissance", fieldPrefix), individu.villeNaissance);
                 if (null != individu.departementNaissance) {
-                    appendNumber(String.format("%s.departement_naissance", fieldPrefix), String.valueOf(individu.departementNaissance));
+                    appendNumber(String.format("%s.departement_naissance", fieldPrefix), individu.departementNaissance);
                 }
             }
         }
@@ -661,7 +661,7 @@ public class RSAFormFiller extends FormFiller {
                 if (null != individu.villeNaissance) {
                     String lieuNaissance = individu.villeNaissance;
                     if (null != individu.departementNaissance) {
-                        lieuNaissance = String.format("%s (%d)", individu.villeNaissance, individu.departementNaissance);
+                        lieuNaissance = String.format("%s (%s)", individu.villeNaissance, individu.departementNaissance);
                     }
                     appendText(String.format("enfant.%d.lieu_naissance", currentEnfant), lieuNaissance);
                 }

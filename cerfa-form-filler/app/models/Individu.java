@@ -21,7 +21,7 @@ public class Individu {
     public String dateDeNaissance;
     public String paysNaissance;
     public String villeNaissance;
-    public Integer departementNaissance;
+    public String departementNaissance;
     public Nationalite nationalite;
     public String dateArriveeFoyer;
     public IndividuRole role;

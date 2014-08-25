@@ -156,7 +156,7 @@ public class AspaFormFiller extends FormFiller {
         appendNumber("demandeur.telephone", situation.phoneNumber);
         appendText("demandeur.ville_naissance", demandeur.villeNaissance);
         if (null != demandeur.departementNaissance) {
-            appendText("demandeur.departement_naissance", String.valueOf(demandeur.departementNaissance));
+            appendText("demandeur.departement_naissance", demandeur.departementNaissance);
         }
         appendText("demandeur.pays_naissance", demandeur.paysNaissance);
 

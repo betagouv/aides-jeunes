@@ -180,7 +180,7 @@ describe('openfisca', function() {
                 type: 'locataire',
                 locationType: 'nonmeuble'
             };
-            var result ={};
+            var result = {};
             openfisca.mapLogement(logement, result);
 
             result.so.should.be.exactly(4);
@@ -191,7 +191,7 @@ describe('openfisca', function() {
                 type: 'locataire',
                 locationType: 'meublehotel'
             };
-            var result ={};
+            var result = {};
             openfisca.mapLogement(logement, result);
 
             result.so.should.be.exactly(5);
@@ -202,7 +202,7 @@ describe('openfisca', function() {
                 type: 'proprietaire',
                 primoAccedant: true
             };
-            var result ={};
+            var result = {};
             openfisca.mapLogement(logement, result);
 
             result.so.should.be.exactly(1);
@@ -212,7 +212,7 @@ describe('openfisca', function() {
             var logement = {
                 type: 'unknown'
             };
-            var result ={};
+            var result = {};
             openfisca.mapLogement(logement, result);
 
             result.should.not.have.property('so');
@@ -220,7 +220,7 @@ describe('openfisca', function() {
 
         it('should cast postal code to number', function() {
             var logement = { adresse: { codePostal: '75011' }};
-            var result ={};
+            var result = {};
             openfisca.mapLogement(logement, result);
             result.code_postal.should.be.exactly(75011);
         });

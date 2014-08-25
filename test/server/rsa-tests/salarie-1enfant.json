@@ -35,5 +35,6 @@
   "expectedResults": {
     "rsa": 363.13
   },
-  "desactive": true
+  "desactive": true,
+  "dateDeValeur": "2014-07-15"
 }

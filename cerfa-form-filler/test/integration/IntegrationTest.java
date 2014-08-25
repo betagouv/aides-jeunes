@@ -8,6 +8,8 @@ import models.Individu.Civilite;
 import models.Individu.IndividuRole;
 import models.Individu.LienParente;
 import models.Individu.Nationalite;
+import models.Individu.SituationPro;
+import models.Individu.SituationProType;
 import models.Individu.StatutMarital;
 import models.Logement;
 import models.Logement.Adresse;
@@ -161,6 +163,10 @@ public class IntegrationTest {
         individu.etudiant = true;
         individu.inscritCaf = true;
         individu.numeroAllocataire = "1234567";
+        SituationPro situationPro = new SituationPro();
+        situationPro.situation = SituationProType.SALARIE;
+        situationPro.since = "12/07/2009";
+        individu.situationsPro.add(situationPro);
     }
 
     private void fillEnfant(Individu enfant) {

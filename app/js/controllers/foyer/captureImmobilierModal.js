@@ -10,14 +10,14 @@ angular.module('ddsApp').controller('FoyerCaptureImmobilierModalCtrl', function(
         $scope.situation.hasImmobilier = false;
     }
 
-    var conjointTitles = {
+    var conjointLabels = {
         'mariage': 'conjoint',
         'pacs': 'partenaire PACS',
         'relation_libre': 'concubin',
     };
 
-    $scope.conjointTitle = function() {
-        return conjointTitles[$scope.situation.conjoint.relationType];
+    $scope.conjointLabel = function() {
+        return conjointLabels[$scope.situation.conjoint.relationType];
     };
 
     $scope.submit = function(form) {

@@ -55,6 +55,7 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
                         droit.status = 'ok';
                     } else if (Math.abs(droit.actualValue - droit.expectedValue) < 0.1) {
                         droit.status = 'near';
+                        if (test.status !== 'ko') test.status = 'near';
                     } else {
                         droit.status = 'ko';
                         test.status = 'ko';

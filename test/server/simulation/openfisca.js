@@ -1,4 +1,5 @@
 var openfisca = require('../../../lib/simulation/openfisca');
+var should = require('should');
 
 describe('openfisca', function() {
     describe('mapFamilles', function() {

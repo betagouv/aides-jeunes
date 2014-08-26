@@ -128,18 +128,6 @@ describe('Service: situationService', function () {
             expect(result.individus.length).toBe(2);
             expect(result.individus[1].role).toBe('enfant');
         });
-
-        it('Should include the children and set their role', function() {
-            // given
-            var situation = { demandeur: {}, enfants: [], personnesACharge: [{}], logement: {} };
-
-            // when
-            var result = service.createApiCompatibleSituation(situation);
-
-            // then
-            expect(result.individus.length).toBe(2);
-            expect(result.individus[1].role).toBe('personneACharge');
-        });
     });
 
     describe('function createIndividusList', function() {

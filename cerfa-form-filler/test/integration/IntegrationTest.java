@@ -8,13 +8,13 @@ import models.Individu.Civilite;
 import models.Individu.IndividuRole;
 import models.Individu.LienParente;
 import models.Individu.Nationalite;
-import models.Individu.SituationPro;
-import models.Individu.SituationProType;
 import models.Individu.StatutMarital;
 import models.Logement;
 import models.Logement.Adresse;
 import models.Logement.LogementType;
 import models.Situation;
+import models.SituationPro;
+import models.SituationPro.SituationProType;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.junit.Test;

@@ -37,7 +37,8 @@ public class Ressource {
         INDEMNITES_CHOMAGE_PARTIEL("indChomagePartiel"),
         PENSIONS_ALIMENTAIRES("pensionsAlimentaires"),
         RETRAITES_RENTES("pensionsRetraitesRentes"),
-        BOURSE("bourseEnseignementSup");
+        BOURSE("bourseEnseignementSup"),
+        REVENUS_LOCATIFS("revenusLocatifs");
 
         public final String jsonValue;
 

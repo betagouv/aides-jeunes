@@ -29,8 +29,8 @@
               <div class="form-group" ng-if="'sans_activite' === situationPro.situation">
                 <label class="col-sm-5 control-label">Activité cessée volontairement ?</label>
                 <div class="col-sm-7">
-                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isActiviteCesseeVolontairement" btn-radio="true">Oui</button>
-                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isActiviteCesseeVolontairement" btn-radio="false">Non</button>
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.volontairementSansActivite" btn-radio="true">Oui</button>
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.volontairementSansActivite" btn-radio="false">Non</button>
                 </div>
               </div>
 
@@ -49,8 +49,8 @@
               <div class="form-group" ng-if="'stagiaire' === situationPro.situation">
                 <label class="col-sm-5 control-label">Stage rémunéré ?</label>
                 <div class="col-sm-7">
-                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isStagiaireRemunere" btn-radio="true">Oui</button>
-                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isStagiaireRemunere" btn-radio="false">Non</button>
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isRemunere" btn-radio="true">Oui</button>
+                  <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isRemunere" btn-radio="false">Non</button>
                 </div>
               </div>
 
@@ -65,15 +65,15 @@
                 <div class="form-group">
                   <label class="col-sm-5 control-label">Chômeur indemnisé ?</label>
                   <div class="col-sm-7">
-                    <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isChomeurIndemnise" btn-radio="true">Oui</button>
-                    <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isChomeurIndemnise" btn-radio="false">Non</button>
+                    <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isIndemnise" btn-radio="true">Oui</button>
+                    <button type="button" class="btn btn-sm btn-primary" ng-model="situationPro.isIndemnise" btn-radio="false">Non</button>
                   </div>
                 </div>
 
-                <div class="form-group" ng-if="true === situationPro.isChomeurIndemnise">
+                <div class="form-group" ng-if="true === situationPro.isIndemnise">
                   <label class="col-sm-5 control-label" for="date-chomeur-indemnise-{{ individuRef.id }}">Depuis quand ?</label>
                   <div class="col-sm-7">
-                    <input type="text" id="date-chomeur-indemnise-{{ individuRef.id }}" class="form-control" ng-model="situationPro.chomeurIndemniseSince" date-autocomplete placeholder="jj/mm/aaaa">
+                    <input type="text" id="date-chomeur-indemnise-{{ individuRef.id }}" class="form-control" ng-model="situationPro.indemniseSince" date-autocomplete placeholder="jj/mm/aaaa">
                   </div>
                 </div>
               </div>

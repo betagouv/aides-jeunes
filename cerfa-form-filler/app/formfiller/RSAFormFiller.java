@@ -6,14 +6,14 @@ import models.Individu;
 import models.Individu.Civilite;
 import models.Individu.IndividuRole;
 import models.Individu.Nationalite;
-import models.Individu.SalarieContractType;
-import models.Individu.SituationPro;
-import models.Individu.SituationProType;
 import models.Individu.StatutMarital;
 import models.Logement.Adresse;
 import models.Logement.LogementType;
 import models.Ressource.RessourcePeriode;
 import models.Ressource.RessourceType;
+import models.SituationPro;
+import models.SituationPro.SalarieContractType;
+import models.SituationPro.SituationProType;
 import models.SituationService;
 
 import org.apache.commons.lang3.ArrayUtils;

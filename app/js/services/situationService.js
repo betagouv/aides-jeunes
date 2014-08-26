@@ -132,7 +132,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 personne.role = 'personneACharge';
             });
 
-            individus = individus.concat(situation.enfants).concat(situation.personnesACharge);
+            individus = individus.concat(situation.enfants);
             individus = _.map(individus, this.createApiCompatibleIndividu);
 
             if (situation.logement.dateArriveeString) {

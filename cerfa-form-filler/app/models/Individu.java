@@ -16,13 +16,14 @@ public class Individu {
     public String firstName;
     public String lastName;
     public String nomUsage;
-    public LienParente lienParente;
     public String nir;
     public String dateDeNaissance;
     public String paysNaissance;
     public String villeNaissance;
     public String departementNaissance;
     public Nationalite nationalite;
+    public LienParente lienParente;
+    public Boolean residenceAlternee;
     public String dateArriveeFoyer;
     public IndividuRole role;
     public StatutMarital statutMarital;

@@ -56,13 +56,17 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('foyer.demandeur_modal', {
             url: '/demandeur',
-            onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
-                var situation = SituationService.restoreLocal();
+            onEnter: ['$state', 'IndividuModalService', function($state, IndividuModalService) {
                 IndividuModalService
-                    .open({individuType: 'demandeur', modalTitle: 'Vous', cancelable: false, checkResidenceStability: true})
-                    .then(function() {
-                        SituationService.saveLocal(situation);
-                        return $state.go('foyer');
+                    .open({
+                        individuType: 'demandeur',
+                        modalTitle: 'Vous',
+                        cancelable: false,
+                        checkResidenceStability: true,
+                        minAge: 18
+                    })
+                    .finally(function() {
+                        $state.go('foyer');
                     });
             }]
         })
@@ -71,13 +75,14 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
                 var situation = SituationService.restoreLocal();
                 IndividuModalService
-                    .open({individuType: 'conjoint', modalTitle: 'Votre conjoint', askRelationType: true, checkResidenceStability: true})
-                    .then(function(conjoint) {
-                        situation.conjoint = conjoint;
-                        SituationService.saveLocal(situation);
-
-                        return conjoint;
-                    }, function() {
+                    .open({
+                        individuType: 'conjoint',
+                        modalTitle: 'Votre conjoint',
+                        askRelationType: true,
+                        checkResidenceStability: true,
+                        minAge: 18
+                    })
+                    .then(function() {}, function() {
                         situation.livesAlone = undefined;
                     }).finally(function() {
                         $state.go('foyer');
@@ -88,7 +93,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/enfant',
             onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
                 IndividuModalService
-                    .open({individuType: 'enfant', modalTitle: 'Votre enfant', askFirstName: true, maxAge: 25})
+                    .open({
+                        individuType: 'enfant',
+                        modalTitle: 'Votre enfant',
+                        askFirstName: true,
+                        maxAge: 25
+                    })
                     .then(function(enfant) {
                         var situation = SituationService.restoreLocal();
                         situation.enfants.push(enfant);
@@ -103,7 +113,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/personne-a-charge',
             onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
                 IndividuModalService
-                    .open({individuType: 'personneACharge', modalTitle: 'Personne à charge', askFirstName: true, maxAge: 25})
+                    .open({
+                        individuType: 'personneACharge',
+                        modalTitle: 'Personne à charge',
+                        askFirstName: true,
+                        maxAge: 25
+                    })
                     .then(function(personne) {
                         var situation = SituationService.restoreLocal();
                         situation.personnesACharge.push(personne);

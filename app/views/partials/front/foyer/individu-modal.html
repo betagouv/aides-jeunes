@@ -23,13 +23,16 @@
           ng-model="$parent.birthDate"
           dds-date
           date-autocomplete
+          date-naissance-min-age="minAge"
           date-naissance-max-age="maxAge"
-          placeholder="jj/mm/aaaa"
-          >
+          placeholder="jj/mm/aaaa">
         <p class="help-block" ng-if="formSubmitted && form.birthDate.$error.required">Ce champ est obligatoire.</p>
         <p class="help-block" ng-if="formSubmitted && form.birthDate.$error.ddsDate">Date de naissance invalide.</p>
         <p class="help-block" ng-if="formSubmitted && form.birthDate.$error.dateNaissanceMaxAge">
           Veuillez déclarer uniquement les personnes de moins de {{ maxAge }} ans.
+        </p>
+        <p class="help-block" ng-if="formSubmitted && form.birthDate.$error.dateNaissanceMinAge">
+          Cette personne ne doit pas avoir moins de {{ minAge }} ans.
         </p>
       </div>
     </div>

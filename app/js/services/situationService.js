@@ -23,11 +23,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         newSituation: function() {
-            delete $sessionStorage.situation;
-            situation = null;
-        },
-
-        saveLocal: function(situation) {
+            situation = {};
             $sessionStorage.situation = situation;
         },
 

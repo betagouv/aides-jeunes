@@ -245,7 +245,7 @@
         <div class="form-group">
           <label class="col-sm-4 control-label" for="pays-naissance-enfant-{{ $index }}">Pays de naissance</label>
           <div class="col-sm-4">
-            <select id="pays-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.choicePaysNaissance" ng-change="choicePaysNaissance(enfant)">
+            <select id="pays-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.choicePaysNaissance" ng-change="changePaysNaissance(enfant)">
               <option value="france">France</option>
               <option value="autre">Autre</option>
             </select>

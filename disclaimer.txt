@@ -2,8 +2,6 @@ CMU-C
 =====
 
 On suppose :
-* Que le demandeur réside en France de manière stable
-* Que le demandeur réside en France de manière régulière
 * Que les enfants mineurs déclarés ne sont pas en résidence alternée
 
 On ne gère pas :
@@ -16,21 +14,13 @@ On gère :
 * Le forfait logement
 
 Champs non remplis cerfa :
-* Numéro d'allocataire CAF (demandeur et conjoint)
-* Adresse, commune, numéro de téléphone
 * Organisme auquel le demandeur a élu domicile
-* Date de situation familiale ("depuis le")
-* Résidence alternée (enfants)
-* Numéro de sécurité sociale (pour tous les individus)
 * Situations particulières RSA
 * Situations pour lesquelles il est inutile de remplir les ressources perçues
 * Toutes les ressources
 
 ASPA
 ====
-
-On suppose :
-* Que le demandeur respecte les conditions de résidence et de régularité de séjour
 
 On ne gère pas :
 * Les cas particuliers pour les personnes de moins de 65 ans (handicap/incapacité de travail)
@@ -39,11 +29,6 @@ On ne gère pas :
 * Le cas des couples dont l'un touche l'allocation supplémentaire
 
 Champs non remplis cerfa :
-* Civilité
-* Nom d'épouse (demandeur et conjoint)
-* Lieu de naissance (demandeur et conjoint)
-* Date de situation familiale ("depuis le")
-* Divorcé, séparé, veuf
 * Revenus
 * Biens mobiliers / immobiliers à cause de la séparation des biens personnels/communs
 
@@ -59,7 +44,7 @@ On ne gère pas :
 * Les enfants mineurs émancipés
 * ALF : Les cas particuliers pour les personnes à charge entre 60 et 65 ans
 * ALF : Les cas particuliers pour les personnes à charge invalides/infirmes
-* ALF : Le cas particlier de la femme enceinte
+* ALF : Le cas particulier de la femme enceinte
 * ALS : Les résidents en foyer d'hébergement
 * ALS : Caractéristiques de décence et de conditions minimales d'occupation
 

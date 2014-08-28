@@ -1,14 +1,27 @@
 <div class="jumbotron">
   <h1>Accédez à vos droits en ligne&nbsp;!</h1>
+
   <p>
     Vous souhaitez savoir si pouvez demander un Revenu de Solidarité Active (RSA), une Allocation Logement,
     une Prestation Familiale, un Minimum Vieillesse ou une Couverture Maladie Universelle&nbsp;?
   </p>
+
   <p>
     Ce questionnaire va vous permettre de le vérifier.
     Il donne également, à partir des informations saisies en ligne sous votre responsabilité,
     un montant mensuel estimé de ces prestations.
   </p>
+
+  <div class="checkbox text-center">
+    <label>
+      <input type="checkbox" ng-model="acceptConditions">
+      J’ai pris connaissance des conditions de ce service
+    </label>
+  </div>
+
+  <div class="text-center">
+    <button class="btn btn-primary btn-lg" ng-click="checkConfirmation() && startSimulation()">Commencer la simulation</button>
+  </div>
 </div>
 
 <p>
@@ -26,16 +39,3 @@
   bulletins de salaires des 3 derniers mois et ceux de votre conjoint(e),
   concubin(e) ou pacsé(e) et des personnes à charge âgées de moins de 25 ans).
 </p>
-
-<hr>
-
-<div class="checkbox text-center">
-  <label>
-    <input type="checkbox" ng-model="acceptConditions">
-    J’ai pris connaissance des conditions de ce service
-  </label>
-</div>
-
-<div class="text-center">
-  <button class="btn btn-primary btn-lg" ng-click="checkConfirmation() && startSimulation()">Commencer la simulation</button>
-</div>

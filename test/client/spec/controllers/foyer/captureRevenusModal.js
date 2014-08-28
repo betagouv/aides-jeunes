@@ -15,8 +15,7 @@ describe('Controller: FoyerCaptureRevenusModalCtrl', function() {
             spyOn(SituationService, 'createIndividusList').andReturn([{role: 'demandeur'}, {role: 'conjoint'}]);
             $controller('FoyerCaptureRevenusModalCtrl', {
                 $scope: scope,
-                $modalInstance: {},
-                SituationService: SituationService
+                $modalInstance: {}
             });
         });
 

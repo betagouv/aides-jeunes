@@ -116,8 +116,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     .open({
                         individuType: 'personneACharge',
                         modalTitle: 'Personne à charge',
-                        askFirstName: true,
-                        maxAge: 25
+                        askFirstName: true
                     })
                     .then(function(personne) {
                         var situation = SituationService.restoreLocal();

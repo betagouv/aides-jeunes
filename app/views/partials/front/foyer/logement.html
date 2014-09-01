@@ -57,7 +57,7 @@
 
     <div class="form-group" ng-if="'gratuit' !== situation.logement.type && (undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || ('payant' === situation.logement.type && undefined !== situation.logement.membreFamilleProprietaire))">
       <label class="col-sm-3 control-label" for="loyer">
-        {{ 'proprietaire' === situation.logement.type ? 'Votre mensualité d\'emprunt' : 'Votre loyer' }} ?
+        {{ 'proprietaire' === situation.logement.type ? 'Votre mensualité d\'emprunt' : 'Votre loyer (hors charges)' }}
       </label>
       <div class="col-sm-2">
         <div class="input-group">
@@ -73,7 +73,7 @@
     <div
       class="form-group"
       ng-show="undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || 'gratuit' === situation.logement.type || (situation.logement.type === 'payant' && undefined !== situation.logement.membreFamilleProprietaire)">
-      <label class="col-sm-3 control-label" for="postal-code">Quel est le code postal de votre résidence&nbsp;?</label>
+      <label class="col-sm-3 control-label" for="postal-code">Code postal de votre résidence</label>
       <div class="col-sm-2">
         <input class="form-control" id="postal-code" name="codePostal" ng-model="situation.logement.adresse.codePostal" type="number" required>
       </div>

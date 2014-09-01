@@ -173,7 +173,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             {
                 label: 'locataire',
                 value: 'locataire',
-                helpText: 'Locataire, colocataire ou sous-locataire'
+                helpText: 'Locataire ou sous-locataire'
+            },
+            {
+                label: 'colocataire',
+                value: 'colocataire'
             },
             {
                 label: 'propriétaire',
@@ -184,7 +188,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 value: 'gratuit'
             },
             {
-                label: 'occupant à titre payant',
+                label: 'occupant à titre onéreux',
                 value: 'payant',
                 helpText: 'Camping, caravane, hébergement payant...'
             }

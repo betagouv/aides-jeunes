@@ -12,6 +12,10 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $h
         $scope.awaitingResults = false;
     });
 
+    $scope.arrondi = function(montant) {
+        return Math.floor(montant / 10) * 10;
+    };
+
     $scope.downloadCerfa = function(cerfa) {
         if (situation.infosComplementairesCaptured) {
             $state.go('download_cerfa', {cerfa: cerfa.id});

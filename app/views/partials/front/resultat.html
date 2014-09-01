@@ -22,7 +22,7 @@
               <h3 class="media-heading">
                 {{ droit.description.label }}
                 ({{ droit.description.shortLabel }})
-                <span ng-if="false !== droit.description.hasMontant">: <strong>{{ droit.montant }} €</strong></span>
+                <span ng-if="false !== droit.description.hasMontant">: <strong>{{ arrondi(droit.montant) }} €</strong></span>
               </h3>
               <p>{{ droit.description.description }}</p>
             </div>

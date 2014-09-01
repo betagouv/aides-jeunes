@@ -3,26 +3,14 @@
   "description": "Dossier de Demande Simplifié",
   "version": "0.1.2",
   "dependencies": {
-    "async": "^0.9.0",
-    "bcrypt": "^0.7.8",
-    "body-parser": "~1.0.0",
-    "cookie-parser": "~1.0.1",
-    "debug": "^1.0.2",
     "errorhandler": "~1.0.0",
     "express": "~4.0.0",
-    "express-session": "~1.0.2",
     "karma-requirejs": "^0.2.2",
     "lodash": "~2.4.1",
-    "moment": "~2.5.1",
-    "mongoose": "~3.8.12",
     "morgan": "~1.0.0",
-    "passport": "^0.2.0",
-    "passport-local": "^1.0.0",
-    "request": "^2.39.0",
     "requirejs": "^2.1.14",
-    "static-favicon": "~1.0.1",
-    "superagent": "^0.18.0",
-    "underscore.string": "^2.3.3"
+    "sgmap-mesdroits-api": "sgmap/mesdroits-api#06a00fc",
+    "static-favicon": "~1.0.1"
   },
   "devDependencies": {
     "connect-livereload": "~0.3.0",

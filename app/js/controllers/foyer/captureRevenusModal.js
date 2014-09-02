@@ -1,94 +1,86 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($scope, $rootScope, $modalInstance, SituationService) {
-    var situation = SituationService.restoreLocal();
+angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($scope, $rootScope, $modalInstance, individus, SituationService) {
     $scope.sections = SituationService.revenusSections;
     $scope.sections[0].open = true;
-    $scope.individus = SituationService.createIndividusList(situation);
-    $scope.individuLabel = SituationService.individuLabel;
 
-    $scope.selectedRessourcesMap = {};
-    $scope.selectedRessourcesByIndividu = {};
-    _.forEach($scope.individus, function(individu) {
-        var individuLabel = SituationService.individuLabel(individu);
-        $scope.selectedRessourcesByIndividu[individuLabel] = {};
+    $scope.individuRefs = _.map(individus, function(individu) {
+        return {
+            label: SituationService.individuLabel(individu),
+            selectedRessources: {},
+            ressources: [],
+            individu: individu
+        };
     });
 
-    // suppression des clés dont la valeur est "false" dans la map de sélection par individu
-    $scope.cleanSelectedRessources = function() {
-        _.forEach($scope.selectedRessourcesByIndividu, function(value) {
-            _.forEach(value, function(v, k) {
-                if (!v) {
-                    delete value[k];
-                }
-            });
-        });
-    };
-
-    $scope.createOrderedSelectedRessources = function() {
-        $scope.orderedSelectedRessources = {};
-        _.forEach($scope.selectedRessourcesByIndividu, function(selection, individuLabel) {
-            var ressources = $scope.orderedSelectedRessources[individuLabel] = [];
-            _.forEach($scope.orderedSubsections, function(subsection) {
-                if ($scope.selectedRessourcesByIndividu[individuLabel][subsection.name]) {
-                    ressources.push(subsection.name);
-                }
-            });
-        });
-    };
-
     $scope.months = SituationService.getMonths();
-
-    $scope.hasIndividuRevenus = function(individu) {
-        return _.keys($scope.selectedRessourcesByIndividu[SituationService.individuLabel(individu)]).length > 0;
-    };
 
     $scope.submit = function() {
         var closeModal = true;
         if (!$scope.ressourcesSelected) {
             $scope.ressourcesSelected = true;
-            $scope.cleanSelectedRessources();
-            $scope.zerofillRevenus();
-            $scope.createOrderedSelectedRessources();
+            $scope.initIndividusRessources();
             closeModal = !$scope.hasRessources();
         }
 
         if (closeModal) {
-            situation.revenusCaptured = true;
+            $scope.applyIndividuRefsRessourcesToIndividus();
             $rootScope.$broadcast('ressourcesCaptured');
             $modalInstance.close();
         }
     };
 
+    $scope.hasIndividuRessources = function(individuRef) {
+        var selectedRessources = _.filter(individuRef.selectedRessources);
+        return !!_.values(selectedRessources).length;
+    };
+
     $scope.hasRessources = function() {
         var result = false;
-        _.forEach($scope.selectedRessourcesByIndividu, function(values) {
-            if (!_.isEmpty(values)) {
-                result = true;
-            }
+        $scope.individuRefs.forEach(function(individuRef) {
+            result = result || $scope.hasIndividuRessources(individuRef);
         });
 
         return result;
     };
 
-    $scope.zerofillRevenus = function() {
-        _.forEach($scope.individus, function(individu) {
-            individu.ressources = {};
-            _.forEach($scope.orderedSubsections, function(subsection) {
-                if ($scope.selectedRessourcesByIndividu[SituationService.individuLabel(individu)][subsection.name]) {
-                    individu.ressources[subsection.name] = {};
-                    _.forEach($scope.months, function(month) {
-                        individu.ressources[subsection.name][month.id] = 0;
+    $scope.initIndividusRessources = function() {
+        $scope.individuRefs.forEach(function(individuRef) {
+            $scope.orderedSubsections.forEach(function(subsection) {
+                if (individuRef.selectedRessources[subsection.name]) {
+                    individuRef.ressources.push({
+                        type: subsection.name,
+                        months: [
+                            { periode: $scope.months[0].id, montant: 0},
+                            { periode: $scope.months[1].id, montant: 0},
+                            { periode: $scope.months[2].id, montant: 0}
+                        ]
                     });
                 }
             });
         });
     };
 
+    $scope.applyIndividuRefsRessourcesToIndividus = function() {
+        $scope.individuRefs.forEach(function(individuRef) {
+            var individu = individuRef.individu;
+            individu.ressources = [];
+            individuRef.ressources.forEach(function(ressource) {
+                ressource.months.forEach(function(month) {
+                    individu.ressources.push({
+                        periode: month.periode,
+                        type: ressource.type,
+                        montant: month.montant
+                    });
+                });
+            });
+        });
+    };
+
     $scope.subsectionsIndex = {};
     $scope.orderedSubsections = [];
-    _.forEach($scope.sections, function(section) {
-        _.forEach(section.subsections, function(subsection) {
+    $scope.sections.forEach(function(section) {
+        section.subsections.forEach(function(subsection) {
             subsection.section = section;
             $scope.subsectionsIndex[subsection.name] = subsection;
             $scope.orderedSubsections.push(subsection);

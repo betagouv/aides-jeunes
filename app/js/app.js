@@ -144,10 +144,15 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('foyer.capture_revenus', {
             url: '/ressources',
-            onEnter: ['$state', '$modal', function($state, $modal) {
+            onEnter: ['$state', '$modal', 'SituationService', function($state, $modal, SituationService) {
                 $modal.open({
                     templateUrl: '/partials/foyer/capture-revenus-modal.html',
                     controller: 'FoyerCaptureRevenusModalCtrl',
+                    resolve: {
+                        individus: function() {
+                            return SituationService.createIndividusList(SituationService.restoreLocal());
+                        }
+                    },
                     size: 'lg',
                     backdrop: 'static',
                     keyboard: false

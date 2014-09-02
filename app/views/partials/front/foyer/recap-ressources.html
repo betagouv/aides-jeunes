@@ -1,4 +1,4 @@
-<div ng-if="situation.revenusCaptured">
+<div ng-if="situation.ressourcesCaptured">
   <h2>
     <i class="fa fa-eur"></i>
     Vos ressources
@@ -17,9 +17,9 @@
         <tr ng-repeat="individu in ressource.byIndividu">
           <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.category }}">{{ ressource.type }}</td>
           <td>{{ individu.label }}</td>
-          <td ng-repeat="month in months">{{ individu.ressources[$index] }} €</td>
+          <td ng-repeat="month in months">{{ individu.values[$index] }} €</td>
         </tr>
-        <tr>
+        <tr class="active">
           <th>Total</th>
           <th ng-repeat="month in months">{{ ressource.total[$index] }} €</th>
         </tr>
@@ -27,5 +27,5 @@
     </table>
   </div>
 
-  <p ng-if="!hasRessources">Vous n'avez déclaré aucune ressource</p>
+  <p ng-if="!hasRessources">Vous n'avez déclaré aucune ressource sur les trois derniers mois.</p>
 </div>

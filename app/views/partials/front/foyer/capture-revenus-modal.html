@@ -21,13 +21,13 @@
               class="btn btn-sm btn-ressources"
               ng-class="'capture-' + section.name"
               btn-checkbox
-              ng-model="selectedRessourcesMap[subsection.name]">
+              ng-model="subsection.open">
               {{ subsection.label }}
             </button>
-            <span ng-if="selectedRessourcesMap[subsection.name]" class="ressource-individus-selector">
+            <span ng-if="subsection.open" class="ressource-individus-selector">
               Qui ?
-              <label class="checkbox-inline" ng-repeat="individu in individus">
-                <input type="checkbox" ng-model="selectedRessourcesByIndividu[individuLabel(individu)][subsection.name]"> {{ individuLabel(individu) }}
+              <label class="checkbox-inline" ng-repeat="individuRef in individuRefs">
+                <input type="checkbox" ng-model="individuRef.selectedRessources[subsection.name]"> {{ individuRef.label }}
               </label>
             </span>
           </div>
@@ -37,8 +37,8 @@
 
     <div ng-show="ressourcesSelected">
       <p>Veuillez entrer les montants des revenus ou aides sélectionné(e)s.</p>
-      <div ng-repeat="individu in individus" ng-if="hasIndividuRevenus(individu)">
-        <h2>{{ individuLabel(individu) }}</h2>
+      <div ng-repeat="individuRef in individuRefs" ng-if="hasIndividuRessources(individuRef)">
+        <h2>{{ individuRef.label }}</h2>
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -47,11 +47,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="subsectionName in orderedSelectedRessources[individuLabel(individu)]" class="capture-{{ subsectionsIndex[subsectionName].section.name }}">
-              <td style="width: 200px; vertical-align: middle; color: white;">{{ subsectionsIndex[subsectionName].label }}</td>
-              <td ng-repeat="month in months">
+            <tr ng-repeat="ressource in individuRef.ressources" class="capture-{{ subsectionsIndex[ressource.type].section.name }}">
+              <td style="width: 200px; vertical-align: middle; color: white;">{{ subsectionsIndex[ressource.type].label }}</td>
+              <td ng-repeat="monthRessource in ressource.months">
                 <span class="input-group">
-                  <input type="number" class="form-control text-right" select-on-focus ng-model="individu.ressources[subsectionName][month.id]">
+                  <input type="number" class="form-control text-right" select-on-focus ng-model="monthRessource.montant">
                   <span class="input-group-addon hidden-xs">€</span>
                 </span>
               </td>

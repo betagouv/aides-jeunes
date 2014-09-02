@@ -229,4 +229,21 @@ describe('Service: situationService', function () {
             expect(result).toBe('Arnaud');
         });
     });
+
+    describe('funtion getMonths()', function() {
+        it('Should create an array of the last 3 months', function() {
+            // when
+            var result = service.getMonths();
+
+            // then
+            expect(result.length).toBe(3);
+            var date = new Date();
+            var month = '' + (date.getMonth() - 2);
+            if (month.length === 1) {
+                month = '0' + month;
+            }
+            var expectedDate = '' + date.getFullYear() + '-' + month;
+            expect(result[0].id).toBe(expectedDate);
+        });
+    });
 });

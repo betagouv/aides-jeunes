@@ -17,14 +17,14 @@
   <a ui-sref="foyer.situations_specifiques" ng-if="!situation.situationsSpecifiquesCaptured" class="btn btn-lg btn-primary btn-next">
     Étape suivante : situations spécifiques
   </a>
-  <a ui-sref="foyer.capture_revenus" ng-if="situation.situationsSpecifiquesCaptured && !situation.revenusCaptured" class="btn btn-lg btn-primary btn-next">
+  <a ui-sref="foyer.capture_revenus" ng-if="situation.situationsSpecifiquesCaptured && !situation.ressourcesCaptured" class="btn btn-lg btn-primary btn-next">
     Étape suivante : vos ressources
   </a>
 </div>
 
 <div ui-view="ressources"></div>
 
-<div class="text-center" ng-if="situation.revenusCaptured && !situation.formLogement">
+<div class="text-center" ng-if="situation.ressourcesCaptured && !situation.formLogement">
   <button type="button" ng-click="situation.formLogement = true" class="btn btn-lg btn-primary btn-next">
     Étape suivante : votre logement
   </button>

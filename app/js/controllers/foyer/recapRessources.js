@@ -32,30 +32,42 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
     };
 
     $scope.fillIndividuRessources = function(individu) {
-        var individuLabel = SituationService.individuLabel(individu);
+        var monthsIndexes = {};
+        monthsIndexes[$scope.months[0].id] = 0;
+        monthsIndexes[$scope.months[1].id] = 1;
+        monthsIndexes[$scope.months[2].id] = 2;
 
-        _.forEach(individu.ressources, function(ressource, subsectionName) {
-            if (!$scope.tempRessources[subsectionName]) {
-                $scope.tempRessources[subsectionName] = {
+        individu.ressources.forEach(function(ressource) {
+            var ressourceSection = $scope.tempRessources[ressource.type];
+            if (!ressourceSection) {
+                ressourceSection = $scope.tempRessources[ressource.type] = {
                     total: [0, 0, 0],
                     byIndividu: []
                 };
             }
-            var ressources = _.values(ressource);
-            $scope.tempRessources[subsectionName].byIndividu.push({
-                label: individuLabel,
-                ressources: ressources
-            });
-            _.forEach(ressources, function(amount, i) {
-                $scope.tempRessources[subsectionName].total[i] += amount;
-                $scope.globalAmount += amount;
-            });
+
+            var individuRessource = _.find($scope.tempRessources[ressource.type].byIndividu, { label: SituationService.individuLabel(individu) });
+            if (!individuRessource) {
+                individuRessource = {
+                    label: SituationService.individuLabel(individu),
+                    values: []
+                };
+                $scope.tempRessources[ressource.type].byIndividu.push(individuRessource);
+            }
+
+            var monthIndex = monthsIndexes[ressource.periode];
+            individuRessource.values[monthIndex] = ressource.montant;
+            $scope.tempRessources[ressource.type].total[monthIndex] += ressource.montant;
+            $scope.globalAmount += ressource.montant;
         });
     };
 
-    if ($scope.situation.revenusCaptured) {
+    if ($scope.situation.ressourcesCaptured) {
         $scope.initRessources();
     }
 
-    $scope.$on('ressourcesCaptured', $scope.initRessources);
+    $scope.$on('ressourcesCaptured', function() {
+        $scope.situation.ressourcesCaptured = true;
+        $scope.initRessources();
+    });
 });

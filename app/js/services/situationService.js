@@ -153,18 +153,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             if (individu.dateArriveeFoyerString) {
                 individu.dateArriveeFoyer = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY').format('YYYY-MM-DD');
             }
-            var ressources = individu.ressources;
-            individu.ressources = [];
-
-            _.forEach(ressources, function(months, type) {
-                _.forEach(months, function(montant, month) {
-                    individu.ressources.push({
-                        montant: montant,
-                        periode: month,
-                        type: type
-                    });
-                });
-            });
 
             return individu;
         },

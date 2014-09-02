@@ -1,7 +1,5 @@
 'use strict';
 
-/* global _ */
-
 describe('Service: situationService', function () {
 
     var service;
@@ -13,7 +11,7 @@ describe('Service: situationService', function () {
         });
     });
 
-    describe('function formatStatutsLabels', function() {
+    describe('function formatStatutsLabels()', function() {
         it('Should return empty string if no specific situations', function() {
             // when
             var result = service.formatStatutsSpecifiques({});
@@ -39,7 +37,7 @@ describe('Service: situationService', function () {
         });
     });
 
-    describe('function createApiCompatibleIndividu', function() {
+    describe('function createApiCompatibleIndividu()', function() {
         it('Should return a cloned version of the individu', function() {
             // given
             var individu = { birthDate: '14/09/1989', ressources: {} };
@@ -62,26 +60,9 @@ describe('Service: situationService', function () {
             expect(result.dateDeNaissance).toBeDefined();
             expect(result.dateDeNaissance).toBe('1989-09-14');
         });
-
-        it('Should create an array of ressources from the ressources map', function() {
-            // given
-            var individu = { ressources: { salarie: {'2014-08': 245} } };
-
-            // when
-            var result = service.createApiCompatibleIndividu(individu);
-
-            // then
-            expect(_.isArray(result.ressources)).toBe(true);
-            expect(result.ressources.length).toBe(1);
-            expect(result.ressources[0]).toEqual({
-                montant: 245,
-                periode: '2014-08',
-                type:  'salarie'
-            });
-        });
     });
 
-    describe('function createApiCompatibleSituation', function() {
+    describe('function createApiCompatibleSituation()', function() {
         it('Should return a cloned version of the situation', function() {
             // given
             var situation = { demandeur: {}, enfants: [], personnesACharge: [], logement: {} };
@@ -130,7 +111,7 @@ describe('Service: situationService', function () {
         });
     });
 
-    describe('function createIndividusList', function() {
+    describe('function createIndividusList()', function() {
         it('Should create an array of individuals including demandeur', function() {
             // given
             var demandeur = {};
@@ -184,7 +165,7 @@ describe('Service: situationService', function () {
         });
     });
 
-    describe('function individuLabel', function() {
+    describe('function individuLabel()', function() {
         it('Should return "Vous" if individu has role demandeur', function() {
             // given
             var individu = {role: 'demandeur', firstName: 'Arnaud'};

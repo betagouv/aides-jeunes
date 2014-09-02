@@ -164,10 +164,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 helpText: 'Locataire ou sous-locataire'
             },
             {
-                label: 'colocataire',
-                value: 'colocataire'
-            },
-            {
                 label: 'propriétaire',
                 value: 'proprietaire'
             },

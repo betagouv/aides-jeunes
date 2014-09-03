@@ -4,12 +4,16 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
     $scope.months = SituationService.getMonths();
     $scope.individuLabel = SituationService.individuLabel;
 
+    $scope.lastMonth = moment().subtract('months', 1).startOf('month').format('MMMM YYYY');
+    $scope.lastYear = moment().subtract('years', 1).format('MMMM YYYY');
+
     $scope.initRessources = function() {
         $scope.tempRessources = {};
         $scope.hasRessources = false;
         $scope.globalAmount = 0;
 
         var individus = SituationService.createIndividusList($scope.situation);
+        $scope.alone = 1 === individus.length;
         individus.map($scope.fillIndividuRessources);
 
         if ($scope.globalAmount > 0) {
@@ -24,6 +28,7 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
                         type: subsection.label,
                         category: section.name,
                         total: $scope.tempRessources[subsection.name].total,
+                        totalYear: $scope.tempRessources[subsection.name].totalYear,
                         byIndividu: $scope.tempRessources[subsection.name].byIndividu
                     });
                 }
@@ -42,7 +47,8 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
             if (!ressourceSection) {
                 ressourceSection = $scope.tempRessources[ressource.type] = {
                     total: [0, 0, 0],
-                    byIndividu: []
+                    byIndividu: [],
+                    totalYear: 0
                 };
             }
 
@@ -55,9 +61,15 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
                 $scope.tempRessources[ressource.type].byIndividu.push(individuRessource);
             }
 
-            var monthIndex = monthsIndexes[ressource.periode];
-            individuRessource.values[monthIndex] = ressource.montant;
-            $scope.tempRessources[ressource.type].total[monthIndex] += ressource.montant;
+            if (ressource.debutPeriode) {
+                debugger;
+                individuRessource.yearValue = ressource.montant;
+                $scope.tempRessources[ressource.type].totalYear += ressource.montant;
+            } else {
+                var monthIndex = monthsIndexes[ressource.periode];
+                individuRessource.values[monthIndex] = ressource.montant;
+                $scope.tempRessources[ressource.type].total[monthIndex] += ressource.montant;
+            }
             $scope.globalAmount += ressource.montant;
         });
     };

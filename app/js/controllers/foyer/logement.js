@@ -42,11 +42,12 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         $scope.cities = [];
         var codePostal = $scope.situation.logement.adresse.codePostal;
         if (9999 < codePostal && 100000 > codePostal) {
-            var baseApi = 'http://public.opendatasoft.com/api/records/1.0/search?dataset=correspondance-code-insee-code-postal&format=jsonp&callback=JSON_CALLBACK&q=';
+            var baseApi = '//public.opendatasoft.com/api/records/1.0/search?dataset=correspondance-code-insee-code-postal&format=jsonp&callback=JSON_CALLBACK&q=';
             $http.jsonp(baseApi + $scope.situation.logement.adresse.codePostal).then(function(result) {
                 $scope.cities = [];
                 result.data.records.forEach(function(record) {
-                    $scope.cities.push(record.fields.nom_comm);
+                    var field = 'nom_comm';
+                    $scope.cities.push(record.fields[field]);
                 });
                 $scope.situation.logement.adresse.ville = $scope.cities[0];
             });

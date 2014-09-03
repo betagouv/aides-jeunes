@@ -146,7 +146,6 @@ body.change-state-progress, body.change-state-progress * {
   border-radius: 0;
   padding: 17px 32px;
 }
-
 .capture-indemnites {
   @include button-variant(white, #f07818, #f07818);
 }
@@ -156,7 +155,7 @@ body.change-state-progress, body.change-state-progress * {
 }
 
 .capture-allocations {
-  @include button-variant(white, #78c0a8, #78c0a8);
+  @include button-variant(white, #458D75, #458D75);
 }
 
 .capture-revenusActivite {
@@ -167,23 +166,21 @@ body.change-state-progress, body.change-state-progress * {
   @include button-variant(white, #878309, #878309);
 }
 
-.btn-ressources, .btn-ressources:hover, .btn-ressources:focus {
+.btn-selection {
   border: 4px solid white;
   margin: 3px;
+}
+
+.btn-ressources, .btn-ressources:hover, .btn-ressources:focus {
+  @extend .btn-selection;
   width: 200px;
   height: 60px;
 }
 
-.ressource-individus-selector {
-  input[type="checkbox"] {
-    margin-left: -17px;
-  }
-}
-
-.btn.btn-sm.btn-ressources[disabled] {
+.btn-ressources[disabled] {
   opacity: 1;
 }
 
-.btn.btn-sm.btn-ressources.active, .btn.btn-sm.btn-ressources.active:focus {
+.btn.btn-selection.active, .btn.btn-selection.active:focus {
   border: 4px solid black;
 }

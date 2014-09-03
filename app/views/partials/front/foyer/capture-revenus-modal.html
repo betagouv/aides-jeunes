@@ -24,11 +24,11 @@
         <button type="button" disabled class="btn btn-sm btn-ressources" ng-class="'capture-' + subsection.section.name">
           {{ subsection.label }}
         </button>
-        Qui ?
-        <label class="checkbox-inline ressource-individus-selector" ng-repeat="individuRef in individuRefs">
-          <input type="checkbox" ng-model="individuRef.selectedRessources[subsection.name]">
+        <b>Qui ?</b>
+        <button type="button" class="btn btn-selection" ng-repeat="individuRef in individuRefs" btn-checkbox ng-model="individuRef.selectedRessources[subsection.name]">
+          <i class="fa fa-male"></i>
           {{ individuRef.label }}
-        </label>
+        </button>
       </div>
     </div>
 

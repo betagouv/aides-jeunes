@@ -111,6 +111,15 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
         });
     };
 
+    $scope.updateYearAmount = function(ressource) {
+        var montants = _.map(ressource.months, function(month) {
+            return month.montant;
+        });
+        ressource.year.montant = 4 * _.reduce(montants, function(sum, num) {
+            return sum + num;
+        });
+    };
+
     $scope.applyIndividuRefsRessourcesToIndividus = function() {
         $scope.individuRefs.forEach(function(individuRef) {
             var individu = individuRef.individu;

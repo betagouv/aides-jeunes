@@ -42,7 +42,7 @@
     </div>
 
     <div ng-show="personnesSelected">
-      <p>Veuillez entrer les montants des ressources sélectionné(e)s.</p>
+      <p>Veuillez entrer les montants des ressources sélectionnées.</p>
       <div ng-repeat="individuRef in individuRefs" ng-if="hasIndividuRessources(individuRef)">
         <h2>{{ individuRef.label }}</h2>
         <table class="table table-bordered">
@@ -58,7 +58,12 @@
               <td style="width: 200px; vertical-align: middle; color: white;">{{ ressource.type.label }}</td>
               <td ng-repeat="monthRessource in ressource.months">
                 <span class="input-group">
-                  <input type="number" class="form-control text-right" select-on-focus ng-model="monthRessource.montant">
+                  <input
+                    type="number"
+                    class="form-control text-right"
+                    select-on-focus
+                    ng-model="monthRessource.montant"
+                    ng-change="updateYearAmount(ressource)">
                   <span class="input-group-addon hidden-xs">€</span>
                 </span>
               </td>

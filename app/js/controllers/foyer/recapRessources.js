@@ -62,7 +62,6 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
             }
 
             if (ressource.debutPeriode) {
-                debugger;
                 individuRessource.yearValue = ressource.montant;
                 $scope.tempRessources[ressource.type].totalYear += ressource.montant;
             } else {

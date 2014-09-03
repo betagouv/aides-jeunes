@@ -75,7 +75,18 @@
       ng-show="undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || 'gratuit' === situation.logement.type || (situation.logement.type === 'payant' && undefined !== situation.logement.membreFamilleProprietaire)">
       <label class="col-sm-3 control-label" for="postal-code">Code postal de votre résidence</label>
       <div class="col-sm-2">
-        <input class="form-control" id="postal-code" name="codePostal" ng-model="situation.logement.adresse.codePostal" type="number" required>
+        <input
+          class="form-control"
+          id="postal-code"
+          name="codePostal"
+          ng-model="situation.logement.adresse.codePostal"
+          ng-change="updateCities()"
+          type="number"
+          required>
+      </div>
+      <div class="col-sm-4" ng-if="cities.length">
+        <select class="form-control" ng-model="situation.logement.adresse.ville" ng-options="city for city in cities">
+        </select>
       </div>
     </div>
 

@@ -1,6 +1,6 @@
 <form name="form" novalidate ng-submit="submit()">
   <div class="modal-header">
-    <h1 class="modal-title">Vos ressources des trois derniers mois</h1>
+    <h1 class="modal-title">Vos ressources</h1>
   </div>
   <div class="modal-body">
     <div ng-show="!ressourcesSelected">
@@ -50,6 +50,7 @@
             <tr>
               <th style="width: 200px;"></th>
               <th ng-repeat="month in months">{{ month.label | uppercaseFirst }}</th>
+              <th>De {{ lastYear }} à {{ lastMonth }}</th>
             </tr>
           </thead>
           <tbody>
@@ -58,6 +59,12 @@
               <td ng-repeat="monthRessource in ressource.months">
                 <span class="input-group">
                   <input type="number" class="form-control text-right" select-on-focus ng-model="monthRessource.montant">
+                  <span class="input-group-addon hidden-xs">€</span>
+                </span>
+              </td>
+              <td>
+                <span class="input-group">
+                  <input type="number" class="form-control text-right" select-on-focus ng-model="ressource.year.montant">
                   <span class="input-group-addon hidden-xs">€</span>
                 </span>
               </td>

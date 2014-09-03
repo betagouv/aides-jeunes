@@ -11,6 +11,10 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
     });
 
     $scope.months = SituationService.getMonths();
+    var lastMonth = moment().subtract('months', 1).startOf('month');
+    $scope.lastMonth = lastMonth.format('MMMM YYYY');
+    var lastYear = lastMonth.subtract('years', 1).add('months', 1);
+    $scope.lastYear = lastYear.format('MMMM YYYY');
     $scope.selectedRessources = {};
 
     $scope.individuRefs = _.map(individus, function(individu) {
@@ -95,7 +99,10 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
                                 { periode: $scope.months[0].id, montant: 0 },
                                 { periode: $scope.months[1].id, montant: 0 },
                                 { periode: $scope.months[2].id, montant: 0 }
-                            ]
+                            ],
+                            year: {
+                                montant: 0
+                            }
                         };
                     }
                     individuRef.ressources.push(ressource);

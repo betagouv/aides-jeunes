@@ -13,7 +13,7 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
     $scope.months = SituationService.getMonths();
     var lastMonth = moment().subtract('months', 1).startOf('month');
     $scope.lastMonth = lastMonth.format('MMMM YYYY');
-    var lastYear = lastMonth.subtract('years', 1).add('months', 1);
+    var lastYear = moment().subtract('years', 1);
     $scope.lastYear = lastYear.format('MMMM YYYY');
     $scope.selectedRessources = {};
 
@@ -91,7 +91,7 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
             individuRef.ressources = [];
             $scope.orderedSubsections.forEach(function(subsection) {
                 if (individuRef.selectedRessources[subsection.name]) {
-                    var ressource = _.find(previousRessources, {type: subsection.name});
+                    var ressource = _.find(previousRessources, {type: subsection});
                     if (!ressource) {
                         ressource = {
                             type: subsection,
@@ -115,9 +115,9 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
         var montants = _.map(ressource.months, function(month) {
             return month.montant;
         });
-        ressource.year.montant = 4 * _.reduce(montants, function(sum, num) {
+        ressource.year.montant = Math.round(4 * _.reduce(montants, function(sum, num) {
             return sum + num;
-        });
+        }));
     };
 
     $scope.applyIndividuRefsRessourcesToIndividus = function() {
@@ -131,6 +131,12 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
                         type: ressource.type.name,
                         montant: month.montant
                     });
+                });
+                individu.ressources.push({
+                    debutPeriode: lastYear.format('YYYY-MM'),
+                    finPeriode: lastMonth.format('YYYY-MM'),
+                    type: ressource.type.name,
+                    montant: ressource.year.montant
                 });
             });
         });

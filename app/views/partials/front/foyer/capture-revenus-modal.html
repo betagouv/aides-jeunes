@@ -4,39 +4,36 @@
   </div>
   <div class="modal-body">
     <div ng-show="!ressourcesSelected">
-      <p>
-        Pour calculer les droits auxquels vous pouvez prétendre, nous avons besoin de connaître l'ensemble des revenus et aides que vous percevez.
-        <br>Cliquez sur les types de revenus ou aides et sélectionnez les personnes qui les perçoivent. 
-      </p>
-
-      <accordion close-others="false">
-        <accordion-group ng-repeat="section in sections" is-open="section.open">
-          <accordion-heading>
-            {{ section.label }}
-            <i class="pull-right fa" ng-class="{'fa-chevron-down': section.open, 'fa-chevron-right': !section.open}"></i>
-          </accordion-heading>
-          <div ng-repeat="subsection in section.subsections">
-            <button
-              type="button"
-              class="btn btn-sm btn-ressources"
-              ng-class="'capture-' + section.name"
-              btn-checkbox
-              ng-model="subsection.open">
-              {{ subsection.label }}
-            </button>
-            <span ng-if="subsection.open" class="ressource-individus-selector">
-              Qui ?
-              <label class="checkbox-inline" ng-repeat="individuRef in individuRefs">
-                <input type="checkbox" ng-model="individuRef.selectedRessources[subsection.name]"> {{ individuRef.label }}
-              </label>
-            </span>
-          </div>
-        </accordion-group>
-      </accordion>
+      <p>Cliquez sur les types de ressources que vous percevez.</p>
+      <span ng-repeat="section in sections">
+        <button
+          type="button"
+          class="btn btn-sm btn-ressources"
+          ng-class="'capture-' + section.name"
+          ng-repeat="subsection in section.subsections"
+          btn-checkbox
+          ng-model="selectedRessources[subsection.name]">
+          {{ subsection.label }}
+        </button>
+      </span>
     </div>
 
-    <div ng-show="ressourcesSelected">
-      <p>Veuillez entrer les montants des revenus ou aides sélectionné(e)s.</p>
+    <div ng-show="ressourcesSelected && !personnesSelected">
+      <p>Veuillez sélectionner les personnes qui touchent les ressources que vous avez sélectionnées.</p>
+      <div ng-repeat="subsection in orderedSubsections" ng-if="selectedRessources[subsection.name]">
+        <button type="button" disabled class="btn btn-sm btn-ressources" ng-class="'capture-' + subsection.section.name">
+          {{ subsection.label }}
+        </button>
+        Qui ?
+        <label class="checkbox-inline ressource-individus-selector" ng-repeat="individuRef in individuRefs">
+          <input type="checkbox" ng-model="individuRef.selectedRessources[subsection.name]">
+          {{ individuRef.label }}
+        </label>
+      </div>
+    </div>
+
+    <div ng-show="personnesSelected">
+      <p>Veuillez entrer les montants des ressources sélectionné(e)s.</p>
       <div ng-repeat="individuRef in individuRefs" ng-if="hasIndividuRessources(individuRef)">
         <h2>{{ individuRef.label }}</h2>
         <table class="table table-bordered">
@@ -47,8 +44,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="ressource in individuRef.ressources" class="capture-{{ subsectionsIndex[ressource.type].section.name }}">
-              <td style="width: 200px; vertical-align: middle; color: white;">{{ subsectionsIndex[ressource.type].label }}</td>
+            <tr ng-repeat="ressource in individuRef.ressources" class="capture-{{ ressource.type.section.name }}">
+              <td style="width: 200px; vertical-align: middle; color: white;">{{ ressource.type.label }}</td>
               <td ng-repeat="monthRessource in ressource.months">
                 <span class="input-group">
                   <input type="number" class="form-control text-right" select-on-focus ng-model="monthRessource.montant">
@@ -62,8 +59,8 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-show="ressourcesSelected" ng-click="$parent.ressourcesSelected = false">
-      &lt; Sélectionner des revenus différents
+    <button type="button" class="btn btn-default" ng-show="ressourcesSelected || personnesSelected" ng-click="previousStep()">
+      &lt; Étape précédente
     </button>
     <button type="submit" class="btn btn-primary">Valider</button>
   </div>

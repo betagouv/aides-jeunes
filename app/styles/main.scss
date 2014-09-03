@@ -20,6 +20,10 @@ body.change-state-progress, body.change-state-progress * {
   cursor: progress;
 }
 
+.btn {
+  white-space: normal;
+}
+
 .table-borderless > tbody > tr > td {
   border-top: none;
 }
@@ -166,12 +170,18 @@ body.change-state-progress, body.change-state-progress * {
 .btn-ressources, .btn-ressources:hover, .btn-ressources:focus {
   border: 4px solid white;
   margin: 3px;
+  width: 200px;
+  height: 60px;
 }
 
 .ressource-individus-selector {
   input[type="checkbox"] {
-    margin-left: -15px;
+    margin-left: -17px;
   }
+}
+
+.btn.btn-sm.btn-ressources[disabled] {
+  opacity: 1;
 }
 
 .btn.btn-sm.btn-ressources.active, .btn.btn-sm.btn-ressources.active:focus {

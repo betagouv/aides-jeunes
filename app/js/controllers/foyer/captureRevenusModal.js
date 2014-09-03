@@ -2,7 +2,16 @@
 
 angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($scope, $rootScope, $modalInstance, individus, SituationService) {
     $scope.sections = SituationService.revenusSections;
-    $scope.sections[0].open = true;
+    $scope.orderedSubsections = [];
+    $scope.sections.forEach(function(section) {
+        section.subsections.forEach(function(subsection) {
+            subsection.section = section;
+            $scope.orderedSubsections.push(subsection);
+        });
+    });
+
+    $scope.months = SituationService.getMonths();
+    $scope.selectedRessources = {};
 
     $scope.individuRefs = _.map(individus, function(individu) {
         return {
@@ -13,12 +22,30 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
         };
     });
 
-    $scope.months = SituationService.getMonths();
+    $scope.previousStep = function() {
+        if ($scope.personnesSelected) {
+            $scope.personnesSelected = false;
+            if (1 === $scope.individuRefs.length) {
+                $scope.ressourcesSelected = false;
+            }
+        } else {
+            $scope.ressourcesSelected = false;
+        }
+    };
 
     $scope.submit = function() {
         var closeModal = true;
         if (!$scope.ressourcesSelected) {
             $scope.ressourcesSelected = true;
+            closeModal = !_.filter($scope.selectedRessources).length;
+            // cas particulier si le demandeur est seul : on bypass l'écran intermédiaire de sélection des personnes
+            if (1 === $scope.individuRefs.length) {
+                $scope.individuRefs[0].selectedRessources = $scope.selectedRessources;
+                $scope.personnesSelected = true;
+                $scope.initIndividusRessources();
+            }
+        } else if (!$scope.personnesSelected) {
+            $scope.personnesSelected = true;
             $scope.initIndividusRessources();
             closeModal = !$scope.hasRessources();
         }
@@ -46,16 +73,32 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
 
     $scope.initIndividusRessources = function() {
         $scope.individuRefs.forEach(function(individuRef) {
+            _.forEach(individuRef.selectedRessources, function(selected, type) {
+                if (!$scope.selectedRessources[type]) {
+                    individuRef.selectedRessources[type] = false;
+                }
+            });
+
+            individuRef.ressources = _.filter(individuRef.ressources, function(ressource) {
+                return !!individuRef.selectedRessources[ressource.type.name];
+            });
+
+            var previousRessources = individuRef.ressources;
+            individuRef.ressources = [];
             $scope.orderedSubsections.forEach(function(subsection) {
                 if (individuRef.selectedRessources[subsection.name]) {
-                    individuRef.ressources.push({
-                        type: subsection.name,
-                        months: [
-                            { periode: $scope.months[0].id, montant: 0},
-                            { periode: $scope.months[1].id, montant: 0},
-                            { periode: $scope.months[2].id, montant: 0}
-                        ]
-                    });
+                    var ressource = _.find(previousRessources, {type: subsection.name});
+                    if (!ressource) {
+                        ressource = {
+                            type: subsection,
+                            months: [
+                                { periode: $scope.months[0].id, montant: 0 },
+                                { periode: $scope.months[1].id, montant: 0 },
+                                { periode: $scope.months[2].id, montant: 0 }
+                            ]
+                        };
+                    }
+                    individuRef.ressources.push(ressource);
                 }
             });
         });
@@ -69,21 +112,11 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
                 ressource.months.forEach(function(month) {
                     individu.ressources.push({
                         periode: month.periode,
-                        type: ressource.type,
+                        type: ressource.type.name,
                         montant: month.montant
                     });
                 });
             });
         });
     };
-
-    $scope.subsectionsIndex = {};
-    $scope.orderedSubsections = [];
-    $scope.sections.forEach(function(section) {
-        section.subsections.forEach(function(subsection) {
-            subsection.section = section;
-            $scope.subsectionsIndex[subsection.name] = subsection;
-            $scope.orderedSubsections.push(subsection);
-        });
-    });
 });

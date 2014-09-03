@@ -8,7 +8,7 @@
       <span ng-repeat="section in sections">
         <button
           type="button"
-          class="btn btn-sm btn-ressources"
+          class="btn btn-sm btn-selection btn-ressources"
           ng-class="'capture-' + section.name"
           ng-repeat="subsection in section.subsections"
           btn-checkbox
@@ -21,11 +21,20 @@
     <div ng-show="ressourcesSelected && !personnesSelected">
       <p>Veuillez sélectionner les personnes qui touchent les ressources que vous avez sélectionnées.</p>
       <div ng-repeat="subsection in orderedSubsections" ng-if="selectedRessources[subsection.name]">
-        <button type="button" disabled class="btn btn-sm btn-ressources" ng-class="'capture-' + subsection.section.name">
+        <button
+          type="button"
+          disabled
+          class="btn btn-sm btn-selection btn-ressources"
+          ng-class="'capture-' + subsection.section.name">
           {{ subsection.label }}
         </button>
         <b>Qui ?</b>
-        <button type="button" class="btn btn-selection" ng-repeat="individuRef in individuRefs" btn-checkbox ng-model="individuRef.selectedRessources[subsection.name]">
+        <button
+          type="button"
+          class="btn btn-selection btn-selection-personne"
+          ng-repeat="individuRef in individuRefs"
+          btn-checkbox
+          ng-model="individuRef.selectedRessources[subsection.name]">
           <i class="fa fa-male"></i>
           {{ individuRef.label }}
         </button>

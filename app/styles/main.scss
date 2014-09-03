@@ -146,6 +146,7 @@ body.change-state-progress, body.change-state-progress * {
   border-radius: 0;
   padding: 17px 32px;
 }
+
 .capture-indemnites {
   @include button-variant(white, #f07818, #f07818);
 }
@@ -166,21 +167,24 @@ body.change-state-progress, body.change-state-progress * {
   @include button-variant(white, #878309, #878309);
 }
 
-.btn-selection {
+.btn-selection, .btn-selection:hover, .btn-selection:focus {
   border: 4px solid white;
   margin: 3px;
+
+  &.active, &.active:focus {
+    border: 4px solid black;
+  }
 }
 
-.btn-ressources, .btn-ressources:hover, .btn-ressources:focus {
-  @extend .btn-selection;
+.btn-selection-personne:hover {
+  background-color: darken(#dddddd, 10%);
+}
+
+.btn-ressources {
   width: 200px;
   height: 60px;
 }
 
 .btn-ressources[disabled] {
   opacity: 1;
-}
-
-.btn.btn-selection.active, .btn.btn-selection.active:focus {
-  border: 4px solid black;
 }

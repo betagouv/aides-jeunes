@@ -73,13 +73,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             return statuses;
         },
 
-        statutsSpecifiquesLabels: {
-            'boursierEnseignementSup': 'boursier enseignement supérieur',
-            'etudiant': 'étudiant',
-            'demandeurEmploi': 'demandeur d\'emploi',
-            'retraite': 'retraité'
-        },
-
         getMonths: function() {
             // FIXME prendre la date du serveur
             return _.map([3, 2, 1], function(i) {

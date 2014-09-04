@@ -133,12 +133,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     });
             }]
         })
-        .state('foyer.situations_specifiques', {
-            url: '/situations-specifiques',
+        .state('foyer.statuts_specifiques', {
+            url: '/statuts-specifiques',
             onEnter: ['$state', '$modal', function($state, $modal) {
                 $modal.open({
-                    templateUrl: '/partials/foyer/situations-specifiques-modal.html',
-                    controller: 'FoyerSituationsSpecifiquesModalCtrl',
+                    templateUrl: '/partials/foyer/statuts-specifiques-modal.html',
+                    controller: 'FoyerStatutsSpecifiquesModalCtrl',
                     size: 'lg',
                     backdrop: 'static',
                     keyboard: false

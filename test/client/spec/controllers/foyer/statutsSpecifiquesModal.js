@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: FoyerSituationsSpecifiquesModalCtrl', function() {
+describe('Controller: FoyerStatutsSpecifiquesModalCtrl', function() {
 
     beforeEach(function() {
         module('ddsApp');
@@ -16,7 +16,7 @@ describe('Controller: FoyerSituationsSpecifiquesModalCtrl', function() {
                 {retraite: false}
             ]);
 
-            $controller('FoyerSituationsSpecifiquesModalCtrl', {$scope: scope, $modalInstance: {}});
+            $controller('FoyerStatutsSpecifiquesModalCtrl', {$scope: scope, $modalInstance: {}});
         });
 
         // then
@@ -35,7 +35,7 @@ describe('Controller: FoyerSituationsSpecifiquesModalCtrl', function() {
             inject(function($controller, SituationService) {
                 spyOn(SituationService, 'restoreLocal').andReturn(situation);
                 spyOn(SituationService, 'createIndividusList').andReturn([]);
-                $controller('FoyerSituationsSpecifiquesModalCtrl', {$scope: scope, $modalInstance: modalInstance});
+                $controller('FoyerStatutsSpecifiquesModalCtrl', {$scope: scope, $modalInstance: modalInstance});
             });
         });
 

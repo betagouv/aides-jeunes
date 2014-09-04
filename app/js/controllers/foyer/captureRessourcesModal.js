@@ -1,14 +1,7 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($scope, $rootScope, $modalInstance, individus, SituationService) {
-    $scope.sections = SituationService.revenusSections;
-    $scope.orderedSubsections = [];
-    $scope.sections.forEach(function(section) {
-        section.subsections.forEach(function(subsection) {
-            subsection.section = section;
-            $scope.orderedSubsections.push(subsection);
-        });
-    });
+angular.module('ddsApp').controller('FoyerCaptureRessourcesModalCtrl', function($scope, $rootScope, $modalInstance, individus, SituationService, ressourceTypes) {
+    $scope.ressourceTypes = ressourceTypes;
 
     $scope.months = SituationService.getMonths();
     var lastMonth = moment().subtract('months', 1).startOf('month');
@@ -84,17 +77,17 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
             });
 
             individuRef.ressources = _.filter(individuRef.ressources, function(ressource) {
-                return !!individuRef.selectedRessources[ressource.type.name];
+                return !!individuRef.selectedRessources[ressource.type.id];
             });
 
             var previousRessources = individuRef.ressources;
             individuRef.ressources = [];
-            $scope.orderedSubsections.forEach(function(subsection) {
-                if (individuRef.selectedRessources[subsection.name]) {
-                    var ressource = _.find(previousRessources, {type: subsection});
+            $scope.ressourceTypes.forEach(function(ressourceType) {
+                if (individuRef.selectedRessources[ressourceType.id]) {
+                    var ressource = _.find(previousRessources, {type: ressourceType});
                     if (!ressource) {
                         ressource = {
-                            type: subsection,
+                            type: ressourceType,
                             months: [
                                 { periode: $scope.months[0].id, montant: 0 },
                                 { periode: $scope.months[1].id, montant: 0 },
@@ -120,6 +113,10 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
         }));
     };
 
+    $scope.filterSelectedRessourceTypes = function(ressourceType) {
+        return !!$scope.selectedRessources[ressourceType.id];
+    };
+
     $scope.applyIndividuRefsRessourcesToIndividus = function() {
         $scope.individuRefs.forEach(function(individuRef) {
             var individu = individuRef.individu;
@@ -128,14 +125,14 @@ angular.module('ddsApp').controller('FoyerCaptureRevenusModalCtrl', function($sc
                 ressource.months.forEach(function(month) {
                     individu.ressources.push({
                         periode: month.periode,
-                        type: ressource.type.name,
+                        type: ressource.type.id,
                         montant: month.montant
                     });
                 });
                 individu.ressources.push({
                     debutPeriode: lastYear.format('YYYY-MM'),
                     finPeriode: lastMonth.format('YYYY-MM'),
-                    type: ressource.type.name,
+                    type: ressource.type.id,
                     montant: ressource.year.montant
                 });
             });

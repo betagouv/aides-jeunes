@@ -47,7 +47,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 },
                 'logement@foyer': {
                     templateUrl: '/partials/foyer/logement.html',
-                    controller: 'FoyerLogementCtrl'
+                    controller: 'FoyerLogementCtrl',
+                    resolve: {
+                        situation: ['SituationService', function(SituationService) {
+                            return SituationService.restoreLocal();
+                        }]
+                    }
                 },
                 'immobilier@foyer': {
                     templateUrl: '/partials/foyer/immobilier.html'
@@ -142,12 +147,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 });
             }]
         })
-        .state('foyer.capture_revenus', {
+        .state('foyer.capture_ressources', {
             url: '/ressources',
             onEnter: ['$state', '$modal', 'SituationService', function($state, $modal, SituationService) {
                 $modal.open({
-                    templateUrl: '/partials/foyer/capture-revenus-modal.html',
-                    controller: 'FoyerCaptureRevenusModalCtrl',
+                    templateUrl: '/partials/foyer/capture-ressources-modal.html',
+                    controller: 'FoyerCaptureRessourcesModalCtrl',
                     resolve: {
                         individus: function() {
                             return SituationService.createIndividusList(SituationService.restoreLocal());

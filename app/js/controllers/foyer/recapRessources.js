@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope, SituationService) {
+angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope, SituationService, ressourceTypes) {
     $scope.months = SituationService.getMonths();
     $scope.individuLabel = SituationService.individuLabel;
 
@@ -21,18 +21,16 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
         }
 
         $scope.ressources = [];
-        SituationService.revenusSections.forEach(function(section) {
-            section.subsections.forEach(function(subsection) {
-                if ($scope.tempRessources[subsection.name]) {
-                    $scope.ressources.push({
-                        type: subsection.label,
-                        category: section.name,
-                        total: $scope.tempRessources[subsection.name].total,
-                        totalYear: $scope.tempRessources[subsection.name].totalYear,
-                        byIndividu: $scope.tempRessources[subsection.name].byIndividu
-                    });
-                }
-            });
+        ressourceTypes.forEach(function(ressourceType) {
+            if ($scope.tempRessources[ressourceType.id]) {
+                $scope.ressources.push({
+                    type: ressourceType.id,
+                    category: ressourceType.category,
+                    total: $scope.tempRessources[ressourceType.id].total,
+                    totalYear: $scope.tempRessources[ressourceType.id].totalYear,
+                    byIndividu: $scope.tempRessources[ressourceType.id].byIndividu
+                });
+            }
         });
     };
 

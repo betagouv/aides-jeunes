@@ -14,7 +14,7 @@
           name="logementType"
           class="btn btn-sm btn-primary"
           ng-model="situation.logement.type"
-          btn-radio="logementType.value"
+          btn-radio="logementType.id"
           popover-placement="top"
           popover="{{ logementType.helpText }}"
           popover-trigger="mouseenter">
@@ -37,9 +37,9 @@
         <button
           type="button"
           class="btn btn-primary btn-sm"
+          ng-repeat="locationType in locationTypes"
           ng-model="situation.logement.locationType"
-          btn-radio="locationType.value"
-          ng-repeat="locationType in locationTypes">
+          btn-radio="locationType.id">
           {{ locationType.label|uppercaseFirst }}
         </button>
       </div>
@@ -102,12 +102,12 @@
 
   <div ng-if="situation.logement.formCompleted">
     <p>
-      Vous êtes <b>{{ logementLabels[situation.logement.type] }}</b>
-      <span ng-if="'locataire' === situation.logement.type">d'un logement de type <b>{{ locationTypesLabels[situation.logement.locationType] }}</b></span>
+      Vous êtes <b>{{ logementTypeLabel() }}</b>
+      <span ng-if="'locataire' === situation.logement.type">d'un logement de type <b>{{ locationTypeLabel() }}</b></span>
       <span ng-if="situation.logement.type !== 'gratuit'">
-        <br>Votre {{ 'proprietaire' === situation.logement.type ? 'mensualité d\'emprunt' : 'loyer' }} s'élève à <b>{{ situation.logement.loyer }} €</b>
+        <br>Votre {{ loyerLabel() }} s'élève à <b>{{ situation.logement.loyer }} €</b>
       </span>
-      <br>Code postal <b>{{ situation.logement.adresse.codePostal }}</b>
+      <br>Code postal <b>{{ situation.logement.adresse.codePostal }}</b> - <b>{{ situation.logement.adresse.ville }}</b>
       <span ng-show="undefined !== situation.logement.primoAccedant">
         <br>Vous {{ situation.logement.primoAccedant ? 'êtes' : 'n\'êtes pas' }} primo-accédant pour votre propriété
       </span>

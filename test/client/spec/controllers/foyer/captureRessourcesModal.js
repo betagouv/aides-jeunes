@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: FoyerCaptureRevenusModalCtrl', function() {
+describe('Controller: FoyerCaptureRessourcesModalCtrl', function() {
 
     var scope;
 
@@ -16,7 +16,7 @@ describe('Controller: FoyerCaptureRevenusModalCtrl', function() {
 
             // when
             inject(function($controller) {
-                $controller('FoyerCaptureRevenusModalCtrl', {$scope: scope, $modalInstance: {}, individus: individus});
+                $controller('FoyerCaptureRessourcesModalCtrl', {$scope: scope, $modalInstance: {}, individus: individus});
             });
 
             // then
@@ -30,7 +30,7 @@ describe('Controller: FoyerCaptureRevenusModalCtrl', function() {
             // given
             var rootScope;
             inject(function($controller, $rootScope) {
-                $controller('FoyerCaptureRevenusModalCtrl', {$scope: scope, $modalInstance: {close: function() {}}, individus: []});
+                $controller('FoyerCaptureRessourcesModalCtrl', {$scope: scope, $modalInstance: {close: function() {}}, individus: []});
                 rootScope = $rootScope;
             });
             spyOn(rootScope, '$broadcast').andCallThrough();
@@ -49,7 +49,7 @@ describe('Controller: FoyerCaptureRevenusModalCtrl', function() {
             // given
             var individus = [{}];
             inject(function($controller) {
-                $controller('FoyerCaptureRevenusModalCtrl', {$scope: scope, $modalInstance: {close: function() {}}, individus: individus});
+                $controller('FoyerCaptureRessourcesModalCtrl', {$scope: scope, $modalInstance: {close: function() {}}, individus: individus});
             });
             scope.individuRefs[0].selectedRessources.test = false;
 
@@ -64,7 +64,7 @@ describe('Controller: FoyerCaptureRevenusModalCtrl', function() {
             // given
             var individus = [{}, {}];
             inject(function($controller) {
-                $controller('FoyerCaptureRevenusModalCtrl', {$scope: scope, $modalInstance: {close: function() {}}, individus: individus});
+                $controller('FoyerCaptureRessourcesModalCtrl', {$scope: scope, $modalInstance: {close: function() {}}, individus: individus});
             });
             scope.individuRefs[0].selectedRessources.test = true;
             scope.individuRefs[1].selectedRessources.test = false;

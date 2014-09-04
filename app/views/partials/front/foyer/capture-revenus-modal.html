@@ -20,24 +20,31 @@
 
     <div ng-show="ressourcesSelected && !personnesSelected">
       <p>Veuillez sélectionner les personnes qui touchent les ressources que vous avez sélectionnées.</p>
-      <div ng-repeat="subsection in orderedSubsections" ng-if="selectedRessources[subsection.name]">
-        <button
-          type="button"
-          disabled
-          class="btn btn-sm btn-selection btn-ressources"
-          ng-class="'capture-' + subsection.section.name">
-          {{ subsection.label }}
-        </button>
-        <b>Qui ?</b>
-        <button
-          type="button"
-          class="btn btn-selection btn-selection-personne"
-          ng-repeat="individuRef in individuRefs"
-          btn-checkbox
-          ng-model="individuRef.selectedRessources[subsection.name]">
-          <i class="fa fa-male"></i>
-          {{ individuRef.label }}
-        </button>
+      <div ng-repeat="subsection in orderedSubsections | filter:filterSelectedSubsections">
+        <div class="row">
+          <div class="col-sm-4">
+            <button
+              type="button"
+              disabled
+              class="btn btn-sm btn-selection btn-ressources"
+              ng-class="'capture-' + subsection.section.name">
+              {{ subsection.label }}
+            </button>
+            <b>Qui ?</b>
+          </div>
+          <div class="col-sm-8">
+            <button
+              type="button"
+              class="btn btn-default btn-selection btn-selection-personne"
+              ng-repeat="individuRef in individuRefs"
+              btn-checkbox
+              ng-model="individuRef.selectedRessources[subsection.name]">
+              <i class="fa fa-male"></i>
+              {{ individuRef.label }}
+            </button>
+          </div>
+        </div>
+        <hr ng-if="!$last">
       </div>
     </div>
 
@@ -50,7 +57,7 @@
             <tr>
               <th style="width: 200px;"></th>
               <th ng-repeat="month in months">{{ month.label | uppercaseFirst }}</th>
-              <th>De {{ lastYear }} à {{ lastMonth }}</th>
+              <th>Sur l'année 2012</th>
             </tr>
           </thead>
           <tbody>

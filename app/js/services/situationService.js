@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage, $filter) {
+angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage, $filter, statutsSpecifiques) {
     var situation;
 
     return {
@@ -61,9 +61,9 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         formatStatutsSpecifiques: function(individu) {
             var statuses = [];
-            _.forEach(this.statutsSpecifiquesLabels, function(statut, statutId) {
-                if (individu[statutId]) {
-                    statuses.push(statut);
+            statutsSpecifiques.forEach(function(statut) {
+                if (individu[statut.id]) {
+                    statuses.push(statut.label);
                 }
             });
 

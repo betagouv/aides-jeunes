@@ -41,7 +41,7 @@ describe('Controller: FoyerStatutsSpecifiquesModalCtrl', function() {
 
         it('Should be marked as not captured initially', function() {
             // then
-            expect(situation.situationsSpecifiquesCaptured).toBeUndefined();
+            expect(situation.statutsSpecifiquesCaptured).toBeUndefined();
         });
 
         it('function submit() should mark specific situations as captured in the global situation and close the modal', function() {
@@ -52,7 +52,7 @@ describe('Controller: FoyerStatutsSpecifiquesModalCtrl', function() {
             scope.submit();
 
             // then
-            expect(situation.situationsSpecifiquesCaptured).toBe(true);
+            expect(situation.statutsSpecifiquesCaptured).toBe(true);
             expect(modalInstance.close).toHaveBeenCalled();
         });
     });

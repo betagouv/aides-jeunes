@@ -1,4 +1,7 @@
 <div class="page-header">
+  <div class="pull-right" ng-if="droits.length">
+    <button type="button" class="btn btn-default btn-lg" ng-click="createTest()">Créer un cas de test à partir de cette simulation</button>
+  </div>
   <h1><i class="fa fa-gears"></i> Résultats de la simulation</h1>
 </div>
 
@@ -51,9 +54,6 @@
     </div>
   </div>
   <p ng-if="!droits.length">Vous n'êtes éligible à aucune aide.</p>
-  <div class="text-center">
-    <button type="button" class="btn btn-default btn-lg" ng-click="createTest()">Créer un cas de test à partir de cette simulation</button>
-  </div>
 </div>
 
 <hr>

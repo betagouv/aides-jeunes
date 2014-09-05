@@ -77,6 +77,6 @@ angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', fun
         if (null === situation.demandeur.situationFamiliale) {
             delete situation.demandeur.situationFamiliale;
         }
-        $state.go('form_infos_complementaires_address_contact', {requestedCerfa: $stateParams.requestedCerfa});
+        $state.go('form_infos_complementaires_address_contact', {droit: $stateParams.droit});
     };
 });

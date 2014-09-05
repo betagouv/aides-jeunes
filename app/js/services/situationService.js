@@ -18,7 +18,17 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         find: function(situationId) {
             return $http.get('/api/situations/' + situationId).then(function(result) {
-                return result.data;
+                var situation = result.data;
+                situation.demandeur = _.find(situation.individus, { role: 'demandeur' });
+                var conjoint = _.find(situation.individus, { role: 'conjoint' });
+                if (conjoint) {
+                    situation.conjoint = conjoint;
+                }
+
+                situation.enfants = _.where(situation.individus, { role: 'enfant' });
+                situation.personnesACharge = _.where(situation.individus, { role: 'personneACharge'});
+
+                return situation;
             });
         },
 

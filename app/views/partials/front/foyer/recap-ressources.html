@@ -16,7 +16,7 @@
       </thead>
       <tbody ng-repeat="ressource in ressources">
         <tr ng-repeat="individu in ressource.byIndividu">
-          <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.category }}">{{ ressource.type }}</td>
+          <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.type.category }}">{{ ressource.type.label }}</td>
           <td ng-if="!alone">{{ individu.label }}</td>
           <td ng-repeat="month in months">{{ individu.values[$index] }} €</td>
           <td>{{ individu.yearValue }} €</td>

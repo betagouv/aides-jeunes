@@ -181,7 +181,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             }]
         })
         .state('resultat', {
-            url: '/resultat/:situationId?requestedCerfa',
+            url: '/resultat/:situationId',
             templateUrl: '/partials/resultat.html',
             controller: 'ResultatCtrl',
             resolve: {
@@ -195,17 +195,17 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             }
         })
         .state('form_infos_complementaires_individus', {
-            url: '/infos-complementaires/noms-prenoms?requestedCerfa',
+            url: '/infos-complementaires/noms-prenoms?droit',
             templateUrl: '/partials/form-infos-complementaires/individus.html',
             controller: 'FormInfosComplementairesIndividusCtrl'
         })
         .state('form_infos_complementaires_address_contact', {
-            url: '/infos-complementaires/adresse?requestedCerfa',
+            url: '/infos-complementaires/adresse?droit',
             templateUrl: '/partials/form-infos-complementaires/address-contact.html',
             controller: 'FormInfosComplementairesAddressContactCtrl'
         })
         .state('form_infos_complementaires_situation_pro', {
-            url: '/infos-complementaires/situation-professionnelle?requestedCerfa',
+            url: '/infos-complementaires/situation-professionnelle?droit',
             templateUrl: '/partials/form-infos-complementaires/situation-pro.html',
             controller: 'FormInfosComplementairesSituationProCtrl',
             resolve: {
@@ -215,20 +215,20 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             }
         })
         .state('download_cerfa', {
-            url: '/telecharger-formulaire/:cerfa',
+            url: '/telecharger-formulaires/:droit',
             templateUrl: '/partials/download-cerfa.html',
             controller: 'DownloadCerfaCtrl',
             resolve: {
                 situation: ['SituationService', function(SituationService) {
                     return SituationService.restoreLocal();
                 }],
-                cerfa: ['$stateParams', function($stateParams) {
-                    return $stateParams.cerfa;
+                droit: ['$stateParams', function($stateParams) {
+                    return $stateParams.droit;
                 }]
             }
         })
         .state('envoi_demande', {
-            url: '/envoi-demande/:situationId?requestedCerfa',
+            url: '/envoi-demande/:situationId',
             templateUrl: '/partials/envoi-demande-teaser.html'
         });
 });

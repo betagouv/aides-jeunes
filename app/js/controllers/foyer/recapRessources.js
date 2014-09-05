@@ -24,8 +24,7 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
         ressourceTypes.forEach(function(ressourceType) {
             if ($scope.tempRessources[ressourceType.id]) {
                 $scope.ressources.push({
-                    type: ressourceType.id,
-                    category: ressourceType.category,
+                    type: ressourceType,
                     total: $scope.tempRessources[ressourceType.id].total,
                     totalYear: $scope.tempRessources[ressourceType.id].totalYear,
                     byIndividu: $scope.tempRessources[ressourceType.id].byIndividu

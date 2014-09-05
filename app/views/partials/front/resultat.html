@@ -22,9 +22,16 @@
               <h3 class="media-heading">
                 {{ droit.description.label }}
                 ({{ droit.description.shortLabel }})
-                <span ng-if="false !== droit.description.hasMontant">: environ <strong>{{ arrondi(droit.montant) }} €</strong></span>
+                <span ng-if="false !== droit.description.hasMontant">
+                  : environ <strong>{{ round(droit.montant) }} €</strong>
+                </span>
               </h3>
               <p>{{ droit.description.description }}</p>
+              <p>
+                <a class="btn btn-primary" ui-sref="form_infos_complementaires_individus({droit: droit.description.id})">
+                  Engager les démarches
+                </a>
+              </p>
             </div>
           </div>
         </div>
@@ -38,24 +45,10 @@
               <i class="fa" ng-class="{'fa-external-link': link.type === 'link', 'fa-file-pdf-o': link.type === 'pdf'}"></i>
               {{ link.label }}
             </a>
-            <a
-              href=""
-              class="list-group-item list-group-item-success"
-              ng-repeat="cerfa in droit.description.cerfa"
-              ng-click="downloadCerfa(cerfa)">
-              <i class="fa fa-file-pdf-o"></i>
-              {{ cerfa.label }}
-            </a>
           </div>
         </div>
       </div>
     </div>
-
-    <p class="text-center">
-      <a class="btn btn-primary btn-lg" ui-sref="envoi_demande({situationId: situation._id})">
-        Poursuivre ma demande en ligne
-      </a>
-    </p>
   </div>
   <p ng-if="!droits.length">Vous n'êtes éligible à aucune aide.</p>
   <div class="text-center">

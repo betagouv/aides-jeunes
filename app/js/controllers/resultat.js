@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $http, $state, $stateParams, $timeout, SimulationService, situation) {
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $http, $state, $stateParams, $timeout, SimulationService, CerfaService, situation) {
     $scope.awaitingResults = true;
     $scope.situation = situation;
 
@@ -12,16 +12,12 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $h
         $scope.awaitingResults = false;
     });
 
-    $scope.arrondi = function(montant) {
+    $scope.round = function(montant) {
         return Math.floor(montant / 10) * 10;
     };
 
-    $scope.downloadCerfa = function(cerfa) {
-        if (situation.infosComplementairesCaptured) {
-            $state.go('download_cerfa', {cerfa: cerfa.id});
-        } else {
-            $state.go('form_infos_complementaires_individus', {requestedCerfa: cerfa.id});
-        }
+    $scope.cerfaForms = function(droit) {
+        return CerfaService.getCerfaFormsFromDroit(droit, situation);
     };
 
     $scope.createTest = function() {

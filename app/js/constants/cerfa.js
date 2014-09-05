@@ -103,7 +103,13 @@ angular.module('ddsApp').constant('cerfaForms', [
             {
                 label: 'Extrait d\'acte de naissance',
                 img: 'acte_naissance.jpg',
-                description: 'Un extrait d\'acte de naissance pour les personnes à charges de moins de 18 ans de nationalité étrangère et nées en France.'
+                description: 'Un extrait d\'acte de naissance pour les personnes à charges de moins\
+                    de 18 ans de nationalité étrangère et nées en France.'
+            },
+            {
+                label: 'Certificat de l\'OFII',
+                img: 'ofii.jpg',
+                description: 'Le certificat de l\'OFII (ex. Anaem) délivré dans le cadre du regroupement familial.'
             }
         ]
     }

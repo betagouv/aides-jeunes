@@ -1,11 +1,16 @@
 <div class="jumbotron">
   <h1>C'est fini&nbsp;! <i class="fa fa-angellist"></i></h1>
+  <div class="pull-right">
+    <a class="btn btn-default" ui-sref="resultat({situationId: situation._id})">Revenir aux résultats de la simulation</a>
+  </div>
   <p>
     Il ne vous reste plus qu'à imprimer les formulaires disponibles ci-dessous.
-    <br><strong>Pensez bien à les signer !</strong>
+    <br><strong>Pensez bien à les vérifier et les signer !</strong>
     <br>Pensez également à bien inclure toutes les pièces justificatives requises.
   </p>
 </div>
+
+<p class="lead" ng-bind-html="trustAsHtml(cerfa.description)"></p>
 
 <div class="row">
   <div class="col-md-6" ng-repeat="cerfaForm in cerfaForms">
@@ -14,6 +19,7 @@
         <h3 class="panel-title">{{ cerfaForm.label }}</h3>
       </div>
       <div class="panel-body">
+        <p ng-bind-html="trustAsHtml(cerfaForm.description)"></p>
         <a
           class="btn btn-primary"
           href="/api/situations/{{ situation._id }}/cerfa/{{ cerfaForm.id }}"
@@ -26,6 +32,15 @@
   </div>
 </div>
 
-<div class="text-center">
-  <a class="btn btn-lg btn-default" ui-sref="resultat({situationId: situation._id})">Revenir aux résultats de la simulation</a>
+<div ng-if="cerfa.piecesJustificatives.length">
+  <h2>Pièces justificatives à fournir</h2>
+  <div class="media" ng-repeat="piece in cerfa.piecesJustificatives">
+    <div class="pull-left">
+      <img class="media-object" src="/img/pieces-justificatives/{{ piece.img }}" alt="Pièce justificative">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{ piece.label }}</h4>
+      {{ piece.description }}
+    </div>
+  </div>
 </div>

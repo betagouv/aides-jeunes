@@ -40,6 +40,10 @@ body.change-state-progress, body.change-state-progress * {
   margin-top: 0;
 }
 
+.jumbotron > *:last-child {
+    margin-bottom: 0;
+}
+
 .main-navbar {
   .navbar-brand {
     &.title {

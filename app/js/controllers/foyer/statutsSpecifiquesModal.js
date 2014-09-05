@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerStatutsSpecifiquesModalCtrl', function($scope, $modalInstance, statutsSpecifiques, SituationService) {
+angular.module('ddsApp').controller('FoyerStatutsSpecifiquesModalCtrl', function($scope, $modalInstance, statutsSpecifiques, SituationService, IndividuService) {
     var situation = SituationService.restoreLocal();
     $scope.individus = SituationService.createIndividusList(situation);
-    $scope.individuLabel = SituationService.individuLabel;
+    $scope.individuLabel = IndividuService.label;
 
     // pré initialisation des statuts sélectionnés si on a déjà rempli les statuts avant
     $scope.openedSituations = {};

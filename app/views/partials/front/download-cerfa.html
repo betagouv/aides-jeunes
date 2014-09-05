@@ -5,7 +5,7 @@
   </div>
   <p>
     Il ne vous reste plus qu'à imprimer les formulaires disponibles ci-dessous.
-    <br><strong>Pensez bien à les vérifier et les signer !</strong>
+    <br><strong>Pensez bien à les vérifier, les dater et les signer !</strong>
     <br>Pensez également à bien inclure toutes les pièces justificatives requises.
   </p>
 </div>
@@ -32,15 +32,26 @@
   </div>
 </div>
 
-<div ng-if="cerfa.piecesJustificatives.length">
-  <h2>Pièces justificatives à fournir</h2>
-  <div class="media" ng-repeat="piece in cerfa.piecesJustificatives">
-    <div class="pull-left">
-      <img class="media-object" src="/img/pieces-justificatives/{{ piece.img }}" alt="Pièce justificative">
+<h2><i class="fa fa-folder-open"></i> Pièces justificatives à fournir</h2>
+
+<div ng-repeat="piece in piecesJustificatives">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="media" >
+        <div class="pull-left">
+          <img class="media-object" src="/img/pieces-justificatives/{{ piece.description.img }}" alt="piece.description.id">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{ piece.description.label }}</h4>
+          {{ piece.description.description }}
+        </div>
+      </div>
     </div>
-    <div class="media-body">
-      <h4 class="media-heading">{{ piece.label }}</h4>
-      {{ piece.description }}
+    <div class="col-md-2">
+      <span ng-repeat="individu in piece.individus">
+        <i class="fa fa-check-square"></i> {{ individu }}<br>
+      </span>
     </div>
   </div>
+  <hr ng-if="!$last">
 </div>

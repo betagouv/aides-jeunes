@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope, SituationService, ressourceTypes) {
+angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope, SituationService, IndividuService, ressourceTypes) {
     $scope.months = SituationService.getMonths();
-    $scope.individuLabel = SituationService.individuLabel;
+    $scope.individuLabel = IndividuService.label;
 
     $scope.lastMonth = moment().subtract('months', 1).startOf('month').format('MMMM YYYY');
     $scope.lastYear = moment().subtract('years', 1).format('MMMM YYYY');
@@ -49,10 +49,10 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
                 };
             }
 
-            var individuRessource = _.find($scope.tempRessources[ressource.type].byIndividu, { label: SituationService.individuLabel(individu) });
+            var individuRessource = _.find($scope.tempRessources[ressource.type].byIndividu, { label: IndividuService.label(individu) });
             if (!individuRessource) {
                 individuRessource = {
-                    label: SituationService.individuLabel(individu),
+                    label: IndividuService.label(individu),
                     values: []
                 };
                 $scope.tempRessources[ressource.type].byIndividu.push(individuRessource);

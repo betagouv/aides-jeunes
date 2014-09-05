@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCaptureRessourcesModalCtrl', function($scope, $rootScope, $modalInstance, individus, SituationService, ressourceTypes) {
+angular.module('ddsApp').controller('FoyerCaptureRessourcesModalCtrl', function($scope, $rootScope, $modalInstance, individus, SituationService, IndividuService, ressourceTypes) {
     $scope.ressourceTypes = ressourceTypes;
 
     $scope.months = SituationService.getMonths();
@@ -12,7 +12,7 @@ angular.module('ddsApp').controller('FoyerCaptureRessourcesModalCtrl', function(
 
     $scope.individuRefs = _.map(individus, function(individu) {
         return {
-            label: SituationService.individuLabel(individu),
+            label: IndividuService.label(individu),
             selectedRessources: {},
             ressources: [],
             individu: individu

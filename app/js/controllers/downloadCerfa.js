@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, cerfaForms, CerfaService, situation, droit) {
+angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, cerfaForms, CerfaService, SituationService, IndividuService, situation, droit) {
     $scope.situation = situation;
     $scope.cerfa = _.find(cerfaForms, {droitId: droit});
     $scope.cerfaForms = CerfaService.getCerfaFormsFromDroit(droit, situation);
@@ -8,4 +8,24 @@ angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, 
     $scope.trustAsHtml = function(content) {
         return $sce.trustAsHtml(content);
     };
+
+    // construction de la liste des pièces justificatives et des personnes concernées
+    var individus = SituationService.createIndividusList(situation);
+    $scope.piecesJustificatives = [];
+    $scope.cerfa.piecesJustificatives.forEach(function(pieceJustificative) {
+        var piece = { description: pieceJustificative };
+        if (false !== pieceJustificative.isIndividualized) {
+            var individusConcernes = _.filter(individus, function(individu) {
+                return CerfaService.pieceJustificativeRequiredForIndividu(droit, pieceJustificative.id, individu);
+            });
+
+            if (!individusConcernes.length) {
+                return;
+            }
+
+            piece.individus = _.map(individusConcernes, IndividuService.label);
+        }
+
+        $scope.piecesJustificatives.push(piece);
+    });
 });

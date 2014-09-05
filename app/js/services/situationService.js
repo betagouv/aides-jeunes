@@ -57,18 +57,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             return individus;
         },
 
-        individuLabel: function(individu) {
-            if ('demandeur' === individu.role) {
-                return 'Vous';
-            }
-
-            if ('conjoint' === individu.role) {
-                return 'Votre conjoint';
-            }
-
-            return individu.firstName;
-        },
-
         formatStatutsSpecifiques: function(individu) {
             var statuses = [];
             statutsSpecifiques.forEach(function(statut) {

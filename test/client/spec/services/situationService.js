@@ -165,52 +165,6 @@ describe('Service: situationService', function () {
         });
     });
 
-    describe('function individuLabel()', function() {
-        it('Should return "Vous" if individu has role demandeur', function() {
-            // given
-            var individu = {role: 'demandeur', firstName: 'Arnaud'};
-
-            // when
-            var result = service.individuLabel(individu);
-
-            // then
-            expect(result).toBe('Vous');
-        });
-
-        it('Should return "Votre conjoint" if individu has role conjoint', function() {
-            // given
-            var individu = {role: 'conjoint', firstName: 'Arnaud'};
-
-            // when
-            var result = service.individuLabel(individu);
-
-            // then
-            expect(result).toBe('Votre conjoint');
-        });
-
-        it('Should return the individu\'s first name if individu has role enfant', function() {
-            // given
-            var individu = {role: 'enfant', firstName: 'Arnaud'};
-
-            // when
-            var result = service.individuLabel(individu);
-
-            // then
-            expect(result).toBe('Arnaud');
-        });
-
-        it('Should return the individu\'s first name if individu has role personneACharge', function() {
-            // given
-            var individu = {role: 'personneACharge', firstName: 'Arnaud'};
-
-            // when
-            var result = service.individuLabel(individu);
-
-            // then
-            expect(result).toBe('Arnaud');
-        });
-    });
-
     describe('funtion getMonths()', function() {
         it('Should create an array of the last 3 months', function() {
             // when

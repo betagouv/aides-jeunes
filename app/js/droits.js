@@ -13,22 +13,6 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
                 'label':'Démarche',
                 'url':'http://www.cmu.fr/cmu-c-demarche.php',
                 'type':'link'
-            },
-            {
-                'label':'Formulaire de choix de l\'organisme',
-                'url':'http://www.cmu.fr/fichier-utilisateur/fichiers/FORMULAIRE_CHOIX_CMUC_Demandeur_S3712.pdf',
-                'type':'pdf'
-            },
-            {
-                'label':'Formulaire de demande vierge',
-                'url':'http://www.cmu.fr/fichier-utilisateur/fichiers/FORMULAIRE_CMUC_ACS_S3711e.pdf',
-                'type':'pdf'
-            }
-        ],
-        'cerfa': [
-            {
-                'id':'cmuc',
-                'label':'Formulaire de demande pré-rempli'
             }
         ]
     },
@@ -40,20 +24,9 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_cmu.png',
         'links':[
             {
-                'label':'Démarches',
+                'label':'Démarche',
                 'url':'http://www.cmu.fr/acs-demarche.php',
                 'type':'link'
-            },
-            {
-                'label': 'Formulaire de demande',
-                'url':'http://www.cmu.fr/fichier-utilisateur/fichiers/FORMULAIRE_CMUC_ACS_S3711e.pdf',
-                'type':'pdf'
-            }
-        ],
-        'cerfa': [
-            {
-                'id':'cmuc',
-                'label':'Formulaire de demande pré-rempli'
             }
         ]
     },
@@ -65,20 +38,9 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_aspa.png',
         'links':[
             {
-                'label':'Formulaire de demande auprès de la CNAV',
-                'url':'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14957.do',
-                'type':'pdf'
-            },
-            {
-                'label':'Formulaire de demande auprès de la MSA',
-                'url':'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14953.do',
-                'type':'pdf'
-            }
-        ],
-        'cerfa': [
-            {
-                'id':'aspa',
-                'label':'Formulaire de demande pré-rempli'
+                'label':'Démarche',
+                'url':'http://vosdroits.service-public.fr/particuliers/F16871.xhtml#N1020A',
+                'type':'link'
             }
         ]
     },
@@ -105,22 +67,6 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
                 'label':'Formulaire de demande en ligne',
                 'url':'http://www.caf.fr/aides-et-services/les-services-en-ligne/acceder-a-une-demande-en-ligne',
                 'type':'link'
-            },
-            {
-                'label':'Formulaire de demande (métropole)',
-                'url':'https://wwwd.caf.fr/pdfj/al0.pdf',
-                'type':'pdf'
-            },
-            {
-                'label':'Formulaire de déclaration de situation vierge',
-                'url':'http://wwwd.caf.fr/pdfj/af.pdf',
-                'type':'pdf'
-            }
-        ],
-        'cerfa': [
-            {
-                'id':'caf',
-                'label':'Formulaire de déclaration de situation pré-rempli'
             }
         ]
     },
@@ -132,15 +78,9 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'links':[
             {
-                'label':'Formulaire de déclaration de situation vierge',
-                'url':'https://wwwd.caf.fr/pdfj/af.pdf',
-                'type':'pdf'
-            }
-        ],
-        'cerfa': [
-            {
-                'id':'caf',
-                'label':'Formulaire de déclaration de situation pré-rempli'
+                'label':'Plus d\'infos',
+                'url':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
+                'type':'link'
             }
         ]
     },
@@ -152,15 +92,9 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'links':[
             {
-                'label':'Formulaire de déclaration de situation vierge',
-                'url':'https://wwwd.caf.fr/pdfj/af.pdf',
-                'type':'pdf'
-            }
-        ],
-        'cerfa': [
-            {
-                'id':'caf',
-                'label':'Formulaire de déclaration de situation pré-rempli'
+                'label':'Plus d\'infos',
+                'url':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0',
+                'type':'link'
             }
         ]
     },
@@ -172,15 +106,9 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'links':[
             {
-                'label':'Formulaire de déclaration de situation vierge',
-                'url':'https://wwwd.caf.fr/pdfj/af.pdf',
-                'type':'pdf'
-            }
-        ],
-        'cerfa': [
-            {
-                'id':'caf',
-                'label':'Formulaire de déclaration de situation pré-rempli'
+                'label':'Plus d\'infos',
+                'url':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
+                'type':'link'
             }
         ]
     },
@@ -192,24 +120,9 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'links':[
             {
-                'label':'Formulaire de demande vierge',
-                'url':'https://wwwd.caf.fr/pdfj/asf2.pdf',
-                'type':'pdf'
-            },
-            {
-                'label':'Formulaire de déclaration de situation vierge',
-                'url':'https://wwwd.caf.fr/pdfj/af.pdf',
-                'type':'pdf'
-            }
-        ],
-        'cerfa': [
-            {
-                'id':'caf',
-                'label':'Formulaire de déclaration de situation pré-rempli'
-            },
-            {
-                'id':'asf',
-                'label':'Formulaire de demande pré-rempli'
+                'label':'Plus d\'infos',
+                'url':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf',
+                'type':'link'
             }
         ]
     },
@@ -224,17 +137,6 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
                 'label':'Plus d\'informations',
                 'url':'http://vosdroits.service-public.fr/particuliers/N19775.xhtml',
                 'type':'link'
-            },
-            {
-                'label':'Formulaire de demande vierge',
-                'url':'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13880.do',
-                'type':'pdf'
-            }
-        ],
-        'cerfa': [
-            {
-                'id':'rsa',
-                'label':'Formulaire de demande pré-rempli'
             }
         ]
     }

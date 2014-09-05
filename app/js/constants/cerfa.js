@@ -54,11 +54,11 @@ angular.module('ddsApp').constant('cerfaForms', [
                     de votre demande de titre, convocation ou rendez-vous en préfecture'
             },
             {
-                id: 'livret_famille',
-                label: 'Livret de famille',
+                id: 'famille',
+                label: 'Justificatif familial',
                 img: 'livret_de_famille.jpg',
-                description: 'Si vous avez des personnes à charge, vous devez inclure\
-                    votre livret de famille tenu à jour, ou votre certificat de concubinage ou l’attestation d’enregistrement d’un PACS.',
+                description: 'Votre livret de famille tenu à jour, ou votre certificat de concubinage ou\
+                    l’attestation d’enregistrement d’un PACS.',
                 isIndividualized: false
             },
             {

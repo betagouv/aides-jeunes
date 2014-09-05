@@ -27,7 +27,10 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
             return false;
         },
         'cmu_c.ressources': function(individu) {
-            return 16 < IndividuService.age(individu)
+            return 16 < IndividuService.age(individu);
+        },
+        'cmu_c.famille': function(situation) {
+            return !!situation.enfants.length || !!situation.personnesACharge.length;
         },
         'rsa.identite': function(individu) {
             if (_.contains(['demandeur', 'conjoint'], individu.role)) {

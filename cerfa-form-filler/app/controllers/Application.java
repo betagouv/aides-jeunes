@@ -48,6 +48,12 @@ public class Application extends Controller {
     public static Result generate(String formId) throws IOException, COSVisitorException {
         Forms form = getForm(formId);
         if (null == form) {
+            String filename = String.format("resources/%s.pdf", formId);
+            File file = new File(filename);
+            if (file.exists()) {
+                return ok(file, filename);
+            }
+
             return badRequest(String.format("Formulaire inconnu : %s", formId));
         }
 
@@ -107,7 +113,7 @@ public class Application extends Controller {
 
     public static enum Forms {
 
-        CMUC("cmuc") {
+        CMUC("cmuc_demande") {
 
             @Override
             public FormFiller createFormFiller() {

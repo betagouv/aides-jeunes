@@ -38,12 +38,12 @@ angular.module('ddsApp').constant('cerfaForms', [
                 label: 'Carte d\'identité ou passeport',
                 img: 'identite_passeport.jpg',
                 description: 'Votre carte d’identité, ou votre passeport ou votre livret de famille à jour,\
-                    revêtu de l\'une des mentions prévues à l\'article 28 du code civil'
+                    revêtu de l\'une des mentions prévues à l\'article 28 du code civil.'
             },
             {
                 label: 'Justificatif de régularité du séjour',
                 img: 'titre_sejour.jpg',
-                description: 'toute pièce justifiant la régularité de votre séjour : titre de séjour, récépissé\
+                description: 'Toute pièce justifiant la régularité de votre séjour : titre de séjour, récépissé\
                     de votre demande de titre, convocation ou rendez-vous en préfecture…'
             },
             {
@@ -68,6 +68,42 @@ angular.module('ddsApp').constant('cerfaForms', [
                 description: 'Toute pièce justifiant que vous résidez en France depuis plus de trois mois.\
                     Par exemple : bail de location, quittances de loyer, factures d\'électricité consécutives,\
                     certificat d’hébergement, certificat de scolarité ou d’inscription universitaire…'
+            }
+        ]
+    },
+    {
+        droitId: 'rsa',
+        description: 'Vous devez déposer votre demande auprès de l’un des organismes instructeurs de votre choix prévus par la loi :\
+            Caisse d’allocations familiales (CAF), Mutualité sociale agricole (MSA), services du Conseil général,\
+            Centre communal d’action sociale (CCAS) ou Centre intercommunal d’action sociale (CIAS) volontaires\
+            ou bien une association ou un organisme à but non lucratif ayant reçu délégation du Conseil général.\
+            Pour plus d\'informations, vous pouvez consulter\
+            <a href="http://www.social-sante.gouv.fr/espaces,770/handicap-exclusion,775/dossiers,806/le-rsa,2302/le-revenu-de-solidarite-active,2279/quelles-sont-les-demarches-a,14882.html">ce lien</a>.',
+        forms: [
+            {
+                id: 'rsa_demande',
+                label: 'Formulaire de demande'
+            }
+        ],
+        piecesJustificatives: [
+            {
+                label: 'Justificatif d\'identité',
+                img: 'identite_passeport.jpg',
+                description: 'La photocopie lisible, pour chacun des membres de votre foyer de nationalité EEE,\
+                    de l\'un des documents suivants :\
+                    carte nationale d’identité ou livret de famille ou\
+                    passeport ou extrait d’acte de naissance ou carte\
+                    d’ancien combattant ou carte d’invalidité.'
+            },
+            {
+                label: 'Titre de séjour',
+                img: 'titre_sejour.jpg',
+                description: 'Le titre de séjour de toutes les personnes de votre foyer qui ne sont pas de nationalité EEE.'
+            },
+            {
+                label: 'Extrait d\'acte de naissance',
+                img: 'acte_naissance.jpg',
+                description: 'Un extrait d\'acte de naissance pour les personnes à charges de moins de 18 ans de nationalité étrangère et nées en France.'
             }
         ]
     }

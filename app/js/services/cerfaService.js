@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationService, IndividuService) {
+    // callbacks qui déterminent si un formulaire doit être proposé au téléchargement ou non en fonction de la situation
     var showableCerfaCallbacks = {
         'cmuc_choix_organisme_non_demandeur': function(situation) {
             var individus = SituationService.createIndividusList(situation);
@@ -8,6 +9,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         }
     };
 
+    // callbacks qui déterminent si une pièce justificative est nécessaire ou non pour un individu
     var requiredPiecesJustificativesCallbacks = {
         'cmu_c.vitale': function(individu) {
             return 'demandeur' === individu.role;
@@ -21,7 +23,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         },
         'cmu_c.regularite': function(individu) {
             if ('demandeur' !== individu.role) {
-                return _.contains(['ue', 'autre', individu]);
+                return 'fr' !== individu.nationalite;
             }
 
             return false;
@@ -38,6 +40,22 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
             }
 
             return 'France' === individu.paysNaissance;
+        },
+        'rsa.acte_naissance': function(individu) {
+            var result = _.contains(['enfant', 'personneACharge'], individu.role);
+            result = result && 18 > IndividuService.age(individu);
+            result = result && 'fr' !== individu.nationalite;
+            result = result && 'France' === individu.paysNaissance;
+
+            return result;
+        },
+        'rsa.ofii': function(individu) {
+            var result = _.contains(['enfant', 'personneACharge'], individu.role);
+            result = result && 18 > IndividuService.age(individu);
+            result = result && 'fr' !== individu.nationalite;
+            result = result && 'France' !== individu.paysNaissance;
+
+            return result;
         }
     };
 

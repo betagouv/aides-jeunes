@@ -10,9 +10,8 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_cmu.png',
         'links':[
             {
-                'label':'Démarche',
-                'url':'http://www.cmu.fr/cmu-c-demarche.php',
-                'type':'link'
+                'label':'Site web',
+                'url':'http://www.cmu.fr/cmu-complementaire.php'
             }
         ]
     },
@@ -24,9 +23,8 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_cmu.png',
         'links':[
             {
-                'label':'Démarche',
-                'url':'http://www.cmu.fr/acs-demarche.php',
-                'type':'link'
+                'label':'Site web',
+                'url':'http://www.cmu.fr/acs.php'
             }
         ]
     },
@@ -38,8 +36,8 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_aspa.png',
         'links':[
             {
-                'label':'Démarche',
-                'url':'http://vosdroits.service-public.fr/particuliers/F16871.xhtml#N1020A',
+                'label':'Plus d\'informations',
+                'url':'http://vosdroits.service-public.fr/particuliers/F16871.xhtml',
                 'type':'link'
             }
         ]
@@ -64,7 +62,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
                 'type':'link'
             },
             {
-                'label':'Formulaire de demande en ligne',
+                'label':'Formulaires en ligne',
                 'url':'http://www.caf.fr/aides-et-services/les-services-en-ligne/acceder-a-une-demande-en-ligne',
                 'type':'link'
             }
@@ -78,7 +76,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'links':[
             {
-                'label':'Plus d\'infos',
+                'label':'Plus d\'informations',
                 'url':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
                 'type':'link'
             }
@@ -92,7 +90,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'links':[
             {
-                'label':'Plus d\'infos',
+                'label':'Plus d\'informations',
                 'url':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0',
                 'type':'link'
             }
@@ -106,7 +104,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'links':[
             {
-                'label':'Plus d\'infos',
+                'label':'Plus d\'informations',
                 'url':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
                 'type':'link'
             }
@@ -120,7 +118,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'links':[
             {
-                'label':'Plus d\'infos',
+                'label':'Plus d\'informations',
                 'url':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf',
                 'type':'link'
             }

@@ -114,12 +114,14 @@ angular.module('ddsApp').constant('cerfaForms', [
                 description: 'Le titre de séjour de toutes les personnes de votre foyer qui ne sont pas de nationalité EEE.'
             },
             {
+                id: 'acte_naissance',
                 label: 'Extrait d\'acte de naissance',
                 img: 'acte_naissance.jpg',
                 description: 'Un extrait d\'acte de naissance pour les personnes à charges de moins\
                     de 18 ans de nationalité étrangère et nées en France.'
             },
             {
+                id: 'ofii',
                 label: 'Certificat de l\'OFII',
                 img: 'ofii.jpg',
                 description: 'Le certificat de l\'OFII (ex. Anaem) délivré dans le cadre du regroupement familial.'

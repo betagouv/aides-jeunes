@@ -31,7 +31,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         $scope.cities = [];
         var codePostal = situation.logement.adresse.codePostal;
         if (9999 < codePostal && 100000 > codePostal) {
-            var baseApi = '//public.opendatasoft.com/api/records/1.0/search?dataset=correspondance-code-insee-code-postal&format=jsonp&callback=JSON_CALLBACK&q=';
+            var baseApi = '//public.opendatasoft.com/api/records/1.0/search?dataset=correspondance-code-insee-code-postal&format=jsonp&callback=JSON_CALLBACK&rows=1000&q=';
             $http.jsonp(baseApi + situation.logement.adresse.codePostal).then(function(result) {
                 $scope.cities = [];
                 result.data.records.forEach(function(record) {

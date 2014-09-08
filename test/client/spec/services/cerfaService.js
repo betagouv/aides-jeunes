@@ -87,17 +87,21 @@ describe('Service: cerfaService', function () {
 
         describe('function isPieceJustificativeRequiredForSituation()', function() {
             describe('cmuc', function() {
-                it('should ask justificatif familial only if situation has personnes à charge', function() {
+                it('should ask livret famille only if situation has personnes à charge', function() {
                     // given
-                    var situations = [{enfants: [], personnesACharge: []}, {enfants: [], personnesACharge: [{}]}];
+                    var situations = [
+                        {enfants: [], personnesACharge: []},
+                        {enfants: [{}], personnesACharge: []},
+                        {enfants: [], personnesACharge: [{}]}
+                    ];
 
                     // when
                     var result = _.filter(situations, function(situation) {
-                        return service.isPieceJustificativeRequiredForSituation('cmu_c', 'famille', situation);
+                        return service.isPieceJustificativeRequiredForSituation('cmu_c', 'livret_famille', situation);
                     });
 
                     // then
-                    expect(result.length).toBe(1);
+                    expect(result.length).toBe(2);
                 });
 
                 it('should ask taxe foncière only if demandeur is propriétaire', function() {
@@ -154,7 +158,11 @@ describe('Service: cerfaService', function () {
 
                 it('should ask piece d\'identité for french and EEE people', function() {
                     // given
-                    var individus = [{nationalite: 'fr'}, {nationalite: 'ue'}, {nationalite: 'autre'}];
+                    var individus = [
+                        {nationalite: 'fr', role: 'demandeur'},
+                        {nationalite: 'ue', role: 'conjonint'},
+                        {nationalite: 'autre', role: 'demandeur'}
+                    ];
 
                     // when
                     var result = service.pieceJustificativeIndividus('cmu_c', 'identite', individus);

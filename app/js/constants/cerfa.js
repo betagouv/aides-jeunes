@@ -5,7 +5,7 @@
 angular.module('ddsApp').constant('cerfaForms', [
     {
         droitId: 'cmu_c',
-        description: 'Le dossier doit être envoyé à la caisse d\'assurance maladie dont vous dépendez.\
+        description: 'Le dossier doit être envoyé à la caisse d’assurance maladie dont vous dépendez.\
             Il peut être envoyé par courrier ou être déposé directement à votre caisse d’assurance maladie.\
             Pour obtenir l’adresse de votre caisse d’assurance maladie, <a href="http://www.cmu.fr/liste-caisses.php">cliquez ici</a>.',
         forms: [
@@ -16,16 +16,16 @@ angular.module('ddsApp').constant('cerfaForms', [
             },
             {
                 id: 'cmuc_choix_organisme_demandeur',
-                label: 'Formulaire de choix de l\'organisme (demandeur)',
+                label: 'Formulaire de choix de l’organisme (demandeur)',
                 description: '<strong>Ce formulaire est aussi obligatoire</strong>. Votre CMU-C sera gérée soit par votre caisse d’assurance maladie,\
                     soit par un organisme complémentaire inscrit sur une liste nationale que vous trouverez sur\
                     <a href="http://www.cmu.fr/liste-organismes-complementaires.php">ce lien</a>.'
             },
             {
                 id: 'cmuc_choix_organisme_non_demandeur',
-                label: 'Formulaire de choix de l\'organisme (autres membres du foyer)',
+                label: 'Formulaire de choix de l’organisme (autres membres du foyer)',
                 description: 'Ce formulaire facultatif est à remplir, pour les autres membres du foyer,\
-                    uniquement en cas de choix de l\'organisme différent de celui du demandeur.'
+                    uniquement en cas de choix de l’organisme différent de celui du demandeur.'
             }
         ],
         piecesJustificatives: [
@@ -40,10 +40,10 @@ angular.module('ddsApp').constant('cerfaForms', [
             },
             {
                 id: 'identite',
-                label: 'Pièce d\'identité',
+                label: 'Pièce d’identité',
                 img: 'identite_passeport.jpg',
                 description: 'Votre carte d’identité, ou votre passeport ou votre livret de famille à jour,\
-                    revêtu de l\'une des mentions prévues à l\'article 28 du code civil.'
+                    revêtu de l’une des mentions prévues à l’article 28 du code civil.'
             },
             {
                 id: 'regularite',
@@ -54,30 +54,30 @@ angular.module('ddsApp').constant('cerfaForms', [
                     de votre demande de titre, convocation ou rendez-vous en préfecture'
             },
             {
-                id: 'famille',
-                label: 'Justificatif familial',
-                img: 'livret_de_famille.jpg',
-                description: 'Votre livret de famille tenu à jour, ou votre certificat de concubinage ou\
-                    l’attestation d’enregistrement d’un PACS.',
+                id: 'livret_famille',
+                label: 'Livret de famille',
+                img: 'livret_famille.jpg',
+                description: 'Votre livret de famille tenu à jour.\
+                    Peut être remplacé par un certificat de concubinage ou une attestation d’enregistrement d’un PACS.',
                 isIndividualized: false
             },
             {
                 id: 'imposition',
-                label: 'Avis d\'imposition ou de non-imposition',
+                label: 'Avis d’imposition ou de non-imposition',
                 img: 'impots.jpg',
-                description: 'Derniers avis d\'imposition ou de non-imposition.'
+                description: 'Derniers avis d’imposition ou de non-imposition.'
             },
             {
                 id: 'bulletins_paie',
                 label: 'Bulletins de paie',
                 img: 'bulletin_paie.jpg',
-                description: 'Les bulletins de paie sur l\'année.'
+                description: 'Les bulletins de paie sur l’année.'
             },
             {
                 id: 'attestation_indemnites_chomage',
-                label: 'Attestations d\'indemnités de chômage',
+                label: 'Attestations d’indemnités de chômage',
                 img: 'pole_emploi.png',
-                description: 'Attestations d\'indemnités de chômage.'
+                description: 'Attestations d’indemnités de chômage.'
             },
             {
                 id: 'taxe_fonciere',
@@ -87,7 +87,7 @@ angular.module('ddsApp').constant('cerfaForms', [
             },
             {
                 id: 'taxe_habitation',
-                label: 'Avis de taxe d\'habitation',
+                label: 'Avis de taxe d’habitation',
                 img: 'taxe_habitation.jpg',
                 isIndividualized: false
             },
@@ -96,7 +96,7 @@ angular.module('ddsApp').constant('cerfaForms', [
                 label: 'Justificatif de stabilité de résidence',
                 img: 'quittance.jpg',
                 description: 'Toute pièce justifiant que vous résidez en France depuis plus de trois mois.\
-                    Par exemple : bail de location, quittances de loyer, factures d\'électricité consécutives,\
+                    Par exemple : bail de location, quittances de loyer, factures d’électricité consécutives,\
                     certificat d’hébergement, certificat de scolarité ou d’inscription universitaire…',
                 isIndividualized: false
             }
@@ -108,7 +108,7 @@ angular.module('ddsApp').constant('cerfaForms', [
             Caisse d’allocations familiales (CAF), Mutualité sociale agricole (MSA), services du Conseil général,\
             Centre communal d’action sociale (CCAS) ou Centre intercommunal d’action sociale (CIAS) volontaires\
             ou bien une association ou un organisme à but non lucratif ayant reçu délégation du Conseil général.\
-            Pour plus d\'informations, vous pouvez consulter\
+            Pour plus d’informations, vous pouvez consulter\
             <a href="http://www.social-sante.gouv.fr/espaces,770/handicap-exclusion,775/dossiers,806/le-rsa,2302/le-revenu-de-solidarite-active,2279/quelles-sont-les-demarches-a,14882.html">ce lien</a>.',
         forms: [
             {
@@ -119,10 +119,10 @@ angular.module('ddsApp').constant('cerfaForms', [
         piecesJustificatives: [
             {
                 id: 'identite',
-                label: 'Justificatif d\'identité',
+                label: 'Justificatif d’identité',
                 img: 'identite_passeport.jpg',
                 description: 'La photocopie lisible, pour chacun des membres de votre foyer de nationalité EEE,\
-                    de l\'un des documents suivants :\
+                    de l’un des documents suivants :\
                     carte nationale d’identité ou livret de famille ou\
                     passeport ou extrait d’acte de naissance ou carte\
                     d’ancien combattant ou carte d’invalidité.'
@@ -134,16 +134,16 @@ angular.module('ddsApp').constant('cerfaForms', [
             },
             {
                 id: 'acte_naissance',
-                label: 'Extrait d\'acte de naissance',
+                label: 'Extrait d’acte de naissance',
                 img: 'acte_naissance.jpg',
-                description: 'Un extrait d\'acte de naissance pour les personnes à charges de moins\
+                description: 'Un extrait d’acte de naissance pour les personnes à charges de moins\
                     de 18 ans de nationalité étrangère et nées en France.'
             },
             {
                 id: 'ofii',
-                label: 'Certificat de l\'OFII',
+                label: 'Certificat de l’OFII',
                 img: 'ofii.jpg',
-                description: 'Le certificat de l\'OFII (ex. Anaem) délivré dans le cadre du regroupement familial.'
+                description: 'Le certificat de l’OFII (ex. Anaem) délivré dans le cadre du regroupement familial.'
             }
         ]
     }

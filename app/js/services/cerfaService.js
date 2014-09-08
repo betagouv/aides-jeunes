@@ -12,11 +12,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
     // callbacks qui déterminent si une pièce justificative est nécessaire ou non pour un individu ou une situation
     var requiredPiecesJustificativesCallbacks = {
         'cmu_c.identite': function(individu) {
-            if ('demandeur' !== individu.role) {
-                return 'autre' !== individu.nationalite;
-            }
-
-            return false;
+            return 'autre' !== individu.nationalite;
         },
         'cmu_c.regularite': function(individu) {
             if ('demandeur' !== individu.role) {
@@ -25,7 +21,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
 
             return false;
         },
-        'cmu_c.famille': function(situation) {
+        'cmu_c.livret_famille': function(situation) {
             return !!situation.enfants.length || !!situation.personnesACharge.length;
         },
         'cmu_c.imposition': function(individu) {

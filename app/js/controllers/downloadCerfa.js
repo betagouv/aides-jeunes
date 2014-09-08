@@ -15,15 +15,16 @@ angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, 
     $scope.cerfa.piecesJustificatives.forEach(function(pieceJustificative) {
         var piece = { description: pieceJustificative };
         if (false !== pieceJustificative.isIndividualized) {
-            var individusConcernes = _.filter(individus, function(individu) {
-                return CerfaService.pieceJustificativeRequiredForIndividu(droit, pieceJustificative.id, individu);
-            });
-
+            var individusConcernes = CerfaService.pieceJustificativeIndividus(droit, pieceJustificative.id, individus);
             if (!individusConcernes.length) {
                 return;
             }
 
             piece.individus = _.map(individusConcernes, IndividuService.label);
+        } else {
+            if (!CerfaService.isPieceJustificativeRequiredForSituation(droit, pieceJustificative.id, situation)) {
+                return;
+            }
         }
 
         $scope.piecesJustificatives.push(piece);

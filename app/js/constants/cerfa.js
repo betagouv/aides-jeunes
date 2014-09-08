@@ -1,6 +1,6 @@
 'use strict';
 
-/*jshint multistr: true */
+/* jshint multistr: true */
 
 angular.module('ddsApp').constant('cerfaForms', [
     {
@@ -33,7 +33,7 @@ angular.module('ddsApp').constant('cerfaForms', [
                 id: 'vitale',
                 label: 'Carte vitale et attestation',
                 img: 'carte_vitale.jpg',
-                description: 'Une photocopie de votre carte vitale et l’attestation qui l’accompagne.\
+                description: 'Une photocopie de la carte vitale et l’attestation qui l’accompagne.\
                     Cette attestation peut être obtenue auprès de votre caisse d’assurance maladie,\
                     auprès d’une borne de votre caisse d’assurance maladie ou éventuellement via votre compte internet\
                     sur le site de votre caisse d’assurance maladie.'
@@ -62,15 +62,34 @@ angular.module('ddsApp').constant('cerfaForms', [
                 isIndividualized: false
             },
             {
-                id: 'ressources',
-                label: 'Justificatif de ressources',
+                id: 'imposition',
+                label: 'Avis d\'imposition ou de non-imposition',
                 img: 'impots.jpg',
-                description: 'Avis d’imposition ou de non imposition,\
-                    bulletins de paie,\
-                    attestations d’indemnités de chômage,\
-                    déclarations de revenus et leurs annexes à l’administration des impôts,\
-                    avis de taxe foncière, de taxe locale d’habitation,\
-                    attestations des banques concernant les revenus d’épargne...'
+                description: 'Derniers avis d\'imposition ou de non-imposition.'
+            },
+            {
+                id: 'bulletins_paie',
+                label: 'Bulletins de paie',
+                img: 'bulletin_paie.jpg',
+                description: 'Les bulletins de paie sur l\'année.'
+            },
+            {
+                id: 'attestation_indemnites_chomage',
+                label: 'Attestations d\'indemnités de chômage',
+                img: 'pole_emploi.png',
+                description: 'Attestations d\'indemnités de chômage.'
+            },
+            {
+                id: 'taxe_fonciere',
+                label: 'Avis de taxe foncière',
+                img: 'taxe_fonciere.jpg',
+                isIndividualized: false
+            },
+            {
+                id: 'taxe_habitation',
+                label: 'Avis de taxe d\'habitation',
+                img: 'taxe_habitation.jpg',
+                isIndividualized: false
             },
             {
                 id: 'stabilite_residence',

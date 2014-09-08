@@ -47,7 +47,7 @@
     </div>
 
     <div ng-show="personnesSelected">
-      <p>Veuillez entrer les montants des ressources sélectionnées.</p>
+      <p>Veuillez entrer les montants des ressources sélectionnées (net perçu pour les salaires ou indemnités).</p>
       <div ng-repeat="individuRef in individuRefs" ng-if="hasIndividuRessources(individuRef)">
         <h2 ng-if="1 < individuRefs.length">{{ individuRef.label }}</h2>
         <table class="table table-bordered">

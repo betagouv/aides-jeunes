@@ -6,6 +6,10 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         'cmuc_choix_organisme_non_demandeur': function(situation) {
             var individus = SituationService.createIndividusList(situation);
             return 1 < individus.length;
+        },
+        'rsa_non_salarie': function(situation) {
+            var nonSalarie = _.find(situation.demandeur.situationsPro, {situation: 'independant'});
+            return !!nonSalarie;
         }
     };
 
@@ -52,10 +56,21 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         },
         'rsa.identite': function(individu) {
             if (_.contains(['demandeur', 'conjoint'], individu.role)) {
-                return 'fr' === individu.nationalite;
+                return _.contains(['fr', 'ue'], individu.nationalite);
             }
 
             return 'France' === individu.paysNaissance;
+        },
+        'rsa.titre_sejour': function(individu) {
+            if ('autre' !== individu.nationalite) {
+                return false;
+            }
+
+            if (_.contains(['enfant', 'personneACharge'], individu.role)) {
+                return 18 <= IndividuService.age(individu);
+            }
+
+            return true;
         },
         'rsa.acte_naissance': function(individu) {
             var result = _.contains(['enfant', 'personneACharge'], individu.role);
@@ -72,6 +87,27 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
             result = result && 'France' !== individu.paysNaissance;
 
             return result;
+        },
+        'rsa.avis_paiement_pension_invalidite': function(individu) {
+            if (_.contains(['demandeur', 'conjoint'], individu.role)) {
+                return !!_.find(individu.ressources, {type: 'pensionsInvalidite'});
+            }
+
+            return false;
+        },
+        'rsa.avis_paiement_retraite': function(individu) {
+            if (_.contains(['demandeur', 'conjoint'], individu.role)) {
+                return !!_.find(individu.situationsPro, {situation: 'retraite'});
+            }
+
+            return false;
+        },
+        'rsa.avis_paiement_rente_accident_travail': function(individu) {
+            if (_.contains(['demandeur', 'conjoint'], individu.role)) {
+                return !!_.find(individu.ressources, {type: 'indJourAccidentDuTravail'});
+            }
+
+            return false;
         }
     };
 

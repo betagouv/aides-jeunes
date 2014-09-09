@@ -90,9 +90,9 @@ describe('Service: cerfaService', function () {
                 it('should ask livret famille only if situation has personnes à charge', function() {
                     // given
                     var situations = [
-                        {enfants: [], personnesACharge: []},
                         {enfants: [{}], personnesACharge: []},
-                        {enfants: [], personnesACharge: [{}]}
+                        {enfants: [], personnesACharge: [{}]},
+                        {enfants: [], personnesACharge: []}
                     ];
 
                     // when
@@ -101,7 +101,7 @@ describe('Service: cerfaService', function () {
                     });
 
                     // then
-                    expect(result.length).toBe(2);
+                    expect(result).toEqual(_.initial(situations));
                 });
 
                 it('should ask taxe foncière only if demandeur is propriétaire', function() {
@@ -118,16 +118,15 @@ describe('Service: cerfaService', function () {
                     });
 
                     // then
-                    expect(result.length).toBe(1);
-                    expect(result[0].logement.type).toBe('proprietaire');
+                    expect(result).toEqual([situations[0]]);
                 });
 
                 it('should ask taxe habitation only if demandeur is locataire or colocataire', function() {
                     // given
                     var situations = [
-                        {logement: {type: 'proprietaire'}},
                         {logement: {type: 'colocataire'}},
-                        {logement: {type: 'locataire'}}
+                        {logement: {type: 'locataire'}},
+                        {logement: {type: 'proprietaire'}}
                     ];
 
                     // when
@@ -136,9 +135,7 @@ describe('Service: cerfaService', function () {
                     });
 
                     // then
-                    expect(result.length).toBe(2);
-                    expect(result[0].logement.type).toBe('colocataire');
-                    expect(result[1].logement.type).toBe('locataire');
+                    expect(result).toEqual(_.initial(situations));
                 });
             });
         });
@@ -168,68 +165,202 @@ describe('Service: cerfaService', function () {
                     var result = service.pieceJustificativeIndividus('cmu_c', 'identite', individus);
 
                     // then
-                    expect(result.length).toBe(2);
-                    expect(result[0].nationalite).toBe('fr');
-                    expect(result[1].nationalite).toBe('ue');
+                    expect(result).toEqual(_.initial(individus));
                 });
 
                 it('should ask titre de séjour for non-french people', function() {
                     // given
-                    var individus = [{nationalite: 'fr'}, {nationalite: 'ue'}, {nationalite: 'autre'}];
+                    var individus = [{nationalite: 'ue'}, {nationalite: 'autre'}, {nationalite: 'fr'}];
 
                     // when
                     var result = service.pieceJustificativeIndividus('cmu_c', 'regularite', individus);
 
                     // then
-                    expect(result.length).toBe(2);
-                    expect(result[0].nationalite).toBe('ue');
-                    expect(result[1].nationalite).toBe('autre');
+                    expect(result).toEqual(_.initial(individus));
                 });
 
                 it('should ask avis d\'imposition ou non-imposition for individus aged > 16', function() {
                     // given
-                    var individus = [{birthDate: '14/09/2014'}, {birthDate: '14/08/1989'}];
+                    var individus = [{birthDate: '14/08/1989'}, {birthDate: '14/09/2014'}];
 
                     // when
                     var result = service.pieceJustificativeIndividus('cmu_c', 'imposition', individus);
 
                     // then
-                    expect(result.length).toBe(1);
-                    expect(result[0].birthDate).toBe('14/08/1989');
+                    expect(result).toEqual([individus[0]]);
                 });
 
                 // TODO Tester uniquement sur revenus salariés déclarés pendant l'année glissante
                 it('should ask bulletins de paie for individus aged > 16 having revenus salaries', function() {
                     // given
-                    var individuSalarie = {birthDate: '14/08/1989', ressources: [{type: 'revenusSalarie'}]};
                     var individus = [
-                        {birthDate: '14/09/2014', ressources: [{type: 'revenusSalarie', periode: '1014'}]},
+                        {birthDate: '14/08/1989', ressources: [{type: 'revenusSalarie'}]},
+                        // not kept because aged < 16
+                        {birthDate: '14/09/2014', ressources: [{type: 'revenusSalarie'}]},
+                        // not kept because no revenus salarie
                         {birthDate: '14/08/1989'},
-                        individuSalarie
                     ];
 
                     // when
                     var result = service.pieceJustificativeIndividus('cmu_c', 'bulletins_paie', individus);
 
                     // then
-                    expect(result.length).toBe(1);
-                    expect(result[0]).toBe(individuSalarie);
+                    expect(result).toEqual([individus[0]]);
                 });
 
                 it('should ask attestations indemnités chômage for people aged > 16', function() {
                     // given
-                    var individuChomeur = {birthDate: '14/08/1989', ressources: [{type: 'allocationsChomage'}]};
-                    var individuChomeurPartiel = {birthDate: '14/08/1989', ressources: [{type: 'indChomagePartiel'}]};
-                    var individuChomeurMoins16ans = {birthDate: '14/08/2014', ressources: [{type: 'allocationsChomage'}]};
-                    var individus = [individuChomeur, individuChomeurPartiel, individuChomeurMoins16ans];
+                    var individus = [
+                        {birthDate: '14/08/1989', ressources: [{type: 'allocationsChomage'}]},
+                        {birthDate: '14/08/1989', ressources: [{type: 'indChomagePartiel'}]},
+                        // not kept because aged > 16
+                        {birthDate: '14/08/2014', ressources: [{type: 'allocationsChomage'}]}
+                    ];
 
                     // when
                     var result = service.pieceJustificativeIndividus('cmu_c', 'attestation_indemnites_chomage', individus);
 
                     // then
-                    expect(result.length).toBe(2);
-                    expect(result[0]).toBe(individuChomeur);
-                    expect(result[1]).toBe(individuChomeurPartiel);
+                    expect(result).toEqual(_.initial(individus));
+                });
+            });
+
+            describe('rsa', function() {
+                it('should ask piece d\'identite for fr or ue parents or children born in France', function() {
+                    // given
+                    var individus = [
+                        {nationalite: 'fr', role: 'demandeur'},
+                        {nationalite: 'ue', role: 'conjoint'},
+                        {paysNaissance: 'France', role: 'enfant'},
+                        {paysNaissance: 'France', role: 'personneACharge'},
+                        // not kept because nationalite autre
+                        {nationalite: 'autre', role: 'conjoint'},
+                        // not kept because not born in France
+                        {paysNaissance: 'Congo', role: 'enfant'}
+                    ];
+
+                    // when
+                    var result = service.pieceJustificativeIndividus('rsa', 'identite', individus);
+
+                    // then
+                    expect(result).toEqual(_.initial(individus, 2));
+                });
+
+                it('should ask acte de naissance for personnes à charge aged < 18 born in france but not french', function() {
+                    // given
+                    var individus = [
+                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'enfant'},
+                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'personneACharge'},
+                        // not kept because not personne à charge
+                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
+                        // not kept because aged > 18
+                        {birthDate: '14/08/1980', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
+                        // not kept because nationalite fr
+                        {birthDate: '14/08/2014', nationalite: 'fr', paysNaissance: 'France', role: 'enfant'},
+                        // not kept because not born in france
+                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'Congo', role: 'personneACharge'},
+                    ];
+
+                    // when
+                    var result = service.pieceJustificativeIndividus('rsa', 'acte_naissance', individus);
+
+                    // then
+                    expect(result).toEqual(_.initial(individus, 4));
+                });
+
+                it('should ask certificat OFII if aged < 18 and foreigner', function() {
+                    // given
+                    var individus = [
+                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'Malaisie', role: 'enfant'},
+                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'Congo', role: 'personneACharge'},
+                        // not kept because not personne à charge
+                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
+                        // not kept because aged > 18
+                        {birthDate: '14/08/1980', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
+                        // not kept because nationalite fr
+                        {birthDate: '14/08/2014', nationalite: 'fr', paysNaissance: 'France', role: 'enfant'},
+                        // not kept because born in france
+                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'personneACharge'},
+                    ];
+
+                    // when
+                    var result = service.pieceJustificativeIndividus('rsa', 'ofii', individus);
+
+                    // then
+                    expect(result).toEqual(_.initial(individus, 4));
+                });
+
+                it('should ask titre de séjour for parents with nationalité not EEE, and for children aged > 18 and foreigner', function() {
+                    // given
+                    var individus = [
+                        {nationalite: 'autre', paysNaissance: 'Malaisie', role: 'demandeur'},
+                        {nationalite: 'autre', paysNaissance: 'Congo', role: 'conjoint'},
+                        {birthDate: '14/08/1980', nationalite: 'autre', paysNaissance: 'Congo', role: 'enfant'},
+                        // not kept because child < 18
+                        {birthDate: '14/08/2014', nationalite: 'autre', paysNaissance: 'Congo', role: 'enfant'},
+                        // not kept because nationalite eee
+                        {nationalite: 'ue', role: 'demandeur'},
+                    ];
+
+                    // when
+                    var result = service.pieceJustificativeIndividus('rsa', 'titre_sejour', individus);
+
+                    // then
+                    expect(result).toEqual(_.initial(individus, 2));
+                });
+
+                it('should ask avis paiement pension invalidité when required', function() {
+                    // given
+                    var individus = [
+                        {role: 'demandeur', ressources: [{type: 'pensionsInvalidite'}]},
+                        {role: 'demandeur', ressources: [{type: 'pensionsInvalidite'}]},
+                        // not kept because not parent
+                        {role: 'enfant', ressources: [{type: 'pensionsInvalidite'}]},
+                        // not kept because no pension
+                        {role: 'demandeur'}
+                    ];
+
+                    // when
+                    var result = service.pieceJustificativeIndividus('rsa', 'avis_paiement_pension_invalidite', individus);
+
+                    // then
+                    expect(result).toEqual(_.initial(individus, 2));
+                });
+
+                it('should ask avis paiement retraite when required', function() {
+                    // given
+                    var individus = [
+                        {role: 'demandeur', situationsPro: [{situation: 'retraite'}]},
+                        {role: 'conjoint', situationsPro: [{situation: 'retraite'}]},
+                        // not kept because not retraite
+                        {role: 'conjoint'},
+                        // not kept because not parent
+                        {role: 'enfant', situationsPro: [{situation: 'retraite'}]}
+                    ];
+
+                    // when
+                    var result = service.pieceJustificativeIndividus('rsa', 'avis_paiement_retraite', individus);
+
+                    // then
+                    expect(result).toEqual(_.initial(individus, 2));
+                });
+
+                it('should ask avis paiement indemnite accident travail when required', function() {
+                    // given
+                    var individus = [
+                        {role: 'demandeur', ressources: [{type: 'indJourAccidentDuTravail'}]},
+                        {role: 'demandeur', ressources: [{type: 'indJourAccidentDuTravail'}]},
+                        // not kept because not parent
+                        {role: 'enfant', ressources: [{type: 'indJourAccidentDuTravail'}]},
+                        // not kept because no indemnite
+                        {role: 'demandeur'}
+                    ];
+
+                    // when
+                    var result = service.pieceJustificativeIndividus('rsa', 'avis_paiement_rente_accident_travail', individus);
+
+                    // then
+                    expect(result).toEqual(_.initial(individus, 2));
                 });
             });
         });

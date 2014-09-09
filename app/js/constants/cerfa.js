@@ -114,6 +114,10 @@ angular.module('ddsApp').constant('cerfaForms', [
             {
                 id: 'rsa_demande',
                 label: 'Formulaire de demande'
+            },
+            {
+                id: 'rsa_non_salarie',
+                label: 'Formulaire complémentaire pour les non-salariés'
             }
         ],
         piecesJustificatives: [
@@ -121,16 +125,16 @@ angular.module('ddsApp').constant('cerfaForms', [
                 id: 'identite',
                 label: 'Justificatif d’identité',
                 img: 'identite_passeport.jpg',
-                description: 'La photocopie lisible, pour chacun des membres de votre foyer de nationalité EEE,\
-                    de l’un des documents suivants :\
+                description: 'La photocopie lisible de l’un des documents suivants :\
                     carte nationale d’identité ou livret de famille ou\
                     passeport ou extrait d’acte de naissance ou carte\
                     d’ancien combattant ou carte d’invalidité.'
             },
             {
+                id: 'titre_sejour',
                 label: 'Titre de séjour',
                 img: 'titre_sejour.jpg',
-                description: 'Le titre de séjour de toutes les personnes de votre foyer qui ne sont pas de nationalité EEE.'
+                description: 'La photocopie lisible du titre de séjour en cours de validité.'
             },
             {
                 id: 'acte_naissance',
@@ -143,7 +147,26 @@ angular.module('ddsApp').constant('cerfaForms', [
                 id: 'ofii',
                 label: 'Certificat de l’OFII',
                 img: 'ofii.jpg',
-                description: 'Le certificat de l’OFII (ex. Anaem) délivré dans le cadre du regroupement familial.'
+                description: 'Le certificat de l’OFII (ex. Anaem) délivré dans le cadre du regroupement familial,\
+                    pour les personnes agées de moins de 18 ans, de nationalité étrangère et nées à l’étranger.'
+            },
+            {
+                id: 'avis_paiement_pension_invalidite',
+                label: 'Avis de paiement de pension d’invalidité',
+                img: 'cheque.jpg',
+                description: 'La photocopie lisible du dernier avis de paiement de la pension d’invalidité'
+            },
+            {
+                id: 'avis_paiement_retraite',
+                label: 'Avis de paiement de pension de retraite',
+                img: 'cheque.jpg',
+                description: 'La photocopie lisible du dernier avis de paiement de la pension de retraite'
+            },
+            {
+                id: 'avis_paiement_rente_accident_travail',
+                label: 'Avis de paiement d’indemnité accident du travail',
+                img: 'cheque.jpg',
+                description: 'La photocopie lisible du dernier avis de paiement de l’indemnité d’accident du travail'
             }
         ]
     }

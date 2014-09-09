@@ -134,7 +134,7 @@ public class Application extends Controller {
                 return new CAFFormFiller();
             }
         },
-        RSA("rsa") {
+        RSA("rsa_demande") {
 
             @Override
             public FormFiller createFormFiller() {

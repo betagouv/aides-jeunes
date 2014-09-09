@@ -2,7 +2,7 @@
 
 angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, cerfaForms, CerfaService, SituationService, IndividuService, situation, droit) {
     $scope.situation = situation;
-    $scope.cerfa = _.find(cerfaForms, {droitId: droit});
+    $scope.cerfa = CerfaService.getCerfaFromDroit(droit);
     $scope.cerfaForms = CerfaService.getCerfaFormsFromDroit(droit, situation);
 
     $scope.trustAsHtml = function(content) {

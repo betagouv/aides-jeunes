@@ -23,8 +23,11 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
 
     // callbacks qui déterminent si une pièce justificative est nécessaire ou non pour un individu ou une situation
     var requiredPiecesJustificativesCallbacks = {
+        'cmu_c.vitale': function(individu) {
+            return 18 <= IndividuService.age(individu);
+        },
         'cmu_c.identite': function(individu) {
-            return 'autre' !== individu.nationalite;
+            return 'autre' !== individu.nationalite && 18 <= IndividuService.age(individu);
         },
         'cmu_c.regularite': function(individu) {
             if ('demandeur' !== individu.role) {
@@ -129,9 +132,17 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         }
     };
 
+    var getEquivalentDroitId = function(droitId) {
+        return 'acs' === droitId ? 'cmu_c' : droitId;
+    };
+
     return {
+        getCerfaFromDroit: function(droitId) {
+            return _.find(cerfaForms, {droitId: getEquivalentDroitId(droitId)});
+        },
+
         getCerfaFormsFromDroit: function(droitId, situation) {
-            var cerfa = _.find(cerfaForms, { droitId: droitId });
+            var cerfa = this.getCerfaFromDroit(droitId);
             var result = [];
 
             if (cerfa) {
@@ -151,8 +162,10 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         },
 
         pieceJustificativeIndividus: function(droitId, pieceId, individus) {
+            var equivalentDroitId = getEquivalentDroitId(droitId);
+
             return _.filter(individus, function(individu) {
-                var callback = requiredPiecesJustificativesCallbacks[droitId + '.' + pieceId];
+                var callback = requiredPiecesJustificativesCallbacks[equivalentDroitId + '.' + pieceId];
                 if (callback) {
                     return callback(individu);
                 }
@@ -162,7 +175,8 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         },
 
         isPieceJustificativeRequiredForSituation: function(droitId, pieceId, situation) {
-            var callback = requiredPiecesJustificativesCallbacks[droitId + '.' + pieceId];
+            var equivalentDroitId = getEquivalentDroitId(droitId);
+            var callback = requiredPiecesJustificativesCallbacks[equivalentDroitId + '.' + pieceId];
             if (callback) {
                 return callback(situation);
             }

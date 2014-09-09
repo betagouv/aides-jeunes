@@ -17,7 +17,7 @@ angular.module('ddsApp').constant('cerfaForms', [
             {
                 id: 'cmuc_choix_organisme_demandeur',
                 label: 'Formulaire de choix de l’organisme (demandeur)',
-                description: '<strong>Ce formulaire est aussi obligatoire</strong>. Votre CMU-C sera gérée soit par votre caisse d’assurance maladie,\
+                description: '<strong>Ce formulaire est aussi obligatoire</strong>. Votre CMU-C/ACS sera gérée soit par votre caisse d’assurance maladie,\
                     soit par un organisme complémentaire inscrit sur une liste nationale que vous trouverez sur\
                     <a href="http://www.cmu.fr/liste-organismes-complementaires.php">ce lien</a>.'
             },

@@ -156,30 +156,37 @@ describe('Service: cerfaService', function () {
 
         describe('function pieceJustificativeIndividus()', function() {
             describe('cmuc', function() {
-                it('sould ask carte vitale for everybody', function() {
+                it('sould ask carte vitale for everybody aged >= 18', function() {
                     // given
-                    var individus = [{role: 'demandeur'}, {role: 'conjoint'}, {role: 'enfant'}, {role: 'personneACharge'}];
+                    var individus = [
+                        {birthDate: '14/09/1980'},
+                        // not kept because aged < 18
+                        {birthDate: '14/09/2014'},
+                    ];
 
                     // when
                     var result = service.pieceJustificativeIndividus('cmu_c', 'vitale', individus);
 
                     // then
-                    expect(result).toEqual(individus);
+                    expect(result).toEqual(_.initial(individus));
                 });
 
-                it('should ask piece d\'identité for french and EEE people', function() {
+                it('should ask piece d\'identité for french and EEE people aged >= 18', function() {
                     // given
                     var individus = [
-                        {nationalite: 'fr', role: 'demandeur'},
-                        {nationalite: 'ue', role: 'conjonint'},
-                        {nationalite: 'autre', role: 'demandeur'}
+                        {birthDate: '14/09/1980', nationalite: 'fr'},
+                        {birthDate: '14/09/1980', nationalite: 'ue'},
+                        // not kept because nationality not eee
+                        {birthDate: '14/09/1980', nationalite: 'autre'},
+                        // not kept because aged < 18
+                        {birthDate: '14/09/2014', nationalite: 'fr'}
                     ];
 
                     // when
                     var result = service.pieceJustificativeIndividus('cmu_c', 'identite', individus);
 
                     // then
-                    expect(result).toEqual(_.initial(individus));
+                    expect(result).toEqual(_.initial(individus, 2));
                 });
 
                 it('should ask titre de séjour for non-french people', function() {
@@ -205,6 +212,7 @@ describe('Service: cerfaService', function () {
                 });
 
                 // TODO Tester uniquement sur revenus salariés déclarés pendant l'année glissante
+                // car il se peut qu'il ait entré des revenus sur l'année n-2 qui ne sont pas à prendre en compte ici
                 it('should ask bulletins de paie for individus aged > 16 having revenus salaries', function() {
                     // given
                     var individus = [
@@ -228,19 +236,21 @@ describe('Service: cerfaService', function () {
                         {birthDate: '14/08/1989', ressources: [{type: 'allocationsChomage'}]},
                         {birthDate: '14/08/1989', ressources: [{type: 'indChomagePartiel'}]},
                         // not kept because aged > 16
-                        {birthDate: '14/08/2014', ressources: [{type: 'allocationsChomage'}]}
+                        {birthDate: '14/08/2014', ressources: [{type: 'allocationsChomage'}]},
+                        // not kept because no chomage
+                        {birthDate: '14/08/2014', ressources: [{type: 'test'}]}
                     ];
 
                     // when
                     var result = service.pieceJustificativeIndividus('cmu_c', 'attestation_indemnites_chomage', individus);
 
                     // then
-                    expect(result).toEqual(_.initial(individus));
+                    expect(result).toEqual(_.initial(individus, 2));
                 });
             });
 
             describe('rsa', function() {
-                it('should ask piece d\'identite for fr or ue parents or children born in France', function() {
+                it('should ask piece d\'identite for nationalite fr or ue parents or children born in France', function() {
                     // given
                     var individus = [
                         {nationalite: 'fr', role: 'demandeur'},

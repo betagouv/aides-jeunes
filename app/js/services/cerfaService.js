@@ -129,6 +129,22 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         },
         'rsa.declaration_grossesse': function(situation) {
             return situation.demandeur.enceinte;
+        },
+        'aspa.imposition': function(individu) {
+            if ('demandeur' === individu.role) {
+                return true;
+            } else if ('conjoint' === individu.role) {
+                return 'relation_libre' === individu.relationType;
+            }
+
+            return false;
+        },
+        'aspa.titre_sejour': function(individu) {
+            if (_.contains(['demandeur', 'conjoint'], individu.role)) {
+                return 'autre' === individu.nationalite;
+            }
+
+            return false;
         }
     };
 

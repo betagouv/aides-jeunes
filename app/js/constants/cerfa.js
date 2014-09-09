@@ -49,7 +49,7 @@ angular.module('ddsApp').constant('cerfaForms', [
                 id: 'regularite',
                 label: 'Justificatif de régularité du séjour',
                 img: 'titre_sejour.jpg',
-                description: 'toute pièce justifiant la régularité du séjour (contrat de travail, attestation de\
+                description: 'Toute pièce justifiant la régularité du séjour (contrat de travail, attestation de\
                     chômage, titre de séjour, formulaires communautaires - E106 - E121/S1), récépissé\
                     de votre demande de titre, convocation ou rendez-vous en préfecture'
             },
@@ -192,6 +192,36 @@ angular.module('ddsApp').constant('cerfaForms', [
                 description: 'Un relevé d’identité postal ou d’épargne ou bancaire, pour le paiement du RSA.',
                 isIndividualized: false
             }
+        ]
+    },
+    {
+        droitId: 'aspa',
+        description: '',
+        forms: [
+            {
+                id: 'aspa',
+                label: 'Formulaire de demande'
+            }
+        ],
+        piecesJustificatives: [
+            {
+                id: 'imposition',
+                label: 'Avis d’imposition ou de non-imposition',
+                img: 'impots.jpg',
+                description: 'Derniers avis d’imposition ou de non-imposition.'
+            },
+            {
+                id: 'domicile',
+                label: '2 justificatifs de domicile',
+                img: 'quittance.jpg',
+                description: 'Quittances de loyer, factures d’eau, de gaz, d’électricité, de téléphone, attestation du Maire, ...',
+                isIndividualized: false
+            },
+            {
+                id: 'titre_sejour',
+                label: 'Titre de séjour',
+                img: 'titre_sejour.jpg',
+            },
         ]
     }
 ]);

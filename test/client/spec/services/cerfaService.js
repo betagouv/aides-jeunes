@@ -405,6 +405,44 @@ describe('Service: cerfaService', function () {
                     expect(result).toEqual(_.initial(individus, 2));
                 });
             });
+
+            describe('aspa', function() {
+                it('should ask avis impot revenu to demandeur, and conjoint only if concubin', function() {
+                    // given
+                    var individus = [
+                        {role: 'demandeur'},
+                        {role: 'conjoint', relationType: 'relation_libre'},
+                        // not kept because not parent
+                        {role: 'enfant'},
+                        // not kept because not concubin
+                        {role: 'conjoint', relationType: 'mariage'}
+                    ];
+
+                    // when
+                    var result = service.pieceJustificativeIndividus('aspa', 'imposition', individus);
+
+                    // then
+                    expect(result).toEqual(_.initial(individus, 2));
+                });
+
+                it('should ask titre sejour for parents with nationality not fr/eee', function() {
+                    // given
+                    var individus = [
+                        {role: 'demandeur', nationalite: 'autre'},
+                        {role: 'conjoint', nationalite: 'autre'},
+                        // not kept because not parent
+                        {role: 'enfant', nationalite: 'autre'},
+                        // not kept because nationality eee
+                        {role: 'demandeur', nationalite: 'ue'}
+                    ];
+
+                    // when
+                    var result = service.pieceJustificativeIndividus('aspa', 'titre_sejour', individus);
+
+                    // then
+                    expect(result).toEqual(_.initial(individus, 2));
+                });
+            });
         });
     });
 });

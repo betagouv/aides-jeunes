@@ -35,11 +35,12 @@
 <h2><i class="fa fa-folder-open"></i> Pièces justificatives à fournir</h2>
 
 <div ng-repeat="piece in piecesJustificatives">
+  <hr>
   <div class="row">
     <div class="col-sm-10">
-      <div class="media" >
+      <div class="media">
         <div class="pull-left">
-          <img class="media-object" src="/img/pieces-justificatives/{{ piece.description.img }}" alt="piece.description.id">
+          <img class="media-object" ng-src="/img/pieces-justificatives/{{ piece.description.img }}" alt="piece.description.id">
         </div>
         <div class="media-body">
           <h4 class="media-heading">{{ piece.description.label }}</h4>
@@ -53,5 +54,4 @@
       </span>
     </div>
   </div>
-  <hr ng-if="!$last">
 </div>

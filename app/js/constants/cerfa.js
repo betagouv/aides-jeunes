@@ -118,6 +118,10 @@ angular.module('ddsApp').constant('cerfaForms', [
             {
                 id: 'rsa_non_salarie',
                 label: 'Formulaire complémentaire pour les non-salariés'
+            },
+            {
+                id: 'rsa_moins_25',
+                label: 'Formulaire complémentaire pour les moins de 25 ans'
             }
         ],
         piecesJustificatives: [

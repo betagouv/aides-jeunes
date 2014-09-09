@@ -10,6 +10,14 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         'rsa_non_salarie': function(situation) {
             var nonSalarie = _.find(situation.demandeur.situationsPro, {situation: 'independant'});
             return !!nonSalarie;
+        },
+        'rsa_moins_25': function(situation) {
+            var result = 25 > IndividuService.age(situation.demandeur);
+            if (situation.conjoint) {
+                result = result || 25 > IndividuService.age(situation.conjoint);
+            }
+
+            return result;
         }
     };
 

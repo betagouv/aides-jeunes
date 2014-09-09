@@ -137,7 +137,7 @@ describe('Service: cerfaService', function () {
                 expect(result).toEqual(_.initial(situations));
             });
 
-            it('should ask declaration de grossesse for rsa if menage is enceinte', function() {
+            it('should ask declaration de grossesse for rsa if enceinte', function() {
                 // given
                 var situations = [
                     {demandeur: {enceinte: true}},

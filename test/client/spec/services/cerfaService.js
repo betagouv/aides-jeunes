@@ -86,57 +86,71 @@ describe('Service: cerfaService', function () {
         });
 
         describe('function isPieceJustificativeRequiredForSituation()', function() {
-            describe('cmuc', function() {
-                it('should ask livret famille only if situation has personnes à charge', function() {
-                    // given
-                    var situations = [
-                        {enfants: [{}], personnesACharge: []},
-                        {enfants: [], personnesACharge: [{}]},
-                        {enfants: [], personnesACharge: []}
-                    ];
+            it('should ask livret famille for cmu-c only if situation has personnes à charge', function() {
+                // given
+                var situations = [
+                    {enfants: [{}], personnesACharge: []},
+                    {enfants: [], personnesACharge: [{}]},
+                    {enfants: [], personnesACharge: []}
+                ];
 
-                    // when
-                    var result = _.filter(situations, function(situation) {
-                        return service.isPieceJustificativeRequiredForSituation('cmu_c', 'livret_famille', situation);
-                    });
-
-                    // then
-                    expect(result).toEqual(_.initial(situations));
+                // when
+                var result = _.filter(situations, function(situation) {
+                    return service.isPieceJustificativeRequiredForSituation('cmu_c', 'livret_famille', situation);
                 });
 
-                it('should ask taxe foncière only if demandeur is propriétaire', function() {
-                    // given
-                    var situations = [
-                        {logement: {type: 'proprietaire'}},
-                        {logement: {type: 'colocataire'}},
-                        {logement: {type: 'locataire'}}
-                    ];
+                // then
+                expect(result).toEqual(_.initial(situations));
+            });
 
-                    // when
-                    var result = _.filter(situations, function(situation) {
-                        return service.isPieceJustificativeRequiredForSituation('cmu_c', 'taxe_fonciere', situation);
-                    });
+            it('should ask taxe foncière for cmu-c only if demandeur is propriétaire', function() {
+                // given
+                var situations = [
+                    {logement: {type: 'proprietaire'}},
+                    {logement: {type: 'colocataire'}},
+                    {logement: {type: 'locataire'}}
+                ];
 
-                    // then
-                    expect(result).toEqual([situations[0]]);
+                // when
+                var result = _.filter(situations, function(situation) {
+                    return service.isPieceJustificativeRequiredForSituation('cmu_c', 'taxe_fonciere', situation);
                 });
 
-                it('should ask taxe habitation only if demandeur is locataire or colocataire', function() {
-                    // given
-                    var situations = [
-                        {logement: {type: 'colocataire'}},
-                        {logement: {type: 'locataire'}},
-                        {logement: {type: 'proprietaire'}}
-                    ];
+                // then
+                expect(result).toEqual([situations[0]]);
+            });
 
-                    // when
-                    var result = _.filter(situations, function(situation) {
-                        return service.isPieceJustificativeRequiredForSituation('cmu_c', 'taxe_habitation', situation);
-                    });
+            it('should ask taxe habitation for cmu-c only if demandeur is locataire or colocataire', function() {
+                // given
+                var situations = [
+                    {logement: {type: 'colocataire'}},
+                    {logement: {type: 'locataire'}},
+                    {logement: {type: 'proprietaire'}}
+                ];
 
-                    // then
-                    expect(result).toEqual(_.initial(situations));
+                // when
+                var result = _.filter(situations, function(situation) {
+                    return service.isPieceJustificativeRequiredForSituation('cmu_c', 'taxe_habitation', situation);
                 });
+
+                // then
+                expect(result).toEqual(_.initial(situations));
+            });
+
+            it('should ask declaration de grossesse for rsa if menage is enceinte', function() {
+                // given
+                var situations = [
+                    {demandeur: {enceinte: true}},
+                    {demandeur: {}}
+                ];
+
+                // when
+                var result = _.filter(situations, function(situation) {
+                    return service.isPieceJustificativeRequiredForSituation('rsa', 'declaration_grossesse', situation);
+                });
+
+                // then
+                expect(result).toEqual([situations[0]]);
             });
         });
 
@@ -358,6 +372,24 @@ describe('Service: cerfaService', function () {
 
                     // when
                     var result = service.pieceJustificativeIndividus('rsa', 'avis_paiement_rente_accident_travail', individus);
+
+                    // then
+                    expect(result).toEqual(_.initial(individus, 2));
+                });
+
+                it('should ask declaration de revenus year-1 for travailleurs saisonniers', function() {
+                    // given
+                    var individus = [
+                        {role: 'demandeur', situationsPro: [{situation: 'travailleur_saisonnier'}]},
+                        {role: 'conjoint', situationsPro: [{situation: 'travailleur_saisonnier'}]},
+                        // not kept because not travailleur saisonnier
+                        {role: 'conjoint'},
+                        // not kept because not parent
+                        {role: 'enfant', situationsPro: [{situation: 'travailleur_saisonnier'}]}
+                    ];
+
+                    // when
+                    var result = service.pieceJustificativeIndividus('rsa', 'declaration_revenus_saisonnier', individus);
 
                     // then
                     expect(result).toEqual(_.initial(individus, 2));

@@ -154,19 +154,39 @@ angular.module('ddsApp').constant('cerfaForms', [
                 id: 'avis_paiement_pension_invalidite',
                 label: 'Avis de paiement de pension d’invalidité',
                 img: 'cheque.jpg',
-                description: 'La photocopie lisible du dernier avis de paiement de la pension d’invalidité'
+                description: 'La photocopie lisible du dernier avis de paiement de la pension d’invalidité.'
             },
             {
                 id: 'avis_paiement_retraite',
                 label: 'Avis de paiement de pension de retraite',
                 img: 'cheque.jpg',
-                description: 'La photocopie lisible du dernier avis de paiement de la pension de retraite'
+                description: 'La photocopie lisible du dernier avis de paiement de la pension de retraite.'
             },
             {
                 id: 'avis_paiement_rente_accident_travail',
                 label: 'Avis de paiement d’indemnité accident du travail',
                 img: 'cheque.jpg',
-                description: 'La photocopie lisible du dernier avis de paiement de l’indemnité d’accident du travail'
+                description: 'La photocopie lisible du dernier avis de paiement de l’indemnité d’accident du travail.'
+            },
+            {
+                id: 'declaration_revenus_saisonnier',
+                label: 'Déclaration de revenus de travailleur saisonnier',
+                img: 'declaration_revenus.jpg',
+                description: 'La déclaration de revenus de l’année civile précédant la demande.'
+            },
+            {
+                id: 'declaration_grossesse',
+                label: 'Déclaration de grossesse',
+                img: 'femme_enceinte.jpg',
+                description: 'La déclaration de grossesse établie par le médecin.',
+                isIndividualized: false
+            },
+            {
+                id: 'rib',
+                label: 'RIB',
+                img: 'rib.png',
+                description: 'Un relevé d’identité postal ou d’épargne ou bancaire, pour le paiement du RSA.',
+                isIndividualized: false
             }
         ]
     }

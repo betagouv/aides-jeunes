@@ -108,6 +108,16 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
             }
 
             return false;
+        },
+        'rsa.declaration_revenus_saisonnier': function(individu) {
+            if (_.contains(['demandeur', 'conjoint'], individu.role)) {
+                return !!_.find(individu.situationsPro, {situation: 'travailleur_saisonnier'});
+            }
+
+            return false;
+        },
+        'rsa.declaration_grossesse': function(situation) {
+            return situation.demandeur.enceinte;
         }
     };
 

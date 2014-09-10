@@ -179,7 +179,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                         return SituationService.restoreLocal();
                     }
 
-                    return SituationService.find($stateParams.situationId);
+                    return SituationService.restoreRemote($stateParams.situationId);
                 }]
             }
         })

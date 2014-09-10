@@ -16,22 +16,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             'relation_libre': 'en relation libre'
         },
 
-        find: function(situationId) {
-            return $http.get('/api/situations/' + situationId).then(function(result) {
-                var situation = result.data;
-                situation.demandeur = _.find(situation.individus, { role: 'demandeur' });
-                var conjoint = _.find(situation.individus, { role: 'conjoint' });
-                if (conjoint) {
-                    situation.conjoint = conjoint;
-                }
-
-                situation.enfants = _.where(situation.individus, { role: 'enfant' });
-                situation.personnesACharge = _.where(situation.individus, { role: 'personneACharge'});
-
-                return situation;
-            });
-        },
-
         newSituation: function() {
             situation = {};
             $sessionStorage.situation = situation;
@@ -43,6 +27,22 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             }
 
             return situation;
+        },
+
+        restoreRemote: function(situationId) {
+            return $http.get('/api/situations/' + situationId).then(function(result) {
+                situation = result.data;
+                situation.demandeur = _.find(situation.individus, { role: 'demandeur' });
+                var conjoint = _.find(situation.individus, { role: 'conjoint' });
+                if (conjoint) {
+                    situation.conjoint = conjoint;
+                }
+
+                situation.enfants = _.where(situation.individus, { role: 'enfant' });
+                situation.personnesACharge = _.where(situation.individus, { role: 'personneACharge'});
+
+                return situation;
+            });
         },
 
         createIndividusList: function(situation) {

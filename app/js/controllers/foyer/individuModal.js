@@ -2,37 +2,24 @@
 
 angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $modalInstance, SituationService, options) {
     $scope.modalTitle = options.modalTitle;
-    $scope.nationalite = 'fr';
     $scope.askFirstName = !!options.askFirstName;
     $scope.cancelable = !!options.cancelable;
-    $scope.relationTypes = SituationService.relationTypeLabels;
+    $scope.checkResidenceStability = !!options.checkResidenceStability;
     $scope.maxAge = options.maxAge;
     $scope.minAge = options.minAge;
+    $scope.relationTypes = SituationService.relationTypeLabels;
 
+    $scope.individu = { nationalite: 'fr' };
     if (true === ($scope.askRelationType = !!options.askRelationType)) {
-        $scope.relationType = 'mariage';
+        $scope.individu.relationType = 'mariage';
     }
 
-    $scope.checkResidenceStability = options.checkResidenceStability;
-
     $scope.submit = function(form) {
-        $scope.formSubmitted = true;
+        $scope.submitted = true;
         if (form.$valid) {
-            var individu = { birthDate: $scope.birthDate, nationalite: $scope.nationalite };
-            if ($scope.askFirstName) {
-                individu.firstName = $scope.firstName;
-            }
-            if ($scope.askRelationType) {
-                individu.relationType = $scope.relationType;
-            }
-
-            $scope.$emit('individu.' + options.individuType, individu);
-            $modalInstance.close(individu);
+            $scope.$emit('individu.' + options.individuType, $scope.individu);
+            $modalInstance.close($scope.individu);
         }
-    };
-
-    $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
     };
 
     $scope.popoverEee = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, ' +

@@ -3,35 +3,35 @@
     <h3 class="modal-title">{{ modalTitle }}</h3>
   </div>
   <div class="modal-body">
-    <div ng-if="askFirstName" class="form-group form-group-lg" ng-class="{'has-error': formSubmitted && form.firstName.$invalid}">
+    <div class="form-group form-group-lg" ng-if="askFirstName" ng-class="{'has-error': submitted && form.firstName.$invalid}">
       <label class="control-label col-sm-4" for="first-name">Prénom</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="$parent.$parent.firstName">
-        <p class="help-block" ng-if="formSubmitted && form.firstName.$invalid">Ce champ est obligatoire.</p>
+        <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="individu.firstName">
+        <p class="help-block" ng-if="submitted && form.firstName.$invalid">Ce champ est obligatoire.</p>
       </div>
     </div>
 
-    <div class="form-group form-group-lg" ng-class="{'has-error': formSubmitted && form.birthDate.$invalid}">
-      <label class="control-label col-sm-4" for="birth-date">Date de naissance</label>
+    <div class="form-group form-group-lg" ng-class="{'has-error': submitted && form.dateDeNaissance.$invalid}">
+      <label class="control-label col-sm-4" for="date-de-naissance">Date de naissance</label>
       <div class="col-sm-8">
         <input
           type="text"
           class="form-control"
-          name="birthDate"
-          id="birth-date"
+          name="dateDeNaissance"
+          id="date-de-naissance"
           required
-          ng-model="$parent.birthDate"
+          ng-model="individu.dateDeNaissance"
           dds-date
           date-autocomplete
           date-naissance-min-age="minAge"
           date-naissance-max-age="maxAge"
           placeholder="jj/mm/aaaa">
-        <p class="help-block" ng-if="formSubmitted && form.birthDate.$error.required">Ce champ est obligatoire.</p>
-        <p class="help-block" ng-if="formSubmitted && form.birthDate.$error.ddsDate">Date de naissance invalide.</p>
-        <p class="help-block" ng-if="formSubmitted && form.birthDate.$error.dateNaissanceMaxAge">
+        <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.required">Ce champ est obligatoire.</p>
+        <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.ddsDate">Date de naissance invalide.</p>
+        <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMaxAge">
           Veuillez déclarer uniquement les personnes de moins de {{ maxAge }} ans.
         </p>
-        <p class="help-block" ng-if="formSubmitted && form.birthDate.$error.dateNaissanceMinAge">
+        <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMinAge">
           Cette personne ne doit pas avoir moins de {{ minAge }} ans.
         </p>
       </div>
@@ -41,21 +41,21 @@
       <label class="control-label col-sm-4">Nationalité</label>
       <div class="col-sm-8">
         <label class="radio-inline">
-          <input type="radio" name="nationalite" ng-model="$parent.nationalite" value="fr">
+          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="fr">
           Française
         </label>
         <label class="radio-inline">
-          <input type="radio" name="nationalite" ng-model="$parent.nationalite" value="ue">
+          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="ue">
           <abbr title="" popover="{{ popoverEee }}" popover-title="Liste des pays de l'EEE" popover-placement="bottom" popover-trigger="mouseenter">EEE</abbr> - <abbr title="" popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr> - Suisse
         </label>
         <label class="radio-inline">
-          <input type="radio" name="nationalite" ng-model="$parent.nationalite" value="autre">
+          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="autre">
           Hors <abbr title="" popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr>
         </label>
       </div>
     </div>
 
-    <div class="form-group" ng-if="checkResidenceStability && 'ue' === nationalite" ng-class="{'has-error': formSubmitted && form.disclaimerUe.$invalid}">
+    <div class="form-group" ng-if="checkResidenceStability && 'ue' === individu.nationalite" ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
       <div class="col-sm-offset-4 col-sm-8">
         <div class="checkbox">
           <label>
@@ -64,11 +64,11 @@
             <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France</a>.
           </label>
         </div>
-        <span class="help-block" ng-if="formSubmitted && form.disclaimerUe.$invalid">Vous devez cocher cette case pour continuer.</span>
+        <span class="help-block" ng-if="submitted && form.disclaimerUe.$invalid">Vous devez cocher cette case pour continuer.</span>
       </div>
     </div>
 
-    <div class="form-group" ng-if="checkResidenceStability && 'autre' === nationalite" ng-class="{'has-error': formSubmitted && form.disclaimerNonUe.$invalid}">
+    <div class="form-group" ng-if="checkResidenceStability && 'autre' === individu.nationalite" ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
       <div class="col-sm-offset-4 col-sm-8">
         <div class="checkbox">
           <label>
@@ -77,14 +77,14 @@
             <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France.</a>
           </label>
         </div>
-        <span class="help-block" ng-if="formSubmitted && form.disclaimerNonUe.$invalid">Vous devez cocher cette case pour continuer.</span>
+        <span class="help-block" ng-if="submitted && form.disclaimerNonUe.$invalid">Vous devez cocher cette case pour continuer.</span>
       </div>
     </div>
 
     <div class="form-group form-group-lg" ng-if="askRelationType">
       <label class="control-label col-sm-4" for="relation-conjoint">Votre relation</label>
       <div class="col-sm-8">
-        <select class="form-control" name="relationType" ng-model="$parent.$parent.relationType" id="relation-conjoint">
+        <select class="form-control" name="relationType" ng-model="individu.relationType" id="relation-conjoint">
           <option value="mariage">Marié</option>
           <option value="pacs">Pacsé</option>
           <option value="relation_libre">Relation libre / concubinage</option>
@@ -94,7 +94,7 @@
   </div>
 
   <div class="modal-footer">
-    <button type="button" ng-if="cancelable" class="btn btn-default" ng-click="cancel()">Annuler</button>
+    <button type="button" ng-if="cancelable" class="btn btn-default" ng-click="$dismiss()">Annuler</button>
     <button type="submit" class="btn btn-primary">Valider</button>
   </div>
 </form>

@@ -3,7 +3,7 @@
 angular.module('ddsApp').factory('IndividuService', function($filter, statutsSpecifiques) {
     return {
         age: function(individu) {
-            var dateNaissance = moment(individu.birthDate, 'DD/MM/YYYY');
+            var dateNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY');
             return moment().diff(dateNaissance, 'years');
         },
 

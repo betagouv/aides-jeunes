@@ -41,6 +41,10 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 situation.enfants = _.where(situation.individus, { role: 'enfant' });
                 situation.personnesACharge = _.where(situation.individus, { role: 'personneACharge'});
 
+                situation.individus.forEach(function(individu) {
+                    individu.dateDeNaissance = moment(individu.dateDeNaissance).format('DD/MM/YYYY');
+                });
+
                 return situation;
             });
         },
@@ -126,7 +130,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         createApiCompatibleIndividu: function(individu) {
             individu = _.cloneDeep(individu);
-            individu.dateDeNaissance = moment(individu.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            individu.dateDeNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY').format('YYYY-MM-DD');
             if (individu.dateArriveeFoyerString) {
                 individu.dateArriveeFoyer = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY').format('YYYY-MM-DD');
             }

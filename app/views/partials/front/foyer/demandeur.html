@@ -11,7 +11,7 @@
           <i class="fa fa-male icon-lg"></i>
         </div>
         <div class="col-xs-8" ng-if="situation.demandeur">
-          Né(e) le <strong>{{ situation.demandeur.birthDate }}</strong>
+          Né(e) le <strong>{{ situation.demandeur.dateDeNaissance }}</strong>
           <br>Nationalité <strong>{{ nationaliteLabels[situation.demandeur.nationalite] }}</strong>
           <br><i>{{ statutsSpecifiques(situation.demandeur) }}</i>
         </div>

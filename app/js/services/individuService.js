@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('IndividuService', function() {
+angular.module('ddsApp').factory('IndividuService', function($filter, statutsSpecifiques) {
     return {
         age: function(individu) {
             var dateNaissance = moment(individu.birthDate, 'DD/MM/YYYY');
@@ -17,6 +17,20 @@ angular.module('ddsApp').factory('IndividuService', function() {
             }
 
             return individu.firstName;
+        },
+
+        formatStatutsSpecifiques: function(individu) {
+            var statuses = [];
+            statutsSpecifiques.forEach(function(statut) {
+                if (individu[statut.id]) {
+                    statuses.push(statut.label);
+                }
+            });
+
+            statuses = statuses.join(', ');
+            statuses = $filter('uppercaseFirst')(statuses);
+
+            return statuses;
         }
     };
 });

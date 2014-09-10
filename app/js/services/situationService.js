@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage, $filter, statutsSpecifiques) {
+angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage) {
     var situation;
 
     return {
@@ -55,20 +55,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             individus = individus.concat(situation.enfants).concat(situation.personnesACharge);
 
             return individus;
-        },
-
-        formatStatutsSpecifiques: function(individu) {
-            var statuses = [];
-            statutsSpecifiques.forEach(function(statut) {
-                if (individu[statut.id]) {
-                    statuses.push(statut.label);
-                }
-            });
-
-            statuses = statuses.join(', ');
-            statuses = $filter('uppercaseFirst')(statuses);
-
-            return statuses;
         },
 
         getMonths: function() {

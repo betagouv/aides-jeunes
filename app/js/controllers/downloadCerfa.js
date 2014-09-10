@@ -5,12 +5,10 @@ angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, 
     $scope.cerfa = CerfaService.getCerfaFromDroit(droit);
     $scope.cerfaForms = CerfaService.getCerfaFormsFromDroit(droit, situation);
 
-    $scope.trustAsHtml = function(content) {
-        return $sce.trustAsHtml(content);
-    };
+    var individus = SituationService.createIndividusList(situation);
+    $scope.isSituationMonoIndividu = 1 === individus.length;
 
     // construction de la liste des pièces justificatives et des personnes concernées
-    var individus = SituationService.createIndividusList(situation);
     $scope.piecesJustificatives = [];
     $scope.cerfa.piecesJustificatives.forEach(function(pieceJustificative) {
         var piece = { description: pieceJustificative };
@@ -29,4 +27,8 @@ angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, 
 
         $scope.piecesJustificatives.push(piece);
     });
+
+    $scope.trustAsHtml = function(content) {
+        return $sce.trustAsHtml(content);
+    };
 });

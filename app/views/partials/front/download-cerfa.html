@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-2" ng-if="!isSituationMonoIndividu">
       <span ng-repeat="individu in piece.individus">
         <i class="fa fa-check-square"></i> {{ individu }}<br>
       </span>

@@ -43,46 +43,6 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         ]
     },
     {
-        'id':'apl',
-        'label':'Aide Personnalisée au Logement',
-        'shortLabel':'APL',
-        'description':'L\'aide personnalisée au logement (APL) est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d\'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
-        'imgSrc':'logo_caf.png'
-    },
-    {
-        'id':'als',
-        'label':'Allocation de Logement Sociale',
-        'shortLabel':'ALS',
-        'description':'L\'ALS est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d\'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
-        'imgSrc':'logo_caf.png',
-        'links':[
-            {
-                'label':'Plus d\'informations',
-                'url':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
-                'type':'link'
-            },
-            {
-                'label':'Formulaires en ligne',
-                'url':'http://www.caf.fr/aides-et-services/les-services-en-ligne/acceder-a-une-demande-en-ligne',
-                'type':'link'
-            }
-        ]
-    },
-    {
-        'id':'alf',
-        'label':'Allocation de Logement Familiale',
-        'shortLabel':'ALF',
-        'description':'L\'allocation de logement familiale (ALF) est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d\'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
-        'imgSrc':'logo_caf.png',
-        'links':[
-            {
-                'label':'Plus d\'informations',
-                'url':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
-                'type':'link'
-            }
-        ]
-    },
-    {
         'id':'af',
         'label':'Allocations Familiales',
         'shortLabel':'AF',
@@ -137,5 +97,45 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
                 'type':'link'
             }
         ]
-    }
+    },
+    {
+        'id':'apl',
+        'label':'Aide Personnalisée au Logement',
+        'shortLabel':'APL',
+        'description':'L\'aide personnalisée au logement (APL) est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d\'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
+        'imgSrc':'logo_caf.png'
+    },
+    {
+        'id':'als',
+        'label':'Allocation de Logement Sociale',
+        'shortLabel':'ALS',
+        'description':'L\'ALS est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d\'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
+        'imgSrc':'logo_caf.png',
+        'links':[
+            {
+                'label':'Plus d\'informations',
+                'url':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
+                'type':'link'
+            },
+            {
+                'label':'Formulaires en ligne',
+                'url':'http://www.caf.fr/aides-et-services/les-services-en-ligne/acceder-a-une-demande-en-ligne',
+                'type':'link'
+            }
+        ]
+    },
+    {
+        'id':'alf',
+        'label':'Allocation de Logement Familiale',
+        'shortLabel':'ALF',
+        'description':'L\'allocation de logement familiale (ALF) est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d\'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
+        'imgSrc':'logo_caf.png',
+        'links':[
+            {
+                'label':'Plus d\'informations',
+                'url':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
+                'type':'link'
+            }
+        ]
+    },
 ]);

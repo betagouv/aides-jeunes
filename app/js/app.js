@@ -149,19 +149,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('foyer.capture_ressources', {
             url: '/ressources',
-            onEnter: ['$state', '$modal', 'SituationService', function($state, $modal, SituationService) {
-                $modal.open({
-                    templateUrl: '/partials/foyer/capture-ressources-modal.html',
-                    controller: 'FoyerCaptureRessourcesModalCtrl',
-                    resolve: {
-                        individus: function() {
-                            return SituationService.createIndividusList(SituationService.restoreLocal());
-                        }
-                    },
-                    size: 'lg',
-                    backdrop: 'static',
-                    keyboard: false
-                }).result.then(function() {
+            onEnter: ['$state', 'CaptureRessourcesModalService', function($state, CaptureRessourcesModalService) {
+                CaptureRessourcesModalService.open(false).result.then(function() {
                     return $state.go('foyer');
                 });
             }]
@@ -193,6 +182,14 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     return SituationService.find($stateParams.situationId);
                 }]
             }
+        })
+        .state('resultat.capture_ressources_n_2', {
+            url: '/ressources-n-2',
+            onEnter: ['$state', 'CaptureRessourcesModalService', function($state, CaptureRessourcesModalService) {
+                CaptureRessourcesModalService.open(true).result.then(function() {
+                    return $state.go('resultat');
+                });
+            }]
         })
         .state('form_infos_complementaires_individus', {
             url: '/infos-complementaires/noms-prenoms?droit',

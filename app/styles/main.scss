@@ -20,6 +20,10 @@ body.change-state-progress, body.change-state-progress * {
   cursor: progress;
 }
 
+.alert {
+    font-size: $font-size-base;
+}
+
 .btn {
   white-space: normal;
 }

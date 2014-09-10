@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: FoyerCaptureRessourcesModalCtrl', function() {
+describe('Controller: CaptureRessourcesModalCtrl', function() {
 
     var scope;
 
@@ -16,7 +16,12 @@ describe('Controller: FoyerCaptureRessourcesModalCtrl', function() {
 
             // when
             inject(function($controller) {
-                $controller('FoyerCaptureRessourcesModalCtrl', {$scope: scope, $modalInstance: {}, individus: individus});
+                $controller('CaptureRessourcesModalCtrl', {
+                    $scope: scope,
+                    $modalInstance: {},
+                    individus: individus,
+                    ressourcesN2: false
+                });
             });
 
             // then
@@ -30,7 +35,12 @@ describe('Controller: FoyerCaptureRessourcesModalCtrl', function() {
             // given
             var rootScope;
             inject(function($controller, $rootScope) {
-                $controller('FoyerCaptureRessourcesModalCtrl', {$scope: scope, $modalInstance: {close: function() {}}, individus: []});
+                $controller('CaptureRessourcesModalCtrl', {
+                    $scope: scope,
+                    $modalInstance: {close: function() {}},
+                    individus: [],
+                    ressourcesN2: false
+                });
                 rootScope = $rootScope;
             });
             spyOn(rootScope, '$broadcast').andCallThrough();
@@ -40,7 +50,7 @@ describe('Controller: FoyerCaptureRessourcesModalCtrl', function() {
             scope.submit();
 
             // then
-            expect(rootScope.$broadcast).toHaveBeenCalledWith('ressourcesCaptured');
+            expect(rootScope.$broadcast).toHaveBeenCalledWith('ressourcesCaptured', false);
         });
     });
 
@@ -49,7 +59,12 @@ describe('Controller: FoyerCaptureRessourcesModalCtrl', function() {
             // given
             var individus = [{}];
             inject(function($controller) {
-                $controller('FoyerCaptureRessourcesModalCtrl', {$scope: scope, $modalInstance: {close: function() {}}, individus: individus});
+                $controller('CaptureRessourcesModalCtrl', {
+                    $scope: scope,
+                    $modalInstance: {close: function() {}},
+                    individus: individus,
+                    ressourcesN2: false
+                });
             });
             scope.individuRefs[0].selectedRessources.test = false;
 
@@ -64,7 +79,12 @@ describe('Controller: FoyerCaptureRessourcesModalCtrl', function() {
             // given
             var individus = [{}, {}];
             inject(function($controller) {
-                $controller('FoyerCaptureRessourcesModalCtrl', {$scope: scope, $modalInstance: {close: function() {}}, individus: individus});
+                $controller('CaptureRessourcesModalCtrl', {
+                    $scope: scope,
+                    $modalInstance: {close: function() {}},
+                    individus: individus,
+                    ressourcesN2: false
+                });
             });
             scope.individuRefs[0].selectedRessources.test = true;
             scope.individuRefs[1].selectedRessources.test = false;

@@ -4,7 +4,10 @@
   </div>
   <div class="modal-body">
     <div ng-show="!ressourcesSelected">
-      <p>Cliquez sur les types de ressources que vous percevez.</p>
+      <p>
+        Cliquez sur les types de ressources que les personnes de votre foyer ont perçues
+        <strong>entre {{ debutPeriode }} et {{ finPeriode }}</strong>.
+      </p>
       <button
         type="button"
         class="btn btn-sm btn-selection btn-ressources"
@@ -50,37 +53,39 @@
       <p>Veuillez entrer les montants des ressources sélectionnées (net perçu pour les salaires ou indemnités).</p>
       <div ng-repeat="individuRef in individuRefs" ng-if="hasIndividuRessources(individuRef)">
         <h2 ng-if="1 < individuRefs.length">{{ individuRef.label }}</h2>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th style="width: 200px;"></th>
-              <th ng-repeat="month in months">{{ month.label | uppercaseFirst }}</th>
-              <th>De {{ lastYear }} à {{ lastMonth }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="ressource in individuRef.ressources" class="capture-{{ ressource.type.category }}">
-              <td style="width: 200px; vertical-align: middle; color: white;">{{ ressource.type.label }}</td>
-              <td ng-repeat="monthRessource in ressource.months">
-                <span class="input-group">
-                  <input
-                    type="number"
-                    class="form-control text-right"
-                    select-on-focus
-                    ng-model="monthRessource.montant"
-                    ng-change="updateYearAmount(ressource)">
-                  <span class="input-group-addon hidden-xs">€</span>
-                </span>
-              </td>
-              <td>
-                <span class="input-group">
-                  <input type="number" class="form-control text-right" select-on-focus ng-model="ressource.year.montant">
-                  <span class="input-group-addon hidden-xs">€</span>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th style="width: 200px;"></th>
+                <th ng-repeat="month in months">{{ month.label | uppercaseFirst }}</th>
+                <th>De {{ debutPeriode }} à {{ finPeriode }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="ressource in individuRef.ressources" class="capture-{{ ressource.type.category }}">
+                <td style="width: 200px; vertical-align: middle; color: white;">{{ ressource.type.label }}</td>
+                <td ng-repeat="monthRessource in ressource.months">
+                  <span class="input-group">
+                    <input
+                      type="number"
+                      class="form-control text-right"
+                      select-on-focus
+                      ng-model="monthRessource.montant"
+                      ng-change="updateYearAmount(ressource)">
+                    <span class="input-group-addon hidden-xs">€</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="input-group">
+                    <input type="number" class="form-control text-right" select-on-focus ng-model="ressource.year.montant">
+                    <span class="input-group-addon hidden-xs">€</span>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

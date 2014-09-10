@@ -14,7 +14,7 @@ describe('Service: situationService', function () {
     describe('function createApiCompatibleIndividu()', function() {
         it('Should return a cloned version of the individu', function() {
             // given
-            var individu = { birthDate: '14/09/1989', ressources: {} };
+            var individu = { dateDeNaissance: '14/09/1989', ressources: {} };
 
             // when
             var result = service.createApiCompatibleIndividu(individu);
@@ -23,9 +23,9 @@ describe('Service: situationService', function () {
             expect(result).not.toBe(individu);
         });
 
-        it('Should format birth date properly', function() {
+        it('Should format birth date as expected by the api', function() {
             // given
-            var individu = { birthDate: '14/09/1989' };
+            var individu = { dateDeNaissance: '14/09/1989' };
 
             // when
             var result = service.createApiCompatibleIndividu(individu);

@@ -159,9 +159,9 @@ describe('Service: cerfaService', function () {
                 it('sould ask carte vitale for everybody aged >= 18', function() {
                     // given
                     var individus = [
-                        {birthDate: '14/09/1980'},
+                        {dateDeNaissance: '14/09/1980'},
                         // not kept because aged < 18
-                        {birthDate: '14/09/2014'},
+                        {dateDeNaissance: '14/09/2014'},
                     ];
 
                     // when
@@ -174,12 +174,12 @@ describe('Service: cerfaService', function () {
                 it('should ask piece d\'identité for french and EEE people aged >= 18', function() {
                     // given
                     var individus = [
-                        {birthDate: '14/09/1980', nationalite: 'fr'},
-                        {birthDate: '14/09/1980', nationalite: 'ue'},
+                        {dateDeNaissance: '14/09/1980', nationalite: 'fr'},
+                        {dateDeNaissance: '14/09/1980', nationalite: 'ue'},
                         // not kept because nationality not eee
-                        {birthDate: '14/09/1980', nationalite: 'autre'},
+                        {dateDeNaissance: '14/09/1980', nationalite: 'autre'},
                         // not kept because aged < 18
-                        {birthDate: '14/09/2014', nationalite: 'fr'}
+                        {dateDeNaissance: '14/09/2014', nationalite: 'fr'}
                     ];
 
                     // when
@@ -202,7 +202,7 @@ describe('Service: cerfaService', function () {
 
                 it('should ask avis d\'imposition ou non-imposition for individus aged > 16', function() {
                     // given
-                    var individus = [{birthDate: '14/08/1989'}, {birthDate: '14/09/2014'}];
+                    var individus = [{dateDeNaissance: '14/08/1989'}, {dateDeNaissance: '14/09/2014'}];
 
                     // when
                     var result = service.pieceJustificativeIndividus('cmu_c', 'imposition', individus);
@@ -216,11 +216,11 @@ describe('Service: cerfaService', function () {
                 it('should ask bulletins de paie for individus aged > 16 having revenus salaries', function() {
                     // given
                     var individus = [
-                        {birthDate: '14/08/1989', ressources: [{type: 'revenusSalarie'}]},
+                        {dateDeNaissance: '14/08/1989', ressources: [{type: 'revenusSalarie'}]},
                         // not kept because aged < 16
-                        {birthDate: '14/09/2014', ressources: [{type: 'revenusSalarie'}]},
+                        {dateDeNaissance: '14/09/2014', ressources: [{type: 'revenusSalarie'}]},
                         // not kept because no revenus salarie
-                        {birthDate: '14/08/1989'},
+                        {dateDeNaissance: '14/08/1989'},
                     ];
 
                     // when
@@ -233,12 +233,12 @@ describe('Service: cerfaService', function () {
                 it('should ask attestations indemnités chômage for people aged > 16', function() {
                     // given
                     var individus = [
-                        {birthDate: '14/08/1989', ressources: [{type: 'allocationsChomage'}]},
-                        {birthDate: '14/08/1989', ressources: [{type: 'indChomagePartiel'}]},
+                        {dateDeNaissance: '14/08/1989', ressources: [{type: 'allocationsChomage'}]},
+                        {dateDeNaissance: '14/08/1989', ressources: [{type: 'indChomagePartiel'}]},
                         // not kept because aged > 16
-                        {birthDate: '14/08/2014', ressources: [{type: 'allocationsChomage'}]},
+                        {dateDeNaissance: '14/08/2014', ressources: [{type: 'allocationsChomage'}]},
                         // not kept because no chomage
-                        {birthDate: '14/08/2014', ressources: [{type: 'test'}]}
+                        {dateDeNaissance: '14/08/2014', ressources: [{type: 'test'}]}
                     ];
 
                     // when
@@ -273,16 +273,16 @@ describe('Service: cerfaService', function () {
                 it('should ask acte de naissance for personnes à charge aged < 18 born in france but not french', function() {
                     // given
                     var individus = [
-                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'enfant'},
-                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'personneACharge'},
+                        {dateDeNaissance: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'enfant'},
+                        {dateDeNaissance: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'personneACharge'},
                         // not kept because not personne à charge
-                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
+                        {dateDeNaissance: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
                         // not kept because aged > 18
-                        {birthDate: '14/08/1980', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
+                        {dateDeNaissance: '14/08/1980', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
                         // not kept because nationalite fr
-                        {birthDate: '14/08/2014', nationalite: 'fr', paysNaissance: 'France', role: 'enfant'},
+                        {dateDeNaissance: '14/08/2014', nationalite: 'fr', paysNaissance: 'France', role: 'enfant'},
                         // not kept because not born in france
-                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'Congo', role: 'personneACharge'},
+                        {dateDeNaissance: '14/08/2014', nationalite: 'ue', paysNaissance: 'Congo', role: 'personneACharge'},
                     ];
 
                     // when
@@ -295,16 +295,16 @@ describe('Service: cerfaService', function () {
                 it('should ask certificat OFII if aged < 18 and foreigner', function() {
                     // given
                     var individus = [
-                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'Malaisie', role: 'enfant'},
-                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'Congo', role: 'personneACharge'},
+                        {dateDeNaissance: '14/08/2014', nationalite: 'ue', paysNaissance: 'Malaisie', role: 'enfant'},
+                        {dateDeNaissance: '14/08/2014', nationalite: 'ue', paysNaissance: 'Congo', role: 'personneACharge'},
                         // not kept because not personne à charge
-                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
+                        {dateDeNaissance: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
                         // not kept because aged > 18
-                        {birthDate: '14/08/1980', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
+                        {dateDeNaissance: '14/08/1980', nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
                         // not kept because nationalite fr
-                        {birthDate: '14/08/2014', nationalite: 'fr', paysNaissance: 'France', role: 'enfant'},
+                        {dateDeNaissance: '14/08/2014', nationalite: 'fr', paysNaissance: 'France', role: 'enfant'},
                         // not kept because born in france
-                        {birthDate: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'personneACharge'},
+                        {dateDeNaissance: '14/08/2014', nationalite: 'ue', paysNaissance: 'France', role: 'personneACharge'},
                     ];
 
                     // when
@@ -319,9 +319,9 @@ describe('Service: cerfaService', function () {
                     var individus = [
                         {nationalite: 'autre', paysNaissance: 'Malaisie', role: 'demandeur'},
                         {nationalite: 'autre', paysNaissance: 'Congo', role: 'conjoint'},
-                        {birthDate: '14/08/1980', nationalite: 'autre', paysNaissance: 'Congo', role: 'enfant'},
+                        {dateDeNaissance: '14/08/1980', nationalite: 'autre', paysNaissance: 'Congo', role: 'enfant'},
                         // not kept because child < 18
-                        {birthDate: '14/08/2014', nationalite: 'autre', paysNaissance: 'Congo', role: 'enfant'},
+                        {dateDeNaissance: '14/08/2014', nationalite: 'autre', paysNaissance: 'Congo', role: 'enfant'},
                         // not kept because nationalite eee
                         {nationalite: 'ue', role: 'demandeur'},
                     ];

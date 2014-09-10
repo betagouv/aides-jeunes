@@ -27,11 +27,11 @@
               <p>{{ droit.description.description }}</p>
               <div class="alert alert-warning" ng-if="!situation.ressourcesN2Captured && isDroitAllocationLogement(droit.description)">
                 <i class="fa fa-exclamation-triangle"></i>
-                <b>Attention</b> : le montant calculé de cette allocation logement se base sur les ressources que vous avez déclarées sur l'année en cours.
-                <br>Pour que la simulation soit au plus juste et si vos revenus de 2012 sont différents,
-                veuillez déclarer vos ressources sur l'année 2012.
+                <b>Attention</b> : le montant calculé de cette allocation logement se base sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
+                <br>Pour que la simulation soit au plus juste et si vos revenus de {{ yearMoins2 }} sont différents,
+                veuillez déclarer vos ressources sur l'année {{ yearMoins2 }}.
                 <a class="btn btn-primary btn-sm" ui-sref="resultat.capture_ressources_n_2">
-                  <i class="fa fa-chevron-right"></i> Déclarer vos ressources sur l'année 2012
+                  <i class="fa fa-chevron-right"></i> Déclarer vos ressources sur l'année {{ yearMoins2 }}
                 </a>
               </div>
               <p>
@@ -56,6 +56,16 @@
     </div>
   </div>
   <p ng-if="!droits.length">Vous n'êtes éligible à aucune aide.</p>
+  <div class="alert alert-warning" ng-if="!situation.ressourcesN2Captured && !hasDroitAllocationLogement()">
+    <h3><i class="fa fa-exclamation-triangle"></i> Note relative à l'aide au logement</h3>
+    <b>Attention</b> : la simulation sur votre situation n'a pas abouti sur un droit à l'allocation logement.
+    Cependant, nous nous sommes basés sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
+    Si vos ressources de {{ yearMoins2 }} sont moins élevées, il se peut que vous ayez tout de même droit à cette allocation.
+    Pour le savoir :
+    <a class="btn btn-primary btn-sm" ui-sref="resultat.capture_ressources_n_2">
+      <i class="fa fa-chevron-right"></i> Déclarer vos ressources sur l'année {{ yearMoins2 }}
+    </a>
+  </div>
 </div>
 
 <hr>

@@ -21,7 +21,7 @@ body.change-state-progress, body.change-state-progress * {
 }
 
 .alert {
-    font-size: $font-size-base;
+  font-size: $font-size-base;
 }
 
 .btn {
@@ -45,7 +45,15 @@ body.change-state-progress, body.change-state-progress * {
 }
 
 .jumbotron > *:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
+}
+
+.thumbnail .caption > *:last-child {
+  margin-bottom: 0;
+}
+
+.alert > *:first-child {
+  margin-top: 0;
 }
 
 .main-navbar {

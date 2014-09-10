@@ -13,7 +13,7 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
         $scope.globalAmount = 0;
 
         var individus = SituationService.createIndividusList($scope.situation);
-        $scope.alone = 1 === individus.length;
+        $scope.isSituationMonoIndividu = 1 === individus.length;
         individus.map($scope.fillIndividuRessources);
 
         if ($scope.globalAmount > 0) {

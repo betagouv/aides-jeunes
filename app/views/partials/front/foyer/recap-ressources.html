@@ -9,7 +9,7 @@
       <thead>
         <tr>
           <th>Type de ressource</th>
-          <th ng-if="!alone">Personne</th>
+          <th ng-if="!isSituationMonoIndividu">Personne</th>
           <th ng-repeat="month in months">{{ month.label|uppercaseFirst }}</th>
           <th>De {{ lastYear }} à {{ lastMonth }}</th>
         </tr>
@@ -17,11 +17,11 @@
       <tbody ng-repeat="ressource in ressources">
         <tr ng-repeat="individu in ressource.byIndividu">
           <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.type.category }}">{{ ressource.type.label }}</td>
-          <td ng-if="!alone">{{ individu.label }}</td>
+          <td ng-if="!isSituationMonoIndividu">{{ individu.label }}</td>
           <td ng-repeat="month in months">{{ individu.values[$index] }} €</td>
           <td>{{ individu.yearValue }} €</td>
         </tr>
-        <tr class="active" ng-if="!alone">
+        <tr class="active" ng-if="!isSituationMonoIndividu">
           <th>Total</th>
           <th ng-repeat="month in months">{{ ressource.total[$index] }} €</th>
           <th>{{ ressource.totalYear }} €</th>

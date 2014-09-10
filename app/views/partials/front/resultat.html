@@ -25,7 +25,7 @@
                 <span ng-if="false !== droit.description.hasMontant"> : environ <strong>{{ round(droit.montant) }}&nbsp;€</strong></span>
               </h3>
               <p>{{ droit.description.description }}</p>
-              <div class="alert alert-warning" ng-if="!situation.ressourcesN2Captured && isDroitAllocationLogement(droit.description)">
+              <div class="alert alert-warning" ng-if="!situation.ressourcesN2Captured && isDroitAllocationLogement(droit)">
                 <i class="fa fa-exclamation-triangle"></i>
                 <b>Attention</b> : le montant calculé de cette allocation logement se base sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
                 <br>Pour que la simulation soit au plus juste et si vos revenus de {{ yearMoins2 }} sont différents,

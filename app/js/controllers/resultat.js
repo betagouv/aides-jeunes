@@ -36,7 +36,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $h
     };
 
     $scope.isDroitAllocationLogement = function(droit) {
-        return _.contains(['als', 'alf', 'apl'], droit.id);
+        return _.contains(['als', 'alf', 'apl'], droit.description.id);
     };
 
     $scope.hasDroitAllocationLogement = function() {

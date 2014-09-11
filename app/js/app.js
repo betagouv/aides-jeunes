@@ -141,10 +141,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             controller: 'ResultatCtrl',
             resolve: {
                 situation: ['$stateParams', 'SituationService', function($stateParams, SituationService) {
-                    if ('current' === $stateParams.situationId) {
-                        return SituationService.restoreLocal();
-                    }
-
                     return SituationService.restoreRemote($stateParams.situationId);
                 }]
             }
@@ -200,6 +196,7 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
+    // changement d'url vers /api => débranchement de ui-router
     $rootScope.$on('$locationChangeStart', function(e, location) {
         if (0 === location.indexOf($window.location.origin + '/api')) {
             e.preventDefault();
@@ -207,6 +204,7 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack) {
         }
     });
 
+    // fermeture d'une éventuelle modale rémanente au changement d'état (suite à des bugs récurrents)
     $rootScope.$on('$stateChangeStart', function() {
         var top = $modalStack.getTop();
         if (top) {

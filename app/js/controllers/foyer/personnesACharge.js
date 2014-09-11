@@ -16,6 +16,10 @@ angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function ($scop
         $scope.visible = true;
     });
 
+    $rootScope.$on('individu.personnesACharge', function(e, personnesACharge) {
+        $scope.situation.personnesACharge.push(personne);
+    });
+
     $scope.removePersonneACharge = function(personne) {
         var index = $scope.situation.personnesACharge.indexOf(personne);
         $scope.situation.personnesACharge.splice(index, 1);

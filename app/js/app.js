@@ -63,13 +63,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/demandeur',
             onEnter: ['$state', 'IndividuModalService', function($state, IndividuModalService) {
                 IndividuModalService
-                    .open({
-                        individuType: 'demandeur',
-                        modalTitle: 'Vous',
-                        cancelable: false,
-                        checkResidenceStability: true,
-                        minAge: 18
-                    })
+                    .openDemandeur()
                     .finally(function() {
                         $state.go('foyer');
                     });
@@ -77,58 +71,30 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         })
         .state('foyer.conjoint_modal', {
             url: '/conjoint',
-            onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
-                var situation = SituationService.restoreLocal();
+            onEnter: ['$state', 'IndividuModalService', function($state, IndividuModalService) {
                 IndividuModalService
-                    .open({
-                        individuType: 'conjoint',
-                        modalTitle: 'Votre conjoint',
-                        askRelationType: true,
-                        checkResidenceStability: true,
-                        minAge: 18
-                    })
-                    .then(function() {}, function() {
-                        situation.livesAlone = undefined;
-                    }).finally(function() {
+                    .openConjoint()
+                    .finally(function() {
                         $state.go('foyer');
                     });
             }]
         })
         .state('foyer.enfant_modal', {
             url: '/enfant',
-            onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
+            onEnter: ['$state', 'IndividuModalService', function($state, IndividuModalService) {
                 IndividuModalService
-                    .open({
-                        individuType: 'enfant',
-                        modalTitle: 'Votre enfant',
-                        askFirstName: true,
-                        maxAge: 25
-                    })
-                    .then(function(enfant) {
-                        var situation = SituationService.restoreLocal();
-                        situation.enfants.push(enfant);
-
-                        return enfant;
-                    }).finally(function() {
+                    .openEnfant()
+                    .finally(function() {
                         $state.go('foyer');
                     });
             }]
         })
         .state('foyer.personne_a_charge_modal', {
             url: '/personne-a-charge',
-            onEnter: ['$state', 'SituationService', 'IndividuModalService', function($state, SituationService, IndividuModalService) {
+            onEnter: ['$state', 'IndividuModalService', function($state, IndividuModalService) {
                 IndividuModalService
-                    .open({
-                        individuType: 'personneACharge',
-                        modalTitle: 'Personne à charge',
-                        askFirstName: true
-                    })
-                    .then(function(personne) {
-                        var situation = SituationService.restoreLocal();
-                        situation.personnesACharge.push(personne);
-
-                        return personne;
-                    }).finally(function() {
+                    openPersonneACharge()
+                    .finally(function() {
                         $state.go('foyer');
                     });
             }]

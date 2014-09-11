@@ -16,10 +16,14 @@ angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $rootSc
         $scope.visible = true;
     });
 
+    $rootScope.$on('individu.enfant', function(e, enfant) {
+        $scope.situation.enfants.push(enfant);
+    });
+
     $scope.removeChild = function(child) {
         var index = $scope.situation.enfants.indexOf(child);
         $scope.situation.enfants.splice(index, 1);
-        if (0 === $scope.situation.enfants.length) {
+        if (!$scope.situation.enfants.length) {
             $scope.situation.hasChildren = undefined;
         }
     };

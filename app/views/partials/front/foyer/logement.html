@@ -84,19 +84,16 @@
           type="number"
           required>
       </div>
-      <div class="col-sm-4" ng-if="cities.length">
-        <select class="form-control" ng-model="situation.logement.adresse.ville" ng-options="city for city in cities">
+      <div class="col-sm-4" ng-class="{'has-error': unknownCodePostal}">
+        <select class="form-control" ng-if="cities.length" ng-model="situation.logement.adresse.ville" ng-options="city for city in cities">
         </select>
+        <span class="help-block" ng-if="unknownCodePostal">Ce code postal est invalide</span>
+        <span ng-if="retrievingCities"><i class="fa fa-spinner fa-spin"></i></span>
       </div>
     </div>
 
-    <div class="text-center">
-      <button
-        type="submit"
-        class="btn btn-lg btn-primary"
-        ng-if="undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || 'gratuit' === situation.logement.type || ('payant' === situation.logement.type && undefined !== situation.logement.membreFamilleProprietaire)">
-        Valider
-      </button>
+    <div class="text-center" ng-if="situation.logement.adresse.ville">
+      <button type="submit" class="btn btn-lg btn-primary">Valider</button>
     </div>
   </form>
 

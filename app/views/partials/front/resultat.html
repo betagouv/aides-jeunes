@@ -18,7 +18,9 @@
         <div class="clearfix" ng-if="$index % 3 === 0"></div>
         <div class="col-md-4" >
           <div class="thumbnail">
-            <img ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
+            <a href="{{ droit.description.link }}" target="_blank">
+              <img ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
+            </a>
             <div class="caption">
               <h3>
                 {{ droit.description.label }}
@@ -41,12 +43,11 @@
               </p>
               <p>
                 <a
-                  href="{{ link.url }}"
+                  href="{{ droit.description.link }}"
                   class="btn btn-sm btn-default"
-                  ng-repeat="link in droit.description.links"
                   target="_blank">
                   <i class="fa fa-external-link"></i>
-                  {{ link.label }}
+                  Plus d'informations
                 </a>
               </p>
             </div>

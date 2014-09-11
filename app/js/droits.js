@@ -8,12 +8,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'shortLabel':'CMU-C',
         'description':'La CMU-C est une protection complémentaire santé gratuite accordée aux personnes remplissant certaines conditions de résidence et de ressources.',
         'imgSrc':'logo_cmu.png',
-        'links':[
-            {
-                'label':'Site web',
-                'url':'http://www.cmu.fr/cmu-complementaire.php'
-            }
-        ]
+        'link':'http://www.cmu.fr/cmu-complementaire.php'
     },
     {
         'id':'acs',
@@ -21,12 +16,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'shortLabel':'ACS',
         'description':'L\'aide pour l\'acquisition d\'une assurance complémentaire santé, dite ACS, est une aide financière pour payer une complémentaire santé (exemple : une mutuelle).',
         'imgSrc':'logo_cmu.png',
-        'links':[
-            {
-                'label':'Site web',
-                'url':'http://www.cmu.fr/acs.php'
-            }
-        ]
+        'link':'http://www.cmu.fr/acs.php'
     },
     {
         'id':'aspa',
@@ -34,13 +24,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'shortLabel':'ASPA',
         'description':'L\'allocation de solidarité aux personnes âgées (Aspa) est une allocation destinée aux personnes âgées disposant de faibles revenus en vue de leur assurer un niveau minimum de ressources. Elle remplace le minimum vieillesse depuis 2006.',
         'imgSrc':'logo_aspa.png',
-        'links':[
-            {
-                'label':'Plus d\'informations',
-                'url':'http://vosdroits.service-public.fr/particuliers/F16871.xhtml',
-                'type':'link'
-            }
-        ]
+        'link':'http://vosdroits.service-public.fr/particuliers/F16871.xhtml'
     },
     {
         'id':'af',
@@ -48,13 +32,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'shortLabel':'AF',
         'description':'Les allocations familiales sont versées, sans condition de ressources, aux personnes ayant au moins 2 enfants de moins de 20 ans à charge. Le montant des prestations dépend du nombre d\'enfants à charge et de leur âge.',
         'imgSrc':'logo_caf.png',
-        'links':[
-            {
-                'label':'Plus d\'informations',
-                'url':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0',
-                'type':'link'
-            }
-        ]
+        'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0'
     },
     {
         'id':'cf',
@@ -62,13 +40,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'shortLabel':'CF',
         'description':'Le complément familial est versé, sous certaines conditions, aux personnes ayant au moins 3 enfants à charge.',
         'imgSrc':'logo_caf.png',
-        'links':[
-            {
-                'label':'Plus d\'informations',
-                'url':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
-                'type':'link'
-            }
-        ]
+        'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf'
     },
     {
         'id':'asf',
@@ -76,13 +48,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'shortLabel':'ASF',
         'description':'L\'ASF est versée par la CAF ou la MSA au parent qui élève seul son enfant ou à la personne qui a recueilli un enfant, qu\'elle vive seule ou en couple.',
         'imgSrc':'logo_caf.png',
-        'links':[
-            {
-                'label':'Plus d\'informations',
-                'url':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf',
-                'type':'link'
-            }
-        ]
+        'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf'
     },
     {
         'id':'rsa',
@@ -90,20 +56,15 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'shortLabel':'RSA',
         'description':'Le RSA est destiné à assurer aux personnes disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer.',
         'imgSrc':'logo_rsa.png',
-        'links':[
-            {
-                'label':'Plus d\'informations',
-                'url':'http://vosdroits.service-public.fr/particuliers/N19775.xhtml',
-                'type':'link'
-            }
-        ]
+        'link':'http://vosdroits.service-public.fr/particuliers/N19775.xhtml'
     },
     {
         'id':'apl',
         'label':'Aide Personnalisée au Logement',
         'shortLabel':'APL',
         'description':'L\'aide personnalisée au logement (APL) est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d\'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
-        'imgSrc':'logo_caf.png'
+        'imgSrc':'logo_caf.png',
+        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0'
     },
     {
         'id':'als',
@@ -111,18 +72,7 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'shortLabel':'ALS',
         'description':'L\'ALS est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d\'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'imgSrc':'logo_caf.png',
-        'links':[
-            {
-                'label':'Plus d\'informations',
-                'url':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
-                'type':'link'
-            },
-            {
-                'label':'Formulaires en ligne',
-                'url':'http://www.caf.fr/aides-et-services/les-services-en-ligne/acceder-a-une-demande-en-ligne',
-                'type':'link'
-            }
-        ]
+        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0'
     },
     {
         'id':'alf',
@@ -130,12 +80,6 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'shortLabel':'ALF',
         'description':'L\'allocation de logement familiale (ALF) est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d\'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'imgSrc':'logo_caf.png',
-        'links':[
-            {
-                'label':'Plus d\'informations',
-                'url':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
-                'type':'link'
-            }
-        ]
-    },
+        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0'
+    }
 ]);

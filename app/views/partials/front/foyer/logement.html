@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div class="form-group" ng-if="'gratuit' !== situation.logement.type && (undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || ('payant' === situation.logement.type && undefined !== situation.logement.membreFamilleProprietaire))">
+    <div class="form-group" ng-if="captureLoyer()">
       <label class="col-sm-3 control-label" for="loyer">
         {{ 'proprietaire' === situation.logement.type ? 'Votre mensualité d\'emprunt' : 'Votre loyer (hors charges)' }}
       </label>
@@ -72,7 +72,8 @@
 
     <div
       class="form-group"
-      ng-show="undefined !== situation.logement.primoAccedant || undefined !== situation.logement.locationType || 'gratuit' === situation.logement.type || (situation.logement.type === 'payant' && undefined !== situation.logement.membreFamilleProprietaire)">
+      ng-show="captureCodePostal()"
+      ng-class="{'has-error': unknownCodePostal}">
       <label class="col-sm-3 control-label" for="postal-code">Code postal de votre résidence</label>
       <div class="col-sm-2">
         <input
@@ -84,11 +85,11 @@
           type="number"
           required>
       </div>
-      <div class="col-sm-4" ng-class="{'has-error': unknownCodePostal}">
+      <div class="col-sm-4">
         <select class="form-control" ng-if="cities.length" ng-model="situation.logement.adresse.ville" ng-options="city for city in cities">
         </select>
-        <span class="help-block" ng-if="unknownCodePostal">Ce code postal est invalide</span>
-        <span ng-if="retrievingCities"><i class="fa fa-spinner fa-spin"></i></span>
+        <p class="form-control-static" ng-if="unknownCodePostal">Ce code postal est invalide</p>
+        <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin"></i></p>
       </div>
     </div>
 

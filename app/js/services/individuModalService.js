@@ -26,7 +26,7 @@ angular.module('ddsApp').factory('IndividuModalService', function($modal, Situat
 
     return {
         openDemandeur: function() {
-            return this.open({
+            return open({
                 individuType: 'demandeur',
                 modalTitle: 'Vous',
                 cancelable: false,
@@ -37,7 +37,7 @@ angular.module('ddsApp').factory('IndividuModalService', function($modal, Situat
 
         openConjoint: function() {
             var situation = SituationService.restoreLocal();
-            return this.open({
+            return open({
                 individuType: 'conjoint',
                 modalTitle: 'Votre conjoint',
                 askRelationType: true,
@@ -49,7 +49,7 @@ angular.module('ddsApp').factory('IndividuModalService', function($modal, Situat
         },
 
         openEnfant: function() {
-            return this.open({
+            return open({
                 individuType: 'enfant',
                 modalTitle: 'Votre enfant',
                 askFirstName: true,
@@ -58,7 +58,7 @@ angular.module('ddsApp').factory('IndividuModalService', function($modal, Situat
         },
 
         openPersonneACharge: function() {
-            return this.open({
+            return open({
                 individuType: 'personneACharge',
                 modalTitle: 'Personne à charge',
                 askFirstName: true

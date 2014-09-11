@@ -31,7 +31,7 @@ angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $rootSc
     $scope.endChildConfig = function() {
         $scope.situation.childConfigDone = true;
         $scope.$emit('enfants', $scope.situation.enfants);
-        if ($scope.situation.enfants.length === 0) {
+        if (!$scope.situation.enfants.length) {
             $scope.situation.hasChildren = false;
         }
     };

@@ -93,7 +93,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/personne-a-charge',
             onEnter: ['$state', 'IndividuModalService', function($state, IndividuModalService) {
                 IndividuModalService
-                    openPersonneACharge()
+                    .openPersonneACharge()
                     .finally(function() {
                         $state.go('foyer');
                     });

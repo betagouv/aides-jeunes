@@ -24,6 +24,14 @@ body.change-state-progress, body.change-state-progress * {
   font-size: $font-size-base;
 }
 
+.alert > *:first-child {
+  margin-top: 0;
+}
+
+.nav.nav-tabs {
+  margin-bottom: 10px;
+}
+
 .btn {
   white-space: normal;
 }
@@ -50,10 +58,6 @@ body.change-state-progress, body.change-state-progress * {
 
 .thumbnail .caption > *:last-child {
   margin-bottom: 0;
-}
-
-.alert > *:first-child {
-  margin-top: 0;
 }
 
 .main-navbar {

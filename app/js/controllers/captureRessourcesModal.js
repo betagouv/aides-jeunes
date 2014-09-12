@@ -30,31 +30,63 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
         };
     });
 
-    $scope.previousStep = function() {
-        if ($scope.personnesSelected) {
-            $scope.personnesSelected = false;
+    $scope.tab = 'ressources';
+
+    $scope.goToTab = function(tab) {
+        if ($scope.tab === tab) {
+            return;
+        }
+        if ('ressources' !== tab && !$scope.hasSelectedRessources()) {
+            return;
+        }
+        if ('montants' === tab && !$scope.isTabMontantAllowed()) {
+            return;
+        }
+        if ('montants' === tab) {
             if (1 === $scope.individuRefs.length) {
-                $scope.ressourcesSelected = false;
+                $scope.individuRefs[0].selectedRessources = $scope.selectedRessources;
             }
+            $scope.initIndividusRessources();
+        }
+        $scope.tab = tab;
+    };
+
+    $scope.isTabMontantAllowed = function() {
+        if (1 === $scope.individuRefs.length) {
+            return $scope.hasSelectedRessources();
         } else {
-            $scope.ressourcesSelected = false;
+            return $scope.hasRessources();
         }
     };
 
-    $scope.submit = function() {
-        var closeModal = true;
-        if (!$scope.ressourcesSelected) {
-            $scope.ressourcesSelected = true;
-            closeModal = !_.filter($scope.selectedRessources).length;
-            // cas particulier si le demandeur est seul : on bypass l'écran intermédiaire de sélection des personnes
+    $scope.previousTab = function() {
+        if ('montants' === $scope.tab) {
             if (1 === $scope.individuRefs.length) {
-                $scope.individuRefs[0].selectedRessources = $scope.selectedRessources;
-                $scope.personnesSelected = true;
-                $scope.initIndividusRessources();
+                $scope.goToTab('ressources');
+            } else {
+                $scope.goToTab('personnes');
             }
-        } else if (!$scope.personnesSelected) {
-            $scope.personnesSelected = true;
-            $scope.initIndividusRessources();
+        } else {
+            $scope.goToTab('ressources');
+        }
+    };
+
+    $scope.hasSelectedRessources = function() {
+        return !!_.filter($scope.selectedRessources).length;
+    };
+
+    $scope.nextTab = function() {
+        var closeModal = true;
+        if ('ressources' === $scope.tab) {
+            closeModal = !$scope.hasSelectedRessources();
+            // cas particulier si le demandeur est seul : on bypass l'écran intermédiaire de sélection des personnes
+            if (1 < $scope.individuRefs.length) {
+                $scope.goToTab('personnes');
+            } else {
+                $scope.goToTab('montants')
+            }
+        } else if ('personnes' === $scope.tab) {
+            $scope.goToTab('montants');
             closeModal = !$scope.hasRessources();
         }
 

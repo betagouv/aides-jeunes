@@ -149,7 +149,15 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
     };
 
     var getEquivalentDroitId = function(droitId) {
-        return 'acs' === droitId ? 'cmu_c' : droitId;
+        if ('acs' === droitId) {
+            return'cmu_c';
+        }
+
+        if (_.contains(['als', 'alf', 'apl'], droitId)) {
+            return 'al';
+        }
+
+        return droitId;
     };
 
     return {

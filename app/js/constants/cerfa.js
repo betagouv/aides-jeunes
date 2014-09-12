@@ -223,5 +223,16 @@ angular.module('ddsApp').constant('cerfaForms', [
                 img: 'titre_sejour.jpg',
             },
         ]
+    },
+    {
+        droitId: 'al',
+        description: '',
+        forms: [
+            {
+                id: 'logement',
+                label: 'Formulaire de demande'
+            }
+        ],
+        piecesJustificatives: []
     }
 ]);

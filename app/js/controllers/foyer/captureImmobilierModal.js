@@ -34,7 +34,7 @@ angular.module('ddsApp').controller('FoyerCaptureImmobilierModalCtrl', function(
     $scope.situation.hasImmobilier = false;
     $scope.situation.valeurLocativeImmoNonLoue = 0;
     $scope.situation.valeurLocativeTerrainNonLoue = 0;
-    $scope.hasMobilier = false;
+    $scope.situation.hasMobilier = false;
     $scope.situation.mobilierValueLivret = 0;
     $scope.situation.epargneSansRevenus = 0;
 

@@ -16,13 +16,13 @@
             <button type="button" class="btn btn-sm btn-primary" ng-model="situation.hasImmobilier" btn-radio="false">Non</button>
           </div>
           <div class="col-sm-4">
-            <em class="help-block">Terrain, logement, ...</em>
+            <em class="help-block">Terrain, logement, commerce...</em>
           </div>
         </div>
 
         <div ng-if="situation.hasImmobilier">
           <div class="form-group">
-            <label class="col-sm-4 control-label" for="vl-immo-non-loue">
+            <label class="col-sm-4 control-label" for="vl-immo-non-loue" tooltip="Pour la trouver, consultez votre avis d'imposition de taxe d'habitation ou de taxe foncière">
               Valeur locative totale de vos appartements/immeubles non loués
             </label>
             <div class="col-sm-3">
@@ -31,14 +31,11 @@
                 <span class="input-group-addon">€</span>
               </div>
             </div>
-            <div class="col-sm-5">
-              <a href="">Comment connaître la valeur locative de mon bien immobilier ?</a>
-            </div>
           </div>
 
           <div class="form-group">
-            <label class="col-sm-4 control-label" for="vl-terrain-non-loue">
-              Valeur locative totale de vos terrains non bâtis et non loués
+            <label class="col-sm-4 control-label" for="vl-terrain-non-loue" tooltip="Pour la trouver, consultez votre avis d'imposition de taxe d'habitation ou de taxe foncière">
+              Valeur locative totale de vos terrains non loués
             </label>
             <div class="col-sm-3">
               <div class="input-group">
@@ -48,7 +45,7 @@
             </div>
           </div>
 
-          <p><label>Veuillez indiquer ci-dessous vos revenus locatifs (terrains, appartements, SCI...)</label></p>
+          <p><label>Veuillez indiquer ci-dessous les revenus locatifs que vous avez perçu (terrains, appartements, SCI...)</label></p>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -96,7 +93,7 @@
             </div>
           </div>
           <div class="col-sm-5">
-            <p class="help-block"><em>Livret A, LDD, LEP, livret jeune, CEL, CAT, autres livrets</em></p>
+            <p class="help-block"><em>Livret A, LDD, LEP, livret jeune, CEL, CAT, autres livrets (hors PEL et PERP)</em></p>
           </div>
         </div>
 
@@ -106,7 +103,7 @@
             <button type="button" class="btn btn-sm btn-primary" ng-model="situation.hasMobilier" btn-radio="true">Oui</button>
             <button type="button" class="btn btn-sm btn-primary" ng-model="situation.hasMobilier" btn-radio="false">Non</button>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-5">
             <em class="help-block">Compte courant, titres, assurance-vie, SICAV, FCP...</em>
           </div>
         </div>

@@ -30,7 +30,7 @@ describe('Controller: CaptureRessourcesModalCtrl', function() {
         });
     });
 
-    describe('function submit()', function() {
+    describe('function nextTab()', function() {
         it('should broadcast the "ressourcesCaptured" event when closing the modal', function() {
             // given
             var rootScope;
@@ -47,7 +47,7 @@ describe('Controller: CaptureRessourcesModalCtrl', function() {
             scope.ressourcesSelected = true;
 
             // when
-            scope.submit();
+            scope.nextTab();
 
             // then
             expect(rootScope.$broadcast).toHaveBeenCalledWith('ressourcesCaptured', false);

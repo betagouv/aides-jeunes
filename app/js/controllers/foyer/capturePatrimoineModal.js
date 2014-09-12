@@ -51,7 +51,7 @@ angular.module('ddsApp').controller('FoyerCapturePatrimoineModalCtrl', function(
         }));
     };
 
-    $scope.submit = function(form) {
+    $scope.submit = function() {
         $scope.situation.patrimoineCaptured = true;
         $modalInstance.close();
     };

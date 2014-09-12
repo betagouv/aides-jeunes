@@ -83,7 +83,7 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
             if (1 < $scope.individuRefs.length) {
                 $scope.goToTab('personnes');
             } else {
-                $scope.goToTab('montants')
+                $scope.goToTab('montants');
             }
         } else if ('personnes' === $scope.tab) {
             $scope.goToTab('montants');

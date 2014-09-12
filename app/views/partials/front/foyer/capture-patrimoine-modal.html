@@ -1,4 +1,4 @@
-<form name="form" novalidate class="form-horizontal" ng-submit="submit(form)">
+<form name="form" novalidate class="form-horizontal" ng-submit="submit()">
   <div class="modal-header">
     <h1 class="modal-title">Votre patrimoine</h1>
   </div>
@@ -42,7 +42,7 @@
             </label>
             <div class="col-sm-3">
               <div class="input-group">
-                <input type="number" name="mobilierValue" id="vl-terrain-non-loue" class="form-control text-right" ng-model="situation.valeurLocativeTerrainNonLoue">
+                <input type="number" id="vl-terrain-non-loue" class="form-control text-right" ng-model="situation.valeurLocativeTerrainNonLoue">
                 <span class="input-group-addon">€</span>
               </div>
             </div>
@@ -91,7 +91,7 @@
           <label class="col-sm-4 control-label" for="mobilier-value-livret">Montant total de votre épargne sur livret</label>
           <div class="col-sm-3">
             <div class="input-group">
-              <input type="number" name="mobilierValueLivret" required id="mobilier-value-livret" class="form-control text-right" ng-model="situation.mobilierValueLivret">
+              <input type="number" required id="mobilier-value-livret" class="form-control text-right" ng-model="situation.mobilierValueLivret">
               <span class="input-group-addon">€</span>
             </div>
           </div>

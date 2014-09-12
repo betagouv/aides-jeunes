@@ -54,8 +54,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                         }]
                     }
                 },
-                'immobilier@foyer': {
-                    templateUrl: '/partials/foyer/immobilier.html'
+                'patrimoine@foyer': {
+                    templateUrl: '/partials/foyer/patrimoine.html'
                 }
             }
         })
@@ -121,12 +121,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 });
             }]
         })
-        .state('foyer.capture_immobilier', {
-            url: '/biens-mobiliers-immobiliers',
+        .state('foyer.capture_patrimoine', {
+            url: '/patrimoine',
             onEnter: ['$state', '$modal', function($state, $modal) {
                 $modal.open({
-                    templateUrl: '/partials/foyer/capture-immobilier-modal.html',
-                    controller: 'FoyerCaptureImmobilierModalCtrl',
+                    templateUrl: '/partials/foyer/capture-patrimoine-modal.html',
+                    controller: 'FoyerCapturePatrimoineModalCtrl',
                     resolve: {
                         situation: ['SituationService', function(SituationService) {
                             return SituationService.restoreLocal();

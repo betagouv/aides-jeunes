@@ -33,16 +33,16 @@
 <div class="row">
   <div ui-view="logement"></div>
   <div class="col-lg-2 visible-lg"></div>
-  <div ui-view="immobilier"></div>
+  <div ui-view="patrimoine"></div>
 </div>
 
 <div class="text-center">
-  <a ui-sref="foyer.capture_immobilier" ng-if="situation.logement.formCompleted && !situation.immobilierCaptured" class="btn btn-lg btn-primary btn-next">
+  <a ui-sref="foyer.capture_patrimoine" ng-if="situation.logement.formCompleted && !situation.patrimoineCaptured" class="btn btn-lg btn-primary btn-next">
     Étape suivante : votre patrimoine
   </a>
 </div>
 
-<div ng-if="situation.immobilierCaptured" class="panel panel-primary">
+<div ng-if="situation.patrimoineCaptured" class="panel panel-primary">
   <div class="panel-heading">
     <h2 class="panel-title">C'est terminé !</h2>
   </div>

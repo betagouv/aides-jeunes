@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCaptureImmobilierModalCtrl', function($scope, $modalInstance, situation, SituationService) {
+angular.module('ddsApp').controller('FoyerCapturePatrimoineModalCtrl', function($scope, $modalInstance, situation, SituationService) {
     $scope.situation = situation;
 
     var conjointLabels = {
@@ -52,7 +52,7 @@ angular.module('ddsApp').controller('FoyerCaptureImmobilierModalCtrl', function(
     };
 
     $scope.submit = function(form) {
-        $scope.situation.immobilierCaptured = true;
+        $scope.situation.patrimoineCaptured = true;
         $modalInstance.close();
     };
 });

@@ -127,6 +127,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 $modal.open({
                     templateUrl: '/partials/foyer/capture-immobilier-modal.html',
                     controller: 'FoyerCaptureImmobilierModalCtrl',
+                    resolve: {
+                        situation: ['SituationService', function(SituationService) {
+                            return SituationService.restoreLocal();
+                        }]
+                    },
                     size: 'lg',
                     backdrop: 'static',
                     keyboard: false

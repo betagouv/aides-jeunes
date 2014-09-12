@@ -81,5 +81,13 @@ angular.module('ddsCommon', []).constant('droitsDescription', [
         'description':'L\'allocation de logement familiale (ALF) est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d\'emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'imgSrc':'logo_caf.png',
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0'
+    },
+    {
+        'id':'ass',
+        'label':'Allocation de Solidarité Spécifique',
+        'shortLabel':'ASS',
+        'description':'L\'allocation de solidarité spécifique (ASS) est une aide financière destinée aux personnes ayant épuisé leurs droits aux allocations chômage.',
+        'imgSrc':'logo_ass.png',
+        'link':'http://vosdroits.service-public.fr/particuliers/F12484.xhtml'
     }
 ]);

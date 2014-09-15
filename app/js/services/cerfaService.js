@@ -23,11 +23,36 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
 
     // callbacks qui déterminent si une pièce justificative est nécessaire ou non pour un individu ou une situation
     var requiredPiecesJustificativesCallbacks = {
+        'identite': function(individu) {
+            return 'autre' !== individu.nationalite && 18 <= IndividuService.age(individu);
+        },
+        'ofii': function(individu) {
+            var result = _.contains(['enfant', 'personneACharge'], individu.role);
+            result = result && 18 > IndividuService.age(individu);
+            result = result && 'fr' !== individu.nationalite;
+            result = result && 'France' !== individu.paysNaissance;
+
+            return result;
+        },
+        'titre_sejour': function(individu) {
+            if ('autre' !== individu.nationalite) {
+                return false;
+            }
+
+            if (_.contains(['enfant', 'personneACharge'], individu.role)) {
+                return 18 <= IndividuService.age(individu);
+            }
+
+            return true;
+        },
+        'imposition': function(individu) {
+            return 16 <= IndividuService.age(individu);
+        },
+        'declaration_grossesse': function(situation) {
+            return situation.demandeur.enceinte;
+        },
         'cmu_c.vitale': function(individu) {
             return 18 <= IndividuService.age(individu);
-        },
-        'cmu_c.identite': function(individu) {
-            return 'autre' !== individu.nationalite && 18 <= IndividuService.age(individu);
         },
         'cmu_c.regularite': function(individu) {
             if ('demandeur' !== individu.role) {
@@ -38,9 +63,6 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         },
         'cmu_c.livret_famille': function(situation) {
             return !!situation.enfants.length || !!situation.personnesACharge.length;
-        },
-        'cmu_c.imposition': function(individu) {
-            return 16 <= IndividuService.age(individu);
         },
         'cmu_c.bulletins_paie': function(individu) {
             if (16 > IndividuService.age(individu)) {
@@ -72,30 +94,11 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
 
             return 'France' === individu.paysNaissance;
         },
-        'rsa.titre_sejour': function(individu) {
-            if ('autre' !== individu.nationalite) {
-                return false;
-            }
-
-            if (_.contains(['enfant', 'personneACharge'], individu.role)) {
-                return 18 <= IndividuService.age(individu);
-            }
-
-            return true;
-        },
         'rsa.acte_naissance': function(individu) {
             var result = _.contains(['enfant', 'personneACharge'], individu.role);
             result = result && 18 > IndividuService.age(individu);
             result = result && 'fr' !== individu.nationalite;
             result = result && 'France' === individu.paysNaissance;
-
-            return result;
-        },
-        'rsa.ofii': function(individu) {
-            var result = _.contains(['enfant', 'personneACharge'], individu.role);
-            result = result && 18 > IndividuService.age(individu);
-            result = result && 'fr' !== individu.nationalite;
-            result = result && 'France' !== individu.paysNaissance;
 
             return result;
         },
@@ -126,9 +129,6 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
             }
 
             return false;
-        },
-        'rsa.declaration_grossesse': function(situation) {
-            return situation.demandeur.enceinte;
         },
         'aspa.imposition': function(individu) {
             if ('demandeur' === individu.role) {
@@ -190,6 +190,9 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
 
             return _.filter(individus, function(individu) {
                 var callback = requiredPiecesJustificativesCallbacks[equivalentDroitId + '.' + pieceId];
+                if (!callback) {
+                    callback = requiredPiecesJustificativesCallbacks[pieceId];
+                }
                 if (callback) {
                     return callback(individu);
                 }
@@ -201,6 +204,9 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         isPieceJustificativeRequiredForSituation: function(droitId, pieceId, situation) {
             var equivalentDroitId = getEquivalentDroitId(droitId);
             var callback = requiredPiecesJustificativesCallbacks[equivalentDroitId + '.' + pieceId];
+            if (!callback) {
+                callback = requiredPiecesJustificativesCallbacks[pieceId];
+            }
             if (callback) {
                 return callback(situation);
             }

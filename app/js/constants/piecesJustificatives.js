@@ -16,8 +16,7 @@ angular.module('ddsApp').constant('piecesJustificatives', [
         id: 'identite',
         label: 'Pièce d’identité',
         img: 'identite_passeport.jpg',
-        description: 'Une photocopie recto-verso de votre carte d’identité, votre passeport ou votre livret de famille à jour,\
-            revêtu de l’une des mentions prévues à l’article 28 du code civil.'
+        description: 'Une photocopie recto-verso de votre carte d’identité, votre passeport ou votre livret de famille.'
     },
     {
         id: 'regularite',

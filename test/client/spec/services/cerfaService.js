@@ -155,6 +155,24 @@ describe('Service: cerfaService', function () {
         });
 
         describe('function pieceJustificativeIndividus()', function() {
+            it('should ask piece d\'identité for french and EEE people aged >= 18', function() {
+                // given
+                var individus = [
+                    {dateDeNaissance: '14/09/1980', nationalite: 'fr'},
+                    {dateDeNaissance: '14/09/1980', nationalite: 'ue'},
+                    // not kept because nationality not eee
+                    {dateDeNaissance: '14/09/1980', nationalite: 'autre'},
+                    // not kept because aged < 18
+                    {dateDeNaissance: '14/09/2014', nationalite: 'fr'}
+                ];
+
+                // when
+                var result = service.pieceJustificativeIndividus('cmu_c', 'identite', individus);
+
+                // then
+                expect(result).toEqual(_.initial(individus, 2));
+            });
+
             describe('cmuc', function() {
                 it('sould ask carte vitale for everybody aged >= 18', function() {
                     // given
@@ -169,24 +187,6 @@ describe('Service: cerfaService', function () {
 
                     // then
                     expect(result).toEqual(_.initial(individus));
-                });
-
-                it('should ask piece d\'identité for french and EEE people aged >= 18', function() {
-                    // given
-                    var individus = [
-                        {dateDeNaissance: '14/09/1980', nationalite: 'fr'},
-                        {dateDeNaissance: '14/09/1980', nationalite: 'ue'},
-                        // not kept because nationality not eee
-                        {dateDeNaissance: '14/09/1980', nationalite: 'autre'},
-                        // not kept because aged < 18
-                        {dateDeNaissance: '14/09/2014', nationalite: 'fr'}
-                    ];
-
-                    // when
-                    var result = service.pieceJustificativeIndividus('cmu_c', 'identite', individus);
-
-                    // then
-                    expect(result).toEqual(_.initial(individus, 2));
                 });
 
                 it('should ask titre de séjour for non-french people', function() {

@@ -3,26 +3,6 @@
     <h1 class="modal-title">Vos ressources</h1>
   </div>
   <div class="modal-body">
-    <ul class="nav nav-tabs nav-justified" role="tablist">
-      <li
-        ng-class="{active: 'ressources' === tab}"
-        ng-click="goToTab('ressources')">
-        <a href="">Ressources</a>
-      </li>
-      <li
-        ng-if="1 < individuRefs.length"
-        ng-class="{active: 'personnes' === tab, disabled: !hasSelectedRessources()}"
-        ng-click="goToTab('personnes')"
-        >
-        <a href="">Personnes</a>
-      </li>
-      <li
-        ng-class="{active: 'montants' === tab, disabled: !isTabMontantAllowed()}"
-        ng-click="goToTab('montants')">
-        <a href="">Montants</a>
-      </li>
-    </ul>
-
     <div ng-show="'ressources' === tab">
       <p>
         Cliquez sur les types de ressources que les personnes de votre foyer ont perçues

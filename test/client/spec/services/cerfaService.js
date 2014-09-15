@@ -76,6 +76,43 @@ describe('Service: cerfaService', function () {
             // then
             expect(forms).toEqual([form]);
         });
+
+        it('should display cmuc_choix_organisme_non_demandeur only if situation not mono-individu', function() {
+            // given
+            var service = createService();
+            var situations = [
+                {demandeur: {}, conjoint: {}, enfants: [], personnesACharge: []},
+                {demandeur: {}, enfants: [{}], personnesACharge: []},
+                {demandeur: {}, enfants: [], personnesACharge: [{}]},
+                {demandeur: {}, enfants: [], personnesACharge: []}
+            ];
+
+            // when
+            var result = _.map(situations, function(situation) {
+                return _.contains(_.pluck(service.getCerfaFormsFromDroit('cmu_c', situation), 'id'), 'cmuc_choix_organisme_non_demandeur');
+            });
+
+            // then
+            expect(result).toEqual([true, true, true, false]);
+        });
+
+        it('should display rsa_moins_25 only if demandeur or conjoint is aged < 25', function() {
+            // given
+            var service = createService();
+            var situations = [
+                {demandeur: {dateDeNaissance: '14/09/2014'}},
+                {demandeur: {}, conjoint: {dateDeNaissance: '14/09/2014'}},
+                {demandeur: {dateDeNaissance: '14/09/1989'}}
+            ];
+
+            // when
+            var result = _.map(situations, function(situation) {
+                return _.contains(_.pluck(service.getCerfaFormsFromDroit('rsa', situation), 'id'), 'rsa_moins_25');
+            });
+
+            // then
+            expect(result).toEqual([true, true, false]);
+        });
     });
 
     describe('pieces justificatives', function() {

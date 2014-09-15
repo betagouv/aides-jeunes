@@ -127,7 +127,7 @@ public class Application extends Controller {
                 return new AspaFormFiller();
             }
         },
-        CAF("caf") {
+        CAF_DECLARATION_SITUATION("caf_declaration_situation") {
 
             @Override
             public FormFiller createFormFiller() {

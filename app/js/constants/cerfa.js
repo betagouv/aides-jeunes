@@ -229,8 +229,28 @@ angular.module('ddsApp').constant('cerfaForms', [
         description: '',
         forms: [
             {
-                id: 'logement',
+                id: 'caf_demande_aide_logement',
                 label: 'Formulaire de demande'
+            },
+            {
+                id: 'caf_declaration_situation',
+                label: 'Déclaration de situation'
+            },
+            {
+                id: 'caf_declaration_ressources',
+                label: 'Déclaration de ressources'
+            },
+            {
+                id: 'caf_attestation_loyer',
+                label: 'Attestation de loyer'
+            },
+            {
+                id: 'caf_attestation_pret',
+                label: 'Certificat de prêt'
+            },
+            {
+                id: 'caf_attestation_residence_foyer',
+                label: 'Attestation de résidence en foyer'
             }
         ],
         piecesJustificatives: []

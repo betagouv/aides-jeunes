@@ -1,8 +1,7 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, logementTypes, situation) {
+angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($scope, $rootScope, $http, $modalInstance, logementTypes, situation) {
     $scope.situation = situation;
-
     if (!situation.logement) {
         situation.logement = {};
     }
@@ -13,16 +12,8 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = _.find(logementTypes, { id: 'locataire' }).locationTypes;
 
-    $scope.locationTypeLabel = function() {
-        return _.find($scope.locationTypes, { id: situation.logement.locationType }).label;
-    };
-
-    $scope.logementTypeLabel = function() {
-        return _.find(logementTypes, { id: situation.logement.type }).label;
-    };
-
     $scope.loyerLabel = function() {
-        return 'proprietaire' === situation.logement.type ? 'mensualité d\'emprunt' : 'loyer';
+        return 'Votre ' + ('proprietaire' === situation.logement.type ? 'mensualité d\'emprunt' : 'loyer (hors charges)');
     };
 
     $scope.primoAccedantTooltip = 'Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler.';
@@ -50,40 +41,52 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return result;
     };
 
+    var isCodePostalValid = function() {
+        var codePostal = situation.logement.adresse.codePostal;
+        return 9999 < codePostal && 100000 > codePostal;
+    };
+
     $scope.updateCities = function() {
-        $scope.unknownCodePostal = false;
         $scope.cities = [];
         var codePostal = situation.logement.adresse.codePostal;
         $scope.retrievingCities = false;
-        $scope.situation.logement.adresse.ville = null;
 
-        if (9999 < codePostal && 100000 > codePostal) {
-            $scope.retrievingCities = true;
-            var baseApi = '//public.opendatasoft.com/api/records/1.0/search?dataset=correspondance-code-insee-code-postal&format=jsonp&callback=JSON_CALLBACK&rows=1000&q=';
-            $http.jsonp(baseApi + situation.logement.adresse.codePostal).then(function(result) {
-                var records = result.data.records;
-                if (!records.length) {
-                    $scope.unknownCodePostal = true;
-                } else {
-                    $scope.unknownCodePostal = false;
-                    $scope.cities = [];
-                    result.data.records.forEach(function(record) {
-                        var field = 'nom_comm';
-                        $scope.cities.push(record.fields[field]);
-                    });
+        if (!isCodePostalValid()) {
+            $scope.unknownCodePostal = true;
+            return;
+        }
+
+        $scope.retrievingCities = true;
+        var baseApi = '//public.opendatasoft.com/api/records/1.0/search?dataset=correspondance-code-insee-code-postal&format=jsonp&callback=JSON_CALLBACK&rows=1000&q=';
+        $http.jsonp(baseApi + codePostal).then(function(result) {
+            var records = result.data.records;
+            if (!records.length) {
+                $scope.unknownCodePostal = true;
+            } else {
+                $scope.unknownCodePostal = false;
+                $scope.cities = [];
+                result.data.records.forEach(function(record) {
+                    var field = 'nom_comm';
+                    $scope.cities.push(record.fields[field]);
+                });
+                if (!_.contains($scope.cities, situation.logement.adresse.ville)) {
                     situation.logement.adresse.ville = $scope.cities[0];
                 }
-            }, function() {
-                $scope.unknownCodePostal = true;
-            }).finally(function() {
-                $scope.retrievingCities = false;
-            });
-        } else if (100000 <= codePostal) {
+            }
+        }, function() {
             $scope.unknownCodePostal = true;
-        }
+        }).finally(function() {
+            $scope.retrievingCities = false;
+        });
     };
 
-    $scope.submit = function() {
-        situation.logement.formCompleted = true;
+    $scope.updateCities();
+
+    $scope.submit = function(form) {
+        $scope.submitted = true;
+        if (form.$valid && !$scope.unknownCodePostal) {
+            situation.logementCaptured = true;
+            $modalInstance.close();
+        }
     };
 });

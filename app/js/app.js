@@ -45,8 +45,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     controller: 'FoyerRecapRessourcesCtrl'
                 },
                 'logement@foyer': {
-                    templateUrl: '/partials/foyer/logement.html',
-                    controller: 'FoyerLogementCtrl',
+                    templateUrl: '/partials/foyer/recap-logement.html',
+                    controller: 'FoyerRecapLogementCtrl',
                     resolve: {
                         situation: ['SituationService', function(SituationService) {
                             return SituationService.restoreLocal();
@@ -102,6 +102,25 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/ressources',
             onEnter: ['$state', 'CaptureRessourcesModalService', function($state, CaptureRessourcesModalService) {
                 CaptureRessourcesModalService.open(false).result.then(function() {
+                    return $state.go('foyer');
+                });
+            }]
+        })
+        .state('foyer.capture_logement', {
+            url: '/logement',
+            onEnter: ['$state', '$modal', function($state, $modal) {
+                $modal.open({
+                    templateUrl: '/partials/foyer/capture-logement-modal.html',
+                    controller: 'FoyerCaptureLogementModalCtrl',
+                    resolve: {
+                        situation: ['SituationService', function(SituationService) {
+                            return SituationService.restoreLocal();
+                        }]
+                    },
+                    size: 'lg',
+                    backdrop: 'static',
+                    keyboard: false
+                }).result.then(function() {
                     return $state.go('foyer');
                 });
             }]

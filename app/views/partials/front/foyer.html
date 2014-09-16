@@ -21,10 +21,10 @@
 
 <div ui-view="ressources"></div>
 
-<div class="text-center" ng-if="situation.ressourcesCaptured && !situation.formLogement">
-  <button type="button" ng-click="situation.formLogement = true" class="btn btn-lg btn-primary btn-next">
+<div class="text-center" ng-if="situation.ressourcesCaptured && !situation.logementCaptured">
+  <a class="btn btn-lg btn-primary btn-next" ui-sref="foyer.capture_logement">
     Étape suivante : votre logement
-  </button>
+  </a>
 </div>
 
 <div class="row">
@@ -34,7 +34,7 @@
 </div>
 
 <div class="text-center">
-  <a ui-sref="foyer.capture_patrimoine" ng-if="situation.logement.formCompleted && !situation.patrimoineCaptured" class="btn btn-lg btn-primary btn-next">
+  <a ui-sref="foyer.capture_patrimoine" ng-if="situation.logementCaptured && !situation.patrimoineCaptured" class="btn btn-lg btn-primary btn-next">
     Étape suivante : votre patrimoine
   </a>
 </div>

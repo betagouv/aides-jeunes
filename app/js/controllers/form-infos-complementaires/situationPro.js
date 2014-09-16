@@ -14,6 +14,7 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
             var situationProIndividu = _.find(individuRef.individu.situationsPro, {situation: situationPro.id});
             if (situationProIndividu) {
                 situationProIndividu.selected = true;
+                situationProIndividu.label = situationPro.label;
                 individuRef.situationsPro.push(situationProIndividu);
             } else {
                 individuRef.situationsPro.push({situation: situationPro.id, label: situationPro.label, selected: false});

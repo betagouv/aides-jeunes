@@ -1,9 +1,9 @@
 <form name="form" class="form-horizontal" ng-submit="submit(form)" novalidate>
   <div class="modal-header">
-    <h3 class="modal-title">{{ modalTitle }}</h3>
+    <h3 class="modal-title">{{ options.modalTitle }}</h3>
   </div>
   <div class="modal-body">
-    <div class="form-group form-group-lg" ng-if="askFirstName" ng-class="{'has-error': submitted && form.firstName.$invalid}">
+    <div class="form-group form-group-lg" ng-if="options.askFirstName" ng-class="{'has-error': submitted && form.firstName.$invalid}">
       <label class="control-label col-sm-4" for="first-name">Prénom</label>
       <div class="col-sm-8">
         <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="individu.firstName">
@@ -23,16 +23,16 @@
           ng-model="individu.dateDeNaissance"
           dds-date
           date-autocomplete
-          date-naissance-min-age="minAge"
-          date-naissance-max-age="maxAge"
+          date-naissance-min-age="options.minAge"
+          date-naissance-max-age="options.maxAge"
           placeholder="jj/mm/aaaa">
         <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.required">Ce champ est obligatoire.</p>
         <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.ddsDate">Date de naissance invalide.</p>
         <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMaxAge">
-          Veuillez déclarer uniquement les personnes de moins de {{ maxAge }} ans.
+          Veuillez déclarer uniquement les personnes de moins de {{ options.maxAge }} ans.
         </p>
         <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMinAge">
-          Cette personne ne doit pas avoir moins de {{ minAge }} ans.
+          Cette personne ne doit pas avoir moins de {{ options.minAge }} ans.
         </p>
       </div>
     </div>
@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div class="form-group" ng-if="checkResidenceStability && 'ue' === individu.nationalite" ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
+    <div class="form-group" ng-if="options.checkResidenceStability && 'ue' === individu.nationalite" ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
       <div class="col-sm-offset-4 col-sm-8">
         <div class="checkbox">
           <label>
@@ -68,7 +68,7 @@
       </div>
     </div>
 
-    <div class="form-group" ng-if="checkResidenceStability && 'autre' === individu.nationalite" ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
+    <div class="form-group" ng-if="options.checkResidenceStability && 'autre' === individu.nationalite" ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
       <div class="col-sm-offset-4 col-sm-8">
         <div class="checkbox">
           <label>
@@ -94,8 +94,8 @@
 
     <div class="form-group from-group-lg">
       <label class="control-label col-sm-4">
-        <span ng-if="'demandeur' === individuType">Êtes-vous</span>
-        <span ng-if="'demandeur' !== individuType">Est-il/elle</span>
+        <span ng-if="'demandeur' === options.individuType">Êtes-vous</span>
+        <span ng-if="'demandeur' !== options.individuType">Est-il/elle</span>
         dans l'une de ces situations ?
       </label>
       <div class="col-sm-8">
@@ -112,7 +112,7 @@
   </div>
 
   <div class="modal-footer">
-    <button type="button" ng-if="cancelable" class="btn btn-default" ng-click="$dismiss()">Annuler</button>
+    <button type="button" ng-if="options.cancelable" class="btn btn-default" ng-click="$dismiss()">Annuler</button>
     <button type="submit" class="btn btn-primary">Valider</button>
   </div>
 </form>

@@ -1,15 +1,8 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $modalInstance, SituationService, IndividuService, options) {
-    $scope.modalTitle = options.modalTitle;
-    $scope.askFirstName = !!options.askFirstName;
-    $scope.cancelable = !!options.cancelable;
-    $scope.checkResidenceStability = !!options.checkResidenceStability;
-    $scope.maxAge = options.maxAge;
-    $scope.minAge = options.minAge;
+    $scope.options = options;
     $scope.relationTypes = SituationService.relationTypeLabels;
-    $scope.individuType = options.individuType;
-
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
     $scope.selectedStatuts = {};
 

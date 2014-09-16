@@ -11,8 +11,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: '/',
-            templateUrl: '/partials/homepage.html',
-            controller: 'HomepageCtrl'
+            templateUrl: '/partials/homepage.html'
         })
         .state('teaser', {
             url: '/teaser',
@@ -197,7 +196,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, SituationService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -214,6 +213,12 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack) {
         var top = $modalStack.getTop();
         if (top) {
             $modalStack.dismiss(top.key);
+        }
+    });
+
+    $rootScope.$on('$stateChangeStart', function(e, state) {
+        if ('teaser' === state.name) {
+            SituationService.newSituation();
         }
     });
 });

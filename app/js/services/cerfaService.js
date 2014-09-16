@@ -25,7 +25,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
         'caf_attestation_loyer': function(situation) {
             return 'locataire' === situation.logement.type;
         },
-        'caf_attestation_residence_foyer': function(situation) {
+        'caf_attestation_residence_foyer': function() {
             return false; // Non géré pour l'instant car on ne capture pas le fait que le demandeur est rattaché à un organisme
         }
     };

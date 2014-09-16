@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $modalInstance, SituationService, options) {
+angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $modalInstance, SituationService, IndividuService, options) {
     $scope.modalTitle = options.modalTitle;
     $scope.askFirstName = !!options.askFirstName;
     $scope.cancelable = !!options.cancelable;
@@ -8,6 +8,10 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
     $scope.maxAge = options.maxAge;
     $scope.minAge = options.minAge;
     $scope.relationTypes = SituationService.relationTypeLabels;
+    $scope.individuType = options.individuType;
+
+    $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
+    $scope.selectedStatuts = {};
 
     $scope.individu = { nationalite: 'fr' };
     if (true === ($scope.askRelationType = !!options.askRelationType)) {
@@ -17,6 +21,12 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
+            $scope.individu.situationsPro = [];
+            _.forEach($scope.selectedStatuts, function(selected, statut) {
+                if (selected) {
+                    $scope.individu.situationsPro.push({situation: statut});
+                }
+            });
             $scope.$emit('individu.' + options.individuType, $scope.individu);
             $modalInstance.close($scope.individu);
         }

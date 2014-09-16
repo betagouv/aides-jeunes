@@ -98,20 +98,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     });
             }]
         })
-        .state('foyer.statuts_specifiques', {
-            url: '/statuts-specifiques',
-            onEnter: ['$state', '$modal', function($state, $modal) {
-                $modal.open({
-                    templateUrl: '/partials/foyer/statuts-specifiques-modal.html',
-                    controller: 'FoyerStatutsSpecifiquesModalCtrl',
-                    size: 'lg',
-                    backdrop: 'static',
-                    keyboard: false
-                }).result.then(function() {
-                    return $state.go('foyer');
-                });
-            }]
-        })
         .state('foyer.capture_ressources', {
             url: '/ressources',
             onEnter: ['$state', 'CaptureRessourcesModalService', function($state, CaptureRessourcesModalService) {

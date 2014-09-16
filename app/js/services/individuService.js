@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('ddsApp').factory('IndividuService', function($filter, statutsSpecifiques) {
+angular.module('ddsApp').factory('IndividuService', function($filter, situationsPro) {
+    var statutsSpecifiques = _.filter(situationsPro, 'isStatutSpecifique');
+
     return {
         age: function(individu) {
             var dateNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY');
@@ -19,18 +21,23 @@ angular.module('ddsApp').factory('IndividuService', function($filter, statutsSpe
             return individu.firstName;
         },
 
+        getStatutsSpecifiques: function() {
+            return statutsSpecifiques;
+        },
+
         formatStatutsSpecifiques: function(individu) {
-            var statuses = [];
+            var statuts = [];
             statutsSpecifiques.forEach(function(statut) {
-                if (individu[statut.id]) {
-                    statuses.push(statut.label);
+                if (_.find(individu.situationsPro, {situation: statut.id})) {
+                    statuts.push(statut.label);
                 }
             });
 
-            statuses = statuses.join(', ');
-            statuses = $filter('uppercaseFirst')(statuses);
+            statuts = _.map(statuts, $filter('lowercaseFirst'));
+            statuts = statuts.join(', ');
+            statuts = $filter('uppercaseFirst')(statuts);
 
-            return statuses;
+            return statuts;
         }
     };
 });

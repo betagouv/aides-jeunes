@@ -45,10 +45,10 @@ describe('IndividuService', function() {
         });
     });
 
-    describe('function formatStatutsSpecifuques()', function() {
+    describe('function formatStatutsSpecifiques()', function() {
         it('Should return empty string if no specific situations', function() {
             // when
-            var result = service.formatStatutsSpecifiques({});
+            var result = service.formatStatutsSpecifiques({situationsPro: []});
 
             // then
             expect(result).toBe('');
@@ -56,7 +56,7 @@ describe('IndividuService', function() {
 
         it('Should return single situation with no comma', function() {
             // when
-            var result = service.formatStatutsSpecifiques({retraite: true});
+            var result = service.formatStatutsSpecifiques({situationsPro: [{situation: 'retraite'}]});
 
             // then
             expect(result).toBe('Retraité');
@@ -64,7 +64,7 @@ describe('IndividuService', function() {
 
         it('Should return comma-separated statuts when individu has several statuts specifiques', function() {
             // when
-            var result = service.formatStatutsSpecifiques({etudiant: true, retraite: true});
+            var result = service.formatStatutsSpecifiques({situationsPro: [{situation: 'retraite'}, {situation: 'etudiant'}]});
 
             // then
             expect(result).toBe('Étudiant, retraité');

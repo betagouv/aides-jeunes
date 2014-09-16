@@ -1,59 +1,13 @@
 'use strict';
 
-angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', function($scope, $state, $stateParams, situation, SituationService) {
+angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', function($scope, $state, $stateParams, situationsPro, situation, SituationService) {
     $scope.situation = situation;
+    $scope.situationsPro = situationsPro;
 
     $scope.individusRef = [{id: 'demandeur', label: 'Vous', individu: situation.demandeur, situationsPro: []}];
     if (situation.conjoint) {
         $scope.individusRef.push({id: 'conjoint', label: 'Votre partenaire', individu: situation.conjoint, situationsPro: []});
     }
-
-    $scope.situationsPro = [
-        {
-            id: 'sans_activite',
-            label: 'Sans activité'
-        },
-        {
-            id: 'salarie',
-            label: 'Salarié'
-        },
-        {
-            id: 'auto_entrepreneur',
-            label: 'Auto-entrepreneur'
-        },
-        {
-            id: 'travailleur_saisonnier',
-            label: 'Travailleur saisonnier'
-        },
-        {
-            id: 'apprenti',
-            label: 'Apprenti'
-        },
-        {
-            id: 'stagiaire',
-            label: 'Stagiaire de la formation professionnelle'
-        },
-        {
-            id: 'independant',
-            label: 'Travailleur indépendant ou employeur, y compris exploitant agricole'
-        },
-        {
-            id: 'gerant_salarie',
-            label: 'Gérant salarié'
-        },
-        {
-            id: 'demandeur_emploi',
-            label: 'Demandeur d\'emploi'
-        },
-        {
-            id: 'etudiant',
-            label: 'Étudiant'
-        },
-        {
-            id: 'retraite',
-            label: 'Retraité'
-        }
-    ];
 
     $scope.individusRef.forEach(function(individuRef) {
         $scope.situationsPro.forEach(function(situationPro) {

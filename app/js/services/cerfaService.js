@@ -18,6 +18,15 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
             }
 
             return result;
+        },
+        'caf_attestation_pret': function(situation) {
+            return 'proprietaire' === situation.logement.type;
+        },
+        'caf_attestation_loyer': function(situation) {
+            return 'locataire' === situation.logement.type;
+        },
+        'caf_attestation_residence_foyer': function(situation) {
+            return false; // Non géré pour l'instant car on ne capture pas le fait que le demandeur est rattaché à un organisme
         }
     };
 

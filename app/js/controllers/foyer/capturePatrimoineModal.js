@@ -31,15 +31,15 @@ angular.module('ddsApp').controller('FoyerCapturePatrimoineModalCtrl', function(
         year: 0
     };
 
-    $scope.situation.hasImmobilier = false;
-    $scope.situation.valeurLocativeImmoNonLoue = 0;
-    $scope.situation.valeurLocativeTerrainNonLoue = 0;
-    $scope.situation.hasMobilier = false;
-    $scope.situation.mobilierValueLivret = 0;
-    $scope.situation.epargneSansRevenus = 0;
+    situation.hasImmobilier = false;
+    situation.valeurLocativeImmoNonLoue = 0;
+    situation.valeurLocativeTerrainNonLoue = 0;
+    situation.hasMobilier = false;
+    situation.mobilierValueLivret = 0;
+    situation.epargneSansRevenus = 0;
 
     $scope.conjointLabel = function() {
-        return conjointLabels[$scope.situation.conjoint.relationType];
+        return conjointLabels[situation.conjoint.relationType];
     };
 
     $scope.updateRevenusLocatifsYearAmount = function() {
@@ -52,7 +52,7 @@ angular.module('ddsApp').controller('FoyerCapturePatrimoineModalCtrl', function(
     };
 
     $scope.submit = function() {
-        $scope.situation.patrimoineCaptured = true;
+        situation.patrimoineCaptured = true;
         $modalInstance.close();
     };
 });

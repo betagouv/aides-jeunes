@@ -31,7 +31,8 @@ angular.module('ddsApp').factory('IndividuModalService', function($modal, Situat
                 modalTitle: 'Vous',
                 cancelable: false,
                 checkResidenceStability: true,
-                minAge: 12
+                minAge: 12,
+                maxAge: 120
             });
         },
 
@@ -42,7 +43,8 @@ angular.module('ddsApp').factory('IndividuModalService', function($modal, Situat
                 modalTitle: 'Votre conjoint',
                 askRelationType: true,
                 checkResidenceStability: true,
-                minAge: 12
+                minAge: 12,
+                maxAge: 120
             }).then(function() {}, function() {
                 situation.livesAlone = undefined;
             });
@@ -61,7 +63,8 @@ angular.module('ddsApp').factory('IndividuModalService', function($modal, Situat
             return open({
                 individuType: 'personneACharge',
                 modalTitle: 'Personne à charge',
-                askFirstName: true
+                askFirstName: true,
+                maxAge: 120
             });
         }
     };

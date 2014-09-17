@@ -42,11 +42,11 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
     };
 
     $scope.updateCities = function() {
-        $scope.cities = [];
-        var codePostal = situation.logement.adresse.codePostal;
         $scope.retrievingCities = false;
+        $scope.cities = [];
 
-        if (5 !== codePostal.length) {
+        var codePostal = situation.logement.adresse.codePostal;
+        if (!codePostal || 5 !== codePostal.length) {
             $scope.unknownCodePostal = true;
             return;
         }

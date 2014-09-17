@@ -41,17 +41,12 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
         return result;
     };
 
-    var isCodePostalValid = function() {
-        var codePostal = situation.logement.adresse.codePostal;
-        return 9999 < codePostal && 100000 > codePostal;
-    };
-
     $scope.updateCities = function() {
         $scope.cities = [];
         var codePostal = situation.logement.adresse.codePostal;
         $scope.retrievingCities = false;
 
-        if (!isCodePostalValid()) {
+        if (5 !== codePostal.length) {
             $scope.unknownCodePostal = true;
             return;
         }

@@ -80,13 +80,13 @@
           <label class="col-sm-8 control-label" for="postal-code">Code postal de votre résidence</label>
           <div class="col-sm-4">
             <input
+              type="text"
               class="form-control"
               id="postal-code"
               name="codePostal"
+              required
               ng-model="situation.logement.adresse.codePostal"
-              ng-change="updateCities()"
-              type="number"
-              required>
+              ng-change="updateCities()">
               <span class="help-block" ng-if="submitted && unknownCodePostal">Ce code postal est invalide</p>
           </div>
         </div>

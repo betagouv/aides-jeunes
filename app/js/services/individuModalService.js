@@ -64,7 +64,7 @@ angular.module('ddsApp').factory('IndividuModalService', function($modal, Situat
                 individuType: 'personneACharge',
                 modalTitle: 'Personne à charge',
                 askFirstName: true,
-                maxAge: 120
+                maxAge: 25
             });
         }
     };

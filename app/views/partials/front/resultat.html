@@ -57,7 +57,7 @@
     </div>
   </div>
   <p ng-if="!droits.length">Vous n'êtes éligible à aucune aide.</p>
-  <div class="alert alert-warning" ng-if="!situation.ressourcesN2Captured && !hasDroitAllocationLogement()">
+  <div class="alert alert-warning" ng-if="droits.length && !situation.ressourcesN2Captured && !hasDroitAllocationLogement()">
     <h3><i class="fa fa-exclamation-triangle"></i> Note relative à l'aide au logement</h3>
     <b>Attention</b> : la simulation sur votre situation n'a pas abouti sur un droit à l'allocation logement.
     Cependant, nous nous sommes basés sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.

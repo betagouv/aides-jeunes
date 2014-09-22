@@ -3,7 +3,7 @@
 angular.module('ddsApp').constant('ressourceTypes', [
     {
         id: 'revenusSalarie',
-        label: 'Salaires',
+        label: 'Salaires, primes',
         category: 'revenusActivite'
     },
     {

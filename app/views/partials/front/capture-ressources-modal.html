@@ -72,6 +72,7 @@
                       type="number"
                       class="form-control text-right"
                       select-on-focus
+                      zero-to-empty
                       ng-model="monthRessource.montant"
                       ng-change="updateYearAmount(ressource)">
                     <span class="input-group-addon hidden-xs">€</span>
@@ -79,7 +80,7 @@
                 </td>
                 <td>
                   <span class="input-group">
-                    <input type="number" class="form-control text-right" select-on-focus ng-model="ressource.year.montant">
+                    <input type="number" class="form-control text-right" select-on-focus zero-to-empty ng-model="ressource.year.montant">
                     <span class="input-group-addon hidden-xs">€</span>
                   </span>
                 </td>

@@ -62,11 +62,12 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
                 $scope.cities = [];
                 result.data.records.forEach(function(record) {
                     var field = 'nom_comm';
-                    $scope.cities.push(record.fields[field]);
+                    var nomCommune = record.fields[field];
+                    field = 'insee_com';
+                    var codeInsee = record.fields[field];
+                    $scope.cities.push({nom: nomCommune, codeInsee: codeInsee});
                 });
-                if (!_.contains($scope.cities, situation.logement.adresse.ville)) {
-                    situation.logement.adresse.ville = $scope.cities[0];
-                }
+                $scope.selectedCity = $scope.cities[0];
             }
         }, function() {
             $scope.unknownCodePostal = true;
@@ -80,6 +81,8 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid && !$scope.unknownCodePostal) {
+            situation.logement.adresse.ville = $scope.selectedCity.nom;
+            situation.logement.adresse.codeInsee = $scope.selectedCity.codeInsee;
             situation.logementCaptured = true;
             $modalInstance.close();
         }

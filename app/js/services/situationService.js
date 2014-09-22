@@ -87,18 +87,19 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         createApiCompatibleSituation: function(situation) {
-            var individus = [situation.demandeur];
-            situation.demandeur.role = 'demandeur';
-            if (situation.demandeur.dateSituationFamilialeString) {
-                situation.demandeur.dateSituationFamiliale = moment(situation.demandeur.dateSituationFamilialeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            var demandeur = situation.demandeur;
+            var individus = [demandeur];
+            demandeur.role = 'demandeur';
+            if (demandeur.dateSituationFamilialeString) {
+                demandeur.dateSituationFamiliale = moment(demandeur.dateSituationFamilialeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
             }
 
             if (situation.conjoint) {
                 individus.push(situation.conjoint);
                 situation.conjoint.role = 'conjoint';
-                situation.demandeur.statutMarital = situation.conjoint.relationType;
+                demandeur.statutMarital = situation.conjoint.relationType;
             } else {
-                situation.demandeur.statutMarital = situation.demandeur.situationFamiliale;
+                demandeur.statutMarital = demandeur.situationFamiliale;
             }
 
             situation.enfants.forEach(function(enfant) {

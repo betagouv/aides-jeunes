@@ -101,8 +101,8 @@
         <select
           class="form-control"
           ng-if="cities.length"
-          ng-options="city for city in cities"
-          ng-model="situation.logement.adresse.ville">
+          ng-options="city as city.nom for city in cities"
+          ng-model="selectedCity">
         </select>
       </div>
     </div>

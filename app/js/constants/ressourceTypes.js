@@ -97,11 +97,6 @@ angular.module('ddsApp').constant('ressourceTypes', [
         category: 'pensions'
     },
     {
-        id: 'revenusLocatifs',
-        label: 'Revenus locatifs',
-        category: 'autre'
-    },
-    {
         id: 'bourseEnseignementSup',
         label: 'Bourses de l\'enseignement supérieur',
         category: 'autre'

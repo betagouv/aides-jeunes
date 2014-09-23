@@ -6,7 +6,10 @@
   <div class="modal-body">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h2 class="panel-title">Patrimoine immobilier</h2>
+        <h2 class="panel-title">
+          <i class="fa fa-home"></i>
+          Patrimoine immobilier
+        </h2>
       </div>
       <div class="panel-body">
         <div class="form-group">
@@ -27,7 +30,13 @@
             </label>
             <div class="col-sm-3">
               <div class="input-group">
-                <input type="number" id="vl-immo-non-loue" class="form-control text-right" ng-model="patrimoine.valeurLocativeImmoNonLoue">
+                <input
+                  type="number"
+                  id="vl-immo-non-loue"
+                  class="form-control text-right"
+                  select-on-focus
+                  zero-to-empty
+                  ng-model="patrimoine.valeurLocativeImmoNonLoue">
                 <span class="input-group-addon">€</span>
               </div>
             </div>
@@ -39,7 +48,13 @@
             </label>
             <div class="col-sm-3">
               <div class="input-group">
-                <input type="number" id="vl-terrain-non-loue" class="form-control text-right" ng-model="patrimoine.valeurLocativeTerrainNonLoue">
+                <input
+                  type="number"
+                  id="vl-terrain-non-loue"
+                  class="form-control text-right"
+                  select-on-focus
+                  zero-to-empty
+                  ng-model="patrimoine.valeurLocativeTerrainNonLoue">
                 <span class="input-group-addon">€</span>
               </div>
             </div>
@@ -61,6 +76,7 @@
                       type="number"
                       class="form-control text-right"
                       select-on-focus
+                      zero-to-empty
                       ng-model="month.montant"
                       ng-change="updateRevenusLocatifsYearAmount()">
                     <span class="input-group-addon hidden-xs">€</span>
@@ -68,7 +84,12 @@
                 </td>
                 <td>
                   <span class="input-group">
-                    <input type="number" class="form-control text-right" select-on-focus ng-model="revenusLocatifs.year">
+                    <input
+                      type="number"
+                      class="form-control text-right"
+                      select-on-focus
+                      zero-to-empty
+                      ng-model="revenusLocatifs.year">
                     <span class="input-group-addon hidden-xs">€</span>
                   </span>
                 </td>
@@ -81,14 +102,24 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h2 class="panel-title">Patrimoine mobilier</h2>
+        <h2 class="panel-title">
+          <i class="fa fa-money"></i>
+          Patrimoine mobilier
+        </h2>
       </div>
       <div class="panel-body">
         <div class="form-group">
           <label class="col-sm-4 control-label" for="epargne-sur-livret">Montant total de votre épargne sur livret</label>
           <div class="col-sm-3">
             <div class="input-group">
-              <input type="number" required id="epargne-sur-livret" class="form-control text-right" ng-model="patrimoine.epargneSurLivret">
+              <input
+                type="number"
+                required
+                id="epargne-sur-livret"
+                class="form-control text-right"
+                select-on-focus
+                zero-to-empty
+                ng-model="patrimoine.epargneSurLivret">
               <span class="input-group-addon">€</span>
             </div>
           </div>
@@ -115,7 +146,13 @@
             </label>
             <div class="col-sm-3">
               <div class="input-group">
-                <input type="number" id="epargne-sans-revenus" class="form-control text-right" ng-model="patrimoine.epargneSansRevenus">
+                <input
+                  type="number"
+                  id="epargne-sans-revenus"
+                  class="form-control text-right"
+                  select-on-focus
+                  zero-to-empty
+                  ng-model="patrimoine.epargneSansRevenus">
                 <span class="input-group-addon">€</span>
               </div>
             </div>
@@ -142,6 +179,7 @@
                       type="number"
                       class="form-control text-right"
                       select-on-focus
+                      zero-to-empty
                       ng-model="month.montant"
                       ng-change="updateRevenusDuCapitalYearAmount()">
                     <span class="input-group-addon hidden-xs">€</span>
@@ -149,7 +187,12 @@
                 </td>
                 <td>
                   <span class="input-group">
-                    <input type="number" class="form-control text-right" select-on-focus ng-model="revenusDuCapital.year">
+                    <input
+                      type="number"
+                      class="form-control text-right"
+                      select-on-focus
+                      zero-to-empty
+                      ng-model="revenusDuCapital.year">
                     <span class="input-group-addon hidden-xs">€</span>
                   </span>
                 </td>

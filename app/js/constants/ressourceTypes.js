@@ -27,6 +27,21 @@ angular.module('ddsApp').constant('ressourceTypes', [
         category: 'allocations'
     },
     {
+        id: 'allocationRetourEmploi',
+        label: 'Allocation d’aide au retour à l’emploi',
+        category: 'allocations'
+    },
+    {
+        id: 'allocationSecurisationPro',
+        label: 'Allocation de sécurisation professionnelle',
+        category: 'allocations'
+    },
+    {
+        id: 'primeRepriseActivite',
+        label: 'Prime forfaitaire mensuelle pour la reprise d’activité',
+        category: 'allocations'
+    },
+    {
         id: 'allocationLogement',
         label: 'Aide au logement',
         category: 'allocations'
@@ -53,7 +68,7 @@ angular.module('ddsApp').constant('ressourceTypes', [
     },
     {
         id: 'aah',
-        label: 'Allocation adulte handicapé',
+        label: 'Allocation adulte handicapé (AAH)',
         category: 'allocations'
     },
     {
@@ -82,13 +97,33 @@ angular.module('ddsApp').constant('ressourceTypes', [
         category: 'indemnites'
     },
     {
+        id: 'indVolontariat',
+        label: 'Indemnités de volontariat',
+        category: 'indemnites'
+    },
+    {
+        id: 'dedommagementAmiante',
+        label: 'Dédommagement aux victimes de l’amiante',
+        category: 'indemnites'
+    },
+    {
         id: 'pensionsAlimentaires',
         label: 'Pensions alimentaires',
         category: 'pensions'
     },
     {
+        id: 'prestationCompensatoire',
+        label: 'Prestation compensatoire',
+        category: 'pensions'
+    },
+    {
         id: 'pensionsRetraitesRentes',
-        label: 'Retraites (y compris reversion), rentes',
+        label: 'Retraite (y compris reversion), rentes',
+        category: 'pensions'
+    },
+    {
+        id: 'retraiteCombattant',
+        label: 'Retraite du combattant',
         category: 'pensions'
     },
     {
@@ -99,6 +134,16 @@ angular.module('ddsApp').constant('ressourceTypes', [
     {
         id: 'bourseEnseignementSup',
         label: 'Bourses de l\'enseignement supérieur',
+        category: 'autre'
+    },
+    {
+        id: 'bourseRecherche',
+        label: 'Bourse de recherche',
+        category: 'autre'
+    },
+    {
+        id: 'gainsExceptionnels',
+        label: 'Gains exceptionnels (dons, gains aux jeux, héritage)',
         category: 'autre'
     }
 ]);

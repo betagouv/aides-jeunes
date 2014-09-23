@@ -157,7 +157,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         .state('resultat.capture_ressources_n_2', {
             url: '/ressources-n-2',
             onEnter: ['$state', 'CaptureRessourcesModalService', function($state, CaptureRessourcesModalService) {
-                CaptureRessourcesModalService.open(true).result.then(function() {
+                CaptureRessourcesModalService.open(true).result.finally(function() {
                     return $state.go('resultat');
                 });
             }]

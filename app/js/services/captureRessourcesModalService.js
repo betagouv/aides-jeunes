@@ -3,7 +3,7 @@
 angular.module('ddsApp').factory('CaptureRessourcesModalService', function($modal, SituationService) {
     return {
         open: function(isRessourcesN2) {
-            return $modal.open({
+            var modalOptions = {
                 templateUrl: '/partials/capture-ressources-modal.html',
                 controller: 'CaptureRessourcesModalCtrl',
                 resolve: {
@@ -15,9 +15,14 @@ angular.module('ddsApp').factory('CaptureRessourcesModalService', function($moda
                     }
                 },
                 size: 'lg',
-                backdrop: 'static',
-                keyboard: false
-            });
+            };
+
+            if (!isRessourcesN2) {
+                modalOptions.backdrop = 'static';
+                modalOptions.keyboard = false;
+            }
+
+            return $modal.open(modalOptions);
         }
     };
 });

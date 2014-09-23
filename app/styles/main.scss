@@ -24,8 +24,15 @@ body.change-state-progress, body.change-state-progress * {
   font-size: $font-size-base;
 }
 
-.alert > *:first-child {
+.alert > *:first-child,
+.jumbotron > *:first-child {
   margin-top: 0;
+}
+
+.jumbotron > *:last-child,
+.thumbnail .caption > *:last-child,
+.panel-body > *:last-child {
+  margin-bottom: 0;
 }
 
 .nav.nav-tabs {
@@ -42,22 +49,6 @@ body.change-state-progress, body.change-state-progress * {
 
 .table td.align-middle {
   vertical-align: middle;
-}
-
-.panel-body > *:last-child {
-  margin-bottom: 0;
-}
-
-.jumbotron > *:first-child {
-  margin-top: 0;
-}
-
-.jumbotron > *:last-child {
-  margin-bottom: 0;
-}
-
-.thumbnail .caption > *:last-child {
-  margin-bottom: 0;
 }
 
 .main-navbar {
@@ -110,24 +101,6 @@ body.change-state-progress, body.change-state-progress * {
 
 .btn-next {
   margin-top: 15px;
-}
-
-.task-error {
-  @extend .glyphicon;
-  @extend .glyphicon-remove-circle;
-  color: $alert-warning-text;
-}
-
-.task-ok {
-  @extend .glyphicon;
-  @extend .glyphicon-ok-circle;
-  color: $alert-success-text;
-}
-
-.form-foyer {
-  .checkbox {
-    height: 27px;
-  }
 }
 
 .icon-lg {

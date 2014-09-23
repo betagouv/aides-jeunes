@@ -1,54 +1,56 @@
-<div class="page-header">
-  <h1><i class="fa fa-users"></i> Votre foyer</h1>
-</div>
-
-<div class="row">
-  <div ui-view="demandeur"></div>
-  <div ui-view="conjoint"></div>
-</div>
-
-<div class="row">
-  <div ui-view="enfants"></div>
-  <div class="col-md-2"></div>
-  <div ui-view="personnesACharge"></div>
-</div>
-
-<div ng-show="situation.personnesAChargeConfigDone" class="text-center">
-  <a ui-sref="foyer.capture_ressources" ng-if="!situation.ressourcesCaptured" class="btn btn-lg btn-primary btn-next">
-    Étape suivante : vos ressources
-  </a>
-</div>
-
-<div ui-view="ressources"></div>
-
-<div class="text-center" ng-if="situation.ressourcesCaptured && !situation.logementCaptured">
-  <a class="btn btn-lg btn-primary btn-next" ui-sref="foyer.capture_logement">
-    Étape suivante : votre logement
-  </a>
-</div>
-
-<div class="row">
-  <div ui-view="logement"></div>
-  <div class="col-lg-2 visible-lg"></div>
-  <div ui-view="patrimoine"></div>
-</div>
-
-<div class="text-center">
-  <a ui-sref="foyer.capture_patrimoine" ng-if="situation.logementCaptured && !situation.patrimoineCaptured" class="btn btn-lg btn-primary btn-next">
-    Étape suivante : votre patrimoine
-  </a>
-</div>
-
-<div ng-if="situation.patrimoineCaptured" class="panel panel-primary">
-  <div class="panel-heading">
-    <h2 class="panel-title">C'est terminé !</h2>
+<div class="container">
+  <div class="page-header">
+    <h1><i class="fa fa-users"></i> Votre foyer</h1>
   </div>
-  <div class="panel-body">
-    <p>Si les informations que vous venez de rentrer sont correctes, vous pouvez maintenant accéder au résultat de la simulation.</p>
-    <div class="text-center">
-      <button type="button" class="btn btn-lg btn-primary" ng-click="goToSimulation()">
-        Voir le résultat de la simulation
-      </button>
+
+  <div class="row">
+    <div ui-view="demandeur"></div>
+    <div ui-view="conjoint"></div>
+  </div>
+
+  <div class="row">
+    <div ui-view="enfants"></div>
+    <div class="col-md-2"></div>
+    <div ui-view="personnesACharge"></div>
+  </div>
+
+  <div ng-show="situation.personnesAChargeConfigDone" class="text-center">
+    <a ui-sref="foyer.capture_ressources" ng-if="!situation.ressourcesCaptured" class="btn btn-lg btn-primary btn-next">
+      Étape suivante : vos ressources
+    </a>
+  </div>
+
+  <div ui-view="ressources"></div>
+
+  <div class="text-center" ng-if="situation.ressourcesCaptured && !situation.logementCaptured">
+    <a class="btn btn-lg btn-primary btn-next" ui-sref="foyer.capture_logement">
+      Étape suivante : votre logement
+    </a>
+  </div>
+
+  <div class="row">
+    <div ui-view="logement"></div>
+    <div class="col-lg-2 visible-lg"></div>
+    <div ui-view="patrimoine"></div>
+  </div>
+
+  <div class="text-center">
+    <a ui-sref="foyer.capture_patrimoine" ng-if="situation.logementCaptured && !situation.patrimoineCaptured" class="btn btn-lg btn-primary btn-next">
+      Étape suivante : votre patrimoine
+    </a>
+  </div>
+
+  <div ng-if="situation.patrimoineCaptured" class="panel panel-primary">
+    <div class="panel-heading">
+      <h2 class="panel-title">C'est terminé !</h2>
+    </div>
+    <div class="panel-body">
+      <p>Si les informations que vous venez de rentrer sont correctes, vous pouvez maintenant accéder au résultat de la simulation.</p>
+      <div class="text-center">
+        <button type="button" class="btn btn-lg btn-primary" ng-click="goToSimulation()">
+          Voir le résultat de la simulation
+        </button>
+      </div>
     </div>
   </div>
 </div>

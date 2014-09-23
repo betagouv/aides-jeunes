@@ -113,7 +113,7 @@ angular.module('ddsApp').constant('ressourceTypes', [
     },
     {
         id: 'prestationCompensatoire',
-        label: 'Prestation compensatoire',
+        label: 'Prestation compensatoire (suite à séparation)',
         category: 'pensions'
     },
     {

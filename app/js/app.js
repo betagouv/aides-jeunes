@@ -13,10 +13,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/',
             templateUrl: '/partials/homepage.html'
         })
-        .state('teaser', {
-            url: '/teaser',
-            templateUrl:'/partials/teaser.html'
-        })
         .state('foyer', {
             url: '/configuration/foyer',
             views: {

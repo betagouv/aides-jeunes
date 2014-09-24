@@ -110,15 +110,19 @@ body.change-state-progress, body.change-state-progress * {
 }
 
 .jumbotron-homepage {
-  background-image: url('../img/escalier.jpg');
+  background-image: url('../img/homepage.jpg');
   background-position: center center;
   margin-bottom: 15px;
 
   .jumbotron {
-    background-color: rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 20px 0px rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    text-shadow:  1px 1px 4px rgb(0, 0, 0);
     color: white;
     margin-bottom: 0;
+
+    &>p {
+      margin-bottom: 25px;
+    }
   }
 }
 

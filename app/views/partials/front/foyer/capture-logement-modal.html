@@ -4,25 +4,29 @@
   </div>
 
   <div class="modal-body">
-    <p><em>
-      Si vous n’avez pas de domicile fixe ou stable, vous devez effectuer une
-      <a href="http://vosdroits.service-public.fr/particuliers/F17317.xhtml" target="_blank">demande de domiciliation</a>.
-    </em></p>
+    <p>
+      <em>
+        Si vous n’avez pas de domicile fixe ou stable, vous devez effectuer une
+        <a href="http://vosdroits.service-public.fr/particuliers/F17317.xhtml" target="_blank">demande de domiciliation</a>.
+      </em>
+    </p>
 
     <div class="form-group">
       <label class="col-sm-4 control-label">Êtes-vous</label>
       <div class="col-sm-8">
-        <button
-          type="button"
-          ng-repeat="logementType in logementTypes"
-          class="btn btn-sm btn-primary"
-          ng-model="situation.logement.type"
-          btn-radio="logementType.id"
-          popover-placement="top"
-          popover="{{ logementType.helpText }}"
-          popover-trigger="mouseenter">
-          {{ logementType.label|uppercaseFirst }}
-        </button>
+        <div class="btn-group">
+          <button
+            type="button"
+            ng-repeat="logementType in logementTypes"
+            class="btn btn-sm btn-primary"
+            ng-model="situation.logement.type"
+            btn-radio="logementType.id"
+            popover-placement="top"
+            popover="{{ logementType.helpText }}"
+            popover-trigger="mouseenter">
+            {{ logementType.label|uppercaseFirst }}
+          </button>
+        </div>
       </div>
     </div>
 
@@ -39,14 +43,16 @@
     <div class="form-group" ng-show="situation.logement.type === 'locataire' && undefined !== situation.logement.membreFamilleProprietaire">
       <label class="col-sm-4 control-label">Quel type de logement louez-vous&nbsp;?</label>
       <div class="col-sm-6">
-        <button
-          type="button"
-          class="btn btn-primary btn-sm"
-          ng-repeat="locationType in locationTypes"
-          ng-model="situation.logement.locationType"
-          btn-radio="locationType.id">
-          {{ locationType.label|uppercaseFirst }}
-        </button>
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            ng-repeat="locationType in locationTypes"
+            ng-model="situation.logement.locationType"
+            btn-radio="locationType.id">
+            {{ locationType.label|uppercaseFirst }}
+          </button>
+        </div>
       </div>
     </div>
 

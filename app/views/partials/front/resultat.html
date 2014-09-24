@@ -1,8 +1,5 @@
 <div class="container">
   <div class="page-header">
-    <div class="pull-right" ng-if="droits.length">
-      <button type="button" class="btn btn-default btn-lg" ng-click="createTest()">Créer un cas de test à partir de cette simulation</button>
-    </div>
     <h1><i class="fa fa-gears"></i> Résultats de la simulation</h1>
   </div>
 
@@ -27,7 +24,9 @@
                   {{ droit.description.label }}
                   <span ng-if="false !== droit.description.hasMontant"> : environ <strong>{{ round(droit.montant) }}&nbsp;€</strong></span>
                 </h3>
+
                 <p>{{ droit.description.description }}</p>
+
                 <p class="alert alert-warning" ng-if="!situation.ressourcesN2Captured && isDroitAllocationLogement(droit)">
                   <i class="fa fa-exclamation-triangle"></i>
                   <b>Attention</b> : le montant calculé de cette allocation logement se base sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
@@ -37,11 +36,13 @@
                     <i class="fa fa-chevron-right"></i> Déclarer vos ressources sur l'année {{ yearMoins2 }}
                   </a>
                 </p>
+
                 <p>
                   <a class="btn btn-sm btn-primary" ui-sref="form_infos_complementaires_individus({droit: droit.description.id})">
                     Engager les démarches <i class="fa fa-chevron-right"></i>
                   </a>
                 </p>
+
                 <p>
                   <a
                     href="{{ droit.description.link }}"
@@ -57,7 +58,9 @@
         </div>
       </div>
     </div>
+
     <p ng-if="!droits.length">Vous n'êtes éligible à aucune aide.</p>
+
     <div class="alert alert-warning" ng-if="droits.length && !situation.ressourcesN2Captured && !hasDroitAllocationLogement()">
       <h3><i class="fa fa-exclamation-triangle"></i> Note relative à l'aide au logement</h3>
       <b>Attention</b> : la simulation sur votre situation n'a pas abouti sur un droit à l'allocation logement.
@@ -75,8 +78,11 @@
   <p class="text-right">
     <em>Simulation effectuée par <a href="http://www.openfisca.fr">OpenFisca</a></em>
     <br>
-    <small>[<a href="/api/situations/{{ situation._id }}">Situation DDS</a>]
-    [<a href="/api/situations/{{ situation._id }}/openfisca-request">Requête OpenFisca</a>]
-    [<a href="/api/situations/{{ situation._id }}/openfisca-response">Réponse OpenFisca</a>]</small>
+    <small>
+      [<a href="" ng-click="createTest()">Créer un cas de test à partir de cette simulation</a>]
+      [<a href="/api/situations/{{ situation._id }}">Situation DDS</a>]
+      [<a href="/api/situations/{{ situation._id }}/openfisca-request">Requête OpenFisca</a>]
+      [<a href="/api/situations/{{ situation._id }}/openfisca-response">Réponse OpenFisca</a>]
+    </small>
   </p>
 </div>

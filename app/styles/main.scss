@@ -113,11 +113,11 @@ body.change-state-progress, body.change-state-progress * {
   background-image: url('../img/homepage.jpg');
   background-position: center center;
   margin-bottom: 15px;
+  color: white;
 
   .jumbotron {
     background-color: rgba(0, 0, 0, 0);
     text-shadow:  1px 1px 4px rgb(0, 0, 0);
-    color: white;
     margin-bottom: 0;
 
     &>p {

@@ -20,7 +20,7 @@ angular.module('ddsApp').directive('loadingSpinner', function($timeout) {
     return {
         restrict: 'E',
         template: '<div class="loading-spinner" ng-show="loading"><div class="loading-spinner-icon"></div></div>',
-        link: function(scope, element) {
+        link: function(scope) {
             scope.loading = false;
             var pendingChanges = 0;
             var changingState = false;

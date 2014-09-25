@@ -27,13 +27,14 @@ angular.module('ddsApp').controller('FoyerCapturePatrimoineModalCtrl', function(
 
     $scope.patrimoine = situation.patrimoine;
     if (!$scope.patrimoine) {
-        $scope.patrimoine = situation.patrimoine = {};
-        $scope.patrimoine.hasImmobilier = false;
-        $scope.patrimoine.valeurLocativeImmoNonLoue = 0;
-        $scope.patrimoine.valeurLocativeTerrainNonLoue = 0;
-        $scope.patrimoine.hasMobilier = false;
-        $scope.patrimoine.epargneSurLivret = 0;
-        $scope.patrimoine.epargneSansRevenus = 0;
+        $scope.patrimoine = situation.patrimoine = {
+            hasImmobilier: false,
+            valeurLocativeImmoNonLoue: 0,
+            valeurLocativeTerrainNonLoue: 0,
+            hasMobilier: false,
+            epargneSurLivret: 0,
+            epargneSansRevenus: 0
+        };
     } else {
         $scope.patrimoine.hasImmobilier = 0 < ($scope.patrimoine.valeurLocativeImmoNonLoue + $scope.patrimoine.valeurLocativeTerrainNonLoue);
         $scope.patrimoine.hasMobilier = 0 < $scope.patrimoine.epargneSansRevenus;

@@ -193,7 +193,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, SituationService) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -210,12 +210,6 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, Situ
         var top = $modalStack.getTop();
         if (top) {
             $modalStack.dismiss(top.key);
-        }
-    });
-
-    $rootScope.$on('$stateChangeStart', function(e, state) {
-        if ('teaser' === state.name) {
-
         }
     });
 });

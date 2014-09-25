@@ -1,12 +1,17 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q, $window, $state, droitsDescription, acceptanceTests) {
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q, $window, $state, $stateParams, $location, droitsDescription, acceptanceTests) {
+    if ($stateParams.testId) {
+        $location.hash('test-' + $stateParams.testId);
+        _.find(acceptanceTests, {'_id': $stateParams.testId}).open = true;
+    }
+
     $scope.tests = acceptanceTests;
     $scope.droits = {};
     droitsDescription.forEach(function(droit) {
         $scope.droits[droit.id] = droit;
     });
-
+    debugger;
     $scope.pendingTests = 0;
 
     $scope.displayDroitValue = function(value) {

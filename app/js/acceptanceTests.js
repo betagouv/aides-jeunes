@@ -10,7 +10,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state('index', {
-            url: '/',
+            url: '/?testId',
             templateUrl: '/acceptance-tests/partials/index.html',
             controller: 'IndexCtrl',
             resolve: {

@@ -1,0 +1,22 @@
+<div class="col-lg-5" ng-if="situation.patrimoineCaptured">
+  <h2>
+    <i class="fa fa-money"></i>
+    Votre patrimoine
+  </h2>
+
+  <p ng-if="!hasImmobilier">Vous n'avez déclaré aucun bien immobilier</p>
+  <p ng-if="hasImmobilier">
+    La valeur locative de vos appartements/immeubles non loués est de <b>{{ situation.patrimoine.valeurLocativeImmoNonLoue }} €</b>
+    <br>La valeur locative de vos terrains non loués est de <b>{{ situation.patrimoine.valeurLocativeTerrainNonLoue }} €</b>
+    <span ng-if="hasRevenusLocatifs"><br>Vous avez déclaré des revenus locatifs</span>
+  </p>
+
+  <p>
+    Votre épargne sur livret : <b>{{ situation.patrimoine.epargneSurLivret }} €</b>
+    <span ng-if="!hasMobilier"><br>Vous n'avez déclaré aucune autre forme d'épargne</span>
+    <span ng-if="hasMobilier">
+      <br>Votre épargne ne générant pas de revenus : <b>{{ situation.patrimoine.epargneSansRevenus }} €</b>
+      <span ng-if="hasRevenusDuCapital"><br>Vous avez déclaré des revenus du capital</span>
+    </span>
+  </p>
+</div>

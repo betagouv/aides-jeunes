@@ -92,6 +92,7 @@ angular.module('ddsApp').controller('FoyerCapturePatrimoineModalCtrl', function(
             });
         }
 
+        $scope.$emit('patrimoineCaptured');
         $modalInstance.close();
     };
 });

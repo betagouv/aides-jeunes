@@ -29,12 +29,19 @@
 
                 <p class="alert alert-warning" ng-if="!situation.ressourcesN2Captured && isDroitAllocationLogement(droit)">
                   <i class="fa fa-exclamation-triangle"></i>
-                  <b>Attention</b> : le montant calculé de cette allocation logement se base sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
+                  <b>Attention</b> : le montant calculé de cette allocation logement se base sur les ressources
+                  que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
                   <br>Pour que la simulation soit au plus juste et si vos revenus de {{ yearMoins2 }} sont différents,
                   veuillez déclarer vos ressources sur l'année {{ yearMoins2 }}.
                   <a class="btn btn-primary btn-sm" ui-sref="resultat.capture_ressources_n_2">
                     <i class="fa fa-chevron-right"></i> Déclarer vos ressources sur l'année {{ yearMoins2 }}
                   </a>
+                </p>
+
+                <p class="alert alert-warning" ng-if="isDroitCmuAcs(droit)">
+                  <i class="fa fa-exclamation-triangle"></i>
+                  <b>Attention</b> : vous êtes éligible à ce droit si vous n'êtes pas déjà ayant droit
+                  d'une autre mutuelle (parents, conjoint...).
                 </p>
 
                 <p>

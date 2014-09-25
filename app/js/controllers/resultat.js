@@ -50,6 +50,10 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $h
         return result;
     };
 
+    $scope.isDroitCmuAcs = function(droit) {
+        return _.contains(['cmu_c', 'acs'], droit.description.id);
+    };
+
     $scope.$on('ressourcesCaptured', function(ressourcesN2) {
         if (ressourcesN2) {
             situation.ressourcesN2Captured = true;

@@ -2,6 +2,7 @@
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 @import 'font-open-sans';
 @import 'theme';
+@import 'loading-spinner';
 
 $fa-font-path: "/bower_components/font-awesome/fonts";
 @import "font-awesome/scss/font-awesome";
@@ -14,10 +15,6 @@ html {
 
 body {
   margin-bottom: 120px;
-}
-
-body.change-state-progress, body.change-state-progress * {
-  cursor: progress;
 }
 
 .alert {

@@ -16,15 +16,21 @@ angular.module('ddsApp').config(function($provide) {
     }]);
 });
 
-angular.module('ddsApp').directive('stateChangeProgress', function() {
+angular.module('ddsApp').directive('loadingSpinner', function($timeout) {
     return {
-        restrict: 'A',
+        restrict: 'E',
+        template: '<div class="loading-spinner" ng-show="loading"><div class="loading-spinner-icon"></div></div>',
         link: function(scope, element) {
+            scope.loading = false;
             var pendingChanges = 0;
             var changingState = false;
-            var stateChangeStart = function(e, f, g) {
+            var stateChangeStart = function() {
                 pendingChanges++;
-                element.addClass('change-state-progress');
+                $timeout(function() {
+                    if (0 < pendingChanges) {
+                        scope.loading = true;
+                    }
+                }, 100);
             };
             scope.$on('$stateChangeStart', function() {
                 if (!changingState) {
@@ -34,10 +40,10 @@ angular.module('ddsApp').directive('stateChangeProgress', function() {
             });
             scope.$on('modalOpenStart', stateChangeStart);
 
-            var stateChangeEnd = function(e, f, g) {
+            var stateChangeEnd = function() {
                 pendingChanges--;
                 if (0 === pendingChanges) {
-                    element.removeClass('change-state-progress');
+                    scope.loading = false;
                 }
             };
 

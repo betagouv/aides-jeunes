@@ -12,7 +12,7 @@
     <script src="/js/marqueblanche.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app="ddsApp" state-change-progress>
+  <body ng-app="ddsApp">
     <header>
       <nav role="navigation" class="navbar navbar-default main-navbar" ng-controller="MarqueBlancheCtrl">
         <div class="container">
@@ -20,7 +20,10 @@
             <a href="#" class="navbar-brand logo"><img ng-src="img/{{ logo }}"></a>
           </div>
           <ul class="nav navbar-nav">
-            <li><a href="#" class="navbar-brand title">mesdroits.gouv.fr</a></li>
+            <li>
+              <a href="#" class="navbar-brand title">mesdroits.gouv.fr</a>
+              <loading-spinner></loading-spinner>
+            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right hidden-xs">
             <li><a href="#" class="navbar-brand logo"><img src="img/logo_marianne.png"></a></li>
@@ -97,7 +100,7 @@
     <script src="js/directives/date.js"></script>
     <script src="js/directives/selectOnFocus.js"></script>
     <script src="js/directives/zeroToEmpty.js"></script>
-    <script src="js/directives/stateChangeProgress.js"></script>
+    <script src="js/directives/loadingSpinner.js"></script>
     <script src="js/directives/dateAutocomplete.js"></script>
     <script src="js/directives/dateNaissanceMaxAge.js"></script>
 

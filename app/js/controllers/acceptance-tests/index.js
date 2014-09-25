@@ -7,11 +7,7 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
     }
 
     $scope.tests = acceptanceTests;
-    $scope.droits = {};
-    droitsDescription.forEach(function(droit) {
-        $scope.droits[droit.id] = droit;
-    });
-    debugger;
+    $scope.droits = _.indexBy(droitsDescription, 'id');
     $scope.pendingTests = 0;
 
     $scope.displayDroitValue = function(value) {

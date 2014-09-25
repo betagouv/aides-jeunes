@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $rootScope, SituationService) {
-    $scope.situation = SituationService.restoreLocal();
     $scope.relationTypeLabels = SituationService.relationTypeLabels;
     $scope.nationaliteLabels = SituationService.nationaliteLabels;
 

@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function ($scope, $rootScope, SituationService) {
-    $scope.situation = SituationService.restoreLocal();
     $scope.nationaliteLabels = SituationService.nationaliteLabels;
 
     if (!$scope.situation.personnesACharge) {

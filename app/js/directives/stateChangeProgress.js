@@ -21,22 +21,34 @@ angular.module('ddsApp').directive('stateChangeProgress', function() {
         restrict: 'A',
         link: function(scope, element) {
             var pendingChanges = 0;
-            var stateChangeStart = function() {
+            var changingState = false;
+            var stateChangeStart = function(e, f, g) {
                 pendingChanges++;
                 element.addClass('change-state-progress');
             };
-            scope.$on('$stateChangeStart', stateChangeStart);
+            scope.$on('$stateChangeStart', function() {
+                if (!changingState) {
+                    changingState = true;
+                    stateChangeStart();
+                }
+            });
             scope.$on('modalOpenStart', stateChangeStart);
 
-            var stateChangeEnd = function() {
+            var stateChangeEnd = function(e, f, g) {
                 pendingChanges--;
                 if (0 === pendingChanges) {
                     element.removeClass('change-state-progress');
                 }
             };
 
-            scope.$on('$stateChangeSuccess', stateChangeEnd);
-            scope.$on('$stateChangeError', stateChangeEnd);
+            scope.$on('$stateChangeSuccess', function() {
+                changingState = false;
+                stateChangeEnd();
+            });
+            scope.$on('$stateChangeError', function() {
+                changingState = false;
+                stateChangeEnd();
+            });
             scope.$on('modalOpenEnd', stateChangeEnd);
         }
     };

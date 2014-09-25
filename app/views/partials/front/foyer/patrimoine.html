@@ -4,11 +4,17 @@
     Votre patrimoine
   </h2>
 
+  <p ng-if="!hasImmobilier">Vous n'avez déclaré aucun bien immobilier</p>
+  <p ng-if="hasImmobilier"></p>
+
   <p>
-    <span ng-if="!situation.hasImmobilier">Vous n'avez déclaré aucun bien immobilier.</span>
-    <span ng-if="situation.hasImmobilier">Vous avez déclaré des biens immobiliers d'une valeur totale de <strong>{{ situation.immobilierValue }} €</strong>.</span>
-    <br>
-    <span ng-if="!situation.mobilierValue">Vous n'avez déclaré aucune épargne.</span>
-    <span ng-if="situation.mobilierValue">Vous avez déclaré une épargne de <strong>{{ situation.mobilierValue }} €</strong>.</span>
+    Votre épargne sur livret : <b>{{ situation.patrimoine.epargneSurLivret }}</b> €
   </p>
 </div>
+
+<!--revenusLocatifs: [RessourceSchema],
+valeurLocativeImmoNonLoue: Number,
+valeurLocativeTerrainNonLoue: Number,
+revenusDuCapital: [RessourceSchema],
+epargneSurLivret: Number,
+epargneSansRevenus: Number-->

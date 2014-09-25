@@ -1,19 +1,17 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRecapLogementCtrl', function($scope, $http, logementTypes, situation) {
-    $scope.situation = situation;
-
+angular.module('ddsApp').controller('FoyerRecapLogementCtrl', function($scope, $http, logementTypes) {
     var locationTypes = _.find(logementTypes, { id: 'locataire' }).locationTypes;
 
     $scope.locationTypeLabel = function() {
-        return _.find(locationTypes, { id: situation.logement.locationType }).label;
+        return _.find(locationTypes, { id: $scope.situation.logement.locationType }).label;
     };
 
     $scope.logementTypeLabel = function() {
-        return _.find(logementTypes, { id: situation.logement.type }).label;
+        return _.find(logementTypes, { id: $scope.situation.logement.type }).label;
     };
 
     $scope.loyerLabel = function() {
-        return 'Votre ' + ('proprietaire' === situation.logement.type ? 'mensualité d\'emprunt' : 'loyer (hors charges)');
+        return 'Votre ' + ('proprietaire' === $scope.situation.logement.type ? 'mensualité d\'emprunt' : 'loyer (hors charges)');
     };
 });

@@ -42,15 +42,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 },
                 'logement@foyer': {
                     templateUrl: '/partials/foyer/recap-logement.html',
-                    controller: 'FoyerRecapLogementCtrl',
-                    resolve: {
-                        situation: ['SituationService', function(SituationService) {
-                            return SituationService.restoreLocal();
-                        }]
-                    }
+                    controller: 'FoyerRecapLogementCtrl'
                 },
                 'patrimoine@foyer': {
-                    templateUrl: '/partials/foyer/patrimoine.html'
+                    templateUrl: '/partials/foyer/patrimoine.html',
+                    controller: 'FoyerRecapPatrimoineCtrl'
                 }
             }
         })
@@ -219,7 +215,7 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, Situ
 
     $rootScope.$on('$stateChangeStart', function(e, state) {
         if ('teaser' === state.name) {
-            SituationService.newSituation();
+
         }
     });
 });

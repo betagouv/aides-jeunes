@@ -1,8 +1,8 @@
-<div ng-class="{'col-lg-5': situation.logementCaptured}" ng-show="situation.logementCaptured">
-  <h2>
+<div ng-show="situation.logementCaptured">
+  <h1>
     <i class="fa fa-home"></i>
     Votre logement principal
-  </h2>
+  </h1>
 
   <p ng-if="situation.logementCaptured">
     Vous êtes <b>{{ logementTypeLabel() }}</b>

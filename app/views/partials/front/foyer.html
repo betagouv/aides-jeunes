@@ -14,30 +14,29 @@
     <div ui-view="personnesACharge"></div>
   </div>
 
-  <div ng-show="situation.personnesAChargeConfigDone" class="text-center">
-    <a ui-sref="foyer.capture_ressources" ng-if="!situation.ressourcesCaptured" class="btn btn-lg btn-primary btn-next">
-      Étape suivante : vos ressources
-    </a>
-  </div>
-
-  <div ui-view="ressources"></div>
-
-  <div class="text-center" ng-if="situation.ressourcesCaptured && !situation.logementCaptured">
+  <div class="text-center" ng-if="situation.personnesAChargeConfigDone && !situation.logementCaptured">
     <a class="btn btn-lg btn-primary btn-next" ui-sref="foyer.capture_logement">
       Étape suivante : votre logement
     </a>
   </div>
 
-  <div class="row">
-    <div ui-view="logement"></div>
-    <div class="col-lg-2 visible-lg"></div>
-    <div ui-view="patrimoine"></div>
+  <div ui-view="logement"></div>
+
+  <div ng-show="situation.logementCaptured && !situation.ressourcesCaptured" class="text-center">
+    <a ui-sref="foyer.capture_ressources" class="btn btn-lg btn-primary btn-next">
+      Étape suivante : vos ressources
+    </a>
   </div>
 
   <div class="text-center">
-    <a ui-sref="foyer.capture_patrimoine" ng-if="situation.logementCaptured && !situation.patrimoineCaptured" class="btn btn-lg btn-primary btn-next">
+    <a ui-sref="foyer.capture_patrimoine" ng-if="situation.ressourcesCaptured && !situation.patrimoineCaptured" class="btn btn-lg btn-primary btn-next">
       Étape suivante : votre patrimoine
     </a>
+  </div>
+
+  <div class="row">
+    <div ui-view="ressources" class="col-md-8"></div>
+    <div ui-view="patrimoine" class="col-md-4"></div>
   </div>
 
   <div ng-if="situation.patrimoineCaptured" class="panel panel-primary">

@@ -58,6 +58,16 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $h
         return CerfaService.hasDroitForms(droit.description);
     };
 
+    $scope.displayLogementWarning = function() {
+        return _.every([
+           !$scope.awaitingResults,
+           !situation.ressourcesN2Captured,
+           !$scope.hasDroitAllocationLogement(),
+           'gratuit' !== situation.logement.type,
+           !situation.logement.membreFamilleProprietaire
+        ]);
+    };
+
     $scope.$on('ressourcesCaptured', function(ressourcesN2) {
         if (ressourcesN2) {
             situation.ressourcesN2Captured = true;

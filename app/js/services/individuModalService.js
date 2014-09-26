@@ -9,6 +9,7 @@ angular.module('ddsApp').factory('IndividuModalService', function($modal, Situat
         var modalParams = {
             templateUrl: '/partials/foyer/individu-modal.html',
             controller: 'FoyerIndividuModalCtrl',
+            size: 'lg',
             resolve: {
                 options: function() {
                     return options;

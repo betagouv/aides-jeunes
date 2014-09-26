@@ -4,22 +4,14 @@
     Vos enfants
   </h2>
 
-  <div ng-show="undefined === situation.demandeur.enceinte">
-    <div class="pull-right">
-      <button type="button" class="btn btn-sm btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="true">Oui</button>
-      <button type="button" class="btn btn-sm btn-primary" ng-model="situation.demandeur.enceinte" btn-radio="false">Non</button>
-    </div>
-    <p>Attendez-vous un enfant ?</p>
-  </div>
-
   <p>
-    <span ng-if="true === situation.demandeur.enceinte"><i class="fa fa-reddit"></i> Vous attendez un enfant</span>
-    <span ng-if="false === situation.demandeur.enceinte">Vous n'attendez pas d'enfant</span>
-    <span ng-if="false === situation.hasChildren">- Vous n'avez pas d'enfant à charge</span>
-    <span ng-if="true === situation.hasChildren && 0 < situation.enfants.length">- Vous avez {{ situation.enfants.length }} enfant<span ng-if="situation.enfants.length > 1">s</span></span>
+    <span ng-if="false === situation.hasChildren">Vous n'avez pas d'enfant à charge</span>
+    <span ng-if="true === situation.hasChildren && 0 < situation.enfants.length">
+      - Vous avez {{ situation.enfants.length }} enfant<span ng-if="situation.enfants.length > 1">s</span>
+    </span>
   </p>
 
-  <div ng-show="undefined !== situation.demandeur.enceinte && undefined === situation.hasChildren">
+  <div ng-show="undefined === situation.hasChildren">
     <div class="pull-right">
       <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="true">Oui</button>
       <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="false" ng-click="endChildConfig()">Non</button>
@@ -33,7 +25,9 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             {{ child.firstName }}
-            <button type="button" class="close" ng-if="!situation.childConfigDone" ng-click="removeChild(child)"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" ng-if="!situation.childConfigDone" ng-click="removeChild(child)">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </h4>
         </div>
         <div class="panel-body">

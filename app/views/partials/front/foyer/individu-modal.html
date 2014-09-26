@@ -13,7 +13,7 @@
 
     <div class="form-group form-group-lg" ng-class="{'has-error': submitted && form.dateDeNaissance.$invalid}">
       <label class="control-label col-sm-4" for="date-de-naissance">Date de naissance</label>
-      <div class="col-sm-8">
+      <div class="col-sm-4">
         <input
           type="text"
           class="form-control"
@@ -106,6 +106,13 @@
           btn-checkbox
           ng-model="selectedStatuts[statut.id]">
           {{ statut.label }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-default btn-selection"
+          btn-checkbox
+          ng-model="individu.enceinte">
+          Enceinte
         </button>
       </div>
     </div>

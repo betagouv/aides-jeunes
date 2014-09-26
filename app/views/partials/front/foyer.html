@@ -28,6 +28,13 @@
     </a>
   </div>
 
+  <div class="page-header" ng-if="situation.ressourcesCaptured">
+    <h1>
+      <i class="fa fa-eur"></i>
+      Vos ressources
+    </h1>
+  </div>
+
   <div class="row">
     <div ui-view="ressources" class="col-md-8"></div>
     <div ui-view="patrimoine" class="col-md-4"></div>
@@ -39,7 +46,7 @@
     </a>
   </div>
 
-  <div ng-if="situation.patrimoineCaptured" class="panel panel-primary">
+  <div ng-if="situation.patrimoineCaptured" class="panel panel-primary" style="margin-top: 30px;">
     <div class="panel-heading">
       <h2 class="panel-title">C'est terminé !</h2>
     </div>

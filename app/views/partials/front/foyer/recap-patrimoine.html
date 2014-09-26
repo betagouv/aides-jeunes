@@ -1,8 +1,5 @@
 <div ng-if="situation.patrimoineCaptured">
-  <h2>
-    <i class="fa fa-money"></i>
-    Votre patrimoine
-  </h2>
+  <h2 style="margin-top: 0;">Votre patrimoine</h2>
   <p ng-if="!hasImmobilier">Vous n'avez déclaré aucun bien immobilier</p>
   <p ng-if="hasImmobilier">
     La valeur locative de vos appartements/immeubles non loués est de <b>{{ situation.patrimoine.valeurLocativeImmoNonLoue }} €</b>

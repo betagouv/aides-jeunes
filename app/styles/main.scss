@@ -84,9 +84,13 @@ body {
   bottom: 0;
   width: 100%;
   height: 100px;
+  padding-top: 15px;
 
-  .info {
-    padding-top: 35px;
+  & .nav.nav-pills a {
+    color: white;
+    &:hover {
+      background-color: darken($navbar-default-bg, 5%);
+    }
   }
 }
 

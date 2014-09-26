@@ -15,26 +15,31 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-6" ng-repeat="child in situation.enfants">
-          <div class="panel-enfant">
-            <div class="panel-body">
-              {{ child.firstName }}
-              <button type="button" class="close" ng-if="!situation.childConfigDone" ng-click="removeChild(child)">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <div class="row">
-                <div class="col-xs-4">
-                  <i class="fa fa-child icon-lg"></i>
-                </div>
-                <div class="col-xs-8">
-                  Né(e) le <strong>{{ child.dateDeNaissance }}</strong>
-                  <br>Nationalité <strong>{{ nationaliteLabels[child.nationalite] }}</strong>
-                  <br><i>{{ statutsSpecifiques(child) }}</i>
+        <div ng-repeat="child in situation.enfants">
+          <div class="clearfix" ng-if="$index % 2 === 0"></div>
+          <div class="col-sm-6">
+            <div class="panel-enfant">
+              <div class="panel-body">
+                {{ child.firstName }}
+                <button type="button" class="close" ng-if="!situation.childConfigDone" ng-click="removeChild(child)">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row">
+                  <div class="col-xs-4">
+                    <i class="fa fa-child icon-lg"></i>
+                  </div>
+                  <div class="col-xs-8">
+                    Né(e) le <strong>{{ child.dateDeNaissance }}</strong>
+                    <br>Nationalité <strong>{{ nationaliteLabels[child.nationalite] }}</strong>
+                    <br><i>{{ statutsSpecifiques(child) }}</i>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="clearfix" ng-if="situation.enfants.length % 2 === 0"></div>
 
         <div class="col-sm-6" ng-show="true === situation.hasChildren && !situation.childConfigDone">
           <div class="panel-enfant panel-new-enfant">

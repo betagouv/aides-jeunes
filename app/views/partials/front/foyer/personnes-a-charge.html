@@ -15,26 +15,31 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-6" ng-repeat="personne in situation.personnesACharge">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              {{ personne.firstName }}
-              <button type="button" class="close" ng-if="!situation.personnesAChargeConfigDone" ng-click="removePersonneACharge(personne)">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <div class="row">
-                <div class="col-xs-4">
-                  <i class="fa fa-male icon-lg"></i>
-                </div>
-                <div class="col-xs-8">
-                  Né(e) le <strong>{{ personne.dateDeNaissance }}</strong>
-                  <br>Nationalité <strong>{{ nationaliteLabels[personne.nationalite] }}</strong>
-                  <br><i>{{ statutsSpecifiques(personne) }}</i>
+        <div ng-repeat="personne in situation.personnesACharge">
+          <div class="clearfix" ng-if="$index % 2 === 0"></div>
+          <div class="col-sm-6">
+            <div class="panel panel-enfant">
+              <div class="panel-body">
+                {{ personne.firstName }}
+                <button type="button" class="close" ng-if="!situation.personnesAChargeConfigDone" ng-click="removePersonneACharge(personne)">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row">
+                  <div class="col-xs-4">
+                    <i class="fa fa-male icon-lg"></i>
+                  </div>
+                  <div class="col-xs-8">
+                    Né(e) le <strong>{{ personne.dateDeNaissance }}</strong>
+                    <br>Nationalité <strong>{{ nationaliteLabels[personne.nationalite] }}</strong>
+                    <br><i>{{ statutsSpecifiques(personne) }}</i>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="clearfix" ng-if="situation.personnesACharge.length % 2 === 0"></div>
 
         <div class="col-sm-6" ng-show="situation.hasPersonnesACharge && !situation.personnesAChargeConfigDone">
           <div class="panel panel-default" style="border-style: dashed;">

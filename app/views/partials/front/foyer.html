@@ -28,15 +28,15 @@
     </a>
   </div>
 
+  <div class="row">
+    <div ui-view="ressources" class="col-md-8"></div>
+    <div ui-view="patrimoine" class="col-md-4"></div>
+  </div>
+
   <div class="text-center">
     <a ui-sref="foyer.capture_patrimoine" ng-if="situation.ressourcesCaptured && !situation.patrimoineCaptured" class="btn btn-lg btn-primary btn-next">
       Étape suivante : votre patrimoine
     </a>
-  </div>
-
-  <div class="row">
-    <div ui-view="ressources" class="col-md-8"></div>
-    <div ui-view="patrimoine" class="col-md-4"></div>
   </div>
 
   <div ng-if="situation.patrimoineCaptured" class="panel panel-primary">

@@ -44,7 +44,7 @@
                   d'une autre mutuelle (parents, conjoint...).
                 </p>
 
-                <p>
+                <p ng-if="hasDroitForms(droit)">
                   <a class="btn btn-sm btn-primary" ui-sref="form_infos_complementaires_individus({droit: droit.description.id})">
                     Engager les démarches <i class="fa fa-chevron-right"></i>
                   </a>

@@ -221,6 +221,10 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
             }
 
             return true;
+        },
+
+        hasDroitForms: function(droit) {
+            return !!this.getCerfaFromDroit(droit.id);
         }
     };
 });

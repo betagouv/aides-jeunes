@@ -33,6 +33,10 @@ angular.module('ddsApp').factory('IndividuService', function($filter, situations
                 }
             });
 
+            if (individu.enceinte) {
+                statuts.push('enceinte');
+            }
+
             statuts = _.map(statuts, $filter('lowercaseFirst'));
             statuts = statuts.join(', ');
             statuts = $filter('uppercaseFirst')(statuts);

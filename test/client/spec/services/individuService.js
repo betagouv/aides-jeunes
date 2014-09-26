@@ -69,5 +69,13 @@ describe('IndividuService', function() {
             // then
             expect(result).toBe('Étudiant, retraité');
         });
+
+        it('Should display "enceinte" if the individu has the corresponding field to true', function() {
+            // when
+            var result = service.formatStatutsSpecifiques({enceinte: true});
+
+            // then
+            expect(result).toBe('Enceinte');
+        });
     });
 });

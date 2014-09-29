@@ -15,6 +15,7 @@ html {
 
 body {
   margin-bottom: 120px;
+  padding-top: 75px;
 }
 
 .alert {
@@ -49,6 +50,9 @@ body {
 }
 
 .main-navbar {
+  @extend .navbar;
+  @extend .navbar-default;
+  @extend .navbar-fixed-top;
   margin-bottom: 0;
 
   .navbar-brand {

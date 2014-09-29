@@ -15,7 +15,10 @@ html {
 
 body {
   margin-bottom: 120px;
-  padding-top: 75px;
+
+  &.body-front {
+    padding-top: 75px;
+  }
 }
 
 .alert {

@@ -28,7 +28,18 @@ angular.module('ddsApp').constant('cerfaForms', [
                     uniquement en cas de choix de l’organisme différent de celui du demandeur.'
             }
         ],
-        piecesJustificatives: ['vitale', 'identite', 'regularite', 'livret_famille', 'imposition', 'bulletins_paie', 'attestation_indemnites_chomage', 'taxe_fonciere', 'taxe_habitation', 'stabilite_residence']
+        piecesJustificatives: [
+            'vitale',
+            'identite',
+            'regularite',
+            'livret_famille',
+            'imposition',
+            'bulletins_paie',
+            'attestation_indemnites_chomage',
+            'taxe_fonciere',
+            'taxe_habitation',
+            'stabilite_residence'
+        ]
     },
     {
         droitId: 'rsa',
@@ -52,7 +63,19 @@ angular.module('ddsApp').constant('cerfaForms', [
                 label: 'Formulaire complémentaire pour les moins de 25 ans'
             }
         ],
-        piecesJustificatives: ['identite', 'titre_sejour', 'acte_naissance', 'ofii', 'avis_paiement_pension_invalidite', 'avis_paiement_retraite', 'avis_paiement_rente_accident_travail', 'declaration_revenus_saisonnier', 'declaration_grossesse', 'rib']
+        piecesJustificatives: [
+            'identite',
+            'titre_sejour',
+            'acte_naissance',
+            'ofii',
+            'avis_paiement_pension_invalidite',
+            'avis_paiement_retraite',
+            'avis_paiement_rente_accident_travail',
+            'declaration_revenus_saisonnier',
+            'declaration_grossesse',
+            'rib',
+            'taxe_habitation_patrimoine'
+        ]
     },
     {
         droitId: 'aspa',

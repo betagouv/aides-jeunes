@@ -62,7 +62,7 @@ angular.module('ddsApp').constant('piecesJustificatives', [
         id: 'attestation_chomage_partiel',
         label: 'Justificatif de chômage partiel',
         img: 'bulletin_paie.jpg',
-        description: 'L’attestation de l’employeur ou la photocopie des bulletins de salaire'
+        description: 'L’attestation de l’employeur ou la photocopie des bulletins de salaire.'
     },
     {
         id: 'taxe_fonciere',
@@ -74,6 +74,13 @@ angular.module('ddsApp').constant('piecesJustificatives', [
         id: 'taxe_habitation',
         label: 'Avis de taxe d’habitation',
         img: 'taxe_habitation.jpg',
+        isIndividualized: false
+    },
+    {
+        id: 'taxe_habitation_patrimoine',
+        label: 'Avis de taxe d’habitation ou foncière (pour terrains ou logements non loués)',
+        img: 'taxe_habitation.jpg',
+        description: 'La photocopie du dernier avis de la taxe d’habitation ou de la taxe foncière de chaque terrain ou logement non loué que vous possédez.',
         isIndividualized: false
     },
     {

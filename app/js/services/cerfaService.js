@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationService, IndividuService) {
+angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJustificatives, SituationService, IndividuService) {
     // callbacks qui déterminent si un formulaire doit être proposé au téléchargement ou non en fonction de la situation
     var showableCerfaCallbacks = {
         'cmuc_choix_organisme_non_demandeur': function(situation) {
@@ -139,6 +139,9 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
 
             return false;
         },
+        'rsa.taxe_habitation_patrimoine': function(situation) {
+            return 0 < situation.patrimoine.valeurLocativeImmoNonLoue || 0 < valeurLocativeTerrainNonLoue;
+        },
         'aspa.imposition': function(individu) {
             if ('demandeur' === individu.role) {
                 return true;
@@ -225,6 +228,32 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, SituationS
 
         hasDroitForms: function(droit) {
             return !!this.getCerfaFromDroit(droit.id);
+        },
+
+        getRequiredPiecesJustificatives: function(cerfa, droit, situation) {
+            var individus = SituationService.createIndividusList(situation);
+            var result = [];
+            var that = this;
+            cerfa.piecesJustificatives.forEach(function(pieceId) {
+                var pieceJustificative = _.find(piecesJustificatives, {id: pieceId});
+                var piece = { description: pieceJustificative };
+                if (false !== pieceJustificative.isIndividualized) {
+                    var individusConcernes = that.pieceJustificativeIndividus(droit, pieceJustificative.id, individus);
+                    if (!individusConcernes.length) {
+                        return;
+                    }
+
+                    piece.individus = _.map(individusConcernes, IndividuService.label);
+                } else {
+                    if (!that.isPieceJustificativeRequiredForSituation(droit, pieceJustificative.id, situation)) {
+                        return;
+                    }
+                }
+
+                result.push(piece);
+            });
+
+            return result;
         }
     };
 });

@@ -60,11 +60,11 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $h
 
     $scope.displayLogementWarning = function() {
         return _.every([
-           !$scope.awaitingResults,
-           !situation.ressourcesN2Captured,
-           !$scope.hasDroitAllocationLogement(),
-           'gratuit' !== situation.logement.type,
-           !situation.logement.membreFamilleProprietaire
+            !$scope.awaitingResults,
+            !situation.ressourcesN2Captured,
+            !$scope.hasDroitAllocationLogement(),
+            'gratuit' !== situation.logement.type,
+            !situation.logement.membreFamilleProprietaire
         ]);
     };
 

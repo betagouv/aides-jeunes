@@ -140,7 +140,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return false;
         },
         'rsa.taxe_habitation_patrimoine': function(situation) {
-            return 0 < situation.patrimoine.valeurLocativeImmoNonLoue || 0 < valeurLocativeTerrainNonLoue;
+            return 0 < situation.patrimoine.valeurLocativeImmoNonLoue || 0 < situation.patrimoine.valeurLocativeTerrainNonLoue;
         },
         'aspa.imposition': function(individu) {
             if ('demandeur' === individu.role) {

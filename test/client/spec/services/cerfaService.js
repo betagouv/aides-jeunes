@@ -189,6 +189,23 @@ describe('Service: cerfaService', function () {
                 // then
                 expect(result).toEqual([situations[0]]);
             });
+
+            it('should ask taxe habitation for immobilier secondaire only if patrimoine declared', function() {
+                // given
+                var situations = [
+                    {patrimoine: {valeurLocativeImmoNonLoue: 1}},
+                    {patrimoine: {valeurLocativeTerrainNonLoue: 1}},
+                    {patrimoine: {}}
+                ];
+
+                // when
+                var result = _.filter(situations, function(situation) {
+                    return service.isPieceJustificativeRequiredForSituation('rsa', 'taxe_habitation_patrimoine', situation);
+                });
+
+                // then
+                expect(result).toEqual(_.initial(situations));
+            });
         });
 
         describe('function pieceJustificativeIndividus()', function() {

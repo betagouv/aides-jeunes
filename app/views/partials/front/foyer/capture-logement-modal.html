@@ -12,27 +12,27 @@
     </p>
 
     <div class="form-group">
-      <label class="col-sm-4 control-label">Êtes-vous</label>
-      <div class="col-sm-8">
-        <div class="btn-group">
-          <button
-            type="button"
-            ng-repeat="logementType in logementTypes"
-            class="btn btn-sm btn-primary"
-            ng-model="situation.logement.type"
-            btn-radio="logementType.id"
-            popover-placement="top"
-            popover="{{ logementType.helpText }}"
-            popover-trigger="mouseenter">
-            {{ logementType.label|uppercaseFirst }}
-          </button>
-        </div>
+      <label class="col-sm-4 control-label" for="select-logement-type">Êtes-vous</label>
+      <div class="col-sm-4">
+        <select
+          class="form-control"
+          id="select-logement-type"
+          ng-options="logementType.id as logementType.label|uppercaseFirst for logementType in logementTypes"
+          ng-model="situation.logement.type"
+          ng-change="changeLogementType()">
+        </select>
       </div>
     </div>
 
-    <div
-      class="form-group"
-      ng-if="situation.logement.type === 'locataire' || situation.logement.type === 'payant'">
+    <div class="form-group" ng-if="'locataire' === situation.logement.type">
+      <label class="col-sm-4 control-label">Est-ce une colocation ?</label>
+      <div class="col-sm-8">
+        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.colocation" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.colocation" btn-radio="false">Non</button>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="captureMembreFamilleProprietaire()">
       <label class="col-sm-4 control-label">Le propriétaire de votre logement est-il un membre de votre famille&nbsp;?</label>
       <div class="col-sm-8">
         <button type="button" class="btn btn-sm btn-primary" ng-model="situation.logement.membreFamilleProprietaire" btn-radio="true">Oui</button>
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="form-group" ng-show="situation.logement.type === 'locataire' && undefined !== situation.logement.membreFamilleProprietaire">
+    <div class="form-group" ng-show="captureLocationType()">
       <label class="col-sm-4 control-label">Quel type de logement louez-vous&nbsp;?</label>
       <div class="col-sm-6">
         <div class="btn-group">
@@ -68,7 +68,7 @@
 
     <div class="form-group" ng-if="captureLoyer()" ng-class="{'has-error': submitted && form.loyer.$invalid}">
       <label class="col-sm-4 control-label" for="loyer">
-        {{ loyerLabel() }}
+        {{ loyerLabels[situation.logement.type] }}
       </label>
       <div class="col-sm-3">
         <div class="input-group">
@@ -78,7 +78,9 @@
         <span class="help-block" ng-if="submitted && form.loyer.$invalid">Champ invalide</span>
       </div>
       <div class="col-sm-5">
-        <span class="help-block" ng-if="'proprietaire' === situation.logement.type"><em>Mettre 0 si vous n'avez pas d'emprunt pour votre propriété.</em></span>
+        <span class="help-block" ng-if="'proprietaire' === situation.logement.type">
+          <em>Mettre 0 si vous n'avez pas d'emprunt pour votre propriété.</em>
+        </span>
       </div>
     </div>
 

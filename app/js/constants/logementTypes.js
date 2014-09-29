@@ -3,22 +3,7 @@
 angular.module('ddsApp').constant('logementTypes', [
     {
         id: 'locataire',
-        label: 'locataire',
-        helpText: 'Locataire ou sous-locataire',
-        locationTypes: [
-            {
-                id: 'nonmeuble',
-                label: 'non meublé'
-            },
-            {
-                id: 'meublehotel',
-                label: 'meublé / hôtel'
-            },
-            {
-                id: 'hlm',
-                label: 'HLM'
-            }
-        ]
+        label: 'locataire'
     },
     {
         id: 'proprietaire',
@@ -30,7 +15,28 @@ angular.module('ddsApp').constant('logementTypes', [
     },
     {
         id: 'payant',
-        label: 'occupant à titre onéreux',
-        helpText: 'Camping, caravane, hébergement payant...'
+        label: 'occupant à titre onéreux'
     }
 ]);
+
+angular.module('ddsApp').constant('locationTypes', [
+    {
+        id: 'nonmeuble',
+        label: 'non meublé'
+    },
+    {
+        id: 'meublehotel',
+        label: 'meublé / hôtel'
+    },
+    {
+        id: 'hlm',
+        label: 'HLM'
+    }
+]);
+
+angular.module('ddsApp').constant('loyerLabels', {
+    'payant': 'Votre loyer',
+    'locataire': 'Votre loyer (hors charges)',
+    'colocataire': 'Voter part du loyer (hors charges)',
+    'proprietaire': 'Votre mensualité d’emprunt'
+});

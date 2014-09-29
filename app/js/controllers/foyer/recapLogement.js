@@ -1,17 +1,18 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRecapLogementCtrl', function($scope, $http, logementTypes) {
-    var locationTypes = _.find(logementTypes, { id: 'locataire' }).locationTypes;
+angular.module('ddsApp').controller('FoyerRecapLogementCtrl', function($scope, $http, logementTypes, locationTypes, loyerLabels) {
+    $scope.logementTypeLabel = function() {
+        var result = _.find(logementTypes, { id: $scope.situation.logement.type }).label;
+        if ('locataire' === $scope.situation.logement.type && $scope.situation.logement.colocation) {
+            result += ' en colocation';
+        }
+
+        return result;
+    };
 
     $scope.locationTypeLabel = function() {
         return _.find(locationTypes, { id: $scope.situation.logement.locationType }).label;
     };
 
-    $scope.logementTypeLabel = function() {
-        return _.find(logementTypes, { id: $scope.situation.logement.type }).label;
-    };
-
-    $scope.loyerLabel = function() {
-        return 'Votre ' + ('proprietaire' === $scope.situation.logement.type ? 'mensualité d\'emprunt' : 'loyer (hors charges)');
-    };
+    $scope.loyerLabels = loyerLabels;
 });

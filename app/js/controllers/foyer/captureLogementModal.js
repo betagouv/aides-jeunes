@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($scope, $rootScope, $http, $modalInstance, logementTypes, situation) {
+angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($scope, $rootScope, $http, $modalInstance, logementTypes, locationTypes, loyerLabels, situation) {
     $scope.situation = situation;
     if (!situation.logement) {
         situation.logement = {};
@@ -10,24 +10,38 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
     }
 
     $scope.logementTypes = logementTypes;
-    $scope.locationTypes = _.find(logementTypes, { id: 'locataire' }).locationTypes;
-
-    $scope.loyerLabel = function() {
-        return 'Votre ' + ('proprietaire' === situation.logement.type ? 'mensualité d\'emprunt' : 'loyer (hors charges)');
-    };
+    $scope.locationTypes = locationTypes;
+    $scope.loyerLabels = loyerLabels;
 
     $scope.primoAccedantTooltip = 'Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler.';
 
-    var membreFamilleProprietaireCapture = function() {
+    var membreFamilleProprietaireCaptured = function() {
         return 'payant' === situation.logement.type && angular.isDefined(situation.logement.membreFamilleProprietaire);
     };
 
+    $scope.captureMembreFamilleProprietaire = function() {
+        if ('payant' === situation.logement.type) {
+            return true;
+        } else if ('locataire' === situation.logement.type) {
+            return angular.isDefined(situation.logement.colocation);
+        }
+
+        return false;
+    };
+
+    $scope.captureLocationType = function() {
+        return 'locataire' === situation.logement.type && angular.isDefined(situation.logement.membreFamilleProprietaire);
+    };
+
     $scope.captureLoyer = function() {
-        var result = 'gratuit' !== situation.logement.type;
-        result = result &&
+        if ('gratuit' === situation.logement.type) {
+            return false;
+        }
+
+        var result =
             (angular.isDefined(situation.logement.primoAccedant) ||
              angular.isDefined(situation.logement.locationType) ||
-             membreFamilleProprietaireCapture());
+             membreFamilleProprietaireCaptured());
 
         return result;
     };
@@ -36,9 +50,18 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
         var result = angular.isDefined(situation.logement.primoAccedant);
         result = result || angular.isDefined(situation.logement.locationType);
         result = result || 'gratuit' === situation.logement.type;
-        result = result || membreFamilleProprietaireCapture();
+        result = result || membreFamilleProprietaireCaptured();
 
         return result;
+    };
+
+    $scope.changeLogementType = function() {
+        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer'].forEach(function(field) {
+            delete situation.logement[field];
+        });
+        delete situation.logement.adresse.codePostal;
+        $scope.selectedCity = null;
+        $scope.cities = [];
     };
 
     $scope.updateCities = function() {

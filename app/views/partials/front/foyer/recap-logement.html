@@ -10,7 +10,7 @@
     Vous êtes <b>{{ logementTypeLabel() }}</b>
     <span ng-if="'locataire' === situation.logement.type">d'un logement de type <b>{{ locationTypeLabel() }}</b></span>
     <span ng-if="situation.logement.type !== 'gratuit'">
-      <br>{{ loyerLabel() }} s'élève à <b>{{ situation.logement.loyer }} €</b>
+      <br>{{ loyerLabels[situation.logement.type] }} s'élève à <b>{{ situation.logement.loyer }} €</b>
     </span>
     <br>Code postal <b>{{ situation.logement.adresse.codePostal }}</b> - <b>{{ situation.logement.adresse.ville }}</b>
     <span ng-show="undefined !== situation.logement.primoAccedant">

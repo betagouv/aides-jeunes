@@ -1,65 +1,63 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($scope, $rootScope, $http, $modalInstance, logementTypes, locationTypes, loyerLabels, situation) {
-    $scope.situation = situation;
     if (!situation.logement) {
         situation.logement = {};
     }
     if (!situation.logement.adresse) {
         situation.logement.adresse = {};
     }
-
+    var logement = $scope.logement = situation.logement;
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
     $scope.loyerLabels = loyerLabels;
-
     $scope.primoAccedantTooltip = 'Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler.';
 
     var membreFamilleProprietaireCaptured = function() {
-        return 'payant' === situation.logement.type && angular.isDefined(situation.logement.membreFamilleProprietaire);
+        return 'payant' === logement.type && angular.isDefined(logement.membreFamilleProprietaire);
     };
 
     $scope.captureMembreFamilleProprietaire = function() {
-        if ('payant' === situation.logement.type) {
+        if ('payant' === logement.type) {
             return true;
-        } else if ('locataire' === situation.logement.type) {
-            return angular.isDefined(situation.logement.colocation);
+        } else if ('locataire' === logement.type) {
+            return angular.isDefined(logement.colocation);
         }
 
         return false;
     };
 
     $scope.captureLocationType = function() {
-        return 'locataire' === situation.logement.type && angular.isDefined(situation.logement.membreFamilleProprietaire);
+        return 'locataire' === logement.type && angular.isDefined(logement.membreFamilleProprietaire);
     };
 
     $scope.captureLoyer = function() {
-        if ('gratuit' === situation.logement.type) {
+        if ('gratuit' === logement.type) {
             return false;
         }
 
         var result =
-            (angular.isDefined(situation.logement.primoAccedant) ||
-             angular.isDefined(situation.logement.locationType) ||
+            (angular.isDefined(logement.primoAccedant) ||
+             angular.isDefined(logement.locationType) ||
              membreFamilleProprietaireCaptured());
 
         return result;
     };
 
     $scope.captureCodePostal = function() {
-        var result = angular.isDefined(situation.logement.primoAccedant);
-        result = result || angular.isDefined(situation.logement.locationType);
-        result = result || 'gratuit' === situation.logement.type;
-        result = result || membreFamilleProprietaireCaptured();
-
-        return result;
+        return _.any([
+            angular.isDefined(logement.primoAccedant),
+            angular.isDefined(logement.locationType),
+            'gratuit' === logement.type,
+            membreFamilleProprietaireCaptured()
+        ]);
     };
 
     $scope.changeLogementType = function() {
         ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer'].forEach(function(field) {
-            delete situation.logement[field];
+            delete logement[field];
         });
-        delete situation.logement.adresse.codePostal;
+        delete logement.adresse.codePostal;
         $scope.selectedCity = null;
         $scope.cities = [];
     };
@@ -68,7 +66,7 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
         $scope.retrievingCities = false;
         $scope.cities = [];
 
-        var codePostal = situation.logement.adresse.codePostal;
+        var codePostal = logement.adresse.codePostal;
         if (!codePostal || 5 !== codePostal.length) {
             $scope.unknownCodePostal = true;
             return;
@@ -104,10 +102,14 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid && !$scope.unknownCodePostal) {
-            situation.logement.adresse.ville = $scope.selectedCity.nom;
-            situation.logement.adresse.codeInsee = $scope.selectedCity.codeInsee;
+            logement.adresse.ville = $scope.selectedCity.nom;
+            logement.adresse.codeInsee = $scope.selectedCity.codeInsee;
             situation.logementCaptured = true;
             $modalInstance.close();
         }
+    };
+
+    $scope.updateSelectedCity = function(selectedCity) {
+        $scope.selectedCity = selectedCity;
     };
 });

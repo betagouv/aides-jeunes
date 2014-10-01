@@ -21,6 +21,22 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
     $scope.months = ressourcesN2 ? [] : months;
     $scope.selectedRessources = {};
 
+    $scope.isRessourceTypeNonTns = function(ressource) {
+        return 'tns' !== ressource.category;
+    };
+
+    $scope.isRessourceTypeTns = function(ressource) {
+        return 'tns' === ressource.category;
+    };
+
+    $scope.isRessourceNonTns = function(ressource) {
+        return $scope.isRessourceTypeNonTns(ressource.type);
+    };
+
+    $scope.isRessourceTns = function(ressource) {
+        return $scope.isRessourceTypeTns(ressource.type);
+    };
+
     $scope.individuRefs = _.map(individus, function(individu) {
         return {
             label: IndividuService.label(individu),
@@ -29,6 +45,8 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
             individu: individu
         };
     });
+
+    $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
 
     $scope.tab = 'ressources';
 
@@ -39,10 +57,10 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
         if ('ressources' !== tab && !$scope.hasSelectedRessources()) {
             return;
         }
-        if ('montants' === tab && !$scope.isTabMontantAllowed()) {
-            return;
-        }
         if ('montants' === tab) {
+            if (!$scope.isTabMontantAllowed()) {
+                return;
+            }
             if (1 === $scope.individuRefs.length) {
                 $scope.individuRefs[0].selectedRessources = $scope.selectedRessources;
             }
@@ -97,18 +115,8 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
         }
     };
 
-    $scope.hasIndividuRessources = function(individuRef) {
-        var selectedRessources = _.filter(individuRef.selectedRessources);
-        return !!_.values(selectedRessources).length;
-    };
-
     $scope.hasRessources = function() {
-        var result = false;
-        $scope.individuRefs.forEach(function(individuRef) {
-            result = result || $scope.hasIndividuRessources(individuRef);
-        });
-
-        return result;
+        return 1 < _.filter($scope.individuRefs, 'hasRessources').length;
     };
 
     $scope.initIndividusRessources = function() {
@@ -125,18 +133,28 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
 
             var previousRessources = individuRef.ressources;
             individuRef.ressources = [];
+            individuRef.hasRessources = false;
+            individuRef.hasRessourcesTns = false;
+            individuRef.hasRessourcesNonTns = false;
             $scope.ressourceTypes.forEach(function(ressourceType) {
                 if (individuRef.selectedRessources[ressourceType.id]) {
+                    individuRef.hasRessources = true;
+                    if ('tns' === ressourceType.category) {
+                        individuRef.hasRessourcesTns = true;
+                    } else {
+                        individuRef.hasRessourcesNonTns = true;
+                    }
+
                     var ressource = _.find(previousRessources, {type: ressourceType});
                     if (!ressource) {
-                        ressource = {
-                            type: ressourceType,
-                            year: {
-                                montant: 0
-                            }
-                        };
+                        ressource = {type: ressourceType};
+                        if ('tns' === ressourceType.category) {
+                            ressource.chiffreAffaires = 0;
+                        } else {
+                            ressource.year = {montant: 0};
+                        }
 
-                        if (!ressourcesN2) {
+                        if (!ressourcesN2 && 'tns' !== ressourceType) {
                             ressource.months = [
                                 { periode: months[0].id, montant: 0 },
                                 { periode: months[1].id, montant: 0 },
@@ -159,7 +177,7 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
         }));
     };
 
-    $scope.filterSelectedRessourceTypes = function(ressourceType) {
+    $scope.isRessourceSelected = function(ressourceType) {
         return !!$scope.selectedRessources[ressourceType.id];
     };
 
@@ -177,12 +195,18 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
                         });
                     });
                 }
-                individu.ressources.push({
+
+                var ressourceToPush = {
                     debutPeriode: debutPeriode.format('YYYY-MM'),
                     finPeriode: finPeriode.format('YYYY-MM'),
-                    type: ressource.type.id,
-                    montant: ressource.year.montant
-                });
+                    type: ressource.type.id
+                };
+                if ('tns' === ressource.type.category) {
+                    ressourceToPush.montant = ressource.chiffreAffaires;
+                } else {
+                    ressourceToPush.montant = ressource.year.montant;
+                }
+                individu.ressources.push(ressourceToPush);
             });
         });
     };

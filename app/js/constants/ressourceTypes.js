@@ -7,17 +7,12 @@ angular.module('ddsApp').constant('ressourceTypes', [
         category: 'revenusActivite'
     },
     {
-        id: 'revenusNonSalarie',
-        label: 'Revenus non salariés',
+        id: 'stage',
+        label: 'Rémunération de stage',
         category: 'revenusActivite'
     },
     {
-        id: 'revenusAutoEntrepreneur',
-        label: 'Revenus auto-entrepreneur',
-        category: 'revenusActivite'
-    },
-    {
-        id: 'revenusStage',
+        id: 'revenusStageFormationPro',
         label: 'Revenus de stage de formation professionnelle',
         category: 'revenusActivite'
     },
@@ -145,5 +140,20 @@ angular.module('ddsApp').constant('ressourceTypes', [
         id: 'gainsExceptionnels',
         label: 'Gains exceptionnels (dons, gains aux jeux, héritage)',
         category: 'autre'
+    },
+    {
+        id: 'achat_revente',
+        label: 'Activité d’achat/revente, de fourniture de logement',
+        category: 'tns'
+    },
+    {
+        id: 'bic',
+        label: 'Bénéfices Industriels et Commerciaux (BIC)',
+        category: 'tns'
+    },
+    {
+        id: 'bnc',
+        label: 'Bénéfices Non Commerciaux (BNC)',
+        category: 'tns'
     }
 ]);

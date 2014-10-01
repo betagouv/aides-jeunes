@@ -12,17 +12,31 @@
       <button
         type="button"
         class="btn btn-sm btn-selection btn-ressources"
-        ng-repeat="ressourceType in ressourceTypes"
+        ng-repeat="ressourceType in ressourceTypes|filter: isRessourceTypeNonTns"
         ng-class="'capture-' + ressourceType.category"
         btn-checkbox
         ng-model="selectedRessources[ressourceType.id]">
         {{ ressourceType.label }}
       </button>
+
+      <h2>Travailleurs non salariés</h2>
+      <p>
+        Cliquez sur les types de revenus non-salariés pour lesquels personnes de votre foyer ont déclaré un chiffre d'affaires
+        <strong>sur l'année {{ yearMoinsUn }}</strong>.
+      </p>
+      <button
+        type="button"
+        class="btn btn-sm btn-selection btn-ressources capture-tns"
+        ng-repeat="tns in ressourceTypes|filter: isRessourceTypeTns"
+        btn-checkbox
+        ng-model="selectedRessources[tns.id]">
+        {{ tns.label }}
+      </button>
     </div>
 
     <div ng-show="'personnes' === tab">
-      <p>Veuillez sélectionner les personnes qui touchent les ressources que vous avez sélectionnées.</p>
-      <div ng-repeat="ressourceType in ressourceTypes | filter:filterSelectedRessourceTypes">
+      <p>Veuillez sélectionner les personnes qui touchent/ont touché les ressources que vous avez sélectionnées.</p>
+      <div ng-repeat="ressourceType in ressourceTypes|filter: isRessourceSelected">
         <div class="row">
           <div class="col-sm-4">
             <button
@@ -52,19 +66,19 @@
 
     <div ng-show="'montants' === tab">
       <p>Veuillez entrer les montants des ressources sélectionnées (net perçu pour les salaires ou indemnités).</p>
-      <div ng-repeat="individuRef in individuRefs" ng-if="hasIndividuRessources(individuRef)">
+      <div ng-repeat="individuRef in individuRefs" ng-if="individuRef.hasRessources">
         <h2 ng-if="1 < individuRefs.length">{{ individuRef.label }}</h2>
-        <div class="table-responsive">
+        <div class="table-responsive" ng-if="individuRef.hasRessourcesNonTns">
           <table class="table table-bordered">
             <thead>
               <tr>
                 <th style="width: 200px;"></th>
-                <th ng-repeat="month in months">{{ month.label | uppercaseFirst }}</th>
+                <th ng-repeat="month in months">{{ month.label|uppercaseFirst }}</th>
                 <th>De {{ debutPeriode }} à {{ finPeriode }}</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="ressource in individuRef.ressources" class="capture-{{ ressource.type.category }}">
+              <tr ng-repeat="ressource in individuRef.ressources|filter: isRessourceNonTns" class="capture-{{ ressource.type.category }}">
                 <td style="width: 200px; vertical-align: middle; color: white;">{{ ressource.type.label }}</td>
                 <td ng-repeat="monthRessource in ressource.months">
                   <span class="input-group">
@@ -88,12 +102,46 @@
             </tbody>
           </table>
         </div>
+        <div class="table-responsive" ng-if="individuRef.hasRessourcesTns">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th style="width: 200px;">Revenus non-salariés</th>
+                <th>Type de structure</th>
+                <th>Chiffre d'affaires {{ yearMoinsUn }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="ressource in individuRef.ressources|filter: isRessourceTns" class="capture-tns }}">
+                <td style="width: 200px; vertical-align: middle; color: white;">{{ ressource.type.label }}</td>
+                <td style="width: 200px;">
+                  <select class="form-control">
+                    <option value="auto_entrepreneur">Auto-entrepreneur</option>
+                    <option value="micro_entreprise">Micro-entreprise</option>
+                    <option value="autre">Autre TNS</option>
+                  </select>
+                </td>
+                <td>
+                  <span class="input-group">
+                    <input
+                      type="number"
+                      class="form-control text-right"
+                      select-on-focus
+                      zero-to-empty
+                      ng-model="ressource.chiffreAffaires">
+                    <span class="input-group-addon hidden-xs">€</span>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-if="isCaptureRessourcesN2" ng-click="$dismiss()">Annuler</button>
-    <button type="button" class="btn btn-default" ng-show="ressourcesSelected || personnesSelected" ng-click="previousTab()">
+    <button type="button" class="btn btn-default" ng-show="'ressources' !== tab" ng-click="previousTab()">
       &lt; Étape précédente
     </button>
     <button type="submit" class="btn btn-primary">Valider</button>

@@ -12,15 +12,19 @@
     </p>
 
     <div class="form-group">
-      <label class="col-sm-4 control-label" for="select-logement-type">Êtes-vous</label>
-      <div class="col-sm-4">
-        <select
-          class="form-control"
-          id="select-logement-type"
-          ng-options="logementType.id as logementType.label|uppercaseFirst for logementType in logementTypes"
-          ng-model="situation.logement.type"
-          ng-change="changeLogementType()">
-        </select>
+      <label class="col-sm-4 control-label">Êtes-vous</label>
+      <div class="col-sm-8">
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-sm btn-primary"
+            ng-repeat="logementType in logementTypes"
+            ng-model="situation.logement.type"
+            btn-radio="logementType.id"
+            ng-change="changeLogementType()">
+            {{ logementType.label|uppercaseFirst }}
+          </button>
+        </div>
       </div>
     </div>
 
@@ -110,7 +114,8 @@
           class="form-control"
           ng-if="cities.length"
           ng-options="city as city.nom for city in cities"
-          ng-model="selectedCity">
+          ng-model="selectedCity"
+          ng-change="updateSelectedCity(selectedCity)">
         </select>
       </div>
     </div>

@@ -1,4 +1,4 @@
-<div class="jumbotron-homepage">
+<div class="homepage-call-to-action desktop hidden-xs">
   <div class="container">
     <div class="jumbotron">
       <h1>Simulez <em>tous</em> vos droits en ligne&nbsp;!</h1>
@@ -10,16 +10,34 @@
       </p>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-6">
           <div class="text-right">
             <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur_modal" ng-click="newSituation()">Commencer la simulation ...</a>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-6">
           <p style="font-size: 19px;">
             <em>... et obtenez un montant mensuel estimé de ces prestations, puis simplifiez-vous les démarches.</em>
           </p>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="homepage-call-to-action mobile visible-xs">
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Simulez <em>tous</em> vos droits en ligne&nbsp;!</h1>
+
+      <p>
+        Vous souhaitez savoir si pouvez bénéficier du RSA, d'une Allocation Logement,
+        d'une Prestation Familiale, du Minimum Vieillesse (ASPA), d'une Couverture Maladie Universelle Complémentaire,
+        ou encore d'une Allocation de Solidarité Spécifique&nbsp;?
+      </p>
+
+      <div class="text-center">
+        <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur_modal" ng-click="newSituation()">Commencer la simulation</a>
       </div>
     </div>
   </div>

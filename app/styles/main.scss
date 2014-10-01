@@ -79,8 +79,13 @@ body {
     margin-bottom: 28px;
   }
 
-  .navbar-nav > li > .navbar-btn {
-    margin: 21px 25px 21px 0;
+  .navbar-nav {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    & > li > .navbar-btn {
+      margin: 21px 25px 21px 0;
+    }
   }
 }
 
@@ -117,11 +122,23 @@ body {
   font-size: 80px;
 }
 
-.jumbotron-homepage {
-  background-image: url('../img/homepage.jpg');
+.homepage-call-to-action {
   background-position: center center;
   margin-bottom: 15px;
   color: white;
+
+  &.desktop {
+    background-image: url('../img/homepage.jpg');
+
+    .jumbotron {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+
+  &.mobile {
+    background-image: url('../img/homepage_mobile.jpg');
+  }
 
   .jumbotron {
     background-color: rgba(0, 0, 0, 0);
@@ -186,6 +203,10 @@ body {
 
 .capture-autre {
   @include button-variant(white, #878309, #878309);
+}
+
+.capture-tns {
+  @include button-variant(white, #CC2A41, #CC2A41);
 }
 
 .btn-selection, .btn-selection:hover, .btn-selection:focus {

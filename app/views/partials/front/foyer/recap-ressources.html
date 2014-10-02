@@ -1,5 +1,5 @@
 <div ng-if="situation.ressourcesCaptured">
-  <div class="table-responsive" ng-if="hasRessourcesNonTns">
+  <div class="table-responsive" ng-if="ressourcesNonTns.length">
     <table class="table table-bordered table-condensed">
       <thead>
         <tr>
@@ -25,7 +25,7 @@
     </table>
   </div>
 
-  <div class="table-responsive" ng-if="hasRessourcesMicroFiscal">
+  <div class="table-responsive" ng-if="ressourcesMicroFiscal.length">
     <table class="table table-bordered table-condensed">
       <thead>
         <tr>
@@ -34,7 +34,30 @@
           <th>Chiffre d'affaires {{ yearMoins1 }}</th>
         </tr>
       </thead>
-      <tbody ng-repeat="ressource in ressourcesTns">
+      <tbody ng-repeat="ressource in ressourcesMicroFiscal">
+        <tr ng-repeat="individu in ressource.byIndividu">
+          <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.type.category }}">{{ ressource.type.label }}</td>
+          <td ng-if="!isSituationMonoIndividu">{{ individu.label }}</td>
+          <td>{{ individu.yearValue }} €</td>
+        </tr>
+        <tr class="active" ng-if="!isSituationMonoIndividu">
+          <th>Total</th>
+          <th>{{ ressource.totalYear }} €</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-responsive" ng-if="ressourcesAutresTns.length">
+    <table class="table table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th>Revenus non salariés</th>
+          <th ng-if="!isSituationMonoIndividu">Personne</th>
+          <th>Revenus sur le dernier exercice</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="ressource in ressourcesAutresTns">
         <tr ng-repeat="individu in ressource.byIndividu">
           <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.type.category }}">{{ ressource.type.label }}</td>
           <td ng-if="!isSituationMonoIndividu">{{ individu.label }}</td>

@@ -30,30 +30,6 @@ describe('Controller: CaptureRessourcesModalCtrl', function() {
         });
     });
 
-    describe('function nextTab()', function() {
-        it('should broadcast the "ressourcesCaptured" event when closing the modal', function() {
-            // given
-            var rootScope;
-            inject(function($controller, $rootScope) {
-                $controller('CaptureRessourcesModalCtrl', {
-                    $scope: scope,
-                    $modalInstance: {close: function() {}},
-                    individus: [],
-                    ressourcesN2: false
-                });
-                rootScope = $rootScope;
-            });
-            spyOn(rootScope, '$broadcast').andCallThrough();
-            scope.ressourcesSelected = true;
-
-            // when
-            scope.nextTab();
-
-            // then
-            expect(rootScope.$broadcast).toHaveBeenCalledWith('ressourcesCaptured', false);
-        });
-    });
-
     describe('function hasRessources()', function() {
         it('should return false if no individu has selected ressources', function() {
             // given

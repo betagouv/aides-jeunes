@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope, ressourceTypes, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope, $rootScope, ressourceTypes, SituationService, IndividuService) {
     $scope.months = SituationService.getMonths();
     $scope.individuLabel = IndividuService.label;
 
@@ -23,19 +23,24 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
             $scope.hasRessources = true;
         }
 
-        $scope.ressourcesTns = [];
+        $scope.ressourcesMicroFiscal = [];
+        $scope.ressourcesAutresTns = [];
         $scope.ressourcesNonTns = [];
         ressourceTypes.forEach(function(ressourceType) {
             if ($scope.tempRessources[ressourceType.id]) {
-                if ('tns' === ressourceType.category) {
-                    $scope.hasRessourcesTns = true;
-                    $scope.ressourcesTns.push({
+                if ('caMicroEntreprise' === ressourceType.id) {
+                    $scope.ressourcesMicroFiscal.push({
+                        type: ressourceType,
+                        total: $scope.tempRessources[ressourceType.id].total,
+                        byIndividu: $scope.tempRessources[ressourceType.id].byIndividu
+                    });
+                } else if ('autresRevenusTns' === ressourceType.id) {
+                    $scope.ressourcesAutresTns.push({
                         type: ressourceType,
                         total: $scope.tempRessources[ressourceType.id].total,
                         byIndividu: $scope.tempRessources[ressourceType.id].byIndividu
                     });
                 } else {
-                    $scope.hasRessourcesNonTns = true;
                     $scope.ressourcesNonTns.push({
                         type: ressourceType,
                         total: $scope.tempRessources[ressourceType.id].total,
@@ -88,7 +93,7 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
         $scope.initRessources();
     }
 
-    $scope.$on('ressourcesCaptured', function() {
+    $rootScope.$on('ressourcesCaptured', function() {
         $scope.situation.ressourcesCaptured = true;
         $scope.initRessources();
     });

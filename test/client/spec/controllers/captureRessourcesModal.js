@@ -25,49 +25,8 @@ describe('Controller: CaptureRessourcesModalCtrl', function() {
             });
 
             // then
-            expect(scope.individuRefs[0].selectedRessources).toBeDefined();
-            expect(scope.individuRefs[1].selectedRessources).toBeDefined();
-        });
-    });
-
-    describe('function hasRessources()', function() {
-        it('should return false if no individu has selected ressources', function() {
-            // given
-            var individus = [{}];
-            inject(function($controller) {
-                $controller('CaptureRessourcesModalCtrl', {
-                    $scope: scope,
-                    $modalInstance: {},
-                    individus: individus,
-                    ressourcesN2: false
-                });
-            });
-
-            // when
-            var result = scope.hasRessources();
-
-            // then
-            expect(result).toBe(false);
-        });
-
-        it('should return true if an individu has selected ressources', function() {
-            // given
-            var individus = [{}, {}];
-            inject(function($controller) {
-                $controller('CaptureRessourcesModalCtrl', {
-                    $scope: scope,
-                    $modalInstance: {close: function() {}},
-                    individus: individus,
-                    ressourcesN2: false
-                });
-            });
-            scope.individuRefs[0].hasRessources = true;
-
-            // when
-            var result = scope.hasRessources();
-
-            // then
-            expect(result).toBe(true);
+            expect(scope.individuRefs[0].selectedRessourceTypes).toBeDefined();
+            expect(scope.individuRefs[1].selectedRessourceTypes).toBeDefined();
         });
     });
 });

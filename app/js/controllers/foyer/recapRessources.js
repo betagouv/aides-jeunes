@@ -1,15 +1,18 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope, SituationService, IndividuService, ressourceTypes) {
+angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope, ressourceTypes, SituationService, IndividuService) {
     $scope.months = SituationService.getMonths();
     $scope.individuLabel = IndividuService.label;
 
     $scope.lastMonth = moment().subtract('months', 1).startOf('month').format('MMMM YYYY');
     $scope.lastYear = moment().subtract('years', 1).format('MMMM YYYY');
+    $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
 
     $scope.initRessources = function() {
         $scope.tempRessources = {};
         $scope.hasRessources = false;
+        $scope.hasRessourcesTns = false;
+        $scope.hasRessourcesNonTns = false;
         $scope.globalAmount = 0;
 
         var individus = SituationService.createIndividusList($scope.situation);
@@ -20,15 +23,26 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
             $scope.hasRessources = true;
         }
 
-        $scope.ressources = [];
+        $scope.ressourcesTns = [];
+        $scope.ressourcesNonTns = [];
         ressourceTypes.forEach(function(ressourceType) {
             if ($scope.tempRessources[ressourceType.id]) {
-                $scope.ressources.push({
-                    type: ressourceType,
-                    total: $scope.tempRessources[ressourceType.id].total,
-                    totalYear: $scope.tempRessources[ressourceType.id].totalYear,
-                    byIndividu: $scope.tempRessources[ressourceType.id].byIndividu
-                });
+                if ('tns' === ressourceType.category) {
+                    $scope.hasRessourcesTns = true;
+                    $scope.ressourcesTns.push({
+                        type: ressourceType,
+                        total: $scope.tempRessources[ressourceType.id].total,
+                        byIndividu: $scope.tempRessources[ressourceType.id].byIndividu
+                    });
+                } else {
+                    $scope.hasRessourcesNonTns = true;
+                    $scope.ressourcesNonTns.push({
+                        type: ressourceType,
+                        total: $scope.tempRessources[ressourceType.id].total,
+                        totalYear: $scope.tempRessources[ressourceType.id].totalYear,
+                        byIndividu: $scope.tempRessources[ressourceType.id].byIndividu
+                    });
+                }
             }
         });
     };

@@ -15,6 +15,7 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
 
     $scope.debutPeriode = debutPeriode.format('MMMM YYYY');
     $scope.finPeriode = finPeriode.format('MMMM YYYY');
+    $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
     $scope.ressourceTypes = ressourceTypes;
 
     var months = SituationService.getMonths();
@@ -25,16 +26,20 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
         return 'tns' !== ressource.category;
     };
 
-    $scope.isRessourceTypeTns = function(ressource) {
-        return 'tns' === ressource.category;
+    $scope.isRessourceTypeMicroTns = function(ressource) {
+        return 'tns' === ressource.category && 'autresRevenusTns' !== ressource.id;
     };
 
     $scope.isRessourceNonTns = function(ressource) {
         return $scope.isRessourceTypeNonTns(ressource.type);
     };
 
-    $scope.isRessourceTns = function(ressource) {
-        return $scope.isRessourceTypeTns(ressource.type);
+    $scope.isRessourceMicroTns = function(ressource) {
+        return $scope.isRessourceTypeMicroTns(ressource.type);
+    };
+
+    $scope.isRessourceOtherTns = function(ressource) {
+        return 'autresRevenusTns' === ressource.type.id;
     };
 
     $scope.individuRefs = _.map(individus, function(individu) {
@@ -45,8 +50,6 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
             individu: individu
         };
     });
-
-    $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
 
     $scope.tab = 'ressources';
 
@@ -116,7 +119,7 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
     };
 
     $scope.hasRessources = function() {
-        return 1 < _.filter($scope.individuRefs, 'hasRessources').length;
+        return 0 < _.filter($scope.individuRefs, 'hasRessources').length;
     };
 
     $scope.initIndividusRessources = function() {
@@ -134,13 +137,16 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
             var previousRessources = individuRef.ressources;
             individuRef.ressources = [];
             individuRef.hasRessources = false;
-            individuRef.hasRessourcesTns = false;
+            individuRef.hasRessourcesMicroTns = false;
+            individuRef.hasRessourcesOtherTns = false;
             individuRef.hasRessourcesNonTns = false;
             $scope.ressourceTypes.forEach(function(ressourceType) {
                 if (individuRef.selectedRessources[ressourceType.id]) {
                     individuRef.hasRessources = true;
-                    if ('tns' === ressourceType.category) {
-                        individuRef.hasRessourcesTns = true;
+                    if ('caMicroEntreprise' === ressourceType.id) {
+                        individuRef.hasRessourcesMicroTns = true;
+                    } else if ('autresRevenusTns' === ressourceType.id) {
+                        individuRef.hasRessourcesOtherTns = true;
                     } else {
                         individuRef.hasRessourcesNonTns = true;
                     }
@@ -148,7 +154,11 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
                     var ressource = _.find(previousRessources, {type: ressourceType});
                     if (!ressource) {
                         ressource = {type: ressourceType};
-                        if ('tns' === ressourceType.category) {
+                        if ('caMicroEntreprise' === ressourceType.id) {
+                            ressource.tnsStructureType = 'auto_entrepreneur';
+                            ressource.tnsActiviteType = 'bic';
+                            ressource.chiffreAffaires = 0;
+                        } else if ('autresRevenusTns' === ressourceType.id) {
                             ressource.chiffreAffaires = 0;
                         } else {
                             ressource.year = {montant: 0};

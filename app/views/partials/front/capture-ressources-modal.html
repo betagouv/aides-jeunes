@@ -12,25 +12,11 @@
       <button
         type="button"
         class="btn btn-sm btn-selection btn-ressources"
-        ng-repeat="ressourceType in ressourceTypes|filter: isRessourceTypeNonTns"
+        ng-repeat="ressourceType in ressourceTypes"
         ng-class="'capture-' + ressourceType.category"
         btn-checkbox
         ng-model="selectedRessources[ressourceType.id]">
         {{ ressourceType.label }}
-      </button>
-
-      <h2>Travailleurs non salariés</h2>
-      <p>
-        Cliquez sur les types de revenus non-salariés pour lesquels personnes de votre foyer ont déclaré un chiffre d'affaires
-        <strong>sur l'année {{ yearMoinsUn }}</strong>.
-      </p>
-      <button
-        type="button"
-        class="btn btn-sm btn-selection btn-ressources capture-tns"
-        ng-repeat="tns in ressourceTypes|filter: isRessourceTypeTns"
-        btn-checkbox
-        ng-model="selectedRessources[tns.id]">
-        {{ tns.label }}
       </button>
     </div>
 
@@ -102,29 +88,66 @@
             </tbody>
           </table>
         </div>
-        <div class="table-responsive" ng-if="individuRef.hasRessourcesTns">
+
+        <div class="table-responsive" ng-if="individuRef.hasRessourcesMicroTns">
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th style="width: 200px;">Revenus non-salariés</th>
+                <th style="width: 200px;"></th>
                 <th>Type de structure</th>
-                <th>Chiffre d'affaires {{ yearMoinsUn }}</th>
+                <th>Type d'activité</th>
+                <th>Chiffre d’affaires {{ yearMoinsUn }}</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="ressource in individuRef.ressources|filter: isRessourceTns" class="capture-tns }}">
+              <tr ng-repeat="ressource in individuRef.ressources|filter: isRessourceMicroTns" class="capture-tns }}">
                 <td style="width: 200px; vertical-align: middle; color: white;">{{ ressource.type.label }}</td>
-                <td style="width: 200px;">
-                  <select class="form-control">
+                <td style="width: 190px;">
+                  <select class="form-control" ng-model="ressource.tnsStructureType">
                     <option value="auto_entrepreneur">Auto-entrepreneur</option>
                     <option value="micro_entreprise">Micro-entreprise</option>
-                    <option value="autre">Autre TNS</option>
+                  </select>
+                </td>
+                <td style="width: 220px;">
+                  <select class="form-control" ng-model="ressource.tnsActiviteType">
+                    <option value="achat_revente">Achat/revente ou fourniture de logement</option>
+                    <option value="bic">Activité commerciale ou artisanale (BIC)</option>
+                    <option value="bnc">Activité libérale (BNC)</option>
                   </select>
                 </td>
                 <td>
                   <span class="input-group">
                     <input
                       type="number"
+                      id="chiffre-affaires"
+                      class="form-control text-right"
+                      select-on-focus
+                      zero-to-empty
+                      ng-model="ressource.chiffreAffaires">
+                    <span class="input-group-addon hidden-xs">€</span>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-responsive" ng-if="individuRef.hasRessourcesOtherTns">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th style="width: 200px;"></th>
+                <th>Revenus sur le dernier exercice</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="ressource in individuRef.ressources|filter: isRessourceOtherTns" class="capture-tns }}">
+                <td style="width: 200px; vertical-align: middle; color: white;">{{ ressource.type.label }}</td>
+                <td>
+                  <span class="input-group">
+                    <input
+                      type="number"
+                      id="chiffre-affaires"
                       class="form-control text-right"
                       select-on-focus
                       zero-to-empty

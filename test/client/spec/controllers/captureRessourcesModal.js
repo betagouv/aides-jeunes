@@ -61,12 +61,11 @@ describe('Controller: CaptureRessourcesModalCtrl', function() {
             inject(function($controller) {
                 $controller('CaptureRessourcesModalCtrl', {
                     $scope: scope,
-                    $modalInstance: {close: function() {}},
+                    $modalInstance: {},
                     individus: individus,
                     ressourcesN2: false
                 });
             });
-            scope.individuRefs[0].selectedRessources.test = false;
 
             // when
             var result = scope.hasRessources();
@@ -86,8 +85,7 @@ describe('Controller: CaptureRessourcesModalCtrl', function() {
                     ressourcesN2: false
                 });
             });
-            scope.individuRefs[0].selectedRessources.test = true;
-            scope.individuRefs[1].selectedRessources.test = false;
+            scope.individuRefs[0].hasRessources = true;
 
             // when
             var result = scope.hasRessources();

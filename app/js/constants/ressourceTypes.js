@@ -83,7 +83,7 @@ angular.module('ddsApp').constant('ressourceTypes', [
     },
     {
         id: 'indJourAccidentDuTravail',
-        label: 'Indemnités accident du travail',
+        label: 'Indemnités d’accident du travail',
         category: 'indemnites'
     },
     {
@@ -142,18 +142,13 @@ angular.module('ddsApp').constant('ressourceTypes', [
         category: 'autre'
     },
     {
-        id: 'achat_revente',
-        label: 'Activité d’achat/revente, de fourniture de logement',
+        id: 'caMicroEntreprise',
+        label: 'Micro-entreprise / auto-entrepreneur',
         category: 'tns'
     },
     {
-        id: 'bic',
-        label: 'Bénéfices Industriels et Commerciaux (BIC)',
-        category: 'tns'
-    },
-    {
-        id: 'bnc',
-        label: 'Bénéfices Non Commerciaux (BNC)',
+        id: 'autresRevenusTns',
+        label: 'Autres revenus non salariés',
         category: 'tns'
     }
 ]);

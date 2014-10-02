@@ -8,7 +8,7 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
     $scope.lastYear = moment().subtract('years', 1).format('MMMM YYYY');
     $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
 
-    $scope.initRessources = function() {
+    var initRessources = function() {
         $scope.tempRessources = {};
         $scope.hasRessources = false;
         $scope.hasRessourcesTns = false;
@@ -31,20 +31,20 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
                 if ('caMicroEntreprise' === ressourceType.id) {
                     $scope.ressourcesMicroFiscal.push({
                         type: ressourceType,
-                        total: $scope.tempRessources[ressourceType.id].total,
+                        totalAnnuel: $scope.tempRessources[ressourceType.id].totalAnnuel,
                         byIndividu: $scope.tempRessources[ressourceType.id].byIndividu
                     });
                 } else if ('autresRevenusTns' === ressourceType.id) {
                     $scope.ressourcesAutresTns.push({
                         type: ressourceType,
-                        total: $scope.tempRessources[ressourceType.id].total,
+                        totalAnnuel: $scope.tempRessources[ressourceType.id].totalAnnuel,
                         byIndividu: $scope.tempRessources[ressourceType.id].byIndividu
                     });
                 } else {
                     $scope.ressourcesNonTns.push({
                         type: ressourceType,
                         total: $scope.tempRessources[ressourceType.id].total,
-                        totalYear: $scope.tempRessources[ressourceType.id].totalYear,
+                        totalAnnuel: $scope.tempRessources[ressourceType.id].totalAnnuel,
                         byIndividu: $scope.tempRessources[ressourceType.id].byIndividu
                     });
                 }
@@ -64,7 +64,7 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
                 ressourceSection = $scope.tempRessources[ressource.type] = {
                     total: [0, 0, 0],
                     byIndividu: [],
-                    totalYear: 0
+                    totalAnnuel: 0
                 };
             }
 
@@ -78,8 +78,8 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
             }
 
             if (ressource.debutPeriode) {
-                individuRessource.yearValue = ressource.montant;
-                $scope.tempRessources[ressource.type].totalYear += ressource.montant;
+                individuRessource.montantAnnuel = ressource.montant;
+                $scope.tempRessources[ressource.type].totalAnnuel += ressource.montant;
             } else {
                 var monthIndex = monthsIndexes[ressource.periode];
                 individuRessource.values[monthIndex] = ressource.montant;
@@ -90,11 +90,11 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
     };
 
     if ($scope.situation.ressourcesCaptured) {
-        $scope.initRessources();
+        initRessources();
     }
 
     $rootScope.$on('ressourcesCaptured', function() {
         $scope.situation.ressourcesCaptured = true;
-        $scope.initRessources();
+        initRessources();
     });
 });

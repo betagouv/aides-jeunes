@@ -14,12 +14,12 @@
           <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.type.category }}">{{ ressource.type.label }}</td>
           <td ng-if="!isSituationMonoIndividu">{{ individu.label }}</td>
           <td ng-repeat="month in months">{{ individu.values[$index] }} €</td>
-          <td>{{ individu.yearValue }} €</td>
+          <td>{{ individu.montantAnnuel }} €</td>
         </tr>
         <tr class="active" ng-if="!isSituationMonoIndividu">
           <th>Total</th>
           <th ng-repeat="month in months">{{ ressource.total[$index] }} €</th>
-          <th>{{ ressource.totalYear }} €</th>
+          <th>{{ ressource.totalAnnuel }} €</th>
         </tr>
       </tbody>
     </table>
@@ -38,11 +38,11 @@
         <tr ng-repeat="individu in ressource.byIndividu">
           <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.type.category }}">{{ ressource.type.label }}</td>
           <td ng-if="!isSituationMonoIndividu">{{ individu.label }}</td>
-          <td>{{ individu.yearValue }} €</td>
+          <td>{{ individu.montantAnnuel }} €</td>
         </tr>
         <tr class="active" ng-if="!isSituationMonoIndividu">
           <th>Total</th>
-          <th>{{ ressource.totalYear }} €</th>
+          <th>{{ ressource.totalAnnuel }} €</th>
         </tr>
       </tbody>
     </table>
@@ -59,13 +59,18 @@
       </thead>
       <tbody ng-repeat="ressource in ressourcesAutresTns">
         <tr ng-repeat="individu in ressource.byIndividu">
-          <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.type.category }}">{{ ressource.type.label }}</td>
+          <td
+            rowspan="{{ ressource.byIndividu.length + 1 }}"
+            ng-if="$first"
+            class="text-center align-middle capture-{{ ressource.type.category }}">
+            {{ ressource.type.label }}
+          </td>
           <td ng-if="!isSituationMonoIndividu">{{ individu.label }}</td>
-          <td>{{ individu.yearValue }} €</td>
+          <td>{{ individu.montantAnnuel }} €</td>
         </tr>
         <tr class="active" ng-if="!isSituationMonoIndividu">
           <th>Total</th>
-          <th>{{ ressource.totalYear }} €</th>
+          <th>{{ ressource.totalAnnuel }} €</th>
         </tr>
       </tbody>
     </table>

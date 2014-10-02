@@ -128,11 +128,11 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
                     ressource = {type: ressourceType};
                     if ('caMicroEntreprise' === ressourceType.id) {
                         ressource.tnsStructureType = 'auto_entrepreneur';
-                        ressource.tnsActiviteType = 'bic'
+                        ressource.tnsActiviteType = 'bic';
                     }
                     ressource.montantAnnuel = 0;
 
-                    if (!ressourcesN2 && 'tns' !== ressourceType) {
+                    if (!ressourcesN2 && 'tns' !== ressourceType.category) {
                         ressource.months = [
                             { periode: months[0].id, montant: 0 },
                             { periode: months[1].id, montant: 0 },

@@ -18,12 +18,7 @@ angular.module('ddsApp').constant('ressourceTypes', [
     },
     {
         id: 'allocationsChomage',
-        label: 'Allocation chômage',
-        category: 'allocations'
-    },
-    {
-        id: 'allocationRetourEmploi',
-        label: 'Allocation d’aide au retour à l’emploi',
+        label: 'Allocation chômage (ARE)',
         category: 'allocations'
     },
     {

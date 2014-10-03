@@ -76,5 +76,7 @@
     </table>
   </div>
 
-  <p ng-if="!hasRessources">Vous n'avez déclaré aucune ressource sur les trois derniers mois</p>
+  <p ng-if="!ressourcesNonTns.length && !ressourcesAutresTns.length && !ressourcesMicroFiscal.length">
+    Vous n'avez déclaré aucune ressource sur les trois derniers mois
+  </p>
 </div>

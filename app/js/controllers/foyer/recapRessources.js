@@ -77,7 +77,7 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
                 $scope.tempRessources[ressource.type].byIndividu.push(individuRessource);
             }
 
-            if (ressource.debutPeriode) {
+            if (!ressource.periode || 'caMicroEntreprise' === ressource.type) {
                 individuRessource.montantAnnuel = ressource.montant;
                 $scope.tempRessources[ressource.type].totalAnnuel += ressource.montant;
             } else {

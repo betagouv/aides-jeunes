@@ -169,12 +169,21 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
                     });
                 }
 
-                individu.ressources.push({
-                    debutPeriode: debutAnnee.format('YYYY-MM'),
-                    finPeriode: finAnnee.format('YYYY-MM'),
+                var individuRessource = {
                     type: ressource.type.id,
                     montant: ressource.montantAnnuel
-                });
+                };
+
+                if ('caMicroEntreprise' === ressource.type.id) {
+                    individuRessource.tnsStructureType = ressource.tnsStructureType;
+                    individuRessource.tnsActiviteType = ressource.tnsActiviteType;
+                    individuRessource.periode = $scope.yearMoinsUn;
+                } else if ('tns' !== ressource.type.category) {
+                    individuRessource.debutPeriode = debutAnnee.format('YYYY-MM');
+                    individuRessource.finPeriode = finAnnee.format('YYYY-MM');
+                }
+
+                individu.ressources.push(individuRessource);
             });
         });
     };

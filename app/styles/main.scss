@@ -69,15 +69,19 @@ $main-footer-height: 100px;
   @extend .navbar-fixed-top;
   margin-bottom: 0;
 
-  .navbar-brand {
-    &.title {
-      padding-top: 30px;
-      padding-bottom: 45px;
-    }
+  .container {
+    position: relative;
+  }
 
+  .navbar-brand {
     &.logo {
       padding-top: 3px;
       padding-bottom: 72px;
+    }
+
+    &.title {
+      padding-top: 30px;
+      padding-bottom: 45px;
     }
 
     &.logo, &.logo:hover {

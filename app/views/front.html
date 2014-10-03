@@ -24,18 +24,26 @@
     <header>
       <nav role="navigation" class="main-navbar" ng-controller="MarqueBlancheCtrl">
         <div class="container">
-          <div class="navbar-header" ng-cloak ng-if="logo">
-            <a href="#" class="navbar-brand logo"><img ng-src="img/{{ logo }}"></a>
+          <div class="collapse navbar-collapse" ng-cloak ng-if="logo">
+            <div class="navbar-header">
+              <a href="#" class="navbar-brand logo"><img ng-src="img/{{ logo }}"></a>
+            </div>
           </div>
           <ul class="nav navbar-nav">
             <li>
-              <a href="#" class="navbar-brand title">mes-aides.gouv.fr</a>
+              <a href="#" class="navbar-brand title">
+                mes-aides.gouv.fr
+              </a>
+            </li>
+            <li>
               <loading-spinner></loading-spinner>
             </li>
           </ul>
-          <ul class="nav navbar-nav navbar-right hidden-xs">
-            <li><a href="#" class="navbar-brand logo"><img src="img/logo_marianne.png"></a></li>
-          </ul>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" class="navbar-brand logo"><img src="img/logo_marianne.png"></a></li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>

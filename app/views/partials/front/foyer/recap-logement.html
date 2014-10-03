@@ -14,10 +14,10 @@
     </span>
     <br>Code postal <b>{{ situation.logement.adresse.codePostal }}</b> - <b>{{ situation.logement.adresse.ville }}</b>
     <span ng-show="undefined !== situation.logement.primoAccedant">
-      <br>Vous {{ situation.logement.primoAccedant ? 'êtes' : 'n\'êtes pas' }} primo-accédant pour votre propriété
+      <br>Vous {{ situation.logement.primoAccedant ? 'êtes' : 'n’êtes pas' }} primo-accédant pour votre propriété
     </span>
     <span ng-show="undefined !== situation.logement.membreFamilleProprietaire">
-      <br>Le propriétaire de votre logement {{ situation.logement.membreFamilleProprietaire ? 'est' : 'n\'est pas' }} un membre de votre famille
+      <br>Le propriétaire de votre logement {{ situation.logement.membreFamilleProprietaire ? 'est' : 'n’est pas' }} un membre de votre famille
     </span>
   </p>
 </div>

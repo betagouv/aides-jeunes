@@ -20,6 +20,18 @@ $main-footer-height: 100px;
   padding-top: 75px;
 }
 
+.browsehappy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+  background: #ccc;
+  color: #000;
+  padding-top: 20px;
+}
+
 .alert {
   font-size: $font-size-base;
 }

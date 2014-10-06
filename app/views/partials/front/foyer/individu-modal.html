@@ -99,21 +99,14 @@
         dans l'une de ces situations ?
       </label>
       <div class="col-sm-8">
-        <button
-          type="button"
-          class="btn btn-sm btn-default btn-selection"
-          ng-repeat="statut in statutsSpecifiques"
-          btn-checkbox
-          ng-model="selectedStatuts[statut.id]">
+        <label class="checkbox-inline" ng-repeat="statut in statutsSpecifiques">
+          <input type="checkbox" ng-model="selectedStatuts[statut.id]">
           {{ statut.label }}
-        </button>
-        <button
-          type="button"
-          class="btn btn-sm btn-default btn-selection"
-          btn-checkbox
-          ng-model="individu.enceinte">
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" ng-model="individu.enceinte">
           Enceinte
-        </button>
+        </label>
       </div>
     </div>
   </div>

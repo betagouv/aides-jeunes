@@ -62,14 +62,17 @@
 
     <div class="form-group" ng-show="logement.type === 'proprietaire'">
       <label class="col-sm-4 control-label" popover-trigger="mouseenter">
-        Êtes-vous primo-accédant pour votre propriété&nbsp;?
+        Avez-vous un prêt primo-accédant pour cette propriété ?
       </label>
       <div class="col-sm-3">
         <button type="button" class="btn btn-sm btn-primary" ng-model="logement.primoAccedant" btn-radio="true">Oui</button>
         <button type="button" class="btn btn-sm btn-primary" ng-model="logement.primoAccedant" btn-radio="false">Non</button>
       </div>
       <div class="col-sm-5">
-        <p class="help-block">{{ primoAccedantTooltip }}</p>
+        <p class="help-block">
+          Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire
+          de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.
+        </p>
       </div>
     </div>
 
@@ -83,11 +86,6 @@
           <div class="input-group-addon">€</div>
         </div>
         <span class="help-block" ng-if="submitted && form.loyer.$invalid">Champ invalide</span>
-      </div>
-      <div class="col-sm-5">
-        <span class="help-block" ng-if="'proprietaire' === logement.type">
-          <em>Mettre 0 si vous n'avez pas d'emprunt pour votre propriété.</em>
-        </span>
       </div>
     </div>
 

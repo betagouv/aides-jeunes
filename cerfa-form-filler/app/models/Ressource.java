@@ -20,25 +20,34 @@ public class Ressource {
     public static enum RessourceType {
 
         REVENUS_SALARIES("revenusSalarie"),
-        REVENUS_NON_SALARIES("revenusNonSalarie"),
-        REVENUS_AUTO_ENTREPRENEUR("revenusAutoEntrepreneur"),
-        REVENUS_STAGE("revenusStage"),
+        REVENUS_STAGE("stage"),
+        REVENUS_STAGE_FORMATION_PRO("revenusStageFormationPro"),
         ALLOCATIONS_CHOMAGE("allocationsChomage"),
+        ALLOCATION_SECURISATION_PRO("allocationSecurisationPro"),
+        PRIME_REPRISE_ACTIVITE("primeRepriseActivite"),
         ALLOCATION_LOGEMENT("allocationLogement"),
         RSA("rsa"),
+        ASF("asf"),
         ASPA("aspa"),
         ASS("ass"),
         AAH("aah"),
-        PENSION_INVALIDITE("pensionsInvalidite"),
         INDEMNITES_MATERNITE("indJourMaternite"),
         INDEMNITES_MALADIE("indJourMaladie"),
         INDEMNITES_MALADIE_PRO("indJourMaladieProf"),
         INDEMNITES_ACCIDENT_TRAVAIL("indJourAccidentDuTravail"),
         INDEMNITES_CHOMAGE_PARTIEL("indChomagePartiel"),
+        INDEMNITES_VOLONTARIAT("indVolontariat"),
+        DEDOMMAGEMENT_AMIANTE("dedommagementAmiante"),
         PENSIONS_ALIMENTAIRES("pensionsAlimentaires"),
+        PRESTATION_COMPENSATOIRE("prestationCompensatoire"),
         RETRAITES_RENTES("pensionsRetraitesRentes"),
-        BOURSE("bourseEnseignementSup"),
-        REVENUS_LOCATIFS("revenusLocatifs");
+        RETRAITE_COMBATTANT("retraiteCombattant"),
+        PENSION_INVALIDITE("pensionsInvalidite"),
+        BOURSE_ENSEIGNEMENT_SUP("bourseEnseignementSup"),
+        BOURSE_RECHERCHE("bourseRecherche"),
+        GAINS_EXCEPTIONNELS("gainsExceptionnels"),
+        CA_MICRO_ENTREPRISE("caMicroEntreprise"),
+        AUTRES_TNS("autresRevenusTns");
 
         public final String jsonValue;
 

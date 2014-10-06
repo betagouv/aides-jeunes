@@ -6,7 +6,7 @@
     <div ng-switch-when="ressources">
       <p>
         Cliquez sur les types de ressources que les personnes de votre foyer ont perçues
-        <strong>entre {{ debutPeriode }} et {{ finPeriode }}</strong>.
+        <strong>entre {{ debutAnnee }} et {{ finAnnee }}</strong>.
         Si vous avez des revenus du capital, ne les indiquez pas ici, ils vous seront demandés ultérieurement.
       </p>
       <button
@@ -108,7 +108,7 @@
                     <option value="micro_entreprise">Micro-entreprise</option>
                   </select>
                 </td>
-                <td style="width: 220px;">
+                <td style="width: 250px;">
                   <select class="form-control" ng-model="ressource.tnsActiviteType">
                     <option value="achat_revente">Achat/revente ou fourniture de logement</option>
                     <option value="bic">Activité commerciale ou artisanale (BIC)</option>

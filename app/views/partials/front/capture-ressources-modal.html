@@ -2,8 +2,8 @@
   <div class="modal-header">
     <h1 class="modal-title">Vos ressources</h1>
   </div>
-  <div class="modal-body">
-    <div ng-show="'ressources' === tab">
+  <div class="modal-body" ng-switch on="tab">
+    <div ng-switch-when="ressources">
       <p>
         Cliquez sur les types de ressources que les personnes de votre foyer ont perçues
         <strong>entre {{ debutPeriode }} et {{ finPeriode }}</strong>.
@@ -20,7 +20,7 @@
       </button>
     </div>
 
-    <div ng-show="'personnes' === tab">
+    <div ng-switch-when="personnes">
       <p>Veuillez sélectionner les personnes qui touchent/ont touché les ressources que vous avez sélectionnées.</p>
       <div ng-repeat="ressourceType in ressourceTypes|filter: isRessourceSelected">
         <div class="row">
@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <div ng-show="'montants' === tab">
+    <div ng-switch-when="montants">
       <p>Veuillez entrer les montants des ressources sélectionnées (net perçu pour les salaires ou indemnités).</p>
       <div ng-repeat="individuRef in individuRefs" ng-if="individuRef.hasRessources">
         <h2 ng-if="1 < individuRefs.length">{{ individuRef.label }}</h2>

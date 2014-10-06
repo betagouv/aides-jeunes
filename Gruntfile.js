@@ -38,7 +38,7 @@ module.exports = function (grunt) {
       },
       prod: {
         options: {
-          script: 'dist/server.js',
+          script: 'server.js',
           node_env: 'production'
         }
       }
@@ -127,19 +127,7 @@ module.exports = function (grunt) {
           dot: true,
           src: [
             '.tmp',
-            '<%= yeoman.dist %>/*',
-            '!<%= yeoman.dist %>/.git*',
-            '!<%= yeoman.dist %>/Procfile'
-          ]
-        }]
-      },
-      heroku: {
-        files: [{
-          dot: true,
-          src: [
-            'heroku/*',
-            '!heroku/.git*',
-            '!heroku/Procfile'
+            '<%= yeoman.dist %>/*'
           ]
         }]
       },
@@ -223,7 +211,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          generatedImagesDir: '<%= yeoman.dist %>/public/img/generated'
+          generatedImagesDir: '<%= yeoman.dist %>/img/generated'
         }
       },
       server: {
@@ -238,9 +226,9 @@ module.exports = function (grunt) {
       dist: {
         files: {
           src: [
-            '<%= yeoman.dist %>/public/js/{,*/}*.js',
-            '<%= yeoman.dist %>/public/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/public/styles/fonts/*'
+            '<%= yeoman.dist %>/js/{,*/}*.js',
+            '<%= yeoman.dist %>/styles/{,*/}*.css',
+            '<%= yeoman.dist %>/styles/fonts/*'
           ]
         }
       }
@@ -252,16 +240,16 @@ module.exports = function (grunt) {
     useminPrepare: {
       html: ['<%= yeoman.app %>/views/front.html', '<%= yeoman.app %>/views/back.html', '<%= yeoman.app %>/views/acceptance-tests.html'],
       options: {
-        dest: '<%= yeoman.dist %>/public'
+        dest: '<%= yeoman.dist %>'
       }
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/public/views/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/public/styles/{,*/}*.css'],
+      html: ['<%= yeoman.dist %>/views/{,*/}*.html'],
+      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%= yeoman.dist %>/public']
+        assetsDirs: ['<%= yeoman.dist %>']
       }
     },
 
@@ -275,7 +263,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/img',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.dist %>/public/img'
+          dest: '<%= yeoman.dist %>/img'
         }]
       }
     },
@@ -286,7 +274,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/img',
           src: '{,*/}*.svg',
-          dest: '<%= yeoman.dist %>/public/img'
+          dest: '<%= yeoman.dist %>/img'
         }]
       }
     },
@@ -303,7 +291,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/views',
           src: ['*.html', 'partials/**/*.html'],
-          dest: '<%= yeoman.dist %>/public/views'
+          dest: '<%= yeoman.dist %>/views'
         }]
       }
     },
@@ -328,7 +316,7 @@ module.exports = function (grunt) {
           expand: true,
           dot: true,
           cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>/public',
+          dest: '<%= yeoman.dist %>',
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
@@ -339,14 +327,8 @@ module.exports = function (grunt) {
           ]
         }, {
           expand: true,
-          dot: true,
-          cwd: '<%= yeoman.app %>/views',
-          dest: '<%= yeoman.dist %>/public/views',
-          src: '**/*.jade'
-        }, {
-          expand: true,
           cwd: '.tmp/img',
-          dest: '<%= yeoman.dist %>/public/img',
+          dest: '<%= yeoman.dist %>/img',
           src: ['generated/*']
         }, {
           expand: true,

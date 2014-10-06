@@ -75,27 +75,49 @@ public class Ressource {
 
         MOIS_1(3),
         MOIS_2(2),
-        MOIS_3(1);
+        MOIS_3(1),
+        ANNEE_MOINS_1,
+        ANNEE_MOINS_2;
 
         public final int minusCurrentMonth;
 
         RessourcePeriode(int minusCurrentMonth) {
             this.minusCurrentMonth = minusCurrentMonth;
         }
+
+        RessourcePeriode() {
+            this.minusCurrentMonth = -1;
+        }
     }
 
     public static class RessourcePeriodeDeserializer extends JsonDeserializer<RessourcePeriode> {
 
+        private static String anneeMoins1 = String.valueOf(LocalDate.now().getYear());
+        private static String anneeMoins2 = String.valueOf(LocalDate.now().minusYears(2).getYear());
+
         @Override
         public RessourcePeriode deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            String text = jp.getText();
+            if (anneeMoins1.equals(text)) {
+                return RessourcePeriode.ANNEE_MOINS_1;
+            } else if (anneeMoins2.equals(text)) {
+                return RessourcePeriode.ANNEE_MOINS_2;
+            }
+
             for (RessourcePeriode periode : RessourcePeriode.values()) {
-                String period = LocalDate.now().withDayOfMonth(1).minusMonths(periode.minusCurrentMonth).toString("YYYY-MM");
-                if (period.equals(jp.getText())) {
-                    return periode;
+                if (periode.minusCurrentMonth != -1) {
+                    String period = LocalDate
+                            .now()
+                            .withDayOfMonth(1)
+                            .minusMonths(periode.minusCurrentMonth)
+                            .toString("YYYY-MM");
+                    if (period.equals(text)) {
+                        return periode;
+                    }
                 }
             }
 
-            throw new RuntimeException(String.format("Période invalide : %s", jp.getText()));
+            throw new RuntimeException(String.format("Période invalide : %s", text));
         }
     }
 }

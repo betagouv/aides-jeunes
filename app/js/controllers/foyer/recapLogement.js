@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRecapLogementCtrl', function($scope, $http, logementTypes, locationTypes, loyerLabels) {
+angular.module('ddsApp').controller('FoyerRecapLogementCtrl', function($scope, $rootScope, $http, $location, $anchorScroll, $timeout, logementTypes, locationTypes, loyerLabels) {
     $scope.logementTypeLabel = function() {
         var result = _.find(logementTypes, { id: $scope.situation.logement.type }).label;
         if ('locataire' === $scope.situation.logement.type && $scope.situation.logement.colocation) {
@@ -15,4 +15,11 @@ angular.module('ddsApp').controller('FoyerRecapLogementCtrl', function($scope, $
     };
 
     $scope.loyerLabels = loyerLabels;
+
+    $rootScope.$on('logementCaptured', function() {
+        $timeout(function() {
+            $location.hash('recap-logement');
+            $anchorScroll();
+        });
+    });
 });

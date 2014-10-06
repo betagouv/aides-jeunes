@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRecapPatrimoineCtrl', function($scope, $rootScope) {
+angular.module('ddsApp').controller('FoyerRecapPatrimoineCtrl', function($scope, $rootScope, $timeout, $location, $anchorScroll) {
     var hasRevenusLocatifs = function(patrimoine) {
         var sommeRevenusLocatifs = 0;
         patrimoine.revenusLocatifs.forEach(function(revenu) {
@@ -46,5 +46,12 @@ angular.module('ddsApp').controller('FoyerRecapPatrimoineCtrl', function($scope,
     };
 
     refresh();
-    $rootScope.$on('patrimoineCaptured', refresh);
+
+    $rootScope.$on('patrimoineCaptured', function() {
+        refresh();
+        $timeout(function() {
+            $location.hash('recap-patrimoine');
+            $anchorScroll();
+        });
+    });
 });

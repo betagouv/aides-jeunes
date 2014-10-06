@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope, $rootScope, ressourceTypes, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope, $rootScope, $timeout, $location, $anchorScroll, ressourceTypes, SituationService, IndividuService) {
     $scope.months = SituationService.getMonths();
     $scope.individuLabel = IndividuService.label;
 
@@ -96,5 +96,9 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
     $rootScope.$on('ressourcesCaptured', function() {
         $scope.situation.ressourcesCaptured = true;
         initRessources();
+        $timeout(function() {
+            $location.hash('recap-ressources');
+            $anchorScroll();
+        });
     });
 });

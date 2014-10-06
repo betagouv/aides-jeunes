@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($scope, $rootScope, $http, $modalInstance, logementTypes, locationTypes, loyerLabels, situation) {
+angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($scope, $http, $modalInstance, logementTypes, locationTypes, loyerLabels, situation) {
     if (!situation.logement) {
         situation.logement = {};
     }
@@ -104,6 +104,7 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
             logement.adresse.codeInsee = $scope.selectedCity.codeInsee;
             situation.logementCaptured = true;
             $modalInstance.close();
+            $scope.$emit('logementCaptured');
         }
     };
 

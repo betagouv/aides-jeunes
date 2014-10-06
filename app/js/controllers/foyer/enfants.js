@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $rootScope, SituationService) {
+angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $rootScope, $location, $anchorScroll, $timeout, SituationService) {
     $scope.nationaliteLabels = SituationService.nationaliteLabels;
 
     if (!$scope.situation.enfants) {
@@ -13,6 +13,10 @@ angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $rootSc
 
     $rootScope.$on('individu.conjoint', function() {
         $scope.visible = true;
+        $timeout(function() {
+            $location.hash('panel-enfants');
+            $anchorScroll();
+        });
     });
 
     $rootScope.$on('individu.enfant', function(e, enfant) {

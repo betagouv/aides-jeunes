@@ -64,7 +64,8 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
             !situation.ressourcesN2Captured,
             !$scope.hasDroitAllocationLogement(),
             'gratuit' !== situation.logement.type,
-            !situation.logement.membreFamilleProprietaire
+            !situation.logement.membreFamilleProprietaire,
+            false !== situation.logement.primoAccedant
         ]);
     };
 

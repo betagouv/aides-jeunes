@@ -619,19 +619,21 @@ public class RSAFormFiller extends FormFiller {
 
         int periodeId = 1;
         for (RessourcePeriode periode : RessourcePeriode.values()) {
-            int sum = situationService.sumAllRessources(individu, periode);
-            if (0 == sum) {
-                checkbox(String.format("ressources.%s.%d.aucune", fieldPrefix, periodeId));
-            } else {
-                for (RessourceType ressourceType : RessourceType.values()) {
-                    sum = situationService.sumRessourcesOfType(individu, periode, ressourceType);
-                    if (0 != sum) {
-                        String textField = String.format("ressources.%s.%d.%s", fieldPrefix, periodeId, ressourceType.jsonValue);
-                        appendText(textField, String.valueOf(sum));
+            if (-1 != periode.minusCurrentMonth) {
+                int sum = situationService.sumAllRessources(individu, periode);
+                if (0 == sum) {
+                    checkbox(String.format("ressources.%s.%d.aucune", fieldPrefix, periodeId));
+                } else {
+                    for (RessourceType ressourceType : RessourceType.values()) {
+                        sum = situationService.sumRessourcesOfType(individu, periode, ressourceType);
+                        if (0 != sum) {
+                            String textField = String.format("ressources.%s.%d.%s", fieldPrefix, periodeId, ressourceType.jsonValue);
+                            appendText(textField, String.valueOf(sum));
+                        }
                     }
                 }
+                periodeId++;
             }
-            periodeId++;
         }
 
         if (IndividuRole.ENFANT == individu.role) {

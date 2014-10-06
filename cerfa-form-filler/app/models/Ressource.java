@@ -92,7 +92,7 @@ public class Ressource {
 
     public static class RessourcePeriodeDeserializer extends JsonDeserializer<RessourcePeriode> {
 
-        private static String anneeMoins1 = String.valueOf(LocalDate.now().getYear());
+        private static String anneeMoins1 = String.valueOf(LocalDate.now().minusYears(1).getYear());
         private static String anneeMoins2 = String.valueOf(LocalDate.now().minusYears(2).getYear());
 
         @Override

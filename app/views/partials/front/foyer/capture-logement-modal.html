@@ -61,12 +61,15 @@
     </div>
 
     <div class="form-group" ng-show="logement.type === 'proprietaire'">
-      <label class="col-sm-4 control-label" popover="{{ primoAccedantTooltip }}" popover-trigger="mouseenter">
+      <label class="col-sm-4 control-label" popover-trigger="mouseenter">
         Êtes-vous primo-accédant pour votre propriété&nbsp;?
       </label>
-      <div class="col-sm-6">
+      <div class="col-sm-3">
         <button type="button" class="btn btn-sm btn-primary" ng-model="logement.primoAccedant" btn-radio="true">Oui</button>
         <button type="button" class="btn btn-sm btn-primary" ng-model="logement.primoAccedant" btn-radio="false">Non</button>
+      </div>
+      <div class="col-sm-5">
+        <p class="help-block">{{ primoAccedantTooltip }}</p>
       </div>
     </div>
 

@@ -36,12 +36,11 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
             return false;
         }
 
-        var result =
-            (angular.isDefined(logement.primoAccedant) ||
-             angular.isDefined(logement.locationType) ||
-             membreFamilleProprietaireCaptured());
-
-        return result;
+        return _.any([
+            true === logement.primoAccedant,
+            angular.isDefined(logement.locationType),
+            membreFamilleProprietaireCaptured()
+        ]);
     };
 
     $scope.captureCodePostal = function() {

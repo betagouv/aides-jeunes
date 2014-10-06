@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $http, $state, $stateParams, $timeout, SimulationService, CerfaService, situation) {
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SimulationService, CerfaService, situation) {
     $scope.situation = situation;
 
     $scope.yearMoins2 = moment().subtract('years', 2).format('YYYY');
@@ -68,7 +68,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $window, $h
         ]);
     };
 
-    $scope.$on('ressourcesCaptured', function(ressourcesN2) {
+    $rootScope.$on('ressourcesCaptured', function(ressourcesN2) {
         if (ressourcesN2) {
             situation.ressourcesN2Captured = true;
             launchSimulation();

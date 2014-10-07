@@ -103,8 +103,8 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
             logement.adresse.ville = $scope.selectedCity.nom;
             logement.adresse.codeInsee = $scope.selectedCity.codeInsee;
             situation.logementCaptured = true;
-            $modalInstance.close();
             $scope.$emit('logementCaptured');
+            $modalInstance.close();
         }
     };
 

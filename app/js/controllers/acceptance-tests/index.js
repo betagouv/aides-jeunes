@@ -21,14 +21,20 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
                 $scope.categories.push(category);
             }
             category.tests.push(acceptanceTest);
+            acceptanceTest.category = category;
         } else {
             unknownCategory.tests.push(acceptanceTest);
+            acceptanceTest.category = unknownCategory;
         }
     });
 
     if (unknownCategory.tests.length) {
         $scope.categories.push(unknownCategory);
     }
+
+    $scope.categories.forEach(function(category) {
+        category.tests = _.sortBy(category.tests, 'name');
+    });
 
     $scope.droits = _.indexBy(droitsDescription, 'id');
     $scope.pendingTests = 0;
@@ -119,13 +125,21 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
     $scope.launchAll = function() {
         $scope.pendingTests = $scope.tests.length;
         $scope.errors = 0;
+        $scope.categories.forEach(function(category) {
+            category.errors = 0;
+        });
         $scope.tests.forEach(function(test) {
             $scope.launchSingle(test).then(function() {}, function() {
                 $scope.errors++;
+                test.category.errors++;
             }).finally(function() {
                 $scope.pendingTests--;
             });
         });
+    };
+
+    $scope.showErrors = function() {
+        return angular.isDefined($scope.errors);
     };
 
     $scope.deleteTest = function(test) {

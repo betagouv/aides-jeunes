@@ -27,15 +27,16 @@
 </div>
 
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-12" ng-repeat="category in categories">
+    <h2>{{ category.name }}</h2>
     <accordion close-others="false">
       <accordion-group
-        ng-repeat="test in tests"
+        ng-repeat="test in category.tests"
         id="test-{{ test._id }}"
         is-open="test.open"
         ng-class="{'panel-success': test.status === 'ok', 'panel-danger': test.status === 'ko', 'panel-warning': test.status === 'near' }">
         <accordion-heading>
-           {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
+          {{ $index + 1 }}. {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
         </accordion-heading>
         <p class="pull-right">
           <a class="btn btn-default btn-xs" href="{{ test._id }}/edit"><i class="fa fa-edit"></i> Modifier ce test</a>

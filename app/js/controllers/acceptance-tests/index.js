@@ -7,6 +7,29 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
     }
 
     $scope.tests = acceptanceTests;
+    $scope.categories = [];
+    var categoriesMap = {};
+    var unknownCategory = {name: 'Non catégorisés', tests: []};
+    acceptanceTests.forEach(function(acceptanceTest) {
+        var index = acceptanceTest.name.indexOf(']');
+        if (-1 !== index) {
+            var categoryName = acceptanceTest.name.substring(1, index);
+            acceptanceTest.name = acceptanceTest.name.substring(index + 2, acceptanceTest.name.length);
+            var category = categoriesMap[categoryName];
+            if (!category) {
+                category = categoriesMap[categoryName] = {name: categoryName, tests: []};
+                $scope.categories.push(category);
+            }
+            category.tests.push(acceptanceTest);
+        } else {
+            unknownCategory.tests.push(acceptanceTest);
+        }
+    });
+
+    if (unknownCategory.tests.length) {
+        $scope.categories.push(unknownCategory);
+    }
+
     $scope.droits = _.indexBy(droitsDescription, 'id');
     $scope.pendingTests = 0;
 

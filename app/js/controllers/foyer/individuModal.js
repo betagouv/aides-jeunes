@@ -20,13 +20,17 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
                     var situationPro = {situation: statut};
                     $scope.individu.situationsPro.push(situationPro);
                     if ('demandeur_emploi' === statut) {
-                        $scope.individu.hasWorked10Years = !!$scope.hasWorked10Years;
+                        $scope.individu.assPreconditionRemplie = !!$scope.assPreconditionRemplie;
                     }
                 }
             });
             $scope.$emit('individu.' + options.individuType, $scope.individu);
             $modalInstance.close($scope.individu);
         }
+    };
+
+    $scope.captureEligibiliteAss = function() {
+        return _.contains(['demandeur', 'conjoint'], options.individuType) && selectedStatuts['demandeur_emploi'];
     };
 
     $scope.popoverEee = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, ' +

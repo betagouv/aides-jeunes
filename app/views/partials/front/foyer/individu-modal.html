@@ -5,7 +5,7 @@
   <div class="modal-body">
     <div class="form-group form-group-lg" ng-if="options.askFirstName" ng-class="{'has-error': submitted && form.firstName.$invalid}">
       <label class="control-label col-sm-4" for="first-name">Prénom</label>
-      <div class="col-sm-8">
+      <div class="col-sm-4">
         <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="individu.firstName">
         <p class="help-block" ng-if="submitted && form.firstName.$invalid">Ce champ est obligatoire.</p>
       </div>
@@ -116,10 +116,10 @@
       </div>
     </div>
 
-    <div class="form-group from-group-lg" ng-if="selectedStatuts['demandeur_emploi']">
+    <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
       <div class="col-sm-offset-4 col-sm-8">
         <label class="checkbox-inline">
-          <input type="checkbox" ng-model="hasWorked10Years">
+          <input type="checkbox" ng-model="assPreconditionRemplie">
           <span ng-if="'demandeur' === options.individuType">Avez-vous</span>
           <span ng-if="'demandeur' !== options.individuType">A-t-il (elle)</span>
           travaillé pendant au moins 10 ans au cours des 15 dernières années ?

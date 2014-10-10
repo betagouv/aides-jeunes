@@ -30,7 +30,8 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
     };
 
     $scope.captureEligibiliteAss = function() {
-        return _.contains(['demandeur', 'conjoint'], options.individuType) && selectedStatuts['demandeur_emploi'];
+        var field = 'demandeur_emploi';
+        return _.contains(['demandeur', 'conjoint'], options.individuType) && $scope.selectedStatuts[field];
     };
 
     $scope.popoverEee = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, ' +

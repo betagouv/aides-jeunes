@@ -17,7 +17,11 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
             $scope.individu.situationsPro = [];
             _.forEach($scope.selectedStatuts, function(selected, statut) {
                 if (selected) {
-                    $scope.individu.situationsPro.push({situation: statut});
+                    var situationPro = {situation: statut};
+                    $scope.individu.situationsPro.push(situationPro);
+                    if ('demandeur_emploi' === statut) {
+                        $scope.individu.hasWorked10Years = !!$scope.hasWorked10Years;
+                    }
                 }
             });
             $scope.$emit('individu.' + options.individuType, $scope.individu);

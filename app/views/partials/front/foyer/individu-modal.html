@@ -55,20 +55,26 @@
       </div>
     </div>
 
-    <div class="form-group" ng-if="options.checkResidenceStability && 'ue' === individu.nationalite" ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
+    <div
+      class="form-group"
+      ng-if="options.checkResidenceStability && 'ue' === individu.nationalite"
+      ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
       <div class="col-sm-offset-4 col-sm-8">
         <div class="checkbox">
           <label>
             <input type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
             Détenteur d'un droit au séjour valide et
-            <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France</a>.
+            <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France</a>
           </label>
         </div>
         <span class="help-block" ng-if="submitted && form.disclaimerUe.$invalid">Vous devez cocher cette case pour continuer.</span>
       </div>
     </div>
 
-    <div class="form-group" ng-if="options.checkResidenceStability && 'autre' === individu.nationalite" ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
+    <div
+      class="form-group"
+      ng-if="options.checkResidenceStability && 'autre' === individu.nationalite"
+      ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
       <div class="col-sm-offset-4 col-sm-8">
         <div class="checkbox">
           <label>
@@ -106,6 +112,17 @@
         <label class="checkbox-inline">
           <input type="checkbox" ng-model="individu.enceinte">
           Enceinte
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group from-group-lg" ng-if="selectedStatuts['demandeur_emploi']">
+      <div class="col-sm-offset-4 col-sm-8">
+        <label class="checkbox-inline">
+          <input type="checkbox" ng-model="hasWorked10Years">
+          <span ng-if="'demandeur' === options.individuType">Avez-vous</span>
+          <span ng-if="'demandeur' !== options.individuType">A-t-il (elle)</span>
+          travaillé pendant au moins 10 ans au cours des 15 dernières années ?
         </label>
       </div>
     </div>

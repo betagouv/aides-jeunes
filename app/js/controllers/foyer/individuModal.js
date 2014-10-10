@@ -19,9 +19,6 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
                 if (selected) {
                     var situationPro = {situation: statut};
                     $scope.individu.situationsPro.push(situationPro);
-                    if ('demandeur_emploi' === statut) {
-                        $scope.individu.assPreconditionRemplie = !!$scope.assPreconditionRemplie;
-                    }
                 }
             });
             $scope.$emit('individu.' + options.individuType, $scope.individu);

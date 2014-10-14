@@ -99,8 +99,9 @@ $main-footer-height: 100px;
   }
 
   .beta {
-    margin-left: 25px;
-    margin-top: 20px;
+    position: absolute;
+    top: 10px;
+    left: 200px;
     transform: rotate(-6deg);
     text-transform: uppercase;
     font-size: 20px;

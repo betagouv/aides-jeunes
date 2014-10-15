@@ -83,7 +83,7 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
                         droit.status = 'unknown';
                     } else if (droit.actualValue === droit.expectedValue) {
                         droit.status = 'ok';
-                    } else if (Math.abs(droit.actualValue - droit.expectedValue) < 0.1) {
+                    } else if ((Math.abs(droit.actualValue - droit.expectedValue) / droit.expectedValue) < 0.02) {
                         droit.status = 'near';
                         if (test.status !== 'ko') test.status = 'near';
                     } else {

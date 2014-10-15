@@ -86,6 +86,8 @@ $main-footer-height: 100px;
 
     &.logo, &.logo:hover {
       background-color: white;
+      position: relative;
+      z-index: 1;
     }
   }
 
@@ -98,13 +100,17 @@ $main-footer-height: 100px;
     }
   }
 
-  .beta {
-    position: absolute;
-    top: 10px;
-    left: 200px;
-    transform: rotate(-6deg);
+  .logo-beta {
+    text-align: center;
     text-transform: uppercase;
-    font-size: 20px;
+    position: absolute;
+    top: 30px;
+    right: -35px;
+    transform: rotate(45deg);
+    width: 150px;
+    background-color: white;
+    color: black;
+    padding: 5px;
   }
 }
 

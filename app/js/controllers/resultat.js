@@ -31,10 +31,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         return CerfaService.getCerfaFormsFromDroit(droit, situation);
     };
 
-    $scope.createTest = function() {
-        $window.location.href = '/acceptance-tests/new/' + situation._id;
-    };
-
     $scope.isDroitAllocationLogement = function(droit) {
         return _.contains(['als', 'alf', 'apl'], droit.description.id);
     };

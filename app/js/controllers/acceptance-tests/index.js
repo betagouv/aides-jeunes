@@ -3,7 +3,10 @@
 angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http, $q, $window, $state, $stateParams, $location, droitsDescription, acceptanceTests) {
     if ($stateParams.testId) {
         $location.hash('test-' + $stateParams.testId);
-        _.find(acceptanceTests, {'_id': $stateParams.testId}).open = true;
+        var testToScroll = _.find(acceptanceTests, {'_id': $stateParams.testId});
+        if (testToScroll) {
+            testToScroll.open = true;
+        }
     }
 
     $scope.tests = acceptanceTests;

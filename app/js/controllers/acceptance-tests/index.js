@@ -21,10 +21,8 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
                 $scope.categories.push(category);
             }
             category.tests.push(acceptanceTest);
-            acceptanceTest.category = category;
         } else {
             unknownCategory.tests.push(acceptanceTest);
-            acceptanceTest.category = unknownCategory;
         }
     });
 
@@ -127,13 +125,14 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $http
         $scope.errors = 0;
         $scope.categories.forEach(function(category) {
             category.errors = 0;
-        });
-        $scope.tests.forEach(function(test) {
-            $scope.launchSingle(test).then(function() {}, function() {
-                $scope.errors++;
-                test.category.errors++;
-            }).finally(function() {
-                $scope.pendingTests--;
+            category.tests.forEach(function(test) {
+                $scope.launchSingle(test)
+                    .catch(function() {
+                        $scope.errors++;
+                        category.errors++;
+                    }).finally(function() {
+                        $scope.pendingTests--;
+                    });
             });
         });
     };

@@ -7,7 +7,7 @@ angular.module('acceptanceTests').controller('LoginCtrl', function($scope, $stat
         UserService.login($scope.email, $scope.password)
             .then(function() {
                 $state.go('index');
-            }).catch(function(e) {
+            }).catch(function() {
                 $scope.badCredentials = true;
                 $scope.waiting = false;
             });

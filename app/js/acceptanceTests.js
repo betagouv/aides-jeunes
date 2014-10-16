@@ -21,6 +21,17 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 }]
             }
         })
+        .state('login', {
+            url: '/login',
+            templateUrl: '/acceptance-tests/partials/login.html',
+            controller: 'LoginCtrl',
+            anonymous: true,
+            onEnter: ['$state', 'UserService', function($state, UserService) {
+                if (UserService.user()) {
+                    $state.go('index');
+                }
+            }]
+        })
         .state('new', {
             url: '/new/:situationId',
             templateUrl: '/acceptance-tests/partials/form.html',
@@ -53,7 +64,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams) {
+ddsApp.run(function($rootScope, $state, $stateParams, UserService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    $rootScope.$on('$stateChangeStart', function(e, state) {
+        if (!UserService.user() && !state.anonymous) {
+            e.preventDefault();
+            $state.go('login');
+        }
+    });
 });

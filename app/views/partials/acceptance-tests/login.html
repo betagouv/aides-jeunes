@@ -1,0 +1,32 @@
+<h1><i class="fa fa-user"></i> Authentification</h1>
+
+<form class="form-horizontal" role="form" ng-submit="submit()">
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">Email</label>
+        <div class="col-sm-8">
+          <input type="email" id="email" class="form-control" ng-model="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="password">Password</label>
+        <div class="col-sm-8">
+          <input type="password" id="password" class="form-control" ng-model="password">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+          <button class="btn btn-primary" type="submit" ng-disabled="waiting">
+            <span ng-if="waiting">
+              <i class="fa fa-spinner fa-spin"></i>
+              Veuillez patienter...
+            </span>
+            <span ng-if="!waiting">Connexion</span>
+          </button>
+          <span class="text-danger" ng-if="badCredentials">Erreur : identifiant ou mot de passe invalide.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

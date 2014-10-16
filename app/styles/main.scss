@@ -20,6 +20,10 @@ $main-footer-height: 100px;
   padding-top: 65px;
 }
 
+.body-acceptance-tests {
+  padding-top: 45px;
+}
+
 .browsehappy {
   position: absolute;
   top: 0;
@@ -131,6 +135,13 @@ $main-footer-height: 100px;
       background-color: darken($navbar-default-bg, 5%);
     }
   }
+}
+
+.navbar-acceptance-tests {
+  @extend .navbar;
+  @extend .navbar-default;
+  @extend .navbar-inverse;
+  @extend .navbar-fixed-top;
 }
 
 .nav, .pagination, .carousel, .panel-title a {

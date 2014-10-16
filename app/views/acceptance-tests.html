@@ -3,20 +3,32 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dossier de Demande Simplifié</title>
+    <title>Tests d'acceptance mes-aides</title>
     <meta name="viewport" content="width=device-width">
     <!-- build:css({.tmp,app}) /styles/main.css -->
     <link rel="stylesheet" href="/styles/main.css">
     <!-- endbuild -->
     <base href="/acceptance-tests/">
   </head>
-  <body ng-app="acceptanceTests">
+  <body ng-app="acceptanceTests" class="body-acceptance-tests">
     <header>
-      <nav role="navigation" class="navbar navbar-default navbar-inverse">
+      <nav role="navigation" class="navbar-acceptance-tests" ng-controller="NavbarCtrl">
         <div class="container">
-          <ul class="nav navbar-nav">
-            <li><a href="#" class="navbar-brand title">Tests d'acceptance mes-aides</a></li>
-          </ul>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" ng-click="navbarCollapsed = !navbarCollapsed">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="index">Tests d'acceptance mes-aides</a>
+          </div>
+          <div class="collapse navbar-collapse navbar-right" collapse="navbarCollapsed" ng-if="email">
+            <p class="navbar-text">{{ email }}</p>
+            <ul class="nav navbar-nav ">
+              <li><button type="button" class="btn btn-default navbar-btn" ng-click="logout()">Déconnexion</button></li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
@@ -47,7 +59,11 @@
     <script src="js/acceptanceTests.js"></script>
 
     <script src="js/controllers/acceptance-tests/index.js"></script>
+    <script src="js/controllers/acceptance-tests/navbar.js"></script>
+    <script src="js/controllers/acceptance-tests/login.js"></script>
     <script src="js/controllers/acceptance-tests/form.js"></script>
+
+    <script src="js/services/acceptance-tests/userService.js"></script>
 
     <script src="js/constants/droits.js"></script>
     <!-- endbuild -->

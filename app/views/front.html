@@ -23,7 +23,7 @@
 
     <header>
       <nav role="navigation" class="main-navbar" ng-controller="MarqueBlancheCtrl" ng-class="{'has-intro': $storage.showIntro}">
-        <div class="intro" ng-cloak ng-show="$storage.showIntro">
+        <div class="intro" ng-cloak ng-if="$storage.showIntro">
           <div class="content">
             <span ng-click="$storage.showIntro = false">
               <strong>Service expérimental</strong>,

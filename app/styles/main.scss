@@ -267,3 +267,38 @@ $main-footer-height: 100px;
 .btn-ressources[disabled] {
   opacity: 1;
 }
+
+.intro {
+  position: absolute;
+  width: 100%;
+  background: white;
+  padding: 14px;
+  color: #333;
+
+  .content {
+    text-align: center;
+    cursor: pointer;
+
+    span {
+      margin: 0 10px;
+    }
+  }
+}
+
+.main-navbar.has-intro {
+  transition: all 0.1s linear;
+  padding-top: 46px;
+}
+
+.intro.ng-enter, .intro.ng-leave {
+  transition: all 0.1s linear;
+}
+
+.intro.ng-enter, .intro.ng-leave.ng-leave-active {
+  top: -48px;
+}
+
+.intro, .intro.ng-enter.ng-enter-active {
+  top: 0;
+}
+

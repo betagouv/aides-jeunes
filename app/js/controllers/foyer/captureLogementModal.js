@@ -79,7 +79,7 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
             } else {
                 $scope.unknownCodePostal = false;
                 $scope.cities = [];
-                result.data.records.forEach(function(record) {
+                records.forEach(function(record) {
                     var field = 'nom_comm';
                     var nomCommune = record.fields[field];
                     field = 'insee_com';

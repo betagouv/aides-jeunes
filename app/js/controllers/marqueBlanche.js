@@ -7,14 +7,9 @@ angular.module('ddsApp').controller('MarqueBlancheCtrl', function ($scope, $wind
 
     $scope.$storage = $sessionStorage;
 
-    angular.element(document).ready(function() {
-      $timeout(function() {
-        $scope.showIntro = !$scope.$storage.hideIntro;
-      }, 500);
-    });
-
-    $scope.hideIntro = function() {
-      $scope.showIntro = false;
-      $scope.$storage.hideIntro = true;
-    };
+    if (angular.isUndefined($scope.$storage.showIntro)) {
+        $timeout(function() {
+            $scope.$storage.showIntro = true;
+        }, 500);
+    }
 });

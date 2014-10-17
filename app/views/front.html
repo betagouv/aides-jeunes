@@ -22,15 +22,17 @@
     <![endif]-->
 
     <header>
-      <nav role="navigation" class="main-navbar" ng-class="{'has-intro': showIntro}" ng-controller="MarqueBlancheCtrl">
-        <div class="intro slide" ng-if="showIntro">
+      <nav role="navigation" class="main-navbar" ng-controller="MarqueBlancheCtrl" ng-class="{'has-intro': $storage.showIntro}">
+        <div class="intro" ng-cloak ng-show="$storage.showIntro">
           <div class="content">
-            <span ng-click="hideIntro()">
-              <strong>Service expérimental</strong>, ici l'état innove avec la société civile pour offrir aux usagers le service public de demain.
+            <span ng-click="$storage.showIntro = false">
+              <strong>Service expérimental</strong>,
+              ici l'état innove avec la société civile pour offrir aux usagers le service public de demain.
             </span>
             <span>
               <a href="#"><strong>En savoir plus...</strong></a>
             </span>
+            <span class="fa fa-close" ng-click="$storage.showIntro = false"></span>
           </div>
         </div>
         <div class="container">

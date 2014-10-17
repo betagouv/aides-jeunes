@@ -286,12 +286,12 @@ $main-footer-height: 100px;
 }
 
 .main-navbar.has-intro {
-  transition: all 0.1s linear;
+  transition: all 0.5s linear;
   padding-top: 46px;
 }
 
 .intro.ng-enter, .intro.ng-leave {
-  transition: all 0.1s linear;
+  transition: all 0.5s linear;
 }
 
 .intro.ng-enter, .intro.ng-leave.ng-leave-active {
@@ -301,4 +301,3 @@ $main-footer-height: 100px;
 .intro, .intro.ng-enter.ng-enter-active {
   top: 0;
 }
-

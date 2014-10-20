@@ -1,15 +1,20 @@
 'use strict';
 
-angular.module('ddsApp').controller('MarqueBlancheCtrl', function ($scope, $window, $sessionStorage, $timeout) {
+angular.module('ddsApp').controller('MarqueBlancheCtrl', function($scope, $window, $sessionStorage, $timeout) {
     if ($window.location.pathname.indexOf('/secours-populaire/') === 0) {
         $scope.logo = 'logo_secours_populaire.png';
     }
 
-    $scope.$storage = $sessionStorage;
+    $scope.showIntro = false;
 
-    if (angular.isUndefined($scope.$storage.showIntro)) {
+    if (false !== $sessionStorage.showIntro) {
         $timeout(function() {
-            $scope.$storage.showIntro = true;
+            $scope.showIntro = true;
         }, 500);
     }
+
+    $scope.hideIntro = function() {
+        $scope.showIntro = false;
+        $sessionStorage.showIntro = false;
+    };
 });

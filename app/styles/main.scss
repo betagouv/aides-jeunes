@@ -110,13 +110,15 @@ $main-footer-height: 100px;
     text-align: center;
     text-transform: uppercase;
     position: absolute;
-    top: 30px;
+    top: 27px;
     left: -35px;
     transform: rotate(-45deg);
     width: 150px;
-    background-color: white;
-    color: black;
+    background-color: $brand-primary;
+    color: white;
     padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
   }
 }
 
@@ -287,13 +289,12 @@ $main-footer-height: 100px;
   }
 }
 
-.main-navbar.has-intro {
+.main-navbar, .intro {
   transition: all 0.5s linear;
-  padding-top: 46px;
 }
 
-.intro.ng-enter, .intro.ng-leave {
-  transition: all 0.5s linear;
+.main-navbar.has-intro {
+  padding-top: 46px;
 }
 
 .intro.ng-enter, .intro.ng-leave.ng-leave-active {

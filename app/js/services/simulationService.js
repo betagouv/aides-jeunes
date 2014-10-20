@@ -17,11 +17,15 @@ angular.module('ddsApp').factory('SimulationService', function($http, $q, droits
             droitsDescription.forEach(function(droit) {
                 var value = result[droit.id];
                 if (value) {
-                    var toInsert = { description: droit };
+                    var target = { description: droit };
                     if (_.isNumber(value)) {
-                        toInsert.montant = value;
+                        if ('acs' === droit.id) {
+                            target.montant = 12 * value;
+                        } else {
+                            target.montant = value;
+                        }
                     }
-                    droits.push(toInsert);
+                    droits.push(target);
                 }
             });
 

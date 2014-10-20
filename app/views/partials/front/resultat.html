@@ -22,7 +22,12 @@
               <div class="caption">
                 <h3>
                   {{ droit.description.label }}
-                  <span ng-if="false !== droit.description.hasMontant"> : environ <strong>{{ round(droit.montant) }}&nbsp;€</strong></span>
+                  <span ng-if="false !== droit.description.hasMontant">
+                    : environ <strong>{{ round(droit.montant) }}&nbsp;€</strong>
+                    par
+                    <span ng-if="droit.description.isMontantAnnuel">an</span>
+                    <span ng-if="!droit.description.isMontantAnnuel">mois</span>
+                  </span>
                 </h3>
 
                 <p>{{ droit.description.description }}</p>

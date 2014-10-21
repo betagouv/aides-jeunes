@@ -3,6 +3,45 @@
 angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage) {
     var situation;
 
+    var flattenIndividuRessources = function(individu) {
+        var ressources = individu.ressources || [];
+        individu.ressources = [];
+        ressources.forEach(function(ressource) {
+            if (ressource.periode) {
+                individu.ressources.push(ressource);
+            } else {
+                var debutPeriode = moment(ressource.debutPeriode, 'YYYY-MM');
+                var finPeriode = moment(ressource.finPeriode, 'YYYY-MM');
+                var monthsDiff = finPeriode.diff(debutPeriode, 'months') + 1;
+                var totalMontantToFlatten = ressource.montant;
+                _.where(ressources, {type: ressource.type}).forEach(function(diffRessource) {
+                    var periode = diffRessource.periode;
+                    if (periode) {
+                        periode = moment(periode, 'YYYY-MM');
+                        if ((periode.isAfter(debutPeriode) || periode.isSame(debutPeriode))
+                            && (periode.isBefore(finPeriode) || periode.isSame(finPeriode))) {
+                            totalMontantToFlatten -= diffRessource.montant;
+                            monthsDiff--;
+                        }
+                    }
+                });
+
+                var flattenedMontant = Math.round(totalMontantToFlatten / monthsDiff);
+
+                while (debutPeriode.isBefore(finPeriode) || debutPeriode.isSame(finPeriode)) {
+                    if (!_.find(ressources, {periode: debutPeriode.format('YYYY-MM')})) {
+                        individu.ressources.push({
+                            periode: debutPeriode.format('YYYY-MM'),
+                            type: ressource.type,
+                            montant: flattenedMontant
+                        });
+                    }
+                    debutPeriode.add(1, 'months');
+                }
+            }
+        });
+    };
+
     return {
         nationaliteLabels: {
             fr: 'française',
@@ -134,8 +173,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             if (individu.dateArriveeFoyerString) {
                 individu.dateArriveeFoyer = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY').format('YYYY-MM-DD');
             }
+            flattenIndividuRessources(individu);
 
             return individu;
-        }
+        },
+
+        flattenIndividuRessources: flattenIndividuRessources
     };
 });

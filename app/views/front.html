@@ -12,7 +12,7 @@
     <script src="/js/marqueblanche.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app="ddsApp" class="body-front">
+  <body ng-app="ddsApp" class="body-front" ng-controller="BodyCtrl" ng-class="{'has-intro': showIntro}">
     <!--[if lt IE 10]>
       <div class="browsehappy text-center">
         Vous utilisez un navigateur web <strong>obsolète</strong>.
@@ -22,7 +22,7 @@
     <![endif]-->
 
     <header>
-      <nav role="navigation" class="main-navbar" ng-controller="MarqueBlancheCtrl" ng-class="{'has-intro': showIntro}">
+      <nav role="navigation" class="main-navbar" ng-class="{'has-intro': showIntro}">
         <div class="intro" ng-cloak ng-if="showIntro">
           <div class="content">
             <span ng-click="hideIntro()">
@@ -113,7 +113,7 @@
     <script src="js/constants/piecesJustificatives.js"></script>
     <script src="js/constants/droits.js"></script>
 
-    <script src="js/controllers/marqueBlanche.js"></script>
+    <script src="js/controllers/body.js"></script>
     <script src="js/controllers/foyer.js"></script>
     <script src="js/controllers/foyer/individuModal.js"></script>
     <script src="js/controllers/foyer/demandeur.js"></script>

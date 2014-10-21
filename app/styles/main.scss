@@ -13,7 +13,7 @@ html {
   min-height: 100%;
 }
 
-$main-footer-height: 100px;
+$main-footer-height: 220px;
 
 .body-front {
   margin-bottom: $main-footer-height + 20px;
@@ -130,14 +130,12 @@ $main-footer-height: 100px;
   width: 100%;
   height: $main-footer-height;
   margin-top: 15px;
-  padding-top: 15px;
+  padding-top: 30px;
   padding-bottom: 30px;
 
-  & .nav.nav-pills a {
+  & ul li a {
     color: white;
-    &:hover {
-      background-color: darken($navbar-default-bg, 5%);
-    }
+    font-size: 12px;
   }
 }
 
@@ -171,9 +169,10 @@ $main-footer-height: 100px;
 
   &.desktop {
     background-image: url('../img/homepage.jpg');
+    padding: 100px 0;
 
     .jumbotron {
-      padding: 80px 50px;
+      padding: 50px;
     }
   }
 
@@ -190,6 +189,10 @@ $main-footer-height: 100px;
       margin-bottom: 25px;
     }
   }
+}
+
+.liste-organismes {
+  padding: 50px 0;
 }
 
 .panel-enfant {

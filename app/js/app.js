@@ -17,6 +17,14 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/startup-d-etat',
             templateUrl: '/partials/startup-etat.html'
         })
+        .state('cgu', {
+            url: '/conditions-generales-d-utilisation',
+            templateUrl: '/partials/cgu.html'
+        })
+        .state('contribuez', {
+            url: '/contribuez',
+            templateUrl: '/partials/contribuez.html'
+        })
         .state('foyer', {
             url: '/configuration/foyer',
             views: {

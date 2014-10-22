@@ -64,7 +64,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, UserService, $timeout) {
+ddsApp.run(function($rootScope, $state, $stateParams, UserService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 

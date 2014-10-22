@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acceptanceTests').factory('UserService', function($http, $rootScope, $sessionStorage) {
+angular.module('acceptanceTests').factory('UserService', function($http, $rootScope) {
     var user;
 
     return {

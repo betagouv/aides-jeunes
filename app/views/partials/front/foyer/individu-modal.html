@@ -21,6 +21,7 @@
           id="date-de-naissance"
           required
           ng-model="individu.dateDeNaissance"
+          ng-change="dateDeNaissanceChanged()"
           dds-date
           date-autocomplete
           date-naissance-min-age="options.minAge"
@@ -105,11 +106,11 @@
         dans l'une de ces situations ?
       </label>
       <div class="col-sm-8">
-        <label class="checkbox-inline" ng-repeat="statut in statutsSpecifiques">
+        <label class="checkbox-inline" ng-repeat="statut in statutsSpecifiques" ng-if="!statut.minAge || age >= statut.minAge">
           <input type="checkbox" ng-model="selectedStatuts[statut.id]">
           {{ statut.label }}
         </label>
-        <label class="checkbox-inline">
+        <label class="checkbox-inline" ng-if="age > 10">
           <input type="checkbox" ng-model="individu.enceinte">
           Enceinte
         </label>

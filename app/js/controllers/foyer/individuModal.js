@@ -31,6 +31,14 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
         return _.contains(['demandeur', 'conjoint'], options.individuType) && $scope.selectedStatuts[field];
     };
 
+    $scope.dateDeNaissanceChanged = function() {
+        $scope.age = null;
+        if ($scope.individu.dateDeNaissance.length === 10) {
+            var momentDate = moment($scope.individu.dateDeNaissance, 'DD/MM/YYYY');
+            $scope.age = moment().diff(momentDate, 'years');
+        }
+    };
+
     $scope.popoverEee = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, ' +
         'France, Grèce, Hongrie, Irlande, Islande, Italie, Lettonie, Liechtenstein, Lituanie, Luxembourg, Malte, Norvège, Pays-Bas, ' +
         'Pologne, Portugal, République Tchèque, Roumanie, Royaume-Uni, Slovaquie, Slovénie, Suède.';

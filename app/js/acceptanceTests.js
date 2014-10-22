@@ -67,10 +67,20 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
 ddsApp.run(function($rootScope, $state, $stateParams, UserService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $rootScope.$on('$stateChangeStart', function(e, state) {
-        if (!UserService.user() && !state.anonymous) {
-            e.preventDefault();
-            $state.go('login');
-        }
-    });
+    if (UserService.user()) {
+        $rootScope.appReady = true;
+    } else {
+        $rootScope.$on('$stateChangeStart', function(e, state) {
+            if (!state.anonymous && !UserService.user()) {
+                $rootScope.appReady = false;
+                UserService.retrieveUserAsync()
+                    .then(function() {
+                        $rootScope.appReady = true;
+                    }).catch(function() {
+                        e.preventDefault();
+                        $state.go('login');
+                    });
+            }
+        });
+    }
 });

@@ -9,13 +9,15 @@ angular.module('acceptanceTests').factory('UserService', function($http, $rootSc
         retrieveUserAsync: function() {
             return $http.get('/api/profile').then(function(result) {
                 $sessionStorage.user = result.data;
+                $rootScope.$broadcast('userLoggedIn', result.data);
+                return result.data;
             });
         },
 
         login: function(email, password) {
             return $http.post('/api/login', {email: email, password: password}).then(function(result) {
                 $sessionStorage.user = result.data;
-                $rootScope.$broadcast('userLoggedIn', $sessionStorage.user);
+                $rootScope.$broadcast('userLoggedIn', result.data);
                 return result.data;
             });
         },

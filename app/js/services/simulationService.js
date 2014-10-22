@@ -19,11 +19,7 @@ angular.module('ddsApp').factory('SimulationService', function($http, $q, droits
                 if (value) {
                     var target = { description: droit };
                     if (_.isNumber(value)) {
-                        if ('acs' === droit.id) {
-                            target.montant = 12 * value;
-                        } else {
-                            target.montant = value;
-                        }
+                        target.montant = value;
                     }
                     droits.push(target);
                 }

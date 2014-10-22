@@ -18,15 +18,15 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                     var periode = diffRessource.periode;
                     if (periode) {
                         periode = moment(periode, 'YYYY-MM');
-                        if ((periode.isAfter(debutPeriode) || periode.isSame(debutPeriode))
-                            && (periode.isBefore(finPeriode) || periode.isSame(finPeriode))) {
+                        if ((periode.isAfter(debutPeriode) || periode.isSame(debutPeriode)) &&
+                            (periode.isBefore(finPeriode) || periode.isSame(finPeriode))) {
                             totalMontantToFlatten -= diffRessource.montant;
                             monthsDiff--;
                         }
                     }
                 });
 
-                var flattenedMontant = Math.round(totalMontantToFlatten / monthsDiff);
+                var flattenedMontant = Math.round(totalMontantToFlatten / monthsDiff * 100) / 100;
 
                 while (debutPeriode.isBefore(finPeriode) || debutPeriode.isSame(finPeriode)) {
                     if (!_.find(ressources, {periode: debutPeriode.format('YYYY-MM')})) {

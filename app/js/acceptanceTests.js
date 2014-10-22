@@ -64,23 +64,19 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, UserService) {
+ddsApp.run(function($rootScope, $state, $stateParams, UserService, $timeout) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    if (UserService.user()) {
-        $rootScope.appReady = true;
-    } else {
-        $rootScope.$on('$stateChangeStart', function(e, state) {
-            if (!state.anonymous && !UserService.user()) {
-                $rootScope.appReady = false;
-                UserService.retrieveUserAsync()
-                    .then(function() {
-                        $rootScope.appReady = true;
-                    }).catch(function() {
-                        e.preventDefault();
-                        $state.go('login');
-                    });
-            }
+
+    $rootScope.$on('$stateChangeStart', function(e, state) {
+        if (!UserService.user() && !state.anonymous) {
+            e.preventDefault();
+            $state.go('login');
+        }
+    });
+
+    UserService.retrieveUserAsync()
+        .finally(function() {
+            $rootScope.appReady = true;
         });
-    }
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: marqueBlancheCtrl', function () {
+describe('Controller: BodyCtrl', function () {
 
     beforeEach(module('ddsApp'));
 
@@ -9,7 +9,7 @@ describe('Controller: marqueBlancheCtrl', function () {
         inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
             var _window_ = { location: { pathname: '/secours-populaire/' }};
-            $controller('MarqueBlancheCtrl', {
+            $controller('BodyCtrl', {
                 $scope: scope,
                 $window: _window_
             });
@@ -22,7 +22,7 @@ describe('Controller: marqueBlancheCtrl', function () {
         inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
             var _window_ = { location: { pathname: '/' }};
-            $controller('MarqueBlancheCtrl', {
+            $controller('BodyCtrl', {
                 $scope: scope,
                 $window: _window_
             });

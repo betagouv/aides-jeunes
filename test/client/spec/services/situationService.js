@@ -37,9 +37,14 @@ describe('Service: situationService', function () {
     });
 
     describe('function createApiCompatibleSituation()', function() {
+        var basePatrimoine = {
+            revenusLocatifs: [],
+            revenusDuCapital: []
+        };
+
         it('Should return a cloned version of the situation', function() {
             // given
-            var situation = { demandeur: {}, enfants: [], personnesACharge: [], logement: {} };
+            var situation = { demandeur: {}, enfants: [], personnesACharge: [], logement: {}, patrimoine: basePatrimoine };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -50,7 +55,7 @@ describe('Service: situationService', function () {
 
         it('Should set the role of the demandeur', function() {
             // given
-            var situation = { demandeur: {}, enfants: [], personnesACharge: [], logement: {} };
+            var situation = { demandeur: {}, enfants: [], personnesACharge: [], logement: {}, patrimoine: basePatrimoine };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -62,7 +67,7 @@ describe('Service: situationService', function () {
 
         it('Should include the conjoint if defined and set its role', function() {
             // given
-            var situation = { demandeur: {}, conjoint: {}, enfants: [], personnesACharge: [], logement: {} };
+            var situation = { demandeur: {}, conjoint: {}, enfants: [], personnesACharge: [], logement: {}, patrimoine: basePatrimoine };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -74,7 +79,7 @@ describe('Service: situationService', function () {
 
         it('Should include the children and set their role', function() {
             // given
-            var situation = { demandeur: {}, enfants: [{}], personnesACharge: [], logement: {} };
+            var situation = { demandeur: {}, enfants: [{}], personnesACharge: [], logement: {}, patrimoine: basePatrimoine };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -205,7 +210,7 @@ describe('Service: situationService', function () {
             var individu = {ressources: ressources};
 
             // when
-            var result = service.flattenIndividuRessources(individu);
+            service.flattenIndividuRessources(individu);
 
             // then
             var ressourcesJuin = _.where(individu.ressources, {periode: '2014-06'});
@@ -214,6 +219,67 @@ describe('Service: situationService', function () {
             var ressourcesJuillet = _.where(individu.ressources, {periode: '2014-07'});
             expect(ressourcesJuillet.length).toBe(1);
             expect(ressourcesJuillet[0].montant).toBe(50);
+        });
+    });
+
+    describe('function flattenPatrimoine()', function() {
+        it('should keep month-based amounts as-is', function() {
+            // given
+            var patrimoine = {
+                revenusLocatifs: [{periode: '2014-08', montant: 400}],
+                revenusDuCapital: [{periode: '2014-12', montant: 400}]
+            };
+
+            // when
+            service.flattenPatrimoine(patrimoine);
+
+            // then
+            expect(patrimoine.revenusLocatifs).toEqual([{periode: '2014-08', montant: 400}]);
+            expect(patrimoine.revenusDuCapital).toEqual([{periode: '2014-12', montant: 400}]);
+        });
+
+        it('should split year-based amounts in months', function() {
+            // given
+            var patrimoine = {
+                revenusLocatifs: [{debutPeriode: '2014-08', finPeriode: '2014-10', montant: 300}],
+                revenusDuCapital: [{debutPeriode: '2014-05', finPeriode: '2014-06', montant: 200}]
+            };
+
+            // when
+            service.flattenPatrimoine(patrimoine);
+
+            // then
+            expect(patrimoine.revenusLocatifs).toEqual([
+                {periode: '2014-08', montant: 100},
+                {periode: '2014-09', montant: 100},
+                {periode: '2014-10', montant: 100}
+            ]);
+            expect(patrimoine.revenusDuCapital).toEqual([
+                {periode: '2014-05', montant: 100},
+                {periode: '2014-06', montant: 100}
+            ]);
+        });
+
+        it('should split year-based amounts and diff amount with corresponding month ressources', function() {
+            // given
+            var patrimoine = {
+                revenusLocatifs: [{debutPeriode: '2014-08', finPeriode: '2014-10', montant: 300}, {periode: '2014-08', montant: 100}],
+                revenusDuCapital: [{debutPeriode: '2014-05', finPeriode: '2014-06', montant: 200}, {periode: '2014-06', montant: 100}]
+            };
+
+            // when
+            service.flattenPatrimoine(patrimoine);
+
+            // then
+            expect(patrimoine.revenusLocatifs).toEqual([
+                {periode: '2014-09', montant: 100},
+                {periode: '2014-10', montant: 100},
+                {periode: '2014-08', montant: 100},
+            ]);
+            expect(patrimoine.revenusDuCapital).toEqual([
+                {periode: '2014-05', montant: 100},
+                {periode: '2014-06', montant: 100}
+            ]);
         });
     });
 });

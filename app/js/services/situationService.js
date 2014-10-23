@@ -3,42 +3,64 @@
 angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage) {
     var situation;
 
+    var flattenRessource = function(ressource, source, target) {
+        if (ressource.periode) {
+            target.push(ressource);
+            return;
+        }
+
+        var debutPeriode = moment(ressource.debutPeriode, 'YYYY-MM');
+        var finPeriode = moment(ressource.finPeriode, 'YYYY-MM');
+        var monthsDiff = finPeriode.diff(debutPeriode, 'months') + 1;
+        var totalMontantToFlatten = ressource.montant;
+        _.where(source, {type: ressource.type}).forEach(function(diffRessource) {
+            var periode = diffRessource.periode;
+            if (periode) {
+                periode = moment(periode, 'YYYY-MM');
+                if ((periode.isAfter(debutPeriode) || periode.isSame(debutPeriode)) &&
+                    (periode.isBefore(finPeriode) || periode.isSame(finPeriode))) {
+                    totalMontantToFlatten -= diffRessource.montant;
+                    monthsDiff--;
+                }
+            }
+        });
+
+        var flattenedMontant = Math.round(totalMontantToFlatten / monthsDiff * 100) / 100;
+
+        while (debutPeriode.isBefore(finPeriode) || debutPeriode.isSame(finPeriode)) {
+            if (!_.find(source, {periode: debutPeriode.format('YYYY-MM')})) {
+                var splittedRessource = {
+                    periode: debutPeriode.format('YYYY-MM'),
+                    montant: flattenedMontant
+                };
+                if (ressource.type) {
+                    splittedRessource.type = ressource.type;
+                }
+                target.push(splittedRessource);
+            }
+            debutPeriode.add(1, 'months');
+        }
+    };
+
     var flattenIndividuRessources = function(individu) {
         var ressources = individu.ressources || [];
         individu.ressources = [];
         ressources.forEach(function(ressource) {
-            if (ressource.periode) {
-                individu.ressources.push(ressource);
-            } else {
-                var debutPeriode = moment(ressource.debutPeriode, 'YYYY-MM');
-                var finPeriode = moment(ressource.finPeriode, 'YYYY-MM');
-                var monthsDiff = finPeriode.diff(debutPeriode, 'months') + 1;
-                var totalMontantToFlatten = ressource.montant;
-                _.where(ressources, {type: ressource.type}).forEach(function(diffRessource) {
-                    var periode = diffRessource.periode;
-                    if (periode) {
-                        periode = moment(periode, 'YYYY-MM');
-                        if ((periode.isAfter(debutPeriode) || periode.isSame(debutPeriode)) &&
-                            (periode.isBefore(finPeriode) || periode.isSame(finPeriode))) {
-                            totalMontantToFlatten -= diffRessource.montant;
-                            monthsDiff--;
-                        }
-                    }
-                });
+            flattenRessource(ressource, ressources, individu.ressources);
+        });
+    };
 
-                var flattenedMontant = Math.round(totalMontantToFlatten / monthsDiff * 100) / 100;
+    var flattenPatrimoine = function(patrimoine) {
+        var source = patrimoine.revenusDuCapital;
+        patrimoine.revenusDuCapital = [];
+        source.forEach(function(revenu) {
+            flattenRessource(revenu, source, patrimoine.revenusDuCapital);
+        });
 
-                while (debutPeriode.isBefore(finPeriode) || debutPeriode.isSame(finPeriode)) {
-                    if (!_.find(ressources, {periode: debutPeriode.format('YYYY-MM')})) {
-                        individu.ressources.push({
-                            periode: debutPeriode.format('YYYY-MM'),
-                            type: ressource.type,
-                            montant: flattenedMontant
-                        });
-                    }
-                    debutPeriode.add(1, 'months');
-                }
-            }
+        source = patrimoine.revenusLocatifs;
+        patrimoine.revenusLocatifs = [];
+        source.forEach(function(revenu) {
+            flattenRessource(revenu, source, patrimoine.revenusLocatifs);
         });
     };
 
@@ -156,6 +178,8 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 situation.logement.dateArrivee = moment(situation.logement.dateArriveeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
             }
 
+            flattenPatrimoine(situation.patrimoine);
+
             var result = {
                 individus: individus,
                 logement: situation.logement,
@@ -178,6 +202,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             return individu;
         },
 
-        flattenIndividuRessources: flattenIndividuRessources
+        flattenIndividuRessources: flattenIndividuRessources,
+        flattenPatrimoine: flattenPatrimoine
     };
 });

@@ -68,15 +68,17 @@ ddsApp.run(function($rootScope, $state, $stateParams, UserService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
-    $rootScope.$on('$stateChangeStart', function(e, state) {
-        if (!UserService.user() && !state.anonymous) {
-            e.preventDefault();
-            $state.go('login');
-        }
-    });
-
     UserService.retrieveUserAsync()
+        .catch(function() {
+            $state.go('login');
+        })
         .finally(function() {
+            $rootScope.$on('$stateChangeStart', function(e, state) {
+                if (!UserService.user() && !state.anonymous) {
+                    e.preventDefault();
+                    $state.go('login');
+                }
+            });
             $rootScope.appReady = true;
         });
 });

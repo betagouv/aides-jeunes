@@ -1,5 +1,7 @@
 'use strict';
 
+/* global _ */
+
 describe('Service: situationService', function () {
 
     var service;
@@ -168,7 +170,7 @@ describe('Service: situationService', function () {
             var individu = {ressources: ressources};
 
             // when
-            var result = service.flattenIndividuRessources(individu);
+            service.flattenIndividuRessources(individu);
 
             // then
             expect(individu.ressources[0]).toBe(ressources[0]);
@@ -180,7 +182,7 @@ describe('Service: situationService', function () {
             var individu = {ressources: ressources};
 
             // when
-            var result = service.flattenIndividuRessources(individu);
+            service.flattenIndividuRessources(individu);
 
             // then
             expect(individu.ressources.indexOf(ressources[0])).toBe(-1);
@@ -192,7 +194,7 @@ describe('Service: situationService', function () {
             var individu = {ressources: ressources};
 
             // when
-            var result = service.flattenIndividuRessources(individu);
+            service.flattenIndividuRessources(individu);
 
             // then
             expect(individu.ressources.length).toBe(3);

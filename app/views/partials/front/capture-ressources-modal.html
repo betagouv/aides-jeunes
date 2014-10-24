@@ -65,7 +65,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="ressource in individuRef.ressources|filter: isRessourceNonTns" class="capture-{{ ressource.type.category }}">
-                <td style="width: 200px; vertical-align: middle; color: white;">{{ ressource.type.label }}</td>
+                <td style="width: 200px; vertical-align: middle; color: black;">{{ ressource.type.label }}</td>
                 <td ng-repeat="monthRessource in ressource.months">
                   <span class="input-group">
                     <input
@@ -100,8 +100,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="ressource in individuRef.ressources|filter: isRessourceMicroTns" class="capture-tns }}">
-                <td style="width: 200px; vertical-align: middle; color: white;">{{ ressource.type.label }}</td>
+              <tr ng-repeat="ressource in individuRef.ressources|filter: isRessourceMicroTns" class="capture-tns">
+                <td style="width: 200px; vertical-align: middle; color: black;">{{ ressource.type.label }}</td>
                 <td style="width: 190px;">
                   <select class="form-control" ng-model="ressource.tnsStructureType">
                     <option value="auto_entrepreneur">Auto-entrepreneur</option>
@@ -141,8 +141,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="ressource in individuRef.ressources|filter: isRessourceOtherTns" class="capture-tns }}">
-                <td style="width: 200px; vertical-align: middle; color: white;">{{ ressource.type.label }}</td>
+              <tr ng-repeat="ressource in individuRef.ressources|filter: isRessourceOtherTns" class="capture-tns">
+                <td style="width: 200px; vertical-align: middle; color: black;">{{ ressource.type.label }}</td>
                 <td>
                   <span class="input-group">
                     <input

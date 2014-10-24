@@ -230,37 +230,44 @@ $body-front-base-padding: 60px;
   font-size: 17px;
 }
 
+@mixin button-variant-capture($color) {
+  border-left: 7px solid $color;
+  &.active, &.active:focus {
+    @include button-variant(white, $color, $color);
+  }
+}
+
 .capture-indemnites {
-  @include button-variant(white, #f07818, #f07818);
+  @include button-variant-capture(#f07818);
 }
 
 .capture-pensions {
-  @include button-variant(white, #5e412f, #5e412f);
+  @include button-variant-capture(#5e412f);
 }
 
 .capture-allocations {
-  @include button-variant(white, #458D75, #458D75);
+  @include button-variant-capture(#458D75);
 }
 
 .capture-revenusActivite {
-  @include button-variant(white, #395668, #395668);
+  @include button-variant-capture(#395668);
 }
 
 .capture-autre {
-  @include button-variant(white, #878309, #878309);
+  @include button-variant-capture(#878309);
 }
 
 .capture-tns {
-  @include button-variant(white, #CC2A41, #CC2A41);
+  @include button-variant-capture(#CC2A41);
 }
 
 .btn-selection, .btn-selection:hover, .btn-selection:focus {
-  border: 4px solid white;
-  margin: 3px;
+  // Reset border de 1px sur .btn
+  border-top: 0px;
+  border-bottom: 0px;
 
-  &.active, &.active:focus {
-    border: 4px solid black;
-  }
+  margin: 3px;
+  background-color: whitesmoke;
 }
 
 .btn-selection-personne:hover {
@@ -311,4 +318,10 @@ $body-front-base-padding: 60px;
 
 .intro, .intro.ng-enter.ng-enter-active {
   top: 0;
+}
+
+
+.btn-primary {
+  background-color: whitesmoke;
+  color: black;
 }

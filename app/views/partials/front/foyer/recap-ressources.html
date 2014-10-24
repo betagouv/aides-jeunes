@@ -11,7 +11,7 @@
       </thead>
       <tbody ng-repeat="ressource in ressourcesNonTns">
         <tr ng-repeat="individu in ressource.byIndividu">
-          <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.type.category }}">{{ ressource.type.label }}</td>
+          <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle active capture-{{ ressource.type.category }}">{{ ressource.type.label }}</td>
           <td ng-if="!isSituationMonoIndividu">{{ individu.label }}</td>
           <td ng-repeat="month in months">{{ individu.values[$index] }} €</td>
           <td>{{ individu.montantAnnuel }} €</td>
@@ -36,7 +36,7 @@
       </thead>
       <tbody ng-repeat="ressource in ressourcesMicroFiscal">
         <tr ng-repeat="individu in ressource.byIndividu">
-          <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle capture-{{ ressource.type.category }}">{{ ressource.type.label }}</td>
+          <td rowspan="{{ ressource.byIndividu.length + 1 }}" ng-if="$first" class="text-center align-middle active capture-{{ ressource.type.category }}">{{ ressource.type.label }}</td>
           <td ng-if="!isSituationMonoIndividu">{{ individu.label }}</td>
           <td>{{ individu.montantAnnuel }} €</td>
         </tr>
@@ -62,7 +62,7 @@
           <td
             rowspan="{{ ressource.byIndividu.length + 1 }}"
             ng-if="$first"
-            class="text-center align-middle capture-{{ ressource.type.category }}">
+            class="text-center align-middle active capture-{{ ressource.type.category }}">
             {{ ressource.type.label }}
           </td>
           <td ng-if="!isSituationMonoIndividu">{{ individu.label }}</td>

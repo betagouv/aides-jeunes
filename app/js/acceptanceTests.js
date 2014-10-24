@@ -22,15 +22,10 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             }
         })
         .state('login', {
-            url: '/login',
+            url: '/login?targetUrl',
             templateUrl: '/acceptance-tests/partials/login.html',
             controller: 'LoginCtrl',
-            anonymous: true,
-            onEnter: ['$state', 'UserService', function($state, UserService) {
-                if (UserService.user()) {
-                    $state.go('index');
-                }
-            }]
+            anonymous: true
         })
         .state('new', {
             url: '/new/:situationId',
@@ -64,13 +59,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, UserService) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, UserService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
     UserService.retrieveUserAsync()
         .catch(function() {
-            $state.go('login');
+            $state.go('login', {targetUrl: $window.location.pathname});
         })
         .finally(function() {
             $rootScope.$on('$stateChangeStart', function(e, state) {

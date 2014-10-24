@@ -65,6 +65,10 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         ]);
     };
 
+    $scope.createTest = function() {
+        $window.location.href = '/acceptance-tests/new/' + situation._id;
+    };
+
     $rootScope.$on('ressourcesCaptured', function(ressourcesN2) {
         if (ressourcesN2) {
             situation.ressourcesN2Captured = true;

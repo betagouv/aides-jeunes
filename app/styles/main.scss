@@ -321,7 +321,11 @@ $body-front-base-padding: 60px;
 }
 
 
-.btn-primary {
+.btn-sm.btn-primary {
   background-color: whitesmoke;
   color: black;
+  &.active {
+    background-color: $btn-primary-bg;
+    color: white;
+  }
 }

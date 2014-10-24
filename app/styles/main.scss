@@ -1,3 +1,4 @@
+
 @import 'variables';
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 @import 'font-open-sans';
@@ -6,6 +7,8 @@
 
 $fa-font-path: "/bower_components/font-awesome/fonts";
 @import "font-awesome/scss/font-awesome";
+
+$btn-default-bg: whitesmoke;
 
 html {
   overflow-y: scroll;
@@ -261,13 +264,16 @@ $body-front-base-padding: 60px;
   @include button-variant-capture(#CC2A41);
 }
 
-.btn-selection, .btn-selection:hover, .btn-selection:focus {
+.btn-selection {
   // Reset border de 1px sur .btn
   border-top: 0px;
   border-bottom: 0px;
-
   margin: 3px;
-  background-color: whitesmoke;
+  background-color: $btn-default-bg;
+
+  &:hover {
+    background-color: darken($btn-default-bg, 5%);
+  }
 }
 
 .btn-selection-personne:hover {
@@ -320,12 +326,9 @@ $body-front-base-padding: 60px;
   top: 0;
 }
 
-
-.btn-sm.btn-primary {
-  background-color: whitesmoke;
-  color: black;
+.btn-default {
   &.active {
-    background-color: $btn-primary-bg;
+    background-color: $btn-success-bg;
     color: white;
   }
 }

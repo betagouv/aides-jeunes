@@ -9,10 +9,24 @@
       <h2 class="panel-title">{{ situation.conjoint ? 'Votre partenaire' : 'Votre situation familiale' }}</h2>
     </div>
     <div class="panel-body">
-      <div ng-show="undefined === situation.livesAlone" class="text-center">
-        <p>Vivez-vous seul(e) ou en couple ?</p>
-        <button class="btn btn-sm btn-primary" ng-model="situation.livesAlone" btn-radio="true" ng-click="livesAlone()">Seul</button>
-        <button class="btn btn-sm btn-primary" ng-model="situation.livesAlone" btn-radio="false" ng-click="$state.go('foyer.conjoint_modal')">En couple</button>
+      <div ng-show="undefined === situation.livesAlone">
+        <p class="text-center">Vivez-vous seul(e) ou en couple ?</p>
+        <div class="row">
+          <div class="col-xs-6">
+            <button
+              class="btn btn-primary btn-block"
+              ng-model="situation.livesAlone"
+              btn-radio="true"
+              ng-click="livesAlone()">Je vis seul</button>
+          </div>
+          <div class="col-xs-6">
+            <button
+              class="btn btn-primary btn-block"
+              ng-model="situation.livesAlone"
+              btn-radio="false"
+              ng-click="$state.go('foyer.conjoint_modal')">Je vis en couple</button>
+          </div>
+        </div>
       </div>
       <div ng-if="situation.livesAlone">
         <p class="text-center">Vous vivez seul(e).</p>

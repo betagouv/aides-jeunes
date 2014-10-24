@@ -1,19 +1,9 @@
 <div class="col-lg-5 animate-show" id="panel-enfants" ng-show="visible">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h2 class="panel-title">Vos enfants</h2>
+      <h2 class="panel-title">Les enfants à votre charge</h2>
     </div>
     <div class="panel-body">
-      <div ng-show="undefined === situation.hasChildren" class="text-center">
-        <p>Avez-vous des enfants à charge ?</p>
-        <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="true">Oui</button>
-        <button class="btn btn-sm btn-primary" ng-model="situation.hasChildren" btn-radio="false" ng-click="endChildConfig()">Non</button>
-      </div>
-
-      <div class="text-center" ng-if="false === situation.hasChildren">
-        Vous n'avez pas d'enfant à charge
-      </div>
-
       <div class="row">
         <div ng-repeat="child in situation.enfants">
           <div class="clearfix" ng-if="$index % 2 === 0"></div>
@@ -41,11 +31,11 @@
 
         <div class="clearfix" ng-if="situation.enfants.length % 2 === 0"></div>
 
-        <div class="col-sm-6" ng-show="true === situation.hasChildren && !situation.childConfigDone">
+        <div class="col-sm-6" ng-show="!situation.childConfigDone">
           <div class="panel-enfant panel-new-enfant">
             <div class="panel-body" style="padding: 0;">
               <button class="btn btn-lg btn-default btn-block btn-new-entity" ng-click="$state.go('foyer.enfant_modal')">
-                Ajouter un enfant
+                Ajouter un enfant<br>
                 <i class="fa fa-plus icon-lg"></i>
               </button>
             </div>
@@ -53,9 +43,14 @@
         </div>
       </div>
 
-      <div class="text-right" ng-show="true === situation.hasChildren && !situation.childConfigDone">
+      <div class="text-center" ng-if="situation.childConfigDone && !situation.enfants.length">
+        Vous n'avez pas d'enfant à charge
+      </div>
+
+      <div class="text-right" ng-show="!situation.childConfigDone">
         <button type="button" class="btn btn-primary" ng-click="endChildConfig()">
-          Terminé
+          <span ng-if="!situation.enfants.length">Je n'ai pas d'enfants</span>
+          <span ng-if="situation.enfants.length">Terminé</span>
           <br><i class="fa fa-arrow-circle-right"></i>
         </button>
       </div>

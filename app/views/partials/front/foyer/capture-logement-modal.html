@@ -17,7 +17,7 @@
         <div class="btn-group">
           <button
             type="button"
-            class="btn btn-sm btn-primary"
+            class="btn btn-sm btn-default"
             ng-repeat="logementType in logementTypes"
             ng-model="logement.type"
             btn-radio="logementType.id"
@@ -31,16 +31,16 @@
     <div class="form-group" ng-if="'locataire' === logement.type">
       <label class="col-sm-4 control-label">Est-ce une colocation ?</label>
       <div class="col-sm-8">
-        <button type="button" class="btn btn-sm btn-primary" ng-model="logement.colocation" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-primary" ng-model="logement.colocation" btn-radio="false">Non</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="logement.colocation" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="logement.colocation" btn-radio="false">Non</button>
       </div>
     </div>
 
     <div class="form-group" ng-if="captureMembreFamilleProprietaire()">
       <label class="col-sm-4 control-label">Le propriétaire de votre logement est-il un membre de votre famille&nbsp;?</label>
       <div class="col-sm-8">
-        <button type="button" class="btn btn-sm btn-primary" ng-model="logement.membreFamilleProprietaire" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-primary" ng-model="logement.membreFamilleProprietaire" btn-radio="false">Non</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="logement.membreFamilleProprietaire" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="logement.membreFamilleProprietaire" btn-radio="false">Non</button>
       </div>
     </div>
 
@@ -50,7 +50,7 @@
         <div class="btn-group">
           <button
             type="button"
-            class="btn btn-primary btn-sm"
+            class="btn btn-default btn-sm"
             ng-repeat="locationType in locationTypes"
             ng-model="logement.locationType"
             btn-radio="locationType.id">
@@ -65,8 +65,8 @@
         Avez-vous un prêt primo-accédant pour cette propriété ?
       </label>
       <div class="col-sm-3">
-        <button type="button" class="btn btn-sm btn-primary" ng-model="logement.primoAccedant" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-primary" ng-model="logement.primoAccedant" btn-radio="false">Non</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="logement.primoAccedant" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="logement.primoAccedant" btn-radio="false">Non</button>
       </div>
       <div class="col-sm-5">
         <p class="help-block">

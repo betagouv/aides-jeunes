@@ -1,19 +1,9 @@
 <div class="col-lg-5 animate-show" ng-show="visible">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h2 class="panel-title">Autres personnes à charge</h2>
+      <h2 class="panel-title">Autres personnes à votre charge</h2>
     </div>
     <div class="panel-body">
-      <div ng-show="undefined === situation.hasPersonnesACharge" class="text-center">
-        <p>Avez-vous d'autres personnes à votre charge ?</p>
-        <button class="btn btn-sm btn-primary" ng-model="situation.hasPersonnesACharge" btn-radio="true">Oui</button>
-        <button class="btn btn-sm btn-primary" ng-model="situation.hasPersonnesACharge" btn-radio="false" ng-click="endPersonnesAChargeConfig()">Non</button>
-      </div>
-
-      <div class="text-center" ng-if="false === situation.hasPersonnesACharge">
-        Vous n'avez pas de personne à charge
-      </div>
-
       <div class="row">
         <div ng-repeat="personne in situation.personnesACharge">
           <div class="clearfix" ng-if="$index % 2 === 0"></div>
@@ -41,21 +31,26 @@
 
         <div class="clearfix" ng-if="situation.personnesACharge.length % 2 === 0"></div>
 
-        <div class="col-sm-6" ng-show="situation.hasPersonnesACharge && !situation.personnesAChargeConfigDone">
+        <div class="col-sm-6" ng-show="!situation.personnesAChargeConfigDone">
           <div class="panel panel-default" style="border-style: dashed;">
             <div class="panel-body" style="padding: 0;">
               <button class="btn btn-lg btn-default btn-block btn-new-entity" ng-click="$state.go('foyer.personne_a_charge_modal')">
                 Ajouter une personne
-                <i class="fa fa-plus icon-lg"></i>
+                <br><i class="fa fa-plus icon-lg"></i>
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="text-right" ng-show="situation.hasPersonnesACharge && !situation.personnesAChargeConfigDone">
+      <div class="text-center" ng-if="situation.personnesAChargeConfigDone && !situation.personnesACharge.length">
+        Vous n'avez pas de personne à charge
+      </div>
+
+      <div class="text-right" ng-show="!situation.personnesAChargeConfigDone">
         <button type="button" class="btn btn-primary" ng-click="endPersonnesAChargeConfig()">
-          Terminé
+          <span ng-if="!situation.personnesACharge.length">Je n'ai pas de personnes à charge</span>
+          <span ng-if="situation.personnesACharge.length">Terminé</span>
           <br><i class="fa fa-arrow-circle-right"></i>
         </button>
       </div>

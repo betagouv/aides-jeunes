@@ -36,8 +36,7 @@ angular.module('ddsApp').constant('situationsPro', [
     {
         id: 'demandeur_emploi',
         label: 'Demandeur d\'emploi',
-        isStatutSpecifique: true,
-        minAge: 40
+        isStatutSpecifique: true
     },
     {
         id: 'etudiant',
@@ -47,7 +46,6 @@ angular.module('ddsApp').constant('situationsPro', [
     {
         id: 'retraite',
         label: 'Retraité',
-        isStatutSpecifique: true,
-        minAge: 55
+        isStatutSpecifique: true
     }
 ]);

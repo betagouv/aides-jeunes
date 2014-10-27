@@ -106,11 +106,11 @@
         dans l'une de ces situations ?
       </label>
       <div class="col-sm-8">
-        <label class="checkbox-inline" ng-repeat="statut in statutsSpecifiques" ng-if="!statut.minAge || age >= statut.minAge">
+        <label class="checkbox-inline" ng-repeat="statut in statutsSpecifiques">
           <input type="checkbox" ng-model="selectedStatuts[statut.id]">
           {{ statut.label }}
         </label>
-        <label class="checkbox-inline" ng-if="age > 10">
+        <label class="checkbox-inline">
           <input type="checkbox" ng-model="individu.enceinte">
           Enceinte
         </label>

@@ -118,12 +118,19 @@
     </div>
 
     <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
-      <div class="col-sm-offset-4 col-sm-8">
-        <label class="checkbox-inline">
-          <input type="checkbox" ng-model="individu.assPreconditionRemplie">
-          <span ng-if="'demandeur' === options.individuType">Avez-vous</span>
-          <span ng-if="'demandeur' !== options.individuType">A-t-il (elle)</span>
-          travaillé pendant au moins 10 ans au cours des 15 dernières années ?
+      <label class="control-label col-sm-4" for="eligibiliteAss">
+        <span ng-if="'demandeur' === options.individuType">Avez-vous</span>
+        <span ng-if="'demandeur' !== options.individuType">A-t-il (elle)</span>
+        travaillé pendant au moins 5 ans au cours des 10 dernières années ?
+      </label>
+      <div class="col-sm-8">
+        <label class="radio-inline">
+          <input type="radio" name="eligibiliteAss" ng-model="individu.assPreconditionRemplie" ng-value="true">
+          Oui
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="eligibiliteAss" ng-model="individu.assPreconditionRemplie" ng-value="false">
+          Non
         </label>
       </div>
     </div>

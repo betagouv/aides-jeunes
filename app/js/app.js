@@ -2,11 +2,12 @@
 
 var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngStorage', 'ddsCommon']);
 
-ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
+ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $uiViewScrollProvider) {
     moment.lang('fr');
 
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
+    $uiViewScrollProvider.useAnchorScroll();
 
     $stateProvider
         .state('home', {

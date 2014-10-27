@@ -25,6 +25,10 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             url: '/contribuez',
             templateUrl: '/partials/contribuez.html'
         })
+        .state('faq', {
+            url: '/faq',
+            templateUrl: '/partials/faq.html'
+        })
         .state('foyer', {
             url: '/configuration/foyer',
             views: {

@@ -332,3 +332,46 @@ $body-front-base-padding: 60px;
     color: white;
   }
 }
+
+.thumbnail {
+  border-bottom-width: 2px;
+  padding: 0;
+  padding-top: 10px;
+
+  .title {
+    margin-top: 10px;
+    color: white;
+    background-color: $brand-success;
+    border-bottom: 3px solid darken($brand-success, 10%);
+    padding: 9px;
+    font-size: 16px;
+    line-height: 16px;
+    
+    .montant-detail {
+      font-size: 10px;
+    }
+
+    .montant {
+      font-weight: 600;
+    }
+  }
+
+  .no-gutter-left {
+    padding-left:0;
+  }
+  .no-gutter-right {
+    padding-right:0;
+  }
+}
+
+.alert-warning-inverse {
+  background-color: white;
+  border: 1px solid $btn-warning-border;
+  color: $brand-warning;
+  font-weight: 400;
+  text-align: justify;
+
+  .row {
+    padding-top: 11px;
+  }
+}

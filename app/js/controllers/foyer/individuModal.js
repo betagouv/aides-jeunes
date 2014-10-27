@@ -6,7 +6,8 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
     $scope.selectedStatuts = {};
 
-    $scope.individu = { nationalite: 'fr' };
+    $scope.individu = { nationalite: 'fr', assPreconditionRemplie: true };
+
     if (true === ($scope.askRelationType = !!options.askRelationType)) {
         $scope.individu.relationType = 'mariage';
     }
@@ -21,6 +22,12 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
                     $scope.individu.situationsPro.push(situationPro);
                 }
             });
+
+            var field = 'demandeur_emploi';
+            if (!$scope.selectedStatuts[field]) {
+                delete $scope.individu.assPreconditionRemplie;
+            }
+            
             $scope.$emit('individu.' + options.individuType, $scope.individu);
             $modalInstance.close($scope.individu);
         }

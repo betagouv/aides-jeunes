@@ -10,12 +10,40 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state('index', {
-            url: '/?testId',
-            templateUrl: '/acceptance-tests/partials/index.html',
             controller: 'IndexCtrl',
+            templateUrl: '/acceptance-tests/partials/index.html'
+        })
+        .state('index.all', {
+            url: '/?testId',
+            controller: 'TabCtrl',
+            templateUrl: '/acceptance-tests/partials/tab.html',
             resolve: {
                 acceptanceTests: ['$http', function($http) {
                     return $http.get('/api/acceptance-tests').then(function(result) {
+                        return result.data;
+                    });
+                }]
+            }
+        })
+        .state('index.validated', {
+            url: '/valides/?testId',
+            controller: 'TabCtrl',
+            templateUrl: '/acceptance-tests/partials/tab.html',
+            resolve: {
+                acceptanceTests: ['$http', function($http) {
+                    return $http.get('/api/acceptance-tests/validated').then(function(result) {
+                        return result.data;
+                    });
+                }]
+            }
+        })
+        .state('index.mine', {
+            url: '/mes-tests/?testId',
+            controller: 'TabCtrl',
+            templateUrl: '/acceptance-tests/partials/tab.html',
+            resolve: {
+                acceptanceTests: ['$http', function($http) {
+                    return $http.get('/api/acceptance-tests/mine').then(function(result) {
                         return result.data;
                     });
                 }]

@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-lg-3">
+    <p>
+      <button type="button" ng-disabled="pendingTests > 0" class="btn btn-default" ng-click="launchAll()">
+        <span ng-if="pendingTests > 0">
+          <i class="fa fa-spinner fa-spin"></i> Tests en cours...
+        </span>
+        <span ng-if="pendingTests === 0">
+          Lancer tous les tests
+        </span>
+      </button>
+    </p>
+  </div>
+  <div class="col-lg-9">
+    <progressbar ng-if="tests" ng-class="{'progress-striped active': pendingTests}" max="tests.length" value="tests.length - pendingTests">
+      {{ tests.length - pendingTests }} / {{ tests.length }}
+    </progressbar>
+  </div>
+</div>
+
+<div ng-if="showErrors()">
+  <p>Tests en erreur : {{ errors }}/{{ tests.length }}</p>
+</div>
+
+<div class="row">
+  <div class="col-lg-12" ng-repeat="category in categories">
+    <h2>{{ category.name }}</h2>
+    <p ng-if="showErrors()">Tests en erreur : {{ category.errors }}/{{ category.tests.length }}</p>
+    <accordion close-others="false">
+      <accordion-group
+        ng-repeat="test in category.tests"
+        id="test-{{ test._id }}"
+        is-open="test.open"
+        ng-class="{'panel-success': test.status === 'ok', 'panel-danger': test.status === 'ko', 'panel-warning': test.status === 'near' }">
+        <accordion-heading>
+          {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
+          <div ng-if="test.open && test.createdBy">
+            <small class="test-detail">
+              Créé par {{test.createdBy.firstName}} {{test.createdBy.lastName}}
+            </small>
+          </div>
+          <div ng-if="test.open && test.updatedAt">
+            <small class="test-detail">
+              Dernière mise à jour le {{test.updatedAt}}
+            </small>
+          </div>
+
+        </accordion-heading>
+        <p class="pull-right">
+          <a class="btn btn-default btn-xs" href="{{ test._id }}/edit"><i class="fa fa-edit"></i> Modifier ce test</a>
+          <button type="button" class="btn btn-default btn-xs" ng-click="deleteTest(test)"><i class="fa fa-times"></i> Supprimer ce test</button>
+          <button type="button" class="btn btn-default btn-xs" ng-disabled="test.running" ng-click="launchSingle(test)">
+            <span ng-if="test.running"><i class="fa fa-spinner fa-spin"></i> En cours...</span>
+            <span ng-if="!test.running">Relancer</span>
+          </button>
+        </p>
+        <p ng-if="test.description" ng-bind-html="newLineToBr(test.description)"></p>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Droit</th>
+              <th>Valeur attendue</th>
+              <th>Valeur obtenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="expectedDroit in test.droitsAttendus" ng-class="{'success': expectedDroit.status === 'ok', 'danger': expectedDroit.status === 'ko', 'info': expectedDroit.status === 'unknown', 'warning': expectedDroit.status === 'near' }">
+              <td>{{ droits[expectedDroit.id].shortLabel }}</td>
+              <td>{{ displayDroitValue(expectedDroit.expectedValue) }}</td>
+              <td>{{ displayDroitValue(expectedDroit.actualValue) }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          <button type="button" class="btn btn-default btn-xs" ng-click="toggleSituation(test)">
+            Détail de la situation
+            <i class="fa" ng-class="{'fa-chevron-down': test.showSituation, 'fa-chevron-right': !test.showSituation}"></i>
+          </button>
+          <small>
+            [<a href="/api/situations/{{ test.situation }}">Situation DDS</a>]
+            [<a href="/api/situations/{{ test.situation }}/openfisca-request">Requête OpenFisca</a>]
+            [<a href="/api/situations/{{ test.situation }}/openfisca-response">Réponse OpenFisca</a>]
+          </small>
+        </p>
+        <pre ng-if="test.showSituation">{{ test.situationObject | json }}</pre>
+      </accordion-group>
+    </accordion>
+  </div>
+</div>

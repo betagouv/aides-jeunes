@@ -1,6 +1,8 @@
 'use strict';
 
 angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, $q, $window, $state, $stateParams, $location, droitsDescription, acceptanceTests) {
+    $scope.$parent.stopWaiting();
+
     if ($stateParams.testId) {
         $location.hash('test-' + $stateParams.testId);
         var testToScroll = _.find(acceptanceTests, {'_id': $stateParams.testId});

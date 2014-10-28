@@ -3,9 +3,10 @@
 </div>
 
 <tabset>
-  <tab ng-repeat="tab in tabs" heading="{{tab.heading}}" active="tab.active" select="go(tab.route)">
-    <div ui-view>
-      <p class="text-center"><i class="fa fa-spinner fa-spin"></i> Chargement en cours...</p>
-    </div>
+  <tab ng-repeat="tab in tabs" active="tab.active" select="go(tab)">
+    <tab-heading>
+      <span ng-if="tab.waiting"><i class="fa fa-spinner fa-spin"></i></span> {{tab.heading}}
+    </tab-heading>
+    <div ui-view></div>
   </tab>
 </tabset>

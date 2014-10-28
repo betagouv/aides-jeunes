@@ -409,6 +409,18 @@ module.exports = function (grunt) {
       test: {
         NODE_ENV: 'test'
       }
+    },
+
+    htmlrefs: {
+      dist: {
+        src: './dist/views/front.html',
+        dest: './dist/views/front.html',
+        options: {
+          includes: {
+            piwik: './piwik.inc'
+          }
+        }
+      }
     }
   });
 
@@ -489,7 +501,8 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin'
+    'usemin',
+    'htmlrefs:dist'
   ]);
 
   grunt.registerTask('default', [

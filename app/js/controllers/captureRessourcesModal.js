@@ -169,21 +169,22 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
                     });
                 }
 
-                var individuRessource = {
-                    type: ressource.type.id,
-                    montant: ressource.montantAnnuel
-                };
-
-                if ('caMicroEntreprise' === ressource.type.id) {
-                    individuRessource.tnsStructureType = ressource.tnsStructureType;
-                    individuRessource.tnsActiviteType = ressource.tnsActiviteType;
-                    individuRessource.periode = $scope.yearMoinsUn;
-                } else if ('tns' !== ressource.type.category) {
-                    individuRessource.debutPeriode = debutAnnee.format('YYYY-MM');
-                    individuRessource.finPeriode = finAnnee.format('YYYY-MM');
+                if ('tns' === ressource.type.category) {
+                    if ('caMicroEntreprise' === ressource.type.id) {
+                        individu.tnsStructureType = ressource.tnsStructureType;
+                        individu.tnsActiviteType = ressource.tnsActiviteType;
+                        individu.caMicroEntreprise = ressource.montantAnnuel;
+                    } else if ('autresRevenusTns' === ressource.type.id) {
+                        individu.autresRevenusTns = ressource.montantAnnuel;
+                    }
+                } else {
+                    individu.ressources.push({
+                        type: ressource.type.id,
+                        montant: ressource.montantAnnuel,
+                        debutPeriode: debutAnnee.format('YYYY-MM'),
+                        finPeriode: finAnnee.format('YYYY-MM')
+                    });
                 }
-
-                individu.ressources.push(individuRessource);
             });
         });
     };

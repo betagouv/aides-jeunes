@@ -3,14 +3,13 @@
     <h1>C'est fini&nbsp;!</h1>
     <p>
       Il ne vous reste plus qu'à imprimer les formulaires disponibles ci-dessous.
-      <br><strong>Pensez bien à les compléter, les dater et les signer !</strong>
+      <br><strong>Pensez bien à les compléter, les dater et les signer&nbsp;!</strong>
       <br>Pensez également à bien inclure toutes les pièces justificatives requises.
-      <br>
-      <a class="btn btn-sm btn-default" ui-sref="resultat({situationId: situation._id})">
-        <i class="fa fa-chevron-left"></i>
-        Revenir aux résultats de la simulation
-      </a>
     </p>
+    <a class="btn btn-sm btn-default" ui-sref="resultat({situationId: situation._id})">
+      <i class="fa fa-chevron-left"></i>
+      Revenir aux résultats de la simulation
+    </a>
   </div>
 
   <p class="lead" ng-bind-html="trustAsHtml(cerfa.description)"></p>

@@ -3,7 +3,7 @@
 </div>
 
 <tabset>
-  <tab ng-repeat="tab in tabs" active="tab.active" select="go(tab)">
+  <tab ng-repeat="tab in tabs" active="tab.active" ng-click="go(tab)">
     <tab-heading>
       <span ng-if="tab.waiting"><i class="fa fa-spinner fa-spin"></i></span> {{tab.heading}}
     </tab-heading>

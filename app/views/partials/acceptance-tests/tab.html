@@ -47,7 +47,7 @@
 
         </accordion-heading>
         <p class="pull-right">
-          <a class="btn btn-default btn-xs" href="{{ test._id }}/edit"><i class="fa fa-edit"></i> Modifier ce test</a>
+          <a class="btn btn-default btn-xs" ui-sref="edit({testId: test._id})"><i class="fa fa-edit"></i> Modifier ce test</a>
           <button type="button" class="btn btn-default btn-xs" ng-click="deleteTest(test)"><i class="fa fa-times"></i> Supprimer ce test</button>
           <button type="button" class="btn btn-default btn-xs" ng-disabled="test.running" ng-click="launchSingle(test)">
             <span ng-if="test.running"><i class="fa fa-spinner fa-spin"></i> En cours...</span>

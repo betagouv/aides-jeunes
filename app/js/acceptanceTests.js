@@ -26,7 +26,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             }
         })
         .state('index.validated', {
-            url: '/valides/?testId',
+            url: '/valides',
             controller: 'TabCtrl',
             templateUrl: '/acceptance-tests/partials/tab.html',
             resolve: {
@@ -38,7 +38,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             }
         })
         .state('index.mine', {
-            url: '/mes-tests/?testId',
+            url: '/mes-tests',
             controller: 'TabCtrl',
             templateUrl: '/acceptance-tests/partials/tab.html',
             resolve: {

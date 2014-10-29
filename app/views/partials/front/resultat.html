@@ -41,16 +41,12 @@
                     <i class="fa fa-exclamation-triangle"></i>
                     <b>Attention</b> : le montant calculé de cette allocation logement se base sur les ressources
                     que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
-                    <br>Pour que la simulation soit au plus juste et si vos revenus de {{ yearMoins2 }} sont différents,
-                    veuillez déclarer vos ressources sur l'année {{ yearMoins2 }}.
+                    <br>Bientôt, nous vous proposerons ici de nous indiquer vos ressources de {{ yearMoins2 }}
+                    pour que la simulation soit au plus juste.
+                    <br>En attendant, vous pouvez consulter
+                    <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement/">le site de la CAF</a>
+                    pour obtenir une estimation plus précise.
                   </p>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <a class="btn btn-primary btn-sm btn-block" ui-sref="resultat.capture_ressources_n_2">
-                        Déclarer vos ressources sur l'année {{ yearMoins2 }}
-                      </a>
-                    </div>
-                  </div>
                 </div>
 
                 <p class="alert alert-warning-inverse" ng-if="isDroitCmuAcs(droit)">
@@ -70,7 +66,7 @@
                     </a>
                   </div>
                   <div class="col-xs-6 no-gutter-left">
-                    <a 
+                    <a
                       class="btn btn-sm btn-primary"
                       ng-if="hasDroitForms(droit)"
                       ui-sref="form_infos_complementaires_individus({droit: droit.description.id})">
@@ -92,10 +88,8 @@
       <b>Attention</b> : la simulation sur votre situation n'a pas abouti sur un droit à l'allocation logement.
       Cependant, la simulation s'est faite sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
       Si vos ressources de {{ yearMoins2 }} sont moins élevées, il se peut que vous ayez tout de même droit à cette allocation.
-      Pour le savoir :
-      <a class="btn btn-primary btn-sm" ui-sref="resultat.capture_ressources_n_2">
-        Déclarer vos ressources sur l'année {{ yearMoins2 }}
-      </a>
+      <br>Bientôt, nous vous proposerons ici de nous indiquer vos ressources de {{ yearMoins2 }} pour que la simulation soit au plus juste.
+      <br>En attendant, vous pouvez consulter <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement/">le site de la CAF</a> pour obtenir une estimation plus précise.
     </div>
   </div>
 

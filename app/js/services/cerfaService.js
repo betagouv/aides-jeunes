@@ -60,6 +60,10 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
         'declaration_grossesse': function(situation) {
             return situation.demandeur.enceinte;
         },
+        'attestation_chomage_partiel': function(individu) {
+            var nbRessourcesChomage = _.where(individu.ressources, {type: 'indChomagePartiel'}).length;
+            return !!nbRessourcesChomage;
+        },
         'cmu_c.vitale': function(individu) {
             return 18 <= IndividuService.age(individu);
         },

@@ -460,6 +460,24 @@ describe('Service: cerfaService', function () {
                 });
             });
 
+            describe('al', function() {
+                it('should ask attestions chomage partiel to everyone that declared it as a resource', function() {
+                    // given
+                    var individus = [
+                        {role: 'demandeur', ressources: [{type: 'indChomagePartiel'}]},
+                        {role: 'enfant', ressources: [{type: 'indChomagePartiel'}]},
+                        {role: 'enfant'},
+                        {role: 'enfant'}
+                    ];
+
+                    // when
+                    var result = service.pieceJustificativeIndividus('al', 'attestation_chomage_partiel', individus);
+
+                    // then
+                    expect(result).toEqual(_.initial(individus, 2));
+                });
+            });
+
             describe('aspa', function() {
                 it('should ask avis impot revenu to demandeur, and conjoint only if concubin', function() {
                     // given

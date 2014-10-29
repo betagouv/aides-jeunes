@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, $q, $window, $state, $stateParams, $location, droitsDescription, acceptanceTests) {
-    $scope.$parent.stopWaiting();
+    $scope.$emit('stopWaiting');
 
     if ($stateParams.testId) {
         $location.hash('test-' + $stateParams.testId);
@@ -145,6 +145,12 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
                         $scope.pendingTests--;
                     });
             });
+        });
+    };
+
+    $scope.validTest = function(idx, test) {
+        $http.put('/api/acceptance-tests/' + test._id + '/validation').then(function() {
+            // TODO
         });
     };
 

@@ -7,20 +7,19 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
         { heading: 'Mes tests', route:'index.mine', active:false }
     ];
 
-    $scope.go = function(tab){
+    $scope.setWaiting = function(tab){
         tab.waiting = true;
-        $state.go(tab.route);
     };
  
     $scope.active = function(route){
         return $state.is(route);
     };
-
-    $scope.stopWaiting = function() {
+ 
+    $scope.$on('stopWaiting', function() {
         $scope.tabs.forEach(function(tab) {
             tab.waiting = false;
         });
-    };
+    });
  
     $scope.$on('$stateChangeSuccess', function() {
         $scope.tabs.forEach(function(tab) {

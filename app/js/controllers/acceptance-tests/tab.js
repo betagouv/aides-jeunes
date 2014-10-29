@@ -148,15 +148,15 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
         });
     };
 
-    $scope.validTest = function(idx, test) {
+    $scope.validTest = function(test) {
         $http.put('/api/acceptance-tests/' + test._id + '/validation').then(function() {
-            // TODO
+            test.validated = true;
         });
     };
 
-    $scope.invalidTest = function(idx, test) {
+    $scope.invalidTest = function(idx, category, test) {
         $http.delete('/api/acceptance-tests/' + test._id + '/validation').then(function() {
-            // TODO
+            category.tests.splice(idx, 1);
         });
     };
 

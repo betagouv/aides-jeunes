@@ -10,7 +10,7 @@
     "lodash": "~2.4.1",
     "morgan": "~1.0.0",
     "requirejs": "^2.1.14",
-    "sgmap-mesdroits-api": "sgmap/mes-aides-api",
+    "sgmap-mes-aides-api": "sgmap/mes-aides-api",
     "static-favicon": "~1.0.1"
   },
   "devDependencies": {

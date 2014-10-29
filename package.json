@@ -1,6 +1,6 @@
 {
-  "name": "dds",
-  "description": "Dossier de Demande Simplifié",
+  "name": "sgmap-mes-aides-ui",
+  "description": "Simulateur de prestations sociales mes-aides.gouv.fr",
   "version": "0.1.2",
   "dependencies": {
     "errorhandler": "~1.0.0",
@@ -10,7 +10,7 @@
     "lodash": "~2.4.1",
     "morgan": "~1.0.0",
     "requirejs": "^2.1.14",
-    "sgmap-mesdroits-api": "sgmap/mesdroits-api",
+    "sgmap-mesdroits-api": "sgmap/mes-aides-api",
     "static-favicon": "~1.0.1"
   },
   "devDependencies": {

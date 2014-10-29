@@ -154,6 +154,12 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
         });
     };
 
+    $scope.invalidTest = function(idx, test) {
+        $http.delete('/api/acceptance-tests/' + test._id + '/validation').then(function() {
+            // TODO
+        });
+    };
+
     $scope.showErrors = function() {
         return angular.isDefined($scope.errors);
     };

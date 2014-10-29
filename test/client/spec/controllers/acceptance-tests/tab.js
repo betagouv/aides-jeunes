@@ -1,12 +1,12 @@
 'use strict';
 
-describe('Controller: IndexCtrl', function() {
+describe('Controller: TabCtrl', function() {
 
     var scope;
 
     beforeEach(function() {
         module('acceptanceTests');
-        scope = {};
+        scope = {$emit: function() {}};
     });
 
     describe('initialization', function() {
@@ -16,7 +16,7 @@ describe('Controller: IndexCtrl', function() {
 
             // when
             inject(function($controller) {
-                $controller('IndexCtrl', {
+                $controller('TabCtrl', {
                     $scope: scope,
                     acceptanceTests: tests
                 });
@@ -37,7 +37,7 @@ describe('Controller: IndexCtrl', function() {
 
             // when
             inject(function($controller) {
-                $controller('IndexCtrl', {
+                $controller('TabCtrl', {
                     $scope: scope,
                     acceptanceTests: tests
                 });

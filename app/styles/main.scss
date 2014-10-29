@@ -199,10 +199,13 @@ $body-front-base-padding: 60px;
   padding: 50px 0;
 }
 
+.panel-foyer-lg {
+  min-height: 250px;
+}
+  
 .panel-enfant {
   @extend .panel;
   @extend .panel-default;
-  min-height: 155px;
 }
 
 .panel-new-enfant {

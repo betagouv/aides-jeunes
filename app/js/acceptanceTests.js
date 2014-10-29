@@ -37,6 +37,18 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 }]
             }
         })
+        .state('index.invalidated', {
+            url: '/non-valides',
+            controller: 'TabCtrl',
+            templateUrl: '/acceptance-tests/partials/tab.html',
+            resolve: {
+                acceptanceTests: ['$http', function($http) {
+                    return $http.get('/api/acceptance-tests/invalidated').then(function(result) {
+                        return result.data;
+                    });
+                }]
+            }
+        })
         .state('index.mine', {
             url: '/mes-tests',
             controller: 'TabCtrl',

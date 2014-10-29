@@ -4,6 +4,7 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
     $scope.tabs = [
         { heading: 'Tous', route:'index.all', active:false },
         { heading: 'Valides', route:'index.validated', active:false },
+        { heading: 'Non valides', route:'index.invalidated', active:false },
         { heading: 'Mes tests', route:'index.mine', active:false }
     ];
 

@@ -8,7 +8,9 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
     ];
 
     $scope.setWaiting = function(tab){
-        tab.waiting = true;
+        if (!$scope.active(tab.route)) {
+            tab.waiting = true;
+        }
     };
  
     $scope.active = function(route){

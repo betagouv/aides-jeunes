@@ -23,12 +23,12 @@
 </div>
 
 <div class="row">
-  <div class="col-lg-12" ng-repeat="category in categories">
+  <div class="col-lg-12" ng-repeat="(idxCategory, category) in categories">
     <h2>{{ category.name }}</h2>
     <p ng-if="showErrors()">Tests en erreur : {{ category.errors }}/{{ category.tests.length }}</p>
     <accordion close-others="false">
       <accordion-group
-        ng-repeat="(idx, test) in category.tests"
+        ng-repeat="(idxTest, test) in category.tests"
         id="test-{{ test._id }}"
         is-open="test.open"
         ng-class="{'panel-success': test.status === 'ok', 'panel-danger': test.status === 'ko', 'panel-warning': test.status === 'near' }">
@@ -54,7 +54,7 @@
           <button type="button" class="btn btn-default btn-xs" ng-click="deleteTest(test)"><i class="fa fa-times text-danger"></i> Supprimer</button>
           <a class="btn btn-default btn-xs" ui-sref="edit({testId: test._id})"><i class="fa fa-edit text-warning"></i> Modifier</a>
           <button type="button" class="btn btn-default btn-xs" ng-if="!test.validated" ng-click="validTest(test)"><i class="fa fa-check text-success"></i> Valider</button>          
-          <button type="button" class="btn btn-default btn-xs" ng-if="test.validated" ng-click="invalidTest(idx, category, test)"><i class="fa fa-times text-warning"></i> Invalider</button>
+          <button type="button" class="btn btn-default btn-xs" ng-if="test.validated" ng-click="invalidTest(idxCategory, category, idxTest, test)"><i class="fa fa-times text-warning"></i> Invalider</button>
           <button type="button" class="btn btn-default btn-xs" ng-disabled="test.running" ng-click="launchSingle(test)">
             <span ng-if="test.running"><i class="fa fa-spinner fa-spin"></i> En cours...</span>
             <span ng-if="!test.running"><i class="fa fa-play text-primary"></i> Relancer</span>

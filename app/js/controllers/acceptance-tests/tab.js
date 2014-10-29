@@ -154,9 +154,15 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
         });
     };
 
-    $scope.invalidTest = function(idx, category, test) {
+    $scope.invalidTest = function(idxCategory, category, idxTest, test) {
         $http.delete('/api/acceptance-tests/' + test._id + '/validation').then(function() {
-            category.tests.splice(idx, 1);
+            if ($state.is('index.validated')) {
+                category.tests.splice(idxTest, 1);
+                if (category.tests.length === 0) {
+                    $scope.categories.splice(idxCategory, 1);
+                }
+            }
+            test.validated = false;
         });
     };
 

@@ -377,9 +377,15 @@ $body-front-base-padding: 60px;
   }
 }
 
-.test-is-valid {
-  margin-right: 10px;
-  color: #DDD;
+.accordion-toggle {
+  .test-is-valid {
+    margin-right: 10px;
+    color: #DDD;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .panel-success {

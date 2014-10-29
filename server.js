@@ -19,7 +19,7 @@ if ('production' === env) {
 }
 
 // Setup app
-app.use('/api', require('sgmap-mesdroits-api'));
+app.use('/api', require('sgmap-mes-aides-api'));
 require('./lib/config/client')(app, config);
 
 if ('development' === env) {

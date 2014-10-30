@@ -5,7 +5,11 @@
 
   <p ng-if="awaitingResults"><i class="fa fa-spinner fa-spin"></i> Calcul en cours de vos droits...</p>
 
-  <p class="alert alert-danger" ng-if="error">Une erreur est survenue.</p>
+  <div class="alert alert-danger" ng-if="error">
+    <h2>Désolé, nous n'arrivons pas à calculer vos droits pour le moment.</h2>
+    <p>Oups, nous sommes apparemment victimes de notre succès ! Trop de personnes essaient d'accéder au service en même temps.</p>
+    <p>Merci de réessayer votre simulation dans quelques minutes.</p>
+  </div>
 
   <div ng-if="!awaitingResults">
     <div ng-if="droits.length">

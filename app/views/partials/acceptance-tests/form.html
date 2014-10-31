@@ -2,7 +2,7 @@
   <h1>{{ pageTitle }}</h1>
 </div>
 
-<form name="form" class="form-horizontal" ng-submit="submit()">
+<form method="post" name="form" class="form-horizontal" ng-submit="submit()">
   <div class="form-group" ng-class="{'has-error': form.name.$invalid, 'has-success': form.name.$valid}">
     <label class="control-label col-md-3" for="test-name">Nom du test</label>
     <div class="col-md-6">

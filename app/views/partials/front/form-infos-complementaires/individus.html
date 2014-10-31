@@ -1,7 +1,7 @@
 <div class="container">
   <div ng-include="'/partials/form-infos-complementaires/header.html'"></div>
 
-  <form name="form" class="form-horizontal" novalidate ng-submit="submit()">
+  <form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit()">
     <div class="form-group" ng-if="situation.conjoint">
       <label class="col-sm-4 control-label" for="date-situation-familiale">
         Depuis quand êtes-vous {{ relationTypeLabels[situation.conjoint.relationType] }} avec votre partenaire ?

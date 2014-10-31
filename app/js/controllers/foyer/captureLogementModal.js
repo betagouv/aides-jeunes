@@ -71,8 +71,7 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
         }
 
         $scope.retrievingCities = true;
-        var baseApi = '//public.opendatasoft.com/api/records/1.0/search?dataset=correspondance-code-insee-code-postal&format=jsonp&callback=JSON_CALLBACK&rows=1000&q=';
-        $http.jsonp(baseApi + codePostal).then(function(result) {
+        $http.get('/api/outils/communes', { params: { codePostal: codePostal } }).then(function(result) {
             var records = result.data.records;
             if (!records.length) {
                 $scope.unknownCodePostal = true;

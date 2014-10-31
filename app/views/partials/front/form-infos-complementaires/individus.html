@@ -105,7 +105,7 @@
         </div>
 
         <div class="form-group">
-          <label class="col-sm-4 control-label">Êtes-vous inscrit à la CAF/MSA de votre département de résidence ?</label>
+          <label class="col-sm-4 control-label">Êtes-vous inscrit(e) à la CAF/MSA de votre département de résidence ?</label>
           <div class="col-sm-8">
             <button type="button" class="btn btn-sm btn-default" ng-model="situation.demandeur.inscritCaf" btn-radio="true">Oui</button>
             <button type="button" class="btn btn-sm btn-default" ng-model="situation.demandeur.inscritCaf" btn-radio="false">Non</button>
@@ -278,11 +278,11 @@
             <label class="col-sm-4 control-label" for="situation-enfant-{{ $index }}">Situation</label>
             <div class="col-sm-8">
               <select id="situation-enfant-{{ $index }}" class="form-control" ng-model="enfant.situation">
-                <option value="scolarise">Scolarisé</option>
-                <option value="apprenti">Apprenti</option>
-                <option value="salarie">Salarié</option>
+                <option value="scolarise">Scolarisé(e)</option>
+                <option value="apprenti">Apprenti(e)</option>
+                <option value="salarie">Salarié(e)</option>
                 <option value="formation_pro">En formation professionnelle</option>
-                <option value="demandeur_emploi">Demandeur d'emploi</option>
+                <option value="demandeur_emploi">Demandeur/Demandeuse d'emploi</option>
                 <option value="chomage_indemnise">En chômage indemnisé</option>
                 <option value="sans_activite">Sans activité</option>
                 <option value="autre">Autre</option>

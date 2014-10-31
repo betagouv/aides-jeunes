@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $modal, SituationService, IndividuService) {
     $scope.situation = SituationService.restoreLocal();
     $scope.statutsSpecifiques = IndividuService.formatStatutsSpecifiques;
     $scope.goToSimulation = function() {

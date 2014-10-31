@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage) {
+angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage, $modal) {
     var situation;
 
     var flattenRessource = function(ressource, source, target) {
@@ -137,6 +137,13 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             var apiSituation = this.createApiCompatibleSituation(situation);
             return $http.post('/api/situations', apiSituation).then(function(result) {
                 return result.data;
+            }).catch(function(error) {
+                $modal.open({
+                    templateUrl: '/partials/error-modal.html',
+                    controller: ['$scope', function($scope) {
+                        $scope.error = error;
+                    }]
+                });
             });
         },
 

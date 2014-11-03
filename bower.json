@@ -1,11 +1,12 @@
 {
-  "name": "dds",
+  "name": "sgmap-mes-aides-ui",
   "version": "0.1.2",
-  "homepage": "https://github.com/jdesboeufs/dds",
+  "homepage": "https://github.com/sgmap/mes-aides-ui",
   "authors": [
-    "Jérôme Desboeufs <jerome.desboeufs@gmail.com>"
+    "Jérôme Desboeufs <jerome.desboeufs@gmail.com>",
+    "Arnaud Kleinpeter <arnaud.kleinpeter@gmail.com>"
   ],
-  "description": "Dossier de Demande Simplifié",
+  "description": "Simulateur de prestations sociales mes-aides.gouv.fr",
   "moduleType": [
     "globals"
   ],

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, $q, $window, $state, $stateParams, $location, droitsDescription, acceptanceTests) {
+angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, $q, $window, $state, $stateParams, $location, droitsDescription, acceptanceTests, AcceptanceTestsService) {
     $scope.$emit('stopWaiting');
 
     if ($stateParams.testId) {
@@ -12,37 +12,7 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
     }
 
     $scope.tests = acceptanceTests;
-    $scope.categories = [];
-    var categoriesMap = {};
-    var unknownCategory = {name: 'Non catégorisés', tests: []};
-    acceptanceTests.forEach(function(acceptanceTest) {
-        if (acceptanceTest._updated) {
-            var mDate = moment(acceptanceTest._updated);
-            acceptanceTest.updatedAt = mDate.format('DD/MM/YYYY') + ' à ' + mDate.format('hh:mm');
-        }
-        var index = acceptanceTest.name.indexOf(']');
-        if (-1 !== index) {
-            var categoryName = acceptanceTest.name.substring(1, index);
-            acceptanceTest.name = acceptanceTest.name.substring(index + 2, acceptanceTest.name.length);
-            var category = categoriesMap[categoryName];
-            if (!category) {
-                category = categoriesMap[categoryName] = {name: categoryName, tests: []};
-                $scope.categories.push(category);
-            }
-            category.tests.push(acceptanceTest);
-        } else {
-            unknownCategory.tests.push(acceptanceTest);
-        }
-    });
-
-    if (unknownCategory.tests.length) {
-        $scope.categories.push(unknownCategory);
-    }
-
-    $scope.categories.forEach(function(category) {
-        category.tests = _.sortBy(category.tests, 'name');
-    });
-
+    $scope.categories = AcceptanceTestsService.categorizeTests(acceptanceTests);
     $scope.droits = _.indexBy(droitsDescription, 'id');
     $scope.pendingTests = 0;
 
@@ -75,60 +45,7 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
             delete droit.actualValue;
         });
 
-        var deferred = $q.defer();
-
-        var promise = $http.get('/api/situations/' + test.situation + '/simulation');
-        promise.then(function(result) {
-            var droits = result.data;
-            test.status = 'ok';
-            test.droitsAttendus.forEach(function(droit) {
-                var actualValue = droits[droit.id];
-                if (angular.isDefined(actualValue)) {
-                    delete droits[droit.id];
-                    droit.actualValue = actualValue;
-                    if (_.isUndefined(droit.expectedValue)) {
-                        droit.status = 'unknown';
-                    } else if (droit.actualValue === droit.expectedValue) {
-                        droit.status = 'ok';
-                    } else if ((Math.abs(droit.actualValue - droit.expectedValue) / droit.expectedValue) < 0.02) {
-                        droit.status = 'ok';
-                    } else if ((Math.abs(droit.actualValue - droit.expectedValue) / droit.expectedValue) < 0.1) {
-                        droit.status = 'near';
-                        if (test.status !== 'ko') test.status = 'near';
-                    } else {
-                        droit.status = 'ko';
-                        test.status = 'ko';
-                    }
-                }
-            });
-            _.forEach(droits, function(value, id) {
-                if (value) {
-                    test.droitsAttendus.push({ id: id, expectedValue: undefined, actualValue: value, status: 'unknown' });
-                }
-            });
-            _.where(test.droitsAttendus, { status: undefined }).forEach(function(droit) {
-                droit.status = 'ko';
-                test.status = 'ko';
-                droit.actualValue = false;
-            });
-            if (test.status === 'ko') {
-                deferred.reject();
-            } else {
-                deferred.resolve();
-            }
-        }, function() {
-            test.status = 'ko';
-            test.droitsAttendus.forEach(function(droit) {
-                droit.status = 'ko';
-            });
-            deferred.reject();
-        });
-
-        deferred.promise.finally(function() {
-            test.running = false;
-        });
-
-        return deferred.promise;
+        return AcceptanceTestsService.launchTest(test);
     };
 
     $scope.launchAll = function() {

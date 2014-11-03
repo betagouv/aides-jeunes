@@ -34,7 +34,6 @@
     </header>
 
     <div class="content">
-      <p ng-if="!appReady" class="text-center"><i class="fa fa-spinner fa-spin"></i> Chargement en cours...</p>
       <div class="container" ng-if="appReady">
         <ui-view>
           <p class="text-center"><i class="fa fa-spinner fa-spin"></i> Chargement en cours...</p>
@@ -66,6 +65,7 @@
     <script src="js/controllers/acceptance-tests/form.js"></script>
 
     <script src="js/services/acceptance-tests/userService.js"></script>
+    <script src="js/services/acceptance-tests/acceptanceTestsService.js"></script>
 
     <script src="js/constants/droits.js"></script>
     <!-- endbuild -->

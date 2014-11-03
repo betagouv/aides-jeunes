@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('LoginCtrl', function($scope, $state, $stateParams, $window, UserService) {
+angular.module('acceptanceTests').controller('LoginCtrl', function($scope, $state, $stateParams, $window, $timeout, UserService) {
     if (UserService.user()) {
-        $state.go('index');
+        $state.go('index.all');
     }
 
     $scope.submit = function() {
@@ -13,7 +13,7 @@ angular.module('acceptanceTests').controller('LoginCtrl', function($scope, $stat
                 if ($stateParams.targetUrl) {
                     $window.location.pathname = $stateParams.targetUrl;
                 } else {
-                    $state.go('index');
+                    $state.go('index.all');
                 }
             }).catch(function() {
                 $scope.badCredentials = true;

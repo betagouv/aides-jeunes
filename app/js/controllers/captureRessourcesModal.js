@@ -78,7 +78,7 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
         }
     };
 
-    $scope.submit = function() {
+    $scope.submit = function(form) {
         var closeModal = true;
         if ('ressources' === $scope.tab) {
             closeModal = !_.filter($scope.selectedRessourceTypes).length;
@@ -91,12 +91,16 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
         } else if ('personnes' === $scope.tab) {
             goToTab('montants');
             closeModal = !_.filter($scope.individuRefs, 'hasRessources').length;
+        } else if ('montants' === $scope.tab) {
+            form.submitted = true;
         }
 
         if (closeModal) {
-            $scope.applyIndividuRefsRessourcesToIndividus();
-            $scope.$emit('ressourcesCaptured', ressourcesN2);
-            $modalInstance.close();
+            if (form.$valid) {
+                $scope.applyIndividuRefsRessourcesToIndividus();
+                $scope.$emit('ressourcesCaptured', ressourcesN2);
+                $modalInstance.close();
+            }
         }
     };
 
@@ -143,6 +147,10 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
                 individuRef.ressources.push(ressource);
             });
         });
+    };
+
+    $scope.montantInvalide = function(montant) {
+        return !angular.isNumber(montant);
     };
 
     $scope.updateMontantAnnuel = function(ressource) {

@@ -82,10 +82,10 @@
       </label>
       <div class="col-sm-3">
         <div class="input-group">
-          <input type="number" class="form-control text-right" id="loyer" name="loyer" ng-model="logement.loyer" required>
+          <input type="number" class="form-control text-right" id="loyer" name="loyer" ng-model="logement.loyer" required min="1">
           <div class="input-group-addon">€</div>
         </div>
-        <span class="help-block" ng-if="submitted && form.loyer.$invalid">Champ invalide</span>
+        <span class="help-block" ng-if="submitted && form.loyer.$invalid">Loyer invalide</span>
       </div>
     </div>
 

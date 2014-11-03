@@ -1,4 +1,4 @@
-<form method="post" name="form" novalidate ng-submit="submit()">
+<form method="post" name="form" novalidate ng-submit="submit(form)">
   <div class="modal-header">
     <h1 class="modal-title">Vos ressources</h1>
   </div>
@@ -77,11 +77,17 @@
                       ng-change="updateMontantAnnuel(ressource)">
                     <span class="input-group-addon hidden-xs">€</span>
                   </span>
+                  <span class="text-danger" ng-if="form.submitted && montantInvalide(monthRessource.montant)">
+                    Montant invalide
+                  </span>
                 </td>
                 <td>
                   <span class="input-group">
-                    <input type="number" class="form-control text-right" select-on-focus zero-to-empty ng-model="ressource.montantAnnuel">
+                    <input type="number" class="form-control text-right" ng-change="test(ressource.montantAnnuel)" select-on-focus zero-to-empty ng-model="ressource.montantAnnuel">
                     <span class="input-group-addon hidden-xs">€</span>
+                  </span>
+                  <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
+                    Montant invalide
                   </span>
                 </td>
               </tr>
@@ -126,6 +132,9 @@
                       ng-model="ressource.montantAnnuel">
                     <span class="input-group-addon hidden-xs">€</span>
                   </span>
+                  <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
+                    Montant invalide
+                  </span>
                 </td>
               </tr>
             </tbody>
@@ -154,6 +163,9 @@
                       ng-model="ressource.montantAnnuel">
                     <span class="input-group-addon hidden-xs">€</span>
                   </span>
+                  <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
+                    Montant invalide
+                  </span>
                 </td>
               </tr>
             </tbody>
@@ -163,6 +175,7 @@
     </div>
   </div>
   <div class="modal-footer">
+    <span class="text-danger" ng-if="form.submitted && form.$invalid">Veuillez entrer des montants valides</span>
     <button type="button" class="btn btn-default" ng-if="isCaptureRessourcesN2" ng-click="$dismiss()">Annuler</button>
     <button type="button" class="btn btn-default" ng-show="'ressources' !== tab" ng-click="previousTab()">
       &lt; Étape précédente

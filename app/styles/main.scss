@@ -71,6 +71,10 @@ $body-front-base-padding: 60px;
   vertical-align: middle;
 }
 
+.progress-bar {
+  transition: none;
+}
+
 .main-navbar {
   @extend .navbar;
   @extend .navbar-default;
@@ -202,7 +206,7 @@ $body-front-base-padding: 60px;
 .panel-foyer-lg {
   min-height: 250px;
 }
-  
+
 .panel-enfant {
   @extend .panel;
   @extend .panel-default;
@@ -349,7 +353,7 @@ $body-front-base-padding: 60px;
     padding: 9px;
     font-size: 16px;
     line-height: 16px;
-    
+
     .montant-detail {
       font-size: 10px;
     }

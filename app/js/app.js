@@ -230,4 +230,10 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, Situ
             $modalStack.dismiss(top.key);
         }
     });
+
+    $rootScope.$on('$stateChangeSuccess', function() {
+        if ($window._paq) {
+            $window._paq.push(['trackPageView']);
+        }
+    });
 });

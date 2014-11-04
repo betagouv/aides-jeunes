@@ -1,7 +1,6 @@
 <script type="text/javascript">
 if (window.location.hostname === 'mes-aides.gouv.fr') {
   var _paq = _paq || [];
-  _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
     var u='//stats.data.gouv.fr/';

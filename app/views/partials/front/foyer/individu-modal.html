@@ -9,6 +9,9 @@
         <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="individu.firstName">
         <p class="help-block" ng-if="submitted && form.firstName.$invalid">Ce champ est obligatoire.</p>
       </div>
+      <div class="col-sm-4">
+        <p class="help-block">Ce prénom servira uniquement à vous faciliter la saisie par la suite</p>
+      </div>
     </div>
 
     <div class="form-group form-group-lg" ng-class="{'has-error': submitted && form.dateDeNaissance.$invalid}">

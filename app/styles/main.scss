@@ -345,11 +345,11 @@ $body-front-base-padding: 60px;
   padding: 0;
   padding-top: 10px;
 
-  .title {
-    margin-top: 10px;
-    color: white;
-    background-color: $brand-success;
-    border-bottom: 3px solid darken($brand-success, 10%);
+  img {
+    margin-bottom: 10px;
+  }
+
+  .thumbnail-title {
     padding: 9px;
     font-size: 16px;
     line-height: 16px;
@@ -361,6 +361,17 @@ $body-front-base-padding: 60px;
     .montant {
       font-weight: 600;
       font-size: 25px;
+    }
+
+    &.thumbnail-title-success {
+        color: white;
+        background-color: $brand-success;
+        border-bottom: 3px solid darken($brand-success, 10%);
+    }
+
+    &.thumbnail-title-default {
+        background-color: $btn-default-bg;
+        border-bottom: 3px solid darken($btn-default-bg, 10%);
     }
   }
 
@@ -382,6 +393,10 @@ $body-front-base-padding: 60px;
   .row {
     padding-top: 11px;
   }
+}
+
+.bloc-aucune-aide-eligible {
+  padding: 20px 0;
 }
 
 .accordion-toggle {

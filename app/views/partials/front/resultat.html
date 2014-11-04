@@ -20,7 +20,7 @@
               <a href="{{ droit.description.link }}" target="_blank">
                 <img ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
               </a>
-              <div class="title">
+              <div class="thumbnail-title thumbnail-title-success">
                 <div class="row">
                   <div class="col-sm-8">
                     {{ droit.description.label }}
@@ -84,7 +84,9 @@
       </div>
     </div>
 
-    <p ng-if="!droits.length">Vous n'êtes éligible à aucune aide.</p>
+    <div class="bloc-aucune-aide-eligible text-center" ng-if="!droits.length">
+      <h2>Vous n'êtes éligible à aucune aide.</h2>
+    </div>
 
     <div class="alert alert-warning-inverse" ng-if="displayLogementWarning()">
       <h3><i class="fa fa-exclamation-triangle"></i> Note relative à l'aide au logement</h3>
@@ -93,6 +95,33 @@
       Si vos ressources de {{ yearMoins2 }} sont moins élevées, il se peut que vous ayez tout de même droit à cette allocation.
       <br>Bientôt, nous vous proposerons ici de nous indiquer vos ressources de {{ yearMoins2 }} pour que la simulation soit au plus juste.
       <br>En attendant, vous pouvez consulter <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement/">le site de la CAF</a> pour obtenir une estimation plus précise.
+    </div>
+  </div>
+
+  <hr>
+
+  <h4 ng-if="droitsNonEligibles.length">Aides étudiées pour lesquelles vous n'êtes pas éligible</h4>
+
+  <div class="row">
+    <div ng-repeat="droit in droitsNonEligibles">
+      <div class="clearfix" ng-if="$index % 4 === 0"></div>
+      <div class="col-md-3" >
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{ droit.label }}</h3>
+          </div>
+          <div class="panel-body">
+            <p>{{ droit.description }}</p>
+            <a
+              href="{{ droit.link }}"
+              class="btn btn-sm btn-default"
+              target="_blank">
+                <i class="fa fa-external-link"></i>
+                Plus d'informations
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

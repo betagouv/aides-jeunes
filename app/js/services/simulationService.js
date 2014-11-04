@@ -2,7 +2,7 @@
 
 /* global _ */
 
-angular.module('ddsApp').factory('SimulationService', function($http, $q, droitsDescription) {
+angular.module('ddsApp').service('SimulationService', function($http, $q, droitsDescription) {
     return {
         simulate: function(situation) {
             var that = this;
@@ -26,6 +26,17 @@ angular.module('ddsApp').factory('SimulationService', function($http, $q, droits
             });
 
             return droits;
+        },
+
+        getDroitsNonEligibles: function(droitsEligibles) {
+            var droitsNonEligibles = [];
+            droitsDescription.forEach(function(droit) {
+                if (!_.find(droitsEligibles, {description: {id: droit.id}})) {
+                    droitsNonEligibles.push(droit);
+                }
+            });
+
+            return droitsNonEligibles;
         }
     };
 });

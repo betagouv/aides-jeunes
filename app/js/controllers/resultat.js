@@ -14,6 +14,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
 
         SimulationService.simulate(situation).then(function(droits) {
             $scope.droits = droits;
+            $scope.droitsNonEligibles = SimulationService.getDroitsNonEligibles(droits);
         }, function() {
             $scope.error = true;
         }).finally(function() {

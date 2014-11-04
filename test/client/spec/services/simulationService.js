@@ -2,16 +2,19 @@
 
 describe('Service: simulationService', function () {
 
-    var service;
-
     beforeEach(function() {
         module('ddsApp');
-        inject(function(SimulationService) {
-            service = SimulationService;
-        });
     });
 
     describe('function createDroitsFromApiResult', function() {
+        var service;
+
+        beforeEach(function() {
+            inject(function(SimulationService) {
+                service = SimulationService;
+            });
+        });
+
         it('should return an empty array if api result is empty', function() {
             // given
             var apiResult = {};
@@ -33,6 +36,27 @@ describe('Service: simulationService', function () {
             // then
             expect(droits.length).toBe(2);
             expect(droits[0].description).toBeDefined();
+        });
+    });
+
+    describe('function getDroitsNonEligibles', function() {
+        it('should return droits that are not in the given list of droits eligibles', function() {
+            // given
+            var service;
+            module(function($provide) {
+                $provide.constant('droitsDescription', [{ id: 'test' }, { id: 'test2' }]);
+            });
+            inject(function(SimulationService) {
+                service = SimulationService;
+            });
+
+            var droitsEligibles = [{description: {id: 'test'}}];
+
+            // when
+            var result = service.getDroitsNonEligibles(droitsEligibles);
+
+            // then
+            expect(result).toEqual([{id: 'test2'}]);
         });
     });
 });

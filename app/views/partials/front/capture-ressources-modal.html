@@ -71,6 +71,8 @@
                     <input
                       type="number"
                       class="form-control text-right"
+                      required
+                      min="0"
                       select-on-focus
                       zero-to-empty
                       ng-model="monthRessource.montant"
@@ -83,7 +85,14 @@
                 </td>
                 <td>
                   <span class="input-group">
-                    <input type="number" class="form-control text-right" ng-change="test(ressource.montantAnnuel)" select-on-focus zero-to-empty ng-model="ressource.montantAnnuel">
+                    <input
+                      type="number"
+                      class="form-control text-right"
+                      required
+                      min="0"
+                      select-on-focus
+                      zero-to-empty
+                      ng-model="ressource.montantAnnuel">
                     <span class="input-group-addon hidden-xs">€</span>
                   </span>
                   <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
@@ -127,6 +136,8 @@
                       type="number"
                       id="chiffre-affaires"
                       class="form-control text-right"
+                      required
+                      min="0"
                       select-on-focus
                       zero-to-empty
                       ng-model="ressource.montantAnnuel">
@@ -158,6 +169,8 @@
                       type="number"
                       id="chiffre-affaires"
                       class="form-control text-right"
+                      required
+                      min="0"
                       select-on-focus
                       zero-to-empty
                       ng-model="ressource.montantAnnuel">

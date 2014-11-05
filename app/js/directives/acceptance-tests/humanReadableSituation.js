@@ -108,7 +108,7 @@ angular.module('acceptanceTests').directive('humanReadableSituation', function($
             }
 
             $scope.logement.loyer = situation.logement.loyer;
-            $scope.logement.codePostal = situation.logement.adresse.codePostal
+            $scope.logement.codePostal = situation.logement.adresse.codePostal;
             $scope.logement.ville = situation.logement.adresse.ville;
         }
     };

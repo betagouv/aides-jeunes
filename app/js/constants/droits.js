@@ -52,6 +52,14 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf'
     },
     {
+        'id':'paje_base',
+        'label':'Prestation d\'Accueil du Jeune Enfant - Allocation de base',
+        'shortLabel':'PAJE-BASE',
+        'description': 'L\'allocation de base vous aide à assurer les dépenses liées à l’entretien et à l’éducation de votre enfant.',
+        'imgSrc':'logo_caf.png',
+        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/l-allocation-de-base'
+    },
+    {
         'id':'rsa',
         'label':'Revenu de Solidarité Active',
         'shortLabel':'RSA',

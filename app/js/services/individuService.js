@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('IndividuService', function($filter, situationsPro) {
+angular.module('ddsCommon').service('IndividuService', function($filter, situationsPro) {
     var statutsSpecifiques = _.filter(situationsPro, 'isStatutSpecifique');
 
     return {

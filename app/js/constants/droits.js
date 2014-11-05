@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon', []).constant('droitsDescription', [
+angular.module('ddsCommon').constant('droitsDescription', [
     {
         'id':'cmu_c',
         'hasMontant':false,

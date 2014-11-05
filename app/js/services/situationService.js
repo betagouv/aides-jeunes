@@ -65,12 +65,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
     };
 
     return {
-        nationaliteLabels: {
-            fr: 'française',
-            ue: 'UE',
-            autre: 'hors UE'
-        },
-
         relationTypeLabels: {
             'mariage': 'marié(e)',
             'pacs': 'pacsé(e)',

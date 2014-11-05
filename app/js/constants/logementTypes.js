@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').constant('logementTypes', [
+angular.module('ddsCommon').constant('logementTypes', [
     {
         id: 'locataire',
         label: 'locataire'
@@ -19,7 +19,7 @@ angular.module('ddsApp').constant('logementTypes', [
     }
 ]);
 
-angular.module('ddsApp').constant('locationTypes', [
+angular.module('ddsCommon').constant('locationTypes', [
     {
         id: 'nonmeuble',
         label: 'non meublé'
@@ -34,7 +34,7 @@ angular.module('ddsApp').constant('locationTypes', [
     }
 ]);
 
-angular.module('ddsApp').constant('loyerLabels', {
+angular.module('ddsCommon').constant('loyerLabels', {
     'payant': 'Votre loyer',
     'locataire': 'Votre loyer (hors charges)',
     'colocataire': 'Voter part du loyer (hors charges)',

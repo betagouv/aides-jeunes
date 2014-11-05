@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').constant('situationsPro', [
+angular.module('ddsCommon').constant('situationsPro', [
     {
         id: 'sans_activite',
         label: 'Sans activité'

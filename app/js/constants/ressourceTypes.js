@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').constant('ressourceTypes', [
+angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'revenusSalarie',
         label: 'Salaires, primes',

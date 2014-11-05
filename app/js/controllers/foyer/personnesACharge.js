@@ -1,8 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function ($scope, $rootScope, SituationService) {
-    $scope.nationaliteLabels = SituationService.nationaliteLabels;
-
+angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function ($scope, $rootScope) {
     if (!$scope.situation.personnesACharge) {
         $scope.situation.personnesACharge = [];
     }

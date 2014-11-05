@@ -2,7 +2,6 @@
 
 angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $rootScope, SituationService) {
     $scope.relationTypeLabels = SituationService.relationTypeLabels;
-    $scope.nationaliteLabels = SituationService.nationaliteLabels;
 
     if ($scope.situation.demandeur) {
         $scope.visible = true;

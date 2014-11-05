@@ -1,8 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $rootScope, $location, $anchorScroll, $timeout, SituationService) {
-    $scope.nationaliteLabels = SituationService.nationaliteLabels;
-
+angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $rootScope, $location, $anchorScroll, $timeout) {
     if (!$scope.situation.enfants) {
         $scope.situation.enfants = [];
     }

@@ -11,6 +11,10 @@ angular.module('acceptanceTests').factory('AcceptanceTestsService', function($q,
                     var updatedAt = moment(test._updated);
                     test.updatedAt = updatedAt.format('DD/MM/YYYY') + ' à ' + updatedAt.format('hh:mm');
                 }
+                if (test._created) {
+                    var createdAt = moment(test._created);
+                    test.createdAt = createdAt.format('DD/MM/YYYY') + ' à ' + createdAt.format('hh:mm');
+                }
                 var index = test.name.indexOf(']');
                 if (-1 !== index) {
                     var categoryName = test.name.substring(1, index);

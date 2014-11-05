@@ -9,11 +9,11 @@ angular.module('acceptanceTests').factory('AcceptanceTestsService', function($q,
             tests.forEach(function(test) {
                 if (test._updated) {
                     var updatedAt = moment(test._updated);
-                    test.updatedAt = updatedAt.format('DD/MM/YYYY') + ' à ' + updatedAt.format('hh:mm');
+                    test.updatedAt = updatedAt.format('DD/MM/YYYY') + ' à ' + updatedAt.format('HH:mm');
                 }
                 if (test._created) {
                     var createdAt = moment(test._created);
-                    test.createdAt = createdAt.format('DD/MM/YYYY') + ' à ' + createdAt.format('hh:mm');
+                    test.createdAt = createdAt.format('DD/MM/YYYY') + ' à ' + createdAt.format('HH:mm');
                 }
                 var index = test.name.indexOf(']');
                 if (-1 !== index) {

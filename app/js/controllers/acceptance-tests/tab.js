@@ -16,6 +16,25 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
     $scope.droits = _.indexBy(droitsDescription, 'id');
     $scope.pendingTests = 0;
 
+    $scope.testStatusClass = function(test) {
+        var map = {
+            'ok': 'panel-success',
+            'ko': 'panel-danger',
+            'near': 'panel-warning',
+        };
+        return map[test.status];
+    };
+
+    $scope.expectedDroitStatusClass = function(expectedDroit) {
+        var map = {
+            'ok': 'success',
+            'ko': 'danger',
+            'unknown': 'info',
+            'near': 'warning',
+        };
+        return map[expectedDroit.status];
+    };
+
     $scope.displayDroitValue = function(value) {
         if (_.isBoolean(value)) {
             return value ? 'Oui' : 'Non';

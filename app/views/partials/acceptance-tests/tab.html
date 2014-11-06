@@ -35,11 +35,11 @@
         ng-repeat="(idxTest, test) in category.tests"
         id="test-{{ test._id }}"
         is-open="test.open"
-        ng-class="{'panel-success': test.status === 'ok', 'panel-danger': test.status === 'ko', 'panel-warning': test.status === 'near' }">
+        ng-class="testStatusClass(test)">
         <accordion-heading>
           <span class="test-is-valid">
-            <i  ng-if="test.validated" ng-class="{'text-success': !test.status}" class="fa fa-check-circle"></i>
-            <i  ng-if="!test.validated" class="fa fa-circle-o"></i>
+            <i ng-if="test.validated" ng-class="{'text-success': !test.status}" class="fa fa-check-circle"></i>
+            <i ng-if="!test.validated" class="fa fa-circle-o"></i>
           </span>
           {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
           <div ng-if="test.open && test.createdBy">
@@ -57,13 +57,21 @@
               Dernière mise à jour le {{test.updatedAt}}
             </small>
           </div>
-
         </accordion-heading>
+
         <p class="pull-right test-actions">
-          <button type="button" class="btn btn-default btn-xs" ng-click="deleteTest(test)"><i class="fa fa-times text-danger"></i> Supprimer</button>
-          <a class="btn btn-default btn-xs" ui-sref="edit({testId: test._id})"><i class="fa fa-edit text-warning"></i> Modifier</a>
-          <button type="button" class="btn btn-default btn-xs" ng-if="!test.validated" ng-click="validTest(idxCategory, category, idxTest, test)"><i class="fa fa-check text-success"></i> Valider</button>
-          <button type="button" class="btn btn-default btn-xs" ng-if="test.validated" ng-click="invalidTest(idxCategory, category, idxTest, test)"><i class="fa fa-times text-warning"></i> Invalider</button>
+          <button type="button" class="btn btn-default btn-xs" ng-click="deleteTest(test)">
+            <i class="fa fa-times text-danger"></i> Supprimer
+          </button>
+          <a class="btn btn-default btn-xs" ui-sref="edit({testId: test._id})">
+            <i class="fa fa-edit text-warning"></i> Modifier
+          </a>
+          <button type="button" class="btn btn-default btn-xs" ng-if="!test.validated" ng-click="validTest(idxCategory, category, idxTest, test)">
+            <i class="fa fa-check text-success"></i> Valider
+          </button>
+          <button type="button" class="btn btn-default btn-xs" ng-if="test.validated" ng-click="invalidTest(idxCategory, category, idxTest, test)">
+            <i class="fa fa-times text-warning"></i> Invalider
+          </button>
           <button type="button" class="btn btn-default btn-xs" ng-disabled="test.running" ng-click="launchSingle(test)">
             <span ng-if="test.running"><i class="fa fa-spinner fa-spin"></i> En cours...</span>
             <span ng-if="!test.running"><i class="fa fa-play text-primary"></i> Relancer</span>
@@ -80,7 +88,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="expectedDroit in test.droitsAttendus" ng-class="{'success': expectedDroit.status === 'ok', 'danger': expectedDroit.status === 'ko', 'info': expectedDroit.status === 'unknown', 'warning': expectedDroit.status === 'near' }">
+            <tr ng-repeat="expectedDroit in test.droitsAttendus" ng-class="expectedDroitStatusClass(expectedDroit)">
               <td>{{ droits[expectedDroit.id].shortLabel }}</td>
               <td>{{ displayDroitValue(expectedDroit.expectedValue) }}</td>
               <td>{{ displayDroitValue(expectedDroit.actualValue) }}</td>
@@ -99,7 +107,8 @@
             [<a href="/api/situations/{{ test.situation }}/openfisca-response">Réponse OpenFisca</a>]
           </small>
         </p>
-        <human-readable-situation ng-if="test.showSituation && test.situationObject" situation="test.situationObject"></human-readable-situation>
+        <human-readable-situation ng-if="test.showSituation && test.situationObject" situation="test.situationObject">
+        </human-readable-situation>
       </accordion-group>
     </accordion>
   </div>

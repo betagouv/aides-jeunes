@@ -47,5 +47,15 @@ angular.module('ddsCommon').constant('situationsPro', [
         id: 'retraite',
         label: 'Retraité',
         isStatutSpecifique: true
+    },
+    {
+        id: 'handicap',
+        label: 'Handicap',
+        isStatutSpecifique: true
+    },
+    {
+        id: 'inapte_travail',
+        label: 'Inapte au travail',
+        isStatutSpecifique: true
     }
 ]);

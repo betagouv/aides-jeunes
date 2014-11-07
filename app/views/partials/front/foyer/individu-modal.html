@@ -109,19 +109,23 @@
         dans l'une de ces situations ?
       </label>
       <div class="col-sm-8">
-        <label class="checkbox-inline" ng-repeat="statut in statutsSpecifiques">
-          <input type="checkbox" ng-model="selectedStatuts[statut.id]">
-          {{ statut.label }}
-        </label>
-        <label class="checkbox-inline">
-          <input type="checkbox" ng-model="individu.enceinte">
-          Enceinte
-        </label>
+        <div class="checkbox" ng-repeat="statut in statutsSpecifiques">
+          <label>
+            <input type="checkbox" ng-model="selectedStatuts[statut.id]">
+            {{ statut.label }}
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="individu.enceinte">
+            Enceinte
+          </label>
+        </div>
       </div>
     </div>
 
     <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
-      <label class="control-label col-sm-4" for="eligibiliteAss">
+      <label class="control-label col-sm-4">
         <span ng-if="'demandeur' === options.individuType">Avez-vous</span>
         <span ng-if="'demandeur' !== options.individuType">A-t-il (elle)</span>
         travaillé pendant au moins 5 ans au cours des 10 dernières années ?
@@ -133,6 +137,44 @@
         </label>
         <label class="radio-inline">
           <input type="radio" name="eligibiliteAss" ng-model="individu.assPreconditionRemplie" ng-value="false">
+          Non
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group from-group-lg" ng-if="captureTauxInvalidite()">
+      <label class="control-label col-sm-4" for="eligibiliteAss">
+        Quel est votre taux d'invalidité ?
+      </label>
+      <div class="col-sm-8">
+        <label class="radio-inline">
+          <input type="radio" name="tauxInvalidite" value="moins50" ng-model="individu.tauxInvalidite">
+          Moins de 50%
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="tauxInvalidite" value="moins80" ng-model="individu.tauxInvalidite">
+          Entre 50% et 80%
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="tauxInvalidite" value="plus80" ng-model="individu.tauxInvalidite">
+          Plus de 80%
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group from-group-lg" ng-if="captureEtudiantBoursier()">
+      <label class="control-label col-sm-4">
+        <span ng-if="'demandeur' === options.individuType">Êtes-vous</span>
+        <span ng-if="'demandeur' !== options.individuType">Est-il/elle</span>
+        étudiant boursier ?
+      </label>
+      <div class="col-sm-8">
+        <label class="radio-inline">
+          <input type="radio" name="boursier" ng-model="individu.boursier" ng-value="true">
+          Oui
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="boursier" ng-model="individu.boursier" ng-value="false">
           Non
         </label>
       </div>

@@ -27,7 +27,7 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
             if (!$scope.selectedStatuts[field]) {
                 delete $scope.individu.assPreconditionRemplie;
             }
-            
+
             $scope.$emit('individu.' + options.individuType, $scope.individu);
             $modalInstance.close($scope.individu);
         }

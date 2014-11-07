@@ -6,7 +6,12 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
     $scope.selectedStatuts = {};
 
-    $scope.individu = { nationalite: 'fr', assPreconditionRemplie: true, tauxInvalidite: 'moins50', boursier: false };
+    $scope.individu = {
+        nationalite: 'fr',
+        assPreconditionRemplie: true,
+        tauxInvalidite: 'moins50',
+        boursier: false
+    };
 
     if (true === ($scope.askRelationType = !!options.askRelationType)) {
         $scope.individu.relationType = 'mariage';

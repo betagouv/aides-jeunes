@@ -105,6 +105,7 @@
             [<a href="/api/situations/{{ test.situation }}">Situation DDS</a>]
             [<a href="/api/situations/{{ test.situation }}/openfisca-request">Requête OpenFisca</a>]
             [<a href="/api/situations/{{ test.situation }}/openfisca-response">Réponse OpenFisca</a>]
+            [<a href="" ng-click="gotoDebugOpenFisca(test.situation)">Debug OpenFisca</a>]
           </small>
         </p>
         <human-readable-situation ng-if="test.showSituation && test.situationObject" situation="test.situationObject">

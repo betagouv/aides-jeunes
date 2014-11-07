@@ -30,9 +30,8 @@
     <!-- build:css({.tmp,app}) /styles/main.css -->
     <link rel="stylesheet" href="/styles/main.css">
     <!-- endbuild -->
-    <!-- build:js(app) /js/marqueblanche.js -->
-    <script src="/js/marqueblanche.js"></script>
-    <!-- endbuild -->
+
+    <base href="/">
   </head>
   <body ng-app="ddsApp" class="body-front" ng-controller="BodyCtrl" ng-class="{'has-intro': showIntro}">
     <!--[if lt IE 10]>
@@ -62,11 +61,6 @@
           </div>
         </div>
         <div class="container">
-          <!--<div class="collapse navbar-collapse" ng-cloak ng-if="logo">
-            <div class="navbar-header">
-              <a href="#" class="navbar-brand logo"><img ng-src="img/{{ logo }}"></a>
-            </div>
-          </div>-->
           <ul class="nav navbar-nav">
             <li>
               <a href="#" class="navbar-brand title">

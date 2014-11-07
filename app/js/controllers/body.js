@@ -1,10 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('BodyCtrl', function($scope, $window, $localStorage, $timeout) {
-    if ($window.location.pathname.indexOf('/secours-populaire/') === 0) {
-        $scope.logo = 'logo_secours_populaire.png';
-    }
-
+angular.module('ddsApp').controller('BodyCtrl', function($scope, $localStorage, $timeout) {
     $scope.showIntro = false;
 
     if (false !== $localStorage.showIntro) {

@@ -35,5 +35,5 @@
     "angular-mocks": "~1.2.22",
     "angular-scenario": "~1.2.22"
   },
-  "testPath": "test/client/spec"
+  "testPath": "test/spec"
 }

@@ -61,7 +61,7 @@ module.exports = function (grunt) {
         tasks: ['env:test', 'mochaTest']
       },
       jsTest: {
-        files: ['test/client/spec/**/*.js'],
+        files: ['test/spec/**/*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
       compass: {
@@ -114,9 +114,9 @@ module.exports = function (grunt) {
       ],
       test: {
         options: {
-          jshintrc: 'test/client/.jshintrc'
+          jshintrc: 'test/.jshintrc'
         },
-        src: ['test/client/spec/**/*.js']
+        src: ['test/spec/**/*.js']
       }
     },
 

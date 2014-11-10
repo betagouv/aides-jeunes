@@ -59,7 +59,7 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
                 ressourcesAutresTns.totalAnnuel  += individu.autresRevenusTns;
                 ressourcesAutresTns.byIndividu.push({
                     label: IndividuService.label(individu),
-                    montantAnnuel: individu.caMicroEntreprise
+                    montantAnnuel: individu.autresRevenusTns
                 });
             }
         });

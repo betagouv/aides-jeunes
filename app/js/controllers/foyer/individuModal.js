@@ -51,11 +51,11 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
     };
 
     $scope.captureTauxInvalidite = function() {
-        return _.contains(['demandeur', 'conjoint'], options.individuType) && $scope.selectedStatuts['handicap'];
+        return _.contains(['demandeur', 'conjoint'], options.individuType) && $scope.selectedStatuts.handicap;
     };
 
     $scope.captureEtudiantBoursier = function() {
-        return $scope.selectedStatuts['etudiant'];
+        return $scope.selectedStatuts.etudiant;
     };
 
     $scope.popoverEee = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, ' +

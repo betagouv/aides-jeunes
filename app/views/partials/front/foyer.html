@@ -1,62 +1,21 @@
 <div class="container">
-  <div class="page-header">
-    <h1><i class="fa fa-users"></i> Votre foyer</h1>
+  <div class="col-md-9 col-sm-12 form-foyer">
+    <ui-view>
+      <p class="text-center"><i class="fa fa-spinner fa-spin"></i> Chargement en cours...</p>
+    </ui-view>
   </div>
-
-  <div class="row">
-    <div ui-view="demandeur"></div>
-    <div ui-view="conjoint"></div>
-  </div>
-
-  <div class="row">
-    <div ui-view="enfants"></div>
-    <div class="col-md-2"></div>
-    <div ui-view="personnesACharge"></div>
-  </div>
-
-  <div class="text-center" ng-if="situation.personnesAChargeConfigDone && !situation.logementCaptured">
-    <a class="btn btn-lg btn-primary btn-next" ui-sref="foyer.capture_logement">
-      Étape suivante : votre logement
-    </a>
-  </div>
-
-  <div ui-view="logement"></div>
-
-  <div ng-show="situation.logementCaptured && !situation.ressourcesCaptured" class="text-center">
-    <a ui-sref="foyer.capture_ressources" class="btn btn-lg btn-primary btn-next">
-      Étape suivante : vos ressources
-    </a>
-  </div>
-
-  <div class="page-header" ng-if="situation.ressourcesCaptured">
-    <h1>
-      <i class="fa fa-eur"></i>
-      Vos ressources
-    </h1>
-  </div>
-
-  <div class="row">
-    <div ui-view="ressources" class="col-md-8"></div>
-    <div ui-view="patrimoine" class="col-md-4"></div>
-  </div>
-
-  <div class="text-center">
-    <a ui-sref="foyer.capture_patrimoine" ng-if="situation.ressourcesCaptured && !situation.patrimoineCaptured" class="btn btn-lg btn-primary btn-next">
-      Étape suivante : votre patrimoine
-    </a>
-  </div>
-
-  <div ng-if="situation.patrimoineCaptured" class="panel panel-primary" style="margin-top: 30px;">
-    <div class="panel-heading">
-      <h2 class="panel-title">C'est terminé !</h2>
+  <div class="col-md-3 recap-situation hidden-xs hidden-sm" ng-if="situation.individus.length">
+    <h3 class="text-center">Votre situation</h3>
+    <individu-block ng-repeat="individu in situation.individus" individu="individu"></individu-block>
+    <div ng-if="situation.logement">
+      <h4>Votre logement</h4>
+      <div ng-bind-html="recapLogement|uppercaseFirst"></div>
+      <div ng-if="situation.logement.loyer">{{ loyerLabel }}&nbsp;: {{ situation.logement.loyer }} €</div>
+      Code postal {{ situation.logement.adresse.codePostal }}
+      <br>{{ situation.logement.adresse.ville }}
     </div>
-    <div class="panel-body">
-      <p>Si les informations que vous venez de rentrer sont correctes, vous pouvez maintenant accéder au résultat de la simulation.</p>
-      <div class="text-center">
-        <button type="button" class="btn btn-lg btn-primary" ng-click="goToSimulation()">
-          Voir le résultat de la simulation
-        </button>
-      </div>
+    <div ng-if="ressourcesCaptured">
+      <h4>Vos ressources</h4>
     </div>
   </div>
 </div>

@@ -48,61 +48,61 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/faq',
             templateUrl: '/partials/faq.html'
         })
-        .state('foyer2', {
+        .state('foyer', {
             abstract: true,
             url: '/foyer',
-            templateUrl: '/partials/foyer2.html',
-            controller: 'Foyer2Ctrl'
+            templateUrl: '/partials/foyer.html',
+            controller: 'FoyerCtrl'
         })
-        .state('foyer2.demandeur', {
+        .state('foyer.demandeur', {
             url: '/demandeur',
             views: {
                 '': {
                     templateUrl: '/partials/foyer/demandeur.html'
                 },
-                'individuForm@foyer2.demandeur': individuFormView('demandeur')
+                'individuForm@foyer.demandeur': individuFormView('demandeur')
             }
         })
-        .state('foyer2.conjoint', {
+        .state('foyer.conjoint', {
             url: '/conjoint',
             views: {
                 '': {
                     templateUrl: '/partials/foyer/conjoint.html'
                 },
-                'individuForm@foyer2.conjoint': individuFormView('conjoint', true)
+                'individuForm@foyer.conjoint': individuFormView('conjoint', true)
             }
         })
-        .state('foyer2.enfants', {
+        .state('foyer.enfants', {
             url: '/enfants',
             views: {
                 '': {
                     templateUrl: '/partials/foyer/enfants.html',
                     controller: 'FoyerEnfantsCtrl'
                 },
-                'individuForm@foyer2.enfants': individuFormView('enfant', false, true)
+                'individuForm@foyer.enfants': individuFormView('enfant', false, true)
             }
         })
-        .state('foyer2.personnesACharge', {
+        .state('foyer.personnesACharge', {
             url: '/personnes-a-charge',
             views: {
                 '': {
                     templateUrl: '/partials/foyer/personnes-a-charge.html',
                     controller: 'FoyerPersonnesAChargeCtrl'
                 },
-                'individuForm@foyer2.personnesACharge': individuFormView('personneACharge', false, true)
+                'individuForm@foyer.personnesACharge': individuFormView('personneACharge', false, true)
             }
         })
-        .state('foyer2.logement', {
+        .state('foyer.logement', {
             url: '/logement',
             templateUrl: '/partials/foyer/logement.html',
             controller: 'FoyerLogementCtrl'
         })
-        .state('foyer2.ressources', {
+        .state('foyer.ressources', {
             url: '/ressources',
             templateUrl: '/partials/foyer/ressources.html',
             controller: 'FoyerRessourcesCtrl'
         })
-        .state('foyer2.patrimoine', {
+        .state('foyer.patrimoine', {
             url: '/patrimoine',
             templateUrl: '/partials/foyer/patrimoine.html',
             controller: 'FoyerPatrimoineCtrl'
@@ -117,147 +117,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 }]
             }
         })
-        .state('foyer', {
-            url: '/configuration/foyer',
-            views: {
-                '': {
-                    templateUrl: '/partials/foyer.html',
-                    controller: 'FoyerCtrl'
-                },
-                'demandeur@foyer': {
-                    templateUrl: '/partials/foyer/demandeur.html',
-                    controller: 'FoyerDemandeurCtrl'
-                },
-                'conjoint@foyer': {
-                    templateUrl: '/partials/foyer/conjoint.html',
-                    controller: 'FoyerConjointCtrl'
-                },
-                'enfants@foyer': {
-                    templateUrl: '/partials/foyer/enfants.html',
-                    controller: 'FoyerEnfantsCtrl'
-                },
-                'personnesACharge@foyer': {
-                    templateUrl: '/partials/foyer/personnes-a-charge.html',
-                    controller: 'FoyerPersonnesAChargeCtrl'
-                },
-                'ressources@foyer': {
-                    templateUrl: '/partials/foyer/recap-ressources.html',
-                    controller: 'FoyerRecapRessourcesCtrl'
-                },
-                'logement@foyer': {
-                    templateUrl: '/partials/foyer/recap-logement.html',
-                    controller: 'FoyerRecapLogementCtrl'
-                },
-                'patrimoine@foyer': {
-                    templateUrl: '/partials/foyer/recap-patrimoine.html',
-                    controller: 'FoyerRecapPatrimoineCtrl'
-                }
-            }
-        })
-        .state('foyer.demandeur_modal', {
-            url: '/demandeur',
-            onEnter: ['$state', 'IndividuModalService', function($state, IndividuModalService) {
-                IndividuModalService
-                    .openDemandeur()
-                    .finally(function() {
-                        $state.go('foyer');
-                    });
-            }]
-        })
-        .state('foyer.conjoint_modal', {
-            url: '/conjoint',
-            onEnter: ['$state', 'IndividuModalService', function($state, IndividuModalService) {
-                IndividuModalService
-                    .openConjoint()
-                    .finally(function() {
-                        $state.go('foyer');
-                    });
-            }]
-        })
-        .state('foyer.enfant_modal', {
-            url: '/enfant',
-            onEnter: ['$state', 'IndividuModalService', function($state, IndividuModalService) {
-                IndividuModalService
-                    .openEnfant()
-                    .finally(function() {
-                        $state.go('foyer');
-                    });
-            }]
-        })
-        .state('foyer.personne_a_charge_modal', {
-            url: '/personne-a-charge',
-            onEnter: ['$state', 'IndividuModalService', function($state, IndividuModalService) {
-                IndividuModalService
-                    .openPersonneACharge()
-                    .finally(function() {
-                        $state.go('foyer');
-                    });
-            }]
-        })
-        .state('foyer.capture_ressources', {
-            url: '/ressources',
-            onEnter: ['$state', 'CaptureRessourcesModalService', function($state, CaptureRessourcesModalService) {
-                CaptureRessourcesModalService.open(false).result.then(function() {
-                    return $state.go('foyer');
-                });
-            }]
-        })
-        .state('foyer.capture_logement', {
-            url: '/logement',
-            onEnter: ['$state', '$modal', function($state, $modal) {
-                $modal.open({
-                    templateUrl: '/partials/foyer/capture-logement-modal.html',
-                    controller: 'FoyerCaptureLogementModalCtrl',
-                    resolve: {
-                        situation: ['SituationService', function(SituationService) {
-                            return SituationService.restoreLocal();
-                        }]
-                    },
-                    size: 'lg',
-                    backdrop: 'static',
-                    keyboard: false
-                }).result.then(function() {
-                    return $state.go('foyer');
-                });
-            }]
-        })
-        .state('foyer.capture_patrimoine', {
-            url: '/patrimoine',
-            onEnter: ['$state', '$modal', function($state, $modal) {
-                $modal.open({
-                    templateUrl: '/partials/foyer/capture-patrimoine-modal.html',
-                    controller: 'FoyerCapturePatrimoineModalCtrl',
-                    resolve: {
-                        situation: ['SituationService', function(SituationService) {
-                            return SituationService.restoreLocal();
-                        }]
-                    },
-                    size: 'lg',
-                    backdrop: 'static',
-                    keyboard: false
-                }).result.then(function() {
-                    return $state.go('foyer');
-                });
-            }]
-        })
-        .state('resultat', {
-            url: '/resultat/:situationId',
-            templateUrl: '/partials/resultat.html',
-            controller: 'ResultatCtrl',
-            resolve: {
-                situation: ['$stateParams', 'SituationService', function($stateParams, SituationService) {
-                    return SituationService.restoreRemote($stateParams.situationId);
-                }]
-            }
-        })
-        .state('resultat.capture_ressources_n_2', {
-            url: '/ressources-n-2',
-            onEnter: ['$state', 'CaptureRessourcesModalService', function($state, CaptureRessourcesModalService) {
-                CaptureRessourcesModalService.open(true).result.finally(function() {
-                    return $state.go('resultat');
-                });
-            }]
-        })
         .state('form_infos_complementaires_individus', {
             url: '/infos-complementaires/noms-prenoms?droit',
             templateUrl: '/partials/form-infos-complementaires/individus.html',
@@ -267,16 +126,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/infos-complementaires/adresse?droit',
             templateUrl: '/partials/form-infos-complementaires/address-contact.html',
             controller: 'FormInfosComplementairesAddressContactCtrl'
-        })
-        .state('form_infos_complementaires_situation_pro', {
-            url: '/infos-complementaires/situation-professionnelle?droit',
-            templateUrl: '/partials/form-infos-complementaires/situation-pro.html',
-            controller: 'FormInfosComplementairesSituationProCtrl',
-            resolve: {
-                situation: ['SituationService', function(SituationService) {
-                    return SituationService.restoreLocal();
-                }]
-            }
         })
         .state('download_cerfa', {
             url: '/telecharger-formulaires/:droit',
@@ -290,10 +139,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     return $stateParams.droit;
                 }]
             }
-        })
-        .state('envoi_demande', {
-            url: '/envoi-demande/:situationId',
-            templateUrl: '/partials/envoi-demande-teaser.html'
         });
 });
 

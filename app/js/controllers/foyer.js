@@ -1,15 +1,18 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $modal, nationalites, logementTypes, locationTypes, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $modal, $filter, nationalites, logementTypes, locationTypes, SituationService, IndividuService) {
     var situation = $scope.situation = SituationService.restoreLocal();
     $scope.statutsSpecifiques = IndividuService.formatStatutsSpecifiques;
     $scope.nationalite = IndividuService.nationaliteLabel;
 
     var buildRecapLogement = function() {
-        $scope.recapLogement = _.find(logementTypes, {id: situation.logement.type}).label;
+        var logementLabel = _.find(logementTypes, { id: situation.logement.type }).label;
+        logementLabel = $filter('uppercaseFirst')(logementLabel);
+        $scope.recapLogement = '<b>' + logementLabel + '</b>';
         if ('locataire' === situation.logement.type) {
-            $scope.recapLogement += ' d’un logement ';
+            $scope.recapLogement += ' d’un logement <b>';
             $scope.recapLogement += _.find(locationTypes, { id: situation.logement.locationType }).label;
+            $scope.recapLogement += '</b>';
             $scope.loyerLabel = 'Loyer';
         } else {
             $scope.loyerLabel = 'Mensualité d’emprunt';
@@ -57,7 +60,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $modal
     $scope.$on('patrimoine', function(e, patrimoine) {
         situation.patrimoine = patrimoine;
         SituationService.create(situation).then(function(result) {
-            $state.go('simulation', {'situationId': result._id });
+            $state.go('foyer.simulation', {'situationId': result._id });
         })
     });
 });

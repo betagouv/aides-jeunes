@@ -107,7 +107,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/foyer/patrimoine.html',
             controller: 'FoyerPatrimoineCtrl'
         })
-        .state('simulation', {
+        .state('foyer.simulation', {
             url: '/simulation/:situationId',
             templateUrl: '/partials/simulation.html',
             controller: 'SimulationCtrl',

@@ -1,21 +1,5 @@
-<div class="col-md-5">
-  <div class="panel panel-default block-demandeur">
-    <div class="panel-heading">
-      <h2 class="panel-title">Vous</h2>
-    </div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-lg-1">
-        </div>
-        <div class="col-xs-3">
-          <i class="fa fa-male icon-lg"></i>
-        </div>
-        <div class="col-xs-8" ng-if="situation.demandeur">
-          Né(e) le <strong>{{ situation.demandeur.dateDeNaissance }}</strong>
-          <br>Nationalité <strong>{{ nationalite(situation.demandeur) }}</strong>
-          <br><i>{{ statutsSpecifiques(situation.demandeur) }}</i>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="page-header">
+  <h1>Vous</h1>
 </div>
+
+<div ui-view="individuForm"></div>

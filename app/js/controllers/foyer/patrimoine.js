@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCapturePatrimoineModalCtrl', function($scope, $modalInstance, situation, SituationService) {
+angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, SituationService) {
     var debutPeriode = moment().startOf('month').subtract('years', 1);
     $scope.debutPeriode = debutPeriode.format('MMMM YYYY');
     var finPeriode = moment().startOf('month').subtract('months', 1);
@@ -25,20 +25,17 @@ angular.module('ddsApp').controller('FoyerCapturePatrimoineModalCtrl', function(
         year: 0
     };
 
-    $scope.patrimoine = situation.patrimoine;
-    if (!$scope.patrimoine) {
-        $scope.patrimoine = situation.patrimoine = {
-            hasImmobilier: false,
-            valeurLocativeImmoNonLoue: 0,
-            valeurLocativeTerrainNonLoue: 0,
-            hasMobilier: false,
-            epargneSurLivret: 0,
-            epargneSansRevenus: 0
-        };
-    } else {
-        $scope.patrimoine.hasImmobilier = 0 < ($scope.patrimoine.valeurLocativeImmoNonLoue + $scope.patrimoine.valeurLocativeTerrainNonLoue);
-        $scope.patrimoine.hasMobilier = 0 < $scope.patrimoine.epargneSansRevenus;
-    }
+    $scope.patrimoine = {
+        hasImmobilier: false,
+        valeurLocativeImmoNonLoue: 0,
+        valeurLocativeTerrainNonLoue: 0,
+        hasMobilier: false,
+        epargneSurLivret: 0,
+        epargneSansRevenus: 0
+    };
+
+    // $scope.patrimoine.hasImmobilier = 0 < ($scope.patrimoine.valeurLocativeImmoNonLoue + $scope.patrimoine.valeurLocativeTerrainNonLoue);
+    // $scope.patrimoine.hasMobilier = 0 < $scope.patrimoine.epargneSansRevenus;
 
     $scope.updateRevenusLocatifsYearAmount = function() {
         var montants = _.map($scope.revenusLocatifs.months, function(month) {
@@ -59,8 +56,6 @@ angular.module('ddsApp').controller('FoyerCapturePatrimoineModalCtrl', function(
     };
 
     $scope.submit = function() {
-        situation.patrimoineCaptured = true;
-
         $scope.patrimoine.revenusLocatifs = [];
         if ($scope.patrimoine.hasImmobilier) {
             [0, 1, 2].forEach(function(index) {
@@ -93,7 +88,6 @@ angular.module('ddsApp').controller('FoyerCapturePatrimoineModalCtrl', function(
             });
         }
 
-        $scope.$emit('patrimoineCaptured');
-        $modalInstance.close();
+        $scope.$emit('patrimoine', $scope.patrimoine);
     };
 });

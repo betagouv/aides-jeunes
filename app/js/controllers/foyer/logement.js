@@ -1,13 +1,7 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($scope, $http, $modalInstance, logementTypes, locationTypes, loyerLabels, situation) {
-    if (!situation.logement) {
-        situation.logement = {};
-    }
-    if (!situation.logement.adresse) {
-        situation.logement.adresse = {};
-    }
-    var logement = $scope.logement = situation.logement;
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, logementTypes, locationTypes, loyerLabels) {
+    var logement = $scope.logement = { adresse: {} };
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
     $scope.loyerLabels = loyerLabels;
@@ -101,9 +95,7 @@ angular.module('ddsApp').controller('FoyerCaptureLogementModalCtrl', function($s
         if (form.$valid && !$scope.unknownCodePostal) {
             logement.adresse.ville = $scope.selectedCity.nom;
             logement.adresse.codeInsee = $scope.selectedCity.codeInsee;
-            situation.logementCaptured = true;
-            $scope.$emit('logementCaptured');
-            $modalInstance.close();
+            $scope.$emit('logement', logement);
         }
     };
 

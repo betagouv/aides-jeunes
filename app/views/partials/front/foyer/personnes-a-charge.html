@@ -1,59 +1,55 @@
-<div class="col-lg-5 animate-show" ng-show="visible">
-  <div class="panel panel-default panel-foyer-lg">
-    <div class="panel-heading">
-      <h2 class="panel-title">Autres personnes à votre charge</h2>
-    </div>
-    <div class="panel-body">
-      <div class="row">
-        <div ng-repeat="personne in situation.personnesACharge">
-          <div class="clearfix" ng-if="$index % 2 === 0"></div>
-          <div class="col-sm-6">
-            <div class="panel panel-enfant">
-              <div class="panel-body">
-                {{ personne.firstName }}
-                <button type="button" class="close" ng-if="!situation.personnesAChargeConfigDone" ng-click="removePersonneACharge(personne)">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="row">
-                  <div class="col-xs-4">
-                    <i class="fa fa-male icon-lg"></i>
-                  </div>
-                  <div class="col-xs-8">
-                    Né(e) le <strong>{{ personne.dateDeNaissance }}</strong>
-                    <br>Nationalité <strong>{{ nationalite(personne) }}</strong>
-                    <br><i>{{ statutsSpecifiques(personne) }}</i>
-                  </div>
-                </div>
+<div class="page-header">
+  <h1 ng-if="!ajoutPersonneACharge">Les autres personnes à votre charge</h1>
+  <h1 ng-if="ajoutPersonneACharge">Nouvelle personne à charge</h1>
+</div>
+
+<div ng-if="!ajoutPersonneACharge">
+  <div class="row">
+    <div ng-repeat="personne in personnesACharge">
+      <div class="clearfix" ng-if="$index % 3 === 0"></div>
+      <div class="col-sm-4">
+        <div class="panel-enfant">
+          <div class="panel-body">
+            {{ personne.firstName }}
+            <button type="button" class="close" ng-click="removePersonneACharge(personne)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row">
+              <div class="col-xs-4">
+                <i class="fa fa-child icon-lg"></i>
+              </div>
+              <div class="col-xs-8">
+                Né(e) le <strong>{{ personne.dateDeNaissance }}</strong>
+                <br>Nationalité <strong>{{ nationalite(personne) }}</strong>
+                <br><i>{{ statutsSpecifiques(personne) }}</i>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="clearfix" ng-if="situation.personnesACharge.length % 2 === 0"></div>
+    <div class="clearfix" ng-if="personnesACharge.length % 3 === 0"></div>
 
-        <div class="col-sm-6" ng-show="!situation.personnesAChargeConfigDone">
-          <div class="panel panel-default" style="border-style: dashed;">
-            <div class="panel-body" style="padding: 0;">
-              <button class="btn btn-lg btn-default btn-block btn-new-entity" ng-click="$state.go('foyer.personne_a_charge_modal')">
-                Ajouter une personne
-                <br><i class="fa fa-plus icon-lg"></i>
-              </button>
-            </div>
-          </div>
+    <div class="col-sm-4">
+      <div class="panel-enfant panel-new-enfant">
+        <div class="panel-body">
+          <button class="btn btn-lg btn-default btn-block btn-new-entity" ng-click="$parent.ajoutPersonneACharge = true">
+            Ajouter une<br>personne à charge<br>
+            <i class="fa fa-plus icon-lg"></i>
+          </button>
         </div>
-      </div>
-
-      <div class="text-center" ng-if="situation.personnesAChargeConfigDone && !situation.personnesACharge.length">
-        Vous n'avez pas de personne à charge
-      </div>
-
-      <div class="text-right" ng-show="!situation.personnesAChargeConfigDone">
-        <button type="button" class="btn btn-primary" ng-click="endPersonnesAChargeConfig()">
-          <span ng-if="!situation.personnesACharge.length">Je n'ai pas de personnes à charge</span>
-          <span ng-if="situation.personnesACharge.length">Terminé</span>
-          <br><i class="fa fa-arrow-circle-right"></i>
-        </button>
       </div>
     </div>
   </div>
+
+  <div class="text-right">
+    <button type="button" class="btn btn-primary" ng-click="validate()">
+      <span ng-if="!personnesACharge.length">Je n'ai pas de personne à charge</span>
+      <span ng-if="personnesACharge.length">Terminé</span>
+      <br><i class="fa fa-arrow-circle-right"></i>
+    </button>
+  </div>
 </div>
+
+<div ui-view="individuForm" ng-if="ajoutPersonneACharge"></div>

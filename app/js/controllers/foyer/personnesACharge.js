@@ -1,35 +1,19 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function ($scope, $rootScope) {
-    if (!$scope.situation.personnesACharge) {
-        $scope.situation.personnesACharge = [];
-    }
+    $scope.personnesACharge = [];
 
-    if ($scope.situation.childConfigDone) {
-        $scope.visible = true;
-    }
-
-    $rootScope.$on('enfants', function() {
-        $scope.visible = true;
+    $scope.$on('individu.personneACharge', function(e, personneACharge) {
+        $scope.personnesACharge.push(personneACharge);
+        $scope.ajoutPersonneACharge = false;
     });
 
-    $rootScope.$on('individu.personneACharge', function(e, personneACharge) {
-        $scope.situation.personnesACharge.push(personneACharge);
-    });
-
-    $scope.removePersonneACharge = function(personne) {
-        var index = $scope.situation.personnesACharge.indexOf(personne);
-        $scope.situation.personnesACharge.splice(index, 1);
-        if (!$scope.situation.personnesACharge.length) {
-            $scope.situation.hasPersonnesACharge = undefined;
-        }
+    $scope.removePersonneACharge = function(personneACharge) {
+        var index = $scope.personnesACharge.indexOf(personneACharge);
+        $scope.personnesACharge.splice(index, 1);
     };
 
-    $scope.endPersonnesAChargeConfig = function() {
-        $scope.situation.personnesAChargeConfigDone = true;
-        $scope.$emit('personnesACharge', $scope.situation.personnesACharge);
-        if (!$scope.situation.personnesACharge.length) {
-            $scope.situation.hasPersonnesACharge = false;
-        }
+    $scope.validate = function() {
+        $scope.$emit('personnesACharge', $scope.personnesACharge);
     };
 });

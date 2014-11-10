@@ -1,0 +1,208 @@
+<div class="page-header">
+  <h1>Votre patrimoine</h1>
+</div>
+
+<form method="post" name="form" novalidate class="form-horizontal" ng-submit="submit()">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        <i class="fa fa-home"></i>
+        Patrimoine immobilier
+      </h2>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Avez-vous un patrimoine immobilier autre que votre résidence principale ?</label>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasImmobilier" btn-radio="true">Oui</button>
+          <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasImmobilier" btn-radio="false">Non</button>
+        </div>
+        <div class="col-sm-4">
+          <em class="help-block">Terrain, logement, commerce...</em>
+        </div>
+      </div>
+
+      <div ng-if="patrimoine.hasImmobilier">
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="vl-immo-non-loue" tooltip="Pour la trouver, consultez votre avis d'imposition de taxe d'habitation ou de taxe foncière">
+            Valeur locative totale de vos appartements/immeubles <b>non loués</b>
+          </label>
+          <div class="col-sm-3">
+            <div class="input-group">
+              <input
+                type="number"
+                id="vl-immo-non-loue"
+                class="form-control text-right"
+                select-on-focus
+                zero-to-empty
+                ng-model="patrimoine.valeurLocativeImmoNonLoue">
+              <span class="input-group-addon">€</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="vl-terrain-non-loue" tooltip="Pour la trouver, consultez votre avis d'imposition de taxe d'habitation ou de taxe foncière">
+            Valeur locative totale de vos terrains <b>non loués</b>
+          </label>
+          <div class="col-sm-3">
+            <div class="input-group">
+              <input
+                type="number"
+                id="vl-terrain-non-loue"
+                class="form-control text-right"
+                select-on-focus
+                zero-to-empty
+                ng-model="patrimoine.valeurLocativeTerrainNonLoue">
+              <span class="input-group-addon">€</span>
+            </div>
+          </div>
+        </div>
+
+        <p><label>Veuillez indiquer ci-dessous les revenus locatifs que vous avez perçu (terrains, appartements, SCI...)</label></p>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th ng-repeat="month in months">{{ month.label | uppercaseFirst }}</th>
+              <th>De {{ debutPeriode }} à {{ finPeriode }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td ng-repeat="month in revenusLocatifs.months">
+                <span class="input-group">
+                  <input
+                    type="number"
+                    class="form-control text-right"
+                    select-on-focus
+                    zero-to-empty
+                    ng-model="month.montant"
+                    ng-change="updateRevenusLocatifsYearAmount()">
+                  <span class="input-group-addon hidden-xs">€</span>
+                </span>
+              </td>
+              <td>
+                <span class="input-group">
+                  <input
+                    type="number"
+                    class="form-control text-right"
+                    select-on-focus
+                    zero-to-empty
+                    ng-model="revenusLocatifs.year">
+                  <span class="input-group-addon hidden-xs">€</span>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        <i class="fa fa-money"></i>
+        Patrimoine mobilier
+      </h2>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="epargne-sur-livret">Montant total de votre épargne sur livret</label>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input
+              type="number"
+              required
+              id="epargne-sur-livret"
+              class="form-control text-right"
+              select-on-focus
+              zero-to-empty
+              ng-model="patrimoine.epargneSurLivret">
+            <span class="input-group-addon">€</span>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <p class="help-block"><em>Livret A, LDD, LEP, livret jeune, CEL, CAT, autres livrets<br><b>Hors PEL et PERP</b></em></p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Possédez-vous d'autres formes d'épargne ?</label>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasMobilier" btn-radio="true">Oui</button>
+          <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasMobilier" btn-radio="false">Non</button>
+        </div>
+        <div class="col-sm-5">
+          <em class="help-block">Compte courant, titres, assurance-vie, SICAV, FCP, PEL, PERP...</em>
+        </div>
+      </div>
+
+      <div ng-if="patrimoine.hasMobilier">
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="epargne-sans-revenus">
+            Montant de votre épargne qui ne génère pas de revenus
+          </label>
+          <div class="col-sm-3">
+            <div class="input-group">
+              <input
+                type="number"
+                id="epargne-sans-revenus"
+                class="form-control text-right"
+                select-on-focus
+                zero-to-empty
+                ng-model="patrimoine.epargneSansRevenus">
+              <span class="input-group-addon">€</span>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <em class="help-block">
+              Compte courant, assurance-vie, PEL, PERP, FCP et SICAV de capitalisation...
+            </em>
+          </div>
+        </div>
+
+        <p><label>Veuillez indiquer ci-dessous vos revenus du capital : intérêts, plus-values, dividendes</label></p>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th ng-repeat="month in months">{{ month.label | uppercaseFirst }}</th>
+              <th>De {{ debutPeriode }} à {{ finPeriode }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td ng-repeat="month in revenusDuCapital.months">
+                <span class="input-group">
+                  <input
+                    type="number"
+                    class="form-control text-right"
+                    select-on-focus
+                    zero-to-empty
+                    ng-model="month.montant"
+                    ng-change="updateRevenusDuCapitalYearAmount()">
+                  <span class="input-group-addon hidden-xs">€</span>
+                </span>
+              </td>
+              <td>
+                <span class="input-group">
+                  <input
+                    type="number"
+                    class="form-control text-right"
+                    select-on-focus
+                    zero-to-empty
+                    ng-model="revenusDuCapital.year">
+                  <span class="input-group-addon hidden-xs">€</span>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-right">
+    <button type="submit" class="btn btn-primary">Valider</button>
+  </div>
+</form>

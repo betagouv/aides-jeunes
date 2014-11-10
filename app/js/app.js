@@ -1,6 +1,6 @@
 'use strict';
 
-var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngStorage', 'ddsCommon']);
+var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngStorage', 'ddsCommon', 'ngSanitize']);
 
 ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $uiViewScrollProvider) {
     moment.lang('fr');
@@ -8,6 +8,24 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
     $uiViewScrollProvider.useAnchorScroll();
+
+    var individuFormView = function(individuRole, captureRelationConjoint, capturePrenom, minAge, maxAge) {
+        return {
+            templateUrl: '/partials/foyer/individu-form.html',
+            controller: 'FoyerIndividuFormCtrl',
+            resolve: {
+                options: function() {
+                    return {
+                        individuRole: individuRole,
+                        captureRelationConjoint: captureRelationConjoint || false,
+                        capturePrenom: capturePrenom || false,
+                        minAge: minAge,
+                        maxAge: maxAge
+                    };
+                }
+            }
+        }
+    };
 
     $stateProvider
         .state('home', {
@@ -29,6 +47,75 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('faq', {
             url: '/faq',
             templateUrl: '/partials/faq.html'
+        })
+        .state('foyer2', {
+            abstract: true,
+            url: '/foyer',
+            templateUrl: '/partials/foyer2.html',
+            controller: 'Foyer2Ctrl'
+        })
+        .state('foyer2.demandeur', {
+            url: '/demandeur',
+            views: {
+                '': {
+                    templateUrl: '/partials/foyer/demandeur.html'
+                },
+                'individuForm@foyer2.demandeur': individuFormView('demandeur')
+            }
+        })
+        .state('foyer2.conjoint', {
+            url: '/conjoint',
+            views: {
+                '': {
+                    templateUrl: '/partials/foyer/conjoint.html'
+                },
+                'individuForm@foyer2.conjoint': individuFormView('conjoint', true)
+            }
+        })
+        .state('foyer2.enfants', {
+            url: '/enfants',
+            views: {
+                '': {
+                    templateUrl: '/partials/foyer/enfants.html',
+                    controller: 'FoyerEnfantsCtrl'
+                },
+                'individuForm@foyer2.enfants': individuFormView('enfant', false, true)
+            }
+        })
+        .state('foyer2.personnesACharge', {
+            url: '/personnes-a-charge',
+            views: {
+                '': {
+                    templateUrl: '/partials/foyer/personnes-a-charge.html',
+                    controller: 'FoyerPersonnesAChargeCtrl'
+                },
+                'individuForm@foyer2.personnesACharge': individuFormView('personneACharge', false, true)
+            }
+        })
+        .state('foyer2.logement', {
+            url: '/logement',
+            templateUrl: '/partials/foyer/logement.html',
+            controller: 'FoyerLogementCtrl'
+        })
+        .state('foyer2.ressources', {
+            url: '/ressources',
+            templateUrl: '/partials/foyer/ressources.html',
+            controller: 'FoyerRessourcesCtrl'
+        })
+        .state('foyer2.patrimoine', {
+            url: '/patrimoine',
+            templateUrl: '/partials/foyer/patrimoine.html',
+            controller: 'FoyerPatrimoineCtrl'
+        })
+        .state('simulation', {
+            url: '/simulation/:situationId',
+            templateUrl: '/partials/simulation.html',
+            controller: 'SimulationCtrl',
+            resolve: {
+                situation: ['$stateParams', 'SituationService', function($stateParams, SituationService) {
+                    return SituationService.restoreRemote($stateParams.situationId);
+                }]
+            }
         })
         .state('foyer', {
             url: '/configuration/foyer',

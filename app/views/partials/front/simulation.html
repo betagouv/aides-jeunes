@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="page-header">
+    <h1><i class="fa fa-gears"></i> Vos droits</h1>
+  </div>
+
+  <p ng-if="awaitingResults"><i class="fa fa-spinner fa-spin"></i> Calcul en cours de vos droits...</p>
+
+  <div class="alert alert-danger" ng-if="error">
+    <h2>Désolé, nous n'arrivons pas à calculer vos droits pour le moment.</h2>
+    <p>Une erreur est survenue dans la simulation, l'équipe en a été informée.</p>
+  </div>
+
+  <div ng-if="!awaitingResults">
+    <div ng-if="droits.length">
+      <div class="row">
+        <div ng-repeat="droit in droits">
+          <div class="clearfix" ng-if="$index % 3 === 0"></div>
+          <div class="col-md-4" >
+            <div class="thumbnail">
+              <a href="{{ droit.description.link }}" target="_blank">
+                <img ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
+              </a>
+              <div class="thumbnail-title thumbnail-title-success">
+                <div class="row">
+                  <div class="col-sm-8">
+                    {{ droit.description.label }}
+                  </div>
+                  <div class="col-sm-4" ng-if="false !== droit.description.hasMontant">
+                    <div class="montant">{{ round(droit.montant) }}&nbsp;€</div>
+                    <span class="montant-detail">
+                      /
+                      <span ng-if="droit.description.isMontantAnnuel">an</span>
+                      <span ng-if="!droit.description.isMontantAnnuel">mois</span>
+                      environ
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="caption">
+                <p>{{ droit.description.description }}</p>
+
+                <div class="alert alert-warning-inverse" ng-if="!situation.ressourcesN2Captured && isDroitAllocationLogement(droit)">
+                  <p>
+                    <i class="fa fa-exclamation-triangle"></i>
+                    <b>Attention</b> : le montant calculé de cette allocation logement se base sur les ressources
+                    que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
+                    <br>Bientôt, nous vous proposerons ici de nous indiquer vos ressources de {{ yearMoins2 }}
+                    pour que la simulation soit au plus juste.
+                    <br>En attendant, vous pouvez consulter
+                    <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement/">le site de la CAF</a>
+                    pour obtenir une estimation plus précise.
+                  </p>
+                </div>
+
+                <p class="alert alert-warning-inverse" ng-if="isDroitCmuAcs(droit)">
+                  <i class="fa fa-exclamation-triangle"></i>
+                  <b>Attention</b> : vous êtes éligible à ce droit si vous n'êtes pas déjà ayant droit
+                  d'une autre mutuelle (parents, conjoint...).
+                </p>
+
+                <div class="row no-gutter">
+                  <div class="col-xs-6 no-gutter-right">
+                    <a
+                      href="{{ droit.description.link }}"
+                      class="btn btn-sm btn-default"
+                      target="_blank">
+                        <i class="fa fa-external-link"></i>
+                        Plus d'informations
+                    </a>
+                  </div>
+                  <div class="col-xs-6 no-gutter-left">
+                    <a
+                      class="btn btn-sm btn-primary"
+                      ng-if="hasDroitForms(droit)"
+                      ui-sref="form_infos_complementaires_individus({droit: droit.description.id})">
+                      Engager les démarches
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloc-aucune-aide-eligible text-center" ng-if="!droits.length && !error">
+      <h2>Vous n'êtes éligible à aucune aide.</h2>
+    </div>
+
+    <div class="alert alert-warning-inverse" ng-if="displayLogementWarning()">
+      <h3><i class="fa fa-exclamation-triangle"></i> Note relative à l'aide au logement</h3>
+      <b>Attention</b> : la simulation sur votre situation n'a pas abouti sur un droit à l'allocation logement.
+      Cependant, la simulation s'est faite sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
+      Si vos ressources de {{ yearMoins2 }} sont moins élevées, il se peut que vous ayez tout de même droit à cette allocation.
+      <br>Bientôt, nous vous proposerons ici de nous indiquer vos ressources de {{ yearMoins2 }} pour que la simulation soit au plus juste.
+      <br>En attendant, vous pouvez consulter <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement/">le site de la CAF</a> pour obtenir une estimation plus précise.
+    </div>
+  </div>
+
+  <hr>
+
+  <h4 ng-if="droitsNonEligibles.length">Aides étudiées pour lesquelles vous n'êtes pas éligible</h4>
+
+  <div class="row">
+    <div ng-repeat="droit in droitsNonEligibles">
+      <div class="clearfix" ng-if="$index % 4 === 0"></div>
+      <div class="col-md-3" >
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{ droit.label }}</h3>
+          </div>
+          <div class="panel-body">
+            <p>{{ droit.description }}</p>
+            <a
+              href="{{ droit.link }}"
+              class="btn btn-sm btn-default"
+              target="_blank">
+                <i class="fa fa-external-link"></i>
+                Plus d'informations
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <p class="text-right">
+    <em>
+      Vous pensez que le droit applicable à votre situation n'est pas correctement estimé par ce simulateur ?
+      <br>Vous êtes en mesure de nous fournir une information précise sur vos droits ?
+      <br><a href="" ng-click="createTest()">Cliquez ici</a>.
+    </em>
+  </p>
+</div>

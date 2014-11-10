@@ -72,7 +72,9 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         newSituation: function() {
-            situation = {};
+            situation = {
+                individus: []
+            };
             $sessionStorage.situation = situation;
         },
 
@@ -149,37 +151,21 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         createApiCompatibleSituation: function(situation) {
-            var demandeur = situation.demandeur;
-            var individus = [demandeur];
-            demandeur.role = 'demandeur';
-            if (demandeur.dateSituationFamilialeString) {
-                demandeur.dateSituationFamiliale = moment(demandeur.dateSituationFamilialeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
-            }
+            var individus = _.map(situation.individus, this.createApiCompatibleIndividu);
 
-            if (situation.conjoint) {
-                individus.push(situation.conjoint);
-                situation.conjoint.role = 'conjoint';
-                demandeur.statutMarital = situation.conjoint.relationType;
+            var conjoint;
+            var demandeur = _.find(individus, { role: 'demandeur' });
+            if (conjoint = _.find(individus, { role: 'conjoint' })) {
+                demandeur.statutMarital = conjoint.relationType;
             } else {
                 demandeur.statutMarital = demandeur.situationFamiliale;
             }
-
-            situation.enfants.forEach(function(enfant) {
-                enfant.role = 'enfant';
-            });
-
-            situation.personnesACharge.forEach(function(personne) {
-                personne.role = 'personneACharge';
-            });
-
-            individus = individus.concat(situation.enfants).concat(situation.personnesACharge);
-            individus = _.map(individus, this.createApiCompatibleIndividu);
 
             if (situation.logement.dateArriveeString) {
                 situation.logement.dateArrivee = moment(situation.logement.dateArriveeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
             }
 
-            flattenPatrimoine(situation.patrimoine);
+            flattenPatrimoine(situation.patrimoine); // FIXME Faire ça dans le controller du patrimoine
 
             var result = {
                 individus: individus,
@@ -194,11 +180,14 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         createApiCompatibleIndividu: function(individu) {
             individu = _.cloneDeep(individu);
+            if (individu.dateSituationFamilialeString) {
+                individu.dateSituationFamiliale = moment(demandeur.dateSituationFamilialeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            }
             individu.dateDeNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY').format('YYYY-MM-DD');
             if (individu.dateArriveeFoyerString) {
                 individu.dateArriveeFoyer = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY').format('YYYY-MM-DD');
             }
-            flattenIndividuRessources(individu);
+            flattenIndividuRessources(individu); // FIXME Faire ça dans le controller des ressources
 
             return individu;
         },

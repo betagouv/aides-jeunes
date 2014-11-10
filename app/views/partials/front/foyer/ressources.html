@@ -1,8 +1,9 @@
+<div class="page-header">
+  <h1>Vos ressources</h1>
+</div>
+
 <form method="post" name="form" novalidate ng-submit="submit(form)">
-  <div class="modal-header">
-    <h1 class="modal-title">Vos ressources</h1>
-  </div>
-  <div class="modal-body" ng-switch on="tab">
+  <div ng-switch on="tab">
     <div ng-switch-when="ressources">
       <p>
         Cliquez sur les types de ressources que les personnes de votre foyer ont perçues
@@ -187,12 +188,18 @@
       </div>
     </div>
   </div>
-  <div class="modal-footer">
-    <span class="text-danger" ng-if="form.submitted && form.$invalid">Veuillez entrer des montants valides</span>
-    <button type="button" class="btn btn-default" ng-if="isCaptureRessourcesN2" ng-click="$dismiss()">Annuler</button>
-    <button type="button" class="btn btn-default" ng-show="'ressources' !== tab" ng-click="previousTab()">
-      &lt; Étape précédente
-    </button>
-    <button type="submit" class="btn btn-primary">Valider</button>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <button type="button" class="btn btn-default" ng-show="'ressources' !== tab" ng-click="previousTab()">
+        &lt; Étape précédente
+      </button>
+    </div>
+    <div class="col-sm-6">
+      <div class="text-right">
+        <span class="text-danger" ng-if="form.submitted && form.$invalid">Veuillez entrer des montants valides</span>
+        <button type="submit" class="btn btn-primary">Valider</button>
+      </div>
+    </div>
   </div>
 </form>

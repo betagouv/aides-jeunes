@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $modalInstance, SituationService, IndividuService, options) {
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, options, SituationService, IndividuService) {
     $scope.options = options;
     $scope.relationTypes = SituationService.relationTypeLabels;
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
@@ -10,11 +10,20 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
         nationalite: 'fr',
         assPreconditionRemplie: true,
         tauxInvalidite: 'moins50',
-        boursier: false
+        boursier: false,
+        role: options.individuRole
     };
 
-    if (true === ($scope.askRelationType = !!options.askRelationType)) {
+    if (true === ($scope.captureRelationConjoint = !!options.captureRelationConjoint)) {
         $scope.individu.relationType = 'mariage';
+    }
+
+    if (_.contains(['demandeur', 'conjoint'], options.individuRole)) {
+        var situation = SituationService.restoreLocal();
+        var individu = _.find(situation.individus, { role: options.individuRole });
+        if (individu) {
+            $scope.individu = _.merge($scope.individu, individu);
+        }
     }
 
     $scope.submit = function(form) {
@@ -40,18 +49,17 @@ angular.module('ddsApp').controller('FoyerIndividuModalCtrl', function($scope, $
                 delete $scope.individu.boursier;
             }
 
-            $scope.$emit('individu.' + options.individuType, $scope.individu);
-            $modalInstance.close($scope.individu);
+            $scope.$emit('individu.' + options.individuRole, $scope.individu);
         }
     };
 
     $scope.captureEligibiliteAss = function() {
         var field = 'demandeur_emploi';
-        return _.contains(['demandeur', 'conjoint'], options.individuType) && $scope.selectedStatuts[field];
+        return _.contains(['demandeur', 'conjoint'], options.individuRole) && $scope.selectedStatuts[field];
     };
 
     $scope.captureTauxInvalidite = function() {
-        return _.contains(['demandeur', 'conjoint'], options.individuType) && $scope.selectedStatuts.handicap;
+        return _.contains(['demandeur', 'conjoint'], options.individuRole) && $scope.selectedStatuts.handicap;
     };
 
     $scope.captureEtudiantBoursier = function() {

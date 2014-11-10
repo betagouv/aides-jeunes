@@ -1,0 +1,124 @@
+<div class="page-header">
+  <h1>Votre logement</h1>
+</div>
+
+<form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit(form)">
+  <p><em>
+    Si vous n’avez pas de domicile fixe ou stable, vous devez effectuer une
+    <a href="http://vosdroits.service-public.fr/particuliers/F17317.xhtml" target="_blank">demande de domiciliation</a>.
+  </em></p>
+
+  <div class="form-group">
+    <label class="col-lg-4 control-label">Êtes-vous</label>
+    <div class="col-lg-8">
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-sm btn-default"
+          ng-repeat="logementType in logementTypes"
+          ng-model="logement.type"
+          btn-radio="logementType.id"
+          ng-change="changeLogementType()">
+          {{ logementType.label|uppercaseFirst }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" ng-if="'locataire' === logement.type">
+    <label class="col-sm-4 control-label">Est-ce une colocation ?</label>
+    <div class="col-sm-8">
+      <button type="button" class="btn btn-sm btn-default" ng-model="logement.colocation" btn-radio="true">Oui</button>
+      <button type="button" class="btn btn-sm btn-default" ng-model="logement.colocation" btn-radio="false">Non</button>
+    </div>
+  </div>
+
+  <div class="form-group" ng-if="captureMembreFamilleProprietaire()">
+    <label class="col-sm-4 control-label">Le propriétaire de votre logement est-il un membre de votre famille&nbsp;?</label>
+    <div class="col-sm-8">
+      <button type="button" class="btn btn-sm btn-default" ng-model="logement.membreFamilleProprietaire" btn-radio="true">Oui</button>
+      <button type="button" class="btn btn-sm btn-default" ng-model="logement.membreFamilleProprietaire" btn-radio="false">Non</button>
+    </div>
+  </div>
+
+  <div class="form-group" ng-show="captureLocationType()">
+    <label class="col-sm-4 control-label">Quel type de logement louez-vous&nbsp;?</label>
+    <div class="col-sm-6">
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-default btn-sm"
+          ng-repeat="locationType in locationTypes"
+          ng-model="logement.locationType"
+          btn-radio="locationType.id">
+          {{ locationType.label|uppercaseFirst }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" ng-show="logement.type === 'proprietaire'">
+    <label class="col-sm-4 control-label" popover-trigger="mouseenter">
+      Avez-vous un prêt primo-accédant pour cette propriété ?
+    </label>
+    <div class="col-sm-3">
+      <button type="button" class="btn btn-sm btn-default" ng-model="logement.primoAccedant" btn-radio="true">Oui</button>
+      <button type="button" class="btn btn-sm btn-default" ng-model="logement.primoAccedant" btn-radio="false">Non</button>
+    </div>
+    <div class="col-sm-5">
+      <p class="help-block">
+        Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire
+        de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group" ng-if="captureLoyer()" ng-class="{'has-error': submitted && form.loyer.$invalid}">
+    <label class="col-sm-4 control-label" for="loyer">
+      {{ loyerLabels[logement.type] }}
+    </label>
+    <div class="col-sm-3">
+      <div class="input-group">
+        <input type="number" class="form-control text-right" id="loyer" name="loyer" ng-model="logement.loyer" required min="1">
+        <div class="input-group-addon">€</div>
+      </div>
+      <span class="help-block" ng-if="submitted && form.loyer.$invalid">Loyer invalide</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div
+        class="form-group"
+        ng-show="captureCodePostal()"
+        ng-class="{'has-error': submitted && unknownCodePostal}">
+        <label class="col-sm-8 control-label" for="postal-code">Code postal de votre résidence</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            id="postal-code"
+            name="codePostal"
+            required
+            ng-model="logement.adresse.codePostal"
+            ng-change="updateCities()">
+          <span class="help-block" ng-if="submitted && unknownCodePostal">Ce code postal est invalide</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin"></i></p>
+      <select
+        class="form-control"
+        ng-if="cities.length"
+        ng-options="city as city.nom for city in cities"
+        ng-model="selectedCity"
+        ng-change="updateSelectedCity(selectedCity)">
+      </select>
+    </div>
+  </div>
+
+  <div class="text-right">
+    <button type="submit" class="btn btn-primary" ng-if="captureCodePostal()">Valider</button>
+  </div>
+</form>

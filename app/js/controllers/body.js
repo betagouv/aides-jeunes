@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('BodyCtrl', function($scope, $localStorage, $timeout) {
+angular.module('ddsApp').controller('BodyCtrl', function($scope, $localStorage, $timeout, SituationService) {
     $scope.showIntro = false;
 
     if (false !== $localStorage.showIntro) {
@@ -12,5 +12,9 @@ angular.module('ddsApp').controller('BodyCtrl', function($scope, $localStorage, 
     $scope.hideIntro = function() {
         $scope.showIntro = false;
         $localStorage.showIntro = false;
+    };
+
+    $scope.newSituation = function() {
+        SituationService.newSituation();
     };
 });

@@ -1,25 +1,16 @@
 'use strict';
 
-angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scope, $rootScope, $modalInstance, individus, SituationService, IndividuService, ressourceTypes, ressourcesN2) {
-    $scope.isCaptureRessourcesN2 = ressourcesN2;
+angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $rootScope, ressourceTypes, SituationService, IndividuService) {
+    var individus = SituationService.restoreLocal().individus;
 
-    var debutAnnee;
-    var finAnnee;
-    if (ressourcesN2) {
-        finAnnee = moment().endOf('year').subtract('years', 2);
-        debutAnnee = moment().subtract('years', 2).startOf('year');
-    } else {
-        finAnnee = moment().startOf('month').subtract('months', 1);
-        debutAnnee = moment().subtract('years', 1);
-    }
-
+    var debutAnnee = moment().subtract('years', 1);
+    var finAnnee = moment().startOf('month').subtract('months', 1);
     $scope.debutAnnee = debutAnnee.format('MMMM YYYY');
     $scope.finAnnee = finAnnee.format('MMMM YYYY');
     $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
     $scope.ressourceTypes = ressourceTypes;
 
-    var months = SituationService.getMonths();
-    $scope.months = ressourcesN2 ? [] : months;
+    $scope.months = SituationService.getMonths();
     $scope.selectedRessourceTypes = {};
 
     $scope.isRessourceTypeNonTns = function(ressource) {
@@ -98,8 +89,7 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
         if (closeModal) {
             if (form.$valid) {
                 $scope.applyIndividuRefsRessourcesToIndividus();
-                $scope.$emit('ressourcesCaptured', ressourcesN2);
-                $modalInstance.close();
+                $scope.$emit('ressources');
             }
         }
     };
@@ -136,11 +126,11 @@ angular.module('ddsApp').controller('CaptureRessourcesModalCtrl', function($scop
                     }
                     ressource.montantAnnuel = 0;
 
-                    if (!ressourcesN2 && 'tns' !== ressourceType.category) {
+                    if ('tns' !== ressourceType.category) {
                         ressource.months = [
-                            { periode: months[0].id, montant: 0 },
-                            { periode: months[1].id, montant: 0 },
-                            { periode: months[2].id, montant: 0 }
+                            { periode: $scope.months[0].id, montant: 0 },
+                            { periode: $scope.months[1].id, montant: 0 },
+                            { periode: $scope.months[2].id, montant: 0 }
                         ];
                     }
                 }

@@ -199,6 +199,34 @@ $body-front-base-padding: 60px;
   }
 }
 
+.form-foyer {
+  padding-bottom: 5px;
+}
+
+.recap-situation {
+  @extend .well;
+  border-top: none;
+  > h3:first-child {
+    margin-top: 0;
+  }
+}
+
+.form-individu {
+  .checkbox, .radio {
+    height: 25px;
+  }
+}
+
+.individu-block {
+  border: 1px solid $panel-default-border;
+  background-color: white;
+  padding: 10px;
+  margin-top: 5px;
+  > h5:first-child {
+    margin-top: 0;
+  }
+}
+
 .liste-organismes {
   padding: 50px 0;
 }
@@ -214,6 +242,9 @@ $body-front-base-padding: 60px;
 
 .panel-new-enfant {
   border-style: dashed;
+  .panel-body {
+    padding: 0;
+  }
 }
 
 .form-selection-revenus {

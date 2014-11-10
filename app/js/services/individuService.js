@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').service('IndividuService', function($filter, situationsPro) {
+angular.module('ddsCommon').service('IndividuService', function($filter, situationsPro, nationalites) {
     var statutsSpecifiques = _.filter(situationsPro, 'isStatutSpecifique');
 
     return {
@@ -19,6 +19,10 @@ angular.module('ddsCommon').service('IndividuService', function($filter, situati
             }
 
             return individu.firstName;
+        },
+
+        nationaliteLabel: function(individu) {
+            return _.find(nationalites, {id: individu.nationalite}).label;
         },
 
         getStatutsSpecifiques: function() {

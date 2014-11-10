@@ -1,0 +1,13 @@
+<div class="individu-block">
+  <h5>{{ individuLabel(individu) }}</h5>
+  <div class="row">
+    <div class="col-xs-3">
+      <i class="fa fa-child fa-3x"></i>
+    </div>
+    <div class="col-xs-9">
+      Né(e) le <strong>{{ individu.dateDeNaissance }}</strong>
+      <br>Nationalité <strong>{{ nationalite(individu) }}</strong>
+      <br><i>{{ statutsSpecifiques(individu) }}</i>
+    </div>
+  </div>
+</div>

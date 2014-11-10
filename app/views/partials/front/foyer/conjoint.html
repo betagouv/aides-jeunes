@@ -1,50 +1,24 @@
-<div class="col-md-2">
-  <div class="hidden-sm hidden-xs" style="padding-top: 40px;"></div>
-  <p class="text-center" ng-if="situation.conjoint"><strong>{{ relationTypeLabels[situation.conjoint.relationType] }}</strong> avec
+<h3 class="text-center">Vivez-vous seul(e) ou en couple ?</h3>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-2 col-xs-6">
+    <button
+      class="btn btn-primary btn-block"
+      btn-radio="false"
+      ng-model="vitEnCouple"
+      ng-click="$emit('individu.conjoint', null)">Je vis seul</button>
+  </div>
+  <div class="col-md-4 col-xs-6">
+    <button
+      class="btn btn-primary btn-block"
+      btn-radio="true"
+      ng-model="vitEnCouple">Je vis en couple</button>
+  </div>
 </div>
 
-<div class="col-md-5 animate-show" ng-show="visible">
-  <div class="panel panel-default" style="min-height: 150px;">
-    <div class="panel-heading">
-      <h2 class="panel-title">{{ situation.conjoint ? 'Votre partenaire' : 'Votre situation familiale' }}</h2>
-    </div>
-    <div class="panel-body">
-      <div ng-show="undefined === situation.livesAlone">
-        <p class="text-center">Vivez-vous seul(e) ou en couple ?</p>
-        <div class="row">
-          <div class="col-xs-6">
-            <button
-              class="btn btn-primary btn-block"
-              ng-model="situation.livesAlone"
-              btn-radio="true"
-              ng-click="livesAlone()">Je vis seul</button>
-          </div>
-          <div class="col-xs-6">
-            <button
-              class="btn btn-primary btn-block"
-              ng-model="situation.livesAlone"
-              btn-radio="false"
-              ng-click="$state.go('foyer.conjoint_modal')">Je vis en couple</button>
-          </div>
-        </div>
-      </div>
-      <div ng-if="situation.livesAlone">
-        <p class="text-center">Vous vivez seul(e).</p>
-      </div>
-      <div ng-if="situation.conjoint">
-        <div class="row">
-          <div class="col-lg-1">
-          </div>
-          <div class="col-xs-3">
-            <i class="fa fa-male icon-lg"></i>
-          </div>
-          <div class="col-xs-8">
-            Né(e) le <strong>{{ situation.conjoint.dateDeNaissance }}</strong>
-            <br>Nationalité <strong>{{ nationalite(situation.conjoint) }}</strong>
-            <br><i>{{ statutsSpecifiques(situation.conjoint) }}</i>
-          </div>
-        </div>
-      </div>
-    </div>
+<div ng-if="vitEnCouple">
+  <div class="page-header">
+    <h1>Votre conjoint</h1>
   </div>
+  <div ui-view="individuForm"></div>
 </div>

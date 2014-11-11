@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: CaptureRessourcesModalCtrl', function() {
+describe('Controller: FoyerRessourcesCtrl', function() {
 
     var scope;
 
@@ -16,11 +16,10 @@ describe('Controller: CaptureRessourcesModalCtrl', function() {
 
             // when
             inject(function($controller) {
-                $controller('CaptureRessourcesModalCtrl', {
+                $controller('FoyerRessourcesCtrl', {
                     $scope: scope,
                     $modalInstance: {},
-                    individus: individus,
-                    ressourcesN2: false
+                    individus: individus
                 });
             });
 

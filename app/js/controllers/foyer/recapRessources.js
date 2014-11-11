@@ -15,9 +15,8 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
         $scope.hasRessourcesNonTns = false;
         $scope.globalAmount = 0;
 
-        var individus = SituationService.createIndividusList($scope.situation);
-        $scope.isSituationMonoIndividu = 1 === individus.length;
-        individus.map($scope.fillIndividuRessources);
+        $scope.isSituationMonoIndividu = 1 === situation.individus.length;
+        situation.individus.map($scope.fillIndividuRessources);
 
         if ($scope.globalAmount > 0) {
             $scope.hasRessources = true;
@@ -47,7 +46,7 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
             totalAnnuel: 0,
             byIndividu: []
         };
-        individus.map(function(individu) {
+        situation.individus.map(function(individu) {
             if (individu.caMicroEntreprise) {
                 ressourcesMicroFiscal.totalAnnuel += individu.caMicroEntreprise;
                 ressourcesMicroFiscal.byIndividu.push({

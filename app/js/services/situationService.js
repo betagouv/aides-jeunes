@@ -100,18 +100,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             });
         },
 
-        createIndividusList: function(situation) {
-            var individus = [situation.demandeur];
-
-            if (situation.conjoint) {
-                individus.push(situation.conjoint);
-            }
-
-            individus = individus.concat(situation.enfants).concat(situation.personnesACharge);
-
-            return individus;
-        },
-
         getMonths: function() {
             // FIXME prendre la date du serveur
             return _.map([3, 2, 1], function(i) {

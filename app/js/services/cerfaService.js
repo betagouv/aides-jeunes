@@ -4,17 +4,18 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
     // callbacks qui déterminent si un formulaire doit être proposé au téléchargement ou non en fonction de la situation
     var showableCerfaCallbacks = {
         'cmuc_choix_organisme_non_demandeur': function(situation) {
-            var individus = SituationService.createIndividusList(situation);
-            return 1 < individus.length;
+            return 1 < situation.individus.length;
         },
         'rsa_non_salarie': function(situation) {
-            var nonSalarie = _.find(situation.demandeur.situationsPro, {situation: 'independant'});
+            var demandeur = _.find(situation.individus, { role: 'demandeur' });
+            var nonSalarie = _.find(demandeur.situationsPro, {situation: 'independant'});
             return !!nonSalarie;
         },
         'rsa_moins_25': function(situation) {
-            var result = 25 > IndividuService.age(situation.demandeur);
-            if (situation.conjoint) {
-                result = result || 25 > IndividuService.age(situation.conjoint);
+            var result = 25 > IndividuService.age(_.find(situation.individus, { role: 'demandeur' }));
+            var conjoint = _.find(situation.individus, { role: 'conjoint' });
+            if (conjoint) {
+                result = result || 25 > IndividuService.age(conjoint);
             }
 
             return result;
@@ -36,12 +37,12 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return 'autre' !== individu.nationalite && 18 <= IndividuService.age(individu);
         },
         'ofii': function(individu) {
-            var result = _.contains(['enfant', 'personneACharge'], individu.role);
-            result = result && 18 > IndividuService.age(individu);
-            result = result && 'fr' !== individu.nationalite;
-            result = result && 'France' !== individu.paysNaissance;
-
-            return result;
+            return _.every([
+                _.contains(['enfant', 'personneACharge'], individu.role),
+                18 > IndividuService.age(individu),
+                'fr' !== individu.nationalite,
+                'France' !== individu.paysNaissance
+            ]);
         },
         'titre_sejour': function(individu) {
             if ('autre' !== individu.nationalite) {
@@ -75,7 +76,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return false;
         },
         'cmu_c.livret_famille': function(situation) {
-            return !!situation.enfants.length || !!situation.personnesACharge.length;
+            return !!_.where(situation.individus, { role: 'enfant'}).length || !!_.where(situation.individus, { role: 'personneACharge'}).length;
         },
         'cmu_c.bulletins_paie': function(individu) {
             if (16 > IndividuService.age(individu)) {
@@ -108,12 +109,12 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return 'France' === individu.paysNaissance;
         },
         'rsa.acte_naissance': function(individu) {
-            var result = _.contains(['enfant', 'personneACharge'], individu.role);
-            result = result && 18 > IndividuService.age(individu);
-            result = result && 'fr' !== individu.nationalite;
-            result = result && 'France' === individu.paysNaissance;
-
-            return result;
+            return _.every([
+                _.contains(['enfant', 'personneACharge'], individu.role),
+                18 > IndividuService.age(individu),
+                'fr' !== individu.nationalite,
+                'France' === individu.paysNaissance
+            ]);
         },
         'rsa.avis_paiement_pension_invalidite': function(individu) {
             if (_.contains(['demandeur', 'conjoint'], individu.role)) {
@@ -235,14 +236,13 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
         },
 
         getRequiredPiecesJustificatives: function(cerfa, droit, situation) {
-            var individus = SituationService.createIndividusList(situation);
             var result = [];
             var that = this;
             cerfa.piecesJustificatives.forEach(function(pieceId) {
                 var pieceJustificative = _.find(piecesJustificatives, {id: pieceId});
                 var piece = { description: pieceJustificative };
                 if (false !== pieceJustificative.isIndividualized) {
-                    var individusConcernes = that.pieceJustificativeIndividus(droit, pieceJustificative.id, individus);
+                    var individusConcernes = that.pieceJustificativeIndividus(droit, pieceJustificative.id, situation.individus);
                     if (!individusConcernes.length) {
                         return;
                     }

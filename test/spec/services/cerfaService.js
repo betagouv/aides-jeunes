@@ -56,7 +56,7 @@ describe('Service: cerfaService', function () {
             var service = createService();
 
             // when
-            var forms = service.getCerfaFormsFromDroit('cmu_c', {demandeur: {}, enfants: [], personnesACharge: []});
+            var forms = service.getCerfaFormsFromDroit('cmu_c', { individus: [{ role: 'demandeur' }] });
 
             // then
             expect(forms).toEqual([]);
@@ -71,7 +71,7 @@ describe('Service: cerfaService', function () {
             var service = createService();
 
             // when
-            var forms = service.getCerfaFormsFromDroit('cmu_c', {demandeur: {}, conjoint: {}, enfants: [], personnesACharge: []});
+            var forms = service.getCerfaFormsFromDroit('cmu_c', { individus: [{ role: 'demandeur' }, {role: 'conjoint'}] });
 
             // then
             expect(forms).toEqual([form]);
@@ -81,10 +81,10 @@ describe('Service: cerfaService', function () {
             // given
             var service = createService();
             var situations = [
-                {demandeur: {}, conjoint: {}, enfants: [], personnesACharge: []},
-                {demandeur: {}, enfants: [{}], personnesACharge: []},
-                {demandeur: {}, enfants: [], personnesACharge: [{}]},
-                {demandeur: {}, enfants: [], personnesACharge: []}
+                { individus: [{ role: 'demandeur' }, { role: 'conjoint' }] },
+                { individus: [{ role: 'demandeur' }, { role: 'enfant' }] },
+                { individus: [{ role: 'demandeur' }, { role: 'personneACharge' }] },
+                { individus: [{ role: 'demandeur' }] }
             ];
 
             // when
@@ -100,9 +100,9 @@ describe('Service: cerfaService', function () {
             // given
             var service = createService();
             var situations = [
-                {demandeur: {dateDeNaissance: '14/09/2014'}},
-                {demandeur: {}, conjoint: {dateDeNaissance: '14/09/2014'}},
-                {demandeur: {dateDeNaissance: '14/09/1989'}}
+                { individus: [{ role: 'demandeur', dateDeNaissance: '14/09/2014'}] },
+                { individus: [{ role: 'demandeur'}, { role: 'conjoint', dateDeNaissance: '14/09/2014' }] },
+                { individus: [{ role: 'demandeur', dateDeNaissance: '14/09/1989'}] }
             ];
 
             // when
@@ -126,9 +126,9 @@ describe('Service: cerfaService', function () {
             it('should ask livret famille for cmu-c only if situation has personnes à charge', function() {
                 // given
                 var situations = [
-                    {enfants: [{}], personnesACharge: []},
-                    {enfants: [], personnesACharge: [{}]},
-                    {enfants: [], personnesACharge: []}
+                    { individus: [{ role: 'enfant' }] },
+                    { individus: [{ role: 'personneACharge' }] },
+                    { individus: [] }
                 ];
 
                 // when

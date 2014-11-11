@@ -1,8 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $rootScope, ressourceTypes, SituationService, IndividuService) {
-    var individus = SituationService.restoreLocal().individus;
-
+angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $rootScope, ressourceTypes, individus, SituationService, IndividuService) {
     var debutAnnee = moment().subtract('years', 1);
     var finAnnee = moment().startOf('month').subtract('months', 1);
     $scope.debutAnnee = debutAnnee.format('MMMM YYYY');
@@ -12,6 +10,15 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $roo
 
     $scope.months = SituationService.getMonths();
     $scope.selectedRessourceTypes = {};
+
+    $scope.individuRefs = _.map(individus, function(individu) {
+        return {
+            label: IndividuService.label(individu),
+            selectedRessourceTypes: {},
+            ressources: [],
+            individu: individu
+        };
+    });
 
     $scope.isRessourceTypeNonTns = function(ressource) {
         return 'tns' !== ressource.category;
@@ -32,15 +39,6 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $roo
     $scope.isRessourceOtherTns = function(ressource) {
         return 'autresRevenusTns' === ressource.type.id;
     };
-
-    $scope.individuRefs = _.map(individus, function(individu) {
-        return {
-            label: IndividuService.label(individu),
-            selectedRessourceTypes: {},
-            ressources: [],
-            individu: individu
-        };
-    });
 
     $scope.tab = 'ressources';
 

@@ -100,7 +100,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('foyer.ressources', {
             url: '/ressources',
             templateUrl: '/partials/foyer/ressources.html',
-            controller: 'FoyerRessourcesCtrl'
+            controller: 'FoyerRessourcesCtrl',
+            resolve: {
+                individus: ['SituationService', function(SituationService) {
+                    return SituationService.restoreLocal().individus;
+                }]
+            }
         })
         .state('foyer.patrimoine', {
             url: '/patrimoine',

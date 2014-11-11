@@ -46,7 +46,7 @@ describe('Service: situationService', function () {
 
         it('Should return a cloned version of the situation', function() {
             // given
-            var situation = { demandeur: {}, enfants: [], personnesACharge: [], logement: {}, patrimoine: basePatrimoine };
+            var situation = { individus: [{ role: 'demandeur' }], logement: {}, patrimoine: basePatrimoine };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -57,7 +57,7 @@ describe('Service: situationService', function () {
 
         it('Should set the role of the demandeur', function() {
             // given
-            var situation = { demandeur: {}, enfants: [], personnesACharge: [], logement: {}, patrimoine: basePatrimoine };
+            var situation = { individus: [{ role: 'demandeur' }], logement: {}, patrimoine: basePatrimoine };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -69,7 +69,7 @@ describe('Service: situationService', function () {
 
         it('Should include the conjoint if defined and set its role', function() {
             // given
-            var situation = { demandeur: {}, conjoint: {}, enfants: [], personnesACharge: [], logement: {}, patrimoine: basePatrimoine };
+            var situation = { individus: [{ role: 'demandeur' }, { role: 'conjoint' }], logement: {}, patrimoine: basePatrimoine };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -81,7 +81,7 @@ describe('Service: situationService', function () {
 
         it('Should include the children and set their role', function() {
             // given
-            var situation = { demandeur: {}, enfants: [{}], personnesACharge: [], logement: {}, patrimoine: basePatrimoine };
+            var situation = { individus: [{ role: 'demandeur' }, { role: 'enfant' }], logement: {}, patrimoine: basePatrimoine };
 
             // when
             var result = service.createApiCompatibleSituation(situation);
@@ -89,60 +89,6 @@ describe('Service: situationService', function () {
             // then
             expect(result.individus.length).toBe(2);
             expect(result.individus[1].role).toBe('enfant');
-        });
-    });
-
-    describe('function createIndividusList()', function() {
-        it('Should create an array of individuals including demandeur', function() {
-            // given
-            var demandeur = {};
-            var situation = {demandeur: demandeur, enfants: [], personnesACharge: []};
-
-            // when
-            var result = service.createIndividusList(situation);
-
-            // then
-            expect(result.length).toBe(1);
-            expect(result[0]).toBe(demandeur);
-        });
-
-        it('Should include conjoint if defined', function() {
-            // given
-            var conjoint = {};
-            var situation = {demandeur: {}, conjoint: conjoint, enfants: [], personnesACharge: []};
-
-            // when
-            var result = service.createIndividusList(situation);
-
-            // then
-            expect(result.length).toBe(2);
-            expect(result[1]).toBe(conjoint);
-        });
-
-        it('Should include children', function() {
-            // given
-            var enfant = {};
-            var situation = {demandeur: {}, enfants: [enfant], personnesACharge: []};
-
-            // when
-            var result = service.createIndividusList(situation);
-
-            // then
-            expect(result.length).toBe(2);
-            expect(result[1]).toBe(enfant);
-        });
-
-        it('Should include personnes à charge', function() {
-            // given
-            var personne = {};
-            var situation = {demandeur: {}, enfants: [], personnesACharge: [personne]};
-
-            // when
-            var result = service.createIndividusList(situation);
-
-            // then
-            expect(result.length).toBe(2);
-            expect(result[1]).toBe(personne);
         });
     });
 

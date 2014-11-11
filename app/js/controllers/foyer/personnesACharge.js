@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function ($scope, $rootScope) {
+angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function($scope) {
     $scope.personnesACharge = [];
 
     $scope.$on('individu.personneACharge', function(e, personneACharge) {

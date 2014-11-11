@@ -148,9 +148,9 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         createApiCompatibleSituation: function(situation) {
             var individus = _.map(situation.individus, this.createApiCompatibleIndividu);
 
-            var conjoint;
+            var conjoint = _.find(individus, { role: 'conjoint' });
             var demandeur = _.find(individus, { role: 'demandeur' });
-            if (conjoint = _.find(individus, { role: 'conjoint' })) {
+            if (conjoint) {
                 demandeur.statutMarital = conjoint.relationType;
             } else {
                 demandeur.statutMarital = demandeur.situationFamiliale;
@@ -176,7 +176,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         createApiCompatibleIndividu: function(individu) {
             individu = _.cloneDeep(individu);
             if (individu.dateSituationFamilialeString) {
-                individu.dateSituationFamiliale = moment(demandeur.dateSituationFamilialeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                individu.dateSituationFamiliale = moment(individu.dateSituationFamilialeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
             }
             individu.dateDeNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY').format('YYYY-MM-DD');
             if (individu.dateArriveeFoyerString) {

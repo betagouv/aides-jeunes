@@ -24,7 +24,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     };
                 }
             }
-        }
+        };
     };
 
     $stateProvider
@@ -51,7 +51,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('foyer', {
             abstract: true,
             url: '/foyer',
-            templateUrl: '/partials/foyer.html',
+            templateUrl: '/partials/foyer/layout.html',
             controller: 'FoyerCtrl'
         })
         .state('foyer.demandeur', {

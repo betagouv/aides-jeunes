@@ -1,49 +1,218 @@
-<div class="container">
-  <div ng-include="'/partials/form-infos-complementaires/header.html'"></div>
+<form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit()">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Vous</h2>
 
-  <form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit()">
-    <div class="form-group" ng-if="situation.conjoint">
-      <label class="col-sm-4 control-label" for="date-situation-familiale">
-        Depuis quand êtes-vous {{ relationTypeLabels[situation.conjoint.relationType] }} avec votre partenaire ?
-      </label>
-      <div class="col-sm-2">
-        <input type="text" id="date-situation-familiale" class="form-control" ng-model="situation.demandeur.dateSituationFamilialeString" placeholder="jj/mm/aaaa" date-autocomplete>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <h2>
-          <i class="fa" ng-class="{'fa-male': 'f' !== situation.demandeur.civilite, 'fa-female': 'f' === situation.demandeur.civilite}"></i>
-          Vous
-        </h2>
-
-        <div ng-if="!situation.conjoint">
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="situation-familiale">Votre situation familiale</label>
-            <div class="col-sm-8">
-              <select
-                id="situation-familiale"
-                class="form-control"
-                ng-options="situationFamiliale.value as situationFamiliale.label for situationFamiliale in situationsFamiliales"
-                ng-model="situation.demandeur.situationFamiliale">
-                <option value=""></option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group" ng-if="situation.demandeur.situationFamiliale && 'celibataire' !== situation.demandeur.situationFamiliale">
-            <label class="col-sm-4 control-label" for="date-situation-familiale">Depuis quand ?</label>
-            <div class="col-sm-4">
-              <input type="text" id="date-situation-familiale" class="form-control" placeholder="dd/mm/aaaa" ng-model="situation.demandeur.dateSituationFamiliale" date-autocomplete>
-            </div>
+      <div ng-if="!conjoint">
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="situation-familiale">Votre situation familiale</label>
+          <div class="col-sm-8">
+            <select
+              id="situation-familiale"
+              class="form-control"
+              ng-options="situationFamiliale.value as situationFamiliale.label for situationFamiliale in situationsFamiliales"
+              ng-model="situation.demandeur.situationFamiliale">
+              <option value=""></option>
+            </select>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="col-sm-4 control-label" for="civilite-demandeur">Sexe</label>
+        <div class="form-group" ng-if="situation.demandeur.situationFamiliale && 'celibataire' !== situation.demandeur.situationFamiliale">
+          <label class="col-sm-4 control-label" for="date-situation-familiale">Depuis quand ?</label>
           <div class="col-sm-4">
-            <select id="civilite-demandeur" name="civiliteDemandeur" class="form-control" ng-model="situation.demandeur.civilite">
+            <input type="text" id="date-situation-familiale" class="form-control" placeholder="dd/mm/aaaa" ng-model="situation.demandeur.dateSituationFamiliale" date-autocomplete>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="civilite-demandeur">Sexe</label>
+        <div class="col-sm-4">
+          <select id="civilite-demandeur" name="civiliteDemandeur" class="form-control" ng-model="situation.demandeur.civilite">
+            <option value="h">Homme</option>
+            <option value="f">Femme</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="prenom-demandeur">Prénom</label>
+        <div class="col-sm-8">
+          <input type="text" name="prenomDemandeur" id="prenom-demandeur" class="form-control" ng-model="situation.demandeur.firstName">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="nom-demandeur">Nom de famille</label>
+        <div class="col-sm-8">
+          <input type="text" name="nomDemandeur" id="nom-demandeur" class="form-control" ng-model="situation.demandeur.lastName">
+          <span class="help-block">De naissance</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="nom-usage-demandeur">Nom d'usage</label>
+        <div class="col-sm-8">
+          <input type="text" id="nom-usage-demandeur" class="form-control" ng-model="situation.demandeur.nomUsage">
+          <span class="help-block">S'il y a lieu, laisser vide sinon</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="nir-demandeur">Numéro de sécurité sociale</label>
+        <div class="col-sm-8">
+          <input type="text" name="nirDemandeur" id="nir-demandeur" class="form-control" ng-model="situation.demandeur.nir">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="pays-naissance-demandeur">Pays de naissance</label>
+        <div class="col-sm-4">
+          <select id="pays-naissance-demandeur" class="form-control" ng-model="situation.demandeur.choicePaysNaissance" ng-change="changePaysNaissance(situation.demandeur)">
+            <option value="france">France</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div class="col-sm-4" ng-if="'autre' === situation.demandeur.choicePaysNaissance">
+          <input type="text"class="form-control" ng-model="situation.demandeur.paysNaissance" placeholder="Nom du pays">
+        </div>
+      </div>
+
+      <div class="form-group" ng-if="'france' === situation.demandeur.choicePaysNaissance">
+        <label class="col-sm-4 control-label" for="ville-naissance-demandeur">Ville de naissance</label>
+        <div class="col-sm-4">
+          <input type="text" id="ville-naissance-demandeur" class="form-control" ng-model="situation.demandeur.villeNaissance">
+        </div>
+        <label class="col-sm-2 control-label" for="departement-naissance-demandeur">Département</label>
+        <div class="col-sm-2">
+          <input type="text" id="departement-naissance-demandeur" class="form-control" ng-model="situation.demandeur.departementNaissance">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Êtes-vous inscrit(e) à la CAF/MSA de votre département de résidence ?</label>
+        <div class="col-sm-8">
+          <button type="button" class="btn btn-sm btn-default" ng-model="situation.demandeur.inscritCaf" btn-radio="true">Oui</button>
+          <button type="button" class="btn btn-sm btn-default" ng-model="situation.demandeur.inscritCaf" btn-radio="false">Non</button>
+        </div>
+      </div>
+
+      <div class="form-group" ng-if="situation.demandeur.inscritCaf">
+        <label class="col-sm-4 control-label" for="numero-allocataire-demandeur">Numéro d'allocataire</label>
+        <div class="col-sm-8">
+          <input type="text" id="numero-allocataire-demandeur" class="form-control" ng-model="situation.demandeur.numeroAllocataire">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6" ng-if="conjoint">
+      <h2>Votre partenaire</h2>
+
+      <div class="form-group" ng-if="conjoint">
+        <label class="col-sm-4 control-label" for="date-situation-familiale">
+          Depuis quand êtes-vous {{ situationsMaritales[conjoint.relationType].label|lowercaseFirst }} avec votre partenaire ?
+        </label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            id="date-situation-familiale"
+            class="form-control"
+            ng-model="$parent.dateSituationFamiliale"
+            placeholder="jj/mm/aaaa"
+            date-autocomplete>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="civilite-conjoint">Sexe</label>
+        <div class="col-sm-4">
+          <select id="civilite-conjoint" class="form-control" ng-model="conjoint.civilite">
+            <option value="h">Homme</option>
+            <option value="f">Femme</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="prenom-conjoint">Prénom</label>
+        <div class="col-sm-8">
+          <input type="text" name="prenomConjoint" id="prenom-conjoint" class="form-control" ng-model="conjoint.firstName">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="nom-conjoint">Nom de famille</span></label>
+        <div class="col-sm-8">
+          <input type="text" name="nomConjoint" id="nom-conjoint" class="form-control" ng-model="conjoint.lastName">
+          <span class="help-block">De naissance</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="nom-usage-conjoint">Nom d'usage</label>
+        <div class="col-sm-8">
+          <input type="text" id="nom-usage-conjoint" class="form-control" ng-model="conjoint.nomUsage">
+          <span class="help-block">S'il y a lieu, laisser vide sinon</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="nir-conjoint">Numéro de sécurité sociale</label>
+        <div class="col-sm-8">
+          <input type="text" name="nirConjoint" id="nir-conjoint" class="form-control" ng-model="conjoint.nir">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="pays-naissance-conjoint">Pays de naissance</label>
+        <div class="col-sm-4">
+          <select id="pays-naissance-conjoint" class="form-control" ng-model="conjoint.choicePaysNaissance" ng-change="changePaysNaissance(conjoint)">
+            <option value="france">France</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div class="col-sm-4" ng-if="'autre' === conjoint.choicePaysNaissance">
+          <input type="text"class="form-control" ng-model="conjoint.paysNaissance" placeholder="Nom du pays">
+        </div>
+      </div>
+
+      <div class="form-group" ng-if="'france' === conjoint.choicePaysNaissance">
+        <label class="col-sm-4 control-label" for="ville-naissance-conjoint">Ville de naissance</label>
+        <div class="col-sm-4">
+          <input type="text" id="ville-naissance-conjoint" class="form-control" ng-model="conjoint.villeNaissance">
+        </div>
+        <label class="col-sm-2 control-label" for="departement-naissance-conjoint">Département</label>
+        <div class="col-sm-2">
+          <input type="text" id="departement-naissance-conjoint" class="form-control" ng-model="conjoint.departementNaissance">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Est-il/elle inscrit(e) à la CAF/MSA de votre département de résidence ?</label>
+        <div class="col-sm-8">
+          <button type="button" class="btn btn-sm btn-default" ng-model="conjoint.inscritCaf" btn-radio="true">Oui</button>
+          <button type="button" class="btn btn-sm btn-default" ng-model="conjoint.inscritCaf" btn-radio="false">Non</button>
+        </div>
+      </div>
+
+      <div class="form-group" ng-if="conjoint.inscritCaf">
+        <label class="col-sm-4 control-label" for="numero-allocataire-conjoint">Numéro d'allocataire</label>
+        <div class="col-sm-8">
+          <input type="text" id="numero-allocataire-conjoint" class="form-control" ng-model="conjoint.numeroAllocataire">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" ng-repeat="enfant in enfantsEtPersonnesACharges">
+      <ng-form name="individuForm">
+        <h2><i class="fa fa-child"></i> {{ enfant.firstName|uppercaseFirst }}</h2>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="civilite-enfant{{ $index }}">Sexe</label>
+          <div class="col-sm-4">
+            <select id="civilite-enfant{{ $index }}" class="form-control" ng-model="enfant.civilite">
               <option value="h">Homme</option>
               <option value="f">Femme</option>
             </select>
@@ -51,275 +220,102 @@
         </div>
 
         <div class="form-group">
-          <label class="col-sm-4 control-label" for="prenom-demandeur">Prénom</label>
+          <label class="col-sm-4 control-label" for="prenom-enfant{{ $index }}">Prénom</label>
           <div class="col-sm-8">
-            <input type="text" name="prenomDemandeur" id="prenom-demandeur" class="form-control" ng-model="situation.demandeur.firstName">
+            <input type="text" name="prenomEnfant" id="prenom-enfant{{ $index }}" class="form-control" ng-model="enfant.firstName">
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-sm-4 control-label" for="nom-demandeur">Nom de famille</label>
+          <label class="col-sm-4 control-label" for="nom-enfant{{ $index }}">Nom</span></label>
           <div class="col-sm-8">
-            <input type="text" name="nomDemandeur" id="nom-demandeur" class="form-control" ng-model="situation.demandeur.lastName">
-            <span class="help-block">De naissance</span>
+            <input type="text" name="nomEnfant" id="nom-enfant{{ $index }}" class="form-control" ng-model="enfant.lastName">
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-sm-4 control-label" for="nom-usage-demandeur">Nom d'usage</label>
+          <label class="col-sm-4 control-label" for="nir-enfant{{ $index }}">Numéro de sécurité sociale</label>
           <div class="col-sm-8">
-            <input type="text" id="nom-usage-demandeur" class="form-control" ng-model="situation.demandeur.nomUsage">
-            <span class="help-block">S'il y a lieu, laisser vide sinon</span>
+            <input type="text" name="nirEnfant" id="nir-enfant{{ $index }}" class="form-control" ng-model="enfant.nir">
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-sm-4 control-label" for="nir-demandeur">Numéro de sécurité sociale</label>
-          <div class="col-sm-8">
-            <input type="text" name="nirDemandeur" id="nir-demandeur" class="form-control" ng-model="situation.demandeur.nir">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-4 control-label" for="pays-naissance-demandeur">Pays de naissance</label>
+          <label class="col-sm-4 control-label" for="pays-naissance-enfant-{{ $index }}">Pays de naissance</label>
           <div class="col-sm-4">
-            <select id="pays-naissance-demandeur" class="form-control" ng-model="situation.demandeur.choicePaysNaissance" ng-change="changePaysNaissance(situation.demandeur)">
+            <select id="pays-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.choicePaysNaissance" ng-change="changePaysNaissance(enfant)">
               <option value="france">France</option>
               <option value="autre">Autre</option>
             </select>
           </div>
-          <div class="col-sm-4" ng-if="'autre' === situation.demandeur.choicePaysNaissance">
-            <input type="text"class="form-control" ng-model="situation.demandeur.paysNaissance" placeholder="Nom du pays">
+          <div class="col-sm-4" ng-if="'autre' === enfant.choicePaysNaissance">
+            <input type="text"class="form-control" ng-model="enfant.paysNaissance" placeholder="Nom du pays">
           </div>
         </div>
 
-        <div class="form-group" ng-if="'france' === situation.demandeur.choicePaysNaissance">
-          <label class="col-sm-4 control-label" for="ville-naissance-demandeur">Ville de naissance</label>
+        <div class="form-group" ng-if="'france' === enfant.choicePaysNaissance">
+          <label class="col-sm-4 control-label" for="ville-naissance-enfant-{{ $index }}">Ville de naissance</label>
           <div class="col-sm-4">
-            <input type="text" id="ville-naissance-demandeur" class="form-control" ng-model="situation.demandeur.villeNaissance">
+            <input type="text" id="ville-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.villeNaissance">
           </div>
-          <label class="col-sm-2 control-label" for="departement-naissance-demandeur">Département</label>
+          <label class="col-sm-2 control-label" for="departement-naissance-enfant-{{ $index }}">Département</label>
           <div class="col-sm-2">
-            <input type="text" id="departement-naissance-demandeur" class="form-control" ng-model="situation.demandeur.departementNaissance">
+            <input type="text" id="departement-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.departementNaissance">
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-sm-4 control-label">Êtes-vous inscrit(e) à la CAF/MSA de votre département de résidence ?</label>
-          <div class="col-sm-8">
-            <button type="button" class="btn btn-sm btn-default" ng-model="situation.demandeur.inscritCaf" btn-radio="true">Oui</button>
-            <button type="button" class="btn btn-sm btn-default" ng-model="situation.demandeur.inscritCaf" btn-radio="false">Non</button>
-          </div>
-        </div>
-
-        <div class="form-group" ng-if="situation.demandeur.inscritCaf">
-          <label class="col-sm-4 control-label" for="numero-allocataire-demandeur">Numéro d'allocataire</label>
-          <div class="col-sm-8">
-            <input type="text" id="numero-allocataire-demandeur" class="form-control" ng-model="situation.demandeur.numeroAllocataire">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6" ng-if="situation.conjoint">
-        <h2>
-          <i class="fa" ng-class="{'fa-male': 'f' !== situation.conjoint.civilite, 'fa-female': 'f' === situation.conjoint.civilite}"></i>
-          Votre partenaire
-        </h2>
-
-        <div class="form-group">
-          <label class="col-sm-4 control-label" for="civilite-conjoint">Sexe</label>
+          <label class="col-sm-4 control-label" for="date-arrivee-foyer-enfant-{{ $index }}">Date d'arrivée au foyer</label>
           <div class="col-sm-4">
-            <select id="civilite-conjoint" class="form-control" ng-model="situation.conjoint.civilite">
-              <option value="h">Homme</option>
-              <option value="f">Femme</option>
-            </select>
+            <input type="text" id="date-arrivee-foyer-enfant-{{ $index }}" class="form-control" ng-model="enfant.dateArriveeFoyerString" placeholder="jj/mm/aaaa" date-autocomplete>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-sm-4 control-label" for="prenom-conjoint">Prénom</label>
+          <label class="col-sm-4 control-label" for="situation-enfant-{{ $index }}">Situation</label>
           <div class="col-sm-8">
-            <input type="text" name="prenomConjoint" id="prenom-conjoint" class="form-control" ng-model="situation.conjoint.firstName">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-4 control-label" for="nom-conjoint">Nom de famille</span></label>
-          <div class="col-sm-8">
-            <input type="text" name="nomConjoint" id="nom-conjoint" class="form-control" ng-model="situation.conjoint.lastName">
-            <span class="help-block">De naissance</span>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-4 control-label" for="nom-usage-conjoint">Nom d'usage</label>
-          <div class="col-sm-8">
-            <input type="text" id="nom-usage-conjoint" class="form-control" ng-model="situation.conjoint.nomUsage">
-            <span class="help-block">S'il y a lieu, laisser vide sinon</span>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-4 control-label" for="nir-conjoint">Numéro de sécurité sociale</label>
-          <div class="col-sm-8">
-            <input type="text" name="nirConjoint" id="nir-conjoint" class="form-control" ng-model="situation.conjoint.nir">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-4 control-label" for="pays-naissance-conjoint">Pays de naissance</label>
-          <div class="col-sm-4">
-            <select id="pays-naissance-conjoint" class="form-control" ng-model="situation.conjoint.choicePaysNaissance" ng-change="changePaysNaissance(situation.conjoint)">
-              <option value="france">France</option>
+            <select id="situation-enfant-{{ $index }}" class="form-control" ng-model="enfant.situation">
+              <option value="scolarise">Scolarisé(e)</option>
+              <option value="apprenti">Apprenti(e)</option>
+              <option value="salarie">Salarié(e)</option>
+              <option value="formation_pro">En formation professionnelle</option>
+              <option value="demandeur_emploi">Demandeur/Demandeuse d'emploi</option>
+              <option value="chomage_indemnise">En chômage indemnisé</option>
+              <option value="sans_activite">Sans activité</option>
               <option value="autre">Autre</option>
             </select>
           </div>
-          <div class="col-sm-4" ng-if="'autre' === situation.conjoint.choicePaysNaissance">
-            <input type="text"class="form-control" ng-model="situation.conjoint.paysNaissance" placeholder="Nom du pays">
-          </div>
         </div>
 
-        <div class="form-group" ng-if="'france' === situation.conjoint.choicePaysNaissance">
-          <label class="col-sm-4 control-label" for="ville-naissance-conjoint">Ville de naissance</label>
-          <div class="col-sm-4">
-            <input type="text" id="ville-naissance-conjoint" class="form-control" ng-model="situation.conjoint.villeNaissance">
-          </div>
-          <label class="col-sm-2 control-label" for="departement-naissance-conjoint">Département</label>
-          <div class="col-sm-2">
-            <input type="text" id="departement-naissance-conjoint" class="form-control" ng-model="situation.conjoint.departementNaissance">
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="lien-parente-enfant-{{ $index }}">Lien de parenté</label>
+          <div class="col-sm-8">
+            <select id="lien-parente-enfant-{{ $index }}" class="form-control" ng-model="enfant.lienParente">
+              <option value=""></option>
+              <option value="fils">Fils/fille</option>
+              <option value="neveu">Neveu/nièce</option>
+              <option value="aucun">Aucun</option>
+              <option value="autre">Autre</option>
+            </select>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-sm-4 control-label">Est-il/elle inscrit(e) à la CAF/MSA de votre département de résidence ?</label>
+          <label class="col-sm-4 control-label">Enfant considéré fiscalement en résidence alternée ?</label>
           <div class="col-sm-8">
-            <button type="button" class="btn btn-sm btn-default" ng-model="situation.conjoint.inscritCaf" btn-radio="true">Oui</button>
-            <button type="button" class="btn btn-sm btn-default" ng-model="situation.conjoint.inscritCaf" btn-radio="false">Non</button>
+            <button type="button" class="btn btn-sm btn-default" ng-model="enfant.residenceAlternee" btn-radio="true">Oui</button>
+            <button type="button" class="btn btn-sm btn-default" ng-model="enfant.residenceAlternee" btn-radio="false">Non</button>
           </div>
         </div>
-
-        <div class="form-group" ng-if="situation.conjoint.inscritCaf">
-          <label class="col-sm-4 control-label" for="numero-allocataire-conjoint">Numéro d'allocataire</label>
-          <div class="col-sm-8">
-            <input type="text" id="numero-allocataire-conjoint" class="form-control" ng-model="situation.conjoint.numeroAllocataire">
-          </div>
-        </div>
-      </div>
+      </ng-form>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-md-6" ng-repeat="enfant in enfantsEtPersonnesACharges">
-        <ng-form name="individuForm">
-          <h2><i class="fa fa-child"></i> {{ enfant.firstName|uppercaseFirst }}</h2>
+  <div class="alert alert-danger" ng-if="error">
+    Le formulaire comporte des erreurs, merci de les corriger.
+  </div>
 
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="civilite-enfant{{ $index }}">Sexe</label>
-            <div class="col-sm-4">
-              <select id="civilite-enfant{{ $index }}" class="form-control" ng-model="enfant.civilite">
-                <option value="h">Homme</option>
-                <option value="f">Femme</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="prenom-enfant{{ $index }}">Prénom</label>
-            <div class="col-sm-8">
-              <input type="text" name="prenomEnfant" id="prenom-enfant{{ $index }}" class="form-control" ng-model="enfant.firstName">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="nom-enfant{{ $index }}">Nom</span></label>
-            <div class="col-sm-8">
-              <input type="text" name="nomEnfant" id="nom-enfant{{ $index }}" class="form-control" ng-model="enfant.lastName">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="nir-enfant{{ $index }}">Numéro de sécurité sociale</label>
-            <div class="col-sm-8">
-              <input type="text" name="nirEnfant" id="nir-enfant{{ $index }}" class="form-control" ng-model="enfant.nir">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="pays-naissance-enfant-{{ $index }}">Pays de naissance</label>
-            <div class="col-sm-4">
-              <select id="pays-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.choicePaysNaissance" ng-change="changePaysNaissance(enfant)">
-                <option value="france">France</option>
-                <option value="autre">Autre</option>
-              </select>
-            </div>
-            <div class="col-sm-4" ng-if="'autre' === enfant.choicePaysNaissance">
-              <input type="text"class="form-control" ng-model="enfant.paysNaissance" placeholder="Nom du pays">
-            </div>
-          </div>
-
-          <div class="form-group" ng-if="'france' === enfant.choicePaysNaissance">
-            <label class="col-sm-4 control-label" for="ville-naissance-enfant-{{ $index }}">Ville de naissance</label>
-            <div class="col-sm-4">
-              <input type="text" id="ville-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.villeNaissance">
-            </div>
-            <label class="col-sm-2 control-label" for="departement-naissance-enfant-{{ $index }}">Département</label>
-            <div class="col-sm-2">
-              <input type="text" id="departement-naissance-enfant-{{ $index }}" class="form-control" ng-model="enfant.departementNaissance">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="date-arrivee-foyer-enfant-{{ $index }}">Date d'arrivée au foyer</label>
-            <div class="col-sm-4">
-              <input type="text" id="date-arrivee-foyer-enfant-{{ $index }}" class="form-control" ng-model="enfant.dateArriveeFoyerString" placeholder="jj/mm/aaaa" date-autocomplete>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="situation-enfant-{{ $index }}">Situation</label>
-            <div class="col-sm-8">
-              <select id="situation-enfant-{{ $index }}" class="form-control" ng-model="enfant.situation">
-                <option value="scolarise">Scolarisé(e)</option>
-                <option value="apprenti">Apprenti(e)</option>
-                <option value="salarie">Salarié(e)</option>
-                <option value="formation_pro">En formation professionnelle</option>
-                <option value="demandeur_emploi">Demandeur/Demandeuse d'emploi</option>
-                <option value="chomage_indemnise">En chômage indemnisé</option>
-                <option value="sans_activite">Sans activité</option>
-                <option value="autre">Autre</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="lien-parente-enfant-{{ $index }}">Lien de parenté</label>
-            <div class="col-sm-8">
-              <select id="lien-parente-enfant-{{ $index }}" class="form-control" ng-model="enfant.lienParente">
-                <option value=""></option>
-                <option value="fils">Fils/fille</option>
-                <option value="neveu">Neveu/nièce</option>
-                <option value="aucun">Aucun</option>
-                <option value="autre">Autre</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-4 control-label">Enfant considéré fiscalement en résidence alternée ?</label>
-            <div class="col-sm-8">
-              <button type="button" class="btn btn-sm btn-default" ng-model="enfant.residenceAlternee" btn-radio="true">Oui</button>
-              <button type="button" class="btn btn-sm btn-default" ng-model="enfant.residenceAlternee" btn-radio="false">Non</button>
-            </div>
-          </div>
-        </ng-form>
-      </div>
-    </div>
-
-    <div class="alert alert-danger" ng-if="error">
-      Le formulaire comporte des erreurs, merci de les corriger.
-    </div>
-
-    <div class="text-center">
-      <button type="submit" class="btn btn-primary btn-lg">Valider</button>
-    </div>
-  </form>
-</div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary btn-lg">Valider</button>
+  </div>
+</form>

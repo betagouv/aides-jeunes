@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FormInfosComplementairesAddressContactCtrl', function($scope, $state, $stateParams, SituationService) {
+angular.module('ddsApp').controller('FormInfosComplementairesAdresseContactCtrl', function($scope, $state, $stateParams, SituationService) {
     $scope.situation = SituationService.restoreLocal();
 
     $scope.submit = function() {
@@ -8,7 +8,5 @@ angular.module('ddsApp').controller('FormInfosComplementairesAddressContactCtrl'
             $scope.situation.infosComplementairesCaptured = true;
             $state.go('download_cerfa', {droit: $stateParams.droit});
         });
-
-      // $state.go('form_infos_complementaires_situation_pro', {droit: $stateParams.droit});
     };
 });

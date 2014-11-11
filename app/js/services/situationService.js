@@ -65,12 +65,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
     };
 
     return {
-        relationTypeLabels: {
-            'mariage': 'marié(e)',
-            'pacs': 'pacsé(e)',
-            'relation_libre': 'en relation libre'
-        },
-
         newSituation: function() {
             situation = {
                 individus: []
@@ -132,6 +126,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         create: function(situation) {
             var apiSituation = this.createApiCompatibleSituation(situation);
             return $http.post('/api/situations', apiSituation).then(function(result) {
+                situation._id = result.data._id;
                 return result.data;
             }).catch(function(error) {
                 $modal.open({

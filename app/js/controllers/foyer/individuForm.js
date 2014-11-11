@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, options, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, options, situationsFamiliales, SituationService, IndividuService) {
     $scope.options = options;
-    $scope.relationTypes = SituationService.relationTypeLabels;
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
     $scope.selectedStatuts = {};
+    $scope.situationsMaritales = _.filter(situationsFamiliales, 'isSituationCouple');
 
     $scope.individu = {
         nationalite: 'fr',

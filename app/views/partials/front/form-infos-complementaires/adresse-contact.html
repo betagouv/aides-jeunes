@@ -1,0 +1,113 @@
+<form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit()">
+  <h2>Votre adresse</h2>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label" for="address">Adresse</label>
+    <div class="col-sm-9">
+      <input type="text" name="address" id="address" class="form-control" ng-model="situation.logement.adresse.adresse">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="col-sm-6 control-label" for="postalCode">Code postal</label>
+        <div class="col-sm-4">
+          <input type="text" name="postalCode" id="postalCode" class="form-control" ng-model="situation.logement.adresse.codePostal">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="col-sm-1 control-label" for="city">Ville</label>
+        <div class="col-sm-11">
+          <input type="text" name="city" id="city" class="form-control" ng-model="situation.logement.adresse.ville">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="col-sm-6 control-label" for="adresse-depuis">Depuis quand résidez-vous à cette adresse ?</label>
+        <div class="col-sm-4">
+          <input type="text" id="adresse-depuis" class="form-control" ng-model="situation.logement.dateArriveeString" placeholder="jj/mm/aaaa" date-autocomplete>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group" ng-if="situation.conjoint">
+        <label class="col-sm-7 control-label">Votre partenaire réside-t-il aussi à cette adresse ?</label>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-default btn-sm" ng-model="situation.logement.conjointMemeAdresse" btn-radio="true">Oui</button>
+          <button type="button" class="btn btn-default btn-sm" ng-model="situation.logement.conjointMemeAdresse" btn-radio="false">Non</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="false === situation.logement.conjointMemeAdresse">
+    <h2>L'adresse de votre conjoint</h2>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="address-conjoint">Adresse</label>
+      <div class="col-sm-9">
+        <input type="text" id="address-conjoint" class="form-control" ng-model="situation.logement.adresseConjoint.adresse">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="col-sm-6 control-label" for="postal-code-conjoint">Code postal</label>
+          <div class="col-sm-4">
+            <input type="number" id="postal-code-conjoint" class="form-control" ng-model="situation.logement.adresseConjoint.codePostal">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="col-sm-1 control-label" for="city-conjoint">Ville</label>
+          <div class="col-sm-11">
+            <input type="text" name="city" id="city-conjoint" class="form-control" ng-model="situation.logement.adresseConjoint.ville">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="pays-conjoint">Pays</label>
+      <div class="col-sm-2">
+        <input type="text" id="pays-conjoint" class="form-control" ng-model="situation.logement.adresseConjoint.pays">
+      </div>
+    </div>
+  </div>
+
+  <h2>Contact</h2>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="phone">Numéro de téléphone</label>
+    <div class="col-sm-4">
+      <input type="text" name="phone" id="phone" class="form-control" ng-model="situation.phoneNumber">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="email">Email</label>
+    <div class="col-sm-4">
+      <input type="text" name="email" id="email" class="form-control" ng-model="situation.email">
+    </div>
+  </div>
+
+  <div class="alert alert-danger" ng-if="error">
+    Le formulaire comporte des erreurs, merci de les corriger.
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+  </div>
+</form>

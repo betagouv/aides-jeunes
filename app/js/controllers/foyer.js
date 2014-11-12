@@ -24,7 +24,11 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $modal
     }
 
     $scope.$on('individu.demandeur', function(e, demandeur) {
-        situation.individus.push(demandeur);
+        if (_.find(situation.individus, { role: 'demandeur' })) {
+            situation.individus[0] = demandeur;
+        } else {
+            situation.individus.push(demandeur);
+        }
         $state.go('foyer.conjoint');
     });
 
@@ -59,7 +63,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $modal
     $scope.$on('patrimoine', function(e, patrimoine) {
         situation.patrimoine = patrimoine;
         SituationService.create(situation).then(function(result) {
-            $state.go('foyer.simulation', {'situationId': result._id });
+            $state.go('foyer.simulation', { 'situationId': result._id });
         });
     });
 });

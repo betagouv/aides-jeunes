@@ -8,6 +8,8 @@ angular.module('ddsApp').controller('FoyerRecapRessourcesCtrl', function($scope,
     $scope.lastYear = moment().subtract('years', 1).format('MMMM YYYY');
     $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
 
+    var situation = SituationService.restoreLocal();
+
     var initRessources = function() {
         $scope.tempRessources = {};
         $scope.hasRessources = false;

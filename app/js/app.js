@@ -67,7 +67,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/conjoint',
             views: {
                 '': {
-                    templateUrl: '/partials/foyer/conjoint.html'
+                    templateUrl: '/partials/foyer/conjoint.html',
+                    controller: 'FoyerConjointCtrl',
                 },
                 'individuForm@foyer.conjoint': individuFormView('conjoint', true)
             }

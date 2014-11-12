@@ -23,6 +23,9 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         var individu = _.find(situation.individus, { role: options.individuRole });
         if (individu) {
             $scope.individu = _.merge($scope.individu, individu);
+            $scope.individu.situationsPro.forEach(function(situationPro) {
+                $scope.selectedStatuts[situationPro.situation] = true;
+            });
         }
     }
 
@@ -30,10 +33,10 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         $scope.submitted = true;
         if (form.$valid) {
             $scope.individu.situationsPro = [];
+
             _.forEach($scope.selectedStatuts, function(selected, statut) {
                 if (selected) {
-                    var situationPro = {situation: statut};
-                    $scope.individu.situationsPro.push(situationPro);
+                    $scope.individu.situationsPro.push({ situation: statut });
                 }
             });
 
@@ -54,8 +57,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
     };
 
     $scope.captureEligibiliteAss = function() {
-        var field = 'demandeur_emploi';
-        return _.contains(['demandeur', 'conjoint'], options.individuRole) && $scope.selectedStatuts[field];
+        /* jshint -W069 */
+        return _.contains(['demandeur', 'conjoint'], options.individuRole) && $scope.selectedStatuts['demandeur_emploi'];
     };
 
     $scope.captureTauxInvalidite = function() {

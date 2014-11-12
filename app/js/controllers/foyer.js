@@ -34,7 +34,11 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $modal
 
     $scope.$on('individu.conjoint', function(e, conjoint) {
         if (conjoint) {
-            situation.individus.push(conjoint);
+            if (_.find(situation.individus, { role: 'conjoint' })) {
+                situation.individus[1] = conjoint;
+            } else {
+                situation.individus.splice(1, 0, conjoint);
+            }
         }
         $state.go('foyer.enfants');
     });

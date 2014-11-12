@@ -1,7 +1,11 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, logementTypes, locationTypes, loyerLabels) {
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, logementTypes, locationTypes, loyerLabels, SituationService) {
     var logement = $scope.logement = { adresse: {} };
+    if ($scope.situation.logement) {
+        logement = $scope.logement = _.merge(logement, $scope.situation.logement);
+    }
+
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
     $scope.loyerLabels = loyerLabels;

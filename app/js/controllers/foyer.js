@@ -5,7 +5,6 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $modal
     $scope.statutsSpecifiques = IndividuService.formatStatutsSpecifiques;
     $scope.nationalite = IndividuService.nationaliteLabel;
 
-    debugger;
     $scope.ressourcesCaptured = situation.individus.length > 0 && !!situation.individus[0].ressources
 
     var buildRecapLogement = function() {

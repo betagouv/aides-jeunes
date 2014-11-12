@@ -19,8 +19,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
     }
 
     if (_.contains(['demandeur', 'conjoint'], options.individuRole)) {
-        var situation = SituationService.restoreLocal();
-        var individu = _.find(situation.individus, { role: options.individuRole });
+        var individu = _.find($scope.situation.individus, { role: options.individuRole });
         if (individu) {
             $scope.individu = _.merge($scope.individu, individu);
             $scope.individu.situationsPro.forEach(function(situationPro) {

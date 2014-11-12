@@ -1,8 +1,7 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $location, $timeout, $anchorScroll, SituationService) {
-    var situation = SituationService.restoreLocal();
-    $scope.enfants = _.where(situation.individus, { role: 'enfant' });
+angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $location, $timeout, $anchorScroll) {
+    $scope.enfants = _.where($scope.situation.individus, { role: 'enfant' });
 
     $scope.$on('individu.enfant', function(e, enfant) {
         $scope.enfants.push(enfant);

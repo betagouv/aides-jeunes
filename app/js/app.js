@@ -153,10 +153,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, SituationService) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll, SituationService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope.newSituation = SituationService.newSituation;
+
+    // Offset de l'anchorscroll à 60px, nécessaire à cause de la navbar en position fixed
+    $anchorScroll.yOffset = 60;
 
     // changement d'url vers /api => débranchement de ui-router
     $rootScope.$on('$locationChangeStart', function(e, location) {

@@ -1,12 +1,20 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope) {
+angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $location, $timeout, $anchorScroll) {
     $scope.enfants = [];
 
     $scope.$on('individu.enfant', function(e, enfant) {
         $scope.enfants.push(enfant);
         $scope.ajoutEnfant = false;
     });
+
+    $scope.newEnfant = function() {
+        $scope.ajoutEnfant = true;
+        $location.hash('form-new-enfant');
+        $timeout(function() {
+            $anchorScroll();
+        });
+    };
 
     $scope.removeEnfant = function(enfant) {
         var index = $scope.enfants.indexOf(enfant);

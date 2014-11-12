@@ -102,8 +102,8 @@
 
   <div class="form-group from-group-lg">
     <label class="control-label col-sm-4">
-      <span ng-if="'demandeur' === options.individuType">Êtes-vous</span>
-      <span ng-if="'demandeur' !== options.individuType">Est-il/elle</span>
+      <span ng-if="'demandeur' === options.individuRole">Êtes-vous</span>
+      <span ng-if="'demandeur' !== options.individuRole">Est-il/elle</span>
       dans l'une de ces situations ?
     </label>
     <div class="col-sm-8">
@@ -124,8 +124,8 @@
 
   <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
     <label class="control-label col-sm-4">
-      <span ng-if="'demandeur' === options.individuType">Avez-vous</span>
-      <span ng-if="'demandeur' !== options.individuType">A-t-il (elle)</span>
+      <span ng-if="'demandeur' === options.individuRole">Avez-vous</span>
+      <span ng-if="'demandeur' !== options.individuRole">A-t-il (elle)</span>
       travaillé pendant au moins 5 ans au cours des 10 dernières années ?
     </label>
     <div class="col-sm-8">
@@ -162,8 +162,8 @@
 
   <div class="form-group from-group-lg" ng-if="captureEtudiantBoursier()">
     <label class="control-label col-sm-4">
-      <span ng-if="'demandeur' === options.individuType">Êtes-vous</span>
-      <span ng-if="'demandeur' !== options.individuType">Est-il/elle</span>
+      <span ng-if="'demandeur' === options.individuRole">Êtes-vous</span>
+      <span ng-if="'demandeur' !== options.individuRole">Est-il/elle</span>
       étudiant boursier ?
     </label>
     <div class="col-sm-8">

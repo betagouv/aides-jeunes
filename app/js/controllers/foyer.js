@@ -44,11 +44,17 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $modal
     });
 
     $scope.$on('enfants', function(e, enfants) {
+        situation.individus = _.filter(situation.individus, function(individu) {
+            return 'enfant' !== individu.role;
+        });
         situation.individus.push.apply(situation.individus, enfants);
         $state.go('foyer.personnesACharge');
     });
 
     $scope.$on('personnesACharge', function(e, personnesACharge) {
+        situation.individus = _.filter(situation.individus, function(individu) {
+            return 'personneACharge' !== individu.role;
+        });
         situation.individus.push.apply(situation.individus, personnesACharge);
         $state.go('foyer.logement');
     });

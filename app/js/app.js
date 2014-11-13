@@ -153,7 +153,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll, SituationService) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll, $timeout, SituationService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope.newSituation = SituationService.newSituation;
@@ -178,8 +178,10 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anc
     });
 
     $rootScope.$on('$stateChangeSuccess', function() {
-        if ($window._paq) {
-            $window._paq.push(['trackPageView']);
-        }
+        $timeout(function() {
+            if ($window._paq) {
+                $window._paq.push(['trackPageView']);
+            }
+        });
     });
 });

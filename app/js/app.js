@@ -80,7 +80,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/enfants.html',
                     controller: 'FoyerEnfantsCtrl'
                 },
-                'individuForm@foyer.enfants': individuFormView('enfant', false, true)
+                'individuForm@foyer.enfants': individuFormView('enfant', false, true, null, 25)
             }
         })
         .state('foyer.personnesACharge', {
@@ -90,7 +90,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/personnes-a-charge.html',
                     controller: 'FoyerPersonnesAChargeCtrl'
                 },
-                'individuForm@foyer.personnesACharge': individuFormView('personneACharge', false, true)
+                'individuForm@foyer.personnesACharge': individuFormView('personneACharge', false, true, null, 25)
             }
         })
         .state('foyer.logement', {

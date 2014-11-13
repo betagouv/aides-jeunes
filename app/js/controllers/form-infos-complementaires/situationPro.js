@@ -4,9 +4,10 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
     $scope.situation = situation;
     $scope.situationsPro = situationsPro;
 
-    $scope.individusRef = [{id: 'demandeur', label: 'Vous', individu: situation.demandeur, situationsPro: []}];
-    if (situation.conjoint) {
-        $scope.individusRef.push({id: 'conjoint', label: 'Votre partenaire', individu: situation.conjoint, situationsPro: []});
+    $scope.individusRef = [{ id: 'demandeur', label: 'Vous', individu: _.find(situation.individus, { role: 'demandeur' }), situationsPro: [] }];
+    var conjoint = _.find(situation.individus, { role: 'conjoint' });
+    if (conjoint) {
+        $scope.individusRef.push({id: 'conjoint', label: 'Votre partenaire', individu: conjoint, situationsPro: []});
     }
 
     $scope.individusRef.forEach(function(individuRef) {

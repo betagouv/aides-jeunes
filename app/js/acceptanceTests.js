@@ -96,6 +96,18 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     });
                 }]
             }
+        })
+        .state('users', {
+            url: '/users',
+            templateUrl: '/acceptance-tests/partials/users.html',
+            controller: 'UsersCtrl',
+            resolve: {
+                users: ['$http', function($http) {
+                    return $http.get('/api/users').then(function(result) {
+                        return result.data;
+                    });
+                }]
+            }
         });
 });
 

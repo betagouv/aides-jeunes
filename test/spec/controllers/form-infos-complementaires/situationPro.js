@@ -13,9 +13,15 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
 
     describe('initialization', function() {
         it('Should create an array of individus references containing id and label of the demandeur and its conjoint if defined', function() {
+            // given
+            var situation = { individus: [{ role: 'demandeur' }, { role: 'conjoint' }] };
+
             // when
             inject(function($controller) {
-                $controller('FormInfosComplementairesSituationProCtrl', {$scope: scope, situation: {demandeur: {}, conjoint: {}}});
+                $controller('FormInfosComplementairesSituationProCtrl', {
+                    $scope: scope,
+                    situation: situation
+                });
             });
 
             // then
@@ -25,9 +31,15 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
         });
 
         it('Should create an array of individus containing id and label of the demandeur only if no conjoint', function() {
+            // given
+            var situation = { individus: [{ role: 'demandeur' }] };
+
             // when
             inject(function($controller) {
-                $controller('FormInfosComplementairesSituationProCtrl', {$scope: scope, situation: {demandeur: {}}});
+                $controller('FormInfosComplementairesSituationProCtrl', {
+                    $scope: scope,
+                    situation: situation
+                });
             });
 
             // then
@@ -38,7 +50,7 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
 
         it('Should init each situation as not selected for each individu', function() {
             // given
-            var situation = {demandeur: {}, conjoint: {}};
+            var situation = { individus: [{ role: 'demandeur' }, { role: 'conjoint' }] };
 
             // when
             inject(function($controller) {
@@ -57,7 +69,7 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
         var situation, SituationService;
 
         beforeEach(function() {
-            situation = {demandeur: {}, conjoint: {}};
+            situation = { individus: [{ role: 'demandeur' }, { role: 'conjoint' }] };
             inject(function($controller, _SituationService_) {
                 SituationService = _SituationService_;
                 spyOn(SituationService, 'update').andReturn({then: function() {}});
@@ -77,8 +89,8 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
             scope.submit();
 
             // then
-            expect(situation.demandeur.situationsPro.length).toBe(1);
-            expect(situation.demandeur.situationsPro[0]).toBe(scope.individusRef[0].situationsPro[3]);
+            expect(situation.individus[0].situationsPro.length).toBe(1);
+            expect(situation.individus[0].situationsPro[0]).toBe(scope.individusRef[0].situationsPro[3]);
         });
 
         it('Should update the situation', function() {

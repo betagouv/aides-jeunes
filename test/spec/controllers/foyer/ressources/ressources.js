@@ -2,24 +2,23 @@
 
 describe('Controller: FoyerRessourcesCtrl', function() {
 
-    var scope;
-
     beforeEach(function() {
         module('ddsApp');
-        scope = {};
     });
 
     describe('initialization', function() {
         it('should create an array of individu references containing their label and an empty selected ressources map', function() {
             // given
-            var individus = [{}, {}];
+            var scope = {
+                situation: { individus: [{}, {}] },
+                $on: function() {}
+            };
 
             // when
             inject(function($controller) {
                 $controller('FoyerRessourcesCtrl', {
                     $scope: scope,
-                    $modalInstance: {},
-                    individus: individus
+                    $modalInstance: {}
                 });
             });
 

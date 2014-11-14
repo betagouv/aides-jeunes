@@ -10,6 +10,16 @@ angular.module('ddsApp').directive('individuBlock', function(IndividuService) {
         controller: function($scope) {
             $scope.individuLabel = IndividuService.label;
             $scope.nationalite = IndividuService.nationaliteLabel;
+            $scope.sref = function(individu) {
+                switch (individu.role) {
+                    case 'demandeur':
+                        return 'foyer.demandeur';
+                    case 'conjoint':
+                        return 'foyer.conjoint';
+                    case 'enfant':
+                        return 'foyer.enfants';
+                }
+            };
         }
     };
 });

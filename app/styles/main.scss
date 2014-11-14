@@ -206,8 +206,13 @@ $body-front-base-padding: 60px;
 .recap-situation {
   @extend .well;
   border-top: none;
-  > h3:first-child {
+
+  h3 {
     margin-top: 0;
+  }
+
+  .section-header {
+    margin-top: 21px;
   }
 }
 
@@ -271,6 +276,13 @@ $body-front-base-padding: 60px;
   font-size: 17px;
 }
 
+$indemnites: #f07818;
+$pensions: #5e412f;
+$allocations: #458D75;
+$revenusActivite: #395668;
+$autre: #878309;
+$tns: #CC2A41;
+
 @mixin button-variant-capture($color) {
   border-left: 7px solid $color;
   &.active, &.active:focus {
@@ -279,27 +291,27 @@ $body-front-base-padding: 60px;
 }
 
 .capture-indemnites {
-  @include button-variant-capture(#f07818);
+  @include button-variant-capture($indemnites);
 }
 
 .capture-pensions {
-  @include button-variant-capture(#5e412f);
+  @include button-variant-capture($pensions);
 }
 
 .capture-allocations {
-  @include button-variant-capture(#458D75);
+  @include button-variant-capture($allocations);
 }
 
 .capture-revenusActivite {
-  @include button-variant-capture(#395668);
+  @include button-variant-capture($revenusActivite);
 }
 
 .capture-autre {
-  @include button-variant-capture(#878309);
+  @include button-variant-capture($autre);
 }
 
 .capture-tns {
-  @include button-variant-capture(#CC2A41);
+  @include button-variant-capture($tns);
 }
 
 .btn-selection {
@@ -458,4 +470,59 @@ $body-front-base-padding: 60px;
   .test-detail {
     color: whitesmoke;
   }
+}
+
+@mixin panel-variant-recap($color) {
+  border-left: 7px solid $color;
+  &.active, &.active:focus {
+    @include button-variant(white, $color, $color);
+  }
+}
+
+.accordion-ressources {
+    .panel {
+        border: none;
+        font-size: 12px;
+    }
+
+    .panel-heading {
+        padding: 5px 8px;
+    }
+
+    .panel-title {
+        font-size: 14px;
+    }
+
+    .panel-body {
+        padding: 10px;
+    }
+
+    hr {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .recap-indemnites {
+      @include panel-variant-recap($indemnites);
+    }
+
+    .recap-pensions {
+      @include panel-variant-recap($pensions);
+    }
+
+    .recap-allocations {
+      @include panel-variant-recap($allocations);
+    }
+
+    .recap-revenusActivite {
+      @include panel-variant-recap($revenusActivite);
+    }
+
+    .recap-autre {
+      @include panel-variant-recap($autre);
+    }
+
+    .recap-tns {
+      @include panel-variant-recap($tns);
+    }
 }

@@ -51,8 +51,16 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('foyer', {
             abstract: true,
             url: '/foyer',
-            templateUrl: '/partials/foyer/layout.html',
-            controller: 'FoyerCtrl'
+            views: {
+                '': {
+                    controller: 'FoyerCtrl',
+                    templateUrl: '/partials/foyer/layout.html',
+                },
+                'recap_situation@foyer': {
+                    controller: 'RecapSituationCtrl',
+                    templateUrl: '/partials/foyer/recap-situation.html'
+                }
+            }
         })
         .state('foyer.demandeur', {
             url: '/demandeur',

@@ -1,13 +1,10 @@
 <div class="individu-block">
-  <h5>{{ individuLabel(individu) }}</h5>
-  <div class="row">
-    <div class="col-xs-3">
-      <i class="fa fa-child fa-3x"></i>
-    </div>
-    <div class="col-xs-9">
+    <a ui-sref="{{sref(individu)}}">
+      <i class="fa" ng-class="{'fa-user': individu.role !== 'enfant', 'fa-child': individu.role === 'enfant'}"></i> {{ individuLabel(individu) }}
+    </a>
+    <div>
       Né(e) le <strong>{{ individu.dateDeNaissance }}</strong>
       <br>Nationalité <strong>{{ nationalite(individu) }}</strong>
       <br><i>{{ statutsSpecifiques(individu) }}</i>
     </div>
-  </div>
 </div>

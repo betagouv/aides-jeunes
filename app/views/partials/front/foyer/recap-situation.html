@@ -1,0 +1,48 @@
+<h3 class="text-center">Votre situation</h3>
+<hr>
+<h4 class="section-header">Votre foyer</h4>
+<individu-block ng-repeat="individu in situation.individus" individu="individu"></individu-block>
+<div ng-if="situation.logement">
+  <h4 class="section-header">Votre logement</h4>
+  <div ng-bind-html="recapLogement|uppercaseFirst"></div>
+  <div ng-if="situation.logement.loyer">{{ loyerLabel }}&nbsp;: <b>{{ situation.logement.loyer }} €</b></div>
+  Code postal <b>{{ situation.logement.adresse.codePostal }}</b>
+  <br><b>{{ situation.logement.adresse.ville }}</b>
+</div>
+<div ng-if="ressourcesCaptured">
+  <h4 class="section-header">Vos ressources</h4>
+  <accordion close-others="true" class="accordion-ressources">
+    <accordion-group class="recap-{{ressource.type.category}}" heading="{{ressource.type.label}}" is-open="ressource.isOpen" ng-repeat="ressource in ressourcesNonTns">
+      <div class="row" ng-repeat="(idx, total) in ressource.total">
+        <div class="col-sm-8">
+          {{months[idx].label | uppercaseFirst}}
+        </div>
+        <div class="col-sm-4">
+          {{ total }} €
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-8">
+          Annuel
+        </div>
+        <div class="col-sm-4">
+          {{ ressource.totalAnnuel }} €
+        </div>
+      </div>
+    </accordion-group>
+  </accordion>
+</div>
+<div ng-if="situation.patrimoine">
+  <h4 class="section-header">Votre patrimoine</h4>
+  <span ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun</span>
+  <div ng-repeat="value in patrimoine">
+    {{ value.label }} : {{ value.montant }} €
+  </div>
+  <div ng-repeat="revenu in revenusDuPatrimoine">
+    <h6>{{ revenu.label }}</h6>
+    <div ng-repeat="value in revenu.values">
+      {{ value.periode }} : {{ value.montant }} €
+    </div>
+  </div>
+</div>

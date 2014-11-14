@@ -199,6 +199,7 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
     }
 
     $scope.$on('buildRecapRessources', function() {
+        $scope.ressourcesCaptured = true;
         buildRecapRessources();
     });
 });

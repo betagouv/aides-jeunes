@@ -35,11 +35,11 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     });
 
     $scope.$on('selectedPersonnes', function() {
+        $scope.initIndividusRessources();
         if (!_.filter($scope.individuRefs, 'hasRessources').length) {
             $state.go('foyer.patrimoine');
             return;
         }
-        $scope.initIndividusRessources();
         $state.go('foyer.ressources.montants');
     });
 

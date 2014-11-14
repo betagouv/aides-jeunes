@@ -99,14 +99,25 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'FoyerLogementCtrl'
         })
         .state('foyer.ressources', {
+            abstract: true,
             url: '/ressources',
-            templateUrl: '/partials/foyer/ressources.html',
             controller: 'FoyerRessourcesCtrl',
-            resolve: {
-                individus: ['SituationService', function(SituationService) {
-                    return SituationService.restoreLocal().individus;
-                }]
-            }
+            templateUrl: '/partials/foyer/ressources/layout.html'
+        })
+        .state('foyer.ressources.types', {
+            templateUrl: '/partials/foyer/ressources/types.html',
+            controller: 'FoyerRessourceTypesCtrl',
+            url: '/types'
+        })
+        .state('foyer.ressources.personnes', {
+            templateUrl: '/partials/foyer/ressources/personnes.html',
+            controller: 'FoyerRessourcePersonnesCtrl',
+            url: '/personnes'
+        })
+        .state('foyer.ressources.montants', {
+            templateUrl: '/partials/foyer/ressources/montants.html',
+            controller: 'FoyerRessourceMontantsCtrl',
+            url: '/montants'
         })
         .state('foyer.patrimoine', {
             url: '/patrimoine',

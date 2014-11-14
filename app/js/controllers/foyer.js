@@ -126,7 +126,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $modal
     $scope.$on('logement', function(e, logement) {
         situation.logement = logement;
         buildRecapLogement();
-        $state.go('foyer.ressources');
+        $state.go('foyer.ressources.types');
     });
 
     $scope.$on('ressources', function() {

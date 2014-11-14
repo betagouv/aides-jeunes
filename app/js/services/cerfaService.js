@@ -59,7 +59,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return 16 <= IndividuService.age(individu);
         },
         'declaration_grossesse': function(situation) {
-            return situation.demandeur.enceinte;
+            return !!_.filter(situation.individus, 'enceinte').length;
         },
         'attestation_chomage_partiel': function(individu) {
             var nbRessourcesChomage = _.where(individu.ressources, {type: 'indChomagePartiel'}).length;

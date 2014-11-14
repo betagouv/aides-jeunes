@@ -177,8 +177,8 @@ describe('Service: cerfaService', function () {
             it('should ask declaration de grossesse for rsa if enceinte', function() {
                 // given
                 var situations = [
-                    {demandeur: {enceinte: true}},
-                    {demandeur: {}}
+                    { individus: [{ role: 'demandeur', enceinte: true }] },
+                    { individus: [{ role: 'demandeur' }] }
                 ];
 
                 // when

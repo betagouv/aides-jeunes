@@ -5,14 +5,12 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     $scope.debutPeriode = moment().startOf('month').subtract('years', 1).format('MMMM YYYY');
     $scope.finPeriode = moment().startOf('month').subtract('months', 1).format('MMMM YYYY');
 
-    var situation = SituationService.restoreLocal();
-
     var launchSimulation = function() {
         $scope.awaitingResults = true;
         $scope.error = false;
         $scope.droits = null;
 
-        SimulationService.simulate(situation).then(function(droits) {
+        SimulationService.simulate($scope.situation).then(function(droits) {
             $scope.droits = droits;
             $scope.droitsNonEligibles = SimulationService.getDroitsNonEligibles(droits);
         }, function() {
@@ -29,7 +27,7 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     };
 
     $scope.cerfaForms = function(droit) {
-        return CerfaService.getCerfaFormsFromDroit(droit, situation);
+        return CerfaService.getCerfaFormsFromDroit(droit, $scope.situation);
     };
 
     $scope.isDroitAllocationLogement = function(droit) {
@@ -59,13 +57,13 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         return _.every([
             !$scope.awaitingResults,
             !$scope.hasDroitAllocationLogement(),
-            'gratuit' !== situation.logement.type,
-            !situation.logement.membreFamilleProprietaire,
-            false !== situation.logement.primoAccedant
+            'gratuit' !== $scope.situation.logement.type,
+            !$scope.situation.logement.membreFamilleProprietaire,
+            false !== $scope.situation.logement.primoAccedant
         ]);
     };
 
     $scope.createTest = function() {
-        $window.location.href = '/acceptance-tests/new/' + situation._id;
+        $window.location.href = '/acceptance-tests/new/' + $scope.situation._id;
     };
 });

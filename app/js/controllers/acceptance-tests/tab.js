@@ -1,20 +1,22 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, $q, $window, $state, $stateParams, $location, droitsDescription, acceptanceTests, AcceptanceTestsService) {
+angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, $q, $window, $state, $stateParams, $location, $timeout, droitsDescription, acceptanceTests, AcceptanceTestsService) {
     $scope.$emit('stopWaiting');
-
-    if ($stateParams.testId) {
-        $location.hash('test-' + $stateParams.testId);
-        var testToScroll = _.find(acceptanceTests, {'_id': $stateParams.testId});
-        if (testToScroll) {
-            testToScroll.open = true;
-        }
-    }
 
     $scope.tests = acceptanceTests;
     $scope.categories = AcceptanceTestsService.categorizeTests(acceptanceTests);
     $scope.droits = _.indexBy(droitsDescription, 'id');
     $scope.pendingTests = 0;
+
+    if ($stateParams.testId) {
+        $timeout(function() {
+            $location.hash('test-' + $stateParams.testId);
+            var testToScroll = _.find(acceptanceTests, {'_id': $stateParams.testId});
+            if (testToScroll) {
+                testToScroll.open = true;
+            }
+        });
+    }
 
     $scope.testStatusClass = function(test) {
         var map = {

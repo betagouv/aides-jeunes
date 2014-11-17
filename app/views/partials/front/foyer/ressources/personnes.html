@@ -1,6 +1,6 @@
 <form method="post" name="form" novalidate ng-submit="submit()">
   <p>Veuillez sélectionner les personnes qui touchent/ont touché les ressources que vous avez sélectionnées.</p>
-  <div ng-repeat="ressourceType in ressourceTypes|filter: isRessourceSelected">
+  <div ng-repeat="ressourceType in ressourceTypes|filter: isRessourceTypeSelected">
     <div class="row">
       <div class="col-sm-4">
         <button

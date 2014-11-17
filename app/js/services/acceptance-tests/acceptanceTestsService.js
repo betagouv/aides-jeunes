@@ -5,7 +5,7 @@ angular.module('acceptanceTests').factory('AcceptanceTestsService', function($q,
         categorizeTests: function(tests) {
             var categories = [];
             var categoriesMap = {};
-            var unknownCategory = {name: 'Non catégorisés', tests: []};
+            var unknownCategory = { name: 'Non catégorisés', tests: [] };
             tests.forEach(function(test) {
                 if (test._updated) {
                     var updatedAt = moment(test._updated);

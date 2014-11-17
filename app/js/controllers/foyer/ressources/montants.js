@@ -25,7 +25,7 @@ angular.module('ddsApp').controller('FoyerRessourceMontantsCtrl', function($scop
         form.submitted = true;
         if (form.$valid) {
             $scope.applyIndividuRefsRessourcesToIndividus();
-            $scope.$emit('ressources');
+            $scope.$emit('montantsValidated');
         }
     };
 

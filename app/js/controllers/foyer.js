@@ -53,7 +53,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
         $state.go('foyer.ressources.types');
     });
 
-    $scope.$on('ressources', function() {
+    $scope.$on('ressourcesValidated', function() {
         $scope.$broadcast('buildRecapRessources');
         $state.go('foyer.patrimoine');
     });
@@ -65,5 +65,4 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
             $state.go('foyer.simulation', { 'situationId': result._id });
         });
     });
-
 });

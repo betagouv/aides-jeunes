@@ -18,8 +18,14 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     });
 
     $scope.selectedRessourceTypes = {};
+    _.chain($scope.situation.individus)
+        .flatten('ressources')
+        .filter()
+        .uniq(false, 'type')
+        .pluck('type')
+        .forEach(function(ressourceType) { $scope.selectedRessourceTypes[ressourceType] = true; });
 
-    $scope.$on('selectedRessourceTypes', function() {
+    $scope.$on('ressourceTypesValidated', function() {
         var hasSelectedRessources = !!_.filter($scope.selectedRessourceTypes).length;
         if (hasSelectedRessources) {
             if (1 < $scope.individuRefs.length) {
@@ -34,13 +40,17 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         }
     });
 
-    $scope.$on('selectedPersonnes', function() {
+    $scope.$on('personnesValidated', function() {
         $scope.initIndividusRessources();
         if (!_.filter($scope.individuRefs, 'hasRessources').length) {
             $state.go('foyer.patrimoine');
             return;
         }
         $state.go('foyer.ressources.montants');
+    });
+
+    $scope.$on('montantsValidated', function() {
+        $scope.$emit('ressourcesValidated');
     });
 
     $scope.initIndividusRessources = function() {

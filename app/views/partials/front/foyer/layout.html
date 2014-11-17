@@ -1,10 +1,10 @@
-<div class="container">
+<div id="main-content" class="container">
   <div class="col-md-9 col-sm-12 form-foyer">
     <div ui-view>
       <p class="text-center"><i class="fa fa-spinner fa-spin"></i> Chargement en cours...</p>
     </div>
   </div>
-  <div class="col-md-3 recap-situation hidden-xs hidden-sm" ng-if="situation.individus.length">
+  <div class="col-md-3 recap-situation whiteframe-z1 hidden-xs hidden-sm" ng-if="situation.individus.length">
     <div ui-view="recap_situation">
       <p class="text-center"><i class="fa fa-spinner fa-spin"></i> Chargement en cours...</p>
     </div>

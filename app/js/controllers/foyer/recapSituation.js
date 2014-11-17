@@ -192,8 +192,8 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         }
     };
 
-    $scope.ressourcesCaptured = situation.individus.length > 0 && !!situation.individus[0].ressources;
-    if ($scope.ressourcesCaptured) {
+    $scope.ressourcesCaptured = angular.isDefined($scope.situation.hasSelectedRessources);
+    if ($scope.ressourcesCaptured && $scope.situation.hasSelectedRessources) {
         buildRecapRessources();
     }
 

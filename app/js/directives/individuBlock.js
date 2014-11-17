@@ -18,6 +18,8 @@ angular.module('ddsApp').directive('individuBlock', function(IndividuService) {
                         return 'foyer.conjoint';
                     case 'enfant':
                         return 'foyer.enfants';
+                    case 'personneACharge':
+                        return 'foyer.personnesACharge';
                 }
             };
         }

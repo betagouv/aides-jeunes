@@ -20,3 +20,6 @@ trim_trailing_whitespace = false
 
 [*.html]
 indent_size = 2
+
+[*.scss]
+indent_size = 2

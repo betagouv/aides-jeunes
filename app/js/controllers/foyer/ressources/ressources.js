@@ -18,12 +18,6 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     });
 
     $scope.selectedRessourceTypes = {};
-    _.chain($scope.situation.individus)
-        .flatten('ressources')
-        .filter()
-        .uniq(false, 'type')
-        .pluck('type')
-        .forEach(function(ressourceType) { $scope.selectedRessourceTypes[ressourceType] = true; });
 
     $scope.$on('ressourceTypesValidated', function() {
         var hasSelectedRessources = !!_.filter($scope.selectedRessourceTypes).length;

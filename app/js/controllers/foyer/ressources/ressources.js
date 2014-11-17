@@ -19,7 +19,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
 
     $scope.selectedRessourceTypes = {};
 
-    $scope.$on('selectedRessourceTypes', function() {
+    $scope.$on('ressourceTypesValidated', function() {
         $scope.situation.hasSelectedRessources = !!_.filter($scope.selectedRessourceTypes).length;
         if ($scope.situation.hasSelectedRessources) {
             if (1 < $scope.individuRefs.length) {

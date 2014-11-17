@@ -31,6 +31,16 @@
         </div>
       </div>
     </accordion-group>
+    <accordion-group class="recap-tns" heading="{{ressource.type.label}}" is-open="ressource.isOpen" ng-repeat="ressource in ressourcesTns">
+      <div class="row">
+        <div class="col-sm-8">
+          Annuel
+        </div>
+        <div class="col-sm-4">
+          {{ ressource.totalAnnuel }} €
+        </div>
+      </div>
+    </accordion-group>
   </accordion>
 </div>
 <div ng-if="situation.patrimoine">

@@ -144,8 +144,7 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
             $scope.hasRessources = true;
         }
 
-        $scope.ressourcesMicroFiscal = [];
-        $scope.ressourcesAutresTns = [];
+        $scope.ressourcesTns = [];
         $scope.ressourcesNonTns = [];
         ressourceTypes.forEach(function(ressourceType) {
             if ($scope.tempRessources[ressourceType.id]) {
@@ -185,11 +184,11 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         });
 
         if (ressourcesMicroFiscal.totalAnnuel) {
-            $scope.ressourcesMicroFiscal.push(ressourcesMicroFiscal);
+            $scope.ressourcesTns.push(ressourcesMicroFiscal);
         }
 
         if (ressourcesAutresTns.totalAnnuel) {
-            $scope.ressourcesAutresTns.push(ressourcesAutresTns);
+            $scope.ressourcesTns.push(ressourcesAutresTns);
         }
     };
 

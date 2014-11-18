@@ -54,6 +54,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
     });
 
     $scope.$on('ressourcesValidated', function() {
+        $scope.situation.ressourcesCaptured = true;
         $scope.$broadcast('ressourcesCaptured');
         $state.go('foyer.patrimoine');
     });

@@ -192,13 +192,11 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         }
     };
 
-    $scope.ressourcesCaptured = angular.isDefined($scope.situation.hasSelectedRessources);
-    if ($scope.ressourcesCaptured && $scope.situation.hasSelectedRessources) {
+    if ($scope.situation.ressourcesCaptured) {
         buildRecapRessources();
     }
 
     $scope.$on('ressourcesCaptured', function() {
-        $scope.ressourcesCaptured = true;
         buildRecapRessources();
     });
 });

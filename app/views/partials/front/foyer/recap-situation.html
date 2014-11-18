@@ -2,6 +2,7 @@
 <hr>
 <h4 class="section-header">Votre foyer</h4>
 <individu-block ng-repeat="individu in situation.individus" individu="individu"></individu-block>
+
 <div ng-if="situation.logement">
   <h4 class="section-header">Votre logement</h4>
   <div class="situation-block">
@@ -11,10 +12,18 @@
     <br><b>{{ situation.logement.adresse.ville }}</b>
   </div>
 </div>
-<div ng-if="ressourcesCaptured">
+
+<div ng-if="situation.ressourcesCaptured">
   <h4 class="section-header">Vos ressources</h4>
-  <accordion close-others="true" class="accordion-ressources" ng-if="situation.hasSelectedRessources">
-    <accordion-group class="recap-{{ressource.type.category}}" heading="{{ressource.type.label}}" is-open="ressource.isOpen" ng-repeat="ressource in ressourcesNonTns">
+  <accordion
+    close-others="true"
+    class="accordion-ressources"
+    ng-if="hasRessources">
+    <accordion-group
+      class="recap-{{ressource.type.category}}"
+      heading="{{ressource.type.label}}"
+      is-open="ressource.isOpen"
+      ng-repeat="ressource in ressourcesNonTns">
       <div class="row" ng-repeat="idx in [0, 1, 2]">
         <div class="col-sm-8">
           {{months[idx].label | uppercaseFirst}}
@@ -44,10 +53,11 @@
       </div>
     </accordion-group>
   </accordion>
-  <div ng-if="!situation.hasSelectedRessources">
+  <div ng-if="!hasRessources">
     <em class="small">Aucune ressource déclarée</em>
   </div>
 </div>
+
 <div ng-if="situation.patrimoine">
   <h4 class="section-header">Votre patrimoine</h4>
   <em class="small" ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun patrimoine déclaré</em>

@@ -36,9 +36,14 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         .pluck('type')
         .forEach(function(ressourceType) { $scope.selectedRessourceTypes[ressourceType] = true; });
 
+    var resetRessources = function() {
+        $scope.situation.individus.forEach(function(individu) {
+            individu.ressources = [];
+        });
+    };
+
     $scope.$on('ressourceTypesValidated', function() {
-        $scope.situation.hasSelectedRessources = !!_.filter($scope.selectedRessourceTypes).length;
-        if ($scope.situation.hasSelectedRessources) {
+        if (!!_.filter($scope.selectedRessourceTypes).length) {
             if (1 < $scope.individuRefs.length) {
                 $state.go('foyer.ressources.personnes');
             } else {
@@ -47,6 +52,8 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 $state.go('foyer.ressources.montants');
             }
         } else {
+            resetRessources();
+            $scope.$emit('ressourcesValidated');
             $state.go('foyer.patrimoine');
         }
     });
@@ -54,6 +61,8 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     $scope.$on('personnesValidated', function() {
         $scope.initIndividusRessources();
         if (!_.filter($scope.individuRefs, 'hasRessources').length) {
+            resetRessources();
+            $scope.$emit('ressourcesValidated');
             $state.go('foyer.patrimoine');
             return;
         }

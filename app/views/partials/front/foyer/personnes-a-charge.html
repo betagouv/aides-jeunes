@@ -1,5 +1,5 @@
 <div class="whiteframe-z1 frame-foyer">
-  <h3>Les autres personnes à votre charge</h3>
+  <h1>Les autres personnes à votre charge</h1>
   <div class="row">
     <div ng-repeat="personne in personnesACharge">
       <div class="clearfix" ng-if="$index % 3 === 0"></div>
@@ -49,6 +49,6 @@
 </div>
 
 <div ng-if="ajoutPersonneACharge" class="whiteframe-z1 frame-new-individu">
-  <h3 id="form-new-personne-a-charge">Nouvelle personne à charge</h3>
+  <h2 id="form-new-personne-a-charge">Nouvelle personne à charge</h2>
   <div ui-view="individuForm"></div>
 </div>

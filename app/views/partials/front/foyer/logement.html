@@ -1,5 +1,5 @@
 <div class="whiteframe-z1 frame-foyer">
-  <h3>Votre logement</h3>
+  <h1>Votre logement</h1>
   <form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit(form)">
     <p><em>
       Si vous n’avez pas de domicile fixe ou stable, vous devez effectuer une
@@ -90,8 +90,8 @@
           class="form-group"
           ng-show="captureCodePostal()"
           ng-class="{'has-error': submitted && unknownCodePostal}">
-          <label class="col-sm-9 control-label" for="postal-code">Code postal de votre résidence</label>
-          <div class="col-sm-3">
+          <label class="col-sm-6 control-label" for="postal-code">Code postal de votre résidence</label>
+          <div class="col-sm-6">
             <input
               type="text"
               class="form-control"

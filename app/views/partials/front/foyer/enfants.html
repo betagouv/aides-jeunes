@@ -1,6 +1,5 @@
 <div class="whiteframe-z1 frame-foyer">
-  <h3>Les enfants à votre charge</h3>
-
+  <h1>Les enfants à votre charge</h1>
   <div class="row">
     <div ng-repeat="enfant in enfants">
       <div class="clearfix" ng-if="$index % 3 === 0"></div>
@@ -49,6 +48,6 @@
 </div>
 
 <div class="whiteframe-z1 frame-new-individu" ng-if="ajoutEnfant">
-  <h3 id="form-new-enfant">Nouvel enfant</h3>
+  <h2 id="form-new-enfant">Nouvel enfant</h2>
   <div ui-view="individuForm"></div>
 </div>

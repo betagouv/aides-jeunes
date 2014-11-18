@@ -239,7 +239,7 @@ $body-front-base-padding: 60px;
   }
 }
 
-.layout-foyer {
+.layout {
   padding-top: 10px;
   padding-bottom: 20px;
 }
@@ -253,6 +253,20 @@ $body-front-base-padding: 60px;
   h3 {
     margin-top: 0px;
   }
+}
+
+.btn-cerfa {
+  margin-top: 20px;
+}
+
+.frame-cerfa {
+  @extend .frame-foyer;
+  margin-top: 20px;
+}
+
+.frame-cerfa-header {
+  margin-top: 40px;
+  margin-bottom: -20px;
 }
 
 .frame-new-individu {
@@ -454,13 +468,6 @@ $tns: #CC2A41;
         background-color: $btn-default-bg;
         border-bottom: 3px solid darken($btn-default-bg, 10%);
     }
-  }
-
-  .no-gutter-left {
-    padding-left:0;
-  }
-  .no-gutter-right {
-    padding-right:0;
   }
 }
 

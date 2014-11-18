@@ -12,16 +12,16 @@
     </a>
   </div>
 
-  <p class="lead" ng-bind-html="trustAsHtml(cerfa.description)"></p>
-
+  <div class="frame-cerfa-header">
+    <h2><i class="fa fa-file"></i> Documents à imprimer</h2>
+    <p class="lead" ng-bind-html="trustAsHtml(cerfa.description)"></p>
+  </div>
   <div class="row">
     <div class="col-md-6" ng-repeat="cerfaForm in cerfaForms">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{ cerfaForm.label }}</h3>
-        </div>
-        <div class="panel-body">
-          <p ng-bind-html="trustAsHtml(cerfaForm.description)"></p>
+      <div class="frame-cerfa">
+        <h1>{{ cerfaForm.label }}</h1>
+        <p ng-bind-html="trustAsHtml(cerfaForm.description)"></p>
+        <div class="text-center btn-cerfa">
           <a
             class="btn btn-primary"
             href="/api/situations/{{ situation._id }}/cerfa/{{ cerfaForm.id }}"
@@ -36,25 +36,27 @@
 
   <h2><i class="fa fa-folder-open"></i> Pièces justificatives à fournir</h2>
 
-  <div ng-repeat="piece in piecesJustificatives">
-    <hr>
-    <div class="row">
-      <div class="col-sm-10">
-        <div class="media">
-          <div class="pull-left">
-            <img class="media-object" ng-src="/img/pieces-justificatives/{{ piece.description.img }}" alt="{{ piece.description.id }}">
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">{{ piece.description.label }}</h4>
-            {{ piece.description.description }}
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="piece in piecesJustificatives">
+      <div class="row">
+        <div class="col-sm-10">
+          <div class="media">
+            <div class="pull-left">
+              <img class="media-object" ng-src="/img/pieces-justificatives/{{ piece.description.img }}" alt="{{ piece.description.id }}">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{ piece.description.label }}</h4>
+              {{ piece.description.description }}
+            </div>
           </div>
         </div>
+        <div class="col-sm-2" ng-if="!isSituationMonoIndividu">
+          <span ng-repeat="individu in piece.individus">
+            <i class="fa fa-check-square"></i> {{ individu }}<br>
+          </span>
+        </div>
       </div>
-      <div class="col-sm-2" ng-if="!isSituationMonoIndividu">
-        <span ng-repeat="individu in piece.individus">
-          <i class="fa fa-check-square"></i> {{ individu }}<br>
-        </span>
-      </div>
-    </div>
-  </div>
+    </li>
+  </ul>
+
 </div>

@@ -197,7 +197,7 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         buildRecapRessources();
     }
 
-    $scope.$on('buildRecapRessources', function() {
+    $scope.$on('ressourcesCaptured', function() {
         $scope.ressourcesCaptured = true;
         buildRecapRessources();
     });

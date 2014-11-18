@@ -239,7 +239,13 @@ $body-front-base-padding: 60px;
   }
 }
 
+.layout-foyer {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
 .frame-foyer {
+  @extend .whiteframe-z1;
   padding: 20px;
   h1 {
     margin-top: 0px;
@@ -377,7 +383,7 @@ $tns: #CC2A41;
   padding: 14px;
   color: #333;
 
-  .content {
+  .intro-content {
     text-align: center;
     cursor: pointer;
 
@@ -556,11 +562,6 @@ $tns: #CC2A41;
     .recap-tns {
       @include panel-variant-recap($tns);
     }
-}
-
-#main-content {
-  padding-top: 10px;
-  padding-bottom: 20px;
 }
 
 .whiteframe-z1 {

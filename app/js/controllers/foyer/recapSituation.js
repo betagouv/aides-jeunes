@@ -21,7 +21,7 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         buildRecapLogement();
     }
 
-    $scope.$on('buildRecapLogement', function() {
+    $scope.$on('logementCaptured', function() {
         buildRecapLogement();
     });
 
@@ -82,7 +82,7 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         buildRecapPatrimoine();
     }
 
-    $scope.$on('buildRecapPatrimoine', function() {
+    $scope.$on('patrimoineCaptured', function() {
         buildRecapPatrimoine();
     });
 

@@ -49,7 +49,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
 
     $scope.$on('logement', function(e, logement) {
         situation.logement = logement;
-        $scope.$broadcast('buildRecapLogement');
+        $scope.$broadcast('logementCaptured');
         $state.go('foyer.ressources.types');
     });
 
@@ -60,7 +60,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
 
     $scope.$on('patrimoine', function(e, patrimoine) {
         situation.patrimoine = patrimoine;
-        $scope.$broadcast('buildRecapPatrimoine');
+        $scope.$broadcast('patrimoineCaptured');
         SituationService.create(situation).then(function(result) {
             $state.go('foyer.simulation', { 'situationId': result._id });
         });

@@ -50,8 +50,8 @@
 </div>
 <div ng-if="situation.patrimoine">
   <h4 class="section-header">Votre patrimoine</h4>
+  <em class="small" ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun patrimoine déclaré</em>
   <div class="situation-block">
-    <span ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun</span>
     <div ng-repeat="value in patrimoine">
       {{ value.label }} : {{ value.montant }} €
     </div>

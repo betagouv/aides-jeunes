@@ -8,10 +8,21 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     $scope.ressourceTypes = ressourceTypes;
     $scope.months = SituationService.getMonths();
 
+    var extractIndividuSelectedRessourceTypes = function(individu) {
+        var result = {};
+        var ressources = individu.ressources || [];
+        _.chain(ressources)
+            .pluck('type')
+            .unique()
+            .forEach(function(ressourceType) { result[ressourceType] = true; });
+
+        return result;
+    };
+
     $scope.individuRefs = _.map($scope.situation.individus, function(individu) {
         return {
             label: IndividuService.label(individu),
-            selectedRessourceTypes: {},
+            selectedRessourceTypes: extractIndividuSelectedRessourceTypes(individu),
             ressources: [],
             individu: individu
         };

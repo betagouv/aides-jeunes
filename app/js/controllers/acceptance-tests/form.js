@@ -31,6 +31,7 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
     };
 
     $scope.submit = function() {
+        $scope.submitting = true;
         $scope.test.droitsAttendus.forEach(function(droit) {
             droit.id = droit.ref.id;
         });

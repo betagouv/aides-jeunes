@@ -23,14 +23,9 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 $btn-default-bg: whitesmoke;
 
 html {
-  background-color: whitesmoke;
   overflow-y: scroll;
   position: relative;
   min-height: 100%;
-}
-
-body {
-  background-color: whitesmoke;
 }
 
 $main-footer-height: 220px;
@@ -39,6 +34,7 @@ $body-front-base-padding: 60px;
 .body-front {
   margin-bottom: $main-footer-height;
   padding-top: $body-front-base-padding;
+  background-color: whitesmoke;
 }
 
 .body-acceptance-tests {

@@ -4,7 +4,12 @@ angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', fun
     var situation = $scope.situation = SituationService.restoreLocal();
     $scope.situationsFamiliales = situationsFamiliales;
     $scope.situationsMaritales = _.indexBy(_.filter(situationsFamiliales, 'isSituationCouple'), 'value');
+    $scope.demandeur = _.find(situation.individus, { role: 'demandeur' });
     $scope.conjoint = _.find(situation.individus, { role: 'conjoint' });
+
+    var enfants = _.where(situation.individus, { role: 'enfant' });
+    var personnesACharge = _.where(situation.individus, { role: 'personneACharge' });
+    $scope.enfantsEtPersonnesACharges = enfants.concat(personnesACharge);
 
     situation.individus.forEach(function(individu) {
         if (individu.paysNaissance) {
@@ -29,6 +34,6 @@ angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', fun
     };
 
     $scope.submit = function() {
-        $state.go('infos_complementaires.adresse_contact', {droit: $stateParams.droit});
+        $state.go('infos_complementaires.adresse_contact', { droit: $stateParams.droit });
     };
 });

@@ -11,16 +11,16 @@
               id="situation-familiale"
               class="form-control"
               ng-options="situationFamiliale.value as situationFamiliale.label for situationFamiliale in situationsFamiliales"
-              ng-model="situation.demandeur.situationFamiliale">
+              ng-model="demandeur.situationFamiliale">
               <option value=""></option>
             </select>
           </div>
         </div>
 
-        <div class="form-group" ng-if="situation.demandeur.situationFamiliale && 'celibataire' !== situation.demandeur.situationFamiliale">
+        <div class="form-group" ng-if="demandeur.situationFamiliale && 'celibataire' !== demandeur.situationFamiliale">
           <label class="col-sm-4 control-label" for="date-situation-familiale">Depuis quand ?</label>
           <div class="col-sm-4">
-            <input type="text" id="date-situation-familiale" class="form-control" placeholder="dd/mm/aaaa" ng-model="situation.demandeur.dateSituationFamiliale" date-autocomplete>
+            <input type="text" id="date-situation-familiale" class="form-control" placeholder="dd/mm/aaaa" ng-model="demandeur.dateSituationFamiliale" date-autocomplete>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
       <div class="form-group">
         <label class="col-sm-4 control-label" for="civilite-demandeur">Sexe</label>
         <div class="col-sm-4">
-          <select id="civilite-demandeur" name="civiliteDemandeur" class="form-control" ng-model="situation.demandeur.civilite">
+          <select id="civilite-demandeur" name="civiliteDemandeur" class="form-control" ng-model="demandeur.civilite">
             <option value="h">Homme</option>
             <option value="f">Femme</option>
           </select>
@@ -38,14 +38,14 @@
       <div class="form-group">
         <label class="col-sm-4 control-label" for="prenom-demandeur">Prénom</label>
         <div class="col-sm-8">
-          <input type="text" name="prenomDemandeur" id="prenom-demandeur" class="form-control" ng-model="situation.demandeur.firstName">
+          <input type="text" name="prenomDemandeur" id="prenom-demandeur" class="form-control" ng-model="demandeur.firstName">
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-4 control-label" for="nom-demandeur">Nom de famille</label>
         <div class="col-sm-8">
-          <input type="text" name="nomDemandeur" id="nom-demandeur" class="form-control" ng-model="situation.demandeur.lastName">
+          <input type="text" name="nomDemandeur" id="nom-demandeur" class="form-control" ng-model="demandeur.lastName">
           <span class="help-block">De naissance</span>
         </div>
       </div>
@@ -53,7 +53,7 @@
       <div class="form-group">
         <label class="col-sm-4 control-label" for="nom-usage-demandeur">Nom d'usage</label>
         <div class="col-sm-8">
-          <input type="text" id="nom-usage-demandeur" class="form-control" ng-model="situation.demandeur.nomUsage">
+          <input type="text" id="nom-usage-demandeur" class="form-control" ng-model="demandeur.nomUsage">
           <span class="help-block">S'il y a lieu, laisser vide sinon</span>
         </div>
       </div>
@@ -61,46 +61,46 @@
       <div class="form-group">
         <label class="col-sm-4 control-label" for="nir-demandeur">Numéro de sécurité sociale</label>
         <div class="col-sm-8">
-          <input type="text" name="nirDemandeur" id="nir-demandeur" class="form-control" ng-model="situation.demandeur.nir">
+          <input type="text" name="nirDemandeur" id="nir-demandeur" class="form-control" ng-model="demandeur.nir">
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-4 control-label" for="pays-naissance-demandeur">Pays de naissance</label>
         <div class="col-sm-4">
-          <select id="pays-naissance-demandeur" class="form-control" ng-model="situation.demandeur.choicePaysNaissance" ng-change="changePaysNaissance(situation.demandeur)">
+          <select id="pays-naissance-demandeur" class="form-control" ng-model="demandeur.choicePaysNaissance" ng-change="changePaysNaissance(demandeur)">
             <option value="france">France</option>
             <option value="autre">Autre</option>
           </select>
         </div>
-        <div class="col-sm-4" ng-if="'autre' === situation.demandeur.choicePaysNaissance">
-          <input type="text"class="form-control" ng-model="situation.demandeur.paysNaissance" placeholder="Nom du pays">
+        <div class="col-sm-4" ng-if="'autre' === demandeur.choicePaysNaissance">
+          <input type="text"class="form-control" ng-model="demandeur.paysNaissance" placeholder="Nom du pays">
         </div>
       </div>
 
-      <div class="form-group" ng-if="'france' === situation.demandeur.choicePaysNaissance">
+      <div class="form-group" ng-if="'france' === demandeur.choicePaysNaissance">
         <label class="col-sm-4 control-label" for="ville-naissance-demandeur">Ville de naissance</label>
         <div class="col-sm-4">
-          <input type="text" id="ville-naissance-demandeur" class="form-control" ng-model="situation.demandeur.villeNaissance">
+          <input type="text" id="ville-naissance-demandeur" class="form-control" ng-model="demandeur.villeNaissance">
         </div>
         <label class="col-sm-2 control-label" for="departement-naissance-demandeur">Département</label>
         <div class="col-sm-2">
-          <input type="text" id="departement-naissance-demandeur" class="form-control" ng-model="situation.demandeur.departementNaissance">
+          <input type="text" id="departement-naissance-demandeur" class="form-control" ng-model="demandeur.departementNaissance">
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-sm-4 control-label">Êtes-vous inscrit(e) à la CAF/MSA de votre département de résidence ?</label>
         <div class="col-sm-8">
-          <button type="button" class="btn btn-sm btn-default" ng-model="situation.demandeur.inscritCaf" btn-radio="true">Oui</button>
-          <button type="button" class="btn btn-sm btn-default" ng-model="situation.demandeur.inscritCaf" btn-radio="false">Non</button>
+          <button type="button" class="btn btn-sm btn-default" ng-model="demandeur.inscritCaf" btn-radio="true">Oui</button>
+          <button type="button" class="btn btn-sm btn-default" ng-model="demandeur.inscritCaf" btn-radio="false">Non</button>
         </div>
       </div>
 
-      <div class="form-group" ng-if="situation.demandeur.inscritCaf">
+      <div class="form-group" ng-if="demandeur.inscritCaf">
         <label class="col-sm-4 control-label" for="numero-allocataire-demandeur">Numéro d'allocataire</label>
         <div class="col-sm-8">
-          <input type="text" id="numero-allocataire-demandeur" class="form-control" ng-model="situation.demandeur.numeroAllocataire">
+          <input type="text" id="numero-allocataire-demandeur" class="form-control" ng-model="demandeur.numeroAllocataire">
         </div>
       </div>
     </div>

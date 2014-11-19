@@ -41,49 +41,50 @@
   <div class="form-group">
     <label class="control-label col-sm-4">Nationalité</label>
     <div class="col-sm-8">
-      <label class="radio-inline">
-        <input type="radio" name="nationalite" ng-model="individu.nationalite" value="fr">
-        Française
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="nationalite" ng-model="individu.nationalite" value="ue">
-        <abbr title="" popover="{{ popoverEee }}" popover-title="Liste des pays de l'EEE" popover-placement="bottom" popover-trigger="mouseenter">EEE</abbr> - <abbr title="" popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr> - Suisse
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="nationalite" ng-model="individu.nationalite" value="autre">
-        Hors <abbr title="" popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr>
-      </label>
+      <div class="radio">
+        <label>
+          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="fr">
+          Française
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="ue">
+          <abbr title="" popover="{{ popoverEee }}" popover-title="Liste des pays de l'EEE" popover-placement="bottom" popover-trigger="mouseenter">EEE</abbr> - <abbr title="" popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr> - Suisse
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="autre">
+          Hors <abbr title="" popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr>
+        </label>
+      </div>
     </div>
   </div>
 
   <div
     class="form-group"
-    ng-if="options.checkResidenceStability && 'ue' === individu.nationalite"
+     ng-if="options.checkResidenceStability && 'ue' === individu.nationalite"
     ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
-          Détenteur d'un droit au séjour valide et
-          <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France</a>
-        </label>
-      </div>
+      <label>
+        <input type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
+        Détenteur d'un droit au séjour valide et
+        <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France</a>
+      </label>
       <span class="help-block" ng-if="submitted && form.disclaimerUe.$invalid">Vous devez cocher cette case pour continuer.</span>
     </div>
   </div>
-
   <div
     class="form-group"
     ng-if="options.checkResidenceStability && 'autre' === individu.nationalite"
     ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="disclaimerNonUe" ng-model="disclaimerNonUe" required>
-          Détenteur d'une carte de résident ou d'un titre de séjour valide et
-          <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France.</a>
-        </label>
-      </div>
+      <label>
+        <input type="checkbox" name="disclaimerNonUe" ng-model="disclaimerNonUe" required>
+        Détenteur d'une carte de résident ou d'un titre de séjour valide et
+        <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France.</a>
+      </label>
       <span class="help-block" ng-if="submitted && form.disclaimerNonUe.$invalid">Vous devez cocher cette case pour continuer.</span>
     </div>
   </div>
@@ -102,10 +103,15 @@
   </div>
 
   <div class="form-group from-group-lg">
+
     <label class="control-label col-sm-4">
-      <span ng-if="'demandeur' === options.individuRole">Êtes-vous</span>
-      <span ng-if="'demandeur' !== options.individuRole">Est-il/elle</span>
-      dans l'une de ces situations ?
+      Situations particulières <em>(facultatif)</em>
+      <div class="small">
+        Cochez la ou les situations qui <br>
+        <span ng-if="'demandeur' === options.individuRole">vous</span>
+        <span ng-if="'demandeur' !== options.individuRole">lui</span>
+        correspondent
+      </div>
     </label>
     <div class="col-sm-8">
       <div class="checkbox" ng-repeat="statut in statutsSpecifiques">

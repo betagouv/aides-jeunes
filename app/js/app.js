@@ -20,7 +20,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                         captureRelationConjoint: captureRelationConjoint || false,
                         capturePrenom: capturePrenom || false,
                         minAge: minAge,
-                        maxAge: maxAge
+                        maxAge: maxAge,
+                        checkResidenceStability: _.contains(['demandeur', 'conjoint'], individuRole)
                     };
                 }
             }

@@ -580,3 +580,10 @@ $tns: #CC2A41;
   background-color: white;
   box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
 }
+
+.help-col {
+  @extend .help-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-style: italic;
+}

@@ -67,11 +67,13 @@
      ng-if="options.checkResidenceStability && 'ue' === individu.nationalite"
     ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
-      <label>
-        <input type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
-        Détenteur d'un droit au séjour valide et
-        <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France</a>
-      </label>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
+          Détenteur d'un droit au séjour valide et
+          <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France</a>
+        </label>
+      </div>
       <span class="help-block" ng-if="submitted && form.disclaimerUe.$invalid">Vous devez cocher cette case pour continuer.</span>
     </div>
   </div>
@@ -80,11 +82,13 @@
     ng-if="options.checkResidenceStability && 'autre' === individu.nationalite"
     ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
-      <label>
-        <input type="checkbox" name="disclaimerNonUe" ng-model="disclaimerNonUe" required>
-        Détenteur d'une carte de résident ou d'un titre de séjour valide et
-        <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France.</a>
-      </label>
+      <div class="checkbox checkbox-multiline">
+        <label>
+          <input type="checkbox" name="disclaimerNonUe" ng-model="disclaimerNonUe" required>
+          Détenteur d'une carte de résident ou d'un titre de séjour valide et
+          <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France.</a>
+        </label>
+      </div>
       <span class="help-block" ng-if="submitted && form.disclaimerNonUe.$invalid">Vous devez cocher cette case pour continuer.</span>
     </div>
   </div>

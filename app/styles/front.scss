@@ -1,26 +1,5 @@
-
-@import 'variables';
-
-$font-size-base:          14px;
-$font-size-large:         ceil(($font-size-base * 1.25));
-$font-size-small:         ceil(($font-size-base * 0.85));
-
-$font-size-h1:            floor(($font-size-base * 2));
-$font-size-h2:            floor(($font-size-base * 1.5));
-$font-size-h3:            ceil(($font-size-base * 1.25));
-$font-size-h4:            ceil(($font-size-base * 1.1));
-$font-size-h5:            $font-size-base;
-$font-size-h6:            ceil(($font-size-base * 0.85));
-
-@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
-@import 'font-open-sans';
-@import 'theme';
+@import 'commons';
 @import 'loading-spinner';
-
-$fa-font-path: "/bower_components/font-awesome/fonts";
-@import "font-awesome/scss/font-awesome";
-
-$btn-default-bg: whitesmoke;
 
 html {
   overflow-y: scroll;
@@ -34,11 +13,7 @@ $body-front-base-padding: 60px;
 .body-front {
   margin-bottom: $main-footer-height;
   padding-top: $body-front-base-padding;
-  background-color: whitesmoke;
-}
-
-.body-acceptance-tests {
-  padding-top: 45px;
+  background-color: $color-background;
 }
 
 .browsehappy {
@@ -53,39 +28,12 @@ $body-front-base-padding: 60px;
   padding-top: 20px;
 }
 
-.alert {
-  font-size: $font-size-base;
-}
-
-.alert > *:first-child,
-.jumbotron > *:first-child {
-  margin-top: 0;
-}
-
-.jumbotron > *:last-child,
-.thumbnail .caption > *:last-child,
-.panel-body > *:last-child {
-  margin-bottom: 0;
-}
-
-.nav.nav-tabs {
-  margin-bottom: 10px;
-}
-
-.btn {
-  white-space: normal;
-}
-
 .table-borderless > tbody > tr > td {
   border-top: none;
 }
 
 .table td.align-middle {
   vertical-align: middle;
-}
-
-.progress-bar {
-  transition: none;
 }
 
 .main-navbar {
@@ -158,29 +106,6 @@ $body-front-base-padding: 60px;
     color: white;
     font-size: 12px;
   }
-}
-
-.navbar-acceptance-tests {
-  @extend .navbar;
-  @extend .navbar-default;
-  @extend .navbar-inverse;
-  @extend .navbar-fixed-top;
-}
-
-.nav, .pagination, .carousel, .panel-title a {
-  cursor: pointer;
-}
-
-.label-lg {
-  font-size: 20px;
-}
-
-.btn-next {
-  margin-top: 15px;
-}
-
-.icon-lg {
-  font-size: 80px;
 }
 
 .homepage-call-to-action {
@@ -484,32 +409,21 @@ $tns: #CC2A41;
   padding: 20px 0;
 }
 
-.accordion-toggle {
-  .test-is-valid {
-    margin-right: 10px;
-    color: #DDD;
-  }
-
-  &:hover {
-    text-decoration: none;
-  }
-}
-
 .panel-danger {
   .test-detail {
-    color: whitesmoke;
+    color: $color-background;
   }
 }
 
 .panel-warning {
   .test-detail {
-    color: whitesmoke;
+    color: $color-background;
   }
 }
 
 .panel-success {
   .test-detail {
-    color: whitesmoke;
+    color: $color-background;
   }
 }
 
@@ -521,51 +435,51 @@ $tns: #CC2A41;
 }
 
 .accordion-ressources {
-    .panel {
-        border: none;
-        font-size: 12px;
-    }
+  .panel {
+    border: none;
+    font-size: 12px;
+  }
 
-    .panel-heading {
-        padding: 5px 8px;
-    }
+  .panel-heading {
+    padding: 5px 8px;
+  }
 
-    .panel-title {
-        font-size: 14px;
-    }
+  .panel-title {
+    font-size: 14px;
+  }
 
-    .panel-body {
-        padding: 10px;
-    }
+  .panel-body {
+    padding: 10px;
+  }
 
-    hr {
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
+  hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 
-    .recap-indemnites {
-      @include panel-variant-recap($indemnites);
-    }
+  .recap-indemnites {
+    @include panel-variant-recap($indemnites);
+  }
 
-    .recap-pensions {
-      @include panel-variant-recap($pensions);
-    }
+  .recap-pensions {
+    @include panel-variant-recap($pensions);
+  }
 
-    .recap-allocations {
-      @include panel-variant-recap($allocations);
-    }
+  .recap-allocations {
+    @include panel-variant-recap($allocations);
+  }
 
-    .recap-revenusActivite {
-      @include panel-variant-recap($revenusActivite);
-    }
+  .recap-revenusActivite {
+    @include panel-variant-recap($revenusActivite);
+  }
 
-    .recap-autre {
-      @include panel-variant-recap($autre);
-    }
+  .recap-autre {
+    @include panel-variant-recap($autre);
+  }
 
-    .recap-tns {
-      @include panel-variant-recap($tns);
-    }
+  .recap-tns {
+    @include panel-variant-recap($tns);
+  }
 }
 
 .whiteframe-z1 {

@@ -1,0 +1,27 @@
+@import 'commons';
+
+.body-acceptance-tests {
+  padding-top: 45px;
+}
+
+.progress-bar {
+  transition: none;
+}
+
+.navbar-acceptance-tests {
+  @extend .navbar;
+  @extend .navbar-default;
+  @extend .navbar-inverse;
+  @extend .navbar-fixed-top;
+}
+
+.accordion-toggle {
+  .test-is-valid {
+    margin-right: 10px;
+    color: #DDD;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,41 @@
+@import 'theme-variables';
+@import 'variables';
+@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import 'font-open-sans';
+@import 'theme';
+@import "font-awesome/scss/font-awesome";
+
+.btn {
+  white-space: normal;
+}
+
+.alert {
+  font-size: $font-size-base;
+}
+
+.alert > *:first-child,
+.jumbotron > *:first-child {
+  margin-top: 0;
+}
+
+.jumbotron > *:last-child,
+.thumbnail .caption > *:last-child,
+.panel-body > *:last-child {
+  margin-bottom: 0;
+}
+
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
+}
+
+.label-lg {
+  font-size: 20px;
+}
+
+.btn-next {
+  margin-top: 15px;
+}
+
+.icon-lg {
+  font-size: 80px;
+}

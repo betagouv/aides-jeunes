@@ -58,30 +58,43 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
         return text.replace(/\n/g, '<br>');
     };
 
-    $scope.launchSingle = function(test) {
+    $scope.launchSingleTest = function(test) {
         delete test.status;
+        $scope.pendingTests++;
         test.running = true;
         test.droitsAttendus.forEach(function(droit) {
             delete droit.status;
             delete droit.actualValue;
         });
 
-        return AcceptanceTestsService.launchTest(test);
+        return AcceptanceTestsService.launchTest(test)
+            .finally(function() {
+                $scope.pendingTests--;
+            });
     };
 
-    $scope.launchAll = function() {
-        $scope.pendingTests = $scope.tests.length;
+    $scope.launchTestCategory = function(category, errorCallback) {
+        category.errors = 0;
+        category.pendingTests = 0;
+        category.tests.forEach(function(test) {
+            category.pendingTests++;
+            $scope.launchSingleTest(test)
+                .catch(function() {
+                    category.errors++;
+                    if (errorCallback) {
+                        errorCallback();
+                    }
+                }).finally(function() {
+                    category.pendingTests--;
+                });
+        });
+    };
+
+    $scope.launchAllTests = function() {
         $scope.errors = 0;
         $scope.categories.forEach(function(category) {
-            category.errors = 0;
-            category.tests.forEach(function(test) {
-                $scope.launchSingle(test)
-                    .catch(function() {
-                        $scope.errors++;
-                        category.errors++;
-                    }).finally(function() {
-                        $scope.pendingTests--;
-                    });
+            $scope.launchTestCategory(category, function() {
+                $scope.errors++;
             });
         });
     };

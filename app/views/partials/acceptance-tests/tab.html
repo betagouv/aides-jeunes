@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-3">
     <p>
-      <button type="button" ng-disabled="pendingTests > 0" class="btn btn-default" ng-click="launchAll()">
+      <button type="button" ng-disabled="pendingTests > 0" class="btn btn-default" ng-click="launchAllTests()">
         <span ng-if="pendingTests > 0">
           <i class="fa fa-spinner fa-spin"></i> Tests en cours...
         </span>
@@ -28,8 +28,20 @@
 
 <div class="row">
   <div class="col-lg-12" ng-repeat="(idxCategory, category) in categories">
+    <button
+      type="button"
+      class="btn btn-default btn-sm pull-right"
+      ng-disabled="category.pendingTests || pendingTests"
+      ng-click="launchTestCategory(category)">
+      <span ng-if="category.pendingTests || pendingTests">
+        <i class="fa fa-spinner fa-spin"></i> Tests en cours...
+      </span>
+      <span ng-if="!category.pendingTests && !pendingTests">
+        Lancer les tests
+      </span>
+    </button>
     <h2>{{ category.name }}</h2>
-    <p ng-if="showErrors()">Tests en erreur : {{ category.errors }}/{{ category.tests.length }}</p>
+    <p ng-if="category.errors">Tests en erreur : {{ category.errors }}/{{ category.tests.length }}</p>
     <accordion close-others="false">
       <accordion-group
         ng-repeat="(idxTest, test) in category.tests"
@@ -72,7 +84,7 @@
           <button type="button" class="btn btn-default btn-xs" ng-if="test.validated" ng-click="invalidTest(idxCategory, category, idxTest, test)">
             <i class="fa fa-times text-warning"></i> Invalider
           </button>
-          <button type="button" class="btn btn-default btn-xs" ng-disabled="test.running" ng-click="launchSingle(test)">
+          <button type="button" class="btn btn-default btn-xs" ng-disabled="test.running" ng-click="launchSingleTest(test)">
             <span ng-if="test.running"><i class="fa fa-spinner fa-spin"></i> En cours...</span>
             <span ng-if="!test.running"><i class="fa fa-play text-primary"></i> Relancer</span>
           </button>

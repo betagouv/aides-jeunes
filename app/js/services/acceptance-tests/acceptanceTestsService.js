@@ -44,9 +44,9 @@ angular.module('acceptanceTests').factory('AcceptanceTestsService', function($q,
         launchTest: function(test) {
             var deferred = $q.defer();
 
-            var promise = $http.get('/api/situations/' + test.situation + '/simulation');
+            var promise = $http.post('/api/acceptance-tests/' + test._id + '/executions', {});
             promise.then(function(result) {
-                var droits = result.data;
+                var droits = result.data.droitsCalcules;
                 test.status = 'ok';
                 test.droitsAttendus.forEach(function(droit) {
                     var actualValue = droits[droit.id];

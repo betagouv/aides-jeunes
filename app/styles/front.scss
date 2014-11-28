@@ -123,6 +123,11 @@ $body-front-base-padding: 60px;
 
   &.mobile {
     background-image: url('../img/homepage_mobile.jpg');
+
+    .jumbotron {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   .jumbotron {

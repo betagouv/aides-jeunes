@@ -43,7 +43,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         })
         .state('contribuez', {
             url: '/contribuez',
-            templateUrl: '/partials/contribuez.html'
+            controller: 'ContribuezCtrl',
+            templateUrl: '/partials/contribuez.html',
+            resolve: {
+                acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
+                    return AcceptanceTestsService.getAndHandleLastResult('validated');
+                }]
+            }
         })
         .state('faq', {
             url: '/faq',

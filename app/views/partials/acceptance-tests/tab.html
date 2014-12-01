@@ -50,9 +50,9 @@
         ng-class="testStatusClass(test)">
         <accordion-heading>
           <span class="test-is-valid">
-            <i ng-if="test.state === 'validated'" class="fa fa-check-circle text-success" tooltip="Test validé"></i>
+            <i ng-if="test.state === 'validated'" class="fa fa-check-circle" tooltip="Test validé"></i>
             <i ng-if="test.state === 'pending'" class="fa fa-clock-o" tooltip="Test en attente de validation"></i>
-            <i ng-if="test.state === 'rejected'" class="fa fa-exclamation-circle text-danger" tooltip="Test refusé"></i>
+            <i ng-if="test.state === 'rejected'" class="fa fa-exclamation-circle" tooltip="Test refusé"></i>
           </span>
           {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
           <div ng-if="test.open && test.createdBy">
@@ -75,7 +75,7 @@
         <div class="test-actions text-right">
 
           <div class="btn-group" dropdown>
-            <button type="button" class="btn btn-default btn-xs" ng-if="test.state === 'rejected'" ng-click="validTest(idxCategory, category, idxTest, test)">
+            <button type="button" class="btn btn-default btn-xs" ng-if="test.state !== 'validated'" ng-click="validTest(idxCategory, category, idxTest, test)">
               <i class="fa fa-check text-success"></i> Valider
             </button>
             <button type="button" class="btn btn-default btn-xs" ng-if="test.state === 'validated'" ng-click="rejectTest(idxCategory, category, idxTest, test)">

@@ -18,10 +18,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             controller: 'TabCtrl',
             templateUrl: '/acceptance-tests/partials/tab.html',
             resolve: {
-                acceptanceTests: ['$http', function($http) {
-                    return $http.get('/api/acceptance-tests').then(function(result) {
-                        return result.data;
-                    });
+                acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
+                    return AcceptanceTestsService.getAndHandleLastResult('');
                 }]
             }
         })
@@ -30,10 +28,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             controller: 'TabCtrl',
             templateUrl: '/acceptance-tests/partials/tab.html',
             resolve: {
-                acceptanceTests: ['$http', function($http) {
-                    return $http.get('/api/acceptance-tests/validated').then(function(result) {
-                        return result.data;
-                    });
+                acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
+                    return AcceptanceTestsService.getAndHandleLastResult('validated');
                 }]
             }
         })
@@ -42,10 +38,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             controller: 'TabCtrl',
             templateUrl: '/acceptance-tests/partials/tab.html',
             resolve: {
-                acceptanceTests: ['$http', function($http) {
-                    return $http.get('/api/acceptance-tests/rejected').then(function(result) {
-                        return result.data;
-                    });
+                acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
+                    return AcceptanceTestsService.getAndHandleLastResult('rejected');
                 }]
             }
         })
@@ -54,10 +48,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             controller: 'TabCtrl',
             templateUrl: '/acceptance-tests/partials/tab.html',
             resolve: {
-                acceptanceTests: ['$http', function($http) {
-                    return $http.get('/api/acceptance-tests/pending').then(function(result) {
-                        return result.data;
-                    });
+                acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
+                    return AcceptanceTestsService.getAndHandleLastResult('pending');
                 }]
             }
         })

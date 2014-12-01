@@ -402,24 +402,6 @@ $tns: #CC2A41;
   padding: 20px 0;
 }
 
-.panel-danger {
-  .test-detail {
-    color: $color-background;
-  }
-}
-
-.panel-warning {
-  .test-detail {
-    color: $color-background;
-  }
-}
-
-.panel-success {
-  .test-detail {
-    color: $color-background;
-  }
-}
-
 @mixin panel-variant-recap($color) {
   border-left: 7px solid $color;
   &.active, &.active:focus {

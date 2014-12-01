@@ -100,10 +100,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="expectedDroit in test.droitsAttendus" ng-class="expectedDroitStatusClass(expectedDroit)">
-              <td>{{ droits[expectedDroit.id].shortLabel }}</td>
-              <td>{{ displayDroitValue(expectedDroit.expectedValue) }}</td>
-              <td>{{ displayDroitValue(expectedDroit.actualValue) }}</td>
+            <tr ng-repeat="droitAttendu in test.droitsAttendus" ng-class="droitAttenduStatusClass(droitAttendu)">
+              <td>{{ droits[droitAttendu.code].shortLabel }}</td>
+              <td>{{ displayDroitValue(droitAttendu.value) }}</td>
+              <td>{{ displayDroitValue(droitAttendu.actualValue) }}</td>
             </tr>
           </tbody>
         </table>

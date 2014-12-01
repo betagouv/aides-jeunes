@@ -27,14 +27,14 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
         return map[test.status];
     };
 
-    $scope.expectedDroitStatusClass = function(expectedDroit) {
+    $scope.droitAttenduStatusClass = function(droitAttendu) {
         var map = {
             'ok': 'success',
             'ko': 'danger',
             'unknown': 'info',
             'near': 'warning',
         };
-        return map[expectedDroit.status];
+        return map[droitAttendu.status];
     };
 
     $scope.displayDroitValue = function(value) {

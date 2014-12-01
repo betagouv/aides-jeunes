@@ -59,13 +59,13 @@ angular.module('acceptanceTests').factory('AcceptanceTestsService', function($q,
                     if (angular.isDefined(actualValue)) {
                         delete droits[droit.code];
                         droit.actualValue = actualValue.value;
-                        if (_.isUndefined(droit.expectedValue)) {
+                        if (_.isUndefined(droit.value)) {
                             droit.status = 'unknown';
-                        } else if (droit.actualValue === droit.expectedValue) {
+                        } else if (droit.actualValue === droit.value) {
                             droit.status = 'ok';
-                        } else if ((Math.abs(droit.actualValue - droit.expectedValue) / droit.expectedValue) < 0.02) {
+                        } else if ((Math.abs(droit.actualValue - droit.value) / droit.value) < 0.02) {
                             droit.status = 'ok';
-                        } else if ((Math.abs(droit.actualValue - droit.expectedValue) / droit.expectedValue) < 0.1) {
+                        } else if ((Math.abs(droit.actualValue - droit.value) / droit.value) < 0.1) {
                             droit.status = 'near';
                             if (test.status !== 'ko') {
                                 test.status = 'near';
@@ -77,12 +77,12 @@ angular.module('acceptanceTests').factory('AcceptanceTestsService', function($q,
                     }
                 });
 
-                _.forEach(droits, function(value, id) {
-                    if (value.value) {
+                _.forEach(droits, function(droit, id) {
+                    if (droit.value) {
                         test.droitsAttendus.push({
-                            id: id,
-                            expectedValue: undefined,
-                            actualValue: value.value,
+                            code: id,
+                            value: undefined,
+                            actualValue: droit.value,
                             status: 'unknown'
                         });
                     }

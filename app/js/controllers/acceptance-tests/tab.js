@@ -59,13 +59,8 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
     };
 
     $scope.launchSingleTest = function(test) {
-        delete test.status;
         $scope.pendingTests++;
         test.running = true;
-        test.droitsAttendus.forEach(function(droit) {
-            delete droit.status;
-            delete droit.actualValue;
-        });
 
         return AcceptanceTestsService.launchTest(test)
             .finally(function() {

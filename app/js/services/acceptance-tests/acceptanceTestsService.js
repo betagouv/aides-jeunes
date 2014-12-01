@@ -42,6 +42,12 @@ angular.module('acceptanceTests').factory('AcceptanceTestsService', function($q,
         },
 
         launchTest: function(test) {
+            delete test.status;
+            test.droitsAttendus.forEach(function(droit) {
+                delete droit.status;
+                delete droit.actualValue;
+            });
+
             var deferred = $q.defer();
 
             var promise = $http.post('/api/acceptance-tests/' + test._id + '/executions', {});
@@ -49,9 +55,9 @@ angular.module('acceptanceTests').factory('AcceptanceTestsService', function($q,
                 var droits = _.indexBy(result.data.droitsCalcules, 'code');
                 test.status = 'ok';
                 test.droitsAttendus.forEach(function(droit) {
-                    var actualValue = droits[droit.id];
+                    var actualValue = droits[droit.code];
                     if (angular.isDefined(actualValue)) {
-                        delete droits[droit.id];
+                        delete droits[droit.code];
                         droit.actualValue = actualValue.value;
                         if (_.isUndefined(droit.expectedValue)) {
                             droit.status = 'unknown';

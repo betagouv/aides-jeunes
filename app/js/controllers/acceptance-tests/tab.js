@@ -106,15 +106,15 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
         });
     };
 
-    $scope.invalidTest = function(idxCategory, category, idxTest, test) {
-        $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'error'}).then(function() {
+    $scope.rejectTest = function(idxCategory, category, idxTest, test) {
+        $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'rejected'}).then(function() {
             if (!$state.is('index.invalidated')) {
                 category.tests.splice(idxTest, 1);
                 if (category.tests.length === 0) {
                     $scope.categories.splice(idxCategory, 1);
                 }
             }
-            test.state = 'error';
+            test.state = 'rejected';
         });
     };
 

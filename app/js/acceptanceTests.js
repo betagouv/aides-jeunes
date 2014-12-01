@@ -43,7 +43,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             templateUrl: '/acceptance-tests/partials/tab.html',
             resolve: {
                 acceptanceTests: ['$http', function($http) {
-                    return $http.get('/api/acceptance-tests/error').then(function(result) {
+                    return $http.get('/api/acceptance-tests/rejected').then(function(result) {
                         return result.data;
                     });
                 }]

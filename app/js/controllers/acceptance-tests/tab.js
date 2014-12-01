@@ -95,38 +95,38 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
     };
 
     $scope.validTest = function(idxCategory, category, idxTest, test) {
-        $http.put('/api/acceptance-tests/' + test._id + '/validation', {validated: true}).then(function() {
+        $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'validated'}).then(function() {
             if (!$state.is('index.validated')) {
                 category.tests.splice(idxTest, 1);
                 if (category.tests.length === 0) {
                     $scope.categories.splice(idxCategory, 1);
                 }
             }
-            test.validated = true;
+            test.state = 'validated';
         });
     };
 
     $scope.invalidTest = function(idxCategory, category, idxTest, test) {
-        $http.put('/api/acceptance-tests/' + test._id + '/validation', {validated: false}).then(function() {
+        $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'error'}).then(function() {
             if (!$state.is('index.invalidated')) {
                 category.tests.splice(idxTest, 1);
                 if (category.tests.length === 0) {
                     $scope.categories.splice(idxCategory, 1);
                 }
             }
-            test.validated = false;
+            test.state = 'error';
         });
     };
 
     $scope.setWaitingTest = function(idxCategory, category, idxTest, test) {
-        $http.delete('/api/acceptance-tests/' + test._id + '/validation').then(function() {
+        $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'pending'}).then(function() {
             if (!$state.is('index.waiting')) {
                 category.tests.splice(idxTest, 1);
                 if (category.tests.length === 0) {
                     $scope.categories.splice(idxCategory, 1);
                 }
             }
-            delete test.validated;
+            test.state = 'pending';
         });
     };
 

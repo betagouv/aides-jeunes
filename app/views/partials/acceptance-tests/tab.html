@@ -1,5 +1,3 @@
-<br>
-
 <div class="row">
   <div class="col-lg-3">
     <p>
@@ -52,8 +50,9 @@
         ng-class="testStatusClass(test)">
         <accordion-heading>
           <span class="test-is-valid">
-            <i ng-if="test.validated" ng-class="{'text-success': !test.status}" class="fa fa-check-circle"></i>
-            <i ng-if="!test.validated" class="fa fa-circle-o"></i>
+            <i ng-if="test.state === 'validated'" class="fa fa-check-circle text-success" tooltip="Test validé"></i>
+            <i ng-if="test.state === 'pending'" class="fa fa-clock-o" tooltip="Test en attente de validation"></i>
+            <i ng-if="test.state === 'error'" class="fa fa-exclamation-circle text-danger" tooltip="Test refusé"></i>
           </span>
           {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
           <div ng-if="test.open && test.createdBy">

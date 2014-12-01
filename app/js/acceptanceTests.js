@@ -43,7 +43,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             templateUrl: '/acceptance-tests/partials/tab.html',
             resolve: {
                 acceptanceTests: ['$http', function($http) {
-                    return $http.get('/api/acceptance-tests/invalidated').then(function(result) {
+                    return $http.get('/api/acceptance-tests/error').then(function(result) {
                         return result.data;
                     });
                 }]
@@ -55,7 +55,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             templateUrl: '/acceptance-tests/partials/tab.html',
             resolve: {
                 acceptanceTests: ['$http', function($http) {
-                    return $http.get('/api/acceptance-tests/waiting').then(function(result) {
+                    return $http.get('/api/acceptance-tests/pending').then(function(result) {
                         return result.data;
                     });
                 }]

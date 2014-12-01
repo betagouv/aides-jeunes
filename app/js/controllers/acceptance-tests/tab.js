@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, $q, $window, $state, $stateParams, $location, $timeout, droitsDescription, acceptanceTests, AcceptanceTestsService) {
+angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, $q, $window, $state, $stateParams, $location, $timeout, $modal, droitsDescription, acceptanceTests, AcceptanceTestsService) {
     $scope.$emit('stopWaiting');
 
     $scope.tests = acceptanceTests;
@@ -96,7 +96,7 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
 
     $scope.validTest = function(idxCategory, category, idxTest, test) {
         $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'validated'}).then(function() {
-            if (!$state.is('index.validated')) {
+            if (!$state.is('index.validated') && !$state.is('index.all')) {
                 category.tests.splice(idxTest, 1);
                 if (category.tests.length === 0) {
                     $scope.categories.splice(idxCategory, 1);
@@ -107,20 +107,43 @@ angular.module('acceptanceTests').controller('TabCtrl', function($scope, $http, 
     };
 
     $scope.rejectTest = function(idxCategory, category, idxTest, test) {
-        $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'rejected'}).then(function() {
-            if (!$state.is('index.invalidated')) {
-                category.tests.splice(idxTest, 1);
-                if (category.tests.length === 0) {
-                    $scope.categories.splice(idxCategory, 1);
+        var modalInstance = $modal.open({
+            templateUrl: '/acceptance-tests/partials/modal.html',
+            resolve: {
+                comment: function() {
+                    return test.comment;
                 }
+            },
+            controller: function($scope, $modalInstance, comment) {
+                $scope.comment = comment;
+                $scope.ok = function (comment) {
+                    $modalInstance.close(comment);
+                };
+
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+                };
             }
-            test.state = 'rejected';
+        });
+
+        modalInstance.result.then(function (comment) {
+            $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'rejected', comment: comment}).then(function() {
+                if (!$state.is('index.invalidated') && !$state.is('index.all')) {
+                    category.tests.splice(idxTest, 1);
+                    if (category.tests.length === 0) {
+                        $scope.categories.splice(idxCategory, 1);
+                    }
+                }
+                test.state = 'rejected';
+            });
+        }, function () {
+          // on modal dismissed
         });
     };
 
     $scope.setWaitingTest = function(idxCategory, category, idxTest, test) {
         $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'pending'}).then(function() {
-            if (!$state.is('index.waiting')) {
+            if (!$state.is('index.waiting') && !$state.is('index.all')) {
                 category.tests.splice(idxTest, 1);
                 if (category.tests.length === 0) {
                     $scope.categories.splice(idxCategory, 1);

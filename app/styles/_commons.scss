@@ -39,3 +39,15 @@
 .icon-lg {
   font-size: 80px;
 }
+
+.alert-warning-inverse {
+  background-color: white;
+  border: 1px solid $btn-warning-border;
+  color: $brand-warning;
+  font-weight: 400;
+  text-align: justify;
+
+  .row {
+    padding-top: 11px;
+  }
+}

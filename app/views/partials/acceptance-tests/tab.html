@@ -79,7 +79,7 @@
               <i class="fa fa-check text-success"></i> Valider
             </button>
             <button type="button" class="btn btn-default btn-xs" ng-if="test.state === 'validated'" ng-click="rejectTest(idxCategory, category, idxTest, test)">
-              <i class="fa fa-times text-warning"></i> Refuser
+              <i class="fa fa-times text-danger"></i> Refuser
             </button>
             <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               <span class="caret"></span>
@@ -99,7 +99,7 @@
                   ui-sref="."
                   ng-if="test.validated === true || test.validated === undefined"
                   ng-click="rejectTest(idxCategory, category, idxTest, test)">
-                  <i class="fa fa-times text-warning"></i> Refuser
+                  <i class="fa fa-times text-danger"></i> Refuser
                 </a>
               </li>
               <li>
@@ -139,6 +139,17 @@
             <span ng-if="!test.running"><i class="fa fa-play text-primary"></i> Relancer</span>
           </button>
         </div>
+
+        <br>
+
+        <div class="alert alert-warning-inverse" ng-if="test.comment">
+          <p>
+            <i class="fa fa-exclamation-triangle"></i>
+            <strong>Commentaire:</strong>
+            {{test.comment}}
+          </p>
+        </div>
+
         <p ng-if="test.description" ng-bind-html="newLineToBr(test.description)"></p>
 
         <table class="table table-bordered">

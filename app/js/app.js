@@ -47,7 +47,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/contribuez.html',
             resolve: {
                 acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
-                    return AcceptanceTestsService.getAndHandleLastResult('validated');
+                    return AcceptanceTestsService.getAndHandleLastResult('public');
                 }]
             }
         })

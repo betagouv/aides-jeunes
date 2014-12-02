@@ -16,7 +16,13 @@
 
   <p>Bienvenue dans la communauté mes-aides.gouv.fr !</p>
 
-  <h1>Liste des tests par catégorie</h1>
+  <h1>Liste des {{ tests.length }} tests</h1>
+
+  <p>
+    Voici la liste des tests métier de mes-aides.
+    Ils ont été créés par l'équipe de développement, par des personnes des organismes versant les aides sociales,
+    ainsi que par des personnes extérieures.
+  </p>
 
   <div ng-repeat="(idxCategory, category) in categories">
     <h2>{{ category.name }}</h2>

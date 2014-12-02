@@ -1,56 +1,63 @@
 <div class="container">
   <h1>Contribuez !</h1>
-  <p>Mes-aides est un projet ouvert et participatif.
-  Le code de l'outil est disponible en Open Source <a href="https://github.com/sgmap">sur GitHub</a> où vous pourrez rejoindre si vous le souhaitez la communauté des développeurs.</p>
 
-  <p>Par ailleurs, produire des tests à partir de cas réels qui fonctionnenent ou ne fonctionnent pas a beaucoup de valeur pour sécuriser et faire évoluer l'outil. En fin de simulation, un bouton est disponible pour sauvegarder vos cas de tests. N'oubliez pas de documenter chaque cas avec les textes réglementaires et les explications qui les justifient.</p>
+  <p>
+    Mes-aides est un projet ouvert et participatif.
+    Le code de l'outil est disponible en Open Source <a href="https://github.com/sgmap">sur GitHub</a>
+    où vous pourrez rejoindre si vous le souhaitez la communauté des développeurs.
+  </p>
+
+  <p>
+    Par ailleurs, produire des tests à partir de cas réels qui fonctionnenent ou ne fonctionnent pas
+    a beaucoup de valeur pour sécuriser et faire évoluer l'outil.
+    En fin de simulation, un bouton est disponible pour sauvegarder vos cas de tests.
+    N'oubliez pas de documenter chaque cas avec les textes réglementaires et les explications qui les justifient.
+  </p>
 
   <p>Bienvenue dans la communauté mes-aides.gouv.fr !</p>
 
   <h1>Liste des tests par catégorie</h1>
 
-  <div class="row">
-    <div class="col-lg-12" ng-repeat="(idxCategory, category) in categories">
-      <h2>{{ category.name }}</h2>
-      <accordion close-others="false">
-        <accordion-group
-          ng-repeat="(idxTest, test) in category.tests"
-          id="test-{{ test._id }}"
-          is-open="test.open"
-          ng-class="testStatusClass(test)">
-          <accordion-heading>
-            {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
-            <div ng-if="test.open && test.createdAt">
-              <small class="test-detail">
-                Créé le {{test.createdAt}}
-              </small>
-            </div>
-            <div ng-if="test.open && test.updatedAt">
-              <small class="test-detail">
-                Dernière mise à jour le {{test.updatedAt}}
-              </small>
-            </div>
-          </accordion-heading>
-          <pre>{{test}}</pre>
-          <p ng-if="test.description" ng-bind-html="newLineToBr(test.description)"></p>
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Droit</th>
-                <th>Valeur attendue</th>
-                <th>Valeur obtenue</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="droitAttendu in test.droitsAttendus" ng-class="droitAttenduStatusClass(droitAttendu)">
-                <td>{{ droits[droitAttendu.code].shortLabel }}</td>
-                <td>{{ displayDroitValue(droitAttendu.value) }}</td>
-                <td>{{ displayDroitValue(droitAttendu.actualValue) }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </accordion-group>
-      </accordion>
-    </div>
+  <div ng-repeat="(idxCategory, category) in categories">
+    <h2>{{ category.name }}</h2>
+    <accordion close-others="false">
+      <accordion-group
+        ng-repeat="(idxTest, test) in category.tests"
+        id="test-{{ test._id }}"
+        is-open="test.open"
+        ng-class="testStatusClass(test)">
+        <accordion-heading>
+          {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
+          <div ng-if="test.open && test.createdAt">
+            <small class="test-detail">
+              Créé le {{test.createdAt}}
+            </small>
+          </div>
+          <div ng-if="test.open && test.updatedAt">
+            <small class="test-detail">
+              Dernière mise à jour le {{test.updatedAt}}
+            </small>
+          </div>
+        </accordion-heading>
+        <pre>{{test}}</pre>
+        <p ng-if="test.description" ng-bind-html="newLineToBr(test.description)"></p>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Droit</th>
+              <th>Valeur attendue</th>
+              <th>Valeur obtenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="droitAttendu in test.droitsAttendus" ng-class="droitAttenduStatusClass(droitAttendu)">
+              <td>{{ droits[droitAttendu.code].shortLabel }}</td>
+              <td>{{ displayDroitValue(droitAttendu.value) }}</td>
+              <td>{{ displayDroitValue(droitAttendu.actualValue) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </accordion-group>
+    </accordion>
   </div>
 </div>

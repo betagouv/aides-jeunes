@@ -1,5 +1,7 @@
 'use strict';
 
+/* global _ */
+
 describe('IndividuService', function() {
     var service;
 
@@ -83,7 +85,7 @@ describe('IndividuService', function() {
         it('Should return true only if individu has role "demandeur" or "conjoint"', function() {
             // given
             var roles = ['demandeur', 'conjoint', 'enfant', 'personneACharge', undefined];
-            var individus = _.map(roles, function(role) { return { role: role }});
+            var individus = _.map(roles, function(role) { return { role: role }; });
 
             // when
             var results = _.map(individus, _.bind(service.isParent, service));

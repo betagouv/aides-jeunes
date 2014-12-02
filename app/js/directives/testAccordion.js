@@ -4,7 +4,6 @@ angular.module('ddsCommon').directive('testAccordion', function() {
     return {
         restrict: 'E',
         templateUrl: '/acceptance-tests/partials/test-accordion.html',
-        transclue: true,
         scope: {
             category: '=',
             idxCategory: '=',

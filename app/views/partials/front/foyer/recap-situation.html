@@ -4,6 +4,7 @@
 <individu-block ng-repeat="individu in situation.individus" individu="individu"></individu-block>
 
 <div ng-if="situation.logement">
+  <a ui-sref="foyer.logement" class="pull-right"><i class="fa fa-edit"></i> Modifier</a>
   <h4 class="section-header">Votre logement</h4>
   <div class="situation-block">
     <div ng-bind-html="recapLogement|uppercaseFirst"></div>
@@ -14,6 +15,7 @@
 </div>
 
 <div ng-if="situation.ressourcesCaptured">
+  <a ui-sref="foyer.ressources.types" class="pull-right"><i class="fa fa-edit"></i> Modifier</a>
   <h4 class="section-header">Vos ressources</h4>
   <accordion
     close-others="true"
@@ -59,6 +61,7 @@
 </div>
 
 <div ng-if="situation.patrimoine">
+  <a ui-sref="foyer.patrimoine" class="pull-right"><i class="fa fa-edit"></i> Modifier</a>
   <h4 class="section-header">Votre patrimoine</h4>
   <em class="small" ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun patrimoine déclaré</em>
   <div class="situation-block">

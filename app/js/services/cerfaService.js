@@ -102,7 +102,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return _.contains(['locataire', 'colocataire'], situation.logement.type);
         },
         'rsa.identite': function(individu) {
-            if (_.contains(['demandeur', 'conjoint'], individu.role)) {
+            if (IndividuService.isParent(individu)) {
                 return _.contains(['fr', 'ue'], individu.nationalite);
             }
 
@@ -117,28 +117,28 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             ]);
         },
         'rsa.avis_paiement_pension_invalidite': function(individu) {
-            if (_.contains(['demandeur', 'conjoint'], individu.role)) {
+            if (IndividuService.isParent(individu)) {
                 return !!_.find(individu.ressources, {type: 'pensionsInvalidite'});
             }
 
             return false;
         },
         'rsa.avis_paiement_retraite': function(individu) {
-            if (_.contains(['demandeur', 'conjoint'], individu.role)) {
+            if (IndividuService.isParent(individu)) {
                 return !!_.find(individu.situationsPro, {situation: 'retraite'});
             }
 
             return false;
         },
         'rsa.avis_paiement_rente_accident_travail': function(individu) {
-            if (_.contains(['demandeur', 'conjoint'], individu.role)) {
+            if (IndividuService.isParent(individu)) {
                 return !!_.find(individu.ressources, {type: 'indJourAccidentDuTravail'});
             }
 
             return false;
         },
         'rsa.declaration_revenus_saisonnier': function(individu) {
-            if (_.contains(['demandeur', 'conjoint'], individu.role)) {
+            if (IndividuService.isParent(individu)) {
                 return !!_.find(individu.situationsPro, {situation: 'travailleur_saisonnier'});
             }
 
@@ -157,7 +157,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return false;
         },
         'aspa.titre_sejour': function(individu) {
-            if (_.contains(['demandeur', 'conjoint'], individu.role)) {
+            if (IndividuService.isParent(individu)) {
                 return 'autre' === individu.nationalite;
             }
 

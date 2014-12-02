@@ -24,7 +24,7 @@ describe('IndividuService', function() {
 
         it('Should return "Votre conjoint" if individu has role conjoint', function() {
             // given
-            var individu = {role: 'conjoint', firstName: 'Arnaud'};
+            var individu = { role: 'conjoint', firstName: 'Arnaud' };
 
             // when
             var result = service.label(individu);
@@ -35,7 +35,7 @@ describe('IndividuService', function() {
 
         it('Should return the individu\'s first name if individu has not role demandeur neither conjoint', function() {
             // given
-            var individu = {role: 'fakeRole', firstName: 'Arnaud'};
+            var individu = { role: 'fakeRole', firstName: 'Arnaud' };
 
             // when
             var result = service.label(individu);
@@ -48,7 +48,7 @@ describe('IndividuService', function() {
     describe('function formatStatutsSpecifiques()', function() {
         it('Should return empty string if no specific situations', function() {
             // when
-            var result = service.formatStatutsSpecifiques({situationsPro: []});
+            var result = service.formatStatutsSpecifiques({ situationsPro: [] });
 
             // then
             expect(result).toBe('');
@@ -56,7 +56,7 @@ describe('IndividuService', function() {
 
         it('Should return single situation with no comma', function() {
             // when
-            var result = service.formatStatutsSpecifiques({situationsPro: [{situation: 'retraite'}]});
+            var result = service.formatStatutsSpecifiques({ situationsPro: [{ situation: 'retraite' }] });
 
             // then
             expect(result).toBe('Retraité');
@@ -64,7 +64,7 @@ describe('IndividuService', function() {
 
         it('Should return comma-separated statuts when individu has several statuts specifiques', function() {
             // when
-            var result = service.formatStatutsSpecifiques({situationsPro: [{situation: 'retraite'}, {situation: 'etudiant'}]});
+            var result = service.formatStatutsSpecifiques({ situationsPro: [{ situation: 'retraite' }, { situation: 'etudiant' }] });
 
             // then
             expect(result).toBe('Étudiant, retraité');
@@ -72,10 +72,24 @@ describe('IndividuService', function() {
 
         it('Should display "enceinte" if the individu has the corresponding field to true', function() {
             // when
-            var result = service.formatStatutsSpecifiques({enceinte: true});
+            var result = service.formatStatutsSpecifiques({ enceinte: true });
 
             // then
             expect(result).toBe('Enceinte');
+        });
+    });
+
+    describe('function isParent()', function() {
+        it('Should return true only if individu has role "demandeur" or "conjoint"', function() {
+            // given
+            var roles = ['demandeur', 'conjoint', 'enfant', 'personneACharge', undefined];
+            var individus = _.map(roles, function(role) { return { role: role }});
+
+            // when
+            var results = _.map(individus, _.bind(service.isParent, service));
+
+            // then
+            expect(results).toEqual([true, true, false, false, false]);
         });
     });
 });

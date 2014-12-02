@@ -18,7 +18,9 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         $scope.individu.relationType = 'mariage';
     }
 
-    if (_.contains(['demandeur', 'conjoint'], options.individuRole)) {
+    var isIndividuParent = IndividuService.isRoleParent(options.individuRole);
+
+    if (isIndividuParent) {
         var individu = _.find($scope.situation.individus, { role: options.individuRole });
         if (individu) {
             $scope.individu = _.merge($scope.individu, individu);
@@ -57,11 +59,11 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
 
     $scope.captureEligibiliteAss = function() {
         /* jshint -W069 */
-        return _.contains(['demandeur', 'conjoint'], options.individuRole) && $scope.selectedStatuts['demandeur_emploi'];
+        return isIndividuParent && $scope.selectedStatuts['demandeur_emploi'];
     };
 
     $scope.captureTauxInvalidite = function() {
-        return _.contains(['demandeur', 'conjoint'], options.individuRole) && $scope.selectedStatuts.handicap;
+        return isIndividuParent && $scope.selectedStatuts.handicap;
     };
 
     $scope.captureEtudiantBoursier = function() {

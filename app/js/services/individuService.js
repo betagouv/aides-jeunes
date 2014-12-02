@@ -29,6 +29,14 @@ angular.module('ddsCommon').service('IndividuService', function($filter, situati
             return statutsSpecifiques;
         },
 
+        isRoleParent: function(role) {
+            return _.contains(['demandeur', 'conjoint'], role);
+        },
+
+        isParent: function(individu) {
+            return this.isRoleParent(individu.role);
+        },
+
         formatStatutsSpecifiques: function(individu) {
             var statuts = [];
             statutsSpecifiques.forEach(function(statut) {

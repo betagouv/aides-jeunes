@@ -52,12 +52,12 @@
         <label class="control-label col-md-3" for="expected-value-{{ $index }}">Valeur attendue</label>
         <div class="col-md-9">
           <div class="input-group" ng-if="false !== droit.ref.hasMontant">
-            <input id="expected-value-{{ $index }}" class="form-control" name="expectedValueNumber" type="number" step="any" ng-model="droit.expectedValue" required>
+            <input id="expected-value-{{ $index }}" class="form-control" name="expectedValueNumber" type="number" step="any" ng-model="droit.value" required>
             <span class="input-group-addon">€</span>
           </div>
           <div ng-if="false === droit.ref.hasMontant">
-            <button type="button" class="btn btn-xs btn-primary" btn-radio="true" ng-model="droit.expectedValue">Oui</button>
-            <button type="button" class="btn btn-xs btn-primary" btn-radio="false" ng-model="droit.expectedValue">Non</button>
+            <button type="button" class="btn btn-xs btn-primary" btn-radio="true" ng-model="droit.value">Oui</button>
+            <button type="button" class="btn btn-xs btn-primary" btn-radio="false" ng-model="droit.value">Non</button>
           </div>
         </div>
       </div>

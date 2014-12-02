@@ -14,13 +14,13 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
     if (editMode) {
         $scope.test = test;
         $scope.test.droitsAttendus.forEach(function(droit) {
-            droit.ref = _.find($scope.droitsChoices, { id: droit.id });
+            droit.ref = _.find($scope.droitsChoices, { id: droit.code });
         });
     } else {
         $scope.test = { situation: $stateParams.situationId, droitsAttendus: [] };
         _.forEach(droitsObtenus, function(value, name) {
             if (_.isBoolean(value) || (_.isNumber(value) && 0 !== value)) {
-                $scope.test.droitsAttendus.push({ ref: _.find($scope.droitsChoices, {id: name}), expectedValue: value });
+                $scope.test.droitsAttendus.push({ ref: _.find($scope.droitsChoices, {id: name}), value: value });
             }
         });
     }
@@ -33,7 +33,7 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
     $scope.submit = function() {
         $scope.submitting = true;
         $scope.test.droitsAttendus.forEach(function(droit) {
-            droit.id = droit.ref.id;
+            droit.code = droit.ref.id;
         });
         var test = _.pick($scope.test, ['_id', 'situation', 'name', 'description', 'droitsAttendus']);
         if (editMode) {

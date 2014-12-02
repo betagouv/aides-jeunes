@@ -67,11 +67,4 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     $scope.createTest = function() {
         $window.location.href = '/acceptance-tests/new/' + $scope.situation._id;
     };
-
-    $rootScope.$on('ressourcesCaptured', function(ressourcesN2) {
-        if (ressourcesN2) {
-            $scope.situation.ressourcesN2Captured = true;
-            launchSimulation();
-        }
-    });
 });

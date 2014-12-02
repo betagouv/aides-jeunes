@@ -101,6 +101,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
     },
     {
         'id':'bourse_college',
+        'isMontantAnnuel':true,
         'label':'Bourse des collèges',
         'shortLabel':'Bourse collège',
         'description':'La bourse des collèges est une aide destinée à favoriser la scolarité des collégiens. Elle est versée sous conditions de ressources.',

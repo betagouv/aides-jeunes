@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $state, $http) {
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $state) {
     $scope.tabs = [
         { heading: 'Tous', route:'index.all', active:false },
         { heading: 'Validés', route:'index.validated', active:false },
@@ -30,12 +30,4 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
             tab.active = $scope.active(tab.route);
         });
     });
-
-    $scope.gotoDebugOpenFisca = function(situation) {
-        $http.get('/api/situations/' + situation + '/openfisca-request').then(function(result) {
-            var url = 'http://www.openfisca.fr/outils/trace?api_url=http://localhost:2000&situation=';
-            url += encodeURIComponent(JSON.stringify(result.data));
-            window.location.href = url;
-        });
-    };
 });

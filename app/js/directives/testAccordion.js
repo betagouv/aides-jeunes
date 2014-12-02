@@ -148,6 +148,13 @@ angular.module('ddsCommon').directive('testAccordion', function() {
                 }
             };
 
+            $scope.gotoDebugOpenFisca = function(situation) {
+                $http.get('/api/situations/' + situation + '/openfisca-request').then(function(result) {
+                    var url = 'http://www.openfisca.fr/outils/trace?api_url=http://localhost:2000&situation=';
+                    url += encodeURIComponent(JSON.stringify(result.data));
+                    window.location.href = url;
+                });
+            };
         }
     };
 });

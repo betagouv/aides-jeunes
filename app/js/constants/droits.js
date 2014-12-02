@@ -28,6 +28,14 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'link':'http://vosdroits.service-public.fr/particuliers/F16871.xhtml'
     },
     {
+        'id':'asi',
+        'label':'Allocation Supplémentaire d\'Invalidité',
+        'shortLabel':'ASI',
+        'description':'L\'allocation supplémentaire d\'invalidité (Asi) est une prestation versée sous certaines conditions aux personnes invalides titulaires d\'une pension de retraite ou d\'invalidité qui n’ont pas atteint l’âge légal de départ à la retraite pour bénéficier de l’allocation de solidarité aux personnes âgées (Aspa)',
+        'imgSrc':'logo_aspa.png',
+        'link':'http://vosdroits.service-public.fr/particuliers/F16940.xhtml'
+    },
+    {
         'id':'af',
         'label':'Allocations Familiales',
         'shortLabel':'AF',

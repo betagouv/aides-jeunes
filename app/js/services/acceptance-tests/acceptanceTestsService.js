@@ -132,6 +132,46 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
             });
 
             return deferred.promise;
+        },
+
+        launchAllTests: function(categories, beforeLaunch, afterLaunch, onError) {
+            var self = this;
+            categories.forEach(function(category) {
+                self.launchTestCategory(category, beforeLaunch, afterLaunch, onError);
+            });
+        },
+
+        launchTestCategory: function(category, beforeLaunch, afterLaunch, onError) {
+            var self = this;
+            category.errors = 0;
+            category.pendingTests = 0;
+            category.tests.forEach(function(test) {
+                category.pendingTests++;
+                self.launchSingleTest(test, beforeLaunch, afterLaunch)
+                    .catch(function() {
+                        category.errors++;
+                        if (onError) {
+                            onError();
+                        }
+                    }).finally(function() {
+                        category.pendingTests--;
+                    });
+            });
+        },
+
+        launchSingleTest: function(test, beforeLaunch, afterLaunch) {
+            var self = this;
+            if (beforeLaunch) {
+                beforeLaunch();
+            }
+            test.running = true;
+
+            return self.launchTest(test)
+                .finally(function() {
+                if (afterLaunch) {
+                    afterLaunch();
+                }
+            });
         }
     };
 });

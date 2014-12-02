@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('acceptanceTests').directive('humanReadableSituation', function($timeout, ressourceTypes, logementTypes, nationalites, IndividuService) {
+angular.module('ddsCommon').directive('humanReadableSituation', function($timeout, ressourceTypes, logementTypes, nationalites, IndividuService) {
     return {
         restrict: 'E',
-        templateUrl: 'partials/situation.html',
+        templateUrl: '/acceptance-tests/partials/situation.html',
         scope: {
             situation: '='
         },

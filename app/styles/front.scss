@@ -59,7 +59,7 @@ $body-front-base-padding: 60px;
       left: 60px;
     }
 
-    &.logo, &.logo:hover {
+    &.logo, &.logo:hover, &.logo:focus {
       background-color: white;
       position: relative;
       z-index: 1;

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr" itemscope itemtype="http://schema.org/Article">
+<html ng-app="ddsApp" lang="fr" itemscope itemtype="http://schema.org/Article">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Simulez toutes vos aides en ligne - mes-aides.gouv.fr</title>
+    <title ng-bind="$state.current.data.pageTitle + 'Simulez toutes vos aides en ligne - mes-aides.gouv.fr'">Simulez toutes vos aides en ligne - mes-aides.gouv.fr</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="Mes-aides vous permet de simuler pour votre foyer les principales prestations sociales auxquelles vous avez droit, en un seul questionnaire" />
 
@@ -33,7 +33,7 @@
 
     <base href="/">
   </head>
-  <body ng-app="ddsApp" class="body-front" ng-controller="BodyCtrl" ng-class="{'has-intro': showIntro}">
+  <body class="body-front" ng-controller="BodyCtrl" ng-class="{'has-intro': showIntro}">
     <!--[if lt IE 10]>
     <div class="browsehappy text-center">
       Vous utilisez un navigateur web obsolète et donc <strong>non sécurisé</strong>.
@@ -71,7 +71,7 @@
           <loading-spinner></loading-spinner>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#" class="navbar-brand logo"><img src="img/logo_marianne.png" alt="Marianne"></a></li>
+              <li><a href="#" class="navbar-brand logo" title="Acceuil"><img src="img/logo_marianne.png" alt="Acceuil"></a></li>
             </ul>
           </div>
         </div>

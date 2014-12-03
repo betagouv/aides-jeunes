@@ -31,15 +31,24 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
     $stateProvider
         .state('home', {
             url: '/',
-            templateUrl: '/partials/homepage.html'
+            templateUrl: '/partials/homepage.html',
+            data: {
+                pageTitle: 'Accueil - '
+            }
         })
         .state('a_propos', {
             url: '/a-propos',
-            templateUrl: '/partials/a-propos.html'
+            templateUrl: '/partials/a-propos.html',
+            data: {
+                pageTitle: 'A propos - '
+            }
         })
         .state('cgu', {
             url: '/conditions-generales-d-utilisation',
-            templateUrl: '/partials/cgu.html'
+            templateUrl: '/partials/cgu.html',
+            data: {
+                pageTitle: 'Conditions générales d\'utilisation - '
+            }
         })
         .state('contribuez', {
             url: '/contribuez',
@@ -49,11 +58,17 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
                     return AcceptanceTestsService.getAndHandleLastResult('public');
                 }]
+            },
+            data: {
+                pageTitle: 'Contribuez! - '
             }
         })
         .state('faq', {
             url: '/faq',
-            templateUrl: '/partials/faq.html'
+            templateUrl: '/partials/faq.html',
+            data: {
+                pageTitle: 'FAQ - '
+            }
         })
         .state('foyer', {
             abstract: true,
@@ -67,6 +82,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     controller: 'RecapSituationCtrl',
                     templateUrl: '/partials/foyer/recap-situation.html'
                 }
+            },
+            data: {
+                pageTitle: 'Simulation - '
             }
         })
         .state('foyer.demandeur', {
@@ -147,7 +165,10 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('infos_complementaires', {
             abstract: true,
             url: '/infos-complementaires',
-            templateUrl: '/partials/form-infos-complementaires/layout.html'
+            templateUrl: '/partials/form-infos-complementaires/layout.html',
+            data: {
+                pageTitle: 'Informations complémentaires - '
+            }
         })
         .state('infos_complementaires.individus', {
             url: '/noms-prenoms?droit',
@@ -170,6 +191,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 droit: ['$stateParams', function($stateParams) {
                     return $stateParams.droit;
                 }]
+            },
+            data: {
+                pageTitle: 'Téléchargement formulaires - '
             }
         });
 });

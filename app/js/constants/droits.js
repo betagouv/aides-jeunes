@@ -49,7 +49,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'shortLabel':'CF',
         'description':'Le complément familial est versé, sous certaines conditions, aux personnes ayant au moins 3 enfants à charge.',
         'imgSrc':'logo_caf.png',
-        'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf'
+        'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
+        'isBaseRessourcesYearMoins2': true
     },
     {
         'id':'asf',
@@ -65,7 +66,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'shortLabel':'PAJE-BASE',
         'description': 'L’allocation de base vous aide à assurer les dépenses liées à l’entretien et à l’éducation de votre enfant.',
         'imgSrc':'logo_caf.png',
-        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/l-allocation-de-base'
+        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/l-allocation-de-base',
+        'isBaseRessourcesYearMoins2': true
     },
     {
         'id':'rsa',
@@ -81,7 +83,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'shortLabel':'APL',
         'description':'L’aide personnalisée au logement (APL) est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'imgSrc':'logo_caf.png',
-        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0'
+        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
+        'isBaseRessourcesYearMoins2': true
     },
     {
         'id':'als',
@@ -89,7 +92,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'shortLabel':'ALS',
         'description':'L’ALS est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'imgSrc':'logo_caf.png',
-        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0'
+        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
+        'isBaseRessourcesYearMoins2': true
     },
     {
         'id':'alf',
@@ -97,7 +101,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'shortLabel':'ALF',
         'description':'L’allocation de logement familiale (ALF) est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'imgSrc':'logo_caf.png',
-        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0'
+        'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
+        'isBaseRessourcesYearMoins2': true
     },
     {
         'id':'ass',

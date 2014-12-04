@@ -9,10 +9,12 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         $scope.awaitingResults = true;
         $scope.error = false;
         $scope.droits = null;
+        $scope.droitsNonEligibles = null;
 
-        SimulationService.simulate($scope.situation).then(function(droits) {
-            $scope.droits = droits;
-            $scope.droitsNonEligibles = SimulationService.getDroitsNonEligibles(droits);
+        SimulationService.simulate($scope.situation).then(function(result) {
+            $scope.droits = result.droits;
+            $scope.droitsYearMoins2 = result.droitsYearMoins2;
+            $scope.droitsNonEligibles = result.droitsNonEligibles;
         }, function() {
             $scope.error = true;
         }).finally(function() {
@@ -51,16 +53,6 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
 
     $scope.hasDroitForms = function(droit) {
         return CerfaService.hasDroitForms(droit.description);
-    };
-
-    $scope.displayLogementWarning = function() {
-        return _.every([
-            !$scope.awaitingResults,
-            !$scope.hasDroitAllocationLogement(),
-            'gratuit' !== $scope.situation.logement.type,
-            !$scope.situation.logement.membreFamilleProprietaire,
-            false !== $scope.situation.logement.primoAccedant
-        ]);
     };
 
     $scope.createTest = function() {

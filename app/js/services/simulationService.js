@@ -14,6 +14,7 @@ angular.module('ddsApp').service('SimulationService', function($http, $q, droits
 
         createDroitsFromApiResult: function(result) {
             var droits = [];
+            var droitsYearMoins2 = [];
             droitsDescription.forEach(function(droit) {
                 var value = result[droit.id];
                 if (value) {
@@ -21,22 +22,26 @@ angular.module('ddsApp').service('SimulationService', function($http, $q, droits
                     if (_.isNumber(value)) {
                         target.montant = value;
                     }
-                    droits.push(target);
+                    if (droit.isBaseRessourcesYearMoins2) {
+                        droitsYearMoins2.push(target);
+                    } else {
+                        droits.push(target);
+                    }
                 }
             });
 
-            return droits;
+            return {
+                droits: droits,
+                droitsYearMoins2: droitsYearMoins2,
+                droitsNonEligibles: this.getDroitsNonEligibles(droits.concat(droitsYearMoins2))
+            }
         },
 
         getDroitsNonEligibles: function(droitsEligibles) {
             var droitsNonEligibles = [];
-            droitsDescription.forEach(function(droit) {
-                if (!_.find(droitsEligibles, {description: {id: droit.id}})) {
-                    droitsNonEligibles.push(droit);
-                }
+            return droitsDescription.filter(function(droit) {
+                return !_.find(droitsEligibles, { description: {id: droit.id }});
             });
-
-            return droitsNonEligibles;
         }
     };
 });

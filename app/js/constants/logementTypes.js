@@ -30,7 +30,7 @@ angular.module('ddsCommon').constant('locationTypes', [
     },
     {
         id: 'hlm',
-        label: 'HLM'
+        label: 'Foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)'
     }
 ]);
 

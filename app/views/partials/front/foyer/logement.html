@@ -13,7 +13,7 @@
           <label>
             <input
               type="radio"
-              name="nationalite"
+              name="logementType"
               ng-model="logement.type"
               ng-value="logementType.id"
               ng-change="changeLogementType()">
@@ -40,17 +40,17 @@
     </div>
 
     <div class="form-group" ng-show="captureLocationType()">
-      <label class="col-sm-3 control-label">Quel type de logement louez-vous&nbsp;?</label>
-      <div class="col-sm-7">
-        <div class="btn-group">
-          <button
-            type="button"
-            class="btn btn-default btn-sm"
-            ng-repeat="locationType in locationTypes"
-            ng-model="logement.locationType"
-            btn-radio="locationType.id">
+      <label class="control-label col-sm-3">Quel type de logement louez-vous&nbsp;?</label>
+      <div class="col-sm-9">
+        <div class="radio" ng-repeat="locationType in locationTypes">
+          <label>
+            <input
+              type="radio"
+              name="locationType"
+              ng-model="logement.locationType"
+              ng-value="locationType.id">
             {{ locationType.label|uppercaseFirst }}
-          </button>
+          </label>
         </div>
       </div>
     </div>

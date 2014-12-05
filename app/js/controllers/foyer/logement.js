@@ -8,7 +8,17 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
-    $scope.loyerLabels = loyerLabels;
+
+    $scope.loyerLabel = function() {
+        var result = loyerLabels[logement.type];
+        if ('meublehotel' === logement.locationType) {
+            result += ' (charges comprises)';
+        } else {
+            result += ' (hors charges)';
+        }
+
+        return result;
+    };
 
     var membreFamilleProprietaireCaptured = function() {
         return 'payant' === logement.type && angular.isDefined(logement.membreFamilleProprietaire);

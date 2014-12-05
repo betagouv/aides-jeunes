@@ -73,7 +73,7 @@
 
     <div class="form-group" ng-if="captureLoyer()" ng-class="{'has-error': submitted && form.loyer.$invalid}">
       <label class="col-sm-3 control-label" for="loyer">
-        {{ loyerLabels[logement.type] }}
+        {{ loyerLabel() }}
       </label>
       <div class="col-sm-3">
         <div class="input-group">

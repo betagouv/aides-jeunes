@@ -36,7 +36,7 @@ angular.module('ddsCommon').constant('locationTypes', [
 
 angular.module('ddsCommon').constant('loyerLabels', {
     'payant': 'Votre loyer',
-    'locataire': 'Votre loyer (hors charges)',
-    'colocataire': 'Voter part du loyer (hors charges)',
+    'locataire': 'Votre loyer',
+    'colocataire': 'Voter part du loyer',
     'proprietaire': 'Votre mensualité d’emprunt'
 });

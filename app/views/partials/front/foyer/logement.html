@@ -7,18 +7,18 @@
     </em></p>
 
     <div class="form-group">
-      <label class="col-lg-3 control-label">Êtes-vous</label>
-      <div class="col-lg-9">
-        <div class="btn-group">
-          <button
-            type="button"
-            class="btn btn-sm btn-default"
-            ng-repeat="logementType in logementTypes"
-            ng-model="logement.type"
-            btn-radio="logementType.id"
-            ng-change="changeLogementType()">
+      <label class="control-label col-sm-3">Êtes-vous</label>
+      <div class="col-sm-9">
+        <div class="radio" ng-repeat="logementType in logementTypes">
+          <label>
+            <input
+              type="radio"
+              name="nationalite"
+              ng-model="logement.type"
+              ng-value="logementType.id"
+              ng-change="changeLogementType()">
             {{ logementType.label|uppercaseFirst }}
-          </button>
+          </label>
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@
     <div ng-if="logement.type === 'proprietaire'">
       <div class="form-group">
         <label class="col-sm-3 control-label">
-          Etes-vous primo-accédant pour cette propriété ?
+          Êtes-vous primo-accédant pour cette propriété ?
         </label>
         <div class="col-sm-3">
           <button type="button" class="btn btn-sm btn-default" ng-model="logement.primoAccedant" btn-radio="true">Oui</button>
@@ -92,15 +92,14 @@
           <input type="number" class="form-control text-right" id="loyer" name="loyer" ng-model="logement.loyer" required min="1">
           <div class="input-group-addon">€</div>
         </div>
-        <span class="help-block" ng-if="submitted && form.loyer.$invalid">Loyer invalide</span>
+        <span class="help-block" ng-if="submitted && form.loyer.$invalid">Champ invalide</span>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-show="captureCodePostal()">
       <div class="col-sm-6">
         <div
           class="form-group"
-          ng-show="captureCodePostal()"
           ng-class="{'has-error': submitted && unknownCodePostal}">
           <label class="col-sm-6 control-label" for="postal-code">Code postal de votre résidence</label>
           <div class="col-sm-6">
@@ -117,14 +116,18 @@
         </div>
       </div>
       <div class="col-sm-6">
-        <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin"></i></p>
-        <select
-          class="form-control"
-          ng-if="cities.length"
-          ng-options="city as city.nom for city in cities"
-          ng-model="selectedCity"
-          ng-change="updateSelectedCity(selectedCity)">
-        </select>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin"></i></p>
+            <select
+              class="form-control"
+              ng-if="cities.length"
+              ng-options="city as city.nom for city in cities"
+              ng-model="selectedCity"
+              ng-change="updateSelectedCity(selectedCity)">
+            </select>
+          </div>
+        </div>
       </div>
     </div>
 

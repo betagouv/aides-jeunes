@@ -74,6 +74,8 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         $scope.cities = [];
     };
 
+    $scope.unknownCodePostal = true;
+
     $scope.updateCities = function() {
         $scope.retrievingCities = false;
         $scope.cities = [];

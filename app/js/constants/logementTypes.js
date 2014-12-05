@@ -7,7 +7,7 @@ angular.module('ddsCommon').constant('logementTypes', [
     },
     {
         id: 'proprietaire',
-        label: 'propriétaire'
+        label: 'propriétaire / en location-accession'
     },
     {
         id: 'gratuit',
@@ -37,5 +37,5 @@ angular.module('ddsCommon').constant('locationTypes', [
 angular.module('ddsCommon').constant('loyerLabels', {
     'payant': 'Votre loyer',
     'locataire': 'Votre loyer',
-    'proprietaire': 'Votre mensualité d’emprunt'
+    'proprietaire': 'Votre mensualité totale d’emprunt'
 });

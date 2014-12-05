@@ -31,5 +31,5 @@
   acceptance-tests="tests"
   category="category"
   idx-category="idxCategory"
-  ng-repeat="(idxCategory, category) in categories">
+  ng-repeat="(idxCategory, category) in categories | orderBy:'name'">
 </test-accordion>

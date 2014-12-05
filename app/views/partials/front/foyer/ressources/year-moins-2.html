@@ -1,0 +1,19 @@
+<div class="frame-foyer">
+  <h1>Vos ressources en {{ yearMoins2 }}</h1>
+  <p>Munissez-vous de votre déclaration de revenus {{ yearMoins2 }} pour remplir ces informations.</p>
+  <form class="form-horizontal" novalidate>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Vous</h2>
+        <form-declaration-revenus-impots individu="demandeur"></form-declaration-revenus-impots>
+      </div>
+      <div class="col-md-6" ng-if="conjoint">
+        <h2>Votre conjoint</h2>
+        <form-declaration-revenus-impots individu="conjoint"></form-declaration-revenus-impots>
+      </div>
+    </div>
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary">Valider</button>
+    </div>
+  </form>
+</div>

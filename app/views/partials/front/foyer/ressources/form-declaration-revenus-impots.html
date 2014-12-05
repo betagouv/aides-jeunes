@@ -1,0 +1,77 @@
+<div class="form-group">
+  <label class="control-label col-sm-6" for="revenus-activite-{{ individuLabel(individu) }}">
+    Revenus d’activité connus
+  </label>
+  <div class="col-sm-6">
+    <span class="input-group">
+      <input
+        type="number"
+        id="revenus-activite-{{ individuLabel(individu) }}"
+        class="form-control text-right"
+        min="0">
+      <span class="input-group-addon hidden-xs">€</span>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-sm-6" for="autres-revenus-{{ individuLabel(individu) }}">
+    Autres revenus imposables (préretraite, chômage)
+  </label>
+  <div class="col-sm-6">
+    <span class="input-group">
+      <input
+        type="number"
+        id="autres-revenus-{{ individuLabel(individu) }}"
+        class="form-control text-right"
+        min="0">
+      <span class="input-group-addon hidden-xs">€</span>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-sm-6" for="frais-reels-{{ individuLabel(individu) }}">Frais réels</label>
+  <div class="col-sm-6">
+    <span class="input-group">
+      <input
+        type="number"
+        id="frais-reels-{{ individuLabel(individu) }}"
+        class="form-control text-right"
+        min="0">
+      <span class="input-group-addon hidden-xs">€</span>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-sm-6" for="pensions-retraites-rentes-{{ individuLabel(individu) }}">
+    Pensions, retraites, rentes
+  </label>
+  <div class="col-sm-6">
+    <span class="input-group">
+      <input
+        type="number"
+        id="pensions-retraites-rentes-{{ individuLabel(individu) }}"
+        class="form-control text-right"
+        min="0">
+      <span class="input-group-addon hidden-xs">€</span>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-sm-6" for="pensions-alimentaires-{{ individuLabel(individu) }}">
+    Pensions alimentaires reçues
+  </label>
+  <div class="col-sm-6">
+    <span class="input-group">
+      <input
+        type="number"
+        id="pensions-alimentaires-{{ individuLabel(individu) }}"
+        class="form-control text-right"
+        min="0">
+      <span class="input-group-addon hidden-xs">€</span>
+    </span>
+  </div>
+</div>

@@ -9,8 +9,6 @@
 
 <div ng-if="!awaitingResults">
   <div ng-if="droits.length">
-<<<<<<< HEAD
-=======
     <div class="alert alert-warning">
       <div class="row">
         <div class="col-sm-8">
@@ -24,7 +22,6 @@
       </div>
     </div>
 
->>>>>>> capture ressources year-2 - first commit
     <div class="row">
       <div ng-repeat="droit in droits">
         <div class="clearfix" ng-if="$index % 2 === 0"></div>
@@ -108,8 +105,12 @@
 =======
       Les droits suivants se basent en théorie sur vos ressources de l'année {{ yearMoins2 }}.
       Les résultats ci-dessous ont été simulés sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
+<<<<<<< HEAD
       <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a> pour plus de précision.
 >>>>>>> capture ressources year-2 - first commit
+=======
+      <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a> pour une simulation plus précise.
+>>>>>>> suppression call to actions capture ressources 2012
     </p>
 
     <div class="row">

@@ -100,11 +100,18 @@ angular.module('ddsCommon').directive('humanReadableSituation', function($timeou
                 }
             });
 
-            $scope.logement = {type : _.find(logementTypes, {id: situation.logement.type}).label};
+            $scope.logement = { type : _.find(logementTypes, {id: situation.logement.type}).label };
             if ('locataire' === situation.logement.type) {
                 $scope.logement.type += ' d\'un logement de type ' + situation.logement.locationType;
                 $scope.logement.type += '<br>Colocation : ' + (situation.logement.coloc ? 'oui' : 'non');
                 $scope.logement.type += '<br>Propriétaire du logement membre de la famille : ' + (situation.logement.membreFamilleProprietaire ? 'oui' : 'non');
+            } else if ('proprietaire' === situation.logement.type) {
+                $scope.logement.type += ', prêt en accession : ';
+                if (situation.logement.primoAccedant) {
+                    $scope.logement.type += 'oui, prêt conventionné : ' + (situation.logement.pretConventionne ? 'oui' : 'non');
+                } else {
+                    $scope.logement.type += 'non';
+                }
             }
 
             $scope.logement.loyer = situation.logement.loyer;

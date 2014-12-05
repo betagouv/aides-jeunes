@@ -11,10 +11,12 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.loyerLabel = function() {
         var result = loyerLabels[logement.type];
-        if ('meublehotel' === logement.locationType) {
-            result += ' (charges comprises)';
-        } else {
-            result += ' (hors charges)';
+        if (logement.type === 'location') {
+            if ('meublehotel' === logement.locationType) {
+                result += ' (charges comprises)';
+            } else {
+                result += ' (hors charges)';
+            }
         }
 
         return result;
@@ -34,6 +36,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return false;
     };
 
+    $scope.capturePretConventionne = function() {
+        return true === logement.primoAccedant;
+    };
+
     $scope.captureLocationType = function() {
         return 'locataire' === logement.type && angular.isDefined(logement.membreFamilleProprietaire);
     };
@@ -44,7 +50,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         }
 
         return _.any([
-            true === logement.primoAccedant,
+            true === logement.primoAccedant && angular.isDefined(logement.pretConventionne),
             angular.isDefined(logement.locationType),
             membreFamilleProprietaireCaptured()
         ]);
@@ -52,7 +58,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.captureCodePostal = function() {
         return _.any([
-            angular.isDefined(logement.primoAccedant),
+            false === logement.primoAccedant || true === logement.primoAccedant && angular.isDefined(logement.pretConventionne),
             angular.isDefined(logement.locationType),
             'gratuit' === logement.type,
             membreFamilleProprietaireCaptured()

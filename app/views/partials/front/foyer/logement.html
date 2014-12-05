@@ -55,19 +55,31 @@
       </div>
     </div>
 
-    <div class="form-group" ng-show="logement.type === 'proprietaire'">
-      <label class="col-sm-3 control-label" popover-trigger="mouseenter">
-        Avez-vous un prêt primo-accédant pour cette<br>propriété ?
-      </label>
-      <div class="col-sm-3">
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.primoAccedant" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.primoAccedant" btn-radio="false">Non</button>
+    <div ng-if="logement.type === 'proprietaire'">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">
+          Etes-vous primo-accédant pour cette propriété ?
+        </label>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-sm btn-default" ng-model="logement.primoAccedant" btn-radio="true">Oui</button>
+          <button type="button" class="btn btn-sm btn-default" ng-model="logement.primoAccedant" btn-radio="false">Non</button>
+        </div>
+        <div class="col-sm-5">
+          <p class="help-block">
+            Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire
+            de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.
+          </p>
+        </div>
       </div>
-      <div class="col-sm-5">
-        <p class="help-block">
-          Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire
-          de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.
-        </p>
+
+      <div class="form-group" ng-if="capturePretConventionne()">
+        <label class="col-sm-3 control-label">
+          Vous a-t-on octroyé un prêt conventionné ?
+        </label>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-sm btn-default" ng-model="logement.pretConventionne" btn-radio="true">Oui</button>
+          <button type="button" class="btn btn-sm btn-default" ng-model="logement.pretConventionne" btn-radio="false">Non</button>
+        </div>
       </div>
     </div>
 

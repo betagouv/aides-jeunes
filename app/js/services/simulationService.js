@@ -34,11 +34,10 @@ angular.module('ddsApp').service('SimulationService', function($http, $q, droits
                 droits: droits,
                 droitsYearMoins2: droitsYearMoins2,
                 droitsNonEligibles: this.getDroitsNonEligibles(droits.concat(droitsYearMoins2))
-            }
+            };
         },
 
         getDroitsNonEligibles: function(droitsEligibles) {
-            var droitsNonEligibles = [];
             return droitsDescription.filter(function(droit) {
                 return !_.find(droitsEligibles, { description: {id: droit.id }});
             });

@@ -8,6 +8,19 @@
 </div>
 
 <div ng-if="!awaitingResults">
+  <div class="alert alert-warning">
+    <div class="row">
+      <div class="col-sm-8">
+        <b>Attention</b> : ces résultats sont incomplets.
+        Les aides sociales de la CAF se basent sur vos ressources 2012 pour étudier vos droits.
+        <br>Pour plus de précision dans la simulation, renseignez vos ressources 2012.
+      </div>
+      <div class="col-sm-4">
+        <a class="btn btn-primary" ui-sref="foyer.ressourcesYearMoins2">Déclarer mes ressources 2012</a>
+      </div>
+    </div>
+  </div>
+
   <div ng-if="droits.length">
     <div class="alert alert-warning">
       <div class="row">

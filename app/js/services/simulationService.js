@@ -42,7 +42,7 @@ angular.module('ddsApp').service('SimulationService', function($http, $q, droits
 
         getDroitsNonEligibles: function(droitsEligibles) {
             return droitsDescription.filter(function(droit) {
-                return !_.find(droitsEligibles, { description: {id: droit.id }});
+                return !_.find(droitsEligibles, { description: {id: droit.id }}) && false !== droit.isSimulated;
             });
         }
     };

@@ -16,6 +16,9 @@ angular.module('ddsApp').service('SimulationService', function($http, $q, droits
             var droits = [];
             var droitsYearMoins2 = [];
             droitsDescription.forEach(function(droit) {
+                if (false === droit.isSimulated) {
+                    return;
+                }
                 var value = result[droit.id];
                 if (value) {
                     var target = { description: droit };

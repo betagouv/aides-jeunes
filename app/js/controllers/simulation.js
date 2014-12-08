@@ -9,6 +9,7 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         $scope.awaitingResults = true;
         $scope.error = false;
         $scope.droits = null;
+        $scope.droitsYearMoins2 = null;
         $scope.droitsNonEligibles = null;
 
         SimulationService.simulate($scope.situation).then(function(result) {

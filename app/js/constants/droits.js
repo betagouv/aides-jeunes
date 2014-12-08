@@ -50,7 +50,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'description':'Le complément familial est versé, sous certaines conditions, aux personnes ayant au moins 3 enfants à charge.',
         'imgSrc':'logo_caf.png',
         'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
-        'isBaseRessourcesYearMoins2': true
+        'isBaseRessourcesYearMoins2':true
     },
     {
         'id':'asf',
@@ -67,7 +67,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'description': 'L’allocation de base vous aide à assurer les dépenses liées à l’entretien et à l’éducation de votre enfant.',
         'imgSrc':'logo_caf.png',
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/l-allocation-de-base',
-        'isBaseRessourcesYearMoins2': true
+        'isBaseRessourcesYearMoins2':true
     },
     {
         'id':'rsa',
@@ -84,7 +84,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'description':'L’aide personnalisée au logement (APL) est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'imgSrc':'logo_caf.png',
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
-        'isBaseRessourcesYearMoins2': true
+        'isBaseRessourcesYearMoins2':true
     },
     {
         'id':'als',
@@ -93,7 +93,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'description':'L’ALS est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'imgSrc':'logo_caf.png',
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
-        'isBaseRessourcesYearMoins2': true
+        'isBaseRessourcesYearMoins2':true
     },
     {
         'id':'alf',
@@ -102,7 +102,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'description':'L’allocation de logement familiale (ALF) est une aide financière destinée à réduire le montant de votre loyer ou de votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'imgSrc':'logo_caf.png',
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
-        'isBaseRessourcesYearMoins2': true
+        'isBaseRessourcesYearMoins2':true
     },
     {
         'id':'ass',
@@ -111,14 +111,15 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'description':'L’allocation de solidarité spécifique (ASS) est une aide financière destinée aux personnes ayant épuisé leurs droits aux allocations chômage.',
         'imgSrc':'logo_ass.png',
         'link':'http://vosdroits.service-public.fr/particuliers/F12484.xhtml'
-    }/*,
+    },
     {
         'id':'bourse_college',
         'isMontantAnnuel':true,
-        'label':'Bourse des collèges',
+        'isSimulated':false,
+        'label':'Bourse de collège',
         'shortLabel':'Bourse collège',
         'description':'La bourse des collèges est une aide destinée à favoriser la scolarité des collégiens. Elle est versée sous conditions de ressources.',
         'imgSrc':'logo_education_nationale.png',
         'link':'http://www.education.gouv.fr/cid88/les-aides-financieres-au-college.html#Les%20bourses%20de%20coll%C3%A8ge'
-    }*/
+    }
 ]);

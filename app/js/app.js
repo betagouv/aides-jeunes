@@ -60,7 +60,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 }]
             },
             data: {
-                pageTitle: 'Contribuez! - '
+                pageTitle: 'Contribuez ! - '
             }
         })
         .state('faq', {

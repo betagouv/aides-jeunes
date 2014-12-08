@@ -64,7 +64,7 @@
 
   <div
     class="form-group"
-     ng-if="options.checkResidenceStability && 'ue' === individu.nationalite"
+    ng-if="options.checkResidenceStability && 'ue' === individu.nationalite"
     ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
@@ -107,7 +107,6 @@
   </div>
 
   <div class="form-group from-group-lg">
-
     <label class="control-label col-sm-4">
       Situations particulières <em>(facultatif)</em>
       <div class="small">
@@ -186,6 +185,20 @@
         <input type="radio" name="boursier" ng-model="individu.boursier" ng-value="false">
         Non
       </label>
+    </div>
+  </div>
+
+  <div class="form-group from-group-lg" ng-if="captureScolarite(form)">
+    <label class="control-label col-sm-4" for="scolarite">
+      Quelle sera sa scolarité à la rentrée {{ prochaineAnneeScolaire }} ?
+    </label>
+    <div class="col-sm-4">
+      <select
+        id="scolarite"
+        class="form-control"
+        ng-model="individu.scolarite"
+        ng-options="scolarite.id as scolarite.label for scolarite in scolariteOptions">
+      </select>
     </div>
   </div>
 

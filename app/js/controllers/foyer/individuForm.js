@@ -5,10 +5,26 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
     $scope.selectedStatuts = {};
     $scope.situationsMaritales = _.filter(situationsFamiliales, 'isSituationCouple');
+    $scope.prochaineAnneeScolaire = moment().add(1, 'year').format('YYYY');
+    $scope.scolariteOptions = [
+        {
+            id: 'inconnue',
+            label: 'Aucune des deux'
+        },
+        {
+            id: 'college',
+            label: 'Collège'
+        },
+        {
+            id: 'lycee',
+            label: 'Lycée'
+        }
+    ];
 
     $scope.individu = {
         nationalite: 'fr',
         assPreconditionRemplie: true,
+        scolarite: 'college',
         tauxInvalidite: 'moins50',
         boursier: false,
         role: options.individuRole
@@ -68,6 +84,15 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
 
     $scope.captureEtudiantBoursier = function() {
         return $scope.selectedStatuts.etudiant;
+    };
+
+    $scope.captureScolarite = function(form) {
+        if (!isIndividuParent && form.dateDeNaissance.$valid) {
+            var age = IndividuService.age($scope.individu);
+            return age < 25 && age > 8;
+        }
+
+        return false;
     };
 
     $scope.popoverEee = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, ' +

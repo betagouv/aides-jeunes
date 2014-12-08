@@ -11,7 +11,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.loyerLabel = function() {
         var result = loyerLabels[logement.type];
-        if (logement.type === 'location') {
+        if (logement.type === 'locataire') {
             if ('meublehotel' === logement.locationType) {
                 result += ' (charges comprises)';
             } else {

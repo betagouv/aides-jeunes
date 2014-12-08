@@ -9,15 +9,15 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
     $scope.scolariteOptions = [
         {
             id: 'inconnue',
-            label: 'Aucune des deux'
+            label: 'Aucun des deux'
         },
         {
             id: 'college',
-            label: 'Collège'
+            label: 'Au collège'
         },
         {
             id: 'lycee',
-            label: 'Lycée'
+            label: 'Au lycée'
         }
     ];
 
@@ -67,6 +67,10 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
 
             if (!$scope.captureEtudiantBoursier()) {
                 delete $scope.individu.boursier;
+            }
+
+            if (!$scope.captureScolarite(form)) {
+                delete $scope.individu.scolarite;
             }
 
             $scope.$emit('individu.' + options.individuRole, $scope.individu);

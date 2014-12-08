@@ -115,11 +115,11 @@ angular.module('ddsCommon').constant('droitsDescription', [
     {
         'id':'bourse_college',
         'isMontantAnnuel':true,
-        'isSimulated':false,
         'label':'Bourse de collège',
         'shortLabel':'Bourse collège',
         'description':'La bourse des collèges est une aide destinée à favoriser la scolarité des collégiens. Elle est versée sous conditions de ressources.',
         'imgSrc':'logo_education_nationale.png',
-        'link':'http://www.education.gouv.fr/cid88/les-aides-financieres-au-college.html#Les%20bourses%20de%20coll%C3%A8ge'
+        'link':'http://www.education.gouv.fr/cid88/les-aides-financieres-au-college.html#Les%20bourses%20de%20coll%C3%A8ge',
+        'isBaseRessourcesYearMoins2':true
     }
 ]);

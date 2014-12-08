@@ -68,7 +68,6 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
         },
 
         categorizeTests: function(tests) {
-            var categories = [];
             var categoriesMap = {};
             var unknownCategory = { name: 'Non catégorisés', tests: [] };
             tests.forEach(function(test) {
@@ -87,7 +86,6 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
                     var category = categoriesMap[categoryName];
                     if (!category) {
                         category = categoriesMap[categoryName] = {name: categoryName, tests: []};
-                        categories.push(category);
                     }
                     category.tests.push(test);
                 } else {
@@ -95,6 +93,7 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
                 }
             });
 
+            var categories = _.sortBy(_.values(categoriesMap), 'name');
             if (unknownCategory.tests.length) {
                 categories.push(unknownCategory);
             }

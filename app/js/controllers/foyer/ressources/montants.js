@@ -1,6 +1,8 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerRessourceMontantsCtrl', function($scope) {
+    $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
+
     $scope.isRessourceTypeNonTns = function(ressource) {
         return 'tns' !== ressource.category;
     };

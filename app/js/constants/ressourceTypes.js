@@ -143,7 +143,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     },
     {
         id: 'autresRevenusTns',
-        label: 'Autres revenus non salariés',
+        label: 'Profession libérale, entrepreneur',
         category: 'tns'
     }
 ]);

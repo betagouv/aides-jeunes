@@ -89,7 +89,7 @@ angular.module('ddsApp').constant('cerfaForms', [
         piecesJustificatives: ['imposition', 'domicile', 'titre_sejour']
     },
     {
-        droitId: 'al',
+        droitId: 'aide_logement',
         description: '',
         forms: [
             {

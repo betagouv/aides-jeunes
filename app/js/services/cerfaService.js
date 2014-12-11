@@ -170,10 +170,6 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return'cmu_c';
         }
 
-        if (_.contains(['als', 'alf', 'apl'], droitId)) {
-            return 'al';
-        }
-
         return droitId;
     };
 

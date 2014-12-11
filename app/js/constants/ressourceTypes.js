@@ -31,31 +31,31 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         label: 'Prime forfaitaire mensuelle pour la reprise d’activité',
         category: 'allocations'
     },
-    {
-        id: 'allocationLogement',
-        label: 'Aide au logement',
-        category: 'allocations'
-    },
-    {
-        id: 'rsa',
-        label: 'Revenu de solidarité active (RSA)',
-        category: 'allocations'
-    },
-    {
-        id: 'asf',
-        label: 'Allocation de soutien familial (ASF)',
-        category: 'allocations'
-    },
-    {
-        id: 'aspa',
-        label: 'Allocation de solidarité aux personnes âgées (ASPA)',
-        category: 'allocations'
-    },
-    {
-        id: 'ass',
-        label: 'Allocation de solidarité spécifique (ASS)',
-        category: 'allocations'
-    },
+    // {
+    //     id: 'allocationLogement',
+    //     label: 'Aide au logement',
+    //     category: 'allocations'
+    // },
+    // {
+    //     id: 'rsa',
+    //     label: 'Revenu de solidarité active (RSA)',
+    //     category: 'allocations'
+    // },
+    // {
+    //     id: 'asf',
+    //     label: 'Allocation de soutien familial (ASF)',
+    //     category: 'allocations'
+    // },
+    // {
+    //     id: 'aspa',
+    //     label: 'Allocation de solidarité aux personnes âgées (ASPA)',
+    //     category: 'allocations'
+    // },
+    // {
+    //     id: 'ass',
+    //     label: 'Allocation de solidarité spécifique (ASS)',
+    //     category: 'allocations'
+    // },
     {
         id: 'aah',
         label: 'Allocation adulte handicapé (AAH)',

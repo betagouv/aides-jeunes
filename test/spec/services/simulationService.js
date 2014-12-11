@@ -29,7 +29,7 @@ describe('Service: simulationService', function () {
 
         it('should return arrays with each droit from the api result, separated by the criteria base ressource n-2', function() {
             // given
-            var apiResult = { 'cmu_c': true, acs: 150, als: 400 };
+            var apiResult = { cmu_c: true, acs: 150, aide_logement: 400 };
 
             // when
             var result = service.createDroitsFromApiResult(apiResult);
@@ -38,7 +38,7 @@ describe('Service: simulationService', function () {
             expect(result.droits.length).toBe(2);
             expect(result.droits[0].description.id).toBe('cmu_c');
             expect(result.droitsYearMoins2.length).toBe(1);
-            expect(result.droitsYearMoins2[0].description.id).toBe('als');
+            expect(result.droitsYearMoins2[0].description.id).toBe('aide_logement');
         });
     });
 

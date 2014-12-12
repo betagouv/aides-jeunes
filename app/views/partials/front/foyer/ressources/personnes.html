@@ -2,7 +2,7 @@
   <p>Veuillez sélectionner les personnes qui touchent/ont touché les ressources que vous avez sélectionnées.</p>
   <div ng-repeat="ressourceType in ressourceTypes|filter: isRessourceTypeSelected">
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-md-4">
         <button
           type="button"
           disabled
@@ -10,12 +10,13 @@
           ng-class="'capture-' + ressourceType.category">
           {{ ressourceType.label }}
         </button>
-        <b>Qui ?</b>
       </div>
-      <div class="col-sm-8">
+      <div class="col-md-8">
+        <b>Qui ?</b>
+        <br>
         <button
           type="button"
-          class="btn btn-default btn-selection btn-selection-personne"
+          class="btn btn-default btn-sm btn-selection btn-selection-personne"
           ng-repeat="individuRef in individuRefs"
           btn-checkbox
           ng-model="individuRef.selectedRessourceTypes[ressourceType.id]">

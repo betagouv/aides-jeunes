@@ -8,64 +8,62 @@
     <h2 ng-if="1 < individuRefs.length" class="text-center">{{ individuRef.label }}</h2>
     <div ng-if="individuRef.hasRessourcesNonTns" ng-repeat="ressource in individuRef.ressources|filter: isRessourceNonTns">
       <h3 class="title-{{ ressource.type.category }}">{{ ressource.type.label }}</h3>
-      <div class="capture-{{ ressource.type.category }}" style="padding-left: 5px;">
-        <h4>Sur les 3 derniers mois</h4>
-        <div class="row">
-          <div class="col-sm-4" ng-repeat="monthRessource in ressource.months">
-            <div class="form-group">
-              <label for="{{ individuIndex + ressource.type.id + months[$index].id }}">{{ months[$index].label|uppercaseFirst }}</label>
-              <span class="input-group">
-                <input
-                  type="number"
-                  class="form-control text-right"
-                  id="{{ individuIndex + ressource.type.id + months[$index].id }}"
-                  required
-                  min="0"
-                  select-on-focus
-                  zero-to-empty
-                  ng-model="monthRessource.montant"
-                  ng-change="updateMontantAnnuel(ressource)">
-                <span class="input-group-addon">€</span>
-              </span>
-              <span class="text-danger" ng-if="form.submitted && montantInvalide(monthRessource.montant)">
-                Montant invalide
-              </span>
-            </div>
+      <h4>Sur les 3 derniers mois</h4>
+      <div class="row">
+        <div class="col-sm-4" ng-repeat="monthRessource in ressource.months">
+          <div class="form-group">
+            <label for="{{ individuIndex + ressource.type.id + months[$index].id }}">{{ months[$index].label|uppercaseFirst }}</label>
+            <span class="input-group">
+              <input
+                type="number"
+                class="form-control text-right"
+                id="{{ individuIndex + ressource.type.id + months[$index].id }}"
+                required
+                min="0"
+                select-on-focus
+                zero-to-empty
+                ng-model="monthRessource.montant"
+                ng-change="updateMontantAnnuel(ressource)">
+              <span class="input-group-addon">€</span>
+            </span>
+            <span class="text-danger" ng-if="form.submitted && montantInvalide(monthRessource.montant)">
+              Montant invalide
+            </span>
           </div>
         </div>
-        <h4>En année glissante</h4>
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="form-group">
-              <label for="{{ individuIndex + ressource.type.id }}-annee">
-                De {{ debutAnnee }} à {{ finAnnee }}
-              </label>
-              <span class="input-group">
-                <input
-                  type="number"
-                  class="form-control text-right"
-                  id="{{ individuIndex + ressource.type.id }}-annee"
-                  required
-                  min="0"
-                  select-on-focus
-                  zero-to-empty
-                  ng-model="ressource.montantAnnuel">
-                <span class="input-group-addon">€</span>
-              </span>
-              <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
-                Montant invalide
-              </span>
-            </div>
+      </div>
+      <h4>En année glissante</h4>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="{{ individuIndex + ressource.type.id }}-annee">
+              De {{ debutAnnee }} à {{ finAnnee }}
+            </label>
+            <span class="input-group">
+              <input
+                type="number"
+                class="form-control text-right"
+                id="{{ individuIndex + ressource.type.id }}-annee"
+                required
+                min="0"
+                select-on-focus
+                zero-to-empty
+                ng-model="ressource.montantAnnuel">
+              <span class="input-group-addon">€</span>
+            </span>
+            <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
+              Montant invalide
+            </span>
           </div>
-          <div class="col-sm-8">
-            <div class="form-group">
-              <label class="col-sm-6 text-right">
-                Je continuerai à percevoir cette ressource en décembre 2014
-              </label>
-              <div class="col-sm-6">
-                <button type="button" class="btn btn-sm btn-default" btn-radio="false" ng-model="ressource.interrupted">Oui</button>
-                <button type="button" class="btn btn-sm btn-default" btn-radio="true" ng-model="ressource.interrupted">Non</button>
-              </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="form-group">
+            <label class="col-sm-6 text-right">
+              Je continuerai à percevoir cette ressource en décembre 2014
+            </label>
+            <div class="col-sm-6">
+              <button type="button" class="btn btn-sm btn-default" btn-radio="false" ng-model="ressource.interrupted">Oui</button>
+              <button type="button" class="btn btn-sm btn-default" btn-radio="true" ng-model="ressource.interrupted">Non</button>
             </div>
           </div>
         </div>
@@ -77,47 +75,45 @@
       ng-repeat="ressource in individuRef.ressources|filter: isRessourceMicroTns">
       <h3 class="title-tns">{{ ressource.type.label }}</h3>
       <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-4">
           <div class="form-group">
-            <label class="control-label col-sm-4" for="type-structure-individu-{{ individuIndex }}">Type de structure</label>
-            <div class="col-sm-8">
-              <select class="form-control" id="type-structure-individu-{{ individuIndex }}" ng-model="ressource.tnsStructureType">
-                <option value="auto_entrepreneur">Auto-entrepreneur</option>
-                <option value="micro_entreprise">Micro-entreprise</option>
-              </select>
-            </div>
+            <label for="type-structure-individu-{{ individuIndex }}">Type de structure</label>
+            <select class="form-control" id="type-structure-individu-{{ individuIndex }}" ng-model="ressource.tnsStructureType">
+              <option value="auto_entrepreneur">Auto-entrepreneur</option>
+              <option value="micro_entreprise">Micro-entreprise</option>
+            </select>
           </div>
+        </div>
 
+        <div class="col-sm-4">
           <div class="form-group">
-            <label class="control-label col-sm-4" for="type-activite-individu-{{ individuIndex }}">Type d'activité</label>
-            <div class="col-sm-8">
-              <select class="form-control" id="type-activite-individu-{{ individuIndex }}" ng-model="ressource.tnsActiviteType">
-                <option value="achat_revente">Achat/revente ou fourniture de logement</option>
-                <option value="bic">Activité commerciale ou artisanale (BIC)</option>
-                <option value="bnc">Activité libérale et/ou intellectuelle (BNC)</option>
-              </select>
-            </div>
+            <label for="type-activite-individu-{{ individuIndex }}">Type d'activité</label>
+            <select class="form-control" id="type-activite-individu-{{ individuIndex }}" ng-model="ressource.tnsActiviteType">
+              <option value="achat_revente">Achat/revente ou fourniture de logement</option>
+              <option value="bic">Activité commerciale ou artisanale (BIC)</option>
+              <option value="bnc">Activité libérale et/ou intellectuelle (BNC)</option>
+            </select>
           </div>
+        </div>
 
+        <div class="col-sm-4">
           <div class="form-group">
-            <label class="control-label col-sm-4" for="ca-individu-{{ individuIndex }}">Chiffre d’affaires {{ yearMoinsUn }}</label>
-            <div class="col-sm-8">
-              <span class="input-group">
-                <input
-                  type="number"
-                  id="ca-individu-{{ individuIndex }}"
-                  class="form-control text-right"
-                  required
-                  min="0"
-                  select-on-focus
-                  zero-to-empty
-                  ng-model="ressource.montantAnnuel">
-                <span class="input-group-addon">€</span>
-              </span>
-              <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
-                Montant invalide
-              </span>
-            </div>
+            <label for="ca-individu-{{ individuIndex }}">Chiffre d’affaires {{ yearMoinsUn }}</label>
+            <span class="input-group">
+              <input
+                type="number"
+                id="ca-individu-{{ individuIndex }}"
+                class="form-control text-right"
+                required
+                min="0"
+                select-on-focus
+                zero-to-empty
+                ng-model="ressource.montantAnnuel">
+              <span class="input-group-addon">€</span>
+            </span>
+            <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
+              Montant invalide
+            </span>
           </div>
         </div>
       </div>
@@ -125,28 +121,29 @@
 
     <div ng-if="individuRef.hasRessourcesOtherTns" ng-repeat="ressource in individuRef.ressources|filter: isRessourceOtherTns">
       <h3 class="title-tns">{{ ressource.type.label }}</h3>
-      <div class="form-group">
-        <label
-          class="control-label col-sm-4"
-          for="revenus-exercice-individu-{{ individuIndex }}">
-          Revenus sur le dernier exercice clos
-        </label>
+      <div class="row">
         <div class="col-sm-4">
-          <span class="input-group">
-            <input
-              type="number"
-              id="revenus-exercice-individu-{{ individuIndex }}"
-              class="form-control text-right"
-              required
-              min="0"
-              select-on-focus
-              zero-to-empty
-              ng-model="ressource.montantAnnuel">
-            <span class="input-group-addon">€</span>
-          </span>
-          <span class="help-block text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
-            Montant invalide
-          </span>
+          <div class="form-group">
+            <label
+              for="revenus-exercice-individu-{{ individuIndex }}">
+              Revenus sur le dernier exercice clos
+            </label>
+            <span class="input-group">
+              <input
+                type="number"
+                id="revenus-exercice-individu-{{ individuIndex }}"
+                class="form-control text-right"
+                required
+                min="0"
+                select-on-focus
+                zero-to-empty
+                ng-model="ressource.montantAnnuel">
+              <span class="input-group-addon">€</span>
+            </span>
+            <span class="help-block text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
+              Montant invalide
+            </span>
+          </div>
         </div>
       </div>
     </div>

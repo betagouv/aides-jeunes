@@ -177,9 +177,6 @@ $body-front-base-padding: 60px;
   h1 {
     margin-top: 0px;
   }
-  h3 {
-    margin-top: 0px;
-  }
 }
 
 .btn-cerfa {
@@ -292,6 +289,35 @@ $tns: #CC2A41;
   @include button-variant-capture($tns);
 }
 
+@mixin title-ressource($color) {
+  border-bottom: 2px solid $color;
+  padding-bottom: 3px;
+}
+
+.title-indemnites {
+  @include title-ressource($indemnites);
+}
+
+.title-pensions {
+  @include title-ressource($pensions);
+}
+
+.title-allocations {
+  @include title-ressource($allocations);
+}
+
+.title-revenusActivite {
+  @include title-ressource($revenusActivite);
+}
+
+.title-autre {
+  @include title-ressource($autre);
+}
+
+.title-tns {
+  @include title-ressource($tns);
+}
+
 .btn-selection {
   // Reset border de 1px sur .btn
   border-top: 0px;
@@ -401,6 +427,10 @@ $tns: #CC2A41;
 
 .bloc-aucune-aide-eligible {
   padding: 20px 0;
+}
+
+.ressource-types-block {
+  margin-bottom: 15px;
 }
 
 @mixin panel-variant-recap($color) {

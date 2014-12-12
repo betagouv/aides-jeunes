@@ -37,7 +37,9 @@ angular.module('ddsApp').controller('FoyerRessourceMontantsCtrl', function($scop
 
     $scope.updateMontantAnnuel = function(ressource) {
         var monthsSum = ressource.months[0].montant + ressource.months[1].montant + ressource.months[2].montant;
-        ressource.montantAnnuel = Math.round(4 * monthsSum);
+        if (!_.isNaN(monthsSum)) {
+            ressource.montantAnnuel = Math.round(4 * monthsSum);
+        }
     };
 
     $scope.isRessourceSelected = function(ressourceType) {

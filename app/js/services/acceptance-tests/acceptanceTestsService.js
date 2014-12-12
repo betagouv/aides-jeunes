@@ -167,10 +167,10 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
 
             return self.launchTest(test)
                 .finally(function() {
-                if (afterLaunch) {
-                    afterLaunch();
-                }
-            });
+                    if (afterLaunch) {
+                        afterLaunch();
+                    }
+                });
         }
     };
 });

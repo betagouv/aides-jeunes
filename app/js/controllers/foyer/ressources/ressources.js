@@ -96,9 +96,9 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                     individuRef.hasRessourcesNonTns = true;
                 }
 
-                var ressource = _.find(previousRessources, {type: ressourceType});
+                var ressource = _.find(previousRessources, { type: ressourceType });
                 if (!ressource) {
-                    ressource = {type: ressourceType};
+                    ressource = { type: ressourceType, interrupted: false };
                     if ('caMicroEntreprise' === ressourceType.id) {
                         ressource.tnsStructureType = 'auto_entrepreneur';
                         ressource.tnsActiviteType = 'bic';
@@ -117,4 +117,6 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             });
         });
     };
+
+    $scope.initIndividusRessources();
 });

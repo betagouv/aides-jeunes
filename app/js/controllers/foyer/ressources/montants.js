@@ -50,6 +50,7 @@ angular.module('ddsApp').controller('FoyerRessourceMontantsCtrl', function($scop
         $scope.individuRefs.forEach(function(individuRef) {
             var individu = individuRef.individu;
             individu.ressources = [];
+            individu.interruptedRessources = [];
             individuRef.ressources.forEach(function(ressource) {
                 if (ressource.months) {
                     ressource.months.forEach(function(month) {
@@ -76,6 +77,10 @@ angular.module('ddsApp').controller('FoyerRessourceMontantsCtrl', function($scop
                         debutPeriode: $scope.momentDebutAnnee.format('YYYY-MM'),
                         finPeriode: $scope.momentFinAnnee.format('YYYY-MM')
                     });
+                }
+
+                if (ressource.interrupted) {
+                    individu.interruptedRessources.push(ressource.type.id);
                 }
             });
         });

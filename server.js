@@ -19,7 +19,7 @@ if ('production' === env) {
 }
 
 // prerender.io
-app.use(require('prerender-node').set('prerenderToken', 'JAGCiJMW0f0sBOL7PWgs'));
+app.use(require('prerender-node').set('prerenderToken', config.prerenderToken));
 
 // Setup app
 app.use('/api', require('sgmap-mes-aides-api'));

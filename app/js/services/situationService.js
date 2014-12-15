@@ -147,7 +147,9 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 situation.logement.dateArrivee = moment(situation.logement.dateArriveeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
             }
 
-            flattenPatrimoine(situation.patrimoine); // FIXME Faire ça dans le controller du patrimoine
+            if (situation.patrimoine) {
+                flattenPatrimoine(situation.patrimoine); // FIXME Faire ça dans le controller du patrimoine
+            }
 
             var result = {
                 individus: individus,

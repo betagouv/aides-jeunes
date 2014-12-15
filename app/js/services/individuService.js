@@ -22,7 +22,7 @@ angular.module('ddsCommon').service('IndividuService', function($filter, situati
         },
 
         nationaliteLabel: function(individu) {
-            return _.find(nationalites, {id: individu.nationalite}).label;
+            return _.find(nationalites, { id: individu.nationalite }).label;
         },
 
         getStatutsSpecifiques: function() {
@@ -35,6 +35,13 @@ angular.module('ddsCommon').service('IndividuService', function($filter, situati
 
         isParent: function(individu) {
             return this.isRoleParent(individu.role);
+        },
+
+        getParents: function(individus) {
+            var self = this;
+            return _.filter(individus, function(individu) {
+                return self.isParent(individu);
+            });
         },
 
         formatStatutsSpecifiques: function(individu) {

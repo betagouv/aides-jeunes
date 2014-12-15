@@ -147,3 +147,22 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         category: 'tns'
     }
 ]);
+
+angular.module('ddsCommon').constant('categoriesRnc', [
+    {
+        id: 'rncRevenusActivite',
+        label: 'Revenus d’activité connus'
+    },
+    {
+        id: 'rncAutresRevenus',
+        label: 'Autres revenus imposables (préretraite, chômage)'
+    },
+    {
+        id: 'rncPensionsRetraitesRentes',
+        label: 'Pensions, retraites, rentes'
+    },
+    {
+        id: 'rncPensionsAlimentaires',
+        label: 'Pensions alimentaires reçues'
+    }
+]);

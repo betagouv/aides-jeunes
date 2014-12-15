@@ -34,9 +34,6 @@ angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, Situ
         epargneSansRevenus: 0
     };
 
-    // $scope.patrimoine.hasImmobilier = 0 < ($scope.patrimoine.valeurLocativeImmoNonLoue + $scope.patrimoine.valeurLocativeTerrainNonLoue);
-    // $scope.patrimoine.hasMobilier = 0 < $scope.patrimoine.epargneSansRevenus;
-
     $scope.updateRevenusLocatifsYearAmount = function() {
         var montants = _.map($scope.revenusLocatifs.months, function(month) {
             return month.montant;

@@ -22,19 +22,6 @@
   </div>
 
   <div ng-if="droits.length">
-    <div class="alert alert-warning">
-      <div class="row">
-        <div class="col-sm-8">
-          <b>Attention</b> : ces résultats sont incomplets.
-          Les aides sociales de la CAF se basent sur vos ressources 2012 pour étudier vos droits.
-          <br>Pour plus de précision dans la simulation, renseignez vos ressources 2012.
-        </div>
-        <div class="col-sm-4">
-          <a class="btn btn-primary" ui-sref="foyer.ressourcesYearMoins2">Déclarer mes ressources 2012</a>
-        </div>
-      </div>
-    </div>
-
     <div class="row">
       <div ng-repeat="droit in droits">
         <div class="clearfix" ng-if="$index % 2 === 0"></div>
@@ -111,19 +98,9 @@
     <h1><i class="fa fa-gears"></i> Droits nécessitant des précisions</h1>
 
     <p>
-<<<<<<< HEAD
-      Les droits suivants ont été simulés sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
-      Or les aides ci-dessous se basent sur les ressources que vous avez perçues <b>pendant l'année {{ yearMoins2 }}</b>.
-      Consultez <a href="http://www.caf.fr/aides-et-services/les-services-en-ligne/estimer-vos-droits">les simulateurs de la CAF</a> pour une simulation plus précise.
-=======
       Les droits suivants se basent en théorie sur vos ressources de l'année {{ yearMoins2 }}.
       Les résultats ci-dessous ont été simulés sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
-<<<<<<< HEAD
-      <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a> pour plus de précision.
->>>>>>> capture ressources year-2 - first commit
-=======
       <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a> pour une simulation plus précise.
->>>>>>> suppression call to actions capture ressources 2012
     </p>
 
     <div class="row">

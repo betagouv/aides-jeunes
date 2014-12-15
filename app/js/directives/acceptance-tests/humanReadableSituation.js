@@ -32,18 +32,26 @@ angular.module('ddsCommon').directive('humanReadableSituation', function($timeou
                 var ressources = individu.ressources;
                 ressources = _.groupBy(ressources, 'type');
                 _.forEach(ressources, function(subRessources, type) {
-                    var values = {type: _.find(ressourceTypes, {id: type}).label, values: []};
+                    var ressourceType = _.find(ressourceTypes, {id: type});
+                    var label = ressourceType ? ressourceType.label : type + ' (cette ressource n\'est plus capturée)';
+                    var values = { type: label, values: [] };
                     target.ressources.push(values);
                     for (var i = 0; i < 3; i++) {
                         var ressource = subRessources[i];
-                        values.values.push({periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'), montant: ressource.montant});
+                        values.values.push({
+                            periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
+                            montant: ressource.montant
+                        });
                     }
 
                     var montants = _.pluck(subRessources, 'montant');
                     var montantAnnuel = _.reduce(montants, function(sum, montant) {
                         return sum + montant;
                     });
-                    values.values.push({periode: 'Année glissante', montant: Math.round(montantAnnuel)});
+                    values.values.push({
+                        periode: 'Année glissante',
+                        montant: Math.round(montantAnnuel)
+                    });
                 });
 
                 return target;

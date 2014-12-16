@@ -24,7 +24,7 @@
             <a class="navbar-brand" ui-sref="index.all">Tests d'acceptance mes-aides</a>
           </div>
           <div class="collapse navbar-collapse navbar-right" collapse="navbarCollapsed" ng-if="email">
-            <p class="navbar-text">{{ email }}</p>
+            <a class="navbar-text" ui-sref="index.mine">{{ email }}</a>
             <ul class="nav navbar-nav ">
               <li><button type="button" class="btn btn-default navbar-btn" ng-click="logout()">Déconnexion</button></li>
             </ul>
@@ -60,7 +60,8 @@
     <script src="js/common.js"></script>
 
     <script src="js/controllers/acceptance-tests/index.js"></script>
-    <script src="js/controllers/acceptance-tests/tab.js"></script>
+    <script src="js/controllers/acceptance-tests/testList.js"></script>
+    <script src="js/controllers/acceptance-tests/testTimeline.js"></script>
     <script src="js/controllers/acceptance-tests/navbar.js"></script>
     <script src="js/controllers/acceptance-tests/login.js"></script>
     <script src="js/controllers/acceptance-tests/form.js"></script>
@@ -78,6 +79,8 @@
 
     <script src="js/directives/acceptance-tests/humanReadableSituation.js"></script>
     <script src="js/directives/testAccordion.js"></script>
+    <script src="js/directives/acceptance-tests/keywordInput.js"></script>
+    <script src="js/directives/acceptance-tests/activityTimeline.js"></script>
 
     <script src="js/filters/strings.js"></script>
     <!-- endbuild -->

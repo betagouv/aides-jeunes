@@ -1,5 +1,10 @@
 @import 'commons';
 
+.nav-tabs > li > a {
+  color: $link-color;
+  background-color: transparent;
+}
+
 .body-acceptance-tests {
   padding-top: 45px;
 }
@@ -23,4 +28,260 @@
   &:hover {
     text-decoration: none;
   }
+}
+
+.anchor {
+  padding-top: 55px;
+  visibility: hidden;
+  width: 1px;
+}
+
+.ui-view-tabs {
+  margin-top: 20px;
+}
+
+.filter-box {
+  margin: 5px 0;
+  background-color: whitesmoke;
+  border: 1px solid darken(whitesmoke, 5%);
+
+  .page-header {
+    margin-top: 0;
+    margin-bottom: 14px;
+    padding: 5px;
+    background-color: #F9F9F9;
+  }
+
+  .page-header h1 {
+    margin-top: 0;
+    font-size: 16px;
+    padding: 10px 8px;
+  }
+
+  .form-group {
+    margin-bottom: 6px;
+  }
+
+  .btn-sm {
+    padding: 4px 8px;
+  }
+}
+
+.tag-list {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #D6D6D6;
+  background: inherit;
+  padding: 1px 5px;
+  margin: 0;
+  overflow: auto;
+  list-style: none;
+  cursor: text;
+  background-color: white;
+}
+
+.tag-choice {
+  display: block;
+  float: left;
+  margin: 2px 3px;
+  padding: 2px 5px;
+  border: 1px solid #D6D6D6;
+  background-color: #DEE7F8;
+  cursor: pointer;
+}
+
+
+.tag-choice-select {
+  @extend .tag-choice;
+  font-size: 10px;
+  background-color: #DDDDDD;
+}
+
+.tag-new {
+  display: block;
+  float: left;
+  padding: 2px 3px;
+  margin: 2px 3px;
+
+  .tag-input {
+    width: 100%;
+    font-size: 10px;
+    background: none;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    padding: 1px 5px;
+  }
+}
+
+.tag-show {
+  color: #777;
+  font-size: 10px;
+  font-style: italic;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.tag-show-list {
+  margin: 0;
+  padding: 0;
+  background: inherit;
+  overflow: auto;
+  list-style: none;
+}
+
+.acceptance-test-tab {
+  padding-top: 25px;
+}
+
+.sub-panel {
+  background-color: #e9f0f5;
+  border: 1px solid darken(#e9f0f5, 10%);
+}
+
+.human-readable-situation {
+  padding: 20px;
+}
+
+.timeline-tab {
+  .timeline {
+    padding: 20px 5px;
+  }
+}
+
+.timeline {
+  background-color: #e9f0f5;
+  position: relative;
+  color: #7f8c97;
+  padding: 1px;
+  padding-right: 10px;
+}
+
+.timeline:before {
+  position: absolute;
+  margin-left: 17px;
+  content: '';
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: #d7e4ed;
+}
+
+.timeline-block {
+  margin-left: 35px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.timeline-block:before {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.timeline-img {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 11px;
+  margin-top: 11px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+
+  i {
+    display: block;
+    color: white;
+    font-size: 15px;
+    position: relative;
+    left: 55%;
+    top: 45%;
+    margin-left: -6px;
+    margin-top: -6px;
+  }
+
+  &.plus {
+    background: $brand-info;
+  }
+
+  &.plus {
+    background: $brand-info;
+  }
+
+  &.edit {
+    background: $brand-warning;
+  }
+
+  &.thumbs-up {
+    background: $brand-success;
+  }
+
+  &.check {
+    background: $brand-success;
+  }
+
+  &.thumbs-down {
+    background: $brand-danger;
+  }
+
+  &.remove {
+    background: $brand-danger;
+  }
+}
+
+.timeline-content {
+  margin-left: 12px;
+  padding: 5px;
+  padding-left: 10px;
+  position: relative;
+  background: white;
+  border-radius: 0.25em;
+  box-shadow: 0 3px 0 #d7e4ed;
+
+  h1 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 12px;
+  }
+
+  p {
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+}
+
+.timeline-content:before {
+  position: absolute;
+  top: 16px;
+  right: 100%;
+  border-color: transparent;
+  border-right-color: white;
+  content: '';
+  height: 0;
+  width: 0;
+  border: 7px solid transparent;
+  border-right: 7px solid white;
+}
+
+.timeline-content:after {
+  content: "";
+  display: table;
+  clear: both;
 }

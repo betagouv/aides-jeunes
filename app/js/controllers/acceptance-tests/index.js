@@ -1,13 +1,38 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $state) {
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $state, $timeout, AcceptanceTestsService, acceptanceTests, keywords, organizations, states, activities) {
+    $scope.tests = acceptanceTests;
+    $scope.categories = AcceptanceTestsService.categorizeTests($scope.tests);
+
+    $scope.activities = activities;
+
+    $scope.keywords = keywords;
+    $scope.selectedKeywords = [];
+
+    $scope.organizations = organizations;
+    $scope.selectedOrganizations = {};
+
+    $scope.states = states;
+    $scope.selectedStates = {};
+
     $scope.tabs = [
-        { heading: 'Tous', route:'index.all', active:false },
-        { heading: 'Validés', route:'index.validated', active:false },
-        { heading: 'En attente', route:'index.waiting', active:false },
-        { heading: 'Refusés', route:'index.invalidated', active:false },
-        { heading: 'Mes tests', route:'index.mine', active:false }
+        { heading: 'Liste des tests', route:'index.list' },
+        { heading: 'Timeline', route:'index.timeline' }
     ];
+
+    var extractSelectedFilters = function(selection) {
+        return _.chain(selection).keys().filter(function(current) {
+            return selection[current];
+        }).value();
+    };
+
+    $scope.validate = function() {
+        $scope.acceptanceTests = AcceptanceTestsService.get({
+            keywords: $scope.selectedKeywords,
+            organizations: extractSelectedFilters($scope.selectedOrganizations),
+            states: extractSelectedFilters($scope.selectedStates)
+        });
+    };
 
     $scope.setWaiting = function(tab) {
         if (!$scope.active(tab.route)) {
@@ -31,3 +56,4 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
         });
     });
 });
+

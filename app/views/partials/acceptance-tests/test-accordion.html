@@ -1,27 +1,7 @@
-<div class="row">
-  <div class="col-md-10">
-    <h2>{{ category.name }}</h2>
-  </div>
-  <div class="col-md-2">
-    <button
-      ng-if="!readOnly"
-      type="button"
-      class="btn btn-default btn-sm pull-right"
-      ng-disabled="category.pendingTests || pendingTests"
-      ng-click="launchTestCategory(category)">
-      <span ng-if="category.pendingTests || pendingTests">
-        <i class="fa fa-spinner fa-spin"></i> Tests en cours...
-      </span>
-      <span ng-if="!category.pendingTests && !pendingTests">
-        Lancer les tests
-      </span>
-    </button>
-  </div>
-</div>
-<p ng-if="category.errors">Tests en erreur : {{ category.errors }}/{{ category.tests.length }}</p>
+<h2>{{ category.name }}</h2>
+
 <accordion close-others="false">
   <accordion-group
-    id="test-{{ test._id }}"
     is-open="test.open"
     ng-class="testStatusClass(test)"
     ng-repeat="(idxTest, test) in category.tests">
@@ -31,7 +11,9 @@
         <i ng-if="test.state === 'pending'" class="fa fa-clock-o" tooltip="Test en attente de validation"></i>
         <i ng-if="test.state === 'rejected'" class="fa fa-exclamation-circle" tooltip="Test refusé"></i>
       </span>
-      {{ test.name }} <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
+      {{ test.name }}
+      <span class="anchor" id="test-{{ test._id }}">x</span>
+      <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
       <div ng-if="test.open && test.createdBy">
         <small class="test-detail">
           Créé par {{test.createdBy.firstName}} {{test.createdBy.lastName}}
@@ -150,6 +132,10 @@
           Détail de la situation
           <i class="fa" ng-class="{'fa-chevron-down': test.showSituation, 'fa-chevron-right': !test.showSituation}"></i>
         </button>
+        <button type="button" class="btn btn-default btn-xs" ng-click="toggleTimeline(test)">
+          Timeline du test
+          <i class="fa" ng-class="{'fa-chevron-down': test.showTimeline, 'fa-chevron-right': !test.showTimeline}"></i>
+        </button>
         <small ng-if="!readOnly">
           [<a href="/api/situations/{{ test.situation }}">Situation DDS</a>]
           [<a href="/api/situations/{{ test.situation }}/openfisca-request">Requête OpenFisca</a>]
@@ -157,8 +143,12 @@
           [<a href="" ng-click="gotoDebugOpenFisca(test.situation)">Debug OpenFisca</a>]
         </small>
       </p>
-      <human-readable-situation ng-if="test.showSituation && test.situationObject" situation="test.situationObject">
-      </human-readable-situation>
+      <div class="sub-panel" ng-if="test.showSituation && test.situationObject">
+        <human-readable-situation situation="test.situationObject"></human-readable-situation>
+      </div>
+      <div class="sub-panel" ng-if="test.timeline">
+        <activity-timeline activities="test.timeline" ng-if="test.showTimeline && test.timeline"></activity-timeline>
+      </div>
     </div>
   </accordion-group>
 </accordion>

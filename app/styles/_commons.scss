@@ -48,20 +48,27 @@
   text-align: justify;
 }
 
-.panel-danger {
+@mixin panel-custom($color) {
+  .panel-heading {
+    border-bottom: 2px solid $color;
+    background-color: lighten($color, 15%);
+  }
+  .panel-title {
+    font-weight: 500;
+  }
   .test-detail {
     color: $color-background;
   }
+}
+
+.panel-danger {
+  @include panel-custom($brand-danger);
 }
 
 .panel-warning {
-  .test-detail {
-    color: $color-background;
-  }
+  @include panel-custom($brand-warning);
 }
 
 .panel-success {
-  .test-detail {
-    color: $color-background;
-  }
+  @include panel-custom($brand-success);
 }

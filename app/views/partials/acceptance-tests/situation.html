@@ -1,46 +1,48 @@
-Date de valeur de la situation : {{ situation.dateDeValeur|date:'dd/MM/yyyy' }}
+<div class="human-readable-situation">
+  Date de valeur de la situation : {{ situation.dateDeValeur|date:'dd/MM/yyyy' }}
 
-<h4>Individus</h4>
-<div class="row">
-  <div class="col-md-6" ng-repeat="individu in individus">
-    <h5><i class="fa fa-male"></i> {{ individu.label }}</h5>
-    Né(e) le {{ individu.dateDeNaissance|date:'dd/MM/yyyy' }} ({{ individu.age }} ans),
-    nationalité {{ individu.nationalite }}
-    <br>
-    {{ individu.statutsSpecifiques }}
-    <div class="row" ng-if="individu.ressources.length">
-      <div class="col-md-6" ng-repeat="ressource in individu.ressources">
-        <h6>{{ ressource.type }}</h6>
-        <div ng-repeat="value in ressource.values">
-          {{ value.periode }} : {{ value.montant }} €
+  <h4>Individus</h4>
+  <div class="row">
+    <div class="col-md-6" ng-repeat="individu in individus">
+      <h5><i class="fa fa-male"></i> {{ individu.label }}</h5>
+      Né(e) le {{ individu.dateDeNaissance|date:'dd/MM/yyyy' }} ({{ individu.age }} ans),
+      nationalité {{ individu.nationalite }}
+      <br>
+      {{ individu.statutsSpecifiques }}
+      <div class="row" ng-if="individu.ressources.length">
+        <div class="col-md-6" ng-repeat="ressource in individu.ressources">
+          <h6>{{ ressource.type }}</h6>
+          <div ng-repeat="value in ressource.values">
+            {{ value.periode }} : {{ value.montant }} €
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div ng-if="situation.ressourcesYearMoins2Captured">
-  <h5>RFR</h5>
-  RFR année - 2 : {{ situation.rfr }} €
-</div>
-
-<h4>Logement</h4>
-<div ng-bind-html="logement.type"></div>
-<div ng-if="logement.loyer">Loyer/mensualité d'emprunt : {{ logement.loyer }} €</div>
-Code postal {{ logement.codePostal }} - {{ logement.ville }}
-
-<h4>Patrimoine</h4>
-<span ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun</span>
-<div class="row">
-  <div class="col-md-4">
-    <div ng-repeat="value in patrimoine">
-      {{ value.label }} : {{ value.montant }} €
-    </div>
+  <div ng-if="situation.ressourcesYearMoins2Captured">
+    <h5>RFR</h5>
+    RFR année - 2 : {{ situation.rfr }} €
   </div>
-  <div class="col-md-4" ng-repeat="revenu in revenusDuPatrimoine">
-    <h6>{{ revenu.label }}</h6>
-    <div ng-repeat="value in revenu.values">
-      {{ value.periode }} : {{ value.montant }} €
+
+  <h4>Logement</h4>
+  <div ng-bind-html="logement.type"></div>
+  <div ng-if="logement.loyer">Loyer/mensualité d'emprunt : {{ logement.loyer }} €</div>
+  Code postal {{ logement.codePostal }} - {{ logement.ville }}
+
+  <h4>Patrimoine</h4>
+  <span ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun</span>
+  <div class="row">
+    <div class="col-md-4">
+      <div ng-repeat="value in patrimoine">
+        {{ value.label }} : {{ value.montant }} €
+      </div>
+    </div>
+    <div class="col-md-4" ng-repeat="revenu in revenusDuPatrimoine">
+      <h6>{{ revenu.label }}</h6>
+      <div ng-repeat="value in revenu.values">
+        {{ value.periode }} : {{ value.montant }} €
+      </div>
     </div>
   </div>
 </div>

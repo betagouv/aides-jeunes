@@ -2,7 +2,7 @@
 
 angular.module('acceptanceTests').controller('LoginCtrl', function($scope, $state, $stateParams, $window, $timeout, UserService) {
     if (UserService.user()) {
-        $state.go('index.all');
+        $state.go('index.list');
     }
 
     $scope.submit = function() {
@@ -13,7 +13,7 @@ angular.module('acceptanceTests').controller('LoginCtrl', function($scope, $stat
                 if ($stateParams.targetUrl) {
                     $window.location.pathname = $stateParams.targetUrl;
                 } else {
-                    $state.go('index.all');
+                    $state.go('index.list');
                 }
             }).catch(function() {
                 $scope.badCredentials = true;

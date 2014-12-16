@@ -1,0 +1,19 @@
+<label for="tag-list" class="col-sm-2 control-label">Mots clés</label>
+<div class="col-sm-9">
+  <ul class="tag-list" ng-click="setFocusOnInput('new-tag-input')">
+    <li class="tag-choice" ng-repeat="(idx, keyword) in selectedKeywords" ng-click="removeKeyword(idx)">
+      {{keyword}} <i class="fa fa-close"></i>
+    </li>
+    <li class="tag-new">
+      <input id="new-tag-input" class="tag-input" type="text" ng-input-enter="addKeyword()" ng-model="currentKeyword" typeahead="keyword for keyword in keywords | filter:$viewValue">
+    </li>
+  </ul>
+  <span class="tag-show" ng-click="toggleShowTags()">Liste des mots clés</span>
+  <div ng-if="showTags">
+    <ul class="tag-show-list">
+      <li class="tag-choice-select" ng-repeat="keyword in keywords | filter:isSelected" ng-click="addKeyword(keyword)">
+        {{keyword}} <i class="fa fa-plus"></i>
+      </li>
+    </ul>
+  </div>
+</div>

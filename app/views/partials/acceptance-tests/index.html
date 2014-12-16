@@ -1,13 +1,39 @@
-<div class="page-header">
-  <h1><i class="fa fa-tasks"></i> Tests d'acceptance mes-aides</h1>
+<div class="filter-box form-horizontal">
+  <div class="page-header">
+    <h1 class="pull-left align-center">Filtres</h1>
+    <div class="text-right">
+      <div class="btn btn-sm btn-success" ng-click="validate()">Appliquer</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <keyword-input keywords="keywords" selected-keywords="selectedKeywords"></keyword-input>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Créé par</label>
+    <div class="col-sm-9">
+      <div class="btn-group">
+        <label class="btn btn-default btn-sm" ng-repeat="organization in organizations" ng-model="selectedOrganizations[organization.id]" btn-checkbox>{{organization.name}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">État</label>
+    <div class="col-sm-9">
+      <div class="btn-group">
+        <label class="btn btn-default btn-sm" ng-repeat="state in states" ng-model="selectedStates[state.id]" btn-checkbox>{{state.name}}</label>
+      </div>
+    </div>
+  </div>
 </div>
 
-<tabset>
-  <tab ng-repeat="tab in tabs" active="tab.active" ui-sref="{{tab.route}}" ng-click="setWaiting(tab)">
-    <tab-heading>
-      <span ng-if="tab.waiting"><i class="fa fa-spinner fa-spin"></i></span> {{tab.heading}}
-    </tab-heading>
-  </tab>
-</tabset>
+<div class="ui-view-tabs">
+  <tabset>
+    <tab ng-repeat="tab in tabs" active="tab.active" ui-sref="{{tab.route}}" ng-click="setWaiting(tab)">
+      <tab-heading>
+        <span ng-if="tab.waiting"><i class="fa fa-spinner fa-spin"></i></span> {{tab.heading}}
+      </tab-heading>
+    </tab>
+  </tabset>
 
-<div ui-view></div>
+  <div ui-view></div>
+</div>

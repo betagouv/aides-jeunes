@@ -11,57 +11,70 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('index', {
             controller: 'IndexCtrl',
-            templateUrl: '/acceptance-tests/partials/index.html'
-        })
-        .state('index.all', {
-            url: '/?testId',
-            controller: 'TabCtrl',
-            templateUrl: '/acceptance-tests/partials/tab.html',
+            templateUrl: '/acceptance-tests/partials/index.html',
             resolve: {
-                acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
+                keywords: function() {
+                    return ['apl', 'rsa', 'patrimoine', 'als', 'cmu', 'aspa'];
+                },
+                organizations: function() {
+                    return [{id: 'me', name: 'Moi'}, {id: 'cnam', name: 'CNAM'}, {id: 'pole-emploi', name: 'Pôle emploi'}, {id: 'dgcs', name: 'DGCS'}];
+                },
+                states: function() {
+                    return [{id: 'valide', name: 'Valide'}, {id: 'attente', name: 'En attente'}, {id: 'refuse', name: 'Refusé'}];
+                },
+                acceptanceTests: function(AcceptanceTestsService) {
                     return AcceptanceTestsService.getAndHandleLastResult('');
-                }]
+                },
+                activities: function(UserService, acceptanceTests) {
+                    var target = acceptanceTests[0];
+                    var user = UserService.user();
+
+                    return [{
+                        date: new Date('December 7, 2014 12:13:00'),
+                        user: user,
+                        target: target,
+                        type: { label: 'Rejet', icon: 'remove'},
+                        description: 'Lorem ipsum dolor sit amet, eu deserunt facilisis assentior vis, equidem appetere euripidis mel at. Duo et aliquid inermis, ubique imperdiet ne has, no vidit lorem placerat nec. Per an justo augue conceptam, ex mel facer persius. Mei cu latine senserit accommodare, ne vis augue propriae. Ei usu illud graeco fabellas.'
+                    }, {
+                        date: new Date('December 7, 2014 12:13:00'),
+                        user: user,
+                        target: target,
+                        type: { label: 'Validation', icon: 'check'},
+                        description: 'Lorem ipsum dolor sit amet, eu deserunt facilisis assentior vis, equidem appetere euripidis mel at. Duo et aliquid inermis, ubique imperdiet ne has, no vidit lorem placerat nec. Per an justo augue conceptam, ex mel facer persius. Mei cu latine senserit accommodare, ne vis augue propriae. Ei usu illud graeco fabellas.'
+                    }, {
+                        date: new Date('December 6, 2014 12:13:00'),
+                        target: target,
+                        type: { label: 'En succès', icon: 'thumbs-up'}
+                    }, {
+                        date: new Date('December 5, 2014 11:13:00'),
+                        user: user,
+                        target: target,
+                        type: { label: 'Edition', icon: 'edit'}
+                    }, {
+                        date: new Date('December 4, 2014 11:30:00'),
+                        target: target,
+                        type: { label: 'En erreur', icon: 'thumbs-down'},
+                    }, {
+                        date: new Date('December 3, 2014 11:13:00'),
+                        user: user,
+                        target: target,
+                        type: { label: 'Création', icon: 'plus'}
+                    }];
+                }
             }
         })
-        .state('index.validated', {
-            url: '/valides',
-            controller: 'TabCtrl',
-            templateUrl: '/acceptance-tests/partials/tab.html',
-            resolve: {
-                acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
-                    return AcceptanceTestsService.getAndHandleLastResult('validated');
-                }]
-            }
+        .state('index.list', {
+            url: '/?testId',
+            controller: 'TestListCtrl',
+            templateUrl: '/acceptance-tests/partials/test-list.html'
         })
-        .state('index.invalidated', {
-            url: '/non-valides',
-            controller: 'TabCtrl',
-            templateUrl: '/acceptance-tests/partials/tab.html',
+        .state('index.timeline', {
+            url: '/timeline/?testId',
+            controller: 'TestTimelineCtrl',
+            templateUrl: '/acceptance-tests/partials/test-timeline.html',
             resolve: {
-                acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
-                    return AcceptanceTestsService.getAndHandleLastResult('rejected');
-                }]
-            }
-        })
-        .state('index.waiting', {
-            url: '/en-attente',
-            controller: 'TabCtrl',
-            templateUrl: '/acceptance-tests/partials/tab.html',
-            resolve: {
-                acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
-                    return AcceptanceTestsService.getAndHandleLastResult('pending');
-                }]
-            }
-        })
-        .state('index.mine', {
-            url: '/mes-tests',
-            controller: 'TabCtrl',
-            templateUrl: '/acceptance-tests/partials/tab.html',
-            resolve: {
-                acceptanceTests: ['$http', function($http) {
-                    return $http.get('/api/acceptance-tests/mine').then(function(result) {
-                        return result.data;
-                    });
+                activities: ['AcceptanceTestsService', function(AcceptanceTestsService) {
+                    return AcceptanceTestsService.getAndHandleLastResult('');
                 }]
             }
         })

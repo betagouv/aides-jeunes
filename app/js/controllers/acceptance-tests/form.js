@@ -38,11 +38,11 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
         var test = _.pick($scope.test, ['_id', 'situation', 'name', 'description', 'droitsAttendus']);
         if (editMode) {
             $http.put('/api/acceptance-tests/' + test._id, test).then(function() {
-                $state.go('index.all', {'testId': test._id});
+                $state.go('index.list', {'testId': test._id});
             });
         } else {
             $http.post('/api/acceptance-tests', test).then(function(result) {
-                $state.go('index.all', {'testId': result.data._id});
+                $state.go('index.list', {'testId': result.data._id});
             });
         }
     };

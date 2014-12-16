@@ -2,6 +2,25 @@
 
 angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http) {
     return {
+        getKeywords: function() {
+            return $http.get('/api/acceptance-tests/keywords').then(function(result) {
+                return result.data;
+            });
+        },
+
+        get: function(filters) {
+            var self = this;
+            return $http.get('/api/acceptance-tests', {params: filters}).then(function(result) {
+                var tests = result.data;
+                _.map(tests, function(test) {
+                    if (test.derniereExecution) {
+                        self.handleResult({data: test.derniereExecution}, test);
+                    }
+                });
+                return tests;
+            });
+        },
+
         getAndHandleLastResult: function(state) {
             var self = this;
             return $http.get('/api/acceptance-tests/' + state).then(function(result) {

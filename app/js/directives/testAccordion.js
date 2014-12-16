@@ -10,16 +10,17 @@ angular.module('ddsCommon').directive('testAccordion', function() {
             readOnly: '=',
             acceptanceTests: '='
         },
-        controller: function($scope, $http, droitsDescription, $stateParams, $timeout, $location, AcceptanceTestsService, $state, $window, $modal) {
+        controller: function($scope, $http, droitsDescription, $stateParams, $timeout, $location, $anchorScroll, UserService, AcceptanceTestsService, $state, $window, $modal) {
             $scope.droits = _.indexBy(droitsDescription, 'id');
 
             if ($stateParams.testId && !$scope.readOnly) {
+                $location.hash('test-' + $stateParams.testId);
+                var testToScroll = _.find($scope.acceptanceTests, {'_id': $stateParams.testId});
+                if (testToScroll) {
+                    testToScroll.open = true;
+                }
                 $timeout(function() {
-                    $location.hash('test-' + $stateParams.testId);
-                    var testToScroll = _.find($scope.acceptanceTests, {'_id': $stateParams.testId});
-                    if (testToScroll) {
-                        testToScroll.open = true;
-                    }
+                    $anchorScroll();
                 });
             }
 
@@ -70,6 +71,46 @@ angular.module('ddsCommon').directive('testAccordion', function() {
                     });
                 }
                 test.showSituation = !test.showSituation;
+                test.showTimeline = false;
+            };
+
+            $scope.toggleTimeline = function(test) {
+                if (!test.timeline) {
+                    $scope.getTimeline(test);
+                }
+                test.showTimeline = !test.showTimeline;
+                test.showSituation = false;
+            };
+
+            $scope.getTimeline = function(test) {
+                if (test.timeline) {
+                    return;
+                }
+                test.timeline = [{
+                    date: new Date('December 7, 2014 12:13:00'),
+                    user: UserService.user(),
+                    type: { label: 'Rejet', icon: 'remove'},
+                    description: 'Lorem ipsum dolor sit amet, eu deserunt facilisis assentior vis, equidem appetere euripidis mel at. Duo et aliquid inermis, ubique imperdiet ne has, no vidit lorem placerat nec. Per an justo augue conceptam, ex mel facer persius. Mei cu latine senserit accommodare, ne vis augue propriae. Ei usu illud graeco fabellas.'
+                }, {
+                    date: new Date('December 7, 2014 12:13:00'),
+                    user: UserService.user(),
+                    type: { label: 'Validation', icon: 'check'},
+                    description: 'Lorem ipsum dolor sit amet, eu deserunt facilisis assentior vis, equidem appetere euripidis mel at. Duo et aliquid inermis, ubique imperdiet ne has, no vidit lorem placerat nec. Per an justo augue conceptam, ex mel facer persius. Mei cu latine senserit accommodare, ne vis augue propriae. Ei usu illud graeco fabellas.'
+                }, {
+                    date: new Date('December 6, 2014 12:13:00'),
+                    type: { label: 'En succès', icon: 'thumbs-up'},
+                }, {
+                    date: new Date('December 5, 2014 11:13:00'),
+                    user: UserService.user(),
+                    type: { label: 'Edition', icon: 'edit'},
+                }, {
+                    date: new Date('December 4, 2014 11:30:00'),
+                    type: { label: 'En erreur', icon: 'thumbs-down'},
+                }, {
+                    date: new Date('December 3, 2014 11:13:00'),
+                    user: UserService.user(),
+                    type: { label: 'Création', icon: 'plus'}
+                }];
             };
 
             $scope.launchSingleTest = function(test) {
@@ -82,6 +123,7 @@ angular.module('ddsCommon').directive('testAccordion', function() {
 
             $scope.validTest = function(idxCategory, category, idxTest, test) {
                 $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'validated'}).then(function() {
+                    // TODO if selected filter != validated
                     if (!$state.is('index.validated') && !$state.is('index.all')) {
                         category.tests.splice(idxTest, 1);
                         if (category.tests.length === 0) {
@@ -114,6 +156,7 @@ angular.module('ddsCommon').directive('testAccordion', function() {
 
                 modalInstance.result.then(function (comment) {
                     $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'rejected', comment: comment}).then(function() {
+                        // TODO if selected filter != validated
                         if (!$state.is('index.invalidated') && !$state.is('index.all')) {
                             category.tests.splice(idxTest, 1);
                             if (category.tests.length === 0) {
@@ -129,6 +172,7 @@ angular.module('ddsCommon').directive('testAccordion', function() {
 
             $scope.setWaitingTest = function(idxCategory, category, idxTest, test) {
                 $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'pending'}).then(function() {
+                    // TODO if selected filter != validated
                     if (!$state.is('index.waiting') && !$state.is('index.all')) {
                         category.tests.splice(idxTest, 1);
                         if (category.tests.length === 0) {

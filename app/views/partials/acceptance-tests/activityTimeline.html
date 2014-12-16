@@ -1,0 +1,16 @@
+<div class="timeline">
+  <div ng-repeat="activity in activities" class="timeline-block">
+    <div class="timeline-img {{getActivityIcon(activity)}}">
+      <i class="fa fa-{{getActivityIcon(activity)}}"></i>
+    </div>
+
+    <div class="timeline-content">
+      <h1 ng-if="showTarget"><a ui-sref="index.list({'testId':activity.target._id})">{{activity.target.name}}</a></h1>
+      <h2>{{activity.type.label}}</h2>
+      <h3>{{getDate(activity)}} <span ng-if="activity.user">par {{activity.user.firstName}} {{activity.user.lastName}}</span></h3>
+      <p ng-if="activity.description">
+        {{activity.description}}
+      </p>
+    </div>
+  </div>
+</div>

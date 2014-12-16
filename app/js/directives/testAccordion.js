@@ -10,7 +10,7 @@ angular.module('ddsCommon').directive('testAccordion', function() {
             readOnly: '=',
             acceptanceTests: '='
         },
-        controller: function($scope, $http, droitsDescription, $stateParams, $timeout, $location, $anchorScroll, UserService, AcceptanceTestsService, $state, $window, $modal) {
+        controller: function($scope, $http, droitsDescription, $stateParams, $timeout, $location, $anchorScroll, AcceptanceTestsService, $state, $window, $modal) {
             $scope.droits = _.indexBy(droitsDescription, 'id');
 
             if ($stateParams.testId && !$scope.readOnly) {
@@ -86,14 +86,15 @@ angular.module('ddsCommon').directive('testAccordion', function() {
                 if (test.timeline) {
                     return;
                 }
+                var user = {lastName: 'Delz', firstName: 'Flo'};
                 test.timeline = [{
                     date: new Date('December 7, 2014 12:13:00'),
-                    user: UserService.user(),
+                    user: user,
                     type: { label: 'Rejet', icon: 'remove'},
                     description: 'Lorem ipsum dolor sit amet, eu deserunt facilisis assentior vis, equidem appetere euripidis mel at. Duo et aliquid inermis, ubique imperdiet ne has, no vidit lorem placerat nec. Per an justo augue conceptam, ex mel facer persius. Mei cu latine senserit accommodare, ne vis augue propriae. Ei usu illud graeco fabellas.'
                 }, {
                     date: new Date('December 7, 2014 12:13:00'),
-                    user: UserService.user(),
+                    user: user,
                     type: { label: 'Validation', icon: 'check'},
                     description: 'Lorem ipsum dolor sit amet, eu deserunt facilisis assentior vis, equidem appetere euripidis mel at. Duo et aliquid inermis, ubique imperdiet ne has, no vidit lorem placerat nec. Per an justo augue conceptam, ex mel facer persius. Mei cu latine senserit accommodare, ne vis augue propriae. Ei usu illud graeco fabellas.'
                 }, {
@@ -101,14 +102,14 @@ angular.module('ddsCommon').directive('testAccordion', function() {
                     type: { label: 'En succès', icon: 'thumbs-up'},
                 }, {
                     date: new Date('December 5, 2014 11:13:00'),
-                    user: UserService.user(),
+                    user: user,
                     type: { label: 'Edition', icon: 'edit'},
                 }, {
                     date: new Date('December 4, 2014 11:30:00'),
                     type: { label: 'En erreur', icon: 'thumbs-down'},
                 }, {
                     date: new Date('December 3, 2014 11:13:00'),
-                    user: UserService.user(),
+                    user: user,
                     type: { label: 'Création', icon: 'plus'}
                 }];
             };

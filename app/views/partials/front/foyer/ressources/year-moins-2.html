@@ -1,6 +1,9 @@
 <div class="frame-foyer">
-  <h1>Vos ressources en {{ yearMoins2 }}</h1>
-  <p>Munissez-vous de votre déclaration de revenus {{ yearMoins2 }} pour remplir ces informations.</p>
+  <h1>Vos revenus imposables en {{ yearMoins2 }}</h1>
+  <p>
+    Munissez-vous de votre déclaration de revenus d'impôts {{ yearMoins2 }} pour remplir ces informations.
+    <br>Vous pouvez la retrouver en ligne sur <a href="http://www.impots.gouv.fr/">impots.gouv.fr</a>.
+  </p>
   <form class="form-horizontal" novalidate ng-submit="submit()">
     <div class="row">
       <div class="col-md-6" ng-repeat="individuRef in individuRefs">

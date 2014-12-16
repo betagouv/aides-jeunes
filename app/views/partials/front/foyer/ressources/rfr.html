@@ -1,0 +1,40 @@
+<div class="frame-foyer">
+  <h1>Votre revenu fiscal de référence pour vos revenus de {{ yearMoins2 }}</h1>
+  <p>
+    Munissez-vous de votre avis d'imposition {{ yearMoins1 }} sur les revenus {{ yearMoins2 }}
+    pour trouver votre revenu fiscal de référence.
+    <br>Vous pouvez le retrouver en ligne sur <a href="http://www.impots.gouv.fr/">impots.gouv.fr</a>.
+  </p>
+  <form class="form-horizontal" novalidate ng-submit="submit()">
+    <div class="form-group">
+      <label class="col-sm-5 control-label" for="rfr">Votre revenu fiscal de référence {{ yearMoins2 }}</label>
+      <div class="col-sm-4">
+        <span class="input-group">
+          <input
+            type="number"
+            class="form-control text-right"
+            id="rfr"
+            required
+            min="0"
+            select-on-focus
+            zero-to-empty
+            ng-model="rfr">
+          <span class="input-group-addon">€</span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-5">
+        Depuis {{ yearMoins2 }}, votre situation familiale a-t-elle changé ?
+        <span class="help-block">Séparation, divorce, décès de votre conjoint, ...</span>
+      </label>
+      <div class="col-sm-4">
+        <button type="button" class="btn btn-sm btn-default" btn-radio="true" ng-model="situationFamilialeChanged">Oui</button>
+        <button type="button" class="btn btn-sm btn-default" btn-radio="false" ng-model="situationFamilialeChanged">Non</button>
+      </div>
+    </div>
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary">Valider</button>
+    </div>
+  </form>
+</div>

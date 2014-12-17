@@ -28,7 +28,7 @@ angular.module('ddsApp').controller('FormInfosComplementairesSituationProCtrl', 
             individuRef.individu.situationsPro = _.filter(individuRef.situationsPro, 'selected');
         });
 
-        SituationService.update(situation).then(function() {
+        SituationService.save(situation).then(function() {
             situation.infosComplementairesCaptured = true;
             $state.go('download_cerfa', {droit: $stateParams.droit});
         });

@@ -4,7 +4,7 @@ angular.module('ddsApp').controller('FormInfosComplementairesAdresseContactCtrl'
     $scope.situation = SituationService.restoreLocal();
 
     $scope.submit = function() {
-        SituationService.update($scope.situation).then(function() {
+        SituationService.save($scope.situation).then(function() {
             $scope.situation.infosComplementairesCaptured = true;
             $state.go('download_cerfa', {droit: $stateParams.droit});
         });

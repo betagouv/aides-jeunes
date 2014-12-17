@@ -111,26 +111,25 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             });
         },
 
-        create: function(situation) {
+        save: function(situation) {
             var apiSituation = this.createApiCompatibleSituation(situation);
-            return $http.post('/api/situations', apiSituation).then(function(result) {
-                situation._id = result.data._id;
-                return result.data;
-            }).catch(function(error) {
-                $modal.open({
-                    templateUrl: '/partials/error-modal.html',
-                    controller: ['$scope', function($scope) {
-                        $scope.error = error;
-                    }]
+            if (!situation._id) {
+                return $http.post('/api/situations', apiSituation).then(function(result) {
+                    situation._id = result.data._id;
+                    return result.data;
+                }).catch(function(error) {
+                    $modal.open({
+                        templateUrl: '/partials/error-modal.html',
+                        controller: ['$scope', function($scope) {
+                            $scope.error = error;
+                        }]
+                    });
                 });
-            });
-        },
-
-        update: function(situation) {
-            var apiSituation = this.createApiCompatibleSituation(situation);
-            return $http.put('/api/situations/' + situation._id, apiSituation).then(function(result) {
-                return result.data;
-            });
+            } else {
+                return $http.put('/api/situations/' + situation._id, apiSituation).then(function(result) {
+                    return result.data;
+                });
+            }
         },
 
         createApiCompatibleSituation: function(situation) {

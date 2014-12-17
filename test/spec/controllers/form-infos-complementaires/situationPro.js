@@ -72,7 +72,7 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
             situation = { individus: [{ role: 'demandeur' }, { role: 'conjoint' }] };
             inject(function($controller, _SituationService_) {
                 SituationService = _SituationService_;
-                spyOn(SituationService, 'update').andReturn({then: function() {}});
+                spyOn(SituationService, 'save').andReturn({then: function() {}});
                 $controller('FormInfosComplementairesSituationProCtrl', {
                     $scope: scope,
                     SituationService: SituationService,
@@ -98,7 +98,7 @@ describe('Controller: FormInfosComplementairesSituationProCtrl', function() {
             scope.submit();
 
             // then
-            expect(SituationService.update).toHaveBeenCalledWith(situation);
+            expect(SituationService.save).toHaveBeenCalledWith(situation);
         });
     });
 });

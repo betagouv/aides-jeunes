@@ -77,13 +77,13 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
                     SituationService: SituationService
                 });
             });
-            spyOn(SituationService, 'update').andReturn({ then: function() {}});
+            spyOn(SituationService, 'save').andReturn({ then: function() {}});
 
             // when
             scope.submit();
 
             // then
-            expect(SituationService.update).toHaveBeenCalledWith(scope.situation);
+            expect(SituationService.save).toHaveBeenCalledWith(scope.situation);
         });
     });
 });

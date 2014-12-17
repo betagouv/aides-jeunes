@@ -30,7 +30,7 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
             });
         });
 
-        SituationService.update($scope.situation).then(function() {
+        SituationService.save($scope.situation).then(function() {
             $state.go('foyer.simulation', { 'situationId': $scope.situation._id });
         });
     };

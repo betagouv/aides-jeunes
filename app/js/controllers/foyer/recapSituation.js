@@ -93,6 +93,10 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
     $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
 
     var fillIndividuRessources = function(individu) {
+        if (!individu.ressources) {
+            return;
+        }
+
         var monthsIndexes = {};
 
         monthsIndexes[$scope.months[0].id] = 0;

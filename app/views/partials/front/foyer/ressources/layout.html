@@ -1,4 +1,23 @@
 <div class="frame-foyer">
-  <h1>Vos ressources</h1>
-  <ui-view></ui-view>
+  <ui-view>
+    <h1>Ressources de votre foyer</h1>
+    <p>Veuillez entrer les montants des ressources de votre foyer (en net perçu pour les salaires ou indemnités).</p>
+
+    <form method="post" name="form" novalidate ng-submit="submit(form)">
+      <div ng-repeat="(index, individuRef) in individuRefs" class="frame-ressources-individu">
+        <div class="title">
+          <h2>{{ individuRef.label }}</h2>
+        </div>
+        <div class="content">
+          <montant-ressources debut-annee="debutAnnee" fin-annee="finAnnee" months="months" individu-ref="individuRef"></montant-ressources>
+          <div class="text-right">
+            <a title="Déclarer des ressources" ui-sref="foyer.ressources.types({individu: index})" class="btn btn-sm btn-success">Déclarer des ressources</a>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary">Valider</button>
+      </div>
+    </form>
+  </ui-view>
 </div>

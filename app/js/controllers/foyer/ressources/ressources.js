@@ -5,12 +5,14 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     $scope.momentFinAnnee = moment().startOf('month').subtract('months', 1);
     $scope.debutAnnee = $scope.momentDebutAnnee.format('MMMM YYYY');
     $scope.finAnnee = $scope.momentFinAnnee.format('MMMM YYYY');
-    $scope.ressourceTypes = ressourceTypes;
     $scope.months = SituationService.getMonths();
+
+    $scope.ressourceTypes = ressourceTypes;
+    $scope.ressourceCategories = _.groupBy(ressourceTypes, 'category');
 
     var extractIndividuSelectedRessourceTypes = function(individu) {
         var result = {};
-        var ressources = individu.ressources || [];
+        var ressources = individu.ressources || [];
         _.chain(ressources)
             .pluck('type')
             .unique()
@@ -19,84 +21,18 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         return result;
     };
 
-    $scope.individuRefs = _.map($scope.situation.individus, function(individu) {
-        return {
-            label: IndividuService.label(individu),
-            selectedRessourceTypes: extractIndividuSelectedRessourceTypes(individu),
-            ressources: [],
-            individu: individu
-        };
-    });
+    var extractIndividuRessources = function(individuRef, individu) {
+        var ressources = [];
 
-    $scope.selectedRessourceTypes = {};
-    _.chain($scope.situation.individus)
-        .flatten('ressources')
-        .filter()
-        .uniq(false, 'type')
-        .pluck('type')
-        .forEach(function(ressourceType) { $scope.selectedRessourceTypes[ressourceType] = true; });
-
-    var resetRessources = function() {
-        $scope.situation.individus.forEach(function(individu) {
-            individu.ressources = [];
-        });
-    };
-
-    $scope.$on('ressourceTypesValidated', function() {
-        if (!!_.filter($scope.selectedRessourceTypes).length) {
-            if (1 < $scope.individuRefs.length) {
-                $state.go('foyer.ressources.personnes');
-            } else {
-                $scope.individuRefs[0].selectedRessourceTypes = $scope.selectedRessourceTypes;
-                $scope.initIndividusRessources();
-                $state.go('foyer.ressources.montants');
-            }
-        } else {
-            resetRessources();
-            $scope.$emit('ressourcesValidated');
-            $state.go('foyer.patrimoine');
-        }
-    });
-
-    $scope.$on('personnesValidated', function() {
-        $scope.initIndividusRessources();
-        if (!_.filter($scope.individuRefs, 'hasRessources').length) {
-            resetRessources();
-            $scope.$emit('ressourcesValidated');
-            $state.go('foyer.patrimoine');
-            return;
-        }
-        $state.go('foyer.ressources.montants');
-    });
-
-    $scope.$on('montantsValidated', function() {
-        $scope.$emit('ressourcesValidated');
-    });
-
-    $scope.initIndividusRessources = function() {
-        $scope.individuRefs.forEach(function(individuRef) {
-            var previousRessources = individuRef.ressources;
-            individuRef.ressources = [];
-            individuRef.hasRessources = false;
-            individuRef.hasRessourcesMicroTns = false;
-            individuRef.hasRessourcesOtherTns = false;
-            individuRef.hasRessourcesNonTns = false;
-
-            ressourceTypes.forEach(function(ressourceType) {
-                if (!individuRef.selectedRessourceTypes[ressourceType.id] || !$scope.selectedRessourceTypes[ressourceType.id]) {
+        if (individu.ressources) {
+            individu.ressources.forEach(function(existingRessource) {
+                var ressourceType = _.find(ressourceTypes, {id: existingRessource.type});
+                if (!ressourceType) {
                     return;
                 }
 
-                individuRef.hasRessources = true;
-                if ('caMicroEntreprise' === ressourceType.id) {
-                    individuRef.hasRessourcesMicroTns = true;
-                } else if ('autresRevenusTns' === ressourceType.id) {
-                    individuRef.hasRessourcesOtherTns = true;
-                } else {
-                    individuRef.hasRessourcesNonTns = true;
-                }
+                var ressource = _.find(ressources, { type: ressourceType });
 
-                var ressource = _.find(previousRessources, { type: ressourceType });
                 if (!ressource) {
                     ressource = { type: ressourceType, interrupted: false };
                     if ('caMicroEntreprise' === ressourceType.id) {
@@ -112,11 +48,72 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                             { periode: $scope.months[2].id, montant: 0 }
                         ];
                     }
+                    ressources.push(ressource);
                 }
-                individuRef.ressources.push(ressource);
+            });
+        }
+
+        return ressources;
+    };
+
+    var syncIndividuRefWithIndividu = function(individuRef, individu) {
+        individuRef.individu = individu;
+        individuRef.label = IndividuService.label(individu);
+        individuRef.selectedRessourceTypes = extractIndividuSelectedRessourceTypes(individu);
+        individuRef.ressources = extractIndividuRessources(individuRef, individu);
+    };
+
+    $scope.applyIndividuRefsRessourcesToIndividus = function() {
+        $scope.individuRefs.forEach(function(individuRef) {
+            var individu = individuRef.individu;
+            individu.ressources = [];
+            individu.interruptedRessources = [];
+            individuRef.ressources.forEach(function(ressource) {
+                if (ressource.months) {
+                    ressource.months.forEach(function(month) {
+                        individu.ressources.push({
+                            periode: month.periode,
+                            type: ressource.type.id,
+                            montant: month.montant
+                        });
+                    });
+                }
+
+                if ('tns' === ressource.type.category) {
+                    if ('caMicroEntreprise' === ressource.type.id) {
+                        individu.tnsStructureType = ressource.tnsStructureType;
+                        individu.tnsActiviteType = ressource.tnsActiviteType;
+                        individu.caMicroEntreprise = ressource.montantAnnuel;
+                    } else if ('autresRevenusTns' === ressource.type.id) {
+                        individu.autresRevenusTns = ressource.montantAnnuel;
+                    }
+                } else {
+                    individu.ressources.push({
+                        type: ressource.type.id,
+                        montant: ressource.montantAnnuel,
+                        debutPeriode: $scope.momentDebutAnnee.format('YYYY-MM'),
+                        finPeriode: $scope.momentFinAnnee.format('YYYY-MM')
+                    });
+                }
+
+                if (ressource.interrupted) {
+                    individu.interruptedRessources.push(ressource.type.id);
+                }
             });
         });
     };
 
-    $scope.initIndividusRessources();
+    $scope.individuRefs = _.map($scope.situation.individus, function(individu) {
+        var individuRef = {};
+        syncIndividuRefWithIndividu(individuRef, individu);
+        return individuRef;
+    });
+
+    $scope.submit = function(form) {
+        form.submitted = true;
+        if (form.$valid) {
+            $scope.applyIndividuRefsRessourcesToIndividus();
+            $scope.$emit('ressourcesValidated');
+        }
+    };
 });

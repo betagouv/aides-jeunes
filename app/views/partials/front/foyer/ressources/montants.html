@@ -1,18 +1,16 @@
-<form method="post" name="form" novalidate ng-submit="submit(form)">
-  <p>Veuillez entrer les montants des ressources sélectionnées (net perçu pour les salaires ou indemnités).</p>
-  <div
-    ng-repeat="individuRef in individuRefs"
-    ng-if="individuRef.hasRessources"
-    ng-init="individuIndex = $index">
-    <hr ng-if="!$first">
-    <h2 ng-if="1 < individuRefs.length" class="text-center">{{ individuRef.label }}</h2>
-    <div ng-if="individuRef.hasRessourcesNonTns" ng-repeat="ressource in individuRef.ressources|filter: isRessourceNonTns">
-      <h3 class="title-{{ ressource.type.category }}">{{ ressource.type.label }}</h3>
-      <h4>Sur les 3 derniers mois</h4>
-      <div class="row">
-        <div class="col-sm-4" ng-repeat="monthRessource in ressource.months">
-          <div class="form-group">
-            <label for="{{ individuIndex + ressource.type.id + months[$index].id }}">{{ months[$index].label|uppercaseFirst }}</label>
+<div ng-if="!individuRef.ressources || individuRef.ressources.length === 0">
+  Aucune ressource déclarée.
+</div>
+<div ng-if="individuRef.ressources.length > 0">
+  <div ng-repeat="ressource in individuRef.ressources | filter: isRessourceNonTns">
+    <div class="ressource-montant-{{ressource.type.category}}">
+      <div class="title-montant">
+         <h3>{{ ressource.type.label }}</h3>
+      </div>
+      <div class="content-montant form-horizontal">
+        <div class="row">
+          <div class="col-sm-3" ng-repeat="monthRessource in ressource.months">
+            <label for="{{ individuIndex + ressource.type.id + months[$index].id }}"><br>{{ months[$index].label|uppercaseFirst }}</label>
             <span class="input-group">
               <input
                 type="number"
@@ -30,12 +28,7 @@
               Montant invalide
             </span>
           </div>
-        </div>
-      </div>
-      <h4>En année glissante</h4>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
+          <div class="col-sm-3">
             <label for="{{ individuIndex + ressource.type.id }}-annee">
               De {{ debutAnnee }} à {{ finAnnee }}
             </label>
@@ -56,100 +49,110 @@
             </span>
           </div>
         </div>
-        <div class="col-sm-8">
-          <div class="form-group">
-            <label class="col-sm-6 text-right">
-              Je continuerai à percevoir cette ressource en décembre 2014
-            </label>
-            <div class="col-sm-6">
-              <button type="button" class="btn btn-sm btn-default" btn-radio="false" ng-model="ressource.interrupted">Oui</button>
-              <button type="button" class="btn btn-sm btn-default" btn-radio="true" ng-model="ressource.interrupted">Non</button>
+        <div class="form-group">
+          <div class="col-sm-12 text-right">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"
+                  ng-init = "ressource.interrupted = !ressource.onGoing"
+                  ng-model ="ressource.interrupted"
+                  ng-change ="ressource.onGoing = !ressource.interrupted">
+                  Je continuerai à percevoir cette ressource en décembre 2014
+              </label>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div
-      ng-if="individuRef.hasRessourcesMicroTns"
-      ng-repeat="ressource in individuRef.ressources|filter: isRessourceMicroTns">
-      <h3 class="title-tns">{{ ressource.type.label }}</h3>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
-            <label for="type-structure-individu-{{ individuIndex }}">Type de structure</label>
-            <select class="form-control" id="type-structure-individu-{{ individuIndex }}" ng-model="ressource.tnsStructureType">
-              <option value="auto_entrepreneur">Auto-entrepreneur</option>
-              <option value="micro_entreprise">Micro-entreprise</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="col-sm-4">
-          <div class="form-group">
-            <label for="type-activite-individu-{{ individuIndex }}">Type d'activité</label>
-            <select class="form-control" id="type-activite-individu-{{ individuIndex }}" ng-model="ressource.tnsActiviteType">
-              <option value="achat_revente">Achat/revente ou fourniture de logement</option>
-              <option value="bic">Activité commerciale ou artisanale (BIC)</option>
-              <option value="bnc">Activité libérale et/ou intellectuelle (BNC)</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="col-sm-4">
-          <div class="form-group">
-            <label for="ca-individu-{{ individuIndex }}">Chiffre d’affaires {{ yearMoinsUn }}</label>
-            <span class="input-group">
-              <input
-                type="number"
-                id="ca-individu-{{ individuIndex }}"
-                class="form-control text-right"
-                required
-                min="0"
-                select-on-focus
-                zero-to-empty
-                ng-model="ressource.montantAnnuel">
-              <span class="input-group-addon">€</span>
-            </span>
-            <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
-              Montant invalide
-            </span>
-          </div>
-        </div>
+  <div ng-repeat="ressource in individuRef.ressources | filter: isRessourceMicroTns">
+    <div class="ressource-montant">
+      <div class="title-montant">
+         <h3>{{ ressource.type.label }}</h3>
       </div>
-    </div>
+      <div class="content-montant">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="type-structure-individu-{{ individuIndex }}">Type de structure</label>
+              <select class="form-control" id="type-structure-individu-{{ individuIndex }}" ng-model="ressource.tnsStructureType">
+                <option value="auto_entrepreneur">Auto-entrepreneur</option>
+                <option value="micro_entreprise">Micro-entreprise</option>
+              </select>
+            </div>
+          </div>
 
-    <div ng-if="individuRef.hasRessourcesOtherTns" ng-repeat="ressource in individuRef.ressources|filter: isRessourceOtherTns">
-      <h3 class="title-tns">{{ ressource.type.label }}</h3>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
-            <label
-              for="revenus-exercice-individu-{{ individuIndex }}">
-              Revenus sur le dernier exercice clos
-            </label>
-            <span class="input-group">
-              <input
-                type="number"
-                id="revenus-exercice-individu-{{ individuIndex }}"
-                class="form-control text-right"
-                required
-                min="0"
-                select-on-focus
-                zero-to-empty
-                ng-model="ressource.montantAnnuel">
-              <span class="input-group-addon">€</span>
-            </span>
-            <span class="help-block text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
-              Montant invalide
-            </span>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="type-activite-individu-{{ individuIndex }}">Type d'activité</label>
+              <select class="form-control" id="type-activite-individu-{{ individuIndex }}" ng-model="ressource.tnsActiviteType">
+                <option value="achat_revente">Achat/revente ou fourniture de logement</option>
+                <option value="bic">Activité commerciale ou artisanale (BIC)</option>
+                <option value="bnc">Activité libérale et/ou intellectuelle (BNC)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="ca-individu-{{ individuIndex }}">Chiffre d’affaires {{ yearMoinsUn }}</label>
+              <span class="input-group">
+                <input
+                  type="number"
+                  id="ca-individu-{{ individuIndex }}"
+                  class="form-control text-right"
+                  required
+                  min="0"
+                  select-on-focus
+                  zero-to-empty
+                  ng-model="ressource.montantAnnuel">
+                <span class="input-group-addon">€</span>
+              </span>
+              <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
+                Montant invalide
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="text-right">
-    <span class="text-danger" ng-if="form.submitted && form.$invalid">Veuillez entrer des montants valides</span>
-    <button type="submit" class="btn btn-primary">Valider</button>
+
+  <div ng-repeat="ressource in individuRef.ressources | filter: isRessourceOtherTns">
+    <div class="ressource-montant">
+      <div class="title-montant">
+         <h3>{{ ressource.type.label }}</h3>
+      </div>
+      <div class="content-montant">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label
+                for="revenus-exercice-individu-{{ individuIndex }}">
+                Revenus sur le dernier exercice clos
+              </label>
+              <span class="input-group">
+                <input
+                  type="number"
+                  id="revenus-exercice-individu-{{ individuIndex }}"
+                  class="form-control text-right"
+                  required
+                  min="0"
+                  select-on-focus
+                  zero-to-empty
+                  ng-model="ressource.montantAnnuel">
+                <span class="input-group-addon">€</span>
+              </span>
+              <span class="help-block text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
+                Montant invalide
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</form>
+
+</div>
+

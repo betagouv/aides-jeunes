@@ -1,19 +1,28 @@
+<h1 ng-if="individu.role === 'demandeur'">Vos ressources</h1>
+<h1 ng-if="individu.role === 'conjoint'">Les ressources de votre conjoint</h1>
+<h1 ng-if="individu.role === 'enfant' || individu.role === 'personneACharge'">Les ressources de {{individu.firstName}}</h1>
+
+<p>
+  Cliquez sur les types de ressources perçues
+  <strong>entre {{ debutAnnee }} et {{ finAnnee }}</strong>.
+  Si vous avez des revenus du capital, ne les indiquez pas ici, ils vous seront demandés ultérieurement.
+</p>
 <form method="post" name="form" novalidate ng-submit="submit()">
-  <p>
-    Cliquez sur les types de ressources que les personnes de votre foyer ont perçues
-    <strong>entre {{ debutAnnee }} et {{ finAnnee }}</strong>.
-    Si vous avez des revenus du capital, ne les indiquez pas ici, ils vous seront demandés ultérieurement.
-  </p>
   <div class="ressource-types-block">
-    <button
-      type="button"
-      class="btn btn-sm btn-selection btn-ressources"
-      ng-repeat="ressourceType in ressourceTypes"
-      ng-class="'capture-' + ressourceType.category"
-      btn-checkbox
-      ng-model="selectedRessourceTypes[ressourceType.id]">
-      {{ ressourceType.label }}
-    </button>
+    <div class="capture-{{category}}" ng-repeat="(category, ressources) in ressourceCategories">
+      <div class="capture-title">
+        <h2>{{ category | ressourceCategory}}</h2>
+      </div>
+      <div class="capture-rows">
+        <button
+          type="button"
+          class="btn btn-sm btn-selection btn-default"
+          ng-repeat="ressourceType in ressources"
+          btn-checkbox
+          ng-model="selectedRessourceTypes[ressourceType.id]">
+          {{ ressourceType.label }}
+        </button>
+    </div>
   </div>
   <div class="text-right">
     <button type="submit" class="btn btn-primary">Valider</button>

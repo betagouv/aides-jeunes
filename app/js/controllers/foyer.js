@@ -50,7 +50,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
     $scope.$on('logement', function(e, logement) {
         situation.logement = logement;
         $scope.$broadcast('logementCaptured');
-        $state.go('foyer.ressources.types');
+        $state.go('foyer.ressources');
     });
 
     $scope.$on('ressourcesValidated', function() {

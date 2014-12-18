@@ -251,71 +251,79 @@ $body-front-base-padding: 60px;
   font-size: 17px;
 }
 
-$indemnites: #f07818;
-$pensions: #5e412f;
-$allocations: #458D75;
-$revenusActivite: #395668;
-$autre: #878309;
-$tns: #CC2A41;
+$allocations: #FFBC67;
+$allocations-light: #ffd29a;
+$allocations-lighter: #ffe9cd;
 
-@mixin button-variant-capture($color) {
-  border-left: 7px solid $color;
-  &.active, &.active:focus {
-    @include button-variant(white, $color, $color);
+$autre: #DA727E;
+$autre-light: #efc3c8;
+$autre-lighter: #faebed;
+
+$indemnites: #AC6C82;
+$indemnites-light: #d1adb9;
+$indemnites-lighter: #e3ced5;
+
+$pensions: #685C79;
+$pensions-light: #cfcad7;
+$pensions-lighter: #eae7ed;
+
+$revenusActivite: #455C7B;
+$revenusActivite-light: #b6c4d6;
+$revenusActivite-lighter: #d7dee8;
+
+$tns: #39747B;
+$tns-light: #a9d2d7;
+$tns-lighter: #cce4e7;
+
+@mixin ressource-category-capture($color, $color-light, $color-lighter) {
+  border: 1px solid $color;
+  border-left-width: 4px;
+  margin-bottom: 10px;
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    padding-left: 10px;
+    font-weight: 500;
+  }
+
+  .capture-title {
+    padding: 5px 0;
+    background-color: $color-light;
+    color: #333;
+  }
+
+  .capture-rows {
+    padding: 5px;
+
+    .btn-ressources {
+      @extend btn-default;
+    }
   }
 }
 
 .capture-indemnites {
-  @include button-variant-capture($indemnites);
+  @include ressource-category-capture($indemnites, $indemnites-light, $indemnites-lighter);
 }
 
 .capture-pensions {
-  @include button-variant-capture($pensions);
+  @include ressource-category-capture($pensions, $pensions-light, $pensions-lighter);
 }
 
 .capture-allocations {
-  @include button-variant-capture($allocations);
+  @include ressource-category-capture($allocations, $allocations-light, $allocations-lighter);
 }
 
 .capture-revenusActivite {
-  @include button-variant-capture($revenusActivite);
+  @include ressource-category-capture($revenusActivite, $revenusActivite-light, $revenusActivite-lighter);
 }
 
 .capture-autre {
-  @include button-variant-capture($autre);
+  @include ressource-category-capture($autre, $autre-light, $autre-lighter);
 }
 
 .capture-tns {
-  @include button-variant-capture($tns);
-}
-
-@mixin title-ressource($color) {
-  border-bottom: 2px solid $color;
-  padding-bottom: 3px;
-}
-
-.title-indemnites {
-  @include title-ressource($indemnites);
-}
-
-.title-pensions {
-  @include title-ressource($pensions);
-}
-
-.title-allocations {
-  @include title-ressource($allocations);
-}
-
-.title-revenusActivite {
-  @include title-ressource($revenusActivite);
-}
-
-.title-autre {
-  @include title-ressource($autre);
-}
-
-.title-tns {
-  @include title-ressource($tns);
+  @include ressource-category-capture($tns, $tns-light, $tns-lighter);
 }
 
 .btn-selection {
@@ -323,6 +331,8 @@ $tns: #CC2A41;
   border-top: 0px;
   border-bottom: 0px;
   margin: 3px;
+  padding: 16px 16px;
+  font-size: 12px;
   background-color: $btn-default-bg;
 
   &:hover {
@@ -332,15 +342,6 @@ $tns: #CC2A41;
 
 .btn-selection-personne:hover {
   background-color: darken(#dddddd, 10%);
-}
-
-.btn-ressources {
-  width: 190px;
-  height: 60px;
-}
-
-.btn-ressources[disabled] {
-  opacity: 1;
 }
 
 .intro {
@@ -493,11 +494,6 @@ $tns: #CC2A41;
   box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
-.whiteframe-z2 {
-  background-color: white;
-  box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
-}
-
 .help-col {
   @extend .help-block;
   margin-top: 0;
@@ -507,4 +503,90 @@ $tns: #CC2A41;
 
 .checkbox.checkbox-multiline {
   height: 100%;
+}
+
+.frame-ressources-individu {
+  margin-bottom: 20px;
+  border: 1px solid $brand-primary;
+  background-color: whitesmoke;
+  box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+  .title {
+    background-color: $brand-primary;
+    color: white;
+    border-bottom: 2px solid darken($brand-primary, 10%);
+    padding: 10px;
+
+    h2 {
+      margin: 0;
+      font-weight: 500;
+    }
+  }
+
+  .content {
+    padding: 10px;
+  }
+}
+
+@mixin ressource-montant($color, $color-light, $color-lighter) {
+  h3 {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .row {
+    margin-bottom: 5px;
+  }
+
+  border: 1px solid $color;
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 10px;
+
+  .title-montant {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: $color-light;
+    padding: 10px;
+  }
+
+  .content-montant {
+    padding: 5px 10px;
+  }
+
+  label {
+    font-size: 10px;
+  }
+
+  .checkbox > label {
+    font-size: 12px;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+}
+
+.ressource-montant-indemnites {
+  @include ressource-montant($indemnites, $indemnites-light, $indemnites-lighter);
+}
+
+.ressource-montant-pensions {
+  @include ressource-montant($pensions, $pensions-light, $pensions-lighter);
+}
+
+.ressource-montant-allocations {
+  @include ressource-montant($allocations, $allocations-light, $allocations-lighter);
+}
+
+.ressource-montant-revenusActivite {
+  @include ressource-montant($revenusActivite, $revenusActivite-light, $revenusActivite-lighter);
+}
+
+.ressource-montant-autre {
+  @include ressource-montant($autre, $autre-light, $autre-lighter);
+}
+
+.ressource-montant-tns {
+  @include ressource-montant($tns, $tns-light, $tns-lighter);
 }

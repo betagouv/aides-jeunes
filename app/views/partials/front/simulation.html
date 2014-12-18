@@ -8,7 +8,7 @@
 </div>
 
 <div ng-if="!awaitingResults">
-  <!--<div class="alert alert-warning">
+  <!--<div class="alert alert-warning" ng-if="!situation.ressourcesYearMoins2Captured">
     <div class="row">
       <div class="col-sm-8">
         <b>Attention</b> : ces résultats sont incomplets.
@@ -49,7 +49,7 @@
             <div class="caption">
               <p>{{ droit.description.description }}</p>
 
-              <div class="alert alert-warning-inverse" ng-if="!situation.ressourcesN2Captured && isDroitAllocationLogement(droit)">
+              <div class="alert alert-warning-inverse" ng-if="!situation.ressourcesYearMoins2Captured && isDroitAllocationLogement(droit)">
                 <p>
                   <i class="fa fa-exclamation-triangle"></i>
                   <b>Attention</b> : le montant calculé de cette allocation logement se base sur les ressources
@@ -95,13 +95,14 @@
   </div>
 
   <div ng-if="droitsYearMoins2.length">
-    <h1><i class="fa fa-gears"></i> Droits nécessitant des précisions</h1>
-
-    <p>
-      Les droits suivants se basent en théorie sur vos ressources de l'année {{ yearMoins2 }}.
-      Les résultats ci-dessous ont été simulés sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
-      <!--<a ui-sref="foyer.rfr">Déclarez vos ressources {{ yearMoins2 }}</a> pour une simulation plus précise.-->
-    </p>
+    <div ng-if="!situation.ressourcesYearMoins2Captured">
+      <h1><i class="fa fa-gears"></i> Droits nécessitant des précisions</h1>
+      <p>
+        Les droits suivants se basent en théorie sur vos ressources de l'année {{ yearMoins2 }}.
+        Les résultats ci-dessous ont été simulés sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
+        <!--<a ui-sref="foyer.rfr">Déclarez vos ressources {{ yearMoins2 }}</a> pour une simulation plus précise.-->
+      </p>
+    </div>
 
     <div class="row">
       <div ng-repeat="droit in droitsYearMoins2">

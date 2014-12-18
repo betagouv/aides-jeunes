@@ -8,6 +8,7 @@ angular.module('ddsApp').controller('FoyerRessourceRfrCtrl', function($scope, $s
 
     $scope.submit = function() {
         $scope.situation.rfr = $scope.rfr;
+        $scope.situation.ressourcesYearMoins2Captured = true;
         $state.go('foyer.ressourcesYearMoins2');
     };
 });

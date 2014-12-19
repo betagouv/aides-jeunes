@@ -9,22 +9,24 @@
 </p>
 <form method="post" name="form" novalidate ng-submit="submit()">
   <div class="ressource-types-block">
-    <div class="capture-{{category}}" ng-repeat="(category, ressources) in ressourceCategories">
-      <div class="capture-title">
-        <h2>{{ category | ressourceCategory}}</h2>
+    <div class="capture-{{category}}" ng-repeat="category in orderedCategories">
+        <div class="capture-title">
+          <h2>{{ category | ressourceCategory}}</h2>
+        </div>
+        <div class="capture-rows">
+          <button
+            type="button"
+            class="btn btn-sm btn-selection btn-default"
+            ng-repeat="ressourceType in ressourceTypesByCategories[category]"
+            btn-checkbox
+            ng-model="selectedRessourceTypes[ressourceType.id]">
+            {{ ressourceType.label }}
+          </button>
+        </div>
       </div>
-      <div class="capture-rows">
-        <button
-          type="button"
-          class="btn btn-sm btn-selection btn-default"
-          ng-repeat="ressourceType in ressources"
-          btn-checkbox
-          ng-model="selectedRessourceTypes[ressourceType.id]">
-          {{ ressourceType.label }}
-        </button>
     </div>
-  </div>
-  <div class="text-right">
-    <button type="submit" class="btn btn-primary">Valider</button>
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary">Valider</button>
+    </div>
   </div>
 </form>

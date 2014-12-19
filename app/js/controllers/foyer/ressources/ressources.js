@@ -8,7 +8,8 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     $scope.months = SituationService.getMonths();
 
     $scope.ressourceTypes = ressourceTypes;
-    $scope.ressourceCategories = _.groupBy(ressourceTypes, 'category');
+    $scope.orderedCategories = ['revenusActivite', 'allocations', 'indemnites', 'pensions', 'tns', 'autre'];
+    $scope.ressourceTypesByCategories = _.groupBy(ressourceTypes, 'category');
 
     var extractIndividuSelectedRessourceTypes = function(individu) {
         var result = {};

@@ -251,13 +251,13 @@ $body-front-base-padding: 60px;
   font-size: 17px;
 }
 
-$allocations: #FFBC67;
-$allocations-light: #ffd29a;
-$allocations-lighter: #ffe9cd;
+$revenusActivite: #FFBC67;
+$revenusActivite-light: #ffd29a;
+$revenusActivite-lighter: #ffe9cd;
 
-$autre: #DA727E;
-$autre-light: #efc3c8;
-$autre-lighter: #faebed;
+$allocations: #DA727E;
+$allocations-light: #efc3c8;
+$allocations-lighter: #faebed;
 
 $indemnites: #AC6C82;
 $indemnites-light: #d1adb9;
@@ -267,13 +267,13 @@ $pensions: #685C79;
 $pensions-light: #cfcad7;
 $pensions-lighter: #eae7ed;
 
-$revenusActivite: #455C7B;
-$revenusActivite-light: #b6c4d6;
-$revenusActivite-lighter: #d7dee8;
+$tns: #455C7B;
+$tns-light: #b6c4d6;
+$tns-lighter: #d7dee8;
 
-$tns: #39747B;
-$tns-light: #a9d2d7;
-$tns-lighter: #cce4e7;
+$autre: #39747B;
+$autre-light: #a9d2d7;
+$autre-lighter: #cce4e7;
 
 @mixin ressource-category-capture($color, $color-light, $color-lighter) {
   border: 1px solid $color;

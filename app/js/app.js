@@ -9,7 +9,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
     $urlRouterProvider.otherwise('/');
     $uiViewScrollProvider.useAnchorScroll();
 
-    var individuFormView = function(individuRole, captureRelationConjoint, capturePrenom, minAge, maxAge) {
+    var individuFormView = function(individuRole, captureRelationConjoint, capturePrenom, minAge, maxAge, captureRelationPersonne) {
         return {
             templateUrl: '/partials/foyer/individu-form.html',
             controller: 'FoyerIndividuFormCtrl',
@@ -21,7 +21,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                         capturePrenom: capturePrenom || false,
                         minAge: minAge,
                         maxAge: maxAge,
-                        checkResidenceStability: _.contains(['demandeur', 'conjoint'], individuRole)
+                        checkResidenceStability: _.contains(['demandeur', 'conjoint'], individuRole),
+                        captureRelationPersonne: captureRelationPersonne || false,
                     };
                 }
             }
@@ -106,16 +107,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 'individuForm@foyer.conjoint': individuFormView('conjoint', true)
             }
         })
-        .state('foyer.enfants', {
-            url: '/enfants',
-            views: {
-                '': {
-                    templateUrl: '/partials/foyer/enfants.html',
-                    controller: 'FoyerEnfantsCtrl'
-                },
-                'individuForm@foyer.enfants': individuFormView('enfant', false, true, null, 25)
-            }
-        })
         .state('foyer.personnesACharge', {
             url: '/personnes-a-charge',
             views: {
@@ -123,7 +114,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/personnes-a-charge.html',
                     controller: 'FoyerPersonnesAChargeCtrl'
                 },
-                'individuForm@foyer.personnesACharge': individuFormView('personneACharge', false, true, null, 25)
+                'individuForm@foyer.personnesACharge': individuFormView('enfant', false, true, null, 25, true)
             }
         })
         .state('foyer.logement', {

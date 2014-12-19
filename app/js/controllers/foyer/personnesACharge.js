@@ -1,27 +1,35 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function($scope, $location, $anchorScroll, $timeout) {
-    $scope.personnesACharge = _.where($scope.situation.individus, { role: 'personneACharge' });
+    $scope.personnes = _.where($scope.situation.individus, { role: 'personneACharge' }).concat(_.where($scope.situation.individus, { role: 'enfant' }));
 
-    $scope.$on('individu.personneACharge', function(e, personneACharge) {
-        $scope.personnesACharge.push(personneACharge);
-        $scope.ajoutPersonneACharge = false;
+    var addPersonne = function(personne) {
+        $scope.personnes.push(personne);
+        $scope.ajoutPersonne = false;
+    };
+
+    $scope.$on('individu.personne', function(e, personne) {
+        addPersonne(personne);
     });
 
-    $scope.newPersonneACharge = function() {
-        $scope.ajoutPersonneACharge = true;
-        $location.hash('form-new-personne-a-charge');
+    $scope.$on('individu.enfant', function(e, enfant) {
+        addPersonne(enfant);
+    });
+
+    $scope.newPersonne = function() {
+        $scope.ajoutPersonne = true;
+        $location.hash('form-new-personne');
         $timeout(function() {
             $anchorScroll();
         });
     };
 
-    $scope.removePersonneACharge = function(personneACharge) {
-        var index = $scope.personnesACharge.indexOf(personneACharge);
-        $scope.personnesACharge.splice(index, 1);
+    $scope.removePersonne = function(personne) {
+        var index = $scope.personnes.indexOf(personne);
+        $scope.personnes.splice(index, 1);
     };
 
     $scope.validate = function() {
-        $scope.$emit('personnesACharge', $scope.personnesACharge);
+        $scope.$emit('personnesACharge', $scope.personnes);
     };
 });

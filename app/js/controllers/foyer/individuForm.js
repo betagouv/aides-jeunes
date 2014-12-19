@@ -30,6 +30,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         role: options.individuRole
     };
 
+    $scope.captureRelationPersonne = options.captureRelationPersonne;
+
     if (true === ($scope.captureRelationConjoint = !!options.captureRelationConjoint)) {
         $scope.individu.relationType = 'mariage';
     }

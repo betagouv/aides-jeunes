@@ -218,6 +218,7 @@ $body-front-base-padding: 60px;
 .panel-enfant {
   @extend .panel;
   @extend .panel-default;
+  min-height: 130px;
 }
 
 .panel-new-enfant {
@@ -247,7 +248,7 @@ $body-front-base-padding: 60px;
 .btn.btn-lg.btn-new-entity {
   border: none;
   border-radius: 0;
-  padding: 18px;
+  padding: 23px;
   font-size: 17px;
 }
 

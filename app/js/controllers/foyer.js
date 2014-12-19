@@ -28,21 +28,14 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
                 return 'conjoint' !== individu.role;
             });
         }
-        $state.go('foyer.enfants');
-    });
-
-    $scope.$on('enfants', function(e, enfants) {
-        situation.individus = _.filter(situation.individus, function(individu) {
-            return 'enfant' !== individu.role;
-        });
-        situation.individus.push.apply(situation.individus, enfants);
         $state.go('foyer.personnesACharge');
     });
 
     $scope.$on('personnesACharge', function(e, personnesACharge) {
         situation.individus = _.filter(situation.individus, function(individu) {
-            return 'personneACharge' !== individu.role;
+            return 'personneACharge' !== individu.role && 'enfant' !== individu.role;
         });
+
         situation.individus.push.apply(situation.individus, personnesACharge);
         $state.go('foyer.logement');
     });

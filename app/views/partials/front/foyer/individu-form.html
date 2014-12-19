@@ -106,6 +106,22 @@
     </div>
   </div>
 
+  <div class="form-group from-group-lg" ng-if="captureRelationPersonne">
+    <label class="control-label col-sm-4" for="relationPersonne">
+      Votre relation
+    </label>
+    <div class="col-sm-8">
+      <label class="radio-inline">
+        <input type="radio" name="relationPersonne" ng-model="individu.role" ng-value="'enfant'">
+        Enfant
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="relationPersonne" ng-model="individu.role" ng-value="'personneACharge'">
+        Personne à charge
+      </label>
+    </div>
+  </div>
+
   <div class="form-group from-group-lg">
     <label class="control-label col-sm-4">
       Situations particulières <em>(facultatif)</em>
@@ -203,6 +219,11 @@
   </div>
 
   <div class="text-right">
-    <button type="submit" class="btn btn-primary">Valider</button>
+    <button type="submit" class="btn btn-success" ng-if="!options.checkResidenceStability">
+      <i class="fa fa-plus-circle"></i> Ajouter
+    </button>
+    <button type="submit" class="btn btn-primary" ng-if="options.checkResidenceStability">
+      Valider <i class="fa fa-arrow-circle-right"></i>
+    </button>
   </div>
 </form>

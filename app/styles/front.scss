@@ -221,10 +221,17 @@ $body-front-base-padding: 60px;
   min-height: 130px;
 }
 
+#form-new-personne {
+  margin-top: 0;
+}
+
 .panel-new-enfant {
   border: 2px dashed #dddddd;
   .panel-body {
     padding: 0;
+  }
+  .btn.btn-lg.btn-new-entity {
+    padding: 3px;
   }
 }
 

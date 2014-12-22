@@ -32,10 +32,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
     $stateProvider
         .state('home', {
             url: '/',
-            templateUrl: '/partials/homepage.html',
-            data: {
-                pageTitle: 'Accueil - '
-            }
+            templateUrl: '/partials/homepage.html'
         })
         .state('a_propos', {
             url: '/a-propos',
@@ -191,7 +188,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
 ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll, $location, SituationService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $rootScope.newSituation = SituationService.newSituation;
 
     // Offset de l'anchorscroll à 60px, nécessaire à cause de la navbar en position fixed
     $anchorScroll.yOffset = 60;

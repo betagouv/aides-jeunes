@@ -49,19 +49,6 @@
             <div class="caption">
               <p>{{ droit.description.description }}</p>
 
-              <div class="alert alert-warning-inverse" ng-if="!situation.ressourcesYearMoins2Captured && isDroitAllocationLogement(droit)">
-                <p>
-                  <i class="fa fa-exclamation-triangle"></i>
-                  <b>Attention</b> : le montant calculé de cette allocation logement se base sur les ressources
-                  que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
-                  <br>Bientôt, nous vous proposerons ici de nous indiquer vos ressources de {{ yearMoins2 }}
-                  pour que la simulation soit au plus juste.
-                  <br>En attendant, vous pouvez consulter
-                  <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement/">le site de la CAF</a>
-                  pour obtenir une estimation plus précise.
-                </p>
-              </div>
-
               <p class="alert alert-warning-inverse" ng-if="isDroitCmuAcs(droit)">
                 <i class="fa fa-exclamation-triangle"></i>
                 <b>Attention</b> : vous êtes éligible à ce droit si vous n'êtes pas déjà ayant droit
@@ -74,8 +61,8 @@
                     href="{{ droit.description.link }}"
                     class="btn btn-sm btn-default btn-block"
                     target="_blank">
-                      <i class="fa fa-external-link"></i>
-                      Plus d'informations
+                    <i class="fa fa-external-link"></i>
+                    Plus d'informations
                   </a>
                 </div>
                 <div class="col-xs-6">

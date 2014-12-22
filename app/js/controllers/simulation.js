@@ -33,21 +33,6 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         return CerfaService.getCerfaFormsFromDroit(droit, $scope.situation);
     };
 
-    $scope.isDroitAllocationLogement = function(droit) {
-        return _.contains(['als', 'alf', 'apl'], droit.description.id);
-    };
-
-    $scope.hasDroitAllocationLogement = function() {
-        var result = false;
-        $scope.droits.forEach(function(droit) {
-            if ($scope.isDroitAllocationLogement(droit)) {
-                result = true;
-            }
-        });
-
-        return result;
-    };
-
     $scope.isDroitCmuAcs = function(droit) {
         return _.contains(['cmu_c', 'acs'], droit.description.id);
     };

@@ -1,5 +1,9 @@
 'use strict';
 
+angular.module('ddsCommon').constant('ressourceCategories', [
+    'revenusActivite', 'allocations', 'indemnites', 'pensions', 'tns', 'autre'
+]);
+
 angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'revenusSalarie',

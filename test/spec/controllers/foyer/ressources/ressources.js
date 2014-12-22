@@ -4,21 +4,22 @@
 
 describe('Controller: FoyerRessourcesCtrl', function() {
 
+    var scope;
+
     beforeEach(function() {
+        scope = { $on: function() {}, $emit: function() {}, situation: {} };
         module('ddsApp');
     });
 
-    describe('initialization', function() {
-        var scope = { $on: function() {}, situation: {} };
-
-        var initController = function() {
-            inject(function($controller) {
-                $controller('FoyerRessourcesCtrl', {
-                    $scope: scope
-                });
+    var initController = function() {
+        inject(function($controller) {
+            $controller('FoyerRessourcesCtrl', {
+                $scope: scope
             });
-        };
+        });
+    };
 
+    describe('initialization', function() {
         it('should create an array of individu references containing their label and an empty selected ressources map', function() {
             // given
             scope.situation.individus = [{ role: 'demandeur' }, { role: 'conjoint' }];
@@ -73,23 +74,12 @@ describe('Controller: FoyerRessourcesCtrl', function() {
         });
     });
 
-    describe('function applyIndividuRefsRessourcesToIndividus()', function() {
+    describe('function submit()', function() {
         it('should fill the individu.interruptedRessources field with ressources declared as interrupted', function() {
             // given
-            var individu = {};
-
-            var scope = { $on: function() {}, situation: {} };
-
-            var initController = function() {
-                inject(function($controller) {
-                    $controller('FoyerRessourcesCtrl', {
-                        $scope: scope
-                    });
-                });
-            };
-
             initController();
 
+            var individu = {};
             scope.individuRefs = [
                 {
                     individu: individu,
@@ -101,9 +91,10 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             ];
             scope.momentDebutAnnee = { format: function() {}};
             scope.momentFinAnnee = { format: function() {}};
+            var form = { $valid: true };
 
             // when
-            scope.applyIndividuRefsRessourcesToIndividus();
+            scope.submit(form);
 
             // then
             expect(individu.interruptedRessources.length).toBe(1);

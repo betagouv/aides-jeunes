@@ -28,7 +28,7 @@
       ng-repeat="ressource in ressourcesNonTns">
       <div class="row" ng-repeat="idx in [0, 1, 2]">
         <div class="col-sm-8">
-          {{months[idx].label | uppercaseFirst}}
+          {{ months[idx].label | uppercaseFirst }}
         </div>
         <div class="col-sm-4">
           {{ ressource.total[idx] }} €
@@ -58,6 +58,17 @@
   <div ng-if="!hasRessources">
     <em class="small">Aucune ressource déclarée</em>
   </div>
+</div>
+
+<div ng-if="situation.ressourcesYearMoins2Captured">
+  <a ui-sref="foyer.rfr" class="pull-right"><i class="fa fa-edit"></i> Modifier</a>
+  <h4>Vos ressources 2012</h4>
+  Revenu fiscal de référence : {{ situation.rfr }} €
+  <accordion class="accordion-ressources">
+    <accordion-group heading="Revenus catégoriels">
+      Coucou
+    </accordion-group>
+  </accordion>
 </div>
 
 <div ng-if="situation.patrimoine">

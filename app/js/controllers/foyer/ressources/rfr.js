@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourceRfrCtrl', function($scope, $state) {
+angular.module('ddsApp').controller('FoyerRessourceRfrCtrl', function($scope, $state, SituationService) {
     $scope.yearMoins2 = moment().subtract('years', 2).format('YYYY');
     $scope.yearMoins1 = moment().subtract('years', 1).format('YYYY');
     $scope.rfr = $scope.situation.rfr || 0;
@@ -9,6 +9,8 @@ angular.module('ddsApp').controller('FoyerRessourceRfrCtrl', function($scope, $s
     $scope.submit = function() {
         $scope.situation.rfr = $scope.rfr;
         $scope.situation.ressourcesYearMoins2Captured = true;
-        $state.go('foyer.ressourcesYearMoins2');
+        SituationService.save($scope.situation).then(function() {
+            $state.go('foyer.simulation', { 'situationId': $scope.situation._id });
+        });
     };
 });

@@ -67,7 +67,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
     return {
         restoreLocal: function() {
             if (!situation) {
-                situation = $sessionStorage.situation || { individus: [] };
+                situation = $sessionStorage.situation;
+            }
+
+            if (!situation) {
+                situation = $sessionStorage.situation = { individus: [] };
             }
 
             return situation;

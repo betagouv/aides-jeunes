@@ -33,8 +33,16 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     };
 
     $scope.individuRef = $scope.individuRefs[$stateParams.individu];
-    $scope.individu = $scope.individuRef.individu;
     $scope.selectedRessourceTypes = $scope.individuRef.selectedRessourceTypes;
+
+    var pageTitle = function() {
+        switch ($scope.individuRef.individu.role) {
+            case 'demandeur': return 'Vos ressources';
+            case 'conjoint': return 'Les ressources de votre conjoint';
+            default: return 'Les ressources de ' + $scope.individuRef.individu.firstName;
+        }
+    };
+    $scope.pageTitle = pageTitle();
 
     $scope.submit = function() {
         syncRessources($scope.individuRef);

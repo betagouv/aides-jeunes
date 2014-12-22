@@ -36,7 +36,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
             return 'personneACharge' !== individu.role && 'enfant' !== individu.role;
         });
 
-        situation.individus.push.apply(situation.individus, personnesACharge);
+        situation.individus = situation.individus.concat(personnesACharge);
         $state.go('foyer.logement');
     });
 

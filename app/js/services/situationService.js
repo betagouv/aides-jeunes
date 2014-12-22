@@ -160,6 +160,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 email: situation.email
             };
 
+            if (situation.ressourcesYearMoins2Captured) {
+                result.ressourcesYearMoins2Captured = true;
+                result.rfr = situation.rfr;
+            }
+
             return result;
         },
 

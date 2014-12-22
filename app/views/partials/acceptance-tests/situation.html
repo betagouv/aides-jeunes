@@ -19,6 +19,11 @@ Date de valeur de la situation : {{ situation.dateDeValeur|date:'dd/MM/yyyy' }}
   </div>
 </div>
 
+<div ng-if="situation.ressourcesYearMoins2Captured">
+  <h5>RFR</h5>
+  RFR année - 2 : {{ situation.rfr }} €
+</div>
+
 <h4>Logement</h4>
 <div ng-bind-html="logement.type"></div>
 <div ng-if="logement.loyer">Loyer/mensualité d'emprunt : {{ logement.loyer }} €</div>

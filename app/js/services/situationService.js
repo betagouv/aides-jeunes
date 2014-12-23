@@ -116,7 +116,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             var apiSituation = this.createApiCompatibleSituation(situation);
             if (!situation._id) {
                 return $http.post('/api/situations', apiSituation).then(function(result) {
-                    debugger;
                     situation._id = result.data._id;
                     return result.data;
                 }).catch(function(error) {

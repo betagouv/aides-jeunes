@@ -12,7 +12,7 @@ angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function($scope
         },
         {
             role: 'personneACharge',
-            label: 'Vos personnes à charge',
+            label: 'Personnes à charge',
             formLabel: 'Nouvelle personne à charge',
             labelNewPersonne: 'Ajouter une personne à charge',
             style: 'margin-top: 33px;',
@@ -31,10 +31,21 @@ angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function($scope
         section.personnes = _.where($scope.situation.individus, { role: section.role });
     });
 
-    $scope.$on('individu.personne', function(e, personne) {
-        personne.role = $scope.formNewPersonneSection.role;
+    var handleNewPersonne = function(personne) {
         $scope.formNewPersonneSection.personnes.push(personne);
         $scope.formNewPersonneSection = null;
+    };
+
+    $scope.$on('individu.enfant', function(e, personne) {
+        handleNewPersonne(personne);
+    });
+
+    $scope.$on('individu.personneACharge', function(e, personne) {
+        handleNewPersonne(personne);
+    });
+
+    $scope.$on('individu.personneSousMemeToit', function(e, personne) {
+        handleNewPersonne(personne);
     });
 
     $scope.newPersonne = function(section) {

@@ -1,7 +1,30 @@
 'use strict';
 
 angular.module('ddsCommon').constant('ressourceCategories', [
-    'revenusActivite', 'allocations', 'indemnites', 'pensions', 'tns', 'autre'
+    {
+        id: 'revenusActivite',
+        label: 'Revenus d’activité'
+    },
+    {
+        id: 'allocations',
+        label: 'Allocations'
+    },
+    {
+        id: 'indemnites',
+        label: 'Indemnités'
+    },
+    {
+        id: 'pensions',
+        label: 'Pensions'
+    },
+    {
+        id: 'tns',
+        label: 'Travailleurs non salariés'
+    },
+    {
+        id: 'autre',
+        label: 'Autres'
+    }
 ]);
 
 angular.module('ddsCommon').constant('ressourceTypes', [

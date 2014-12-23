@@ -3,19 +3,18 @@
 <p>
   Cliquez sur les types de ressources perçues
   <strong>entre {{ debutAnnee }} et {{ finAnnee }}</strong>.
-  Si vous avez des revenus du capital, ne les indiquez pas ici, ils vous seront demandés ultérieurement.
 </p>
 <form method="post" name="form" novalidate ng-submit="submit()">
   <div class="ressource-types-block">
-    <div class="capture-{{category}}" ng-repeat="category in orderedCategories">
+    <div class="capture-{{ category.id }}" ng-repeat="category in categories">
         <div class="capture-title">
-          <h2>{{ category | ressourceCategory}}</h2>
+          <h2>{{ category.label }}</h2>
         </div>
         <div class="capture-rows">
           <button
             type="button"
             class="btn btn-sm btn-selection btn-default"
-            ng-repeat="ressourceType in ressourceTypesByCategories[category]"
+            ng-repeat="ressourceType in ressourceTypesByCategories[category.id]"
             btn-checkbox
             ng-model="selectedRessourceTypes[ressourceType.id]">
             {{ ressourceType.label }}

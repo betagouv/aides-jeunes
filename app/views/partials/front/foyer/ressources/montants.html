@@ -10,7 +10,9 @@
       <div class="content-montant form-horizontal">
         <div class="row">
           <div class="col-sm-3" ng-repeat="monthRessource in ressource.months">
-            <label for="{{ individuIndex + ressource.type.id + months[$index].id }}"><br>{{ months[$index].label|uppercaseFirst }}</label>
+            <label for="{{ individuIndex + ressource.type.id + months[$index].id }}">
+              <br>{{ months[$index].label|uppercaseFirst }}
+            </label>
             <span class="input-group">
               <input
                 type="number"
@@ -53,10 +55,11 @@
           <div class="col-sm-12 text-right">
             <div class="checkbox">
               <label>
-                <input type="checkbox"
-                  ng-init = "ressource.interrupted = !ressource.onGoing"
-                  ng-model ="ressource.interrupted"
-                  ng-change ="ressource.onGoing = !ressource.interrupted">
+                <input
+                  type="checkbox"
+                  ng-init="ressource.interrupted = !ressource.onGoing"
+                  ng-model="ressource.interrupted"
+                  ng-change="ressource.onGoing = !ressource.interrupted">
                   Je continuerai à percevoir cette ressource en décembre 2014
               </label>
             </div>

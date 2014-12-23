@@ -42,7 +42,8 @@
 
   <div class="text-right" ng-if="!ajoutPersonne">
     <button type="button" class="btn btn-primary" ng-click="validate()">
-      Valider <i class="fa fa-arrow-circle-right"></i>
+      <span ng-if="!personnes.length">Je n'ai pas de personne à charge <i class="fa fa-arrow-circle-right"></i></span>
+      <span ng-if="personnes.length">Valider <i class="fa fa-arrow-circle-right"></i></span>
     </button>
   </div>
 </div>

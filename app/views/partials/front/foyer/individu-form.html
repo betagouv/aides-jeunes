@@ -12,7 +12,7 @@
         ng-change="dateDeNaissanceChanged()"
         dds-date
         date-autocomplete
-        date-naissance-min-age="options.minAge"
+        date-naissance-min-age="0"
         date-naissance-max-age="options.maxAge"
         auto-focus
         placeholder="jj/mm/aaaa">
@@ -106,27 +106,11 @@
     </div>
   </div>
 
-  <div class="form-group from-group-lg" ng-if="captureRelationPersonne">
-    <label class="control-label col-sm-4" for="relationPersonne">
-      Votre relation
-    </label>
-    <div class="col-sm-8">
-      <label class="radio-inline">
-        <input type="radio" name="relationPersonne" ng-model="individu.role" ng-value="'enfant'">
-        Enfant
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="relationPersonne" ng-model="individu.role" ng-value="'personneACharge'">
-        Personne à charge
-      </label>
-    </div>
-  </div>
-
   <div class="form-group from-group-lg">
     <label class="control-label col-sm-4">
       Situations particulières <em>(facultatif)</em>
       <div class="small">
-        Cochez la ou les situations qui <br>
+        Cochez la ou les situations qui<br>
         <span ng-if="'demandeur' === options.individuRole">vous</span>
         <span ng-if="'demandeur' !== options.individuRole">lui</span>
         correspondent

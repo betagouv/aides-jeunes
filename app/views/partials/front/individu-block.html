@@ -1,10 +1,11 @@
 <div class="situation-block">
-    <a ui-sref="{{sref(individu)}}">
-      <i class="fa" ng-class="{'fa-user': individu.role !== 'enfant', 'fa-child': individu.role === 'enfant'}"></i> {{ individuLabel(individu) }}
-    </a>
-    <div>
-      Né(e) le <strong>{{ individu.dateDeNaissance }}</strong>
-      <br>Nationalité <strong>{{ nationalite(individu) }}</strong>
-      <br><i>{{ statutsSpecifiques(individu) }}</i>
-    </div>
+  <a ui-sref="{{ sref }}">
+    <i class="fa" ng-class="{'fa-user': individu.role !== 'enfant', 'fa-child': individu.role === 'enfant'}"></i>
+    {{ individuLabel(individu) }}
+  </a>
+  <div>
+    Né(e) le <strong>{{ individu.dateDeNaissance }}</strong>
+    <br>Nationalité <strong>{{ nationalite(individu) }}</strong>
+    <br><i>{{ statutsSpecifiques(individu) }}</i>
+  </div>
 </div>

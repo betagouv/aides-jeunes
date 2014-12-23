@@ -1,7 +1,12 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, options, situationsFamiliales, SituationService, IndividuService) {
+    if (_.contains(['enfant', 'personneACharge'], options.individuRole)) {
+        options.maxAge = 25;
+    }
+    options.minAge = 0;
     $scope.options = options;
+
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
     $scope.selectedStatuts = {};
     $scope.situationsMaritales = _.filter(situationsFamiliales, 'isSituationCouple');

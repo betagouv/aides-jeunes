@@ -9,7 +9,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
     $urlRouterProvider.otherwise('/');
     $uiViewScrollProvider.useAnchorScroll();
 
-    var individuFormView = function(individuRole, captureRelationConjoint, capturePrenom, minAge, maxAge, captureRelationPersonne) {
+    var individuFormView = function(individuRole, captureRelationConjoint, capturePrenom) {
         return {
             templateUrl: '/partials/foyer/individu-form.html',
             controller: 'FoyerIndividuFormCtrl',
@@ -19,10 +19,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                         individuRole: individuRole,
                         captureRelationConjoint: captureRelationConjoint || false,
                         capturePrenom: capturePrenom || false,
-                        minAge: minAge,
-                        maxAge: maxAge,
                         checkResidenceStability: _.contains(['demandeur', 'conjoint'], individuRole),
-                        captureRelationPersonne: captureRelationPersonne || false,
                     };
                 }
             }
@@ -111,7 +108,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/personnes-a-charge.html',
                     controller: 'FoyerPersonnesAChargeCtrl'
                 },
-                'individuForm@foyer.personnesACharge': individuFormView('enfant', false, true, null, 25, true)
+                'enfantForm@foyer.personnesACharge': individuFormView('enfant', false, true),
+                'personneAChargeForm@foyer.personnesACharge': individuFormView('personneACharge', false, true),
+                'personneSousMemeToitForm@foyer.personnesACharge': individuFormView('personneSousMemeToit', false, true)
             }
         })
         .state('foyer.logement', {

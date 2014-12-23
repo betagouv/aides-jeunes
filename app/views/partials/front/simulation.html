@@ -160,6 +160,18 @@
   </div>
 </div>
 
+<div class="alert alert-warning-inverse" ng-if="!situation.patrimoine && (droits.length || droitsYearMoins2.length)">
+  <div class="row">
+    <div class="col-sm-8">
+      Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ?
+      Vous devez renseigner des informations complémentaires.
+    </div>
+    <div class="col-sm-4 text-right">
+      <a class="btn btn-primary btn-block" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
+    </div>
+  </div>
+</div>
+
 <hr>
 
 <h4 ng-if="droitsNonEligibles.length">Aides étudiées pour lesquelles vous n'êtes pas éligible</h4>

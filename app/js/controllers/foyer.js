@@ -49,7 +49,15 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
     $scope.$on('ressourcesValidated', function() {
         $scope.situation.ressourcesCaptured = true;
         $scope.$broadcast('ressourcesCaptured');
-        $state.go('foyer.patrimoine');
+        $state.go('foyer.rfr');
+    });
+
+    $scope.$on('rfr', function(e, rfr) {
+        $scope.situation.rfr = rfr;
+        $scope.situation.ressourcesYearMoins2Captured = true;
+        SituationService.save($scope.situation).then(function() {
+            $state.go('foyer.simulation', { 'situationId': $scope.situation._id });
+        });
     });
 
     $scope.$on('patrimoine', function(e, patrimoine) {

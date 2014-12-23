@@ -57,62 +57,68 @@ angular.module('ddsCommon').directive('humanReadableSituation', function($timeou
                 return target;
             });
 
-            $scope.patrimoine = [];
-            [
-                {
-                    id: 'valeurLocativeImmoNonLoue',
-                    label: 'Valeur locative immobilier non loué'
-                },
-                {
-                    id: 'valeurLocativeTerrainNonLoue',
-                    label: 'Valeur locative terrains non loués'
-                },
-                {
-                    id: 'epargneSurLivret',
-                    label: 'Epargne sur livret'
-                },
-                {
-                    id: 'epargneSansRevenus',
-                    label: 'Epargne sans revenus'
-                }
-            ].forEach(function(field) {
-                if (situation.patrimoine[field.id]) {
-                    $scope.patrimoine.push({label: field.label, montant: situation.patrimoine[field.id]});
-                }
-            });
-
-            $scope.revenusDuPatrimoine = [];
-            [
-                {
-                    id: 'revenusDuCapital',
-                    label: 'Revenus du capital'
-                },
-                {
-                    id: 'revenusLocatifs',
-                    label: 'Revenus locatifs'
-                }
-            ].forEach(function(field) {
-                var revenus = situation.patrimoine[field.id];
-                if (revenus.length) {
-                    var value = {label: field.label, values: []};
-                    $scope.revenusDuPatrimoine.push(value);
-                    for (var i = 0; i < 3; i++) {
-                        var ressource = revenus[i];
-                        value.values.push({periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'), montant: ressource.montant});
+            if (situation.patrimoine) {
+                $scope.patrimoine = [];
+                [
+                    {
+                        id: 'valeurLocativeImmoNonLoue',
+                        label: 'Valeur locative immobilier non loué'
+                    },
+                    {
+                        id: 'valeurLocativeTerrainNonLoue',
+                        label: 'Valeur locative terrains non loués'
+                    },
+                    {
+                        id: 'epargneSurLivret',
+                        label: 'Epargne sur livret'
+                    },
+                    {
+                        id: 'epargneSansRevenus',
+                        label: 'Epargne sans revenus'
                     }
-                    var montants = _.pluck(revenus, 'montant');
-                    var montantAnnuel = _.reduce(montants, function(sum, montant) {
-                        return sum + montant;
-                    });
-                    value.values.push({periode: 'Année glissante', montant: montantAnnuel});
-                }
-            });
+                ].forEach(function(field) {
+                    if (situation.patrimoine[field.id]) {
+                        $scope.patrimoine.push({label: field.label, montant: situation.patrimoine[field.id]});
+                    }
+                });
 
-            $scope.logement = { type : _.find(logementTypes, {id: situation.logement.type}).label };
+                $scope.revenusDuPatrimoine = [];
+                [
+                    {
+                        id: 'revenusDuCapital',
+                        label: 'Revenus du capital'
+                    },
+                    {
+                        id: 'revenusLocatifs',
+                        label: 'Revenus locatifs'
+                    }
+                ].forEach(function(field) {
+                    var revenus = situation.patrimoine[field.id];
+                    if (revenus.length) {
+                        var value = {label: field.label, values: []};
+                        $scope.revenusDuPatrimoine.push(value);
+                        for (var i = 0; i < 3; i++) {
+                            var ressource = revenus[i];
+                            value.values.push({
+                                periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
+                                montant: ressource.montant
+                            });
+                        }
+                        var montants = _.pluck(revenus, 'montant');
+                        var montantAnnuel = _.reduce(montants, function(sum, montant) {
+                            return sum + montant;
+                        });
+                        value.values.push({periode: 'Année glissante', montant: montantAnnuel});
+                    }
+                });
+            }
+
+            $scope.logement = { type : _.find(logementTypes, { id: situation.logement.type }).label };
             if ('locataire' === situation.logement.type) {
                 $scope.logement.type += ' d\'un logement de type ' + situation.logement.locationType;
                 $scope.logement.type += '<br>Colocation : ' + (situation.logement.coloc ? 'oui' : 'non');
-                $scope.logement.type += '<br>Propriétaire du logement membre de la famille : ' + (situation.logement.membreFamilleProprietaire ? 'oui' : 'non');
+                $scope.logement.type += '<br>Propriétaire du logement membre de la famille : ';
+                $scope.logement.type += (situation.logement.membreFamilleProprietaire ? 'oui' : 'non');
             } else if ('proprietaire' === situation.logement.type) {
                 $scope.logement.type += ', prêt en accession : ';
                 if (situation.logement.primoAccedant) {

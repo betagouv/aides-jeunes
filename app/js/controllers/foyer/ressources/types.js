@@ -37,9 +37,12 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
 
     var pageTitle = function() {
         switch ($scope.individuRef.individu.role) {
-            case 'demandeur': return 'Vos ressources';
-            case 'conjoint': return 'Les ressources de votre conjoint';
-            default: return 'Les ressources de ' + $scope.individuRef.individu.firstName;
+            case 'demandeur':
+                return 'Vos ressources';
+            case 'conjoint':
+                return 'Les ressources de votre conjoint';
+            default:
+                return 'Les ressources de ' + $scope.individuRef.individu.firstName;
         }
     };
     $scope.pageTitle = pageTitle();

@@ -10,7 +10,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
     $scope.selectedStatuts = {};
     $scope.situationsMaritales = _.filter(situationsFamiliales, 'isSituationCouple');
-    $scope.prochaineAnneeScolaire = moment().add(1, 'year').format('YYYY');
     $scope.scolariteOptions = [
         {
             id: 'inconnue',

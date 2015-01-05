@@ -13,17 +13,17 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             controller: 'IndexCtrl',
             templateUrl: '/acceptance-tests/partials/index.html',
             resolve: {
-                keywords: function() {
-                    return ['apl', 'rsa', 'patrimoine', 'als', 'cmu', 'aspa'];
+                keywords: function(AcceptanceTestsService) {
+                    return AcceptanceTestsService.getKeywords();
                 },
                 organizations: function() {
                     return [{id: 'me', name: 'Moi'}, {id: 'cnam', name: 'CNAM'}, {id: 'pole-emploi', name: 'Pôle emploi'}, {id: 'dgcs', name: 'DGCS'}];
                 },
                 states: function() {
-                    return [{id: 'valide', name: 'Valide'}, {id: 'attente', name: 'En attente'}, {id: 'refuse', name: 'Refusé'}];
+                    return [{id: 'validated', name: 'Valide'}, {id: 'pending', name: 'En attente'}, {id: 'rejected', name: 'Refusé'}];
                 },
                 acceptanceTests: function(AcceptanceTestsService) {
-                    return AcceptanceTestsService.getAndHandleLastResult('');
+                    return AcceptanceTestsService.get({});
                 },
                 activities: function(UserService, acceptanceTests) {
                     var target = acceptanceTests[0];

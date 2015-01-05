@@ -49,14 +49,24 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/contribuez',
             controller: 'ContribuezCtrl',
             templateUrl: '/partials/contribuez.html',
+            abstract: true,
             resolve: {
-                acceptanceTests: ['AcceptanceTestsService', function(AcceptanceTestsService) {
-                    return AcceptanceTestsService.getAndHandleLastResult('public');
-                }]
+                acceptanceTests: function(AcceptanceTestsService) {
+                    return AcceptanceTestsService.get({
+                        state: ['validated']
+                    });
+                },
+                keywords: function(AcceptanceTestsService) {
+                    return AcceptanceTestsService.getKeywords();
+                }
             },
             data: {
                 pageTitle: 'Contribuez ! - '
             }
+        })
+        .state('contribuez.list', {
+            url: '',
+            templateUrl: '/acceptance-tests/partials/test-list.html'
         })
         .state('faq', {
             url: '/faq',

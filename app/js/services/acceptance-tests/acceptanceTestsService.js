@@ -13,21 +13,8 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
             return $http.get('/api/acceptance-tests', {params: filters}).then(function(result) {
                 var tests = result.data;
                 _.map(tests, function(test) {
-                    if (test.derniereExecution) {
-                        self.handleResult({data: test.derniereExecution}, test);
-                    }
-                });
-                return tests;
-            });
-        },
-
-        getAndHandleLastResult: function(state) {
-            var self = this;
-            return $http.get('/api/acceptance-tests/' + state).then(function(result) {
-                var tests = result.data;
-                _.map(tests, function(test) {
-                    if (test.derniereExecution) {
-                        self.handleResult({data: test.derniereExecution}, test);
+                    if (test.lastExecution) {
+                        self.handleResult({data: test.lastExecution}, test);
                     }
                 });
                 return tests;
@@ -150,31 +137,6 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
             });
 
             return deferred.promise;
-        },
-
-        launchAllTests: function(categories, beforeLaunch, afterLaunch, onError) {
-            var self = this;
-            categories.forEach(function(category) {
-                self.launchTestCategory(category, beforeLaunch, afterLaunch, onError);
-            });
-        },
-
-        launchTestCategory: function(category, beforeLaunch, afterLaunch, onError) {
-            var self = this;
-            category.errors = 0;
-            category.pendingTests = 0;
-            category.tests.forEach(function(test) {
-                category.pendingTests++;
-                self.launchSingleTest(test, beforeLaunch, afterLaunch)
-                    .catch(function() {
-                        category.errors++;
-                        if (onError) {
-                            onError();
-                        }
-                    }).finally(function() {
-                        category.pendingTests--;
-                    });
-            });
         },
 
         launchSingleTest: function(test, beforeLaunch, afterLaunch) {

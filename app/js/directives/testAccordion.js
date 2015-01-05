@@ -30,6 +30,7 @@ angular.module('ddsCommon').directive('testAccordion', function() {
                     'ko': 'panel-danger',
                     'near': 'panel-warning',
                 };
+                debugger;
                 return map[test.status];
             };
 

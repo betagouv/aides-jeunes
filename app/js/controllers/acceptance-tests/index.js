@@ -2,7 +2,6 @@
 
 angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $state, $timeout, AcceptanceTestsService, acceptanceTests, keywords, organizations, states, activities) {
     $scope.tests = acceptanceTests;
-    $scope.categories = AcceptanceTestsService.categorizeTests($scope.tests);
 
     $scope.activities = activities;
 
@@ -27,10 +26,12 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
     };
 
     $scope.validate = function() {
-        $scope.acceptanceTests = AcceptanceTestsService.get({
-            keywords: $scope.selectedKeywords,
-            organizations: extractSelectedFilters($scope.selectedOrganizations),
-            states: extractSelectedFilters($scope.selectedStates)
+        AcceptanceTestsService.get({
+            keyword: $scope.selectedKeywords,
+            organization: extractSelectedFilters($scope.selectedOrganizations),
+            state: extractSelectedFilters($scope.selectedStates)
+        }).then(function(result) {
+            $scope.tests = result;
         });
     };
 

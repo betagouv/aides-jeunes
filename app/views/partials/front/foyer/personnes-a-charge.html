@@ -3,14 +3,8 @@
   <div class="row">
     <div class="col-md-4" ng-repeat="section in sections">
       <h2>{{ section.label }}</h2>
-      <div class="panel-enfant panel-new-enfant" style="{{ section.style }}">
-        <div class="panel-body">
-          <button class="btn btn-lg btn-default btn-block btn-new-entity" ng-click="newPersonne(section)">
-            <span ng-bind-html="section.labelNewPersonne"></span>
-            <br><i class="fa fa-plus icon-lg"></i>
-          </button>
-        </div>
-      </div>
+
+      <div style="{{ section.style }}" ng-if="section.style"></div>
 
       <div ng-repeat="personne in section.personnes">
         <div class="panel-enfant whiteframe-z1">
@@ -30,6 +24,15 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="panel-enfant panel-new-enfant">
+        <div class="panel-body">
+          <button class="btn btn-lg btn-default btn-block btn-new-entity" ng-click="newPersonne(section)">
+            <span ng-bind-html="section.labelNewPersonne"></span>
+            <br><i class="fa fa-plus icon-lg"></i>
+          </button>
         </div>
       </div>
 

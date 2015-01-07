@@ -13,29 +13,29 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
     $scope.droitsChoices = droitsDescription;
     if (editMode) {
         $scope.test = test;
-        $scope.test.droitsAttendus.forEach(function(droit) {
+        $scope.test.expectedResults.forEach(function(droit) {
             droit.ref = _.find($scope.droitsChoices, { id: droit.code });
         });
     } else {
-        $scope.test = { situation: $stateParams.situationId, droitsAttendus: [] };
+        $scope.test = { situation: $stateParams.situationId, expectedResults: [] };
         _.forEach(droitsObtenus, function(value, name) {
             if (_.isBoolean(value) || (_.isNumber(value) && 0 !== value)) {
-                $scope.test.droitsAttendus.push({ ref: _.find($scope.droitsChoices, {id: name}), value: value });
+                $scope.test.expectedResults.push({ ref: _.find($scope.droitsChoices, {id: name}), value: value });
             }
         });
     }
 
     $scope.removeDroit = function(droit) {
-        var index = $scope.test.droitsAttendus.indexOf(droit);
-        $scope.test.droitsAttendus.splice(index, 1);
+        var index = $scope.test.expectedResults.indexOf(droit);
+        $scope.test.expectedResults.splice(index, 1);
     };
 
     $scope.submit = function() {
         $scope.submitting = true;
-        $scope.test.droitsAttendus.forEach(function(droit) {
+        $scope.test.expectedResults.forEach(function(droit) {
             droit.code = droit.ref.id;
         });
-        var test = _.pick($scope.test, ['_id', 'situation', 'name', 'description', 'droitsAttendus']);
+        var test = _.pick($scope.test, ['_id', 'situation', 'name', 'description', 'droitsAttendu']);
         if (editMode) {
             $http.put('/api/acceptance-tests/' + test._id, test).then(function() {
                 $state.go('index.list', {'testId': test._id});

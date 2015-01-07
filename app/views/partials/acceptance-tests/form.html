@@ -29,8 +29,8 @@
     Attention : veillez à supprimer ici les droits que vous ne testez pas.
     Veillez aussi à ajouter les droits dont vous testez que le montant calculé doit être nul (en mettant "0" comme valeur attendue).
   </p>
-  <p><button type="button" class="btn btn-default btn-xs" ng-click="test.droitsAttendus.push({})">Ajouter un autre droit attendu</button></p>
-  <div class="row" ng-repeat="droit in test.droitsAttendus">
+  <p><button type="button" class="btn btn-default btn-xs" ng-click="test.expectedResults.push({})">Ajouter un autre droit attendu</button></p>
+  <div class="row" ng-repeat="droit in test.expectedResults">
     <div class="col-md-1">
       <button type="button" class="btn btn-default btn-xs" ng-click="removeDroit(droit)"><i class="fa fa-times"></i></button>
     </div>

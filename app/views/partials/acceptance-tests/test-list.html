@@ -3,8 +3,10 @@
 <accordion close-others="false">
   <accordion-group
     is-open="test.open"
-    ng-class="testStatusClass(test)"
-    ng-repeat="(idxTest, test) in tests">
+    ng-class="{'panel-success': test.status === 'ok',
+              'panel-danger': test.status === 'ko',
+              'panel-warning': test.status === 'near'}"
+    ng-repeat="test in tests">
     <accordion-heading>
       <span class="test-is-valid" ng-if="!readOnly">
         <i ng-if="test.state === 'validated'" class="fa fa-check-circle" tooltip="Test validé"></i>
@@ -14,9 +16,9 @@
       {{ test.name }}
       <span class="anchor" id="test-{{ test._id }}">x</span>
       <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
-      <div ng-if="test.open && test.createdBy">
+      <div ng-if="test.open && test.user">
         <small class="test-detail">
-          Créé par {{test.createdBy.firstName}} {{test.createdBy.lastName}}
+          Créé par {{test.user.firstName}} {{test.user.lastName}}
         </small>
       </div>
       <div ng-if="test.open && test.createdAt">
@@ -34,10 +36,10 @@
       <div ng-if="!readOnly">
         <div class="test-actions text-right">
           <div class="btn-group" dropdown>
-            <button type="button" class="btn btn-default btn-xs" ng-if="test.state !== 'validated'" ng-click="validTest(idxCategory, category, idxTest, test)">
+            <button type="button" class="btn btn-default btn-xs" ng-if="test.state !== 'validated'" ng-click="validTest(test)">
               <i class="fa fa-check text-success"></i> Valider
             </button>
-            <button type="button" class="btn btn-default btn-xs" ng-if="test.state === 'validated'" ng-click="rejectTest(idxCategory, category, idxTest, test)">
+            <button type="button" class="btn btn-default btn-xs" ng-if="test.state === 'validated'" ng-click="rejectTest(test)">
               <i class="fa fa-times text-danger"></i> Refuser
             </button>
             <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -48,24 +50,24 @@
                 <a
                   ui-sref="."
                   class="selectable"
-                  ng-if="test.validated === false || test.validated === undefined"
-                  ng-click="validTest(idxCategory, category, idxTest, test)">
+                  ng-if="test.state !== 'validated'"
+                  ng-click="validTest(test)">
                   <i class="fa fa-check text-success"></i> Valider
                 </a>
               </li>
               <li>
                 <a
                   ui-sref="."
-                  ng-if="test.validated === true || test.validated === undefined"
-                  ng-click="rejectTest(idxCategory, category, idxTest, test)">
+                  ng-if="test.state !== 'rejected'"
+                  ng-click="rejectTest(test)">
                   <i class="fa fa-times text-danger"></i> Refuser
                 </a>
               </li>
               <li>
                 <a
                   ui-sref="."
-                  ng-if="test.validated !== undefined"
-                  ng-click="setWaitingTest(idxCategory, category, idxTest, test)">
+                  ng-if="test.state !== 'pending'"
+                  ng-click="setWaitingTest(test)">
                   <i class="fa fa-undo text-info"></i> Mettre en attente
                 </a>
               </li>
@@ -120,10 +122,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="droitAttendu in test.droitsAttendus" ng-class="droitAttenduStatusClass(droitAttendu)">
-            <td>{{ droits[droitAttendu.code].shortLabel }}</td>
-            <td>{{ displayDroitValue(droitAttendu.value) }}</td>
-            <td>{{ displayDroitValue(droitAttendu.actualValue) }}</td>
+          <tr ng-repeat="expectedResult in test.expectedResults"
+            ng-class="{'success': expectedResult.status === 'ok',
+                      'danger': expectedResult.status === 'ko',
+                      'info': expectedResult.status === 'unknown',
+                      'warning': expectedResult.status === 'near'}">
+            {{expectedResult}}
+            <td>{{ droits[expectedResult.code].shortLabel }}</td>
+            <td>{{ displayDroitValue(expectedResult.value) }}</td>
+            <td>{{ displayDroitValue(expectedResult.actualValue) }}</td>
           </tr>
         </tbody>
       </table>

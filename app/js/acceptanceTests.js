@@ -78,6 +78,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 }]
             }
         })
+        .state('index.stats', {
+            url: '/stats',
+            controller: 'TestListCtrl',
+            templateUrl: '/acceptance-tests/partials/test-list.html'
+        })
         .state('login', {
             url: '/login?targetUrl',
             templateUrl: '/acceptance-tests/partials/login.html',

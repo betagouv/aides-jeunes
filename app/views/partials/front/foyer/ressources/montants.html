@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-sm-3" ng-repeat="monthRessource in ressource.months">
             <label for="{{ individuIndex + ressource.type.id + months[$index].id }}">
-              <br>{{ months[$index].label|uppercaseFirst }}
+              {{ months[$index].label|uppercaseFirst }}
             </label>
             <span class="input-group">
               <input

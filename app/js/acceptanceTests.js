@@ -74,14 +74,14 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             templateUrl: '/acceptance-tests/partials/test-timeline.html',
             resolve: {
                 activities: ['AcceptanceTestsService', function(AcceptanceTestsService) {
-                    return AcceptanceTestsService.getAndHandleLastResult('');
+                    return AcceptanceTestsService.get();
                 }]
             }
         })
         .state('index.stats', {
             url: '/stats',
-            controller: 'TestListCtrl',
-            templateUrl: '/acceptance-tests/partials/test-list.html'
+            controller: 'TestStatsCtrl',
+            templateUrl: '/acceptance-tests/partials/test-stats.html'
         })
         .state('login', {
             url: '/login?targetUrl',

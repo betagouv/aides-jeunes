@@ -9,10 +9,6 @@ angular.module('acceptanceTests').directive('activityTimeline', function() {
             showTarget: '='
         },
         controller: function($scope) {
-            $scope.getActivityIcon = function(activity) {
-                return activity.type.icon;
-            };
-
             $scope.getDate = function(activity) {
                 return moment(activity.date).fromNow();
             };

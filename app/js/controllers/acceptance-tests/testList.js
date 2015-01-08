@@ -56,35 +56,12 @@ angular.module('acceptanceTests').controller('TestListCtrl', function($scope, $m
     };
 
     $scope.getTimeline = function(test) {
-        if (test.timeline) {
-            return;
-        }
-        var user = {lastName: 'Delz', firstName: 'Flo'};
-        test.timeline = [{
-            date: new Date('December 7, 2014 12:13:00'),
-            user: user,
-            type: { label: 'Rejet', icon: 'remove'},
-            description: 'Lorem ipsum dolor sit amet, eu deserunt facilisis assentior vis, equidem appetere euripidis mel at. Duo et aliquid inermis, ubique imperdiet ne has, no vidit lorem placerat nec. Per an justo augue conceptam, ex mel facer persius. Mei cu latine senserit accommodare, ne vis augue propriae. Ei usu illud graeco fabellas.'
-        }, {
-            date: new Date('December 7, 2014 12:13:00'),
-            user: user,
-            type: { label: 'Validation', icon: 'check'},
-            description: 'Lorem ipsum dolor sit amet, eu deserunt facilisis assentior vis, equidem appetere euripidis mel at. Duo et aliquid inermis, ubique imperdiet ne has, no vidit lorem placerat nec. Per an justo augue conceptam, ex mel facer persius. Mei cu latine senserit accommodare, ne vis augue propriae. Ei usu illud graeco fabellas.'
-        }, {
-            date: new Date('December 6, 2014 12:13:00'),
-            type: { label: 'En succès', icon: 'thumbs-up'},
-        }, {
-            date: new Date('December 5, 2014 11:13:00'),
-            user: user,
-            type: { label: 'Edition', icon: 'edit'},
-        }, {
-            date: new Date('December 4, 2014 11:30:00'),
-            type: { label: 'En erreur', icon: 'thumbs-down'},
-        }, {
-            date: new Date('December 3, 2014 11:13:00'),
-            user: user,
-            type: { label: 'Création', icon: 'plus'}
-        }];
+        $http.get('/api/acceptance-tests/' + test._id + '/timeline').then(function(result) {
+            if (result.data.length === 0) {
+                result.data.push({type: 'no-activity'});
+            }
+            test.timeline = result.data;
+        });
     };
 
     $scope.gotoDebugOpenFisca = function(situation) {
@@ -102,6 +79,7 @@ angular.module('acceptanceTests').controller('TestListCtrl', function($scope, $m
     $scope.validTest = function(test) {
         $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'validated'}).then(function() {
             test.state = 'validated';
+            $scope.getTimeline(test);
         });
     };
 
@@ -126,8 +104,9 @@ angular.module('acceptanceTests').controller('TestListCtrl', function($scope, $m
         });
 
         modalInstance.result.then(function (comment) {
-            $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'rejected', comment: comment}).then(function() {
+            $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'rejected', rejectionMessage: comment}).then(function() {
                 test.state = 'rejected';
+                $scope.getTimeline(test);
             });
         }, function () {
           // on modal dismissed
@@ -137,6 +116,7 @@ angular.module('acceptanceTests').controller('TestListCtrl', function($scope, $m
     $scope.setWaitingTest = function(test) {
         $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'pending'}).then(function() {
             test.state = 'pending';
+            $scope.getTimeline(test);
         });
     };
 

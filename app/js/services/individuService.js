@@ -56,6 +56,10 @@ angular.module('ddsCommon').service('IndividuService', function($filter, situati
                 statuts.push('enceinte');
             }
 
+            if (individu.boursier) {
+                statuts.push('boursier');
+            }
+
             statuts = _.map(statuts, $filter('lowercaseFirst'));
             statuts = statuts.join(', ');
             statuts = $filter('uppercaseFirst')(statuts);

@@ -109,9 +109,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             templateUrl: '/acceptance-tests/partials/form.html',
             controller: 'FormCtrl',
             resolve: {
-                droitsObtenus: function() {
-                    return null;
-                },
+                droitsObtenus: ['$http', 'test', function($http, test) {
+                    return $http.get('/api/situations/' + test.situation + '/simulation').then(function(result) {
+                        return result.data;
+                    });
+                }],
                 test: ['$http', '$stateParams', function($http, $stateParams) {
                     return $http.get('/api/acceptance-tests/' + $stateParams.testId).then(function(result) {
                         return result.data;

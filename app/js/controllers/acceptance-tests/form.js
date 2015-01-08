@@ -15,6 +15,7 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
         $scope.test = test;
         $scope.test.expectedResults.forEach(function(droit) {
             droit.ref = _.find($scope.droitsChoices, { id: droit.code });
+            droit.actualValue = droitsObtenus[droit.code];
         });
     } else {
         $scope.test = { situation: $stateParams.situationId, expectedResults: [] };

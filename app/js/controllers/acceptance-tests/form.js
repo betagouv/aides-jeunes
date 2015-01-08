@@ -15,15 +15,32 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
         $scope.test = test;
         $scope.test.expectedResults.forEach(function(droit) {
             droit.ref = _.find($scope.droitsChoices, { id: droit.code });
+            droit.actualValue = droitsObtenus[droit.code];
         });
     } else {
         $scope.test = { situation: $stateParams.situationId, expectedResults: [] };
         _.forEach(droitsObtenus, function(value, name) {
-            if (_.isBoolean(value) || (_.isNumber(value) && 0 !== value)) {
-                $scope.test.expectedResults.push({ ref: _.find($scope.droitsChoices, {id: name}), value: value });
+            if ((_.isBoolean(value) && true === value) || (_.isNumber(value) && 0 !== value)) {
+                $scope.test.expectedResults.push({
+                    ref: _.find($scope.droitsChoices, { id: name }),
+                    actualValue: value,
+                    value: value
+                });
             }
         });
     }
+
+    $scope.droitSelected = function(droit) {
+        droit.actualValue = droitsObtenus[droit.ref.id];
+        droit.value = droit.actualValue;
+    };
+
+    $scope.formatDroitValue = function(value) {
+        if (_.isNumber(value)) {
+            return '' + value + ' €';
+        }
+        return value ? 'Oui' : 'Non';
+    };
 
     $scope.removeDroit = function(droit) {
         var index = $scope.test.expectedResults.indexOf(droit);

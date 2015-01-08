@@ -79,6 +79,14 @@ describe('IndividuService', function() {
             // then
             expect(result).toBe('Enceinte');
         });
+
+        it('Should display "boursier" if the individu has the corresponding field to true', function() {
+            // when
+            var result = service.formatStatutsSpecifiques({ boursier: true });
+
+            // then
+            expect(result).toBe('Boursier');
+        });
     });
 
     describe('function isParent()', function() {

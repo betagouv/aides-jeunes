@@ -27,30 +27,39 @@
   <h3>Droits attendus</h3>
   <p>
     Attention : veillez à supprimer ici les droits que vous ne testez pas.
-    Veillez aussi à ajouter les droits dont vous testez que le montant calculé doit être nul (en mettant "0" comme valeur attendue).
+    <br>Veillez aussi à ajouter les droits dont vous testez que le montant calculé doit être nul (en mettant "0" comme valeur attendue).
   </p>
   <p><button type="button" class="btn btn-default btn-xs" ng-click="test.expectedResults.push({})">Ajouter un autre droit attendu</button></p>
   <div class="row" ng-repeat="droit in test.expectedResults">
     <div class="col-md-1">
       <button type="button" class="btn btn-default btn-xs" ng-click="removeDroit(droit)"><i class="fa fa-times"></i></button>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-3">
       <div class="form-group">
-        <label class="control-label col-md-2" for="droit-{{ $index }}">Droit</label>
-        <div class="col-md-10">
+        <label class="control-label col-md-4" for="droit-{{ $index }}">Droit</label>
+        <div class="col-md-8">
           <select
             id="droit-{{ $index }}"
             class="form-control"
             ng-options="choice as choice.shortLabel for choice in droitsChoices"
-            ng-model="droit.ref">
+            ng-model="droit.ref"
+            ng-change="droitSelected(droit)">
           </select>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="form-group">
-        <label class="control-label col-md-3" for="expected-value-{{ $index }}">Valeur attendue</label>
-        <div class="col-md-9">
+        <label class="control-label col-md-5">Valeur obtenue</label>
+        <div class="col-md-7">
+          <p class="form-control-static"><b>{{ formatDroitValue(droit.actualValue) }}</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label col-md-4" for="expected-value-{{ $index }}">Valeur attendue</label>
+        <div class="col-md-8">
           <div class="input-group" ng-if="false !== droit.ref.hasMontant">
             <input id="expected-value-{{ $index }}" class="form-control" name="expectedValueNumber" type="number" step="any" ng-model="droit.value" required>
             <span class="input-group-addon">€</span>

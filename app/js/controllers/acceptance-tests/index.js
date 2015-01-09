@@ -17,9 +17,9 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
     $scope.user = UserService.user();
 
     $scope.tabs = [
-        { heading: 'Liste des tests', route:'index.list' },
+        { heading: 'Liste des tests', route:'index.list' } /*,
         { heading: 'Timeline', route:'index.timeline' },
-        { heading: 'Statistiques', route:'index.stats' }
+        { heading: 'Statistiques', route:'index.stats' } */
     ];
 
     var extractSelectedFilters = function(selection) {

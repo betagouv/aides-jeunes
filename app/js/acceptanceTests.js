@@ -130,6 +130,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     return $http.get('/api/users').then(function(result) {
                         return result.data;
                     });
+                }],
+                organizations : ['$http', function($http) {
+                    return $http.get('/api/acceptance-tests/organizations').then(function(result) {
+                        return result.data;
+                    });
                 }]
             }
         });

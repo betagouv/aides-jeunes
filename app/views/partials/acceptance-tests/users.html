@@ -52,7 +52,8 @@
       <div class="form-group">
         <label class="control-label col-md-4" for="organization">Organisation</label>
         <div class="col-md-8">
-          <input type="text" class="form-control" id="organization" ng-model="newUser.organization">
+          <input type="text" class="form-control" id="organization" ng-model="newUser.organization"
+             typeahead="organization for organization in organizations | filter:$viewValue | limitTo:8">
         </div>
       </div>
       <div class="form-group">
@@ -75,27 +76,28 @@
     <h1>Modifier utilisateur</h1>
     <form method="post" class="form-horizontal" ng-submit="updateUser()">
       <div class="form-group">
-        <label class="control-label col-md-4" for="email">Email</label>
+        <label class="control-label col-md-4" for="edit-email">Email</label>
         <div class="col-md-8">
-          <input type="text" class="form-control" id="email" ng-model="currentUser.email">
+          <input type="text" class="form-control" id="edit-email" ng-model="currentUser.email">
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-md-4" for="prenom">Prénom</label>
+        <label class="control-label col-md-4" for="edit-prenom">Prénom</label>
         <div class="col-md-8">
-          <input type="text" class="form-control" id="prenom" ng-model="currentUser.firstName">
+          <input type="text" class="form-control" id="edit-prenom" ng-model="currentUser.firstName">
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-md-4" for="nom">Nom</label>
+        <label class="control-label col-md-4" for="edit-nom">Nom</label>
         <div class="col-md-8">
-          <input type="text" class="form-control" id="nom" ng-model="currentUser.lastName">
+          <input type="text" class="form-control" id="edit-nom" ng-model="currentUser.lastName">
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-md-4" for="organization">Organisation</label>
+        <label class="control-label col-md-4" for="edit-organization">Organisation</label>
         <div class="col-md-8">
-          <input type="text" class="form-control" id="organization" ng-model="currentUser.organization">
+          <input type="text" class="form-control" id="edit-organization" ng-model="currentUser.organization"
+             typeahead="organization for organization in organizations | filter:$viewValue | limitTo:8">
         </div>
       </div>
       <div class="form-group">

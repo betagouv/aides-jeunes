@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('UsersCtrl', function($scope, $http, $state, users) {
+angular.module('acceptanceTests').controller('UsersCtrl', function($scope, $http, $state, users, organizations) {
     $scope.users = users;
+    $scope.organizations = organizations;
     $scope.newUser = {};
     $scope.currentUser = {};
     $scope.createUser = function() {

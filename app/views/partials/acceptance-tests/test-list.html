@@ -115,8 +115,6 @@
           </button>
         </div>
 
-        <br>
-
         <div class="alert alert-warning-inverse" ng-if="test.comment">
           <p>
             <i class="fa fa-exclamation-triangle"></i>
@@ -125,30 +123,36 @@
           </p>
         </div>
       </div>
-
-      <p ng-if="test.description" ng-bind-html="newLineToBr(test.description)"></p>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Droit</th>
-            <th>Valeur attendue</th>
-            <th>Valeur obtenue</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="expectedResult in test.expectedResults"
-            ng-class="{'success': expectedResult.status === 'ok',
-                      'danger': expectedResult.status === 'ko',
-                      'info': expectedResult.status === 'unknown',
-                      'warning': expectedResult.status === 'near'}">
-            {{expectedResult}}
-            <td>{{ droits[expectedResult.code].shortLabel }}</td>
-            <td>{{ displayDroitValue(expectedResult.value) }}</td>
-            <td>{{ displayDroitValue(expectedResult.actualValue) }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
+      <div>
+        <p ng-if="test.description" ng-bind-html="newLineToBr(test.description)"></p>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Droit</th>
+              <th>Valeur attendue</th>
+              <th>Valeur obtenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="expectedResult in test.expectedResults"
+              ng-class="{'success': expectedResult.status === 'ok',
+                        'danger': expectedResult.status === 'ko',
+                        'info': expectedResult.status === 'unknown',
+                        'warning': expectedResult.status === 'near'}">
+              {{expectedResult}}
+              <td>{{ droits[expectedResult.code].shortLabel }}</td>
+              <td>{{ displayDroitValue(expectedResult.value) }}</td>
+              <td>{{ displayDroitValue(expectedResult.actualValue) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div ng-if="test.keywords && test.keywords.length > 0">
+          <div>Mots-clés associés</div>
+          <span class="tag-choice-select" ng-repeat="keyword in test.keywords">{{keyword}}</span>
+      </div>
+      <div class="clearfix"></div>
+      <p class="detail-situation">
         <button type="button" class="btn btn-default btn-xs" ng-click="toggleSituation(test)">
           Détail de la situation
           <i class="fa" ng-class="{'fa-chevron-down': test.showSituation, 'fa-chevron-right': !test.showSituation}"></i>

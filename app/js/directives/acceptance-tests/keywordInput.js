@@ -8,7 +8,10 @@ app.directive('keywordInput', function($timeout) {
         templateUrl: '/acceptance-tests/partials/keywordInput.html',
         scope: {
             keywords: '=',
-            selectedKeywords: '='
+            selectedKeywords: '=',
+            labelWidth: '=',
+            inputWidth: '=',
+            showHelp: '='
         },
         controller: function($scope) {
             $scope.showTags = true;
@@ -20,12 +23,11 @@ app.directive('keywordInput', function($timeout) {
                 } else {
                     newKeyword = $scope.currentKeyword;
                 }
-                if ($scope.keywords.indexOf(newKeyword) >= 0) {
-                    if ($scope.selectedKeywords.indexOf(newKeyword) < 0 ) {
-                        $scope.selectedKeywords.push(newKeyword);
-                    }
-                    $scope.currentKeyword = '';
+
+                if ($scope.selectedKeywords.indexOf(newKeyword) < 0 ) {
+                    $scope.selectedKeywords.push(newKeyword);
                 }
+                $scope.currentKeyword = '';
             };
 
             $scope.removeKeyword = function(idx) {

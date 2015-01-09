@@ -120,7 +120,10 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                     return $http.get('/api/acceptance-tests/' + $stateParams.testId).then(function(result) {
                         return result.data;
                     });
-                }]
+                }],
+                keywords: function(AcceptanceTestsService) {
+                    return AcceptanceTestsService.getKeywords();
+                }
             }
         })
         .state('users', {

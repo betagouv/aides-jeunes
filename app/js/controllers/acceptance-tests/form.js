@@ -1,6 +1,14 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http, $state, $stateParams, droitsDescription, droitsObtenus, test) {
+angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http, $state, $stateParams, droitsDescription, droitsObtenus, test, keywords) {
+    $scope.keywords = keywords;
+
+    if (!test.keywords) {
+        test.keywords = [];
+    }
+
+    $scope.selectedKeywords = test.keywords;
+
     var editMode = !!test;
     if (editMode) {
         $scope.pageTitle = 'Modification du cas de test "' + test.name + '"';
@@ -52,7 +60,7 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
         $scope.test.expectedResults.forEach(function(droit) {
             droit.code = droit.ref.id;
         });
-        var test = _.pick($scope.test, ['_id', 'situation', 'name', 'description', 'droitsAttendu']);
+        var test = _.pick($scope.test, ['_id', 'situation', 'name', 'description', 'droitsAttendu', 'keywords']);
         if (editMode) {
             $http.put('/api/acceptance-tests/' + test._id, test).then(function() {
                 $state.go('index.list', {'testId': test._id});

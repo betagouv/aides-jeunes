@@ -283,6 +283,13 @@ $autre: #39747B;
 $autre-light: #a9d2d7;
 $autre-lighter: #cce4e7;
 
+.btn-default {
+  &.active {
+    background-color: $btn-success-bg;
+    color: white;
+  }
+}
+
 @mixin ressource-category-capture($color, $color-light, $color-lighter) {
   border: 1px solid $color;
   border-left-width: 4px;
@@ -305,7 +312,7 @@ $autre-lighter: #cce4e7;
     padding: 5px;
 
     .btn-ressources {
-      @extend btn-default;
+      @extend .btn-default;
     }
   }
 }
@@ -388,13 +395,6 @@ $autre-lighter: #cce4e7;
 
 .intro, .intro.ng-enter.ng-enter-active {
   top: 0;
-}
-
-.btn-default {
-  &.active {
-    background-color: $btn-success-bg;
-    color: white;
-  }
 }
 
 .thumbnail {

@@ -16,8 +16,10 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 keywords: function(AcceptanceTestsService) {
                     return AcceptanceTestsService.getKeywords();
                 },
-                organizations: function() {
-                    return [{id: 'me', name: 'Moi'}, {id: 'cnam', name: 'CNAM'}, {id: 'pole-emploi', name: 'Pôle emploi'}, {id: 'dgcs', name: 'DGCS'}];
+                organizations: function($http) {
+                    return $http.get('/api/acceptance-tests/organizations').then(function(result) {
+                        return result.data;
+                    });
                 },
                 states: function() {
                     return [{id: 'validated', name: 'Valide'}, {id: 'pending', name: 'En attente'}, {id: 'rejected', name: 'Refusé'}];

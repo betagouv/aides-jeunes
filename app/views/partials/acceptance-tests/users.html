@@ -5,12 +5,14 @@
       <tr>
         <th>Email</th>
         <th>Nom</th>
+        <th>Organisation</th>
         <th>Admin</th>
         <th>Action</th>
       </tr>
       <tr ng-repeat="user in users">
         <td>{{ user.email }}</td>
         <td>{{ user.firstName }} {{ user.lastName }}</td>
+        <td>{{ user.organization }}</td>
         <td><i ng-if="user.isAdmin" class="fa fa-check"></i></td>
         <td><button type="button" ng-click="deleteUser(user)"><i class="fa fa-times"></i></button></td>
       </tr>
@@ -42,6 +44,12 @@
         <label class="control-label col-md-4" for="nom">Nom</label>
         <div class="col-md-8">
           <input type="text" class="form-control" id="nom" ng-model="newUser.lastName">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-4" for="organization">Organisation</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" id="organization" ng-model="newUser.organization">
         </div>
       </div>
       <div class="form-group">

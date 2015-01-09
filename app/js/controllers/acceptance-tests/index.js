@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $state, $timeout, AcceptanceTestsService, acceptanceTests, keywords, organizations, states, activities) {
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $state, $timeout, AcceptanceTestsService, UserService, acceptanceTests, keywords, organizations, states, activities) {
     $scope.tests = acceptanceTests;
 
     $scope.activities = activities;
@@ -13,6 +13,8 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
 
     $scope.states = states;
     $scope.selectedStates = {};
+
+    $scope.user = UserService.user();
 
     $scope.tabs = [
         { heading: 'Liste des tests', route:'index.list' },
@@ -44,6 +46,16 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
 
     $scope.active = function(route) {
         return $state.is(route);
+    };
+
+    $scope.launchTests = function() {
+        $scope.pendingTests = $scope.tests.length;
+        $scope.tests.forEach(function(test) {
+            AcceptanceTestsService.launchTest(test)
+                .finally(function() {
+                    $scope.pendingTests--;
+                });
+        });
     };
 
     $scope.$on('stopWaiting', function() {

@@ -108,8 +108,6 @@ angular.module('acceptanceTests').controller('TestListCtrl', function($scope, $m
                 test.state = 'rejected';
                 $scope.getTimeline(test);
             });
-        }, function () {
-          // on modal dismissed
         });
     };
 

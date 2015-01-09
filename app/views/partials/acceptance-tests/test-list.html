@@ -1,4 +1,16 @@
-<h2 class="text-right">{{tests.length}} tests</h2>
+<h2 class="pull-right">{{tests.length}} tests</h2>
+
+<p style="margin-top: 10px;">
+  <button
+    type="button"
+    class="btn btn-default"
+    ng-if="user.isAdmin"
+    ng-click="launchTests()"
+    ng-disabled="pendingTests">
+    <i class="fa fa-spinner fa-spin" ng-if="pendingTests"></i>
+    Lancer tous les tests
+  </button>
+</p>
 
 <accordion close-others="false">
   <accordion-group

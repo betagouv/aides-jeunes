@@ -2,11 +2,9 @@ var express = require('express');
 var favicon = require('static-favicon');
 var path = require('path');
 
-var rootPath = path.join(__dirname, '..', '..');
-
 module.exports = function(app) {
     var env = app.get('env');
-    var viewsDirectory = rootPath;
+    var viewsDirectory = __dirname;
 
     if ('development' === env) {
         app.use(require('connect-livereload')());
@@ -21,17 +19,17 @@ module.exports = function(app) {
             next();
         });
 
-        app.use('/acceptance-tests', express.static(path.join(rootPath, 'app')));
-        app.use(express.static(path.join(rootPath, '.tmp')));
-        app.use(express.static(path.join(rootPath, 'app')));
+        app.use('/acceptance-tests', express.static(path.join(__dirname, 'app')));
+        app.use(express.static(path.join(__dirname, '.tmp')));
+        app.use(express.static(path.join(__dirname, 'app')));
 
         viewsDirectory += '/app/views';
     }
 
     if ('production' === env) {
-        app.use(favicon(path.join(rootPath, 'dist', 'favicon.ico')));
-        app.use('/acceptance-tests', express.static(path.join(rootPath, 'dist')));
-        app.use(express.static(path.join(rootPath, 'dist')));
+        app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
+        app.use('/acceptance-tests', express.static(path.join(__dirname, 'dist')));
+        app.use(express.static(path.join(__dirname, 'dist')));
 
         viewsDirectory += '/dist/views';
     }

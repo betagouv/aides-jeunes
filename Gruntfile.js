@@ -86,7 +86,7 @@ module.exports = function (grunt) {
       express: {
         files: [
           'server.js',
-          'lib/**/*.{js,json}'
+          'index.js'
         ],
         tasks: ['newer:jshint:server', 'express:dev', 'wait'],
         options: {
@@ -102,7 +102,7 @@ module.exports = function (grunt) {
         jshintrc: true,
         reporter: require('jshint-stylish'),
       },
-      node: ['lib/**/*.js', '*.js'],
+      node: ['*.js'],
       client: ['<%= yeoman.app %>/js/**/*.js'],
       test: ['test/spec/**/*.js']
     },

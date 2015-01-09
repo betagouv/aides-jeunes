@@ -21,7 +21,7 @@ app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TO
 
 // Setup app
 app.use('/api', require('sgmap-mes-aides-api'));
-require('./lib/config/client')(app);
+require('./')(app);
 
 if ('development' === env) {
     app.use(errorHandler());

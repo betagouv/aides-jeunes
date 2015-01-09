@@ -14,7 +14,10 @@
         <td>{{ user.firstName }} {{ user.lastName }}</td>
         <td>{{ user.organization }}</td>
         <td><i ng-if="user.isAdmin" class="fa fa-check"></i></td>
-        <td><button type="button" ng-click="deleteUser(user)"><i class="fa fa-times"></i></button></td>
+        <td>
+          <a href="" ng-click="editUser(user)"><i class="fa fa-edit"></i></a>
+          <a href="" ng-click="deleteUser(user)"><i class="fa fa-times"></i></a>
+        </td>
       </tr>
     </table>
   </div>
@@ -64,6 +67,49 @@
       <div class="form-group">
         <div class="col-md-offset-4 col-md-8">
           <button type="submit" class="btn btn-primary">Valider</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-5">
+    <h1>Modifier utilisateur</h1>
+    <form method="post" class="form-horizontal" ng-submit="updateUser()">
+      <div class="form-group">
+        <label class="control-label col-md-4" for="email">Email</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" id="email" ng-model="currentUser.email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-4" for="prenom">Prénom</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" id="prenom" ng-model="currentUser.firstName">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-4" for="nom">Nom</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" id="nom" ng-model="currentUser.lastName">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-4" for="organization">Organisation</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" id="organization" ng-model="currentUser.organization">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-offset-4 col-md-8">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="currentUser.isAdmin"> Admin
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-offset-4 col-md-8">
+          <button type="submit" class="btn btn-success">Valider</button>
         </div>
       </div>
     </form>

@@ -78,11 +78,11 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
             tests.forEach(function(test) {
                 if (test._updated) {
                     var updatedAt = moment(test._updated);
-                    test.updatedAt = updatedAt.format('DD/MM/YYYY') + ' à ' + updatedAt.format('HH:mm');
+                    test.updatedAt = updatedAt.format('DD/MM/YYYY à HH:mm');
                 }
                 if (test._created) {
                     var createdAt = moment(test._created);
-                    test.createdAt = createdAt.format('DD/MM/YYYY') + ' à ' + createdAt.format('HH:mm');
+                    test.createdAt = createdAt.format('DD/MM/YYYY à HH:mm');
                 }
             });
         },

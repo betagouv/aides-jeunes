@@ -4,8 +4,6 @@ var morgan = require('morgan');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var config = require('./lib/config/config');
-
 // Setup Express
 var app = express();
 var env = app.get('env');
@@ -19,19 +17,21 @@ if ('production' === env) {
 }
 
 // prerender.io
-app.use(require('prerender-node').set('prerenderToken', config.prerenderToken));
+app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN));
 
 // Setup app
 app.use('/api', require('sgmap-mes-aides-api'));
-require('./lib/config/client')(app, config);
+require('./lib/config/client')(app);
 
 if ('development' === env) {
     app.use(errorHandler());
 }
 
+var port = process.env.PORT || 9000;
+
 // Start server
-app.listen(config.port, config.ip, function () {
-    console.log('Express server listening on %s:%d, in %s mode', config.ip, config.port, app.get('env'));
+app.listen(port, function () {
+    console.log('Express server listening on port %d, in %s mode', port, app.get('env'));
 });
 
 exports = module.exports = app;

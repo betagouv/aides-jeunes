@@ -17,14 +17,14 @@ angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function($scope
             labelNewPersonne: 'Ajouter une personne à charge',
             style: 'margin-top: 33px;',
             individuFormView: 'personneAChargeForm'
-        },
+        }/*,
         {
             role: 'personneSousMemeToit',
             label: 'Autres personnes vivant sous votre toit',
             formLabel: 'Nouvelle personne vivant sous votre toit',
             labelNewPersonne: 'Ajouter une personne vivant sous mon toit',
             individuFormView: 'personneSousMemeToitForm'
-        }
+        }*/
     ];
 
     $scope.sections.forEach(function(section) {

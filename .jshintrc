@@ -1,6 +1,5 @@
 {
   "node": true,
-  "esnext": true,
   "bitwise": true,
   "eqeqeq": true,
   "immed": true,
@@ -11,10 +10,5 @@
   "quotmark": "single",
   "regexp": true,
   "undef": true,
-  "unused": true,
-  "trailing": true,
-  "smarttabs": true,
-  "globals": {
-    "_": true
-  }
+  "unused": true
 }

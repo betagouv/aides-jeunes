@@ -16,9 +16,6 @@ if ('production' === env) {
     app.use(morgan());
 }
 
-// prerender.io
-app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN));
-
 // Setup app
 app.use('/api', require('sgmap-mes-aides-api'));
 require('./')(app);

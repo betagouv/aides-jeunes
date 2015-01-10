@@ -51,7 +51,7 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['<%= yeoman.app %>/js/**/*.js'],
-        tasks: ['newer:jshint:all'],
+        tasks: ['newer:jshint:client'],
         options: {
           livereload: true
         }
@@ -88,7 +88,7 @@ module.exports = function (grunt) {
           'server.js',
           'index.js'
         ],
-        tasks: ['newer:jshint:server', 'express:dev', 'wait'],
+        tasks: ['newer:jshint:node', 'express:dev', 'wait'],
         options: {
           livereload: true,
           nospawn: true //Without this option specified express won't be reloaded
@@ -494,7 +494,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'newer:jshint',
-    'jshint:server',
     'test',
     'build'
   ]);

@@ -32,7 +32,7 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
                 $scope.test.expectedResults.push({
                     ref: _.find($scope.droitsChoices, { id: name }),
                     actualValue: value,
-                    value: value
+                    exptectedValue: value
                 });
             }
         });
@@ -40,7 +40,7 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
 
     $scope.droitSelected = function(droit) {
         droit.actualValue = droitsObtenus[droit.ref.id];
-        droit.value = droit.actualValue;
+        droit.expectedValue = droit.actualValue;
     };
 
     $scope.formatDroitValue = function(value) {
@@ -60,7 +60,7 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
         $scope.test.expectedResults.forEach(function(droit) {
             droit.code = droit.ref.id;
         });
-        var test = _.pick($scope.test, ['_id', 'situation', 'name', 'description', 'droitsAttendu', 'keywords']);
+        var test = _.pick($scope.test, ['_id', 'situation', 'name', 'description', 'expectedResults', 'keywords']);
         if (editMode) {
             $http.put('/api/acceptance-tests/' + test._id, test).then(function() {
                 $state.go('index.list', {'testId': test._id});

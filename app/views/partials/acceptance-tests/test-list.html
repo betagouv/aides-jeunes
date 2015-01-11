@@ -141,8 +141,8 @@
                         'warning': expectedResult.status === 'near'}">
               {{expectedResult}}
               <td>{{ droits[expectedResult.code].shortLabel }}</td>
-              <td>{{ displayDroitValue(expectedResult.value) }}</td>
-              <td>{{ displayDroitValue(expectedResult.actualValue) }}</td>
+              <td>{{ displayDroitValue(expectedResult.expectedValue) }}</td>
+              <td>{{ displayDroitValue(expectedResult.result) }}</td>
             </tr>
           </tbody>
         </table>

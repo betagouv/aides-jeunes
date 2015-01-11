@@ -23,46 +23,18 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
         },
 
         handleResult: function(result, test, deferred) {
-            var droits = _.indexBy(result.data.results, 'code');
-            test.status = 'ok';
-            test.expectedResults.forEach(function(droit) {
-                var actualValue = droits[droit.code];
-                if (angular.isDefined(actualValue)) {
-                    delete droits[droit.code];
-                    droit.actualValue = actualValue.value;
-                    if (_.isUndefined(droit.value)) {
-                        droit.status = 'unknown';
-                    } else if (droit.actualValue === droit.value) {
-                        droit.status = 'ok';
-                    } else if ((Math.abs(droit.actualValue - droit.value) / droit.value) < 0.02) {
-                        droit.status = 'ok';
-                    } else if ((Math.abs(droit.actualValue - droit.value) / droit.value) < 0.1) {
-                        droit.status = 'near';
-                        if (test.status !== 'ko') {
-                            test.status = 'near';
-                        }
-                    } else {
-                        droit.status = 'ko';
-                        test.status = 'ko';
-                    }
-                }
-            });
+            var statusMapping = {
+                'accepted-exact': 'ok',
+                'accepted-2pct': 'ok',
+                'accepted-10pct': 'near',
+                'rejected': 'ko'
+            };
 
-            _.forEach(droits, function(droit, id) {
-                if (droit.value) {
-                    test.expectedResults.push({
-                        code: id,
-                        value: undefined,
-                        actualValue: droit.value,
-                        status: 'unknown'
-                    });
-                }
-            });
+            test.status = statusMapping[result.data.status];
+            test.expectedResults = angular.copy(result.data.results);
 
-            _.where(test.expectedResults, { status: undefined }).forEach(function(droit) {
-                droit.status = 'ko';
-                test.status = 'ko';
-                droit.actualValue = false;
+            test.expectedResults.forEach(function (expectedResult) {
+                expectedResult.status = expectedResult.status ? statusMapping[expectedResult.status] : 'unknown';
             });
 
             if (deferred) {

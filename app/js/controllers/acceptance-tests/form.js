@@ -23,7 +23,7 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
         $scope.test = test;
         $scope.test.expectedResults.forEach(function(droit) {
             droit.ref = _.find($scope.droitsChoices, { id: droit.code });
-            droit.actualValue = droitsObtenus[droit.code];
+            droit.result = droitsObtenus[droit.code];
         });
     } else {
         $scope.test = { situation: $stateParams.situationId, expectedResults: [] };
@@ -31,7 +31,7 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
             if ((_.isBoolean(value) && true === value) || (_.isNumber(value) && 0 !== value)) {
                 $scope.test.expectedResults.push({
                     ref: _.find($scope.droitsChoices, { id: name }),
-                    actualValue: value,
+                    result: value,
                     exptectedValue: value
                 });
             }
@@ -39,8 +39,8 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
     }
 
     $scope.droitSelected = function(droit) {
-        droit.actualValue = droitsObtenus[droit.ref.id];
-        droit.expectedValue = droit.actualValue;
+        droit.result = droitsObtenus[droit.ref.id];
+        droit.expectedValue = droit.result;
     };
 
     $scope.formatDroitValue = function(value) {

@@ -64,7 +64,7 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
             delete test.status;
             test.expectedResults.forEach(function(expectedResult) {
                 delete expectedResult.status;
-                delete expectedResult.actualValue;
+                delete expectedResult.result;
             });
 
             var deferred = $q.defer();

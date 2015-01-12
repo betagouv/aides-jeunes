@@ -67,16 +67,6 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
         return $state.is(route);
     };
 
-    $scope.launchTests = function() {
-        $scope.pendingTests = $scope.tests.length;
-        $scope.tests.forEach(function(test) {
-            AcceptanceTestsService.launchTest(test)
-                .finally(function() {
-                    $scope.pendingTests--;
-                });
-        });
-    };
-
     $scope.$on('stopWaiting', function() {
         $scope.tabs.forEach(function(tab) {
             tab.waiting = false;

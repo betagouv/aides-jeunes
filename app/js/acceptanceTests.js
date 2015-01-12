@@ -115,6 +115,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 }],
                 test: function() {
                     return null;
+                },
+                keywords: function(AcceptanceTestsService) {
+                    return AcceptanceTestsService.getKeywords();
                 }
             }
         })

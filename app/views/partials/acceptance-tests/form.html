@@ -2,7 +2,10 @@
   <h1>{{ pageTitle }}</h1>
 </div>
 
-<p>Avant de créer des tests, vous êtes invités à vous renseigner sur le <a href="https://wiki.openfisca.fr/index.php/Protocole_de_tests_sur_mes-aides">protocole de test</a> de mes-aides.</p>
+<p>
+  Avant de créer des tests, vous êtes invités à vous renseigner sur le
+  <a href="https://wiki.openfisca.fr/index.php/Protocole_de_tests_sur_mes-aides">protocole de test</a> de mes-aides.
+</p>
 
 <form method="post" name="form" class="form-horizontal" ng-submit="submit()">
   <div class="form-group" ng-class="{'has-error': form.name.$invalid, 'has-success': form.name.$valid}">
@@ -25,7 +28,7 @@
     </div>
   </div>
   <div class="form-group">
-    <keyword-input keywords="keywords" label-width="3" input-width="6" show-help="true" selected-keywords="selectedKeywords" on-validation="validate"></keyword-input>
+    <keyword-input keywords="keywords" label-width="3" input-width="6" show-help="true" selected-keywords="test.keywords" on-validation="validate"></keyword-input>
   </div>
   <h3>Droits attendus</h3>
   <p>

@@ -2,37 +2,32 @@
 
 angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http, $state, $stateParams, droitsDescription, droitsObtenus, test, keywords) {
     $scope.keywords = keywords;
-
-    if (!test.keywords) {
-        test.keywords = [];
-    }
-
-    $scope.selectedKeywords = test.keywords;
+    $scope.droitsChoices = droitsDescription;
 
     var editMode = !!test;
+
     if (editMode) {
         $scope.pageTitle = 'Modification du cas de test "' + test.name + '"';
         $scope.submitLabel = 'Modifier ce cas de test';
-    } else {
-        $scope.pageTitle = 'Nouveau cas de test';
-        $scope.submitLabel = 'Créer ce cas de test';
-    }
-
-    $scope.droitsChoices = droitsDescription;
-    if (editMode) {
         $scope.test = test;
         $scope.test.expectedResults.forEach(function(droit) {
             droit.ref = _.find($scope.droitsChoices, { id: droit.code });
             droit.result = droitsObtenus[droit.code];
         });
     } else {
-        $scope.test = { situation: $stateParams.situationId, expectedResults: [] };
+        $scope.pageTitle = 'Nouveau cas de test';
+        $scope.submitLabel = 'Créer ce cas de test';
+        $scope.test = {
+            situation: $stateParams.situationId,
+            expectedResults: [],
+            keywords: []
+        };
         _.forEach(droitsObtenus, function(value, name) {
             if ((_.isBoolean(value) && true === value) || (_.isNumber(value) && 0 !== value)) {
                 $scope.test.expectedResults.push({
                     ref: _.find($scope.droitsChoices, { id: name }),
                     result: value,
-                    exptectedValue: value
+                    expectedValue: value
                 });
             }
         });

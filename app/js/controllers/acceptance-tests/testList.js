@@ -5,17 +5,6 @@ angular.module('ddsCommon').controller('TestListCtrl', function($scope, $modal, 
     $scope.$emit('stopWaiting');
     $scope.droits = _.indexBy(droitsDescription, 'id');
 
-    if ($stateParams.testId && !$scope.readOnly) {
-        $location.hash('test-' + $stateParams.testId);
-        var testToScroll = _.find($scope.tests, {'_id': $stateParams.testId});
-        if (testToScroll) {
-            testToScroll.open = true;
-        }
-        $timeout(function() {
-            $anchorScroll();
-        });
-    }
-
     $scope.displayDroitValue = function(value) {
         if (_.isBoolean(value)) {
             return value ? 'Oui' : 'Non';

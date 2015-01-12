@@ -10,7 +10,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state('index', {
+            abstract: true,
             controller: 'IndexCtrl',
+            url: '/?testId?keyword?state?organization',
             templateUrl: '/acceptance-tests/partials/index.html',
             resolve: {
                 keywords: function(AcceptanceTestsService) {
@@ -24,8 +26,18 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 states: function() {
                     return [{id: 'validated', name: 'Valide'}, {id: 'pending', name: 'En attente'}, {id: 'rejected', name: 'Refusé'}];
                 },
-                acceptanceTests: function(AcceptanceTestsService) {
-                    return AcceptanceTestsService.get({});
+                acceptanceTests: function(AcceptanceTestsService, $stateParams) {
+                    if ($stateParams.testId) {
+                        return AcceptanceTestsService.getOne($stateParams.testId);
+                    } else {
+                        var filters = {
+                            keyword: $stateParams.keyword,
+                            organization: $stateParams.organization,
+                            state: $stateParams.state
+                        };
+
+                        return AcceptanceTestsService.get(filters);
+                    }
                 },
                 activities: function(UserService, acceptanceTests) {
                     var target = acceptanceTests[0];
@@ -66,12 +78,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
             }
         })
         .state('index.list', {
-            url: '/?testId',
+            url: '',
             controller: 'TestListCtrl',
             templateUrl: '/acceptance-tests/partials/test-list.html'
         })
         .state('index.timeline', {
-            url: '/timeline/?testId',
+            url: '/timeline',
             controller: 'TestTimelineCtrl',
             templateUrl: '/acceptance-tests/partials/test-timeline.html',
             resolve: {

@@ -8,6 +8,21 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
             });
         },
 
+        getOne: function(id) {
+            var self = this;
+            return $http.get('/api/acceptance-tests/' + id).then(function(result) {
+                var tests = [result.data];
+                self.parseDate(tests);
+                _.map(tests, function(test) {
+                    if (test.lastExecution) {
+                        self.handleResult({data: test.lastExecution}, test);
+                        test.open = true;
+                    }
+                });
+                return tests;
+            });
+        },
+
         get: function(filters) {
             var self = this;
             return $http.get('/api/acceptance-tests', {params: filters}).then(function(result) {

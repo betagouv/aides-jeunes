@@ -1,18 +1,29 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $state, $timeout, AcceptanceTestsService, UserService, acceptanceTests, keywords, organizations, states, activities) {
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $state, $stateParams, $timeout, AcceptanceTestsService, UserService, acceptanceTests, keywords, organizations, states, activities) {
     $scope.tests = acceptanceTests;
-
     $scope.activities = activities;
 
     $scope.keywords = keywords;
-    $scope.selectedKeywords = [];
+    $scope.selectedKeywords = ($stateParams.keyword) ? $stateParams.keyword : [];
+
+    var toFilterObj = function(filterArray) {
+        var filterObj = {};
+        if (!_.isArray(filterArray)) {
+            filterObj[filterArray] = true;
+        } else {
+            _.forEach(filterArray, function(filter) {
+                filterObj[filter] = true;
+            });
+        }
+        return filterObj;
+    };
 
     $scope.organizations = organizations;
-    $scope.selectedOrganizations = {};
+    $scope.selectedOrganizations = ($stateParams.organization) ? toFilterObj($stateParams.organization) : {};
 
     $scope.states = states;
-    $scope.selectedStates = {};
+    $scope.selectedStates = ($stateParams.state) ? toFilterObj($stateParams.state) : {};
 
     $scope.user = UserService.user();
 
@@ -29,13 +40,13 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
     };
 
     $scope.validate = function() {
-        AcceptanceTestsService.get({
+        var filters = {
             keyword: $scope.selectedKeywords,
             organization: extractSelectedFilters($scope.selectedOrganizations),
             state: extractSelectedFilters($scope.selectedStates)
-        }).then(function(result) {
-            $scope.tests = result;
-        });
+        };
+
+        $state.go('index.list', filters);
     };
 
     $scope.setWaiting = function(tab) {

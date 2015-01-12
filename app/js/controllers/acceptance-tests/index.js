@@ -16,15 +16,15 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
     }
 
     var toFilterObj = function(filterArray) {
+        var filterObj = {};
         if (!_.isArray(filterArray)) {
-            return { filterArray: true };
+            filterObj[filterArray] = true;
         } else {
-            var filterObj = {};
             _.forEach(filterArray, function(filter) {
                 filterObj[filter] = true;
             });
-            return filterObj;
         }
+        return filterObj;
     };
 
     $scope.organizations = organizations;
@@ -48,11 +48,21 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
     };
 
     $scope.validate = function() {
-        var filters = {
-            keyword: $scope.selectedKeywords,
-            organization: extractSelectedFilters($scope.selectedOrganizations),
-            state: extractSelectedFilters($scope.selectedStates)
-        };
+        var filters = {};
+
+        if ($scope.selectedKeywords.length > 0) {
+            filters.keyword = $scope.selectedKeywords;
+        }
+
+        var extractedOrg = extractSelectedFilters($scope.selectedOrganizations);
+        if (extractedOrg.length > 0) {
+            filters.organization = extractedOrg;
+        }
+
+        var extractedState = extractSelectedFilters($scope.selectedStates);
+        if (extractedState.length > 0) {
+            filters.state = extractedState;
+        }
 
         $state.go('index.list', filters, { reload: true });
     };

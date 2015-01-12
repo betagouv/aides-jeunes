@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('ddsCommon').controller('TestListCtrl', function($scope, $modal, $window, $state, $stateParams, $location, $timeout,
-    $http, $anchorScroll, droitsDescription, AcceptanceTestsService) {
+    $http, $anchorScroll, droitsDescription, AcceptanceTestsService, acceptanceTests) {
+    $scope.tests = acceptanceTests;
     $scope.$emit('stopWaiting');
     $scope.droits = _.indexBy(droitsDescription, 'id');
 

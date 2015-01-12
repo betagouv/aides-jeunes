@@ -26,6 +26,16 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
                 states: function() {
                     return [{id: 'validated', name: 'Valide'}, {id: 'pending', name: 'En attente'}, {id: 'rejected', name: 'Refusé'}];
                 },
+                activities: function() {
+                    return [];
+                }
+            }
+        })
+        .state('index.list', {
+            url: '',
+            controller: 'TestListCtrl',
+            templateUrl: '/acceptance-tests/partials/test-list.html',
+            resolve: {
                 acceptanceTests: function(AcceptanceTestsService, $stateParams) {
                     if ($stateParams.testId) {
                         return AcceptanceTestsService.getOne($stateParams.testId);
@@ -38,49 +48,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
 
                         return AcceptanceTestsService.get(filters);
                     }
-                },
-                activities: function(UserService, acceptanceTests) {
-                    var target = acceptanceTests[0];
-                    var user = UserService.user();
-
-                    return [{
-                        date: new Date('December 7, 2014 12:13:00'),
-                        user: user,
-                        target: target,
-                        type: { label: 'Rejet', icon: 'remove'},
-                        description: 'Lorem ipsum dolor sit amet, eu deserunt facilisis assentior vis, equidem appetere euripidis mel at. Duo et aliquid inermis, ubique imperdiet ne has, no vidit lorem placerat nec. Per an justo augue conceptam, ex mel facer persius. Mei cu latine senserit accommodare, ne vis augue propriae. Ei usu illud graeco fabellas.'
-                    }, {
-                        date: new Date('December 7, 2014 12:13:00'),
-                        user: user,
-                        target: target,
-                        type: { label: 'Validation', icon: 'check'},
-                        description: 'Lorem ipsum dolor sit amet, eu deserunt facilisis assentior vis, equidem appetere euripidis mel at. Duo et aliquid inermis, ubique imperdiet ne has, no vidit lorem placerat nec. Per an justo augue conceptam, ex mel facer persius. Mei cu latine senserit accommodare, ne vis augue propriae. Ei usu illud graeco fabellas.'
-                    }, {
-                        date: new Date('December 6, 2014 12:13:00'),
-                        target: target,
-                        type: { label: 'En succès', icon: 'thumbs-up'}
-                    }, {
-                        date: new Date('December 5, 2014 11:13:00'),
-                        user: user,
-                        target: target,
-                        type: { label: 'Edition', icon: 'edit'}
-                    }, {
-                        date: new Date('December 4, 2014 11:30:00'),
-                        target: target,
-                        type: { label: 'En erreur', icon: 'thumbs-down'},
-                    }, {
-                        date: new Date('December 3, 2014 11:13:00'),
-                        user: user,
-                        target: target,
-                        type: { label: 'Création', icon: 'plus'}
-                    }];
                 }
             }
-        })
-        .state('index.list', {
-            url: '',
-            controller: 'TestListCtrl',
-            templateUrl: '/acceptance-tests/partials/test-list.html'
         })
         .state('index.timeline', {
             url: '/timeline',

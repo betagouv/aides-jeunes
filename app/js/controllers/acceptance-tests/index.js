@@ -1,22 +1,30 @@
 'use strict';
 
-angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $state, $stateParams, $timeout, AcceptanceTestsService, UserService, acceptanceTests, keywords, organizations, states, activities) {
-    $scope.tests = acceptanceTests;
+angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $state, $stateParams, $timeout, AcceptanceTestsService, UserService, keywords, organizations, states, activities) {
     $scope.activities = activities;
 
     $scope.keywords = keywords;
-    $scope.selectedKeywords = ($stateParams.keyword) ? $stateParams.keyword : [];
+
+    if ($stateParams.keyword) {
+        if (_.isArray($stateParams.keyword)) {
+            $scope.selectedKeywords = $stateParams.keyword;
+        } else {
+            $scope.selectedKeywords = [$stateParams.keyword];
+        }
+    } else {
+        $scope.selectedKeywords = [];
+    }
 
     var toFilterObj = function(filterArray) {
-        var filterObj = {};
         if (!_.isArray(filterArray)) {
-            filterObj[filterArray] = true;
+            return { filterArray: true };
         } else {
+            var filterObj = {};
             _.forEach(filterArray, function(filter) {
                 filterObj[filter] = true;
             });
+            return filterObj;
         }
-        return filterObj;
     };
 
     $scope.organizations = organizations;
@@ -46,7 +54,7 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
             state: extractSelectedFilters($scope.selectedStates)
         };
 
-        $state.go('index.list', filters);
+        $state.go('index.list', filters, { reload: true });
     };
 
     $scope.setWaiting = function(tab) {

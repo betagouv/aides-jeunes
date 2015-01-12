@@ -51,14 +51,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/contribuez.html',
             abstract: true,
             resolve: {
-                acceptanceTests: function(AcceptanceTestsService, $stateParams) {
-                    var filters = {
-                        keyword: $stateParams.keyword,
-                        state: ['validated']
-                    };
-
-                    return AcceptanceTestsService.get(filters);
-                },
                 keywords: function(AcceptanceTestsService) {
                     return AcceptanceTestsService.getKeywords();
                 }
@@ -70,7 +62,17 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('contribuez.list', {
             url: '',
             templateUrl: '/acceptance-tests/partials/test-list.html',
-            controller: 'TestListCtrl'
+            controller: 'TestListCtrl',
+            resolve: {
+                acceptanceTests: function(AcceptanceTestsService, $stateParams) {
+                    var filters = {
+                        keyword: $stateParams.keyword,
+                        state: ['validated']
+                    };
+
+                    return AcceptanceTestsService.get(filters);
+                }
+            }
         })
         .state('faq', {
             url: '/faq',

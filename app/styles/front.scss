@@ -348,15 +348,6 @@ $autre-lighter: #cce4e7;
   margin: 3px;
   padding: 16px 16px;
   font-size: 12px;
-  background-color: $btn-default-bg;
-
-  &:hover {
-    background-color: darken($btn-default-bg, 5%);
-  }
-}
-
-.btn-selection-personne:hover {
-  background-color: darken(#dddddd, 10%);
 }
 
 .intro {

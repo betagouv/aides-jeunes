@@ -70,7 +70,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                         state: ['validated']
                     };
 
-                    return AcceptanceTestsService.get(filters);
+                    return AcceptanceTestsService.get(filters, true);
                 }
             }
         })

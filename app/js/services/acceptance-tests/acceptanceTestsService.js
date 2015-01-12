@@ -23,9 +23,9 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
             });
         },
 
-        get: function(filters) {
+        get: function(filters, isPublic) {
             var self = this;
-            return $http.get('/api/acceptance-tests', {params: filters}).then(function(result) {
+            return $http.get('/api/acceptance-tests' + (isPublic ? '/public' : ''), {params: filters}).then(function(result) {
                 var tests = result.data;
                 self.parseDate(tests);
                 _.map(tests, function(test) {

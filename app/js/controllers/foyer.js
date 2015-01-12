@@ -1,7 +1,12 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filter, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $stateParams, $filter, $location, SituationService, IndividuService) {
     var situation = $scope.situation = SituationService.restoreLocal();
+
+    $scope.$on('setSituation', function(e, newSituation) {
+        situation = $scope.situation = newSituation;
+    });
+
     $scope.statutsSpecifiques = IndividuService.formatStatutsSpecifiques;
     $scope.nationalite = IndividuService.nationaliteLabel;
     $scope.getLabel = IndividuService.label;

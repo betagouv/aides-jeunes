@@ -83,16 +83,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         restoreRemote: function(situationId) {
             return $http.get('/api/situations/' + situationId).then(function(result) {
-                situation = result.data;
-                situation.demandeur = _.find(situation.individus, { role: 'demandeur' });
-                var conjoint = _.find(situation.individus, { role: 'conjoint' });
-                if (conjoint) {
-                    situation.conjoint = conjoint;
-                }
-
-                situation.enfants = _.where(situation.individus, { role: 'enfant' });
-                situation.personnesACharge = _.where(situation.individus, { role: 'personneACharge'});
-
+                situation = $sessionStorage.situation = result.data;
                 situation.individus.forEach(function(individu) {
                     individu.dateDeNaissance = moment(individu.dateDeNaissance).format('DD/MM/YYYY');
                 });

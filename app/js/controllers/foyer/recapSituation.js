@@ -1,15 +1,13 @@
 'use strict';
 
 angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, SituationService, IndividuService) {
-    var situation = $scope.situation;
-
     var buildRecapLogement = function() {
-        var logementLabel = _.find(logementTypes, { id: situation.logement.type }).label;
+        var logementLabel = _.find(logementTypes, { id: $scope.situation.logement.type }).label;
         logementLabel = $filter('uppercaseFirst')(logementLabel);
         $scope.recapLogement = '<b>' + logementLabel + '</b>';
-        if ('locataire' === situation.logement.type) {
+        if ('locataire' === $scope.situation.logement.type) {
             $scope.recapLogement += ' d’un logement <b>';
-            $scope.recapLogement += _.find(locationTypes, { id: situation.logement.locationType }).label;
+            $scope.recapLogement += _.find(locationTypes, { id: $scope.situation.logement.locationType }).label;
             $scope.recapLogement += '</b>';
             $scope.loyerLabel = 'Loyer';
         } else {
@@ -17,7 +15,7 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         }
     };
 
-    if (situation.logement) {
+    if ($scope.situation.logement) {
         buildRecapLogement();
     }
 
@@ -45,8 +43,8 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
                 label: 'Epargne sans revenus'
             }
         ].forEach(function(field) {
-            if (situation.patrimoine[field.id]) {
-                $scope.patrimoine.push({label: field.label, montant: situation.patrimoine[field.id]});
+            if ($scope.situation.patrimoine[field.id]) {
+                $scope.patrimoine.push({label: field.label, montant: $scope.situation.patrimoine[field.id]});
             }
         });
 
@@ -61,7 +59,7 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
                 label: 'Revenus locatifs'
             }
         ].forEach(function(field) {
-            var revenus = situation.patrimoine[field.id];
+            var revenus = $scope.situation.patrimoine[field.id];
             if (revenus.length) {
                 var value = {label: field.label, values: []};
                 $scope.revenusDuPatrimoine.push(value);
@@ -78,7 +76,7 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         });
     };
 
-    if (situation.patrimoine) {
+    if ($scope.situation.patrimoine) {
         buildRecapPatrimoine();
     }
 
@@ -91,6 +89,7 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
     $scope.lastMonth = moment().subtract('months', 1).startOf('month').format('MMMM YYYY');
     $scope.lastYear = moment().subtract('years', 1).format('MMMM YYYY');
     $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
+    $scope.yearMoins2 = moment().subtract('years', 2).format('YYYY');
 
     var fillIndividuRessources = function(individu) {
         if (!individu.ressources) {
@@ -141,8 +140,8 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         $scope.hasRessourcesNonTns = false;
         $scope.globalAmount = 0;
 
-        $scope.isSituationMonoIndividu = 1 === situation.individus.length;
-        situation.individus.map(fillIndividuRessources);
+        $scope.isSituationMonoIndividu = 1 === $scope.situation.individus.length;
+        $scope.situation.individus.map(fillIndividuRessources);
 
         if ($scope.globalAmount > 0) {
             $scope.hasRessources = true;
@@ -170,7 +169,7 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
             totalAnnuel: 0,
             byIndividu: []
         };
-        situation.individus.map(function(individu) {
+        $scope.situation.individus.map(function(individu) {
             if (individu.caMicroEntreprise) {
                 ressourcesMicroFiscal.totalAnnuel += individu.caMicroEntreprise;
                 ressourcesMicroFiscal.byIndividu.push({

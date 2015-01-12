@@ -23,9 +23,11 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         });
     };
 
-    SituationService.restoreRemote($stateParams.situationId).then(function(result) {
-        $scope.situation = result.data;
+    SituationService.restoreRemote($stateParams.situationId).then(function(situation) {
+        $scope.$emit('setSituation', situation);
         launchSimulation();
+    }, function() {
+        $scope.error = true;
     });
 
     $scope.round = function(montant) {

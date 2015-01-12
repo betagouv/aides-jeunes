@@ -46,15 +46,18 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             }
         })
         .state('contribuez', {
-            url: '/contribuez',
+            url: '/contribuez?testId?keyword?state?organization',
             controller: 'ContribuezCtrl',
             templateUrl: '/partials/contribuez.html',
             abstract: true,
             resolve: {
-                acceptanceTests: function(AcceptanceTestsService) {
-                    return AcceptanceTestsService.get({
+                acceptanceTests: function(AcceptanceTestsService, $stateParams) {
+                    var filters = {
+                        keyword: $stateParams.keyword,
                         state: ['validated']
-                    });
+                    };
+
+                    return AcceptanceTestsService.get(filters);
                 },
                 keywords: function(AcceptanceTestsService) {
                     return AcceptanceTestsService.getKeywords();

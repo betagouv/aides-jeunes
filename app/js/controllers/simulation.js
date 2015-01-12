@@ -23,7 +23,10 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         });
     };
 
-    launchSimulation();
+    SituationService.restoreRemote($stateParams.situationId).then(function(result) {
+        $scope.situation = result.data;
+        launchSimulation();
+    });
 
     $scope.round = function(montant) {
         return Math.floor(montant / 10) * 10;

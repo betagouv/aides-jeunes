@@ -27,6 +27,9 @@
         <i ng-if="test.state === 'pending'" class="fa fa-clock-o" tooltip="Test en attente de validation"></i>
         <i ng-if="test.state === 'rejected'" class="fa fa-exclamation-circle" tooltip="Test refusé"></i>
       </span>
+      <span style="color: grey;" ng-if="test.keywords && test.keywords.length > 0">
+        <span ng-repeat="keyword in test.keywords">[{{keyword}}] </span>
+      </span>
       {{ test.name }}
       <span class="anchor" id="test-{{ test._id }}">x</span>
       <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
@@ -146,10 +149,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
-      <div ng-if="test.keywords && test.keywords.length > 0">
-          <div>Mots-clés associés</div>
-          <span class="tag-choice-select" ng-repeat="keyword in test.keywords">{{keyword}}</span>
       </div>
       <div class="clearfix"></div>
       <p class="detail-situation">

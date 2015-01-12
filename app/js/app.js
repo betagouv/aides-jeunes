@@ -66,7 +66,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         })
         .state('contribuez.list', {
             url: '',
-            templateUrl: '/acceptance-tests/partials/test-list.html'
+            templateUrl: '/acceptance-tests/partials/test-list.html',
+            controller: 'TestListCtrl'
         })
         .state('faq', {
             url: '/faq',

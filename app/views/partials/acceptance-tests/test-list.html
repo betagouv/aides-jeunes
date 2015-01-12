@@ -157,7 +157,7 @@
           Détail de la situation
           <i class="fa" ng-class="{'fa-chevron-down': test.showSituation, 'fa-chevron-right': !test.showSituation}"></i>
         </button>
-        <button type="button" class="btn btn-default btn-xs" ng-click="toggleTimeline(test)">
+        <button type="button" class="btn btn-default btn-xs" ng-if="!readOnly" ng-click="toggleTimeline(test)">
           Timeline du test
           <i class="fa" ng-class="{'fa-chevron-down': test.showTimeline, 'fa-chevron-right': !test.showTimeline}"></i>
         </button>

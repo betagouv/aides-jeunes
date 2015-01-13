@@ -8,6 +8,12 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
             });
         },
 
+        orderTestsByKeywords: function(tests) {
+            return _.sortBy(tests, function(test) {
+                return test.keywords.join() + test.name;
+            });
+        },
+
         getOne: function(id) {
             var self = this;
             return $http.get('/api/acceptance-tests/' + id).then(function(result) {
@@ -33,7 +39,7 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
                         self.handleResult({data: test.lastExecution}, test);
                     }
                 });
-                return tests;
+                return self.orderTestsByKeywords(tests);
             });
         },
 

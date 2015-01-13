@@ -63,7 +63,7 @@ angular.module('ddsCommon').controller('TestListCtrl', function($scope, $modal, 
     };
 
     $scope.launchSingleTest = function(test) {
-        AcceptanceTestsService.launchSingleTest(test);
+        AcceptanceTestsService.launchTest(test);
     };
 
     $scope.validTest = function(test) {

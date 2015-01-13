@@ -76,6 +76,7 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
 
         launchTest: function(test) {
             var self = this;
+            test.running = true;
             delete test.status;
             test.expectedResults.forEach(function(expectedResult) {
                 delete expectedResult.status;
@@ -100,21 +101,6 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
             });
 
             return deferred.promise;
-        },
-
-        launchSingleTest: function(test, beforeLaunch, afterLaunch) {
-            var self = this;
-            if (beforeLaunch) {
-                beforeLaunch();
-            }
-            test.running = true;
-
-            return self.launchTest(test)
-                .finally(function() {
-                    if (afterLaunch) {
-                        afterLaunch();
-                    }
-                });
         }
     };
 });

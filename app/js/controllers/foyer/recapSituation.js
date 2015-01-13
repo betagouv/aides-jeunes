@@ -195,11 +195,13 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         }
     };
 
-    if ($scope.situation.ressourcesCaptured) {
+    if (!!$scope.situation.individus.length && !!$scope.situation.individus[0].ressources) {
+        $scope.ressourcesCaptured = true;
         buildRecapRessources();
     }
 
     $scope.$on('ressourcesCaptured', function() {
+        $scope.ressourcesCaptured = true;
         buildRecapRessources();
     });
 });

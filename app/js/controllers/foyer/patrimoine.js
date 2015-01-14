@@ -85,6 +85,7 @@ angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, Situ
             });
         }
 
+        $scope.patrimoine.captured = true;
         $scope.$emit('patrimoine', $scope.patrimoine);
     };
 });

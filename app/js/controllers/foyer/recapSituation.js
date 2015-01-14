@@ -76,7 +76,7 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         });
     };
 
-    if ($scope.situation.patrimoine) {
+    if ($scope.situation.patrimoine && $scope.situation.patrimoine.captured) {
         buildRecapPatrimoine();
     }
 

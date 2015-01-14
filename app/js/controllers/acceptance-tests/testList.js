@@ -3,6 +3,10 @@
 angular.module('ddsCommon').controller('TestListCtrl', function($scope, $modal, $window, $state, $stateParams, $location, $timeout,
     $http, $anchorScroll, droitsDescription, AcceptanceTestsService, acceptanceTests) {
     $scope.tests = acceptanceTests;
+    if (acceptanceTests.length === 1) {
+        acceptanceTests[0].open = true;
+    }
+
     $scope.$emit('stopWaiting');
     $scope.droits = _.indexBy(droitsDescription, 'id');
 

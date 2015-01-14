@@ -22,7 +22,6 @@ angular.module('ddsCommon').factory('AcceptanceTestsService', function($q, $http
                 _.map(tests, function(test) {
                     if (test.lastExecution) {
                         self.handleResult({data: test.lastExecution}, test);
-                        test.open = true;
                     }
                 });
                 return tests;

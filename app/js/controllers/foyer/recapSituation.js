@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, SituationService, IndividuService) {
+angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, categoriesRnc, SituationService, IndividuService) {
     var buildRecapLogement = function() {
         var logementLabel = _.find(logementTypes, { id: $scope.situation.logement.type }).label;
         logementLabel = $filter('uppercaseFirst')(logementLabel);
@@ -103,6 +103,10 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         monthsIndexes[$scope.months[2].id] = 2;
 
         individu.ressources.forEach(function(ressource) {
+            // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
+            if (!_.find(ressourceTypes, { id: ressource.type })) {
+                return;
+            }
             var ressourceSection = $scope.tempRessources[ressource.type];
             if (!ressourceSection) {
                 ressourceSection = $scope.tempRessources[ressource.type] = {
@@ -204,4 +208,27 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
         $scope.ressourcesCaptured = true;
         buildRecapRessources();
     });
+
+    var buildRecapRnc = function() {
+        $scope.ressourcesYearMoins2 = [];
+        var parents = IndividuService.getParents($scope.situation.individus);
+        parents.forEach(function(parent) {
+            var parentRnc = { label: IndividuService.label(parent), rnc: [] };
+            categoriesRnc.forEach(function(rnc) {
+                var ressource = _.find(parent.ressources, { type: rnc.id });
+                if (ressource) {
+                    parentRnc.rnc.push({ label: rnc.label, montant: ressource.montant });
+                }
+            });
+            if (parentRnc.rnc.length) {
+                $scope.ressourcesYearMoins2.push(parentRnc);
+            }
+        });
+    };
+
+    if ($scope.situation.ressourcesYearMoins2Captured) {
+        buildRecapRnc();
+    }
+
+    $scope.$on('ressourcesYearMoins2Captured', buildRecapRnc);
 });

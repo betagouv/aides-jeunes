@@ -191,5 +191,9 @@ angular.module('ddsCommon').constant('categoriesRnc', [
     {
         id: 'rncPensionsAlimentaires',
         label: 'Pensions alimentaires reçues'
+    },
+    {
+        id: 'rncPensionsAlimentairesVersees',
+        label: 'Pensions alimentaires versées'
     }
 ]);

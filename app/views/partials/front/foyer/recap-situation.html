@@ -22,10 +22,10 @@
     class="accordion-ressources"
     ng-if="hasRessources">
     <accordion-group
-      class="recap-{{ressource.type.category}}"
-      heading="{{ressource.type.label}}"
-      is-open="ressource.isOpen"
-      ng-repeat="ressource in ressourcesNonTns">
+      ng-repeat="ressource in ressourcesNonTns"
+      class="recap-{{ ressource.type.category }}"
+      heading="{{ ressource.type.label }}"
+      is-open="ressource.isOpen">
       <div class="row" ng-repeat="idx in [0, 1, 2]">
         <div class="col-sm-8">
           {{ months[idx].label | uppercaseFirst }}
@@ -44,7 +44,11 @@
         </div>
       </div>
     </accordion-group>
-    <accordion-group class="recap-tns" heading="{{ressource.type.label}}" is-open="ressource.isOpen" ng-repeat="ressource in ressourcesTns">
+    <accordion-group
+      ng-repeat="ressource in ressourcesTns"
+      class="recap-tns"
+      heading="{{ ressource.type.label }}"
+      is-open="ressource.isOpen">
       <div class="row">
         <div class="col-sm-8">
           Annuel
@@ -61,9 +65,26 @@
 </div>
 
 <div ng-if="situation.ressourcesYearMoins2Captured">
-  <a ui-sref="foyer.rfr" class="pull-right"><i class="fa fa-edit"></i> Modifier</a>
-  <h4>RFR {{ yearMoins2 }}</h4>
+  <a ui-sref="foyer.ressourcesYearMoins2" class="pull-right"><i class="fa fa-edit"></i> Modifier</a>
+  <h4>Année {{ yearMoins2 }}</h4>
   Revenu fiscal de référence : {{ situation.rfr }} €
+  <accordion
+    close-others="true"
+    class="accordion-ressources">
+    <accordion-group
+      ng-repeat="individuRessource in ressourcesYearMoins2"
+      heading="{{ individuRessource.label }}"
+      is-open="individuRessource.isOpen">
+      <div class="row" ng-repeat="ressource in individuRessource.rnc">
+        <div class="col-sm-8">
+          {{ ressource.label }}
+        </div>
+        <div class="col-sm-4">
+          {{ ressource.montant }} €
+        </div>
+      </div>
+    </accordion-group>
+  </accordion>
 </div>
 
 <div ng-if="situation.patrimoine.captured">

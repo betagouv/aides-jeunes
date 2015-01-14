@@ -59,9 +59,14 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         });
     });
 
+    $scope.$on('rnc', function() {
+        $state.go('foyer.rfr');
+    });
+
     $scope.$on('rfr', function(e, rfr) {
         $scope.situation.rfr = rfr;
         $scope.situation.ressourcesYearMoins2Captured = true;
+        $scope.$broadcast('ressourcesYearMoins2Captured');
         SituationService.save($scope.situation).then(function() {
             $state.go('foyer.simulation', { 'situationId': $scope.situation._id });
         });

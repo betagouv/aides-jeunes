@@ -49,7 +49,7 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
         it('should set non-null captured amounts in the ressources field of each individu', function() {
             // given
             var demandeur = { role: 'demandeur', ressources: [] };
-            var scope = { situation: { individus: [demandeur], logement: {}}};
+            var scope = { situation: { individus: [demandeur], logement: {}}, $emit: function() {}};
             inject(function($controller) {
                 $controller('FoyerRessourceYearMoins2Ctrl', {
                     $scope: scope
@@ -64,26 +64,6 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             expect(demandeur.ressources.length).toBe(1);
             expect(demandeur.ressources[0].type).toBe(scope.individuRefs[0].rnc[0].categorie.id);
             expect(demandeur.ressources[0].montant).toBe(10000);
-        });
-
-        it('should save the situation', function() {
-            // given
-            var scope = { situation: { individus: [], logement: {}}};
-            var SituationService;
-            inject(function(_SituationService_, $controller) {
-                SituationService = _SituationService_;
-                $controller('FoyerRessourceYearMoins2Ctrl', {
-                    $scope: scope,
-                    SituationService: SituationService
-                });
-            });
-            spyOn(SituationService, 'save').andReturn({ then: function() {}});
-
-            // when
-            scope.submit();
-
-            // then
-            expect(SituationService.save).toHaveBeenCalledWith(scope.situation);
         });
     });
 });

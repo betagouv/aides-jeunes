@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService, SituationService) {
+angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService) {
     $scope.yearMoins2 = moment().subtract('years', 2).format('YYYY');
 
     var parents = IndividuService.getParents($scope.situation.individus);
@@ -11,10 +11,12 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
             label: IndividuService.label(parent),
             rnc: []
         };
-        $scope.individuRefs.push(individuRef);
         categoriesRnc.forEach(function(categorieRnc) {
-            individuRef.rnc.push({ categorie: categorieRnc, montant: 0 });
+            var ressource = _.find(parent.ressources, { type: categorieRnc.id });
+            var montant = ressource ? ressource.montant : 0;
+            individuRef.rnc.push({ categorie: categorieRnc, montant: montant });
         });
+        $scope.individuRefs.push(individuRef);
     });
 
     $scope.submit = function() {
@@ -30,8 +32,6 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
             });
         });
 
-        SituationService.save($scope.situation).then(function() {
-            $state.go('foyer.simulation', { 'situationId': $scope.situation._id });
-        });
+        $scope.$emit('rnc');
     };
 });

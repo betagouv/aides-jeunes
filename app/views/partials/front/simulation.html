@@ -8,19 +8,6 @@
 </div>
 
 <div ng-if="!awaitingResults">
-  <!--<div class="alert alert-warning" ng-if="!situation.ressourcesYearMoins2Captured">
-    <div class="row">
-      <div class="col-sm-8">
-        <b>Attention</b> : ces résultats sont incomplets.
-        Les aides sociales de la CAF se basent sur vos ressources 2012 pour étudier vos droits.
-        <br>Pour plus de précision dans la simulation, renseignez vos ressources 2012.
-      </div>
-      <div class="col-sm-4">
-        <a class="btn btn-primary" ui-sref="foyer.rfr">Déclarer mes ressources 2012</a>
-      </div>
-    </div>
-  </div>-->
-
   <div ng-if="droits.length">
     <div class="row">
       <div ng-repeat="droit in droits">
@@ -84,11 +71,19 @@
   <div ng-if="droitsYearMoins2.length">
     <div ng-if="!situation.ressourcesYearMoins2Captured">
       <h1><i class="fa fa-gears"></i> Droits nécessitant des précisions</h1>
-      <p>
-        Les droits suivants se basent en théorie sur vos ressources de l'année {{ yearMoins2 }}.
-        Les résultats ci-dessous ont été simulés sur les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
-        <!--<a ui-sref="foyer.rfr">Déclarez vos ressources {{ yearMoins2 }}</a> pour une simulation plus précise.-->
-      </p>
+      <div class="alert alert-warning-inverse">
+        <div class="row">
+          <div class="col-sm-8">
+            Les droits suivants se basent en théorie sur vos ressources de l'année {{ yearMoins2 }}.
+            Les résultats ci-dessous ont été simulés sur les ressources que vous avez déclarées
+            entre {{ debutPeriode }} et {{ finPeriode }}.
+            Déclarez vos ressources {{ yearMoins2 }} pour une simulation plus précise.
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-primary" ui-sref="foyer.ressourcesYearMoins2">Déclarer mes ressources {{ yearMoins2 }}</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="row">
@@ -159,19 +154,6 @@
     <h2>Vous n'êtes éligible à aucune aide.</h2>
   </div>
 </div>
-
-<!--<div class="alert alert-warning-inverse" ng-if="!situation.ressourcesYearMoins2Captured && (droits.length || droitsYearMoins2.length)">
-  <div class="row">
-    <div class="col-sm-8">
-      Cette simulation a été effectuée avec les ressources que vous avez déclarées entre {{ debutPeriode }} et {{ finPeriode }}.
-      Les aides sociales de la CAF se basent sur vos ressources de l'année {{ yearMoins2 }}.
-      Déclarez vos ressources {{ yearMoins2 }} pour une simulation plus précise de ces aides.
-    </div>
-    <div class="col-sm-4 text-right">
-      <a class="btn btn-primary btn-block" ui-sref="foyer.rfr">Déclarez vos ressources {{ yearMoins2 }}</a>
-    </div>
-  </div>
-</div>-->
 
 <div class="alert alert-warning-inverse" ng-if="!situation.patrimoine.captured && (droits.length || droitsYearMoins2.length)">
   <div class="row">

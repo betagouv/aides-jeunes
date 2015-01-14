@@ -21,6 +21,10 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
 
     $scope.submit = function() {
         $scope.individuRefs.forEach(function(individuRef) {
+            // clean anciennes valeurs
+            individuRef.individu.ressources = _.filter(individuRef.individu.ressources, function(ressource) {
+                return !_.find(categoriesRnc, { id: ressource.type });
+            });
             individuRef.rnc.forEach(function(rnc) {
                 if (rnc.montant > 0) {
                     individuRef.individu.ressources.push({

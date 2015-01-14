@@ -5,7 +5,12 @@
       {{keyword}} <i class="fa fa-close"></i>
     </li>
     <li class="tag-new">
-      <input id="new-tag-input" class="tag-input" type="text" ng-input-enter="addKeyword()" ng-model="currentKeyword" typeahead="keyword for keyword in keywords | filter:$viewValue">
+      <input
+        id="new-tag-input"
+        class="tag-input"
+        type="text"
+        ng-input-enter="addKeyword()"
+        ng-model="currentKeyword">
     </li>
   </ul>
   <p class="help-block" ng-if="showHelp">Appuyer sur entrée après la saisie d'un tag pour le valider.</p>

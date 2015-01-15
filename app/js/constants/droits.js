@@ -58,7 +58,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'shortLabel':'ASF',
         'description':'L’ASF est versée par la CAF ou la MSA au parent qui élève seul son enfant ou à la personne qui a recueilli un enfant, qu’elle vive seule ou en couple.',
         'imgSrc':'logo_caf.png',
-        'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf'
+        'link':'http://vosdroits.service-public.fr/particuliers/F815.xhtml'
     },
     {
         'id':'paje_base',

@@ -110,7 +110,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     },
     {
         id: 'indChomagePartiel',
-        label: 'Indemnités de chômage ou d\'activité partiel(le)',
+        label: 'Indemnités d\'activité partielle',
         category: 'indemnites'
     },
     {

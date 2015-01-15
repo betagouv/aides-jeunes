@@ -1,4 +1,12 @@
-<h2 class="pull-right">{{tests.length}} tests</h2>
+<h2 class="pull-right">
+  {{tests.length}} tests
+  <br>
+  <small>
+    <span style="color: green;">{{ validTestsNb }} tests verts</span>
+    <br><span style="color: orange;">{{ warningTestsNb }} tests orange</span>
+    <br><span style="color: red;">{{ errorTestsNb }} tests rouges</span>
+  </small>
+</h2>
 
 <p style="margin-top: 10px;">
   <button

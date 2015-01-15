@@ -7,6 +7,11 @@ angular.module('ddsCommon').controller('TestListCtrl', function($scope, $modal, 
         acceptanceTests[0].open = true;
     }
 
+    $scope.validTestsNb = _.where(acceptanceTests, { currentStatus: 'accepted-exact' }).length;
+    $scope.validTestsNb += _.where(acceptanceTests, { currentStatus: 'accepted-2pct' }).length;
+    $scope.warningTestsNb = _.where(acceptanceTests, { currentStatus: 'accepted-10pct' }).length;
+    $scope.errorTestsNb = _.where(acceptanceTests, { currentStatus: 'rejected' }).length;
+
     $scope.$emit('stopWaiting');
     $scope.droits = _.indexBy(droitsDescription, 'id');
 

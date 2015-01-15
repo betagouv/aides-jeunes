@@ -26,13 +26,11 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
                 return !_.find(categoriesRnc, { id: ressource.type });
             });
             individuRef.rnc.forEach(function(rnc) {
-                if (rnc.montant > 0) {
-                    individuRef.individu.ressources.push({
-                        periode: $scope.yearMoins2,
-                        type: rnc.categorie.id,
-                        montant: rnc.montant
-                    });
-                }
+                individuRef.individu.ressources.push({
+                    periode: $scope.yearMoins2,
+                    type: rnc.categorie.id,
+                    montant: rnc.montant
+                });
             });
         });
 

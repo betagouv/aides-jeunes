@@ -193,5 +193,11 @@
 }
 
 .human-readable-situation {
+  font-size: 12px;
   padding: 20px;
+
+  h4 {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
 }

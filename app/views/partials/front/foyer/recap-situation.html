@@ -91,15 +91,24 @@
   <a ui-sref="foyer.patrimoine" class="pull-right"><i class="fa fa-edit"></i> Modifier</a>
   <h4 class="section-header">Votre patrimoine</h4>
   <em class="small" ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun patrimoine déclaré</em>
-  <div class="situation-block">
-    <div ng-repeat="value in patrimoine">
-      {{ value.label }} : {{ value.montant }} €
-    </div>
-    <div ng-repeat="revenu in revenusDuPatrimoine">
-      <h6>{{ revenu.label }}</h6>
-      <div ng-repeat="value in revenu.values">
-        {{ value.periode }} : {{ value.montant }} €
+  <accordion
+    close-others="true"
+    class="accordion-ressources">
+    <accordion-group
+      ng-if="patrimoine.length"
+      heading="Patrimoine"
+      is-open="revenu.isOpen">
+      <div ng-repeat="value in patrimoine">
+        {{ value.label }}&nbsp;: {{ value.montant }} €
       </div>
-    </div>
-  </div>
+    </accordion-group>
+    <accordion-group
+      ng-repeat="revenu in revenusDuPatrimoine"
+      heading="{{ revenu.label }}"
+      is-open="revenu.isOpen">
+      <div ng-repeat="value in revenu.values">
+        {{ value.periode|uppercaseFirst }}&nbsp;: {{ value.montant }} €
+      </div>
+    </accordion-group>
+  </accordion>
 </div>

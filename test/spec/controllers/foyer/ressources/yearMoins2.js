@@ -52,7 +52,7 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             scope = { situation: { individus: [], logement: {}}, $emit: function() {}};
         });
 
-        it('should set non-null captured amounts in the ressources field of each individu', function() {
+        it('should set amounts in the ressources field of each individu', function() {
             // given
             var demandeur = { role: 'demandeur', ressources: [] };
             scope.situation.individus.push(demandeur);
@@ -67,27 +67,8 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             scope.submit();
 
             // then
-            expect(demandeur.ressources.length).toBe(1);
             expect(demandeur.ressources[0].type).toBe(scope.individuRefs[0].rnc[0].categorie.id);
             expect(demandeur.ressources[0].montant).toBe(10000);
-        });
-
-        it('should delete previous rnc values stored in the individu ressources array', function() {
-            // given
-            var demandeur = { role: 'demandeur', ressources: [{ type: 'rncRevenusActivite' }, { type: 'autre' }] };
-            scope.situation.individus.push(demandeur);
-            inject(function($controller) {
-                $controller('FoyerRessourceYearMoins2Ctrl', {
-                    $scope: scope
-                });
-            });
-
-            // when
-            scope.submit();
-
-            // then
-            expect(demandeur.ressources.length).toBe(1);
-            expect(demandeur.ressources[0].type).toBe('autre');
         });
     });
 });

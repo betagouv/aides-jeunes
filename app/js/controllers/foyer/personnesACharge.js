@@ -48,6 +48,10 @@ angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function($scope
         handleNewPersonne(personne);
     });
 
+    $scope.$on('actionCancelled', function() {
+        $scope.formNewPersonneSection = null;
+    });
+
     $scope.newPersonne = function(section) {
         $scope.formNewPersonneSection = section;
         $timeout(function() {

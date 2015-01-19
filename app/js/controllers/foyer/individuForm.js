@@ -3,6 +3,7 @@
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, options, situationsFamiliales, SituationService, IndividuService) {
     if (_.contains(['enfant', 'personneACharge'], options.individuRole)) {
         options.maxAge = 25;
+        options.formPersonneACharge = true;
     }
     options.minAge = 0;
     $scope.options = options;
@@ -103,6 +104,10 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         }
 
         return false;
+    };
+
+    $scope.cancel = function() {
+        $scope.$emit('actionCancelled');
     };
 
     $scope.popoverEee = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, ' +

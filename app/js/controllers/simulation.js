@@ -4,9 +4,9 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     $scope.yearMoins2 = moment().subtract('years', 2).format('YYYY');
     $scope.debutPeriode = moment().startOf('month').subtract('years', 1).format('MMMM YYYY');
     $scope.finPeriode = moment().startOf('month').subtract('months', 1).format('MMMM YYYY');
+    $scope.awaitingResults = true;
 
     var launchSimulation = function() {
-        $scope.awaitingResults = true;
         $scope.error = false;
         $scope.droits = null;
         $scope.droitsYearMoins2 = null;

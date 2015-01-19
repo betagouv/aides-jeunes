@@ -11,7 +11,7 @@
   <div class="alert alert-warning-inverse" ng-if="!situation.ressourcesYearMoins2Captured && !error">
     <div class="row">
       <div class="col-sm-8">
-        <b><i class="fa fa-warning"></i> Attention : Déclarez vos ressources {{ yearMoins2 }} pour une simulation plus précise.</b>
+        <b><i class="fa fa-warning"></i> Attention : déclarez vos ressources {{ yearMoins2 }} pour une simulation plus précise.</b>
         En effet, plusieurs aides se basent sur vos ressources de l'année {{ yearMoins2 }}.
         Ces résultats ont été simulés sur les ressources que vous avez déclarées
         entre {{ debutPeriode }} et {{ finPeriode }}.
@@ -21,6 +21,7 @@
       </div>
     </div>
   </div>
+
   <div ng-if="droits.length">
     <div class="row">
       <div ng-repeat="droit in droits">

@@ -117,16 +117,16 @@
       </div>
     </label>
     <div class="col-sm-8">
-      <div class="checkbox" ng-repeat="statut in statutsSpecifiques">
-        <label>
-          <input type="checkbox" ng-model="selectedStatuts[statut.id]">
-          {{ statut.label }}
-        </label>
-      </div>
       <div class="checkbox">
         <label>
           <input type="checkbox" ng-model="individu.enceinte">
           Enceinte
+        </label>
+      </div>
+      <div class="checkbox" ng-repeat="statut in statutsSpecifiques">
+        <label>
+          <input type="checkbox" ng-model="selectedStatuts[statut.id]">
+          {{ statut.label }}
         </label>
       </div>
     </div>

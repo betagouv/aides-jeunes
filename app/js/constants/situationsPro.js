@@ -57,5 +57,10 @@ angular.module('ddsCommon').constant('situationsPro', [
         id: 'inapte_travail',
         label: 'Inapte au travail',
         isStatutSpecifique: true
+    },
+    {
+        id: 'autre',
+        label: 'Autre',
+        isStatutSpecifique: true
     }
 ]);

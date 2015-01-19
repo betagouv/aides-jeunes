@@ -35,26 +35,27 @@
         <i ng-if="test.state === 'pending'" class="fa fa-clock-o" tooltip="Test en attente de validation"></i>
         <i ng-if="test.state === 'rejected'" class="fa fa-exclamation-circle" tooltip="Test refusé"></i>
       </span>
-      <span style="color: grey;" ng-if="test.keywords && test.keywords.length > 0">
+      <span style="color: grey;" ng-if="test.keywords.length">
         <span ng-repeat="keyword in test.keywords">[{{keyword}}] </span>
       </span>
       {{ test.name }}
       <span class="anchor" id="test-{{ test._id }}">x</span>
-      <i class="pull-right fa" ng-class="{'fa-chevron-down': test.open, 'fa-chevron-right': !test.open}"></i>
-      <div ng-if="test.open && test.user">
-        <small class="test-detail">
-          Créé par {{test.user.firstName}} {{test.user.lastName}}
-        </small>
-      </div>
-      <div ng-if="test.open && test.createdAt">
-        <small class="test-detail">
-          Créé le {{test.createdAt}}
-        </small>
-      </div>
-      <div ng-if="test.open && test.updatedAt">
-        <small class="test-detail">
-          Dernière mise à jour le {{test.updatedAt}}
-        </small>
+      <div ng-if="test.open">
+        <div ng-if="test.user">
+          <small class="test-detail">
+            Créé par {{test.user.firstName}} {{test.user.lastName}}
+          </small>
+        </div>
+        <div ng-if="test.createdAt">
+          <small class="test-detail">
+            Créé le {{test.createdAt}}
+          </small>
+        </div>
+        <div ng-if="test.updatedAt">
+          <small class="test-detail">
+            Dernière mise à jour le {{test.updatedAt}}
+          </small>
+        </div>
       </div>
     </accordion-heading>
     <div ng-if="test.open">

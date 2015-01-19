@@ -14,6 +14,7 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
             droit.ref = _.find($scope.droitsChoices, { id: droit.code });
             droit.result = droitsObtenus[droit.code];
         });
+
     } else {
         $scope.pageTitle = 'Nouveau cas de test';
         $scope.submitLabel = 'Créer ce cas de test';
@@ -33,9 +34,9 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
         });
     }
 
-    if (!test.situationObject) {
-        $http.get('/api/situations/' + test.situation).then(function(result) {
-            test.situationObject = result.data;
+    if (!$scope.test.situationObject) {
+        $http.get('/api/situations/' + $scope.test.situation).then(function(result) {
+            $scope.test.situationObject = result.data;
         });
     }
 

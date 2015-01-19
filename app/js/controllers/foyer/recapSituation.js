@@ -65,13 +65,20 @@ angular.module('ddsApp').controller('RecapSituationCtrl', function($scope, $stat
                 $scope.revenusDuPatrimoine.push(value);
                 for (var i = 0; i < 3; i++) {
                     var ressource = revenus[i];
-                    value.values.push({periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'), montant: ressource.montant});
+                    value.values.push({
+                        periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
+                        montant: ressource.montant
+                    });
                 }
                 var montants = _.pluck(revenus, 'montant');
                 var montantAnnuel = _.reduce(montants, function(sum, montant) {
                     return sum + montant;
                 });
-                value.values.push({periode: 'Année glissante', montant: montantAnnuel});
+                montantAnnuel = Math.round(montantAnnuel);
+                value.values.push({
+                    periode: 'Année glissante',
+                    montant: montantAnnuel
+                });
             }
         });
     };

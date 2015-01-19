@@ -58,6 +58,7 @@
         </div>
       </div>
     </accordion-heading>
+
     <div ng-if="test.open">
       <div ng-if="!readOnly">
         <div class="test-actions text-right">
@@ -88,14 +89,13 @@
           </button>
         </div>
 
-        <div class="alert alert-warning-inverse" ng-if="test.comment">
-          <p>
-            <i class="fa fa-exclamation-triangle"></i>
-            <strong>Commentaire :</strong>
-            {{test.comment}}
-          </p>
-        </div>
+        <p class="alert alert-warning-inverse" ng-if="test.rejectionMessage">
+          <i class="fa fa-exclamation-triangle"></i>
+          <strong>Commentaire :</strong>
+          {{ test.rejectionMessage }}
+        </p>
       </div>
+
       <div>
         <p ng-if="test.description" ng-bind-html="newLineToBr(test.description)"></p>
         <table class="table table-bordered">
@@ -120,7 +120,9 @@
           </tbody>
         </table>
       </div>
+
       <div class="clearfix"></div>
+
       <p class="detail-situation">
         <button type="button" class="btn btn-default btn-xs" ng-click="toggleSituation(test)">
           Détail de la situation

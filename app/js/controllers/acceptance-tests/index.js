@@ -50,9 +50,7 @@ angular.module('acceptanceTests').controller('IndexCtrl', function($scope, $stat
     $scope.validate = function() {
         var filters = {};
 
-        if ($scope.selectedKeywords.length > 0) {
-            filters.keyword = $scope.selectedKeywords;
-        }
+        filters.keyword = $scope.selectedKeywords;
 
         var extractedOrg = extractSelectedFilters($scope.selectedOrganizations);
         if (extractedOrg.length > 0) {

@@ -3,18 +3,22 @@
 
   <h4>Individus</h4>
   <div class="row">
-    <div class="col-md-6" ng-repeat="individu in individus">
-      <h5><i class="fa fa-male"></i> {{ individu.label }}</h5>
-      Né(e) le {{ individu.dateDeNaissance|date:'dd/MM/yyyy' }} ({{ individu.age }} ans),
-      nationalité {{ individu.nationalite }}
-      <br>
-      {{ individu.statutsSpecifiques }}
-      <div class="row" ng-if="individu.ressources.length">
-        <div class="col-md-6" ng-repeat="ressource in individu.ressources">
-          <h6>{{ ressource.type }}</h6>
-          <div ng-repeat="value in ressource.values">
-            {{ value.periode }} : {{ value.montant }} €
-          </div>
+    <div class="col-md-6 situation-block" ng-repeat="individu in individus">
+      <div>
+        <i class="fa fa-male"></i>
+        {{ individu.label }}
+      </div>
+      <div>
+        Né(e) le {{ individu.dateDeNaissance|date:'dd/MM/yyyy' }} ({{ individu.age }} ans),
+        <br>Nationalité {{ individu.nationalite }}
+        <br><i>{{ individu.statutsSpecifiques }}</i>
+      </div>
+    </div>
+    <div class="row" ng-if="individu.ressources.length">
+      <div class="col-md-6" ng-repeat="ressource in individu.ressources">
+        <h6>{{ ressource.type }}</h6>
+        <div ng-repeat="value in ressource.values">
+          {{ value.periode }} : {{ value.montant }} €
         </div>
       </div>
     </div>

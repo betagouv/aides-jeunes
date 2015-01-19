@@ -33,6 +33,12 @@ angular.module('acceptanceTests').controller('FormCtrl', function($scope, $http,
         });
     }
 
+    if (!test.situationObject) {
+        $http.get('/api/situations/' + test.situation).then(function(result) {
+            test.situationObject = result.data;
+        });
+    }
+
     $scope.droitSelected = function(droit) {
         droit.result = droitsObtenus[droit.ref.id];
         droit.expectedValue = droit.result;

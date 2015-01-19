@@ -177,3 +177,21 @@
 .detail-situation {
   padding-top: 10px;
 }
+
+.situation-block {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 5px 0 5px 20px;
+  margin-bottom: 2px;
+  > h5:first-child {
+    margin-top: 0;
+  }
+}
+
+.sub-panel {
+  background-color: #e9f0f5;
+  border: 1px solid darken(#e9f0f5, 10%);
+}
+
+.human-readable-situation {
+  padding: 20px;
+}

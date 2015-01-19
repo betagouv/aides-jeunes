@@ -7,17 +7,14 @@
   <a href="https://wiki.openfisca.fr/index.php/Protocole_de_tests_sur_mes-aides">protocole de test</a> de mes-aides.
 </p>
 
-<form method="post" name="form" class="form-horizontal" ng-submit="submit()">
-  <div class="form-group">
-    <label class="control-label col-md-3">Situation</label>
-    <div class="col-md-6">
-      <div class="sub-panel">
-        <div ng-if="!test.situationObject"><i class="fa fa-spinner fa-spin"></i> Chargement en cours...</div>
-        <div ng-if="test.situationObject"><recap-situation situation="test.situationObject"></recap-situation></div>
-      </div>
-    </div>
-  </div>
+<h2>Récapitulatif de la situation à tester</h2>
 
+<div class="well">
+  <div ng-if="!test.situationObject"><i class="fa fa-spinner fa-spin"></i> Chargement en cours...</div>
+  <div ng-if="test.situationObject"><recap-situation situation="test.situationObject"></recap-situation></div>
+</div>
+
+<form method="post" name="form" class="form-horizontal" ng-submit="submit()">
   <div class="form-group" ng-class="{'has-error': form.name.$invalid, 'has-success': form.name.$valid}">
     <label class="control-label col-md-3" for="test-name">Nom du test</label>
     <div class="col-md-6">

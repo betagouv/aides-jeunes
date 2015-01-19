@@ -61,64 +61,25 @@
     <div ng-if="test.open">
       <div ng-if="!readOnly">
         <div class="test-actions text-right">
-          <div class="btn-group" dropdown>
-            <button type="button" class="btn btn-default btn-xs" ng-if="test.state !== 'validated'" ng-click="validTest(test)">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-xs" ng-if="test.state !== 'validated'" ng-click="validateTest(test)">
               <i class="fa fa-check text-success"></i> Valider
             </button>
-            <button type="button" class="btn btn-default btn-xs" ng-if="test.state === 'validated'" ng-click="rejectTest(test)">
+            <button type="button" class="btn btn-default btn-xs" ng-if="test.state !== 'rejected'" ng-click="rejectTest(test)">
               <i class="fa fa-times text-danger"></i> Refuser
             </button>
-            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <span class="caret"></span>
+            <button type="button" class="btn btn-default btn-xs" ng-if="test.state !== 'pending'" ng-click="setPendingTest(test)">
+              <i class="fa fa-undo text-info"></i> Mettre en attente
             </button>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a
-                  ui-sref="."
-                  class="selectable"
-                  ng-if="test.state !== 'validated'"
-                  ng-click="validTest(test)">
-                  <i class="fa fa-check text-success"></i> Valider
-                </a>
-              </li>
-              <li>
-                <a
-                  ui-sref="."
-                  ng-if="test.state !== 'rejected'"
-                  ng-click="rejectTest(test)">
-                  <i class="fa fa-times text-danger"></i> Refuser
-                </a>
-              </li>
-              <li>
-                <a
-                  ui-sref="."
-                  ng-if="test.state !== 'pending'"
-                  ng-click="setWaitingTest(test)">
-                  <i class="fa fa-undo text-info"></i> Mettre en attente
-                </a>
-              </li>
-            </ul>
           </div>
 
-          <div class="btn-group" dropdown>
-            <a type="button" class="btn btn-default btn-xs" ui-sref="edit({testId: test._id})">
+          <div class="btn-group">
+            <a class="btn btn-default btn-xs" ui-sref="edit({testId: test._id})">
               <i class="fa fa-edit text-warning"></i> Modifier
             </a>
-            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <span class="caret"></span>
+            <button type="button" class="btn btn-default btn-xs" ng-click="deleteTest(test)">
+              <i class="fa fa-times text-danger"></i> Supprimer
             </button>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a ui-sref="edit({testId: test._id})">
-                  <i class="fa fa-edit text-warning"></i> Modifier
-                </a>
-              </li>
-              <li>
-                <a ng-click="deleteTest(test)" ui-sref=".">
-                  <i class="fa fa-times text-danger"></i> Supprimer
-                </a>
-              </li>
-            </ul>
           </div>
 
           <button type="button" class="btn btn-default btn-xs" ng-disabled="test.running" ng-click="launchSingleTest(test, pending, error)">

@@ -75,7 +75,7 @@ angular.module('ddsCommon').controller('TestListCtrl', function($scope, $modal, 
         AcceptanceTestsService.launchTest(test);
     };
 
-    $scope.validTest = function(test) {
+    $scope.validateTest = function(test) {
         $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'validated'}).then(function() {
             test.state = 'validated';
             $scope.getTimeline(test);
@@ -110,7 +110,7 @@ angular.module('ddsCommon').controller('TestListCtrl', function($scope, $modal, 
         });
     };
 
-    $scope.setWaitingTest = function(test) {
+    $scope.setPendingTest = function(test) {
         $http.put('/api/acceptance-tests/' + test._id + '/validation', {state: 'pending'}).then(function() {
             test.state = 'pending';
             $scope.getTimeline(test);

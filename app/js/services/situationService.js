@@ -84,6 +84,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         restoreRemote: function(situationId) {
             return $http.get('/api/situations/' + situationId).then(function(result) {
                 situation = $sessionStorage.situation = result.data;
+                situation.dateDeValeur = moment(situation.dateDeValeur);
                 situation.individus.forEach(function(individu) {
                     individu.dateDeNaissance = moment(individu.dateDeNaissance).format('DD/MM/YYYY');
                 });
@@ -92,13 +93,14 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             });
         },
 
-        getMonths: function() {
-            // FIXME prendre la date du serveur
-            return _.map([3, 2, 1], function(i) {
-                var date = moment().subtract('months', i);
+        getMonths: function(baseDate) {
+            var refDate = baseDate ? baseDate : moment();
+            refDate.subtract(4, 'months');
+            return _.map([3, 2, 1], function() {
+                refDate.add(1, 'months');
                 return {
-                    id: date.format('YYYY-MM'),
-                    label: date.format('MMMM YYYY')
+                    id: refDate.format('YYYY-MM'),
+                    label: refDate.format('MMMM YYYY')
                 };
             });
         },

@@ -91,7 +91,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         buildRecapPatrimoine();
     });
 
-    $scope.months = SituationService.getMonths();
+    $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
 
     $scope.lastMonth = moment().subtract('months', 1).startOf('month').format('MMMM YYYY');
     $scope.lastYear = moment().subtract('years', 1).format('MMMM YYYY');

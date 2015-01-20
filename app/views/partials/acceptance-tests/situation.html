@@ -4,28 +4,28 @@
   <h4>Individus</h4>
   <div class="row">
     <div class="col-md-6 situation-block" ng-repeat="individu in individus">
-      <div>
+      <h5>
         <i class="fa fa-male"></i>
         {{ individu.label }}
-      </div>
+      </h5>
       <div>
         Né(e) le {{ individu.dateDeNaissance|date:'dd/MM/yyyy' }} ({{ individu.age }} ans),
         <br>Nationalité {{ individu.nationalite }}
         <br><i>{{ individu.statutsSpecifiques }}</i>
       </div>
-    </div>
-    <div class="row" ng-if="individu.ressources.length">
-      <div class="col-md-6" ng-repeat="ressource in individu.ressources">
-        <h6>{{ ressource.type }}</h6>
-        <div ng-repeat="value in ressource.values">
-          {{ value.periode }} : {{ value.montant }} €
+      <div class="row" ng-if="individu.ressources.length">
+        <div class="col-md-6" ng-repeat="ressource in individu.ressources">
+          <h6>{{ ressource.type }}</h6>
+          <div ng-repeat="value in ressource.values">
+            {{ value.periode }}&nbsp;: {{ value.montant }} €
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div ng-if="situation.ressourcesYearMoins2Captured">
-    <h5>RFR</h5>
+    <h4>RFR</h4>
     RFR année - 2 : {{ situation.rfr }} €
   </div>
 
@@ -39,13 +39,13 @@
   <div class="row">
     <div class="col-md-4">
       <div ng-repeat="value in patrimoine">
-        {{ value.label }} : {{ value.montant }} €
+        {{ value.label }}&nbsp;: {{ value.montant }} €
       </div>
     </div>
     <div class="col-md-4" ng-repeat="revenu in revenusDuPatrimoine">
       <h6>{{ revenu.label }}</h6>
       <div ng-repeat="value in revenu.values">
-        {{ value.periode }} : {{ value.montant }} €
+        {{ value.periode }}&nbsp;: {{ value.montant }} €
       </div>
     </div>
   </div>

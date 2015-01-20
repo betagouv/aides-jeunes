@@ -139,6 +139,7 @@ angular.module('ddsCommon').directive('recapSituation', function($timeout, resso
                 $scope.logement.ville = logement.adresse.ville;
             };
 
+            debugger;
             $scope.individus = _.map(situation.individus, mapIndividu);
 
             if (situation.patrimoine) {

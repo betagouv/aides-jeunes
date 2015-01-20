@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, options, situationsFamiliales, SituationService, IndividuService) {
-    if (_.contains(['enfant', 'personneACharge'], options.individuRole)) {
+    if ('enfant' === options.individuRole) {
         options.maxAge = 25;
         options.formPersonneACharge = true;
     }

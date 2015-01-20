@@ -9,7 +9,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
     $urlRouterProvider.otherwise('/');
     $uiViewScrollProvider.useAnchorScroll();
 
-    var individuFormView = function(individuRole, captureRelationConjoint, capturePrenom) {
+    var individuFormView = function(individuRole, capturePrenom) {
         return {
             templateUrl: '/partials/foyer/individu-form.html',
             controller: 'FoyerIndividuFormCtrl',
@@ -17,7 +17,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 options: function() {
                     return {
                         individuRole: individuRole,
-                        captureRelationConjoint: captureRelationConjoint || false,
+                        captureRelationConjoint: 'conjoint' === individuRole,
                         capturePrenom: capturePrenom || false,
                         checkResidenceStability: _.contains(['demandeur', 'conjoint'], individuRole),
                     };
@@ -98,7 +98,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/conjoint.html',
                     controller: 'FoyerConjointCtrl',
                 },
-                'individuForm@foyer.conjoint': individuFormView('conjoint', true)
+                'individuForm@foyer.conjoint': individuFormView('conjoint')
             }
         })
         .state('foyer.personnesACharge', {
@@ -108,9 +108,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/personnes-a-charge.html',
                     controller: 'FoyerPersonnesAChargeCtrl'
                 },
-                'enfantForm@foyer.personnesACharge': individuFormView('enfant', false, true),
-                'personneAChargeForm@foyer.personnesACharge': individuFormView('personneACharge', false, true),
-                'personneSousMemeToitForm@foyer.personnesACharge': individuFormView('personneSousMemeToit', false, true)
+                'enfantForm@foyer.personnesACharge': individuFormView('enfant', true),
+                'parentProcheForm@foyer.personnesACharge': individuFormView('parentProche', true),
             }
         })
         .state('foyer.logement', {

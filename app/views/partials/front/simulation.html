@@ -84,6 +84,12 @@
 
   <div ng-if="droitsYearMoins2.length && !situation.ressourcesYearMoins2Captured">
     <h1><i class="fa fa-gears"></i> Droits nécessitant des précisions</h1>
+    <p>
+      Les aides ci-dessous se basent sur vos ressources de l'année {{ yearMoins2 }}.
+      <br>Ces résultats ont été simulés sur les ressources que vous avez déclarées
+      entre {{ debutPeriode }} et {{ finPeriode }}.
+      <br><a ui-sref="foyer.rnc">Déclarez vos ressources {{ yearMoins2 }}</a> pour une simulation plus précise.
+    </p>
   </div>
 
   <div ng-if="droitsYearMoins2.length">

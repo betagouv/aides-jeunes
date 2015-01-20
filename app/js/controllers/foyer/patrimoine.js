@@ -5,7 +5,7 @@ angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, Situ
     $scope.debutPeriode = debutPeriode.format('MMMM YYYY');
     var finPeriode = moment().startOf('month').subtract('months', 1);
     $scope.finPeriode = finPeriode.format('MMMM YYYY');
-    $scope.months = SituationService.getMonths();
+    $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
 
     $scope.revenusLocatifs = {
         months: [

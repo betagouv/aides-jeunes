@@ -7,20 +7,19 @@
 
 <form method="post" name="form" novalidate ng-submit="submit()">
   <div class="ressource-types-block">
-    <div class="capture-{{ category.id }}" ng-repeat="category in categories">
-        <div class="capture-title">
-          <h2>{{ category.label }}</h2>
-        </div>
-        <div class="capture-rows">
-          <button
-            type="button"
-            class="btn btn-sm btn-selection btn-default"
-            ng-repeat="ressourceType in ressourceTypesByCategories[category.id]"
-            btn-checkbox
-            ng-model="selectedRessourceTypes[ressourceType.id]">
-            {{ ressourceType.label }}
-          </button>
-        </div>
+    <div class="capture-{{ category.id }}" ng-repeat="category in ressourceCategories">
+      <div class="capture-title">
+        <h2>{{ category.label }}</h2>
+      </div>
+      <div class="capture-rows">
+        <button
+          type="button"
+          class="btn btn-sm btn-selection btn-default"
+          ng-repeat="ressourceType in ressourceTypesByCategories[category.id]"
+          btn-checkbox
+          ng-model="individuVM.selectedRessourceTypes[ressourceType.id]">
+          {{ ressourceType.label }}
+        </button>
       </div>
     </div>
     <div class="text-right">

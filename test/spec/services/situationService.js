@@ -1,6 +1,6 @@
 'use strict';
 
-/* global _, moment */
+/* global moment */
 
 describe('Service: situationService', function () {
 
@@ -116,67 +116,6 @@ describe('Service: situationService', function () {
             // then
             expect(result.length).toBe(3);
             expect(result[0].id).toBe(expectedDate);
-        });
-    });
-
-    describe('function flattenIndividuRessources()', function() {
-        it('should export month-based ressources as-is without changing them', function() {
-            // given
-            var ressources = [{periode: '2014-06', montant: 400}];
-            var individu = {ressources: ressources};
-
-            // when
-            service.flattenIndividuRessources(individu);
-
-            // then
-            expect(individu.ressources[0]).toBe(ressources[0]);
-        });
-
-        it('should not export year-based ressources as-is', function() {
-            // given
-            var ressources = [{debutPeriode: '2014-06', finPeriode: '2014-08', montant: 300}];
-            var individu = {ressources: ressources};
-
-            // when
-            service.flattenIndividuRessources(individu);
-
-            // then
-            expect(individu.ressources.indexOf(ressources[0])).toBe(-1);
-        });
-
-        it('should flatten year-based ressources', function() {
-            // given
-            var ressources = [{debutPeriode: '2014-06', finPeriode: '2014-08', montant: 300}];
-            var individu = {ressources: ressources};
-
-            // when
-            service.flattenIndividuRessources(individu);
-
-            // then
-            expect(individu.ressources.length).toBe(3);
-            expect(individu.ressources[0].periode).toBe('2014-06');
-            expect(individu.ressources[0].montant).toBe(100);
-        });
-
-        it('should flatten the montant after subtracting corresponding month-based ressources in the period', function() {
-            // given
-            var ressources = [
-                {debutPeriode: '2014-06', finPeriode: '2014-08', type: 'test', montant: 300},
-                {periode: '2014-06', type: 'test', montant: 200},
-                {periode: '2014-04', type: 'test', montant: 200}
-            ];
-            var individu = {ressources: ressources};
-
-            // when
-            service.flattenIndividuRessources(individu);
-
-            // then
-            var ressourcesJuin = _.where(individu.ressources, {periode: '2014-06'});
-            expect(ressourcesJuin.length).toBe(1);
-            expect(ressourcesJuin[0]).toBe(ressources[1]);
-            var ressourcesJuillet = _.where(individu.ressources, {periode: '2014-07'});
-            expect(ressourcesJuillet.length).toBe(1);
-            expect(ressourcesJuillet[0].montant).toBe(50);
         });
     });
 

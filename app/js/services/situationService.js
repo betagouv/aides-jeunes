@@ -42,14 +42,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         }
     };
 
-    var flattenIndividuRessources = function(individu) {
-        var ressources = individu.ressources || [];
-        individu.ressources = [];
-        ressources.forEach(function(ressource) {
-            flattenRessource(ressource, ressources, individu.ressources);
-        });
-    };
-
     var flattenPatrimoine = function(patrimoine) {
         var source = patrimoine.revenusDuCapital;
         patrimoine.revenusDuCapital = [];
@@ -162,19 +154,14 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         createApiCompatibleIndividu: function(individu) {
             individu = _.cloneDeep(individu);
-            if (individu.dateSituationFamilialeString) {
-                individu.dateSituationFamiliale = moment(individu.dateSituationFamilialeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
-            }
             individu.dateDeNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY').format('YYYY-MM-DD');
             if (individu.dateArriveeFoyerString) {
                 individu.dateArriveeFoyer = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY').format('YYYY-MM-DD');
             }
-            flattenIndividuRessources(individu); // FIXME Faire ça dans le controller des ressources
 
             return individu;
         },
 
-        flattenIndividuRessources: flattenIndividuRessources,
         flattenPatrimoine: flattenPatrimoine
     };
 });

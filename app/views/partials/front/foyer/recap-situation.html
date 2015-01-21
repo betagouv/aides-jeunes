@@ -19,19 +19,18 @@
   <h4 class="section-header">Vos ressources</h4>
   <accordion
     close-others="true"
-    class="accordion-ressources"
-    ng-if="hasRessources">
+    class="accordion-ressources">
     <accordion-group
       ng-repeat="ressource in ressourcesNonTns"
       class="recap-{{ ressource.type.category }}"
       heading="{{ ressource.type.label }}"
       is-open="ressource.isOpen">
-      <div class="row" ng-repeat="idx in [0, 1, 2]">
+      <div class="row" ng-repeat="month in months">
         <div class="col-sm-8">
-          {{ months[idx].label | uppercaseFirst }}
+          {{ month.label | uppercaseFirst }}
         </div>
         <div class="col-sm-4">
-          {{ ressource.total[idx] }} €
+          {{ ressource.totalMensuel[$index] }} €
         </div>
       </div>
       <hr>

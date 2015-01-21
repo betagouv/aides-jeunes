@@ -103,44 +103,40 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
             return;
         }
 
-        var monthsIndexes = {};
+        var types = _.chain(individu.ressources)
+            .pluck('type')
+            .unique();
 
-        monthsIndexes[$scope.months[0].id] = 0;
-        monthsIndexes[$scope.months[1].id] = 1;
-        monthsIndexes[$scope.months[2].id] = 2;
-
-        individu.ressources.forEach(function(ressource) {
+        types.forEach(function(type) {
             // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
-            if (!_.find(ressourceTypes, { id: ressource.type })) {
+            if (!_.find(ressourceTypes, { id: type })) {
                 return;
             }
-            var ressourceSection = $scope.tempRessources[ressource.type];
+            var totalMensuel = _.map($scope.months, function(month) {
+                var ressource = _.find(individu.ressources, { type: type, periode: month.id });
+                return ressource ? ressource.montant : 0;
+            });
+            var totalAnnuel = _.chain(individu.ressources)
+                .where({ type: type })
+                .pluck('montant')
+                .reduce(function(sum, num) {
+                    return sum + num;
+                })
+                .value();
+
+            var ressourceSection = $scope.tempRessources[type];
             if (!ressourceSection) {
-                ressourceSection = $scope.tempRessources[ressource.type] = {
-                    total: [0, 0, 0],
-                    byIndividu: [],
-                    totalAnnuel: 0
+                ressourceSection = $scope.tempRessources[type] = {
+                    totalMensuel: totalMensuel,
+                    totalAnnuel: totalAnnuel
                 };
-            }
-
-            var individuRessource = _.find($scope.tempRessources[ressource.type].byIndividu, { label: IndividuService.label(individu) });
-            if (!individuRessource) {
-                individuRessource = {
-                    label: IndividuService.label(individu),
-                    values: []
-                };
-                $scope.tempRessources[ressource.type].byIndividu.push(individuRessource);
-            }
-
-            if (!ressource.periode) {
-                individuRessource.montantAnnuel = ressource.montant;
-                $scope.tempRessources[ressource.type].totalAnnuel += ressource.montant;
             } else {
-                var monthIndex = monthsIndexes[ressource.periode];
-                individuRessource.values[monthIndex] = ressource.montant;
-                $scope.tempRessources[ressource.type].total[monthIndex] += ressource.montant;
+                _.map([0, 1, 2], function(i) {
+                    ressourceSection.totalMensuel[i] += totalMensuel[i];
+                });
+                ressourceSection.totalAnnuel += totalAnnuel;
             }
-            $scope.globalAmount += ressource.montant;
+            $scope.globalAmount += totalAnnuel;
         });
     };
 
@@ -164,36 +160,26 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
             if ($scope.tempRessources[ressourceType.id]) {
                 $scope.ressourcesNonTns.push({
                     type: ressourceType,
-                    total: $scope.tempRessources[ressourceType.id].total,
-                    totalAnnuel: $scope.tempRessources[ressourceType.id].totalAnnuel
+                    totalMensuel: $scope.tempRessources[ressourceType.id].totalMensuel,
+                    totalAnnuel: Math.round($scope.tempRessources[ressourceType.id].totalAnnuel)
                 });
             }
         });
 
         var ressourcesMicroFiscal = {
-            type: _.find(ressourceTypes, {id: 'caMicroEntreprise'}),
-            totalAnnuel: 0,
-            byIndividu: []
+            type: _.find(ressourceTypes, { id: 'caMicroEntreprise' }),
+            totalAnnuel: 0
         };
         var ressourcesAutresTns = {
-            type: _.find(ressourceTypes, {id: 'autresRevenusTns'}),
-            totalAnnuel: 0,
-            byIndividu: []
+            type: _.find(ressourceTypes, { id: 'autresRevenusTns' }),
+            totalAnnuel: 0
         };
-        $scope.situation.individus.map(function(individu) {
+        $scope.situation.individus.forEach(function(individu) {
             if (individu.caMicroEntreprise) {
                 ressourcesMicroFiscal.totalAnnuel += individu.caMicroEntreprise;
-                ressourcesMicroFiscal.byIndividu.push({
-                    label: IndividuService.label(individu),
-                    montantAnnuel: individu.caMicroEntreprise
-                });
             }
             if (individu.autresRevenusTns) {
                 ressourcesAutresTns.totalAnnuel  += individu.autresRevenusTns;
-                ressourcesAutresTns.byIndividu.push({
-                    label: IndividuService.label(individu),
-                    montantAnnuel: individu.autresRevenusTns
-                });
             }
         });
 
@@ -211,7 +197,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         buildRecapRessources();
     }
 
-    $scope.$on('ressourcesCaptured', function() {
+    $scope.$on('ressourcesUpdated', function() {
         $scope.ressourcesCaptured = true;
         buildRecapRessources();
     });

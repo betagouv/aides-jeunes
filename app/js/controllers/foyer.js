@@ -51,9 +51,9 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         $state.go('foyer.ressources');
     });
 
-    $scope.$on('ressourcesValidated', function() {
+    $scope.$on('ressources', function() {
         $scope.situation.ressourcesCaptured = true;
-        $scope.$broadcast('ressourcesCaptured');
+        $scope.$broadcast('ressourcesUpdated');
         SituationService.save($scope.situation).then(function() {
             $state.go('foyer.simulation', { 'situationId': $scope.situation._id });
         });

@@ -26,6 +26,11 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         var ressources = individu.ressources || [];
         var types = _.chain(ressources).pluck('type').unique();
         types.forEach(function(type) {
+            // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
+            if (!_.find(ressourceTypes, { id: type })) {
+                return;
+            }
+
             var montantsMensuels = _.map($scope.months, function(month) {
                 var ressource = _.find(ressources, { periode: month.id, type: type });
                 return ressource ? Math.round(ressource.montant) : 0;
@@ -46,30 +51,6 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 montantAnnuel: montantAnnuel
             });
         });
-        /*var ressourceType = _.find(ressourceTypes, {id: ressource.type});
-        if (!ressourceType) {
-            return;
-        }
-
-        var ressource = _.find(result, { type: ressourceType });
-
-        if (!ressource) {
-            ressource = { type: ressourceType, interrupted: false };
-            if ('caMicroEntreprise' === ressourceType.id) {
-                ressource.tnsStructureType = 'auto_entrepreneur';
-                ressource.tnsActiviteType = 'bic';
-            }
-            ressource.montantAnnuel = 0;
-
-            if ('tns' !== ressourceType.category) {
-                ressource.months = [
-                    { periode: $scope.months[0].id, montant: 0 },
-                    { periode: $scope.months[1].id, montant: 0 },
-                    { periode: $scope.months[2].id, montant: 0 }
-                ];
-            }
-            ressources.push(ressource);
-        }*/
 
         return result;
     };

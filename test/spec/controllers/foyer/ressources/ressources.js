@@ -38,7 +38,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(scope.individusVM[0].ressources.length).toBe(0);
         });
 
-        it('should retrieve the selected ressource types in the selectedRessourceTypes map if previously selected', function() {
+        it('should retrieve the selected ressource types in the selectedRessourceTypes map if individus have ressources', function() {
             // given
             scope.situation.individus = [
                 { ressources: [{ type: 'revenusSalarie' }] },
@@ -76,7 +76,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(scope.individusVM[0].ressources[0].montantAnnuel).toBe(200);
         });
 
-        it('should round amounts', function() {
+        it('should round amounts when mapping individus ressources', function() {
             // given
             scope.situation.dateDeValeur = '2013-04-10';
             _ressourceTypes_ = [{ id: 'toto' }];
@@ -96,6 +96,22 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(scope.individusVM[0].ressources[0].type).toBe(_ressourceTypes_[0]);
             expect(scope.individusVM[0].ressources[0].montantsMensuels).toEqual([67, 4, 6]);
             expect(scope.individusVM[0].ressources[0].montantAnnuel).toBe(77);
+        });
+
+        it('should not map unknown ressource types', function() {
+            // given
+            scope.situation.dateDeValeur = '2013-04-10';
+            scope.situation.individus = [{
+                ressources: [
+                    { type: 'unknown_ressource_type', periode: '2013-03', montant: 10 },
+                ]
+            }];
+
+            // when
+            initController();
+
+            // then
+            expect(scope.individusVM[0].ressources.length).toBe(0);
         });
     });
 

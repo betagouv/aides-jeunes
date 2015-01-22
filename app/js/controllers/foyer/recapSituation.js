@@ -112,6 +112,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
             if (!_.find(ressourceTypes, { id: type })) {
                 return;
             }
+
             var totalMensuel = _.map($scope.months, function(month) {
                 var ressource = _.find(individu.ressources, { type: type, periode: month.id });
                 return ressource ? ressource.montant : 0;

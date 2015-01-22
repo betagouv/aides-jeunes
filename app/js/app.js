@@ -196,12 +196,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/download-cerfa.html',
             controller: 'DownloadCerfaCtrl',
             resolve: {
-                situation: ['SituationService', function(SituationService) {
+                situation: function(SituationService) {
                     return SituationService.restoreLocal();
-                }],
-                droit: ['$stateParams', function($stateParams) {
+                },
+                droit: function($stateParams) {
                     return $stateParams.droit;
-                }]
+                }
             },
             data: {
                 pageTitle: 'Téléchargement formulaires - '

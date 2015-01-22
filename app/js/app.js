@@ -160,9 +160,18 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'FoyerPatrimoineCtrl'
         })
         .state('foyer.simulation', {
-            url: '/simulation/:situationId',
+            url: '/simulation',
             templateUrl: '/partials/simulation.html',
             controller: 'SimulationCtrl'
+        })
+        .state('situation', {
+            url: '/situations/:situationId',
+            template: '',
+            controller: function(SituationService, $state, $stateParams) {
+                SituationService.restoreRemote($stateParams.situationId).then(function() {
+                    $state.go('foyer.simulation', { situationId: $stateParams.situationId });
+                });
+            }
         })
         .state('infos_complementaires', {
             abstract: true,

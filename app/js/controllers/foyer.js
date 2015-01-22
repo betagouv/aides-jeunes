@@ -51,12 +51,17 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         $state.go('foyer.ressources');
     });
 
+    var goToSimulation = function() {
+        SituationService.save($scope.situation).then(function() {
+            // désactivation du changement d'url dans le navigateur pour que le bouton back fonctionne
+            $state.transitionTo('situation', { 'situationId': $scope.situation._id }, { location: false });
+        });
+    };
+
     $scope.$on('ressources', function() {
         $scope.situation.ressourcesCaptured = true;
         $scope.$broadcast('ressourcesUpdated');
-        SituationService.save($scope.situation).then(function() {
-            $state.go('foyer.simulation', { 'situationId': $scope.situation._id });
-        });
+        goToSimulation();
     });
 
     $scope.$on('rnc', function() {
@@ -67,16 +72,12 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         $scope.situation.rfr = rfr;
         $scope.situation.ressourcesYearMoins2Captured = true;
         $scope.$broadcast('ressourcesYearMoins2Captured');
-        SituationService.save($scope.situation).then(function() {
-            $state.go('foyer.simulation', { 'situationId': $scope.situation._id });
-        });
+        goToSimulation();
     });
 
     $scope.$on('patrimoine', function(e, patrimoine) {
         situation.patrimoine = patrimoine;
         $scope.$broadcast('patrimoineCaptured');
-        SituationService.save(situation).then(function() {
-            $state.go('foyer.simulation', { 'situationId': $scope.situation._id });
-        });
+        goToSimulation();
     });
 });

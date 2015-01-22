@@ -6,28 +6,19 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     $scope.finPeriode = moment().startOf('month').subtract('months', 1).format('MMMM YYYY');
     $scope.awaitingResults = true;
 
-    var launchSimulation = function() {
-        $scope.error = false;
-        $scope.droits = null;
-        $scope.droitsYearMoins2 = null;
-        $scope.droitsNonEligibles = null;
+    $scope.error = false;
+    $scope.droits = null;
+    $scope.droitsYearMoins2 = null;
+    $scope.droitsNonEligibles = null;
 
-        SimulationService.simulate($scope.situation).then(function(result) {
-            $scope.droits = result.droits;
-            $scope.droitsYearMoins2 = result.droitsYearMoins2;
-            $scope.droitsNonEligibles = result.droitsNonEligibles;
-        }, function() {
-            $scope.error = true;
-        }).finally(function() {
-            $scope.awaitingResults = false;
-        });
-    };
-
-    SituationService.restoreRemote($stateParams.situationId).then(function(situation) {
-        $scope.$emit('setSituation', situation);
-        launchSimulation();
+    SimulationService.simulate($scope.situation).then(function(result) {
+        $scope.droits = result.droits;
+        $scope.droitsYearMoins2 = result.droitsYearMoins2;
+        $scope.droitsNonEligibles = result.droitsNonEligibles;
     }, function() {
         $scope.error = true;
+    }).finally(function() {
+        $scope.awaitingResults = false;
     });
 
     $scope.round = function(montant) {

@@ -93,10 +93,10 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
 
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
 
-    $scope.lastMonth = moment().subtract('months', 1).startOf('month').format('MMMM YYYY');
-    $scope.lastYear = moment().subtract('years', 1).format('MMMM YYYY');
-    $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
-    $scope.yearMoins2 = moment().subtract('years', 2).format('YYYY');
+    $scope.lastMonth = moment($scope.situation.dateDeValeur).subtract('months', 1).startOf('month').format('MMMM YYYY');
+    $scope.lastYear = moment($scope.situation.dateDeValeur).subtract('years', 1).format('MMMM YYYY');
+    $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
+    $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
 
     var fillIndividuRessources = function(individu) {
         if (!individu.ressources) {

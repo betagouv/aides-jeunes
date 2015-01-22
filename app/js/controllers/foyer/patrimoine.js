@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, SituationService) {
-    var debutPeriode = moment().startOf('month').subtract('years', 1);
+    var dateSituation = moment($scope.situation.dateDeValeur);
+    var debutPeriode = dateSituation.startOf('month').subtract('years', 1);
     $scope.debutPeriode = debutPeriode.format('MMMM YYYY');
-    var finPeriode = moment().startOf('month').subtract('months', 1);
+    var finPeriode = dateSituation.startOf('month').subtract('months', 1);
     $scope.finPeriode = finPeriode.format('MMMM YYYY');
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
 

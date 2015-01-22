@@ -6,6 +6,7 @@ angular.module('ddsCommon').service('IndividuService', function($filter, situati
     return {
         age: function(individu) {
             var dateNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY');
+            // FIXME Il faudrait retourner l'âge par rapport à la date de valeur de la situation
             return moment().diff(dateNaissance, 'years');
         },
 

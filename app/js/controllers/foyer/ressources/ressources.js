@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $state, ressourceTypes, SituationService, IndividuService) {
-    var momentDebutAnnee = moment().subtract('years', 1);
-    var momentFinAnnee = moment().startOf('month').subtract('months', 1);
+    var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
+    var momentFinAnnee = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1);
     $scope.debutAnnee = momentDebutAnnee.format('MMMM YYYY');
     $scope.finAnnee = momentFinAnnee.format('MMMM YYYY');
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
-    $scope.yearMoinsUn = moment().subtract('years', 1).format('YYYY');
+    $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
 
     $scope.ressourceTypes = ressourceTypes;
 

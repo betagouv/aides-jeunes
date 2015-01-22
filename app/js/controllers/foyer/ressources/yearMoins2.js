@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService) {
-    $scope.yearMoins2 = moment().subtract('years', 2).format('YYYY');
+    $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
 
     var parents = IndividuService.getParents($scope.situation.individus);
     $scope.individuRefs = [];

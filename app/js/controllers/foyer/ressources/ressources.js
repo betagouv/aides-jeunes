@@ -7,6 +7,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     $scope.finAnnee = momentFinAnnee.format('MMMM YYYY');
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
     $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
+    $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
 
     $scope.ressourceTypes = ressourceTypes;
 

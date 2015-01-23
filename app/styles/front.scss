@@ -276,7 +276,7 @@ $autre-lighter: #cce4e7;
 }
 
 @mixin ressource-category-capture($color, $color-light, $color-lighter) {
-  border: 1px solid $color;
+  border: 1px solid $color-light;
   border-left-width: 4px;
   margin-bottom: 10px;
 
@@ -289,7 +289,8 @@ $autre-lighter: #cce4e7;
 
   .capture-title {
     padding: 5px 0;
-    background-color: $color-light;
+
+    background-color: lighten($color-light, 10%);
     color: #333;
   }
 
@@ -512,6 +513,18 @@ $autre-lighter: #cce4e7;
   }
 }
 
+.ressources-individu {
+  .title{
+    h2 {
+      margin-top: 5px;
+    }
+    a {
+      margin-bottom: 5px;
+    }
+  }
+  margin-bottom: 15px;
+}
+
 @mixin ressource-montant($color, $color-light, $color-lighter) {
   h3 {
     margin: 0;
@@ -522,7 +535,7 @@ $autre-lighter: #cce4e7;
     margin-bottom: 5px;
   }
 
-  border: 1px solid $color;
+  border: 1px solid $color-light;
   background-color: white;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -530,8 +543,14 @@ $autre-lighter: #cce4e7;
   .title-montant {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-color: $color-light;
+    background-color: lighten($color-light, 10%);
     padding: 10px;
+
+    small {
+      font-size: $font-size-base;
+      color: darken($color, 30%);
+      margin-right: 10px;
+    }
   }
 
   .content-montant {

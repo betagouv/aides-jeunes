@@ -5,24 +5,23 @@
       Veuillez déclarer ici les ressources de votre foyer perçues <strong>entre {{ debutAnnee }} et {{ finAnnee }}</strong>,
       en net perçu pour les salaires ou indemnités.
     </p>
-    <form method="post" name="form" novalidate ng-submit="submit(form)" class="form-horizontal">
-      <div ng-repeat="(individuIndex, individuVM) in individusVM" class="frame-ressources-individu">
+    <form method="post" name="form" novalidate ng-submit="submit(form)">
+      <div class="ressources-individu" ng-repeat="(individuIndex, individuVM) in individusVM">
         <div class="title">
-          <h2>{{ individuVM.label }}</h2>
-        </div>
-        <div class="content">
-          <div ng-if="!individuVM.ressources.length">
-            <i>Aucune ressource déclarée.</i>
-          </div>
-          <div ng-if="individuVM.ressources.length">
-            <div ng-include="'partials/foyer/ressources/montants.html'"></div>
-          </div>
-          <div class="text-right">
+          <h2 class="pull-left">{{ individuVM.label }}</h2>
+          <div class="pull-right">
             <a title="Déclarer des ressources" ui-sref="foyer.ressources.types({ individu: individuIndex })" class="btn btn-sm btn-success">
               Déclarer des ressources
             </a>
           </div>
         </div>
+        <div class="clearfix"></div>
+        <div class="content">
+          <div ng-if="individuVM.ressources.length">
+            <div ng-include="'partials/foyer/ressources/montants.html'"></div>
+          </div>
+        </div>
+        <hr ng-if="$index !== individusVM.length - 1">
       </div>
       <div class="text-right">
         <button type="submit" class="btn btn-primary">Valider <i class="fa fa-arrow-circle-right"></i></button>

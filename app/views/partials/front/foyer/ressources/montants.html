@@ -1,7 +1,7 @@
 <div ng-repeat="ressource in individuVM.ressources | filter: isRessourceNonTns">
   <div class="ressource-montant-{{ ressource.type.category }}">
     <div class="title-montant">
-       <h3>{{ ressource.type.label }}</h3>
+       <h3><small>{{ individuVM.label }}</small>{{ ressource.type.label }}</h3>
     </div>
     <div class="content-montant">
       <div class="row">
@@ -64,9 +64,9 @@
 </div>
 
 <div ng-repeat="ressource in individuVM.ressources | filter: isRessourceMicroTns">
-  <div class="ressource-montant">
+  <div class="ressource-montant-tns">
     <div class="title-montant">
-       <h3>{{ ressource.type.label }}</h3>
+       <h3><small>{{ individuVM.label }}</small>{{ ressource.type.label }}</h3>
     </div>
     <div class="content-montant">
       <div class="row">
@@ -117,9 +117,9 @@
 </div>
 
 <div ng-repeat="ressource in individuVM.ressources | filter: isRessourceOtherTns">
-  <div class="ressource-montant">
+  <div class="ressource-montant-tns">
     <div class="title-montant">
-       <h3>{{ ressource.type.label }}</h3>
+       <h3><small>{{ individuVM.label }}</small>{{ ressource.type.label }}</h3>
     </div>
     <div class="content-montant">
       <div class="row">

@@ -638,7 +638,9 @@ $autre-lighter: #cce4e7;
   }
 
   .panel-title .description {
-    padding-top: 0.5em;
+    @media (min-width: $screen-sm-min) {
+      padding-top: 0.5em;
+    }
   }
 }
 

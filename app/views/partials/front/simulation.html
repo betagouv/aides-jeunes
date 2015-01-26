@@ -27,16 +27,14 @@
         'panel-opened': droit.open}" is-open="droit.open" ng-repeat="droit in droits">
       <accordion-heading>
         <div class="row">
-          <div class="col-sm-1">
-            <a href="{{ droit.description.link }}" target="_blank">
-              <img class="droit-img" ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
-            </a>
+          <div class="col-xs-2 col-sm-1">
+            <img class="droit-img" ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
           </div>
-          <div class="col-sm-8 description">
+          <div class="col-xs-6 col-sm-8 description">
             <span class="text-warning fa fa-exclamation-triangle" ng-if="droit.yearMoins2 && !situation.ressourcesYearMoins2Captured"></span>
             <span>{{ droit.description.label }}<span>
           </div>
-          <div class="col-sm-2">
+          <div class="col-xs-3 col-sm-2">
             <div class="montant" ng-if="false !== droit.description.hasMontant">
               {{ round(droit.montant) }}&nbsp;€
             </div>
@@ -46,7 +44,7 @@
               <span ng-if="!droit.description.isMontantAnnuel">mois</span>
             </div>
           </div>
-          <div class="col-sm-1 description">
+          <div class="col-sm-1 hidden-xs description">
             <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"></i>
           </div>
         </div>
@@ -62,7 +60,7 @@
         </p>
 
         <div class="row">
-          <div class="col-xs-3 col-xs-offset-6">
+          <div class="col-sm-3 col-sm-offset-6">
             <a
               href="{{ droit.description.link }}"
               class="btn btn-sm btn-default btn-block"
@@ -71,7 +69,7 @@
               Plus d'informations
             </a>
           </div>
-          <div class="col-xs-3">
+          <div class="col-sm-3">
             <a
               class="btn btn-sm btn-primary btn-block"
               ng-if="hasDroitForms(droit)"
@@ -97,8 +95,8 @@
       Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ?
       Vous devez renseigner des informations complémentaires.
     </div>
-    <div class="col-sm-4 text-right">
-      <a class="btn btn-default" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
+    <div class="col-sm-4">
+      <a class="btn btn-default btn-block" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
     </div>
   </div>
 </div>

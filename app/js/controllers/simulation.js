@@ -8,12 +8,14 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
 
     $scope.error = false;
     $scope.droits = null;
-    $scope.droitsYearMoins2 = null;
     $scope.droitsNonEligibles = null;
+    $scope.panelRessourcesOpen = true;
 
     SimulationService.simulate($scope.situation).then(function(result) {
-        $scope.droits = result.droits;
-        $scope.droitsYearMoins2 = result.droitsYearMoins2;
+        _.forEach(result.droitsYearMoins2, function(droit) {
+            droit.yearMoins2 = true;
+        });
+        $scope.droits = _.union(result.droits, result.droitsYearMoins2);
         $scope.droitsNonEligibles = result.droitsNonEligibles;
     }, function() {
         $scope.error = true;

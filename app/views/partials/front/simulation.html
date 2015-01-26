@@ -7,160 +7,88 @@
   <p>Une erreur est survenue dans la simulation, l'équipe en a été informée.</p>
 </div>
 
-<div ng-if="!awaitingResults">
-  <div class="alert alert-warning-inverse" ng-if="!situation.ressourcesYearMoins2Captured && !error">
-    <div class="row">
-      <div class="col-sm-8">
-        <b><i class="fa fa-warning"></i> Attention : déclarez vos ressources {{ yearMoins2 }} pour une simulation plus précise.</b>
-        En effet, plusieurs aides se basent sur vos ressources de l'année {{ yearMoins2 }}.
-        Ces résultats ont été simulés sur les ressources que vous avez déclarées
-        entre {{ debutPeriode }} et {{ finPeriode }}.
-      </div>
-      <div class="col-sm-4 text-right">
-        <a class="btn btn-primary btn-block" ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
-      </div>
-    </div>
-  </div>
-
-  <div ng-if="droits.length">
-    <div class="row">
-      <div ng-repeat="droit in droits">
-        <div class="clearfix" ng-if="$index % 2 === 0"></div>
-        <div class="col-md-6" >
-          <div class="thumbnail">
-            <a href="{{ droit.description.link }}" target="_blank">
-              <img ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
-            </a>
-            <div class="thumbnail-title thumbnail-title-success">
-              <div class="row">
-                <div class="col-sm-8">
-                  {{ droit.description.label }}
-                </div>
-                <div class="col-sm-4" ng-if="false !== droit.description.hasMontant">
-                  <div class="montant">{{ round(droit.montant) }}&nbsp;€</div>
-                  <span class="montant-detail">
-                    /
-                    <span ng-if="droit.description.isMontantAnnuel">an</span>
-                    <span ng-if="!droit.description.isMontantAnnuel">mois</span>
-                    environ
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="caption">
-              <p>{{ droit.description.description }}</p>
-
-              <p class="alert alert-warning-inverse" ng-if="isDroitCmuAcs(droit)">
-                <i class="fa fa-exclamation-triangle"></i>
-                <b>Attention</b> : vous êtes éligible à ce droit si vous n'êtes pas déjà ayant droit
-                d'une autre mutuelle (parents, conjoint...).
-              </p>
-
-              <div class="row">
-                <div class="col-xs-6">
-                  <a
-                    href="{{ droit.description.link }}"
-                    class="btn btn-sm btn-default btn-block"
-                    target="_blank">
-                    <i class="fa fa-external-link"></i>
-                    Plus d'informations
-                  </a>
-                </div>
-                <div class="col-xs-6">
-                  <a
-                    class="btn btn-sm btn-primary btn-block"
-                    ng-if="hasDroitForms(droit)"
-                    ui-sref="infos_complementaires.individus({droit: droit.description.id})">
-                    Engager les démarches
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div ng-if="droitsYearMoins2.length && !situation.ressourcesYearMoins2Captured">
-    <h1><i class="fa fa-gears"></i> Droits nécessitant des précisions</h1>
-    <p>
-      Les aides ci-dessous se basent sur vos ressources de l'année {{ yearMoins2 }}.
-      <br>Ces résultats ont été simulés sur les ressources que vous avez déclarées
+<div class="frame-resultats" ng-if="!error && !awaitingResults">
+  <div class="row warning" ng-if="!situation.ressourcesYearMoins2Captured && !error">
+    <div class="col-sm-9">
+      <b><i class="fa fa-warning"></i> Attention : déclarez vos ressources {{ yearMoins2 }} pour une simulation plus précise.</b>
+      <br>En effet, plusieurs aides se basent sur vos ressources de l'année {{ yearMoins2 }}.
+      Ces résultats ont été simulés sur les ressources que vous avez déclarées
       entre {{ debutPeriode }} et {{ finPeriode }}.
-      <br><a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a> pour une simulation plus précise.
-    </p>
+    </div>
+    <div class="col-sm-3">
+      <a class="btn btn-primary" ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
+    </div>
   </div>
-
-  <div ng-if="droitsYearMoins2.length">
-    <div class="row">
-      <div ng-repeat="droit in droitsYearMoins2">
-        <div class="clearfix" ng-if="$index % 2 === 0"></div>
-        <div class="col-md-6" >
-          <div class="thumbnail">
+  <accordion close-others="true">
+    <accordion-group
+      class="resultats-accordion"
+      ng-class="{
+        'resultats-accordion-muted': droit.yearMoins2 && !situation.ressourcesYearMoins2Captured,
+        'panel-opened': droit.open}" is-open="droit.open" ng-repeat="droit in droits">
+      <accordion-heading>
+        <div class="row">
+          <div class="col-sm-1">
             <a href="{{ droit.description.link }}" target="_blank">
-              <img ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
+              <img class="droit-img" ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
             </a>
-            <div class="thumbnail-title thumbnail-title-success">
-              <div class="row">
-                <div class="col-sm-8">
-                  {{ droit.description.label }}
-                </div>
-                <div class="col-sm-4" ng-if="false !== droit.description.hasMontant">
-                  <div ng-if="droit.montant">
-                    <div class="montant">{{ round(droit.montant) }}&nbsp;€</div>
-                    <span class="montant-detail">
-                      /
-                      <span ng-if="droit.description.isMontantAnnuel">an</span>
-                      <span ng-if="!droit.description.isMontantAnnuel">mois</span>
-                      environ
-                    </span>
-                  </div>
-                  <div ng-if="!droit.montant">
-                    <span class="montant-detail">Pas de droit sur l'année glissante, renseignez vos ressources 2012</span>
-                  </div>
-                </div>
-              </div>
+          </div>
+          <div class="col-sm-8 description">
+            <span class="text-warning fa fa-exclamation-triangle" ng-if="droit.yearMoins2 && !situation.ressourcesYearMoins2Captured"></span>
+            <span>{{ droit.description.label }}<span>
+          </div>
+          <div class="col-sm-2">
+            <div class="montant" ng-if="false !== droit.description.hasMontant">
+              {{ round(droit.montant) }}&nbsp;€
             </div>
-            <div class="caption">
-              <p>{{ droit.description.description }}</p>
-
-              <p class="alert alert-warning-inverse" ng-if="isDroitCmuAcs(droit)">
-                <i class="fa fa-exclamation-triangle"></i>
-                <b>Attention</b> : vous êtes éligible à ce droit si vous n'êtes pas déjà ayant droit
-                d'une autre mutuelle (parents, conjoint...).
-              </p>
-
-              <div class="row">
-                <div class="col-xs-6">
-                  <a
-                    href="{{ droit.description.link }}"
-                    class="btn btn-sm btn-default btn-block"
-                    target="_blank">
-                      <i class="fa fa-external-link"></i>
-                      Plus d'informations
-                  </a>
-                </div>
-                <div class="col-xs-6">
-                  <a
-                    class="btn btn-sm btn-primary btn-block"
-                    ng-if="hasDroitForms(droit)"
-                    ui-sref="infos_complementaires.individus({droit: droit.description.id})">
-                    Engager les démarches
-                  </a>
-                </div>
-              </div>
+            <div class="montant-detail" ng-if="false !== droit.description.hasMontant">
+              /
+              <span ng-if="droit.description.isMontantAnnuel">an</span>
+              <span ng-if="!droit.description.isMontantAnnuel">mois</span>
             </div>
+          </div>
+          <div class="col-sm-1 description">
+            <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"></i>
+          </div>
+        </div>
+      </accordion-heading>
+
+      <div class="caption">
+        <p>{{ droit.description.description }}</p>
+
+        <p class="alert alert-warning-inverse" ng-if="isDroitCmuAcs(droit)">
+          <i class="fa fa-exclamation-triangle"></i>
+          <b>Attention</b><br>Vous êtes éligible à ce droit si vous n'êtes pas déjà ayant droit
+          d'une autre mutuelle (parents, conjoint...).
+        </p>
+
+        <div class="row">
+          <div class="col-xs-3 col-xs-offset-6">
+            <a
+              href="{{ droit.description.link }}"
+              class="btn btn-sm btn-default btn-block"
+              target="_blank">
+              <i class="fa fa-external-link"></i>
+              Plus d'informations
+            </a>
+          </div>
+          <div class="col-xs-3">
+            <a
+              class="btn btn-sm btn-primary btn-block"
+              ng-if="hasDroitForms(droit)"
+              ui-sref="infos_complementaires.individus({droit: droit.description.id})">
+              Engager les démarches
+            </a>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </accordion-group>
+  </accordion>
 
-  <div class="bloc-aucune-aide-eligible text-center" ng-if="!droits.length && !droitsYearMoins2.length && !error">
+  <div class="bloc-aucune-aide-eligible text-center" ng-if="!droits.length && !error">
     <h2>Vous n'êtes éligible à aucune aide.</h2>
   </div>
 </div>
+
 
 <div class="alert alert-warning-inverse" ng-if="!situation.patrimoine.captured && (droits.length || droitsYearMoins2.length)">
   <div class="row">

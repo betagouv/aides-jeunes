@@ -593,3 +593,64 @@ $autre-lighter: #cce4e7;
 .ressource-montant-tns {
   @include ressource-montant($tns, $tns-light, $tns-lighter);
 }
+
+.frame-resultats {
+  @extend .frame-foyer;
+  margin-bottom: 15px;
+}
+
+.warning {
+  @extend .text-warning;
+  margin-bottom: 10px;
+}
+
+.frame-resultats {
+  .panel-group {
+    margin-bottom: 0;
+  }
+}
+
+.resultats-accordion {
+
+  &.panel-opened {
+    .panel-heading {
+      background-color: whitesmoke;
+    }
+  }
+
+  .panel-heading {
+    background-color: white;
+    padding: 5px 0;
+
+    &:hover {
+      background-color: darken(whitesmoke, 3%);
+    }
+
+    .montant {
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .montant-detail {
+      font-size: 12px;
+    }
+  }
+
+  .panel-title .description {
+    padding-top: 0.5em;
+  }
+}
+
+.resultats-accordion-muted {
+  @extend .resultats-accordion;
+
+  .panel-heading {
+    background-color: whitesmoke;
+    color: #888;
+  }
+}
+
+.droit-img {
+  height: 2em;
+  padding-left: 5px;
+}

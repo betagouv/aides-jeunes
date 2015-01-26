@@ -9,7 +9,6 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     $scope.error = false;
     $scope.droits = null;
     $scope.droitsNonEligibles = null;
-    $scope.panelRessourcesOpen = true;
 
     SimulationService.simulate($scope.situation).then(function(result) {
         _.forEach(result.droitsYearMoins2, function(droit) {

@@ -608,10 +608,11 @@ $autre-lighter: #cce4e7;
   .panel-group {
     margin-bottom: 0;
   }
+
+  color: $text-color;
 }
 
 .resultats-accordion {
-
   &.panel-opened {
     .panel-heading {
       background-color: whitesmoke;
@@ -653,4 +654,9 @@ $autre-lighter: #cce4e7;
 .droit-img {
   height: 2em;
   padding-left: 5px;
+}
+
+.panel-non-elligible {
+  @extend .col-md-4;
+  margin-top: 10px;
 }

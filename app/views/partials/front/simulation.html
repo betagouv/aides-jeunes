@@ -90,43 +90,47 @@
 </div>
 
 
-<div class="alert alert-warning-inverse" ng-if="!situation.patrimoine.captured && (droits.length || droitsYearMoins2.length)">
+<div class="frame-resultats" ng-if="!situation.patrimoine.captured && (droits.length || droitsYearMoins2.length)">
   <div class="row">
     <div class="col-sm-8">
+      <i class="fa fa-info-circle"></i>
       Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ?
       Vous devez renseigner des informations complémentaires.
     </div>
     <div class="col-sm-4 text-right">
-      <a class="btn btn-primary btn-block" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
+      <a class="btn btn-default" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
     </div>
   </div>
 </div>
 
-<hr>
-
-<h4 ng-if="droitsNonEligibles.length">Aides étudiées pour lesquelles vous n'êtes pas éligible</h4>
-
-<div class="row">
-  <div ng-repeat="droit in droitsNonEligibles">
-    <div class="clearfix" ng-if="$index % 3 === 0"></div>
-    <div class="col-md-4" >
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{ droit.label }}</h3>
-        </div>
-        <div class="panel-body">
-          <p>{{ droit.description }}</p>
-          <a
-            href="{{ droit.link }}"
-            class="btn btn-sm btn-default"
-            target="_blank">
-            <i class="fa fa-external-link"></i>
-            Plus d'informations
-          </a>
+<div ng-if="droitsNonEligibles.length">
+  <hr>
+  <h4>Aides étudiées pour lesquelles vous n'êtes pas éligible</h4>
+  <accordion close-others="false">
+    <div class="row">
+      <div ng-repeat="droit in droitsNonEligibles">
+        <div ng-if="$index % 3 === 0" class="clearfix"></div>
+        <div class="panel-non-elligible">
+          <accordion-group is-open="droit.open">
+            <accordion-heading>
+              {{ droit.label }}
+              <div class="pull-right">
+                <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"></i>
+              </div>
+            </accordion-heading>
+            <p>{{ droit.description }}</p>
+            <a
+              href="{{ droit.link }}"
+              class="btn btn-sm btn-default"
+              target="_blank">
+              <i class="fa fa-external-link"></i>
+              Plus d'informations
+            </a>
+          </accordion-group>
         </div>
       </div>
     </div>
-  </div>
+  </accordion>
 </div>
 
 <hr>

@@ -64,7 +64,7 @@
         </p>
 
         <div class="row">
-          <div class="col-sm-3 col-sm-offset-6">
+          <div ng-class="{'col-sm-offset-6': hasDroitForms(droit), 'col-sm-offset-9': !hasDroitForms(droit)}" class="col-sm-3 col-sm-offset-6">
             <a
               href="{{ droit.description.link }}"
               class="btn btn-sm btn-default btn-block"
@@ -112,12 +112,14 @@
     <div class="row">
       <div ng-repeat="droit in droitsNonEligibles">
         <div ng-if="$index % 3 === 0" class="clearfix"></div>
-        <div class="panel-non-elligible">
+        <div class="panel-non-eligible">
           <accordion-group is-open="droit.open">
             <accordion-heading>
-              {{ droit.label }}
-              <div class="pull-right">
-                <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"></i>
+              <div class="row">
+                <div class="col-sm-10">{{ droit.label }}</div>
+                <div class="col-sm-2">
+                  <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"></i>
+                </div>
               </div>
             </accordion-heading>
             <p>{{ droit.description }}</p>

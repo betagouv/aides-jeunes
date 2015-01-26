@@ -91,7 +91,6 @@ angular.module('ddsCommon').directive('recapSituation', function($timeout, resso
             };
 
             $scope.ressourcesYearMoins2 = mapRessourcesYearMoins2();
-            debugger;
 
             var mapPatrimoine = function(patrimoine) {
                 $scope.patrimoine = [];

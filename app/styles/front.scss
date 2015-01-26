@@ -605,6 +605,10 @@ $autre-lighter: #cce4e7;
 }
 
 .frame-resultats {
+  @media (max-width: $screen-sm-min) {
+    padding: 4px;
+  }
+
   .panel-group {
     margin-bottom: 0;
   }

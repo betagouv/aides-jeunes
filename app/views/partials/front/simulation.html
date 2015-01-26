@@ -22,8 +22,7 @@
   <accordion close-others="true">
     <accordion-group
       class="resultats-accordion"
-      ng-class="{
-        'resultats-accordion-muted': droit.yearMoins2 && !situation.ressourcesYearMoins2Captured,
+      ng-class="{'resultats-accordion-muted': droit.yearMoins2 && !situation.ressourcesYearMoins2Captured,
         'panel-opened': droit.open}" is-open="droit.open" ng-repeat="droit in droits">
       <accordion-heading>
         <div class="row">
@@ -57,6 +56,11 @@
           <i class="fa fa-exclamation-triangle"></i>
           <b>Attention</b><br>Vous êtes éligible à ce droit si vous n'êtes pas déjà ayant droit
           d'une autre mutuelle (parents, conjoint...).
+        </p>
+
+        <p class="alert alert-warning-inverse" ng-if="droit.yearMoins2 && !situation.ressourcesYearMoins2Captured">
+          <i class="fa fa-warning"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
+          <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
         </p>
 
         <div class="row">

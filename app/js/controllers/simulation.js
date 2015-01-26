@@ -11,10 +11,7 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     $scope.droitsNonEligibles = null;
 
     SimulationService.simulate($scope.situation).then(function(result) {
-        _.forEach(result.droitsYearMoins2, function(droit) {
-            droit.yearMoins2 = true;
-        });
-        $scope.droits = _.union(result.droits, result.droitsYearMoins2);
+        $scope.droits = result.droits;
         $scope.droitsNonEligibles = result.droitsNonEligibles;
     }, function() {
         $scope.error = true;

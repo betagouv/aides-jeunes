@@ -66,7 +66,7 @@
 <div ng-if="situation.ressourcesYearMoins2Captured">
   <a ui-sref="foyer.ressourcesYearMoins2" class="pull-right"><i class="fa fa-edit"></i> Modifier</a>
   <h4>Année {{ yearMoins2 }}</h4>
-  Revenu fiscal de référence : {{ situation.rfr }} €
+  <span ng-if="rfrCaptured">Revenu fiscal de référence : {{ situation.rfr }} €</span>
   <accordion
     close-others="true"
     class="accordion-ressources">

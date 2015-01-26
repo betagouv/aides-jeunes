@@ -1,6 +1,6 @@
 'use strict';
 
-/* global moment */
+/* global moment, _ */
 
 describe('Service: situationService', function () {
 
@@ -177,6 +177,26 @@ describe('Service: situationService', function () {
                 {periode: '2014-05', montant: 100},
                 {periode: '2014-06', montant: 100}
             ]);
+        });
+    });
+
+    describe('function hasEnfantAuCollege()', function() {
+        it('should return true only when situation has a child with scolarite "college"', function() {
+            // given
+            var situations = [
+                { individus: [{ role: 'enfant', scolarite: 'college' }] },
+                { individus: [{ role: 'enfant', scolarite: 'lycee' }] },
+                { individus: [{ role: 'personneSousMemeToit', scolarite: 'college' }] },
+                { individus: [] }
+            ];
+
+            // when
+            var results = _.map(situations, function(situation) {
+                return service.hasEnfantAuCollege(situation);
+            });
+
+            // then
+            expect(results).toEqual([true, false, false, false]);
         });
     });
 });

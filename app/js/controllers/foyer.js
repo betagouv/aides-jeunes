@@ -65,7 +65,13 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
     });
 
     $scope.$on('rnc', function() {
-        $state.go('foyer.rfr');
+        if (SituationService.hasEnfantAuCollege($scope.situation)) {
+            $state.go('foyer.rfr');
+        } else {
+            $scope.situation.ressourcesYearMoins2Captured = true;
+            $scope.$broadcast('ressourcesYearMoins2Captured');
+            goToSimulation();
+        }
     });
 
     $scope.$on('rfr', function(e, rfr) {

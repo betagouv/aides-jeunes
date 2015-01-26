@@ -25,8 +25,19 @@
   </div>
 
   <div ng-if="situation.ressourcesYearMoins2Captured">
-    <h4>RFR</h4>
-    RFR année - 2 : {{ situation.rfr }} €
+    <div ng-if="rfrCaptured">
+      <h4>RFR</h4>
+      RFR {{ yearMoins2 }} : {{ situation.rfr }} €
+    </div>
+    <h4>Ressources {{ yearMoins2 }}</h4>
+    <div class="row">
+      <div class="col-sm-6" ng-repeat="individu in ressourcesYearMoins2">
+        <h5>{{ individu.label }}</h5>
+        <div ng-repeat="ressource in individu.ressources">
+          {{ ressource.label }}&nbsp;: {{ ressource.montant }}&nbsp;€
+        </div>
+      </div>
+    </div>
   </div>
 
   <h4>Logement</h4>

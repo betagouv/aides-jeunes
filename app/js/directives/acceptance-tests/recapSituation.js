@@ -10,27 +10,23 @@ angular.module('ddsCommon').directive('recapSituation', function($timeout, resso
         controller: function($scope) {
             var situation = $scope.situation;
 
-            var mapIndividu = function(individu) {
-                var target = {};
+            $scope.rfrCaptured = angular.isDefined($scope.situation.rfr);
+
+            $scope.yearMoins2 = moment(situation.dateDeValeur).subtract(2, 'years').format('YYYY');
+
+            var individuLabel = function(individu) {
                 if ('demandeur' === individu.role) {
-                    target.label = 'Demandeur';
+                    return 'Demandeur';
                 } else if ('conjoint' === individu.role) {
-                    target.label = 'Conjoint';
+                    return 'Conjoint';
                 } else {
-                    target.label = individu.firstName + ' (' + individu.role + ')';
+                    return individu.firstName + ' (' + individu.role + ')';
                 }
+            };
 
-                target.dateDeNaissance = individu.dateDeNaissance;
-                var dateNaissance = moment(individu.dateDeNaissance);
-                target.age = moment(situation.dateDeValeur).diff(dateNaissance, 'years');
-
-                target.nationalite = _.find(nationalites, {id: individu.nationalite}).label;
-
-                target.statutsSpecifiques = IndividuService.formatStatutsSpecifiques(individu);
-
-                target.ressources = [];
-                var ressources = individu.ressources;
-                ressources = _.groupBy(ressources, 'type');
+            var mapIndividuRessources = function(individu) {
+                var result = [];
+                var ressources = _.groupBy(individu.ressources, 'type');
                 _.forEach(ressources, function(subRessources, type) {
                     if (_.find(categoriesRnc, { id: type })) {
                         return;
@@ -38,7 +34,7 @@ angular.module('ddsCommon').directive('recapSituation', function($timeout, resso
                     var ressourceType = _.find(ressourceTypes, { id: type });
                     var label = ressourceType ? ressourceType.label : type + ' (cette ressource n\'est plus capturée)';
                     var values = { type: label, values: [] };
-                    target.ressources.push(values);
+                    result.push(values);
                     for (var i = 0; i < 3; i++) {
                         var ressource = subRessources[i];
                         if (ressource) {
@@ -59,8 +55,43 @@ angular.module('ddsCommon').directive('recapSituation', function($timeout, resso
                     });
                 });
 
+                return result;
+            };
+
+            var mapIndividu = function(individu) {
+                var dateDeNaissance = moment(individu.dateDeNaissance);
+                var target = {
+                    label: individuLabel(individu),
+                    dateDeNaissance: individu.dateDeNaissance,
+                    age: moment(situation.dateDeValeur).diff(dateDeNaissance, 'years'),
+                    nationalite: _.find(nationalites, {id: individu.nationalite}).label,
+                    statutsSpecifiques: IndividuService.formatStatutsSpecifiques(individu),
+                    ressources: mapIndividuRessources(individu)
+                };
+
                 return target;
             };
+
+            var mapRessourcesYearMoins2 = function() {
+                var target = _.map(IndividuService.getParents($scope.situation.individus), function(individu) {
+                    var individuVM = { label: individuLabel(individu), ressources: [] };
+                    categoriesRnc.forEach(function(categorieRnc) {
+                        var ressource = _.find(individu.ressources, { type: categorieRnc.id });
+                        if (ressource) {
+                            individuVM.ressources.push({
+                                label: categorieRnc.label,
+                                montant: ressource.montant
+                            });
+                        }
+                    });
+                    return individuVM;
+                });
+
+                return target;
+            };
+
+            $scope.ressourcesYearMoins2 = mapRessourcesYearMoins2();
+            debugger;
 
             var mapPatrimoine = function(patrimoine) {
                 $scope.patrimoine = [];

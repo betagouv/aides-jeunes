@@ -1,7 +1,11 @@
 .loading-spinner {
   position: absolute;
   top: 20px;
-  left: 235px;
+  left: 285px;
+
+  @media (max-width: $screen-sm-min) {
+    left: 195px;
+  }
 
   .loading-spinner-icon {
     width: 20px;

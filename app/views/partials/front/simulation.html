@@ -19,11 +19,14 @@
       <a class="btn btn-primary" ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
     </div>
   </div>
+
   <accordion close-others="true">
     <accordion-group
       class="resultats-accordion"
+      ng-repeat="droit in droits"
       ng-class="{'resultats-accordion-muted': droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured,
-        'panel-opened': droit.open}" is-open="droit.open" ng-repeat="droit in droits">
+        'panel-opened': droit.open}"
+      is-open="droit.open" >
       <accordion-heading>
         <div class="row">
           <div class="col-xs-2 col-sm-1">

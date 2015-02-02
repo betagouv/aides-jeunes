@@ -48,16 +48,19 @@
 
     <header>
       <nav role="navigation" class="main-navbar" ng-class="{'has-intro': showIntro}">
-        <div class="intro" ng-cloak ng-if="showIntro">
-          <div class="intro-content">
-            <span ng-click="hideIntro()">
-              <strong>Service expérimental</strong>.
-              Ici l'État innove avec la société civile pour offrir aux usagers le service public de demain.
-            </span>
-            <span>
-              <a ui-sref="a_propos"><strong>En savoir plus...</strong></a>
-            </span>
-            <span class="fa fa-close" ng-click="hideIntro()"></span>
+        <div class="intro-holder">
+          <div class="intro" ng-cloak ng-if="showIntro">
+            <div class="intro-content">
+              <span ng-click="hideIntro()">
+                <strong>Service expérimental</strong>.
+                Ici l'État innove avec la société civile pour offrir aux usagers le service public de demain.
+              </span>
+              <span>
+                <a ui-sref="a_propos"><strong>En savoir plus...</strong></a>
+              </span>
+              <span class="fa fa-close" ng-click="hideIntro()"></span>
+            </div>
+        <div class="clearfix"></div>
           </div>
         </div>
         <div class="container">

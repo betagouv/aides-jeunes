@@ -88,6 +88,7 @@ $body-front-base-padding: 60px;
     padding: 5px;
     font-size: 15px;
     font-weight: bold;
+    z-index: 10;
   }
 }
 
@@ -337,12 +338,12 @@ $autre-lighter: #cce4e7;
 }
 
 .intro {
-  position: absolute;
   width: 100%;
   background: white;
   padding: 14px;
-  padding-left: 75px;
+  padding-right: 80px;
   color: #333;
+  z-index: 5;
 
   .intro-content {
     text-align: center;
@@ -358,20 +359,16 @@ $autre-lighter: #cce4e7;
   transition: all 0.5s linear;
 }
 
-.main-navbar.has-intro {
-  padding-top: 46px;
-}
-
 .body-front.has-intro {
   padding-top: $body-front-base-padding + 46px;
 }
 
 .intro.ng-enter, .intro.ng-leave.ng-leave-active {
-  top: -48px;
+  margin-top: -46px;
 }
 
 .intro, .intro.ng-enter.ng-enter-active {
-  top: 0;
+  margin-top: 0px;
 }
 
 .thumbnail {

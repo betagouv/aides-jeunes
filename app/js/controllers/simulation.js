@@ -20,7 +20,7 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     });
 
     $scope.round = function(montant) {
-        return Math.floor(montant / 10) * 10;
+        return Math.round(montant / 10) * 10;
     };
 
     $scope.cerfaForms = function(droit) {

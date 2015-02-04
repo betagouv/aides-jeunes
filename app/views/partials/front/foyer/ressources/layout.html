@@ -2,8 +2,7 @@
   <ui-view>
     <h1>Ressources de votre foyer</h1>
     <p>
-      Veuillez déclarer ici les ressources de votre foyer perçues <strong>entre {{ debutAnnee }} et {{ finAnnee }}</strong>,
-      en net perçu pour les salaires ou indemnités.
+      Veuillez déclarer ici vos ressources <strong>nettes</strong> perçues <strong>entre {{ debutAnnee }} et {{ finAnnee }}</strong>.
     </p>
     <form method="post" name="form" novalidate ng-submit="submit(form)">
       <div class="ressources-individu" ng-repeat="(individuIndex, individuVM) in individusVM">

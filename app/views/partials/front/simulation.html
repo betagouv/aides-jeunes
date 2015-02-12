@@ -24,8 +24,7 @@
     <accordion-group
       class="resultats-accordion"
       ng-repeat="droit in droits"
-      ng-class="{'resultats-accordion-muted': droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured,
-        'panel-opened': droit.open}"
+      ng-class="{'resultats-accordion-muted': droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured,'panel-opened': droit.open}"
       is-open="droit.open" >
       <accordion-heading>
         <div class="row">
@@ -33,7 +32,10 @@
             <img class="droit-img" ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
           </div>
           <div class="col-xs-6 col-sm-8 description">
-            <span class="text-warning fa fa-exclamation-triangle" ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured"></span>
+            <span
+              class="text-warning fa fa-exclamation-triangle"
+              ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured"
+            ></span>
             <span>{{ droit.description.label }}<span>
           </div>
           <div class="col-xs-3 col-sm-2">
@@ -54,12 +56,6 @@
 
       <div class="caption">
         <p>{{ droit.description.description }}</p>
-
-        <p class="alert alert-warning-inverse" ng-if="isDroitCmuAcs(droit)">
-          <i class="fa fa-exclamation-triangle"></i>
-          <b>Attention</b><br>Vous êtes éligible à ce droit si vous n'êtes pas déjà ayant droit
-          d'une autre mutuelle (parents, conjoint...).
-        </p>
 
         <p class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured">
           <i class="fa fa-warning"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.

@@ -27,10 +27,6 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         return CerfaService.getCerfaFormsFromDroit(droit, $scope.situation);
     };
 
-    $scope.isDroitCmuAcs = function(droit) {
-        return _.contains(['cmu_c', 'acs'], droit.description.id);
-    };
-
     $scope.hasDroitForms = function(droit) {
         return CerfaService.hasDroitForms(droit.description);
     };

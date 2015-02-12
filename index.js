@@ -20,6 +20,7 @@ module.exports = function(app) {
         });
 
         app.use('/acceptance-tests', express.static(path.join(__dirname, 'app')));
+        app.use('/recap-situation', express.static(path.join(__dirname, 'app')));
         app.use(express.static(path.join(__dirname, '.tmp')));
         app.use(express.static(path.join(__dirname, 'app')));
 
@@ -32,6 +33,7 @@ module.exports = function(app) {
 
         app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
         app.use('/acceptance-tests', express.static(path.join(__dirname, 'dist')));
+        app.use('/recap-situation', express.static(path.join(__dirname, 'dist')));
         app.use(express.static(path.join(__dirname, 'dist')));
 
         viewsDirectory += '/dist/views';
@@ -50,8 +52,14 @@ module.exports = function(app) {
         res.sendfile(viewsDirectory + '/acceptance-tests.html');
     }
 
+
+
     app.route('/acceptance-tests').get(renderAcceptanceTests);
     app.route('/acceptance-tests/*').get(renderAcceptanceTests);
+
+    app.route('/recap-situation/*').get(function(req, res) {
+        res.sendfile(viewsDirectory + '/embed.html');
+    });
 
     app.route('/*').get(function(req, res) {
         res.sendfile(viewsDirectory + '/front.html');

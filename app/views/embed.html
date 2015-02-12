@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="ddsRecapSituation" lang="fr" itemscope itemtype="http://schema.org/Article">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="$state.current.data.pageTitle + 'Simulez toutes vos aides en ligne - mes-aides.gouv.fr'">Simulez toutes vos aides en ligne - mes-aides.gouv.fr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Mes-aides vous permet de simuler pour votre foyer les principales prestations sociales auxquelles vous avez droit, en un seul questionnaire" />
+
+    <!-- build:css({.tmp,app}) /styles/front.css -->
+    <link rel="stylesheet" href="/styles/front.css">
+    <!-- endbuild -->
+    <base href="/recap-situation/">
+  </head>
+  <body class="body-front">
+    <ui-view></ui-view>
+
+    <!-- build:js(app) /js/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <!-- endbower -->
+    <script src="bower_components/moment/lang/fr.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) /js/scripts.js -->
+    <script src="js/embed.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/common.js"></script>
+
+    <script src="js/constants/situationsFamiliales.js"></script>
+    <script src="js/constants/ressourceTypes.js"></script>
+    <script src="js/constants/situationsPro.js"></script>
+    <script src="js/constants/nationalites.js"></script>
+    <script src="js/constants/logementTypes.js"></script>
+    <script src="js/constants/cerfaForms.js"></script>
+    <script src="js/constants/piecesJustificatives.js"></script>
+    <script src="js/constants/droits.js"></script>
+
+    <script src="js/services/individuService.js"></script>
+
+    <script src="js/directives/date.js"></script>
+    <script src="js/directives/dateAutocomplete.js"></script>
+    <script src="js/directives/dateNaissanceMaxAge.js"></script>
+    <script src="js/directives/individuBlock.js"></script>
+    <script src="js/directives/focus.js"></script>
+    <script src="js/directives/acceptance-tests/recapSituation.js"></script>
+    <script src="js/directives/acceptance-tests/keywordInput.js"></script>
+
+    <script src="js/filters/strings.js"></script>
+    <script src="js/filters/individuRole.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

@@ -422,7 +422,7 @@ module.exports = function (grunt) {
         },
         dev: {
             options: {
-                dest: '<%= yeoman.app %>/ludwig-constants.js'
+                dest: '<%= yeoman.app %>/js/ludwig-constants.js'
             }
         },
         prod: {

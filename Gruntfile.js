@@ -424,11 +424,6 @@ module.exports = function (grunt) {
             options: {
                 dest: '<%= yeoman.app %>/js/ludwig-constants.js'
             }
-        },
-        prod: {
-            options: {
-                dest: '<%= yeoman.dist %>/ludwig-constants.js'
-            }
         }
     },
 
@@ -511,7 +506,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'subgrunt:ludwig',
     'clean:dist',
-    'ngconstant:prod',
+    'ngconstant:dev',
     'bower-install',
     'useminPrepare',
     'concurrent:dist',

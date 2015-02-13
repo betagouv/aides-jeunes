@@ -46,32 +46,10 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             }
         })
         .state('contribuez', {
-            url: '/contribuez?testId?keyword?state?organization',
-            controller: 'ContribuezCtrl',
+            url: '/contribuez',
             templateUrl: '/partials/contribuez.html',
-            abstract: true,
-            resolve: {
-                keywords: function(AcceptanceTestsService) {
-                    return AcceptanceTestsService.getKeywords();
-                }
-            },
             data: {
                 pageTitle: 'Contribuez ! - '
-            }
-        })
-        .state('contribuez.list', {
-            url: '',
-            templateUrl: '/acceptance-tests/partials/test-list.html',
-            controller: 'TestListCtrl',
-            resolve: {
-                acceptanceTests: function(AcceptanceTestsService, $stateParams) {
-                    var filters = {
-                        keyword: $stateParams.keyword,
-                        state: ['validated']
-                    };
-
-                    return AcceptanceTestsService.get(filters, true);
-                }
             }
         })
         .state('faq', {
@@ -79,6 +57,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/faq.html',
             data: {
                 pageTitle: 'FAQ - '
+            }
+        })
+        .state('tests', {
+            url: '/tests',
+            onEnter: function($window) {
+                debugger;
+                $window.location.href = '/tests';
             }
         })
         .state('foyer', {

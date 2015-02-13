@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('ddsCommon').directive('recapSituation', function($timeout, $sce, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService) {
+angular.module('ddsRecapSituation').directive('recapSituation', function($timeout, $sce, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService) {
     return {
         restrict: 'E',
-        templateUrl: '/acceptance-tests/partials/situation.html',
+        templateUrl: '/partials/recap-situation.html',
         scope: {
             situation: '='
         },

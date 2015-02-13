@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').constant('situationsFamiliales', [
+angular.module('ddsCommon').constant('situationsFamiliales', [
     {
         value: 'mariage',
         label: 'Marié(e)',

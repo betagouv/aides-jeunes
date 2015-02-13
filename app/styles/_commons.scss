@@ -56,9 +56,6 @@
   .panel-title {
     font-weight: 500;
   }
-  .test-detail {
-    color: $color-background;
-  }
 }
 
 .panel-danger {
@@ -73,125 +70,11 @@
   @include panel-custom($brand-success);
 }
 
-.filter-box {
-  margin: 5px 0;
-  background-color: whitesmoke;
-  border: 1px solid darken(whitesmoke, 5%);
-
-  .page-header {
-    margin-top: 0;
-    margin-bottom: 14px;
-    padding: 5px;
-    background-color: #F9F9F9;
-  }
-
-  .page-header h1 {
-    margin-top: 0;
-    font-size: 16px;
-    padding: 10px 8px;
-  }
-
-  .form-group {
-    margin-bottom: 6px;
-  }
-
-  .btn-sm {
-    padding: 4px 8px;
-  }
-}
-
-.tag-list {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #D6D6D6;
-  background: inherit;
-  padding: 1px 5px;
-  margin: 0;
-  overflow: auto;
-  list-style: none;
-  cursor: text;
-  background-color: white;
-}
-
-.tag-choice {
-  display: block;
-  float: left;
-  margin: 2px 3px;
-  padding: 2px 5px;
-  border: 1px solid #D6D6D6;
-  background-color: #DEE7F8;
-  cursor: pointer;
-}
-
-
-.tag-choice-select {
-  @extend .tag-choice;
-  font-size: 10px;
-  background-color: #DDDDDD;
-}
-
-.tag-new {
-  display: block;
-  float: left;
-  padding: 2px 3px;
-  margin: 2px 3px;
-
-  .tag-input {
-    width: 100%;
-    font-size: 10px;
-    background: none;
-    box-shadow: none;
-    border: none;
-    margin: 0;
-    padding: 0;
-    outline: none;
-    border: none;
-    padding: 1px 5px;
-  }
-}
-
-.tag-show {
-  color: #777;
-  font-size: 10px;
-  font-style: italic;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.tag-show-list {
-  margin: 0;
-  padding: 0;
-  background: inherit;
-  overflow: auto;
-  list-style: none;
-}
-
-.anchor {
-  visibility: hidden;
-  width: 1px;
-}
-
-.detail-situation {
-  padding-top: 10px;
-}
-
 .situation-block {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 5px 0 5px 20px;
   margin-bottom: 2px;
   > h5:first-child {
     margin-top: 0;
-  }
-}
-
-.recap-situation-test {
-  font-size: 12px;
-
-  h4 {
-    margin-top: 10px;
-    margin-bottom: 0;
   }
 }

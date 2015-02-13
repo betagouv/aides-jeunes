@@ -3,14 +3,14 @@
 angular.module('ludwig').directive('scenario', function() {
     return {
       scope: {
-        test: '=',
+          test: '=',
       },
       restrict: 'E',
       template: '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item"' +
       ' ng-src="{{src}}">' +
       '</iframe></div>',
       controller: function($scope, $sce) {
-        $scope.src = $sce.trustAsResourceUrl('http://localhost:9000/recap-situation/' + $scope.test.scenario.situationId);
+          $scope.src = $sce.trustAsResourceUrl('http://localhost:9000/recap-situation/' + $scope.test.scenario.situationId);
       }
     };
 });

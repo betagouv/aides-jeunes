@@ -414,7 +414,7 @@ module.exports = function (grunt) {
         options: {
             name: 'ludwigConstants',
             dest: 'ludwig-constants.js',
-            wrap: '"use strict";\n\n {%= __ngModule %}',
+            wrap: '\'use strict\';\n\n {%= __ngModule %}',
             space: '  ',
             constants: {
                 config: grunt.file.readJSON('ludwig.json')

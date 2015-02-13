@@ -34,3 +34,4 @@ dist
 .project
 .sass-cache
 .tmp
+app/js/ludwig-constants.js

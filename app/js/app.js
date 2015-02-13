@@ -62,7 +62,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('tests', {
             url: '/tests',
             onEnter: function($window) {
-                debugger;
                 $window.location.href = '/tests';
             }
         })

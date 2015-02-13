@@ -36,7 +36,6 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
             expectedResults: expectedResults,
             scenario: { situationId: $scope.situation._id }
         }).success(function(data) {
-            debugger;
             $window.location.href = '/tests/' + data._id + '/edit';
         }).error(function(data) {
             $window.alert(data);

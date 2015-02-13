@@ -430,6 +430,14 @@ module.exports = function (grunt) {
                 dest: '<%= yeoman.dist %>/ludwig-constants.js'
             }
         }
+    },
+
+    subgrunt: {
+        ludwig: {
+          projects: {
+            'node_modules/ludwig-ui': 'build'
+          }
+        }
     }
   });
 
@@ -466,6 +474,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'subgrunt:ludwig',
       'clean:server',
       'ngconstant:dev',
       'bower-install',

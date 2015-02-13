@@ -19,6 +19,31 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         $scope.awaitingResults = false;
     });
 
+    $scope.createTest = function() {
+        var keywords = _.map($scope.droits, function(droit) {
+            return droit.description.id;
+        });
+
+        var expectedResults = _.map($scope.droits, function(droit) {
+            return {
+                code: droit.description.id,
+                expectedValue: droit.montant ? droit.montant : true
+            };
+        });
+
+        $http.post('api/acceptance-tests', {
+            keywords:  keywords,
+            expectedResults: expectedResults,
+            scenario: { situationId: $scope.situation._id }
+        }).success(function(data) {
+            debugger;
+            $window.location.href = '/tests/' + data._id + '/edit';
+        }).error(function(data) {
+            $window.alert(data);
+        });
+    };
+
+
     $scope.round = function(montant) {
         return Math.round(montant / 10) * 10;
     };
@@ -29,9 +54,5 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
 
     $scope.hasDroitForms = function(droit) {
         return CerfaService.hasDroitForms(droit.description);
-    };
-
-    $scope.createTest = function() {
-        $window.location.href = '/acceptance-tests/new/' + $scope.situation._id;
     };
 });

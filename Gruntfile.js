@@ -474,7 +474,6 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
-      'subgrunt:ludwig',
       'clean:server',
       'ngconstant:dev',
       'bower-install',
@@ -510,6 +509,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', [
+    'subgrunt:ludwig',
     'clean:dist',
     'ngconstant:prod',
     'bower-install',

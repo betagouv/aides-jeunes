@@ -10,7 +10,7 @@ angular.module('ludwig').directive('scenario', function() {
       ' ng-src="{{src}}">' +
       '</iframe></div>',
       controller: function($scope, $sce) {
-          $scope.src = $sce.trustAsResourceUrl('http://localhost:9000/recap-situation/' + $scope.test.scenario.situationId);
+          $scope.src = $sce.trustAsResourceUrl(window.serverConfig.mesAidesRootUrl + '/recap-situation/' + $scope.test.scenario.situationId);
       }
     };
 });

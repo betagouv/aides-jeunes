@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html ng-app="ddsRecapSituation" lang="fr" itemscope itemtype="http://schema.org/Article">
+<html ng-app="ddsRecapSituation" lang="fr">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Simulez toutes vos aides en ligne - mes-aides.gouv.fr</title>
+    <title>Embed récap situation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="Mes-aides vous permet de simuler pour votre foyer les principales prestations sociales auxquelles vous avez droit, en un seul questionnaire" />
 
     <!-- build:css({.tmp,app}) /styles/front.css -->
     <link rel="stylesheet" href="/styles/front.css">
@@ -14,7 +13,7 @@
   </head>
   <body>
     <ui-view></ui-view>
-    <!-- build:js(app) /js/vendor.js -->
+    <!-- build:js(app) /js/vendor.recapSituation.js -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -25,7 +24,7 @@
     <script src="bower_components/moment/lang/fr.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) /js/scripts.js -->
+    <!-- build:js({.tmp,app}) /js/scripts.recapSituation.js -->
     <script src="js/embed.js"></script>
     <script src="js/common.js"></script>
 

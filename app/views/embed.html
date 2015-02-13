@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title ng-bind="$state.current.data.pageTitle + 'Simulez toutes vos aides en ligne - mes-aides.gouv.fr'">Simulez toutes vos aides en ligne - mes-aides.gouv.fr</title>
+    <title>Simulez toutes vos aides en ligne - mes-aides.gouv.fr</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="Mes-aides vous permet de simuler pour votre foyer les principales prestations sociales auxquelles vous avez droit, en un seul questionnaire" />
 
@@ -12,7 +12,7 @@
     <!-- endbuild -->
     <base href="/recap-situation/">
   </head>
-  <body class="body-front">
+  <body>
     <ui-view></ui-view>
 
     <!-- build:js(app) /js/vendor.js -->
@@ -39,19 +39,12 @@
     <script src="js/constants/situationsPro.js"></script>
     <script src="js/constants/nationalites.js"></script>
     <script src="js/constants/logementTypes.js"></script>
-    <script src="js/constants/cerfaForms.js"></script>
-    <script src="js/constants/piecesJustificatives.js"></script>
-    <script src="js/constants/droits.js"></script>
 
     <script src="js/services/individuService.js"></script>
 
     <script src="js/directives/date.js"></script>
-    <script src="js/directives/dateAutocomplete.js"></script>
-    <script src="js/directives/dateNaissanceMaxAge.js"></script>
     <script src="js/directives/individuBlock.js"></script>
-    <script src="js/directives/focus.js"></script>
     <script src="js/directives/acceptance-tests/recapSituation.js"></script>
-    <script src="js/directives/acceptance-tests/keywordInput.js"></script>
 
     <script src="js/filters/strings.js"></script>
     <script src="js/filters/individuRole.js"></script>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').directive('recapSituation', function($timeout, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService) {
+angular.module('ddsCommon').directive('recapSituation', function($timeout, $sce, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService) {
     return {
         restrict: 'E',
         templateUrl: '/acceptance-tests/partials/situation.html',
@@ -59,7 +59,7 @@ angular.module('ddsCommon').directive('recapSituation', function($timeout, resso
             };
 
             var mapIndividu = function(individu) {
-                var dateDeNaissance = moment(individu.dateDeNaissance);
+                var dateDeNaissance = moment(individu.dateDeNaissance, 'MM/DD/YYYY');
                 var target = {
                     label: individuLabel(individu),
                     dateDeNaissance: individu.dateDeNaissance,
@@ -150,25 +150,27 @@ angular.module('ddsCommon').directive('recapSituation', function($timeout, resso
 
             var mapLogement = function(logement) {
                 $scope.logement = { type : _.find(logementTypes, { id: logement.type }).label };
+
+                var typeLogementHtml = '';
                 if ('locataire' === logement.type) {
-                    $scope.logement.type += ' d\'un logement de type ' + logement.locationType;
-                    $scope.logement.type += '<br>Colocation : ' + (logement.coloc ? 'oui' : 'non');
-                    $scope.logement.type += '<br>Propriétaire du logement membre de la famille : ';
-                    $scope.logement.type += (logement.membreFamilleProprietaire ? 'oui' : 'non');
+                   typeLogementHtml += ' d\'un logement de type ' + logement.locationType;
+                   typeLogementHtml += '<br>Colocation : ' + (logement.coloc ? 'oui' : 'non');
+                   typeLogementHtml += '<br>Propriétaire du logement membre de la famille : ';
+                   typeLogementHtml += (logement.membreFamilleProprietaire ? 'oui' : 'non');
                 } else if ('proprietaire' === logement.type) {
-                    $scope.logement.type += ', prêt en accession : ';
+                   typeLogementHtml += ', prêt en accession : ';
                     if (logement.primoAccedant) {
-                        $scope.logement.type += 'oui, prêt conventionné : ' + (logement.pretConventionne ? 'oui' : 'non');
+                       typeLogementHtml += 'oui, prêt conventionné : ' + (logement.pretConventionne ? 'oui' : 'non');
                     } else {
-                        $scope.logement.type += 'non';
+                       typeLogementHtml += 'non';
                     }
                 }
 
                 $scope.logement.loyer = logement.loyer;
                 $scope.logement.codePostal = logement.adresse.codePostal;
                 $scope.logement.ville = logement.adresse.ville;
+                $scope.logement.type = $sce.trustAsHtml(typeLogementHtml);
             };
-
             $scope.individus = _.map(situation.individus, mapIndividu);
 
             if (situation.patrimoine) {

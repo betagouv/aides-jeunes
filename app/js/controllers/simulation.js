@@ -20,10 +20,6 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     });
 
     $scope.createTest = function() {
-        var keywords = _.map($scope.droits, function(droit) {
-            return droit.description.id;
-        });
-
         var expectedResults = _.map($scope.droits, function(droit) {
             return {
                 code: droit.description.id,
@@ -32,7 +28,6 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         });
 
         $http.post('api/acceptance-tests', {
-            keywords:  keywords,
             expectedResults: expectedResults,
             scenario: { situationId: $scope.situation._id }
         }).success(function(data) {

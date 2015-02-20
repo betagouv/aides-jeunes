@@ -59,6 +59,11 @@ angular.module('ddsCommon').constant('situationsPro', [
         isStatutSpecifique: true
     },
     {
+        id: 'garde_alternee',
+        label: 'En garde alternée',
+        isStatutSpecifique: true
+    },
+    {
         id: 'autre',
         label: 'Autre',
         isStatutSpecifique: true

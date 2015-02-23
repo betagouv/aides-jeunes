@@ -4,10 +4,15 @@
 
 describe('Controller: FoyerRessourcesCtrl', function() {
 
-    var scope, _ressourceTypes_;
+    var scope, _ressourceTypes_, form;
 
     beforeEach(function() {
-        scope = { $on: function() {}, $emit: function() {}, situation: {} };
+        scope = {
+            $on: function() {},
+            $emit: function() {},
+            situation: { dateDeValeur: '2013-04-10' }
+        };
+        form = { $valid: true };
         module('ddsApp');
         inject(function(ressourceTypes) {
             _ressourceTypes_ = ressourceTypes;
@@ -57,7 +62,6 @@ describe('Controller: FoyerRessourcesCtrl', function() {
 
         it('should map the previous individu ressource amounts to the view model', function() {
             // given
-            scope.situation.dateDeValeur = '2013-04-10';
             _ressourceTypes_ = [{ id: 'toto' }];
             scope.situation.individus = [{
                 ressources: [
@@ -78,7 +82,6 @@ describe('Controller: FoyerRessourcesCtrl', function() {
 
         it('should round amounts when mapping individus ressources', function() {
             // given
-            scope.situation.dateDeValeur = '2013-04-10';
             _ressourceTypes_ = [{ id: 'toto' }];
             scope.situation.individus = [{
                 ressources: [
@@ -100,7 +103,6 @@ describe('Controller: FoyerRessourcesCtrl', function() {
 
         it('should not map unknown ressource types', function() {
             // given
-            scope.situation.dateDeValeur = '2013-04-10';
             scope.situation.individus = [{
                 ressources: [
                     { type: 'unknown_ressource_type', periode: '2013-03', montant: 10 },
@@ -118,7 +120,6 @@ describe('Controller: FoyerRessourcesCtrl', function() {
     describe('function submit()', function() {
         it('should apply ressource amounts to the individu model, flattened by month', function() {
             // given
-            scope.situation.dateDeValeur = '2013-04-10';
             var individu = {};
             scope.situation.individus = [individu];
             initController();
@@ -127,7 +128,6 @@ describe('Controller: FoyerRessourcesCtrl', function() {
                 montantsMensuels: [100, 200, 300],
                 montantAnnuel: 690
             }];
-            var form = { $valid: true };
 
             // when
             scope.submit(form);
@@ -142,8 +142,12 @@ describe('Controller: FoyerRessourcesCtrl', function() {
         });
 
         it('should remove previous ressources of the individu', function() {
-            scope.situation.dateDeValeur = '2013-04-10';
-            var individu = {};
+            var individu = {
+                ressources: [
+                    { periode: '2013-03', type: 'toto', montant: 133},
+                    { periode: '2013-03', type: 'tata', montant: 122 }
+                ]
+            };
             scope.situation.individus = [individu];
             initController();
             scope.individusVM[0].ressources = [{
@@ -151,11 +155,6 @@ describe('Controller: FoyerRessourcesCtrl', function() {
                 montantsMensuels: [100, 100, 100],
                 montantAnnuel: 750
             }];
-            individu.ressources = [
-                { periode: '2013-03', type: 'toto', montant: 133},
-                { periode: '2013-03', type: 'tata', montant: 122 }
-            ];
-            var form = { $valid: true };
 
             // when
             scope.submit(form);
@@ -164,6 +163,19 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(individu.ressources.length).toBe(12);
             expect(_.where(individu.ressources, { type: 'toto' }).length).toBe(12);
             expect(individu.ressources[0].montant).toBe(100);
+        });
+
+        it('should keep ressources n-2 as is', function() {
+            // given
+            var ressourceN2 = { type: 'rncRevenusActivite', montant: 200 };
+            scope.situation.individus = [{ ressources: [ressourceN2] }];
+            initController();
+
+            // when
+            scope.submit(form);
+
+            // then
+            expect(scope.situation.individus[0].ressources).toEqual([ressourceN2]);
         });
 
         it('should fill the interruptedRessources field of each individu with ressources declared as interrupted', function() {
@@ -179,7 +191,6 @@ describe('Controller: FoyerRessourcesCtrl', function() {
                     ]
                 }
             ];
-            var form = { $valid: true };
 
             // when
             scope.submit(form);
@@ -191,7 +202,6 @@ describe('Controller: FoyerRessourcesCtrl', function() {
 
         it('should emit the "ressourcesUpdated" event', function() {
             // given
-            var form = { $valid: true };
             initController();
             spyOn(scope, '$emit');
 

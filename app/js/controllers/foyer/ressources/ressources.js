@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $state, ressourceTypes, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $state, ressourceTypes, categoriesRnc, SituationService, IndividuService) {
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
     var momentFinAnnee = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1);
     $scope.debutAnnee = momentDebutAnnee.format('MMMM YYYY');
@@ -98,6 +98,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
 
     var applyIndividuVMRessourcesToIndividu = function(individuVM) {
         var individu = individuVM.individu;
+        var previousRessources = individu.ressources;
         individu.ressources = [];
         individu.interruptedRessources = [];
         individuVM.ressources.forEach(function(ressource) {
@@ -145,6 +146,11 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 individu.interruptedRessources.push(ressource.type.id);
             }
         });
+
+        // on réinjecte les ressources RNC
+        individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
+            return !!_.find(categoriesRnc, { id: ressource.type });
+        }));
     };
 
     $scope.submit = function(form) {

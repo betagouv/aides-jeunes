@@ -1,14 +1,20 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, options, situationsFamiliales, SituationService, IndividuService) {
+    $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
+
+    options.minAge = 0;
     if ('enfant' === options.individuRole) {
         options.maxAge = 25;
         options.formPersonneACharge = true;
+        options.captureGardeAlternee = true;
+
+        $scope.statutsSpecifiques = _.remove($scope.statutsSpecifiques, function(statut) {
+          return statut.id !== 'retraite';
+        });
     }
-    options.minAge = 0;
     $scope.options = options;
 
-    $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
     $scope.selectedStatuts = {};
     $scope.situationsMaritales = _.filter(situationsFamiliales, 'isSituationCouple');
     $scope.scolariteOptions = [
@@ -34,8 +40,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         boursier: false,
         role: options.individuRole
     };
-
-    $scope.captureRelationPersonne = options.captureRelationPersonne;
 
     if (true === ($scope.captureRelationConjoint = !!options.captureRelationConjoint)) {
         $scope.individu.relationType = 'mariage';

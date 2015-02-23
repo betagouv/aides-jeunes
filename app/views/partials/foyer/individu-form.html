@@ -123,6 +123,12 @@
           Enceinte
         </label>
       </div>
+      <div class="checkbox" ng-if="options.captureGardeAlternee">
+        <label>
+          <input type="checkbox" ng-model="individu.gardeAlternee">
+          En garde alternée
+        </label>
+      </div>
       <div class="checkbox" ng-repeat="statut in statutsSpecifiques">
         <label>
           <input type="checkbox" ng-model="selectedStatuts[statut.id]">

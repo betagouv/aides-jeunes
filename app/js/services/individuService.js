@@ -61,6 +61,10 @@ angular.module('ddsCommon').service('IndividuService', function($filter, situati
                 statuts.push('boursier');
             }
 
+            if (individu.gardeAlternee) {
+                statuts.push('en garde alternée');
+            }
+
             statuts = _.map(statuts, $filter('lowercaseFirst'));
             statuts = statuts.join(', ');
             statuts = $filter('uppercaseFirst')(statuts);

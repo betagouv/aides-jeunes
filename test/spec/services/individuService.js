@@ -72,20 +72,12 @@ describe('IndividuService', function() {
             expect(result).toBe('Étudiant, retraité');
         });
 
-        it('Should display "enceinte" if the individu has the corresponding field to true', function() {
+        it('Should display "enceinte", "boursier" and "en garde alternée" if the individu has the corresponding fields to true', function() {
             // when
-            var result = service.formatStatutsSpecifiques({ enceinte: true });
+            var result = service.formatStatutsSpecifiques({ enceinte: true, boursier: true, gardeAlternee: true });
 
             // then
-            expect(result).toBe('Enceinte');
-        });
-
-        it('Should display "boursier" if the individu has the corresponding field to true', function() {
-            // when
-            var result = service.formatStatutsSpecifiques({ boursier: true });
-
-            // then
-            expect(result).toBe('Boursier');
+            expect(result).toBe('Enceinte, boursier, en garde alternée');
         });
     });
 

@@ -8,7 +8,7 @@ html {
 }
 
 $main-footer-height: 220px;
-$body-front-base-padding: 60px;
+$body-front-base-padding: 50px;
 
 .body-front {
   margin-bottom: $main-footer-height;
@@ -49,12 +49,12 @@ $body-front-base-padding: 60px;
   .navbar-brand {
     &.logo {
       padding-top: 3px;
-      padding-bottom: 57px;
+      padding-bottom: 47px;
     }
 
     &.title {
-      padding-top: 20px;
-      padding-bottom: 40px;
+      padding-top: 15px;
+      padding-bottom: 35px;
       position: relative;
       left: 20px;
     }

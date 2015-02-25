@@ -46,7 +46,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
     });
 
     var isLogementInMayotte = function(logement) {
-        return logement.adresse.codePostal.startsWith('976');
+        return 0 === logement.adresse.codePostal.indexOf('976');
     };
 
     $scope.$on('logement', function(e, logement) {

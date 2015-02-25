@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $stateParams, $filter, $location, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $stateParams, $filter, $location, $modal, SituationService, IndividuService) {
     var situation = $scope.situation = SituationService.restoreLocal();
 
     $scope.$on('setSituation', function(e, newSituation) {
@@ -45,10 +45,19 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         $state.go('foyer.logement');
     });
 
+    var isLogementInMayotte = function(logement) {
+        return logement.adresse.codePostal.startsWith('976');
+    };
+
     $scope.$on('logement', function(e, logement) {
         situation.logement = logement;
         $scope.$broadcast('logementCaptured');
-        $state.go('foyer.ressources');
+        // affichage de la popup pour les habitants de mayotte
+        if (isLogementInMayotte(logement)) {
+            $modal.open({ templateUrl: '/partials/modal-exclusion-mayotte.html' });
+        } else {
+            $state.go('foyer.ressources');
+        }
     });
 
     var goToSimulation = function() {

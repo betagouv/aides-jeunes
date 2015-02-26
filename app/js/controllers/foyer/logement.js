@@ -22,18 +22,8 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return result;
     };
 
-    var membreFamilleProprietaireCaptured = function() {
-        return 'payant' === logement.type && angular.isDefined(logement.membreFamilleProprietaire);
-    };
-
     $scope.captureMembreFamilleProprietaire = function() {
-        if ('payant' === logement.type) {
-            return true;
-        } else if ('locataire' === logement.type) {
-            return angular.isDefined(logement.colocation);
-        }
-
-        return false;
+        return 'locataire' === logement.type && angular.isDefined(logement.colocation);
     };
 
     $scope.capturePretConventionne = function() {
@@ -51,8 +41,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
         return _.any([
             true === logement.primoAccedant && angular.isDefined(logement.pretConventionne),
-            angular.isDefined(logement.locationType),
-            membreFamilleProprietaireCaptured()
+            angular.isDefined(logement.locationType)
         ]);
     };
 
@@ -60,8 +49,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return _.any([
             false === logement.primoAccedant || true === logement.primoAccedant && angular.isDefined(logement.pretConventionne),
             angular.isDefined(logement.locationType),
-            'gratuit' === logement.type,
-            membreFamilleProprietaireCaptured()
+            'gratuit' === logement.type
         ]);
     };
 

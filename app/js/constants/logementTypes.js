@@ -12,10 +12,6 @@ angular.module('ddsCommon').constant('logementTypes', [
     {
         id: 'gratuit',
         label: 'occupant à titre gratuit'
-    },
-    {
-        id: 'payant',
-        label: 'occupant à titre onéreux'
     }
 ]);
 
@@ -29,13 +25,12 @@ angular.module('ddsCommon').constant('locationTypes', [
         label: 'meublé / hôtel'
     },
     {
-        id: 'hlm',
+        id: 'foyer',
         label: 'Foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)'
     }
 ]);
 
 angular.module('ddsCommon').constant('loyerLabels', {
-    'payant': 'Votre loyer',
     'locataire': 'Votre loyer',
     'proprietaire': 'Votre mensualité totale d’emprunt (par mois)'
 });

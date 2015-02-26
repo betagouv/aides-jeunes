@@ -60,11 +60,13 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
 
             var mapIndividu = function(individu) {
                 var dateDeNaissance = moment(individu.dateDeNaissance, 'MM/DD/YYYY');
+                var nationalite = _.find(nationalites, { id: individu.nationalite });
+                var nationalite = nationalite ? nationalite.label : 'inconnue';
                 var target = {
                     label: individuLabel(individu),
                     dateDeNaissance: individu.dateDeNaissance,
                     age: moment(situation.dateDeValeur).diff(dateDeNaissance, 'years'),
-                    nationalite: _.find(nationalites, {id: individu.nationalite}).label,
+                    nationalite: nationalite,
                     statutsSpecifiques: IndividuService.formatStatutsSpecifiques(individu),
                     ressources: mapIndividuRessources(individu)
                 };
@@ -149,14 +151,15 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
             };
 
             var mapLogement = function(logement) {
-                $scope.logement = { type : _.find(logementTypes, { id: logement.type }).label };
-
-                var typeLogementHtml = '';
+                var typeLogementHtml = _.find(logementTypes, { id: logement.type }).label;
                 if ('locataire' === logement.type) {
-                   typeLogementHtml += ' d\'un logement de type ' + logement.locationType;
-                   typeLogementHtml += '<br>Colocation : ' + (logement.coloc ? 'oui' : 'non');
-                   typeLogementHtml += '<br>Propriétaire du logement membre de la famille : ';
-                   typeLogementHtml += (logement.membreFamilleProprietaire ? 'oui' : 'non');
+                    typeLogementHtml += ' d\'un logement de type ' + logement.locationType;
+                    typeLogementHtml += '<br>Colocation : ' + (logement.coloc ? 'oui' : 'non');
+                    typeLogementHtml += '<br>Propriétaire du logement membre de la famille : ';
+                    typeLogementHtml += (logement.membreFamilleProprietaire ? 'oui' : 'non');
+                    if ('foyer' !== logement.locationType) {
+                        typeLogementHtml += '<br>Chambre : ' + (logement.isChambre ? 'oui' : 'non');
+                    }
                 } else if ('proprietaire' === logement.type) {
                    typeLogementHtml += ', prêt en accession : ';
                     if (logement.primoAccedant) {
@@ -166,10 +169,12 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                     }
                 }
 
-                $scope.logement.loyer = logement.loyer;
-                $scope.logement.codePostal = logement.adresse.codePostal;
-                $scope.logement.ville = logement.adresse.ville;
-                $scope.logement.type = $sce.trustAsHtml(typeLogementHtml);
+                $scope.logement = {
+                    type: $sce.trustAsHtml(typeLogementHtml),
+                    loyer: logement.loyer,
+                    codePostal: logement.adresse.codePostal,
+                    ville: logement.adresse.ville
+                };
             };
             $scope.individus = _.map(situation.individus, mapIndividu);
 

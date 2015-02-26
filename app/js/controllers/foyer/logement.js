@@ -34,6 +34,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return 'locataire' === logement.type && angular.isDefined(logement.membreFamilleProprietaire);
     };
 
+    $scope.captureChambre = function() {
+        return 'locataire' === logement.type && 'foyer' !== logement.locationType && angular.isDefined(logement.locationType);
+    };
+
     $scope.captureLoyer = function() {
         if ('gratuit' === logement.type) {
             return false;
@@ -41,20 +45,22 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
         return _.any([
             true === logement.primoAccedant && angular.isDefined(logement.pretConventionne),
-            angular.isDefined(logement.locationType)
+            'foyer' === logement.locationType,
+            angular.isDefined(logement.isChambre)
         ]);
     };
 
     $scope.captureCodePostal = function() {
         return _.any([
             false === logement.primoAccedant || true === logement.primoAccedant && angular.isDefined(logement.pretConventionne),
-            angular.isDefined(logement.locationType),
+            'foyer' === logement.locationType,
+            angular.isDefined(logement.isChambre),
             'gratuit' === logement.type
         ]);
     };
 
     $scope.changeLogementType = function() {
-        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer'].forEach(function(field) {
+        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'isChambre'].forEach(function(field) {
             delete logement[field];
         });
         delete logement.adresse.codePostal;

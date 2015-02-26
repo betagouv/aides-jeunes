@@ -55,6 +55,17 @@
       </div>
     </div>
 
+    <div class="form-group" ng-if="captureChambre()">
+      <label class="col-sm-3 control-label">Est-ce une chambre ?</label>
+      <div class="col-sm-3">
+        <button type="button" class="btn btn-sm btn-default" ng-model="logement.isChambre" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="logement.isChambre" btn-radio="false">Non</button>
+      </div>
+      <div class="col-sm-6">
+        <p class="help-block">Une chambre est un logement qui ne comporte qu'une seule pièce et n'est pas équipée d'un WC.</p>
+      </div>
+    </div>
+
     <div ng-if="logement.type === 'proprietaire'">
       <div class="form-group">
         <label class="col-sm-3 control-label">

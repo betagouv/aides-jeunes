@@ -504,7 +504,6 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', [
-    'subgrunt:ludwig',
     'clean:dist',
     'ngconstant:dev',
     'bower-install',
@@ -519,6 +518,11 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlrefs:dist'
+  ]);
+
+  grunt.registerTask('build-all', [
+    'subgrunt:ludwig',
+    'build'
   ]);
 
   grunt.registerTask('default', [

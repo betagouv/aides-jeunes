@@ -32,10 +32,13 @@
     </div>
 
     <div class="form-group" ng-if="captureMembreFamilleProprietaire()">
-      <label class="col-sm-3 control-label">Le propriétaire de votre logement est-il un membre de votre famille&nbsp;?</label>
-      <div class="col-sm-9">
+      <label class="col-sm-3 control-label">Avez-vous un lien de parenté direct avec votre propriétaire&nbsp;?</label>
+      <div class="col-sm-3">
         <button type="button" class="btn btn-sm btn-default" ng-model="logement.membreFamilleProprietaire" btn-radio="true">Oui</button>
         <button type="button" class="btn btn-sm btn-default" ng-model="logement.membreFamilleProprietaire" btn-radio="false">Non</button>
+      </div>
+      <div class="col-sm-6">
+        <p class="help-block">Est-il un ascendant ou descendant de vous ou votre conjoint (fils, grand-père...)</p>
       </div>
     </div>
 

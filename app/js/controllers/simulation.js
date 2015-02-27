@@ -37,7 +37,6 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         });
     };
 
-
     $scope.round = function(montant) {
         return Math.round(montant / 10) * 10;
     };

@@ -41,10 +41,6 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         return Math.round(montant / 10) * 10;
     };
 
-    $scope.cerfaForms = function(droit) {
-        return CerfaService.getCerfaFormsFromDroit(droit, $scope.situation);
-    };
-
     $scope.hasDroitForms = function(droit) {
         return CerfaService.hasDroitForms(droit.description);
     };

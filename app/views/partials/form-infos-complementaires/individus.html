@@ -110,7 +110,7 @@
 
       <div class="form-group" ng-if="conjoint">
         <label class="col-sm-4 control-label" for="date-situation-familiale">
-          Depuis quand êtes-vous {{ situationsMaritales[conjoint.relationType].label|lowercaseFirst }} avec votre partenaire ?
+          Depuis quand êtes-vous {{ situationMaritale | lowercaseFirst }} avec votre partenaire ?
         </label>
         <div class="col-sm-4">
           <input
@@ -205,7 +205,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6" ng-repeat="enfant in enfantsEtPersonnesACharges">
+    <div class="col-md-6" ng-repeat="enfant in enfants">
       <ng-form name="individuForm">
         <h2><i class="fa fa-child"></i> {{ enfant.firstName|uppercaseFirst }}</h2>
 

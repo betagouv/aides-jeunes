@@ -123,7 +123,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             var conjoint = _.find(individus, { role: 'conjoint' });
             var demandeur = _.find(individus, { role: 'demandeur' });
             if (conjoint) {
-                demandeur.statutMarital = conjoint.relationType;
+                demandeur.statutMarital = conjoint.statutMarital;
             } else {
                 demandeur.statutMarital = demandeur.situationFamiliale;
             }

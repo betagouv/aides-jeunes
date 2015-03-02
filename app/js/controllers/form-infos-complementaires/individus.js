@@ -3,13 +3,14 @@
 angular.module('ddsApp').controller('FormInfosComplementairesIndividusCtrl', function($scope, $state, $stateParams, situationsFamiliales, SituationService) {
     var situation = $scope.situation = SituationService.restoreLocal();
     $scope.situationsFamiliales = situationsFamiliales;
-    $scope.situationsMaritales = _.indexBy(_.filter(situationsFamiliales, 'isSituationCouple'), 'value');
     $scope.demandeur = _.find(situation.individus, { role: 'demandeur' });
     $scope.conjoint = _.find(situation.individus, { role: 'conjoint' });
 
-    var enfants = _.where(situation.individus, { role: 'enfant' });
-    var personnesACharge = _.where(situation.individus, { role: 'personneACharge' });
-    $scope.enfantsEtPersonnesACharges = enfants.concat(personnesACharge);
+    if ($scope.conjoint) {
+        $scope.situationMaritale = _.find(situationsFamiliales, { value: $scope.conjoint.statutMarital }).label;
+    }
+
+    $scope.enfants = _.where(situation.individus, { role: 'enfant' });
 
     situation.individus.forEach(function(individu) {
         if (individu.paysNaissance) {

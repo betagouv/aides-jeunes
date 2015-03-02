@@ -42,7 +42,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
     };
 
     if (true === ($scope.captureRelationConjoint = !!options.captureRelationConjoint)) {
-        $scope.individu.relationType = 'mariage';
+        $scope.individu.statutMarital = 'mariage';
     }
 
     var isIndividuParent = IndividuService.isRoleParent(options.individuRole);
@@ -59,6 +59,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
 
     $scope.submit = function(form) {
         $scope.submitted = true;
+        debugger;
         if (form.$valid) {
             $scope.individu.situationsPro = [];
 

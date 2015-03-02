@@ -26,7 +26,7 @@ angular.module('ddsCommon').constant('locationTypes', [
     },
     {
         id: 'foyer',
-        label: 'Foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)'
+        label: 'Foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale…)'
     }
 ]);
 

@@ -59,7 +59,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
 
     $scope.submit = function(form) {
         $scope.submitted = true;
-        debugger;
         if (form.$valid) {
             $scope.individu.situationsPro = [];
 

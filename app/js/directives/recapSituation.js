@@ -61,7 +61,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
             var mapIndividu = function(individu) {
                 var dateDeNaissance = moment(individu.dateDeNaissance, 'MM/DD/YYYY');
                 var nationalite = _.find(nationalites, { id: individu.nationalite });
-                var nationalite = nationalite ? nationalite.label : 'inconnue';
+                nationalite = nationalite ? nationalite.label : 'inconnue';
                 var target = {
                     label: individuLabel(individu),
                     dateDeNaissance: individu.dateDeNaissance,

@@ -40,9 +40,10 @@
           </div>
           <div class="col-xs-3 col-sm-2">
             <div class="montant" ng-if="false !== droit.description.hasMontant">
-              {{ round(droit.montant) }}&nbsp;€
+              <span ng-if="null !== droit.montant">{{ round(droit.montant) }}&nbsp;€</span>
+              <span ng-if="null === droit.montant">?</span>
             </div>
-            <div class="montant-detail" ng-if="false !== droit.description.hasMontant">
+            <div class="montant-detail" ng-if="null !== droit.montant && false !== droit.description.hasMontant">
               /
               <span ng-if="droit.description.isMontantAnnuel">an</span>
               <span ng-if="!droit.description.isMontantAnnuel">mois</span>

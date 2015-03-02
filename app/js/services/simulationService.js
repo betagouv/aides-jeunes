@@ -8,20 +8,27 @@ angular.module('ddsApp').service('SimulationService', function($http, $q, droits
             var that = this;
 
             return $http.get('/api/situations/' + situation._id + '/simulation').then(function(result) {
-                return that.createDroitsFromApiResult(result.data);
+                return that.createDroitsFromApiResult(result.data, situation);
             });
         },
 
-        createDroitsFromApiResult: function(result) {
+        createDroitsFromApiResult: function(result, situation) {
             var droits = [];
             droitsDescription.forEach(function(droit) {
                 if (false === droit.isSimulated) {
                     return;
                 }
+
+                var isProprietaire = 'aide_logement' === droit.id && 'proprietaire' === situation.logement.type;
                 var value = result[droit.id];
-                if (value) {
-                    var target = { description: droit, isBaseRessourcesYearMoins2: droit.isBaseRessourcesYearMoins2 };
-                    if (_.isNumber(value)) {
+                if (value || isProprietaire) {
+                    var target = {
+                        description: droit,
+                        isBaseRessourcesYearMoins2: droit.isBaseRessourcesYearMoins2
+                    };
+                    if (isProprietaire) {
+                        target.montant = null;
+                    } else if (_.isNumber(value)) {
                         target.montant = value;
                     }
                     droits.push(target);

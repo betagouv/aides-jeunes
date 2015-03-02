@@ -1,17 +1,15 @@
 'use strict';
 
-describe('Service: simulationService', function () {
+describe('Service: SimulationService', function () {
 
-    beforeEach(function() {
-        module('ddsApp');
-    });
+    var service, httpBackend;
 
     describe('function createDroitsFromApiResult', function() {
-        var service;
-
         beforeEach(function() {
-            inject(function(SimulationService) {
+            module('ddsApp');
+            inject(function(SimulationService, $httpBackend) {
                 service = SimulationService;
+                httpBackend = $httpBackend;
             });
         });
 
@@ -20,7 +18,7 @@ describe('Service: simulationService', function () {
             var apiResult = {};
 
             // when
-            var result = service.createDroitsFromApiResult(apiResult);
+            var result = service.createDroitsFromApiResult(apiResult, { logement: {} });
 
             // then
             expect(result.droits.length).toBe(0);
@@ -31,7 +29,7 @@ describe('Service: simulationService', function () {
             var apiResult = { cmu_c: true, acs: 150, aide_logement: 400 };
 
             // when
-            var result = service.createDroitsFromApiResult(apiResult);
+            var result = service.createDroitsFromApiResult(apiResult, { logement: {} });
 
             // then
             expect(result.droits.length).toBe(3);
@@ -39,12 +37,27 @@ describe('Service: simulationService', function () {
             expect(result.droits[2].description.id).toBe('aide_logement');
             expect(result.droits[2].isBaseRessourcesYearMoins2).toBe(true);
         });
+
+
+        it('doit forcer le résultat des AL avec un montant null si le demandeur est propriétaire', function() {
+            // given
+            var situation = {
+                _id: 'foo',
+                logement: { type: 'proprietaire' }
+            };
+
+            // when
+            var result = service.createDroitsFromApiResult({ aide_logement: 0 }, situation);
+
+            // then
+            expect(result.droits[0].montant).toBe(null);
+        });
     });
 
     describe('function getDroitsNonEligibles', function() {
         it('should return droits that are not in the given list of droits eligibles', function() {
             // given
-            var service;
+            module('ddsApp');
             module(function($provide) {
                 $provide.constant('droitsDescription', [{ id: 'test' }, { id: 'test2' }]);
             });

@@ -148,7 +148,7 @@ angular.module('ddsApp').constant('piecesJustificatives', [
         id: 'domicile',
         label: '2 justificatifs de domicile',
         img: 'quittance.jpg',
-        description: 'Quittances de loyer, factures d’eau, de gaz, d’électricité, de téléphone, attestation du Maire, ...',
+        description: 'Quittances de loyer, factures d’eau, de gaz, d’électricité, de téléphone, attestation du Maire…',
         isIndividualized: false
     }
 ]);

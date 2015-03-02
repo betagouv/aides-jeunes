@@ -9,7 +9,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         options.formPersonneACharge = true;
         options.captureGardeAlternee = true;
 
-        $scope.statutsSpecifiques = _.remove($scope.statutsSpecifiques, function(statut) {
+        $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {
           return statut.id !== 'retraite';
         });
     }

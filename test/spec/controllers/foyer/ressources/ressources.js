@@ -186,8 +186,8 @@ describe('Controller: FoyerRessourcesCtrl', function() {
                 {
                     individu: individu,
                     ressources: [
-                        { type: { id: 'test' }, montantsMensuels: [], interrupted: false },
-                        { type: { id: 'test2' }, montantsMensuels: [], interrupted: true }
+                        { type: { id: 'test' }, montantsMensuels: [], onGoing: true },
+                        { type: { id: 'test2' }, montantsMensuels: [], onGoing: false }
                     ]
                 }
             ];

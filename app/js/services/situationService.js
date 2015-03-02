@@ -129,7 +129,10 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             }
 
             if (situation.logement.dateArriveeString) {
-                situation.logement.dateArrivee = moment(situation.logement.dateArriveeString, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                var dateArrivee = moment(situation.logement.dateArriveeString, 'DD/MM/YYYY');
+                if (dateArrivee.isValid()) {
+                    situation.logement.dateArrivee = dateArrivee.format('YYYY-MM-DD');
+                }
             }
 
             if (situation.patrimoine) {
@@ -156,7 +159,10 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             individu = _.cloneDeep(individu);
             individu.dateDeNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY').format('YYYY-MM-DD');
             if (individu.dateArriveeFoyerString) {
-                individu.dateArriveeFoyer = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                var dateArrivee = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY');
+                if (dateArrivee.isValid()) {
+                    individu.dateArriveeFoyer = dateArrivee.format('YYYY-MM-DD');
+                }
             }
 
             return individu;

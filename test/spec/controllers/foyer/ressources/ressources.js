@@ -200,6 +200,54 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(individu.interruptedRessources[0]).toEqual('test2');
         });
 
+        it('devrait sauvegarder les "autres revenus TNS" directement sur l\'individu', function() {
+            // given
+            initController();
+            var ressourceTypeAutreTns = _.find(_ressourceTypes_, { id: 'autresRevenusTns' });
+            var individu = {};
+            scope.individusVM = [
+                {
+                    individu: individu,
+                    ressources: [
+                        { type: ressourceTypeAutreTns, montantAnnuel: 100 }
+                    ]
+                }
+            ];
+
+            // when
+            scope.submit(form);
+
+            // then
+            expect(individu.autresRevenusTns).toBe(100);
+        });
+
+        it('devrait sauvegarder les revenus de micro-entreprise sur l\'individu', function() {
+            initController();
+            var ressourceTypeMicroTns = _.find(_ressourceTypes_, { id: 'caMicroEntreprise' });
+            var individu = {};
+            scope.individusVM = [
+                {
+                    individu: individu,
+                    ressources: [
+                        {
+                            type: ressourceTypeMicroTns,
+                            tnsStructureType: 'auto_entrepreneur',
+                            tnsActiviteType: 'bnc',
+                            montantAnnuel: 100
+                        }
+                    ]
+                }
+            ];
+
+            // when
+            scope.submit(form);
+
+            // then
+            expect(individu.caMicroEntreprise).toBe(100);
+            expect(individu.tnsStructureType).toBe('auto_entrepreneur');
+            expect(individu.tnsActiviteType).toBe('bnc');
+        });
+
         it('should emit the "ressourcesUpdated" event', function() {
             // given
             initController();

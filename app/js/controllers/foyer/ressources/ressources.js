@@ -102,30 +102,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         individu.ressources = [];
         individu.interruptedRessources = [];
         individuVM.ressources.forEach(function(ressource) {
-            var somme3DerniersMois = 0;
-            // injection des valeurs des 3 derniers mois
-            [2, 1, 0].forEach(function(i) {
-                var montant = ressource.montantsMensuels[i];
-                somme3DerniersMois += montant;
-                individu.ressources.push({
-                    type: ressource.type.id,
-                    periode: $scope.months[i].id,
-                    montant: montant
-                });
-            });
-
-            // injection du montant annuel étalé sur les 9 mois restants
-            var montantMensuelEtale = (ressource.montantAnnuel - somme3DerniersMois) / 9;
-            for (var j = 0; j < 9; j++) {
-                var periode = moment($scope.situation.dateDeValeur).subtract(4 + j, 'months').format('YYYY-MM');
-                individu.ressources.push({
-                    type: ressource.type.id,
-                    periode: periode,
-                    montant: montantMensuelEtale
-                });
-            }
-
-            /*if ('tns' === ressource.type.category) {
+            if ('tns' === ressource.type.category) {
                 if ('caMicroEntreprise' === ressource.type.id) {
                     individu.tnsStructureType = ressource.tnsStructureType;
                     individu.tnsActiviteType = ressource.tnsActiviteType;
@@ -134,16 +111,32 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                     individu.autresRevenusTns = ressource.montantAnnuel;
                 }
             } else {
-                individu.ressources.push({
-                    type: ressource.type.id,
-                    montant: ressource.montantAnnuel,
-                    debutPeriode: momentDebutAnnee.format('YYYY-MM'),
-                    finPeriode: momentFinAnnee.format('YYYY-MM')
+                var somme3DerniersMois = 0;
+                // injection des valeurs des 3 derniers mois
+                [2, 1, 0].forEach(function(i) {
+                    var montant = ressource.montantsMensuels[i];
+                    somme3DerniersMois += montant;
+                    individu.ressources.push({
+                        type: ressource.type.id,
+                        periode: $scope.months[i].id,
+                        montant: montant
+                    });
                 });
-            }*/
 
-            if (!ressource.onGoing) {
-                individu.interruptedRessources.push(ressource.type.id);
+                // injection du montant annuel étalé sur les 9 mois restants
+                var montantMensuelEtale = (ressource.montantAnnuel - somme3DerniersMois) / 9;
+                for (var j = 0; j < 9; j++) {
+                    var periode = moment($scope.situation.dateDeValeur).subtract(4 + j, 'months').format('YYYY-MM');
+                    individu.ressources.push({
+                        type: ressource.type.id,
+                        periode: periode,
+                        montant: montantMensuelEtale
+                    });
+                }
+
+                if (!ressource.onGoing) {
+                    individu.interruptedRessources.push(ressource.type.id);
+                }
             }
         });
 

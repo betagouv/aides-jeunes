@@ -142,7 +142,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 });
             }*/
 
-            if (ressource.interrupted) {
+            if (!ressource.onGoing) {
                 individu.interruptedRessources.push(ressource.type.id);
             }
         });

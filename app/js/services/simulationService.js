@@ -3,6 +3,17 @@
 /* global _ */
 
 angular.module('ddsApp').service('SimulationService', function($http, $q, droitsDescription) {
+    var montantInconnu = function(droit, situation) {
+        if ('aide_logement' === droit.id) {
+            return _.any([
+                'proprietaire' === situation.logement.type,
+                'locataire' === situation.logement.type && 'foyer' === situation.logement.locationType
+            ]);
+        }
+
+        return false;
+    };
+
     return {
         simulate: function(situation) {
             var that = this;
@@ -19,14 +30,14 @@ angular.module('ddsApp').service('SimulationService', function($http, $q, droits
                     return;
                 }
 
-                var isProprietaire = 'aide_logement' === droit.id && 'proprietaire' === situation.logement.type;
+                var isMontantInconnu = montantInconnu(droit, situation);
                 var value = result[droit.id];
-                if (value || isProprietaire) {
+                if (value || isMontantInconnu) {
                     var target = {
                         description: droit,
                         isBaseRessourcesYearMoins2: droit.isBaseRessourcesYearMoins2
                     };
-                    if (isProprietaire) {
+                    if (isMontantInconnu) {
                         target.montant = null;
                     } else if (_.isNumber(value)) {
                         target.montant = value;

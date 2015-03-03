@@ -38,19 +38,21 @@ describe('Service: SimulationService', function () {
             expect(result.droits[2].isBaseRessourcesYearMoins2).toBe(true);
         });
 
-
-        it('doit forcer le résultat des AL avec un montant null si le demandeur est propriétaire', function() {
+        it('doit forcer le résultat des AL avec un montant null si le demandeur est propriétaire ou dans un foyer', function() {
             // given
-            var situation = {
-                _id: 'foo',
-                logement: { type: 'proprietaire' }
-            };
+            var logements = [
+                { type: 'proprietaire' },
+                { type: 'locataire', locationType: 'foyer' }
+            ];
+            logements.forEach(function(logement) {
+                var situation = { _id: 'foo', logement: logement };
 
-            // when
-            var result = service.createDroitsFromApiResult({ aide_logement: 0 }, situation);
+                // when
+                var result = service.createDroitsFromApiResult({ aide_logement: 0 }, situation);
 
-            // then
-            expect(result.droits[0].montant).toBe(null);
+                // then
+                expect(result.droits[0].montant).toBe(null);
+            });
         });
     });
 

@@ -149,7 +149,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         $scope.globalAmount = 0;
 
         $scope.isSituationMonoIndividu = 1 === $scope.situation.individus.length;
-        $scope.situation.individus.map(fillIndividuRessources);
+        $scope.situation.individus.forEach(fillIndividuRessources);
 
         if ($scope.globalAmount > 0) {
             $scope.hasRessources = true;
@@ -178,9 +178,11 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         $scope.situation.individus.forEach(function(individu) {
             if (individu.caMicroEntreprise) {
                 ressourcesMicroFiscal.totalAnnuel += individu.caMicroEntreprise;
+                $scope.hasRessources = true;
             }
             if (individu.autresRevenusTns) {
                 ressourcesAutresTns.totalAnnuel  += individu.autresRevenusTns;
+                $scope.hasRessources = true;
             }
         });
 

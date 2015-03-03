@@ -39,7 +39,7 @@
             <span>{{ droit.description.label }}<span>
           </div>
           <div class="col-xs-3 col-sm-2">
-            <div class="montant" ng-if="false !== droit.description.hasMontant">
+            <div class="montant" ng-class="{'montant-inconnu': null === droit.montant }" ng-if="false !== droit.description.hasMontant">
               <span ng-if="null !== droit.montant">{{ round(droit.montant) }}&nbsp;€</span>
               <span ng-if="null === droit.montant">?</span>
             </div>

@@ -371,43 +371,6 @@ $autre-lighter: #cce4e7;
   margin-top: 0px;
 }
 
-.thumbnail {
-  @extend .whiteframe-z1;
-  border: 0;
-  padding: 0;
-  padding-top: 10px;
-
-  img {
-    margin-bottom: 10px;
-  }
-
-  .thumbnail-title {
-    padding: 9px;
-    font-size: 16px;
-    line-height: 16px;
-
-    .montant-detail {
-      font-size: 10px;
-    }
-
-    .montant {
-      font-weight: 600;
-      font-size: 25px;
-    }
-
-    &.thumbnail-title-success {
-        color: white;
-        background-color: $brand-success;
-        border-bottom: 3px solid darken($brand-success, 10%);
-    }
-
-    &.thumbnail-title-default {
-        background-color: $btn-default-bg;
-        border-bottom: 3px solid darken($btn-default-bg, 10%);
-    }
-  }
-}
-
 .bloc-aucune-aide-eligible {
   padding: 20px 0;
 }
@@ -631,6 +594,10 @@ $autre-lighter: #cce4e7;
     .montant {
       font-weight: 600;
       font-size: 18px;
+    }
+
+    .montant-inconnu {
+      padding-top: 5px;
     }
 
     .montant-detail {

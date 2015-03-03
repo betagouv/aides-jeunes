@@ -56,10 +56,6 @@ module.exports = function (grunt) {
           livereload: true
         }
       },
-      mochaTest: {
-        files: ['test/server/{,*/}*.js'],
-        tasks: ['env:test', 'mochaTest']
-      },
       jsTest: {
         files: ['test/spec/**/*.js'],
         tasks: ['newer:jshint:test', 'karma']
@@ -385,13 +381,6 @@ module.exports = function (grunt) {
       }
     },
 
-    mochaTest: {
-      options: {
-        reporter: 'spec'
-      },
-      src: ['test/server/**/*.js']
-    },
-
     env: {
       test: {
         NODE_ENV: 'test'
@@ -480,28 +469,10 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('test', function(target) {
-    if (target === 'server') {
-      return grunt.task.run([
-        'env:test',
-        'mochaTest'
-      ]);
-    }
-
-    else if (target === 'client') {
-      return grunt.task.run([
-        'clean:server',
-        'karma'
-      ]);
-    }
-
-    else {
-      grunt.task.run([
-        'test:server',
-        'test:client'
-      ]);
-    }
-  });
+  grunt.registerTask('test', [
+    'clean:server',
+    'karma'
+  ]);
 
   grunt.registerTask('build', [
     'clean:dist',

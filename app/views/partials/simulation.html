@@ -56,12 +56,15 @@
       </accordion-heading>
 
       <div class="caption">
-        <p>{{ droit.description.description }}</p>
+        <div ng-if="null !== droit.montant">
+          <p>{{ droit.description.description }}</p>
+          <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured">
+            <i class="fa fa-warning"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
+            <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
+          </div>
+        </div>
 
-        <p class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured">
-          <i class="fa fa-warning"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
-          <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
-        </p>
+        <p ng-if="null === droit.montant" ng-bind-html="droit.description.montantInconnuDisclaimer"></p>
 
         <div class="row">
           <div ng-class="{'col-sm-offset-6': hasDroitForms(droit), 'col-sm-offset-9': !hasDroitForms(droit)}" class="col-sm-3 col-sm-offset-6">
@@ -76,7 +79,7 @@
           <div class="col-sm-3">
             <a
               class="btn btn-sm btn-primary btn-block"
-              ng-if="hasDroitForms(droit)"
+              ng-if="hasDroitForms(droit) && null !== droit.montant"
               ui-sref="infos_complementaires.individus({droit: droit.description.id})">
               Engager les démarches
             </a>

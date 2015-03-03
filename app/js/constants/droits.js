@@ -84,7 +84,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'description':'L\'aide au logement est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'imgSrc':'logo_caf.png',
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
-        'isBaseRessourcesYearMoins2':true
+        'isBaseRessourcesYearMoins2':true,
+        'montantInconnuDisclaimer': 'Votre situation ne nous permet pas de calculer le montant de l\'aide au logement.<br>Le <a target="_blank" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la caf</a> pourra mieux vous renseigner.'
     },
     {
         'id':'apl',

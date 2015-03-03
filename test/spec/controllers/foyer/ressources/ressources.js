@@ -115,6 +115,44 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             // then
             expect(scope.individusVM[0].ressources.length).toBe(0);
         });
+
+        it('should map ressources micro TNS', function() {
+            // given
+            scope.situation.individus = [{
+                tnsStructureType: 'auto_entrepreneur',
+                tnsActiviteType: 'bnc',
+                caMicroEntreprise: 1000
+            }];
+
+            // when
+            initController();
+
+            // then
+            var individuVM = scope.individusVM[0];
+            expect(individuVM.selectedRessourceTypes).toEqual({ caMicroEntreprise: true });
+            var ressources = individuVM.ressources;
+            expect(ressources.length).toBe(1);
+            expect(ressources[0].type.id).toBe('caMicroEntreprise');
+            expect(ressources[0].montantAnnuel).toBe(1000);
+        });
+
+        it('should map ressources autres revenus TNS', function() {
+            // given
+            scope.situation.individus = [{
+                autresRevenusTns: 1000
+            }];
+
+            // when
+            initController();
+
+            // then
+            var individuVM = scope.individusVM[0];
+            expect(individuVM.selectedRessourceTypes).toEqual({ autresRevenusTns: true });
+            var ressources = individuVM.ressources;
+            expect(ressources.length).toBe(1);
+            expect(ressources[0].type.id).toBe('autresRevenusTns');
+            expect(ressources[0].montantAnnuel).toBe(1000);
+        });
     });
 
     describe('function submit()', function() {
@@ -208,6 +246,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             scope.individusVM = [
                 {
                     individu: individu,
+                    selectedRessourceTypes: { autresRevenusTns: true },
                     ressources: [
                         { type: ressourceTypeAutreTns, montantAnnuel: 100 }
                     ]
@@ -228,6 +267,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             scope.individusVM = [
                 {
                     individu: individu,
+                    selectedRessourceTypes: { caMicroEntreprise: true },
                     ressources: [
                         {
                             type: ressourceTypeMicroTns,
@@ -246,6 +286,20 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(individu.caMicroEntreprise).toBe(100);
             expect(individu.tnsStructureType).toBe('auto_entrepreneur');
             expect(individu.tnsActiviteType).toBe('bnc');
+        });
+
+        it('devrait mettre à null les revenus tns si désélectionnés', function() {
+            // given
+            scope.situation.individus = [{ caMicroEntreprise: 1000, autresRevenusTns: 1000 }];
+            initController();
+            scope.individusVM[0].selectedRessourceTypes = {};
+
+            // when
+            scope.submit(form);
+
+            // then
+            expect(scope.individusVM[0].individu.caMicroEntreprise).toBe(null);
+            expect(scope.individusVM[0].individu.autresRevenusTns).toBe(null);
         });
 
         it('should emit the "ressourcesUpdated" event', function() {

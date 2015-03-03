@@ -19,6 +19,14 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             .unique()
             .forEach(function(ressourceType) { result[ressourceType] = true; });
 
+        if (individu.caMicroEntreprise) {
+            result.caMicroEntreprise = true;
+        }
+
+        if (individu.autresRevenusTns) {
+            result.autresRevenusTns = true;
+        }
+
         return result;
     };
 
@@ -52,6 +60,22 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 montantAnnuel: montantAnnuel
             });
         });
+
+        if (individu.caMicroEntreprise) {
+            result.push({
+                type: _.find(ressourceTypes, { id: 'caMicroEntreprise' }),
+                tnsStructureType: individu.tnsStructureType,
+                tnsActiviteType: individu.tnsActiviteType,
+                montantAnnuel: individu.caMicroEntreprise
+            });
+        }
+
+        if (individu.autresRevenusTns) {
+            result.push({
+                type: _.find(ressourceTypes, { id: 'autresRevenusTns' }),
+                montantAnnuel: individu.autresRevenusTns
+            });
+        }
 
         return result;
     };
@@ -144,6 +168,15 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
             return !!_.find(categoriesRnc, { id: ressource.type });
         }));
+
+        // on supprime les revenus TNS si désélectionnés
+        if (individu.caMicroEntreprise && !individuVM.selectedRessourceTypes.caMicroEntreprise) {
+            individu.caMicroEntreprise = null;
+        }
+
+        if (individu.autresRevenusTns && !individuVM.selectedRessourceTypes.autresRevenusTns) {
+            individu.autresRevenusTns = null;
+        }
     };
 
     $scope.submit = function(form) {

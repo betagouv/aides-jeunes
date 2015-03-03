@@ -96,7 +96,7 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
             expect(scope.individuVM.ressources[0].montantAnnuel).toBe(0);
         });
 
-        it('should not put unselected ressource types in the ressources view model', function() {
+        it('should delete unselected ressource types in the ressources view model', function() {
             // given
             initController();
             scope.individuVM.selectedRessourceTypes = { toto: false };
@@ -168,6 +168,20 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
             expect(scope.individuVM.ressources[0].tnsStructureType).toBe('auto_entrepreneur');
             expect(scope.individuVM.ressources[0].tnsActiviteType).toBe('bic');
             expect(scope.individuVM.ressources[0].montantsMensuels).toBeUndefined();
+        });
+
+        it('should init autres revenus tns params when it is selected', function() {
+            // given
+            initController();
+            scope.individuVM.ressources = [];
+            scope.individuVM.selectedRessourceTypes = { 'autresRevenusTns': true };
+
+            // when
+            scope.submit();
+
+            // then
+            expect(scope.individuVM.ressources[0].type.id).toBe('autresRevenusTns');
+            expect(scope.individuVM.ressources[0].montantAnnuel).toBe(0);
         });
     });
 });

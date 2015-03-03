@@ -37,8 +37,8 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             initController();
 
             // then
-            expect(scope.individusVM[0].selectedRessourceTypes).toEqual([]);
-            expect(scope.individusVM[1].selectedRessourceTypes).toEqual([]);
+            expect(scope.individusVM[0].selectedRessourceTypes).toEqual({});
+            expect(scope.individusVM[1].selectedRessourceTypes).toEqual({});
             expect(scope.individusVM[0].label).toBe('Vous');
             expect(scope.individusVM[0].ressources.length).toBe(0);
         });

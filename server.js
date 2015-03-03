@@ -16,7 +16,7 @@ if ('development' === env) {
 }
 
 if ('production' === env) {
-    app.use(morgan());
+    app.use(morgan('combined'));
 }
 
 // Setup app

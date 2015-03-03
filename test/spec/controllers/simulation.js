@@ -24,7 +24,7 @@ describe('Controller: SimulationCtrl', function() {
             SimulationService = { simulate: function() {
                 return result.promise;
             }};
-            spyOn(SimulationService, 'simulate').andCallThrough();
+            spyOn(SimulationService, 'simulate').and.callThrough();
 
             // when
             controller('SimulationCtrl', { $scope: scope, SimulationService: SimulationService });

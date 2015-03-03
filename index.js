@@ -1,5 +1,5 @@
 var express = require('express');
-var favicon = require('static-favicon');
+var favicon = require('serve-favicon');
 var path = require('path');
 
 module.exports = function(app) {

@@ -43,10 +43,10 @@ module.exports = function(app) {
     });
 
     app.route('/recap-situation/*').get(function(req, res) {
-        res.sendfile(viewsDirectory + '/embed.html');
+        res.sendFile(viewsDirectory + '/embed.html');
     });
 
     app.route('/*').get(function(req, res) {
-        res.sendfile(viewsDirectory + '/front.html');
+        res.sendFile(viewsDirectory + '/front.html');
     });
 };

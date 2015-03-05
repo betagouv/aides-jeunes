@@ -29,7 +29,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
     $stateProvider
         .state('home', {
             url: '/',
-            templateUrl: '/partials/homepage.html'
+            templateUrl: '/partials/homepage.html',
+            controller: 'HomepageCtrl'
         })
         .state('a_propos', {
             url: '/a-propos',

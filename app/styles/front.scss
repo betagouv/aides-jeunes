@@ -168,8 +168,7 @@ $body-front-base-padding: 50px;
 .frame-aides-homepage {
   @extend .whiteframe-z1;
   margin-top: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
 
   h2 {
     margin-top: 0;
@@ -181,10 +180,6 @@ $body-front-base-padding: 50px;
       margin-top: 0px;
     }
   }
-}
-
-.frame-tweets-homepage {
-  margin-top: 20px;
 }
 
 .frame-foyer {

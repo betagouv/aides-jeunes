@@ -49,6 +49,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('contribuez', {
             url: '/contribuez',
             templateUrl: '/partials/contribuez.html',
+            controller: 'ContribuezCtrl',
             data: {
                 pageTitle: 'Contribuez ! - '
             }

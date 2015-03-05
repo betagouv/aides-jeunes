@@ -63,33 +63,24 @@
 </div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-6 frame-aides-homepage">
-      <h2 class="text-center">Les aides simulées</h2>
-      <hr>
-      <div class="row">
-        <div ng-repeat="droit in droits">
-          <div class="clearfix" ng-if="$index % 2 === 0"></div>
-          <div class="col-md-6">
-            <div class="row heading">
-              <div class="col-xs-2">
-                <img src="/img/{{ droit.imgSrc }}" alt="{{ droit.id }}" style="width: 40px;">
-              </div>
-              <div class="col-xs-10">
-                <h3>{{ droit.label }}</h3>
-              </div>
+  <div class="frame-aides-homepage">
+    <h2 class="text-center">Les aides simulées</h2>
+    <hr>
+    <div class="row">
+      <div ng-repeat="droit in droits">
+        <div class="clearfix" ng-if="$index % 3 === 0"></div>
+        <div class="col-md-4">
+          <div class="row heading">
+            <div class="col-xs-2">
+              <img src="/img/{{ droit.imgSrc }}" alt="{{ droit.id }}" style="width: 40px;">
             </div>
-            <p>{{ droit.description }}</p>
+            <div class="col-xs-10">
+              <h3>{{ droit.label }}</h3>
+            </div>
           </div>
+          <p>{{ droit.description }}</p>
         </div>
       </div>
-    </div>
-    <div class="col-lg-6 frame-tweets-homepage">
-      <a class="twitter-timeline"
-        href="https://twitter.com/MesAides"
-        data-widget-id="573486813635047425">
-        Tweets de @MesAides
-      </a>
     </div>
   </div>
 </div>

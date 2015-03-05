@@ -166,7 +166,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             }
 
             if (individu.dateSituationFamiliale) {
-                debugger;
                 var dateSituationFamiliale = moment(individu.dateSituationFamiliale, 'DD/MM/YYYY');
                 if (dateSituationFamiliale.isValid()) {
                     individu.dateSituationFamiliale = dateSituationFamiliale.format('YYYY-MM-DD');

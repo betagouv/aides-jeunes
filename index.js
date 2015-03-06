@@ -28,7 +28,7 @@ module.exports = function(app) {
 
     if ('production' === env) {
         // prerender.io
-        app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN));
+        app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN).set('protocol', 'https'));
 
         app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
         app.use('/recap-situation', express.static(path.join(__dirname, 'dist')));

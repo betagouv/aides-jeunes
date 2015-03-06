@@ -11,6 +11,10 @@
     "sgmap-mes-aides-api": "sgmap/mes-aides-api",
     "serve-favicon": "~2.2.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sgmap/mes-aides-ui"
+  },
   "devDependencies": {
     "connect-livereload": "~0.5.3",
     "grunt": "~0.4.1",

@@ -9,6 +9,8 @@ angular.module('ddsApp').controller('ContribuezCtrl', function() {
       js.id=id;
       js.src=p+'://platform.twitter.com/widgets.js';
       fjs.parentNode.insertBefore(js,fjs);
+    } else {
+      twttr.widgets.load();
     }
   })(document,'script','twitter-wjs');
 });

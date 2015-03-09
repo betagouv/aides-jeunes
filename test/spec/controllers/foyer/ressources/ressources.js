@@ -153,6 +153,28 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(ressources[0].type.id).toBe('autresRevenusTns');
             expect(ressources[0].montantAnnuel).toBe(1000);
         });
+
+        it('should map the "ongoing" attribute of each ressource', function() {
+            // given
+            _ressourceTypes_ = [{ id: 'foo' }, { id: 'bar' }];
+            scope.situation.individus = [{
+                ressources: [
+                    { type: 'foo', periode: '2013-03', montant: 10 },
+                    { type: 'bar', periode: '2013-03', montant: 10 },
+                ],
+                interruptedRessources: ['foo']
+            }];
+
+            // when
+            initController();
+
+            // then
+            var ressources = scope.individusVM[0].ressources;
+            expect(ressources[0].type.id).toBe('foo');
+            expect(ressources[0].onGoing).toBe(false);
+            expect(ressources[1].type.id).toBe('bar');
+            expect(ressources[1].onGoing).toBe(true);
+        });
     });
 
     describe('function submit()', function() {

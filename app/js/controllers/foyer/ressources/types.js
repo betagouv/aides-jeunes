@@ -36,6 +36,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
                     ressource.tnsActiviteType = 'bic';
                 } else {
                     ressource.montantsMensuels = [0, 0, 0];
+                    ressource.onGoing = true;
                 }
             }
             $scope.individuVM.ressources.push(ressource);

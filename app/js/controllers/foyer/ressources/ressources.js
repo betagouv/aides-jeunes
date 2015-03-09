@@ -36,7 +36,8 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         var types = _.chain(ressources).pluck('type').unique();
         types.forEach(function(type) {
             // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
-            if (!_.find(ressourceTypes, { id: type })) {
+            var ressourceType = _.find(ressourceTypes, { id: type });
+            if (!ressourceType) {
                 return;
             }
 
@@ -54,11 +55,18 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 .value();
             montantAnnuel = Math.round(montantAnnuel);
 
-            result.push({
-                type: _.find(ressourceTypes, { id: type }),
+            var ressource = {
+                type: ressourceType,
                 montantsMensuels: montantsMensuels,
-                montantAnnuel: montantAnnuel
-            });
+                montantAnnuel: montantAnnuel,
+                onGoing: true
+            };
+
+            if (_.contains(individu.interruptedRessources, type)) {
+                ressource.onGoing = false;
+            }
+
+            result.push(ressource);
         });
 
         if (individu.caMicroEntreprise) {
@@ -111,13 +119,6 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
 
     $scope.montantInvalide = function(montant) {
         return !angular.isNumber(montant);
-    };
-
-    $scope.updateMontantAnnuel = function(ressource) {
-        var somme = ressource.montantsMensuels[0] + ressource.montantsMensuels[1] + ressource.montantsMensuels[2];
-        if (!_.isNaN(somme)) {
-            ressource.montantAnnuel = Math.round(4 * somme);
-        }
     };
 
     var applyIndividuVMRessourcesToIndividu = function(individuVM) {

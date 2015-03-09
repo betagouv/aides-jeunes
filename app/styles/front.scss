@@ -311,7 +311,6 @@ $autre-lighter: #cce4e7;
 
   .capture-title {
     padding: 5px 0;
-
     background-color: lighten($color-light, 10%);
     color: #333;
   }
@@ -467,10 +466,6 @@ $autre-lighter: #cce4e7;
   font-style: italic;
 }
 
-.checkbox.checkbox-multiline {
-  height: 100%;
-}
-
 .frame-ressources-individu {
   margin-bottom: 20px;
   border: 1px solid $brand-primary;
@@ -495,7 +490,9 @@ $autre-lighter: #cce4e7;
 }
 
 .ressources-individu {
-  .title{
+  margin-bottom: 15px;
+
+  .title {
     h2 {
       margin-top: 5px;
     }
@@ -503,76 +500,57 @@ $autre-lighter: #cce4e7;
       margin-bottom: 5px;
     }
   }
-  margin-bottom: 15px;
 }
 
-@mixin ressource-montant($color, $color-light, $color-lighter) {
+@mixin panel-montant-variant($color-base, $color-light, $color-lighter) {
+  @include panel-variant($color-base, black, $color-lighter, $color-light);
+
+  h3 .short-label {
+    color: darken($color-base, 30%);
+  }
+}
+
+.panel.panel-montant {
   h3 {
-    margin: 0;
     font-size: 14px;
-  }
 
-  .row {
-    margin-bottom: 5px;
-  }
-
-  border: 1px solid $color-light;
-  background-color: white;
-  border-radius: 5px;
-  margin-bottom: 10px;
-
-  .title-montant {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background-color: lighten($color-light, 10%);
-    padding: 10px;
-
-    small {
-      font-size: $font-size-base;
-      color: darken($color, 30%);
+    .short-label {
+      display: inline-block;
       margin-right: 10px;
     }
   }
 
-  .content-montant {
-    padding: 5px 10px;
+  .panel-body {
+    padding: 10px;
   }
 
-  label {
-    font-size: 10px;
-  }
-
-  .checkbox > label {
-    font-size: 12px;
-  }
-
-  .form-group {
+  .checkbox {
     margin-bottom: 0;
   }
-}
 
-.ressource-montant-indemnites {
-  @include ressource-montant($indemnites, $indemnites-light, $indemnites-lighter);
-}
+  &.indemnites {
+    @include panel-montant-variant($indemnites, $indemnites-light, $indemnites-lighter);
+  }
 
-.ressource-montant-pensions {
-  @include ressource-montant($pensions, $pensions-light, $pensions-lighter);
-}
+  &.pensions {
+    @include panel-montant-variant($pensions, $pensions-light, $pensions-lighter);
+  }
 
-.ressource-montant-allocations {
-  @include ressource-montant($allocations, $allocations-light, $allocations-lighter);
-}
+  &.allocations {
+    @include panel-montant-variant($allocations, $allocations-light, $allocations-lighter);
+  }
 
-.ressource-montant-revenusActivite {
-  @include ressource-montant($revenusActivite, $revenusActivite-light, $revenusActivite-lighter);
-}
+  &.revenusActivite {
+    @include panel-montant-variant($revenusActivite, $revenusActivite-light, $revenusActivite-lighter);
+  }
 
-.ressource-montant-autre {
-  @include ressource-montant($autre, $autre-light, $autre-lighter);
-}
+  &.autre {
+    @include panel-montant-variant($autre, $autre-light, $autre-lighter);
+  }
 
-.ressource-montant-tns {
-  @include ressource-montant($tns, $tns-light, $tns-lighter);
+  &.tns {
+    @include panel-montant-variant($tns, $tns-light, $tns-lighter);
+  }
 }
 
 .frame-resultats {

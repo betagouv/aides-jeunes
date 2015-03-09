@@ -129,25 +129,30 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'FoyerRessourceTypesCtrl',
             url: '/:individu/types'
         })
-        .state('foyer.rfr', {
-            templateUrl: '/partials/foyer/ressources/rfr.html',
-            controller: 'FoyerRessourceRfrCtrl',
-            url: '/ressources/rfr'
+        .state('foyer.pensionsAlimentaires', {
+            templateUrl: '/partials/foyer/pensions-alimentaires.html',
+            controller: 'FoyerPensionsAlimentairesCtrl',
+            url: '/ressources/pensions-alimentaires'
+        })
+        .state('foyer.simulation', {
+            url: '/simulation',
+            templateUrl: '/partials/simulation.html',
+            controller: 'SimulationCtrl'
         })
         .state('foyer.ressourcesYearMoins2', {
             templateUrl: '/partials/foyer/ressources/year-moins-2.html',
             controller: 'FoyerRessourceYearMoins2Ctrl',
             url: '/ressources/revenus-impots'
         })
+        .state('foyer.rfr', {
+            templateUrl: '/partials/foyer/ressources/rfr.html',
+            controller: 'FoyerRessourceRfrCtrl',
+            url: '/ressources/rfr'
+        })
         .state('foyer.patrimoine', {
             url: '/patrimoine',
             templateUrl: '/partials/foyer/patrimoine.html',
             controller: 'FoyerPatrimoineCtrl'
-        })
-        .state('foyer.simulation', {
-            url: '/simulation',
-            templateUrl: '/partials/simulation.html',
-            controller: 'SimulationCtrl'
         })
         .state('situation', {
             url: '/situations/:situationId',

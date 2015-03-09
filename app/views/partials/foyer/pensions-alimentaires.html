@@ -5,9 +5,19 @@
     <div class="form-group">
       <label class="control-label col-md-6"><b>Percevez-vous</b> (ou votre conjoint) des pensions alimentaires ?</label>
       <div class="col-md-6">
-        <button class="btn btn-sm btn-default" ng-model="recoitPensionsAlimentaires" btn-radio="true">Oui</button>
-        <button class="btn btn-sm btn-default" ng-model="recoitPensionsAlimentaires" btn-radio="false">Non</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="recoitPensionsAlimentaires" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="recoitPensionsAlimentaires" btn-radio="false">Non</button>
       </div>
+    </div>
+
+    <div ng-if="recoitPensionsAlimentaires">
+      <montant-ressource
+        ng-repeat="individuVM in individusVM"
+        ng-model="individuVM.pensionsRecues"
+        short-label="individuVM.label"
+        ressource-type="pensionsPercues"
+        date-de-valeur="situation.dateDeValeur">
+      </montant-ressource>
     </div>
 
     <hr>
@@ -15,9 +25,19 @@
     <div class="form-group">
       <label class="control-label col-md-6"><b>Versez-vous</b> (ou votre conjoint) des pensions alimentaires ?</label>
       <div class="col-md-6">
-        <button class="btn btn-sm btn-default" ng-model="versePensionsAlimentaires" btn-radio="true">Oui</button>
-        <button class="btn btn-sm btn-default" ng-model="versePensionsAlimentaires" btn-radio="false">Non</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="versePensionsAlimentaires" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="versePensionsAlimentaires" btn-radio="false">Non</button>
       </div>
+    </div>
+
+    <div ng-if="versePensionsAlimentaires">
+      <montant-ressource
+        ng-repeat="individuVM in individusVM"
+        ng-model="individuVM.pensionsVersees"
+        short-label="individuVM.label"
+        ressource-type="pensionsVersees"
+        date-de-valeur="situation.dateDeValeur">
+      </montant-ressource>
     </div>
 
     <div class="text-right">

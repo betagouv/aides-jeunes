@@ -1,5 +1,7 @@
 'use strict';
 
+/* global twttr */
+
 angular.module('ddsApp').controller('ContribuezCtrl', function() {
   // copié-collé code tweeter
   (function(d,s,id){

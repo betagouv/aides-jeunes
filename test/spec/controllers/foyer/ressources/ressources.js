@@ -80,6 +80,22 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(scope.individusVM[0].ressources[0].montantAnnuel).toBe(200);
         });
 
+        it('should not map pensions alimentaires to the view model', function() {
+            // given
+            scope.situation.individus = [{
+                ressources: [
+                    { type: 'pensionsAlimentaires', periode: '2013-03', montant: 100 },
+                    { type: 'pensionsAlimentairesVersees', periode: '2012-10', montant: 100 },
+                ]
+            }];
+
+            // when
+            initController();
+
+            // then
+            expect(scope.individusVM[0].ressources.length).toBe(0);
+        });
+
         it('should round amounts when mapping individus ressources', function() {
             // given
             _ressourceTypes_ = [{ id: 'toto' }];
@@ -225,17 +241,19 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(individu.ressources[0].montant).toBe(100);
         });
 
-        it('should keep ressources n-2 as is', function() {
+        it('should keep ressources n-2 and pensions alimentaires as is', function() {
             // given
             var ressourceN2 = { type: 'rncRevenusActivite', montant: 200 };
-            scope.situation.individus = [{ ressources: [ressourceN2] }];
+            var pensionAlimentaire = { type: 'pensionsAlimentaires', montantAnnuel: 100 };
+            var pensionAlimentaireVersee = { type: 'pensionsAlimentairesVersees', montantAnnuel: 100 };
+            scope.situation.individus = [{ ressources: [ressourceN2, pensionAlimentaire, pensionAlimentaireVersee] }];
             initController();
 
             // when
             scope.submit(form);
 
             // then
-            expect(scope.situation.individus[0].ressources).toEqual([ressourceN2]);
+            expect(scope.situation.individus[0].ressources).toEqual([ressourceN2, pensionAlimentaire, pensionAlimentaireVersee]);
         });
 
         it('should fill the interruptedRessources field of each individu with ressources declared as interrupted', function() {

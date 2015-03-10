@@ -3,40 +3,34 @@
     <h1>Pensions alimentaires</h1>
 
     <div class="form-group">
-      <label class="control-label col-md-6"><b>Percevez-vous</b> (ou votre conjoint) des pensions alimentaires ?</label>
+      <label class="control-label col-md-6">
+        Avez-vous (ou votre conjoint) <b>perçu ou versé</b>
+        des pensions alimentaires <b>entre {{ debutAnneeGlissante }} et {{ finAnneeGlissante }}</b> ?
+      </label>
       <div class="col-md-6">
-        <button type="button" class="btn btn-sm btn-default" ng-model="recoitPensionsAlimentaires" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-default" ng-model="recoitPensionsAlimentaires" btn-radio="false">Non</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="hasPensionsAlimentaires" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="hasPensionsAlimentaires" btn-radio="false">Non</button>
       </div>
     </div>
 
-    <div ng-if="recoitPensionsAlimentaires">
+    <div ng-if="hasPensionsAlimentaires">
       <montant-ressource
         ng-repeat="individuVM in individusVM"
         ng-model="individuVM.pensionsRecues"
         short-label="individuVM.label"
         ressource-type="pensionsPercues"
+        index="$index"
         date-de-valeur="situation.dateDeValeur">
       </montant-ressource>
-    </div>
 
-    <hr>
-
-    <div class="form-group">
-      <label class="control-label col-md-6"><b>Versez-vous</b> (ou votre conjoint) des pensions alimentaires ?</label>
-      <div class="col-md-6">
-        <button type="button" class="btn btn-sm btn-default" ng-model="versePensionsAlimentaires" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-default" ng-model="versePensionsAlimentaires" btn-radio="false">Non</button>
-      </div>
-    </div>
-
-    <div ng-if="versePensionsAlimentaires">
       <montant-ressource
         ng-repeat="individuVM in individusVM"
         ng-model="individuVM.pensionsVersees"
         short-label="individuVM.label"
         ressource-type="pensionsVersees"
-        date-de-valeur="situation.dateDeValeur">
+        index="$index"
+        date-de-valeur="situation.dateDeValeur"
+        on-going-label="'Je continuerai à verser cette pension en ' + currentMonth">
       </montant-ressource>
     </div>
 

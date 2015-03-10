@@ -3,13 +3,11 @@
 angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $state, ressourceTypes, categoriesRnc, SituationService, IndividuService) {
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
     var momentFinAnnee = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1);
-    $scope.debutAnnee = momentDebutAnnee.format('MMMM YYYY');
-    $scope.finAnnee = momentFinAnnee.format('MMMM YYYY');
+    $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
+    $scope.finAnneeGlissante = momentFinAnnee.format('MMMM YYYY');
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
     $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
-
-    $scope.ressourceTypes = ressourceTypes;
 
     var extractIndividuSelectedRessourceTypes = function(individu) {
         var result = {};
@@ -33,7 +31,9 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     var extractIndividuRessources = function(individu) {
         var result = [];
         var ressources = individu.ressources || [];
-        var types = _.chain(ressources).pluck('type').unique();
+        var types = _.chain(ressources).pluck('type').unique().filter(function(type) {
+            return !_.contains(['pensionsAlimentaires', 'pensionsAlimentairesVersees'], type);
+        });
         types.forEach(function(type) {
             // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
             var ressourceType = _.find(ressourceTypes, { id: type });
@@ -165,9 +165,9 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             }
         });
 
-        // on réinjecte les ressources RNC
+        // on réinjecte les ressources RNC & pensions alimentaires
         individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
-            return !!_.find(categoriesRnc, { id: ressource.type });
+            return !!_.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentaires', 'pensionsAlimentairesVersees'], ressource.type);
         }));
 
         // on supprime les revenus TNS si désélectionnés

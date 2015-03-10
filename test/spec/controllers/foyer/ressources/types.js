@@ -1,24 +1,25 @@
 'use strict';
 
+/* global _ */
+
 describe('Controller: FoyerRessourceTypesCtrl', function() {
 
-    var scope, _ressourceTypes_;
+    var scope, _ressourceTypes_, controller;
 
     beforeEach(function() {
         scope = {};
         module('ddsApp');
-        inject(function(ressourceTypes) {
+        inject(function(ressourceTypes, $controller) {
             _ressourceTypes_ = ressourceTypes;
+            controller = $controller;
         });
     });
 
     var initController = function(individuIndex) {
-        inject(function($controller) {
-            $controller('FoyerRessourceTypesCtrl', {
-                $scope: scope,
-                $stateParams: { individu: individuIndex || 0 },
-                ressourceTypes: _ressourceTypes_
-            });
+        controller('FoyerRessourceTypesCtrl', {
+            $scope: scope,
+            $stateParams: { individu: individuIndex || 0 },
+            ressourceTypes: _ressourceTypes_
         });
     };
 
@@ -29,16 +30,26 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
             var ressourceTypes = [{ id: 'toto', category: 'tata' }];
 
             // when
-            inject(function($controller) {
-                $controller('FoyerRessourceTypesCtrl', {
-                    $scope: scope,
-                    $stateParams: { individu: 0 },
-                    ressourceTypes: ressourceTypes
-                });
+            controller('FoyerRessourceTypesCtrl', {
+                $scope: scope,
+                $stateParams: { individu: 0 },
+                ressourceTypes: ressourceTypes
             });
 
             // then
             expect(scope.ressourceTypesByCategories).toEqual({ tata: [ressourceTypes[0]]});
+        });
+
+        it('should omit the "pensions alimentaires" ressource type', function() {
+            // given
+            scope.individusVM = [{ individu: { role: 'demandeur' }}];
+
+            // when
+            initController();
+
+            var types = _.pluck(scope.ressourceTypesByCategories.pensions, 'id');
+            expect(types).not.toContain('pensionsAlimentaires');
+            expect(types).not.toContain('pensionsAlimentairesVersees');
         });
 
         it('should set the page title to "Vos ressources" if individu is demandeur', function() {

@@ -8,14 +8,14 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-sm-3" ng-repeat="month in months">
-        <label for="{{ individuIndex + ressource.type.id + month.id }}">
+        <label for="{{ index + ressource.type.id + month.id }}">
           {{ month.label|uppercaseFirst }}
         </label>
         <span class="input-group">
           <input
             type="number"
             class="form-control text-right"
-            id="{{ individuIndex + ressource.type.id + month.id }}"
+            id="{{ index + ressource.type.id + month.id }}"
             required
             min="0"
             select-on-focus
@@ -29,14 +29,14 @@
         </span>
       </div>
       <div class="col-sm-3">
-        <label for="{{ individuIndex + ressource.type.id }}-annuel">
+        <label for="{{ index + ressource.type.id }}-annuel">
           De {{ debutAnnee }} à {{ finAnnee }}
         </label>
         <span class="input-group">
           <input
             type="number"
             class="form-control text-right"
-            id="{{ individuIndex + ressource.type.id }}-annuel"
+            id="{{ index + ressource.type.id }}-annuel"
             required
             min="0"
             select-on-focus
@@ -55,7 +55,7 @@
           <input
             type="checkbox"
             ng-model="ressource.onGoing">
-            Je continuerai à percevoir cette ressource en {{ currentMonth }}
+            {{ onGoingLabel }}
         </label>
       </div>
     </div>

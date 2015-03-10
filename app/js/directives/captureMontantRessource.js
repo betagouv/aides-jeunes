@@ -9,7 +9,9 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
         scope: {
             shortLabel: '=',
             ressourceType: '=',
-            dateDeValeur: '='
+            dateDeValeur: '=',
+            index: '=',
+            onGoingLabel: '=?'
         },
         link: function(scope, element, attrs, ngModel) {
             var momentDebutAnnee = moment(scope.dateDeValeur).subtract('years', 1);
@@ -19,13 +21,13 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             scope.months = SituationService.getMonths(scope.dateDeValeur);
             scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
 
+            if (!scope.onGoingLabel) {
+                scope.onGoingLabel = 'Je continuerai à percevoir cette ressource en ' + scope.currentMonth;
+            }
+
             ngModel.$render = function() {
                 scope.ressource = ngModel.$viewValue;
             };
-
-            ngModel.$parsers.push(function(viewValue) {
-                return viewValue;
-            });
 
             scope.updateMontantAnnuel = function(ressource) {
                 var somme = ressource.montantsMensuels[0] + ressource.montantsMensuels[1] + ressource.montantsMensuels[2];

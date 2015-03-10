@@ -125,7 +125,12 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     },
     {
         id: 'pensionsAlimentaires',
-        label: 'Pensions alimentaires',
+        label: 'Pensions alimentaires reçues',
+        category: 'pensions'
+    },
+    {
+        id: 'pensionsAlimentairesVersees',
+        label: 'Pensions alimentaires versées',
         category: 'pensions'
     },
     {

@@ -74,7 +74,8 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
     });
 
     $scope.$on('rnc', function() {
-        if (SituationService.hasEnfantAuCollege($scope.situation)) {
+        // si un enfant est scolarisé on demande son rfr (bourses collège/lycée), sinon pas besoin
+        if (SituationService.hasEnfantScolarise($scope.situation)) {
             $state.go('foyer.rfr');
         } else {
             $scope.situation.ressourcesYearMoins2Captured = true;

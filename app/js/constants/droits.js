@@ -119,5 +119,16 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'imgSrc':'logo_education_nationale.png',
         'link':'http://www.education.gouv.fr/cid88/les-aides-financieres-au-college.html#Les%20bourses%20de%20coll%C3%A8ge',
         'isBaseRessourcesYearMoins2':true
+    },
+    {
+        'id':'bourse_lycee',
+        'isMontantAnnuel':true,
+        'label':'Bourse de lycée',
+        'shortLabel':'Bourse lycée',
+        'description':'La bourse des lycées est accordée, sous condition de ressources, à la famille d’un lycéen. Son montant dépend des ressources et des charges de la famille.',
+        'imgSrc':'logo_education_nationale.png',
+        'link':'http://www.education.gouv.fr/cid151/aides-financieres-au-lycee.html#Les%20bourses%20de%20lycée',
+        'isBaseRessourcesYearMoins2':true,
+        'isSimulated': false
     }
 ]);

@@ -207,6 +207,10 @@ $body-front-base-padding: 50px;
 .frame-new-individu {
   @extend .frame-foyer;
   margin-top: 20px;
+
+  h2 {
+    margin-top: 0;
+  }
 }
 
 .liste-organismes {

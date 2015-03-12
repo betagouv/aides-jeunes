@@ -125,7 +125,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'isMontantAnnuel':true,
         'label':'Bourse de lycée',
         'shortLabel':'Bourse lycée',
-        'description':'La bourse des lycées est accordée, sous condition de ressources, à la famille d’un lycéen. Son montant dépend des ressources et des charges de la famille.',
+        'description':'La bourse des lycées est accordée, sous condition de ressources, à la famille d’un lycéen. Son montant dépend des ressources et des charges de la famille. A noter que cette bourse peut être accompagnée de diverses primes (prime d’équipement, prime à la qualification, bourse au mérite au lycée, prime à l’internat...) dont le montant n’est pas inclus ici.',
         'imgSrc':'logo_education_nationale.png',
         'link':'http://www.education.gouv.fr/cid151/aides-financieres-au-lycee.html#Les%20bourses%20de%20lycée',
         'isBaseRessourcesYearMoins2':true,

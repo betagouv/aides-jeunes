@@ -28,7 +28,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         },
         {
             id: 'lycee',
-            label: 'Au lycée'
+            label: 'Au lycée / En CAP / En CPA'
         }
     ];
 

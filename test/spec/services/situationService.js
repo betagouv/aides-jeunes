@@ -180,8 +180,8 @@ describe('Service: situationService', function () {
         });
     });
 
-    describe('function hasEnfantAuCollege()', function() {
-        it('should return true only when situation has a child with scolarite "college"', function() {
+    describe('function hasEnfantScolarise()', function() {
+        it('should return true only when situation has a child with scolarite "college" or "lycee"', function() {
             // given
             var situations = [
                 { individus: [{ role: 'enfant', scolarite: 'college' }] },
@@ -192,11 +192,11 @@ describe('Service: situationService', function () {
 
             // when
             var results = _.map(situations, function(situation) {
-                return service.hasEnfantAuCollege(situation);
+                return service.hasEnfantScolarise(situation);
             });
 
             // then
-            expect(results).toEqual([true, false, false, false]);
+            expect(results).toEqual([true, true, false, false]);
         });
     });
 });

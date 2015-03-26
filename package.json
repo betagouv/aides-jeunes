@@ -7,7 +7,7 @@
     "express": "~4.12.0",
     "morgan": "~1.5.0",
     "prerender-node": "^1.1.1",
-    "ludwig-ui": "sgmap/ludwig-ui",
+    "ludwig-ui": "sgmap/ludwig-ui#v0.1.0",
     "sgmap-mes-aides-api": "sgmap/mes-aides-api",
     "serve-favicon": "~2.2.0"
   },

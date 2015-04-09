@@ -60,9 +60,9 @@ module.exports = function (grunt) {
         files: ['test/spec/**/*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      compass: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
+      sass: {
+        files: ['<%= yeoman.app %>/styles/**/*.{scss,sass}'],
+        tasks: ['sass:server', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -176,30 +176,18 @@ module.exports = function (grunt) {
     },
 
     // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
-      options: {
-        sassDir: '<%= yeoman.app %>/styles',
-        cssDir: '.tmp/styles',
-        generatedImagesDir: '.tmp/img/generated',
-        imagesDir: '<%= yeoman.app %>/img',
-        javascriptsDir: '<%= yeoman.app %>/js',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: '<%= yeoman.app %>/bower_components',
-        httpImagesPath: '/img',
-        httpGeneratedImagesPath: '/img/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false,
-        raw: 'Sass::Script::Number.precision = 10\n'
-      },
+    sass: {
       dist: {
+	files: [{
+		expand: true,
+		cwd: '<%= yeoman.app %>/styles',
+		src: '**/*.scss',
+		dest: '.tmp/styles',
+		ext: '.css'
+	}],
+
         options: {
-          generatedImagesDir: '<%= yeoman.dist %>/img/generated'
-        }
-      },
-      server: {
-        options: {
-          debugInfo: true
+		includePaths: [ '<%= yeoman.app %>/bower_components' ]
         }
       }
     },
@@ -325,10 +313,10 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'compass:server'
+        'sass:server'
       ],
       test: [
-        'compass'
+        'sass'
       ],
       debug: {
         tasks: [
@@ -340,7 +328,7 @@ module.exports = function (grunt) {
         }
       },
       dist: [
-        'compass:dist',
+        'sass:dist',
         'imagemin',
         'svgmin',
         'htmlmin'

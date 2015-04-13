@@ -32,8 +32,8 @@ Décision informelle sur la base de l'analyse des besoins des usagers, des parte
 
 ### Définition → Implémentation
 
-- [x] Validation de la définition par le demandeur.
-- [x] Validation de la définition par l'équipe technique.
+- [x] Validation de la définition par le demandeur (wiki).
+- [x] Validation de la définition par l'équipe technique (wiki mis à jour).
 - [x] Création d'un test invalide (selon la modalité la plus indiquée : unitaire pour l'API, via Ludwig pour une prestation, d'intégration pour l'interface…).
 
 ### Implémentation → Déploiement

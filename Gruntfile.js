@@ -385,23 +385,6 @@ module.exports = function (grunt) {
           }
         }
       }
-    },
-
-    ngconstant: {
-        options: {
-            name: 'ludwigConstants',
-            dest: 'ludwig-constants.js',
-            wrap: '\'use strict\';\n\n {%= __ngModule %}',
-            space: '  ',
-            constants: {
-                config: grunt.file.readJSON('ludwig.json')
-            }
-        },
-        dev: {
-            options: {
-                dest: '<%= yeoman.app %>/js/ludwig-constants.js'
-            }
-        }
     }
   });
 
@@ -429,7 +412,6 @@ module.exports = function (grunt) {
     if (target === 'debug') {
       return grunt.task.run([
         'clean:server',
-        'ngconstant:dev',
         'bower-install',
         'concurrent:server',
         'autoprefixer',
@@ -439,7 +421,6 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'ngconstant:dev',
       'bower-install',
       'concurrent:server',
       'autoprefixer',
@@ -456,7 +437,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'ngconstant:dev',
     'bower-install',
     'useminPrepare',
     'concurrent:dist',

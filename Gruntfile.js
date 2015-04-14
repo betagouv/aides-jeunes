@@ -402,14 +402,6 @@ module.exports = function (grunt) {
                 dest: '<%= yeoman.app %>/js/ludwig-constants.js'
             }
         }
-    },
-
-    subgrunt: {
-        ludwig: {
-          projects: {
-            'node_modules/ludwig-ui': 'build'
-          }
-        }
     }
   });
 
@@ -477,11 +469,6 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlrefs:dist'
-  ]);
-
-  grunt.registerTask('build-all', [
-    'subgrunt:ludwig',
-    'build'
   ]);
 
   grunt.registerTask('default', [

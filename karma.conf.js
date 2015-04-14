@@ -25,7 +25,7 @@ module.exports = function(config) {
       'app/bower_components/angular-bootstrap/ui-bootstrap.js',
       'app/bower_components/lodash/dist/lodash.compat.js',
       'app/js/embed.js',
-      'node_modules/ludwig-ui/app/scripts/**/*.js',
+      'node_modules/ludwig-ui/dist/scripts/**/*.js',
       'app/js/**/*.js',
       'test/spec/**/*.js'
     ],

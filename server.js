@@ -1,7 +1,7 @@
 var express = require('express');
 var errorHandler = require('errorhandler');
 var morgan = require('morgan');
-var ludwigConfig = require('./ludwig.json');
+var ludwigConfig = require('./ludwig/config.json');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 

@@ -1,6 +1,6 @@
 {
   "baseUrl": "/tests",
   "baseApiPath": "/api",
-  "scenarioTemplatePath": "app/js/directives/ludwigEmbed.js",
+  "scenarioTemplatePath": "ludwig/scenarioTemplate.js",
   "showUrls": true
 }

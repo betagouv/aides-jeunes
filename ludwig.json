@@ -1,6 +1,6 @@
 {
-  "scenarioTemplate": "app/js/directives/ludwigEmbed.js",
   "baseUrl": "/tests",
-  "constants": "app/js/ludwig-constants.js",
+  "baseApiPath": "/api",
+  "scenarioTemplatePath": "app/js/directives/ludwigEmbed.js",
   "showUrls": true
 }

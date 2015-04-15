@@ -50,7 +50,13 @@ If you need to add features to the API, the best is to [`npm link`](https://docs
 Usage
 -----
 
-To start the server :
+First, start a Mongo server:
+
+```sh
+mongod --dbpath db
+```
+
+Then, start the server:
 
 ```sh
 npm start

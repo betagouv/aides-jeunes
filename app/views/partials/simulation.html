@@ -21,39 +21,52 @@
   </div>
 
   <accordion close-others="true">
-    <accordion-group
-      class="resultats-accordion"
-      ng-repeat="droit in droits"
-      ng-class="{'resultats-accordion-muted': droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured,'panel-opened': droit.open}"
-      is-open="droit.open" >
+    <accordion-group is-open="droit.open"
+                     class="resultats-accordion"
+                     ng-repeat="droit in droits"
+                     ng-class="{'resultats-accordion-muted': droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured,'panel-opened': droit.open}">
+
+
       <accordion-heading>
         <div class="row">
+
           <div class="col-xs-2 col-sm-1">
-            <img class="droit-img" ng-src="/img/{{ droit.description.imgSrc }}" alt="{{ droit.description.id }}">
+            <img class="droit-img"
+                 ng-src="/img/{{ droit.description.imgSrc }}"
+                 alt="{{ droit.description.id }}">
           </div>
+
           <div class="col-xs-6 col-sm-8 description">
             <span
               class="text-warning fa fa-exclamation-triangle"
-              ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured"
-            ></span>
+              ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured">
+            </span>
             <span>{{ droit.description.label }}<span>
           </div>
+
           <div class="col-xs-3 col-sm-2">
-            <div class="montant" ng-class="{'montant-inconnu': null === droit.montant }" ng-if="false !== droit.description.hasMontant">
+            <div ng-if="false !== droit.description.hasMontant"
+                 class="montant"
+                 ng-class="{'montant-inconnu': null === droit.montant }">
               <span ng-if="null !== droit.montant">{{ round(droit.montant) }}&nbsp;€</span>
               <span ng-if="null === droit.montant">?</span>
             </div>
-            <div class="montant-detail" ng-if="null !== droit.montant && false !== droit.description.hasMontant">
+
+            <div ng-if="null !== droit.montant && false !== droit.description.hasMontant"
+                 class="montant-detail">
               /
               <span ng-if="droit.description.isMontantAnnuel">an</span>
               <span ng-if="!droit.description.isMontantAnnuel">mois</span>
             </div>
+
           </div>
+
           <div class="col-sm-1 hidden-xs description">
             <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"></i>
           </div>
         </div>
       </accordion-heading>
+
 
       <div class="caption">
         <div ng-if="null !== droit.montant">
@@ -86,6 +99,8 @@
           </div>
         </div>
       </div>
+
+
     </accordion-group>
   </accordion>
 

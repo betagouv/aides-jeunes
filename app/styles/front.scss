@@ -629,3 +629,8 @@ $autre-lighter: #cce4e7;
   @extend .col-md-4;
   margin-top: 10px;
 }
+
+.frame-resultats ul {
+  padding-left: 0em;
+  list-style-type: none;
+}

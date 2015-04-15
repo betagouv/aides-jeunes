@@ -74,7 +74,10 @@
           <div ng-if="droit.description.conditions">
             Pour en bénéficier, vous devez également :
             <ul>
-              <li ng-repeat="condition in droit.description.conditions" ng-bind-html="condition"></li>
+              <li ng-repeat="condition in droit.description.conditions">
+                <i class="fa fa-check"></i>
+                <span ng-bind-html="condition"></span>
+              </li>
             </ul>
           </div>
 

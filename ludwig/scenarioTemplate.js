@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ludwig').directive('scenario', function() {
+angular.module('ludwig').directive('scenario', function(config) {
     return {
       scope: {
           test: '=',
@@ -10,7 +10,7 @@ angular.module('ludwig').directive('scenario', function() {
       ' ng-src="{{src}}">' +
       '</iframe></div>',
       controller: function($scope, $sce) {
-          $scope.src = $sce.trustAsResourceUrl(window.serverConfig.mesAidesRootUrl + '/recap-situation/' + $scope.test.scenario.situationId);
+          $scope.src = $sce.trustAsResourceUrl(config.mesAidesRootUrl + '/recap-situation/' + $scope.test.scenario.situationId);
       }
     };
 });

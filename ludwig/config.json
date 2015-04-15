@@ -1,0 +1,6 @@
+{
+  "baseUrl": "/tests",
+  "baseApiPath": "/api",
+  "scenarioTemplatePath": "ludwig/scenarioTemplate.js",
+  "showUrls": true
+}

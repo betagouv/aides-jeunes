@@ -1,11 +1,11 @@
 var express = require('express');
 var errorHandler = require('errorhandler');
 var morgan = require('morgan');
-var ludwigConfig = require('./ludwig.json');
+var ludwigConfig = require('./ludwig/config.json');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-ludwigConfig.serverConfig = { mesAidesRootUrl: process.env.MES_AIDES_ROOT_URL || 'http://localhost:9000' };
+ludwigConfig.mesAidesRootUrl = process.env.MES_AIDES_ROOT_URL || 'http://localhost:9000';
 
 // Setup Express
 var app = express();
@@ -21,7 +21,7 @@ if ('production' === env) {
 
 // Setup app
 app.use('/api', require('sgmap-mes-aides-api'));
-require('ludwig-ui')(app, __dirname, ludwigConfig);
+app.use(ludwigConfig.baseUrl, require('ludwig-ui')(ludwigConfig));
 require('./')(app);
 
 if ('development' === env) {

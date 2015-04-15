@@ -71,6 +71,13 @@
       <div class="caption">
         <div ng-if="null !== droit.montant">
           <p>{{ droit.description.description }}</p>
+          <div ng-if="droit.description.conditions">
+            Pour en bénéficier, vous devez également :
+            <ul>
+              <li ng-repeat="condition in droit.description.conditions" ng-bind-html="condition"></li>
+            </ul>
+          </div>
+
           <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured">
             <i class="fa fa-warning"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
             <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>

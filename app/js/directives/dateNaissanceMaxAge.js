@@ -3,6 +3,11 @@
 var dateNaissanceValidator = function(scope, ctrl, attrs, attr, isValid) {
   ctrl.$parsers.unshift(function(viewValue) {
       var date = moment(viewValue, 'DD/MM/YYYY', true);
+
+      if (! date.isValid()) {
+          date = moment(viewValue, 'DD/MM/YY', true);
+      }
+
       if (date.isValid()) {
           var ageCond = scope.$eval(attrs[attr]);
           if (angular.isDefined(ageCond)) {

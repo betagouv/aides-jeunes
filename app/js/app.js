@@ -5,6 +5,11 @@ var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ui.bootstrap',
 ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $uiViewScrollProvider) {
     moment.lang('fr');
 
+    moment.parseTwoDigitYear = function(input) {
+        input = parseInt(input);
+        return (input > 19 ? 1900 : 2000) + input;
+    };
+
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
     $uiViewScrollProvider.useAnchorScroll();

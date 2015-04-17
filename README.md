@@ -1,57 +1,63 @@
-mes-aides-ui
-============
+The user interface (and main server) for [mes-aides](https://mes-aides.gouv.fr), a French benefits simulation application for citizens.
 
-Installation
-===================
+> L'interface utilisateur (et le serveur principal) de [mes-aides](https://mes-aides.gouv.fr), un estimateur des prestations sociales françaises pour les particuliers.
 
-Prerequisites
--------------
-_Note : This procedure has been checked on a clean ubuntu 12 machine. Please adapt according to your OS_
 
-Make sure build-essential, mongodb, node 0.10, grunt and bower are installed on your machine
+Installing
+==========
+
+System dependencies
+-------------------
+
+### Ubuntu
+
+Make sure `build-essential`, `mongodb`, `node` v0.10, `grunt` and `bower` are installed on your machine
 
 ```sh
-sudo apt-get install mongodb
 sudo apt-get install build-essential
-```
-To install node, you can follow up-to-date instructions on https://github.com/creationix/nvm
-```sh
-wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash
-source ~/.bashrc
-nvm install 0.10
-nvm alias default v0.10.38
-```
-```sh
-npm install grunt-cli -g
-npm install bower -g
+sudo apt-get install mongodb
 ```
 
-Installation
--------------
-Clone both `mes-aides-ui` and `mes-aides-api` (https://github.com/sgmap/mes-aides-api.git)
+### For all platforms
 
-First install the api in the  `mes-aides-api` directory :
+The runtime is Node 0.10.
+
+You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
+
+Once you have Node and npm installed, run:
+
 ```sh
-npm link
+npm install --global grunt-cli bower
 ```
 
-Then install the ui in the  `mes-aides-ui` directory :
+
+Application
+-----------
+
 ```sh
-bower install
-npm link sgmap-mes-aides-api 
+git clone https://github.com/sgmap/mes-aides-ui.git
+cd mes-aides-ui
 npm install
+bower install
 grunt build
 ```
 
+### Development mode
+
+If you need to add features to the API, the best is to [`npm link`](https://docs.npmjs.com/cli/link) `sgmap/mes-aides-api` into `mes-aides-ui`, to avoid depending on the published version.
+
+
 Usage
--------------
-To start the server : 
+-----
+
+First, start a Mongo server:
+
+```sh
+mongod --dbpath db
+```
+
+Then, start the server:
+
 ```sh
 npm start
 ```
-
-
-[![Build Status](https://secure.travis-ci.org/sgmap/mes-aides-ui.svg)](http://travis-ci.org/sgmap/mes-aides-ui) [![Dependency Status](https://david-dm.org/sgmap/mes-aides-ui.svg)](https://david-dm.org/sgmap/mes-aides-ui)
-[![Dev Dependency status](https://david-dm.org/sgmap/mes-aides-ui/dev-status.svg)](https://david-dm.org/sgmap/mes-aides-ui#info=devDependencies&view=table)
-[![Code Climate](https://codeclimate.com/github/sgmap/mes-aides-ui/badges/gpa.svg)](https://codeclimate.com/github/sgmap/mes-aides-ui)
-[![Test Coverage](https://codeclimate.com/github/sgmap/mes-aides-ui/badges/coverage.svg)](https://codeclimate.com/github/sgmap/mes-aides-ui)

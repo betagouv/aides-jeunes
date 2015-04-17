@@ -2,7 +2,7 @@
   <ui-view>
     <h1>Ressources de votre foyer</h1>
     <p>
-      Indiquez vos ressources <strong>nettes</strong> <abbr title="En France ou à l'étranger">perçues</abbr> <strong>entre {{ debutAnneeGlissante }} et {{ finAnneeGlissante }}</strong>.
+      Indiquez vos ressources <strong>nettes</strong> perçues <strong>entre {{ debutAnneeGlissante }} et {{ finAnneeGlissante }}</strong>, en France comme à l'étranger.
     </p>
     <form method="post" name="form" novalidate ng-submit="submit(form)">
       <div class="ressources-individu" ng-repeat="(individuIndex, individuVM) in individusVM">

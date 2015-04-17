@@ -6,7 +6,10 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'hasMontant':false,
         'label':'Couverture Maladie Universelle Complémentaire',
         'shortLabel':'CMU-C',
-        'description':'La CMU-C est une protection complémentaire santé gratuite accordée aux personnes remplissant certaines conditions de résidence et de ressources.',
+        'description':'La CMU-C est une protection complémentaire santé gratuite.',
+        'conditions': [
+            'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
+        ],
         'imgSrc':'logo_cmu.png',
         'link':'http://www.cmu.fr/cmu-complementaire.php'
     },

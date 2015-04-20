@@ -39,8 +39,8 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             expect(scope.individusVM.length).toBe(2);
             expect(scope.individusVM[0].individu).toEqual(scope.situation.individus[0]);
             expect(scope.individusVM[0].label).toEqual('Vous');
-            expect(scope.individusVM[0].pensionsRecues.montantsMensuels).toEqual([0, 0, 0]);
-            expect(scope.individusVM[0].pensionsRecues.montantAnnuel).toBe(0);
+            expect(scope.individusVM[0].pensionsVersees.montantsMensuels).toEqual([0, 0, 0]);
+            expect(scope.individusVM[0].pensionsVersees.montantAnnuel).toBe(0);
         });
 
         it('should map previous pensions alimentaires', function() {
@@ -48,9 +48,6 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             scope.situation.individus = [{
                 role: 'demandeur',
                 ressources: [
-                    { type: 'pensionsAlimentaires', periode: '2013-03', montant: 200 },
-                    { type: 'pensionsAlimentaires', periode: '2013-02', montant: 150 },
-                    { type: 'pensionsAlimentaires', periode: '2013-01', montant: 100 },
                     { type: 'pensionsAlimentairesVersees', periode: '2013-03', montant: 350 },
                     { type: 'pensionsAlimentairesVersees', periode: '2013-02', montant: 300 },
                     { type: 'pensionsAlimentairesVersees', periode: '2013-01', montant: 250 }
@@ -62,9 +59,7 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
 
             // then
             expect(scope.hasPensionsAlimentaires).toBe(true);
-            expect(scope.individusVM[0].pensionsRecues.montantsMensuels).toEqual([100, 150, 200]);
             expect(scope.individusVM[0].pensionsVersees.montantsMensuels).toEqual([250, 300, 350]);
-            expect(scope.individusVM[0].pensionsRecues.montantAnnuel).toBe(450);
             expect(scope.individusVM[0].pensionsVersees.montantAnnuel).toBe(900);
         });
     });
@@ -75,15 +70,15 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             scope.situation.individus = [{ role: 'demandeur', ressources: [] }];
             initController();
             scope.hasPensionsAlimentaires = true;
-            scope.individusVM[0].pensionsRecues.montantsMensuels = [100, 100, 100];
-            scope.individusVM[0].pensionsRecues.montantAnnuel = 1200;
+            scope.individusVM[0].pensionsVersees.montantsMensuels = [100, 100, 100];
+            scope.individusVM[0].pensionsVersees.montantAnnuel = 1200;
 
             // when
             scope.submit();
 
             // then
             var individu = scope.situation.individus[0];
-            expect(individu.ressources.length).toBe(24);
+            expect(individu.ressources.length).toBe(12);
             expect(individu.ressources[0].montant).toBe(100);
         });
 
@@ -92,7 +87,6 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             scope.situation.individus = [{
                 role: 'demandeur',
                 ressources: [
-                    { type: 'pensionsAlimentaires', periode: '2013-01', montant: 100 },
                     { type: 'pensionsAlimentairesVersees', periode: '2013-03', montant: 350 },
                     { type: 'foo', periode: '2013-03', montant: 350 }
                 ]

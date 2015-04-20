@@ -1,10 +1,10 @@
 <div class="frame-foyer">
   <form class="form-horizontal" ng-submit="submit()">
-    <h1>Pensions alimentaires</h1>
+    <h1>Pensions alimentaires versées</h1>
 
     <div class="form-group">
       <label class="control-label col-md-6">
-        Avez-vous (ou votre conjoint) <b>perçu ou versé</b>
+        Vous ou votre conjoint a-t-il <b>versé</b>
         des pensions alimentaires <b>entre {{ debutAnneeGlissante }} et {{ finAnneeGlissante }}</b> ?
       </label>
       <div class="col-md-6">
@@ -14,15 +14,6 @@
     </div>
 
     <div ng-if="hasPensionsAlimentaires">
-      <montant-ressource
-        ng-repeat="individuVM in individusVM"
-        ng-model="individuVM.pensionsRecues"
-        short-label="individuVM.label"
-        ressource-type="pensionsPercues"
-        index="$index"
-        date-de-valeur="situation.dateDeValeur">
-      </montant-ressource>
-
       <montant-ressource
         ng-repeat="individuVM in individusVM"
         ng-model="individuVM.pensionsVersees"

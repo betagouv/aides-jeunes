@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $state, ressourceTypes, categoriesRnc, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $state, ressourceTypes, categoriesRnc, SituationService, IndividuService, RessourceService) {
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
     var momentFinAnnee = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1);
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
@@ -32,7 +32,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         var result = [];
         var ressources = individu.ressources || [];
         var types = _.chain(ressources).pluck('type').unique().filter(function(type) {
-            return !_.contains(['pensionsAlimentaires', 'pensionsAlimentairesVersees'], type);
+            return !_.contains(['pensionsAlimentairesVersees'], type);
         });
         types.forEach(function(type) {
             // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
@@ -136,38 +136,13 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                     individu.autresRevenusTns = ressource.montantAnnuel;
                 }
             } else {
-                var somme3DerniersMois = 0;
-                // injection des valeurs des 3 derniers mois
-                [2, 1, 0].forEach(function(i) {
-                    var montant = ressource.montantsMensuels[i];
-                    somme3DerniersMois += montant;
-                    individu.ressources.push({
-                        type: ressource.type.id,
-                        periode: $scope.months[i].id,
-                        montant: montant
-                    });
-                });
-
-                // injection du montant annuel étalé sur les 9 mois restants
-                var montantMensuelEtale = (ressource.montantAnnuel - somme3DerniersMois) / 9;
-                for (var j = 0; j < 9; j++) {
-                    var periode = moment($scope.situation.dateDeValeur).subtract(4 + j, 'months').format('YYYY-MM');
-                    individu.ressources.push({
-                        type: ressource.type.id,
-                        periode: periode,
-                        montant: montantMensuelEtale
-                    });
-                }
-
-                if (!ressource.onGoing) {
-                    individu.interruptedRessources.push(ressource.type.id);
-                }
+                RessourceService.spreadIndividuRessources(individu, $scope.months, ressource, $scope.situation.dateDeValeur);
             }
         });
 
         // on réinjecte les ressources RNC & pensions alimentaires
         individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
-            return !!_.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentaires', 'pensionsAlimentairesVersees'], ressource.type);
+            return !!_.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
         }));
 
         // on supprime les revenus TNS si désélectionnés

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($scope, ressourceTypes, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($scope, ressourceTypes, SituationService, IndividuService, RessourceService) {
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
     var momentFinAnnee = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1);
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
@@ -65,33 +65,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
     var applyPensionToIndividu = function(individuVM, typePension) {
         var individu = individuVM.individu;
         var ressource = individuVM[typePension];
-
-        // injection des valeurs des 3 derniers mois
-        var somme3DerniersMois = 0;
-        [2, 1, 0].forEach(function(i) {
-            var montant = ressource.montantsMensuels[i];
-            somme3DerniersMois += montant;
-            individu.ressources.push({
-                type: ressource.type.id,
-                periode: months[i].id,
-                montant: montant
-            });
-        });
-
-        // injection du montant annuel étalé sur les 9 mois restants
-        var montantMensuelEtale = (ressource.montantAnnuel - somme3DerniersMois) / 9;
-        for (var j = 0; j < 9; j++) {
-            var periode = moment($scope.situation.dateDeValeur).subtract(4 + j, 'months').format('YYYY-MM');
-            individu.ressources.push({
-                type: ressource.type.id,
-                periode: periode,
-                montant: montantMensuelEtale
-            });
-        }
-
-        if (!ressource.onGoing) {
-            individu.interruptedRessources.push(ressource.type.id);
-        }
+        RessourceService.spreadIndividuRessources(individu, months, ressource, $scope.situation.dateDeValeur);
     };
 
     $scope.submit = function() {

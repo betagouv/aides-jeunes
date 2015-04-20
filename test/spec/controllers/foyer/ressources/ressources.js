@@ -80,11 +80,10 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(scope.individusVM[0].ressources[0].montantAnnuel).toBe(200);
         });
 
-        it('should not map pensions alimentaires to the view model', function() {
+        it('should not map pensions alimentaires versées to the view model', function() {
             // given
             scope.situation.individus = [{
                 ressources: [
-                    { type: 'pensionsAlimentaires', periode: '2013-03', montant: 100 },
                     { type: 'pensionsAlimentairesVersees', periode: '2012-10', montant: 100 },
                 ]
             }];
@@ -244,16 +243,15 @@ describe('Controller: FoyerRessourcesCtrl', function() {
         it('should keep ressources n-2 and pensions alimentaires as is', function() {
             // given
             var ressourceN2 = { type: 'rncRevenusActivite', montant: 200 };
-            var pensionAlimentaire = { type: 'pensionsAlimentaires', montantAnnuel: 100 };
             var pensionAlimentaireVersee = { type: 'pensionsAlimentairesVersees', montantAnnuel: 100 };
-            scope.situation.individus = [{ ressources: [ressourceN2, pensionAlimentaire, pensionAlimentaireVersee] }];
+            scope.situation.individus = [{ ressources: [ressourceN2, pensionAlimentaireVersee] }];
             initController();
 
             // when
             scope.submit(form);
 
             // then
-            expect(scope.situation.individus[0].ressources).toEqual([ressourceN2, pensionAlimentaire, pensionAlimentaireVersee]);
+            expect(scope.situation.individus[0].ressources).toEqual([ressourceN2, pensionAlimentaireVersee]);
         });
 
         it('should fill the interruptedRessources field of each individu with ressources declared as interrupted', function() {

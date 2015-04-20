@@ -48,7 +48,6 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
             initController();
 
             var types = _.pluck(scope.ressourceTypesByCategories.pensions, 'id');
-            expect(types).not.toContain('pensionsAlimentaires');
             expect(types).not.toContain('pensionsAlimentairesVersees');
         });
 

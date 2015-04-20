@@ -32,7 +32,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         var result = [];
         var ressources = individu.ressources || [];
         var types = _.chain(ressources).pluck('type').unique().filter(function(type) {
-            return !_.contains(['pensionsAlimentaires', 'pensionsAlimentairesVersees'], type);
+            return !_.contains(['pensionsAlimentairesVersees'], type);
         });
         types.forEach(function(type) {
             // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
@@ -167,7 +167,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
 
         // on réinjecte les ressources RNC & pensions alimentaires
         individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
-            return !!_.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentaires', 'pensionsAlimentairesVersees'], ressource.type);
+            return !!_.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
         }));
 
         // on supprime les revenus TNS si désélectionnés

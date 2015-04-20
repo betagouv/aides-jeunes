@@ -62,7 +62,7 @@ module.exports = function (grunt) {
       },
       sass: {
         files: ['<%= yeoman.app %>/styles/**/*.{scss,sass}'],
-        tasks: ['sass:server', 'autoprefixer']
+        tasks: ['autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -312,9 +312,6 @@ module.exports = function (grunt) {
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
-      server: [
-        'sass:server'
-      ],
       test: [
         'sass'
       ],

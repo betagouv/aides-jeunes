@@ -26,12 +26,22 @@ module.exports = function(config) {
       'app/bower_components/lodash/dist/lodash.compat.js',
       'app/js/embed.js',    // depth-first glob interpretation of karma test runner means we need a forward declaration of the module
       'app/js/**/*.js',
-      'test/spec/**/*.js'
+      'test/spec/**/*.js',
+      'app/views/**/*.html'
     ],
 
     // list of files / patterns to exclude
     exclude: [
     ],
+
+    preprocessors: {
+      '**/*.html': ['ng-html2js']
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'app/views',
+      moduleName: 'templates'
+    },
 
     // web server port
     port: 8002,

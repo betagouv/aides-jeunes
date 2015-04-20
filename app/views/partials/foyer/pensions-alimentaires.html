@@ -4,7 +4,7 @@
 
     <div class="form-group">
       <label class="control-label col-md-6">
-        Avez-vous (ou votre conjoint) <b>perçu ou versé</b>
+        Avez-vous (ou votre conjoint) <b>versé</b>
         des pensions alimentaires <b>entre {{ debutAnneeGlissante }} et {{ finAnneeGlissante }}</b> ?
       </label>
       <div class="col-md-6">
@@ -14,15 +14,6 @@
     </div>
 
     <div ng-if="hasPensionsAlimentaires">
-      <montant-ressource
-        ng-repeat="individuVM in individusVM"
-        ng-model="individuVM.pensionsRecues"
-        short-label="individuVM.label"
-        ressource-type="pensionsPercues"
-        index="$index"
-        date-de-valeur="situation.dateDeValeur">
-      </montant-ressource>
-
       <montant-ressource
         ng-repeat="individuVM in individusVM"
         ng-model="individuVM.pensionsVersees"

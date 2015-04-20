@@ -29,19 +29,12 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
         return result || 0;
     };
 
-    $scope.pensionsPercues = _.find(ressourceTypes, { id: 'pensionsAlimentaires' });
     $scope.pensionsVersees = _.find(ressourceTypes, { id: 'pensionsAlimentairesVersees' });
 
     var createIndividuVM = function(individu) {
         var result = {
             individu: individu,
             label: IndividuService.label(individu),
-            pensionsRecues: {
-                type: $scope.pensionsPercues,
-                montantsMensuels: initMontantsMensuels(individu, 'pensionsAlimentaires'),
-                montantAnnuel: initMontantAnnuel(individu, 'pensionsAlimentaires'),
-                onGoing: true
-            },
             pensionsVersees: {
                 type: $scope.pensionsVersees,
                 montantsMensuels: initMontantsMensuels(individu, 'pensionsAlimentairesVersees'),
@@ -63,7 +56,6 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
     $scope.hasPensionsAlimentaires = false;
     $scope.individusVM.forEach(function(individuVM) {
         if (_.any([
-            _.find(individuVM.individu.ressources, { type: 'pensionsAlimentaires' }),
             _.find(individuVM.individu.ressources, { type: 'pensionsAlimentairesVersees' })
         ])) {
             $scope.hasPensionsAlimentaires = true;
@@ -105,12 +97,12 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
     $scope.submit = function() {
         $scope.individusVM.forEach(function(individuVM) {
             if ($scope.hasPensionsAlimentaires) {
-                ['pensionsRecues', 'pensionsVersees'].forEach(function(typePension) {
+                ['pensionsVersees'].forEach(function(typePension) {
                     applyPensionToIndividu(individuVM, typePension);
                 });
             } else {
                 individuVM.individu.ressources = _.filter(individuVM.individu.ressources, function(ressource) {
-                    return !_.contains(['pensionsAlimentaires', 'pensionsAlimentairesVersees'], ressource.type);
+                    return !_.contains(['pensionsAlimentairesVersees'], ressource.type);
                 });
             }
         });

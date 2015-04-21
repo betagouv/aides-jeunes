@@ -18,10 +18,10 @@
       <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.required">Ce champ est obligatoire.</p>
       <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.ddsDate">Date de naissance invalide.</p>
       <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMaxAge">
-        Âge maximum : {{ options.maxAge }} ans.
+        Cette personne ne peut pas avoir plus de {{ options.maxAge }} ans.
       </p>
       <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMinAge">
-        Cette personne ne doit pas avoir moins de {{ options.minAge }} ans.
+        Cette personne ne peut pas avoir moins de {{ options.minAge }} ans.
       </p>
     </div>
     <div class="col-sm-4">

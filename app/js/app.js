@@ -5,9 +5,10 @@ var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ui.bootstrap',
 ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $uiViewScrollProvider) {
     moment.lang('fr');
 
-    moment.parseTwoDigitYear = function(input) {
+    var CURRENT_YEAR_TWO_DIGITS = (new Date()).getFullYear() - 2000;
+    moment.parseTwoDigitYear = function(input) {  // see https://github.com/moment/moment/issues/2219
         input = parseInt(input);
-        return (input > 19 ? 1900 : 2000) + input;
+        return input + (input <= CURRENT_YEAR_TWO_DIGITS ? 2000 : 1900);
     };
 
     $locationProvider.html5Mode(true);

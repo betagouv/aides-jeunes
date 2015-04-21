@@ -62,7 +62,7 @@ module.exports = function (grunt) {
       },
       sass: {
         files: ['<%= yeoman.app %>/styles/**/*.{scss,sass}'],
-        tasks: ['sass:server', 'autoprefixer']
+        tasks: ['sass', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -178,16 +178,15 @@ module.exports = function (grunt) {
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
       dist: {
-	files: [{
-		expand: true,
-		cwd: '<%= yeoman.app %>/styles',
-		src: '**/*.scss',
-		dest: '.tmp/styles',
-		ext: '.css'
-	}],
-
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles',
+          src: '**/*.scss',
+          dest: '.tmp/styles',
+          ext: '.css'
+        }],
         options: {
-		includePaths: [ '<%= yeoman.app %>/bower_components' ]
+          includePaths: ['<%= yeoman.app %>/bower_components']
         }
       }
     },
@@ -313,7 +312,7 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'sass:server'
+        'sass'
       ],
       test: [
         'sass'

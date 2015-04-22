@@ -11,6 +11,10 @@ angular.module('ddsApp').directive('ddsDate', function() {
 
                 return result;
             });
+
+            ctrl.$formatters.push(function(birthDateMoment) {
+                return birthDateMoment.format('DD/MM/YYYY');
+            });
         }
     };
 });

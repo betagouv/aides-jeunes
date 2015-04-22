@@ -14,7 +14,7 @@ app.config(function($locationProvider, $stateProvider) {
                 return $http.get('/api/situations/' + $stateParams.situationId).then(function(result) {
                     var situation = result.data;
                     situation.individus.forEach(function(individu) {
-                        individu.dateDeNaissance = moment(individu.dateDeNaissance).format('DD/MM/YYYY');
+                        individu.dateDeNaissance = moment(individu.dateDeNaissance);
                     });
                     return situation;
                 });

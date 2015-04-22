@@ -70,15 +70,22 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 this.newSituation();
             }
 
+            situation.individus.forEach(function(individu) {
+                individu.dateDeNaissance = moment(individu.dateDeNaissance);
+            });
+
             return situation;
         },
 
         restoreRemote: function(situationId) {
             return $http.get('/api/situations/' + situationId).then(function(result) {
-                situation = $sessionStorage.situation = result.data;
+                situation = result.data;
+
                 situation.individus.forEach(function(individu) {
-                    individu.dateDeNaissance = moment(individu.dateDeNaissance).format('DD/MM/YYYY');
+                    individu.dateDeNaissance = moment(individu.dateDeNaissance);
                 });
+
+                $sessionStorage.situation = situation;
 
                 return situation;
             });
@@ -157,7 +164,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         createApiCompatibleIndividu: function(individu) {
             var result = _.cloneDeep(individu);
-            result.dateDeNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            result.dateDeNaissance = individu.dateDeNaissance.format('YYYY-MM-DD');
 
             if (individu.dateArriveeFoyerString) {
                 var dateArrivee = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY');

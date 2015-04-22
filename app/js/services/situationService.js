@@ -156,25 +156,26 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         createApiCompatibleIndividu: function(individu) {
-            individu = _.cloneDeep(individu);
-            individu.dateDeNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            var result = _.cloneDeep(individu);
+            result.dateDeNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
             if (individu.dateArriveeFoyerString) {
                 var dateArrivee = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY');
                 if (dateArrivee.isValid()) {
-                    individu.dateArriveeFoyer = dateArrivee.format('YYYY-MM-DD');
+                    result.dateArriveeFoyer = dateArrivee.format('YYYY-MM-DD');
                 }
             }
 
             if (individu.dateSituationFamiliale) {
                 var dateSituationFamiliale = moment(individu.dateSituationFamiliale, 'DD/MM/YYYY');
                 if (dateSituationFamiliale.isValid()) {
-                    individu.dateSituationFamiliale = dateSituationFamiliale.format('YYYY-MM-DD');
+                    result.dateSituationFamiliale = dateSituationFamiliale.format('YYYY-MM-DD');
                 } else {
-                    delete individu.dateSituationFamiliale;
+                    delete result.dateSituationFamiliale;
                 }
             }
 
-            return individu;
+            return result;
         },
 
         flattenPatrimoine: flattenPatrimoine,

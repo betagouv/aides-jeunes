@@ -179,6 +179,11 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         category: 'tns'
     },
     {
+        id: 'revenusAgricoles',
+        label: 'Revenus agricoles',
+        category: 'tns'
+    },
+    {
         id: 'autresRevenusTns',
         label: 'Profession libérale, entrepreneur',
         category: 'tns'

@@ -3,8 +3,10 @@
   "version": "0.1.2",
   "homepage": "https://github.com/sgmap/mes-aides-ui",
   "authors": [
-    "Jérôme Desboeufs <jerome.desboeufs@gmail.com>",
-    "Arnaud Kleinpeter <arnaud.kleinpeter@gmail.com>"
+    "Arnaud Kleinpeter <akleinpeter@octo.com>",
+    "Florian Delezenne <fdelezenne@octo.com>",
+    "Matti Schneider <matti.schneider@data.gouv.fr>",
+    "Jérôme Desbœufs <jerome.desboeufs@data.gouv.fr>"
   ],
   "description": "Simulateur de prestations sociales mes-aides.gouv.fr",
   "moduleType": [

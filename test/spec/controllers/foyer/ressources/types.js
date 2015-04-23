@@ -175,7 +175,6 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
             scope.submit();
 
             // then
-            expect(scope.individuVM.ressources[0].tnsStructureType).toBe('auto_entrepreneur');
             expect(scope.individuVM.ressources[0].tnsActiviteType).toBe('bic');
             expect(scope.individuVM.ressources[0].montantsMensuels).toBeUndefined();
         });

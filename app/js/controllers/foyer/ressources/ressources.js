@@ -104,7 +104,8 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 tnsActiviteType: individu.autoEntrepreneurActiviteType,
                 montantAnnuel: individu.caAutoEntrepreneur,
                 montantsMensuels: montantsMensuels,
-                employes: individu.autoEntrepreneurEmployes
+                employes: individu.autoEntrepreneurEmployes,
+                onGoing: !_.contains(individu.interruptedRessources, 'caAutoEntrepreneur')
             });
         }
 

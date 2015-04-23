@@ -16,17 +16,14 @@
         auto-focus
         placeholder="JJ/MM/AAAA">
       <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.required">Ce champ est obligatoire.</p>
-      <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.ddsDate">Date de naissance invalide.</p>
+      <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.ddsDate">
+        Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.
+      </p>
       <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMaxAge">
         Cette personne ne peut pas avoir plus de {{ options.maxAge }} ans.
       </p>
       <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMinAge">
         Cette personne ne peut pas avoir moins de {{ options.minAge }} ans.
-      </p>
-    </div>
-    <div class="col-sm-4">
-      <p class="help-block">
-        Format : jj/mm/aaaa, exemple : 14/09/1989
       </p>
     </div>
   </div>

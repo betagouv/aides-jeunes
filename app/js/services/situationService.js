@@ -164,7 +164,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         createApiCompatibleIndividu: function(individu) {
             var result = _.cloneDeep(individu);
-            result.dateDeNaissance = individu.dateDeNaissance.format('YYYY-MM-DD');
+            result.dateDeNaissance = individu.dateDeNaissance && individu.dateDeNaissance.format('YYYY-MM-DD');
 
             if (individu.dateArriveeFoyerString) {
                 var dateArrivee = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY');

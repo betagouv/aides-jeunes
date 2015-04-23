@@ -97,26 +97,6 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         };
     });
 
-    $scope.isRessourceTypeNonTns = function(ressource) {
-        return 'tns' !== ressource.category;
-    };
-
-    $scope.isRessourceTypeMicroTns = function(ressource) {
-        return 'tns' === ressource.category && 'autresRevenusTns' !== ressource.id;
-    };
-
-    $scope.isRessourceNonTns = function(ressource) {
-        return $scope.isRessourceTypeNonTns(ressource.type);
-    };
-
-    $scope.isRessourceMicroTns = function(ressource) {
-        return $scope.isRessourceTypeMicroTns(ressource.type);
-    };
-
-    $scope.isRessourceOtherTns = function(ressource) {
-        return 'autresRevenusTns' === ressource.type.id;
-    };
-
     $scope.montantInvalide = function(montant) {
         return !angular.isNumber(montant);
     };

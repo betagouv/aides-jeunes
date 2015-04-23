@@ -170,7 +170,12 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     },
     {
         id: 'caMicroEntreprise',
-        label: 'Micro-entreprise / auto-entrepreneur',
+        label: 'Micro-entreprise',
+        category: 'tns'
+    },
+    {
+        id: 'caAutoEntrepreneur',
+        label: 'Auto-entrepreneur',
         category: 'tns'
     },
     {

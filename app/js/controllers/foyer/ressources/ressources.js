@@ -128,12 +128,12 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         individu.interruptedRessources = [];
         individuVM.ressources.forEach(function(ressource) {
             if ('tns' === ressource.type.category) {
-                if ('caMicroEntreprise' === ressource.type.id) {
+                if ('autresRevenusTns' === ressource.type.id) {
+                    individu.autresRevenusTns = ressource.montantAnnuel;
+                } else  {
                     individu.tnsStructureType = ressource.tnsStructureType;
                     individu.tnsActiviteType = ressource.tnsActiviteType;
                     individu.caMicroEntreprise = ressource.montantAnnuel;
-                } else if ('autresRevenusTns' === ressource.type.id) {
-                    individu.autresRevenusTns = ressource.montantAnnuel;
                 }
             } else {
                 RessourceService.spreadIndividuRessources(individu, $scope.months, ressource, $scope.situation.dateDeValeur);

@@ -5,7 +5,7 @@ DATABASE=dds
 
 NOW=$(date +"%F-%H-%M-%S")
 
-DISTANT_DUMP_FOLDER='~/dumps/dump-$NOW'
+DISTANT_DUMP_FOLDER="~/dumps/dump-$NOW"
 LATEST_DUMP_SYMLINK='dump-latest'
 LOCAL_DUMP_FOLDER='./dump'
 

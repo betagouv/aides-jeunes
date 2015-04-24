@@ -120,7 +120,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
 
         if (individu.revenusAgricolesTns) {
             result.push({
-                type: _.find(ressourceTypes, { id: 'revenusAgricoles' }),
+                type: _.find(ressourceTypes, { id: 'exploitantAgricole' }),
                 montantAnnuel: individu.revenusAgricolesTns,
                 employes: individu.revenusAgricolesTnsEmployes
             });
@@ -154,7 +154,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                         individu.autresRevenusTns = ressource.montantAnnuel;
                         individu.autresRevenusTnsEmployes = ressource.employes;
                         break;
-                    case 'revenusAgricoles':
+                    case 'exploitantAgricole':
                         individu.revenusAgricolesTns = ressource.montantAnnuel;
                         individu.revenusAgricolesTnsEmployes = ressource.employes;
                         break;

@@ -179,8 +179,8 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         category: 'tns'
     },
     {
-        id: 'revenusAgricoles',
-        label: 'Revenus agricoles',
+        id: 'exploitantAgricole',
+        label: 'Exploitant agricole',
         category: 'tns'
     },
     {

@@ -16,7 +16,7 @@
             <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasImmobilier" btn-radio="false">Non</button>
           </div>
           <div class="col-sm-4">
-            <em class="help-block">Terrain, logement, commerce…</em>
+            <p class="help-block">Terrain, logement, commerce…</p>
           </div>
         </div>
 
@@ -115,7 +115,7 @@
       </div>
       <div class="panel-body">
         <div class="form-group">
-          <label class="col-sm-4 control-label" for="epargne-sur-livret">Montant total de votre épargne sur livret</label>
+          <label class="col-sm-4 control-label" for="epargne-sur-livret">Montant total de votre épargne sur livrets</label>
           <div class="col-sm-3">
             <div class="input-group">
               <input
@@ -130,20 +130,15 @@
             </div>
           </div>
           <div class="col-sm-5">
-            <p class="help-block">
-              <em>Livret A, <abbr title="Livret de Développement Durable">LDD</abbr>, <abbr title="Livret d'Épargne Populaire">LEP</abbr> et Livret Jeune uniquement</em>
-            </p>
+            <p class="help-block">Livret A, <abbr title="Livret de Développement Durable">LDD</abbr>, <abbr title="Livret d'Épargne Populaire">LEP</abbr> et Livret Jeune uniquement.</p>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-sm-4 control-label">Possédez-vous d'autres formes d'épargne&nbsp;?</label>
+          <label class="col-sm-4 control-label">Détenez-vous un <abbr title="Plan Épargne Logement">PEL</abbr>, un <abbr title="Plan d'épargne retraite populaire">PERP</abbr>, des titres, une assurance-vie, des parts d'une <abbr title="Société d'Investissement à CApital Variable">SICAV</abbr> ou d'un <abbr title="Fonds Commun de Placement">FCP</abbr> ?</label>
           <div class="col-sm-3">
             <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasMobilier" btn-radio="true">Oui</button>
             <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasMobilier" btn-radio="false">Non</button>
-          </div>
-          <div class="col-sm-5">
-            <em class="help-block">Compte courant, titres, assurance-vie, SICAV, FCP, PEL, PERP…</em>
           </div>
         </div>
 
@@ -165,13 +160,11 @@
               </div>
             </div>
             <div class="col-sm-4">
-              <em class="help-block">
-                Compte courant, assurance-vie, PEL, PERP, FCP et SICAV de capitalisation…
-              </em>
+                <p class="help-block">Compte courant, assurance-vie, <abbr title="Société d'Investissement à CApital Variable">SICAV</abbr> de capitalisation, FCP, <abbr title="Plan Épargne Logement">PEL</abbr> ou <abbr title="Plan d'épargne retraite populaire">PERP</abbr>.</p>
             </div>
           </div>
 
-          <p><label>Veuillez indiquer ci-dessous vos revenus du capital : intérêts, plus-values, dividendes</label></p>
+          <p><label>Vos revenus du capital : intérêts, plus-values, dividendes…</label></p>
           <table class="table table-bordered">
             <thead>
               <tr>

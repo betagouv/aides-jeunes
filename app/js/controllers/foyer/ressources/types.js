@@ -39,6 +39,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
                 } else if ('caAutoEntrepreneur' === ressourceType.id) {
                     ressource.tnsActiviteType = 'bic';
                     ressource.montantsMensuels = [0, 0, 0];
+                    ressource.onGoing = true;
                 } else if ('tns' !== ressourceType.category) {
                     ressource.montantsMensuels = [0, 0, 0];
                     ressource.onGoing = true;

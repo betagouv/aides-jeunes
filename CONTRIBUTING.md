@@ -1,3 +1,16 @@
+Demande de nouvelles aides
+==========================
+
+Notre objectif est évidemment d’élargir l’étendue des aides simulées en une seule fois. Nous sommes simplement limités par nos ressources.
+
+Pour dépasser cette limite, nous cherchons à ouvrir au maximum cet outil à la contribution. Ainsi, tout le code du [moteur de calcul](https://github.com/openfisca/openfisca-france) comme de l’[interface utilisateur](https://github.com/sgmap/mes-aides-ui) est sous licence libre, et toute forme de contribution peut aider à l’intégration de nouvelles aides : recherche législative préalable et rédaction des règles à implémenter, ajout de [tests](https://mes-aides.gouv.fr/tests/) pour valider le calcul de prestations…
+Si vous lisez ce fichier, c'est certainement que vous pensez pouvoir nous aider d’une manière ou d’une autre, et nous vous en remercions !
+
+Pour faciliter le suivi des demandes, nous créons une [_issue_](https://github.com/sgmap/mes-aides-ui/labels/nouvelle%20aide) par aide demandée et les identifions par le _tag_ « [nouvelle aide](https://github.com/sgmap/mes-aides-ui/labels/nouvelle%20aide) »,  afin que toute personne se sentant concernée puisse appuyer la demande, et en suivre l'évolution.
+
+Pour demander l'ajout d'aides supplémentaires, créez une _issue_ pour chacune d'entre elles, avec la référence la plus officielle possible vers le descriptif de l'aide. Nous cherchons les conditions d'attributions et les modalités de calcul.
+
+
 Suivi de l'avancement
 =====================
 

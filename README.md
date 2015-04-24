@@ -73,3 +73,17 @@ If you like TDD, you will probably enjoy this command which will run the tests e
 ```sh
 grunt watch
 ```
+
+
+Testing
+=======
+
+There are several levels of tests. You can safely use `npm test` to drive your developments.
+
+- Syntax tests are executed with `grunt jshint`.
+- Unit tests are executed with `grunt test`.
+
+Integration tests are executed in a more convoluted way.
+
+We use [Ludwig](https://github.com/sgmap/ludwig-ui) to help users create integration tests. These tests have to be fetched and loaded in your local database so you can execute them on your development machine.
+To do so, use the `import-tests.sh` script at the root of the repository. You will need to have a running Mongo database, and SSH access to the production server.

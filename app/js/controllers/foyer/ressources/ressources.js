@@ -88,8 +88,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             result.push({
                 type: _.find(ressourceTypes, { id: 'caMicroEntreprise' }),
                 tnsActiviteType: individu.microEntrepriseActiviteType,
-                montantAnnuel: individu.caMicroEntreprise,
-                employes: individu.microEntrepriseEmployes
+                montantAnnuel: individu.caMicroEntreprise
             });
         }
 
@@ -105,7 +104,6 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 tnsActiviteType: individu.autoEntrepreneurActiviteType,
                 montantAnnuel: individu.caAutoEntrepreneur,
                 montantsMensuels: montantsMensuels,
-                employes: individu.autoEntrepreneurEmployes,
                 onGoing: !_.contains(individu.interruptedRessources, 'caAutoEntrepreneur')
             });
         }
@@ -161,13 +159,11 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                     case 'caAutoEntrepreneur':
                         individu.autoEntrepreneurActiviteType = ressource.tnsActiviteType;
                         individu.caAutoEntrepreneur = ressource.montantAnnuel;
-                        individu.autoEntrepreneurEmployes = ressource.employes;
                         RessourceService.spreadIndividuRessources(individu, $scope.months, ressource, $scope.situation.dateDeValeur);
                         break;
                     case 'caMicroEntreprise':
                         individu.microEntrepriseActiviteType = ressource.tnsActiviteType;
                         individu.caMicroEntreprise = ressource.montantAnnuel;
-                        individu.microEntrepriseEmployes = ressource.employes;
                         break;
                 }
             } else {

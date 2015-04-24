@@ -1,6 +1,7 @@
 'use strict';
 
 /* global _ */
+/* global moment */
 
 describe('Service: cerfaService', function () {
 

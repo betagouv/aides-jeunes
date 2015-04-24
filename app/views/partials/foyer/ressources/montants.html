@@ -126,7 +126,7 @@
   </div>
 
   <div class="panel panel-montant tns"
-   ng-if="ressource.type.id === 'autresRevenusTns' || ressource.type.id === 'exploitantAgricole'">
+   ng-if="ressource.type.id === 'autresRevenusTns'">
     <div class="panel-heading">
        <h3 class="panel-title"><span class="short-label">{{ individuVM.label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
     </div>
@@ -164,6 +164,40 @@
               ng-model="ressource.employes">
               J'ai au moins un employé
           </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="panel panel-montant tns"
+   ng-if="ressource.type.id === 'exploitantAgricole'">
+    <div class="panel-heading">
+       <h3 class="panel-title"><span class="short-label">{{ individuVM.label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label
+              for="revenus-exercice-individu-{{ individuIndex }}">
+              Dernier bénéfice agricole
+            </label>
+            <span class="input-group">
+              <input
+                type="number"
+                id="revenus-exercice-individu-{{ individuIndex }}"
+                class="form-control text-right"
+                required
+                min="0"
+                select-on-focus
+                zero-to-empty
+                ng-model="ressource.montantAnnuel">
+              <span class="input-group-addon">€</span>
+            </span>
+            <span class="help-block text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
+              Montant invalide
+            </span>
+          </div>
         </div>
       </div>
     </div>

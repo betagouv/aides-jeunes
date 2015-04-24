@@ -1,5 +1,5 @@
 <div class="recap-situation-test">
-  Date de valeur de la situation : {{ situation.dateDeValeur|date:'dd/MM/yyyy' }}
+  Date de valeur de la situation : {{ situation.dateDeValeur | date:'dd/MM/yyyy' }}
 
   <h4>Individus</h4>
   <div class="row">
@@ -9,7 +9,7 @@
         {{ individu.label }}
       </h5>
       <div>
-        Né(e) le {{ individu.dateDeNaissance|date:'dd/MM/yyyy' }} ({{ individu.age }} ans),
+        Né(e) le {{ individu.dateDeNaissance | date:'dd/MM/yyyy' }} ({{ individu.age }} ans),
         <br>Nationalité {{ individu.nationalite }}
         <br><i>{{ individu.statutsSpecifiques }}</i>
       </div>

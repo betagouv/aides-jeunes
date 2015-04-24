@@ -70,15 +70,22 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 this.newSituation();
             }
 
+            situation.individus.forEach(function(individu) {
+                individu.dateDeNaissance = moment(individu.dateDeNaissance);
+            });
+
             return situation;
         },
 
         restoreRemote: function(situationId) {
             return $http.get('/api/situations/' + situationId).then(function(result) {
-                situation = $sessionStorage.situation = result.data;
+                situation = result.data;
+
                 situation.individus.forEach(function(individu) {
-                    individu.dateDeNaissance = moment(individu.dateDeNaissance).format('DD/MM/YYYY');
+                    individu.dateDeNaissance = moment(individu.dateDeNaissance);
                 });
+
+                $sessionStorage.situation = situation;
 
                 return situation;
             });
@@ -129,7 +136,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             }
 
             if (situation.logement.dateArriveeString) {
-                var dateArrivee = moment(situation.logement.dateArriveeString, 'DD/MM/YYYY');
+                var dateArrivee = moment(situation.logement.dateArriveeString, 'L');
                 if (dateArrivee.isValid()) {
                     situation.logement.dateArrivee = dateArrivee.format('YYYY-MM-DD');
                 }
@@ -156,25 +163,26 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         createApiCompatibleIndividu: function(individu) {
-            individu = _.cloneDeep(individu);
-            individu.dateDeNaissance = moment(individu.dateDeNaissance, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            var result = _.cloneDeep(individu);
+            result.dateDeNaissance = individu.dateDeNaissance && individu.dateDeNaissance.format('YYYY-MM-DD');
+
             if (individu.dateArriveeFoyerString) {
-                var dateArrivee = moment(individu.dateArriveeFoyerString, 'DD/MM/YYYY');
+                var dateArrivee = moment(individu.dateArriveeFoyerString, 'L');
                 if (dateArrivee.isValid()) {
-                    individu.dateArriveeFoyer = dateArrivee.format('YYYY-MM-DD');
+                    result.dateArriveeFoyer = dateArrivee.format('YYYY-MM-DD');
                 }
             }
 
             if (individu.dateSituationFamiliale) {
-                var dateSituationFamiliale = moment(individu.dateSituationFamiliale, 'DD/MM/YYYY');
+                var dateSituationFamiliale = moment(individu.dateSituationFamiliale, 'L');
                 if (dateSituationFamiliale.isValid()) {
-                    individu.dateSituationFamiliale = dateSituationFamiliale.format('YYYY-MM-DD');
+                    result.dateSituationFamiliale = dateSituationFamiliale.format('YYYY-MM-DD');
                 } else {
-                    delete individu.dateSituationFamiliale;
+                    delete result.dateSituationFamiliale;
                 }
             }
 
-            return individu;
+            return result;
         },
 
         flattenPatrimoine: flattenPatrimoine,

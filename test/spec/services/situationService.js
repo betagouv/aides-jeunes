@@ -16,7 +16,7 @@ describe('Service: situationService', function () {
     describe('function createApiCompatibleIndividu()', function() {
         it('Should return a cloned version of the individu', function() {
             // given
-            var individu = { dateDeNaissance: '14/09/1989' };
+            var individu = { dateDeNaissance: moment('14/09/1989', 'DD/MM/YYYY') };
 
             // when
             var result = service.createApiCompatibleIndividu(individu);
@@ -27,7 +27,7 @@ describe('Service: situationService', function () {
 
         it('Should format birth date as expected by the api', function() {
             // given
-            var individu = { dateDeNaissance: '14/09/1989' };
+            var individu = { dateDeNaissance: moment('14/09/1989', 'DD/MM/YYYY') };
 
             // when
             var result = service.createApiCompatibleIndividu(individu);

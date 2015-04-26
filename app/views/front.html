@@ -46,7 +46,7 @@
     </div>
     <![endif]-->
 
-    <header>
+    <header role="banner">
       <nav role="navigation" class="main-navbar" ng-class="{'has-intro': showIntro}">
         <div class="intro-holder">
           <div class="intro" ng-cloak ng-if="showIntro">
@@ -56,17 +56,17 @@
                 Ici l'État innove avec la société civile pour offrir aux usagers le service public de demain.
               </span>
               <span>
-                <a ui-sref="a_propos"><strong>En savoir plus…</strong></a>
+                <a ui-sref="a_propos" title="En savoir plus sur ce service expérimental"><strong>En savoir plus…</strong></a>
               </span>
-              <span class="fa fa-close" ng-click="hideIntro()"></span>
+              <span class="fa fa-close" ng-click="hideIntro()" tabindex="0" role="button" aria-label="Supprimer ce message"></span>
             </div>
             <div class="clearfix"></div>
           </div>
         </div>
         <div class="container">
           <ul class="nav navbar-nav">
-            <li><a ui-sref="home" class="navbar-brand logo hidden-xs" title="Accueil"><img src="img/logo_marianne.png" alt="Accueil"></a></li>
-            <li><a ui-sref="home" class="navbar-brand title" title="Accueil">mes-aides.gouv.fr</a></li>
+            <li><a ui-sref="home" class="navbar-brand logo hidden-xs" title="Accueil - mes-aides.gouv.fr"><img src="img/logo_marianne.png" alt="Accueil - mes-aides.gouv.fr"></a></li>
+            <li><a ui-sref="home" class="navbar-brand title" title="Accueil - mes-aides.gouv.fr">mes-aides.gouv.fr</a></li>
           </ul>
           <loading-spinner></loading-spinner>
         </div>
@@ -76,11 +76,11 @@
 
     <div class="content">
       <ui-view autoscroll="true">
-        <p class="text-center"><i class="fa fa-spinner fa-spin"></i> Chargement en cours…</p>
+        <p class="text-center"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Chargement en cours…</p>
       </ui-view>
     </div>
 
-    <footer class="main-footer">
+    <footer class="main-footer" role="contentinfo">
       <nav class="container">
         <div class="col-md-3">
           <h4>Mes aides</h4>
@@ -95,17 +95,17 @@
         <div class="col-md-2 hidden-sm hidden-xs">
           <h4>Partenaires</h4>
           <ul class="list-unstyled">
-            <li><a target="_blank" href="http://service-public.fr/">service-public.fr</a></li>
-            <li><a target="_blank" href="http://ameli.fr/">ameli.fr</a></li>
-            <li><a target="_blank" href="http://www.caf.fr/">caf.fr</a></li>
-            <li><a target="_blank" href="https://www.lassuranceretraite.fr/">lassuranceretraite.fr</a></li>
-            <li><a target="_blank" href="http://www.modernisation.gouv.fr/le-sgmap">SGMAP</a></li>
-            <li><a target="_blank" href="http://www.openfisca.fr/">OpenFisca</a></li>
+            <li><a target="_blank" href="http://service-public.fr/" title="service-public.fr - nouvelle fenêtre">service-public.fr</a></li>
+            <li><a target="_blank" href="http://ameli.fr/" title="ameli.fr - nouvelle fenêtre">ameli.fr</a></li>
+            <li><a target="_blank" href="http://www.caf.fr/" title="caf.fr - nouvelle fenêtre">caf.fr</a></li>
+            <li><a target="_blank" href="https://www.lassuranceretraite.fr/" title="lassuranceretraite.fr - nouvelle fenêtre">lassuranceretraite.fr</a></li>
+            <li><a target="_blank" href="http://www.modernisation.gouv.fr/le-sgmap" title="SGMAP - nouvelle fenêtre">SGMAP</a></li>
+            <li><a target="_blank" href="http://www.openfisca.fr/" title="OpenFisca - nouvelle fenêtre">OpenFisca</a></li>
           </ul>
         </div>
         <div class="col-md-offset-4 col-md-3">
           <ul class="list-unstyled">
-            <li><a target="_blank" href="https://twitter.com/mesaides"><i class="fa fa-twitter"></i> Suivez-nous sur Twitter</a></li>
+            <li><a target="_blank" href="https://twitter.com/mesaides" title="Suivez nous sur Twitter - nouvelle fenêtre"><i class="fa fa-twitter" aria-hidden="true"></i> Suivez-nous sur Twitter</a></li>
           </ul>
         </div>
       </nav>

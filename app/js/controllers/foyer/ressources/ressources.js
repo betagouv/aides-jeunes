@@ -22,21 +22,11 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             .unique()
             .forEach(function(ressourceType) { result[ressourceType] = true; });
 
-        if (individu.caMicroEntreprise) {
-            result.caMicroEntreprise = true;
-        }
-
-        if (individu.caAutoEntrepreneur) {
-            result.caAutoEntrepreneur = true;
-        }
-
-        if (individu.revenusAgricolesTns) {
-            result.revenusAgricolesTns = true;
-        }
-
-        if (individu.autresRevenusTns) {
-            result.autresRevenusTns = true;
-        }
+        ['caMicroEntreprise', 'caAutoEntrepreneur', 'revenusAgricolesTns', 'autresRevenusTns'].forEach(function(ressourceType) {
+            if (individu[ressourceType]) {
+                result[ressourceType] = true;
+            }
+        });
 
         return result;
     };
@@ -49,7 +39,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         });
 
         types.forEach(function(type) {
-            if (type === 'caAutoEntrepreneur') {
+            if (type == 'caAutoEntrepreneur') {
                 return;
             }
             // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
@@ -95,10 +85,9 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         }
 
         if (individu.caAutoEntrepreneur) {
-
             var montantsMensuels = _.map($scope.months, function(month) {
-                var ressource = _.find(ressources, { periode: month.id, type: 'caAutoEntrepreneur' });
-                return ressource ? Math.round(ressource.montant) : 0;
+                var ressource = _.find(ressources, { periode: month.id, type: 'caAutoEntrepreneur' } || { montant: 0 } );
+                return Math.round(ressource.montant);
             });
 
             result.push({
@@ -106,7 +95,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 tnsActiviteType: individu.autoEntrepreneurActiviteType,
                 montantAnnuel: individu.caAutoEntrepreneur,
                 montantsMensuels: montantsMensuels,
-                onGoing: !_.contains(individu.interruptedRessources, 'caAutoEntrepreneur')
+                onGoing: ! _.contains(individu.interruptedRessources, 'caAutoEntrepreneur')
             });
         }
 

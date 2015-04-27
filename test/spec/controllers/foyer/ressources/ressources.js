@@ -309,7 +309,6 @@ describe('Controller: FoyerRessourcesCtrl', function() {
                     ressources: [
                         {
                             type: ressourceTypeMicroTns,
-                            tnsStructureType: 'auto_entrepreneur',
                             tnsActiviteType: 'bnc',
                             montantAnnuel: 100
                         }
@@ -322,8 +321,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
 
             // then
             expect(individu.caMicroEntreprise).toBe(100);
-            expect(individu.tnsStructureType).toBe('auto_entrepreneur');
-            expect(individu.tnsActiviteType).toBe('bnc');
+            expect(individu.microEntrepriseActiviteType).toBe('bnc');
         });
 
         it('devrait mettre à null les revenus tns si désélectionnés', function() {

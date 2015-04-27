@@ -9,6 +9,11 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
 
+    // Pour les Auto-entrepreneurs
+    $scope.onGoingLabel = 'J’aurai un chiffre d’affaires non nul en ' + $scope.currentMonth;
+
+    $scope.ressourceTypes = _.indexBy(ressourceTypes, 'id');
+
     var extractIndividuSelectedRessourceTypes = function(individu) {
         var result = {};
         var ressources = individu.ressources || [];
@@ -17,13 +22,11 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             .unique()
             .forEach(function(ressourceType) { result[ressourceType] = true; });
 
-        if (individu.caMicroEntreprise) {
-            result.caMicroEntreprise = true;
-        }
-
-        if (individu.autresRevenusTns) {
-            result.autresRevenusTns = true;
-        }
+        ['caMicroEntreprise', 'caAutoEntrepreneur', 'revenusAgricolesTns', 'autresRevenusTns'].forEach(function(ressourceType) {
+            if (individu[ressourceType]) {
+                result[ressourceType] = true;
+            }
+        });
 
         return result;
     };
@@ -34,7 +37,11 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         var types = _.chain(ressources).pluck('type').unique().filter(function(type) {
             return !_.contains(['pensionsAlimentairesVersees'], type);
         });
+
         types.forEach(function(type) {
+            if (type == 'caAutoEntrepreneur') {
+                return;
+            }
             // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
             var ressourceType = _.find(ressourceTypes, { id: type });
             if (!ressourceType) {
@@ -72,16 +79,38 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         if (individu.caMicroEntreprise) {
             result.push({
                 type: _.find(ressourceTypes, { id: 'caMicroEntreprise' }),
-                tnsStructureType: individu.tnsStructureType,
-                tnsActiviteType: individu.tnsActiviteType,
+                tnsActiviteType: individu.microEntrepriseActiviteType,
                 montantAnnuel: individu.caMicroEntreprise
+            });
+        }
+
+        if (individu.caAutoEntrepreneur) {
+            var montantsMensuels = _.map($scope.months, function(month) {
+                var ressource = _.find(ressources, { periode: month.id, type: 'caAutoEntrepreneur' } || { montant: 0 } );
+                return Math.round(ressource.montant);
+            });
+
+            result.push({
+                type: _.find(ressourceTypes, { id: 'caAutoEntrepreneur' }),
+                tnsActiviteType: individu.autoEntrepreneurActiviteType,
+                montantAnnuel: individu.caAutoEntrepreneur,
+                montantsMensuels: montantsMensuels,
+                onGoing: ! _.contains(individu.interruptedRessources, 'caAutoEntrepreneur')
             });
         }
 
         if (individu.autresRevenusTns) {
             result.push({
                 type: _.find(ressourceTypes, { id: 'autresRevenusTns' }),
-                montantAnnuel: individu.autresRevenusTns
+                montantAnnuel: individu.autresRevenusTns,
+                employes: individu.autresRevenusTnsEmployes
+            });
+        }
+
+        if (individu.revenusAgricolesTns) {
+            result.push({
+                type: _.find(ressourceTypes, { id: 'exploitantAgricole' }),
+                montantAnnuel: individu.revenusAgricolesTns,
             });
         }
 
@@ -97,26 +126,6 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         };
     });
 
-    $scope.isRessourceTypeNonTns = function(ressource) {
-        return 'tns' !== ressource.category;
-    };
-
-    $scope.isRessourceTypeMicroTns = function(ressource) {
-        return 'tns' === ressource.category && 'autresRevenusTns' !== ressource.id;
-    };
-
-    $scope.isRessourceNonTns = function(ressource) {
-        return $scope.isRessourceTypeNonTns(ressource.type);
-    };
-
-    $scope.isRessourceMicroTns = function(ressource) {
-        return $scope.isRessourceTypeMicroTns(ressource.type);
-    };
-
-    $scope.isRessourceOtherTns = function(ressource) {
-        return 'autresRevenusTns' === ressource.type.id;
-    };
-
     $scope.montantInvalide = function(montant) {
         return !angular.isNumber(montant);
     };
@@ -128,12 +137,23 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         individu.interruptedRessources = [];
         individuVM.ressources.forEach(function(ressource) {
             if ('tns' === ressource.type.category) {
-                if ('caMicroEntreprise' === ressource.type.id) {
-                    individu.tnsStructureType = ressource.tnsStructureType;
-                    individu.tnsActiviteType = ressource.tnsActiviteType;
-                    individu.caMicroEntreprise = ressource.montantAnnuel;
-                } else if ('autresRevenusTns' === ressource.type.id) {
-                    individu.autresRevenusTns = ressource.montantAnnuel;
+                switch (ressource.type.id) {
+                    case 'autresRevenusTns':
+                        individu.autresRevenusTns = ressource.montantAnnuel;
+                        individu.autresRevenusTnsEmployes = ressource.employes;
+                        break;
+                    case 'exploitantAgricole':
+                        individu.revenusAgricolesTns = ressource.montantAnnuel;
+                        break;
+                    case 'caAutoEntrepreneur':
+                        individu.autoEntrepreneurActiviteType = ressource.tnsActiviteType;
+                        individu.caAutoEntrepreneur = ressource.montantAnnuel;
+                        RessourceService.spreadIndividuRessources(individu, $scope.months, ressource, $scope.situation.dateDeValeur);
+                        break;
+                    case 'caMicroEntreprise':
+                        individu.microEntrepriseActiviteType = ressource.tnsActiviteType;
+                        individu.caMicroEntreprise = ressource.montantAnnuel;
+                        break;
                 }
             } else {
                 RessourceService.spreadIndividuRessources(individu, $scope.months, ressource, $scope.situation.dateDeValeur);

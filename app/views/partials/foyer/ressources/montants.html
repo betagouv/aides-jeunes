@@ -10,7 +10,7 @@
   </div>
 
   <div class="panel panel-montant tns"
-    ng-if="ressource.type.category === 'tns' && ressource.type.id === 'caAutoEntrepreneur'">
+    ng-if="ressource.type.category == 'tns' && ressource.type.id == 'caAutoEntrepreneur'">
     <div class="panel-heading">
        <h3 class="panel-title"><span class="short-label">{{ individuVM.label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
     </div>
@@ -51,7 +51,7 @@
       <div class="row">
         <div class="col-sm-4" ng-repeat="month in months">
           <label for="{{ index + ressource.type.id + month.id }}">
-            Chiffre d'affaires {{ month.label|uppercaseFirst }}
+            Chiffre d'affaires {{ month.label | uppercaseFirst }}
           </label>
           <span class="input-group">
             <input
@@ -84,7 +84,7 @@
   </div>
 
   <div class="panel panel-montant tns"
-    ng-if="ressource.type.category === 'tns' && ressource.type.id === 'caMicroEntreprise'">
+    ng-if="ressource.type.category == 'tns' && ressource.type.id == 'caMicroEntreprise'">
     <div class="panel-heading">
        <h3 class="panel-title"><span class="short-label">{{ individuVM.label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
     </div>
@@ -126,7 +126,7 @@
   </div>
 
   <div class="panel panel-montant tns"
-   ng-if="ressource.type.id === 'autresRevenusTns'">
+   ng-if="ressource.type.id == 'autresRevenusTns'">
     <div class="panel-heading">
        <h3 class="panel-title"><span class="short-label">{{ individuVM.label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
     </div>
@@ -170,7 +170,7 @@
   </div>
 
     <div class="panel panel-montant tns"
-   ng-if="ressource.type.id === 'exploitantAgricole'">
+   ng-if="ressource.type.id == 'exploitantAgricole'">
     <div class="panel-heading">
        <h3 class="panel-title"><span class="short-label">{{ individuVM.label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
     </div>

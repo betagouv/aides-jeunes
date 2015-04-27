@@ -92,15 +92,65 @@ module.exports = function (grunt) {
       }
     },
 
-    // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {
-        jshintrc: true,
         reporter: require('jshint-stylish'),
+        node: true,
+        bitwise: true,
+        immed: true,
+        indent: 4,
+        latedef: true,
+        newcap: true,
+        noarg: true,
+        quotmark: 'single',
+        regexp: true,
+        undef: true,
+        unused: true
       },
       node: ['*.js'],
-      client: ['<%= yeoman.app %>/js/**/*.js'],
-      test: ['test/spec/**/*.js']
+      client: {
+        files: {
+          src: ['<%= yeoman.app %>/js/**/*.js']
+        },
+        options: {
+          browser: true,
+          esnext: true,
+          camelcase: true,
+          strict: true,
+          globalstrict: true,
+          globals: {
+            angular: true,
+            moment: true,
+            _: true,
+            _s: true
+          }
+        }
+      },
+      test: {
+        files: {
+          src: ['test/spec/**/*.js']
+        },
+        options: {
+          esnext: true,
+          camelcase: false,
+          curly: true,
+          strict: true,
+          globals: {
+            after: false,
+            afterEach: false,
+            angular: false,
+            before: false,
+            beforeEach: false,
+            browser: false,
+            describe: false,
+            expect: false,
+            inject: false,
+            it: false,
+            jasmine: false,
+            spyOn: false
+          }
+        }
+      }
     },
 
     // Empties folders to start fresh

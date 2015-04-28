@@ -111,7 +111,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
 
         if (individu.revenusAgricolesTns) {
             result.push({
-                type: _.find(ressourceTypes, { id: 'exploitantAgricole' }),
+                type: _.find(ressourceTypes, { id: 'revenusAgricolesTns' }),
                 montantAnnuel: individu.revenusAgricolesTns,
             });
         }
@@ -146,7 +146,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                         individu.autresRevenusTnsActiviteType = ressource.tnsActiviteType;
                         individu.autresRevenusTnsEmployes = ressource.employes;
                         break;
-                    case 'exploitantAgricole':
+                    case 'revenusAgricolesTns':
                         individu.revenusAgricolesTns = ressource.montantAnnuel;
                         break;
                     case 'caAutoEntrepreneur':

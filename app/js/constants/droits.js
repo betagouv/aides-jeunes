@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('ddsCommon').constant('droitsDescription', [
-    {
+angular.module('ddsCommon').constant('droitsDescription', {
+    'cmu_c': {
         'id':'cmu_c',
-        'hasMontant':false,
         'label':'Couverture Maladie Universelle Complémentaire',
         'shortLabel':'CMU-C',
         'description':'La CMU-C est une protection complémentaire santé gratuite.',
@@ -13,7 +12,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'imgSrc':'logo_cmu.png',
         'link':'http://www.cmu.fr/cmu-complementaire.php'
     },
-    {
+    'acs': {
         'id':'acs',
         'isMontantAnnuel':true,
         'label':'Aide pour une Complémentaire Santé',
@@ -25,7 +24,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'imgSrc':'logo_cmu.png',
         'link':'http://www.cmu.fr/acs.php'
     },
-    {
+    'aspa': {
         'id':'aspa',
         'label':'Allocation de Solidarité aux Personnes Âgées',
         'shortLabel':'ASPA',
@@ -36,7 +35,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'imgSrc':'logo_aspa.png',
         'link':'http://vosdroits.service-public.fr/particuliers/F16871.xhtml'
     },
-    {
+    'asi': {
         'id':'asi',
         'label':'Allocation Supplémentaire d’Invalidité',
         'shortLabel':'ASI',
@@ -44,7 +43,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'imgSrc':'logo_aspa.png',
         'link':'http://vosdroits.service-public.fr/particuliers/F16940.xhtml'
     },
-    {
+    'af': {
         'id':'af',
         'label':'Allocations Familiales',
         'shortLabel':'AF',
@@ -55,7 +54,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0'
     },
-    {
+    'cf': {
         'id':'cf',
         'label':'Complément Familial',
         'shortLabel':'CF',
@@ -64,7 +63,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
         'isBaseRessourcesYearMoins2':true
     },
-    {
+    'asf': {
         'id':'asf',
         'label':'Allocation de Soutien Familial',
         'shortLabel':'ASF',
@@ -75,7 +74,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'link':'http://vosdroits.service-public.fr/particuliers/F815.xhtml'
     },
-    {
+    'paje_base': {
         'id':'paje_base',
         'label':'Prestation d’Accueil du Jeune Enfant - Allocation de base',
         'shortLabel':'PAJE-BASE',
@@ -84,7 +83,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/l-allocation-de-base',
         'isBaseRessourcesYearMoins2':true
     },
-    {
+    'rsa': {
         'id':'rsa',
         'label':'Revenu de Solidarité Active',
         'shortLabel':'RSA',
@@ -97,7 +96,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'imgSrc':'logo_rsa.png',
         'link':'http://vosdroits.service-public.fr/particuliers/N19775.xhtml'
     },
-    {
+    'aide_logement': {
         'id':'aide_logement',
         'label':'Aides au Logement',
         'shortLabel':'AL',
@@ -109,9 +108,11 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
         'isBaseRessourcesYearMoins2':true,
-        'montantInconnuDisclaimer': 'Votre situation ne nous permet pas de calculer le montant de l\'aide au logement.<br>Le <a target="_blank" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la caf</a> pourra mieux vous renseigner.'
+        'uncomputabilityReasons': {
+            'tns': 'Votre situation ne nous permet pas de calculer le montant de l\'aide au logement.<br>Le <a target="_blank" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la caf</a> pourra mieux vous renseigner.'
+        }
     },
-    {
+    'ass': {
         'id':'ass',
         'label':'Allocation de Solidarité Spécifique',
         'shortLabel':'ASS',
@@ -119,7 +120,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'imgSrc':'logo_ass.png',
         'link':'http://vosdroits.service-public.fr/particuliers/F12484.xhtml'
     },
-    {
+    'bourse_college': {
         'id':'bourse_college',
         'isMontantAnnuel':true,
         'label':'Bourse de collège',
@@ -129,7 +130,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'link':'http://www.education.gouv.fr/cid88/les-aides-financieres-au-college.html#Les%20bourses%20de%20coll%C3%A8ge',
         'isBaseRessourcesYearMoins2':true
     },
-    {
+    'bourse_lycee': {
         'id':'bourse_lycee',
         'isMontantAnnuel':true,
         'label':'Bourse de lycée',
@@ -139,4 +140,4 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'link':'http://www.education.gouv.fr/cid151/aides-financieres-au-lycee.html#Les%20bourses%20de%20lycée',
         'isBaseRessourcesYearMoins2':true
     }
-]);
+});

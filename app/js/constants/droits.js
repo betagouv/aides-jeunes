@@ -11,7 +11,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
         ],
         'imgSrc':'logo_cmu.png',
-        'link':'http://www.cmu.fr/cmu-complementaire.php'
+        'link':'http://www.cmu.fr/cmu-complementaire.php',
+        'isComputed': true
     },
     {
         'id':'acs',
@@ -23,7 +24,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
         ],
         'imgSrc':'logo_cmu.png',
-        'link':'http://www.cmu.fr/acs.php'
+        'link':'http://www.cmu.fr/acs.php',
+        'isComputed': true
     },
     {
         'id':'aspa',
@@ -34,7 +36,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
         ],
         'imgSrc':'logo_aspa.png',
-        'link':'http://vosdroits.service-public.fr/particuliers/F16871.xhtml'
+        'link':'http://vosdroits.service-public.fr/particuliers/F16871.xhtml',
+        'isComputed': true
     },
     {
         'id':'asi',
@@ -42,7 +45,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'shortLabel':'ASI',
         'description':'L’allocation supplémentaire d’invalidité (Asi) est une prestation versée sous certaines conditions aux personnes invalides titulaires d’une pension de retraite ou d’invalidité qui n’ont pas atteint l’âge légal de départ à la retraite pour bénéficier de l’allocation de solidarité aux personnes âgées (Aspa)',
         'imgSrc':'logo_aspa.png',
-        'link':'http://vosdroits.service-public.fr/particuliers/F16940.xhtml'
+        'link':'http://vosdroits.service-public.fr/particuliers/F16940.xhtml',
+        'isComputed': true
     },
     {
         'id':'af',
@@ -53,7 +57,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
         ],
         'imgSrc':'logo_caf.png',
-        'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0'
+        'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0',
+        'isComputed': true
     },
     {
         'id':'cf',
@@ -62,7 +67,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'description':'Le complément familial est versé, sous certaines conditions, aux personnes ayant au moins 3 enfants à charge.',
         'imgSrc':'logo_caf.png',
         'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
-        'isBaseRessourcesYearMoins2':true
+        'isBaseRessourcesYearMoins2':true,
+        'isComputed': true
     },
     {
         'id':'asf',
@@ -73,7 +79,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
             'Ne pas toucher l’intégralité d’une pension alimentaire qui vous aurait été attribuée par une décision de justice, ou que cette pension soit d’un montant inférieur à celui de l’ASF.'
         ],
         'imgSrc':'logo_caf.png',
-        'link':'http://vosdroits.service-public.fr/particuliers/F815.xhtml'
+        'link':'http://vosdroits.service-public.fr/particuliers/F815.xhtml',
+        'isComputed': true
     },
     {
         'id':'paje_base',
@@ -82,7 +89,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'description': 'L’allocation de base vous aide à assurer les dépenses liées à l’entretien et à l’éducation de votre enfant.',
         'imgSrc':'logo_caf.png',
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/l-allocation-de-base',
-        'isBaseRessourcesYearMoins2':true
+        'isBaseRessourcesYearMoins2':true,
+        'isComputed': true
     },
     {
         'id':'rsa',
@@ -95,7 +103,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
             'Si vous êtes ressortissant.e d’un autre pays, résider en France depuis plus de 5 ans.'
         ],
         'imgSrc':'logo_rsa.png',
-        'link':'http://vosdroits.service-public.fr/particuliers/N19775.xhtml'
+        'link':'http://vosdroits.service-public.fr/particuliers/N19775.xhtml',
+        'isComputed': true
     },
     {
         'id':'aide_logement',
@@ -109,22 +118,20 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'imgSrc':'logo_caf.png',
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
         'isBaseRessourcesYearMoins2':true,
-        'montantInconnuDisclaimer': 'Votre situation ne nous permet pas de calculer le montant de l\'aide au logement.<br>Le <a target="_blank" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la caf</a> pourra mieux vous renseigner.'
+        'montantInconnuDisclaimer': 'Votre situation ne nous permet pas de calculer le montant de l\'aide au logement.<br>Le <a target="_blank" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la caf</a> pourra mieux vous renseigner.',
+        'isComputed': true
     },
     {
         'id':'apl',
-        'shortLabel':'APL',
-        'isSimulated': false
+        'shortLabel':'APL'
     },
     {
         'id':'alf',
-        'shortLabel':'ALF',
-        'isSimulated': false
+        'shortLabel':'ALF'
     },
     {
         'id':'als',
-        'shortLabel':'ALS',
-        'isSimulated': false
+        'shortLabel':'ALS'
     },
     {
         'id':'ass',
@@ -132,7 +139,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'shortLabel':'ASS',
         'description':'L’allocation de solidarité spécifique (ASS) est une aide financière destinée aux personnes ayant épuisé leurs droits aux allocations chômage.',
         'imgSrc':'logo_ass.png',
-        'link':'http://vosdroits.service-public.fr/particuliers/F12484.xhtml'
+        'link':'http://vosdroits.service-public.fr/particuliers/F12484.xhtml',
+        'isComputed': true
     },
     {
         'id':'bourse_college',
@@ -142,7 +150,8 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'description':'La bourse des collèges est une aide destinée à favoriser la scolarité des collégiens. Elle est versée sous conditions de ressources.',
         'imgSrc':'logo_education_nationale.png',
         'link':'http://www.education.gouv.fr/cid88/les-aides-financieres-au-college.html#Les%20bourses%20de%20coll%C3%A8ge',
-        'isBaseRessourcesYearMoins2':true
+        'isBaseRessourcesYearMoins2':true,
+        'isComputed': true
     },
     {
         'id':'bourse_lycee',
@@ -152,6 +161,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'description':'La bourse des lycées est accordée, sous condition de ressources, à la famille d’un lycéen. Son montant dépend des ressources et des charges de la famille. Cette bourse peut être accompagnée de diverses primes (prime d’équipement, prime à la qualification, bourse au mérite au lycée, prime à l’internat...).',
         'imgSrc':'logo_education_nationale.png',
         'link':'http://www.education.gouv.fr/cid151/aides-financieres-au-lycee.html#Les%20bourses%20de%20lycée',
-        'isBaseRessourcesYearMoins2':true
+        'isBaseRessourcesYearMoins2':true,
+        'isComputed': true
     }
 ]);

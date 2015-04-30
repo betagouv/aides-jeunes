@@ -3,7 +3,7 @@
 /* global _ */
 
 angular.module('ddsApp').service('SimulationService', function($http, $q, droitsDescription) {
-    var montantInconnu = function(droit, situation) {
+    function montantInconnu(droit, situation) {
         if ('aide_logement' === droit.id) {
             return _.any([
                 'proprietaire' === situation.logement.type,
@@ -12,50 +12,51 @@ angular.module('ddsApp').service('SimulationService', function($http, $q, droits
         }
 
         return false;
-    };
+    }
+
+    function createDroitsFromApiResult(result, situation) {
+        var droits = [];
+
+        droitsDescription.forEach(function(droit) {
+            if (! droit.isComputed) {
+                return;
+            }
+
+            var isMontantInconnu = montantInconnu(droit, situation);
+            var value = result[droit.id];
+            if (value || isMontantInconnu) {
+                var target = {
+                    description: droit,
+                    isBaseRessourcesYearMoins2: droit.isBaseRessourcesYearMoins2
+                };
+                if (isMontantInconnu) {
+                    target.montant = null;
+                } else if (_.isNumber(value)) {
+                    target.montant = value;
+                }
+                droits.push(target);
+            }
+        });
+
+        return {
+            droits: droits,
+            droitsNonEligibles: getDroitsNonEligibles(droits)
+        };
+    }
+
+    function getDroitsNonEligibles(droitsEligibles) {
+        return droitsDescription.filter(function(droit) {
+            return droit.isComputed && ! _.find(droitsEligibles, { description: { id: droit.id }});
+        });
+    }
 
     return {
         simulate: function(situation) {
-            var that = this;
-
             return $http.get('/api/situations/' + situation._id + '/simulation').then(function(result) {
-                return that.createDroitsFromApiResult(result.data, situation);
+                return createDroitsFromApiResult(result.data, situation);
             });
         },
-
-        createDroitsFromApiResult: function(result, situation) {
-            var droits = [];
-            droitsDescription.forEach(function(droit) {
-                if (false === droit.isSimulated) {
-                    return;
-                }
-
-                var isMontantInconnu = montantInconnu(droit, situation);
-                var value = result[droit.id];
-                if (value || isMontantInconnu) {
-                    var target = {
-                        description: droit,
-                        isBaseRessourcesYearMoins2: droit.isBaseRessourcesYearMoins2
-                    };
-                    if (isMontantInconnu) {
-                        target.montant = null;
-                    } else if (_.isNumber(value)) {
-                        target.montant = value;
-                    }
-                    droits.push(target);
-                }
-            });
-
-            return {
-                droits: droits,
-                droitsNonEligibles: this.getDroitsNonEligibles(droits)
-            };
-        },
-
-        getDroitsNonEligibles: function(droitsEligibles) {
-            return droitsDescription.filter(function(droit) {
-                return !_.find(droitsEligibles, { description: {id: droit.id }}) && false !== droit.isSimulated;
-            });
-        }
+        createDroitsFromApiResult: createDroitsFromApiResult,
+        getDroitsNonEligibles: getDroitsNonEligibles
     };
 });

@@ -61,19 +61,19 @@ describe('Service: SimulationService', function () {
             // given
             module('ddsApp');
             module(function($provide) {
-                $provide.constant('droitsDescription', [{ id: 'test', isComputed: true }, { id: 'test2', isComputed: true }]);
+                $provide.constant('droitsDescription', [{ id: 'test' }, { id: 'test2' }]);
             });
             inject(function(SimulationService) {
                 service = SimulationService;
             });
 
-            var droitsEligibles = [{description: {id: 'test', isComputed: true}}];
+            var droitsEligibles = [{description: {id: 'test'}}];
 
             // when
             var result = service.getDroitsNonEligibles(droitsEligibles);
 
             // then
-            expect(result).toEqual([{id: 'test2', isComputed: true}]);
+            expect(result).toEqual([{id: 'test2'}]);
         });
     });
 });

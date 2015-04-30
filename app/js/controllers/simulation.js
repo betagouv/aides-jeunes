@@ -10,9 +10,10 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     $scope.droits = null;
     $scope.droitsNonEligibles = null;
 
-    SimulationService.simulate($scope.situation).then(function(result) {
-        $scope.droits = result.droits;
-        $scope.droitsNonEligibles = result.droitsNonEligibles;
+    SimulationService.simulate($scope.situation).then(function(droits) {
+        $scope.droits = droits;
+        $scope.droitsNonEligibles = SimulationService.complement(droits);
+        $scope.noDroits = _.isEmpty(droits);
     }, function() {
         $scope.error = true;
     }).finally(function() {
@@ -44,4 +45,7 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     $scope.hasDroitForms = function(droit) {
         return CerfaService.hasDroitForms(droit.description);
     };
+
+    $scope.isNumber = _.isNumber;
+    $scope.isString = _.isString;
 });

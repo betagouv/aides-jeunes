@@ -1,10 +1,10 @@
 'use strict';
 
-describe('Service: SimulationService', function () {
+describe('SimulationService', function () {
 
     var service, httpBackend;
 
-    describe('function createDroitsFromApiResult', function() {
+    describe('filters', function() {
         beforeEach(function() {
             module('ddsApp');
             inject(function(SimulationService, $httpBackend) {
@@ -13,67 +13,59 @@ describe('Service: SimulationService', function () {
             });
         });
 
-        it('should return no droits if api result is empty', function() {
-            // given
-            var apiResult = {};
+        describe('filterUnhandled', function() {
+            it('should filter prestations that are not described', function() {
+                expect(service.filterUnhandled({ test: 0 }).test).toBe(undefined);
+            });
 
-            // when
-            var result = service.createDroitsFromApiResult(apiResult, { logement: {} });
-
-            // then
-            expect(result.droits.length).toBe(0);
+            it('should pass prestations that are described', function() {
+                expect(service.filterUnhandled({ acs: 12 }).acs).toBe(12);
+            });
         });
 
-        it('should return arrays with each droit from the api result, separated by the criteria base ressource n-2', function() {
-            // given
-            var apiResult = { cmu_c: true, acs: 150, aide_logement: 400 };
+        describe('filterIneligible', function() {
+            it('should filter prestations with 0 amounts', function() {
+                expect(service.filterIneligible({ acs: 0 }).acs).toBe(undefined);
+            });
 
-            // when
-            var result = service.createDroitsFromApiResult(apiResult, { logement: {} });
-
-            // then
-            expect(result.droits.length).toBe(3);
-            expect(result.droits[0].description.id).toBe('cmu_c');
-            expect(result.droits[2].description.id).toBe('aide_logement');
-            expect(result.droits[2].isBaseRessourcesYearMoins2).toBe(true);
+            it('should pass prestations with amounts > 0', function() {
+                expect(service.filterIneligible({ acs: 12 }).acs).toBe(12);
+            });
         });
 
-        it('doit forcer le résultat des AL avec un montant null si le demandeur est propriétaire ou dans un foyer', function() {
-            // given
-            var logements = [
-                { type: 'proprietaire' },
-                { type: 'locataire', locationType: 'foyer' }
-            ];
-            logements.forEach(function(logement) {
-                var situation = { _id: 'foo', logement: logement };
+        describe('describe', function() {
+            it('should merge descriptions and amounts', function() {
+                var actual = service.describe({ acs: 150 });
 
-                // when
-                var result = service.createDroitsFromApiResult({ aide_logement: 0 }, situation);
-
-                // then
-                expect(result.droits[0].montant).toBe(null);
+                expect(actual.acs.id).toBe('acs');
+                expect(actual.acs.montant).toBe(150);
             });
         });
     });
 
-    describe('function getDroitsNonEligibles', function() {
-        it('should return droits that are not in the given list of droits eligibles', function() {
-            // given
+    describe('complement', function() {
+        var DROITS_DESCRIPTION = { acs: { id: 'acs' }, apl: { id: 'apl' }};
+
+        beforeEach(function() {
             module('ddsApp');
             module(function($provide) {
-                $provide.constant('droitsDescription', [{ id: 'test' }, { id: 'test2' }]);
+                $provide.constant('droitsDescription', DROITS_DESCRIPTION);
             });
             inject(function(SimulationService) {
                 service = SimulationService;
             });
+        });
 
-            var droitsEligibles = [{description: {id: 'test'}}];
+        it('should return the complement from droitsDescription with the given droits', function() {
+            var actual = service.complement({ acs: { montant: 12 } });
 
-            // when
-            var result = service.getDroitsNonEligibles(droitsEligibles);
+            expect(actual.acs).toBe(undefined);
+            expect(actual.apl.id).toBe('apl');
+        });
 
-            // then
-            expect(result).toEqual([{id: 'test2'}]);
+        it('should not change droitsDescription', function() {
+            expect(DROITS_DESCRIPTION.acs.id).toBe('acs');
+            expect(DROITS_DESCRIPTION.apl.id).toBe('apl');
         });
     });
 });

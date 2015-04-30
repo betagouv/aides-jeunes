@@ -596,7 +596,8 @@ $autre-lighter: #cce4e7;
     }
 
     .montant-inconnu {
-      padding-top: 5px;
+      position: relative;
+      top: .25em;
     }
 
     .montant-detail {

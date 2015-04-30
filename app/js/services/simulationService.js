@@ -18,10 +18,6 @@ angular.module('ddsApp').service('SimulationService', function($http, $q, droits
         var droits = [];
 
         droitsDescription.forEach(function(droit) {
-            if (! droit.isComputed) {
-                return;
-            }
-
             var isMontantInconnu = montantInconnu(droit, situation);
             var value = result[droit.id];
             if (value || isMontantInconnu) {
@@ -46,7 +42,7 @@ angular.module('ddsApp').service('SimulationService', function($http, $q, droits
 
     function getDroitsNonEligibles(droitsEligibles) {
         return droitsDescription.filter(function(droit) {
-            return droit.isComputed && ! _.find(droitsEligibles, { description: { id: droit.id }});
+            return ! _.find(droitsEligibles, { description: { id: droit.id }});
         });
     }
 

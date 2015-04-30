@@ -94,7 +94,11 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'Si vous êtes ressortissant.e d’un autre pays, résider en France depuis plus de 5 ans.'
         ],
         'imgSrc':'logo_rsa.png',
-        'link':'http://vosdroits.service-public.fr/particuliers/N19775.xhtml'
+        'link':'http://vosdroits.service-public.fr/particuliers/N19775.xhtml',
+        'uncomputabilityReasons': {
+            'tns': 'vous êtes un travailleur non salarié',
+            'conjoint_tns': 'votre conjoint.e est travailleur non salarié'
+        }
     },
     'aide_logement': {
         'id':'aide_logement',
@@ -109,8 +113,10 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
         'isBaseRessourcesYearMoins2':true,
         'uncomputabilityReasons': {
-            'tns': 'Votre situation ne nous permet pas de calculer le montant de l\'aide au logement.<br>Le <a target="_blank" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la caf</a> pourra mieux vous renseigner.'
-        }
+            'proprietaire': 'vous êtes propriétaire',
+            'locataire_foyer': 'vous logez dans un foyer'
+        },
+        'alternative': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement'
     },
     'ass': {
         'id':'ass',

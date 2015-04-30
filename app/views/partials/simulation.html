@@ -71,7 +71,10 @@
           </div>
         </div>
 
-        <p ng-if="typeof(droit.montant) == 'string'" ng-bind-html="droit.uncomputabilityReasons[droit.montant]"></p>
+        <div ng-if="isString(droit.montant)">
+          <p>Malheureusement, nous ne pouvons pas calculer le montant de cette prestation, car {{ droit.uncomputabilityReasons[droit.montant] }}&nbsp;&nbsp;:(</p>
+          <p>Vous pouvez à la place essayer ce <a href="{{ droit.alternative }}">simulateur {{ droit.shortLabel }} alternatif</a>.</p>
+        </div>
 
         <div class="row">
           <div ng-class="{'col-sm-offset-6': hasDroitForms(droit), 'col-sm-offset-9': !hasDroitForms(droit)}" class="col-sm-3 col-sm-offset-6">

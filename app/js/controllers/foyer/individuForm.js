@@ -36,7 +36,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
 
     $scope.individu = {
         nationalite: 'fr',
-        assPreconditionRemplie: true,
+        assPreconditionRemplie: false,
         scolarite: 'college',
         tauxInvalidite: 'moins50',
         boursier: false,

@@ -175,6 +175,10 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
             type: _.find(ressourceTypes, { id: 'autresRevenusTns' }),
             totalAnnuel: 0
         };
+        var ressourceAgricoleTns = {
+            type: _.find(ressourceTypes, { id: 'revenusAgricolesTns' }),
+            totalAnnuel: 0
+        };
         $scope.situation.individus.forEach(function(individu) {
             if (individu.caMicroEntreprise) {
                 ressourcesMicroFiscal.totalAnnuel += individu.caMicroEntreprise;
@@ -182,6 +186,10 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
             }
             if (individu.autresRevenusTns) {
                 ressourcesAutresTns.totalAnnuel  += individu.autresRevenusTns;
+                $scope.hasRessources = true;
+            }
+           if (individu.revenusAgricolesTns) {
+                ressourceAgricoleTns.totalAnnuel  += individu.revenusAgricolesTns;
                 $scope.hasRessources = true;
             }
         });
@@ -193,6 +201,10 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         if (ressourcesAutresTns.totalAnnuel) {
             $scope.ressourcesTns.push(ressourcesAutresTns);
         }
+        if (ressourceAgricoleTns.totalAnnuel) {
+            $scope.ressourcesTns.push(ressourceAgricoleTns);
+        }
+
     };
 
     if (!!$scope.situation.individus.length && !!$scope.situation.individus[0].ressources) {

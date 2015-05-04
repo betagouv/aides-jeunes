@@ -132,11 +132,43 @@
     </div>
     <div class="panel-body">
       <div class="row">
+        <div class="col-sm-5">
+          <div class="form-group">
+            <label for="type-activite-individu-{{ individuIndex }}">Type d'activité</label>
+            <select class="form-control" id="type-activite-individu-{{ individuIndex }}" ng-model="ressource.tnsActiviteType">
+              <option value="achat_revente">Achat/revente ou fourniture de logement</option>
+              <option value="bic">Activité commerciale ou artisanale (BIC)</option>
+              <option value="bnc">Activité libérale et/ou intellectuelle (BNC)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="ca-individu-{{ individuIndex }}"><abbr title="Chiffre d'affaires">CA</abbr> sur le dernier exercice clos</label>
+            <span class="input-group">
+              <input
+                type="number"
+                id="ca-individu-{{ individuIndex }}"
+                class="form-control text-right"
+                required
+                min="0"
+                select-on-focus
+                zero-to-empty
+                ng-model="ressource.caAnnuel">
+              <span class="input-group-addon">€</span>
+            </span>
+            <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.caAnnuel)">
+              Montant invalide
+            </span>
+          </div>
+        </div>
+
         <div class="col-sm-4">
           <div class="form-group">
             <label
               for="revenus-exercice-individu-{{ individuIndex }}">
-              Revenus sur le dernier exercice clos
+              Bénéfice sur le dernier exercice clos
             </label>
             <span class="input-group">
               <input
@@ -169,8 +201,8 @@
     </div>
   </div>
 
-    <div class="panel panel-montant tns"
-   ng-if="ressource.type.id == 'exploitantAgricole'">
+  <div class="panel panel-montant tns"
+   ng-if="ressource.type.id == 'revenusAgricolesTns'">
     <div class="panel-heading">
        <h3 class="panel-title"><span class="short-label">{{ individuVM.label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
     </div>

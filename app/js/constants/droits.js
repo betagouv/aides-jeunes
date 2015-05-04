@@ -78,9 +78,15 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'description':'Le RSA est destiné à assurer aux personnes disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer.',
         'imgSrc':'logo_rsa.png',
         'link':'http://vosdroits.service-public.fr/particuliers/N19775.xhtml',
-        'uncomputabilityReasons': {
-            'tns': 'vous êtes un travailleur non salarié',
-            'conjoint_tns': 'votre conjoint.e est travailleur non salarié'
+        'uncomputability': {
+            'tns': {
+                'reason': 'vous avez des revenus en tant qu’indépendant.e',
+                'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a title="Article R262-23 du code de l\'action sociale" href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont vos revenus non salariés impacteront le montant de votre aide.'
+            },
+            'conjoint_tns': {
+                'reason': 'votre conjoint.e a des revenus en tant qu’indépendant.e',
+                'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a title="Article R262-23 du code de l\'action sociale" href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont les revenus non salariés de votre conjoint.e impacteront le montant de votre aide.'
+            }
         }
     },
     'aide_logement': {
@@ -91,11 +97,17 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'imgSrc':'logo_caf.png',
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
         'isBaseRessourcesYearMoins2':true,
-        'uncomputabilityReasons': {
-            'proprietaire': 'vous êtes propriétaire',
-            'locataire_foyer': 'vous logez dans un foyer'
-        },
-        'alternative': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement'
+        'uncomputability': {
+            'proprietaire': {
+                'reason': 'vous êtes propriétaire',
+                'solution': 'Le <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> pourra estimer vos droits sur la base de la valeur de votre bien.'
+            },
+            'locataire_foyer': {
+                'reason': 'vous logez dans un foyer',
+                'solution': 'Le <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> vous donnera des estimations selon les différentes conventions possibles de votre foyer.'
+            }
+
+        }
     },
     'ass': {
         'id':'ass',

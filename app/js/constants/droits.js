@@ -82,7 +82,7 @@ angular.module('ddsCommon').constant('droitsDescription', [
     },
     {
         'id':'aide_logement',
-        'label':'Aide au Logement',
+        'label':'Aides au Logement',
         'shortLabel':'AL',
         'description':'L\'aide au logement est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'imgSrc':'logo_caf.png',

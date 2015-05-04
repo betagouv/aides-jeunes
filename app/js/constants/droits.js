@@ -19,6 +19,9 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'label':'Aide pour une Complémentaire Santé',
         'shortLabel':'ACS',
         'description':'L’aide pour l’acquisition d’une assurance complémentaire santé, dite ACS, est une aide financière pour payer une complémentaire santé (exemple : une mutuelle).',
+        'conditions': [
+            'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
+        ],
         'imgSrc':'logo_cmu.png',
         'link':'http://www.cmu.fr/acs.php'
     },

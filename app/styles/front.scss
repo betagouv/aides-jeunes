@@ -391,10 +391,6 @@ $autre-lighter: #cce4e7;
   margin-top: 0px;
 }
 
-.bloc-aucune-aide-eligible {
-  padding: 20px 0;
-}
-
 .ressource-types-block {
   margin-bottom: 15px;
 }
@@ -561,6 +557,10 @@ $autre-lighter: #cce4e7;
 .warning {
   @extend .text-warning;
   margin-bottom: 10px;
+}
+
+.additional-info-cta {
+  margin-top: 1em;
 }
 
 .frame-resultats {

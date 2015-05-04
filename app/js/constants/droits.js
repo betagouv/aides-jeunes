@@ -69,6 +69,9 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'label':'Allocation de Soutien Familial',
         'shortLabel':'ASF',
         'description':'L’ASF est versée par la CAF ou la MSA au parent qui élève seul son enfant ou à la personne qui a recueilli un enfant, qu’elle vive seule ou en couple.',
+        'conditions': [
+            'Ne pas toucher l’intégralité d’une pension alimentaire qui vous aurait été attribuée par une décision de justice, ou que cette pension soit d’un montant inférieur à celui de l’ASF.'
+        ],
         'imgSrc':'logo_caf.png',
         'link':'http://vosdroits.service-public.fr/particuliers/F815.xhtml'
     },

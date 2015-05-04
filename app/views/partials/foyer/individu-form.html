@@ -71,11 +71,10 @@
       <div class="checkbox">
         <label>
           <input type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
-          Détenteur d'un droit au séjour valide et
-          <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France</a>
+          Détenteur d'un droit au séjour valide et résidant en France plus de 9 mois par an.
         </label>
       </div>
-      <span class="help-block" ng-if="submitted && form.disclaimerUe.$invalid">Vous devez cocher cette case pour continuer.</span>
+      <span class="help-block" ng-if="submitted && form.disclaimerUe.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
     </div>
   </div>
   <div
@@ -86,11 +85,10 @@
       <div class="checkbox">
         <label>
           <input type="checkbox" name="disclaimerNonUe" ng-model="disclaimerNonUe" required>
-          Détenteur d'une carte de résident ou d'un titre de séjour valide et
-          <a href="" tooltip="C'est-à-dire plus de 9 mois par an">résident de manière stable en France.</a>
+          Détenteur d'une carte de résident ou d'un titre de séjour valide et résidant en France plus de 9 mois par an.
         </label>
       </div>
-      <span class="help-block" ng-if="submitted && form.disclaimerNonUe.$invalid">Vous devez cocher cette case pour continuer.</span>
+      <span class="help-block" ng-if="submitted && form.disclaimerNonUe.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
     </div>
   </div>
 

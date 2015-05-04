@@ -142,7 +142,7 @@
 
 <div ng-if="droitsNonEligibles.length">
   <hr>
-  <h4>Aides étudiées pour lesquelles vous n'êtes pas éligible</h4>
+  <h4>Aides étudiées pour lesquelles vous n'êtes <span ng-if="! situation.ressourcesYearMoins2Captured && ! error">a priori</span> pas éligible</h4>
   <accordion close-others="false">
     <div class="row">
       <div ng-repeat="droit in droitsNonEligibles">

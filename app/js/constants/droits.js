@@ -80,6 +80,11 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'label':'Revenu de Solidarité Active',
         'shortLabel':'RSA',
         'description':'Le RSA est destiné à assurer aux personnes disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer.',
+        'conditions': [
+            'Résider en France plus de 9 mois par an.',
+            'Si vous êtes ressortissant.e d’un pays de l’UE, de l’EEE ou Suisse, résider en France depuis plus de 3 mois.',
+            'Si vous êtes ressortissant.e d’un autre pays, résider en France depuis plus de 5 ans.'
+        ],
         'imgSrc':'logo_rsa.png',
         'link':'http://vosdroits.service-public.fr/particuliers/N19775.xhtml'
     },

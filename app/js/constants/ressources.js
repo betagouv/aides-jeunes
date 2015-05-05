@@ -90,7 +90,12 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     },
     {
         id: 'clca',
-        label: 'Complément de libre choix d’activité (CLCA) / Prestation partagée d’éducation de l’enfant (PreParE)',
+        label: 'Complément de libre choix d’activité (CLCA)',
+        category: 'allocations'
+    },
+    {
+        id: 'prepare',
+        label: 'Prestation partagée d’éducation de l’enfant (PreParE)',
         category: 'allocations'
     },
     {

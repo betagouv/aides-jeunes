@@ -138,20 +138,29 @@
   </div>
 
   <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
-    <label class="control-label col-sm-4" for="last-job-end-date">Quand s’est terminé votre dernier contrat de travail ?</label>
-    <div class="col-sm-4">
-      <input
-          type="text"
-          id="last-job-end-date"
-          dds-date-month-year
-          ng-model="individu.lastJobEndDate"
-          date-naissance-max-age="options.maxAge"
-          placeholder="MM/AAAA">
+    <div class="form-group" ng-class="{'has-error': submitted && form.lastJobEndDate.$invalid}">
+      <label class="control-label col-sm-4" for="last-job-end-date">Quand s’est terminé votre dernier contrat de travail ?</label>
+      <div class="col-sm-4">
+        <input
+            type="text"
+            name="lastJobEndDate"
+            id="last-job-end-date"
+            dds-date-month-year
+            ng-model="individu.lastJobEndDate"
+            date-naissance-max-age="100"
+            placeholder="MM/AAAA">
+        <p class="help-block" ng-if="submitted && form.lastJobEndDate.$error.ddsDateMonthYear">
+          Essayez au format MM/AAAA. Par exemple : 12/2015.
+        </p>
+        <p class="help-block" ng-if="submitted && form.lastJobEndDate.$error.dateNaissanceMaxAge">
+          Votre dernier contrat doit être postérieur à votre date de naissance.
+        </p>
+      </div>
+
+      <span class="help-block">Si vous n’avez jamais eu de contrat de travail, laissez ce champ vide.</span>
     </div>
 
-    <span class="help-block">Si vous n’avez jamais eu de contrat de travail, laissez ce champ vide.</span>
-
-    <div ng-if="individu.lastJobEndDate.year()">
+    <div class="form-group" ng-if="individu.lastJobEndDate.year()">
       <label class="control-label col-sm-4" for="eligibiliteAss">
         {{ options.individuRole == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
         travaillé au moins 5 ans entre {{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et {{ individu.lastJobEndDate.format('MMMM YYYY') }} ?

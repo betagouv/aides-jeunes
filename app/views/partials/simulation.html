@@ -12,39 +12,31 @@
     <accordion-group is-open="droit.open"
                      class="resultats-accordion"
                      ng-repeat="droit in droits"
-                     ng-class="{'resultats-accordion-muted': droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured,'panel-opened': droit.open}">
-
+                     ng-class="{'resultats-accordion-needs-n-2': droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured && ! isString(droit.montant), 'panel-opened': droit.open}">
 
       <accordion-heading>
         <div class="row">
 
           <div class="col-xs-2 col-sm-1">
             <img class="droit-img"
-                 ng-src="/img/{{ droit.description.imgSrc }}"
-                 alt="{{ droit.description.id }}">
+                 ng-src="/img/{{ droit.imgSrc }}"
+                 alt="{{ droit.id }}">
           </div>
 
           <div class="col-xs-6 col-sm-8 description">
-            <span
-              class="text-warning fa fa-exclamation-triangle"
-              ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured">
-            </span>
-            <span>{{ droit.description.label }}<span>
+            <span>{{ droit.label }}<span>
           </div>
 
           <div class="col-xs-3 col-sm-2">
-            <div ng-if="false !== droit.description.hasMontant"
-                 class="montant"
-                 ng-class="{'montant-inconnu': null === droit.montant }">
-              <span ng-if="null !== droit.montant">{{ round(droit.montant) }}&nbsp;€</span>
-              <span ng-if="null === droit.montant">?</span>
+            <div class="montant">
+              <span ng-if="isNumber(droit.montant)">{{ round(droit.montant) }}&nbsp;€</span>
+              <span ng-if="isString(droit.montant)" class="montant-inconnu">?</span>
             </div>
 
-            <div ng-if="null !== droit.montant && false !== droit.description.hasMontant"
-                 class="montant-detail">
+            <div ng-if="isNumber(droit.montant)" class="montant-detail">
               /
-              <span ng-if="droit.description.isMontantAnnuel">an</span>
-              <span ng-if="!droit.description.isMontantAnnuel">mois</span>
+              <span ng-if="droit.isMontantAnnuel">an</span>
+              <span ng-if="! droit.isMontantAnnuel">mois</span>
             </div>
 
           </div>
@@ -57,30 +49,33 @@
 
 
       <div class="caption">
-        <div ng-if="null !== droit.montant">
-          <p>{{ droit.description.description }}</p>
-          <div ng-if="droit.description.conditions">
+        <div ng-if="droit.montant">
+          <p>{{ droit.description }}</p>
+          <div ng-if="droit.conditions">
             Pour en bénéficier, vous devez également :
             <ul>
-              <li ng-repeat="condition in droit.description.conditions">
+              <li ng-repeat="condition in droit.conditions">
                 <i class="fa fa-check"></i>
                 <span ng-bind-html="condition"></span>
               </li>
             </ul>
           </div>
 
-          <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured">
+          <div ng-if="isString(droit.montant)" class="alert alert-warning-inverse">
+            <p>Malheureusement, nous ne pouvons pas estimer le montant de cette prestation, car {{ droit.uncomputability[droit.montant].reason }}.</p>
+            <p ng-if="droit.uncomputability[droit.montant].solution"><strong ng-bind-html="droit.uncomputability[droit.montant].solution"></strong></p>
+          </div>
+
+          <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && ! situation.ressourcesYearMoins2Captured && ! isString(droit.montant)">
             <i class="fa fa-warning"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
             <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
           </div>
         </div>
 
-        <p ng-if="null === droit.montant" ng-bind-html="droit.description.montantInconnuDisclaimer"></p>
-
         <div class="row">
           <div ng-class="{'col-sm-offset-6': hasDroitForms(droit), 'col-sm-offset-9': !hasDroitForms(droit)}" class="col-sm-3 col-sm-offset-6">
             <a
-              href="{{ droit.description.link }}"
+              href="{{ droit.link }}"
               class="btn btn-sm btn-default btn-block"
               target="_blank">
               <i class="fa fa-external-link"></i>
@@ -90,8 +85,8 @@
           <div class="col-sm-3">
             <a
               class="btn btn-sm btn-primary btn-block"
-              ng-if="hasDroitForms(droit) && null !== droit.montant"
-              ui-sref="infos_complementaires.individus({droit: droit.description.id})">
+              ng-if="hasDroitForms(droit) && droit.montant"
+              ui-sref="infos_complementaires.individus({droit: droit.id})">
               Engager les démarches
             </a>
           </div>
@@ -102,19 +97,19 @@
     </accordion-group>
   </accordion>
 
-  <div ng-if="! droits.length && situation.ressourcesYearMoins2Captured && ! error">
+  <div ng-if="noDroits && situation.ressourcesYearMoins2Captured && ! error">
     <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
     <p>Si vous êtes malgré cela dans une situation de précarité, entrez directement en contact avec <a href="/faq#recours">l’un des organismes</a> qui détermine l’attribution des aides sociales.</p>
   </div>
 
-  <div ng-if="! droits.length && ! situation.ressourcesYearMoins2Captured && ! error">
+  <div ng-if="noDroits && ! situation.ressourcesYearMoins2Captured && ! error">
     <h2>On y est presque !</h2>
   </div>
 
   <div class="row additional-info-cta" ng-if="! situation.ressourcesYearMoins2Captured && ! error">
     <div class="col-sm-8">
       <p>
-        <i ng-if="droits.length" class="fa fa-warning text-warning"></i> <!-- show sign only as a legend -->
+        <i ng-if="! noDroits" class="fa fa-warning text-warning"></i> <!-- show sign only as a legend -->
         <strong>Nous avons supposé que vos ressources pour l’année {{ yearMoins2 }} étaient les mêmes qu’entre {{ debutPeriode }} et {{ finPeriode }}.</strong>
       </p>
     </div>
@@ -126,8 +121,7 @@
 
 </div>
 
-
-<div class="frame-resultats" ng-if="!situation.patrimoine.captured && (droits.length || droitsYearMoins2.length)">
+<div class="frame-resultats" ng-if="! noDroits && ! situation.patrimoine.captured">
   <div class="row">
     <div class="col-sm-8">
       <i class="fa fa-info-circle"></i>
@@ -140,7 +134,7 @@
   </div>
 </div>
 
-<div ng-if="droitsNonEligibles.length">
+<div>
   <hr>
   <h4>Aides étudiées pour lesquelles vous n'êtes <span ng-if="! situation.ressourcesYearMoins2Captured && ! error">a priori</span> pas éligible</h4>
   <accordion close-others="false">

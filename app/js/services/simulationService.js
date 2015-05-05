@@ -1,61 +1,54 @@
 'use strict';
 
-/* global _ */
+angular.module('ddsApp').service('SimulationService', function($http, droitsDescription) {
+    function makeObjectFilter(test) {
+        return function(source) {
+            var result = {};
 
-angular.module('ddsApp').service('SimulationService', function($http, $q, droitsDescription) {
-    var montantInconnu = function(droit, situation) {
-        if ('aide_logement' === droit.id) {
-            return _.any([
-                'proprietaire' === situation.logement.type,
-                'locataire' === situation.logement.type && 'foyer' === situation.logement.locationType
-            ]);
-        }
+            _.forEach(source, function(value, key) {
+                if (test(value, key)) {
+                    result[key] = value;
+                }
+            });
 
-        return false;
-    };
+            return result;
+        };
+    }
+
+    var filterUnhandled = makeObjectFilter(function(value, key) {
+        return droitsDescription[key];
+    });
+
+    /* jshint unused: false */
+    var filterIneligible = makeObjectFilter(function(value, key) {
+        return value;
+    });
+
+    function describe(droits) {
+        return _.mapValues(droits, function(montant, key) {
+            var result = _.clone(droitsDescription[key]);
+            result.montant = montant;
+            return result;
+        });
+    }
 
     return {
         simulate: function(situation) {
-            var that = this;
-
-            return $http.get('/api/situations/' + situation._id + '/simulation').then(function(result) {
-                return that.createDroitsFromApiResult(result.data, situation);
+            return $http.get('/api/situations/' + situation._id + '/simulation').then(function(response) {
+                return describe(filterIneligible(filterUnhandled(response.data)));
             });
         },
+        filterUnhandled: filterUnhandled,
+        filterIneligible: filterIneligible,
+        describe: describe,
+        complement: function(droits) {
+            var result = _.clone(droitsDescription);
 
-        createDroitsFromApiResult: function(result, situation) {
-            var droits = [];
-            droitsDescription.forEach(function(droit) {
-                if (false === droit.isSimulated) {
-                    return;
-                }
-
-                var isMontantInconnu = montantInconnu(droit, situation);
-                var value = result[droit.id];
-                if (value || isMontantInconnu) {
-                    var target = {
-                        description: droit,
-                        isBaseRessourcesYearMoins2: droit.isBaseRessourcesYearMoins2
-                    };
-                    if (isMontantInconnu) {
-                        target.montant = null;
-                    } else if (_.isNumber(value)) {
-                        target.montant = value;
-                    }
-                    droits.push(target);
-                }
+            _.forEach(droits, function(montant, key) {
+                delete result[key];
             });
 
-            return {
-                droits: droits,
-                droitsNonEligibles: this.getDroitsNonEligibles(droits)
-            };
-        },
-
-        getDroitsNonEligibles: function(droitsEligibles) {
-            return droitsDescription.filter(function(droit) {
-                return !_.find(droitsEligibles, { description: {id: droit.id }}) && false !== droit.isSimulated;
-            });
+            return result;
         }
     };
 });

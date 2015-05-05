@@ -1,6 +1,6 @@
 <form method="post" name="form" class="form-horizontal form-individu" ng-submit="submit(form)" novalidate>
   <div class="form-group" ng-class="{'has-error': submitted && form.dateDeNaissance.$invalid}">
-    <label class="control-label col-sm-4" for="date-de-naissance">Date de naissance</label>
+    <label class="control-label col-sm-4" for="date-de-naissance">Date de naissance <span class="visually-hidden">au format jour/mois/année</span></label>
     <div class="col-sm-4">
       <input
         type="text"
@@ -14,28 +14,33 @@
         date-naissance-min-age="0"
         date-naissance-max-age="options.maxAge"
         auto-focus
-        placeholder="JJ/MM/AAAA">
-      <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.required">Ce champ est obligatoire.</p>
-      <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.ddsDate">
-        Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.
-      </p>
-      <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMaxAge">
-        Cette personne ne peut pas avoir plus de {{ options.maxAge }} ans.
-      </p>
-      <p class="help-block" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMinAge">
-        Cette personne ne peut pas avoir moins de {{ options.minAge }} ans.
-      </p>
+        placeholder="JJ/MM/AAAA"
+        aria-describedby="help-date-de-naissance">
+      <ul class="help-block" id="help-date-de-naissance" ng-if="submitted && form.dateDeNaissance.$invalid">
+        <li ng-if="form.dateDeNaissance.$error.required">
+          Ce champ est obligatoire.
+        </li>
+        <li ng-if="form.dateDeNaissance.$error.ddsDate">
+          Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.
+        </li>
+        <li ng-if="form.dateDeNaissance.$error.dateNaissanceMaxAge">
+          Cette personne ne peut pas avoir plus de {{ options.maxAge }} ans.
+        </li>
+        <li ng-if="form.dateDeNaissance.$error.dateNaissanceMinAge">
+          Cette personne ne peut pas avoir moins de {{ options.minAge }} ans.
+        </li>
+      </ul>
     </div>
   </div>
 
   <div class="form-group" ng-if="options.capturePrenom" ng-class="{'has-error': submitted && form.firstName.$invalid}">
     <label class="control-label col-sm-4" for="first-name">Prénom</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="individu.firstName">
-      <p class="help-block" ng-if="submitted && form.firstName.$invalid">Ce champ est obligatoire.</p>
+      <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="individu.firstName" aria-describedby="help-first-name-2">
+      <p class="help-block" id="help-first-name-1" ng-if="submitted && form.firstName.$invalid">Ce champ est obligatoire.</p>
     </div>
     <div class="col-sm-4">
-      <p class="help-col">Ce prénom servira uniquement à vous faciliter la saisie par la suite</p>
+      <p class="help-col" id="help-first-name-2">Ce prénom servira uniquement à vous faciliter la saisie par la suite</p>
     </div>
   </div>
 
@@ -44,19 +49,19 @@
     <div class="col-sm-8">
       <div class="radio">
         <label>
-          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="fr">
+          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="fr" aria-label="Nationalité Française">
           Française
         </label>
       </div>
       <div class="radio">
         <label>
-          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="ue">
+          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="ue" aria-label="Nationalité EEE, UE, Suisse">
           <abbr title="" popover="{{ popoverEee }}" popover-title="Liste des pays de l'EEE" popover-placement="bottom" popover-trigger="mouseenter">EEE</abbr> - <abbr title="" popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr> - Suisse
         </label>
       </div>
       <div class="radio">
         <label>
-          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="autre">
+          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="autre" aria-label="Hors UE">
           Hors <abbr title="" popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr>
         </label>
       </div>
@@ -69,12 +74,12 @@
     ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
-        <label>
-          <input type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
+        <label for="disclaimer-ue">
+          <input id="disclaimer-ue" type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
           Détenteur d'un droit au séjour valide et résidant en France plus de 9 mois par an.
         </label>
       </div>
-      <span class="help-block" ng-if="submitted && form.disclaimerUe.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
+      <span class="help-block" id="help-disclaimer-ue" ng-if="submitted && form.disclaimerUe.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
     </div>
   </div>
   <div
@@ -83,12 +88,12 @@
     ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
-        <label>
-          <input type="checkbox" name="disclaimerNonUe" ng-model="disclaimerNonUe" required>
+        <label for="disclaimer-non-ue" >
+          <input id="disclaimer-non-ue" type="checkbox" name="disclaimerNonUe" ng-model="disclaimerNonUe" required>
           Détenteur d'une carte de résident ou d'un titre de séjour valide et résidant en France plus de 9 mois par an.
         </label>
       </div>
-      <span class="help-block" ng-if="submitted && form.disclaimerNonUe.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
+      <span class="help-block" id="help-disclaimer-non-ue" ng-if="submitted && form.disclaimerNonUe.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
     </div>
   </div>
 
@@ -106,7 +111,7 @@
   </div>
 
   <div class="form-group from-group-lg">
-    <label class="control-label col-sm-4">
+    <label class="control-label col-sm-4" id="situations-particulieres">
       Situations particulières <em>(facultatif)</em>
       <div class="small">
         Cochez la ou les situations qui<br>
@@ -117,20 +122,20 @@
     </label>
     <div class="col-sm-8">
       <div class="checkbox">
-        <label>
-          <input type="checkbox" ng-model="individu.enceinte">
+        <label for="individu-enceinte">
+          <input id="individu-enceinte" type="checkbox" ng-model="individu.enceinte" aria-describedby="situations-particulieres">
           Enceinte
         </label>
       </div>
       <div class="checkbox" ng-if="options.captureGardeAlternee">
-        <label>
-          <input type="checkbox" ng-model="individu.gardeAlternee">
+        <label for="individu-garde-alternee">
+          <input id="individu-garde-alternee" type="checkbox" ng-model="individu.gardeAlternee" aria-describedby="situations-particulieres">
           En garde alternée
         </label>
       </div>
       <div class="checkbox" ng-repeat="statut in statutsSpecifiques">
-        <label>
-          <input type="checkbox" ng-model="selectedStatuts[statut.id]">
+        <label for="status-specifiques{{ statut.id }}">
+          <input id="status-specifiques{{ statut.id }}" type="checkbox" ng-model="selectedStatuts[statut.id]" aria-describedby="situations-particulieres">
           {{ statut.label }}
         </label>
       </div>
@@ -149,30 +154,32 @@
             ng-model="individu.lastJobEndDate"
             date-naissance-max-age="100"
             placeholder="MM/AAAA">
-        <p class="help-block" ng-if="submitted && form.lastJobEndDate.$error.ddsDateMonthYear">
-          Essayez au format MM/AAAA. Par exemple : 12/2015.
-        </p>
-        <p class="help-block" ng-if="submitted && form.lastJobEndDate.$error.dateNaissanceMaxAge">
-          Votre dernier contrat doit être postérieur à votre date de naissance.
-        </p>
+        <ul class="help-block" ng-if="submitted && form.lastJobEndDate.$invalid">
+          <li ng-if="form.lastJobEndDate.$error.ddsDateMonthYear">
+            Essayez au format MM/AAAA. Par exemple : 12/2015.
+          </li>
+          <li ng-if="form.lastJobEndDate.$error.dateNaissanceMaxAge">
+            Votre dernier contrat doit être postérieur à votre date de naissance.
+          </li>
+        </ul>
       </div>
 
       <span class="help-block">Si vous n’avez jamais eu de contrat de travail, laissez ce champ vide.</span>
     </div>
 
     <div class="form-group" ng-if="individu.lastJobEndDate.year()">
-      <label class="control-label col-sm-4" for="eligibiliteAss">
+      <label class="control-label col-sm-4" id="ass-question">
         {{ options.individuRole == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
         travaillé au moins 5 ans entre {{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et {{ individu.lastJobEndDate.format('MMMM YYYY') }} ?
       </label>
 
       <div class="col-sm-8">
-        <label class="radio-inline">
-          <input type="radio" name="eligibiliteAss" ng-model="individu.assPreconditionRemplie" ng-value="true">
+        <label for="ass-precondition-true" class="radio-inline">
+          <input id="ass-precondition-true" aria-describedby="ass-question" type="radio" name="eligibiliteAss" ng-model="individu.assPreconditionRemplie" ng-value="true">
           Oui
         </label>
-        <label class="radio-inline">
-          <input type="radio" name="eligibiliteAss" ng-model="individu.assPreconditionRemplie" ng-value="false">
+        <label for="ass-precondition-false" class="radio-inline">
+          <input id="ass-precondition-false" aria-describedby="ass-question" type="radio" name="eligibiliteAss" ng-model="individu.assPreconditionRemplie" ng-value="false">
           Non
         </label>
       </div>
@@ -200,18 +207,18 @@
   </div>
 
   <div class="form-group from-group-lg" ng-if="captureEtudiantBoursier()">
-    <label class="control-label col-sm-4">
+    <label class="control-label col-sm-4" id="etudiant-boursier">
       <span ng-if="'demandeur' === options.individuRole">Êtes-vous</span>
       <span ng-if="'demandeur' !== options.individuRole">Est-il/elle</span>
       étudiant boursier ?
     </label>
     <div class="col-sm-8">
-      <label class="radio-inline">
-        <input type="radio" name="boursier" ng-model="individu.boursier" ng-value="true">
+      <label class="radio-inline" for="boursier-true">
+        <input id="boursier-true" type="radio" name="boursier" ng-model="individu.boursier" ng-value="true" aria-describedby="etudiant-boursier">
         Oui
       </label>
-      <label class="radio-inline">
-        <input type="radio" name="boursier" ng-model="individu.boursier" ng-value="false">
+      <label class="radio-inline" for="boursier-false">
+        <input id="boursier-false" type="radio" name="boursier" ng-model="individu.boursier" ng-value="false" aria-describedby="etudiant-boursier">
         Non
       </label>
     </div>
@@ -233,7 +240,7 @@
 
   <div class="pull-right">
     <button type="submit" class="btn btn-primary">
-      Valider <i class="fa fa-arrow-circle-right"></i>
+      Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
     </button>
   </div>
 

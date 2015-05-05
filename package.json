@@ -8,7 +8,7 @@
     "morgan": "~1.5.0",
     "prerender-node": "^1.1.1",
     "ludwig-ui": "^1.0.1",
-    "sgmap-mes-aides-api": "sgmap/mes-aides-api#v0.1.7",
+    "sgmap-mes-aides-api": "sgmap/mes-aides-api#v0.1.8",
     "serve-favicon": "~2.2.0"
   },
   "repository": {

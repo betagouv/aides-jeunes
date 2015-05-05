@@ -28,13 +28,13 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
             };
         });
 
-        $http.post('api/acceptance-tests', {
+        $http.post('api/public/acceptance-tests', {
             expectedResults: expectedResults,
             scenario: { situationId: $scope.situation._id }
         }).success(function(data) {
             $window.location.href = '/tests/' + data._id + '/edit';
         }).error(function(data) {
-            $window.alert(data);
+            $window.alert(data.error.apiError);
         });
     };
 

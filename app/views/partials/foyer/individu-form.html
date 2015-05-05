@@ -14,17 +14,22 @@
         date-naissance-min-age="0"
         date-naissance-max-age="options.maxAge"
         auto-focus
-        placeholder="JJ/MM/AAAA">
-      <p class="help-block" id="help-date-de-naissance-1" ng-if="submitted && form.dateDeNaissance.$error.required">Ce champ est obligatoire.</p>
-      <p class="help-block" id="help-date-de-naissance-2" ng-if="submitted && form.dateDeNaissance.$error.ddsDate">
-        Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.
-      </p>
-      <p class="help-block" id="help-date-de-naissance-3" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMaxAge">
-        Cette personne ne peut pas avoir plus de {{ options.maxAge }} ans.
-      </p>
-      <p class="help-block" id="help-date-de-naissance-4" ng-if="submitted && form.dateDeNaissance.$error.dateNaissanceMinAge">
-        Cette personne ne peut pas avoir moins de {{ options.minAge }} ans.
-      </p>
+        placeholder="JJ/MM/AAAA"
+        aria-describedby="help-date-de-naissance">
+      <ul class="help-block" id="help-date-de-naissance" ng-if="submitted && form.dateDeNaissance.$invalid">
+        <li ng-if="form.dateDeNaissance.$error.required">
+          Ce champ est obligatoire.
+        </li>
+        <li ng-if="form.dateDeNaissance.$error.ddsDate">
+          Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.
+        </li>
+        <li ng-if="form.dateDeNaissance.$error.dateNaissanceMaxAge">
+          Cette personne ne peut pas avoir plus de {{ options.maxAge }} ans.
+        </li>
+        <li ng-if="form.dateDeNaissance.$error.dateNaissanceMinAge">
+          Cette personne ne peut pas avoir moins de {{ options.minAge }} ans.
+        </li>
+      </ul>
     </div>
   </div>
 

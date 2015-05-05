@@ -612,12 +612,20 @@ $autre-lighter: #cce4e7;
   }
 }
 
-.resultats-accordion-muted {
+.resultats-accordion-needs-n-2 {
   @extend .resultats-accordion;
 
   .panel-heading {
     background-color: whitesmoke;
     color: #888;
+  }
+
+  .montant::after {
+    @extend .fa;
+    @extend .text-warning;
+    content: "\f071";
+    position: relative;
+    top: .4em;
   }
 }
 

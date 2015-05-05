@@ -12,7 +12,7 @@
     <accordion-group is-open="droit.open"
                      class="resultats-accordion"
                      ng-repeat="droit in droits"
-                     ng-class="{'resultats-accordion-muted': droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured && ! isString(droit.montant), 'panel-opened': droit.open}">
+                     ng-class="{'resultats-accordion-needs-n-2': droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured && ! isString(droit.montant), 'panel-opened': droit.open}">
 
       <accordion-heading>
         <div class="row">
@@ -24,10 +24,6 @@
           </div>
 
           <div class="col-xs-6 col-sm-8 description">
-            <span
-              class="text-warning fa fa-exclamation-triangle"
-              ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured">
-            </span>
             <span>{{ droit.label }}<span>
           </div>
 

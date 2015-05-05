@@ -623,7 +623,7 @@ $autre-lighter: #cce4e7;
   .montant::after {
     @extend .fa;
     @extend .text-warning;
-    content: "\f071";
+    content: $fa-var-warning;
     position: relative;
     top: .4em;
   }

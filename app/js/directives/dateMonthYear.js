@@ -15,7 +15,7 @@ angular.module('ddsApp').directive('ddsDateMonthYear', function() {
             ctrl.$formatters.push(function(momentInstance) {
                 if (! momentInstance) return;
 
-                return momentInstance.format('MMM YYYY');
+                return momentInstance.format('MM/YYYY');
             });
         }
     };

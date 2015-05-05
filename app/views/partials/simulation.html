@@ -8,18 +8,6 @@
 </div>
 
 <div class="frame-resultats" ng-if="!error && !awaitingResults">
-  <div class="row warning" ng-if="!situation.ressourcesYearMoins2Captured && !error">
-    <div class="col-sm-9">
-      <b><i class="fa fa-warning"></i> Attention : déclarez vos ressources {{ yearMoins2 }} pour une simulation plus précise.</b>
-      <br>En effet, plusieurs aides se basent sur vos ressources de l'année {{ yearMoins2 }}.
-      Ces résultats ont été simulés sur les ressources que vous avez déclarées
-      entre {{ debutPeriode }} et {{ finPeriode }}.
-    </div>
-    <div class="col-sm-3">
-      <a class="btn btn-primary" ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
-    </div>
-  </div>
-
   <accordion close-others="true">
     <accordion-group is-open="droit.open"
                      class="resultats-accordion"
@@ -114,9 +102,28 @@
     </accordion-group>
   </accordion>
 
-  <div class="bloc-aucune-aide-eligible text-center" ng-if="!droits.length && !error">
-    <h2>Vous n'êtes éligible à aucune aide.</h2>
+  <div ng-if="! droits.length && situation.ressourcesYearMoins2Captured && ! error">
+    <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
+    <p>Si vous êtes malgré cela dans une situation de précarité, entrez directement en contact avec <a href="/faq#recours">l’un des organismes</a> qui détermine l’attribution des aides sociales.</p>
   </div>
+
+  <div ng-if="! droits.length && ! situation.ressourcesYearMoins2Captured && ! error">
+    <h2>On y est presque !</h2>
+  </div>
+
+  <div class="row additional-info-cta" ng-if="! situation.ressourcesYearMoins2Captured && ! error">
+    <div class="col-sm-8">
+      <p>
+        <i ng-if="droits.length" class="fa fa-warning text-warning"></i> <!-- show sign only as a legend -->
+        <strong>Nous avons supposé que vos ressources pour l’année {{ yearMoins2 }} étaient les mêmes qu’entre {{ debutPeriode }} et {{ finPeriode }}.</strong>
+      </p>
+    </div>
+
+    <div class="col-sm-4">
+      <a class="btn btn-success btn-block" ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
+    </div>
+  </div>
+
 </div>
 
 
@@ -135,7 +142,7 @@
 
 <div ng-if="droitsNonEligibles.length">
   <hr>
-  <h4>Aides étudiées pour lesquelles vous n'êtes pas éligible</h4>
+  <h4>Aides étudiées pour lesquelles vous n'êtes <span ng-if="! situation.ressourcesYearMoins2Captured && ! error">a priori</span> pas éligible</h4>
   <accordion close-others="false">
     <div class="row">
       <div ng-repeat="droit in droitsNonEligibles">

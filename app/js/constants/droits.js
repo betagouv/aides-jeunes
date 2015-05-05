@@ -19,6 +19,9 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'label':'Aide pour une Complémentaire Santé',
         'shortLabel':'ACS',
         'description':'L’aide pour l’acquisition d’une assurance complémentaire santé, dite ACS, est une aide financière pour payer une complémentaire santé (exemple : une mutuelle).',
+        'conditions': [
+            'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
+        ],
         'imgSrc':'logo_cmu.png',
         'link':'http://www.cmu.fr/acs.php'
     },
@@ -27,6 +30,9 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'label':'Allocation de Solidarité aux Personnes Âgées',
         'shortLabel':'ASPA',
         'description':'L’allocation de solidarité aux personnes âgées (Aspa) est une allocation destinée aux personnes âgées disposant de faibles revenus en vue de leur assurer un niveau minimum de ressources. Elle remplace le minimum vieillesse depuis 2006.',
+        'conditions': [
+            'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
+        ],
         'imgSrc':'logo_aspa.png',
         'link':'http://vosdroits.service-public.fr/particuliers/F16871.xhtml'
     },
@@ -43,6 +49,9 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'label':'Allocations Familiales',
         'shortLabel':'AF',
         'description':'Les allocations familiales sont versées, sans condition de ressources, aux personnes ayant au moins 2 enfants de moins de 20 ans à charge. Le montant des prestations dépend du nombre d’enfants à charge et de leur âge.',
+        'conditions': [
+            'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
+        ],
         'imgSrc':'logo_caf.png',
         'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0'
     },
@@ -60,6 +69,9 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'label':'Allocation de Soutien Familial',
         'shortLabel':'ASF',
         'description':'L’ASF est versée par la CAF ou la MSA au parent qui élève seul son enfant ou à la personne qui a recueilli un enfant, qu’elle vive seule ou en couple.',
+        'conditions': [
+            'Ne pas toucher l’intégralité d’une pension alimentaire qui vous aurait été attribuée par une décision de justice, ou que cette pension soit d’un montant inférieur à celui de l’ASF.'
+        ],
         'imgSrc':'logo_caf.png',
         'link':'http://vosdroits.service-public.fr/particuliers/F815.xhtml'
     },
@@ -77,6 +89,11 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'label':'Revenu de Solidarité Active',
         'shortLabel':'RSA',
         'description':'Le RSA est destiné à assurer aux personnes disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer.',
+        'conditions': [
+            'Résider en France plus de 9 mois par an.',
+            'Si vous êtes ressortissant.e d’un pays de l’UE, de l’EEE ou Suisse, résider en France depuis plus de 3 mois.',
+            'Si vous êtes ressortissant.e d’un autre pays, résider en France depuis plus de 5 ans.'
+        ],
         'imgSrc':'logo_rsa.png',
         'link':'http://vosdroits.service-public.fr/particuliers/N19775.xhtml'
     },
@@ -85,6 +102,10 @@ angular.module('ddsCommon').constant('droitsDescription', [
         'label':'Aides au Logement',
         'shortLabel':'AL',
         'description':'L\'aide au logement est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
+        'conditions': [
+            'Résider au moins 8 mois par an dans le logement que vous avez décrit.',
+            'Le logement doit être <a href="http://www.caf.fr/aides-et-services/connaitre-vos-droits-selon-votre-situation/vous-louez-ou-vous-achetez-un-logement/vous-occupez-un-logement-insalubre-ou-non-decent" title="9 mètres carrés par personne, fenêtre, WC, eau potable, électricité" >décent</a>.'
+        ],
         'imgSrc':'logo_caf.png',
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
         'isBaseRessourcesYearMoins2':true,

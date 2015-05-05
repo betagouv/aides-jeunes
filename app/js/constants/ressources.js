@@ -89,6 +89,16 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         category: 'allocations'
     },
     {
+        id: 'clca',
+        label: 'Complément de libre choix d’activité (CLCA)',
+        category: 'allocations'
+    },
+    {
+        id: 'prepare',
+        label: 'Prestation partagée d’éducation de l’enfant (PreParE)',
+        category: 'allocations'
+    },
+    {
         id: 'indJourMaternite',
         label: 'Indemnités de maternité, paternité, adoption',
         category: 'indemnites'

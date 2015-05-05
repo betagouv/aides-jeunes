@@ -65,15 +65,15 @@
             </ul>
           </div>
 
+          <div ng-if="isString(droit.montant)" class="alert alert-warning-inverse">
+            <p>Malheureusement, nous ne pouvons pas estimer le montant de cette prestation, car {{ droit.uncomputability[droit.montant].reason }}.</p>
+            <p ng-if="droit.uncomputability[droit.montant].solution"><strong ng-bind-html="droit.uncomputability[droit.montant].solution"></strong></p>
+          </div>
+
           <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured">
             <i class="fa fa-warning"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
             <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
           </div>
-        </div>
-
-        <div ng-if="isString(droit.montant)">
-          <p>Malheureusement, nous ne pouvons pas estimer le montant de cette prestation, car {{ droit.uncomputability[droit.montant].reason }}.</p>
-          <p ng-if="droit.uncomputability[droit.montant].solution"><strong ng-bind-html="droit.uncomputability[droit.montant].solution"></strong></p>
         </div>
 
         <div class="row">

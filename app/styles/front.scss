@@ -629,9 +629,14 @@ $autre-lighter: #cce4e7;
   }
 }
 
-.droit-img {
+.droit-logo {
   height: 2em;
   padding-left: 5px;
+}
+
+.frame-aides-homepage .droit-logo {
+  height: 3em;
+  padding-left: 0;
 }
 
 .panel-non-eligible {

@@ -73,7 +73,7 @@
         </div>
 
         <div class="row">
-          <div ng-class="{'col-sm-offset-6': hasDroitForms(droit), 'col-sm-offset-9': !hasDroitForms(droit)}" class="col-sm-3 col-sm-offset-6">
+          <div class="col-sm-3">
             <a
               href="{{ droit.link }}"
               class="btn btn-sm btn-default btn-block"
@@ -82,10 +82,10 @@
               Plus d'informations
             </a>
           </div>
-          <div class="col-sm-3">
+          <div ng-if="hasDroitForms(droit)"
+            class="col-sm-3 col-sm-offset-6">
             <a
               class="btn btn-sm btn-primary btn-block"
-              ng-if="hasDroitForms(droit) && droit.montant"
               ui-sref="infos_complementaires.individus({droit: droit.id})">
               Engager les démarches
             </a>

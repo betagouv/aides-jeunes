@@ -24,7 +24,7 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         var expectedResults = _.map($scope.droits, function(droit, id) {
             return {
                 code: id,
-                expectedValue: droit.montant ? droit.montant : true
+                expectedValue: droit.montant
             };
         });
 

@@ -11,7 +11,7 @@
   <accordion close-others="true">
     <accordion-group is-open="droit.open"
                      class="resultats-accordion"
-                     ng-repeat="droit in droits"
+                     ng-repeat="(droitId, droit) in droits"
                      ng-class="{'resultats-accordion-needs-n-2': droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured && ! isString(droit.montant), 'panel-opened': droit.open}">
 
       <accordion-heading>
@@ -19,8 +19,7 @@
 
           <div class="col-xs-2 col-sm-1">
             <img class="droit-img"
-                 ng-src="/img/{{ droit.imgSrc }}"
-                 alt="{{ droit.id }}">
+                 ng-src="/img/{{ droit.imgSrc }}">
           </div>
 
           <div class="col-xs-6 col-sm-8 description">
@@ -82,11 +81,11 @@
               Plus d'informations
             </a>
           </div>
-          <div ng-if="hasDroitForms(droit)"
+          <div ng-if="hasCerfa(droitId)"
             class="col-sm-3 col-sm-offset-6">
             <a
               class="btn btn-sm btn-primary btn-block"
-              ui-sref="infos_complementaires.individus({droit: droit.id})">
+              ui-sref="infos_complementaires.individus({droit: droitId})">
               Engager les démarches
             </a>
           </div>

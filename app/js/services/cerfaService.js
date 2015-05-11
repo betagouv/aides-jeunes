@@ -227,10 +227,6 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return true;
         },
 
-        hasDroitForms: function(droit) {
-            return !!this.getCerfaFromDroit(droit.id);
-        },
-
         getRequiredPiecesJustificatives: function(cerfa, droit, situation) {
             var result = [];
             var that = this;

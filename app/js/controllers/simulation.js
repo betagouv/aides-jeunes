@@ -21,10 +21,10 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     });
 
     $scope.createTest = function() {
-        var expectedResults = _.map($scope.droits, function(droit) {
+        var expectedResults = _.map($scope.droits, function(droit, id) {
             return {
-                code: droit.description.id,
-                expectedValue: droit.montant ? droit.montant : true
+                code: id,
+                expectedValue: droit.montant
             };
         });
 
@@ -42,9 +42,7 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
         return Math.round(montant / 10) * 10;
     };
 
-    $scope.hasDroitForms = function(droit) {
-        return CerfaService.hasDroitForms(droit.description);
-    };
+    $scope.hasCerfa = CerfaService.getCerfaFromDroit;
 
     $scope.isNumber = _.isNumber;
     $scope.isString = _.isString;

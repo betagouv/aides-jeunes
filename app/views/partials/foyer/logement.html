@@ -114,7 +114,7 @@
       <div class="col-sm-6">
         <div
           class="form-group"
-          ng-class="{'has-error': submitted && unknownCodePostal}">
+          ng-class="{'has-error': submitted && ! cities.length}">
           <label class="col-sm-6 control-label" for="postal-code">Code postal de votre résidence</label>
           <div class="col-sm-6">
             <input
@@ -125,7 +125,7 @@
               required
               ng-model="logement.adresse.codePostal"
               ng-change="updateCities()">
-            <span class="help-block" ng-if="submitted && unknownCodePostal">Ce code postal est invalide</span>
+            <span class="help-block" ng-if="submitted && ! cities.length">Ce code postal est invalide</span>
           </div>
         </div>
       </div>
@@ -136,7 +136,7 @@
             <select
               class="form-control"
               ng-if="cities.length"
-              ng-options="city as city.nom for city in cities"
+              ng-options="city as city.nomCommune for city in cities"
               ng-model="selectedCity"
               ng-change="updateSelectedCity(selectedCity)">
             </select>

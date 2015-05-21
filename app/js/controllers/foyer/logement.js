@@ -63,53 +63,25 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'isChambre'].forEach(function(field) {
             delete logement[field];
         });
-        delete logement.adresse.codePostal;
-        $scope.selectedCity = null;
-        $scope.cities = [];
     };
 
-    $scope.unknownCodePostal = true;
-
-    $scope.updateCities = function() {
-        $scope.retrievingCities = false;
-        $scope.cities = [];
-
-        var codePostal = logement.adresse.codePostal;
-        if (!codePostal || 5 !== codePostal.length) {
-            $scope.unknownCodePostal = true;
-            return;
-        }
-
+    $scope.updateCities = function updateCities() {
         $scope.retrievingCities = true;
-        $http.get('/api/outils/communes', { params: { codePostal: codePostal } }).then(function(result) {
-            var records = result.data.records;
-            if (!records.length) {
-                $scope.unknownCodePostal = true;
-            } else {
-                $scope.unknownCodePostal = false;
-                $scope.cities = [];
-                records.forEach(function(record) {
-                    var field = 'nom_comm';
-                    var nomCommune = record.fields[field];
-                    field = 'insee_com';
-                    var codeInsee = record.fields[field];
-                    $scope.cities.push({nom: nomCommune, codeInsee: codeInsee});
-                });
-                $scope.selectedCity = $scope.cities[0];
-            }
-        }, function() {
-            $scope.unknownCodePostal = true;
-        }).finally(function() {
-            $scope.retrievingCities = false;
-        });
-    };
 
-    $scope.updateCities();
+        $http.get('/api/outils/communes/' + logement.adresse.codePostal)
+             .then(function(result) {
+                  $scope.cities = result.data;
+                  $scope.selectedCity = $scope.cities[0];
+              }, console.error.bind(console)
+              ).finally(function() {
+                  $scope.retrievingCities = false;
+              });
+    };
 
     $scope.submit = function(form) {
         $scope.submitted = true;
-        if (form.$valid && !$scope.unknownCodePostal) {
-            logement.adresse.ville = $scope.selectedCity.nom;
+        if (form.$valid && $scope.selectedCity) {
+            logement.adresse.ville = $scope.selectedCity.nomCommune;
             logement.adresse.codeInsee = $scope.selectedCity.codeInsee;
             $scope.$emit('logement', logement);
         }

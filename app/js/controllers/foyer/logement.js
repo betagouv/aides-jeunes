@@ -81,7 +81,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid && $scope.selectedCity) {
-            logement.adresse.ville = $scope.selectedCity.nomCommune;
+            logement.adresse.nomCommune = $scope.selectedCity.nomCommune;
             logement.adresse.codeInsee = $scope.selectedCity.codeInsee;
             $scope.$emit('logement', logement);
         }

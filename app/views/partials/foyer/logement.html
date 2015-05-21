@@ -134,7 +134,8 @@
             <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin"></i></p>
             <select
               class="form-control"
-              ng-if="cities.length"
+              required
+              ng-show="cities.length"
               ng-options="city.nomCommune for city in cities"
               ng-model="logement.adresse">
             </select>

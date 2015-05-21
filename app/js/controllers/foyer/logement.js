@@ -75,7 +75,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         $scope.cities = [];
 
         var codePostal = logement.adresse.codePostal;
-        if (!codePostal || 5 !== codePostal.length) {
+        if (!codePostal || 5 !== codePostal.length) {
             $scope.unknownCodePostal = true;
             return;
         }

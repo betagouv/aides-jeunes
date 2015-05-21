@@ -123,7 +123,7 @@
               id="postal-code"
               name="codePostal"
               required
-              ng-model="logement.adresse.codePostal"
+              ng-model="postalCode"
               ng-change="updateCities()">
             <span class="help-block" ng-if="submitted && ! cities.length">Ce code postal est invalide</span>
           </div>
@@ -136,9 +136,8 @@
             <select
               class="form-control"
               ng-if="cities.length"
-              ng-options="city as city.nomCommune for city in cities"
-              ng-model="selectedCity"
-              ng-change="updateSelectedCity(selectedCity)">
+              ng-options="city.nomCommune for city in cities"
+              ng-model="logement.adresse">
             </select>
           </div>
         </div>

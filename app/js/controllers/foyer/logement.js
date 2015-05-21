@@ -68,10 +68,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.updateCities = function updateCities() {
         $scope.retrievingCities = true;
 
-        $http.get('/api/outils/communes/' + logement.adresse.codePostal)
+        $http.get('/api/outils/communes/' + $scope.postalCode)
              .then(function(result) {
                   $scope.cities = result.data;
-                  $scope.selectedCity = $scope.cities[0];
+                  logement.adresse = $scope.cities[0];
               }, console.error.bind(console)
               ).finally(function() {
                   $scope.retrievingCities = false;
@@ -80,14 +80,8 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.submit = function(form) {
         $scope.submitted = true;
-        if (form.$valid && $scope.selectedCity) {
-            logement.adresse.nomCommune = $scope.selectedCity.nomCommune;
-            logement.adresse.codeInsee = $scope.selectedCity.codeInsee;
+        if (form.$valid && logement.adresse) {
             $scope.$emit('logement', logement);
         }
-    };
-
-    $scope.updateSelectedCity = function(selectedCity) {
-        $scope.selectedCity = selectedCity;
     };
 });

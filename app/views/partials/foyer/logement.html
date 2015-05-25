@@ -114,18 +114,22 @@
       <div class="col-sm-6">
         <div
           class="form-group"
-          ng-class="{'has-error': submitted && unknownCodePostal}">
-          <label class="col-sm-6 control-label" for="postal-code">Code postal de votre résidence</label>
+          ng-class="{'has-error': submitted && ! cities.length}">
+          <label class="col-sm-6 control-label" for="postal-code">Code postal et ville</label>
           <div class="col-sm-6">
             <input
               type="text"
+              inputmode="numeric"
+              minlength="5"
+              maxlength="5"
+              pattern="[0-9]{5}"
+              title="Cinq chiffres"
               class="form-control"
               id="postal-code"
-              name="codePostal"
               required
-              ng-model="logement.adresse.codePostal"
+              ng-model="postalCode"
               ng-change="updateCities()">
-            <span class="help-block" ng-if="submitted && unknownCodePostal">Ce code postal est invalide</span>
+            <span class="help-block" ng-if="submitted && ! cities.length">Ce code postal est invalide</span>
           </div>
         </div>
       </div>
@@ -135,10 +139,10 @@
             <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin"></i></p>
             <select
               class="form-control"
-              ng-if="cities.length"
-              ng-options="city as city.nom for city in cities"
-              ng-model="selectedCity"
-              ng-change="updateSelectedCity(selectedCity)">
+              required
+              ng-show="cities.length"
+              ng-options="city.nomCommune for city in cities"
+              ng-model="logement.adresse">
             </select>
           </div>
         </div>

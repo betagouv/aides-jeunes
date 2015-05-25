@@ -172,7 +172,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                     type: $sce.trustAsHtml(typeLogementHtml),
                     loyer: logement.loyer,
                     codePostal: logement.adresse.codePostal,
-                    ville: logement.adresse.ville
+                    nomCommune: logement.adresse.nomCommune
                 };
             };
             $scope.individus = _.map(situation.individus, mapIndividu);

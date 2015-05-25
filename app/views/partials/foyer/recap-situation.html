@@ -10,7 +10,7 @@
     <div ng-bind-html="recapLogement|uppercaseFirst"></div>
     <div ng-if="situation.logement.loyer">{{ loyerLabel }}&nbsp;: <b>{{ situation.logement.loyer }} €</b></div>
     Code postal <b>{{ situation.logement.adresse.codePostal }}</b>
-    <br><b>{{ situation.logement.adresse.ville }}</b>
+    <br><b>{{ situation.logement.adresse.nomCommune }}</b>
   </div>
 </div>
 

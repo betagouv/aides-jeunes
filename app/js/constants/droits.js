@@ -119,8 +119,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'link':'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
         'isBaseRessourcesYearMoins2':true,
         'uncomputability': {
-            'proprietaire': {
-                'reason': 'vous êtes propriétaire',
+            'primo_accedant': {
+                'reason': 'vous êtes propriétaire primo-accédant',
                 'solution': 'Le <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> pourra estimer vos droits sur la base de la valeur de votre bien.'
             },
             'locataire_foyer': {

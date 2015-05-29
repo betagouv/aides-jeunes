@@ -120,7 +120,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'isBaseRessourcesYearMoins2':true,
         'uncomputability': {
             'primo_accedant': {
-                'reason': 'vous êtes <abbr title="Non propriétaire de votre résidence principale dans les deux années précédant son achat">primo-accédant</abbr> à la propriété de votre résidence principale',
+                'reason': 'vous êtes <abbr title="Non propriétaire de votre résidence principale dans les deux années précédant l’achat de votre résidence actuelle">primo-accédant</abbr> à la propriété de votre résidence principale',
                 'solution': 'Le <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> pourra estimer vos droits sur la base de la valeur de votre bien.'
             },
             'locataire_foyer': {

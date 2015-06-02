@@ -117,7 +117,18 @@
       <a class="btn btn-success btn-block" ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
     </div>
   </div>
+</div>
 
+<div class="frame-resultats" ng-if="situation.logement.type == 'sansDomicile'">
+  <div class="row additional-info-cta">
+    <div class="col-sm-12">
+      <p>
+        <i class="fa fa-warning text-warning"></i> <!-- show sign only as a legend -->
+        <strong> Pour faire valoir vos droits, il vous sera nécéssaire, préalablement à toute demande, d'effectuer une
+      <a href="http://vosdroits.service-public.fr/particuliers/F17317.xhtml" target="_blank">demande de domiciliation</a></strong>
+      </p>
+    </div>
+  </div>
 </div>
 
 <div class="frame-resultats" ng-if="! noDroits && ! situation.patrimoine.captured">

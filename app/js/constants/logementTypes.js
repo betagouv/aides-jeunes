@@ -12,6 +12,10 @@ angular.module('ddsCommon').constant('logementTypes', [
     {
         id: 'gratuit',
         label: 'occupant à titre gratuit'
+    },
+    {
+        id: 'sansDomicile',
+        label: 'sans domicile stable'
     }
 ]);
 

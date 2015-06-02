@@ -55,7 +55,8 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
             false === logement.primoAccedant || true === logement.primoAccedant && angular.isDefined(logement.pretConventionne),
             'foyer' === logement.locationType,
             angular.isDefined(logement.isChambre),
-            'gratuit' === logement.type
+            'gratuit' === logement.type,
+            'sansDomicile' === logement.type
         ]);
     };
 

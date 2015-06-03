@@ -7,6 +7,14 @@ angular.module('ddsApp').directive('dateAutocomplete', function() {
         link: function(scope, element, attrs, ngModel) {
             var lastViewValue = '';
             ngModel.$parsers.unshift(function(viewValue) {
+                if (viewValue.length > 10) {
+                    var maxLengthValue = viewValue.substring(0, 10);
+                    ngModel.$setViewValue(maxLengthValue);
+                    ngModel.$render();
+
+                    return maxLengthValue;
+                }
+
                 var previousValue = lastViewValue;
                 lastViewValue = viewValue;
 

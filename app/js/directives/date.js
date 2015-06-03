@@ -5,7 +5,7 @@ angular.module('ddsApp').directive('ddsDate', function() {
         require: 'ngModel',
         link: function(scope, elm, attrs, ctrl) {
             ctrl.$parsers.push(function(viewValue) {
-                var result = moment(viewValue, ['DD/MM/YY', 'L', 'LL']);
+                var result = moment(viewValue, ['DD/MM/YY', 'L', 'LL'], true);
 
                 ctrl.$setValidity('ddsDate', result.isValid());
 

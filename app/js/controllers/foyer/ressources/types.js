@@ -34,8 +34,8 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
                     montantAnnuel: 0
                 };
 
-                if (ressourceType.category == 'tns'){
-                    switch(ressourceType.id) {
+                if (ressourceType.category == 'tns') {
+                    switch (ressourceType.id) {
                         case 'caMicroEntreprise':
                             ressource.tnsActiviteType = 'bic';
                             break;
@@ -49,8 +49,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
                             ressource.caAnnuel = 0;
                             break;
                     }
-                }
-                 else {
+                } else {
                     ressource.montantsMensuels = [0, 0, 0];
                     ressource.onGoing = true;
                 }

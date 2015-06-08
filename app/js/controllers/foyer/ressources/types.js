@@ -34,13 +34,23 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
                     montantAnnuel: 0
                 };
 
-                if ('caMicroEntreprise' === ressourceType.id) {
-                    ressource.tnsActiviteType = 'bic';
-                } else if ('caAutoEntrepreneur' === ressourceType.id) {
-                    ressource.tnsActiviteType = 'bic';
-                    ressource.montantsMensuels = [0, 0, 0];
-                    ressource.onGoing = true;
-                } else if ('tns' !== ressourceType.category) {
+                if (ressourceType.category == 'tns'){
+                    switch(ressourceType.id) {
+                        case 'caMicroEntreprise':
+                            ressource.tnsActiviteType = 'bic';
+                            break;
+                        case 'caAutoEntrepreneur':
+                            ressource.tnsActiviteType = 'bic';
+                            ressource.montantsMensuels = [0, 0, 0];
+                            ressource.onGoing = true;
+                            break;
+                        case 'autresRevenusTns':
+                            ressource.tnsActiviteType = 'bic';
+                            ressource.caAnnuel = 0;
+                            break;
+                    }
+                }
+                 else {
                     ressource.montantsMensuels = [0, 0, 0];
                     ressource.onGoing = true;
                 }

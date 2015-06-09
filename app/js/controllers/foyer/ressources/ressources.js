@@ -138,28 +138,29 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         individu.ressources = [];
         individu.interruptedRessources = [];
         individuVM.ressources.forEach(function(ressource) {
-            if ('tns' === ressource.type.category) {
-                switch (ressource.type.id) {
-                    case 'autresRevenusTns':
-                        individu.autresRevenusTns = ressource.montantAnnuel;
-                        individu.caAutresRevenusTns = ressource.caAnnuel;
-                        individu.autresRevenusTnsActiviteType = ressource.tnsActiviteType;
-                        individu.autresRevenusTnsEmployes = ressource.employes;
-                        break;
-                    case 'revenusAgricolesTns':
-                        individu.revenusAgricolesTns = ressource.montantAnnuel;
-                        break;
-                    case 'caAutoEntrepreneur':
-                        individu.autoEntrepreneurActiviteType = ressource.tnsActiviteType;
-                        individu.caAutoEntrepreneur = ressource.montantAnnuel;
-                        RessourceService.spreadIndividuRessources(individu, $scope.months, ressource, $scope.situation.dateDeValeur);
-                        break;
-                    case 'caMicroEntreprise':
-                        individu.microEntrepriseActiviteType = ressource.tnsActiviteType;
-                        individu.caMicroEntreprise = ressource.montantAnnuel;
-                        break;
-                }
-            } else {
+            if (ressource.type.category == 'tns') {
+                individu[ressource.type.id] = ressource.montantAnnuel;
+
+                var individuNamesToRessourceNames = {
+                    autresRevenusTns: {
+                        caAutresRevenusTns: caAnnuel,
+                        autresRevenusTnsActiviteType: tnsActiviteType,
+                        autresRevenusTnsEmployes: employes
+                    },
+                    caAutoEntrepreneur: {
+                        autoEntrepreneurActiviteType: tnsActiviteType
+                    },
+                    caMicroEntreprise: {
+                        microEntrepriseActiviteType: tnsActiviteType
+                    }
+                };
+
+                _.each(individuNamesToRessourceNames[ressource.type.id], function(ressourceKey, individuKey) {
+                    individu[individuKey] = ressource[ressourceKey];
+                });
+            }
+
+            if (ressource.type.category != 'tns' || ressource.type.id == 'caAutoEntrepreneur') {
                 RessourceService.spreadIndividuRessources(individu, $scope.months, ressource, $scope.situation.dateDeValeur);
             }
         });

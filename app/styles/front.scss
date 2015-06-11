@@ -648,3 +648,8 @@ $autre-lighter: #cce4e7;
   padding-left: 0em;
   list-style-type: none;
 }
+
+[data-tooltip] {
+  border-bottom: 1px dashed;
+  cursor: help;
+}

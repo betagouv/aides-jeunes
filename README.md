@@ -97,7 +97,7 @@ Préparation
 
 ### API
 
-Pour publier une nouvelle version de l'API, il est nécessaire de publier une nouvelle version de `sgmap/mes-aides-api`.
+Pour publier une nouvelle version de l'application qui inclut des modifications de l'API, il est nécessaire de publier une nouvelle version de `sgmap/mes-aides-api` et de mettre à jour la référence à cette version dans `sgmap/mes-aides-ui`.
 
 Cette API est un module NPM, mais n'est pas publiée sur le registre public NPM. Il faut donc synchroniser les tags Git avec le numéro de version indiqué dans le `package.json`. Le plus simple est de laisser NPM effectuer cette opération, en utilisant les commandes suivantes :
 

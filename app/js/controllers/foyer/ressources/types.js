@@ -18,6 +18,15 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
                 return 'Les ressources de ' + $scope.individuVM.individu.firstName;
         }
     };
+
+    var DEFAULT_RESOURCE = {
+        montantAnnuel: 0,
+        caAnnuel: 0,
+        tnsActiviteType: 'bic',
+        montantsMensuels: [0, 0, 0],
+        onGoing: true,
+    };
+
     $scope.pageTitle = pageTitle();
 
     var applySelectedRessources = function() {
@@ -31,28 +40,10 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
             if (!ressource) {
                 ressource = {
                     type: ressourceType,
-                    montantAnnuel: 0
                 };
-
-                if (ressourceType.category == 'tns') {
-                    switch (ressourceType.id) {
-                        case 'caMicroEntreprise':
-                            ressource.tnsActiviteType = 'bic';
-                            break;
-                        case 'caAutoEntrepreneur':
-                            ressource.tnsActiviteType = 'bic';
-                            ressource.montantsMensuels = [0, 0, 0];
-                            ressource.onGoing = true;
-                            break;
-                        case 'autresRevenusTns':
-                            ressource.tnsActiviteType = 'bic';
-                            ressource.caAnnuel = 0;
-                            break;
-                    }
-                } else {
-                    ressource.montantsMensuels = [0, 0, 0];
-                    ressource.onGoing = true;
-                }
+                _.each(DEFAULT_RESOURCE, function(value, key){
+                    ressource[key] = value;
+                });
             }
             $scope.individuVM.ressources.push(ressource);
         });

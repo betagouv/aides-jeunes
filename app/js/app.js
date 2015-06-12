@@ -170,22 +170,22 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             }
         })
         .state('infos_complementaires', {
-            abstract: true,
-            url: '/infos-complementaires',
-            templateUrl: '/partials/form-infos-complementaires/layout.html',
+            url: '/infos-complementaires?droit',
             data: {
                 pageTitle: 'Informations complémentaires - '
+            },
+            views: {
+                '@': {
+                    templateUrl: '/partials/form-infos-complementaires/layout.html',
+                    controller: 'FormInfosComplementairesCtrl'
+                },
+                'individus@infos_complementaires':{
+                    templateUrl: '/partials/form-infos-complementaires/individus.html'
+                },
+                'adresse@infos_complementaires': {
+                    templateUrl: '/partials/form-infos-complementaires/adresse-contact.html'
+                }
             }
-        })
-        .state('infos_complementaires.individus', {
-            url: '/noms-prenoms?droit',
-            templateUrl: '/partials/form-infos-complementaires/individus.html',
-            controller: 'FormInfosComplementairesIndividusCtrl'
-        })
-        .state('infos_complementaires.adresse_contact', {
-            url: '/adresse?droit',
-            templateUrl: '/partials/form-infos-complementaires/adresse-contact.html',
-            controller: 'FormInfosComplementairesAdresseContactCtrl'
         })
         .state('download_cerfa', {
             url: '/telecharger-formulaires/:droit',

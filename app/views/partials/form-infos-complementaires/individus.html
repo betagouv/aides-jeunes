@@ -1,8 +1,6 @@
-<form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit()">
   <div class="row">
     <div class="col-md-6">
       <h2>Vous</h2>
-
       <div ng-if="!conjoint">
         <div class="form-group">
           <label class="col-sm-4 control-label" for="situation-familiale">Votre situation familiale</label>
@@ -302,12 +300,3 @@
       </ng-form>
     </div>
   </div>
-
-  <div class="alert alert-danger" ng-if="error">
-    Le formulaire comporte des erreurs, merci de les corriger.
-  </div>
-
-  <div class="text-right">
-    <button type="submit" class="btn btn-primary btn-lg">Valider</button>
-  </div>
-</form>

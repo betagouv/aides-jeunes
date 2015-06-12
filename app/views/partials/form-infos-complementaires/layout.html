@@ -7,6 +7,18 @@
       <br><strong>Nous ne conserverons aucune de vos données personnelles.</strong>
     </p>
 
-    <ui-view></ui-view>
+    <form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit()">
+      <div ui-view="individus"></div>
+      <div ui-view="adresse"></div>
+
+      <div class="alert alert-danger" ng-if="error">
+        Le formulaire comporte des erreurs, merci de les corriger.
+      </div>
+
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary btn-lg">Valider</button>
+      </div>
+    </form>
+
   </div>
 </div>

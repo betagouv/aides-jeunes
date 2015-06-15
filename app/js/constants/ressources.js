@@ -58,34 +58,54 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         label: 'Prime forfaitaire mensuelle pour la reprise d’activité',
         category: 'allocations'
     },
-    // {
-    //     id: 'allocationLogement',
-    //     label: 'Aide au logement',
-    //     category: 'allocations'
-    // },
-    // {
-    //     id: 'rsa',
-    //     label: 'Revenu de solidarité active (RSA)',
-    //     category: 'allocations'
-    // },
-    // {
-    //     id: 'asf',
-    //     label: 'Allocation de soutien familial (ASF)',
-    //     category: 'allocations'
-    // },
-    // {
-    //     id: 'aspa',
-    //     label: 'Allocation de solidarité aux personnes âgées (ASPA)',
-    //     category: 'allocations'
-    // },
-    // {
-    //     id: 'ass',
-    //     label: 'Allocation de solidarité spécifique (ASS)',
-    //     category: 'allocations'
-    // },
+    {
+        id: 'allocationLogement',
+        label: 'Aide au logement',
+        category: 'allocations'
+    },
+    {
+        id: 'af',
+        label: 'Allocations familiales',
+        category: 'allocations'
+    },
+    {
+        id: 'cf',
+        label: 'Complément familial (CF)',
+        category: 'allocations'
+    },
+    {
+        id: 'asf',
+        label: 'Allocation de soutien familial (ASF)',
+        category: 'allocations'
+    },
+    {
+        id: 'rsa',
+        label: 'Revenu de solidarité active (RSA)',
+        category: 'allocations'
+    },
+    {
+        id: 'aspa',
+        label: 'Allocation de solidarité aux personnes âgées (ASPA)',
+        category: 'allocations'
+    },
+    {
+        id: 'asi',
+        label: 'Allocation supplémentaire d’invalidité (ASI)',
+        category: 'allocations'
+    },
+    {
+        id: 'ass',
+        label: 'Allocation de solidarité spécifique (ASS)',
+        category: 'allocations'
+    },
     {
         id: 'aah',
         label: 'Allocation adulte handicapé (AAH)',
+        category: 'allocations'
+    },
+    {
+        id: 'paje',
+        label: 'Prestation d’accueil du jeune enfant (PAJE) - Allocation de base',
         category: 'allocations'
     },
     {
@@ -120,7 +140,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     },
     {
         id: 'indChomagePartiel',
-        label: 'Indemnités d\'activité partielle',
+        label: 'Indemnités d’activité partielle',
         category: 'indemnites'
     },
     {
@@ -160,12 +180,12 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     },
     {
         id: 'pensionsInvalidite',
-        label: 'Pensions d\'invalidité',
+        label: 'Pensions d’invalidité',
         category: 'pensions'
     },
     {
         id: 'bourseEnseignementSup',
-        label: 'Bourses de l\'enseignement supérieur',
+        label: 'Bourses de l’enseignement supérieur',
         category: 'autre'
     },
     {

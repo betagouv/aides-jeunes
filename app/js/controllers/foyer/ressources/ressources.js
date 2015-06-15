@@ -143,15 +143,15 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
 
                 var individuNamesToRessourceNames = {
                     autresRevenusTns: {
-                        caAutresRevenusTns: caAnnuel,
-                        autresRevenusTnsActiviteType: tnsActiviteType,
-                        autresRevenusTnsEmployes: employes
+                        caAutresRevenusTns: 'caAnnuel',
+                        autresRevenusTnsActiviteType: 'tnsActiviteType',
+                        autresRevenusTnsEmployes: 'employes'
                     },
                     caAutoEntrepreneur: {
-                        autoEntrepreneurActiviteType: tnsActiviteType
+                        autoEntrepreneurActiviteType: 'tnsActiviteType'
                     },
                     caMicroEntreprise: {
-                        microEntrepriseActiviteType: tnsActiviteType
+                        microEntrepriseActiviteType: 'tnsActiviteType'
                     }
                 };
 

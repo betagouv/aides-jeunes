@@ -42,6 +42,6 @@ angular.module('ddsApp').controller('FormInfosComplementairesCtrl', function($sc
         SituationService.save($scope.situation).then(function() {
             $scope.situation.infosComplementairesCaptured = true;
             $state.go('download_cerfa', {droit: $stateParams.droit});
-        });
+        }).catch(console.log.bind(console));
     };
 });

@@ -141,7 +141,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             if (ressource.type.category == 'tns') {
                 individu[ressource.type.id] = ressource.montantAnnuel;
 
-                var individuNamesToRessourceNames = {
+                var individuKeysToRessourceKeys = {
                     autresRevenusTns: {
                         caAutresRevenusTns: 'caAnnuel',
                         autresRevenusTnsActiviteType: 'tnsActiviteType',
@@ -155,7 +155,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                     }
                 };
 
-                _.each(individuNamesToRessourceNames[ressource.type.id], function(ressourceKey, individuKey) {
+                _.each(individuKeysToRessourceKeys[ressource.type.id], function(ressourceKey, individuKey) {
                     individu[individuKey] = ressource[ressourceKey];
                 });
             }

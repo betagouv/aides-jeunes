@@ -60,7 +60,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     },
     {
         id: 'allocationLogement',
-        label: 'Aide au logement',
+        label: 'Aides au logement (APL, ALS, ALF)',
         category: 'allocations'
     },
     {

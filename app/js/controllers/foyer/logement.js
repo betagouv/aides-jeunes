@@ -1,13 +1,24 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, logementTypes, locationTypes, loyerLabels) {
-    var logement = $scope.logement = { adresse: {} };
+    var logement = $scope.logement = {
+        adresse: {},
+        threeOutOfFiveYears: true
+    };
     if ($scope.situation.logement) {
         logement = $scope.logement = _.merge(logement, $scope.situation.logement);
     }
 
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
+
+    $scope.cityStartsWith = function cityStartsWith(prefix) {
+        return ! logement.adresse.nomCommune.indexOf(prefix.toUpperCase());
+    }
+
+    $scope.yearsAgo = function yearsAgo(amount) {
+        return moment().subtract(amount, 'years').format('MMMM YYYY');
+    }
 
     $scope.loyerLabel = function() {
         var result = loyerLabels[logement.type];

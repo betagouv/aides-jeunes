@@ -31,8 +31,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'description':'L’allocation de solidarité aux personnes âgées (Aspa) est une allocation destinée aux personnes âgées disposant de faibles revenus en vue de leur assurer un niveau minimum de ressources. Elle remplace le minimum vieillesse depuis 2006.',
         'conditions': [
             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
-            'Avoir demandé toutes les retraites auxquelles vous avez droit, y compris les pensions de réversion.',
-            'Votre conjoint doit avoir demandé toutes les retraites auxquelles il/elle a droit, y compris les pensions de réversion.'
+            'Avoir demandé toutes les retraites (générale, réversion, complémentaire...) auxquelles vous avez droit.',
+            'Votre conjoint doit avoir demandé toutes les retraites (générale, réversion, complémentaire...) auxquelles il/elle a droit.'
         ],
 
         'imgSrc':'logo_aspa.png',

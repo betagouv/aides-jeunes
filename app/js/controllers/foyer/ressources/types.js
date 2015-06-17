@@ -38,12 +38,8 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
             }
             var ressource = _.find(currentRessources, { type: ressourceType });
             if (!ressource) {
-                ressource = {
-                    type: ressourceType,
-                };
-                _.each(DEFAULT_RESOURCE, function(value, key){
-                    ressource[key] = value;
-                });
+                ressource = _.cloneDeep(DEFAULT_RESOURCE);
+                ressource.type = ressourceType;
             }
             $scope.individuVM.ressources.push(ressource);
         });

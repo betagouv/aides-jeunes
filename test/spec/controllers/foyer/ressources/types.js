@@ -176,7 +176,8 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
 
             // then
             expect(scope.individuVM.ressources[0].tnsActiviteType).toBe('bic');
-            expect(scope.individuVM.ressources[0].montantsMensuels).toBeUndefined();
+            expect(scope.individuVM.ressources[0].montantAnnuel).toBe(0);
+
         });
 
         it('should init autres revenus tns params when it is selected', function() {
@@ -190,7 +191,9 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
 
             // then
             expect(scope.individuVM.ressources[0].type.id).toBe('autresRevenusTns');
+            expect(scope.individuVM.ressources[0].tnsActiviteType).toBe('bic');
             expect(scope.individuVM.ressources[0].montantAnnuel).toBe(0);
+            expect(scope.individuVM.ressources[0].caAnnuel).toBe(0);
         });
     });
 });

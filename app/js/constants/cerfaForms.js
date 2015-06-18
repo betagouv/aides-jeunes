@@ -44,9 +44,9 @@ angular.module('ddsApp').constant('cerfaForms', [
     {
         droitId: 'rsa',
         description: 'Vous devez déposer votre demande auprès de l’un des organismes instructeurs de votre choix prévus par la loi :\
-            Caisse d’allocations familiales (CAF), Mutualité sociale agricole (MSA), services du Conseil général,\
+            Caisse d’allocations familiales (CAF), Mutualité sociale agricole (MSA), services du Conseil départemental,\
             Centre communal d’action sociale (CCAS) ou Centre intercommunal d’action sociale (CIAS) volontaires\
-            ou bien une association ou un organisme à but non lucratif ayant reçu délégation du Conseil général.\
+            ou bien une association ou un organisme à but non lucratif ayant reçu délégation du Conseil départemental.\
             Pour plus d’informations, vous pouvez consulter\
             <a href="http://www.social-sante.gouv.fr/espaces,770/handicap-exclusion,775/dossiers,806/le-rsa,2302/le-revenu-de-solidarite-active,2279/quelles-sont-les-demarches-a,14882.html">ce lien</a>.',
         forms: [

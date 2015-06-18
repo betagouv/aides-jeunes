@@ -484,7 +484,7 @@ describe('Service: cerfaService', function () {
                     // given
                     var individus = [
                         {role: 'demandeur'},
-                        {role: 'conjoint', statutMarital: 'relation_libre'},
+                        {role: 'conjoint', statutMarital: 'union_libre'},
                         // not kept because not parent
                         {role: 'enfant'},
                         // not kept because not concubin

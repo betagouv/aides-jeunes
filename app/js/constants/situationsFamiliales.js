@@ -12,8 +12,8 @@ angular.module('ddsCommon').constant('situationsFamiliales', [
         isSituationCouple: true
     },
     {
-        value: 'relation_libre',
-        label: 'En relation libre',
+        value: 'union_libre',
+        label: 'En union libre',
         isSituationCouple: true
     },
     {

@@ -151,7 +151,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             if ('demandeur' === individu.role) {
                 return true;
             } else if ('conjoint' === individu.role) {
-                return 'relation_libre' === individu.statutMarital;
+                return 'union_libre' === individu.statutMarital;
             }
 
             return false;

@@ -14,11 +14,11 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.cityStartsWith = function cityStartsWith(prefix) {
         return ! logement.adresse.nomCommune.indexOf(prefix.toUpperCase());
-    }
+    };
 
     $scope.yearsAgo = function yearsAgo(amount) {
         return moment().subtract(amount, 'years').format('MMMM YYYY');
-    }
+    };
 
     $scope.loyerLabel = function() {
         var result = loyerLabels[logement.type];

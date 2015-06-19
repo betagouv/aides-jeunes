@@ -101,11 +101,11 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'uncomputability': {
             'tns': {
                 'reason': 'vous avez des revenus en tant qu’indépendant.e',
-                'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a title="Article R262-23 du code de l\'action sociale" href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont vos revenus non salariés impacteront le montant de votre aide.'
+                'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a title="Article R262-23 du code de l’action sociale" href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont vos revenus non salariés impacteront le montant de votre aide.'
             },
             'conjoint_tns': {
                 'reason': 'votre conjoint.e a des revenus en tant qu’indépendant.e',
-                'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a title="Article R262-23 du code de l\'action sociale" href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont les revenus non salariés de votre conjoint.e impacteront le montant de votre aide.'
+                'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a title="Article R262-23 du code de l’action sociale" href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont les revenus non salariés de votre conjoint.e impacteront le montant de votre aide.'
             }
         }
     },
@@ -113,7 +113,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'id':'aide_logement',
         'label':'Aides au Logement',
         'shortLabel':'AL',
-        'description':'L\'aide au logement est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
+        'description':'L’aide au logement est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'conditions': [
             'Résider au moins 8 mois par an dans le logement que vous avez décrit.',
             'Le logement doit être <a href="http://www.caf.fr/aides-et-services/connaitre-vos-droits-selon-votre-situation/vous-louez-ou-vous-achetez-un-logement/vous-occupez-un-logement-insalubre-ou-non-decent" title="9 mètres carrés par personne, fenêtre, WC, eau potable, électricité" >décent</a>.'
@@ -160,5 +160,15 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'imgSrc':'logo_education_nationale.png',
         'link':'http://www.education.gouv.fr/cid151/aides-financieres-au-lycee.html#Les%20bourses%20de%20lycée',
         'isBaseRessourcesYearMoins2':true
+    },
+    'paris_logement_familles': {
+        'id':'paris_logement_familles',
+        'isMontantAnnuel':false,
+        'label':'Paris Logement Familles',
+        'shortLabel':'Paris Logement Familles',
+        'description':'L’allocation Paris Logement Familles est versée, sous certaines conditions, aux familles parisiennes ayant au moins deux enfants ou un enfant handicapé à charge fiscale, afin de les aider à mieux supporter leurs dépenses de logement.',
+        'imgSrc':'logo_mairie_paris.png',
+        'link':'http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193',
+        'isBaseRessourcesYearMoins2':false
     }
 });

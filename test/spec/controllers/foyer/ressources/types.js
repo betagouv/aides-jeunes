@@ -180,7 +180,7 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
 
         });
 
-        it('should init autres revenus tns params when it is selected', function() {
+        it('should init autres revenus rpns params when it is selected', function() {
             // given
             initController();
             scope.individuVM.ressources = [];

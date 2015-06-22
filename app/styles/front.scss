@@ -282,9 +282,9 @@ $pensions: #685C79;
 $pensions-light: #cfcad7;
 $pensions-lighter: #eae7ed;
 
-$tns: #455C7B;
-$tns-light: #b6c4d6;
-$tns-lighter: #d7dee8;
+$rpns: #455C7B;
+$rpns-light: #b6c4d6;
+$rpns-lighter: #d7dee8;
 
 $autre: #39747B;
 $autre-light: #a9d2d7;
@@ -344,8 +344,8 @@ $autre-lighter: #cce4e7;
   @include ressource-category-capture($autre, $autre-light, $autre-lighter);
 }
 
-.capture-tns {
-  @include ressource-category-capture($tns, $tns-light, $tns-lighter);
+.capture-rpns {
+  @include ressource-category-capture($rpns, $rpns-light, $rpns-lighter);
 }
 
 .btn-selection {
@@ -445,8 +445,8 @@ $autre-lighter: #cce4e7;
     @include panel-variant-recap($autre);
   }
 
-  .recap-tns {
-    @include panel-variant-recap($tns);
+  .recap-rpns {
+    @include panel-variant-recap($rpns);
   }
 }
 
@@ -544,8 +544,8 @@ $autre-lighter: #cce4e7;
     @include panel-montant-variant($autre, $autre-light, $autre-lighter);
   }
 
-  &.tns {
-    @include panel-montant-variant($tns, $tns-light, $tns-lighter);
+  &.rpns {
+    @include panel-montant-variant($rpns, $rpns-light, $rpns-lighter);
   }
 }
 

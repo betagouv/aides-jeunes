@@ -131,7 +131,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(scope.individusVM[0].ressources.length).toBe(0);
         });
 
-        it('should map ressources micro TNS', function() {
+        it('should map ressources micro rpns', function() {
             // given
             scope.situation.individus = [{
                 tnsStructureType: 'auto_entrepreneur',
@@ -151,7 +151,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(ressources[0].montantAnnuel).toBe(1000);
         });
 
-        it('should map ressources autres revenus TNS', function() {
+        it('should map ressources autres revenus rpns', function() {
             // given
             scope.situation.individus = [{
                 autresRevenusTns: 1000
@@ -276,7 +276,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(individu.interruptedRessources[0]).toEqual('test2');
         });
 
-        it('devrait sauvegarder les "autres revenus TNS" directement sur l\'individu', function() {
+        it('devrait sauvegarder les "autres revenus rpns" directement sur l\'individu', function() {
             // given
             initController();
             var ressourceTypeAutreTns = _.find(_ressourceTypes_, { id: 'autresRevenusTns' });
@@ -324,7 +324,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(individu.microEntrepriseActiviteType).toBe('bnc');
         });
 
-        it('devrait mettre à null les revenus tns si désélectionnés', function() {
+        it('devrait mettre à null les revenus rpns si désélectionnés', function() {
             // given
             scope.situation.individus = [{ caMicroEntreprise: 1000, autresRevenusTns: 1000 }];
             initController();

@@ -13,7 +13,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.locationTypes = locationTypes;
 
     $scope.cityStartsWith = function cityStartsWith(prefix) {
-        return ! logement.adresse.nomCommune.indexOf(prefix.toUpperCase());
+        return logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
     };
 
     $scope.yearsAgo = function yearsAgo(amount) {

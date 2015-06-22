@@ -3,7 +3,7 @@
 angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, logementTypes, locationTypes, loyerLabels) {
     var logement = $scope.logement = {
         adresse: {},
-        threeOutOfFiveYears: true
+        inhabitantForThreeYearsOutOfLastFive: true
     };
     if ($scope.situation.logement) {
         logement = $scope.logement = _.merge(logement, $scope.situation.logement);

@@ -165,7 +165,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'id':'paris_logement_familles',
         'isMontantAnnuel':false,
         'label':'Paris Logement Familles',
-        'shortLabel':'Paris Logement Familles',
+        'shortLabel':'PLF',
         'description':'L’allocation Paris Logement Familles est versée, sous certaines conditions, aux familles parisiennes ayant au moins deux enfants ou un enfant handicapé à charge fiscale, afin de les aider à mieux supporter leurs dépenses de logement.',
         'imgSrc':'logo_mairie_paris.png',
         'link':'http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193',

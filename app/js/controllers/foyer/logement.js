@@ -20,13 +20,17 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return moment().subtract(amount, 'years').format('MMMM YYYY');
     };
 
+    $scope.captureCharges = function() {
+            return (logement.type == 'locataire') && (logement.locationType !== 'meublehotel');
+    };
+
     $scope.loyerLabel = function() {
         var result = loyerLabels[logement.type];
         if (logement.type === 'locataire') {
-            if ('meublehotel' === logement.locationType) {
-                result += ' (charges comprises)';
-            } else {
+            if ($scope.captureCharges()) {
                 result += ' (hors charges)';
+            } else {
+                result += ' (charges comprises)';
             }
         }
 
@@ -72,7 +76,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.changeLogementType = function() {
-        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'isChambre'].forEach(function(field) {
+        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'charges', 'isChambre'].forEach(function(field) {
             delete logement[field];
         });
     };

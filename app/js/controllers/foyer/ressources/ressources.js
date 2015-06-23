@@ -138,7 +138,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         individu.ressources = [];
         individu.interruptedRessources = [];
         individuVM.ressources.forEach(function(ressource) {
-            if (ressource.type.category == 'tns') {
+            if (ressource.type.category == 'rpns') {
                 individu[ressource.type.id] = ressource.montantAnnuel;
 
                 var individuKeysToRessourceKeys = {
@@ -160,7 +160,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 });
             }
 
-            if (ressource.type.category != 'tns' || ressource.type.id == 'caAutoEntrepreneur') {
+            if (ressource.type.category != 'rpns' || ressource.type.id == 'caAutoEntrepreneur') {
                 RessourceService.spreadIndividuRessources(individu, $scope.months, ressource, $scope.situation.dateDeValeur);
             }
         });
@@ -170,7 +170,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             return !!_.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
         }));
 
-        // on supprime les revenus TNS si désélectionnés
+        // on supprime les revenus RPNS si désélectionnés
         if (individu.caMicroEntreprise && !individuVM.selectedRessourceTypes.caMicroEntreprise) {
             individu.caMicroEntreprise = null;
         }

@@ -18,8 +18,8 @@ angular.module('ddsCommon').constant('ressourceCategories', [
         label: 'Pensions'
     },
     {
-        id: 'tns',
-        label: 'Travailleurs non salariés'
+        id: 'rpns',
+        label: 'Revenus professionnels non salariés'
     },
     {
         id: 'autre',
@@ -201,22 +201,22 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'caMicroEntreprise',
         label: 'Micro-entreprise',
-        category: 'tns'
+        category: 'rpns'
     },
     {
         id: 'caAutoEntrepreneur',
         label: 'Auto-entrepreneur',
-        category: 'tns'
+        category: 'rpns'
     },
     {
         id: 'revenusAgricolesTns',
         label: 'Exploitant agricole',
-        category: 'tns'
+        category: 'rpns'
     },
     {
         id: 'autresRevenusTns',
         label: 'Profession libérale, entrepreneur',
-        category: 'tns'
+        category: 'rpns'
     }
 ]);
 

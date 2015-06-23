@@ -169,7 +169,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'description':'L’allocation Paris Logement Familles est versée, sous condition de ressources, aux familles parisiennes ayant au moins deux enfants ou un enfant handicapé à charge fiscale, afin de les aider à mieux supporter leurs dépenses de logement.',
         'conditions': [
             'Avoir demandé le versements des aides logement auxquelles vous avez droit auprès de la CAF.',
-            'Ne toucher aucune autre prestation logement ou handicap de la part de la mairie de Paris ou du départment.',
+            'Ne toucher aucune autre prestation logement ou handicap de la part de la mairie de Paris ou du département.',
             'Les enfants pris en compte pour l’accès à cette aide doivent résider sous votre toit, ou pouvoir justifier de retours fréquents au domicile s’ils étudient ailleurs.',
             'Les enfants handicapés placés en foyer ne sont pas pris en compte pour l’obtention de cette aide.'
         ],

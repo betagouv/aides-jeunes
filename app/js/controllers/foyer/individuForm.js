@@ -41,6 +41,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         boursier: false,
         aCharge: true,
         place: false,
+        residence: 'domicile_demandeur',
         role: options.individuRole
     };
 

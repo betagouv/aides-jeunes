@@ -68,6 +68,30 @@
     </div>
   </div>
 
+  <div class="form-group" ng-if="!isIndividuParent">
+    <label class="control-label col-sm-4">Résidence principale</label>
+    <div class="col-sm-8">
+      <div class="radio">
+        <label>
+          <input type="radio" name="residence" ng-model="individu.residence" value="domicile_demandeur" aria-label="Votre domicile">
+          Votre domicile
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="residence" ng-model="individu.residence" value="garde_alternee" aria-label="Garde alternée">
+          En garde alternée
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="residence" ng-model="individu.residence" value="autre" aria-label="Autre">
+          Autre
+        </label>
+      </div>
+    </div>
+  </div>
+
   <div
     class="form-group"
     ng-if="options.checkResidenceStability && 'ue' === individu.nationalite"
@@ -125,12 +149,6 @@
         <label for="individu-enceinte">
           <input id="individu-enceinte" type="checkbox" ng-model="individu.enceinte" aria-describedby="situations-particulieres">
           Enceinte
-        </label>
-      </div>
-      <div class="checkbox" ng-if="options.captureGardeAlternee">
-        <label for="individu-garde-alternee">
-          <input id="individu-garde-alternee" type="checkbox" ng-model="individu.gardeAlternee" aria-describedby="situations-particulieres">
-          En garde alternée
         </label>
       </div>
       <div class="checkbox" ng-repeat="statut in statutsSpecifiques">
@@ -202,6 +220,22 @@
       <label class="radio-inline">
         <input type="radio" name="tauxInvalidite" value="plus80" ng-model="individu.tauxInvalidite">
         Plus de 80%
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group from-group-lg" ng-if="captureEnfantPlace()">
+    <label class="control-label col-sm-4" for="place">
+     Est-il(elle) placé en structure spécialisée ou famille d'accueil ?
+    </label>
+    <div class="col-sm-8">
+      <label class="radio-inline" for="place-true">
+        <input id="place-true" type="radio" name="place" ng-model="individu.place" ng-value="true">
+        Oui
+      </label>
+      <label class="radio-inline" for="place-false">
+        <input id="place-false" type="radio" name="place" ng-model="individu.place" ng-value="false">
+        Non
       </label>
     </div>
   </div>

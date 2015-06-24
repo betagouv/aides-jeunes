@@ -9,7 +9,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
     if ('enfant' === options.individuRole) {
         options.maxAge = 25;
         options.formPersonneACharge = true;
-        options.captureGardeAlternee = true;
 
         $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {
           return statut.id !== 'retraite';
@@ -48,9 +47,9 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         $scope.individu.statutMarital = 'mariage';
     }
 
-    var isIndividuParent = IndividuService.isRoleParent(options.individuRole);
+    $scope.isIndividuParent = IndividuService.isRoleParent(options.individuRole);
 
-    if (isIndividuParent) {
+    if ($scope.isIndividuParent) {
         var individu = _.find($scope.situation.individus, { role: options.individuRole });
         if (individu) {
             $scope.individu = _.merge($scope.individu, individu);
@@ -93,25 +92,30 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
 
     $scope.captureEligibiliteAss = function() {
         /* jshint -W069 */
-        return isIndividuParent && $scope.selectedStatuts['demandeur_emploi'];
+        return $scope.isIndividuParent && $scope.selectedStatuts['demandeur_emploi'];
     };
 
     $scope.captureTauxInvalidite = function() {
-        return isIndividuParent && $scope.selectedStatuts.handicap;
+        return $scope.isIndividuParent && $scope.selectedStatuts.handicap;
     };
+
+    $scope.captureEnfantPlace = function() {
+        return !$scope.isIndividuParent && $scope.selectedStatuts.handicap;
+    };
+
 
     $scope.captureEtudiantBoursier = function() {
         return $scope.selectedStatuts.etudiant;
     };
 
     $scope.catpurePersonneACharge = function(form) {
-        if (!isIndividuParent && form.dateDeNaissance.$valid) {
+        if (!$scope.isIndividuParent && form.dateDeNaissance.$valid) {
             return IndividuService.age($scope.individu) >= 1;
         }
     };
 
     $scope.captureScolarite = function(form) {
-        if (!isIndividuParent && form.dateDeNaissance.$valid) {
+        if (!$scope.isIndividuParent && form.dateDeNaissance.$valid) {
             var age = IndividuService.age($scope.individu);
             return age <= 25 && age > 8;
         }

@@ -39,7 +39,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         scolarite: 'college',
         tauxInvalidite: 'moins50',
         boursier: false,
-        acharge: true,
+        aCharge: true,
+        place: false,
         role: options.individuRole
     };
 

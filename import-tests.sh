@@ -6,7 +6,6 @@ DATABASE=dds
 NOW=$(date +"%F-%H-%M-%S")
 
 DISTANT_DUMP_FOLDER="~/dumps/dump-$NOW"
-LATEST_DUMP_SYMLINK='dump-latest'
 LOCAL_DUMP_FOLDER='./dump'
 
 
@@ -20,7 +19,8 @@ then
     exit 1
 fi
 
-ssh $USER@sgmap.fr "mongodump --db $DATABASE && mv dump $DISTANT_DUMP_FOLDER && rm $LATEST_DUMP_SYMLINK && ln -s $DIR_NAME $LATEST_DUMP_SYMLINK" &&
+ssh $USER@sgmap.fr "mongodump --db $DATABASE && mv dump $DISTANT_DUMP_FOLDER && gzip -rv $DISTANT_DUMP_FOLDER" &&
 rm -rf $LOCAL_DUMP_FOLDER &&
 scp -r $USER@sgmap.fr:$DISTANT_DUMP_FOLDER/$DATABASE $LOCAL_DUMP_FOLDER &&
+gunzip -r $LOCAL_DUMP_FOLDER &&
 mongorestore --drop --db $DATABASE $LOCAL_DUMP_FOLDER

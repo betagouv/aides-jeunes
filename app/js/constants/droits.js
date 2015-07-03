@@ -50,7 +50,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'id':'af',
         'label':'Allocations Familiales',
         'shortLabel':'AF',
-        'description':'Les allocations familiales sont versées, sans condition de ressources, aux personnes ayant au moins 2 enfants de moins de 20 ans à charge. Le montant des prestations dépend du nombre d’enfants à charge et de leur âge.',
+        'description':'Les allocations familiales sont versées aux personnes ayant au moins 2 enfants de moins de 20 ans à charge. Le montant des prestations dépend du nombre d’enfants à charge, de leur âge et des ressources de la famille.',
         'conditions': [
             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
         ],

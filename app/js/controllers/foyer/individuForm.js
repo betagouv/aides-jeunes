@@ -9,6 +9,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
     if ('enfant' === options.individuRole) {
         options.maxAge = 25;
         options.formPersonneACharge = true;
+        options.captureGardeAlternee = true;
 
         $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {
           return statut.id !== 'retraite';
@@ -41,7 +42,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         boursier: false,
         aCharge: true,
         place: false,
-        residence: 'domicile_demandeur',
         role: options.individuRole
     };
 

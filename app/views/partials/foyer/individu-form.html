@@ -68,30 +68,6 @@
     </div>
   </div>
 
-  <div class="form-group" ng-if="!isIndividuParent">
-    <label class="control-label col-sm-4">Résidence principale</label>
-    <div class="col-sm-8">
-      <div class="radio">
-        <label>
-          <input type="radio" name="residence" ng-model="individu.residence" value="domicile_demandeur" aria-label="Votre domicile">
-          Votre domicile
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <input type="radio" name="residence" ng-model="individu.residence" value="garde_alternee" aria-label="Garde alternée">
-          En garde alternée
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <input type="radio" name="residence" ng-model="individu.residence" value="autre" aria-label="Autre">
-          Autre
-        </label>
-      </div>
-    </div>
-  </div>
-
   <div
     class="form-group"
     ng-if="options.checkResidenceStability && 'ue' === individu.nationalite"
@@ -149,6 +125,12 @@
         <label for="individu-enceinte">
           <input id="individu-enceinte" type="checkbox" ng-model="individu.enceinte" aria-describedby="situations-particulieres">
           Enceinte
+        </label>
+      </div>
+      <div class="checkbox" ng-if="options.captureGardeAlternee">
+        <label for="individu-garde-alternee">
+          <input id="individu-garde-alternee" type="checkbox" ng-model="individu.gardeAlternee" aria-describedby="situations-particulieres">
+          En garde alternée
         </label>
       </div>
       <div class="checkbox" ng-repeat="statut in statutsSpecifiques">

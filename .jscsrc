@@ -1,0 +1,18 @@
+{
+  "requireSpacesInFunctionExpression": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "requireSpaceBeforeBlockStatements": true,
+  "requireSpaceAfterKeywords": [
+    "do",
+    "done",
+    "for",
+    "if",
+    "else",
+    "switch",
+    "case",
+    "try",
+    "catch",
+    "while"
+  ]
+}

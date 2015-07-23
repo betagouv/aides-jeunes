@@ -91,7 +91,13 @@ module.exports = function (grunt) {
         }
       }
     },
-
+    jscs: {
+        src: ['<%= yeoman.app %>/js/**/*.js'],
+        options: {
+            config: '.jscsrc',
+            verbose: true // If you need output with rule names http://jscs.info/overview.html#verbose
+        }
+    },
     jshint: {
       options: {
         reporter: require('jshint-stylish'),
@@ -502,6 +508,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'jshint',
+    'jscs',
     'test',
     'build'
   ]);

@@ -97,6 +97,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid && logement.adresse) {
+            logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && $scope.cityStartsWith('Paris');
             $scope.$emit('logement', logement);
         }
     };

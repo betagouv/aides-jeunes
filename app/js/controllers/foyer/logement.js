@@ -13,7 +13,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.locationTypes = locationTypes;
 
     $scope.cityStartsWith = function cityStartsWith(prefix) {
-        return logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
+        return logement.adresse.nomCommune && logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
     };
 
     $scope.yearsAgo = function yearsAgo(amount) {
@@ -87,7 +87,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         $http.get('/api/outils/communes/' + $scope.postalCode)
              .then(function(result) {
                   $scope.cities = result.data;
-                  logement.adresse = $scope.cities[0];
+                  logement.adresse = $scope.cities[0] || {};
               }, console.error.bind(console)
               ).finally(function() {
                   $scope.retrievingCities = false;

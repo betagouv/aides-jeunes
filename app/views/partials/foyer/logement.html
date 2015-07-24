@@ -93,16 +93,36 @@
       </div>
     </div>
 
-    <div class="form-group" ng-if="captureLoyer()" ng-class="{'has-error': submitted && form.loyer.$invalid}">
-      <label class="col-sm-3 control-label" for="loyer">
-        {{ loyerLabel() }}
-      </label>
-      <div class="col-sm-3">
-        <div class="input-group">
-          <input type="number" class="form-control text-right" id="loyer" name="loyer" ng-model="logement.loyer" required min="1">
-          <div class="input-group-addon">€</div>
+
+    <div class="row" ng-if="captureLoyer()">
+      <div class="col-sm-6">
+        <div class="form-group" ng-class="{'has-error': submitted && form.loyer.$invalid}">
+          <label class="col-sm-6 control-label" for="loyer">
+            {{ loyerLabel() }}
+          </label>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input type="number" class="form-control text-right" id="loyer" name="loyer" ng-model="logement.loyer" required min="1">
+              <div class="input-group-addon">€</div>
+            </div>
+            <span class="help-block" ng-if="submitted && form.loyer.$invalid">Champ invalide</span>
+          </div>
         </div>
-        <span class="help-block" ng-if="submitted && form.loyer.$invalid">Champ invalide</span>
+      </div>
+
+      <div class="col-sm-6" ng-if="captureCharges()">
+        <div class="form-group" ng-class="{'has-error': submitted && form.charges.$invalid}">
+          <label class="col-sm-3 control-label" for="charges">
+            Vos charges
+          </label>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input type="number" class="form-control text-right" id="charges" name="charges" ng-model="logement.charges">
+              <div class="input-group-addon">€</div>
+            </div>
+            <span class="help-block" ng-if="submitted && form.charges.$invalid">Champ invalide</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -142,6 +162,20 @@
             </select>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="cityStartsWith('Paris')">
+      <label class="col-sm-3 control-label">Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }}&nbsp;?</label>
+      <div class="col-sm-3">
+        <button type="button" class="btn btn-sm btn-default" ng-model="logement.inhabitantForThreeYearsOutOfLastFive" btn-radio="true">Oui</button>
+        <button type="button" class="btn btn-sm btn-default" ng-model="logement.inhabitantForThreeYearsOutOfLastFive" btn-radio="false">Non</button>
+      </div>
+
+      <div class="col-sm-6">
+        <span class="help-block">
+          Y compris de manière discontinue.
+        </span>
       </div>
     </div>
 

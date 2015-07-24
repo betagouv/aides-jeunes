@@ -40,6 +40,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         scolarite: 'college',
         tauxInvalidite: 'moins50',
         boursier: false,
+        aCharge: true,
+        place: false,
         role: options.individuRole
     };
 
@@ -99,14 +101,25 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         return isIndividuParent && $scope.selectedStatuts.handicap;
     };
 
+    $scope.captureEnfantPlace = function() {
+        return !isIndividuParent && $scope.selectedStatuts.handicap;
+    };
+
+
     $scope.captureEtudiantBoursier = function() {
         return $scope.selectedStatuts.etudiant;
+    };
+
+    $scope.catpurePersonneACharge = function(form) {
+        if (!isIndividuParent && form.dateDeNaissance.$valid) {
+            return IndividuService.age($scope.individu) >= 1;
+        }
     };
 
     $scope.captureScolarite = function(form) {
         if (!isIndividuParent && form.dateDeNaissance.$valid) {
             var age = IndividuService.age($scope.individu);
-            return age < 25 && age > 8;
+            return age <= 25 && age > 8;
         }
 
         return false;

@@ -206,6 +206,22 @@
     </div>
   </div>
 
+  <div class="form-group from-group-lg" ng-if="captureEnfantPlace()">
+    <label class="control-label col-sm-4" for="place">
+     Est-il/elle placé.e en structure spécialisée ou famille d'accueil ?
+    </label>
+    <div class="col-sm-8">
+      <label class="radio-inline" for="place-true">
+        <input id="place-true" type="radio" name="place" ng-model="individu.place" ng-value="true">
+        Oui
+      </label>
+      <label class="radio-inline" for="place-false">
+        <input id="place-false" type="radio" name="place" ng-model="individu.place" ng-value="false">
+        Non
+      </label>
+    </div>
+  </div>
+
   <div class="form-group from-group-lg" ng-if="captureEtudiantBoursier()">
     <label class="control-label col-sm-4" id="etudiant-boursier">
       <span ng-if="'demandeur' === options.individuRole">Êtes-vous</span>
@@ -226,7 +242,7 @@
 
   <div class="form-group from-group-lg" ng-if="captureScolarite(form)">
     <label class="control-label col-sm-4" for="scolarite">
-      Où sera-t-il(elle) scolarisé(e) à la rentrée prochaine ?
+      Où sera-t-il/elle scolarisé.e à la rentrée prochaine ?
     </label>
     <div class="col-sm-4">
       <select
@@ -235,6 +251,22 @@
         ng-model="individu.scolarite"
         ng-options="scolarite.id as scolarite.label for scolarite in scolariteOptions">
       </select>
+    </div>
+  </div>
+
+  <div class="form-group from-group-lg" ng-if="catpurePersonneACharge(form)">
+    <label class="control-label col-sm-4" for="a-charge">
+     Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu ?
+    </label>
+    <div class="col-sm-8">
+      <label class="radio-inline" for="a-charge-true">
+        <input id="a-charge-true" type="radio" name="a-charge" ng-model="individu.aCharge" ng-value="true">
+        Oui
+      </label>
+      <label class="radio-inline" for="a-charge-false">
+        <input id="a-charge-false" type="radio" name="a-charge" ng-model="individu.aCharge" ng-value="false">
+        Non
+      </label>
     </div>
   </div>
 

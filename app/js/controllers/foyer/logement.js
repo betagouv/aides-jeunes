@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, logementTypes, locationTypes, loyerLabels) {
-    var logement = $scope.logement = { adresse: {} };
+    var logement = $scope.logement = {
+        adresse: {},
+        inhabitantForThreeYearsOutOfLastFive: true
+    };
     if ($scope.situation.logement) {
         logement = $scope.logement = _.merge(logement, $scope.situation.logement);
     }
@@ -9,13 +12,25 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
 
+    $scope.cityStartsWith = function cityStartsWith(prefix) {
+        return logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
+    };
+
+    $scope.yearsAgo = function yearsAgo(amount) {
+        return moment().subtract(amount, 'years').format('MMMM YYYY');
+    };
+
+    $scope.captureCharges = function() {
+            return (logement.type == 'locataire') && (logement.locationType !== 'meublehotel');
+    };
+
     $scope.loyerLabel = function() {
         var result = loyerLabels[logement.type];
         if (logement.type === 'locataire') {
-            if ('meublehotel' === logement.locationType) {
-                result += ' (charges comprises)';
-            } else {
+            if ($scope.captureCharges()) {
                 result += ' (hors charges)';
+            } else {
+                result += ' (charges comprises)';
             }
         }
 
@@ -61,7 +76,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.changeLogementType = function() {
-        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'isChambre'].forEach(function(field) {
+        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'charges', 'isChambre'].forEach(function(field) {
             delete logement[field];
         });
     };

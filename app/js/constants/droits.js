@@ -169,7 +169,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'description':'L’allocation Paris Logement Familles permet aux familles parisiennes de mieux supporter leurs dépenses de logement.',
         'conditions': [
             'Avoir demandé le versements des aides logement auxquelles vous avez droit auprès de la CAF.',
-            'Ne toucher aucune autre prestation logement ou handicap de la part de la mairie de Paris ou du département.'
+            'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
         ],
         'imgSrc':'logo_mairie_paris.png',
         'link':'http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193',

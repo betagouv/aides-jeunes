@@ -49,9 +49,9 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         $scope.individu.statutMarital = 'mariage';
     }
 
-    $scope.isIndividuParent = IndividuService.isRoleParent(options.individuRole);
+    var isIndividuParent = IndividuService.isRoleParent(options.individuRole);
 
-    if ($scope.isIndividuParent) {
+    if (isIndividuParent) {
         var individu = _.find($scope.situation.individus, { role: options.individuRole });
         if (individu) {
             $scope.individu = _.merge($scope.individu, individu);
@@ -94,15 +94,15 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
 
     $scope.captureEligibiliteAss = function() {
         /* jshint -W069 */
-        return $scope.isIndividuParent && $scope.selectedStatuts['demandeur_emploi'];
+        return isIndividuParent && $scope.selectedStatuts['demandeur_emploi'];
     };
 
     $scope.captureTauxInvalidite = function() {
-        return $scope.isIndividuParent && $scope.selectedStatuts.handicap;
+        return isIndividuParent && $scope.selectedStatuts.handicap;
     };
 
     $scope.captureEnfantPlace = function() {
-        return !$scope.isIndividuParent && $scope.selectedStatuts.handicap;
+        return !isIndividuParent && $scope.selectedStatuts.handicap;
     };
 
 
@@ -111,13 +111,13 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
     };
 
     $scope.catpurePersonneACharge = function(form) {
-        if (!$scope.isIndividuParent && form.dateDeNaissance.$valid) {
+        if (!isIndividuParent && form.dateDeNaissance.$valid) {
             return IndividuService.age($scope.individu) >= 1;
         }
     };
 
     $scope.captureScolarite = function(form) {
-        if (!$scope.isIndividuParent && form.dateDeNaissance.$valid) {
+        if (!isIndividuParent && form.dateDeNaissance.$valid) {
             var age = IndividuService.age($scope.individu);
             return age <= 25 && age > 8;
         }

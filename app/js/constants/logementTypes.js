@@ -36,5 +36,5 @@ angular.module('ddsCommon').constant('locationTypes', [
 
 angular.module('ddsCommon').constant('loyerLabels', {
     'locataire': 'Votre loyer',
-    'proprietaire': 'Votre mensualité totale d’emprunt (par mois)'
+    'proprietaire': 'Montant des mensualités'
 });

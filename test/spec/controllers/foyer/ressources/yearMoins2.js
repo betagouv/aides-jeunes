@@ -13,7 +13,7 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             // given
             var demandeur = { role: 'demandeur' };
             var conjoint = { role: 'conjoint' };
-            var scope = { situation: { individus: [demandeur, conjoint, { role: 'enfant' }, { role: 'personneACharge' }] }};
+            var scope = { situation: { individus: [demandeur, conjoint, { role: 'enfant' }] }};
 
             // when
             inject(function($controller) {

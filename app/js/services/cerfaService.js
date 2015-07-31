@@ -38,7 +38,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
         },
         'ofii': function(individu) {
             return _.every([
-                _.contains(['enfant', 'personneACharge'], individu.role),
+                individu.role == 'enfant',
                 18 > IndividuService.age(individu),
                 'fr' !== individu.nationalite,
                 'France' !== individu.paysNaissance
@@ -49,7 +49,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
                 return false;
             }
 
-            if (_.contains(['enfant', 'personneACharge'], individu.role)) {
+            if (individu.role == 'enfant') {
                 return 18 <= IndividuService.age(individu);
             }
 
@@ -76,7 +76,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return false;
         },
         'cmu_c.livret_famille': function(situation) {
-            return !!_.where(situation.individus, { role: 'enfant'}).length || !!_.where(situation.individus, { role: 'personneACharge'}).length;
+            return !!_.where(situation.individus, { role: 'enfant'}).length;
         },
         'cmu_c.bulletins_paie': function(individu) {
             if (16 > IndividuService.age(individu)) {
@@ -110,7 +110,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
         },
         'rsa.acte_naissance': function(individu) {
             return _.every([
-                _.contains(['enfant', 'personneACharge'], individu.role),
+                individu.role == 'enfant',
                 18 > IndividuService.age(individu),
                 'fr' !== individu.nationalite,
                 'France' === individu.paysNaissance

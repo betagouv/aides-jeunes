@@ -186,7 +186,6 @@ describe('Service: situationService', function () {
             var situations = [
                 { individus: [{ role: 'enfant', scolarite: 'college' }] },
                 { individus: [{ role: 'enfant', scolarite: 'lycee' }] },
-                { individus: [{ role: 'personneSousMemeToit', scolarite: 'college' }] },
                 { individus: [] }
             ];
 
@@ -196,7 +195,7 @@ describe('Service: situationService', function () {
             });
 
             // then
-            expect(results).toEqual([true, true, false, false]);
+            expect(results).toEqual([true, true, false]);
         });
     });
 });

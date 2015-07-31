@@ -172,7 +172,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
         ],
         'imgSrc':'logo_mairie_paris.png',
-        'link':'http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193',
+        'link':'http://www.paris.fr/aides',
         'isBaseRessourcesYearMoins2':false
     }
 });

@@ -81,18 +81,7 @@
           </p>
         </div>
       </div>
-
-      <div class="form-group" ng-if="capturePretConventionne()">
-        <label class="col-sm-3 control-label">
-          Vous a-t-on octroyé un prêt conventionné ?
-        </label>
-        <div class="col-sm-3">
-          <button type="button" class="btn btn-sm btn-default" ng-model="logement.pretConventionne" btn-radio="true">Oui</button>
-          <button type="button" class="btn btn-sm btn-default" ng-model="logement.pretConventionne" btn-radio="false">Non</button>
-        </div>
-      </div>
     </div>
-
 
     <div class="row" ng-if="captureLoyer()">
       <div class="col-sm-6">
@@ -102,14 +91,18 @@
           </label>
           <div class="col-sm-6">
             <div class="input-group">
-              <input type="number" class="form-control text-right" id="loyer" name="loyer" ng-model="logement.loyer" required min="1">
+              <input type="number" class="form-control text-right" id="loyer" name="loyer" ng-model="logement.loyer">
               <div class="input-group-addon">€</div>
             </div>
             <span class="help-block" ng-if="submitted && form.loyer.$invalid">Champ invalide</span>
           </div>
         </div>
       </div>
-
+      <div class="col-sm-5" ng-if="logement.type == 'proprietaire'">
+        <p class="help-block">
+          Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.
+        </p>
+      </div>
       <div class="col-sm-6" ng-if="captureCharges()">
         <div class="form-group" ng-class="{'has-error': submitted && form.charges.$invalid}">
           <label class="col-sm-3 control-label" for="charges">
@@ -143,7 +136,7 @@
               class="form-control"
               id="postal-code"
               required
-              ng-model="postalCode"
+              ng-model="logement.postalCode"
               ng-change="updateCities()">
             <span class="help-block" ng-if="submitted && ! cities.length">Ce code postal est invalide</span>
           </div>
@@ -165,7 +158,7 @@
       </div>
     </div>
 
-    <div class="form-group" ng-if="cityStartsWith('Paris')">
+    <div class="form-group" ng-if="cityStartsWith('Paris') && captureCodePostal()">
       <label class="col-sm-3 control-label">Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }}&nbsp;?</label>
       <div class="col-sm-3">
         <button type="button" class="btn btn-sm btn-default" ng-model="logement.inhabitantForThreeYearsOutOfLastFive" btn-radio="true">Oui</button>

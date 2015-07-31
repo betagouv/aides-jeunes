@@ -41,10 +41,6 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return 'locataire' === logement.type && angular.isDefined(logement.colocation);
     };
 
-    $scope.capturePretConventionne = function() {
-        return true === logement.primoAccedant;
-    };
-
     $scope.captureLocationType = function() {
         return 'locataire' === logement.type && angular.isDefined(logement.membreFamilleProprietaire);
     };
@@ -57,17 +53,16 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         if ('gratuit' === logement.type) {
             return false;
         }
-
         return _.any([
-            true === logement.primoAccedant && angular.isDefined(logement.pretConventionne),
-            'foyer' === logement.locationType,
+            angular.isDefined(logement.primoAccedant),
+            logement.locationType == 'foyer',
             angular.isDefined(logement.isChambre)
         ]);
     };
 
     $scope.captureCodePostal = function() {
         return _.any([
-            false === logement.primoAccedant || true === logement.primoAccedant && angular.isDefined(logement.pretConventionne),
+            angular.isDefined(logement.primoAccedant),
             'foyer' === logement.locationType,
             angular.isDefined(logement.isChambre),
             'gratuit' === logement.type,
@@ -79,12 +74,13 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'charges', 'isChambre'].forEach(function(field) {
             delete logement[field];
         });
+        logement.loyer = 0;
     };
 
     $scope.updateCities = function updateCities() {
         $scope.retrievingCities = true;
 
-        $http.get('/api/outils/communes/' + $scope.postalCode)
+        $http.get('/api/outils/communes/' + $scope.logement.postalCode)
              .then(function(result) {
                   $scope.cities = result.data;
                   logement.adresse = $scope.cities[0] || {};

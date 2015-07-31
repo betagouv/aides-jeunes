@@ -84,14 +84,14 @@ describe('IndividuService', function() {
     describe('function isParent()', function() {
         it('Should return true only if individu has role "demandeur" or "conjoint"', function() {
             // given
-            var roles = ['demandeur', 'conjoint', 'enfant', 'personneACharge', undefined];
+            var roles = ['demandeur', 'conjoint', 'enfant', undefined];
             var individus = _.map(roles, function(role) { return { role: role }; });
 
             // when
             var results = _.map(individus, _.bind(service.isParent, service));
 
             // then
-            expect(results).toEqual([true, true, false, false, false]);
+            expect(results).toEqual([true, true, false, false]);
         });
     });
 });

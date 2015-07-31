@@ -5,10 +5,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
 
     options.minAge = 0;
     options.maxAge = 130;
-
     if ('enfant' === options.individuRole) {
-        options.maxAge = 25;
-        options.formPersonneACharge = true;
+        options.displayCancelButton = true;
         options.captureGardeAlternee = true;
 
         $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {

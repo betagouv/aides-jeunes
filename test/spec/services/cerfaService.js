@@ -84,7 +84,6 @@ describe('Service: cerfaService', function () {
             var situations = [
                 { individus: [{ role: 'demandeur' }, { role: 'conjoint' }] },
                 { individus: [{ role: 'demandeur' }, { role: 'enfant' }] },
-                { individus: [{ role: 'demandeur' }, { role: 'personneACharge' }] },
                 { individus: [{ role: 'demandeur' }] }
             ];
 
@@ -94,7 +93,7 @@ describe('Service: cerfaService', function () {
             });
 
             // then
-            expect(result).toEqual([true, true, true, false]);
+            expect(result).toEqual([true, true, false]);
         });
 
         it('should display rsa_moins_25 only if demandeur or conjoint is aged < 25', function() {
@@ -128,7 +127,6 @@ describe('Service: cerfaService', function () {
                 // given
                 var situations = [
                     { individus: [{ role: 'enfant' }] },
-                    { individus: [{ role: 'personneACharge' }] },
                     { individus: [] }
                 ];
 
@@ -311,7 +309,6 @@ describe('Service: cerfaService', function () {
                         {nationalite: 'fr', role: 'demandeur'},
                         {nationalite: 'ue', role: 'conjoint'},
                         {paysNaissance: 'France', role: 'enfant'},
-                        {paysNaissance: 'France', role: 'personneACharge'},
                         // not kept because nationalite autre
                         {nationalite: 'autre', role: 'conjoint'},
                         // not kept because not born in France
@@ -329,7 +326,6 @@ describe('Service: cerfaService', function () {
                     // given
                     var individus = [
                         {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'enfant'},
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'personneACharge'},
                         // not kept because not personne à charge
                         {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
                         // not kept because aged > 18
@@ -337,7 +333,7 @@ describe('Service: cerfaService', function () {
                         // not kept because nationalite fr
                         {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'fr', paysNaissance: 'France', role: 'enfant'},
                         // not kept because not born in france
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'Congo', role: 'personneACharge'},
+                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'Congo', role: 'enfant'},
                     ];
 
                     // when
@@ -351,7 +347,6 @@ describe('Service: cerfaService', function () {
                     // given
                     var individus = [
                         {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'Malaisie', role: 'enfant'},
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'Congo', role: 'personneACharge'},
                         // not kept because not personne à charge
                         {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
                         // not kept because aged > 18
@@ -359,7 +354,7 @@ describe('Service: cerfaService', function () {
                         // not kept because nationalite fr
                         {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'fr', paysNaissance: 'France', role: 'enfant'},
                         // not kept because born in france
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'personneACharge'},
+                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'enfant'},
                     ];
 
                     // when

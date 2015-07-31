@@ -38,7 +38,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
 
     $scope.$on('personnesACharge', function(e, personnesACharge) {
         situation.individus = _.filter(situation.individus, function(individu) {
-            return 'personneACharge' !== individu.role && 'enfant' !== individu.role;
+            return 'enfant' !== individu.role;
         });
 
         situation.individus = situation.individus.concat(personnesACharge);

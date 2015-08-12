@@ -158,7 +158,7 @@
       </div>
     </div>
 
-    <div class="form-group" ng-if="cityStartsWith('Paris') && captureCodePostal()">
+    <div class="form-group" ng-if="captureCodePostal() && cityStartsWith('Paris')">
       <label class="col-sm-3 control-label">Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }}&nbsp;?</label>
       <div class="col-sm-3">
         <button type="button" class="btn btn-sm btn-default" ng-model="logement.inhabitantForThreeYearsOutOfLastFive" btn-radio="true">Oui</button>

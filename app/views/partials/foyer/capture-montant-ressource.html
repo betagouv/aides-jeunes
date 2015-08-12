@@ -18,6 +18,7 @@
             id="{{ index + ressource.type.id + month.id }}"
             required
             min="0"
+            step="100"
             select-on-focus
             zero-to-empty
             ng-model="ressource.montantsMensuels[$index]"
@@ -39,6 +40,7 @@
             id="{{ index + ressource.type.id }}-annuel"
             required
             min="0"
+            step="100"
             select-on-focus
             zero-to-empty
             ng-model="ressource.montantAnnuel">

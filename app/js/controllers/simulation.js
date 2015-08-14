@@ -11,9 +11,10 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
     $scope.droitsNonEligibles = null;
 
     SimulationService.simulate($scope.situation).then(function(droits) {
-        $scope.droits = droits;
-        $scope.droitsNonEligibles = SimulationService.complement(droits);
-        $scope.noDroits = _.isEmpty(droits);
+        $scope.droits = droits.droitsEligibles;
+        $scope.droitsInjectes = droits.droitsInjectees;
+        $scope.droitsNonEligibles = droits.droitsNonEligibles;
+        $scope.noDroits = _.isEmpty($scope.droits);
     }, function() {
         $scope.error = true;
     }).finally(function() {

@@ -1,54 +1,36 @@
 'use strict';
 
 angular.module('ddsApp').service('SimulationService', function($http, droitsDescription) {
-    function makeObjectFilter(test) {
-        return function(source) {
-            var result = {};
 
-            _.forEach(source, function(value, key) {
-                if (test(value, key)) {
-                    result[key] = value;
-                }
-            });
+    // Si la valeur renvoyée par l'API est nulle, cela signifie par convention que l'aide a été injectée et non recaculée par le simulateur
+    function sortDroits(droitsCalcules) {
+        var droitsEligibles = {};
+        var droitsInjectees = {};
+        var droitsNonEligibles = {};
 
-            return result;
-        };
-    }
-
-    var filterUnhandled = makeObjectFilter(function(value, key) {
-        return droitsDescription[key];
-    });
-
-    /* jshint unused: false */
-    var filterIneligible = makeObjectFilter(function(value, key) {
-        return value;
-    });
-
-    function describe(droits) {
-        return _.mapValues(droits, function(montant, key) {
-            var result = _.clone(droitsDescription[key]);
-            result.montant = montant;
-            return result;
+        _.forEach(droitsDescription, function(description, droitKey) {
+            if (droitsCalcules[droitKey]) {
+                droitsEligibles[droitKey] = description;
+                droitsEligibles[droitKey].montant = droitsCalcules[droitKey];
+            } else if (droitsCalcules[droitKey] === null) {
+                droitsInjectees[droitKey] = description;
+            }
+            else {
+                droitsNonEligibles[droitKey] = description;
+            }
         });
+        return {
+            'droitsEligibles' : droitsEligibles,
+            'droitsInjectees' : droitsInjectees,
+            'droitsNonEligibles' : droitsNonEligibles
+        };
     }
 
     return {
         simulate: function(situation) {
             return $http.get('/api/situations/' + situation._id + '/simulation').then(function(response) {
-                return describe(filterIneligible(filterUnhandled(response.data)));
+                return sortDroits(response.data);
             });
-        },
-        filterUnhandled: filterUnhandled,
-        filterIneligible: filterIneligible,
-        describe: describe,
-        complement: function(droits) {
-            var result = _.clone(droitsDescription);
-
-            _.forEach(droits, function(montant, key) {
-                delete result[key];
-            });
-
-            return result;
         }
     };
 });

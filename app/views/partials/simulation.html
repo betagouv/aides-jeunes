@@ -134,6 +134,35 @@
 
 <div>
   <hr>
+  <h4>Aides que vous percevez déjà aujourd'hui, et dont nous n'avons pas recalculé le montant</h4>
+  <accordion close-others="false">
+    <div class="row">
+      <div ng-repeat="droit in droitsInjectes">
+        <div ng-if="$index % 3 === 0" class="clearfix"></div>
+        <div class="panel-non-eligible">
+          <accordion-group is-open="droit.open">
+            <accordion-heading>
+              <div class="row">
+                <div class="col-xs-10">{{ droit.label }}</div>
+                <div class="col-xs-2">
+                  <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"></i>
+                </div>
+              </div>
+            </accordion-heading>
+            <p>{{ droit.description }}</p>
+            <a
+              href="{{ droit.link }}"
+              class="btn btn-sm btn-default"
+              target="_blank">
+              <i class="fa fa-external-link"></i>
+              Plus d'informations
+            </a>
+          </accordion-group>
+        </div>
+      </div>
+    </div>
+  </accordion>
+
   <h4>Aides étudiées pour lesquelles vous n'êtes <span ng-if="! situation.ressourcesYearMoins2Captured && ! error">a priori</span> pas éligible</h4>
   <accordion close-others="false">
     <div class="row">

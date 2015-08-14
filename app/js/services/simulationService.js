@@ -31,6 +31,7 @@ angular.module('ddsApp').service('SimulationService', function($http, droitsDesc
             return $http.get('/api/situations/' + situation._id + '/simulation').then(function(response) {
                 return sortDroits(response.data);
             });
-        }
+        },
+        sortDroits: sortDroits
     };
 });

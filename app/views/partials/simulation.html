@@ -9,9 +9,9 @@
   <p>Une erreur est survenue dans la simulation.</p>
 </div>
 
-<p ng-if="!error && !awaitingResults">D'après la situation que vous avez décrite, vous êtes a priori éligible aux aides suivantes : </p>
+<p ng-if="!error && !awaitingResults && !noDroits">D'après la situation que vous avez décrite, vous êtes a priori éligible aux aides suivantes : </p>
 <div class="frame-resultats" ng-if="!error && !awaitingResults">
-  <accordion close-others="true">
+  <accordion close-others="true" ng-if="!noDroits">
     <accordion-group is-open="droit.open"
                      class="resultats-accordion"
                      ng-repeat="(droitId, droit) in droits"

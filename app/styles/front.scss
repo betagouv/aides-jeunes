@@ -294,6 +294,10 @@ $autre-lighter: #cce4e7;
   &.active {
     background-color: $btn-success-bg;
     color: white;
+    &:focus, &:hover {
+      background-color: $btn-success-bg;
+      color: white;
+    }
   }
 }
 

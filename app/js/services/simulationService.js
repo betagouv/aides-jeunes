@@ -14,15 +14,14 @@ angular.module('ddsApp').service('SimulationService', function($http, droitsDesc
                 droitsEligibles[droitKey].montant = droitsCalcules[droitKey];
             } else if (droitsCalcules[droitKey] === null) {
                 droitsInjectees[droitKey] = description;
-            }
-            else {
+            } else {
                 droitsNonEligibles[droitKey] = description;
             }
         });
         return {
-            'droitsEligibles' : droitsEligibles,
-            'droitsInjectees' : droitsInjectees,
-            'droitsNonEligibles' : droitsNonEligibles
+            droitsEligibles: droitsEligibles,
+            droitsInjectees: droitsInjectees,
+            droitsNonEligibles: droitsNonEligibles
         };
     }
 

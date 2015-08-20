@@ -20,7 +20,7 @@ describe('SimulationService', function () {
             var droits = service.sortDroits(openfiscaResult);
             expect(droits.droitsEligibles).toEqual({ acs: { id: 'acs', montant: 10 } });
             expect(droits.droitsNonEligibles).toEqual({ apl: { id: 'apl' } });
-            expect(droits.droitsInjectees).toEqual({});
+            expect(droits.droitsInjectes).toEqual({});
         });
 
         it('should sort eligible and injected droits', function() {
@@ -28,7 +28,7 @@ describe('SimulationService', function () {
             var droits = service.sortDroits(openfiscaResult);
             expect(droits.droitsEligibles).toEqual({ acs: { id: 'acs', montant: 10 } });
             expect(droits.droitsNonEligibles).toEqual({});
-            expect(droits.droitsInjectees).toEqual({ apl: { id: 'apl' } });
+            expect(droits.droitsInjectes).toEqual({ apl: { id: 'apl' } });
         });
     });
 });

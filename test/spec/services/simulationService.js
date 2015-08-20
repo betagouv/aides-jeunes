@@ -2,8 +2,12 @@
 
 describe('SimulationService', function () {
     describe('sortDroits', function() {
-        var DROITS_DESCRIPTION = { acs: { id: 'acs' }, apl: { id: 'apl' }};
-        var service;
+        var DROITS_DESCRIPTION = {
+            acs: { id: 'acs' },
+            apl: { id: 'apl' },
+            ass: { id: 'ass'}
+        };
+        var service, droits, openfiscaResult;
 
         beforeEach(function() {
             module('ddsApp');
@@ -13,22 +17,20 @@ describe('SimulationService', function () {
             inject(function(SimulationService) {
                 service = SimulationService;
             });
+            openfiscaResult = { acs: 10, apl: null };
+            droits = service.sortDroits(openfiscaResult);
         });
 
-        it('should sort eligible and non eligible droits', function() {
-            var openfiscaResult = { acs: 10 };
-            var droits = service.sortDroits(openfiscaResult);
+        it('should extract eligibles droits from openfisca result', function() {
             expect(droits.droitsEligibles).toEqual({ acs: { id: 'acs', montant: 10 } });
-            expect(droits.droitsNonEligibles).toEqual({ apl: { id: 'apl' } });
-            expect(droits.droitsInjectes).toEqual({});
         });
 
-        it('should sort eligible and injected droits', function() {
-            var openfiscaResult = { acs: 10, apl: null };
-            var droits = service.sortDroits(openfiscaResult);
-            expect(droits.droitsEligibles).toEqual({ acs: { id: 'acs', montant: 10 } });
-            expect(droits.droitsNonEligibles).toEqual({});
+        it('should extract injected droits', function() {
             expect(droits.droitsInjectes).toEqual({ apl: { id: 'apl' } });
+        });
+
+        it('should extract non eligibles droits', function() {
+            expect(droits.droitsNonEligibles).toEqual({ ass: { id: 'ass' } });
         });
     });
 });

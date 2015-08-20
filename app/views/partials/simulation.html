@@ -134,7 +134,7 @@
 
 <div>
   <hr>
-  <h4 ng-show="!(droitsInjectes|isEmpty)">Aides que vous percevez déjà aujourd'hui, et dont nous n'avons pas recalculé le montant</h4>
+  <h4 ng-show="! (droitsInjectes | isEmpty)">Aides que vous percevez déjà aujourd'hui, et dont nous n'avons pas recalculé le montant</h4>
   <droits-list droits="droitsInjectes"></droits-list>
 
   <h4>Aides étudiées pour lesquelles vous n'êtes <span ng-if="! situation.ressourcesYearMoins2Captured && ! error">a priori</span> pas éligible</h4>

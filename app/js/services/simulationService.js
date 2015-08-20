@@ -5,7 +5,7 @@ angular.module('ddsApp').service('SimulationService', function($http, droitsDesc
     // Si la valeur renvoyée par l'API vaut null, cela signifie par convention que l'aide a été injectée et non recaculée par le simulateur
     function sortDroits(droitsCalcules) {
         var droitsEligibles = {},
-        droitsInjectees = {},
+        droitsInjectes = {},
         droitsNonEligibles = {};
 
         _.forEach(droitsDescription, function(description, droitKey) {
@@ -13,14 +13,14 @@ angular.module('ddsApp').service('SimulationService', function($http, droitsDesc
                 droitsEligibles[droitKey] = description;
                 droitsEligibles[droitKey].montant = droitsCalcules[droitKey];
             } else if (droitsCalcules[droitKey] === null) {
-                droitsInjectees[droitKey] = description;
+                droitsInjectes[droitKey] = description;
             } else {
                 droitsNonEligibles[droitKey] = description;
             }
         });
         return {
             droitsEligibles: droitsEligibles,
-            droitsInjectees: droitsInjectees,
+            droitsInjectes: droitsInjectes,
             droitsNonEligibles: droitsNonEligibles
         };
     }

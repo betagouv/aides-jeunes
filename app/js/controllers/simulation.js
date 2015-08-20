@@ -12,7 +12,7 @@ angular.module('ddsApp').controller('SimulationCtrl', function($scope, $rootScop
 
     SimulationService.simulate($scope.situation).then(function(droits) {
         $scope.droits = droits.droitsEligibles;
-        $scope.droitsInjectes = droits.droitsInjectees;
+        $scope.droitsInjectes = droits.droitsInjectes;
         $scope.droitsNonEligibles = droits.droitsNonEligibles;
         $scope.noDroits = _.isEmpty($scope.droits);
     }, function() {

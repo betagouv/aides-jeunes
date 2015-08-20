@@ -104,7 +104,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         category: 'allocations'
     },
     {
-        id: 'paje',
+        id: 'paje_base',
         label: 'Prestation d’accueil du jeune enfant (PAJE) - Allocation de base',
         category: 'allocations'
     },

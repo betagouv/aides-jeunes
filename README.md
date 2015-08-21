@@ -11,7 +11,7 @@ System dependencies
 
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb`, `node` v0.10, `grunt` and `bower` are installed on your machine
+Make sure `build-essential`, `mongodb`, `node` v0.12, `grunt` and `bower` are installed on your machine
 
 ```sh
 sudo apt-get install build-essential
@@ -20,7 +20,7 @@ sudo apt-get install mongodb
 
 ### For all platforms
 
-The runtime is Node 0.10.
+The runtime is Node 0.12.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 

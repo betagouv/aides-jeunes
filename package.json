@@ -42,7 +42,7 @@
     "grunt-nodemon": "~0.4.0",
     "grunt-open": "~0.2.0",
     "grunt-rev": "~0.1.0",
-    "grunt-sass": "^0.18.1",
+    "grunt-sass": "^1.0.0",
     "grunt-svgmin": "~2.0.1",
     "grunt-usemin": "~3.0.0",
     "jshint-stylish": "~1.0.1",

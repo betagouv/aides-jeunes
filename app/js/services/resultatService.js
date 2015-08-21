@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('SimulationService', function($http, droitsDescription) {
+angular.module('ddsApp').service('ResultatService', function($http, droitsDescription) {
 
     // Si la valeur renvoyée par l'API vaut null, cela signifie par convention que l'aide a été injectée et non recaculée par le simulateur
     function sortDroits(droitsCalcules) {

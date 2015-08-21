@@ -1,6 +1,6 @@
 'use strict';
 
-describe('SimulationService', function () {
+describe('ResultatService', function () {
     describe('sortDroits', function() {
         var DROITS_DESCRIPTION = {
             acs: { id: 'acs' },
@@ -14,8 +14,8 @@ describe('SimulationService', function () {
             module(function($provide) {
                 $provide.constant('droitsDescription', DROITS_DESCRIPTION);
             });
-            inject(function(SimulationService) {
-                service = SimulationService;
+            inject(function(ResultatService) {
+                service = ResultatService;
             });
             openfiscaResult = { acs: 10, apl: null };
             droits = service.sortDroits(openfiscaResult);

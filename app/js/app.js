@@ -140,10 +140,10 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'FoyerPensionsAlimentairesCtrl',
             url: '/ressources/pensions-alimentaires'
         })
-        .state('foyer.simulation', {
-            url: '/simulation',
-            templateUrl: '/partials/simulation.html',
-            controller: 'SimulationCtrl'
+        .state('foyer.resultat', {
+            url: '/resultat',
+            templateUrl: '/partials/resultat.html',
+            controller: 'ResultatCtrl'
         })
         .state('foyer.ressourcesYearMoins2', {
             templateUrl: '/partials/foyer/ressources/year-moins-2.html',
@@ -165,7 +165,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             template: '',
             controller: function(SituationService, $state, $stateParams) {
                 SituationService.restoreRemote($stateParams.situationId).then(function() {
-                    $state.go('foyer.simulation', { situationId: $stateParams.situationId });
+                    $state.go('foyer.resultat', { situationId: $stateParams.situationId });
                 });
             }
         })

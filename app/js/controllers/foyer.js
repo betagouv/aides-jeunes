@@ -60,7 +60,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         }
     });
 
-    var goToSimulation = function() {
+    var goToResultat = function() {
         SituationService.save($scope.situation).then(function() {
             // désactivation du changement d'url dans le navigateur pour que le bouton back fonctionne
             $state.transitionTo('situation', { 'situationId': $scope.situation._id }, { location: false });
@@ -74,7 +74,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
     });
 
     $scope.$on('pensionsAlimentaires', function() {
-        goToSimulation();
+        goToResultat();
     });
 
     $scope.$on('rnc', function() {
@@ -84,7 +84,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         } else {
             $scope.situation.ressourcesYearMoins2Captured = true;
             $scope.$broadcast('ressourcesYearMoins2Captured');
-            goToSimulation();
+            goToResultat();
         }
     });
 
@@ -92,12 +92,12 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         $scope.situation.rfr = rfr;
         $scope.situation.ressourcesYearMoins2Captured = true;
         $scope.$broadcast('ressourcesYearMoins2Captured');
-        goToSimulation();
+        goToResultat();
     });
 
     $scope.$on('patrimoine', function(e, patrimoine) {
         situation.patrimoine = patrimoine;
         $scope.$broadcast('patrimoineCaptured');
-        goToSimulation();
+        goToResultat();
     });
 });

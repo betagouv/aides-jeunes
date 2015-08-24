@@ -12,9 +12,9 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
 
-    $scope.cityStartsWith = function cityStartsWith(prefix) {
+    function cityStartsWith(prefix) {
         return logement.adresse.nomCommune && logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
-    };
+    }
 
     $scope.yearsAgo = function yearsAgo(amount) {
         return moment().subtract(amount, 'years').format('MMMM YYYY');
@@ -70,6 +70,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         ]);
     };
 
+    $scope.captureResidentParis = function() {
+        return $scope.captureCodePostal() && logement.type != 'sansDomicile' && cityStartsWith('Paris');
+    };
+
     $scope.changeLogementType = function() {
         ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'charges', 'isChambre'].forEach(function(field) {
             delete logement[field];
@@ -93,7 +97,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid && logement.adresse) {
-            logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && $scope.cityStartsWith('Paris');
+            logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && cityStartsWith('Paris');
             $scope.$emit('logement', logement);
         }
     };

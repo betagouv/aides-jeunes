@@ -25,13 +25,7 @@ server.connection({
     port: 9000
 });
 
-server.route({
-    method: 'GET',
-    path: '/',
-    handler: {
-        file: 'index.html'
-    }
-});
+server.route(require('./routes'));
 
 server.start(function() {
     console.log('Server running at:', server.info.uri);

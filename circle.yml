@@ -1,0 +1,44 @@
+machine:
+  environment:
+    PORT: 9000
+    MASTER_BRANCH: rewrite
+    browser_name: $(case $CIRCLE_NODE_INDEX in 0) browser='chrome' ;; 1) browser='firefox' ;; 2) browser='internet explorer' ;; 3) browser='iphone' ;; esac; echo $browser)
+    browser_version: $(case $CIRCLE_NODE_INDEX in 3) version='8.2' ;; esac; echo $version)
+    SAUCE_LOG: $CIRCLE_ARTIFACTS/sauce_log.txt
+    WATAI_TESTS: test/integration
+    SAUCE_USERNAME: mes-aides-bot
+    # SAUCE_ACCESS_KEY is defined in the CircleCI web UI
+
+dependencies:
+  post:
+    - npm install saucelabs # allow sending Watai results to SauceLabs
+    - wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz
+    - tar -xzf sc-latest-linux.tar.gz
+
+test:
+  pre:
+    - npm start:
+        background: true
+        parallel: true
+
+    - mkdir $HOME/.watai && cp $WATAI_TESTS/config-ci.js $HOME/.watai/config.js:
+        parallel: true # prepare CI-specific config holder and add CI-specific config to Watai
+
+  override:
+    - cd sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --tunnel-identifier "circle-$CIRCLE_BUILD_NUM-$CIRCLE_NODE_INDEX" --readyfile ~/sauce_is_ready > $SAUCE_LOG:
+        background: true
+        parallel: true
+    # wait for Sauce Connect
+    - while [ ! -e ~/sauce_is_ready ]; do sleep 1; done:
+        parallel: true
+    # wait for server
+    - curl --retry 20 --retry-delay 1 -v http://localhost:$PORT:
+        parallel: true
+    - watai $WATAI_TESTS --config '{"driverCapabilities":{"browserName":"'"$browser_name"'","version":"'"$browser_version"'"}}':
+        parallel: true
+
+  post:
+    - killall sc:
+        parallel: true
+    - while ! grep -q 'Goodbye' $SAUCE_LOG; do sleep 1; done:  # wait until Sauce Connect closes the tunnel
+        parallel: true

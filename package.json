@@ -1,0 +1,19 @@
+{
+  "name": "mes-aides",
+  "description": "Simulateur de prestations sociales françaises.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/sgmap/mes-aides-ui#readme",
+  "author": "SGMAP <mes-aides@sgmap.fr>",
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgmap/mes-aides-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sgmap/mes-aides-ui/issues"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

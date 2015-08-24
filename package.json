@@ -15,5 +15,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "hapi": "^9.0.3",
+    "inert": "^3.0.1"
   }
 }

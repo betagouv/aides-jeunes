@@ -22,7 +22,7 @@ var server = new hapi.Server({
 server.register(inert, (err) => { if (err) throw err });   // serve static files
 
 server.connection({
-    port: 9000
+    port: process.env.PORT
 });
 
 server.route(require('./routes'));

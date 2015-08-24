@@ -14,9 +14,11 @@
   },
   "main": "index.js",
   "scripts": {
+    "start": "babel-node server.js",
     "test": "watai test/integration"
   },
   "dependencies": {
+    "babel": "^5.8.21",
     "hapi": "^9.0.3",
     "inert": "^3.0.1"
   },

@@ -1,4 +1,4 @@
-module.exports = [
+export default [
 {
     method: 'GET',
     path: '/',
@@ -6,4 +6,4 @@ module.exports = [
         file: 'index.html'
     }
 },
-];
+]

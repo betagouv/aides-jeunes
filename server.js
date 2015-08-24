@@ -1,8 +1,8 @@
-#!/usr/bin/env node
-var path = require('path');
+#!/usr/bin/env babel-node
+import path from 'path';
 
-var hapi = require('hapi'),
-    inert = require('inert');
+import hapi from 'hapi';
+import inert from 'inert';
 
 
 var server = new hapi.Server({
@@ -19,7 +19,7 @@ var server = new hapi.Server({
 });
 
 
-server.register(inert, function(err) { if (err) throw err });   // serve static files
+server.register(inert, (err) => { if (err) throw err });   // serve static files
 
 server.connection({
     port: 9000
@@ -27,8 +27,6 @@ server.connection({
 
 server.route(require('./routes'));
 
-server.start(function() {
-    console.log('Server running at:', server.info.uri);
-});
+server.start(() => console.log(`Server running at: ${server.info.uri}`));
 
 module.exports = server;

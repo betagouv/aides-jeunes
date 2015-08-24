@@ -38,8 +38,20 @@ Cette application est couverte par des tests d'intégration écrits avec [Watai]
 Déploiement
 ===========
 
+Le déploiement est géré par [`pm2`](https://github.com/Unitech/PM2).
+
+Pour déployer, il suffit d'exécuter `npm run deploy` depuis une machine possédant une clé SSH autorisée à se connecter au serveur indiqué dans le fichier `ecosystem.json`. Ce fichier contient toute la configuration de l'exécution et du déploiement.
+
 Préparation
 -----------
+
+### Premier déploiement
+
+Au cas où le serveur de destination changerait, passer le paramètre [`setup`](https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#deployment-options) à `npm run deploy` pour initialiser le dossier de déploiement :
+
+```sh
+npm run deploy setup
+```
 
 ### OpenFisca
 

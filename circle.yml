@@ -32,7 +32,7 @@ test:
     - while [ ! -e ~/sauce_is_ready ]; do sleep 1; done:
         parallel: true
     # wait for server
-    - curl --retry 20 --retry-delay 1 -v http://localhost:$PORT:
+    - wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:$PORT:
         parallel: true
     - watai $WATAI_TESTS --config '{"driverCapabilities":{"browserName":"'"$browser_name"'","version":"'"$browser_version"'"}}':
         parallel: true

@@ -29,6 +29,11 @@ Usage
 npm start
 ```
 
+Test
+----
+
+Cette application est couverte par des tests d'intégration écrits avec [Watai](https://github.com/MattiSG/Watai) dans `test/integration`. Pour les exécuter, suivez le [guide d'installation de Watai](https://github.com/MattiSG/Watai#installing) puis exécutez `npm test`.
+
 
 Déploiement
 ===========

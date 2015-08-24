@@ -1,0 +1,5 @@
+{
+    "name": "Mes Aides",
+    "baseURL": "http://localhost:9000",
+    "browser": "chrome"
+}

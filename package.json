@@ -14,10 +14,13 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "watai test/integration"
   },
   "dependencies": {
     "hapi": "^9.0.3",
     "inert": "^3.0.1"
+  },
+  "devDependencies": {
+    "watai": "^0.6.2"
   }
 }

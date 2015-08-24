@@ -38,7 +38,6 @@ Application
 git clone https://github.com/sgmap/mes-aides-ui.git
 cd mes-aides-ui
 npm install
-bower install
 grunt build
 ```
 

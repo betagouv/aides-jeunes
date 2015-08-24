@@ -16,6 +16,7 @@
   "scripts": {
     "start": "pm2 start ecosystem.json",
     "stop": "pm2 stop ecosystem.json",
+    "pretest": "npm start",
     "test": "watai test/integration"
   },
   "dependencies": {

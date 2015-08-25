@@ -8,9 +8,8 @@
 <form method="post" name="form" novalidate ng-submit="submit()">
   <div class="ressource-types-block">
     <div class="capture-{{ category.id }}" ng-repeat="category in ressourceCategories">
-      <div class="capture-title">
-        <h2>{{ category.label }}</h2>
-      </div>
+      <details>
+        <summary class="capture-title">{{ category.label }}</summary>
       <div class="capture-rows">
         <button
           type="button"
@@ -21,6 +20,7 @@
           {{ ressourceType.label }}
         </button>
       </div>
+    </details>
     </div>
     <div class="text-right">
       <button type="submit" class="btn btn-primary">Valider <i class="fa fa-arrow-circle-right"></i></button>

@@ -1,7 +1,6 @@
 machine:
   environment:
     PORT: 9000
-    MASTER_BRANCH: rewrite
     browser_name: $(case $CIRCLE_NODE_INDEX in 0) browser='chrome' ;; 1) browser='firefox' ;; 2) browser='internet explorer' ;; 3) browser='iphone' ;; esac; echo $browser)
     browser_version: $(case $CIRCLE_NODE_INDEX in 3) version='8.2' ;; esac; echo $version)
     SAUCE_LOG: $CIRCLE_ARTIFACTS/sauce_log.txt
@@ -44,3 +43,9 @@ test:
         parallel: true
     - while ! grep -q 'Goodbye' $SAUCE_LOG; do sleep 1; done:  # wait until Sauce Connect closes the tunnel
         parallel: true
+
+deployment:
+  production:
+    branch: rewrite
+    commands:
+      - npm run deploy

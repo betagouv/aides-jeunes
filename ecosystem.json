@@ -1,0 +1,28 @@
+{
+    "apps" : [
+        {
+            "name"       : "Mes Aides",
+            "script"     : "server.js",
+            "next_gen_js": true,
+            "exec_mode"  : "cluster_mode",
+            "instances"  : 1,
+            "env": {
+                "PORT": 9000
+            },
+            "env_production": {
+                "NODE_ENV": "production",
+                "PORT": 8200
+            }
+        }
+    ],
+    "deploy" : {
+        "production" : {
+            "user"        : "mes-aides",
+            "host"        : "sgmap.fr",
+            "ref"         : "origin/rewrite",
+            "repo"        : "https://github.com/sgmap/mes-aides-ui.git",
+            "path"        : "~/mes-aides-ui",
+            "post-deploy" : "npm install --prod && pm2 startOrRestart ecosystem.json --env production"
+        }
+    }
+}

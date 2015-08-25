@@ -12,3 +12,7 @@ ecmaFeatures:
   restParams:      true
   spread:          true
   templateStrings: true
+rules:
+  comma-dangle:
+    - 2
+    - always-multiline

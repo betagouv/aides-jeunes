@@ -2,8 +2,6 @@ export default [
 {
     method: 'GET',
     path: '/',
-    handler: {
-        file: 'index.html'
-    }
+    handler: { file: 'index.html' },
 },
 ]

@@ -9,20 +9,20 @@ var server = new hapi.Server({
     connections: {
         routes: {
             files: {
-                relativeTo: path.join(__dirname, 'static')
-            }
-        }
+                relativeTo: path.join(__dirname, 'static'),
+            },
+        },
     },
     debug: {
-        request: ['error']
-    }
+        request: ['error'],
+    },
 });
 
 
 server.register(inert, (err) => { if (err) throw err });   // serve static files
 
 server.connection({
-    port: process.env.PORT
+    port: process.env.PORT,
 });
 
 server.route(require('./routes'));

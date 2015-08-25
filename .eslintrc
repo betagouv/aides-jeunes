@@ -1,0 +1,19 @@
+env:
+  node: true
+ecmaFeatures:
+  arrowFunctions:  true
+  blockBindings:   true
+  classes:         true
+  defaultParams:   true
+  destructuring:   true
+  forOf:           true
+  generators:      true
+  modules:         true
+  restParams:      true
+  spread:          true
+  templateStrings: true
+rules:
+  comma-dangle:
+    - 2
+    - always-multiline
+  eqeqeq: 0

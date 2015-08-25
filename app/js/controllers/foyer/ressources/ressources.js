@@ -2,9 +2,7 @@
 
 angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $state, ressourceTypes, categoriesRnc, SituationService, IndividuService, RessourceService) {
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
-    var momentFinAnnee = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1);
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
-    $scope.finAnneeGlissante = momentFinAnnee.format('MMMM YYYY');
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
     $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');

@@ -15,9 +15,7 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
         },
         link: function(scope, element, attrs, ngModel) {
             var momentDebutAnnee = moment(scope.dateDeValeur).subtract('years', 1);
-            var momentFinAnnee = moment(scope.dateDeValeur).startOf('month').subtract('months', 1);
-            scope.debutAnnee = momentDebutAnnee.format('MMMM YYYY');
-            scope.finAnnee = momentFinAnnee.format('MMMM YYYY');
+            scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
             scope.months = SituationService.getMonths(scope.dateDeValeur);
             scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
 

@@ -1,6 +1,5 @@
 'use strict';
 
-/* global _ */
 
 describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
 
@@ -26,22 +25,6 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             expect(scope.individuRefs.length).toBe(2);
             expect(scope.individuRefs[0].individu).toBe(demandeur);
             expect(scope.individuRefs[1].individu).toBe(conjoint);
-        });
-
-        it('should init all amounts to zero', function() {
-            // given
-            var scope = { situation: { individus: [{ role: 'demandeur' }] }};
-
-            // when
-            inject(function($controller) {
-                $controller('FoyerRessourceYearMoins2Ctrl', {
-                    $scope: scope
-                });
-            });
-
-            // then
-            expect(scope.individuRefs[0].rnc.length).toBeGreaterThan(0);
-            expect(_.all(scope.individuRefs[0].rnc, function(rnc) { return rnc.montant === 0; })).toBe(true);
         });
     });
 

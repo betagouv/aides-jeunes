@@ -17,8 +17,9 @@
     "start": "pm2 start ecosystem.json",
     "stop": "pm2 stop ecosystem.json",
     "deploy": "pm2 deploy ecosystem.json production",
-    "pretest": "npm start",
-    "test": "npm run lint && watai test/integration",
+    "pretest": "npm start && pm2 start node_modules/.bin/selenium && sleep 10 || echo 'Selenium supposedly started'",
+    "test": "watai test/integration",
+    "stop-test": "pm2 stop node_modules/.bin/selenium",
     "lint": "eslint . --ignore-pattern=test/integration/*"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
   "devDependencies": {
     "eslint": "^1.2.1",
     "pm2": "^0.14.7",
+    "selenium-server": "^2.47.1",
     "watai": "^0.6.2"
   }
 }

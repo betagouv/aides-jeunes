@@ -24,8 +24,11 @@
   },
   "dependencies": {
     "babel": "^5.8.21",
+    "handlebars": "^3.0.3",
     "hapi": "^9.0.3",
-    "inert": "^3.0.1"
+    "inert": "^3.0.1",
+    "js-yaml": "^3.4.0",
+    "vision": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^1.2.1",

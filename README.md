@@ -25,9 +25,9 @@ npm install
 Usage
 -----
 
-```sh
-npm start
-```
+Démarrer le serveur : `npm start`.
+
+Arrêter le serveur : `npm stop`.
 
 Test
 ----

@@ -35,6 +35,7 @@ test:
         parallel: true
 
   override:
+    - npm run lint
     - watai $WATAI_TESTS --config '{"driverCapabilities":{"browserName":"'"$browser_name"'","version":"'"$browser_version"'"}}':
         parallel: true
 

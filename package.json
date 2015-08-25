@@ -18,7 +18,7 @@
     "stop": "pm2 stop ecosystem.json",
     "deploy": "pm2 deploy ecosystem.json production",
     "pretest": "npm start",
-    "test": "watai test/integration",
+    "test": "npm run lint && watai test/integration",
     "lint": "eslint . --ignore-pattern=test/integration/*"
   },
   "dependencies": {

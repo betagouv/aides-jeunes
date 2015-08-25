@@ -3,8 +3,9 @@
 ---
 
 aide_logement:
-  label: Aides au Logement
+  name: Aides au Logement
   acronym: AL
+  prefix: les
   url: https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-etcadre-de-vie/les-aides-au-logement-0
   conditions:
     - Résider au moins 8 mois par an dans le logement que vous avez décrit.
@@ -18,34 +19,39 @@ aide_logement:
       solution: Le <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> vous donnera des estimations selon les différentes conventions possibles de votre foyer.
 
 acs:
-  label: Aide pour une Complémentaire Santé
+  name: Aide pour une Complémentaire Santé
   acronym: ACS
+  prefix: l'
   url: http://www.cmu.fr/acs.php
   conditions:
     - Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.
 
 af:
-  label: Allocations Familiales
+  name: Allocations Familiales
   acronym: AF
+  prefix: l'
   url: http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petiteenfance/les-
   conditions:
     - Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.
 
 asf:
-  label: Allocation de Soutien Familial
+  name: Allocation de Soutien Familial
   acronym: ASF
+  prefix: l'
   url: http://vosdroits.service-public.fr/particuliers/F815.xhtml
   conditions:
     - Ne pas toucher l’intégralité d’une pension alimentaire qui vous aurait été attribuée par une décision de justice, ou que cette pension soit d’un montant inférieur à celui de l’ASF.
 
 asi:
-  label: Allocation Supplémentaire d’Invalidité
+  name: Allocation Supplémentaire d’Invalidité
   acronym: ASI
+  prefix: l'
   url: http://vosdroits.service-public.fr/particuliers/F16940.xhtml
 
 aspa:
-  label: Allocation de Solidarité aux Personnes Âgées
+  name: Allocation de Solidarité aux Personnes Âgées
   acronym: ASPA
+  prefix: l'
   url: http://vosdroits.service-public.fr/particuliers/F16871.xhtml
   conditions:
     - Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.
@@ -53,40 +59,47 @@ aspa:
     - Votre conjoint doit avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles il ou elle a droit.
 
 ass:
-  label: Allocation de Solidarité Spécifique
+  name: Allocation de Solidarité Spécifique
   acronym: ASS
+  prefix: l'
   url: http://vosdroits.service-public.fr/particuliers/F12484.xhtml
 
 bourse_college:
-  label: Bourse de collège
+  name: Bourse de collège
   acronym: Bourse collège
+  prefix: la
   url: http://www.education.gouv.fr/cid88/les-aides-financieres-au-college.html#Les%20bourses%20de%20coll%C3%A8ge
 
 bourse_lycee:
-  label: Bourse de lycée
+  name: Bourse de lycée
   acronym: Bourse lycée
+  prefix: la
   url: http://www.education.gouv.fr/cid151/aides-financieres-au-lycee.html#Les%20bourses%20de%20lycée
 
 cf:
-  label: Complément Familial
+  name: Complément Familial
   acronym: CF
+  prefix: le
   url: http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf
 
 cmu_c:
-  label: Couverture Maladie Universelle Complémentaire
+  name: Couverture Maladie Universelle Complémentaire
   acronym: CMU-C
+  prefix: la
   url: http://www.cmu.fr/cmu-complementaire.php
   conditions:
     - Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.
 
 paje_base:
-  label: Prestation d’Accueil du Jeune Enfant - Allocation de base
+  name: Prestation d’Accueil du Jeune Enfant - Allocation de base
   acronym: PAJE-BASE
+  prefix: la
   url: https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/l-allocation-de-base
 
 rsa:
-  label: Revenu de Solidarité Active
+  name: Revenu de Solidarité Active
   acronym: RSA
+  prefix: le
   url: http://vosdroits.service-public.fr/particuliers/N19775.xhtml
   conditions:
     - Résider en France plus de 9 mois par an.

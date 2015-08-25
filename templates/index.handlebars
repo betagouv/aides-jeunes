@@ -14,11 +14,21 @@
     {{> favicons path="/static/favicon" }}
 </head>
 <body>
-    <h1>Simulez {{ aidesCount }} prestations sociales en moins de 5 minutes.</h1>
+    <section>
+        <h1>Simulez {{ aidesCount }} prestations sociales en moins de 5 minutes.</h1>
 
-    <a href="#details">En savoir plus</a>
-    <a href="/simulation/new">Commencer une simulation</a>
+        <a href="#details">En savoir plus</a>
+        <a href="/simulation/new">Commencer une simulation</a>
 
-    <p>En un seul questionnaire simple, vous obtiendrez un montant mensuel estimé et des liens vers toutes les démarches.</p>
+        <p>En un seul questionnaire simple, vous obtiendrez un montant mensuel estimé et des liens vers toutes les démarches.</p>
+    </section>
+
+    <section>
+        <h2>Aides calculées</h2>
+
+        {{#each aides as |aide|}}
+            {{> aide aide}}
+        {{/each}}
+    </section>
 </body>
 </html>

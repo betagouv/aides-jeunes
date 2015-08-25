@@ -13,6 +13,7 @@ export default [
             let aides = yaml.safeLoad(data);
 
             reply.view('index', {
+                aides: aides,
                 aidesCount: Object.keys(aides).length,
             });
         });

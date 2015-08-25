@@ -4,5 +4,6 @@ scenario: [
     {
         'HomepageWidget.title'    : true,
         'HomepageWidget.startLink': true,
+        'HomepageWidget.cmu'      : true,
     }
 ]

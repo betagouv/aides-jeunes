@@ -19,8 +19,9 @@ server.register(vision, (err) => {
 
     server.views({
         engines: { handlebars: require('handlebars') },
-        relativeTo: __dirname,
         path: 'templates',
+        partialsPath: 'templates/partials',
+        relativeTo: __dirname,
     });
 });
 

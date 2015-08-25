@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "babel": "^5.8.21",
+    "git-rev": "^0.2.1",
     "handlebars": "^3.0.3",
     "hapi": "^9.0.3",
     "inert": "^3.0.1",

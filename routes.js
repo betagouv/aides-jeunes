@@ -1,6 +1,7 @@
 import fs from 'fs';
 
 import yaml from 'js-yaml';
+import git from 'git-rev';
 
 
 export default [
@@ -24,6 +25,19 @@ export default [
         directory: {
             path: './static',
         },
+    },
+},
+{
+    method: 'GET',
+    path: '/debug',
+    handler: (request, reply) => {
+        git.long((sha) => {
+            reply({
+                hapi: request.server.version,
+                rev: sha,
+                server: request.server.info,
+            });
+        });
     },
 },
 ]

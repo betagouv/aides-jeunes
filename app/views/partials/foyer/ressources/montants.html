@@ -64,8 +64,7 @@
               step="100"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.montantsMensuels[$index]"
-              ng-change="updateMontantAnnuel(ressource)">
+              ng-model="ressource.montantsMensuels[$index]">
             <span class="input-group-addon">€</span>
           </span>
           <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantsMensuels[$index])">

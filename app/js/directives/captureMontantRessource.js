@@ -26,13 +26,6 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             ngModel.$render = function() {
                 scope.ressource = ngModel.$viewValue;
             };
-
-            scope.updateMontantAnnuel = function(ressource) {
-                var somme = ressource.montantsMensuels[0] + ressource.montantsMensuels[1] + ressource.montantsMensuels[2];
-                if (!_.isNaN(somme)) {
-                    ressource.montantAnnuel = Math.round(4 * somme);
-                }
-            };
         }
     };
 });

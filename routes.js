@@ -17,4 +17,13 @@ export default [
         });
     },
 },
+{
+    method: 'GET',
+    path: '/static/{param*}',
+    handler: {
+        directory: {
+            path: './static',
+        },
+    },
+},
 ]

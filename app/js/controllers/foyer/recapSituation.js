@@ -238,6 +238,4 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     if ($scope.situation.ressourcesYearMoins2Captured) {
         buildRecapRnc();
     }
-
-    $scope.$on('ressourcesYearMoins2Captured', buildRecapRnc);
 });

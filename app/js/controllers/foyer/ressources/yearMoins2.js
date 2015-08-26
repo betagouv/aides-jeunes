@@ -44,7 +44,6 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
 
             if (! _.isEmpty(individuRef.rnc)) {
                 $scope.situation.ressourcesYearMoins2Captured = true;
-                $scope.$broadcast('ressourcesYearMoins2Captured');
             }
 
             individuRef.rnc.forEach(function(rnc) {

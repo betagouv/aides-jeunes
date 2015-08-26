@@ -6,13 +6,13 @@
   </p>
   <form class="form-horizontal" novalidate ng-submit="submit()">
     <div class="row">
-      <div class="col-md-6" ng-repeat="individuRef in individuRefs">
+      <div class="col-md-12" ng-repeat="individuRef in individuRefs">
         <h2>{{ individuRef.label }}</h2>
         <div class="form-group" ng-repeat="rnc in individuRef.rnc">
-          <label class="control-label col-sm-6" for="{{ rnc.categorie.id }}-{{ individuRef.individu.role }}">
+          <label class="control-label col-sm-3" for="{{ rnc.categorie.id }}-{{ individuRef.individu.role }}">
             {{ rnc.categorie.label }}
           </label>
-          <div class="col-sm-6">
+          <div class="col-sm-3">
             <span class="input-group">
               <input
                 type="number"
@@ -23,6 +23,9 @@
                 select-on-focus>
               <span class="input-group-addon hidden-xs">€</span>
             </span>
+          </div>
+          <div class="col-sm-6">
+            <p class="help-block" ng-show ="{{ getDefaultValue(individuRef, rnc.categorie.id) }}">Estimation basée sur vos revenus depuis {{ debutAnneeGlissante }} : {{ getDefaultValue(individuRef, rnc.categorie.id) }}&nbsp€</p>
           </div>
         </div>
       </div>

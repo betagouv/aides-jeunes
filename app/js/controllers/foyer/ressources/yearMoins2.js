@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService) {
-    $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
+    var today = $scope.situation.dateDeValeur;
+    $scope.yearMoins2 = moment(today).subtract('years', 2).format('YYYY');
+    $scope.debutAnneeGlissante = moment(today).subtract('years', 1).format('MMMM YYYY');
 
     var parents = IndividuService.getParents($scope.situation.individus);
     $scope.individuRefs = [];
@@ -18,6 +20,15 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
         });
         $scope.individuRefs.push(individuRef);
     });
+
+    $scope.getDefaultValue = function(individuRef, rncID) {
+        var mapping = {
+            rncRevenusActivite: 'revenusSalarie',
+            rncPensionsRetraitesRentes: 'pensionsRetraitesRentes',
+            rncAutresRevenus: 'allocationsChomage'
+        };
+        return individuRef.individu.ressourcesApproxAnnuel[mapping[rncID]];
+    };
 
     $scope.submit = function() {
         $scope.individuRefs.forEach(function(individuRef) {

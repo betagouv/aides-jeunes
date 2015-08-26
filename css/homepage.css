@@ -1,0 +1,10 @@
+body {
+    background-image: url('/static/homepage.jpg');
+    background-color: rgb(214, 155, 68);
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+}
+
+#intro {
+    height: 100%;
+}

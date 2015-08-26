@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+    <link rel="stylesheet" type="text/css" href="css/homepage.css">
+
     {{> metadata name="Mes Aides"
         title="Calculer mes aides sociales"
         description="Estimez vos droits aux prestations sociales en moins de 5 minutes."
@@ -14,7 +16,7 @@
     {{> favicons path="/static/favicon" }}
 </head>
 <body>
-    <section>
+    <section id="intro">
         <h1>Simulez vos droits à {{ aidesCount }} prestations sociales. En moins de 5 minutes.</h1>
 
         <a href="#details">Comment est-ce possible ?</a>

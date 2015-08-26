@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+    <link rel="stylesheet" type="text/css" href="/css/homepage.css">
+
     <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/reset.min.css">
     <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/site.min.css">
 
@@ -24,28 +26,6 @@
     <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/sidebar.min.css">
     <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/transition.min.css">
 
-    <style type="text/css">
-        .masthead.segment {
-          min-height: 700px;
-          padding: 1em 0em;
-        }
-
-        .masthead .ui.menu .ui.button {
-          margin-left: 0.5em;
-        }
-
-        .masthead h1.ui.header {
-          margin-top: 2em;
-          margin-bottom: 0.5em;
-          font-size: 4em;
-          font-weight: normal;
-        }
-
-        #aides h2 {
-            margin-top: 1em;
-            margin-bottom: 2em;
-        }
-    </style>
 
     {{> metadata name="Mes Aides"
         title="Calculer mes aides sociales"
@@ -56,9 +36,9 @@
     {{> favicons path="/static/favicon" }}
 </head>
 <body>
-    <div class="ui inverted vertical masthead center aligned segment">
+    <div class="ui vertical masthead center aligned segment">
         <div class="ui container">
-            <h1 class="ui inverted header">
+            <h1 class="ui header">
                 Évaluez vos droits à {{ aidesCount }} aides sociales.<br>
                 En moins de 6 minutes.
             </h1>

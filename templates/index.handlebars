@@ -5,7 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="stylesheet" type="text/css" href="css/homepage.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/reset.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/site.min.css">
+
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/container.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/grid.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/header.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/image.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/menu.min.css">
+
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/divider.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/dropdown.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/segment.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/button.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/input.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/list.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/icon.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/sidebar.min.css">
+    <link rel="stylesheet" type="text/css" href="//oss.maxcdn.com/semantic-ui/2.0.8/components/transition.min.css">
+
+    <style type="text/css">
+        .masthead.segment {
+          min-height: 700px;
+          padding: 1em 0em;
+        }
+
+        .masthead .ui.menu .ui.button {
+          margin-left: 0.5em;
+        }
+
+        .masthead h1.ui.header {
+          margin-top: 2em;
+          margin-bottom: 0.5em;
+          font-size: 4em;
+          font-weight: normal;
+        }
+
+        #aides h2 {
+            margin-top: 1em;
+            margin-bottom: 2em;
+        }
+    </style>
 
     {{> metadata name="Mes Aides"
         title="Calculer mes aides sociales"
@@ -16,21 +56,71 @@
     {{> favicons path="/static/favicon" }}
 </head>
 <body>
-    <section id="intro">
-        <h1>Simulez vos droits à {{ aidesCount }} prestations sociales. En moins de 5 minutes.</h1>
+    <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui text container">
+            <h1 class="ui inverted header">Évaluez vos droits à {{ aidesCount }} aides sociales. En moins de 5 minutes.</h1>
 
-        <a href="#details">Comment est-ce possible ?</a>
-        <a href="/simulation/new">Commencer une simulation</a>
+            <a class="ui huge secondary button" href="#details">Comment est-ce possible ?</a>
+            <a class="ui huge primary button" href="/simulation/new">Commencer une simulation <i class="right arrow icon"></i></a>
 
-        <p>En un seul questionnaire simple, vous obtiendrez un montant mensuel estimé et des liens vers toutes les démarches.</p>
-    </section>
+            <h2>Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous guidera dans les démarches.</h2>
+        </div>
+    </div>
 
-    <section>
-        <h2>Aides calculées</h2>
+    <div class="ui vertical segment">
+        <div class="ui bottom aligned grid container">
+            <div class="row">
+                <div class="eight wide column">
+                    <h3>Nous luttons contre le non-recours</h3>
+                    <p>Nous croyons qu'il est possible d'absorber une partie de la complexité administrative dans des logiciels offrant une expérience utilisateur de qualité.</p>
 
-        {{#each aides as |aide|}}
-            {{> aide aide}}
-        {{/each}}
-    </section>
+                    <h3>Nous équipons les médiateurs</h3>
+                    <p>Nous concevons nos outils pour qu'ils puissent être utilisés par le grand public, mais aussi par les professionnels de l'aide sociale.</p>
+                    <p>En les déchargeant de la veille législative et de la connaissance des règles administratives, nous leur permettons de se concentrer sur le plus important : l'humain.</p>
+
+                    <h3>Nous construisons un bien commun</h3>
+                    <p>Notre <a href="https://github.com/sgmap/mes-aides-ui/">code</a> est <a href="https://fr.wikipedia.org/wiki/Logiciel_libre" title="Licence Affero GPL">libre</a>. Nous enrichissons un <a href="http://www.openfisca.fr">moteur de calcul</a> libre et ouvert utilisé par des chercheurs en économie et d'autres services publics.</p>
+
+                    <h2>Nous sommes une Startup d'État.</h2>
+                </div>
+
+                <img class="six wide right floated column" src="/static/favicon/logo.jpg">
+            </div>
+
+            <div class="row">
+                <div class="center aligned column">
+                    <a class="ui big button">En savoir plus sur notre démarche</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="aides" class="ui vertical segment">
+        <h2 class="ui center aligned header">
+            Aides calculées
+            <div class="sub header">Nous ajoutons régulièrement de nouvelles aides</div>
+        </h2>
+
+        <div class="ui grid container">
+            {{#each aides as |aide|}}
+                <div class="four wide column">
+                    {{> aide aide}}
+                </div>
+            {{/each}}
+
+            <div class="four wide column grey">
+                <h3>Une aide qui vous tient à cœur manque à cette liste&nbsp;? Signalez-la&nbsp;!</h3>
+                <form action="mailto:mes-aides@sgmap.fr">
+                    <input type="hidden" name="subject" value="Suggestion_aide">
+
+                    <div class="ui fluid action input">
+                        <input type="text" name="body" placeholder="Nom d'aide à ajouter…">
+                        <button type="submit" class="ui button">Suggérer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

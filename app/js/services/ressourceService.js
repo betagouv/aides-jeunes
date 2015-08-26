@@ -24,6 +24,10 @@ angular.module('ddsApp').factory('RessourceService', function() {
                     periode: periode,
                     montant: montantMensuelEtale
                 });
+                if (!individu.ressourcesApproxAnnuel) {
+                    individu.ressourcesApproxAnnuel = {};
+                }
+                individu.ressourcesApproxAnnuel[ressource.type.id] = ressource.montantAnnuel;
             }
 
             if (!ressource.onGoing) {

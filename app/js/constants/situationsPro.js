@@ -59,7 +59,7 @@ angular.module('ddsCommon').constant('situationsPro', [
         isStatutSpecifique: true
     },
     {
-        id: 'perte_autonomie',
+        id: 'perteAutonomie',
         label: 'En perte d\'autonomie',
         isStatutSpecifique: true
     },

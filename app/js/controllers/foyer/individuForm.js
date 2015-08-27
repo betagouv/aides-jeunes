@@ -15,7 +15,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         options.capturePrenom = true;
 
         $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {
-          return (statut.id !== 'retraite') && (statut.id !== 'perte_autonomie');
+          return (statut.id !== 'retraite') && (statut.id !== 'perteAutonomie');
         });
     }
     $scope.options = options;
@@ -154,7 +154,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
 
     $scope.capturePerteAutonomie = function () {
-        return $scope.selectedStatuts['perte_autonomie'];
+        return $scope.selectedStatuts.perteAutonomie;
     };
 
     $scope.captureScolarite = function(form) {

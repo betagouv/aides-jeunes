@@ -265,6 +265,19 @@
       </label>
     </div>
   </div>
+  <div class="form-group from-group-lg" ng-if="capturePerteAutonomie()">
+    <label class="control-label col-sm-4" for="niveauPerteAutonomie">
+      Quel est votre niveau de dépendance (grille Aggir) ?
+    </label>
+    <div class="col-sm-4">
+      <select
+        id="niveauPerteAutonomie"
+        class="form-control"
+        ng-model="individu.niveauPerteAutonomie"
+        ng-options="perteAutonomie.id as perteAutonomie.label for perteAutonomie in perteAutonomieOptions">
+      </select>
+    </div>
+  </div>
 
   <div class="pull-right">
     <button type="submit" class="btn btn-primary">

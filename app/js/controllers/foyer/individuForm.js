@@ -15,7 +15,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         options.capturePrenom = true;
 
         $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {
-          return statut.id !== 'retraite';
+          return (statut.id !== 'retraite') && (statut.id !== 'perte_autonomie');
         });
     }
     $scope.options = options;
@@ -34,6 +34,32 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         {
             id: 'lycee',
             label: 'Au lycée / En CAP / En CPA'
+        }
+    ];
+    $scope.perteAutonomieOptions = [
+        {
+            id: 1,
+            label: 'GIR1 - dépendance totale, mentale et corporelle'
+        },
+        {
+            id: 2,
+            label: 'GIR2 - grande dépendance'
+        },
+        {
+            id: 3,
+            label: 'GIR3 - dépendance corporelle'
+        },
+        {
+            id: 4,
+            label: 'GIR4 - dépendance corporelle partielle'
+        },
+        {
+            id: 5,
+            label: 'GIR5 - dépendance légère'
+        },
+        {
+            id: 6,
+            label: 'GIR6 - pas de dépendance notable ou suffisante'
         }
     ];
 
@@ -124,6 +150,11 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         if (! isIndividuParent && form.dateDeNaissance.$valid) {
             return IndividuService.age($scope.individu) >= 1;
         }
+    };
+
+
+    $scope.capturePerteAutonomie = function () {
+        return $scope.selectedStatuts['perte_autonomie'];
     };
 
     $scope.captureScolarite = function(form) {

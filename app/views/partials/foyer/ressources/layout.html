@@ -1,8 +1,8 @@
 <div class="frame-foyer">
   <ui-view>
-    <h1>Ressources de votre foyer</h1>
+    <h1>Ressources de votre foyer depuis {{ debutAnneeGlissante }}</h1>
     <p>
-      Indiquez vos ressources <strong>nettes</strong> perçues <strong>entre {{ debutAnneeGlissante }} et {{ finAnneeGlissante }}</strong>, en France comme à l'étranger.
+      Indiquez toutes vos ressources <strong>nettes</strong> perçues en France comme à l'étranger.
     </p>
     <form method="post" name="form" novalidate ng-submit="submit(form)">
       <div class="ressources-individu" ng-repeat="(individuIndex, individuVM) in individusVM">

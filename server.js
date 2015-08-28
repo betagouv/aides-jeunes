@@ -19,6 +19,7 @@ server.register(vision, (err) => {
 
     server.views({
         engines: { handlebars: require('handlebars') },
+        layout: true,
         path: 'templates',
         partialsPath: 'templates/partials',
         relativeTo: __dirname,

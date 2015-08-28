@@ -13,6 +13,7 @@ angular.module('ddsApp').factory('RessourceService', function() {
                     periode: months[i].id,
                     montant: montant
                 });
+
             });
 
             // injection du montant annuel étalé sur les 9 mois restants
@@ -24,10 +25,10 @@ angular.module('ddsApp').factory('RessourceService', function() {
                     periode: periode,
                     montant: montantMensuelEtale
                 });
-                if (!individu.ressourcesApproxAnnuel) {
-                    individu.ressourcesApproxAnnuel = {};
+                if (!individu.ressourcesYearlyApproximation) {
+                    individu.ressourcesYearlyApproximation = {};
                 }
-                individu.ressourcesApproxAnnuel[ressource.type.id] = ressource.montantAnnuel;
+                individu.ressourcesYearlyApproximation[ressource.type.id] = ressource.montantAnnuel;
             }
 
             if (!ressource.onGoing) {

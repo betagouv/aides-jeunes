@@ -1,6 +1,5 @@
 'use strict';
 
-
 describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
 
     beforeEach(function() {
@@ -25,6 +24,22 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             expect(scope.individuRefs.length).toBe(2);
             expect(scope.individuRefs[0].individu).toBe(demandeur);
             expect(scope.individuRefs[1].individu).toBe(conjoint);
+        });
+
+        it('should not save anything if the user did not fill his.her income', function() {
+            // given
+            var scope = { situation: { individus: [{ role: 'demandeur' }] }, $emit: function() {}};
+
+            // when
+            inject(function($controller) {
+                $controller('FoyerRessourceYearMoins2Ctrl', {
+                    $scope: scope
+                });
+            });
+            scope.submit();
+            // then
+            expect(scope.individuRefs[0].rnc.length).toBe(0);
+
         });
     });
 

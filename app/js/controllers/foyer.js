@@ -82,8 +82,6 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         if (SituationService.hasEnfantScolarise($scope.situation)) {
             $state.go('foyer.rfr');
         } else {
-            $scope.situation.ressourcesYearMoins2Captured = true;
-            $scope.$broadcast('ressourcesYearMoins2Captured');
             goToResultat();
         }
     });

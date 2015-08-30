@@ -1,7 +1,5 @@
 'use strict';
 
-/* global _ */
-
 describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
 
     beforeEach(function() {
@@ -28,9 +26,9 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             expect(scope.individuRefs[1].individu).toBe(conjoint);
         });
 
-        it('should init all amounts to zero', function() {
+        it('should not save anything if the user did not fill his.her income', function() {
             // given
-            var scope = { situation: { individus: [{ role: 'demandeur' }] }};
+            var scope = { situation: { individus: [{ role: 'demandeur' }] }, $emit: function() {}};
 
             // when
             inject(function($controller) {
@@ -38,10 +36,10 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
                     $scope: scope
                 });
             });
-
+            scope.submit();
             // then
-            expect(scope.individuRefs[0].rnc.length).toBeGreaterThan(0);
-            expect(_.all(scope.individuRefs[0].rnc, function(rnc) { return rnc.montant === 0; })).toBe(true);
+            expect(scope.individuRefs[0].rnc.length).toBe(0);
+
         });
     });
 

@@ -234,6 +234,10 @@ angular.module('ddsCommon').constant('categoriesRnc', [
         label: 'Pensions, retraites, rentes'
     },
     {
+        id: 'fraisReelsDeductibles',
+        label: 'Frais réels déductibles'
+    },
+    {
         id: 'rncPensionsAlimentaires',
         label: 'Pensions alimentaires reçues'
     },

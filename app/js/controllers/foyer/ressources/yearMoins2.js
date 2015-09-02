@@ -27,6 +27,7 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
             rncPensionsRetraitesRentes: 'pensionsRetraitesRentes',
             rncAutresRevenus: 'allocationsChomage'
         };
+        individuRef.individu.ressourcesYearlyApproximation = individuRef.individu.ressourcesYearlyApproximation || {};
         return individuRef.individu.ressourcesYearlyApproximation[mapping[rncID]];
     };
 

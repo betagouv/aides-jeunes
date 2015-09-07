@@ -9,33 +9,20 @@ const DEFAULT_RENDER_CONTEXT = Object.seal({
 });
 
 
-function context(data) {
-    var result = {};
-
-    for (let key in DEFAULT_RENDER_CONTEXT)
-        result[key] = DEFAULT_RENDER_CONTEXT[key];
-
-    for (let key in data)
-        result[key] = data[key];
-
-    return result;
-}
-
-
 export default [
 {
     method: 'GET',
     path: '/',
-    handler: (request, reply) => {
-        fs.readFile('./config/aides.yaml', (err, data) => {
-            let aides = yaml.safeLoad(data);
+    handler: (() => {
+        let aides = yaml.safeLoad(fs.readFileSync('./config/aides.yaml'));
 
-            reply.view('index', context({
+        return (request, reply) => {
+            view(reply, 'homepage', {
                 aides: aides,
                 aidesCount: Object.keys(aides).length,
-            }));
-        });
-    },
+            });
+        }
+    })(),
 },
 {
     method: 'GET',
@@ -69,3 +56,15 @@ export default [
     },
 },
 ]
+
+
+function view(reply, name, data = {}) {
+    let context = Object.create(DEFAULT_RENDER_CONTEXT);  // use prototypal inheritance to avoid costly deep copies
+
+    context.stylesheets = DEFAULT_RENDER_CONTEXT.stylesheets.concat(`/css/${name}`);  // don't push into the parent
+
+    for (let key in data)
+        context[key] = data[key];
+
+    return reply.view(name, context);
+}

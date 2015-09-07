@@ -1,0 +1,13 @@
+# All these paths will be loaded as stylesheets in all pages.
+---
+
+- /css/semantic-ui/reset
+- /css/semantic-ui/site
+- /css/semantic-ui/container
+- /css/semantic-ui/grid
+- /css/semantic-ui/header
+- /css/semantic-ui/image
+- /css/semantic-ui/segment
+- /css/semantic-ui/button
+- /css/semantic-ui/input
+- /css/semantic-ui/icon

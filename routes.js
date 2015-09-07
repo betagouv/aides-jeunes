@@ -3,38 +3,42 @@ import fs from 'fs';
 import yaml from 'js-yaml';
 
 
+const DEFAULT_RENDER_CONTEXT = Object.seal({
+    stylesheets: yaml.safeLoad(fs.readFileSync('./css/common.yaml'))
+});
+
+
 export default [
 {
     method: 'GET',
     path: '/',
-    handler: (request, reply) => {
-        fs.readFile('./config/aides.yaml', (err, data) => {
-            let aides = yaml.safeLoad(data);
+    handler: (() => {
+        let aides = yaml.safeLoad(fs.readFileSync('./config/aides.yaml'));
 
-            reply.view('index', {
+        return (request, reply) => {
+            view(reply, 'homepage', {
                 aides: aides,
                 aidesCount: Object.keys(aides).length,
             });
-        });
+        }
+    })(),
+},
+{
+    method: 'GET',
+    path: '/css/semantic-ui/{component}.css',
+    handler: (request, reply) => {
+        reply.file(`node_modules/semantic-ui-${request.params.component}/${request.params.component}.min.css`);
     },
 },
 {
     method: 'GET',
     path: '/css/{param*}',
-    handler: {
-        directory: {
-            path: './css',
-        },
-    },
+    handler: { directory: { path: './css' } },
 },
 {
     method: 'GET',
     path: '/static/{param*}',
-    handler: {
-        directory: {
-            path: './static',
-        },
-    },
+    handler: { directory: { path: './static' } },
 },
 {
     method: 'GET',
@@ -50,3 +54,15 @@ export default [
     },
 },
 ]
+
+
+function view(reply, name, data = {}) {
+    let context = Object.create(DEFAULT_RENDER_CONTEXT);  // use prototypal inheritance to avoid costly deep copies
+
+    context.stylesheets = DEFAULT_RENDER_CONTEXT.stylesheets.concat(`/css/${name}`);  // don't push into the parent
+
+    for (let key in data)
+        context[key] = data[key];
+
+    return reply.view(name, context);
+}

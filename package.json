@@ -29,6 +29,16 @@
     "hapi": "^9.0.3",
     "inert": "^3.0.1",
     "js-yaml": "^3.4.0",
+    "semantic-ui-button": "^2.0.8",
+    "semantic-ui-container": "^2.0.8",
+    "semantic-ui-grid": "^2.0.8",
+    "semantic-ui-header": "^2.0.8",
+    "semantic-ui-icon": "^2.0.8",
+    "semantic-ui-image": "^2.0.8",
+    "semantic-ui-input": "^2.0.8",
+    "semantic-ui-reset": "^2.0.8",
+    "semantic-ui-segment": "^2.0.8",
+    "semantic-ui-site": "^2.0.8",
     "vision": "^3.0.0"
   },
   "devDependencies": {

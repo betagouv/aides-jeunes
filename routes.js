@@ -1,7 +1,6 @@
 import fs from 'fs';
 
 import yaml from 'js-yaml';
-import git from 'git-rev';
 
 
 export default [
@@ -41,7 +40,7 @@ export default [
     method: 'GET',
     path: '/debug',
     handler: (request, reply) => {
-        git.long((sha) => {
+        require('git-rev').long((sha) => {
             reply({
                 hapi: request.server.version,
                 rev: sha,

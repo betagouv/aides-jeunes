@@ -27,20 +27,12 @@ export default [
 {
     method: 'GET',
     path: '/css/{param*}',
-    handler: {
-        directory: {
-            path: './css',
-        },
-    },
+    handler: { directory: { path: './css' } },
 },
 {
     method: 'GET',
     path: '/static/{param*}',
-    handler: {
-        directory: {
-            path: './static',
-        },
-    },
+    handler: { directory: { path: './static' } },
 },
 {
     method: 'GET',

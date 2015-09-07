@@ -1,63 +1,59 @@
-<div class="ui inverted vertical masthead center aligned segment">
-    <div class="ui container">
-        <h1 class="ui inverted header">
-            Évaluez vos droits à {{ aidesCount }} aides sociales.<br>
-            En moins de 6 minutes.
-        </h1>
+<header class="ui inverted vertical masthead center aligned segment">
+    <h1 class="ui inverted header">
+        Évaluez vos droits à {{ aidesCount }} aides sociales.<br>
+        En moins de 6 minutes.
+    </h1>
 
-        <a class="ui huge secondary inverted button" href="#details">Comment est-ce possible ?</a>
-        <a class="ui huge primary button" href="/simulation/new">Commencer une simulation <i class="right arrow icon"></i></a>
+    <a class="ui huge secondary inverted button" href="#details">Comment est-ce possible ?</a>
+    <a class="ui huge primary button" href="/simulation/new">Commencer une simulation <i class="right arrow icon"></i></a>
 
-        <h2>
-            Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation<br>
-            et vous guidera dans les démarches.
-        </h2>
-    </div>
-</div>
-
-<div class="ui vertical segment">
-    <div class="ui bottom aligned grid container">
-        <div class="row">
-            <div class="eight wide column">
-                <h3>Nous luttons contre le non-recours</h3>
-                <p>Nous croyons qu'il est possible d'absorber une partie de la complexité administrative dans des logiciels offrant une expérience utilisateur de qualité.</p>
-
-                <h3>Nous équipons les médiateurs</h3>
-                <p>Nous concevons nos outils pour qu'ils puissent être utilisés par le grand public, mais aussi par les professionnels de l'aide sociale.</p>
-                <p>En les déchargeant de la veille législative et de la connaissance des règles administratives, nous leur permettons de se concentrer sur le plus important : l'humain.</p>
-
-                <h3>Nous construisons un bien commun</h3>
-                <p>Notre <a href="https://github.com/sgmap/mes-aides-ui/">code</a> est <a href="https://fr.wikipedia.org/wiki/Logiciel_libre" title="Licence Affero GPL">libre</a>. Nous enrichissons un <a href="http://www.openfisca.fr">moteur de calcul</a> libre et ouvert utilisé par des chercheurs en économie et d'autres services publics.</p>
-
-                <h2>Nous sommes une Startup d'État.</h2>
-            </div>
-
-            <img class="six wide right floated column" src="/static/logo.jpg">
-        </div>
-
-        <div class="row">
-            <div class="center aligned column">
-                <a class="ui big button">En savoir plus sur notre démarche</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div id="aides" class="ui vertical segment">
-    <h2 class="ui center aligned header">
-        Aides calculées
-        <div class="sub header">Nous ajoutons régulièrement de nouvelles aides</div>
+    <h2>
+        Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation<br>
+        et vous guidera dans les démarches.
     </h2>
+</header>
+
+<section class="ui vertical bottom aligned grid segment container">
+    <div class="row">
+        <div class="eight wide column">
+            <h3>Nous luttons contre le non-recours</h3>
+            <p>Nous croyons qu'il est possible d'absorber une partie de la complexité administrative dans des logiciels offrant une expérience utilisateur de qualité.</p>
+
+            <h3>Nous équipons les médiateurs</h3>
+            <p>Nous concevons nos outils pour qu'ils puissent être utilisés par le grand public, mais aussi par les professionnels de l'aide sociale.</p>
+            <p>En les déchargeant de la veille législative et de la connaissance des règles administratives, nous leur permettons de se concentrer sur le plus important : l'humain.</p>
+
+            <h3>Nous construisons un bien commun</h3>
+            <p>Notre <a href="https://github.com/sgmap/mes-aides-ui/">code</a> est <a href="https://fr.wikipedia.org/wiki/Logiciel_libre" title="Licence Affero GPL">libre</a>. Nous enrichissons un <a href="http://www.openfisca.fr">moteur de calcul</a> libre et ouvert utilisé par des chercheurs en économie et d'autres services publics.</p>
+
+            <h2>Nous sommes une Startup d'État.</h2>
+        </div>
+
+        <img class="six wide right floated column" src="/static/logo.jpg">
+    </div>
+
+    <footer class="row">
+        <div class="center aligned column">
+            <a class="ui big button">En savoir plus sur notre démarche</a>
+        </div>
+    </footer>
+</section>
+
+
+<section id="aides" class="ui vertical segment">
+    <header class="ui center aligned header">
+        <h2>Aides calculées</h2>
+        <div class="sub header">Nous ajoutons régulièrement de nouvelles aides</div>
+    </header>
 
     <div class="ui stackable grid container">
         {{#each aides as |aide|}}
-            <div class="four wide column">
+            <article class="four wide column">
                 {{> aide aide}}
-            </div>
+            </article>
         {{/each}}
 
-        <div class="four wide column grey">
+        <article class="four wide column grey">
             <h3>Une aide qui vous tient à cœur manque à cette liste&nbsp;? Signalez-la&nbsp;!</h3>
             <form action="mailto:mes-aides@sgmap.fr">
                 <input type="hidden" name="subject" value="Suggestion_aide">
@@ -67,14 +63,14 @@
                     <button type="submit" class="ui button">Suggérer</button>
                 </div>
             </form>
-        </div>
+        </article>
 
-        <div class="row">
+        <footer class="row">
             <div class="center aligned column">
 
                 <h3 class="ui header">Êtes-vous éligible à l'une de ces aides ?</h3>
                 <a class="ui huge primary button" href="/simulation/new">Évaluer mes droits <i class="right arrow icon"></i></a>
             </div>
-        </div>
+        </footer>
     </div>
-</div>
+</section>

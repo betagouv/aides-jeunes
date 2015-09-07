@@ -1,19 +1,19 @@
 # All these paths will be loaded as stylesheets in all pages.
 ---
 
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/reset.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/site.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/container.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/grid.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/header.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/image.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/menu.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/divider.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/dropdown.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/segment.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/button.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/input.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/list.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/icon.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/sidebar.min
-- //oss.maxcdn.com/semantic-ui/2.0.8/components/transition.min
+- /css/semantic-ui/reset
+- /css/semantic-ui/site
+- /css/semantic-ui/container
+- /css/semantic-ui/grid
+- /css/semantic-ui/header
+- /css/semantic-ui/image
+- /css/semantic-ui/menu
+- /css/semantic-ui/divider
+- /css/semantic-ui/dropdown
+- /css/semantic-ui/segment
+- /css/semantic-ui/button
+- /css/semantic-ui/input
+- /css/semantic-ui/list
+- /css/semantic-ui/icon
+- /css/semantic-ui/sidebar
+- /css/semantic-ui/transition

@@ -26,6 +26,13 @@ export default [
 },
 {
     method: 'GET',
+    path: '/css/semantic-ui/{component}.css',
+    handler: (request, reply) => {
+        reply.file(`node_modules/semantic-ui-${request.params.component}/${request.params.component}.min.css`);
+    },
+},
+{
+    method: 'GET',
     path: '/css/{param*}',
     handler: { directory: { path: './css' } },
 },

@@ -29,12 +29,19 @@ Démarrer le serveur : `npm start`.
 
 Arrêter le serveur : `npm stop`.
 
+
 Test
 ----
 
 Cette application est couverte par des tests d'intégration écrits avec [Watai](https://github.com/MattiSG/Watai) dans `test/integration`.
 
 Pour les exécuter, lancez `npm test`.
+
+
+Contribution
+------------
+
+Vous souhaitez contribuer à l'amélioration de Mes Aides ? Merci ! Jetez donc un œil au fichier `CONTRIBUTING.md` pour savoir comment procéder  :)
 
 
 Déploiement

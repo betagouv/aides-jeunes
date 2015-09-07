@@ -65,3 +65,18 @@ Décision informelle sur la base de l'analyse des besoins des usagers, des parte
 
 - [x] Le wiki a été mis à jour pour notifier de l'implémentation.
 - [x] Si la fonctionnalité touche les utilisateurs, un tweet l'a annoncée.
+
+
+Contribuer au code
+==================
+
+Interface graphique
+-------------------
+
+Cette application utilise les composants [Semantic UI](http://semantic-ui.com). Utilisez la [documentation](http://semantic-ui.com/usage/layout.html) de Semantic UI pour déterminer les composants à inclure et leur usage.
+
+### Ajouter un composant
+
+Si vous souhaitez utiliser un composant Semantic UI qui n'est pas encore inclus dans l'application, installez-le simplement avec `npm install semantic-ui-<component>`. Il sera immédiatement accessible par la route `/css/semantic-ui/<component>`.
+
+> Nous utilisons cette recette dite « [tagged release](http://semantic-ui.com/introduction/advanced-usage.html#tagged-releases) » pour ne pas inclure toute la pipeline de compilation Grunt tant qu'aucune personnalisation avancée n'est effectuée.

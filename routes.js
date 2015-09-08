@@ -56,13 +56,11 @@ export default [
 ]
 
 
-function view(reply, name, data = {}) {
+function view(reply, name, data) {
     let context = Object.create(DEFAULT_RENDER_CONTEXT);  // use prototypal inheritance to avoid costly deep copies
 
     context.stylesheets = DEFAULT_RENDER_CONTEXT.stylesheets.concat(`/css/${name}`);  // don't push into the parent
-
-    for (let key in data)
-        context[key] = data[key];
+    Object.assign(context, data);  // this means data.stylesheets overrides all default stylesheets; this behavior can be changed, no use case atm
 
     return reply.view(name, context);
 }

@@ -21,6 +21,7 @@
     "test": "watai test/integration",
     "stop-test": "pm2 stop node_modules/.bin/selenium",
     "lint": "eslint . --ignore-pattern=test/integration/*"
+    "test-unit": "mocha --compilers js:babel/register ${1:-test/unit}",
   },
   "dependencies": {
     "babel": "^5.8.21",
@@ -43,6 +44,8 @@
   },
   "devDependencies": {
     "eslint": "^1.2.1",
+    "expect.js": "^0.3.1",
+    "mocha": "^2.3.2",
     "pm2": "^0.14.7",
     "selenium-server": "^2.47.1",
     "watai": "^0.6.2"

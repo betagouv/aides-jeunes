@@ -1,9 +1,9 @@
 import loadConstYaml from './lib/loadConstYaml';
 
 
-const AIDES = loadConstYaml('./config/aides'),
+const AIDES = loadConstYaml('config/aides'),
       DEFAULT_RENDER_CONTEXT = Object.seal({
-          stylesheets: loadConstYaml('./css/common'),
+          stylesheets: loadConstYaml('css/common'),
       });
 
 
@@ -16,7 +16,7 @@ export default [
             aides: AIDES,
             aidesCount: Object.keys(AIDES).length,
         });
-    }
+    },
 },
 {
     method: 'GET',
@@ -29,7 +29,7 @@ export default [
                 error: err,
             });
         })
-    }
+    },
 },
 {
     method: 'GET',

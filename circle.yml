@@ -1,4 +1,7 @@
 machine:
+  node:
+    version: 0.12
+
   environment:
     PORT: 9000
     browser_name: $(case $CIRCLE_NODE_INDEX in 0) browser='chrome' ;; 1) browser='firefox' ;; 2) browser='internet explorer' ;; 3) browser='iphone' ;; esac; echo $browser)

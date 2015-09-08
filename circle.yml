@@ -35,8 +35,17 @@ test:
         parallel: true
 
   override:
-    - npm run lint
-    - npm run test-unit
+    - npm run lint:
+        parallel: true
+        files:
+          - index.js
+          - server.js
+          - routes.js
+          - test/unit/**/*.js
+    - npm run test-unit:
+        parallel: true
+        files:
+          - test/unit/**/*.js
     - watai $WATAI_TESTS --config '{"driverCapabilities":{"browserName":"'"$browser_name"'","version":"'"$browser_version"'"}}':
         parallel: true
 

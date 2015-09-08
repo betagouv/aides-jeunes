@@ -17,11 +17,12 @@
     "start": "pm2 start ecosystem.json",
     "stop": "pm2 stop ecosystem.json",
     "deploy": "pm2 deploy ecosystem.json production",
-    "pretest": "npm start && pm2 start node_modules/.bin/selenium && sleep 10 || echo 'Selenium supposedly started'",
-    "test": "watai test/integration",
-    "stop-test": "pm2 stop node_modules/.bin/selenium",
     "lint": "eslint . --ignore-pattern=test/integration/*"
+    "test": "npm run lint && npm run test-unit && npm run test-integration",
+    "pretest-integration": "npm start && pm2 start node_modules/.bin/selenium && sleep 10 || echo 'Selenium supposedly started'",
+    "test-integration": "watai test/integration",
     "test-unit": "mocha --compilers js:babel/register ${1:-test/unit}",
+    "stop-test-integration": "pm2 stop node_modules/.bin/selenium",
   },
   "dependencies": {
     "babel": "^5.8.21",

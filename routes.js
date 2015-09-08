@@ -7,21 +7,32 @@ const DEFAULT_RENDER_CONTEXT = Object.seal({
     stylesheets: yaml.safeLoad(fs.readFileSync('./css/common.yaml')),
 });
 
+const AIDES = Object.seal(yaml.safeLoad(fs.readFileSync('./config/aides.yaml')));
+
 
 export default [
 {
     method: 'GET',
     path: '/',
-    handler: (() => {
-        let aides = yaml.safeLoad(fs.readFileSync('./config/aides.yaml'));
-
-        return (request, reply) => {
-            view(reply, 'homepage', {
-                aides: aides,
-                aidesCount: Object.keys(aides).length,
+    handler: (request, reply) => {
+        view(reply, 'homepage', {
+            aides: AIDES,
+            aidesCount: Object.keys(AIDES).length,
+        });
+    }
+},
+{
+    method: 'GET',
+    path: '/resultat',
+    handler: (request, reply) => {
+        compute(request.params.situation, (err, results) => {
+            view(reply, 'results', {
+                aides: results,
+                aidesCount: Object.keys(results).length,
+                error: err,
             });
-        }
-    })(),
+        })
+    }
 },
 {
     method: 'GET',
@@ -63,4 +74,8 @@ function view(reply, name, data) {
     Object.assign(context, data);  // this means data.stylesheets overrides all default stylesheets; this behavior can be changed, no use case atm
 
     return reply.view(name, context);
+}
+
+function compute(situation, callback) {
+    process.nextTick(callback.bind(null, 'Mockup computation', AIDES));
 }

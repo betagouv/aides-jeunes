@@ -115,9 +115,7 @@
       Situations particulières <em>(facultatif)</em>
       <div class="small">
         Cochez la ou les situations qui<br>
-        <span ng-if="isDemandeur()">vous</span>
-        <span ng-if="! isDemandeur()">lui</span>
-        correspondent
+        {{ isDemandeur() ? 'vous' : 'lui' }} correspondent
       </div>
     </label>
     <div class="col-sm-8">
@@ -144,7 +142,7 @@
 
   <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
     <div class="form-group" ng-class="{'has-error': submitted && form.lastJobEndDate.$invalid}">
-      <label class="control-label col-sm-4" for="last-job-end-date">Quand s’est terminé votre dernier contrat de travail ?</label>
+      <label class="control-label col-sm-4" for="last-job-end-date">Quand s’est terminé {{ isDemandeur() ? 'votre' : 'son' }} dernier contrat de travail ?</label>
       <div class="col-sm-4">
         <input
             type="text"
@@ -188,7 +186,7 @@
 
   <div class="form-group from-group-lg" ng-if="captureTauxInvalidite()">
     <label class="control-label col-sm-4" for="eligibiliteAss">
-      Quel est votre taux d'invalidité ?
+      Quel est {{ isDemandeur() ? 'votre' : 'son' }} taux d'invalidité ?
     </label>
     <div class="col-sm-8">
       <label class="radio-inline">
@@ -224,9 +222,7 @@
 
   <div class="form-group from-group-lg" ng-if="captureEtudiantBoursier()">
     <label class="control-label col-sm-4" id="etudiant-boursier">
-      <span ng-if="isDemandeur()">Êtes-vous</span>
-      <span ng-if="! isDemandeur()">Est-il/elle</span>
-      étudiant boursier ?
+      {{ isDemandeur() ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier ?
     </label>
     <div class="col-sm-8">
       <label class="radio-inline" for="boursier-true">

@@ -3,11 +3,15 @@
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, options, situationsFamiliales, SituationService, IndividuService) {
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
 
+    options.captureRelationConjoint =  (options.individuRole == 'conjoint');
+    options.checkNationalite =  (options.individuRole == 'demandeur');
+
     options.minAge = 0;
     options.maxAge = 130;
-    if ('enfant' === options.individuRole) {
+    if (options.individuRole == 'enfant') {
         options.displayCancelButton = true;
         options.captureGardeAlternee = true;
+        options.capturePrenom = true;
 
         $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {
           return statut.id !== 'retraite';

@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div ng-if="options.checkNationalite" class="form-group">
     <label class="control-label col-sm-4">Nationalité</label>
     <div class="col-sm-8">
       <div class="radio">
@@ -70,7 +70,7 @@
 
   <div
     class="form-group"
-    ng-if="options.checkResidenceStability && 'ue' === individu.nationalite"
+    ng-if="individu.nationalite == 'ue'"
     ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
@@ -84,7 +84,7 @@
   </div>
   <div
     class="form-group"
-    ng-if="options.checkResidenceStability && 'autre' === individu.nationalite"
+    ng-if="individu.nationalite == 'autre'"
     ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">

@@ -15,17 +15,14 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
     $urlRouterProvider.otherwise('/');
     $uiViewScrollProvider.useAnchorScroll();
 
-    var individuFormView = function(individuRole, capturePrenom) {
+    var individuFormView = function(individuRole) {
         return {
             templateUrl: '/partials/foyer/individu-form.html',
             controller: 'FoyerIndividuFormCtrl',
             resolve: {
                 options: function() {
                     return {
-                        individuRole: individuRole,
-                        captureRelationConjoint: 'conjoint' === individuRole,
-                        capturePrenom: capturePrenom || false,
-                        checkResidenceStability: _.contains(['demandeur', 'conjoint'], individuRole),
+                        individuRole: individuRole
                     };
                 }
             }

@@ -115,8 +115,8 @@
       Situations particulières <em>(facultatif)</em>
       <div class="small">
         Cochez la ou les situations qui<br>
-        <span ng-if="'demandeur' === options.individuRole">vous</span>
-        <span ng-if="'demandeur' !== options.individuRole">lui</span>
+        <span ng-if="isDemandeur()">vous</span>
+        <span ng-if="! isDemandeur()">lui</span>
         correspondent
       </div>
     </label>
@@ -169,7 +169,7 @@
 
     <div class="form-group" ng-if="individu.lastJobEndDate.year()">
       <label class="control-label col-sm-4" id="ass-question">
-        {{ options.individuRole == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
+        {{ isDemandeur() ? 'Avez-vous' : 'A-t-il (elle)' }}
         travaillé au moins 5 ans entre {{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et {{ individu.lastJobEndDate.format('MMMM YYYY') }} ?
       </label>
 
@@ -224,8 +224,8 @@
 
   <div class="form-group from-group-lg" ng-if="captureEtudiantBoursier()">
     <label class="control-label col-sm-4" id="etudiant-boursier">
-      <span ng-if="'demandeur' === options.individuRole">Êtes-vous</span>
-      <span ng-if="'demandeur' !== options.individuRole">Est-il/elle</span>
+      <span ng-if="isDemandeur()">Êtes-vous</span>
+      <span ng-if="! isDemandeur()">Est-il/elle</span>
       étudiant boursier ?
     </label>
     <div class="col-sm-8">

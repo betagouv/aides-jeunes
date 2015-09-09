@@ -20,10 +20,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/foyer/individu-form.html',
             controller: 'FoyerIndividuFormCtrl',
             resolve: {
-                options: function() {
-                    return {
-                        individuRole: individuRole
-                    };
+                individuRole: function() {
+                    return individuRole;
                 }
             }
         };

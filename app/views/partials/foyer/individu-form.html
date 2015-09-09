@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div ng-if="options.checkNationalite" class="form-group">
     <label class="control-label col-sm-4">Nationalité</label>
     <div class="col-sm-8">
       <div class="radio">
@@ -70,7 +70,7 @@
 
   <div
     class="form-group"
-    ng-if="options.checkResidenceStability && 'ue' === individu.nationalite"
+    ng-if="individu.nationalite == 'ue'"
     ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
@@ -84,7 +84,7 @@
   </div>
   <div
     class="form-group"
-    ng-if="options.checkResidenceStability && 'autre' === individu.nationalite"
+    ng-if="individu.nationalite == 'autre'"
     ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
@@ -115,9 +115,7 @@
       Situations particulières <em>(facultatif)</em>
       <div class="small">
         Cochez la ou les situations qui<br>
-        <span ng-if="'demandeur' === options.individuRole">vous</span>
-        <span ng-if="'demandeur' !== options.individuRole">lui</span>
-        correspondent
+        {{ isDemandeur() ? 'vous' : 'lui' }} correspondent
       </div>
     </label>
     <div class="col-sm-8">
@@ -144,7 +142,7 @@
 
   <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
     <div class="form-group" ng-class="{'has-error': submitted && form.lastJobEndDate.$invalid}">
-      <label class="control-label col-sm-4" for="last-job-end-date">Quand s’est terminé votre dernier contrat de travail ?</label>
+      <label class="control-label col-sm-4" for="last-job-end-date">Quand s’est terminé {{ isDemandeur() ? 'votre' : 'son' }} dernier contrat de travail ?</label>
       <div class="col-sm-4">
         <input
             type="text"
@@ -169,7 +167,7 @@
 
     <div class="form-group" ng-if="individu.lastJobEndDate.year()">
       <label class="control-label col-sm-4" id="ass-question">
-        {{ options.individuRole == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
+        {{ isDemandeur() ? 'Avez-vous' : 'A-t-il (elle)' }}
         travaillé au moins 5 ans entre {{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et {{ individu.lastJobEndDate.format('MMMM YYYY') }} ?
       </label>
 
@@ -188,7 +186,7 @@
 
   <div class="form-group from-group-lg" ng-if="captureTauxInvalidite()">
     <label class="control-label col-sm-4" for="eligibiliteAss">
-      Quel est votre taux d'invalidité ?
+      Quel est {{ isDemandeur() ? 'votre' : 'son' }} taux d'invalidité ?
     </label>
     <div class="col-sm-8">
       <label class="radio-inline">
@@ -224,9 +222,7 @@
 
   <div class="form-group from-group-lg" ng-if="captureEtudiantBoursier()">
     <label class="control-label col-sm-4" id="etudiant-boursier">
-      <span ng-if="'demandeur' === options.individuRole">Êtes-vous</span>
-      <span ng-if="'demandeur' !== options.individuRole">Est-il/elle</span>
-      étudiant boursier ?
+      {{ isDemandeur() ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier ?
     </label>
     <div class="col-sm-8">
       <label class="radio-inline" for="boursier-true">

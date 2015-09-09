@@ -1,13 +1,18 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, options, situationsFamiliales, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, SituationService, IndividuService) {
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
+
+    var options = {};
+    options.captureRelationConjoint = (individuRole == 'conjoint');
+    options.checkNationalite = (individuRole == 'demandeur');
 
     options.minAge = 0;
     options.maxAge = 130;
-    if ('enfant' === options.individuRole) {
+    if (individuRole == 'enfant') {
         options.displayCancelButton = true;
         options.captureGardeAlternee = true;
+        options.capturePrenom = true;
 
         $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {
           return statut.id !== 'retraite';
@@ -40,17 +45,17 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
         boursier: false,
         aCharge: true,
         place: false,
-        role: options.individuRole
+        role: individuRole
     };
 
     if (true === ($scope.captureRelationConjoint = !!options.captureRelationConjoint)) {
         $scope.individu.statutMarital = 'mariage';
     }
 
-    var isIndividuParent = IndividuService.isRoleParent(options.individuRole);
+    var isIndividuParent = IndividuService.isRoleParent(individuRole);
 
     if (isIndividuParent) {
-        var individu = _.find($scope.situation.individus, { role: options.individuRole });
+        var individu = _.find($scope.situation.individus, { role: individuRole });
         if (individu) {
             $scope.individu = _.merge($scope.individu, individu);
             $scope.individu.situationsPro.forEach(function(situationPro) {
@@ -86,8 +91,12 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, op
                 delete $scope.individu.scolarite;
             }
 
-            $scope.$emit('individu.' + options.individuRole, $scope.individu);
+            $scope.$emit('individu.' + individuRole, $scope.individu);
         }
+    };
+
+    $scope.isDemandeur = function() {
+        return individuRole == 'demandeur';
     };
 
     $scope.captureEligibiliteAss = function() {

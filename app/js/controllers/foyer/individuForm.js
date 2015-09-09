@@ -4,8 +4,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
 
     var options = {};
-    options.captureRelationConjoint =  (individuRole == 'conjoint');
-    options.checkNationalite =  (individuRole == 'demandeur');
+    options.captureRelationConjoint = (individuRole == 'conjoint');
+    options.checkNationalite = (individuRole == 'demandeur');
 
     options.minAge = 0;
     options.maxAge = 130;

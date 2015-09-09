@@ -185,11 +185,11 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
                 $scope.hasRessources = true;
             }
             if (individu.autresRevenusTns) {
-                ressourcesAutresTns.totalAnnuel  += individu.autresRevenusTns;
+                ressourcesAutresTns.totalAnnuel += individu.autresRevenusTns;
                 $scope.hasRessources = true;
             }
            if (individu.revenusAgricolesTns) {
-                ressourceAgricoleTns.totalAnnuel  += individu.revenusAgricolesTns;
+                ressourceAgricoleTns.totalAnnuel += individu.revenusAgricolesTns;
                 $scope.hasRessources = true;
             }
         });

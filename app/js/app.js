@@ -111,8 +111,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/personnes-a-charge.html',
                     controller: 'FoyerPersonnesAChargeCtrl'
                 },
-                'enfantForm@foyer.personnesACharge': individuFormView('enfant', true),
-                'parentProcheForm@foyer.personnesACharge': individuFormView('parentProche', true),
+                'enfantForm@foyer.personnesACharge': individuFormView('enfant'),
             }
         })
         .state('foyer.logement', {

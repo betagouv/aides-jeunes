@@ -116,6 +116,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'description':'L’aide au logement est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
         'conditions': [
             'Résider au moins 8 mois par an dans le logement que vous avez décrit.',
+            'Apparaître sur le bail ou contrat de prêt.',
             'Le logement doit être <a href="http://www.caf.fr/aides-et-services/connaitre-vos-droits-selon-votre-situation/vous-louez-ou-vous-achetez-un-logement/vous-occupez-un-logement-insalubre-ou-non-decent" title="9 mètres carrés par personne, fenêtre, WC, eau potable, électricité" >décent</a>.'
         ],
         'imgSrc':'logo_caf.png',

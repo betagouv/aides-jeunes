@@ -13,7 +13,7 @@ machine:
 
 dependencies:
   post:
-    - npm install saucelabs # allow sending Watai results to SauceLabs
+    - npm install saucelabs@0.1.1 # allow sending Watai results to SauceLabs
     - wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz
     - tar -xzf sc-latest-linux.tar.gz
 

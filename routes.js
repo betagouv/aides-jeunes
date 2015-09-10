@@ -4,7 +4,7 @@ import yaml from 'js-yaml';
 
 
 const DEFAULT_RENDER_CONTEXT = Object.seal({
-    stylesheets: yaml.safeLoad(fs.readFileSync('./css/common.yaml'))
+    stylesheets: yaml.safeLoad(fs.readFileSync('./css/common.yaml')),
 });
 
 

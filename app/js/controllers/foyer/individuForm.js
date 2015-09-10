@@ -36,32 +36,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
             label: 'Au lycée / En CAP / En CPA'
         }
     ];
-    $scope.perteAutonomieOptions = [
-        {
-            id: 1,
-            label: 'GIR1 - dépendance totale, mentale et corporelle'
-        },
-        {
-            id: 2,
-            label: 'GIR2 - grande dépendance'
-        },
-        {
-            id: 3,
-            label: 'GIR3 - dépendance corporelle'
-        },
-        {
-            id: 4,
-            label: 'GIR4 - dépendance corporelle partielle'
-        },
-        {
-            id: 5,
-            label: 'GIR5 - dépendance légère'
-        },
-        {
-            id: 6,
-            label: 'GIR6 - pas de dépendance notable ou suffisante'
-        }
-    ];
 
     $scope.individu = {
         nationalite: 'fr',

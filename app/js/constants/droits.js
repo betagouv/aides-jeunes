@@ -180,6 +180,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
     'adpa': {
         'id':'adpa',
         'isMontantAnnuel':false,
+        'unite': '%',
+        'legend': 'des frais de dépendance',
         'label':'Allocation Départementale Personnalisée d’Autonomie',
         'shortLabel':'ADPA',
         'description':'Allocation versée aux personnes dépendantes âgées de plus de 60 ans. Elle a pour objectif de financer des services d’aide à la personne favorisant leur autonomie dans les gestes quotidiens.',

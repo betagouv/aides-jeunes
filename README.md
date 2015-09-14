@@ -11,23 +11,24 @@ System dependencies
 
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb`, `node` v0.12, `grunt` and `bower` are installed on your machine
+Make sure `build-essential` is installed on your machine:
 
 ```sh
 sudo apt-get install build-essential
-sudo apt-get install mongodb
 ```
 
 ### For all platforms
 
-The runtime is Node 0.12.
+Mes Aides expects a [Mongo](http://www.mongodb.org) database to be available. If you don't have it yet, [install the Mongo database server](https://www.mongodb.org/downloads) for your platform.
+
+The runtime is [Node 0.12](https://nodejs.org/en/).
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 
 Once you have Node and npm installed, run:
 
 ```sh
-npm install --global grunt-cli bower
+npm install --global grunt-cli
 ```
 
 

@@ -21,6 +21,14 @@ export default [
 },
 {
     method: 'GET',
+    path: '/situation',
+    handler: (request, reply) => {
+        view(reply, 'situation', {
+        });
+    },
+},
+{
+    method: 'POST',
     path: '/resultat',
     handler: (request, reply) => {
         compute(request.params.situation, (err, results) => {

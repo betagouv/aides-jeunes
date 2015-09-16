@@ -9,6 +9,17 @@
         </div>
     {{/if}}
 
+    {{#if conditions}}
+        <div class="ui segment">
+            Pour en bénéficier, vous devez :
+            <ul>
+                {{#each conditions as |condition|}}
+                    <li>{{{ condition }}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    {{/if}}
+
     <div class="ui segment">
         {{#if url}}
             <a href="{{ url }}">Découvrir {{ prefix }} {{ acronym }}</a>

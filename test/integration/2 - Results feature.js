@@ -4,7 +4,7 @@ scenario: [
     HomepageWidget.start(),
     {
         'ResultsWidget.title' : true,
-        'ResultsWidget.cmu'   : true,
+        'ResultsWidget.someAide': true,
         'ResultsWidget.error' : false,
     }
 ]

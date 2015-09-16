@@ -1,4 +1,5 @@
 import loadConstYaml from './lib/loadConstYaml';
+import compute from './openfisca/compute';
 
 
 const AIDES = loadConstYaml('config/aides'),
@@ -71,8 +72,4 @@ function view(reply, name, data) {
     Object.assign(context, data);  // this means data.stylesheets overrides all default stylesheets; this behavior can be changed, no use case atm
 
     return reply.view(name, context);
-}
-
-function compute(situation, callback) {
-    process.nextTick(callback.bind(null, 'Mockup computation', AIDES));
 }

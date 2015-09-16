@@ -1,3 +1,3 @@
 title: 'h1',
-cmu: { a: 'CMU-C' },
+someAide: '.aide',
 error: '.ui.red',

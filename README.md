@@ -11,11 +11,14 @@ System dependencies
 
 ### Ubuntu
 
-Make sure `build-essential` is installed on your machine:
+Make sure `build-essential` and `libkrb5-dev` are installed on your machine:
 
 ```sh
 sudo apt-get install build-essential
+sudo apt-get install libkrb5-dev
 ```
+
+Note : `libkrb5-dev` is needed to install `kerberos`, an optional dependency of `mongodb-core`. This is yet unclear why npm installs it.
 
 ### For all platforms
 

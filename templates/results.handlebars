@@ -15,16 +15,15 @@
     <small class="sub header">Sur la base des informations que vous avez fournies, et sous réserve d’acceptation de votre dossier par chaque organisme liquidateur.</small>
 </header>
 
-<section class="ui stackable grid container">
+<section class="ui three stackable cards">
     {{#each aides as |aide|}}
-        <article class="eight wide column">
-            {{> aide aide}}
-        </article>
+        {{> aide aide}}
     {{/each}}
 
-    <article class="eight wide column grey">
-        <h3>Une aide qui vous tient à cœur manque à cette liste&nbsp;? Signalez-la&nbsp;!</h3>
-        <form action="mailto:mes-aides@sgmap.fr">
+    <article class="ui card segments">
+        <h3 class="ui grey inverted segment">Une aide qui vous tient à cœur manque à cette liste&nbsp;? Signalez-la&nbsp;!</h3>
+
+        <form class="ui bottom attached segment" action="mailto:mes-aides@sgmap.fr">
             <input type="hidden" name="subject" value="Suggestion_aide">
 
             <div class="ui fluid action input">
@@ -34,3 +33,7 @@
         </form>
     </article>
 </section>
+
+<footer>
+    <a href="/">Nouvelle simulation</a>
+</footer>

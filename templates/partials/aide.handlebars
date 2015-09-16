@@ -1,7 +1,9 @@
-<div class="aide">
-    <h3>{{ name }}</h3>
+<article class="ui card segments aide">
+    <h3 class="ui segment">{{ name }}</h3>
 
-    {{#if url}}
-        <a href="{{ url }}">Découvrir {{ prefix }} {{ acronym }}</a>
-    {{/if}}
-</div>
+    <div class="ui segment">
+        {{#if url}}
+            <a href="{{ url }}">Découvrir {{ prefix }} {{ acronym }}</a>
+        {{/if}}
+    </div>
+</article>

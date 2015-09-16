@@ -32,6 +32,7 @@
     "inert": "^3.0.1",
     "js-yaml": "^3.4.0",
     "semantic-ui-button": "^2.0.8",
+    "semantic-ui-card": "^2.0.8",
     "semantic-ui-container": "^2.0.8",
     "semantic-ui-grid": "^2.0.8",
     "semantic-ui-header": "^2.0.8",

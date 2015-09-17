@@ -35,7 +35,7 @@ angular.module('ddsCommon').constant('situationsPro', [
     },
     {
         id: 'demandeur_emploi',
-        label: 'Demandeur d\'emploi',
+        label: 'Demandeur d’emploi',
         isStatutSpecifique: true
     },
     {

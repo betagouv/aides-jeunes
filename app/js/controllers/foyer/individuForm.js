@@ -49,6 +49,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         autresRevenusTnsActiviteType: 'bic',
         microEntrepriseActiviteType: 'bic',
         autoEntrepreneurActiviteType: 'bic'
+        perteAutonomie: false
     };
 
     if (true === ($scope.captureRelationConjoint = !! options.captureRelationConjoint)) {
@@ -127,8 +128,12 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     };
 
 
-    $scope.capturePerteAutonomie = function () {
-        return $scope.selectedStatuts.perteAutonomie;
+    $scope.capturePerteAutonomie = function (form) {
+        if (form.dateDeNaissance.$valid) {
+            var age = IndividuService.age($scope.individu);
+            return age >= 60;
+        }
+        return false;
     };
 
     $scope.captureScolarite = function(form) {

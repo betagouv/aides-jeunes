@@ -265,6 +265,22 @@
       </label>
     </div>
   </div>
+
+  <div class="form-group from-group-lg" ng-if="capturePerteAutonomie(form)">
+    <label class="control-label col-sm-4" for="perteAutonomie">
+      Avez-vous des difficultés pour accomplir les gestes de la vie quotidienne ?
+    </label>
+    <div class="col-sm-8">
+      <label class="radio-inline" for="perteAutonomie-true">
+        <input id="perteAutonomie-true" type="radio" name="perteAutonomie" ng-model="individu.perteAutonomie" ng-value="true">
+        Oui
+      </label>
+      <label class="radio-inline" for="perteAutonomie-false">
+        <input id="perteAutonomie-true" type="radio" name="perteAutonomie" ng-model="individu.perteAutonomie" ng-value="false">
+        Non
+      </label>
+    </div>  </div>
+
   <div class="pull-right">
     <button type="submit" class="btn btn-primary">
       Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>

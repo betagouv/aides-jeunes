@@ -306,15 +306,19 @@ $autre-lighter: #cce4e7;
   border-left-width: 4px;
   margin-bottom: 10px;
 
-  .capture-title {
+  .panel-heading {
     margin: 0;
     padding-left: 10px;
-    font-weight: 500;
-    font-size: 21px;
     background-color: lighten($color-light, 10%);
     color: #333;
     cursor: pointer;
     user-select: none;
+
+    .panel-title {
+      font-weight: 400;
+      font-size: 21px;
+    }
+
   }
 
   .capture-rows {
@@ -322,6 +326,10 @@ $autre-lighter: #cce4e7;
 
     .btn-ressources {
       @extend .btn-default;
+    }
+
+    .btn-selection {
+      font-size: 14px;
     }
   }
 }

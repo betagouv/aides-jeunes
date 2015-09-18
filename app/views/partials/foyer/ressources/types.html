@@ -7,9 +7,11 @@
 
 <form method="post" name="form" novalidate ng-submit="submit()">
   <div class="ressource-types-block">
-    <div class="capture-{{ category.id }}" ng-repeat="category in ressourceCategories">
-      <details>
-        <summary class="capture-title">{{ category.label }}</summary>
+    <accordion>
+      <accordion-group class="capture-{{ category.id }}" ng-repeat="category in ressourceCategories" is-open="status.open">
+        <accordion-heading>
+          {{ category.label }}<i class="pull-left fa" ng-class="{'fa-chevron-down': status.open, 'fa-chevron-right': !status.open}"></i>
+        </accordion-heading>
         <div class="capture-rows">
           <button
             type="button"
@@ -20,8 +22,8 @@
             {{ ressourceType.label }}
           </button>
         </div>
-      </details>
-    </div>
+      </accordion-group>
+    </accordion>
     <div class="text-right">
       <button type="submit" class="btn btn-primary">Valider <i class="fa fa-arrow-circle-right"></i></button>
     </div>

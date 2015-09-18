@@ -31,7 +31,7 @@ export default [
     method: 'POST',
     path: '/resultat',
     handler: (request, reply) => {
-        compute(request.params.situation, (err, results) => {
+        compute(JSON.parse(request.payload.situation), (err, results) => {
             view(reply, 'results', {
                 aides: results,
                 aidesCount: results ? Object.keys(results).length : 0,

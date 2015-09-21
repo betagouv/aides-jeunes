@@ -1,9 +1,9 @@
 import loadConstYaml from './lib/loadConstYaml';
 import compute from './openfisca/compute';
+import AIDES from './config/aides';
 
 
-const AIDES = loadConstYaml('config/aides'),
-      DEFAULT_RENDER_CONTEXT = Object.seal({
+const DEFAULT_RENDER_CONTEXT = Object.seal({
           stylesheets: loadConstYaml('css/common'),
       });
 

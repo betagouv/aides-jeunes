@@ -6,7 +6,7 @@ import compute from '../../openfisca/compute';
 describe('compute', function() {
     this.timeout(8000);  // OpenFisca is long to reply
 
-    const SITUATION = require('../assets/situation.json');
+    const SITUATION = require('../data/situation.json');
 
     it('should call back without error and with an object', (done) => {
         compute(SITUATION, (err, results) => {

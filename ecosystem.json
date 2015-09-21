@@ -7,11 +7,13 @@
             "exec_mode"  : "cluster_mode",
             "instances"  : 1,
             "env": {
-                "PORT": 9000
+                "PORT": 9000,
+                "OPENFISCA_HOST": "localhost:2000"
             },
             "env_production": {
                 "NODE_ENV": "production",
-                "PORT": 8200
+                "PORT": 8200,
+                "OPENFISCA_HOST": "openfisca.sgmap.fr:80"
             }
         }
     ],

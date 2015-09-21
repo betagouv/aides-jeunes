@@ -35,7 +35,7 @@ export default [
             view(reply, 'results', {
                 aides: results,
                 aidesCount: results ? Object.keys(results).length : 0,
-                error: err,
+                error: err && JSON.stringify(err, null, 2),  // (null, 2) = "indent by 2 spaces"
             });
         })
     },

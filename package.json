@@ -20,7 +20,7 @@
     "test": "npm run lint . && npm run test-unit test/unit && npm run test-integration",
     "pretest-integration": "npm start && pm2 start node_modules/.bin/selenium && sleep 10 || echo 'Selenium supposedly started'",
     "test-integration": "watai test/integration",
-    "test-unit": "mocha --compilers js:babel/register",
+    "test-unit": "OPENFISCA_HOST=localhost:2000 mocha --compilers js:babel/register",
     "stop-test-integration": "pm2 stop node_modules/.bin/selenium",
     "lint": "eslint --ignore-pattern=test/integration/*"
   },
@@ -42,6 +42,7 @@
     "semantic-ui-reset": "^2.0.8",
     "semantic-ui-segment": "^2.0.8",
     "semantic-ui-site": "^2.0.8",
+    "superagent": "^1.4.0",
     "vision": "^3.0.0"
   },
   "devDependencies": {

@@ -5,7 +5,7 @@ scenario: [
     SituationWidget.submit(),
     {
         'ResultsWidget.title'    : true,
-        'ResultsWidget.someAide' : true,
+        'ResultsWidget.someAide' : /\w+/,
         'ResultsWidget.error'    : false,
     }
 ]

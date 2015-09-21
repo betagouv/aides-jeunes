@@ -29,6 +29,16 @@ describe('parse', () => {
             expect(subject.paje_base).to.be.within(93, 94);
             expect(subject.rsa).to.be.within(877, 878);
         });
+
+        xdescribe('with uncomputability', () => {
+            before(() => {
+                subject = reverseMap(require('../data/openfisca-response-with-uncomputability.json', SITUATION));
+            });
+
+            it('should give uncomputability reasons', () => {
+                expect(subject.rsa).to.be.a('string');
+            });
+        });
     });
 
     describe('alreadyHasAide', () => {

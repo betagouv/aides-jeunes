@@ -5,6 +5,5 @@ scenario: [
     {
         'ResultsWidget.title' : true,
         'ResultsWidget.someAide': true,
-        'ResultsWidget.error' : false,
     }
 ]

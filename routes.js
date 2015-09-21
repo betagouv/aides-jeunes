@@ -26,7 +26,7 @@ export default [
         compute(request.params.situation, (err, results) => {
             view(reply, 'results', {
                 aides: results,
-                aidesCount: Object.keys(results).length,
+                aidesCount: results ? Object.keys(results).length : 0,
                 error: err,
             });
         })

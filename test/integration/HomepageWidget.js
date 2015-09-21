@@ -1,3 +1,3 @@
 title: 'h1',
-startLink: 'a[href="/simulation/new"]',
+startLink: { a: 'Commencer' },
 cmu: { a: 'CMU-C' },

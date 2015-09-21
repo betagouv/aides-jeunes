@@ -1,27 +1,36 @@
-import fs from 'fs';
+import loadConstYaml from './lib/loadConstYaml';
+import compute from './openfisca/compute';
 
-import yaml from 'js-yaml';
 
-
-const DEFAULT_RENDER_CONTEXT = Object.seal({
-    stylesheets: yaml.safeLoad(fs.readFileSync('./css/common.yaml')),
-});
+const AIDES = loadConstYaml('config/aides'),
+      DEFAULT_RENDER_CONTEXT = Object.seal({
+          stylesheets: loadConstYaml('css/common'),
+      });
 
 
 export default [
 {
     method: 'GET',
     path: '/',
-    handler: (() => {
-        let aides = yaml.safeLoad(fs.readFileSync('./config/aides.yaml'));
-
-        return (request, reply) => {
-            view(reply, 'homepage', {
-                aides: aides,
-                aidesCount: Object.keys(aides).length,
+    handler: (request, reply) => {
+        view(reply, 'homepage', {
+            aides: AIDES,
+            aidesCount: Object.keys(AIDES).length,
+        });
+    },
+},
+{
+    method: 'GET',
+    path: '/resultat',
+    handler: (request, reply) => {
+        compute(request.params.situation, (err, results) => {
+            view(reply, 'results', {
+                aides: results,
+                aidesCount: results ? Object.keys(results).length : 0,
+                error: err,
             });
-        }
-    })(),
+        })
+    },
 },
 {
     method: 'GET',

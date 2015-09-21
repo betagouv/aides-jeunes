@@ -5,7 +5,7 @@
     </h1>
 
     <a class="ui huge secondary inverted button" href="#details">Comment est-ce possible ?</a>
-    <a class="ui huge primary button" href="/simulation/new">Commencer une simulation <i class="right arrow icon"></i></a>
+    <a class="ui huge primary button" href="/resultat">Commencer une simulation <i class="right arrow icon"></i></a>
 
     <h2>
         Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation<br>
@@ -46,16 +46,15 @@
         <div class="sub header">Nous ajoutons régulièrement de nouvelles aides</div>
     </header>
 
-    <div class="ui stackable grid container">
+    <div class="ui four stackable cards">
         {{#each aides as |aide|}}
-            <article class="four wide column">
-                {{> aide aide}}
-            </article>
+            {{> aide aide}}
         {{/each}}
 
-        <article class="four wide column grey">
-            <h3>Une aide qui vous tient à cœur manque à cette liste&nbsp;? Signalez-la&nbsp;!</h3>
-            <form action="mailto:mes-aides@sgmap.fr">
+        <article class="ui card segments">
+            <h3 class="ui grey inverted segment">Une aide qui vous tient à cœur manque à cette liste&nbsp;? Signalez-la&nbsp;!</h3>
+
+            <form class="ui bottom attached segment" action="mailto:mes-aides@sgmap.fr">
                 <input type="hidden" name="subject" value="Suggestion_aide">
 
                 <div class="ui fluid action input">
@@ -64,13 +63,10 @@
                 </div>
             </form>
         </article>
-
-        <footer class="row">
-            <div class="center aligned column">
-
-                <h3 class="ui header">Êtes-vous éligible à l'une de ces aides ?</h3>
-                <a class="ui huge primary button" href="/simulation/new">Évaluer mes droits <i class="right arrow icon"></i></a>
-            </div>
-        </footer>
     </div>
 </section>
+
+<footer>
+    <h3 class="ui header">Êtes-vous éligible à l'une de ces aides ?</h3>
+    <a class="ui huge primary button" href="/resultat">Évaluer mes droits <i class="right arrow icon"></i></a>
+</footer>

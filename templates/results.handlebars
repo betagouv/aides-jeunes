@@ -1,0 +1,39 @@
+{{#if error}}
+    <section class="ui red inverted segment">
+        <h2>Une erreur est survenue</h2>
+        <p>Ces résultats ne sont peut-être pas corrects.</p>
+
+        <details>
+            <summary>Informations techniques</summary>
+            <pre>{{ error }}</pre>
+        </details>
+    </section>
+{{/if}}
+
+<header class="ui center aligned header">
+    <h1>Vous êtes a priori éligible à {{ aidesCount }} aides</h1>
+    <small class="sub header">Sur la base des informations que vous avez fournies, et sous réserve d’acceptation de votre dossier par chaque organisme liquidateur.</small>
+</header>
+
+<section class="ui three stackable cards">
+    {{#each aides as |aide|}}
+        {{> aide aide}}
+    {{/each}}
+
+    <article class="ui card segments">
+        <h3 class="ui grey inverted segment">Une aide qui vous tient à cœur manque à cette liste&nbsp;? Signalez-la&nbsp;!</h3>
+
+        <form class="ui bottom attached segment" action="mailto:mes-aides@sgmap.fr">
+            <input type="hidden" name="subject" value="Suggestion_aide">
+
+            <div class="ui fluid action input">
+                <input type="text" name="body" placeholder="Nom d'aide à ajouter…">
+                <button type="submit" class="ui button">Suggérer</button>
+            </div>
+        </form>
+    </article>
+</section>
+
+<footer>
+    <a href="/">Nouvelle simulation</a>
+</footer>

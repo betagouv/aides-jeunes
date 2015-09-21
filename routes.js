@@ -1,5 +1,6 @@
 import loadConstYaml from './lib/loadConstYaml';
 import compute from './openfisca/compute';
+import { reverseMap } from './openfisca/parse';
 import AIDES from './config/aides';
 
 
@@ -31,13 +32,20 @@ export default [
     method: 'POST',
     path: '/resultat',
     handler: (request, reply) => {
-        compute(JSON.parse(request.payload.situation), (err, results) => {
-            view(reply, 'results', {
-                aides: results,
-                aidesCount: results ? Object.keys(results).length : 0,
-                error: err && JSON.stringify(err, null, 2),  // (null, 2) = "indent by 2 spaces"
-            });
-        })
+        let situation = JSON.parse(request.payload.situation);
+
+        compute(situation)
+            .then((openFiscaResponse) => reverseMap(openFiscaResponse, situation))
+            .then((results) => {
+                view(reply, 'results', {
+                    aides: results,
+                    aidesCount: results ? Object.keys(results).length : 0,
+                });
+             }, (error) => {
+                view(reply, 'results', {
+                    error: error && JSON.stringify(error, null, 2),  // (null, 2) = "indent by 2 spaces"
+                });
+             });
     },
 },
 {

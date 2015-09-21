@@ -8,11 +8,20 @@ describe('compute', function() {
 
     const SITUATION = require('../data/situation.json');
 
-    it('should call back without error and with an object', (done) => {
-        compute(SITUATION, (err, results) => {
-            expect(err).to.not.be.ok();
+    let subject;
+
+    before(() => {
+        subject = compute(SITUATION);
+    });
+
+    it('should return a promise', () => {
+        expect(subject).to.be.a(Promise);
+    });
+
+    it('should fulfill it with an object', (done) => {
+        subject.then((results) => {
             expect(results).to.be.an('object');
             done();
-        });
+        }, done);
     });
 });

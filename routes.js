@@ -1,13 +1,10 @@
-import fs from 'fs';
-
-import yaml from 'js-yaml';
+import loadConstYaml from './lib/loadConstYaml';
 
 
-const DEFAULT_RENDER_CONTEXT = Object.seal({
-    stylesheets: yaml.safeLoad(fs.readFileSync('./css/common.yaml')),
-});
-
-const AIDES = Object.seal(yaml.safeLoad(fs.readFileSync('./config/aides.yaml')));
+const AIDES = loadConstYaml('./config/aides'),
+      DEFAULT_RENDER_CONTEXT = Object.seal({
+          stylesheets: loadConstYaml('./css/common'),
+      });
 
 
 export default [

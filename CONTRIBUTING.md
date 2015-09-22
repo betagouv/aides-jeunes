@@ -80,3 +80,9 @@ Cette application utilise les composants [Semantic UI](http://semantic-ui.com). 
 Si vous souhaitez utiliser un composant Semantic UI qui n'est pas encore inclus dans l'application, installez-le simplement avec `npm install semantic-ui-<component>`. Il sera immédiatement accessible par la route `/css/semantic-ui/<component>`.
 
 > Nous utilisons cette recette dite « [tagged release](http://semantic-ui.com/introduction/advanced-usage.html#tagged-releases) » pour ne pas inclure toute la pipeline de compilation Grunt tant qu'aucune personnalisation avancée n'est effectuée.
+
+### CSS
+
+Nous utilisons la [méthodologie BEM](https://en.bem.info/method/definitions), avec la convention de nommage « [sans underscore”](https://en.bem.info/method/naming-convention#alternative-naming-schemes) » (`blockName-elemName--modName--modVal`).
+
+> Cette convention de nommage facilite la sélection textuelle au clavier.

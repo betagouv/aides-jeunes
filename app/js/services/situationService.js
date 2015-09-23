@@ -187,8 +187,16 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         flattenPatrimoine: flattenPatrimoine,
 
+        getDemandeur: function(situation) {
+            return _.find(situation.individus, { role: 'demandeur' });
+        },
+
         hasEnfantScolarise: function(situation) {
             return !!_.find(situation.individus, { role: 'enfant', scolarite: 'college' }) || !!_.find(situation.individus, { role: 'enfant', scolarite: 'lycee' });
+        },
+
+        hasEnfant: function(situation) {
+            return !!_.find(situation.individus, { role: 'enfant' });
         }
     };
 });

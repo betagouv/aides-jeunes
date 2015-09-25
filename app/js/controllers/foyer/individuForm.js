@@ -3,7 +3,7 @@
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, SituationService, IndividuService) {
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
 
-    var options = {};
+    var options = $scope.options = {};
     options.captureRelationConjoint = (individuRole == 'conjoint');
     options.checkNationalite = (individuRole == 'demandeur');
 
@@ -18,7 +18,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
           return statut.id !== 'retraite';
         });
     }
-    $scope.options = options;
 
     $scope.selectedStatuts = {};
     $scope.situationsMaritales = _.filter(situationsFamiliales, 'isSituationCouple');
@@ -37,7 +36,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
     ];
 
-    $scope.individu = {
+    var defaultIndividu = {
         nationalite: 'fr',
         assPreconditionRemplie: false,
         scolarite: 'college',
@@ -45,30 +44,27 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         boursier: false,
         aCharge: true,
         place: false,
-        role: individuRole
+        titreSejour10ans: true,
+        titreSejour5ans: true,
+        role: individuRole,
+        situationsPro: []
     };
+
+    var individu = _.find($scope.situation.individus, { role: individuRole }) || defaultIndividu;
+    var isIndividuParent = IndividuService.isRoleParent(individuRole);
+
+    individu.situationsPro.forEach(function(situationPro) {
+        $scope.selectedStatuts[situationPro.situation] = true;
+    });
 
     if (true === ($scope.captureRelationConjoint = !!options.captureRelationConjoint)) {
         $scope.individu.statutMarital = 'mariage';
     }
 
-    var isIndividuParent = IndividuService.isRoleParent(individuRole);
-
-    if (isIndividuParent) {
-        var individu = _.find($scope.situation.individus, { role: individuRole });
-        if (individu) {
-            $scope.individu = _.merge($scope.individu, individu);
-            $scope.individu.situationsPro.forEach(function(situationPro) {
-                $scope.selectedStatuts[situationPro.situation] = true;
-            });
-        }
-    }
-
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
-            $scope.individu.situationsPro = [];
-
+            individu.situationsPro = [];
             _.forEach($scope.selectedStatuts, function(selected, statut) {
                 if (selected) {
                     $scope.individu.situationsPro.push({ situation: statut });

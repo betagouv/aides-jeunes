@@ -37,7 +37,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     ];
 
     var defaultIndividu = {
-        nationalite: 'fr',
+        nationalite: 'ue',
         assPreconditionRemplie: false,
         scolarite: 'college',
         tauxInvalidite: 'moins50',
@@ -50,7 +50,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         situationsPro: []
     };
 
-    var individu = _.find($scope.situation.individus, { role: individuRole }) || defaultIndividu;
+    var individu = $scope.individu = _.find($scope.situation.individus, { role: individuRole }) || defaultIndividu;
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
 
     individu.situationsPro.forEach(function(situationPro) {
@@ -126,6 +126,14 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
 
         return false;
+    };
+
+    $scope.captureSejour10ans = function() {
+        return individu.nationalite == 'autre';
+    };
+
+    $scope.captureSejour5ans = function() {
+        return individu.nationalite == 'autre' && angular.isDefined(individu.titreSejour10ans) && (! individu.titreSejour10ans);
     };
 
     $scope.cancel = function() {

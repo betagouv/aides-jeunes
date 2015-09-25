@@ -5,7 +5,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
     var options = $scope.options = {};
     options.captureRelationConjoint = (individuRole == 'conjoint');
-    options.checkNationalite = (individuRole == 'demandeur');
+    options.checkNationalite = (individuRole == 'demandeur' || individuRole == 'conjoint');
 
     options.minAge = 0;
     options.maxAge = 130;

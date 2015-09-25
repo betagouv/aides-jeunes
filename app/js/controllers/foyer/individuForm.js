@@ -57,7 +57,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         $scope.selectedStatuts[situationPro.situation] = true;
     });
 
-    if (true === ($scope.captureRelationConjoint = !!options.captureRelationConjoint)) {
+    if (options.captureRelationConjoint) {
         $scope.individu.statutMarital = 'mariage';
     }
 

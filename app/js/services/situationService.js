@@ -192,11 +192,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         hasEnfantScolarise: function(situation) {
-            return !! _.find(situation.individus, { role: 'enfant', scolarite: 'college' }) || !! _.find(situation.individus, { role: 'enfant', scolarite: 'lycee' });
+            return _.find(situation.individus, { role: 'enfant', scolarite: 'college' }) || !! _.find(situation.individus, { role: 'enfant', scolarite: 'lycee' });
         },
 
         hasEnfant: function(situation) {
-            return !! _.find(situation.individus, { role: 'enfant' });
+            return _.find(situation.individus, { role: 'enfant' });
         }
     };
 });

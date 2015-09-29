@@ -5,7 +5,7 @@ angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state
     $scope.demandeur = SituationService.getDemandeur($scope.situation);
 
     $scope.captureIsolement = function() {
-        return angular.isDefined($scope.vitEnCouple) && (! $scope.vitEnCouple) && hasEnfant;
+        return $scope.vitEnCouple === false && hasEnfant;
     };
 
     $scope.submit = function() {

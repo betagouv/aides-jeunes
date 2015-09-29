@@ -32,7 +32,8 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
             situation.individus = _.filter(situation.individus, function(individu) {
                 return 'conjoint' !== individu.role;
             });
-        } // En cas de parent isolé, on pose une question supplémentaire
+        }
+        // En cas de parent isolé, on pose une question supplémentaire
         if (! SituationService.hasEnfant($scope.situation)) {
             $state.go('foyer.logement');
         }

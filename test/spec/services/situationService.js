@@ -200,4 +200,36 @@ describe('Service: situationService', function () {
             expect(results[2]).toBeFalsy();
         });
     });
+    describe('function hasEnfant()', function() {
+        it('should return a truthy when there is a child', function() {
+            // given
+            var situations = [
+                { individus: [{ role: 'enfant'}] },
+            ];
+
+            // when
+            var results = _.map(situations, function(situation) {
+                return service.hasEnfant(situation);
+            });
+
+            // then
+            expect(results[0]).toBeTruthy();
+        });
+    });
+    describe('function hasEnfant()', function() {
+        it('should return a falsy when there is no child', function() {
+            // given
+            var situations = [
+                { individus: [{ role: 'demandeur'}] },
+            ];
+
+            // when
+            var results = _.map(situations, function(situation) {
+                return service.hasEnfant(situation);
+            });
+
+            // then
+            expect(results[0]).toBeFalsy();
+        });
+    });
 });

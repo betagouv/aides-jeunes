@@ -181,7 +181,7 @@ describe('Service: situationService', function () {
     });
 
     describe('function hasEnfantScolarise()', function() {
-        it('should return true only when situation has a child with scolarite "college" or "lycee"', function() {
+        it('should return a truthy only when situation has a child with scolarite "college" or "lycee"', function() {
             // given
             var situations = [
                 { individus: [{ role: 'enfant', scolarite: 'college' }] },
@@ -195,7 +195,9 @@ describe('Service: situationService', function () {
             });
 
             // then
-            expect(results).toEqual([true, true, false]);
+            expect(results[0]).toBeTruthy();
+            expect(results[1]).toBeTruthy();
+            expect(results[2]).toBeFalsy();
         });
     });
 });

@@ -10,7 +10,7 @@ angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state
 
     $scope.submit = function() {
         $state.go('foyer.logement');
-    }
+    };
 
     if (_.find($scope.situation.individus, { role: 'conjoint' })) {
         $scope.vitEnCouple = true;

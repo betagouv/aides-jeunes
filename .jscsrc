@@ -16,5 +16,6 @@
     "catch",
     "while"
   ],
-  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"
+  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+  "requireSpaceAfterPrefixUnaryOperators": ["++", "--", "~", "!"]
 }

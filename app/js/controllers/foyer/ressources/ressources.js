@@ -33,7 +33,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         var result = [];
         var ressources = individu.ressources || [];
         var types = _.chain(ressources).pluck('type').unique().filter(function(type) {
-            return !_.contains(['pensionsAlimentairesVersees'], type);
+            return ! _.contains(['pensionsAlimentairesVersees'], type);
         });
 
         types.forEach(function(type) {
@@ -42,7 +42,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             }
             // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
             var ressourceType = _.find(ressourceTypes, { id: type });
-            if (!ressourceType) {
+            if (! ressourceType) {
                 return;
             }
 
@@ -127,7 +127,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     });
 
     $scope.montantInvalide = function(montant) {
-        return !angular.isNumber(montant);
+        return ! angular.isNumber(montant);
     };
 
     var applyIndividuVMRessourcesToIndividu = function(individuVM) {
@@ -165,15 +165,15 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
 
         // on réinjecte les ressources RNC & pensions alimentaires
         individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
-            return !!_.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
+            return !! _.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
         }));
 
         // on supprime les revenus RPNS si désélectionnés
-        if (individu.caMicroEntreprise && !individuVM.selectedRessourceTypes.caMicroEntreprise) {
+        if (individu.caMicroEntreprise && ! individuVM.selectedRessourceTypes.caMicroEntreprise) {
             individu.caMicroEntreprise = null;
         }
 
-        if (individu.autresRevenusTns && !individuVM.selectedRessourceTypes.autresRevenusTns) {
+        if (individu.autresRevenusTns && ! individuVM.selectedRessourceTypes.autresRevenusTns) {
             individu.autresRevenusTns = null;
         }
     };

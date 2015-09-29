@@ -9,7 +9,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
         'rsa_non_salarie': function(situation) {
             var demandeur = _.find(situation.individus, { role: 'demandeur' });
             var nonSalarie = _.find(demandeur.situationsPro, {situation: 'independant'});
-            return !!nonSalarie;
+            return !! nonSalarie;
         },
         'rsa_moins_25': function(situation) {
             var result = 25 > IndividuService.age(_.find(situation.individus, { role: 'demandeur' }));
@@ -59,11 +59,11 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return 16 <= IndividuService.age(individu);
         },
         'declaration_grossesse': function(situation) {
-            return !!_.filter(situation.individus, 'enceinte').length;
+            return !! _.filter(situation.individus, 'enceinte').length;
         },
         'attestation_chomage_partiel': function(individu) {
             var nbRessourcesChomage = _.where(individu.ressources, {type: 'indChomagePartiel'}).length;
-            return !!nbRessourcesChomage;
+            return !! nbRessourcesChomage;
         },
         'cmu_c.vitale': function(individu) {
             return 18 <= IndividuService.age(individu);
@@ -76,14 +76,14 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             return false;
         },
         'cmu_c.livret_famille': function(situation) {
-            return !!_.where(situation.individus, { role: 'enfant'}).length;
+            return !! _.where(situation.individus, { role: 'enfant'}).length;
         },
         'cmu_c.bulletins_paie': function(individu) {
             if (16 > IndividuService.age(individu)) {
                 return false;
             }
 
-            return !!_.where(individu.ressources, {type: 'revenusSalarie'}).length;
+            return !! _.where(individu.ressources, {type: 'revenusSalarie'}).length;
         },
         'cmu_c.attestation_indemnites_chomage': function(individu) {
             if (16 > IndividuService.age(individu)) {
@@ -93,7 +93,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             var nbRessourcesChomage = _.where(individu.ressources, {type: 'allocationsChomage'}).length;
             nbRessourcesChomage += _.where(individu.ressources, {type: 'indChomagePartiel'}).length;
 
-            return !!nbRessourcesChomage;
+            return !! nbRessourcesChomage;
         },
         'cmu_c.taxe_fonciere': function(situation) {
             return 'proprietaire' === situation.logement.type;
@@ -118,28 +118,28 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
         },
         'rsa.avis_paiement_pension_invalidite': function(individu) {
             if (IndividuService.isParent(individu)) {
-                return !!_.find(individu.ressources, {type: 'pensionsInvalidite'});
+                return !! _.find(individu.ressources, {type: 'pensionsInvalidite'});
             }
 
             return false;
         },
         'rsa.avis_paiement_retraite': function(individu) {
             if (IndividuService.isParent(individu)) {
-                return !!_.find(individu.situationsPro, {situation: 'retraite'});
+                return !! _.find(individu.situationsPro, {situation: 'retraite'});
             }
 
             return false;
         },
         'rsa.avis_paiement_rente_accident_travail': function(individu) {
             if (IndividuService.isParent(individu)) {
-                return !!_.find(individu.ressources, {type: 'indJourAccidentDuTravail'});
+                return !! _.find(individu.ressources, {type: 'indJourAccidentDuTravail'});
             }
 
             return false;
         },
         'rsa.declaration_revenus_saisonnier': function(individu) {
             if (IndividuService.isParent(individu)) {
-                return !!_.find(individu.situationsPro, {situation: 'travailleur_saisonnier'});
+                return !! _.find(individu.situationsPro, {situation: 'travailleur_saisonnier'});
             }
 
             return false;
@@ -186,7 +186,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
                 cerfa.forms.forEach(function(form) {
                     var showCerfaCallback = showableCerfaCallbacks[form.id];
                     if (showCerfaCallback) {
-                        if (!showCerfaCallback(situation)) {
+                        if (! showCerfaCallback(situation)) {
                             return;
                         }
                     }
@@ -203,7 +203,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
 
             return _.filter(individus, function(individu) {
                 var callback = requiredPiecesJustificativesCallbacks[equivalentDroitId + '.' + pieceId];
-                if (!callback) {
+                if (! callback) {
                     callback = requiredPiecesJustificativesCallbacks[pieceId];
                 }
                 if (callback) {
@@ -217,7 +217,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
         isPieceJustificativeRequiredForSituation: function(droitId, pieceId, situation) {
             var equivalentDroitId = getEquivalentDroitId(droitId);
             var callback = requiredPiecesJustificativesCallbacks[equivalentDroitId + '.' + pieceId];
-            if (!callback) {
+            if (! callback) {
                 callback = requiredPiecesJustificativesCallbacks[pieceId];
             }
             if (callback) {
@@ -235,13 +235,13 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
                 var piece = { description: pieceJustificative };
                 if (false !== pieceJustificative.isIndividualized) {
                     var individusConcernes = that.pieceJustificativeIndividus(droit, pieceJustificative.id, situation.individus);
-                    if (!individusConcernes.length) {
+                    if (! individusConcernes.length) {
                         return;
                     }
 
                     piece.individus = _.map(individusConcernes, IndividuService.label);
                 } else {
-                    if (!that.isPieceJustificativeRequiredForSituation(droit, pieceJustificative.id, situation)) {
+                    if (! that.isPieceJustificativeRequiredForSituation(droit, pieceJustificative.id, situation)) {
                         return;
                     }
                 }

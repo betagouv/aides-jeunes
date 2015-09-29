@@ -28,7 +28,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         var flattenedMontant = Math.round(totalMontantToFlatten / monthsDiff * 100) / 100;
 
         while (debutPeriode.isBefore(finPeriode) || debutPeriode.isSame(finPeriode)) {
-            if (!_.find(source, {periode: debutPeriode.format('YYYY-MM')})) {
+            if (! _.find(source, {periode: debutPeriode.format('YYYY-MM')})) {
                 var splittedRessource = {
                     periode: debutPeriode.format('YYYY-MM'),
                     montant: flattenedMontant
@@ -62,11 +62,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         restoreLocal: function() {
-            if (!situation) {
+            if (! situation) {
                 situation = $sessionStorage.situation;
             }
 
-            if (!situation) {
+            if (! situation) {
                 this.newSituation();
             }
 
@@ -105,7 +105,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         save: function(situation) {
             var apiSituation = this.createApiCompatibleSituation(situation);
-            if (!situation._id) {
+            if (! situation._id) {
                 return $http.post('/api/situations', apiSituation).then(function(result) {
                     situation._id = result.data._id;
                     return result.data;
@@ -192,11 +192,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         hasEnfantScolarise: function(situation) {
-            return !!_.find(situation.individus, { role: 'enfant', scolarite: 'college' }) || !!_.find(situation.individus, { role: 'enfant', scolarite: 'lycee' });
+            return !! _.find(situation.individus, { role: 'enfant', scolarite: 'college' }) || !! _.find(situation.individus, { role: 'enfant', scolarite: 'lycee' });
         },
 
         hasEnfant: function(situation) {
-            return !!_.find(situation.individus, { role: 'enfant' });
+            return !! _.find(situation.individus, { role: 'enfant' });
         }
     };
 });

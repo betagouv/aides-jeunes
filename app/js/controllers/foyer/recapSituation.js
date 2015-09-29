@@ -99,7 +99,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
 
     var fillIndividuRessources = function(individu) {
-        if (!individu.ressources) {
+        if (! individu.ressources) {
             return;
         }
 
@@ -109,7 +109,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
 
         types.forEach(function(type) {
             // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
-            if (!_.find(ressourceTypes, { id: type })) {
+            if (! _.find(ressourceTypes, { id: type })) {
                 return;
             }
 
@@ -126,7 +126,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
                 .value();
 
             var ressourceSection = $scope.tempRessources[type];
-            if (!ressourceSection) {
+            if (! ressourceSection) {
                 ressourceSection = $scope.tempRessources[type] = {
                     totalMensuel: totalMensuel,
                     totalAnnuel: totalAnnuel
@@ -207,7 +207,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
 
     };
 
-    if (!!$scope.situation.individus.length && !!$scope.situation.individus[0].ressources) {
+    if (!! $scope.situation.individus.length && !! $scope.situation.individus[0].ressources) {
         $scope.ressourcesCaptured = true;
         buildRecapRessources();
     }

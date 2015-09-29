@@ -19,7 +19,7 @@ angular.module('ddsApp').controller('FormInfosComplementairesCtrl', function($sc
             individu.choicePaysNaissance = 'france';
             individu.paysNaissance = 'France';
         }
-        if (!individu.civilite) {
+        if (! individu.civilite) {
             individu.civilite = ('conjoint' === individu.role) ? 'f' : 'h';
         }
     });

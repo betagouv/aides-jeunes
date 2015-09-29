@@ -4,7 +4,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     $scope.ressourceCategories = ressourceCategories;
     $scope.individuVM = $scope.individusVM[$stateParams.individu];
     var filteredRessourceTypes = _.filter(ressourceTypes, function(ressourceType) {
-        return !_.contains(['pensionsAlimentairesVersees'], ressourceType.id);
+        return ! _.contains(['pensionsAlimentairesVersees'], ressourceType.id);
     });
     $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
 
@@ -33,11 +33,11 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
         var currentRessources = $scope.individuVM.ressources;
         $scope.individuVM.ressources = [];
         ressourceTypes.forEach(function(ressourceType) {
-            if (!$scope.individuVM.selectedRessourceTypes[ressourceType.id]) {
+            if (! $scope.individuVM.selectedRessourceTypes[ressourceType.id]) {
                 return;
             }
             var ressource = _.find(currentRessources, { type: ressourceType });
-            if (!ressource) {
+            if (! ressource) {
                 ressource = _.cloneDeep(DEFAULT_RESOURCE);
                 ressource.type = ressourceType;
             }

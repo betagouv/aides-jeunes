@@ -74,7 +74,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
                 });
             } else {
                 individuVM.individu.ressources = _.filter(individuVM.individu.ressources, function(ressource) {
-                    return !_.contains(['pensionsAlimentairesVersees'], ressource.type);
+                    return ! _.contains(['pensionsAlimentairesVersees'], ressource.type);
                 });
             }
         });

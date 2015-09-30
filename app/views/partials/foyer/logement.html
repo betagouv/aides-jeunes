@@ -65,7 +65,7 @@
       </div>
     </div>
 
-    <div ng-if="logement.type === 'proprietaire'">
+    <div ng-if="logement.type == 'proprietaire'">
       <div class="form-group">
         <label class="col-sm-3 control-label">
           Êtes-vous primo-accédant pour cette propriété ?
@@ -78,6 +78,23 @@
           <p class="help-block">
             Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire
             de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="logement.type == 'heberge'">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">
+          Participez-vous aux frais du logement ?
+        </label>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-sm btn-default" ng-model="logement.participationFrais" btn-radio="true">Oui</button>
+          <button type="button" class="btn btn-sm btn-default" ng-model="logement.participationFrais" btn-radio="false">Non</button>
+        </div>
+        <div class="col-sm-5">
+          <p class="help-block">
+            Par exemple aux dépenses d'électricité, de téléphone,&nbsp;etc.
           </p>
         </div>
       </div>

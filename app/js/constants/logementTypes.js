@@ -10,8 +10,8 @@ angular.module('ddsCommon').constant('logementTypes', [
         label: 'propriétaire / en location-accession'
     },
     {
-        id: 'gratuit',
-        label: 'occupant à titre gratuit'
+        id: 'heberge',
+        label: 'hébergé'
     },
     {
         id: 'sansDomicile',

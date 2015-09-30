@@ -50,7 +50,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.captureLoyer = function() {
-        if ('gratuit' === logement.type) {
+        if (logement.type == 'heberge') {
             return false;
         }
         return _.any([
@@ -63,10 +63,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.captureCodePostal = function() {
         return _.any([
             angular.isDefined(logement.primoAccedant),
-            'foyer' === logement.locationType,
+            logement.locationType == 'foyer',
             angular.isDefined(logement.isChambre),
-            'gratuit' === logement.type,
-            'sansDomicile' === logement.type
+            logement.type == 'heberge' && angular.isDefined(logement.participationFrais),
+            logement.type == 'sansDomicile'
         ]);
     };
 

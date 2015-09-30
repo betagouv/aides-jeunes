@@ -4,6 +4,9 @@ angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state
     var hasEnfant = SituationService.hasEnfant($scope.situation);
     $scope.demandeur = SituationService.getDemandeur($scope.situation);
 
+    // Forget the value of isolementRecent. Necessary as we une ng-change to go to the next page.
+    $scope.demandeur.isolementRecent = undefined;
+
     $scope.captureIsolement = function() {
         return $scope.vitEnCouple === false && hasEnfant;
     };

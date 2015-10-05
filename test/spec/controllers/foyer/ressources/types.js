@@ -164,36 +164,5 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
             // then
             expect(scope.individuVM.ressources.length).toBe(0);
         });
-
-        it('should init micro-entreprises specific params when micro-entreprise is selected', function() {
-            // given
-            initController();
-            scope.individuVM.ressources = [];
-            scope.individuVM.selectedRessourceTypes = { 'caMicroEntreprise': true };
-
-            // when
-            scope.submit();
-
-            // then
-            expect(scope.individuVM.ressources[0].tnsActiviteType).toBe('bic');
-            expect(scope.individuVM.ressources[0].montantAnnuel).toBe(0);
-
-        });
-
-        it('should init autres revenus rpns params when it is selected', function() {
-            // given
-            initController();
-            scope.individuVM.ressources = [];
-            scope.individuVM.selectedRessourceTypes = { 'autresRevenusTns': true };
-
-            // when
-            scope.submit();
-
-            // then
-            expect(scope.individuVM.ressources[0].type.id).toBe('autresRevenusTns');
-            expect(scope.individuVM.ressources[0].tnsActiviteType).toBe('bic');
-            expect(scope.individuVM.ressources[0].montantAnnuel).toBe(0);
-            expect(scope.individuVM.ressources[0].caAnnuel).toBe(0);
-        });
     });
 });

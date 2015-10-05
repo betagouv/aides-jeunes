@@ -131,12 +131,15 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(scope.individusVM[0].ressources.length).toBe(0);
         });
 
-        it('should map ressources auto-entrepreneur', function() {
+        it('should map ressources micro-entreprise', function() {
             // given
             scope.situation.individus = [{
-                tnsStructureType: 'auto_entrepreneur',
                 tnsActiviteType: 'bnc',
-                caMicroEntreprise: 1000
+                ressources: [{
+                    type: 'caMicroEntreprise',
+                    periode: '2014',
+                    montant: 1000
+                }]
             }];
 
             // when
@@ -151,23 +154,6 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(ressources[0].montantAnnuel).toBe(1000);
         });
 
-        it('should map ressources autres revenus professionnels non salariés', function() {
-            // given
-            scope.situation.individus = [{
-                autresRevenusTns: 1000
-            }];
-
-            // when
-            initController();
-
-            // then
-            var individuVM = scope.individusVM[0];
-            expect(individuVM.selectedRessourceTypes).toEqual({ autresRevenusTns: true });
-            var ressources = individuVM.ressources;
-            expect(ressources.length).toBe(1);
-            expect(ressources[0].type.id).toBe('autresRevenusTns');
-            expect(ressources[0].montantAnnuel).toBe(1000);
-        });
 
         it('should map the "ongoing" attribute of each ressource', function() {
             // given
@@ -276,7 +262,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             expect(individu.interruptedRessources[0]).toEqual('test2');
         });
 
-        it('devrait sauvegarder les "autres revenus professionnels" directement sur l’individu', function() {
+        it('should save the "autres revenus professionnels" in ressources', function() {
             // given
             initController();
             var ressourceTypeAutreTns = _.find(_ressourceTypes_, { id: 'autresRevenusTns' });
@@ -293,49 +279,12 @@ describe('Controller: FoyerRessourcesCtrl', function() {
 
             // when
             scope.submit(form);
+            var autresRevenusTns = _.find(individu.ressources, function(ressource){
+                return ressource.type == 'autresRevenusTns';
+            });
 
             // then
-            expect(individu.autresRevenusTns).toBe(100);
-        });
-
-        it('devrait sauvegarder les revenus de micro-entreprise sur l\'individu', function() {
-            initController();
-            var ressourceTypeMicroTns = _.find(_ressourceTypes_, { id: 'caMicroEntreprise' });
-            var individu = {};
-            scope.individusVM = [
-                {
-                    individu: individu,
-                    selectedRessourceTypes: { caMicroEntreprise: true },
-                    ressources: [
-                        {
-                            type: ressourceTypeMicroTns,
-                            tnsActiviteType: 'bnc',
-                            montantAnnuel: 100
-                        }
-                    ]
-                }
-            ];
-
-            // when
-            scope.submit(form);
-
-            // then
-            expect(individu.caMicroEntreprise).toBe(100);
-            expect(individu.microEntrepriseActiviteType).toBe('bnc');
-        });
-
-        it('devrait mettre à null les revenus professionnels non salariés si désélectionnés', function() {
-            // given
-            scope.situation.individus = [{ caMicroEntreprise: 1000, autresRevenusTns: 1000 }];
-            initController();
-            scope.individusVM[0].selectedRessourceTypes = {};
-
-            // when
-            scope.submit(form);
-
-            // then
-            expect(scope.individusVM[0].individu.caMicroEntreprise).toBe(null);
-            expect(scope.individusVM[0].individu.autresRevenusTns).toBe(null);
+            expect(autresRevenusTns).toBeDefined();
         });
 
         it('should emit the "ressourcesUpdated" event', function() {

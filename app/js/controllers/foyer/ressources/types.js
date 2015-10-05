@@ -22,7 +22,6 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     var DEFAULT_RESOURCE = {
         montantAnnuel: 0,
         caAnnuel: 0,
-        tnsActiviteType: 'bic',
         montantsMensuels: [0, 0, 0],
         onGoing: true,
     };

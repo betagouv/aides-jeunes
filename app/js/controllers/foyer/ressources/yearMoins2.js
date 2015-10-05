@@ -35,7 +35,7 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
         $scope.individuRefs.forEach(function(individuRef) {
             // clean anciennes valeurs
             individuRef.individu.ressources = _.filter(individuRef.individu.ressources, function(ressource) {
-                return !_.find(categoriesRnc, { id: ressource.type });
+                return ! _.find(categoriesRnc, { id: ressource.type });
             });
 
             // Remove from rnc the values that are not modified by the user

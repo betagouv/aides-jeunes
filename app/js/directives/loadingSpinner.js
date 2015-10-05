@@ -33,7 +33,7 @@ angular.module('ddsApp').directive('loadingSpinner', function($timeout) {
                 }, 100);
             };
             scope.$on('$stateChangeStart', function() {
-                if (!changingState) {
+                if (! changingState) {
                     changingState = true;
                     stateChangeStart();
                 }

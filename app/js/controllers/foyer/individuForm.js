@@ -48,7 +48,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         role: individuRole
     };
 
-    if (true === ($scope.captureRelationConjoint = !!options.captureRelationConjoint)) {
+    if (true === ($scope.captureRelationConjoint = !! options.captureRelationConjoint)) {
         $scope.individu.statutMarital = 'mariage';
     }
 
@@ -75,19 +75,19 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
                 }
             });
 
-            if (!$scope.captureEligibiliteAss()) {
+            if (! $scope.captureEligibiliteAss()) {
                 delete $scope.individu.assPreconditionRemplie;
             }
 
-            if (!$scope.captureTauxInvalidite()) {
+            if (! $scope.captureTauxInvalidite()) {
                 delete $scope.individu.tauxInvalidite;
             }
 
-            if (!$scope.captureEtudiantBoursier()) {
+            if (! $scope.captureEtudiantBoursier()) {
                 delete $scope.individu.boursier;
             }
 
-            if (!$scope.captureScolarite(form)) {
+            if (! $scope.captureScolarite(form)) {
                 delete $scope.individu.scolarite;
             }
 
@@ -109,7 +109,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     };
 
     $scope.captureEnfantPlace = function() {
-        return !isIndividuParent && $scope.selectedStatuts.handicap;
+        return ! isIndividuParent && $scope.selectedStatuts.handicap;
     };
 
 
@@ -118,13 +118,13 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     };
 
     $scope.catpurePersonneACharge = function(form) {
-        if (!isIndividuParent && form.dateDeNaissance.$valid) {
+        if (! isIndividuParent && form.dateDeNaissance.$valid) {
             return IndividuService.age($scope.individu) >= 1;
         }
     };
 
     $scope.captureScolarite = function(form) {
-        if (!isIndividuParent && form.dateDeNaissance.$valid) {
+        if (! isIndividuParent && form.dateDeNaissance.$valid) {
             var age = IndividuService.age($scope.individu);
             return age <= 25 && age > 8;
         }

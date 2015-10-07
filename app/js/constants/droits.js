@@ -55,7 +55,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
         ],
         'imgSrc':'logo_caf.png',
-        'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0'
+        'link':'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0',
+        'isBaseRessourcesYearMoins2':true
     },
     'cf': {
         'id':'cf',

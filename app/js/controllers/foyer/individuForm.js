@@ -3,16 +3,16 @@
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, SituationService, IndividuService) {
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
 
-    var options = $scope.options = {};
-    options.captureRelationConjoint = (individuRole == 'conjoint');
-    options.checkNationalite = (individuRole == 'demandeur' || individuRole == 'conjoint');
+    $scope.options = {};
+    $scope.options.captureRelationConjoint = (individuRole == 'conjoint');
+    $scope.options.checkNationalite = (individuRole == 'demandeur' || individuRole == 'conjoint');
 
-    options.minAge = 0;
-    options.maxAge = 130;
+    $scope.options.minAge = 0;
+    $scope.options.maxAge = 130;
     if (individuRole == 'enfant') {
-        options.displayCancelButton = true;
-        options.captureGardeAlternee = true;
-        options.capturePrenom = true;
+        $scope.options.displayCancelButton = true;
+        $scope.options.captureGardeAlternee = true;
+        $scope.options.capturePrenom = true;
 
         $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {
           return statut.id !== 'retraite';
@@ -50,10 +50,10 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         situationsPro: []
     };
 
-    var individu = $scope.individu = _.find($scope.situation.individus, { role: individuRole }) || defaultIndividu;
+    $scope.individu = _.find($scope.situation.individus, { role: individuRole }) || defaultIndividu;
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
 
-    individu.situationsPro.forEach(function(situationPro) {
+    $scope.individu.situationsPro.forEach(function(situationPro) {
         $scope.selectedStatuts[situationPro.situation] = true;
     });
 
@@ -64,7 +64,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
-            individu.situationsPro = [];
+            $scope.individu.situationsPro = [];
             _.forEach($scope.selectedStatuts, function(selected, statut) {
                 if (selected) {
                     $scope.individu.situationsPro.push({ situation: statut });
@@ -129,11 +129,11 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     };
 
     $scope.captureSejour10ans = function() {
-        return individu.nationalite == 'autre';
+        return $scope.individu.nationalite == 'autre';
     };
 
     $scope.captureSejour5ans = function() {
-        return individu.nationalite == 'autre' && angular.isDefined(individu.titreSejour10ans) && (! individu.titreSejour10ans);
+        return $scope.individu.nationalite == 'autre' && ($scope.individu.titreSejour10ans === false);
     };
 
     $scope.cancel = function() {

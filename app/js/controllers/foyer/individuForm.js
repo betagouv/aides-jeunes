@@ -36,7 +36,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
     ];
 
-    var defaultIndividu = {
+    var DEFAULT_INDIVIDU = {
         nationalite: 'ue',
         assPreconditionRemplie: false,
         scolarite: 'college',
@@ -50,7 +50,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         situationsPro: []
     };
 
-    $scope.individu = _.find($scope.situation.individus, { role: individuRole }) || defaultIndividu;
+    $scope.individu = _.find($scope.situation.individus, { role: individuRole }) || DEFAULT_INDIVIDU;
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
 
     $scope.individu.situationsPro.forEach(function(situationPro) {

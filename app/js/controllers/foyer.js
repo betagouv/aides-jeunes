@@ -17,7 +17,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         } else {
             situation.individus.push(demandeur);
         }
-        $state.go('foyer.personnesACharge');
+        $state.go('foyer.enfants');
     });
 
     $scope.$on('individu.conjoint', function(e, conjoint) {

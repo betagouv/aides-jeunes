@@ -37,12 +37,8 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         }
     });
 
-    $scope.$on('personnesACharge', function(e, personnesACharge) {
-        situation.individus = _.filter(situation.individus, function(individu) {
-            return 'enfant' !== individu.role;
-        });
-
-        situation.individus = situation.individus.concat(personnesACharge);
+    $scope.$on('enfants', function(e, enfants) {
+        SituationService.setEnfants(situation, enfants);
         $state.go('foyer.conjoint');
     });
 

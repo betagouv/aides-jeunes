@@ -267,4 +267,42 @@ describe('Service: situationService', function () {
             expect(situation.individus[2].name).toBe('Bob');
         });
     });
+    describe('function setEnfants()', function() {
+        it('should add the enfants before the conjoint in the individus array', function() {
+            // given
+            var situation = {
+                individus:
+                    [
+                        { role: 'demandeur' },
+                        { role: 'enfant' },
+                        { role: 'conjoint' }
+                    ]
+            };
+            var enfants = [{ role : 'enfant' }, { role: 'enfant' }];
+
+            // when
+            service.setEnfants(situation, enfants);
+            // then
+            expect(situation.individus[2].role).toBe('enfant');
+            expect(situation.individus[3].role).toBe('conjoint');
+        });
+        it('should replace the enfants if they already exist', function() {
+            // given
+            var situation = {
+                individus:
+                    [
+                        { role: 'demandeur' },
+                        { role: 'enfant', name:'Alice' },
+                        { role: 'conjoint' }
+                    ]
+            };
+            var enfants = [{ role : 'enfant', name:'Bob' }];
+
+            // when
+            service.setEnfants(situation, enfants);
+            // then
+            expect(situation.individus.length).toBe(3);
+            expect(situation.individus[1].name).toBe('Bob');
+        });
+    });
 });

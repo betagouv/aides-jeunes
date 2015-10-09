@@ -212,6 +212,17 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 // on insère le conjoint en dernier dans la liste des individus
                 individus.push(conjoint);
             }
+        },
+
+        setEnfants: function(situation, enfants) {
+            var individus = situation.individus;
+            individus = _.filter(individus, function(individu) {
+                return 'enfant' !== individu.role;
+            });
+            individus = individus.slice(0,1)
+                .concat(enfants)
+                .concat(individus.slice(1));
+            situation.individus = individus;
         }
     };
 });

@@ -197,6 +197,21 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
 
         hasEnfant: function(situation) {
             return _.find(situation.individus, { role: 'enfant' });
+        },
+
+        hasConjoint: function(situation) {
+            return _.find(situation.individus, { role: 'conjoint' });
+        },
+
+        setConjoint: function(situation, conjoint) {
+            var individus = situation.individus;
+            // si le conjoint existait déjà avant, on l'écrase
+            if (this.hasConjoint(situation)) {
+                individus[individus.length - 1] = conjoint;
+            } else {
+                // on insère le conjoint en dernier dans la liste des individus
+                individus.push(conjoint);
+            }
         }
     };
 });

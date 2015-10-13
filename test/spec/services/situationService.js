@@ -220,7 +220,7 @@ describe('Service: situationService', function () {
         it('should return a falsy when there is no child', function() {
             // given
             var situations = [
-                { individus: [{ role: 'demandeur'}] },
+                { individus: [{ role: 'demandeur' }]},
             ];
 
             // when
@@ -230,6 +230,79 @@ describe('Service: situationService', function () {
 
             // then
             expect(results[0]).toBeFalsy();
+        });
+    });
+    describe('function setConjoint()', function() {
+        it('should add the conjoint at the end of the individus array', function() {
+            // given
+            var situation = {
+                individus:
+                    [
+                        { role: 'demandeur' },
+                        { role: 'enfant' }
+                    ]
+            };
+            var conjoint = { role : 'conjoint' };
+
+            // when
+            service.setConjoint(situation, conjoint);
+            // then
+            expect(situation.individus[2].role).toBe('conjoint');
+        });
+        it('should replace the conjoint if it already exists', function() {
+            // given
+            var situation = {
+                individus:
+                    [
+                        { role: 'demandeur' },
+                        { role: 'enfant' },
+                        { role: 'conjoint', name: 'Alice' }
+                    ]
+            };
+            var conjoint = { role : 'conjoint', name: 'Bob' };
+
+            // when
+            service.setConjoint(situation, conjoint);
+            // then
+            expect(situation.individus[2].name).toBe('Bob');
+        });
+    });
+    describe('function setEnfants()', function() {
+        it('should add the enfants before the conjoint in the individus array', function() {
+            // given
+            var situation = {
+                individus:
+                    [
+                        { role: 'demandeur' },
+                        { role: 'enfant' },
+                        { role: 'conjoint' }
+                    ]
+            };
+            var enfants = [{ role : 'enfant' }, { role: 'enfant' }];
+
+            // when
+            service.setEnfants(situation, enfants);
+            // then
+            expect(situation.individus[2].role).toBe('enfant');
+            expect(situation.individus[3].role).toBe('conjoint');
+        });
+        it('should replace the enfants if they already exist', function() {
+            // given
+            var situation = {
+                individus:
+                    [
+                        { role: 'demandeur' },
+                        { role: 'enfant', name:'Alice' },
+                        { role: 'conjoint' }
+                    ]
+            };
+            var enfants = [{ role : 'enfant', name:'Bob' }];
+
+            // when
+            service.setEnfants(situation, enfants);
+            // then
+            expect(situation.individus.length).toBe(3);
+            expect(situation.individus[1].name).toBe('Bob');
         });
     });
 });

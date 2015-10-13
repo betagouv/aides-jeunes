@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function($scope, $location, $anchorScroll, $timeout) {
+angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $location, $anchorScroll, $timeout) {
     $scope.enfants = _.where($scope.situation.individus, { role: 'enfant' });
 
     $scope.$on('individu.enfant', function(e, enfant) {
@@ -26,6 +26,6 @@ angular.module('ddsApp').controller('FoyerPersonnesAChargeCtrl', function($scope
     };
 
     $scope.validate = function() {
-        $scope.$emit('personnesACharge', $scope.enfants);
+        $scope.$emit('enfants', $scope.enfants);
     };
 });

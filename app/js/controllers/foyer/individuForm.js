@@ -45,7 +45,10 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         boursier: false,
         aCharge: true,
         place: false,
-        role: individuRole
+        role: individuRole,
+        autresRevenusTnsActiviteType: 'bic',
+        microEntrepriseActiviteType: 'bic',
+        autoEntrepreneurActiviteType: 'bic'
     };
 
     if (true === ($scope.captureRelationConjoint = !! options.captureRelationConjoint)) {

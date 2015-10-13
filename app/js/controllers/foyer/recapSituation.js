@@ -144,8 +144,6 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     var buildRecapRessources = function() {
         $scope.tempRessources = {};
         $scope.hasRessources = false;
-        $scope.hasRessourcesTns = false;
-        $scope.hasRessourcesNonTns = false;
         $scope.globalAmount = 0;
 
         $scope.isSituationMonoIndividu = 1 === $scope.situation.individus.length;
@@ -155,56 +153,19 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
             $scope.hasRessources = true;
         }
 
-        $scope.ressourcesTns = [];
-        $scope.ressourcesNonTns = [];
+        $scope.ressources = [];
         ressourceTypes.forEach(function(ressourceType) {
             if ($scope.tempRessources[ressourceType.id]) {
-                $scope.ressourcesNonTns.push({
+                var ressource = {
                     type: ressourceType,
-                    totalMensuel: $scope.tempRessources[ressourceType.id].totalMensuel,
                     totalAnnuel: Math.round($scope.tempRessources[ressourceType.id].totalAnnuel)
-                });
+                };
+                if (! ressourceType.isMontantAnnuel) {
+                    ressource.totalMensuel = $scope.tempRessources[ressourceType.id].totalMensuel;
+                }
+                $scope.ressources.push(ressource);
             }
         });
-
-        var ressourcesMicroFiscal = {
-            type: _.find(ressourceTypes, { id: 'caMicroEntreprise' }),
-            totalAnnuel: 0
-        };
-        var ressourcesAutresTns = {
-            type: _.find(ressourceTypes, { id: 'autresRevenusTns' }),
-            totalAnnuel: 0
-        };
-        var ressourceAgricoleTns = {
-            type: _.find(ressourceTypes, { id: 'revenusAgricolesTns' }),
-            totalAnnuel: 0
-        };
-        $scope.situation.individus.forEach(function(individu) {
-            if (individu.caMicroEntreprise) {
-                ressourcesMicroFiscal.totalAnnuel += individu.caMicroEntreprise;
-                $scope.hasRessources = true;
-            }
-            if (individu.autresRevenusTns) {
-                ressourcesAutresTns.totalAnnuel += individu.autresRevenusTns;
-                $scope.hasRessources = true;
-            }
-           if (individu.revenusAgricolesTns) {
-                ressourceAgricoleTns.totalAnnuel += individu.revenusAgricolesTns;
-                $scope.hasRessources = true;
-            }
-        });
-
-        if (ressourcesMicroFiscal.totalAnnuel) {
-            $scope.ressourcesTns.push(ressourcesMicroFiscal);
-        }
-
-        if (ressourcesAutresTns.totalAnnuel) {
-            $scope.ressourcesTns.push(ressourcesAutresTns);
-        }
-        if (ressourceAgricoleTns.totalAnnuel) {
-            $scope.ressourcesTns.push(ressourceAgricoleTns);
-        }
-
     };
 
     if (!! $scope.situation.individus.length && !! $scope.situation.individus[0].ressources) {

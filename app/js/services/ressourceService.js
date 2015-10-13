@@ -32,6 +32,24 @@ angular.module('ddsApp').factory('RessourceService', function() {
             if (! ressource.onGoing) {
                 individu.interruptedRessources.push(ressource.type.id);
             }
+        },
+        applyYearlyRessource: function(individu, ressource, dateDeValeur) {
+            var montant = ressource.montantAnnuel;
+            var periode = moment(dateDeValeur).subtract(1, 'year').format('YYYY');
+            individu.ressources.push({
+                type: ressource.type.id,
+                periode: periode,
+                montant: montant
+            });
+
+            // For  'professions libérales et entrepreneurs', we capture the 'CA' as well as the 'benefice'
+            if (ressource.type.id == 'autresRevenusTns') {
+                individu.ressources.push({
+                    type: 'caAutresRevenusTns',
+                    periode: periode,
+                    montant: ressource.caAnnuel
+                });
+            }
         }
     };
 });

@@ -160,8 +160,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
                     type: ressourceType,
                     totalAnnuel: Math.round($scope.tempRessources[ressourceType.id].totalAnnuel)
                 };
-                var ressourcesWithoutMonthlyAmount = ['caMicroEntreprise','revenusAgricolesTns','autresRevenusTns'];
-                if (! _.contains(ressourcesWithoutMonthlyAmount, ressourceType.id)) {
+                if (! ressourceType.isMontantAnnuel) {
                     ressource.totalMensuel = $scope.tempRessources[ressourceType.id].totalMensuel;
                 }
                 $scope.ressources.push(ressource);

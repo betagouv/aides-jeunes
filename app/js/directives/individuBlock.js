@@ -17,7 +17,7 @@ angular.module('ddsApp').directive('individuBlock', function(IndividuService) {
                     case 'conjoint':
                         return 'foyer.conjoint';
                     default:
-                        return 'foyer.personnesACharge';
+                        return 'foyer.enfants';
                 }
             };
 

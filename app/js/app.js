@@ -104,14 +104,14 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 'individuForm@foyer.conjoint': individuFormView('conjoint')
             }
         })
-        .state('foyer.personnesACharge', {
-            url: '/personnes-a-charge',
+        .state('foyer.enfants', {
+            url: '/enfants',
             views: {
                 '': {
-                    templateUrl: '/partials/foyer/personnes-a-charge.html',
-                    controller: 'FoyerPersonnesAChargeCtrl'
+                    templateUrl: '/partials/foyer/enfants.html',
+                    controller: 'FoyerEnfantsCtrl'
                 },
-                'enfantForm@foyer.personnesACharge': individuFormView('enfant'),
+                'enfantForm@foyer.enfants': individuFormView('enfant'),
             }
         })
         .state('foyer.logement', {

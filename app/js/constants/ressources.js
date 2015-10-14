@@ -201,7 +201,8 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'caMicroEntreprise',
         label: 'Micro-entreprise',
-        category: 'rpns'
+        category: 'rpns',
+        isMontantAnnuel: true
     },
     {
         id: 'caAutoEntrepreneur',
@@ -211,12 +212,14 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'revenusAgricolesTns',
         label: 'Exploitant agricole',
-        category: 'rpns'
+        category: 'rpns',
+        isMontantAnnuel: true
     },
     {
         id: 'autresRevenusTns',
         label: 'Profession libérale, entrepreneur',
-        category: 'rpns'
+        category: 'rpns',
+        isMontantAnnuel: true
     }
 ]);
 

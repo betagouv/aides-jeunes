@@ -2,7 +2,7 @@
   <h1>Les enfants de votre foyer</h1>
 
   <div class="help-block">
-    <p>Les personnes de <span data-tooltip="Les personnes à votre charge de plus de 25 ans non handicapées ne changent pas votre éligibilité aux aides calculées par ce simulateur.">moins de 25 ans</span> ou handicapées dont vous assumez la responsabilité, même sans lien de parenté.</p>
+    <p>Les personnes de <span data-tooltip="Les personnes à votre charge de plus de 25 ans non handicapées ne changent pas votre éligibilité aux aides calculées par ce simulateur.">moins de 25 ans ou handicapées</span> dont vous assumez la responsabilité, même sans lien de parenté.</p>
   </div>
 
   <div class="row">
@@ -20,7 +20,7 @@
                 <i class="fa fa-child icon-lg"></i>
               </div>
               <div class="col-xs-8">
-                Né(e) le <strong>{{ enfant.dateDeNaissance.format('L') }}</strong>
+                Né·e le <strong>{{ enfant.dateDeNaissance.format('L') }}</strong>
                 <br>Nationalité <strong>{{ nationalite(enfant) }}</strong>
                 <br><i>{{ statutsSpecifiques(enfant) }}</i>
               </div>

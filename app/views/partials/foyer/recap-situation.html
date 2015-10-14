@@ -21,33 +21,21 @@
     close-others="true"
     class="accordion-ressources">
     <accordion-group
-      ng-repeat="ressource in ressourcesNonTns"
+      ng-repeat="ressource in ressources"
       class="recap-{{ ressource.type.category }}"
       heading="{{ ressource.type.label }}"
       is-open="ressource.isOpen">
-      <div class="row" ng-repeat="month in months">
-        <div class="col-sm-8">
-          {{ month.label | uppercaseFirst }}
+      <div ng-if="ressource.totalMensuel">
+        <div class="row" ng-repeat="month in months">
+          <div class="col-sm-8">
+            {{ month.label | uppercaseFirst }}
+          </div>
+          <div class="col-sm-4">
+            {{ ressource.totalMensuel[$index] }} €
+          </div>
         </div>
-        <div class="col-sm-4">
-          {{ ressource.totalMensuel[$index] }} €
-        </div>
+        <hr>
       </div>
-      <hr>
-      <div class="row">
-        <div class="col-sm-8">
-          Annuel
-        </div>
-        <div class="col-sm-4">
-          {{ ressource.totalAnnuel }} €
-        </div>
-      </div>
-    </accordion-group>
-    <accordion-group
-      ng-repeat="ressource in ressourcesTns"
-      class="recap-rpns"
-      heading="{{ ressource.type.label }}"
-      is-open="ressource.isOpen">
       <div class="row">
         <div class="col-sm-8">
           Annuel

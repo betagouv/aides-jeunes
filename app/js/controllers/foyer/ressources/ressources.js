@@ -33,19 +33,15 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         var result = [];
         var ressources = individu.ressources || [];
         var types = _.chain(ressources).pluck('type').unique().filter(function(type) {
-            return !_.contains(['pensionsAlimentairesVersees'], type);
+            return ! _.contains(['pensionsAlimentairesVersees'], type);
         });
 
         types.forEach(function(type) {
-            if (type == 'caAutoEntrepreneur') {
-                return;
-            }
             // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
             var ressourceType = _.find(ressourceTypes, { id: type });
-            if (!ressourceType) {
+            if (! ressourceType) {
                 return;
             }
-
             var montantsMensuels = _.map($scope.months, function(month) {
                 var ressource = _.find(ressources, { periode: month.id, type: type });
                 return ressource ? Math.round(ressource.montant) : 0;
@@ -54,8 +50,8 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             var montantAnnuel = _.chain(ressources)
                 .where({ type: type })
                 .pluck('montant')
-                .reduce(function(sum, num) {
-                    return sum + num;
+                .reduce(function(sum, montant) {
+                    return sum + montant;
                 })
                 .value();
             montantAnnuel = Math.round(montantAnnuel);
@@ -67,52 +63,22 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 onGoing: true
             };
 
+            // For autres revenus TNS, we also need to find the CA
+            if (type == 'autresRevenusTns') {
+                ressource.caAnnuel = _.chain(ressources)
+                    .where({ type: 'caAutresRevenusTns' })
+                    .pluck('montant')
+                    .reduce(function(sum, montant) {
+                        return sum + montant;
+                    })
+                    .value();
+            }
+
             if (_.contains(individu.interruptedRessources, type)) {
                 ressource.onGoing = false;
             }
-
             result.push(ressource);
         });
-
-        if (individu.caMicroEntreprise) {
-            result.push({
-                type: _.find(ressourceTypes, { id: 'caMicroEntreprise' }),
-                tnsActiviteType: individu.microEntrepriseActiviteType,
-                montantAnnuel: individu.caMicroEntreprise
-            });
-        }
-
-        if (individu.caAutoEntrepreneur) {
-            var montantsMensuels = _.map($scope.months, function(month) {
-                var ressource = _.find(ressources, { periode: month.id, type: 'caAutoEntrepreneur' } || { montant: 0 } );
-                return Math.round(ressource.montant);
-            });
-
-            result.push({
-                type: _.find(ressourceTypes, { id: 'caAutoEntrepreneur' }),
-                tnsActiviteType: individu.autoEntrepreneurActiviteType,
-                montantAnnuel: individu.caAutoEntrepreneur,
-                montantsMensuels: montantsMensuels,
-                onGoing: ! _.contains(individu.interruptedRessources, 'caAutoEntrepreneur')
-            });
-        }
-
-        if (individu.autresRevenusTns) {
-            result.push({
-                type: _.find(ressourceTypes, { id: 'autresRevenusTns' }),
-                montantAnnuel: individu.autresRevenusTns,
-                employes: individu.autresRevenusTnsEmployes,
-                caAnnuel: individu.caAutresRevenusTns,
-                tnsActiviteType: individu.autresRevenusTnsActiviteType
-            });
-        }
-
-        if (individu.revenusAgricolesTns) {
-            result.push({
-                type: _.find(ressourceTypes, { id: 'revenusAgricolesTns' }),
-                montantAnnuel: individu.revenusAgricolesTns,
-            });
-        }
 
         return result;
     };
@@ -127,7 +93,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     });
 
     $scope.montantInvalide = function(montant) {
-        return !angular.isNumber(montant);
+        return ! angular.isNumber(montant);
     };
 
     var applyIndividuVMRessourcesToIndividu = function(individuVM) {
@@ -135,47 +101,21 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         var previousRessources = individu.ressources;
         individu.ressources = [];
         individu.interruptedRessources = [];
+
         individuVM.ressources.forEach(function(ressource) {
-            if (ressource.type.category == 'rpns') {
-                individu[ressource.type.id] = ressource.montantAnnuel;
-
-                var individuKeysToRessourceKeys = {
-                    autresRevenusTns: {
-                        caAutresRevenusTns: 'caAnnuel',
-                        autresRevenusTnsActiviteType: 'tnsActiviteType',
-                        autresRevenusTnsEmployes: 'employes'
-                    },
-                    caAutoEntrepreneur: {
-                        autoEntrepreneurActiviteType: 'tnsActiviteType'
-                    },
-                    caMicroEntreprise: {
-                        microEntrepriseActiviteType: 'tnsActiviteType'
-                    }
-                };
-
-                _.each(individuKeysToRessourceKeys[ressource.type.id], function(ressourceKey, individuKey) {
-                    individu[individuKey] = ressource[ressourceKey];
-                });
-            }
-
+            // Ressources for which we have the last 3 months values
             if (ressource.type.category != 'rpns' || ressource.type.id == 'caAutoEntrepreneur') {
                 RessourceService.spreadIndividuRessources(individu, $scope.months, ressource, $scope.situation.dateDeValeur);
+            // Ressources for which we have only yearly values
+            } else {
+                RessourceService.applyYearlyRessource(individu, ressource, $scope.situation.dateDeValeur);
             }
         });
 
         // on réinjecte les ressources RNC & pensions alimentaires
         individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
-            return !!_.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
+            return !! _.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
         }));
-
-        // on supprime les revenus RPNS si désélectionnés
-        if (individu.caMicroEntreprise && !individuVM.selectedRessourceTypes.caMicroEntreprise) {
-            individu.caMicroEntreprise = null;
-        }
-
-        if (individu.autresRevenusTns && !individuVM.selectedRessourceTypes.autresRevenusTns) {
-            individu.autresRevenusTns = null;
-        }
     };
 
     $scope.submit = function(form) {

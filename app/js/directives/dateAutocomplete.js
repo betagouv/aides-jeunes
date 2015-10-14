@@ -27,7 +27,7 @@ angular.module('ddsApp').directive('dateAutocomplete', function() {
                     return newValue;
                 }
 
-                if (!_.contains([2, 5], viewValue.length)) return viewValue;
+                if (! _.contains([2, 5], viewValue.length)) return viewValue;
                 if (viewValue.length !== previousValue.length + 1) return viewValue;
                 if (previousValue.lastIndexOf('/') === previousValue.length - 1) return viewValue;
                 if (viewValue.lastIndexOf('/') === viewValue.length - 1) return viewValue;

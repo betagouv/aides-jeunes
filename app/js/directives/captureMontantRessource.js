@@ -19,7 +19,7 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             scope.months = SituationService.getMonths(scope.dateDeValeur);
             scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
 
-            if (!scope.onGoingLabel) {
+            if (! scope.onGoingLabel) {
                 scope.onGoingLabel = 'Je continuerai à percevoir cette ressource en ' + scope.currentMonth;
             }
 

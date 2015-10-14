@@ -17,32 +17,29 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         } else {
             situation.individus.push(demandeur);
         }
-        $state.go('foyer.conjoint');
+        $state.go('foyer.enfants');
     });
 
     $scope.$on('individu.conjoint', function(e, conjoint) {
-        if (conjoint) {
-            // si le conjoint existait déjà avant, on l'écrase
-            if (_.find(situation.individus, { role: 'conjoint' })) {
-                situation.individus[1] = conjoint;
-            } else { // on insère le conjoint juste derrière le demandeur dans l'array des individus
-                situation.individus.splice(1, 0, conjoint);
-            }
-        } else { // on supprime l'éventuel conjoint qui existait avant
-            situation.individus = _.filter(situation.individus, function(individu) {
-                return 'conjoint' !== individu.role;
-            });
-        }
-        $state.go('foyer.personnesACharge');
+        SituationService.setConjoint(situation, conjoint);
+        $state.go('foyer.logement');
     });
 
-    $scope.$on('personnesACharge', function(e, personnesACharge) {
+    $scope.$on('individu.pasDeConjoint', function() {
+        // on supprime l'éventuel conjoint qui existait avant
         situation.individus = _.filter(situation.individus, function(individu) {
-            return 'enfant' !== individu.role;
+            return 'conjoint' !== individu.role;
         });
 
-        situation.individus = situation.individus.concat(personnesACharge);
-        $state.go('foyer.logement');
+        // En cas de parent isolé, on pose une question supplémentaire
+        if (! SituationService.hasEnfant($scope.situation)) {
+            $state.go('foyer.logement');
+        }
+    });
+
+    $scope.$on('enfants', function(e, enfants) {
+        SituationService.setEnfants(situation, enfants);
+        $state.go('foyer.conjoint');
     });
 
     var isLogementInMayotte = function(logement) {

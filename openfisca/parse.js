@@ -2,13 +2,10 @@ import AIDES from '../config/aides';
 
 
 export function alreadyHasAide(aideId, situation) {
-    var declared = situation.scenarios[0].test_case.familles[0];
+    let declaredResources = situation.scenarios[0].test_case.familles[0];  // navigate OpenFisca structure
 
-    if (! declared[aideId])
-        return false;
-
-    for (let period in declared[aideId])
-        if (declared[aideId][period])
+    for (let period in declaredResources[aideId])
+        if (declaredResources[aideId][period])
             return true;
 }
 

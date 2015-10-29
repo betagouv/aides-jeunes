@@ -87,6 +87,10 @@ cmu_c:
   acronym: CMU-C
   prefix: la
   url: http://www.cmu.fr/cmu-complementaire.php
+  benefit:
+    amount: 100
+    unit: '%'
+    of: santé
   conditions:
     - Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.
 

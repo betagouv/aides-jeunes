@@ -41,7 +41,7 @@ export default [
 
                 for (let aideId in results) {
                     aides[aideId] = Object.assign({
-                        amount: results[aideId]
+                        benefit: { amount: results[aideId] },
                     }, AIDES[aideId]);
                 }
 

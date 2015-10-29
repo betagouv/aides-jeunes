@@ -22,7 +22,7 @@ describe('parse', () => {
             expect(subject).to.only.have.keys([ 'af', 'cmu_c', 'paje_base', 'rsa' ]);
         });
 
-        it('should give expected amounts', () => {
+        it('should give expected benefits', () => {
             expect(subject.cmu_c).to.be.ok();
             // avoid being too specific on amounts to ease updates
             expect(subject.af).to.be.within(129, 130);

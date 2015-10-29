@@ -37,9 +37,17 @@ export default [
         compute(situation)
             .then((openFiscaResponse) => reverseMap(openFiscaResponse, situation))
             .then((results) => {
+                let aides = {};
+
+                for (let aideId in results) {
+                    aides[aideId] = Object.assign({
+                        amount: results[aideId]
+                    }, AIDES[aideId]);
+                }
+
                 view(reply, 'results', {
-                    aides: results,
-                    aidesCount: results ? Object.keys(results).length : 0,
+                    aides,
+                    aidesCount: Object.keys(aides).length,
                 });
              }, (error) => {
                 view(reply, 'results', {

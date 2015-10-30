@@ -27,7 +27,9 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
 
     return {
         simulate: function(situation) {
-            return $http.get('/api/situations/' + situation._id + '/simulation').then(function(response) {
+            return $http.get('/api/situations/' + situation._id + '/simulation', {
+                params: { cacheBust: Date.now() }
+            }).then(function(response) {
                 return sortDroits(response.data);
             });
         },

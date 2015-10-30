@@ -78,7 +78,9 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         restoreRemote: function(situationId) {
-            return $http.get('/api/situations/' + situationId).then(function(result) {
+            return $http.get('/api/situations/' + situationId, {
+                params: { cacheBust: Date.now() }
+            }).then(function(result) {
                 situation = result.data;
 
                 situation.individus.forEach(function(individu) {

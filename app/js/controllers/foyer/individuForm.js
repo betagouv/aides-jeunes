@@ -108,7 +108,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     };
 
     $scope.captureTauxInvalidite = function() {
-        return isIndividuParent && $scope.selectedStatuts.handicap;
+        return $scope.selectedStatuts.handicap;
     };
 
     $scope.captureEnfantPlace = function() {

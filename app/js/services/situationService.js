@@ -106,9 +106,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         save: function(situation) {
-            var apiSituation = this.createApiCompatibleSituation(situation);
-            if (! situation._id) {
-                return $http.post('/api/situations', apiSituation).then(function(result) {
+            return $http({
+                    method: situation._id ? 'put' : 'post',
+                    url: '/api/situations/' + (situation._id || ''),
+                    data: this.createApiCompatibleSituation(situation)
+                }).then(function(result) {
                     situation._id = result.data._id;
                     return result.data;
                 }).catch(function(error) {
@@ -119,11 +121,6 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                         }]
                     });
                 });
-            } else {
-                return $http.put('/api/situations/' + situation._id, apiSituation).then(function(result) {
-                    return result.data;
-                });
-            }
         },
 
         createApiCompatibleSituation: function(situation) {

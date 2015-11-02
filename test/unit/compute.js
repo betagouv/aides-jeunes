@@ -4,24 +4,31 @@ import compute from '../../openfisca/compute';
 
 
 describe('compute', function() {
-    this.timeout(8000);  // OpenFisca is long to reply
-
     const SITUATION = require('../data/situation.json');
 
-    let subject;
+    let subject,
+        openFiscaMock;
 
     before(() => {
+        openFiscaMock = require('superagent-mock')(require('superagent'), [ {
+            pattern  : process.env.OPENFISCA_HOST,
+            fixtures : (match, params, headers) => require('../data/openfisca-response.json'),
+            post     : (match, body) => { return { body } },
+        } ]);
+
         subject = compute(SITUATION);
     });
+
+    after(() => openFiscaMock.unset() );
 
     it('should return a promise', () => {
         expect(subject).to.be.a(Promise);
     });
 
-    it('should fulfill it with an object', (done) => {
+    it('should fulfill it with the raw OpenFisca response', (done) => {
         subject.then((results) => {
             expect(results).to.be.an('object');
-            done();
-        }, done);
+            expect(results.method).to.be('/api/1/calculate');
+        }).then(done, done);
     });
 });

@@ -51,6 +51,7 @@
     "mocha": "^2.3.2",
     "pm2": "^0.14.7",
     "selenium-server": "^2.47.1",
+    "superagent-mock": "^1.8.0",
     "watai": "^0.6.2"
   }
 }

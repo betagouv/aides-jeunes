@@ -4,18 +4,13 @@ import compute from '../../openfisca/compute';
 
 
 describe('compute', function() {
-    const SITUATION = require('../data/situation.json');
+    const SITUATION = require('../mock/situation.json');
 
     let subject,
         openFiscaMock;
 
     before(() => {
-        openFiscaMock = require('superagent-mock')(require('superagent'), [ {
-            pattern  : process.env.OPENFISCA_HOST,
-            fixtures : (match, params, headers) => require('../data/openfisca-response.json'),
-            post     : (match, body) => { return { body } },
-        } ]);
-
+        openFiscaMock = require('../mock/openfisca-superagent.js');
         subject = compute(SITUATION);
     });
 

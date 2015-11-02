@@ -8,8 +8,8 @@ import {
 
 
 describe('parse', () => {
-    const OPENFISCA_RESPONSE = require('../data/openfisca-response.json'),
-          SITUATION = require('../data/situation.json');
+    const OPENFISCA_RESPONSE = require('../mock/openfisca-response.json'),
+          SITUATION = require('../mock/situation.json');
 
     describe('reverseMap', () => {
         let subject;
@@ -32,7 +32,7 @@ describe('parse', () => {
 
         xdescribe('with uncomputability', () => {
             before(() => {
-                subject = reverseMap(require('../data/openfisca-response-with-uncomputability.json', SITUATION));
+                subject = reverseMap(require('../mock/openfisca-response-with-uncomputability.json', SITUATION));
             });
 
             it('should give uncomputability reasons', () => {
@@ -42,7 +42,7 @@ describe('parse', () => {
     });
 
     describe('alreadyHasAide', () => {
-        const SITUATION_WITH_AIDE = require('../data/situation-with-aspa.json');
+        const SITUATION_WITH_AIDE = require('../mock/situation-with-aspa.json');
 
         it('should ignore aides that are set to 0 in a situation', () => {
             for (let aideId in AIDES)

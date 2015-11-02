@@ -4,7 +4,7 @@ import loadConstYaml from '../../lib/loadConstYaml';
 
 
 describe('loadConstYaml', () => {
-    let subject = loadConstYaml('test/data/example');
+    let subject = loadConstYaml('test/mock/example');
 
     it('should load a YAML file', () => {
         expect(subject[0]).to.equal('exampleValue');

@@ -6,6 +6,11 @@ import inert from 'inert';
 import vision from 'vision';
 
 
+if (process.env.NODE_ENV == 'test') {
+    require('./test/mock/openfisca-superagent.js');
+}
+
+
 var server = new hapi.Server({
     debug: {
         request: ['error'],

@@ -1,14 +1,26 @@
-import loadConstYaml from '../lib/loadConstYaml';
+import request from 'superagent';
 
 
-const AIDES = loadConstYaml('config/aides');
+export default function compute(situation) {
+    return new Promise((resolve, reject) => {
+        request
+        .post(`http://${process.env.OPENFISCA_HOST}/api/1/calculate`)
+        .send(situation)
+        .end(function(err, response) {
+            if (err) {
+                let error = new Error('OpenFisca communication failed');
+                error.previous = err;
 
-export default function compute(situation, callback) {
-    let result = [];
+                try {
+                    error.body = JSON.stringify(response.body, null, 2);  // (null, 2) = "indent by 2 spaces";
+                } catch (e) {
+                    error.body = 'No response';
+                }
 
-    for (let id in AIDES)
-        if (Math.random() > .5)
-            result.push(Object.assign({ amount: 233 }, AIDES[id]));
+                return reject(error);
+            }
 
-    process.nextTick(callback.bind(null, 'Mockup computation', result));
+            resolve(response && response.body);
+        });
+    });
 }

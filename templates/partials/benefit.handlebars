@@ -1,0 +1,9 @@
+<span class="benefit-amount">{{ amount }}</span>
+<span class="benefit-unit">&nbsp;{{#if unit }}{{ unit }}{{else}}€{{/if}}</span>
+<span class="benefit-frequency">
+    {{#if of }}
+        des frais de {{ of }} remboursés
+    {{else}}
+        &nbsp;/&nbsp;{{#if frequency }}{{ frequency }}{{else}}mois{{/if}}
+    {{/if}}
+</span>

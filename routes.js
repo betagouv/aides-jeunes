@@ -1,9 +1,10 @@
 import loadConstYaml from './lib/loadConstYaml';
 import compute from './openfisca/compute';
+import { reverseMap } from './openfisca/parse';
+import AIDES from './config/aides';
 
 
-const AIDES = loadConstYaml('config/aides'),
-      DEFAULT_RENDER_CONTEXT = Object.seal({
+const DEFAULT_RENDER_CONTEXT = Object.seal({
           stylesheets: loadConstYaml('css/common'),
       });
 
@@ -21,15 +22,34 @@ export default [
 },
 {
     method: 'GET',
+    path: '/situation',
+    handler: (request, reply) => {
+        view(reply, 'situation', {
+        });
+    },
+},
+{
+    method: 'POST',
     path: '/resultat',
     handler: (request, reply) => {
-        compute(request.params.situation, (err, results) => {
-            view(reply, 'results', {
-                aides: results,
-                aidesCount: results ? Object.keys(results).length : 0,
-                error: err,
-            });
-        })
+        let situation = JSON.parse(request.payload.situation);
+
+        compute(situation)
+            .then((openFiscaResponse) => reverseMap(openFiscaResponse, situation))
+            .then((results) => {
+                let aides = {};
+
+                for (let aideId in results) {
+                    aides[aideId] = Object.assign({
+                        benefit: { amount: results[aideId] },
+                    }, AIDES[aideId]);
+                }
+
+                view(reply, 'results', {
+                    aides,
+                    aidesCount: Object.keys(aides).length,
+                });
+             }, (error) => view(reply, 'results', { error }));
     },
 },
 {

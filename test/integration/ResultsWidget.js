@@ -1,3 +1,3 @@
 title: 'h1',
-someAide: '.aide',
+someAide: '.aide h3',
 error: '.ui.red',

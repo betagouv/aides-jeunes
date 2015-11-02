@@ -1,11 +1,9 @@
 <article class="ui card segments aide">
     <h3 class="ui segment">{{ name }}</h3>
 
-    {{#if amount}}
+    {{#if benefit}}
         <div class="ui inverted teal segment benefit">
-            <span class="benefit-value">{{ amount }}</span>
-            <span class="benefit-unit">&nbsp;€</span>
-            <span class="benefit-frequency">&nbsp;/&nbsp;mois</span>
+            {{> benefit benefit }}
         </div>
     {{/if}}
 

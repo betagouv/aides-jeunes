@@ -18,9 +18,9 @@
     "stop": "pm2 stop ecosystem.json",
     "deploy": "pm2 deploy ecosystem.json production",
     "test": "npm run lint . && npm run test-unit test/unit && npm run test-integration",
-    "pretest-integration": "npm start && pm2 start node_modules/.bin/selenium && sleep 10 || echo 'Selenium supposedly started'",
+    "pretest-integration": "NODE_ENV=test npm start && pm2 start node_modules/.bin/selenium && sleep 10 || echo 'Selenium supposedly started'",
     "test-integration": "watai test/integration",
-    "test-unit": "mocha --compilers js:babel/register",
+    "test-unit": "NODE_ENV=test mocha --compilers js:babel/register",
     "stop-test-integration": "pm2 stop node_modules/.bin/selenium",
     "lint": "eslint --ignore-pattern=test/integration/*"
   },
@@ -42,6 +42,7 @@
     "semantic-ui-reset": "^2.0.8",
     "semantic-ui-segment": "^2.0.8",
     "semantic-ui-site": "^2.0.8",
+    "superagent": "^1.4.0",
     "vision": "^3.0.0"
   },
   "devDependencies": {
@@ -50,6 +51,7 @@
     "mocha": "^2.3.2",
     "pm2": "^0.14.7",
     "selenium-server": "^2.47.1",
+    "superagent-mock": "^1.8.0",
     "watai": "^0.6.2"
   }
 }

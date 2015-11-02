@@ -8,11 +8,16 @@ export default function compute(situation) {
         .send(situation)
         .end(function(err, response) {
             if (err) {
-                return reject({
-                    error: err,
-                    message: 'Communication error with OpenFisca',
-                    body: response && response.body,
-                });
+                let error = new Error('OpenFisca communication failed');
+                error.previous = err;
+
+                try {
+                    error.body = JSON.stringify(response.body, null, 2);  // (null, 2) = "indent by 2 spaces";
+                } catch (e) {
+                    error.body = 'No response';
+                }
+
+                return reject(error);
             }
 
             resolve(response && response.body);

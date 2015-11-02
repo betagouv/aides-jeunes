@@ -5,7 +5,9 @@
 
         <details>
             <summary>Informations techniques</summary>
-            <pre>{{ error }}</pre>
+            <h3>{{ error.message }}</h3>
+            <pre>{{ error.body }}</pre>
+            <pre>{{ error.previous.stack }}</pre>
         </details>
     </section>
 {{/if}}

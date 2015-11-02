@@ -49,11 +49,7 @@ export default [
                     aides,
                     aidesCount: Object.keys(aides).length,
                 });
-             }, (error) => {
-                view(reply, 'results', {
-                    error: error && JSON.stringify(error, null, 2),  // (null, 2) = "indent by 2 spaces"
-                });
-             });
+             }, (error) => view(reply, 'results', { error }));
     },
 },
 {

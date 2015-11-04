@@ -104,6 +104,11 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         category: 'allocations'
     },
     {
+        id: 'aeeh',
+        label: 'Allocation d’éducation de l’enfant handicapé (AEEH)',
+        category: 'allocations'
+    },
+    {
         id: 'paje_base',
         label: 'Prestation d’accueil du jeune enfant (PAJE) - Allocation de base',
         category: 'allocations'

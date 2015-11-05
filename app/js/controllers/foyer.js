@@ -60,7 +60,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
     var goToResultat = function() {
         SituationService.save($scope.situation).then(function() {
             // désactivation du changement d'url dans le navigateur pour que le bouton back fonctionne
-            $state.transitionTo('situation', { 'situationId': $scope.situation._id }, { location: false });
+            $state.transitionTo('situation', { 'situationId': $scope.situation._id }, { location: false });
         });
     };
 

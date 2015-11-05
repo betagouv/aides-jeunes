@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, logementTypes, locationTypes, loyerLabels) {
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels) {
     var logement = $scope.logement = {
         adresse: {},
         inhabitantForThreeYearsOutOfLastFive: true
@@ -88,7 +88,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
              .then(function(result) {
                   $scope.cities = result.data;
                   logement.adresse = $scope.cities[0] || {};
-              }, console.error.bind(console)
+              }, $log.error.bind($log)
               ).finally(function() {
                   $scope.retrievingCities = false;
               });

@@ -3,22 +3,21 @@
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, SituationService, IndividuService) {
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
 
-    var options = {};
-    options.captureRelationConjoint = (individuRole == 'conjoint');
-    options.checkNationalite = (individuRole == 'demandeur');
+    $scope.options = {};
+    $scope.options.captureRelationConjoint = (individuRole == 'conjoint');
+    $scope.options.checkNationalite = (individuRole == 'demandeur');
 
-    options.minAge = 0;
-    options.maxAge = 130;
+    $scope.options.minAge = 0;
+    $scope.options.maxAge = 130;
     if (individuRole == 'enfant') {
-        options.displayCancelButton = true;
-        options.captureGardeAlternee = true;
-        options.capturePrenom = true;
+        $scope.options.displayCancelButton = true;
+        $scope.options.captureGardeAlternee = true;
+        $scope.options.capturePrenom = true;
 
         $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {
           return statut.id !== 'retraite';
         });
     }
-    $scope.options = options;
 
     $scope.selectedStatuts = {};
     $scope.situationsMaritales = _.filter(situationsFamiliales, 'isSituationCouple');
@@ -37,7 +36,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
     ];
 
-    $scope.individu = {
+    var DEFAULT_INDIVIDU = {
         nationalite: 'fr',
         assPreconditionRemplie: false,
         scolarite: 'college',
@@ -48,23 +47,19 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         role: individuRole,
         autresRevenusTnsActiviteType: 'bic',
         microEntrepriseActiviteType: 'bic',
-        autoEntrepreneurActiviteType: 'bic'
+        autoEntrepreneurActiviteType: 'bic',
+        situationsPro: []
     };
 
-    if (true === ($scope.captureRelationConjoint = !! options.captureRelationConjoint)) {
-        $scope.individu.statutMarital = 'mariage';
-    }
-
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
+    $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || DEFAULT_INDIVIDU;
 
-    if (isIndividuParent) {
-        var individu = _.find($scope.situation.individus, { role: individuRole });
-        if (individu) {
-            $scope.individu = _.merge($scope.individu, individu);
-            $scope.individu.situationsPro.forEach(function(situationPro) {
-                $scope.selectedStatuts[situationPro.situation] = true;
-            });
-        }
+    $scope.individu.situationsPro.forEach(function(situationPro) {
+        $scope.selectedStatuts[situationPro.situation] = true;
+    });
+
+    if ($scope.options.captureRelationConjoint) {
+        $scope.individu.statutMarital = 'mariage';
     }
 
     $scope.submit = function(form) {

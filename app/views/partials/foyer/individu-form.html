@@ -44,60 +44,59 @@
     </div>
   </div>
 
-  <div ng-if="options.checkNationalite" class="form-group">
+  <div class="form-group from-group-lg" ng-if="options.checkNationalite">
     <label class="control-label col-sm-4">Nationalité</label>
     <div class="col-sm-8">
       <div class="radio">
         <label>
-          <input type="radio" name="nationalite" ng-model="individu.nationalite" value="fr" aria-label="Nationalité Française">
-          Française
-        </label>
-      </div>
-      <div class="radio">
-        <label>
           <input type="radio" name="nationalite" ng-model="individu.nationalite" value="ue" aria-label="Nationalité EEE, UE, Suisse">
+          Française -
           <abbr title="" popover="{{ popoverEee }}" popover-title="Liste des pays de l'EEE" popover-placement="bottom" popover-trigger="mouseenter">EEE</abbr> - <abbr title="" popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr> - Suisse
         </label>
       </div>
       <div class="radio">
         <label>
           <input type="radio" name="nationalite" ng-model="individu.nationalite" value="autre" aria-label="Hors UE">
-          Hors <abbr title="" popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr>
+          Autre, avec un titre de séjour valide
         </label>
       </div>
     </div>
   </div>
 
-  <div
-    class="form-group"
-    ng-if="individu.nationalite == 'ue'"
-    ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
-    <div class="col-sm-offset-4 col-sm-8">
-      <div class="checkbox">
-        <label for="disclaimer-ue">
-          <input id="disclaimer-ue" type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
-          Détenteur d'un droit au séjour valide et résidant en France plus de 9 mois par an.
-        </label>
-      </div>
-      <span class="help-block" id="help-disclaimer-ue" ng-if="submitted && form.disclaimerUe.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
-    </div>
-  </div>
-  <div
-    class="form-group"
-    ng-if="individu.nationalite == 'autre'"
-    ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
-    <div class="col-sm-offset-4 col-sm-8">
-      <div class="checkbox">
-        <label for="disclaimer-non-ue" >
-          <input id="disclaimer-non-ue" type="checkbox" name="disclaimerNonUe" ng-model="disclaimerNonUe" required>
-          Détenteur d'une carte de résident ou d'un titre de séjour valide et résidant en France plus de 9 mois par an.
-        </label>
-      </div>
-      <span class="help-block" id="help-disclaimer-non-ue" ng-if="submitted && form.disclaimerNonUe.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
+  <div class="form-group from-group-lg" ng-if="captureSejour10ans()">
+    <label class="control-label col-sm-4" id="titre-sejour-10ans">
+      Possédez-vous un titre de séjour
+      depuis plus de 10 ans ?
+    </label>
+    <div class="col-sm-8">
+      <label class="radio-inline" for="sejour-10ans-true">
+        <input id="sejour-10ans-true" type="radio" name="sejour-10ans" ng-model="individu.titreSejour10ans" ng-value="true" ng-required="! individu.titreSejour10ans" aria-describedby="titre-sejour-10ans">
+        Oui
+      </label>
+      <label class="radio-inline" for="sejour-10ans-false">
+        <input id="sejour-10ans-false" type="radio" name="sejour-10ans" ng-model="individu.titreSejour10ans" ng-value="false" ng-required="! individu.titreSejour10ans" aria-describedby="titre-sejour-10ans">
+        Non
+      </label>
     </div>
   </div>
 
-  <div class="form-group" ng-if="captureRelationConjoint">
+  <div class="form-group from-group-lg" ng-if="captureSejour5ans()">
+    <label class="control-label col-sm-4" id="titre-sejour-5ans">
+    Depuis plus de 5 ans ?
+    </label>
+    <div class="col-sm-8">
+      <label class="radio-inline" for="sejour-5ans-true">
+        <input id="sejour-5ans-true" type="radio" name="sejour-5ans" ng-model="individu.titreSejour5ans" ng-value="true" aria-describedby="titre-sejour-5ans">
+        Oui
+      </label>
+      <label class="radio-inline" for="sejour-5ans-false">
+        <input id="sejour-5ans-false" type="radio" name="sejour-5ans" ng-model="individu.titreSejour5ans" ng-value="false" aria-describedby="titre-sejour-5ans">
+        Non
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group" ng-if="options.captureRelationConjoint">
     <label class="control-label col-sm-4" for="relation-conjoint">Votre relation</label>
     <div class="col-sm-4">
       <select

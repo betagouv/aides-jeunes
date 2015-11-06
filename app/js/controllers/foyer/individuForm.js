@@ -3,22 +3,21 @@
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, SituationService, IndividuService) {
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
 
-    var options = {};
-    options.captureRelationConjoint = (individuRole == 'conjoint');
-    options.checkNationalite = (individuRole == 'demandeur');
+    $scope.options = {};
+    $scope.options.captureRelationConjoint = (individuRole == 'conjoint');
+    $scope.options.checkNationalite = (individuRole == 'demandeur' || individuRole == 'conjoint');
 
-    options.minAge = 0;
-    options.maxAge = 130;
+    $scope.options.minAge = 0;
+    $scope.options.maxAge = 130;
     if (individuRole == 'enfant') {
-        options.displayCancelButton = true;
-        options.captureGardeAlternee = true;
-        options.capturePrenom = true;
+        $scope.options.displayCancelButton = true;
+        $scope.options.captureGardeAlternee = true;
+        $scope.options.capturePrenom = true;
 
         $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {
           return statut.id !== 'retraite';
         });
     }
-    $scope.options = options;
 
     $scope.selectedStatuts = {};
     $scope.situationsMaritales = _.filter(situationsFamiliales, 'isSituationCouple');
@@ -37,41 +36,39 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
     ];
 
-    $scope.individu = {
-        nationalite: 'fr',
+    var DEFAULT_INDIVIDU = {
+        nationalite: 'ue',
         assPreconditionRemplie: false,
         scolarite: 'college',
         tauxInvalidite: 'moins50',
         boursier: false,
         aCharge: true,
         place: false,
+        titreSejour10ans: true,
+        titreSejour5ans: true,
         role: individuRole,
+        situationsPro: [],
         autresRevenusTnsActiviteType: 'bic',
         microEntrepriseActiviteType: 'bic',
         autoEntrepreneurActiviteType: 'bic'
     };
 
-    if (true === ($scope.captureRelationConjoint = !! options.captureRelationConjoint)) {
-        $scope.individu.statutMarital = 'mariage';
-    }
+    $scope.individu = _.find($scope.situation.individus, { role: individuRole }) || DEFAULT_INDIVIDU;
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
 
-    if (isIndividuParent) {
-        var individu = _.find($scope.situation.individus, { role: individuRole });
-        if (individu) {
-            $scope.individu = _.merge($scope.individu, individu);
-            $scope.individu.situationsPro.forEach(function(situationPro) {
-                $scope.selectedStatuts[situationPro.situation] = true;
-            });
-        }
+    $scope.individu.situationsPro.forEach(function(situationPro) {
+        $scope.selectedStatuts[situationPro.situation] = true;
+    });
+
+    if (options.captureRelationConjoint) {
+        $scope.individu.statutMarital = 'mariage';
     }
 
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
             $scope.individu.situationsPro = [];
-
             _.forEach($scope.selectedStatuts, function(selected, statut) {
                 if (selected) {
                     $scope.individu.situationsPro.push({ situation: statut });
@@ -133,6 +130,14 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
 
         return false;
+    };
+
+    $scope.captureSejour10ans = function() {
+        return $scope.individu.nationalite == 'autre';
+    };
+
+    $scope.captureSejour5ans = function() {
+        return $scope.individu.nationalite == 'autre' && ($scope.individu.titreSejour10ans === false);
     };
 
     $scope.cancel = function() {

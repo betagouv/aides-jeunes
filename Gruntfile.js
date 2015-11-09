@@ -332,7 +332,6 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             'bower_components/**/*',
             'img/{,*/}*.{png,jpg,jpeg,gif}',
-            'images/{,*/}*.{webp}',
             'fonts/**/*',
             'resources/**/*',
             'documents/**/*'

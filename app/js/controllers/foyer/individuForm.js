@@ -3,12 +3,13 @@
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, SituationService, IndividuService) {
     $scope.statutsSpecifiques = IndividuService.getStatutsSpecifiques();
 
-    $scope.options = {};
-    $scope.options.captureRelationConjoint = (individuRole == 'conjoint');
-    $scope.options.checkNationalite = (individuRole == 'demandeur');
+    $scope.options = {
+        captureRelationConjoint: individuRole == 'conjoint',
+        checkNationalite: individuRole == 'demandeur',
+        minAge: 0,
+        maxAge: 130
+    };
 
-    $scope.options.minAge = 0;
-    $scope.options.maxAge = 130;
     if (individuRole == 'enfant') {
         $scope.options.displayCancelButton = true;
         $scope.options.captureGardeAlternee = true;

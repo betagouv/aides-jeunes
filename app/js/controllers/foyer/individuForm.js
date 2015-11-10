@@ -53,7 +53,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     };
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
-    $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || DEFAULT_INDIVIDU;
+    $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
 
     $scope.individu.situationsPro.forEach(function(situationPro) {
         $scope.selectedStatuts[situationPro.situation] = true;

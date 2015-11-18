@@ -188,5 +188,13 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'imgSrc':'logo_cd93.png',
         'link':'',
         'isBaseRessourcesYearMoins2':false
+    },
+    'aah': {
+        'id': 'aah',
+        'isMontantAnnuel': false,
+        'label': 'Allocation aux adultes handicapés',
+        'shortLabel':'AAH',
+        'imgSrc':'logo_caf.png',
+        'isBaseRessourcesYearMoins2':true
     }
 });

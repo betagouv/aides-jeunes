@@ -3,15 +3,18 @@
 angular.module('ddsCommon').constant('logementTypes', [
     {
         id: 'locataire',
-        label: 'locataire'
+        label: 'locataire',
+        hint: 'Figurant sur le contrat de location ou de résidence.'
     },
     {
         id: 'proprietaire',
-        label: 'propriétaire / en location-accession'
+        label: 'propriétaire',
+        hint: 'Y compris en location-accession.'
     },
     {
         id: 'heberge',
-        label: 'hébergé'
+        label: 'hébergé',
+        hint: 'Chez un particulier.'
     },
     {
         id: 'sansDomicile',

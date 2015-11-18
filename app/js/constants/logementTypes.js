@@ -4,21 +4,22 @@ angular.module('ddsCommon').constant('logementTypes', [
     {
         id: 'locataire',
         label: 'locataire',
-        hint: 'Figurant sur le contrat de location ou de résidence.'
+        hint: 'Figurant sur le bail'
     },
     {
         id: 'proprietaire',
         label: 'propriétaire',
-        hint: 'Y compris en location-accession.'
+        hint: 'Ou en location-accession'
     },
     {
         id: 'heberge',
         label: 'hébergé',
-        hint: 'Chez un particulier.'
+        hint: 'Chez un particulier'
     },
     {
         id: 'sansDomicile',
-        label: 'sans domicile stable'
+        label: 'sans domicile stable',
+        hint: 'Ou domicilié en association'
     }
 ]);
 

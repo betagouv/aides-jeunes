@@ -173,7 +173,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/form-infos-complementaires/layout.html',
                     controller: 'FormInfosComplementairesCtrl'
                 },
-                'individus@infos_complementaires':{
+                'individus@infos_complementaires': {
                     templateUrl: '/partials/form-infos-complementaires/individus.html'
                 },
                 'adresse@infos_complementaires': {

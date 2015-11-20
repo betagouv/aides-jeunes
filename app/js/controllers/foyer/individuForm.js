@@ -41,7 +41,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         nationalite: 'fr',
         assPreconditionRemplie: false,
         scolarite: 'college',
-        tauxInvalidite: 'moins50',
+        tauxIncapacite: 'moins50',
         boursier: false,
         aCharge: true,
         place: false,
@@ -79,8 +79,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
                 delete $scope.individu.assPreconditionRemplie;
             }
 
-            if (! $scope.captureTauxInvalidite()) {
-                delete $scope.individu.tauxInvalidite;
+            if (! $scope.captureTauxIncapacite()) {
+                delete $scope.individu.tauxIncapacite;
             }
 
             if (! $scope.captureEtudiantBoursier()) {
@@ -104,7 +104,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         return isIndividuParent && $scope.selectedStatuts['demandeur_emploi'];
     };
 
-    $scope.captureTauxInvalidite = function() {
+    $scope.captureTauxIncapacite = function() {
         return $scope.selectedStatuts.handicap;
     };
 

@@ -184,21 +184,21 @@
     </div>
   </div>
 
-  <div class="form-group from-group-lg" ng-if="captureTauxInvalidite()">
+  <div class="form-group from-group-lg" ng-if="captureTauxIncapacite()">
     <label class="control-label col-sm-4" for="eligibiliteAss">
-      Quel est {{ isDemandeur() ? 'votre' : 'son' }} taux d'invalidité ?
+      Quel est {{ isDemandeur() ? 'votre' : 'son' }} taux d'incapacité ?
     </label>
     <div class="col-sm-8">
       <label class="radio-inline">
-        <input type="radio" name="tauxInvalidite" value="moins50" ng-model="individu.tauxInvalidite">
+        <input type="radio" name="tauxIncapacite" value="moins50" ng-model="individu.tauxIncapacite">
         Moins de 50%
       </label>
       <label class="radio-inline">
-        <input type="radio" name="tauxInvalidite" value="moins80" ng-model="individu.tauxInvalidite">
+        <input type="radio" name="tauxIncapacite" value="moins80" ng-model="individu.tauxIncapacite">
         Entre 50% et 80%
       </label>
       <label class="radio-inline">
-        <input type="radio" name="tauxInvalidite" value="plus80" ng-model="individu.tauxInvalidite">
+        <input type="radio" name="tauxIncapacite" value="plus80" ng-model="individu.tauxIncapacite">
         Plus de 80%
       </label>
     </div>

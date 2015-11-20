@@ -187,6 +187,9 @@
   <div class="form-group from-group-lg" ng-if="captureTauxIncapacite()">
     <label class="control-label col-sm-4" for="eligibiliteAss">
       Quel est {{ isDemandeur() ? 'votre' : 'son' }} taux d'incapacité ?
+      <div class="help-block">
+        Évalué par <a target="_blank" href="http://informations.handicap.fr/carte-france-mdph.php">votre MDPH</a>.
+      </div>
     </label>
     <div class="col-sm-8">
       <label class="radio-inline">

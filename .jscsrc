@@ -18,5 +18,7 @@
   ],
   "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
   "requireSpaceAfterPrefixUnaryOperators": ["++", "--", "~", "!"],
-  "requireSpaceBeforeObjectValues": true
+  "requireSpaceBeforeObjectValues": true,
+  "disallowTrailingWhitespace": true,
+  "requireLineFeedAtFileEnd": true
 }

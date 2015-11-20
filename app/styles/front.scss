@@ -676,3 +676,9 @@ $autre-lighter: #cce4e7;
     color: #D8D8D8;
   }
 }
+
+@media (max-width: $screen-sm-min) {
+  [data-toggle="buttons"] {
+    flex-direction: column;
+  }
+}

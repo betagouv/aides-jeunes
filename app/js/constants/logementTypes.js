@@ -3,19 +3,23 @@
 angular.module('ddsCommon').constant('logementTypes', [
     {
         id: 'locataire',
-        label: 'locataire'
+        label: 'locataire',
+        hint: 'Figurant sur le bail'
     },
     {
         id: 'proprietaire',
-        label: 'propriétaire / en location-accession'
+        label: 'propriétaire',
+        hint: 'Ou en location-accession'
     },
     {
-        id: 'gratuit',
-        label: 'occupant à titre gratuit'
+        id: 'heberge',
+        label: 'hébergé',
+        hint: 'Chez un particulier'
     },
     {
         id: 'sansDomicile',
-        label: 'sans domicile stable'
+        label: 'sans domicile stable',
+        hint: 'Ou domiciliation administrative'
     }
 ]);
 

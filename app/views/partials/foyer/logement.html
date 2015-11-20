@@ -3,19 +3,18 @@
   <form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit(form)">
 
     <div class="form-group">
-      <label class="control-label col-sm-3">Vous êtes</label>
-      <div class="col-sm-9">
-        <div class="radio" ng-repeat="logementType in logementTypes">
-          <label>
-            <input
-              type="radio"
-              name="logementType"
-              ng-model="logement.type"
-              ng-value="logementType.id"
-              ng-change="changeLogementType()">
-            {{ logementType.label|uppercaseFirst }}
-          </label>
-        </div>
+      <div class="btn-group" data-toggle="buttons">
+        <button ng-repeat="logementType in logementTypes"
+          class="btn btn-default"
+          type="button"
+          name="logementType"
+          ng-model="logement.type"
+          btn-radio="logementType.id"
+          ng-change="changeLogementType()"
+          >
+          {{ logementType.label | uppercaseFirst }}
+          <span class="help-col">{{ logementType.hint }}</span>
+        </button>
       </div>
     </div>
 
@@ -65,7 +64,7 @@
       </div>
     </div>
 
-    <div ng-if="logement.type === 'proprietaire'">
+    <div ng-if="logement.type == 'proprietaire'">
       <div class="form-group">
         <label class="col-sm-3 control-label">
           Êtes-vous primo-accédant pour cette propriété ?
@@ -78,6 +77,23 @@
           <p class="help-block">
             Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire
             de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="logement.type == 'heberge'">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">
+          Participez-vous aux frais du logement ?
+        </label>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-sm btn-default" ng-model="logement.participationFrais" btn-radio="true">Oui</button>
+          <button type="button" class="btn btn-sm btn-default" ng-model="logement.participationFrais" btn-radio="false">Non</button>
+        </div>
+        <div class="col-sm-5">
+          <p class="help-block">
+            Par exemple aux dépenses d'électricité, de téléphone,&nbsp;etc.
           </p>
         </div>
       </div>

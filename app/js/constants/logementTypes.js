@@ -19,7 +19,7 @@ angular.module('ddsCommon').constant('logementTypes', [
     {
         id: 'sansDomicile',
         label: 'sans domicile stable',
-        hint: 'Ou domicilié en association'
+        hint: 'Ou domiciliation administrative'
     }
 ]);
 

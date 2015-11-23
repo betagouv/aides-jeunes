@@ -200,7 +200,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'uncomputability': {
             'intervention_CDAPH_necessaire': {
                 'reason': 'le montant de l’AAH dépend du taux d’incapacité déterminé par la <abbr title="Commission des droits et de l’autonomie des personnes handicapées">CDAPH</abbr> après le dépôt de votre demande',
-                'solution': 'Vous pouvez contacter <a href="http://informations.handicap.fr/carte-france-mdph.php">la <abbr title="Maison départementale des personnes handicapées">MDPH</abbr> la plus proche</a> pour faire établir ce taux.'
+                'solution': 'Contactez <a href="http://informations.handicap.fr/carte-france-mdph.php">la <abbr title="Maison départementale des personnes handicapées">MDPH</abbr> la plus proche</a> pour faire établir ce taux.'
             }
         },
         'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242'

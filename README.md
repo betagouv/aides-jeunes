@@ -29,6 +29,8 @@ Démarrer le serveur : `npm start`.
 
 Arrêter le serveur : `npm stop`.
 
+Démarrer le serveur pour le développement (live-reload, logs…) : `npm run dev`.
+
 
 Test
 ----

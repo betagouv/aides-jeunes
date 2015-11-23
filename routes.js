@@ -22,6 +22,14 @@ export default [
 },
 {
     method: 'GET',
+    path: '/age',
+    handler: (request, reply) => {
+        view(reply, 'age', {
+        });
+    },
+},
+{
+    method: 'POST',
     path: '/situation',
     handler: (request, reply) => {
         view(reply, 'situation', {

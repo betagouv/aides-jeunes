@@ -32,7 +32,10 @@ export default [
     method: 'POST',
     path: '/situation',
     handler: (request, reply) => {
+        let situation = require('./test/mock/situation.json');
+
         view(reply, 'situation', {
+            situation: JSON.stringify(situation),
         });
     },
 },

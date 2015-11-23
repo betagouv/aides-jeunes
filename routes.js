@@ -22,9 +22,9 @@ export default [
 },
 {
     method: 'GET',
-    path: '/age',
+    path: '/date-naissance',
     handler: (request, reply) => {
-        view(reply, 'age', {
+        view(reply, 'birthdate', {
         });
     },
 },

@@ -27,6 +27,8 @@ export default [
     path: '/date-naissance',
     handler: (request, reply) => {
         view(reply, 'birthdate', {
+            error: request.query.hasOwnProperty('error'),
+            value: request.query.value || '',
         });
     },
 },
@@ -39,7 +41,7 @@ export default [
         let birthdate = moment(request.payload.birthdate, [ 'DD/MM/YY', 'DD/MM/YYYY' ], true);
 
         if (! birthdate.isValid()) {
-            return reply.redirect('/date-naissance');
+            return reply.redirect('/date-naissance?value=' + request.payload.birthdate + '&error');
         }
 
         situation.scenarios[0].test_case.individus[0].birth = birthdate.format('YYYY-MM-DD');

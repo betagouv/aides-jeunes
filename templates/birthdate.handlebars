@@ -1,7 +1,14 @@
 <h1>Votre date de naissance</h1>
 
 <form method="post" action="/situation">
-    <input type="date" min="1880-01-01" max="today" autocomplete="bday" name="birthdate"/>
+    <input type="date" min="1880-01-01" max="today" autocomplete="bday" name="birthdate" value="{{ value }}"/>
+    {{#if error}}
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <h2 class="header">Date mal formée</h2>
+            <p>Utilisez le format JJ/MM/AAAA (jour/mois/année).</p>
+        </div>
+    {{/if}}
     <input type="submit" value="Valider"/>
 </form>
 

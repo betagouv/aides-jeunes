@@ -1,0 +1,3 @@
+BIRTHDATE_TITLE = /date de naissance/i
+BIRTHDATE = '01/04/1980'
+BIRTHDATE_ISO = '1980-04-01'

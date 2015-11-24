@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, logementTypes, locationTypes, loyerLabels) {
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels) {
     var logement = $scope.logement = {
         adresse: {},
         inhabitantForThreeYearsOutOfLastFive: true
@@ -50,7 +50,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.captureLoyer = function() {
-        if ('gratuit' === logement.type) {
+        if (logement.type == 'heberge') {
             return false;
         }
         return _.any([
@@ -63,10 +63,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.captureCodePostal = function() {
         return _.any([
             angular.isDefined(logement.primoAccedant),
-            'foyer' === logement.locationType,
+            logement.locationType == 'foyer',
             angular.isDefined(logement.isChambre),
-            'gratuit' === logement.type,
-            'sansDomicile' === logement.type
+            logement.type == 'heberge' && angular.isDefined(logement.participationFrais),
+            logement.type == 'sansDomicile'
         ]);
     };
 
@@ -88,7 +88,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
              .then(function(result) {
                   $scope.cities = result.data;
                   logement.adresse = $scope.cities[0] || {};
-              }, console.error.bind(console)
+              }, $log.error.bind($log)
               ).finally(function() {
                   $scope.retrievingCities = false;
               });

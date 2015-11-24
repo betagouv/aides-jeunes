@@ -663,3 +663,22 @@ $autre-lighter: #cce4e7;
   border-bottom: 1px dashed;
   cursor: help;
 }
+
+[data-toggle="buttons"] {
+  display: flex;
+  flex-direction: row;
+
+  button, label {
+    flex: 1;
+  }
+
+  .active .help-block, .active .help-col {
+    color: #D8D8D8;
+  }
+}
+
+@media (max-width: $screen-sm-min) {
+  [data-toggle="buttons"] {
+    flex-direction: column;
+  }
+}

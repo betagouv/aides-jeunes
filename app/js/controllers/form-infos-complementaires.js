@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FormInfosComplementairesCtrl', function($scope, $state, $stateParams, situationsFamiliales, SituationService) {
+angular.module('ddsApp').controller('FormInfosComplementairesCtrl', function($scope, $state, $stateParams, $log, situationsFamiliales, SituationService) {
     var situation = $scope.situation = SituationService.restoreLocal();
     $scope.situationsFamiliales = situationsFamiliales;
     $scope.demandeur = _.find(situation.individus, { role: 'demandeur' });
@@ -42,6 +42,6 @@ angular.module('ddsApp').controller('FormInfosComplementairesCtrl', function($sc
         SituationService.save($scope.situation).then(function() {
             $scope.situation.infosComplementairesCaptured = true;
             $state.go('download_cerfa', {droit: $stateParams.droit});
-        }).catch(console.log.bind(console));
+        }).catch($log.error.bind($log));
     };
 });

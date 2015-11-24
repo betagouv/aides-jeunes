@@ -11,7 +11,9 @@ app.config(function($locationProvider, $stateProvider) {
         controller: 'EmbedCtrl',
         resolve: {
             situation: function($stateParams, $http) {
-                return $http.get('/api/situations/' + $stateParams.situationId).then(function(result) {
+                return $http.get('/api/situations/' + $stateParams.situationId, {
+                    params: { cacheBust: Date.now() }
+                }).then(function(result) {
                     var situation = result.data;
                     situation.individus.forEach(function(individu) {
                         individu.dateDeNaissance = moment(individu.dateDeNaissance);

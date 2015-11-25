@@ -111,7 +111,8 @@ module.exports = function (grunt) {
         quotmark: 'single',
         regexp: true,
         undef: true,
-        unused: true
+        unused: true,
+        laxbreak: true
       },
       node: ['*.js'],
       client: {

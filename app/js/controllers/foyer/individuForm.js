@@ -123,14 +123,14 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
     };
 
+    $scope.capturePerteAutonomie = false;
 
-    $scope.capturePerteAutonomie = function (form) {
-        if (form.dateDeNaissance.$valid) {
-            var age = IndividuService.age($scope.individu);
-            return age >= 60;
-        }
-        return false;
-    };
+    $scope.$watch('individu.dateDeNaissance', _.debounce(function() {
+        $scope.capturePerteAutonomie = $scope.individu.dateDeNaissance
+                                        && $scope.individu.dateDeNaissance.isValid()
+                                        && IndividuService.age($scope.individu) >= 60;
+        $scope.$digest();
+    }, 400)); // avoid displaying question when user born in 1980 is typing 19… as birth year
 
     $scope.captureScolarite = function(form) {
         if (! isIndividuParent && form.dateDeNaissance.$valid) {

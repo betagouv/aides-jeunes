@@ -17,15 +17,30 @@ describe('Controller: ResultatCtrl', function() {
         });
     });
 
-    it('round() should round to the nearest ten', function() {
-        // given
-        var values = [100, 57, 54, 34.5];
-        controller('ResultatCtrl', { $scope: scope });
+    describe('round', function() {
+        describe('euros', function() {
+            it('should give nearest ten', function() {
+                var values = [{ montant: 100 }, { montant: 57 }, { montant: 54 }];
+                controller('ResultatCtrl', { $scope: scope });
 
-        // when
-        var results = _.map(values, scope.round);
+                // when
+                var results = _.map(values, scope.round);
 
-        // then
-        expect(results).toEqual([100, 60, 50, 30]);
+                // then
+                expect(results).toEqual([100, 60, 50]);
+            });
+        });
+        describe('percentage', function() {
+            it('should give nearest unit', function() {
+                var values = [{ montant: 74.11, unit: '%' }, { montant: 26.81, unit: '%' }];
+                controller('ResultatCtrl', { $scope: scope });
+
+                // when
+                var results = _.map(values, scope.round);
+
+                // then
+                expect(results).toEqual([74, 27]);
+            });
+        });
     });
 });

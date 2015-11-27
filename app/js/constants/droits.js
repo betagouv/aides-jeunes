@@ -179,7 +179,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
     'adpa': {
         'id':'adpa',
         'isMontantAnnuel':false,
-        'unite': '%',
+        'unit': '%',
         'legend': 'des frais de dépendance',
         'label':'Allocation Départementale Personnalisée d’Autonomie',
         'shortLabel':'ADPA',

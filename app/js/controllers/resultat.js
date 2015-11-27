@@ -39,8 +39,12 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         });
     };
 
-    $scope.round = function(montant) {
-        return Math.round(montant / 10) * 10;
+    $scope.round = function(droit) {
+        if (! droit.unit) {
+            return Math.round(droit.montant / 10) * 10;
+        } else {
+            return Math.round(droit.montant);
+        }
     };
 
     $scope.hasCerfa = CerfaService.getCerfaFromDroit;

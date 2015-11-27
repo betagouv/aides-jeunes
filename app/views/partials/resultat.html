@@ -31,14 +31,12 @@
 
           <div class="col-xs-3 col-sm-2">
             <div class="montant">
-              <span ng-if="isNumber(droit.montant)">{{ round(droit.montant) }}&nbsp;€</span>
+              <span ng-if="isNumber(droit.montant)">{{ round(droit) }}&nbsp;{{ droit.unit || '€' }}</span>
               <span ng-if="isString(droit.montant)" class="montant-inconnu">?</span>
             </div>
 
             <div ng-if="isNumber(droit.montant)" class="montant-detail">
-              /
-              <span ng-if="droit.isMontantAnnuel">an</span>
-              <span ng-if="! droit.isMontantAnnuel">mois</span>
+              {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
             </div>
 
           </div>
@@ -89,6 +87,14 @@
             <a target="_blank"
               class="btn btn-sm btn-primary btn-block"
               href="/documents/Formulaire_demande_PLF.pdf">
+              Engager les démarches
+            </a>
+          </div>
+           <div ng-if="droit.id == 'adpa'"
+            class="col-sm-3 col-sm-offset-6">
+            <a target="_blank"
+              class="btn btn-sm btn-primary btn-block"
+              href="http://www.seine-saint-denis.fr/ADPA.html">
               Engager les démarches
             </a>
           </div>

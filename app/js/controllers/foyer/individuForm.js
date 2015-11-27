@@ -16,7 +16,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         $scope.options.capturePrenom = true;
 
         $scope.statutsSpecifiques = _.filter($scope.statutsSpecifiques, function(statut) {
-          return statut.id !== 'retraite';
+          return (statut.id !== 'retraite') && (statut.id !== 'perteAutonomie');
         });
     }
 
@@ -48,6 +48,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         role: individuRole,
         autresRevenusTnsActiviteType: 'bic',
         microEntrepriseActiviteType: 'bic',
+        perteAutonomie: false,
         autoEntrepreneurActiviteType: 'bic',
         situationsPro: []
     };
@@ -121,6 +122,15 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
             return IndividuService.age($scope.individu) >= 1;
         }
     };
+
+    $scope.capturePerteAutonomie = false;
+
+    $scope.$watch('individu.dateDeNaissance', _.debounce(function() {
+        $scope.capturePerteAutonomie = $scope.individu.dateDeNaissance
+                                        && $scope.individu.dateDeNaissance.isValid()
+                                        && IndividuService.age($scope.individu) >= 60;
+        $scope.$digest();
+    }, 400)); // avoid displaying question when user born in 1980 is typing 19… as birth year
 
     $scope.captureScolarite = function(form) {
         if (! isIndividuParent && form.dateDeNaissance.$valid) {

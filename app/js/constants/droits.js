@@ -175,5 +175,18 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'imgSrc':'logo_mairie_paris.png',
         'link':'http://www.paris.fr/aides',
         'isBaseRessourcesYearMoins2':false
+    },
+    'adpa': {
+        'id':'adpa',
+        'isMontantAnnuel':false,
+        'unit': '%',
+        'legend': 'des frais de dépendance',
+        'label':'Allocation Départementale Personnalisée d’Autonomie',
+        'shortLabel':'ADPA',
+        'description':'Allocation versée aux personnes dépendantes âgées de plus de 60 ans. Elle a pour objectif de financer des services d’aide à la personne favorisant leur autonomie dans les gestes quotidiens.',
+        'conditions': [],
+        'imgSrc':'logo_cd93.png',
+        'link':'',
+        'isBaseRessourcesYearMoins2':false
     }
 });

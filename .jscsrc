@@ -17,5 +17,8 @@
     "while"
   ],
   "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
-  "requireSpaceAfterPrefixUnaryOperators": ["++", "--", "~", "!"]
+  "requireSpaceAfterPrefixUnaryOperators": ["++", "--", "~", "!"],
+  "requireSpaceBeforeObjectValues": true,
+  "disallowTrailingWhitespace": true,
+  "requireLineFeedAtFileEnd": true
 }

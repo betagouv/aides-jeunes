@@ -186,7 +186,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'description': 'Allocation versée aux personnes dépendantes âgées de plus de 60 ans. Elle a pour objectif de financer des services d’aide à la personne favorisant leur autonomie dans les gestes quotidiens.',
         'conditions': [],
         'imgSrc': 'logo_cd93.png',
-        'link': '',
+        'link': 'https://www.seine-saint-denis.fr/ADPA.html',
         'isBaseRessourcesYearMoins2': false
     },
     'aah': {

@@ -24,7 +24,7 @@ npm install
 grunt build
 
 # Stop Mes Aides
-killall --user `whoami` node
+killall --user `whoami` node || echo 'No server was running'
 # Start Mes Aides
 OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="http://$PUBLIC_HOST" PORT=$PORT MONGODB_URL="mongodb://localhost/$(whoami)" nohup node server.js &
 
@@ -43,7 +43,7 @@ git checkout origin/$TARGET_BRANCH
 ./update.sh --dev
 
 # Stop OpenFisca
-killall --user `whoami` /usr/bin/python
+killall --user `whoami` /usr/bin/python || echo 'No OpenFisca server was running'
 # Start OpenFisca
 nohup ./start.sh &
 
@@ -53,6 +53,9 @@ set +x
 
 echo "===================="
 echo "Déploiement effectué"
+echo "Attente du démarrage du serveur OpenFisca…"
+
+sleep 10
 
 # Smoke test
 curl -sL -w "GET %{url_effective} -> %{http_code}\\n" localhost:$OPENFISCA_PORT -o /dev/null

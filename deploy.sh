@@ -42,6 +42,8 @@ git checkout origin/$TARGET_BRANCH
 
 ./update.sh --dev
 
+# Stop OpenFisca
+killall --user `whoami` /usr/bin/python
 # Start OpenFisca
 nohup ./start.sh &
 

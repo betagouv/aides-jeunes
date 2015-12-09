@@ -53,5 +53,6 @@ echo "===================="
 echo "Déploiement effectué"
 
 # Smoke test
+curl -sL -w "GET %{url_effective} -> %{http_code}\\n" localhost:$OPENFISCA_PORT -o /dev/null
 curl -sL -w "GET %{url_effective} -> %{http_code}\\n" localhost:$PORT -o /dev/null
 curl -sL -w "GET %{url_effective} -> %{http_code}\\n" $PUBLIC_HOST -o /dev/null

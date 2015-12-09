@@ -177,6 +177,16 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'isBaseRessourcesYearMoins2': false,
         'roundToNearest10': false
     },
+    'paris_logement_aspeh': {
+        'id': 'paris_logement_aspeh',
+        'label': 'Allocation de soutien aux parents d’enfants handicapés',
+        'shortLabel': 'ASPEH',
+        'description': 'l’allocation de soutien aux parents d’enfants handicapés est une aide mensuelle permettant de soutenir les familles ayant un ou plusieurs enfants handicapés à charge.',
+        'imgSrc': 'logo_mairie_paris.png',
+        'link': 'http://www.paris.fr/aides',
+        'isBaseRessourcesYearMoins2': false,
+        'roundToNearest10': false
+    },
     'paris_logement_plfm': {
         'id': 'paris_logement_plfm',
         'isMontantAnnuel': true,

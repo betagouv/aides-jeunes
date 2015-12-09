@@ -177,6 +177,21 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'isBaseRessourcesYearMoins2': false,
         'roundToNearest10': false
     },
+    'paris_logement_plfm': {
+        'id': 'paris_logement_plfm',
+        'isMontantAnnuel': true,
+        'label': 'Paris logement familles monoparentales',
+        'shortLabel': 'PLFM',
+        'description': 'L’allocation Paris Logement Familles monoparentales permet aux parents seuls, ayant un ou plusieurs enfants à charge, de mieux supporter leurs dépenses de logement.',
+        'conditions': [
+            'Avoir demandé le versement des aides logement auxquelles vous avez droit auprès de la CAF.',
+            'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
+        ],
+        'imgSrc': 'logo_mairie_paris.png',
+        'link': 'http://www.paris.fr/aides',
+        'isBaseRessourcesYearMoins2': false,
+        'roundToNearest10': false
+    },
     'paris_energie_famille': {
         'id': 'paris_energie_famille',
         'isMontantAnnuel': true,

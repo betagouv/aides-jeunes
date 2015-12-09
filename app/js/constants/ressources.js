@@ -106,7 +106,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'aeeh',
         label: 'Allocation d’éducation de l’enfant handicapé (AEEH)',
-        category: 'allocations'
+        category: 'allocations'  // We don't actually need to capture the amount, but users want to declare it, and presence can improve some Paris aides. See https://github.com/sgmap/mes-aides-ui/issues/191
     },
     {
         id: 'paje_base',

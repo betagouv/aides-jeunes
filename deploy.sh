@@ -26,7 +26,7 @@ grunt build
 # Stop Mes Aides
 killall --user `whoami` node || echo 'No server was running'
 # Start Mes Aides
-OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="http://$PUBLIC_HOST" PORT=$PORT MONGODB_URL="mongodb://localhost/$(whoami)" nohup node server.js &
+OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="http://$PUBLIC_HOST" PORT=$PORT MONGODB_URL="mongodb://localhost/$(whoami)" nohup node server.js >> ../mes-aides_log.txt &
 
 cd
 
@@ -45,7 +45,7 @@ git checkout origin/$TARGET_BRANCH
 # Stop OpenFisca
 killall --user `whoami` /usr/bin/python || echo 'No OpenFisca server was running'
 # Start OpenFisca
-nohup ./start.sh &
+nohup ./start.sh >> ../openfisca_log.txt &
 
 cd
 

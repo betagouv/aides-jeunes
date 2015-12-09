@@ -177,6 +177,17 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'isBaseRessourcesYearMoins2': false,
         'roundToNearest10': false
     },
+    'paris_forfait_famille': {
+        'id': 'paris_forfait_famille',
+        'isMontantAnnuel': true,
+        'label': 'Paris Forfait Familles',
+        'shortLabel': 'PFF',
+        'description': 'Paris forfait familles est une aide annuelle destinée aux familles nombreuses.',
+        'imgSrc': 'logo_mairie_paris.png',
+        'link': 'http://www.paris.fr/aides',
+        'isBaseRessourcesYearMoins2': false,
+        'roundToNearest10': false
+    },
     'paris_logement_psol': {
         'id': 'paris_logement_psol',
         'label': 'Paris Solidarité',

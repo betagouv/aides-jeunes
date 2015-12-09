@@ -177,6 +177,17 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'isBaseRessourcesYearMoins2': false,
         'roundToNearest10': false
     },
+    'paris_energie_famille': {
+        'id': 'paris_energie_famille',
+        'isMontantAnnuel': true,
+        'label': 'Paris Energie Famille',
+        'shortLabel': 'PEF',
+        'description': 'Paris énergie familles est une aide annuelle permettant aux familles d’alléger leurs dépenses de consommation d’électricité et de gaz.',
+        'imgSrc': 'logo_mairie_paris.png',
+        'link': 'http://www.paris.fr/aides',
+        'isBaseRessourcesYearMoins2': false,
+        'roundToNearest10': false
+    },
     'adpa': {
         'id': 'adpa',
         'isMontantAnnuel': false,

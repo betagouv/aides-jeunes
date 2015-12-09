@@ -177,6 +177,20 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'isBaseRessourcesYearMoins2': false,
         'roundToNearest10': false
     },
+    'paris_logement': {
+        'id': 'paris_logement',
+        'label': 'Paris Logement',
+        'shortLabel': 'PL',
+        'description': 'Paris logement est une aide mensuelle destinée à aider les parisiens à mieux supporter leurs dépenses de logement.',
+        'conditions': [
+            'Avoir demandé le versement des aides logement auxquelles vous avez droit auprès de la CAF.',
+            'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
+        ],
+        'imgSrc': 'logo_mairie_paris.png',
+        'link': 'http://www.paris.fr/aides',
+        'isBaseRessourcesYearMoins2': false,
+        'roundToNearest10': false
+    },
     'paris_logement_aspeh': {
         'id': 'paris_logement_aspeh',
         'label': 'Allocation de soutien aux parents d’enfants handicapés',

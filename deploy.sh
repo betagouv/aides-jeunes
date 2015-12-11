@@ -59,7 +59,7 @@ echo "===================="
 echo "Déploiement effectué"
 echo "Attente du démarrage du serveur OpenFisca…"
 
-sleep 10
+wget --quiet --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:$OPENFISCA_PORT
 
 # Smoke test
 curl -sL -w "GET %{url_effective} -> %{http_code}\\n" localhost:$OPENFISCA_PORT -o /dev/null

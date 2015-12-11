@@ -40,10 +40,7 @@ then
     cd openfisca
 fi
 
-git fetch origin $TARGET_BRANCH
-git checkout origin/$TARGET_BRANCH
-
-./update.sh --dev
+./update.sh $TARGET_BRANCH
 
 # Stop OpenFisca
 killall --user `whoami` /usr/bin/python || echo 'No OpenFisca server was running'

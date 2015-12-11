@@ -53,6 +53,43 @@ nohup ./start.sh $OPENFISCA_CONFIG >> ../openfisca_log.txt &
 
 cd ..
 
+# Set up reverse proxy
+
+echo "upstream $(whoami) {
+    server 127.0.0.1:$PORT;
+}
+
+server {
+    listen 80;
+    server_name $(whoami).mes-aides.sgmap.fr;
+
+    access_log off;
+
+    gzip on;
+    gzip_proxied any;
+    gzip_types application/json
+               application/javascript
+               text/css
+               text/plain
+               text/xml;
+    gzip_vary on;
+
+    location / {
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header Host \$http_host;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection \"upgrade\";
+
+        proxy_pass  http://$(whoami);
+        proxy_redirect off;
+    }
+}" > /etc/nginx/conf.d/$(whoami).conf
+
+service nginx reload
+
 set +x
 
 echo "===================="

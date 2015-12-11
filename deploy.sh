@@ -6,11 +6,10 @@ set -ex
 
 # Defaults for production.
 # Example for development:
-#   PORT=8100 OPENFISCA_PORT=2000 OPENFISCA_CONFIG=development PUBLIC_URL=http://next.mes-aides.sgmap.fr ./deploy.sh aah
+#   PORT=8100 OPENFISCA_PORT=2000 PUBLIC_URL=http://next.mes-aides.sgmap.fr ./deploy.sh aah
 TARGET_BRANCH=${1:-master}  # demo
 PORT=${PORT:-8000}  # 8100
 OPENFISCA_PORT=${OPENFISCA_PORT:-12000}  # 2000
-OPENFISCA_CONFIG=${OPENFISCA_CONFIG:-mes-aides}  # development
 PUBLIC_URL=${PUBLIC_URL:-https://mes-aides.gouv.fr}  # http://next.mes-aides.sgmap.fr
 
 # Install Mes Aides
@@ -49,7 +48,7 @@ git checkout origin/$TARGET_BRANCH
 # Stop OpenFisca
 killall --user `whoami` /usr/bin/python || echo 'No OpenFisca server was running'
 # Start OpenFisca
-nohup ./start.sh $OPENFISCA_CONFIG >> ../openfisca_log.txt &
+PORT=$OPENFISCA_PORT nohup ./start.sh mes-aides >> ../openfisca_log.txt &
 
 cd ..
 

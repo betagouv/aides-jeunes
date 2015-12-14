@@ -15,7 +15,7 @@ PUBLIC_URL=${PUBLIC_URL:-https://mes-aides.gouv.fr}  # http://next.mes-aides.sgm
 # Install Mes Aides
 if ! cd mes-aides-ui
 then
-    git clone https://github.com/sgmap/mes-aides-ui.git
+    git clone https://github.com/sgmap/mes-aides-ui.git --branch $TARGET_BRANCH
     cd mes-aides-ui
 fi
 
@@ -36,7 +36,7 @@ cd ..
 # Install OpenFisca
 if ! cd openfisca
 then
-    git clone https://github.com/sgmap/openfisca.git
+    git clone https://github.com/sgmap/openfisca.git --branch $TARGET_BRANCH
     cd openfisca
 fi
 

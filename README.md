@@ -146,22 +146,28 @@ ssh openfisca-mes-aides@sgmap.fr ./deploy
 
 ### Déployer une feature branch
 
-Ajouter un utilisateur sur le serveur de production :
+#### Ajouter un utilisateur sur le serveur de production
+
+En se connectant en tant que `root`.
+
 ```sh
-	adduser mes-aides-`branch`
-	passwd -d mes-aides-`branch`
-	mkdir /home/mes-aides-ppa/.ssh/
-	curl https://github.com/mesaides-bot.keys > /home/mes-aides-ppa/.ssh/authorized_keys
-```
-Récupérer le script de déploiement :
-```sh
-	curl https://raw.githubusercontent.com/sgmap/mes-aides-ui/deploy/deploy.sh > /home/mes-aides-ppa/deploy.sh
-	chown mes-aides-ppa:mes-aides-ppa /home/mes-aides-ppa/deploy.sh
-	chmod u+x /home/mes-aides-ppa/deploy.sh
+adduser mes-aides-`branch`
+passwd -d mes-aides-`branch`
+mkdir /home/mes-aides-ppa/.ssh/
+curl https://github.com/mesaides-bot.keys > /home/mes-aides-ppa/.ssh/authorized_keys
 ```
 
-Sur le poste de developpement:
+#### Récupérer le script de déploiement
+
 ```sh
-	ssh-add ~/.ssh/mes-aides-bot
-	ssh mes-aides-ppa@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 PUBLIC_URL=http://mes-aides-ppa.mes-aides.sgmap.fr ./deploy.sh ppa"
+curl https://raw.githubusercontent.com/sgmap/mes-aides-ui/deploy/deploy.sh > /home/mes-aides-ppa/deploy.sh
+chown mes-aides-ppa:mes-aides-ppa /home/mes-aides-ppa/deploy.sh
+chmod u+x /home/mes-aides-ppa/deploy.sh
+```
+
+#### Sur le poste de développement
+
+```sh
+ssh-add ~/.ssh/mes-aides-bot
+ssh mes-aides-ppa@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 PUBLIC_URL=http://mes-aides-ppa.mes-aides.sgmap.fr ./deploy.sh ppa"
 ```

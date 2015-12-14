@@ -195,12 +195,12 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'label': 'Allocation aux adultes handicapés',
         'shortLabel': 'AAH',
         'imgSrc': 'logo_caf.png',
-        'description': 'L’AAH est une aide financière qui permet d’assurer un revenu minimum aux adultes handicapés. Votre éligibilité à l’AAH peut impacter vos droits au RSA et à la CMU-C.',
+        'description': 'L’AAH est une aide financière qui permet d’assurer un revenu minimum aux adultes handicapés.',
         'isBaseRessourcesYearMoins2': true,
         'uncomputability': {
             'intervention_CDAPH_necessaire': {
                 'reason': 'le montant de l’AAH dépend du taux d’incapacité déterminé par la <abbr title="Commission des droits et de l’autonomie des personnes handicapées">CDAPH</abbr> après le dépôt de votre demande',
-                'solution': 'Contactez <a href="http://informations.handicap.fr/carte-france-mdph.php">la <abbr title="Maison départementale des personnes handicapées">MDPH</abbr> la plus proche</a> pour faire établir ce taux.'
+                'solution': 'Contactez <a href="http://informations.handicap.fr/carte-france-mdph.php">la <abbr title="Maison départementale des personnes handicapées">MDPH</abbr> la plus proche</a> pour faire établir ce taux. Attention votre éligibilité à l’AAH peut impacter vos droits au RSA et à la CMU-C.'
             }
         },
         'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242'

@@ -170,4 +170,5 @@ chmod u+x /home/mes-aides-ppa/deploy.sh
 ```sh
 ssh-add ~/.ssh/mes-aides-bot
 ssh mes-aides-ppa@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 PUBLIC_URL=http://mes-aides-ppa.mes-aides.sgmap.fr ./deploy.sh ppa"
+ssh root@sgmap.fr "service nginx reload"
 ```

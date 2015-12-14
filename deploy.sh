@@ -84,8 +84,6 @@ server {
     }
 }" > /etc/nginx/conf.d/$(whoami).conf
 
-service nginx reload
-
 set +x
 
 echo "===================="
@@ -98,3 +96,6 @@ wget --quiet --retry-connrefused --waitretry=1 --output-document=/dev/null http:
 curl -sL -w "GET %{url_effective} -> %{http_code}\\n" localhost:$OPENFISCA_PORT -o /dev/null
 curl -sL -w "GET %{url_effective} -> %{http_code}\\n" localhost:$PORT -o /dev/null
 curl -sL -w "GET %{url_effective} -> %{http_code}\\n" $PUBLIC_URL -o /dev/null
+
+echo
+echo 'Exécuter `service nginx reload` en root en cas de changement de ports ou de nouvelle instance'

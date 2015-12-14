@@ -122,9 +122,7 @@ Pousser sur `sgmap/mes-aides-ui#master` la version du code à déployer.
 
 ### OpenFisca
 
-Pousser sur `sgmap/openfisca-france#prod`, `sgmap/openfisca-core#prod`, `sgmap/openfisca-parsers#prod` et `sgmap/openfisca-web-api#prod` les versions du code à déployer.
-
-Pour faciliter le rollback, commiter et pousser l'état des différents sous-modules dans `sgmap/openfisca`.
+Commiter et pousser l'état des différents sous-modules dans `sgmap/openfisca`.
 
 
 
@@ -144,4 +142,26 @@ ssh deploy@sgmap.fr ./deploy
 
 ```sh
 ssh openfisca-mes-aides@sgmap.fr ./deploy
+```
+
+### Déployer une feature branch
+
+Ajouter un utilisateur sur le serveur de production :
+```sh
+	adduser mes-aides-`branch`
+	passwd -d mes-aides-`branch`
+	mkdir /home/mes-aides-ppa/.ssh/
+	curl https://github.com/mesaides-bot.keys > /home/mes-aides-ppa/.ssh/authorized_keys
+```
+Récupérer le script de déploiement :
+```sh
+	curl https://raw.githubusercontent.com/sgmap/mes-aides-ui/deploy/deploy.sh > /home/mes-aides-ppa/deploy.sh
+	chown mes-aides-ppa:mes-aides-ppa /home/mes-aides-ppa/deploy.sh
+	chmod u+x /home/mes-aides-ppa/deploy.sh
+```
+
+Sur le poste de developpement:
+```sh
+	ssh-add ~/.ssh/mes-aides-bot
+	ssh mes-aides-ppa@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 PUBLIC_URL=http://mes-aides-ppa.mes-aides.sgmap.fr ./deploy.sh ppa"
 ```

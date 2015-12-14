@@ -151,24 +151,25 @@ ssh openfisca-mes-aides@sgmap.fr ./deploy
 En se connectant en tant que `root`.
 
 ```sh
-adduser mes-aides-`branch`
-passwd -d mes-aides-`branch`
-mkdir /home/mes-aides-ppa/.ssh/
-curl https://github.com/mesaides-bot.keys > /home/mes-aides-ppa/.ssh/authorized_keys
+BRANCH=ppa
+adduser mes-aides-$BRANCH
+passwd -d mes-aides-$BRANCH
+mkdir /home/mes-aides-$BRANCH/.ssh/
+curl https://github.com/mesaides-bot.keys > /home/mes-aides-$BRANCH/.ssh/authorized_keys
 ```
 
 #### Récupérer le script de déploiement
 
 ```sh
-curl https://raw.githubusercontent.com/sgmap/mes-aides-ui/deploy/deploy.sh > /home/mes-aides-ppa/deploy.sh
-chown mes-aides-ppa:mes-aides-ppa /home/mes-aides-ppa/deploy.sh
-chmod u+x /home/mes-aides-ppa/deploy.sh
+curl https://raw.githubusercontent.com/sgmap/mes-aides-ui/deploy/deploy.sh > /home/mes-aides-$BRANCH/deploy.sh
+chown mes-aides-$BRANCH:mes-aides-$BRANCH /home/mes-aides-$BRANCH/deploy.sh
+chmod u+x /home/mes-aides-$BRANCH/deploy.sh
 ```
 
 #### Sur le poste de développement
 
 ```sh
 ssh-add ~/.ssh/mes-aides-bot
-ssh mes-aides-ppa@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 PUBLIC_URL=http://mes-aides-ppa.mes-aides.sgmap.fr ./deploy.sh ppa"
+ssh mes-aides-$BRANCH@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 PUBLIC_URL=http://mes-aides-$BRANCH.mes-aides.sgmap.fr ./deploy.sh $BRANCH"
 ssh root@sgmap.fr "service nginx reload"
 ```

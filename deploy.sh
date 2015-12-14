@@ -6,11 +6,14 @@ set -ex
 
 # Defaults for production.
 # Example for development:
-#   PORT=8100 OPENFISCA_PORT=2000 PUBLIC_URL=http://next.mes-aides.sgmap.fr ./deploy.sh aah
-TARGET_BRANCH=${1:-master}  # demo
-PORT=${PORT:-8000}  # 8100
-OPENFISCA_PORT=${OPENFISCA_PORT:-12000}  # 2000
-PUBLIC_URL=${PUBLIC_URL:-https://mes-aides.gouv.fr}  # http://next.mes-aides.sgmap.fr
+#   PORT=8100 OPENFISCA_PORT=12100 ./deploy.sh aah
+# Example for production:
+#   PORT=8000 OPENFISCA_PORT=2000 PUBLIC_HOST=mes-aides.gouv.fr PROTOCOL=https ./deploy.sh
+TARGET_BRANCH=${1:-master}
+PORT=${PORT:-8000}
+OPENFISCA_PORT=${OPENFISCA_PORT:-12000}
+PUBLIC_HOST=${PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.sgmap.fr}
+PROTOCOL=${PROTOCOL:-http}
 
 # Install Mes Aides
 if ! cd mes-aides-ui
@@ -29,7 +32,7 @@ grunt build
 # Stop Mes Aides
 killall --user `whoami` node || echo 'No server was running'
 # Start Mes Aides
-OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="$PUBLIC_URL" PORT=$PORT MONGODB_URL="mongodb://localhost/$(whoami)" nohup node server.js >> ../mes-aides_log.txt &
+OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="$PROTOCOL://$PUBLIC_HOST" PORT=$PORT MONGODB_URL="mongodb://localhost/$(whoami)" nohup node server.js >> ../mes-aides_log.txt &
 
 cd ..
 
@@ -57,7 +60,7 @@ echo "upstream $(whoami) {
 
 server {
     listen 80;
-    server_name $(whoami).mes-aides.sgmap.fr;
+    server_name $PUBLIC_HOST;
 
     access_log off;
 
@@ -95,7 +98,7 @@ wget --quiet --retry-connrefused --waitretry=1 --output-document=/dev/null http:
 # Smoke test
 curl -sL -w "GET %{url_effective} -> %{http_code}\\n" localhost:$OPENFISCA_PORT -o /dev/null
 curl -sL -w "GET %{url_effective} -> %{http_code}\\n" localhost:$PORT -o /dev/null
-curl -sL -w "GET %{url_effective} -> %{http_code}\\n" $PUBLIC_URL -o /dev/null
+curl -sL -w "GET %{url_effective} -> %{http_code}\\n" $PROTOCOL://$PUBLIC_HOST -o /dev/null
 
 echo
 echo 'Exécuter `service nginx reload` en root en cas de changement de ports ou de nouvelle instance'

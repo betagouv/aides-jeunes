@@ -170,6 +170,6 @@ chmod u+x /home/mes-aides-$BRANCH/deploy.sh
 
 ```sh
 ssh-add ~/.ssh/mes-aides-bot
-ssh mes-aides-$BRANCH@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 PUBLIC_URL=http://mes-aides-$BRANCH.mes-aides.sgmap.fr ./deploy.sh $BRANCH"
+ssh mes-aides-$BRANCH@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 ./deploy.sh $BRANCH"
 ssh root@sgmap.fr "service nginx reload"
 ```

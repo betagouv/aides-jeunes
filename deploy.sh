@@ -4,6 +4,8 @@
 
 set -ex
 
+LOG_FILE=deployment.log
+
 # Defaults for production.
 # Example for development:
 #   PORT=8100 OPENFISCA_PORT=12100 ./deploy.sh aah
@@ -14,6 +16,14 @@ PORT=${PORT:-8000}
 OPENFISCA_PORT=${OPENFISCA_PORT:-12000}
 PUBLIC_HOST=${PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.sgmap.fr}
 PROTOCOL=${PROTOCOL:-http}
+
+
+# Log deployment
+date >> $LOG_FILE
+echo "Starting deployment of branch $TARGET_BRANCH" >> $LOG_FILE
+echo "Main application expected to run on $PORT" >> $LOG_FILE
+echo "OpenFisca expected to run on $OPENFISCA_PORT" >> $LOG_FILE
+echo "Server expected to be visible on $PUBLIC_HOST" >> $LOG_FILE
 
 # Install Mes Aides
 if ! cd mes-aides-ui
@@ -102,3 +112,5 @@ curl -sL -w "GET %{url_effective} -> %{http_code}\\n" $PROTOCOL://$PUBLIC_HOST -
 
 echo
 echo 'Exécuter `service nginx reload` en root en cas de changement de ports ou de nouvelle instance'
+
+echo "Deployment successful" >> $LOG_FILE

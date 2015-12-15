@@ -174,7 +174,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
         ],
         'imgSrc': 'logo_mairie_paris.png',
         'link': 'http://www.paris.fr/aides',
-        'isBaseRessourcesYearMoins2': false
+        'isBaseRessourcesYearMoins2': false,
+        'roundToNearest10': false
     },
     'adpa': {
         'id': 'adpa',

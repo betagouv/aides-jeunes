@@ -42,7 +42,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     };
 
     $scope.round = function(droit) {
-        if (! droit.unit) {
+        if (! droit.unit && droit.roundToNearest10 !== false) {
             return Math.round(droit.montant / 10) * 10;
         } else {
             return Math.round(droit.montant);

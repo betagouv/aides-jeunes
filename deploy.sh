@@ -41,6 +41,9 @@ grunt build
 
 # Stop Mes Aides
 killall --user `whoami` node || echo 'No server was running'
+
+mongo localhost --eval "db.copyDatabase('mes-aides-master', '`whoami`')"
+
 # Start Mes Aides
 OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="$PROTOCOL://$PUBLIC_HOST" PORT=$PORT MONGODB_URL="mongodb://localhost/$(whoami)" nohup node server.js >> ../mes-aides.log 2>> ../mes-aides_error.log &
 

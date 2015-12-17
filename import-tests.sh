@@ -1,7 +1,7 @@
-# Replaces the local test cases database by the distant one
+# Replaces the local database by the production one
 
-USER=deploy
-DATABASE=dds
+USER=mes-aides-master
+DATABASE=mes-aides-master
 
 NOW=$(date +"%F-%H-%M-%S")
 

@@ -109,6 +109,11 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         category: 'allocations'  // We don't actually need to capture the amount, but users want to declare it, and presence can improve some Paris aides. See https://github.com/sgmap/mes-aides-ui/issues/191
     },
     {
+        id: 'pch',
+        label: 'Prestation de compensation du handicap (PCH)',
+        category: 'allocations'
+    },
+    {
         id: 'paje_base',
         label: 'Prestation d’accueil du jeune enfant (PAJE) - Allocation de base',
         category: 'allocations'

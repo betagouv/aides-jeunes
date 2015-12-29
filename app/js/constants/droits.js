@@ -204,5 +204,10 @@ angular.module('ddsCommon').constant('droitsDescription', {
             }
         },
         'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242'
+    },
+    'ppa' : {
+        'id': 'ppa',
+        'label': 'Prime d’activité',
+        'imgSrc': 'logo_caf.png'
     }
 });

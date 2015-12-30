@@ -204,5 +204,12 @@ angular.module('ddsCommon').constant('droitsDescription', {
             }
         },
         'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242'
+    },
+    'ppa' : {
+        'id': 'ppa',
+        'label': 'Prime d’activité',
+        'imgSrc': 'logo_caf.png',
+        'description': 'La Prime d’activité remplace le RSA activité et la prime pour l’emploi depuis janvier 2016. Elle complète les ressources des personnes qui travaillent et ont des revenus modestes, salariées ou non.',
+        'link': 'https://www.caf.fr/actualites/2015/une-nouvelle-prestation-a-l-horizon-2016-la-prime-d-activite'
     }
 });

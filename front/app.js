@@ -26,15 +26,25 @@ export function notifyGotResults(data) {
     }
 }
 
-function mesAides(state, action) {
+export function mesAides(state, action) {
     switch (action.type) {
         case UPDATE_OPENFISCA_SITUATION:
             return Object.assign({}, state,
                 { openfiscaSituation: Object.assign({}, state.openfiscaSituation, action.data) }
             );
+        case FETCH_RESULTS:
+            return Object.assign({}, state,
+                {
+                    results: {},
+                    waitingForResults: true,
+                }
+            );
         case GOT_RESULTS:
             return Object.assign({}, state,
-                { results: action.results }
+                {
+                    results: action.results,
+                    waitingForResults: false,
+                }
             );
         default:
             return state

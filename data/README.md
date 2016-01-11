@@ -1,8 +1,6 @@
 # Description des aides calculées par Mes Aides
 
-Une aide est décrite par un dossier nommé par son identifiant dans OpenFisca.
-
-Chacun de ces dossiers doit contenir un fichier `index.yaml` qui décrit l'aide comme un objet au format YAML.
+Une aide est décrite par un fichier nommé par son identifiant dans OpenFisca et décrivant l'aide comme un objet au format [YAML](http://www.yaml.org).
 
 
 ## Propriétés obligatoires

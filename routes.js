@@ -94,6 +94,11 @@ export default [
 },
 {
     method: 'GET',
+    path: '/js/{param*}',
+    handler: { directory: { path: './dist/js' } },
+},
+{
+    method: 'GET',
     path: '/debug',
     handler: (request, reply) => {
         require('git-rev').long((sha) => {

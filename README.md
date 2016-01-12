@@ -162,7 +162,7 @@ mkdir /home/mes-aides-$BRANCH/.ssh/
 curl https://github.com/mesaides-bot.keys > /home/mes-aides-$BRANCH/.ssh/authorized_keys
 
 # Récupérer le script de déploiement
-curl https://raw.githubusercontent.com/sgmap/mes-aides-ui/deploy/deploy.sh > /home/mes-aides-$BRANCH/deploy.sh
+curl https://raw.githubusercontent.com/sgmap/mes-aides-ui/master/deploy.sh > /home/mes-aides-$BRANCH/deploy.sh
 chown mes-aides-$BRANCH:mes-aides-$BRANCH /home/mes-aides-$BRANCH/deploy.sh
 chmod u+x /home/mes-aides-$BRANCH/deploy.sh
 ```

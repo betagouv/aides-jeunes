@@ -1,11 +1,46 @@
 import request from 'superagent';
 
 
-export default function compute(situation) {
+export function wrap(situation) {
+    return {
+        scenarios: [ {
+            test_case: situation,
+            period: '2015-09',
+        } ],
+        base_reforms: [
+            'aides_ville_paris',
+        ],
+        variables: [
+            'aspa',
+            'asi',
+            'acs',
+            'cmu_c',
+            'apl',
+            'als',
+            'alf',
+            'aide_logement',
+            'aide_logement_non_calculable',
+            'af',
+            'rsa',
+            'rsa_majore',
+            'rsa_non_majore',
+            'rsa_non_calculable',
+            'asf',
+            'cf',
+            'ass',
+            'paje_base',
+            'bourse_college',
+            'bourse_lycee',
+            'paris_logement_familles'
+        ],
+    };
+}
+
+export function compute(scenario) {
     return new Promise((resolve, reject) => {
         request
         .post(`http://${process.env.OPENFISCA_HOST}/api/1/calculate`)
-        .send(situation)
+        .send(scenario)
         .end(function(err, response) {
             if (err) {
                 let error = new Error('OpenFisca communication failed');

@@ -1,4 +1,5 @@
 import moment from 'moment';
+import objectPath from 'object-path-immutable';
 
 import {
     updateOpenfiscaSituation,
@@ -6,6 +7,8 @@ import {
 } from './actions';
 import store from './store';
 
+
+const NAME = 'individus.0.birth';
 
 export function set(date) {
     const birthdate = moment(date, [
@@ -15,16 +18,10 @@ export function set(date) {
     ], true);  // strict: don't let Moment be ambiguous and parse partially-typed dates
 
     if (! birthdate.isValid()) {
-        return store.dispatch(setError('individus[0].birth', 'invalid', date));
+        return store.dispatch(setError(NAME, 'invalid', date));
     }
 
-    return store.dispatch(updateOpenfiscaSituation({
-        scenarios: [ {
-            test_case: {
-                individus: [ {
-                    birth: birthdate.format('YYYY-MM-DD'),
-                } ],
-            },
-        } ],
-    }));
+    const situation = objectPath.set(store.getState().openfiscaSituation, NAME, birthdate.format('YYYY-MM-DD'));
+
+    return store.dispatch(updateOpenfiscaSituation(situation));
 }

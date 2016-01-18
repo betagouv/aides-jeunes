@@ -9,7 +9,7 @@
         var situationTextarea = document.getElementById('situation');
 
         function updateRecap() {
-            situationTextarea.value = JSON.stringify(store.getState());
+            situationTextarea.value = JSON.stringify(store.getState().openfiscaSituation);
         }
 
         store.subscribe(updateRecap);

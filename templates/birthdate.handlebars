@@ -1,7 +1,7 @@
 <h1>Votre date de naissance</h1>
 
 <form method="post" action="/resultat">
-    <input type="date" min="1880-01-01" max="today" autocomplete="bday" name="individus[0].birth" value="{{ value }}"/>
+    <input type="date" min="1880-01-01" max="today" autocomplete="bday" name="individus.0.birth" value="{{ value }}"/>
     <div hidden class="ui error message" data-for="invalid">
         <i class="close icon"></i>
         <h2 class="header">Date mal formée</h2>

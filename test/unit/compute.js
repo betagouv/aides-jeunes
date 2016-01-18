@@ -1,29 +1,64 @@
 import expect from 'expect.js';
 
-import compute from '../../openfisca/compute';
+import {
+    wrap,
+    compute,
+} from '../../openfisca/compute';
 
 
 describe('compute', function() {
-    const SITUATION = require('../mock/situation.json');
+    describe('wrap', () => {
+        let subject;
 
-    let subject,
-        openFiscaMock;
+        before(() => {
+            subject = wrap({ test: true });
+        });
 
-    before(() => {
-        openFiscaMock = require('../mock/openfisca-superagent.js');
-        subject = compute(SITUATION);
+        it('should wrap the situation without changing it', () => {
+            expect(subject.scenarios[0].test_case.test).to.be(true);
+        });
+
+        xit('should define the period', () => {
+            expect(subject.scenarios[0].period).to.match(/^201\d-\d\d$/);
+        });
+
+        it('should define reforms', () => {
+            expect(subject.base_reforms).to.be.an('array');
+        });
+
+        xit('should define aides to be computed', () => {
+            expect(subject.variables).to.be.an('array');
+            expect(subject.variables).to.contain('aide_logement');
+            expect(subject.variables.length).to.be.above(15);
+        });
+
+        xit('should add computability requests to possibly uncomputable aides', () => {
+            expect(subject.variables).to.contain('aide_logement_non_calculable');
+        });
     });
 
-    after(() => openFiscaMock.unset() );
+    describe('compute', () => {
+        const SITUATION = require('../mock/situation.json');
 
-    it('should return a promise', () => {
-        expect(subject).to.be.a(Promise);
-    });
+        let subject,
+            openFiscaMock;
 
-    it('should fulfill it with the raw OpenFisca response', (done) => {
-        subject.then((results) => {
-            expect(results).to.be.an('object');
-            expect(results.method).to.be('/api/1/calculate');
-        }).then(done, done);
+        before(() => {
+            openFiscaMock = require('../mock/openfisca-superagent.js');
+            subject = compute(SITUATION);
+        });
+
+        after(() => openFiscaMock.unset() );
+
+        it('should return a promise', () => {
+            expect(subject).to.be.a(Promise);
+        });
+
+        it('should fulfill it with the raw OpenFisca response', (done) => {
+            subject.then((results) => {
+                expect(results).to.be.an('object');
+                expect(results.method).to.be('/api/1/calculate');
+            }).then(done, done);
+        });
     });
 });

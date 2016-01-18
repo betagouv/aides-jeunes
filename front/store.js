@@ -8,12 +8,17 @@ import {
 } from './actions';
 
 
-function mesAides(state = { openfiscaSituation: {}, results: {} }, action) {
+export const INITIAL_STATE = {
+    openfiscaSituation: require('../test/mock/situation.json').scenarios[0].test_case,
+};
+
+
+export function reducer(state = INITIAL_STATE, action = {}) {
     switch (action.type) {
         case UPDATE_OPENFISCA_SITUATION:
             return Object.assign({}, state,
                 {
-                    openfiscaSituation: Object.assign({}, state.openfiscaSituation, action.data),
+                    openfiscaSituation: action.data,
                     error: null,
                 }
             );
@@ -42,7 +47,7 @@ function mesAides(state = { openfiscaSituation: {}, results: {} }, action) {
     }
 }
 
-const store = createStore(mesAides);
+const store = createStore(reducer);
 
 export default store;
 

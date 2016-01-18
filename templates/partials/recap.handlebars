@@ -1,0 +1,18 @@
+<form action="/resultat" method="POST">
+    <textarea name="situation" id="situation"></textarea>
+    <input type="submit">
+</form>
+
+
+<script>
+    (function() {
+        var situationTextarea = document.getElementById('situation');
+
+        function updateRecap() {
+            situationTextarea.value = JSON.stringify(store.getState());
+        }
+
+        store.subscribe(updateRecap);
+        updateRecap();
+    })();
+</script>

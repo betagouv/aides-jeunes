@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 import loadConstYaml from './lib/loadConstYaml';
 import compute from './openfisca/compute';
 import { reverseMap } from './openfisca/parse';
@@ -37,14 +35,6 @@ export default [
     path: '/situation',
     handler: (request, reply) => {
         const situation = require('./test/mock/situation.json');
-
-        let birthdate = moment(request.payload.birthdate, [ 'DD/MM/YY', 'DD/MM/YYYY' ], true);
-
-        if (! birthdate.isValid()) {
-            return reply.redirect('/date-naissance?value=' + request.payload.birthdate + '&error');
-        }
-
-        situation.scenarios[0].test_case.individus[0].birth = birthdate.format('YYYY-MM-DD');
 
         view(reply, 'situation', {
             situation: JSON.stringify(situation),

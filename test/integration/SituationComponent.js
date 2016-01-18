@@ -1,2 +1,2 @@
-submitButton: '[type="submit"]',
-json: 'textarea',
+submitButton: '#recap [type="submit"]',
+json: '#recap textarea',

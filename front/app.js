@@ -26,7 +26,7 @@ export function notifyGotResults(data) {
     }
 }
 
-export function mesAides(state, action) {
+export function mesAides(state = { openfiscaSituation: {}, results: {} }, action) {
     switch (action.type) {
         case UPDATE_OPENFISCA_SITUATION:
             return Object.assign({}, state,
@@ -51,4 +51,4 @@ export function mesAides(state, action) {
     }
 }
 
-let store = createStore(mesAides);
+window.store = createStore(mesAides);

@@ -14,10 +14,15 @@
             logo="/static/logo.jpg"
         }}
         {{> favicons path="/static/favicon" }}
+
+        <script src="/js/front.js"></script>
     </head>
     <body>
         {{{ content }}}
-    </body>
 
-    <script src="/js/front.js"></script>
+        <section id="recap">
+            <h1 class="ui top attached header">Votre situation</h1>
+            {{> recap }}
+        </section>
+    </body>
 </html>

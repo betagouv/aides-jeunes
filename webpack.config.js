@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        'front': './front/app.js',
+        'birthdate': './front/birthdate.js',
     },
     output: {
         path: './dist/js',
@@ -11,6 +11,16 @@ module.exports = {
     },
     module: {
         loaders: [
+            {
+                test: /birthdate\.js$/,
+                loader: 'expose',
+                query: 'birthdate',
+            },
+            {
+                test: /store\.js$/,
+                loader: 'expose',
+                query: 'store',
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,

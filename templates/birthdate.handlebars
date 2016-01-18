@@ -10,23 +10,14 @@
     <input type="submit" value="Valider"/>
 </form>
 
+<script src="/js/birthdate.js"></script>
+
 <script>
     document.querySelector('input[type="date"][max="today"]').max = new Date().toJSON().split('T')[0];
 
     document.getElementsByTagName('form')[0].addEventListener('submit', function(event) {
         event.preventDefault();
 
-        store.dispatch({
-            type: 'UPDATE_OPENFISCA_SITUATION',
-            data: {
-                scenarios: [ {
-                    test_case: {
-                        individus: [ {
-                            birth: event.target[0].value, // birthdate.format('YYYY-MM-DD'),
-                        } ],
-                    },
-                } ],
-            },
-        });
+        birthdate.set(event.target[0].value);
     });
 </script>

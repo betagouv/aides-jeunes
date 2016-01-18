@@ -57,6 +57,7 @@
     "babel-loader": "^6.2.1",
     "eslint": "^1.2.1",
     "expect.js": "^0.3.1",
+    "expose-loader": "^0.7.1",
     "mocha": "^2.3.2",
     "pm2": "^0.14.7",
     "selenium-server": "^2.47.1",

@@ -1,32 +1,14 @@
 import { createStore } from 'redux';
 
+import {
+    UPDATE_OPENFISCA_SITUATION,
+    FETCH_RESULTS,
+    GOT_RESULTS,
+    ERROR,
+} from './actions';
 
-export const UPDATE_OPENFISCA_SITUATION = 'UPDATE_OPENFISCA_SITUATION';
-export const FETCH_RESULTS = 'FETCH_RESULTS';
-export const GOT_RESULTS = 'GOT_RESULTS';
 
-
-export function updateOpenfiscaSituation(additional) {
-    return {
-        type: UPDATE_OPENFISCA_SITUATION,
-        data: additional,
-    }
-}
-
-export function notifyFetchResults() {
-    return {
-        type: FETCH_RESULTS,
-    }
-}
-
-export function notifyGotResults(data) {
-    return {
-        type: GOT_RESULTS,
-        results: data,
-    }
-}
-
-export function mesAides(state = { openfiscaSituation: {}, results: {} }, action) {
+function mesAides(state = { openfiscaSituation: {}, results: {} }, action) {
     switch (action.type) {
         case UPDATE_OPENFISCA_SITUATION:
             return Object.assign({}, state,
@@ -51,4 +33,10 @@ export function mesAides(state = { openfiscaSituation: {}, results: {} }, action
     }
 }
 
-window.store = createStore(mesAides);
+const store = createStore(mesAides);
+
+export default store;
+
+export let subscribe = store.subscribe.bind(store);
+export let dispatch = store.dispatch.bind(store);
+export let getState = store.getState.bind(store);

@@ -18,8 +18,8 @@ describe('compute', function() {
             expect(subject.scenarios[0].test_case.test).to.be(true);
         });
 
-        xit('should define the period', () => {
-            expect(subject.scenarios[0].period).to.match(/^201\d-\d\d$/);
+        it('should define the period', () => {
+            expect(subject.scenarios[0].period).to.match(/^20(1[6-9]|2\d)-\d\d$/);
         });
 
         it('should define reforms', () => {

@@ -1,3 +1,4 @@
+import moment from 'moment';
 import request from 'superagent';
 
 import AIDES from '../config/aides';
@@ -15,7 +16,7 @@ export function wrap(situation) {
     return {
         scenarios: [ {
             test_case: situation,
-            period: '2015-09',
+            period: moment().format('YYYY-MM'),
         } ],
         base_reforms: [
             'aides_ville_paris',

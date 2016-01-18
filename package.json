@@ -16,8 +16,9 @@
   "scripts": {
     "start": "pm2 start ecosystem.json; echo '\nRead logs with `npm run logs`\n'",
     "dev": "pm2-dev ecosystem.json --watch",
+    "dev-front": "webpack --watch  # should be combined with `dev`, but needs handling of concurrent interactive commands",
     "stop": "pm2 stop ecosystem.json && npm run stop-test-integration",
-    "build": "rm -rf dist/* && node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack.config.js",
+    "build": "rm -rf dist/* && webpack --optimize-minimize",
     "deploy": "pm2 deploy ecosystem.json production",
     "test": "npm run lint . && npm run test-unit test/unit && npm run test-integration",
     "pretest-integration": "NODE_ENV=test npm start && pm2 start node_modules/.bin/selenium && sleep 10 || echo 'Selenium supposedly started'",

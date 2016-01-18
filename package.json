@@ -17,7 +17,7 @@
     "start": "pm2 start ecosystem.json; echo '\nRead logs with `npm run logs`\n'",
     "dev": "pm2-dev ecosystem.json --watch",
     "stop": "pm2 stop ecosystem.json && npm run stop-test-integration",
-    "build": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack.config.js",
+    "build": "rm -rf dist/* && node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack.config.js",
     "deploy": "pm2 deploy ecosystem.json production",
     "test": "npm run lint . && npm run test-unit test/unit && npm run test-integration",
     "pretest-integration": "NODE_ENV=test npm start && pm2 start node_modules/.bin/selenium && sleep 10 || echo 'Selenium supposedly started'",

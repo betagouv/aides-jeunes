@@ -3,6 +3,14 @@ import request from 'superagent';
 import AIDES from '../config/aides';
 
 
+let requestedAides = Object.keys(AIDES);
+
+requestedAides.forEach((id) => {
+    if (AIDES[id].uncomputability)
+        requestedAides.push(`${id}_non_calculable`);  // OpenFisca convention to send additional information: if the aide is not computable, this variable will return an identifier for the uncomputability reason that was encountered
+});
+
+
 export function wrap(situation) {
     return {
         scenarios: [ {
@@ -12,7 +20,7 @@ export function wrap(situation) {
         base_reforms: [
             'aides_ville_paris',
         ],
-        variables: Object.keys(AIDES),
+        variables: requestedAides,
     };
 }
 

@@ -32,7 +32,7 @@ describe('compute', function() {
             expect(subject.variables.length).to.be.above(12);
         });
 
-        xit('should add computability requests to possibly uncomputable aides', () => {
+        it('should add computability requests to possibly uncomputable aides', () => {
             expect(subject.variables).to.contain('aide_logement_non_calculable');
         });
     });

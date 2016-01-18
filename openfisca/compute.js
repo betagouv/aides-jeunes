@@ -1,5 +1,7 @@
 import request from 'superagent';
 
+import AIDES from '../config/aides';
+
 
 export function wrap(situation) {
     return {
@@ -10,29 +12,7 @@ export function wrap(situation) {
         base_reforms: [
             'aides_ville_paris',
         ],
-        variables: [
-            'aspa',
-            'asi',
-            'acs',
-            'cmu_c',
-            'apl',
-            'als',
-            'alf',
-            'aide_logement',
-            'aide_logement_non_calculable',
-            'af',
-            'rsa',
-            'rsa_majore',
-            'rsa_non_majore',
-            'rsa_non_calculable',
-            'asf',
-            'cf',
-            'ass',
-            'paje_base',
-            'bourse_college',
-            'bourse_lycee',
-            'paris_logement_familles'
-        ],
+        variables: Object.keys(AIDES),
     };
 }
 

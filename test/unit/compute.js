@@ -26,10 +26,10 @@ describe('compute', function() {
             expect(subject.base_reforms).to.be.an('array');
         });
 
-        xit('should define aides to be computed', () => {
+        it('should define aides to be computed', () => {
             expect(subject.variables).to.be.an('array');
             expect(subject.variables).to.contain('aide_logement');
-            expect(subject.variables.length).to.be.above(15);
+            expect(subject.variables.length).to.be.above(12);
         });
 
         xit('should add computability requests to possibly uncomputable aides', () => {

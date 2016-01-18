@@ -12,7 +12,10 @@ function mesAides(state = { openfiscaSituation: {}, results: {} }, action) {
     switch (action.type) {
         case UPDATE_OPENFISCA_SITUATION:
             return Object.assign({}, state,
-                { openfiscaSituation: Object.assign({}, state.openfiscaSituation, action.data) }
+                {
+                    openfiscaSituation: Object.assign({}, state.openfiscaSituation, action.data),
+                    error: null,
+                }
             );
         case FETCH_RESULTS:
             return Object.assign({}, state,
@@ -26,6 +29,12 @@ function mesAides(state = { openfiscaSituation: {}, results: {} }, action) {
                 {
                     results: action.results,
                     waitingForResults: false,
+                }
+            );
+        case ERROR:
+            return Object.assign({}, state,
+                {
+                    error: action.error,
                 }
             );
         default:

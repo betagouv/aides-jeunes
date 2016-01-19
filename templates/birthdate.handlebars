@@ -1,7 +1,8 @@
 <h1>Votre date de naissance</h1>
 
-<form method="post" action="/resultat">
+<form method="post" action="/logement">
     <input type="date" min="1880-01-01" max="today" autocomplete="bday" name="individus.0.birth" value="{{ value }}"/>
+
     <div hidden class="ui error message" data-for="invalid">
         <i class="close icon"></i>
         <h2 class="header">Date non reconnue</h2>
@@ -15,7 +16,9 @@
 <script>
     document.querySelector('input[type="date"][max="today"]').max = new Date().toJSON().split('T')[0];
 
-    document.getElementsByTagName('form')[0].addEventListener('submit', function(event) {
+    var form = document.getElementsByTagName('form')[0];
+
+    form.addEventListener('submit', function(event) {
         event.preventDefault();
 
         birthdate.set(event.target[0].value);
@@ -30,6 +33,8 @@
             Array.prototype.forEach.call(document.querySelectorAll('.error.message'), function(message) {
                 message.hidden = true;
             });
+
+            window.location = form.action;
         }
     });
 </script>

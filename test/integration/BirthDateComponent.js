@@ -1,4 +1,4 @@
-title: 'h1',
+title: 'label',
 birthDateField: 'input[type="date"]',
 submitButton: 'input[type="submit"]',
-error: '.error',
+invalidError: '[data-for="invalid"] .error',

@@ -34,6 +34,16 @@ export default [
     },
 },
 {
+    method: 'GET',
+    path: '/logement',
+    handler: (request, reply) => {
+        view(reply, 'housing', {
+            error: request.query.hasOwnProperty('error'),
+            value: request.query.value || '',
+        });
+    },
+},
+{
     method: 'POST',
     path: '/situation',
     handler: (request, reply) => {

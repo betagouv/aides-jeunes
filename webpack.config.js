@@ -4,6 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: {
         'birthdate': './front/birthdate.js',
+        'housing': './front/housing.js',
     },
     output: {
         path: './dist/js',
@@ -15,6 +16,11 @@ module.exports = {
                 test: /birthdate\.js$/,
                 loader: 'expose',
                 query: 'birthdate',
+            },
+            {
+                test: /housing\.js$/,
+                loader: 'expose',
+                query: 'housing',
             },
             {
                 test: /store\.js$/,

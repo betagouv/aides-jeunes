@@ -1,0 +1,20 @@
+<h1>Votre logement</h1>
+
+<form method="post" action="/resultat">
+    <label><input type="radio" name="menages.0.statut_occupation" value="4"> Locataire</label>
+    <label><input type="radio" name="menages.0.statut_occupation" value="2"> Propriétaire</label>
+    <label><input type="radio" name="menages.0.statut_occupation" value="6"> Hébergé</label>
+    <label><input type="radio" name="menages.0.statut_occupation" value="8"> Sans domicile stable</label>
+
+    <input type="submit" value="Valider"/>
+</form>
+
+<script src="/js/housing.js"></script>
+
+<script>
+    document.getElementsByTagName('form')[0].addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        housing.set(event.target.elements['menages.0.statut_occupation'].value);
+    });
+</script>

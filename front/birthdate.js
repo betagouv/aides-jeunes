@@ -17,9 +17,11 @@ export function set(date) {
         'YYYY-MM-DD',  // browsers that actually support the date element will always format date in ISO format
     ], true);  // strict: don't let Moment be ambiguous and parse partially-typed dates
 
-    if (! birthdate.isValid()) {
+    if (! date)
+        return store.dispatch(setError(NAME, 'required', date));
+
+    if (! birthdate.isValid())
         return store.dispatch(setError(NAME, 'invalid', date));
-    }
 
     const situation = objectPath.set(store.getState().openfiscaSituation, NAME, birthdate.format('YYYY-MM-DD'));
 

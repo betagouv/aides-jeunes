@@ -4,10 +4,13 @@ import {
     updateOpenfiscaSituation,
     notifyFetchResults,
     notifyGotResults,
+    ERROR,
+    UPDATE_OPENFISCA_SITUATION,
 } from '../../front/actions.js';
 import {
     INITIAL_STATE,
     reducer,
+    storageMiddleware,
 } from '../../front/store.js';
 
 
@@ -72,6 +75,38 @@ describe('state handler', () => {
             let actual = reducer(INITIAL_STATE, notifyGotResults(OPENFISCA_RESPONSE));
 
             expect(INITIAL_STATE.results).to.not.be.ok();
+        });
+    });
+
+    describe('storageMiddleware', () => {
+        let storage = { // mock
+                setItemCallCount: 0,
+                getItemCallCount: 0,
+                getItem() { storage.getItemCallCount++ },
+                setItem() { storage.setItemCallCount++ },
+            },
+            reducer = (state, action) => state,
+            subject = storageMiddleware(reducer, storage);
+
+        it('should return the reducer’s result', () => {
+            let state = { test: true };
+            expect(subject(state, { type: ERROR })).to.eql(state);
+        });
+
+        it('should not store on error', () => {
+            subject({}, { type: ERROR });
+            expect(storage.setItemCallCount).to.be(0);
+        });
+
+        it('should store on situation update', () => {
+            subject({}, { type: UPDATE_OPENFISCA_SITUATION });
+            expect(storage.setItemCallCount).to.be(1);
+        });
+
+        it('should load only on default state lookup', () => {
+            expect(storage.getItemCallCount).to.be(0);
+            subject(undefined, {});
+            expect(storage.getItemCallCount).to.be(1);
         });
     });
 });

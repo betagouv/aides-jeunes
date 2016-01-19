@@ -1,10 +1,11 @@
 <h1>Votre logement</h1>
 
 <form method="post" action="/resultat">
-    <label><input type="radio" name="menages.0.statut_occupation" value="4"> Locataire</label>
-    <label><input type="radio" name="menages.0.statut_occupation" value="2"> Propriétaire</label>
-    <label><input type="radio" name="menages.0.statut_occupation" value="6"> Hébergé</label>
-    <label><input type="radio" name="menages.0.statut_occupation" value="8"> Sans domicile stable</label>
+    <label><input required type="radio" name="menages.0.statut_occupation" value="4"> Locataire</label>
+    <label><input required type="radio" name="menages.0.statut_occupation" value="2"> Propriétaire</label>
+    <label><input required type="radio" name="menages.0.statut_occupation" value="6"> Hébergé</label>
+    <label><input required type="radio" name="menages.0.statut_occupation" value="8"> Sans domicile stable</label>
+
     <div hidden class="ui error message" data-for="required">
         <i class="close icon"></i>
         <h2 class="header">Question obligatoire</h2>

@@ -190,6 +190,14 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             return _.find(situation.individus, { role: 'demandeur' });
         },
 
+        getConjoint: function(situation) {
+            return _.find(situation.individus, { role: 'conjoint' });
+        },
+
+        getEnfants: function(situation) {
+            return _.filter(situation.individus, { role: 'enfant' });
+        },
+
         hasEnfantScolarise: function(situation) {
             return _.find(situation.individus, { role: 'enfant', scolarite: 'college' }) || _.find(situation.individus, { role: 'enfant', scolarite: 'lycee' });
         },
@@ -198,14 +206,10 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
             return _.find(situation.individus, { role: 'enfant' });
         },
 
-        hasConjoint: function(situation) {
-            return _.find(situation.individus, { role: 'conjoint' });
-        },
-
         setConjoint: function(situation, conjoint) {
             var individus = situation.individus;
             // si le conjoint existait déjà avant, on l'écrase
-            if (this.hasConjoint(situation)) {
+            if (this.getConjoint(situation)) {
                 individus[individus.length - 1] = conjoint;
             } else {
                 // on insère le conjoint en dernier dans la liste des individus

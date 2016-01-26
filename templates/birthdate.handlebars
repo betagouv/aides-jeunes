@@ -27,6 +27,7 @@
             </div>
         </div>
     </div>
+
     <input class="ui submit button" type="submit" value="Valider"/>
 </form>
 
@@ -42,17 +43,7 @@
     });
 
     store.subscribe(function() {
-        var state = store.getState();
-
-        Array.prototype.forEach.call(document.querySelectorAll('[data-for]'), function(message) {
-            message.classList[
-                message.attributes['data-for'].value == (state.error && state.error.id)
-                ? 'add'
-                : 'remove'
-            ]('ui', 'form', 'error');
-        });
-
-        if (! state.error)
+        if (! store.getState().error)
             window.location = form.action;
     });
 </script>

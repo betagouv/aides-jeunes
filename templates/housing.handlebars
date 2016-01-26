@@ -1,18 +1,20 @@
 <h1>Votre logement</h1>
 
-<form method="post" action="#">
-    <label><input required type="radio" name="menages.0.statut_occupation" value="4"> Locataire</label>
-    <label><input required type="radio" name="menages.0.statut_occupation" value="2"> Propriétaire</label>
-    <label><input required type="radio" name="menages.0.statut_occupation" value="6"> Hébergé</label>
-    <label><input required type="radio" name="menages.0.statut_occupation" value="8"> Sans domicile stable</label>
-
-    <div hidden class="ui error message" data-for="required">
-        <i class="close icon"></i>
-        <h2 class="header">Question obligatoire</h2>
-        <p>Votre type de logement est nécessaire pour déterminer vos aides au logement.</p>
+<form class="ui form" method="post" action="#">
+    <div class="grouped inline fields">
+        <label class="ui radio checkbox"><input required type="radio" name="menages.0.statut_occupation" value="4"> Locataire</label>
+        <label class="ui radio checkbox"><input required type="radio" name="menages.0.statut_occupation" value="2"> Propriétaire</label>
+        <label class="ui radio checkbox"><input required type="radio" name="menages.0.statut_occupation" value="6"> Hébergé</label>
+        <label class="ui radio checkbox"><input required type="radio" name="menages.0.statut_occupation" value="8"> Sans domicile stable</label>
+        <div data-for="required">
+            <div class="ui error message">
+                <h2 class="header">Question obligatoire</h2>
+                <p>Votre type de logement est nécessaire pour déterminer vos aides au logement.</p>
+            </div>
+        </div>
     </div>
 
-    <input type="submit" value="Valider"/>
+    <input class="ui submit button" type="submit" value="Valider"/>
 </form>
 
 <script src="/js/housing.js"></script>
@@ -27,16 +29,7 @@
     });
 
     store.subscribe(function() {
-        var state = store.getState();
-
-        if (state.error) {
-            document.querySelector('.error.message[data-for="' + state.error.id + '"]').hidden = false;
-        } else {
-            Array.prototype.forEach.call(document.querySelectorAll('.error.message'), function(message) {
-                message.hidden = true;
-            });
-
+        if (! store.getState().error)
             window.location = form.action;
-        }
     });
 </script>

@@ -46,9 +46,9 @@ describe('Controller: FoyerRessourcesCtrl', function() {
         it('should retrieve the selected ressource types in the selectedRessourceTypes map if individus have ressources', function() {
             // given
             scope.situation.individus = [
-                { ressources: [{ type: 'revenusSalarie' }] },
-                { ressources: [{ type: 'stage' }, { type: 'revenusSalarie' }] },
-                { ressources: [] }
+                { role: 'demandeur', ressources: [{ type: 'revenusSalarie' }] },
+                { role: 'conjoint', ressources: [{ type: 'stage' }, { type: 'revenusSalarie' }] },
+                { role: 'enfant', ressources: [] }
             ];
 
             // when
@@ -64,6 +64,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             // given
             _ressourceTypes_ = [{ id: 'toto' }];
             scope.situation.individus = [{
+                role: 'demandeur',
                 ressources: [
                     { type: 'toto', periode: '2013-03', montant: 100 },
                     { type: 'toto', periode: '2012-10', montant: 100 },
@@ -83,6 +84,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
         it('should not map pensions alimentaires versées to the view model', function() {
             // given
             scope.situation.individus = [{
+                role: 'demandeur',
                 ressources: [
                     { type: 'pensionsAlimentairesVersees', periode: '2012-10', montant: 100 },
                 ]
@@ -99,6 +101,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             // given
             _ressourceTypes_ = [{ id: 'toto' }];
             scope.situation.individus = [{
+                role: 'demandeur',
                 ressources: [
                     { type: 'toto', periode: '2013-03', montant: 5.5 },
                     { type: 'toto', periode: '2013-02', montant: 4.4 },
@@ -119,6 +122,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
         it('should not map unknown ressource types', function() {
             // given
             scope.situation.individus = [{
+                role: 'demandeur',
                 ressources: [
                     { type: 'unknown_ressource_type', periode: '2013-03', montant: 10 },
                 ]
@@ -134,6 +138,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
         it('should map ressources micro-entreprise', function() {
             // given
             scope.situation.individus = [{
+                role: 'demandeur',
                 tnsActiviteType: 'bnc',
                 ressources: [{
                     type: 'caMicroEntreprise',
@@ -159,6 +164,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             // given
             _ressourceTypes_ = [{ id: 'foo' }, { id: 'bar' }];
             scope.situation.individus = [{
+                role: 'demandeur',
                 ressources: [
                     { type: 'foo', periode: '2013-03', montant: 10 },
                     { type: 'bar', periode: '2013-03', montant: 10 },
@@ -181,7 +187,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
     describe('function submit()', function() {
         it('should apply ressource amounts to the individu model, flattened by month', function() {
             // given
-            var individu = {};
+            var individu = { role: 'demandeur' };
             scope.situation.individus = [individu];
             initController();
             scope.individusVM[0].ressources = [{
@@ -204,6 +210,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
 
         it('should remove previous ressources of the individu', function() {
             var individu = {
+                role: 'demandeur',
                 ressources: [
                     { periode: '2013-03', type: 'toto', montant: 133},
                     { periode: '2013-03', type: 'tata', montant: 122 }
@@ -230,7 +237,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             // given
             var ressourceN2 = { type: 'rncRevenusActivite', montant: 200 };
             var pensionAlimentaireVersee = { type: 'pensionsAlimentairesVersees', montantAnnuel: 100 };
-            scope.situation.individus = [{ ressources: [ressourceN2, pensionAlimentaireVersee] }];
+            scope.situation.individus = [{ role: 'demandeur', ressources: [ressourceN2, pensionAlimentaireVersee] }];
             initController();
 
             // when
@@ -242,8 +249,9 @@ describe('Controller: FoyerRessourcesCtrl', function() {
 
         it('should fill the interruptedRessources field of each individu with ressources declared as interrupted', function() {
             // given
+            var individu = { role: 'demandeur' };
+            scope.situation.individus = [individu];
             initController();
-            var individu = {};
             scope.individusVM = [
                 {
                     individu: individu,
@@ -264,9 +272,10 @@ describe('Controller: FoyerRessourcesCtrl', function() {
 
         it('should save the "autres revenus professionnels" in ressources', function() {
             // given
+            var individu = { role: 'demandeur' };
+            scope.situation.individus = [individu];
             initController();
             var ressourceTypeAutreTns = _.find(_ressourceTypes_, { id: 'autresRevenusTns' });
-            var individu = {};
             scope.individusVM = [
                 {
                     individu: individu,
@@ -289,6 +298,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
 
         it('should emit the "ressourcesUpdated" event', function() {
             // given
+            scope.situation.individus = [{ role: 'demandeur' }];
             initController();
             spyOn(scope, '$emit');
 

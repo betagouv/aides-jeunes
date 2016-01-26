@@ -83,7 +83,12 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         return result;
     };
 
-    $scope.individusVM = _.map($scope.situation.individus, function(individu) {
+    $scope.individusVM = [].concat(
+        SituationService.getDemandeur($scope.situation),
+        SituationService.getConjoint($scope.situation),
+        SituationService.getEnfants($scope.situation))
+    .filter(function(individu) { return individu; })
+    .map(function(individu) {
         return {
             individu: individu,
             label: IndividuService.label(individu),

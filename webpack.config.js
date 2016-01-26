@@ -5,6 +5,7 @@ module.exports = {
     entry: {
         'birthdate': './front/birthdate.js',
         'housing': './front/housing.js',
+        'lib': './front/lib/date-today.js',  // lib will be an index.js when there are other library scripts than date-today
     },
     output: {
         path: './dist/js',

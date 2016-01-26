@@ -33,8 +33,6 @@
 <script src="/js/birthdate.js"></script>
 
 <script>
-    document.querySelector('input[type="date"][max="today"]').max = new Date().toJSON().split('T')[0];
-
     var form = document.getElementsByTagName('form')[0];
 
     form.addEventListener('submit', function(event) {

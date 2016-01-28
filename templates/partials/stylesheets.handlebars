@@ -1,3 +1,20 @@
-{{#each files as |filePath|}}
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/reset.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/site.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/container.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/grid.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/header.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/image.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/segment.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/card.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/button.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/input.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/icon.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/message.css">
+<link rel="stylesheet" type="text/css" href="/css/semantic-ui/form.css">
+<link rel="stylesheet" type="text/css" href="/css/aide.css">
+
+<link rel="stylesheet" type="text/css" href="/css/{{ templateName }}.css">
+
+{{#each stylesheets as |filePath|}}
     <link rel="stylesheet" type="text/css" href="{{ filePath }}.css">
 {{/each}}

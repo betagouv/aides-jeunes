@@ -28,8 +28,7 @@ export default [
     path: '/date-naissance',
     handler: (request, reply) => {
         view(reply, 'birthdate', {
-            error: request.query.hasOwnProperty('error'),
-            value: request.query.value || '',
+            isQuestion: true,
         });
     },
 },
@@ -38,8 +37,7 @@ export default [
     path: '/logement',
     handler: (request, reply) => {
         view(reply, 'housing', {
-            error: request.query.hasOwnProperty('error'),
-            value: request.query.value || '',
+            isQuestion: true,
         });
     },
 },
@@ -121,6 +119,7 @@ function view(reply, name, data) {
     let context = Object.create(DEFAULT_RENDER_CONTEXT);  // use prototypal inheritance to avoid costly deep copies
 
     context.stylesheets = DEFAULT_RENDER_CONTEXT.stylesheets.concat(`/css/${name}`);  // don't push into the parent
+    context.templateName = name;
     Object.assign(context, data);  // this means data.stylesheets overrides all default stylesheets; this behavior can be changed, no use case atm
 
     return reply.view(name, context);

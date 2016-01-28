@@ -37,17 +37,6 @@ export default [
 },
 {
     method: 'POST',
-    path: '/situation',
-    handler: (request, reply) => {
-        const situation = require('./test/mock/situation.json');
-
-        view(reply, 'situation', {
-            situation: JSON.stringify(situation),
-        });
-    },
-},
-{
-    method: 'POST',
     path: '/resultat',
     handler: (request, reply) => {
         let situation = wrap(

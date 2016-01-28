@@ -60,7 +60,7 @@
     "semantic-ui-segment": "^2.0.8",
     "semantic-ui-site": "^2.0.8",
     "superagent": "^1.4.0",
-    "vision": "^3.0.0"
+    "vision": "^4.0.1"
   },
   "devDependencies": {
     "babel-loader": "^6.2.1",

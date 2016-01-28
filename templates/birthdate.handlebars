@@ -32,18 +32,3 @@
 </form>
 
 <script src="/js/birthdate.js"></script>
-
-<script>
-    var form = document.getElementsByTagName('form')[0];
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        birthdate.set(event.target[0].value);
-    });
-
-    store.subscribe(function() {
-        if (! store.getState().error)
-            window.location = form.action;
-    });
-</script>

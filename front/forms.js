@@ -10,7 +10,7 @@ import {
  */
 export default function bindToForm(inputName, createAction) {
     const form = document.forms[0],
-          input = document.querySelector(`input[name="${inputName}"]`);
+          input = form.elements[inputName];  // not equivalent to querySelector due to radio buttons
 
     form.addEventListener('submit', event => {
         event.preventDefault();
@@ -20,7 +20,7 @@ export default function bindToForm(inputName, createAction) {
         if (input.required && ! value)
             return store.dispatch(setError(name, 'required', value));
 
-        store.dispatch(createAction(input.name, value));
+        store.dispatch(createAction(inputName, value));
     });
 
     store.subscribe(() => {

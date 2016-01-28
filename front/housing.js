@@ -5,18 +5,25 @@ import {
     setError,
 } from './actions';
 import store from './store';
+import bindToForm from './forms';
 
 
-const NAME = 'menages.0.statut_occupation';
+/**
+ * @param {String} property  Property path of the OpenFisca situation.
+ * @param {String} housingTypeId  Enum value to set.
+ * @return {Action} A Redux action to be dispatched to the store.
+ */
+export function update(property, housingTypeId) {
+    if (housingTypeId === '')  // have to validate this manually because "required" attribute cannot be set on a radio group
+        return setError(property, 'required', housingTypeId);
 
-export function set(value) {
-    if (! value)
-        return store.dispatch(setError(NAME, 'required', value));
+    if (! (housingTypeId > 0 && housingTypeId <= 8))
+        return setError(property, 'invalid', housingTypeId);
 
-    if (! (value > 0 && value <= 8))
-        return store.dispatch(setError(NAME, 'invalid', value));
+    const situation = objectPath.set(store.getState().openfiscaSituation, property, housingTypeId);
 
-    const situation = objectPath.set(store.getState().openfiscaSituation, NAME, value);
-
-    return store.dispatch(updateOpenfiscaSituation(situation));
+    return updateOpenfiscaSituation(situation);
 }
+
+
+bindToForm('menages.0.statut_occupation', update);

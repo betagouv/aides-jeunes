@@ -18,18 +18,3 @@
 </form>
 
 <script src="/js/housing.js"></script>
-
-<script>
-    var form = document.getElementsByTagName('form')[0];
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        housing.set(event.target.elements['menages.0.statut_occupation'].value);
-    });
-
-    store.subscribe(function() {
-        if (! store.getState().error)
-            window.location = form.action;
-    });
-</script>

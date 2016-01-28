@@ -14,11 +14,6 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /housing\.js$/,
-                loader: 'expose',
-                query: 'housing',
-            },
-            {
                 test: /store\.js$/,
                 loader: 'expose',
                 query: 'store',

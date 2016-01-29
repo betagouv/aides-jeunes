@@ -12,14 +12,15 @@ requestedAides.forEach((id) => {
 });
 
 
-export function wrap(situation) {
+export function wrap(situation, evaluationDate) {
     return {
         scenarios: [ {
             test_case: situation,
-            period: moment().format('YYYY-MM'),
+            period: moment(evaluationDate).format('YYYY-MM'),
         } ],
         base_reforms: [
             'aides_ville_paris',
+            'aides_cd93',
         ],
         variables: requestedAides,
     };

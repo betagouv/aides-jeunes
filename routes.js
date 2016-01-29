@@ -56,7 +56,10 @@ export default [
     method: 'POST',
     path: '/resultat',
     handler: (request, reply) => {
-        let situation = wrap(JSON.parse(request.payload.situation));
+        let situation = wrap(
+            JSON.parse(request.payload.situation),
+            (process.env.NODE_ENV == 'test' ? '2015-09' : undefined)
+        );
 
         compute(situation)
             .then((openFiscaResponse) => reverseMap(openFiscaResponse, situation))

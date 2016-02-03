@@ -84,7 +84,3 @@ export function storageMiddleware(reducer, storage) {
 const store = createStore(storageMiddleware(reducer));
 
 export default store;
-
-export let subscribe = store.subscribe.bind(store);
-export let dispatch = store.dispatch.bind(store);
-export let getState = store.getState.bind(store);

@@ -5,14 +5,14 @@
 
 
 <script>
-    (function() {
+    (function(store) {
         var situationTextarea = document.getElementById('situation');
 
         function updateRecap() {
             situationTextarea.value = JSON.stringify(store.getState().openfiscaSituation);
         }
 
-        store.subscribe(updateRecap);  // relies on global `store` visibility
+        store.subscribe(updateRecap);
         updateRecap();
-    })();
+    })(window.store.default);  // Webpack not set up to rewrite templates, using `expose-loader`
 </script>

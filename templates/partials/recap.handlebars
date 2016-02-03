@@ -12,7 +12,7 @@
             situationTextarea.value = JSON.stringify(store.getState().openfiscaSituation);
         }
 
-        store.subscribe(updateRecap);
+        store.subscribe(updateRecap);  // relies on global `store` visibility
         updateRecap();
     })();
 </script>

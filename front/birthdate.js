@@ -1,11 +1,11 @@
 import moment from 'moment';
 import objectPath from 'object-path-immutable';
 
+import store from './store';
 import {
     updateOpenfiscaSituation,
     setError,
 } from './actions';
-import store from './store';
 import bindToForm from './forms';
 
 

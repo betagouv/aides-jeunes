@@ -2,8 +2,8 @@ import objectPath from 'object-path-immutable';
 
 import store from './store';
 import {
-    updateOpenfiscaSituation,
-    setError,
+    createOpenfiscaSituationUpdateAction,
+    createErrorAction,
 } from './actions';
 import bindToForm from './forms';
 
@@ -15,14 +15,14 @@ import bindToForm from './forms';
  */
 export function update(property, housingTypeId) {
     if (housingTypeId === '')  // have to validate this manually because "required" attribute cannot be set on a radio group
-        return setError(property, 'required', housingTypeId);
+        return createErrorAction(property, 'required', housingTypeId);
 
     if (! (housingTypeId > 0 && housingTypeId <= 8))
-        return setError(property, 'invalid', housingTypeId);
+        return createErrorAction(property, 'invalid', housingTypeId);
 
     const situation = objectPath.set(store.getState().openfiscaSituation, property, housingTypeId);
 
-    return updateOpenfiscaSituation(situation);
+    return createOpenfiscaSituationUpdateAction(situation);
 }
 
 

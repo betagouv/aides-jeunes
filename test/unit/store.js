@@ -1,9 +1,9 @@
 import expect from 'expect.js';
 
 import {
-    updateOpenfiscaSituation,
     notifyFetchResults,
     notifyGotResults,
+    createOpenfiscaSituationUpdateAction,
     ERROR,
     UPDATE_OPENFISCA_SITUATION,
 } from '../../front/actions.js';
@@ -23,9 +23,9 @@ describe('state handler', () => {
         });
     });
 
-    describe('updateOpenfiscaSituation', () => {
+    describe('createOpenfiscaSituationUpdateAction', () => {
         function update() {
-            return reducer(INITIAL_STATE, updateOpenfiscaSituation({
+            return reducer(INITIAL_STATE, createOpenfiscaSituationUpdateAction({
                 "individus": [
                     {
                         "salaire_net": {

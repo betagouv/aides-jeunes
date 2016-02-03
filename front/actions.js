@@ -4,7 +4,7 @@ export const GOT_RESULTS = 'GOT_RESULTS';
 export const ERROR = 'ERROR';
 
 
-export function updateOpenfiscaSituation(additional) {
+export function createOpenfiscaSituationUpdateAction(additional) {
     return {
         type: UPDATE_OPENFISCA_SITUATION,
         data: additional,
@@ -18,7 +18,7 @@ export function updateOpenfiscaSituation(additional) {
  * @param {Mixed} value   The value that was considered incorrect.
  * @param {Mixed} details Any additional information the validator wants to pass.
  */
-export function setError(source, id, value, details) {
+export function createErrorAction(source, id, value, details) {
     return {
         type: ERROR,
         error: { source, id, value, details },

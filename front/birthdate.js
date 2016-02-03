@@ -3,8 +3,8 @@ import objectPath from 'object-path-immutable';
 
 import store from './store';
 import {
-    updateOpenfiscaSituation,
-    setError,
+    createOpenfiscaSituationUpdateAction,
+    createErrorAction,
 } from './actions';
 import bindToForm from './forms';
 
@@ -22,11 +22,11 @@ export function update(property, date) {
     ], true);  // strict: don't let Moment be ambiguous and parse partially-typed dates
 
     if (! birthdate.isValid())
-        return setError(property, 'invalid', date);
+        return createErrorAction(property, 'invalid', date);
 
     const situation = objectPath.set(store.getState().openfiscaSituation, property, birthdate.format('YYYY-MM-DD'));
 
-    return updateOpenfiscaSituation(situation);
+    return createOpenfiscaSituationUpdateAction(situation);
 }
 
 

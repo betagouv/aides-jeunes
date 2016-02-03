@@ -1,4 +1,4 @@
-import { setError } from '../actions';
+import { createErrorAction } from '../actions';
 
 /**
  * Apply common validations to an HTML input, based on its attributes. Contextual validation logic should be defined in a specific file.
@@ -8,5 +8,5 @@ import { setError } from '../actions';
  */
 export default function validateCommon(inputName, input) {
     if (input.required && ! input.value)
-        return setError(inputName, 'required', input.value);
+        return createErrorAction(inputName, 'required', input.value);
 }

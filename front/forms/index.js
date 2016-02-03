@@ -1,6 +1,6 @@
-import {
-    setError,
-} from './actions';
+import store from '../store';
+import updateErrorMessages from './update-semantic-validation';
+import validateCommon from './validate-common';
 
 
 /**
@@ -15,12 +15,7 @@ export default function bindToForm(inputName, createAction) {
     form.addEventListener('submit', event => {
         event.preventDefault();
 
-        const value = input.value;
-
-        if (input.required && ! value)
-            return store.dispatch(setError(name, 'required', value));
-
-        store.dispatch(createAction(inputName, value));
+        store.dispatch(validateCommon(inputName, input) || createAction(inputName, input.value));
     });
 
     store.subscribe(() => {
@@ -28,3 +23,5 @@ export default function bindToForm(inputName, createAction) {
             window.location = form.action;
     });
 }
+
+store.subscribe(() => { updateErrorMessages(store.getState()) });

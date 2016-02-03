@@ -1,8 +1,6 @@
 import expect from 'expect.js';
 
 import {
-    notifyFetchResults,
-    notifyGotResults,
     createOpenfiscaSituationUpdateAction,
     ERROR,
     UPDATE_OPENFISCA_SITUATION,
@@ -46,35 +44,6 @@ describe('state handler', () => {
             let actual = update();
 
             expect(INITIAL_STATE.openfiscaSituation.individus[0].salaire_net['2013']).to.equal(40000);
-        });
-    });
-
-    describe('notifyFetchResults', () => {
-        it('should return an updated state', () => {
-            let actual = reducer(INITIAL_STATE, notifyFetchResults());
-
-            expect(actual.waitingForResults).to.be.ok();
-        });
-
-        it('should keep previous state intact', () => {
-            let actual = reducer(INITIAL_STATE, notifyFetchResults());
-
-            expect(INITIAL_STATE.waitingForResults).to.not.be.ok();
-        });
-    });
-
-    describe('notifyGotResults', () => {
-        it('should return an updated state', () => {
-            let actual = reducer(INITIAL_STATE, notifyGotResults(OPENFISCA_RESPONSE));
-
-            expect(actual.waitingForResults).to.not.be.ok();
-            expect(actual.results).to.eql(OPENFISCA_RESPONSE);
-        });
-
-        it('should keep previous state intact', () => {
-            let actual = reducer(INITIAL_STATE, notifyGotResults(OPENFISCA_RESPONSE));
-
-            expect(INITIAL_STATE.results).to.not.be.ok();
         });
     });
 

@@ -2,8 +2,6 @@ import { createStore } from 'redux';
 
 import {
     UPDATE_OPENFISCA_SITUATION,
-    FETCH_RESULTS,
-    GOT_RESULTS,
     ERROR,
 } from './actions';
 
@@ -22,20 +20,6 @@ export function reducer(state = INITIAL_STATE, action = {}) {
                 {
                     openfiscaSituation: action.data,
                     error: null,
-                }
-            );
-        case FETCH_RESULTS:
-            return Object.assign({}, state,
-                {
-                    results: {},
-                    waitingForResults: true,
-                }
-            );
-        case GOT_RESULTS:
-            return Object.assign({}, state,
-                {
-                    results: action.results,
-                    waitingForResults: false,
                 }
             );
         case ERROR:

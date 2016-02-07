@@ -1,4 +1,4 @@
 title: 'label',
-birthDateField: 'input[type="date"]',
+birthDateField: 'input[name]',
 submitButton: 'input[type="submit"]',
 invalidError: '[data-for="invalid"] .error',

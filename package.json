@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "babel-loader": "^6.2.1",
+    "babel-plugin-transform-object-assign": "^6.5.0",
     "eslint": "^1.10.3",
     "expect.js": "^0.3.1",
     "expose-loader": "^0.7.1",

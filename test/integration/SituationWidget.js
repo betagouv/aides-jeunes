@@ -1,1 +1,0 @@
-submitButton: '[type="submit"]',

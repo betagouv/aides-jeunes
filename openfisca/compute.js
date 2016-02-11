@@ -1,11 +1,36 @@
+import moment from 'moment';
 import request from 'superagent';
 
+import AIDES from '../config/aides';
 
-export default function compute(situation) {
+
+let requestedAides = Object.keys(AIDES);
+
+requestedAides.forEach((id) => {
+    if (AIDES[id].uncomputability)
+        requestedAides.push(`${id}_non_calculable`);  // OpenFisca convention to send additional information: if the aide is not computable, this variable will return an identifier for the uncomputability reason that was encountered
+});
+
+
+export function wrap(situation, evaluationDate) {
+    return {
+        scenarios: [ {
+            test_case: situation,
+            period: moment(evaluationDate).format('YYYY-MM'),
+        } ],
+        base_reforms: [
+            'aides_ville_paris',
+            'aides_cd93',
+        ],
+        variables: requestedAides,
+    };
+}
+
+export function compute(scenario) {
     return new Promise((resolve, reject) => {
         request
         .post(`http://${process.env.OPENFISCA_HOST}/api/1/calculate`)
-        .send(situation)
+        .send(scenario)
         .end(function(err, response) {
             if (err) {
                 let error = new Error('OpenFisca communication failed');

@@ -1,0 +1,18 @@
+<form action="/resultat" method="POST">
+    <textarea name="situation" id="situation"></textarea>
+    <input type="submit">
+</form>
+
+
+<script>
+    (function(store) {
+        var situationTextarea = document.getElementById('situation');
+
+        function updateRecap() {
+            situationTextarea.value = JSON.stringify(store.getState().openfiscaSituation);
+        }
+
+        store.subscribe(updateRecap);
+        updateRecap();
+    })(window.store.default);  // Webpack not set up to rewrite templates, using `expose-loader`
+</script>

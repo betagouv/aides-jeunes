@@ -17,5 +17,15 @@
     </head>
     <body>
         {{{ content }}}
+
+        {{#if isQuestion }}
+            <script src="/js/{{ templateName }}.js"></script>
+            <script src="/js/lib.js"></script>
+
+            <section id="recap">
+                <h1 class="ui top attached header">Votre situation</h1>
+                {{> recap }}
+            </section>
+        {{/if}}
     </body>
 </html>

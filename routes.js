@@ -1,5 +1,8 @@
 import loadConstYaml from './lib/loadConstYaml';
-import compute from './openfisca/compute';
+import {
+    wrap,
+    compute,
+} from './openfisca/compute';
 import { reverseMap } from './openfisca/parse';
 import AIDES from './config/aides';
 
@@ -22,9 +25,30 @@ export default [
 },
 {
     method: 'GET',
+    path: '/date-naissance',
+    handler: (request, reply) => {
+        view(reply, 'birthdate', {
+            isQuestion: true,
+        });
+    },
+},
+{
+    method: 'GET',
+    path: '/logement',
+    handler: (request, reply) => {
+        view(reply, 'housing', {
+            isQuestion: true,
+        });
+    },
+},
+{
+    method: 'POST',
     path: '/situation',
     handler: (request, reply) => {
+        const situation = require('./test/mock/situation.json');
+
         view(reply, 'situation', {
+            situation: JSON.stringify(situation),
         });
     },
 },
@@ -32,7 +56,10 @@ export default [
     method: 'POST',
     path: '/resultat',
     handler: (request, reply) => {
-        let situation = JSON.parse(request.payload.situation);
+        let situation = wrap(
+            JSON.parse(request.payload.situation),
+            (process.env.NODE_ENV == 'test' ? '2015-09' : undefined)
+        );
 
         compute(situation)
             .then((openFiscaResponse) => reverseMap(openFiscaResponse, situation))
@@ -49,7 +76,8 @@ export default [
                     aides,
                     aidesCount: Object.keys(aides).length,
                 });
-             }, (error) => view(reply, 'results', { error }));
+            })
+            .then(null, (error) => view(reply, 'results', { error }));
     },
 },
 {
@@ -71,6 +99,11 @@ export default [
 },
 {
     method: 'GET',
+    path: '/js/{param*}',
+    handler: { directory: { path: './dist/js' } },
+},
+{
+    method: 'GET',
     path: '/debug',
     handler: (request, reply) => {
         require('git-rev').long((sha) => {
@@ -89,6 +122,7 @@ function view(reply, name, data) {
     let context = Object.create(DEFAULT_RENDER_CONTEXT);  // use prototypal inheritance to avoid costly deep copies
 
     context.stylesheets = DEFAULT_RENDER_CONTEXT.stylesheets.concat(`/css/${name}`);  // don't push into the parent
+    context.templateName = name;
     Object.assign(context, data);  // this means data.stylesheets overrides all default stylesheets; this behavior can be changed, no use case atm
 
     return reply.view(name, context);

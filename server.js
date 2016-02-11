@@ -23,10 +23,11 @@ server.register(vision, (err) => {
     if (err) throw err;
 
     server.views({
+        context: { inTestMode: process.env.NODE_ENV == 'test' },
         engines: { handlebars: require('handlebars') },
         layout: true,
-        path: 'templates',
         partialsPath: 'templates/partials',
+        path: 'templates',
         relativeTo: __dirname,
     });
 });

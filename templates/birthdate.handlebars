@@ -1,0 +1,32 @@
+<h1>Vous</h1>
+
+<form class="ui form" method="post" action="/logement">
+    <div class="field">
+        <label>Date de naissance
+            <input name="individus.0.birth"
+                value="{{ value }}"
+                type="{{#if inTestMode }}text{{else}}date{{/if}}"  {{!-- until https://bugs.chromium.org/p/chromedriver/issues/detail?id=1319 is fixed --}}
+                placeholder="JJ/MM/AAAA"
+                min="1880-01-01"
+                max="today"
+                autocomplete="bday"
+                required
+            />
+        </label>
+
+        <div data-for="required">
+            <div class="ui error message">
+                <h2 class="header">Question obligatoire</h2>
+                <p>Votre date de naissance est nécessaire pour déterminer votre âge. De nombreuses aides (RSA, ASPA…) en dépendent.</p>
+            </div>
+        </div>
+        <div data-for="invalid">
+            <div class="ui error message">
+                <h2 class="header">Date non reconnue</h2>
+                <p>Utilisez le format JJ/MM/AAAA (jour/mois/année).</p>
+            </div>
+        </div>
+    </div>
+
+    <input class="ui submit button" type="submit" value="Valider"/>
+</form>

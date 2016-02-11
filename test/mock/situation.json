@@ -142,8 +142,6 @@
         "individus": [
           {
             "birth": "1960-08-09",
-            "age": 55,
-            "age_en_mois": 660,
             "statmarit": 1,
             "id": "55eed6211e52de32043693c9",
             "invalide": 0,
@@ -217,8 +215,6 @@
           },
           {
             "birth": "1960-08-09",
-            "age": 55,
-            "age_en_mois": 660,
             "statmarit": 1,
             "id": "55eed6211e52de32043693c8",
             "invalide": 0,
@@ -241,8 +237,6 @@
           },
           {
             "birth": "2009-04-08",
-            "age": 6,
-            "age_en_mois": 77,
             "id": "55eed6211e52de32043693c7",
             "invalide": 0,
             "inapte_travail": 0,
@@ -264,8 +258,6 @@
           },
           {
             "birth": "2015-01-01",
-            "age": 0,
-            "age_en_mois": 8,
             "id": "55eed6211e52de32043693c6",
             "invalide": 0,
             "inapte_travail": 0,

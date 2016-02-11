@@ -45,8 +45,8 @@ export default [
         );
 
         compute(situation)
-            .then((openFiscaResponse) => reverseMap(openFiscaResponse, situation))
-            .then((results) => {
+            .then(openFiscaResponse => reverseMap(openFiscaResponse, situation))
+            .then(results => {
                 let aides = {};
 
                 for (let aideId in results) {
@@ -59,8 +59,8 @@ export default [
                     aides,
                     aidesCount: Object.keys(aides).length,
                 });
-            })
-            .then(null, (error) => view(reply, 'results', { error }));
+            }, error => view(reply, 'results', { error }))
+            .catch(error => process.nextTick(() => { throw error }));
     },
 },
 {

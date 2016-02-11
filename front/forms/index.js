@@ -1,7 +1,9 @@
 import store from '../store';
 import updateErrorMessages from './update-semantic-validation';
-import validateCommon from './validate-common';
+import createValidationErrorAction from './validate-common';
 
+
+store.subscribe(() => { updateErrorMessages(store.getState()) });
 
 /**
  * Handles forms submission.
@@ -9,15 +11,14 @@ import validateCommon from './validate-common';
  * @param  {Function<String, ?> => Action} createAction Returns a Redux action to be dispatched to the store from the input name and input value.
  */
 export default function bindToForm(inputName, createAction) {
-    const form = document.forms[0];
+    const form = getInput(inputName).form;
 
     form.addEventListener('submit', event => {
         event.preventDefault();
 
-        const input = document.querySelector(`input[name="${inputName}"]:checked`)  // support radio groups, including for browsers that don't support RadioNodeList (IE)
-                      || document.querySelector(`input[name="${inputName}"]`);
+        const input = getInput(inputName);  // need to select it again in case it is a dynamic input (e.g. radio button)
 
-        store.dispatch(validateCommon(inputName, input) || createAction(inputName, input.value));
+        store.dispatch(createValidationErrorAction(input) || createAction(inputName, input.value));
     });
 
     store.subscribe(() => {
@@ -26,4 +27,7 @@ export default function bindToForm(inputName, createAction) {
     });
 }
 
-store.subscribe(() => { updateErrorMessages(store.getState()) });
+function getInput(name) {
+    return document.querySelector(`input[name="${name}"]:checked`)  // support radio groups, including for browsers that don't support RadioNodeList (IE)
+           || document.querySelector(`input[name="${name}"]`);
+}

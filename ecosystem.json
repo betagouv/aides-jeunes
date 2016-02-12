@@ -5,6 +5,8 @@
             "script"     : "server.js",
             "exec_interpreter": "./node_modules/.bin/babel-node",
             "exec_mode"  : "fork",
+            "out_file"   : process.env.CIRCLECI && `${process.env.CIRCLE_ARTIFACTS}/server.log`,
+            "error_file" : process.env.CIRCLECI && `${process.env.CIRCLE_ARTIFACTS}/server.error.log`,
             "env": {
                 "PORT": 9000,
                 "OPENFISCA_HOST": "localhost:2000"

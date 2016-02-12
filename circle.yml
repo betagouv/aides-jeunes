@@ -15,7 +15,7 @@ dependencies:
   cache_directories:
     - sauce_connect
   post:
-    - if [[ ! -e sauce_connect ]]; then wget --directory-prefix=sauce_connect https://saucelabs.com/downloads/sc-latest-linux.tar.gz && cd sauce_connect && tar -xzf sc-latest-linux.tar.gz; fi
+    - if [[ ! -e sauce_connect ]]; then wget --directory-prefix=sauce_connect https://saucelabs.com/downloads/sc-latest-linux.tar.gz && cd sauce_connect && tar -xzf sc-latest-linux.tar.gz; else echo 'Using cached Sauce Connect'; fi
     - npm install saucelabs@0.1.1 # allow sending Watai results to SauceLabs
 
 test:

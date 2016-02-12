@@ -12,10 +12,11 @@ machine:
     # SAUCE_ACCESS_KEY is defined in the CircleCI web UI
 
 dependencies:
+  cache_directories:
+    - sauce_connect
   post:
+    - if [[ ! -e sauce_connect ]]; then wget --directory-prefix=sauce_connect https://saucelabs.com/downloads/sc-latest-linux.tar.gz && cd sauce_connect && tar -xzf sc-latest-linux.tar.gz; fi
     - npm install saucelabs@0.1.1 # allow sending Watai results to SauceLabs
-    - wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz
-    - tar -xzf sc-latest-linux.tar.gz
 
 test:
   pre:
@@ -23,7 +24,7 @@ test:
     - npm start:
         parallel: true
     # start Sauce Connect
-    - cd sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --tunnel-identifier "circle-$CIRCLE_BUILD_NUM-$CIRCLE_NODE_INDEX" --readyfile ~/sauce_is_ready > $SAUCE_LOG:
+    - cd sauce_connect/sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --tunnel-identifier "circle-$CIRCLE_BUILD_NUM-$CIRCLE_NODE_INDEX" --readyfile ~/sauce_is_ready > $SAUCE_LOG:
         background: true
         parallel: true
     # wait for Sauce Connect

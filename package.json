@@ -31,8 +31,7 @@
     "stop-test-integration": "pm2 stop node_modules/.bin/selenium",
     "lint": "eslint --ignore-pattern=test/integration/* --ignore-pattern=dist",
     "logs": "pm2 logs",
-    "prepublish": "npm run build",
-    "postinstall": "npm run build"
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "babel-cli": "^6.5.1",

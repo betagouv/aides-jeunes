@@ -12,6 +12,10 @@
   "bugs": {
     "url": "https://github.com/sgmap/mes-aides-ui/issues"
   },
+  "engines": {
+    "node": ">=4",
+    "npm": ">=2.14"
+  },
   "main": "index.js",
   "scripts": {
     "start": "pm2 start ecosystem.json; echo '\nRead logs with `npm run logs`\n'",

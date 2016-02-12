@@ -5,10 +5,12 @@ import hapi from 'hapi';
 import inert from 'inert';
 import vision from 'vision';
 
+import routes from './routes';
+import * as openFiscaMock from './test/mock/openfisca-superagent.js';
 
-if (process.env.NODE_ENV == 'test') {
-    require('./test/mock/openfisca-superagent.js');
-}
+
+if (process.env.NODE_ENV == 'test')
+    openFiscaMock.start();
 
 
 var server = new hapi.Server({
@@ -36,7 +38,7 @@ server.connection({
     port: process.env.PORT,
 });
 
-server.route(require('./routes'));
+server.route(routes);
 
 server.start(() => console.log(`Server running at: ${server.info.uri}`));
 

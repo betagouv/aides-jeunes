@@ -4,6 +4,7 @@ import {
     wrap,
     compute,
 } from '../../openfisca/compute';
+import * as openFiscaMock from '../mock/openfisca-superagent.js';
 
 
 describe('compute', function() {
@@ -40,15 +41,14 @@ describe('compute', function() {
     describe('compute', () => {
         const SITUATION = require('../mock/situation.json');
 
-        let subject,
-            openFiscaMock;
+        let subject;
 
         before(() => {
-            openFiscaMock = require('../mock/openfisca-superagent.js');
+            openFiscaMock.start();
             subject = compute(SITUATION);
         });
 
-        after(() => openFiscaMock.unset() );
+        after(openFiscaMock.stop);
 
         it('should return a promise', () => {
             expect(subject).to.be.a(Promise);

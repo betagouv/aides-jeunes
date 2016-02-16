@@ -54,9 +54,3 @@ test:
   post:
     - killall --wait sc:  # wait until Sauce Connect closes the tunnel
         parallel: true
-
-deployment:
-  production:
-    branch: rewrite
-    commands:
-      - npm run deploy

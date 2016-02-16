@@ -40,6 +40,11 @@ server.connection({
 
 server.route(routes);
 
-server.start(() => console.log(`Server running at: ${server.info.uri}`));
+server.start(err => {
+    if (err)
+        throw err;
+
+    console.log(`Server running at: ${server.info.uri}`)
+});
 
 module.exports = server;

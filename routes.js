@@ -1,15 +1,9 @@
-import loadConstYaml from './lib/loadConstYaml';
 import {
     wrap,
     compute,
 } from './openfisca/compute';
 import { reverseMap } from './openfisca/parse';
 import AIDES from './config/aides';
-
-
-const DEFAULT_RENDER_CONTEXT = Object.seal({
-          stylesheets: loadConstYaml('css/common'),
-      });
 
 
 export default [
@@ -38,17 +32,6 @@ export default [
     handler: (request, reply) => {
         view(reply, 'housing', {
             isQuestion: true,
-        });
-    },
-},
-{
-    method: 'POST',
-    path: '/situation',
-    handler: (request, reply) => {
-        const situation = require('./test/mock/situation.json');
-
-        view(reply, 'situation', {
-            situation: JSON.stringify(situation),
         });
     },
 },
@@ -119,11 +102,6 @@ export default [
 
 
 function view(reply, name, data) {
-    let context = Object.create(DEFAULT_RENDER_CONTEXT);  // use prototypal inheritance to avoid costly deep copies
-
-    context.stylesheets = DEFAULT_RENDER_CONTEXT.stylesheets.concat(`/css/${name}`);  // don't push into the parent
-    context.templateName = name;
-    Object.assign(context, data);  // this means data.stylesheets overrides all default stylesheets; this behavior can be changed, no use case atm
-
-    return reply.view(name, context);
+    data.templateName = name;
+    return reply.view(name, data);
 }

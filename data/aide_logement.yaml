@@ -1,0 +1,14 @@
+name: Aides au Logement
+acronym: AL
+prefix: les
+url: https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-etcadre-de-vie/les-aides-au-logement-0
+conditions:
+  - Résider au moins 8 mois par an dans le logement que vous avez décrit.
+  - Le logement doit être <a href="http://www.caf.fr/aides-et-services/connaitre-vos-droits-selon-votre-situation/vous-louez-ou-vous-achetez-un-logement/vous-occupez-un-logement-insalubre-ou-non-decent" title="9 mètres carrés par personne, fenêtre, WC, eau potable, électricité" >décent</a>.
+uncomputability:
+  primo_accedant:
+    reason: vous êtes <abbr title="Non propriétaire de votre résidence principale dans les deux années précédant l’achat de votre résidence actuelle">primo-accédant</abbr> à la propriété de votre résidence principale
+    solution: Le <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> pourra estimer vos droits sur la base de la valeur de votre bien.
+  locataire_foyer:
+    reason: vous logez dans un foyer
+    solution: Le <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> vous donnera des estimations selon les différentes conventions possibles de votre foyer.

@@ -1,0 +1,6 @@
+name: Aide pour une Complémentaire Santé
+acronym: ACS
+prefix: l'
+url: http://www.cmu.fr/acs.php
+conditions:
+  - Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.

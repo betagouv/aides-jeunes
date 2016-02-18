@@ -25,7 +25,7 @@
             "ref"         : "origin/rewrite",
             "repo"        : "https://github.com/sgmap/mes-aides-ui.git",
             "path"        : "~/mes-aides-ui",
-            "post-deploy" : "npm install --prod && pm2 startOrRestart ecosystem.json --env production"
+            "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
         }
     }
 }

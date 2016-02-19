@@ -5,6 +5,7 @@ import {
     ERROR,
     ASYNC_ACTION_START,
     ASYNC_ACTION_END,
+    SUGGESTIONS,
 } from './actions';
 
 
@@ -33,6 +34,11 @@ export function reducer(state = INITIAL_STATE, action = {}) {
         case ASYNC_ACTION_END:
             return Object.assign({}, state, {
                 async: false,
+            });
+        case SUGGESTIONS:
+            return Object.assign({}, state, {
+                suggestions: action.suggestions,
+                error: null,
             });
         default:
             return state;

@@ -2,6 +2,7 @@ export const UPDATE_OPENFISCA_SITUATION = 'UPDATE_OPENFISCA_SITUATION';
 export const ERROR = 'ERROR';
 export const ASYNC_ACTION_START = 'ASYNC_ACTION_START';
 export const ASYNC_ACTION_END = 'ASYNC_ACTION_END';
+export const SUGGESTIONS = 'SUGGESTIONS';
 
 
 /**
@@ -33,6 +34,18 @@ export function createAsyncStartAction() {
 export function createAsyncEndAction() {
     return {
         type: ASYNC_ACTION_END,
+    }
+}
+
+/**
+ * Create an action to register a list of suggestions to be presented to the user.
+ * @param  {Array} suggestions
+ * @return {Action}    A redux action to be dispatched to the store.
+ */
+export function createSuggestResultsAction(suggestions) {
+    return {
+        type: SUGGESTIONS,
+        suggestions,
     }
 }
 

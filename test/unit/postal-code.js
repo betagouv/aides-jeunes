@@ -36,5 +36,13 @@ describe('Postal code question', function() {
         it('should not have an async action awaiting anymore', () => {
             expect(state.async).to.not.be.ok();
         });
+
+        it('should clean the OpenFisca situation', () => {
+            expect(state.openfiscaSituation.menages[0].depcom).to.not.be.ok();
+        });
+
+        it('should add suggestions', () => {
+            expect(state.suggestions).to.be(mock.MULTIPLE_MATCHES);
+        });
     });
 });

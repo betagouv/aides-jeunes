@@ -6,6 +6,7 @@ import {
     createOpenfiscaSituationUpdateAction,
     createAsyncStartAction,
     createAsyncEndAction,
+    createSuggestResultsAction,
     createErrorAction,
 } from '../actions';
 
@@ -43,7 +44,8 @@ export function handleAPICall(apiCallPromise) {
             if (matchingCommunes.length == 1)
                 return store.dispatch(updateDepCom(matchingCommunes[0].codeInsee));
 
-            console.log('Multiple communes are not handled yet', matchingCommunes);
+            store.dispatch(createSuggestResultsAction(matchingCommunes));
+            store.dispatch(updateDepCom(null));
         });
 }
 

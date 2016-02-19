@@ -1,5 +1,7 @@
 export const UPDATE_OPENFISCA_SITUATION = 'UPDATE_OPENFISCA_SITUATION';
 export const ERROR = 'ERROR';
+export const ASYNC_ACTION_START = 'ASYNC_ACTION_START';
+export const ASYNC_ACTION_END = 'ASYNC_ACTION_END';
 
 
 /**
@@ -11,6 +13,26 @@ export function createOpenfiscaSituationUpdateAction(additional) {
     return {
         type: UPDATE_OPENFISCA_SITUATION,
         data: additional,
+    }
+}
+
+/**
+ * Create an action to register the beginning of an async operation.
+ * @return {Action}    A redux action to be dispatched to the store.
+ */
+export function createAsyncStartAction() {
+    return {
+        type: ASYNC_ACTION_START,
+    }
+}
+
+/**
+ * Create an action to register the end of an async operation.
+ * @return {Action}    A redux action to be dispatched to the store.
+ */
+export function createAsyncEndAction() {
+    return {
+        type: ASYNC_ACTION_END,
     }
 }
 

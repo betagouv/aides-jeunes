@@ -3,6 +3,8 @@ import { createStore } from 'redux';
 import {
     UPDATE_OPENFISCA_SITUATION,
     ERROR,
+    ASYNC_ACTION_START,
+    ASYNC_ACTION_END,
 } from './actions';
 
 
@@ -23,6 +25,14 @@ export function reducer(state = INITIAL_STATE, action = {}) {
         case ERROR:
             return Object.assign({}, state, {
                 error: action.error,
+            });
+        case ASYNC_ACTION_START:
+            return Object.assign({}, state, {
+                async: true,
+            });
+        case ASYNC_ACTION_END:
+            return Object.assign({}, state, {
+                async: false,
             });
         default:
             return state;

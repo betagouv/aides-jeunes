@@ -10,7 +10,7 @@ store.subscribe(() => { updateErrorMessages(store.getState()) });
  * @param  {String} inputName Name of the field from which to get the value, which must also be property path of the OpenFisca situation.
  * @param  {Function<String, ?> => Action} createAction Returns a Redux action to be dispatched to the store from the input name and input value.
  */
-export default function bindToForm(inputName, createAction) {
+export function bind(inputName, createAction) {
     const form = getInput(inputName).form;
 
     form.addEventListener('submit', event => {

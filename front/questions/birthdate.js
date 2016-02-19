@@ -1,12 +1,11 @@
 import moment from 'moment';
 import objectPath from 'object-path-immutable';
 
-import store from './store';
+import store from '../store';
 import {
     createOpenfiscaSituationUpdateAction,
     createErrorAction,
-} from './actions';
-import bindToForm from './forms';
+} from '../actions';
 
 
 /**
@@ -28,6 +27,3 @@ export function update(property, date) {
 
     return createOpenfiscaSituationUpdateAction(situation);
 }
-
-
-bindToForm('individus.0.birth', update);

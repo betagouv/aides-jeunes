@@ -1,14 +1,13 @@
 require('whatwg-fetch');
 import objectPath from 'object-path-immutable';
 
-import store from './store';
+import store from '../store';
 import {
     createOpenfiscaSituationUpdateAction,
     createAsyncStartAction,
     createAsyncEndAction,
     createErrorAction,
-} from './actions';
-import bindToForm from './forms';
+} from '../actions';
 
 const INSEE_CODE_PROPERTY_PATH = 'menages.0.depcom';
 
@@ -58,6 +57,3 @@ function updateDepCom(depcom) {
 
     return createOpenfiscaSituationUpdateAction(situation);
 }
-
-
-bindToForm('postalCode', update);

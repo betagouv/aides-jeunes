@@ -16,18 +16,14 @@ export const INITIAL_STATE = {
 export function reducer(state = INITIAL_STATE, action = {}) {
     switch (action.type) {
         case UPDATE_OPENFISCA_SITUATION:
-            return Object.assign({}, state,
-                {
-                    openfiscaSituation: action.data,
-                    error: null,
-                }
-            );
+            return Object.assign({}, state, {
+                openfiscaSituation: action.data,
+                error: null,
+            });
         case ERROR:
-            return Object.assign({}, state,
-                {
-                    error: action.error,
-                }
-            );
+            return Object.assign({}, state, {
+                error: action.error,
+            });
         default:
             return state;
     }
@@ -65,6 +61,4 @@ export function storageMiddleware(reducer, storage) {
     }
 }
 
-const store = createStore(storageMiddleware(reducer));
-
-export default store;
+export default createStore(storageMiddleware(reducer));

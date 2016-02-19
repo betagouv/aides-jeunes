@@ -36,6 +36,15 @@ export default [
     },
 },
 {
+    method: 'GET',
+    path: '/code-postal',
+    handler: (request, reply) => {
+        view(reply, 'postal-code', {
+            isQuestion: true,
+        });
+    },
+},
+{
     method: 'POST',
     path: '/resultat',
     handler: (request, reply) => {

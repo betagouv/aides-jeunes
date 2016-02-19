@@ -5,6 +5,7 @@ module.exports = {
     entry: {
         'birthdate': './front/birthdate.js',
         'housing': './front/housing.js',
+        'postal-code': './front/postal-code.js',
         'lib': './front/lib/index.js',
     },
     output: {

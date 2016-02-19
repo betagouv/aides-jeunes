@@ -1,0 +1,32 @@
+<h1>Votre lieu de résidence principal</h1>
+
+<form class="ui form" method="post" action="#">
+    <div class="field">
+        <label>
+            Code postal
+            <input name="postalCode"
+                type="text"
+                maxlength="5"
+                pattern="\d{5}"
+                required
+                inputmode="numeric"
+                autocomplete="postal-code"
+                >
+        </label>
+        <div data-for="required">
+            <div class="ui error message">
+                <h2 class="header">Question obligatoire</h2>
+                <p>Votre code postal est nécessaire pour déterminer vos aides au logement.</p>
+            </div>
+        </div>
+        <div data-for="invalid">
+            <div class="ui error message">
+                <h2 class="header">Code postal non reconnu</h2>
+                <p>Ce code postal ne semble pas exister.</p>
+                <p>Êtes-vous certain de l'avoir tapé correctement ?</p>
+            </div>
+        </div>
+    </div>
+
+    <input class="ui submit button" type="submit" value="Valider"/>
+</form>

@@ -2,6 +2,8 @@ export const SINGLE_MATCH_INSEE_CODE = '75111';
 export function fetchWithSingleMatch() {
     return Promise.resolve({
         json: () =>[{"codeInsee":SINGLE_MATCH_INSEE_CODE,"nomCommune":"PARIS 11","codePostal":"75011","libelleAcheminement":"PARIS"}],
+        ok: true,
+        status: 200,
     });
 }
 
@@ -9,5 +11,20 @@ export const MULTIPLE_MATCHES = [{"codeInsee":"09013","nomCommune":"ARABAUX","co
 export function fetchWithMultipleMatches() {
     return Promise.resolve({
         json: () => MULTIPLE_MATCHES,
+        ok: true,
+        status: 200,
     });
+}
+
+export function fetchWithNoMatch() {
+    return Promise.resolve({
+        json: () => { throw new Error('Pretending to not be parsable') },
+        ok: false,
+        status: 404,
+        statusText: 'Not found',
+    });
+}
+
+export function fetchWithNetworkError() {
+    return Promise.reject({ message: 'Pretending that network is down' });
 }

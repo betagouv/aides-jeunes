@@ -1,6 +1,9 @@
 'use strict';
 
 angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, categoriesRnc, SituationService, IndividuService) {
+
+    $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
+
     var buildRecapLogement = function() {
         var logementLabel = _.find(logementTypes, { id: $scope.situation.logement.type }).label;
         logementLabel = $filter('uppercaseFirst')(logementLabel);
@@ -196,7 +199,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         });
     };
 
-    if ($scope.situation.ressourcesYearMoins2Captured) {
+    if ($scope.ressourcesYearMoins2Captured) {
         buildRecapRnc();
     }
 });

@@ -84,11 +84,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
     });
 
     $scope.$on('rfr', function(e, rfr) {
-        if (rfr !== undefined) {
-            $scope.situation.rfr = rfr;
-            $scope.situation.ressourcesYearMoins2Captured = true;
-            $scope.$broadcast('ressourcesYearMoins2Captured');
-        }
+        $scope.situation.rfr = rfr;
         goToResultat();
     });
 

@@ -305,4 +305,51 @@ describe('Service: situationService', function () {
             expect(situation.individus[1].name).toBe('Bob');
         });
     });
+
+    describe('function ressourcesYearMoins2Captured()', function() {
+        it('should detect N-2 ressources', function() {
+            // given
+            var situation = {
+                individus:
+                    [
+                        { ressources: []},
+                        { ressources: [{ type: 'rncPensionsRetraitesRentes'}]}
+                    ]
+            };
+
+            // when
+            var ressources_captured = service.ressourcesYearMoins2Captured(situation);
+            // then
+            expect(ressources_captured).toBeTruthy();
+        });
+        it('should ignore other ressources', function() {
+            // given
+            var situation = {
+                individus:
+                    [
+                        { ressources: [{ type: 'revenusSalarie'}]}
+                    ]
+            };
+
+            // when
+            var ressources_captured = service.ressourcesYearMoins2Captured(situation);
+            // then
+            expect(ressources_captured).toBeFalsy();
+        });
+        it('should detect rfr', function() {
+            // given
+            var situation = {
+                individus:
+                    [
+                        { ressources: []},
+                    ],
+                rfr: 20000
+            };
+
+            // when
+            var ressources_captured = service.ressourcesYearMoins2Captured(situation);
+            // then
+            expect(ressources_captured).toBeTruthy();
+        });
+    });
 });

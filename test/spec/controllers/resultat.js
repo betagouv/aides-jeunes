@@ -13,7 +13,7 @@ describe('Controller: ResultatCtrl', function() {
             q = $q;
             ResultatService = _ResultatService_;
             scope = $rootScope.$new();
-            scope.situation = { dateDeValeur: '2013-04-10' };
+            scope.situation = { dateDeValeur: '2013-04-10', individus: [] };
         });
     });
 

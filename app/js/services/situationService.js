@@ -150,13 +150,10 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 logement: situation.logement,
                 patrimoine: situation.patrimoine,
                 phoneNumber: situation.phoneNumber,
-                email: situation.email
+                email: situation.email,
+                rfr: situation.rfr
             };
 
-            if (situation.ressourcesYearMoins2Captured) {
-                result.ressourcesYearMoins2Captured = true;
-                result.rfr = situation.rfr;
-            }
 
             return result;
         },
@@ -226,6 +223,19 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
                 .concat(enfants)
                 .concat(individus.slice(1));
             situation.individus = individus;
+        },
+
+        ressourcesYearMoins2Captured: function(situation) {
+            var ressourcesYM2Names = ['rncRevenusActivite', 'rncAutresRevenus', 'rncPensionsRetraitesRentes', 'fraisReelsDeductibles', 'rncPensionsAlimentaires', 'rncPensionsAlimentairesVersees'];
+            var ressourcesYM2 = [].concat.apply(
+                [],
+                situation.individus.map(function(individu) {
+                    return individu.ressources.filter(function(ressource) {
+                        return ressourcesYM2Names.indexOf(ressource.type) > 0;
+                    });
+                })
+            );
+            return ressourcesYM2.length > 0 || situation.rfr !== undefined;
         }
     };
 });

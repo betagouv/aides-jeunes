@@ -82,7 +82,23 @@ describe('Postal code question', () => {
             });
         });
 
-        describe('with a string value', () => {
+        describe('with multiple matches', () => {
+            before(setValue(mock.MULTIPLE_MATCHES_POSTAL_CODE));
+
+            it('should select the first match', () => {
+                expect(state.openfiscaSituation.menages[0].depcom).to.be(mock.MULTIPLE_MATCHES[0].codeInsee);
+            });
+
+            it('should add suggestions', () => {
+                expect(state.suggestions).to.eql(mock.MULTIPLE_MATCHES);
+            });
+
+            it('should have no error', () => {
+                expect(state.error).to.not.be.ok();
+            });
+        });
+
+        describe('with an alphabetic value', () => {
             before(setValue('not a postal code'));
 
             it('should have an "invalid" error', () => {
@@ -98,6 +114,10 @@ describe('Postal code question', () => {
                 expect(state.openfiscaSituation.menages[0].depcom).to.be(mock.SINGLE_MATCH_INSEE_CODE);
             });
 
+            it('should clean suggestions', () => {
+                expect(state.suggestions).to.be.empty();
+            });
+
             it('should have no error', () => {
                 expect(state.error).to.not.be.ok();
             });
@@ -110,24 +130,12 @@ describe('Postal code question', () => {
                 expect(state.openfiscaSituation.menages[0].depcom).to.not.be.ok();
             });
 
+            it('should clean suggestions', () => {
+                expect(state.suggestions).to.be.empty();
+            });
+
             it('should show an error', () => {
                 expect(state.error).to.be.ok();
-            });
-        });
-
-        describe('with multiple matches', () => {
-            before(setValue(mock.MULTIPLE_MATCHES_POSTAL_CODE));
-
-            it('should clean the OpenFisca situation', () => {
-                expect(state.openfiscaSituation.menages[0].depcom).to.not.be.ok();
-            });
-
-            it('should add suggestions', () => {
-                expect(state.suggestions).to.eql(mock.MULTIPLE_MATCHES);
-            });
-
-            it('should have no error', () => {
-                expect(state.error).to.not.be.ok();
             });
         });
     });

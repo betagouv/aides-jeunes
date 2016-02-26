@@ -23,12 +23,22 @@ export function update(inputName, postalCode) {
         return Promise.resolve(createAsyncStartAction())
             .then(() => fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${postalCode}`))
             .then(parseResponse, parseResponse)
-            .then(createActionForMatchingCommunes,
-                error => createErrorAction(inputName, error.id, postalCode, error)
-            ).then(action => {
-                dispatch(action);
+            .then(matchingCommunes => {
+                dispatch(updateDepCom(matchingCommunes[0] && matchingCommunes[0].codeInsee));
+
+                if (matchingCommunes.length > 1)
+                    dispatch(createSuggestResultsAction(matchingCommunes));
+                else
+                    dispatch(createSuggestResultsAction([]));
+            }, error => {
+                dispatch(updateDepCom(null));
+                dispatch(createSuggestResultsAction([]));
+                dispatch(createErrorAction(inputName, error.id, postalCode, error));
+            })
+            .then(() => {
                 dispatch(createAsyncEndAction());
-            }).catch(console.error.bind(console));
+            })
+            .catch(console.error.bind(console));
     }
 }
 
@@ -51,16 +61,9 @@ export function parseResponse(response) {
     throw error;
 }
 
-function createActionForMatchingCommunes(matchingCommunes) {
-    if (matchingCommunes.length == 1)
-        return updateDepCom(matchingCommunes[0].codeInsee);
-
-    return createSuggestResultsAction(matchingCommunes);
-}
-
 /**
  * Set INSEE code in OpenFisca situation.
- * @param  {String} depcom http://legislation.openfisca.fr/variables/depcom
+ * @param  {String|null} depcom http://legislation.openfisca.fr/variables/depcom
  * @return {Action} A Redux action to be dispatched to the store.
  */
 function updateDepCom(depcom) {

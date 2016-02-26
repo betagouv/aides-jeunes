@@ -1,6 +1,7 @@
 import store from '../store';
 import updateErrorMessages from './update-semantic-validation';
 import updateLoaders from './update-semantic-async';
+import updateRecap from '../recap';
 import createValidationErrorAction from './validate-common';
 
 
@@ -9,7 +10,12 @@ store.subscribe(() => {
 
     updateErrorMessages(state);
     updateLoaders(state);
+    updateRecap(state);
 });
+
+if (window)
+    window.onload = () => updateRecap(store.getState());
+
 
 /**
  * Handles forms submission.

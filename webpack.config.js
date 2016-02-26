@@ -16,11 +16,6 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /store\.js$/,
-                loader: 'expose',
-                query: 'store',
-            },
-            {
                 test: /forms\/index\.js$/,
                 loader: 'expose',
                 query: 'forms',

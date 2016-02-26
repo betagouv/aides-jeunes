@@ -24,14 +24,14 @@ export function update(inputName, postalCode) {
             .then(() => fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${postalCode}`))
             .then(parseResponse, parseResponse)
             .then(matchingCommunes => {
-                dispatch(updateDepCom(matchingCommunes[0] && matchingCommunes[0].codeInsee));
+                dispatch(setCommune(matchingCommunes[0]));
 
                 if (matchingCommunes.length > 1)
                     dispatch(createSuggestResultsAction(matchingCommunes));
                 else
                     dispatch(createSuggestResultsAction([]));
             }, error => {
-                dispatch(updateDepCom(null));
+                dispatch(setCommune({}));
                 dispatch(createSuggestResultsAction([]));
                 dispatch(createErrorAction(inputName, error.id, postalCode, error));
             })
@@ -63,11 +63,12 @@ export function parseResponse(response) {
 
 /**
  * Set INSEE code in OpenFisca situation.
- * @param  {String|null} depcom http://legislation.openfisca.fr/variables/depcom
+ * @param  {Object?} commune An Object with a `codeInsee` property matching an OpenFisca depcom.
  * @return {Action} A Redux action to be dispatched to the store.
+ * @see http://legislation.openfisca.fr/variables/depcom
  */
-function updateDepCom(depcom) {
-    const situation = objectPath.set(store.getState().openfiscaSituation, INSEE_CODE_PROPERTY_PATH, depcom);
+function setCommune(commune = {}) {
+    const situation = objectPath.set(store.getState().openfiscaSituation, INSEE_CODE_PROPERTY_PATH,  commune.codeInsee);
 
     return createOpenfiscaSituationUpdateAction(situation);
 }

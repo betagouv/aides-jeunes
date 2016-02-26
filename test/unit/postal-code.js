@@ -5,9 +5,12 @@ import { parseResponse, update } from '../../front/questions/postal-code';
 import * as mock from '../mock/codes-postaux';
 
 describe('Postal code question', () => {
+    before(mock.start);
+    after(mock.stop);
+
     describe('response parser', () => {
-        function shouldRejectWithError(promise, id, done) {
-            return promise
+        function shouldRejectWithError(postalCode, id, done) {
+            return fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${postalCode}`)
                 .then(parseResponse, parseResponse)
                 .then(
                     () => new Error('should have been rejected'),
@@ -19,25 +22,25 @@ describe('Postal code question', () => {
 
         describe('with no match', () => {
             it('should raise en exception', done => {
-                shouldRejectWithError(mock.fetchWithNoMatch(), 'invalid', done);
+                shouldRejectWithError(mock.NO_MATCH_POSTAL_CODE, 'invalid', done);
             });
         });
 
         describe('with an invalid input', () => {
             it('should raise en exception', done => {
-                shouldRejectWithError(mock.fetchWithInvalidInput(), 'invalid', done);
+                shouldRejectWithError('not a postal code', 'invalid', done);
             });
         });
 
         describe('with a network error', () => {
             it('should raise en exception', done => {
-                shouldRejectWithError(mock.fetchWithNetworkError(), 'communication', done);
+                shouldRejectWithError('down', 'communication', done);
             });
         });
 
         describe('with a single match', () => {
             it('should parse it', done => {
-                mock.fetchWithSingleMatch()
+                fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${mock.SINGLE_MATCH_POSTAL_CODE}`)
                     .then(parseResponse)
                     .then(result => {
                         expect(result).to.have.length(1);
@@ -48,10 +51,10 @@ describe('Postal code question', () => {
 
         describe('with multiple matches', () => {
             it('should parse them', done => {
-                mock.fetchWithMultipleMatches()
+                fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${mock.MULTIPLE_MATCHES_POSTAL_CODE}`)
                     .then(parseResponse)
                     .then(result => {
-                        expect(result).to.be(mock.MULTIPLE_MATCHES);
+                        expect(result).to.eql(mock.MULTIPLE_MATCHES);
                     }).then(done, done);
             });
         });

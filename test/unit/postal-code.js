@@ -24,6 +24,12 @@ describe('Postal code question', () => {
             });
         });
 
+        describe('with an invalid input', () => {
+            it('should raise en exception', done => {
+                shouldRejectWithError(mock.fetchWithInvalidInput(), 'invalid', done);
+            });
+        });
+
         describe('with a network error', () => {
             it('should raise en exception', done => {
                 shouldRejectWithError(mock.fetchWithNetworkError(), 'communication', done);

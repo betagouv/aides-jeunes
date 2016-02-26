@@ -1,4 +1,5 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 import {
     UPDATE_OPENFISCA_SITUATION,
@@ -77,4 +78,10 @@ export function storageMiddleware(reducer, storage) {
     }
 }
 
-export default createStore(storageMiddleware(reducer));
+
+const store = createStore(
+  storageMiddleware(reducer),
+  applyMiddleware(thunk)
+);
+
+export default store;

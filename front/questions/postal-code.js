@@ -19,17 +19,17 @@ const INSEE_CODE_PROPERTY_PATH = 'menages.0.depcom';
  * @return {Action} A Redux action to be dispatched to the store.
  */
 export function update(inputName, postalCode) {
-    window
-        .fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${postalCode}`)
-        .then(parseResponse, parseResponse)
-        .then(createActionForMatchingCommunes,
-            error => createErrorAction(inputName, error.id, postalCode, error)
-        ).then(action => {
-            store.dispatch(action);
-            store.dispatch(createAsyncEndAction());
-        }).catch(console.error.bind(console));
-
-    return createAsyncStartAction();
+    return dispatch => {
+        return Promise.resolve(createAsyncStartAction())
+            .then(() => window.fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${postalCode}`))
+            .then(parseResponse, parseResponse)
+            .then(createActionForMatchingCommunes,
+                error => createErrorAction(inputName, error.id, postalCode, error)
+            ).then(action => {
+                dispatch(action);
+                dispatch(createAsyncEndAction());
+            }).catch(console.error.bind(console));
+    }
 }
 
 /**
@@ -45,7 +45,7 @@ export function parseResponse(response) {
     const error = new Error(response.statusText || response.message);
     error.id = 'communication';
 
-    if (response.status == 404)
+    if (response.status == 400 || response.status == 404)
         error.id = 'invalid';
 
     throw error;

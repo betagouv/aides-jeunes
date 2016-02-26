@@ -25,6 +25,15 @@ export function fetchWithNoMatch() {
     });
 }
 
+export function fetchWithInvalidInput() {
+    return Promise.resolve({
+        json: () => { throw new Error('Pretending to not be parsable') },
+        ok: false,
+        status: 400,
+        statusText: 'Bad request',
+    });
+}
+
 export function fetchWithNetworkError() {
     return Promise.reject({ message: 'Pretending that network is down' });
 }

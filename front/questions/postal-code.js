@@ -1,4 +1,4 @@
-require('whatwg-fetch');
+require('isomorphic-fetch');
 import objectPath from 'object-path-immutable';
 
 import store from '../store';
@@ -21,7 +21,7 @@ const INSEE_CODE_PROPERTY_PATH = 'menages.0.depcom';
 export function update(inputName, postalCode) {
     return dispatch => {
         return Promise.resolve(createAsyncStartAction())
-            .then(() => window.fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${postalCode}`))
+            .then(() => fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${postalCode}`))
             .then(parseResponse, parseResponse)
             .then(createActionForMatchingCommunes,
                 error => createErrorAction(inputName, error.id, postalCode, error)
@@ -56,7 +56,6 @@ function createActionForMatchingCommunes(matchingCommunes) {
         return updateDepCom(matchingCommunes[0].codeInsee);
 
     return createSuggestResultsAction(matchingCommunes);
-    updateDepCom(null); // TODO: combine both in a single action
 }
 
 /**

@@ -1,8 +1,7 @@
 import expect from 'expect.js';
 
 import store from '../../front/store';
-import { createAsyncStartAction } from '../../front/actions';
-import { parseResponse } from '../../front/questions/postal-code';
+import { parseResponse, update } from '../../front/questions/postal-code';
 import * as mock from '../mock/codes-postaux';
 
 describe('Postal code question', () => {
@@ -57,4 +56,80 @@ describe('Postal code question', () => {
             });
         });
     });
+
+    describe('state modification', function() {
+        let state,
+            value;
+
+        function setValue(newValue) {
+            return () => value = newValue;
+        }
+
+        beforeEach(done => {
+            store.dispatch(update('postalCode', value))
+                .then(() => {
+                    state = store.getState();
+                    done();
+                }, done);
+        });
+
+        describe('with no value', () => {
+            before(setValue(''));
+
+            it('should have an error', () => {
+                expect(state.error).to.be.ok();
+                // don't test it is a "required" error as this has been caught by earlier validation
+            });
+        });
+
+        describe('with a string value', () => {
+            before(setValue('not a postal code'));
+
+            it('should have an "invalid" error', () => {
+                expect(state.error).to.be.ok();
+                expect(state.error.id).to.be('invalid');
+            });
+        });
+
+        describe('with a single match', () => {
+            before(setValue(mock.SINGLE_MATCH_POSTAL_CODE));
+
+            it('should update the OpenFisca situation', () => {
+                expect(state.openfiscaSituation.menages[0].depcom).to.be(mock.SINGLE_MATCH_INSEE_CODE);
+            });
+
+            it('should have no error', () => {
+                expect(state.error).to.not.be.ok();
+            });
+        });
+
+        describe('with no match', () => {
+            before(setValue(mock.NO_MATCH_POSTAL_CODE));
+
+            it('should clean the OpenFisca situation', () => {
+                expect(state.openfiscaSituation.menages[0].depcom).to.not.be.ok();
+            });
+
+            it('should show an error', () => {
+                expect(state.error).to.be.ok();
+            });
+        });
+
+        describe('with multiple matches', () => {
+            before(setValue(mock.MULTIPLE_MATCHES_POSTAL_CODE));
+
+            it('should clean the OpenFisca situation', () => {
+                expect(state.openfiscaSituation.menages[0].depcom).to.not.be.ok();
+            });
+
+            it('should add suggestions', () => {
+                expect(state.suggestions).to.eql(mock.MULTIPLE_MATCHES);
+            });
+
+            it('should have no error', () => {
+                expect(state.error).to.not.be.ok();
+            });
+        });
+    });
+
 });

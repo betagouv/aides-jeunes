@@ -44,6 +44,7 @@
     "handlebars": "^3.0.3",
     "hapi": "^9.0.3",
     "inert": "^3.0.1",
+    "isomorphic-fetch": "^2.2.1",
     "js-yaml": "^3.4.0",
     "moment": "^2.10.6",
     "object-path-immutable": "^0.3.0",
@@ -78,8 +79,7 @@
     "selenium-server": "^2.47.1",
     "superagent-mock": "^1.8.0",
     "watai": "^0.7.0",
-    "webpack": "^1.12.10",
-    "whatwg-fetch": "^0.11.0"
+    "webpack": "^1.12.10"
   },
   "babel": {
     "plugins": [

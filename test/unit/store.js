@@ -2,8 +2,12 @@ import expect from 'expect.js';
 
 import {
     createOpenfiscaSituationUpdateAction,
+    createAsyncStartAction,
+    createAsyncEndAction,
     ERROR,
     UPDATE_OPENFISCA_SITUATION,
+    ASYNC_ACTION_START,
+    ASYNC_ACTION_END,
 } from '../../front/actions.js';
 import {
     INITIAL_STATE,
@@ -12,7 +16,7 @@ import {
 } from '../../front/store.js';
 
 
-describe('state handler', () => {
+describe('reducer', () => {
     const OPENFISCA_RESPONSE = require('../mock/openfisca-response.json');
 
     describe('initial state', () => {
@@ -44,6 +48,26 @@ describe('state handler', () => {
             let actual = update();
 
             expect(INITIAL_STATE.openfiscaSituation.individus[0].salaire_net['2013']).to.equal(40000);
+        });
+    });
+
+    describe('async actions', () => {
+        describe('init', () => {
+            it('should have a falsy `async` property', () => {
+                expect(reducer().async).to.not.be.ok();
+            });
+        });
+
+        describe('start', () => {
+            it('should set the `async` property to truthy', () => {
+                expect(reducer(INITIAL_STATE, createAsyncStartAction()).async).to.be.ok();
+            });
+        });
+
+        describe('stop', () => {
+            it('should set the `async` property to falsy', () => {
+                expect(reducer(INITIAL_STATE, createAsyncEndAction()).async).to.not.be.ok();
+            });
         });
     });
 

@@ -20,8 +20,9 @@ const INSEE_CODE_PROPERTY_PATH = 'menages.0.depcom';
  */
 export function update(inputName, postalCode) {
     return dispatch => {
-        return Promise.resolve(createAsyncStartAction())
-            .then(() => fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${postalCode}`))
+        dispatch(createAsyncStartAction());
+
+        return fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${postalCode}`)
             .then(parseResponse, parseResponse)
             .then(matchingCommunes => {
                 dispatch(setCommune(matchingCommunes[0]));

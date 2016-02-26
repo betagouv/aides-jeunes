@@ -1,9 +1,15 @@
 import store from '../store';
 import updateErrorMessages from './update-semantic-validation';
+import updateLoaders from './update-semantic-async';
 import createValidationErrorAction from './validate-common';
 
 
-store.subscribe(() => { updateErrorMessages(store.getState()) });
+store.subscribe(() => {
+    const state = store.getState();
+
+    updateErrorMessages(state);
+    updateLoaders(state);
+});
 
 /**
  * Handles forms submission.

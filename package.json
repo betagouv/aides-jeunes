@@ -64,7 +64,6 @@
     "semantic-ui-reset": "^2.0.8",
     "semantic-ui-segment": "^2.0.8",
     "semantic-ui-site": "^2.0.8",
-    "superagent": "^1.4.0",
     "vision": "^4.0.1"
   },
   "devDependencies": {
@@ -74,11 +73,11 @@
     "eslint": "^1.10.3",
     "expect.js": "^0.3.1",
     "expose-loader": "^0.7.1",
+    "fetch-mock": "^4.1.1",
     "json-loader": "^0.5.4",
     "mocha": "^2.3.2",
     "pm2": "^1.0.0",
     "selenium-server": "^2.47.1",
-    "superagent-mock": "^1.8.0",
     "watai": "^0.7.0",
     "webpack": "^1.12.10"
   },

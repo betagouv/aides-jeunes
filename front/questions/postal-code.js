@@ -1,4 +1,4 @@
-require('isomorphic-fetch');
+require('isomorphic-fetch');  // needs to leak into global namespace for mocking
 import objectPath from 'object-path-immutable';
 
 import store from '../store';

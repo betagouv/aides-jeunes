@@ -4,7 +4,7 @@ import {
     wrap,
     compute,
 } from '../../openfisca/compute';
-import * as openFiscaMock from '../mock/openfisca-superagent.js';
+import * as openFiscaMock from '../mock/openfisca.js';
 
 
 describe('compute', function() {
@@ -58,6 +58,7 @@ describe('compute', function() {
             subject.then((results) => {
                 expect(results).to.be.an('object');
                 expect(results.method).to.be('/api/1/calculate');
+                expect(results.error).to.not.be.ok();
             }).then(done, done);
         });
     });

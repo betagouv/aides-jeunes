@@ -10,10 +10,10 @@ export const SUGGESTIONS = 'SUGGESTIONS';
  * @param {Object} additional The properties to set on the OpenFisca situation.
  * @return {Action}    A redux action to be dispatched to the store.
  */
-export function createOpenfiscaSituationUpdateAction(additional) {
+export function createOpenfiscaSituationUpdateAction(situation) {
     return {
         type: UPDATE_OPENFISCA_SITUATION,
-        data: additional,
+        data: situation,
     }
 }
 

@@ -15,7 +15,7 @@
     <accordion-group is-open="droit.open"
                      class="resultats-accordion"
                      ng-repeat="(droitId, droit) in droits"
-                     ng-class="{'resultats-accordion-needs-n-2': droit.isBaseRessourcesYearMoins2 && !situation.ressourcesYearMoins2Captured && ! isString(droit.montant), 'panel-opened': droit.open}">
+                     ng-class="{'resultats-accordion-needs-n-2': droit.isBaseRessourcesYearMoins2 && !ressourcesYearMoins2Captured && ! isString(droit.montant), 'panel-opened': droit.open}">
 
       <accordion-heading>
         <div class="row">
@@ -66,7 +66,7 @@
             <p ng-if="droit.uncomputability[droit.montant].solution"><strong ng-bind-html="droit.uncomputability[droit.montant].solution"></strong></p>
           </div>
 
-          <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && ! situation.ressourcesYearMoins2Captured && ! isString(droit.montant)">
+          <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && ! ressourcesYearMoins2Captured && ! isString(droit.montant)">
             <i class="fa fa-warning"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
             <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
           </div>
@@ -129,16 +129,16 @@
     </accordion-group>
   </accordion>
 
-  <div ng-if="noDroits && situation.ressourcesYearMoins2Captured && ! error">
+  <div ng-if="noDroits && ressourcesYearMoins2Captured && ! error">
     <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
     <p>Si vous êtes malgré cela dans une situation de précarité, entrez directement en contact avec <a href="/faq#recours">l’un des organismes</a> qui détermine l’attribution des aides sociales.</p>
   </div>
 
-  <div ng-if="noDroits && ! situation.ressourcesYearMoins2Captured && ! error">
+  <div ng-if="noDroits && ! ressourcesYearMoins2Captured && ! error">
     <h2>On y est presque !</h2>
   </div>
 
-  <div class="row additional-info-cta" ng-if="! situation.ressourcesYearMoins2Captured && ! error">
+  <div class="row additional-info-cta" ng-if="! ressourcesYearMoins2Captured && ! error">
     <div class="col-sm-8">
       <p>
         <i ng-if="! noDroits" class="fa fa-warning text-warning"></i> <!-- show sign only as a legend -->

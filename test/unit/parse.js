@@ -9,7 +9,7 @@ import {
 
 describe('parse', () => {
     const OPENFISCA_RESPONSE = require('../mock/openfisca-response.json'),
-          SITUATION = require('../mock/situation.json');
+        SITUATION = require('../mock/situation.json');
 
     describe('reverseMap', () => {
         let subject;

@@ -18,5 +18,8 @@ rules:
     - 2
     - always-multiline
   eqeqeq: 0
+  indent:
+    - 2
+    - 4
   no-extra-boolean-cast: 2
   no-extra-semi: 2

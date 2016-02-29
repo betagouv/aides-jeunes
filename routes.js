@@ -6,8 +6,7 @@ import { reverseMap } from './openfisca/parse';
 import AIDES from './config/aides';
 
 
-export default [
-{
+export default [{
     method: 'GET',
     path: '/',
     handler: (request, reply) => {
@@ -115,8 +114,7 @@ export default [
             });
         });
     },
-},
-]
+}]
 
 
 function view(reply, name, data) {

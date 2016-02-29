@@ -22,35 +22,35 @@ export const INITIAL_STATE = {
 
 export function reducer(state = INITIAL_STATE, action = {}) {
     switch (action.type) {
-        case UPDATE_OPENFISCA_SITUATION:
-            return Object.assign({}, state, {
-                openfiscaSituation: action.data,
-                error: null,
-            });
-        case UPDATE_ADDITIONAL_INFORMATION:
-            return Object.assign({}, state, {
-                additionalInformation: action.data,
-                error: null,
-            });
-        case ERROR:
-            return Object.assign({}, state, {
-                error: action.error,
-            });
-        case ASYNC_ACTION_START:
-            return Object.assign({}, state, {
-                async: true,
-            });
-        case ASYNC_ACTION_END:
-            return Object.assign({}, state, {
-                async: false,
-            });
-        case SUGGESTIONS:
-            return Object.assign({}, state, {
-                suggestions: action.suggestions,
-                error: null,
-            });
-        default:
-            return state;
+    case UPDATE_OPENFISCA_SITUATION:
+        return Object.assign({}, state, {
+            openfiscaSituation: action.data,
+            error: null,
+        });
+    case UPDATE_ADDITIONAL_INFORMATION:
+        return Object.assign({}, state, {
+            additionalInformation: action.data,
+            error: null,
+        });
+    case ERROR:
+        return Object.assign({}, state, {
+            error: action.error,
+        });
+    case ASYNC_ACTION_START:
+        return Object.assign({}, state, {
+            async: true,
+        });
+    case ASYNC_ACTION_END:
+        return Object.assign({}, state, {
+            async: false,
+        });
+    case SUGGESTIONS:
+        return Object.assign({}, state, {
+            suggestions: action.suggestions,
+            error: null,
+        });
+    default:
+        return state;
     }
 }
 

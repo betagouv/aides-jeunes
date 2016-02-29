@@ -28,24 +28,24 @@ export function wrap(situation, evaluationDate) {
 
 export function compute(scenario) {
     return fetch(`http://${process.env.OPENFISCA_HOST}/api/1/calculate`, {
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            method: 'post',
-            body: JSON.stringify(scenario),
-        }).then(response => response.json(),
-            error => {
-                let result = new Error('OpenFisca communication failed');
-                result.previous = error;
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        method: 'post',
+        body: JSON.stringify(scenario),
+    }).then(response => response.json(),
+        error => {
+            let result = new Error('OpenFisca communication failed');
+            result.previous = error;
 
-                try {
-                    result.body = JSON.stringify(response.body, null, 2);  // (null, 2) = "indent by 2 spaces";
-                } catch (e) {
-                    result.body = 'No response';
-                }
-
-                throw result;
+            try {
+                result.body = JSON.stringify(response.body, null, 2);  // (null, 2) = "indent by 2 spaces";
+            } catch (e) {
+                result.body = 'No response';
             }
-        );
+
+            throw result;
+        }
+    );
 }

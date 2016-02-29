@@ -9,11 +9,11 @@ let result = {};
 
 fs.readdirSync(AIDES_FOLDER)
   .forEach(filename => {
-        const [ id, yamlExtensionMarker ] = filename.split('.yaml');
+      const [ id, yamlExtensionMarker ] = filename.split('.yaml');
 
-        if (yamlExtensionMarker === undefined) return;  // ignore files that are not YAML
+      if (yamlExtensionMarker === undefined) return;  // ignore files that are not YAML
 
-        result[id] = loadConstYaml(`${AIDES_FOLDER}/${filename}`);
-    });
+      result[id] = loadConstYaml(`${AIDES_FOLDER}/${filename}`);
+  });
 
 export default Object.freeze(result);

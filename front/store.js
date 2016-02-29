@@ -1,8 +1,12 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 import {
     UPDATE_OPENFISCA_SITUATION,
     ERROR,
+    ASYNC_ACTION_START,
+    ASYNC_ACTION_END,
+    SUGGESTIONS,
 } from './actions';
 
 
@@ -16,18 +20,27 @@ export const INITIAL_STATE = {
 export function reducer(state = INITIAL_STATE, action = {}) {
     switch (action.type) {
         case UPDATE_OPENFISCA_SITUATION:
-            return Object.assign({}, state,
-                {
-                    openfiscaSituation: action.data,
-                    error: null,
-                }
-            );
+            return Object.assign({}, state, {
+                openfiscaSituation: action.data,
+                error: null,
+            });
         case ERROR:
-            return Object.assign({}, state,
-                {
-                    error: action.error,
-                }
-            );
+            return Object.assign({}, state, {
+                error: action.error,
+            });
+        case ASYNC_ACTION_START:
+            return Object.assign({}, state, {
+                async: true,
+            });
+        case ASYNC_ACTION_END:
+            return Object.assign({}, state, {
+                async: false,
+            });
+        case SUGGESTIONS:
+            return Object.assign({}, state, {
+                suggestions: action.suggestions,
+                error: null,
+            });
         default:
             return state;
     }
@@ -65,6 +78,10 @@ export function storageMiddleware(reducer, storage) {
     }
 }
 
-const store = createStore(storageMiddleware(reducer));
+
+const store = createStore(
+  storageMiddleware(reducer),
+  applyMiddleware(thunk)
+);
 
 export default store;

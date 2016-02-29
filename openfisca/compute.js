@@ -1,5 +1,5 @@
+require('isomorphic-fetch');  // needs to leak into global namespace for mocking
 import moment from 'moment';
-import request from 'superagent';
 
 import AIDES from '../config/aides';
 
@@ -27,25 +27,25 @@ export function wrap(situation, evaluationDate) {
 }
 
 export function compute(scenario) {
-    return new Promise((resolve, reject) => {
-        request
-        .post(`http://${process.env.OPENFISCA_HOST}/api/1/calculate`)
-        .send(scenario)
-        .end(function(err, response) {
-            if (err) {
-                let error = new Error('OpenFisca communication failed');
-                error.previous = err;
+    return fetch(`http://${process.env.OPENFISCA_HOST}/api/1/calculate`, {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: 'post',
+            body: JSON.stringify(scenario),
+        }).then(response => response.json(),
+            error => {
+                let result = new Error('OpenFisca communication failed');
+                result.previous = error;
 
                 try {
-                    error.body = JSON.stringify(response.body, null, 2);  // (null, 2) = "indent by 2 spaces";
+                    result.body = JSON.stringify(response.body, null, 2);  // (null, 2) = "indent by 2 spaces";
                 } catch (e) {
-                    error.body = 'No response';
+                    result.body = 'No response';
                 }
 
-                return reject(error);
+                throw result;
             }
-
-            resolve(response && response.body);
-        });
-    });
+        );
 }

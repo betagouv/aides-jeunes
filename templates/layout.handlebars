@@ -19,8 +19,13 @@
         {{{ content }}}
 
         {{#if isQuestion }}
+            <script src="/js/forms.js"></script>
             <script src="/js/{{ templateName }}.js"></script>
             <script src="/js/lib.js"></script>
+
+            <script type="text/javascript">
+                forms.bind(document.querySelector('input').name, currentQuestion.update);
+            </script>
 
             <section id="recap">
                 <h1 class="ui top attached header">Votre situation</h1>

@@ -2,7 +2,7 @@ description: 'Housing type should be settable',
 
 steps: [
     HousingComponent.setHostedType(),
-    HousingComponent.submit(),
+    QuestionComponent.submit(),
     {
         'SituationComponent.json': /"statut_occupation":"6"/,
     },

@@ -3,8 +3,10 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        'birthdate': './front/birthdate.js',
-        'housing': './front/housing.js',
+        'forms': './front/forms/index.js',
+        'birthdate': './front/questions/birthdate.js',
+        'housing': './front/questions/housing.js',
+        'postal-code': './front/questions/postal-code.js',
         'lib': './front/lib/index.js',
     },
     output: {
@@ -14,9 +16,14 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /store\.js$/,
+                test: /forms\/index\.js$/,
                 loader: 'expose',
-                query: 'store',
+                query: 'forms',
+            },
+            {
+                test: /front\/questions\//,
+                loader: 'expose',
+                query: 'currentQuestion',
             },
             {
                 test: /\.js$/,

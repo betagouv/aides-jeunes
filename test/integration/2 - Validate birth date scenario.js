@@ -3,15 +3,15 @@ description: 'Birth date should be validated',
 steps: [
     HomepageComponent.start(),
     {
-        'BirthDateComponent.title': BIRTHDATE_TITLE,
+        'QuestionComponent.title': BIRTHDATE_TITLE,
     },
-    BirthDateComponent.submit(),
+    QuestionComponent.submit(),
     {
-        'BirthDateComponent.title': BIRTHDATE_TITLE,  // test that we didn't change page, don't test error message itself as some browsers will prevent submitting altogether
+        'QuestionComponent.title': BIRTHDATE_TITLE,  // test that we didn't change page, don't test error message itself as some browsers will prevent submitting altogether
     },
-    BirthDateComponent.setBirthDateField(BIRTHDATE + 'invalid'),
-    BirthDateComponent.submit(),
+    QuestionComponent.setInputField(BIRTHDATE + 'invalid'),
+    QuestionComponent.submit(),
     {
-        'BirthDateComponent.invalidError': /non reconnu/,
+        'QuestionComponent.invalidError': /non reconnu/,
     },
 ]

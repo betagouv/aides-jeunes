@@ -1,8 +1,8 @@
 description: 'Birth date should be settable',
 
 steps: [
-    BirthDateComponent.setBirthDateField(BIRTHDATE),
-    BirthDateComponent.submit(),
+    QuestionComponent.setInputField(BIRTHDATE),
+    QuestionComponent.submit(),
     {
         'SituationComponent.json': new RegExp('"birth":"' + BIRTHDATE_ISO + '"'),
     },

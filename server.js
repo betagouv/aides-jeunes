@@ -6,7 +6,7 @@ import inert from 'inert';
 import vision from 'vision';
 
 import routes from './routes';
-import * as openFiscaMock from './test/mock/openfisca-superagent.js';
+import * as openFiscaMock from './test/mock/openfisca.js';
 
 
 if (process.env.NODE_ENV == 'test')

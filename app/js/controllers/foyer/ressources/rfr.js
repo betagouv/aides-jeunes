@@ -7,6 +7,7 @@ angular.module('ddsApp').controller('FoyerRessourceRfrCtrl', function($scope) {
     $scope.rfr = $scope.situation.rfr;
 
     $scope.submit = function() {
+    	$scope.rfr = $scope.rfr !== undefined ? $scope.rfr : false; // rfr won't be updated in the database if the new value is undefined.
         $scope.$emit('rfr', $scope.rfr);
     };
 });

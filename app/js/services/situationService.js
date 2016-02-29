@@ -227,7 +227,7 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         ressourcesYearMoins2Captured: function(situation) {
-            return situation.rfr !== undefined || situation.individus.some(function(individu) {
+            return situation.rfr === 0 || situation.rfr || situation.individus.some(function(individu) {
                     return individu.ressources.some(function(ressource) {
                         return RESSOURCES_YM2_NAMES.indexOf(ressource.type) >= 0;
                     });

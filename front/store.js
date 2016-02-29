@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 
 import {
     UPDATE_OPENFISCA_SITUATION,
+    UPDATE_ADDITIONAL_INFORMATION,
     ERROR,
     ASYNC_ACTION_START,
     ASYNC_ACTION_END,
@@ -14,6 +15,8 @@ const STORAGE_KEY = 'state';
 
 export const INITIAL_STATE = {
     openfiscaSituation: require('../test/mock/situation.json').scenarios[0].test_case,
+    additionalInformation: {},
+    error: null,
 };
 
 
@@ -22,6 +25,11 @@ export function reducer(state = INITIAL_STATE, action = {}) {
         case UPDATE_OPENFISCA_SITUATION:
             return Object.assign({}, state, {
                 openfiscaSituation: action.data,
+                error: null,
+            });
+        case UPDATE_ADDITIONAL_INFORMATION:
+            return Object.assign({}, state, {
+                additionalInformation: action.data,
                 error: null,
             });
         case ERROR:
@@ -71,7 +79,7 @@ export function storageMiddleware(reducer, storage) {
 
         let result = reducer(state, action);
 
-        if (action.type == UPDATE_OPENFISCA_SITUATION)
+        if (action.type == UPDATE_OPENFISCA_SITUATION || action.type == UPDATE_ADDITIONAL_INFORMATION)
             storage.setItem(STORAGE_KEY, JSON.stringify(result));
 
         return result;

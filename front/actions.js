@@ -3,6 +3,7 @@ export const ERROR = 'ERROR';
 export const ASYNC_ACTION_START = 'ASYNC_ACTION_START';
 export const ASYNC_ACTION_END = 'ASYNC_ACTION_END';
 export const SUGGESTIONS = 'SUGGESTIONS';
+export const UPDATE_ADDITIONAL_INFORMATION = 'UPDATE_ADDITIONAL_INFORMATION'
 
 
 /**
@@ -13,6 +14,13 @@ export const SUGGESTIONS = 'SUGGESTIONS';
 export function createOpenfiscaSituationUpdateAction(situation) {
     return {
         type: UPDATE_OPENFISCA_SITUATION,
+        data: situation,
+    }
+}
+
+export function createUpdateAdditionalInformationAction(situation) {
+    return {
+        type: UPDATE_ADDITIONAL_INFORMATION,
         data: situation,
     }
 }

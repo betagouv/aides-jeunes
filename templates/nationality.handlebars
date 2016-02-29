@@ -1,0 +1,17 @@
+<h1>Votre nationalité</h1>
+
+<form class="ui form" method="post" action="/logement">
+    <div class="grouped inline fields">
+        <label class="ui radio checkbox"><input required type="radio" name="nationality" value="fr"> Français</label>
+        <label class="ui radio checkbox"><input required type="radio" name="nationality" value="ue"> UE/EEE</label>
+        <label class="ui radio checkbox"><input required type="radio" name="nationality" value="autre"> Autre</label>
+        <div data-for="required">
+            <div class="ui error message">
+                <h2 class="header">Question obligatoire</h2>
+                <p>Votre nationalité a un impact sur votre éligibilité aux prestations calculées par ce simulateur.</p>
+            </div>
+        </div>
+    </div>
+
+    <input class="ui submit button" type="submit" value="Valider"/>
+</form>

@@ -45,6 +45,15 @@ export default [
     },
 },
 {
+    method: 'GET',
+    path: '/nationalite',
+    handler: (request, reply) => {
+        view(reply, 'nationality', {
+            isQuestion: true,
+        });
+    },
+},
+{
     method: 'POST',
     path: '/resultat',
     handler: (request, reply) => {

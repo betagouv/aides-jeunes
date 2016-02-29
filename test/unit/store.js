@@ -2,10 +2,12 @@ import expect from 'expect.js';
 
 import {
     createOpenfiscaSituationUpdateAction,
+    createUpdateAdditionalInformationAction,
     createAsyncStartAction,
     createAsyncEndAction,
     ERROR,
     UPDATE_OPENFISCA_SITUATION,
+    UPDATE_ADDITIONAL_INFORMATION,
     ASYNC_ACTION_START,
     ASYNC_ACTION_END,
 } from '../../front/actions.js';
@@ -68,6 +70,24 @@ describe('reducer', () => {
             it('should set the `async` property to falsy', () => {
                 expect(reducer(INITIAL_STATE, createAsyncEndAction()).async).to.not.be.ok();
             });
+        });
+    });
+
+    describe('createUpdateAdditionalInformationAction', () => {
+        function update() {
+            return reducer(INITIAL_STATE, createUpdateAdditionalInformationAction({ "nationality": "fr" }));
+        }
+
+        it('should return an updated state', () => {
+            let actual = update();
+
+            expect(actual.additionalInformation.nationality).to.equal("fr");
+        });
+
+        it('should keep previous state intact', () => {
+            let actual = update();
+
+            expect(INITIAL_STATE.additionalInformation.nationality).to.not.be.ok();
         });
     });
 

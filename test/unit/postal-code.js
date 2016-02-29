@@ -142,5 +142,4 @@ describe('Postal code question', () => {
             });
         });
     });
-
 });

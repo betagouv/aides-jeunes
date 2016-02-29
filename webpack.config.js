@@ -8,7 +8,6 @@ module.exports = {
         'housing': './front/questions/housing.js',
         'postal-code': './front/questions/postal-code.js',
         'lib': './front/lib/index.js',
-        'cross-browser': './front/cross-browser/index.js',
     },
     output: {
         path: './dist/js',

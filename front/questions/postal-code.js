@@ -1,5 +1,6 @@
 import objectPath from 'object-path-immutable';
 
+require('../cross-browser/fetch');
 import store from '../store';
 import {
     createOpenfiscaSituationUpdateAction,

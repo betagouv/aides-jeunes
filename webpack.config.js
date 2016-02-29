@@ -5,7 +5,7 @@ module.exports = {
     entry: {
         'forms': './front/forms/index.js',
         'birthdate': './front/questions/birthdate.js',
-        'nationality': './front/nationality.js',
+        'nationality': './front/questions/nationality.js',
         'housing': './front/questions/housing.js',
         'postal-code': './front/questions/postal-code.js',
         'lib': './front/lib/index.js',

@@ -1,11 +1,10 @@
 import objectPath from 'object-path-immutable';
 
-import store from './store';
+import store from '../store';
 import {
-    createErrorAction,
     createUpdateAdditionalInformationAction,
-} from './actions';
-import bindToForm from './forms';
+    createErrorAction,
+} from '../actions';
 
 
 /**
@@ -21,6 +20,3 @@ export function update(name, nationality) {
 
     return createUpdateAdditionalInformationAction(situation);
 }
-
-
-bindToForm('nationality', update);

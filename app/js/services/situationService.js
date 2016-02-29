@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage, $modal) {
+    var RESSOURCES_YM2_NAMES = ['rncRevenusActivite', 'rncAutresRevenus', 'rncPensionsRetraitesRentes', 'fraisReelsDeductibles', 'rncPensionsAlimentaires', 'rncPensionsAlimentairesVersees'];
     var situation;
 
     var flattenRessource = function(ressource, source, target) {
@@ -226,16 +227,11 @@ angular.module('ddsApp').factory('SituationService', function($http, $sessionSto
         },
 
         ressourcesYearMoins2Captured: function(situation) {
-            var ressourcesYM2Names = ['rncRevenusActivite', 'rncAutresRevenus', 'rncPensionsRetraitesRentes', 'fraisReelsDeductibles', 'rncPensionsAlimentaires', 'rncPensionsAlimentairesVersees'];
-            var ressourcesYM2 = [].concat.apply(
-                [],
-                situation.individus.map(function(individu) {
-                    return individu.ressources.filter(function(ressource) {
-                        return ressourcesYM2Names.indexOf(ressource.type) > 0;
+            return situation.rfr !== undefined || situation.individus.some(function(individu) {
+                    return individu.ressources.some(function(ressource) {
+                        return RESSOURCES_YM2_NAMES.indexOf(ressource.type) >= 0;
                     });
-                })
-            );
-            return ressourcesYM2.length > 0 || situation.rfr !== undefined;
+                });
         }
     };
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('SituationService', function($http, $sessionStorage, $modal, categoriesRnc) {
+angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, $modal, categoriesRnc) {
     var situation;
 
     var flattenRessource = function(ressource, source, target) {

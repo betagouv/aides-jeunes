@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsRecapSituation').directive('recapSituation', function($timeout, $sce, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService) {
+angular.module('ddsRecapSituation').directive('recapSituation', function($timeout, $sce, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService, SituationService) {
     return {
         restrict: 'E',
         templateUrl: '/partials/recap-situation.html',
@@ -92,6 +92,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
             };
 
             $scope.ressourcesYearMoins2 = mapRessourcesYearMoins2();
+            $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
 
             var mapPatrimoine = function(patrimoine) {
                 $scope.patrimoine = [];

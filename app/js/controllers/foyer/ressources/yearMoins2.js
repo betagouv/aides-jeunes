@@ -5,7 +5,8 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
     $scope.yearMoins2 = moment(today).subtract('years', 2).format('YYYY');
     $scope.debutAnneeGlissante = moment(today).subtract('years', 1).format('MMMM YYYY');
 
-    $scope.individuRefs = [];
+    $scope.individuRefsToDisplay = [];
+    $scope.individuRefsToHide = [];
     SituationService.getIndividusSortedParentsFirst($scope.situation).forEach(function(individu) {
         var individuRef = {
             individu: individu,
@@ -18,12 +19,13 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
             individuRef.rnc.push({ categorie: categorieRnc, montant: montant});
         });
         var hasYM2Ressources = individuRef.rnc.some(function(rnc) { return rnc.montant !== undefined; });
-        individuRef.display = IndividuService.isParent(individu) || hasYM2Ressources;
-        $scope.individuRefs.push(individuRef);
+        var display = IndividuService.isParent(individu) || hasYM2Ressources;
+        (display ? $scope.individuRefsToDisplay : $scope.individuRefsToHide).push(individuRef);
     });
 
     $scope.display = function(individuRef) {
-        individuRef.display = true;
+        $scope.individuRefsToDisplay.push(individuRef);
+        $scope.individuRefsToHide = _.without($scope.individuRefsToHide, individuRef);
     };
 
     $scope.getDefaultValue = function(individuRef, rncID) {
@@ -37,7 +39,7 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
     };
 
     $scope.submit = function() {
-        $scope.individuRefs.forEach(function(individuRef) {
+        $scope.individuRefsToDisplay.forEach(function(individuRef) {
             // clean anciennes valeurs
             individuRef.individu.ressources = _.filter(individuRef.individu.ressources, function(ressource) {
                 return ! _.find(categoriesRnc, { id: ressource.type });

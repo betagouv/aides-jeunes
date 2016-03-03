@@ -37,13 +37,6 @@ angular.module('ddsCommon').service('IndividuService', function($filter, situati
             return this.isRoleParent(individu.role);
         },
 
-        getParents: function(individus) {
-            var self = this;
-            return _.filter(individus, function(individu) {
-                return self.isParent(individu);
-            });
-        },
-
         formatStatutsSpecifiques: function(individu) {
             var statuts = [];
             statutsSpecifiques.forEach(function(statut) {

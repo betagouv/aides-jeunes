@@ -59,10 +59,10 @@
     close-others="true"
     class="accordion-ressources">
     <accordion-group
-      ng-repeat="individuRessource in ressourcesYearMoins2"
-      heading="{{ individuRessource.label }}"
-      is-open="individuRessource.isOpen">
-      <div class="row" ng-repeat="ressource in individuRessource.rnc">
+      ng-repeat="ym2IndividuRecap in ressourcesYearMoins2"
+      heading="{{ ym2IndividuRecap.label }}"
+      is-open="ym2IndividuRecap.isOpen">
+      <div class="row" ng-repeat="ressource in ym2IndividuRecap.ressources">
         <div class="col-sm-8">
           {{ ressource.label }}
         </div>

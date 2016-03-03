@@ -151,7 +151,8 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 patrimoine: situation.patrimoine,
                 phoneNumber: situation.phoneNumber,
                 email: situation.email,
-                rfr: situation.rfr
+                rfr: situation.rfr,
+                ressourcesYearMoins2Captured: this.ressourcesYearMoins2Captured(situation)
             };
 
 

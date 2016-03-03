@@ -7,28 +7,36 @@
   <form class="form-horizontal" novalidate ng-submit="submit()">
     <div class="row">
       <div class="col-md-12" ng-repeat="individuRef in individuRefs">
+        <div ng-show="individuRef.display">
         <h2>{{ individuRef.label }}</h2>
-        <div class="form-group" ng-repeat="rnc in individuRef.rnc">
-          <label class="control-label col-sm-3" for="{{ rnc.categorie.id }}-{{ individuRef.individu.role }}">
-            {{ rnc.categorie.label }}
-          </label>
-          <div class="col-sm-3">
-            <span class="input-group">
-              <input
-                type="number"
-                id="{{ rnc.categorie.id }}-{{ individuRef.individu.role }}"
-                class="form-control text-right"
-                ng-model="rnc.montant"
-                min="0"
-                select-on-focus>
-              <span class="input-group-addon hidden-xs">€</span>
-            </span>
+          <div class="form-group" ng-repeat="rnc in individuRef.rnc">
+            <label class="control-label col-sm-3" for="{{ rnc.categorie.id }}-{{ individuRef.individu.role }}">
+              {{ rnc.categorie.label }}
+            </label>
+            <div class="col-sm-3">
+              <span class="input-group">
+                <input
+                  type="number"
+                  id="{{ rnc.categorie.id }}-{{ individuRef.individu.role }}"
+                  class="form-control text-right"
+                  ng-model="rnc.montant"
+                  min="0"
+                  select-on-focus>
+                <span class="input-group-addon hidden-xs">€</span>
+              </span>
+            </div>
+            <div class="col-sm-6">
+              <p class="help-block" ng-show ="{{ getDefaultValue(individuRef, rnc.categorie.id) }}">
+                Ce montant vaut {{ getDefaultValue(individuRef, rnc.categorie.id) }}&nbsp;€ pour les 12 derniers mois.
+              </p>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <p class="help-block" ng-show ="{{ getDefaultValue(individuRef, rnc.categorie.id) }}">
-              Ce montant vaut {{ getDefaultValue(individuRef, rnc.categorie.id) }}&nbsp;€ pour les 12 derniers mois.
-            </p>
-          </div>
+        </div>
+        <br>
+        <div ng-show="! individuRef.display">
+          <button type="button"class="btn btn-sm btn-success" ng-click="display(individuRef)">
+            Déclarer des ressources pour {{ individuRef.label }}
+          </button>
         </div>
       </div>
     </div>

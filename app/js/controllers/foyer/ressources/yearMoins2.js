@@ -1,25 +1,30 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService) {
+angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService, SituationService) {
     var today = $scope.situation.dateDeValeur;
     $scope.yearMoins2 = moment(today).subtract('years', 2).format('YYYY');
     $scope.debutAnneeGlissante = moment(today).subtract('years', 1).format('MMMM YYYY');
 
-    var parents = IndividuService.getParents($scope.situation.individus);
     $scope.individuRefs = [];
-    parents.forEach(function(parent) {
+    SituationService.getIndividusSortedParentsFirst($scope.situation).forEach(function(individu) {
         var individuRef = {
-            individu: parent,
-            label: IndividuService.label(parent),
+            individu: individu,
+            label: IndividuService.label(individu),
             rnc: []
         };
         categoriesRnc.forEach(function(categorieRnc) {
-            var ressource = _.find(parent.ressources, { type: categorieRnc.id });
+            var ressource = _.find(individu.ressources, { type: categorieRnc.id });
             var montant = ressource ? ressource.montant : undefined;
             individuRef.rnc.push({ categorie: categorieRnc, montant: montant});
         });
+        var hasYM2Ressources = individuRef.rnc.some(function(rnc) { return rnc.montant !== undefined; });
+        individuRef.display = IndividuService.isParent(individu) || hasYM2Ressources;
         $scope.individuRefs.push(individuRef);
     });
+
+    $scope.display = function(individuRef) {
+        individuRef.display = true;
+    };
 
     $scope.getDefaultValue = function(individuRef, rncID) {
         var mapping = {

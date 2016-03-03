@@ -10,7 +10,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
         controller: function($scope) {
             var situation = $scope.situation;
 
-            $scope.rfrCaptured = angular.isDefined($scope.situation.rfr);
+            $scope.rfrCaptured = $scope.situation.rfr || $scope.situation.rfr === 0;
 
             $scope.yearMoins2 = moment(situation.dateDeValeur).subtract(2, 'years').format('YYYY');
 

@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('ddsCommon', []);
+angular.module('ddsCommon', ['ngStorage', 'ui.bootstrap']);

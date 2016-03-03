@@ -182,7 +182,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     });
 
     var buildRecapRnc = function() {
-        $scope.rfrCaptured = angular.isDefined($scope.situation.rfr);
+        $scope.rfrCaptured = $scope.situation.rfr || $scope.situation.rfr === 0;
         $scope.ressourcesYearMoins2 = [];
         var parents = IndividuService.getParents($scope.situation.individus);
         parents.forEach(function(parent) {

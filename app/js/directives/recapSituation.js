@@ -74,7 +74,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
             };
 
             var mapRessourcesYearMoins2 = function() {
-                var target = _.map(IndividuService.getParents($scope.situation.individus), function(individu) {
+                var target = _.map($scope.situation.individus, function(individu) {
                     var individuVM = { label: individuLabel(individu), ressources: [] };
                     categoriesRnc.forEach(function(categorieRnc) {
                         var ressource = _.find(individu.ressources, { type: categorieRnc.id });

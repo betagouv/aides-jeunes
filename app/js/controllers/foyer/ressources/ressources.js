@@ -83,11 +83,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         return result;
     };
 
-    $scope.individusVM = [].concat(
-        SituationService.getDemandeur($scope.situation),
-        SituationService.getConjoint($scope.situation),
-        SituationService.getEnfants($scope.situation))
-    .filter(function(individu) { return individu; })
+    $scope.individusVM = SituationService.getIndividusSortedParentsFirst($scope.situation)
     .map(function(individu) {
         return {
             individu: individu,

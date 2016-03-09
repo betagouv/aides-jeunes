@@ -181,25 +181,25 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         buildRecapRessources();
     });
 
-    var buildRecapRnc = function() {
+    var buildYm2Recap = function() {
         $scope.rfrCaptured = $scope.situation.rfr || $scope.situation.rfr === 0;
         $scope.ressourcesYearMoins2 = [];
-        var parents = IndividuService.getParents($scope.situation.individus);
-        parents.forEach(function(parent) {
-            var parentRnc = { label: IndividuService.label(parent), rnc: [] };
+        SituationService.getIndividusSortedParentsFirst($scope.situation)
+        .forEach(function(individu) {
+            var ym2IndividuRecap = { label: IndividuService.label(individu), ressources: [] };
             categoriesRnc.forEach(function(rnc) {
-                var ressource = _.find(parent.ressources, { type: rnc.id });
+                var ressource = _.find(individu.ressources, { type: rnc.id });
                 if (ressource) {
-                    parentRnc.rnc.push({ label: rnc.label, montant: ressource.montant });
+                    ym2IndividuRecap.ressources.push({ label: rnc.label, montant: ressource.montant });
                 }
             });
-            if (parentRnc.rnc.length) {
-                $scope.ressourcesYearMoins2.push(parentRnc);
+            if (ym2IndividuRecap.ressources.length) {
+                $scope.ressourcesYearMoins2.push(ym2IndividuRecap);
             }
         });
     };
 
     if ($scope.ressourcesYearMoins2Captured) {
-        buildRecapRnc();
+        buildYm2Recap();
     }
 });

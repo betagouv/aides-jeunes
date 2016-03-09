@@ -196,6 +196,14 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             return _.filter(situation.individus, { role: 'enfant' });
         },
 
+        getIndividusSortedParentsFirst: function(situation) {
+            return [].concat(
+                this.getDemandeur(situation),
+                this.getConjoint(situation),
+                this.getEnfants(situation)
+            ).filter(function(individu) { return individu; });
+        },
+
         hasEnfantScolarise: function(situation) {
             return _.find(situation.individus, { role: 'enfant', scolarite: 'college' }) || _.find(situation.individus, { role: 'enfant', scolarite: 'lycee' });
         },

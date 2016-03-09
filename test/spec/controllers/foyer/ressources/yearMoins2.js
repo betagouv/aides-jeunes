@@ -7,11 +7,12 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
     });
 
     describe('initialization', function() {
-        it('should create an array of individu references to parents of the situation', function() {
+        it('should by default only ask for parents Y-2 revenus', function() {
             // given
             var demandeur = { role: 'demandeur' };
             var conjoint = { role: 'conjoint' };
-            var scope = { situation: { individus: [demandeur, conjoint, { role: 'enfant' }] }};
+            var enfant = { role: 'enfant' };
+            var scope = { situation: { individus: [demandeur, conjoint, enfant] }};
 
             // when
             inject(function($controller) {
@@ -21,9 +22,29 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             });
 
             // then
-            expect(scope.individuRefs.length).toBe(2);
-            expect(scope.individuRefs[0].individu).toBe(demandeur);
-            expect(scope.individuRefs[1].individu).toBe(conjoint);
+            expect(scope.individuRefsToDisplay.length).toBe(2);
+            expect(scope.individuRefsToDisplay[0].individu).toBe(demandeur);
+            expect(scope.individuRefsToDisplay[1].individu).toBe(conjoint);
+        });
+
+        it('should display children Y-2 revenus if they have been filled', function() {
+            // given
+            var enfant = {
+                role: 'enfant',
+                ressources: [{ type: 'rncRevenusActivite', montant:4000 }]
+            };
+            var scope = { situation: { individus: [{ role: 'demandeur' }, enfant] }};
+
+            // when
+            inject(function($controller) {
+                $controller('FoyerRessourceYearMoins2Ctrl', {
+                    $scope: scope
+                });
+            });
+
+            // then
+            expect(scope.individuRefsToDisplay.length).toBe(2);
+            expect(scope.individuRefsToDisplay[1].individu).toBe(enfant);
         });
 
         it('should not save anything if the user did not fill his.her income', function() {
@@ -38,7 +59,7 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             });
             scope.submit();
             // then
-            expect(scope.individuRefs[0].rnc.length).toBe(0);
+            expect(scope.individuRefsToDisplay[0].rnc.length).toBe(0);
 
         });
     });
@@ -61,11 +82,11 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             });
 
             // when
-            scope.individuRefs[0].rnc[0].montant = 10000;
+            scope.individuRefsToDisplay[0].rnc[0].montant = 10000;
             scope.submit();
 
             // then
-            expect(demandeur.ressources[0].type).toBe(scope.individuRefs[0].rnc[0].categorie.id);
+            expect(demandeur.ressources[0].type).toBe(scope.individuRefsToDisplay[0].rnc[0].categorie.id);
             expect(demandeur.ressources[0].montant).toBe(10000);
         });
     });

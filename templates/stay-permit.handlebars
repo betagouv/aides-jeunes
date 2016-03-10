@@ -1,0 +1,17 @@
+<h1>Depuis combien de temps possédez-vous un titre de séjour&nbsp;?</h1>
+
+<form class="ui form" method="post" action="/logement">
+    <label>
+        Depuis au moins
+        <input name="individus.0.duree_possession_titre_sejour"
+            type="range"
+            min="0"
+            max="10"
+            step="5"
+            value="0"
+            />
+        ans
+    </label>
+
+    <input class="ui submit button" type="submit" value="Valider"/>
+</form>

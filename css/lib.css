@@ -1,0 +1,9 @@
+input[type="range"]::before {
+    content: attr(min);
+    background-color: white;
+}
+
+input[type="range"]::after {
+    content: attr(max);
+    background-color: white;
+}

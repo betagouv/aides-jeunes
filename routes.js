@@ -53,6 +53,15 @@ export default [{
     },
 },
 {
+    method: 'GET',
+    path: '/titre-sejour',
+    handler: (request, reply) => {
+        view(reply, 'stay-permit', {
+            isQuestion: true,
+        });
+    },
+},
+{
     method: 'POST',
     path: '/resultat',
     handler: (request, reply) => {

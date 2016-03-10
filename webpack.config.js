@@ -8,6 +8,7 @@ module.exports = {
         'nationality': './front/questions/nationality.js',
         'housing': './front/questions/housing.js',
         'postal-code': './front/questions/postal-code.js',
+        'stay-permit': './front/questions/stay-permit.js',
         'lib': './front/lib/index.js',
     },
     output: {

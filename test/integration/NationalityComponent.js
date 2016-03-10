@@ -1,1 +1,1 @@
-setFrenchRadio: 'input[type="radio"][value="fr"]',
+setFrenchRadio: 'input[type="radio"][value="french"]',

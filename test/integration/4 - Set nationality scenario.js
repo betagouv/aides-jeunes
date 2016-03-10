@@ -4,6 +4,6 @@ steps: [
     NationalityComponent.setFrench(),
     QuestionComponent.submit(),
     {
-        'SituationComponent.additionalInformationJson': /"nationality":"french"/,
+        'SituationComponent.json': /"ressortissant_eee":true/,
     },
 ]

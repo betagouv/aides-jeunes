@@ -20,3 +20,8 @@ export function update(property, nationality) {
 
     return createOpenfiscaSituationUpdateAction(situation);
 }
+
+export function next(state = store.getState()) {
+    if (! state.openfiscaSituation.individus[0].ressortissant_eee)
+        return 'titre-sejour';
+}

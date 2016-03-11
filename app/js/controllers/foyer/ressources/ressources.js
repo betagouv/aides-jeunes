@@ -93,9 +93,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         };
     });
 
-    $scope.montantInvalide = function(montant) {
-        return ! angular.isNumber(montant);
-    };
+    $scope.isNumber = angular.isNumber;
 
     var applyIndividuVMRessourcesToIndividu = function(individuVM) {
         var individu = individuVM.individu;

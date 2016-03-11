@@ -1,6 +1,10 @@
 'use strict';
 
 angular.module('ddsApp').directive('montantRessource', function(SituationService) {
+    function getFormattedLabel (ressourceLabel) {
+        return (/^[aàeéèêëiîïoöôuüy]/i.test(ressourceLabel) ? 'd’' : 'de ') + ressourceLabel.slice(0,1).toLowerCase() + ressourceLabel.slice(1);
+    }
+
     return {
         restrict: 'E',
         require: 'ngModel',
@@ -11,7 +15,7 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             ressourceType: '=',
             dateDeValeur: '=',
             index: '=',
-            onGoingLabel: '=?',
+            interruptedLabel: '=?',
             form: '=',
         },
         link: function(scope, element, attrs, ngModel) {
@@ -21,8 +25,9 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
             scope.isNumber = angular.isNumber;
 
-            if (! scope.onGoingLabel) {
-                scope.onGoingLabel = 'Je continuerai à percevoir cette ressource en ' + scope.currentMonth;
+
+            if (! scope.interruptedLabel) {
+                scope.interruptedLabel = 'Je ne percevrai plus ' + getFormattedLabel(scope.ressourceType.label) + ' en ' + scope.currentMonth;
             }
 
             ngModel.$render = function() {

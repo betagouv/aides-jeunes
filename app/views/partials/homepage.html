@@ -84,5 +84,33 @@
         </div>
       </div>
     </div>
+    <hr>
+    <h2 class="text-center">Prestations locales</h2>
+    <div ng-repeat="partenaireLocal in partenairesLocaux">
+      <hr>
+      <div class="row">
+        <div class="text-center col-md-2">
+          <img ng-src="/img/{{ partenaireLocal.imgSrc }}" alt=""/>
+          <h2>{{ partenaireLocal.label }}</h2>
+        </div>
+        <div class="col-md-10">
+          <div ng-repeat="droit in partenaireLocal.prestations">
+            <div class="clearfix" ng-if="showDetails && $even"></div>
+            <div class="col-md-6" ng-if="showDetails || $index < 2">
+              <div class="row heading">
+                <div class="col-xs-10">
+                  <h3>{{ droit.label }}</h3>
+                </div>
+              </div>
+              <p>{{ droit.description }}</p>
+            </div>
+          </div>
+          <div class="col-md-12 showDetailsButtonBlock">
+            <button class="btn" type="button" ng-show="!showDetails && partenaireLocal.prestations.length > 2" ng-click="showDetails = ! showDetails">
+              Voir les {{ partenaireLocal.prestations.length - 2 }} autres aides calculées
+            </button>
+          </div>
+      </div>
+    </div>
   </div>
 </div>

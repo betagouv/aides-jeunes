@@ -2,20 +2,24 @@
 
 angular.module('ddsApp').service('ResultatService', function($http, $modal, droitsDescription) {
 
+    var DROITS_POTENTIELS = droitsDescription.prestationsNationales.concat(
+        _.flatten(_.pluck(droitsDescription.partenairesLocaux, 'prestations'))
+    );
+
     // Si la valeur renvoyée par l'API vaut null, cela signifie par convention que l'aide a été injectée et non recaculée par le simulateur
     function sortDroits(droitsCalcules) {
         var droitsEligibles = {},
             droitsInjectes = {},
             droitsNonEligibles = {};
 
-        _.forEach(droitsDescription, function(description, droitKey) {
-            if (droitsCalcules[droitKey]) {
-                droitsEligibles[droitKey] = description;
-                droitsEligibles[droitKey].montant = droitsCalcules[droitKey];
-            } else if (droitsCalcules[droitKey] === null) {
-                droitsInjectes[droitKey] = description;
+        _.forEach(DROITS_POTENTIELS, function(droit) {
+            if (droitsCalcules[droit.id]) {
+                droitsEligibles[droit.id] = droit;
+                droitsEligibles[droit.id].montant = droitsCalcules[droit.id];
+            } else if (droitsCalcules[droit.id] === null) {
+                droitsInjectes[droit.id] = droit;
             } else {
-                droitsNonEligibles[droitKey] = description;
+                droitsNonEligibles[droit.id] = droit;
             }
         });
         return {

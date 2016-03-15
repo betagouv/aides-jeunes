@@ -3,9 +3,11 @@
 describe('ResultatService', function () {
     describe('sortDroits', function() {
         var DROITS_DESCRIPTION = {
-            acs: { id: 'acs' },
-            apl: { id: 'apl' },
-            ass: { id: 'ass'}
+            prestationsNationales : [
+                { id: 'acs' },
+                { id: 'apl' },
+                { id: 'ass'}
+            ]
         };
         var service, droits, openfiscaResult;
 

@@ -24,7 +24,7 @@
             ng-model="ressource.montantsMensuels[$index]">
           <span class="input-group-addon">€</span>
         </span>
-        <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantsMensuels[$index])">
+        <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
           Montant invalide
         </span>
       </div>
@@ -45,7 +45,7 @@
             ng-model="ressource.montantAnnuel">
           <span class="input-group-addon">€</span>
         </span>
-        <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
+        <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
           Montant invalide
         </span>
       </div>

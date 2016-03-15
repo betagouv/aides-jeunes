@@ -11,13 +11,15 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             ressourceType: '=',
             dateDeValeur: '=',
             index: '=',
-            onGoingLabel: '=?'
+            onGoingLabel: '=?',
+            form: '=',
         },
         link: function(scope, element, attrs, ngModel) {
             var momentDebutAnnee = moment(scope.dateDeValeur).subtract('years', 1);
             scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
             scope.months = SituationService.getMonths(scope.dateDeValeur);
             scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
+            scope.isNumber = angular.isNumber;
 
             if (! scope.onGoingLabel) {
                 scope.onGoingLabel = 'Je continuerai à percevoir cette ressource en ' + scope.currentMonth;

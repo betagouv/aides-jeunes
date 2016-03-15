@@ -160,7 +160,7 @@ describe('Controller: FoyerRessourcesCtrl', function() {
         });
 
 
-        it('should map the "ongoing" attribute of each ressource', function() {
+        it('should map the "interrupted" attribute of each ressource', function() {
             // given
             _ressourceTypes_ = [{ id: 'foo' }, { id: 'bar' }];
             scope.situation.individus = [{
@@ -178,9 +178,9 @@ describe('Controller: FoyerRessourcesCtrl', function() {
             // then
             var ressources = scope.individusVM[0].ressources;
             expect(ressources[0].type.id).toBe('foo');
-            expect(ressources[0].onGoing).toBe(false);
+            expect(ressources[0].interrupted).toBe(true);
             expect(ressources[1].type.id).toBe('bar');
-            expect(ressources[1].onGoing).toBe(true);
+            expect(ressources[1].interrupted).toBe(false);
         });
     });
 
@@ -256,8 +256,8 @@ describe('Controller: FoyerRessourcesCtrl', function() {
                 {
                     individu: individu,
                     ressources: [
-                        { type: { id: 'test' }, montantsMensuels: [], onGoing: true },
-                        { type: { id: 'test2' }, montantsMensuels: [], onGoing: false }
+                        { type: { id: 'test' }, montantsMensuels: [], interrupted: false },
+                        { type: { id: 'test2' }, montantsMensuels: [], interrupted: true }
                     ]
                 }
             ];

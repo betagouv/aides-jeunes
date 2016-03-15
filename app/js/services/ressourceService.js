@@ -29,7 +29,7 @@ angular.module('ddsApp').factory('RessourceService', function() {
                 individu.ressourcesYearlyApproximation[ressource.type.id] = ressource.montantAnnuel;
             }
 
-            if (! ressource.onGoing) {
+            if (ressource.interrupted) {
                 individu.interruptedRessources.push(ressource.type.id);
             }
         },

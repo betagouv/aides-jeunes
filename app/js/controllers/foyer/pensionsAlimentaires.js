@@ -37,7 +37,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
                 type: $scope.pensionsVersees,
                 montantsMensuels: initMontantsMensuels(individu, 'pensionsAlimentairesVersees'),
                 montantAnnuel: initMontantAnnuel(individu, 'pensionsAlimentairesVersees'),
-                onGoing: true
+                interrupted: false
             }
         };
 

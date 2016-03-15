@@ -76,7 +76,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'Ne pas toucher l’intégralité d’une pension alimentaire qui vous aurait été attribuée par une décision de justice, ou que cette pension soit d’un montant inférieur à celui de l’ASF.'
         ],
         'imgSrc': 'logo_caf.png',
-        'link': 'http://vosdroits.service-public.fr/particuliers/F815.xhtml'
+        'link': 'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf-0'
     },
     'paje_base': {
         'id': 'paje_base',

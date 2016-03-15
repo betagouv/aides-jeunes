@@ -3,7 +3,6 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        'forms': './front/forms/index.js',
         'birthdate': './front/questions/birthdate.js',
         'nationality': './front/questions/nationality.js',
         'housing': './front/questions/housing.js',
@@ -17,11 +16,6 @@ module.exports = {
     },
     module: {
         loaders: [
-            {
-                test: /forms\/index\.js$/,
-                loader: 'expose',
-                query: 'forms',
-            },
             {
                 test: /front\/questions\//,
                 loader: 'expose',

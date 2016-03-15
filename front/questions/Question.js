@@ -17,7 +17,7 @@ export default class Question {
     * @param {Function<HTMLInputElement => ErrorAction>} [validator] A function that can validate the input.
     * @constructs
     */
-    constructor(options) {
+    constructor(options = {}) {
         this.validator = options.validate || (input => undefined);
         this.format    = options.format   || (value => value);
         this.route     = options.route    || (state => undefined);
@@ -46,7 +46,9 @@ export default class Question {
     validate(input) {
         if (input.required && ! input.value)
             return createErrorAction(input.name, 'required', input.value);
-        // have to validate this manually because "required" attribute cannot be set on a radio group
+
+        if (input.required && input.type == 'radio' && ! input.checked)
+            return createErrorAction(input.name, 'required', input.value);
 
         return this.validator(input);
     }

@@ -121,6 +121,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         ],
         'imgSrc': 'logo_caf.png',
         'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
+        'engageProcedureLink': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/',
         'isBaseRessourcesYearMoins2': true,
         'uncomputability': {
             'primo_accedant': {

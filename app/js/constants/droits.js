@@ -174,6 +174,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         ],
         'imgSrc': 'logo_mairie_paris.png',
         'link': 'http://www.paris.fr/aides',
+        'engageProcedureLink': '/documents/Formulaire_demande_PLF.pdf',
         'isBaseRessourcesYearMoins2': false
     },
     'adpa': {
@@ -187,6 +188,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'conditions': [],
         'imgSrc': 'logo_cd93.png',
         'link': 'https://www.seine-saint-denis.fr/ADPA.html',
+        'engageProcedureLink': 'http://www.seine-saint-denis.fr/ADPA.html',
         'isBaseRessourcesYearMoins2': false
     },
     'aah': {
@@ -210,6 +212,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
         'label': 'Prime d’activité',
         'imgSrc': 'logo_caf.png',
         'description': 'La Prime d’activité remplace le RSA activité et la prime pour l’emploi depuis janvier 2016. Elle complète les ressources des personnes qui travaillent et ont des revenus modestes, salariées ou non.',
-        'link': 'https://www.caf.fr/actualites/2015/une-nouvelle-prestation-a-l-horizon-2016-la-prime-d-activite'
+        'link': 'https://www.caf.fr/actualites/2015/une-nouvelle-prestation-a-l-horizon-2016-la-prime-d-activite',
+        'engageProcedureLink': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/'
     }
 });

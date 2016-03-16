@@ -82,30 +82,6 @@
               Plus d'informations
             </a>
           </div>
-          <div ng-if="droit.id == 'paris_logement_familles'"
-            class="col-sm-3 col-sm-offset-6">
-            <a target="_blank"
-              class="btn btn-sm btn-primary btn-block"
-              href="/documents/Formulaire_demande_PLF.pdf">
-              Engager les démarches
-            </a>
-          </div>
-          <div ng-if="droit.id == 'adpa'"
-            class="col-sm-3 col-sm-offset-6">
-            <a target="_blank"
-              class="btn btn-sm btn-primary btn-block"
-              href="http://www.seine-saint-denis.fr/ADPA.html">
-              Engager les démarches
-            </a>
-          </div>
-          <div ng-if="hasCerfa(droitId)"
-            class="col-sm-3 col-sm-offset-6">
-            <a
-              class="btn btn-sm btn-primary btn-block"
-              ui-sref="infos_complementaires({droit: droitId})">
-              Engager les démarches
-            </a>
-          </div>
           <div ng-if="droit.id == 'ppa'"
             class="col-sm-5 col-sm-offset-1">
             <a
@@ -114,11 +90,14 @@
               Démarches pour les professions agricoles
             </a>
           </div>
-          <div ng-if="droit.id == 'ppa'"
-            class="col-sm-3">
+          <div ng-if="droit.engageProcedureLink || hasCerfa(droitId)"
+            class="col-sm-3 {{ (droit.id != 'ppa') && 'col-sm-offset-6' }}">
             <a
               class="btn btn-sm btn-primary btn-block"
-              href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/">
+              target="{{ ! hasCerfa(droitId) ? '_blank' : '_self' }}"
+              href="{{ ! hasCerfa(droitId) ? droit.engageProcedureLink : '' }}"
+              ui-sref="{{ hasCerfa(droitId) ? 'infos_complementaires({droit: droitId})' : false }}"
+              >
               Engager les démarches
             </a>
           </div>

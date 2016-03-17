@@ -154,16 +154,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/foyer/patrimoine.html',
             controller: 'FoyerPatrimoineCtrl'
         })
-        .state('situation', {
-            url: '/situations/:situationId',
-            template: '',
-            controller: function(SituationService, $state, $stateParams) {
-                SituationService.restoreRemote($stateParams.situationId).then(function() {
-                    $state.go('foyer.resultat', { situationId: $stateParams.situationId });
-                });
-            }
-        })
-        .state('download_cerfa', {
+        .state('foyer.download_cerfa', {
             url: '/telecharger-formulaires/:droit',
             templateUrl: '/partials/download-cerfa.html',
             controller: 'DownloadCerfaCtrl',
@@ -177,6 +168,15 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             },
             data: {
                 pageTitle: 'Téléchargement formulaires - '
+            }
+        })
+        .state('situation', {
+            url: '/situations/:situationId',
+            template: '',
+            controller: function(SituationService, $state, $stateParams) {
+                SituationService.restoreRemote($stateParams.situationId).then(function() {
+                    $state.go('foyer.resultat', { situationId: $stateParams.situationId });
+                });
             }
         });
 });

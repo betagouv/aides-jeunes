@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, cerfaForms, CerfaService, situation, droit) {
+angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, cerfaForms, CerfaService, situation, droit, droitsDescription) {
+	$scope.droitLabel = droitsDescription[droit].label;
     $scope.situation = situation;
     $scope.cerfa = CerfaService.getCerfaFromDroit(droit);
     $scope.cerfaForms = CerfaService.getCerfaFormsFromDroit(droit, situation);

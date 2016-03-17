@@ -190,18 +190,14 @@ $body-front-base-padding: 50px;
   }
 }
 
-.btn-cerfa {
-  margin-top: 20px;
-}
-
 .frame-cerfa {
-  @extend .frame-foyer;
-  margin-top: 20px;
-}
-
-.frame-cerfa-header {
-  margin-top: 40px;
-  margin-bottom: -20px;
+  h3 {
+    margin-top: 0px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .frame-new-individu {

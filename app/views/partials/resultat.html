@@ -96,7 +96,7 @@
               class="btn btn-sm btn-primary btn-block"
               target="{{ ! hasCerfa(droitId) ? '_blank' : '_self' }}"
               href="{{ ! hasCerfa(droitId) ? droit.engageProcedureLink : '' }}"
-              ui-sref="{{ hasCerfa(droitId) ? 'infos_complementaires({droit: droitId})' : false }}"
+              ui-sref="{{ hasCerfa(droitId) ? 'download_cerfa({droit: droitId})' : false }}"
               >
               Engager les démarches
             </a>

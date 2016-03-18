@@ -62,14 +62,19 @@ describe('Postal code question', () => {
 
     describe('state modification', function() {
         let state,
-            value;
+            value,
+            codeInsee;
 
         function setValue(newValue) {
             return () => value = newValue;
         }
 
+        function codeInseeSetterMock(commune) {
+            codeInsee = commune.codeInsee;
+        }
+
         beforeEach(done => {
-            store.dispatch(update('postalCode', value))
+            store.dispatch(update('postalCode', value, codeInseeSetterMock))
                 .then(() => {
                     state = store.getState();
                     done();
@@ -89,7 +94,7 @@ describe('Postal code question', () => {
             before(setValue(mock.MULTIPLE_MATCHES_POSTAL_CODE));
 
             it('should select the first match', () => {
-                expect(state.openfiscaSituation.menages[0].depcom).to.be(mock.MULTIPLE_MATCHES[0].codeInsee);
+                expect(codeInsee).to.be(mock.MULTIPLE_MATCHES[0].codeInsee);
             });
 
             it('should add suggestions', () => {
@@ -114,7 +119,7 @@ describe('Postal code question', () => {
             before(setValue(mock.SINGLE_MATCH_POSTAL_CODE));
 
             it('should update the OpenFisca situation', () => {
-                expect(state.openfiscaSituation.menages[0].depcom).to.be(mock.SINGLE_MATCH_INSEE_CODE);
+                expect(codeInsee).to.be(mock.SINGLE_MATCH_INSEE_CODE);
             });
 
             it('should clean suggestions', () => {
@@ -130,7 +135,7 @@ describe('Postal code question', () => {
             before(setValue(mock.NO_MATCH_POSTAL_CODE));
 
             it('should clean the OpenFisca situation', () => {
-                expect(state.openfiscaSituation.menages[0].depcom).to.not.be.ok();
+                expect(codeInsee).to.not.be.ok();
             });
 
             it('should clean suggestions', () => {

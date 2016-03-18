@@ -12,5 +12,4 @@ store.subscribe(() => {
     updateRecap(state);
 });
 
-if (window)
-    window.onload = () => updateRecap(store.getState());
+window.onload = () => updateRecap(store.getState());

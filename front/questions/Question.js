@@ -5,7 +5,9 @@ import {
     createErrorAction,
     createOpenfiscaSituationUpdateAction,
 } from '../actions';
-import '../forms';
+
+if (typeof window != 'undefined')  // isomorphism
+    require('../forms');
 
 
 /** @class
@@ -19,6 +21,7 @@ export default class Question {
     */
     constructor(options = {}) {
         this.validator = options.validate || (input => undefined);
+        this.parse     = options.parse    || (value => value);
         this.format    = options.format   || (value => value);
         this.route     = options.route    || (state => undefined);
     }
@@ -32,7 +35,7 @@ export default class Question {
 
             const input = getInput(inputName);  // need to select it again in case it is a dynamic input (e.g. radio button)
 
-            store.dispatch(this.validate(input) || this.update(input.value));
+            store.dispatch(this.validate(input) || this.update(this.parse(input.value)));
         });
 
         store.subscribe(() => {

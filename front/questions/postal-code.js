@@ -1,38 +1,55 @@
-import objectPath from 'object-path-immutable';
+import '../cross-browser/fetch';
 
-require('../cross-browser/fetch');
+import Question from './Question';
 import store from '../store';
 import {
-    createOpenfiscaSituationUpdateAction,
     createAsyncStartAction,
     createAsyncEndAction,
     createSuggestResultsAction,
     createErrorAction,
 } from '../actions';
 
-const INSEE_CODE_PROPERTY_PATH = 'menages.0.depcom';
 
+export default new Question({
+    route(state) {
+        if (state.suggestions && state.suggestions.length)
+            return 'ville';
+    }
+});
+
+if (typeof window != 'undefined') {  // allow testing on the backend
+    document.querySelector('input[name="postalCode"]')
+            .addEventListener('change', event => {
+                const value = event.target.value;
+
+                if (! value.match(new RegExp(event.target.pattern)))
+                    return;
+
+                store.dispatch(update(event.target.name, value));
+            });
+}
 
 /**
  * @param {String} inputName  Name of the input that sent this value.
  * @param {String} postalCode  The postal code entered by the user.
+ * @param {Function} [callback]  The function to execute when communes are identified for the given postal code.
  * @return {Action} A Redux action to be dispatched to the store.
  */
-export function update(inputName, postalCode) {
+export function update(inputName, postalCode, callback = setCommune) {
     return dispatch => {
         dispatch(createAsyncStartAction());
 
         return fetch(`https://apicarto.sgmap.fr/codes-postaux/communes/${postalCode}`)
             .then(parseResponse, parseResponse)
             .then(matchingCommunes => {
-                dispatch(setCommune(matchingCommunes[0]));
+                callback(matchingCommunes[0]);
 
                 if (matchingCommunes.length > 1)
                     dispatch(createSuggestResultsAction(matchingCommunes));
                 else
                     dispatch(createSuggestResultsAction([]));
             }, error => {
-                dispatch(setCommune({}));
+                callback({});
                 dispatch(createSuggestResultsAction([]));
                 dispatch(createErrorAction(inputName, error.id, postalCode, error));
             })
@@ -63,13 +80,12 @@ export function parseResponse(response) {
 }
 
 /**
- * Set INSEE code in OpenFisca situation.
+ * Set INSEE code.
  * @param  {Object?} commune An Object with a `codeInsee` property matching an OpenFisca depcom.
- * @return {Action} A Redux action to be dispatched to the store.
  * @see http://legislation.openfisca.fr/variables/depcom
  */
-function setCommune(commune = {}) {
-    const situation = objectPath.set(store.getState().openfiscaSituation, INSEE_CODE_PROPERTY_PATH,  commune.codeInsee);
 
-    return createOpenfiscaSituationUpdateAction(situation);
+function setCommune(commune = {}) {
+    document.querySelector('input[type="hidden"]').value = commune.codeInsee;
 }
+

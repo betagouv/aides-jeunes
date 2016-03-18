@@ -11,7 +11,10 @@ steps: [
         'QuestionComponent.title': POSTAL_CODE_TITLE,
         'QuestionComponent.invalidError': /ne semble pas exister/,
     },
-    QuestionComponent.setInputField(POSTAL_CODE_WITH_SINGLE_MATCH),
+    QuestionComponent.setInputField(POSTAL_CODE_WITH_SINGLE_MATCH + '\n'),
+    {
+        'QuestionComponent.async': false,
+    },
     QuestionComponent.submit(),
     {
         'QuestionComponent.invalidError': false,

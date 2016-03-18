@@ -1,4 +1,5 @@
 title: 'label',
-inputField: 'input[name]',
+inputField: 'input[name]:not([type="hidden"])',
 submitButton: 'input[type="submit"]',
+async: '.loader.active',
 invalidError: '[data-for="invalid"] .error',

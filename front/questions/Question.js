@@ -15,15 +15,16 @@ if (typeof window != 'undefined')  // isomorphism
 */
 export default class Question {
     /**
-    * @param {String} openFiscaPropertyPath  Property path of the OpenFisca situation.
-    * @param {Function<HTMLInputElement => ErrorAction>} [validator] A function that can validate the input.
+    * @param {Object} options Handlers for lifecycle events of the question.
     * @constructs
     */
-    constructor(options = {}) {
-        this.validator = options.validate || (input => undefined);
-        this.parse     = options.parse    || (value => value);
-        this.format    = options.format   || (value => value);
-        this.route     = options.route    || (state => undefined);
+    constructor({
+        validate = (input => undefined),  // should return an Error redux action or a falsy
+        parse    = (value => value),
+        format   = (value => value),
+        route    = (state => ''),
+    } = {}) {
+        Object.assign(this, { validate, parse, format, route });
     }
 
     bindTo(inputName) {

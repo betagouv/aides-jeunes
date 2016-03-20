@@ -175,7 +175,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
 
     return {
         getCerfaFromDroit: function(droitId) {
-            return _.find(cerfaForms, {droitId: getEquivalentDroitId(droitId)});
+            return cerfaForms[getEquivalentDroitId(droitId)];
         },
 
         getCerfaFormsFromDroit: function(droitId, situation) {
@@ -183,7 +183,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
             var result = [];
 
             if (cerfa) {
-                cerfa.forms.forEach(function(form) {
+                _.forEach(cerfa.forms, function(form) {
                     var showCerfaCallback = showableCerfaCallbacks[form.id];
                     if (showCerfaCallback) {
                         if (! showCerfaCallback(situation)) {

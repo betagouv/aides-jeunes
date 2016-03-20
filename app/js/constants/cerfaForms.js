@@ -11,20 +11,9 @@ angular.module('ddsApp').constant('cerfaForms', {
             cmuc_demande: {
                 label: 'Formulaire de demande',
                 url: 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf',
-                description: 'Ce formulaire est obligatoire. Il faut le remplir une seule fois pour l’ensemble du foyer.'
-            },
-            cmuc_choix_organisme_demandeur: {
-                label: 'Formulaire de choix de l’organisme (demandeur)',
-                url: '',
-                description: '<strong>Ce formulaire est aussi obligatoire</strong>. Votre CMU-C/ACS sera gérée soit par votre caisse d’assurance maladie,\
-                    soit par un organisme complémentaire inscrit sur une liste nationale que vous trouverez sur\
-                    <a href="http://www.cmu.fr/liste-organismes-complementaires.php">ce lien</a>.'
-            },
-            cmuc_choix_organisme_non_demandeur: {
-                label: 'Formulaire de choix de l’organisme (autres membres du foyer)',
-                url: '',
-                description: 'Ce formulaire facultatif est à remplir, pour les autres membres du foyer,\
-                    uniquement en cas de choix de l’organisme différent de celui du demandeur.'
+                description: '<p>Ce formulaire est obligatoire. Il faut le remplir une seule fois pour l’ensemble du foyer.</p>\
+                <p>Il vous sera demandé de choisir un organisme complémentaire qui gerera votre CMU-C (ou ACS). Cette organisme peut être votre assurance maladie, ou un organisme figurant sur <a href="http://www.cmu.fr/liste-organismes-complementaires.php">cette liste</a>.</p>\
+                <p>Si certains membres de votre foyer souhaitent choisir un organisme différent du vôtre, il vous faudra remplir un exemplaire des deux dernières pages du formulaire pour chaque organisme choisi.</p>'
             }
         },
         piecesJustificatives: [

@@ -38,15 +38,15 @@ angular.module('ddsApp').constant('cerfaForms', {
             <a href="http://www.social-sante.gouv.fr/espaces,770/handicap-exclusion,775/dossiers,806/le-rsa,2302/le-revenu-de-solidarite-active,2279/quelles-sont-les-demarches-a,14882.html">ce lien</a>.',
         forms: {
             rsa_demande: {
-                url: '',
+                url: 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
                 label: 'Formulaire de demande'
             },
             rsa_non_salarie: {
-                url: '',
+                url: 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15482.do',
                 label: 'Formulaire complémentaire pour les non-salariés'
             },
             rsa_moins_25: {
-                url: '',
+                url: 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14130.do',
                 label: 'Formulaire complémentaire pour les moins de 25 ans'
             }
         },

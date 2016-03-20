@@ -165,17 +165,9 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
         }
     };
 
-    var getEquivalentDroitId = function(droitId) {
-        if ('acs' === droitId) {
-            return'cmu_c';
-        }
-
-        return droitId;
-    };
-
     return {
         getCerfaFromDroit: function(droitId) {
-            return cerfaForms[getEquivalentDroitId(droitId)];
+            return cerfaForms[droitId];
         },
 
         getCerfaFormsFromDroit: function(droitId, situation) {
@@ -199,10 +191,8 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
         },
 
         pieceJustificativeIndividus: function(droitId, pieceId, individus) {
-            var equivalentDroitId = getEquivalentDroitId(droitId);
-
             return _.filter(individus, function(individu) {
-                var callback = requiredPiecesJustificativesCallbacks[equivalentDroitId + '.' + pieceId];
+                var callback = requiredPiecesJustificativesCallbacks[droitId + '.' + pieceId];
                 if (! callback) {
                     callback = requiredPiecesJustificativesCallbacks[pieceId];
                 }
@@ -215,8 +205,7 @@ angular.module('ddsApp').factory('CerfaService', function(cerfaForms, piecesJust
         },
 
         isPieceJustificativeRequiredForSituation: function(droitId, pieceId, situation) {
-            var equivalentDroitId = getEquivalentDroitId(droitId);
-            var callback = requiredPiecesJustificativesCallbacks[equivalentDroitId + '.' + pieceId];
+            var callback = requiredPiecesJustificativesCallbacks[droitId + '.' + pieceId];
             if (! callback) {
                 callback = requiredPiecesJustificativesCallbacks[pieceId];
             }

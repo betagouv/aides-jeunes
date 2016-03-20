@@ -2,7 +2,7 @@
 
 /* jshint multistr: true */
 
-angular.module('ddsApp').constant('cerfaForms', {
+var cerfaForms = {
     cmu_c: {
         description: 'Le dossier doit être envoyé à la caisse d’assurance maladie dont vous dépendez.\
             Il peut être envoyé par courrier ou être déposé directement à votre caisse d’assurance maladie.\
@@ -74,4 +74,7 @@ angular.module('ddsApp').constant('cerfaForms', {
         },
         piecesJustificatives: ['imposition', 'domicile', 'titre_sejour']
     },
-});
+};
+cerfaForms.acs = cerfaForms.cmu_c;
+
+angular.module('ddsApp').constant('cerfaForms', cerfaForms);

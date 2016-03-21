@@ -51,6 +51,10 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
 
     $scope.hasCerfa = CerfaService.getCerfaFromDroit;
 
+    $scope.goToCerfa = function(droit) {
+        $state.go('foyer.download_cerfa', { droit: droit });
+    };
+
     $scope.isNumber = _.isNumber;
     $scope.isString = _.isString;
 });

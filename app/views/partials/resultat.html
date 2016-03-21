@@ -93,10 +93,17 @@
           <div ng-if="droit.engageProcedureLink || hasCerfa(droitId)"
             class="col-sm-3 {{ (droit.id != 'ppa') && 'col-sm-offset-6' }}">
             <a
+              ng-if="hasCerfa(droitId)"
               class="btn btn-sm btn-primary btn-block"
-              target="{{ ! hasCerfa(droitId) ? '_blank' : '_self' }}"
-              href="{{ ! hasCerfa(droitId) ? droit.engageProcedureLink : '' }}"
-              ui-sref="{{ hasCerfa(droitId) ? 'foyer.download_cerfa({droit: droitId})' : false }}"
+              ng-click="goToCerfa(droitId)"
+              >
+              Engager les démarches
+            </a>
+            <a
+              ng-if="! hasCerfa(droitId)"
+              class="btn btn-sm btn-primary btn-block"
+              target="_blank"
+              href="{{ droit.engageProcedureLink}}"
               >
               Engager les démarches
             </a>

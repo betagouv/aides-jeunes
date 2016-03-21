@@ -1,6 +1,7 @@
 'use strict';
 
 /* jshint multistr: true */
+/* jshint camelcase: false */
 
 var cerfaForms = {
     cmu_c: {

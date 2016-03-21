@@ -22,7 +22,7 @@ describe('Service: cerfaService', function () {
         it('should return an empty array if no forms are available for the given droit', function() {
             // given
             module(function($provide) {
-                $provide.constant('cerfaForms', [{ droitId: 'test', forms: [] }]);
+                $provide.constant('cerfaForms', { test: { forms: [] }});
             });
             var service = createService();
 
@@ -37,7 +37,7 @@ describe('Service: cerfaService', function () {
             // given
             var form = {};
             module(function($provide) {
-                $provide.constant('cerfaForms', [{ droitId: 'test', forms: [form] }]);
+                $provide.constant('cerfaForms', { test: { forms: { formID: form } }});
             });
             var service = createService();
 
@@ -50,14 +50,14 @@ describe('Service: cerfaService', function () {
 
         it('should not return forms which show callbacks return false', function() {
             // given
-            var form = {id: 'cmuc_choix_organisme_non_demandeur'};
+            var form = {};
             module(function($provide) {
-                $provide.constant('cerfaForms', [{ droitId: 'cmu_c', forms: [form] }]);
+                $provide.constant('cerfaForms', { rsa: { forms: { rsa_non_salarie: form } }});
             });
             var service = createService();
 
             // when
-            var forms = service.getCerfaFormsFromDroit('cmu_c', { individus: [{ role: 'demandeur' }] });
+            var forms = service.getCerfaFormsFromDroit('rsa', { individus: [{ role: 'demandeur' }] });
 
             // then
             expect(forms).toEqual([]);
@@ -65,38 +65,26 @@ describe('Service: cerfaService', function () {
 
         it('should return forms which show callbacks return true', function() {
             // given
-            var form = {id: 'cmuc_choix_organisme_non_demandeur'};
+            var form = {};
             module(function($provide) {
-                $provide.constant('cerfaForms', [{ droitId: 'cmu_c', forms: [form] }]);
+                $provide.constant('cerfaForms', { rsa: { forms: { rsa_non_salarie: form } }});
             });
             var service = createService();
 
             // when
-            var forms = service.getCerfaFormsFromDroit('cmu_c', { individus: [{ role: 'demandeur' }, {role: 'conjoint'}] });
+            var forms = service.getCerfaFormsFromDroit('rsa', { individus: [{ role: 'demandeur', ressources: [{ type: 'caAutoEntrepreneur' }] }] });
 
             // then
             expect(forms).toEqual([form]);
         });
 
-        it('should display cmuc_choix_organisme_non_demandeur only if situation not mono-individu', function() {
-            // given
-            var service = createService();
-            var situations = [
-                { individus: [{ role: 'demandeur' }, { role: 'conjoint' }] },
-                { individus: [{ role: 'demandeur' }, { role: 'enfant' }] },
-                { individus: [{ role: 'demandeur' }] }
-            ];
+        it('should display rsa_moins_25 only if demandeur or conjoint is aged < 25', function() {
 
-            // when
-            var result = _.map(situations, function(situation) {
-                return _.contains(_.pluck(service.getCerfaFormsFromDroit('cmu_c', situation), 'id'), 'cmuc_choix_organisme_non_demandeur');
+            var cerfaFormsConstant;
+            inject(function(cerfaForms) {
+                cerfaFormsConstant = cerfaForms;
             });
 
-            // then
-            expect(result).toEqual([true, true, false]);
-        });
-
-        it('should display rsa_moins_25 only if demandeur or conjoint is aged < 25', function() {
             // given
             var service = createService();
             var situations = [
@@ -107,7 +95,7 @@ describe('Service: cerfaService', function () {
 
             // when
             var result = _.map(situations, function(situation) {
-                return _.contains(_.pluck(service.getCerfaFormsFromDroit('rsa', situation), 'id'), 'rsa_moins_25');
+                return _.contains(service.getCerfaFormsFromDroit('rsa', situation), cerfaFormsConstant.rsa.forms.rsa_moins_25);
             });
 
             // then
@@ -308,60 +296,16 @@ describe('Service: cerfaService', function () {
                     var individus = [
                         {nationalite: 'fr', role: 'demandeur'},
                         {nationalite: 'ue', role: 'conjoint'},
-                        {paysNaissance: 'France', role: 'enfant'},
+                        {nationalite: 'fr', role: 'enfant'},
                         // not kept because nationalite autre
-                        {nationalite: 'autre', role: 'conjoint'},
-                        // not kept because not born in France
-                        {paysNaissance: 'Congo', role: 'enfant'}
+                        {nationalite: 'autre', role: 'demandeur'},
                     ];
 
                     // when
                     var result = service.pieceJustificativeIndividus('rsa', 'identite', individus);
 
                     // then
-                    expect(result).toEqual(_.initial(individus, 2));
-                });
-
-                it('should ask acte de naissance for personnes à charge aged < 18 born in france but not french', function() {
-                    // given
-                    var individus = [
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'enfant'},
-                        // not kept because not personne à charge
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
-                        // not kept because aged > 18
-                        {dateDeNaissance: moment('14/08/1980', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
-                        // not kept because nationalite fr
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'fr', paysNaissance: 'France', role: 'enfant'},
-                        // not kept because not born in france
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'Congo', role: 'enfant'},
-                    ];
-
-                    // when
-                    var result = service.pieceJustificativeIndividus('rsa', 'acte_naissance', individus);
-
-                    // then
-                    expect(result).toEqual(_.initial(individus, 4));
-                });
-
-                it('should ask certificat OFII if aged < 18 and foreigner', function() {
-                    // given
-                    var individus = [
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'Malaisie', role: 'enfant'},
-                        // not kept because not personne à charge
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
-                        // not kept because aged > 18
-                        {dateDeNaissance: moment('14/08/1980', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'demandeur'},
-                        // not kept because nationalite fr
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'fr', paysNaissance: 'France', role: 'enfant'},
-                        // not kept because born in france
-                        {dateDeNaissance: moment('14/08/2014', 'DD/MM/YYYY'), nationalite: 'ue', paysNaissance: 'France', role: 'enfant'},
-                    ];
-
-                    // when
-                    var result = service.pieceJustificativeIndividus('rsa', 'ofii', individus);
-
-                    // then
-                    expect(result).toEqual(_.initial(individus, 4));
+                    expect(result).toEqual(_.initial(individus, 1));
                 });
 
                 it('should ask titre de séjour for parents with nationalité not EEE, and for children aged > 18 and foreigner', function() {
@@ -432,24 +376,6 @@ describe('Service: cerfaService', function () {
 
                     // when
                     var result = service.pieceJustificativeIndividus('rsa', 'avis_paiement_rente_accident_travail', individus);
-
-                    // then
-                    expect(result).toEqual(_.initial(individus, 2));
-                });
-
-                it('should ask declaration de revenus year-1 for travailleurs saisonniers', function() {
-                    // given
-                    var individus = [
-                        {role: 'demandeur', situationsPro: [{situation: 'travailleur_saisonnier'}]},
-                        {role: 'conjoint', situationsPro: [{situation: 'travailleur_saisonnier'}]},
-                        // not kept because not travailleur saisonnier
-                        {role: 'conjoint'},
-                        // not kept because not parent
-                        {role: 'enfant', situationsPro: [{situation: 'travailleur_saisonnier'}]}
-                    ];
-
-                    // when
-                    var result = service.pieceJustificativeIndividus('rsa', 'declaration_revenus_saisonnier', individus);
 
                     // then
                     expect(result).toEqual(_.initial(individus, 2));

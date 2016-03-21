@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsCommon').service('IndividuService', function($filter, situationsPro, nationalites) {
-    var statutsSpecifiques = _.filter(situationsPro, 'isStatutSpecifique');
+    var statutsSpecifiques = situationsPro;
 
     return {
         age: function(individu) {

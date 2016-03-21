@@ -54,11 +54,9 @@ var cerfaForms = {
             'identite',
             'titre_sejour',
             'acte_naissance',
-            'ofii',
             'avis_paiement_pension_invalidite',
             'avis_paiement_retraite',
             'avis_paiement_rente_accident_travail',
-            'declaration_revenus_saisonnier',
             'declaration_grossesse',
             'rib',
             'taxe_habitation_patrimoine'

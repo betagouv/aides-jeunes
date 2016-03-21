@@ -100,13 +100,6 @@ angular.module('ddsApp').constant('piecesJustificatives', [
             de 18 ans de nationalité étrangère et nées en France.'
     },
     {
-        id: 'ofii',
-        label: 'Certificat de l’OFII',
-        img: 'ofii.jpg',
-        description: 'Le certificat de l’OFII (ex. Anaem) délivré dans le cadre du regroupement familial,\
-            pour les personnes agées de moins de 18 ans, de nationalité étrangère et nées à l’étranger.'
-    },
-    {
         id: 'avis_paiement_pension_invalidite',
         label: 'Avis de paiement de pension d’invalidité',
         img: 'cheque.jpg',
@@ -123,12 +116,6 @@ angular.module('ddsApp').constant('piecesJustificatives', [
         label: 'Avis de paiement d’indemnité accident du travail',
         img: 'cheque.jpg',
         description: 'La photocopie lisible du dernier avis de paiement de l’indemnité d’accident du travail.'
-    },
-    {
-        id: 'declaration_revenus_saisonnier',
-        label: 'Déclaration de revenus de travailleur saisonnier',
-        img: 'declaration_revenus.jpg',
-        description: 'La déclaration de revenus de l’année civile précédant la demande.'
     },
     {
         id: 'declaration_grossesse',

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, ResultatService, CerfaService) {
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, ResultatService, cerfaForms) {
     $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
     $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('years', 1).format('MMMM YYYY');
     $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1).format('MMMM YYYY');
@@ -49,7 +49,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         }
     };
 
-    $scope.hasCerfa = CerfaService.getCerfaFromDroit;
+    $scope.hasCerfa = function(droit) { return cerfaForms[droit]; };
 
     $scope.goToCerfa = function(droit) {
         $state.go('foyer.download_cerfa', { droit: droit });

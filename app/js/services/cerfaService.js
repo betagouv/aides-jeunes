@@ -95,29 +95,13 @@ angular.module('ddsApp').factory('CerfaService', function (cerfaForms, piecesJus
         },
 
         pieceJustificativeIndividus: function (droitId, pieceId, individus) {
-            return _.filter(individus, function (individu) {
-                var callback = requiredPiecesJustificativesCallbacks[droitId + '.' + pieceId];
-                if (! callback) {
-                    callback = requiredPiecesJustificativesCallbacks[pieceId];
-                }
-                if (callback) {
-                    return callback(individu);
-                }
-
-                return true;
-            });
+            var callback = requiredPiecesJustificativesCallbacks[droitId + '.' + pieceId] || requiredPiecesJustificativesCallbacks[pieceId] || function() { return true; };
+            return individus.filter(callback);
         },
 
         isPieceJustificativeRequiredForSituation: function (droitId, pieceId, situation) {
-            var callback = requiredPiecesJustificativesCallbacks[droitId + '.' + pieceId];
-            if (! callback) {
-                callback = requiredPiecesJustificativesCallbacks[pieceId];
-            }
-            if (callback) {
-                return callback(situation);
-            }
-
-            return true;
+            var callback = requiredPiecesJustificativesCallbacks[droitId + '.' + pieceId] || requiredPiecesJustificativesCallbacks[pieceId] || function() { return true; };
+            return callback(situation);
         },
 
         getRequiredPiecesJustificatives: function (cerfa, droit, situation) {

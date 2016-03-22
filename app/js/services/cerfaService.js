@@ -71,7 +71,7 @@ angular.module('ddsApp').factory('CerfaService', function (cerfaForms, piecesJus
             return IndividuService.isParent(individu) && _.find(individu.ressources, {type: 'pensionsInvalidite'});
         },
         'rsa.avis_paiement_retraite': function (individu) {
-            return IndividuService.isParent(individu) && _.find(individu.situationsPro, {situation: 'retraite'});
+            return IndividuService.isParent(individu) && _.find(individu.specificSituations, {situation: 'retraite'});
         },
         'rsa.avis_paiement_rente_accident_travail': function (individu) {
                 return IndividuService.isParent(individu) && _.find(individu.ressources, {type: 'indJourAccidentDuTravail'});

@@ -1,8 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').service('IndividuService', function($filter, situationsPro, nationalites) {
-    var statutsSpecifiques = situationsPro;
-
+angular.module('ddsCommon').service('IndividuService', function($filter, specificSituations, nationalites) {
     return {
         age: function(individu) {
             // FIXME Il faudrait retourner l'âge par rapport à la date de valeur de la situation
@@ -25,10 +23,6 @@ angular.module('ddsCommon').service('IndividuService', function($filter, situati
             return _.find(nationalites, { id: individu.nationalite }).label;
         },
 
-        getStatutsSpecifiques: function() {
-            return statutsSpecifiques;
-        },
-
         isRoleParent: function(role) {
             return _.contains(['demandeur', 'conjoint'], role);
         },
@@ -39,8 +33,8 @@ angular.module('ddsCommon').service('IndividuService', function($filter, situati
 
         formatStatutsSpecifiques: function(individu) {
             var statuts = [];
-            statutsSpecifiques.forEach(function(statut) {
-                if (_.find(individu.situationsPro, {situation: statut.id})) {
+            specificSituations.forEach(function(statut) {
+                if (_.find(individu.specificSituations, {situation: statut.id})) {
                     statuts.push(statut.label);
                 }
             });

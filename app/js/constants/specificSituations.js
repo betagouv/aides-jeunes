@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').constant('situationsPro', [
+angular.module('ddsCommon').constant('specificSituations', [
     {
         id: 'demandeur_emploi',
         label: 'Demandeur d’emploi'

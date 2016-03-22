@@ -127,7 +127,7 @@
           En garde alternée
         </label>
       </div>
-      <div class="checkbox" ng-repeat="statut in statutsSpecifiques">
+      <div class="checkbox" ng-repeat="statut in specificSituations">
         <label for="status-specifiques{{ statut.id }}">
           <input id="status-specifiques{{ statut.id }}" type="checkbox" ng-model="selectedStatuts[statut.id]" aria-describedby="situations-particulieres">
           {{ statut.label }}

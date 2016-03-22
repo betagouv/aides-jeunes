@@ -348,12 +348,12 @@ describe('Service: cerfaService', function () {
                 it('should ask avis paiement retraite when required', function() {
                     // given
                     var individus = [
-                        {role: 'demandeur', situationsPro: [{situation: 'retraite'}]},
-                        {role: 'conjoint', situationsPro: [{situation: 'retraite'}]},
+                        {role: 'demandeur', specificSituations: [{situation: 'retraite'}]},
+                        {role: 'conjoint', specificSituations: [{situation: 'retraite'}]},
                         // not kept because not retraite
                         {role: 'conjoint'},
                         // not kept because not parent
-                        {role: 'enfant', situationsPro: [{situation: 'retraite'}]}
+                        {role: 'enfant', specificSituations: [{situation: 'retraite'}]}
                     ];
 
                     // when

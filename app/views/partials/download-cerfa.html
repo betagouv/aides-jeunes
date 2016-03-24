@@ -10,7 +10,7 @@
 
   <div class="list-group">
     <h2><i class="fa fa-file"></i> Documents à imprimer</h2>
-    <p ng-bind-html="trustAsHtml(cerfa.description)"></p>
+    <p class="cerfa-description" ng-bind-html="trustAsHtml(cerfa.description)"></p>
   </div>
   <ul class="frame-cerfa list-group">
     <li class="btn-cerfa list-group-item" ng-click="openCerfaLink(cerfaForm.url)" ng-repeat="cerfaForm in cerfaForms">
@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-10">
           <h3>{{ cerfaForm.label }}</h3>
-          <p ng-bind-html="trustAsHtml(cerfaForm.description)"></p>
+          <p class="cerfa-description" ng-bind-html="trustAsHtml(cerfaForm.description)"></p>
         </div>
       </div>
     </li>

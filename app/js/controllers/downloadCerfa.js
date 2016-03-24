@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, cerfaForms, CerfaService, situation, droit, droitsDescription) {
+angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, $window, cerfaForms, CerfaService, situation, droit, droitsDescription) {
 	$scope.droitLabel = droitsDescription[droit].label;
     $scope.situation = situation;
     $scope.cerfa = cerfaForms[droit];
@@ -13,5 +13,9 @@ angular.module('ddsApp').controller('DownloadCerfaCtrl', function($scope, $sce, 
 
     $scope.trustAsHtml = function(content) {
         return $sce.trustAsHtml(content);
+    };
+
+    $scope.openCerfaLink = function(url) {
+        $window.open(url, '_blank');
     };
 });

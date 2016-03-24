@@ -13,14 +13,10 @@
     <p ng-bind-html="trustAsHtml(cerfa.description)"></p>
   </div>
   <ul class="frame-cerfa list-group">
-    <li class="list-group-item" ng-repeat="cerfaForm in cerfaForms">
-      <div class="row">
+    <li class="btn-cerfa list-group-item" ng-click="openCerfaLink(cerfaForm.url)" ng-repeat="cerfaForm in cerfaForms">
+        <div class="row">
         <div class="col-md-2 text-center">
-          <a
-            href="{{ cerfaForm.url }}"
-            target="_blank">
-            <i class="fa fa-download fa-3x"></i>
-          </a>
+          <i class="fa fa-download fa-3x"></i>
         </div>
         <div class="col-md-10">
           <h3>{{ cerfaForm.label }}</h3>

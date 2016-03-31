@@ -38,7 +38,7 @@
             class="form-control text-right"
             id="{{ index + ressource.type.id }}-annuel"
             required
-            min="0"
+            min="{{ monthsSum }}"
             step="100"
             select-on-focus
             zero-to-empty
@@ -47,6 +47,9 @@
         </span>
         <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
           Montant invalide
+        </span>
+        <span class="text-danger" ng-if="form.submitted && ressource.montantAnnuel < monthsSum">
+          La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
         </span>
       </div>
     </div>

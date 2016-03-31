@@ -1,33 +1,22 @@
 'use strict';
 
 /* jshint multistr: true */
+/* jshint camelcase: false */
 
-angular.module('ddsApp').constant('cerfaForms', [
-    {
-        droitId: 'cmu_c',
+var cerfaForms = {
+    cmu_c: {
         description: 'Le dossier doit être envoyé à la caisse d’assurance maladie dont vous dépendez.\
             Il peut être envoyé par courrier ou être déposé directement à votre caisse d’assurance maladie.\
             Pour obtenir l’adresse de votre caisse d’assurance maladie, <a href="http://www.cmu.fr/liste-caisses.php">cliquez ici</a>.',
-        forms: [
-            {
-                id: 'cmuc_demande',
+        forms: {
+            cmuc_demande: {
                 label: 'Formulaire de demande',
-                description: 'Ce formulaire est obligatoire. Il faut le remplir une seule fois pour l’ensemble du foyer.'
-            },
-            {
-                id: 'cmuc_choix_organisme_demandeur',
-                label: 'Formulaire de choix de l’organisme (demandeur)',
-                description: '<strong>Ce formulaire est aussi obligatoire</strong>. Votre CMU-C/ACS sera gérée soit par votre caisse d’assurance maladie,\
-                    soit par un organisme complémentaire inscrit sur une liste nationale que vous trouverez sur\
-                    <a href="http://www.cmu.fr/liste-organismes-complementaires.php">ce lien</a>.'
-            },
-            {
-                id: 'cmuc_choix_organisme_non_demandeur',
-                label: 'Formulaire de choix de l’organisme (autres membres du foyer)',
-                description: 'Ce formulaire facultatif est à remplir, pour les autres membres du foyer,\
-                    uniquement en cas de choix de l’organisme différent de celui du demandeur.'
+                url: 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf',
+                description: '<p>Ce formulaire est obligatoire. Il faut le remplir une seule fois pour l’ensemble du foyer.</p>\
+                <p>Il vous sera demandé de choisir un organisme complémentaire qui gerera votre CMU-C (ou ACS). Cette organisme peut être votre assurance maladie, ou un organisme figurant sur <a href="http://www.cmu.fr/liste-organismes-complementaires.php">cette liste</a>.</p>\
+                <p>Si certains membres de votre foyer souhaitent choisir un organisme différent du vôtre, il vous faudra remplir un exemplaire des deux dernières pages du formulaire pour chaque organisme choisi.</p>'
             }
-        ],
+        },
         piecesJustificatives: [
             'vitale',
             'identite',
@@ -41,82 +30,50 @@ angular.module('ddsApp').constant('cerfaForms', [
             'stabilite_residence'
         ]
     },
-    {
-        droitId: 'rsa',
+    rsa: {
         description: 'Vous devez déposer votre demande auprès de l’un des organismes instructeurs de votre choix prévus par la loi :\
             Caisse d’allocations familiales (CAF), Mutualité sociale agricole (MSA), services du Conseil départemental,\
             Centre communal d’action sociale (CCAS) ou Centre intercommunal d’action sociale (CIAS) volontaires\
             ou bien une association ou un organisme à but non lucratif ayant reçu délégation du Conseil départemental.\
             Pour plus d’informations, vous pouvez consulter\
             <a href="http://www.social-sante.gouv.fr/espaces,770/handicap-exclusion,775/dossiers,806/le-rsa,2302/le-revenu-de-solidarite-active,2279/quelles-sont-les-demarches-a,14882.html">ce lien</a>.',
-        forms: [
-            {
-                id: 'rsa_demande',
+        forms: {
+            rsa_demande: {
+                url: 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
                 label: 'Formulaire de demande'
             },
-            {
-                id: 'rsa_non_salarie',
+            rsa_non_salarie: {
+                url: 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15482.do',
                 label: 'Formulaire complémentaire pour les non-salariés'
             },
-            {
-                id: 'rsa_moins_25',
+            rsa_moins_25: {
+                url: 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14130.do',
                 label: 'Formulaire complémentaire pour les moins de 25 ans'
             }
-        ],
+        },
         piecesJustificatives: [
             'identite',
             'titre_sejour',
             'acte_naissance',
-            'ofii',
             'avis_paiement_pension_invalidite',
             'avis_paiement_retraite',
             'avis_paiement_rente_accident_travail',
-            'declaration_revenus_saisonnier',
             'declaration_grossesse',
             'rib',
             'taxe_habitation_patrimoine'
         ]
     },
-    {
-        droitId: 'aspa',
+    aspa: {
         description: '',
-        forms: [
-            {
-                id: 'aspa',
+        forms: {
+            aspa: {
+                url: 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14957.do',
                 label: 'Formulaire de demande'
             }
-        ],
+        },
         piecesJustificatives: ['imposition', 'domicile', 'titre_sejour']
     },
-    {
-        droitId: 'aide_logement',
-        description: '',
-        forms: [
-            {
-                id: 'caf_demande_aide_logement',
-                label: 'Formulaire de demande'
-            },
-            {
-                id: 'caf_declaration_situation',
-                label: 'Déclaration de situation'
-            },
-            {
-                id: 'caf_declaration_ressources',
-                label: 'Déclaration de ressources'
-            },
-            {
-                id: 'caf_attestation_loyer',
-                label: 'Attestation de loyer'
-            },
-            {
-                id: 'caf_attestation_pret',
-                label: 'Certificat de prêt'
-            },
-            {
-                id: 'caf_attestation_residence_foyer',
-                label: 'Attestation de résidence en foyer'
-            }
-        ],
-        piecesJustificatives: ['rib', 'declaration_grossesse', 'attestation_chomage_partiel', 'identite', 'titre_sejour', 'ofii']
-    }
-]);
+};
+cerfaForms.acs = cerfaForms.cmu_c;
+
+angular.module('ddsApp').constant('cerfaForms', cerfaForms);

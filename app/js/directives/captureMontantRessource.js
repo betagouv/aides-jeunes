@@ -30,6 +30,17 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
                 scope.interruptedLabel = 'Je ne percevrai plus ' + getFormattedLabel(scope.ressourceType.label) + ' en ' + scope.currentMonth;
             }
 
+            function checkSumConsistency() {
+                scope.monthsSum = scope.ressource.montantsMensuels.reduce(function(sum, current) {
+                    return sum + current;
+                }, 0);
+
+                ngModel.$setValidity('valuesConsistency', scope.ressource.montantAnnuel >= scope.monthsSum);
+            }
+
+            scope.$watch('ressource.montantsMensuels', checkSumConsistency, true);
+            scope.$watch('ressource.montantAnnuel', checkSumConsistency);
+
             ngModel.$render = function() {
                 scope.ressource = ngModel.$viewValue;
             };

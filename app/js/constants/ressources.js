@@ -27,12 +27,14 @@ angular.module('ddsCommon').constant('ressourceCategories', [
     }
 ]);
 
+var ijssInteruptionQuestionLabel = 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage';
+
 angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'revenusSalarie',
         label: 'Salaire, primes',
         category: 'revenusActivite',
-        prefix: 'un',
+        interuptionQuestionLabel: 'un salaire, des allocations chômage, ou des indemnités de la sécurité sociale',
         positionInList: '1'
     },
     {
@@ -51,7 +53,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         id: 'allocationsChomage',
         label: 'Allocations chômage (ARE)',
         category: 'allocations',
-        prefix: 'des'
+        interuptionQuestionLabel: 'des allocations chômage, un salaire ou des indemnités de la sécurité sociale'
     },
     {
         id: 'allocationSecurisationPro',
@@ -148,25 +150,25 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         id: 'indJourMaternite',
         label: 'Indemnités de maternité, paternité, adoption',
         category: 'indemnites',
-        prefix: 'des'
+        interuptionQuestionLabel: ijssInteruptionQuestionLabel
     },
     {
         id: 'indJourMaladie',
         label: 'Indemnités maladie',
         category: 'indemnites',
-        prefix: 'des'
+        interuptionQuestionLabel: ijssInteruptionQuestionLabel
     },
     {
         id: 'indJourMaladieProf',
         label: 'Indemnités maladie professionnelle',
         category: 'indemnites',
-        prefix: 'des'
+        interuptionQuestionLabel: ijssInteruptionQuestionLabel
     },
     {
         id: 'indJourAccidentDuTravail',
         label: 'Indemnités d’accident du travail',
         category: 'indemnites',
-        prefix: 'des'
+        interuptionQuestionLabel: ijssInteruptionQuestionLabel
     },
     {
         id: 'indChomagePartiel',

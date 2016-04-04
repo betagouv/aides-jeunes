@@ -2,7 +2,7 @@
 
 angular.module('ddsApp').directive('montantRessource', function(SituationService) {
     function getFormattedLabel (ressource) {
-        return ressource.prefix + ' ' + ressource.label.slice(0,1).toLowerCase() + ressource.label.slice(1);
+        return ressource.interuptionQuestionLabel || ressource.prefix + ' ' + ressource.label.slice(0,1).toLowerCase() + ressource.label.slice(1);
     }
 
     return {

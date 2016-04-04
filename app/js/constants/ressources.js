@@ -32,7 +32,8 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         id: 'revenusSalarie',
         label: 'Salaire, primes',
         category: 'revenusActivite',
-        prefix: 'un'
+        prefix: 'un',
+        positionInList: '1'
     },
     {
         id: 'stage',

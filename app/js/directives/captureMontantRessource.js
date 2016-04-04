@@ -15,7 +15,7 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             ressourceType: '=',
             dateDeValeur: '=',
             index: '=',
-            interruptedLabel: '=?',
+            onGoingLabel: '=?',
             form: '=',
         },
         link: function(scope, element, attrs, ngModel) {
@@ -25,9 +25,8 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
             scope.isNumber = angular.isNumber;
 
-
-            if (! scope.interruptedLabel) {
-                scope.interruptedLabel = 'Je ne percevrai plus ' + getFormattedLabel(scope.ressourceType.label) + ' en ' + scope.currentMonth;
+            if (! scope.onGoingLabel) {
+                scope.onGoingLabel = 'Je continuerai à percevoir cette ressource en ' + scope.currentMonth;
             }
 
             function checkSumConsistency() {

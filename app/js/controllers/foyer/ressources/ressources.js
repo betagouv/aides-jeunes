@@ -8,7 +8,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
 
     // Pour les Auto-entrepreneurs
-    $scope.interruptedLabel = 'J’aurai un chiffre d’affaires non nul en ' + $scope.currentMonth;
+    $scope.onGoingLabel = 'J’aurai un chiffre d’affaires non nul en ' + $scope.currentMonth;
 
     $scope.ressourceTypes = _.indexBy(ressourceTypes, 'id');
 
@@ -60,7 +60,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 type: ressourceType,
                 montantsMensuels: montantsMensuels,
                 montantAnnuel: montantAnnuel,
-                interrupted: false
+                onGoing: true
             };
 
             // For autres revenus TNS, we also need to find the CA
@@ -75,7 +75,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             }
 
             if (_.contains(individu.interruptedRessources, type)) {
-                ressource.interrupted = true;
+                ressource.onGoing = false;
             }
             result.push(ressource);
         });

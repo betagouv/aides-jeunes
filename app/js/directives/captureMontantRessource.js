@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('ddsApp').directive('montantRessource', function(SituationService) {
-    function getFormattedLabel (ressourceLabel) {
-        return (/^[aàeéèêëiîïoöôuüy]/i.test(ressourceLabel) ? 'd’' : 'de ') + ressourceLabel.slice(0,1).toLowerCase() + ressourceLabel.slice(1);
+    function getFormattedLabel (ressource) {
+        return ressource.prefix + ' ' + ressource.label.slice(0,1).toLowerCase() + ressource.label.slice(1);
     }
 
     return {
@@ -26,7 +26,7 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             scope.isNumber = angular.isNumber;
 
             if (! scope.onGoingLabel) {
-                scope.onGoingLabel = 'Je continuerai à percevoir cette ressource en ' + scope.currentMonth;
+                scope.onGoingLabel = 'Je percevrai ' + getFormattedLabel(scope.ressourceType) + ' en ' + scope.currentMonth + '.';
             }
 
             function checkSumConsistency() {

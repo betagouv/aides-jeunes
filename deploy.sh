@@ -52,11 +52,14 @@ cd ..
 # Install OpenFisca
 if ! cd openfisca
 then
-    git clone https://github.com/sgmap/openfisca.git --branch $TARGET_BRANCH
+    git clone https://github.com/sgmap/openfisca.git
     cd openfisca
 fi
 
-./update.sh $TARGET_BRANCH
+./update.sh $TARGET_BRANCH || {
+        echo "No branch $TARGET_BRANCH was found on sgmap/openfisca. Staying on current branch."
+        ./update.sh
+    }
 
 # Stop OpenFisca
 killall --user `whoami` /usr/bin/python || echo 'No OpenFisca server was running'

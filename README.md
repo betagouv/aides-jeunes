@@ -154,8 +154,7 @@ En se connectant en tant que `root`.
 BRANCH=ppa
 
 # Créer l'utilisateur
-adduser mes-aides-$BRANCH  # give whichever password and leave everything to default
-passwd --delete mes-aides-$BRANCH
+adduser mes-aides-$BRANCH --disabled-password --gecos ""
 
 # Rendre l'utilisateur accessible depuis l'extérieur
 mkdir /home/mes-aides-$BRANCH/.ssh/

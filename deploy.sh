@@ -63,10 +63,13 @@ fi
     }
 
 # Stop OpenFisca
-killall --user $USER /usr/bin/python || echo 'No OpenFisca server was running'
-# Start OpenFisca
-PORT=$OPENFISCA_PORT nohup ./start.sh mes-aides >> ../openfisca.log 2>> ../openfisca_error.log &
+{
+    forever stop start.sh
+    killall --user $USER $(which python)
+} || echo 'No OpenFisca server was running'
 
+# Start OpenFisca
+PORT=$OPENFISCA_PORT forever -l ../openfisca.log -e ../openfisca_error.log --append -c bash start ./start.sh mes-aides
 cd ..
 
 # Set up reverse proxy

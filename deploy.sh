@@ -43,10 +43,10 @@ grunt build
 # Stop Mes Aides
 forever stop server.js || echo 'No server was running'
 
-mongo localhost --eval "db.copyDatabase('mes-aides-master', '`whoami`')"
+mongo localhost --eval "db.copyDatabase('mes-aides-master', '$USER')"
 
 # Start Mes Aides
-OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="$PROTOCOL://$PUBLIC_HOST" PORT=$PORT MONGODB_URL="mongodb://localhost/$(whoami)" forever -l ../mes-aides.log -e ../mes-aides_error.log --append start server.js
+OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="$PROTOCOL://$PUBLIC_HOST" PORT=$PORT MONGODB_URL="mongodb://localhost/$USER" forever -l ../mes-aides.log -e ../mes-aides_error.log --append start server.js
 
 cd ..
 
@@ -63,7 +63,7 @@ fi
     }
 
 # Stop OpenFisca
-killall --user `whoami` /usr/bin/python || echo 'No OpenFisca server was running'
+killall --user $USER /usr/bin/python || echo 'No OpenFisca server was running'
 # Start OpenFisca
 PORT=$OPENFISCA_PORT nohup ./start.sh mes-aides >> ../openfisca.log 2>> ../openfisca_error.log &
 
@@ -71,7 +71,7 @@ cd ..
 
 # Set up reverse proxy
 
-echo "upstream $(whoami) {
+echo "upstream $USER {
     server 127.0.0.1:$PORT;
 }
 
@@ -99,10 +99,10 @@ server {
         proxy_set_header Upgrade \$http_upgrade;
         proxy_set_header Connection \"upgrade\";
 
-        proxy_pass  http://$(whoami);
+        proxy_pass  http://$USER;
         proxy_redirect off;
     }
-}" > /etc/nginx/conf.d/$(whoami).conf
+}" > /etc/nginx/conf.d/$USER.conf
 
 set +x
 

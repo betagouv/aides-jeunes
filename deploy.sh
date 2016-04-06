@@ -41,12 +41,12 @@ npm install
 grunt build
 
 # Stop Mes Aides
-forever stop server.js || echo 'No server was running'
+forever stop mes-aides || echo 'No server was running'
 
 mongo localhost --eval "db.copyDatabase('mes-aides-master', '$USER')"
 
 # Start Mes Aides
-OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="$PROTOCOL://$PUBLIC_HOST" PORT=$PORT MONGODB_URL="mongodb://localhost/$USER" forever -l ../mes-aides.log -e ../mes-aides_error.log --append start server.js
+OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="$PROTOCOL://$PUBLIC_HOST" PORT=$PORT MONGODB_URL="mongodb://localhost/$USER" forever --uid mes-aides -l ../mes-aides.log -e ../mes-aides_error.log --append start server.js
 
 cd ..
 
@@ -64,12 +64,12 @@ fi
 
 # Stop OpenFisca
 {
-    forever stop start.sh
+    forever stop openfisca
     killall --user $USER $(which python)
 } || echo 'No OpenFisca server was running'
 
 # Start OpenFisca
-PORT=$OPENFISCA_PORT forever -l ../openfisca.log -e ../openfisca_error.log --append -c bash start ./start.sh mes-aides
+PORT=$OPENFISCA_PORT forever --uid openfisca -l ../openfisca.log -e ../openfisca_error.log --append -c bash start ./start.sh mes-aides
 cd ..
 
 # Set up reverse proxy

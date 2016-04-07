@@ -8,11 +8,11 @@ LOG_FILE=deployment.log
 
 # Defaults for production.
 # Example for development:
-#   PORT=8100 OPENFISCA_PORT=12100 ./deploy.sh aah
+#   PORT=8100 OPENFISCA_PORT=12100 ./deploy.sh
 # Example for production:
 #   PORT=8000 OPENFISCA_PORT=2000 PUBLIC_HOST=mes-aides.gouv.fr PROTOCOL=https ./deploy.sh
 USER=`whoami`
-TARGET_BRANCH=${1:-${USER##mes-aides-}}
+TARGET_BRANCH=${USER#mes-aides-}
 PORT=${PORT:-8000}
 OPENFISCA_PORT=${OPENFISCA_PORT:-12000}
 PUBLIC_HOST=${PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.sgmap.fr}

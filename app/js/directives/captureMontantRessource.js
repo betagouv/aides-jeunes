@@ -1,8 +1,17 @@
 'use strict';
 
 angular.module('ddsApp').directive('montantRessource', function(SituationService) {
-    function getFormattedLabel (ressource) {
-        return ressource.interuptionQuestionLabel || ressource.prefix + ' ' + ressource.label.slice(0,1).toLowerCase() + ressource.label.slice(1);
+    function getOnGoingQuestion (individu, ressource, currentMonth) {
+        var subject = {
+            'demandeur': 'Je',
+            'conjoint': 'Votre conjoint',
+            'enfant': individu.firstName
+        }[individu.role],
+            verbPrefix = ressource.id == 'pensionsAlimentairesVersees' ? 'verser' : 'percevr',
+            verbSufix = individu.role == 'demandeur' ? 'ai' : 'a',
+            ressourceLabel = ressource.interuptionQuestionLabel || ressource.prefix + ' ' + ressource.label.slice(0,1).toLowerCase() + ressource.label.slice(1);
+
+        return [subject, verbPrefix + verbSufix, ressourceLabel, 'en', currentMonth].join(' ') + '.';
     }
 
     return {
@@ -11,11 +20,10 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
         replace: true,
         templateUrl: 'partials/foyer/capture-montant-ressource.html',
         scope: {
-            shortLabel: '=',
+            individuVM: '=',
             ressourceType: '=',
             dateDeValeur: '=',
             index: '=',
-            onGoingLabel: '=?',
             form: '=',
         },
         link: function(scope, element, attrs, ngModel) {
@@ -24,10 +32,7 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             scope.months = SituationService.getMonths(scope.dateDeValeur);
             scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
             scope.isNumber = angular.isNumber;
-
-            if (! scope.onGoingLabel) {
-                scope.onGoingLabel = 'Je percevrai ' + getFormattedLabel(scope.ressourceType) + ' en ' + scope.currentMonth + '.';
-            }
+            scope.onGoingLabel = getOnGoingQuestion(scope.individuVM.individu, scope.ressourceType, scope.currentMonth);
 
             function checkSumConsistency() {
                 scope.monthsSum = scope.ressource.montantsMensuels.reduce(function(sum, current) {

@@ -196,8 +196,9 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     },
     {
         id: 'pensionsAlimentairesVersees',
-        label: 'Pensions alimentaires versées',
-        category: 'pensions'
+        label: 'Pension alimentaire versée',
+        category: 'pensions',
+        interuptionQuestionLabel: 'une pension alimentaire',
     },
     {
         id: 'prestationCompensatoire',

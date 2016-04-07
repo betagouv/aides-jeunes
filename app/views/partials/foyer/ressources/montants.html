@@ -2,7 +2,7 @@
   <div ng-if="ressource.type.category !== 'rpns'">
     <montant-ressource
       ng-model="ressource"
-      short-label="individuVM.label"
+      individu-v-m="individuVM"
       ressource-type="ressource.type"
       index="individuIndex"
       date-de-valeur="situation.dateDeValeur"
@@ -78,7 +78,7 @@
           <label>
             <input
               type="checkbox" ng-model="ressource.onGoing">
-              {{ onGoingLabel }}
+              {{ autoEntrepreneurOnGoingQuestion(individuVM.individu, currentMonth) }}
           </label>
         </div>
       </div>

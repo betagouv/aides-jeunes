@@ -57,10 +57,11 @@ then
     cd openfisca
 fi
 
-./update.sh $TARGET_BRANCH || {
-        echo "No branch $TARGET_BRANCH was found on sgmap/openfisca. Staying on current branch."
-        ./update.sh
-    }
+if ! ./update.sh $TARGET_BRANCH
+then
+    echo "No branch $TARGET_BRANCH was found on sgmap/openfisca. Staying on current branch."
+    ./update.sh
+fi
 
 # Stop OpenFisca
 {

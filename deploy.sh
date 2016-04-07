@@ -63,14 +63,13 @@ then
     ./update.sh
 fi
 
+PORT=$OPENFISCA_PORT ./generateConfig.sh mes-aides
+
 # Stop OpenFisca
-{
-    forever stop openfisca
-    killall --user $USER $(which python)
-} || echo 'No OpenFisca server was running'
+forever stop openfisca || echo 'No OpenFisca server was running'
 
 # Start OpenFisca
-PORT=$OPENFISCA_PORT forever --uid openfisca -l ../openfisca.log -e ../openfisca_error.log --append -c bash start ./start.sh mes-aides
+forever --uid openfisca -l ../openfisca.log -e ../openfisca_error.log --append -c paster serve config/current.ini
 cd ..
 
 # Set up reverse proxy

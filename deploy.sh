@@ -76,7 +76,7 @@ PORT=$OPENFISCA_PORT ./generateConfig.sh mes-aides
 forever stop openfisca || echo 'No OpenFisca server was running'
 
 # Start OpenFisca
-forever --uid openfisca -l ../openfisca.log -e ../openfisca_error.log --append -c paster serve config/current.ini
+forever --uid openfisca -l ../openfisca.log -e ../openfisca_error.log --append start -c "paster serve" config/current.ini
 cd ..
 
 # Set up reverse proxy

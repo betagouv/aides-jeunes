@@ -9,7 +9,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
 
     $scope.autoEntrepreneurOnGoingQuestion = function(individu, currentMonth) {
         var prefix = {
-            'demandeur': 'J’aurai',
+            'demandeur': 'Vous aurez',
             'conjoint': 'Votre conjoint aura',
             'enfant': individu.firstName + ' aura'
         }[individu.role];

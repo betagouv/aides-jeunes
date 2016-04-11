@@ -3,12 +3,12 @@
 angular.module('ddsApp').directive('montantRessource', function(SituationService) {
     function getOnGoingQuestion (individu, ressource, currentMonth) {
         var subject = {
-            'demandeur': 'Je',
+            'demandeur': 'Vous',
             'conjoint': 'Votre conjoint',
             'enfant': individu.firstName
         }[individu.role],
             verbPrefix = ressource.id == 'pensionsAlimentairesVersees' ? 'verser' : 'percevr',
-            verbSufix = individu.role == 'demandeur' ? 'ai' : 'a',
+            verbSufix = individu.role == 'demandeur' ? 'ez' : 'a',
             ressourceLabel = ressource.interuptionQuestionLabel || ressource.prefix + ' ' + ressource.label.slice(0,1).toLowerCase() + ressource.label.slice(1);
 
         return [subject, verbPrefix + verbSufix, ressourceLabel, 'en', currentMonth].join(' ') + '.';

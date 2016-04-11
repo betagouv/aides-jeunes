@@ -13,18 +13,17 @@ LOG_FILE=deployment.log
 #   PORT=8000 OPENFISCA_PORT=2000 PUBLIC_HOST=mes-aides.gouv.fr PROTOCOL=https ./deploy.sh
 USER=`whoami`
 TARGET_BRANCH=${USER#mes-aides-}
+source current_config || echo "No current_config file found."
+PORT=${PORT:-$CURRENT_PORT}
+OPENFISCA_PORT=${OPENFISCA_PORT:-$CURRENT_OPENFISCA_PORT}
 
 if ! [[ -n $PORT && -n $OPENFISCA_PORT ]]
 then
-    echo "Ports were not specified. Trying to load from 'current_ports' file."
-    source current_ports
-    PORT=${PORT:-$CURRENT_PORT}
-    OPENFISCA_PORT=${OPENFISCA_PORT:-$CURRENT_OPENFISCA_PORT}
+    echo "Ports not specified, and not found in current_config file. Please provide them."
 fi
 
-PUBLIC_HOST=${PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.sgmap.fr}
-PROTOCOL=${PROTOCOL:-http}
-
+PUBLIC_HOST=${PUBLIC_HOST:-${CURRENT_PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.sgmap.fr}}
+PROTOCOL=${PROTOCOL:-${CURRENT_PROTOCOL:-http}}
 
 # Log deployment
 date >> $LOG_FILE
@@ -114,10 +113,12 @@ server {
     }
 }" > /etc/nginx/conf.d/$USER.conf
 
-# Save PORT numbers
+# Save current config
 echo "CURRENT_PORT=$PORT
 CURRENT_OPENFISCA_PORT=$OPENFISCA_PORT
-" > current_ports
+CURRENT_PUBLIC_HOST=$PUBLIC_HOST
+CURRENT_PROTOCOL=$PROTOCOL
+" > current_config
 
 set +x
 

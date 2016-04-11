@@ -30,6 +30,9 @@ Once you have Node and npm installed, run:
 npm install --global grunt-cli bower
 ```
 
+### In production
+
+[foreverjs](https://github.com/foreverjs/forever) is used to run the server in production. It needs to be installed before running the deployment script.
 
 Application
 -----------
@@ -147,6 +150,7 @@ ssh openfisca-mes-aides@sgmap.fr ./deploy
 ### Déployer une feature branch
 
 #### Ajouter un utilisateur capable de déployer sur le serveur de production
+> La taille du nom d'utilisateur étant limitée à 32 caractères sur le serveur de production, le nom de la feature branch ne doit pas dépasser 22 caractères.
 
 En se connectant en tant que `root`.
 
@@ -170,6 +174,6 @@ chmod u+x /home/mes-aides-$BRANCH/deploy.sh
 
 ```sh
 ssh-add ~/.ssh/mes-aides-bot
-ssh mes-aides-$BRANCH@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 ./deploy.sh $BRANCH"
+ssh mes-aides-$BRANCH@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 ./deploy.sh"
 ssh root@sgmap.fr "service nginx reload"
 ```

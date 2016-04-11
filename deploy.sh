@@ -13,8 +13,15 @@ LOG_FILE=deployment.log
 #   PORT=8000 OPENFISCA_PORT=2000 PUBLIC_HOST=mes-aides.gouv.fr PROTOCOL=https ./deploy.sh
 USER=`whoami`
 TARGET_BRANCH=${USER#mes-aides-}
-PORT=${PORT:-8000}
-OPENFISCA_PORT=${OPENFISCA_PORT:-12000}
+
+if ! [[ -n $PORT && -n $OPENFISCA_PORT ]]
+then
+    echo "Ports were not specified. Trying to load from 'current_ports' file."
+    source current_ports
+    PORT=${PORT:-$CURRENT_PORT}
+    OPENFISCA_PORT=${OPENFISCA_PORT:-$CURRENT_OPENFISCA_PORT}
+fi
+
 PUBLIC_HOST=${PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.sgmap.fr}
 PROTOCOL=${PROTOCOL:-http}
 
@@ -106,6 +113,11 @@ server {
         proxy_redirect off;
     }
 }" > /etc/nginx/conf.d/$USER.conf
+
+# Save PORT numbers
+echo "CURRENT_PORT=$PORT
+CURRENT_OPENFISCA_PORT=$OPENFISCA_PORT
+" > current_ports
 
 set +x
 

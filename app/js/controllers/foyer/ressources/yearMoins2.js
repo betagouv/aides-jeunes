@@ -47,7 +47,7 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
 
             // Remove from rnc the values that are not modified by the user
             individuRef.rnc = _.filter(individuRef.rnc, function(rnc) {
-                return rnc.montant;
+                return rnc.montant !== undefined;
             });
 
             individuRef.rnc.forEach(function(rnc) {

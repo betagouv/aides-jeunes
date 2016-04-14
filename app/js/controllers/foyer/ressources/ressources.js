@@ -7,8 +7,14 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
 
-    // Pour les Auto-entrepreneurs
-    $scope.interruptedLabel = 'J’aurai un chiffre d’affaires non nul en ' + $scope.currentMonth;
+    $scope.autoEntrepreneurOnGoingQuestion = function(individu, currentMonth) {
+        var prefix = {
+            'demandeur': 'Vous aurez',
+            'conjoint': 'Votre conjoint aura',
+            'enfant': individu.firstName + ' aura'
+        }[individu.role];
+        return prefix + ' un chiffre d’affaires non nul en ' + currentMonth + '.';
+    };
 
     $scope.ressourceTypes = _.indexBy(ressourceTypes, 'id');
 
@@ -60,7 +66,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 type: ressourceType,
                 montantsMensuels: montantsMensuels,
                 montantAnnuel: montantAnnuel,
-                interrupted: false
+                onGoing: true
             };
 
             // For autres revenus TNS, we also need to find the CA
@@ -75,7 +81,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
             }
 
             if (_.contains(individu.interruptedRessources, type)) {
-                ressource.interrupted = true;
+                ressource.onGoing = false;
             }
             result.push(ressource);
         });

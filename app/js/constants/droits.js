@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('ddsCommon').constant('droitsDescription', {
-    'prestationsNationales': [
-        {
-            'id': 'cmu_c',
+    'prestationsNationales': {
+        'cmu_c': {
             'label': 'Couverture Maladie Universelle Complémentaire',
             'shortLabel': 'CMU-C',
             'description': 'La CMU-C est une protection complémentaire santé gratuite.',
@@ -13,8 +12,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'imgSrc': 'logo_cmu.png',
             'link': 'http://www.cmu.fr/cmu-complementaire.php'
         },
-        {
-            'id': 'acs',
+        'acs': {
             'isMontantAnnuel': true,
             'label': 'Aide pour une Complémentaire Santé',
             'shortLabel': 'ACS',
@@ -25,8 +23,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'imgSrc': 'logo_cmu.png',
             'link': 'http://www.cmu.fr/acs.php'
         },
-        {
-            'id': 'aspa',
+        'aspa': {
             'label': 'Allocation de Solidarité aux Personnes Âgées',
             'shortLabel': 'ASPA',
             'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une allocation destinée aux personnes âgées disposant de faibles revenus en vue de leur assurer un niveau minimum de ressources. Elle remplace le minimum vieillesse depuis 2006.',
@@ -39,16 +36,14 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'imgSrc': 'logo_aspa.png',
             'link': 'http://vosdroits.service-public.fr/particuliers/F16871.xhtml'
         },
-        {
-            'id': 'asi',
+        'asi': {
             'label': 'Allocation Supplémentaire d’Invalidité',
             'shortLabel': 'ASI',
             'description': 'L’allocation supplémentaire d’invalidité (Asi) est une prestation versée sous certaines conditions aux personnes invalides titulaires d’une pension de retraite ou d’invalidité qui n’ont pas atteint l’âge légal de départ à la retraite pour bénéficier de l’allocation de solidarité aux personnes âgées (Aspa)',
             'imgSrc': 'logo_aspa.png',
             'link': 'http://vosdroits.service-public.fr/particuliers/F16940.xhtml'
         },
-        {
-            'id': 'af',
+        'af': {
             'label': 'Allocations Familiales',
             'shortLabel': 'AF',
             'description': 'Les allocations familiales sont versées aux personnes ayant au moins 2 enfants de moins de 20 ans à charge. Le montant des prestations dépend du nombre d’enfants à charge, de leur âge et des ressources de la famille.',
@@ -59,8 +54,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'link': 'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0',
             'isBaseRessourcesYearMoins2': true
         },
-        {
-            'id': 'cf',
+        'cf': {
             'label': 'Complément Familial',
             'shortLabel': 'CF',
             'description': 'Le complément familial est versé, sous certaines conditions, aux personnes ayant au moins 3 enfants à charge.',
@@ -68,8 +62,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'link': 'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
             'isBaseRessourcesYearMoins2': true
         },
-        {
-            'id': 'asf',
+        'asf': {
             'label': 'Allocation de Soutien Familial',
             'shortLabel': 'ASF',
             'description': 'L’ASF est versée par la CAF ou la MSA au parent qui élève seul son enfant ou à la personne qui a recueilli un enfant, qu’elle vive seule ou en couple.',
@@ -79,8 +72,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'imgSrc': 'logo_caf.png',
             'link': 'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf-0'
         },
-        {
-            'id': 'paje_base',
+        'paje_base': {
             'label': 'Prestation d’Accueil du Jeune Enfant - Allocation de base',
             'shortLabel': 'PAJE-BASE',
             'description': 'L’allocation de base vous aide à assurer les dépenses liées à l’entretien et à l’éducation de votre enfant.',
@@ -88,8 +80,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/l-allocation-de-base',
             'isBaseRessourcesYearMoins2': true
         },
-        {
-            'id': 'rsa',
+        'rsa': {
             'label': 'Revenu de Solidarité Active',
             'shortLabel': 'RSA',
             'description': 'Le RSA est destiné à assurer aux personnes disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer.',
@@ -111,8 +102,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 }
             }
         },
-        {
-            'id': 'aide_logement',
+        'aide_logement': {
             'label': 'Aides au Logement',
             'shortLabel': 'AL',
             'description': 'L’aide au logement est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
@@ -136,17 +126,14 @@ angular.module('ddsCommon').constant('droitsDescription', {
 
             }
         },
-        {
-
-            'id': 'ass',
+        'ass': {
             'label': 'Allocation de Solidarité Spécifique',
             'shortLabel': 'ASS',
             'description': 'L’allocation de solidarité spécifique (ASS) est une aide financière destinée aux personnes ayant épuisé leurs droits aux allocations chômage.',
             'imgSrc': 'logo_ass.png',
             'link': 'http://vosdroits.service-public.fr/particuliers/F12484.xhtml'
         },
-        {
-            'id': 'bourse_college',
+        'bourse_college': {
             'isMontantAnnuel': true,
             'label': 'Bourse de collège',
             'shortLabel': 'Bourse collège',
@@ -155,8 +142,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'link': 'http://www.education.gouv.fr/cid88/les-aides-financieres-au-college.html#Les%20bourses%20de%20coll%C3%A8ge',
             'isBaseRessourcesYearMoins2': true
         },
-        {
-            'id': 'bourse_lycee',
+        'bourse_lycee': {
             'isMontantAnnuel': true,
             'label': 'Bourse de lycée',
             'shortLabel': 'Bourse lycée',
@@ -165,9 +151,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'link': 'http://www.education.gouv.fr/cid151/aides-financieres-au-lycee.html#Les%20bourses%20de%20lycée',
             'isBaseRessourcesYearMoins2': true
         },
-        {
-
-            'id': 'aah',
+        'aah': {
             'isMontantAnnuel': false,
             'label': 'Allocation aux adultes handicapés',
             'shortLabel': 'AAH',
@@ -182,23 +166,21 @@ angular.module('ddsCommon').constant('droitsDescription', {
             },
             'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242'
         },
-        {
-            'id': 'ppa',
+        'ppa': {
             'label': 'Prime d’activité',
             'imgSrc': 'logo_caf.png',
             'description': 'La Prime d’activité remplace le RSA activité et la prime pour l’emploi depuis janvier 2016. Elle complète les ressources des personnes qui travaillent et ont des revenus modestes, salariées ou non.',
             'link': 'https://www.caf.fr/actualites/2015/une-nouvelle-prestation-a-l-horizon-2016-la-prime-d-activite',
             'engageProcedureLink': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/'
         }
-    ],
-    'partenairesLocaux': [
-        {
-            'id': 'paris',
+    },
+    'partenairesLocaux': {
+        'paris': {
             'imgSrc': 'logo_mairie_paris.png',
             'label': 'Ville de Paris',
-            'prestations': [
-                {
-                    'id': 'paris_logement_familles',
+            'prefix': 'de la',
+            'prestations': {
+                'paris_logement_familles': {
                     'isMontantAnnuel': false,
                     'label': 'Paris Logement Familles',
                     'shortLabel': 'PLF',
@@ -213,8 +195,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false,
                 },
-                {
-                    'id': 'paris_forfait_famille',
+                'paris_forfait_famille': {
                     'isMontantAnnuel': true,
                     'label': 'Paris Forfait Familles',
                     'shortLabel': 'PFF',
@@ -224,8 +205,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
-                {
-                    'id': 'paris_logement_psol',
+                'paris_logement_psol': {
                     'label': 'Paris Solidarité',
                     'shortLabel': 'PSOL',
                     'imgSrc': 'logo_mairie_paris.png',
@@ -237,8 +217,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
-                {
-                    'id': 'paris_logement',
+                'paris_logement': {
                     'label': 'Paris Logement',
                     'shortLabel': 'PL',
                     'imgSrc': 'logo_mairie_paris.png',
@@ -251,8 +230,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
-                {
-                    'id': 'paris_logement_aspeh',
+                'paris_logement_aspeh': {
                     'label': 'Allocation de soutien aux parents d’enfants handicapés',
                     'shortLabel': 'ASPEH',
                     'imgSrc': 'logo_mairie_paris.png',
@@ -261,8 +239,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
-                {
-                    'id': 'paris_logement_plfm',
+                'paris_logement_plfm': {
                     'isMontantAnnuel': true,
                     'label': 'Paris logement familles monoparentales',
                     'shortLabel': 'PLFM',
@@ -276,8 +253,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
-                {
-                    'id': 'paris_energie_famille',
+                'paris_energie_famille': {
                     'isMontantAnnuel': true,
                     'label': 'Paris Energie Famille',
                     'shortLabel': 'PEF',
@@ -287,8 +263,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
-                {
-                    'id': 'paris_complement_sante',
+                'paris_complement_sante': {
                     'isMontantAnnuel': true,
                     'label': 'Complémentaire Santé Paris',
                     'shortLabel': 'CSP',
@@ -298,15 +273,14 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 }
-            ]
+            }
         },
-        {
-            'id': 'cd93',
+        'cd93': {
             'imgSrc': 'logo_cd93.png',
             'label': 'Seine-Saint-Denis',
-            'prestations': [
-                {
-                    'id': 'adpa',
+            'prefix': 'du département de',
+            'prestations': {
+                'adpa': {
                     'isMontantAnnuel': false,
                     'unit': '%',
                     'legend': 'des frais de dépendance',
@@ -319,7 +293,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'engageProcedureLink': 'http://www.seine-saint-denis.fr/ADPA.html',
                     'isBaseRessourcesYearMoins2': false
                 },
-            ]
+            }
         }
-    ]
+    }
 });

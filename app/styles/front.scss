@@ -194,18 +194,38 @@ $body-front-base-padding: 50px;
   }
 }
 
-.btn-cerfa {
-  margin-top: 20px;
-}
-
 .frame-cerfa {
-  @extend .frame-foyer;
-  margin-top: 20px;
+  h3 {
+    margin-top: 0px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+  }
 }
 
-.frame-cerfa-header {
-  margin-top: 40px;
-  margin-bottom: -20px;
+.cerfa-description {
+  font-size: larger;
+}
+
+.btn-cerfa {
+  cursor: pointer;
+}
+
+.btn-cerfa:hover {
+  background-color: gainsboro;
+  border-color: #bbbbbb;
+  color: #333333;
+}
+
+.btn-cerfa:active {
+  outline: 0;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-cerfa:active:hover {
+      background-color: #cacaca;
+      border-color: #9a9a9a;
 }
 
 .frame-new-individu {

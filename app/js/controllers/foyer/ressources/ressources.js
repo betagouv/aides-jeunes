@@ -7,8 +7,14 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
 
-    // Pour les Auto-entrepreneurs
-    $scope.onGoingLabel = 'J’aurai un chiffre d’affaires non nul en ' + $scope.currentMonth;
+    $scope.autoEntrepreneurOnGoingQuestion = function(individu, currentMonth) {
+        var prefix = {
+            'demandeur': 'Vous aurez',
+            'conjoint': 'Votre conjoint aura',
+            'enfant': individu.firstName + ' aura'
+        }[individu.role];
+        return prefix + ' un chiffre d’affaires non nul en ' + currentMonth + '.';
+    };
 
     $scope.ressourceTypes = _.indexBy(ressourceTypes, 'id');
 
@@ -93,9 +99,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         };
     });
 
-    $scope.montantInvalide = function(montant) {
-        return ! angular.isNumber(montant);
-    };
+    $scope.isNumber = angular.isNumber;
 
     var applyIndividuVMRessourcesToIndividu = function(individuVM) {
         var individu = individuVM.individu;

@@ -1,38 +1,30 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1>C'est fini&nbsp;!</h1>
-    <p>
-      Il ne vous reste plus qu'à imprimer les formulaires disponibles ci-dessous.
-      <br><strong>Pensez bien à les compléter, les dater et les signer&nbsp;!</strong>
-      <br>Pensez également à bien inclure toutes les pièces justificatives requises.
-    </p>
-    <a class="btn btn-sm btn-default" ui-sref="foyer.resultat({situationId: situation._id})">
-      <i class="fa fa-chevron-left"></i>
-      Revenir aux résultats de la simulation
-    </a>
-  </div>
+<h1>{{ droitLabel }} : vos démarches</h1>
+<p>
+  Il ne vous reste plus qu'à <strong>compléter</strong> les formulaires disponibles ci-dessous, les <strong>imprimer</strong>, les <strong>dater</strong> et les <strong>signer</strong>&nbsp;!</strong>
+  <br>Pensez également à bien inclure toutes les pièces justificatives requises.
+</p>
+<button class="btn btn-default" ui-sref="foyer.resultat({situationId: situation._id})">
+  <i class="fa fa-chevron-left"></i>
+  Revenir aux résultats de la simulation
+</button>
 
-  <div class="frame-cerfa-header">
+  <div class="list-group">
     <h2><i class="fa fa-file"></i> Documents à imprimer</h2>
-    <p class="lead" ng-bind-html="trustAsHtml(cerfa.description)"></p>
+    <p class="cerfa-description" ng-bind-html="trustAsHtml(cerfa.description)"></p>
   </div>
-  <div class="row">
-    <div class="col-md-6" ng-repeat="cerfaForm in cerfaForms">
-      <div class="frame-cerfa">
-        <h1>{{ cerfaForm.label }}</h1>
-        <p ng-bind-html="trustAsHtml(cerfaForm.description)"></p>
-        <div class="text-center btn-cerfa">
-          <a
-            class="btn btn-primary"
-            href="/api/situations/{{ situation._id }}/cerfa/{{ cerfaForm.id }}"
-            target="_blank">
-            <i class="fa fa-file-pdf-o"></i>
-            Télécharger le formulaire
-          </a>
+  <ul class="frame-cerfa list-group">
+    <li class="btn-cerfa list-group-item" ng-click="openCerfaLink(cerfaForm.url)" ng-repeat="cerfaForm in cerfaForms">
+        <div class="row">
+        <div class="col-md-2 text-center">
+          <i class="fa fa-file-text-o fa-4x"></i>
+        </div>
+        <div class="col-md-10">
+          <h3>{{ cerfaForm.label }}</h3>
+          <p class="cerfa-description" ng-bind-html="trustAsHtml(cerfaForm.description)"></p>
         </div>
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 
   <h2><i class="fa fa-folder-open"></i> Pièces justificatives à fournir</h2>
 
@@ -51,7 +43,7 @@
           </div>
         </div>
         <div class="col-sm-2" ng-if="!isSituationMonoIndividu">
-          <span ng-repeat="individu in piece.individus">
+          <span ng-repeat="individu in piece.individus track by $index">
             <i class="fa fa-check-square"></i> {{ individu }}<br>
           </span>
         </div>
@@ -59,4 +51,7 @@
     </li>
   </ul>
 
-</div>
+<button class="btn btn-default" ui-sref="foyer.resultat({situationId: situation._id})">
+  <i class="fa fa-chevron-left"></i>
+  Revenir aux résultats de la simulation
+</button>

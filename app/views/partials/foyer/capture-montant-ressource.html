@@ -24,7 +24,7 @@
             ng-model="ressource.montantsMensuels[$index]">
           <span class="input-group-addon">€</span>
         </span>
-        <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantsMensuels[$index])">
+        <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
           Montant invalide
         </span>
       </div>
@@ -38,15 +38,18 @@
             class="form-control text-right"
             id="{{ index + ressource.type.id }}-annuel"
             required
-            min="0"
+            min="{{ monthsSum }}"
             step="100"
             select-on-focus
             zero-to-empty
             ng-model="ressource.montantAnnuel">
           <span class="input-group-addon">€</span>
         </span>
-        <span class="text-danger" ng-if="form.submitted && montantInvalide(ressource.montantAnnuel)">
+        <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
           Montant invalide
+        </span>
+        <span class="text-danger" ng-if="form.submitted && ressource.montantAnnuel < monthsSum">
+          La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
         </span>
       </div>
     </div>

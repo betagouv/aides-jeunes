@@ -17,11 +17,10 @@
       <montant-ressource
         ng-repeat="individuVM in individusVM"
         ng-model="individuVM.pensionsVersees"
-        short-label="individuVM.label"
+        individu-v-m="individuVM"
         ressource-type="pensionsVersees"
         index="$index"
-        date-de-valeur="situation.dateDeValeur"
-        on-going-label="'Je continuerai à verser cette pension en ' + currentMonth">
+        date-de-valeur="situation.dateDeValeur">
       </montant-ressource>
     </div>
 

@@ -16,7 +16,7 @@
           <button
             type="button"
             class="btn btn-sm btn-selection btn-default"
-            ng-repeat="ressourceType in ressourceTypesByCategories[category.id]"
+            ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']"
             btn-checkbox
             ng-model="individuVM.selectedRessourceTypes[ressourceType.id]">
             {{ ressourceType.label }}

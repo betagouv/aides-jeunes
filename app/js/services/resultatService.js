@@ -3,11 +3,18 @@
 angular.module('ddsApp').service('ResultatService', function($http, $modal, droitsDescription) {
 
     function processOpenfiscaResult(openfiscaResult) {
-        var droitsEligibles = { partenairesLocaux: {} };
+        var droitsEligibles = {};
         var calculatedPrestations = openfiscaResult.calculatedPrestations;
-        droitsEligibles.prestationsNationales = extractMontants(droitsDescription.prestationsNationales, calculatedPrestations);
-        _.forEach(droitsDescription.partenairesLocaux, function(partenaire) {
-            droitsEligibles.partenairesLocaux[partenaire.id] = extractMontants(partenaire.prestations, calculatedPrestations);
+        var prestationsNationales = extractMontants(droitsDescription.prestationsNationales, calculatedPrestations);
+        if (! Object.isEmpty(prestationsNationales)) {
+            droitsEligibles.prestationsNationales = prestationsNationales;
+        }
+        _.forEach(droitsDescription.partenairesLocaux, function(partenaire, partenaireId) {
+            var partenairePrestations = extractMontants(partenaire.prestations, calculatedPrestations);
+            if (! Object.isEmpty(partenairePrestations)) {
+                droitsEligibles.partenairesLocaux = droitsEligibles.partenairesLocaux || {};
+                droitsEligibles.partenairesLocaux[partenaireId] = partenairePrestations;
+            }
         });
         return {
             droitsEligibles: droitsEligibles,
@@ -20,7 +27,7 @@ angular.module('ddsApp').service('ResultatService', function($http, $modal, droi
     function extractMontants(prestationsList, openfiscaResult) {
         return _.reduce(prestationsList, function(result, droit, droitId) {
             if (openfiscaResult[droitId]) {
-                result[droitId] = Object.assign(droit, { montant: openfiscaResult[droitId] });
+                result[droitId] = _.assign(droit, { montant: openfiscaResult[droitId] });
             }
             return result;
         }, {});

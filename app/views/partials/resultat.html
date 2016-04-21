@@ -1,54 +1,64 @@
 <h1>Résultats de votre simulation</h1>
 
-
 <p ng-if="awaitingResults"><i class="fa fa-spinner fa-spin"></i> Calcul en cours de vos droits…</p>
-
 
 <div class="alert alert-danger" ng-if="error">
   <h2>Désolé, nous n'arrivons pas à calculer vos droits pour le moment.</h2>
   <p>Une erreur est survenue dans la simulation.</p>
 </div>
 
-<p ng-if="!error && !awaitingResults && !noDroits">D'après la situation que vous avez décrite, vous êtes a priori éligible aux aides suivantes : </p>
-<div class="frame-resultats" ng-if="!error && !awaitingResults">
-  <droit-eligibles-list list="droits.prestationsNationales"></droit-eligibles-list>
-  <h3>Vous êtes également éligibles à ces aides de la <b>ville de Paris</b> :</h3>
-  <p>Attention, l'impact de ces aides sur les prestations nationales ci-dessus n'a pas encore été évalué.</p>
-  <droit-eligibles-list list="droits.partenairesLocaux.paris"></droit-eligibles-list>
-  <div ng-if="noDroits && ressourcesYearMoins2Captured && ! error">
-    <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
-    <p>Si vous êtes malgré cela dans une situation de précarité, entrez directement en contact avec <a href="/faq#recours">l’un des organismes</a> qui détermine l’attribution des aides sociales.</p>
-  </div>
+<div ng-if="!error && !awaitingResults">
+  <div ng-if="droits.prestationsNationales">
+    <p>D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides {{ droits.partenairesLocaux ? "nationales" : "" }} : </p>
+    <div class="frame-resultats">
+      <droit-eligibles-list list="droits.prestationsNationales"></droit-eligibles-list>
 
-  <div ng-if="noDroits && ! ressourcesYearMoins2Captured && ! error">
-    <h2>On y est presque !</h2>
-  </div>
-
-  <div class="row additional-info-cta" ng-if="! ressourcesYearMoins2Captured && ! error">
-    <div class="col-sm-8">
-      <p>
-        <i ng-if="! noDroits" class="fa fa-warning text-warning"></i> <!-- show sign only as a legend -->
-        <strong>Nous avons supposé que vos ressources pour l’année {{ yearMoins2 }} étaient les mêmes qu’entre {{ debutPeriode }} et {{ finPeriode }}.</strong>
-      </p>
-    </div>
-
-    <div class="col-sm-4">
-      <a class="btn btn-success btn-block" ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
+      <div class="row additional-info-cta" ng-if="! ressourcesYearMoins2Captured">
+        <div class="col-sm-8">
+          <p>
+            <i ng-if="! noDroits" class="fa fa-warning text-warning"></i> <!-- show sign only as a legend -->
+            <strong>Nous avons supposé que vos ressources pour l’année {{ yearMoins2 }} étaient les mêmes qu’entre {{ debutPeriode }} et {{ finPeriode }}.</strong>
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <a class="btn btn-success btn-block" ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="frame-resultats" ng-if="! noDroits && ! situation.patrimoine.captured">
-  <div class="row">
-    <div class="col-sm-8">
-      <i class="fa fa-info-circle"></i>
-      Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ?
-      Vous devez renseigner des informations complémentaires.
-    </div>
-    <div class="col-sm-4">
-      <a class="btn btn-default btn-block" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
+  <div ng-repeat="(partenaireId, prestationsPartenaire) in droits.partenairesLocaux">
+    <p>Vous êtes {{ droits.prestationsNationales ? "également" : "" }} éligibles à ces aides <span ng-bind-html="getPartenaireLocalLabel(partenaireId)"/></span> :</p>
+    <div class="frame-resultats">
+      <droit-eligibles-list list="prestationsPartenaire"></droit-eligibles-list>
+      <div class="additional-info-cta">
+        <p><i class="fa fa-info-circle"></i> Percevoir des aides locales peut changer le montant des prestations nationales.</p>
+      </div>
     </div>
   </div>
+
+  <div class="frame-resultats" ng-if="noDroits && ressourcesYearMoins2Captured">
+      <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
+      <p>Si vous êtes malgré cela dans une situation de précarité, entrez directement en contact avec <a href="/faq#recours">l’un des organismes</a> qui détermine l’attribution des aides sociales.</p>
+  </div>
+
+  <div class="frame-resultats" ng-if="noDroits && ! ressourcesYearMoins2Captured">
+      <h2>On y est presque !</h2>
+  </div>
+
+  <div class="frame-resultats" ng-if="! noDroits && ! situation.patrimoine.captured">
+    <div class="row">
+      <div class="col-sm-8">
+        <i class="fa fa-info-circle"></i>
+        Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ?
+        Vous devez renseigner des informations complémentaires.
+      </div>
+      <div class="col-sm-4">
+        <a class="btn btn-default btn-block" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div>

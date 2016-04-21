@@ -39,20 +39,9 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         });
     };
 
-    $scope.round = function(droit) {
-        if (! droit.unit && droit.roundToNearest10 !== false) {
-            return Math.round(droit.montant / 10) * 10;
-        } else {
-            return Math.round(droit.montant);
-        }
-    };
-
     $scope.hasCerfa = function(droit) { return cerfaForms[droit]; };
 
     $scope.goToCerfa = function(droit) {
         $state.go('foyer.download_cerfa', { droit: droit });
     };
-
-    $scope.isNumber = _.isNumber;
-    $scope.isString = _.isString;
 });

@@ -13,13 +13,13 @@ LOG_FILE=deployment.log
 #   PORT=8000 OPENFISCA_PORT=2000 PUBLIC_HOST=mes-aides.gouv.fr PROTOCOL=https ./deploy.sh
 USER=`whoami`
 TARGET_BRANCH=${USER#mes-aides-}
-source current_config || echo "No current_config file found."
+source current_config.env || echo "No current_config.env file found."
 PORT=${PORT:-$CURRENT_PORT}
 OPENFISCA_PORT=${OPENFISCA_PORT:-$CURRENT_OPENFISCA_PORT}
 
 if ! [[ -n $PORT && -n $OPENFISCA_PORT ]]
 then
-    echo "Ports not specified, and not found in current_config file. Please provide them."; exit
+    echo "Ports not specified, and not found in current_config.env file. Please provide them."; exit
 fi
 
 PUBLIC_HOST=${PUBLIC_HOST:-${CURRENT_PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.sgmap.fr}}
@@ -118,7 +118,7 @@ echo "CURRENT_PORT=$PORT
 CURRENT_OPENFISCA_PORT=$OPENFISCA_PORT
 CURRENT_PUBLIC_HOST=$PUBLIC_HOST
 CURRENT_PROTOCOL=$PROTOCOL
-" > current_config
+" > current_config.env
 
 set +x
 

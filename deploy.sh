@@ -19,7 +19,8 @@ OPENFISCA_PORT=${OPENFISCA_PORT:-$CURRENT_OPENFISCA_PORT}
 
 if ! [[ -n $PORT && -n $OPENFISCA_PORT ]]
 then
-    echo "Ports not specified, and not found in current_config.env file. Please provide them."; exit
+    echo "Ports not specified, and not found in current_config.env file. Please provide them."
+    exit 1
 fi
 
 PUBLIC_HOST=${PUBLIC_HOST:-${CURRENT_PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.sgmap.fr}}

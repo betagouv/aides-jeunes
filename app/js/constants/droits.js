@@ -231,8 +231,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'imgSrc': 'logo_mairie_paris.png',
                     'description': 'Paris solidarité est un complément de ressources mensuelles',
                     'conditions': [
-                        'Avoir demandé le versement des aides logement auxquelles vous avez droit auprès de la CAF.',
-                        'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
+                        'Percevoir tous les avantages légaux auxquels vous pouvez prétendre.',
                     ],
                     'link': 'http://www.paris.fr/aides',
                     'isBaseRessourcesYearMoins2': false,

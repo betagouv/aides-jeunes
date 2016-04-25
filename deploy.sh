@@ -70,7 +70,7 @@ then
     ./update.sh
 fi
 
-PORT=$OPENFISCA_PORT ./generateConfig.sh mes-aides
+PORT=$OPENFISCA_PORT ./generateMesAidesConfig.sh
 
 # Stop OpenFisca
 forever stop openfisca || echo 'No OpenFisca server was running'

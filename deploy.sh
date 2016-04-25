@@ -23,7 +23,7 @@ then
     exit 1
 fi
 
-PUBLIC_HOST=${PUBLIC_HOST:-${CURRENT_PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.sgmap.fr}}
+PUBLIC_HOST=${PUBLIC_HOST:-${CURRENT_PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.beta.gouv.fr}}
 PROTOCOL=${PROTOCOL:-${CURRENT_PROTOCOL:-http}}
 
 # Log deployment

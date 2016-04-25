@@ -30,6 +30,13 @@ Once you have Node and npm installed, run:
 npm install --global grunt-cli bower
 ```
 
+### In production
+
+[upstart](http://upstart.ubuntu.com/index.html) and [foreman](http://theforeman.org/) are used to run the production server for [mes-aides.gouv.fr](https://mes-aides.gouv.fr/).
+
+[foreverjs](https://github.com/foreverjs/forever) is used to run the server for staging feature branches versions of mes-aides. It needs to be installed before running the deployment scripts: `npm install --global forever`.
+
+The production Mongo server can be (re)started with `ssh root@sgmap.fr "service mongod (re)start"`.
 
 Application
 -----------
@@ -146,6 +153,11 @@ ssh openfisca-mes-aides@sgmap.fr ./deploy
 
 ### Déployer une feature branch
 
+Chaque feature branch est déployée sur le serveur de production par un utilisateur spécifique `mes-aides-$BRANCH`. Lorsque cet utilisateur exécute le script de déploiement `deploy.sh`, les branches `$BRANCH` de mes-aides-ui et [openfisca](https://github.com/sgmap/openfisca) sont déployées. Si cette branche n'existe pas sur le dépôt openfisca, la branche `master` est déployée.
+
+> La taille du nom d'utilisateur étant limitée à 32 caractères sur le serveur de production, le nom de la feature branch ne doit pas dépasser 22 caractères.
+
+
 #### Ajouter un utilisateur capable de déployer sur le serveur de production
 
 En se connectant en tant que `root`.
@@ -154,8 +166,7 @@ En se connectant en tant que `root`.
 BRANCH=ppa
 
 # Créer l'utilisateur
-adduser mes-aides-$BRANCH  # give whichever password and leave everything to default
-passwd --delete mes-aides-$BRANCH
+adduser mes-aides-$BRANCH --disabled-password --gecos ""
 
 # Rendre l'utilisateur accessible depuis l'extérieur
 mkdir /home/mes-aides-$BRANCH/.ssh/
@@ -169,8 +180,21 @@ chmod u+x /home/mes-aides-$BRANCH/deploy.sh
 
 #### Sur le poste de développement
 
+- Premier déploiement
 ```sh
 ssh-add ~/.ssh/mes-aides-bot
-ssh mes-aides-$BRANCH@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 ./deploy.sh $BRANCH"
+ssh mes-aides-$BRANCH@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 ./deploy.sh"
 ssh root@sgmap.fr "service nginx reload"
+```
+
+- Redéploiements
+```sh
+ssh mes-aides-$BRANCH@sgmap.fr "./deploy.sh"
+```
+
+### Supprimer une instance de feature branch
+
+```sh
+ssh mes-aides-$BRANCH@sgmap.fr 'forever stopall; rm /etc/nginx/conf.d/$(whoami).conf'
+ssh root@sgmap.fr "userdel mes-aides-$BRANCH --remove"
 ```

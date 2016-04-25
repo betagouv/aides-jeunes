@@ -34,7 +34,7 @@ npm install --global grunt-cli bower
 
 [upstart](http://upstart.ubuntu.com/index.html) and [foreman](http://theforeman.org/) are used to run the production server for [mes-aides.gouv.fr](https://mes-aides.gouv.fr/).
 
-[foreverjs](https://github.com/foreverjs/forever) is used to run the server for staging feature branche versions of mes-aides. It needs to be installed before running the deployment scripts.
+[foreverjs](https://github.com/foreverjs/forever) is used to run the server for staging feature branches versions of mes-aides. It needs to be installed before running the deployment scripts.
 
 The production Mongo server can be (re)started with `ssh root@sgmap.fr "service mongod (re)start"`.
 

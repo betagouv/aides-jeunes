@@ -181,3 +181,9 @@ ssh-add ~/.ssh/mes-aides-bot
 ssh mes-aides-$BRANCH@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 ./deploy.sh"
 ssh root@sgmap.fr "service nginx reload"
 ```
+
+### Supprimer une instance de feature branche
+```sh
+ssh mes-aides-$BRANCH@sgmap.fr 'forever stopall; rm /etc/nginx/conf.d/$(whoami).conf'
+ssh root@sgmap.fr "userdel mes-aides-$BRANCH"
+```

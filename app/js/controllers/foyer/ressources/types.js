@@ -23,7 +23,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
         montantAnnuel: 0,
         caAnnuel: 0,
         montantsMensuels: [0, 0, 0],
-        interrupted: false,
+        onGoing: true,
     };
 
     $scope.pageTitle = pageTitle();

@@ -8,15 +8,23 @@ LOG_FILE=deployment.log
 
 # Defaults for production.
 # Example for development:
-#   PORT=8100 OPENFISCA_PORT=12100 ./deploy.sh aah
+#   PORT=8100 OPENFISCA_PORT=12100 ./deploy.sh
 # Example for production:
 #   PORT=8000 OPENFISCA_PORT=2000 PUBLIC_HOST=mes-aides.gouv.fr PROTOCOL=https ./deploy.sh
-TARGET_BRANCH=${1:-master}
-PORT=${PORT:-8000}
-OPENFISCA_PORT=${OPENFISCA_PORT:-12000}
-PUBLIC_HOST=${PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.sgmap.fr}
-PROTOCOL=${PROTOCOL:-http}
+USER=`whoami`
+TARGET_BRANCH=${USER#mes-aides-}
+source current_config.env || echo "No current_config.env file found."
+PORT=${PORT:-$CURRENT_PORT}
+OPENFISCA_PORT=${OPENFISCA_PORT:-$CURRENT_OPENFISCA_PORT}
 
+if ! [[ -n $PORT && -n $OPENFISCA_PORT ]]
+then
+    echo "Ports not specified, and not found in current_config.env file. Please provide them."
+    exit 1
+fi
+
+PUBLIC_HOST=${PUBLIC_HOST:-${CURRENT_PUBLIC_HOST:-$TARGET_BRANCH.mes-aides.beta.gouv.fr}}
+PROTOCOL=${PROTOCOL:-${CURRENT_PROTOCOL:-http}}
 
 # Log deployment
 date >> $LOG_FILE
@@ -40,34 +48,40 @@ npm install
 grunt build
 
 # Stop Mes Aides
-killall --user `whoami` node || echo 'No server was running'
+forever stop mes-aides || echo 'No server was running'
 
-mongo localhost --eval "db.copyDatabase('mes-aides-master', '`whoami`')"
+mongo localhost --eval "db.copyDatabase('mes-aides-master', '$USER')"
 
 # Start Mes Aides
-OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="$PROTOCOL://$PUBLIC_HOST" PORT=$PORT MONGODB_URL="mongodb://localhost/$(whoami)" nohup node server.js >> ../mes-aides.log 2>> ../mes-aides_error.log &
+OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=production MES_AIDES_ROOT_URL="$PROTOCOL://$PUBLIC_HOST" PORT=$PORT MONGODB_URL="mongodb://localhost/$USER" forever --uid mes-aides -l ../mes-aides.log -e ../mes-aides_error.log --append start server.js
 
 cd ..
 
 # Install OpenFisca
 if ! cd openfisca
 then
-    git clone https://github.com/sgmap/openfisca.git --branch $TARGET_BRANCH
+    git clone https://github.com/sgmap/openfisca.git
     cd openfisca
 fi
 
-./update.sh $TARGET_BRANCH
+if ! ./update.sh $TARGET_BRANCH
+then
+    echo "No branch $TARGET_BRANCH was found on sgmap/openfisca. Staying on current branch."
+    ./update.sh
+fi
+
+PORT=$OPENFISCA_PORT ./generateMesAidesConfig.sh
 
 # Stop OpenFisca
-killall --user `whoami` /usr/bin/python || echo 'No OpenFisca server was running'
-# Start OpenFisca
-PORT=$OPENFISCA_PORT nohup ./start.sh mes-aides >> ../openfisca.log 2>> ../openfisca_error.log &
+forever stop openfisca || echo 'No OpenFisca server was running'
 
+# Start OpenFisca
+forever --uid openfisca -l ../openfisca.log -e ../openfisca_error.log --append start -c "paster serve" config/current.ini
 cd ..
 
 # Set up reverse proxy
 
-echo "upstream $(whoami) {
+echo "upstream $USER {
     server 127.0.0.1:$PORT;
 }
 
@@ -95,10 +109,17 @@ server {
         proxy_set_header Upgrade \$http_upgrade;
         proxy_set_header Connection \"upgrade\";
 
-        proxy_pass  http://$(whoami);
+        proxy_pass  http://$USER;
         proxy_redirect off;
     }
-}" > /etc/nginx/conf.d/$(whoami).conf
+}" > /etc/nginx/conf.d/$USER.conf
+
+# Save current config
+echo "CURRENT_PORT=$PORT
+CURRENT_OPENFISCA_PORT=$OPENFISCA_PORT
+CURRENT_PUBLIC_HOST=$PUBLIC_HOST
+CURRENT_PROTOCOL=$PROTOCOL
+" > current_config.env
 
 set +x
 

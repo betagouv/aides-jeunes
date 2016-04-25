@@ -153,8 +153,12 @@ ssh openfisca-mes-aides@sgmap.fr ./deploy
 
 ### Déployer une feature branch
 
-#### Ajouter un utilisateur capable de déployer sur le serveur de production
+Chaque feature branch est déployée sur le serveur de production par un utilisateur spécifique `mes-aides-$BRANCH`. Lorsque cet utilisateur exécute le script de déploiement `deploy.sh`, les branches `$BRANCH` de mes-aides-ui et [openfisca](https://github.com/sgmap/openfisca) sont déployées. Si cette branche n'existe pas sur le dépôt openfisca, la branche `master` est déployée.
+
 > La taille du nom d'utilisateur étant limitée à 32 caractères sur le serveur de production, le nom de la feature branch ne doit pas dépasser 22 caractères.
+
+
+#### Ajouter un utilisateur capable de déployer sur le serveur de production
 
 En se connectant en tant que `root`.
 
@@ -176,10 +180,16 @@ chmod u+x /home/mes-aides-$BRANCH/deploy.sh
 
 #### Sur le poste de développement
 
+- Premier déploiement
 ```sh
 ssh-add ~/.ssh/mes-aides-bot
 ssh mes-aides-$BRANCH@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 ./deploy.sh"
 ssh root@sgmap.fr "service nginx reload"
+```
+
+- Redéploiements
+```sh
+ssh mes-aides-$BRANCH@sgmap.fr "./deploy.sh"
 ```
 
 ### Supprimer une instance de feature branche

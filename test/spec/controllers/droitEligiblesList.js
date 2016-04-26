@@ -2,16 +2,14 @@
 
 /* global _ */
 
-describe('Controller: ResultatCtrl', function() {
+describe('Controller: droitEligiblesListCtrl', function() {
 
-    var controller, scope, q, ResultatService;
+    var controller, scope;
 
     beforeEach(function() {
         module('ddsApp');
-        inject(function($controller, $rootScope, $q, _ResultatService_) {
+        inject(function($controller, $rootScope) {
             controller = $controller;
-            q = $q;
-            ResultatService = _ResultatService_;
             scope = $rootScope.$new();
             scope.situation = { dateDeValeur: '2013-04-10', individus: [] };
         });
@@ -21,7 +19,7 @@ describe('Controller: ResultatCtrl', function() {
         describe('euros', function() {
             it('should give nearest ten', function() {
                 var values = [{ montant: 100 }, { montant: 57 }, { montant: 54 }];
-                controller('ResultatCtrl', { $scope: scope });
+                controller('droitEligiblesListCtrl', { $scope: scope });
 
                 // when
                 var results = _.map(values, scope.round);
@@ -33,7 +31,7 @@ describe('Controller: ResultatCtrl', function() {
         describe('percentage', function() {
             it('should give nearest unit', function() {
                 var values = [{ montant: 74.11, unit: '%' }, { montant: 26.81, unit: '%' }];
-                controller('ResultatCtrl', { $scope: scope });
+                controller('droitEligiblesListCtrl', { $scope: scope });
 
                 // when
                 var results = _.map(values, scope.round);

@@ -26,6 +26,10 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         return partenaire.prefix + ' <strong>' + partenaire.label + '</strong>';
     };
 
+    $scope.displayImpactInfo = function(partenaireId) {
+        return ! droitsDescription.partenairesLocaux[partenaireId].interactionWithNationalPrestationCalculated;
+    };
+
     $scope.createTest = function() {
         var expectedResults = _.map($scope.droits, function(droit, id) {
             return {

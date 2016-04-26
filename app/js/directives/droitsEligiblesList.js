@@ -7,16 +7,18 @@ angular.module('ddsApp').directive('droitEligiblesList', function() {
         scope: {
             list: '='
         },
-        link: function(scope) {
-    		scope.isNumber = _.isNumber;
-    		scope.isString = _.isString;
-        	scope.round = function(droit) {
-		        if (! droit.unit && droit.roundToNearest10 !== false) {
-		            return Math.round(droit.montant / 10) * 10;
-		        } else {
-		            return Math.round(droit.montant);
-		        }
-	    	};
+        controller: 'droitEligiblesListCtrl',
+    };
+});
+
+angular.module('ddsApp').controller('droitEligiblesListCtrl', function($scope) {
+    $scope.isNumber = _.isNumber;
+    $scope.isString = _.isString;
+    $scope.round = function(droit) {
+        if (! droit.unit && droit.roundToNearest10 !== false) {
+            return Math.round(droit.montant / 10) * 10;
+        } else {
+            return Math.round(droit.montant);
         }
     };
 });

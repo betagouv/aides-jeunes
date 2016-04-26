@@ -32,7 +32,7 @@
     <div class="frame-resultats">
       <droit-eligibles-list list="prestationsPartenaire"></droit-eligibles-list>
       <div class="additional-info-cta">
-        <p><i class="fa fa-info-circle"></i> Percevoir des aides locales peut changer le montant des prestations nationales.</p>
+        <p ng-if="droits.prestationsNationales || ! (droitsInjectes | isEmpty)"><i class="fa fa-info-circle"></i> Percevoir des aides locales peut changer le montant des prestations nationales dont vous pouvez bénéficier.</p>
       </div>
     </div>
   </div>

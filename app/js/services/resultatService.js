@@ -6,12 +6,12 @@ angular.module('ddsApp').service('ResultatService', function($http, $modal, droi
         var droitsEligibles = {};
         var calculatedPrestations = openfiscaResult.calculatedPrestations;
         var prestationsNationales = extractMontants(droitsDescription.prestationsNationales, calculatedPrestations);
-        if (! Object.isEmpty(prestationsNationales)) {
+        if (! _.isEmpty(prestationsNationales)) {
             droitsEligibles.prestationsNationales = prestationsNationales;
         }
         _.forEach(droitsDescription.partenairesLocaux, function(partenaire, partenaireId) {
             var partenairePrestations = extractMontants(partenaire.prestations, calculatedPrestations);
-            if (! Object.isEmpty(partenairePrestations)) {
+            if (! _.isEmpty(partenairePrestations)) {
                 droitsEligibles.partenairesLocaux = droitsEligibles.partenairesLocaux || {};
                 droitsEligibles.partenairesLocaux[partenaireId] = partenairePrestations;
             }

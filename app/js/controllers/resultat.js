@@ -23,7 +23,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
 
     $scope.getPartenaireLocalLabel = function(partenaireId) {
         var partenaire = droitsDescription.partenairesLocaux[partenaireId];
-        return partenaire.prefix + ' <b>' + partenaire.label + '</b>';
+        return partenaire.prefix + ' <strong>' + partenaire.label + '</strong>';
     };
 
     $scope.createTest = function() {

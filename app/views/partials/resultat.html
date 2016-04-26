@@ -9,7 +9,7 @@
 
 <div ng-if="!error && !awaitingResults">
   <div ng-if="droits.prestationsNationales">
-    <p>D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides {{ droits.partenairesLocaux ? "nationales" : "" }} : </p>
+    <p>D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides <strong>{{ droits.partenairesLocaux ? "nationales" : "" }}</strong> : </p>
     <div class="frame-resultats">
       <droit-eligibles-list list="droits.prestationsNationales"></droit-eligibles-list>
 
@@ -28,7 +28,7 @@
   </div>
 
   <div ng-repeat="(partenaireId, prestationsPartenaire) in droits.partenairesLocaux">
-    <p>Vous êtes {{ droits.prestationsNationales ? "également" : "" }} éligibles à ces aides <span ng-bind-html="getPartenaireLocalLabel(partenaireId)"/></span> :</p>
+    <p>Vous êtes {{ droits.prestationsNationales ? "également" : "" }} a priori éligible à ces aides <span ng-bind-html="getPartenaireLocalLabel(partenaireId)"></span>&nbsp;:</p>
     <div class="frame-resultats">
       <droit-eligibles-list list="prestationsPartenaire"></droit-eligibles-list>
       <div class="additional-info-cta">

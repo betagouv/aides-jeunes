@@ -8,15 +8,6 @@
 </div>
 
 <div ng-if="!error && !awaitingResults">
-  <div class="frame-resultats" ng-if="noDroits && ressourcesYearMoins2Captured">
-      <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
-      <p>Si vous êtes malgré cela dans une situation de précarité, entrez directement en contact avec <a href="/faq#recours">l’un des organismes</a> qui détermine l’attribution des aides sociales.</p>
-  </div>
-
-  <div class="frame-resultats" ng-if="noDroits && ! ressourcesYearMoins2Captured">
-      <h2>On y est presque !</h2>
-      <ym2-ressources-call-to-action ng-if="! ressourcesYearMoins2Captured"></ym2-ressources-call-to-action>
-  </div>
 
   <div ng-if="droits.prestationsNationales">
     <p>D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides <strong>{{ droits.partenairesLocaux ? "nationales" : "" }}</strong> : </p>
@@ -38,6 +29,16 @@
         </p>
       </div>
     </div>
+  </div>
+
+  <div class="frame-resultats" ng-if="! droits.prestationsNationales && ! ressourcesYearMoins2Captured">
+      <h2 ng-if="noDroits">On y est presque !</h2>
+      <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
+  </div>
+
+  <div class="frame-resultats" ng-if="noDroits && ressourcesYearMoins2Captured">
+      <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
+      <p>Si vous êtes malgré cela dans une situation de précarité, entrez directement en contact avec <a href="/faq#recours">l’un des organismes</a> qui détermine l’attribution des aides sociales.</p>
   </div>
 
   <div class="frame-resultats" ng-if="! noDroits && ! situation.patrimoine.captured">

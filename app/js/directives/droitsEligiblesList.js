@@ -4,10 +4,11 @@ angular.module('ddsApp').directive('droitEligiblesList', function() {
     return {
         restrict: 'E',
         templateUrl: 'partials/droits-eligibles-list.html',
-        scope: {
-            list: '='
-        },
+        scope: true,
         controller: 'droitEligiblesListCtrl',
+        link: function ($scope, $element, $attributes) {
+            $scope.list = $scope.$eval($attributes.list);
+        }
     };
 });
 

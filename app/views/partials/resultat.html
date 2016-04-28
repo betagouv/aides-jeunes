@@ -8,22 +8,21 @@
 </div>
 
 <div ng-if="!error && !awaitingResults">
+  <div class="frame-resultats" ng-if="noDroits && ressourcesYearMoins2Captured">
+      <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
+      <p>Si vous êtes malgré cela dans une situation de précarité, entrez directement en contact avec <a href="/faq#recours">l’un des organismes</a> qui détermine l’attribution des aides sociales.</p>
+  </div>
+
+  <div class="frame-resultats" ng-if="noDroits && ! ressourcesYearMoins2Captured">
+      <h2>On y est presque !</h2>
+      <ym2-ressources-call-to-action ng-if="! ressourcesYearMoins2Captured"></ym2-ressources-call-to-action>
+  </div>
+
   <div ng-if="droits.prestationsNationales">
     <p>D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides <strong>{{ droits.partenairesLocaux ? "nationales" : "" }}</strong> : </p>
     <div class="frame-resultats">
       <droit-eligibles-list list="droits.prestationsNationales"></droit-eligibles-list>
-
-      <div class="row additional-info-cta" ng-if="! ressourcesYearMoins2Captured">
-        <div class="col-sm-8">
-          <p>
-            <i ng-if="! noDroits" class="fa fa-warning text-warning"></i> <!-- show sign only as a legend -->
-            <strong>Nous avons supposé que vos ressources pour l’année {{ yearMoins2 }} étaient les mêmes qu’entre {{ debutPeriode }} et {{ finPeriode }}.</strong>
-          </p>
-        </div>
-        <div class="col-sm-4">
-          <a class="btn btn-success btn-block" ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
-        </div>
-      </div>
+      <ym2-ressources-call-to-action ng-if="! ressourcesYearMoins2Captured"></ym2-ressources-call-to-action>
     </div>
   </div>
 
@@ -37,15 +36,6 @@
         </p>
       </div>
     </div>
-  </div>
-
-  <div class="frame-resultats" ng-if="noDroits && ressourcesYearMoins2Captured">
-      <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
-      <p>Si vous êtes malgré cela dans une situation de précarité, entrez directement en contact avec <a href="/faq#recours">l’un des organismes</a> qui détermine l’attribution des aides sociales.</p>
-  </div>
-
-  <div class="frame-resultats" ng-if="noDroits && ! ressourcesYearMoins2Captured">
-      <h2>On y est presque !</h2>
   </div>
 
   <div class="frame-resultats" ng-if="! noDroits && ! situation.patrimoine.captured">
@@ -67,6 +57,7 @@
   <hr>
   <h4 ng-show="! (droitsInjectes | isEmpty)">Aides que vous percevez déjà aujourd'hui, et dont nous n'avons pas recalculé le montant</h4>
   <droits-list droits="droitsInjectes"></droits-list>
+</div>
 
 <p class="text-right">
   <strong>Nous améliorons ce simulateur en continu. N'hésitez pas à <a href="mailto:feedback@mes-aides.gouv.fr">nous transmettre vos retours et suggestions</a>&nbsp;!</strong>

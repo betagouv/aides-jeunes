@@ -86,7 +86,7 @@
     </div>
     <hr>
     <h2 class="text-center">Prestations locales</h2>
-    <div ng-repeat="partenaireLocal in partenairesLocaux">
+    <div ng-repeat="partenaireLocal in partenairesLocaux|orderObjectBy:'positionInList'">
       <hr>
       <div class="row">
         <div class="text-center col-md-2">
@@ -106,8 +106,8 @@
             </div>
           </div>
           <div class="col-md-12 showDetailsButtonBlock">
-            <button class="btn" type="button" ng-show="!showDetails && partenaireLocal.prestations.length > 2" ng-click="showDetails = ! showDetails">
-              Voir les {{ partenaireLocal.prestations.length - 2 }} autres aides calculées
+            <button class="btn" type="button" ng-show="!showDetails && nbPrestations(partenaireLocal) > 2" ng-click="showDetails = ! showDetails">
+              Voir les {{ nbPrestations(partenaireLocal) - 2 }} autres aides calculées
             </button>
           </div>
       </div>

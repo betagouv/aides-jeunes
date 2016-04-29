@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, ResultatService, cerfaForms) {
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, ResultatService, cerfaForms, droitsDescription) {
     $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
     $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('years', 1).format('MMMM YYYY');
     $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1).format('MMMM YYYY');
@@ -8,14 +8,12 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
 
     $scope.error = false;
     $scope.droits = null;
-    $scope.droitsNonEligibles = null;
 
     $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
 
     ResultatService.simulate($scope.situation).then(function(droits) {
         $scope.droits = droits.droitsEligibles;
         $scope.droitsInjectes = droits.droitsInjectes;
-        $scope.droitsNonEligibles = droits.droitsNonEligibles;
         $scope.noDroits = _.isEmpty($scope.droits);
     }, function() {
         $scope.error = true;
@@ -23,8 +21,23 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         $scope.awaitingResults = false;
     });
 
+    $scope.getPartenaireLocalLabel = function(partenaireId) {
+        var partenaire = droitsDescription.partenairesLocaux[partenaireId];
+        return partenaire.prefix + ' <strong>' + partenaire.label + '</strong>';
+    };
+
+    $scope.shouldDisplayImpactInfo = function(partenaireId) {
+        return ! droitsDescription.partenairesLocaux[partenaireId].interactionWithNationalPrestationCalculated;
+    };
+
     $scope.createTest = function() {
-        var expectedResults = _.map($scope.droits, function(droit, id) {
+        // Merge national and local prestations into a flat object compatible with ludwig.
+        var flatPrestations = _.merge.apply(
+            null,
+            _.values($scope.droits.partenairesLocaux).concat($scope.droits.prestationsNationales)
+        );
+
+        var expectedResults = _.map(flatPrestations, function(droit, id) {
             return {
                 code: id,
                 expectedValue: droit.montant
@@ -41,20 +54,9 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         });
     };
 
-    $scope.round = function(droit) {
-        if (! droit.unit && droit.roundToNearest10 !== false) {
-            return Math.round(droit.montant / 10) * 10;
-        } else {
-            return Math.round(droit.montant);
-        }
-    };
-
     $scope.hasCerfa = function(droit) { return cerfaForms[droit]; };
 
     $scope.goToCerfa = function(droit) {
         $state.go('foyer.download_cerfa', { droit: droit });
     };
-
-    $scope.isNumber = _.isNumber;
-    $scope.isString = _.isString;
 });

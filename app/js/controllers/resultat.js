@@ -31,7 +31,13 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     };
 
     $scope.createTest = function() {
-        var expectedResults = _.map($scope.droits, function(droit, id) {
+        // Merge national and local prestations into a flat object compatible with ludwig.
+        var flatPrestations = _.merge.apply(
+            null,
+            _.values($scope.droits.partenairesLocaux).concat($scope.droits.prestationsNationales)
+        );
+
+        var expectedResults = _.map(flatPrestations, function(droit, id) {
             return {
                 code: id,
                 expectedValue: droit.montant

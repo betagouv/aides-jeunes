@@ -31,7 +31,7 @@
     <div class="frame-resultats">
       <droit-eligibles-list list="prestationsPartenaire"></droit-eligibles-list>
       <div class="additional-info-cta">
-        <p ng-if="displayImpactInfo(partenaireId)">
+        <p ng-if="shouldDisplayImpactInfo(partenaireId)">
           <i class="fa fa-info-circle"></i>
           {{ (! droits.prestationsNationales && (droitsInjectes | isEmpty)) ? "Si vous percevez aussi des aides nationales, le" : "Le" }}
            montant de ces aides locales pourrait être partiellement déduit de vos aides nationales. Nous travaillons avec nos partenaires pour déterminer plus précisément ces interactions.

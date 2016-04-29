@@ -26,7 +26,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         return partenaire.prefix + ' <strong>' + partenaire.label + '</strong>';
     };
 
-    $scope.displayImpactInfo = function(partenaireId) {
+    $scope.shouldDisplayImpactInfo = function(partenaireId) {
         return ! droitsDescription.partenairesLocaux[partenaireId].interactionWithNationalPrestationCalculated;
     };
 

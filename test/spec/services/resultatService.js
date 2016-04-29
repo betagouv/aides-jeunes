@@ -3,9 +3,11 @@
 describe('ResultatService', function () {
     describe('sortDroits', function() {
         var DROITS_DESCRIPTION = {
-            acs: { id: 'acs' },
-            apl: { id: 'apl' },
-            ass: { id: 'ass'}
+            prestationsNationales : {
+                'acs': { shortLabel: 'ACS' },
+                'apl': { shortLabel: 'APL' },
+                'ass': { shortLabel: 'ASS' }
+            }
         };
         var service, droits, openfiscaResult;
 
@@ -17,20 +19,16 @@ describe('ResultatService', function () {
             inject(function(ResultatService) {
                 service = ResultatService;
             });
-            openfiscaResult = { acs: 10, apl: null };
-            droits = service.sortDroits(openfiscaResult);
+            openfiscaResult = { calculatedPrestations: { acs: 10 }, injectedPrestations: ['apl'] };
+            droits = service.processOpenfiscaResult(openfiscaResult);
         });
 
         it('should extract eligibles droits from openfisca result', function() {
-            expect(droits.droitsEligibles).toEqual({ acs: { id: 'acs', montant: 10 } });
+            expect(droits.droitsEligibles.prestationsNationales).toEqual({ acs: { shortLabel: 'ACS', montant: 10 } });
         });
 
         it('should extract injected droits', function() {
-            expect(droits.droitsInjectes).toEqual({ apl: { id: 'apl' } });
-        });
-
-        it('should extract non eligibles droits', function() {
-            expect(droits.droitsNonEligibles).toEqual({ ass: { id: 'ass' } });
+            expect(droits.droitsInjectes).toEqual([{ shortLabel: 'APL' }]);
         });
     });
 });

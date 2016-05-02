@@ -45,9 +45,9 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
                 return ! _.find(categoriesRnc, { id: ressource.type });
             });
 
-            // Remove from rnc the values that are not modified by the user
+            // Remove the empty values from rnc
             individuRef.rnc = _.filter(individuRef.rnc, function(rnc) {
-                return rnc.montant !== undefined;
+                return rnc.montant === 0 || rnc.montant;
             });
 
             individuRef.rnc.forEach(function(rnc) {

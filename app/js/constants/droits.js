@@ -266,7 +266,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 },
                 'paris_complement_sante': {
                     'isMontantAnnuel': true,
-                    'label': 'Complémentaire Santé Paris',
+                    'label': 'Complément Santé Paris',
                     'shortLabel': 'CSP',
                     'imgSrc': 'logo_mairie_paris.png',
                     'description': 'Le complément santé paris est une allocation qui permet de participer aux frais d’adhésion à une couverture complémentaire santé (mutuelle ou autre organisme analogue)',

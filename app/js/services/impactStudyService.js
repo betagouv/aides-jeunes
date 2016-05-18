@@ -1,6 +1,11 @@
 'use strict';
 
-angular.module('ddsApp').service('ImpactStudyService', function($http) {
+angular.module('ddsApp').service('ImpactStudyService', function($http, $sessionStorage) {
+
+    function getSessionId() {
+            $sessionStorage.sessionId = $sessionStorage.sessionId ? $sessionStorage.sessionId : uuid.v1();
+            return $sessionStorage.sessionId;
+    }
 
     return {
         sendResults: function(eid, situation, openfiscaResults) {

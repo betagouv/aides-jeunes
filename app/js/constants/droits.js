@@ -191,7 +191,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Avoir demandé le versements des aides logement auxquelles vous avez droit auprès de la CAF.',
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
                     ],
-                    'link': ' http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille_7',
+                    'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille_7',
                     'engageProcedureLink': '/documents/Formulaire_demande_PLF.pdf',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false,
@@ -270,7 +270,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'CSP',
                     'imgSrc': 'logo_mairie_paris.png',
                     'description': 'Le complément santé paris est une allocation qui permet de participer aux frais d’adhésion à une couverture complémentaire santé (mutuelle ou autre organisme analogue)',
-                    'link': ' http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
+                    'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 }

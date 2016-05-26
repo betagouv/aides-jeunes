@@ -241,7 +241,6 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'roundToNearest10': false
                 },
                 'paris_logement_plfm': {
-                    'isMontantAnnuel': true,
                     'label': 'Paris logement familles monoparentales',
                     'shortLabel': 'PLFM',
                     'imgSrc': 'logo_mairie_paris.png',

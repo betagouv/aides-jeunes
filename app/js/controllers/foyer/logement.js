@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels) {
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, ImpactStudyService) {
     var logement = $scope.logement = {
         adresse: {},
         inhabitantForThreeYearsOutOfLastFive: true
@@ -103,6 +103,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         if (form.$valid && logement.adresse) {
             logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && cityStartsWith('Paris');
             $scope.$emit('logement', logement);
+            ImpactStudyService.sendPostCode($scope.situation);
         }
     };
 });

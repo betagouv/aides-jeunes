@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('ResultatService', function($http, $modal, droitsDescription, ImpactStudyService) {
+angular.module('ddsApp').service('ResultatService', function($http, $modal, droitsDescription) {
     function processOpenfiscaResult(openfiscaResult) {
         var droitsEligibles = {};
         var calculatedPrestations = openfiscaResult.calculatedPrestations;
@@ -38,7 +38,6 @@ angular.module('ddsApp').service('ResultatService', function($http, $modal, droi
             return $http.get('/api/situations/' + situation._id + '/simulation', {
                 params: { cacheBust: Date.now() }
             }).then(function(response) {
-                ImpactStudyService.sendResults(situation, response.data.calculatedPrestations);
                 return processOpenfiscaResult(response.data);
             }).catch(function(error) {
                 $modal.open({

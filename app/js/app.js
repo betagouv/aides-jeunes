@@ -188,7 +188,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll, ImpactStudyService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -216,5 +216,7 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anc
             $window._paq.push(['setCustomUrl', current]);
             $window._paq.push(['trackPageView']);
         }
+
+        ImpactStudyService.sendVisitedPage();
     });
 });

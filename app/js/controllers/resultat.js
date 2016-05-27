@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, ResultatService, cerfaForms, droitsDescription) {
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, ResultatService, ImpactStudyService, cerfaForms, droitsDescription) {
     $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
     $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('years', 1).format('MMMM YYYY');
     $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1).format('MMMM YYYY');
@@ -17,6 +17,8 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         $scope.noDroits = _.isEmpty($scope.droits);
     }, function() {
         $scope.error = true;
+    }).then(function() {
+        ImpactStudyService.sendResults($scope.situation, $scope.droits);
     }).finally(function() {
         $scope.awaitingResults = false;
     });

@@ -164,7 +164,7 @@
     <div class="form-group" ng-if="individu.lastJobEndDate.year()">
       <label class="control-label col-sm-4" id="ass-question">
         {{ isDemandeur() ? 'Avez-vous' : 'A-t-il (elle)' }}
-        travaillé au moins 5 ans entre {{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et {{ individu.lastJobEndDate.format('MMMM YYYY') }} ?
+        travaillé au moins <abbr title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés.">5 ans</abbr> entre {{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et {{ individu.lastJobEndDate.format('MMMM YYYY') }} ?
       </label>
 
       <div class="col-sm-8">

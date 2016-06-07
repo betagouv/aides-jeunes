@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').service('ImpactStudyService', function($location, $http, $sessionStorage, $log, uuid) {
-    var RESEARCH_DOMAIN = 'https://mes-droits.fr',  // this domain is owned by economy researchers mandated by Pole Emploi and DGCS
-        STUDIED_PRESTATIONS = [ 'aah', 'aah_non_calculable', 'acs', 'adpa', 'af', 'aide_logement', 'aide_logement_non_calculable', 'alf', 'als', 'apl', 'asf', 'asi', 'aspa', 'ass', 'bourse_college', 'bourse_lycee', 'cf', 'cmu_c', 'paje_base', 'paris_logement_familles', 'ppa', 'rsa', 'rsa_majore', 'rsa_non_calculable', 'rsa_non_majore' ];
+    var RESEARCH_DOMAIN = 'https://mes-droits.fr';  // this domain is owned by economy researchers mandated by Pole Emploi and DGCS
 
 
     function getSessionId() {
@@ -13,16 +12,6 @@ angular.module('ddsApp').service('ImpactStudyService', function($location, $http
     function getResearchId() {
         $sessionStorage.researchId = $sessionStorage.researchId || $location.search().eid;
         return $sessionStorage.researchId;
-    }
-
-    function extractStudiedResults(openfiscaResults) {
-        var result = {};
-
-        STUDIED_PRESTATIONS.forEach(function(id) {
-            result[id] = openfiscaResults[id];
-        });
-
-        return result;
     }
 
     function send(path, payload) {
@@ -40,7 +29,7 @@ angular.module('ddsApp').service('ImpactStudyService', function($location, $http
 
     return {
         sendResults: function(situation, openfiscaResults) {
-            var payload = extractStudiedResults(openfiscaResults);
+            var payload = angular.copy(openfiscaResults);
             payload.postcode = situation.logement.adresse.codePostal;
 
             send('/sr', payload);

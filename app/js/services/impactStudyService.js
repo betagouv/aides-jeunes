@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('ImpactStudyService', function($location, $http, $sessionStorage, $log, uuid) {
+angular.module('ddsApp').service('ImpactStudyService', function($location, $http, $localStorage, $sessionStorage, $log, uuid) {
     var RESEARCH_DOMAIN = 'mes-droits.fr';  // this domain is owned by Poverty Lab researchers mandated by Pole Emploi and DGCS
 
 
@@ -10,8 +10,8 @@ angular.module('ddsApp').service('ImpactStudyService', function($location, $http
     }
 
     function getResearchId() {
-        $sessionStorage.researchId = $sessionStorage.researchId || $location.search().eid;
-        return $sessionStorage.researchId;
+        $localStorage.researchId = $localStorage.researchId || $location.search().eid;
+        return $localStorage.researchId;
     }
 
     function send(path, payload) {

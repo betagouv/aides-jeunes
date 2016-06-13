@@ -3,17 +3,18 @@
 angular.module('ddsApp').directive('yesNoQuestion', function() {
     return {
         restrict: 'E',
+        transclude: true,
         templateUrl: 'partials/foyer/yes-no-question.html',
         scope: true,
         controller: 'yesNoQuestionCtrl',
         link: function ($scope, $element, $attributes) {
-            $scope.questionlabel = $attributes.questionlabel;
             $scope.modelString = $attributes.model;
         }
     };
 });
 
-angular.module('ddsApp').controller('yesNoQuestionCtrl', function($scope) {
+angular.module('ddsApp').controller('yesNoQuestionCtrl', function($scope, $transclude, $element) {
+    $element.find('legend').append($transclude())
 
 	// To get the object and the property described by the `model` directive attribute.
     function parse(modelString) {

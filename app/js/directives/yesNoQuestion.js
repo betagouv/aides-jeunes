@@ -13,12 +13,12 @@ angular.module('ddsApp').directive('yesNoQuestion', function() {
     };
 });
 
-angular.module('ddsApp').controller('yesNoQuestionCtrl', function($scope, $transclude, $element) {
+angular.module('ddsApp').controller('yesNoQuestionCtrl', function($scope, $transclude, $element, $interpolate) {
 	_.forEach($transclude(), function(elem) {
 		if (elem.localName == 'question') {
-			$element.find('legend').append(elem.innerHTML);
+			$element.find('legend').append($interpolate(elem.innerHTML)($scope));
 		} else if (elem.localName == 'help-block') {
-			$element.find('p').append(elem.innerHTML);
+			$element.find('p').append($interpolate(elem.innerHTML)($scope));
 		}
 	});
 

@@ -17,14 +17,15 @@
         </button>
       </div>
     </div>
+<fieldset class="form-group" ng-if="captureColocation()">
+  <legend class="col-sm-3 control-label">Est-ce une colocation ?</legend>
 
-    <div class="form-group" ng-if="'locataire' === logement.type">
-      <label class="col-sm-3 control-label">Est-ce une colocation ?</label>
-      <div class="col-sm-9">
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.colocation" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.colocation" btn-radio="false">Non</button>
-      </div>
-    </div>
+  <input type="radio" id="colocation-oui" class="invisibleInput" ng-model="logement.colocation" value="true"/>
+  <label for="colocation-oui" class="btn btn-sm radioButton">Oui</label>
+
+  <input type="radio" id="colocation-non" class="invisibleInput" ng-model="logement.colocation" value="false"/>
+  <label for="colocation-non" class="btn btn-sm radioButton">Non</label>
+</fieldset>
 
     <div class="form-group" ng-if="captureMembreFamilleProprietaire()">
       <label class="col-sm-3 control-label">Avez-vous un lien de parenté direct avec votre propriétaire&nbsp;?</label>

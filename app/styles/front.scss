@@ -314,6 +314,8 @@ $autre: #39747B;
 $autre-light: #a9d2d7;
 $autre-lighter: #cce4e7;
 
+
+/* Should be removed once all buttons have been converted to native html input fields. */
 .btn-default {
   &.active {
     background-color: $btn-success-bg;
@@ -705,4 +707,27 @@ $autre-lighter: #cce4e7;
   [data-toggle="buttons"] {
     flex-direction: column;
   }
+}
+
+legend {
+  border-bottom: 0px;
+}
+
+.radioButton {
+  @extend .btn-default;
+}
+
+.invisibleInput {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px; margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+input:checked + .radioButton, .radioButton:active:hover{
+    background-color: $btn-success-bg;
+    color: white;
 }

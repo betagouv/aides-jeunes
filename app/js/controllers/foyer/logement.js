@@ -37,16 +37,20 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return result;
     };
 
+    $scope.captureColocation= function() {
+        return logement.type == 'locataire';
+    };
+
     $scope.captureMembreFamilleProprietaire = function() {
-        return 'locataire' === logement.type && angular.isDefined(logement.colocation);
+        return logement.type == 'locataire' && angular.isDefined(logement.colocation);
     };
 
     $scope.captureLocationType = function() {
-        return 'locataire' === logement.type && angular.isDefined(logement.membreFamilleProprietaire);
+        return logement.type == 'locataire' && angular.isDefined(logement.membreFamilleProprietaire);
     };
 
     $scope.captureChambre = function() {
-        return 'locataire' === logement.type && 'foyer' !== logement.locationType && angular.isDefined(logement.locationType);
+        return logement.type == 'locataire' && 'foyer' !== logement.locationType && angular.isDefined(logement.locationType);
     };
 
     $scope.captureLoyer = function() {

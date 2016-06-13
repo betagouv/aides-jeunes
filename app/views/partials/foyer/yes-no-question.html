@@ -1,0 +1,8 @@
+<fieldset class="form-group">
+  <legend class="col-sm-3 control-label">{{questionlabel}}</legend>
+  <input type="radio" id="{{modelString}}-oui" class="invisibleInput" ng-model="value" value="true" ng-change="updateModel()"/>
+  <label for="{{modelString}}-oui" class="btn btn-sm radioButton">Oui</label>
+
+  <input type="radio" id="{{modelString}}-non" class="invisibleInput" ng-model="value" value="false" ng-change="updateModel()"/>
+  <label for="{{modelString}}-non" class="btn btn-sm radioButton">Non</label>
+</fieldset>

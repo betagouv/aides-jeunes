@@ -8,7 +8,7 @@
           <input type="radio"
             name="logementType"
             id="logementType-{{logementType.id}}"
-            class="invisibleInput"
+            class="screenReadersOnly"
             ng-model="logement.type"
             ng-change="changeLogementType()"
             value="{{logementType.id}}"
@@ -21,17 +21,14 @@
       </div>
     </div>
 
-<yes-no-question model="logement.colocation">Est-ce une colocation ?</yes-no-question>
-    <div class="form-group" ng-if="captureMembreFamilleProprietaire()">
-      <label class="col-sm-3 control-label">Avez-vous un lien de parenté direct avec votre propriétaire&nbsp;?</label>
-      <div class="col-sm-3">
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.membreFamilleProprietaire" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.membreFamilleProprietaire" btn-radio="false">Non</button>
-      </div>
-      <div class="col-sm-6">
-        <p class="help-block">Est-il un ascendant ou descendant de vous ou votre conjoint (fils, grand-père…)</p>
-      </div>
-    </div>
+  <yes-no-question model="logement.colocation" ng-if="captureColocation()">
+    <question>Est-ce une colocation&nbsp;?</question>
+  </yes-no-question>
+
+  <yes-no-question model="logement.membreFamilleProprietaire" ng-if="captureMembreFamilleProprietaire()">
+    <question>Avez-vous un lien de parenté direct avec votre propriétaire&nbsp;?</question>
+    <help-block>Est-il un ascendant ou descendant de vous ou votre conjoint (fils, grand-père…)</help-block>
+  </yes-no-question>
 
     <div class="form-group" ng-show="captureLocationType()">
       <label class="control-label col-sm-3">Quel type de logement louez-vous&nbsp;?</label>

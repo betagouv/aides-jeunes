@@ -8,27 +8,35 @@ angular.module('ddsApp').directive('yesNoQuestion', function() {
         scope: true,
         controller: 'yesNoQuestionCtrl',
         link: function ($scope, $element, $attributes) {
-            $scope.modelString = $attributes.model;
+            $scope.propertyPath = $attributes.model;
         }
     };
 });
 
 angular.module('ddsApp').controller('yesNoQuestionCtrl', function($scope, $transclude, $element) {
-    $element.find('legend').append($transclude())
+	_.forEach($transclude(), function(elem) {
+		if (elem.localName == 'question') {
+			$element.find('legend').append(elem.innerHTML);
+		} else if (elem.localName == 'help-block') {
+			$element.find('p').append(elem.innerHTML);
+		}
+	});
+
+    var parsedPropertyPath, targetObject;
 
 	// To get the object and the property described by the `model` directive attribute.
-    function parse(modelString) {
-        var re = /(.*)[.](.*)/;
-        var resultRegexp = re.exec(modelString);
+    function parse(propertyPath) {
+        var parts = propertyPath.split('.');
         return {
-            objectToModify: $scope.$eval(resultRegexp[1]),
-            propertyToModify: resultRegexp[2]
+            targetProperty: parts.pop(),
+            targetObject: parts.join('.')
         };
     }
 
     // ng-model doesn't accept a dynamic parameter, so we have to transmit the value manually.
-    $scope.updateModel = function() {
-    	var parsedModelString = parse($scope.modelString);
-        parsedModelString.objectToModify[parsedModelString.propertyToModify] = $scope.value;
+    $scope.updateValue = function() {
+        parsedPropertyPath = parsedPropertyPath || parse($scope.propertyPath);
+        targetObject = targetObject || $scope.$eval(parsedPropertyPath.targetObject);
+        targetObject[parsedPropertyPath.targetProperty] = $scope.value;
     };
 });

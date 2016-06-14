@@ -110,7 +110,7 @@
         <div
           class="form-group"
           ng-class="{'has-error': submitted && ! cities.length}">
-          <label class="col-sm-6 control-label" for="postal-code">Code postal et ville</label>
+          <label class="col-sm-6 control-label" for="postal-code">Code postal</label>
           <div class="col-sm-6">
             <input
               type="text"
@@ -131,15 +131,18 @@
 
       <div class="col-sm-6">
         <div class="form-group">
-          <div class="col-sm-12">
             <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin"></i></p>
-            <select
-              class="form-control"
-              required
-              ng-show="cities.length"
-              ng-options="city.nomCommune for city in cities"
-              ng-model="logement.adresse">
-            </select>
+            <label class="col-sm-3 control-label" for="city" ng-show="cities.length">Ville</label>
+            <div class="col-sm-6">
+              <select
+                class="form-control"
+                required
+                ng-show="cities.length"
+                ng-options="city.nomCommune for city in cities"
+                ng-model="logement.adresse"
+                id="city">
+              </select>
+            </div>
           </div>
         </div>
 

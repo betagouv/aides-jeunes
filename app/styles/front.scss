@@ -690,27 +690,8 @@ $autre-lighter: #cce4e7;
   cursor: help;
 }
 
-[data-toggle="buttons"] {
-  display: flex;
-  flex-direction: row;
-
-  button, label {
-    flex: 1;
-  }
-
-  .active .help-block, .active .help-col {
-    color: #D8D8D8;
-  }
-}
-
-@media (max-width: $screen-sm-min) {
-  [data-toggle="buttons"] {
-    flex-direction: column;
-  }
-}
-
 legend {
-  border-bottom: 0px;
+  border-bottom: none;
 }
 
 .radioButton {
@@ -727,7 +708,33 @@ legend {
   width: 1px;
 }
 
-input:checked + .radioButton, .radioButton:active:hover{
-    background-color: $btn-success-bg;
-    color: white;
+input:checked + .radioButton, input:checked + .radioButton:active:hover {
+  background-color: $btn-success-bg;
+  color: $btn-success-color;
 }
+
+input:checked + .radioButton > .help-col {
+  color: #D8D8D8;
+}
+
+.button-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: $screen-sm-min) {
+  .button-row {
+    flex-direction: column;
+  }
+}
+
+.button-row > .button-item {
+  flex: auto;
+  flex-basis: 0;
+}
+
+.button-row > .button-item > label {
+  width: 100%;
+  height: 100%;
+}
+

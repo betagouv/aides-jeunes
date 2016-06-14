@@ -3,18 +3,21 @@
   <form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit(form)">
 
     <div class="form-group">
-      <div class="btn-group" data-toggle="buttons">
-        <button ng-repeat="logementType in logementTypes"
-          class="btn btn-default"
-          type="button"
-          name="logementType"
-          ng-model="logement.type"
-          btn-radio="logementType.id"
-          ng-change="changeLogementType()"
-          >
-          {{ logementType.label | uppercaseFirst }}
-          <span class="help-col">{{ logementType.hint }}</span>
-        </button>
+      <div class="button-row">
+        <div ng-repeat="logementType in logementTypes" class="button-item">
+          <input type="radio"
+            name="logementType"
+            id="logementType-{{logementType.id}}"
+            class="invisibleInput"
+            ng-model="logement.type"
+            ng-change="changeLogementType()"
+            value="{{logementType.id}}"
+            />
+          <label for="logementType-{{logementType.id}}" class="btn radioButton">
+            {{ logementType.label | uppercaseFirst }}
+            <span class="help-col">{{ logementType.hint }}</span>
+          </label>
+        </div>
       </div>
     </div>
 <fieldset class="form-group" ng-if="captureColocation()">

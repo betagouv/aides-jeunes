@@ -11,7 +11,7 @@
         ng-model="individu.dateDeNaissance"
         dds-date
         date-autocomplete
-        date-naissance-min-age="0"
+        before-today
         date-naissance-max-age="options.maxAge"
         auto-focus
         placeholder="JJ/MM/AAAA"
@@ -26,8 +26,8 @@
         <li ng-if="form.dateDeNaissance.$error.dateNaissanceMaxAge">
           Les personnes de plus de {{ options.maxAge }} ans ne sont pas prises en compte.
         </li>
-        <li ng-if="form.dateDeNaissance.$error.dateNaissanceMinAge">
-          Cette personne ne peut pas avoir moins de {{ options.minAge }} ans.
+        <li ng-if="form.dateDeNaissance.$error.beforeToday">
+          La date de naissance de cette personne doit être antérieure à aujourd'hui.
         </li>
       </ul>
     </div>

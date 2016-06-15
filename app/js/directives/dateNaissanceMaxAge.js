@@ -16,16 +16,12 @@ angular.module('ddsApp').directive('dateNaissanceMaxAge', function() {
     };
 });
 
-angular.module('ddsApp').directive('dateNaissanceMinAge', function() {
+angular.module('ddsApp').directive('beforeToday', function() {
     return {
         require: 'ngModel',
         link: function($scope, elm, attrs, ctrl) {
             ctrl.$parsers.push(function(momentInstance) {
-                var minimum = $scope.$eval(attrs.dateNaissanceMinAge),
-                    actual = moment().diff(momentInstance, 'years');
-
-                ctrl.$setValidity('dateNaissanceMinAge', actual >= minimum);
-
+                ctrl.$setValidity('beforeToday', moment().diff(momentInstance, 'days') >= 0);
                 return momentInstance;
             });
         }

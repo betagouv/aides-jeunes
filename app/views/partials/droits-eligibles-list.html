@@ -1,10 +1,10 @@
-<accordion close-others="true">
-  <accordion-group is-open="droit.open"
+<uib-accordion close-others="true">
+  <uib-accordion-group is-open="droit.open"
                class="resultats-accordion"
                ng-repeat="(droitId, droit) in list"
                ng-class="{'resultats-accordion-needs-n-2': droit.isBaseRessourcesYearMoins2 && !ressourcesYearMoins2Captured && ! isString(droit.montant), 'panel-opened': droit.open}">
 
-    <accordion-heading>
+    <uib-accordion-heading>
       <div class="row">
         <div class="col-xs-2 col-sm-1">
           <img class="droit-logo"
@@ -31,7 +31,7 @@
           <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}" aria-hidden="true"></i>
         </div>
       </div>
-    </accordion-heading>
+    </uib-accordion-heading>
 
     <div class="caption">
       <div ng-if="droit.montant">
@@ -95,5 +95,5 @@
         </div>
       </div>
     </div>
-  </accordion-group>
-</accordion>
+  </uib-accordion-group>
+</uib-accordion>

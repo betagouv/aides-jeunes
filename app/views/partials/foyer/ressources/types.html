@@ -8,14 +8,14 @@
       vous pourrez ensuite saisir les montants.
     </legend>
     <div class="ressource-types-block">
-      <accordion close-others="false">
-        <accordion-group class="capture-{{ category.id }}" ng-repeat="category in ressourceCategories" is-open="status.open">
-          <accordion-heading>
+      <uib-accordion close-others="false">
+        <uib-accordion-group class="capture-{{ category.id }}" ng-repeat="category in ressourceCategories" is-open="status.open">
+          <uib-accordion-heading>
             {{ category.label }}
             <i class="pull-left fa" aria-hidden="true"
               ng-class="{'fa-chevron-down': status.open, 'fa-chevron-right': !status.open}">
             </i>
-          </accordion-heading>
+          </uib-accordion-heading>
           <div class="button-grid">
             <div class="button-item" ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">
               <input
@@ -29,8 +29,8 @@
               </label>
             </div>
           </div>
-        </accordion-group>
-      </accordion>
+        </uib-accordion-group>
+      </uib-accordion>
       <div class="text-right">
         <button type="submit" class="btn btn-primary">
           Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>

@@ -1,17 +1,17 @@
-<accordion close-others="false">
+<uib-accordion close-others="false">
   <div class="row">
     <div ng-repeat="droit in droits">
       <div ng-if="$index % 3 === 0" class="clearfix"></div>
       <div class="panel-non-eligible">
-        <accordion-group is-open="droit.open">
-          <accordion-heading>
+        <uib-accordion-group is-open="droit.open">
+          <uib-accordion-heading>
             <div class="row">
               <div class="col-xs-10">{{ droit.label }}</div>
               <div class="col-xs-2">
                 <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}" aria-hidden="true"></i>
               </div>
             </div>
-          </accordion-heading>
+          </uib-accordion-heading>
           <p>{{ droit.description }}</p>
           <a
             href="{{ droit.link }}"
@@ -20,8 +20,8 @@
             <i class="fa fa-external-link" aria-hidden="true"></i>
             Plus d'informations
           </a>
-        </accordion-group>
+        </uib-accordion-group>
       </div>
     </div>
   </div>
-</accordion>
+</uib-accordion>

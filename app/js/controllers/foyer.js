@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $stateParams, $filter, $location, $modal, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $stateParams, $filter, $location, $uibModal, SituationService, IndividuService) {
     var situation = $scope.situation = SituationService.restoreLocal();
 
     $scope.$on('setSituation', function(e, newSituation) {
@@ -51,7 +51,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         $scope.$broadcast('logementCaptured');
         // affichage de la popup pour les habitants de mayotte
         if (isLogementInMayotte(logement)) {
-            $modal.open({ templateUrl: '/partials/modal-exclusion-mayotte.html' });
+            $uibModal.open({ templateUrl: '/partials/modal-exclusion-mayotte.html' });
         } else {
             $state.go('foyer.ressources');
         }

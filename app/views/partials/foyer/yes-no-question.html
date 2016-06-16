@@ -1,0 +1,12 @@
+<fieldset class="form-group">
+  <legend class="col-sm-3 control-label"></legend>
+  <div class="col-sm-3">
+    <input type="radio" id="{{propertyPath}}-yes" name="{{ propertyPath }}" class="screenReadersOnly" ng-model="value" value="true" ng-change="updateValue()"/>
+    <label for="{{propertyPath}}-yes" class="btn btn-sm radioButton">Oui</label>
+    <input type="radio" id="{{propertyPath}}-no" name="{{ propertyPath }}" class="screenReadersOnly" ng-model="value" value="false" ng-change="updateValue()"/>
+    <label for="{{propertyPath}}-no" class="btn btn-sm radioButton">Non</label>
+  </div>
+  <div class="col-sm-6">
+    <p class="help-block"></p>
+  </div>
+</fieldset>

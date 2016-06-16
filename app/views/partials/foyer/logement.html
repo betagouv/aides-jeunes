@@ -3,39 +3,32 @@
   <form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit(form)">
 
     <div class="form-group">
-      <div class="btn-group" data-toggle="buttons">
-        <button ng-repeat="logementType in logementTypes"
-          class="btn btn-default"
-          type="button"
-          name="logementType"
-          ng-model="logement.type"
-          btn-radio="logementType.id"
-          ng-change="changeLogementType()"
-          >
-          {{ logementType.label | uppercaseFirst }}
-          <span class="help-col">{{ logementType.hint }}</span>
-        </button>
+      <div class="button-row">
+        <div ng-repeat="logementType in logementTypes" class="button-item">
+          <input type="radio"
+            name="logementType"
+            id="logementType-{{logementType.id}}"
+            class="screenReadersOnly"
+            ng-model="logement.type"
+            ng-change="changeLogementType()"
+            value="{{logementType.id}}"
+            />
+          <label for="logementType-{{logementType.id}}" class="btn radioButton">
+            {{ logementType.label | uppercaseFirst }}
+            <span class="help-col">{{ logementType.hint }}</span>
+          </label>
+        </div>
       </div>
     </div>
 
-    <div class="form-group" ng-if="'locataire' === logement.type">
-      <label class="col-sm-3 control-label">Est-ce une colocation ?</label>
-      <div class="col-sm-9">
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.colocation" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.colocation" btn-radio="false">Non</button>
-      </div>
-    </div>
+    <yes-no-question model="logement.colocation" ng-if="captureColocation()">
+      <question>Est-ce une colocation&nbsp;?</question>
+    </yes-no-question>
 
-    <div class="form-group" ng-if="captureMembreFamilleProprietaire()">
-      <label class="col-sm-3 control-label">Avez-vous un lien de parenté direct avec votre propriétaire&nbsp;?</label>
-      <div class="col-sm-3">
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.membreFamilleProprietaire" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.membreFamilleProprietaire" btn-radio="false">Non</button>
-      </div>
-      <div class="col-sm-6">
-        <p class="help-block">Est-il un ascendant ou descendant de vous ou votre conjoint (fils, grand-père…)</p>
-      </div>
-    </div>
+    <yes-no-question model="logement.membreFamilleProprietaire" ng-if="captureMembreFamilleProprietaire()">
+      <question>Avez-vous un lien de parenté direct avec votre propriétaire&nbsp;?</question>
+      <help-block>Est-il un ascendant ou descendant de vous ou votre conjoint (enfant, grand-parent…)&nbsp;?</help-block>
+    </yes-no-question>
 
     <div class="form-group" ng-show="captureLocationType()">
       <label class="control-label col-sm-3">Quel type de logement louez-vous&nbsp;?</label>
@@ -53,51 +46,25 @@
       </div>
     </div>
 
-    <div class="form-group" ng-if="captureChambre()">
-      <label class="col-sm-3 control-label">Est-ce une chambre ?</label>
-      <div class="col-sm-3">
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.isChambre" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.isChambre" btn-radio="false">Non</button>
-      </div>
-      <div class="col-sm-6">
-        <p class="help-block">Une chambre est un logement qui ne comporte qu'une seule pièce et n'est pas équipée d'un WC.</p>
-      </div>
-    </div>
+    <yes-no-question model="logement.isChambre" ng-if="captureChambre()">
+      <question>Est-ce une chambre&nbsp;?</question>
+      <help-block>
+        Une chambre est un logement qui ne comporte qu'une seule pièce et n'est pas équipée d'un WC.
+      </help-block>
+    </yes-no-question>
 
-    <div ng-if="logement.type == 'proprietaire'">
-      <div class="form-group">
-        <label class="col-sm-3 control-label">
-          Êtes-vous primo-accédant pour cette propriété ?
-        </label>
-        <div class="col-sm-3">
-          <button type="button" class="btn btn-sm btn-default" ng-model="logement.primoAccedant" btn-radio="true">Oui</button>
-          <button type="button" class="btn btn-sm btn-default" ng-model="logement.primoAccedant" btn-radio="false">Non</button>
-        </div>
-        <div class="col-sm-5">
-          <p class="help-block">
-            Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire
-            de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.
-          </p>
-        </div>
-      </div>
-    </div>
+    <yes-no-question model="logement.primoAccedant" ng-if="logement.type == 'proprietaire'">
+      <question>Êtes-vous primo-accédant pour cette propriété&nbsp;?</question>
+      <help-block>
+        Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire
+        de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.
+      </help-block>
+    </yes-no-question>
 
-    <div ng-if="logement.type == 'heberge'">
-      <div class="form-group">
-        <label class="col-sm-3 control-label">
-          Participez-vous aux frais du logement ?
-        </label>
-        <div class="col-sm-3">
-          <button type="button" class="btn btn-sm btn-default" ng-model="logement.participationFrais" btn-radio="true">Oui</button>
-          <button type="button" class="btn btn-sm btn-default" ng-model="logement.participationFrais" btn-radio="false">Non</button>
-        </div>
-        <div class="col-sm-5">
-          <p class="help-block">
-            Par exemple aux dépenses d'électricité, de téléphone,&nbsp;etc.
-          </p>
-        </div>
-      </div>
-    </div>
+    <yes-no-question model="logement.participationFrais" ng-if="logement.type == 'heberge'">
+      <question>Participez-vous aux frais du logement&nbsp;?</question>
+      <help-block>Par exemple aux dépenses d'électricité, de téléphone,&nbsp;etc.</help-block>
+    </yes-no-question>
 
     <div class="row" ng-if="captureLoyer()">
       <div class="col-sm-6">
@@ -114,11 +81,13 @@
           </div>
         </div>
       </div>
+
       <div class="col-sm-5" ng-if="logement.type == 'proprietaire'">
         <p class="help-block">
           Laissez ce champ à 0&nbsp;€ si vous ne remboursez pas actuellement de crédit pour votre logement.
         </p>
       </div>
+
       <div class="col-sm-6" ng-if="captureCharges()">
         <div class="form-group" ng-class="{'has-error': submitted && form.charges.$invalid}">
           <label class="col-sm-3 control-label" for="charges">
@@ -136,11 +105,12 @@
     </div>
 
     <div class="row" ng-show="captureCodePostal()">
+
       <div class="col-sm-6">
         <div
           class="form-group"
           ng-class="{'has-error': submitted && ! cities.length}">
-          <label class="col-sm-6 control-label" for="postal-code">Code postal et ville</label>
+          <label class="col-sm-6 control-label" for="postal-code">Code postal</label>
           <div class="col-sm-6">
             <input
               type="text"
@@ -158,35 +128,30 @@
           </div>
         </div>
       </div>
+
       <div class="col-sm-6">
         <div class="form-group">
-          <div class="col-sm-12">
             <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin"></i></p>
-            <select
-              class="form-control"
-              required
-              ng-show="cities.length"
-              ng-options="city.nomCommune for city in cities"
-              ng-model="logement.adresse">
-            </select>
+            <label class="col-sm-3 control-label" for="city" ng-show="cities.length">Ville</label>
+            <div class="col-sm-6">
+              <select
+                class="form-control"
+                required
+                ng-show="cities.length"
+                ng-options="city.nomCommune for city in cities"
+                ng-model="logement.adresse"
+                id="city">
+              </select>
+            </div>
           </div>
         </div>
-      </div>
+
     </div>
 
-    <div class="form-group" ng-if="captureResidentParis()">
-      <label class="col-sm-3 control-label">Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }}&nbsp;?</label>
-      <div class="col-sm-3">
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.inhabitantForThreeYearsOutOfLastFive" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-default" ng-model="logement.inhabitantForThreeYearsOutOfLastFive" btn-radio="false">Non</button>
-      </div>
-
-      <div class="col-sm-6">
-        <span class="help-block">
-          Y compris de manière discontinue.
-        </span>
-      </div>
-    </div>
+    <yes-no-question model="logement.inhabitantForThreeYearsOutOfLastFive" ng-if="captureResidentParis()">
+      <question>Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }}&nbsp;?</question>
+      <help-block>Y compris de manière discontinue</help-block>
+    </yes-no-question>
 
     <div class="text-right">
       <button type="submit" class="btn btn-primary" ng-if="captureCodePostal()">

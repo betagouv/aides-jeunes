@@ -314,6 +314,8 @@ $autre: #39747B;
 $autre-light: #a9d2d7;
 $autre-lighter: #cce4e7;
 
+
+/* Should be removed once all buttons have been converted to native html input fields. */
 .btn-default {
   &.active {
     background-color: $btn-success-bg;
@@ -688,21 +690,51 @@ $autre-lighter: #cce4e7;
   cursor: help;
 }
 
-[data-toggle="buttons"] {
+legend {
+  border-bottom: none;
+}
+
+.radioButton {
+  @extend .btn-default;
+}
+
+.screenReadersOnly {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px; margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+input:checked + .radioButton, input:checked + .radioButton:active:hover {
+  background-color: $btn-success-bg;
+  color: $btn-success-color;
+}
+
+input:checked + .radioButton > .help-col {
+  color: #D8D8D8;
+}
+
+.button-row {
   display: flex;
   flex-direction: row;
-
-  button, label {
-    flex: 1;
-  }
-
-  .active .help-block, .active .help-col {
-    color: #D8D8D8;
-  }
 }
 
 @media (max-width: $screen-sm-min) {
-  [data-toggle="buttons"] {
+  .button-row {
     flex-direction: column;
   }
 }
+
+.button-row > .button-item {
+  flex: auto;
+  flex-basis: 0;
+}
+
+.button-row > .button-item > label {
+  width: 100%;
+  height: 100%;
+}
+

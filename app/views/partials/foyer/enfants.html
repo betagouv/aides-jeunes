@@ -17,7 +17,7 @@
             </button>
             <div class="row">
               <div class="col-xs-4">
-                <i class="fa fa-child icon-lg"></i>
+                <i class="fa fa-child icon-lg" aria-hidden="true"></i>
               </div>
               <div class="col-xs-8">
                 Né·e le <strong>{{ enfant.dateDeNaissance.format('L') }}</strong>
@@ -37,7 +37,7 @@
         <div class="panel-body">
           <button class="btn btn-lg btn-default btn-block btn-new-entity" ng-click="newEnfant()">
             Ajouter un enfant
-            <br><i class="fa fa-plus icon-lg"></i>
+            <br><i class="fa fa-plus icon-lg" aria-hidden="true"></i>
           </button>
         </div>
       </div>
@@ -48,7 +48,7 @@
 
   <div class="text-right" ng-if="!displayForm">
     <button type="button" class="btn btn-primary" ng-click="validate()">
-      Valider <i class="fa fa-arrow-circle-right"></i>
+      Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
     </button>
   </div>
 </div>

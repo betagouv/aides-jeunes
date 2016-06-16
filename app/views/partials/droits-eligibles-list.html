@@ -28,7 +28,7 @@
         </div>
 
         <div class="col-sm-1 hidden-xs description">
-          <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"></i>
+          <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}" aria-hidden="true"></i>
         </div>
       </div>
     </accordion-heading>
@@ -40,7 +40,7 @@
           Pour en bénéficier, vous devez également :
           <ul>
             <li ng-repeat="condition in droit.conditions">
-              <i class="fa fa-check"></i>
+              <i class="fa fa-check" aria-hidden="true"></i>
               <span ng-bind-html="condition"></span>
             </li>
           </ul>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && ! ressourcesYearMoins2Captured && ! isString(droit.montant)">
-          <i class="fa fa-warning"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
+          <i class="fa fa-warning" aria-hidden="true"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
           <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
         </div>
       </div>
@@ -63,7 +63,7 @@
             class="btn btn-sm btn-default btn-block"
             href="{{ droit.link }}"
             target="_blank">
-            <i class="fa fa-external-link"></i>
+            <i class="fa fa-external-link" aria-hidden="true"></i>
             Plus d'informations
           </a>
         </div>

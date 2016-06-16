@@ -1,6 +1,6 @@
 <h1>Résultats de votre simulation</h1>
 
-<p ng-if="awaitingResults"><i class="fa fa-spinner fa-spin"></i> Calcul en cours de vos droits…</p>
+<p ng-if="awaitingResults"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
 
 <div class="alert alert-danger" ng-if="error">
   <h2>Désolé, nous n'arrivons pas à calculer vos droits pour le moment.</h2>
@@ -23,7 +23,7 @@
       <droit-eligibles-list list="prestationsPartenaire"></droit-eligibles-list>
       <div class="additional-info-cta">
         <p ng-if="shouldDisplayImpactInfo(partenaireId)">
-          <i class="fa fa-info-circle"></i>
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
           {{ (! droits.prestationsNationales && (droitsInjectes | isEmpty)) ? "Si vous percevez aussi des aides nationales, le" : "Le" }}
            montant de ces aides locales pourrait être partiellement déduit de vos aides nationales. Nous travaillons avec nos partenaires pour déterminer plus précisément ces interactions.
         </p>
@@ -44,7 +44,7 @@
   <div class="frame-resultats" ng-if="! noDroits && ! situation.patrimoine.captured">
     <div class="row">
       <div class="col-sm-8">
-        <i class="fa fa-info-circle"></i>
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
         Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ?
         Vous devez renseigner des informations complémentaires.
       </div>

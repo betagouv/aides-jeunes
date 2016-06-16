@@ -8,7 +8,7 @@
             <div class="row">
               <div class="col-xs-10">{{ droit.label }}</div>
               <div class="col-xs-2">
-                <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"></i>
+                <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}" aria-hidden="true"></i>
               </div>
             </div>
           </accordion-heading>
@@ -17,7 +17,7 @@
             href="{{ droit.link }}"
             class="btn btn-sm btn-default"
             target="_blank">
-            <i class="fa fa-external-link"></i>
+            <i class="fa fa-external-link" aria-hidden="true"></i>
             Plus d'informations
           </a>
         </accordion-group>

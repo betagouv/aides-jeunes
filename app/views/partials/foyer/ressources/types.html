@@ -11,7 +11,10 @@
       <accordion close-others="false">
         <accordion-group class="capture-{{ category.id }}" ng-repeat="category in ressourceCategories" is-open="status.open">
           <accordion-heading>
-            {{ category.label }}<i class="pull-left fa" ng-class="{'fa-chevron-down': status.open, 'fa-chevron-right': !status.open}"></i>
+            {{ category.label }}
+            <i class="pull-left fa" aria-hidden="true"
+              ng-class="{'fa-chevron-down': status.open, 'fa-chevron-right': !status.open}">
+            </i>
           </accordion-heading>
           <div class="button-grid">
             <div class="button-item" ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">

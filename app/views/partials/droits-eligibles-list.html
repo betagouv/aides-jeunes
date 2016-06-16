@@ -1,5 +1,5 @@
-<accordion close-others="false">
-  <accordion-group is-open="droit.open"
+<uib-accordion close-others="false">
+  <uib-accordion-group is-open="droit.open"
                class="resultats-accordion"
                ng-repeat="(droitId, droit) in list|orderObjectBy:'label'"
                ng-class="{'resultats-accordion-needs-n-2': shouldDisplayYM2Warning(droit), 'panel-opened': droit.open}">
@@ -32,7 +32,7 @@
           <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}" aria-hidden="true"></i>
         </div>
       </div>
-    </accordion-heading>
+    </uib-accordion-heading>
 
     <div class="caption">
       <div ng-if="droit.montant">
@@ -93,5 +93,5 @@
         </div>
       </div>
     </div>
-  </accordion-group>
-</accordion>
+  </uib-accordion-group>
+</uib-accordion>

@@ -1,9 +1,8 @@
 <uib-accordion close-others="false">
   <uib-accordion-group is-open="droit.open"
-               class="resultats-accordion"
-               ng-repeat="(droitId, droit) in list|orderObjectBy:'label'"
-               ng-class="{'resultats-accordion-needs-n-2': shouldDisplayYM2Warning(droit), 'panel-opened': droit.open}">
-    <accordion-heading>
+     class="resultats-accordion {{ getAccordionClass(droit) }}"
+     ng-repeat="(droitId, droit) in list|orderObjectBy:'label'">
+    <uib-accordion-heading>
       <div class="row">
         <div class="col-xs-2 col-sm-1">
           <img class="droit-logo"

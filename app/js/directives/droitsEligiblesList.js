@@ -25,4 +25,10 @@ angular.module('ddsApp').controller('droitEligiblesListCtrl', function($scope) {
     $scope.shouldDisplayYM2Warning = function(droit) {
         return droit.isBaseRessourcesYearMoins2 && ! $scope.ressourcesYearMoins2Captured && ! _.isString(droit.montant);
     };
+
+    // ng-class and uib-accordion don't work well together, hence this extra function.
+    // See https://github.com/angular-ui/bootstrap/issues/4172
+    $scope.getAccordionClass = function(droit) {
+        return [$scope.shouldDisplayYM2Warning(droit) ? 'resultats-accordion-needs-n-2' : '', droit.open ? 'panel-opened': ''].join(' ');
+    };
 });

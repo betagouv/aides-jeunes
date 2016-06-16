@@ -349,6 +349,8 @@ $autre-lighter: #cce4e7;
 
   .capture-rows {
     padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
 
     .btn-ressources {
       @extend .btn-default;
@@ -357,6 +359,19 @@ $autre-lighter: #cce4e7;
     .btn-selection {
       font-size: 14px;
     }
+  }
+
+  .flexitem {
+    width: 33.33%;
+    text-align: center;
+  }
+
+  .flexitem > label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    height: 90%;
   }
 }
 

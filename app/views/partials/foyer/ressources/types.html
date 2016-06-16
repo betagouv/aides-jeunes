@@ -13,15 +13,17 @@
           <accordion-heading>
             {{ category.label }}<i class="pull-left fa" ng-class="{'fa-chevron-down': status.open, 'fa-chevron-right': !status.open}"></i>
           </accordion-heading>
-          <div class="capture-rows">
-            <div class="flexitem" ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">
+          <div class="button-grid">
+            <div class="button-item" ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">
               <input
                 type="checkbox"
                 id="{{ ressourceType.id }}"
                 class="screenReadersOnly"
                 ng-model="individuVM.selectedRessourceTypes[ressourceType.id]"
               />
-              <label for="{{ ressourceType.id }}" class="btn btn-sm btn-selection radioButton">{{ ressourceType.label }}</label>
+              <label for="{{ ressourceType.id }}" class="btn btn-sm inputButton">
+                {{ ressourceType.label }}
+              </label>
             </div>
           </div>
         </accordion-group>

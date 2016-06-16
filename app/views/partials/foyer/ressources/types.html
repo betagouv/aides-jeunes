@@ -9,7 +9,11 @@
     </legend>
     <div class="ressource-types-block">
       <accordion close-others="false">
-        <accordion-group class="capture-{{ category.id }}" ng-repeat="category in ressourceCategories" is-open="status.open">
+        <accordion-group
+        class="capture-{{ category.id }}"
+        ng-repeat="category in ressourceCategories"
+        is-open="status.open"
+        ng-init="status.open = shouldInitiallyOpen(category)">
           <accordion-heading>
             {{ category.label }}
             <i class="pull-left fa" aria-hidden="true"

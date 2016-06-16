@@ -22,4 +22,10 @@ angular.module('ddsApp').controller('droitEligiblesListCtrl', function($scope) {
             return Math.round(droit.montant);
         }
     };
+
+    $scope.getAccordionClass = function(droit) {
+        var yM2Needed = droit.isBaseRessourcesYearMoins2 && ! $scope.ressourcesYearMoins2Captured && ! $scope.isString(droit.montant);
+        return [yM2Needed ? 'resultats-accordion-needs-n-2' : '', droit.open ? 'panel-opened': ''].join(' ');
+    };
+
 });

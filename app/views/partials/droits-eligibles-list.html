@@ -1,8 +1,7 @@
 <uib-accordion close-others="true">
   <uib-accordion-group is-open="droit.open"
-               class="resultats-accordion"
-               ng-repeat="(droitId, droit) in list"
-               ng-class="{'resultats-accordion-needs-n-2': droit.isBaseRessourcesYearMoins2 && !ressourcesYearMoins2Captured && ! isString(droit.montant), 'panel-opened': droit.open}">
+    class="resultats-accordion {{ getAccordionClass(droit) }}"
+    ng-repeat="(droitId, droit) in list|orderObjectBy:'label'">
 
     <uib-accordion-heading>
       <div class="row">

@@ -1,23 +1,17 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ressourceCategories, ressourceTypes, $state) {
-    $scope.ressourceCategories = ressourceCategories;
+angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ressourceCategories, SituationService, IndividuService,  ressourceTypes, $state) {
+
     $scope.individuVM = $scope.individusVM[$stateParams.individu];
+    $scope.pageTitle = $scope.getPageTitle($scope.individuVM);
+    var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
+    $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
+
+    $scope.ressourceCategories = ressourceCategories;
     var filteredRessourceTypes = _.filter(ressourceTypes, function(ressourceType) {
         return ! _.contains(['pensionsAlimentairesVersees'], ressourceType.id);
     });
     $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
-
-    var pageTitle = function() {
-        switch ($scope.individuVM.individu.role) {
-            case 'demandeur':
-                return 'Vos ressources';
-            case 'conjoint':
-                return 'Les ressources de votre conjoint';
-            default:
-                return 'Les ressources de ' + $scope.individuVM.individu.firstName;
-        }
-    };
 
     var DEFAULT_RESOURCE = {
         montantAnnuel: 0,
@@ -25,8 +19,6 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
         montantsMensuels: [0, 0, 0],
         onGoing: true,
     };
-
-    $scope.pageTitle = pageTitle();
 
     var applySelectedRessources = function() {
         var currentRessources = $scope.individuVM.ressources;
@@ -45,8 +37,8 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     };
 
     $scope.submit = function() {
-        applySelectedRessources();
-        $state.go('foyer.ressources');
+        applySelectedRessources($scope.individuVM);
+        $state.go('foyer.ressources.montants', { individu: $stateParams.individu});
     };
 
     $scope.shouldInitiallyOpen = function(category) {

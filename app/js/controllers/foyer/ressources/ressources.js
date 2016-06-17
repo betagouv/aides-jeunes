@@ -1,24 +1,10 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $state, ressourceTypes, categoriesRnc, SituationService, IndividuService, RessourceService) {
-    var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
-    $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
+angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $stateParams, ressourceTypes, categoriesRnc, SituationService, IndividuService, RessourceService) {
+
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
-    $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
-    $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
 
-    $scope.autoEntrepreneurOnGoingQuestion = function(individu, currentMonth) {
-        var prefix = {
-            'demandeur': 'Vous aurez',
-            'conjoint': 'Votre conjoint aura',
-            'enfant': individu.firstName + ' aura'
-        }[individu.role];
-        return prefix + ' un chiffre d’affaires non nul en ' + currentMonth + '.';
-    };
-
-    $scope.ressourceTypes = _.indexBy(ressourceTypes, 'id');
-
-    var extractIndividuSelectedRessourceTypes = function(individu) {
+    function extractIndividuSelectedRessourceTypes (individu) {
         var result = {};
         var ressources = individu.ressources || [];
         _.chain(ressources)
@@ -33,9 +19,9 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         });
 
         return result;
-    };
+    }
 
-    var extractIndividuRessources = function(individu) {
+    function extractIndividuRessources (individu) {
         var result = [];
         var ressources = individu.ressources || [];
         var types = _.chain(ressources).pluck('type').unique().filter(function(type) {
@@ -87,47 +73,26 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         });
 
         return result;
-    };
+    }
+
+    $scope.getPageTitle = function(individuVM) {
+        switch (individuVM.individu.role) {
+            case 'demandeur':
+                return 'Vos ressources';
+            case 'conjoint':
+                return 'Les ressources de votre conjoint';
+            default:
+                return 'Les ressources de ' + individuVM.individu.firstName;
+        }
+    }
 
     $scope.individusVM = SituationService.getIndividusSortedParentsFirst($scope.situation)
-    .map(function(individu) {
-        return {
-            individu: individu,
-            label: IndividuService.label(individu),
-            selectedRessourceTypes: extractIndividuSelectedRessourceTypes(individu),
-            ressources: extractIndividuRessources(individu)
-        };
-    });
-
-    $scope.isNumber = angular.isNumber;
-
-    var applyIndividuVMRessourcesToIndividu = function(individuVM) {
-        var individu = individuVM.individu;
-        var previousRessources = individu.ressources;
-        individu.ressources = [];
-        individu.interruptedRessources = [];
-
-        individuVM.ressources.forEach(function(ressource) {
-            // Ressources for which we have the last 3 months values
-            if (ressource.type.category != 'rpns' || ressource.type.id == 'caAutoEntrepreneur') {
-                RessourceService.spreadIndividuRessources(individu, $scope.months, ressource, $scope.situation.dateDeValeur);
-            // Ressources for which we have only yearly values
-            } else {
-                RessourceService.applyYearlyRessource(individu, ressource, $scope.situation.dateDeValeur);
-            }
+        .map(function(individu) {
+            return {
+                individu: individu,
+                label: IndividuService.label(individu),
+                selectedRessourceTypes: extractIndividuSelectedRessourceTypes(individu),
+                ressources: extractIndividuRessources(individu)
+            };
         });
-
-        // on réinjecte les ressources RNC & pensions alimentaires
-        individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
-            return !! _.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
-        }));
-    };
-
-    $scope.submit = function(form) {
-        form.submitted = true;
-        if (form.$valid) {
-            $scope.individusVM.forEach(applyIndividuVMRessourcesToIndividu);
-            $scope.$emit('ressources');
-        }
-    };
 });

@@ -53,7 +53,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         if (isLogementInMayotte(logement)) {
             $modal.open({ templateUrl: '/partials/modal-exclusion-mayotte.html' });
         } else {
-            $state.go('foyer.ressources');
+            $state.go('foyer.ressources.types', { individu: 0 });
         }
     });
 

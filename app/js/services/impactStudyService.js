@@ -9,6 +9,10 @@ angular.module('ddsApp').service('ImpactStudyService', function($location, $http
         return $sessionStorage.sessionId;
     }
 
+    function resetSessionId() {
+        $sessionStorage.sessionId = uuid.v4();
+    }
+
     function getResearchId() {
         $localStorage.researchId = $localStorage.researchId || $location.search().eid;
         return $localStorage.researchId;
@@ -42,6 +46,8 @@ angular.module('ddsApp').service('ImpactStudyService', function($location, $http
         sendVisitedPage: function() {
             /*jshint camelcase: false */
             send('/it', { url_visited: $location.absUrl() });
-        }
+        },
+
+        resetSessionId: resetSessionId
     };
 });

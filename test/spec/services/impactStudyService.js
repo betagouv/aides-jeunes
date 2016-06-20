@@ -44,7 +44,7 @@ describe('ImpactStudyService', function() {
             location.search({ eid: EID });
             browserController.poll();
 
-            httpMock.expectPOST('https://mes-droits.fr/sr', validate);
+            httpMock.expectPOST('https://mes-droits.fr/v1/sr', validate);
             subject.sendResults(SITUATION, {});
             httpMock.flush();
         });
@@ -59,7 +59,7 @@ describe('ImpactStudyService', function() {
             location.search({ eid: EID });
             browserController.poll();
 
-            httpMock.expectPOST('https://mes-droits.fr/cp', validate);
+            httpMock.expectPOST('https://mes-droits.fr/v1/cp', validate);
             subject.sendPostCode(SITUATION);
             httpMock.flush();
         });
@@ -74,7 +74,7 @@ describe('ImpactStudyService', function() {
             location.search({ eid: EID });
             browserController.poll();
 
-            httpMock.expectPOST('https://mes-droits.fr/it');
+            httpMock.expectPOST('https://mes-droits.fr/v1/it');
             subject.sendVisitedPage();
             httpMock.flush();
         });

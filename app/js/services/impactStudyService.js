@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').service('ImpactStudyService', function($location, $http, $sessionStorage, $log, uuid) {
-    var RESEARCH_DOMAIN = 'https://mes-droits.fr';  // this domain is owned by economy researchers mandated by Pole Emploi and DGCS
+    var RESEARCH_DOMAIN = 'mes-droits.fr';  // this domain is owned by Poverty Lab researchers mandated by Pole Emploi and DGCS
 
 
     function getSessionId() {
@@ -22,7 +22,7 @@ angular.module('ddsApp').service('ImpactStudyService', function($location, $http
         payload.session_id = getSessionId();
         payload.eid = getResearchId();
 
-        $http.post(RESEARCH_DOMAIN + path, payload)
+        $http.post('https://' + RESEARCH_DOMAIN + '/v1' + path, payload)
              .success(function(res) { $log.info('Data transmitted to researchers', res); })
              .error(function(error) { $log.warn('Data could not be transmitted to researchers', error); });
     }

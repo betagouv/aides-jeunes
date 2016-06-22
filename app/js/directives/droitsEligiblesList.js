@@ -23,6 +23,8 @@ angular.module('ddsApp').controller('droitEligiblesListCtrl', function($scope) {
         }
     };
 
+    // ng-class and uib-accordion don't work well together, hence this extra function.
+    // See https://github.com/angular-ui/bootstrap/issues/4172
     $scope.getAccordionClass = function(droit) {
         var yM2Needed = droit.isBaseRessourcesYearMoins2 && ! $scope.ressourcesYearMoins2Captured && ! $scope.isString(droit.montant);
         return [yM2Needed ? 'resultats-accordion-needs-n-2' : '', droit.open ? 'panel-opened': ''].join(' ');

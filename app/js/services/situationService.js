@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, $modal, categoriesRnc) {
+angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, $uibModal, categoriesRnc) {
     var situation;
 
     var flattenRessource = function(ressource, source, target) {
@@ -114,7 +114,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                     situation._id = result.data._id;
                     return result.data;
                 }).catch(function(error) {
-                    $modal.open({
+                    $uibModal.open({
                         templateUrl: '/partials/error-modal.html',
                         controller: ['$scope', function($scope) {
                             $scope.error = error;

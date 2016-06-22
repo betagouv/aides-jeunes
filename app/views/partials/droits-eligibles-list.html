@@ -1,10 +1,9 @@
-<accordion close-others="true">
-  <accordion-group is-open="droit.open"
-               class="resultats-accordion"
-               ng-repeat="(droitId, droit) in list"
-               ng-class="{'resultats-accordion-needs-n-2': droit.isBaseRessourcesYearMoins2 && !ressourcesYearMoins2Captured && ! isString(droit.montant), 'panel-opened': droit.open}">
+<uib-accordion close-others="false">
+  <uib-accordion-group is-open="droit.open"
+    class="resultats-accordion {{ getAccordionClass(droit) }}"
+    ng-repeat="(droitId, droit) in list|orderObjectBy:'label'">
 
-    <accordion-heading>
+    <uib-accordion-heading>
       <div class="row">
         <div class="col-xs-2 col-sm-1">
           <img class="droit-logo"
@@ -28,10 +27,10 @@
         </div>
 
         <div class="col-sm-1 hidden-xs description">
-          <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"></i>
+          <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}" aria-hidden="true"></i>
         </div>
       </div>
-    </accordion-heading>
+    </uib-accordion-heading>
 
     <div class="caption">
       <div ng-if="droit.montant">
@@ -40,7 +39,7 @@
           Pour en bénéficier, vous devez également :
           <ul>
             <li ng-repeat="condition in droit.conditions">
-              <i class="fa fa-check"></i>
+              <i class="fa fa-check" aria-hidden="true"></i>
               <span ng-bind-html="condition"></span>
             </li>
           </ul>
@@ -52,7 +51,7 @@
         </div>
 
         <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && ! ressourcesYearMoins2Captured && ! isString(droit.montant)">
-          <i class="fa fa-warning"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
+          <i class="fa fa-warning" aria-hidden="true"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
           <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
         </div>
       </div>
@@ -63,7 +62,7 @@
             class="btn btn-sm btn-default btn-block"
             href="{{ droit.link }}"
             target="_blank">
-            <i class="fa fa-external-link"></i>
+            <i class="fa fa-external-link" aria-hidden="true"></i>
             Plus d'informations
           </a>
         </div>
@@ -95,5 +94,5 @@
         </div>
       </div>
     </div>
-  </accordion-group>
-</accordion>
+  </uib-accordion-group>
+</uib-accordion>

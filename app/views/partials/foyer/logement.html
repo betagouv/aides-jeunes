@@ -13,7 +13,7 @@
             ng-change="changeLogementType()"
             value="{{logementType.id}}"
             />
-          <label for="logementType-{{logementType.id}}" class="btn radioButton">
+          <label for="logementType-{{logementType.id}}" class="btn inputButton">
             {{ logementType.label | uppercaseFirst }}
             <span class="help-col">{{ logementType.hint }}</span>
           </label>
@@ -131,7 +131,7 @@
 
       <div class="col-sm-6">
         <div class="form-group">
-            <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin"></i></p>
+            <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
             <label class="col-sm-3 control-label" for="city" ng-show="cities.length">Ville</label>
             <div class="col-sm-6">
               <select
@@ -155,7 +155,7 @@
 
     <div class="text-right">
       <button type="submit" class="btn btn-primary" ng-if="captureCodePostal()">
-        Valider <i class="fa fa-arrow-circle-right"></i>
+        Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
       </button>
     </div>
   </form>

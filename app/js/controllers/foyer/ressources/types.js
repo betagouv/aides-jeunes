@@ -48,4 +48,11 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
         applySelectedRessources();
         $state.go('foyer.ressources');
     };
+
+    $scope.shouldInitiallyOpen = function(category) {
+        var categoriesWithResourceDeclared = $scope.individuVM.ressources.map(function(ressource) {
+            return ressource.type.category;
+        });
+        return categoriesWithResourceDeclared.indexOf(category.id) >= 0;
+    };
 });

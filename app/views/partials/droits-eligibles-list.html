@@ -1,9 +1,8 @@
-<accordion close-others="true">
+<accordion close-others="false">
   <accordion-group is-open="droit.open"
                class="resultats-accordion"
-               ng-repeat="(droitId, droit) in list"
+               ng-repeat="(droitId, droit) in list|orderObjectBy:'label'"
                ng-class="{'resultats-accordion-needs-n-2': droit.isBaseRessourcesYearMoins2 && !ressourcesYearMoins2Captured && ! isString(droit.montant), 'panel-opened': droit.open}">
-
     <accordion-heading>
       <div class="row">
         <div class="col-xs-2 col-sm-1">

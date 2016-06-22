@@ -720,7 +720,7 @@ input:checked + .inputButton, input:checked + .inputButton:active:hover {
 
   .button-item {
     width: 33.33%;
-    padding: 4px;
+    padding: 0.3em;
 
     .inputButton {
       display: flex;
@@ -730,7 +730,7 @@ input:checked + .inputButton, input:checked + .inputButton:active:hover {
       height: 100%;
       border-top: none;
       border-bottom: none;
-      font-size: 14px;
+      font-size: 100%;
     }
   }
 }

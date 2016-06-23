@@ -1,15 +1,14 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($scope, $stateParams, $state, ressourceTypes, categoriesRnc, SituationService, IndividuService, RessourceService) {
-    $scope.individuIndex = parseInt($stateParams.individu);
+angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($scope, ressourceTypes, categoriesRnc, RessourceService, IndividuService) {
 
-    function applyIndividuVMRessourcesToIndividu (individuVM) {
-        var individu = individuVM.individu;
+    function applyRessourcesToIndividu () {
+        var individu = $scope.individu;
         var previousRessources = individu.ressources;
         individu.ressources = [];
         individu.interruptedRessources = [];
 
-        individuVM.ressources.forEach(function(ressource) {
+        $scope.ressources.forEach(function(ressource) {
             // Ressources for which we have the last 3 months values
             if (ressource.type.category != 'rpns' || ressource.type.id == 'caAutoEntrepreneur') {
                 RessourceService.spreadIndividuRessources(individu, $scope.months, ressource, $scope.situation.dateDeValeur);
@@ -28,10 +27,10 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
     $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
+    $scope.individuLabel = IndividuService.label($scope.individu);
 
 
-    $scope.individuVM = $scope.individusVM[$scope.individuIndex];
-    $scope.pageTitle = $scope.getPageTitle($scope.individuVM);
+    $scope.pageTitle = $scope.getPageTitle($scope.individu);
 
     $scope.ressourceTypes = _.indexBy(ressourceTypes, 'id');
     $scope.isNumber = angular.isNumber;
@@ -48,8 +47,8 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
     $scope.submit = function(form) {
         form.submitted = true;
         if (form.$valid) {
-            applyIndividuVMRessourcesToIndividu($scope.individuVM);
-            $scope.declareNextIndividuResources($scope.individuIndex);
+            applyRessourcesToIndividu();
+            $scope.declareNextIndividuResources();
         }
     };
 });

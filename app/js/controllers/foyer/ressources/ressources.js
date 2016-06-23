@@ -1,25 +1,11 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $stateParams, $state, ressourceTypes, categoriesRnc, SituationService, IndividuService, RessourceService) {
+angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $stateParams, $state, ressourceTypes, SituationService) {
 
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
-
-    function extractIndividuSelectedRessourceTypes (individu) {
-        var result = {};
-        var ressources = individu.ressources || [];
-        _.chain(ressources)
-            .pluck('type')
-            .unique()
-            .forEach(function(ressourceType) { result[ressourceType] = true; });
-
-        ['caMicroEntreprise', 'caAutoEntrepreneur', 'revenusAgricolesTns', 'autresRevenusTns'].forEach(function(ressourceType) {
-            if (individu[ressourceType]) {
-                result[ressourceType] = true;
-            }
-        });
-
-        return result;
-    }
+    var individuIndex = parseInt($stateParams.individu);
+    $scope.individu = $scope.situation.individus[individuIndex];
+    $scope.ressources = extractIndividuRessources($scope.individu);
 
     function extractIndividuRessources (individu) {
         var result = [];
@@ -75,19 +61,19 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         return result;
     }
 
-    $scope.getPageTitle = function (individuVM) {
-        switch (individuVM.individu.role) {
+    $scope.getPageTitle = function (individu) {
+        switch (individu.role) {
             case 'demandeur':
                 return 'Vos ressources';
             case 'conjoint':
                 return 'Les ressources de votre conjoint';
             default:
-                return 'Les ressources de ' + individuVM.individu.firstName;
+                return 'Les ressources de ' + individu.firstName;
         }
     }
 
-    $scope.declareNextIndividuResources = function (individuIndex) {
-        var isLastIndividu = (individuIndex + 1 == $scope.individusVM.length);
+    $scope.declareNextIndividuResources = function () {
+        var isLastIndividu = (individuIndex + 1 == $scope.situation.individus.length);
         if (isLastIndividu) { // If this is the last person
             $scope.$emit('ressources');
         } else {
@@ -95,13 +81,4 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         }
     };
 
-    $scope.individusVM = SituationService.getIndividusSortedParentsFirst($scope.situation)
-        .map(function(individu) {
-            return {
-                individu: individu,
-                label: IndividuService.label(individu),
-                selectedRessourceTypes: extractIndividuSelectedRessourceTypes(individu),
-                ressources: extractIndividuRessources(individu)
-            };
-        });
 });

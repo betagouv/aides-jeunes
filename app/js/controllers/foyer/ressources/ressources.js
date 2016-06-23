@@ -74,10 +74,15 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
 
     $scope.declareNextIndividuResources = function () {
         var isLastIndividu = (individuIndex + 1 == $scope.situation.individus.length);
-        if (isLastIndividu) { // If this is the last person
+        if (isLastIndividu) {
             $scope.$emit('ressources');
         } else {
-            $state.go('foyer.ressources.types', { individu: individuIndex + 1 });
+            var nextIndividu = $scope.situation.individus[individuIndex + 1];
+            if (nextIndividu.role == 'conjoint') {
+                $state.go('foyer.ressources.types', { individu: individuIndex + 1 });
+            } else {
+                $state.go('foyer.ressources.enfants');
+            }
         }
     };
 

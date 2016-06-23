@@ -27,7 +27,7 @@ angular.module('ddsApp').service('ImpactStudyService', function($location, $http
         payload.eid = getResearchId();
 
         $http.post('https://' + RESEARCH_DOMAIN + '/v1' + path, payload)
-             .success(function(res) { $log.info('Data transmitted to researchers', res); })
+             .success(function(res) { $log.info('Data transmitted to researchers. For more info, see ' + RESEARCH_DOMAIN, res); })
              .error(function(error) { $log.warn('Data could not be transmitted to researchers', error); });
     }
 

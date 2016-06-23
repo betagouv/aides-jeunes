@@ -127,24 +127,24 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'FoyerLogementCtrl'
         })
         .state('foyer.ressources', {
-            url: '/ressources',
+            url: '/ressources/:individu',
             controller: 'FoyerRessourcesCtrl',
             templateUrl: '/partials/foyer/ressources/layout.html'
         })
         .state('foyer.ressources.types', {
             templateUrl: '/partials/foyer/ressources/types.html',
             controller: 'FoyerRessourceTypesCtrl',
-            url: '/:individu/types'
+            url: '/types'
         })
         .state('foyer.ressources.montants', {
             templateUrl: '/partials/foyer/ressources/montants.html',
             controller: 'FoyerRessourcesMontantsCtrl',
-            url: '/:individu/montants'
+            url: '/montants'
         })
         .state('foyer.pensionsAlimentaires', {
             templateUrl: '/partials/foyer/pensions-alimentaires.html',
             controller: 'FoyerPensionsAlimentairesCtrl',
-            url: '/ressources/pensions-alimentaires'
+            url: '/pensions-alimentaires'
         })
         .state('foyer.resultat', {
             url: '/resultat',

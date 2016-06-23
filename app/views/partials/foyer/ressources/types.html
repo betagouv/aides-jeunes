@@ -1,6 +1,5 @@
 <h1>{{ pageTitle }}</h1>
 
-
 <form method="post" name="form" novalidate ng-submit="submit()">
   <fieldset>
     <legend>
@@ -26,7 +25,7 @@
                 type="checkbox"
                 id="{{ ressourceType.id }}"
                 class="screenReadersOnly"
-                ng-model="individuVM.selectedRessourceTypes[ressourceType.id]"
+                ng-model="selectedRessourceTypes[ressourceType.id]"
               />
               <label for="{{ ressourceType.id }}" class="btn btn-sm inputButton">
                 {{ ressourceType.label }}

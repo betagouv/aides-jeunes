@@ -1,10 +1,26 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ressourceCategories, SituationService, IndividuService,  ressourceTypes, $state) {
+angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, ressourceCategories, ressourceTypes, $state) {
 
-    $scope.individuIndex = parseInt($stateParams.individu);
-    $scope.individuVM = $scope.individusVM[$stateParams.individu];
-    $scope.pageTitle = $scope.getPageTitle($scope.individuVM);
+    function extractIndividuSelectedRessourceTypes (individu) {
+        var result = {};
+        var ressources = individu.ressources || [];
+        _.chain(ressources)
+            .pluck('type')
+            .unique()
+            .forEach(function(ressourceType) { result[ressourceType] = true; });
+
+        ['caMicroEntreprise', 'caAutoEntrepreneur', 'revenusAgricolesTns', 'autresRevenusTns'].forEach(function(ressourceType) {
+            if (individu[ressourceType]) {
+                result[ressourceType] = true;
+            }
+        });
+
+        return result;
+    }
+
+    $scope.selectedRessourceTypes = extractIndividuSelectedRessourceTypes($scope.individu);
+    $scope.pageTitle = $scope.getPageTitle($scope.individu);
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
 
@@ -22,10 +38,10 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     };
 
     var applySelectedRessources = function() {
-        var currentRessources = $scope.individuVM.ressources;
-        $scope.individuVM.ressources = [];
+        var currentRessources = _.clone($scope.ressources);
+        $scope.ressources.length = 0;
         ressourceTypes.forEach(function(ressourceType) {
-            if (! $scope.individuVM.selectedRessourceTypes[ressourceType.id]) {
+            if (! $scope.selectedRessourceTypes[ressourceType.id]) {
                 return;
             }
             var ressource = _.find(currentRessources, { type: ressourceType });
@@ -33,21 +49,21 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
                 ressource = _.cloneDeep(DEFAULT_RESOURCE);
                 ressource.type = ressourceType;
             }
-            $scope.individuVM.ressources.push(ressource);
+            $scope.ressources.push(ressource);
         });
     };
 
     $scope.submit = function() {
-        applySelectedRessources($scope.individuVM);
-        if ($scope.individuVM.ressources.length) {
-            $state.go('foyer.ressources.montants', { individu: $scope.individuIndex });
+        applySelectedRessources();
+        if ($scope.ressources.length) {
+            $state.go('foyer.ressources.montants');
         } else {
-            $scope.declareNextIndividuResources($scope.individuIndex);
+            $scope.declareNextIndividuResources();
         }
     };
 
     $scope.shouldInitiallyOpen = function(category) {
-        var categoriesWithResourceDeclared = $scope.individuVM.ressources.map(function(ressource) {
+        var categoriesWithResourceDeclared = $scope.ressources.map(function(ressource) {
             return ressource.type.category;
         });
         return categoriesWithResourceDeclared.indexOf(category.id) >= 0;

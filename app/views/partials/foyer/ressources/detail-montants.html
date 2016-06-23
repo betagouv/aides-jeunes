@@ -1,8 +1,8 @@
-<div ng-repeat="ressource in individuVM.ressources">
+<div ng-repeat="ressource in ressources">
   <div ng-if="ressource.type.category !== 'rpns'">
     <montant-ressource
       ng-model="ressource"
-      individu-v-m="individuVM"
+      individu="individu"
       ressource-type="ressource.type"
       index="individuIndex"
       date-de-valeur="situation.dateDeValeur"
@@ -13,14 +13,14 @@
   <div class="panel panel-montant rpns"
     ng-if="ressource.type.category == 'rpns' && ressource.type.id == 'caAutoEntrepreneur'">
     <div class="panel-heading">
-       <h3 class="panel-title"><span class="short-label">{{ individuVM.label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
+       <h3 class="panel-title"><span class="short-label">{{ label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
     </div>
     <div class="panel-body">
       <div class="row">
         <div class="col-sm-5">
           <div class="form-group">
             <label for="type-activite-individu-{{ individuIndex }}">Type d'activité</label>
-            <select class="form-control" id="type-activite-individu-{{ individuIndex }}" ng-model="individuVM.individu.autoEntrepreneurActiviteType">
+            <select class="form-control" id="type-activite-individu-{{ individuIndex }}" ng-model="individu.autoEntrepreneurActiviteType">
               <option value="achat_revente">Achat/revente ou fourniture de logement</option>
               <option value="bic">Autre activité relevant des BIC</option>
               <option value="bnc">Activité libérale et/ou intellectuelle (BNC)</option>
@@ -78,7 +78,7 @@
           <label>
             <input
               type="checkbox" ng-model="ressource.onGoing">
-              {{ autoEntrepreneurOnGoingQuestion(individuVM.individu, currentMonth) }}
+              {{ autoEntrepreneurOnGoingQuestion(individu, currentMonth) }}
           </label>
         </div>
       </div>
@@ -88,14 +88,14 @@
   <div class="panel panel-montant rpns"
     ng-if="ressource.type.category == 'rpns' && ressource.type.id == 'caMicroEntreprise'">
     <div class="panel-heading">
-       <h3 class="panel-title"><span class="short-label">{{ individuVM.label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
+       <h3 class="panel-title"><span class="short-label">{{ label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
     </div>
     <div class="panel-body">
       <div class="row">
         <div class="col-sm-5">
           <div class="form-group">
             <label for="type-activite-individu-{{ individuIndex }}">Type d'activité</label>
-            <select class="form-control" id="type-activite-individu-{{ individuIndex }}" ng-model="individuVM.individu.microEntrepriseActiviteType">
+            <select class="form-control" id="type-activite-individu-{{ individuIndex }}" ng-model="individu.microEntrepriseActiviteType">
               <option value="achat_revente">Achat/revente ou fourniture de logement</option>
               <option value="bic">Autre activité relevant des BIC</option>
               <option value="bnc">Activité libérale et/ou intellectuelle (BNC)</option>
@@ -131,14 +131,14 @@
   <div class="panel panel-montant rpns"
    ng-if="ressource.type.id == 'autresRevenusTns'">
     <div class="panel-heading">
-       <h3 class="panel-title"><span class="short-label">{{ individuVM.label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
+       <h3 class="panel-title"><span class="short-label">{{ label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
     </div>
     <div class="panel-body">
       <div class="row">
         <div class="col-sm-5">
           <div class="form-group">
             <label for="type-activite-individu-{{ individuIndex }}">Type d'activité</label>
-            <select class="form-control" id="type-activite-individu-{{ individuIndex }}" ng-model="individuVM.individu.autresRevenusTnsActiviteType">
+            <select class="form-control" id="type-activite-individu-{{ individuIndex }}" ng-model="individu.autresRevenusTnsActiviteType">
               <option value="achat_revente">Achat/revente ou fourniture de logement</option>
               <option value="bic">Autre activité relevant des BIC</option>
               <option value="bnc">Activité libérale et/ou intellectuelle (BNC)</option>
@@ -198,7 +198,7 @@
           <label>
             <input
               type="checkbox"
-              ng-model="individuVM.individu.autresRevenusTnsEmployes">
+              ng-model="individu.autresRevenusTnsEmployes">
               J'ai au moins un employé
           </label>
         </div>
@@ -209,7 +209,7 @@
   <div class="panel panel-montant rpns"
    ng-if="ressource.type.id == 'revenusAgricolesTns'">
     <div class="panel-heading">
-       <h3 class="panel-title"><span class="short-label">{{ individuVM.label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
+       <h3 class="panel-title"><span class="short-label">{{ label }}</span> {{ ressourceTypes[ressource.type.id].label }}</h3>
     </div>
     <div class="panel-body">
       <div class="row">

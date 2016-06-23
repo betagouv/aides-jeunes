@@ -17,7 +17,7 @@
       <montant-ressource
         ng-repeat="individuVM in individusVM"
         ng-model="individuVM.pensionsVersees"
-        individu-v-m="individuVM"
+        individu="individuVM.individu"
         ressource-type="pensionsVersees"
         index="$index"
         date-de-valeur="situation.dateDeValeur">

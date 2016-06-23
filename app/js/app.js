@@ -127,34 +127,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'FoyerLogementCtrl'
         })
         .state('foyer.ressources', {
-            url: '/ressources/:individu',
+            url: '/ressources',
             controller: 'FoyerRessourcesCtrl',
             templateUrl: '/partials/foyer/ressources/layout.html'
-        })
-        .state('foyer.ressources.types', {
-            templateUrl: '/partials/foyer/ressources/types.html',
-            controller: 'FoyerRessourceTypesCtrl',
-            url: '/types'
-        })
-        .state('foyer.ressources.montants', {
-            templateUrl: '/partials/foyer/ressources/montants.html',
-            controller: 'FoyerRessourcesMontantsCtrl',
-            url: '/montants'
-        })
-        .state('foyer.ressources.enfants', {
-            templateUrl: '/partials/foyer/ressources/enfants.html',
-            controller: 'FoyerRessourcesEnfantsCtrl',
-            url: '/enfants/'
-        })
-        .state('foyer.pensionsAlimentaires', {
-            templateUrl: '/partials/foyer/pensions-alimentaires.html',
-            controller: 'FoyerPensionsAlimentairesCtrl',
-            url: '/pensions-alimentaires'
-        })
-        .state('foyer.resultat', {
-            url: '/resultat',
-            templateUrl: '/partials/resultat.html',
-            controller: 'ResultatCtrl'
         })
         .state('foyer.ressourcesYearMoins2', {
             templateUrl: '/partials/foyer/ressources/year-moins-2.html',
@@ -165,6 +140,36 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/foyer/ressources/rfr.html',
             controller: 'FoyerRessourceRfrCtrl',
             url: '/ressources/rfr'
+        })
+        .state('foyer.ressources.enfants', {
+            templateUrl: '/partials/foyer/ressources/enfants.html',
+            controller: 'FoyerRessourcesEnfantsCtrl',
+            url: '/enfants/'
+        })
+        .state('foyer.ressources.individu', {
+            controller: 'FoyerRessourcesIndividuCtrl',
+            url:'/:individu',
+            templateUrl: '/partials/foyer/ressources/layout.html'
+        })
+        .state('foyer.ressources.individu.types', {
+            templateUrl: '/partials/foyer/ressources/types.html',
+            controller: 'FoyerRessourceTypesCtrl',
+            url: '/types'
+        })
+        .state('foyer.ressources.individu.montants', {
+            templateUrl: '/partials/foyer/ressources/montants.html',
+            controller: 'FoyerRessourcesMontantsCtrl',
+            url: '/montants'
+        })
+        .state('foyer.pensionsAlimentaires', {
+            templateUrl: '/partials/foyer/pensions-alimentaires.html',
+            controller: 'FoyerPensionsAlimentairesCtrl',
+            url: '/pensions-alimentaires'
+        })
+        .state('foyer.resultat', {
+            url: '/resultat',
+            templateUrl: '/partials/resultat.html',
+            controller: 'ResultatCtrl'
         })
         .state('foyer.patrimoine', {
             url: '/patrimoine',

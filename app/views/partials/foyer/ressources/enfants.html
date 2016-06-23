@@ -1,0 +1,14 @@
+<h1>Les ressources de vos enfants</h1>
+<form method="post" name="form" novalidate ng-submit="submit(form)">
+  <div ng-repeat="enfant in enfants">
+      <yes-no-question model="enfant.hasRessources">
+        <question>
+          {{ enfant.firstName }} a-t-il ou elle touché des ressources <strong>depuis {{ debutAnneeGlissante }}</strong>&nbsp;?
+        </question>
+      </yes-no-question>
+  </div>
+
+  <div class="text-right">
+    <button type="submit" class="btn btn-primary">Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+  </div>
+</form>

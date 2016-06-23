@@ -141,6 +141,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'FoyerRessourcesMontantsCtrl',
             url: '/montants'
         })
+        .state('foyer.ressources.enfants', {
+            templateUrl: '/partials/foyer/ressources/enfants.html',
+            controller: 'FoyerRessourcesEnfantsCtrl',
+            url: '/enfants/'
+        })
         .state('foyer.pensionsAlimentaires', {
             templateUrl: '/partials/foyer/pensions-alimentaires.html',
             controller: 'FoyerPensionsAlimentairesCtrl',

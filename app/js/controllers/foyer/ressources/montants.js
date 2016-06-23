@@ -49,12 +49,7 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
         form.submitted = true;
         if (form.$valid) {
             applyIndividuVMRessourcesToIndividu($scope.individuVM);
-            var isLastIndividu = ($scope.individuIndex + 1 == $scope.individusVM.length);
-            if (isLastIndividu) { // If this is the last person
-                $scope.$emit('ressources');
-            } else {
-                $state.go('foyer.ressources.types', { individu: $scope.individuIndex + 1 });
-            }
+            $scope.declareNextIndividuResources($scope.individuIndex);
         }
     };
 });

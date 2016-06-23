@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $stateParams, ressourceTypes, categoriesRnc, SituationService, IndividuService, RessourceService) {
+angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $stateParams, $state, ressourceTypes, categoriesRnc, SituationService, IndividuService, RessourceService) {
 
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
 
@@ -75,7 +75,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
         return result;
     }
 
-    $scope.getPageTitle = function(individuVM) {
+    $scope.getPageTitle = function (individuVM) {
         switch (individuVM.individu.role) {
             case 'demandeur':
                 return 'Vos ressources';
@@ -85,6 +85,15 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
                 return 'Les ressources de ' + individuVM.individu.firstName;
         }
     }
+
+    $scope.declareNextIndividuResources = function (individuIndex) {
+        var isLastIndividu = (individuIndex + 1 == $scope.individusVM.length);
+        if (isLastIndividu) { // If this is the last person
+            $scope.$emit('ressources');
+        } else {
+            $state.go('foyer.ressources.types', { individu: individuIndex + 1 });
+        }
+    };
 
     $scope.individusVM = SituationService.getIndividusSortedParentsFirst($scope.situation)
         .map(function(individu) {

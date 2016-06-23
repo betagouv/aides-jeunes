@@ -2,6 +2,7 @@
 
 angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ressourceCategories, SituationService, IndividuService,  ressourceTypes, $state) {
 
+    $scope.individuIndex = parseInt($stateParams.individu);
     $scope.individuVM = $scope.individusVM[$stateParams.individu];
     $scope.pageTitle = $scope.getPageTitle($scope.individuVM);
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
@@ -38,7 +39,11 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
 
     $scope.submit = function() {
         applySelectedRessources($scope.individuVM);
-        $state.go('foyer.ressources.montants', { individu: $stateParams.individu});
+        if ($scope.individuVM.ressources.length) {
+            $state.go('foyer.ressources.montants', { individu: $scope.individuIndex });
+        } else {
+            $scope.declareNextIndividuResources($scope.individuIndex);
+        }
     };
 
     $scope.shouldInitiallyOpen = function(category) {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($scope, ressourceTypes, categoriesRnc, RessourceService, IndividuService) {
+angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($scope, $stateParams, ressourceTypes, categoriesRnc, RessourceService, IndividuService) {
 
     function applyRessourcesToIndividu () {
         var individu = $scope.individu;
@@ -28,9 +28,6 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
     $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
     $scope.individuLabel = IndividuService.label($scope.individu);
-
-
-    $scope.pageTitle = $scope.getPageTitle($scope.individu);
 
     $scope.ressourceTypes = _.indexBy(ressourceTypes, 'id');
     $scope.isNumber = angular.isNumber;

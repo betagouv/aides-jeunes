@@ -4,22 +4,22 @@
     <label>
       <input
         type="radio"
-        name="{{ propertyPath }}"
+        name="{{ uniqueFieldId }}"
         class="screenReadersOnly"
         ng-model="value"
         value="true"
-        ng-change="updateValue()"
+        ng-click="updateValue()"
         />
       <div class="btn btn-sm btn-default">Oui</div>
     </label>
     <label>
       <input
         type="radio"
-        name="{{ propertyPath }}"
+        name="{{ uniqueFieldId }}"
         class="screenReadersOnly"
         ng-model="value"
         value="false"
-        ng-change="updateValue()"
+        ng-click="updateValue()"
         />
       <div class="btn btn-sm btn-default">Non</div>
     </label>

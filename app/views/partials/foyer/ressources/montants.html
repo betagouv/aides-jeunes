@@ -1,21 +1,25 @@
-<h1>{{ pageTitle }}</h1>
-<p>
-  Indiquez toutes vos ressources <strong>nettes</strong> perçues en France comme à l'étranger.
-</p>
-<form method="post" name="form" novalidate ng-submit="submit(form)">
-  <div class="ressources-individu">
-    <div class="clearfix"></div>
-    <div class="content">
-      <div ng-if="ressources.length">
-        <div ng-include="'partials/foyer/ressources/detail-montants.html'"></div>
+<div class="frame-foyer">
+  <h1>{{ pageTitle }}</h1>
+  <p>
+    Indiquez toutes vos ressources <strong>nettes</strong> perçues en France comme à l'étranger.
+  </p>
+  <form method="post" name="form" novalidate ng-submit="submit(form)">
+    <div class="ressources-individu">
+      <div class="clearfix"></div>
+      <div class="content">
+        <div ng-if="ressources.length">
+          <div ng-include="'partials/foyer/ressources/detail-montants.html'"></div>
+        </div>
       </div>
+      <hr>
     </div>
-    <hr>
-  </div>
-  <div class="text-right">
-    <a title="Déclarer d'autres ressources" ui-sref="foyer.ressources.individu.types" class="btn  btn-success">
-      Déclarer d'autres ressources
-    </a>
-    <button type="submit" class="btn btn-primary">Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
-  </div>
-</form>
+    <div class="text-right">
+      <a title="Déclarer d'autres ressources" ui-sref="foyer.ressources.individu.types" class="btn  btn-success">
+        Déclarer d'autres ressources
+      </a>
+      <button type="submit" class="btn btn-primary">
+        Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      </button>
+    </div>
+  </form>
+</div>

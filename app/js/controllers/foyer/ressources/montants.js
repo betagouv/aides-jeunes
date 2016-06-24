@@ -22,9 +22,8 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
         individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
             return !! _.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
         }));
-    };
+    }
 
-    var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
     $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
     $scope.individuLabel = IndividuService.label($scope.individu);
@@ -45,7 +44,7 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
         form.submitted = true;
         if (form.$valid) {
             applyRessourcesToIndividu();
-            $scope.declareNextIndividuResources();
+            $scope.declareNextIndividuResources(parseInt($stateParams.individu));
         }
     };
 });

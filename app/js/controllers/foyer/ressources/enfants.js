@@ -11,5 +11,5 @@ angular.module('ddsApp').controller('FoyerRessourcesEnfantsCtrl', function($scop
 
     $scope.submit = function() {
         $scope.markEnfantsAsDeclared();
-    }
+    };
 });

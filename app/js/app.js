@@ -148,7 +148,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         })
         .state('foyer.ressources.individu', {
             controller: 'FoyerRessourcesIndividuCtrl',
-            url:'/:individu',
+            url: '/:individu',
             templateUrl: '/partials/foyer/ressources/layout.html'
         })
         .state('foyer.ressources.individu.types', {

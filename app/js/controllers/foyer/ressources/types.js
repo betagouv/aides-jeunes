@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, ressourceCategories, ressourceTypes, $state) {
+angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ressourceCategories, ressourceTypes, $state) {
 
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
@@ -16,7 +16,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
         if (_.some($scope.selectedRessourceTypes)) {
             $state.go('foyer.ressources.individu.montants');
         } else {
-            $scope.declareNextIndividuResources();
+            $scope.declareNextIndividuResources(parseInt($stateParams.individu));
         }
     };
 

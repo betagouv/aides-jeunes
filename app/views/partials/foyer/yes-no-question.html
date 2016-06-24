@@ -1,5 +1,5 @@
 <fieldset class="form-group">
-  <legend class="col-sm-3 control-label"></legend>
+  <legend class="col-sm-{{ gridSize['question'] }} control-label"></legend>
   <div class="col-sm-3">
     <input
       type="radio"
@@ -22,7 +22,7 @@
       />
     <label for="{{uniqueFieldId}}-no" class="btn btn-sm inputButton">Non</label>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-{{ gridSize['helpText'] }}">
     <p class="help-block"></p>
   </div>
 </fieldset>

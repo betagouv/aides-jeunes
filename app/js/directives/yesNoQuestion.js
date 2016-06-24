@@ -30,7 +30,7 @@ angular.module('ddsApp').directive('yesNoQuestion', function() {
             $scope.gridSize = {
                 question: $attributes.size || 3,
                 helpText: 9 - ($attributes.size || 3)
-            }
+            };
 
             // ng-model doesn't accept a dynamic parameter, so we have to transmit the value manually.
             $scope.updateValue = function() {

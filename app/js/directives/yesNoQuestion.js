@@ -9,6 +9,8 @@ angular.module('ddsApp').directive('yesNoQuestion', function() {
         controller: 'yesNoQuestionCtrl',
         link: function ($scope, $element, $attributes) {
             $scope.propertyPath = $attributes.model;
+            $scope.uniqueFieldId = 'field.' + Math.random().toString(36).slice(2);
+            $scope.value = $attributes.default;
         }
     };
 });

@@ -131,15 +131,30 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'FoyerRessourcesCtrl',
             templateUrl: '/partials/foyer/ressources/layout.html'
         })
-        .state('foyer.ressources.types', {
+        .state('foyer.ressources.enfants', {
+            templateUrl: '/partials/foyer/ressources/enfants.html',
+            controller: 'FoyerRessourcesEnfantsCtrl',
+            url: '/enfants/'
+        })
+        .state('foyer.ressources.individu', {
+            controller: 'FoyerRessourcesIndividuCtrl',
+            url: '/:individu',
+            templateUrl: '/partials/foyer/ressources/layout.html'
+        })
+        .state('foyer.ressources.individu.types', {
             templateUrl: '/partials/foyer/ressources/types.html',
             controller: 'FoyerRessourceTypesCtrl',
-            url: '/:individu/types'
+            url: '/types'
+        })
+        .state('foyer.ressources.individu.montants', {
+            templateUrl: '/partials/foyer/ressources/montants.html',
+            controller: 'FoyerRessourcesMontantsCtrl',
+            url: '/montants'
         })
         .state('foyer.pensionsAlimentaires', {
             templateUrl: '/partials/foyer/pensions-alimentaires.html',
             controller: 'FoyerPensionsAlimentairesCtrl',
-            url: '/ressources/pensions-alimentaires'
+            url: '/pensions-alimentaires'
         })
         .state('foyer.resultat', {
             url: '/resultat',
@@ -188,7 +203,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $uibModalStack, $anchorScroll) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -205,9 +220,9 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anc
 
     // fermeture d'une éventuelle modale rémanente au changement d'état (suite à des bugs récurrents)
     $rootScope.$on('$stateChangeStart', function() {
-        var top = $modalStack.getTop();
+        var top = $uibModalStack.getTop();
         if (top) {
-            $modalStack.dismiss(top.key);
+            $uibModalStack.dismiss(top.key);
         }
     });
 

@@ -347,17 +347,7 @@ $autre-lighter: #cce4e7;
 
   }
 
-  .capture-rows {
-    padding: 5px;
 
-    .btn-ressources {
-      @extend .btn-default;
-    }
-
-    .btn-selection {
-      font-size: 14px;
-    }
-  }
 }
 
 .capture-indemnites {
@@ -382,15 +372,6 @@ $autre-lighter: #cce4e7;
 
 .capture-rpns {
   @include ressource-category-capture($rpns, $rpns-light, $rpns-lighter);
-}
-
-.btn-selection {
-  // Reset border de 1px sur .btn
-  border-top: 0px;
-  border-bottom: 0px;
-  margin: 3px;
-  padding: 16px 16px;
-  font-size: 12px;
 }
 
 .intro {
@@ -692,10 +673,7 @@ $autre-lighter: #cce4e7;
 
 legend {
   border-bottom: none;
-}
-
-.radioButton {
-  @extend .btn-default;
+  font-size: inherit;
 }
 
 .screenReadersOnly {
@@ -708,33 +686,60 @@ legend {
   width: 1px;
 }
 
-input:checked + .radioButton, input:checked + .radioButton:active:hover {
-  background-color: $btn-success-bg;
-  color: $btn-success-color;
+.inputButton {
+  @extend .btn-default;
 }
 
-input:checked + .radioButton > .help-col {
-  color: #D8D8D8;
+input:checked + .inputButton, input:checked + .inputButton:active:hover {
+  background-color: $btn-success-bg;
+  color: $btn-success-color;
+
+  .help-col {
+    color: #D8D8D8;
+  }
 }
 
 .button-row {
   display: flex;
   flex-direction: row;
-}
 
-@media (max-width: $screen-sm-min) {
-  .button-row {
-    flex-direction: column;
+  .button-item {
+    flex: auto;
+    flex-basis: 0;
+
+    .inputButton {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
-.button-row > .button-item {
-  flex: auto;
-  flex-basis: 0;
+.button-grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  .button-item {
+    width: 33.33%;
+    padding: 0.3em;
+
+    .inputButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border-top: none;
+      border-bottom: none;
+      font-size: 100%;
+    }
+  }
 }
 
-.button-row > .button-item > label {
-  width: 100%;
-  height: 100%;
+@media (max-width: $screen-sm-min) {
+  .button-row, .button-grid {
+    flex-direction: column;
+  }
+  .button-grid > .button-item {
+    width: 100%;
+  }
 }
-

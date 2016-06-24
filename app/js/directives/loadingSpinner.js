@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').config(function($provide) {
-    $provide.decorator('$modal', ['$delegate', '$rootScope', function($delegate, $rootScope) {
+    $provide.decorator('$uibModal', ['$delegate', '$rootScope', function($delegate, $rootScope) {
         return {
             open: function(modalOptions) {
                 $rootScope.$broadcast('modalOpenStart');

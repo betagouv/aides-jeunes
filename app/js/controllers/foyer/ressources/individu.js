@@ -108,24 +108,9 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
     }
 
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
-    var sortedIndividus = SituationService.getIndividusSortedParentsFirst($scope.situation);
     var individuIndex = parseInt($stateParams.individu);
-    $scope.individu = sortedIndividus[individuIndex];
+    $scope.individu = $scope.sortedIndividus[individuIndex];
     $scope.selectedRessourceTypes = extractIndividuSelectedRessourceTypes($scope.individu);
     $scope.ressources = extractIndividuRessources($scope.individu)
     $scope.pageTitle = getPageTitle($scope.individu);
-
-
-    $scope.declareNextIndividuResources = function () {
-        var nextIndividu = sortedIndividus[individuIndex + 1];
-        if (! nextIndividu) {
-            $scope.$emit('ressources');
-            return;
-        }
-        if (nextIndividu.role == 'conjoint') {
-            $state.go('foyer.ressources.individu.types', { individu: individuIndex + 1 });
-        } else {
-            $state.go('foyer.ressources.enfants');
-        }
-    };
 });

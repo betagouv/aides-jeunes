@@ -1,44 +1,46 @@
-<h1>{{ pageTitle }}</h1>
+<div class="frame-foyer">
+  <h1>{{ pageTitle }}</h1>
 
-<form method="post" name="form" novalidate ng-submit="submit()">
-  <fieldset>
-    <legend>
-      Sélectionnez les ressources perçues <strong>depuis {{ debutAnneeGlissante }}</strong>,
-      vous pourrez ensuite saisir les montants.
-    </legend>
-    <div class="ressource-types-block">
-      <uib-accordion close-others="false">
-        <uib-accordion-group
-          class="capture-{{ category.id }}"
-          ng-repeat="category in ressourceCategories"
-          is-open="status.open"
-          ng-init="status.open = shouldInitiallyOpen(category)">
-          <uib-accordion-heading>
-            {{ category.label }}
-            <i class="pull-left fa" aria-hidden="true"
-              ng-class="{'fa-chevron-down': status.open, 'fa-chevron-right': !status.open}">
-            </i>
-          </uib-accordion-heading>
-          <div class="button-grid">
-            <div class="button-item" ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">
-              <input
-                type="checkbox"
-                id="{{ ressourceType.id }}"
-                class="screenReadersOnly"
-                ng-model="selectedRessourceTypes[ressourceType.id]"
-              />
-              <label for="{{ ressourceType.id }}" class="btn btn-sm inputButton">
-                {{ ressourceType.label }}
-              </label>
+  <form method="post" name="form" novalidate ng-submit="submit()">
+    <fieldset>
+      <legend>
+        Sélectionnez les ressources perçues <strong>depuis {{ debutAnneeGlissante }}</strong>,
+        vous pourrez ensuite saisir les montants.
+      </legend>
+      <div class="ressource-types-block">
+        <uib-accordion close-others="false">
+          <uib-accordion-group
+            class="capture-{{ category.id }}"
+            ng-repeat="category in ressourceCategories"
+            is-open="status.open"
+            ng-init="status.open = shouldInitiallyOpen(category)">
+            <uib-accordion-heading>
+              {{ category.label }}
+              <i class="pull-left fa" aria-hidden="true"
+                ng-class="{'fa-chevron-down': status.open, 'fa-chevron-right': !status.open}">
+              </i>
+            </uib-accordion-heading>
+            <div class="button-grid">
+              <div class="button-item" ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">
+                <input
+                  type="checkbox"
+                  id="{{ ressourceType.id }}"
+                  class="screenReadersOnly"
+                  ng-model="selectedRessourceTypes[ressourceType.id]"
+                />
+                <label for="{{ ressourceType.id }}" class="btn btn-sm inputButton">
+                  {{ ressourceType.label }}
+                </label>
+              </div>
             </div>
-          </div>
-        </uib-accordion-group>
-      </uib-accordion>
-      <div class="text-right">
-        <button type="submit" class="btn btn-primary">
-          Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-        </button>
+          </uib-accordion-group>
+        </uib-accordion>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary">
+            Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
-    </div>
-  </fieldset>
-</form>
+    </fieldset>
+  </form>
+</div>

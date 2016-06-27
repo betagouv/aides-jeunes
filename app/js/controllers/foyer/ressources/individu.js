@@ -8,6 +8,9 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
         _.chain(ressources)
             .pluck('type')
             .unique()
+            .filter(function(type) {
+                return ! _.contains(['pensionsAlimentairesVersees'], type);
+            })
             .forEach(function(ressourceType) { result[ressourceType] = true; });
 
         ['caMicroEntreprise', 'caAutoEntrepreneur', 'revenusAgricolesTns', 'autresRevenusTns'].forEach(function(ressourceType) {
@@ -22,9 +25,12 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
     function extractIndividuRessources (individu) {
         var result = [];
         var ressources = individu.ressources || [];
-        var types = _.chain(ressources).pluck('type').unique().filter(function(type) {
-            return ! _.contains(['pensionsAlimentairesVersees'], type);
-        });
+        var types = _.chain(ressources)
+            .pluck('type')
+            .unique()
+            .filter(function(type) {
+                return ! _.contains(['pensionsAlimentairesVersees'], type);
+            });
 
         types.forEach(function(type) {
             // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)

@@ -25,6 +25,7 @@
     "angular-sanitize": "~1.2.29",
     "angular-animate": "~1.2.29",
     "angular-ui-router": "~0.2.10",
+    "angular-uuids": "~0.0.3",
     "angular-bootstrap": "0.12.0",
     "bootstrap-sass-official": "~3.3.1",
     "ngstorage": "~0.3.0",
@@ -37,6 +38,6 @@
   },
   "testPath": "test/spec",
   "resolutions": {
-    "angular": ">=1 <1.3.0"
+    "angular": "1.2.29"
   }
 }

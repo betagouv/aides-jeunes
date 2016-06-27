@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('ddsApp').service('ResultatService', function($http, $modal, droitsDescription) {
-
     function processOpenfiscaResult(openfiscaResult) {
         var droitsEligibles = {};
         var calculatedPrestations = openfiscaResult.calculatedPrestations;

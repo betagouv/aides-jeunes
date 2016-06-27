@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, $modal, categoriesRnc) {
+angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, $modal, categoriesRnc, ImpactStudyService) {
     var situation;
 
     var flattenRessource = function(ressource, source, target) {
@@ -59,6 +59,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
     return {
         newSituation: function() {
             situation = $sessionStorage.situation = { individus: [], dateDeValeur: moment().format() };
+            ImpactStudyService.resetSessionId();
         },
 
         restoreLocal: function() {

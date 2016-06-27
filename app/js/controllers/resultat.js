@@ -15,10 +15,10 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         $scope.droits = droits.droitsEligibles;
         $scope.droitsInjectes = droits.droitsInjectes;
         $scope.noDroits = _.isEmpty($scope.droits);
+
+        ImpactStudyService.sendResults($scope.situation, droits.raw);
     }, function() {
         $scope.error = true;
-    }).then(function() {
-        ImpactStudyService.sendResults($scope.situation, $scope.droits);
     }).finally(function() {
         $scope.awaitingResults = false;
     });

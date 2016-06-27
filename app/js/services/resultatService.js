@@ -16,6 +16,7 @@ angular.module('ddsApp').service('ResultatService', function($http, $modal, droi
             }
         });
         return {
+            raw: openfiscaResult,
             droitsEligibles: droitsEligibles,
             droitsInjectes: openfiscaResult.injectedPrestations.map(function(prestationName) {
                 return droitsDescription.prestationsNationales[prestationName];

@@ -33,8 +33,10 @@ angular.module('ddsApp').service('ImpactStudyService', function($location, $http
 
     return {
         sendResults: function(situation, openfiscaResults) {
-            var payload = angular.copy(openfiscaResults);
-            payload.postcode = situation.logement.adresse.codePostal;
+            var payload = {
+                results: angular.copy(openfiscaResults.calculatedPrestations),
+                postcode: situation.logement.adresse.codePostal,
+            };
 
             send('/sr', payload);
         },

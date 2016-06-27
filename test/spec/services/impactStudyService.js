@@ -8,6 +8,7 @@ describe('ImpactStudyService', function() {
         sessionStorage;
 
     var SITUATION = { logement: { adresse: { codePostal: '21800' } } },
+        RESULTS = { key: 'value' },
         EID = '9582d21d-464b-4654-a556-e9279f425e08';
 
     beforeEach(function() {
@@ -39,7 +40,7 @@ describe('ImpactStudyService', function() {
 
     describe('sendResults()', function() {
         it('should not send anything if no research ID is set', function() {
-            subject.sendResults(SITUATION, {});
+            subject.sendResults(SITUATION, RESULTS);
         });
 
         it('should send data if a research ID is set', function() {
@@ -47,14 +48,14 @@ describe('ImpactStudyService', function() {
             browserController.poll();
 
             httpMock.expectPOST('https://mes-droits.fr/v1/sr', validate);
-            subject.sendResults(SITUATION, {});
+            subject.sendResults(SITUATION, RESULTS);
             httpMock.flush();
         });
     });
 
     describe('sendPostCode()', function() {
         it('should not send anything if no research ID is set', function() {
-            subject.sendResults(SITUATION, {});
+            subject.sendPostCode(SITUATION);
         });
 
         it('should send data if a research ID is set', function() {
@@ -67,9 +68,9 @@ describe('ImpactStudyService', function() {
         });
     });
 
-    describe('sendPostCode()', function() {
+    describe('sendVisitedPage()', function() {
         it('should not send anything if no research ID is set', function() {
-            subject.sendResults(SITUATION, {});
+            subject.sendVisitedPage();
         });
 
         it('should send data if a research ID is set', function() {

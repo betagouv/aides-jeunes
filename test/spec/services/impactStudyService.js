@@ -8,7 +8,7 @@ describe('ImpactStudyService', function() {
         sessionStorage;
 
     var SITUATION = { logement: { adresse: { codePostal: '21800' } } },
-        RESULTS = { key: 'value' },
+        RESULTS = { calculatedPrestations: { key: 'value' }, injectedPrestations: {} },
         EID = '9582d21d-464b-4654-a556-e9279f425e08';
 
     beforeEach(function() {
@@ -47,7 +47,10 @@ describe('ImpactStudyService', function() {
             location.search({ eid: EID });
             browserController.poll();
 
-            httpMock.expectPOST('https://mes-droits.fr/v1/sr', validate);
+            httpMock.expectPOST('https://mes-droits.fr/v1/sr', function(data) {
+                return validate(data)
+                    && JSON.parse(data).results.key == RESULTS.calculatedPrestations.key;
+            });
             subject.sendResults(SITUATION, RESULTS);
             httpMock.flush();
         });

@@ -84,29 +84,6 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
         }
     }
 
-    var DEFAULT_RESOURCE = {
-        montantAnnuel: 0,
-        caAnnuel: 0,
-        montantsMensuels: [0, 0, 0],
-        onGoing: true,
-    };
-
-    $scope.applySelectedRessources = function (selectedRessourceTypes, currentRessources) {
-        var ressources = [];
-        ressourceTypes.forEach(function(ressourceType) {
-            if (! selectedRessourceTypes[ressourceType.id]) {
-                return;
-            }
-            var ressource = _.find(currentRessources, { type: ressourceType });
-            if (! ressource) {
-                ressource = _.cloneDeep(DEFAULT_RESOURCE);
-                ressource.type = ressourceType;
-            }
-            ressources.push(ressource);
-        });
-        $scope.ressources = ressources;
-    };
-
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
     var individuIndex = parseInt($stateParams.individu);
     $scope.individu = $scope.sortedIndividus[individuIndex];

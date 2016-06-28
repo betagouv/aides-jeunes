@@ -6,6 +6,8 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
 
     $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
 
+    $scope.isParent = IndividuService.isParent;
+
     var buildRecapLogement = function() {
         var logementLabel = _.find(logementTypes, { id: $scope.situation.logement.type }).label;
         logementLabel = $filter('uppercaseFirst')(logementLabel);

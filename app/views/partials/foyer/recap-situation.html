@@ -15,7 +15,7 @@
 </div>
 
 <div ng-if="ressourcesCaptured">
-  <div ng-repeat="individu in individusSorted" ng-if="ressourcesByIndividu[$index]">
+  <div ng-repeat="individu in individusSorted" ng-if="ressourcesByIndividu[$index] || isParent(individu)">
     <a ui-sref="foyer.ressources.individu.montants({individu: $index})" class="pull-right"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</a>
     <h4 class="section-header">{{ getIndividuRessourcesHeader(individu) }}</h4>
     <accordion
@@ -46,9 +46,9 @@
         </div>
       </accordion-group>
     </accordion>
-  </div>
-  <div ng-if="! hasRessources">
-    <em class="small">Aucune ressource déclarée</em>
+    <div ng-if="! ressourcesByIndividu[$index]">
+      <em class="small">Aucune ressource déclarée</em>
+    </div>
   </div>
 </div>
 

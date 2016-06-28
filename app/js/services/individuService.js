@@ -1,6 +1,10 @@
 'use strict';
 
 angular.module('ddsCommon').service('IndividuService', function($filter, specificSituations, nationalites) {
+    function isRoleParent (role) {
+        return _.contains(['demandeur', 'conjoint'], role);
+    }
+
     return {
         age: function(individu) {
             // FIXME Il faudrait retourner l'âge par rapport à la date de valeur de la situation
@@ -34,12 +38,10 @@ angular.module('ddsCommon').service('IndividuService', function($filter, specifi
             return _.find(nationalites, { id: individu.nationalite }).label;
         },
 
-        isRoleParent: function(role) {
-            return _.contains(['demandeur', 'conjoint'], role);
-        },
+        isRoleParent: isRoleParent,
 
         isParent: function(individu) {
-            return this.isRoleParent(individu.role);
+            return isRoleParent(individu.role);
         },
 
         formatStatutsSpecifiques: function(individu) {

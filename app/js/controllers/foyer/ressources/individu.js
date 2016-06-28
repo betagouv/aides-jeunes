@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($scope, $state, $stateParams, SituationService, ressourceTypes) {
+angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($scope, $state, $stateParams, SituationService, IndividuService, ressourceTypes) {
 
     function extractIndividuSelectedRessourceTypes (individu) {
         var result = {};
@@ -79,21 +79,10 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
         return result;
     }
 
-    function getPageTitle (individu) {
-        switch (individu.role) {
-            case 'demandeur':
-                return 'Vos ressources';
-            case 'conjoint':
-                return 'Les ressources de votre conjoint';
-            default:
-                return 'Les ressources de ' + individu.firstName;
-        }
-    }
-
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
     var individuIndex = parseInt($stateParams.individu);
     $scope.individu = $scope.sortedIndividus[individuIndex];
     $scope.selectedRessourceTypes = extractIndividuSelectedRessourceTypes($scope.individu);
     $scope.ressources = extractIndividuRessources($scope.individu);
-    $scope.pageTitle = getPageTitle($scope.individu);
+    $scope.pageTitle = IndividuService.ressourceHeader($scope.individu);
 });

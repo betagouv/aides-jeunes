@@ -19,6 +19,17 @@ angular.module('ddsCommon').service('IndividuService', function($filter, specifi
             return individu.firstName;
         },
 
+        ressourceHeader: function(individu) {
+            switch (individu.role) {
+                case 'demandeur':
+                    return 'Vos ressources';
+                case 'conjoint':
+                    return 'Les ressources de votre conjoint';
+                default:
+                    return 'Les ressources de ' + individu.firstName;
+            }
+        },
+
         nationaliteLabel: function(individu) {
             return _.find(nationalites, { id: individu.nationalite }).label;
         },

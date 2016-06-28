@@ -115,7 +115,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     };
 
     function getRessources (individu) {
-        var filteredRessources = individu.ressources.filter(function(ressource) {
+        var filteredRessources = individu.ressources && individu.ressources.filter(function(ressource) {
             return ressource.type.indexOf('rnc') < 0;
         });
         if (_.isEmpty(filteredRessources)) {
@@ -134,10 +134,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
             return individu.ressources.length;
         });
         $scope.individusSorted = SituationService.getIndividusSortedParentsFirst($scope.situation);
-        $scope.ressourcesByIndividu = [];
-        $scope.individusSorted.forEach( function(individu) {
-            $scope.ressourcesByIndividu.push(getRessources(individu));
-        });
+        $scope.ressourcesByIndividu = $scope.individusSorted.map(getRessources);
     }
 
     if ( $scope.situation.individus.length && $scope.situation.individus[0].ressources) {

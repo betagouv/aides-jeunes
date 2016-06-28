@@ -64,12 +64,6 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         });
     };
 
-    $scope.$on('ressources', function() {
-        $scope.situation.ressourcesCaptured = true;
-        $scope.$broadcast('ressourcesUpdated');
-        $state.go('foyer.pensionsAlimentaires');
-    });
-
     $scope.$on('pensionsAlimentaires', function() {
         goToResultat();
     });

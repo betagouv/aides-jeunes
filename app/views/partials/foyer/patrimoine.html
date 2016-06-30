@@ -4,7 +4,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2 class="panel-title">
-          <i class="fa fa-home"></i>
+          <i class="fa fa-home" aria-hidden="true"></i>
           Immobilier
         </h2>
       </div>
@@ -12,8 +12,8 @@
         <div class="form-group">
           <label class="col-sm-4 control-label">Avez-vous un patrimoine immobilier autre que votre résidence principale ?</label>
           <div class="col-sm-3">
-            <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasImmobilier" btn-radio="true">Oui</button>
-            <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasImmobilier" btn-radio="false">Non</button>
+            <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasImmobilier" uib-btn-radio="true">Oui</button>
+            <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasImmobilier" uib-btn-radio="false">Non</button>
           </div>
           <div class="col-sm-4">
             <p class="help-block">Terrain, logement, commerce…</p>
@@ -109,7 +109,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2 class="panel-title">
-          <i class="fa fa-money"></i>
+          <i class="fa fa-money" aria-hidden="true"></i>
             Épargne
         </h2>
       </div>
@@ -137,8 +137,8 @@
         <div class="form-group">
           <label class="col-sm-4 control-label">Détenez-vous un <abbr title="Plan Épargne Logement">PEL</abbr>, un <abbr title="Plan d'épargne retraite populaire">PERP</abbr>, des titres, une assurance-vie, des parts d'une <abbr title="Société d'Investissement à CApital Variable">SICAV</abbr> ou d'un <abbr title="Fonds Commun de Placement">FCP</abbr> ?</label>
           <div class="col-sm-3">
-            <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasMobilier" btn-radio="true">Oui</button>
-            <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasMobilier" btn-radio="false">Non</button>
+            <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasMobilier" uib-btn-radio="true">Oui</button>
+            <button type="button" class="btn btn-sm btn-default" ng-model="patrimoine.hasMobilier" uib-btn-radio="false">Non</button>
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 <div class="situation-block">
   <a ui-sref="{{ sref }}">
-    <i class="fa" ng-class="{'fa-user': individu.role !== 'enfant', 'fa-child': individu.role === 'enfant'}"></i>
+    <i class="fa" ng-class="{'fa-user': individu.role !== 'enfant', 'fa-child': individu.role === 'enfant'}" aria-hidden="true"></i>
     {{ individuLabel(individu) }}
   </a>
   <div>

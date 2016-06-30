@@ -20,7 +20,7 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
         replace: true,
         templateUrl: 'partials/foyer/capture-montant-ressource.html',
         scope: {
-            individuVM: '=',
+            individu: '=',
             ressourceType: '=',
             dateDeValeur: '=',
             index: '=',
@@ -32,7 +32,7 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             scope.months = SituationService.getMonths(scope.dateDeValeur);
             scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
             scope.isNumber = angular.isNumber;
-            scope.onGoingLabel = getOnGoingQuestion(scope.individuVM.individu, scope.ressourceType, scope.currentMonth);
+            scope.onGoingLabel = getOnGoingQuestion(scope.individu, scope.ressourceType, scope.currentMonth);
 
             function checkSumConsistency() {
                 scope.monthsSum = scope.ressource.montantsMensuels.reduce(function(sum, current) {

@@ -4,6 +4,8 @@ node_js:
 before_install:
   - npm install -g grunt-cli
 
+addons:
+  ssh_known_hosts: mes-aides.gouv.fr
 before_deploy:
   - openssl aes-256-cbc -K $encrypted_352c24ac275b_key -iv $encrypted_352c24ac275b_iv -in mes-aides-bot.enc -out mes-aides-bot.key -d
   - chmod 600 mes-aides-bot.key

@@ -1,12 +1,28 @@
 <fieldset class="form-group">
-  <legend class="col-sm-3 control-label"></legend>
+  <legend class="col-sm-{{ gridSize['question'] }} control-label"></legend>
   <div class="col-sm-3">
-    <input type="radio" id="{{propertyPath}}-yes" name="{{ propertyPath }}" class="screenReadersOnly" ng-model="value" value="true" ng-change="updateValue()"/>
-    <label for="{{propertyPath}}-yes" class="btn btn-sm radioButton">Oui</label>
-    <input type="radio" id="{{propertyPath}}-no" name="{{ propertyPath }}" class="screenReadersOnly" ng-model="value" value="false" ng-change="updateValue()"/>
-    <label for="{{propertyPath}}-no" class="btn btn-sm radioButton">Non</label>
+    <input
+      type="radio"
+      id="{{uniqueFieldId}}-yes"
+      name="{{ uniqueFieldId }}"
+      class="screenReadersOnly"
+      ng-model="value"
+      ng-value="true"
+      ng-change="updateValue()"
+      />
+    <label for="{{uniqueFieldId}}-yes" class="btn btn-sm inputButton">Oui</label>
+    <input
+      type="radio"
+      id="{{uniqueFieldId}}-no"
+      name="{{ uniqueFieldId }}"
+      class="screenReadersOnly"
+      ng-model="value"
+      ng-value="false"
+      ng-change="updateValue()"
+      />
+    <label for="{{uniqueFieldId}}-no" class="btn btn-sm inputButton">Non</label>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-{{ gridSize['helpText'] }}">
     <p class="help-block"></p>
   </div>
 </fieldset>

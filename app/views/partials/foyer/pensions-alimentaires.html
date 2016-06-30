@@ -2,22 +2,18 @@
   <form class="form-horizontal" novalidate ng-submit="submit()">
     <h1>Pensions alimentaires versées</h1>
 
-    <div class="form-group">
-      <label class="control-label col-md-7">
-        Vous ou votre conjoint a-t-il <b>versé</b>
-        des pensions alimentaires <b>depuis {{ debutAnneeGlissante }}</b> ?
-      </label>
-      <div class="col-md-5">
-        <button type="button" class="btn btn-sm btn-default" ng-model="hasPensionsAlimentaires" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-default" ng-model="hasPensionsAlimentaires" btn-radio="false">Non</button>
-      </div>
-    </div>
+    <yes-no-question model="situation.hasPensionsAlimentaires" size="7">
+      <question>
+      Vous ou votre conjoint a-t-il <b>versé</b> des pensions alimentaires <b>
+      depuis {{ debutAnneeGlissante }}</b>&nbsp;?
+      </question>
+    </yes-no-question>
 
-    <div ng-if="hasPensionsAlimentaires">
+    <div ng-if="situation.hasPensionsAlimentaires" ng-repeat="individuVM in individusVM">
+    <h2>{{individuVM.label}}</h2>
       <montant-ressource
-        ng-repeat="individuVM in individusVM"
         ng-model="individuVM.pensionsVersees"
-        individu-v-m="individuVM"
+        individu="individuVM.individu"
         ressource-type="pensionsVersees"
         index="$index"
         date-de-valeur="situation.dateDeValeur">
@@ -26,7 +22,7 @@
 
     <div class="text-right">
       <button type="submit" class="btn btn-primary">
-        Valider <i class="fa fa-arrow-circle-right"></i>
+        Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
       </button>
     </div>
   </form>

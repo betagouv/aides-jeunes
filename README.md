@@ -142,8 +142,10 @@ Une clé SSH autorisée à se connecter au serveur de production `mes-aides.gouv
 ### mes-aides
 
 ```sh
-ssh deploy@mes-aides.gouv.fr ./deploy
+ssh deploy@mes-aides.gouv.fr
 ```
+
+L'utilisateur `deploy` est utilisé comme un endpoint pour lancer le script de déploiement `~/deploy.sh`. Aucune autre action n'est possible avec cet utilisateur. Pour modifier la procédure de déploiement, se connecter en tant que `root`.
 
 ### OpenFisca
 

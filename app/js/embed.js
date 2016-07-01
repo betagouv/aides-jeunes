@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('ddsRecapSituation', ['ui.router', 'ddsCommon', 'angular-uuid']);
+var app = angular.module('ddsRecapSituation', ['ui.router', 'ddsCommon']);
 
 app.config(function($locationProvider, $stateProvider) {
     moment.lang('fr');

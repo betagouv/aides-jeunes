@@ -36,7 +36,7 @@ npm install --global grunt-cli bower
 
 [foreverjs](https://github.com/foreverjs/forever) is used to run the server for staging feature branches versions of mes-aides. It needs to be installed before running the deployment scripts: `npm install --global forever`.
 
-The production Mongo server can be (re)started with `ssh root@sgmap.fr "service mongod (re)start"`.
+The production Mongo server can be (re)started with `ssh root@mes-aides.gouv.fr "service mongod (re)start"`.
 
 Application
 -----------
@@ -136,19 +136,21 @@ Commiter et pousser l'état des différents sous-modules dans `sgmap/openfisca`.
 Déploiement
 -----------
 
-Une clé SSH autorisée à se connecter au serveur de production `sgmap.fr` doit être disponible sur la machine qui lance le déploiement.
+Une clé SSH autorisée à se connecter au serveur de production `mes-aides.gouv.fr` doit être disponible sur la machine qui lance le déploiement.
 
 
 ### mes-aides
 
 ```sh
-ssh deploy@sgmap.fr ./deploy
+ssh deploy@mes-aides.gouv.fr
 ```
+
+L'utilisateur `deploy` est utilisé comme un endpoint pour lancer le script de déploiement `~/deploy.sh`. Aucune autre action n'est possible avec cet utilisateur. Pour modifier la procédure de déploiement, se connecter en tant que `root`.
 
 ### OpenFisca
 
 ```sh
-ssh openfisca-mes-aides@sgmap.fr ./deploy
+ssh openfisca-mes-aides@mes-aides.gouv.fr ./deploy
 ```
 
 ### Déployer une feature branch
@@ -183,18 +185,18 @@ chmod u+x /home/mes-aides-$BRANCH/deploy.sh
 - Premier déploiement
 ```sh
 ssh-add ~/.ssh/mes-aides-bot
-ssh mes-aides-$BRANCH@sgmap.fr "PORT=8200 OPENFISCA_PORT=12200 ./deploy.sh"
-ssh root@sgmap.fr "service nginx reload"
+ssh mes-aides-$BRANCH@mes-aides.gouv.fr "PORT=8200 OPENFISCA_PORT=12200 ./deploy.sh"
+ssh root@mes-aides.gouv.fr "service nginx reload"
 ```
 
 - Redéploiements
 ```sh
-ssh mes-aides-$BRANCH@sgmap.fr "./deploy.sh"
+ssh mes-aides-$BRANCH@mes-aides.gouv.fr "./deploy.sh"
 ```
 
 ### Supprimer une instance de feature branch
 
 ```sh
-ssh mes-aides-$BRANCH@sgmap.fr 'forever stopall; rm /etc/nginx/conf.d/$(whoami).conf'
-ssh root@sgmap.fr "userdel mes-aides-$BRANCH --remove"
+ssh mes-aides-$BRANCH@mes-aides.gouv.fr 'forever stopall; rm /etc/nginx/conf.d/$(whoami).conf'
+ssh root@mes-aides.gouv.fr "userdel mes-aides-$BRANCH --remove"
 ```

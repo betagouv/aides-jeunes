@@ -299,6 +299,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'imgSrc': 'logo_cd93.png',
             'label': 'Seine-Saint-Denis',
             'prefix': 'du département de',
+            'positionInList': '2',
             'prestations': {
                 'adpa': {
                     'isMontantAnnuel': false,

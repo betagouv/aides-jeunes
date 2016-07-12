@@ -199,7 +199,6 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'imgSrc': 'logo_mairie_paris.png',
             'label': 'Ville de Paris',
             'prefix': 'de la',
-            'positionInList': '1',
             'prestations': {
                 'paris_logement_familles': {
                     'isMontantAnnuel': false,
@@ -299,7 +298,6 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'imgSrc': 'logo_cd93.png',
             'label': 'Seine-Saint-Denis',
             'prefix': 'du département de',
-            'positionInList': '2',
             'prestations': {
                 'adpa': {
                     'isMontantAnnuel': false,

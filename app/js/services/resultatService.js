@@ -3,23 +3,40 @@
 angular.module('ddsApp').service('ResultatService', function($http, $modal, droitsDescription) {
     function processOpenfiscaResult(openfiscaResult) {
         var droitsEligibles = {};
-        var calculatedPrestations = openfiscaResult.calculatedPrestations;
-        var prestationsNationales = extractMontants(droitsDescription.prestationsNationales, calculatedPrestations);
-        if (! _.isEmpty(prestationsNationales)) {
+        var prestationsNationales = extractMontants(droitsDescription.prestationsNationales, openfiscaResult.calculatedPrestations);
+        if (! _.isEmpty(prestationsNationales)) {
             droitsEligibles.prestationsNationales = prestationsNationales;
         }
-        _.forEach(droitsDescription.partenairesLocaux, function(partenaire, partenaireId) {
-            var partenairePrestations = extractMontants(partenaire.prestations, calculatedPrestations);
-            if (! _.isEmpty(partenairePrestations)) {
-                droitsEligibles.partenairesLocaux = droitsEligibles.partenairesLocaux || {};
-                droitsEligibles.partenairesLocaux[partenaireId] = partenairePrestations;
-            }
+        [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
+            droitsEligibles[type] = {};
+
+            Object.keys(droitsDescription[type]).forEach(function(provider) {
+                var result = extractMontants(droitsDescription[type][provider].prestations, openfiscaResult.calculatedPrestations);
+
+                if (_.isEmpty(result))
+                    return;
+
+                Object.keys(result).forEach(function(aideId) {
+                    result[aideId].imgSrc = droitsDescription[type][provider].imgSrc;
+                });
+
+                droitsEligibles[type][provider] = result;
+            });
         });
+
+        droitsEligibles.prestationsNationales = _.reduce(droitsEligibles.prestationsNationales, function(result, droits, provider) {
+            return _.assign(result, droits);  // flatten all national prestations
+        }, {});
+
         return {
             raw: openfiscaResult,
             droitsEligibles: droitsEligibles,
             droitsInjectes: openfiscaResult.injectedPrestations.map(function(prestationName) {
-                return droitsDescription.prestationsNationales[prestationName];
+                var result;
+                Object.keys(droitsDescription.prestationsNationales).some(function(provider) {
+                    return (result = droitsDescription.prestationsNationales[provider].prestations[prestationName]);
+                });
+                return result;
             }),
         };
     }

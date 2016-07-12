@@ -4,10 +4,16 @@ describe('ResultatService', function () {
     describe('sortDroits', function() {
         var DROITS_DESCRIPTION = {
             prestationsNationales : {
-                'acs': { shortLabel: 'ACS' },
-                'apl': { shortLabel: 'APL' },
-                'ass': { shortLabel: 'ASS' }
-            }
+                caf: {
+                    imgSrc: 'img',
+                    prestations: {
+                        acs: { shortLabel: 'ACS' },
+                        apl: { shortLabel: 'APL' },
+                        ass: { shortLabel: 'ASS' },
+                    },
+                },
+            },
+            partenairesLocaux: {},
         };
         var service, droits, openfiscaResult;
 
@@ -24,7 +30,7 @@ describe('ResultatService', function () {
         });
 
         it('should extract eligibles droits from openfisca result', function() {
-            expect(droits.droitsEligibles.prestationsNationales).toEqual({ acs: { shortLabel: 'ACS', montant: 10 } });
+            expect(droits.droitsEligibles.prestationsNationales).toEqual({ acs: { shortLabel: 'ACS', montant: 10, imgSrc: 'img' } });
         });
 
         it('should extract injected droits', function() {

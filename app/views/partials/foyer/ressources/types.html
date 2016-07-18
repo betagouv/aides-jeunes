@@ -21,17 +21,18 @@
             </i>
           </accordion-heading>
           <div class="button-grid">
-            <div class="button-item" ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">
+            <label
+              ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">
               <input
                 type="checkbox"
                 id="{{ ressourceType.id }}"
                 class="screenReadersOnly"
                 ng-model="individuVM.selectedRessourceTypes[ressourceType.id]"
               />
-              <label for="{{ ressourceType.id }}" class="btn btn-sm btn-default">
+              <div for="{{ ressourceType.id }}" class="btn btn-sm btn-default">
                 {{ ressourceType.label }}
-              </label>
-            </div>
+              </div>
+            </label>
           </div>
         </accordion-group>
       </accordion>

@@ -686,7 +686,7 @@ legend {
   width: 1px;
 }
 
-input:checked + label, input:checked + label:hover, input:checked + label:active:hover {
+input:checked + .btn, input:checked + .btn:hover, input:checked + .btn:active:hover {
   background-color: $btn-success-bg;
   color: $btn-success-color;
 
@@ -699,11 +699,11 @@ input:checked + label, input:checked + label:hover, input:checked + label:active
   display: flex;
   flex-direction: row;
 
-  .button-item {
+  label {
     flex: auto;
     flex-basis: 0;
 
-    label {
+    .btn {
       width: 100%;
       height: 100%;
     }
@@ -714,11 +714,12 @@ input:checked + label, input:checked + label:hover, input:checked + label:active
   display: flex;
   flex-wrap: wrap;
 
-  .button-item {
+  label {
     width: 33.33%;
     padding: 0.3em;
+    font-size: 100%;
 
-    label {
+    .btn {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -735,7 +736,7 @@ input:checked + label, input:checked + label:hover, input:checked + label:active
   .button-row, .button-grid {
     flex-direction: column;
   }
-  .button-grid > .button-item {
+  .button-grid > label {
     width: 100%;
   }
 }

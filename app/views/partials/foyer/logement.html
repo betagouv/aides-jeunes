@@ -4,18 +4,17 @@
 
     <div class="form-group">
       <div class="button-row">
-        <div ng-repeat="logementType in logementTypes" class="button-item">
-          <input type="radio"
-            name="logementType"
-            id="logementType-{{logementType.id}}"
-            class="screenReadersOnly"
-            ng-model="logement.type"
-            ng-change="changeLogementType()"
-            value="{{logementType.id}}"
-            />
-          <label for="logementType-{{logementType.id}}" class="btn btn-default">
-            {{ logementType.label | uppercaseFirst }}
-            <span class="help-col">{{ logementType.hint }}</span>
+        <label ng-repeat="logementType in logementTypes">
+            <input type="radio"
+              name="logementType"
+              class="screenReadersOnly"
+              ng-model="logement.type"
+              ng-change="changeLogementType()"
+              value="{{logementType.id}}"
+              />
+            <div class="btn btn-default">
+              {{ logementType.label | uppercaseFirst }}
+              <span class="help-col">{{ logementType.hint }}</span>
           </label>
         </div>
       </div>

@@ -686,11 +686,7 @@ legend {
   width: 1px;
 }
 
-.inputButton {
-  @extend .btn-default;
-}
-
-input:checked + .inputButton, input:checked + .inputButton:active:hover {
+input:checked + label, input:checked + label:hover, input:checked + label:active:hover {
   background-color: $btn-success-bg;
   color: $btn-success-color;
 
@@ -707,7 +703,7 @@ input:checked + .inputButton, input:checked + .inputButton:active:hover {
     flex: auto;
     flex-basis: 0;
 
-    .inputButton {
+    label {
       width: 100%;
       height: 100%;
     }
@@ -722,7 +718,7 @@ input:checked + .inputButton, input:checked + .inputButton:active:hover {
     width: 33.33%;
     padding: 0.3em;
 
-    .inputButton {
+    label {
       display: flex;
       align-items: center;
       justify-content: center;

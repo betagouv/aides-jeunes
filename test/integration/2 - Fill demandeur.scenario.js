@@ -8,6 +8,6 @@ steps: [
     DemandeurFormComponent.setBirthDateInput('21/01/1981'),
     DemandeurFormComponent.submit(),
     {
-        'DemandeurFormComponent.birthDateRecapitulatif': '21 janvier 1981'
+        'RecapComponent.birthDate': '21 janvier 1981'
     }
 ]

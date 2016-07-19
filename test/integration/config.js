@@ -3,7 +3,8 @@ module.exports = {
     browser: 'chrome',
     driverCapabilities: {
         "chromeOptions": {
-            "binary": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+            "binary": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "args": [ "start-maximized" ]
         }
     },
     quit: 'never'

@@ -7,5 +7,6 @@ module.exports = {
             'args': [ 'start-maximized' ]
         }
     },
-    quit: 'never'
+    quit: 'on success',
+    bail: 'true',
 }

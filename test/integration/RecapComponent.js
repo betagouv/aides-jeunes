@@ -1,2 +1,5 @@
 birthDate: 'aside.recap-situation strong',
 housingSatus: '#logement-block b',
+salaryTabLink: '.recap-revenusActivite a',
+salaryFirstMonth: '.recap-revenusActivite .montant-mensuel',
+salaryLast12Months: '.recap-revenusActivite .montant-annuel',

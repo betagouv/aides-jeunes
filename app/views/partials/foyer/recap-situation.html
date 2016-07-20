@@ -30,7 +30,7 @@
           <div class="col-sm-8">
             {{ month.label | uppercaseFirst }}
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-4 montant-mensuel">
             {{ ressource.totalMensuel[$index] }} €
           </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="col-sm-8">
           Annuel
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 montant-annuel">
           {{ ressource.totalAnnuel }} €
         </div>
       </div>

@@ -1,4 +1,8 @@
 declareResourcesLink: { a: 'Déclarer' },
 declareRevenuActiviteLink: { a: 'Revenus d' },
 salaryButton: 'button',
+firstMonthInput: '#revenusSalarie_month1_0',
+secondMonthInput: '#revenusSalarie_month2_0',
+thirdMonthInput: '#revenusSalarie_month3_0',
+last12MonthsInput: '#revenusSalarie_annuel_0',
 submitButton: 'button[type="submit"]',

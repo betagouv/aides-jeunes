@@ -12,7 +12,7 @@ steps: [
     ResourcesComponent.submit(),
     RecapComponent.salaryTab(),
     {
-        "RecapComponent.salaryFirstMonth": "1000 €",
-        "RecapComponent.salaryLast12Months": "12000 €",
+        'RecapComponent.salaryFirstMonth': '1000 €',
+        'RecapComponent.salaryLast12Months': '12000 €',
     },
 ]

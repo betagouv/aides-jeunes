@@ -1,2 +1,3 @@
 title: 'h1',
-submitButton: 'button[type="button"]',
+addChildButton: '#add-child',
+submitButton: 'button[type="submit"]',

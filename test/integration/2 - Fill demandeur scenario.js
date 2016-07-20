@@ -3,11 +3,11 @@ description: 'Fill the "Demandeur" form.',
 steps: [
     HomepageComponent.start(),
     {
-        'DemandeurFormComponent.birthDateInput': true
+        'IndividualFormComponent.birthDateInput': true
     },
-    DemandeurFormComponent.setBirthDateInput('21/01/1981'),
-    DemandeurFormComponent.submit(),
+    IndividualFormComponent.setBirthDateInput('21/01/1981'),
+    IndividualFormComponent.submit(),
     {
-        'RecapComponent.birthDate': '21 janvier 1981'
+        'RecapComponent.firstPersonBirthdate': '21 janvier 1981'
     }
 ]

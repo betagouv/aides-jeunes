@@ -1,4 +1,7 @@
-birthDate: 'aside.recap-situation strong',
+firstPersonBirthdate: 'individu-block:nth-of-type(1) strong',
+secondPersonBirthdate: 'individu-block:nth-of-type(2) strong',
+thirdPersonBirthdate: 'individu-block:nth-of-type(3) strong',
+fourthPersonBirthdate: 'individu-block:nth-of-type(4) strong',
 housingSatus: '#logement-block b',
 salaryTabLink: '.recap-revenusActivite a',
 salaryFirstMonth: '.recap-revenusActivite .montant-mensuel',

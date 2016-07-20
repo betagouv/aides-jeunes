@@ -1,2 +1,3 @@
 title: 'h1',
-declareSingleButton: 'button#single',
+declareSingleButton: '#single',
+declareCoupleButton: '#couple',

@@ -1,3 +1,3 @@
 title: 'h1',
-addChildButton: '#add-child',
+addChildButton: 'button:not(.close)',
 submitButton: 'button[type="submit"]',

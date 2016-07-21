@@ -1,3 +1,3 @@
 title: 'h1',
-declareSingleButton: '#single',
-declareCoupleButton: '#couple',
+declareSingleButton: 'button[btn-radio="false"]',
+declareCoupleButton: 'button[btn-radio="true"]',

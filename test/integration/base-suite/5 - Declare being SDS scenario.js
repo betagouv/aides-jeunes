@@ -14,6 +14,6 @@ steps: [
     },
     LogementFormComponent.submit(),
     {
-        'RecapComponent.housingSatus': 'Sans domicile stable',
+        'RecapComponent.housingStatus': 'Sans domicile stable',
     },
 ]

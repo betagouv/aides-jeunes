@@ -5,9 +5,9 @@ steps: [
     {
         'IndividualFormComponent.birthDateInput': true
     },
-    IndividualFormComponent.setBirthDateInput('21/01/1981'),
+    IndividualFormComponent.setBirthDateInput(DEMANDEUR_BIRTHDATE),
     IndividualFormComponent.submit(),
     {
-        'RecapComponent.firstPersonBirthdate': '21 janvier 1981'
+        'RecapComponent.firstPersonBirthdate': DEMANDEUR_BIRTHDATE_PLAIN_TEXT
     }
 ]

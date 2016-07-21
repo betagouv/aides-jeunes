@@ -2,7 +2,7 @@ description: 'Add no child.',
 
 steps: [
     {
-        'EnfantsFormComponent.title': 'Les enfants de votre foyer',
+        'EnfantsFormComponent.title': /enfants/,
     },
     EnfantsFormComponent.submit(),
 ]

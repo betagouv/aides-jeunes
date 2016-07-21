@@ -2,7 +2,7 @@ description: 'Declare being SDS.',
 
 steps: [
     {
-        'LogementFormComponent.title': 'Votre logement principal',
+        'LogementFormComponent.title': /logement/,
     },
     LogementFormComponent.declareSDS(),
     {

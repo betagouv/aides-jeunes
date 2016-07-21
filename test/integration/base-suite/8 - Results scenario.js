@@ -1,9 +1,10 @@
-description: 'Get PPA results',
+description: 'Get results',
 
 steps: [
     {
-        'ResultComponent.prestationName': 'Prime d’activité',
-        'ResultComponent.prensationMontant': /\d+(?:.|\n)+mois/,
+        'ResultComponent.prestationName': FIRST_PRESTATION_NAME,
+        'ResultComponent.prestationMontant': /\d+ €/,
+        'ResultComponent.prestationMontantDetail': '/ mois',
     },
 ]
 

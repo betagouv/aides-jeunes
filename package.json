@@ -67,7 +67,7 @@
   "scripts": {
     "postinstall": "bower install",
     "test": "grunt",
-    "test-integration": "watai test/integration"
+    "test-integration": "test/integration/run-integration-tests.sh"
   },
   "license": "AGPL-3.0"
 }

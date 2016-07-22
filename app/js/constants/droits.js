@@ -189,7 +189,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
     },
     'partenairesLocaux': {
         'paris': {
-            'imgSrc': 'logo_mairie_paris.png',
+            'imgSrc': 'logo_paris.png',
             'label': 'Ville de Paris',
             'prefix': 'de la',
             'prestations': {

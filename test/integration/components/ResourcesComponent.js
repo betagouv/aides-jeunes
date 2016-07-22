@@ -1,6 +1,6 @@
 declareResourcesLink: { a: 'Déclarer' },
 declareRevenuActiviteLink: { a: 'Revenus d' },
-checkSalaryButton: 'button',
+checkSalaryButton: '[type="checkbox"] + .btn',
 firstMonthInput: '#revenusSalarie_month1_0',
 secondMonthInput: '#revenusSalarie_month2_0',
 thirdMonthInput: '#revenusSalarie_month3_0',

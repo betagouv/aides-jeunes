@@ -1,5 +1,5 @@
 title: 'h1',
-declareSDSRadio: 'label[for="logementType-sansDomicile"]',
+declareSDSRadio: '[value="sansDomicile"] + .btn',
 zipCodeInput: 'input#postal-code',
 cityInput: 'select#city',
 submitButton: 'button[type="submit"]',

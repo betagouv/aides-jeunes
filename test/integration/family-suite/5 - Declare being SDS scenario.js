@@ -1,1 +1,0 @@
-../base-suite/5 - Declare being SDS scenario.js

@@ -6,7 +6,7 @@ steps: [
     YM2ResourcesComponent.setConjointAutresRevenusInput(5000),
     YM2ResourcesComponent.submit(),
     {
-        'ResultComponent.firstPrestationYM2Warning': false,
+        'ResultComponent.prestationYM2Warning': false,
         'ResultComponent.declareYM2ResourcesLink': false,
         'ResultComponent.greyedPrestation': false,
     },

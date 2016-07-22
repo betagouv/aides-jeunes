@@ -9,5 +9,12 @@ steps: [
         'ResultComponent.greyedPrestation': HAS_FIRST_PRESTATION_WARNING,
         'ResultComponent.declareYM2ResourcesLink': true,
     },
+    ResultComponent.openFirstPrestationTab(),
+    {
+        'ResultComponent.firstPrestationDescription': FIRST_PRESTATION_DESCRIPTION,
+        'ResultComponent.firstPrestationMoreInfoLink': true,
+        'ResultComponent.firstPrestationEngagerDemarchesLink': HAS_ENGAGER_DEMARCHES_LINK,
+    }
+
 ]
 

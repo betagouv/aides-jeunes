@@ -2,31 +2,6 @@
 
 angular.module('ddsCommon').constant('droitsDescription', {
     'prestationsNationales': {
-        'fonds_cmu': {
-            'label': 'Fonds CMU',
-            'imgSrc': 'logo_fonds_cmu.png',
-            'prestations': {
-                'cmu_c': {
-                    'label': 'Couverture Maladie Universelle Complémentaire',
-                    'shortLabel': 'CMU-C',
-                    'description': 'La CMU-C est une protection complémentaire santé gratuite.',
-                    'conditions': [
-                        'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
-                    ],
-                    'link': 'http://www.cmu.fr/cmu-complementaire.php'
-                },
-                'acs': {
-                    'isMontantAnnuel': true,
-                    'label': 'Aide pour une Complémentaire Santé',
-                    'shortLabel': 'ACS',
-                    'description': 'L’aide pour l’acquisition d’une assurance complémentaire santé, dite ACS, est une aide financière pour payer une complémentaire santé (exemple : une mutuelle).',
-                    'conditions': [
-                        'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
-                    ],
-                    'link': 'http://www.cmu.fr/acs.php'
-                },
-            },
-        },
         'assurance_retraite': {
             'label': 'Assurance Retraite',
             'imgSrc': 'logo_assurance_retraite.png',
@@ -48,11 +23,30 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'label': 'Assurance Maladie',
             'imgSrc': 'logo_assurance_maladie.png',
             'prestations': {
+                'acs': {
+                    'isMontantAnnuel': true,
+                    'label': 'Aide pour une Complémentaire Santé',
+                    'shortLabel': 'ACS',
+                    'description': 'L’aide pour l’acquisition d’une assurance complémentaire santé, dite ACS, est une aide financière pour payer une complémentaire santé (exemple : une mutuelle).',
+                    'conditions': [
+                        'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
+                    ],
+                    'link': 'http://www.cmu.fr/acs.php'
+                },
                 'asi': {
                     'label': 'Allocation Supplémentaire d’Invalidité',
                     'shortLabel': 'ASI',
                     'description': 'L’allocation supplémentaire d’invalidité (Asi) est une prestation versée sous certaines conditions aux personnes invalides titulaires d’une pension de retraite ou d’invalidité qui n’ont pas atteint l’âge légal de départ à la retraite pour bénéficier de l’allocation de solidarité aux personnes âgées (Aspa)',
                     'link': 'http://vosdroits.service-public.fr/particuliers/F16940.xhtml'
+                },
+                'cmu_c': {
+                    'label': 'Couverture Maladie Universelle Complémentaire',
+                    'shortLabel': 'CMU-C',
+                    'description': 'La CMU-C est une protection complémentaire santé gratuite.',
+                    'conditions': [
+                        'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
+                    ],
+                    'link': 'http://www.cmu.fr/cmu-complementaire.php'
                 },
             },
         },

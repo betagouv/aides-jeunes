@@ -24,7 +24,7 @@ angular.module('ddsApp').service('ResultatService', function($http, $modal, droi
             });
         });
 
-        droitsEligibles.prestationsNationales = _.reduce(droitsEligibles.prestationsNationales, function(result, droits, provider) {
+        droitsEligibles.prestationsNationales = _.reduce(droitsEligibles.prestationsNationales, function(result, droits) {
             return _.assign(result, droits);  // flatten all national prestations
         }, {});
 

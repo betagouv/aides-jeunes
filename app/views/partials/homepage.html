@@ -46,8 +46,7 @@
       <hr>
       <div class="row">
         <div class="text-center col-md-2">
-          <img ng-src="/img/{{ provider.imgSrc }}" alt=""/>
-          <h2>{{ provider.label }}</h2>
+          <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
         </div>
         <div class="col-md-10">
           <div ng-repeat="droit in provider.prestations">
@@ -70,8 +69,7 @@
       <hr>
       <div class="row">
         <div class="text-center col-md-2">
-          <img ng-src="/img/{{ provider.imgSrc }}" alt=""/>
-          <h2>{{ provider.label }}</h2>
+          <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
         </div>
         <div class="col-md-10">
           <div ng-repeat="droit in provider.prestations">

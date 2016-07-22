@@ -3,7 +3,7 @@
 angular.module('ddsCommon').constant('droitsDescription', {
     'prestationsNationales': {
         'assurance_retraite': {
-            'label': 'Assurance Retraite',
+            'label': 'Assurance retraite',
             'imgSrc': 'logo_assurance_retraite.png',
             'prestations': {
                 'aspa': {
@@ -20,7 +20,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             },
         },
         'assurance_maladie': {
-            'label': 'Assurance Maladie',
+            'label': 'Assurance maladie',
             'imgSrc': 'logo_assurance_maladie.png',
             'prestations': {
                 'acs': {
@@ -51,7 +51,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             },
         },
         'caf': {
-            'label': 'CAF',
+            'label': 'Caisse d’allocations familiales',
             'imgSrc': 'logo_caf.png',
             'prestations': {
                 'af': {
@@ -153,7 +153,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             },
         },
         'pole_emploi': {
-            'label': 'Pôle Emploi',
+            'label': 'Pôle emploi',
             'imgSrc': 'logo_pole_emploi.png',
             'prestations': {
                 'ass': {
@@ -281,8 +281,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
         },
         'cd93': {
             'imgSrc': 'logo_cd93.png',
-            'label': 'Seine-Saint-Denis',
-            'prefix': 'du département de',
+            'label': 'Département de Seine-Saint-Denis',
+            'prefix': 'du',
             'prestations': {
                 'adpa': {
                     'isMontantAnnuel': false,

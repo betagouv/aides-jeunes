@@ -24,5 +24,5 @@ angular.module('ddsApp').controller('droitEligiblesListCtrl', function($scope) {
     };
     $scope.shouldDisplayYM2Warning = function(droit) {
         return droit.isBaseRessourcesYearMoins2 && ! $scope.ressourcesYearMoins2Captured && ! _.isString(droit.montant);
-    }
+    };
 });

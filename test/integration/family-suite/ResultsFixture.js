@@ -1,1 +1,2 @@
 FIRST_PRESTATION_NAME = 'Allocations Familiales'
+HAS_FIRST_PRESTATION_WARNING = true

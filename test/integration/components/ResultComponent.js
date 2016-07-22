@@ -1,3 +1,6 @@
-prestationName: '.description',
-prestationMontant: '.montant',
-prestationMontantDetail: '.montant-detail'
+firstPrestationName: '.resultats-accordion:nth-child(1) .description',
+firstPrestationMontant: '.resultats-accordion:nth-child(1) .montant',
+firstPrestationMontantDetail: '.resultats-accordion:nth-child(1) .montant-detail',
+firstPrestationYM2Warning: '.resultats-accordion:nth-child(1) i.fa-warning',
+greyedPrestation: '.resultats-accordion-needs-n-2',
+declareYM2ResourcesLink: { a: 'Déclarez vos ressources' },

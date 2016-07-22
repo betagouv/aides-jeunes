@@ -1,1 +1,2 @@
 FIRST_PRESTATION_NAME = 'Prime d’activité'
+HAS_FIRST_PRESTATION_WARNING = false

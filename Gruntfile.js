@@ -279,17 +279,6 @@ module.exports = function (grunt) {
       }
     },
 
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.app %>/img',
-          src: '{,*/}*.svg',
-          dest: '<%= yeoman.dist %>/img'
-        }]
-      }
-    },
-
     htmlmin: {
       dist: {
         options: {
@@ -365,7 +354,6 @@ module.exports = function (grunt) {
       },
       dist: [
         'sass:dist',
-        'svgmin',
         'htmlmin'
       ]
     },

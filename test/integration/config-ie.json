@@ -1,0 +1,15 @@
+{
+    "baseURL": "http://localhost:9000",
+    "quit": "on success",
+    "bail": true,
+    "timeout": 10000,
+    "seleniumServerURL": {
+        "hostname" : "ondemand.saucelabs.com",
+        "port" : 80
+    },
+    "driverCapabilities": {
+        "platform" : "Windows 7",
+        "browserName": "internet explorer",
+        "version": 10
+    }
+}

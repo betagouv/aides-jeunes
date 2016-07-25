@@ -76,13 +76,25 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
 
             // on réinjecte les ressources RNC & pensions alimentaires
             individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
-                return !! _.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
+                return _.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
         }));
         }
+
+    function isRessourceOnMainScreen(ressourceType) {
+        return ressourceType != 'pensionsAlimentairesVersees' && ! _.find(categoriesRnc, { id: ressourceType });
+    }
+
+    function getMainScreenRessources(individu) {
+        return individu.ressources && individu.ressources.filter(function(ressource) {
+            return isRessourceOnMainScreen(ressource.type);
+        });
+    }
 
     return {
         spreadIndividuRessources: spreadIndividuRessources,
         applyYearlyRessource: applyYearlyRessource,
-        applyRessourcesToIndividu: applyRessourcesToIndividu
+        applyRessourcesToIndividu: applyRessourcesToIndividu,
+        isRessourceOnMainScreen: isRessourceOnMainScreen,
+        getMainScreenRessources: getMainScreenRessources
     };
 });

@@ -7,9 +7,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
 
     $scope.ressourceCategories = ressourceCategories;
 
-    var filteredRessourceTypes = _.filter(ressourceTypes, function(ressourceType) {
-        return ! _.contains(['pensionsAlimentairesVersees'], ressourceType.id);
-    });
+    var filteredRessourceTypes = _.filter(ressourceTypes, RessourceService.isRessourceOnMainScreen);
     $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
 
     var DEFAULT_RESOURCE = {

@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourcesEnfantsCtrl', function($scope, SituationService) {
+angular.module('ddsApp').controller('FoyerRessourcesEnfantsCtrl', function($scope, SituationService, RessourceService) {
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
 
     $scope.enfants = SituationService.getEnfants($scope.situation);
     $scope.enfants.forEach(function(enfant) {
-    	enfant.hasRessources = enfant.ressources && (enfant.ressources.length > 0) || false;
+    	enfant.hasRessources = RessourceService.getMainScreenRessources(enfant).length > 0;
     });
 
     $scope.submit = function() {

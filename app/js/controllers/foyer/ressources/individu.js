@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($scope, $state, $stateParams, SituationService, IndividuService, ressourceTypes) {
+angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($scope, $state, $stateParams, SituationService, IndividuService, RessourceService, ressourceTypes) {
 
     function extractIndividuSelectedRessourceTypes (individu) {
         var result = {};
@@ -8,9 +8,7 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
         _.chain(ressources)
             .pluck('type')
             .unique()
-            .filter(function(type) {
-                return ! _.contains(['pensionsAlimentairesVersees'], type);
-            })
+            .filter(RessourceService.isRessourceOnMainScreen)
             .forEach(function(ressourceType) { result[ressourceType] = true; });
 
         ['caMicroEntreprise', 'caAutoEntrepreneur', 'revenusAgricolesTns', 'autresRevenusTns'].forEach(function(ressourceType) {
@@ -28,16 +26,11 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
         var types = _.chain(ressources)
             .pluck('type')
             .unique()
-            .filter(function(type) {
-                return ! _.contains(['pensionsAlimentairesVersees'], type);
-            });
+            .filter(RessourceService.isRessourceOnMainScreen)
+            .value();
 
         types.forEach(function(type) {
-            // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
             var ressourceType = _.find(ressourceTypes, { id: type });
-            if (! ressourceType) {
-                return;
-            }
             var montantsMensuels = _.map($scope.months, function(month) {
                 var ressource = _.find(ressources, { periode: month.id, type: type });
                 return ressource ? Math.round(ressource.montant) : 0;

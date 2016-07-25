@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, categoriesRnc, SituationService, IndividuService) {
+angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, categoriesRnc, SituationService, IndividuService, RessourceService) {
 
     function buildRecapLogement () {
         var logementLabel = _.find(logementTypes, { id: $scope.situation.logement.type }).label;
@@ -17,9 +17,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     }
 
     function getRessources (individu) {
-        var filteredRessources = individu.ressources && individu.ressources.filter(function(ressource) {
-            return ressource.type.indexOf('rnc') < 0;
-        });
+        var filteredRessources = RessourceService.getMainScreenRessources(individu);
         if (_.isEmpty(filteredRessources)) {
             return;
         }

@@ -60,7 +60,7 @@
   <h4>Année {{ yearMoins2 }}</h4>
   <span ng-if="rfrCaptured">Revenu fiscal de référence : {{ situation.rfr }} €</span>
   <accordion
-    close-others="true"
+    close-others="false"
     class="accordion-ressources">
     <accordion-group
       ng-repeat="ym2IndividuRecap in ressourcesYearMoins2"

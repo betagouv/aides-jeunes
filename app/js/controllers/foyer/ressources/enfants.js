@@ -10,6 +10,11 @@ angular.module('ddsApp').controller('FoyerRessourcesEnfantsCtrl', function($scop
     });
 
     $scope.submit = function() {
+        $scope.enfants.forEach(function(enfant) {
+            if (! enfant.hasRessources) {
+                RessourceService.applyRessourcesToIndividu(enfant, [], $scope.situation.dateDeValeur);
+            }
+        });
         $scope.markEnfantsAsDeclared();
     };
 });

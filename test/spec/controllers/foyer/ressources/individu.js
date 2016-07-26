@@ -124,19 +124,6 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
             expect(scope.ressources[0].montantAnnuel).toBe(77);
         });
 
-        it('should not map unknown ressource types', function() {
-            // given
-            demandeur.ressources = [
-                { type: 'unknown_ressource_type', periode: '2013-03', montant: 10 },
-            ];
-
-            // when
-            initController();
-
-            // then
-            expect(scope.ressources.length).toBe(0);
-        });
-
         it('should map ressources micro-entreprise', function() {
 
             // given

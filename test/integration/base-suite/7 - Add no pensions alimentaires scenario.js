@@ -4,5 +4,6 @@ steps: [
     {
         'PensionsAlimentairesFormComponent.title': 'Pensions alimentaires versées',
     },
+    PensionsAlimentairesFormComponent.setNo(),
     PensionsAlimentairesFormComponent.submit(),
 ]

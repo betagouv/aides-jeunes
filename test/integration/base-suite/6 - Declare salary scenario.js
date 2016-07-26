@@ -10,9 +10,7 @@ steps: [
     ResourcesComponent.setThirdMonthInput(1000),
     ResourcesComponent.setLast12MonthsInput(12000),
     ResourcesComponent.submit(),
-    RecapComponent.openSalaryTab(),
     {
-        'RecapComponent.salaryFirstMonth': '1000 €',
-        'RecapComponent.salaryLast12Months': '12000 €',
+        'RecapComponent.revenue': /Salaire/,
     },
 ]

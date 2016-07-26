@@ -4,9 +4,7 @@ thirdPersonBirthdate: 'individu-block:nth-of-type(3) strong',
 fourthPersonBirthdate: 'individu-block:nth-of-type(4) strong',
 housingStatus: '#recap-logement b',
 
-openSalaryTabLink: '.recap-revenusActivite a',
-salaryFirstMonth: '.recap-revenusActivite .row :nth-child(2)',
-salaryLast12Months: '.recap-revenusActivite hr + .row :nth-child(2)',
+revenue: '.recap-revenusActivite',
 
 openYM2DemandeurLink: '#recap-ym2-resources .panel:nth-child(1) a',
 demandeurYM2ResourceDescription: '#recap-ym2-resources .panel:nth-child(1) .row :nth-child(1)',

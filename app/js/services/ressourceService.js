@@ -76,18 +76,18 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
 
             // on réinjecte les ressources RNC & pensions alimentaires
             individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
-                return _.find(categoriesRnc, { id: ressource.type }) || _.contains(['pensionsAlimentairesVersees'], ressource.type);
-        }));
+                return ! isRessourceOnMainScreen(ressource);
+            }));
         }
 
-    function isRessourceOnMainScreen(ressourceType) {
-        return ressourceType != 'pensionsAlimentairesVersees' && ! _.find(categoriesRnc, { id: ressourceType });
+    function isRessourceOnMainScreen(ressourceOrType) {
+        // Make this function robust so that it can be called with a ressource from individu.ressources, a type from the ressourceTypes constant, or just a string.
+        var type = ressourceOrType.type || ressourceOrType.id || ressourceOrType;
+        return type != 'pensionsAlimentairesVersees' && type != 'caAutresRevenusTns' && ! _.find(categoriesRnc, { id: type });
     }
 
     function getMainScreenRessources(individu) {
-        return individu.ressources && individu.ressources.filter(function(ressource) {
-            return isRessourceOnMainScreen(ressource.type);
-        });
+        return individu.ressources && individu.ressources.filter(isRessourceOnMainScreen) || [];
     }
 
     return {

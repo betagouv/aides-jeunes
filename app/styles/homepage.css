@@ -1,3 +1,48 @@
+.homepage-call-to-action {
+    color: white;
+
+    background-position: center center;
+    background-image: url('../img/homepage_mobile.jpg');
+}
+
+.homepage-call-to-action.desktop {
+    background-image: url('../img/homepage.jpg');
+    padding: 100px 0;
+}
+
+.homepage-call-to-action.desktop .jumbotron {
+    padding: 50px;
+}
+
+.homepage-call-to-action.mobile .jumbotron {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.homepage-call-to-action .jumbotron {
+    background-color: transparent;
+    text-shadow:  1px 1px 4px rgb(0, 0, 0);
+    margin-bottom: 0;
+}
+
+.homepage-call-to-action p {
+    margin-bottom: 1.5em;
+}
+
+.frame-aides-homepage {
+    margin-top: 2em;
+    padding: 2em;
+}
+
+.frame-aides-homepage h2 {
+    margin-top: 0;
+}
+
 .frame-aides-homepage h3 {
+    margin-top: 0;
     font-weight: 600;
+}
+
+.frame-aides-homepage .showDetailsButtonBlock {
+    margin-top: 1em;
 }

@@ -2,7 +2,7 @@
   <accordion-group is-open="droit.open"
                class="resultats-accordion"
                ng-repeat="(droitId, droit) in list|orderObjectBy:'label'"
-               ng-class="{'resultats-accordion-needs-n-2': droit.isBaseRessourcesYearMoins2 && !ressourcesYearMoins2Captured && ! isString(droit.montant), 'panel-opened': droit.open}">
+               ng-class="{'resultats-accordion-needs-n-2': shouldDisplayYM2Warning(droit), 'panel-opened': droit.open}">
     <accordion-heading>
       <div class="row">
         <div class="col-xs-2 col-sm-1">
@@ -18,6 +18,7 @@
           <div class="montant">
             <span ng-if="isNumber(droit.montant)">{{ round(droit) }}&nbsp;{{ droit.unit || '€' }}</span>
             <span ng-if="isString(droit.montant)" class="montant-inconnu">?</span>
+            <i class="fa fa-warning text-warning" ng-if="shouldDisplayYM2Warning(droit)"></i>
           </div>
 
           <div ng-if="isNumber(droit.montant)" class="montant-detail">

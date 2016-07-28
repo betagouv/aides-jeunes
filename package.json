@@ -58,14 +58,16 @@
     "load-grunt-tasks": "~3.1.0",
     "open": "~0.0.4",
     "supertest": "~0.15.0",
-    "time-grunt": "~1.1.0"
+    "time-grunt": "~1.1.0",
+    "watai": "^0.7.0"
   },
   "engines": {
     "node": "0.10"
   },
   "scripts": {
     "postinstall": "bower install",
-    "test": "grunt"
+    "test": "grunt",
+    "test-integration": "test/integration/run-integration-tests.sh"
   },
   "license": "AGPL-3.0"
 }

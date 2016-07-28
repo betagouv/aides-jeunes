@@ -1,0 +1,1 @@
+../base-suite/6 - Declare salary scenario.js

@@ -637,10 +637,7 @@ $autre-lighter: #cce4e7;
     color: #888;
   }
 
-  .montant::after {
-    @extend .fa;
-    @extend .text-warning;
-    content: $fa-var-warning;
+  .montant i {
     position: relative;
     top: .4em;
   }

@@ -3,7 +3,7 @@
 <h4 class="section-header">Votre foyer</h4>
 <individu-block ng-repeat="individu in situation.individus" individu="individu"></individu-block>
 
-<div ng-if="situation.logement">
+<div id="recap-logement" ng-if="situation.logement">
   <a ui-sref="foyer.logement" class="pull-right"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</a>
   <h4 class="section-header">Votre logement</h4>
   <div class="situation-block">
@@ -34,8 +34,8 @@
             {{ ressource.totalMensuel[$index] }} €
           </div>
         </div>
-        <hr>
       </div>
+      <hr>
       <div class="row">
         <div class="col-sm-8">
           Annuel
@@ -51,8 +51,11 @@
   </div>
 </div>
 
-<div ng-if="ressourcesYearMoins2Captured">
-  <a ui-sref="foyer.ressourcesYearMoins2" class="pull-right"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</a>
+<div id="recap-ym2-resources" ng-if="ressourcesYearMoins2Captured">
+  <a ui-sref="foyer.ressourcesYearMoins2" class="pull-right">
+    <i class="fa fa-edit" aria-hidden="true"></i>
+    Modifier
+  </a>
   <h4>Année {{ yearMoins2 }}</h4>
   <span ng-if="rfrCaptured">Revenu fiscal de référence : {{ situation.rfr }} €</span>
   <accordion

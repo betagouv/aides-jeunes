@@ -25,11 +25,10 @@
               ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">
               <input
                 type="checkbox"
-                id="{{ ressourceType.id }}"
                 class="screenReadersOnly"
                 ng-model="individuVM.selectedRessourceTypes[ressourceType.id]"
               />
-              <div for="{{ ressourceType.id }}" class="btn btn-sm btn-default">
+              <div class="btn btn-sm btn-default">
                 {{ ressourceType.label }}
               </div>
             </label>

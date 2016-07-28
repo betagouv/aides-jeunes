@@ -8,14 +8,14 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-sm-3" ng-repeat="month in months">
-        <label for="{{ index + ressource.type.id + month.id }}">
+        <label for="{{ ressource.type.id }}-month_{{ $index + 1 }}-person_{{ index }}">
           {{ month.label|uppercaseFirst }}
         </label>
         <span class="input-group">
           <input
             type="number"
             class="form-control text-right"
-            id="{{ index + ressource.type.id + month.id }}"
+            id="{{ ressource.type.id }}-month_{{ $index + 1 }}-person_{{ index }}"
             required
             min="0"
             step="100"
@@ -29,14 +29,14 @@
         </span>
       </div>
       <div class="col-sm-3">
-        <label for="{{ index + ressource.type.id }}-annuel">
+        <label for="{{ ressource.type.id }}-year-person_{{ index }}">
           Total depuis {{ debutAnneeGlissante }}
         </label>
         <span class="input-group">
           <input
             type="number"
             class="form-control text-right"
-            id="{{ index + ressource.type.id }}-annuel"
+            id="{{ ressource.type.id }}-year-person_{{ index }}"
             required
             min="{{ monthsSum }}"
             step="100"

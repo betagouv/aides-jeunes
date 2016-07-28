@@ -84,14 +84,15 @@ grunt watch
 Testing
 =======
 
-There are several levels of tests. You can safely use `npm test` to drive your developments.
+There are several levels of tests. You can safely use `npm test && npm run test-integration` to drive your developments.
 
 - Syntax tests are executed with `grunt jshint`.
 - Unit tests are executed with `grunt test`.
+- Integration tests are executed with [Watai](https://github.com/MattiSG/Watai) through `npm run test-integration`. These tests are **currently not run in CI** due to how complex installing all dependencies on a CI VM is.
 
-Integration tests are executed in a more convoluted way.
+Business tests are executed in a more convoluted way.
 
-We use [Ludwig](https://github.com/sgmap/ludwig-ui) to help users create integration tests. These tests have to be fetched and loaded in your local database so you can execute them on your development machine.
+We use [Ludwig](https://github.com/sgmap/ludwig-ui) to help users create business tests. These tests have to be fetched and loaded in your local database so you can execute them on your development machine.
 To do so, use the `import-tests.sh` script at the root of the repository. You will need to have a running Mongo database, and SSH access to the production server.
 
 

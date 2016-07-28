@@ -1,0 +1,1 @@
+startLink: { a: 'Commencer' },

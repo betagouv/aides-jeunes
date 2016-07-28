@@ -9,6 +9,8 @@ angular.module('ddsApp').controller('FoyerRessourcesEnfantsCtrl', function($scop
     	enfant.hasRessources = RessourceService.getMainScreenRessources(enfant).length > 0;
     });
 
+    $scope.escape = _.escape;
+
     $scope.submit = function() {
         $scope.enfants.forEach(function(enfant) {
             if (! enfant.hasRessources) {

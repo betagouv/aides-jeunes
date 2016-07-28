@@ -16,7 +16,12 @@
 
 <div ng-if="ressourcesCaptured">
   <div ng-repeat="individu in individusSorted" ng-if="shouldDisplayPersonRessourcesRecap(individu)">
-    <a ui-sref="foyer.ressources.individu.montants({individu: $index})" class="pull-right"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</a>
+    <a
+      ui-sref="{{ getModifyPersonRessourcesLink(individu) }}"
+      class="pull-right">
+      <i class="fa fa-edit" aria-hidden="true"></i>
+      Modifier
+    </a>
     <h4 class="section-header">{{ getIndividuRessourcesHeader(individu) }}</h4>
     <accordion
       close-others="false"

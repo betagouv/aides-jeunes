@@ -135,6 +135,13 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         return $scope.ressourcesByIndividu[index] || individu.ressources && IndividuService.isParent(individu);
     };
 
+    $scope.getModifyPersonRessourcesLink = function (individu) {
+        var index = $scope.individusSorted.indexOf(individu);
+        var page = $scope.ressourcesByIndividu[index] ? 'montants' : 'types';
+
+        return 'foyer.ressources.individu.' + page + '({individu: ' + index + '})';
+    };
+
     if ($scope.situation.logement) {
         buildRecapLogement();
     }

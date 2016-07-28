@@ -5,6 +5,8 @@ steps: [
     YM2ResourcesComponent.setDemandeurRevenuActiviteInput(10000),
     YM2ResourcesComponent.setConjointAutresRevenusInput(5000),
     YM2ResourcesComponent.submit(),
+    YM2ResourcesComponent.setRfrInput(15000),
+    YM2ResourcesComponent.submit(),
     {
         'ResultComponent.prestationYM2Warning': false,
         'ResultComponent.declareYM2ResourcesLink': false,

@@ -109,39 +109,6 @@ $body-front-base-padding: 50px;
   }
 }
 
-.homepage-call-to-action {
-  background-position: center center;
-  color: white;
-
-  &.desktop {
-    background-image: url('../img/homepage.jpg');
-    padding: 100px 0;
-
-    .jumbotron {
-      padding: 50px;
-    }
-  }
-
-  &.mobile {
-    background-image: url('../img/homepage_mobile.jpg');
-
-    .jumbotron {
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
-
-  .jumbotron {
-    background-color: rgba(0, 0, 0, 0);
-    text-shadow:  1px 1px 4px rgb(0, 0, 0);
-    margin-bottom: 0;
-
-    &>p {
-      margin-bottom: 25px;
-    }
-  }
-}
-
 .form-foyer {
   padding-bottom: 5px;
 }
@@ -163,27 +130,6 @@ $body-front-base-padding: 50px;
 .layout {
   padding-top: 10px;
   padding-bottom: 20px;
-}
-
-.frame-aides-homepage {
-  @extend .whiteframe-z1;
-  margin-top: 20px;
-  padding: 20px;
-
-  h2 {
-    margin-top: 0;
-  }
-
-  .heading {
-    margin-bottom: 5px;
-    h3 {
-      margin-top: 0px;
-    }
-  }
-  .showDetailsButtonBlock {
-    text-align:center;
-    margin-top: 10px;
-  }
 }
 
 .frame-foyer {
@@ -235,11 +181,6 @@ $body-front-base-padding: 50px;
   h2 {
     margin-top: 0;
   }
-}
-
-.liste-organismes {
-  background-color: white;
-  padding: 50px 0;
 }
 
 .panel-foyer-lg {
@@ -646,11 +587,6 @@ $autre-lighter: #cce4e7;
 .droit-logo {
   height: 2em;
   padding-left: 5px;
-}
-
-.frame-aides-homepage .droit-logo {
-  height: 3em;
-  padding-left: 0;
 }
 
 .panel-non-eligible {

@@ -239,7 +239,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/styles',
           src: '**/*.scss',
-          dest: '.tmp/styles',
+          dest: 'dist/styles',
           ext: '.css'
         }],
         options: {
@@ -274,7 +274,6 @@ module.exports = function (grunt) {
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       html: ['<%= yeoman.dist %>/views/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>']
       }
@@ -335,7 +334,8 @@ module.exports = function (grunt) {
             'img/{,*/}*.{png,jpg,jpeg,gif}',
             'fonts/**/*',
             'resources/**/*',
-            'documents/**/*'
+            'documents/**/*',
+            'styles/**/*.css'
           ]
         }, {
           expand: true,
@@ -343,12 +343,6 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/img',
           src: ['generated/*']
         }]
-      },
-      styles: {
-        expand: true,
-        cwd: '<%= yeoman.app %>/styles',
-        dest: '.tmp/styles/',
-        src: '{,*/}*.css'
       }
     },
 
@@ -485,7 +479,6 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cssmin',
     'uglify',
     'rev',
     'usemin',

@@ -14,7 +14,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     ResultatService.simulate($scope.situation).then(function(droits) {
         $scope.droits = droits.droitsEligibles;
         $scope.droitsInjectes = droits.droitsInjectes;
-        $scope.noDroits = _.isEmpty($scope.droits);
+        $scope.noDroits = _.isEmpty($scope.droits.prestationsNationales) && _.isEmpty($scope.droits.partenairesLocaux);
 
         ImpactStudyService.sendResults($scope.situation, droits.raw);
     }, function() {

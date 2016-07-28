@@ -20,7 +20,6 @@ module.exports = function(app) {
         });
 
         app.use('/recap-situation', express.static(path.join(__dirname, 'app')));
-        app.use(express.static(path.join(__dirname, '.tmp')));
         app.use(express.static(path.join(__dirname, 'app')));
 
         viewsDirectory += '/app/views';
@@ -30,12 +29,13 @@ module.exports = function(app) {
         // prerender.io
         app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN).set('protocol', 'https'));
 
-        app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
         app.use('/recap-situation', express.static(path.join(__dirname, 'dist')));
-        app.use(express.static(path.join(__dirname, 'dist')));
 
         viewsDirectory += '/dist/views';
     }
+
+    app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
+    app.use(express.static(path.join(__dirname, 'dist')));
 
     app.use('/partials', express.static(viewsDirectory + '/partials'));
     app.use('/partials', function(req, res) {

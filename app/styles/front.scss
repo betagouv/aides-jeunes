@@ -10,6 +10,10 @@ html {
 $main-footer-height: 220px;
 $body-front-base-padding: 50px;
 
+h1[tabindex="-1"] {
+  outline: none;
+}
+
 .body-front {
   margin-bottom: $main-footer-height;
   padding-top: $body-front-base-padding;

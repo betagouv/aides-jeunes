@@ -188,7 +188,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll, ImpactStudyService) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll, $timeout, ImpactStudyService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -209,6 +209,16 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anc
         if (top) {
             $modalStack.dismiss(top.key);
         }
+    });
+
+    $rootScope.$on('$stateChangeSuccess', function () {
+        // Default - set page focus to h1
+        $timeout(function() {
+            var title = document.querySelector('h1');
+            if (title) {
+                title.focus();
+            }
+        }, 0);
     });
 
     $rootScope.$on('$locationChangeSuccess', function(event, current) {

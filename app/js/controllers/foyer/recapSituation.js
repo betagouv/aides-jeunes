@@ -118,7 +118,6 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
 
     $scope.getIndividuRessourcesHeader = IndividuService.ressourceHeader;
-    $scope.isParent = IndividuService.isParent;
 
     $scope.getRessourceByType = function (typeName) {
         return _.find(ressourceTypes, { id: typeName });
@@ -129,6 +128,11 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
             _.values(ressource).reduce(function (x,y) {
                 return x + y;
             }));
+    };
+
+    $scope.shouldDisplayPersonRessourcesRecap = function (individu) {
+        var index = $scope.individusSorted.indexOf(individu);
+        return $scope.ressourcesByIndividu[index] || individu.ressources && IndividuService.isParent(individu);
     };
 
     if ($scope.situation.logement) {

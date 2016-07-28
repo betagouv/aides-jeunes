@@ -31,7 +31,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('home', {
             url: '/',
             templateUrl: '/partials/homepage.html',
-            controller: 'HomepageCtrl'
+            controller: 'HomepageCtrl',
+            preventFocus: true
         })
         .state('a_propos', {
             url: '/a-propos',
@@ -99,7 +100,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/demandeur.html'
                 },
                 'individuForm@foyer.demandeur': individuFormView('demandeur')
-            }
+            },
+            preventFocus: true
         })
         .state('foyer.conjoint', {
             url: '/conjoint',
@@ -211,14 +213,20 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anc
         }
     });
 
-    $rootScope.$on('$stateChangeSuccess', function () {
-        // Default - set page focus to h1
-        $timeout(function() {
-            var title = document.querySelector('h1');
-            if (title) {
-                title.focus();
-            }
-        }, 0);
+    $rootScope.$on('$stateChangeSuccess', function (event, current) {
+        // Default - set page focus to first h1
+        if (! current.preventFocus) {
+            // $timeout adds the function to the next angular digest cycle,
+            // waiting for the page to load before executing it
+            $timeout(function() {
+                var title = document.querySelector('h1');
+                // If anyone wants to set a tabindex manually, do not overwrite it
+                if (title && title.tabIndex < 0) {
+                    title.tabIndex = -1;
+                    title.focus();
+                }
+            }, 0);
+        }
     });
 
     $rootScope.$on('$locationChangeSuccess', function(event, current) {

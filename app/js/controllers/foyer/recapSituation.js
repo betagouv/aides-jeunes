@@ -30,6 +30,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     }
 
     function buildRecapRessources () {
+        $scope.ressourcesCaptured = true;
         $scope.individusSorted = SituationService.getIndividusSortedParentsFirst($scope.situation);
         $scope.ressourcesByIndividu = $scope.individusSorted.map(getRessources);
     }
@@ -134,19 +135,13 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         buildRecapLogement();
     }
 
-    $scope.$on('logementCaptured', function() {
-        buildRecapLogement();
-    });
+    $scope.$on('logementCaptured', buildRecapLogement);
 
     if ( $scope.situation.individus.length && $scope.situation.individus[0].ressources) {
-        $scope.ressourcesCaptured = true;
         buildRecapRessources();
     }
 
-    $scope.$on('ressourcesUpdated', function() {
-        $scope.ressourcesCaptured = true;
-        buildRecapRessources();
-    });
+    $scope.$on('ressourcesUpdated', buildRecapRessources);
 
     if ($scope.ressourcesYearMoins2Captured) {
         buildYm2Recap();
@@ -156,8 +151,6 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         buildRecapPatrimoine();
     }
 
-    $scope.$on('patrimoineCaptured', function() {
-        buildRecapPatrimoine();
-    });
+    $scope.$on('patrimoineCaptured', buildRecapPatrimoine);
 
 });

@@ -1,6 +1,6 @@
 {
     "baseURL": "http://localhost:9000",
-    "quit": "on success",
+    "quit": "always",
     "bail": true,
     "timeout": 10000,
     "views": [ "Verbose", "SauceLabs" ],

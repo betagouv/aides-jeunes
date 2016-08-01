@@ -1,45 +1,45 @@
-<h1>{{ pageTitle }}</h1>
-
-
-<form method="post" name="form" novalidate ng-submit="submit()">
-  <fieldset>
-    <legend>
-      Sélectionnez les ressources perçues <strong>depuis {{ debutAnneeGlissante }}</strong>,
-      vous pourrez ensuite saisir les montants.
-    </legend>
-    <div class="ressource-types-block">
-      <accordion close-others="false">
-        <accordion-group
-        class="capture-{{ category.id }}"
-        ng-repeat="category in ressourceCategories"
-        is-open="status.open"
-        ng-init="status.open = shouldInitiallyOpen(category)">
-          <accordion-heading>
-            {{ category.label }}
-            <i class="pull-left fa" aria-hidden="true"
-              ng-class="{'fa-chevron-down': status.open, 'fa-chevron-right': !status.open}">
-            </i>
-          </accordion-heading>
-          <div class="button-grid">
-            <label
-              ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">
-              <input
-                type="checkbox"
-                class="screenReadersOnly"
-                ng-model="individuVM.selectedRessourceTypes[ressourceType.id]"
-              />
-              <div class="btn btn-sm btn-default">
-                {{ ressourceType.label }}
-              </div>
-            </label>
-          </div>
-        </accordion-group>
-      </accordion>
-      <div class="text-right">
-        <button type="submit" class="btn btn-primary">
-          Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-        </button>
+<div class="frame-foyer">
+  <h1>{{ pageTitle }}</h1>
+  <form method="post" name="form" novalidate ng-submit="submit()">
+    <fieldset>
+      <legend>
+        Sélectionnez les ressources perçues <strong>depuis {{ debutAnneeGlissante }}</strong>,
+        vous pourrez ensuite saisir les montants.
+      </legend>
+      <div class="ressource-types-block">
+        <accordion close-others="false">
+          <accordion-group
+          class="capture-{{ category.id }}"
+          ng-repeat="category in ressourceCategories"
+          is-open="status.open"
+          ng-init="status.open = shouldInitiallyOpen(category)">
+            <accordion-heading>
+              {{ category.label }}
+              <i class="pull-left fa" aria-hidden="true"
+                ng-class="{'fa-chevron-down': status.open, 'fa-chevron-right': !status.open}">
+              </i>
+            </accordion-heading>
+            <div class="button-grid">
+              <label
+                ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">
+                <input
+                  type="checkbox"
+                  class="screenReadersOnly"
+                  ng-model="selectedRessourceTypes[ressourceType.id]"
+                />
+                <div class="btn btn-sm btn-default">
+                  {{ ressourceType.label }}
+                </div>
+              </label>
+            </div>
+          </accordion-group>
+        </accordion>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary">
+            Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
-    </div>
-  </fieldset>
-</form>
+    </fieldset>
+  </form>
+</div>

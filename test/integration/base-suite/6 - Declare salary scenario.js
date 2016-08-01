@@ -1,7 +1,6 @@
 description: 'Declare salary.',
 
 steps: [
-    ResourcesComponent.declareResources(),
     ResourcesComponent.declareRevenuActivite(),
     ResourcesComponent.checkSalary(),
     ResourcesComponent.submit(),

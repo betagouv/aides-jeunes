@@ -41,7 +41,6 @@
     "grunt-open": "~0.2.0",
     "grunt-rev": "~0.1.0",
     "grunt-sass": "^0.18.1",
-    "grunt-svgmin": "~2.0.1",
     "grunt-usemin": "~3.0.0",
     "jshint-stylish": "~1.0.1",
     "karma": "~0.12.31",

@@ -29,7 +29,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
 
     $scope.pensionsVersees = _.find(ressourceTypes, { id: 'pensionsAlimentairesVersees' });
 
-    var createIndividuVM = function(individu) {
+    function createIndividuVM (individu) {
         return {
             individu: individu,
             label: IndividuService.label(individu),
@@ -58,7 +58,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
         }
     });
 
-    var applyPensionToIndividu = function(individuVM) {
+    function applyPensionToIndividu (individuVM) {
         var individu = individuVM.individu;
         var ressource = individuVM.pensionsVersees;
         RessourceService.spreadIndividuRessources(individu, months, ressource, $scope.situation.dateDeValeur);

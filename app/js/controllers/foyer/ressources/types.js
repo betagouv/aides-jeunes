@@ -47,6 +47,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
             $state.go('foyer.ressources.individu.montants');
         } else {
             RessourceService.applyRessourcesToIndividu($scope.individu, $scope.ressources, $scope.situation.dateDeValeur);
+            $scope.individu.hasRessources = false;
             $scope.declareNextIndividuResources(parseInt($stateParams.individu));
         }
     };

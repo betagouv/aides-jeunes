@@ -86,6 +86,9 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.updateCities = function updateCities() {
+        if (! $scope.logement.postalCode)
+            return;  // the user has made the value invalid since we were called
+
         $scope.retrievingCities = true;
 
         $http.get('/api/outils/communes/' + $scope.logement.postalCode)

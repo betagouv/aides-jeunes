@@ -9,13 +9,11 @@ ludwigConfig.mesAidesRootUrl = process.env.MES_AIDES_ROOT_URL || 'http://localho
 
 // Setup Express
 var app = express();
-var env = app.get('env');
 
-if ('development' === env) {
+if (app.get('env') == 'development') {
     app.use(morgan('dev'));
-}
-
-if ('production' === env) {
+    app.use(errorHandler());
+} else {
     app.use(morgan('combined'));
 }
 

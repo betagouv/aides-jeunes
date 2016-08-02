@@ -74,7 +74,7 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             scope.individusVM[0].pensionsVersees.montantAnnuel = 1200;
 
             // when
-            scope.submit();
+            scope.submit(form);
 
             // then
             var individu = scope.situation.individus[0];
@@ -95,7 +95,7 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
 
             // when
             scope.situation.parentsPayPensionsAlimentaires = false;
-            scope.submit();
+            scope.submit(form);
 
             // then
             var individu = scope.situation.individus[0];

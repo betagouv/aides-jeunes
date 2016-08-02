@@ -2,14 +2,14 @@
   <form class="form-horizontal" novalidate ng-submit="submit()">
     <h1>Pensions alimentaires versées</h1>
 
-    <yes-no-question model="situation.hasPensionsAlimentaires" size="7">
+    <yes-no-question model="situation.parentsPayPensionsAlimentaires" size="7">
       <question>
       Vous ou votre conjoint·e a-t-il <b>versé</b> des pensions alimentaires <b>
       depuis {{ debutAnneeGlissante }}</b>&nbsp;?
       </question>
     </yes-no-question>
 
-    <div ng-if="situation.hasPensionsAlimentaires" ng-repeat="individuVM in individusVM">
+    <div ng-if="situation.parentsPayPensionsAlimentaires" ng-repeat="individuVM in individusVM">
     <h2>{{ individuVM.label }}</h2>
       <montant-ressource
         ng-model="individuVM.pensionsVersees"

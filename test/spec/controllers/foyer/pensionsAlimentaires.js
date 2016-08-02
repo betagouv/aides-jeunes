@@ -35,7 +35,7 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             initController();
 
             // then
-            expect(scope.situation.hasPensionsAlimentaires).toBe(false);
+            expect(scope.situation.parentsPayPensionsAlimentaires).toBe(false);
             expect(scope.individusVM.length).toBe(2);
             expect(scope.individusVM[0].individu).toEqual(scope.situation.individus[0]);
             expect(scope.individusVM[0].label).toEqual('Vous');
@@ -58,7 +58,7 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             initController();
 
             // then
-            expect(scope.situation.hasPensionsAlimentaires).toBe(true);
+            expect(scope.situation.parentsPayPensionsAlimentaires).toBe(true);
             expect(scope.individusVM[0].pensionsVersees.montantsMensuels).toEqual([250, 300, 350]);
             expect(scope.individusVM[0].pensionsVersees.montantAnnuel).toBe(900);
         });
@@ -69,7 +69,7 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             // given
             scope.situation.individus = [{ role: 'demandeur', ressources: [] }];
             initController();
-            scope.situation.hasPensionsAlimentaires = true;
+            scope.situation.parentsPayPensionsAlimentaires = true;
             scope.individusVM[0].pensionsVersees.montantsMensuels = [100, 100, 100];
             scope.individusVM[0].pensionsVersees.montantAnnuel = 1200;
 
@@ -94,7 +94,7 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             initController();
 
             // when
-            scope.situation.hasPensionsAlimentaires = false;
+            scope.situation.parentsPayPensionsAlimentaires = false;
             scope.submit();
 
             // then

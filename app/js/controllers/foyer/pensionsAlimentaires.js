@@ -50,12 +50,12 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
         $scope.individusVM.push(createIndividuVM(conjoint));
     }
 
-    $scope.situation.hasPensionsAlimentaires = false;
+    $scope.situation.parentsPayPensionsAlimentaires = false;
     $scope.individusVM.forEach(function(individuVM) {
         if (_.any([
             _.find(individuVM.individu.ressources, { type: 'pensionsAlimentairesVersees' })
         ])) {
-            $scope.situation.hasPensionsAlimentaires = true;
+            $scope.situation.parentsPayPensionsAlimentaires = true;
         }
     });
 
@@ -71,7 +71,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
             individuVM.individu.ressources = _.filter(individuVM.individu.ressources, function(ressource) {
                 return ! _.contains(['pensionsAlimentairesVersees'], ressource.type);
             });
-            if ($scope.situation.hasPensionsAlimentaires) {
+            if ($scope.situation.parentsPayPensionsAlimentaires) {
                 applyPensionToIndividu(individuVM);
             }
         });

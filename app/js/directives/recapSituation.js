@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsRecapSituation').directive('recapSituation', function($timeout, $sce, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService, SituationService) {
+angular.module('ddsRecapSituation').directive('recapSituation', function($timeout, $sce, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService, SituationService, RessourceService) {
     return {
         restrict: 'E',
         templateUrl: '/partials/recap-situation.html',
@@ -51,7 +51,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                     });
                     values.values.push({
                         periode: 'Année glissante',
-                        montant: Math.round(montantAnnuel)
+                        montant: RessourceService.roundToCents(montantAnnuel),
                     });
                 });
 

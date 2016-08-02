@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, SituationService) {
+angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, SituationService, RessourceService) {
     var debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('years', 1);
     $scope.debutPeriode = debutPeriode.format('MMMM YYYY');
     var finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1);
@@ -38,7 +38,7 @@ angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, Situ
         var montants = _.map($scope.revenusLocatifs.months, function(month) {
             return month.montant;
         });
-        $scope.revenusLocatifs.year = Math.round(4 * _.reduce(montants, function(sum, num) {
+        $scope.revenusLocatifs.year = RessourceService.roundToCents(4 * _.reduce(montants, function(sum, num) {
             return sum + num;
         }));
     };
@@ -47,7 +47,7 @@ angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, Situ
         var montants = _.map($scope.revenusDuCapital.months, function(month) {
             return month.montant;
         });
-        $scope.revenusDuCapital.year = Math.round(4 * _.reduce(montants, function(sum, num) {
+        $scope.revenusDuCapital.year = RessourceService.roundToCents(4 * _.reduce(montants, function(sum, num) {
             return sum + num;
         }));
     };

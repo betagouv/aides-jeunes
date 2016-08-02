@@ -109,8 +109,8 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
             // given
             _ressourceTypes_ = [{ id: 'toto' }];
             demandeur.ressources = [
-                { type: 'toto', periode: '2013-03', montant: 5.5 },
-                { type: 'toto', periode: '2013-02', montant: 4.4 },
+                { type: 'toto', periode: '2013-03', montant: 5.54 },
+                { type: 'toto', periode: '2013-02', montant: 4.487 },
                 { type: 'toto', periode: '2013-01', montant: 66.6 },
             ];
 
@@ -120,8 +120,8 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
             // then
             expect(scope.ressources.length).toBe(1);
             expect(scope.ressources[0].type).toBe(_ressourceTypes_[0]);
-            expect(scope.ressources[0].montantsMensuels).toEqual([67, 4, 6]);
-            expect(scope.ressources[0].montantAnnuel).toBe(77);
+            expect(scope.ressources[0].montantsMensuels).toEqual([66.6, 4.49, 5.54]);
+            expect(scope.ressources[0].montantAnnuel).toBe(76.63);
         });
 
         it('should map ressources micro-entreprise', function() {

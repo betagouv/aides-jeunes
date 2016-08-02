@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($scope, ressourceTypes, SituationService, IndividuService, RessourceService) {
+
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
@@ -9,7 +10,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
     var initMontantsMensuels = function(individu, pensionType) {
         var result = _.map(months, function(month) {
             var ressource = _.find(individu.ressources, { periode: month.id, type: pensionType });
-            return ressource ? Math.round(ressource.montant) : 0;
+            return ressource ? RessourceService.roundToCents(ressource.montant) : 0;
         });
 
         return result;
@@ -24,7 +25,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
             })
             .value();
 
-        return Math.round(result) || 0;
+        return RessourceService.roundToCents(result) || 0;
     };
 
     $scope.pensionsVersees = _.find(ressourceTypes, { id: 'pensionsAlimentairesVersees' });

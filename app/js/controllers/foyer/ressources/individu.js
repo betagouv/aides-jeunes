@@ -33,7 +33,7 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
             var ressourceType = _.find(ressourceTypes, { id: type });
             var montantsMensuels = _.map($scope.months, function(month) {
                 var ressource = _.find(ressources, { periode: month.id, type: type });
-                return ressource ? Math.round(ressource.montant) : 0;
+                return ressource ? RessourceService.roundToCents(ressource.montant) : 0;
             });
 
             var montantAnnuel = _.chain(ressources)
@@ -43,7 +43,7 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
                     return sum + montant;
                 })
                 .value();
-            montantAnnuel = Math.round(montantAnnuel);
+            montantAnnuel = RessourceService.roundToCents(montantAnnuel);
 
             var ressource = {
                 type: ressourceType,

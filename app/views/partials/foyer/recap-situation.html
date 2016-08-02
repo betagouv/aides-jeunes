@@ -33,19 +33,19 @@
         heading="{{ getRessourceByType(type).label }}">
 
         <div class="row" ng-if="ressource[month.id]" ng-repeat="month in months">
-          <div class="col-sm-8">
+          <div class="col-sm-7">
             {{ month.label | uppercaseFirst }}
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-5">
             {{ ressource[month.id] }} €
           </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-sm-7">
             Annuel
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-5">
             {{ getTotalAnnuel(ressource) }} €
           </div>
         </div>

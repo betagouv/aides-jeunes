@@ -35,7 +35,7 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
             if (! ressource.onGoing) {
                 individu.interruptedRessources.push(ressource.type.id);
             }
-        }
+    }
 
     function applyYearlyRessource (individu, ressource, dateDeValeur) {
             var montant = ressource.montantAnnuel;
@@ -56,7 +56,7 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
                     montant: ressource.caAnnuel
                 });
             }
-        }
+    }
 
     function applyRessourcesToIndividu (individu, ressources, dateDeValeur) {
             var months = SituationService.getMonths(dateDeValeur);
@@ -78,7 +78,7 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
             individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
                 return ! isRessourceOnMainScreen(ressource);
             }));
-        }
+    }
 
     function isRessourceOnMainScreen(ressourceOrType) {
         // Make this function robust so that it can be called with a ressource from individu.ressources, a type from the ressourceTypes constant, or just a string.
@@ -90,11 +90,16 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
         return individu.ressources && individu.ressources.filter(isRessourceOnMainScreen) || [];
     }
 
+    function roundToCents(amount) {
+        return Math.round(amount * 100) / 100;
+    }
+
     return {
         spreadIndividuRessources: spreadIndividuRessources,
         applyYearlyRessource: applyYearlyRessource,
         applyRessourcesToIndividu: applyRessourcesToIndividu,
         isRessourceOnMainScreen: isRessourceOnMainScreen,
-        getMainScreenRessources: getMainScreenRessources
+        getMainScreenRessources: getMainScreenRessources,
+        roundToCents: roundToCents,
     };
 });

@@ -31,7 +31,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('home', {
             url: '/',
             templateUrl: '/partials/homepage.html',
-            controller: 'HomepageCtrl'
+            controller: 'HomepageCtrl',
+            preventFocus: true
         })
         .state('a_propos', {
             url: '/a-propos',
@@ -99,7 +100,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/demandeur.html'
                 },
                 'individuForm@foyer.demandeur': individuFormView('demandeur')
-            }
+            },
+            preventFocus: true
         })
         .state('foyer.conjoint', {
             url: '/conjoint',
@@ -203,7 +205,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll, ImpactStudyService) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll, $timeout, ImpactStudyService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -224,6 +226,20 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anc
         if (top) {
             $modalStack.dismiss(top.key);
         }
+    });
+
+    $rootScope.$on('$stateChangeSuccess', function focusTitleForScreenReaders(event, current) {
+        if (current.preventFocus)
+            return;
+
+        $timeout(function() {  // add the function to the next angular digest cycle, waiting for the page to load before executing it
+            var title = document.querySelector('h1');
+            // if anyone wants to set a tabindex manually, do not overwrite it
+            if (title && title.tabIndex < 0) {  // default is -1... https://html.spec.whatwg.org/multipage/interaction.html#dom-tabindex
+                title.tabIndex = -1;  //...yet it has to be set to -1 to allow `.focus()`
+                title.focus();
+            }
+        });
     });
 
     $rootScope.$on('$locationChangeSuccess', function(event, current) {

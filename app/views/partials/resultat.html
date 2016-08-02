@@ -9,7 +9,7 @@
 
 <div ng-if="!error && !awaitingResults">
 
-  <div ng-if="droits.prestationsNationales">
+  <div ng-if="! (droits.prestationsNationales | isEmpty)">
     <p>D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides <strong>{{ droits.partenairesLocaux ? "nationales" : "" }}</strong> : </p>
     <div class="frame-resultats">
       <droit-eligibles-list list="droits.prestationsNationales"></droit-eligibles-list>
@@ -31,8 +31,8 @@
     </div>
   </div>
 
-  <div class="frame-resultats" ng-if="! droits.prestationsNationales && ! ressourcesYearMoins2Captured">
-      <h2 ng-if="noDroits">On y est presque !</h2>
+  <div class="frame-resultats" ng-if="noDroits && ! ressourcesYearMoins2Captured">
+      <h2>On y est presque !</h2>
       <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
   </div>
 

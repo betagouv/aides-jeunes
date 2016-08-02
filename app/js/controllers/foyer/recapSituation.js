@@ -1,10 +1,8 @@
 'use strict';
 
-angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, categoriesRnc, SituationService, IndividuService) {
+angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, categoriesRnc, SituationService, IndividuService, RessourceService) {
 
-    $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
-
-    var buildRecapLogement = function() {
+    function buildRecapLogement () {
         var logementLabel = _.find(logementTypes, { id: $scope.situation.logement.type }).label;
         logementLabel = $filter('uppercaseFirst')(logementLabel);
         $scope.recapLogement = '<b>' + logementLabel + '</b>';
@@ -16,17 +14,28 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         } else {
             $scope.loyerLabel = 'Mensualité d’emprunt';
         }
-    };
-
-    if ($scope.situation.logement) {
-        buildRecapLogement();
     }
 
-    $scope.$on('logementCaptured', function() {
-        buildRecapLogement();
-    });
+    function getRessources (individu) {
+        var filteredRessources = RessourceService.getMainScreenRessources(individu);
+        if (_.isEmpty(filteredRessources)) {
+            return;
+        }
+        var ressourcesByType = _.groupBy(filteredRessources, 'type');
+        return _.mapValues(ressourcesByType, function(ressources) {
+            return _.mapValues(_.groupBy(ressources, 'periode'), function(ressource) {
+                return ressource[0].montant;
+            });
+        });
+    }
 
-    var buildRecapPatrimoine = function() {
+    function buildRecapRessources () {
+        $scope.ressourcesCaptured = true;
+        $scope.individusSorted = SituationService.getIndividusSortedParentsFirst($scope.situation);
+        $scope.ressourcesByIndividu = $scope.individusSorted.map(getRessources);
+    }
+
+    function buildRecapPatrimoine () {
         $scope.patrimoine = [];
         [
             {
@@ -84,122 +93,75 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
                 });
             }
         });
+    }
+
+    function buildYm2Recap () {
+        $scope.rfrCaptured = $scope.situation.rfr || $scope.situation.rfr === 0;
+        $scope.ressourcesYearMoins2 = [];
+        SituationService.getIndividusSortedParentsFirst($scope.situation)
+            .forEach(function(individu) {
+                var ym2IndividuRecap = { label: IndividuService.label(individu), ressources: [] };
+                categoriesRnc.forEach(function(rnc) {
+                    var ressource = _.find(individu.ressources, { type: rnc.id });
+                    if (ressource) {
+                        ym2IndividuRecap.ressources.push({ label: rnc.label, montant: ressource.montant });
+                    }
+                });
+                if (ym2IndividuRecap.ressources.length) {
+                    $scope.ressourcesYearMoins2.push(ym2IndividuRecap);
+                }
+            });
+    }
+
+    $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
+    $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
+    $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
+
+    $scope.getIndividuRessourcesHeader = IndividuService.ressourceHeader;
+
+    $scope.getRessourceByType = function (typeName) {
+        return _.find(ressourceTypes, { id: typeName });
     };
+
+    $scope.getTotalAnnuel = function (ressource) {
+        return Math.round(
+            _.values(ressource).reduce(function (x,y) {
+                return x + y;
+            }));
+    };
+
+    $scope.shouldDisplayPersonRessourcesRecap = function (individu) {
+        var index = $scope.individusSorted.indexOf(individu);
+        return $scope.ressourcesByIndividu[index] || individu.ressources && IndividuService.isParent(individu);
+    };
+
+    $scope.getModifyPersonRessourcesLink = function (individu) {
+        var index = $scope.individusSorted.indexOf(individu);
+        var page = $scope.ressourcesByIndividu[index] ? 'montants' : 'types';
+
+        return 'foyer.ressources.individu.' + page + '({individu: ' + index + '})';
+    };
+
+    if ($scope.situation.logement) {
+        buildRecapLogement();
+    }
+
+    $scope.$on('logementCaptured', buildRecapLogement);
+
+    if ( $scope.situation.individus.length && $scope.situation.individus[0].ressources) {
+        buildRecapRessources();
+    }
+
+    $scope.$on('ressourcesUpdated', buildRecapRessources);
+
+    if ($scope.ressourcesYearMoins2Captured) {
+        buildYm2Recap();
+    }
 
     if ($scope.situation.patrimoine && $scope.situation.patrimoine.captured) {
         buildRecapPatrimoine();
     }
 
-    $scope.$on('patrimoineCaptured', function() {
-        buildRecapPatrimoine();
-    });
+    $scope.$on('patrimoineCaptured', buildRecapPatrimoine);
 
-    $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
-
-    $scope.lastMonth = moment($scope.situation.dateDeValeur).subtract('months', 1).startOf('month').format('MMMM YYYY');
-    $scope.lastYear = moment($scope.situation.dateDeValeur).subtract('years', 1).format('MMMM YYYY');
-    $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
-    $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
-
-    var fillIndividuRessources = function(individu) {
-        if (! individu.ressources) {
-            return;
-        }
-
-        var types = _.chain(individu.ressources)
-            .pluck('type')
-            .unique();
-
-        types.forEach(function(type) {
-            // on ignore les types de ressources autres que ceux déclarés dans ressourceTypes (par ex. les ressources année - 2)
-            if (! _.find(ressourceTypes, { id: type })) {
-                return;
-            }
-
-            var totalMensuel = _.map($scope.months, function(month) {
-                var ressource = _.find(individu.ressources, { type: type, periode: month.id });
-                return ressource ? ressource.montant : 0;
-            });
-            var totalAnnuel = _.chain(individu.ressources)
-                .where({ type: type })
-                .pluck('montant')
-                .reduce(function(sum, num) {
-                    return sum + num;
-                })
-                .value();
-
-            var ressourceSection = $scope.tempRessources[type];
-            if (! ressourceSection) {
-                ressourceSection = $scope.tempRessources[type] = {
-                    totalMensuel: totalMensuel,
-                    totalAnnuel: totalAnnuel
-                };
-            } else {
-                _.map([0, 1, 2], function(i) {
-                    ressourceSection.totalMensuel[i] += totalMensuel[i];
-                });
-                ressourceSection.totalAnnuel += totalAnnuel;
-            }
-            $scope.globalAmount += totalAnnuel;
-        });
-    };
-
-    var buildRecapRessources = function() {
-        $scope.tempRessources = {};
-        $scope.hasRessources = false;
-        $scope.globalAmount = 0;
-
-        $scope.isSituationMonoIndividu = 1 === $scope.situation.individus.length;
-        $scope.situation.individus.forEach(fillIndividuRessources);
-
-        if ($scope.globalAmount > 0) {
-            $scope.hasRessources = true;
-        }
-
-        $scope.ressources = [];
-        ressourceTypes.forEach(function(ressourceType) {
-            if ($scope.tempRessources[ressourceType.id]) {
-                var ressource = {
-                    type: ressourceType,
-                    totalAnnuel: Math.round($scope.tempRessources[ressourceType.id].totalAnnuel)
-                };
-                if (! ressourceType.isMontantAnnuel) {
-                    ressource.totalMensuel = $scope.tempRessources[ressourceType.id].totalMensuel;
-                }
-                $scope.ressources.push(ressource);
-            }
-        });
-    };
-
-    if (!! $scope.situation.individus.length && !! $scope.situation.individus[0].ressources) {
-        $scope.ressourcesCaptured = true;
-        buildRecapRessources();
-    }
-
-    $scope.$on('ressourcesUpdated', function() {
-        $scope.ressourcesCaptured = true;
-        buildRecapRessources();
-    });
-
-    var buildYm2Recap = function() {
-        $scope.rfrCaptured = $scope.situation.rfr || $scope.situation.rfr === 0;
-        $scope.ressourcesYearMoins2 = [];
-        SituationService.getIndividusSortedParentsFirst($scope.situation)
-        .forEach(function(individu) {
-            var ym2IndividuRecap = { label: IndividuService.label(individu), ressources: [] };
-            categoriesRnc.forEach(function(rnc) {
-                var ressource = _.find(individu.ressources, { type: rnc.id });
-                if (ressource) {
-                    ym2IndividuRecap.ressources.push({ label: rnc.label, montant: ressource.montant });
-                }
-            });
-            if (ym2IndividuRecap.ressources.length) {
-                $scope.ressourcesYearMoins2.push(ym2IndividuRecap);
-            }
-        });
-    };
-
-    if ($scope.ressourcesYearMoins2Captured) {
-        buildYm2Recap();
-    }
 });

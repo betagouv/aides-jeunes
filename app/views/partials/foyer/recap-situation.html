@@ -15,39 +15,45 @@
 </div>
 
 <div ng-if="ressourcesCaptured">
-  <a ui-sref="foyer.ressources" class="pull-right"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</a>
-  <h4 class="section-header">Vos ressources</h4>
-  <accordion
-    close-others="true"
-    class="accordion-ressources">
-    <accordion-group
-      ng-repeat="ressource in ressources"
-      class="recap-{{ ressource.type.category }}"
-      heading="{{ ressource.type.label }}"
-      is-open="ressource.isOpen">
-      <div ng-if="ressource.totalMensuel">
-        <div class="row" ng-repeat="month in months">
+  <div ng-repeat="individu in individusSorted" ng-if="shouldDisplayPersonRessourcesRecap(individu)">
+    <a
+      ui-sref="{{ getModifyPersonRessourcesLink(individu) }}"
+      class="pull-right">
+      <i class="fa fa-edit" aria-hidden="true"></i>
+      Modifier
+    </a>
+    <h4 class="section-header">{{ getIndividuRessourcesHeader(individu) }}</h4>
+    <accordion
+      close-others="false"
+      class="accordion-ressources"
+      ng-if="ressourcesByIndividu[$index]">
+      <accordion-group
+        ng-repeat="(type, ressource) in ressourcesByIndividu[$index]"
+        class="recap-{{ getRessourceByType(type).category }}"
+        heading="{{ getRessourceByType(type).label }}">
+
+        <div class="row" ng-if="ressource[month.id]" ng-repeat="month in months">
           <div class="col-sm-8">
             {{ month.label | uppercaseFirst }}
           </div>
           <div class="col-sm-4">
-            {{ ressource.totalMensuel[$index] }} €
+            {{ ressource[month.id] }} €
           </div>
         </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-sm-8">
-          Annuel
+        <hr>
+        <div class="row">
+          <div class="col-sm-8">
+            Annuel
+          </div>
+          <div class="col-sm-4">
+            {{ getTotalAnnuel(ressource) }} €
+          </div>
         </div>
-        <div class="col-sm-4">
-          {{ ressource.totalAnnuel }} €
-        </div>
-      </div>
-    </accordion-group>
-  </accordion>
-  <div ng-if="!hasRessources">
-    <em class="small">Aucune ressource déclarée</em>
+      </accordion-group>
+    </accordion>
+    <div ng-if="! ressourcesByIndividu[$index]">
+      <em class="small">Aucune ressource déclarée</em>
+    </div>
   </div>
 </div>
 
@@ -59,7 +65,7 @@
   <h4>Année {{ yearMoins2 }}</h4>
   <span ng-if="rfrCaptured">Revenu fiscal de référence : {{ situation.rfr }} €</span>
   <accordion
-    close-others="true"
+    close-others="false"
     class="accordion-ressources">
     <accordion-group
       ng-repeat="ym2IndividuRecap in ressourcesYearMoins2"

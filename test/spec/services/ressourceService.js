@@ -1,23 +1,23 @@
 'use strict';
 
 describe('ResultatService', function () {
-    describe('applyYearlyRessource', function() {
-        var service,
-            individu,
-            dateDeValeur,
-            ressource;
+    var service,
+    individu,
+    dateDeValeur,
+    ressource;
 
-        beforeEach(function() {
-            module('ddsApp');
-            inject(function(RessourceService) {
-                service = RessourceService;
-            });
-            individu = {
-                ressources: []
-            };
-            dateDeValeur = Date();
+    beforeEach(function() {
+        module('ddsApp');
+        inject(function(RessourceService) {
+            service = RessourceService;
         });
+        individu = {
+            ressources: []
+        };
+        dateDeValeur = Date();
+    });
 
+    describe('applyYearlyRessource', function() {
         it('should add a yearly ressource to individu model ', function() {
             ressource = {
                 type: {
@@ -44,6 +44,36 @@ describe('ResultatService', function () {
             expect(individu.ressources).not.toEqual([]);
             expect(individu.ressources[0].type).toEqual('autresRevenusTns');
             expect(individu.ressources[1].type).toEqual('caAutresRevenusTns');
+        });
+    });
+    describe('isRessourceOnMainScreen', function() {
+        it('should filter pensions alimentaires versées and RNC resources', function() {
+            var types = ['revenusSalarie', 'pensionsAlimentairesVersees', 'rncAutresRevenus'];
+            var ressources = [
+                {
+                    'type': 'pensionsInvalidite',
+                },
+                {
+                    'type': 'pensionsAlimentairesVersees',
+                },
+                {
+                    'type': 'fraisReelsDeductibles',
+                }
+            ];
+            var ressourcesTypes = [
+                {
+                    id: 'pensionsInvalidite',
+                },
+                {
+                    id: 'pensionsAlimentairesVersees',
+                }
+            ];
+            var filteredTypes = types.filter(service.isRessourceOnMainScreen);
+            var filteredRessources = ressources.filter(service.isRessourceOnMainScreen);
+            var filteredRessourcesTypes = ressourcesTypes.filter(service.isRessourceOnMainScreen);
+            expect(filteredTypes).toEqual(['revenusSalarie']);
+            expect(filteredRessources).toEqual([ { 'type': 'pensionsInvalidite' } ]);
+            expect(filteredRessourcesTypes).toEqual([ { 'id': 'pensionsInvalidite' } ]);
         });
     });
 });

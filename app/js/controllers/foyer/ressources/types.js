@@ -1,23 +1,14 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ressourceCategories, ressourceTypes, $state) {
-    $scope.ressourceCategories = ressourceCategories;
-    $scope.individuVM = $scope.individusVM[$stateParams.individu];
-    var filteredRessourceTypes = _.filter(ressourceTypes, function(ressourceType) {
-        return ! _.contains(['pensionsAlimentairesVersees'], ressourceType.id);
-    });
-    $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
+angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ressourceCategories, ressourceTypes, $state, RessourceService) {
 
-    var pageTitle = function() {
-        switch ($scope.individuVM.individu.role) {
-            case 'demandeur':
-                return 'Vos ressources';
-            case 'conjoint':
-                return 'Les ressources de votre conjoint';
-            default:
-                return 'Les ressources de ' + $scope.individuVM.individu.firstName;
-        }
-    };
+    var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
+    $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
+
+    $scope.ressourceCategories = ressourceCategories;
+
+    var filteredRessourceTypes = _.filter(ressourceTypes, RessourceService.isRessourceOnMainScreen);
+    $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
 
     var DEFAULT_RESOURCE = {
         montantAnnuel: 0,
@@ -26,13 +17,19 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
         onGoing: true,
     };
 
-    $scope.pageTitle = pageTitle();
+    $scope.shouldInitiallyOpen = function(category) {
+        var categoriesWithResourceDeclared = $scope.ressources.map(function(ressource) {
+            return ressource.type.category;
+        });
+        return categoriesWithResourceDeclared.indexOf(category.id) >= 0;
+    };
 
-    var applySelectedRessources = function() {
-        var currentRessources = $scope.individuVM.ressources;
-        $scope.individuVM.ressources = [];
+    $scope.applySelectedRessources = function (selectedRessourceTypes) {
+        var currentRessources = _.clone($scope.ressources);
+        // $scope.ressources is referenced by parent controller, we need to keep the reference
+        $scope.ressources.length = 0;
         ressourceTypes.forEach(function(ressourceType) {
-            if (! $scope.individuVM.selectedRessourceTypes[ressourceType.id]) {
+            if (! selectedRessourceTypes[ressourceType.id]) {
                 return;
             }
             var ressource = _.find(currentRessources, { type: ressourceType });
@@ -40,19 +37,18 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
                 ressource = _.cloneDeep(DEFAULT_RESOURCE);
                 ressource.type = ressourceType;
             }
-            $scope.individuVM.ressources.push(ressource);
+            $scope.ressources.push(ressource);
         });
     };
 
     $scope.submit = function() {
-        applySelectedRessources();
-        $state.go('foyer.ressources');
-    };
-
-    $scope.shouldInitiallyOpen = function(category) {
-        var categoriesWithResourceDeclared = $scope.individuVM.ressources.map(function(ressource) {
-            return ressource.type.category;
-        });
-        return categoriesWithResourceDeclared.indexOf(category.id) >= 0;
+        $scope.applySelectedRessources($scope.selectedRessourceTypes);
+        if (_.some($scope.selectedRessourceTypes)) {
+            $state.go('foyer.ressources.individu.montants');
+        } else {
+            RessourceService.applyRessourcesToIndividu($scope.individu, $scope.ressources, $scope.situation.dateDeValeur);
+            $scope.individu.hasRessources = false;
+            $scope.declareNextIndividuResources(parseInt($stateParams.individu));
+        }
     };
 });

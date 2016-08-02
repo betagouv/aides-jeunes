@@ -39,65 +39,43 @@
   </div>
 </div>
 
-<div class="liste-organismes">
-  <div class="container text-center">
-    <div class="row">
-      <div class="col-md-2">
-        <img ng-src="/img/logo_assurance_maladie.png" alt="Assurance maladie">
-      </div>
-      <div class="col-md-2">
-        <img ng-src="/img/logo_ass.png" alt="ASS">
-      </div>
-      <div class="col-md-2">
-        <img ng-src="/img/logo_aspa.png" alt="ASPA">
-      </div>
-      <div class="col-md-2">
-        <img ng-src="/img/logo_caf.png" alt="CAF">
-      </div>
-      <div class="col-md-2">
-        <img ng-src="/img/logo_education_nationale.png" alt="Éducation nationale">
-      </div>
-      <div class="col-md-2">
-        <img ng-src="/img/logo_mairie_paris.png" alt="Mairie de Paris">
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="container">
-  <div class="frame-aides-homepage">
-    <h2 class="text-center">Les aides simulées</h2>
-    <hr>
-    <div class="row">
-      <div ng-repeat="droit in prestationsNationales">
-        <div class="clearfix" ng-if="$index % 3 === 0"></div>
-        <div class="col-md-4">
-          <div class="row heading">
-            <div class="col-xs-2">
-              <img class="droit-logo" ng-src="/img/{{ droit.imgSrc }}" alt="">
-            </div>
-            <div class="col-xs-10">
-              <h3>{{ droit.label }}</h3>
-            </div>
-          </div>
-          <p>{{ droit.description }}</p>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <h2 class="text-center">Prestations locales</h2>
-    <div ng-repeat="partenaireLocal in partenairesLocaux|orderObjectBy:'positionInList'">
+  <div class="frame-aides-homepage whiteframe-z1">
+    <h2 class="text-center">Simulez ces aides nationales</h2>
+    <div ng-repeat="provider in prestationsNationales | orderObjectBy:'prestations':true">
       <hr>
       <div class="row">
         <div class="text-center col-md-2">
-          <img ng-src="/img/{{ partenaireLocal.imgSrc }}" alt=""/>
-          <h2>{{ partenaireLocal.label }}</h2>
+          <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
         </div>
         <div class="col-md-10">
-          <div ng-repeat="droit in partenaireLocal.prestations">
+          <div ng-repeat="droit in provider.prestations">
+            <div class="clearfix" ng-if="$even"></div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-xs-10">
+                  <h3>{{ droit.label }}</h3>
+                </div>
+              </div>
+              <p>{{ droit.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h2 class="text-center">Simulez ces aides locales</h2>
+    <div ng-repeat="provider in partenairesLocaux | orderObjectBy:'prestations':true">
+      <hr>
+      <div class="row">
+        <div class="text-center col-md-2">
+          <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
+        </div>
+        <div class="col-md-10">
+          <div ng-repeat="droit in provider.prestations">
             <div class="clearfix" ng-if="showDetails && $even"></div>
             <div class="col-md-6" ng-if="showDetails || $index < 2">
-              <div class="row heading">
+              <div class="row">
                 <div class="col-xs-10">
                   <h3>{{ droit.label }}</h3>
                 </div>
@@ -106,8 +84,8 @@
             </div>
           </div>
           <div class="col-md-12 showDetailsButtonBlock">
-            <button class="btn" type="button" ng-show="!showDetails && nbPrestations(partenaireLocal) > 2" ng-click="showDetails = ! showDetails">
-              Voir les {{ nbPrestations(partenaireLocal) - 2 }} autres aides calculées
+            <button class="btn" type="button" ng-show="!showDetails && countPrestations(provider) > 2" ng-click="showDetails = ! showDetails">
+              Voir les {{ countPrestations(provider) - 2 }} autres aides calculées
             </button>
           </div>
       </div>

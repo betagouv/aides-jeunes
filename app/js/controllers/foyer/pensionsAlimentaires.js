@@ -65,17 +65,19 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
         RessourceService.spreadIndividuRessources(individu, months, ressource, $scope.situation.dateDeValeur);
     };
 
-    $scope.submit = function() {
-        $scope.individusVM.forEach(function (individuVM) {
-            // Remove old pensions alimentaires versees
-            individuVM.individu.ressources = _.filter(individuVM.individu.ressources, function(ressource) {
-                return ! _.contains(['pensionsAlimentairesVersees'], ressource.type);
+    $scope.submit = function(form) {
+        form.submitted = true;
+        if (form.$valid) {
+            $scope.individusVM.forEach(function (individuVM) {
+                // Remove old pensions alimentaires versees
+                individuVM.individu.ressources = _.filter(individuVM.individu.ressources, function(ressource) {
+                    return ! _.contains(['pensionsAlimentairesVersees'], ressource.type);
+                });
+                if ($scope.situation.parentsPayPensionsAlimentaires) {
+                    applyPensionToIndividu(individuVM);
+                }
             });
-            if ($scope.situation.parentsPayPensionsAlimentaires) {
-                applyPensionToIndividu(individuVM);
-            }
-        });
-
-        $scope.$emit('pensionsAlimentaires');
+            $scope.$emit('pensionsAlimentaires');
+        }
     };
 });

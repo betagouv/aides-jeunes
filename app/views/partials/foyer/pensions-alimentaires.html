@@ -1,7 +1,7 @@
 <div class="frame-foyer">
-  <form class="form-horizontal" novalidate ng-submit="submit()">
-    <h1>Pensions alimentaires versées</h1>
+  <h1>Pensions alimentaires versées</h1>
 
+  <form class="form-horizontal" method="post" name="form" novalidate ng-submit="submit(form)">
     <yes-no-question model="situation.parentsPayPensionsAlimentaires" size="7">
       <question>
       Vous ou votre conjoint·e a-t-il <b>versé</b> des pensions alimentaires <b>
@@ -16,7 +16,8 @@
         individu="individuVM.individu"
         ressource-type="pensionsVersees"
         index="$index"
-        date-de-valeur="situation.dateDeValeur">
+        date-de-valeur="situation.dateDeValeur"
+        form="form">
       </montant-ressource>
     </div>
 

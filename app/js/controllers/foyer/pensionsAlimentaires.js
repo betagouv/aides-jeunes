@@ -41,7 +41,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
                 onGoing: true
             }
         };
-    };
+    }
 
     var demandeur = _.find($scope.situation.individus, { role: 'demandeur' });
     var conjoint = _.find($scope.situation.individus, { role: 'conjoint' });
@@ -63,7 +63,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
         var individu = individuVM.individu;
         var ressource = individuVM.pensionsVersees;
         RessourceService.spreadIndividuRessources(individu, months, ressource, $scope.situation.dateDeValeur);
-    };
+    }
 
     $scope.submit = function(form) {
         form.submitted = true;

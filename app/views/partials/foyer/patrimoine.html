@@ -24,8 +24,32 @@
           <div class="form-group">
             <label
               class="col-sm-4 control-label"
-              for="vl-immo-non-loue"
-              tooltip="Pour la trouver, consultez votre avis d'imposition de taxe d'habitation ou de taxe foncière">
+              for="vl-terrain-non-loue">
+              Valeur locative totale de vos <br>terrains <b>non loués</b>
+            </label>
+            <div class="col-sm-3">
+              <div class="input-group">
+                <input
+                  type="number"
+                  id="vl-terrain-non-loue"
+                  class="form-control text-right"
+                  select-on-focus
+                  zero-to-empty
+                  ng-model="patrimoine.valeurLocativeTerrainNonLoue">
+                <span class="input-group-addon">€</span>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <p class="help-block">
+                Pour la trouver, consultez votre avis d'imposition de taxe d'habitation ou de taxe foncière.
+              </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label
+              class="col-sm-4 control-label"
+              for="vl-immo-non-loue">
               Valeur locative totale de vos appartements/immeubles <b>non loués</b>
             </label>
             <div class="col-sm-3">
@@ -41,28 +65,9 @@
               </div>
             </div>
             <div class="col-sm-5">
-              <p class="help-block">Sauf bâtiments de l'exploitation agricole</p>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label
-              class="col-sm-4 control-label"
-              for="vl-terrain-non-loue"
-              tooltip="Pour la trouver, consultez votre avis d'imposition de taxe d'habitation ou de taxe foncière">
-              Valeur locative totale de vos <br>terrains <b>non loués</b>
-            </label>
-            <div class="col-sm-3">
-              <div class="input-group">
-                <input
-                  type="number"
-                  id="vl-terrain-non-loue"
-                  class="form-control text-right"
-                  select-on-focus
-                  zero-to-empty
-                  ng-model="patrimoine.valeurLocativeTerrainNonLoue">
-                <span class="input-group-addon">€</span>
-              </div>
+              <p class="help-block">
+                Sauf bâtiments de l'exploitation agricole.
+              </p>
             </div>
           </div>
 

@@ -1,26 +1,23 @@
 <div class="frame-foyer">
-  <form class="form-horizontal" novalidate ng-submit="submit()">
-    <h1>Pensions alimentaires versées</h1>
+  <h1>Pensions alimentaires versées</h1>
 
-    <div class="form-group">
-      <label class="control-label col-md-7">
-        Vous ou votre conjoint a-t-il <b>versé</b>
-        des pensions alimentaires <b>depuis {{ debutAnneeGlissante }}</b> ?
-      </label>
-      <div class="col-md-5">
-        <button type="button" class="btn btn-sm btn-default" ng-model="hasPensionsAlimentaires" btn-radio="true">Oui</button>
-        <button type="button" class="btn btn-sm btn-default" ng-model="hasPensionsAlimentaires" btn-radio="false">Non</button>
-      </div>
-    </div>
+  <form class="form-horizontal" method="post" name="form" novalidate ng-submit="submit(form)">
+    <yes-no-question model="situation.parentsPayPensionsAlimentaires" size="7">
+      <question>
+      Vous ou votre conjoint·e a-t-il <b>versé</b> des pensions alimentaires <b>
+      depuis {{ debutAnneeGlissante }}</b>&nbsp;?
+      </question>
+    </yes-no-question>
 
-    <div ng-if="hasPensionsAlimentaires">
+    <div ng-if="situation.parentsPayPensionsAlimentaires" ng-repeat="individuVM in individusVM">
+    <h2>{{ individuVM.label }}</h2>
       <montant-ressource
-        ng-repeat="individuVM in individusVM"
         ng-model="individuVM.pensionsVersees"
         individu="individuVM.individu"
         ressource-type="pensionsVersees"
         index="$index"
-        date-de-valeur="situation.dateDeValeur">
+        date-de-valeur="situation.dateDeValeur"
+        form="form">
       </montant-ressource>
     </div>
 

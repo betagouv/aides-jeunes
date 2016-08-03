@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($scope, ressourceTypes, SituationService, IndividuService, RessourceService) {
+
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
@@ -9,7 +10,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
     var initMontantsMensuels = function(individu, pensionType) {
         var result = _.map(months, function(month) {
             var ressource = _.find(individu.ressources, { periode: month.id, type: pensionType });
-            return ressource ? Math.round(ressource.montant) : 0;
+            return ressource ? RessourceService.roundToCents(ressource.montant) : 0;
         });
 
         return result;
@@ -24,13 +25,13 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
             })
             .value();
 
-        return result || 0;
+        return RessourceService.roundToCents(result) || 0;
     };
 
     $scope.pensionsVersees = _.find(ressourceTypes, { id: 'pensionsAlimentairesVersees' });
 
-    var createIndividuVM = function(individu) {
-        var result = {
+    function createIndividuVM (individu) {
+        return {
             individu: individu,
             label: IndividuService.label(individu),
             pensionsVersees: {
@@ -40,9 +41,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
                 onGoing: true
             }
         };
-
-        return result;
-    };
+    }
 
     var demandeur = _.find($scope.situation.individus, { role: 'demandeur' });
     var conjoint = _.find($scope.situation.individus, { role: 'conjoint' });
@@ -51,34 +50,34 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
         $scope.individusVM.push(createIndividuVM(conjoint));
     }
 
-    $scope.hasPensionsAlimentaires = false;
+    $scope.situation.parentsPayPensionsAlimentaires = false;
     $scope.individusVM.forEach(function(individuVM) {
         if (_.any([
             _.find(individuVM.individu.ressources, { type: 'pensionsAlimentairesVersees' })
         ])) {
-            $scope.hasPensionsAlimentaires = true;
+            $scope.situation.parentsPayPensionsAlimentaires = true;
         }
     });
 
-    var applyPensionToIndividu = function(individuVM, typePension) {
+    function applyPensionToIndividu (individuVM) {
         var individu = individuVM.individu;
-        var ressource = individuVM[typePension];
+        var ressource = individuVM.pensionsVersees;
         RessourceService.spreadIndividuRessources(individu, months, ressource, $scope.situation.dateDeValeur);
-    };
+    }
 
-    $scope.submit = function() {
-        $scope.individusVM.forEach(function(individuVM) {
-            if ($scope.hasPensionsAlimentaires) {
-                ['pensionsVersees'].forEach(function(typePension) {
-                    applyPensionToIndividu(individuVM, typePension);
-                });
-            } else {
+    $scope.submit = function(form) {
+        form.submitted = true;
+        if (form.$valid) {
+            $scope.individusVM.forEach(function (individuVM) {
+                // Remove old pensions alimentaires versees
                 individuVM.individu.ressources = _.filter(individuVM.individu.ressources, function(ressource) {
                     return ! _.contains(['pensionsAlimentairesVersees'], ressource.type);
                 });
-            }
-        });
-
-        $scope.$emit('pensionsAlimentaires');
+                if ($scope.situation.parentsPayPensionsAlimentaires) {
+                    applyPensionToIndividu(individuVM);
+                }
+            });
+            $scope.$emit('pensionsAlimentaires');
+        }
     };
 });

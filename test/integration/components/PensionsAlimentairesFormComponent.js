@@ -1,3 +1,3 @@
 title: 'h1',
-setNoButton: '[btn-radio="false"]',
+setNoButton: '[value="false"] + .btn',
 submitButton: 'button[type="submit"]',

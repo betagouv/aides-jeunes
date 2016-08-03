@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsRecapSituation').directive('recapSituation', function($timeout, $sce, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService, SituationService) {
+angular.module('ddsRecapSituation').directive('recapSituation', function($timeout, $sce, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService, SituationService, RessourceService) {
     return {
         restrict: 'E',
         templateUrl: '/partials/recap-situation.html',
@@ -40,7 +40,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                         if (ressource) {
                             values.values.push({
                                 periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
-                                montant: ressource.montant
+                                montant: RessourceService.roundToCents(ressource.montant)
                             });
                         }
                     }
@@ -51,7 +51,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                     });
                     values.values.push({
                         periode: 'Année glissante',
-                        montant: Math.round(montantAnnuel)
+                        montant: RessourceService.roundToCents(montantAnnuel),
                     });
                 });
 
@@ -81,7 +81,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                         if (ressource) {
                             individuVM.ressources.push({
                                 label: categorieRnc.label,
-                                montant: ressource.montant
+                                montant: RessourceService.roundToCents(ressource.montant)
                             });
                         }
                     });
@@ -115,7 +115,10 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                     }
                 ].forEach(function(field) {
                     if (patrimoine[field.id]) {
-                        $scope.patrimoine.push({label: field.label, montant: patrimoine[field.id]});
+                        $scope.patrimoine.push({
+                            label: field.label,
+                            montant: RessourceService.roundToCents(patrimoine[field.id])
+                        });
                     }
                 });
 
@@ -138,14 +141,17 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                             var ressource = revenus[i];
                             value.values.push({
                                 periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
-                                montant: ressource.montant
+                                montant: RessourceService.roundToCents(ressource.montant)
                             });
                         }
                         var montants = _.pluck(revenus, 'montant');
                         var montantAnnuel = _.reduce(montants, function(sum, montant) {
                             return sum + montant;
                         });
-                        value.values.push({periode: 'Année glissante', montant: montantAnnuel});
+                        value.values.push({
+                            periode: 'Année glissante',
+                            montant: RessourceService.roundToCents(montantAnnuel)
+                        });
                     }
                 });
             };
@@ -171,7 +177,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
 
                 $scope.logement = {
                     type: $sce.trustAsHtml(typeLogementHtml),
-                    loyer: logement.loyer,
+                    loyer: RessourceService.roundToCents(logement.loyer),
                     codePostal: logement.adresse.codePostal,
                     nomCommune: logement.adresse.nomCommune
                 };

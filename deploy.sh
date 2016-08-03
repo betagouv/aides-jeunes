@@ -65,7 +65,7 @@ fi
 
 pip install --requirement mes-aides-ui/openfisca/requirements.txt $user_option
 
-sed s/%PORT%/$OPENFISCA_PORT/ mes-aides-ui/openfisca/api_config.ini > current_openfisca_config.ini
+sed s/"port = 2000"/"port = $OPENFISCA_PORT"/ mes-aides-ui/openfisca/api_config.ini > current_openfisca_config.ini
 
 # Stop OpenFisca
 forever stop openfisca || echo 'No OpenFisca server was running'

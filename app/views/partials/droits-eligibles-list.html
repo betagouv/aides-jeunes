@@ -1,6 +1,6 @@
 <uib-accordion close-others="false">
   <uib-accordion-group is-open="droit.open"
-     class="resultats-accordion {{ getAccordionClass(droit) }}"
+     class="result {{ getAccordionClass(droit) }}"
      ng-repeat="(droitId, droit) in list|orderObjectBy:'label'">
     <uib-accordion-heading>
       <div class="row">

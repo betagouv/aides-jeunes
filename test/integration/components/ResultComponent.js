@@ -8,5 +8,8 @@ prestationDescription: '.resultats-accordion:nth-child(' + PRESTATION_TO_TEST_PO
 prestationMoreInfoLink: '.resultats-accordion:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .btn-default',
 prestationEngagerDemarchesLink: '.resultats-accordion:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .btn-primary',
 
+openPrimeActiviteLink: { a: 'Prime d’activité' },
+requestPrimeActiviteLink: { a: 'Faire une demande' },
+
 greyedPrestation: '.resultats-accordion-needs-n-2',
 declareYM2ResourcesLink: { a: 'Déclarez vos ressources' },

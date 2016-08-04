@@ -16,6 +16,4 @@ steps: [
         'ResultComponent.prestationMoreInfoLink': true,
         'ResultComponent.prestationEngagerDemarchesLink': HAS_PRESTATION_ENGAGER_DEMARCHES_LINK,
     }
-
 ]
-

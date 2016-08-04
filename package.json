@@ -63,7 +63,7 @@
     "node": "0.10"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "bower prune && bower install",
     "test": "grunt",
     "test-integration": "test/integration/run-integration-tests.sh"
   },

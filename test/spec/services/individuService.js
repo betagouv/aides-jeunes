@@ -1,7 +1,5 @@
 'use strict';
 
-/* global _ */
-
 describe('IndividuService', function() {
     var service;
 

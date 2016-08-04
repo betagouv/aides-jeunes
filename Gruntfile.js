@@ -51,14 +51,13 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['<%= yeoman.app %>/js/**/*.js'],
-        tasks: ['newer:jshint:client'],
         options: {
           livereload: true
         }
       },
       jsTest: {
         files: ['test/spec/**/*.js'],
-        tasks: ['newer:jshint:test', 'karma']
+        tasks: ['karma']
       },
       sass: {
         files: ['<%= yeoman.app %>/styles/**/*.{scss,sass}'],
@@ -95,69 +94,9 @@ module.exports = function (grunt) {
         src: ['<%= yeoman.app %>/js/**/*.js'],
         options: {
             config: '.jscsrc',
+            excludeFiles: [ 'app/js/lib/**/*.js' ],
             verbose: true // If you need output with rule names http://jscs.info/overview.html#verbose
         }
-    },
-    jshint: {
-      options: {
-        reporter: require('jshint-stylish'),
-        node: true,
-        bitwise: true,
-        immed: true,
-        indent: 4,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        quotmark: 'single',
-        regexp: true,
-        undef: true,
-        unused: true,
-        laxbreak: true
-      },
-      node: ['*.js'],
-      client: {
-        files: {
-          src: ['<%= yeoman.app %>/js/**/*.js']
-        },
-        options: {
-          browser: true,
-          esnext: true,
-          camelcase: true,
-          strict: true,
-          globalstrict: true,
-          globals: {
-            angular: true,
-            moment: true,
-            _: true,
-            _s: true
-          }
-        }
-      },
-      test: {
-        files: {
-          src: ['test/spec/**/*.js']
-        },
-        options: {
-          esnext: true,
-          camelcase: false,
-          curly: true,
-          strict: true,
-          globals: {
-            after: false,
-            afterEach: false,
-            angular: false,
-            before: false,
-            beforeEach: false,
-            browser: false,
-            describe: false,
-            expect: false,
-            inject: false,
-            it: false,
-            jasmine: false,
-            spyOn: false
-          }
-        }
-      }
     },
 
     // Empties folders to start fresh
@@ -448,7 +387,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'jshint',
     'jscs',
     'test',
     'build'

@@ -1,7 +1,5 @@
 'use strict';
 
-/* global moment, _ */
-
 describe('Service: situationService', function () {
 
     var service;

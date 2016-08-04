@@ -1,7 +1,5 @@
 'use strict';
 
-/* global _ */
-
 describe('Controller: droitEligiblesListCtrl', function() {
 
     var controller, scope;

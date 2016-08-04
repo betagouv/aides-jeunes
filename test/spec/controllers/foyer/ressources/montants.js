@@ -1,7 +1,5 @@
 'use strict';
 
-/* global _ */
-
 describe('Controller: FoyerRessourcesMontantsCtrl', function() {
 
     var scope, _ressourceTypes_, form;

@@ -34,8 +34,8 @@ describe('ImpactStudyService', function() {
 
     function validate(data) {
         data = JSON.parse(data);
-        return data.postcode == SITUATION.logement.adresse.codePostal
-            && data.eid == EID;
+        return data.postcode == SITUATION.logement.adresse.codePostal &&
+               data.eid == EID;
     }
 
     describe('sendResults()', function() {
@@ -48,8 +48,8 @@ describe('ImpactStudyService', function() {
             browserController.poll();
 
             httpMock.expectPOST('https://mes-droits.fr/v1/sr', function(data) {
-                return validate(data)
-                    && JSON.parse(data).results.key == RESULTS.calculatedPrestations.key;
+                return validate(data) &&
+                       JSON.parse(data).results.key == RESULTS.calculatedPrestations.key;
             });
             subject.sendResults(SITUATION, RESULTS);
             httpMock.flush();

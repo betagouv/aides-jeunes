@@ -1,5 +1,7 @@
 'use strict';
 
+/* global angular */
+
 angular.module('ludwig').directive('scenario', function(config) {
     return {
       scope: {

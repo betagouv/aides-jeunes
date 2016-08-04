@@ -56,10 +56,11 @@ If you need to add features to the API, the best is to [`npm link`](https://docs
 Usage
 -----
 
-First, start a Mongo server:
+First, start a Mongo server and build the application:
 
 ```sh
 mongod --dbpath db
+grunt build
 ```
 
 Then, start the server:
@@ -68,7 +69,7 @@ Then, start the server:
 npm start
 ```
 
-or if you want to use grunt (with livereload), you can start it with :
+Or, if you want to have live reload on file changes, you can start it with:
 
 ```sh
 grunt serve
@@ -86,9 +87,7 @@ Testing
 
 There are several levels of tests. You can safely use `npm test && npm run test-integration` to drive your developments.
 
-- Syntax tests are executed with `grunt jshint`.
-- Unit tests are executed with `grunt test`.
-- Integration tests are executed with [Watai](https://github.com/MattiSG/Watai) through `npm run test-integration`. These tests are **currently not run in CI** due to how complex installing all dependencies on a CI VM is.
+Integration tests are executed with [Watai](https://github.com/MattiSG/Watai) through `npm run test-integration`. These tests are **currently not run in CI** due to how complex installing all dependencies on a CI VM is.
 
 Business tests are executed in a more convoluted way.
 

@@ -27,7 +27,7 @@ You can for example use [`nvm`](https://github.com/creationix/nvm) to install th
 Once you have Node and npm installed, run:
 
 ```sh
-npm install --global grunt-cli bower
+npm install --global grunt-cli
 ```
 
 ### In production

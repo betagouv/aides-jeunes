@@ -15,7 +15,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles vous avez droit.',
                         'Votre conjoint doit avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles il ou elle a droit.'
                     ],
-                    'link': 'http://vosdroits.service-public.fr/particuliers/F16871.xhtml'
+                    'link': 'http://vosdroits.service-public.fr/particuliers/F16871.xhtml',
+                    'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14957.do'
                 },
             },
         },
@@ -31,7 +32,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
-                    'link': 'http://www.cmu.fr/acs.php'
+                    'link': 'http://www.cmu.fr/acs.php',
+                    'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
                 },
                 'asi': {
                     'label': 'Allocation Supplémentaire d’Invalidité',
@@ -46,7 +48,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
-                    'link': 'http://www.cmu.fr/cmu-complementaire.php'
+                    'link': 'http://www.cmu.fr/cmu-complementaire.php',
+                    'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
                 },
             },
         },
@@ -97,6 +100,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Si vous êtes ressortissant.e d’un autre pays, résider en France depuis plus de 5 ans.'
                     ],
                     'link': 'http://vosdroits.service-public.fr/particuliers/N19775.xhtml',
+                    'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
                     'uncomputability': {
                         'tns': {
                             'reason': 'vous avez des revenus en tant qu’indépendant.e',
@@ -117,7 +121,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Le logement doit être <a href="http://www.caf.fr/aides-et-services/connaitre-vos-droits-selon-votre-situation/vous-louez-ou-vous-achetez-un-logement/vous-occupez-un-logement-insalubre-ou-non-decent" title="9 mètres carrés par personne, fenêtre, WC, eau potable, électricité" >décent</a>.'
                     ],
                     'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
-                    'engageProcedureLink': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/',
+                    'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/',
                     'isBaseRessourcesYearMoins2': true,
                     'uncomputability': {
                         'primo_accedant': {
@@ -134,7 +138,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'label': 'Prime d’activité',
                     'description': 'La Prime d’activité remplace le RSA activité et la prime pour l’emploi depuis janvier 2016. Elle complète les ressources des personnes qui travaillent et ont des revenus modestes, salariées ou non.',
                     'link': 'https://www.caf.fr/actualites/2015/une-nouvelle-prestation-a-l-horizon-2016-la-prime-d-activite',
-                    'engageProcedureLink': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/'
+                    'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/'
                 },
                 'aah': {
                     'isMontantAnnuel': false,
@@ -203,7 +207,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille_7',
-                    'engageProcedureLink': '/documents/Formulaire_demande_PLF.pdf',
+                    'form': '/documents/Formulaire_demande_PLF.pdf',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false,
                 },
@@ -213,6 +217,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'PFF',
                     'description': 'Paris forfait familles est une aide annuelle destinée aux familles nombreuses.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-forfait-famille_2',
+                    'form': 'https://api-site.paris.fr/images/74809',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -224,6 +229,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Percevoir tous les avantages légaux auxquels vous pouvez prétendre.',
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-solidarite_3',
+                    'form': 'http://api-site-cdn.paris.fr/images/154848.pdf',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -236,6 +242,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement_6',
+                    'form': 'http://api-site-cdn.paris.fr/images/98406.pdf',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -244,6 +251,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'ASPEH',
                     'description': 'L’allocation de soutien aux parents d’enfants handicapés est une aide mensuelle permettant de soutenir les familles ayant un ou plusieurs enfants handicapés à charge.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#allocation-de-soutien-aux-parents-d-enfants-handicapes_9',
+                    'form': 'http://api-site-cdn.paris.fr/images/132126.pdf',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -256,6 +264,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille-monoparentale_5',
+                    'form': 'https://api-site.paris.fr/images/72423',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -265,6 +274,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'PEF',
                     'description': 'Paris énergie familles est une aide annuelle permettant aux familles d’alléger leurs dépenses de consommation d’électricité et de gaz.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-energie-famille_8',
+                    'form': 'https://api-site.paris.fr/images/154764.pdf',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -274,6 +284,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'CSP',
                     'description': 'Le complément santé paris est une allocation qui permet de participer aux frais d’adhésion à une couverture complémentaire santé (mutuelle ou autre organisme analogue)',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
+                    'form': 'https://api-site.paris.fr/images/78343',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 }
@@ -293,7 +304,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'description': 'Allocation versée aux personnes dépendantes âgées de plus de 60 ans. Elle a pour objectif de financer des services d’aide à la personne favorisant leur autonomie dans les gestes quotidiens.',
                     'conditions': [],
                     'link': 'https://www.seine-saint-denis.fr/ADPA.html',
-                    'engageProcedureLink': 'http://www.seine-saint-denis.fr/ADPA.html',
+                    'form': 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa_mai_2016_vdef.pdf',
                     'isBaseRessourcesYearMoins2': false
                 },
             }

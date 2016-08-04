@@ -178,22 +178,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/foyer/patrimoine.html',
             controller: 'FoyerPatrimoineCtrl'
         })
-        .state('foyer.download_cerfa', {
-            url: '/telecharger-formulaires/:droit',
-            templateUrl: '/partials/download-cerfa.html',
-            controller: 'DownloadCerfaCtrl',
-            resolve: {
-                situation: function(SituationService) {
-                    return SituationService.restoreLocal();
-                },
-                droit: function($stateParams) {
-                    return $stateParams.droit;
-                }
-            },
-            data: {
-                pageTitle: 'Téléchargement formulaires - '
-            }
-        })
         .state('situation', {
             url: '/situations/:situationId',
             template: '',

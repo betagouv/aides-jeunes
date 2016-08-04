@@ -76,17 +76,9 @@
             Démarches pour les professions agricoles
           </a>
         </div>
-        <div ng-if="droit.engageProcedureLink || hasCerfa(droitId)"
+        <div ng-if="droit.engageProcedureLink"
           class="col-sm-3 {{ (droit.id != 'ppa') && 'col-sm-offset-6' }}">
           <a
-            ng-if="hasCerfa(droitId)"
-            class="btn btn-sm btn-primary btn-block"
-            ng-click="goToCerfa(droitId)"
-            >
-            Engager les démarches
-          </a>
-          <a
-            ng-if="! hasCerfa(droitId)"
             class="btn btn-sm btn-primary btn-block"
             target="_blank"
             href="{{ droit.engageProcedureLink}}"

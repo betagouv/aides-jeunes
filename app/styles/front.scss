@@ -144,40 +144,6 @@ h1[tabindex="-1"] {
   }
 }
 
-.frame-cerfa {
-  h3 {
-    margin-top: 0px;
-  }
-  .row {
-    display: flex;
-    align-items: center;
-  }
-}
-
-.cerfa-description {
-  font-size: larger;
-}
-
-.btn-cerfa {
-  cursor: pointer;
-}
-
-.btn-cerfa:hover {
-  background-color: gainsboro;
-  border-color: #bbbbbb;
-  color: #333333;
-}
-
-.btn-cerfa:active {
-  outline: 0;
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-
-.btn-cerfa:active:hover {
-      background-color: #cacaca;
-      border-color: #9a9a9a;
-}
-
 .frame-new-individu {
   @extend .frame-foyer;
   margin-top: 20px;

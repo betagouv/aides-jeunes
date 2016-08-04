@@ -15,7 +15,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles vous avez droit.',
                         'Votre conjoint doit avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles il ou elle a droit.'
                     ],
-                    'link': 'http://vosdroits.service-public.fr/particuliers/F16871.xhtml'
+                    'link': 'http://vosdroits.service-public.fr/particuliers/F16871.xhtml',
+                    'engageProcedureLink': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14957.do'
                 },
             },
         },
@@ -31,7 +32,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
-                    'link': 'http://www.cmu.fr/acs.php'
+                    'link': 'http://www.cmu.fr/acs.php',
+                    'engageProcedureLink': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
                 },
                 'asi': {
                     'label': 'Allocation Supplémentaire d’Invalidité',
@@ -46,7 +48,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
-                    'link': 'http://www.cmu.fr/cmu-complementaire.php'
+                    'link': 'http://www.cmu.fr/cmu-complementaire.php',
+                    'engageProcedureLink': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
                 },
             },
         },
@@ -97,6 +100,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Si vous êtes ressortissant.e d’un autre pays, résider en France depuis plus de 5 ans.'
                     ],
                     'link': 'http://vosdroits.service-public.fr/particuliers/N19775.xhtml',
+                    'engageProcedureLink': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
                     'uncomputability': {
                         'tns': {
                             'reason': 'vous avez des revenus en tant qu’indépendant.e',

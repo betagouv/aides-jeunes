@@ -34,11 +34,11 @@ echo "OpenFisca expected to run on $OPENFISCA_PORT" >> $LOG_FILE
 echo "Server expected to be visible on $PUBLIC_HOST" >> $LOG_FILE
 
 # Install Mes Aides
-if ! cd mes-aides-ui
-then
+if [ ! -d "mes-aides-ui" ]; then
     git clone https://github.com/sgmap/mes-aides-ui.git --branch $TARGET_BRANCH
-    cd mes-aides-ui
 fi
+
+cd mes-aides-ui
 
 git fetch origin $TARGET_BRANCH
 git checkout origin/$TARGET_BRANCH
@@ -58,26 +58,20 @@ OPENFISCA_URL="http://localhost:$OPENFISCA_PORT" SESSION_SECRET=foobar NODE_ENV=
 cd ..
 
 # Install OpenFisca
-if ! cd openfisca
-then
-    git clone https://github.com/sgmap/openfisca.git
-    cd openfisca
+
+if [[ ! $VIRTUAL_ENV ]]; then
+    user_option='--user'
 fi
 
-if ! ./update.sh $TARGET_BRANCH
-then
-    echo "No branch $TARGET_BRANCH was found on sgmap/openfisca. Staying on current branch."
-    ./update.sh
-fi
+pip install --requirement mes-aides-ui/openfisca/requirements.txt $user_option
 
-PORT=$OPENFISCA_PORT ./generateMesAidesConfig.sh
+sed s/"port = 2000"/"port = $OPENFISCA_PORT"/ mes-aides-ui/openfisca/api_config.ini > current_openfisca_config.ini
 
 # Stop OpenFisca
 forever stop openfisca || echo 'No OpenFisca server was running'
 
 # Start OpenFisca
-forever --uid openfisca -l ../openfisca.log -e ../openfisca_error.log --append start -c "paster serve" config/current.ini
-cd ..
+forever --uid openfisca -l openfisca.log -e openfisca_error.log --append start -c "paster serve" current_openfisca_config.ini
 
 # Set up reverse proxy
 

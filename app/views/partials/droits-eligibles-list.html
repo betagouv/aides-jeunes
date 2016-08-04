@@ -76,15 +76,19 @@
             Démarches pour les professions agricoles
           </a>
         </div>
-        <div ng-if="droit.engageProcedureLink"
+        <div ng-if="droit.teleservice || droit.form"
           class="col-sm-3 {{ (droit.id != 'ppa') && 'col-sm-offset-6' }}">
-          <a
-            class="btn btn-sm btn-primary btn-block"
+          <a href="{{ droit.teleservice || droit.form }}"
             target="_blank"
             rel="noopener"
-            href="{{ droit.engageProcedureLink}}"
+            class="btn btn-sm btn-block"
+            ng-class="{
+              'btn-success': droit.teleservice,
+              'btn-primary': droit.form,
+            }"
             >
-            Engager les démarches
+            <span ng-if="droit.teleservice">Faire une demande</span>
+            <span ng-if="droit.form">Accéder au formulaire</span>
           </a>
         </div>
       </div>

@@ -13,7 +13,7 @@
           <div class="panel-body">
             {{ enfant.firstName }}
             <button type="button" class="close" ng-click="removeEnfant(enfant)">
-              <span class="screenReadersOnly">Effacer</span>
+              <span class="screenReadersOnly">Effacer {{ enfant.firstName }}</span>
               <span role="presentation" aria-hidden="true">&times;</span>
             </button>
             <div class="row">

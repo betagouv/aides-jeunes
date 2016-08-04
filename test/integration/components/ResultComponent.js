@@ -6,7 +6,6 @@ prestationYM2Warning: '.resultats-accordion:nth-child(' + PRESTATION_TO_TEST_POS
 openPrestationTabLink: '.resultats-accordion:nth-child(' + PRESTATION_TO_TEST_POSITION + ') a',
 prestationDescription: '.resultats-accordion:nth-child(' + PRESTATION_TO_TEST_POSITION + ') p',
 prestationMoreInfoLink: '.resultats-accordion:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .btn-default',
-prestationEngagerDemarchesLink: '.resultats-accordion:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .btn-primary',
 
 openPrimeActiviteLink: { a: 'Prime d’activité' },
 requestPrimeActiviteLink: { a: 'Faire une demande' },

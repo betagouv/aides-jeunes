@@ -217,6 +217,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'PFF',
                     'description': 'Paris forfait familles est une aide annuelle destinée aux familles nombreuses.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-forfait-famille_2',
+                    'engageProcedureLink': 'https://api-site.paris.fr/images/74809',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -228,6 +229,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Percevoir tous les avantages légaux auxquels vous pouvez prétendre.',
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-solidarite_3',
+                    'engageProcedureLink': 'http://api-site-cdn.paris.fr/images/154848.pdf',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -240,6 +242,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement_6',
+                    'engageProcedureLink': 'http://api-site-cdn.paris.fr/images/98406.pdf',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -248,6 +251,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'ASPEH',
                     'description': 'L’allocation de soutien aux parents d’enfants handicapés est une aide mensuelle permettant de soutenir les familles ayant un ou plusieurs enfants handicapés à charge.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#allocation-de-soutien-aux-parents-d-enfants-handicapes_9',
+                    'engageProcedureLink': 'http://api-site-cdn.paris.fr/images/132126.pdf',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -260,6 +264,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille-monoparentale_5',
+                    'engageProcedureLink': 'https://api-site.paris.fr/images/72423',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -269,6 +274,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'PEF',
                     'description': 'Paris énergie familles est une aide annuelle permettant aux familles d’alléger leurs dépenses de consommation d’électricité et de gaz.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-energie-famille_8',
+                    'engageProcedureLink': 'https://api-site.paris.fr/images/154764.pdf',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 },
@@ -278,6 +284,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'CSP',
                     'description': 'Le complément santé paris est une allocation qui permet de participer aux frais d’adhésion à une couverture complémentaire santé (mutuelle ou autre organisme analogue)',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
+                    'engageProcedureLink': 'https://api-site.paris.fr/images/78343',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 }

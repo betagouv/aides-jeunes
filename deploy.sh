@@ -63,7 +63,7 @@ if [[ ! $VIRTUAL_ENV ]]; then
     user_option='--user'
 fi
 
-pip install --requirement mes-aides-ui/openfisca/requirements.txt $user_option
+pip install --requirement mes-aides-ui/openfisca/requirements.txt --upgrade $user_option
 
 sed s/"port = 2000"/"port = $OPENFISCA_PORT"/ mes-aides-ui/openfisca/api_config.ini > current_openfisca_config.ini
 

@@ -3,7 +3,7 @@ prestationName: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .descrip
 prestationMontant: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .montant',
 prestationMontantDetail: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .montant-detail',
 prestationYM2Warning: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') i.fa-warning',
-openPrestationTabLink: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') a',
+togglePrestationTabLink: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') a',
 prestationDescription: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') p',
 prestationMoreInfoLink: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .btn-default',
 

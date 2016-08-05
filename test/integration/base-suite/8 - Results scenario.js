@@ -10,9 +10,10 @@ steps: [
         'ResultComponent.greyedPrestation': HAS_PRESTATION_WARNING,
         'ResultComponent.declareYM2ResourcesLink': true,
     },
-    ResultComponent.openPrestationTab(),
+    ResultComponent.togglePrestationTab(),
     {
         'ResultComponent.prestationDescription': PRESTATION_DESCRIPTION,
         'ResultComponent.prestationMoreInfoLink': true,
-    }
+    },
+    ResultComponent.togglePrestationTab()
 ]

@@ -67,6 +67,7 @@
     "postinstall": "bower install",
     "prestart": "grunt build",
     "start": "NODE_ENV=production node server.js",
+    "dev": "grunt serve",
     "test": "grunt",
     "test-integration": "test/integration/run-integration-tests.sh"
   },

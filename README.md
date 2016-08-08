@@ -67,10 +67,10 @@ Then, start the server:
 npm start
 ```
 
-or if you want to use grunt (with livereload), you can start it with :
+or if you want to develop interactively, start it with :
 
 ```sh
-grunt serve
+npm run dev
 ```
 
 If you like TDD, you will probably enjoy this command which will run the tests each time a file in the tests/ folder is modified :

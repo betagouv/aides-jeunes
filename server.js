@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var express = require('express');
 var errorHandler = require('errorhandler');
 var morgan = require('morgan');

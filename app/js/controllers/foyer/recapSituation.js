@@ -86,7 +86,6 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
                 var montantAnnuel = _.reduce(montants, function(sum, montant) {
                     return sum + montant;
                 });
-                montantAnnuel = RessourceService.roundToCents(montantAnnuel);
                 value.values.push({
                     periode: 'Année glissante',
                     montant: montantAnnuel
@@ -124,10 +123,9 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     };
 
     $scope.getTotalAnnuel = function (ressource) {
-        return RessourceService.roundToCents(
-            _.values(ressource).reduce(function (x,y) {
-                return x + y;
-            }));
+        return _.values(ressource).reduce(function (x,y) {
+            return x + y;
+        });
     };
 
     $scope.shouldDisplayPersonRessourcesRecap = function (individu) {

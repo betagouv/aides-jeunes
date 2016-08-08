@@ -11,7 +11,7 @@ System dependencies
 
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb`, `node` v0.10, `grunt` and `bower` are installed on your machine
+Make sure `build-essential`, `mongodb`, `node` v0.10 and `bower` are installed on your machine
 
 ```sh
 sudo apt-get install build-essential
@@ -27,7 +27,7 @@ You can for example use [`nvm`](https://github.com/creationix/nvm) to install th
 Once you have Node and npm installed, run:
 
 ```sh
-npm install --global grunt-cli bower
+npm install --global bower
 ```
 
 ### In production
@@ -45,7 +45,6 @@ Application
 git clone https://github.com/sgmap/mes-aides-ui.git
 cd mes-aides-ui
 npm install
-grunt build
 ```
 
 ### Development mode
@@ -77,6 +76,7 @@ grunt serve
 If you like TDD, you will probably enjoy this command which will run the tests each time a file in the tests/ folder is modified :
 
 ```sh
+npm install --global grunt-cli
 grunt watch
 ```
 

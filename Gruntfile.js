@@ -35,12 +35,6 @@ module.exports = function (grunt) {
           script: 'server.js',
           debug: true
         }
-      },
-      prod: {
-        options: {
-          script: 'server.js',
-          node_env: 'production'
-        }
       }
     },
     open: {
@@ -397,15 +391,7 @@ module.exports = function (grunt) {
     }, 500);
   });
 
-  grunt.registerTask('express-keepalive', 'Keep grunt running', function() {
-    this.async();
-  });
-
   grunt.registerTask('serve', function (target) {
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'express:prod', 'open', 'express-keepalive']);
-    }
-
     if (target === 'debug') {
       return grunt.task.run([
         'clean:server',

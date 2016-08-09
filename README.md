@@ -183,7 +183,7 @@ adduser mes-aides-$BRANCH --disabled-password --gecos ""
 
 # Rendre l'utilisateur accessible depuis l'extérieur
 mkdir /home/mes-aides-$BRANCH/.ssh/
-curl https://github.com/mesaides-bot.keys > /home/mes-aides-$BRANCH/.ssh/authorized_keys
+curl https://github.com/mesaides-bot.keys >> /home/mes-aides-$BRANCH/.ssh/authorized_keys
 
 # Récupérer le script de déploiement
 curl https://raw.githubusercontent.com/sgmap/mes-aides-ui/master/deploy.sh > /home/mes-aides-$BRANCH/deploy.sh

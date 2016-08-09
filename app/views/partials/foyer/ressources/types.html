@@ -20,16 +20,14 @@
               </i>
             </uib-accordion-heading>
             <div class="button-grid">
-              <label
-                ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']">
-                <input
-                  type="checkbox"
-                  class="screenReadersOnly"
+              <label ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']"
+                class="btn btn-sm btn-default"
+                ng-class="{ active: selectedRessourceTypes[ressourceType.id] }">
+                <input type="checkbox"
                   ng-model="selectedRessourceTypes[ressourceType.id]"
-                />
-                <div class="btn btn-sm btn-default">
+                  class="screenReadersOnly"
+                  />
                   {{ ressourceType.label }}
-                </div>
               </label>
             </div>
           </uib-accordion-group>

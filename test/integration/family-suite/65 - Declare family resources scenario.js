@@ -5,7 +5,7 @@ steps: [
     ResourcesComponent.declareFirstChildHasIncome(),
     ResourcesComponent.submit(),
     ResourcesComponent.declareRevenuActivite(),
-    ResourcesComponent.checkSalary(),
+    ResourcesComponent.hasSalary(),
     ResourcesComponent.submit(),
     ResourcesComponent.setThirdMonthInput(400),
     ResourcesComponent.setLast12MonthsInput(400),

@@ -21,6 +21,7 @@
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~2.2.0",
     "grunt-bower-install": "~0.7.0",
+    "grunt-cli": "^0.1.13",
     "grunt-concurrent": "~1.0.0",
     "grunt-contrib-clean": "~0.6.0",
     "grunt-contrib-concat": "~0.5.1",
@@ -64,6 +65,9 @@
   },
   "scripts": {
     "postinstall": "bower install",
+    "prestart": "grunt build",
+    "start": "NODE_ENV=production node server.js",
+    "dev": "grunt serve",
     "test": "grunt",
     "test-integration": "test/integration/run-integration-tests.sh"
   },

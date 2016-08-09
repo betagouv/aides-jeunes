@@ -23,9 +23,7 @@ module.exports = function(app) {
         app.use(express.static(path.join(__dirname, 'app')));
 
         viewsDirectory += '/app/views';
-    }
-
-    if ('production' === env) {
+    } else {
         // prerender.io
         app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN).set('protocol', 'https'));
 

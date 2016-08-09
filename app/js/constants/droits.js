@@ -96,19 +96,19 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'description': 'Le RSA est destiné à assurer aux personnes disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer.',
                     'conditions': [
                         'Résider en France plus de 9 mois par an.',
-                        'Si vous êtes ressortissant.e d’un pays de l’UE, de l’EEE ou Suisse, résider en France depuis plus de 3 mois.',
-                        'Si vous êtes ressortissant.e d’un autre pays, résider en France depuis plus de 5 ans.'
+                        'Si vous êtes ressortissant·e d’un pays de l’UE, de l’EEE ou Suisse, résider en France depuis plus de 3 mois.',
+                        'Si vous êtes ressortissant·e d’un autre pays, résider en France depuis plus de 5 ans.'
                     ],
                     'link': 'http://vosdroits.service-public.fr/particuliers/N19775.xhtml',
                     'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
                     'uncomputability': {
                         'tns': {
-                            'reason': 'vous avez des revenus en tant qu’indépendant.e',
+                            'reason': 'vous avez des revenus en tant qu’indépendant·e',
                             'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a title="Article R262-23 du code de l’action sociale" href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont vos revenus non salariés impacteront le montant de votre aide.'
                         },
                         'conjoint_tns': {
-                            'reason': 'votre conjoint.e a des revenus en tant qu’indépendant.e',
-                            'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a title="Article R262-23 du code de l’action sociale" href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont les revenus non salariés de votre conjoint.e impacteront le montant de votre aide.'
+                            'reason': 'votre conjoint·e a des revenus en tant qu’indépendant·e',
+                            'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a title="Article R262-23 du code de l’action sociale" href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont les revenus non salariés de votre conjoint·e impacteront le montant de votre aide.'
                         }
                     }
                 },

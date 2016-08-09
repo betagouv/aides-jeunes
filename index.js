@@ -42,6 +42,11 @@ module.exports = function(app) {
         return res.send(404);
     });
 
+    app.use('/js/lib', express.static(path.join(__dirname, 'node_modules'), {
+        fallthrough: false,  // short-circuit 404s
+        index: false,
+    }));
+
     app.route('/recap-situation/*').get(function(req, res) {
         res.sendFile(viewsDirectory + '/embed.html');
     });

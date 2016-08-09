@@ -1,6 +1,5 @@
 # No point in linting third-party code
 app/bower_components
-app/js/lib
 node_modules
 
 # Build outputs

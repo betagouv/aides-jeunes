@@ -94,7 +94,6 @@ module.exports = function (grunt) {
         src: ['<%= yeoman.app %>/js/**/*.js'],
         options: {
             config: '.jscsrc',
-            excludeFiles: [ 'app/js/lib/**/*.js' ],
             verbose: true // If you need output with rule names http://jscs.info/overview.html#verbose
         }
     },

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsRecapSituation').directive('recapSituation', function($timeout, $sce, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService, SituationService, RessourceService) {
+angular.module('ddsRecapSituation').directive('recapSituation', function($timeout, $sce, ressourceTypes, categoriesRnc, logementTypes, nationalites, IndividuService, SituationService) {
     return {
         restrict: 'E',
         templateUrl: '/partials/recap-situation.html',
@@ -40,7 +40,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                         if (ressource) {
                             values.values.push({
                                 periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
-                                montant: RessourceService.roundToCents(ressource.montant)
+                                montant: ressource.montant
                             });
                         }
                     }
@@ -51,7 +51,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                     });
                     values.values.push({
                         periode: 'Année glissante',
-                        montant: RessourceService.roundToCents(montantAnnuel),
+                        montant: montantAnnuel,
                     });
                 });
 
@@ -81,7 +81,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                         if (ressource) {
                             individuVM.ressources.push({
                                 label: categorieRnc.label,
-                                montant: RessourceService.roundToCents(ressource.montant)
+                                montant: ressource.montant
                             });
                         }
                     });
@@ -117,7 +117,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                     if (patrimoine[field.id]) {
                         $scope.patrimoine.push({
                             label: field.label,
-                            montant: RessourceService.roundToCents(patrimoine[field.id])
+                            montant: patrimoine[field.id]
                         });
                     }
                 });
@@ -141,7 +141,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                             var ressource = revenus[i];
                             value.values.push({
                                 periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
-                                montant: RessourceService.roundToCents(ressource.montant)
+                                montant: ressource.montant
                             });
                         }
                         var montants = _.pluck(revenus, 'montant');
@@ -150,7 +150,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                         });
                         value.values.push({
                             periode: 'Année glissante',
-                            montant: RessourceService.roundToCents(montantAnnuel)
+                            montant: montantAnnuel
                         });
                     }
                 });
@@ -177,7 +177,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
 
                 $scope.logement = {
                     type: $sce.trustAsHtml(typeLogementHtml),
-                    loyer: RessourceService.roundToCents(logement.loyer),
+                    loyer: logement.loyer,
                     codePostal: logement.adresse.codePostal,
                     nomCommune: logement.adresse.nomCommune
                 };

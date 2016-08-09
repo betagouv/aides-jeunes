@@ -11,7 +11,7 @@ System dependencies
 
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb`, `node` v0.10, `grunt` and `bower` are installed on your machine
+Make sure `build-essential`, `mongodb` and `node` v0.10 are installed on your machine:
 
 ```sh
 sudo apt-get install build-essential
@@ -24,11 +24,6 @@ The runtime is Node 0.10.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 
-Once you have Node and npm installed, run:
-
-```sh
-npm install --global grunt-cli
-```
 
 ### In production
 
@@ -45,7 +40,6 @@ Application
 git clone https://github.com/sgmap/mes-aides-ui.git
 cd mes-aides-ui
 npm install
-grunt build
 ```
 
 ### Development mode
@@ -56,11 +50,10 @@ If you need to add features to the API, the best is to [`npm link`](https://docs
 Usage
 -----
 
-First, start a Mongo server and build the application:
+First, start a Mongo server:
 
 ```sh
 mongod --dbpath db
-grunt build
 ```
 
 Then, start the server:
@@ -72,12 +65,13 @@ npm start
 Or, if you want to have live reload on file changes, you can start it with:
 
 ```sh
-grunt serve
+npm run dev
 ```
 
 If you like TDD, you will probably enjoy this command which will run the tests each time a file in the tests/ folder is modified :
 
 ```sh
+npm install --global grunt-cli
 grunt watch
 ```
 
@@ -182,7 +176,7 @@ adduser mes-aides-$BRANCH --disabled-password --gecos ""
 
 # Rendre l'utilisateur accessible depuis l'extérieur
 mkdir /home/mes-aides-$BRANCH/.ssh/
-curl https://github.com/mesaides-bot.keys > /home/mes-aides-$BRANCH/.ssh/authorized_keys
+curl https://github.com/mesaides-bot.keys >> /home/mes-aides-$BRANCH/.ssh/authorized_keys
 
 # Récupérer le script de déploiement
 curl https://raw.githubusercontent.com/sgmap/mes-aides-ui/master/deploy.sh > /home/mes-aides-$BRANCH/deploy.sh

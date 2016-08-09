@@ -11,5 +11,5 @@ loyerInput: '#loyer',
 chargesInput: '#charges',
 
 zipCodeInput: '#postal-code',
-cityInput: '#city',
+city: '#city [selected]',
 submitButton: 'button[type="submit"]',

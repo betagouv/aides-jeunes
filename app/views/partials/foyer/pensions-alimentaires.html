@@ -10,7 +10,7 @@
     </yes-no-question>
 
     <div ng-if="situation.parentsPayPensionsAlimentaires" ng-repeat="individuVM in individusVM">
-    <h2>{{ individuVM.label }}</h2>
+      <h2>{{ individuVM.label }}</h2>
       <montant-ressource
         ng-model="individuVM.pensionsVersees"
         individu="individuVM.individu"

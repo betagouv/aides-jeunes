@@ -19,25 +19,6 @@
     padding-bottom: 6px;
   }
 
-  .dropdown {
-
-    &.dropdown-menu {
-      border: none;
-
-      > li > a,
-      > li > a:focus {
-        background-color: transparent;
-        font-size: 13px;
-        font-weight: 300;
-      }
-    }
-
-    &.dropdown-header {
-      color: rgba(255, 255, 255, 0.5);
-    }
-
-  }
-
   &.navbar-default {
 
     .dropdown-menu {
@@ -278,51 +259,6 @@ label,
   text-transform: uppercase;
 }
 
-.pagination {
-  font-size: $font-size-small;
-  font-weight: 300;
-  color: $gray-light;
-
-  > li {
-    > a,
-    > span {
-      margin-left: 4px;
-      color: $gray-light;
-    }
-  }
-
-  > .active {
-    > a,
-    > span {
-      color: #fff;
-    }
-  }
-
-  > li,
-  > li:first-child,
-  > li:last-child {
-    > a,
-    > span {
-      border-radius: 3px;
-    }
-  }
-
-  &.pagination-lg > li > a {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-
-  &.pagination-sm > li > a {
-    padding: 0 5px;
-  }
-}
-
-.pager {
-  font-size: $font-size-small;
-  font-weight: 300;
-  color: $gray-light;
-}
-
 .list-group {
   font-size: $font-size-small;
   font-weight: 300;
@@ -368,37 +304,7 @@ label,
   font-weight: 300;
 }
 
-// Progress bars ==============================================================
-
-.progress {
-  height: 22px;
-  padding: 2px;
-  background-color: #f6f6f6;
-  border: 1px solid #ccc;
-  /*.box-shadow(none);*/
-}
-
 // Containers =================================================================
-
-.dropdown {
-
-  &.dropdown-menu {
-    padding: 0;
-    margin-top: 0;
-    font-size: $font-size-small;
-
-    > li > a {
-      padding: 12px 15px;
-    }
-  }
-
-  &.dropdown-header {
-    padding-left: 15px;
-    padding-right: 15px;
-    font-size: 9px;
-    text-transform: uppercase;
-  }
-}
 
 .popover {
   color: #fff;
@@ -440,7 +346,7 @@ label,
 
 // content for screenreader only ==============================================================
 
-.visually-hidden { 
+.visually-hidden {
     position: absolute !important;
     clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
     clip: rect(1px, 1px, 1px, 1px);
@@ -449,4 +355,4 @@ label,
     height: 1px !important;
     width: 1px !important;
     overflow: hidden;
-} 
+}

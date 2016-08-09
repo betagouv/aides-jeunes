@@ -1,7 +1,5 @@
 'use strict';
 
-/* global _ */
-
 describe('Controller: FoyerRessourceTypesCtrl', function() {
 
     var scope, _ressourceTypes_, controller;

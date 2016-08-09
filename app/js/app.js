@@ -189,7 +189,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anchorScroll, $timeout, ImpactStudyService) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $uibModalStack, $anchorScroll, $timeout, ImpactStudyService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -206,9 +206,9 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $modalStack, $anc
 
     // fermeture d'une éventuelle modale rémanente au changement d'état (suite à des bugs récurrents)
     $rootScope.$on('$stateChangeStart', function() {
-        var top = $modalStack.getTop();
+        var top = $uibModalStack.getTop();
         if (top) {
-            $modalStack.dismiss(top.key);
+            $uibModalStack.dismiss(top.key);
         }
     });
 

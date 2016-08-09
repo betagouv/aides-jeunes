@@ -503,7 +503,7 @@ $autre-lighter: #cce4e7;
   color: $text-color;
 }
 
-.resultats-accordion {
+.result {
   &.panel-opened {
     .panel-heading {
       background-color: whitesmoke;
@@ -540,8 +540,8 @@ $autre-lighter: #cce4e7;
   }
 }
 
-.resultats-accordion-needs-n-2 {
-  @extend .resultats-accordion;
+.result-needs-n-2 {
+  @extend .result;
 
   .panel-heading {
     background-color: whitesmoke;

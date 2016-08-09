@@ -11,7 +11,7 @@ System dependencies
 
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb`, `node` v0.10 and `bower` are installed on your machine
+Make sure `build-essential`, `mongodb` and `node` v0.10 are installed on your machine:
 
 ```sh
 sudo apt-get install build-essential
@@ -24,11 +24,6 @@ The runtime is Node 0.10.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 
-Once you have Node and npm installed, run:
-
-```sh
-npm install --global bower
-```
 
 ### In production
 
@@ -67,7 +62,7 @@ Then, start the server:
 npm start
 ```
 
-or if you want to develop interactively, start it with :
+Or, if you want to have live reload on file changes, you can start it with:
 
 ```sh
 npm run dev
@@ -86,9 +81,7 @@ Testing
 
 There are several levels of tests. You can safely use `npm test && npm run test-integration` to drive your developments.
 
-- Syntax tests are executed with `grunt jshint`.
-- Unit tests are executed with `grunt test`.
-- Integration tests are executed with [Watai](https://github.com/MattiSG/Watai) through `npm run test-integration`. These tests are **currently not run in CI** due to how complex installing all dependencies on a CI VM is.
+Integration tests are executed with [Watai](https://github.com/MattiSG/Watai) through `npm run test-integration`. These tests are **currently not run in CI** due to how complex installing all dependencies on a CI VM is.
 
 Business tests are executed in a more convoluted way.
 

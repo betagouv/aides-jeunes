@@ -23,11 +23,11 @@
       Modifier
     </a>
     <h4 class="section-header">{{ getIndividuRessourcesHeader(individu) }}</h4>
-    <accordion
+    <uib-accordion
       close-others="false"
       class="accordion-ressources"
       ng-if="ressourcesByIndividu[$index]">
-      <accordion-group
+      <uib-accordion-group
         ng-repeat="(type, ressource) in ressourcesByIndividu[$index]"
         class="recap-{{ getRessourceByType(type).category }}"
         heading="{{ getRessourceByType(type).label }}">
@@ -49,8 +49,8 @@
             {{ getTotalAnnuel(ressource) }} €
           </div>
         </div>
-      </accordion-group>
-    </accordion>
+      </uib-accordion-group>
+    </uib-accordion>
     <div ng-if="! ressourcesByIndividu[$index]">
       <em class="small">Aucune ressource déclarée</em>
     </div>
@@ -64,10 +64,10 @@
   </a>
   <h4>Année {{ yearMoins2 }}</h4>
   <span ng-if="rfrCaptured">Revenu fiscal de référence : {{ situation.rfr }} €</span>
-  <accordion
+  <uib-accordion
     close-others="false"
     class="accordion-ressources">
-    <accordion-group
+    <uib-accordion-group
       ng-repeat="ym2IndividuRecap in ressourcesYearMoins2"
       heading="{{ ym2IndividuRecap.label }}"
       is-open="ym2IndividuRecap.isOpen">
@@ -79,32 +79,32 @@
           {{ ressource.montant }} €
         </div>
       </div>
-    </accordion-group>
-  </accordion>
+    </uib-accordion-group>
+  </uib-accordion>
 </div>
 
 <div ng-if="situation.patrimoine.captured">
   <a ui-sref="foyer.patrimoine" class="pull-right"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</a>
   <h4 class="section-header">Votre patrimoine</h4>
   <em class="small" ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun patrimoine déclaré</em>
-  <accordion
+  <uib-accordion
     close-others="true"
     class="accordion-ressources">
-    <accordion-group
+    <uib-accordion-group
       ng-if="patrimoine.length"
       heading="Patrimoine"
       is-open="revenu.isOpen">
       <div ng-repeat="value in patrimoine">
         {{ value.label }}&nbsp;: {{ value.montant }} €
       </div>
-    </accordion-group>
-    <accordion-group
+    </uib-accordion-group>
+    <uib-accordion-group
       ng-repeat="revenu in revenusDuPatrimoine"
       heading="{{ revenu.label }}"
       is-open="revenu.isOpen">
       <div ng-repeat="value in revenu.values">
         {{ value.periode|uppercaseFirst }}&nbsp;: {{ value.montant }} €
       </div>
-    </accordion-group>
-  </accordion>
+    </uib-accordion-group>
+  </uib-accordion>
 </div>

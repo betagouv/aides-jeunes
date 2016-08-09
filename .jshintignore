@@ -1,0 +1,10 @@
+# No point in linting third-party code
+app/bower_components
+node_modules
+
+# Build outputs
+.tmp
+dist
+
+# Watai files are not actual JS
+test/integration

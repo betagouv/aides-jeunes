@@ -1,3 +1,3 @@
 title: 'h1',
-declareSingleButton: 'button[btn-radio="false"]',
-declareCoupleButton: 'button[btn-radio="true"]',
+declareSingleButton: 'button[uib-btn-radio="false"]',
+declareCoupleButton: 'button[uib-btn-radio="true"]',

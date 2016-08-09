@@ -203,36 +203,7 @@ $input-group-addon-border-color: $input-border;
 //
 //## Dropdown menu container and contents.
 
-//** Background for the dropdown menu.
-$dropdown-bg:                    #fff;
-//** Dropdown menu `border-color`.
-$dropdown-border:                rgba(0,0,0,.15);
-//** Dropdown menu `border-color` **for IE8**.
-$dropdown-fallback-border:       #ccc;
-//** Divider color for between dropdown items.
 $dropdown-divider-bg:            rgba(0,0,0,.2);
-
-//** Dropdown link text color.
-$dropdown-link-color:            #555;
-//** Hover color for dropdown links.
-$dropdown-link-hover-color:      darken($gray-dark, 5%);
-//** Hover background for dropdown links.
-$dropdown-link-hover-bg:         #eee;
-
-//** Active dropdown menu item text color.
-$dropdown-link-active-color:     $component-active-color;
-//** Active dropdown menu item background color.
-$dropdown-link-active-bg:        $component-active-bg;
-
-//** Disabled dropdown menu item background color.
-$dropdown-link-disabled-color:   $gray-light;
-
-//** Text color for headers within dropdown menus.
-$dropdown-header-color:          $gray-light;
-
-//** Deprecated `$dropdown-caret-color` as of v3.1.0
-$dropdown-caret-color:           #000;
-
 
 //-- Z-index master list
 //
@@ -417,43 +388,6 @@ $nav-pills-active-link-hover-bg:            $component-active-bg;
 $nav-pills-active-link-hover-color:         $component-active-color;
 
 
-//== Pagination
-//
-//##
-
-$pagination-color:                     $link-color;
-$pagination-bg:                        transparent;
-$pagination-border:                    transparent;
-
-$pagination-hover-color:               $link-hover-color;
-$pagination-hover-bg:                  $gray-lighter;
-$pagination-hover-border:              transparent;
-
-$pagination-active-color:              #fff;
-$pagination-active-bg:                 $brand-primary;
-$pagination-active-border:             transparent;
-
-$pagination-disabled-color:            $gray-light;
-$pagination-disabled-bg:               #fff;
-$pagination-disabled-border:           transparent;
-
-
-//== Pager
-//
-//##
-
-$pager-bg:                             $pagination-bg;
-$pager-border:                         $pagination-border;
-$pager-border-radius:                  3px;
-
-$pager-hover-bg:                       $pagination-hover-bg;
-
-$pager-active-bg:                      $pagination-active-bg;
-$pager-active-color:                   $pagination-active-color;
-
-$pager-disabled-color:                 $gray-light;
-
-
 //== Jumbotron
 //
 //##
@@ -484,24 +418,6 @@ $state-warning-border:           darken($state-warning-text, 5%);
 $state-danger-text:              $brand-danger;
 $state-danger-bg:                #f2dede;
 $state-danger-border:            darken($state-danger-text, 5%);
-
-
-//== Tooltips
-//
-//##
-
-//** Tooltip max width
-$tooltip-max-width:           200px;
-//** Tooltip text color
-$tooltip-color:               #fff;
-//** Tooltip background color
-$tooltip-bg:                  $gray-dark;
-$tooltip-opacity:             .9;
-
-//** Tooltip arrow width
-$tooltip-arrow-width:         5px;
-//** Tooltip arrow color
-$tooltip-arrow-color:         $tooltip-bg;
 
 
 //== Popovers
@@ -587,52 +503,6 @@ $modal-footer-border-color:   $modal-header-border-color;
 $modal-lg:                    900px;
 $modal-md:                    600px;
 $modal-sm:                    300px;
-
-
-//== Alerts
-//
-//## Define alert colors, border radius, and padding.
-
-$alert-padding:               15px;
-$alert-border-radius:         $border-radius-base;
-$alert-link-font-weight:      bold;
-
-$alert-success-bg:            $brand-success;
-$alert-success-text:          #fff;
-$alert-success-border:        $state-success-border;
-
-$alert-info-bg:               $brand-info;
-$alert-info-text:             #fff;
-$alert-info-border:           $state-info-border;
-
-$alert-warning-bg:            $brand-warning;
-$alert-warning-text:          #fff;
-$alert-warning-border:        $state-warning-border;
-
-$alert-danger-bg:             $brand-danger;
-$alert-danger-text:           #fff;
-$alert-danger-border:         $state-danger-border;
-
-
-//== Progress bars
-//
-//##
-
-//** Background color of the whole progress component
-$progress-bg:                 #f5f5f5;
-//** Progress bar text color
-$progress-bar-color:          #fff;
-
-//** Default progress bar color
-$progress-bar-bg:             $brand-primary;
-//** Success progress bar color
-$progress-bar-success-bg:     $brand-success;
-//** Warning progress bar color
-$progress-bar-warning-bg:     $brand-warning;
-//** Danger progress bar color
-$progress-bar-danger-bg:      $brand-danger;
-//** Info progress bar color
-$progress-bar-info-bg:        $brand-info;
 
 
 //== List group
@@ -768,23 +638,6 @@ $breadcrumb-color:              $gray-light;
 $breadcrumb-active-color:       $gray-dark;
 //** Textual separator for between breadcrumb elements
 $breadcrumb-separator:          "/";
-
-
-//== Carousel
-//
-//##
-
-$carousel-text-shadow:                        0 1px 2px rgba(0,0,0,.6);
-
-$carousel-control-color:                      #fff;
-$carousel-control-width:                      15%;
-$carousel-control-opacity:                    .5;
-$carousel-control-font-size:                  20px;
-
-$carousel-indicator-active-bg:                #fff;
-$carousel-indicator-border-color:             #fff;
-
-$carousel-caption-color:                      #fff;
 
 
 //== Close

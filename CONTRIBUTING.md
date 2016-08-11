@@ -65,3 +65,15 @@ Décision informelle sur la base de l'analyse des besoins des usagers, des parte
 
 - [x] Le wiki a été mis à jour pour notifier de l'implémentation.
 - [x] Si la fonctionnalité touche les utilisateurs, un tweet l'a annoncée.
+
+
+Ajouter une aide
+================
+
+Vous êtes un organisme liquidateur ? Lisez plutôt [comment intégrer une nouvelle aide dans Mes Aides](https://github.com/sgmap/mes-aides-ui/wiki/Integrer-une-nouvelle-aide-dans-mes-aides). La documentation ci-dessous est technique.
+
+- Décrire l'organisme liquidateur et l'aide à ajouter dans `app/js/constants/droits.js`.
+- Copier ces informations dans `lib/config/ludwig.js` du module [`mes-aides-api`](https://github.com/sgmap/mes-aides-api).
+- Décrire le type de données dans `lib/simulation/openfisca/prestations.js` du module [`mes-aides-api`](https://github.com/sgmap/mes-aides-api).
+- Mettre à jour les données de réponse attendue dans `test/openfisca/mapping/reverse.coffee` du module [`mes-aides-api`](https://github.com/sgmap/mes-aides-api).
+- [Coder l'aide dans OpenFisca](https://github.com/sgmap/mes-aides-ui/wiki/Ajouter-une-aide-locale-dans-OpenFisca).

@@ -169,9 +169,9 @@
       >
       <question>
         {{ isDemandeur() ? 'Avez-vous' : 'A-t-il (elle)' }}
-        travaillé au moins 5 ans entre {{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et {{ individu.lastJobEndDate.format('MMMM YYYY') }} ?
+        travaillé au moins 5&nbsp;ans entre&nbsp;{{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et&nbsp;{{ individu.lastJobEndDate.format('MMMM YYYY') }}&nbsp;?
       </question>
-      <help-block>1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés.</help-block>
+      <help-block>1825&nbsp;jours (5&nbsp;fois&nbsp;365) couverts par un contrat de travail, en activité ou en congés.</help-block>
     </yes-no-question>
   </div>
 
@@ -202,14 +202,14 @@
     ng-if="captureEnfantPlace()"
     size="4"
     >
-    <question>Est-il/elle placé·e en structure spécialisée ou famille d'accueil ?</question>
+    <question>Est-il/elle placé·e en structure spécialisée ou famille d'accueil&nbsp;?</question>
   </yes-no-question>
 
   <yes-no-question model="individu.boursier"
     ng-if="captureEtudiantBoursier()"
     size="4"
     >
-    <question>{{ isDemandeur() ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier ?</question>
+    <question>{{ isDemandeur() ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier&nbsp;?</question>
   </yes-no-question>
 
   <div class="form-group from-group-lg" ng-if="captureScolarite(form)">
@@ -230,14 +230,14 @@
     ng-if="catpurePersonneACharge(form)"
     size="4"
     >
-    <question>Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu ?</question>
+    <question>Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?</question>
   </yes-no-question>
 
   <yes-no-question model="individu.perteAutonomie"
     ng-if="capturePerteAutonomie"
     size="4"
     >
-    <question>Avez-vous des difficultés pour accomplir les gestes de la vie quotidienne ?</question>
+    <question>Avez-vous des difficultés pour accomplir les gestes de la vie quotidienne&nbsp;?</question>
   </yes-no-question>
 
   <div class="pull-right">

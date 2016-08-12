@@ -163,23 +163,16 @@
       <span class="help-block">Si vous n’avez jamais eu de contrat de travail, laissez ce champ vide.</span>
     </div>
 
-    <div class="form-group" ng-if="individu.lastJobEndDate.year()">
-      <label class="control-label col-sm-4" id="ass-question">
+    <yes-no-question model="individu.assPreconditionRemplie"
+      ng-if="individu.lastJobEndDate.year()"
+      size="4"
+      >
+      <question>
         {{ isDemandeur() ? 'Avez-vous' : 'A-t-il (elle)' }}
-        travaillé au moins <abbr title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés.">5 ans</abbr> entre {{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et {{ individu.lastJobEndDate.format('MMMM YYYY') }} ?
-      </label>
-
-      <div class="col-sm-8">
-        <label for="ass-precondition-true" class="radio-inline">
-          <input id="ass-precondition-true" aria-describedby="ass-question" type="radio" name="eligibiliteAss" ng-model="individu.assPreconditionRemplie" ng-value="true">
-          Oui
-        </label>
-        <label for="ass-precondition-false" class="radio-inline">
-          <input id="ass-precondition-false" aria-describedby="ass-question" type="radio" name="eligibiliteAss" ng-model="individu.assPreconditionRemplie" ng-value="false">
-          Non
-        </label>
-      </div>
-    </div>
+        travaillé au moins 5&nbsp;ans entre&nbsp;{{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et&nbsp;{{ individu.lastJobEndDate.format('MMMM YYYY') }}&nbsp;?
+      </question>
+      <help-block>1825&nbsp;jours (5&nbsp;fois&nbsp;365) couverts par un contrat de travail, en activité ou en congés.</help-block>
+    </yes-no-question>
   </div>
 
   <div class="form-group from-group-lg" ng-if="captureTauxIncapacite()">
@@ -205,37 +198,19 @@
     </div>
   </div>
 
-  <div class="form-group from-group-lg" ng-if="captureEnfantPlace()">
-    <label class="control-label col-sm-4" for="place">
-     Est-il/elle placé·e en structure spécialisée ou famille d'accueil ?
-    </label>
-    <div class="col-sm-8">
-      <label class="radio-inline" for="place-true">
-        <input id="place-true" type="radio" name="place" ng-model="individu.place" ng-value="true">
-        Oui
-      </label>
-      <label class="radio-inline" for="place-false">
-        <input id="place-false" type="radio" name="place" ng-model="individu.place" ng-value="false">
-        Non
-      </label>
-    </div>
-  </div>
+  <yes-no-question model="individu.place"
+    ng-if="captureEnfantPlace()"
+    size="4"
+    >
+    <question>Est-il/elle placé·e en structure spécialisée ou famille d'accueil&nbsp;?</question>
+  </yes-no-question>
 
-  <div class="form-group from-group-lg" ng-if="captureEtudiantBoursier()">
-    <label class="control-label col-sm-4" id="etudiant-boursier">
-      {{ isDemandeur() ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier ?
-    </label>
-    <div class="col-sm-8">
-      <label class="radio-inline" for="boursier-true">
-        <input id="boursier-true" type="radio" name="boursier" ng-model="individu.boursier" ng-value="true" aria-describedby="etudiant-boursier">
-        Oui
-      </label>
-      <label class="radio-inline" for="boursier-false">
-        <input id="boursier-false" type="radio" name="boursier" ng-model="individu.boursier" ng-value="false" aria-describedby="etudiant-boursier">
-        Non
-      </label>
-    </div>
-  </div>
+  <yes-no-question model="individu.boursier"
+    ng-if="captureEtudiantBoursier()"
+    size="4"
+    >
+    <question>{{ isDemandeur() ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier&nbsp;?</question>
+  </yes-no-question>
 
   <div class="form-group from-group-lg" ng-if="captureScolarite(form)">
     <label class="control-label col-sm-4" for="scolarite">
@@ -251,37 +226,19 @@
     </div>
   </div>
 
-  <div class="form-group from-group-lg" ng-if="catpurePersonneACharge(form)">
-    <label class="control-label col-sm-4" for="a-charge">
-      Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu ?
-    </label>
-    <div class="col-sm-8">
-      <label class="radio-inline" for="a-charge-true">
-        <input id="a-charge-true" type="radio" name="a-charge" ng-model="individu.aCharge" ng-value="true">
-        Oui
-      </label>
-      <label class="radio-inline" for="a-charge-false">
-        <input id="a-charge-false" type="radio" name="a-charge" ng-model="individu.aCharge" ng-value="false">
-        Non
-      </label>
-    </div>
-  </div>
+  <yes-no-question model="individu.aCharge"
+    ng-if="catpurePersonneACharge(form)"
+    size="4"
+    >
+    <question>Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?</question>
+  </yes-no-question>
 
-  <div class="form-group from-group-lg" ng-if="capturePerteAutonomie">
-    <label class="control-label col-sm-4" for="perteAutonomie">
-      Avez-vous des difficultés pour accomplir les gestes de la vie quotidienne ?
-    </label>
-    <div class="col-sm-8">
-      <label class="radio-inline" for="perteAutonomie-true">
-        <input id="perteAutonomie-true" type="radio" name="perteAutonomie" ng-model="individu.perteAutonomie" ng-value="true">
-        Oui
-      </label>
-      <label class="radio-inline" for="perteAutonomie-false">
-        <input id="perteAutonomie-true" type="radio" name="perteAutonomie" ng-model="individu.perteAutonomie" ng-value="false">
-        Non
-      </label>
-    </div>
-  </div>
+  <yes-no-question model="individu.perteAutonomie"
+    ng-if="capturePerteAutonomie"
+    size="4"
+    >
+    <question>Avez-vous des difficultés pour accomplir les gestes de la vie quotidienne&nbsp;?</question>
+  </yes-no-question>
 
   <div class="pull-right">
     <button type="submit" class="btn btn-primary">

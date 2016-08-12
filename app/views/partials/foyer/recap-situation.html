@@ -4,7 +4,7 @@
 <individu-block ng-repeat="individu in situation.individus" individu="individu"></individu-block>
 
 <div id="recap-logement" ng-if="situation.logement">
-  <a ui-sref="foyer.logement" class="pull-right"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</a>
+  <a ui-sref="foyer.logement" class="pull-right"><i class="fa fa-edit" aria-hidden="true" role="presentation"></i> Modifier</a>
   <h4 class="section-header">Votre logement</h4>
   <div class="situation-block">
     <div ng-bind-html="recapLogement|uppercaseFirst"></div>
@@ -19,7 +19,7 @@
     <a
       ui-sref="{{ getModifyPersonRessourcesLink(individu) }}"
       class="pull-right">
-      <i class="fa fa-edit" aria-hidden="true"></i>
+      <i class="fa fa-edit" aria-hidden="true" role="presentation"></i>
       Modifier
     </a>
     <h4 class="section-header">{{ getIndividuRessourcesHeader(individu) }}</h4>
@@ -59,7 +59,7 @@
 
 <div id="recap-ym2-resources" ng-if="ressourcesYearMoins2Captured">
   <a ui-sref="foyer.ressourcesYearMoins2" class="pull-right">
-    <i class="fa fa-edit" aria-hidden="true"></i>
+    <i class="fa fa-edit" aria-hidden="true" role="presentation"></i>
     Modifier
   </a>
   <h4>Année {{ yearMoins2 }}</h4>
@@ -84,7 +84,7 @@
 </div>
 
 <div ng-if="situation.patrimoine.captured">
-  <a ui-sref="foyer.patrimoine" class="pull-right"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</a>
+  <a ui-sref="foyer.patrimoine" class="pull-right"><i class="fa fa-edit" aria-hidden="true" role="presentation"></i> Modifier</a>
   <h4 class="section-header">Votre patrimoine</h4>
   <em class="small" ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun patrimoine déclaré</em>
   <uib-accordion

@@ -28,7 +28,11 @@
         </div>
 
         <div class="col-sm-1 hidden-xs description">
-          <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}" aria-hidden="true"></i>
+          <i class="fa"
+            ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"
+            aria-hidden="true"
+            role="presentation"
+          ></i>
         </div>
       </div>
     </uib-accordion-heading>
@@ -63,7 +67,7 @@
             class="btn btn-sm btn-default btn-block"
             href="{{ droit.link }}"
             target="_blank">
-            <i class="fa fa-external-link" aria-hidden="true"></i>
+            <i class="fa fa-external-link" aria-hidden="true" role="presentation"></i>
             Plus d'informations
           </a>
         </div>

@@ -49,17 +49,10 @@
           <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
         </div>
         <div class="col-md-10">
-          <div ng-repeat="droit in provider.prestations">
-            <div class="clearfix" ng-if="$even"></div>
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-xs-10">
-                  <h3>{{ droit.label }}</h3>
-                </div>
-              </div>
-              <p>{{ droit.description }}</p>
-            </div>
-          </div>
+          <dl ng-repeat="droit in provider.prestations">
+            <dt>{{ droit.label }}</dt>
+            <dd>{{ droit.description }}</dd>
+          </dl>
         </div>
       </div>
     </div>
@@ -72,22 +65,17 @@
           <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
         </div>
         <div class="col-md-10">
-          <div ng-repeat="droit in provider.prestations">
-            <div class="clearfix" ng-if="showDetails && $even"></div>
-            <div class="col-md-6" ng-if="showDetails || $index < 2">
-              <div class="row">
-                <div class="col-xs-10">
-                  <h3>{{ droit.label }}</h3>
-                </div>
-              </div>
-              <p>{{ droit.description }}</p>
-            </div>
-          </div>
+          <dl ng-repeat="droit in provider.prestations" ng-if="showDetails || $index < 2">
+            <dt>{{ droit.label }}</dt>
+            <dd>{{ droit.description }}</dd>
+          </dl>
+
           <div class="col-md-12 showDetailsButtonBlock">
             <button class="btn" type="button" ng-show="!showDetails && countPrestations(provider) > 2" ng-click="showDetails = ! showDetails">
               Voir les {{ countPrestations(provider) - 2 }} autres aides calculées
             </button>
           </div>
+        </div>
       </div>
     </div>
   </div>

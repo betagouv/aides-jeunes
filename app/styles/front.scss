@@ -503,54 +503,56 @@ $autre-lighter: #cce4e7;
   color: $text-color;
 }
 
-.result {
-  &.panel-opened {
-    .panel-heading {
+.table-result {
+  > tbody {
+    border: 1px solid #ddd;
+
+    > tr.result {
+      background-color: white;
+      cursor: pointer;
+      min-height: 2em;
+    }
+
+    > tr.result-needs-n-2 {
+      background-color: whitesmoke;
+      color: #888;
+    }
+
+    > tr {
       background-color: whitesmoke;
     }
-  }
 
-  .panel-heading {
-    background-color: white;
-    padding: 5px 0;
-
-    &:hover {
-      background-color: darken(whitesmoke, 3%);
-    }
-
-    .montant {
-      font-weight: 600;
-      font-size: 18px;
-    }
-
-    .montant-inconnu {
-      position: relative;
-      top: .25em;
-    }
-
-    .montant-detail {
-      font-size: 12px;
+    > tr > th {
+      vertical-align: middle;
+      font-size: 16px;
+      font-weight: 400;
     }
   }
 
-  .panel-title .description {
-    @media (min-width: $screen-sm-min) {
-      padding-top: 0.5em;
-    }
-  }
-}
-
-.result-needs-n-2 {
-  @extend .result;
-
-  .panel-heading {
-    background-color: whitesmoke;
-    color: #888;
+  .montant {
+    font-weight: 600;
+    font-size: 18px;
   }
 
-  .montant i {
+  .montant-inconnu {
     position: relative;
-    top: .4em;
+    top: .25em;
+  }
+
+  .montant-detail {
+    font-size: 12px;
+  }
+
+  tbody + tbody {
+    border-top: 1px solid #ddd;
+  }
+
+  .chevron {
+    text-align: right;
+  }
+
+  .chevron .fa {
+    font-size: 1.2em;
   }
 }
 

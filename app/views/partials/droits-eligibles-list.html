@@ -1,96 +1,92 @@
-<uib-accordion close-others="false">
-  <uib-accordion-group is-open="droit.open"
-     class="result {{ getAccordionClass(droit) }}"
-     ng-repeat="(droitId, droit) in list|orderObjectBy:'label'">
-    <uib-accordion-heading>
-      <div class="row">
-        <div class="col-xs-2 col-sm-1">
-          <img class="droit-logo"
-               ng-src="/img/{{ droit.imgSrc }}"
-               alt="">
+<table class="table table-result">
+  <tbody ng-repeat="(droitId, droit) in list|orderObjectBy:'label'">
+    <tr class="result {{ getAccordionClass(droit) }}" ng-click="droit.open = !droit.open" ng-class="{'opened': openend === droitId}">
+      <th>
+        <img class="droit-logo"
+           ng-src="/img/{{ droit.imgSrc }}"
+           alt="Caisse d'allocations familiales">
+      </th>
+      <th>{{ droit.label }}</th>
+      <th>
+        <div class="montant">
+          <span ng-if="isNumber(droit.montant)">{{ round(droit) }}&nbsp;{{ droit.unit || '€' }}</span>
+          <span ng-if="isString(droit.montant)" class="montant-inconnu">?</span>
         </div>
-
-        <div class="col-xs-6 col-sm-8 description">
-          <span>{{ droit.label }}<span>
+        <div class="montant-detail">
+          <span ng-if="isNumber(droit.montant)">{{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}</span>
         </div>
-
-        <div class="col-xs-3 col-sm-2">
-          <div class="montant">
-            <span ng-if="isNumber(droit.montant)">{{ round(droit) }}&nbsp;{{ droit.unit || '€' }}</span>
-            <span ng-if="isString(droit.montant)" class="montant-inconnu">?</span>
-            <i class="fa fa-warning text-warning" ng-if="shouldDisplayYM2Warning(droit)"></i>
-          </div>
-
-          <div ng-if="isNumber(droit.montant)" class="montant-detail">
-            {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
-          </div>
-
-        </div>
-
-        <div class="col-sm-1 hidden-xs description">
+      </th>
+      <th>
+        <i class="fa fa-warning text-warning" ng-if="shouldDisplayYM2Warning(droit)"></i>
+        <span class="screenReadersOnly">Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}</span>
+      </th>
+      <th class="chevron">
+        <button class="btn btn-sm btn-link">
           <i class="fa" ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}" aria-hidden="true"></i>
-        </div>
-      </div>
-    </uib-accordion-heading>
+          <span class="screenReadersOnly">Ouvrir la description de l'aide</span>
+        </button>
+      </th>
+    </tr>
+    <tr ng-show="droit.open">
+      <td class="caption" colspan="5">
+        <div ng-if="droit.montant">
+          <p>{{ droit.description }}</p>
+          <div ng-if="droit.conditions">
+            Pour en bénéficier, vous devez également :
+            <ul>
+              <li ng-repeat="condition in droit.conditions">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                <span ng-bind-html="condition"></span>
+              </li>
+            </ul>
+          </div>
 
-    <div class="caption">
-      <div ng-if="droit.montant">
-        <p>{{ droit.description }}</p>
-        <div ng-if="droit.conditions">
-          Pour en bénéficier, vous devez également :
-          <ul>
-            <li ng-repeat="condition in droit.conditions">
-              <i class="fa fa-check" aria-hidden="true"></i>
-              <span ng-bind-html="condition"></span>
-            </li>
-          </ul>
+          <div ng-if="isString(droit.montant)" class="alert alert-warning-inverse">
+            <p>L'application Mes Aides ne peut pas calculer le montant de cette prestation, car <span ng-bind-html="droit.uncomputability[droit.montant].reason"></span>.</p>
+            <p ng-if="droit.uncomputability[droit.montant].solution"><strong ng-bind-html="droit.uncomputability[droit.montant].solution"></strong></p>
+          </div>
+
+          <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && ! ressourcesYearMoins2Captured && ! isString(droit.montant)">
+            <i class="fa fa-warning" aria-hidden="true"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
+            <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
+          </div>
         </div>
 
-        <div ng-if="isString(droit.montant)" class="alert alert-warning-inverse">
-          <p>L'application Mes Aides ne peut pas calculer le montant de cette prestation, car <span ng-bind-html="droit.uncomputability[droit.montant].reason"></span>.</p>
-          <p ng-if="droit.uncomputability[droit.montant].solution"><strong ng-bind-html="droit.uncomputability[droit.montant].solution"></strong></p>
+        <div class="row">
+          <div class="col-sm-3">
+            <a
+              class="btn btn-sm btn-link btn-block"
+              href="{{ droit.link }}"
+              target="_blank">
+              <i class="fa fa-external-link" aria-hidden="true"></i>
+              Plus d'informations
+            </a>
+          </div>
+          <div ng-if="droit.id == 'ppa'"
+            class="col-sm-5 col-sm-offset-1">
+            <a
+              class="btn btn-sm btn-secondary btn-block"
+              href="http://www.msa.fr/lfr/web/msa/espace-prive">
+              Démarches pour les professions agricoles
+            </a>
+          </div>
+          <div ng-if="droit.teleservice || droit.form"
+            class="col-sm-3 {{ (droit.id != 'ppa') && 'col-sm-offset-6' }}">
+            <a href="{{ droit.teleservice || droit.form }}"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-sm btn-block"
+              ng-class="{
+                'btn-success': droit.teleservice,
+                'btn-primary': droit.form,
+              }"
+              >
+              <span ng-if="droit.teleservice">Faire une demande</span>
+              <span ng-if="droit.form">Accéder au formulaire</span>
+            </a>
+          </div>
         </div>
-
-        <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && ! ressourcesYearMoins2Captured && ! isString(droit.montant)">
-          <i class="fa fa-warning" aria-hidden="true"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
-          <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-3">
-          <a
-            class="btn btn-sm btn-default btn-block"
-            href="{{ droit.link }}"
-            target="_blank">
-            <i class="fa fa-external-link" aria-hidden="true"></i>
-            Plus d'informations
-          </a>
-        </div>
-        <div ng-if="droit.id == 'ppa'"
-          class="col-sm-5 col-sm-offset-1">
-          <a
-            class="btn btn-sm btn-secondary btn-block"
-            href="http://www.msa.fr/lfr/web/msa/espace-prive">
-            Démarches pour les professions agricoles
-          </a>
-        </div>
-        <div ng-if="droit.teleservice || droit.form"
-          class="col-sm-3 {{ (droit.id != 'ppa') && 'col-sm-offset-6' }}">
-          <a href="{{ droit.teleservice || droit.form }}"
-            target="_blank"
-            rel="noopener"
-            class="btn btn-sm btn-block"
-            ng-class="{
-              'btn-success': droit.teleservice,
-              'btn-primary': droit.form,
-            }"
-            >
-            <span ng-if="droit.teleservice">Faire une demande</span>
-            <span ng-if="droit.form">Accéder au formulaire</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </uib-accordion-group>
-</uib-accordion>
+      </td>
+    </tr>
+  </tbody>
+</table>

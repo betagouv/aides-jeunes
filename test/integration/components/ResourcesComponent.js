@@ -1,6 +1,6 @@
 declareRevenuActiviteLink: { a: 'Revenus d' },
 declareFirstChildHasIncomeRadio: 'yes-no-question input + .btn',
-checkSalaryButton: '[type="checkbox"] + .btn',
+hasSalaryCheckbox: 'uib-accordion label',
 firstMonthInput: '#revenusSalarie-month_1',
 secondMonthInput: '#revenusSalarie-month_2',
 thirdMonthInput: '#revenusSalarie-month_3',

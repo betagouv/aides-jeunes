@@ -2,7 +2,7 @@ description: 'Declare salary.',
 
 steps: [
     ResourcesComponent.declareRevenuActivite(),
-    ResourcesComponent.checkSalary(),
+    ResourcesComponent.hasSalary(),
     ResourcesComponent.submit(),
     ResourcesComponent.setFirstMonthInput(1000),
     ResourcesComponent.setSecondMonthInput(1000),

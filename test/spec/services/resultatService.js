@@ -6,6 +6,7 @@ describe('ResultatService', function () {
             prestationsNationales : {
                 caf: {
                     imgSrc: 'img',
+                    label: 'label',
                     prestations: {
                         acs: { shortLabel: 'ACS' },
                         apl: { shortLabel: 'APL' },
@@ -30,7 +31,7 @@ describe('ResultatService', function () {
         });
 
         it('should extract eligibles droits from openfisca result', function() {
-            expect(droits.droitsEligibles.prestationsNationales).toEqual({ acs: { shortLabel: 'ACS', montant: 10, imgSrc: 'img' } });
+            expect(droits.droitsEligibles.prestationsNationales).toEqual({ acs: { shortLabel: 'ACS', montant: 10, imgSrc: 'img', providerLabel: 'label' } });
         });
 
         it('should extract injected droits', function() {

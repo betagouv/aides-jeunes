@@ -18,6 +18,7 @@ angular.module('ddsApp').service('ResultatService', function($http, $uibModal, d
 
                 Object.keys(result).forEach(function(aideId) {
                     result[aideId].imgSrc = droitsDescription[type][provider].imgSrc;
+                    result[aideId].providerLabel = droitsDescription[type][provider].label;
                 });
 
                 droitsEligibles[type][provider] = result;

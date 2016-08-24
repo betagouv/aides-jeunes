@@ -319,10 +319,6 @@ $autre-lighter: #cce4e7;
   margin-top: 0px;
 }
 
-.ressource-types-block {
-  margin-bottom: 15px;
-}
-
 @mixin panel-variant-recap($color) {
   border-left: 7px solid $color;
   &.active, &.active:focus {

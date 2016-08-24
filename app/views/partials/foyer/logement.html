@@ -7,7 +7,7 @@
         <label ng-repeat="logementType in logementTypes">
             <input type="radio"
               name="logementType"
-              class="screenReadersOnly"
+              class="sr-only"
               ng-model="logement.type"
               ng-change="changeLogementType()"
               value="{{logementType.id}}"

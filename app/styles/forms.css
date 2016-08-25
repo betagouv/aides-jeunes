@@ -1,5 +1,9 @@
-[aria-invalid="false"] ~ [role="alert"] {
+[role="alert"] {
     display: none;
+}
+
+.ng-dirty[aria-invalid="true"] ~ [role="alert"], .ng-dirty [aria-required="true"] ~ [role="alert"] {
+    display: block;
 }
 
 [aria-invalid="true"], [role="alert"] {

@@ -183,25 +183,25 @@
   </div>
 
   <div class="form-group from-group-lg" ng-if="captureTauxIncapacite()">
-    <label class="control-label col-sm-4" for="eligibiliteAss">
+    <label class="control-label col-sm-4" for="eligibiliteAss" id="tauxIncapaciteQuestion">
       Quel est {{ isDemandeur() ? 'votre' : 'son' }} taux d'incapacité ?
-      <div class="help-block">
-        Évalué par <a target="_blank" rel="noopener" href="http://informations.handicap.fr/carte-france-mdph.php">votre MDPH</a>.
-      </div>
     </label>
-    <div class="col-sm-8">
-      <label class="radio-inline">
-        <input type="radio" name="tauxIncapacite" value="moins50" ng-model="individu.tauxIncapacite">
+    <div class="col-sm-3">
+      <label>
+        <input type="radio" name="tauxIncapacite" aria-describedby="tauxIncapaciteQuestion" value="moins50" ng-model="individu.tauxIncapacite">
         Moins de 50%
       </label>
-      <label class="radio-inline">
-        <input type="radio" name="tauxIncapacite" value="moins80" ng-model="individu.tauxIncapacite">
+      <label>
+        <input type="radio" name="tauxIncapacite" aria-describedby="tauxIncapaciteQuestion" value="moins80" ng-model="individu.tauxIncapacite">
         Entre 50% et 80%
       </label>
-      <label class="radio-inline">
-        <input type="radio" name="tauxIncapacite" value="plus80" ng-model="individu.tauxIncapacite">
+      <label>
+        <input type="radio" name="tauxIncapacite" aria-describedby="tauxIncapaciteQuestion" value="plus80" ng-model="individu.tauxIncapacite">
         Plus de 80%
       </label>
+    </div>
+    <div class="help-block col-sm-4">
+      Évalué par <a target="_blank" rel="noopener" href="http://informations.handicap.fr/carte-france-mdph.php">votre MDPH</a>.
     </div>
   </div>
 

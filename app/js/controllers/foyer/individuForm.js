@@ -42,7 +42,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         scolarite: 'college',
         tauxIncapacite: 'plus80',
         boursier: false,
-        aCharge: true,
+        aCharge: (individuRole == 'enfant'), // By default enfants are `à charge fiscale`, adults are not.
         place: false,
         role: individuRole,
         autresRevenusTnsActiviteType: 'bic',
@@ -116,7 +116,12 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         return $scope.selectedStatuts.etudiant;
     };
 
-    $scope.catpurePersonneACharge = function(form) {
+    $scope.captureDemandeurACharge = function() {
+        var age = IndividuService.age($scope.individu);
+        return $scope.isDemandeur() && (age >= 18) && (age < 25);
+    };
+
+    $scope.captureEnfantACharge = function(form) {
         if (! isIndividuParent && form.dateDeNaissance.$valid) {
             return IndividuService.age($scope.individu) >= 1;
         }

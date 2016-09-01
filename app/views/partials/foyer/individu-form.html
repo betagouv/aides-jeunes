@@ -212,6 +212,16 @@
     <question>{{ isDemandeur() ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier&nbsp;?</question>
   </yes-no-question>
 
+  <yes-no-question model="individu.aCharge"
+    ng-if="captureDemandeurACharge()"
+    size="4"
+    >
+    <question>Êtes-vous à charge fiscale de vos parents&nbsp;?</question>
+    <help-block>
+      Répondez "Non" si vous avez déjà fait une déclaration de revenus en votre nom, ou si vous allez le faire pour l'année à venir.
+    </help-block>
+  </yes-no-question>
+
   <div class="form-group from-group-lg" ng-if="captureScolarite(form)">
     <label class="control-label col-sm-4" for="scolarite">
       Où sera-t-il/elle scolarisé·e à la rentrée prochaine ?
@@ -227,7 +237,7 @@
   </div>
 
   <yes-no-question model="individu.aCharge"
-    ng-if="catpurePersonneACharge(form)"
+    ng-if="captureEnfantACharge(form)"
     size="4"
     >
     <question>Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?</question>

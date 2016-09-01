@@ -60,7 +60,11 @@
       </help-block>
     </yes-no-question>
 
-    <yes-no-question model="logement.participationFrais" ng-if="logement.type == 'heberge'">
+    <yes-no-question model="demandeur.habiteChezParents" ng-if="captureHabiteChezParents()">
+      <question>Habitez-vous avec vos parents&nbsp;?</question>
+    </yes-no-question>
+
+    <yes-no-question model="logement.participationFrais" ng-if="captureParticipationFrais()">
       <question>Participez-vous aux frais du logement&nbsp;?</question>
       <help-block>Par exemple aux dépenses d'électricité, de téléphone,&nbsp;etc.</help-block>
     </yes-no-question>

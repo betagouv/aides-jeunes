@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, ImpactStudyService) {
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, ImpactStudyService, SituationService, IndividuService) {
     var logement = $scope.logement = {
         adresse: {},
         inhabitantForThreeYearsOutOfLastFive: true
@@ -11,6 +11,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
+    $scope.demandeur = SituationService.getDemandeur($scope.situation);
 
     function cityStartsWith(prefix) {
         return logement.adresse.nomCommune && logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
@@ -51,6 +52,15 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.captureChambre = function() {
         return logement.type == 'locataire' && 'foyer' !== logement.locationType && angular.isDefined(logement.locationType);
+    };
+
+    $scope.captureHabiteChezParents = function() {
+        var age = IndividuService.age($scope.demandeur);
+        return (logement.type == 'heberge') && (! $scope.demandeur.aCharge) && (age >= 18) && (age < 25);
+    };
+
+    $scope.captureParticipationFrais = function() {
+        return (logement.type == 'heberge') && (! $scope.captureHabiteChezParents() || angular.isDefined($scope.demandeur.habiteChezParents));
     };
 
     $scope.captureLoyer = function() {

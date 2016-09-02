@@ -73,6 +73,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
 
             situation.individus.forEach(function(individu) {
                 individu.dateDeNaissance = moment(individu.dateDeNaissance);
+                individu.dateArretDeTravail = moment(individu.dateArretDeTravail);
             });
 
             return situation;
@@ -163,6 +164,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         createApiCompatibleIndividu: function(individu) {
             var result = _.cloneDeep(individu);
             result.dateDeNaissance = individu.dateDeNaissance && individu.dateDeNaissance.format('YYYY-MM-DD');
+            result.dateArretDeTravail = individu.dateArretDeTravail && individu.dateArretDeTravail.format('YYYY-MM-DD');
 
             if (individu.dateArriveeFoyerString) {
                 var dateArrivee = moment(individu.dateArriveeFoyerString, 'L');

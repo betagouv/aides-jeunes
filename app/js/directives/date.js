@@ -11,7 +11,7 @@ var FORMATS = {
         outputFormat: 'MM/YYYY',
         cleaveFormat: ['m', 'Y'],
     }
-}
+};
 
 angular.module('ddsApp').directive('ddsDate', function() {
     return {

@@ -66,5 +66,38 @@
         </label>
       </div>
     </div>
+
+  <div class="form-group" ng-class="{'has-error': submitted && form.dateDeNaissance.$invalid}">
+    <label class="control-label col-sm-4" for="date-de-naissance">
+      De quand date votre arrêt de travail ? <span class="visually-hidden">au format jour/mois/année</span>
+    </label>
+    <div class="col-sm-4" ng-if="shouldAskDateArretDeTravail()">
+      <input
+        dds-date
+        format="JJ/MM/AAAA"
+        class="form-control"
+        min="{{ individu.dateDeNaissance }}"
+        name="dateDeNaissance"
+        id="date-de-naissance"
+        required
+        ng-model="individu.dateArretDeTravail"
+        aria-describedby="help-arret-de-travail"
+        >
+      <ul class="help-block" id="help-arret-de-travail" ng-if="submitted && form.dateDeNaissance.$invalid">
+        <li ng-show="form.dateDeNaissance.$error.format">
+        Veuillez utiliser le format JJ/MM/AAAA. Par exemple: 15/06/1981.
+        </li>
+        <li ng-if="form.dateDeNaissance.$error.required">
+          Ce champ est obligatoire.
+        </li>
+        <li ng-if="form.dateDeNaissance.$error.isBeforeMin">
+          Votre arrêt de travail doit être postérieur à votre date de naissance.
+        </li>
+        <li ng-if="form.dateDeNaissance.$error.isAfterMax">
+          Cette personne doit être déjà née pour être prise en compte.<br>
+          Pour simuler une naissance future, imaginez qu'elle a eu lieu aujourd'hui et déclarez vos revenus en conséquence.
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

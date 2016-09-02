@@ -18,7 +18,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     };
 
     $scope.shouldInitiallyOpen = function(category) {
-        if ($scope.ressources.length === 0) {
+        if (! $scope.ressources.length) {
             return category.id == 'revenusActivite';
         }
 

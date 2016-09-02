@@ -19,7 +19,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
 
     $scope.shouldInitiallyOpen = function(category) {
         if ($scope.ressources.length === 0) {
-            return category.id === 'revenusActivite';
+            return category.id == 'revenusActivite';
         }
 
         var categoriesWithResourceDeclared = $scope.ressources.map(function(ressource) {

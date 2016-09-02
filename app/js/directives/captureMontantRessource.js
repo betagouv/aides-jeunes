@@ -45,6 +45,10 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             scope.$watch('ressource.montantsMensuels', checkSumConsistency, true);
             scope.$watch('ressource.montantAnnuel', checkSumConsistency);
 
+            scope.shouldAskDateArretDeTravail = function() {
+                return ['indJourMaladie', 'indJourMaladieProf', 'indJourAccidentDuTravail'].indexOf(scope.ressourceType.id) >= 0;
+            };
+
             ngModel.$render = function() {
                 scope.ressource = ngModel.$viewValue;
             };

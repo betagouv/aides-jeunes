@@ -66,5 +66,36 @@
         </label>
       </div>
     </div>
+  <div
+    class="form-group"
+    ng-if="shouldAskDateArretDeTravail()"
+    ng-class="{'has-error': form.submitted && form.dateArretDeTravail.$invalid}">
+    <label class="control-label col-sm-4" for="date-arret-travail">
+      De quand date votre arrêt de travail ? <span class="visually-hidden">au format jour/mois/année</span>
+    </label>
+    <div class="col-sm-4">
+      <input
+        dds-date
+        format="JJ/MM/AAAA"
+        class="form-control"
+        min="{{ individu.dateDeNaissance }}"
+        name="dateArretDeTravail"
+        id="date-arret-travail"
+        required
+        ng-model="individu.dateArretDeTravail"
+        aria-describedby="help-arret-de-travail"
+        >
+      <ul class="help-block" id="help-arret-de-travail" ng-if="form.submitted && form.dateArretDeTravail.$invalid">
+        <li ng-show="form.dateArretDeTravail.$error.format">
+          Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
+        </li>
+        <li ng-if="form.dateArretDeTravail.$error.required">
+          Ce champ est obligatoire.
+        </li>
+        <li ng-if="form.dateArretDeTravail.$error.isBeforeMin">
+          Il semblerait qu'on vous ait prescrit un arrêt de travail avant votre naissance.
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

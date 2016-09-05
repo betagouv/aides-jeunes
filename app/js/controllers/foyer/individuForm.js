@@ -2,6 +2,7 @@
 
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
     $scope.specificSituations = specificSituations;
+    $scope.today = moment().format();
 
     $scope.options = {
         maxAge: 130

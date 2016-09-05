@@ -19,6 +19,7 @@ angular.module('ddsApp').directive('ddsDate', function() {
         restrict: 'A',
         link: function(scope, element, attributes, ctrl) {
             var format = attributes.format;
+            var maxDate = moment(attributes.max, 'DD/MM/YYYY');
             element.attr('placeholder', format);
             element.attr('maxlength', format.length);
             element.attr('type', 'text');
@@ -28,6 +29,11 @@ angular.module('ddsApp').directive('ddsDate', function() {
                 ctrl.$setValidity('format', result.isValid());
 
                 return result;
+            });
+
+            ctrl.$parsers.push(function(momentInstance) {
+                ctrl.$setValidity('dateIsLaterThanMax', maxDate.diff(momentInstance, 'days') >= 0);
+                return momentInstance;
             });
 
             ctrl.$formatters.push(function(momentInstance) {

@@ -22,9 +22,6 @@
         <li ng-if="form.dateDeNaissance.$error.required">
           Ce champ est obligatoire.
         </li>
-        <li ng-if="form.dateDeNaissance.$error.format">
-          Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.
-        </li>
         <li ng-if="form.dateDeNaissance.$error.dateNaissanceMaxAge">
           Les personnes de plus de {{ options.maxAge }} ans ne sont pas prises en compte.
         </li>
@@ -161,9 +158,6 @@
             date-naissance-max-age="100"
             >
         <ul class="help-block" ng-if="submitted && form.lastJobEndDate.$invalid">
-          <li ng-if="form.lastJobEndDate.$error.format">
-            Essayez au format MM/AAAA. Par exemple : 12/2015.
-          </li>
           <li ng-if="form.lastJobEndDate.$error.dateNaissanceMaxAge">
             Votre dernier contrat doit être postérieur à votre date de naissance.
           </li>

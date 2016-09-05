@@ -25,10 +25,7 @@ angular.module('ddsApp').directive('ddsDate', function() {
             element.attr('type', 'text');
 
             ctrl.$parsers.push(function(viewValue) {
-                var result = moment(viewValue, FORMATS[format].acceptedFormats, true);
-                ctrl.$setValidity('format', result.isValid());
-
-                return result;
+                return moment(viewValue, FORMATS[format].acceptedFormats, true);
             });
 
             ctrl.$parsers.push(function(momentInstance) {

@@ -3,25 +3,24 @@
     <label class="control-label col-sm-4" for="date-de-naissance">Date de naissance <span class="visually-hidden">au format jour/mois/année</span></label>
     <div class="col-sm-4">
       <input
-        type="text"
+        dds-date
+        format="JJ/MM/AAAA"
         class="form-control"
         name="dateDeNaissance"
         id="date-de-naissance"
         required
         ng-model="individu.dateDeNaissance"
-        dds-date
-        date-autocomplete
         before-today
         date-naissance-max-age="options.maxAge"
         auto-focus
-        placeholder="JJ/MM/AAAA"
         maxlength="10"
         aria-describedby="help-date-de-naissance"
+        >
       <ul class="help-block" id="help-date-de-naissance" ng-if="submitted && form.dateDeNaissance.$invalid">
         <li ng-if="form.dateDeNaissance.$error.required">
           Ce champ est obligatoire.
         </li>
-        <li ng-if="form.dateDeNaissance.$error.ddsDate">
+        <li ng-if="form.dateDeNaissance.$error.format">
           Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.
         </li>
         <li ng-if="form.dateDeNaissance.$error.dateNaissanceMaxAge">
@@ -152,17 +151,15 @@
       <label class="control-label col-sm-4" for="last-job-end-date">Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?</label>
       <div class="col-sm-4">
         <input
-            type="text"
+            dds-date
+            format="MM/AAAA"
             name="lastJobEndDate"
             id="last-job-end-date"
-            dds-date-month-year
-            date-autocomplete
             ng-model="individu.lastJobEndDate"
             date-naissance-max-age="100"
-            placeholder="MM/AAAA"
-            maxlength="7">
+            >
         <ul class="help-block" ng-if="submitted && form.lastJobEndDate.$invalid">
-          <li ng-if="form.lastJobEndDate.$error.ddsDateMonthYear">
+          <li ng-if="form.lastJobEndDate.$error.format">
             Essayez au format MM/AAAA. Par exemple : 12/2015.
           </li>
           <li ng-if="form.lastJobEndDate.$error.dateNaissanceMaxAge">

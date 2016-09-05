@@ -19,7 +19,9 @@ angular.module('ddsApp').directive('ddsDate', function() {
         restrict: 'A',
         link: function(scope, element, attributes, ctrl) {
             var format = attributes.format;
-            var maxDate = moment(attributes.max, 'DD/MM/YYYY');
+            // For some reason, double quotes appear when interpolating a moment in an angular expression. We strip them.
+            var maxDate = attributes.max && moment(attributes.max.replace(/"/g, ''));
+            var minDate = attributes.min && moment(attributes.min.replace(/"/g, ''));
             element.attr('placeholder', format);
             element.attr('maxlength', format.length);
             element.attr('type', 'text');
@@ -28,15 +30,20 @@ angular.module('ddsApp').directive('ddsDate', function() {
                 return moment(viewValue, FORMATS[format].acceptedFormats, true);
             });
 
-            ctrl.$parsers.push(function(momentInstance) {
-                ctrl.$setValidity('dateIsLaterThanMax', maxDate.diff(momentInstance, 'days') >= 0);
+            maxDate && ctrl.$parsers.push(function(momentInstance) {
+                ctrl.$setValidity('isAfterMax', maxDate.diff(momentInstance, 'days') >= 0);
                 return momentInstance;
             });
 
-            ctrl.$formatters.push(function(momentInstance) {
-                if (! momentInstance) return;
+            minDate && ctrl.$parsers.push(function(momentInstance) {
+                ctrl.$setValidity('isBeforeMin', minDate.diff(momentInstance, 'days') <= 0);
+                return momentInstance;
+            });
 
-                return momentInstance.format(FORMATS[format].outputFormat);
+            ctrl.$formatters.push(function(date) {
+                if (! date) return;
+
+                return moment(date).format(FORMATS[format].outputFormat);
             });
 
             var formatter = new Cleave(element, {

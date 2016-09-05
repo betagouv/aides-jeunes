@@ -1,16 +1,18 @@
 <form method="post" name="form" class="form-horizontal form-individu" ng-submit="submit(form)" novalidate>
   <div class="form-group" ng-class="{'has-error': submitted && form.dateDeNaissance.$invalid}">
-    <label class="control-label col-sm-4" for="date-de-naissance">Date de naissance <span class="visually-hidden">au format jour/mois/année</span></label>
+    <label class="control-label col-sm-4" for="date-de-naissance">
+      Date de naissance <span class="visually-hidden">au format jour/mois/année</span>
+    </label>
     <div class="col-sm-4">
       <input
         dds-date
         format="JJ/MM/AAAA"
         class="form-control"
+        max={{today}}
         name="dateDeNaissance"
         id="date-de-naissance"
         required
         ng-model="individu.dateDeNaissance"
-        before-today
         date-naissance-max-age="options.maxAge"
         auto-focus
         maxlength="10"
@@ -26,7 +28,7 @@
         <li ng-if="form.dateDeNaissance.$error.dateNaissanceMaxAge">
           Les personnes de plus de {{ options.maxAge }} ans ne sont pas prises en compte.
         </li>
-        <li ng-if="form.dateDeNaissance.$error.beforeToday">
+        <li ng-if="form.dateDeNaissance.$error.dateIsLaterThanMax">
           Cette personne doit être déjà née pour être prise en compte.<br>
           Pour simuler une naissance future, imaginez qu'elle a eu lieu aujourd'hui et déclarez vos revenus en conséquence.
         </li>

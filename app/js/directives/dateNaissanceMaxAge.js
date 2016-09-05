@@ -15,15 +15,3 @@ angular.module('ddsApp').directive('dateNaissanceMaxAge', function() {
         }
     };
 });
-
-angular.module('ddsApp').directive('beforeToday', function() {
-    return {
-        require: 'ngModel',
-        link: function($scope, elm, attrs, ctrl) {
-            ctrl.$parsers.push(function(momentInstance) {
-                ctrl.$setValidity('beforeToday', moment().diff(momentInstance, 'days') >= 0);
-                return momentInstance;
-            });
-        }
-    };
-});

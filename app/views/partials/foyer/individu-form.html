@@ -15,7 +15,8 @@
         date-naissance-max-age="options.maxAge"
         auto-focus
         placeholder="JJ/MM/AAAA"
-        aria-describedby="help-date-de-naissance">
+        maxlength="10"
+        aria-describedby="help-date-de-naissance"
       <ul class="help-block" id="help-date-de-naissance" ng-if="submitted && form.dateDeNaissance.$invalid">
         <li ng-if="form.dateDeNaissance.$error.required">
           Ce champ est obligatoire.
@@ -158,7 +159,8 @@
             date-autocomplete
             ng-model="individu.lastJobEndDate"
             date-naissance-max-age="100"
-            placeholder="MM/AAAA">
+            placeholder="MM/AAAA"
+            maxlength="7">
         <ul class="help-block" ng-if="submitted && form.lastJobEndDate.$invalid">
           <li ng-if="form.lastJobEndDate.$error.ddsDateMonthYear">
             Essayez au format MM/AAAA. Par exemple : 12/2015.

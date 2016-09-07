@@ -98,6 +98,10 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         return individuRole == 'demandeur';
     };
 
+    $scope.isDemandeurMineur = function() {
+        return $scope.isDemandeur() && $scope.individu.dateDeNaissance && IndividuService.age($scope.individu) < 18;
+    };
+
     $scope.captureEligibiliteAss = function() {
         /* jshint -W069 */
         return isIndividuParent && $scope.selectedStatuts['demandeur_emploi'];

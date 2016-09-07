@@ -4,7 +4,11 @@
 
     <div class="form-group">
       <div class="button-row">
-        <label ng-repeat="logementType in logementTypes">
+        <label
+          ng-repeat="logementType in logementTypes"
+          class="btn btn-default"
+          ng-class="{ active: logement.type == logementType.id }"
+          >
             <input type="radio"
               name="logementType"
               class="sr-only"
@@ -12,10 +16,8 @@
               ng-change="changeLogementType()"
               value="{{logementType.id}}"
               />
-            <div class="btn btn-default">
               {{ logementType.label | uppercaseFirst }}
               <span class="help-col">{{ logementType.hint }}</span>
-            </div>
         </label>
       </div>
     </div>

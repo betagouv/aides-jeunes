@@ -1,0 +1,19 @@
+.button-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-row label {
+    flex: auto;
+    flex-basis: 0;
+}
+
+@media (max-width: 768px) {
+    .button-row {
+        flex-direction: column;
+    }
+
+    .button-row label {
+        flex-basis: auto;
+    }
+}

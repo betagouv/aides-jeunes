@@ -89,10 +89,11 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.changeLogementType = function() {
-        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'charges', 'isChambre'].forEach(function(field) {
+        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'charges', 'isChambre', 'participationFrais'].forEach(function(field) {
             delete logement[field];
         });
         logement.loyer = 0;
+        delete $scope.demandeur.habiteChezParents;
     };
 
     $scope.updateCities = function updateCities() {

@@ -226,17 +226,12 @@ $autre-light: #a9d2d7;
 $autre-lighter: #cce4e7;
 
 
-/* Should be removed once all buttons have been converted to native html input fields. */
 .btn-default, .btn {
-  &.active {
+  &.active, &.active:focus, &.active:hover {
     background-color: $btn-success-bg;
     color: $btn-success-color;
     .help-col {
       color: #D8D8D8;
-    }
-    &:focus, &:hover {
-      background-color: $btn-success-bg;
-      color: $btn-success-color;
     }
   }
 }
@@ -258,10 +253,7 @@ $autre-lighter: #cce4e7;
       font-weight: 400;
       font-size: 21px;
     }
-
   }
-
-
 }
 
 .capture-indemnites {

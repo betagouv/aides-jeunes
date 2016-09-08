@@ -56,7 +56,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.captureHabiteChezParents = function() {
         var age = IndividuService.age($scope.demandeur);
-        return (logement.type == 'heberge') && (! $scope.demandeur.aCharge) && (age >= 18) && (age < 25);
+        return (logement.type == 'heberge') && $scope.demandeur.fiscalementIndependant && (age >= 18) && (age < 25) && (! SituationService.hasEnfant($scope.situation));
     };
 
     $scope.captureParticipationFrais = function() {

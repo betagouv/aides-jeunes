@@ -99,8 +99,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         return individuRole == 'demandeur';
     };
 
-    $scope.isDemandeurMineur = function() {
-        return $scope.isDemandeur() && $scope.individu.dateDeNaissance && IndividuService.age($scope.individu) < 18;
+    $scope.isDemandeurMineur = function(form) {
+        return $scope.isDemandeur() && form.dateDeNaissance.$valid && IndividuService.age($scope.individu) < 18 ;
     };
 
     $scope.captureEligibiliteAss = function() {

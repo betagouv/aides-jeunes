@@ -17,7 +17,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     }
 
     $scope.selectedStatuts = {};
-    $scope.situationsMaritales = _.filter(situationsFamiliales, 'isSituationCouple');
+    $scope.situationsMaritales = situationsFamiliales;
     $scope.scolariteOptions = [
         {
             id: 'inconnue',

@@ -1,5 +1,7 @@
 'use strict';
 
+var DATE_FIELDS = ['dateDeNaissance', 'dateArretDeTravail', 'dateDernierContratTravail'];
+
 angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, $uibModal, categoriesRnc, ImpactStudyService) {
     var situation;
 
@@ -56,6 +58,14 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         });
     };
 
+    function convertDatesToMoments(individu) {
+        DATE_FIELDS.forEach(function(dateField) {
+            if (individu[dateField]) {
+                individu[dateField] = moment(individu[dateField]);
+            }
+        });
+    }
+
     return {
         newSituation: function() {
             situation = $sessionStorage.situation = { individus: [], dateDeValeur: moment().format() };
@@ -71,10 +81,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 this.newSituation();
             }
 
-            situation.individus.forEach(function(individu) {
-                individu.dateDeNaissance = moment(individu.dateDeNaissance);
-                individu.dateArretDeTravail = moment(individu.dateArretDeTravail);
-            });
+            situation.individus.forEach(convertDatesToMoments);
 
             return situation;
         },
@@ -85,9 +92,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             }).then(function(result) {
                 situation = result.data;
 
-                situation.individus.forEach(function(individu) {
-                    individu.dateDeNaissance = moment(individu.dateDeNaissance);
-                });
+                situation.individus.forEach(convertDatesToMoments);
 
                 $sessionStorage.situation = situation;
 
@@ -163,8 +168,9 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
 
         createApiCompatibleIndividu: function(individu) {
             var result = _.cloneDeep(individu);
-            result.dateDeNaissance = individu.dateDeNaissance && individu.dateDeNaissance.format('YYYY-MM-DD');
-            result.dateArretDeTravail = individu.dateArretDeTravail && individu.dateArretDeTravail.format('YYYY-MM-DD');
+            DATE_FIELDS.forEach(function (dateField) {
+                result[dateField] = individu[dateField] && individu[dateField].format('YYYY-MM-DD');
+            });
 
             if (individu.dateArriveeFoyerString) {
                 var dateArrivee = moment(individu.dateArriveeFoyerString, 'L');

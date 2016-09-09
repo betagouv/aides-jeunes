@@ -45,10 +45,13 @@
             ng-model="ressource.montantAnnuel">
           <span class="input-group-addon">€</span>
         </span>
-        <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
+        <span
+          class="text-danger"
+          ng-if="form.submitted && ! isNumber(ressource.montantAnnuel) && ! form.$error.min"
+          >
           Montant invalide
         </span>
-        <span class="text-danger" ng-if="form.submitted && ressource.montantAnnuel < monthsSum">
+        <span class="text-danger" ng-if="form.submitted && form.$error.min">
           La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
         </span>
       </div>

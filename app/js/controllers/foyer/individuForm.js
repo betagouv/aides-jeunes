@@ -54,7 +54,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
 
     $scope.individu.specificSituations.forEach(function(specificSituation) {
-        $scope.selectedStatuts[specificSituation.situation] = true;
+        $scope.selectedStatuts[specificSituation] = true;
     });
 
     if (individuRole == 'conjoint') {
@@ -68,7 +68,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
             _.forEach($scope.selectedStatuts, function(selected, statut) {
                 if (selected) {
-                    $scope.individu.specificSituations.push({ situation: statut });
+                    $scope.individu.specificSituations.push(statut);
                 }
             });
 

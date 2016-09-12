@@ -1,0 +1,12 @@
+#warning-less-18 {
+    margin-left:10.5em;
+    margin-right:10.5em;
+    text-align: justify;
+}
+
+@media (max-width: 768px) {
+    #warning-less-18 {
+        margin-left:0;
+        margin-right:0;
+    }
+}

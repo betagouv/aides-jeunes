@@ -206,11 +206,11 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         },
 
         hasEnfantScolarise: function(situation) {
-            return _.find(situation.individus, { role: 'enfant', scolarite: 'college' }) || _.find(situation.individus, { role: 'enfant', scolarite: 'lycee' });
+            return _.some(situation.individus, { role: 'enfant', scolarite: 'college' }) || _.some(situation.individus, { role: 'enfant', scolarite: 'lycee' });
         },
 
         hasEnfant: function(situation) {
-            return _.find(situation.individus, { role: 'enfant' });
+            return _.some(situation.individus, { role: 'enfant' });
         },
 
         setConjoint: function(situation, conjoint) {

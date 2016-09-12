@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, ImpactStudyService) {
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, ImpactStudyService, SituationService, IndividuService) {
     var logement = $scope.logement = {
         adresse: {},
         inhabitantForThreeYearsOutOfLastFive: true
@@ -11,6 +11,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
+    $scope.demandeur = SituationService.getDemandeur($scope.situation);
 
     function cityStartsWith(prefix) {
         return logement.adresse.nomCommune && logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
@@ -53,6 +54,15 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return logement.type == 'locataire' && 'foyer' !== logement.locationType && angular.isDefined(logement.locationType);
     };
 
+    $scope.captureHabiteChezParents = function() {
+        var age = IndividuService.age($scope.demandeur);
+        return (logement.type == 'heberge') && $scope.demandeur.fiscalementIndependant && (age >= 18) && (age < 25) && (! SituationService.hasEnfant($scope.situation));
+    };
+
+    $scope.captureParticipationFrais = function() {
+        return (logement.type == 'heberge') && (! $scope.captureHabiteChezParents() || angular.isDefined($scope.demandeur.habiteChezParents));
+    };
+
     $scope.captureLoyer = function() {
         if (logement.type == 'heberge') {
             return false;
@@ -79,10 +89,11 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.changeLogementType = function() {
-        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'charges', 'isChambre'].forEach(function(field) {
+        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'charges', 'isChambre', 'participationFrais'].forEach(function(field) {
             delete logement[field];
         });
         logement.loyer = 0;
+        delete $scope.demandeur.habiteChezParents;
     };
 
     $scope.updateCities = function updateCities() {

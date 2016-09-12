@@ -34,6 +34,13 @@
     </div>
   </div>
 
+  <p class="alert alert-warning" id="warning-less-18" ng-if="isDemandeurMineur(form)">
+    <i class="fa fa-warning" aria-hidden="true"></i>
+    Les aides simulées ne peuvent normalement être attribuées qu'à des personnes majeures.<br>
+    Pour bénéficier d'aides, vous devrez démontrer aux organismes qui les distribuent que vous n'avez plus de liens avec vos parents ou tuteurs.<br>
+    Si ce n'est pas le cas, faites plutôt la simulation du point de vue d'un de vos parents ou tuteurs.
+  </p>
+
   <div class="form-group" ng-if="options.capturePrenom" ng-class="{'has-error': submitted && form.firstName.$invalid}">
     <label class="control-label col-sm-4" for="first-name">Prénom</label>
     <div class="col-sm-4">
@@ -212,6 +219,13 @@
     <question>{{ isDemandeur() ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier&nbsp;?</question>
   </yes-no-question>
 
+  <yes-no-question model="individu.fiscalementIndependant"
+    ng-if="captureDemandeurACharge()"
+    size="4"
+    >
+    <question>Remplirez-vous vous-même votre prochaine déclaration de revenus aux impôts&nbsp;?</question>
+  </yes-no-question>
+
   <div class="form-group from-group-lg" ng-if="captureScolarite(form)">
     <label class="control-label col-sm-4" for="scolarite">
       Où sera-t-il/elle scolarisé·e à la rentrée prochaine ?
@@ -227,7 +241,7 @@
   </div>
 
   <yes-no-question model="individu.aCharge"
-    ng-if="catpurePersonneACharge(form)"
+    ng-if="captureEnfantACharge(form)"
     size="4"
     >
     <question>Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?</question>

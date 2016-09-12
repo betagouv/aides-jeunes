@@ -1,12 +1,12 @@
 title: 'h1',
 
-declareSDSRadio: '[value="sansDomicile"] + .btn',
-declareLocataireRadio: '[value="locataire"] + .btn',
+declareSDSRadio: '[value="sansDomicile"] ~ span',
+declareLocataireRadio: '[value="locataire"] ~ span',
 
-declareLogementIsNotColocationRadio: '[model$="colocation"] [value="false"] + .btn',
-declareProprietaireNotInFamilyRadio: '[model$="membreFamilleProprietaire"] [value="false"] + .btn',
+declareLogementIsNotColocationRadio: '[model$="colocation"] [ng-class*="false"]',
+declareProprietaireNotInFamilyRadio: '[model$="membreFamilleProprietaire"] [ng-class*="false"]',
 declareLogementIsNotMeubleRadio: '[value="nonmeuble"]',
-declareLogementIsNotChambreRadio: '[model$="isChambre"] [value="false"] + .btn',
+declareLogementIsNotChambreRadio: '[model$="isChambre"] [ng-class*="false"]',
 loyerInput: '#loyer',
 chargesInput: '#charges',
 

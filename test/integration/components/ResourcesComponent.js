@@ -1,5 +1,5 @@
 declareRevenuActiviteLink: { a: 'Revenus d' },
-declareFirstChildHasIncomeRadio: 'yes-no-question input + .btn',
+declareFirstChildHasIncomeRadio: 'yes-no-question [ng-class*="true"]',
 hasSalaryCheckbox: 'uib-accordion label',
 firstMonthInput: '#revenusSalarie-month_1',
 secondMonthInput: '#revenusSalarie-month_2',

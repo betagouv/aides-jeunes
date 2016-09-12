@@ -1,3 +1,3 @@
 title: 'h1',
-setNoButton: '[value="false"] + .btn',
+setNoButton: '[ng-class*="false"]',
 submitButton: 'button[type="submit"]',

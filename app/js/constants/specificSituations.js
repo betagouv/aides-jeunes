@@ -20,9 +20,5 @@ angular.module('ddsCommon').constant('specificSituations', [
     {
         id: 'inapte_travail',
         label: 'Inapte au travail'
-    },
-    {
-        id: 'autre',
-        label: 'Autre'
     }
 ]);

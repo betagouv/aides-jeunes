@@ -1,7 +1,9 @@
 <fieldset class="form-group">
   <legend class="col-sm-{{ gridSize['question'] }} control-label"></legend>
   <div class="col-sm-3">
-    <label>
+    <label
+      class="btn btn-sm btn-default"
+      ng-class="{active: value == 'true'}">
       <input
         type="radio"
         name="{{ uniqueFieldName }}"
@@ -10,9 +12,11 @@
         value="true"
         ng-change="updateValue()"
         />
-      <div class="btn btn-sm btn-default">Oui</div>
+      Oui
     </label>
-    <label>
+    <label
+      class="btn btn-sm btn-default"
+      ng-class="{active: value == 'false'}">
       <input
         type="radio"
         name="{{ uniqueFieldName }}"
@@ -21,7 +25,7 @@
         value="false"
         ng-change="updateValue()"
         />
-      <div class="btn btn-sm btn-default">Non</div>
+      Non
     </label>
   </div>
   <div class="col-sm-{{ gridSize['helpText'] }}">

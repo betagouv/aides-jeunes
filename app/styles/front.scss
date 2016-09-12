@@ -226,14 +226,12 @@ $autre-light: #a9d2d7;
 $autre-lighter: #cce4e7;
 
 
-/* Should be removed once all buttons have been converted to native html input fields. */
-.btn-default {
-  &.active {
+.btn-default, .btn {
+  &.active, &.active:focus, &.active:hover {
     background-color: $btn-success-bg;
-    color: white;
-    &:focus, &:hover {
-      background-color: $btn-success-bg;
-      color: white;
+    color: $btn-success-color;
+    .help-col {
+      color: #D8D8D8;
     }
   }
 }
@@ -255,10 +253,7 @@ $autre-lighter: #cce4e7;
       font-weight: 400;
       font-size: 21px;
     }
-
   }
-
-
 }
 
 .capture-indemnites {
@@ -317,10 +312,6 @@ $autre-lighter: #cce4e7;
 
 .intro, .intro.ng-enter.ng-enter-active {
   margin-top: 0px;
-}
-
-.ressource-types-block {
-  margin-bottom: 15px;
 }
 
 @mixin panel-variant-recap($color) {
@@ -577,54 +568,4 @@ $autre-lighter: #cce4e7;
 legend {
   border-bottom: none;
   font-size: inherit;
-}
-
-input:checked + .btn, input:checked + .btn:hover, input:checked + .btn:active:hover {
-  background-color: $btn-success-bg;
-  color: $btn-success-color;
-
-  .help-col {
-    color: #D8D8D8;
-  }
-}
-
-.button-row {
-  display: flex;
-  flex-direction: row;
-
-  label {
-    flex: auto;
-    flex-basis: 0;
-
-    .btn {
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
-
-.button-grid {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -.25em;
-  margin-right: -.25em;
-
-  label {
-    width: calc(33.33% - .5em);
-    margin: .25em;
-    padding: .25em;
-    font-size: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-@media (max-width: $screen-sm-min) {
-  .button-row, .button-grid {
-    flex-direction: column;
-  }
-  .button-grid > label {
-    width: 100%;
-  }
 }

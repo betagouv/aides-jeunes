@@ -4,8 +4,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     $scope.specificSituations = specificSituations;
 
     $scope.options = {
-        captureRelationConjoint: individuRole == 'conjoint',
-        checkNationalite: individuRole == 'demandeur',
         maxAge: 130
     };
 
@@ -60,7 +58,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         $scope.selectedStatuts[specificSituation.situation] = true;
     });
 
-    if ($scope.options.captureRelationConjoint) {
+    if (individuRole == 'conjoint') {
         $scope.individu.statutMarital = 'mariage';
     }
 
@@ -95,12 +93,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
     };
 
-    $scope.isDemandeur = function() {
-        return individuRole == 'demandeur';
-    };
-
     $scope.isDemandeurMineur = function(form) {
-        return $scope.isDemandeur() && form.dateDeNaissance.$valid && IndividuService.age($scope.individu) < 18 ;
+        return individuRole == 'demandeur' && form.dateDeNaissance.$valid && IndividuService.age($scope.individu) < 18 ;
     };
 
     $scope.captureEligibiliteAss = function() {
@@ -115,7 +109,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     $scope.captureEnfantPlace = function() {
         return ! isIndividuParent && $scope.selectedStatuts.handicap;
     };
-
 
     $scope.captureEtudiantBoursier = function() {
         return $scope.selectedStatuts.etudiant;

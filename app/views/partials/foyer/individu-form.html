@@ -52,7 +52,7 @@
     </div>
   </div>
 
-  <div ng-if="options.checkNationalite" class="form-group">
+  <div ng-if="individu.role == 'demandeur'" class="form-group">
     <label class="control-label col-sm-4">Nationalité</label>
     <div class="col-sm-8">
       <div class="radio">
@@ -105,7 +105,7 @@
     </div>
   </div>
 
-  <div class="form-group" ng-if="options.captureRelationConjoint">
+  <div class="form-group" ng-if="individu.role == 'conjoint'">
     <label class="control-label col-sm-4" for="relation-conjoint">Votre relation</label>
     <div class="col-sm-4">
       <select
@@ -120,7 +120,9 @@
 
   <div class="form-group from-group-lg">
     <label class="control-label col-sm-4" id="situations-particulieres">
-      Vous êtes
+      <span ng-if="individu.role == 'demandeur'">Vous êtes</span>
+      <span ng-if="individu.role == 'conjoint'">Votre conjoint est</span>
+      <span ng-if="individu.role == 'enfant'">Il ou elle est</span>
     </label>
     <div class="col-sm-8">
       <div class="checkbox">
@@ -146,7 +148,7 @@
 
   <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
     <div class="form-group" ng-class="{'has-error': submitted && form.lastJobEndDate.$invalid}">
-      <label class="control-label col-sm-4" for="last-job-end-date">Quand s’est terminé {{ isDemandeur() ? 'votre' : 'son' }} dernier contrat de travail ?</label>
+      <label class="control-label col-sm-4" for="last-job-end-date">Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?</label>
       <div class="col-sm-4">
         <input
             type="text"
@@ -175,7 +177,7 @@
       size="4"
       >
       <question>
-        {{ isDemandeur() ? 'Avez-vous' : 'A-t-il (elle)' }}
+        {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
         travaillé au moins 5&nbsp;ans entre&nbsp;{{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et&nbsp;{{ individu.lastJobEndDate.format('MMMM YYYY') }}&nbsp;?
       </question>
       <help-block>1825&nbsp;jours (5&nbsp;fois&nbsp;365) couverts par un contrat de travail, en activité ou en congés.</help-block>
@@ -185,7 +187,7 @@
   <div class="form-group from-group-lg" ng-if="captureTauxIncapacite()">
     <div class="col-sm-4 control-label">
       <label for="eligibiliteAss" id="tauxIncapaciteQuestion">
-        {{ isDemandeur() ? 'Votre' : 'Son' }} taux d'incapacité
+        {{ individu.role == 'demandeur' ? 'Votre' : 'Son' }} taux d'incapacité
       </label>
       <div class="help-block">
         Évalué par <a target="_blank" rel="noopener" href="http://informations.handicap.fr/carte-france-mdph.php">votre <abbr title="Maison départementale des personnes handicapées">MDPH</abbr></a>.
@@ -236,7 +238,7 @@
     ng-if="captureEtudiantBoursier()"
     size="4"
     >
-    <question>{{ isDemandeur() ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier&nbsp;?</question>
+    <question>{{ individu.role == 'demandeur' ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier&nbsp;?</question>
   </yes-no-question>
 
   <yes-no-question model="individu.fiscalementIndependant"

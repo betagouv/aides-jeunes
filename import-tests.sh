@@ -1,7 +1,7 @@
 # Replaces the local database by the production one
 
-USER=mes-aides-master
-DATABASE=mes-aides-master
+USER=root
+DATABASE=dds
 
 NOW=$(date +"%F-%H-%M-%S")
 

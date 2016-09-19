@@ -55,7 +55,7 @@ Usage
 First, start a Mongo server:
 
 ```sh
-mongod --dbpath db
+npm run db &
 ```
 
 Then, start the server:
@@ -88,7 +88,7 @@ Integration tests are executed with [Watai](https://github.com/MattiSG/Watai) th
 Business tests are executed in a more convoluted way.
 
 We use [Ludwig](https://github.com/sgmap/ludwig-ui) to help users create business tests. These tests have to be fetched and loaded in your local database so you can execute them on your development machine.
-To do so, use the `import-tests.sh` script at the root of the repository. You will need to have a running Mongo database, and SSH access to the production server.
+To do so, run `npm run db-update` script at the root of the repository. You will need a running Mongo database (`npm run db`) and SSH access to the production server.
 
 
 Déploiement

@@ -69,7 +69,10 @@
     "start": "NODE_ENV=production node server.js",
     "dev": "grunt serve",
     "test": "jshint . && grunt",
-    "test-integration": "test/integration/run-integration-tests.sh"
+    "test-integration": "test/integration/run-integration-tests.sh",
+    "predb": "mkdir -p db",
+    "db": "mongod --dbpath db",
+    "db-update": "./import-tests.sh"
   },
   "license": "AGPL-3.0"
 }

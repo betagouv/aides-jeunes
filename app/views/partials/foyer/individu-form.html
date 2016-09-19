@@ -183,24 +183,44 @@
   </div>
 
   <div class="form-group from-group-lg" ng-if="captureTauxIncapacite()">
-    <label class="control-label col-sm-4" for="eligibiliteAss">
-      Quel est {{ isDemandeur() ? 'votre' : 'son' }} taux d'incapacité ?
+    <div class="col-sm-4 control-label">
+      <label for="eligibiliteAss" id="tauxIncapaciteQuestion">
+        {{ isDemandeur() ? 'Votre' : 'Son' }} taux d'incapacité
+      </label>
       <div class="help-block">
-        Évalué par <a target="_blank" rel="noopener" href="http://informations.handicap.fr/carte-france-mdph.php">votre MDPH</a>.
+        Évalué par <a target="_blank" rel="noopener" href="http://informations.handicap.fr/carte-france-mdph.php">votre <abbr title="Maison départementale des personnes handicapées">MDPH</abbr></a>.
       </div>
-    </label>
-    <div class="col-sm-8">
-      <label class="radio-inline">
-        <input type="radio" name="tauxIncapacite" value="moins50" ng-model="individu.tauxIncapacite">
-        Moins de 50%
+    </div>
+    <div class="button-row">
+      <label>
+        <input type="radio"
+          name="tauxIncapacite"
+          class="sr-only"
+          aria-describedby="tauxIncapaciteQuestion"
+          value="moins50"
+          ng-model="individu.tauxIncapacite"
+          />
+        <div class="btn btn-sm btn-default">Moins de 50%</div>
       </label>
-      <label class="radio-inline">
-        <input type="radio" name="tauxIncapacite" value="moins80" ng-model="individu.tauxIncapacite">
-        Entre 50% et 80%
+      <label>
+        <input type="radio"
+          name="tauxIncapacite"
+          class="sr-only"
+          aria-describedby="tauxIncapaciteQuestion"
+          value="moins80"
+          ng-model="individu.tauxIncapacite"
+          />
+        <div class="btn btn-sm btn-default">Entre 50% et 80%</div>
       </label>
-      <label class="radio-inline">
-        <input type="radio" name="tauxIncapacite" value="plus80" ng-model="individu.tauxIncapacite">
-        Plus de 80%
+      <label>
+        <input type="radio"
+          name="tauxIncapacite"
+          class="sr-only"
+          aria-describedby="tauxIncapaciteQuestion"
+          value="plus80"
+          ng-model="individu.tauxIncapacite"
+          />
+        <div class="btn btn-sm btn-default">Plus de 80%</div>
       </label>
     </div>
   </div>

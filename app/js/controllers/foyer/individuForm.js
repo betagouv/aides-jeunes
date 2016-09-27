@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
-    $scope.specificSituations = specificSituations;
+    $scope.situationsFamiliales = situationsFamiliales;
     $scope.today = moment();
     $scope.maxAgeYears = 130;
     $scope.minBirthDate = moment().subtract($scope.maxAgeYears, 'years');
@@ -17,7 +17,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     }
 
     $scope.selectedStatuts = {};
-    $scope.situationsMaritales = situationsFamiliales;
     $scope.scolariteOptions = [
         {
             id: 'inconnue',

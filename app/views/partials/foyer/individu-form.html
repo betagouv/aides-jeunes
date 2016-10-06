@@ -148,7 +148,7 @@
   </div>
 
   <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
-    <div class="form-group" ng-class="{'has-error': submitted && form.lastJobEndDate.$invalid}">
+    <div class="form-group" ng-class="{'has-error': submitted && form.dateDernierContratTravail.$invalid}">
       <label class="control-label col-sm-4" for="last-job-end-date">
         Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?
       </label>
@@ -157,13 +157,13 @@
             dds-date
             format="MM/AAAA"
             min="{{ individu.dateDeNaissance }}"
-            name="lastJobEndDate"
+            name="dateDernierContratTravail"
             id="last-job-end-date"
-            ng-model="individu.lastJobEndDate"
+            ng-model="individu.dateDernierContratTravail"
             >
 
-        <ul class="help-block" ng-if="submitted && form.lastJobEndDate.$invalid">
-          <li ng-if="form.lastJobEndDate.$error.isBeforeMin">
+        <ul class="help-block" ng-if="submitted && form.dateDernierContratTravail.$invalid">
+          <li ng-if="form.dateDernierContratTravail.$error.isBeforeMin">
             Votre dernier contrat doit être postérieur à votre date de naissance.
           </li>
         </ul>
@@ -173,15 +173,15 @@
     </div>
 
     <yes-no-question model="individu.assPreconditionRemplie"
-      ng-if="individu.lastJobEndDate.year()"
+      ng-if="individu.dateDernierContratTravail.year()"
       size="4"
       >
-      <question ng-non-bindable><!-- We don't interpolate the following text, so that it can be re-interpolated several times if lastJobEndDate changes-->
+      <question ng-non-bindable><!-- We don't interpolate the following text, so that it can be re-interpolated several times if dateDernierContratTravail changes-->
         {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
         travaillé au moins 5&nbsp;ans entre&nbsp;
-        {{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }}
+        {{ individu.dateDernierContratTravail.clone().subtract(10, 'years').format('MMMM YYYY') }}
         et&nbsp;
-        {{ individu.lastJobEndDate.format('MMMM YYYY') }}
+        {{ individu.dateDernierContratTravail.format('MMMM YYYY') }}
         &nbsp;?
       </question>
       <help-block>1825&nbsp;jours (5&nbsp;fois&nbsp;365) couverts par un contrat de travail, en activité ou en congés.</help-block>

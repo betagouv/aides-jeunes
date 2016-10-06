@@ -18,6 +18,9 @@
         aria-describedby="help-date-de-naissance"
         >
       <ul class="help-block" id="help-date-de-naissance" ng-if="submitted && form.dateDeNaissance.$invalid">
+        <li ng-show="form.dateDeNaissance.$error.format">
+        Veuillez utiliser le format JJ/MM/AAAA. Par exemple: 15/06/1981.
+        </li>
         <li ng-if="form.dateDeNaissance.$error.required">
           Ce champ est obligatoire.
         </li>

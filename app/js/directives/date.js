@@ -27,24 +27,22 @@ angular.module('ddsApp').directive('ddsDate', function() {
             element.attr('type', 'text');
 
             ctrl.$parsers.push(function(viewValue) {
-                return moment(viewValue, FORMATS[format].acceptedFormats, true);
-            });
-
-            maxDate && ctrl.$parsers.push(function(momentInstance) {
-                ctrl.$setValidity('isAfterMax', maxDate.diff(momentInstance, 'days') >= 0);
-                return momentInstance;
-            });
-
-            minDate && ctrl.$parsers.push(function(momentInstance) {
-                ctrl.$setValidity('isBeforeMin', minDate.diff(momentInstance, 'days') <= 0);
-                return momentInstance;
+                return viewValue && moment(viewValue, FORMATS[format].acceptedFormats, true);
             });
 
             ctrl.$formatters.push(function(date) {
-                if (! date) return;
-
-                return moment(date).format(FORMATS[format].outputFormat);
+                return date && moment(date).format(FORMATS[format].outputFormat);
             });
+
+            ctrl.$validators.format = function(modelValue) {
+                return ! modelValue || modelValue.isValid();
+            };
+            ctrl.$validators.isAfterMax = function(modelValue) {
+                return ! maxDate || ! modelValue || ! modelValue.isValid() || maxDate.diff(modelValue, 'days') >= 0;
+            };
+            ctrl.$validators.isBeforeMin = function(modelValue) {
+                return ! minDate || ! modelValue || ! modelValue.isValid() || minDate.diff(modelValue, 'days') <= 0;
+            };
 
             var formatter = new Cleave(element, {
                 date: true,

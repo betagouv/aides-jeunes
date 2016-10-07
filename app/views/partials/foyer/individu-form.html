@@ -163,6 +163,9 @@
             >
 
         <ul class="help-block" ng-if="submitted && form.dateDernierContratTravail.$invalid">
+          <li ng-show="form.dateDernierContratTravail.$error.format">
+            Veuillez utiliser le format MM/AAAA. Par exemple: 04/2016.
+          </li>
           <li ng-if="form.dateDernierContratTravail.$error.isBeforeMin">
             Votre dernier contrat doit être postérieur à votre date de naissance.
           </li>

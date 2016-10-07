@@ -19,7 +19,7 @@
         >
       <ul class="help-block" id="help-date-de-naissance" ng-if="submitted && form.dateDeNaissance.$invalid">
         <li ng-show="form.dateDeNaissance.$error.format">
-        Veuillez utiliser le format JJ/MM/AAAA. Par exemple: 15/06/1981.
+          Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
         </li>
         <li ng-if="form.dateDeNaissance.$error.required">
           Ce champ est obligatoire.
@@ -163,6 +163,9 @@
             >
 
         <ul class="help-block" ng-if="submitted && form.dateDernierContratTravail.$invalid">
+          <li ng-show="form.dateDernierContratTravail.$error.format">
+            Veuillez utiliser le format MM/AAAA. Par exemple&nbsp;: 04/2016.
+          </li>
           <li ng-if="form.dateDernierContratTravail.$error.isBeforeMin">
             Il semblerait que votre contrat de travail se soit arrêté avant votre naissance.
           </li>

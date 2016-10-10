@@ -11,7 +11,7 @@
     "morgan": "~1.5.0",
     "prerender-node": "^1.1.1",
     "serve-favicon": "~2.2.0",
-    "sgmap-mes-aides-api": "sgmap/mes-aides-api#v3.1.0"
+    "sgmap-mes-aides-api": "sgmap/mes-aides-api#ijss-longue-duree"
   },
   "repository": {
     "type": "git",
@@ -51,7 +51,7 @@
     "karma-jasmine": "~0.3.5",
     "karma-ng-html2js-preprocessor": "~0.1.0",
     "karma-ng-scenario": "~0.1.0",
-    "karma-phantomjs-launcher": "~0.1.4",
+    "karma-phantomjs-launcher": "~1.0.2",
     "karma-requirejs": "~0.2.1",
     "karma-script-launcher": "~0.1.0",
     "load-grunt-tasks": "~3.1.0",

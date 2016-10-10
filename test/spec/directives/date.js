@@ -10,7 +10,7 @@ describe('directive dds-date', function() {
     $scope = $rootScope;
     var element = angular.element(
       '<form name="form">' +
-      '<input ng-model="model.date" name="date" dds-date>' +
+      '<input ng-model="model.date" name="date" format="JJ/MM/AAAA" dds-date>' +
       '</form>'
     );
     $scope.model = { date: null };

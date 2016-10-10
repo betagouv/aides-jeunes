@@ -28,7 +28,8 @@ module.exports = function(config) {
       'app/js/embed.js',    // depth-first glob interpretation of karma test runner means we need a forward declaration of the module
       'app/js/**/*.js',
       'test/spec/**/*.js',
-      'app/views/**/*.html'
+      'app/views/**/*.html',
+      'node_modules/cleave.js/dist/cleave.js',
     ],
 
     // list of files / patterns to exclude

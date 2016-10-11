@@ -141,8 +141,7 @@ Pousser sur `sgmap/mes-aides-ui#master` la version du code à déployer.
 
 ### OpenFisca
 
-Commiter et pousser l'état des différents sous-modules dans `sgmap/openfisca`.
-
+Editer le fichier `openfisca/requirements.txt` en y indiquant le version d'openfisca que vous souhaitez utiliser.
 
 
 Déploiement

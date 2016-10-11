@@ -1,2 +1,2 @@
 testsCount: 'h2',
-toggleFirstTestLink: '.panel h4',
+toggleFirstTestLink: '.panel-title a',

@@ -74,7 +74,12 @@ First, start a Mongo server:
 npm run db &
 ```
 
-Then, start the server:
+Then, start the Openfisca server:
+```sh
+paster serve openfisca/api_config.ini
+```
+
+Finally, start the server:
 
 ```sh
 npm start

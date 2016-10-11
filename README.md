@@ -148,6 +148,8 @@ Pousser sur `sgmap/mes-aides-ui#master` la version du code à déployer.
 
 Éditer le fichier `openfisca/requirements.txt` en y indiquant la version d'Openfisca que vous souhaitez utiliser.
 
+Ce fichier est au format [`requirements.txt`](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file) de `pip`. Généralement, vous le mettrez à jour pour faire pointer l'un des modules Openfisca vers une branche de développement en attendant la publication de ce module sur PyPI.
+
 
 Déploiement
 -----------

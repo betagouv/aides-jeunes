@@ -146,7 +146,7 @@ Pousser sur `sgmap/mes-aides-ui#master` la version du code à déployer.
 
 ### OpenFisca
 
-Editer le fichier `openfisca/requirements.txt` en y indiquant le version d'openfisca que vous souhaitez utiliser.
+Éditer le fichier `openfisca/requirements.txt` en y indiquant la version d'Openfisca que vous souhaitez utiliser.
 
 
 Déploiement

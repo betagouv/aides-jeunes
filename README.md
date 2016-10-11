@@ -54,7 +54,7 @@ Openfisca
 
 ```sh
 cd mes-aides-ui
-pip install -r openfisca/requirements.txt
+pip install --user --upgrade -r openfisca/requirements.txt
 ```
 
 ### Development mode

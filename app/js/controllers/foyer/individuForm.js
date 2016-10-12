@@ -116,7 +116,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
     $scope.captureDemandeurACharge = function() {
         var age = IndividuService.age($scope.individu);
-        return $scope.isDemandeur() && (age >= 18) && (age < 25);
+        return individuRole == 'demandeur' && (age >= 18) && (age < 25);
     };
 
     $scope.captureEnfantACharge = function(form) {

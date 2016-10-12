@@ -54,7 +54,7 @@ Openfisca
 
 ```sh
 cd mes-aides-ui
-pip install --user --upgrade -r openfisca/requirements.txt
+npm run install-openfisca # ou pip install --upgrade -r openfisca/requirements.txt si vous utilisez un environnement virtuel
 ```
 
 ### Development mode
@@ -76,7 +76,7 @@ npm run db &
 
 Then, start the Openfisca server:
 ```sh
-paster serve openfisca/api_config.ini
+npm run openfisca
 ```
 
 Finally, start the server:

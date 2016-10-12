@@ -72,7 +72,9 @@
     "test-integration": "test/integration/run-integration-tests.sh",
     "predb": "mkdir -p db",
     "db": "mongod --dbpath db",
-    "db-update": "./import-tests.sh"
+    "db-update": "./import-tests.sh",
+    "install-openfisca": "pip install --user --upgrade -r openfisca/requirements.txt",
+    "openfisca":"paster serve openfisca/api_config.ini"
   },
   "license": "AGPL-3.0"
 }

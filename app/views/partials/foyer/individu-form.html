@@ -194,7 +194,10 @@
       </div>
     </div>
     <div class="button-row">
-      <label>
+      <label
+        class="btn btn-sm btn-default"
+        ng-class="{ 'active': individu.tauxIncapacite == 'moins50' }"
+        >
         <input type="radio"
           name="tauxIncapacite"
           class="sr-only"
@@ -202,9 +205,12 @@
           value="moins50"
           ng-model="individu.tauxIncapacite"
           />
-        <div class="btn btn-sm btn-default">Moins de 50%</div>
+        Moins de 50%
       </label>
-      <label>
+      <label
+        class="btn btn-sm btn-default"
+        ng-class="{ 'active': individu.tauxIncapacite == 'moins80' }"
+        >
         <input type="radio"
           name="tauxIncapacite"
           class="sr-only"
@@ -212,9 +218,12 @@
           value="moins80"
           ng-model="individu.tauxIncapacite"
           />
-        <div class="btn btn-sm btn-default">Entre 50% et 80%</div>
+        Entre 50% et 80%
       </label>
-      <label>
+      <label
+        class="btn btn-sm btn-default"
+        ng-class="{ 'active': individu.tauxIncapacite == 'plus80' }"
+        >
         <input type="radio"
           name="tauxIncapacite"
           class="sr-only"
@@ -222,7 +231,7 @@
           value="plus80"
           ng-model="individu.tauxIncapacite"
           />
-        <div class="btn btn-sm btn-default">Plus de 80%</div>
+        Plus de 80%
       </label>
     </div>
   </div>

@@ -127,20 +127,20 @@
     </label>
     <div class="col-sm-8">
       <div class="checkbox">
-        <label for="individu-enceinte">
-          <input id="individu-enceinte" type="checkbox" ng-model="individu.enceinte">
+        <label>
+          <input type="checkbox" ng-model="individu.enceinte">
           Enceinte
         </label>
       </div>
       <div class="checkbox" ng-if="captureGardeAlternee">
-        <label for="individu-garde-alternee">
-          <input id="individu-garde-alternee" type="checkbox" ng-model="individu.gardeAlternee">
+        <label>
+          <input type="checkbox" ng-model="individu.gardeAlternee">
           En garde alternée
         </label>
       </div>
       <div class="checkbox" ng-repeat="statut in specificSituations">
-        <label for="status-specifiques{{ statut.id }}">
-          <input id="status-specifiques{{ statut.id }}" type="checkbox" ng-model="selectedStatuts[statut.id]">
+        <label>
+          <input type="checkbox" ng-model="selectedStatuts[statut.id]">
           {{ statut.label }}
         </label>
       </div>

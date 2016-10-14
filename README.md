@@ -1,8 +1,6 @@
 ## Cette documentation est technique. Pour plus d'informations sur [Mes Aides](https://mes-aides.gouv.fr), regardez notre [wiki](https://github.com/sgmap/mes-aides-ui/wiki).
 
-The user interface (and main server) for [mes-aides](https://mes-aides.gouv.fr), a French benefits simulation application for citizens.
-
-> L'interface utilisateur (et le serveur principal) de [mes-aides](https://mes-aides.gouv.fr), un estimateur des prestations sociales françaises pour les particuliers.
+L'interface utilisateur (et le serveur principal) de [mes-aides](https://mes-aides.gouv.fr), un estimateur des prestations sociales françaises pour les particuliers. Il est basé sur simulateur socio-fiscal libre [Openfisca](https://www.openfisca.fr/).
 
 
 Installing
@@ -22,9 +20,11 @@ sudo apt-get install mongodb
 
 ### For all platforms
 
-The runtime is Node 0.10.
+The runtime is Node 0.10 for the web application, and Python 2.7 for Openfisca.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
+
+You will need [`pip`](https://pip.pypa.io/) to install Openfisca.
 
 
 ### In production

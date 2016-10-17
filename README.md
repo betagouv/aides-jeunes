@@ -1,8 +1,6 @@
 ## Cette documentation est technique. Pour plus d'informations sur [Mes Aides](https://mes-aides.gouv.fr), regardez notre [wiki](https://github.com/sgmap/mes-aides-ui/wiki).
 
-The user interface (and main server) for [mes-aides](https://mes-aides.gouv.fr), a French benefits simulation application for citizens.
-
-> L'interface utilisateur (et le serveur principal) de [mes-aides](https://mes-aides.gouv.fr), un estimateur des prestations sociales françaises pour les particuliers.
+L'interface utilisateur (et le serveur principal) de [mes-aides](https://mes-aides.gouv.fr), un estimateur des prestations sociales françaises pour les particuliers. Il est basé sur simulateur socio-fiscal libre [Openfisca](https://www.openfisca.fr/).
 
 
 Installing
@@ -22,9 +20,11 @@ sudo apt-get install mongodb
 
 ### For all platforms
 
-The runtime is Node 0.10.
+The runtime is Node 0.10 for the web application, and Python 2.7 for Openfisca.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
+
+You will need [`pip`](https://pip.pypa.io/) to install Openfisca.
 
 
 ### In production
@@ -49,6 +49,22 @@ npm install
 If you need to add features to the API, the best is to [`npm link`](https://docs.npmjs.com/cli/link) `sgmap/mes-aides-api` into `mes-aides-ui`, to avoid depending on the published version.
 
 
+Openfisca
+---------
+
+```sh
+cd mes-aides-ui
+npm run install-openfisca # ou pip install --upgrade -r openfisca/requirements.txt si vous utilisez un environnement virtuel
+```
+
+### Development mode
+
+If you are working on `openfisca-france` and want to use your local version:
+```
+cd (...)/openfisca-france
+pip install -e .
+```
+
 Usage
 -----
 
@@ -58,7 +74,12 @@ First, start a Mongo server:
 npm run db &
 ```
 
-Then, start the server:
+Then, start the Openfisca server:
+```sh
+npm run openfisca
+```
+
+Finally, start the server:
 
 ```sh
 npm start
@@ -125,8 +146,9 @@ Pousser sur `sgmap/mes-aides-ui#master` la version du code à déployer.
 
 ### OpenFisca
 
-Commiter et pousser l'état des différents sous-modules dans `sgmap/openfisca`.
+Éditer le fichier `openfisca/requirements.txt` en y indiquant la version d'Openfisca que vous souhaitez utiliser.
 
+Ce fichier est au format [`requirements.txt`](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file) de `pip`. Généralement, vous le mettrez à jour pour faire pointer l'un des modules Openfisca vers une branche de développement en attendant la publication de ce module sur PyPI.
 
 
 Déploiement

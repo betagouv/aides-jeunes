@@ -1,32 +1,33 @@
 <form method="post" name="form" class="form-horizontal form-individu" ng-submit="submit(form)" novalidate>
   <div class="form-group" ng-class="{'has-error': submitted && form.dateDeNaissance.$invalid}">
-    <label class="control-label col-sm-4" for="date-de-naissance">Date de naissance <span class="visually-hidden">au format jour/mois/année</span></label>
+    <label class="control-label col-sm-4" for="date-de-naissance">
+      Date de naissance <span class="visually-hidden">au format jour/mois/année</span>
+    </label>
     <div class="col-sm-4">
       <input
-        type="text"
+        dds-date
+        format="JJ/MM/AAAA"
         class="form-control"
+        max="{{ today }}"
+        min="{{ minBirthDate }}"
         name="dateDeNaissance"
         id="date-de-naissance"
         required
         ng-model="individu.dateDeNaissance"
-        dds-date
-        date-autocomplete
-        before-today
-        date-naissance-max-age="options.maxAge"
         auto-focus
-        placeholder="JJ/MM/AAAA"
-        aria-describedby="help-date-de-naissance">
+        aria-describedby="help-date-de-naissance"
+        >
       <ul class="help-block" id="help-date-de-naissance" ng-if="submitted && form.dateDeNaissance.$invalid">
+        <li ng-show="form.dateDeNaissance.$error.format">
+          Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
+        </li>
         <li ng-if="form.dateDeNaissance.$error.required">
           Ce champ est obligatoire.
         </li>
-        <li ng-if="form.dateDeNaissance.$error.ddsDate">
-          Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 14/09/1989.
+        <li ng-if="form.dateDeNaissance.$error.isBeforeMin">
+          Les personnes de plus de {{ maxAgeYears }} ans ne sont pas prises en compte.
         </li>
-        <li ng-if="form.dateDeNaissance.$error.dateNaissanceMaxAge">
-          Les personnes de plus de {{ options.maxAge }} ans ne sont pas prises en compte.
-        </li>
-        <li ng-if="form.dateDeNaissance.$error.beforeToday">
+        <li ng-if="form.dateDeNaissance.$error.isAfterMax">
           Cette personne doit être déjà née pour être prise en compte.<br>
           Pour simuler une naissance future, imaginez qu'elle a eu lieu aujourd'hui et déclarez vos revenus en conséquence.
         </li>
@@ -41,7 +42,7 @@
     Si ce n'est pas le cas, faites plutôt la simulation du point de vue d'un de vos parents ou tuteurs.
   </p>
 
-  <div class="form-group" ng-if="options.capturePrenom" ng-class="{'has-error': submitted && form.firstName.$invalid}">
+  <div class="form-group" ng-if="capturePrenom" ng-class="{'has-error': submitted && form.firstName.$invalid}">
     <label class="control-label col-sm-4" for="first-name">Prénom</label>
     <div class="col-sm-4">
       <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="individu.firstName" aria-describedby="help-first-name-2">
@@ -126,20 +127,20 @@
     </label>
     <div class="col-sm-8">
       <div class="checkbox">
-        <label for="individu-enceinte">
-          <input id="individu-enceinte" type="checkbox" ng-model="individu.enceinte">
+        <label>
+          <input type="checkbox" ng-model="individu.enceinte">
           Enceinte
         </label>
       </div>
-      <div class="checkbox" ng-if="options.captureGardeAlternee">
-        <label for="individu-garde-alternee">
-          <input id="individu-garde-alternee" type="checkbox" ng-model="individu.gardeAlternee">
+      <div class="checkbox" ng-if="captureGardeAlternee">
+        <label>
+          <input type="checkbox" ng-model="individu.gardeAlternee">
           En garde alternée
         </label>
       </div>
       <div class="checkbox" ng-repeat="statut in specificSituations">
-        <label for="status-specifiques{{ statut.id }}">
-          <input id="status-specifiques{{ statut.id }}" type="checkbox" ng-model="selectedStatuts[statut.id]">
+        <label>
+          <input type="checkbox" ng-model="selectedStatuts[statut.id]">
           {{ statut.label }}
         </label>
       </div>
@@ -147,24 +148,26 @@
   </div>
 
   <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
-    <div class="form-group" ng-class="{'has-error': submitted && form.lastJobEndDate.$invalid}">
-      <label class="control-label col-sm-4" for="last-job-end-date">Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?</label>
+    <div class="form-group" ng-class="{'has-error': submitted && form.dateDernierContratTravail.$invalid}">
+      <label class="control-label col-sm-4" for="last-job-end-date">
+        Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?
+      </label>
       <div class="col-sm-4">
         <input
-            type="text"
-            name="lastJobEndDate"
+            dds-date
+            format="MM/AAAA"
+            min="{{ individu.dateDeNaissance }}"
+            name="dateDernierContratTravail"
             id="last-job-end-date"
-            dds-date-month-year
-            date-autocomplete
-            ng-model="individu.lastJobEndDate"
-            date-naissance-max-age="100"
-            placeholder="MM/AAAA">
-        <ul class="help-block" ng-if="submitted && form.lastJobEndDate.$invalid">
-          <li ng-if="form.lastJobEndDate.$error.ddsDateMonthYear">
-            Essayez au format MM/AAAA. Par exemple : 12/2015.
+            ng-model="individu.dateDernierContratTravail"
+            >
+
+        <ul class="help-block" ng-if="submitted && form.dateDernierContratTravail.$invalid">
+          <li ng-show="form.dateDernierContratTravail.$error.format">
+            Veuillez utiliser le format MM/AAAA. Par exemple&nbsp;: 04/2016.
           </li>
-          <li ng-if="form.lastJobEndDate.$error.dateNaissanceMaxAge">
-            Votre dernier contrat doit être postérieur à votre date de naissance.
+          <li ng-if="form.dateDernierContratTravail.$error.isBeforeMin">
+            Il semblerait que votre contrat de travail se soit arrêté avant votre naissance.
           </li>
         </ul>
       </div>
@@ -173,12 +176,13 @@
     </div>
 
     <yes-no-question model="individu.assPreconditionRemplie"
-      ng-if="individu.lastJobEndDate.year()"
+      ng-if="individu.dateDernierContratTravail.year()"
       size="4"
       >
-      <question>
+      <question ng-non-bindable><!-- We don't interpolate the following text, so that it can be re-interpolated several times if dateDernierContratTravail changes-->
         {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
-        travaillé au moins 5&nbsp;ans entre&nbsp;{{ individu.lastJobEndDate.clone().subtract(10, 'years').format('MMMM YYYY') }} et&nbsp;{{ individu.lastJobEndDate.format('MMMM YYYY') }}&nbsp;?
+        travaillé au moins 5&nbsp;ans entre&nbsp;{{ individu.dateDernierContratTravail.clone().subtract(10, 'years').format('MMMM YYYY') }}
+        et&nbsp;{{ individu.dateDernierContratTravail.format('MMMM YYYY') }}&nbsp;?
       </question>
       <help-block>1825&nbsp;jours (5&nbsp;fois&nbsp;365) couverts par un contrat de travail, en activité ou en congés.</help-block>
     </yes-no-question>
@@ -291,7 +295,7 @@
     </button>
   </div>
 
-  <button type="button" class="btn btn-default" ng-click="cancel()" ng-if="options.displayCancelButton">Annuler</button>
+  <button type="button" class="btn btn-default" ng-click="cancel()" ng-if="displayCancelButton">Annuler</button>
 
   <div class="clearfix"></div>
 </form>

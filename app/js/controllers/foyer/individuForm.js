@@ -2,15 +2,14 @@
 
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
     $scope.specificSituations = specificSituations;
-
-    $scope.options = {
-        maxAge: 130
-    };
+    $scope.today = moment();
+    $scope.maxAgeYears = 130;
+    $scope.minBirthDate = moment().subtract($scope.maxAgeYears, 'years');
 
     if (individuRole == 'enfant') {
-        $scope.options.displayCancelButton = true;
-        $scope.options.captureGardeAlternee = true;
-        $scope.options.capturePrenom = true;
+        $scope.displayCancelButton = true;
+        $scope.captureGardeAlternee = true;
+        $scope.capturePrenom = true;
 
         $scope.specificSituations = _.filter($scope.specificSituations, function(statut) {
           return (statut.id !== 'retraite') && (statut.id !== 'perteAutonomie');

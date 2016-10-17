@@ -45,6 +45,11 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
             scope.$watch('ressource.montantsMensuels', checkSumConsistency, true);
             scope.$watch('ressource.montantAnnuel', checkSumConsistency);
 
+            scope.shouldAskDateArretDeTravail = function() {
+                // If there is no IJSS the first month, we know the arret de travail is recent and don't need to capture the date.
+                return ['indJourMaladie', 'indJourMaladieProf', 'indJourAccidentDuTravail'].indexOf(scope.ressourceType.id) >= 0 && scope.ressource.montantsMensuels[0];
+            };
+
             ngModel.$render = function() {
                 scope.ressource = ngModel.$viewValue;
             };

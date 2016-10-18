@@ -8,7 +8,8 @@ cd /var/www/dds
 
 # Update mes-aides
 git fetch origin
-git rebase origin/master
+git checkout --force --detach origin/master
+git clean --force
 npm install
 grunt build
 

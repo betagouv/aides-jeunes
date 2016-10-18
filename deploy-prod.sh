@@ -20,7 +20,7 @@ npm run install-openfisca
 cat openfisca/api_config.ini | sed "s/port = 2000/port = $OPENFISCA_PORT"/ > ~/production.ini
 
 # Restart mes-aides
-sudo restart dds
+sudo start dds || sudo restart dds
 
 # Restart openfisca
 sudo start openfisca || sudo restart openfisca

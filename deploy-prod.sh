@@ -13,7 +13,7 @@ git fetch origin
 git checkout --force --detach origin/master
 git clean --force
 npm install
-grunt build
+npm run prestart
 
 # Update openfisca
 npm run install-openfisca

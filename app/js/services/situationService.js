@@ -141,13 +141,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 demandeur.statutMarital = demandeur.situationFamiliale;
             }
 
-            if (situation.logement.dateArriveeString) {
-                var dateArrivee = moment(situation.logement.dateArriveeString, 'L');
-                if (dateArrivee.isValid()) {
-                    situation.logement.dateArrivee = dateArrivee.format('YYYY-MM-DD');
-                }
-            }
-
             if (situation.patrimoine) {
                 flattenPatrimoine(situation.patrimoine); // FIXME Faire ça dans le controller du patrimoine
             }
@@ -156,8 +149,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 individus: individus,
                 logement: situation.logement,
                 patrimoine: situation.patrimoine,
-                phoneNumber: situation.phoneNumber,
-                email: situation.email,
                 rfr: situation.rfr,
                 ressourcesYearMoins2Captured: this.ressourcesYearMoins2Captured(situation)
             };
@@ -171,22 +162,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             DATE_FIELDS.forEach(function (dateField) {
                 result[dateField] = individu[dateField] && individu[dateField].format('YYYY-MM-DD');
             });
-
-            if (individu.dateArriveeFoyerString) {
-                var dateArrivee = moment(individu.dateArriveeFoyerString, 'L');
-                if (dateArrivee.isValid()) {
-                    result.dateArriveeFoyer = dateArrivee.format('YYYY-MM-DD');
-                }
-            }
-
-            if (individu.dateSituationFamiliale) {
-                var dateSituationFamiliale = moment(individu.dateSituationFamiliale, 'L');
-                if (dateSituationFamiliale.isValid()) {
-                    result.dateSituationFamiliale = dateSituationFamiliale.format('YYYY-MM-DD');
-                } else {
-                    delete result.dateSituationFamiliale;
-                }
-            }
 
             return result;
         },

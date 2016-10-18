@@ -56,7 +56,7 @@ describe('IndividuService', function() {
 
         it('Should return single situation with no comma', function() {
             // when
-            var result = service.formatStatutsSpecifiques({ specificSituations: [{ situation: 'retraite' }] });
+            var result = service.formatStatutsSpecifiques({ specificSituations: ['retraite'] });
 
             // then
             expect(result).toBe('Retraité');
@@ -64,7 +64,7 @@ describe('IndividuService', function() {
 
         it('Should return comma-separated statuts when individu has several statuts specifiques', function() {
             // when
-            var result = service.formatStatutsSpecifiques({ specificSituations: [{ situation: 'retraite' }, { situation: 'etudiant' }] });
+            var result = service.formatStatutsSpecifiques({ specificSituations: ['retraite' , 'etudiant'] });
 
             // then
             expect(result).toBe('Étudiant, retraité');

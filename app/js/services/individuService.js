@@ -47,7 +47,7 @@ angular.module('ddsCommon').service('IndividuService', function($filter, specifi
         formatStatutsSpecifiques: function(individu) {
             var statuts = [];
             specificSituations.forEach(function(statut) {
-                if (_.find(individu.specificSituations, {situation: statut.id})) {
+                if (individu.specificSituations && individu.specificSituations.indexOf(statut.id) >= 0) {
                     statuts.push(statut.label);
                 }
             });

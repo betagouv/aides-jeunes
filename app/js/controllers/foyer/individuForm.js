@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
-    $scope.specificSituations = specificSituations;
+    $scope.situationsFamiliales = situationsFamiliales;
     $scope.today = moment();
     $scope.maxAgeYears = 130;
     $scope.minBirthDate = moment().subtract($scope.maxAgeYears, 'years');
@@ -17,7 +17,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     }
 
     $scope.selectedStatuts = {};
-    $scope.situationsMaritales = _.filter(situationsFamiliales, 'isSituationCouple');
     $scope.scolariteOptions = [
         {
             id: 'inconnue',
@@ -54,7 +53,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
 
     $scope.individu.specificSituations.forEach(function(specificSituation) {
-        $scope.selectedStatuts[specificSituation.situation] = true;
+        $scope.selectedStatuts[specificSituation] = true;
     });
 
     if (individuRole == 'conjoint') {
@@ -68,7 +67,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
             _.forEach($scope.selectedStatuts, function(selected, statut) {
                 if (selected) {
-                    $scope.individu.specificSituations.push({ situation: statut });
+                    $scope.individu.specificSituations.push(statut);
                 }
             });
 

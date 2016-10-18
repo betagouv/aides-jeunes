@@ -2,6 +2,8 @@
 # This script is not currently meant to be executed from within the repository.
 # Copy or symlink it to some deployment directory.
 
+OPENFISCA_PORT=12000
+
 set -ex
 
 cd /var/www/dds
@@ -15,7 +17,7 @@ grunt build
 
 # Update openfisca
 npm run install-openfisca
-cat openfisca/api_config.ini | sed s/"port = 2000"/"port = 12000"/ > ~/production.ini
+cat openfisca/api_config.ini | sed "s/port = 2000/port = $OPENFISCA_PORT"/ > ~/production.ini
 
 # Restart mes-aides
 sudo restart dds

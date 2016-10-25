@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
+    $scope.specificSituations = specificSituations;
     $scope.situationsFamiliales = situationsFamiliales;
     $scope.today = moment();
     $scope.maxAgeYears = 130;

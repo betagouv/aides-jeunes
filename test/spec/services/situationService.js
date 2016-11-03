@@ -117,67 +117,6 @@ describe('Service: situationService', function () {
         });
     });
 
-    describe('function flattenPatrimoine()', function() {
-        it('should keep month-based amounts as-is', function() {
-            // given
-            var patrimoine = {
-                revenusLocatifs: [{periode: '2014-08', montant: 400}],
-                revenusDuCapital: [{periode: '2014-12', montant: 400}]
-            };
-
-            // when
-            service.flattenPatrimoine(patrimoine);
-
-            // then
-            expect(patrimoine.revenusLocatifs).toEqual([{periode: '2014-08', montant: 400}]);
-            expect(patrimoine.revenusDuCapital).toEqual([{periode: '2014-12', montant: 400}]);
-        });
-
-        it('should split year-based amounts in months', function() {
-            // given
-            var patrimoine = {
-                revenusLocatifs: [{debutPeriode: '2014-08', finPeriode: '2014-10', montant: 300}],
-                revenusDuCapital: [{debutPeriode: '2014-05', finPeriode: '2014-06', montant: 200}]
-            };
-
-            // when
-            service.flattenPatrimoine(patrimoine);
-
-            // then
-            expect(patrimoine.revenusLocatifs).toEqual([
-                {periode: '2014-08', montant: 100},
-                {periode: '2014-09', montant: 100},
-                {periode: '2014-10', montant: 100}
-            ]);
-            expect(patrimoine.revenusDuCapital).toEqual([
-                {periode: '2014-05', montant: 100},
-                {periode: '2014-06', montant: 100}
-            ]);
-        });
-
-        it('should split year-based amounts and diff amount with corresponding month ressources', function() {
-            // given
-            var patrimoine = {
-                revenusLocatifs: [{debutPeriode: '2014-08', finPeriode: '2014-10', montant: 300}, {periode: '2014-08', montant: 100}],
-                revenusDuCapital: [{debutPeriode: '2014-05', finPeriode: '2014-06', montant: 200}, {periode: '2014-06', montant: 100}]
-            };
-
-            // when
-            service.flattenPatrimoine(patrimoine);
-
-            // then
-            expect(patrimoine.revenusLocatifs).toEqual([
-                {periode: '2014-09', montant: 100},
-                {periode: '2014-10', montant: 100},
-                {periode: '2014-08', montant: 100},
-            ]);
-            expect(patrimoine.revenusDuCapital).toEqual([
-                {periode: '2014-05', montant: 100},
-                {periode: '2014-06', montant: 100}
-            ]);
-        });
-    });
-
     describe('function hasEnfantScolarise()', function() {
         it('should return a truthy only when situation has a child with scolarite "college" or "lycee"', function() {
             // given
@@ -198,6 +137,7 @@ describe('Service: situationService', function () {
             expect(results[2]).toBeFalsy();
         });
     });
+
     describe('function hasEnfant()', function() {
         it('should return a truthy when there is a child', function() {
             // given

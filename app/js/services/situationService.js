@@ -2,7 +2,7 @@
 
 var DATE_FIELDS = ['dateDeNaissance', 'dateArretDeTravail', 'dateDernierContratTravail'];
 
-angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, $uibModal, categoriesRnc, ImpactStudyService) {
+angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc, ImpactStudyService) {
     var situation;
 
     var flattenRessource = function(ressource, source, target) {
@@ -120,13 +120,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 }).then(function(result) {
                     situation._id = result.data._id;
                     return result.data;
-                }).catch(function(error) {
-                    $uibModal.open({
-                        templateUrl: '/partials/error-modal.html',
-                        controller: ['$scope', function($scope) {
-                            $scope.error = error;
-                        }]
-                    });
                 });
         },
 

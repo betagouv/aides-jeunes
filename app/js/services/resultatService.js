@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('ResultatService', function($http, $uibModal, droitsDescription) {
+angular.module('ddsApp').service('ResultatService', function($http, droitsDescription) {
     function processOpenfiscaResult(openfiscaResult) {
         var droitsEligibles = {};
         var prestationsNationales = extractMontants(droitsDescription.prestationsNationales, openfiscaResult.calculatedPrestations);
@@ -57,13 +57,6 @@ angular.module('ddsApp').service('ResultatService', function($http, $uibModal, d
                 params: { cacheBust: Date.now() }
             }).then(function(response) {
                 return processOpenfiscaResult(response.data);
-            }).catch(function(error) {
-                $uibModal.open({
-                    templateUrl: '/partials/error-modal.html',
-                    controller: ['$scope', function($scope) {
-                        $scope.error = error;
-                    }]
-                });
             });
         }
     };

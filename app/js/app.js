@@ -177,15 +177,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/patrimoine',
             templateUrl: '/partials/foyer/patrimoine.html',
             controller: 'FoyerPatrimoineCtrl'
-        })
-        .state('situation', {
-            url: '/situations/:situationId',
-            template: '',
-            controller: function(SituationService, $state, $stateParams) {
-                SituationService.restoreRemote($stateParams.situationId).then(function() {
-                    $state.go('foyer.resultat', { situationId: $stateParams.situationId });
-                });
-            }
         });
 });
 

@@ -57,15 +57,8 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         }
     });
 
-    var goToResultat = function() {
-        SituationService.save($scope.situation).then(function() {
-            // désactivation du changement d'url dans le navigateur pour que le bouton back fonctionne
-            $state.transitionTo('situation', { 'situationId': $scope.situation._id }, { location: false });
-        });
-    };
-
     $scope.$on('pensionsAlimentaires', function() {
-        goToResultat();
+        $state.go('foyer.resultat');
     });
 
     $scope.$on('rnc', function() {
@@ -73,18 +66,18 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         if (SituationService.hasEnfantScolarise($scope.situation)) {
             $state.go('foyer.rfr');
         } else {
-            goToResultat();
+            $state.go('foyer.resultat');
         }
     });
 
     $scope.$on('rfr', function(e, rfr) {
         $scope.situation.rfr = rfr;
-        goToResultat();
+        $state.go('foyer.resultat');
     });
 
     $scope.$on('patrimoine', function(e, patrimoine) {
         situation.patrimoine = patrimoine;
         $scope.$broadcast('patrimoineCaptured');
-        goToResultat();
+        $state.go('foyer.resultat');
     });
 });

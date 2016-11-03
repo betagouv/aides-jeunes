@@ -165,8 +165,13 @@
       <help-block>Y compris de manière discontinue</help-block>
     </yes-no-question>
 
+    <p ng-if="isResidentMayotte()" class="alert alert-danger" id="warning-mayotte">
+      <i class="fa fa-times-circle" aria-hidden="true"></i>
+        Nous sommes désolés, mais ce simulateur ne fonctionne pas encore pour les habitants de Mayotte. Merci de votre compréhension.
+    </p>
+
     <div class="text-right">
-      <button type="submit" class="btn btn-primary" ng-if="captureCodePostal()">
+      <button type="submit" class="btn btn-primary" ng-if="maySubmit()">
         Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
       </button>
     </div>

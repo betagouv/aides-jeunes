@@ -326,24 +326,6 @@ label,
   }
 }
 
-.modal {
-  &.modal-content {
-    border: none;
-  }
-
-  &.modal-header {
-    background-color: $navbar-default-bg;
-    color: #fff;
-  }
-
-  &.modal-body,
-  &.modal-footer {
-    .close {
-      color: $text-color;
-    }
-  }
-}
-
 // content for screenreader only ==============================================================
 
 .visually-hidden {

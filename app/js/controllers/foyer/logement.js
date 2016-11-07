@@ -117,7 +117,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.isResidentMayotte = function isResidentMayotte() {
-        return logement.adresse.codePostal.indexOf('976') === 0;
+        return logement.adresse.codePostal && logement.adresse.codePostal.indexOf('976') === 0;
     };
 
     $scope.submit = function(form) {

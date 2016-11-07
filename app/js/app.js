@@ -159,7 +159,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/pensions-alimentaires'
         })
         .state('foyer.resultat', {
-            url: '/resultat',
+            url: '/resultat?situationId',
             templateUrl: '/partials/resultat.html',
             controller: 'ResultatCtrl'
         })
@@ -177,6 +177,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/patrimoine',
             templateUrl: '/partials/foyer/patrimoine.html',
             controller: 'FoyerPatrimoineCtrl'
+        })
+        .state('situation', { // Route used by Ludwig
+            url: '/situations/:situationId',
+            template: '',
+            controller: function(SituationService, $state, $stateParams) {
+                $state.go('foyer.resultat', { situationId: $stateParams.situationId });
+            }
         });
 });
 

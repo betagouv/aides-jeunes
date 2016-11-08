@@ -267,13 +267,13 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     },
     {
         id: 'revenusLocatifs',
-        label: 'Revenus locatifs (terrains, appartements, SCI)',
+        label: 'Revenus locatifs (terrains, appartements, SCI…)',
         category: 'autre',
         prefix: 'des'
     },
     {
         id: 'revenusDuCapital',
-        label: 'Revenus du capital (intérêts, plus-values, dividendes)',
+        label: 'Revenus du capital (intérêts, plus-values, dividendes…)',
         category: 'autre',
         prefix: 'des'
     },

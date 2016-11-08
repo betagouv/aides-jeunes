@@ -159,7 +159,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/pensions-alimentaires'
         })
         .state('foyer.resultat', {
-            url: '/resultat',
+            url: '/resultat?situationId',
             templateUrl: '/partials/resultat.html',
             controller: 'ResultatCtrl'
         })
@@ -178,18 +178,16 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/foyer/patrimoine.html',
             controller: 'FoyerPatrimoineCtrl'
         })
-        .state('situation', {
+        .state('situation', { // Route used by Ludwig
             url: '/situations/:situationId',
             template: '',
             controller: function(SituationService, $state, $stateParams) {
-                SituationService.restoreRemote($stateParams.situationId).then(function() {
-                    $state.go('foyer.resultat', { situationId: $stateParams.situationId });
-                });
+                $state.go('foyer.resultat', { situationId: $stateParams.situationId });
             }
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $uibModalStack, $anchorScroll, $timeout, ImpactStudyService) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $anchorScroll, $timeout, ImpactStudyService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -201,14 +199,6 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $uibModalStack, $
         if (0 === location.indexOf($window.location.origin + '/api')) {
             e.preventDefault();
             $window.location.href = location;
-        }
-    });
-
-    // fermeture d'une éventuelle modale rémanente au changement d'état (suite à des bugs récurrents)
-    $rootScope.$on('$stateChangeStart', function() {
-        var top = $uibModalStack.getTop();
-        if (top) {
-            $uibModalStack.dismiss(top.key);
         }
     });
 

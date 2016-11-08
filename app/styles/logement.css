@@ -8,6 +8,12 @@
     flex-basis: 0;
 }
 
+#warning-mayotte {
+    margin-left:8em;
+    margin-right:8em;
+    text-align: justify;
+}
+
 @media (max-width: 768px) {
     .button-row {
         flex-direction: column;
@@ -15,5 +21,10 @@
 
     .button-row label {
         flex-basis: auto;
+    }
+
+    #warning-mayotte {
+        margin-left:0;
+        margin-right:0;
     }
 }

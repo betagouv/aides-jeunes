@@ -2,9 +2,13 @@
 
 <p ng-if="awaitingResults"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
 
-<div class="alert alert-danger" ng-if="error">
-  <h2>Désolé, nous n'arrivons pas à calculer vos droits pour le moment.</h2>
-  <p>Une erreur est survenue dans la simulation.</p>
+<div class="alert alert-danger" ng-if="error" role="alert">
+  <h2><i class="fa fa-warning" aria-hidden="true"></i> Une erreur est survenue.</h2>
+  <p>Merci de prévenir l'équipe Mes Aides en envoyant un email à
+  <a href="mailto:bug@mes-aides.gouv.fr"><strong>bug@mes-aides.gouv.fr</strong></a>
+  en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et en joignant si possible une capture d'écran.</p>
+
+  <p>Nous vous répondrons au plus vite et corrigerons le problème dès que possible. Pour ne pas perdre les données que vous avez déclarées, vous pouvez garder cet onglet ouvert, puis actualiser la page une fois que le problème sera résolu.</p>
 </div>
 
 <div ng-if="!error && !awaitingResults">

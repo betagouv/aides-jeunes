@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $stateParams, $filter, $location, $uibModal, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $stateParams, $filter, $location, SituationService, IndividuService) {
     var situation = $scope.situation = SituationService.restoreLocal();
 
     $scope.$on('setSituation', function(e, newSituation) {
@@ -42,30 +42,14 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         $state.go('foyer.conjoint');
     });
 
-    var isLogementInMayotte = function(logement) {
-        return 0 === logement.adresse.codePostal.indexOf('976');
-    };
-
     $scope.$on('logement', function(e, logement) {
         situation.logement = logement;
         $scope.$broadcast('logementCaptured');
-        // affichage de la popup pour les habitants de mayotte
-        if (isLogementInMayotte(logement)) {
-            $uibModal.open({ templateUrl: '/partials/modal-exclusion-mayotte.html' });
-        } else {
-            $state.go('foyer.ressources.individu.types', { individu: 0 });
-        }
+        $state.go('foyer.ressources.individu.types', { individu: 0 });
     });
 
-    var goToResultat = function() {
-        SituationService.save($scope.situation).then(function() {
-            // désactivation du changement d'url dans le navigateur pour que le bouton back fonctionne
-            $state.transitionTo('situation', { 'situationId': $scope.situation._id }, { location: false });
-        });
-    };
-
     $scope.$on('pensionsAlimentaires', function() {
-        goToResultat();
+        $state.go('foyer.resultat');
     });
 
     $scope.$on('rnc', function() {
@@ -73,18 +57,18 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         if (SituationService.hasEnfantScolarise($scope.situation)) {
             $state.go('foyer.rfr');
         } else {
-            goToResultat();
+            $state.go('foyer.resultat');
         }
     });
 
     $scope.$on('rfr', function(e, rfr) {
         $scope.situation.rfr = rfr;
-        goToResultat();
+        $state.go('foyer.resultat');
     });
 
     $scope.$on('patrimoine', function(e, patrimoine) {
         situation.patrimoine = patrimoine;
         $scope.$broadcast('patrimoineCaptured');
-        goToResultat();
+        $state.go('foyer.resultat');
     });
 });

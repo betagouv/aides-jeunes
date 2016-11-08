@@ -84,6 +84,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         ]);
     };
 
+    $scope.maySubmit = function() {
+        return $scope.captureCodePostal() && ! $scope.isResidentMayotte();
+    };
+
     $scope.captureResidentParis = function() {
         return $scope.captureCodePostal() && logement.type != 'sansDomicile' && cityStartsWith('Paris');
     };
@@ -110,6 +114,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
               ).finally(function() {
                   $scope.retrievingCities = false;
               });
+    };
+
+    $scope.isResidentMayotte = function isResidentMayotte() {
+        return logement.adresse.codePostal && logement.adresse.codePostal.indexOf('976') === 0;
     };
 
     $scope.submit = function(form) {

@@ -22,6 +22,10 @@ angular.module('ddsCommon').constant('ressourceCategories', [
         label: 'Revenus professionnels non salariés'
     },
     {
+        id: 'patrimoine',
+        label: 'Revenus du patrimoine'
+    },
+    {
         id: 'autre',
         label: 'Autres'
     }
@@ -98,6 +102,12 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'le'
     },
     {
+        id: 'primeActivite',
+        label: 'Prime d’activité',
+        category: 'revenusActivite',
+        prefix: 'la'
+    },
+    {
         id: 'aspa',
         label: 'Allocation de solidarité aux personnes âgées (ASPA)',
         category: 'allocations',
@@ -121,6 +131,18 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         label: 'Allocation adulte handicapé (AAH)',
         category: 'allocations',
         prefix: 'l’'
+    },
+    {
+        id: 'complementAAH',
+        label: 'Complément à l’Allocation adulte handicapé (AAH)',
+        category: 'allocations',
+        prefix: 'le'
+    },
+    {
+        id: 'mva',
+        label: 'Majoration pour vie autonome (MVA)',
+        category: 'allocations',
+        prefix: 'la'
     },
     {
         id: 'aeeh',
@@ -245,6 +267,18 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         id: 'gainsExceptionnels',
         label: 'Gains exceptionnels (dons, gains aux jeux, héritage)',
         category: 'autre',
+        prefix: 'des'
+    },
+    {
+        id: 'revenusLocatifs',
+        label: 'Revenus locatifs (terrains, appartements, SCI…)',
+        category: 'patrimoine',
+        prefix: 'des'
+    },
+    {
+        id: 'revenusDuCapital',
+        label: 'Revenus du capital (intérêts, plus-values, dividendes…)',
+        category: 'patrimoine',
         prefix: 'des'
     },
     {

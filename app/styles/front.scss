@@ -217,14 +217,17 @@ $pensions: #685C79;
 $pensions-light: #cfcad7;
 $pensions-lighter: #eae7ed;
 
-$rpns: #455C7B;
-$rpns-light: #b6c4d6;
-$rpns-lighter: #d7dee8;
+$patrimoine: #455C7B;
+$patrimoine-light: #b6c4d6;
+$patrimoine-lighter: #d7dee8;
 
 $autre: #39747B;
 $autre-light: #a9d2d7;
 $autre-lighter: #cce4e7;
 
+$rpns: #8366d4;
+$rpns-light: #a8a1c8;
+$rpns-lighter: #dad7e8;
 
 .btn-default, .btn {
   &.active, &.active:focus, &.active:hover {
@@ -236,7 +239,7 @@ $autre-lighter: #cce4e7;
   }
 }
 
-@mixin ressource-category-capture($color, $color-light, $color-lighter) {
+@mixin ressource-category-capture($color-light) {
   border: 1px solid $color-light;
   border-left-width: 4px;
   margin-bottom: 10px;
@@ -257,29 +260,32 @@ $autre-lighter: #cce4e7;
 }
 
 .capture-indemnites {
-  @include ressource-category-capture($indemnites, $indemnites-light, $indemnites-lighter);
+  @include ressource-category-capture($indemnites-light);
 }
 
 .capture-pensions {
-  @include ressource-category-capture($pensions, $pensions-light, $pensions-lighter);
+  @include ressource-category-capture($pensions-light);
 }
 
 .capture-allocations {
-  @include ressource-category-capture($allocations, $allocations-light, $allocations-lighter);
+  @include ressource-category-capture($allocations-light);
 }
 
 .capture-revenusActivite {
-  @include ressource-category-capture($revenusActivite, $revenusActivite-light, $revenusActivite-lighter);
+  @include ressource-category-capture($revenusActivite-light);
 }
 
 .capture-autre {
-  @include ressource-category-capture($autre, $autre-light, $autre-lighter);
+  @include ressource-category-capture($autre-light);
 }
 
 .capture-rpns {
-  @include ressource-category-capture($rpns, $rpns-light, $rpns-lighter);
+  @include ressource-category-capture($rpns-light);
 }
 
+.capture-patrimoine {
+  @include ressource-category-capture($patrimoine-light);
+}
 .intro {
   width: 100%;
   background: white;
@@ -366,6 +372,10 @@ $autre-lighter: #cce4e7;
 
   .recap-rpns {
     @include panel-variant-recap($rpns);
+  }
+
+  .recap-patrimoine {
+    @include panel-variant-recap($patrimoine);
   }
 }
 
@@ -465,6 +475,10 @@ $autre-lighter: #cce4e7;
 
   &.rpns {
     @include panel-montant-variant($rpns, $rpns-light, $rpns-lighter);
+  }
+
+  &.patrimoine {
+    @include panel-montant-variant($patrimoine-light, $patrimoine-light, $patrimoine-lighter);
   }
 }
 

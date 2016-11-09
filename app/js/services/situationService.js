@@ -44,20 +44,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         }
     };
 
-    var flattenPatrimoine = function(patrimoine) {
-        var source = patrimoine.revenusDuCapital;
-        patrimoine.revenusDuCapital = [];
-        source.forEach(function(revenu) {
-            flattenRessource(revenu, source, patrimoine.revenusDuCapital);
-        });
-
-        source = patrimoine.revenusLocatifs;
-        patrimoine.revenusLocatifs = [];
-        source.forEach(function(revenu) {
-            flattenRessource(revenu, source, patrimoine.revenusLocatifs);
-        });
-    };
-
     function convertDatesToMoments(individu) {
         DATE_FIELDS.forEach(function(dateField) {
             if (individu[dateField]) {
@@ -134,10 +120,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 demandeur.statutMarital = demandeur.situationFamiliale;
             }
 
-            if (situation.patrimoine) {
-                flattenPatrimoine(situation.patrimoine); // FIXME Faire ça dans le controller du patrimoine
-            }
-
             var result = {
                 individus: individus,
                 logement: situation.logement,
@@ -158,8 +140,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
 
             return result;
         },
-
-        flattenPatrimoine: flattenPatrimoine,
 
         getDemandeur: function(situation) {
             return _.find(situation.individus, { role: 'demandeur' });

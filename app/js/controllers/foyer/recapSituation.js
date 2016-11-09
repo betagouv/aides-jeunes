@@ -59,39 +59,6 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
                 $scope.patrimoine.push({label: field.label, montant: $scope.situation.patrimoine[field.id]});
             }
         });
-
-        $scope.revenusDuPatrimoine = [];
-        [
-            {
-                id: 'revenusDuCapital',
-                label: 'Revenus du capital'
-            },
-            {
-                id: 'revenusLocatifs',
-                label: 'Revenus locatifs'
-            }
-        ].forEach(function(field) {
-            var revenus = $scope.situation.patrimoine[field.id];
-            if (revenus.length) {
-                var value = {label: field.label, values: []};
-                $scope.revenusDuPatrimoine.push(value);
-                for (var i = 0; i < 3; i++) {
-                    var ressource = revenus[i];
-                    value.values.push({
-                        periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
-                        montant: ressource.montant
-                    });
-                }
-                var montants = _.pluck(revenus, 'montant');
-                var montantAnnuel = _.reduce(montants, function(sum, montant) {
-                    return sum + montant;
-                });
-                value.values.push({
-                    periode: 'Année glissante',
-                    montant: montantAnnuel
-                });
-            }
-        });
     }
 
     function buildYm2Recap () {

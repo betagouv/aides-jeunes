@@ -100,7 +100,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'primeActivite',
         label: 'Prime d’activité',
-        category: 'allocations',
+        category: 'revenusActivite',
         prefix: 'la'
     },
     {

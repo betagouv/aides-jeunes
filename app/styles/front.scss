@@ -239,7 +239,7 @@ $patrimoine-lighter: #dad7e8;
   }
 }
 
-@mixin ressource-category-capture($color, $color-light, $color-lighter) {
+@mixin ressource-category-capture($color-light) {
   border: 1px solid $color-light;
   border-left-width: 4px;
   margin-bottom: 10px;
@@ -260,31 +260,31 @@ $patrimoine-lighter: #dad7e8;
 }
 
 .capture-indemnites {
-  @include ressource-category-capture($indemnites, $indemnites-light, $indemnites-lighter);
+  @include ressource-category-capture($indemnites-light);
 }
 
 .capture-pensions {
-  @include ressource-category-capture($pensions, $pensions-light, $pensions-lighter);
+  @include ressource-category-capture($pensions-light);
 }
 
 .capture-allocations {
-  @include ressource-category-capture($allocations, $allocations-light, $allocations-lighter);
+  @include ressource-category-capture($allocations-light);
 }
 
 .capture-revenusActivite {
-  @include ressource-category-capture($revenusActivite, $revenusActivite-light, $revenusActivite-lighter);
+  @include ressource-category-capture($revenusActivite-light);
 }
 
 .capture-autre {
-  @include ressource-category-capture($autre, $autre-light, $autre-lighter);
+  @include ressource-category-capture($autre-light);
 }
 
 .capture-rpns {
-  @include ressource-category-capture($rpns, $rpns-light, $rpns-lighter);
+  @include ressource-category-capture($rpns-light);
 }
 
 .capture-patrimoine {
-  @include ressource-category-capture($patrimoine, $patrimoine-light, $patrimoine-light);
+  @include ressource-category-capture($patrimoine-light);
 }
 .intro {
   width: 100%;

@@ -22,6 +22,10 @@ angular.module('ddsCommon').constant('ressourceCategories', [
         label: 'Revenus professionnels non salariés'
     },
     {
+        id: 'patrimoine',
+        label: 'Revenus du patrimoine'
+    },
+    {
         id: 'autre',
         label: 'Autres'
     }
@@ -268,13 +272,13 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'revenusLocatifs',
         label: 'Revenus locatifs (terrains, appartements, SCI…)',
-        category: 'autre',
+        category: 'patrimoine',
         prefix: 'des'
     },
     {
         id: 'revenusDuCapital',
         label: 'Revenus du capital (intérêts, plus-values, dividendes…)',
-        category: 'autre',
+        category: 'patrimoine',
         prefix: 'des'
     },
     {

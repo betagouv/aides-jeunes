@@ -225,6 +225,9 @@ $autre: #39747B;
 $autre-light: #a9d2d7;
 $autre-lighter: #cce4e7;
 
+$patrimoine: #8366d4;
+$patrimoine-light: #a8a1c8;
+$patrimoine-lighter: #dad7e8;
 
 .btn-default, .btn {
   &.active, &.active:focus, &.active:hover {
@@ -280,6 +283,9 @@ $autre-lighter: #cce4e7;
   @include ressource-category-capture($rpns, $rpns-light, $rpns-lighter);
 }
 
+.capture-patrimoine {
+  @include ressource-category-capture($patrimoine, $patrimoine-light, $patrimoine-light);
+}
 .intro {
   width: 100%;
   background: white;
@@ -366,6 +372,10 @@ $autre-lighter: #cce4e7;
 
   .recap-rpns {
     @include panel-variant-recap($rpns);
+  }
+
+  .recap-patrimoine {
+    @include panel-variant-recap($patrimoine);
   }
 }
 
@@ -465,6 +475,10 @@ $autre-lighter: #cce4e7;
 
   &.rpns {
     @include panel-montant-variant($rpns, $rpns-light, $rpns-lighter);
+  }
+
+  &.patrimoine {
+    @include panel-montant-variant($patrimoine-light, $patrimoine-light, $patrimoine-lighter);
   }
 }
 

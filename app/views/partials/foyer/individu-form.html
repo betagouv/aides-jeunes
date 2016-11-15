@@ -17,7 +17,7 @@
         ng-model-options="{ updateOn: 'blur' }"
         auto-focus
         >
-      <div role="alert" class="help-block">
+      <div class="text-danger" role="alert">
         <p ng-if="form.dateDeNaissance.$error.format">
           Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
         </p>
@@ -54,7 +54,7 @@
         required
         ng-model="individu.firstName"
       >
-      <p role="alert" class="help-block">Ce champ est obligatoire.</p>
+      <p class="text-danger" role="alert">Ce champ est obligatoire.</p>
     </div>
     <p class="col-sm-4 help-col">Ce prénom servira uniquement à vous faciliter la saisie par la suite.</p>
   </div>
@@ -97,7 +97,7 @@
             <span ng-if="individu.nationalite == 'autre'">
               Détenteur d'une carte de résident ou d'un titre de séjour valide et résidant en France plus de 9 mois par an.
             </span>
-          <span class="help-block" role="alert">
+          <span class="text-danger" role="alert">
             Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.
           </span>
         </label>
@@ -162,7 +162,7 @@
             ng-model-options="{ updateOn: 'blur' }"
             >
 
-        <div class="help-block" role="alert">
+        <div class="text-danger" role="alert">
           <p ng-if="form.dateDernierContratTravail.$error.format">
             Veuillez utiliser le format MM/AAAA. Par exemple&nbsp;: 04/2016.
           </p>

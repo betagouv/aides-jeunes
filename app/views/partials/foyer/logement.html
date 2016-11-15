@@ -91,7 +91,7 @@
                 zero-to-empty
                 >
               <div class="input-group-addon">€</div>
-              <span role="alert" clas="help-block">Montant invalide</span>
+              <span class="text-danger" role="alert" >Montant invalide</span>
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@
                 zero-to-empty
                 >
               <div class="input-group-addon">€</div>
-              <span role="alert" clas="help-block">Montant invalide</span>
+              <span class="text-danger" role="alert" >Montant invalide</span>
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@
               ng-change="updateCities()"
               aria-invalid="{{ submitted && (! cities.length || ! logement.postalCode) }}"
               >
-            <span class="help-block" role="alert">Ce code postal est invalide</span>
+            <span class="text-danger" role="alert" >Ce code postal est invalide</span>
           </div>
         </div>
       </div>

@@ -42,15 +42,21 @@
     Si ce n'est pas le cas, faites plutôt la simulation du point de vue d'un de vos parents ou tuteurs.
   </p>
 
-  <div class="form-group" ng-if="capturePrenom" ng-class="{'has-error': submitted && form.firstName.$invalid}">
-    <label class="control-label col-sm-4" for="first-name">Prénom</label>
+  <div class="form-group" ng-if="capturePrenom">
+    <label class="control-label col-sm-4" for="firstName">Prénom</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="individu.firstName" aria-describedby="help-first-name-2">
-      <p class="help-block" id="help-first-name-1" ng-if="submitted && form.firstName.$invalid">Ce champ est obligatoire.</p>
+      <input
+        type="text"
+        class="form-control"
+        name="firstName"
+        id="firstName"
+        placeholder="Toto"
+        required
+        ng-model="individu.firstName"
+      >
+      <p role="alert" class="help-block">Ce champ est obligatoire.</p>
     </div>
-    <div class="col-sm-4">
-      <p class="help-col" id="help-first-name-2">Ce prénom servira uniquement à vous faciliter la saisie par la suite</p>
-    </div>
+    <p class="col-sm-4 help-col">Ce prénom servira uniquement à vous faciliter la saisie par la suite.</p>
   </div>
 
   <div ng-if="individu.role == 'demandeur'" class="form-group">

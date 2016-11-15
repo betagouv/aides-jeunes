@@ -1,6 +1,6 @@
 <form method="post" name="form" class="form-horizontal form-individu" ng-submit="submit(form)" novalidate>
   <div class="form-group">
-    <label class="control-label col-sm-4" for="date-de-naissance">
+    <label class="control-label col-sm-4" for="dateDeNaissance">
       Date de naissance
     </label>
     <div class="col-sm-4">
@@ -11,7 +11,7 @@
         max="{{ today }}"
         min="{{ minBirthDate }}"
         name="dateDeNaissance"
-        id="date-de-naissance"
+        id="dateDeNaissance"
         required
         ng-model="individu.dateDeNaissance"
         ng-model-options="{ updateOn: 'blur' }"

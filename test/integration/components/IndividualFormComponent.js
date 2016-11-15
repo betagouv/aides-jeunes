@@ -1,3 +1,3 @@
-birthDateInput: '#date-de-naissance',
+birthDateInput: '#dateDeNaissance',
 firstNameInput: '#first-name',
 submitButton: 'button[type="submit"]',

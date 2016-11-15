@@ -6,6 +6,6 @@
     display: block;
 }
 
-[aria-invalid="true"], [role="alert"] {
+.ng-dirty[aria-invalid="true"], [role="alert"] {
     color: #F04124;
 }

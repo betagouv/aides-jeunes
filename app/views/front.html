@@ -50,7 +50,7 @@
     <![endif]-->
 
     <header role="banner">
-      <nav role="navigation" class="main-navbar" ng-class="{'has-intro': showIntro}">
+      <nav role="navigation" class="navbar navbar-default navbar-fixed-top" ng-class="{'has-intro': showIntro}">
         <div class="intro-holder">
           <div class="intro" ng-cloak ng-if="showIntro">
             <div class="intro-content">
@@ -76,7 +76,7 @@
             <a href="https://github.com/sgmap/mes-aides-ui/releases"><i class="fa fa-bell" aria-hidden="true"></i> {{ newBroadcasts[0].name }}</a>
           </span>
         </div>
-        <div class="logo-beta">Bêta</div>
+        <div id="beta-ribbon">Bêta</div>
       </nav>
     </header>
 

@@ -2,7 +2,36 @@ header[role="banner"], header[role="banner"] a {
 	color: white;
 }
 
+header[role="banner"] .navbar-brand.logo, header[role="banner"] .navbar-brand.logo:hover, header[role="banner"] .navbar-brand.logo:focus {
+	padding-top: 3px;
+	padding-bottom: 47px;
+	background-color: white;
+}
+
+header[role="banner"] .title {
+	padding-top: 15px;
+	padding-bottom: 35px;
+	position: relative;
+	left: 20px;
+}
+
 #broadcast {
 	float: right;
 	font-size: 120%;
+}
+
+#beta-ribbon {
+	text-align: center;
+	text-transform: uppercase;
+	position: absolute;
+	top: 26px;
+	right: -35px;
+	transform: rotate(45deg);
+	width: 150px;
+	background-color: #008cba;
+	color: white;
+	padding: 5px;
+	font-size: 15px;
+	font-weight: bold;
+	z-index: 10;
 }

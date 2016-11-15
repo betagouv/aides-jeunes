@@ -50,22 +50,22 @@
     <![endif]-->
 
     <header role="banner">
-      <nav role="navigation" class="navbar navbar-default navbar-fixed-top" ng-class="{'has-intro': showIntro}">
-        <div class="intro-holder">
-          <div class="intro" ng-cloak ng-if="showIntro">
-            <div class="intro-content">
-              <span ng-click="hideIntro()">
-                <strong>Service expérimental</strong>.
-                Ici l'État innove avec la société civile pour offrir aux usagers le service public de demain.
-              </span>
-              <span>
-                <a ui-sref="a_propos" title="En savoir plus sur ce service expérimental"><strong>En savoir plus…</strong></a>
-              </span>
-              <span class="fa fa-close" ng-click="hideIntro()" tabindex="0" role="button" aria-label="Supprimer ce message"></span>
-            </div>
-            <div class="clearfix"></div>
+      <div class="intro-holder">
+        <div class="intro" ng-cloak ng-if="showIntro">
+          <div class="intro-content">
+            <span ng-click="hideIntro()">
+              <strong>Service expérimental</strong>.
+              Ici l'État innove avec la société civile pour offrir aux usagers le service public de demain.
+            </span>
+            <span>
+              <a ui-sref="a_propos" title="En savoir plus sur ce service expérimental"><strong>En savoir plus…</strong></a>
+            </span>
+            <span class="fa fa-close" ng-click="hideIntro()" tabindex="0" role="button" aria-label="Supprimer ce message"></span>
           </div>
+          <div class="clearfix"></div>
         </div>
+      </div>
+      <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <a ui-sref="home" class="navbar-brand" title="Accueil">mes-aides.gouv.fr</a>
           <span id="broadcast" ng-if="newBroadcasts.length">

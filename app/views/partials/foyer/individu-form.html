@@ -147,8 +147,8 @@
   </div>
 
   <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
-    <div class="form-group" ng-class="{'has-error': submitted && form.dateDernierContratTravail.$invalid}">
-      <label class="control-label col-sm-4" for="last-job-end-date">
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="dateDernierContratTravail">
         Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?
       </label>
       <div class="col-sm-4">
@@ -157,18 +157,19 @@
             format="MM/AAAA"
             min="{{ individu.dateDeNaissance }}"
             name="dateDernierContratTravail"
-            id="last-job-end-date"
+            id="dateDernierContratTravail"
             ng-model="individu.dateDernierContratTravail"
+            ng-model-options="{ updateOn: 'blur' }"
             >
 
-        <ul class="help-block" ng-if="submitted && form.dateDernierContratTravail.$invalid">
-          <li ng-show="form.dateDernierContratTravail.$error.format">
+        <div class="help-block" role="alert">
+          <p ng-if="form.dateDernierContratTravail.$error.format">
             Veuillez utiliser le format MM/AAAA. Par exemple&nbsp;: 04/2016.
-          </li>
-          <li ng-if="form.dateDernierContratTravail.$error.isBeforeMin">
+          </p>
+          <p ng-if="form.dateDernierContratTravail.$error.isBeforeMin">
             Il semblerait que votre contrat de travail se soit arrêté avant votre naissance.
-          </li>
-        </ul>
+          </p>
+        </div>
       </div>
 
       <span class="help-block">Si vous n’avez jamais eu de contrat de travail, laissez ce champ vide.</span>

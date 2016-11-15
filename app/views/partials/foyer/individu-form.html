@@ -85,30 +85,23 @@
 
   <div
     class="form-group"
-    ng-if="individu.nationalite == 'ue'"
-    ng-class="{'has-error': submitted && form.disclaimerUe.$invalid}">
+    ng-if="individu.nationalite != 'fr'"
+    >
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
-        <label for="disclaimer-ue">
-          <input id="disclaimer-ue" type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
-          Détenteur d'un droit au séjour valide et résidant en France plus de 9 mois par an.
+        <label>
+          <input type="checkbox" required ng-model="canPursueSimulation">
+            <span ng-if="individu.nationalite == 'ue'">
+              Détenteur d'un droit au séjour valide et résidant en France plus de 9 mois par an.
+            </span>
+            <span ng-if="individu.nationalite == 'autre'">
+              Détenteur d'une carte de résident ou d'un titre de séjour valide et résidant en France plus de 9 mois par an.
+            </span>
+          <span class="help-block" role="alert">
+            Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.
+          </span>
         </label>
       </div>
-      <span class="help-block" id="help-disclaimer-ue" ng-if="submitted && form.disclaimerUe.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
-    </div>
-  </div>
-  <div
-    class="form-group"
-    ng-if="individu.nationalite == 'autre'"
-    ng-class="{'has-error': submitted && form.disclaimerNonUe.$invalid}">
-    <div class="col-sm-offset-4 col-sm-8">
-      <div class="checkbox">
-        <label for="disclaimer-non-ue" >
-          <input id="disclaimer-non-ue" type="checkbox" name="disclaimerNonUe" ng-model="disclaimerNonUe" required>
-          Détenteur d'une carte de résident ou d'un titre de séjour valide et résidant en France plus de 9 mois par an.
-        </label>
-      </div>
-      <span class="help-block" id="help-disclaimer-non-ue" ng-if="submitted && form.disclaimerNonUe.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
     </div>
   </div>
 

@@ -1,0 +1,7 @@
+[aria-invalid="false"] ~ [role="alert"] {
+    display: none;
+}
+
+[aria-invalid="true"], [role="alert"] {
+    color: #F04124;
+}

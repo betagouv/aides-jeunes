@@ -1,5 +1,5 @@
 <form method="post" name="form" class="form-horizontal form-individu" ng-submit="submit(form)" novalidate>
-  <div class="form-group" ng-class="{'has-error': submitted && form.dateDeNaissance.$invalid}">
+  <div class="form-group">
     <label class="control-label col-sm-4" for="date-de-naissance">
       Date de naissance
     </label>
@@ -16,24 +16,22 @@
         ng-model="individu.dateDeNaissance"
         ng-model-options="{ updateOn: 'blur' }"
         auto-focus
-        aria-describedby="help-date-de-naissance"
-        aria-invalid="{{ form.dateDeNaissance.$invalid }}"
         >
-      <ul role="alert" id="help-date-de-naissance" class="help-block" ng-if="submitted && form.dateDeNaissance.$invalid">
-        <li ng-show="form.dateDeNaissance.$error.format">
+      <div role="alert" class="help-block">
+        <p ng-if="form.dateDeNaissance.$error.format">
           Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
-        </li>
-        <li ng-if="form.dateDeNaissance.$error.required">
+        </p>
+        <p ng-if="form.dateDeNaissance.$error.required">
           Ce champ est obligatoire.
-        </li>
-        <li ng-if="form.dateDeNaissance.$error.isBeforeMin">
+        </p>
+        <p ng-if="form.dateDeNaissance.$error.isBeforeMin">
           Les personnes de plus de {{ maxAgeYears }} ans ne sont pas prises en compte.
-        </li>
-        <li ng-if="form.dateDeNaissance.$error.isAfterMax">
+        </p>
+        <p ng-if="form.dateDeNaissance.$error.isAfterMax">
           Cette personne doit être déjà née pour être prise en compte.<br>
           Pour simuler une naissance future, imaginez qu'elle a eu lieu aujourd'hui et déclarez vos revenus en conséquence.
-        </li>
-      </ul>
+        </p>
+      </div>
     </div>
   </div>
 

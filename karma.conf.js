@@ -30,6 +30,7 @@ module.exports = function(config) {
       'test/spec/**/*.js',
       'app/views/**/*.html',
       'node_modules/cleave.js/dist/cleave.js',
+      'node_modules/angular-aria/angular-aria.js',
     ],
 
     // list of files / patterns to exclude

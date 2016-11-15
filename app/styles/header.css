@@ -1,0 +1,8 @@
+header[role="banner"], header[role="banner"] a {
+	color: white;
+}
+
+#broadcast {
+	float: right;
+	font-size: 120%;
+}

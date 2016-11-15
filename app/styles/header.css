@@ -10,23 +10,20 @@ header[role="banner"] .navbar-brand {
 	background-image: url(/img/marianne.svg);
 	background-repeat: no-repeat;
 	background-size: contain;
-	padding-top: 15px;
-	padding-bottom: 35px;
-	position: relative;
-	padding-left: 120px;
+	padding-left: 100px;
 }
 
 header[role="banner"] .loading-spinner {
-	padding-top: 1em;
-	float: right;
+	padding-top: 10px;
+	margin-right: 2em;
 }
 
 header[role="banner"] .loading-spinner .loading-spinner-icon {
-	width: 2em;
-	height: 2em;
-	border: .25em solid;
+	width: 25px;
+	height: 25px;
+	border: 3px solid;
 	border-color: transparent #29d;
-	border-radius: 10em;
+	border-radius: 20px;
 	animation: loading-bar-spinner 400ms linear infinite;
 }
 

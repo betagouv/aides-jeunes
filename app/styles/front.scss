@@ -7,7 +7,7 @@ html {
 }
 
 $main-footer-height: 220px;
-$body-front-base-padding: 50px;
+$body-front-base-padding: 45px;  // .navbar's min-height
 
 h1[tabindex="-1"] {
   outline: none;

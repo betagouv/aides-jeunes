@@ -105,7 +105,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.maySubmit = function() {
-        return $scope.captureCodePostal() && ! $scope.isResidentMayotte();
+        return $scope.captureCodePostal() && ! $scope.isResidentMayotte() && ! _.isEmpty($scope.cities);
     };
 
     $scope.captureResidentParis = function() {
@@ -126,7 +126,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.submit = function(form) {
         $scope.submitted = true;
-        if (form.$valid && logement.adresse) {
+        if (form.$valid && $scope.maySubmit()) {
             logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && cityStartsWith('Paris');
             $scope.$emit('logement', logement);
             ImpactStudyService.sendPostCode($scope.situation);

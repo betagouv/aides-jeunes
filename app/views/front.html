@@ -49,7 +49,7 @@
     </div>
     <![endif]-->
 
-    <header role="banner">
+    <header role="banner" class="navbar navbar-default navbar-fixed-top">
       <div class="intro-holder">
         <div class="intro" ng-cloak ng-if="showIntro">
           <div class="intro-content">
@@ -62,20 +62,20 @@
             </span>
             <span class="fa fa-close" ng-click="hideIntro()" tabindex="0" role="button" aria-label="Supprimer ce message"></span>
           </div>
-          <div class="clearfix"></div>
         </div>
       </div>
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <a ui-sref="home" class="navbar-brand" title="Accueil">mes-aides.gouv.fr</a>
-          <span id="broadcast" ng-if="newBroadcasts.length">
-            <a href="https://github.com/sgmap/mes-aides-ui/releases"><i class="fa fa-bell" aria-hidden="true"></i> {{ newBroadcasts[0].name }}</a>
-          </span>
 
-          <loading-spinner></loading-spinner>
-        </div>
-        <div id="beta-ribbon">Bêta</div>
+      <nav class="container">
+        <a ui-sref="home" class="navbar-brand" title="Accueil">mes-aides.gouv.fr</a>
+
+        <a ng-if="newBroadcasts.length" id="broadcast" href="https://github.com/sgmap/mes-aides-ui/releases">
+          <i class="fa fa-bell" aria-hidden="true"></i> {{ newBroadcasts[0].name }}
+        </a>
+
+        <loading-spinner></loading-spinner>
       </nav>
+
+      <div id="beta-ribbon">Bêta</div>
     </header>
 
     <div class="content">

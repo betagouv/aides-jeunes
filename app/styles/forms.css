@@ -2,7 +2,7 @@
     display: none;
 }
 
-.ng-dirty[aria-invalid="true"] ~ [role="alert"], .ng-dirty [aria-required="true"] ~ [role="alert"] {
+.ng-dirty[aria-invalid="true"] ~ [role="alert"], .ng-submitted [aria-invalid="true"] ~ [role="alert"] {
     display: block;
 }
 

@@ -1,4 +1,4 @@
-[role="alert"] {
+:not(.alert-danger)[role="alert"] {
     display: none;
 }
 

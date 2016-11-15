@@ -118,10 +118,8 @@
     <div class="row" ng-show="captureCodePostal()">
 
       <div class="col-sm-6">
-        <div
-          class="form-group"
-          ng-class="{'has-error': submitted && ! cities.length}">
-          <label class="col-sm-6 control-label" for="postal-code">Code postal</label>
+        <div class="form-group">
+          <label class="col-sm-6 control-label" for="postalCode">Code postal</label>
           <div class="col-sm-6">
             <input
               type="text"
@@ -132,11 +130,13 @@
               ng-pattern="/[0-9]{5}/"
               title="Cinq chiffres"
               class="form-control"
-              id="postal-code"
+              id="postalCode"
               required
               ng-model="logement.postalCode"
-              ng-change="updateCities()">
-            <span class="help-block" ng-if="submitted && ! cities.length">Ce code postal est invalide</span>
+              ng-change="updateCities()"
+              aria-invalid="{{ submitted && (! cities.length || ! logement.postalCode) }}"
+              >
+            <span class="help-block" role="alert">Ce code postal est invalide</span>
           </div>
         </div>
       </div>

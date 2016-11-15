@@ -68,10 +68,11 @@
         </div>
         <div class="container">
           <a ui-sref="home" class="navbar-brand" title="Accueil">mes-aides.gouv.fr</a>
-          <loading-spinner></loading-spinner>
           <span id="broadcast" ng-if="newBroadcasts.length">
             <a href="https://github.com/sgmap/mes-aides-ui/releases"><i class="fa fa-bell" aria-hidden="true"></i> {{ newBroadcasts[0].name }}</a>
           </span>
+
+          <loading-spinner></loading-spinner>
         </div>
         <div id="beta-ribbon">Bêta</div>
       </nav>

@@ -12,6 +12,26 @@ header[role="banner"] .navbar-brand {
 	padding-left: 120px;
 }
 
+
+header[role="banner"] .loading-spinner {
+	padding-top: 1em;
+	float: right;
+}
+
+header[role="banner"] .loading-spinner .loading-spinner-icon {
+	width: 2em;
+	height: 2em;
+	border: .25em solid;
+	border-color: transparent #29d;
+	border-radius: 10em;
+	animation: loading-bar-spinner 400ms linear infinite;
+}
+
+@keyframes loading-bar-spinner {
+	0%		{ transform: rotate(0deg); }
+	100%	{ transform: rotate(360deg); }
+}
+
 #broadcast {
 	float: right;
 	font-size: 120%;

@@ -63,33 +63,35 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
     $scope.submit = function(form) {
         $scope.submitted = true;
-        if (form.$valid) {
-            $scope.individu.specificSituations = [];
 
-            _.forEach($scope.selectedStatuts, function(selected, statut) {
-                if (selected) {
-                    $scope.individu.specificSituations.push(statut);
-                }
-            });
+        if (! form.$valid)
+            return document.querySelector('input[aria-invalid="true"]').focus();
 
-            if (! $scope.captureEligibiliteAss()) {
-                delete $scope.individu.assPreconditionRemplie;
+        $scope.individu.specificSituations = [];
+
+        _.forEach($scope.selectedStatuts, function(selected, statut) {
+            if (selected) {
+                $scope.individu.specificSituations.push(statut);
             }
+        });
 
-            if (! $scope.captureTauxIncapacite()) {
-                delete $scope.individu.tauxIncapacite;
-            }
-
-            if (! $scope.captureEtudiantBoursier()) {
-                delete $scope.individu.boursier;
-            }
-
-            if (! $scope.captureScolarite(form)) {
-                delete $scope.individu.scolarite;
-            }
-
-            $scope.$emit('individu.' + individuRole, $scope.individu);
+        if (! $scope.captureEligibiliteAss()) {
+            delete $scope.individu.assPreconditionRemplie;
         }
+
+        if (! $scope.captureTauxIncapacite()) {
+            delete $scope.individu.tauxIncapacite;
+        }
+
+        if (! $scope.captureEtudiantBoursier()) {
+            delete $scope.individu.boursier;
+        }
+
+        if (! $scope.captureScolarite(form)) {
+            delete $scope.individu.scolarite;
+        }
+
+        $scope.$emit('individu.' + individuRole, $scope.individu);
     };
 
     $scope.isDemandeurMineur = function(form) {

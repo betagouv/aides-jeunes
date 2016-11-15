@@ -16,8 +16,9 @@
         ng-model="individu.dateDeNaissance"
         auto-focus
         aria-describedby="help-date-de-naissance"
+        aria-invalid="{{ form.dateDeNaissance.$invalid }}"
         >
-      <ul class="help-block" id="help-date-de-naissance" ng-if="submitted && form.dateDeNaissance.$invalid">
+      <ul role="alert" id="help-date-de-naissance" class="help-block" ng-if="submitted && form.dateDeNaissance.$invalid">
         <li ng-show="form.dateDeNaissance.$error.format">
           Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
         </li>

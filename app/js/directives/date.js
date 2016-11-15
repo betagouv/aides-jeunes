@@ -17,7 +17,7 @@ angular.module('ddsApp').directive('ddsDate', function() {
     return {
         require: 'ngModel',
         restrict: 'A',
-        link: function(scope, element, attributes, ctrl) {
+        link: function(scope, element, attributes, ngModel) {
             var format = attributes.format;
             // For some reason, double quotes appear when interpolating a moment in an angular expression. We strip them.
             var maxDate = attributes.max && moment(attributes.max.replace(/"/g, ''));
@@ -26,21 +26,21 @@ angular.module('ddsApp').directive('ddsDate', function() {
             element.attr('maxlength', format.length);
             element.attr('type', 'text');
 
-            ctrl.$parsers.push(function(viewValue) {
+            ngModel.$parsers.push(function(viewValue) {
                 return viewValue && moment(viewValue, FORMATS[format].acceptedFormats, true);
             });
 
-            ctrl.$formatters.push(function(date) {
+            ngModel.$formatters.push(function(date) {
                 return date && moment(date).format(FORMATS[format].outputFormat);
             });
 
-            ctrl.$validators.format = function(modelValue) {
+            ngModel.$validators.format = function(modelValue) {
                 return ! modelValue || modelValue.isValid();
             };
-            ctrl.$validators.isAfterMax = function(modelValue) {
+            ngModel.$validators.isAfterMax = function(modelValue) {
                 return ! maxDate || ! modelValue || ! modelValue.isValid() || maxDate.diff(modelValue, 'days') >= 0;
             };
-            ctrl.$validators.isBeforeMin = function(modelValue) {
+            ngModel.$validators.isBeforeMin = function(modelValue) {
                 return ! minDate || ! modelValue || ! modelValue.isValid() || minDate.diff(modelValue, 'days') <= 0;
             };
 

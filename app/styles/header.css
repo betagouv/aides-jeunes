@@ -6,7 +6,7 @@ header[role="banner"] a {
 	color: inherit;
 }
 
-header[role="banner"] .navbar-brand {
+header[role="banner"] [ui-sref="home"] {
 	background-image: url(/img/marianne.svg);
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -56,11 +56,6 @@ header[role="banner"] .loading-spinner .loading-spinner-icon {
 
 .intro, .intro.ng-enter.ng-enter-active {
 	margin-top: 0px;
-}
-
-#broadcast {
-	float: right;
-	font-size: 120%;
 }
 
 #beta-ribbon {

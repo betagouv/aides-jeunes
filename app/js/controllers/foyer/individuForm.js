@@ -65,7 +65,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         $scope.submitted = true;
 
         if (! form.$valid)
-            return document.querySelector('input[aria-invalid="true"], input[aria-required="true"]').focus();
+            return document.querySelector('input[aria-invalid="true"]').focus();
 
         $scope.individu.specificSituations = [];
 

@@ -58,6 +58,19 @@ header[role="banner"] .loading-spinner .loading-spinner-icon {
 	margin-top: 0px;
 }
 
+#broadcast .fa {
+	animation: tada 1000ms linear;
+	animation-delay: 1s;
+}
+
+@keyframes tada {
+	from { transform: scale3d(1, 1, 1); }
+	10%, 20% { transform: scale3d(.8, .8, .8) rotate3d(0, 0, 1, -5deg); }
+	30%, 50%, 70%, 90% { transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, 5deg); }
+	40%, 60%, 80% { transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, -5deg); }
+	to { transform: scale3d(1, 1, 1); }
+}
+
 #beta-ribbon {
 	text-align: center;
 	text-transform: uppercase;

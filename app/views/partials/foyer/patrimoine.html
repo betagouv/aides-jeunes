@@ -1,6 +1,6 @@
 <div class="frame-foyer">
   <h1>Votre patrimoine</h1>
-  <form method="post" name="form" novalidate class="form-horizontal" ng-submit="submit()">
+  <form method="post" name="form" novalidate class="form-horizontal" ng-submit="submit(form)">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2 class="panel-title">
@@ -25,6 +25,7 @@
                 zero-to-empty
                 ng-model="patrimoine.valeurLocativeTerrainNonLoue">
               <span class="input-group-addon">€</span>
+              <span role="alert" clas="help-block">Montant invalide</span>
             </div>
           </div>
           <div class="col-sm-5">
@@ -50,6 +51,7 @@
                 zero-to-empty
                 ng-model="patrimoine.valeurLocativeImmoNonLoue">
               <span class="input-group-addon">€</span>
+              <span role="alert" clas="help-block">Montant invalide</span>
             </div>
           </div>
           <div class="col-sm-5">
@@ -75,13 +77,13 @@
             <div class="input-group">
               <input
                 type="number"
-                required
                 id="epargne-sur-livret"
                 class="form-control text-right"
                 select-on-focus
                 zero-to-empty
                 ng-model="patrimoine.epargneSurLivret">
               <span class="input-group-addon">€</span>
+              <span role="alert" clas="help-block">Montant invalide</span>
             </div>
           </div>
           <div class="col-sm-5">
@@ -103,6 +105,7 @@
                 zero-to-empty
                 ng-model="patrimoine.epargneSansRevenus">
               <span class="input-group-addon">€</span>
+              <span role="alert" clas="help-block">Montant invalide</span>
             </div>
           </div>
           <div class="col-sm-4">

@@ -38,11 +38,11 @@
               step="1000"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.montantAnnuel">
+              ng-model="ressource.montantAnnuel"
+              ng-model-options="{ updateOn: 'blur' }"
+              >
             <span class="input-group-addon">€</span>
-          </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
-          Montant invalide
+            <span class="text-danger" role="alert">Montant invalide</span>
           </span>
         </div>
       </div>
@@ -61,11 +61,11 @@
               step="100"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.montantsMensuels[$index]">
+              ng-model="ressource.montantsMensuels[$index]"
+              ng-model-options="{ updateOn: 'blur' }"
+              >
             <span class="input-group-addon">€</span>
-          </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
-            Montant invalide
+            <span class="text-danger" role="alert">Montant invalide</span>
           </span>
         </div>
       </div>
@@ -109,11 +109,11 @@
               step="1000"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.montantAnnuel">
+              ng-model="ressource.montantAnnuel"
+              ng-model-options="{ updateOn: 'blur' }"
+              >
             <span class="input-group-addon">€</span>
-          </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
-          Montant invalide
+            <span class="text-danger" role="alert">Montant invalide</span>
           </span>
         </div>
       </div>
@@ -149,18 +149,17 @@
               step="1000"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.caAnnuel">
+              ng-model="ressource.caAnnuel"
+              ng-model-options="{ updateOn: 'blur' }"
+              >
             <span class="input-group-addon">€</span>
-          </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.caAnnuel)">
-            Montant invalide
+            <span class="text-danger" role="alert">Montant invalide</span>
           </span>
         </div>
-
         <div class="col-sm-4">
           <label
             for="revenus-exercice-individu-{{ individuIndex }}">
-          Bénéfice sur le dernier exercice clos
+            Bénéfice sur le dernier exercice clos
           </label>
           <span class="input-group">
             <input
@@ -172,20 +171,20 @@
               step="1000"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.montantAnnuel">
+              ng-model="ressource.montantAnnuel"
+              ng-model-options="{ updateOn: 'blur' }"
+              >
             <span class="input-group-addon">€</span>
-          </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
-          Montant invalide
+            <span class="text-danger" role="alert">Montant invalide</span>
           </span>
         </div>
       </div>
       <div class="checkbox">
         <label>
-        <input
-          type="checkbox"
-          ng-model="individu.autresRevenusTnsEmployes">
-        J'ai au moins un employé
+          <input
+            type="checkbox"
+            ng-model="individu.autresRevenusTnsEmployes">
+          J'ai au moins un employé
         </label>
       </div>
     </div>
@@ -199,7 +198,8 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-sm-4">
-          <label for="revenus-exercice-individu-{{ individuIndex }}">
+          <label
+            for="revenus-exercice-individu-{{ individuIndex }}">
             Dernier bénéfice agricole
           </label>
           <span class="input-group">
@@ -212,11 +212,11 @@
               step="1000"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.montantAnnuel">
+              ng-model="ressource.montantAnnuel"
+              ng-model-options="{ updateOn: 'blur' }"
+              >
             <span class="input-group-addon">€</span>
-          </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
-          Montant invalide
+            <span class="text-danger" role="alert">Montant invalide</span>
           </span>
         </div>
       </div>

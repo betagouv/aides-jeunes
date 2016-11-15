@@ -6,6 +6,11 @@
     display: block;
 }
 
+/* Exception for montants, where we need a special style to put the error message under the input */
+.input-group .ng-dirty[aria-invalid="true"] ~ [role="alert"], .input-group .ng-submitted [aria-invalid="true"] ~ [role="alert"] {
+    display: table-row;
+}
+
 .ng-dirty[aria-invalid="true"], [role="alert"] {
     color: #F04124;
 }

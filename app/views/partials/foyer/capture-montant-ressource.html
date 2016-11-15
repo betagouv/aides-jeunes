@@ -11,7 +11,7 @@
         <label for="{{ ressource.type.id }}-month_{{ $index + 1 }}">
           {{ month.label|uppercaseFirst }}
         </label>
-        <span class="input-group">
+        <div class="input-group">
           <input
             type="number"
             class="form-control text-right"
@@ -21,18 +21,18 @@
             step="100"
             select-on-focus
             zero-to-empty
-            ng-model="ressource.montantsMensuels[$index]">
+            ng-model="ressource.montantsMensuels[$index]"
+            ng-model-options="{ updateOn: 'blur' }"
+            >
           <span class="input-group-addon">€</span>
-        </span>
-        <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
-          Montant invalide
-        </span>
+          <p class="text-danger" role="alert">Montant invalide</p>
+        </div>
       </div>
       <div class="col-sm-3">
         <label for="{{ ressource.type.id }}-year">
           Total depuis {{ debutAnneeGlissante }}
         </label>
-        <span class="input-group">
+        <div class="input-group">
           <input
             type="number"
             class="form-control text-right"
@@ -42,18 +42,17 @@
             step="100"
             select-on-focus
             zero-to-empty
-            ng-model="ressource.montantAnnuel">
+            ng-model="ressource.montantAnnuel"
+            ng-model-options="{ updateOn: 'blur' }"
+            >
           <span class="input-group-addon">€</span>
-        </span>
-        <span
-          class="text-danger"
-          ng-if="form.submitted && ! isNumber(ressource.montantAnnuel) && ! form.$error.min"
-          >
-          Montant invalide
-        </span>
-        <span class="text-danger" ng-if="form.submitted && form.$error.min">
-          La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
-        </span>
+          <div role ="alert">
+            <p class="text-danger" ng-if="! form.$error.min">Montant invalide</p>
+            <p class="text-danger" ng-if="form.$error.min">
+              La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
+            </p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="text-right">

@@ -73,19 +73,26 @@
 
     <div class="row" ng-if="captureLoyer()">
       <div class="col-sm-6">
-        <div class="form-group" ng-class="{'has-error': submitted && form.loyer.$invalid}">
+        <div class="form-group">
           <label class="col-sm-6 control-label" for="loyer">
             {{ loyerLabel() }}
           </label>
           <div class="col-sm-6">
             <div class="input-group">
-              <input type="number" min="0" step="100" class="form-control text-right" id="loyer" name="loyer" ng-model="logement.loyer"
+              <input
+                type="number"
+                min="0"
+                step="100"
+                class="form-control text-right"
+                id="loyer"
+                name="loyer"
+                ng-model="logement.loyer"
                 select-on-focus
                 zero-to-empty
                 >
               <div class="input-group-addon">€</div>
+              <span role="alert" clas="help-block">Montant invalide</span>
             </div>
-            <span class="help-block" ng-if="submitted && form.loyer.$invalid">Champ invalide</span>
           </div>
         </div>
       </div>
@@ -97,19 +104,24 @@
       </div>
 
       <div class="col-sm-6" ng-if="captureCharges()">
-        <div class="form-group" ng-class="{'has-error': submitted && form.charges.$invalid}">
+        <div class="form-group">
           <label class="col-sm-3 control-label" for="charges">
             Vos charges
           </label>
           <div class="col-sm-6">
             <div class="input-group">
-              <input type="number" class="form-control text-right" id="charges" name="charges" ng-model="logement.charges"
+              <input
+                type="number"
+                class="form-control text-right"
+                id="charges"
+                name="charges"
+                ng-model="logement.charges"
                 select-on-focus
                 zero-to-empty
                 >
               <div class="input-group-addon">€</div>
+              <span role="alert" clas="help-block">Montant invalide</span>
             </div>
-            <span class="help-block" ng-if="submitted && form.charges.$invalid">Champ invalide</span>
           </div>
         </div>
       </div>

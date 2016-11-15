@@ -32,6 +32,7 @@ angular.module('ddsCommon').service('BroadcastService', function($http, $localSt
                     return broadcast.published_at > lastRead;
                 });
             });
-        }
+        },
+        markBroadcastsAsRead: updateLastBroadcastRead,
     };
 });

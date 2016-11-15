@@ -18,6 +18,8 @@ angular.module('ddsApp').controller('BodyCtrl', function($scope, $localStorage, 
         $scope.newBroadcasts = newBroadcasts;
     });
 
+    $scope.markBroadcastsAsRead = BroadcastService.markBroadcastsAsRead;
+
     $scope.newSituation = function() {
         SituationService.newSituation();
     };

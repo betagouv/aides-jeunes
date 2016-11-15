@@ -68,7 +68,12 @@
       <nav class="container">
         <a ui-sref="home" class="navbar-brand" title="Accueil">mes-aides.gouv.fr</a>
 
-        <a ng-if="newBroadcasts.length" id="broadcast" class="navbar-brand navbar-right" href="https://github.com/sgmap/mes-aides-ui/releases">
+        <a ng-if="newBroadcasts.length"
+           id="broadcast"
+           class="navbar-brand navbar-right"
+           href="https://github.com/sgmap/mes-aides-ui/releases"
+           ng-click="markBroadcastsAsRead()"
+           >
           <i class="fa fa-bell" aria-hidden="true"></i> {{ newBroadcasts[0].name }}
         </a>
 

@@ -16,7 +16,24 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
               }, $log.error.bind($log)
               ).finally(function() {
                   $scope.retrievingCities = false;
+                  validatePostalCode();
               });
+    };
+
+    function validatePostalCode() {
+        var postalCodeInput = document.querySelector('#postalCode');
+        var isValid = ! _.isEmpty($scope.cities);
+        postalCodeInput.className += " ng-dirty";
+        postalCodeInput.setAttribute('aria-invalid', ! isValid);
+        return isValid;
+    }
+
+    // We manually trigger the postal code validation when there is 5 characters in the field.
+    document.querySelector('#postalCode').oninput = function() {
+        if (this.value.length == 5) {
+            $scope.logement.postalCode = this.value;
+            $scope.updateCities();
+        }
     };
 
     var logement = $scope.logement = {
@@ -126,10 +143,11 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     $scope.submit = function(form) {
         $scope.submitted = true;
-        if (form.$valid && ! _.isEmpty($scope.cities)) {
-            logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && cityStartsWith('Paris');
-            $scope.$emit('logement', logement);
-            ImpactStudyService.sendPostCode($scope.situation);
-        }
+        if (! form.$valid || ! validatePostalCode())
+            return document.querySelector('input[aria-invalid="true"]').focus();
+
+        logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && cityStartsWith('Paris');
+        $scope.$emit('logement', logement);
+        ImpactStudyService.sendPostCode($scope.situation);
     };
 });

@@ -146,7 +146,7 @@
               required
               ng-model="logement.postalCode"
               ng-change="updateCities()"
-              aria-invalid="{{ submitted && (! cities.length || ! logement.postalCode) }}"
+              ng-model-options="{ updateOn: 'blur' }"
               >
             <span class="text-danger" role="alert" >Ce code postal est invalide</span>
           </div>

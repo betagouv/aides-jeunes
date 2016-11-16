@@ -4,7 +4,7 @@
     Ces informations se trouvent sur votre déclaration de revenus d'impôts {{ yearMoins2 }}.
     <br>Vous pouvez la retrouver en ligne sur <a href="http://www.impots.gouv.fr/">impots.gouv.fr</a>.
   </p>
-  <form class="form-horizontal" novalidate ng-submit="submit()">
+  <form class="form-horizontal" novalidate name="form" ng-submit="submit(form)">
     <div class="row">
       <div class="col-md-12" ng-repeat="individuRef in individuRefsToDisplay">
         <h2>{{ individuRef.label }}</h2>

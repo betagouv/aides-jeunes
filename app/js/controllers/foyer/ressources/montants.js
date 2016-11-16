@@ -20,9 +20,9 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
 
     $scope.submit = function(form) {
         form.submitted = true;
-        if (form.$valid) {
-            RessourceService.applyRessourcesToIndividu($scope.individu, $scope.ressources, $scope.situation.dateDeValeur);
-            $scope.declareNextIndividuResources(parseInt($stateParams.individu));
-        }
+        if (! form.$valid)
+            return document.querySelector('input[aria-invalid="true"]').focus();
+        RessourceService.applyRessourcesToIndividu($scope.individu, $scope.ressources, $scope.situation.dateDeValeur);
+        $scope.declareNextIndividuResources(parseInt($stateParams.individu));
     };
 });

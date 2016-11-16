@@ -8,7 +8,9 @@ angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, Situ
         epargneSansRevenus: 0
     };
 
-    $scope.submit = function() {
+    $scope.submit = function(form) {
+        if (! form.$valid)
+            return document.querySelector('input[aria-invalid="true"]').focus();
         $scope.patrimoine.captured = true;
         $scope.$emit('patrimoine', $scope.patrimoine);
     };

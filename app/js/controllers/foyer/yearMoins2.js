@@ -38,7 +38,10 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
         return individuRef.individu.ressourcesYearlyApproximation[mapping[rncID]];
     };
 
-    $scope.submit = function() {
+    $scope.submit = function(form) {
+        if (! form.$valid)
+            return document.querySelector('input[aria-invalid="true"]').focus();
+
         $scope.individuRefsToDisplay.forEach(function(individuRef) {
             // clean anciennes valeurs
             individuRef.individu.ressources = _.filter(individuRef.individu.ressources, function(ressource) {

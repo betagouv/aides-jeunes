@@ -25,7 +25,7 @@
             ng-model-options="{ updateOn: 'blur' }"
             >
           <span class="input-group-addon">€</span>
-          <p class="text-danger" role="alert">Montant invalide</p>
+          <p role="alert">Montant invalide</p>
         </div>
       </div>
       <div class="col-sm-3">
@@ -47,8 +47,9 @@
             aria-describedby="{{ ressource.type.id }}-year-alert"
             >
           <span class="input-group-addon">€</span>
-            <p id="{{ ressource.type.id }}-year-alert" class="text-danger" ng-if="! form.$error.min">Montant invalide</p>
-            <p id="{{ ressource.type.id }}-year-alert" class="text-danger" ng-if="form.$error.min">
+          <div role="alert">
+            <p id="{{ ressource.type.id }}-year-alert" ng-if="! form.$error.min">Montant invalide</p>
+            <p id="{{ ressource.type.id }}-year-alert" ng-if="form.$error.min">
               La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
             </p>
           </div>
@@ -85,7 +86,7 @@
         ng-model-options="{ updateOn: 'blur' }"
         aria-describedby="dateArretDeTravail-alert"
         >
-      <div class="text-danger" role="alert">
+      <div role="alert">
         <p id="dateArretDeTravail-alert" ng-if="form.dateArretDeTravail.$error.format">
           Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
         </p>

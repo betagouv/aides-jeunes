@@ -18,7 +18,7 @@
         aria-describedby="dateDeNaissance-alert"
         auto-focus
         >
-      <div class="text-danger" role="alert">
+      <div role="alert">
         <p id="dateDeNaissance-alert" ng-if="form.dateDeNaissance.$error.format">
           Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
         </p>
@@ -56,7 +56,7 @@
         ng-model="individu.firstName"
         aria-described-by="firstName-alert"
       >
-      <p id="firstName-alert" class="text-danger" role="alert">Ce champ est obligatoire.</p>
+      <p id="firstName-alert" role="alert">Ce champ est obligatoire.</p>
     </div>
     <p class="col-sm-4 help-col">Ce prénom servira uniquement à vous faciliter la saisie par la suite.</p>
   </div>
@@ -103,7 +103,7 @@
             <span ng-if="individu.nationalite == 'autre'">
               Détenteur d'une carte de résident ou d'un titre de séjour valide et résidant en France plus de 9 mois par an.
             </span>
-          <span id="canPursueSimulation-alert" class="text-danger" role="alert">
+          <span id="canPursueSimulation-alert" role="alert">
             Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.
           </span>
         </label>
@@ -168,7 +168,7 @@
             ng-model-options="{ updateOn: 'blur' }"
             aria-describedby="dateDernierContratTravail-alert"
             >
-        <div class="text-danger" role="alert">
+        <div role="alert">
           <p id="dateDernierContratTravail-alert" ng-if="form.dateDernierContratTravail.$error.format">
             Veuillez utiliser le format MM/AAAA. Par exemple&nbsp;: 04/2016.
           </p>

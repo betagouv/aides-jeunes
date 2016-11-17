@@ -44,11 +44,11 @@
             zero-to-empty
             ng-model="ressource.montantAnnuel"
             ng-model-options="{ updateOn: 'blur' }"
+            aria-describedby="{{ ressource.type.id }}-year-alert"
             >
           <span class="input-group-addon">€</span>
-          <div role ="alert">
-            <p class="text-danger" ng-if="! form.$error.min">Montant invalide</p>
-            <p class="text-danger" ng-if="form.$error.min">
+            <p id="{{ ressource.type.id }}-year-alert" class="text-danger" ng-if="! form.$error.min">Montant invalide</p>
+            <p id="{{ ressource.type.id }}-year-alert" class="text-danger" ng-if="form.$error.min">
               La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
             </p>
           </div>
@@ -83,15 +83,16 @@
         required
         ng-model="individu.dateArretDeTravail"
         ng-model-options="{ updateOn: 'blur' }"
+        aria-describedby="dateArretDeTravail-alert"
         >
       <div class="text-danger" role="alert">
-        <p ng-if="form.dateArretDeTravail.$error.format">
+        <p id="dateArretDeTravail-alert" ng-if="form.dateArretDeTravail.$error.format">
           Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
         </p>
-        <p ng-if="form.dateArretDeTravail.$error.required">
+        <p id="dateArretDeTravail-alert" ng-if="form.dateArretDeTravail.$error.required">
           Ce champ est obligatoire.
         </p>
-        <p ng-if="form.dateArretDeTravail.$error.isBeforeMin">
+        <p id="dateArretDeTravail-alert" ng-if="form.dateArretDeTravail.$error.isBeforeMin">
           Il semblerait qu'on vous ait prescrit un arrêt de travail avant votre naissance.
         </p>
       </div>

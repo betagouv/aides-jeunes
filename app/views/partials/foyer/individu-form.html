@@ -15,19 +15,20 @@
         required
         ng-model="individu.dateDeNaissance"
         ng-model-options="{ updateOn: 'blur' }"
+        aria-describedby="dateDeNaissance-alert"
         auto-focus
         >
       <div class="text-danger" role="alert">
-        <p ng-if="form.dateDeNaissance.$error.format">
+        <p id="dateDeNaissance-alert" ng-if="form.dateDeNaissance.$error.format">
           Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
         </p>
-        <p ng-if="form.dateDeNaissance.$error.required">
+        <p id="dateDeNaissance-alert" ng-if="form.dateDeNaissance.$error.required">
           Ce champ est obligatoire.
         </p>
-        <p ng-if="form.dateDeNaissance.$error.isBeforeMin">
+        <p id="dateDeNaissance-alert" ng-if="form.dateDeNaissance.$error.isBeforeMin">
           Les personnes de plus de {{ maxAgeYears }} ans ne sont pas prises en compte.
         </p>
-        <p ng-if="form.dateDeNaissance.$error.isAfterMax">
+        <p id="dateDeNaissance-alert" ng-if="form.dateDeNaissance.$error.isAfterMax">
           Cette personne doit être déjà née pour être prise en compte.<br>
           Pour simuler une naissance future, imaginez qu'elle a eu lieu aujourd'hui et déclarez vos revenus en conséquence.
         </p>
@@ -53,8 +54,9 @@
         placeholder="Toto"
         required
         ng-model="individu.firstName"
+        aria-described-by="firstName-alert"
       >
-      <p class="text-danger" role="alert">Ce champ est obligatoire.</p>
+      <p id="firstName-alert" class="text-danger" role="alert">Ce champ est obligatoire.</p>
     </div>
     <p class="col-sm-4 help-col">Ce prénom servira uniquement à vous faciliter la saisie par la suite.</p>
   </div>
@@ -90,14 +92,18 @@
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
         <label>
-          <input type="checkbox" required ng-model="canPursueSimulation">
+          <input type="checkbox"
+            required
+            ng-model="canPursueSimulation"
+            aria-describedby="canPursueSimulation-alert"
+            >
             <span ng-if="individu.nationalite == 'ue'">
               Détenteur d'un droit au séjour valide et résidant en France plus de 9 mois par an.
             </span>
             <span ng-if="individu.nationalite == 'autre'">
               Détenteur d'une carte de résident ou d'un titre de séjour valide et résidant en France plus de 9 mois par an.
             </span>
-          <span class="text-danger" role="alert">
+          <span id="canPursueSimulation-alert" class="text-danger" role="alert">
             Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.
           </span>
         </label>
@@ -160,13 +166,13 @@
             id="dateDernierContratTravail"
             ng-model="individu.dateDernierContratTravail"
             ng-model-options="{ updateOn: 'blur' }"
+            aria-describedby="dateDernierContratTravail-alert"
             >
-
         <div class="text-danger" role="alert">
-          <p ng-if="form.dateDernierContratTravail.$error.format">
+          <p id="dateDernierContratTravail-alert" ng-if="form.dateDernierContratTravail.$error.format">
             Veuillez utiliser le format MM/AAAA. Par exemple&nbsp;: 04/2016.
           </p>
-          <p ng-if="form.dateDernierContratTravail.$error.isBeforeMin">
+          <p id="dateDernierContratTravail-alert" ng-if="form.dateDernierContratTravail.$error.isBeforeMin">
             Il semblerait que votre contrat de travail se soit arrêté avant votre naissance.
           </p>
         </div>

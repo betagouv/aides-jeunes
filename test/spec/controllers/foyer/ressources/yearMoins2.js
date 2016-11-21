@@ -57,7 +57,7 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
                     $scope: scope
                 });
             });
-            scope.submit();
+            scope.submit({$valid: true});
             // then
             expect(scope.individuRefsToDisplay[0].rnc.length).toBe(0);
 
@@ -83,7 +83,7 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
 
             // when
             scope.individuRefsToDisplay[0].rnc[0].montant = 10000;
-            scope.submit();
+            scope.submit({$valid: true});
 
             // then
             expect(demandeur.ressources[0].type).toBe(scope.individuRefsToDisplay[0].rnc[0].categorie.id);

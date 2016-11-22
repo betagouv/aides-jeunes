@@ -40,3 +40,9 @@
 	border-radius: 5px;
 	background-color: white;
 }
+
+@media (max-width: 767px) {
+	#tracking-optout {
+		height: 210px;  /* in pixels because Piwik sets the font-size */
+	}
+}

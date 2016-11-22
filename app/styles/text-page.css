@@ -33,3 +33,10 @@
 	margin-left: 0;
 	padding-left: 0;
 }
+
+#tracking-optout {
+	width: 100%;
+	height: 115px;  /* in pixels because Piwik sets the font-size */
+	border-radius: 5px;
+	background-color: white;
+}

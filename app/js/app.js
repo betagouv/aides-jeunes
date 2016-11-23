@@ -42,10 +42,15 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             }
         })
         .state('cgu', {
-            url: '/conditions-generales-d-utilisation',
+            url: '/cgu',
             templateUrl: '/partials/cgu.html',
             data: {
-                pageTitle: 'Conditions générales d\'utilisation - '
+                pageTitle: "Conditions générales d'utilisation - "
+            },
+            resolve: {
+                style: function() {
+                    angular.element(document.head).append('<link rel="stylesheet" type="text/css" href="/styles/text-page.css" />');
+                }
             }
         })
         .state('contribuez', {

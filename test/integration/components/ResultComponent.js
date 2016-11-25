@@ -3,12 +3,12 @@ prestationName: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .descrip
 prestationMontant: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .montant',
 prestationMontantDetail: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .montant-detail',
 prestationYM2Warning: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') i.fa-warning',
-togglePrestationTabLink: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') a',
+togglePrestationTabLink: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') a div',
 prestationDescription: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') p',
 prestationMoreInfoLink: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .btn-default',
 
-openPrimeActiviteLink: { a: 'Prime d’activité' },
-requestPrimeActiviteLink: { a: 'Faire une demande' },
+openPrimeActiviteLink: '.result:nth-child(5) a div',
+requestPrimeActiviteLink: 'a[href*="demanderlaprimedactivite"]',
 
 greyedPrestation: '.result-needs-n-2',
-declareYM2ResourcesLink: { a: 'Déclarez vos ressources' },
+declareYM2ResourcesLink: '.additional-info-cta a',

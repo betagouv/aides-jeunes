@@ -46,6 +46,9 @@
       <br>sans droits d'administration sur votre poste,
       <a href="https://www.google.com/chrome/browser/index.html?standalone=1">faites-le vous-même</a> !
     </div>
+    <script type="text/javascript">
+      var incompatibleBrowser = true;
+    </script>
     <![endif]-->
 
     <header role="banner" class="navbar navbar-default navbar-fixed-top">
@@ -189,7 +192,10 @@
     <script type="text/javascript">
       var _paq = _paq || [];
       _paq.push(['setDomains', ['*.mes-aides.gouv.fr']]);
-      // _paq.push(['trackPageView']);  // done through angulartics
+      if (incompatibleBrowser) {
+        _paq.push(['trackPageView']);  // for others, will be done through angulartics
+        _paq.push(['trackEvent', 'incompatibleBrowser', true]);
+      }
       _paq.push(['enableLinkTracking']);
       (function() {
         var u='https://stats.data.gouv.fr/';

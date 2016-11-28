@@ -30,6 +30,8 @@ module.exports = function(config) {
       'test/spec/**/*.js',
       'app/views/**/*.html',
       'node_modules/cleave.js/dist/cleave.js',
+      'node_modules/angulartics/dist/angulartics.min.js',
+      'node_modules/angulartics-piwik/dist/angulartics-piwik.min.js',
     ],
 
     // list of files / patterns to exclude

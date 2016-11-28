@@ -182,11 +182,14 @@
 
     <script src="/js/lib/cleave.js/dist/cleave.min.js"></script>
 
+    <script src="/js/lib/angulartics/dist/angulartics.min.js"></script>
+    <script src="/js/lib/angulartics-piwik/dist/angulartics-piwik.min.js"></script>
+
     <!-- Piwik -->
     <script type="text/javascript">
       var _paq = _paq || [];
       _paq.push(['setDomains', ['*.mes-aides.gouv.fr']]);
-      _paq.push(['trackPageView']);
+      // _paq.push(['trackPageView']);  // done through angulartics
       _paq.push(['enableLinkTracking']);
       (function() {
         var u='https://stats.data.gouv.fr/';

@@ -1,5 +1,4 @@
 @import 'commons';
-@import 'loading-spinner';
 
 html {
   overflow-y: scroll;
@@ -8,7 +7,7 @@ html {
 }
 
 $main-footer-height: 220px;
-$body-front-base-padding: 50px;
+$body-front-base-padding: 45px;  // .navbar's min-height
 
 h1[tabindex="-1"] {
   outline: none;
@@ -38,62 +37,6 @@ h1[tabindex="-1"] {
 
 .table td.align-middle {
   vertical-align: middle;
-}
-
-.main-navbar {
-  @extend .navbar;
-  @extend .navbar-default;
-  @extend .navbar-fixed-top;
-  margin-bottom: 0;
-
-  .container {
-    position: relative;
-  }
-
-  .navbar-brand {
-    &.logo {
-      padding-top: 3px;
-      padding-bottom: 47px;
-    }
-
-    &.title {
-      padding-top: 15px;
-      padding-bottom: 35px;
-      position: relative;
-      left: 20px;
-    }
-
-    &.logo, &.logo:hover, &.logo:focus {
-      background-color: white;
-      position: relative;
-      z-index: 1;
-    }
-  }
-
-  .navbar-nav {
-    margin-top: 0;
-    margin-bottom: 0;
-
-    & > li > .navbar-btn {
-      margin: 21px 25px 21px 0;
-    }
-  }
-
-  .logo-beta {
-    text-align: center;
-    text-transform: uppercase;
-    position: absolute;
-    top: 26px;
-    right: -35px;
-    transform: rotate(45deg);
-    width: 150px;
-    background-color: $brand-primary;
-    color: white;
-    padding: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    z-index: 10;
-  }
 }
 
 .main-footer {
@@ -285,39 +228,6 @@ $rpns-lighter: #dad7e8;
 
 .capture-patrimoine {
   @include ressource-category-capture($patrimoine-light);
-}
-.intro {
-  width: 100%;
-  background: white;
-  padding: 14px;
-  padding-right: 80px;
-  color: #333;
-  z-index: 5;
-
-  .intro-content {
-    text-align: center;
-    cursor: pointer;
-
-    span {
-      margin: 0 10px;
-    }
-  }
-}
-
-.main-navbar, .intro, .body-front {
-  transition: all 0.5s linear;
-}
-
-.body-front.has-intro {
-  padding-top: $body-front-base-padding + 46px;
-}
-
-.intro.ng-enter, .intro.ng-leave.ng-leave-active {
-  margin-top: -46px;
-}
-
-.intro, .intro.ng-enter.ng-enter-active {
-  margin-top: 0px;
 }
 
 @mixin panel-variant-recap($color) {

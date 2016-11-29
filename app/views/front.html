@@ -27,6 +27,7 @@
     <!-- ref:include piwik -->
     <!-- endref -->
 
+    <link rel="stylesheet" href="/styles/header.css">
     <link rel="stylesheet" href="/styles/front.css">
     <link rel="stylesheet" href="/styles/homepage.css">
     <link rel="stylesheet" href="/styles/individu-form.css">
@@ -49,32 +50,28 @@
     </div>
     <![endif]-->
 
-    <header role="banner">
-      <nav role="navigation" class="main-navbar" ng-class="{'has-intro': showIntro}">
-        <div class="intro-holder">
-          <div class="intro" ng-cloak ng-if="showIntro">
-            <div class="intro-content">
-              <span ng-click="hideIntro()">
-                <strong>Service expérimental</strong>.
-                Ici l'État innove avec la société civile pour offrir aux usagers le service public de demain.
-              </span>
-              <span>
-                <a ui-sref="a_propos" title="En savoir plus sur ce service expérimental"><strong>En savoir plus…</strong></a>
-              </span>
-              <span class="fa fa-close" ng-click="hideIntro()" tabindex="0" role="button" aria-label="Supprimer ce message"></span>
-            </div>
-            <div class="clearfix"></div>
+    <header role="banner" class="navbar navbar-default navbar-fixed-top">
+      <div class="intro-holder">
+        <div class="intro" ng-cloak ng-if="showIntro">
+          <div class="intro-content">
+            <span ng-click="hideIntro()">
+              <strong>Service expérimental</strong>.
+              Ici l'État innove avec la société civile pour offrir aux usagers le service public de demain.
+            </span>
+            <span>
+              <a ui-sref="a_propos" title="En savoir plus sur ce service expérimental"><strong>En savoir plus…</strong></a>
+            </span>
+            <span class="fa fa-close" ng-click="hideIntro()" tabindex="0" role="button" aria-label="Supprimer ce message"></span>
           </div>
         </div>
-        <div class="container">
-          <ul class="nav navbar-nav">
-            <li><a ui-sref="home" class="navbar-brand logo hidden-xs" title="Accueil - mes-aides.gouv.fr"><img src="img/logo_marianne.png" alt="Accueil - mes-aides.gouv.fr"></a></li>
-            <li><a ui-sref="home" class="navbar-brand title" title="Accueil - mes-aides.gouv.fr">mes-aides.gouv.fr</a></li>
-          </ul>
-          <loading-spinner></loading-spinner>
-        </div>
-        <div class="logo-beta">Bêta</div>
+      </div>
+      <nav class="container">
+        <a ui-sref="home" class="navbar-brand" title="Accueil">mes-aides.gouv.fr</a>
+
+        <loading-spinner class="navbar-right"></loading-spinner>
       </nav>
+
+      <div id="beta-ribbon">Bêta</div>
     </header>
 
     <div class="content">

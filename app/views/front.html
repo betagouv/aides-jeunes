@@ -47,7 +47,7 @@
       <a href="https://www.google.com/chrome/browser/index.html?standalone=1">faites-le vous-même</a> !
     </div>
     <script type="text/javascript">
-      var incompatibleBrowser = true;
+      window.incompatibleBrowser = true;
     </script>
     <![endif]-->
 
@@ -192,17 +192,19 @@
     <script type="text/javascript">
       var _paq = _paq || [];
       _paq.push(['setDomains', ['*.mes-aides.gouv.fr']]);
+      _paq.push(['enableLinkTracking']);
+
+      (function() {
+      var incompatibleBrowser = window.incompatibleBrowser;
       if (incompatibleBrowser) {
         _paq.push(['trackPageView']);  // for others, will be done through angulartics
         _paq.push(['trackEvent', 'incompatibleBrowser', true]);
       }
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u='https://stats.data.gouv.fr/';
-        _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', '9']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      var u='https://stats.data.gouv.fr/';
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
       })();
     </script>
     <noscript><p><img src="https://stats.data.gouv.fr/piwik.php?idsite=9&rec=1&action_name=no-js" style="border:0;" alt="" /></p></noscript>

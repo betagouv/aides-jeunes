@@ -63,6 +63,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'FAQ - '
             }
         })
+        .state('sos', {
+            url: '/sos',
+            templateUrl: '/content-pages/sos.html',
+            data: {
+                pageTitle: 'SOS - '
+            }
+        })
         .state('communication', {
             url: '/communication',
             templateUrl: '/partials/communication.html',

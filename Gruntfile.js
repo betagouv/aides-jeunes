@@ -222,7 +222,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/views',
-          src: ['*.html', 'partials/**/*.html'],
+          src: ['**/*.html'],
           dest: '<%= yeoman.dist %>/views'
         }]
       }

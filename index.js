@@ -36,6 +36,7 @@ module.exports = function(app) {
     app.use(express.static(path.join(__dirname, 'dist')));
 
     app.use('/partials', express.static(viewsDirectory + '/partials'));
+    app.use('/content-pages', express.static(viewsDirectory + '/content-pages'));
     app.use('/partials', function(req, res) {
         return res.send(404);
     });

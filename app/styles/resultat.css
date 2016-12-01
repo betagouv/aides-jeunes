@@ -1,0 +1,12 @@
+#feedback {
+    border-top: 1px solid #DDD;
+    margin-top: 2em;
+    padding-top: 2em;
+    margin-bottom: 4em;
+}
+
+#feedback ul {
+    margin-left: 0;
+    padding-left: 0;
+    list-style-type: circle;
+}

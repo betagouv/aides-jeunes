@@ -307,12 +307,7 @@ module.exports = function (grunt) {
     htmlrefs: {
       dist: {
         src: './dist/views/front.html',
-        dest: './dist/views/front.html',
-        options: {
-          includes: {
-            piwik: './piwik.inc'
-          }
-        }
+        dest: './dist/views/front.html'
       }
     }
   });

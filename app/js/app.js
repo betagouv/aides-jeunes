@@ -36,7 +36,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         })
         .state('a_propos', {
             url: '/a-propos',
-            templateUrl: '/partials/a-propos.html',
+            templateUrl: '/content-pages/a-propos.html',
             data: {
                 pageTitle: 'A propos - '
             }

@@ -34,11 +34,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'HomepageCtrl',
             preventFocus: true
         })
-        .state('a_propos', {
+        .state('a-propos', {
             url: '/a-propos',
             templateUrl: '/content-pages/a-propos.html',
             data: {
-                pageTitle: 'A propos - '
+                pageTitle: 'À propos - '
             }
         })
         .state('cgu', {

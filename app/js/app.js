@@ -65,9 +65,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         })
         .state('communication', {
             url: '/communication',
-            templateUrl: '/partials/communication.html',
+            templateUrl: '/content-pages/communication.html',
             data: {
-                pageTitle: 'Communication - '
+                pageTitle: 'Supports de communication - '
             }
         })
         .state('tests', {

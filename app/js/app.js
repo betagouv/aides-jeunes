@@ -48,19 +48,18 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: "Conditions générales d'utilisation - "
             }
         })
-        .state('contribuez', {
-            url: '/contribuez',
-            templateUrl: '/partials/contribuez.html',
-            controller: 'ContribuezCtrl',
-            data: {
-                pageTitle: 'Contribuez ! - '
-            }
-        })
         .state('sos', {
             url: '/sos',
             templateUrl: '/content-pages/sos.html',
             data: {
                 pageTitle: 'SOS - '
+            }
+        })
+        .state('ameliorer', {
+            url: '/ameliorer',
+            templateUrl: '/content-pages/ameliorer.html',
+            data: {
+                pageTitle: "Améliorer - "
             }
         })
         .state('communication', {

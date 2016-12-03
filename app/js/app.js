@@ -43,7 +43,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         })
         .state('cgu', {
             url: '/cgu',
-            templateUrl: '/partials/cgu.html',
+            templateUrl: '/content-pages/cgu.html',
             data: {
                 pageTitle: "Conditions générales d'utilisation - "
             }

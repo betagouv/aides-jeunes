@@ -56,13 +56,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'Contribuez ! - '
             }
         })
-        .state('faq', {
-            url: '/faq',
-            templateUrl: '/partials/faq.html',
-            data: {
-                pageTitle: 'FAQ - '
-            }
-        })
         .state('sos', {
             url: '/sos',
             templateUrl: '/content-pages/sos.html',

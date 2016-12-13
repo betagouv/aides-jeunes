@@ -34,40 +34,39 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'HomepageCtrl',
             preventFocus: true
         })
-        .state('a_propos', {
+        .state('a-propos', {
             url: '/a-propos',
-            templateUrl: '/partials/a-propos.html',
+            templateUrl: '/content-pages/a-propos.html',
             data: {
-                pageTitle: 'A propos - '
+                pageTitle: 'À propos - '
             }
         })
         .state('cgu', {
             url: '/cgu',
-            templateUrl: '/partials/cgu.html',
+            templateUrl: '/content-pages/cgu.html',
             data: {
                 pageTitle: "Conditions générales d'utilisation - "
             }
         })
-        .state('contribuez', {
-            url: '/contribuez',
-            templateUrl: '/partials/contribuez.html',
-            controller: 'ContribuezCtrl',
+        .state('sos', {
+            url: '/sos',
+            templateUrl: '/content-pages/sos.html',
             data: {
-                pageTitle: 'Contribuez ! - '
+                pageTitle: 'SOS - '
             }
         })
-        .state('faq', {
-            url: '/faq',
-            templateUrl: '/partials/faq.html',
+        .state('ameliorer', {
+            url: '/ameliorer',
+            templateUrl: '/content-pages/ameliorer.html',
             data: {
-                pageTitle: 'FAQ - '
+                pageTitle: "Améliorer - "
             }
         })
         .state('communication', {
             url: '/communication',
-            templateUrl: '/partials/communication.html',
+            templateUrl: '/content-pages/communication.html',
             data: {
-                pageTitle: 'Communication - '
+                pageTitle: 'Supports de communication - '
             }
         })
         .state('tests', {

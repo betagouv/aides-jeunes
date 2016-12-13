@@ -42,7 +42,7 @@
 
   <div class="frame-resultats" ng-if="noDroits && ressourcesYearMoins2Captured">
       <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
-      <p>Si vous êtes malgré cela dans une situation de précarité, entrez directement en contact avec <a href="/faq#recours">l’un des organismes</a> qui détermine l’attribution des aides sociales.</p>
+      <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
   </div>
 
   <div class="frame-resultats" ng-if="! noDroits && ! situation.patrimoine.captured">
@@ -60,14 +60,19 @@
 
 </div>
 
+<div id="feedback">
+  <h4>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider&nbsp;!</h4>
+  <ul>
+    <li><a href="mailto:feedback@mes-aides.gouv.fr?subject=Suggestion">Vous avez une suggestion d'amélioration</a>.</li>
+    <li><a href="mailto:feedback@mes-aides.gouv.fr?subject=%C3%89cart%20de%20r%C3%A9sultats&body=Bonjour%2C%0A%0AEn%20effectuant%20une%20simulation%20sur%20mes-aides.gouv.fr%2C%20j%27ai%20obtenu%20le%20r%C3%A9sultat%20suivant%20%3A%0A%0A-%20XXX%20%E2%82%AC%20%2F%20mois%20pour%20la%20prestation%20%C2%AB%20%20%C2%BB.%0A%0AMais%20en%20effectuant%20la%20m%C3%AAme%20simulation%20sur%20le%20site%20XXX%2C%20j%27ai%20obtenu%20le%20r%C3%A9sultat%20suivant%20%3A%0A%0A-%20XXX%20%E2%82%AC%20%2F%20mois%20pour%20la%20prestation%20%C2%AB%20%20%C2%BB.%0A%0AVous%20pouvez%20me%20joindre%20par%20t%C3%A9l%C3%A9phone%20au%20XX%20XX%20XX%20XX%20XX%20%28de%20pr%C3%A9f%C3%A9rence%20en%20semaine%29%20pour%20une%20dizaine%20de%20minutes%20d%27%C3%A9change%20afin%20de%20comprendre%20d%27o%C3%B9%20provient%20cet%20%C3%A9cart.%0A%0ABonne%20journ%C3%A9e%2C">Ces résultats ne correspondent pas à ceux d'un autre simulateur</a>.</li>
+    <li><a href="mailto:feedback@mes-aides.gouv.fr?subject=%C3%89cart%20de%20droits&body=Bonjour%2C%0A%0AEn%20effectuant%20une%20simulation%20sur%20mes-aides.gouv.fr%2C%20j%27ai%20obtenu%20le%20r%C3%A9sultat%20suivant%20%3A%0A%0A-%20XXX%20%E2%82%AC%20%2F%20mois%20pour%20la%20prestation%20%C2%AB%20%20%C2%BB.%0A%0AMais%20XXX%20a%20fini%20par%20m%27attribuer%20le%20montant%20suivant%20%3A%0A%0A-%20XXX%20%E2%82%AC%20%2F%20mois%20pour%20la%20prestation%20%C2%AB%20%20%C2%BB.%0A%0AJ%27ai%20bien%20compris%20que%20vous%20n%27%C3%A9tiez%20pas%20d%C3%A9cisionnaires%20et%20ne%20pourrez%20pas%20intervenir%20en%20ma%20faveur.%0A%0AVous%20pouvez%20me%20joindre%20par%20t%C3%A9l%C3%A9phone%20au%20XX%20XX%20XX%20XX%20XX%20%28de%20pr%C3%A9f%C3%A9rence%20en%20semaine%29%20pour%20une%20dizaine%20de%20minutes%20d%27%C3%A9change%20afin%20de%20comprendre%20d%27o%C3%B9%20provient%20cet%20%C3%A9cart%20et%20am%C3%A9liorer%20le%20simulateur%20pour%20d%27autres%20utilisateurs.">Ces résultats ne correspondent pas à ce que l'administration vous a attribué</a>.</li>
+  </ul>
+  <small>Partenaires&nbsp;: <a href="" ng-click="createTest()">créez un test</a>.</small>
+</div>
+
+
 <div>
   <hr>
   <h4 ng-show="! (droitsInjectes | isEmpty)">Aides que vous percevez déjà aujourd'hui, et dont nous n'avons pas recalculé le montant</h4>
   <droits-list droits="droitsInjectes"></droits-list>
 </div>
-
-<p class="text-right">
-  <strong>Nous améliorons ce simulateur en continu. N'hésitez pas à <a href="mailto:feedback@mes-aides.gouv.fr">nous transmettre vos retours et suggestions</a>&nbsp;!</strong>
-  <br/>
-  <small>Partenaires&nbsp;: <a href="" ng-click="createTest()">créez un test</a>.</small>
-</p>

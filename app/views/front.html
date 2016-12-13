@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="/styles/individu-form.css">
     <link rel="stylesheet" href="/styles/resources.css">
     <link rel="stylesheet" href="/styles/logement.css">
+    <link rel="stylesheet" href="/styles/resultat.css">
     <link rel="stylesheet" href="/styles/text-container.css">
 
     <base href="/">
@@ -60,7 +61,7 @@
               Ici l'État innove avec la société civile pour offrir aux usagers le service public de demain.
             </span>
             <span>
-              <a ui-sref="a_propos" title="En savoir plus sur ce service expérimental"><strong>En savoir plus…</strong></a>
+              <a ui-sref="a-propos" title="En savoir plus sur ce service expérimental"><strong>En savoir plus…</strong></a>
             </span>
             <span class="fa fa-close" ng-click="hideIntro()" tabindex="0" role="button" aria-label="Supprimer ce message"></span>
           </div>
@@ -86,11 +87,11 @@
         <div class="col-md-3">
           <h4>Mes aides</h4>
           <ul class="list-unstyled">
-            <li><a ui-sref="a_propos">À propos</a></li>
+            <li><a ui-sref="a-propos">À propos</a></li>
             <li><a ui-sref="cgu">Conditions d'utilisation</a></li>
-            <li><a ui-sref="contribuez">Contribuez !</a></li>
-            <li><a ui-sref="faq">FAQ</a></li>
-            <li><a ui-sref="communication">Communication</a></li>
+            <li><a ui-sref="sos">SOS</a></li>
+            <li><a ui-sref="communication">Supports de communication</a></li>
+            <li><a ui-sref="ameliorer">Améliorer ce site</a></li>
             <li><a href="mailto:contact@mes-aides.gouv.fr ">Contact</a></li>
           </ul>
         </div>
@@ -141,7 +142,6 @@
 
     <script src="js/controllers/body.js"></script>
     <script src="js/controllers/homepage.js"></script>
-    <script src="js/controllers/contribuez.js"></script>
     <script src="js/controllers/foyer.js"></script>
     <script src="js/controllers/foyer/individuForm.js"></script>
     <script src="js/controllers/foyer/conjoint.js"></script>

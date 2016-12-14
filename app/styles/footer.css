@@ -16,6 +16,6 @@ footer li {
   margin-bottom: .5em;
 }
 
-footer a, footer a:hover {
+footer a, footer a:hover, footer a:focus {
   color: inherit;
 }

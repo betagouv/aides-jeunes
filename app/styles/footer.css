@@ -1,0 +1,21 @@
+footer {
+  background-color: #333;
+  color: #FFF;
+  width: 100%;
+
+  margin-top: 3em;
+  padding-top: 2em;
+  padding-bottom: 1.5em;
+}
+
+footer ul {
+  margin-bottom: 0;
+}
+
+footer li {
+  margin-bottom: .5em;
+}
+
+footer a, footer a:hover, footer a:focus {
+  color: inherit;
+}

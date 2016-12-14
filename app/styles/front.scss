@@ -1,12 +1,5 @@
 @import 'commons';
 
-html {
-  overflow-y: scroll;
-  position: relative;
-  min-height: 100%;
-}
-
-$main-footer-height: 220px;
 $body-front-base-padding: 45px;  // .navbar's min-height
 
 h1[tabindex="-1"] {
@@ -14,7 +7,6 @@ h1[tabindex="-1"] {
 }
 
 .body-front {
-  margin-bottom: $main-footer-height;
   padding-top: $body-front-base-padding;
   background-color: $color-background;
 }
@@ -37,23 +29,6 @@ h1[tabindex="-1"] {
 
 .table td.align-middle {
   vertical-align: middle;
-}
-
-.main-footer {
-  background-color: $navbar-default-bg;
-  color: $navbar-default-color;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: $main-footer-height;
-
-  padding-top: 30px;
-  padding-bottom: 30px;
-
-  & ul li a {
-    color: white;
-    font-size: 12px;
-  }
 }
 
 .form-foyer {

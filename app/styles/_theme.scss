@@ -313,8 +313,7 @@ label,
 }
 
 .panel {
-  &.panel-heading,
-  &.panel-footer {
+  &.panel-heading {
     border-top-right-radius: 0;
     border-top-left-radius: 0;
   }

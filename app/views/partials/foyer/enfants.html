@@ -9,22 +9,18 @@
     <div ng-repeat="enfant in enfants">
       <div ng-if="$index % 3 === 0" class="clearfix"></div>
       <div class="col-md-4">
-        <div class="panel-enfant whiteframe-z1">
-          <div class="panel-body">
-            {{ enfant.firstName }}
-            <button type="button" class="close" ng-click="removeEnfant(enfant)">
-              <span class="sr-only">Effacer {{ enfant.firstName }}</span>
-              <span role="presentation" aria-hidden="true">&times;</span>
-            </button>
-            <div class="row">
-              <div class="col-xs-4">
-                <i class="fa fa-child icon-lg" aria-hidden="true"></i>
-              </div>
-              <div class="col-xs-8">
-                Né·e le <strong>{{ enfant.dateDeNaissance.format('L') }}</strong>
-                <br>Nationalité <strong>{{ nationalite(enfant) }}</strong>
-                <br><i>{{ statutsSpecifiques(enfant) }}</i>
-              </div>
+        <div class="child">
+          <button type="button" class="close" ng-click="removeEnfant(enfant)">
+            <span class="sr-only">Effacer {{ enfant.firstName }}</span>
+            <span role="presentation" aria-hidden="true">&times;</span>
+          </button>
+          <h3>{{ enfant.firstName }}</h3>
+          <div class="row">
+            <span class="card-icon fa fa-child col-xs-4" aria-hidden="true"></span>
+            <div class="col-xs-8">
+              Né·e le <strong>{{ enfant.dateDeNaissance.format('L') }}</strong>
+              <br>Nationalité <strong>{{ nationalite(enfant) }}</strong>
+              <br><i>{{ statutsSpecifiques(enfant) }}</i>
             </div>
           </div>
         </div>
@@ -34,17 +30,11 @@
     <div ng-if="enfants.length % 3 === 0" class="clearfix"></div>
 
     <div class="col-md-4">
-      <div class="panel-enfant panel-new-enfant">
-        <div class="panel-body">
-          <button class="btn btn-lg btn-default btn-block btn-new-entity" ng-click="newEnfant()">
-            Ajouter un enfant
-            <br><i class="fa fa-plus icon-lg" aria-hidden="true"></i>
-          </button>
-        </div>
-      </div>
+      <button class="new-entity child btn btn-default" ng-click="newEnfant()">
+        <h3>Ajouter un enfant</h3>
+        <span class="card-icon fa fa-plus" aria-hidden="true"></span>
+      </button>
     </div>
-
-    <span id="form-scroll"></span>
   </div>
 
   <div class="text-right" ng-if="!displayForm">
@@ -54,7 +44,7 @@
   </div>
 </div>
 
-<div id="form-new-enfant" ng-if="displayForm" class="frame-new-individu">
+<div ng-if="displayForm" id="new" class="frame-new-individu">
   <h2>Nouvel enfant</h2>
   <div ui-view="enfantForm"></div>
 </div>

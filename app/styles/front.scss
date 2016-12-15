@@ -75,26 +75,6 @@ h1[tabindex="-1"] {
   min-height: 250px;
 }
 
-.panel-enfant {
-  @extend .panel;
-  @extend .panel-default;
-  min-height: 112px;
-}
-
-#form-new-personne > h2 {
-  margin-top: 0;
-}
-
-.panel-new-enfant {
-  border: 2px dashed #dddddd;
-  .panel-body {
-    padding: 0;
-  }
-  .btn.btn-lg.btn-new-entity {
-    padding: 3px;
-  }
-}
-
 .form-selection-revenus {
   font-size: 20px;
 
@@ -110,13 +90,6 @@ h1[tabindex="-1"] {
 
 .animate-show.ng-hide {
   opacity: 0;
-}
-
-.btn.btn-lg.btn-new-entity {
-  border: none;
-  border-radius: 0;
-  padding: 23px;
-  font-size: 17px;
 }
 
 $revenusActivite: #FFBC67;

@@ -1,0 +1,28 @@
+.child {
+  border: 1px solid #DDD;
+  box-shadow: 0 .2em .4em rgba(0, 0, 0, 0.4);
+  padding: 1em;
+  padding-top: .25em;
+  margin-bottom: 1em;
+}
+
+.child h3 {
+  margin-top: .5em;
+}
+
+.close {
+  float: right;
+  color: black;
+  margin-top: .25em;
+}
+
+.new-entity {
+  padding: 0 2em 1em 2em;
+  border: .25em dashed #DDD;
+  box-shadow: none;
+  width: 100%;
+}
+
+.card-icon {
+  font-size: 430%;
+}

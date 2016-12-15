@@ -266,17 +266,6 @@ label,
 
 // Indicators =================================================================
 
-.close {
-  opacity: 0.4;
-  text-decoration: none;
-  text-shadow: none;
-
-  &:hover,
-  &:focus {
-    opacity: 1;
-  }
-}
-
 .alert {
   font-size: $font-size-small;
   font-weight: 300;
@@ -316,12 +305,6 @@ label,
   &.panel-heading {
     border-top-right-radius: 0;
     border-top-left-radius: 0;
-  }
-
-  &.panel-default {
-    .close {
-      color: $text-color;
-    }
   }
 }
 

@@ -6,7 +6,7 @@ angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $locati
     $scope.$on('individu.enfant', function(e, enfant) {
         $scope.enfants.push(enfant);
         $scope.displayForm = false;
-        var addEnfantButton = document.querySelector('.btn-new-entity');
+        var addEnfantButton = document.querySelector('.new-entity');
         addEnfantButton.focus();
     });
 

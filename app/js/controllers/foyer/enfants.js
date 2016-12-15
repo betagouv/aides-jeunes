@@ -16,10 +16,7 @@ angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $locati
 
     $scope.newEnfant = function() {
         $scope.displayForm = true;
-        $timeout(function() {
-            $location.hash('form-scroll');
-            $anchorScroll();
-        });
+        $timeout(function() { $anchorScroll('new'); });
     };
 
     $scope.removeEnfant = function(enfant) {

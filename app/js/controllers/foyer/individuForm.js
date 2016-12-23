@@ -38,7 +38,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         assPreconditionRemplie: false,
         scolarite: 'college',
         tauxIncapacite: 'plus80',
-        boursier: false,
+        echelonBourse: -1,
         aCharge: (individuRole == 'enfant'), // By default enfants are `à charge fiscale`, adults are not.
         fiscalementIndependant: true,
         place: false,
@@ -80,8 +80,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
                 delete $scope.individu.tauxIncapacite;
             }
 
-            if (! $scope.captureEtudiantBoursier()) {
-                delete $scope.individu.boursier;
+            if (! $scope.captureEtudiantBoursier() || $scope.individu.echelonBourse == -1) {
+                delete $scope.individu.echelonBourse;
             }
 
             if (! $scope.captureScolarite(form)) {

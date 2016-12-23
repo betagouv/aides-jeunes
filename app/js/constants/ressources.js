@@ -36,10 +36,16 @@ var ijssInteruptionQuestionLabel = 'des indemnités de la sécurité sociale, un
 angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'revenusSalarie',
-        label: 'Salaire, primes',
+        label: 'Salaire (hors primes)',
         category: 'revenusActivite',
         interuptionQuestionLabel: 'un salaire, des allocations chômage, ou des indemnités de la sécurité sociale',
         positionInList: '1'
+    },
+    {
+        id: 'primes',
+        label: 'Primes (dont 13ème mois)',
+        category: 'revenusActivite',
+        positionInList: '2'
     },
     {
         id: 'stage',

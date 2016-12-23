@@ -1,3 +1,3 @@
 openfisca_web_api[paster]==3.0.0
-openfisca_france==6.0.4
+openfisca_france==7.0.2
 git+https://github.com/sgmap/openfisca-paris.git@a4b6f324f48e465b89ffd01d25cea8ff68202718#egg=openfisca-paris

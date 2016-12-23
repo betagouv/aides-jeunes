@@ -250,7 +250,7 @@
   <fieldset class="form-group" ng-if="captureEtudiantBoursier()">
     <label id="question-bourse">
       <div class="col-sm-4 control-label">
-        {{ individu.role == 'demandeur' ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier&nbsp;?
+        À quel échelon {{ individu.role == 'demandeur' ? 'êtes-vous' : 'est-il/elle' }} boursier&nbsp;?
       </div>
       <div class="col-sm-2">
           <input type="range" min="-1" max="7" ng-model="individu.echelonBourse">

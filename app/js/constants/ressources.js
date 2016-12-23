@@ -210,6 +210,12 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'des'
     },
     {
+        id: 'indFinDeContrat',
+        label: 'Indemnités de licenciement, rupture, fin de CDD…',
+        category: 'revenusActivite',
+        prefix: 'des'
+    },
+    {
         id: 'dedommagementAmiante',
         label: 'Dédommagement aux victimes de l’amiante',
         category: 'indemnites',

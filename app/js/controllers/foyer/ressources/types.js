@@ -14,7 +14,6 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
         montantAnnuel: 0,
         caAnnuel: 0,
         montantsMensuels: [0, 0, 0],
-        onGoing: true,
     };
 
     $scope.shouldInitiallyOpen = function(category) {
@@ -40,6 +39,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
             if (! ressource) {
                 ressource = _.cloneDeep(DEFAULT_RESOURCE);
                 ressource.type = ressourceType;
+                ressource.onGoing = (! ressourceType.revenuExceptionnel); // exceptional incomes are by definition not ongoing
             }
             $scope.ressources.push(ressource);
         });

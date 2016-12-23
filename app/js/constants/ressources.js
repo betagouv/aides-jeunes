@@ -45,7 +45,9 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         id: 'primes',
         label: 'Primes (dont 13ème mois)',
         category: 'revenusActivite',
-        positionInList: '2'
+        positionInList: '2',
+        prefix: 'des',
+        revenuExceptionnel: true,
     },
     {
         id: 'stage',
@@ -219,7 +221,8 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         id: 'indFinDeContrat',
         label: 'Indemnités de licenciement, rupture, fin de CDD…',
         category: 'revenusActivite',
-        prefix: 'des'
+        prefix: 'des',
+        revenuExceptionnel: true,
     },
     {
         id: 'dedommagementAmiante',

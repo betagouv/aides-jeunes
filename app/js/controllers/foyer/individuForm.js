@@ -80,7 +80,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
                 delete $scope.individu.tauxIncapacite;
             }
 
-            if (! $scope.captureEtudiantBoursier() || $scope.individu.echelonBourse == -1) {
+            if (! $scope.captureEtudiantBoursier()) {
                 delete $scope.individu.echelonBourse;
             }
 

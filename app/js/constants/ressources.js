@@ -36,10 +36,18 @@ var ijssInteruptionQuestionLabel = 'des indemnités de la sécurité sociale, un
 angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'revenusSalarie',
-        label: 'Salaire, primes',
+        label: 'Salaire (hors primes)',
         category: 'revenusActivite',
         interuptionQuestionLabel: 'un salaire, des allocations chômage, ou des indemnités de la sécurité sociale',
         positionInList: '1'
+    },
+    {
+        id: 'primes',
+        label: 'Primes (dont 13ème mois)',
+        category: 'revenusActivite',
+        positionInList: '2',
+        prefix: 'des',
+        revenuExceptionnel: true,
     },
     {
         id: 'stage',
@@ -208,6 +216,13 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         label: 'Indemnités de volontariat',
         category: 'indemnites',
         prefix: 'des'
+    },
+    {
+        id: 'indFinDeContrat',
+        label: 'Indemnités de licenciement, rupture, fin de CDD…',
+        category: 'revenusActivite',
+        prefix: 'des',
+        revenuExceptionnel: true,
     },
     {
         id: 'dedommagementAmiante',

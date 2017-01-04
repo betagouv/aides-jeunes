@@ -38,24 +38,15 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
     }
 
     function applyYearlyRessource (individu, ressource, dateDeValeur) {
-            var montant = ressource.montantAnnuel;
-            var periode = moment(dateDeValeur).subtract(1, 'year').format('YYYY');
-            if (montant) {
-                individu.ressources.push({
-                    type: ressource.type.id,
-                    periode: periode,
-                    montant: montant
-                });
-            }
-
-            // For  'professions libérales et entrepreneurs', we capture the 'CA' as well as the 'benefice'
-            if (ressource.type.id == 'autresRevenusTns' && ressource.caAnnuel) {
-                individu.ressources.push({
-                    type: 'caAutresRevenusTns',
-                    periode: periode,
-                    montant: ressource.caAnnuel
-                });
-            }
+        var montant = ressource.montantAnnuel;
+        var periode = moment(dateDeValeur).subtract(1, 'year').format('YYYY');
+        if (montant) {
+            individu.ressources.push({
+                type: ressource.type.id,
+                periode: periode,
+                montant: montant
+            });
+        }
     }
 
     function applyRessourcesToIndividu (individu, ressources, dateDeValeur) {
@@ -83,7 +74,7 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
     function isRessourceOnMainScreen(ressourceOrType) {
         // Make this function robust so that it can be called with a ressource from individu.ressources, a type from the ressourceTypes constant, or just a string.
         var type = ressourceOrType.type || ressourceOrType.id || ressourceOrType;
-        return type != 'pensionsAlimentairesVersees' && type != 'caAutresRevenusTns' && ! _.find(categoriesRnc, { id: type });
+        return type != 'pensionsAlimentairesVersees' && ! _.find(categoriesRnc, { id: type });
     }
 
     function getMainScreenRessources(individu) {

@@ -52,17 +52,6 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
                 onGoing: true
             };
 
-            // For autres revenus TNS, we also need to find the CA
-            if (type == 'autresRevenusTns') {
-                ressource.caAnnuel = _.chain(ressources)
-                    .where({ type: 'caAutresRevenusTns' })
-                    .pluck('montant')
-                    .reduce(function(sum, montant) {
-                        return sum + montant;
-                    })
-                    .value();
-            }
-
             if (_.contains(individu.interruptedRessources, type)) {
                 ressource.onGoing = false;
             }

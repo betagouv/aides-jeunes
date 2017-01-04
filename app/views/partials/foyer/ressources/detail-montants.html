@@ -134,30 +134,7 @@
             <option value="bnc">Activité libérale et/ou intellectuelle (BNC)</option>
           </select>
         </div>
-
-        <div class="col-sm-3">
-          <label for="ca-individu-{{ individuIndex }}">
-            <abbr title="Chiffre d'affaires">CA</abbr> sur le dernier exercice clos
-          </label>
-          <span class="input-group">
-            <input
-              type="number"
-              id="ca-individu-{{ individuIndex }}"
-              class="form-control text-right"
-              required
-              min="0"
-              step="1000"
-              select-on-focus
-              zero-to-empty
-              ng-model="ressource.caAnnuel">
-            <span class="input-group-addon">€</span>
-          </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.caAnnuel)">
-            Montant invalide
-          </span>
-        </div>
-
-        <div class="col-sm-4">
+        <div class="col-sm-7">
           <label
             for="revenus-exercice-individu-{{ individuIndex }}">
           Bénéfice sur le dernier exercice clos
@@ -179,14 +156,6 @@
           Montant invalide
           </span>
         </div>
-      </div>
-      <div class="checkbox">
-        <label>
-        <input
-          type="checkbox"
-          ng-model="individu.autresRevenusTnsEmployes">
-        J'ai au moins un employé
-        </label>
       </div>
     </div>
   </div>

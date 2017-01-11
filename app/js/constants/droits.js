@@ -7,7 +7,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'imgSrc': 'logo_assurance_retraite.png',
             'prestations': {
                 'aspa': {
-                    'label': 'Allocation de Solidarité aux Personnes Âgées',
+                    'label': 'Allocation de solidarité aux personnes âgées',
                     'shortLabel': 'ASPA',
                     'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une allocation destinée aux personnes âgées disposant de faibles revenus en vue de leur assurer un niveau minimum de ressources. Elle remplace le minimum vieillesse depuis 2006.',
                     'conditions': [
@@ -36,13 +36,13 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
                 },
                 'asi': {
-                    'label': 'Allocation Supplémentaire d’Invalidité',
+                    'label': 'Allocation supplémentaire d’invalidité',
                     'shortLabel': 'ASI',
                     'description': 'L’allocation supplémentaire d’invalidité (Asi) est une prestation versée sous certaines conditions aux personnes invalides titulaires d’une pension de retraite ou d’invalidité qui n’ont pas atteint l’âge légal de départ à la retraite pour bénéficier de l’allocation de solidarité aux personnes âgées (Aspa)',
                     'link': 'http://vosdroits.service-public.fr/particuliers/F16940.xhtml'
                 },
                 'cmu_c': {
-                    'label': 'Couverture Maladie Universelle Complémentaire',
+                    'label': 'Couverture maladie universelle complémentaire',
                     'shortLabel': 'CMU-C',
                     'description': 'La CMU-C est une protection complémentaire santé gratuite.',
                     'conditions': [
@@ -58,7 +58,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'imgSrc': 'logo_caf.png',
             'prestations': {
                 'af': {
-                    'label': 'Allocations Familiales',
+                    'label': 'Allocations familiales',
                     'shortLabel': 'AF',
                     'description': 'Les allocations familiales sont versées aux personnes ayant au moins 2 enfants de moins de 20 ans à charge en métropole et dès le premier enfant dans les DOM. Le montant des prestations dépend du nombre d’enfants à charge, de leur âge et des ressources de la famille.',
                     'conditions': [
@@ -68,14 +68,14 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isBaseRessourcesYearMoins2': true
                 },
                 'cf': {
-                    'label': 'Complément Familial',
+                    'label': 'Complément familial',
                     'shortLabel': 'CF',
                     'description': 'Le complément familial est versé, sous certaines conditions, aux personnes ayant au moins 3 enfants à charge.',
                     'link': 'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'asf': {
-                    'label': 'Allocation de Soutien Familial',
+                    'label': 'Allocation de soutien familial',
                     'shortLabel': 'ASF',
                     'description': 'L’ASF est versée par la CAF ou la MSA au parent qui élève seul son enfant ou à la personne qui a recueilli un enfant, qu’elle vive seule ou en couple.',
                     'conditions': [
@@ -84,14 +84,14 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'link': 'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf-0'
                 },
                 'paje_base': {
-                    'label': 'Prestation d’Accueil du Jeune Enfant - Allocation de base',
+                    'label': 'Prestation d’accueil du jeune enfant – Allocation de base',
                     'shortLabel': 'PAJE-BASE',
                     'description': 'L’allocation de base vous aide à assurer les dépenses liées à l’entretien et à l’éducation de votre enfant.',
                     'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/l-allocation-de-base',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'rsa': {
-                    'label': 'Revenu de Solidarité Active',
+                    'label': 'Revenu de solidarité active',
                     'shortLabel': 'RSA',
                     'description': 'Le RSA est destiné à assurer aux personnes disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer.',
                     'conditions': [
@@ -113,7 +113,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     }
                 },
                 'aide_logement': {
-                    'label': 'Aides au Logement',
+                    'label': 'Aides au logement',
                     'shortLabel': 'AL',
                     'description': 'L’aide au logement est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
                     'conditions': [
@@ -161,7 +161,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'imgSrc': 'logo_pole_emploi.png',
             'prestations': {
                 'ass': {
-                    'label': 'Allocation de Solidarité Spécifique',
+                    'label': 'Allocation de solidarité spécifique',
                     'shortLabel': 'ASS',
                     'description': 'L’allocation de solidarité spécifique (ASS) est une aide financière destinée aux personnes ayant épuisé leurs droits aux allocations chômage.',
                     'link': 'http://vosdroits.service-public.fr/particuliers/F12484.xhtml'
@@ -299,7 +299,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isMontantAnnuel': false,
                     'unit': '%',
                     'legend': 'des frais de dépendance',
-                    'label': 'Allocation Départementale Personnalisée d’Autonomie',
+                    'label': 'Allocation départementale personnalisée d’autonomie',
                     'shortLabel': 'ADPA',
                     'description': 'Allocation versée aux personnes dépendantes âgées de plus de 60 ans. Elle a pour objectif de financer des services d’aide à la personne favorisant leur autonomie dans les gestes quotidiens.',
                     'conditions': [],

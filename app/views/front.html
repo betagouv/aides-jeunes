@@ -51,7 +51,7 @@
     <meta name="msapplication-config" content="/img/favicon/browserconfig.xml?v=2017-03-01">
     <meta name="theme-color" content="#ffffff">
   </head>
-  <body class="body-front" ng-controller="BodyCtrl" ng-class="{'has-intro': showIntro}">
+  <body class="body-front" ng-controller="BodyCtrl">
     <!--[if lt IE 10]>
     <div class="browsehappy text-center">
       Vous utilisez un navigateur web obsolète et donc <strong>non sécurisé</strong>.
@@ -68,20 +68,6 @@
     <![endif]-->
 
     <header role="banner" class="navbar navbar-default navbar-fixed-top">
-      <div class="intro-holder">
-        <div class="intro" ng-cloak ng-if="showIntro">
-          <div class="intro-content">
-            <span ng-click="hideIntro()">
-              <strong>Service expérimental</strong>.
-              Ici l'État innove avec la société civile pour offrir aux usagers le service public de demain.
-            </span>
-            <span>
-              <a ui-sref="a-propos" title="En savoir plus sur ce service expérimental"><strong>En savoir plus…</strong></a>
-            </span>
-            <span class="fa fa-close" ng-click="hideIntro()" tabindex="0" role="button" aria-label="Supprimer ce message"></span>
-          </div>
-        </div>
-      </div>
       <nav class="container">
         <a ui-sref="home" class="navbar-brand" title="Accueil">mes-aides.gouv.fr</a>
 

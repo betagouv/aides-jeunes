@@ -32,28 +32,6 @@ header[role="banner"] .loading-spinner .loading-spinner-icon {
 	100%	{ transform: rotate(360deg); }
 }
 
-.intro {
-	width: 100%;
-	background: white;
-	padding: 14px;
-	padding-right: 80px;
-	color: #333;
-	z-index: 5;
-}
-
-.intro .intro-content {
-	text-align: center;
-	cursor: pointer;
-}
-
-.main-navbar, .intro, .body-front {
+.main-navbar, .body-front {
 	transition: all 0.5s linear;
-}
-
-.intro.ng-enter, .intro.ng-leave.ng-leave-active {
-	margin-top: -46px;
-}
-
-.intro, .intro.ng-enter.ng-enter-active {
-	margin-top: 0px;
 }

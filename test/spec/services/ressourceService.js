@@ -30,21 +30,6 @@ describe('ResultatService', function () {
             expect(individu.ressources).not.toEqual([]);
             expect(individu.ressources[0].type).toEqual('revenusAgricolesTns');
         });
-
-        it('should add caAutresRevenusTns to individu model when autresRevenusTns are declared', function() {
-            ressource = {
-                type: {
-                    id: 'autresRevenusTns'
-                },
-                montantAnnuel: 12000,
-                caAnnuel: 20000,
-                periode: 2014
-            };
-            service.applyYearlyRessource(individu, ressource, dateDeValeur);
-            expect(individu.ressources).not.toEqual([]);
-            expect(individu.ressources[0].type).toEqual('autresRevenusTns');
-            expect(individu.ressources[1].type).toEqual('caAutresRevenusTns');
-        });
     });
     describe('isRessourceOnMainScreen', function() {
         it('should filter pensions alimentaires versées and RNC resources', function() {

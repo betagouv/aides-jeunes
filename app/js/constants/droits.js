@@ -26,7 +26,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'prestations': {
                 'acs': {
                     'isMontantAnnuel': true,
-                    'label': 'Aide pour une Complémentaire Santé',
+                    'label': 'Aide au paiement d’une complémentaire santé',
                     'shortLabel': 'ACS',
                     'description': 'L’aide pour l’acquisition d’une assurance complémentaire santé, dite ACS, est une aide financière pour payer une complémentaire santé (exemple : une mutuelle).',
                     'conditions': [

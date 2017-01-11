@@ -46,3 +46,13 @@
 .frame-aides-homepage .showDetailsButtonBlock {
     margin-top: 1em;
 }
+
+
+#start-row {
+    text-align: center;
+}
+
+#start {
+    font-size: 200%;
+    font-weight: bold;
+}

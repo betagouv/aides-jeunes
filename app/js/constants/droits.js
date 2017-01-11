@@ -270,7 +270,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 },
                 'paris_energie_famille': {
                     'isMontantAnnuel': true,
-                    'label': 'Paris Energie Famille',
+                    'label': 'Paris Énergie Famille',
                     'shortLabel': 'PEF',
                     'description': 'Paris énergie familles est une aide annuelle permettant aux familles d’alléger leurs dépenses de consommation d’électricité et de gaz.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-energie-famille_8',

@@ -29,7 +29,7 @@ You will need [`pip`](https://pip.pypa.io/) to install Openfisca.
 
 ### In production
 
-[upstart](http://upstart.ubuntu.com/index.html) and [foreman](http://theforeman.org/) are used to run the production server for [mes-aides.gouv.fr](https://mes-aides.gouv.fr/).
+[upstart](http://upstart.ubuntu.com/index.html) and [foreman](https://ddollar.github.io/foreman/) are used to run the production server for [mes-aides.gouv.fr](https://mes-aides.gouv.fr/).
 
 [foreverjs](https://github.com/foreverjs/forever) is used to run the server for staging feature branches versions of mes-aides. It needs to be installed before running the deployment scripts: `npm install --global forever`.
 

@@ -1,16 +1,27 @@
 header[role="banner"] {
-	color: white;
-}
-
-header[role="banner"] a {
-	color: inherit;
+	background-color: rgba(255, 255, 255, .9);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
 }
 
 header[role="banner"] .navbar-brand {
+	padding-left: 100px;
+
 	background-image: url(/img/marianne.svg);
 	background-repeat: no-repeat;
 	background-size: contain;
-	padding-left: 100px;
+
+	color: rgba(24, 137, 184, .5);
+	font-family: "Century Gothic";
+	font-weight: 600;
+	font-style: italic;
+	font-size: 180%;
+
+	transition: color linear .2s;
+}
+
+header[role="banner"] .navbar-brand:hover, header[role="banner"] .navbar-brand:focus {
+	color: rgba(24, 137, 184, 1);
 }
 
 header[role="banner"] .loading-spinner {

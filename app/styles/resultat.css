@@ -11,6 +11,10 @@
     list-style-type: circle;
 }
 
+#error p {
+    font-weight: bold;
+}
+
 #error small {
     display: block;
     margin-top: 1em;

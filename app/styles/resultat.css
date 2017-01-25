@@ -10,3 +10,12 @@
     padding-left: 0;
     list-style-type: circle;
 }
+
+#error small {
+    display: block;
+    margin-top: 1em;
+}
+
+#error small, #error small pre {
+    font-size: 80%;
+}

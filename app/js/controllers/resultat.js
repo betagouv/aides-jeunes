@@ -28,6 +28,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     })
     .catch(function(error) {
         $scope.error = error && error.data;
+        $analytics.eventTrack('error', { label: $scope.error });
     })
     .finally(function() {
         $scope.awaitingResults = false;

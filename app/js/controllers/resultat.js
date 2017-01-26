@@ -27,7 +27,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         ImpactStudyService.sendResults($scope.situation, droits.raw);
     })
     .catch(function(error) {
-        $scope.error = error && error.data;
+        $scope.error = error.data || error;
         $scope.encodedError = encodeURIComponent($scope.error);
         $scope.encodedUserAgent = encodeURIComponent(window.navigator.userAgent);
         $analytics.eventTrack('error', { label: $scope.error });

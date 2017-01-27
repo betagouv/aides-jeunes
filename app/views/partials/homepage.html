@@ -7,7 +7,7 @@
         Vous souhaitez savoir si vous pouvez bénéficier du RSA, d'une Couverture Maladie Universelle Complémentaire, d'une Allocation Logement, ou de toute autre Prestation Familiale ou Sociale&nbsp;?
       </p>
 
-      <div class="row">
+      <div class="row" ng-if="! hasLocalSituation()">
         <div class="col-sm-6">
           <div class="text-right">
             <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Commencer la simulation…</a>
@@ -17,6 +17,18 @@
           <p style="font-size: 19px;">
             <em>…et obtenez un montant mensuel estimé de ces prestations, puis simplifiez-vous les démarches.</em>
           </p>
+        </div>
+      </div>
+
+      <div class="row" ng-if="hasLocalSituation()">
+        <div class="col-sm-6">
+          <div class="text-right">
+            <a class="btn btn-success btn-lg" ui-sref="foyer.demandeur" ng-click="restoreLocal()">
+            Reprendre la simulation</a>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Commencer une nouvelle simulation</a>
         </div>
       </div>
     </div>
@@ -32,8 +44,18 @@
         Vous souhaitez savoir si vous pouvez bénéficier du RSA, d'une Couverture Maladie Universelle Complémentaire, d'une Allocation Logement, ou de toute autre Prestation Familiale ou Sociale&nbsp;?
       </p>
 
-      <div class="text-center">
+      <div class="text-center" ng-if="! hasLocalSituation()">
         <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Commencer la simulation</a>
+      </div>
+
+      <div ng-if="hasLocalSituation()">
+        <div class="text-center">
+          <a class="btn btn-success btn-lg" ui-sref="foyer.demandeur" ng-click="restoreLocal()">Reprendre la simulation</a>
+        </div>
+        <br>
+        <div class="text-center">
+          <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Commencer une nouvelle simulation</a>
+        </div>
       </div>
     </div>
   </div>

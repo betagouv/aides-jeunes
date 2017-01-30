@@ -21,15 +21,8 @@
       </div>
 
       <div class="row" ng-if="hasLocalSituation()">
-        <div class="col-sm-6">
-          <div class="text-right">
-            <a class="btn btn-success btn-lg" ui-sref="foyer.demandeur" ng-click="restoreLocal()">
-            Reprendre la simulation</a>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Commencer une nouvelle simulation</a>
-        </div>
+        <a class="col-sm-4 btn btn-success btn-lg" ui-sref="foyer.demandeur" ng-click="restoreLocal()">Reprendre la simulation</a>
+        <a class="col-sm-6 col-md-offset-1 btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Commencer une nouvelle simulation</a>
       </div>
     </div>
   </div>
@@ -48,13 +41,9 @@
         <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Commencer la simulation</a>
       </div>
 
-      <div ng-if="hasLocalSituation()">
-        <div class="text-center">
-          <a class="btn btn-success btn-lg" ui-sref="foyer.demandeur" ng-click="restoreLocal()">Reprendre la simulation</a>
-        </div>
-        <br>
-        <div class="text-center">
-          <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Commencer une nouvelle simulation</a>
+      <div class="row" ng-if="hasLocalSituation()">
+        <a class="col-xs-12 btn btn-success btn-lg" ui-sref="foyer.demandeur" ng-click="restoreLocal()">Reprendre la simulation</a>
+        <a class="col-xs-12 btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Commencer une nouvelle simulation</a>
         </div>
       </div>
     </div>

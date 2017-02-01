@@ -4,25 +4,30 @@
     Ces informations se trouvent sur votre déclaration de revenus d'impôts {{ yearMoins2 }}.
     <br>Vous pouvez la retrouver en ligne sur <a href="http://www.impots.gouv.fr/">impots.gouv.fr</a>.
   </p>
-  <form class="form-horizontal" novalidate ng-submit="submit()">
+  <form class="form-horizontal" novalidate name="ym2form" ng-submit="submit(ym2form)">
     <div class="row">
       <div class="col-md-12" ng-repeat="individuRef in individuRefsToDisplay">
         <h2>{{ individuRef.label }}</h2>
-        <div class="form-group" ng-repeat="rnc in individuRef.rnc">
-          <label class="control-label col-sm-3" for="{{ rnc.categorie.id }}-{{ individuRef.individu.role }}">
+        <div class="form-group" ng-repeat="rnc in individuRef.rnc"
+          ng-init=" input_name = rnc.categorie.id +  '-' + individuRef.individu.role ">
+          <label class="control-label col-sm-3" for="{{ input_name }}">
             {{ rnc.categorie.label }}
           </label>
           <div class="col-sm-3">
             <span class="input-group">
               <input
                 type="number"
-                id="{{ rnc.categorie.id }}-{{ individuRef.individu.role }}"
+                id="{{ input_name }}"
+                name="{{ input_name }}"
                 class="form-control text-right"
                 ng-model="rnc.montant"
                 min="0"
                 select-on-focus
                 zero-to-empty>
               <span class="input-group-addon hidden-xs">€</span>
+            </span>
+            <span class="text-danger" ng-if="ym2form.$submitted && !ym2form[input_name].$valid">
+              Montant invalide
             </span>
           </div>
           <div class="col-sm-6">
@@ -40,6 +45,9 @@
       </div>
     </div>
     <div class="text-right">
+      <span class="text-danger" ng-if="ym2form.$submitted && !ym2form.$valid">
+        Un des montants indiqués est invalide
+      </span>
       <button type="submit" class="btn btn-primary">Valider</button>
     </div>
   </form>

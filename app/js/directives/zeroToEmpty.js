@@ -11,7 +11,8 @@ angular.module('ddsApp').directive('zeroToEmpty', function() {
                 }
             });
             element.on('blur', function() {
-                if (null === ngModel.$viewValue) {
+                if (null === ngModel.$viewValue ||
+                    '' === ngModel.$viewValue) {
                     ngModel.$setViewValue('0');
                     ngModel.$render();
                 }

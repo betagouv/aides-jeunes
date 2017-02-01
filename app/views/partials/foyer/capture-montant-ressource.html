@@ -51,7 +51,7 @@
           >
           Montant invalide
         </span>
-        <span class="text-danger" ng-if="form.submitted && form.$error.min">
+        <span class="text-danger" ng-if="form.submitted && form.$error.valuesConsistency">
           La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
         </span>
       </div>

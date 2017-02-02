@@ -1,13 +1,18 @@
+main {
+    background-image: url('../img/homepage/homepage-1280.png');
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+}
+
 #valueProposition {
+    padding: .5em;
     font-size: 220%;
-    text-shadow: 0 0 .2em #000;
+    text-shadow: 0 0 .15em #000;
     text-align: center;
 
     color: white;
-
-    background-image: url('../img/homepage/homepage-1280.png');
-    background-position: center center;
-    background-size: cover;
+    background-color: rgba(0, 0, 0, .35);
 }
 
 #valueProposition h1 {
@@ -20,40 +25,42 @@
     font-size: 100%;
     font-weight: bold;
     margin: 1em;
+    background-color: #1889b8;
+    box-shadow: 0 0 1em rgba(24, 137, 184, .5);
 }
 
 @media (orientation: portrait) {
-    #valueProposition {
+    main {
         background-image: url('../img/homepage/homepage-vertical-1152.png');
     }
 }
 
 @media (orientation: portrait) and (min-width: 1153px) {
-    #valueProposition {
+    main {
         background-image: url('../img/homepage/homepage-vertical-2727.png');
     }
 }
 
 @media (min-width: 768px) {
-    #valueProposition {
+    main {
         padding: 3em;
     }
 }
 
 @media (min-width: 1281px) {
-    #valueProposition {
+    main {
         background-image: url('../img/homepage/homepage-1440.png');
     }
 }
 
 @media (min-width: 1441px) {
-    #valueProposition {
+    main {
         background-image: url('../img/homepage/homepage-1920.png');
     }
 }
 
 @media (min-width: 1921px) {
-    #valueProposition {
+    main {
         background-image: url('../img/homepage/homepage-5760.png');
     }
 }

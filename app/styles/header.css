@@ -4,24 +4,30 @@ header[role="banner"] {
 	backdrop-filter: blur(10px);
 }
 
-header[role="banner"] .navbar-brand {
-	padding-left: 100px;
-
+header[role="banner"] .container {
 	background-image: url(/img/marianne.svg);
 	background-repeat: no-repeat;
 	background-size: contain;
-
-	color: rgba(24, 137, 184, .5);
-	font-family: "Century Gothic";
-	font-weight: 600;
-	font-style: italic;
-	font-size: 180%;
-
-	transition: color linear .2s;
+	background-position: 1em 0;
 }
 
-header[role="banner"] .navbar-brand:hover, header[role="banner"] .navbar-brand:focus {
-	color: rgba(24, 137, 184, 1);
+#logo {
+	float: right;
+	font-size: 32px;
+
+	color: transparent;
+	background-image: url(/img/logo.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: left center;
+
+	opacity: .5;
+
+	transition: opacity linear .2s;
+}
+
+#logo:hover, #logo:focus {
+	opacity: 1;
 }
 
 header[role="banner"] .loading-spinner {
@@ -41,4 +47,26 @@ header[role="banner"] .loading-spinner .loading-spinner-icon {
 @keyframes loading-bar-spinner {
 	0%		{ transform: rotate(0deg); }
 	100%	{ transform: rotate(360deg); }
+}
+
+.body-front {
+	padding-top: 45px;  /* .navbar's min-height */
+}
+
+@media (max-width: 360px) {
+	header[role="banner"] .container {
+		background-position: 0 0;
+	}
+
+	#logo {
+		font-size: 24px;
+	}
+
+	.navbar {
+		min-height: 24px;
+	}
+
+	.body-front {
+		padding-top: 32px;  /* .navbar's min-height */
+	}
 }

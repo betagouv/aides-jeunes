@@ -1,52 +1,54 @@
-<div id="valueProposition">
-  <h1>
-    Évaluez vos droits à 22 aides sociales.<br/>
-    En moins de 7 minutes.
-  </h1>
+<main>
+  <div id="valueProposition">
+    <h1>
+      Évaluez vos droits à 22 aides sociales.<br/>
+      En moins de 7 minutes.
+    </h1>
 
-  <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Évaluer mes droits</a>
+    <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Évaluer mes droits</a>
 
-  <p>Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.</p>
-</div>
+    <p>Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.</p>
+  </div>
 
-<div class="container">
-  <div class="frame-aides-homepage whiteframe-z1">
-    <h2 class="text-center">Évaluez vos droits à ces aides nationales</h2>
-    <div ng-repeat="provider in prestationsNationales | orderObjectBy:'prestations':true">
-      <hr>
-      <div class="row">
-        <div class="text-center col-md-2">
-          <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
-        </div>
-        <div class="col-md-10">
-          <dl ng-repeat="droit in provider.prestations">
-            <dt>{{ droit.label }}</dt>
-            <dd>{{ droit.description }}</dd>
-          </dl>
+  <div class="container">
+    <div class="frame-aides-homepage whiteframe-z1">
+      <h2 class="text-center">Évaluez vos droits à ces aides nationales</h2>
+      <div ng-repeat="provider in prestationsNationales | orderObjectBy:'prestations':true">
+        <hr>
+        <div class="row">
+          <div class="text-center col-md-2">
+            <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
+          </div>
+          <div class="col-md-10">
+            <dl ng-repeat="droit in provider.prestations">
+              <dt>{{ droit.label }}</dt>
+              <dd>{{ droit.description }}</dd>
+            </dl>
+          </div>
         </div>
       </div>
-    </div>
-    <hr>
-    <h2 class="text-center">Évaluez vos droits à ces aides locales</h2>
-    <div ng-repeat="provider in partenairesLocaux | orderObjectBy:'prestations':true">
       <hr>
-      <div class="row">
-        <div class="text-center col-md-2">
-          <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
-        </div>
-        <div class="col-md-10">
-          <dl ng-repeat="droit in provider.prestations" ng-if="showDetails || $index < 2">
-            <dt>{{ droit.label }}</dt>
-            <dd>{{ droit.description }}</dd>
-          </dl>
+      <h2 class="text-center">Évaluez vos droits à ces aides locales</h2>
+      <div ng-repeat="provider in partenairesLocaux | orderObjectBy:'prestations':true">
+        <hr>
+        <div class="row">
+          <div class="text-center col-md-2">
+            <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
+          </div>
+          <div class="col-md-10">
+            <dl ng-repeat="droit in provider.prestations" ng-if="showDetails || $index < 2">
+              <dt>{{ droit.label }}</dt>
+              <dd>{{ droit.description }}</dd>
+            </dl>
 
-          <div class="col-md-12 showDetailsButtonBlock">
-            <button class="btn" type="button" ng-show="!showDetails && countPrestations(provider) > 2" ng-click="showDetails = ! showDetails">
-              Voir les {{ countPrestations(provider) - 2 }} autres aides calculées
-            </button>
+            <div class="col-md-12 showDetailsButtonBlock">
+              <button class="btn" type="button" ng-show="!showDetails && countPrestations(provider) > 2" ng-click="showDetails = ! showDetails">
+                Voir les {{ countPrestations(provider) - 2 }} autres aides calculées
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</main>

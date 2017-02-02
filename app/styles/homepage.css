@@ -1,12 +1,63 @@
-.homepage-call-to-action .jumbotron {
-    background-color: transparent;
-    text-shadow:  1px 1px 4px rgb(0, 0, 0);
+#valueProposition {
+    font-size: 220%;
+    text-shadow: 0 0 .2em #000;
+    text-align: center;
+
+    color: white;
+
+    background-image: url('../img/homepage/homepage-1280.png');
+    background-position: center center;
+    background-size: cover;
+}
+
+#valueProposition h1 {
+    font-size: 180%;
+    line-height: 1.4;
     margin-bottom: 0;
 }
 
-.homepage-call-to-action p {
-    margin-bottom: 1.5em;
+#valueProposition a {
+    font-size: 100%;
+    font-weight: bold;
+    margin: 1em;
 }
+
+@media (orientation: portrait) {
+    #valueProposition {
+        background-image: url('../img/homepage/homepage-vertical-1152.png');
+    }
+}
+
+@media (orientation: portrait) and (min-width: 1153px) {
+    #valueProposition {
+        background-image: url('../img/homepage/homepage-vertical-2727.png');
+    }
+}
+
+@media (min-width: 768px) {
+    #valueProposition {
+        padding: 3em;
+    }
+}
+
+@media (min-width: 1281px) {
+    #valueProposition {
+        background-image: url('../img/homepage/homepage-1440.png');
+    }
+}
+
+@media (min-width: 1441px) {
+    #valueProposition {
+        background-image: url('../img/homepage/homepage-1920.png');
+    }
+}
+
+@media (min-width: 1921px) {
+    #valueProposition {
+        background-image: url('../img/homepage/homepage-5760.png');
+    }
+}
+
 
 .frame-aides-homepage {
     margin-top: 2em;
@@ -28,58 +79,4 @@
 
 #start-row {
     text-align: center;
-}
-
-#start {
-    font-size: 200%;
-    font-weight: bold;
-}
-
-
-.homepage-call-to-action {
-    color: white;
-
-    background-position: center center;
-    background-size: cover;
-    background-image: url('../img/homepage/homepage-1280.png');
-}
-
-@media (orientation: portrait) {
-    .homepage-call-to-action {
-        background-image: url('../img/homepage/homepage-vertical-1152.png');
-    }
-}
-
-@media (orientation: portrait) and (min-width: 1153px) {
-    .homepage-call-to-action {
-        background-image: url('../img/homepage/homepage-vertical-2727.png');
-    }
-}
-
-@media (min-width: 768px) {
-    .homepage-call-to-action {
-        padding: 100px 0;
-    }
-
-    .homepage-call-to-action .jumbotron {
-        padding: 50px;
-    }
-}
-
-@media (min-width: 1281px) {
-    .homepage-call-to-action {
-        background-image: url('../img/homepage/homepage-1440.png');
-    }
-}
-
-@media (min-width: 1441px) {
-    .homepage-call-to-action {
-        background-image: url('../img/homepage/homepage-1920.png');
-    }
-}
-
-@media (min-width: 1921px) {
-    .homepage-call-to-action {
-        background-image: url('../img/homepage/homepage-5760.png');
-    }
 }

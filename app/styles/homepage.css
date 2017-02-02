@@ -1,21 +1,3 @@
-.homepage-call-to-action {
-    color: white;
-
-    background-position: center center;
-    background-image: url('../img/homepage_mobile.jpg');
-}
-
-@media (min-width: 768px) {
-    .homepage-call-to-action {
-        background-image: url('../img/homepage.jpg');
-        padding: 100px 0;
-    }
-
-    .homepage-call-to-action .jumbotron {
-        padding: 50px;
-    }
-}
-
 .homepage-call-to-action .jumbotron {
     background-color: transparent;
     text-shadow:  1px 1px 4px rgb(0, 0, 0);
@@ -44,7 +26,6 @@
     margin-top: 1em;
 }
 
-
 #start-row {
     text-align: center;
 }
@@ -52,4 +33,53 @@
 #start {
     font-size: 200%;
     font-weight: bold;
+}
+
+
+.homepage-call-to-action {
+    color: white;
+
+    background-position: center center;
+    background-size: cover;
+    background-image: url('../img/homepage/homepage-1280.png');
+}
+
+@media (orientation: portrait) {
+    .homepage-call-to-action {
+        background-image: url('../img/homepage/homepage-vertical-1152.png');
+    }
+}
+
+@media (orientation: portrait) and (min-width: 1153px) {
+    .homepage-call-to-action {
+        background-image: url('../img/homepage/homepage-vertical-2727.png');
+    }
+}
+
+@media (min-width: 768px) {
+    .homepage-call-to-action {
+        padding: 100px 0;
+    }
+
+    .homepage-call-to-action .jumbotron {
+        padding: 50px;
+    }
+}
+
+@media (min-width: 1281px) {
+    .homepage-call-to-action {
+        background-image: url('../img/homepage/homepage-1440.png');
+    }
+}
+
+@media (min-width: 1441px) {
+    .homepage-call-to-action {
+        background-image: url('../img/homepage/homepage-1920.png');
+    }
+}
+
+@media (min-width: 1921px) {
+    .homepage-call-to-action {
+        background-image: url('../img/homepage/homepage-5760.png');
+    }
 }

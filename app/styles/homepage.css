@@ -3,14 +3,17 @@ main {
     background-attachment: fixed;
     background-position: center center;
     background-size: cover;
+    padding-top: 0;
+    padding-bottom: 5em;
 }
 
 #valueProposition {
     padding: .5em;
-    font-size: 220%;
+    padding-bottom: 2em;
+    font-size: 130%;
+
     text-shadow: 0 0 .15em #000;
     text-align: center;
-
     color: white;
     background-color: rgba(0, 0, 0, .35);
 }
@@ -19,6 +22,11 @@ main {
     font-size: 180%;
     line-height: 1.4;
     margin-bottom: 0;
+}
+
+#valueProposition p {
+    max-width: 35em;
+    margin: auto;
 }
 
 #valueProposition a {
@@ -50,8 +58,10 @@ main {
 }
 
 @media (min-width: 768px) {
-    main {
-        padding: 3em;
+    #valueProposition {
+        padding-top: 5em;
+        margin-bottom: 1em;
+        font-size: 220%;
     }
 }
 
@@ -64,6 +74,14 @@ main {
 @media (min-width: 1441px) {
     main {
         background-image: url('../img/homepage/homepage-1920.png');
+    }
+
+    #valueProposition {
+        padding-bottom: 5em;
+    }
+
+    #valueProposition a {
+        margin: 2em;
     }
 }
 

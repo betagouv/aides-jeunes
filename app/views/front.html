@@ -3,24 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title ng-bind="$state.current.data.pageTitle + 'Évaluez vos droits aux aides sociales - mes-aides.gouv.fr'">Évaluez vos droits aux aides sociales - mes-aides.gouv.fr</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches." />
 
-    <!-- Twitter Card data -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@MesAides">
-    <meta name="twitter:title" content="mes-aides.gouv.fr, Évaluez vos droits aux aides sociales">
-    <meta name="twitter:description" content="Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.">
-    <meta name="twitter:image" content="https://mes-aides.gouv.fr/img/banner.jpg">
+    <title ng-bind="$state.current.data.pageTitle + 'Évaluez vos droits aux aides sociales - mes-aides.gouv.fr'">Évaluez vos droits aux aides sociales - mes-aides.gouv.fr</title>
+    <meta name="og:title" value="Évaluez vos droits aux aides sociales - mes-aides.gouv.fr">
 
-    <!-- Open Graph data -->
-    <meta property="og:title" content="mes-aides.gouv.fr, Évaluez vos droits aux aides sociales" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://mes-aides.gouv.fr/" />
-    <meta property="og:image" content="https://mes-aides.gouv.fr/img/banner.jpg" />
-    <meta property="og:description" content="Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches." />
-    <meta property="og:site_name" content="Mes Aides" />
+    <base href="/">
 
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/header.css">
@@ -35,7 +24,19 @@
     <link rel="stylesheet" href="/styles/text-container.css">
     <link rel="stylesheet" href="/styles/enfants.css">
 
-    <base href="/">
+    <meta name="description" content="Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.">
+    <meta name="og:description" content="Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.">
+
+    <link rel="canonical" href="https://mes-aides.gouv.fr">
+    <meta property="og:url" content="https://mes-aides.gouv.fr">
+
+    <meta name="thumbnail" content="https://mes-aides.gouv.fr/img/banner.jpg">
+    <meta property="og:image" content="https://mes-aides.gouv.fr/img/banner.jpg">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site:id" content="2846447279">
+
+    <meta property="og:site_name" content="Mes Aides">
   </head>
   <body class="body-front" ng-controller="BodyCtrl" ng-class="{'has-intro': showIntro}">
     <!--[if lt IE 10]>

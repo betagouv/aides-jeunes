@@ -1,5 +1,7 @@
 header[role="banner"] {
-	background-color: white;
+	background-color: rgba(255, 255, 255, .9);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
 }
 
 header[role="banner"] .navbar-brand {

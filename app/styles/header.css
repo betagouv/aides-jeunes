@@ -4,24 +4,30 @@ header[role="banner"] {
 	backdrop-filter: blur(10px);
 }
 
-header[role="banner"] .navbar-brand {
-	padding-left: 100px;
-
+header[role="banner"] .container {
 	background-image: url(/img/marianne.svg);
 	background-repeat: no-repeat;
 	background-size: contain;
-
-	color: rgba(24, 137, 184, .5);
-	font-family: "Century Gothic";
-	font-weight: 600;
-	font-style: italic;
-	font-size: 180%;
-
-	transition: color linear .2s;
+	background-position: 1em 0;
 }
 
-header[role="banner"] .navbar-brand:hover, header[role="banner"] .navbar-brand:focus {
-	color: rgba(24, 137, 184, 1);
+#logo {
+	float: right;
+	font-size: 32px;
+
+	color: transparent;
+	background-image: url(/img/logo.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: left center;
+
+	opacity: .5;
+
+	transition: opacity linear .2s;
+}
+
+#logo:hover, #logo:focus {
+	opacity: 1;
 }
 
 header[role="banner"] .loading-spinner {

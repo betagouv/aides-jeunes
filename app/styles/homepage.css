@@ -25,8 +25,16 @@ main {
     font-size: 100%;
     font-weight: bold;
     margin: 1em;
-    background-color: #1889b8;
+    background-color: rgb(24, 137, 184);
     box-shadow: 0 0 1em rgba(24, 137, 184, .5);
+
+    transition: background-color linear .2s, box-shadow linear .2s;
+}
+
+#valueProposition a:hover, #valueProposition a:focus {
+    border-color: transparent;
+    background-color: rgb(64, 177, 224);
+    box-shadow: 0 0 1em rgba(54, 167, 214, .5);
 }
 
 @media (orientation: portrait) {

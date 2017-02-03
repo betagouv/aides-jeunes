@@ -95,7 +95,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'RSA',
                     'description': 'Le RSA est destiné à assurer aux personnes disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer.',
                     'conditions': [
-                        'Signer un engagement avec votre département.',
+                        'Signer un <a href="http://social-sante.gouv.fr/affaires-sociales/lutte-contre-l-exclusion/droits-et-aides/le-revenu-de-solidarite-active-rsa/article/quels-sont-les-droits-et-devoirs-des-beneficiaires-du-rsa" title="Détails sur les droits et devoirs des bénéficiaires du RSA">contrat d’engagement réciproque</a> avec votre département.',
                         'Résider en France plus de 9 mois par an.',
                         'Si vous êtes ressortissant·e d’un pays de l’UE, de l’EEE ou Suisse, résider en France depuis plus de 3 mois.',
                         'Si vous êtes ressortissant·e d’un autre pays, résider en France depuis plus de 5 ans.'

@@ -1,5 +1,5 @@
 main {
-    background-image: url('../img/homepage/homepage-1280.png');
+    background-image: url('../img/homepage/homepage-800.png');
     background-attachment: fixed;
     background-position: center center;
     background-size: cover;
@@ -55,7 +55,7 @@ main {
 
 @media (orientation: portrait) and (min-width: 1153px) {
     main {
-        background-image: url('../img/homepage/homepage-vertical-2727.png');
+        background-image: url('../img/homepage/homepage-vertical-2500.png');
     }
 }
 
@@ -64,6 +64,12 @@ main {
         padding-top: 5em;
         margin-bottom: 1em;
         font-size: 220%;
+    }
+}
+
+@media (min-width: 801px) {
+    main {
+        background-image: url('../img/homepage/homepage-1280.png');
     }
 }
 

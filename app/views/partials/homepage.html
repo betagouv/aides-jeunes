@@ -36,16 +36,10 @@
             <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
           </div>
           <div class="col-md-10">
-            <dl ng-repeat="droit in provider.prestations" ng-if="showDetails || $index < 2">
+            <dl ng-repeat="droit in provider.prestations">
               <dt>{{ droit.label }}</dt>
               <dd>{{ droit.description }}</dd>
             </dl>
-
-            <div class="col-md-12 showDetailsButtonBlock">
-              <button class="btn" type="button" ng-show="!showDetails && countPrestations(provider) > 2" ng-click="showDetails = ! showDetails">
-                Voir les {{ countPrestations(provider) - 2 }} autres aides calculées
-              </button>
-            </div>
           </div>
         </div>
       </div>

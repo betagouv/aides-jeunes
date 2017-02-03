@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('HomepageCtrl', function($scope, droitsDescription) {
+angular.module('ddsApp').controller('HomepageCtrl', function($scope, droitsDescription, $timeout) {
     [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
         $scope[type] = droitsDescription[type];
 
@@ -8,4 +8,8 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, droitsDescr
             return total + Object.keys(droitsDescription[type][provider].prestations).length;
         }, 0);
     });
+
+    $timeout(function() {
+        document.querySelector('#valueProposition a').focus();
+    }, 1500);
 });

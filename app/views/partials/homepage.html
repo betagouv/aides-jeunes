@@ -1,7 +1,7 @@
 <main>
   <div id="valueProposition">
     <h1>
-      Évaluez vos droits à 22 aides sociales.<br/>
+      Évaluez vos droits à {{ prestationsNationalesCount + partenairesLocauxCount }} aides sociales.<br/>
       En moins de 7 minutes.
     </h1>
 
@@ -12,7 +12,7 @@
 
   <div class="container">
     <div class="frame-aides-homepage whiteframe-z1">
-      <h2 class="text-center">Évaluez vos droits à ces aides nationales</h2>
+      <h2 class="text-center">Évaluez vos droits à {{ prestationsNationalesCount }} aides nationales</h2>
       <div ng-repeat="provider in prestationsNationales | orderObjectBy:'prestations':true">
         <hr>
         <div class="row">
@@ -28,7 +28,7 @@
         </div>
       </div>
       <hr>
-      <h2 class="text-center">Évaluez vos droits à ces aides locales</h2>
+      <h2 class="text-center">Évaluez vos droits à {{ partenairesLocauxCount }} aides locales</h2>
       <div ng-repeat="provider in partenairesLocaux | orderObjectBy:'prestations':true">
         <hr>
         <div class="row">

@@ -1,4 +1,7 @@
 title: 'h1',
+
+resultatFrame: '.frame-resultats',
+
 prestationName: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .description',
 prestationMontant: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .montant',
 prestationMontantDetail: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .montant-detail',

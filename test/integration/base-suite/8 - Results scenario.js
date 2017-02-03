@@ -3,6 +3,11 @@ description: 'Get results',
 steps: [
     {
         'ResultComponent.title': /Résultats/,
+    },
+    {
+        'ResultComponent.resultatFrame': true,
+    },
+    {
         'ResultComponent.prestationName': PRESTATION_NAME,
         'ResultComponent.prestationMontant': /\d+ €/,
         'ResultComponent.prestationMontantDetail': /mois/,

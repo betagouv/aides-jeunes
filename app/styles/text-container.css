@@ -25,6 +25,10 @@
 	margin-top: 1.5em;
 }
 
+.text.container img {
+	max-width: 100%;
+}
+
 .text.container small {
 	display: block;
 }

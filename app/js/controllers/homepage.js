@@ -5,13 +5,9 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, droitsDescr
         $scope[type] = droitsDescription[type];
 
         $scope[type + 'Count'] = Object.keys(droitsDescription[type]).reduce(function(total, provider) {
-            return total + $scope.countPrestations(droitsDescription[type][provider]);
+            return total + Object.keys(droitsDescription[type][provider].prestations).length;
         }, 0);
     });
-
-    $scope.countPrestations = function(provider) {
-        return Object.keys(provider.prestations).length;
-    };
 
     $timeout(function() {
         document.querySelector('#valueProposition a').focus();

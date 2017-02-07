@@ -1,7 +1,7 @@
 main {
     background-image: url('../img/homepage/homepage-800.png');
     background-attachment: fixed;
-    background-position: center center;
+    background-position: center -150px;
     background-size: cover;
     padding-top: 0;
     padding-bottom: 5em;
@@ -10,17 +10,11 @@ main {
 #valueProposition {
     padding: .5em;
     padding-bottom: 2em;
-    font-size: 130%;
-
-    text-shadow: 0 0 .15em #000;
     text-align: center;
-    color: white;
-    background-color: rgba(0, 0, 0, .55);
 }
 
 #valueProposition h1 {
-    font-size: 180%;
-    line-height: 1.4;
+    font-weight: bold;
     margin-bottom: 0;
 }
 
@@ -35,16 +29,13 @@ main {
     font-weight: 600;
     margin: 1em;
     border-color: transparent;
-    background-image: linear-gradient(to bottom, #54c5f4 0%, #5dcefd 50%, #40b1e0 51%, #36a7d6 100%);
-    background-color: rgb(64, 177, 224);
-    box-shadow: 0 0 1em rgba(54, 167, 214, .5);
+    background-color: #40b1e0;
 
-    transition: background-color linear .4s, box-shadow linear .4s;
+    transition: background-color linear .4s;
 }
 
 #valueProposition a:hover, #valueProposition a:focus {
     background-color: rgb(84, 197, 244);
-    box-shadow: 0 0 1.5em rgba(204, 207, 184, .8);
 }
 
 @media (orientation: portrait) {
@@ -61,9 +52,7 @@ main {
 
 @media (min-width: 768px) {
     #valueProposition {
-        padding-top: 5em;
         margin-bottom: 1em;
-        font-size: 220%;
     }
 }
 
@@ -101,8 +90,9 @@ main {
 
 
 .frame-aides-homepage {
-    margin-top: 2em;
+    margin: 8em 0;
     padding: 2em;
+    background-color: rgba(255, 255, 255, 0.90);
 }
 
 .frame-aides-homepage h2 {

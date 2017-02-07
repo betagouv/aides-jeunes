@@ -1,17 +1,17 @@
 <main>
-  <div id="valueProposition">
-    <h1>
-      Évaluez vos droits à {{ prestationsNationalesCount + partenairesLocauxCount }} aides sociales.<br/>
-      En moins de 7 minutes.
-    </h1>
-
-    <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Évaluer mes droits</a>
-
-    <p>Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.</p>
-  </div>
-
   <div class="container">
     <div class="frame-aides-homepage whiteframe-z1">
+      <div id="valueProposition">
+        <h1>
+          Évaluez vos droits à {{ prestationsNationalesCount + partenairesLocauxCount }} aides sociales.<br/>
+          En moins de 7 minutes.
+        </h1>
+
+        <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Évaluer mes droits</a>
+
+        <p>Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.</p>
+      </div>
+      <hr>
       <h2 class="text-center">Évaluez vos droits à {{ prestationsNationalesCount }} aides nationales</h2>
       <div ng-repeat="provider in prestationsNationales | orderObjectBy:'prestations':true">
         <hr>

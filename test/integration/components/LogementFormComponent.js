@@ -11,5 +11,6 @@ loyerInput: '#loyer',
 chargesInput: '#charges',
 
 zipCodeInput: '#postal-code',
+errorMessage: '.has-error .help-block',
 city: '#city [selected]',
 submitButton: 'button[type="submit"]',

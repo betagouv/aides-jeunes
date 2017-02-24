@@ -21,13 +21,3 @@ header, footer {
 .body-front {
 	background-color: whitesmoke;
 }
-
-.loading #logo {
-	animation: fade 1s linear infinite;
-	animation-delay: .2s;
-}
-
-@keyframes fade {
-	25%	{ opacity: 0.1; }
-	75%	{ opacity: 0.9; }
-}

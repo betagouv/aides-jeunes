@@ -49,10 +49,6 @@ header[role="banner"] .loading-spinner .loading-spinner-icon {
 	100%	{ transform: rotate(360deg); }
 }
 
-.main-navbar, .body-front {
-	transition: all 0.5s linear;
-}
-
 .body-front {
 	padding-top: 45px;  /* .navbar's min-height */
 }

@@ -30,25 +30,6 @@ header[role="banner"] .container {
 	opacity: 1;
 }
 
-header[role="banner"] .loading-spinner {
-	padding-top: 10px;
-	margin-right: 2em;
-}
-
-header[role="banner"] .loading-spinner .loading-spinner-icon {
-	width: 25px;
-	height: 25px;
-	border: 3px solid;
-	border-color: transparent #29d;
-	border-radius: 20px;
-	animation: loading-bar-spinner 400ms linear infinite;
-}
-
-@keyframes loading-bar-spinner {
-	0%		{ transform: rotate(0deg); }
-	100%	{ transform: rotate(360deg); }
-}
-
 .main-navbar, .body-front {
 	transition: all 0.5s linear;
 }

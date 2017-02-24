@@ -32,7 +32,7 @@ module.exports = function(app) {
         viewsDirectory += '/dist/views';
     }
 
-    app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
+    app.use(favicon(path.join(__dirname, 'dist', 'img', 'favicon', 'favicon.ico')));
     app.use(express.static(path.join(__dirname, 'dist')));
 
     app.use('/partials', express.static(viewsDirectory + '/partials'));

@@ -25,6 +25,10 @@
 	margin-top: 1.5em;
 }
 
+.text.container img {
+	max-width: 100%;
+}
+
 .text.container small {
 	display: block;
 }
@@ -32,6 +36,11 @@
 .text.container ul, .text.container li {
 	margin-left: 0;
 	padding-left: 0;
+}
+
+.text.container p > a > img, .text.container iframe {
+	display: block;
+	margin: auto;
 }
 
 #tracking-optout {

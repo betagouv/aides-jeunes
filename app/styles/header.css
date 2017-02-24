@@ -52,3 +52,25 @@ header[role="banner"] .loading-spinner .loading-spinner-icon {
 .main-navbar, .body-front {
 	transition: all 0.5s linear;
 }
+
+.body-front {
+	padding-top: 45px;  /* .navbar's min-height */
+}
+
+@media (max-width: 360px) {
+	header[role="banner"] .container {
+		background-position: 0 0;
+	}
+
+	#logo {
+		font-size: 24px;
+	}
+
+	.navbar {
+		min-height: 24px;
+	}
+
+	.body-front {
+		padding-top: 32px;  /* .navbar's min-height */
+	}
+}

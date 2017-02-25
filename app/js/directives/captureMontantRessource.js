@@ -36,7 +36,7 @@ angular.module('ddsApp').directive('montantRessource', function(SituationService
 
             function checkSumConsistency() {
                 scope.monthsSum = scope.ressource.montantsMensuels.reduce(function(sum, current) {
-                    return sum + (( isNaN(current) || current < 0 ) ? 0 : current);
+                    return sum + ((isNaN(current) || current < 0) ? 0 : current);
                 }, 0);
 
                 ngModel.$setValidity('valuesConsistency', scope.ressource.montantAnnuel >= scope.monthsSum);

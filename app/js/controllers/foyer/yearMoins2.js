@@ -41,7 +41,7 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
     $scope.submit = function(ym2form) {
         if ((! ym2form) || ym2form.$valid) {
             $scope.individuRefsToDisplay.forEach(function(individuRef) {
-                // clean anciennes valeurs
+                // clean previous values
                 individuRef.individu.ressources = _.filter(individuRef.individu.ressources, function(ressource) {
                     return ! _.find(categoriesRnc, { id: ressource.type });
                 });

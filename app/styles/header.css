@@ -1,75 +1,53 @@
 header[role="banner"] {
-	color: white;
+	background-color: rgba(255, 255, 255, .9);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
 }
 
-header[role="banner"] a {
-	color: inherit;
-}
-
-header[role="banner"] .navbar-brand {
+header[role="banner"] .container {
 	background-image: url(/img/marianne.svg);
 	background-repeat: no-repeat;
 	background-size: contain;
-	padding-left: 100px;
+	background-position: 1em 0;
 }
 
-header[role="banner"] .loading-spinner {
-	padding-top: 10px;
-	margin-right: 2em;
+#logo {
+	float: right;
+	font-size: 32px;
+
+	color: transparent;
+	background-image: url(/img/logo.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: left center;
+
+	opacity: .5;
+
+	transition: opacity linear .2s;
 }
 
-header[role="banner"] .loading-spinner .loading-spinner-icon {
-	width: 25px;
-	height: 25px;
-	border: 3px solid;
-	border-color: transparent #29d;
-	border-radius: 20px;
-	animation: loading-bar-spinner 400ms linear infinite;
+#logo:hover, #logo:focus {
+	opacity: 1;
 }
 
-@keyframes loading-bar-spinner {
-	0%		{ transform: rotate(0deg); }
-	100%	{ transform: rotate(360deg); }
+.body-front {
+	padding-top: 45px;  /* .navbar's min-height */
 }
 
-.intro {
-	width: 100%;
-	background: white;
-	padding: 14px;
-	padding-right: 80px;
-	color: #333;
-	z-index: 5;
-}
+@media (max-width: 360px) {
+	header[role="banner"] .container {
+		background-position: 0 0;
+	}
 
-.intro .intro-content {
-	text-align: center;
-	cursor: pointer;
-}
+	#logo {
+		font-size: 24px;
+	}
 
-.main-navbar, .intro, .body-front {
-	transition: all 0.5s linear;
-}
+	.navbar {
+		min-height: 24px;
+	}
 
-.intro.ng-enter, .intro.ng-leave.ng-leave-active {
-	margin-top: -46px;
-}
-
-.intro, .intro.ng-enter.ng-enter-active {
-	margin-top: 0px;
-}
-
-#beta-ribbon {
-	text-align: center;
-	text-transform: uppercase;
-	position: absolute;
-	top: 26px;
-	right: -35px;
-	transform: rotate(45deg);
-	width: 150px;
-	background-color: #008cba;
-	color: white;
-	padding: 5px;
-	font-size: 15px;
-	font-weight: bold;
-	z-index: 10;
+	.body-front {
+		padding-top: 32px;  /* .navbar's min-height */
+	}
 }

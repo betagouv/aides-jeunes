@@ -1,10 +1,15 @@
 'use strict';
 
-angular.module('ddsApp').controller('HomepageCtrl', function($scope, droitsDescription) {
-    $scope.prestationsNationales = droitsDescription.prestationsNationales;
-    $scope.partenairesLocaux = droitsDescription.partenairesLocaux;
+angular.module('ddsApp').controller('HomepageCtrl', function($scope, droitsDescription, $timeout) {
+    [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
+        $scope[type] = droitsDescription[type];
 
-    $scope.countPrestations = function(provider) {
-        return Object.keys(provider.prestations).length;
-    };
+        $scope[type + 'Count'] = Object.keys(droitsDescription[type]).reduce(function(total, provider) {
+            return total + Object.keys(droitsDescription[type][provider].prestations).length;
+        }, 0);
+    });
+
+    $timeout(function() {
+        document.querySelector('#valueProposition a').focus();
+    }, 1500);
 });

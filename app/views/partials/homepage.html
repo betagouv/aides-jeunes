@@ -1,82 +1,48 @@
-<div class="homepage-call-to-action desktop hidden-xs">
+<main>
+  <div id="valueProposition">
+    <h1>
+      Évaluez vos droits à {{ prestationsNationalesCount + partenairesLocauxCount }} aides sociales.<br/>
+      En moins de 7 minutes.
+    </h1>
+
+    <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Évaluer mes droits</a>
+
+    <p>Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.</p>
+  </div>
+
   <div class="container">
-    <div class="jumbotron">
-      <h1>Simulez <em>toutes</em> vos aides en ligne&nbsp;!</h1>
-
-      <p>
-        Vous souhaitez savoir si vous pouvez bénéficier du RSA, d'une Couverture Maladie Universelle Complémentaire, d'une Allocation Logement, ou de toute autre Prestation Familiale ou Sociale&nbsp;?
-      </p>
-
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="text-right">
-            <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Commencer la simulation…</a>
+    <div class="frame-aides-homepage whiteframe-z1">
+      <h2 class="text-center">Évaluez vos droits à {{ prestationsNationalesCount }} aides nationales</h2>
+      <div ng-repeat="provider in prestationsNationales | orderObjectBy:'prestations':true">
+        <hr>
+        <div class="row">
+          <div class="text-center col-md-2">
+            <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
+          </div>
+          <div class="col-md-10">
+            <dl ng-repeat="droit in provider.prestations">
+              <dt>{{ droit.label }}</dt>
+              <dd>{{ droit.description }}</dd>
+            </dl>
           </div>
         </div>
-        <div class="col-sm-6">
-          <p style="font-size: 19px;">
-            <em>…et obtenez un montant mensuel estimé de ces prestations, puis simplifiez-vous les démarches.</em>
-          </p>
-        </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="homepage-call-to-action mobile visible-xs">
-  <div class="container">
-    <div class="jumbotron">
-      <h1>Simulez <em>toutes</em> vos aides en ligne&nbsp;!</h1>
-
-      <p>
-        Vous souhaitez savoir si vous pouvez bénéficier du RSA, d'une Couverture Maladie Universelle Complémentaire, d'une Allocation Logement, ou de toute autre Prestation Familiale ou Sociale&nbsp;?
-      </p>
-
-      <div class="text-center">
-        <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Commencer la simulation</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="frame-aides-homepage whiteframe-z1">
-    <h2 class="text-center">Simulez ces aides nationales</h2>
-    <div ng-repeat="provider in prestationsNationales | orderObjectBy:'prestations':true">
       <hr>
-      <div class="row">
-        <div class="text-center col-md-2">
-          <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
-        </div>
-        <div class="col-md-10">
-          <dl ng-repeat="droit in provider.prestations">
-            <dt>{{ droit.label }}</dt>
-            <dd>{{ droit.description }}</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <h2 class="text-center">Simulez ces aides locales</h2>
-    <div ng-repeat="provider in partenairesLocaux | orderObjectBy:'prestations':true">
-      <hr>
-      <div class="row">
-        <div class="text-center col-md-2">
-          <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
-        </div>
-        <div class="col-md-10">
-          <dl ng-repeat="droit in provider.prestations" ng-if="showDetails || $index < 2">
-            <dt>{{ droit.label }}</dt>
-            <dd>{{ droit.description }}</dd>
-          </dl>
-
-          <div class="col-md-12 showDetailsButtonBlock">
-            <button class="btn" type="button" ng-show="!showDetails && countPrestations(provider) > 2" ng-click="showDetails = ! showDetails">
-              Voir les {{ countPrestations(provider) - 2 }} autres aides calculées
-            </button>
+      <h2 class="text-center">Évaluez vos droits à {{ partenairesLocauxCount }} aides locales</h2>
+      <div ng-repeat="provider in partenairesLocaux | orderObjectBy:'prestations':true">
+        <hr>
+        <div class="row">
+          <div class="text-center col-md-2">
+            <img ng-src="/img/{{ provider.imgSrc }}" alt="{{ provider.label }}"/>
+          </div>
+          <div class="col-md-10">
+            <dl ng-repeat="droit in provider.prestations">
+              <dt>{{ droit.label }}</dt>
+              <dd>{{ droit.description }}</dd>
+            </dl>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</main>

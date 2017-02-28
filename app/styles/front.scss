@@ -1,14 +1,8 @@
 @import 'commons';
 
-$body-front-base-padding: 45px;  // .navbar's min-height
 
 h1[tabindex="-1"] {
   outline: none;
-}
-
-.body-front {
-  padding-top: $body-front-base-padding;
-  background-color: $color-background;
 }
 
 .browsehappy {

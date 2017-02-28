@@ -1,9 +1,8 @@
 footer {
-  background-color: #333;
-  color: #FFF;
+  background-color: #FFF;
+  color: rgb(4, 117, 164);
   width: 100%;
 
-  margin-top: 3em;
   padding-top: 2em;
   padding-bottom: 1.5em;
 }

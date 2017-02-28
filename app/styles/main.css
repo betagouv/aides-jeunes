@@ -17,3 +17,7 @@ header, footer {
 	flex: 1 0 auto;
 	width: 100%;
 }
+
+.body-front {
+	background-color: whitesmoke;
+}

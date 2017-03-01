@@ -8,8 +8,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'prestations': {
                 'aspa': {
                     'label': 'Allocation de solidarité aux personnes âgées',
-                    'shortLabel': 'ASPA',
-                    'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une allocation destinée aux personnes âgées disposant de faibles revenus en vue de leur assurer un niveau minimum de ressources. Elle remplace le minimum vieillesse depuis 2006.',
+                    'shortLabel': 'Aspa',
+                    'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une prestation mensuelle accordée aux retraités ayant de faibles ressources. Elle est versée par la Carsat (ou la MSA si vous dépendez du régime agricole). Elle s’ajoute, dans une certaine limite, à vos revenus personnels. Elle remplace le minimum vieillesse depuis 2006.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
                         'Avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles vous avez droit.',

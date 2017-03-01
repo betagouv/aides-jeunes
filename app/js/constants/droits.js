@@ -137,6 +137,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 },
                 'ppa': {
                     'label': 'Prime d’activité',
+                    'shortLabel': 'pda',
                     'description': 'La prime d’activité remplace le RSA activité et la prime pour l’emploi. Les travailleurs de 18 ans ou plus, les étudiants salariés et apprentis et les non-salariés peuvent en bénéficier sous certaines conditions. La demande de prime d’activité peut se faire à travers un téléservice sur, selon votre cas, le site de la Caf ou de la MSA',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F2882',
                     'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/'
@@ -164,7 +165,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'ass': {
                     'label': 'Allocation de solidarité spécifique',
                     'shortLabel': 'ASS',
-                    'description': 'L’allocation de solidarité spécifique (ASS) est une aide financière destinée aux personnes ayant épuisé leurs droits aux allocations chômage.',
+                    'description': 'L’allocation de solidarité spécifique (ASS) est attribuée aux personnes ayant épuisé leurs droits au chômage sous conditions d’activité antérieure et de ressources. Elle peut être versée à taux plein ou à taux réduit. En cas de reprise d’activité, elle peut être maintenue.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F12484'
                 },
             },

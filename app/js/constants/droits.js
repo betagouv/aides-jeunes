@@ -201,9 +201,9 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'prestations': {
                 'paris_logement_familles': {
                     'isMontantAnnuel': false,
-                    'label': 'Paris Logement Familles',
+                    'label': 'Paris Logement Famille',
                     'shortLabel': 'PLF',
-                    'description': 'L’allocation Paris Logement Familles permet aux familles parisiennes de mieux supporter leurs dépenses de logement.',
+                    'description': 'L’allocation Paris Logement Famille est destinée aux familles d’au moins deux enfants ou ayant un enfant handicapé. Elle leur permet de mieux supporter leurs dépenses de logement. L’aide est accordée pour une durée maximale de un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'conditions': [
                         'Avoir demandé le versements des aides logement auxquelles vous avez droit auprès de la CAF.',
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
@@ -215,9 +215,9 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 },
                 'paris_forfait_famille': {
                     'isMontantAnnuel': true,
-                    'label': 'Paris Forfait Familles',
+                    'label': 'Paris Forfait Famille',
                     'shortLabel': 'PFF',
-                    'description': 'Paris Forfait Familles est une aide annuelle destinée aux familles nombreuses.',
+                    'description': 'Paris Forfait Famille est une aide destinée aux familles nombreuses avec au moins trois enfants à charge. Elle peut se cumuler avec l’Allocation de Soutien aux Parents d’Enfants Handicapés. L’aide est accordée pour une durée maximale de un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-forfait-famille_2',
                     'form': 'https://api-site.paris.fr/images/74809',
                     'isBaseRessourcesYearMoins2': false,
@@ -226,7 +226,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'paris_logement_psol': {
                     'label': 'Paris Solidarité',
                     'shortLabel': 'PSOL',
-                    'description': 'Paris Solidarité est un complément de ressources mensuelles',
+                    'description': 'Paris Solidarité est destinée aux personnes âgées de 65 ans ou plus. L’aide peut être versée à partir de 60 ans pour les personnes reconnus inaptes au travail. Elle a pour but de garantir aux foyers modestes un minimum mensuel de ressources. L’aide est accordée pour une durée maximale de un an. À partir du 2e renouvellement, Paris Solidarité peut être accordée pour une durée maximale de deux ans.',
                     'conditions': [
                         'Percevoir tous les avantages légaux auxquels vous pouvez prétendre.',
                     ],
@@ -238,7 +238,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'paris_logement': {
                     'label': 'Paris Logement',
                     'shortLabel': 'PL',
-                    'description': 'Paris Logement est une aide mensuelle destinée à aider les parisiens à mieux supporter leurs dépenses de logement.',
+                    'description': 'L’allocation Paris Logement est destinée aux personnes seules ou en couple sans ou avec un enfant. Elle leur permet de mieux supporter leurs dépenses de logement. Ils doivent être locataires en titre et titulaires du bail du logement occupé à titre principal. L’aide est accordée pour une durée maximale de un an. À partir du 2e renouvellement, Paris Logement peut être accordée pour une durée maximale de deux ans.',
                     'conditions': [
                         'Avoir demandé le versement des aides logement auxquelles vous avez droit auprès de la CAF.',
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
@@ -251,7 +251,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'paris_logement_aspeh': {
                     'label': 'Allocation de Soutien aux Parents d’Enfants Handicapés',
                     'shortLabel': 'ASPEH',
-                    'description': 'L’Allocation de Soutien aux Parents d’Enfants Handicapés est une aide mensuelle permettant de soutenir les familles ayant un ou plusieurs enfants handicapés à charge.',
+                    'description': 'L’Allocation de Soutien aux Parents d’Enfants Handicapés est réservée aux familles ayant à charge un ou plusieurs enfants handicapés. Il s’agit d’une aide mensuelle ou au prorata du nombre de jours passés par le ou les enfants au domicile. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#allocation-de-soutien-aux-parents-d-enfants-handicapes_9',
                     'form': 'http://api-site-cdn.paris.fr/images/132126.pdf',
                     'isBaseRessourcesYearMoins2': false,
@@ -260,7 +260,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'paris_logement_plfm': {
                     'label': 'Paris Logement Familles Monoparentales',
                     'shortLabel': 'PLFM',
-                    'description': 'L’allocation Paris Logement Familles Monoparentales permet aux parents seuls, ayant un ou plusieurs enfants à charge, de mieux supporter leurs dépenses de logement.',
+                    'description': 'L’allocation Paris Logement Famille Monoparentale est destinée aux parents seuls, ayant un ou plusieurs enfants à charge. Elle leur permet de mieux supporter leurs dépenses de logement. Elle est ouverte aux locataires, aux propriétaires et aux personnes accédant à la propriété. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'conditions': [
                         'Avoir demandé le versement des aides logement auxquelles vous avez droit auprès de la CAF.',
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
@@ -274,7 +274,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isMontantAnnuel': true,
                     'label': 'Paris Énergie Familles',
                     'shortLabel': 'PEF',
-                    'description': 'Paris Énergie Familles est une aide annuelle permettant aux familles d’alléger leurs dépenses de consommation d’électricité et de gaz.',
+                    'description': 'L’allocation Paris Énergie Famille est réservée aux familles ayant un ou plusieurs enfants à charge, sous condition d’imposition. Cette aide permet de les soutenir dans leurs dépenses d’électricité et/ou de gaz. Paris Energie Famille est directement versée au(x) fournisseur(s) d’énergie. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-energie-famille_8',
                     'form': 'https://api-site.paris.fr/images/154764.pdf',
                     'isBaseRessourcesYearMoins2': false,
@@ -284,7 +284,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isMontantAnnuel': true,
                     'label': 'Complément Santé Paris',
                     'shortLabel': 'CSP',
-                    'description': 'Le Complément Santé Paris est une allocation qui permet de participer aux frais d’adhésion à une couverture complémentaire santé (mutuelle ou autre organisme analogue)',
+                    'description': 'Le Complément Santé Paris est destiné aux personnes âgées de 65 ans ou plus. L’aide peut être versée à partir de 60 ans pour les personnes reconnus inaptes au travail. Elle a pour but d’aider les foyers modestes à obtenir une mutuelle. L’aide est accordée pour une durée maximale de un an. À partir du 2e renouvellement, le Complément Santé Paris peut être accordé pour une durée maximale de deux ans.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
                     'form': 'https://api-site.paris.fr/images/78343',
                     'isBaseRessourcesYearMoins2': false,

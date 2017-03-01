@@ -303,7 +303,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'legend': 'des frais de dépendance',
                     'label': 'Allocation départementale personnalisée d’autonomie',
                     'shortLabel': 'ADPA',
-                    'description': 'Allocation versée aux personnes dépendantes âgées de plus de 60 ans. Elle a pour objectif de financer des services d’aide à la personne favorisant leur autonomie dans les gestes quotidiens.',
+                    'description': 'L’Allocation Départementale Personnalisée d’Autonomie (ADPA) permet de financer une partie des dépenses nécessaires à votre maintien à domicile ou de couvrir une partie des frais liés à votre accueil en établissement. Elle est versée aux personnes âgées de 60 ans ou plus en perte d’autonomie.',
                     'conditions': [],
                     'link': 'https://www.seine-saint-denis.fr/ADPA.html',
                     'form': 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa_mai_2016_vdef.pdf',

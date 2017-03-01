@@ -28,27 +28,27 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isMontantAnnuel': true,
                     'label': 'Aide au paiement d’une complémentaire santé',
                     'shortLabel': 'ACS',
-                    'description': 'L’aide pour l’acquisition d’une assurance complémentaire santé, dite ACS, est une aide financière pour payer une complémentaire santé (exemple : une mutuelle).',
+                    'description': 'L’aide au paiement d’une assurance complémentaire santé (ACS) est une aide financière pour payer une complémentaire santé (mutuelle). L’ACS ouvre droit à d’autres avantages comme le tiers-payant. Une fois attribuée, l’ACS est accordée pour un an.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
-                    'link': 'https://www.cmu.fr/acs.php',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F13375',
                     'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
                 },
                 'asi': {
                     'label': 'Allocation supplémentaire d’invalidité',
-                    'shortLabel': 'ASI',
-                    'description': 'L’allocation supplémentaire d’invalidité (Asi) est une prestation versée sous certaines conditions aux personnes invalides titulaires d’une pension de retraite ou d’invalidité qui n’ont pas atteint l’âge légal de départ à la retraite pour bénéficier de l’allocation de solidarité aux personnes âgées (Aspa)',
+                    'shortLabel': 'Asi',
+                    'description': 'L’allocation supplémentaire d’invalidité (Asi) est une prestation mensuelle accordée à certaines personnes invalides. Elle s’adresse aux personnes ayant de faibles ressources et qui n’ont pas atteint l’âge de départ à la retraite. Elle s’ajoute, dans une certaine limite, à vos revenus personnels.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F16940'
                 },
                 'cmu_c': {
                     'label': 'Couverture maladie universelle complémentaire',
                     'shortLabel': 'CMU-C',
-                    'description': 'La CMU-C est une protection complémentaire santé gratuite.',
+                    'description': 'La couverture maladie universelle complémentaire (CMU-C) est une protection complémentaire santé (mutuelle) gratuite. Elle est destinée aux personnes qui ont de faibles ressources et qui résident en France de manière stable et régulière. Une fois attribuée, la CMU-C est accordée pour un an. Elle est à redemander tous les ans.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
-                    'link': 'https://www.cmu.fr/cmu-complementaire.php',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F10027',
                     'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
                 },
             },

@@ -178,16 +178,16 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isMontantAnnuel': true,
                     'label': 'Bourse de collège',
                     'shortLabel': 'Bourse collège',
-                    'description': 'La bourse des collèges est une aide destinée à favoriser la scolarité des collégiens. Elle est versée sous conditions de ressources.',
-                    'link': 'http://www.education.gouv.fr/cid88/les-aides-financieres-au-college.html#Les%20bourses%20de%20coll%C3%A8ge',
+                    'description': 'La bourse de collège est une aide destinée à favoriser la scolarité des collégiens. Elle est versée sous conditions de ressources. Son montant dépend du nombre d’enfants à charge. Vous devez déposer votre dossier de demande entre la rentrée scolaire et la fin du mois de septembre.',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F984',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'bourse_lycee': {
                     'isMontantAnnuel': true,
                     'label': 'Bourse de lycée',
                     'shortLabel': 'Bourse lycée',
-                    'description': 'La bourse des lycées est accordée, sous condition de ressources, à la famille d’un lycéen. Son montant dépend des ressources et des charges de la famille. Cette bourse peut être accompagnée de diverses primes (prime d’équipement, prime à la qualification, bourse au mérite au lycée, prime à l’internat...).',
-                    'link': 'http://www.education.gouv.fr/cid151/aides-financieres-au-lycee.html#Les%20bourses%20de%20lycée',
+                    'description': 'La bourse de lycée est accordée, sous condition de ressources, au(x) responsable(s) d’un lycéen. Si l’élève entre au lycée ou s’il n’a jamais touché de bourse de lycée, il pourra y prétendre selon les ressources et les charges de sa famille. Une nouvelle demande doit être effectuée en cas de redoublement ou réorientation.',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F616',
                     'isBaseRessourcesYearMoins2': true
                 },
             },

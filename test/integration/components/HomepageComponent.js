@@ -1,1 +1,1 @@
-startLink: { a: 'Commencer' },
+startLink: { a: 'Évaluer' },

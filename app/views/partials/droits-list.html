@@ -12,7 +12,7 @@
               </div>
             </div>
           </uib-accordion-heading>
-          <p>{{ droit.description }}</p>
+          <p ng-bind-html="droit.description"></p>
           <a
             href="{{ droit.link }}"
             class="btn btn-sm btn-default"

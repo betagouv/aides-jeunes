@@ -39,7 +39,7 @@
 
     <div class="caption">
       <div ng-if="droit.montant">
-        <p>{{ droit.description }}</p>
+        <p ng-bind-html="droit.description"></p>
         <div ng-if="droit.conditions">
           Pour en bénéficier, vous devez également :
           <ul>

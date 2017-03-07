@@ -73,7 +73,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/contact',
             templateUrl: '/content-pages/contact.html',
             data: {
-                pageTitle: 'Contact - '
+                pageTitle: 'Contact'
             }
         })
         .state('tests', {

@@ -46,29 +46,3 @@ header[role="banner"] .container {
 .main-navbar, .body-front {
 	transition: opacity linear .2s;
 }
-/*
-#logo:hover, #logo:focus {
-	opacity: 1;
-}
-
-.body-front {
-	padding-top: 45px;  /* .navbar's min-height
-}
-
-@media (max-width: 360px) {
-	header[role="banner"] .container {
-		background-position: 0 0;
-	}
-
-	#logo {
-		font-size: 24px;
-	}
-
-	.navbar {
-		min-height: 24px;
-	}
-
-	.body-front {
-		padding-top: 32px;  /* .navbar's min-height */
-	/*}
-}*/

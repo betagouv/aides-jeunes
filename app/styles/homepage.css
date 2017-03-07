@@ -2,20 +2,22 @@ main {
     background-image: url('../img/homepage/homepage-800.png');
     background-attachment: fixed;
     background-position: center -150px;
+    background-repeat: no-repeat;
     background-size: cover;
     padding-top: 0;
-    padding-bottom: 5em;
+    padding-bottom: 2em;
+    margin-top: 50px;
 }
 
 #valueProposition {
-    padding: .5em;
     padding-bottom: 2em;
     text-align: center;
 }
 
 #valueProposition h1 {
     font-weight: bold;
-    margin-bottom: 0;
+    line-height: 1.4;
+    margin: 0;
 }
 
 #valueProposition p {
@@ -59,6 +61,7 @@ main {
 @media (min-width: 801px) {
     main {
         background-image: url('../img/homepage/homepage-1280.png');
+        padding-bottom: 5em;
     }
 }
 
@@ -90,7 +93,6 @@ main {
 
 
 .frame-aides-homepage {
-    margin: 8em 0;
     padding: 2em;
     background-color: rgba(255, 255, 255, 0.90);
 }
@@ -106,6 +108,20 @@ main {
 
 .frame-aides-homepage .showDetailsButtonBlock {
     margin-top: 1em;
+}
+
+
+@media (min-width: 768px) {
+    .frame-aides-homepage {
+        margin: 8em 0;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .frame-aides-homepage {
+        margin-top: 50px;
+    }
 }
 
 #start-row {

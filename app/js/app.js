@@ -38,35 +38,35 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/a-propos',
             templateUrl: '/content-pages/a-propos.html',
             data: {
-                pageTitle: 'À propos - '
+                pageTitle: 'À propos'
             }
         })
         .state('cgu', {
             url: '/cgu',
             templateUrl: '/content-pages/cgu.html',
             data: {
-                pageTitle: "Conditions générales d'utilisation - "
+                pageTitle: 'Conditions générales d’utilisation'
             }
         })
         .state('sos', {
             url: '/sos',
             templateUrl: '/content-pages/sos.html',
             data: {
-                pageTitle: 'SOS - '
+                pageTitle: 'SOS'
             }
         })
         .state('ameliorer', {
             url: '/ameliorer',
             templateUrl: '/content-pages/ameliorer.html',
             data: {
-                pageTitle: "Améliorer - "
+                pageTitle: 'Améliorer'
             }
         })
         .state('communication', {
             url: '/communication',
             templateUrl: '/content-pages/communication.html',
             data: {
-                pageTitle: 'Supports de communication - '
+                pageTitle: 'Supports de communication'
             }
         })
         .state('tests', {
@@ -89,7 +89,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 }
             },
             data: {
-                pageTitle: 'Simulation - '
+                pageTitle: 'Simulation'
             }
         })
         .state('foyer.demandeur', {

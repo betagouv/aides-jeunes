@@ -77,6 +77,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
                     $scope.ressourcesYearMoins2.push(ym2IndividuRecap);
                 }
             });
+        $scope.ressourcesYearMoins2Captured = $scope.ressourcesYearMoins2.length > 0;
     }
 
     $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
@@ -122,6 +123,8 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     if ($scope.ressourcesYearMoins2Captured) {
         buildYm2Recap();
     }
+
+    $scope.$on('ym2Captured', buildYm2Recap);
 
     if ($scope.situation.patrimoine && $scope.situation.patrimoine.captured) {
         buildRecapPatrimoine();

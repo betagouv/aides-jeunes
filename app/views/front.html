@@ -1,32 +1,20 @@
 <!DOCTYPE html>
-<html ng-app="ddsApp" lang="fr" itemscope itemtype="http://schema.org/Article">
+<html ng-app="ddsApp" lang="fr">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title ng-bind="$state.current.data.pageTitle + 'Simulez toutes vos aides en ligne - mes-aides.gouv.fr'">Simulez toutes vos aides en ligne - mes-aides.gouv.fr</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="Mes-aides vous permet de simuler pour votre foyer les principales prestations sociales auxquelles vous avez droit, en un seul questionnaire" />
 
-    <!-- Twitter Card data -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@mesaides">
-    <meta name="twitter:title" content="mes-aides.gouv.fr, simulez toutes vos aides en ligne">
-    <meta name="twitter:description" content="Mes-aides vous permet de simuler pour votre foyer les principales prestations sociales auxquelles vous avez droit, en un seul questionnaire">
-    <meta name="twitter:image" content="http://mes-aides.gouv.fr/img/logo_marianne_share.jpeg">
+    <title ng-bind="$state.current.data.pageTitle + ($state.current.data.pageTitle ? ' — ' : '') + 'Évaluez vos droits aux aides sociales — mes-aides.gouv.fr'">Évaluez vos droits aux aides sociales — mes-aides.gouv.fr</title>
+    <meta name="og:title" value="Évaluez vos droits aux aides sociales — mes-aides.gouv.fr">
+    <meta name="twitter:title" content="Évaluez vos droits aux aides sociales">
 
-    <!-- Open Graph data -->
-    <meta property="og:title" content="mes-aides.gouv.fr, simulez toutes vos aides en ligne" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://mes-aides.gouv.fr/" />
-    <meta property="og:image" content="http://mes-aides.gouv.fr/img/logo_marianne_share.jpeg" />
-    <meta property="og:description" content="Mes-aides vous permet de simuler pour votre foyer les principales prestations sociales auxquelles vous avez droit, en un seul questionnaire" />
-    <meta property="og:site_name" content="Mes-aides" />
+    <meta name="viewport" content="initial-scale=1">
 
-    <meta name="fragment" content="!" />
+    <base href="/">
 
+    <link rel="stylesheet" href="/styles/front.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/front.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <link rel="stylesheet" href="/styles/homepage.css">
     <link rel="stylesheet" href="/styles/individu-form.css">
@@ -37,7 +25,33 @@
     <link rel="stylesheet" href="/styles/text-container.css">
     <link rel="stylesheet" href="/styles/enfants.css">
 
-    <base href="/">
+    <meta name="description" content="Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.">
+
+    <meta name="og:description" content="7 minutes suffisent pour simuler vos droits à 24 prestations sociales.">
+    <meta name="twitter:description" content="7 minutes suffisent pour simuler vos droits à 24 prestations sociales.">
+
+    <link rel="canonical" href="https://mes-aides.gouv.fr">
+    <meta property="og:url" content="https://mes-aides.gouv.fr">
+
+    <meta name="thumbnail" content="https://mes-aides.gouv.fr/img/banner.jpg">
+    <meta property="og:image" content="https://mes-aides.gouv.fr/img/banner.jpg">
+    <meta property="twitter:image" content="https://mes-aides.gouv.fr/img/banner-twitter.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site:id" content="2846447279">
+
+    <meta property="og:site_name" content="Mes Aides">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png?v=2017-03-01">
+    <link rel="icon" type="image/png" href="/img/favicon/favicon-32x32.png?v=2017-03-01" sizes="32x32">
+    <link rel="icon" type="image/png" href="/img/favicon/favicon-16x16.png?v=2017-03-01" sizes="16x16">
+    <link rel="manifest" href="/img/favicon/manifest.json?v=2017-03-01">
+    <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg?v=2017-03-01" color="#1889b8">
+    <link rel="shortcut icon" href="/img/favicon/favicon.ico?v=2017-03-01">
+    <meta name="apple-mobile-web-app-title" content="Mes Aides">
+    <meta name="application-name" content="Mes Aides">
+    <meta name="msapplication-config" content="/img/favicon/browserconfig.xml?v=2017-03-01">
+    <meta name="theme-color" content="#ffffff">
   </head>
   <body class="body-front" ng-controller="BodyCtrl">
     <!--[if lt IE 10]>
@@ -58,8 +72,6 @@
     <header role="banner" class="navbar navbar-default navbar-fixed-top">
       <nav class="container">
         <a id="logo" ui-sref="home" title="Accueil">mes-aides.gouv.fr</a>
-
-        <loading-spinner class="navbar-right"></loading-spinner>
       </nav>
     </header>
 

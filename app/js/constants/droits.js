@@ -15,7 +15,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles vous avez droit.',
                         'Votre conjoint doit avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles il ou elle a droit.'
                     ],
-                    'link': 'http://vosdroits.service-public.fr/particuliers/F16871.xhtml',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F16871',
                     'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14957.do'
                 },
             },
@@ -32,14 +32,14 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
-                    'link': 'http://www.cmu.fr/acs.php',
+                    'link': 'https://www.cmu.fr/acs.php',
                     'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
                 },
                 'asi': {
                     'label': 'Allocation supplémentaire d’invalidité',
                     'shortLabel': 'ASI',
                     'description': 'L’allocation supplémentaire d’invalidité (Asi) est une prestation versée sous certaines conditions aux personnes invalides titulaires d’une pension de retraite ou d’invalidité qui n’ont pas atteint l’âge légal de départ à la retraite pour bénéficier de l’allocation de solidarité aux personnes âgées (Aspa)',
-                    'link': 'http://vosdroits.service-public.fr/particuliers/F16940.xhtml'
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F16940'
                 },
                 'cmu_c': {
                     'label': 'Couverture maladie universelle complémentaire',
@@ -48,7 +48,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
-                    'link': 'http://www.cmu.fr/cmu-complementaire.php',
+                    'link': 'https://www.cmu.fr/cmu-complementaire.php',
                     'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
                 },
             },
@@ -64,14 +64,14 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
                     ],
-                    'link': 'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0',
+                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'cf': {
                     'label': 'Complément familial',
                     'shortLabel': 'CF',
                     'description': 'Le complément familial est versé, sous certaines conditions, aux personnes ayant au moins 3 enfants à charge.',
-                    'link': 'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
+                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'asf': {
@@ -81,7 +81,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'conditions': [
                         'Ne pas toucher l’intégralité d’une pension alimentaire qui vous aurait été attribuée par une décision de justice, ou que cette pension soit d’un montant inférieur à celui de l’ASF.'
                     ],
-                    'link': 'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf-0'
+                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf-0'
                 },
                 'paje_base': {
                     'label': 'Prestation d’accueil du jeune enfant – Allocation de base',
@@ -95,20 +95,21 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'RSA',
                     'description': 'Le RSA est destiné à assurer aux personnes disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer.',
                     'conditions': [
+                        'Signer un <a target="_blank" rel="noopener" href="http://social-sante.gouv.fr/affaires-sociales/lutte-contre-l-exclusion/droits-et-aides/le-revenu-de-solidarite-active-rsa/article/quels-sont-les-droits-et-devoirs-des-beneficiaires-du-rsa" title="Détails sur les droits et devoirs des bénéficiaires du RSA">contrat d’engagement réciproque</a> avec votre département.',
                         'Résider en France plus de 9 mois par an.',
                         'Si vous êtes ressortissant·e d’un pays de l’UE, de l’EEE ou Suisse, résider en France depuis plus de 3 mois.',
                         'Si vous êtes ressortissant·e d’un autre pays, résider en France depuis plus de 5 ans.'
                     ],
-                    'link': 'http://vosdroits.service-public.fr/particuliers/N19775.xhtml',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/N19775',
                     'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
                     'uncomputability': {
                         'tns': {
                             'reason': 'vous avez des revenus en tant qu’indépendant·e',
-                            'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a title="Article R262-23 du code de l’action sociale" href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont vos revenus non salariés impacteront le montant de votre aide.'
+                            'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a target="_blank" rel="noopener" title="Article R262-23 du code de l’action sociale" href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont vos revenus non salariés impacteront le montant de votre aide.'
                         },
                         'conjoint_tns': {
                             'reason': 'votre conjoint·e a des revenus en tant qu’indépendant·e',
-                            'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a title="Article R262-23 du code de l’action sociale" href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont les revenus non salariés de votre conjoint·e impacteront le montant de votre aide.'
+                            'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a target="_blank" rel="noopener" title="Article R262-23 du code de l’action sociale" href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont les revenus non salariés de votre conjoint·e impacteront le montant de votre aide.'
                         }
                     }
                 },
@@ -118,7 +119,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'description': 'L’aide au logement est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
                     'conditions': [
                         'Résider au moins 8 mois par an dans le logement que vous avez décrit.',
-                        'Le logement doit être <a href="http://www.caf.fr/aides-et-services/connaitre-vos-droits-selon-votre-situation/vous-louez-ou-vous-achetez-un-logement/vous-occupez-un-logement-insalubre-ou-non-decent" title="9 mètres carrés par personne, fenêtre, WC, eau potable, électricité" >décent</a>.'
+                        'Le logement doit être <a target="_blank" rel="noopener" href="https://www.caf.fr/aides-et-services/connaitre-vos-droits-selon-votre-situation/vous-louez-ou-vous-achetez-un-logement/vous-occupez-un-logement-insalubre-ou-non-decent" title="9 mètres carrés par personne, fenêtre, WC, eau potable, électricité" >décent</a>.'
                     ],
                     'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
                     'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/',
@@ -126,11 +127,11 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'uncomputability': {
                         'primo_accedant': {
                             'reason': 'vous êtes <abbr title="Non propriétaire de votre résidence principale dans les deux années précédant l’achat de votre résidence actuelle">primo-accédant</abbr> à la propriété de votre résidence principale',
-                            'solution': 'Le <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> pourra estimer vos droits sur la base de la valeur de votre bien.'
+                            'solution': 'Le <a target="_blank" rel="noopener" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> pourra estimer vos droits sur la base de la valeur de votre bien.'
                         },
                         'locataire_foyer': {
                             'reason': 'vous logez dans un foyer',
-                            'solution': 'Le <a href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> vous donnera des estimations selon les différentes conventions possibles de votre foyer.'
+                            'solution': 'Le <a target="_blank" rel="noopener" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> vous donnera des estimations selon les différentes conventions possibles de votre foyer.'
                         }
                     }
                 },
@@ -149,7 +150,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'uncomputability': {
                         'intervention_CDAPH_necessaire': {
                             'reason': 'votre taux d’incapacité sera déterminé par la <abbr title="Commission des droits et de l’autonomie des personnes handicapées">CDAPH</abbr> après le dépôt de votre demande',
-                            'solution': 'Contactez <a href="http://informations.handicap.fr/carte-france-mdph.php">la <abbr title="Maison départementale des personnes handicapées">MDPH</abbr> la plus proche</a> pour faire établir ce taux. Attention, votre éligibilité à l’AAH peut impacter vos droits au RSA et à la CMU-C.'
+                            'solution': 'Contactez <a target="_blank" rel="noopener" href="https://informations.handicap.fr/carte-france-mdph.php">la <abbr title="Maison départementale des personnes handicapées">MDPH</abbr> la plus proche</a> pour faire établir ce taux. Attention, votre éligibilité à l’AAH peut impacter vos droits au RSA et à la CMU-C.'
                         }
                     },
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242'
@@ -164,7 +165,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'label': 'Allocation de solidarité spécifique',
                     'shortLabel': 'ASS',
                     'description': 'L’allocation de solidarité spécifique (ASS) est une aide financière destinée aux personnes ayant épuisé leurs droits aux allocations chômage.',
-                    'link': 'http://vosdroits.service-public.fr/particuliers/F12484.xhtml'
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F12484'
                 },
             },
         },

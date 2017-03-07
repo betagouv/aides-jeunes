@@ -30,25 +30,45 @@ header[role="banner"] .container {
 	opacity: 1;
 }
 
-header[role="banner"] .loading-spinner {
-	padding-top: 10px;
-	margin-right: 2em;
-}
+#logo {
+	float: right;
+	font-size: 32px;
 
-header[role="banner"] .loading-spinner .loading-spinner-icon {
-	width: 25px;
-	height: 25px;
-	border: 3px solid;
-	border-color: transparent #29d;
-	border-radius: 20px;
-	animation: loading-bar-spinner 400ms linear infinite;
-}
+	color: transparent;
+	background-image: url(/img/logo.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: left center;
 
-@keyframes loading-bar-spinner {
-	0%		{ transform: rotate(0deg); }
-	100%	{ transform: rotate(360deg); }
+	opacity: .5;
 }
 
 .main-navbar, .body-front {
-	transition: all 0.5s linear;
+	transition: opacity linear .2s;
 }
+/*
+#logo:hover, #logo:focus {
+	opacity: 1;
+}
+
+.body-front {
+	padding-top: 45px;  /* .navbar's min-height
+}
+
+@media (max-width: 360px) {
+	header[role="banner"] .container {
+		background-position: 0 0;
+	}
+
+	#logo {
+		font-size: 24px;
+	}
+
+	.navbar {
+		min-height: 24px;
+	}
+
+	.body-front {
+		padding-top: 32px;  /* .navbar's min-height */
+	/*}
+}*/

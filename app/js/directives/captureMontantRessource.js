@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').directive('montantRessource', function(SituationService) {
+angular.module('ddsApp').directive('captureMontantRessource', function(SituationService) {
     function getOnGoingQuestion (individu, ressource, currentMonth) {
         var subject = {
             'demandeur': 'Vous',

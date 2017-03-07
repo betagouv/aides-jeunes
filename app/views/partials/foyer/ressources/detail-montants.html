@@ -1,13 +1,13 @@
 <div ng-repeat="ressource in ressources">
   <div ng-if="ressource.type.category !== 'rpns'">
-    <montant-ressource
+    <capture-montant-ressource
       ng-model="ressource"
       individu="individu"
       ressource-type="ressource.type"
       index="individuIndex"
       date-de-valeur="situation.dateDeValeur"
       form="form">
-    </montant-ressource>
+    </capture-montant-ressource>
   </div>
 
   <div class="panel panel-montant rpns"

@@ -11,14 +11,14 @@
 
     <div ng-if="situation.parentsPayPensionsAlimentaires" ng-repeat="individuVM in individusVM">
       <h2>{{ individuVM.label }}</h2>
-      <montant-ressource
+      <capture-montant-ressource
         ng-model="individuVM.pensionsVersees"
         individu="individuVM.individu"
         ressource-type="pensionsVersees"
         index="$index"
         date-de-valeur="situation.dateDeValeur"
         form="form">
-      </montant-ressource>
+      </capture-montant-ressource>
     </div>
 
     <div class="text-right">

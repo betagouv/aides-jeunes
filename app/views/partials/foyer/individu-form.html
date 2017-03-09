@@ -126,12 +126,6 @@
       <span ng-if="individu.role == 'enfant'">Il ou elle est</span>
     </label>
     <div class="col-sm-8">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" ng-model="individu.enceinte">
-          Enceinte
-        </label>
-      </div>
       <div class="checkbox" ng-if="captureGardeAlternee">
         <label>
           <input type="checkbox" ng-model="individu.gardeAlternee">
@@ -142,6 +136,12 @@
         <label>
           <input type="checkbox" ng-model="selectedStatuts[statut.id]">
           {{ statut.label }}
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="individu.enceinte">
+          Enceinte
         </label>
       </div>
     </div>
@@ -251,7 +251,7 @@
     ng-if="captureEtudiantBoursier()"
     size="4"
     >
-    <question>{{ individu.role == 'demandeur' ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier&nbsp;?</question>
+    <question>{{ individu.role == 'demandeur' ? 'Êtes-vous' : 'Est-il/elle' }} étudiant·e boursier&nbsp;?</question>
   </yes-no-question>
 
   <yes-no-question model="individu.fiscalementIndependant"

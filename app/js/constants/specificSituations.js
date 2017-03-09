@@ -3,7 +3,7 @@
 angular.module('ddsCommon').constant('specificSituations', [
     {
         id: 'demandeur_emploi',
-        label: 'Demandeur·euse d’emploi'
+        label: 'En recherche d’emploi'
     },
     {
         id: 'etudiant',

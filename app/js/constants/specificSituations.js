@@ -2,16 +2,16 @@
 
 angular.module('ddsCommon').constant('specificSituations', [
     {
-        id: 'demandeur_emploi',
-        label: 'Inscrit·e comme demandeur d’emploi'
-    },
-    {
         id: 'etudiant',
         label: 'Étudiant·e'
     },
     {
         id: 'retraite',
         label: 'Retraité·e'
+    },
+    {
+        id: 'demandeur_emploi',
+        label: 'Inscrit·e comme demandeur d’emploi'
     },
     {
         id: 'handicap',

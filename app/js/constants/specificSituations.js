@@ -15,7 +15,7 @@ angular.module('ddsCommon').constant('specificSituations', [
     },
     {
         id: 'handicap',
-        label: 'Handicap'
+        label: 'En situation de handicap'
     },
     {
         id: 'inapte_travail',

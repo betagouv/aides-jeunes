@@ -69,6 +69,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'Supports de communication'
             }
         })
+		.state('contact', {
+            url: '/contact',
+            templateUrl: '/content-pages/contact.html',
+            data: {
+                pageTitle: 'Contact'
+            }
+        })
         .state('tests', {
             url: '/tests',
             onEnter: function($window) {

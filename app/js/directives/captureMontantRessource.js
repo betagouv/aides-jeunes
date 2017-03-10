@@ -4,7 +4,7 @@ angular.module('ddsApp').directive('captureMontantRessource', function(Situation
     function getOnGoingQuestion (individu, ressource, currentMonth) {
         var subject = {
             'demandeur': 'Vous',
-            'conjoint': 'Votre conjoint',
+            'conjoint': 'Votre conjoint·e',
             'enfant': individu.firstName
         }[individu.role],
             verbPrefix = ressource.id == 'pensionsAlimentairesVersees' ? 'verser' : 'percevr',

@@ -12,7 +12,7 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
     $scope.autoEntrepreneurOnGoingQuestion = function(individu, currentMonth) {
         var prefix = {
             'demandeur': 'Vous aurez',
-            'conjoint': 'Votre conjoint aura',
+            'conjoint': 'Votre conjoint·e aura',
             'enfant': individu.firstName + ' aura'
         }[individu.role];
         return prefix + ' un chiffre d’affaires non nul en ' + currentMonth + '.';

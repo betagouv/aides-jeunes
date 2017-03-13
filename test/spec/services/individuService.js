@@ -59,7 +59,7 @@ describe('IndividuService', function() {
             var result = service.formatStatutsSpecifiques({ specificSituations: ['retraite'] });
 
             // then
-            expect(result).toBe('Retraité');
+            expect(result).toBe('Retraité·e');
         });
 
         it('Should return comma-separated statuts when individu has several statuts specifiques', function() {
@@ -67,7 +67,7 @@ describe('IndividuService', function() {
             var result = service.formatStatutsSpecifiques({ specificSituations: ['retraite' , 'etudiant'] });
 
             // then
-            expect(result).toBe('Étudiant, retraité');
+            expect(result).toBe('Étudiant·e, retraité·e');
         });
 
         it('Should display "enceinte", "boursier" and "en garde alternée" if the individu has the corresponding fields to true', function() {

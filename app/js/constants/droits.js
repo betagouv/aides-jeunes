@@ -13,7 +13,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
                         'Avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles vous avez droit.',
-                        'Votre conjoint doit avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles il ou elle a droit.'
+                        'Votre conjoint·e doit avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles il ou elle a droit.'
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F16871',
                     'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14957.do'

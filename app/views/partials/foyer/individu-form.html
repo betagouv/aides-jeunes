@@ -122,16 +122,10 @@
   <div class="form-group from-group-lg">
     <label class="control-label col-sm-4" id="situations-particulieres">
       <span ng-if="individu.role == 'demandeur'">Vous êtes</span>
-      <span ng-if="individu.role == 'conjoint'">Votre conjoint est</span>
+      <span ng-if="individu.role == 'conjoint'">Votre conjoint·e est</span>
       <span ng-if="individu.role == 'enfant'">Il ou elle est</span>
     </label>
     <div class="col-sm-8">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" ng-model="individu.enceinte">
-          Enceinte
-        </label>
-      </div>
       <div class="checkbox" ng-if="captureGardeAlternee">
         <label>
           <input type="checkbox" ng-model="individu.gardeAlternee">
@@ -144,6 +138,14 @@
           {{ statut.label }}
         </label>
       </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="individu.enceinte">
+          Enceinte
+        </label>
+      </div>
+
+      <p class="help-block">Dans aucune de ces situations ? Validez directement !</p>
     </div>
   </div>
 
@@ -251,7 +253,7 @@
     ng-if="captureEtudiantBoursier()"
     size="4"
     >
-    <question>{{ individu.role == 'demandeur' ? 'Êtes-vous' : 'Est-il/elle' }} étudiant boursier&nbsp;?</question>
+    <question>{{ individu.role == 'demandeur' ? 'Êtes-vous' : 'Est-il/elle' }} étudiant·e boursier&nbsp;?</question>
   </yes-no-question>
 
   <yes-no-question model="individu.fiscalementIndependant"

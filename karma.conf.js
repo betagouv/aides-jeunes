@@ -23,7 +23,6 @@ module.exports = function(config) {
       'app/bower_components/lodash/dist/lodash.compat.js',
       'app/bower_components/angular-ui-router/release/angular-ui-router.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap.js',
-      'app/bower_components/angular-uuids/angular-uuid.js',
       'app/bower_components/lodash/dist/lodash.compat.js',
       'app/js/embed.js',    // depth-first glob interpretation of karma test runner means we need a forward declaration of the module
       'app/js/**/*.js',

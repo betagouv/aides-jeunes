@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, ResultatService, ImpactStudyService, droitsDescription, $analytics) {
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, ResultatService, droitsDescription, $analytics) {
 
     $scope.error = false;
     $scope.awaitingResults = true;
@@ -24,7 +24,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         $scope.droits = droits.droitsEligibles;
         $scope.droitsInjectes = droits.droitsInjectes;
         $scope.noDroits = _.isEmpty($scope.droits.prestationsNationales) && _.isEmpty($scope.droits.partenairesLocaux);
-        ImpactStudyService.sendResults($scope.situation, droits.raw);
     })
     .catch(function(error) {
         $scope.error = (error && error.data) || error || true;

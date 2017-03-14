@@ -2,7 +2,7 @@
 
 var DATE_FIELDS = ['dateDeNaissance', 'dateArretDeTravail', 'dateDernierContratTravail'];
 
-angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc, ImpactStudyService) {
+angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc) {
     var situation;
 
     var flattenRessource = function(ressource, source, target) {
@@ -55,7 +55,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
     return {
         newSituation: function() {
             situation = $sessionStorage.situation = { individus: [], dateDeValeur: moment().format() };
-            ImpactStudyService.resetSessionId();
         },
 
         restoreLocal: function() {

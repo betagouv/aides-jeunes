@@ -178,8 +178,8 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                 $scope.logement = {
                     type: $sce.trustAsHtml(typeLogementHtml),
                     loyer: logement.loyer,
-                    codePostal: logement.adresse.codePostal,
-                    nomCommune: logement.adresse.nomCommune
+                    codePostal: logement.commune.codePostal,
+                    nomCommune: logement.commune.nomCommune
                 };
             };
             $scope.individus = _.map(situation.individus, mapIndividu);

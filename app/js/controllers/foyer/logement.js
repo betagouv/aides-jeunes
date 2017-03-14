@@ -3,42 +3,42 @@
 
 angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, SituationService, IndividuService) {
 
-    $scope.updateCities = function updateCities() {
+    $scope.updateCommunes = function updateCommunes() {
         if (! $scope.logement.postalCode) {
-            $scope.cities = [];
+            $scope.communes = [];
             return;  // the user has made the value invalid since we were called
         }
 
-        $scope.retrievingCities = true;
+        $scope.retrievingCommunes = true;
 
         $http.get('/api/outils/communes/' + $scope.logement.postalCode)
              .then(function(result) {
-                  $scope.cities = result.data;
-                  var city = $scope.situation.logement && _.find($scope.cities, {codeInsee: $scope.situation.logement.adresse.codeInsee});
-                  logement.adresse = city || $scope.cities[0] || {};
+                  $scope.communes = result.data;
+                  var commune = $scope.situation.logement && _.find($scope.communes, {codeInsee: $scope.situation.logement.commune.codeInsee});
+                  logement.commune = commune || $scope.communes[0] || {};
               }, $log.error.bind($log)
               ).finally(function() {
-                  $scope.retrievingCities = false;
+                  $scope.retrievingCommunes = false;
               });
     };
 
     var logement = $scope.logement = {
-        adresse: {},
+        commune: {},
         inhabitantForThreeYearsOutOfLastFive: true
     };
     if ($scope.situation.logement) {
         logement = $scope.logement = _.merge(logement, $scope.situation.logement);
-        $scope.logement.postalCode = $scope.situation.logement.adresse.codePostal;
-        $scope.updateCities();
+        $scope.logement.postalCode = $scope.situation.logement.commune.codePostal;
+        $scope.updateCommunes();
     }
 
-    $scope.cities = [];
+    $scope.communes = [];
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
     $scope.demandeur = SituationService.getDemandeur($scope.situation);
 
-    function cityStartsWith(prefix) {
-        return $scope.isAdresseValid() && logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
+    function communeStartsWith(prefix) {
+        return logement.commune.nomCommune && logement.commune.nomCommune.indexOf(prefix.toUpperCase()) === 0;
     }
 
     $scope.yearsAgo = function yearsAgo(amount) {
@@ -113,7 +113,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.captureResidentParis = function() {
-        return $scope.captureCodePostal() && logement.type != 'sansDomicile' && cityStartsWith('Paris');
+        return $scope.captureCodePostal() && logement.type != 'sansDomicile' && communeStartsWith('Paris');
     };
 
     $scope.changeLogementType = function() {
@@ -125,17 +125,17 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.isResidentMayotte = function isResidentMayotte() {
-        return $scope.isAdresseValid() && logement.adresse.codePostal.indexOf('976') === 0;
+        return logement.commune.codePostal && logement.commune.codePostal.indexOf('976') === 0;
     };
 
-    $scope.isAdresseValid = function() {
-        return logement.adresse && $scope.cities.indexOf(logement.adresse) > -1;
+    $scope.isCommuneValid = function() {
+        return logement.commune && $scope.communes.indexOf(logement.commune) > -1;
     };
 
     $scope.submit = function(form) {
         $scope.submitted = true;
-        if (form.$valid && $scope.isAdresseValid()) {
-            logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && cityStartsWith('Paris');
+        if (form.$valid && $scope.isCommuneValid()) {
+            logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && communeStartsWith('Paris');
             $scope.$emit('logement', logement);
         }
     };

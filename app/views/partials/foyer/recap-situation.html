@@ -9,8 +9,8 @@
   <div class="situation-block">
     <div ng-bind-html="recapLogement|uppercaseFirst"></div>
     <div ng-if="situation.logement.loyer">{{ loyerLabel }}&nbsp;: <b>{{ situation.logement.loyer | currency }}</b></div>
-    Code postal <b>{{ situation.logement.adresse.codePostal }}</b>
-    <br><b>{{ situation.logement.adresse.nomCommune }}</b>
+    Code postal <b>{{ situation.logement.commune.codePostal }}</b>
+    <br><b>{{ situation.logement.commune.nomCommune }}</b>
   </div>
 </div>
 

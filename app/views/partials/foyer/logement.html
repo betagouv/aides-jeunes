@@ -135,7 +135,7 @@
               id="postal-code"
               required
               ng-model="logement.postalCode"
-              ng-change="updateCities()">
+              ng-change="updateCommunes()">
             <span class="help-block" ng-if="submitted && ! isAdresseValid()">Ce code postal est invalide</span>
           </div>
         </div>
@@ -143,16 +143,16 @@
 
       <div class="col-sm-6">
         <div class="form-group">
-          <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
-          <div ng-show="cities.length">
-            <label class="col-sm-3 control-label" for="city">Ville</label>
+          <p class="form-control-static" ng-if="retrievingCommunes"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
+          <div ng-show="communes.length">
+            <label class="col-sm-3 control-label" for="commune">Ville</label>
             <div class="col-sm-6">
               <select
                 class="form-control"
                 required
-                ng-options="city.nomCommune for city in cities"
-                ng-model="logement.adresse"
-                id="city">
+                ng-options="commune.nomCommune for commune in communes"
+                ng-model="logement.commune"
+                id="commune">
               </select>
             </div>
           </div>

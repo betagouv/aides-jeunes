@@ -93,7 +93,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'rsa': {
                     'label': 'Revenu de solidarité active',
                     'shortLabel': 'RSA',
-                    'description': 'Le RSA est destiné à assurer aux personnes disposant de faibles ressources un niveau minimum de revenu variable selon la composition de leur foyer.',
+                    'description': 'Le revenu de solidarité active (RSA) assure aux personnes sans ressources un niveau minimum de revenu variable selon la composition du foyer. Mes Aides permet de simuler le RSA, le RSA parent isolé et le RSA jeunes parents. Géré par les conseils départementaux, son versement se fait à travers la Caf ou la MSA.',
                     'conditions': [
                         'Signer un <a target="_blank" rel="noopener" href="http://social-sante.gouv.fr/affaires-sociales/lutte-contre-l-exclusion/droits-et-aides/le-revenu-de-solidarite-active-rsa/article/quels-sont-les-droits-et-devoirs-des-beneficiaires-du-rsa" title="Détails sur les droits et devoirs des bénéficiaires du RSA">contrat d’engagement réciproque</a> avec votre département.',
                         'Résider en France plus de 9 mois par an.',

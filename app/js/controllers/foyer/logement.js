@@ -109,7 +109,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.maySubmit = function() {
-        return $scope.captureCodePostal() && ! $scope.isResidentMayotte();
+        return $scope.captureCodePostal();
     };
 
     $scope.captureResidentParis = function() {
@@ -122,10 +122,6 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         });
         logement.loyer = 0;
         delete $scope.demandeur.habiteChezParents;
-    };
-
-    $scope.isResidentMayotte = function isResidentMayotte() {
-        return logement.commune.codePostal && logement.commune.codePostal.indexOf('976') === 0;
     };
 
     $scope.isCommuneValid = function() {

@@ -116,28 +116,32 @@
     </div>
 
     <div class="row" ng-show="captureCodePostal()">
-
-      <div class="col-sm-6">
-        <div
-          class="form-group"
-          ng-class="{'has-error': submitted && ! isAdresseValid()}">
-          <label class="col-sm-6 control-label" for="postal-code">Code postal</label>
-          <div class="col-sm-6">
-            <input
-              type="text"
-              inputmode="numeric"
-              minlength="5"
-              maxlength="5"
-              pattern="[0-9]{5}"
-              ng-pattern="/[0-9]{5}/"
-              title="Cinq chiffres"
-              class="form-control"
-              id="postal-code"
-              required
-              ng-model="logement.postalCode"
-              ng-change="updateCommunes()">
-            <span class="help-block" ng-if="submitted && ! isAdresseValid()">Ce code postal est invalide</span>
-          </div>
+      <div class="form-group" ng-class="{'has-error': submitted && form.codePostal.$invalid}">
+        <label class="col-sm-6 control-label" for="code-postal">
+          Code postal
+        </label>
+        <div class="col-sm-6">
+          <input
+            code-postal
+            name="codePostal"
+            id="code-postal"
+            class="form-control"
+            required
+            ng-model="logement.postalCode"
+            aria-describedby="help-code-postal"
+            ng-change="updateCommunes()"
+          >
+          <ul class="help-block" id="help-code-postal" ng-if="submitted && form.codePostal.$invalid">
+            <li ng-show="form.codePostal.$error.format">
+              Ceci n'est pas un code postal français valide.
+            </li>
+            <li ng-if="form.codePostal.$error.required">
+              Ce champ est obligatoire.
+            </li>
+            <li ng-if="form.codePostal.$error.isMayotte">
+              Les règles spécifiques à Mayotte ne sont pas encore prises en compte. Nous ne pouvons donc malheureusement pas évaluer vos droits pour ce code postal.
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -165,11 +169,6 @@
       <question>Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }}&nbsp;?</question>
       <help-block>Y compris de manière discontinue</help-block>
     </yes-no-question>
-
-    <p ng-if="isResidentMayotte()" class="alert alert-danger" id="warning-mayotte">
-      <i class="fa fa-times-circle" aria-hidden="true"></i>
-        Les règles spécifiques à Mayotte ne sont pas encore prises en compte par ce simulateur. Nous ne pouvons donc malheureusement pas évaluer vos droits pour ce code postal.
-    </p>
 
     <div class="text-right">
       <button type="submit" class="btn btn-primary" ng-if="maySubmit()">

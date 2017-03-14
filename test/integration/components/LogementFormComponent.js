@@ -10,7 +10,7 @@ declareLogementIsNotChambreRadio: '[model$="isChambre"] [ng-class*="false"]',
 loyerInput: '#loyer',
 chargesInput: '#charges',
 
-zipCodeInput: '#postal-code',
+zipCodeInput: '#code-postal',
 errorMessage: '.has-error .help-block',
 commune: '#commune [selected]',
 submitButton: 'button[type="submit"]',

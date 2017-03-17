@@ -73,7 +73,7 @@
     "prestart": "grunt build",
     "start": "NODE_ENV=production node server.js",
     "dev": "grunt serve",
-    "test": "jshint . && grunt",
+    "test": "jshint . && mocha test/backend/* && grunt",
     "test-integration": "test/integration/run-integration-tests.sh",
     "predb": "mkdir -p db",
     "db": "mongod --dbpath db",

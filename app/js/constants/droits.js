@@ -8,8 +8,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'prestations': {
                 'aspa': {
                     'label': 'Allocation de solidarité aux personnes âgées',
-                    'shortLabel': 'ASPA',
-                    'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une allocation destinée aux personnes âgées disposant de faibles revenus en vue de leur assurer un niveau minimum de ressources. Elle remplace le minimum vieillesse depuis 2006.',
+                    'shortLabel': 'Aspa',
+                    'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une prestation accordée aux personnes retraitées ayant de faibles ressources. Elle est versée tous les mois par la Carsat (ou la MSA si vous dépendez du régime agricole). Elle s’ajoute, dans une certaine limite, aux revenus personnels. Elle remplace le minimum vieillesse depuis 2006.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
                         'Avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles vous avez droit.',
@@ -28,27 +28,27 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isMontantAnnuel': true,
                     'label': 'Aide au paiement d’une complémentaire santé',
                     'shortLabel': 'ACS',
-                    'description': 'L’aide pour l’acquisition d’une assurance complémentaire santé, dite ACS, est une aide financière pour payer une complémentaire santé (exemple : une mutuelle).',
+                    'description': 'L’aide au paiement d’une assurance complémentaire santé (ACS) est une aide financière pour payer une complémentaire santé (mutuelle). L’ACS ouvre droit à d’autres avantages comme le tiers-payant. Une fois attribuée, l’ACS est accordée pour un an.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
-                    'link': 'https://www.cmu.fr/acs.php',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F13375',
                     'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
                 },
                 'asi': {
                     'label': 'Allocation supplémentaire d’invalidité',
-                    'shortLabel': 'ASI',
-                    'description': 'L’allocation supplémentaire d’invalidité (Asi) est une prestation versée sous certaines conditions aux personnes invalides titulaires d’une pension de retraite ou d’invalidité qui n’ont pas atteint l’âge légal de départ à la retraite pour bénéficier de l’allocation de solidarité aux personnes âgées (Aspa)',
+                    'shortLabel': 'Asi',
+                    'description': 'L’allocation supplémentaire d’invalidité (Asi) est une prestation accordée à certaines personnes invalides. Elle s’adresse à celles et ceux qui ont de faibles ressources et n’ont pas atteint l’âge de départ à la retraite. Elle est versée tous les mois et s’ajoute, dans une certaine limite, aux revenus personnels.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F16940'
                 },
                 'cmu_c': {
                     'label': 'Couverture maladie universelle complémentaire',
                     'shortLabel': 'CMU-C',
-                    'description': 'La CMU-C est une protection complémentaire santé gratuite.',
+                    'description': 'La couverture maladie universelle complémentaire (CMU-C) est une protection complémentaire santé (mutuelle) gratuite. Elle est destinée aux personnes qui ont de faibles ressources et résident en France de manière stable et régulière. Une fois attribuée, la CMU-C est accordée pour un an.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
-                    'link': 'https://www.cmu.fr/cmu-complementaire.php',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F10027',
                     'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
                 },
             },
@@ -60,24 +60,24 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'af': {
                     'label': 'Allocations familiales',
                     'shortLabel': 'AF',
-                    'description': 'Les allocations familiales sont versées aux personnes ayant au moins 2 enfants de moins de 20 ans à charge en métropole et dès le premier enfant dans les DOM. Le montant des prestations dépend du nombre d’enfants à charge, de leur âge et des ressources de la famille.',
+                    'description': 'Les allocations familiales sont réservées aux personnes ayant au moins 2 enfants de moins de 20 ans à charge. Le montant des prestations dépend des ressources, du nombre d’enfants à charge et de leurs âges. Elles sont versées tous les mois. Dans les DOM, les allocations sont versées à partir du premier enfant.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
                     ],
-                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F13213',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'cf': {
                     'label': 'Complément familial',
                     'shortLabel': 'CF',
-                    'description': 'Le complément familial est versé, sous certaines conditions, aux personnes ayant au moins 3 enfants à charge.',
-                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
+                    'description': 'Le complément familial s’ajoute aux allocations familiales à partir du troisième enfant à charge âgé de plus de 3 ans et de moins de 21 ans. Il est destiné aux familles ayant de faibles ressources. Dans les DOM, le complément familial concerne tous les enfants à charge âgés entre 3 et 5 ans.',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F13214',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'asf': {
                     'label': 'Allocation de soutien familial',
                     'shortLabel': 'ASF',
-                    'description': 'L’ASF est versée par la CAF ou la MSA au parent qui élève seul son enfant ou à la personne qui a recueilli un enfant, qu’elle vive seule ou en couple.',
+                    'description': 'L’allocation de soutien familial (ASF) est destinée soit au parent qui élève seul un enfant non reconnu, privé de l’aide d’un parent ou dont l’autre parent est décédé, soit à la personne seule ou en couple qui recueille un enfant. L’ASF est versée par la Caf ou la MSA tous les mois.',
                     'conditions': [
                         'Ne pas toucher l’intégralité d’une pension alimentaire qui vous aurait été attribuée par une décision de justice, ou que cette pension soit d’un montant inférieur à celui de l’ASF.'
                     ],
@@ -85,9 +85,9 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 },
                 'paje_base': {
                     'label': 'Prestation d’accueil du jeune enfant – Allocation de base',
-                    'shortLabel': 'PAJE-BASE',
-                    'description': 'L’allocation de base vous aide à assurer les dépenses liées à l’entretien et à l’éducation de votre enfant.',
-                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/l-allocation-de-base',
+                    'shortLabel': 'Paje-base',
+                    'description': 'L’allocation de base de la prestation d’accueil du jeune enfant (Paje) a pour objet d’aider à assurer les dépenses liées à l’entretien et l’éducation d’un enfant. Elle est destinée aux parents d’un enfant de moins de 3 ans ayant de faibles ressources. Elle est versée par la Caf ou la MSA.',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F13218',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'rsa': {
@@ -116,12 +116,12 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'aide_logement': {
                     'label': 'Aides au logement',
                     'shortLabel': 'AL',
-                    'description': 'L’aide au logement est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
+                    'description': 'Les aides au logement regroupent trois aides différentes non cumulables : l’aide personnalisée au logement (Apl), l’allocation de logement familiale (Alf) et l’allocation de logement sociale (Als). Elles concernent les personnes ayant de faibles ressources, locataires ou remboursant le prêt de leur résidence principale. Elles sont versées par la Caf ou la MSA.',
                     'conditions': [
                         'Résider au moins 8 mois par an dans le logement que vous avez décrit.',
                         'Le logement doit être <a target="_blank" rel="noopener" href="https://www.caf.fr/aides-et-services/connaitre-vos-droits-selon-votre-situation/vous-louez-ou-vous-achetez-un-logement/vous-occupez-un-logement-insalubre-ou-non-decent" title="9 mètres carrés par personne, fenêtre, WC, eau potable, électricité" >décent</a>.'
                     ],
-                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/N20360',
                     'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/',
                     'isBaseRessourcesYearMoins2': true,
                     'uncomputability': {
@@ -137,15 +137,16 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 },
                 'ppa': {
                     'label': 'Prime d’activité',
-                    'description': 'La Prime d’activité remplace le RSA activité et la prime pour l’emploi depuis janvier 2016. Elle complète les ressources des personnes qui travaillent et ont des revenus modestes, salariées ou non.',
-                    'link': 'https://www.caf.fr/actualites/2015/une-nouvelle-prestation-a-l-horizon-2016-la-prime-d-activite',
+                    'shortLabel': 'PPA',
+                    'description': 'La prime d’activité complète les revenus d’activité professionnelle des travailleurs de 18 ans ou plus, des étudiants salariés et apprentis et des non-salariés. La demande peut se faire à travers un téléservice sur, selon votre cas, le site de la Caf ou de la MSA. Elle remplace le RSA activité et la prime pour l’emploi depuis 2016.',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F2882',
                     'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/'
                 },
                 'aah': {
                     'isMontantAnnuel': false,
                     'label': 'Allocation aux adultes handicapés',
                     'shortLabel': 'AAH',
-                    'description': 'L’AAH est une aide financière qui permet d’assurer un revenu minimum aux adultes handicapés.',
+                    'description': 'L’allocation aux adultes handicapés (AAH) est une aide financière qui permet d’assurer un revenu minimum. Cette aide est attribuée sous réserve de respecter 4 critères : le taux d’incapacité, l’âge, la nationalité et les ressources. L’AAH peut se cumuler soit avec le complément de ressources, soit avec la majoration pour la vie autonome ou, dans certains cas, l’aide à l’autonomie.',
                     'isBaseRessourcesYearMoins2': true,
                     'uncomputability': {
                         'intervention_CDAPH_necessaire': {
@@ -164,7 +165,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'ass': {
                     'label': 'Allocation de solidarité spécifique',
                     'shortLabel': 'ASS',
-                    'description': 'L’allocation de solidarité spécifique (ASS) est une aide financière destinée aux personnes ayant épuisé leurs droits aux allocations chômage.',
+                    'description': 'L’allocation de solidarité spécifique (ASS) est attribuée aux personnes ayant épuisé leurs droits au chômage sous conditions d’activité antérieure et de ressources. Elle peut être versée à taux plein ou à taux réduit. En cas de reprise d’activité, elle peut être maintenue.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F12484'
                 },
             },
@@ -177,16 +178,16 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isMontantAnnuel': true,
                     'label': 'Bourse de collège',
                     'shortLabel': 'Bourse collège',
-                    'description': 'La bourse des collèges est une aide destinée à favoriser la scolarité des collégiens. Elle est versée sous conditions de ressources.',
-                    'link': 'http://www.education.gouv.fr/cid88/les-aides-financieres-au-college.html#Les%20bourses%20de%20coll%C3%A8ge',
+                    'description': 'La bourse de collège est une aide destinée à favoriser la scolarité des collégiens. Elle est versée aux familles ayant de faibles ressources. Son montant dépend du nombre d’enfants à charge. Vous devez déposer votre dossier de demande entre la rentrée scolaire et la fin du mois de septembre.',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F984',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'bourse_lycee': {
                     'isMontantAnnuel': true,
                     'label': 'Bourse de lycée',
                     'shortLabel': 'Bourse lycée',
-                    'description': 'La bourse des lycées est accordée, sous condition de ressources, à la famille d’un lycéen. Son montant dépend des ressources et des charges de la famille. Cette bourse peut être accompagnée de diverses primes (prime d’équipement, prime à la qualification, bourse au mérite au lycée, prime à l’internat...).',
-                    'link': 'http://www.education.gouv.fr/cid151/aides-financieres-au-lycee.html#Les%20bourses%20de%20lycée',
+                    'description': 'La bourse de lycée est accordée aux responsables d’un lycéen qui ont de faibles ressources. Si l’élève entre au lycée ou s’il n’a jamais touché de bourse de lycée, il pourra y prétendre selon les ressources et les charges de sa famille. Une nouvelle demande doit être effectuée en cas de redoublement ou réorientation.',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F616',
                     'isBaseRessourcesYearMoins2': true
                 },
             },
@@ -200,9 +201,9 @@ angular.module('ddsCommon').constant('droitsDescription', {
             'prestations': {
                 'paris_logement_familles': {
                     'isMontantAnnuel': false,
-                    'label': 'Paris Logement Familles',
+                    'label': 'Paris Logement Famille',
                     'shortLabel': 'PLF',
-                    'description': 'L’allocation Paris Logement Familles permet aux familles parisiennes de mieux supporter leurs dépenses de logement.',
+                    'description': 'L’allocation Paris Logement Famille est destinée aux familles d’au moins deux enfants ou ayant un enfant handicapé. Elle leur permet de mieux supporter leurs dépenses de logement. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'conditions': [
                         'Avoir demandé le versements des aides logement auxquelles vous avez droit auprès de la CAF.',
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
@@ -214,9 +215,9 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 },
                 'paris_forfait_famille': {
                     'isMontantAnnuel': true,
-                    'label': 'Paris Forfait Familles',
+                    'label': 'Paris Forfait Famille',
                     'shortLabel': 'PFF',
-                    'description': 'Paris Forfait Familles est une aide annuelle destinée aux familles nombreuses.',
+                    'description': 'Paris Forfait Famille est une aide destinée aux familles nombreuses avec au moins trois enfants à charge. Elle peut se cumuler avec l’Allocation de Soutien aux Parents d’Enfants Handicapés. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-forfait-famille_2',
                     'form': 'https://api-site.paris.fr/images/74809',
                     'isBaseRessourcesYearMoins2': false,
@@ -225,7 +226,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'paris_logement_psol': {
                     'label': 'Paris Solidarité',
                     'shortLabel': 'PSOL',
-                    'description': 'Paris Solidarité est un complément de ressources mensuelles',
+                    'description': 'Paris Solidarité est destinée aux personnes âgées de 65 ans ou plus. L’aide peut être versée tous les mois à partir de 60 ans pour les personnes reconnus inaptes au travail. Elle a pour but de garantir aux foyers modestes un minimum de ressources. L’aide est accordée pour une durée maximale d’un an. À partir du 2<sup>e</sup> renouvellement, Paris Solidarité peut être accordée pour une durée maximale de deux ans.',
                     'conditions': [
                         'Percevoir tous les avantages légaux auxquels vous pouvez prétendre.',
                     ],
@@ -237,7 +238,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'paris_logement': {
                     'label': 'Paris Logement',
                     'shortLabel': 'PL',
-                    'description': 'Paris Logement est une aide mensuelle destinée à aider les parisiens à mieux supporter leurs dépenses de logement.',
+                    'description': 'L’allocation Paris Logement est destinée aux personnes seules ou en couple sans ou avec un enfant. Elle leur permet de mieux supporter leurs dépenses de logement. Ils doivent être locataires en titre et titulaires du bail du logement occupé à titre principal. L’aide est accordée pour une durée maximale d’un an. À partir du 2<sup>e</sup> renouvellement, Paris Logement peut être accordée pour une durée maximale de deux ans.',
                     'conditions': [
                         'Avoir demandé le versement des aides logement auxquelles vous avez droit auprès de la CAF.',
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
@@ -250,7 +251,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'paris_logement_aspeh': {
                     'label': 'Allocation de Soutien aux Parents d’Enfants Handicapés',
                     'shortLabel': 'ASPEH',
-                    'description': 'L’Allocation de Soutien aux Parents d’Enfants Handicapés est une aide mensuelle permettant de soutenir les familles ayant un ou plusieurs enfants handicapés à charge.',
+                    'description': 'L’Allocation de Soutien aux Parents d’Enfants Handicapés est réservée aux familles ayant à charge un ou plusieurs enfants handicapés. Son montant dépend du nombre de jours passés par le ou les enfants au domicile. L’aide est versée tous les mois et accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#allocation-de-soutien-aux-parents-d-enfants-handicapes_9',
                     'form': 'http://api-site-cdn.paris.fr/images/132126.pdf',
                     'isBaseRessourcesYearMoins2': false,
@@ -259,7 +260,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'paris_logement_plfm': {
                     'label': 'Paris Logement Familles Monoparentales',
                     'shortLabel': 'PLFM',
-                    'description': 'L’allocation Paris Logement Familles Monoparentales permet aux parents seuls, ayant un ou plusieurs enfants à charge, de mieux supporter leurs dépenses de logement.',
+                    'description': 'L’allocation Paris Logement Famille Monoparentale est destinée aux parents seuls, ayant un ou plusieurs enfants à charge. Elle leur permet de mieux supporter leurs dépenses de logement. Elle est ouverte aux locataires, aux propriétaires et aux personnes accédant à la propriété. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'conditions': [
                         'Avoir demandé le versement des aides logement auxquelles vous avez droit auprès de la CAF.',
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
@@ -273,7 +274,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isMontantAnnuel': true,
                     'label': 'Paris Énergie Familles',
                     'shortLabel': 'PEF',
-                    'description': 'Paris Énergie Familles est une aide annuelle permettant aux familles d’alléger leurs dépenses de consommation d’électricité et de gaz.',
+                    'description': 'L’allocation Paris Énergie Famille est réservée aux familles ayant un ou plusieurs enfants à charge, sous condition d’imposition. Cette aide permet de les soutenir dans leurs dépenses d’électricité et/ou de gaz. Paris Énergie Famille est directement versée aux fournisseurs d’énergie. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-energie-famille_8',
                     'form': 'https://api-site.paris.fr/images/154764.pdf',
                     'isBaseRessourcesYearMoins2': false,
@@ -283,7 +284,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isMontantAnnuel': true,
                     'label': 'Complément Santé Paris',
                     'shortLabel': 'CSP',
-                    'description': 'Le Complément Santé Paris est une allocation qui permet de participer aux frais d’adhésion à une couverture complémentaire santé (mutuelle ou autre organisme analogue)',
+                    'description': 'Le Complément Santé Paris est destiné aux personnes âgées de 65 ans ou plus. L’aide peut être versée à partir de 60 ans pour les personnes reconnues inaptes au travail. Elle a pour but d’aider les foyers modestes à obtenir une mutuelle. L’aide est accordée pour une durée maximale d’un an. À partir du 2<sup>e</sup> renouvellement, le Complément Santé Paris peut être accordé pour une durée maximale de deux ans.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
                     'form': 'https://api-site.paris.fr/images/78343',
                     'isBaseRessourcesYearMoins2': false,
@@ -302,7 +303,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'legend': 'des frais de dépendance',
                     'label': 'Allocation départementale personnalisée d’autonomie',
                     'shortLabel': 'ADPA',
-                    'description': 'Allocation versée aux personnes dépendantes âgées de plus de 60 ans. Elle a pour objectif de financer des services d’aide à la personne favorisant leur autonomie dans les gestes quotidiens.',
+                    'description': 'L’Allocation Départementale Personnalisée d’Autonomie (ADPA) permet de financer une partie des dépenses nécessaires à votre maintien à domicile ou de couvrir une partie des frais liés à votre accueil en établissement. Elle est versée aux personnes âgées de 60 ans ou plus en perte d’autonomie.',
                     'conditions': [],
                     'link': 'https://www.seine-saint-denis.fr/ADPA.html',
                     'form': 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa_mai_2016_vdef.pdf',

@@ -22,7 +22,7 @@
           <div class="col-md-10">
             <dl ng-repeat="droit in provider.prestations">
               <dt>{{ droit.label }}</dt>
-              <dd>{{ droit.description }}</dd>
+              <dd ng-bind-html="droit.description"></dd>
             </dl>
           </div>
         </div>
@@ -38,7 +38,7 @@
           <div class="col-md-10">
             <dl ng-repeat="droit in provider.prestations">
               <dt>{{ droit.label }}</dt>
-              <dd>{{ droit.description }}</dd>
+              <dd ng-bind-html="droit.description"></dd>
             </dl>
           </div>
         </div>

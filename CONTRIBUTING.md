@@ -72,8 +72,25 @@ Ajouter une aide
 
 Vous êtes un organisme liquidateur ? Lisez plutôt [comment intégrer une nouvelle aide dans Mes Aides](https://github.com/sgmap/mes-aides-ui/wiki/Integrer-une-nouvelle-aide-dans-mes-aides). La documentation ci-dessous est technique.
 
-- Décrire l'organisme liquidateur et l'aide à ajouter dans `app/js/constants/droits.js`.
+- Décrire l'organisme liquidateur et l'aide à ajouter dans `app/js/constants/droits.js` (voir plus bas).
 - Copier ces informations dans `lib/config/ludwig.js` du module [`mes-aides-api`](https://github.com/sgmap/mes-aides-api).
 - Décrire le type de données dans `lib/simulation/openfisca/prestations.js` du module [`mes-aides-api`](https://github.com/sgmap/mes-aides-api).
 - Mettre à jour les données de réponse attendue dans `test/openfisca/mapping/reverse.coffee` du module [`mes-aides-api`](https://github.com/sgmap/mes-aides-api).
 - [Coder l'aide dans OpenFisca](https://github.com/sgmap/mes-aides-ui/wiki/Ajouter-une-aide-locale-dans-OpenFisca).
+
+
+### Description d'une aide
+
+Une aide est décrite dans `app/js/constants/droits.js` par les champs suivants :
+
+- `label` : nom de l'aide. Utiliser le plus officiel possible, sinon, celui validé par l'organisme ; attention aux majuscules.
+- `shortLabel` : acronyme de l'aide. Bien vérifier les majuscules et les minuscules.
+- `description` : présentation des objectifs et enjeux de l'aide. Entre 280 et 420 caractères (entre 2 et 3 tweets) ; la description commence par le nom de l'aide en sujet d'une phrase active ; ne pas citer Mes Aides ; préférer la 3e personne ; [neutralité de genre](https://github.com/sgmap/beta.gouv.fr/wiki/Publier#syntaxe).
+- `link` : URL d'une description de l'aide. Préférer un lien vers `service-public.fr` pour la stabilité. À défaut, vers le site officiel de l'organisme attributeur.
+
+Et l'un des champs suivants :
+
+- `form` : URL d'un formulaire téléchargeable et imprimable. Préférer un lien vers `service-public.fr` pour la stabilité. À défaut, vers le site officiel de l'organisme attributeur.
+- `teleservice` : URL d'un téléservice permettant la demande de l'aide.
+
+Tous ces champs sont obligatoires.

@@ -1,12 +1,3 @@
-/* ***** ***** ***** *****
- * règles d'uniformisation - première passe
- * label : utiliser le plus officiel possible, sinon, celui validé par l'organisme ; attention aux majuscules
- * shortLabel : vérifier bien les majuscules et les minuscules
- * description : entre 280 et 420 caractères (entre 2 et 3 tweets) ; la description commence par le nom de l'aide en sujet d'une phrase active ; ne pas citer Mes Aides ; préférer la 3e personne ; neutralité de genre
- * link : préférer le lien vers service-public.fr
- * form : préférer le lien vers service-public.fr
- * ***** ***** ***** ***** */
-
 'use strict';
 
 angular.module('ddsCommon').constant('droitsDescription', {

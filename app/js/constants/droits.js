@@ -60,24 +60,24 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'af': {
                     'label': 'Allocations familiales',
                     'shortLabel': 'AF',
-                    'description': 'Les allocations familiales sont versées aux personnes ayant au moins 2 enfants de moins de 20 ans à charge en métropole et dès le premier enfant dans les DOM. Le montant des prestations dépend du nombre d’enfants à charge, de leur âge et des ressources de la famille.',
+                    'description': 'Les allocations familiales sont versées tous les mois aux personnes ayant au moins deux enfants de moins de vingt ans à charge. Le montant des prestations dépend des ressources, du nombre d’enfants à charge et de leur âge. Dans les DOM, les allocations sont versées à partir du premier enfant.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
                     ],
-                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/les-allocations-familiales-af-0',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F13213',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'cf': {
                     'label': 'Complément familial',
                     'shortLabel': 'CF',
-                    'description': 'Le complément familial est versé, sous certaines conditions, aux personnes ayant au moins 3 enfants à charge.',
-                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/enfance-et-jeunesse/le-complement-familialcf',
+                    'description': '&Agrave; partir du troisième enfant à charge âgé de plus de trois ans et de moins de vingt-et-un ans, et sous certaines conditions de ressources, le complément familial est versé automatiquement. Dans les DOM, le complément familial concerne tous les enfants à charge âgés entre trois et cinq ans.',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F13214',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'asf': {
                     'label': 'Allocation de soutien familial',
                     'shortLabel': 'ASF',
-                    'description': 'L’ASF est versée par la CAF ou la MSA au parent qui élève seul son enfant ou à la personne qui a recueilli un enfant, qu’elle vive seule ou en couple.',
+                    'description': 'L’allocation de soutien familial (ASF) est destinée soit au parent qui élève seul un enfant non reconnu, privé de l’aide d’un parent ou dont l’autre parent est décédé, soit à la personne seule ou en couple qui recueille un enfant. L’ASF est versée par la Caf ou la MSA mensuellement.',
                     'conditions': [
                         'Ne pas toucher l’intégralité d’une pension alimentaire qui vous aurait été attribuée par une décision de justice, ou que cette pension soit d’un montant inférieur à celui de l’ASF.'
                     ],
@@ -85,9 +85,9 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 },
                 'paje_base': {
                     'label': 'Prestation d’accueil du jeune enfant – Allocation de base',
-                    'shortLabel': 'PAJE-BASE',
-                    'description': 'L’allocation de base vous aide à assurer les dépenses liées à l’entretien et à l’éducation de votre enfant.',
-                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/l-allocation-de-base',
+                    'shortLabel': 'Paje-base',
+                    'description': 'L’allocation de base de la prestation d’accueil du jeune enfant (Paje) a pour objet d’aider à assurer les dépenses liées à l’entretien et l’éducation d’un enfant. Elle est destinée aux parents d’un enfant de moins de 3 ans. Elle est versée sous conditions de ressources par la Caf ou la MSA.',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F13218',
                     'isBaseRessourcesYearMoins2': true
                 },
                 'rsa': {
@@ -116,12 +116,12 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'aide_logement': {
                     'label': 'Aides au logement',
                     'shortLabel': 'AL',
-                    'description': 'L’aide au logement est une aide financière destinée à réduire le montant de votre loyer ou votre mensualité d’emprunt immobilier. Elle est attribuée selon la nature de votre logement et la composition de votre famille.',
+                    'description': 'Les aides au logement regroupent trois aides différentes non cumulables : l’aide personnalisée au logement (Apl), l’allocation de logement familiale (Alf ) et l’allocation de logement sociale (Als). Elles concernent les personnes aux ressources modestes qui paient un logement ou remboursent le prêt de leur résidence principale. Elles sont versées par la Caf ou la MSA.',
                     'conditions': [
                         'Résider au moins 8 mois par an dans le logement que vous avez décrit.',
                         'Le logement doit être <a target="_blank" rel="noopener" href="https://www.caf.fr/aides-et-services/connaitre-vos-droits-selon-votre-situation/vous-louez-ou-vous-achetez-un-logement/vous-occupez-un-logement-insalubre-ou-non-decent" title="9 mètres carrés par personne, fenêtre, WC, eau potable, électricité" >décent</a>.'
                     ],
-                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement-et-cadre-de-vie/les-aides-au-logement-0',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/N20360',
                     'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/',
                     'isBaseRessourcesYearMoins2': true,
                     'uncomputability': {
@@ -137,15 +137,15 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 },
                 'ppa': {
                     'label': 'Prime d’activité',
-                    'description': 'La Prime d’activité remplace le RSA activité et la prime pour l’emploi depuis janvier 2016. Elle complète les ressources des personnes qui travaillent et ont des revenus modestes, salariées ou non.',
-                    'link': 'https://www.caf.fr/actualites/2015/une-nouvelle-prestation-a-l-horizon-2016-la-prime-d-activite',
+                    'description': 'La prime d’activité remplace le RSA activité et la prime pour l’emploi. Les travailleurs de 18 ans ou plus, les étudiants salariés et apprentis et les non-salariés peuvent en bénéficier sous certaines conditions. La demande de prime d’activité peut se faire à travers un téléservice sur, selon votre cas, le site de la Caf ou de la MSA',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F2882',
                     'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/'
                 },
                 'aah': {
                     'isMontantAnnuel': false,
                     'label': 'Allocation aux adultes handicapés',
                     'shortLabel': 'AAH',
-                    'description': 'L’AAH est une aide financière qui permet d’assurer un revenu minimum aux adultes handicapés.',
+                    'description': 'L’allocation aux adultes handicapés (AAH) est une aide financière qui permet d’assurer un revenu minimum. Cette aide est attribuée sous réserve de respecter 4 critères : votre taux d’incapacité, votre âge, votre nationalité et vos ressources. L’AAH peut se cumuler soit avec le complément de ressources, soit avec la majoration pour la vie autonome ou, dans certains cas, l’aide à l’autonomie.',
                     'isBaseRessourcesYearMoins2': true,
                     'uncomputability': {
                         'intervention_CDAPH_necessaire': {

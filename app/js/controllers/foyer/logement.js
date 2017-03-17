@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, ImpactStudyService, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, SituationService, IndividuService) {
 
     $scope.updateCities = function updateCities() {
         if (! $scope.logement.postalCode)
@@ -129,7 +129,6 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         if (form.$valid && logement.adresse) {
             logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && cityStartsWith('Paris');
             $scope.$emit('logement', logement);
-            ImpactStudyService.sendPostCode($scope.situation);
         }
     };
 });

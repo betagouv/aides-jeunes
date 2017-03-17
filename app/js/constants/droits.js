@@ -1,6 +1,7 @@
+(function() {
 'use strict';
 
-angular.module('ddsCommon').constant('droitsDescription', {
+var droitsDescription = {
     'prestationsNationales': {
         'assurance_retraite': {
             'label': 'Assurance retraite',
@@ -331,4 +332,13 @@ angular.module('ddsCommon').constant('droitsDescription', {
             }
         }
     }
-});
+};
+
+/* Export either through Angular loader or CommonJS */
+if (typeof module != 'undefined') {  // we're in Node
+    module.exports = droitsDescription;
+} else {  // we're in the browser
+    angular.module('ddsCommon').constant('droitsDescription', droitsDescription);
+}
+/* End of export */
+})();

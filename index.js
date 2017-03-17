@@ -33,7 +33,19 @@ module.exports = function(app) {
     }
 
     app.use(favicon(path.join(__dirname, 'dist', 'img', 'favicon', 'favicon.ico')));
-    app.use(express.static(path.join(__dirname, 'dist')));
+
+    var CACHE = {
+        ONE_YEAR: { maxAge: 365 * 24 * 60 * 60 * 1000 },  // assets that are cachebusted through the `rev` build step that changes file names
+        FIVE_MINUTES: { maxAge: 5 * 60 * 1000 },  // assets that are not cachebusted through filenames but not critical, allow for 5 minutes of scramble in case they are updated
+        NONE: {},
+    };
+
+    app.use('/js',        express.static(path.join(__dirname, 'dist/js'),        CACHE.ONE_YEAR));
+    app.use('/styles',    express.static(path.join(__dirname, 'dist/styles'),    CACHE.ONE_YEAR));
+    app.use('/fonts',     express.static(path.join(__dirname, 'dist/fonts'),     CACHE.ONE_YEAR));
+    app.use('/img',       express.static(path.join(__dirname, 'dist/img'),       CACHE.FIVE_MINUTES));
+    app.use('/documents', express.static(path.join(__dirname, 'dist/documents'), CACHE.FIVE_MINUTES));
+    app.use(              express.static(path.join(__dirname, 'dist'),           CACHE.NONE));
 
     app.use('/partials', express.static(viewsDirectory + '/partials'));
     app.use('/content-pages', express.static(viewsDirectory + '/content-pages'));

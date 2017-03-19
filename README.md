@@ -117,6 +117,8 @@ Integration tests are executed with [Watai](https://github.com/MattiSG/Watai) th
 
 Most integration tests do not require any business to pass. However business test integration is tested by `ludwig-suite`. Therefore that suite currently fail if business tests were not imported from `npm run db-update` as per instructed in the next section.
 
+Note: `ludwig-suite` can be excluded. In `test/integration/run-integration-tests.sh` you can replace `$TEST_DIR/*-suite` with `$TEST_DIR/[^l]*-suite`.
+
 Business tests
 --------------
 

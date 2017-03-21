@@ -36,7 +36,10 @@ test:
     - while [ ! -e ~/sauce_is_ready ]; do sleep 1; done:
         parallel: true
     # wait for server (after Sauce Connect because it is faster to start)
-    - wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:$PORT:
+    - wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:9000:
+        parallel: true
+    # wait for OpenFisca
+    - wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000:
         parallel: true
     # prepare CI-specific config holder and add CI-specific config to Watai
     - mkdir $HOME/.watai && cp $WATAI_TESTS/config-ci.js $HOME/.watai/config.js:

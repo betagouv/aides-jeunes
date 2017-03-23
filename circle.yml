@@ -46,8 +46,8 @@ test:
         parallel: true
 
   override:
-    - watai $WATAI_TESTS/base-suite --config '{"driverCapabilities":{"browserName":"'"$browser_name"'","version":"'"$browser_version"'"}}':
-        parallel: true
+    - watai $WATAI_TESTS/base-suite --config '{"driverCapabilities":{"browserName":"'"$browser_name"'","version":"'"$browser_version"'"}}'
+    - watai $WATAI_TESTS/family-suite  --config '{"driverCapabilities":{"browserName":"'"$browser_name"'","version":"'"$browser_version"'"}}'
 
   post:
     - killall --wait sc:  # wait until Sauce Connect closes the tunnel

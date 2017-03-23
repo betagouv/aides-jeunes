@@ -326,6 +326,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'link': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/',
                     'form': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/#c33081',
                     'isBaseRessourcesYearMoins2': false,
+                    'interactionWithNationalPrestationCalculated': true,
                 },
             }
         }

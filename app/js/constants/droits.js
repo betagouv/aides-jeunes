@@ -310,6 +310,22 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isBaseRessourcesYearMoins2': false
                 },
             }
+        },
+        'rennes_metropole': {
+            'imgSrc': 'logo_rennes_metropole.png',
+            'label': 'Rennes Métropole',
+            'prefix': 'de',
+            'prestations': {
+                'rennes_metropole_transport': {
+                    'isMontantAnnuel': false,
+                    'unit': '%',
+                    'legend': 'de l’abonnement STAR',
+                    'label': 'Tarification solidaire transports',
+                    'shortLabel': 'Transport',
+                    'description': 'Permet aux personnes disposant de revenus modestes de bénéficier d’une gratuité ou d’une réduction sur le prix de l’abonnement mensuel au réseau STAR et au service Handistar.',
+                    'isBaseRessourcesYearMoins2': false
+                },
+            }
         }
     }
 });

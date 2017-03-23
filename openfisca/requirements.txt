@@ -1,6 +1,7 @@
+
 gunicorn>=19.1.1
-openfisca_web_api[paster]==3.3.1
-openfisca_france==15.1.0
+openfisca_web_api==3.4.0
+openfisca_france==16.1.0
 git+https://github.com/sgmap/openfisca-paris.git@06fce8d1fba0cb6523bec8988f42135095802540#egg=openfisca-paris
 git+https://github.com/sgmap/openfisca-cd93.git@602b68864706c17591abccd0d5c608e5939e9f03#egg=openfisca-cd93
 git+https://github.com/sgmap/openfisca-rennesmetropole.git@1cc80a370720321b15c409a0783b667689a2eafd#egg=openfisca-RennesMetropole

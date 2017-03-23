@@ -80,10 +80,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
                 delete $scope.individu.tauxIncapacite;
             }
 
-            if (! $scope.captureEtudiantBoursier()) {
-                delete $scope.individu.echelonBourse;
-            }
-
             if (! $scope.captureScolarite(form)) {
                 delete $scope.individu.scolarite;
             }
@@ -107,10 +103,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
     $scope.captureEnfantPlace = function() {
         return ! isIndividuParent && $scope.selectedStatuts.handicap;
-    };
-
-    $scope.captureEtudiantBoursier = function() {
-        return $scope.selectedStatuts.etudiant;
     };
 
     $scope.captureDemandeurACharge = function() {

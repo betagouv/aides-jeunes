@@ -29,7 +29,7 @@ test:
         background: true
         parallel: true
     # start Sauce Connect
-    - cd sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --tunnel-identifier "circle-$CIRCLE_BUILD_NUM-$CIRCLE_NODE_INDEX" --readyfile ~/sauce_is_ready > $SAUCE_LOG:
+    - cd sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --tunnel-identifier "circle-$CIRCLE_PROJECT_USERNAME-$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM-$CIRCLE_NODE_INDEX" --readyfile ~/sauce_is_ready > $SAUCE_LOG:
         background: true
         parallel: true
     # wait for Sauce Connect

@@ -6,7 +6,7 @@ module.exports = {
     },
     driverCapabilities: {
         platform            : 'Windows 7',
-        'tunnel-identifier' : 'circle-' + process.env.CIRCLE_BUILD_NUM + '-' + process.env.CIRCLE_NODE_INDEX,
+        'tunnel-identifier' : 'circle-' + process.env.CIRCLE_PROJECT_USERNAME + '-' + process.env.CIRCLE_PROJECT_REPONAME + '-' + process.env.CIRCLE_BUILD_NUM + '-' + process.env.CIRCLE_NODE_INDEX
     },
     tags        : [ 'circle-ci', '#' + process.env.CIRCLE_BUILD_NUM ],
     views       : [ 'Verbose', 'SauceLabs' ],

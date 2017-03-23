@@ -19,7 +19,8 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'form': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-aspa.pdf',
 					'forms' : {
 						'cnav': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-aspa.pdf',
-						'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14953.do'
+						'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14953.do',
+						'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/Formulaire_allocation_solidarite_personnes_agees.pdf'
 					},
                 },
             },
@@ -53,6 +54,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
 					'forms' : {
 						'general': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S4151.pdf',
 						'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13435.do',
+						'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/formulaire_allocation_supplementaire_invalidite.pdf',
 						'cnav': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-asi.pdf'
 					},
                 },

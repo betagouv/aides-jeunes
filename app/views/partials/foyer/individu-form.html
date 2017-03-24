@@ -249,12 +249,23 @@
     <question>Est-il/elle placé·e en structure spécialisée ou famille d'accueil&nbsp;?</question>
   </yes-no-question>
 
-  <yes-no-question model="individu.boursier"
-    ng-if="captureEtudiantBoursier()"
-    size="4"
-    >
-    <question>{{ individu.role == 'demandeur' ? 'Êtes-vous' : 'Est-il/elle' }} étudiant·e boursier&nbsp;?</question>
-  </yes-no-question>
+  <fieldset class="form-group" ng-if="selectedStatuts.etudiant">
+    <label class="col-sm-4 control-label" for="echelon-bourse">
+      À quel échelon {{ individu.role == 'demandeur' ? 'êtes-vous' : 'est-il/elle' }} boursier&nbsp;?
+    </label>
+    <div class="col-sm-4">
+      <input id="echelon-bourse"
+        ng-model="individu.echelonBourse"
+        type="range"
+        min="-1"
+        max="7"
+        aria-describedby="help-echelon-bourse"
+        >
+    </div>
+    <div id="help-echelon-bourse" class="col-sm-2 control-label">
+      {{ individu.echelonBourse == -1 ? 'Non boursier': 'Boursier échelon ' + individu.echelonBourse }}
+    </div>
+  </fieldset>
 
   <yes-no-question model="individu.fiscalementIndependant"
     ng-if="captureDemandeurACharge()"

@@ -310,6 +310,25 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'isBaseRessourcesYearMoins2': false
                 },
             }
+        },
+        'rennes_metropole': {
+            'imgSrc': 'logo_rennes_metropole.png',
+            'label': 'Rennes Métropole',
+            'prefix': 'de',
+            'prestations': {
+                'rennes_metropole_transport': {
+                    'isMontantAnnuel': false,
+                    'unit': '%',
+                    'legend': 'de l’abonnement STAR',
+                    'label': 'Tarification solidaire transports',
+                    'shortLabel': 'Transport',
+                    'description': 'La tarification solidaire est une réduction de 50 %, 85 % ou 100 % (gratuité) de l’abonnement mensuel du réseau de transports en commun Star. La réduction s’applique également au service Handistar. Elle est accordée aux familles de Rennes Métropole ayant de faibles ressources. La tarification est accordée à tous les membres du foyer.',
+                    'link': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/',
+                    'instructions': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/#c33081',
+                    'isBaseRessourcesYearMoins2': false,
+                    'interactionWithNationalPrestationCalculated': true,
+                },
+            }
         }
     }
 });

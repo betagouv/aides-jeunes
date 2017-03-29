@@ -39,8 +39,8 @@ describe('aides descriptions', function() {
                         expect(aide.link).toMatch(/^https?:\/\//);
                     });
 
-                    it('should have a form or a teleservice', function() {
-                        expect(aide.teleservice || aide.form).toBeA('string');
+                    it('should have a teleservice, a form, or instructions', function() {
+                        expect(aide.teleservice || aide.form || aide.instructions).toBeA('string');
                     });
                 });
             });

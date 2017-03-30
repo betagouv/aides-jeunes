@@ -76,6 +76,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'Contact'
             }
         })
+		.state('social', {
+            url: '/social',
+            templateUrl: '/content-pages/social.html',
+            data: {
+                pageTitle: 'Réseaux sociaux'
+            }
+        })
         .state('tests', {
             url: '/tests',
             onEnter: function($window) {

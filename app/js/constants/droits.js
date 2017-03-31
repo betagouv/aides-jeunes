@@ -1,6 +1,7 @@
+(function() {
 'use strict';
 
-angular.module('ddsCommon').constant('droitsDescription', {
+var droitsDescription = {
     'prestationsNationales': {
         'assurance_retraite': {
             'label': 'Assurance retraite',
@@ -16,7 +17,12 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Votre conjoint·e doit avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles il ou elle a droit.'
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F16871',
-                    'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14957.do'
+                    'form': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-aspa.pdf',
+                    'forms' : {
+                        'cnav': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-aspa.pdf',
+                        'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14953.do',
+                        'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/Formulaire_allocation_solidarite_personnes_agees.pdf'
+                    },
                 },
             },
         },
@@ -33,13 +39,25 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F13375',
-                    'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
+                    'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
+                    'forms': {
+                        'general': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
+                        'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
+                        'rsi': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do'
+                    },
                 },
                 'asi': {
                     'label': 'Allocation supplémentaire d’invalidité',
                     'shortLabel': 'Asi',
                     'description': 'L’allocation supplémentaire d’invalidité (Asi) est une prestation accordée à certaines personnes invalides. Elle s’adresse à celles et ceux qui ont de faibles ressources et n’ont pas atteint l’âge de départ à la retraite. Elle est versée tous les mois et s’ajoute, dans une certaine limite, aux revenus personnels.',
-                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F16940'
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F16940',
+                    'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S4151.pdf',
+                    'forms' : {
+                        'general': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S4151.pdf',
+                        'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13435.do',
+                        'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/formulaire_allocation_supplementaire_invalidite.pdf',
+                        'cnav': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-asi.pdf'
+                    },
                 },
                 'cmu_c': {
                     'label': 'Couverture maladie universelle complémentaire',
@@ -49,7 +67,12 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F10027',
-                    'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S3711.pdf'
+                    'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
+                    'forms': {
+                        'general': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
+                        'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
+                        'rsi': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do'
+                    },
                 },
             },
         },
@@ -65,6 +88,11 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F13213',
+                    'form': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
+                    'forms': {
+                        'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
+                        'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
+                    },
                     'isBaseRessourcesYearMoins2': true
                 },
                 'cf': {
@@ -72,6 +100,11 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'CF',
                     'description': 'Le complément familial s’ajoute aux allocations familiales à partir du troisième enfant à charge âgé de plus de 3 ans et de moins de 21 ans. Il est destiné aux familles ayant de faibles ressources. Dans les DOM, le complément familial concerne tous les enfants à charge âgés entre 3 et 5 ans.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F13214',
+                    'form': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
+                    'forms': {
+                        'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
+                        'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
+                    },
                     'isBaseRessourcesYearMoins2': true
                 },
                 'asf': {
@@ -81,13 +114,24 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'conditions': [
                         'Ne pas toucher l’intégralité d’une pension alimentaire qui vous aurait été attribuée par une décision de justice, ou que cette pension soit d’un montant inférieur à celui de l’ASF.'
                     ],
-                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf-0'
+                    'link': 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf-0',
+                    'form': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationdesoutienfamilial/!ut/p/a1/',
+                    'forms': {
+                        'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationdesoutienfamilial/!ut/p/a1/',
+                        'msa': 'http://www.msa.fr/lfr/documents/11566/48472/Demande+d%27allocation+de+soutien+familial+%28ASF%29.pdf'
+                    },
                 },
                 'paje_base': {
                     'label': 'Prestation d’accueil du jeune enfant – Allocation de base',
                     'shortLabel': 'Paje-base',
                     'description': 'L’allocation de base de la prestation d’accueil du jeune enfant (Paje) a pour objet d’aider à assurer les dépenses liées à l’entretien et l’éducation d’un enfant. Elle est destinée aux parents d’un enfant de moins de 3 ans ayant de faibles ressources. Elle est versée par la Caf ou la MSA.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F13218',
+                    /* Teleservice caf si naissance ; formulaire caf si adoption ; formulaire MSA tout le temps ; le cas le plus général est le formulaire de changement de situation pour la Caf et la MSA */
+                    'form': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
+                    'forms': {
+                        'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
+                        'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
+                    },
                     'isBaseRessourcesYearMoins2': true
                 },
                 'rsa': {
@@ -102,6 +146,10 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/N19775',
                     'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
+                    'forms': {
+                        'caf': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
+                        'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do'
+                    },
                     'uncomputability': {
                         'tns': {
                             'reason': 'vous avez des revenus en tant qu’indépendant·e',
@@ -123,6 +171,10 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/N20360',
                     'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/',
+                    'teleservices': {
+                        'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/',
+                        'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=98643'
+                    },
                     'isBaseRessourcesYearMoins2': true,
                     'uncomputability': {
                         'primo_accedant': {
@@ -140,7 +192,11 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'shortLabel': 'PPA',
                     'description': 'La prime d’activité complète les revenus d’activité professionnelle des travailleurs de 18 ans ou plus, des étudiants salariés et apprentis et des non-salariés. La demande peut se faire à travers un téléservice sur, selon votre cas, le site de la Caf ou de la MSA. Elle remplace le RSA activité et la prime pour l’emploi depuis 2016.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F2882',
-                    'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/'
+                    'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/',
+                    'teleservices': {
+                        'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/',
+                        'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=44739105'
+                    }
                 },
                 'aah': {
                     'isMontantAnnuel': false,
@@ -154,7 +210,11 @@ angular.module('ddsCommon').constant('droitsDescription', {
                             'solution': 'Contactez <a target="_blank" rel="noopener" href="https://informations.handicap.fr/carte-france-mdph.php">la <abbr title="Maison départementale des personnes handicapées">MDPH</abbr> la plus proche</a> pour faire établir ce taux. Attention, votre éligibilité à l’AAH peut impacter vos droits au RSA et à la CMU-C.'
                         }
                     },
-                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242'
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242',
+                    'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
+                    'forms': {
+                        'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
+                    },
                 },
             },
         },
@@ -166,7 +226,9 @@ angular.module('ddsCommon').constant('droitsDescription', {
                     'label': 'Allocation de solidarité spécifique',
                     'shortLabel': 'ASS',
                     'description': 'L’allocation de solidarité spécifique (ASS) est attribuée aux personnes ayant épuisé leurs droits au chômage sous conditions d’activité antérieure et de ressources. Elle peut être versée à taux plein ou à taux réduit. En cas de reprise d’activité, elle peut être maintenue.',
-                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F12484'
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F12484',
+                    /* En principe, formulaire envoyé automatiquement ; lien vers brochure pole emploi */
+                    'instructions': 'http://www.pole-emploi.fr/front/common/tools/download_file.jspz?mediaid=186108',
                 },
             },
         },
@@ -177,17 +239,25 @@ angular.module('ddsCommon').constant('droitsDescription', {
                 'bourse_college': {
                     'isMontantAnnuel': true,
                     'label': 'Bourse de collège',
-                    'shortLabel': 'Bourse collège',
+                    'shortLabel': 'Bourse col',
                     'description': 'La bourse de collège est une aide destinée à favoriser la scolarité des collégiens. Elle est versée aux familles ayant de faibles ressources. Son montant dépend du nombre d’enfants à charge. Vous devez déposer votre dossier de demande entre la rentrée scolaire et la fin du mois de septembre.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F984',
+                    'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12539.do',
+                    'forms': {
+                        '2016-17': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12539.do'
+                    },
                     'isBaseRessourcesYearMoins2': true
                 },
                 'bourse_lycee': {
                     'isMontantAnnuel': true,
                     'label': 'Bourse de lycée',
-                    'shortLabel': 'Bourse lycée',
+                    'shortLabel': 'Bourse lyc',
                     'description': 'La bourse de lycée est accordée aux responsables d’un lycéen qui ont de faibles ressources. Si l’élève entre au lycée ou s’il n’a jamais touché de bourse de lycée, il pourra y prétendre selon les ressources et les charges de sa famille. Une nouvelle demande doit être effectuée en cas de redoublement ou réorientation.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F616',
+                    'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do',
+                    'forms': {
+                        '2017-18': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do'
+                    },
                     'isBaseRessourcesYearMoins2': true
                 },
             },
@@ -209,7 +279,7 @@ angular.module('ddsCommon').constant('droitsDescription', {
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille_7',
-                    'form': '/documents/Formulaire_demande_PLF.pdf',
+                    'form': 'https://api-site.paris.fr/images/73485',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false,
                 },
@@ -331,4 +401,13 @@ angular.module('ddsCommon').constant('droitsDescription', {
             }
         }
     }
-});
+};
+
+/* Export either through Angular loader or CommonJS */
+if (typeof module != 'undefined') {  // we're in Node
+    module.exports = droitsDescription;
+} else {  // we're in the browser
+    angular.module('ddsCommon').constant('droitsDescription', droitsDescription);
+}
+/* End of export */
+})();

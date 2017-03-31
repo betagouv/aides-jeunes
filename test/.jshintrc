@@ -3,7 +3,6 @@
   "esnext": true,
   "camelcase": false,
   "curly": true,
-  "strict": true,
   "globals": {
     "_": false,
     "after": false,

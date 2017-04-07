@@ -44,6 +44,15 @@
 	margin: auto;
 }
 
+.text.container .image-list {
+	text-align: center;
+}
+
+.text.container .image-list img {
+	margin-left: 1em;
+	margin-right: .25em;
+}
+
 #tracking-optout {
 	width: 100%;
 	height: 115px;  /* in pixels because Piwik sets the font-size */

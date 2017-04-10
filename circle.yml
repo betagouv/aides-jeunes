@@ -1,0 +1,7 @@
+deployment:
+  vps:
+    branch: master
+    commands:
+    # CircleCI has been provided a private key that triggers a shell script
+    # It refreshes Mes-Aides-UI repository and re-deploys the services
+      - ssh root@vps274040.ovh.net

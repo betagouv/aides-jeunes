@@ -1,0 +1,5 @@
+deployment:
+  vps:
+    branch: master
+    commands:
+      - ssh root@vps274040.ovh.net ui_head=origin/$CIRCLE_BRANCH

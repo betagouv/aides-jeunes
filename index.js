@@ -24,9 +24,6 @@ module.exports = function(app) {
 
         viewsDirectory += '/app/views';
     } else {
-        // prerender.io
-        app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN).set('protocol', 'https'));
-
         app.use('/recap-situation', express.static(path.join(__dirname, 'dist')));
 
         viewsDirectory += '/dist/views';

@@ -104,9 +104,9 @@ Testing
 
 There are several levels of tests:
 
-* Unit tests run from `npm test`
-* Integration tests run from `npm run test-integration`
-* Business tests from `Ludwig`
+* Unit tests run with `npm test`.
+* Integration tests run with `npm run test-integration`.
+* Business tests from [Ludwig](https://github.com/sgmap/ludwig-ui).
 
 You can safely use `npm test && npm run test-integration` to drive your developments.
 
@@ -115,7 +115,7 @@ Integration tests
 
 Integration tests are executed with [Watai](https://github.com/MattiSG/Watai) through `npm run test-integration`. These tests are **currently not run in CI** due to how complex installing all dependencies on a CI VM is.
 
-Most integration tests do not require any business to pass. However business test integration is tested by `ludwig-suite`. Therefore that suite currently fail if business tests were not imported from `npm run db-update` as per instructed in the next section.
+Most integration tests do not require any business to pass. However business test integration is tested by `ludwig-suite`. Therefore that suite currently fails if business tests were not imported from `npm run db-update` as described in the next section.
 
 Note: `ludwig-suite` can be excluded. In `test/integration/run-integration-tests.sh` you can replace `$TEST_DIR/*-suite` with `$TEST_DIR/[^l]*-suite`.
 

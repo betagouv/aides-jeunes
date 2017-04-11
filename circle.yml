@@ -34,7 +34,7 @@ test:
     - wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000:
         parallel: true
     # prepare CI-specific config holder and add CI-specific config to Watai
-    - mkdir $HOME/.watai && cp $WATAI_TESTS/config-ci.js $HOME/.watai/config.js:
+    - cp $WATAI_TESTS/config-ci.js $WATAI_TESTS/config.js && rm $WATAI_TESTS/config.json:
         parallel: true
 
   override:

@@ -13,5 +13,6 @@ module.exports = {
         port                : 80,
     },
     tags        : [ 'circle-ci', '#' + process.env.CIRCLE_BUILD_NUM ],
+    timeout     : 10000,
     views       : [ 'Verbose', 'SauceLabs' ],
 }

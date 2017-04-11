@@ -20,12 +20,7 @@ dependencies:
 
 test:
   pre:
-    - npm test
     - npm run openfisca:
-        background: true
-        parallel: true
-    # start server
-    - npm start:
         background: true
         parallel: true
     # start Sauce Connect
@@ -35,9 +30,6 @@ test:
     # wait for Sauce Connect
     - while [ ! -e ~/sauce_is_ready ]; do sleep 1; done:
         parallel: true
-    # wait for server (after Sauce Connect because it is faster to start)
-    - wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:9000:
-        parallel: true
     # wait for OpenFisca
     - wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000:
         parallel: true
@@ -46,6 +38,14 @@ test:
         parallel: true
 
   override:
+    - npm test
+    # start server
+    - npm start:
+        background: true
+        parallel: true
+    # wait for server (after Sauce Connect because it is faster to start)
+    - wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:9000:
+        parallel: true
     - watai $WATAI_TESTS/base-suite --config '{"driverCapabilities":{"browserName":"'"$browser_name"'","version":"'"$browser_version"'"}}'
     - watai $WATAI_TESTS/family-suite  --config '{"driverCapabilities":{"browserName":"'"$browser_name"'","version":"'"$browser_version"'"}}'
 

@@ -71,8 +71,7 @@ sed s/"port = 2000"/"port = $OPENFISCA_PORT"/ mes-aides-ui/openfisca/api_config.
 forever stop openfisca || echo 'No OpenFisca server was running'
 
 # Start OpenFisca
-forever --uid openfisca -l openfisca.log -e openfisca_error.log --append start -c "paster serve" current_openfisca_config.ini
-
+forever --uid openfisca -l openfisca.log -e openfisca_error.log --append start -c "gunicorn --paster" current_openfisca_config.ini
 # Set up reverse proxy
 
 echo "upstream $USER {

@@ -13,7 +13,7 @@
     "ludwig-ui": "^1.5.0",
     "morgan": "~1.5.0",
     "serve-favicon": "^2.4.0",
-    "sgmap-mes-aides-api": "sgmap/mes-aides-api#v7.2.0"
+    "sgmap-mes-aides-api": "sgmap/mes-aides-api#v7.3.0"
   },
   "repository": {
     "type": "git",

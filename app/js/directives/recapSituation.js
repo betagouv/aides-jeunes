@@ -45,7 +45,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                         }
                     }
 
-                    var montants = _.pluck(subRessources, 'montant');
+                    var montants = _.map(subRessources, 'montant');
                     var montantAnnuel = _.reduce(montants, function(sum, montant) {
                         return sum + montant;
                     });
@@ -144,7 +144,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                                 montant: ressource.montant
                             });
                         }
-                        var montants = _.pluck(revenus, 'montant');
+                        var montants = _.map(revenus, 'montant');
                         var montantAnnuel = _.reduce(montants, function(sum, montant) {
                             return sum + montant;
                         });

@@ -71,7 +71,7 @@ describe('Controller: FoyerRessourcesMontantsCtrl', function() {
 
             // then
             expect(scope.individu.ressources.length).toBe(12);
-            expect(_.where(scope.individu.ressources, { type: 'toto' }).length).toBe(12);
+            expect(_.filter(scope.individu.ressources, { type: 'toto' }).length).toBe(12);
             expect(scope.individu.ressources[0].montant).toBe(100);
         });
 

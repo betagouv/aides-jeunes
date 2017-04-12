@@ -20,7 +20,7 @@ module.exports = function(config) {
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-ui-router/release/angular-ui-router.js',
-      'app/bower_components/lodash/dist/lodash.compat.js',
+      'app/bower_components/lodash/dist/lodash.js',
       'app/bower_components/moment/min/moment.min.js',
       'app/bower_components/ngstorage/ngStorage.js',
       'app/js/embed.js',    // depth-first glob interpretation of karma test runner means we need a forward declaration of the module

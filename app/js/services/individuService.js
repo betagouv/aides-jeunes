@@ -2,7 +2,7 @@
 
 angular.module('ddsCommon').service('IndividuService', function($filter, specificSituations, nationalites) {
     function isRoleParent (role) {
-        return _.contains(['demandeur', 'conjoint'], role);
+        return _.includes(['demandeur', 'conjoint'], role);
     }
 
     return {

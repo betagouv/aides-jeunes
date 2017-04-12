@@ -46,7 +46,7 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
             // when
             initController();
 
-            var types = _.pluck(scope.ressourceTypesByCategories.pensions, 'id');
+            var types = _.map(scope.ressourceTypesByCategories.pensions, 'id');
             expect(types).not.toContain('pensions_alimentaires_versees_individu');
         });
     });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $location, $anchorScroll, $timeout) {
-    $scope.enfants = _.where($scope.situation.individus, { role: 'enfant' });
+    $scope.enfants = _.filter($scope.situation.individus, { role: 'enfant' });
 
     $scope.$on('individu.enfant', function(e, enfant) {
         $scope.enfants.push(enfant);

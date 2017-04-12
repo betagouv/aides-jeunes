@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 0.10.48
+    version: 6
   environment:
     browser_name: $(case $CIRCLE_NODE_INDEX in 0) browser='chrome' ;; 1) browser='firefox' ;; 2) browser='internet explorer' ;; 3) browser='iphone' ;; esac; echo $browser)
     browser_version: $(case $CIRCLE_NODE_INDEX in 3) version='8.2' ;; esac; echo $version)

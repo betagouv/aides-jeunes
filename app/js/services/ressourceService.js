@@ -27,8 +27,6 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
                         periode: periode,
                         montant: montantMensuelEtale
                     });
-                    individu.ressourcesYearlyApproximation = individu.ressourcesYearlyApproximation || {};
-                    individu.ressourcesYearlyApproximation[ressource.type.id] = ressource.montantAnnuel;
                 }
             }
 

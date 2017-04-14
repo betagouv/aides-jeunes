@@ -28,14 +28,12 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
         $scope.individuRefsToHide = _.without($scope.individuRefsToHide, individuRef);
     };
 
-    $scope.getDefaultValue = function(individuRef, rncID) {
-        var mapping = {
-            rncRevenusActivite: 'revenusSalarie',
-            rncPensionsRetraitesRentes: 'pensionsRetraitesRentes',
-            rncAutresRevenus: 'allocationsChomage'
-        };
-        individuRef.individu.ressourcesYearlyApproximation = individuRef.individu.ressourcesYearlyApproximation || {};
-        return individuRef.individu.ressourcesYearlyApproximation[mapping[rncID]];
+    $scope.getDefaultValue = function(individuRef, rnc) {
+        var sources = rnc.sources || [];
+        return _.chain(individuRef.individu.ressources)
+            .filter(function(ressource) { return _.include(sources, ressource.type); })
+            .reduce(function(sum, ressource) { return sum + ressource.montant; }, 0)
+            .value();
     };
 
     $scope.submit = function() {

@@ -322,15 +322,18 @@ angular.module('ddsCommon').constant('ressourceTypes', [
 angular.module('ddsCommon').constant('categoriesRnc', [
     {
         id: 'rncRevenusActivite',
-        label: 'Revenus d’activité connus'
+        label: 'Revenus d’activité connus',
+        sources: ['revenusSalarie']
     },
     {
         id: 'rncAutresRevenus',
-        label: 'Autres revenus imposables (préretraite, chômage)'
+        label: 'Autres revenus imposables (préretraite, chômage)',
+        sources: ['allocationsChomage']
     },
     {
         id: 'rncPensionsRetraitesRentes',
-        label: 'Pensions, retraites, rentes'
+        label: 'Pensions, retraites, rentes',
+        sources: ['pensionsRetraitesRentes']
     },
     {
         id: 'fraisReelsDeductibles',

@@ -333,7 +333,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
     {
         id: 'rncPensionsRetraitesRentes',
         label: 'Pensions, retraites, rentes',
-        sources: ['pensionsRetraitesRentes']
+        sources: ['pensionsRetraitesRentes', 'retraiteCombattant', 'pensionsInvalidite']
     },
     {
         id: 'fraisReelsDeductibles',

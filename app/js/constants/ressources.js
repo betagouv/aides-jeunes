@@ -341,10 +341,12 @@ angular.module('ddsCommon').constant('categoriesRnc', [
     },
     {
         id: 'rncPensionsAlimentaires',
-        label: 'Pensions alimentaires reçues'
+        label: 'Pensions alimentaires reçues',
+        sources: ['pensionsAlimentaires'],
     },
     {
         id: 'rncPensionsAlimentairesVersees',
-        label: 'Pensions alimentaires versées'
+        label: 'Pensions alimentaires versées',
+        sources: ['pensionsAlimentairesVersees']
     }
 ]);

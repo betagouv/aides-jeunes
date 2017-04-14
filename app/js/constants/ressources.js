@@ -174,7 +174,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'le'
     },
     {
-        id: 'prepare',
+        id: 'paje_prepare',
         label: 'Prestation partagée d’éducation de l’enfant (PreParE)',
         category: 'allocations',
         prefix: 'la'

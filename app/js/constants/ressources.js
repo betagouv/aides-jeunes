@@ -168,7 +168,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'la'
     },
     {
-        id: 'clca',
+        id: 'paje_clca',
         label: 'Complément de libre choix d’activité (CLCA)',
         category: 'allocations',
         prefix: 'le'

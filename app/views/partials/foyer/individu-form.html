@@ -84,7 +84,7 @@
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
         <label for="disclaimer-ue">
-          <input id="disclaimer-ue" type="checkbox" name="disclaimerUe" ng-model="disclaimerUe" required>
+          <input id="disclaimer-ue" type="checkbox" name="disclaimerUe" ng-model="individu.disclaimerUe" ng-required="individu.role === 'demandeur'">
           Détenteur d'un droit au séjour valide et résidant en France plus de 9 mois par an.
         </label>
       </div>
@@ -98,7 +98,7 @@
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
         <label for="disclaimer-non-ue" >
-          <input id="disclaimer-non-ue" type="checkbox" name="disclaimerNonUe" ng-model="disclaimerNonUe" required>
+          <input id="disclaimer-non-ue" type="checkbox" name="disclaimerNonUe" ng-model="individu.disclaimerNonUe" ng-required="individu.role === 'demandeur'">
           Détenteur d'une carte de résident ou d'un titre de séjour valide et résidant en France plus de 9 mois par an.
         </label>
       </div>

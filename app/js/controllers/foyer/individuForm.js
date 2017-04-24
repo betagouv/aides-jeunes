@@ -33,7 +33,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
     ];
 
-    // Used to appropriately set default values in UI
     var DEFAULT_INDIVIDU = {
         nationalite: 'fr',
         assPreconditionRemplie: false,

@@ -66,7 +66,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         interuptionQuestionLabel: 'des allocations chômage, un salaire ou des indemnités de la sécurité sociale'
     },
     {
-        id: 'allocationSecurisationPro',
+        id: 'allocation_securisation_professionnelle',
         label: 'Allocation de sécurisation professionnelle',
         category: 'allocations',
         prefix: 'une'

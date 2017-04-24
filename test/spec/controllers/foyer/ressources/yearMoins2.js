@@ -27,6 +27,30 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             expect(scope.individuRefsToDisplay[1].individu).toBe(conjoint);
         });
 
+        it('should compute default value on the fly from montantAnnuels', function() {
+            // given
+            var demandeur = {
+                role: 'demandeur',
+                ressources: [
+                    { type: 'revenusSalarie', montant: 6000 },
+                    { type: 'revenusSalarie', montant: 6000 },
+                    { type: 'notRevenusSalarie', montant: 6000 },
+                ]
+            };
+
+            var scope = { situation: { individus: [demandeur] }};
+
+            // when
+            inject(function($controller) {
+                $controller('FoyerRessourceYearMoins2Ctrl', {
+                    $scope: scope
+                });
+            });
+
+            // then
+            expect(scope.getDefaultValue(scope.individuRefsToDisplay[0], { sources: ['revenusSalarie'] })).toBe(12000);
+        });
+
         it('should display children Y-2 revenus if they have been filled', function() {
             // given
             var enfant = {

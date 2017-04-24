@@ -37,7 +37,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.demandeur = SituationService.getDemandeur($scope.situation);
 
     function cityStartsWith(prefix) {
-        return logement.adresse.nomCommune && logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
+        return $scope.isAdresseValid() && logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
     }
 
     $scope.yearsAgo = function yearsAgo(amount) {
@@ -45,7 +45,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.captureCharges = function() {
-            return (logement.type == 'locataire') && (logement.locationType !== 'meublehotel');
+        return (logement.type == 'locataire') && (logement.locationType !== 'meublehotel');
     };
 
     $scope.loyerLabel = function() {
@@ -124,7 +124,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.isResidentMayotte = function isResidentMayotte() {
-        return logement.adresse && logement.adresse.codePostal && logement.adresse.codePostal.indexOf('976') === 0;
+        return $scope.isAdresseValid() && logement.adresse.codePostal.indexOf('976') === 0;
     };
 
     $scope.isAdresseValid = function() {

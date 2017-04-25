@@ -120,7 +120,7 @@
       <div class="col-sm-6">
         <div
           class="form-group"
-          ng-class="{'has-error': submitted && ! cities.length}">
+          ng-class="{'has-error': submitted && ! isAdresseValid()}">
           <label class="col-sm-6 control-label" for="postal-code">Code postal</label>
           <div class="col-sm-6">
             <input
@@ -136,20 +136,20 @@
               required
               ng-model="logement.postalCode"
               ng-change="updateCities()">
-            <span class="help-block" ng-if="submitted && ! cities.length">Ce code postal est invalide</span>
+            <span class="help-block" ng-if="submitted && ! isAdresseValid()">Ce code postal est invalide</span>
           </div>
         </div>
       </div>
 
       <div class="col-sm-6">
         <div class="form-group">
-            <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
-            <label class="col-sm-3 control-label" for="city" ng-show="cities.length">Ville</label>
+          <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
+          <div ng-show="cities.length">
+            <label class="col-sm-3 control-label" for="city">Ville</label>
             <div class="col-sm-6">
               <select
                 class="form-control"
                 required
-                ng-show="cities.length"
                 ng-options="city.nomCommune for city in cities"
                 ng-model="logement.adresse"
                 id="city">
@@ -157,6 +157,7 @@
             </div>
           </div>
         </div>
+      </div>
 
     </div>
 

@@ -3,8 +3,10 @@
 angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, SituationService, IndividuService) {
 
     $scope.updateCities = function updateCities() {
-        if (! $scope.logement.postalCode)
+        if (! $scope.logement.postalCode) {
+            $scope.cities = [];
             return;  // the user has made the value invalid since we were called
+        }
 
         $scope.retrievingCities = true;
 
@@ -29,12 +31,13 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         $scope.updateCities();
     }
 
+    $scope.cities = [];
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
     $scope.demandeur = SituationService.getDemandeur($scope.situation);
 
     function cityStartsWith(prefix) {
-        return logement.adresse.nomCommune && logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
+        return $scope.isAdresseValid() && logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
     }
 
     $scope.yearsAgo = function yearsAgo(amount) {
@@ -42,7 +45,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.captureCharges = function() {
-            return (logement.type == 'locataire') && (logement.locationType !== 'meublehotel');
+        return (logement.type == 'locataire') && (logement.locationType !== 'meublehotel');
     };
 
     $scope.loyerLabel = function() {
@@ -121,12 +124,16 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.isResidentMayotte = function isResidentMayotte() {
-        return logement.adresse.codePostal && logement.adresse.codePostal.indexOf('976') === 0;
+        return $scope.isAdresseValid() && logement.adresse.codePostal.indexOf('976') === 0;
+    };
+
+    $scope.isAdresseValid = function() {
+        return logement.adresse && $scope.cities.indexOf(logement.adresse) > -1;
     };
 
     $scope.submit = function(form) {
         $scope.submitted = true;
-        if (form.$valid && logement.adresse) {
+        if (form.$valid && $scope.isAdresseValid()) {
             logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && cityStartsWith('Paris');
             $scope.$emit('logement', logement);
         }

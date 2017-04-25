@@ -50,16 +50,16 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         specificSituations: []
     };
 
+    if (individuRole == 'conjoint') {
+        DEFAULT_INDIVIDU.statutMarital = 'mariage';
+    }
+
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
     $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
 
     $scope.individu.specificSituations.forEach(function(specificSituation) {
         $scope.selectedStatuts[specificSituation] = true;
     });
-
-    if (individuRole == 'conjoint') {
-        $scope.individu.statutMarital = 'mariage';
-    }
 
     $scope.submit = function(form) {
         $scope.submitted = true;

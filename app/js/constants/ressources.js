@@ -253,7 +253,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'une'
     },
     {
-        id: 'retraiteCombattant',
+        id: 'retraite_combattant',
         label: 'Retraite du combattant',
         category: 'pensions',
         prefix: 'une'
@@ -333,7 +333,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
     {
         id: 'retraite_imposable',
         label: 'Pensions, retraites, rentes',
-        sources: ['retraite_nette', 'retraiteCombattant', 'pensions_invalidite']
+        sources: ['retraite_nette', 'retraite_combattant', 'pensions_invalidite']
     },
     {
         id: 'fraisReelsDeductibles',

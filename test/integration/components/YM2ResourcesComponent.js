@@ -1,6 +1,6 @@
 title: 'h1',
 demandeurRevenuActiviteInput: '#rncRevenusActivite-demandeur',
 suggestionText: '.help-block',
-conjointAutresRevenusInput: '#rncAutresRevenus-conjoint',
+conjointChomageImposableInput: '#chomage_imposable-conjoint',
 rfrInput: '#rfr',
 submitButton: 'button[type="submit"]',

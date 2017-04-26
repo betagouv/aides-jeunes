@@ -326,7 +326,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
         sources: ['revenusSalarie']
     },
     {
-        id: 'rncAutresRevenus',
+        id: 'chomage_imposable',
         label: 'Autres revenus imposables (préretraite, chômage)',
         sources: ['chomage_net']
     },

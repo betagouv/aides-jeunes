@@ -6,7 +6,7 @@ steps: [
         'YM2ResourcesComponent.suggestionText': /12000 €/,
     },
     YM2ResourcesComponent.setDemandeurRevenuActiviteInput(10000),
-    YM2ResourcesComponent.setConjointAutresRevenusInput(5000),
+    YM2ResourcesComponent.setConjointChomageImposableInput(5000),
     YM2ResourcesComponent.submit(),
     YM2ResourcesComponent.setRfrInput(15000),
     YM2ResourcesComponent.submit(),

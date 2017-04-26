@@ -192,7 +192,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'
     },
     {
-        id: 'indJourMaladieProf',
+        id: 'indemnites_journalieres_maladie_professionnelle',
         label: 'Indemnités maladie professionnelle',
         category: 'indemnites',
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'

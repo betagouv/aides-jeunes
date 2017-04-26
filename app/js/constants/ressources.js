@@ -40,7 +40,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         positionInList: '1'
     },
     {
-        id: 'primes',
+        id: 'primes_salaires_net',
         label: 'Primes (dont 13ème mois)',
         category: 'revenusActivite',
         positionInList: '2',

@@ -271,7 +271,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'une'
     },
     {
-        id: 'bourseRecherche',
+        id: 'bourse_recherche',
         label: 'Bourse de recherche',
         category: 'autre',
         prefix: 'une'

@@ -210,7 +210,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'des'
     },
     {
-        id: 'indVolontariat',
+        id: 'indemnites_volontariat',
         label: 'Indemnités de volontariat',
         category: 'indemnites',
         prefix: 'des'

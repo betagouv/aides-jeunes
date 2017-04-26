@@ -259,7 +259,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'une'
     },
     {
-        id: 'pensionsInvalidite',
+        id: 'pensions_invalidite',
         label: 'Pension d’invalidité',
         category: 'pensions',
         prefix: 'une'
@@ -333,7 +333,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
     {
         id: 'rncPensionsRetraitesRentes',
         label: 'Pensions, retraites, rentes',
-        sources: ['pensionsRetraitesRentes', 'retraiteCombattant', 'pensionsInvalidite']
+        sources: ['pensionsRetraitesRentes', 'retraiteCombattant', 'pensions_invalidite']
     },
     {
         id: 'fraisReelsDeductibles',

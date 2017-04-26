@@ -36,7 +36,7 @@ describe('ResultatService', function () {
             var types = ['revenusSalarie', 'pensions_alimentaires_versees_individu', 'rncAutresRevenus'];
             var ressources = [
                 {
-                    'type': 'pensionsInvalidite',
+                    'type': 'pensions_invalidite',
                 },
                 {
                     'type': 'pensions_alimentaires_versees_individu',
@@ -47,7 +47,7 @@ describe('ResultatService', function () {
             ];
             var ressourcesTypes = [
                 {
-                    id: 'pensionsInvalidite',
+                    id: 'pensions_invalidite',
                 },
                 {
                     id: 'pensions_alimentaires_versees_individu',
@@ -57,8 +57,8 @@ describe('ResultatService', function () {
             var filteredRessources = ressources.filter(service.isRessourceOnMainScreen);
             var filteredRessourcesTypes = ressourcesTypes.filter(service.isRessourceOnMainScreen);
             expect(filteredTypes).toEqual(['revenusSalarie']);
-            expect(filteredRessources).toEqual([ { 'type': 'pensionsInvalidite' } ]);
-            expect(filteredRessourcesTypes).toEqual([ { 'id': 'pensionsInvalidite' } ]);
+            expect(filteredRessources).toEqual([ { 'type': 'pensions_invalidite' } ]);
+            expect(filteredRessourcesTypes).toEqual([ { 'id': 'pensions_invalidite' } ]);
         });
     });
 });

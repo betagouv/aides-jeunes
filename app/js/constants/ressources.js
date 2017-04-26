@@ -186,7 +186,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'
     },
     {
-        id: 'indJourMaladie',
+        id: 'indemnites_journalieres_maladie',
         label: 'Indemnités maladie',
         category: 'indemnites',
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'

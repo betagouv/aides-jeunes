@@ -11,7 +11,7 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
             .filter(RessourceService.isRessourceOnMainScreen)
             .forEach(function(ressourceType) { result[ressourceType] = true; });
 
-        ['caMicroEntreprise', 'caAutoEntrepreneur', 'revenusAgricolesTns', 'tns_autres_revenus'].forEach(function(ressourceType) {
+        ['caMicroEntreprise', 'tns_auto_entrepreneur_chiffre_affaires', 'revenusAgricolesTns', 'tns_autres_revenus'].forEach(function(ressourceType) {
             if (individu[ressourceType]) {
                 result[ressourceType] = true;
             }

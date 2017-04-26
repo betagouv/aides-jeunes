@@ -301,7 +301,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         isMontantAnnuel: true
     },
     {
-        id: 'caAutoEntrepreneur',
+        id: 'tns_auto_entrepreneur_chiffre_affaires',
         label: 'Auto-entrepreneur',
         category: 'rpns'
     },

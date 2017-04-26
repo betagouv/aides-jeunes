@@ -55,7 +55,7 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
 
             ressources.forEach(function(ressource) {
                 // Ressources for which we have the last 3 months values
-                if (ressource.type.category != 'rpns' || ressource.type.id == 'caAutoEntrepreneur') {
+                if (ressource.type.category != 'rpns' || ressource.type.id == 'tns_auto_entrepreneur_chiffre_affaires') {
                     spreadIndividuRessources(individu, months, ressource, dateDeValeur);
                 // Ressources for which we have only yearly values
                 } else {

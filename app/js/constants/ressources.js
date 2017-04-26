@@ -198,7 +198,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'
     },
     {
-        id: 'indJourAccidentDuTravail',
+        id: 'indemnites_journalieres_accident_travail',
         label: 'Indemnités d’accident du travail',
         category: 'indemnites',
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'

@@ -78,7 +78,7 @@ describe('Controller: FoyerRessourcesMontantsCtrl', function() {
         it('should keep ressources n-2 and pensions alimentaires as is', function() {
             // given
             var ressourceN2 = { type: 'rncRevenusActivite', montant: 200 };
-            var pensionAlimentaireVersee = { type: 'pensionsAlimentairesVersees', montantAnnuel: 100 };
+            var pensionAlimentaireVersee = { type: 'pensions_alimentaires_versees_individu', montantAnnuel: 100 };
             scope.individu = { role: 'demandeur', ressources: [ressourceN2, pensionAlimentaireVersee] };
             scope.ressources  = [];
             initController();

@@ -7,7 +7,7 @@ angular.module('ddsApp').directive('captureMontantRessource', function(Situation
             'conjoint': 'Votre conjoint·e',
             'enfant': individu.firstName
         }[individu.role],
-            verbPrefix = ressource.id == 'pensionsAlimentairesVersees' ? 'verser' : 'percevr',
+            verbPrefix = ressource.id == 'pensions_alimentaires_versees_individu' ? 'verser' : 'percevr',
             verbSufix = individu.role == 'demandeur' ? 'ez' : 'a',
             ressourceLabel = ressource.interuptionQuestionLabel || ressource.prefix + ' ' + ressource.label.slice(0,1).toLowerCase() + ressource.label.slice(1);
 

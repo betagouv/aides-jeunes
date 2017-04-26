@@ -33,13 +33,13 @@ describe('ResultatService', function () {
     });
     describe('isRessourceOnMainScreen', function() {
         it('should filter pensions alimentaires versées and RNC resources', function() {
-            var types = ['revenusSalarie', 'pensionsAlimentairesVersees', 'rncAutresRevenus'];
+            var types = ['revenusSalarie', 'pensions_alimentaires_versees_individu', 'rncAutresRevenus'];
             var ressources = [
                 {
                     'type': 'pensionsInvalidite',
                 },
                 {
-                    'type': 'pensionsAlimentairesVersees',
+                    'type': 'pensions_alimentaires_versees_individu',
                 },
                 {
                     'type': 'fraisReelsDeductibles',
@@ -50,7 +50,7 @@ describe('ResultatService', function () {
                     id: 'pensionsInvalidite',
                 },
                 {
-                    id: 'pensionsAlimentairesVersees',
+                    id: 'pensions_alimentaires_versees_individu',
                 }
             ];
             var filteredTypes = types.filter(service.isRessourceOnMainScreen);

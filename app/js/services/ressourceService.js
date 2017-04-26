@@ -72,7 +72,7 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
     function isRessourceOnMainScreen(ressourceOrType) {
         // Make this function robust so that it can be called with a ressource from individu.ressources, a type from the ressourceTypes constant, or just a string.
         var type = ressourceOrType.type || ressourceOrType.id || ressourceOrType;
-        return type != 'pensionsAlimentairesVersees' && ! _.find(categoriesRnc, { id: type });
+        return type != 'pensions_alimentaires_versees_individu' && ! _.find(categoriesRnc, { id: type });
     }
 
     function getMainScreenRessources(individu) {

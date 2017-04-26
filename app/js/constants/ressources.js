@@ -235,7 +235,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'une'
     },
     {
-        id: 'pensionsAlimentairesVersees',
+        id: 'pensions_alimentaires_versees_individu',
         label: 'Pension alimentaire versée',
         category: 'pensions',
         interuptionQuestionLabel: 'une pension alimentaire',
@@ -347,6 +347,6 @@ angular.module('ddsCommon').constant('categoriesRnc', [
     {
         id: 'rncPensionsAlimentairesVersees',
         label: 'Pensions alimentaires versées',
-        sources: ['pensionsAlimentairesVersees']
+        sources: ['pensions_alimentaires_versees_individu']
     }
 ]);

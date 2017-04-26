@@ -28,7 +28,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
         return RessourceService.roundToCents(result) || 0;
     };
 
-    $scope.pensionsVersees = _.find(ressourceTypes, { id: 'pensionsAlimentairesVersees' });
+    $scope.pensionsVersees = _.find(ressourceTypes, { id: 'pensions_alimentaires_versees_individu' });
 
     function createIndividuVM (individu) {
         return {
@@ -36,8 +36,8 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
             label: IndividuService.label(individu),
             pensionsVersees: {
                 type: $scope.pensionsVersees,
-                montantsMensuels: initMontantsMensuels(individu, 'pensionsAlimentairesVersees'),
-                montantAnnuel: initMontantAnnuel(individu, 'pensionsAlimentairesVersees'),
+                montantsMensuels: initMontantsMensuels(individu, 'pensions_alimentaires_versees_individu'),
+                montantAnnuel: initMontantAnnuel(individu, 'pensions_alimentaires_versees_individu'),
                 onGoing: true
             }
         };
@@ -53,7 +53,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
     $scope.situation.parentsPayPensionsAlimentaires = false;
     $scope.individusVM.forEach(function(individuVM) {
         if (_.any([
-            _.find(individuVM.individu.ressources, { type: 'pensionsAlimentairesVersees' })
+            _.find(individuVM.individu.ressources, { type: 'pensions_alimentaires_versees_individu' })
         ])) {
             $scope.situation.parentsPayPensionsAlimentaires = true;
         }
@@ -71,7 +71,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
             $scope.individusVM.forEach(function (individuVM) {
                 // Remove old pensions alimentaires versees
                 individuVM.individu.ressources = _.filter(individuVM.individu.ressources, function(ressource) {
-                    return ! _.contains(['pensionsAlimentairesVersees'], ressource.type);
+                    return ! _.contains(['pensions_alimentaires_versees_individu'], ressource.type);
                 });
                 if ($scope.situation.parentsPayPensionsAlimentaires) {
                     applyPensionToIndividu(individuVM);

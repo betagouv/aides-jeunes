@@ -94,7 +94,7 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
 
             // given
             demandeur.ressources = [
-                { type: 'pensionsAlimentairesVersees', periode: '2012-10', montant: 100 },
+                { type: 'pensions_alimentaires_versees_individu', periode: '2012-10', montant: 100 },
             ];
 
             // when

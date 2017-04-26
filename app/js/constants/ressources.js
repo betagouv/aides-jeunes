@@ -54,7 +54,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'une'
     },
     {
-        id: 'revenusStageFormationPro',
+        id: 'revenus_stage_formation_pro',
         label: 'Revenus de stage de formation professionnelle',
         category: 'revenusActivite',
         prefix: 'des'

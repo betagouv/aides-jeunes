@@ -223,7 +223,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         revenuExceptionnel: true,
     },
     {
-        id: 'dedommagementAmiante',
+        id: 'dedommagement_victime_amiante',
         label: 'Dédommagement aux victimes de l’amiante',
         category: 'indemnites',
         prefix: 'un'

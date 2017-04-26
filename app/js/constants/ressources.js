@@ -241,7 +241,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         interuptionQuestionLabel: 'une pension alimentaire',
     },
     {
-        id: 'prestationCompensatoire',
+        id: 'prestation_compensatoire',
         label: 'Prestation compensatoire (suite à séparation)',
         category: 'pensions',
         prefix: 'une'

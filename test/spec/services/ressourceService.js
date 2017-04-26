@@ -21,14 +21,14 @@ describe('ResultatService', function () {
         it('should add a yearly ressource to individu model ', function() {
             ressource = {
                 type: {
-                    id: 'revenusAgricolesTns'
+                    id: 'tns_benefice_exploitant_agricole'
                 },
                 montantAnnuel: 12000,
                 periode: 2014
             };
             service.applyYearlyRessource(individu, ressource, dateDeValeur);
             expect(individu.ressources).not.toEqual([]);
-            expect(individu.ressources[0].type).toEqual('revenusAgricolesTns');
+            expect(individu.ressources[0].type).toEqual('tns_benefice_exploitant_agricole');
         });
     });
     describe('isRessourceOnMainScreen', function() {

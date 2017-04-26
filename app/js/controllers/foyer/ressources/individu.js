@@ -11,7 +11,7 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
             .filter(RessourceService.isRessourceOnMainScreen)
             .forEach(function(ressourceType) { result[ressourceType] = true; });
 
-        ['tns_micro_entreprise_chiffre_affaires', 'tns_auto_entrepreneur_chiffre_affaires', 'revenusAgricolesTns', 'tns_autres_revenus'].forEach(function(ressourceType) {
+        ['tns_micro_entreprise_chiffre_affaires', 'tns_auto_entrepreneur_chiffre_affaires', 'tns_benefice_exploitant_agricole', 'tns_autres_revenus'].forEach(function(ressourceType) {
             if (individu[ressourceType]) {
                 result[ressourceType] = true;
             }

@@ -306,7 +306,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         category: 'rpns'
     },
     {
-        id: 'revenusAgricolesTns',
+        id: 'tns_benefice_exploitant_agricole',
         label: 'Exploitant agricole',
         category: 'rpns',
         isMontantAnnuel: true

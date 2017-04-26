@@ -331,7 +331,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
         sources: ['chomage_net']
     },
     {
-        id: 'rncPensionsRetraitesRentes',
+        id: 'retraite_imposable',
         label: 'Pensions, retraites, rentes',
         sources: ['pensionsRetraitesRentes', 'retraiteCombattant', 'pensions_invalidite']
     },

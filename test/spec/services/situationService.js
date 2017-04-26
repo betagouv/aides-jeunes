@@ -251,7 +251,7 @@ describe('Service: situationService', function () {
                 individus:
                     [
                         { ressources: []},
-                        { ressources: [{ type: 'rncPensionsRetraitesRentes'}]}
+                        { ressources: [{ type: 'retraite_imposable'}]}
                     ]
             };
 

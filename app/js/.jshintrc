@@ -1,7 +1,7 @@
 {
   "browser": true,
   "esnext": true,
-  "camelcase": true,
+  "camelcase": false,
   "strict": true,
   "globalstrict": true,
   "globals": {

@@ -289,7 +289,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'des'
     },
     {
-        id: 'revenusDuCapital',
+        id: 'revenus_capital',
         label: 'Revenus du capital (intérêts, plus-values, dividendes…)',
         category: 'patrimoine',
         prefix: 'des'

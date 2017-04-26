@@ -39,7 +39,7 @@ describe('Service: situationService', function () {
     describe('function createApiCompatibleSituation()', function() {
         var basePatrimoine = {
             revenusLocatifs: [],
-            revenusDuCapital: []
+            revenus_capital: []
         };
 
         it('Should return a cloned version of the situation', function() {

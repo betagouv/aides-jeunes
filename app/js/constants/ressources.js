@@ -48,7 +48,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         revenuExceptionnel: true,
     },
     {
-        id: 'stage',
+        id: 'indemnites_stage',
         label: 'Rémunération de stage',
         category: 'revenusActivite',
         prefix: 'une'

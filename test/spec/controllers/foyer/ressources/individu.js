@@ -62,13 +62,13 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
         it('should retrieve the selected ressource types in the selectedRessourceTypes map if individus have ressources', function() {
 
             // given
-            demandeur.ressources = [{ type: 'stage' }, { type: 'revenusSalarie' }];
+            demandeur.ressources = [{ type: 'indemnites_stage' }, { type: 'revenusSalarie' }];
 
             // when
             initController();
 
             // then
-            expect(scope.selectedRessourceTypes).toEqual({ revenusSalarie: true, stage: true });
+            expect(scope.selectedRessourceTypes).toEqual({ revenusSalarie: true, indemnites_stage: true });
         });
 
         it('should map the previous individu ressource amounts to the view model', function() {

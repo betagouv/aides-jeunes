@@ -128,7 +128,7 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
 
             // given
             demandeur.ressources = [{
-                    type: 'caMicroEntreprise',
+                    type: 'tns_micro_entreprise_chiffre_affaires',
                     periode: '2014',
                     montant: 1000
                 }];
@@ -139,10 +139,10 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
 
             // then
             var individuVM = scope;
-            expect(individuVM.selectedRessourceTypes).toEqual({ caMicroEntreprise: true });
+            expect(individuVM.selectedRessourceTypes).toEqual({ tns_micro_entreprise_chiffre_affaires: true });
             var ressources = individuVM.ressources;
             expect(ressources.length).toBe(1);
-            expect(ressources[0].type.id).toBe('caMicroEntreprise');
+            expect(ressources[0].type.id).toBe('tns_micro_entreprise_chiffre_affaires');
             expect(ressources[0].montantAnnuel).toBe(1000);
         });
 

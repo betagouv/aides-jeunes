@@ -295,7 +295,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'des'
     },
     {
-        id: 'caMicroEntreprise',
+        id: 'tns_micro_entreprise_chiffre_affaires',
         label: 'Micro-entreprise',
         category: 'rpns',
         isMontantAnnuel: true

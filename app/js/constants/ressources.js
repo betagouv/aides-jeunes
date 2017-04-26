@@ -180,7 +180,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'la'
     },
     {
-        id: 'indJourMaternite',
+        id: 'indemnites_journalieres_maternite',
         label: 'Indemnités de maternité, paternité, adoption',
         category: 'indemnites',
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'

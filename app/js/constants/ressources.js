@@ -216,7 +216,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'des'
     },
     {
-        id: 'indFinDeContrat',
+        id: 'indemnite_fin_contrat_net',
         label: 'Indemnités de licenciement, rupture, fin de CDD…',
         category: 'revenusActivite',
         prefix: 'des',

@@ -247,7 +247,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'une'
     },
     {
-        id: 'pensionsRetraitesRentes',
+        id: 'retraite_nette',
         label: 'Retraite (y compris reversion), rente',
         category: 'pensions',
         prefix: 'une'
@@ -333,7 +333,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
     {
         id: 'retraite_imposable',
         label: 'Pensions, retraites, rentes',
-        sources: ['pensionsRetraitesRentes', 'retraiteCombattant', 'pensions_invalidite']
+        sources: ['retraite_nette', 'retraiteCombattant', 'pensions_invalidite']
     },
     {
         id: 'fraisReelsDeductibles',

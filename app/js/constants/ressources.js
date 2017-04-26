@@ -277,7 +277,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'une'
     },
     {
-        id: 'gainsExceptionnels',
+        id: 'gains_exceptionnels',
         label: 'Gains exceptionnels (dons, gains aux jeux, héritage)',
         category: 'autre',
         prefix: 'des'

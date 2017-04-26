@@ -72,7 +72,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'une'
     },
     {
-        id: 'primeRepriseActivite',
+        id: 'prime_forfaitaire_mensuelle_reprise_activite',
         label: 'Prime forfaitaire mensuelle pour la reprise d’activité',
         category: 'allocations',
         prefix: 'une'

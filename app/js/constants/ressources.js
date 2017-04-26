@@ -204,7 +204,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'
     },
     {
-        id: 'indChomagePartiel',
+        id: 'indemnites_chomage_partiel',
         label: 'Indemnités d’activité partielle',
         category: 'indemnites',
         prefix: 'des'

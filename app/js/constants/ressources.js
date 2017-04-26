@@ -312,7 +312,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         isMontantAnnuel: true
     },
     {
-        id: 'autresRevenusTns',
+        id: 'tns_autres_revenus',
         label: 'Profession libérale, entrepreneur',
         category: 'rpns',
         isMontantAnnuel: true

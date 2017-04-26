@@ -336,7 +336,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
         sources: ['retraite_nette', 'retraite_combattant', 'pensions_invalidite']
     },
     {
-        id: 'fraisReelsDeductibles',
+        id: 'frais_reels',
         label: 'Frais réels déductibles'
     },
     {

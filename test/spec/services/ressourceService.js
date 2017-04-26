@@ -42,7 +42,7 @@ describe('ResultatService', function () {
                     'type': 'pensions_alimentaires_versees_individu',
                 },
                 {
-                    'type': 'fraisReelsDeductibles',
+                    'type': 'frais_reels',
                 }
             ];
             var ressourcesTypes = [

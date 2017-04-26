@@ -283,7 +283,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'des'
     },
     {
-        id: 'revenusLocatifs',
+        id: 'revenus_locatifs',
         label: 'Revenus locatifs (terrains, appartements, SCI…)',
         category: 'patrimoine',
         prefix: 'des'

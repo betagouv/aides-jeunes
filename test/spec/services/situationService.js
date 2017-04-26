@@ -38,7 +38,7 @@ describe('Service: situationService', function () {
 
     describe('function createApiCompatibleSituation()', function() {
         var basePatrimoine = {
-            revenusLocatifs: [],
+            revenus_locatifs: [],
             revenus_capital: []
         };
 

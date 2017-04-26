@@ -129,7 +129,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                         label: 'Revenus du capital'
                     },
                     {
-                        id: 'revenusLocatifs',
+                        id: 'revenus_locatifs',
                         label: 'Revenus locatifs'
                     }
                 ].forEach(function(field) {

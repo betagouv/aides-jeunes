@@ -60,7 +60,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'des'
     },
     {
-        id: 'allocationsChomage',
+        id: 'chomage_net',
         label: 'Allocations chômage (ARE)',
         category: 'allocations',
         interuptionQuestionLabel: 'des allocations chômage, un salaire ou des indemnités de la sécurité sociale'
@@ -328,7 +328,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
     {
         id: 'rncAutresRevenus',
         label: 'Autres revenus imposables (préretraite, chômage)',
-        sources: ['allocationsChomage']
+        sources: ['chomage_net']
     },
     {
         id: 'rncPensionsRetraitesRentes',

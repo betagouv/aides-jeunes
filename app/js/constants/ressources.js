@@ -265,7 +265,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'une'
     },
     {
-        id: 'bourseEnseignementSup',
+        id: 'bourse_enseignement_sup',
         label: 'Bourse de l’enseignement supérieur',
         category: 'autre',
         prefix: 'une'

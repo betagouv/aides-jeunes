@@ -139,7 +139,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'l’'
     },
     {
-        id: 'complementAAH',
+        id: 'caah',
         label: 'Complément à l’Allocation adulte handicapé (AAH)',
         category: 'allocations',
         prefix: 'le'

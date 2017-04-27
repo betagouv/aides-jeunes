@@ -229,7 +229,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'un'
     },
     {
-        id: 'pensionsAlimentaires',
+        id: 'pensions_alimentaires_percues',
         label: 'Pension alimentaire',
         category: 'pensions',
         prefix: 'une'
@@ -342,7 +342,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
     {
         id: 'rncPensionsAlimentaires',
         label: 'Pensions alimentaires reçues',
-        sources: ['pensionsAlimentaires'],
+        sources: ['pensions_alimentaires_percues'],
     },
     {
         id: 'rncPensionsAlimentairesVersees',

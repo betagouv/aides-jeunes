@@ -32,9 +32,9 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             var demandeur = {
                 role: 'demandeur',
                 ressources: [
-                    { type: 'revenusSalarie', montant: 6000 },
-                    { type: 'revenusSalarie', montant: 6000 },
-                    { type: 'notRevenusSalarie', montant: 6000 },
+                    { type: 'salaire_net_hors_revenus_exceptionnels', montant: 6000 },
+                    { type: 'salaire_net_hors_revenus_exceptionnels', montant: 6000 },
+                    { type: 'notsalaire_net_hors_revenus_exceptionnels', montant: 6000 },
                 ]
             };
 
@@ -48,7 +48,7 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             });
 
             // then
-            expect(scope.getDefaultValue(scope.individuRefsToDisplay[0], { sources: ['revenusSalarie'] })).toBe(12000);
+            expect(scope.getDefaultValue(scope.individuRefsToDisplay[0], { sources: ['salaire_net_hors_revenus_exceptionnels'] })).toBe(12000);
         });
 
         it('should display children Y-2 revenus if they have been filled', function() {

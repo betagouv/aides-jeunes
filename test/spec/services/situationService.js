@@ -265,7 +265,7 @@ describe('Service: situationService', function () {
             var situation = {
                 individus:
                     [
-                        { ressources: [{ type: 'revenusSalarie'}]}
+                        { ressources: [{ type: 'salaire_net_hors_revenus_exceptionnels'}]}
                     ]
             };
 

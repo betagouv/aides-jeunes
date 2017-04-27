@@ -33,7 +33,7 @@ describe('ResultatService', function () {
     });
     describe('isRessourceOnMainScreen', function() {
         it('should filter pensions alimentaires versées and RNC resources', function() {
-            var types = ['revenusSalarie', 'pensions_alimentaires_versees_individu', 'chomage_imposable'];
+            var types = ['salaire_net_hors_revenus_exceptionnels', 'pensions_alimentaires_versees_individu', 'chomage_imposable'];
             var ressources = [
                 {
                     'type': 'pensions_invalidite',
@@ -56,7 +56,7 @@ describe('ResultatService', function () {
             var filteredTypes = types.filter(service.isRessourceOnMainScreen);
             var filteredRessources = ressources.filter(service.isRessourceOnMainScreen);
             var filteredRessourcesTypes = ressourcesTypes.filter(service.isRessourceOnMainScreen);
-            expect(filteredTypes).toEqual(['revenusSalarie']);
+            expect(filteredTypes).toEqual(['salaire_net_hors_revenus_exceptionnels']);
             expect(filteredRessources).toEqual([ { 'type': 'pensions_invalidite' } ]);
             expect(filteredRessourcesTypes).toEqual([ { 'id': 'pensions_invalidite' } ]);
         });

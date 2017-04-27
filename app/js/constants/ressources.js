@@ -33,7 +33,7 @@ angular.module('ddsCommon').constant('ressourceCategories', [
 
 angular.module('ddsCommon').constant('ressourceTypes', [
     {
-        id: 'revenusSalarie',
+        id: 'salaire_net_hors_revenus_exceptionnels',
         label: 'Salaire (hors primes)',
         category: 'revenusActivite',
         interuptionQuestionLabel: 'un salaire, des allocations chômage, ou des indemnités de la sécurité sociale',
@@ -323,7 +323,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
     {
         id: 'rncRevenusActivite',
         label: 'Revenus d’activité connus',
-        sources: ['revenusSalarie']
+        sources: ['salaire_net_hors_revenus_exceptionnels']
     },
     {
         id: 'chomage_imposable',

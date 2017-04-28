@@ -58,6 +58,7 @@ test:
 deployment:
   vps:
     branch: master
+    repo: sgmap/mes-aides-ui
     commands:
     # CircleCI has been provided a private key that triggers a shell script
     # It refreshes Mes-Aides-UI repository and re-deploys the services

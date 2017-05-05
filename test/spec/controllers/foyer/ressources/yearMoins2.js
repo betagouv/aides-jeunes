@@ -55,7 +55,7 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             // given
             var enfant = {
                 role: 'enfant',
-                ressources: [{ type: 'rncRevenusActivite', montant:4000 }]
+                ressources: [{ type: 'salaire_imposable_ym2', montant:4000 }]
             };
             var scope = { situation: { individus: [{ role: 'demandeur' }, enfant] }};
 

@@ -1,5 +1,5 @@
 title: 'h1',
-demandeurRevenuActiviteInput: '#rncRevenusActivite-demandeur',
+demandeurRevenuActiviteInput: '#salaire_imposable_ym2-demandeur',
 suggestionText: '.help-block',
 conjointChomageImposableInput: '#chomage_imposable-conjoint',
 rfrInput: '#rfr',

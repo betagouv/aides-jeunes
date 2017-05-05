@@ -321,7 +321,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
 
 angular.module('ddsCommon').constant('categoriesRnc', [
     {
-        id: 'rncRevenusActivite',
+        id: 'salaire_imposable_ym2',
         label: 'Revenus d’activité connus',
         sources: ['salaire_net_hors_revenus_exceptionnels']
     },

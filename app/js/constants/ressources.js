@@ -345,7 +345,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
         sources: ['pensions_alimentaires_percues'],
     },
     {
-        id: 'rncPensionsAlimentairesVersees',
+        id: 'pensions_alimentaires_versees_ym2',
         label: 'Pensions alimentaires versées',
         sources: ['pensions_alimentaires_versees_individu']
     }

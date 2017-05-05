@@ -340,7 +340,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
         label: 'Frais réels déductibles'
     },
     {
-        id: 'rncPensionsAlimentaires',
+        id: 'pensions_alimentaires_percues_ym2',
         label: 'Pensions alimentaires reçues',
         sources: ['pensions_alimentaires_percues'],
     },

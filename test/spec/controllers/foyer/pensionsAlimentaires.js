@@ -48,9 +48,9 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             scope.situation.individus = [{
                 role: 'demandeur',
                 ressources: [
-                    { type: 'pensionsAlimentairesVersees', periode: '2013-03', montant: 350 },
-                    { type: 'pensionsAlimentairesVersees', periode: '2013-02', montant: 300 },
-                    { type: 'pensionsAlimentairesVersees', periode: '2013-01', montant: 250 }
+                    { type: 'pensions_alimentaires_versees_individu', periode: '2013-03', montant: 350 },
+                    { type: 'pensions_alimentaires_versees_individu', periode: '2013-02', montant: 300 },
+                    { type: 'pensions_alimentaires_versees_individu', periode: '2013-01', montant: 250 }
                 ]
             }];
 
@@ -87,7 +87,7 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             scope.situation.individus = [{
                 role: 'demandeur',
                 ressources: [
-                    { type: 'pensionsAlimentairesVersees', periode: '2013-03', montant: 350 },
+                    { type: 'pensions_alimentaires_versees_individu', periode: '2013-03', montant: 350 },
                     { type: 'foo', periode: '2013-03', montant: 350 }
                 ]
             }];

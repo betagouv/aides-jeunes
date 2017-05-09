@@ -55,7 +55,7 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
 
             ressources.forEach(function(ressource) {
                 // Ressources for which we have the last 3 months values
-                if (ressource.type.category != 'rpns' || ressource.type.id == 'caAutoEntrepreneur') {
+                if (ressource.type.category != 'rpns' || ressource.type.id == 'tns_auto_entrepreneur_chiffre_affaires') {
                     spreadIndividuRessources(individu, months, ressource, dateDeValeur);
                 // Ressources for which we have only yearly values
                 } else {
@@ -72,7 +72,7 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
     function isRessourceOnMainScreen(ressourceOrType) {
         // Make this function robust so that it can be called with a ressource from individu.ressources, a type from the ressourceTypes constant, or just a string.
         var type = ressourceOrType.type || ressourceOrType.id || ressourceOrType;
-        return type != 'pensionsAlimentairesVersees' && ! _.find(categoriesRnc, { id: type });
+        return type != 'pensions_alimentaires_versees_individu' && ! _.find(categoriesRnc, { id: type });
     }
 
     function getMainScreenRessources(individu) {

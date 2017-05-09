@@ -62,13 +62,13 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
         it('should retrieve the selected ressource types in the selectedRessourceTypes map if individus have ressources', function() {
 
             // given
-            demandeur.ressources = [{ type: 'stage' }, { type: 'revenusSalarie' }];
+            demandeur.ressources = [{ type: 'indemnites_stage' }, { type: 'salaire_net_hors_revenus_exceptionnels' }];
 
             // when
             initController();
 
             // then
-            expect(scope.selectedRessourceTypes).toEqual({ revenusSalarie: true, stage: true });
+            expect(scope.selectedRessourceTypes).toEqual({ salaire_net_hors_revenus_exceptionnels: true, indemnites_stage: true });
         });
 
         it('should map the previous individu ressource amounts to the view model', function() {
@@ -94,7 +94,7 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
 
             // given
             demandeur.ressources = [
-                { type: 'pensionsAlimentairesVersees', periode: '2012-10', montant: 100 },
+                { type: 'pensions_alimentaires_versees_individu', periode: '2012-10', montant: 100 },
             ];
 
             // when
@@ -128,7 +128,7 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
 
             // given
             demandeur.ressources = [{
-                    type: 'caMicroEntreprise',
+                    type: 'tns_micro_entreprise_chiffre_affaires',
                     periode: '2014',
                     montant: 1000
                 }];
@@ -139,10 +139,10 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
 
             // then
             var individuVM = scope;
-            expect(individuVM.selectedRessourceTypes).toEqual({ caMicroEntreprise: true });
+            expect(individuVM.selectedRessourceTypes).toEqual({ tns_micro_entreprise_chiffre_affaires: true });
             var ressources = individuVM.ressources;
             expect(ressources.length).toBe(1);
-            expect(ressources[0].type.id).toBe('caMicroEntreprise');
+            expect(ressources[0].type.id).toBe('tns_micro_entreprise_chiffre_affaires');
             expect(ressources[0].montantAnnuel).toBe(1000);
         });
 

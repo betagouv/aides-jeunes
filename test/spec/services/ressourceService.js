@@ -21,44 +21,44 @@ describe('ResultatService', function () {
         it('should add a yearly ressource to individu model ', function() {
             ressource = {
                 type: {
-                    id: 'revenusAgricolesTns'
+                    id: 'tns_benefice_exploitant_agricole'
                 },
                 montantAnnuel: 12000,
                 periode: 2014
             };
             service.applyYearlyRessource(individu, ressource, dateDeValeur);
             expect(individu.ressources).not.toEqual([]);
-            expect(individu.ressources[0].type).toEqual('revenusAgricolesTns');
+            expect(individu.ressources[0].type).toEqual('tns_benefice_exploitant_agricole');
         });
     });
     describe('isRessourceOnMainScreen', function() {
         it('should filter pensions alimentaires versées and RNC resources', function() {
-            var types = ['revenusSalarie', 'pensionsAlimentairesVersees', 'rncAutresRevenus'];
+            var types = ['salaire_net_hors_revenus_exceptionnels', 'pensions_alimentaires_versees_individu', 'chomage_imposable'];
             var ressources = [
                 {
-                    'type': 'pensionsInvalidite',
+                    'type': 'pensions_invalidite',
                 },
                 {
-                    'type': 'pensionsAlimentairesVersees',
+                    'type': 'pensions_alimentaires_versees_individu',
                 },
                 {
-                    'type': 'fraisReelsDeductibles',
+                    'type': 'frais_reels',
                 }
             ];
             var ressourcesTypes = [
                 {
-                    id: 'pensionsInvalidite',
+                    id: 'pensions_invalidite',
                 },
                 {
-                    id: 'pensionsAlimentairesVersees',
+                    id: 'pensions_alimentaires_versees_individu',
                 }
             ];
             var filteredTypes = types.filter(service.isRessourceOnMainScreen);
             var filteredRessources = ressources.filter(service.isRessourceOnMainScreen);
             var filteredRessourcesTypes = ressourcesTypes.filter(service.isRessourceOnMainScreen);
-            expect(filteredTypes).toEqual(['revenusSalarie']);
-            expect(filteredRessources).toEqual([ { 'type': 'pensionsInvalidite' } ]);
-            expect(filteredRessourcesTypes).toEqual([ { 'id': 'pensionsInvalidite' } ]);
+            expect(filteredTypes).toEqual(['salaire_net_hors_revenus_exceptionnels']);
+            expect(filteredRessources).toEqual([ { 'type': 'pensions_invalidite' } ]);
+            expect(filteredRessourcesTypes).toEqual([ { 'id': 'pensions_invalidite' } ]);
         });
     });
 });

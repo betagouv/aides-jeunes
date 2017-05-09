@@ -77,8 +77,8 @@ describe('Controller: FoyerRessourcesMontantsCtrl', function() {
 
         it('should keep ressources n-2 and pensions alimentaires as is', function() {
             // given
-            var ressourceN2 = { type: 'rncRevenusActivite', montant: 200 };
-            var pensionAlimentaireVersee = { type: 'pensionsAlimentairesVersees', montantAnnuel: 100 };
+            var ressourceN2 = { type: 'salaire_imposable_ym2', montant: 200 };
+            var pensionAlimentaireVersee = { type: 'pensions_alimentaires_versees_individu', montantAnnuel: 100 };
             scope.individu = { role: 'demandeur', ressources: [ressourceN2, pensionAlimentaireVersee] };
             scope.ressources  = [];
             initController();
@@ -111,20 +111,20 @@ describe('Controller: FoyerRessourcesMontantsCtrl', function() {
             // given
             scope.individu = { role: 'demandeur' };
             initController();
-            var ressourceTypeAutreTns = _.find(_ressourceTypes_, { id: 'autresRevenusTns' });
-            // scope.selectedRessourceTypes = { autresRevenusTns: true },
+            var ressourceTypeAutreTns = _.find(_ressourceTypes_, { id: 'tns_autres_revenus' });
+            // scope.selectedRessourceTypes = { tns_autres_revenus: true },
             scope.ressources = [
                         { type: ressourceTypeAutreTns, montantAnnuel: 100 }
                     ];
 
             // when
             scope.submit(form);
-            var autresRevenusTns = _.find(scope.individu.ressources, function(ressource){
-                return ressource.type == 'autresRevenusTns';
+            var tns_autres_revenus = _.find(scope.individu.ressources, function(ressource){
+                return ressource.type == 'tns_autres_revenus';
             });
 
             // then
-            expect(autresRevenusTns).toBeDefined();
+            expect(tns_autres_revenus).toBeDefined();
         });
     });
 });

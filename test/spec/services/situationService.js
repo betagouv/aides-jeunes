@@ -38,8 +38,8 @@ describe('Service: situationService', function () {
 
     describe('function createApiCompatibleSituation()', function() {
         var basePatrimoine = {
-            revenusLocatifs: [],
-            revenusDuCapital: []
+            revenus_locatifs: [],
+            revenus_capital: []
         };
 
         it('Should return a cloned version of the situation', function() {
@@ -251,7 +251,7 @@ describe('Service: situationService', function () {
                 individus:
                     [
                         { ressources: []},
-                        { ressources: [{ type: 'rncPensionsRetraitesRentes'}]}
+                        { ressources: [{ type: 'retraite_imposable'}]}
                     ]
             };
 
@@ -265,7 +265,7 @@ describe('Service: situationService', function () {
             var situation = {
                 individus:
                     [
-                        { ressources: [{ type: 'revenusSalarie'}]}
+                        { ressources: [{ type: 'salaire_net_hors_revenus_exceptionnels'}]}
                     ]
             };
 

@@ -125,11 +125,11 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                 $scope.revenusDuPatrimoine = [];
                 [
                     {
-                        id: 'revenusDuCapital',
+                        id: 'revenus_capital',
                         label: 'Revenus du capital'
                     },
                     {
-                        id: 'revenusLocatifs',
+                        id: 'revenus_locatifs',
                         label: 'Revenus locatifs'
                     }
                 ].forEach(function(field) {

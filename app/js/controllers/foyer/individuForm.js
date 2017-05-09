@@ -43,7 +43,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         fiscalementIndependant: true,
         place: false,
         role: individuRole,
-        autresRevenusTnsActiviteType: 'bic',
+        tns_autres_revenus_type_activite: 'bic',
         microEntrepriseActiviteType: 'bic',
         perteAutonomie: false,
         autoEntrepreneurActiviteType: 'bic',

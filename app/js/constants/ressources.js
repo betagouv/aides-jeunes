@@ -33,14 +33,14 @@ angular.module('ddsCommon').constant('ressourceCategories', [
 
 angular.module('ddsCommon').constant('ressourceTypes', [
     {
-        id: 'revenusSalarie',
+        id: 'salaire_net_hors_revenus_exceptionnels',
         label: 'Salaire (hors primes)',
         category: 'revenusActivite',
         interuptionQuestionLabel: 'un salaire, des allocations chômage, ou des indemnités de la sécurité sociale',
         positionInList: '1'
     },
     {
-        id: 'primes',
+        id: 'primes_salaires_net',
         label: 'Primes (dont 13ème mois)',
         category: 'revenusActivite',
         positionInList: '2',
@@ -48,31 +48,31 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         revenuExceptionnel: true,
     },
     {
-        id: 'stage',
+        id: 'indemnites_stage',
         label: 'Rémunération de stage',
         category: 'revenusActivite',
         prefix: 'une'
     },
     {
-        id: 'revenusStageFormationPro',
+        id: 'revenus_stage_formation_pro',
         label: 'Revenus de stage de formation professionnelle',
         category: 'revenusActivite',
         prefix: 'des'
     },
     {
-        id: 'allocationsChomage',
+        id: 'chomage_net',
         label: 'Allocations chômage (ARE)',
         category: 'allocations',
         interuptionQuestionLabel: 'des allocations chômage, un salaire ou des indemnités de la sécurité sociale'
     },
     {
-        id: 'allocationSecurisationPro',
+        id: 'allocation_securisation_professionnelle',
         label: 'Allocation de sécurisation professionnelle',
         category: 'allocations',
         prefix: 'une'
     },
     {
-        id: 'primeRepriseActivite',
+        id: 'prime_forfaitaire_mensuelle_reprise_activite',
         label: 'Prime forfaitaire mensuelle pour la reprise d’activité',
         category: 'allocations',
         prefix: 'une'
@@ -108,7 +108,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'le'
     },
     {
-        id: 'primeActivite',
+        id: 'ppa',
         label: 'Prime d’activité',
         category: 'revenusActivite',
         prefix: 'la'
@@ -139,7 +139,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'l’'
     },
     {
-        id: 'complementAAH',
+        id: 'caah',
         label: 'Complément à l’Allocation adulte handicapé (AAH)',
         category: 'allocations',
         prefix: 'le'
@@ -168,151 +168,151 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         prefix: 'la'
     },
     {
-        id: 'clca',
+        id: 'paje_clca',
         label: 'Complément de libre choix d’activité (CLCA)',
         category: 'allocations',
         prefix: 'le'
     },
     {
-        id: 'prepare',
+        id: 'paje_prepare',
         label: 'Prestation partagée d’éducation de l’enfant (PreParE)',
         category: 'allocations',
         prefix: 'la'
     },
     {
-        id: 'indJourMaternite',
+        id: 'indemnites_journalieres_maternite',
         label: 'Indemnités de maternité, paternité, adoption',
         category: 'indemnites',
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'
     },
     {
-        id: 'indJourMaladie',
+        id: 'indemnites_journalieres_maladie',
         label: 'Indemnités maladie',
         category: 'indemnites',
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'
     },
     {
-        id: 'indJourMaladieProf',
+        id: 'indemnites_journalieres_maladie_professionnelle',
         label: 'Indemnités maladie professionnelle',
         category: 'indemnites',
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'
     },
     {
-        id: 'indJourAccidentDuTravail',
+        id: 'indemnites_journalieres_accident_travail',
         label: 'Indemnités d’accident du travail',
         category: 'indemnites',
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'
     },
     {
-        id: 'indChomagePartiel',
+        id: 'indemnites_chomage_partiel',
         label: 'Indemnités d’activité partielle',
         category: 'indemnites',
         prefix: 'des'
     },
     {
-        id: 'indVolontariat',
+        id: 'indemnites_volontariat',
         label: 'Indemnités de volontariat',
         category: 'indemnites',
         prefix: 'des'
     },
     {
-        id: 'indFinDeContrat',
+        id: 'indemnite_fin_contrat_net',
         label: 'Indemnités de licenciement, rupture, fin de CDD…',
         category: 'revenusActivite',
         prefix: 'des',
         revenuExceptionnel: true,
     },
     {
-        id: 'dedommagementAmiante',
+        id: 'dedommagement_victime_amiante',
         label: 'Dédommagement aux victimes de l’amiante',
         category: 'indemnites',
         prefix: 'un'
     },
     {
-        id: 'pensionsAlimentaires',
+        id: 'pensions_alimentaires_percues',
         label: 'Pension alimentaire',
         category: 'pensions',
         prefix: 'une'
     },
     {
-        id: 'pensionsAlimentairesVersees',
+        id: 'pensions_alimentaires_versees_individu',
         label: 'Pension alimentaire versée',
         category: 'pensions',
         interuptionQuestionLabel: 'une pension alimentaire',
     },
     {
-        id: 'prestationCompensatoire',
+        id: 'prestation_compensatoire',
         label: 'Prestation compensatoire (suite à séparation)',
         category: 'pensions',
         prefix: 'une'
     },
     {
-        id: 'pensionsRetraitesRentes',
+        id: 'retraite_nette',
         label: 'Retraite (y compris reversion), rente',
         category: 'pensions',
         prefix: 'une'
     },
     {
-        id: 'retraiteCombattant',
+        id: 'retraite_combattant',
         label: 'Retraite du combattant',
         category: 'pensions',
         prefix: 'une'
     },
     {
-        id: 'pensionsInvalidite',
+        id: 'pensions_invalidite',
         label: 'Pension d’invalidité',
         category: 'pensions',
         prefix: 'une'
     },
     {
-        id: 'bourseEnseignementSup',
+        id: 'bourse_enseignement_sup',
         label: 'Bourse de l’enseignement supérieur',
         category: 'autre',
         prefix: 'une'
     },
     {
-        id: 'bourseRecherche',
+        id: 'bourse_recherche',
         label: 'Bourse de recherche',
         category: 'autre',
         prefix: 'une'
     },
     {
-        id: 'gainsExceptionnels',
+        id: 'gains_exceptionnels',
         label: 'Gains exceptionnels (dons, gains aux jeux, héritage)',
         category: 'autre',
         prefix: 'des'
     },
     {
-        id: 'revenusLocatifs',
+        id: 'revenus_locatifs',
         label: 'Revenus locatifs (terrains, appartements, SCI…)',
         category: 'patrimoine',
         prefix: 'des'
     },
     {
-        id: 'revenusDuCapital',
+        id: 'revenus_capital',
         label: 'Revenus du capital (intérêts, plus-values, dividendes…)',
         category: 'patrimoine',
         prefix: 'des'
     },
     {
-        id: 'caMicroEntreprise',
+        id: 'tns_micro_entreprise_chiffre_affaires',
         label: 'Micro-entreprise',
         category: 'rpns',
         isMontantAnnuel: true
     },
     {
-        id: 'caAutoEntrepreneur',
+        id: 'tns_auto_entrepreneur_chiffre_affaires',
         label: 'Auto-entrepreneur',
         category: 'rpns'
     },
     {
-        id: 'revenusAgricolesTns',
+        id: 'tns_benefice_exploitant_agricole',
         label: 'Exploitant agricole',
         category: 'rpns',
         isMontantAnnuel: true
     },
     {
-        id: 'autresRevenusTns',
+        id: 'tns_autres_revenus',
         label: 'Profession libérale, entrepreneur',
         category: 'rpns',
         isMontantAnnuel: true
@@ -321,32 +321,32 @@ angular.module('ddsCommon').constant('ressourceTypes', [
 
 angular.module('ddsCommon').constant('categoriesRnc', [
     {
-        id: 'rncRevenusActivite',
+        id: 'salaire_imposable_ym2',
         label: 'Revenus d’activité connus',
-        sources: ['revenusSalarie']
+        sources: ['salaire_net_hors_revenus_exceptionnels']
     },
     {
-        id: 'rncAutresRevenus',
+        id: 'chomage_imposable',
         label: 'Autres revenus imposables (préretraite, chômage)',
-        sources: ['allocationsChomage']
+        sources: ['chomage_net']
     },
     {
-        id: 'rncPensionsRetraitesRentes',
+        id: 'retraite_imposable',
         label: 'Pensions, retraites, rentes',
-        sources: ['pensionsRetraitesRentes', 'retraiteCombattant', 'pensionsInvalidite']
+        sources: ['retraite_nette', 'retraite_combattant', 'pensions_invalidite']
     },
     {
-        id: 'fraisReelsDeductibles',
+        id: 'frais_reels',
         label: 'Frais réels déductibles'
     },
     {
-        id: 'rncPensionsAlimentaires',
+        id: 'pensions_alimentaires_percues_ym2',
         label: 'Pensions alimentaires reçues',
-        sources: ['pensionsAlimentaires'],
+        sources: ['pensions_alimentaires_percues'],
     },
     {
-        id: 'rncPensionsAlimentairesVersees',
+        id: 'pensions_alimentaires_versees_ym2',
         label: 'Pensions alimentaires versées',
-        sources: ['pensionsAlimentairesVersees']
+        sources: ['pensions_alimentaires_versees_individu']
     }
 ]);

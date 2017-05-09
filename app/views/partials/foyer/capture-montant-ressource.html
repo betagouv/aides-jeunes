@@ -30,7 +30,7 @@
       </div>
       <div class="col-sm-3">
         <label for="{{ ressource.type.id }}-year">
-          Total depuis {{ debutAnneeGlissante }}
+          <abbr title="" uib-popover="Indiquez {{ anneeGlissanteDetails }}." popover-placement="bottom" popover-trigger="mouseenter">Total des 12 derniers mois</abbr>
         </label>
         <span class="input-group">
           <input
@@ -52,7 +52,7 @@
           Montant invalide
         </span>
         <span class="text-danger" ng-if="form.submitted && form.$error.min">
-          La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
+          {{ anneeGlissanteDetails|uppercaseFirst }} fait au moins {{ monthsSum }} €
         </span>
       </div>
     </div>

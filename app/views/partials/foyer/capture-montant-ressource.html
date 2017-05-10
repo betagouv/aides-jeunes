@@ -37,6 +37,7 @@
             type="number"
             class="form-control text-right"
             id="{{ ressource.type.id }}-year"
+            name="{{ ressource.type.id }}-year"
             required
             min="{{ monthsSum }}"
             step="100"
@@ -47,12 +48,12 @@
         </span>
         <span
           class="text-danger"
-          ng-if="form.submitted && ! isNumber(ressource.montantAnnuel) && ! form.$error.min"
+          ng-if="form.submitted && ! isNumber(ressource.montantAnnuel) && ! form[ ressource.type.id + '-year' ].$error.min"
           >
           Montant invalide
         </span>
-        <span class="text-danger" ng-if="form.submitted && form.$error.min">
-          {{ anneeGlissanteDetails|uppercaseFirst }} fait au moins {{ monthsSum }} €
+        <span class="text-danger" ng-if="form.submitted && form[ressource.type.id + '-year'].$error.min">
+          {{ anneeGlissanteDetails|uppercaseFirst }} fait au moins {{ monthsSum }} €.
         </span>
       </div>
     </div>

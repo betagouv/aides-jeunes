@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 0.10.48
+    version: 6
   environment:
     browser_name: $(case $CIRCLE_NODE_INDEX in 0) browser='chrome' ;; 1) browser='firefox' ;; 2) browser='internet explorer' ;; 3) browser='iphone' ;; esac; echo $browser)
     browser_version: $(case $CIRCLE_NODE_INDEX in 3) version='8.2' ;; esac; echo $version)
@@ -54,12 +54,3 @@ test:
   post:
     - killall --wait sc:  # wait until Sauce Connect closes the tunnel
         parallel: true
-
-deployment:
-  vps:
-    branch: master
-    owner: sgmap
-    commands:
-    # CircleCI has been provided a private key that triggers a shell script
-    # It refreshes Mes-Aides-UI repository and re-deploys the services
-      - ssh root@vps274040.ovh.net

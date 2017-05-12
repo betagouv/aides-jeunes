@@ -64,7 +64,7 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
             });
 
             // on réinjecte les ressources RNC & pensions alimentaires
-            individu.ressources = individu.ressources.concat(_.where(previousRessources, function(ressource) {
+            individu.ressources = individu.ressources.concat(_.filter(previousRessources, function(ressource) {
                 return ! isRessourceOnMainScreen(ressource);
             }));
     }

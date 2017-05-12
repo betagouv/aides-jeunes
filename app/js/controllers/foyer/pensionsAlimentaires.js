@@ -18,8 +18,8 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
 
     var initMontantAnnuel = function(individu, pensionType) {
         var result = _.chain(individu.ressources)
-            .where({ type: pensionType })
-            .pluck('montant')
+            .filter({ type: pensionType })
+            .map('montant')
             .reduce(function(sum, num) {
                 return sum + num;
             })
@@ -52,7 +52,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
 
     $scope.situation.parentsPayPensionsAlimentaires = false;
     $scope.individusVM.forEach(function(individuVM) {
-        if (_.any([
+        if (_.some([
             _.find(individuVM.individu.ressources, { type: 'pensions_alimentaires_versees_individu' })
         ])) {
             $scope.situation.parentsPayPensionsAlimentaires = true;
@@ -71,7 +71,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
             $scope.individusVM.forEach(function (individuVM) {
                 // Remove old pensions alimentaires versees
                 individuVM.individu.ressources = _.filter(individuVM.individu.ressources, function(ressource) {
-                    return ! _.contains(['pensions_alimentaires_versees_individu'], ressource.type);
+                    return ! _.includes(['pensions_alimentaires_versees_individu'], ressource.type);
                 });
                 if ($scope.situation.parentsPayPensionsAlimentaires) {
                     applyPensionToIndividu(individuVM);

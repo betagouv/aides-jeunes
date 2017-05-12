@@ -6,7 +6,7 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
     $scope.individuLabel = IndividuService.label($scope.individu);
 
-    $scope.ressourceTypes = _.indexBy(ressourceTypes, 'id');
+    $scope.ressourceTypes = _.keyBy(ressourceTypes, 'id');
     $scope.isNumber = angular.isNumber;
 
     $scope.autoEntrepreneurOnGoingQuestion = function(individu, currentMonth) {

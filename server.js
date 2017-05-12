@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var express = require('express');
-var errorHandler = require('errorhandler');
 var morgan = require('morgan');
 var ludwigConfig = require('./ludwig/config.json');
 
@@ -14,7 +13,7 @@ var app = express();
 
 if (app.get('env') == 'development') {
     app.use(morgan('dev'));
-    app.use(errorHandler());
+    app.use(require('errorhandler')());
 } else {
     app.use(morgan('combined'));
 }

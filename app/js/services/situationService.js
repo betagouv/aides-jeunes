@@ -15,7 +15,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         var finPeriode = moment(ressource.finPeriode, 'YYYY-MM');
         var monthsDiff = finPeriode.diff(debutPeriode, 'months') + 1;
         var totalMontantToFlatten = ressource.montant;
-        _.where(source, {type: ressource.type}).forEach(function(diffRessource) {
+        _.filter(source, {type: ressource.type}).forEach(function(diffRessource) {
             var periode = diffRessource.periode;
             if (periode) {
                 periode = moment(periode, 'YYYY-MM');
@@ -193,7 +193,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         ressourcesYearMoins2Captured: function(situation) {
             return situation.rfr === 0 || situation.rfr || situation.individus.some(function(individu) {
                     return individu.ressources && individu.ressources.some(function(ressource) {
-                        return _.pluck(categoriesRnc, 'id').indexOf(ressource.type) >= 0;
+                        return _.map(categoriesRnc, 'id').indexOf(ressource.type) >= 0;
                     });
                 });
         }

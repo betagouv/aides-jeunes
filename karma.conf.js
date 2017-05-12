@@ -14,16 +14,15 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'app/bower_components/ngstorage/ngStorage.js',
-      'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-animate/angular-animate.js',
-      'app/bower_components/moment/min/moment.min.js',
-      'app/bower_components/lodash/dist/lodash.compat.js',
-      'app/bower_components/angular-ui-router/release/angular-ui-router.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap.js',
-      'app/bower_components/lodash/dist/lodash.compat.js',
+      'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      'app/bower_components/angular-mocks/angular-mocks.js',
+      'app/bower_components/angular-sanitize/angular-sanitize.js',
+      'app/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'app/bower_components/lodash/dist/lodash.js',
+      'app/bower_components/moment/min/moment.min.js',
+      'app/bower_components/ngstorage/ngStorage.js',
       'app/js/embed.js',    // depth-first glob interpretation of karma test runner means we need a forward declaration of the module
       'app/js/**/*.js',
       'test/spec/**/*.js',

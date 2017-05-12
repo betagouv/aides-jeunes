@@ -31,7 +31,7 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
     $scope.getDefaultValue = function(individuRef, rnc) {
         var sources = rnc.sources || [];
         return _.chain(individuRef.individu.ressources)
-            .filter(function(ressource) { return _.include(sources, ressource.type); })
+            .filter(function(ressource) { return _.includes(sources, ressource.type); })
             .reduce(function(sum, ressource) { return sum + ressource.montant; }, 0)
             .value();
     };

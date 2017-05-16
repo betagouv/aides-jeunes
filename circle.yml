@@ -54,3 +54,10 @@ test:
   post:
     - killall --wait sc:  # wait until Sauce Connect closes the tunnel
         parallel: true
+
+deployment:
+  metal:
+    branch: master
+    commands:
+      # CircleCI rely on a private key that triggers /opt/mes-aides/update.sh deploy
+      - ssh root@metal.mes-aides.gouv.fr

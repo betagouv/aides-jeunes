@@ -39,10 +39,6 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
 
     function processOpenfiscaResult(openfiscaResult) {
         var droitsEligibles = {};
-        var prestationsNationales = extractMontants(droitsDescription.prestationsNationales, openfiscaResult.calculatedPrestations);
-        if (! _.isEmpty(prestationsNationales)) {
-            droitsEligibles.prestationsNationales = prestationsNationales;
-        }
         [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
             droitsEligibles[type] = {};
 

@@ -27,7 +27,7 @@
   <div ng-repeat="(partenaireId, prestationsPartenaire) in droits.partenairesLocaux">
     <p>Vous êtes {{ droits.prestationsNationales ? "également" : "" }} a priori éligible à ces aides <span ng-bind-html="getPartenaireLocalLabel(partenaireId)"></span>&nbsp;:</p>
     <div class="frame-resultats">
-      <droit-eligibles-list list="prestationsPartenaire"></droit-eligibles-list>
+      <droit-eligibles-list list="prestationsPartenaire.prestations"></droit-eligibles-list>
       <div class="additional-info-cta">
         <p ng-if="shouldDisplayImpactInfo(partenaireId)">
           <i class="fa fa-info-circle" aria-hidden="true"></i>

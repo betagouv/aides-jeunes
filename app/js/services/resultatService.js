@@ -35,20 +35,20 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
                             valueForCurrentPeriod(responseRessources, prestationKey + '_non_calculable') || false;
 
                         if (montant) {
-                            eligiblePrestations[prestationKey] = _.assign(prestationData, {montant: montant, provider: providerData});
+                            eligiblePrestations[prestationKey] = _.assign(_.clone(prestationData), {montant: montant, provider: providerData});
                         }
                     }
                 });
-                return eligiblePrestations;
+                return _.assign(_.clone(providerData), {prestations: eligiblePrestations});
             });
         });
 
-        fullSet.prestationsNationales = _.reduce(fullSet.prestationsNationales, function(result, droits) {
-            return _.assign(result, droits); // flatten all national prestations
+        fullSet.prestationsNationales = _.reduce(fullSet.prestationsNationales, function(result, providerData) {
+            return _.assign(result, providerData.prestations); // flatten all national prestations
         }, {});
 
         fullSet.partenairesLocaux = _.omitBy(fullSet.partenairesLocaux, function(providerData, providerKey) {
-            return ! _.keys(providerData).length; // exclude partenaires without eligible prestations
+            return ! _.keys(providerData.prestations).length; // exclude partenaires without eligible prestations
         });
 
         return {

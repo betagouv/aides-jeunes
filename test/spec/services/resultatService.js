@@ -161,12 +161,6 @@ describe('ResultatService', function () {
                 expect(actual.calculatedPrestations.aah).toEqual(9);
             });
 
-            describe('of an amount', function() {
-                it('should round', function() {
-                    expect(actual.calculatedPrestations.aspa).toEqual(1.2);
-                });
-            });
-
             describe('of a boolean', function() {
                 it('should be a pass-through', function() {
                     expect(actual.calculatedPrestations.cmu_c).toEqual(false);

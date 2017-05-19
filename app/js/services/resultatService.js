@@ -32,9 +32,6 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
                     return uncomputabilityReason;
                 }
 
-                if (format.type == Number) {
-                    result = Math.round(Number(result) * 100) / 100;
-                }
                 return result;
             }),
         };

@@ -9,6 +9,7 @@ describe('ResultatService', function () {
                     imgSrc: 'img',
                     prestations: {
                         acs: { shortLabel: 'ACS' },
+                        missing: { shortLabel: 'TBD' },
                         apl: { shortLabel: 'APL' },
                         ass: { shortLabel: 'ASS' },
                         aah: { shortLabel: 'AAH' },
@@ -17,7 +18,9 @@ describe('ResultatService', function () {
                     },
                 },
             },
-            partenairesLocaux: {},
+            partenairesLocaux: {
+                paris: {}
+            },
         };
         var service, droits, openfiscaResult;
 
@@ -72,12 +75,20 @@ describe('ResultatService', function () {
             expect(droits.droitsEligibles.prestationsNationales.acs.provider.label).toEqual('CAF');
         });
 
+        it('should not contain irrelevant result', function() {
+            expect(droits.droitsEligibles.prestationsNationales.missing).toBeFalsy();
+        });
+
         it('should extract reason of uncomputability', function() {
             expect(droits.droitsEligibles.prestationsNationales.rsa.montant).toEqual('error');
         });
 
         it('should extract injected droits', function() {
             expect(droits.droitsInjectes).toEqual([{ shortLabel: 'APL' }, { shortLabel: 'AAH' }]);
+        });
+
+        it('should exclude local partenaire without prestation', function() {
+            expect(droits.droitsEligibles.partenairesLocaux.paris).toBeFalsy();
         });
     });
 });

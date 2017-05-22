@@ -68,6 +68,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'SOS'
             }
         })
+		.state('liens-utiles', {
+            url: '/liens-utiles',
+            templateUrl: '/content-pages/liens-utiles.html',
+            data: {
+                pageTitle: 'Liens utiles'
+            }
+        })
         .state('ameliorer', {
             url: '/ameliorer',
             templateUrl: '/content-pages/ameliorer.html',

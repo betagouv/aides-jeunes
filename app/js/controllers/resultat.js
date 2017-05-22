@@ -40,15 +40,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1).format('MMMM YYYY');
     $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
 
-    $scope.getPartenaireLocalLabel = function(partenaireId) {
-        var partenaire = droitsDescription.partenairesLocaux[partenaireId];
-        return partenaire.prefix + ' <strong>' + partenaire.label + '</strong>';
-    };
-
-    $scope.shouldDisplayImpactInfo = function(partenaireId) {
-        return ! droitsDescription.partenairesLocaux[partenaireId].interactionWithNationalPrestationsHandled;
-    };
-
     $scope.createTest = function() {
         // Merge national and local prestations into a flat object compatible with ludwig.
         var flatPrestations = _.merge.apply(

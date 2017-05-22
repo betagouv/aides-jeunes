@@ -384,6 +384,7 @@ var droitsDescription = {
         'rennes_metropole': {
             'imgSrc': 'logo_rennes_metropole.png',
             'label': 'Rennes Métropole',
+            'interactionWithNationalPrestationsHandled': true,
             'prefix': 'de',
             'prestations': {
                 'rennes_metropole_transport': {
@@ -396,7 +397,6 @@ var droitsDescription = {
                     'link': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/',
                     'instructions': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/#c33081',
                     'isBaseRessourcesYearMoins2': false,
-                    'interactionWithNationalPrestationCalculated': true,
                 },
             }
         }

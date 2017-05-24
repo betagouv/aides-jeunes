@@ -30,13 +30,14 @@
       </div>
       <div class="col-sm-3">
         <label for="{{ ressource.type.id }}-year">
-          Total depuis {{ debutAnneeGlissante }}
+          <abbr title="" uib-popover="Indiquez {{ anneeGlissanteDetails }}." popover-placement="bottom" popover-trigger="mouseenter">Total des 12 derniers mois</abbr>
         </label>
         <span class="input-group">
           <input
             type="number"
             class="form-control text-right"
             id="{{ ressource.type.id }}-year"
+            name="{{ ressource.type.id }}-year"
             required
             min="{{ monthsSum }}"
             step="100"
@@ -47,12 +48,12 @@
         </span>
         <span
           class="text-danger"
-          ng-if="form.submitted && ! isNumber(ressource.montantAnnuel) && ! form.$error.min"
+          ng-if="form.submitted && ! isNumber(ressource.montantAnnuel) && ! form[ ressource.type.id + '-year' ].$error.min"
           >
           Montant invalide
         </span>
-        <span class="text-danger" ng-if="form.submitted && form.$error.min">
-          La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
+        <span class="text-danger" ng-if="form.submitted && form[ressource.type.id + '-year'].$error.min">
+          {{ anneeGlissanteDetails|uppercaseFirst }} fait au moins {{ monthsSum }} €.
         </span>
       </div>
     </div>

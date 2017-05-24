@@ -30,6 +30,10 @@ angular.module('ddsApp').directive('captureMontantRessource', function(Situation
             var momentDebutAnnee = moment(scope.dateDeValeur).subtract('years', 1);
             scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
             scope.months = SituationService.getMonths(scope.dateDeValeur);
+
+            var shouldElide = 'ao'.indexOf(scope.debutAnneeGlissante[0]) > -1;
+            scope.anneeGlissanteDetails = 'le total ' + (shouldElide ? 'd\' ' : 'de ') + scope.debutAnneeGlissante + ' à ' + scope.months[scope.months.length-1].label + ' inclus';
+
             scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
             scope.isNumber = angular.isNumber;
             scope.onGoingLabel = getOnGoingQuestion(scope.individu, scope.ressourceType, scope.currentMonth);

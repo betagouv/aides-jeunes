@@ -181,6 +181,14 @@ ssh deploy@mes-aides.gouv.fr
 
 L'utilisateur `deploy` est utilisé comme un endpoint pour lancer le script de déploiement `deploy-prod.sh` (via un lien symbolique). Ce script déploie à la fois l'application et Openfisca. Aucune autre action n'est possible avec cet utilisateur. Pour modifier la procédure de déploiement, se connecter en tant que `root`.
 
+#### Revert
+
+En cas de problème nécessitant un retour à un commit spécifique, il est possible de forcer le déploiement à un état précis, par exemple via le SHA d'un commit. Cette opération ne peut pas être effectuée par l'utilisateur `deploy`, et ne sera pas persistée au déploiement suivant.
+
+```sh
+ssh root@mes-aides.gouv.fr "/home/deploy/deploy.sh $TREEISH"
+```
+
 
 ### Déployer une feature branch
 

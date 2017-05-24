@@ -3,6 +3,7 @@
 # Copy or symlink it to some deployment directory.
 
 OPENFISCA_PORT=12000
+TARGET=${1:-origin/master}
 
 set -ex
 
@@ -10,7 +11,7 @@ cd /var/www/dds
 
 # Update mes-aides
 git fetch origin
-git checkout --force --detach origin/master
+git checkout --force --detach $TARGET
 git clean --force
 npm install
 npm run prestart

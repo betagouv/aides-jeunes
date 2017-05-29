@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('ddsApp').controller('HomepageCtrl', function($scope, droitsDescription, $timeout) {
+
+angular.module('ddsApp').controller('HomepageCtrl', function($scope, droitsDescription, $timeout, BrowserCompatibilityService) {
+    $scope.incompatibleBrowserInfo = BrowserCompatibilityService.getResult();
     [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
         $scope[type] = droitsDescription[type];
 

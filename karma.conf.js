@@ -20,6 +20,7 @@ module.exports = function(config) {
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'app/bower_components/angular-useragent-parser/release/angular-useragent-parser.min.js',
       'app/bower_components/lodash/dist/lodash.js',
       'app/bower_components/moment/min/moment.min.js',
       'app/bower_components/ngstorage/ngStorage.js',

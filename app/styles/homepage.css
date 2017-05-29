@@ -8,6 +8,14 @@ main {
     padding-bottom: 5em;
 }
 
+#incompatibleBrowserMessage {
+    display:flex;justify-content:center;align-items:center;
+    font-size: 20px;
+    margin: 0 auto;
+    min-height: 100px;
+    padding: 10px 10px;
+}
+
 #valueProposition {
     padding: .5em;
     padding-bottom: 2em;
@@ -65,6 +73,9 @@ main {
         padding-top: 5em;
         margin-bottom: 1em;
         font-size: 220%;
+    }
+    #incompatibleBrowserMessage {
+        padding: 10px 30px;
     }
 }
 

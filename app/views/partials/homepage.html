@@ -1,4 +1,11 @@
 <main>
+  <div class="bg-warning" id="incompatibleBrowserMessage" ng-if="incompatibleBrowserInfo">
+    <div>
+      <p><abbr title="" uib-popover="{{ incompatibleBrowserInfo.name }} {{ incompatibleBrowserInfo.major }}" popover-placement="bottom" popover-trigger="mouseenter">Le navigateur que vous utilisez</abbr> ne permet pas d'utiliser ce service convenablement.</p>
+      <p>Nous vous conseillons d'utiliser une version récente de <a href="https://mozilla.org/vi/firefox">Firefox</a> ou de <a href="https://www.google.fr/chrome">Chrome</a>.</p>
+    </div>
+  </div>
+
   <div id="valueProposition">
     <h1>
       Évaluez vos droits à {{ prestationsNationalesCount + partenairesLocauxCount }} aides sociales.<br/>

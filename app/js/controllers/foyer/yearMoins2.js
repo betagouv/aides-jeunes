@@ -36,27 +36,29 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
             .value();
     };
 
-    $scope.submit = function() {
-        $scope.individuRefsToDisplay.forEach(function(individuRef) {
-            // clean anciennes valeurs
-            individuRef.individu.ressources = _.filter(individuRef.individu.ressources, function(ressource) {
-                return ! _.find(categoriesRnc, { id: ressource.type });
-            });
+    $scope.submit = function(ym2form) {
+        if ((! ym2form) || ym2form.$valid) {
+            $scope.individuRefsToDisplay.forEach(function(individuRef) {
+                // clean previous values
+                individuRef.individu.ressources = _.filter(individuRef.individu.ressources, function(ressource) {
+                    return ! _.find(categoriesRnc, { id: ressource.type });
+                });
 
-            // Remove the empty values from rnc
-            individuRef.rnc = _.filter(individuRef.rnc, function(rnc) {
-                return rnc.montant === 0 || rnc.montant;
-            });
+                // Remove the empty values from rnc
+                individuRef.rnc = _.filter(individuRef.rnc, function(rnc) {
+                    return rnc.montant === 0 || rnc.montant;
+                });
 
-            individuRef.rnc.forEach(function(rnc) {
-                individuRef.individu.ressources.push({
-                    periode: $scope.yearMoins2,
-                    type: rnc.categorie.id,
-                    montant: rnc.montant
+                individuRef.rnc.forEach(function(rnc) {
+                    individuRef.individu.ressources.push({
+                        periode: $scope.yearMoins2,
+                        type: rnc.categorie.id,
+                        montant: rnc.montant
+                    });
                 });
             });
-        });
 
-        $scope.$emit('rnc');
+            $scope.$emit('rnc');
+        }
     };
 });

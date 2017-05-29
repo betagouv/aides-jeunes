@@ -44,9 +44,11 @@ If you need to add features to the API, the best is to [`npm link`](https://docs
 Openfisca
 ---------
 
+Openfisca relies on python 2. You should [install it in a `virtualenv`](https://doc.openfisca.fr/for_developers.html). Once activated, you can run the following commands:
+
 ```sh
 cd mes-aides-ui
-npm run install-openfisca # ou pip install --upgrade -r openfisca/requirements.txt si vous utilisez un environnement virtuel
+npm run install-openfisca
 ```
 
 ### Development mode

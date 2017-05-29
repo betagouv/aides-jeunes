@@ -54,3 +54,11 @@ test:
   post:
     - killall --wait sc:  # wait until Sauce Connect closes the tunnel
         parallel: true
+
+deployment:
+  # Continuous deployment is done on a dedicated instance in OVH datacenters
+  metal:
+    branch: master
+    commands:
+      # CircleCI relies on a private key that triggers /opt/mes-aides/update.sh deploy
+      - ssh root@metal.mes-aides.gouv.fr

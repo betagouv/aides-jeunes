@@ -27,14 +27,6 @@ You can for example use [`nvm`](https://github.com/creationix/nvm) to install th
 You will need [`pip`](https://pip.pypa.io/) to install Openfisca.
 
 
-### In production
-
-[upstart](http://upstart.ubuntu.com/index.html) and [foreman](https://ddollar.github.io/foreman/) are used to run the production server for [mes-aides.gouv.fr](https://mes-aides.gouv.fr/).
-
-[foreverjs](https://github.com/foreverjs/forever) is used to run the server for staging feature branches versions of mes-aides. It needs to be installed before running the deployment scripts: `npm install --global forever`.
-
-The production Mongo server can be (re)started with `ssh root@mes-aides.gouv.fr "service mongod (re)start"`.
-
 Application
 -----------
 
@@ -170,24 +162,22 @@ Ce fichier est au format [`requirements.txt`](https://pip.pypa.io/en/stable/refe
 Déploiement
 -----------
 
-Une clé SSH autorisée à se connecter au serveur de production `mes-aides.gouv.fr` doit être disponible sur la machine qui lance le déploiement.
-
+Le serveur de production est rendu opérationnel avec [Puppet](https://puppet.com/). Les fichiers de configurations et de paramétrage sur disponibles dans [un dépôt séparé](https://github.com/sgmap/mes-aides-ops/).
 
 ### mes-aides
 
+Des clés SSHs ont été générées pour [lancer des scripts à distance](http://man.openbsd.org/sshd#command=%22command%22) sur le serveur de production.
+
+Sachant que le fichier `deploy` contient la clé privée associée au script de déploiement, ce dernier permet être lancé via la commande suivante :
 ```sh
-ssh deploy@mes-aides.gouv.fr
+ssh root@mes-aides.gouv.fr -i deploy
 ```
 
-L'utilisateur `deploy` est utilisé comme un endpoint pour lancer le script de déploiement `deploy-prod.sh` (via un lien symbolique). Ce script déploie à la fois l'application et Openfisca. Aucune autre action n'est possible avec cet utilisateur. Pour modifier la procédure de déploiement, se connecter en tant que `root`.
-
+Pour effectuer des modifications plus exotiques, il est nécessaire de se connecter en tant que `root`.
 
 ### Déployer une feature branch
 
-
-Chaque feature branch est déployée sur le serveur de production par un utilisateur spécifique `mes-aides-$BRANCH`. Lorsque cet utilisateur exécute le script de déploiement `deploy.sh`, la branche `$BRANCH` de mes-aides-ui est déployée.
-
-> La taille du nom d'utilisateur étant limitée à 32 caractères sur le serveur de production, le nom de la feature branch ne doit pas dépasser 22 caractères.
+Le serveur de production ne permet plus le déploiement de `feature branch`. Cependant, un serveur peut être facilement provisionné pour servir une version spéficique de Mes-Aides. Des indications sont disponibles dans le dépôt de [mes-aides-ops](https://github.com/sgmap/mes-aides-ops/#initial-provisioning). Il s'agit d'initialiser le serveur en indiquant le nom de la branche à utiliser pour mes-aides-ui.
 
 Pour utiliser dans l'instance de staging une feature branch d'`openfisca-france`, éditer le fichier [`openfisca/requirements.txt`](openfisca/requirements.txt), par exemple en remplaçant :
 
@@ -197,45 +187,4 @@ openfisca_france==4.0.5
 par
 ```
 git+https://github.com/sgmap/openfisca-france.git@aah#egg=openfisca-france
-```
-
-#### Ajouter un utilisateur capable de déployer sur le serveur de production
-
-En se connectant en tant que `root`.
-
-```sh
-BRANCH=ppa
-
-# Créer l'utilisateur
-adduser mes-aides-$BRANCH --disabled-password --gecos ""
-
-# Rendre l'utilisateur accessible depuis l'extérieur
-mkdir /home/mes-aides-$BRANCH/.ssh/
-curl https://github.com/mesaides-bot.keys >> /home/mes-aides-$BRANCH/.ssh/authorized_keys
-
-# Récupérer le script de déploiement
-curl https://raw.githubusercontent.com/sgmap/mes-aides-ui/master/deploy.sh > /home/mes-aides-$BRANCH/deploy.sh
-chown mes-aides-$BRANCH:mes-aides-$BRANCH /home/mes-aides-$BRANCH/deploy.sh
-chmod u+x /home/mes-aides-$BRANCH/deploy.sh
-```
-
-#### Sur le poste de développement
-
-- Premier déploiement
-```sh
-ssh-add ~/.ssh/mes-aides-bot
-ssh mes-aides-$BRANCH@mes-aides.gouv.fr "PORT=8200 OPENFISCA_PORT=12200 ./deploy.sh"
-ssh root@mes-aides.gouv.fr "service nginx reload"
-```
-
-- Redéploiements
-```sh
-ssh mes-aides-$BRANCH@mes-aides.gouv.fr "./deploy.sh"
-```
-
-### Supprimer une instance de feature branch
-
-```sh
-ssh mes-aides-$BRANCH@mes-aides.gouv.fr 'forever stopall; rm /etc/nginx/conf.d/$(whoami).conf'
-ssh root@mes-aides.gouv.fr "userdel mes-aides-$BRANCH --remove"
 ```

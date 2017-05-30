@@ -67,7 +67,7 @@ describe('ResultatService', function () {
                     }]
                 }]
             };
-            droits = service.processOpenfiscaResult(openfiscaResult);
+            droits = service._processOpenfiscaResult(openfiscaResult);
         });
 
         it('should extract eligibles droits from openfisca result', function() {

@@ -15,6 +15,18 @@
     justify-content: center;
 }
 
+
+@media (min-width: 768px) {
+    .two-line-block {
+        display: flex;
+        line-height: 2.5ex;
+        height: 5ex;
+    }
+    .two-line-block div {
+        align-self: flex-end;
+    }
+}
+
 @media (max-width: 768px) {
     .button-grid {
         flex-direction: column;

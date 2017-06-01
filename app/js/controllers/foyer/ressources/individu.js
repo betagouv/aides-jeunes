@@ -31,9 +31,9 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
             .value();
 
         types.forEach(function(type) {
-            var ressourceType = _.find(ressourceTypes, { id: type });
-            var montantsMensuels = _.map($scope.months, function(month) {
-                var ressource = _.find(ressources, { periode: month.id, type: type });
+            var monthIds = _.map($scope.months, 'id');
+            var montantsMensuels = _.map(monthIds, function(monthId) {
+                var ressource = _.find(ressources, { periode: monthId, type: type });
                 return ressource ? RessourceService.roundToCents(ressource.montant) : 0;
             });
 
@@ -44,12 +44,21 @@ angular.module('ddsApp').controller('FoyerRessourcesIndividuCtrl', function($sco
                     return sum + montant;
                 })
                 .value();
-            montantAnnuel = RessourceService.roundToCents(montantAnnuel);
+
+            var montant9PremiersMois = _.chain(ressources)
+                .filter({ type: type })
+                .filter(function(ressource) { return ! _.includes(monthIds, ressource.periode); })
+                .map('montant')
+                .reduce(function(sum, montant) {
+                    return sum + montant;
+                }, 0)
+                .value();
 
             var ressource = {
-                type: ressourceType,
+                type: _.find(ressourceTypes, { id: type }),
                 montantsMensuels: montantsMensuels,
-                montantAnnuel: montantAnnuel,
+                montantAnnuel: RessourceService.roundToCents(montantAnnuel),
+                montant9PremiersMois: RessourceService.roundToCents(montant9PremiersMois),
                 onGoing: true
             };
 

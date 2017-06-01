@@ -12,6 +12,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
 
     var DEFAULT_RESOURCE = {
         montantAnnuel: 0,
+        montant9PremiersMois: 0,
         caAnnuel: 0,
         montantsMensuels: [0, 0, 0],
     };

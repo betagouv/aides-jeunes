@@ -7,9 +7,41 @@
   </div>
   <div class="panel-body">
     <div class="row">
+      <div class="col-sm-3">
+        <label class="two-line-block" for="{{ ressource.type.id }}-earlier-9-months">
+          <div>
+            Total
+            <abbr title="" uib-popover="Période de 9 mois" popover-placement="bottom" popover-trigger="mouseenter">
+              de {{ debutAnneeGlissante }} à&nbsp;{{ fourMonthsAgo }}
+            </abbr>
+          </div>
+        </label>
+        <span class="input-group">
+          <input
+            type="number"
+            class="form-control text-right"
+            id="{{ ressource.type.id }}-earlier-9-months"
+            name="{{ ressource.type.id }}-earlier-9-months"
+            required
+            min="0"
+            step="100"
+            select-on-focus
+            zero-to-empty
+            ng-model="ressource.montant9PremiersMois">
+          <span class="input-group-addon">€</span>
+        </span>
+        <span
+          class="text-danger"
+          ng-if="form.submitted && ! isNumber(ressource.montant9PremiersMois) && ! form[ressource.type.id + '-earlier-9-months'].$error.min"
+          >
+          Montant invalide
+        </span>
+      </div>
       <div class="col-sm-3" ng-repeat="month in months">
-        <label for="{{ ressource.type.id }}-month_{{ $index + 1 }}">
-          {{ month.label|uppercaseFirst }}
+        <label class="two-line-block" for="{{ ressource.type.id }}-month_{{ $index + 1 }}">
+          <div>
+            {{ month.label|uppercaseFirst }}
+          </div>
         </label>
         <span class="input-group">
           <input
@@ -26,34 +58,6 @@
         </span>
         <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
           Montant invalide
-        </span>
-      </div>
-      <div class="col-sm-3">
-        <label for="{{ ressource.type.id }}-year">
-          Total depuis {{ debutAnneeGlissante }}
-        </label>
-        <span class="input-group">
-          <input
-            type="number"
-            class="form-control text-right"
-            id="{{ ressource.type.id }}-year"
-            name="{{ ressource.type.id }}-year"
-            required
-            min="{{ monthsSum }}"
-            step="100"
-            select-on-focus
-            zero-to-empty
-            ng-model="ressource.montantAnnuel">
-          <span class="input-group-addon">€</span>
-        </span>
-        <span
-          class="text-danger"
-          ng-if="form.submitted && ! isNumber(ressource.montantAnnuel) && ! form[ressource.type.id + '-year'].$error.min"
-          >
-          Montant invalide
-        </span>
-        <span class="text-danger" ng-if="form.submitted && form[ressource.type.id + '-year'].$error.min">
-          La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
         </span>
       </div>
     </div>

@@ -6,7 +6,7 @@ steps: [
     ResourcesComponent.submit(),
     ResourcesComponent.hasSalary(),
     ResourcesComponent.submit(),
+    ResourcesComponent.setEarlier9MonthsInput(0),
     ResourcesComponent.setThirdMonthInput(400),
-    ResourcesComponent.setLast12MonthsInput(400),
     ResourcesComponent.submit(),
 ]

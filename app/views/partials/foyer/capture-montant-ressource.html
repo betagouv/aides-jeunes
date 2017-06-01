@@ -6,7 +6,7 @@
     </h3>
   </div>
   <div class="panel-body">
-    <div class="row">
+    <div class="row ressources-values">
       <div class="col-sm-3" ng-repeat="month in months">
         <label for="{{ ressource.type.id }}-month_{{ $index + 1 }}">
           {{ month.label|uppercaseFirst }}
@@ -30,7 +30,7 @@
       </div>
       <div class="col-sm-3">
         <label for="{{ ressource.type.id }}-year">
-          Total depuis {{ debutAnneeGlissante }}
+          Total de {{ debutAnneeGlissante }} à {{ months[months.length-1].label }}
         </label>
         <span class="input-group">
           <input

@@ -54,6 +54,11 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         DEFAULT_INDIVIDU.statutMarital = 'mariage';
     }
 
+    if (individuRole == 'enfant') {
+        var nextEnfantCount = $scope.enfants.length + 1;
+        DEFAULT_INDIVIDU.firstName = 'Votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
+    }
+
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
     $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
 

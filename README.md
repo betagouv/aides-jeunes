@@ -44,10 +44,23 @@ If you need to add features to the API, the best is to [`npm link`](https://docs
 Openfisca
 ---------
 
-```sh
+Openfisca relies on Python 2. You should [install it in a `virtualenv`](https://doc.openfisca.fr/for_developers.html#create-a-virtualenv) to prevent yourself from messing with your main python installation. You can either create the `virtualenv` yourself or rely on tools such as [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) or [pew](https://github.com/berdario/pew):
+
+```bash
 cd mes-aides-ui
-npm run install-openfisca # ou pip install --upgrade -r openfisca/requirements.txt si vous utilisez un environnement virtuel
+virtualenv  --python=python2.7 .venv # To create your virtualenv in ./.venv (a hidden folder)
+source .venv/bin/activate # To activate your virtualenv
+pip install pip --upgrade # To make sure you're using pip latest version
 ```
+
+`virtualenv  --python=python2.7 .venv` will fail if your python executable is not `python2.7`. If it does you can try `virtualenv  --python=python2 .venv` or make sure that `python2.7` is installed and in your path.
+
+```sh
+npm run install-openfisca
+npm run openfisca
+```
+
+Each time you want to run OpenFisca, you have to `source .venv/bin/activate` to get a working OpenFisca environment.
 
 ### Development mode
 

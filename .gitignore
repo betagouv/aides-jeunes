@@ -34,6 +34,9 @@ app/bower_components
 *.sublime-project
 *.sublime-workspace
 
+# Python virtualenv
+.venv
+
 # Compiled assets
 dist
 

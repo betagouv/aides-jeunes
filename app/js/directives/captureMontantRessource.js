@@ -28,9 +28,9 @@ angular.module('ddsApp').directive('captureMontantRessource', function(Situation
         },
         link: function(scope, element, attrs, ngModel) {
             var momentDebutAnnee = moment(scope.dateDeValeur).subtract('years', 1);
-            scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
+            scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
             scope.months = SituationService.getMonths(scope.dateDeValeur);
-            scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
+            scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
             scope.isNumber = angular.isNumber;
             scope.onGoingLabel = getOnGoingQuestion(scope.individu, scope.ressourceType, scope.currentMonth);
 

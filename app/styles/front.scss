@@ -88,31 +88,24 @@ h1[tabindex="-1"] {
 
 $revenusActivite: #FFBC67;
 $revenusActivite-light: #ffd29a;
-$revenusActivite-lighter: #ffe9cd;
 
 $allocations: #DA727E;
 $allocations-light: #efc3c8;
-$allocations-lighter: #faebed;
 
 $indemnites: #AC6C82;
 $indemnites-light: #d1adb9;
-$indemnites-lighter: #e3ced5;
 
 $pensions: #685C79;
 $pensions-light: #cfcad7;
-$pensions-lighter: #eae7ed;
 
 $patrimoine: #455C7B;
 $patrimoine-light: #b6c4d6;
-$patrimoine-lighter: #d7dee8;
 
 $autre: #39747B;
 $autre-light: #a9d2d7;
-$autre-lighter: #cce4e7;
 
 $rpns: #8366d4;
 $rpns-light: #a8a1c8;
-$rpns-lighter: #dad7e8;
 
 .btn-default, .btn {
   &.active, &.active:focus, &.active:hover {
@@ -276,61 +269,6 @@ $rpns-lighter: #dad7e8;
     a {
       margin-bottom: 5px;
     }
-  }
-}
-
-@mixin panel-montant-variant($color-base, $color-light, $color-lighter) {
-  @include panel-variant($color-base, black, $color-lighter, $color-light);
-
-  h3 .short-label {
-    color: darken($color-base, 30%);
-  }
-}
-
-.panel.panel-montant {
-  h3 {
-    font-size: 14px;
-
-    .short-label {
-      display: inline-block;
-      margin-right: 10px;
-    }
-  }
-
-  .panel-body {
-    padding: 10px;
-  }
-
-  .checkbox {
-    margin-bottom: 1em;
-  }
-
-  &.indemnites {
-    @include panel-montant-variant($indemnites, $indemnites-light, $indemnites-lighter);
-  }
-
-  &.pensions {
-    @include panel-montant-variant($pensions, $pensions-light, $pensions-lighter);
-  }
-
-  &.allocations {
-    @include panel-montant-variant($allocations, $allocations-light, $allocations-lighter);
-  }
-
-  &.revenusActivite {
-    @include panel-montant-variant($revenusActivite, $revenusActivite-light, $revenusActivite-lighter);
-  }
-
-  &.autre {
-    @include panel-montant-variant($autre, $autre-light, $autre-lighter);
-  }
-
-  &.rpns {
-    @include panel-montant-variant($rpns, $rpns-light, $rpns-lighter);
-  }
-
-  &.patrimoine {
-    @include panel-montant-variant($patrimoine-light, $patrimoine-light, $patrimoine-lighter);
   }
 }
 

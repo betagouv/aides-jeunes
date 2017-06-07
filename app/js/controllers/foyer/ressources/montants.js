@@ -3,7 +3,7 @@
 angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($scope, $stateParams, ressourceTypes, RessourceService, IndividuService) {
 
     $scope.yearMoinsUn = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
-    $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
+    $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
     $scope.individuLabel = IndividuService.label($scope.individu);
 
     $scope.ressourceTypes = _.keyBy(ressourceTypes, 'id');

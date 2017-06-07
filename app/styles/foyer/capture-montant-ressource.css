@@ -1,3 +1,77 @@
+.panel-montant h3 {
+    font-size: 14px;
+}
+
+.panel-montant h3 .short-label {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.panel-montant .panel-body {
+    padding: 10px;
+}
+
+.panel-montant .checkbox {
+    margin-bottom: 1em;
+}
+
+.panel-montant.indemnites {
+    border-color: #AC6C82;
+}
+
+.panel-montant.indemnites .panel-heading {
+    background-color: #e3ced5;
+}
+
+.panel-montant.pensions {
+    border-color: #685C79;
+}
+
+.panel-montant.pensions .panel-heading {
+    background-color: #eae7ed;
+}
+
+.panel-montant.allocations {
+    border-color: #DA727E;
+}
+
+.panel-montant.allocations .panel-heading {
+    background-color: #faebed;
+}
+
+.panel-montant.revenusActivite {
+    border-color: #FFBC67;
+}
+
+.panel-montant.revenusActivite .panel-heading {
+    background-color: #ffe9cd;
+}
+
+.panel-montant.autre {
+    border-color: #39747B;
+}
+
+.panel-montant.autre .panel-heading {
+    background-color: #cce4e7;
+}
+
+.panel-montant.rpns {
+    border-color: #8366d4;
+}
+
+.panel-montant.rpns .panel-heading {
+    background-color: #dad7e8;
+}
+
+.panel-montant.patrimoine {
+    border-color: #455C7B;
+}
+
+.panel-montant.patrimoine .panel-heading {
+    background-color: #d7dee8;
+}
+
+
 @media (min-width: 768px) {
     .ressources-values {
         display: flex;

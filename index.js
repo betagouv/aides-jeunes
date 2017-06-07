@@ -62,4 +62,8 @@ module.exports = function(app) {
     app.route('/*').get(function(req, res) {
         res.sendFile(viewsDirectory + '/front.html');
     });
+
+    app.use(function (err, req, res) {
+        if (err) return res.status(err.code || 500).send(err);
+    });
 };

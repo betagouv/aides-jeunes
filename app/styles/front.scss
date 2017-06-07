@@ -279,13 +279,6 @@ $rpns-lighter: #dad7e8;
   }
 }
 
-@media (min-width: $screen-sm-min) {
-  .ressources-values {
-    display: flex;
-    align-items: flex-end;
-  }
-}
-
 @mixin panel-montant-variant($color-base, $color-light, $color-lighter) {
   @include panel-variant($color-base, black, $color-lighter, $color-light);
 

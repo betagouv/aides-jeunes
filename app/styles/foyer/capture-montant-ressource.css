@@ -1,18 +1,5 @@
-.panel-montant h3 {
-    font-size: 14px;
-}
-
-.panel-montant h3 .short-label {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-.panel-montant .panel-body {
-    padding: 10px;
-}
-
 .panel-montant .checkbox {
-    margin-bottom: 1em;
+    margin-top: .5em;
 }
 
 .panel-montant.indemnites {

@@ -39,7 +39,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                         var ressource = subRessources[i];
                         if (ressource) {
                             values.values.push({
-                                periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
+                                periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
                                 montant: ressource.montant
                             });
                         }
@@ -140,7 +140,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                         for (var i = 0; i < 3; i++) {
                             var ressource = revenus[i];
                             value.values.push({
-                                periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
+                                periode: moment(ressource.periode, 'YYYY-MM').format('MMMM YYYY'),
                                 montant: ressource.montant
                             });
                         }

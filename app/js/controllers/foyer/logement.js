@@ -42,7 +42,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     }
 
     $scope.yearsAgo = function yearsAgo(amount) {
-        return moment().subtract(amount, 'years').format('MMMM YYYY');
+        return moment().subtract(amount, 'years').format('MMMM YYYY');
     };
 
     $scope.captureCharges = function() {

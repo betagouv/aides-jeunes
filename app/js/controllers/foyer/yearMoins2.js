@@ -3,7 +3,7 @@
 angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService, SituationService) {
     var today = $scope.situation.dateDeValeur;
     $scope.yearMoins2 = moment(today).subtract('years', 2).format('YYYY');
-    $scope.debutAnneeGlissante = moment(today).subtract('years', 1).format('MMMM YYYY');
+    $scope.debutAnneeGlissante = moment(today).subtract('years', 1).format('MMMM YYYY');
 
     $scope.individuRefsToDisplay = [];
     $scope.individuRefsToHide = [];

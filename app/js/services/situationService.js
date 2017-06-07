@@ -92,7 +92,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 refDate.add(1, 'months');
                 return {
                     id: refDate.format('YYYY-MM'),
-                    label: refDate.format('MMMM YYYY')
+                    label: refDate.format('MMMM YYYY')
                 };
             });
         },

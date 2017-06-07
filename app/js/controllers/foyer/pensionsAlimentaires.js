@@ -3,8 +3,8 @@
 angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($scope, ressourceTypes, SituationService, IndividuService, RessourceService) {
 
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
-    $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
-    $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
+    $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
+    $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
     var months = SituationService.getMonths($scope.situation.dateDeValeur);
 
     var initMontantsMensuels = function(individu, pensionType) {

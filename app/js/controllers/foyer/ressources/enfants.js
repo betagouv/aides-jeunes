@@ -2,7 +2,7 @@
 
 angular.module('ddsApp').controller('FoyerRessourcesEnfantsCtrl', function($scope, SituationService, RessourceService) {
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
-    $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
+    $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
 
     $scope.enfants = SituationService.getEnfants($scope.situation);
     $scope.enfants.forEach(function(enfant) {

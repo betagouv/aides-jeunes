@@ -6,6 +6,9 @@ OPENFISCA_PORT=12000
 
 set -ex
 
+# This loads nvm
+source "$HOME/.nvm/nvm.sh"
+
 cd /var/www/dds
 
 # Update mes-aides

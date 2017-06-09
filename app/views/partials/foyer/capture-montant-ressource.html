@@ -53,7 +53,7 @@
             Montant invalide
           </span>
           <span class="text-danger" ng-if="form.submitted && form[ressource.type.id + '-year'].$error.min">
-            La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
+            La somme sur les 12 mois de {{ debutAnneeGlissante }} à {{ months[months.length-1].label }} inclus fait au moins {{ monthsSum }} €.
           </span>
         </div>
       </div>
@@ -72,7 +72,7 @@
           Montant invalide
         </span>
         <span class="text-danger" ng-if="form.submitted && form[ressource.type.id + '-year'].$error.min">
-          La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
+          La somme sur les 12 mois de {{ debutAnneeGlissante }} à {{ months[months.length-1].label }} inclus fait au moins {{ monthsSum }} €.
         </span>
       </div>
     </div>

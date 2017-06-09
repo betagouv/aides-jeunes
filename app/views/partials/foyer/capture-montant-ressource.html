@@ -21,9 +21,11 @@
             ng-model="ressource.montantsMensuels[$index]">
           <span class="input-group-addon">€</span>
         </span>
-        <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
-          Montant invalide
-        </span>
+        <div class="visible-xs">
+          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
+            Montant invalide
+          </span>
+        </div>
       </div>
       <div class="col-sm-3">
         <label for="{{ ressource.type.id }}-year">
@@ -43,6 +45,26 @@
             ng-model="ressource.montantAnnuel">
           <span class="input-group-addon">€</span>
         </span>
+        <div class="visible-xs">
+          <span
+            class="text-danger"
+            ng-if="form.submitted && ! isNumber(ressource.montantAnnuel) && ! form[ressource.type.id + '-year'].$error.min"
+            >
+            Montant invalide
+          </span>
+          <span class="text-danger" ng-if="form.submitted && form[ressource.type.id + '-year'].$error.min">
+            La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3 visible-sm visible-md visible-lg" ng-repeat="month in months">
+        <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
+          Montant invalide
+        </span>
+      </div>
+      <div class="col-sm-3 visible-sm visible-md visible-lg">
         <span
           class="text-danger"
           ng-if="form.submitted && ! isNumber(ressource.montantAnnuel) && ! form[ressource.type.id + '-year'].$error.min"
@@ -54,16 +76,19 @@
         </span>
       </div>
     </div>
-    <div class="text-right" ng-if="! ressource.type.revenuExceptionnel">
-      <div class="checkbox">
-        <label>
-          <input
-            type="checkbox"
-            ng-model="ressource.onGoing">
-            {{ onGoingLabel }}
-        </label>
+    <div class="row">
+      <div class="text-right col-sm-12" ng-if="! ressource.type.revenuExceptionnel">
+        <div class="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              ng-model="ressource.onGoing">
+              {{ onGoingLabel }}
+          </label>
+        </div>
       </div>
     </div>
+  </div>
   <div
     class="form-group"
     ng-if="shouldAskDateArretDeTravail()"

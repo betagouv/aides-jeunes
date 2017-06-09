@@ -63,7 +63,11 @@ module.exports = function(app) {
         res.sendFile(viewsDirectory + '/front.html');
     });
 
-    app.use(function (err, req, res) {
-        if (err) return res.status(err.code || 500).send(err);
+    app.use(function (err, req, res, next) {
+        if (err) {
+            console.error(err);
+            return res.status(parseInt(err.code) || 500).send(err);
+        }
+        next();
     });
 };

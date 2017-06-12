@@ -1,0 +1,62 @@
+.recap-situation {
+    border-top: none;
+    background-color: white;
+}
+
+.recap-situation h3 {
+    margin-top: 0;
+}
+
+.recap-situation .section-header {
+    margin-top: 21px;
+}
+
+.accordion-ressources .panel {
+    border: none;
+    font-size: 12px;
+}
+
+.accordion-ressources .panel-heading {
+    padding: 5px 8px;
+}
+
+.accordion-ressources .panel-title {
+    font-size: 14px;
+}
+
+.accordion-ressources .panel-body {
+    padding: 10px;
+}
+
+.accordion-ressources hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.accordion-ressources .recap-indemnites {
+    border-left: 7px solid #AC6C82;
+}
+
+.accordion-ressources .recap-pensions {
+    border-left: 7px solid #685C79;
+}
+
+.accordion-ressources .recap-allocations {
+    border-left: 7px solid #DA727E;
+}
+
+.accordion-ressources .recap-revenusActivite {
+    border-left: 7px solid #FFBC67;
+}
+
+.accordion-ressources .recap-autre {
+    border-left: 7px solid #39747B;
+}
+
+.accordion-ressources .recap-rpns {
+    border-left: 7px solid #8366d4;
+}
+
+.accordion-ressources .recap-patrimoine {
+    border-left: 7px solid #455C7B;
+}

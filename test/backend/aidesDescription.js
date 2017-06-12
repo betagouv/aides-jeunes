@@ -1,4 +1,5 @@
 var expect = require('expect');
+var https = require('https');
 
 
 describe('aides descriptions', function() {
@@ -41,6 +42,20 @@ describe('aides descriptions', function() {
 
                     it('should have a teleservice, a form, or instructions', function() {
                         expect(aide.teleservice || aide.form || aide.instructions).toBeA('string');
+                    });
+
+                    it('should reflect OpenFisca description', function(done) {
+                        https.get(`https://api-test.openfisca.fr/variable/${aideName}`, res => {
+                            res.setEncoding('utf8');
+                            let rawData = '';
+                            res.on('data', (chunk) => { rawData += chunk; });
+                            res.on('end', () => {
+                                const parsedData = JSON.parse(rawData);
+                                expect((aide.type || 'Float').toLowerCase()).toEqual(parsedData.valueType.toLowerCase());
+                                expect((aide.entity || 'famille').toLowerCase()).toEqual(parsedData.entity);
+                                done();
+                            });
+                        });
                     });
                 });
             });

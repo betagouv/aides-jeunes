@@ -73,6 +73,7 @@ var droitsDescription = {
                         'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
                         'rsi': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do'
                     },
+                    'type': 'bool',
                 },
             },
         },
@@ -218,6 +219,7 @@ var droitsDescription = {
                     'forms': {
                         'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                     },
+                    'entity': 'individu',
                 },
             },
         },

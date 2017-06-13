@@ -37,7 +37,7 @@
             {{ month.label | uppercaseFirst }}
           </div>
           <div class="col-sm-5">
-            {{ ressource[month.id] }} €
+            {{ ressource[month.id] | number:2 }} €
           </div>
         </div>
         <hr>
@@ -46,7 +46,7 @@
             Annuel
           </div>
           <div class="col-sm-5">
-            {{ getTotalAnnuel(ressource) }} €
+            {{ getTotalAnnuel(ressource) | number:2 }} €
           </div>
         </div>
       </uib-accordion-group>

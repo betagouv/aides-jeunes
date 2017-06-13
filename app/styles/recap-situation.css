@@ -60,3 +60,7 @@
 .accordion-ressources .recap-patrimoine {
     border-left: 7px solid #455C7B;
 }
+
+.right-align {
+  text-align: right;
+}

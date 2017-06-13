@@ -48,6 +48,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'Conditions générales d’utilisation'
             }
         })
+        .state('cgu_donnees', {
+            url: '/cgu#donnees',
+            templateUrl: '/content-pages/cgu.html',
+            data: {
+                pageTitle: 'Conditions générales d’utilisation'
+            }
+        })
         .state('sos', {
             url: '/sos',
             templateUrl: '/content-pages/sos.html',
@@ -69,14 +76,14 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'Supports de communication'
             }
         })
-		.state('contact', {
+        .state('contact', {
             url: '/contact',
             templateUrl: '/content-pages/contact.html',
             data: {
                 pageTitle: 'Contact'
             }
         })
-		.state('social', {
+        .state('social', {
             url: '/social',
             templateUrl: '/content-pages/social.html',
             data: {

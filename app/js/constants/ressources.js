@@ -82,56 +82,64 @@ var ressourceTypes = [
         id: 'aide_logement',
         label: 'Aides au logement (APL, ALS, ALF)',
         category: 'allocations',
-        prefix: 'des'
+        prefix: 'des',
+        entity: 'famille'
     },
     {
         id: 'af',
         label: 'Allocations familiales',
         category: 'allocations',
-        prefix: 'des'
+        prefix: 'des',
+        entity: 'famille'
     },
     {
         id: 'cf',
         label: 'Complément familial (CF)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
+        entity: 'famille'
     },
     {
         id: 'asf',
         label: 'Allocation de soutien familial (ASF)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        entity: 'famille'
     },
     {
         id: 'rsa',
         label: 'Revenu de solidarité active (RSA)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
+        entity: 'famille'
     },
     {
         id: 'ppa',
         label: 'Prime d’activité',
         category: 'revenusActivite',
-        prefix: 'la'
+        prefix: 'la',
+        entity: 'famille'
     },
     {
         id: 'aspa',
         label: 'Allocation de solidarité aux personnes âgées (ASPA)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        entity: 'famille'
     },
     {
         id: 'asi',
         label: 'Allocation supplémentaire d’invalidité (ASI)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        entity: 'famille'
     },
     {
         id: 'ass',
         label: 'Allocation de solidarité spécifique (ASS)',
         category: 'allocations',
-        prefix: 'l’'
-
+        prefix: 'l’',
+        entity: 'famille'
     },
     {
         id: 'aah',
@@ -155,7 +163,8 @@ var ressourceTypes = [
         id: 'aeeh',
         label: 'Allocation d’éducation de l’enfant handicapé (AEEH)',
         category: 'allocations',
-        prefix: 'l’'  // We don't actually need to capture the amount, but users want to declare it, and presence can improve some Paris aides. See https://github.com/sgmap/mes-aides-ui/issues/191
+        prefix: 'l’',  // We don't actually need to capture the amount, but users want to declare it, and presence can improve some Paris aides. See https://github.com/sgmap/mes-aides-ui/issues/191
+        entity: 'famille'
     },
     {
         id: 'pch',
@@ -166,19 +175,22 @@ var ressourceTypes = [
         id: 'paje_base',
         label: 'Prestation d’accueil du jeune enfant (PAJE) - Allocation de base',
         category: 'allocations',
-        prefix: 'la'
+        prefix: 'la',
+        entity: 'famille'
     },
     {
         id: 'paje_clca',
         label: 'Complément de libre choix d’activité (CLCA)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
+        entity: 'famille'
     },
     {
         id: 'paje_prepare',
         label: 'Prestation partagée d’éducation de l’enfant (PreParE)',
         category: 'allocations',
-        prefix: 'la'
+        prefix: 'la',
+        entity: 'famille'
     },
     {
         id: 'indemnites_journalieres_maternite',

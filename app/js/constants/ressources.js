@@ -1,6 +1,7 @@
+(function() {
 'use strict';
 
-angular.module('ddsCommon').constant('ressourceCategories', [
+var ressourceCategories = [
     {
         id: 'revenusActivite',
         label: 'Revenus d’activité'
@@ -29,9 +30,9 @@ angular.module('ddsCommon').constant('ressourceCategories', [
         id: 'autre',
         label: 'Autres'
     }
-]);
+];
 
-angular.module('ddsCommon').constant('ressourceTypes', [
+var ressourceTypes = [
     {
         id: 'salaire_net_hors_revenus_exceptionnels',
         label: 'Salaire (hors primes)',
@@ -317,9 +318,9 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         category: 'rpns',
         isMontantAnnuel: true
     }
-]);
+];
 
-angular.module('ddsCommon').constant('categoriesRnc', [
+var categoriesRnc = [
     {
         id: 'salaire_imposable_ym2',
         label: 'Revenus d’activité connus',
@@ -349,4 +350,20 @@ angular.module('ddsCommon').constant('categoriesRnc', [
         label: 'Pensions alimentaires versées',
         sources: ['pensions_alimentaires_versees_individu']
     }
-]);
+];
+
+
+/* Export either through Angular loader or CommonJS */
+if (typeof module != 'undefined' && typeof angular === 'undefined') {  // we're in Node
+    module.exports = {
+        ressourceCategories: ressourceCategories,
+        ressourceTypes: ressourceTypes,
+        categoriesRnc: categoriesRnc
+    };
+} else {  // we're in the browser
+    angular.module('ddsCommon').constant('ressourceCategories', ressourceCategories);
+    angular.module('ddsCommon').constant('ressourceTypes', ressourceTypes);
+    angular.module('ddsCommon').constant('categoriesRnc', categoriesRnc);
+}
+/* End of export */
+})();

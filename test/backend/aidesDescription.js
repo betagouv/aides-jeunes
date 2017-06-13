@@ -44,6 +44,29 @@ describe('aides descriptions', function() {
                         expect(aide.teleservice || aide.form || aide.instructions).toBeA('string');
                     });
 
+                    if (aide.uncomputability) {
+                        Object.keys(aide.uncomputability).forEach(function(uncomputabilityId) {
+                            describe(uncomputabilityId, function() {
+                                var uncomputability = aide.uncomputability[uncomputabilityId];
+
+                                it('should have a reason', function() {
+                                    expect(uncomputability.reason).toBeA('string');
+                                    expect(uncomputability.reason.length).toBeGreaterThan(1);
+                                });
+
+                                it('should have a solution', function() {
+                                    expect(uncomputability.reason).toBeA('string');
+                                    expect(uncomputability.solution.length).toBeGreaterThan(1);
+                                });
+
+                                it('should have a thirdPersonReason', function() {
+                                    expect(uncomputability.thirdPersonReason).toBeA('string');
+                                    expect(uncomputability.thirdPersonReason.length).toBeGreaterThan(1);
+                                });
+                            });
+                        });
+                    }
+
                     it('should reflect OpenFisca description', function(done) {
                         https.get(`https://api-test.openfisca.fr/variable/${aideName}`, res => {
                             res.setEncoding('utf8');

@@ -4,28 +4,36 @@
   </div>
   <div class="panel-body">
     <div class="ressources-values">
-      <div class="col-sm-3 month" ng-repeat="month in months">
+      <div class="col-sm-3 month"
+        ng-repeat="month in months"
+        ng-class="{ 'has-error': form.submitted &&  form[ressource.type.id + '-month_' + ($index + 1)].$invalid }"
+        >
         <label for="{{ ressource.type.id }}-month_{{ $index + 1 }}">
           {{ month.label|uppercaseFirst }}
         </label>
-        <span class="input-group">
+        <div class="input-group">
           <input
             type="number"
             class="form-control text-right"
             id="{{ ressource.type.id }}-month_{{ $index + 1 }}"
+            name="{{ ressource.type.id }}-month_{{ $index + 1 }}"
             required
             min="0"
             step="100"
             select-on-focus
             zero-to-empty
-            ng-model="ressource.montantsMensuels[$index]">
+            ng-model="ressource.montantsMensuels[$index]"
+            aria-describedby="help-{{ ressource.type.id }}-month_{{ $index + 1 }}"
+            >
           <span class="input-group-addon">€</span>
-        </span>
-        <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
-          Montant invalide
-        </span>
+        </div>
+        <ul class="help-block" id="help-{{ ressource.type.id }}-month_{{ $index + 1 }}" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
+          <li>Montant invalide</li>
+        </ul>
       </div>
-      <div class="col-sm-3 month" ng-class="{ 'has-error': form.submitted && form[ressource.type.id + '-year'].$invalid }">
+      <div class="col-sm-3 month"
+        ng-class="{ 'has-error': form.submitted && form[ressource.type.id + '-year'].$invalid }"
+        >
         <label for="{{ ressource.type.id }}-year">
           Total de {{ debutAnneeGlissante }} à {{ months[months.length-1].label }}&nbsp;inclus
         </label>

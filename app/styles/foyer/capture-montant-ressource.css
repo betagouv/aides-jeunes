@@ -1,3 +1,17 @@
+.ressources-values, .ressources-values .month, .ressources-values .month label {
+  display: flex;
+}
+
+.ressources-values .month, .ressources-values .month label {
+  flex-direction: column;
+}
+
+.ressources-values .month label {
+  min-height: 3em;  /* sum is always on two lines (+ 1 line of margin), ensure all labels are aligned */
+  justify-content: flex-end;
+}
+
+
 .panel-montant .checkbox {
     margin-top: .5em;
 }
@@ -59,9 +73,8 @@
 }
 
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .ressources-values {
-        display: flex;
-        align-items: flex-end;
+        flex-direction: column;
     }
 }

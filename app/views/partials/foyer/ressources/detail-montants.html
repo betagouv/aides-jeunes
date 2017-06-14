@@ -10,7 +10,7 @@
     </capture-montant-ressource>
   </div>
 
-  <div class="panel panel-montant rpns"
+  <div class="panel ressource-input rpns"
     ng-if="ressource.type.category == 'rpns' && ressource.type.id == 'tns_auto_entrepreneur_chiffre_affaires'">
     <div class="panel-heading">
       <h3 class="panel-title">{{ ressourceTypes[ressource.type.id].label }}</h3>
@@ -81,7 +81,7 @@
     </div>
   </div>
 
-  <div class="panel panel-montant rpns"
+  <div class="panel ressource-input rpns"
     ng-if="ressource.type.category == 'rpns' && ressource.type.id == 'tns_micro_entreprise_chiffre_affaires'">
     <div class="panel-heading">
       <h3 class="panel-title">{{ ressourceTypes[ressource.type.id].label }}</h3>
@@ -120,7 +120,7 @@
     </div>
   </div>
 
-  <div class="panel panel-montant rpns" ng-if="ressource.type.id == 'tns_autres_revenus'">
+  <div class="panel ressource-input rpns" ng-if="ressource.type.id == 'tns_autres_revenus'">
     <div class="panel-heading">
       <h3 class="panel-title">{{ ressourceTypes[ressource.type.id].label }}</h3>
     </div>
@@ -160,7 +160,7 @@
     </div>
   </div>
 
-  <div class="panel panel-montant rpns"
+  <div class="panel ressource-input rpns"
     ng-if="ressource.type.id == 'tns_benefice_exploitant_agricole'">
     <div class="panel-heading">
       <h3 class="panel-title">{{ ressourceTypes[ressource.type.id].label }}</h3>

@@ -11,6 +11,11 @@
   justify-content: flex-end;
 }
 
+.ressources-values ul.help-block {
+    list-style-type: none;
+    padding-left: 0;
+}
+
 
 .panel-montant .checkbox {
     margin-top: .5em;

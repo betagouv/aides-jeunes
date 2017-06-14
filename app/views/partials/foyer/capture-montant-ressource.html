@@ -3,7 +3,9 @@
     <h3 class="panel-title">{{ ressourceType.label }}</h3>
   </div>
   <div class="panel-body">
-    <div class="ressources-values">
+    <div class="ressources-values"
+      ng-class="{ 'has-error': form.submitted && form[ressource.type.id + '-year'].$invalid }"
+      >
       <div class="col-sm-3 month"
         ng-repeat="month in months"
         ng-class="{ 'has-error': form.submitted &&  form[ressource.type.id + '-month_' + ($index + 1)].$invalid }"
@@ -32,7 +34,6 @@
         </ul>
       </div>
       <div class="col-sm-3 month"
-        ng-class="{ 'has-error': form.submitted && form[ressource.type.id + '-year'].$invalid }"
         >
         <label for="{{ ressource.type.id }}-year">
           Total de {{ debutAnneeGlissante }} à {{ months[months.length-1].label }}&nbsp;inclus
@@ -55,13 +56,16 @@
         </div>
         <ul class="help-block" id="help-{{ ressource.type.id }}-year" ng-if="form.submitted && form[ressource.type.id + '-year'].$invalid">
           <li ng-show="form[ressource.type.id + '-year'].$error.min">
-            La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
+            Somme incohérente
           </li>
           <li ng-show="! isNumber(ressource.montantAnnuel) && ! form[ressource.type.id + '-year'].$error.min">
             Montant invalide
           </li>
         </ul>
       </div>
+    </div>
+    <div class="text-danger" id="help-{{ ressource.type.id }}-year" ng-if="form.submitted && form[ressource.type.id + '-year'].$error.min">
+      <p>Vous avez indiqué avoir perçu {{ monthsSum }} € sur les 3 derniers mois, mais seulement {{ form[ressource.type.id + '-year'].$viewValue }} € sur les 12 derniers mois. Vérifiez les montants indiqués dans les quatre champs de votre {{ ressourceType.label }}.</p>
     </div>
     <div class="text-right" ng-if="! ressource.type.revenuExceptionnel">
       <div class="checkbox">

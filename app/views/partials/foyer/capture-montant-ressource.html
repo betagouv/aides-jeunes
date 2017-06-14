@@ -29,19 +29,22 @@
         <label for="{{ ressource.type.id }}-year">
           Total de {{ debutAnneeGlissante }} à {{ months[months.length-1].label }}&nbsp;inclus
         </label>
-        <input
-          type="number"
-          class="form-control text-right"
-          id="{{ ressource.type.id }}-year"
-          name="{{ ressource.type.id }}-year"
-          required
-          min="{{ monthsSum }}"
-          step="100"
-          select-on-focus
-          zero-to-empty
-          ng-model="ressource.montantAnnuel"
-          aria-describedby="help-{{ ressource.type.id }}-year"
-          >
+        <div class="input-group">
+          <input
+            type="number"
+            class="form-control text-right"
+            id="{{ ressource.type.id }}-year"
+            name="{{ ressource.type.id }}-year"
+            required
+            min="{{ monthsSum }}"
+            step="100"
+            select-on-focus
+            zero-to-empty
+            ng-model="ressource.montantAnnuel"
+            aria-describedby="help-{{ ressource.type.id }}-year"
+            >
+          <span class="input-group-addon">€</span>
+        </div>
         <ul class="help-block" id="help-{{ ressource.type.id }}-year" ng-if="form.submitted && form[ressource.type.id + '-year'].$invalid">
           <li ng-show="form[ressource.type.id + '-year'].$error.min">
             La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €

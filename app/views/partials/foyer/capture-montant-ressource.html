@@ -8,28 +8,28 @@
       >
       <div class="col-sm-3 month"
         ng-repeat="month in months"
-        ng-class="{ 'has-error': form.submitted &&  form[ressource.type.id + '-month_' + ($index + 1)].$invalid }"
+        ng-class="{ 'has-error': form.submitted &&  form[ressource.type.id + '-month_' + $index].$invalid }"
         >
-        <label for="{{ ressource.type.id }}-month_{{ $index + 1 }}">
+        <label for="{{ ressource.type.id }}-month_{{ $index }}">
           {{ month.label|uppercaseFirst }}
         </label>
         <div class="input-group">
           <input
             type="number"
             class="form-control text-right"
-            id="{{ ressource.type.id }}-month_{{ $index + 1 }}"
-            name="{{ ressource.type.id }}-month_{{ $index + 1 }}"
+            id="{{ ressource.type.id }}-month_{{ $index }}"
+            name="{{ ressource.type.id }}-month_{{ $index }}"
             required
             min="0"
             step="100"
             select-on-focus
             zero-to-empty
             ng-model="ressource.montantsMensuels[$index]"
-            aria-describedby="help-{{ ressource.type.id }}-month_{{ $index + 1 }}"
+            aria-describedby="help-{{ ressource.type.id }}-month_{{ $index }}"
             >
           <span class="input-group-addon">€</span>
         </div>
-        <ul class="help-block" id="help-{{ ressource.type.id }}-month_{{ $index + 1 }}" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
+        <ul class="help-block" id="help-{{ ressource.type.id }}-month_{{ $index }}" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
           <li>Montant invalide</li>
         </ul>
       </div>

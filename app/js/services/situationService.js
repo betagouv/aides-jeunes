@@ -99,13 +99,13 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
 
         save: function(situation) {
             return $http({
-                    method: situation._id ? 'put' : 'post',
-                    url: '/api/situations/' + (situation._id || ''),
-                    data: this.createApiCompatibleSituation(situation)
-                }).then(function(result) {
-                    situation._id = result.data._id;
-                    return result.data;
-                });
+                method: 'post',
+                url: '/api/situations/',
+                data: this.createApiCompatibleSituation(situation)
+            }).then(function(result) {
+                situation._id = result.data._id;
+                return result.data;
+            });
         },
 
         createApiCompatibleSituation: function(situation) {
@@ -120,6 +120,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             }
 
             var result = {
+                referenceId: situation._id,
                 individus: individus,
                 logement: situation.logement,
                 patrimoine: situation.patrimoine,

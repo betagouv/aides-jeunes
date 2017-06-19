@@ -27,7 +27,7 @@
           </div>
           <div class="col-sm-6">
             <p class="help-block" ng-show ="{{ getDefaultValue(individuRef, rnc.categorie) }}">
-              Ce montant vaut {{ getDefaultValue(individuRef, rnc.categorie) | number:2 }}&nbsp;€ pour les 12 derniers mois.
+              Ce montant vaut {{ getDefaultValue(individuRef, rnc.categorie) | currency }} pour les 12 derniers mois.
             </p>
           </div>
         </div>

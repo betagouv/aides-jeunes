@@ -30,7 +30,8 @@
       <uib-accordion-group
         ng-repeat="(type, ressource) in ressourcesByIndividu[$index]"
         class="recap-{{ getRessourceByType(type).category }}"
-        heading="{{ getRessourceByType(type).label }}">
+        heading="{{ getRessourceByType(type).label }}"
+        >
 
         <div class="row" ng-if="ressource[month.id]" ng-repeat="month in months">
           <div class="col-sm-7">

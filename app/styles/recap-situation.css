@@ -6,23 +6,23 @@
     margin-top: 1em;
 }
 
-.accordion-ressources .panel {
+.ressources-accordion .panel {
     font-size: 85%;
 }
 
-.accordion-ressources .panel-heading {
+.ressources-accordion .panel-heading {
     padding: 0.5em 0.8em;
 }
 
-.accordion-ressources .panel-title {
+.ressources-accordion .panel-title {
     font-size: 120%;
 }
 
-.accordion-ressources .panel-body {
+.ressources-accordion .panel-body {
     padding: 0.8em;
 }
 
-.accordion-ressources hr {
+.ressources-accordion hr {
     margin-top: 5px;
     margin-bottom: 5px;
 }

@@ -25,7 +25,7 @@
     <h4>{{ getIndividuRessourcesHeader(individu) }}</h4>
     <uib-accordion
       close-others="false"
-      class="accordion-ressources"
+      class="ressources-accordion"
       ng-if="ressourcesByIndividu[$index]">
       <uib-accordion-group
         ng-repeat="(type, ressource) in ressourcesByIndividu[$index]"
@@ -67,7 +67,7 @@
   <span ng-if="rfrCaptured">Revenu fiscal de référence : {{ situation.rfr | currency }}</span>
   <uib-accordion
     close-others="false"
-    class="accordion-ressources">
+    class="ressources-accordion">
     <uib-accordion-group
       ng-repeat="ym2IndividuRecap in ressourcesYearMoins2"
       class="ressources-recap"
@@ -91,7 +91,7 @@
   <em class="small" ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun patrimoine déclaré</em>
   <uib-accordion
     close-others="true"
-    class="accordion-ressources"
+    class="ressources-accordion"
     >
     <uib-accordion-group
       ng-if="patrimoine.length"

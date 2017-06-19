@@ -1,31 +1,26 @@
-.recap-situation {
-    border-top: none;
-    background-color: white;
-}
-
 .recap-situation h3 {
     margin-top: 0;
 }
 
-.recap-situation .section-header {
-    margin-top: 21px;
+.recap-situation h4:not(.panel-title) {
+    margin-top: 1em;
 }
 
 .accordion-ressources .panel {
     border: none;
-    font-size: 12px;
+    font-size: 85%;
 }
 
 .accordion-ressources .panel-heading {
-    padding: 5px 8px;
+    padding: 0.5em 0.8em;
 }
 
 .accordion-ressources .panel-title {
-    font-size: 14px;
+    font-size: 120%;
 }
 
 .accordion-ressources .panel-body {
-    padding: 10px;
+    padding: 0.8em;
 }
 
 .accordion-ressources hr {

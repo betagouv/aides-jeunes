@@ -1,11 +1,11 @@
 <h3 class="text-center">Votre situation</h3>
 <hr>
-<h4 class="section-header">Votre foyer</h4>
+<h4>Votre foyer</h4>
 <individu-block ng-repeat="individu in situation.individus" individu="individu"></individu-block>
 
 <div id="recap-logement" ng-if="situation.logement">
   <a ui-sref="foyer.logement" class="pull-right"><i class="fa fa-edit" aria-hidden="true" role="presentation"></i> Modifier</a>
-  <h4 class="section-header">Votre logement</h4>
+  <h4>Votre logement</h4>
   <div class="situation-block">
     <div ng-bind-html="recapLogement|uppercaseFirst"></div>
     <div ng-if="situation.logement.loyer">{{ loyerLabel }}&nbsp;: <b>{{ situation.logement.loyer | currency }}</b></div>
@@ -22,7 +22,7 @@
       <i class="fa fa-edit" aria-hidden="true" role="presentation"></i>
       Modifier
     </a>
-    <h4 class="section-header">{{ getIndividuRessourcesHeader(individu) }}</h4>
+    <h4>{{ getIndividuRessourcesHeader(individu) }}</h4>
     <uib-accordion
       close-others="false"
       class="accordion-ressources"
@@ -86,7 +86,7 @@
 
 <div ng-if="situation.patrimoine.captured">
   <a ui-sref="foyer.patrimoine" class="pull-right"><i class="fa fa-edit" aria-hidden="true" role="presentation"></i> Modifier</a>
-  <h4 class="section-header">Votre patrimoine</h4>
+  <h4>Votre patrimoine</h4>
   <em class="small" ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun patrimoine déclaré</em>
   <uib-accordion
     close-others="true"

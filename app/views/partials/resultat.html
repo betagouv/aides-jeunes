@@ -25,11 +25,11 @@
   </div>
 
   <div ng-repeat="(partenaireId, prestationsPartenaire) in droits.partenairesLocaux">
-    <p>Vous êtes {{ droits.prestationsNationales ? "également" : "" }} a priori éligible à ces aides <span ng-bind-html="getPartenaireLocalLabel(partenaireId)"></span>&nbsp;:</p>
+    <p>Vous êtes {{ droits.prestationsNationales ? "également" : "" }} a priori éligible à ces aides {{ prestationsPartenaire.prefix }} <strong>{{ prestationsPartenaire.label }}</strong>&nbsp;:</p>
     <div class="frame-resultats">
-      <droit-eligibles-list list="prestationsPartenaire"></droit-eligibles-list>
+      <droit-eligibles-list list="prestationsPartenaire.prestations"></droit-eligibles-list>
       <div class="additional-info-cta">
-        <p ng-if="shouldDisplayImpactInfo(partenaireId)">
+        <p ng-if="prestationsPartenaire.interactionWithNationalPrestationCalculated !== false">
           <i class="fa fa-info-circle" aria-hidden="true"></i>
           {{ (! droits.prestationsNationales && (droitsInjectes | isEmpty)) ? "Si vous percevez aussi des aides nationales, le" : "Le" }}
            montant de ces aides locales pourrait être partiellement déduit de vos aides nationales. Nous travaillons avec nos partenaires pour déterminer plus précisément ces interactions.
@@ -75,7 +75,7 @@
 
 <div id="social">
 	<p>Suivez-nous sur <a ui-sref="social">nos réseaux sociaux</a> ! Nos messages privés sont ouverts pour vous permettre de communiquer avec nous en toute discrétion.</p>
-  
+
   <p style="text-align:center;"><a href="https://www.facebook.com/MesAides"><img src="/img/social/picto_facebook.png" alt="Facebook"></a>  <a href="https://twitter.com/MesAides"><img src="/img/social/picto_twitter.png" alt="Twitter"></a></p>
 </div>
 

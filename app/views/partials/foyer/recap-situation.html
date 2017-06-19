@@ -29,7 +29,7 @@
       ng-if="ressourcesByIndividu[$index]">
       <uib-accordion-group
         ng-repeat="(type, ressource) in ressourcesByIndividu[$index]"
-        class="recap-{{ getRessourceByType(type).category }}"
+        class="ressources-recap {{ getRessourceByType(type).category }}"
         heading="{{ getRessourceByType(type).label }}"
         >
 
@@ -37,7 +37,7 @@
           <div class="col-sm-7">
             {{ month.label | uppercaseFirst }}
           </div>
-          <div class="right-align col-sm-5">
+          <div class="ressources-value col-sm-5">
             {{ ressource[month.id] | currency }}
           </div>
         </div>
@@ -46,7 +46,7 @@
           <div class="col-sm-7">
             Annuel
           </div>
-          <div class="right-align col-sm-5">
+          <div class="ressources-value col-sm-5">
             {{ getTotalAnnuel(ressource) | currency }}
           </div>
         </div>
@@ -70,13 +70,14 @@
     class="accordion-ressources">
     <uib-accordion-group
       ng-repeat="ym2IndividuRecap in ressourcesYearMoins2"
+      class="ressources-recap"
       heading="{{ ym2IndividuRecap.label }}"
       is-open="ym2IndividuRecap.isOpen">
       <div class="row" ng-repeat="ressource in ym2IndividuRecap.ressources">
         <div class="col-sm-8">
           {{ ressource.label }}
         </div>
-        <div class="right-align col-sm-4">
+        <div class="ressources-value col-sm-4">
           {{ ressource.montant | currency }}
         </div>
       </div>
@@ -90,10 +91,12 @@
   <em class="small" ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun patrimoine déclaré</em>
   <uib-accordion
     close-others="true"
-    class="accordion-ressources">
+    class="accordion-ressources"
+    >
     <uib-accordion-group
       ng-if="patrimoine.length"
       heading="Patrimoine"
+      class="ressources-recap"
       is-open="revenu.isOpen">
       <div ng-repeat="value in patrimoine">
         {{ value.label }}&nbsp;: {{ value.montant | currency }}

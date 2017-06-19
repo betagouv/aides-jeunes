@@ -7,7 +7,6 @@
 }
 
 .accordion-ressources .panel {
-    border: none;
     font-size: 85%;
 }
 
@@ -28,34 +27,42 @@
     margin-bottom: 5px;
 }
 
-.accordion-ressources .recap-indemnites {
-    border-left: 7px solid #AC6C82;
+.ressources-recap {
+    border-style: solid;
+    border-width: 0.7em;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
 }
 
-.accordion-ressources .recap-pensions {
-    border-left: 7px solid #685C79;
+.ressources-recap.indemnites {
+    border-color: #AC6C82;
 }
 
-.accordion-ressources .recap-allocations {
-    border-left: 7px solid #DA727E;
+.ressources-recap.pensions {
+    border-color: #685C79;
 }
 
-.accordion-ressources .recap-revenusActivite {
-    border-left: 7px solid #FFBC67;
+.ressources-recap.allocations {
+    border-color: #DA727E;
 }
 
-.accordion-ressources .recap-autre {
-    border-left: 7px solid #39747B;
+.ressources-recap.revenusActivite {
+    border-color: #FFBC67;
 }
 
-.accordion-ressources .recap-rpns {
-    border-left: 7px solid #8366d4;
+.ressources-recap.autre {
+    border-color: #39747B;
 }
 
-.accordion-ressources .recap-patrimoine {
-    border-left: 7px solid #455C7B;
+.ressources-recap.rpns {
+    border-color: #8366d4;
 }
 
-.right-align {
-  text-align: right;
+.ressources-recap.patrimoine {
+    border-color: #455C7B;
+}
+
+.ressources-value {
+    text-align: right;
 }

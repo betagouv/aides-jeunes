@@ -160,7 +160,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         id: 'pch',
         label: 'Prestation de compensation du handicap (PCH)',
         category: 'allocations',
-		prefix: 'la'
+        prefix: 'la'
     },
     {
         id: 'paje_base',

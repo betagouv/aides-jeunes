@@ -50,7 +50,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
                         return;  // the aides were declared, do not re-compute the results
                     }
 
-                    var value = valueAt(aideId, computedRessources, situation.period) || valueAt(aideId + '_non_calculable', computedRessources, situation.period);
+                    var value = valueAt(aideId + '_non_calculable', computedRessources, situation.period) || valueAt(aideId, computedRessources, situation.period);
 
                     if (! value) return;
 

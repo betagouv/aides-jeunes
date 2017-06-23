@@ -14,13 +14,14 @@ dependencies:
     - npm install saucelabs@0.1.1 # allow sending Watai results to SauceLabs
     - wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz
     - tar -xzf sc-latest-linux.tar.gz
-    - sudo pip install --upgrade pip
-    - sudo pip install gunicorn
-    - npm run install-openfisca
+    - virtualenv --python=python2.7 ~/virtualenv
+    - source ~/virtualenv/bin/activate && pip install --upgrade pip
+    - source ~/virtualenv/bin/activate && pip install gunicorn
+    - source ~/virtualenv/bin/activate && npm run install-openfisca
 
 test:
   pre:
-    - npm run openfisca:
+    - source ~/virtualenv/bin/activate && npm run openfisca:
         background: true
         parallel: true
     # start Sauce Connect

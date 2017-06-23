@@ -78,7 +78,7 @@
     "predb": "mkdir -p db",
     "db": "mongod --dbpath db",
     "db-update": "./import-tests.sh",
-    "install-openfisca": "pip install --user --upgrade -r openfisca/requirements.txt",
+    "install-openfisca": "[ $VIRTUAL_ENV ] && pip install --upgrade -r openfisca/requirements.txt",
     "openfisca": "gunicorn --workers 1 --paster openfisca/api_config.ini"
   },
   "license": "AGPL-3.0"

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('ResultatService', function($http, droitsDescription, CustomizationService) {
+angular.module('ddsApp').service('ResultatService', function($http, droitsDescription, CustomizationService, MappingService) {
 
     /**
     *@param    {String}  An Openfisca period. For example: 'month:2014-12'.
@@ -91,8 +91,9 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
     }
 
     function simulate(situation) {
-        return $http.get('/api/situations/' + situation._id + '/simulation', {
-            params: { cacheBust: Date.now() }
+        return MappingService.buildOpenFiscaRequest(situation)
+        .then(function(simulation) {
+            return $http.post('/api/simulations', simulation);
         }).then(function(response) {
             return response.data;
         }).then(computeAides);

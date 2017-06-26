@@ -23,6 +23,7 @@ var droitsDescription = {
                         'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14953.do',
                         'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/Formulaire_allocation_solidarite_personnes_agees.pdf'
                     },
+                    'type': 'float',
                 },
             },
         },
@@ -45,6 +46,7 @@ var droitsDescription = {
                         'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
                         'rsi': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do'
                     },
+                    'type': 'float',
                 },
                 'asi': {
                     'label': 'Allocation supplémentaire d’invalidité',
@@ -58,6 +60,7 @@ var droitsDescription = {
                         'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/formulaire_allocation_supplementaire_invalidite.pdf',
                         'cnav': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-asi.pdf'
                     },
+                    'type': 'float',
                 },
                 'cmu_c': {
                     'label': 'Couverture maladie universelle complémentaire',
@@ -94,7 +97,8 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
-                    'isBaseRessourcesYearMoins2': true
+                    'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                 },
                 'cf': {
                     'label': 'Complément familial',
@@ -106,7 +110,8 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
-                    'isBaseRessourcesYearMoins2': true
+                    'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                 },
                 'asf': {
                     'label': 'Allocation de soutien familial',
@@ -121,6 +126,7 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationdesoutienfamilial/!ut/p/a1/',
                         'msa': 'http://www.msa.fr/lfr/documents/11566/48472/Demande+d%27allocation+de+soutien+familial+%28ASF%29.pdf'
                     },
+                    'type': 'float',
                 },
                 'paje_base': {
                     'label': 'Prestation d’accueil du jeune enfant – Allocation de base',
@@ -136,7 +142,8 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
-                    'isBaseRessourcesYearMoins2': true
+                    'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                 },
                 'rsa': {
                     'label': 'Revenu de solidarité active',
@@ -154,6 +161,7 @@ var droitsDescription = {
                         'caf': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
                         'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do'
                     },
+                    'type': 'float',
                     'uncomputability': {
                         'tns': {
                             'reason': 'vous avez des revenus en tant qu’indépendant·e',
@@ -182,6 +190,7 @@ var droitsDescription = {
                         'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=98643'
                     },
                     'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                     'uncomputability': {
                         'primo_accedant': {
                             'reason': 'vous êtes <abbr title="Non propriétaire de votre résidence principale dans les deux années précédant l’achat de votre résidence actuelle">primo-accédant</abbr> à la propriété de votre résidence principale',
@@ -204,14 +213,22 @@ var droitsDescription = {
                     'teleservices': {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/',
                         'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=44739105'
-                    }
+                    },
+                    'type': 'float',
                 },
                 'aah': {
                     'isMontantAnnuel': false,
                     'label': 'Allocation aux adultes handicapés',
                     'shortLabel': 'AAH',
                     'description': 'L’allocation aux adultes handicapés (AAH) est une aide financière qui permet d’assurer un revenu minimum. Cette aide est attribuée sous réserve de respecter 4 critères : le taux d’incapacité, l’âge, la nationalité et les ressources. L’AAH peut se cumuler soit avec le complément de ressources, soit avec la majoration pour la vie autonome ou, dans certains cas, l’aide à l’autonomie.',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242',
+                    'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
+                    'forms': {
+                        'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
+                    },
                     'isBaseRessourcesYearMoins2': true,
+                    'entity': 'individu',
+                    'type': 'float',
                     'uncomputability': {
                         'intervention_CDAPH_necessaire': {
                             'reason': 'votre taux d’incapacité sera déterminé par la <abbr title="Commission des droits et de l’autonomie des personnes handicapées">CDAPH</abbr> après le dépôt de votre demande',
@@ -219,12 +236,6 @@ var droitsDescription = {
                             'thirdPersonReason': 'le taux d’incapacité du demandeur doit être déterminé par la CDAPH',
                         }
                     },
-                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242',
-                    'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
-                    'forms': {
-                        'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
-                    },
-                    'entity': 'individu',
                 },
             },
         },
@@ -239,6 +250,7 @@ var droitsDescription = {
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F12484',
                     /* En principe, formulaire envoyé automatiquement ; lien vers brochure pole emploi */
                     'instructions': 'http://www.pole-emploi.fr/front/common/tools/download_file.jspz?mediaid=186108',
+                    'type': 'float',
                 },
             },
         },
@@ -256,7 +268,8 @@ var droitsDescription = {
                     'forms': {
                         '2016-17': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12539.do'
                     },
-                    'isBaseRessourcesYearMoins2': true
+                    'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                 },
                 'bourse_lycee': {
                     'isMontantAnnuel': true,
@@ -268,7 +281,8 @@ var droitsDescription = {
                     'forms': {
                         '2017-18': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do'
                     },
-                    'isBaseRessourcesYearMoins2': true
+                    'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                 },
             },
         },
@@ -292,6 +306,7 @@ var droitsDescription = {
                     'form': 'https://api-site.paris.fr/images/73485',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_forfait_famille': {
                     'isMontantAnnuel': true,
@@ -301,7 +316,8 @@ var droitsDescription = {
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-forfait-famille_2',
                     'form': 'https://api-site.paris.fr/images/74809',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_logement_psol': {
                     'label': 'Paris Solidarité',
@@ -313,7 +329,8 @@ var droitsDescription = {
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-solidarite_3',
                     'form': 'http://api-site-cdn.paris.fr/images/154848.pdf',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_logement': {
                     'label': 'Paris Logement',
@@ -326,7 +343,8 @@ var droitsDescription = {
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement_6',
                     'form': 'http://api-site-cdn.paris.fr/images/98406.pdf',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_logement_aspeh': {
                     'label': 'Allocation de Soutien aux Parents d’Enfants Handicapés',
@@ -335,7 +353,8 @@ var droitsDescription = {
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#allocation-de-soutien-aux-parents-d-enfants-handicapes_9',
                     'form': 'http://api-site-cdn.paris.fr/images/132126.pdf',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_logement_plfm': {
                     'label': 'Paris Logement Familles Monoparentales',
@@ -348,7 +367,8 @@ var droitsDescription = {
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille-monoparentale_5',
                     'form': 'https://api-site.paris.fr/images/72423',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_energie_famille': {
                     'isMontantAnnuel': true,
@@ -358,7 +378,8 @@ var droitsDescription = {
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-energie-famille_8',
                     'form': 'https://api-site.paris.fr/images/154764.pdf',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_complement_sante': {
                     'isMontantAnnuel': true,
@@ -368,7 +389,8 @@ var droitsDescription = {
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
                     'form': 'https://api-site.paris.fr/images/78343',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 }
             }
         },
@@ -387,7 +409,8 @@ var droitsDescription = {
                     'conditions': [],
                     'link': 'https://www.seine-saint-denis.fr/ADPA.html',
                     'form': 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa_mai_2016_vdef.pdf',
-                    'isBaseRessourcesYearMoins2': false
+                    'isBaseRessourcesYearMoins2': false,
+                    'type': 'float',
                 },
             }
         },
@@ -407,6 +430,7 @@ var droitsDescription = {
                     'link': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/',
                     'instructions': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/#c33081',
                     'isBaseRessourcesYearMoins2': false,
+                    'type': 'float',
                 },
             }
         }

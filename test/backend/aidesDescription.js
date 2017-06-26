@@ -74,7 +74,7 @@ describe('aides descriptions', function() {
                             res.on('data', (chunk) => { rawData += chunk; });
                             res.on('end', () => {
                                 const parsedData = JSON.parse(rawData);
-                                expect((aide.type || 'Float').toLowerCase()).toEqual(parsedData.valueType.toLowerCase());
+                                expect(aide.type).toEqual(parsedData.valueType.toLowerCase());
                                 expect((aide.entity || 'famille').toLowerCase()).toEqual(parsedData.entity);
                                 done();
                             });

@@ -46,6 +46,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/content-pages/cgu.html',
             data: {
                 pageTitle: 'Conditions générales d’utilisation'
+            },
+            controller: function($scope, SituationService) {
+                $scope.situationId = SituationService.restoreLocal()._id;
             }
         })
         .state('cgu_donnees', {
@@ -53,6 +56,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/content-pages/cgu.html',
             data: {
                 pageTitle: 'Conditions générales d’utilisation'
+            },
+            controller: function($scope, SituationService) {
+                $scope.situationId = SituationService.restoreLocal()._id;
             }
         })
         .state('sos', {

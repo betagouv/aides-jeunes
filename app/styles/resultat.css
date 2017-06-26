@@ -23,3 +23,7 @@
 #error small, #error small pre {
     font-size: 80%;
 }
+
+#simulationId {
+    font-family: monospace;
+}

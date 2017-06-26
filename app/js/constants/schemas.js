@@ -13,6 +13,61 @@ function getEnfants(situation) {
     return _.map(enfants, 'id');
 }
 
+var familleSchema = {
+    parents: {
+        fn: function(situation) {
+            return _.map(_.filter(situation.individus, function(individu) {
+                return _.includes(['demandeur', 'conjoint'], individu.role);
+            }), 'id');
+        },
+        copyTo3PreviousMonths: false,
+    },
+    enfants: {
+        fn: getEnfants,
+        copyTo3PreviousMonths: false,
+    },
+    proprietaire_proche_famille: {
+        fn: function(situation) {
+            return situation.logement.membreFamilleProprietaire;
+        }
+    },
+    rsa_isolement_recent: {
+        fn: function(situation) {
+            return situation.individus[0].isolementRecent;
+        }
+    },
+    parisien: {
+        fn: function(situation) { return situation.logement.inhabitantForThreeYearsOutOfLastFive; }
+    },
+};
+
+var foyerFiscalSchema = {
+    declarants: {
+        fn: function(situation) {
+            return _.map(_.filter(situation.individus, function(individu) {
+                return _.includes(['demandeur', 'conjoint'], individu.role);
+            }), 'id');
+        },
+        copyTo3PreviousMonths: false,
+    },
+    // Today, in mes-aides, all children and only them are transmitted to Openfisca as personnes à charge
+    personnes_a_charge: {
+        fn: getEnfants,
+        copyTo3PreviousMonths: false,
+    },
+    rfr: {
+        fn: function (situation) {
+            if (situation.ressourcesYearMoins2Captured) {
+                var anneeFiscaleN2 = moment(situation.dateDeValeur).subtract(2, 'years').year();
+                var result = {};
+                result[anneeFiscaleN2] = situation.rfr;
+                return result;
+            }
+        },
+        copyTo3PreviousMonths: false,
+    },
+};
+
 var menageSchema = {
     personne_de_reference: {
         fn: function(situation) {
@@ -83,5 +138,7 @@ var menageSchema = {
 };
 
 angular.module('ddsCommon').constant('mappingSchemas', {
+    famille: familleSchema,
+    foyerFiscal: foyerFiscalSchema,
     menage: menageSchema,
 });

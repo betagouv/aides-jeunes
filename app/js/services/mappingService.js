@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('MappingService', function($q, $http, droitsDescription) {
+angular.module('ddsApp').service('MappingService', function($q, $http, droitsDescription, MappingPeriodService) {
     function generateRequestedVariables() {
         var structuredPrestations = _.values(droitsDescription).map(function(level) {
             return _.values(level).map(function(provider) {
@@ -19,7 +19,10 @@ angular.module('ddsApp').service('MappingService', function($q, $http, droitsDes
                 var request = {
                     intermediate_variables: true,
                     labels: true,
-                    scenarios: [ simulation.data.scenarios[0] ],
+                    scenarios: [{
+                        test_case: simulation.data.scenarios[0].test_case,
+                        period: 'month:' + MappingPeriodService.toOpenFiscaFormat(situation.dateDeValeur),
+                    }],
                     variables: generateRequestedVariables(),
                 };
 

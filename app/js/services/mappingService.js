@@ -144,13 +144,35 @@ angular.module('ddsApp').service('MappingService', function($q, $http, droitsDes
         return foyerFiscal;
     }
 
+    function setNonInjectedPrestationsToZero(familles, individus, dateDeValeur) {
+        var subjects = {
+            famille: familles,
+            individu: individus,
+        };
+
+        var prestationsFinancieres = _.pickBy(requestedVariables, function(definition, key) {
+            return (! definition.type) || definition.type === 'float';
+        });
+
+        _.forEach(prestationsFinancieres, function(definition, prestationName) {
+            _.forEach(subjects[definition.entity || 'famille'], function(entity) {
+                _.forEach(MappingPeriodService.getPeriods(dateDeValeur).last12Months, function(period) {
+                    entity[prestationName] = entity[prestationName] || {};
+                    entity[prestationName][period] = entity[prestationName][period] || 0;
+                });
+            });
+        });
+    }
+
     function buildOpenFiscaTestCase(situation, computedTestCase) {
-        var famille = mapFamille(situation),
+        var familles = [ mapFamille(situation) ],
             individus = computedTestCase.individus,
             foyerFiscal = mapFoyerFiscal(situation);
 
+        setNonInjectedPrestationsToZero(familles, individus, situation.dateDeValeur);
+
         return {
-            familles: [ famille ],
+            familles: familles,
             foyers_fiscaux: [ foyerFiscal ],
             individus: individus,
             menages: [ buildOpenFiscaEntity(situation, mappingSchemas.menage, situation) ]

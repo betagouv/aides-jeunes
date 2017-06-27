@@ -50,18 +50,22 @@ describe('aides descriptions', function() {
                                 var uncomputability = aide.uncomputability[uncomputabilityId];
 
                                 it('should have a reason', function() {
-                                    expect(uncomputability.reason).toBeA('string');
-                                    expect(uncomputability.reason.length).toBeGreaterThan(1);
+                                    expect(uncomputability.reason).toBeA('object');
+                                });
+
+                                it('should have a secondPerson reason', function() {
+                                    expect(uncomputability.reason.secondPerson).toBeA('string');
+                                    expect(uncomputability.reason.secondPerson.length).toBeGreaterThan(1);
+                                });
+
+                                it('should have a thirdPerson reason', function() {
+                                    expect(uncomputability.reason.thirdPerson).toBeA('string');
+                                    expect(uncomputability.reason.thirdPerson.length).toBeGreaterThan(1);
                                 });
 
                                 it('should have a solution', function() {
-                                    expect(uncomputability.reason).toBeA('string');
+                                    expect(uncomputability.solution).toBeA('string');
                                     expect(uncomputability.solution.length).toBeGreaterThan(1);
-                                });
-
-                                it('should have a thirdPersonReason', function() {
-                                    expect(uncomputability.thirdPersonReason).toBeA('string');
-                                    expect(uncomputability.thirdPersonReason.length).toBeGreaterThan(1);
                                 });
                             });
                         });

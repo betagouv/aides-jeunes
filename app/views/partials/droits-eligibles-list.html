@@ -16,7 +16,7 @@
 
         <div class="col-xs-3 col-sm-2">
           <div class="montant">
-            <span ng-if="isNumber(droit.montant)">{{ round(droit) }}&nbsp;{{ droit.unit || '€' }}</span>
+            <span ng-if="isNumber(droit.montant)">{{ round(droit) | currency : ( droit.unit || '€' ) : 0 }}</span>
             <span ng-if="isString(droit.montant)" class="montant-inconnu">?</span>
             <i class="fa fa-warning text-warning" ng-if="shouldDisplayYM2Warning(droit)"></i>
           </div>

@@ -29,20 +29,6 @@ h1[tabindex="-1"] {
   padding-bottom: 5px;
 }
 
-.recap-situation {
-  @extend .well;
-  border-top: none;
-  background-color: white;
-
-  h3 {
-    margin-top: 0;
-  }
-
-  .section-header {
-    margin-top: 21px;
-  }
-}
-
 .layout {
   padding-top: 10px;
   padding-bottom: 20px;
@@ -86,25 +72,18 @@ h1[tabindex="-1"] {
   opacity: 0;
 }
 
-$revenusActivite: #FFBC67;
 $revenusActivite-light: #ffd29a;
 
-$allocations: #DA727E;
 $allocations-light: #efc3c8;
 
-$indemnites: #AC6C82;
 $indemnites-light: #d1adb9;
 
-$pensions: #685C79;
 $pensions-light: #cfcad7;
 
-$patrimoine: #455C7B;
 $patrimoine-light: #b6c4d6;
 
-$autre: #39747B;
 $autre-light: #a9d2d7;
 
-$rpns: #8366d4;
 $rpns-light: #a8a1c8;
 
 .btn-default, .btn {
@@ -163,65 +142,6 @@ $rpns-light: #a8a1c8;
 
 .capture-patrimoine {
   @include ressource-category-capture($patrimoine-light);
-}
-
-@mixin panel-variant-recap($color) {
-  border-left: 7px solid $color;
-  &.active, &.active:focus {
-    @include button-variant(white, $color, $color);
-  }
-}
-
-.accordion-ressources {
-  .panel {
-    border: none;
-    font-size: 12px;
-  }
-
-  .panel-heading {
-    padding: 5px 8px;
-  }
-
-  .panel-title {
-    font-size: 14px;
-  }
-
-  .panel-body {
-    padding: 10px;
-  }
-
-  hr {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-
-  .recap-indemnites {
-    @include panel-variant-recap($indemnites);
-  }
-
-  .recap-pensions {
-    @include panel-variant-recap($pensions);
-  }
-
-  .recap-allocations {
-    @include panel-variant-recap($allocations);
-  }
-
-  .recap-revenusActivite {
-    @include panel-variant-recap($revenusActivite);
-  }
-
-  .recap-autre {
-    @include panel-variant-recap($autre);
-  }
-
-  .recap-rpns {
-    @include panel-variant-recap($rpns);
-  }
-
-  .recap-patrimoine {
-    @include panel-variant-recap($patrimoine);
-  }
 }
 
 .whiteframe-z1 {

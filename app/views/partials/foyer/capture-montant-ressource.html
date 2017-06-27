@@ -50,7 +50,7 @@
           Montant invalide
         </span>
         <span class="text-danger" ng-if="form.submitted && form[ressource.type.id + '-year'].$error.min">
-          La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum }} €
+          La somme depuis {{ debutAnneeGlissante }} fait au moins {{ monthsSum | currency }}
         </span>
       </div>
     </div>

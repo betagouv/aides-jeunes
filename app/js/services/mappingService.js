@@ -144,6 +144,22 @@ angular.module('ddsApp').service('MappingService', function($q, $http, droitsDes
         return foyerFiscal;
     }
 
+    function mapIndividus(situation) {
+        var individus = _.filter(situation.individus, function(individu) {
+            return mappingSchemas.isIndividuValid(individu, situation);
+        });
+
+        return _.map(individus, function(individu) {
+            if (individu.role === 'demandeur' && situation.patrimoine) {
+                // Mongoose embeded objects must be converted to objects
+                _.extend(individu, situation.patrimoine.toObject ? situation.patrimoine.toObject() : situation.patrimoine);
+            }
+            var openfiscaIndividu = buildOpenFiscaEntity(individu, mappingSchemas.individu, situation);
+            applyRessources(individu, openfiscaIndividu, ressourceMapping.individu, situation);
+            return openfiscaIndividu;
+        });
+    }
+
     function setNonInjectedPrestationsToZero(familles, individus, dateDeValeur) {
         var subjects = {
             famille: familles,
@@ -166,7 +182,7 @@ angular.module('ddsApp').service('MappingService', function($q, $http, droitsDes
 
     function buildOpenFiscaTestCase(situation, computedTestCase) {
         var familles = [ mapFamille(situation) ],
-            individus = computedTestCase.individus,
+            individus = mapIndividus(situation),
             foyerFiscal = mapFoyerFiscal(situation);
 
         setNonInjectedPrestationsToZero(familles, individus, situation.dateDeValeur);

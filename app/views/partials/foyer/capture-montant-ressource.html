@@ -67,7 +67,7 @@
     <div id="help-{{ ressource.type.id }}-year"
       class="text-danger"
       ng-if="form.submitted && form[ressource.type.id + '-year'].$error.min">
-      <p>Vous avez indiqué avoir perçu {{ monthsSum }} € sur les 3 derniers mois, mais seulement {{ form[ressource.type.id + '-year'].$viewValue }} € sur les 12 derniers mois. Vérifiez les montants indiqués dans les quatre champs de votre {{ ressourceType.label }}.</p>
+      <p>Vous avez indiqué avoir perçu {{ monthsSum | currency }} sur les 3 derniers mois, mais seulement {{ form[ressource.type.id + '-year'].$viewValue | currency }} sur les 12 derniers mois. Vérifiez les montants indiqués dans les quatre champs de votre {{ ressourceType.label }}.</p>
     </div>
     <div class="ressource-interrupted" ng-if="! ressource.type.revenuExceptionnel">
       <label>

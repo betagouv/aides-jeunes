@@ -23,6 +23,8 @@ var droitsDescription = {
                         'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14953.do',
                         'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/Formulaire_allocation_solidarite_personnes_agees.pdf'
                     },
+                    'entity': 'famille',
+                    'type': 'float',
                 },
             },
         },
@@ -45,6 +47,8 @@ var droitsDescription = {
                         'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
                         'rsi': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do'
                     },
+                    'entity': 'famille',
+                    'type': 'float',
                 },
                 'asi': {
                     'label': 'Allocation supplémentaire d’invalidité',
@@ -58,6 +62,8 @@ var droitsDescription = {
                         'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/formulaire_allocation_supplementaire_invalidite.pdf',
                         'cnav': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-asi.pdf'
                     },
+                    'entity': 'famille',
+                    'type': 'float',
                 },
                 'cmu_c': {
                     'label': 'Couverture maladie universelle complémentaire',
@@ -73,6 +79,8 @@ var droitsDescription = {
                         'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
                         'rsi': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do'
                     },
+                    'entity': 'famille',
+                    'type': 'bool',
                 },
             },
         },
@@ -93,7 +101,9 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
-                    'isBaseRessourcesYearMoins2': true
+                    'entity': 'famille',
+                    'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                 },
                 'cf': {
                     'label': 'Complément familial',
@@ -105,7 +115,9 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
-                    'isBaseRessourcesYearMoins2': true
+                    'entity': 'famille',
+                    'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                 },
                 'asf': {
                     'label': 'Allocation de soutien familial',
@@ -120,6 +132,8 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationdesoutienfamilial/!ut/p/a1/',
                         'msa': 'http://www.msa.fr/lfr/documents/11566/48472/Demande+d%27allocation+de+soutien+familial+%28ASF%29.pdf'
                     },
+                    'entity': 'famille',
+                    'type': 'float',
                 },
                 'paje_base': {
                     'label': 'Prestation d’accueil du jeune enfant – Allocation de base',
@@ -135,7 +149,9 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
-                    'isBaseRessourcesYearMoins2': true
+                    'entity': 'famille',
+                    'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                 },
                 'rsa': {
                     'label': 'Revenu de solidarité active',
@@ -153,14 +169,22 @@ var droitsDescription = {
                         'caf': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
                         'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do'
                     },
+                    'entity': 'famille',
+                    'type': 'float',
                     'uncomputability': {
                         'tns': {
-                            'reason': 'vous avez des revenus en tant qu’indépendant·e',
-                            'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a target="_blank" rel="noopener" title="Article R262-23 du code de l’action sociale" href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont vos revenus non salariés impacteront le montant de votre aide.'
+                            'reason': {
+                                'secondPerson': 'vous avez des revenus en tant qu’indépendant·e',
+                                'thirdPerson': 'le demandeur a des revenus en tant qu’indépendant·e',
+                            },
+                            'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a target="_blank" rel="noopener" title="Article R262-23 du code de l’action sociale" href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont vos revenus non salariés impacteront le montant de votre aide.',
                         },
                         'conjoint_tns': {
-                            'reason': 'votre conjoint·e a des revenus en tant qu’indépendant·e',
-                            'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a target="_blank" rel="noopener" title="Article R262-23 du code de l’action sociale" href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont les revenus non salariés de votre conjoint·e impacteront le montant de votre aide.'
+                            'reason': {
+                                'secondPerson': 'votre conjoint·e a des revenus en tant qu’indépendant·e',
+                                'thirdPerson': 'le conjoint du demandeur a des revenus en tant qu’indépendant·e',
+                            },
+                            'solution': 'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a target="_blank" rel="noopener" title="Article R262-23 du code de l’action sociale" href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont les revenus non salariés de votre conjoint·e impacteront le montant de votre aide.',
                         }
                     }
                 },
@@ -178,15 +202,23 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/',
                         'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=98643'
                     },
+                    'entity': 'famille',
                     'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                     'uncomputability': {
                         'primo_accedant': {
-                            'reason': 'vous êtes <abbr title="Non propriétaire de votre résidence principale dans les deux années précédant l’achat de votre résidence actuelle">primo-accédant</abbr> à la propriété de votre résidence principale',
-                            'solution': 'Le <a target="_blank" rel="noopener" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> pourra estimer vos droits sur la base de la valeur de votre bien.'
+                            'reason': {
+                                'secondPerson': 'vous êtes <abbr title="Non propriétaire de votre résidence principale dans les deux années précédant l’achat de votre résidence actuelle">primo-accédant</abbr> à la propriété de votre résidence principale',
+                                'thirdPerson': 'le demandeur est primo-accédant à la propriété de votre résidence principale',
+                            },
+                            'solution': 'Le <a target="_blank" rel="noopener" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> pourra estimer vos droits sur la base de la valeur de votre bien.',
                         },
                         'locataire_foyer': {
-                            'reason': 'vous logez dans un foyer',
-                            'solution': 'Le <a target="_blank" rel="noopener" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> vous donnera des estimations selon les différentes conventions possibles de votre foyer.'
+                            'reason': {
+                                'secondPerson': 'vous logez dans un foyer',
+                                'thirdPerson': 'le demandeur loge dans un foyer',
+                            },
+                            'solution': 'Le <a target="_blank" rel="noopener" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> vous donnera des estimations selon les différentes conventions possibles de votre foyer.',
                         }
                     }
                 },
@@ -199,24 +231,31 @@ var droitsDescription = {
                     'teleservices': {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/',
                         'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=44739105'
-                    }
+                    },
+                    'entity': 'famille',
+                    'type': 'float',
                 },
                 'aah': {
                     'isMontantAnnuel': false,
                     'label': 'Allocation aux adultes handicapés',
                     'shortLabel': 'AAH',
                     'description': 'L’allocation aux adultes handicapés (AAH) est une aide financière qui permet d’assurer un revenu minimum. Cette aide est attribuée sous réserve de respecter 4 critères : le taux d’incapacité, l’âge, la nationalité et les ressources. L’AAH peut se cumuler soit avec le complément de ressources, soit avec la majoration pour la vie autonome ou, dans certains cas, l’aide à l’autonomie.',
-                    'isBaseRessourcesYearMoins2': true,
-                    'uncomputability': {
-                        'intervention_CDAPH_necessaire': {
-                            'reason': 'votre taux d’incapacité sera déterminé par la <abbr title="Commission des droits et de l’autonomie des personnes handicapées">CDAPH</abbr> après le dépôt de votre demande',
-                            'solution': 'Contactez <a target="_blank" rel="noopener" href="https://informations.handicap.fr/carte-france-mdph.php">la <abbr title="Maison départementale des personnes handicapées">MDPH</abbr> la plus proche</a> pour faire établir ce taux. Attention, votre éligibilité à l’AAH peut impacter vos droits au RSA et à la CMU-C.'
-                        }
-                    },
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242',
                     'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                     'forms': {
                         'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
+                    },
+                    'isBaseRessourcesYearMoins2': true,
+                    'entity': 'individu',
+                    'type': 'float',
+                    'uncomputability': {
+                        'intervention_CDAPH_necessaire': {
+                            'reason': {
+                                'secondPerson': 'votre taux d’incapacité sera déterminé par la <abbr title="Commission des droits et de l’autonomie des personnes handicapées">CDAPH</abbr> après le dépôt de votre demande',
+                                'thirdPerson': 'le taux d’incapacité du demandeur doit être déterminé par la CDAPH',
+                            },
+                            'solution': 'Contactez <a target="_blank" rel="noopener" href="https://informations.handicap.fr/carte-france-mdph.php">la <abbr title="Maison départementale des personnes handicapées">MDPH</abbr> la plus proche</a> pour faire établir ce taux. Attention, votre éligibilité à l’AAH peut impacter vos droits au RSA et à la CMU-C.',
+                        }
                     },
                 },
             },
@@ -232,6 +271,8 @@ var droitsDescription = {
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F12484',
                     /* En principe, formulaire envoyé automatiquement ; lien vers brochure pole emploi */
                     'instructions': 'http://www.pole-emploi.fr/front/common/tools/download_file.jspz?mediaid=186108',
+                    'entity': 'famille',
+                    'type': 'float',
                 },
             },
         },
@@ -249,7 +290,9 @@ var droitsDescription = {
                     'forms': {
                         '2016-17': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12539.do'
                     },
-                    'isBaseRessourcesYearMoins2': true
+                    'entity': 'famille',
+                    'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                 },
                 'bourse_lycee': {
                     'isMontantAnnuel': true,
@@ -261,7 +304,9 @@ var droitsDescription = {
                     'forms': {
                         '2017-18': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do'
                     },
-                    'isBaseRessourcesYearMoins2': true
+                    'entity': 'famille',
+                    'isBaseRessourcesYearMoins2': true,
+                    'type': 'float',
                 },
             },
         },
@@ -283,8 +328,10 @@ var droitsDescription = {
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille_7',
                     'form': 'https://api-site.paris.fr/images/73485',
+                    'entity': 'famille',
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_forfait_famille': {
                     'isMontantAnnuel': true,
@@ -293,8 +340,10 @@ var droitsDescription = {
                     'description': 'Paris Forfait Famille est une aide destinée aux familles nombreuses avec au moins trois enfants à charge. Elle peut se cumuler avec l’Allocation de Soutien aux Parents d’Enfants Handicapés. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-forfait-famille_2',
                     'form': 'https://api-site.paris.fr/images/74809',
+                    'entity': 'famille',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_logement_psol': {
                     'label': 'Paris Solidarité',
@@ -305,8 +354,10 @@ var droitsDescription = {
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-solidarite_3',
                     'form': 'http://api-site-cdn.paris.fr/images/154848.pdf',
+                    'entity': 'famille',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_logement': {
                     'label': 'Paris Logement',
@@ -318,8 +369,10 @@ var droitsDescription = {
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement_6',
                     'form': 'http://api-site-cdn.paris.fr/images/98406.pdf',
+                    'entity': 'famille',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_logement_aspeh': {
                     'label': 'Allocation de Soutien aux Parents d’Enfants Handicapés',
@@ -327,8 +380,10 @@ var droitsDescription = {
                     'description': 'L’Allocation de Soutien aux Parents d’Enfants Handicapés est réservée aux familles ayant à charge un ou plusieurs enfants handicapés. Son montant dépend du nombre de jours passés par le ou les enfants au domicile. L’aide est versée tous les mois et accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#allocation-de-soutien-aux-parents-d-enfants-handicapes_9',
                     'form': 'http://api-site-cdn.paris.fr/images/132126.pdf',
+                    'entity': 'famille',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_logement_plfm': {
                     'label': 'Paris Logement Familles Monoparentales',
@@ -340,8 +395,10 @@ var droitsDescription = {
                     ],
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille-monoparentale_5',
                     'form': 'https://api-site.paris.fr/images/72423',
+                    'entity': 'famille',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_energie_famille': {
                     'isMontantAnnuel': true,
@@ -350,8 +407,10 @@ var droitsDescription = {
                     'description': 'L’allocation Paris Énergie Famille est réservée aux familles ayant un ou plusieurs enfants à charge, sous condition d’imposition. Cette aide permet de les soutenir dans leurs dépenses d’électricité et/ou de gaz. Paris Énergie Famille est directement versée aux fournisseurs d’énergie. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-energie-famille_8',
                     'form': 'https://api-site.paris.fr/images/154764.pdf',
+                    'entity': 'famille',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 },
                 'paris_complement_sante': {
                     'isMontantAnnuel': true,
@@ -360,8 +419,10 @@ var droitsDescription = {
                     'description': 'Le Complément Santé Paris est destiné aux personnes âgées de 65 ans ou plus. L’aide peut être versée à partir de 60 ans pour les personnes reconnues inaptes au travail. Elle a pour but d’aider les foyers modestes à obtenir une mutuelle. L’aide est accordée pour une durée maximale d’un an. À partir du 2<sup>e</sup> renouvellement, le Complément Santé Paris peut être accordé pour une durée maximale de deux ans.',
                     'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
                     'form': 'https://api-site.paris.fr/images/78343',
+                    'entity': 'famille',
                     'isBaseRessourcesYearMoins2': false,
-                    'roundToNearest10': false
+                    'roundToNearest10': false,
+                    'type': 'float',
                 }
             }
         },
@@ -380,7 +441,9 @@ var droitsDescription = {
                     'conditions': [],
                     'link': 'https://www.seine-saint-denis.fr/ADPA.html',
                     'form': 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa_mai_2016_vdef.pdf',
-                    'isBaseRessourcesYearMoins2': false
+                    'entity': 'famille',
+                    'isBaseRessourcesYearMoins2': false,
+                    'type': 'float',
                 },
             }
         },
@@ -399,7 +462,9 @@ var droitsDescription = {
                     'description': 'La tarification solidaire est une réduction de 50 %, 85 % ou 100 % (gratuité) de l’abonnement mensuel du réseau de transports en commun Star. La réduction s’applique également au service Handistar. Elle est accordée aux familles de Rennes Métropole ayant de faibles ressources. La tarification est accordée à tous les membres du foyer.',
                     'link': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/',
                     'instructions': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/#c33081',
+                    'entity': 'individu',
                     'isBaseRessourcesYearMoins2': false,
+                    'type': 'float',
                 },
             }
         }

@@ -1,6 +1,7 @@
+(function() {
 'use strict';
 
-angular.module('ddsCommon').constant('ressourceCategories', [
+var ressourceCategories = [
     {
         id: 'revenusActivite',
         label: 'Revenus d’activité'
@@ -29,9 +30,9 @@ angular.module('ddsCommon').constant('ressourceCategories', [
         id: 'autre',
         label: 'Autres'
     }
-]);
+];
 
-angular.module('ddsCommon').constant('ressourceTypes', [
+var ressourceTypes = [
     {
         id: 'salaire_net_hors_revenus_exceptionnels',
         label: 'Salaire (hors primes)',
@@ -81,56 +82,64 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         id: 'aide_logement',
         label: 'Aides au logement (APL, ALS, ALF)',
         category: 'allocations',
-        prefix: 'des'
+        prefix: 'des',
+        entity: 'famille'
     },
     {
         id: 'af',
         label: 'Allocations familiales',
         category: 'allocations',
-        prefix: 'des'
+        prefix: 'des',
+        entity: 'famille'
     },
     {
         id: 'cf',
         label: 'Complément familial (CF)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
+        entity: 'famille'
     },
     {
         id: 'asf',
         label: 'Allocation de soutien familial (ASF)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        entity: 'famille'
     },
     {
         id: 'rsa',
         label: 'Revenu de solidarité active (RSA)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
+        entity: 'famille'
     },
     {
         id: 'ppa',
         label: 'Prime d’activité',
         category: 'revenusActivite',
-        prefix: 'la'
+        prefix: 'la',
+        entity: 'famille'
     },
     {
         id: 'aspa',
         label: 'Allocation de solidarité aux personnes âgées (ASPA)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        entity: 'famille'
     },
     {
         id: 'asi',
         label: 'Allocation supplémentaire d’invalidité (ASI)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        entity: 'famille'
     },
     {
         id: 'ass',
         label: 'Allocation de solidarité spécifique (ASS)',
         category: 'allocations',
-        prefix: 'l’'
-
+        prefix: 'l’',
+        entity: 'famille'
     },
     {
         id: 'aah',
@@ -154,7 +163,8 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         id: 'aeeh',
         label: 'Allocation d’éducation de l’enfant handicapé (AEEH)',
         category: 'allocations',
-        prefix: 'l’'  // We don't actually need to capture the amount, but users want to declare it, and presence can improve some Paris aides. See https://github.com/sgmap/mes-aides-ui/issues/191
+        prefix: 'l’',  // We don't actually need to capture the amount, but users want to declare it, and presence can improve some Paris aides. See https://github.com/sgmap/mes-aides-ui/issues/191
+        entity: 'famille'
     },
     {
         id: 'pch',
@@ -166,19 +176,22 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         id: 'paje_base',
         label: 'Prestation d’accueil du jeune enfant (PAJE) - Allocation de base',
         category: 'allocations',
-        prefix: 'la'
+        prefix: 'la',
+        entity: 'famille'
     },
     {
         id: 'paje_clca',
         label: 'Complément de libre choix d’activité (CLCA)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
+        entity: 'famille'
     },
     {
         id: 'paje_prepare',
         label: 'Prestation partagée d’éducation de l’enfant (PreParE)',
         category: 'allocations',
-        prefix: 'la'
+        prefix: 'la',
+        entity: 'famille'
     },
     {
         id: 'indemnites_journalieres_maternite',
@@ -318,9 +331,9 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         category: 'rpns',
         isMontantAnnuel: true
     }
-]);
+];
 
-angular.module('ddsCommon').constant('categoriesRnc', [
+var categoriesRnc = [
     {
         id: 'salaire_imposable_ym2',
         label: 'Revenus d’activité connus',
@@ -350,4 +363,20 @@ angular.module('ddsCommon').constant('categoriesRnc', [
         label: 'Pensions alimentaires versées',
         sources: ['pensions_alimentaires_versees_individu']
     }
-]);
+];
+
+
+/* Export either through Angular loader or CommonJS */
+if (typeof module != 'undefined' && typeof angular === 'undefined') {  // we're in Node
+    module.exports = {
+        ressourceCategories: ressourceCategories,
+        ressourceTypes: ressourceTypes,
+        categoriesRnc: categoriesRnc
+    };
+} else {  // we're in the browser
+    angular.module('ddsCommon').constant('ressourceCategories', ressourceCategories);
+    angular.module('ddsCommon').constant('ressourceTypes', ressourceTypes);
+    angular.module('ddsCommon').constant('categoriesRnc', categoriesRnc);
+}
+/* End of export */
+})();

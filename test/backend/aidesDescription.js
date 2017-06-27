@@ -1,4 +1,5 @@
 var expect = require('expect');
+var https = require('https');
 
 
 describe('aides descriptions', function() {
@@ -41,6 +42,47 @@ describe('aides descriptions', function() {
 
                     it('should have a teleservice, a form, or instructions', function() {
                         expect(aide.teleservice || aide.form || aide.instructions).toBeA('string');
+                    });
+
+                    if (aide.uncomputability) {
+                        Object.keys(aide.uncomputability).forEach(function(uncomputabilityId) {
+                            describe(uncomputabilityId, function() {
+                                var uncomputability = aide.uncomputability[uncomputabilityId];
+
+                                it('should have a reason', function() {
+                                    expect(uncomputability.reason).toBeA('object');
+                                });
+
+                                it('should have a secondPerson reason', function() {
+                                    expect(uncomputability.reason.secondPerson).toBeA('string');
+                                    expect(uncomputability.reason.secondPerson.length).toBeGreaterThan(1);
+                                });
+
+                                it('should have a thirdPerson reason', function() {
+                                    expect(uncomputability.reason.thirdPerson).toBeA('string');
+                                    expect(uncomputability.reason.thirdPerson.length).toBeGreaterThan(1);
+                                });
+
+                                it('should have a solution', function() {
+                                    expect(uncomputability.solution).toBeA('string');
+                                    expect(uncomputability.solution.length).toBeGreaterThan(1);
+                                });
+                            });
+                        });
+                    }
+
+                    it('should reflect OpenFisca description', function(done) {
+                        https.get(`https://api-test.openfisca.fr/variable/${aideName}`, res => {
+                            res.setEncoding('utf8');
+                            let rawData = '';
+                            res.on('data', (chunk) => { rawData += chunk; });
+                            res.on('end', () => {
+                                const parsedData = JSON.parse(rawData);
+                                expect(aide.type).toEqual(parsedData.valueType.toLowerCase());
+                                expect((aide.entity).toLowerCase()).toEqual(parsedData.entity);
+                                done();
+                            });
+                        });
                     });
                 });
             });

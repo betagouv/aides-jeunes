@@ -180,7 +180,7 @@ angular.module('ddsApp').service('MappingService', function($q, $http, droitsDes
         });
     }
 
-    function buildOpenFiscaTestCase(situation, computedTestCase) {
+    function buildOpenFiscaTestCase(situation) {
         var familles = [ mapFamille(situation) ],
             individus = mapIndividus(situation),
             foyerFiscal = mapFoyerFiscal(situation);
@@ -196,20 +196,18 @@ angular.module('ddsApp').service('MappingService', function($q, $http, droitsDes
     }
 
     function buildOpenFiscaRequest(situation) {
-        return $q(function(resolve, reject) {
-            return $http.get('/api/situations/' + situation._id + '/openfisca-request').then(function(simulation) {
-                var request = {
-                    intermediate_variables: true,
-                    labels: true,
-                    scenarios: [{
-                        test_case: buildOpenFiscaTestCase(situation, simulation.data.scenarios[0].test_case),
-                        period: 'month:' + MappingPeriodService.toOpenFiscaFormat(situation.dateDeValeur),
-                    }],
-                    variables: _.keys(requestedVariables).sort(),
-                };
+        return $q(function(resolve) {
+            var request = {
+                intermediate_variables: true,
+                labels: true,
+                scenarios: [{
+                    test_case: buildOpenFiscaTestCase(situation),
+                    period: 'month:' + MappingPeriodService.toOpenFiscaFormat(situation.dateDeValeur),
+                }],
+                variables: _.keys(requestedVariables).sort(),
+            };
 
-                resolve(request);
-            }, reject);
+            resolve(request);
         });
     }
 

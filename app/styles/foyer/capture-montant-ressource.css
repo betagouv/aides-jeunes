@@ -1,67 +1,86 @@
-.panel-montant .checkbox {
-    margin-top: .5em;
+.ressource-input .months, .ressource-input .month, .ressource-input .month label {
+    display: flex;
 }
 
-.panel-montant.indemnites {
+.ressource-input .month, .ressource-input .month label {
+    flex-direction: column;
+}
+
+.ressource-input .month label {
+    min-height: 3em;  /* sum is always on two lines (+ 1 line of margin), ensure all labels are aligned */
+    justify-content: flex-end;
+}
+
+.ressource-input ul.help-block {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.ressource-input .ressource-interrupted {
+    text-align: right;
+    margin-top: 1em;
+    color: black;
+}
+
+.ressource-input.indemnites {
     border-color: #AC6C82;
 }
 
-.panel-montant.indemnites .panel-heading {
+.ressource-input.indemnites .panel-heading {
     background-color: #e3ced5;
 }
 
-.panel-montant.pensions {
+.ressource-input.pensions {
     border-color: #685C79;
 }
 
-.panel-montant.pensions .panel-heading {
+.ressource-input.pensions .panel-heading {
     background-color: #eae7ed;
 }
 
-.panel-montant.allocations {
+.ressource-input.allocations {
     border-color: #DA727E;
 }
 
-.panel-montant.allocations .panel-heading {
+.ressource-input.allocations .panel-heading {
     background-color: #faebed;
 }
 
-.panel-montant.revenusActivite {
+.ressource-input.revenusActivite {
     border-color: #FFBC67;
 }
 
-.panel-montant.revenusActivite .panel-heading {
+.ressource-input.revenusActivite .panel-heading {
     background-color: #ffe9cd;
 }
 
-.panel-montant.autre {
+.ressource-input.autre {
     border-color: #39747B;
 }
 
-.panel-montant.autre .panel-heading {
+.ressource-input.autre .panel-heading {
     background-color: #cce4e7;
 }
 
-.panel-montant.rpns {
+.ressource-input.rpns {
     border-color: #8366d4;
 }
 
-.panel-montant.rpns .panel-heading {
+.ressource-input.rpns .panel-heading {
     background-color: #dad7e8;
 }
 
-.panel-montant.patrimoine {
+.ressource-input.patrimoine {
     border-color: #455C7B;
 }
 
-.panel-montant.patrimoine .panel-heading {
+.ressource-input.patrimoine .panel-heading {
     background-color: #d7dee8;
 }
 
 
-@media (min-width: 768px) {
-    .ressources-values {
-        display: flex;
-        align-items: flex-end;
+@media (max-width: 768px) {
+    .ressource-input {
+        flex-direction: column;
     }
 }

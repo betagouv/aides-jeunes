@@ -9,7 +9,7 @@ steps: [
     ResourcesComponent.setLast12MonthsInput(1000),
     ResourcesComponent.submit(),
     {
-        'ResourcesComponent.errorMessage': /La somme/,
+        'ResourcesComponent.errorMessage': /Vous avez indiqué/,
     },
     ResourcesComponent.setLast12MonthsInput(12000),
     ResourcesComponent.submit(),

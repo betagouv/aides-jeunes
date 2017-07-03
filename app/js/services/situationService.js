@@ -5,45 +5,6 @@ var DATE_FIELDS = ['dateDeNaissance', 'dateArretDeTravail', 'dateDernierContratT
 angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc) {
     var situation;
 
-    var flattenRessource = function(ressource, source, target) {
-        if (ressource.periode) {
-            target.push(ressource);
-            return;
-        }
-
-        var debutPeriode = moment(ressource.debutPeriode, 'YYYY-MM');
-        var finPeriode = moment(ressource.finPeriode, 'YYYY-MM');
-        var monthsDiff = finPeriode.diff(debutPeriode, 'months') + 1;
-        var totalMontantToFlatten = ressource.montant;
-        _.filter(source, {type: ressource.type}).forEach(function(diffRessource) {
-            var periode = diffRessource.periode;
-            if (periode) {
-                periode = moment(periode, 'YYYY-MM');
-                if ((periode.isAfter(debutPeriode) || periode.isSame(debutPeriode)) &&
-                    (periode.isBefore(finPeriode) || periode.isSame(finPeriode))) {
-                    totalMontantToFlatten -= diffRessource.montant;
-                    monthsDiff--;
-                }
-            }
-        });
-
-        var flattenedMontant = Math.round(totalMontantToFlatten / monthsDiff * 100) / 100;
-
-        while (debutPeriode.isBefore(finPeriode) || debutPeriode.isSame(finPeriode)) {
-            if (! _.find(source, {periode: debutPeriode.format('YYYY-MM')})) {
-                var splittedRessource = {
-                    periode: debutPeriode.format('YYYY-MM'),
-                    montant: flattenedMontant
-                };
-                if (ressource.type) {
-                    splittedRessource.type = ressource.type;
-                }
-                target.push(splittedRessource);
-            }
-            debutPeriode.add(1, 'months');
-        }
-    };
-
     function convertDatesToMoments(individu) {
         DATE_FIELDS.forEach(function(dateField) {
             if (individu[dateField]) {
@@ -71,20 +32,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             return situation;
         },
 
-        restoreRemote: function(situationId) {
-            return $http.get('/api/situations/' + situationId, {
-                params: { cacheBust: Date.now() }
-            }).then(function(result) {
-                situation = result.data;
-
-                situation.individus.forEach(convertDatesToMoments);
-
-                $sessionStorage.situation = situation;
-
-                return situation;
-            });
-        },
-
         getMonths: function(baseDate) {
             var refDate = baseDate ? moment(baseDate) : moment();
             refDate.subtract(4, 'months');
@@ -95,49 +42,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                     label: refDate.format('MMMM YYYY')
                 };
             });
-        },
-
-        save: function(situation) {
-            return $http({
-                    method: situation._id ? 'put' : 'post',
-                    url: '/api/situations/' + (situation._id || ''),
-                    data: this.createApiCompatibleSituation(situation)
-                }).then(function(result) {
-                    situation._id = result.data._id;
-                    return result.data;
-                });
-        },
-
-        createApiCompatibleSituation: function(situation) {
-            var individus = _.map(situation.individus, this.createApiCompatibleIndividu);
-
-            var conjoint = _.find(individus, { role: 'conjoint' });
-            var demandeur = _.find(individus, { role: 'demandeur' });
-            if (conjoint) {
-                demandeur.statutMarital = conjoint.statutMarital;
-            } else {
-                demandeur.statutMarital = demandeur.situationFamiliale;
-            }
-
-            var result = {
-                individus: individus,
-                logement: situation.logement,
-                patrimoine: situation.patrimoine,
-                rfr: situation.rfr,
-                ressourcesYearMoins2Captured: this.ressourcesYearMoins2Captured(situation)
-            };
-
-
-            return result;
-        },
-
-        createApiCompatibleIndividu: function(individu) {
-            var result = _.cloneDeep(individu);
-            DATE_FIELDS.forEach(function (dateField) {
-                result[dateField] = individu[dateField] && individu[dateField].format('YYYY-MM-DD');
-            });
-
-            return result;
         },
 
         getDemandeur: function(situation) {

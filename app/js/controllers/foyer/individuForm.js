@@ -34,6 +34,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     ];
 
     var DEFAULT_INDIVIDU = {
+        _id: individuRole,
         nationalite: 'fr',
         assPreconditionRemplie: false,
         scolarite: 'college',
@@ -50,17 +51,25 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         specificSituations: []
     };
 
+    var isIndividuParent = IndividuService.isRoleParent(individuRole);
+    $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
+
     if (individuRole == 'conjoint') {
-        DEFAULT_INDIVIDU.statutMarital = 'mariage';
+        $scope.individu.statutMarital = 'mariage';
     }
 
     if (individuRole == 'enfant') {
         var nextEnfantCount = $scope.enfants.length + 1;
-        DEFAULT_INDIVIDU.firstName = 'Votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
+        $scope.individu.firstName = 'Votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
+
+        var usedIds = $scope.enfants.map(function(enfant) { return enfant._id; });
+        var count = 0;
+        while (_.indexOf(usedIds, 'enfant_' + count) >= 0) {
+            count = count + 1;
+        }
+        $scope.individu._id = 'enfant_' + count;
     }
 
-    var isIndividuParent = IndividuService.isRoleParent(individuRole);
-    $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
 
     $scope.individu.specificSituations.forEach(function(specificSituation) {
         $scope.selectedStatuts[specificSituation] = true;

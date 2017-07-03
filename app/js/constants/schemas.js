@@ -61,7 +61,7 @@ var foyerFiscalSchema = {
     },
     rfr: {
         fn: function (situation) {
-            if (situation.ressourcesYearMoins2Captured) {
+            if (situation.ressourcesYearMoins2Captured && situation.rfr) {
                 var anneeFiscaleN2 = moment(situation.dateDeValeur).subtract(2, 'years').year();
                 var result = {};
                 result[anneeFiscaleN2] = situation.rfr;

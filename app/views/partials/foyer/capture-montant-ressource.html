@@ -4,7 +4,7 @@
   </div>
   <div class="panel-body">
     <div class="months"
-      ng-class="{ 'has-error': form.submitted && form[ressource.type.id + '-year'].$invalid }"
+      ng-class="{ 'has-error': form.submitted && form[ressource.type.id + '-year'].$min }"
       >
       <div class="col-sm-3 month"
         ng-repeat="month in months"
@@ -34,6 +34,7 @@
         </ul>
       </div>
       <div class="col-sm-3 month"
+        ng-class="{ 'has-error': form.submitted && form[ressource.type.id + '-year'].$invalid }"
         >
         <label for="{{ ressource.type.id }}-year">
           Total de {{ debutAnneeGlissante }} à {{ months[months.length-1].label }}&nbsp;inclus

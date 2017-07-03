@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('MappingService', function($q, $http, droitsDescription, MappingPeriodService, mappingSchemas, ressourceMapping) {
+angular.module('ddsApp').service('MappingService', function($http, droitsDescription, MappingPeriodService, mappingSchemas, ressourceMapping) {
     function isNotValidValue(value) {
         return _.isNaN(value) || _.isUndefined(value) || value === null;
     }
@@ -196,19 +196,15 @@ angular.module('ddsApp').service('MappingService', function($q, $http, droitsDes
     }
 
     function buildOpenFiscaRequest(situation) {
-        return $q(function(resolve) {
-            var request = {
-                intermediate_variables: true,
-                labels: true,
-                scenarios: [{
-                    test_case: buildOpenFiscaTestCase(situation),
-                    period: 'month:' + MappingPeriodService.toOpenFiscaFormat(situation.dateDeValeur),
-                }],
-                variables: _.keys(requestedVariables).sort(),
-            };
-
-            resolve(request);
-        });
+        return {
+            intermediate_variables: true,
+            labels: true,
+            scenarios: [{
+                test_case: buildOpenFiscaTestCase(situation),
+                period: 'month:' + MappingPeriodService.toOpenFiscaFormat(situation.dateDeValeur),
+            }],
+            variables: _.keys(requestedVariables).sort(),
+        };
     }
 
     return {

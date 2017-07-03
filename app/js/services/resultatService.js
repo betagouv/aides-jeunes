@@ -91,10 +91,8 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
     }
 
     function simulate(situation) {
-        return MappingService.buildOpenFiscaRequest(situation)
-        .then(function(simulation) {
-            return $http.post('/api/simulations', simulation);
-        }).then(function(response) {
+        $http.post('/api/simulations', MappingService.buildOpenFiscaRequest(situation))
+        .then(function(response) {
             return response.data;
         }).then(computeAides);
     }

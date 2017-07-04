@@ -62,8 +62,8 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         }
     });
 
-    $scope.$on('rfr', function(e, rfr) {
-        $scope.situation.rfr = rfr;
+    $scope.$on('rfr', function(e) {
+        $scope.$broadcast('ym2Captured');
         $state.go('foyer.resultat');
     });
 

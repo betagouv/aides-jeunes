@@ -64,7 +64,7 @@
     Modifier
   </a>
   <h4>Année {{ yearMoins2 }}</h4>
-  <span ng-if="rfrCaptured">Revenu fiscal de référence : {{ situation.rfr | currency }}</span>
+  <span ng-if="rfrCaptured">Revenu fiscal de référence : {{ situation.foyer_fiscal.rfr[yearMoins2] | currency }}</span>
   <uib-accordion
     close-others="false"
     class="ressources-accordion">

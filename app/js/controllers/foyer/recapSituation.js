@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, categoriesRnc, SituationService, IndividuService, RessourceService) {
+    $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
 
     function buildRecapLogement () {
         var logementLabel = _.find(logementTypes, { id: $scope.situation.logement.type }).label;
@@ -62,7 +63,8 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     }
 
     function buildYm2Recap () {
-        $scope.rfrCaptured = $scope.situation.rfr || $scope.situation.rfr === 0;
+        var rfr = $scope.situation.foyer_fiscal.rfr && $scope.situation.foyer_fiscal.rfr[$scope.yearMoins2];
+        $scope.rfrCaptured = rfr || rfr === 0;
         $scope.ressourcesYearMoins2 = [];
         SituationService.getIndividusSortedParentsFirst($scope.situation)
             .forEach(function(individu) {
@@ -77,12 +79,11 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
                     $scope.ressourcesYearMoins2.push(ym2IndividuRecap);
                 }
             });
-        $scope.ressourcesYearMoins2Captured = $scope.ressourcesYearMoins2.length > 0;
+        $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
     }
-
     $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
+
     $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
-    $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
 
     $scope.getIndividuRessourcesHeader = IndividuService.ressourceHeader;
 

@@ -15,7 +15,11 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
 
     return {
         newSituation: function() {
-            situation = $sessionStorage.situation = { individus: [], dateDeValeur: moment().format() };
+            situation = $sessionStorage.situation = {
+                individus: [],
+                dateDeValeur: moment().format(),
+                foyer_fiscal: {},
+            };
         },
 
         restoreLocal: function() {
@@ -95,11 +99,14 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         },
 
         ressourcesYearMoins2Captured: function(situation) {
-            return situation.rfr === 0 || situation.rfr || situation.individus.some(function(individu) {
-                    return individu.ressources && individu.ressources.some(function(ressource) {
-                        return _.map(categoriesRnc, 'id').indexOf(ressource.type) >= 0;
-                    });
+            var yearMoins2 = moment(situation.dateDeValeur).subtract('years', 2).format('YYYY');
+            var rfr = situation.foyer_fiscal.rfr && situation.foyer_fiscal.rfr[yearMoins2];
+            var hasYm2Ressources = situation.individus.some(function(individu) {
+                return individu.ressources && individu.ressources.some(function(ressource) {
+                    return _.map(categoriesRnc, 'id').indexOf(ressource.type) >= 0;
                 });
+            });
+            return rfr || rfr === 0 || hasYm2Ressources;
         }
     };
 });

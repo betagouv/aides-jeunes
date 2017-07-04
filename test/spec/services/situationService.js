@@ -173,7 +173,8 @@ describe('Service: situationService', function () {
                     [
                         { ressources: []},
                         { ressources: [{ type: 'retraite_imposable'}]}
-                    ]
+                    ],
+                foyer_fiscal: {},
             };
 
             // when
@@ -187,7 +188,8 @@ describe('Service: situationService', function () {
                 individus:
                     [
                         { ressources: [{ type: 'salaire_net_hors_revenus_exceptionnels'}]}
-                    ]
+                    ],
+                foyer_fiscal: {},
             };
 
             // when
@@ -198,11 +200,16 @@ describe('Service: situationService', function () {
         it('should detect rfr', function() {
             // given
             var situation = {
+                dateDeValeur: '2017-01-01',
                 individus:
                     [
                         { ressources: []},
                     ],
-                rfr: 20000
+                foyer_fiscal: {
+                    rfr: {
+                        '2015': 20000
+                    },
+                },
             };
 
             // when

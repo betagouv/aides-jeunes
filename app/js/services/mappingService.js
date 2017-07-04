@@ -195,7 +195,12 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         };
     }
 
+
+    function allocateIndividualsToEntities(situation) {
+    }
+
     function buildOpenFiscaRequest(situation) {
+        allocateIndividualsToEntities(situation);
         return {
             intermediate_variables: true,
             labels: true,

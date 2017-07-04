@@ -197,6 +197,17 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
 
 
     function allocateIndividualsToEntities(situation) {
+        var foyer = situation.foyer_fiscal;
+        foyer.declarants = [ SituationService.getDemandeur(situation).id ];
+        var conjoint = SituationService.getConjoint(situation);
+        if (conjoint) {
+            foyer.declarants.push(conjoint.id);
+        }
+
+        var enfants = SituationService.getEnfants(situation);
+        var validEnfants = _.filter(enfants, function(enfant) { return mappingSchemas.isIndividuValid(enfant, situation); });
+        var enfantIds = validEnfants.map(function(enfant) { return enfant.id; });
+        foyer.personnes_a_charge = enfantIds;
     }
 
     function buildOpenFiscaRequest(situation) {

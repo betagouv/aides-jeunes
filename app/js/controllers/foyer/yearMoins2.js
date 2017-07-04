@@ -4,6 +4,7 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
     var today = $scope.situation.dateDeValeur;
     var months = MonthService.getMonths(today, 12);
     $scope.yearMoins2 = moment(today).subtract('years', 2).format('YYYY');
+    $scope.yearMoins1 = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.debutAnneeGlissante = moment(today).subtract('years', 1).format('MMMM YYYY');
 
     $scope.individuRefsToDisplay = [];

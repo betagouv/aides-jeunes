@@ -1,0 +1,1 @@
+../components/YM2ResourcesComponent.js

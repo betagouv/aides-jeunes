@@ -36,16 +36,19 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
             .value();
     };
 
-    $scope.submit = function() {
+    $scope.submit = function(form) {
+        if (form && (! form.$valid))
+            return;
+
         $scope.individuRefsToDisplay.forEach(function(individuRef) {
-            // clean anciennes valeurs
+            // Reset individu ressources without rnc ressources declared previously
             individuRef.individu.ressources = _.filter(individuRef.individu.ressources, function(ressource) {
                 return ! _.find(categoriesRnc, { id: ressource.type });
             });
 
-            // Remove the empty values from rnc
+            // Remove empty values from rnc
             individuRef.rnc = _.filter(individuRef.rnc, function(rnc) {
-                return rnc.montant === 0 || rnc.montant;
+                return typeof rnc.montant === 'number';
             });
 
             individuRef.rnc.forEach(function(rnc) {

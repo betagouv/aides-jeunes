@@ -109,6 +109,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 $window.location.href = '/tests';
             }
         })
+        .state('stats', {
+            url: '/stats',
+            templateUrl: '/partials/stats.html',
+            controller: 'StatsCtrl',
+        })
         .state('foyer', {
             abstract: true,
             url: '/foyer',

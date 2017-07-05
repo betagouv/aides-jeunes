@@ -1,0 +1,20 @@
+<article class="text container">
+
+  <h1>Statistiques d'usage</h1>
+
+  <p>Connaître l'impact de <a ui-ref="home">mes-aides.gouv.fr</a> sur le non-recours aux prestations sociales n'est pas simple. Une étude par le Poverty Action Lab est en cours pour apporter des informations à ce sujet.</p>
+
+  <p>Selon nous, en informant les personnes sur leur éligibilité, nous faisons un premier pas vers l'accès aux prestations sociales. C'est pourquoi, nous présentons ici le nombre de visites et celui de simulations terminées. Les statistiques d'usage nous permettent d'<a href="https://beta.gouv.fr/2016/11/04/mes-aides-metriques-pirates-tunnel-conversion-public.html">évaluer la performance</a> du service et de l'<a href="https://beta.gouv.fr/2017/05/03/mes-aides-datascience-public.html">améliorer en fonction des usages</a>.
+
+  <p ng-if="! allStatsRetrieved">
+    Accrochez-vous nous préparons des données toutes fraiches. <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+  </p>
+
+  <p ng-repeat="period in statPeriods" ng-if="allStatsRetrieved">
+    {{ period.label }}, il y a eu {{ period.data.nb_visits | number }} visites et
+    {{ period.data.nb_conversions | number }} simulations terminées.
+  <p>
+
+  <p>Ces statistiques d'usage du service sont <a href="stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=9&period=day&date=today">publiques</a>.<p>
+
+</article>

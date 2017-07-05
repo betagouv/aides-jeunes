@@ -4,29 +4,44 @@
     Ces informations se trouvent sur votre déclaration de revenus d'impôts {{ yearMoins2 }}.
     <br>Vous pouvez la retrouver en ligne sur <a href="http://www.impots.gouv.fr/">impots.gouv.fr</a>.
   </p>
-  <form class="form-horizontal" novalidate ng-submit="submit()">
+  <form class="form-horizontal" novalidate name="form" ng-submit="submit(form)">
     <div class="row">
-      <div class="col-md-12" ng-repeat="individuRef in individuRefsToDisplay">
+      <div class="col-md-12"
+        ng-init="individuIndex = $index"
+        ng-repeat="individuRef in individuRefsToDisplay"
+        >
         <h2>{{ individuRef.label }}</h2>
-        <div class="form-group" ng-repeat="rnc in individuRef.rnc">
-          <label class="control-label col-sm-3" for="{{ rnc.categorie.id }}-{{ individuRef.individu.role }}">
+        <div
+          class="form-group"
+          ng-repeat="rnc in individuRef.rnc"
+          ng-init="inputName = rnc.categorie.id +  '-' + individuIndex"
+          ng-class="{ 'has-error': form.$submitted && form[inputName].$invalid }"
+          >
+          <label class="control-label col-sm-3" for="{{ inputName }}">
             {{ rnc.categorie.label }}
           </label>
           <div class="col-sm-3">
             <span class="input-group">
               <input
                 type="number"
-                id="{{ rnc.categorie.id }}-{{ individuRef.individu.role }}"
+                id="{{ inputName }}"
+                name="{{ inputName }}"
                 class="form-control text-right"
                 ng-model="rnc.montant"
                 min="0"
                 select-on-focus
-                zero-to-empty>
+                zero-to-empty
+                aria-describedby="help-{{ inputName }}">
               <span class="input-group-addon hidden-xs">€</span>
             </span>
+            <ul class="help-block text-danger" ng-show="form.$submitted && form[inputName].$invalid">
+              <li>
+                Montant invalide
+              </li>
+            </ul>
           </div>
           <div class="col-sm-6">
-            <p class="help-block" ng-show ="{{ getDefaultValue(individuRef, rnc.categorie) }}">
+            <p class="help-block" id="help-{{ inputName }}" ng-show="{{ getDefaultValue(individuRef, rnc.categorie) }}">
               Ce montant vaut {{ getDefaultValue(individuRef, rnc.categorie) | currency }} pour les 12 derniers mois.
             </p>
           </div>
@@ -34,12 +49,15 @@
       </div>
       <div class="col-md-12" ng-repeat="individuRef in individuRefsToHide">
         <br/>
-        <button type="button"class="btn btn-sm btn-success col-md-6" ng-click="display(individuRef)">
+        <button type="button" class="btn btn-sm btn-success col-md-6" ng-click="display(individuRef)">
           Déclarer des ressources pour {{ individuRef.label }}
         </button>
       </div>
     </div>
     <div class="text-right">
+      <span class="text-danger" ng-if="form.$submitted && form.$invalid">
+        Un des montants indiqués est invalide
+      </span>
       <button type="submit" class="btn btn-primary">Valider</button>
     </div>
   </form>

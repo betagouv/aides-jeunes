@@ -156,7 +156,8 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                 });
             };
 
-            var mapLogement = function(logement) {
+            var mapLogement = function(situation) {
+                var logement = situation.logement;
                 var typeLogementHtml = _.find(logementTypes, { id: logement.type }).label;
                 if ('locataire' === logement.type) {
                     typeLogementHtml += ' d\'un logement de type ' + logement.locationType;
@@ -177,7 +178,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
 
                 $scope.logement = {
                     type: $sce.trustAsHtml(typeLogementHtml),
-                    loyer: logement.loyer,
+                    loyer: situation.menage.loyer,
                     codePostal: logement.adresse.codePostal,
                     nomCommune: logement.adresse.nomCommune
                 };
@@ -188,7 +189,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                 mapPatrimoine(situation.patrimoine);
             }
 
-            mapLogement(situation.logement);
+            mapLogement(situation);
         }
     };
 });

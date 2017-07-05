@@ -2,6 +2,7 @@
 
 
 angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, SituationService, IndividuService) {
+    var menage = $scope.menage = $scope.situation.menage;
 
     $scope.updateCities = function updateCities() {
         if (! $scope.logement.postalCode) {
@@ -117,10 +118,12 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.changeLogementType = function() {
-        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'loyer', 'charges', 'isChambre', 'participationFrais'].forEach(function(field) {
+        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'charges', 'isChambre', 'participationFrais'].forEach(function(field) {
             delete logement[field];
         });
-        logement.loyer = 0;
+        ['loyer'].forEach(function(field) {
+            delete menage[field];
+        });
         delete $scope.demandeur.habiteChezParents;
     };
 

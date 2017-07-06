@@ -19,6 +19,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 individus: [],
                 dateDeValeur: moment().format(),
                 foyer_fiscal: {},
+                menage: {},
             };
         },
 

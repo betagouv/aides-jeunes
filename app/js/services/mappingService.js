@@ -179,7 +179,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             familles: familles,
             foyers_fiscaux: [ situation.foyer_fiscal ],
             individus: individus,
-            menages: [ buildOpenFiscaEntity(situation, mappingSchemas.menage, situation) ]
+            menages: [ situation.menage ],
         };
     }
 
@@ -211,19 +211,27 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         return situation;
     }
 
-
     function allocateIndividualsToEntities(situation) {
         var foyer = situation.foyer_fiscal;
-        foyer.declarants = [ SituationService.getDemandeur(situation).id ];
+        var menage = situation.menage;
+
+        var demandeurId = SituationService.getDemandeur(situation).id;
+
         var conjoint = SituationService.getConjoint(situation);
-        if (conjoint) {
-            foyer.declarants.push(conjoint.id);
+        var conjointId = conjoint && conjoint.id;
+
+        foyer.declarants = [ demandeurId ];
+        menage.personne_de_reference = demandeurId;
+        if (conjointId) {
+            foyer.declarants.push(conjointId);
+            menage.conjoint = conjointId;
         }
 
         var enfants = SituationService.getEnfants(situation);
         var validEnfants = _.filter(enfants, function(enfant) { return mappingSchemas.isIndividuValid(enfant, situation); });
         var enfantIds = validEnfants.map(function(enfant) { return enfant.id; });
         foyer.personnes_a_charge = enfantIds;
+        menage.enfants = enfantIds;
     }
 
     function buildOpenFiscaRequest(situation) {

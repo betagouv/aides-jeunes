@@ -40,12 +40,12 @@ describe('ResultatService', function () {
                         test_case: {
                             familles: [{
                                 apl: {
-                                    '2014-11': 1
+                                    '2014-10': 1
                                 }
                             }],
                             individus: [{
                                 aah: {
-                                    '2014-11':1
+                                    '2014-10':1
                                 }
                             }]
                         }

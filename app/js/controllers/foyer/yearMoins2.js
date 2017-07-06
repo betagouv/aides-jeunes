@@ -57,6 +57,8 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
                     type: rnc.categorie.id,
                     montant: rnc.montant
                 });
+                individuRef.individu[rnc.categorie.id] = individuRef.individu[rnc.categorie.id] || {};
+                individuRef.individu[rnc.categorie.id][$scope.yearMoins2] = rnc.montant;
             });
         });
 

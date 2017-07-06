@@ -346,7 +346,7 @@ angular.module('ddsCommon').constant('categoriesRnc', [
         sources: ['pensions_alimentaires_percues'],
     },
     {
-        id: 'pensions_alimentaires_versees_ym2',
+        id: 'pensions_alimentaires_versees',
         label: 'Pensions alimentaires versées',
         sources: ['pensions_alimentaires_versees_individu']
     }
@@ -367,7 +367,7 @@ function salaireNetToImposable(value) {
 
 var foyerFiscalMapping = {
     pensions_alimentaires_versees: {
-        src: 'pensions_alimentaires_versees_ym2',
+        src: 'pensions_alimentaires_versees',
         fn: function(value) { return -value; }
     }
 };
@@ -454,6 +454,7 @@ var individuMapping = {
     chomage_imposable: 'chomage_imposable',
     retraite_imposable: 'retraite_imposable',
     frais_reels: 'frais_reels',
+    pensions_alimentaires_versees: 'pensions_alimentaires_versees',
 
     // famille ressources
     aeeh: 'aeeh',

@@ -31,6 +31,12 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
         return ressources[ressourceId] && ressources[ressourceId][period];
     }
 
+    function wasInjected(ressourceId, ressources) {
+        return _.reduce(ressources[ressourceId], function(result, value) {
+            return result || value;
+        }, false);
+    }
+
     function computeAides(openfiscaResponse) {
         var situation = normalizeSituation(openfiscaResponse.params.scenarios[0]);
         var computedRessources = normalizeRessources(openfiscaResponse.value[0]);
@@ -45,7 +51,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
 
                 var eligibleAides = _.mapValues(aidesProvider.prestations, function(aide, aideId) {
 
-                    if (valueAt(aideId, situation.ressources, situation.period)) {
+                    if (wasInjected(aideId, situation.ressources)) {
                         result.injectedAides.push(aide);
                         return;  // the aides were declared, do not re-compute the results
                     }

@@ -150,6 +150,7 @@
               <select
                 class="form-control"
                 required
+                ng-change="changeNomCommune()"
                 ng-options="city.codeInsee as city.nomCommune for city in cities"
                 ng-model="menage.depcom"
                 id="city">

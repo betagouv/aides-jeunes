@@ -13,6 +13,11 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         inhabitantForThreeYearsOutOfLastFive: true,
     }, $scope.situation.logement);
 
+    function getSelectedCity() {
+        return _.find($scope.cities, { codeInsee: menage.depcom }) ||
+            ($scope.cities.length && $scope.cities[0]) || {};
+    }
+
     $scope.updateCities = function updateCities() {
         if (! $scope.menage.code_postal) {
             $scope.cities = [];
@@ -23,8 +28,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         CityService.getCities($scope.menage.code_postal)
         .then(function(cities) {
             $scope.cities = cities;
-            var city = menage && _.find($scope.cities, { codeInsee: menage.depcom }) ||
-                ($scope.cities.length && $scope.cities[0]) || {};
+            var city = getSelectedCity();
             menage.depcom = city.codeInsee;
             menage.nomCommune = city.nomCommune;
         }, $log.error.bind($log))
@@ -122,6 +126,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
             delete menage[field];
         });
         delete $scope.demandeur.habiteChezParents;
+    };
+
+    $scope.changeNomCommune = function() {
+        menage.nomCommune = getSelectedCity().nomCommune;
     };
 
     $scope.isResidentMayotte = function isResidentMayotte() {

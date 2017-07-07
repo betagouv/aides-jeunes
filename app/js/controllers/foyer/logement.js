@@ -65,7 +65,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.captureMembreFamilleProprietaire = function() {
-        return logement.type == 'locataire' && angular.isDefined(logement.colocation);
+        return logement.type == 'locataire' && angular.isDefined(menage.coloc);
     };
 
     $scope.captureLocationType = function() {
@@ -115,10 +115,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.changeLogementType = function() {
-        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'isChambre'].forEach(function(field) {
+        ['locationType', 'membreFamilleProprietaire', 'primoAccedant', 'isChambre'].forEach(function(field) {
             delete logement[field];
         });
-        ['charges_locatives', 'loyer', 'participation_frais'].forEach(function(field) {
+        ['charges_locatives', 'coloc', 'loyer', 'participation_frais'].forEach(function(field) {
             delete menage[field];
         });
         delete $scope.demandeur.habiteChezParents;

@@ -3,7 +3,7 @@ title: 'h1',
 declareSDSRadio: '[value="sansDomicile"] ~ span',
 declareLocataireRadio: '[value="locataire"] ~ span',
 
-declareLogementIsNotColocationRadio: '[model$="colocation"] [ng-class*="false"]',
+declareLogementIsNotColocationRadio: '[model$="coloc"] [ng-class*="false"]',
 declareProprietaireNotInFamilyRadio: '[model$="membreFamilleProprietaire"] [ng-class*="false"]',
 declareLogementIsNotMeubleRadio: '[value="nonmeuble"]',
 declareLogementIsNotChambreRadio: '[model$="isChambre"] [ng-class*="false"]',

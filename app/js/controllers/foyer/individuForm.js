@@ -34,7 +34,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     ];
 
     var DEFAULT_INDIVIDU = {
-        _id: individuRole,
+        id: individuRole,
         nationalite: 'fr',
         assPreconditionRemplie: false,
         scolarite: 'college',
@@ -62,12 +62,12 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         var nextEnfantCount = $scope.enfants.length + 1;
         $scope.individu.firstName = 'Votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
 
-        var usedIds = $scope.enfants.map(function(enfant) { return enfant._id; });
+        var usedIds = $scope.enfants.map(function(enfant) { return enfant.id; });
         var count = 0;
         while (_.indexOf(usedIds, 'enfant_' + count) >= 0) {
             count = count + 1;
         }
-        $scope.individu._id = 'enfant_' + count;
+        $scope.individu.id = 'enfant_' + count;
     }
 
 

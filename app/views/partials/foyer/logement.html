@@ -134,7 +134,7 @@
               class="form-control"
               id="postal-code"
               required
-              ng-model="logement.postalCode"
+              ng-model="menage.code_postal"
               ng-change="updateCities()">
             <span class="help-block" ng-if="submitted && ! isAdresseValid()">Ce code postal est invalide</span>
           </div>
@@ -150,8 +150,8 @@
               <select
                 class="form-control"
                 required
-                ng-options="city.nomCommune for city in cities"
-                ng-model="logement.adresse"
+                ng-options="city.codeInsee as city.nomCommune for city in cities"
+                ng-model="menage.depcom"
                 id="city">
               </select>
             </div>

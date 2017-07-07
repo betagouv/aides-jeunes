@@ -3,14 +3,14 @@
 <h4>Votre foyer</h4>
 <individu-block ng-repeat="individu in situation.individus" individu="individu"></individu-block>
 
-<div id="recap-logement" ng-if="situation.logement">
+<div id="recap-logement" ng-if="situation.menage.depcom">
   <a ui-sref="foyer.logement" class="pull-right"><i class="fa fa-edit" aria-hidden="true" role="presentation"></i> Modifier</a>
   <h4>Votre logement</h4>
   <div class="situation-block">
-    <div ng-bind-html="recapLogement|uppercaseFirst"></div>
+    <div ng-if="recapLogement" ng-bind-html="recapLogement | uppercaseFirst"></div>
     <div ng-if="situation.menage.loyer">{{ loyerLabel }}&nbsp;: <b>{{ situation.menage.loyer | currency }}</b></div>
-    Code postal <b>{{ situation.logement.adresse.codePostal }}</b>
-    <br><b>{{ situation.logement.adresse.nomCommune }}</b>
+    Code postal <b>{{ situation.menage.code_postal }}</b>
+    <br><b>{{ situation.menage.nomCommune }}</b>
   </div>
 </div>
 

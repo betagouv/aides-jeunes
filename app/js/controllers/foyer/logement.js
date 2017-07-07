@@ -1,45 +1,42 @@
 'use strict';
 
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, CityService, SituationService, IndividuService) {
     var menage = $scope.menage = $scope.situation.menage;
-
-    $scope.updateCities = function updateCities() {
-        if (! $scope.logement.postalCode) {
-            $scope.cities = [];
-            return;  // the user has made the value invalid since we were called
-        }
-
-        $scope.retrievingCities = true;
-
-        $http.get('/api/outils/communes/' + $scope.logement.postalCode)
-             .then(function(result) {
-                  $scope.cities = result.data;
-                  var city = $scope.situation.logement && _.find($scope.cities, {codeInsee: $scope.situation.logement.adresse.codeInsee});
-                  logement.adresse = city || $scope.cities[0] || {};
-              }, $log.error.bind($log)
-              ).finally(function() {
-                  $scope.retrievingCities = false;
-              });
-    };
-
-    var logement = $scope.logement = {
-        adresse: {},
-        inhabitantForThreeYearsOutOfLastFive: true
-    };
-    if ($scope.situation.logement) {
-        logement = $scope.logement = _.merge(logement, $scope.situation.logement);
-        $scope.logement.postalCode = $scope.situation.logement.adresse.codePostal;
-        $scope.updateCities();
-    }
 
     $scope.cities = [];
     $scope.logementTypes = logementTypes;
     $scope.locationTypes = locationTypes;
     $scope.demandeur = SituationService.getDemandeur($scope.situation);
 
+    var logement = $scope.logement = _.assign({
+        inhabitantForThreeYearsOutOfLastFive: true,
+    }, $scope.situation.logement);
+
+    $scope.updateCities = function updateCities() {
+        if (! $scope.menage.code_postal) {
+            $scope.cities = [];
+            return;  // the user has made the value invalid since we were called
+        }
+
+        $scope.retrievingCities = true;
+        CityService.getCities($scope.menage.code_postal)
+        .then(function(cities) {
+            $scope.cities = cities;
+            var city = menage && _.find($scope.cities, { codeInsee: menage.depcom }) ||
+                ($scope.cities.length && $scope.cities[0]) || {};
+            menage.depcom = city.codeInsee;
+            menage.nomCommune = city.nomCommune;
+        }, $log.error.bind($log))
+        .finally(function() {
+            $scope.retrievingCities = false;
+        });
+    };
+
+    $scope.updateCities();
+
     function cityStartsWith(prefix) {
-        return $scope.isAdresseValid() && logement.adresse.nomCommune.indexOf(prefix.toUpperCase()) === 0;
+        return $scope.isAdresseValid() && $scope.menage.nomCommune.indexOf(prefix.toUpperCase()) === 0;
     }
 
     $scope.yearsAgo = function yearsAgo(amount) {
@@ -128,11 +125,11 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.isResidentMayotte = function isResidentMayotte() {
-        return $scope.isAdresseValid() && logement.adresse.codePostal.indexOf('976') === 0;
+        return $scope.isAdresseValid() && menage.code_postal.indexOf('976') === 0;
     };
 
     $scope.isAdresseValid = function() {
-        return logement.adresse && $scope.cities.indexOf(logement.adresse) > -1;
+        return menage.depcom && menage.code_postal;
     };
 
     $scope.submit = function(form) {

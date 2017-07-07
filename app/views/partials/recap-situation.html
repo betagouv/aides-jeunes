@@ -44,6 +44,8 @@
   <div ng-bind-html="logement.type"></div>
   <div ng-if="logement.loyer">Loyer/mensualité d'emprunt : {{ logement.loyer }} €</div>
   Code postal {{ logement.codePostal }} - {{ logement.nomCommune }}
+  <br>
+  <b>{{ situation.logement.adresse.nomCommune }}</b>
 
   <h4>Patrimoine</h4>
   <span ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun</span>

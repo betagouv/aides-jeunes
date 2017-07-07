@@ -90,8 +90,11 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
         };
     }
 
-    function simulate(situation) {
-        return $http.post('/api/simulations', MappingService.buildOpenFiscaRequest(situation))
+    function simulate(sourceSituation) {
+        var situation = MappingService.buildOpenFiscaRequest(sourceSituation);
+        delete situation.scenarios[0].test_case.menages[0].nomCommune;
+
+        return $http.post('/api/simulations', situation)
         .then(function(simulationResponse) {
             return $http.get('api/simulations/' + simulationResponse.data._id + '/result');
         }).then(function(resultResponse) {

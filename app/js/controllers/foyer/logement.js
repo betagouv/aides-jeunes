@@ -101,7 +101,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
             angular.isDefined(logement.primoAccedant),
             logement.locationType == 'foyer',
             angular.isDefined(logement.isChambre),
-            logement.type == 'heberge' && angular.isDefined(logement.participationFrais),
+            logement.type == 'heberge' && angular.isDefined(menage.participation_frais),
             logement.type == 'sansDomicile'
         ]);
     };
@@ -115,10 +115,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.changeLogementType = function() {
-        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'isChambre', 'participationFrais'].forEach(function(field) {
+        ['colocation', 'locationType', 'membreFamilleProprietaire', 'primoAccedant', 'isChambre'].forEach(function(field) {
             delete logement[field];
         });
-        ['charges_locatives', 'loyer'].forEach(function(field) {
+        ['charges_locatives', 'loyer', 'participation_frais'].forEach(function(field) {
             delete menage[field];
         });
         delete $scope.demandeur.habiteChezParents;

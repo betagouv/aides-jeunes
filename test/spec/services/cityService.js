@@ -8,8 +8,9 @@ describe('CityService', function() {
             $provide.value('$http', {
                 get: function(url) {
                     // Prevent mocking real $http calls
-                    if (! url.match(/\d{5}$/))
+                    if (! url.match(/\d{5}$/)) {
                         return http.get(url);
+                    }
 
                     var deferred = q.defer();
                     var data = [{
@@ -67,21 +68,4 @@ describe('CityService', function() {
             scope.$apply();
         });
     });
-
-    describe('function getCity(‘33090‘)', function() {
-        it('Should return city details', function(done) {
-            // when
-            service.getCities('33610')
-            .then(function() {
-                var cityDetails = service.getCity('33090');
-
-                // then
-                expect(cityDetails.codeInsee).toBeTruthy();
-                expect(cityDetails.codePostal).toBeTruthy();
-                expect(cityDetails.nomCommune).toBeTruthy();
-                done();
-            });
-            scope.$apply();
-        });
-    });//*/
 });

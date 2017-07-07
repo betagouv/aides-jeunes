@@ -165,7 +165,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                     typeLogementHtml += '<br>Propriétaire du logement membre de la famille : ';
                     typeLogementHtml += (logement.membreFamilleProprietaire ? 'oui' : 'non');
                     if ('foyer' !== logement.locationType) {
-                        typeLogementHtml += '<br>Chambre : ' + (logement.isChambre ? 'oui' : 'non');
+                        typeLogementHtml += '<br>Chambre : ' + (logement.logement_chambre ? 'oui' : 'non');
                     }
                 } else if ('proprietaire' === logement.type) {
                    typeLogementHtml += ', prêt en accession : ';

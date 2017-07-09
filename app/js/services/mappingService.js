@@ -150,7 +150,8 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
 
     function setNonInjectedPrestationsToZero(familles, individus, dateDeValeur) {
         var subjects = {
-            famille: familles,
+            // Hijack famille prestations are currently all attach to individus
+            famille: individus,//familles,
             individu: individus,
         };
 

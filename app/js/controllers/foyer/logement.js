@@ -2,6 +2,7 @@
 
 
 angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, CityService, SituationService, IndividuService, MappingService) {
+    var famille = $scope.famille = $scope.situation.famille;
     var menage = $scope.menage = $scope.situation.menage;
 
     $scope.cities = [];
@@ -68,12 +69,12 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return logement.type == 'locataire';
     };
 
-    $scope.captureMembreFamilleProprietaire = function() {
+    $scope.captureProprietaireProcheFamille = function() {
         return logement.type == 'locataire' && angular.isDefined(menage.coloc);
     };
 
     $scope.captureLocationType = function() {
-        return logement.type == 'locataire' && angular.isDefined(logement.membreFamilleProprietaire);
+        return logement.type == 'locataire' && angular.isDefined(famille.proprietaire_proche_famille);
     };
 
     $scope.captureChambre = function() {
@@ -119,8 +120,11 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.changeLogementType = function() {
-        ['locationType', 'membreFamilleProprietaire', 'primoAccedant'].forEach(function(field) {
+        ['locationType', 'primoAccedant'].forEach(function(field) {
             delete logement[field];
+        });
+        ['proprietaire_proche_famille'].forEach(function(field) {
+            delete famille[field];
         });
         ['charges_locatives', 'coloc', 'logement_chambre', 'loyer', 'participation_frais'].forEach(function(field) {
             delete menage[field];

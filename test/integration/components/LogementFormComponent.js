@@ -4,7 +4,7 @@ declareSDSRadio: '[value="sansDomicile"] ~ span',
 declareLocataireRadio: '[value="locataire"] ~ span',
 
 declareLogementIsNotColocationRadio: '[model$="coloc"] [ng-class*="false"]',
-declareProprietaireNotInFamilyRadio: '[model$="membreFamilleProprietaire"] [ng-class*="false"]',
+declareProprietaireNotInFamilyRadio: '[model$="proprietaire_proche_famille"] [ng-class*="false"]',
 declareLogementIsNotMeubleRadio: '[value="nonmeuble"]',
 declareLogementIsNotChambreRadio: '[model$="logement_chambre"] [ng-class*="false"]',
 loyerInput: '#loyer',

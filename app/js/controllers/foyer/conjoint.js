@@ -2,20 +2,29 @@
 
 angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state, SituationService) {
     var hasEnfant = SituationService.hasEnfant($scope.situation);
-    $scope.demandeur = SituationService.getDemandeur($scope.situation);
+    var famille = $scope.famille = $scope.situation.famille;
 
-    // Forget the value of isolementRecent. Necessary as we une ng-change to go to the next page.
-    $scope.demandeur.isolementRecent = undefined;
+    $scope.vitEnCouple = Boolean(SituationService.getConjoint($scope.situation));
+    if ((! $scope.vitEnCouple) && famille.rsa_isolement_recent === undefined) {
+        $scope.vitEnCouple = undefined;
+    }
+    $scope.shouldDisplaySubmit = function(force) {
+        return ($scope.shouldDisplaySubmitInitially || force) && (! $scope.vitEnCouple) && (famille.rsa_isolement_recent !== undefined);
+    };
+    $scope.shouldDisplaySubmitInitially = $scope.shouldDisplaySubmit(true);
 
     $scope.captureIsolement = function() {
         return $scope.vitEnCouple === false && hasEnfant;
+    };
+
+    $scope.onRsaIsolementRecentUpdate = function() {
+        if (! $scope.shouldDisplaySubmitInitially) {
+            $scope.submit();
+        }
     };
 
     $scope.submit = function() {
         $state.go('foyer.logement');
     };
 
-    if (_.find($scope.situation.individus, { role: 'conjoint' })) {
-        $scope.vitEnCouple = true;
-    }
 });

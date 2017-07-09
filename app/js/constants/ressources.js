@@ -364,21 +364,6 @@ function salaireNetToImposable(value) {
     return value + TAUX_CSG_CRDS * ASSIETTE_COTIS * value / RATIO_NET_BRUT;
 }
 
-var familleMapping = {
-    aeeh: 'aeeh',
-    af: 'af',
-    aide_logement: 'aide_logement',
-    asf: 'asf',
-    asi: 'asi',
-    aspa: 'aspa',
-    ass: 'ass',
-    cf: 'cf',
-    paje_base: 'paje_base',
-    paje_clca: 'paje_clca',
-    paje_prepare: 'paje_prepare',
-    ppa: 'ppa',
-    rsa: 'rsa',
-};
 
 var foyerFiscalMapping = {
     pensions_alimentaires_versees: {
@@ -468,11 +453,25 @@ var individuMapping = {
     // ressourcesYearMoins2Captured
     chomage_imposable: 'chomage_imposable',
     retraite_imposable: 'retraite_imposable',
-    frais_reels: 'frais_reels'
+    frais_reels: 'frais_reels',
+
+    // famille ressources
+    aeeh: 'aeeh',
+    af: 'af',
+    aide_logement: 'aide_logement',
+    asf: 'asf',
+    asi: 'asi',
+    aspa: 'aspa',
+    ass: 'ass',
+    cf: 'cf',
+    paje_base: 'paje_base',
+    paje_clca: 'paje_clca',
+    paje_prepare: 'paje_prepare',
+    ppa: 'ppa',
+    rsa: 'rsa',
 };
 
 var ressourceMapping = {
-    famille : familleMapping,
     foyerFiscal : foyerFiscalMapping,
     individu: individuMapping,
 };

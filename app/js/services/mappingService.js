@@ -128,7 +128,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         _.forEach(situation.individus, function(individu) {
             ressources = ressources.concat(individu.ressources);
         });
-        applyRessources({ ressources: ressources }, famille, ressourceMapping.famille, situation);
 
         return famille;
     }

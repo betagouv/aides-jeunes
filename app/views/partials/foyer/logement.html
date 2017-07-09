@@ -135,7 +135,7 @@
               id="postal-code"
               required
               ng-model="menage.code_postal"
-              ng-change="updateCities()">
+              ng-change="changeCodePostal()">
             <span class="help-block" ng-if="submitted && ! isAdresseValid()">Ce code postal est invalide</span>
           </div>
         </div>
@@ -162,7 +162,7 @@
 
     </div>
 
-    <yes-no-question model="logement.inhabitantForThreeYearsOutOfLastFive" ng-if="captureResidentParis()">
+    <yes-no-question model="famille.parisien" ng-if="captureResidentParis()">
       <question>Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }}&nbsp;?</question>
       <help-block>Y compris de manière discontinue</help-block>
     </yes-no-question>

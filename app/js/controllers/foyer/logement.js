@@ -10,16 +10,16 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.locationTypes = locationTypes;
     $scope.demandeur = SituationService.getDemandeur($scope.situation);
 
-    var logement = $scope.logement = _.assign({
-        inhabitantForThreeYearsOutOfLastFive: true,
-    }, MappingService.statutOccupationLogement.getBaseLogement(menage.statut_occupation_logement), $scope.situation.logement);
+    var logement = $scope.logement = _.assign({},
+        MappingService.statutOccupationLogement.getBaseLogement(menage.statut_occupation_logement),
+        $scope.situation.logement);
 
     function getSelectedCity() {
         return _.find($scope.cities, { codeInsee: menage.depcom }) ||
             ($scope.cities.length && $scope.cities[0]) || {};
     }
 
-    $scope.updateCities = function updateCities() {
+    $scope.updateCities = function updateCities(initial) {
         if (! $scope.menage.code_postal) {
             $scope.cities = [];
             return;  // the user has made the value invalid since we were called
@@ -32,13 +32,16 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
             var city = getSelectedCity();
             menage.depcom = city.codeInsee;
             menage.nomCommune = city.nomCommune;
+            if (! initial) {
+                famille.parisien = cityStartsWith('Paris');
+            }
         }, $log.error.bind($log))
         .finally(function() {
             $scope.retrievingCities = false;
         });
     };
 
-    $scope.updateCities();
+    $scope.updateCities(true);
 
     function cityStartsWith(prefix) {
         return $scope.isAdresseValid() && $scope.menage.nomCommune.indexOf(prefix.toUpperCase()) === 0;
@@ -119,6 +122,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return $scope.captureCodePostal() && logement.type != 'sansDomicile' && cityStartsWith('Paris');
     };
 
+    $scope.changeCodePostal = function() {
+        $scope.updateCities();
+    };
+
     $scope.changeLogementType = function() {
         ['locationType', 'primoAccedant'].forEach(function(field) {
             delete logement[field];
@@ -148,7 +155,6 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         $scope.submitted = true;
         if (form.$valid && $scope.isAdresseValid()) {
             menage.statut_occupation_logement = MappingService.statutOccupationLogement.getValue(logement);
-            logement.inhabitantForThreeYearsOutOfLastFive = logement.inhabitantForThreeYearsOutOfLastFive && cityStartsWith('Paris');
             $scope.$emit('logement', logement);
         }
     };

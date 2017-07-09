@@ -132,17 +132,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         return famille;
     }
 
-    function mapFoyerFiscal(situation) {
-        var foyerFiscal = buildOpenFiscaEntity(situation, mappingSchemas.foyerFiscal, situation);
-        var ressources = [];
-        _.forEach(situation.individus, function(individu) {
-            ressources = ressources.concat(individu.ressources);
-        });
-        applyRessources({ ressources: ressources }, foyerFiscal, ressourceMapping.foyerFiscal, situation);
-
-        return foyerFiscal;
-    }
-
     function mapIndividus(situation) {
         var individus = _.filter(situation.individus, function(individu) {
             return mappingSchemas.isIndividuValid(individu, situation);
@@ -182,14 +171,13 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
     function buildOpenFiscaTestCase(situation) {
         situation.ressourcesYearMoins2Captured = situation.ressourcesYearMoins2Captured || SituationService.ressourcesYearMoins2Captured(situation);
         var familles = [ mapFamille(situation) ],
-            individus = mapIndividus(situation),
-            foyerFiscal = mapFoyerFiscal(situation);
+            individus = mapIndividus(situation);
 
         setNonInjectedPrestationsToZero(familles, individus, situation.dateDeValeur);
 
         return {
             familles: familles,
-            foyers_fiscaux: [ foyerFiscal ],
+            foyers_fiscaux: [ situation.foyer_fiscal ],
             individus: individus,
             menages: [ buildOpenFiscaEntity(situation, mappingSchemas.menage, situation) ]
         };

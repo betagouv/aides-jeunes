@@ -58,6 +58,8 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http, Ma
                     .then(function(situationResponse) {
                         var situation = situationResponse.data;
 
+                        situation.foyer_fiscal = MappingService.mapFoyerFiscal(situation);
+
                         $http.post('api/simulations', MappingService.buildOpenFiscaRequest(situation))
                         .then(function(simulationResponse) {
                             return simulationResponse.data._id;

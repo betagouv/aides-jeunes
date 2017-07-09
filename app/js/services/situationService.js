@@ -18,6 +18,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             situation = $sessionStorage.situation = {
                 individus: [],
                 dateDeValeur: moment().format(),
+                famille: {},
                 foyer_fiscal: {},
                 menage: {},
             };

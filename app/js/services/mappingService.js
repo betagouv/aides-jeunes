@@ -170,7 +170,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
 
     function buildOpenFiscaTestCase(situation) {
         situation.ressourcesYearMoins2Captured = situation.ressourcesYearMoins2Captured || SituationService.ressourcesYearMoins2Captured(situation);
-        var familles = [ mapFamille(situation) ],
+        var familles = [ situation.famille ],
             individus = mapIndividus(situation);
 
         setNonInjectedPrestationsToZero(familles, individus, situation.dateDeValeur);
@@ -225,6 +225,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
     }
 
     function allocateIndividualsToEntities(situation) {
+        var famille = situation.famille;
         var foyer = situation.foyer_fiscal;
         var menage = situation.menage;
 
@@ -233,9 +234,11 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         var conjoint = SituationService.getConjoint(situation);
         var conjointId = conjoint && conjoint.id;
 
+        famille.parents = [ demandeurId ];
         foyer.declarants = [ demandeurId ];
         menage.personne_de_reference = demandeurId;
         if (conjointId) {
+            famille.parents.push(conjointId);
             foyer.declarants.push(conjointId);
             menage.conjoint = conjointId;
         }
@@ -243,6 +246,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         var enfants = SituationService.getEnfants(situation);
         var validEnfants = _.filter(enfants, function(enfant) { return mappingSchemas.isIndividuValid(enfant, situation); });
         var enfantIds = validEnfants.map(function(enfant) { return enfant.id; });
+        famille.enfants = enfantIds;
         foyer.personnes_a_charge = enfantIds;
         menage.enfants = enfantIds;
     }

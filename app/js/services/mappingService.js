@@ -208,6 +208,8 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             situation.foyer_fiscal.rfr[periods.anneeFiscaleReference] = situation.rfr;
             delete situation.rfr;
         }
+
+        situation.menage = {};
         return situation;
     }
 
@@ -234,8 +236,22 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         menage.enfants = enfantIds;
     }
 
+    function copyTo3PreviousMonths(situation) {
+        var periodKeys = ['thisMonth', '1MonthsAgo', '2MonthsAgo', '3MonthsAgo'];
+        var periods = MappingPeriodService.getPeriods(situation.dateDeValeur);
+        mappingSchemas.menage.forEach(function(menagePropertyName) {
+            var value = situation.menage[menagePropertyName];
+            var result = {};
+            periodKeys.forEach(function(periodKey) {
+                result[periods[periodKey]] = value;
+            })
+            situation.menage[menagePropertyName] = result;
+        })
+    }
+
     function buildOpenFiscaRequest(situation) {
         allocateIndividualsToEntities(situation);
+        copyTo3PreviousMonths(situation);
         return {
             intermediate_variables: true,
             labels: true,

@@ -228,80 +228,20 @@ var individuSchema = {
     tns_micro_entreprise_type_activite: 'microEntrepriseActiviteType',
 };
 
-var menageSchema = {
-    personne_de_reference: {
-        fn: function(situation) {
-            return _.find(situation.individus, { role: 'demandeur' }).id;
-        },
-        copyTo3PreviousMonths: false,
-    },
-    conjoint: {
-        fn: function(situation) {
-            var conjoint = _.find(situation.individus, { role: 'conjoint' });
-            return conjoint ? conjoint.id : null;
-        },
-        copyTo3PreviousMonths: false,
-    },
-    enfants: {
-        fn: getEnfants,
-        copyTo3PreviousMonths: false,
-    },
-    statut_occupation_logement: {
-        fn: function(situation) {
-            var statusOccupationMap = {
-                'proprietaireprimoaccedant': 1,
-                'proprietaire': 2,
-                'locatairenonmeuble': 4,
-                'locatairemeublehotel': 5,
-                'heberge': 6,
-                'locatairefoyer': 7,
-                'sans_domicile' : 8
-            };
-            var logement = situation.logement;
-            var type = logement.type;
-            if (type) {
-                var statusOccupationId = type;
-                if (type == 'proprietaire' && logement.primoAccedant) {
-                    statusOccupationId = 'proprietaireprimoaccedant';
-                }
-                if (type == 'locataire' && logement.locationType) {
-                    statusOccupationId += logement.locationType;
-                }
-                return statusOccupationMap[statusOccupationId];
-            }
-        }
-    },
-    loyer: {
-        fn: function (situation) { return situation.logement.loyer; },
-        round: true
-    },
-    charges_locatives: {
-        fn: function (situation) { return situation.logement.charges; },
-        round: true
-    },
-    depcom: {
-        fn: function (situation) { return situation.logement.adresse.codeInsee || null; }
-    },
-    participation_frais: {
-        fn: function (situation) { return situation.logement.participationFrais; }
-    },
-    coloc: {
-        fn: function (situation) {
-            return situation.logement.type == 'locataire' && situation.logement.colocation;
-        }
-    },
-    logement_chambre: {
-        fn: function (situation) {
-            return situation.logement.type == 'locataire' && situation.logement.isChambre;
-        }
-    },
-};
+var menageProperties = [
+    'charges_locatives',
+    'coloc',
+    'depcom',
+    'logement_chambre',
+    'loyer',
+    'participation_frais',
+    'statut_occupation_logement',
+];
 
 angular.module('ddsCommon').constant('mappingSchemas', {
     isIndividuValid: isIndividuValid,
-
     famille: familleSchema,
     foyerFiscal: foyerFiscalSchema,
     individu: individuSchema,
-    menage: menageSchema,
+    menage: menageProperties,
 });

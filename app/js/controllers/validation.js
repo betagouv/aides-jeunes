@@ -56,9 +56,9 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http, Ma
                 .then(function(openfiscaRequest) {
                     return $http.get('api/situations/' + test.scenario.situationId)
                     .then(function(situationResponse) {
-                        var situation = situationResponse.data;
+                        var sourceSituation = situationResponse.data;
 
-                        situation.foyer_fiscal = MappingService.mapFoyerFiscal(situation);
+                        var situation = MappingService.migratePersistedSituation(sourceSituation);
 
                         $http.post('api/simulations', MappingService.buildOpenFiscaRequest(situation))
                         .then(function(simulationResponse) {
@@ -74,7 +74,7 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http, Ma
                                 if (diff) {
                                     var requests = {
                                         id: test._id,
-                                        situation: JSON.stringify(situation, null, 2),
+                                        situation: JSON.stringify(sourceSituation, null, 2),
                                         diff: JSON.stringify(diff, null, 2),
                                         local: JSON.stringify(newOpenfiscaRequest, null, 2),
                                         remote: JSON.stringify(openfiscaRequest.data, null, 2),

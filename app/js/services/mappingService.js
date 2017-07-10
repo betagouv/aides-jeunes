@@ -209,7 +209,16 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             delete situation.rfr;
         }
 
-        situation.menage = {};
+        situation.menage = {
+            charges_locatives: situation.logement.charges,
+            code_postal: situation.logement.adresse.codePostal,
+            coloc: situation.logement.colocation,
+            depcom: situation.logement.adresse.codeInsee,
+            loyer: situation.logement.loyer,
+            logement_chambre: situation.logement.isChambre,
+            participation_frais: situation.logement.participationFrais,
+            statut_occupation_logement: getStatutOccupationLogement(situation.logement),
+        };
         return situation;
     }
 
@@ -244,9 +253,9 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             var result = {};
             periodKeys.forEach(function(periodKey) {
                 result[periods[periodKey]] = value;
-            })
+            });
             situation.menage[menagePropertyName] = result;
-        })
+        });
     }
 
     function buildOpenFiscaRequest(situation) {

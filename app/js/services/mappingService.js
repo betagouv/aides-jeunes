@@ -260,7 +260,8 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         });
     }
 
-    function buildOpenFiscaRequest(situation) {
+    function buildOpenFiscaRequest(sourceSituation) {
+        var situation = _.cloneDeep(sourceSituation);
         allocateIndividualsToEntities(situation);
         if (situation.menage.loyer) {
             situation.menage.loyer = Math.round(situation.menage.loyer);

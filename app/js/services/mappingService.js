@@ -183,6 +183,34 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         };
     }
 
+    function migratePersistedSituation(sourceSituation) {
+        var situation = _.assign({}, sourceSituation);
+        var ressourceMapping = {
+            pensions_alimentaires_versees_ym2: 'pensions_alimentaires_versees',
+        };
+        situation.individus = sourceSituation.individus.map(function(sourceIndividu) {
+            var individu = _.assign({}, sourceIndividu);
+            individu.ressources = sourceIndividu.ressources.map(function(sourceRessource) {
+                var ressource = _.assign({}, sourceRessource);
+                if (ressourceMapping[ressource.type]) {
+                    ressource.type = ressourceMapping[ressource.type];
+                }
+                return ressource;
+            });
+            return individu;
+        });
+
+        var periods = MappingPeriodService.getPeriods(situation.dateDeValeur);
+
+        situation.foyer_fiscal = {};
+        if (situation.rfr != 0) {
+            situation.foyer_fiscal.rfr = {};
+            situation.foyer_fiscal.rfr[periods.anneeFiscaleReference] = situation.rfr;
+            delete situation.rfr;
+        }
+        return situation;
+    }
+
 
     function allocateIndividualsToEntities(situation) {
         var foyer = situation.foyer_fiscal;
@@ -213,5 +241,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
 
     return {
         buildOpenFiscaRequest: buildOpenFiscaRequest,
+        migratePersistedSituation: migratePersistedSituation,
     };
 });

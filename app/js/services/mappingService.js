@@ -210,7 +210,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         }
 
         situation.menage = {
-            charges_locatives: situation.logement.charges,
             code_postal: situation.logement.adresse.codePostal,
             coloc: situation.logement.colocation,
             depcom: situation.logement.adresse.codeInsee,
@@ -219,6 +218,9 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             participation_frais: situation.logement.participationFrais,
             statut_occupation_logement: getStatutOccupationLogement(situation.logement),
         };
+        if (situation.logement.charges !== undefined && situation.logement.charges !== null) {
+            situation.menage.charges_locatives = situation.logement.charges;
+        }
         return situation;
     }
 
@@ -260,6 +262,9 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
 
     function buildOpenFiscaRequest(situation) {
         allocateIndividualsToEntities(situation);
+        if (situation.menage.loyer) {
+            situation.menage.loyer = Math.round(situation.menage.loyer);
+        }
         copyTo3PreviousMonths(situation);
         return {
             intermediate_variables: true,

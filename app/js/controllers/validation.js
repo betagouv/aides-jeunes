@@ -47,6 +47,19 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http, Ma
         }
     }
 
+    function preprocessOpenfiscaRequests(newRequest, legacyRequest) {
+        var props = ['coloc', 'logement_chambre'];
+        var newMenage = newRequest.scenarios[0].test_case.menages[0];
+        var legacyMenage = legacyRequest.scenarios[0].test_case.menages[0];
+        props.forEach(function(prop) {
+            if (! newMenage[prop]) {
+                if (_.every(legacyMenage[prop], function(value, key) { return ! value; })) {
+                    delete legacyMenage[prop];
+                }
+            }
+        });
+    }
+
     function runTestComparaison() {
         var start = $scope.validation.index * $scope.validation.step,
             end = ($scope.validation.index + 1) * $scope.validation.step;
@@ -70,7 +83,9 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http, Ma
                                 var newOpenfiscaRequest = requestResult.data;
 
                                 openfiscaRequest.data.variables.sort();
+                                preprocessOpenfiscaRequests(newOpenfiscaRequest, openfiscaRequest.data);
                                 var diff = deepDiffRight(newOpenfiscaRequest, openfiscaRequest.data);
+
                                 if (diff) {
                                     var requests = {
                                         id: test._id,

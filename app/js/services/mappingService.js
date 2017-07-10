@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('MappingService', function($http, droitsDescription, MappingPeriodService, mappingSchemas, ressourceMapping) {
+angular.module('ddsApp').service('MappingService', function($http, droitsDescription, MappingPeriodService, SituationService, mappingSchemas, ressourceMapping) {
     function isNotValidValue(value) {
         return _.isNaN(value) || _.isUndefined(value) || value === null;
     }
@@ -180,6 +180,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
     }
 
     function buildOpenFiscaTestCase(situation) {
+        situation.ressourcesYearMoins2Captured = situation.ressourcesYearMoins2Captured || SituationService.ressourcesYearMoins2Captured(situation);
         var familles = [ mapFamille(situation) ],
             individus = mapIndividus(situation),
             foyerFiscal = mapFoyerFiscal(situation);

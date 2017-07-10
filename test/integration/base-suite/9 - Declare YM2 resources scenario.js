@@ -12,6 +12,12 @@ steps: [
     YM2ResourcesComponent.submit(),
     {
         'ResultComponent.declareYM2ResourcesLink': false,
-    }
+    },
+    {
+        'ResultComponent.title': /Résultats/,
+    },
+    {
+        'ResultComponent.resultatFrame': true,
+    },
 ]
 

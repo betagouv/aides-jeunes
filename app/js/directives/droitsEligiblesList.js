@@ -5,14 +5,14 @@ angular.module('ddsApp').directive('droitEligiblesList', function() {
         restrict: 'E',
         templateUrl: 'partials/droits-eligibles-list.html',
         scope: true,
-        controller: 'droitEligiblesListCtrl',
+        controller: 'droitsEligiblesListCtrl',
         link: function ($scope, $element, $attributes) {
             $scope.list = $scope.$eval($attributes.list);
         }
     };
 });
 
-angular.module('ddsApp').controller('droitEligiblesListCtrl', function($scope) {
+angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope) {
     $scope.isNumber = _.isNumber;
     $scope.isString = _.isString;
     $scope.round = function(droit) {

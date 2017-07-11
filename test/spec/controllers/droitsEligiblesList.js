@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: droitEligiblesListCtrl', function() {
+describe('Controller: droitsEligiblesListCtrl', function() {
 
     var controller, scope;
 
@@ -17,7 +17,7 @@ describe('Controller: droitEligiblesListCtrl', function() {
         describe('euros', function() {
             it('should give nearest ten', function() {
                 var values = [{ montant: 100 }, { montant: 57 }, { montant: 54 }];
-                controller('droitEligiblesListCtrl', { $scope: scope });
+                controller('droitsEligiblesListCtrl', { $scope: scope });
 
                 // when
                 var results = _.map(values, scope.round);
@@ -29,7 +29,7 @@ describe('Controller: droitEligiblesListCtrl', function() {
         describe('percentage', function() {
             it('should give nearest unit', function() {
                 var values = [{ montant: 74.11, unit: '%' }, { montant: 26.81, unit: '%' }];
-                controller('droitEligiblesListCtrl', { $scope: scope });
+                controller('droitsEligiblesListCtrl', { $scope: scope });
 
                 // when
                 var results = _.map(values, scope.round);

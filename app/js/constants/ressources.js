@@ -364,14 +364,6 @@ function salaireNetToImposable(value) {
     return value + TAUX_CSG_CRDS * ASSIETTE_COTIS * value / RATIO_NET_BRUT;
 }
 
-
-var foyerFiscalMapping = {
-    pensions_alimentaires_versees: {
-        src: 'pensions_alimentaires_versees',
-        fn: function(value) { return -value; }
-    }
-};
-
 var individuMapping = {
     aah: 'aah',
     allocation_securisation_professionnelle: 'allocation_securisation_professionnelle',
@@ -473,7 +465,6 @@ var individuMapping = {
 };
 
 var ressourceMapping = {
-    foyerFiscal : foyerFiscalMapping,
     individu: individuMapping,
 };
 

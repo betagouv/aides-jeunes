@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('ResultatService', function($http, droitsDescription) {
+angular.module('ddsApp').service('ResultatService', function($http, droitsDescription, CustomizationService) {
 
     /**
     *@param    {String}  An Openfisca period. For example: 'month:2014-12'.
@@ -21,9 +21,11 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
     }
 
     function normalizeSituation(openfiscaSituation) {
+        var period = normalizePeriod(openfiscaSituation.period);
         return {
-            period: normalizePeriod(openfiscaSituation.period),
+            period: period,
             ressources: normalizeRessources(openfiscaSituation.test_case),
+            customizationId: CustomizationService.determineCustomizationId(openfiscaSituation.test_case, period),
         };
     }
 
@@ -65,7 +67,8 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
                         {
                             montant: value,
                             provider: aidesProvider,
-                        }
+                        },
+                        situation.customizationId && aide.customization && aide.customization[situation.customizationId]
                     );
                 });
 

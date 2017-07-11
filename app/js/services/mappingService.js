@@ -249,19 +249,21 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         menage.enfants = enfantIds;
     }
 
-    function copyTo3PreviousMonths(situation) {
+    function copyTo3PreviousMonths(testCase, dateDeValeur) {
         var periodKeys = ['thisMonth', '1MonthsAgo', '2MonthsAgo', '3MonthsAgo'];
-        var periods = MappingPeriodService.getPeriods(situation.dateDeValeur);
+        var periods = MappingPeriodService.getPeriods(dateDeValeur);
 
         var forDuplication = mappingSchemas.forDuplication;
         Object.keys(forDuplication).forEach(function(entityName) {
             forDuplication[entityName].forEach(function(entityPropertyName) {
-                var value = situation[entityName][entityPropertyName];
-                var result = {};
-                periodKeys.forEach(function(periodKey) {
-                    result[periods[periodKey]] = value;
+                testCase[entityName].forEach(function(entity) {
+                    var value = entity[entityPropertyName];
+                    var result = {};
+                    periodKeys.forEach(function(periodKey) {
+                        result[periods[periodKey]] = value;
+                    });
+                    entity[entityPropertyName] = result;
                 });
-                situation[entityName][entityPropertyName] = result;
             });
         });
     }
@@ -272,12 +274,13 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         if (situation.menage.loyer) {
             situation.menage.loyer = Math.round(situation.menage.loyer);
         }
-        copyTo3PreviousMonths(situation);
+        var testCase = buildOpenFiscaTestCase(situation);
+        copyTo3PreviousMonths(testCase, situation.dateDeValeur);
         return {
             intermediate_variables: true,
             labels: true,
             scenarios: [{
-                test_case: buildOpenFiscaTestCase(situation),
+                test_case: testCase,
                 period: 'month:' + MappingPeriodService.toOpenFiscaFormat(situation.dateDeValeur),
             }],
             variables: _.keys(requestedVariables).sort(),

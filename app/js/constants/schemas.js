@@ -193,7 +193,7 @@ angular.module('ddsCommon').constant('mappingSchemas', {
     isIndividuValid: isIndividuValid,
     individu: individuSchema,
     forDuplication: {
-        famille: familleProperties,
-        menage: menageProperties,
+        familles: familleProperties,
+        menages: menageProperties,
     },
 });

@@ -17,33 +17,6 @@ function getEnfants(situation) {
     return _.map(enfants, 'id');
 }
 
-var foyerFiscalSchema = {
-    declarants: {
-        fn: function(situation) {
-            return _.map(_.filter(situation.individus, function(individu) {
-                return _.includes(['demandeur', 'conjoint'], individu.role);
-            }), 'id');
-        },
-        copyTo3PreviousMonths: false,
-    },
-    // Today, in mes-aides, all children and only them are transmitted to Openfisca as personnes à charge
-    personnes_a_charge: {
-        fn: getEnfants,
-        copyTo3PreviousMonths: false,
-    },
-    rfr: {
-        fn: function (situation) {
-            if (situation.ressourcesYearMoins2Captured && situation.rfr) {
-                var anneeFiscaleN2 = moment(situation.dateDeValeur).subtract(2, 'years').year();
-                var result = {};
-                result[anneeFiscaleN2] = situation.rfr;
-                return result;
-            }
-        },
-        copyTo3PreviousMonths: false,
-    },
-};
-
 var individuSchema = {
     date_naissance: {
         src: 'dateDeNaissance',
@@ -218,7 +191,6 @@ var menageProperties = [
 
 angular.module('ddsCommon').constant('mappingSchemas', {
     isIndividuValid: isIndividuValid,
-    foyerFiscal: foyerFiscalSchema,
     individu: individuSchema,
     forDuplication: {
         famille: familleProperties,

@@ -84,13 +84,19 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http, Ma
 
                                 openfiscaRequest.data.variables.sort();
                                 preprocessOpenfiscaRequests(newOpenfiscaRequest, openfiscaRequest.data);
-                                var diff = deepDiffRight(newOpenfiscaRequest, openfiscaRequest.data);
+                                var diff = [
+                                    deepDiffRight(newOpenfiscaRequest, openfiscaRequest.data),
+                                    deepDiffRight(openfiscaRequest.data, newOpenfiscaRequest),
+                                ];
 
-                                if (diff) {
+                                if (diff[0]) {
                                     var requests = {
                                         id: test._id,
                                         situation: JSON.stringify(sourceSituation, null, 2),
-                                        diff: JSON.stringify(diff, null, 2),
+                                        diff: [
+                                            JSON.stringify(diff[0], null, 2),
+                                            JSON.stringify(diff[1], null, 2),
+                                        ],
                                         local: JSON.stringify(newOpenfiscaRequest, null, 2),
                                         remote: JSON.stringify(openfiscaRequest.data, null, 2),
                                     };

@@ -18,7 +18,16 @@
   <pre>{{ test.json }}</pre>
   <div ng-if="test.diff">
     <h2>Diff</h2>
-    <pre>{{ test.diff }}</pre>
+    <div class="comparaison-frame">
+      <div class="comparaison-panel">
+        <h3>Diff 1</h3>
+        <pre>{{ test.diff[0] }}</pre>
+      </div>
+      <div class="comparaison-panel">
+        <h3>Diff 2</h3>
+        <pre>{{ test.diff[1] }}</pre>
+      </div>
+    </div>
     <div class="comparaison-frame">
       <div class="comparaison-panel">
         <h3>Local</h3>

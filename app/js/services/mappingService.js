@@ -122,16 +122,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         return result;
     }
 
-    function mapFamille(situation) {
-        var famille = buildOpenFiscaEntity(situation, mappingSchemas.famille, situation);
-        var ressources = [];
-        _.forEach(situation.individus, function(individu) {
-            ressources = ressources.concat(individu.ressources);
-        });
-
-        return famille;
-    }
-
     function mapIndividus(situation) {
         var individus = _.filter(situation.individus, function(individu) {
             return mappingSchemas.isIndividuValid(individu, situation);
@@ -222,6 +212,13 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         if (situation.logement.charges !== undefined && situation.logement.charges !== null) {
             situation.menage.charges_locatives = situation.logement.charges;
         }
+
+        situation.famille = {
+            parisien : situation.logement.inhabitantForThreeYearsOutOfLastFive,
+            proprietaire_proche_famille: situation.logement.membreFamilleProprietaire,
+            rsa_isolement_recent: situation.individus[0].isolementRecent,
+        };
+
         return situation;
     }
 
@@ -255,13 +252,17 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
     function copyTo3PreviousMonths(situation) {
         var periodKeys = ['thisMonth', '1MonthsAgo', '2MonthsAgo', '3MonthsAgo'];
         var periods = MappingPeriodService.getPeriods(situation.dateDeValeur);
-        mappingSchemas.menage.forEach(function(menagePropertyName) {
-            var value = situation.menage[menagePropertyName];
-            var result = {};
-            periodKeys.forEach(function(periodKey) {
-                result[periods[periodKey]] = value;
+
+        var forDuplication = mappingSchemas.forDuplication;
+        Object.keys(forDuplication).forEach(function(entityName) {
+            forDuplication[entityName].forEach(function(entityPropertyName) {
+                var value = situation[entityName][entityPropertyName];
+                var result = {};
+                periodKeys.forEach(function(periodKey) {
+                    result[periods[periodKey]] = value;
+                });
+                situation[entityName][entityPropertyName] = result;
             });
-            situation.menage[menagePropertyName] = result;
         });
     }
 

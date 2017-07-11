@@ -17,34 +17,6 @@ function getEnfants(situation) {
     return _.map(enfants, 'id');
 }
 
-var familleSchema = {
-    parents: {
-        fn: function(situation) {
-            return _.map(_.filter(situation.individus, function(individu) {
-                return _.includes(['demandeur', 'conjoint'], individu.role);
-            }), 'id');
-        },
-        copyTo3PreviousMonths: false,
-    },
-    enfants: {
-        fn: getEnfants,
-        copyTo3PreviousMonths: false,
-    },
-    proprietaire_proche_famille: {
-        fn: function(situation) {
-            return situation.logement.membreFamilleProprietaire;
-        }
-    },
-    rsa_isolement_recent: {
-        fn: function(situation) {
-            return situation.individus[0].isolementRecent;
-        }
-    },
-    parisien: {
-        fn: function(situation) { return situation.logement.inhabitantForThreeYearsOutOfLastFive; }
-    },
-};
-
 var foyerFiscalSchema = {
     declarants: {
         fn: function(situation) {
@@ -228,6 +200,12 @@ var individuSchema = {
     tns_micro_entreprise_type_activite: 'microEntrepriseActiviteType',
 };
 
+var familleProperties = [
+    'parisien',
+    'proprietaire_proche_famille',
+    'rsa_isolement_recent',
+];
+
 var menageProperties = [
     'charges_locatives',
     'coloc',
@@ -240,8 +218,10 @@ var menageProperties = [
 
 angular.module('ddsCommon').constant('mappingSchemas', {
     isIndividuValid: isIndividuValid,
-    famille: familleSchema,
     foyerFiscal: foyerFiscalSchema,
     individu: individuSchema,
-    menage: menageProperties,
+    forDuplication: {
+        famille: familleProperties,
+        menage: menageProperties,
+    },
 });

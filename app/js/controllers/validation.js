@@ -34,7 +34,7 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http, Ma
         passedTests: [],
     };
 
-    $scope.validation.index = 0;
+    $scope.validation.index = 40;
     $scope.validation.step = 1;
 
     function nextAction(end) {

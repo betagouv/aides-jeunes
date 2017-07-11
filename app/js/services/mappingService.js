@@ -30,6 +30,8 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         var ressourcesByType = _.groupBy(mesAidesEntity.ressources, 'type');
 
         _.forEach(mappingSchema, function(definitions, openfiscaKey) {
+            if (definitions === openfiscaKey)
+                return;
             if (! _.isArray(definitions)) {
                 definitions = [definitions];
             }
@@ -59,22 +61,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
                         result[periods.thisMonth] += fn ? fn(ressourceLastMonth.montant) : ressourceLastMonth.montant;
                     }
 
-                    // When they are not formally declared, resources of the année fiscale de référence are considered equal to latest 12 month resources
-                    if (! situation.ressourcesYearMoins2Captured) {
-                        // Variables can be defined on a yearly or a monthly basis
-                        if (result[periods.lastYear]) {
-                            result[periods.anneeFiscaleReference] = result[periods.lastYear];
-                        } else {
-                            var sumOverLast12Months = periods.last12Months.reduce(function(sum, periodObject) {
-                                return sum + result[periodObject];
-                            }, 0);
-                            if (sumOverLast12Months) {
-                                periods.anneeFiscaleReference12Months.forEach(function(month) {
-                                    result[month] = sumOverLast12Months / 12;
-                                });
-                            }
-                        }
-                    }
                     openfiscaEntity[openfiscaKey] = result;
                 }
             });
@@ -87,7 +73,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             return periods[month];
         });
 
-        var result = {};
+        var result = _.cloneDeep(mesAidesEntity);
         _.forEach(mappingSchema, function(definition, openfiscaKey) {
             var params = _.isString(definition) ? { src: definition } : definition;
 
@@ -122,6 +108,28 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         return result;
     }
 
+    function duplicateRessourcesForAnneeFiscaleDeReference(individu, dateDeValeur) {
+        var periods = MappingPeriodService.getPeriods(dateDeValeur);
+        Object.keys(ressourceMapping.individu).forEach(function(ressourceName) {
+            var result = individu[ressourceName];
+            if (! result)
+                return;
+            // Variables can be defined on a yearly or a monthly basis
+            if (result[periods.lastYear]) {
+                result[periods.anneeFiscaleReference] = result[periods.lastYear];
+            } else {
+                var sumOverLast12Months = periods.last12Months.reduce(function(sum, periodObject) {
+                    return sum + result[periodObject];
+                }, 0);
+                if (sumOverLast12Months) {
+                    periods.anneeFiscaleReference12Months.forEach(function(month) {
+                        result[month] = sumOverLast12Months / 12;
+                    });
+                }
+            }
+        });
+    }
+
     function mapIndividus(situation) {
         var individus = _.filter(situation.individus, function(individu) {
             return mappingSchemas.isIndividuValid(individu, situation);
@@ -134,6 +142,10 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             }
             var openfiscaIndividu = buildOpenFiscaEntity(individu, mappingSchemas.individu, situation);
             applyRessources(individu, openfiscaIndividu, ressourceMapping.individu, situation);
+
+            if (! situation.ressourcesYearMoins2Captured) {
+                duplicateRessourcesForAnneeFiscaleDeReference(openfiscaIndividu, situation.dateDeValeur);
+            }
             return openfiscaIndividu;
         });
     }
@@ -176,22 +188,39 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
 
     function migratePersistedSituation(sourceSituation) {
         var situation = _.assign({}, sourceSituation);
+        var periods = MappingPeriodService.getPeriods(situation.dateDeValeur);
         var ressourceMapping = {
             pensions_alimentaires_versees_ym2: 'pensions_alimentaires_versees',
         };
+
         situation.individus = sourceSituation.individus.map(function(sourceIndividu) {
+            // TODO
             var individu = _.assign({}, sourceIndividu);
-            individu.ressources = sourceIndividu.ressources.map(function(sourceRessource) {
-                var ressource = _.assign({}, sourceRessource);
-                if (ressourceMapping[ressource.type]) {
-                    ressource.type = ressourceMapping[ressource.type];
+
+            var declaredRessources = {};
+            sourceIndividu.ressources.forEach(function(sourceRessource) {
+                var ressourceName = sourceRessource.type;
+                if (ressourceMapping[ressourceName]) {
+                    ressourceName = ressourceMapping[ressourceName];
                 }
-                return ressource;
+                declaredRessources[ressourceName] = {};
+                individu[ressourceName] = individu[ressourceName] || {};
+                individu[ressourceName][sourceRessource.periode] = individu[ressourceName][sourceRessource.periode] || 0;
+                individu[ressourceName][sourceRessource.periode] = individu[ressourceName][sourceRessource.periode] + sourceRessource.montant;
             });
+
+            Object.keys(declaredRessources).forEach(function(ressourceName) {
+                var ressourceLastMonth = individu[ressourceName][periods['1MonthsAgo']];
+                if (ressourceLastMonth && ! _.includes(individu.interruptedRessources, ressourceName)) {
+                    individu[ressourceName][periods.thisMonth] = ressourceLastMonth;
+                }
+            });
+
+            delete individu._id;
+            delete individu.interruptedRessources;
+            delete individu.salaire_net_hors_revenus_exceptionnels;
             return individu;
         });
-
-        var periods = MappingPeriodService.getPeriods(situation.dateDeValeur);
 
         situation.foyer_fiscal = {};
         if (situation.rfr != 0) {

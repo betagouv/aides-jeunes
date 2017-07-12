@@ -355,5 +355,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             getBaseLogement: getBaseLogement,
             getValue: getStatutOccupationLogement,
         },
+        _mapIndividus: mapIndividus, // Exported for testing purposes
     };
 });

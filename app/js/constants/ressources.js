@@ -371,7 +371,6 @@ var individuMapping = {
             return value / (1 - (((0.062 + 0.005) * 0.9825) + 0.028));
         }
     },
-    pensions_alimentaires_percues: ['pensions_alimentaires_percues', 'pensions_alimentaires_percues_ym2'],
     retraite_brute: {
         src: 'retraite_nette',
         fn: function(value) {
@@ -427,6 +426,7 @@ var individuMapping = {
     indemnite_fin_contrat_net: 'indemnite_fin_contrat_net',
     mva: 'mva',
     pch: 'pch',
+    pensions_alimentaires_percues: 'pensions_alimentaires_percues',
     pensions_alimentaires_versees_individu: 'pensions_alimentaires_versees_individu',
     pensions_invalidite: 'pensions_invalidite',
     prestation_compensatoire: 'prestation_compensatoire',

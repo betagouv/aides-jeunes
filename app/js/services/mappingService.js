@@ -168,6 +168,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         var situation = _.assign({}, sourceSituation);
         var periods = MappingPeriodService.getPeriods(situation.dateDeValeur);
         var ressourceMapping = {
+            pensions_alimentaires_percues_ym2: 'pensions_alimentaires_percues',
             pensions_alimentaires_versees_ym2: 'pensions_alimentaires_versees',
         };
 

@@ -218,6 +218,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
 
             delete individu._id;
             delete individu.interruptedRessources;
+            delete individu.ressources;
             delete individu.salaire_net_hors_revenus_exceptionnels;
             return individu;
         });
@@ -355,6 +356,8 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             getBaseLogement: getBaseLogement,
             getValue: getStatutOccupationLogement,
         },
-        _mapIndividus: mapIndividus, // Exported for testing purposes
+        // Exported for testing purposes
+        _mapIndividus: mapIndividus,
+        _migratePersistedSituation: migratePersistedSituation,
     };
 });

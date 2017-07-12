@@ -24,45 +24,23 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
 
     var requestedVariables = generateRequestedVariables();
 
-    function applyRessources(mesAidesEntity, openfiscaEntity, mappingSchema, situation) {
-        var dateDeValeur = situation.dateDeValeur;
-        var periods = MappingPeriodService.getPeriods(dateDeValeur);
-        var ressourcesByType = _.groupBy(mesAidesEntity.ressources, 'type');
-
-        _.forEach(mappingSchema, function(definitions, openfiscaKey) {
-            if (definitions === openfiscaKey)
+    function applyRessources(ressourceInput, ressourceOutput, mappingSchema) {
+        _.forEach(mappingSchema, function(sourceDefinitions, outputKey) {
+            if (sourceDefinitions === outputKey)
                 return;
-            if (! _.isArray(definitions)) {
-                definitions = [definitions];
+            if (! _.isArray(sourceDefinitions)) {
+                sourceDefinitions = [sourceDefinitions];
             }
-            _.forEach(definitions, function(definition) {
-
+            ressourceOutput[outputKey] = {};
+            var result = ressourceOutput[outputKey];
+            _.forEach(sourceDefinitions, function(definition) {
                 var srcKey = definition.src || definition;
-                var fn = definition.fn;
+                var fn = definition.fn || function(x) { return x; };
 
-                if (ressourcesByType[srcKey]) {
-                    var result = openfiscaEntity[openfiscaKey] || {};
-
-                    _.forEach(ressourcesByType[srcKey], function(item) {
-                        var montant = fn ? fn(item.montant) : item.montant;
-                        if (item.periode) {
-                            // Bootstrapping for current period
-                            if (! result[item.periode]) {
-                                result[item.periode] = 0;
-                            }
-                            result[item.periode] += montant;
-                        }
-                    });
-
-                    // Current month resources are given their latest value when not interrupted
-                    var ressourceLastMonth = _.find(ressourcesByType[srcKey], {periode : periods['1MonthsAgo']});
-                    if (ressourceLastMonth && ressourceLastMonth.montant && ! _.includes(mesAidesEntity.interruptedRessources, srcKey)) {
-                        result[periods.thisMonth] = result[periods.thisMonth] || 0;
-                        result[periods.thisMonth] += fn ? fn(ressourceLastMonth.montant) : ressourceLastMonth.montant;
-                    }
-
-                    openfiscaEntity[openfiscaKey] = result;
-                }
+                _.forEach(ressourceInput[srcKey], function(value, period) {
+                    result[period] = result[period] | 0;
+                    result[period] += fn(value);
+                });
             });
         });
     }
@@ -141,7 +119,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
                 _.extend(individu, situation.patrimoine.toObject ? situation.patrimoine.toObject() : situation.patrimoine);
             }
             var openfiscaIndividu = buildOpenFiscaEntity(individu, mappingSchemas.individu, situation);
-            applyRessources(individu, openfiscaIndividu, ressourceMapping.individu, situation);
+            applyRessources(individu, openfiscaIndividu, ressourceMapping.individu);
 
             if (! situation.ressourcesYearMoins2Captured) {
                 duplicateRessourcesForAnneeFiscaleDeReference(openfiscaIndividu, situation.dateDeValeur);
@@ -205,8 +183,11 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
                 }
                 declaredRessources[ressourceName] = {};
                 individu[ressourceName] = individu[ressourceName] || {};
-                individu[ressourceName][sourceRessource.periode] = individu[ressourceName][sourceRessource.periode] || 0;
-                individu[ressourceName][sourceRessource.periode] = individu[ressourceName][sourceRessource.periode] + sourceRessource.montant;
+                if (typeof individu[ressourceName] === 'object') {
+                    individu[ressourceName][sourceRessource.periode] = individu[ressourceName][sourceRessource.periode] || 0;
+                    individu[ressourceName][sourceRessource.periode] = individu[ressourceName][sourceRessource.periode] + sourceRessource.montant;
+                }
+
             });
 
             Object.keys(declaredRessources).forEach(function(ressourceName) {
@@ -219,7 +200,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             delete individu._id;
             delete individu.interruptedRessources;
             delete individu.ressources;
-            delete individu.salaire_net_hors_revenus_exceptionnels;
             return individu;
         });
 
@@ -357,6 +337,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             getValue: getStatutOccupationLogement,
         },
         // Exported for testing purposes
+        _applyRessources: applyRessources,
         _mapIndividus: mapIndividus,
         _migratePersistedSituation: migratePersistedSituation,
     };

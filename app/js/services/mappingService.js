@@ -46,11 +46,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
     }
 
     function buildOpenFiscaEntity(mesAidesEntity, mappingSchema, situation) {
-        var periods = MappingPeriodService.getPeriods(situation.dateDeValeur);
-        var monthKeys = ['thisMonth', '1MonthsAgo', '2MonthsAgo', '3MonthsAgo'].map(function (month) {
-            return periods[month];
-        });
-
         var result = _.cloneDeep(mesAidesEntity);
         _.forEach(mappingSchema, function(definition, openfiscaKey) {
             var params = _.isString(definition) ? { src: definition } : definition;
@@ -72,16 +67,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
                 if ('default' in params) result[openfiscaKey] = params.default;
                 else delete result[openfiscaKey];
             }
-
-            var value = result[openfiscaKey];
-            if (_.isUndefined(value) || params.copyTo3PreviousMonths === false) {
-                return result;
-            }
-            // Most values must be defined for the latest 3 months to get correct results from OpenFisca
-            result[openfiscaKey] = {};
-            monthKeys.forEach(function(monthKey) {
-                result[openfiscaKey][monthKey] = value;
-            });
         });
         return result;
     }

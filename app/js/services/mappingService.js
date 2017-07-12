@@ -157,9 +157,35 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             pensions_alimentaires_versees_ym2: 'pensions_alimentaires_versees',
         };
 
+        var individuPropertyMapping = {
+            aCharge: 'aCharge',
+            assPreconditionRemplie: 'assPreconditionRemplie',
+            autoEntrepreneurActiviteType: 'autoEntrepreneurActiviteType',
+            boursier: 'boursier',
+            dateDeNaissance: 'dateDeNaissance',
+            place: 'place',
+            echelonBourse: 'echelonBourse',
+            enceinte: 'enceinte',
+            fiscalementIndependant: 'fiscalementIndependant',
+            gardeAlternee: 'gardeAlternee',
+            id: 'id',
+            microEntrepriseActiviteType: 'microEntrepriseActiviteType',
+            perteAutonomie: 'perteAutonomie',
+            role: 'role',
+            scolarite: 'scolarite',
+            specificSituations: 'specificSituations',
+            statutMarital: 'statutMarital',
+            tauxIncapacite: 'tauxIncapacite',
+            tns_autres_revenus_type_activite: 'tns_autres_revenus_type_activite',
+        };
+
         situation.individus = sourceSituation.individus.map(function(sourceIndividu) {
-            // TODO
-            var individu = _.assign({}, sourceIndividu);
+            var individu = {};
+            Object.keys(individuPropertyMapping).forEach(function(previousPropertyName) {
+                if (sourceIndividu[previousPropertyName] !== undefined) {
+                    individu[individuPropertyMapping[previousPropertyName]] = _.cloneDeep(sourceIndividu[previousPropertyName]);
+                }
+            });
 
             var declaredRessources = {};
             sourceIndividu.ressources.forEach(function(sourceRessource) {
@@ -178,14 +204,11 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
 
             Object.keys(declaredRessources).forEach(function(ressourceName) {
                 var ressourceLastMonth = individu[ressourceName][periods['1MonthsAgo']];
-                if (ressourceLastMonth && ! _.includes(individu.interruptedRessources, ressourceName)) {
+                if (ressourceLastMonth && ! _.includes(sourceIndividu.interruptedRessources, ressourceName)) {
                     individu[ressourceName][periods.thisMonth] = ressourceLastMonth;
                 }
             });
 
-            delete individu._id;
-            delete individu.interruptedRessources;
-            delete individu.ressources;
             return individu;
         });
 
@@ -212,7 +235,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         situation.famille = {
             parisien : situation.logement.inhabitantForThreeYearsOutOfLastFive,
             proprietaire_proche_famille: situation.logement.membreFamilleProprietaire,
-            rsa_isolement_recent: situation.individus[0].isolementRecent,
+            rsa_isolement_recent: sourceSituation.individus[0].isolementRecent,
         };
 
         return situation;

@@ -14,8 +14,8 @@
   </div>
 </div>
 
-<div ng-if="ressourcesCaptured">
-  <div ng-repeat="individu in individusSorted" ng-if="shouldDisplayPersonRessourcesRecap(individu)">
+<div>
+  <div ng-repeat="individu in individusSorted">
     <a
       ui-sref="{{ getModifyPersonRessourcesLink(individu) }}"
       class="pull-right">
@@ -28,11 +28,11 @@
       class="ressources-accordion"
       ng-if="ressourcesByIndividu[$index]">
       <uib-accordion-group
-        ng-repeat="(type, ressource) in ressourcesByIndividu[$index]"
-        class="ressources-recap {{ getRessourceByType(type).category }}"
-        heading="{{ getRessourceByType(type).label }}"
+        ng-repeat="(type, ressource) in ressourcesByIndividu[$index] track by type"
+        ng-init="ressourceType = keyedRessourceTypes[type]"
+        class="ressources-recap {{ ressourceType.category }}"
+        heading="{{ ressourceType.label }}"
         >
-
         <div class="row" ng-if="ressource[month.id]" ng-repeat="month in months">
           <div class="col-sm-7">
             {{ month.label | uppercaseFirst }}
@@ -52,7 +52,7 @@
         </div>
       </uib-accordion-group>
     </uib-accordion>
-    <div ng-if="! ressourcesByIndividu[$index]">
+    <div ng-if="! haveRessourcesDeclared">
       <em class="small">Aucune ressource déclarée</em>
     </div>
   </div>

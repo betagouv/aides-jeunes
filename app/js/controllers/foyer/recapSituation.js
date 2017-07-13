@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, categoriesRnc, CityService, SituationService, IndividuService, RessourceService) {
+    $scope.yearMoins1 = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
 
     function buildRecapLogement () {
@@ -16,24 +17,26 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
             $scope.loyerLabel = 'Mensualité d’emprunt';
         }
     }
+    $scope.keyedRessourceTypes = _.keyBy(ressourceTypes, 'id');
 
     function getRessources (individu) {
-        var filteredRessources = RessourceService.getMainScreenRessources(individu);
-        if (_.isEmpty(filteredRessources)) {
-            return;
-        }
-        var ressourcesByType = _.groupBy(filteredRessources, 'type');
-        return _.mapValues(ressourcesByType, function(ressources) {
-            return _.mapValues(_.groupBy(ressources, 'periode'), function(ressource) {
-                return ressource[0].montant;
-            });
-        });
+        return ressourceTypes.reduce(function(accum, ressource) {
+            if (individu[ressource.id] && _.some(individu[ressource.id])) {
+                accum[ressource.id] = individu[ressource.id];
+            }
+            return accum;
+        }, {});
     }
 
-    function buildRecapRessources () {
-        $scope.ressourcesCaptured = true;
+    function prepareRecapRessources() {
         $scope.individusSorted = SituationService.getIndividusSortedParentsFirst($scope.situation);
         $scope.ressourcesByIndividu = $scope.individusSorted.map(getRessources);
+        $scope.haveRessourcesDeclared = _.some($scope.ressourcesByIndividu, _.negate(_.isEmpty));
+    }
+
+    function buildRecapRessources() {
+        $scope.ressourcesCaptured = true;
+        prepareRecapRessources();
     }
 
     function buildRecapPatrimoine () {
@@ -91,20 +94,24 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         return _.find(ressourceTypes, { id: typeName });
     };
 
+    function getLast12MonthTotal(ressource) {
+        return SituationService.getMonths($scope.situation.dateDeValeur, 12).reduce(function(sum, current) {
+            return ressource[current.id] ? sum + ressource[current.id] : sum;
+        }, 0);
+    }
+
     $scope.getTotalAnnuel = function (ressource) {
-        return _.values(ressource).reduce(function (x,y) {
-            return x + y;
-        });
+        return ressource[$scope.yearMoins1] || ressource[$scope.yearMoins2] || getLast12MonthTotal(ressource);
     };
 
     $scope.shouldDisplayPersonRessourcesRecap = function (individu) {
         var index = $scope.individusSorted.indexOf(individu);
-        return $scope.ressourcesByIndividu[index] || individu.ressources && IndividuService.isParent(individu);
+        return (! _.isEmpty($scope.ressourcesByIndividu[index])) || IndividuService.isParent(individu);
     };
 
     $scope.getModifyPersonRessourcesLink = function (individu) {
         var index = $scope.individusSorted.indexOf(individu);
-        var page = $scope.ressourcesByIndividu[index] ? 'montants' : 'types';
+        var page = (! _.isEmpty($scope.ressourcesByIndividu[index])) ? 'montants' : 'types';
 
         return 'foyer.ressources.individu.' + page + '({individu: ' + index + '})';
     };
@@ -115,9 +122,8 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
 
     $scope.$on('logementCaptured', buildRecapLogement);
 
-    if ( $scope.situation.individus.length && $scope.situation.individus[0].ressources) {
-        buildRecapRessources();
-    }
+    prepareRecapRessources();
+    $scope.ressourcesCaptured = $scope.haveRessourcesDeclared || Boolean($scope.situation._id);
 
     $scope.$on('ressourcesUpdated', buildRecapRessources);
 

@@ -14,11 +14,11 @@
         <div
           class="form-group"
           ng-repeat="rnc in individuRef.rnc"
-          ng-init="inputName = rnc.categorie.id +  '-' + individuIndex"
+          ng-init="inputName = rnc.id +  '-' + individuIndex"
           ng-class="{ 'has-error': form.$submitted && form[inputName].$invalid }"
           >
           <label class="control-label col-sm-3" for="{{ inputName }}">
-            {{ rnc.categorie.label }}
+            {{ rnc.label }}
           </label>
           <div class="col-sm-3">
             <span class="input-group">
@@ -27,7 +27,7 @@
                 id="{{ inputName }}"
                 name="{{ inputName }}"
                 class="form-control text-right"
-                ng-model="rnc.montant"
+                ng-model="individuRef.individu[rnc.id][yearMoins2]"
                 min="0"
                 select-on-focus
                 zero-to-empty
@@ -41,8 +41,8 @@
             </ul>
           </div>
           <div class="col-sm-6">
-            <p class="help-block" id="help-{{ inputName }}" ng-show="{{ getDefaultValue(individuRef, rnc.categorie) }}">
-              Ce montant vaut {{ getDefaultValue(individuRef, rnc.categorie) | currency }} pour les 12 derniers mois.
+            <p class="help-block" id="help-{{ inputName }}" ng-show="{{ getDefaultValue(individuRef, rnc) }}">
+              Ce montant vaut {{ getDefaultValue(individuRef, rnc) | currency }} pour les 12 derniers mois.
             </p>
           </div>
         </div>

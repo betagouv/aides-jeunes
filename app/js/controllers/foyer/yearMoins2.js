@@ -2,6 +2,7 @@
 
 angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService, SituationService) {
     var today = $scope.situation.dateDeValeur;
+    var months = SituationService.getMonths(today, 12);
     $scope.yearMoins2 = moment(today).subtract('years', 2).format('YYYY');
     $scope.debutAnneeGlissante = moment(today).subtract('years', 1).format('MMMM YYYY');
 
@@ -11,14 +12,17 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
         var individuRef = {
             individu: individu,
             label: IndividuService.label(individu),
-            rnc: []
+            rnc : categoriesRnc,
         };
+
         categoriesRnc.forEach(function(categorieRnc) {
-            var ressource = _.find(individu.ressources, { type: categorieRnc.id });
-            var montant = ressource ? ressource.montant : undefined;
-            individuRef.rnc.push({ categorie: categorieRnc, montant: montant});
+            individu[categorieRnc.id] = individu[categorieRnc.id] || {};
         });
-        var hasYM2Ressources = individuRef.rnc.some(function(rnc) { return rnc.montant !== undefined; });
+
+        var hasYM2Ressources = categoriesRnc.reduce(function(hasYM2RessourcesAccum, categorieRnc) {
+            return hasYM2RessourcesAccum || typeof individu[categorieRnc.id][$scope.yearMoins2] == 'number';
+        }, false);
+
         var display = IndividuService.isParent(individu) || hasYM2Ressources;
         (display ? $scope.individuRefsToDisplay : $scope.individuRefsToHide).push(individuRef);
     });
@@ -29,38 +33,25 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
     };
 
     $scope.getDefaultValue = function(individuRef, rnc) {
-        var sources = rnc.sources || [];
-        return _.chain(individuRef.individu.ressources)
-            .filter(function(ressource) { return _.includes(sources, ressource.type); })
-            .reduce(function(sum, ressource) { return sum + ressource.montant; }, 0)
-            .value();
+        return _.sum((rnc.sources || []).map(function(sourceName) {
+            if (! individuRef.individu[sourceName]) {
+                return 0;
+            }
+
+            var ressource = individuRef.individu[sourceName];
+            return months.reduce(function(sum, month) {
+                if (! ressource[month.id]) {
+                    return sum;
+                }
+
+                return sum + ressource[month.id];
+            }, 0);
+        }));
     };
 
     $scope.submit = function(form) {
         if (form && (! form.$valid))
             return;
-
-        $scope.individuRefsToDisplay.forEach(function(individuRef) {
-            // Reset individu ressources without rnc ressources declared previously
-            individuRef.individu.ressources = _.filter(individuRef.individu.ressources, function(ressource) {
-                return ! _.find(categoriesRnc, { id: ressource.type });
-            });
-
-            // Remove empty values from rnc
-            individuRef.rnc = _.filter(individuRef.rnc, function(rnc) {
-                return typeof rnc.montant === 'number';
-            });
-
-            individuRef.rnc.forEach(function(rnc) {
-                individuRef.individu.ressources.push({
-                    periode: $scope.yearMoins2,
-                    type: rnc.categorie.id,
-                    montant: rnc.montant
-                });
-                individuRef.individu[rnc.categorie.id] = individuRef.individu[rnc.categorie.id] || {};
-                individuRef.individu[rnc.categorie.id][$scope.yearMoins2] = rnc.montant;
-            });
-        });
 
         $scope.$emit('rnc');
     };

@@ -18,6 +18,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         }
     }
     $scope.keyedRessourceTypes = _.keyBy(ressourceTypes, 'id');
+    $scope.categoriesRnc = categoriesRnc;
 
     function getRessources (individu) {
         return ressourceTypes.reduce(function(accum, ressource) {
@@ -73,10 +74,11 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
             .forEach(function(individu) {
                 var ym2IndividuRecap = { label: IndividuService.label(individu), ressources: [] };
                 categoriesRnc.forEach(function(rnc) {
-                    var ressource = _.find(individu.ressources, { type: rnc.id });
-                    if (ressource) {
-                        ym2IndividuRecap.ressources.push({ label: rnc.label, montant: ressource.montant });
+                    var ressource = individu[rnc.id];
+                    if ((! ressource) || (! ressource[$scope.yearMoins2])) {
+                        return;
                     }
+                    ym2IndividuRecap.ressources.push({ label: rnc.label, montant: ressource[$scope.yearMoins2] });
                 });
                 if (ym2IndividuRecap.ressources.length) {
                     $scope.ressourcesYearMoins2.push(ym2IndividuRecap);

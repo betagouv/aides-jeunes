@@ -169,12 +169,13 @@ describe('Service: situationService', function () {
         it('should detect N-2 ressources', function() {
             // given
             var situation = {
-                individus:
-                    [
-                        { ressources: []},
-                        { ressources: [{ type: 'retraite_imposable'}]}
-                    ],
+                individus: [{
+                    retraite_imposable: {
+                        '2015': 1000,
+                    },
+                }],
                 foyer_fiscal: {},
+                dateDeValeur: '2017-02-23',
             };
 
             // when
@@ -182,14 +183,15 @@ describe('Service: situationService', function () {
             // then
             expect(ressources_captured).toBeTruthy();
         });
-        it('should ignore other ressources', function() {
+
+        it('should detect N-2 ressources', function() {
             // given
             var situation = {
-                individus:
-                    [
-                        { ressources: [{ type: 'salaire_net_hors_revenus_exceptionnels'}]}
-                    ],
+                individus: [{
+                    retraite_imposable: {},
+                }],
                 foyer_fiscal: {},
+                dateDeValeur: '2017-02-23',
             };
 
             // when
@@ -197,6 +199,7 @@ describe('Service: situationService', function () {
             // then
             expect(ressources_captured).toBeFalsy();
         });
+
         it('should detect rfr', function() {
             // given
             var situation = {

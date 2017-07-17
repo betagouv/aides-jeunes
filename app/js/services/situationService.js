@@ -110,9 +110,13 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             var yearMoins2 = moment(situation.dateDeValeur).subtract('years', 2).format('YYYY');
             var rfr = situation.foyer_fiscal.rfr && situation.foyer_fiscal.rfr[yearMoins2];
             var hasYm2Ressources = situation.individus.some(function(individu) {
-                return individu.ressources && individu.ressources.some(function(ressource) {
-                    return _.map(categoriesRnc, 'id').indexOf(ressource.type) >= 0;
-                });
+                return categoriesRnc.reduce(function(hasYm2RessourcesAccum, categorieRnc) {
+                    if (! individu[categorieRnc.id]) {
+                        return hasYm2RessourcesAccum;
+                    }
+
+                    return hasYm2RessourcesAccum || typeof individu[categorieRnc.id][yearMoins2] == 'number';
+                }, false);
             });
             return rfr || rfr === 0 || hasYm2Ressources;
         }

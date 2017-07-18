@@ -166,7 +166,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             echelonBourse: 'echelon_bourse',
             enceinte: 'enceinte',
             fiscalementIndependant: 'fiscalementIndependant',
-            gardeAlternee: 'gardeAlternee',
+            gardeAlternee: 'garde_alternee',
             id: 'id',
             microEntrepriseActiviteType: 'microEntrepriseActiviteType',
             perteAutonomie: 'perteAutonomie',

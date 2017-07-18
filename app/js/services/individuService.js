@@ -60,7 +60,7 @@ angular.module('ddsCommon').service('IndividuService', function($filter, specifi
                 statuts.push('boursier');
             }
 
-            if (individu.gardeAlternee) {
+            if (individu.garde_alternee) {
                 statuts.push('en garde alternée');
             }
 

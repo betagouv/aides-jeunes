@@ -119,7 +119,6 @@ var individuSchema = {
         },
         copyTo3PreviousMonths: false,
     },
-    garde_alternee: 'gardeAlternee',
     habite_chez_parents: 'habiteChezParents',
 
     /* Revenus du patrimoine */

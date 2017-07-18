@@ -159,7 +159,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
 
         var individuPropertyMapping = {
             aCharge: 'aCharge',
-            assPreconditionRemplie: 'assPreconditionRemplie',
+            assPreconditionRemplie: 'ass_precondition_remplie',
             autoEntrepreneurActiviteType: 'autoEntrepreneurActiviteType',
             dateDeNaissance: 'date_naissance',
             place: 'enfant_place',

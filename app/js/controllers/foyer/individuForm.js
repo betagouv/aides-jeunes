@@ -36,7 +36,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     var DEFAULT_INDIVIDU = {
         id: individuRole,
         nationalite: 'fr',
-        assPreconditionRemplie: false,
+        ass_precondition_remplie: false,
         scolarite: 'college',
         tauxIncapacite: 'plus80',
         echelon_bourse: -1,
@@ -87,7 +87,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
             });
 
             if (! $scope.captureEligibiliteAss()) {
-                delete $scope.individu.assPreconditionRemplie;
+                delete $scope.individu.ass_precondition_remplie;
             }
 
             if (! $scope.captureTauxIncapacite()) {

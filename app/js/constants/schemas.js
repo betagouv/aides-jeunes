@@ -48,7 +48,6 @@ var individuSchema = {
         copyTo3PreviousMonths: false
     },
     enceinte: 'enceinte',
-    ass_precondition_remplie: 'assPreconditionRemplie',
     date_arret_de_travail: {
         src: 'dateArretDeTravail',
         fn: formatDate

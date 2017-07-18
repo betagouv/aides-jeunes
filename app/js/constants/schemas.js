@@ -49,7 +49,7 @@ var individuSchema = {
     },
     enceinte: 'enceinte',
     date_arret_de_travail: {
-        src: 'dateArretDeTravail',
+        src: 'date_arret_de_travail',
         fn: formatDate
     },
     activite: {

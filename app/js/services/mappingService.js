@@ -161,10 +161,9 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             aCharge: 'aCharge',
             assPreconditionRemplie: 'assPreconditionRemplie',
             autoEntrepreneurActiviteType: 'autoEntrepreneurActiviteType',
-            boursier: 'boursier',
             dateDeNaissance: 'date_naissance',
             place: 'enfant_place',
-            echelonBourse: 'echelonBourse',
+            echelonBourse: 'echelon_bourse',
             enceinte: 'enceinte',
             fiscalementIndependant: 'fiscalementIndependant',
             gardeAlternee: 'gardeAlternee',
@@ -186,6 +185,9 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
                     individu[individuPropertyMapping[previousPropertyName]] = _.cloneDeep(sourceIndividu[previousPropertyName]);
                 }
             });
+            individu.enfant_a_charge = {};
+            individu.enfant_a_charge[moment(situation.dateDeValeur).format('YYYY')]= sourceIndividu.aCharge || (! sourceIndividu.fiscalementIndependant);
+            individu.boursier = sourceIndividu.boursier || sourceIndividu.echelonBourse >= 0;
 
             var declaredRessources = {};
             sourceIndividu.ressources.forEach(function(sourceRessource) {

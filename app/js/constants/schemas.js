@@ -99,12 +99,6 @@ var individuSchema = {
             return specificSituations.indexOf('etudiant') >= 0;
         }
     },
-    boursier: {
-        fn: function(individu) {
-            return individu.boursier || individu.echelonBourse >= 0;  // backward compatibility for boursier; cannot write a migration because the exact echelon is not known
-        }
-    },
-    echelon_bourse: 'echelonBourse',
     scolarite: {
         fn: function(individu) {
             var values = {

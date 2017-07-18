@@ -39,7 +39,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         assPreconditionRemplie: false,
         scolarite: 'college',
         tauxIncapacite: 'plus80',
-        echelonBourse: -1,
+        echelon_bourse: -1,
         aCharge: (individuRole == 'enfant'), // By default enfants are `à charge fiscale`, adults are not.
         fiscalementIndependant: true,
         enfant_place: false,

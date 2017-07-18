@@ -267,7 +267,7 @@
     </div>
   </fieldset>
 
-  <yes-no-question model="individu.fiscalementIndependant"
+  <yes-no-question model="locals.fiscalementIndependant"
     ng-if="captureDemandeurACharge()"
     size="4"
     >
@@ -288,7 +288,7 @@
     </div>
   </div>
 
-  <yes-no-question model="individu.aCharge"
+  <yes-no-question model="individu.enfant_a_charge[currentYear]"
     ng-if="captureEnfantACharge(form)"
     size="4"
     >

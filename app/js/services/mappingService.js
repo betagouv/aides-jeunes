@@ -158,14 +158,12 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         };
 
         var individuPropertyMapping = {
-            aCharge: 'aCharge',
             assPreconditionRemplie: 'ass_precondition_remplie',
             autoEntrepreneurActiviteType: 'tns_auto_entrepreneur_type_activite',
             dateDeNaissance: 'date_naissance',
             place: 'enfant_place',
             echelonBourse: 'echelon_bourse',
             enceinte: 'enceinte',
-            fiscalementIndependant: 'fiscalementIndependant',
             gardeAlternee: 'garde_alternee',
             id: 'id',
             microEntrepriseActiviteType: 'tns_micro_entreprise_type_activite',

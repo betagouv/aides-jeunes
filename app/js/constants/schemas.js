@@ -102,16 +102,6 @@ var individuSchema = {
             return values[individu.scolarite];
         }
     },
-    enfant_a_charge: {
-        // variable liée à l'année fiscale : on la définit sur l'année
-        fn: function(individu, situation) {
-            var year = moment(situation.dateDeValeur).format('YYYY');
-            var result = {};
-            result[year] = individu.aCharge || (! individu.fiscalementIndependant);
-            return result;
-        },
-        copyTo3PreviousMonths: false,
-    },
 
     /* Revenus du patrimoine */
     interets_epargne_sur_livrets: {

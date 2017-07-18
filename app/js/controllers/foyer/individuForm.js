@@ -4,6 +4,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     $scope.specificSituations = specificSituations;
     $scope.situationsFamiliales = situationsFamiliales;
     $scope.today = moment();
+    $scope.currentYear = $scope.today.format('YYYY');
     $scope.maxAgeYears = 130;
     $scope.minBirthDate = moment().subtract($scope.maxAgeYears, 'years');
 
@@ -40,8 +41,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         scolarite: 'college',
         tauxIncapacite: 'plus80',
         echelon_bourse: -1,
-        aCharge: (individuRole == 'enfant'), // By default enfants are `à charge fiscale`, adults are not.
-        fiscalementIndependant: true,
+        enfant_a_charge: {},
         enfant_place: false,
         role: individuRole,
         tns_autres_revenus_type_activite: 'bic',
@@ -50,6 +50,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         tns_auto_entrepreneur_type_activite: 'bic',
         specificSituations: []
     };
+    DEFAULT_INDIVIDU.enfant_a_charge[$scope.currentYear] = (individuRole == 'enfant'); // By default enfants are `à charge fiscale`, adults are not.
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
     $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
@@ -132,12 +133,22 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
     $scope.capturePerteAutonomie = false;
 
+    $scope.locals = {
+        fiscalementIndependant: ! $scope.individu.enfant_a_charge[$scope.currentYear],
+    };
+
     $scope.$watch('individu.date_naissance', _.debounce(function() {
         $scope.capturePerteAutonomie = $scope.individu.date_naissance &&
                                        $scope.individu.date_naissance.isValid() &&
                                        IndividuService.age($scope.individu) >= 60;
         $scope.$digest();
     }, 400)); // avoid displaying question when user born in 1980 is typing 19… as birth year
+
+    function fiscalementIndependantUpdated() {
+        $scope.individu.enfant_a_charge[$scope.currentYear] = ! $scope.locals.fiscalementIndependant;
+    }
+
+    $scope.$watch('locals.fiscalementIndependant', fiscalementIndependantUpdated);
 
     $scope.captureScolarite = function(form) {
         if (! isIndividuParent && form.dateDeNaissance.$valid) {

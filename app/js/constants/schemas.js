@@ -43,10 +43,6 @@ var individuSchema = {
             union_libre: 2
         }
     },
-    id: {
-        src: 'id',
-        copyTo3PreviousMonths: false
-    },
     date_arret_de_travail: {
         src: 'date_arret_de_travail',
         fn: formatDate

@@ -157,9 +157,6 @@ var individuSchema = {
         },
         copyTo3PreviousMonths: false,
     },
-
-    /* Activités non-salarié */
-    tns_micro_entreprise_type_activite: 'microEntrepriseActiviteType',
 };
 
 var familleProperties = [

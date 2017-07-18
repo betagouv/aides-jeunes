@@ -168,7 +168,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             fiscalementIndependant: 'fiscalementIndependant',
             gardeAlternee: 'garde_alternee',
             id: 'id',
-            microEntrepriseActiviteType: 'microEntrepriseActiviteType',
+            microEntrepriseActiviteType: 'tns_micro_entreprise_type_activite',
             perteAutonomie: 'perteAutonomie',
             role: 'role',
             scolarite: 'scolarite',

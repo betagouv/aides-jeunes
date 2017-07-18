@@ -169,7 +169,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             gardeAlternee: 'garde_alternee',
             id: 'id',
             microEntrepriseActiviteType: 'tns_micro_entreprise_type_activite',
-            perteAutonomie: 'perteAutonomie',
+            perteAutonomie: 'perte_autonomie',
             role: 'role',
             scolarite: 'scolarite',
             specificSituations: 'specificSituations',

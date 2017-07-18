@@ -91,7 +91,6 @@ var individuSchema = {
             return specificSituations.indexOf('inapte_travail') >= 0;
         }
     },
-    perte_autonomie: 'perteAutonomie',
     etudiant: {
         src: 'specificSituations',
         fn: function(specificSituations) {

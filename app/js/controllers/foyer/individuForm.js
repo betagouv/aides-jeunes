@@ -42,7 +42,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         echelonBourse: -1,
         aCharge: (individuRole == 'enfant'), // By default enfants are `à charge fiscale`, adults are not.
         fiscalementIndependant: true,
-        place: false,
+        enfant_place: false,
         role: individuRole,
         tns_autres_revenus_type_activite: 'bic',
         microEntrepriseActiviteType: 'bic',

@@ -163,7 +163,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             autoEntrepreneurActiviteType: 'autoEntrepreneurActiviteType',
             boursier: 'boursier',
             dateDeNaissance: 'date_naissance',
-            place: 'place',
+            place: 'enfant_place',
             echelonBourse: 'echelonBourse',
             enceinte: 'enceinte',
             fiscalementIndependant: 'fiscalementIndependant',

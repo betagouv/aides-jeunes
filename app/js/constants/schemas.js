@@ -125,7 +125,6 @@ var individuSchema = {
         },
         copyTo3PreviousMonths: false,
     },
-    enfant_place: 'place',
     garde_alternee: 'gardeAlternee',
     habite_chez_parents: 'habiteChezParents',
 

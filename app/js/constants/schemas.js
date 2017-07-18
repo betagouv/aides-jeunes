@@ -47,7 +47,6 @@ var individuSchema = {
         src: 'id',
         copyTo3PreviousMonths: false
     },
-    enceinte: 'enceinte',
     date_arret_de_travail: {
         src: 'date_arret_de_travail',
         fn: formatDate

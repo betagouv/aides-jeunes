@@ -116,7 +116,6 @@ var individuSchema = {
         },
         copyTo3PreviousMonths: false,
     },
-    habite_chez_parents: 'habiteChezParents',
 
     /* Revenus du patrimoine */
     interets_epargne_sur_livrets: {

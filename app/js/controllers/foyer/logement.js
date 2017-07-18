@@ -90,7 +90,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.captureParticipationFrais = function() {
-        return (logement.type == 'heberge') && (! $scope.captureHabiteChezParents() || angular.isDefined($scope.demandeur.habiteChezParents));
+        return (logement.type == 'heberge') && (! $scope.captureHabiteChezParents() || angular.isDefined($scope.demandeur.habite_chez_parents));
     };
 
     $scope.captureLoyer = function() {
@@ -136,7 +136,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         ['charges_locatives', 'coloc', 'logement_chambre', 'loyer', 'participation_frais'].forEach(function(field) {
             delete menage[field];
         });
-        delete $scope.demandeur.habiteChezParents;
+        delete $scope.demandeur.habite_chez_parents;
     };
 
     $scope.changeNomCommune = function() {

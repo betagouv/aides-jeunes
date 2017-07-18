@@ -159,8 +159,6 @@ var individuSchema = {
     },
 
     /* Activités non-salarié */
-    tns_autres_revenus_type_activite: 'tns_autres_revenus_type_activite',
-    tns_auto_entrepreneur_type_activite: 'autoEntrepreneurActiviteType',
     tns_micro_entreprise_type_activite: 'microEntrepriseActiviteType',
 };
 

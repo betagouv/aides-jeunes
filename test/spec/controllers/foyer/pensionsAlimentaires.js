@@ -8,6 +8,7 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
         scope = {
             $on: function() {},
             $emit: function() {},
+            $watch: function() {},
             situation: { dateDeValeur: '2013-04-10' }
         };
         form = { $valid: true };
@@ -35,72 +36,41 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             initController();
 
             // then
-            expect(scope.situation.parentsPayPensionsAlimentaires).toBe(false);
-            expect(scope.individusVM.length).toBe(2);
-            expect(scope.individusVM[0].individu).toEqual(scope.situation.individus[0]);
-            expect(scope.individusVM[0].label).toEqual('Vous');
-            expect(scope.individusVM[0].pensionsVersees.montantsMensuels).toEqual([0, 0, 0]);
-            expect(scope.individusVM[0].pensionsVersees.montantAnnuel).toBe(0);
+            expect(scope.locals.parentsPayPensionsAlimentaires).toBe(false);
         });
 
         it('should map previous pensions alimentaires', function() {
             // given
             scope.situation.individus = [{
                 role: 'demandeur',
-                ressources: [
-                    { type: 'pensions_alimentaires_versees_individu', periode: '2013-03', montant: 350 },
-                    { type: 'pensions_alimentaires_versees_individu', periode: '2013-02', montant: 300 },
-                    { type: 'pensions_alimentaires_versees_individu', periode: '2013-01', montant: 250 }
-                ]
+                pensions_alimentaires_versees_individu: {
+                    '2013-01': 250,
+                }
             }];
 
             // when
             initController();
 
             // then
-            expect(scope.situation.parentsPayPensionsAlimentaires).toBe(true);
-            expect(scope.individusVM[0].pensionsVersees.montantsMensuels).toEqual([250, 300, 350]);
-            expect(scope.individusVM[0].pensionsVersees.montantAnnuel).toBe(900);
-        });
-    });
-
-    describe('submit()', function() {
-        it('should flatten amounts', function() {
-            // given
-            scope.situation.individus = [{ role: 'demandeur', ressources: [] }];
-            initController();
-            scope.situation.parentsPayPensionsAlimentaires = true;
-            scope.individusVM[0].pensionsVersees.montantsMensuels = [100, 100, 100];
-            scope.individusVM[0].pensionsVersees.montantAnnuel = 1200;
-
-            // when
-            scope.submit(form);
-
-            // then
-            var individu = scope.situation.individus[0];
-            expect(individu.ressources.length).toBe(12);
-            expect(individu.ressources[0].montant).toBe(100);
+            expect(scope.locals.parentsPayPensionsAlimentaires).toBe(true);
         });
 
-        it('should delete previous pensions if answers no', function() {
+        it('should remove pensions alimentaires', function() {
             // given
             scope.situation.individus = [{
                 role: 'demandeur',
-                ressources: [
-                    { type: 'pensions_alimentaires_versees_individu', periode: '2013-03', montant: 350 },
-                    { type: 'foo', periode: '2013-03', montant: 350 }
-                ]
+                pensions_alimentaires_versees_individu: {
+                    '2013-01': 250,
+                }
             }];
-            initController();
 
             // when
-            scope.situation.parentsPayPensionsAlimentaires = false;
-            scope.submit(form);
+            initController();
+            scope.locals.parentsPayPensionsAlimentaires = false;
+            scope._parentsPayPensionsAlimentairesUpdated();
 
             // then
-            var individu = scope.situation.individus[0];
-            expect(individu.ressources.length).toBe(1);
-            expect(individu.ressources[0].type).toBe('foo');
+            expect(scope.situation.individus[0].pensions_alimentaires_versees_individu).toBeFalsy();
         });
     });
 });

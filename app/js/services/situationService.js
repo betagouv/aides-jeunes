@@ -1,6 +1,6 @@
 'use strict';
 
-var DATE_FIELDS = ['dateDeNaissance', 'dateArretDeTravail', 'dateDernierContratTravail'];
+var DATE_FIELDS = ['date_naissance', 'dateArretDeTravail', 'dateDernierContratTravail'];
 
 angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc) {
     var situation;

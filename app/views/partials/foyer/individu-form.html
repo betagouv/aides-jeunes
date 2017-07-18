@@ -13,7 +13,7 @@
         name="dateDeNaissance"
         id="date-de-naissance"
         required
-        ng-model="individu.dateDeNaissance"
+        ng-model="individu.date_naissance"
         auto-focus
         aria-describedby="help-date-de-naissance"
         >
@@ -158,7 +158,7 @@
         <input
             dds-date
             format="MM/AAAA"
-            min="{{ individu.dateDeNaissance }}"
+            min="{{ individu.date_naissance }}"
             name="dateDernierContratTravail"
             id="last-job-end-date"
             ng-model="individu.dateDernierContratTravail"

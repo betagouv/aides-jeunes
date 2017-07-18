@@ -8,7 +8,7 @@
     {{ individuLabel(individu) }}
   </a>
   <div>
-    Né·e le <strong>{{ individu.dateDeNaissance.format('LL') }}</strong>
+    Né·e le <strong>{{ individu.date_naissance.format('LL') }}</strong>
     <br>Nationalité <strong>{{ nationalite(individu) }}</strong>
     <br><i>{{ statutsSpecifiques(individu) }}</i>
   </div>

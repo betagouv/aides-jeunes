@@ -5,7 +5,7 @@ function formatDate(date) {
 }
 
 function isIndividuValid(individu, situation) {
-    var age = moment(situation.dateDeValeur).diff(moment(individu.dateDeNaissance), 'years');
+    var age = moment(situation.dateDeValeur).diff(moment(individu.date_naissance), 'years');
     var handicap = individu.specificSituations.indexOf('handicap' ) >= 0;
     return individu.role != 'enfant' || age <= 25 || handicap;
 }
@@ -19,17 +19,17 @@ function getEnfants(situation) {
 
 var individuSchema = {
     date_naissance: {
-        src: 'dateDeNaissance',
+        src: 'date_naissance',
         fn: formatDate
     },
     age: {
-        src: 'dateDeNaissance',
+        src: 'date_naissance',
         fn: function (dateDeNaissance, individu, situation) {
             return moment(situation.dateDeValeur).diff(moment(dateDeNaissance), 'years');
         }
     },
     age_en_mois: {
-        src: 'dateDeNaissance',
+        src: 'date_naissance',
         fn: function (dateDeNaissance, individu, situation) {
             return moment(situation.dateDeValeur).diff(moment(dateDeNaissance), 'months');
         }

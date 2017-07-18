@@ -162,7 +162,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             assPreconditionRemplie: 'assPreconditionRemplie',
             autoEntrepreneurActiviteType: 'autoEntrepreneurActiviteType',
             boursier: 'boursier',
-            dateDeNaissance: 'dateDeNaissance',
+            dateDeNaissance: 'date_naissance',
             place: 'place',
             echelonBourse: 'echelonBourse',
             enceinte: 'enceinte',

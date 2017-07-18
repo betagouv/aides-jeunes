@@ -63,8 +63,8 @@ angular.module('ddsRecapSituation').directive('recapSituation', function($timeou
                 nationalite = nationalite ? nationalite.label : 'inconnue';
                 var target = {
                     label: individuLabel(individu),
-                    dateDeNaissance: individu.dateDeNaissance.format('L'),
-                    age: moment(situation.dateDeValeur).diff(individu.dateDeNaissance, 'years'),
+                    dateDeNaissance: individu.date_naissance.format('L'),
+                    age: moment(situation.dateDeValeur).diff(individu.date_naissance, 'years'),
                     nationalite: nationalite,
                     statutsSpecifiques: IndividuService.formatStatutsSpecifiques(individu),
                     ressources: mapIndividuRessources(individu)

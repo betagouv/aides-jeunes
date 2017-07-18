@@ -3,7 +3,6 @@
 angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($scope, $stateParams, ressourceTypes, RessourceService, IndividuService) {
     $scope.yearMoins1 = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
-    $scope.currentMonthId = moment($scope.situation.dateDeValeur).format('YYYY-MM');
 
     $scope.individuLabel = IndividuService.label($scope.individu);
 
@@ -20,20 +19,7 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
     };
 
     _.forEach($scope.selectedRessourceTypes, function(value, key) {
-        var ressource = $scope.individu[key];
-        if (_.isEmpty($scope.ressource)) {
-            if ($scope.ressourceTypes[key].isMontantAnnuel)
-            {
-                ressource[$scope.yearMoins1] = 0;
-            } else {
-                $scope.months.forEach(function(month) {
-                    ressource[month.id] = 0;
-                });
-                if (! $scope.ressourceTypes[key].revenuExceptionnel) {
-                    ressource[$scope.currentMonthId] = 0;
-                }
-            }
-        }
+        RessourceService.setDefaultRessourceValue($scope.situation.dateDeValeur, $scope.individu, $scope.ressourceTypes[key]);
     });
 
     $scope.submit = function(form) {

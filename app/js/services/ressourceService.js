@@ -2,6 +2,28 @@
 
 angular.module('ddsApp').factory('RessourceService', function(SituationService, categoriesRnc) {
 
+    function setDefaultRessourceValue(dateDeValeur, individu, ressourceType) {
+        var key = ressourceType.id;
+        individu[key] = individu[key] || {};
+        var ressource = individu[key];
+        if (_.isEmpty(ressource)) {
+            if (ressourceType.isMontantAnnuel)
+            {
+                ressource[moment(dateDeValeur).subtract('years', 1).format('YYYY')] = 0;
+                return;
+            }
+
+            var months = SituationService.getMonths(dateDeValeur, 12);
+            months.forEach(function(month) {
+                ressource[month.id] = 0;
+            });
+
+            if (! ressourceType.revenuExceptionnel) {
+                ressource[moment(dateDeValeur).format('YYYY-MM')] = 0;
+            }
+        }
+    }
+
     function spreadIndividuRessources (individu, months, ressource, dateDeValeur) {
             // injection des valeurs des 3 derniers mois
             var somme3DerniersMois = 0;
@@ -85,10 +107,11 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
 
     return {
         spreadIndividuRessources: spreadIndividuRessources,
-        applyYearlyRessource: applyYearlyRessource,
-        applyRessourcesToIndividu: applyRessourcesToIndividu,
+        _applyYearlyRessource: applyYearlyRessource, //tested
+        applyRessourcesToIndividu: applyRessourcesToIndividu, // used in enfants.js
         isRessourceOnMainScreen: isRessourceOnMainScreen,
         getMainScreenRessources: getMainScreenRessources,
         roundToCents: roundToCents,
+        setDefaultRessourceValue: setDefaultRessourceValue,
     };
 });

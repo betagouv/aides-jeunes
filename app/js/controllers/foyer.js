@@ -22,19 +22,11 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
 
     $scope.$on('individu.conjoint', function(e, conjoint) {
         SituationService.setConjoint(situation, conjoint);
+
+        var demandeur = SituationService.getDemandeur(situation);
+        demandeur.statut_marital = conjoint.statut_marital;
+
         $state.go('foyer.logement');
-    });
-
-    $scope.$on('individu.pasDeConjoint', function() {
-        // on supprime l'éventuel conjoint qui existait avant
-        situation.individus = _.filter(situation.individus, function(individu) {
-            return 'conjoint' !== individu.role;
-        });
-
-        // En cas de parent isolé, on pose une question supplémentaire
-        if (! SituationService.hasEnfant($scope.situation)) {
-            $state.go('foyer.logement');
-        }
     });
 
     $scope.$on('enfants', function(e, enfants) {

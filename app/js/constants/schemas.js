@@ -34,15 +34,6 @@ var individuSchema = {
             return moment(situation.dateDeValeur).diff(moment(dateDeNaissance), 'months');
         }
     },
-    statut_marital: {
-        src: 'statutMarital',
-        values: {
-            seul: 2,
-            mariage: 1,
-            pacs: 5,
-            union_libre: 2
-        }
-    },
     date_arret_de_travail: {
         src: 'date_arret_de_travail',
         fn: formatDate

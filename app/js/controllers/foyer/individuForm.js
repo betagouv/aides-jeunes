@@ -50,14 +50,16 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         tns_auto_entrepreneur_type_activite: 'bic',
         specificSituations: []
     };
-    DEFAULT_INDIVIDU.enfant_a_charge[$scope.currentYear] = (individuRole == 'enfant'); // By default enfants are `à charge fiscale`, adults are not.
+    // By default enfants are `à charge fiscale`, adults are not.
+    DEFAULT_INDIVIDU.enfant_a_charge[$scope.currentYear] = (individuRole == 'enfant');
+
+    // Required on DEFAULT_INDIVIDU to properly restore statut_marital
+    if (DEFAULT_INDIVIDU.role == 'conjoint') {
+        DEFAULT_INDIVIDU.statut_marital = 1; // Marié(e)
+    }
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
     $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
-
-    if (individuRole == 'conjoint') {
-        $scope.individu.statutMarital = 'mariage';
-    }
 
     if (individuRole == 'enfant') {
         var nextEnfantCount = $scope.enfants.length + 1;

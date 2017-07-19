@@ -171,7 +171,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             role: 'role',
             scolarite: 'scolarite',
             specificSituations: 'specificSituations',
-            statutMarital: 'statutMarital',
             tauxIncapacite: 'tauxIncapacite',
             tns_autres_revenus_type_activite: 'tns_autres_revenus_type_activite',
         };
@@ -186,6 +185,19 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             individu.enfant_a_charge = {};
             individu.enfant_a_charge[moment(situation.dateDeValeur).format('YYYY')]= sourceIndividu.aCharge || (! sourceIndividu.fiscalementIndependant);
             individu.boursier = sourceIndividu.boursier || sourceIndividu.echelonBourse >= 0;
+
+            if (sourceIndividu.statutMarital) {
+                var statutMaritalMapping = {
+                    seul: 2,
+                    mariage: 1,
+                    pacs: 5,
+                    union_libre: 2
+                };
+                if (statutMaritalMapping[sourceIndividu.statutMarital]) {
+                    individu.statut_marital = statutMaritalMapping[sourceIndividu.statutMarital];
+                }
+            }
+
 
             var declaredRessources = {};
             sourceIndividu.ressources.forEach(function(sourceRessource) {

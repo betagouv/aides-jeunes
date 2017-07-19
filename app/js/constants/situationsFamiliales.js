@@ -2,15 +2,15 @@
 
 angular.module('ddsCommon').constant('situationsFamiliales', [
     {
-        value: 'mariage',
+        value: 1,
         label: 'Marié(e)',
     },
     {
-        value: 'pacs',
+        value: 5,
         label: 'Pacsé(e)',
     },
     {
-        value: 'union_libre',
+        value: 2,
         label: 'En union libre',
     }
 ]);

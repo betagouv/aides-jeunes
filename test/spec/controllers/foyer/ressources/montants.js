@@ -28,103 +28,69 @@ describe('Controller: FoyerRessourcesMontantsCtrl', function() {
         });
     };
 
-    describe('function submit()', function() {
-        it('should apply ressource amounts to the individu model, flattened by month', function() {
-            // given
-            scope.individu = { role: 'demandeur' };
-            initController();
-            scope.ressources = [{
-                type: { id: 'toto' },
-                montantsMensuels: [100, 200, 300],
-                montantAnnuel: 690
-            }];
+    var initControllerWithRessource = function(ressourceName) {
+        scope.selectedRessourceTypes = {};
+        scope.selectedRessourceTypes[ressourceName] = true;
+        scope.individu = {};
+        scope.individu[ressourceName] = {};
+        initController();
+    };
 
-            // when
-            scope.submit(form);
+    describe('default ressource value generation', function() {
+        it('should provide 4 zeros by default', function() {
+            initControllerWithRessource('salaire_net_hors_revenus_exceptionnels');
 
-            // then
-            expect(scope.individu.ressources.length).toBe(12);
-            expect(scope.individu.ressources[0]).toEqual({ type: 'toto', periode: '2013-03', montant: 300 });
-            expect(scope.individu.ressources[1]).toEqual({ type: 'toto', periode: '2013-02', montant: 200 });
-            expect(scope.individu.ressources[2]).toEqual({ type: 'toto', periode: '2013-01', montant: 100 });
-            expect(scope.individu.ressources[3]).toEqual({ type: 'toto', periode: '2012-12', montant: 10 });
-            expect(scope.individu.ressources[11]).toEqual({ type: 'toto', periode: '2012-04', montant: 10 });
+            expect(scope.individu.salaire_net_hors_revenus_exceptionnels).toEqual({
+                '2013-01': 0,
+                '2013-02': 0,
+                '2013-03': 0,
+                '2013-04': 0,
+            });
+        });
+
+        it('should provide 3 zeros for exceptionnal ressource', function() {
+            initControllerWithRessource('primes_salaires_net');
+
+            expect(scope.individu.primes_salaires_net).toEqual({
+                '2013-01': 0,
+                '2013-02': 0,
+                '2013-03': 0,
+            });
+        });
+
+        it('should provide 1 zero for annual ressource', function() {
+            initControllerWithRessource('tns_micro_entreprise_chiffre_affaires');
+
+            expect(scope.individu.tns_micro_entreprise_chiffre_affaires).toEqual({
+                '2012': 0,
+            });
         });
 
         it('should remove previous ressources of the individu', function() {
-            scope.individu = {
+            var individu = {
                 role: 'demandeur',
-                ressources: [
-                    { periode: '2013-03', type: 'toto', montant: 133},
-                    { periode: '2013-03', type: 'tata', montant: 122 }
-                ]
+                salaire_net_hors_revenus_exceptionnels: {
+                    '2013-03': 100,
+                    '2013-04': 100,
+                    '2013-05': 100,
+                    '2013-06': 100,
+                    '2013-07': 100,
+                    '2013-08': 100,
+                    '2013-09': 100,
+                    '2013-10': 100,
+                    '2013-11': 100,
+                    '2013-12': 100,
+                    '2014-01': 100,
+                    '2014-02': 100,
+                },
             };
+            scope.individu = _.assign({}, individu);
+            scope.selectedRessourceTypes = {
+                salaire_net_hors_revenus_exceptionnels: {},
+            };
+
             initController();
-            scope.ressources = [{
-                type: { id: 'toto' },
-                montantsMensuels: [100, 100, 100],
-                montantAnnuel: 750
-            }];
-
-            // when
-            scope.submit(form);
-
-            // then
-            expect(scope.individu.ressources.length).toBe(12);
-            expect(_.filter(scope.individu.ressources, { type: 'toto' }).length).toBe(12);
-            expect(scope.individu.ressources[0].montant).toBe(100);
-        });
-
-        it('should keep ressources n-2 and pensions alimentaires as is', function() {
-            // given
-            var ressourceN2 = { type: 'salaire_imposable_ym2', montant: 200 };
-            var pensionAlimentaireVersee = { type: 'pensions_alimentaires_versees_individu', montantAnnuel: 100 };
-            scope.individu = { role: 'demandeur', ressources: [ressourceN2, pensionAlimentaireVersee] };
-            scope.ressources  = [];
-            initController();
-
-            // when
-            scope.submit(form);
-
-            // then
-            expect(scope.individu.ressources).toEqual([ressourceN2, pensionAlimentaireVersee]);
-        });
-
-        it('should fill the interruptedRessources field of each individu with ressources declared as interrupted', function() {
-            // given
-            scope.individu = { role: 'demandeur' };
-            initController();
-            scope.ressources = [
-                { type: { id: 'test' }, montantsMensuels: [], onGoing: true },
-                { type: { id: 'test2' }, montantsMensuels: [], onGoing: false }
-            ];
-
-            // when
-            scope.submit(form);
-
-            // then
-            expect(scope.individu.interruptedRessources.length).toBe(1);
-            expect(scope.individu.interruptedRessources[0]).toEqual('test2');
-        });
-
-        it('should save the "autres revenus professionnels" in ressources', function() {
-            // given
-            scope.individu = { role: 'demandeur' };
-            initController();
-            var ressourceTypeAutreTns = _.find(_ressourceTypes_, { id: 'tns_autres_revenus' });
-            // scope.selectedRessourceTypes = { tns_autres_revenus: true },
-            scope.ressources = [
-                        { type: ressourceTypeAutreTns, montantAnnuel: 100 }
-                    ];
-
-            // when
-            scope.submit(form);
-            var tns_autres_revenus = _.find(scope.individu.ressources, function(ressource){
-                return ressource.type == 'tns_autres_revenus';
-            });
-
-            // then
-            expect(tns_autres_revenus).toBeDefined();
+            expect(scope.individu.salaire_net_hors_revenus_exceptionnels).toEqual(individu.salaire_net_hors_revenus_exceptionnels);
         });
     });
 });

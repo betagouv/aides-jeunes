@@ -1,19 +1,19 @@
-<div ng-repeat="ressource in ressources">
-  <div ng-if="ressource.type.category !== 'rpns'">
+<div ng-repeat="(ressourceId, selected) in selectedRessourceTypes"
+  ng-init="ressourceType = ressourceTypes[ressourceId]; ressource = individu[ressourceId];"
+>
+  <div ng-if="ressourceType.category !== 'rpns'">
     <capture-montant-ressource
-      ng-model="ressource"
       individu="individu"
-      ressource-type="ressource.type"
-      index="individuIndex"
+      ressource-type="ressourceType"
       date-de-valeur="situation.dateDeValeur"
       form="form">
     </capture-montant-ressource>
   </div>
 
   <div class="panel ressource-input rpns"
-    ng-if="ressource.type.category == 'rpns' && ressource.type.id == 'tns_auto_entrepreneur_chiffre_affaires'">
+    ng-if="ressourceId == 'tns_auto_entrepreneur_chiffre_affaires'">
     <div class="panel-heading">
-      <h3 class="panel-title">{{ ressourceTypes[ressource.type.id].label }}</h3>
+      <h3 class="panel-title">{{ ressourceTypes[ressourceId].label }}</h3>
     </div>
     <div class="panel-body">
       <div class="row">
@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-sm-7">
-          <label for="ca-individu-{{ individuIndex }}">Chiffre d’affaires {{ yearMoinsUn }}</label>
+          <label for="ca-individu-{{ individuIndex }}">Chiffre d’affaires {{ yearMoins1 }}</label>
           <span class="input-group">
             <input
               type="number"
@@ -38,33 +38,33 @@
               step="1000"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.montantAnnuel">
+              ng-model="ressource[yearMoins1]">
             <span class="input-group-addon">€</span>
           </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
+          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource[yearMoins1])">
           Montant invalide
           </span>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-4" ng-repeat="month in months">
-          <label for="{{ index + ressource.type.id + month.id }}">
+          <label for="{{ index + ressourceId + month.id }}">
             Chiffre d'affaires {{ month.label | uppercaseFirst }}
           </label>
           <span class="input-group">
             <input
               type="number"
               class="form-control text-right"
-              id="{{ index + ressource.type.id + month.id }}"
+              id="{{ index + ressourceId + month.id }}"
               required
               min="0"
               step="100"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.montantsMensuels[$index]">
+              ng-model="ressource[month.id]">
             <span class="input-group-addon">€</span>
           </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
+          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource[month.id])">
             Montant invalide
           </span>
         </div>
@@ -73,7 +73,7 @@
         <div class="checkbox">
           <label>
             <input
-              type="checkbox" ng-model="ressource.onGoing">
+              type="checkbox" ng-model="interruptedRessources[ressourceId]">
               {{ autoEntrepreneurOnGoingQuestion(individu, currentMonth) }}
           </label>
         </div>
@@ -82,9 +82,9 @@
   </div>
 
   <div class="panel ressource-input rpns"
-    ng-if="ressource.type.category == 'rpns' && ressource.type.id == 'tns_micro_entreprise_chiffre_affaires'">
+    ng-if="ressourceId == 'tns_micro_entreprise_chiffre_affaires'">
     <div class="panel-heading">
-      <h3 class="panel-title">{{ ressourceTypes[ressource.type.id].label }}</h3>
+      <h3 class="panel-title">{{ ressourceTypes[ressourceId].label }}</h3>
     </div>
     <div class="panel-body">
       <div class="row">
@@ -98,7 +98,7 @@
         </div>
 
         <div class="col-sm-7">
-          <label for="ca-individu-{{ individuIndex }}">Chiffre d’affaires {{ yearMoinsUn }}</label>
+          <label for="ca-individu-{{ individuIndex }}">Chiffre d’affaires {{ yearMoins1 }}</label>
           <span class="input-group">
             <input
               type="number"
@@ -109,10 +109,10 @@
               step="1000"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.montantAnnuel">
+              ng-model="ressource[yearMoins1]">
             <span class="input-group-addon">€</span>
           </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
+          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource[yearMoins1])">
           Montant invalide
           </span>
         </div>
@@ -120,9 +120,9 @@
     </div>
   </div>
 
-  <div class="panel ressource-input rpns" ng-if="ressource.type.id == 'tns_autres_revenus'">
+  <div class="panel ressource-input rpns" ng-if="ressourceId == 'tns_autres_revenus'">
     <div class="panel-heading">
-      <h3 class="panel-title">{{ ressourceTypes[ressource.type.id].label }}</h3>
+      <h3 class="panel-title">{{ ressourceTypes[ressourceId].label }}</h3>
     </div>
     <div class="panel-body">
       <div class="row">
@@ -149,10 +149,10 @@
               step="1000"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.montantAnnuel">
+              ng-model="ressource[yearMoins1]">
             <span class="input-group-addon">€</span>
           </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
+          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource[yearMoins1])">
           Montant invalide
           </span>
         </div>
@@ -161,9 +161,9 @@
   </div>
 
   <div class="panel ressource-input rpns"
-    ng-if="ressource.type.id == 'tns_benefice_exploitant_agricole'">
+    ng-if="ressourceId == 'tns_benefice_exploitant_agricole'">
     <div class="panel-heading">
-      <h3 class="panel-title">{{ ressourceTypes[ressource.type.id].label }}</h3>
+      <h3 class="panel-title">{{ ressourceTypes[ressourceId].label }}</h3>
     </div>
     <div class="panel-body">
       <div class="row">
@@ -181,10 +181,10 @@
               step="1000"
               select-on-focus
               zero-to-empty
-              ng-model="ressource.montantAnnuel">
+              ng-model="ressource[yearMoins1]">
             <span class="input-group-addon">€</span>
           </span>
-          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource.montantAnnuel)">
+          <span class="text-danger" ng-if="form.submitted && ! isNumber(ressource[yearMoins1])">
           Montant invalide
           </span>
         </div>

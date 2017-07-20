@@ -38,10 +38,16 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             return situation;
         },
 
-        getMonths: function(baseDate) {
+        getMonths: function(baseDate, count, upTo) {
+            if (! count) {
+                count = 3;
+            }
+            if (! upTo) {
+                upTo = 0;
+            }
             var refDate = baseDate ? moment(baseDate) : moment();
-            refDate.subtract(4, 'months');
-            return _.map([3, 2, 1], function() {
+            refDate.subtract(count + upTo + 1, 'months');
+            return _.map(_.range(count + upTo, upTo, -1), function() {
                 refDate.add(1, 'months');
                 return {
                     id: refDate.format('YYYY-MM'),

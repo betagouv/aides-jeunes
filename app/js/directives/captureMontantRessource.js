@@ -35,9 +35,9 @@ angular.module('ddsApp').directive('captureMontantRessource', function(Situation
             scope.onGoingLabel = getOnGoingQuestion(scope.individu, scope.ressourceType, scope.currentMonth);
 
             function checkSumConsistency() {
-                scope.monthsSum = scope.ressource.montantsMensuels.reduce(function(sum, current) {
+                scope.monthsSum = _.round(scope.ressource.montantsMensuels.reduce(function(sum, current) {
                     return sum + current;
-                }, 0);
+                }, 0), 2);
 
                 ngModel.$setValidity('valuesConsistency', scope.ressource.montantAnnuel >= scope.monthsSum);
             }

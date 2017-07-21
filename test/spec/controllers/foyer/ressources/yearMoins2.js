@@ -58,7 +58,7 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             // given
             var enfant = {
                 role: 'enfant',
-                salaire_imposable_ym2: {
+                salaire_imposable: {
                     '2011': 4000,
                 },
             };

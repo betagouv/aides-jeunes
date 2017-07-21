@@ -155,6 +155,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         var ressourceMapping = {
             pensions_alimentaires_percues_ym2: 'pensions_alimentaires_percues',
             pensions_alimentaires_versees_ym2: 'pensions_alimentaires_versees',
+            salaire_imposable_ym2: 'salaire_imposable',
         };
 
         var individuPropertyMapping = {

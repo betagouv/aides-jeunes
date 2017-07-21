@@ -322,7 +322,7 @@ angular.module('ddsCommon').constant('ressourceTypes', [
 
 angular.module('ddsCommon').constant('categoriesRnc', [
     {
-        id: 'salaire_imposable_ym2',
+        id: 'salaire_imposable',
         label: 'Revenus d’activité connus',
         sources: ['salaire_net_hors_revenus_exceptionnels']
     },
@@ -405,7 +405,7 @@ var individuMapping = {
             src: 'indemnite_fin_contrat_net',
             fn: salaireNetToImposable
         },
-        'salaire_imposable_ym2'
+        'salaire_imposable'
     ],
 
     aah: 'aah',

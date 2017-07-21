@@ -106,7 +106,7 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             var openfiscaIndividu = buildOpenFiscaEntity(individu, mappingSchemas.individu, situation);
             applyRessources(individu, openfiscaIndividu, ressourceMapping.individu);
 
-            if (! situation.ressourcesYearMoins2Captured) {
+            if (! SituationService.ressourcesYearMoins2Captured(situation)) {
                 duplicateRessourcesForAnneeFiscaleDeReference(openfiscaIndividu, situation.dateDeValeur);
             }
             return openfiscaIndividu;
@@ -135,7 +135,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
     }
 
     function buildOpenFiscaTestCase(situation) {
-        situation.ressourcesYearMoins2Captured = situation.ressourcesYearMoins2Captured || SituationService.ressourcesYearMoins2Captured(situation);
         var familles = [ situation.famille ],
             individus = mapIndividus(situation);
 
@@ -147,111 +146,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
             individus: individus,
             menages: [ situation.menage ],
         };
-    }
-
-    function migratePersistedSituation(sourceSituation) {
-        var situation = _.assign({}, sourceSituation);
-        var periods = MappingPeriodService.getPeriods(situation.dateDeValeur);
-        var ressourceMapping = {
-            pensions_alimentaires_percues_ym2: 'pensions_alimentaires_percues',
-            pensions_alimentaires_versees_ym2: 'pensions_alimentaires_versees',
-            salaire_imposable_ym2: 'salaire_imposable',
-        };
-
-        var individuPropertyMapping = {
-            assPreconditionRemplie: 'ass_precondition_remplie',
-            autoEntrepreneurActiviteType: 'tns_auto_entrepreneur_type_activite',
-            dateDeNaissance: 'date_naissance',
-            place: 'enfant_place',
-            echelonBourse: 'echelon_bourse',
-            enceinte: 'enceinte',
-            gardeAlternee: 'garde_alternee',
-            id: 'id',
-            microEntrepriseActiviteType: 'tns_micro_entreprise_type_activite',
-            perteAutonomie: 'perte_autonomie',
-            role: 'role',
-            scolarite: 'scolarite',
-            specificSituations: 'specificSituations',
-            tauxIncapacite: 'tauxIncapacite',
-            tns_autres_revenus_type_activite: 'tns_autres_revenus_type_activite',
-        };
-
-        situation.individus = sourceSituation.individus.map(function(sourceIndividu) {
-            var individu = {};
-            Object.keys(individuPropertyMapping).forEach(function(previousPropertyName) {
-                if (sourceIndividu[previousPropertyName] !== undefined) {
-                    individu[individuPropertyMapping[previousPropertyName]] = _.cloneDeep(sourceIndividu[previousPropertyName]);
-                }
-            });
-            individu.enfant_a_charge = {};
-            individu.enfant_a_charge[moment(situation.dateDeValeur).format('YYYY')]= sourceIndividu.aCharge || (! sourceIndividu.fiscalementIndependant);
-            individu.boursier = sourceIndividu.boursier || sourceIndividu.echelonBourse >= 0;
-
-            if (sourceIndividu.statutMarital) {
-                var statutMaritalMapping = {
-                    seul: 2,
-                    mariage: 1,
-                    pacs: 5,
-                    union_libre: 2
-                };
-                if (statutMaritalMapping[sourceIndividu.statutMarital]) {
-                    individu.statut_marital = statutMaritalMapping[sourceIndividu.statutMarital];
-                }
-            }
-
-
-            var declaredRessources = {};
-            sourceIndividu.ressources.forEach(function(sourceRessource) {
-                var ressourceName = sourceRessource.type;
-                if (ressourceMapping[ressourceName]) {
-                    ressourceName = ressourceMapping[ressourceName];
-                }
-                declaredRessources[ressourceName] = {};
-                individu[ressourceName] = individu[ressourceName] || {};
-                if (typeof individu[ressourceName] === 'object') {
-                    individu[ressourceName][sourceRessource.periode] = individu[ressourceName][sourceRessource.periode] || 0;
-                    individu[ressourceName][sourceRessource.periode] = individu[ressourceName][sourceRessource.periode] + sourceRessource.montant;
-                }
-
-            });
-
-            Object.keys(declaredRessources).forEach(function(ressourceName) {
-                var ressourceLastMonth = individu[ressourceName][periods['1MonthsAgo']];
-                if (ressourceLastMonth && ! _.includes(sourceIndividu.interruptedRessources, ressourceName)) {
-                    individu[ressourceName][periods.thisMonth] = ressourceLastMonth;
-                }
-            });
-
-            return individu;
-        });
-
-        situation.foyer_fiscal = {};
-        if (situation.rfr != 0) {
-            situation.foyer_fiscal.rfr = {};
-            situation.foyer_fiscal.rfr[periods.anneeFiscaleReference] = situation.rfr;
-            delete situation.rfr;
-        }
-
-        situation.menage = {
-            code_postal: situation.logement.adresse.codePostal,
-            coloc: situation.logement.colocation,
-            depcom: situation.logement.adresse.codeInsee,
-            loyer: situation.logement.loyer,
-            logement_chambre: situation.logement.isChambre,
-            participation_frais: situation.logement.participationFrais,
-            statut_occupation_logement: getStatutOccupationLogement(situation.logement),
-        };
-        if (situation.logement.charges !== undefined && situation.logement.charges !== null) {
-            situation.menage.charges_locatives = situation.logement.charges;
-        }
-
-        situation.famille = {
-            parisien : situation.logement.inhabitantForThreeYearsOutOfLastFive,
-            proprietaire_proche_famille: situation.logement.membreFamilleProprietaire,
-            rsa_isolement_recent: sourceSituation.individus[0].isolementRecent,
-        };
-
-        return situation;
     }
 
     function allocateIndividualsToEntities(situation) {
@@ -351,9 +245,13 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         return (statusOccupationId && baseLogementMap[statusOccupationId]) || {};
     }
 
+    function buildSituationFromDB(dbSimulation) {
+        return dbSimulation;
+    }
+
     return {
+        buildSituationFromDB: buildSituationFromDB,
         buildOpenFiscaRequest: buildOpenFiscaRequest,
-        migratePersistedSituation: migratePersistedSituation,
         statutOccupationLogement: {
             getBaseLogement: getBaseLogement,
             getValue: getStatutOccupationLogement,
@@ -361,6 +259,5 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         // Exported for testing purposes
         _applyRessources: applyRessources,
         _mapIndividus: mapIndividus,
-        _migratePersistedSituation: migratePersistedSituation,
     };
 });

@@ -13,6 +13,7 @@
 <p>{{ validation.passedTests.length }}</p>
 <p>{{ validation.failedTests.length }}</p>
 <div ng-repeat="test in validation.failedTests">
+  <pre>{{ test.type }}</pre>
   <pre>{{ test.id }}</pre>
   <pre>{{ test.error }}</pre>
   <pre>{{ test.json }}</pre>

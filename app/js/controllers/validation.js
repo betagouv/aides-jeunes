@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http, MappingService) {
+angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http, MappingService, MigrationService, SituationService) {
     function deepDiffRight(left, right) {
       // if they are equals, return undefined
       if (angular.equals(left, right)) return;
@@ -47,22 +47,35 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http, Ma
         }
     }
 
-    function preprocessOpenfiscaRequests(newRequest, legacyRequest) {
-        var props = ['coloc', 'logement_chambre'];
-        var newMenage = newRequest.scenarios[0].test_case.menages[0];
-        var legacyMenage = legacyRequest.scenarios[0].test_case.menages[0];
-        props.forEach(function(prop) {
-            if (! newMenage[prop]) {
-                if (_.every(legacyMenage[prop], function(value, key) { return ! value; })) {
-                    delete legacyMenage[prop];
-                }
-            }
-        });
+    function areEqual(test, sourceSituation, testName, local, remote) {
+        var diff = [
+            deepDiffRight(local, remote),
+            deepDiffRight(remote, local),
+        ];
+
+        if (diff[0]) {
+            var requests = {
+                id: test._id,
+                type: testName,
+                situation: JSON.stringify(sourceSituation, null, 2),
+                diff: [
+                    JSON.stringify(diff[0], null, 2),
+                    JSON.stringify(diff[1], null, 2),
+                ],
+                local: JSON.stringify(local, null, 2),
+                remote: JSON.stringify(remote, null, 2),
+            };
+            $scope.validation.failedTests.push(_.assign({}, test, requests));
+            return false;
+        } else {
+            $scope.validation.passedTests.push(test);
+            return true;
+        }
     }
 
     function runTestComparaison() {
-        var start = $scope.validation.index * $scope.validation.step,
-            end = ($scope.validation.index + 1) * $scope.validation.step;
+        var start = $scope.validation.index * $scope.validation.step;
+        var end = ($scope.validation.index + 1) * $scope.validation.step;
         $scope.validation.tests.slice(start, end).forEach(function(test) {
             if (! $scope.validation.failedTests.length) {
                 $http.get('api/situations/' + test.scenario.situationId + '/openfisca-request')
@@ -71,56 +84,38 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http, Ma
                     .then(function(situationResponse) {
                         var sourceSituation = situationResponse.data;
 
-                        var situation = MappingService.migratePersistedSituation(sourceSituation);
+                        MigrationService.persistedSituationPretransformationUpdate(sourceSituation);
+                        var situation = MigrationService.migratePersistedSituation(sourceSituation);
 
                         $http.post('api/simulations', MappingService.buildOpenFiscaRequest(situation))
                         .then(function(simulationResponse) {
-                            return simulationResponse.data._id;
+                            return simulationResponse.data;
                         })
-                        .then(function(simulationId) {
-                            $http.get('api/simulations/' + simulationId + '/request')
+                        .then(function(simulation) {
+/*
+                            var clonedSituation = _.cloneDeep(situation);
+                            if (! areEqual(test,
+                                sourceSituation,
+                                'UI situation',
+                                MappingService.buildSituationFromDB(simulation),
+                                clonedSituation)) {
+                                return;
+                            }//*/
+                            $http.get('api/simulations/' + simulation._id + '/request')
                             .then(function(requestResult) {
                                 var newOpenfiscaRequest = requestResult.data;
+                                var legacyOpenfiscaRequest = openfiscaRequest.data;
 
-                                openfiscaRequest.data.variables.sort();
-                                preprocessOpenfiscaRequests(newOpenfiscaRequest, openfiscaRequest.data);
-                                var diff = [
-                                    deepDiffRight(newOpenfiscaRequest, openfiscaRequest.data),
-                                    deepDiffRight(openfiscaRequest.data, newOpenfiscaRequest),
-                                ];
+                                legacyOpenfiscaRequest.variables.sort();
+                                MigrationService.precomparisonUpdate(sourceSituation._id, newOpenfiscaRequest, legacyOpenfiscaRequest);
 
-                                if (diff[0]) {
-                                    var requests = {
-                                        id: test._id,
-                                        situation: JSON.stringify(sourceSituation, null, 2),
-                                        diff: [
-                                            JSON.stringify(diff[0], null, 2),
-                                            JSON.stringify(diff[1], null, 2),
-                                        ],
-                                        local: JSON.stringify(newOpenfiscaRequest, null, 2),
-                                        remote: JSON.stringify(openfiscaRequest.data, null, 2),
-                                    };
-                                    $scope.validation.failedTests.push(_.assign({}, test, requests));
-                                } else {
-                                    $scope.validation.passedTests.push(test);/*
-                                    $http.post('/api/simulations', newOpenfiscaRequest)
-                                    .then(function(persistedSimulation) {
-                                        var simulationDiff = deepDiffRight(newOpenfiscaRequest, _.omit(persistedSimulation.data, '__v', '_id'));
-                                        if (simulationDiff) {
-                                            $scope.validation.failedTests.push(_.assign({
-                                                diff: JSON.stringify(simulationDiff, null, 2),
-                                                local: JSON.stringify(newOpenfiscaRequest, null, 2),
-                                                remote: JSON.stringify(persistedSimulation.data, null, 2),
-                                            }, test, simulationDiff));
-                                        } else {
-                                            //nextAction(end);
-                                        }
-                                    }, function(error) {
-                                        $scope.validation.failedTests.push(_.assign({}, test, requests));
-                                        //nextAction(end);
-                                    });//*/
+                                if (areEqual(test,
+                                    sourceSituation,
+                                    'OpenFisca request',
+                                    newOpenfiscaRequest,
+                                    legacyOpenfiscaRequest)) {
+                                    nextAction(end);
                                 }
-                                nextAction(end);
 
                             });
                         });

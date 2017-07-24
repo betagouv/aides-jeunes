@@ -93,44 +93,6 @@ var individuSchema = {
             return values[individu.scolarite];
         }
     },
-
-    /* Revenus du patrimoine */
-    interets_epargne_sur_livrets: {
-        src: 'epargneSurLivret',
-        fn: function(value) {
-            return {
-                '2012-01': 0.01 * value || 0
-            };
-        },
-        copyTo3PreviousMonths: false,
-    },
-    epargne_non_remuneree: {
-        src: 'epargneSansRevenus',
-        fn: function (value) {
-            return {
-                '2012-01': value || 0
-            };
-        },
-        copyTo3PreviousMonths: false
-    },
-    valeur_locative_immo_non_loue: {
-        src: 'valeurLocativeImmoNonLoue',
-        fn: function (value) {
-            return {
-                '2012-01': value || 0
-            };
-        },
-        copyTo3PreviousMonths: false,
-    },
-    valeur_locative_terrains_non_loue: {
-        src: 'valeurLocativeTerrainNonLoue',
-        fn: function (value) {
-            return {
-                '2012-01': value || 0
-            };
-        },
-        copyTo3PreviousMonths: false,
-    },
 };
 
 var familleProperties = [

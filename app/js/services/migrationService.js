@@ -13,7 +13,6 @@ angular.module('ddsCommon').factory('MigrationService', function(MappingPeriodSe
         migratePersistedSituation: function(sourceSituation) {
             var situation = {
                 dateDeValeur: sourceSituation.dateDeValeur,
-                patrimoine: _.cloneDeep(sourceSituation.patrimoine),
             };
             var periods = MappingPeriodService.getPeriods(situation.dateDeValeur);
             var ressourceMapping = {
@@ -113,6 +112,26 @@ angular.module('ddsCommon').factory('MigrationService', function(MappingPeriodSe
                 proprietaire_proche_famille: sourceSituation.logement.membreFamilleProprietaire,
                 rsa_isolement_recent: sourceSituation.individus[0].isolementRecent,
             };
+
+            var patrimoineMap = {
+                epargneSansRevenus: 'epargne_non_remuneree',
+                valeurLocativeImmoNonLoue: 'valeur_locative_immo_non_loue',
+                valeurLocativeTerrainNonLoue: 'valeur_locative_terrains_non_loue',
+            };
+            var sourcePatrimoine = sourceSituation.patrimoine || {};
+            Object.keys(patrimoineMap).forEach(function(patrimoineFieldName) {
+                situation.individus[0][patrimoineMap[patrimoineFieldName]] = { '2012-01': sourcePatrimoine[patrimoineFieldName] || 0 };
+            });
+            situation.individus[0].interets_epargne_sur_livrets = { '2012-01' : 0.01 * (sourcePatrimoine.epargneSurLivret || 0) };
+
+            var patrimoineValues = _.values(patrimoineMap);
+            patrimoineValues.push('interets_epargne_sur_livrets');
+
+            situation.individus.slice(1).forEach(function(individu) {
+                patrimoineValues.forEach(function(patrimoineFieldName) {
+                    individu[patrimoineFieldName] = { '2012-01': 0 };
+                });
+            });
 
             return situation;
         },

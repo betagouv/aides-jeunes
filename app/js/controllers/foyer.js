@@ -59,8 +59,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         $state.go('foyer.resultat');
     });
 
-    $scope.$on('patrimoine', function(e, patrimoine) {
-        situation.patrimoine = patrimoine;
+    $scope.$on('patrimoine', function(e) {
         $scope.$broadcast('patrimoineCaptured');
         $state.go('foyer.resultat');
     });

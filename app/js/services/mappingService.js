@@ -99,10 +99,6 @@ angular.module('ddsApp').service('MappingService', function($http, droitsDescrip
         });
 
         return _.map(individus, function(individu) {
-            if (individu.role === 'demandeur' && situation.patrimoine) {
-                // Mongoose embeded objects must be converted to objects
-                _.extend(individu, situation.patrimoine.toObject ? situation.patrimoine.toObject() : situation.patrimoine);
-            }
             var openfiscaIndividu = buildOpenFiscaEntity(individu, mappingSchemas.individu, situation);
             applyRessources(individu, openfiscaIndividu, ressourceMapping.individu);
 

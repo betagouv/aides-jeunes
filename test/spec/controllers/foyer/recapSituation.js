@@ -10,7 +10,7 @@ describe('Controller: RecapSituationCtrl', function() {
             _ressourceTypes_ = ressourceTypes;
             scope = $rootScope.$new();
             scope.situation = {
-                individus: [],
+                individus: [{}],
                 foyer_fiscal: {},
             };
         });

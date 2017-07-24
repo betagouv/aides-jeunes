@@ -41,27 +41,31 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     }
 
     function buildRecapPatrimoine () {
+        var demandeur = $scope.situation.individus[0];
         $scope.patrimoine = [];
+        $scope.patrimoine.captured = false;
         [
             {
-                id: 'valeurLocativeImmoNonLoue',
+                id: 'valeur_locative_immo_non_loue',
                 label: 'Valeur locative immobilier non loué'
             },
             {
-                id: 'valeurLocativeTerrainNonLoue',
+                id: 'valeur_locative_terrains_non_loue',
                 label: 'Valeur locative terrains non loués'
             },
             {
-                id: 'epargneSurLivret',
-                label: 'Epargne sur livret'
+                id: 'interets_epargne_sur_livrets',
+                label: 'Intérêts d\'épargne sur livret'
             },
             {
-                id: 'epargneSansRevenus',
-                label: 'Epargne sans revenus'
+                id: 'epargne_non_remuneree',
+                label: 'Épargne sans revenus'
             }
         ].forEach(function(field) {
-            if ($scope.situation.patrimoine[field.id]) {
-                $scope.patrimoine.push({label: field.label, montant: $scope.situation.patrimoine[field.id]});
+            $scope.patrimoine.captured = $scope.patrimoine.captured || demandeur[field.id];
+            var value = demandeur[field.id] && _.values(demandeur[field.id])[0];
+            if (value) {
+                $scope.patrimoine.push({ label: field.label, montant: value });
             }
         });
     }
@@ -135,9 +139,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
 
     $scope.$on('ym2Captured', buildYm2Recap);
 
-    if ($scope.situation.patrimoine && $scope.situation.patrimoine.captured) {
-        buildRecapPatrimoine();
-    }
+    buildRecapPatrimoine();
 
     $scope.$on('patrimoineCaptured', buildRecapPatrimoine);
 

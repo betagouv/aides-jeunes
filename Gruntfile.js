@@ -44,7 +44,7 @@ module.exports = function (grunt) {
     },
     watch: {
       js: {
-        files: ['<%= yeoman.app %>/js/**/*.js'],
+        files: ['<%= yeoman.app %>/js/**/*.js', '<%= yeoman.app %>/../backend/**/*.js'],
         options: {
           livereload: true
         }
@@ -65,6 +65,7 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/views/{,*//*}*.html',
           '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
           '{.tmp,<%= yeoman.app %>}/js/{,*//*}*.js',
+          '{.tmp,<%= yeoman.app %>}/../backend/{,*//*}*.js',
           '<%= yeoman.app %>/img/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
 

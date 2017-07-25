@@ -90,15 +90,13 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
         };
     }
 
-    function simulate(sourceSituation) {
-        var situation = MappingService.buildOpenFiscaRequest(sourceSituation);
-        delete situation.scenarios[0].test_case.menages[0].nomCommune;
-
-        return $http.post('/api/simulations', situation)
+    function simulate(situation) {
+        return $http.post('/api/situations', situation)
         .then(function(simulationResponse) {
-            return $http.get('api/simulations/' + simulationResponse.data._id + '/result');
-        }).then(function(resultResponse) {
-            return resultResponse.data;
+            situation.id = simulationResponse.data._id;
+            return $http.get('api/situations/' + simulationResponse.data._id + '/openfisca-response');
+        }).then(function(OpenfiscaResponse) {
+            return OpenfiscaResponse.data;
         }).then(computeAides);
     }
 

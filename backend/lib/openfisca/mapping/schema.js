@@ -1,20 +1,8 @@
-'use strict';
+var moment = require('moment');
+var _ = require('lodash');
 
 function formatDate(date) {
     return moment(date).format('YYYY-MM-DD');
-}
-
-function isIndividuValid(individu, situation) {
-    var age = moment(situation.dateDeValeur).diff(moment(individu.date_naissance), 'years');
-    var handicap = individu.specificSituations.indexOf('handicap' ) >= 0;
-    return individu.role != 'enfant' || age <= 25 || handicap;
-}
-
-function getEnfants(situation) {
-    var enfants = _.filter(situation.individus, function(individu) {
-        return isIndividuValid(individu, situation) && individu.role == 'enfant';
-    });
-    return _.map(enfants, 'id');
 }
 
 var individuSchema = {
@@ -136,12 +124,11 @@ var menageProperties = [
     'statut_occupation_logement',
 ];
 
-angular.module('ddsCommon').constant('mappingSchemas', {
-    isIndividuValid: isIndividuValid,
+module.exports = {
     individu: individuSchema,
     forDuplication: {
         familles: familleProperties,
         individus: individuProperties,
         menages: menageProperties,
     },
-});
+};

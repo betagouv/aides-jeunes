@@ -135,33 +135,6 @@ angular.module('ddsCommon').factory('MigrationService', function(MappingPeriodSe
 
             return situation;
         },
-        ressourcesYearMoins2Captured: function(situation) {
-            var categoriesRncIds = [
-                'salaire_imposable_ym2',
-                'chomage_imposable',
-                'retraite_imposable',
-                'frais_reels',
-                'pensions_alimentaires_percues_ym2',
-                'pensions_alimentaires_versees',
-            ];
-            return (typeof situation.rfr == 'number') || situation.individus.some(function(individu) {
-                    return individu.ressources && individu.ressources.some(function(ressource) {
-                        return categoriesRncIds.indexOf(ressource.type) >= 0;
-                    });
-                });
-        },
-        persistedSituationPretransformationUpdate: function(situation) {
-            if (situation.ressourcesYearMoins2Captured && (! this.ressourcesYearMoins2Captured(situation))) {
-                var ym2 = moment(situation.dateDeValeur).subtract('years', 2).format('YYYY');
-                //var januaryYm2 = ym2 + '-01';
-
-                situation.individus[0].ressources.push({
-                    montant: 0,
-                    periode: ym2,
-                    type: 'frais_reels',
-                });
-            }
-        },
         precomparisonUpdate: function(situationId, newRequest, legacyRequest) {
             var props = ['coloc', 'logement_chambre'];
             var newMenage = newRequest.scenarios[0].test_case.menages[0];

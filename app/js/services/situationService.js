@@ -112,7 +112,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             var rfr = situation.foyer_fiscal && situation.foyer_fiscal.rfr && situation.foyer_fiscal.rfr[yearMoins2];
             var hasYm2Ressources = situation.individus.some(function(individu) {
                 return categoriesRnc.reduce(function(hasYm2RessourcesAccum, categorieRnc) {
-                    //console.log(categorieRnc.id, individu[categorieRnc.id]);
                     if (! individu[categorieRnc.id]) {
                         return hasYm2RessourcesAccum;
                     }

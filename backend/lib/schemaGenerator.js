@@ -79,7 +79,10 @@ function generateSchemasFromOpenAPIDefinitions(openAPIDefinitions) {
     var schemas = {};
     Object.keys(mongooseDefinitions).forEach(function(definitionName) {
         if (mongooseDefinitions[definitionName] !== Object)
-            schemas[definitionName] = new Schema(mongooseDefinitions[definitionName], { strict: false });
+            schemas[definitionName] = new Schema(mongooseDefinitions[definitionName], {
+                minimize: false,
+                //strict: false,
+            });
     });
 
     return schemas;

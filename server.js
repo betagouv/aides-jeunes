@@ -2,7 +2,7 @@
 
 var express = require('express');
 var morgan = require('morgan');
-var ludwigConfig = require('./ludwig/config.json');
+var ludwigConfig = require('./ludwig/ui-config');
 
 var port = process.env.PORT || 9000;
 
@@ -19,7 +19,7 @@ if (app.get('env') == 'development') {
 }
 
 // Setup app
-app.use('/api', require('sgmap-mes-aides-api'));
+app.use('/api', require('./backend'));
 app.use(ludwigConfig.baseUrl, require('ludwig-ui')(ludwigConfig));
 require('./index.js')(app);
 

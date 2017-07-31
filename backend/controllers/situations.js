@@ -36,3 +36,7 @@ exports.openfiscaResponse = function(req, res, next) {
 exports.openfiscaRequest = function(req, res) {
     res.send(openfisca.buildOpenFiscaRequest(req.situation));
 };
+
+exports.openfiscaRequestFromLegacy = function(req, res) {
+    res.send(openfisca.buildOpenFiscaRequestFromLegacySituation(req.situation));
+};

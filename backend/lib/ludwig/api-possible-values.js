@@ -108,22 +108,6 @@ module.exports = [
        'id': 'ppa',
        'shortLabel': 'PPA',
     },
-    // This should be removed, after the test cases involving APL, ALS and ALF are migrated to test only `AL`.
-    {
-        'id':'apl',
-        'shortLabel':'APL',
-        'isSimulated': false
-    },
-    {
-        'id':'alf',
-        'shortLabel':'ALF',
-        'isSimulated': false
-    },
-    {
-        'id':'als',
-        'shortLabel':'ALS',
-        'isSimulated': false
-    },
     {
         'id': 'rennes_metropole_transport',
         'shortLabel': 'Rennes - Transport',

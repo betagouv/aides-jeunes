@@ -63,3 +63,8 @@ deployment:
     commands:
       # CircleCI relies on a private key that triggers /opt/mes-aides/update.sh deploy
       - ssh root@metal.mes-aides.gouv.fr
+  vps:
+    branch: vps
+    commands:
+      # CircleCI relies on a private key that triggers /opt/mes-aides/update.sh deploy
+      - ssh root@vps.mes-aides.gouv.fr

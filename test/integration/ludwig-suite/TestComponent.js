@@ -8,7 +8,7 @@ checkRecapSituationContains: function(textToLookFor) {
     return this.resultsFrame.then(function(frame) {
         return driver.frame(frame);
     }).then(function() {
-        return driver.elementByClassName('recap-situation-test');
+        return driver.elementByTagName('pre');
     }).then(function(recapSituation) {
         return driver.textPresent(textToLookFor, recapSituation);
     }).then(function(isPresent) {

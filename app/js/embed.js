@@ -10,16 +10,8 @@ app.config(function($locationProvider, $stateProvider) {
         template: '<recap-situation situation="situation"></recap-situation>',
         controller: 'EmbedCtrl',
         resolve: {
-            situation: function($stateParams, $http) {
-                return $http.get('/api/situations/' + $stateParams.situationId, {
-                    params: { cacheBust: Date.now() }
-                }).then(function(result) {
-                    var situation = result.data;
-                    situation.individus.forEach(function(individu) {
-                        individu.date_naissance = moment(individu.date_naissance);
-                    });
-                    return situation;
-                });
+            situation: function($stateParams, SituationService) {
+                return SituationService.restoreRemote($stateParams.situationId);
             }
         }
     });

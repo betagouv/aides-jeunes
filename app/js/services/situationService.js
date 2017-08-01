@@ -5,10 +5,10 @@ var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'dateDernierContra
 angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc) {
     var situation;
 
-    function convertDatesToMoments(individu) {
+    function convertDateFieldStringToDates(individu) {
         DATE_FIELDS.forEach(function(dateField) {
             if (individu[dateField]) {
-                individu[dateField] = moment(individu[dateField]);
+                individu[dateField] = new Date(individu[dateField]);
             }
         });
     }
@@ -33,7 +33,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 this.newSituation();
             }
 
-            situation.individus.forEach(convertDatesToMoments);
+            situation.individus.forEach(convertDateFieldStringToDates);
 
             return situation;
         },
@@ -43,7 +43,10 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 params: { cacheBust: Date.now() }
             }).then(function(result) {
                 situation = result.data;
-                situation.individus.forEach(convertDatesToMoments);
+
+                situation.dateDeValeur = new Date(situation.dateDeValeur);
+                situation.individus.forEach(convertDateFieldStringToDates);
+
                 $sessionStorage.situation = situation;
 
                 return situation;

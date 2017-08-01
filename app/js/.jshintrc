@@ -8,6 +8,7 @@
     "_": true,
     "angular": true,
     "Cleave": true,
+    "jsyaml": true,
     "moment": true
   }
 }

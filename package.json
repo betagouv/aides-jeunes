@@ -12,6 +12,7 @@
     "express": "~4.15.0",
     "font-awesome": "^4.7.0",
     "frozen-moment": "^0.4.0",
+    "js-yaml": "^3.8.4",
     "kerberos": "0.0.23",
     "lodash": "^4.17.4",
     "ludwig-api": "^1.2.0",

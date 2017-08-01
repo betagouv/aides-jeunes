@@ -5,8 +5,21 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     $scope.error = false;
     $scope.awaitingResults = true;
 
+    function loadSituation() {
+        if ($stateParams.situationId) { // If we want the result page for an already existing situation.
+            return SituationService.restoreRemote($stateParams.situationId);
+        } else {
+            return SituationService.save($scope.situation).then(function(situation) {
+                return SituationService.restoreRemote(situation._id);
+            });
+        }
+    }
 
-    ResultatService.simulate(SituationService.restoreLocal())
+    loadSituation()
+    .then(function(situation) {
+        $scope.situation = situation;
+        return situation;
+    }).then(ResultatService.simulate)
     .then(function(droits) {
         $scope.droits = droits.droitsEligibles;
         $scope.droitsInjectes = droits.droitsInjectes;

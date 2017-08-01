@@ -38,6 +38,18 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             return situation;
         },
 
+        restoreRemote: function(situationId) {
+            return $http.get('/api/situations/' + situationId, {
+                params: { cacheBust: Date.now() }
+            }).then(function(result) {
+                situation = result.data;
+                situation.individus.forEach(convertDatesToMoments);
+                $sessionStorage.situation = situation;
+
+                return situation;
+            });
+        },
+
         getMonths: function(baseDate, count, upTo) {
             if (! count) {
                 count = 3;
@@ -53,6 +65,18 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                     id: refDate.format('YYYY-MM'),
                     label: refDate.format('MMMM YYYY')
                 };
+            });
+        },
+
+        save: function(situation) {
+            if (situation._id) {
+                situation.modifiedFrom = situation._id;
+                delete situation._id;
+            }
+            return $http.post('/api/situations/', situation)
+            .then(function(result) {
+                situation._id = result.data._id;
+                return result.data;
             });
         },
 

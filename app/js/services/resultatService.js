@@ -91,11 +91,8 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
     }
 
     function simulate(situation) {
-        return $http.post('/api/situations', situation)
-        .then(function(simulationResponse) {
-            situation.id = simulationResponse.data._id;
-            return $http.get('api/situations/' + simulationResponse.data._id + '/openfisca-response');
-        }).then(function(OpenfiscaResponse) {
+        return $http.get('api/situations/' + situation._id + '/openfisca-response')
+        .then(function(OpenfiscaResponse) {
             return OpenfiscaResponse.data;
         }).then(computeAides);
     }

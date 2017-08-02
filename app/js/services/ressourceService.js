@@ -101,17 +101,11 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
         return individu.ressources && individu.ressources.filter(isRessourceOnMainScreen) || [];
     }
 
-    function roundToCents(amount) {
-        return Math.round(amount * 100) / 100;
-    }
-
     return {
-        spreadIndividuRessources: spreadIndividuRessources,
         _applyYearlyRessource: applyYearlyRessource, //tested
-        applyRessourcesToIndividu: applyRessourcesToIndividu, // used in enfants.js
+        applyRessourcesToIndividu: applyRessourcesToIndividu, // used in controllers/foyer/ressources/enfants.js
         isRessourceOnMainScreen: isRessourceOnMainScreen,
-        getMainScreenRessources: getMainScreenRessources,
-        roundToCents: roundToCents,
+        getMainScreenRessources: getMainScreenRessources, // used in controllers/foyer/ressources/enfants.js
         setDefaultRessourceValue: setDefaultRessourceValue,
     };
 });

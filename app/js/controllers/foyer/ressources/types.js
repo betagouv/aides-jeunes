@@ -21,18 +21,20 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
         });
     };
 
-    $scope.applySelectedRessources = function (selectedRessourceTypes) {
+    function updateIndividuRessources(individu, selectedRessourceTypes) {
         Object.keys(selectedRessourceTypes).forEach(function(ressourceTypeId) {
             if (selectedRessourceTypes[ressourceTypeId]) {
-                $scope.individu[ressourceTypeId] = $scope.individu[ressourceTypeId] || {};
+                individu[ressourceTypeId] = individu[ressourceTypeId] || {};
             } else {
-                delete $scope.individu[ressourceTypeId];
+                delete individu[ressourceTypeId];
+                delete selectedRessourceTypes[ressourceTypeId];
             }
         });
-    };
+    }
+    $scope._updateIndividuRessources = updateIndividuRessources;
 
     $scope.submit = function() {
-        $scope.applySelectedRessources($scope.selectedRessourceTypes);
+        updateIndividuRessources($scope.individu, $scope.selectedRessourceTypes);
         if (_.some($scope.selectedRessourceTypes)) {
             $state.go('foyer.ressources.individu.montants');
         } else {

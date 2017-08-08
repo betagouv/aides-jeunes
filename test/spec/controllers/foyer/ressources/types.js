@@ -82,6 +82,7 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
 
             // then
             expect(scope.individu.toto).toBeFalsy();
+            expect(scope.selectedRessourceTypes.toto).toBe(undefined);
         });
 
         it('should keep previous ressource corresponding to the selected ressource type if it exists', function() {

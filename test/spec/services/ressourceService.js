@@ -87,4 +87,52 @@ describe('RessourceService', function () {
             expect(filteredRessourcesTypes).toEqual([ { 'id': 'pensions_invalidite' } ]);
         });
     });
+
+
+    describe('extractIndividuSelectedRessourceTypes', function() {
+
+        it('should retrieve the selected ressource types in the selectedRessourceTypes map if individus have ressources', function() {
+            // given
+            var individu = {
+                indemnites_stage: {},
+                salaire_net_hors_revenus_exceptionnels: {},
+            };
+
+            // when
+            var selectedTypes = service.extractIndividuSelectedRessourceTypes(individu);
+
+            // then
+            expect(selectedTypes).toEqual({ salaire_net_hors_revenus_exceptionnels: true, indemnites_stage: true });
+        });
+
+        it('should not map pensions alimentaires versées to the view model', function() {
+            // given
+            var individu = {
+                pensions_alimentaires_versees_individu: {
+                    '2012-10': 100,
+                },
+            };
+
+            // when
+            var selectedTypes = service.extractIndividuSelectedRessourceTypes(individu);
+
+            // then
+            expect(selectedTypes).toEqual({});
+        });
+
+        it('should map ressources micro-entreprise', function() {
+            // given
+            var individu = {
+                tns_micro_entreprise_chiffre_affaires: {
+                    '2014': 1000
+                },
+            };
+
+            // when
+            var selectedTypes = service.extractIndividuSelectedRessourceTypes(individu);
+
+            // then
+            expect(selectedTypes).toEqual({ tns_micro_entreprise_chiffre_affaires: true });
+        });
+    });
 });

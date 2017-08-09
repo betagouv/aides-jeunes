@@ -2,7 +2,7 @@
 
 describe('Controller: FoyerRessourcesIndividuCtrl', function() {
 
-    var scope, demandeur, _ressourceTypes_, controller;
+    var scope, demandeur, controller;
 
     beforeEach(function() {
         scope = {
@@ -11,8 +11,7 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
         };
         demandeur = scope.sortedIndividus[0];
         module('ddsApp');
-        inject(function(ressourceTypes, $controller) {
-            _ressourceTypes_ = ressourceTypes;
+        inject(function($controller) {
             controller = $controller;
         });
     });
@@ -21,7 +20,6 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
         controller('FoyerRessourcesIndividuCtrl', {
             $scope: scope,
             $stateParams: { individu: individuIndex || 0 },
-            ressourceTypes: _ressourceTypes_
         });
     };
 
@@ -57,49 +55,6 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
 
             // then
             expect(scope.pageTitle).toBe('Les ressources de Jérome');
-        });
-
-        it('should retrieve the selected ressource types in the selectedRessourceTypes map if individus have ressources', function() {
-
-            // given
-            demandeur.indemnites_stage = {};
-            demandeur.salaire_net_hors_revenus_exceptionnels = {};
-
-            // when
-            initController();
-
-            // then
-            expect(scope.selectedRessourceTypes).toEqual({ salaire_net_hors_revenus_exceptionnels: true, indemnites_stage: true });
-        });
-
-        it('should not map pensions alimentaires versées to the view model', function() {
-
-            // given
-            demandeur.pensions_alimentaires_versees_individu = {
-                '2012-10': 100,
-            };
-
-            // when
-            initController();
-
-            // then
-            expect(scope.selectedRessourceTypes).toEqual({});
-        });
-
-        it('should map ressources micro-entreprise', function() {
-
-            // given
-            demandeur.tns_micro_entreprise_chiffre_affaires = {
-                '2014': 1000
-            };
-            demandeur.tnsActiviteType = 'bnc';
-
-            // when
-            initController();
-
-            // then
-            var individuVM = scope;
-            expect(individuVM.selectedRessourceTypes).toEqual({ tns_micro_entreprise_chiffre_affaires: true });
         });
     });
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('RessourceService', function(SituationService, categoriesRnc) {
+angular.module('ddsApp').factory('RessourceService', function(SituationService, categoriesRnc, ressourceTypes) {
 
     function setDefaultRessourceValue(dateDeValeur, individu, ressourceType) {
         var key = ressourceType.id;
@@ -91,6 +91,19 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
             }));
     }
 
+    function extractIndividuSelectedRessourceTypes(individu) {
+        var result = {};
+        _.chain(ressourceTypes)
+            .map('id')
+            .uniq()
+            .filter(isRessourceOnMainScreen)
+            .filter(function(ressourceType) { return individu[ressourceType]; })
+            .forEach(function(ressourceType) { result[ressourceType] = true; })
+            .value();
+
+        return result;
+    }
+
     function isRessourceOnMainScreen(ressourceOrType) {
         // Make this function robust so that it can be called with a ressource from individu.ressources, a type from the ressourceTypes constant, or just a string.
         var type = ressourceOrType.type || ressourceOrType.id || ressourceOrType;
@@ -107,5 +120,6 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
         isRessourceOnMainScreen: isRessourceOnMainScreen,
         getMainScreenRessources: getMainScreenRessources, // used in controllers/foyer/ressources/enfants.js
         setDefaultRessourceValue: setDefaultRessourceValue,
+        extractIndividuSelectedRessourceTypes: extractIndividuSelectedRessourceTypes,
     };
 });

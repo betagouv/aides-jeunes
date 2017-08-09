@@ -6,7 +6,8 @@ angular.module('ddsApp').controller('FoyerRessourcesEnfantsCtrl', function($scop
 
     $scope.enfants = SituationService.getEnfants($scope.situation);
     $scope.enfants.forEach(function(enfant) {
-    	enfant.hasRessources = RessourceService.getMainScreenRessources(enfant).length > 0;
+        // yesNoQuestion requires a boolean
+        enfant.hasRessources = ! _.isEmpty(RessourceService.extractIndividuSelectedRessourceTypes(enfant));
     });
 
     $scope.escape = _.escape;
@@ -14,7 +15,10 @@ angular.module('ddsApp').controller('FoyerRessourcesEnfantsCtrl', function($scop
     $scope.submit = function() {
         $scope.enfants.forEach(function(enfant) {
             if (! enfant.hasRessources) {
-                RessourceService.applyRessourcesToIndividu(enfant, [], $scope.situation.dateDeValeur);
+                var ressourceTypes = RessourceService.extractIndividuSelectedRessourceTypes(enfant);
+                _.keys(ressourceTypes).forEach(function(ressourceType) {
+                    delete enfant[ressourceType];
+                });
             }
         });
         $scope.markEnfantsAsDeclared();

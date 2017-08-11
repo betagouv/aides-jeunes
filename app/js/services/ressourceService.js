@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('RessourceService', function(SituationService, categoriesRnc, ressourceTypes) {
+angular.module('ddsCommon').factory('RessourceService', function(MonthService, categoriesRnc, ressourceTypes) {
 
     function setDefaultRessourceValue(dateDeValeur, individu, ressourceType) {
         var key = ressourceType.id;
@@ -13,7 +13,7 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
                 return;
             }
 
-            var months = SituationService.getMonths(dateDeValeur, 12);
+            var months = MonthService.getMonths(dateDeValeur, 12);
             months.forEach(function(month) {
                 ressource[month.id] = 0;
             });
@@ -70,7 +70,7 @@ angular.module('ddsApp').factory('RessourceService', function(SituationService, 
     }
 
     function applyRessourcesToIndividu (individu, ressources, dateDeValeur) {
-            var months = SituationService.getMonths(dateDeValeur);
+            var months = MonthService.getMonths(dateDeValeur);
             var previousRessources = individu.ressources;
             individu.ressources = [];
             individu.interruptedRessources = [];

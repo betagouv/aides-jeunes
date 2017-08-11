@@ -15,8 +15,8 @@ describe('Controller: FoyerRessourcesMontantsCtrl', function() {
             _ressourceTypes_ = ressourceTypes;
         });
 
-        inject(function(SituationService) {
-            scope.months = SituationService.getMonths(scope.situation.dateDeValeur);
+        inject(function(MonthService) {
+            scope.months = MonthService.getMonths(scope.situation.dateDeValeur);
         });
     });
 

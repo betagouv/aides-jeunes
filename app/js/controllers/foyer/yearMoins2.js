@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService, SituationService) {
+angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService, SituationService, MonthService) {
     var today = $scope.situation.dateDeValeur;
-    var months = SituationService.getMonths(today, 12);
+    var months = MonthService.getMonths(today, 12);
     $scope.yearMoins2 = moment(today).subtract('years', 2).format('YYYY');
     $scope.debutAnneeGlissante = moment(today).subtract('years', 1).format('MMMM YYYY');
 

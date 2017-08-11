@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').directive('captureMontantRessource', function(SituationService) {
+angular.module('ddsApp').directive('captureMontantRessource', function(MonthService) {
     function getOnGoingQuestion (individu, ressource, currentMonth) {
         var subject = {
             'demandeur': 'Vous',
@@ -27,9 +27,9 @@ angular.module('ddsApp').directive('captureMontantRessource', function(Situation
         link: function(scope, element, attrs) {
             var momentDebutAnnee = moment(scope.dateDeValeur).subtract('years', 1);
             scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
-            scope.months = SituationService.getMonths(scope.dateDeValeur);
-            var last12Months = SituationService.getMonths(scope.dateDeValeur, 12);
-            var previous9Months = SituationService.getMonths(scope.dateDeValeur, 9, 3);
+            scope.months = MonthService.getMonths(scope.dateDeValeur);
+            var last12Months = MonthService.getMonths(scope.dateDeValeur, 12);
+            var previous9Months = MonthService.getMonths(scope.dateDeValeur, 9, 3);
 
             scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
             scope.currentMonthId = moment(scope.dateDeValeur).format('YYYY-MM');

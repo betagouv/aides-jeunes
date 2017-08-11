@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, categoriesRnc, CityService, SituationService, IndividuService, RessourceService) {
+angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, categoriesRnc, CityService, SituationService, IndividuService, MonthService, RessourceService) {
     $scope.yearMoins1 = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
 
@@ -92,7 +92,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     }
     $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
 
-    $scope.months = SituationService.getMonths($scope.situation.dateDeValeur);
+    $scope.months = MonthService.getMonths($scope.situation.dateDeValeur);
 
     $scope.getIndividuRessourcesHeader = IndividuService.ressourceHeader;
 
@@ -101,7 +101,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     };
 
     function getLast12MonthTotal(ressource) {
-        return SituationService.getMonths($scope.situation.dateDeValeur, 12).reduce(function(sum, current) {
+        return MonthService.getMonths($scope.situation.dateDeValeur, 12).reduce(function(sum, current) {
             return ressource[current.id] ? sum + ressource[current.id] : sum;
         }, 0);
     }

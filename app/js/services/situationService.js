@@ -2,7 +2,7 @@
 
 var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'dateDernierContratTravail'];
 
-angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc, RessourceService) {
+angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc, patrimoineTypes, RessourceService) {
     var situation;
 
     function convertDateFieldStringToDates(individu) {
@@ -131,6 +131,23 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 }, false);
             });
             return typeof rfr == 'number' || hasYm2Ressources;
-        }
+        },
+
+        /* This function returns
+         * - undefined if demandeur do not have any patrimoine ressource
+         * - false if those ressources are all null else
+         * - true
+         */
+        hasPatrimoine: function(situation) {
+            var demandeur = situation.individus[0];
+            return patrimoineTypes.reduce(function(accum, ressource) {
+                if (! demandeur[ressource.id]) {
+                    return accum;
+                }
+
+                return accum || _.some(_.values(demandeur[ressource.id]));
+
+            }, undefined);
+        },
     };
 });

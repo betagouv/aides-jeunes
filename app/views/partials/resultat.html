@@ -48,7 +48,7 @@
       <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
   </div>
 
-  <div class="frame-resultats" ng-if="! noDroits && ! situation.patrimoine.captured">
+  <div class="frame-resultats" ng-if="! noDroits && ! isPatrimoineCaptured()">
     <div class="row">
       <div class="col-sm-8">
         <i class="fa fa-info-circle" aria-hidden="true"></i>

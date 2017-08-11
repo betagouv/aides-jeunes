@@ -39,6 +39,9 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('years', 1).format('MMMM YYYY');
     $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1).format('MMMM YYYY');
     $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
+    $scope.isPatrimoineCaptured = function() {
+        return angular.isDefined(SituationService.hasPatrimoine($scope.situation));
+    };
 
     $scope.createTest = function() {
         // Merge national and local prestations into a flat object compatible with ludwig.

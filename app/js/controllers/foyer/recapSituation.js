@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, logementTypes, locationTypes, categoriesRnc, CityService, SituationService, IndividuService, MonthService, RessourceService) {
+angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, patrimoineTypes, logementTypes, locationTypes, categoriesRnc, CityService, SituationService, IndividuService, MonthService, RessourceService) {
     $scope.yearMoins1 = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
 
@@ -41,28 +41,14 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     }
 
     function buildRecapPatrimoine () {
-        var demandeur = $scope.situation.individus[0];
+        var hasPatrimoine = SituationService.hasPatrimoine($scope.situation);
         $scope.patrimoine = [];
-        $scope.patrimoine.captured = false;
-        [
-            {
-                id: 'valeur_locative_immo_non_loue',
-                label: 'Valeur locative immobilier non loué'
-            },
-            {
-                id: 'valeur_locative_terrains_non_loue',
-                label: 'Valeur locative terrains non loués'
-            },
-            {
-                id: 'interets_epargne_sur_livrets',
-                label: 'Intérêts d\'épargne sur livret'
-            },
-            {
-                id: 'epargne_non_remuneree',
-                label: 'Épargne sans revenus'
-            }
-        ].forEach(function(field) {
-            $scope.patrimoine.captured = $scope.patrimoine.captured || demandeur[field.id];
+        $scope.patrimoine.captured = angular.isDefined(hasPatrimoine);
+        if (! $scope.patrimoine.captured || ! hasPatrimoine)
+            return;
+
+        var demandeur = $scope.situation.individus[0];
+        patrimoineTypes.forEach(function(field) {
             var value = demandeur[field.id] && _.values(demandeur[field.id])[0];
             if (value) {
                 $scope.patrimoine.push({ label: field.label, montant: value });

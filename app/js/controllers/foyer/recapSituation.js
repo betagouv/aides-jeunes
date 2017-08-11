@@ -112,7 +112,8 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
 
     $scope.shouldDisplayPersonRessourcesRecap = function (individu) {
         var index = $scope.individusSorted.indexOf(individu);
-        return (! _.isEmpty($scope.ressourcesByIndividu[index])) || IndividuService.isParent(individu);
+        return ($scope.situation._id || angular.isDefined(individu.hasRessources)) &&
+            ((! _.isEmpty($scope.ressourcesByIndividu[index]) || IndividuService.isParent(individu)));
     };
 
     $scope.getModifyPersonRessourcesLink = function (individu) {

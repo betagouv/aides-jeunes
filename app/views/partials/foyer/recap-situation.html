@@ -15,7 +15,7 @@
 </div>
 
 <div>
-  <div ng-repeat="individu in individusSorted">
+  <div ng-repeat="individu in individusSorted" ng-if="shouldDisplayPersonRessourcesRecap(individu)">
     <a
       ui-sref="{{ getModifyPersonRessourcesLink(individu) }}"
       class="pull-right">

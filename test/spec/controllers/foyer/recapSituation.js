@@ -39,6 +39,95 @@ describe('Controller: RecapSituationCtrl', function() {
         });
     });
 
+    describe('shouldDisplayPersonRessourcesRecap', function() {
+        it('be false for demandeur without hasRessources', function() {
+            // given
+            scope.situation.dateDeValeur = '2013-04-05';
+            var individu = {
+                role: 'demandeur',
+            };
+            scope.situation.individus.push(individu);
+            initController();
+
+            // when
+            var value = scope.shouldDisplayPersonRessourcesRecap(individu);
+
+            // then
+            expect(value).toBeFalsy();
+        });
+
+        it('be true for demandeur with hasRessources == true', function() {
+            // given
+            scope.situation.dateDeValeur = '2013-04-05';
+            var individu = {
+                role: 'demandeur',
+                hasRessources: true,
+            };
+            scope.situation.individus.push(individu);
+            initController();
+
+            // when
+            var value = scope.shouldDisplayPersonRessourcesRecap(individu);
+
+            // then
+            expect(value).toBeTruthy();
+        });
+
+        it('be true for demandeur with hasRessources == false', function() {
+            // given
+            scope.situation.dateDeValeur = '2013-04-05';
+            var individu = {
+                role: 'demandeur',
+                hasRessources: true,
+            };
+            scope.situation.individus.push(individu);
+            initController();
+
+            // when
+            var value = scope.shouldDisplayPersonRessourcesRecap(individu);
+
+            // then
+            expect(value).toBeTruthy();
+        });
+
+        it('be true for a kid with ressources', function() {
+            // given
+            scope.situation.dateDeValeur = '2013-04-05';
+            var individu = {
+                role: 'enfant',
+                hasRessources: true,
+                salaire_net_hors_revenus_exceptionnels: {
+                    '2011': 1000,
+                },
+            };
+            scope.situation.individus.push(individu);
+            initController();
+
+            // when
+            var value = scope.shouldDisplayPersonRessourcesRecap(individu);
+
+            // then
+            expect(value).toBeTruthy();
+        });
+
+        it('be false for a kid without ressources', function() {
+            // given
+            scope.situation.dateDeValeur = '2013-04-05';
+            var individu = {
+                role: 'enfant',
+                hasRessources: false,
+            };
+            scope.situation.individus.push(individu);
+            initController();
+
+            // when
+            var value = scope.shouldDisplayPersonRessourcesRecap(individu);
+
+            // then
+            expect(value).toBeFalsy();
+        });
+    });
+
     describe('ressourcesYearMoins2 event', function() {
         it('should create a ressourcesYearMoins2 cache', function() {
             // given

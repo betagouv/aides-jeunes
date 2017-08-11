@@ -38,6 +38,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
         if (_.some($scope.selectedRessourceTypes)) {
             $state.go('foyer.ressources.individu.montants');
         } else {
+            $scope.individu.hasRessources = ! _.isEmpty($scope.selectedRessourceTypes);
             $scope.declareNextIndividuResources(parseInt($stateParams.individu));
         }
     };

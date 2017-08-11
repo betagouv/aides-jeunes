@@ -25,6 +25,7 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
     $scope.submit = function(form) {
         form.submitted = true;
         if (form.$valid) {
+            $scope.individu.hasRessources = ! _.isEmpty($scope.selectedRessourceTypes);
             $scope.declareNextIndividuResources(parseInt($stateParams.individu));
         }
     };

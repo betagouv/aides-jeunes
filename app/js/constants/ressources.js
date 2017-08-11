@@ -353,6 +353,24 @@ var categoriesRnc = [
     }
 ];
 
+var patrimoineTypes = [
+    {
+        id: 'valeur_locative_immo_non_loue',
+        label: 'Valeur locative immobilier non loué'
+    },
+    {
+        id: 'valeur_locative_terrains_non_loue',
+        label: 'Valeur locative terrains non loués'
+    },
+    {
+        id: 'interets_epargne_sur_livrets',
+        label: 'Intérêts d\'épargne sur livret'
+    },
+    {
+        id: 'epargne_non_remuneree',
+        label: 'Épargne sans revenus'
+    }
+];
 
 /* Export either through Angular loader or CommonJS */
 if ((typeof module != 'undefined') && (typeof angular == 'undefined')) {  // we're in Node
@@ -360,11 +378,13 @@ if ((typeof module != 'undefined') && (typeof angular == 'undefined')) {  // we'
         ressourceCategories: ressourceCategories,
         ressourceTypes: ressourceTypes,
         categoriesRnc: categoriesRnc,
+        patrimoineTypes: patrimoineTypes
     };
 } else {  // we're in the browser
     angular.module('ddsCommon').constant('ressourceCategories', ressourceCategories);
     angular.module('ddsCommon').constant('ressourceTypes', ressourceTypes);
     angular.module('ddsCommon').constant('categoriesRnc', categoriesRnc);
+    angular.module('ddsCommon').constant('patrimoineTypes', patrimoineTypes);
 }
 /* End of export */
 })();

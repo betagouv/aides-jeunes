@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('MappingService', function() {
+angular.module('ddsApp').service('LogementService', function() {
 
     function getStatutOccupationLogement(logement) {
         var statusOccupationMap = {

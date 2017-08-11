@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, CityService, SituationService, IndividuService, MappingService) {
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, CityService, SituationService, IndividuService, LogementService) {
     var famille = $scope.famille = $scope.situation.famille;
     var menage = $scope.menage = $scope.situation.menage;
 
@@ -11,7 +11,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.demandeur = SituationService.getDemandeur($scope.situation);
 
     var logement = $scope.logement = _.assign({},
-        MappingService.statutOccupationLogement.getBaseLogement(menage.statut_occupation_logement),
+        LogementService.statutOccupationLogement.getBaseLogement(menage.statut_occupation_logement),
         $scope.situation.logement);
 
     function getSelectedCity() {
@@ -154,7 +154,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid && $scope.isAdresseValid()) {
-            menage.statut_occupation_logement = MappingService.statutOccupationLogement.getValue(logement);
+            menage.statut_occupation_logement = LogementService.statutOccupationLogement.getValue(logement);
             $scope.$emit('logement', logement);
         }
     };

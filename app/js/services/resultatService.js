@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('ResultatService', function($http, droitsDescription, CustomizationService, MappingService) {
+angular.module('ddsApp').service('ResultatService', function($http, droitsDescription, CustomizationService) {
 
     /**
     *@param    {String}  An Openfisca period. For example: 'month:2014-12'.

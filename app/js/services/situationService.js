@@ -8,7 +8,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
     function convertDateFieldStringToDates(individu) {
         DATE_FIELDS.forEach(function(dateField) {
             if (individu[dateField]) {
-                individu[dateField] = new Date(individu[dateField]);
+                individu[dateField] = moment(new Date(individu[dateField]));
             }
         });
     }

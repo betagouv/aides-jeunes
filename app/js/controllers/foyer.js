@@ -41,6 +41,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
     });
 
     $scope.$on('pensionsAlimentaires', function() {
+        $scope.$broadcast('ressourcesUpdated');
         $state.go('foyer.resultat');
     });
 

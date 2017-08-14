@@ -199,7 +199,7 @@ function buildOpenFiscaTestCase(situation) {
     var individus = mapIndividus(situation);
     allocateIndividualsToEntities(situation);
 
-    delete situation.menage.nomCommune;
+    delete situation.menage.nom_commune;
     delete situation.menage.code_postal;
 
     var testCase = {

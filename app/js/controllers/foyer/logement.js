@@ -31,7 +31,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
             $scope.cities = cities;
             var city = getSelectedCity();
             menage.depcom = city.codeInsee;
-            menage.nomCommune = city.nomCommune;
+            menage.nom_commune = city.nomCommune;
             if (! initial) {
                 famille.parisien = cityStartsWith('Paris');
             }
@@ -44,7 +44,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.updateCities(true);
 
     function cityStartsWith(prefix) {
-        return $scope.isAdresseValid() && $scope.menage.nomCommune.indexOf(prefix.toUpperCase()) === 0;
+        return $scope.isAdresseValid() && $scope.menage.nom_commune.indexOf(prefix.toUpperCase()) === 0;
     }
 
     $scope.yearsAgo = function yearsAgo(amount) {
@@ -140,7 +140,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.changeNomCommune = function() {
-        menage.nomCommune = getSelectedCity().nomCommune;
+        menage.nom_commune = getSelectedCity().nomCommune;
     };
 
     $scope.isResidentMayotte = function isResidentMayotte() {

@@ -5,12 +5,20 @@ var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'dateDernierContra
 angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc, patrimoineTypes, RessourceService) {
     var situation;
 
-    function convertDateFieldStringToDates(individu) {
+    function adaptPersistedIndividu(individu) {
         DATE_FIELDS.forEach(function(dateField) {
             if (individu[dateField]) {
                 individu[dateField] = moment(new Date(individu[dateField]));
             }
         });
+
+        individu.hasRessources = ! _.isEmpty(RessourceService.extractIndividuSelectedRessourceTypes(individu));
+    }
+
+    function adaptPersistedSituation(situation) {
+        situation.dateDeValeur = new Date(situation.dateDeValeur);
+        situation.individus.forEach(adaptPersistedIndividu);
+        return situation;
     }
 
     return {
@@ -33,9 +41,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 this.newSituation();
             }
 
-            situation.individus.forEach(convertDateFieldStringToDates);
-
-            return situation;
+            return adaptPersistedSituation(situation);
         },
 
         restoreRemote: function(situationId) {
@@ -43,14 +49,10 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 params: { cacheBust: Date.now() }
             }).then(function(result) {
                 situation = result.data;
-
-                situation.dateDeValeur = new Date(situation.dateDeValeur);
-                situation.individus.forEach(convertDateFieldStringToDates);
-
                 $sessionStorage.situation = situation;
 
                 return situation;
-            });
+            }).then(adaptPersistedSituation);
         },
 
         save: function(situation) {
@@ -62,7 +64,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             .then(function(result) {
                 situation._id = result.data._id;
                 return result.data;
-            });
+            }).then(adaptPersistedSituation);
         },
 
         getDemandeur: function(situation) {

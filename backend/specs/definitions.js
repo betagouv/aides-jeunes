@@ -47,6 +47,7 @@ openfiscaSpec.definitions.Individu.properties.specificSituations = {
 openfiscaSpec.definitions.Individu.properties.tauxIncapacite = { type: 'string' };
 
 openfiscaSpec.definitions.Menage.properties.code_postal = { type: 'string' };
+openfiscaSpec.definitions.Menage.properties.nom_commune = { type: 'string' };
 
 delete openfiscaSpec.definitions.Famille.properties.parents;
 delete openfiscaSpec.definitions.Famille.properties.enfants;

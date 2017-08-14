@@ -1,21 +1,14 @@
 'use strict';
 
-angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, $filter, nationalites, ressourceTypes, patrimoineTypes, logementTypes, locationTypes, categoriesRnc, CityService, SituationService, IndividuService, MonthService, RessourceService) {
+angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, nationalites, ressourceTypes, patrimoineTypes, categoriesRnc, CityService, SituationService, IndividuService, LogementService, MonthService, RessourceService) {
     $scope.yearMoins1 = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
     $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
 
     function buildRecapLogement () {
-        var logementLabel = _.find(logementTypes, { id: $scope.situation.logement.type }).label;
-        logementLabel = $filter('uppercaseFirst')(logementLabel);
-        $scope.recapLogement = '<b>' + logementLabel + '</b>';
-        if ('locataire' === $scope.situation.logement.type) {
-            $scope.recapLogement += ' d’un logement <b>';
-            $scope.recapLogement += _.find(locationTypes, { id: $scope.situation.logement.locationType }).label;
-            $scope.recapLogement += '</b>';
-            $scope.loyerLabel = 'Loyer';
-        } else {
-            $scope.loyerLabel = 'Mensualité d’emprunt';
-        }
+        var logementLabels = LogementService.getLabels($scope.situation.menage.statut_occupation_logement);
+
+        $scope.loyerLabel = logementLabels.loyerLabel;
+        $scope.recapLogement = logementLabels.recapLogement;
     }
     $scope.keyedRessourceTypes = _.keyBy(ressourceTypes, 'id');
     $scope.categoriesRnc = categoriesRnc;
@@ -109,7 +102,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         return 'foyer.ressources.individu.' + page + '({individu: ' + index + '})';
     };
 
-    if ($scope.situation.logement) {
+    if ($scope.situation.menage && $scope.situation.menage.statut_occupation_logement) {
         buildRecapLogement();
     }
 

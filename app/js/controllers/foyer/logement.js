@@ -155,7 +155,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         $scope.submitted = true;
         if (form.$valid && $scope.isAdresseValid()) {
             menage.statut_occupation_logement = LogementService.statutOccupationLogement.getValue(logement);
-            $scope.$emit('logement', logement);
+            $scope.$emit('logement');
         }
     };
 });

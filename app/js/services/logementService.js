@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('LogementService', function() {
+angular.module('ddsApp').service('LogementService', function($filter, logementTypes, locationTypes) {
 
     function getStatutOccupationLogement(logement) {
         var statusOccupationMap = {
@@ -34,7 +34,32 @@ angular.module('ddsApp').service('LogementService', function() {
         return (statusOccupationId && baseLogementMap[statusOccupationId]) || {};
     }
 
+    function getLabels(statusOccupationId) {
+        var logement = getBaseLogement(statusOccupationId);
+        var logementLabel = _.find(logementTypes, { id: logement.type }).label;
+
+        logementLabel = $filter('uppercaseFirst')(logementLabel);
+        var recapLogement = '<b>' + logementLabel + '</b>';
+        var loyerLabel;
+        if ('locataire' === logement.type) {
+            recapLogement += ' d’un logement <b>';
+            recapLogement += _.find(locationTypes, { id: logement.locationType }).label;
+            recapLogement += '</b>';
+            loyerLabel = 'Loyer';
+        } else {
+            loyerLabel = 'Mensualité d’emprunt';
+            if (logement.primoAccedant) {
+                recapLogement += ' en accession';
+            }
+        }
+
+        return {
+            loyerLabel: loyerLabel,
+            recapLogement: recapLogement,
+        };
+    }
     return {
+        getLabels: getLabels,
         statutOccupationLogement: {
             getBaseLogement: getBaseLogement,
             getValue: getStatutOccupationLogement,

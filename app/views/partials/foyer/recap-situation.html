@@ -3,7 +3,7 @@
 <h4>Votre foyer</h4>
 <individu-block ng-repeat="individu in situation.individus" individu="individu"></individu-block>
 
-<div id="recap-logement" ng-if="situation.menage.depcom">
+<div id="recap-logement" ng-if="situation.menage.statut_occupation_logement">
   <a ui-sref="foyer.logement" class="pull-right"><i class="fa fa-edit" aria-hidden="true" role="presentation"></i> Modifier</a>
   <h4>Votre logement</h4>
   <div class="situation-block">

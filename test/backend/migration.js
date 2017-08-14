@@ -79,6 +79,11 @@ function runTests() {
             var test = tests[done];
             LegacySituation.findById(test.scenario.situationId)
             .then(function(dbLegacySituation) {
+                if (! dbLegacySituation) {
+                    console.log('var Err_testID_ = \'' + test._id + '\'; // Null');
+                    done += 1;
+                    return processTests();
+                }
                 var dbSituationJSON = JSON.stringify(dbLegacySituation.toObject(), null, 2);
                 var situation = dbLegacySituation.toObject();
                 migration.persistedSituationPretransformationUpdate(situation);
@@ -101,7 +106,7 @@ function runTests() {
                     if (/*true || //*/
                         diff01 || diff02) {
                         var structure0 = [diff01, diff02];
-                        console.log('var testID_db_ = \'' + test._id + '\'');
+                        console.log('var testID_db_ = \'' + test._id + '\' //  ' + frontSituation._id );
                         console.log(JSON.stringify(structure0, null, 2));
                         console.log(JSON.stringify([generatedSituation, persistedSituation], null, 2));
 

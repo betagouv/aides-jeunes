@@ -3,15 +3,16 @@ var _ = require('lodash');
 
 var getPeriods = require('./openfisca/mapping/common').getPeriods;
 
+// cf. https://legislation.openfisca.fr/statut_occupation_logement
 function getStatutOccupationLogement(logement) {
     var statusOccupationMap = {
-        'proprietaireprimoaccedant': 1,
-        'proprietaire': 2,
-        'locatairenonmeuble': 4,
-        'locatairemeublehotel': 5,
-        'heberge': 6,
-        'locatairefoyer': 7,
-        'sansDomicile' : 8
+        'proprietaireprimoaccedant': 'Accédant à la propriété',
+        'proprietaire': 'Propriétaire (non accédant) du logement',
+        'locatairenonmeuble': 'Locataire ou sous-locataire d‘un logement loué vide non-HLM',
+        'locatairemeublehotel': 'Locataire ou sous-locataire d‘un logement loué meublé ou d‘une chambre d‘hôtel',
+        'heberge': 'Logé gratuitement par des parents, des amis ou l‘employeur',
+        'locatairefoyer': 'Locataire d‘un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)',
+        'sansDomicile' : 'Sans domicile stable'
     };
     var statusOccupationId = logement.type;
     if (logement.type == 'proprietaire' && logement.primoAccedant) {

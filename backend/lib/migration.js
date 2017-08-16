@@ -101,10 +101,10 @@ exports.migratePersistedSituation = function(sourceSituation) {
 
         if (sourceIndividu.statutMarital) {
             var statutMaritalMapping = {
-                seul: 2,
-                mariage: 1,
-                pacs: 5,
-                union_libre: 2
+                seul: 'Célibataire',  // Enum value 2 in OpenFisca
+                mariage: 'Marié',  // Enum value 1 in OpenFisca
+                pacs: 'Pacsé',  // Enum value 5 in OpenFisca
+                union_libre: 'Célibataire',  // Enum value 2 in OpenFisca
             };
             if (statutMaritalMapping[sourceIndividu.statutMarital]) {
                 individu.statut_marital = statutMaritalMapping[sourceIndividu.statutMarital];

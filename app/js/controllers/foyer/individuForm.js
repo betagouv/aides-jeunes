@@ -55,7 +55,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
     // Required on DEFAULT_INDIVIDU to properly restore statut_marital
     if (DEFAULT_INDIVIDU.role == 'conjoint') {
-        DEFAULT_INDIVIDU.statut_marital = 1; // Marié(e)
+        DEFAULT_INDIVIDU.statut_marital = 'Marié';  // Marié(e)
     }
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);

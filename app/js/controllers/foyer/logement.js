@@ -10,9 +10,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.locationTypes = locationTypes;
     $scope.demandeur = SituationService.getDemandeur($scope.situation);
 
-    var logement = $scope.logement = _.assign({},
-        LogementService.statutOccupationLogement.getBaseLogement(menage.statut_occupation_logement),
-        $scope.situation.logement);
+    var logement = $scope.logement = LogementService.getLogementVariables(menage.statut_occupation_logement);
 
     function getSelectedCity() {
         return _.find($scope.cities, { codeInsee: menage.depcom }) ||
@@ -154,7 +152,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid && $scope.isAdresseValid()) {
-            menage.statut_occupation_logement = LogementService.statutOccupationLogement.getValue(logement);
+            menage.statut_occupation_logement = LogementService.getStatutOccupationLogement(logement);
             $scope.$emit('logement');
         }
     };

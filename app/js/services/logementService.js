@@ -21,7 +21,7 @@ angular.module('ddsApp').service('LogementService', function($filter, logementTy
         return statusOccupationMap[statusOccupationId];
     }
 
-    function getBaseLogement(statusOccupationId) {
+    function getLogementVariables(statusOccupationId) {
         var baseLogementMap = {
             1: { type: 'proprietaire', primoAccedant: true },
             2: { type: 'proprietaire' },
@@ -35,7 +35,7 @@ angular.module('ddsApp').service('LogementService', function($filter, logementTy
     }
 
     function getLabels(statusOccupationId) {
-        var logement = getBaseLogement(statusOccupationId);
+        var logement = getLogementVariables(statusOccupationId);
         var logementLabel = _.find(logementTypes, { id: logement.type }).label;
 
         logementLabel = $filter('uppercaseFirst')(logementLabel);
@@ -60,9 +60,7 @@ angular.module('ddsApp').service('LogementService', function($filter, logementTy
     }
     return {
         getLabels: getLabels,
-        statutOccupationLogement: {
-            getBaseLogement: getBaseLogement,
-            getValue: getStatutOccupationLogement,
-        },
+        getLogementVariables: getLogementVariables,
+        getStatutOccupationLogement: getStatutOccupationLogement,
     };
 });

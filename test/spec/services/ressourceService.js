@@ -41,22 +41,6 @@ describe('RessourceService', function () {
         });
     });
 
-    describe('_applyYearlyRessource', function() {
-        it('should add a yearly ressource to individu model ', function() {
-            ressource = {
-                type: {
-                    id: 'tns_benefice_exploitant_agricole'
-                },
-                montantAnnuel: 12000,
-                periode: 2014
-            };
-            individu.ressources = [];
-            service._applyYearlyRessource(individu, ressource, dateDeValeur);
-            expect(individu.ressources).not.toEqual([]);
-            expect(individu.ressources[0].type).toEqual('tns_benefice_exploitant_agricole');
-        });
-    });
-
     describe('isRessourceOnMainScreen', function() {
         it('should filter pensions alimentaires versées and RNC resources', function() {
             var types = ['salaire_net_hors_revenus_exceptionnels', 'pensions_alimentaires_versees_individu', 'chomage_imposable'];

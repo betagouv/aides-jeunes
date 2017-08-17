@@ -16,12 +16,6 @@
     padding-left: 0;
 }
 
-.ressource-input .ressource-interrupted {
-    text-align: right;
-    margin-top: 1em;
-    color: black;
-}
-
 .ressource-input.indemnites {
     border-color: #AC6C82;
 }

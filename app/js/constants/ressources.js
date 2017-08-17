@@ -305,7 +305,8 @@ var ressourceTypes = [
     {
         id: 'tns_auto_entrepreneur_chiffre_affaires',
         label: 'Auto-entrepreneur',
-        category: 'rpns'
+        category: 'rpns',
+        interuptionQuestionLabel: 'un chiffre d’affaires non nul',
     },
     {
         id: 'tns_benefice_exploitant_agricole',

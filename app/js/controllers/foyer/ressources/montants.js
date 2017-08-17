@@ -9,15 +9,6 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
     $scope.ressourceTypes = _.keyBy(ressourceTypes, 'id');
     $scope.isNumber = angular.isNumber;
 
-    $scope.autoEntrepreneurOnGoingQuestion = function(individu, currentMonth) {
-        var prefix = {
-            'demandeur': 'Vous aurez',
-            'conjoint': 'Votre conjoint·e aura',
-            'enfant': individu.firstName + ' aura'
-        }[individu.role];
-        return prefix + ' un chiffre d’affaires non nul en ' + currentMonth + '.';
-    };
-
     _.forEach($scope.selectedRessourceTypes, function(value, key) {
         RessourceService.setDefaultRessourceValue($scope.situation.dateDeValeur, $scope.individu, $scope.ressourceTypes[key]);
     });

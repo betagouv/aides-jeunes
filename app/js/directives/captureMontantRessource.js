@@ -1,18 +1,6 @@
 'use strict';
 
 angular.module('ddsApp').directive('captureMontantRessource', function(MonthService) {
-    function getOnGoingQuestion (individu, ressource, currentMonth) {
-        var subject = {
-            'demandeur': 'Vous',
-            'conjoint': 'Votre conjoint·e',
-            'enfant': individu.firstName
-        }[individu.role],
-            verbPrefix = ressource.id == 'pensions_alimentaires_versees_individu' ? 'verser' : 'percevr',
-            verbSufix = individu.role == 'demandeur' ? 'ez' : 'a',
-            ressourceLabel = ressource.interuptionQuestionLabel || ressource.prefix + ' ' + ressource.label.slice(0,1).toLowerCase() + ressource.label.slice(1);
-
-        return [subject, verbPrefix + verbSufix, ressourceLabel, 'en', currentMonth].join(' ') + '.';
-    }
 
     return {
         restrict: 'E',
@@ -29,16 +17,12 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
             scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
             scope.months = MonthService.getMonths(scope.dateDeValeur);
             var last12Months = MonthService.getMonths(scope.dateDeValeur, 12);
-            var previous9Months = MonthService.getMonths(scope.dateDeValeur, 9, 3);
+            var previous9Months = last12Months.slice(0,9);
 
-            scope.currentMonth = moment(scope.dateDeValeur).format('MMMM YYYY');
-            scope.currentMonthId = moment(scope.dateDeValeur).format('YYYY-MM');
             scope.isNumber = angular.isNumber;
             scope.ressource = scope.individu[scope.ressourceType.id];
-            scope.onGoingLabel = getOnGoingQuestion(scope.individu, scope.ressourceType, scope.currentMonth);
 
             scope.locals = {
-                shouldContinue: angular.isNumber(scope.ressource[scope.currentMonthId]),
                 annualValue: last12Months.reduce(function(sum, month) {
                     return sum + (scope.ressource[month.id] ? scope.ressource[month.id] : 0);
                 }, 0),
@@ -66,17 +50,6 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
             }
             scope.$watch('locals.annualValue', checkSumConsistency);
             scope.$watchCollection('ressource', checkSumConsistency);
-
-            function captureContinuationUpdate() {
-                if (scope.locals.shouldContinue) {
-                    scope.ressource[scope.currentMonthId] = scope.ressource[scope.months[scope.months.length - 1].id];
-                } else {
-                    delete scope.ressource[scope.currentMonthId];
-                }
-            }
-            scope.$watch('locals.shouldContinue', captureContinuationUpdate);
-            // Hack to update current month value when ressource should continue
-            scope.$watch('ressource["' + scope.months[scope.months.length - 1].id + '"]', captureContinuationUpdate);
 
             scope.shouldAskDateArretDeTravail = function() {
                 // If there is no IJSS the first month, we know the arret de travail is recent and don't need to capture the date.

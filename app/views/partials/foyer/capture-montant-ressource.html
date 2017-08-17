@@ -70,16 +70,12 @@
       ng-if="form.submitted && form[ressourceType.id + '-year'].$error.min">
       <p>Vous avez indiqué avoir perçu {{ monthsSum | currency }} sur les 3 derniers mois, mais seulement {{ form[ressourceType.id + '-year'].$viewValue | currency }} sur les 12 derniers mois. Vérifiez les montants indiqués dans les quatre champs de votre {{ ressourceType.label }}.</p>
     </div>
-    <div class="ressource-interrupted" ng-if="! ressourceType.revenuExceptionnel">
-      <label> {{ shouldContinue }}
-        <input
-          type="checkbox"
-          ng-model="locals.shouldContinue"
-          >
-
-          {{ onGoingLabel }}
-      </label>
-    </div>
+    <capture-continuation
+      date-de-valeur="situation.dateDeValeur"
+      individu="individu"
+      ressource-type="ressourceType"
+      ng-if="! ressourceType.revenuExceptionnel"
+      />
   </div>
   <div
     class="form-group"

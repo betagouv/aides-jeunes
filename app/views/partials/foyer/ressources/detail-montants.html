@@ -69,15 +69,11 @@
           </span>
         </div>
       </div>
-      <div class="text-right">
-        <div class="checkbox">
-          <label>
-            <input
-              type="checkbox" ng-model="interruptedRessources[ressourceId]">
-              {{ autoEntrepreneurOnGoingQuestion(individu, currentMonth) }}
-          </label>
-        </div>
-      </div>
+      <capture-continuation
+        date-de-valeur="situation.dateDeValeur"
+        individu="individu"
+        ressource-type="ressourceType"
+      />
     </div>
   </div>
 

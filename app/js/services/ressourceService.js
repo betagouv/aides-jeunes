@@ -7,11 +7,17 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         individu[key] = individu[key] || {};
         var ressource = individu[key];
         if (_.isEmpty(ressource)) {
+            var lastYear = moment(dateDeValeur).subtract('years', 1).format('YYYY');
             if (ressourceType.isMontantAnnuel)
             {
-                ressource[moment(dateDeValeur).subtract('years', 1).format('YYYY')] = 0;
+                ressource[lastYear] = 0;
                 return;
             }
+            if (ressourceType.id == 'tns_auto_entrepreneur_chiffre_affaires')
+            {
+                ressource[lastYear] = 0;
+            }
+
 
             var months = MonthService.getMonths(dateDeValeur, 12);
             months.forEach(function(month) {

@@ -1,3 +1,7 @@
+/*
+ * This script rely on
+    "sgmap-mes-aides-api": "sgmap/mes-aides-api#replicate",
+ */
 var config = require('../../backend');
 var expect = require('expect');
 var _ = require('lodash');

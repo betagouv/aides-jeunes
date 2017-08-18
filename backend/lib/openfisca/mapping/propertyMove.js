@@ -9,31 +9,15 @@ var famillePropertiesGivenToIndividu = Object
     .concat(['aeeh', 'paje_prepare', 'paje_clca']);
 
 var movedProperties = {
-    Famille: {
+    familles: {
         properties: famillePropertiesGivenToIndividu
             .map(function(id) { return { name: id }; }),
         sourceKeys: ['parents', 'enfants'],
-        testCasePropertyName: 'familles',
     },
-    Foyer_Fiscal: {
+    foyers_fiscaux: {
         properties: [{ name: 'pensions_alimentaires_versees', sign: -1 }],
         sourceKeys: ['declarants', 'personnes_a_charge'],
-        testCasePropertyName: 'foyers_fiscaux',
     },
-};
-
-exports.movePropertiesToIndividuEntity = function(definitions) {
-    var individuProps = definitions.Individu.properties;
-
-    Object.keys(movedProperties).forEach(function(sourceEntityName) {
-        var sourceProps = definitions[sourceEntityName].properties;
-        var moveDetails = movedProperties[sourceEntityName];
-        var ressourceNames = moveDetails.properties.map(function(ressource) { return ressource.name; });
-
-        ressourceNames.forEach(function(ressourceName) {
-            individuProps[ressourceName] = sourceProps[ressourceName];
-        });
-    });
 };
 
 exports.movePropertyValuesToGroupEntity = function(testCase) {
@@ -43,10 +27,10 @@ exports.movePropertyValuesToGroupEntity = function(testCase) {
         individus[individu.id] = individu;
     });
 
-    Object.keys(movedProperties).forEach(function(sourceEntityName) {
-        var moveDetails = movedProperties[sourceEntityName];
+    Object.keys(movedProperties).forEach(function(testCasePropertyName) {
+        var moveDetails = movedProperties[testCasePropertyName];
 
-        testCase[moveDetails.testCasePropertyName].forEach(function(entity) {
+        testCase[testCasePropertyName].forEach(function(entity) {
             var entityIndividuIds = [];
             moveDetails.sourceKeys.forEach(function(roleEntity) {
                 entity[roleEntity].forEach(function(individuId) {

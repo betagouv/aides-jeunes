@@ -1,5 +1,7 @@
 var moment = require('moment');
 var _ = require('lodash');
+var individuRessource = require('./ressources');
+var proxyAnneeDeReferenceRessources = require('./proxyAnneeDeReferenceRessources');
 
 function formatDate(date) {
     return moment(date).format('YYYY-MM-DD');
@@ -28,14 +30,14 @@ var individuSchema = {
     },
     activite: {
         src: 'specificSituations',
-        fn: function(value) {
+        fn: function(specificSituations) {
             var returnValue;
             _.forEach({
                 demandeur_emploi: 1,
                 etudiant: 2,
                 retraite: 3
-            }, function(situationIndex, situation) {
-                if (value.indexOf(situation) >= 0) {
+            }, function(situationIndex, situationId) {
+                if (specificSituations.indexOf(situationId) >= 0) {
                     returnValue = situationIndex;
                 }
             });
@@ -83,52 +85,40 @@ var individuSchema = {
     },
 };
 
-var familleProperties = [
-    'parisien',
-    'proprietaire_proche_famille',
-    'rsa_isolement_recent',
-];
+function isNotValidValue(value) {
+    return _.isNaN(value) || _.isUndefined(value) || value === null;
+}
 
-var individuProperties = [
-    'activite',
-    'age',
-    'age_en_mois',
-    'ass_precondition_remplie',
-    'boursier',
-    'date_arret_de_travail',
-    'date_naissance',
-    'echelon_bourse',
-    'enceinte',
-    'enfant_place',
-    'etudiant',
-    'garde_alternee',
-    'habite_chez_parents',
-    'handicap',
-    'inapte_travail',
-    'perte_autonomie',
-    'scolarite',
-    'statut_marital',
-    'taux_incapacite',
-    'tns_auto_entrepreneur_type_activite',
-    'tns_autres_revenus_type_activite',
-    'tns_micro_entreprise_type_activite',
-];
+function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
+    var openFiscaIndividu = _.cloneDeep(mesAidesIndividu);
+    _.forEach(individuSchema, function(definition, openfiscaKey) {
+        var params = _.isString(definition) ? { src: definition } : definition;
 
-var menageProperties = [
-    'charges_locatives',
-    'coloc',
-    'depcom',
-    'logement_chambre',
-    'loyer',
-    'participation_frais',
-    'statut_occupation_logement',
-];
+        openFiscaIndividu[openfiscaKey] = params.src ? params.fn(mesAidesIndividu[params.src], mesAidesIndividu, situation) : params.fn(mesAidesIndividu, situation);
 
-module.exports = {
-    individu: individuSchema,
-    forDuplication: {
-        familles: familleProperties,
-        individus: individuProperties,
-        menages: menageProperties,
-    },
-};
+        // Remove null as OpenFisca do not handle them correctly
+        if (isNotValidValue(openFiscaIndividu[openfiscaKey])) {
+            delete openFiscaIndividu[openfiscaKey];
+        }
+    });
+
+    individuRessource.computeRessources(mesAidesIndividu, openFiscaIndividu);
+    proxyAnneeDeReferenceRessources(openFiscaIndividu, situation);
+
+    var propertiesToDelete = [
+        'firstName',
+        'nationalite',
+        'role',
+        'salaire_net_hors_revenus_exceptionnels',
+        'specificSituations',
+        'tauxIncapacite',
+    ];
+
+    propertiesToDelete.forEach(function(propertyName) {
+        delete openFiscaIndividu[propertyName];
+    });
+
+    return openFiscaIndividu;
+}
+
+module.exports = buildOpenFiscaIndividu;

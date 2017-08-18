@@ -343,7 +343,7 @@ var categoriesRnc = [
         label: 'Frais réels déductibles'
     },
     {
-        id: 'pensions_alimentaires_percues_ym2',
+        id: 'pensions_alimentaires_percues',
         label: 'Pensions alimentaires reçues',
         sources: ['pensions_alimentaires_percues'],
     },

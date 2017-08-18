@@ -48,6 +48,9 @@ function deepDiffRight(left, right) {
 
 function runTests() {
     AcceptanceTest.find({
+        // _id: '54915ffadf990f5b0286cf20', // salaire_imposable were double counted
+        // _id: '5422c2d95be58c0200a07585', // Refactor backend - anneeDeReference proxy ressources - missing computed ressources
+        // _id: '53d79982f6aa390200a6cd08', // Refactor backend - anneeDeReference proxy ressources
         // _id: '546c9783b7fb60347d0f3b24', // Ids missing in individus
         // _id: '53d21ee5159e330200810b87', // ObjectId versus String comparison issue
         // _id: '53d7b76df6aa390200a6cd5c', // Add firstName
@@ -123,7 +126,7 @@ function runTests() {
                         diff1 || diff2) {
                         var structure = [diff1, diff2];
 
-                        console.log('var testID_req_ = \'' + test._id + '\'');
+                        console.log('var testID_req_ = \'' + test._id + '\'; // Situation.create ' + frontSituation._id );
                         console.log(JSON.stringify(structure, null, 2));
                         console.log(JSON.stringify([newOpenfiscaRequest, legacyOpenfiscaRequest], null, 2));
                         process.exit(1);

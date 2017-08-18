@@ -82,7 +82,6 @@ exports.migratePersistedSituation = function(sourceSituation) {
         perteAutonomie: 'perte_autonomie',
         place: 'enfant_place',
         role: 'role',
-        scolarite: 'scolarite',
         specificSituations: 'specificSituations',
         tauxIncapacite: 'tauxIncapacite',
         tns_autres_revenus_type_activite: 'tns_autres_revenus_type_activite',
@@ -111,6 +110,12 @@ exports.migratePersistedSituation = function(sourceSituation) {
                 individu.statut_marital = statutMaritalMapping[sourceIndividu.statutMarital];
             }
         }
+
+        individu.scolarite = {
+            inconnue: 'Inconnue',
+            college: 'Collège',
+            lycee: 'Lycée',
+        }[sourceIndividu.scolarite];
 
         var declaredRessources = {};
         sourceIndividu.ressources.forEach(function(sourceRessource) {

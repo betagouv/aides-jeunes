@@ -15,8 +15,8 @@ describe('Service: situationService', function () {
         it('should return a truthy only when situation has a child with scolarite "college" or "lycee"', function() {
             // given
             var situations = [
-                { individus: [{ role: 'enfant', scolarite: 'college' }] },
-                { individus: [{ role: 'enfant', scolarite: 'lycee' }] },
+                { individus: [{ role: 'enfant', scolarite: 'Collège' }] },
+                { individus: [{ role: 'enfant', scolarite: 'Lycée' }] },
                 { individus: [] }
             ];
 

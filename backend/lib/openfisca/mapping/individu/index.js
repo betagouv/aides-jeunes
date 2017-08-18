@@ -73,16 +73,6 @@ var individuSchema = {
             return specificSituations.indexOf('etudiant') >= 0;
         }
     },
-    scolarite: {
-        fn: function(individu) {
-            var values = {
-                'inconnue': 0,
-                'college': 1,
-                'lycee': 2
-            };
-            return values[individu.scolarite];
-        }
-    },
 };
 
 function isNotValidValue(value) {

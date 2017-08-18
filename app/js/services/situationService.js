@@ -88,7 +88,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         },
 
         hasEnfantScolarise: function(situation) {
-            return _.some(situation.individus, { role: 'enfant', scolarite: 'college' }) || _.some(situation.individus, { role: 'enfant', scolarite: 'lycee' });
+            return _.some(situation.individus, { role: 'enfant', scolarite: 'Collège' }) || _.some(situation.individus, { role: 'enfant', scolarite: 'Lycée' });
         },
 
         hasEnfant: function(situation) {

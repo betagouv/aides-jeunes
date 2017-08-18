@@ -21,15 +21,15 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     $scope.selectedStatuts = {};
     $scope.scolariteOptions = [
         {
-            id: 'inconnue',
+            value: 'Inconnue',
             label: 'Aucun des deux'
         },
         {
-            id: 'college',
+            value: 'Collège',
             label: 'Au collège'
         },
         {
-            id: 'lycee',
+            value: 'Lycée',
             label: 'Au lycée / En CAP / En CPA'
         }
     ];
@@ -38,7 +38,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         id: individuRole,
         nationalite: 'fr',
         ass_precondition_remplie: false,
-        scolarite: 'college',
+        scolarite: 'Collège',
         tauxIncapacite: 'plus80',
         echelon_bourse: -1,
         enfant_a_charge: {},

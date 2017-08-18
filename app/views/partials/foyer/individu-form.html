@@ -201,43 +201,18 @@
     </div>
     <div class="button-row">
       <label
+        ng-repeat="tauxIncapacite in tauxIncapaciteOptions"
         class="btn btn-sm btn-default"
-        ng-class="{ 'active': individu.tauxIncapacite == 'moins50' }"
+        ng-class="{ 'active': individu.taux_incapacite == tauxIncapacite.value }"
         >
         <input type="radio"
           name="tauxIncapacite"
           class="sr-only"
           aria-describedby="tauxIncapaciteQuestion"
-          value="moins50"
-          ng-model="individu.tauxIncapacite"
+          ng-value="tauxIncapacite.value"
+          ng-model="individu.taux_incapacite"
           />
-        Moins de 50%
-      </label>
-      <label
-        class="btn btn-sm btn-default"
-        ng-class="{ 'active': individu.tauxIncapacite == 'moins80' }"
-        >
-        <input type="radio"
-          name="tauxIncapacite"
-          class="sr-only"
-          aria-describedby="tauxIncapaciteQuestion"
-          value="moins80"
-          ng-model="individu.tauxIncapacite"
-          />
-        Entre 50% et 80%
-      </label>
-      <label
-        class="btn btn-sm btn-default"
-        ng-class="{ 'active': individu.tauxIncapacite == 'plus80' }"
-        >
-        <input type="radio"
-          name="tauxIncapacite"
-          class="sr-only"
-          aria-describedby="tauxIncapaciteQuestion"
-          value="plus80"
-          ng-model="individu.tauxIncapacite"
-          />
-        Plus de 80%
+        {{ tauxIncapacite.label }}
       </label>
     </div>
   </div>

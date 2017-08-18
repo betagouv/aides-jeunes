@@ -53,12 +53,7 @@ var individuSchema = {
     taux_incapacite: {
         fn: function(individu) {
             var handicap = individu.specificSituations.indexOf('handicap') >= 0;
-            var tauxMap = {
-                    moins50: 0.3,
-                    moins80: 0.7,
-                    plus80: 0.9
-            };
-            return handicap && tauxMap[individu.tauxIncapacite];
+            return handicap && individu.taux_incapacite;
         }
     },
     inapte_travail: {
@@ -101,7 +96,6 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
         'role',
         'salaire_net_hors_revenus_exceptionnels',
         'specificSituations',
-        'tauxIncapacite',
     ];
 
     propertiesToDelete.forEach(function(propertyName) {

@@ -83,7 +83,6 @@ exports.migratePersistedSituation = function(sourceSituation) {
         place: 'enfant_place',
         role: 'role',
         specificSituations: 'specificSituations',
-        tauxIncapacite: 'tauxIncapacite',
         tns_autres_revenus_type_activite: 'tns_autres_revenus_type_activite',
     };
     situation.individus = sourceSituation.individus.map(function(sourceIndividu) {
@@ -116,6 +115,12 @@ exports.migratePersistedSituation = function(sourceSituation) {
             college: 'Collège',
             lycee: 'Lycée',
         }[sourceIndividu.scolarite];
+
+        individu.taux_incapacite = {
+            moins50: 0.3,
+            moins80: 0.7,
+            plus80: 0.9,
+        }[sourceIndividu.tauxIncapacite];
 
         var declaredRessources = {};
         sourceIndividu.ressources.forEach(function(sourceRessource) {

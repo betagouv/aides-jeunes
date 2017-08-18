@@ -57,7 +57,7 @@ var individuDef = Object.assign({
     scolarite: { type: String, enum: ['Inconnue', 'Collège', 'Lycée'] },
     specificSituations: [{ type: String, enum: specificSituationValues }],
     statut_marital: { type: String, enum: statutMaritalValues },
-    tauxIncapacite: { type: String, enum: ['nul', 'moins50', 'moins80', 'plus80'] },
+    taux_incapacite: Number,
     tns_auto_entrepreneur_type_activite: { type: String, enum: ['achat_revente', 'bic', 'bnc'] },
     tns_autres_revenus_type_activite: { type: String, enum: ['achat_revente', 'bic', 'bnc'] },
     tns_micro_entreprise_type_activite: { type: String, enum: ['achat_revente', 'bic', 'bnc'] },

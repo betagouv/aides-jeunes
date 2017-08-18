@@ -48,6 +48,7 @@ function deepDiffRight(left, right) {
 
 function runTests() {
     AcceptanceTest.find({
+        // _id: '54e4c0bffb31b85d4074fe15', // taux incapacite
         // _id: '54915ffadf990f5b0286cf20', // salaire_imposable were double counted
         // _id: '5422c2d95be58c0200a07585', // Refactor backend - anneeDeReference proxy ressources - missing computed ressources
         // _id: '53d79982f6aa390200a6cd08', // Refactor backend - anneeDeReference proxy ressources

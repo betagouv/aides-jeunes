@@ -33,9 +33,9 @@ var individuSchema = {
         fn: function(specificSituations) {
             var returnValue;
             _.forEach({
-                demandeur_emploi: 1,
-                etudiant: 2,
-                retraite: 3
+                demandeur_emploi: 'Chômeur',
+                etudiant: 'Étudiant, élève',
+                retraite: 'Retraité',
             }, function(situationIndex, situationId) {
                 if (specificSituations.indexOf(situationId) >= 0) {
                     returnValue = situationIndex;

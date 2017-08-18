@@ -62,12 +62,6 @@ var individuSchema = {
             return specificSituations.indexOf('inapte_travail') >= 0;
         }
     },
-    etudiant: {
-        src: 'specificSituations',
-        fn: function(specificSituations) {
-            return specificSituations.indexOf('etudiant') >= 0;
-        }
-    },
 };
 
 function isNotValidValue(value) {

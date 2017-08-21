@@ -63,7 +63,7 @@ function processSituations(err, retrievedTests) {
         }
         var test = tests[done];
         var testId = test._id;
-        var situationId = test.scenario.situationId;
+        var situationId = test.scenario && test.scenario.situationId || (test.id || test._id || '').toString();
 
         LegacySituation.findById(situationId)
         .then(function(dbLegacySituation) {
@@ -159,11 +159,39 @@ function migrateTestSituations() {
     }, {}, { sort: '_id' }, processSituations);
 }
 
+
+function migrateRecentSituations() {
+    LegacySituation.find({
+        _id: { '$nin': [
+            '5999dc194866593317f4b006',
+            '599983ae4866593317f44818',
+            '599971c44866593317f43044', // ASI partially interrupted, new version has the correct behavior
+            '599961ef4866593317f41fb2', // aide_logement partially interrupted, new version has the correct behavior
+            '59991f1e4866593317f3e9d4', // ass partially interrupted, new version has the correct behavior
+            '599877fd4866593317f3b120', // aide_logement partially interrupted, new version has the correct behavior
+            '599808db4866593317f337e8', // aide_logement and paje_base partially interrupted, new version has the correct behavior
+            '5998001e4866593317f32e31', // aide_logement partially interrupted, new version has the correct behavior
+            '5997642e4866593317f2f2e5', // aide_logement partially interrupted, new version has the correct behavior
+            '59971f104866593317f2b3de' // paje_clca partially interrupted, new version has the correct behavior
+            ],
+            '$lte': '59971f104866593317f2b3de',
+            //'$in': ['5998d6d04866593317f3e45f']
+        }, // Dodgy situation ?
+        // _id: '5998d6d04866593317f3e45f', //
+        // _id: '599a898d4866593317f4fd61',
+        // _id: '5999fc6e4866593317f4cb26', // legacy API bug: 'Fix not interrupted ressources for famille'
+    }, {}, {
+        limit: 10000,
+        sort: { dateDeValeur: -1 },
+    }, processSituations);
+}
+
 Situation.deleteMany({}, function(err) {
     if (err) {
         console.log('ERROR:');
         console.log(err);
         process.exit(1);
     }
-    migrateTestSituations();
+    //migrateTestSituations();
+    migrateRecentSituations();
 });

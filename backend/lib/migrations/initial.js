@@ -70,6 +70,7 @@ exports.migratePersistedSituation = function(sourceSituation) {
     var individuPropertyMapping = {
         assPreconditionRemplie: 'ass_precondition_remplie',
         autoEntrepreneurActiviteType: 'tns_auto_entrepreneur_type_activite',
+        dateArretDeTravail: 'date_arret_de_travail',
         dateDeNaissance: 'date_naissance',
         echelonBourse: 'echelon_bourse',
         enceinte: 'enceinte',

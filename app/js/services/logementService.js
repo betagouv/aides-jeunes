@@ -26,7 +26,7 @@ angular.module('ddsApp').service('LogementService', function($filter, logementTy
             'Accédant à la propriété':
                 { type: 'proprietaire', primoAccedant: true },
             'Propriétaire (non accédant) du logement':
-                { type: 'proprietaire' },
+                { type: 'proprietaire', primoAccedant: false },
             'Locataire ou sous-locataire d‘un logement loué vide non-HLM':
                 { type: 'locataire', locationType: 'nonmeuble' },
             'Locataire ou sous-locataire d‘un logement loué meublé ou d‘une chambre d‘hôtel':

@@ -1,7 +1,7 @@
 {
   "name": "sgmap-mes-aides-ui",
   "description": "Simulateur de prestations sociales mes-aides.gouv.fr",
-  "version": "1.0.0",
+  "version": "12.0.0",
   "dependencies": {
     "angulartics": "^1.3.0",
     "angulartics-piwik": "^1.0.4",

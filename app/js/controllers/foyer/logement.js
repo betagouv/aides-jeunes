@@ -131,9 +131,11 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         ['proprietaire_proche_famille'].forEach(function(field) {
             delete famille[field];
         });
-        ['charges_locatives', 'coloc', 'logement_chambre', 'loyer', 'participation_frais'].forEach(function(field) {
+        ['charges_locatives', 'coloc', 'logement_chambre', 'participation_frais'].forEach(function(field) {
             delete menage[field];
         });
+        menage.loyer = 0;
+
         delete $scope.demandeur.habite_chez_parents;
     };
 

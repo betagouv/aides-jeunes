@@ -82,6 +82,7 @@
               <input type="number" min="0" step="100" class="form-control text-right" id="loyer" name="loyer" ng-model="menage.loyer"
                 select-on-focus
                 zero-to-empty
+                ng-required="captureLoyer()"
                 >
               <div class="input-group-addon">€</div>
             </div>

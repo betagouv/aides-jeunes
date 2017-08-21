@@ -44,6 +44,10 @@ exports.persistedSituationPretransformationUpdate = function persistedSituationP
         individu.id = (individu.id && individu.id.toString()) || (individu._id && individu._id.toString());
     });
 
+    if (situation.logement.loyer === null) {
+        situation.logement.loyer = 0;
+    }
+
     if (situation.ressourcesYearMoins2Captured && (! this.ressourcesYearMoins2Captured(situation))) {
         var ym2 = moment(situation.dateDeValeur).subtract(2, 'years').format('YYYY');
 

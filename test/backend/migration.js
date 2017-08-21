@@ -51,12 +51,25 @@ function deepDiffRight(left, right) {
   return result;
 }
 
+var shouldFailOnError = true;
+function manageRemoval(model) {
+    model.remove(function(err, removedModel) {
+        if (err) {
+            console.log(JSON.stringify(err, null, 2));
+            process.exit(1);
+        }
+
+        done += 1;
+        processTests();
+    });
+}
+
 function processSituations(err, retrievedTests) {
     if (err) {
         console.log(err);
         process.exit(1);
     }
-    var tests = retrievedTests.slice(0, 2000);
+    var tests = retrievedTests.slice(0, 20000);
     var done = 0;
     function processTests() {
         if(done == tests.length) {
@@ -83,8 +96,12 @@ function processSituations(err, retrievedTests) {
             Situation.create(frontSituation, function(err, dbSituation) {
                 if (err) {
                     console.log('var Err_testID_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
-                    console.log(JSON.stringify(err, null, 2));
-                    process.exit(1);
+                    if (shouldFailOnError) {
+                        console.log(JSON.stringify(err, null, 2));
+                        process.exit(1);
+                    } else {
+                        return manageRemoval(dbSituation);
+                    }
                 }
 
                 var generatedSituation = frontSituation;
@@ -92,14 +109,16 @@ function processSituations(err, retrievedTests) {
 
                 var diff01 = deepDiffRight(generatedSituation, persistedSituation);
                 var diff02 = deepDiffRight(persistedSituation, generatedSituation);
-                if (/*true || //*/
-                    diff01 || diff02) {
-                    var structure0 = [diff01, diff02];
+                if (diff01 || diff02) {
                     console.log('var testID_db_ = \'' + testId + '\' //  ' + frontSituation._id );
-                    console.log(JSON.stringify(structure0, null, 2));
-                    console.log(JSON.stringify([generatedSituation, persistedSituation], null, 2));
-
-                    process.exit(1);
+                    if (shouldFailOnError) {
+                        var structure0 = [diff01, diff02];
+                        console.log(JSON.stringify(structure0, null, 2));
+                        console.log(JSON.stringify([generatedSituation, persistedSituation], null, 2));
+                        process.exit(1);
+                    } else {
+                        return manageRemoval(dbSituation);
+                    }
                 }
 
                 var newOpenfiscaRequest = mapping.buildOpenFiscaRequest(_.cloneDeep(persistedSituation));
@@ -108,21 +127,21 @@ function processSituations(err, retrievedTests) {
 
                 var diff1 = deepDiffRight(legacyOpenfiscaRequest, newOpenfiscaRequest);
                 var diff2 = deepDiffRight(newOpenfiscaRequest, legacyOpenfiscaRequest);
-                if (/*true || //*/
-                    diff1 || diff2) {
-                    var structure = [diff1, diff2];
-
+                if (diff1 || diff2) {
                     console.log('var testID_req_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
-                    console.log(JSON.stringify(structure, null, 2));
-                    console.log(JSON.stringify([newOpenfiscaRequest, legacyOpenfiscaRequest], null, 2));
-                    process.exit(1);
+                    if (shouldFailOnError) {
+                        var structure = [diff1, diff2];
+                        console.log(JSON.stringify(structure, null, 2));
+                        console.log(JSON.stringify([newOpenfiscaRequest, legacyOpenfiscaRequest], null, 2));
+                        process.exit(1);
+                    } else {
+                        return manageRemoval(dbSituation);
+                    }
                 } else {
                     console.log('var situation_' + situationId + '_' + done + ' = \'ok\';');
                 }
 
-                done += 1;
-
-                processTests();
+                return manageRemoval(dbLegacySituation);
             });
         }).catch(function(err) {
             console.log('var Err_testID_ = \'' + testId + '\'; // LegacySituation.findById');
@@ -156,7 +175,10 @@ function migrateTestSituations() {
         // _id: '559e4fe4fa617858013d9a39', // rounding loyer
         // _id: '54e4c0bffb31b85d4074fe15', // tauxIncapacite presence
         // _id: '545a57f8ad58ab46561f56ec', // Ressources moved from individu to group entity
-        state: { '$nin': ['unclaimed', 'rejected'] }
+        state: { '$nin': [
+            'unclaimed',
+            'rejected'
+        ]}
     }, {}, { sort: '_id' }, processSituations);
 }
 
@@ -187,12 +209,15 @@ function migrateRecentSituations() {
     }, processSituations);
 }
 
-Situation.deleteMany({}, function(err) {
-    if (err) {
-        console.log('ERROR:');
-        console.log(err);
-        process.exit(1);
-    }
-    //migrateTestSituations();
-    migrateRecentSituations();
-});
+function migrateSituationsTestStatus() {
+    LegacySituation.find({
+        status: 'test',
+        //_id: '58ce590a2883a3c94dccaf53',
+//        _id: {'$lte': '58ce590a2883a3c94dccaf53'},
+    }, {}, {
+        limit: 20000,
+        sort: { dateDeValeur: -1 },
+    }, processSituations);
+}
+
+migrateSituationsTestStatus();

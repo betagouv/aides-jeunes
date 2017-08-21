@@ -40,12 +40,32 @@ exports.ressourcesYearMoins2Captured = function ressourcesYearMoins2Captured(sit
 };
 
 exports.persistedSituationPretransformationUpdate = function persistedSituationPretransformationUpdate(situation) {
+    var ressourceRenaming = {
+        pensionsRetraitesRentes: 'retraite_nette',
+        revenusSalarie: 'salaire_net_hors_revenus_exceptionnels',
+        rncAutresRevenus: 'chomage_imposable',
+        rncPensionsRetraitesRentes: 'retraite_imposable',
+    };
     situation.individus.forEach(function(individu) {
         individu.id = (individu.id && individu.id.toString()) || (individu._id && individu._id.toString());
+
+        individu.ressources.forEach(function(ressource) {
+            var newName = ressourceRenaming[ressource.type];
+            if (newName) {
+                ressource.type = newName;
+            }
+        });
     });
 
     if (situation.logement.loyer === null) {
         situation.logement.loyer = 0;
+    }
+
+    if (! situation.logement.adresse) {
+        situation.logement.adresse = {
+            codeInsee: '-1',
+            code_postal: '-1',
+        };
     }
 
     if (situation.ressourcesYearMoins2Captured && (! this.ressourcesYearMoins2Captured(situation))) {

@@ -1,7 +1,7 @@
 var moment = require('moment');
 var _ = require('lodash');
 
-var getPeriods = require('./openfisca/mapping/common').getPeriods;
+var getPeriods = require('../openfisca/mapping/common').getPeriods;
 
 // cf. https://legislation.openfisca.fr/statut_occupation_logement
 function getStatutOccupationLogement(logement) {

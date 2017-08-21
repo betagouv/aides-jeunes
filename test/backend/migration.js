@@ -15,7 +15,7 @@ var Situation = mongoose.model('Situation');
 
 var legacyMapping = require('sgmap-mes-aides-api/lib/simulation/openfisca/mapping');
 
-var migration = require('../../backend/lib/migration');
+var migration = require('../../backend/lib/migrations/initial');
 var mapping = require('../../backend/lib/openfisca/mapping');
 
 function deepDiffRight(left, right) {
@@ -50,7 +50,90 @@ function deepDiffRight(left, right) {
   return result;
 }
 
-function runTests() {
+function processSituations(err, retrievedTests) {
+    if (err) {
+        console.log(err);
+        process.exit(1);
+    }
+    var tests = retrievedTests.slice(0, 2000);
+    var done = 0;
+    function processTests() {
+        if(done == tests.length) {
+            process.exit();
+        }
+        var test = tests[done];
+        var testId = test._id;
+        var situationId = test.scenario.situationId;
+
+        LegacySituation.findById(situationId)
+        .then(function(dbLegacySituation) {
+            if (! dbLegacySituation) {
+                console.log('var Err_testID_ = \'' + testId + '\'; // Null');
+                done += 1;
+                return processTests();
+            }
+            var dbSituationJSON = JSON.stringify(dbLegacySituation.toObject(), null, 2);
+            var situation = dbLegacySituation.toObject();
+            migration.persistedSituationPretransformationUpdate(situation);
+
+            var legacyOpenfiscaRequest = legacyMapping.buildOpenFiscaRequest(_.cloneDeep(situation));
+
+            var frontSituation = migration.migratePersistedSituation(situation);
+            Situation.create(frontSituation, function(err, dbSituation) {
+                if (err) {
+                    console.log('var Err_testID_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
+                    console.log(JSON.stringify(err, null, 2));
+                    process.exit(1);
+                }
+
+                var generatedSituation = frontSituation;
+                var persistedSituation = _.omit(dbSituation.toObject(), '__v');
+
+                var diff01 = deepDiffRight(generatedSituation, persistedSituation);
+                var diff02 = deepDiffRight(persistedSituation, generatedSituation);
+                if (/*true || //*/
+                    diff01 || diff02) {
+                    var structure0 = [diff01, diff02];
+                    console.log('var testID_db_ = \'' + testId + '\' //  ' + frontSituation._id );
+                    console.log(JSON.stringify(structure0, null, 2));
+                    console.log(JSON.stringify([generatedSituation, persistedSituation], null, 2));
+
+                    process.exit(1);
+                }
+
+                var newOpenfiscaRequest = mapping.buildOpenFiscaRequest(_.cloneDeep(persistedSituation));
+
+                legacyOpenfiscaRequest.variables.sort();
+
+                var diff1 = deepDiffRight(legacyOpenfiscaRequest, newOpenfiscaRequest);
+                var diff2 = deepDiffRight(newOpenfiscaRequest, legacyOpenfiscaRequest);
+                if (/*true || //*/
+                    diff1 || diff2) {
+                    var structure = [diff1, diff2];
+
+                    console.log('var testID_req_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
+                    console.log(JSON.stringify(structure, null, 2));
+                    console.log(JSON.stringify([newOpenfiscaRequest, legacyOpenfiscaRequest], null, 2));
+                    process.exit(1);
+                } else {
+                    console.log('var situation_' + situationId + '_' + done + ' = \'ok\';');
+                }
+
+                done += 1;
+
+                processTests();
+            });
+        }).catch(function(err) {
+            console.log('var Err_testID_ = \'' + testId + '\'; // LegacySituation.findById');
+            console.log(err);
+            console.log(JSON.stringify(err, null, 2));
+            process.exit(1);
+        });
+    }
+    processTests();
+}
+
+function migrateTestSituations() {
     AcceptanceTest.find({
         // _id: '54e4c0bffb31b85d4074fe15', // taux incapacite
         // _id: '54915ffadf990f5b0286cf20', // salaire_imposable were double counted
@@ -73,85 +156,7 @@ function runTests() {
         // _id: '54e4c0bffb31b85d4074fe15', // tauxIncapacite presence
         // _id: '545a57f8ad58ab46561f56ec', // Ressources moved from individu to group entity
         state: { '$nin': ['unclaimed', 'rejected'] }
-    }, {}, { sort: '_id' }, function(err, retrievedTests) {
-        if (err) {
-            console.log(err);
-            process.exit(1);
-        }
-        var tests = retrievedTests.slice(0, 2000);
-        var done = 0;
-        function processTests() {
-            if(done == tests.length) {
-                process.exit();
-            }
-            var test = tests[done];
-            LegacySituation.findById(test.scenario.situationId)
-            .then(function(dbLegacySituation) {
-                if (! dbLegacySituation) {
-                    console.log('var Err_testID_ = \'' + test._id + '\'; // Null');
-                    done += 1;
-                    return processTests();
-                }
-                var dbSituationJSON = JSON.stringify(dbLegacySituation.toObject(), null, 2);
-                var situation = dbLegacySituation.toObject();
-                migration.persistedSituationPretransformationUpdate(situation);
-
-                var legacyOpenfiscaRequest = legacyMapping.buildOpenFiscaRequest(_.cloneDeep(situation));
-
-                var frontSituation = migration.migratePersistedSituation(situation);
-                Situation.create(frontSituation, function(err, dbSituation) {
-                    if (err) {
-                        console.log('var Err_testID_ = \'' + test._id + '\'; // Situation.create ' + frontSituation._id );
-                        console.log(JSON.stringify(err, null, 2));
-                        process.exit(1);
-                    }
-
-                    var generatedSituation = frontSituation;
-                    var persistedSituation = _.omit(dbSituation.toObject(), '__v');
-
-                    var diff01 = deepDiffRight(generatedSituation, persistedSituation);
-                    var diff02 = deepDiffRight(persistedSituation, generatedSituation);
-                    if (/*true || //*/
-                        diff01 || diff02) {
-                        var structure0 = [diff01, diff02];
-                        console.log('var testID_db_ = \'' + test._id + '\' //  ' + frontSituation._id );
-                        console.log(JSON.stringify(structure0, null, 2));
-                        console.log(JSON.stringify([generatedSituation, persistedSituation], null, 2));
-
-                        process.exit(1);
-                    }
-
-                    var newOpenfiscaRequest = mapping.buildOpenFiscaRequest(_.cloneDeep(persistedSituation));
-
-                    legacyOpenfiscaRequest.variables.sort();
-
-                    var diff1 = deepDiffRight(legacyOpenfiscaRequest, newOpenfiscaRequest);
-                    var diff2 = deepDiffRight(newOpenfiscaRequest, legacyOpenfiscaRequest);
-                    if (/*true || //*/
-                        diff1 || diff2) {
-                        var structure = [diff1, diff2];
-
-                        console.log('var testID_req_ = \'' + test._id + '\'; // Situation.create ' + frontSituation._id );
-                        console.log(JSON.stringify(structure, null, 2));
-                        console.log(JSON.stringify([newOpenfiscaRequest, legacyOpenfiscaRequest], null, 2));
-                        process.exit(1);
-                    } else {
-                        console.log('var situation_' + test.scenario.situationId + '_' + done + ' = \'ok\';');
-                    }
-
-                    done += 1;
-
-                    processTests();
-                });
-            }).catch(function(err) {
-                console.log('var Err_testID_ = \'' + test._id + '\'; // LegacySituation.findById');
-                console.log(err);
-                console.log(JSON.stringify(err, null, 2));
-                process.exit(1);
-            });
-        }
-        processTests();
-    });
+    }, {}, { sort: '_id' }, processSituations);
 }
 
 Situation.deleteMany({}, function(err) {
@@ -160,5 +165,5 @@ Situation.deleteMany({}, function(err) {
         console.log(err);
         process.exit(1);
     }
-    runTests();
+    migrateTestSituations();
 });

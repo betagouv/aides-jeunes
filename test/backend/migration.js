@@ -21,6 +21,7 @@ var mapping = require('../../backend/lib/openfisca/mapping');
 function deepDiffRight(left, right) {
   // if they are equals, return undefined
   if (_.isEqual(left, right)) { return; }
+  if (_.isNumber(left) && _.isNumber(right) && Math.abs(right-left)<0.000001) { return; }
   // form now on, we can assure that `left` and `right` are not equals (equivalents)
 
   // if `left` and `right` are primitives, value changed

@@ -52,7 +52,17 @@ function sendOpenfiscaRequest(simulation, callback) {
 var buildOpenFiscaRequest = exports.buildOpenFiscaRequest = mapping.buildOpenFiscaRequest;
 
 function calculate(situation, callback) {
-    sendOpenfiscaRequest(buildOpenFiscaRequest(situation), callback);
+    var request;
+    try {
+        request = buildOpenFiscaRequest(situation);
+    } catch(e) {
+        return callback({
+            message: e.message,
+            name: e.name,
+            stack: e.stack
+        });
+    }
+    sendOpenfiscaRequest(request, callback);
 }
 
 exports.calculate = calculate;

@@ -85,6 +85,7 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
     proxyAnneeDeReferenceRessources(openFiscaIndividu, situation);
 
     var propertiesToDelete = [
+        'dateDernierContratTravail',
         'firstName',
         'nationalite',
         'role',

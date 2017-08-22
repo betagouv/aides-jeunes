@@ -145,7 +145,7 @@ describe('Controller: FoyerConjointCtrl', function() {
             });
 
             it('displays the submit button', function() {
-                expect(scope.shouldDisplaySubmit()).toBe(false);
+                expect(scope.shouldDisplaySubmit()).toBe(true);
             });
 
             describe('change to couple', function() {

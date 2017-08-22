@@ -14,7 +14,7 @@ angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state
         if ($scope.locals.isInCouple) {
             delete $scope.famille.rsa_isolement_recent;
         } else {
-            delete demandeur.statut_marital;  // Célibataire is the default value - Enum index 2 in OpenFisca
+            demandeur.statut_marital = 'Célibataire';  // Célibataire is the default value - Enum index 2 in OpenFisca
         }
         if (isFirstView && (! $scope.locals.isInCouple) && (! captureRsaIsolementRecent())) {
             // on supprime l'éventuel conjoint qui existait avant
@@ -39,7 +39,7 @@ angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state
     $scope.rsaIsolementRecentUpdated = rsaIsolementRecentUpdated;
 
     function shouldDisplaySubmit() {
-        return ($scope.locals.isInCouple == false) && (! hasChildren) && (! isFirstView);
+        return ($scope.locals.isInCouple == false) && (! isFirstView);
     }
     $scope.shouldDisplaySubmit = shouldDisplaySubmit;
 

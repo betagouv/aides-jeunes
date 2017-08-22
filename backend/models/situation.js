@@ -91,6 +91,7 @@ var situationSchema = {
     foyer_fiscal: foyerFiscalDef,
     individus: [individuDef],
     menage: menageDef,
+    modifiedFrom: String,
 };
 
 mongoose.model('Situation', new mongoose.Schema(situationSchema, { minimize: false }));

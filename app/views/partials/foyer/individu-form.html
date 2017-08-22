@@ -152,6 +152,7 @@
             dds-date
             format="MM/AAAA"
             min="{{ individu.date_naissance }}"
+            max="{{ situation.dateDeValeur }}"
             name="dateDernierContratTravail"
             id="last-job-end-date"
             ng-model="individu.dateDernierContratTravail"
@@ -163,6 +164,9 @@
           </li>
           <li ng-if="form.dateDernierContratTravail.$error.isBeforeMin">
             Il semblerait que votre contrat de travail se soit arrêté avant votre naissance.
+          </li>
+          <li ng-if="form.dateDernierContratTravail.$error.isAfterMax">
+            Le simulateur ne permet pas d'indiquer une date de fin de travail dans le futur.
           </li>
         </ul>
       </div>

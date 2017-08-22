@@ -43,6 +43,7 @@ var individuDef = Object.assign({
     ass_precondition_remplie: Boolean,
     boursier: Boolean,
     date_arret_de_travail: Date,
+    dateDernierContratTravail: Date,
     date_naissance: Date,
     echelon_bourse: Number,
     enfant_a_charge: Object,

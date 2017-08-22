@@ -84,9 +84,10 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
     individuRessource.computeRessources(mesAidesIndividu, openFiscaIndividu);
     proxyAnneeDeReferenceRessources(openFiscaIndividu, situation);
 
+    // Variables stored to properly restore UI
     var propertiesToDelete = [
-        'dateDernierContratTravail',
-        'firstName',
+        'dateDernierContratTravail', // for ass_precondition_remplie
+        'firstName', // for kids
         'nationalite',
         'role',
         'salaire_net_hors_revenus_exceptionnels',

@@ -55,6 +55,10 @@ exports.persistedSituationPretransformationUpdate = function persistedSituationP
                 ressource.type = newName;
             }
         });
+
+        individu.specificSituations = individu.specificSituations.map(function(specificSituation) {
+            return specificSituation.situation || specificSituation;
+        });
     });
 
     if (situation.logement.loyer === null) {
@@ -76,6 +80,10 @@ exports.persistedSituationPretransformationUpdate = function persistedSituationP
             periode: ym2,
             type: 'frais_reels',
         });
+    }
+
+    if (situation.ressourcesYearMoins2Captured === false && this.ressourcesYearMoins2Captured(situation)) {
+        situation.ressourcesYearMoins2Captured = true;
     }
 };
 
@@ -135,11 +143,16 @@ exports.migratePersistedSituation = function(sourceSituation) {
             }
         }
 
-        individu.scolarite = {
-            inconnue: 'Inconnue',
-            college: 'Collège',
-            lycee: 'Lycée',
-        }[sourceIndividu.scolarite];
+        if (sourceIndividu.scolarite) {
+            var scolariteMapping = {
+                inconnue: 'Inconnue',
+                college: 'Collège',
+                lycee: 'Lycée',
+            };
+            if (scolariteMapping[sourceIndividu.scolarite]) {
+                individu.scolarite = scolariteMapping[sourceIndividu.scolarite];
+            }
+        }
 
         individu.taux_incapacite = {
             moins50: 0.3,

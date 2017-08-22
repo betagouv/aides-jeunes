@@ -49,6 +49,11 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
     ];
 
+    $scope.outOfFranceDisclaimers = {
+        autre: 'Détenteur d‘une carte de résident ou d‘un titre de séjour valide et résidant en France plus de 9 mois par an.',
+        ue: 'Détenteur d‘un droit au séjour valide et résidant en France plus de 9 mois par an.',
+    };
+
     var DEFAULT_INDIVIDU = {
         id: individuRole,
         nationalite: 'fr',
@@ -87,7 +92,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
         $scope.individu.id = 'enfant_' + count;
     }
-
 
     $scope.individu.specificSituations.forEach(function(specificSituation) {
         $scope.selectedStatuts[specificSituation] = true;
@@ -152,7 +156,11 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
     $scope.locals = {
         fiscalementIndependant: ! $scope.individu.enfant_a_charge[$scope.currentYear],
+        outOfFranceDisclaimers: {},
     };
+    if ($scope.individu.nationalite) {
+        $scope.locals.outOfFranceDisclaimers[$scope.individu.nationalite] = true;
+    }
 
     $scope.$watch('individu.date_naissance', _.debounce(function() {
         $scope.capturePerteAutonomie = $scope.individu.date_naissance &&

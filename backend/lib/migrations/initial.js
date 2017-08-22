@@ -81,6 +81,10 @@ exports.persistedSituationPretransformationUpdate = function persistedSituationP
             type: 'frais_reels',
         });
     }
+
+    if (situation.ressourcesYearMoins2Captured === false && this.ressourcesYearMoins2Captured(situation)) {
+        situation.ressourcesYearMoins2Captured = true;
+    }
 };
 
 exports.migratePersistedSituation = function(sourceSituation) {

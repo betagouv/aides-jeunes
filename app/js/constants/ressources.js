@@ -1,6 +1,7 @@
+(function() {
 'use strict';
 
-angular.module('ddsCommon').constant('ressourceCategories', [
+var ressourceCategories = [
     {
         id: 'revenusActivite',
         label: 'Revenus d’activité'
@@ -29,9 +30,9 @@ angular.module('ddsCommon').constant('ressourceCategories', [
         id: 'autre',
         label: 'Autres'
     }
-]);
+];
 
-angular.module('ddsCommon').constant('ressourceTypes', [
+var ressourceTypes = [
     {
         id: 'salaire_net_hors_revenus_exceptionnels',
         label: 'Salaire (hors primes)',
@@ -304,7 +305,8 @@ angular.module('ddsCommon').constant('ressourceTypes', [
     {
         id: 'tns_auto_entrepreneur_chiffre_affaires',
         label: 'Auto-entrepreneur',
-        category: 'rpns'
+        category: 'rpns',
+        interuptionQuestionLabel: 'un chiffre d’affaires non nul',
     },
     {
         id: 'tns_benefice_exploitant_agricole',
@@ -318,11 +320,11 @@ angular.module('ddsCommon').constant('ressourceTypes', [
         category: 'rpns',
         isMontantAnnuel: true
     }
-]);
+];
 
-angular.module('ddsCommon').constant('categoriesRnc', [
+var categoriesRnc = [
     {
-        id: 'salaire_imposable_ym2',
+        id: 'salaire_imposable',
         label: 'Revenus d’activité connus',
         sources: ['salaire_net_hors_revenus_exceptionnels']
     },
@@ -341,13 +343,49 @@ angular.module('ddsCommon').constant('categoriesRnc', [
         label: 'Frais réels déductibles'
     },
     {
-        id: 'pensions_alimentaires_percues_ym2',
+        id: 'pensions_alimentaires_percues',
         label: 'Pensions alimentaires reçues',
         sources: ['pensions_alimentaires_percues'],
     },
     {
-        id: 'pensions_alimentaires_versees_ym2',
+        id: 'pensions_alimentaires_versees',
         label: 'Pensions alimentaires versées',
         sources: ['pensions_alimentaires_versees_individu']
     }
-]);
+];
+
+var patrimoineTypes = [
+    {
+        id: 'valeur_locative_immo_non_loue',
+        label: 'Valeur locative immobilier non loué'
+    },
+    {
+        id: 'valeur_locative_terrains_non_loue',
+        label: 'Valeur locative terrains non loués'
+    },
+    {
+        id: 'interets_epargne_sur_livrets',
+        label: 'Intérêts d\'épargne sur livret'
+    },
+    {
+        id: 'epargne_non_remuneree',
+        label: 'Épargne sans revenus'
+    }
+];
+
+/* Export either through Angular loader or CommonJS */
+if ((typeof module != 'undefined') && (typeof angular == 'undefined')) {  // we're in Node
+    module.exports = {
+        ressourceCategories: ressourceCategories,
+        ressourceTypes: ressourceTypes,
+        categoriesRnc: categoriesRnc,
+        patrimoineTypes: patrimoineTypes
+    };
+} else {  // we're in the browser
+    angular.module('ddsCommon').constant('ressourceCategories', ressourceCategories);
+    angular.module('ddsCommon').constant('ressourceTypes', ressourceTypes);
+    angular.module('ddsCommon').constant('categoriesRnc', categoriesRnc);
+    angular.module('ddsCommon').constant('patrimoineTypes', patrimoineTypes);
+}
+/* End of export */
+})();

@@ -1,21 +1,50 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state, SituationService) {
-    var hasEnfant = SituationService.hasEnfant($scope.situation);
-    $scope.demandeur = SituationService.getDemandeur($scope.situation);
+    var demandeur = SituationService.getDemandeur($scope.situation);
+    var hasChildren = SituationService.hasEnfant($scope.situation);
+    var famille = $scope.famille = $scope.situation.famille;
 
-    // Forget the value of isolementRecent. Necessary as we une ng-change to go to the next page.
-    $scope.demandeur.isolementRecent = undefined;
-
-    $scope.captureIsolement = function() {
-        return $scope.vitEnCouple === false && hasEnfant;
+    var isFirstView = demandeur.statut_marital == undefined;
+    $scope.locals = {
+        isInCouple : isFirstView ? undefined : Boolean(SituationService.getConjoint($scope.situation)),
     };
 
-    $scope.submit = function() {
-        $state.go('foyer.logement');
-    };
-
-    if (_.find($scope.situation.individus, { role: 'conjoint' })) {
-        $scope.vitEnCouple = true;
+    function isInCoupleUpdated() {
+        if ($scope.locals.isInCouple) {
+            delete $scope.famille.rsa_isolement_recent;
+        } else {
+            delete demandeur.statut_marital;  // Célibataire is the default value - Enum index 2 in OpenFisca
+        }
+        if (isFirstView && (! $scope.locals.isInCouple) && (! captureRsaIsolementRecent())) {
+            // on supprime l'éventuel conjoint qui existait avant
+            $scope.situation.individus = _.filter($scope.situation.individus, function(individu) {
+                return 'conjoint' !== individu.role;
+            });
+            $scope.submit();
+        }
     }
+    $scope.isInCoupleUpdated = isInCoupleUpdated;
+
+    function captureRsaIsolementRecent() {
+        return $scope.locals.isInCouple == false && hasChildren;
+    }
+    $scope.captureRsaIsolementRecent = captureRsaIsolementRecent;
+
+    function rsaIsolementRecentUpdated() {
+        if (! shouldDisplaySubmit()) {
+            $scope.submit();
+        }
+    }
+    $scope.rsaIsolementRecentUpdated = rsaIsolementRecentUpdated;
+
+    function shouldDisplaySubmit() {
+        return ($scope.locals.isInCouple == false) && (! hasChildren) && (! isFirstView);
+    }
+    $scope.shouldDisplaySubmit = shouldDisplaySubmit;
+
+    function submit() {
+        $state.go('foyer.logement');
+    }
+    $scope.submit = submit;
 });

@@ -2,18 +2,18 @@
   <h1>Pensions alimentaires versées</h1>
 
   <form class="form-horizontal" method="post" name="form" novalidate ng-submit="submit(form)">
-    <yes-no-question model="situation.parentsPayPensionsAlimentaires" size="7">
+    <yes-no-question model="locals.parentsPayPensionsAlimentaires" size="7">
       <question>
       Vous ou votre conjoint·e a-t-il <b>versé</b> des pensions alimentaires <b>
       depuis {{ debutAnneeGlissante }}</b>&nbsp;?
       </question>
     </yes-no-question>
 
-    <div ng-if="situation.parentsPayPensionsAlimentaires" ng-repeat="individuVM in individusVM">
-      <h2>{{ individuVM.label }}</h2>
+    <div ng-if="locals.parentsPayPensionsAlimentaires" ng-repeat="individu in individus">
+      <h2>{{ individuLabel(individu) }}</h2>
       <capture-montant-ressource
-        ng-model="individuVM.pensionsVersees"
-        individu="individuVM.individu"
+        ng-model="individu.pensions_alimentaires_versees_individu"
+        individu="individu"
         ressource-type="pensionsVersees"
         index="$index"
         date-de-valeur="situation.dateDeValeur"

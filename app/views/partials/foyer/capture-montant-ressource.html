@@ -4,80 +4,78 @@
   </div>
   <div class="panel-body">
     <div class="months"
-      ng-class="{ 'has-error': form.submitted && form[ressource.type.id + '-year'].$min }"
+      ng-class="{ 'has-error': form.submitted && form[ressourceType.id + '-year'].$min }"
       >
       <div class="col-sm-3 month"
         ng-repeat="month in months"
-        ng-class="{ 'has-error': form.submitted && form[ressource.type.id + '-month_' + $index].$invalid }"
+        ng-class="{ 'has-error': form.submitted && form[ressourceType.id + '-month_' + $index].$invalid }"
         >
-        <label for="{{ ressource.type.id }}-month_{{ $index }}">
+        <label for="{{ ressourceType.id }}-month_{{ $index }}">
           {{ month.label|uppercaseFirst }}
         </label>
         <div class="input-group">
           <input
             type="number"
             class="form-control text-right"
-            id="{{ ressource.type.id }}-month_{{ $index }}"
-            name="{{ ressource.type.id }}-month_{{ $index }}"
+            id="{{ ressourceType.id }}-month_{{ $index }}"
+            name="{{ ressourceType.id }}-month_{{ $index }}"
             required
             min="0"
             step="100"
             select-on-focus
             zero-to-empty
-            ng-model="ressource.montantsMensuels[$index]"
-            aria-describedby="help-{{ ressource.type.id }}-month_{{ $index }}"
+            ng-model="ressource[month.id]"
+            aria-describedby="help-{{ ressourceType.id }}-month_{{ $index }}"
             >
           <span class="input-group-addon">€</span>
         </div>
-        <ul class="help-block" id="help-{{ ressource.type.id }}-month_{{ $index }}" ng-if="form.submitted && ! isNumber(ressource.montantsMensuels[$index])">
+        <ul class="help-block" id="help-{{ ressourceType.id }}-month_{{ $index }}" ng-if="form.submitted && ! isNumber(ressource[month.id])">
           <li>Montant invalide</li>
         </ul>
       </div>
       <div class="col-sm-3 month"
-        ng-class="{ 'has-error': form.submitted && form[ressource.type.id + '-year'].$invalid }"
+        ng-class="{ 'has-error': form.submitted && form[ressourceType.id + '-year'].$invalid }"
         >
-        <label for="{{ ressource.type.id }}-year">
+        <label for="{{ ressourceType.id }}-year">
           Total de {{ debutAnneeGlissante }} à {{ months[months.length-1].label }}&nbsp;inclus
         </label>
         <div class="input-group">
           <input
             type="number"
             class="form-control text-right"
-            id="{{ ressource.type.id }}-year"
-            name="{{ ressource.type.id }}-year"
+            id="{{ ressourceType.id }}-year"
+            name="{{ ressourceType.id }}-year"
             required
             min="{{ monthsSum }}"
             step="100"
             select-on-focus
             zero-to-empty
-            ng-model="ressource.montantAnnuel"
-            aria-describedby="help-{{ ressource.type.id }}-year"
+            ng-model="locals.annualValue"
+            aria-describedby="help-{{ ressourceType.id }}-year"
             >
           <span class="input-group-addon">€</span>
         </div>
-        <ul class="help-block" id="help-{{ ressource.type.id }}-year" ng-if="form.submitted && form[ressource.type.id + '-year'].$invalid">
-          <li ng-show="form[ressource.type.id + '-year'].$error.min">
+        <ul class="help-block" id="help-{{ ressourceType.id }}-year" ng-if="form.submitted && form[ressourceType.id + '-year'].$invalid">
+          <li ng-show="form[ressourceType.id + '-year'].$error.min">
             Somme incohérente
           </li>
-          <li ng-show="! isNumber(ressource.montantAnnuel) && ! form[ressource.type.id + '-year'].$error.min">
+          <li ng-show="! isNumber(annualValue.store) && ! form[ressourceType.id + '-year'].$error.min">
             Montant invalide
           </li>
         </ul>
       </div>
     </div>
-    <div id="help-{{ ressource.type.id }}-year"
+    <div id="help-{{ ressourceType.id }}-year"
       class="text-danger"
-      ng-if="form.submitted && form[ressource.type.id + '-year'].$error.min">
-      <p>Vous avez indiqué avoir perçu {{ monthsSum | currency }} sur les 3 derniers mois, mais seulement {{ form[ressource.type.id + '-year'].$viewValue | currency }} sur les 12 derniers mois. Vérifiez les montants indiqués dans les quatre champs de votre {{ ressourceType.label }}.</p>
+      ng-if="form.submitted && form[ressourceType.id + '-year'].$error.min">
+      <p>Vous avez indiqué avoir perçu {{ monthsSum | currency }} sur les 3 derniers mois, mais seulement {{ form[ressourceType.id + '-year'].$viewValue | currency }} sur les 12 derniers mois. Vérifiez les montants indiqués dans les quatre champs de votre {{ ressourceType.label }}.</p>
     </div>
-    <div class="ressource-interrupted" ng-if="! ressource.type.revenuExceptionnel">
-      <label>
-        <input
-          type="checkbox"
-          ng-model="ressource.onGoing">
-          {{ onGoingLabel }}
-      </label>
-    </div>
+    <capture-continuation
+      date-de-valeur="situation.dateDeValeur"
+      individu="individu"
+      ressource-type="ressourceType"
+      ng-if="! ressourceType.revenuExceptionnel"
+      />
   </div>
   <div
     class="form-group"
@@ -91,11 +89,11 @@
         dds-date
         format="JJ/MM/AAAA"
         class="form-control"
-        min="{{ individu.dateDeNaissance }}"
+        min="{{ individu.date_naissance }}"
         name="dateArretDeTravail"
         id="date-arret-travail"
         required
-        ng-model="individu.dateArretDeTravail"
+        ng-model="individu.date_arret_de_travail"
         aria-describedby="help-arret-de-travail"
         >
       <ul class="help-block" id="help-arret-de-travail" ng-if="form.submitted && form.dateArretDeTravail.$invalid">

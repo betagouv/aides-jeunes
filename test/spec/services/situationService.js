@@ -11,118 +11,12 @@ describe('Service: situationService', function () {
         });
     });
 
-    describe('function createApiCompatibleIndividu()', function() {
-        it('Should return a cloned version of the individu', function() {
-            // given
-            var individu = { dateDeNaissance: moment('14/09/1989', 'DD/MM/YYYY') };
-
-            // when
-            var result = service.createApiCompatibleIndividu(individu);
-
-            // then
-            expect(result).not.toBe(individu);
-        });
-
-        it('Should format birth date as expected by the api', function() {
-            // given
-            var individu = { dateDeNaissance: moment('14/09/1989', 'DD/MM/YYYY') };
-
-            // when
-            var result = service.createApiCompatibleIndividu(individu);
-
-            // then
-            expect(result.dateDeNaissance).toBeDefined();
-            expect(result.dateDeNaissance).toBe('1989-09-14');
-        });
-    });
-
-    describe('function createApiCompatibleSituation()', function() {
-        var basePatrimoine = {
-            revenus_locatifs: [],
-            revenus_capital: []
-        };
-
-        it('Should return a cloned version of the situation', function() {
-            // given
-            var situation = { individus: [{ role: 'demandeur' }], logement: {}, patrimoine: basePatrimoine };
-
-            // when
-            var result = service.createApiCompatibleSituation(situation);
-
-            // then
-            expect(result).not.toBe(situation);
-        });
-
-        it('Should set the role of the demandeur', function() {
-            // given
-            var situation = { individus: [{ role: 'demandeur' }], logement: {}, patrimoine: basePatrimoine };
-
-            // when
-            var result = service.createApiCompatibleSituation(situation);
-
-            // then
-            expect(result.individus.length).toBe(1);
-            expect(result.individus[0].role).toBe('demandeur');
-        });
-
-        it('Should include the conjoint if defined and set its role', function() {
-            // given
-            var situation = { individus: [{ role: 'demandeur' }, { role: 'conjoint' }], logement: {}, patrimoine: basePatrimoine };
-
-            // when
-            var result = service.createApiCompatibleSituation(situation);
-
-            // then
-            expect(result.individus.length).toBe(2);
-            expect(result.individus[1].role).toBe('conjoint');
-        });
-
-        it('Should include the children and set their role', function() {
-            // given
-            var situation = { individus: [{ role: 'demandeur' }, { role: 'enfant' }], logement: {}, patrimoine: basePatrimoine };
-
-            // when
-            var result = service.createApiCompatibleSituation(situation);
-
-            // then
-            expect(result.individus.length).toBe(2);
-            expect(result.individus[1].role).toBe('enfant');
-        });
-    });
-
-    describe('function getMonths()', function() {
-        it('Should create an array of the last 3 months before the provided date', function() {
-            // given
-            var dateDeValeur = '2013-01-15';
-            var expectedDate = moment('2013-01-15').subtract(3, 'months').format('YYYY-MM');
-
-            // when
-            var result = service.getMonths(dateDeValeur);
-
-            // then
-            expect(result.length).toBe(3);
-            expect(result[0].id).toBe(expectedDate);
-        });
-
-        it('Should create an array of the last 3 months before the current date if no ref date given', function() {
-            // given
-            var expectedDate = moment().subtract(3, 'months').format('YYYY-MM');
-
-            // when
-            var result = service.getMonths();
-
-            // then
-            expect(result.length).toBe(3);
-            expect(result[0].id).toBe(expectedDate);
-        });
-    });
-
     describe('function hasEnfantScolarise()', function() {
         it('should return a truthy only when situation has a child with scolarite "college" or "lycee"', function() {
             // given
             var situations = [
-                { individus: [{ role: 'enfant', scolarite: 'college' }] },
-                { individus: [{ role: 'enfant', scolarite: 'lycee' }] },
+                { individus: [{ role: 'enfant', scolarite: 'Collège' }] },
+                { individus: [{ role: 'enfant', scolarite: 'Lycée' }] },
                 { individus: [] }
             ];
 
@@ -248,11 +142,13 @@ describe('Service: situationService', function () {
         it('should detect N-2 ressources', function() {
             // given
             var situation = {
-                individus:
-                    [
-                        { ressources: []},
-                        { ressources: [{ type: 'retraite_imposable'}]}
-                    ]
+                individus: [{
+                    retraite_imposable: {
+                        '2015': 1000,
+                    },
+                }],
+                foyer_fiscal: {},
+                dateDeValeur: '2017-02-23',
             };
 
             // when
@@ -260,13 +156,15 @@ describe('Service: situationService', function () {
             // then
             expect(ressources_captured).toBeTruthy();
         });
-        it('should ignore other ressources', function() {
+
+        it('should detect N-2 ressources', function() {
             // given
             var situation = {
-                individus:
-                    [
-                        { ressources: [{ type: 'salaire_net_hors_revenus_exceptionnels'}]}
-                    ]
+                individus: [{
+                    retraite_imposable: {},
+                }],
+                foyer_fiscal: {},
+                dateDeValeur: '2017-02-23',
             };
 
             // when
@@ -274,14 +172,20 @@ describe('Service: situationService', function () {
             // then
             expect(ressources_captured).toBeFalsy();
         });
+
         it('should detect rfr', function() {
             // given
             var situation = {
+                dateDeValeur: '2017-01-01',
                 individus:
                     [
                         { ressources: []},
                     ],
-                rfr: 20000
+                foyer_fiscal: {
+                    rfr: {
+                        '2015': 20000
+                    },
+                },
             };
 
             // when

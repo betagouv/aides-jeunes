@@ -1,20 +1,26 @@
 {
   "name": "sgmap-mes-aides-ui",
   "description": "Simulateur de prestations sociales mes-aides.gouv.fr",
-  "version": "1.0.0",
+  "version": "12.0.0",
   "dependencies": {
     "angulartics": "^1.3.0",
     "angulartics-piwik": "^1.0.4",
+    "body-parser": "^1.9.0",
     "bower": "^1.4.1",
     "cleave.js": "~0.7.15",
+    "codes-postaux": "^1.0.1",
     "express": "~4.15.0",
     "font-awesome": "^4.7.0",
+    "frozen-moment": "^0.4.0",
+    "js-yaml": "^3.8.4",
+    "kerberos": "0.0.23",
     "lodash": "^4.17.4",
+    "ludwig-api": "^1.2.0",
     "ludwig-ui": "^1.5.0",
+    "moment": "^2.8.3",
     "mongoose": "^4.5.1",
     "morgan": "~1.8.0",
-    "serve-favicon": "^2.4.0",
-    "sgmap-mes-aides-api": "sgmap/mes-aides-api#v11.0.0"
+    "serve-favicon": "^2.4.0"
   },
   "repository": {
     "type": "git",

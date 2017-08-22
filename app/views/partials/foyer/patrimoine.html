@@ -19,11 +19,11 @@
             <div class="input-group">
               <input
                 type="number"
-                id="vl-terrain-non-loue"
+                id="valeur-locative-terrains-non-loue"
                 class="form-control text-right"
                 select-on-focus
                 zero-to-empty
-                ng-model="patrimoine.valeurLocativeTerrainNonLoue">
+                ng-model="demandeur.valeur_locative_terrains_non_loue[periodKey]">
               <span class="input-group-addon">€</span>
             </div>
           </div>
@@ -44,11 +44,11 @@
             <div class="input-group">
               <input
                 type="number"
-                id="vl-immo-non-loue"
+                id="valeur-locative-immo-non-loue"
                 class="form-control text-right"
                 select-on-focus
                 zero-to-empty
-                ng-model="patrimoine.valeurLocativeImmoNonLoue">
+                ng-model="demandeur.valeur_locative_immo_non_loue[periodKey]">
               <span class="input-group-addon">€</span>
             </div>
           </div>
@@ -80,7 +80,7 @@
                 class="form-control text-right"
                 select-on-focus
                 zero-to-empty
-                ng-model="patrimoine.epargneSurLivret">
+                ng-model="locals.epargneSurLivrets">
               <span class="input-group-addon">€</span>
             </div>
           </div>
@@ -97,11 +97,11 @@
             <div class="input-group">
               <input
                 type="number"
-                id="epargne-sans-revenus"
+                id="epargne-non-remuneree"
                 class="form-control text-right"
                 select-on-focus
                 zero-to-empty
-                ng-model="patrimoine.epargneSansRevenus">
+                ng-model="demandeur.epargne_non_remuneree[periodKey]">
               <span class="input-group-addon">€</span>
             </div>
           </div>

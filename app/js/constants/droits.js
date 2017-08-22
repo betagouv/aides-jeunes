@@ -73,6 +73,7 @@ var droitsDescription = {
                         'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
                         'rsi': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do'
                     },
+                    'type': 'bool', // default type is float
                 },
             },
         },
@@ -223,6 +224,7 @@ var droitsDescription = {
                     'forms': {
                         'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                     },
+                    'entity': 'individu', // default entity is famille
                 },
             },
         },
@@ -405,6 +407,7 @@ var droitsDescription = {
                     'link': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/',
                     'instructions': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/#c33081',
                     'isBaseRessourcesYearMoins2': false,
+                    'entity': 'individu', // default entity is famille
                 },
             }
         }

@@ -10,48 +10,35 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     var filteredRessourceTypes = _.filter(ressourceTypes, RessourceService.isRessourceOnMainScreen);
     $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
 
-    var DEFAULT_RESOURCE = {
-        montantAnnuel: 0,
-        caAnnuel: 0,
-        montantsMensuels: [0, 0, 0],
-    };
-
     $scope.shouldInitiallyOpen = function(category) {
-        if (! $scope.ressources.length) {
+        var selectedRessourceTypes = Object.keys($scope.selectedRessourceTypes);
+        if (! selectedRessourceTypes.length) {
             return category.id == 'revenusActivite';
         }
 
-        var categoriesWithResourceDeclared = $scope.ressources.map(function(ressource) {
-            return ressource.type.category;
+        return _.some(selectedRessourceTypes, function(ressourceTypeName) {
+            return _.find(ressourceTypes, { id: ressourceTypeName }).category == category.id;
         });
-        return categoriesWithResourceDeclared.indexOf(category.id) >= 0;
     };
 
-    $scope.applySelectedRessources = function (selectedRessourceTypes) {
-        var currentRessources = _.clone($scope.ressources);
-        // $scope.ressources is referenced by parent controller, we need to keep the reference
-        $scope.ressources.length = 0;
-        ressourceTypes.forEach(function(ressourceType) {
-            if (! selectedRessourceTypes[ressourceType.id]) {
-                return;
+    function updateIndividuRessources(individu, selectedRessourceTypes) {
+        Object.keys(selectedRessourceTypes).forEach(function(ressourceTypeId) {
+            if (selectedRessourceTypes[ressourceTypeId]) {
+                individu[ressourceTypeId] = individu[ressourceTypeId] || {};
+            } else {
+                delete individu[ressourceTypeId];
+                delete selectedRessourceTypes[ressourceTypeId];
             }
-            var ressource = _.find(currentRessources, { type: ressourceType });
-            if (! ressource) {
-                ressource = _.cloneDeep(DEFAULT_RESOURCE);
-                ressource.type = ressourceType;
-                ressource.onGoing = (! ressourceType.revenuExceptionnel); // exceptional incomes are by definition not ongoing
-            }
-            $scope.ressources.push(ressource);
         });
-    };
+    }
+    $scope._updateIndividuRessources = updateIndividuRessources;
 
     $scope.submit = function() {
-        $scope.applySelectedRessources($scope.selectedRessourceTypes);
+        updateIndividuRessources($scope.individu, $scope.selectedRessourceTypes);
         if (_.some($scope.selectedRessourceTypes)) {
             $state.go('foyer.ressources.individu.montants');
         } else {
-            RessourceService.applyRessourcesToIndividu($scope.individu, $scope.ressources, $scope.situation.dateDeValeur);
-            $scope.individu.hasRessources = false;
+            $scope.individu.hasRessources = ! _.isEmpty($scope.selectedRessourceTypes);
             $scope.declareNextIndividuResources(parseInt($stateParams.individu));
         }
     };

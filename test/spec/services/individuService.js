@@ -72,7 +72,7 @@ describe('IndividuService', function() {
 
         it('Should display "enceinte", "boursier" and "en garde alternée" if the individu has the corresponding fields to true', function() {
             // when
-            var result = service.formatStatutsSpecifiques({ enceinte: true, boursier: true, gardeAlternee: true });
+            var result = service.formatStatutsSpecifiques({ enceinte: true, boursier: true, garde_alternee: true });
 
             // then
             expect(result).toBe('Enceinte, boursier, en garde alternée');

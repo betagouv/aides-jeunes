@@ -22,19 +22,11 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
 
     $scope.$on('individu.conjoint', function(e, conjoint) {
         SituationService.setConjoint(situation, conjoint);
+
+        var demandeur = SituationService.getDemandeur(situation);
+        demandeur.statut_marital = conjoint.statut_marital;
+
         $state.go('foyer.logement');
-    });
-
-    $scope.$on('individu.pasDeConjoint', function() {
-        // on supprime l'éventuel conjoint qui existait avant
-        situation.individus = _.filter(situation.individus, function(individu) {
-            return 'conjoint' !== individu.role;
-        });
-
-        // En cas de parent isolé, on pose une question supplémentaire
-        if (! SituationService.hasEnfant($scope.situation)) {
-            $state.go('foyer.logement');
-        }
     });
 
     $scope.$on('enfants', function(e, enfants) {
@@ -42,13 +34,13 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         $state.go('foyer.conjoint');
     });
 
-    $scope.$on('logement', function(e, logement) {
-        situation.logement = logement;
+    $scope.$on('logement', function(e) {
         $scope.$broadcast('logementCaptured');
         $state.go('foyer.ressources.individu.types', { individu: 0 });
     });
 
     $scope.$on('pensionsAlimentaires', function() {
+        $scope.$broadcast('ressourcesUpdated');
         $state.go('foyer.resultat');
     });
 
@@ -62,13 +54,12 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         }
     });
 
-    $scope.$on('rfr', function(e, rfr) {
-        $scope.situation.rfr = rfr;
+    $scope.$on('rfr', function(e) {
+        $scope.$broadcast('ym2Captured');
         $state.go('foyer.resultat');
     });
 
-    $scope.$on('patrimoine', function(e, patrimoine) {
-        situation.patrimoine = patrimoine;
+    $scope.$on('patrimoine', function(e) {
         $scope.$broadcast('patrimoineCaptured');
         $state.go('foyer.resultat');
     });

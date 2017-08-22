@@ -9,8 +9,8 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         if ($stateParams.situationId) { // If we want the result page for an already existing situation.
             return SituationService.restoreRemote($stateParams.situationId);
         } else {
-            return SituationService.save($scope.situation).then(function() {
-                return SituationService.restoreRemote($scope.situation._id);
+            return SituationService.save($scope.situation).then(function(situation) {
+                return SituationService.restoreRemote(situation._id);
             });
         }
     }
@@ -18,8 +18,8 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     loadSituation()
     .then(function(situation) {
         $scope.situation = situation;
-        return ResultatService.simulate($scope.situation);
-    })
+        return situation;
+    }).then(ResultatService.simulate)
     .then(function(droits) {
         $scope.droits = droits.droitsEligibles;
         $scope.droitsInjectes = droits.droitsInjectes;
@@ -39,6 +39,9 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('years', 1).format('MMMM YYYY');
     $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1).format('MMMM YYYY');
     $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
+    $scope.isPatrimoineCaptured = function() {
+        return angular.isDefined(SituationService.hasPatrimoine($scope.situation));
+    };
 
     $scope.createTest = function() {
         // Merge national and local prestations into a flat object compatible with ludwig.

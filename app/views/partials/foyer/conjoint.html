@@ -5,8 +5,9 @@
       <button
         class="btn btn-default btn-block"
         uib-btn-radio="false"
-        ng-model="vitEnCouple"
-        ng-click="$emit('individu.pasDeConjoint')">
+        ng-model="locals.isInCouple"
+        ng-change="isInCoupleUpdated()"
+        >
         Je vis seul·e
       </button>
     </div>
@@ -14,20 +15,24 @@
       <button
         class="btn btn-default btn-block"
         uib-btn-radio="true"
-        ng-model="vitEnCouple">
+        ng-model="locals.isInCouple"
+        ng-change="isInCoupleUpdated()"
+        >
         Je vis en couple
       </button>
     </div>
   </div>
-  <div ng-if ="captureIsolement()">
+
+  <div ng-if ="captureRsaIsolementRecent()">
     <h2>Depuis combien de temps vivez-vous seul·e ?</h2>
     <div class="row">
       <div class="col-md-4 col-md-offset-2">
         <button
           class="btn btn-default btn-block"
           uib-btn-radio="true"
-          ng-model="demandeur.isolementRecent"
-          ng-change="submit()">
+          ng-model="famille.rsa_isolement_recent"
+          ng-change="rsaIsolementRecentUpdated()"
+          >
           Moins de 18 mois
         </button>
       </div>
@@ -35,15 +40,22 @@
         <button
           class="btn btn-default btn-block"
           uib-btn-radio="false"
-          ng-model="demandeur.isolementRecent"
-          ng-change="submit()">
+          ng-model="famille.rsa_isolement_recent"
+          ng-change="rsaIsolementRecentUpdated()"
+          >
           Plus de 18 mois
         </button>
       </div>
     </div>
   </div>
+
+  <div class="text-right" ng-if="shouldDisplaySubmit()">
+    <button type="submit" class="btn btn-primary" ng-click="submit()">
+      Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+    </button>
+  </div>
 </div>
-<div class="frame-new-individu" ng-if="vitEnCouple">
+<div class="frame-new-individu" ng-if="locals.isInCouple">
   <h3>Votre conjoint</h3>
   <div ui-view="individuForm"></div>
 </div>

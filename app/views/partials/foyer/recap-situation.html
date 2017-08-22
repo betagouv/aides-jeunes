@@ -3,18 +3,18 @@
 <h4>Votre foyer</h4>
 <individu-block ng-repeat="individu in situation.individus" individu="individu"></individu-block>
 
-<div id="recap-logement" ng-if="situation.logement">
+<div id="recap-logement" ng-if="situation.menage.statut_occupation_logement">
   <a ui-sref="foyer.logement" class="pull-right"><i class="fa fa-edit" aria-hidden="true" role="presentation"></i> Modifier</a>
   <h4>Votre logement</h4>
   <div class="situation-block">
-    <div ng-bind-html="recapLogement|uppercaseFirst"></div>
-    <div ng-if="situation.logement.loyer">{{ loyerLabel }}&nbsp;: <b>{{ situation.logement.loyer | currency }}</b></div>
-    Code postal <b>{{ situation.logement.adresse.codePostal }}</b>
-    <br><b>{{ situation.logement.adresse.nomCommune }}</b>
+    <div ng-if="recapLogement" ng-bind-html="recapLogement | uppercaseFirst"></div>
+    <div ng-if="situation.menage.loyer">{{ loyerLabel }}&nbsp;: <b>{{ situation.menage.loyer | currency }}</b></div>
+    Code postal <b>{{ situation.menage.code_postal }}</b>
+    <br><b>{{ situation.menage.nom_commune }}</b>
   </div>
 </div>
 
-<div ng-if="ressourcesCaptured">
+<div>
   <div ng-repeat="individu in individusSorted" ng-if="shouldDisplayPersonRessourcesRecap(individu)">
     <a
       ui-sref="{{ getModifyPersonRessourcesLink(individu) }}"
@@ -28,11 +28,11 @@
       class="ressources-accordion"
       ng-if="ressourcesByIndividu[$index]">
       <uib-accordion-group
-        ng-repeat="(type, ressource) in ressourcesByIndividu[$index]"
-        class="ressources-recap {{ getRessourceByType(type).category }}"
-        heading="{{ getRessourceByType(type).label }}"
+        ng-repeat="(type, ressource) in ressourcesByIndividu[$index] track by type"
+        ng-init="ressourceType = keyedRessourceTypes[type]"
+        class="ressources-recap {{ ressourceType.category }}"
+        heading="{{ ressourceType.label }}"
         >
-
         <div class="row" ng-if="ressource[month.id]" ng-repeat="month in months">
           <div class="col-sm-7">
             {{ month.label | uppercaseFirst }}
@@ -52,7 +52,7 @@
         </div>
       </uib-accordion-group>
     </uib-accordion>
-    <div ng-if="! ressourcesByIndividu[$index]">
+    <div ng-if="! haveRessourcesDeclared">
       <em class="small">Aucune ressource déclarée</em>
     </div>
   </div>
@@ -64,7 +64,7 @@
     Modifier
   </a>
   <h4>Année {{ yearMoins2 }}</h4>
-  <span ng-if="rfrCaptured">Revenu fiscal de référence : {{ situation.rfr | currency }}</span>
+  <span ng-if="rfrCaptured">Revenu fiscal de référence : {{ situation.foyer_fiscal.rfr[yearMoins2] | currency }}</span>
   <uib-accordion
     close-others="false"
     class="ressources-accordion">
@@ -85,7 +85,7 @@
   </uib-accordion>
 </div>
 
-<div ng-if="situation.patrimoine.captured">
+<div ng-if="patrimoine.captured">
   <a ui-sref="foyer.patrimoine" class="pull-right"><i class="fa fa-edit" aria-hidden="true" role="presentation"></i> Modifier</a>
   <h4>Votre patrimoine</h4>
   <em class="small" ng-if="!(patrimoine.length + revenusDuPatrimoine.length)">Aucun patrimoine déclaré</em>

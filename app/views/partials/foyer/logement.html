@@ -22,11 +22,11 @@
       </div>
     </div>
 
-    <yes-no-question model="logement.colocation" ng-if="captureColocation()">
+    <yes-no-question model="menage.coloc" ng-if="captureColocation()">
       <question>Est-ce une colocation&nbsp;?</question>
     </yes-no-question>
 
-    <yes-no-question model="logement.membreFamilleProprietaire" ng-if="captureMembreFamilleProprietaire()">
+    <yes-no-question model="famille.proprietaire_proche_famille" ng-if="captureProprietaireProcheFamille()">
       <question>Avez-vous un lien de parenté direct avec votre propriétaire&nbsp;?</question>
       <help-block>Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant, grand-parent…)&nbsp;?</help-block>
     </yes-no-question>
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <yes-no-question model="logement.isChambre" ng-if="captureChambre()">
+    <yes-no-question model="menage.logement_chambre" ng-if="captureChambre()">
       <question>Est-ce une chambre&nbsp;?</question>
       <help-block>
         Une chambre est un logement qui ne comporte qu'une seule pièce et n'est pas équipée d'un WC.
@@ -62,11 +62,11 @@
       </help-block>
     </yes-no-question>
 
-    <yes-no-question model="demandeur.habiteChezParents" ng-if="captureHabiteChezParents()">
+    <yes-no-question model="demandeur.habite_chez_parents" ng-if="captureHabiteChezParents()">
       <question>Habitez-vous avec vos parents&nbsp;?</question>
     </yes-no-question>
 
-    <yes-no-question model="logement.participationFrais" ng-if="captureParticipationFrais()">
+    <yes-no-question model="menage.participation_frais" ng-if="captureParticipationFrais()">
       <question>Participez-vous aux frais du logement&nbsp;?</question>
       <help-block>Par exemple aux dépenses d'électricité, de téléphone,&nbsp;etc.</help-block>
     </yes-no-question>
@@ -79,9 +79,10 @@
           </label>
           <div class="col-sm-6">
             <div class="input-group">
-              <input type="number" min="0" step="100" class="form-control text-right" id="loyer" name="loyer" ng-model="logement.loyer"
+              <input type="number" min="0" step="100" class="form-control text-right" id="loyer" name="loyer" ng-model="menage.loyer"
                 select-on-focus
                 zero-to-empty
+                ng-required="captureLoyer()"
                 >
               <div class="input-group-addon">€</div>
             </div>
@@ -103,7 +104,7 @@
           </label>
           <div class="col-sm-6">
             <div class="input-group">
-              <input type="number" class="form-control text-right" id="charges" name="charges" ng-model="logement.charges"
+              <input type="number" class="form-control text-right" id="charges" name="charges" ng-model="menage.charges_locatives"
                 select-on-focus
                 zero-to-empty
                 >
@@ -134,8 +135,8 @@
               class="form-control"
               id="postal-code"
               required
-              ng-model="logement.postalCode"
-              ng-change="updateCities()">
+              ng-model="menage.code_postal"
+              ng-change="changeCodePostal()">
             <span class="help-block" ng-if="submitted && ! isAdresseValid()">Ce code postal est invalide</span>
           </div>
         </div>
@@ -150,8 +151,9 @@
               <select
                 class="form-control"
                 required
-                ng-options="city.nomCommune for city in cities"
-                ng-model="logement.adresse"
+                ng-change="changeNomCommune()"
+                ng-options="city.codeInsee as city.nomCommune for city in cities"
+                ng-model="menage.depcom"
                 id="city">
               </select>
             </div>
@@ -161,7 +163,7 @@
 
     </div>
 
-    <yes-no-question model="logement.inhabitantForThreeYearsOutOfLastFive" ng-if="captureResidentParis()">
+    <yes-no-question model="famille.parisien" ng-if="captureResidentParis()">
       <question>Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }}&nbsp;?</question>
       <help-block>Y compris de manière discontinue</help-block>
     </yes-no-question>

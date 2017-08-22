@@ -51,18 +51,7 @@ function deepDiffRight(left, right) {
   return result;
 }
 
-var shouldFailOnError = true;
-function manageRemoval(model) {
-    model.remove(function(err, removedModel) {
-        if (err) {
-            console.log(JSON.stringify(err, null, 2));
-            process.exit(1);
-        }
-
-        done += 1;
-        processTests();
-    });
-}
+var shouldFailOnError = false;
 
 function processSituations(err, retrievedTests) {
     if (err) {
@@ -71,6 +60,30 @@ function processSituations(err, retrievedTests) {
     }
     var tests = retrievedTests.slice(0, 20000);
     var done = 0;
+
+    function manageRemoval(model, stop) {
+        if (model) {
+            model.remove(function(err, removedModel) {
+                if (err) {
+                    console.log(JSON.stringify(err, null, 2));
+                    process.exit(1);
+                }
+
+                if (! stop) {
+                    done += 1;
+                    processTests();
+                } else {
+                    process.exit(1);
+                }
+            });
+        } else if (! stop) {
+            done += 1;
+            processTests();
+        } else {
+            process.exit(1);
+        }
+    }
+
     function processTests() {
         if(done == tests.length) {
             process.exit();
@@ -100,7 +113,8 @@ function processSituations(err, retrievedTests) {
                         console.log(JSON.stringify(err, null, 2));
                         process.exit(1);
                     } else {
-                        return manageRemoval(dbSituation);
+                        done += 1;
+                        return processTests();
                     }
                 }
 
@@ -115,7 +129,7 @@ function processSituations(err, retrievedTests) {
                         var structure0 = [diff01, diff02];
                         console.log(JSON.stringify(structure0, null, 2));
                         console.log(JSON.stringify([generatedSituation, persistedSituation], null, 2));
-                        process.exit(1);
+                        return manageRemoval(dbSituation, true);
                     } else {
                         return manageRemoval(dbSituation);
                     }
@@ -133,7 +147,7 @@ function processSituations(err, retrievedTests) {
                         var structure = [diff1, diff2];
                         console.log(JSON.stringify(structure, null, 2));
                         console.log(JSON.stringify([newOpenfiscaRequest, legacyOpenfiscaRequest], null, 2));
-                        process.exit(1);
+                        return manageRemoval(dbSituation, true);
                     } else {
                         return manageRemoval(dbSituation);
                     }

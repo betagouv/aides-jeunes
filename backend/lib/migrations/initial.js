@@ -55,6 +55,10 @@ exports.persistedSituationPretransformationUpdate = function persistedSituationP
                 ressource.type = newName;
             }
         });
+
+        individu.specificSituations = individu.specificSituations.map(function(specificSituation) {
+            return specificSituation.situation || specificSituation;
+        });
     });
 
     if (situation.logement.loyer === null) {

@@ -12,14 +12,16 @@ function allocateIndividualsToEntities(situation) {
     var foyer = situation.foyer_fiscal;
     var menage = situation.menage;
 
-    var demandeurId = common.getDemandeur(situation).id;
+    var demandeur = common.getDemandeur(situation);
+    var demandeurId = demandeur && demandeur.id;
+    if (demandeurId) {
+        famille.parents = [ demandeurId ];
+        foyer.declarants = [ demandeurId ];
+        menage.personne_de_reference = demandeurId;
+    }
 
     var conjoint = common.getConjoint(situation);
     var conjointId = conjoint && conjoint.id;
-
-    famille.parents = [ demandeurId ];
-    foyer.declarants = [ demandeurId ];
-    menage.personne_de_reference = demandeurId;
     if (conjointId) {
         famille.parents.push(conjointId);
         foyer.declarants.push(conjointId);

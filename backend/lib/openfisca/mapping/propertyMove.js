@@ -31,12 +31,9 @@ exports.movePropertyValuesToGroupEntity = function(testCase) {
         var moveDetails = movedProperties[testCasePropertyName];
 
         testCase[testCasePropertyName].forEach(function(entity) {
-            var entityIndividuIds = [];
-            moveDetails.sourceKeys.forEach(function(roleEntity) {
-                entity[roleEntity].forEach(function(individuId) {
-                    entityIndividuIds.push(individuId);
-                });
-            });
+            var entityIndividuIds = moveDetails.sourceKeys.reduce(function(accum, key) {
+                return accum.concat(entity[key] || []);
+            }, []);
 
             moveDetails.properties.forEach(function(property) {
                 var sign = property.sign || 1;

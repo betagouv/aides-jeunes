@@ -53,7 +53,7 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
 
             scope.shouldAskDateArretDeTravail = function() {
                 // If there is no IJSS the first month, we know the arret de travail is recent and don't need to capture the date.
-                return ['indemnites_journalieres_maladie', 'indemnites_journalieres_maladie_professionnelle', 'indemnites_journalieres_accident_travail'].indexOf(scope.ressourceType.id) >= 0 && scope.ressource[scope.months[0]];
+                return ['indemnites_journalieres_maladie', 'indemnites_journalieres_maladie_professionnelle', 'indemnites_journalieres_accident_travail'].indexOf(scope.ressourceType.id) >= 0 && scope.ressource[scope.months[0].id];
             };
         }
     };

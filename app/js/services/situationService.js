@@ -21,6 +21,11 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         return situation;
     }
 
+    function saveLocally(persistedSituation) {
+        situation = $sessionStorage.situation = persistedSituation;
+        return adaptPersistedSituation(persistedSituation);
+    }
+
     return {
         newSituation: function() {
             situation = $sessionStorage.situation = {
@@ -47,12 +52,9 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         restoreRemote: function(situationId) {
             return $http.get('/api/situations/' + situationId, {
                 params: { cacheBust: Date.now() }
-            }).then(function(result) {
-                situation = result.data;
-                $sessionStorage.situation = situation;
-
-                return situation;
-            }).then(adaptPersistedSituation);
+            })
+            .then(function(result) { return result.data; })
+            .then(saveLocally);
         },
 
         save: function(situation) {
@@ -61,10 +63,8 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 delete situation._id;
             }
             return $http.post('/api/situations/', situation)
-            .then(function(result) {
-                situation._id = result.data._id;
-                return result.data;
-            }).then(adaptPersistedSituation);
+            .then(function(result) { return result.data; })
+            .then(saveLocally);
         },
 
         getDemandeur: function(situation) {

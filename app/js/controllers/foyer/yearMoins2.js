@@ -53,6 +53,15 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
         if (form && (! form.$valid))
             return;
 
+        // OpenFisca expects an integer for frais_reels and conversion is not done automatically
+        $scope.individuRefsToDisplay.forEach(function(individuRef) {
+            var individu = individuRef.individu;
+            var fraisReels = individu.frais_reels || {};
+            if (fraisReels[$scope.yearMoins2]) {
+                fraisReels[$scope.yearMoins2] = Math.round(fraisReels[$scope.yearMoins2]);
+            }
+        });
+
         $scope.$emit('rnc');
     };
 });

@@ -82,4 +82,35 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             expect(scope.individuRefsToDisplay[1].individu).toBe(enfant);
         });
     });
+
+    describe('frais reels rounding mitigation', function() {
+        it('should by default only ask for parents Y-2 revenus', function() {
+            // given
+            var demandeur = {
+                role: 'demandeur',
+                frais_reels: {
+                    '2014': 42.24,
+                },
+            };
+            var conjoint = { role: 'conjoint' };
+            var enfant = { role: 'enfant' };
+            var scope = {
+                situation: {
+                    dateDeValeur: '2016-08-23',
+                    individus: [demandeur, conjoint, enfant],
+                },
+                $emit: function() {},
+            };
+
+            // when
+            inject(function($controller) {
+                $controller('FoyerRessourceYearMoins2Ctrl', {
+                    $scope: scope
+                });
+            });
+
+            scope.submit();
+            expect(demandeur.frais_reels['2014']).toBe(42);
+        });
+    });
 });

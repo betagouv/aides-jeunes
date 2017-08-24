@@ -83,34 +83,59 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
         });
     });
 
+    function initControllerForSubmitWithInitialValue(initialValue) {
+        // given
+        var demandeur = {
+            role: 'demandeur',
+            frais_reels: {
+                '2014': initialValue,
+            },
+        };
+        var conjoint = { role: 'conjoint' };
+        var enfant = { role: 'enfant' };
+        var scope = {
+            situation: {
+                dateDeValeur: '2016-08-23',
+                individus: [demandeur, conjoint, enfant],
+            },
+            $emit: function() {},
+        };
+
+        // when
+        inject(function($controller) {
+            $controller('FoyerRessourceYearMoins2Ctrl', {
+                $scope: scope
+            });
+        });
+
+        return scope;
+    }
+
     describe('frais reels rounding mitigation', function() {
         it('should by default only ask for parents Y-2 revenus', function() {
-            // given
-            var demandeur = {
-                role: 'demandeur',
-                frais_reels: {
-                    '2014': 42.24,
-                },
-            };
-            var conjoint = { role: 'conjoint' };
-            var enfant = { role: 'enfant' };
-            var scope = {
-                situation: {
-                    dateDeValeur: '2016-08-23',
-                    individus: [demandeur, conjoint, enfant],
-                },
-                $emit: function() {},
-            };
-
-            // when
-            inject(function($controller) {
-                $controller('FoyerRessourceYearMoins2Ctrl', {
-                    $scope: scope
-                });
-            });
+            var scope = initControllerForSubmitWithInitialValue(42.24);
+            var demandeur = scope.situation.individus[0];
 
             scope.submit();
             expect(demandeur.frais_reels['2014']).toBe(42);
+        });
+    });
+
+    describe('null removal', function() {
+        it('should drop nulls in Y-2 ressources', function() {
+            var scope = initControllerForSubmitWithInitialValue(null);
+            var demandeur = scope.situation.individus[0];
+
+            scope.submit();
+            expect('2014' in demandeur.frais_reels).toBe(false);
+        });
+
+        it('should keep zeros in Y-2 ressources', function() {
+            var scope = initControllerForSubmitWithInitialValue(0);
+            var demandeur = scope.situation.individus[0];
+
+            scope.submit();
+            expect(demandeur.frais_reels['2014']).toBe(0);
         });
     });
 });

@@ -141,6 +141,8 @@ exports.migratePersistedSituation = function(sourceSituation) {
             if (statutMaritalMapping[sourceIndividu.statutMarital]) {
                 individu.statut_marital = statutMaritalMapping[sourceIndividu.statutMarital];
             }
+        } else if (sourceIndividu.role == 'demandeur') {
+            individu.statut_marital = 'Célibataire';
         }
 
         if (sourceIndividu.scolarite) {

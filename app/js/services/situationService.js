@@ -67,6 +67,14 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             .then(saveLocally);
         },
 
+        /**
+        *@param    {String}  A situation model to send to the backend
+        *@return   {String}  A boolean indicating whether the situation looks ready for OpenFisca or not
+        */
+        passSanityCheck: function(situation) {
+            return situation.individus && situation.individus.length;
+        },
+
         getDemandeur: function(situation) {
             return _.find(situation.individus, { role: 'demandeur' });
         },

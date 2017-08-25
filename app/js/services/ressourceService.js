@@ -30,14 +30,20 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         }
     }
 
+    function isSelectedForCurrentYear(ressource, ressourceType) {
+        if (ressourceType.id != 'pensions_alimentaires_percues') {
+            return Boolean(ressource);
+        }
+
+        return _.keys(ressource).length > 1;
+    }
+
     function extractIndividuSelectedRessourceTypes(individu) {
         var result = {};
         _.chain(ressourceTypes)
-            .map('id')
-            .uniq()
             .filter(isRessourceOnMainScreen)
-            .filter(function(ressourceType) { return individu[ressourceType]; })
-            .forEach(function(ressourceType) { result[ressourceType] = true; })
+            .filter(function(ressourceType) { return isSelectedForCurrentYear(individu[ressourceType.id], ressourceType); })
+            .forEach(function(ressourceType) { result[ressourceType.id] = true; })
             .value();
 
         return result;

@@ -44,9 +44,9 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
     }
 
     function isRessourceOnMainScreen(ressourceOrType) {
-        // Make this function robust so that it can be called with a ressource from individu.ressources, a type from the ressourceTypes constant, or just a string.
-        var type = ressourceOrType.type || ressourceOrType.id || ressourceOrType;
-        return type != 'pensions_alimentaires_versees_individu' && ! _.find(categoriesRnc, { id: type });
+        // Make this function robust so that it can be called with a type from the ressourceTypes constant, or just a string.
+        var type = ressourceOrType.id || ressourceOrType;
+        return type != 'pensions_alimentaires_versees_individu';
     }
 
     function getMainScreenRessources(individu) {

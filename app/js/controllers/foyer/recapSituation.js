@@ -82,7 +82,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     }
 
     $scope.getTotalAnnuel = function (ressource) {
-        return ressource[$scope.yearMoins1] || ressource[$scope.yearMoins2] || getLast12MonthTotal(ressource);
+        return ressource[$scope.yearMoins1] || getLast12MonthTotal(ressource);
     };
 
     $scope.shouldDisplayPersonRessourcesRecap = function (individu) {

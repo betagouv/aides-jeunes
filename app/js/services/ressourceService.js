@@ -55,13 +55,8 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         return type != 'pensions_alimentaires_versees_individu';
     }
 
-    function getMainScreenRessources(individu) {
-        return individu.ressources && individu.ressources.filter(isRessourceOnMainScreen) || [];
-    }
-
     return {
         isRessourceOnMainScreen: isRessourceOnMainScreen,
-        getMainScreenRessources: getMainScreenRessources, // used in controllers/foyer/ressources/enfants.js
         setDefaultRessourceValue: setDefaultRessourceValue,
         extractIndividuSelectedRessourceTypes: extractIndividuSelectedRessourceTypes,
     };

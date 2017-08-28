@@ -13,9 +13,11 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     }
 
     function getRessources (individu) {
-        return ressourceTypes.reduce(function(accum, ressource) {
-            if (individu[ressource.id] && _.some(individu[ressource.id])) {
-                accum[ressource.id] = individu[ressource.id];
+        return _
+        .keys(RessourceService.extractIndividuSelectedRessourceTypes(individu))
+        .reduce(function(accum, ressourceId) {
+            if (individu[ressourceId] && _.some(individu[ressourceId])) {
+                accum[ressourceId] = individu[ressourceId];
             }
             return accum;
         }, {});
@@ -80,7 +82,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     }
 
     $scope.getTotalAnnuel = function (ressource) {
-        return ressource[$scope.yearMoins1] || ressource[$scope.yearMoins2] || getLast12MonthTotal(ressource);
+        return ressource[$scope.yearMoins1] || getLast12MonthTotal(ressource);
     };
 
     $scope.shouldDisplayPersonRessourcesRecap = function (individu) {

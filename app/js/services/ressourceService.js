@@ -30,23 +30,29 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         }
     }
 
+    function isSelectedForCurrentYear(ressource, ressourceType) {
+        if (ressourceType.id != 'pensions_alimentaires_percues') {
+            return Boolean(ressource);
+        }
+
+        return _.keys(ressource).length > 1;
+    }
+
     function extractIndividuSelectedRessourceTypes(individu) {
         var result = {};
         _.chain(ressourceTypes)
-            .map('id')
-            .uniq()
             .filter(isRessourceOnMainScreen)
-            .filter(function(ressourceType) { return individu[ressourceType]; })
-            .forEach(function(ressourceType) { result[ressourceType] = true; })
+            .filter(function(ressourceType) { return isSelectedForCurrentYear(individu[ressourceType.id], ressourceType); })
+            .forEach(function(ressourceType) { result[ressourceType.id] = true; })
             .value();
 
         return result;
     }
 
     function isRessourceOnMainScreen(ressourceOrType) {
-        // Make this function robust so that it can be called with a ressource from individu.ressources, a type from the ressourceTypes constant, or just a string.
-        var type = ressourceOrType.type || ressourceOrType.id || ressourceOrType;
-        return type != 'pensions_alimentaires_versees_individu' && ! _.find(categoriesRnc, { id: type });
+        // Make this function robust so that it can be called with a type from the ressourceTypes constant, or just a string.
+        var type = ressourceOrType.id || ressourceOrType;
+        return type != 'pensions_alimentaires_versees_individu';
     }
 
     function getMainScreenRessources(individu) {

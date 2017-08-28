@@ -7,6 +7,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
 
     $scope.ressourceCategories = ressourceCategories;
 
+    var keyedRessourceTypes = _.keyBy(ressourceTypes, 'id');
     var filteredRessourceTypes = _.filter(ressourceTypes, RessourceService.isRessourceOnMainScreen);
     $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
 
@@ -16,8 +17,8 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
             return category.id == 'revenusActivite';
         }
 
-        return _.some(selectedRessourceTypes, function(ressourceTypeName) {
-            return _.find(ressourceTypes, { id: ressourceTypeName }).category == category.id;
+        return _.some(selectedRessourceTypes, function(ressourceTypeId) {
+            return keyedRessourceTypes[ressourceTypeId].category == category.id;
         });
     };
 
@@ -26,7 +27,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
             if (selectedRessourceTypes[ressourceTypeId]) {
                 individu[ressourceTypeId] = individu[ressourceTypeId] || {};
             } else {
-                delete individu[ressourceTypeId];
+                RessourceService.unsetForCurrentYear($scope.situation.dateDeValeur, individu, keyedRessourceTypes[ressourceTypeId]);
                 delete selectedRessourceTypes[ressourceTypeId];
             }
         });

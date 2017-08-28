@@ -2,31 +2,49 @@
 
 angular.module('ddsCommon').factory('RessourceService', function(MonthService, categoriesRnc, ressourceTypes) {
 
-    function setDefaultRessourceValue(dateDeValeur, individu, ressourceType) {
-        var key = ressourceType.id;
-        individu[key] = individu[key] || {};
-        var ressource = individu[key];
+    function getPeriodKeysForCurrentYear(dateDeValeur, ressourceType) {
+        var periodKeys = [];
+        var lastYear = moment(dateDeValeur).subtract('years', 1).format('YYYY');
+        if (ressourceType.isMontantAnnuel)
+        {
+            periodKeys.push(lastYear);
+            return periodKeys;
+        }
+        if (ressourceType.id == 'tns_auto_entrepreneur_chiffre_affaires')
+        {
+            periodKeys.push(lastYear);
+        }
+
+        periodKeys = periodKeys.concat(_.map(MonthService.getMonths(dateDeValeur, 12), 'id'));
+
+        if (! ressourceType.revenuExceptionnel) {
+            periodKeys.push(moment(dateDeValeur).format('YYYY-MM'));
+        }
+
+        return periodKeys;
+    }
+
+    function setDefaultValueForCurrentYear(dateDeValeur, individu, ressourceType) {
+        var ressourceId = ressourceType.id;
+        individu[ressourceId] = individu[ressourceId] || {};
+        var ressource = individu[ressourceId];
+        var periodKeys = getPeriodKeysForCurrentYear(dateDeValeur, ressourceType);
+        periodKeys.forEach(function(periodKey) {
+            ressource[periodKey] = ressource[periodKey] || 0;
+        });
+    }
+
+    function unsetForCurrentYear(dateDeValeur, entity, ressourceType) {
+        var ressourceId = ressourceType.id;
+        entity[ressourceId] = entity[ressourceId] || {};
+        var ressource = entity[ressourceId];
+        var periodKeys = getPeriodKeysForCurrentYear(dateDeValeur, ressourceType);
+        periodKeys.forEach(function(periodKey) {
+            delete ressource[periodKey];
+        });
+
         if (_.isEmpty(ressource)) {
-            var lastYear = moment(dateDeValeur).subtract('years', 1).format('YYYY');
-            if (ressourceType.isMontantAnnuel)
-            {
-                ressource[lastYear] = 0;
-                return;
-            }
-            if (ressourceType.id == 'tns_auto_entrepreneur_chiffre_affaires')
-            {
-                ressource[lastYear] = 0;
-            }
-
-
-            var months = MonthService.getMonths(dateDeValeur, 12);
-            months.forEach(function(month) {
-                ressource[month.id] = 0;
-            });
-
-            if (! ressourceType.revenuExceptionnel) {
-                ressource[moment(dateDeValeur).format('YYYY-MM')] = 0;
-            }
+            delete entity[ressourceId];
         }
     }
 
@@ -55,14 +73,11 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         return type != 'pensions_alimentaires_versees_individu';
     }
 
-    function getMainScreenRessources(individu) {
-        return individu.ressources && individu.ressources.filter(isRessourceOnMainScreen) || [];
-    }
-
     return {
+        getPeriodKeysForCurrentYear: getPeriodKeysForCurrentYear,
         isRessourceOnMainScreen: isRessourceOnMainScreen,
-        getMainScreenRessources: getMainScreenRessources, // used in controllers/foyer/ressources/enfants.js
-        setDefaultRessourceValue: setDefaultRessourceValue,
         extractIndividuSelectedRessourceTypes: extractIndividuSelectedRessourceTypes,
+        setDefaultValueForCurrentYear: setDefaultValueForCurrentYear,
+        unsetForCurrentYear: unsetForCurrentYear,
     };
 });

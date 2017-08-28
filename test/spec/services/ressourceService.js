@@ -15,29 +15,45 @@ describe('RessourceService', function () {
         dateDeValeur = Date();
     });
 
-    describe('setDefaultRessourceValue', function() {
-        it('should provide 13 zeros by default', function() {
+    describe('getPeriodKeysForCurrentYear', function() {
+        it('should provide 13 periods by default', function() {
+            var periodKeys = service.getPeriodKeysForCurrentYear(dateDeValeur, { id: 'basic' });
 
-            service.setDefaultRessourceValue(dateDeValeur, individu, { id: 'basic' });
-
-            expect(Object.keys(individu.basic).length).toEqual(13);
-            expect(_.countBy(individu.basic)['0']).toEqual(13);
+            expect(_.size(periodKeys)).toEqual(13);
         });
 
         it('should provide 12 zeros for exceptionnal ressource', function() {
-            service.setDefaultRessourceValue(dateDeValeur, individu, { id: 'exceptionnal', revenuExceptionnel: true });
+            var periodKeys = service.getPeriodKeysForCurrentYear(dateDeValeur, { id: 'exceptionnal', revenuExceptionnel: true });
 
-            expect(Object.keys(individu.exceptionnal).length).toEqual(12);
-            expect(_.countBy(individu.exceptionnal)['0']).toEqual(12);
+            expect(_.size(periodKeys)).toEqual(12);
         });
 
         it('should provide 1 zero for annual ressource', function() {
-            service.setDefaultRessourceValue(dateDeValeur, individu, { id: 'annual', isMontantAnnuel: true });
+            var periodKeys = service.getPeriodKeysForCurrentYear(dateDeValeur, { id: 'annual', isMontantAnnuel: true });
 
-            var keys = Object.keys(individu.annual);
-            expect(keys.length).toEqual(1);
-            expect(keys[0].length).toEqual(4); // year YYYY
-            expect(_.values(individu.annual)).toEqual([0]);
+            expect(periodKeys.length).toEqual(1);
+            expect(periodKeys[0].length).toEqual(4); // year YYYY
+        });
+    });
+
+    describe('unsetForCurrentYear', function() {
+        it('should drop ressource', function() {
+            individu.basic = {};
+            var periodKeys = service.unsetForCurrentYear(dateDeValeur, individu, { id: 'basic' });
+
+            expect(individu.basic).toBe(undefined);
+        });
+
+        it('should keep values outside of current year', function() {
+            individu.old = {
+                '1989': 42,
+            };
+            var recentMonthKey = moment(dateDeValeur).subtract(2, 'months').format('YYYY-MM');
+            individu.old[recentMonthKey] = 1;
+            var periodKeys = service.unsetForCurrentYear(dateDeValeur, individu, { id: 'old' });
+
+            expect(_.size(individu.old)).toEqual(1);
+            expect(individu.old[recentMonthKey]).toBe(undefined);
         });
     });
 

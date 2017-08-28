@@ -10,7 +10,7 @@ angular.module('ddsApp').controller('FoyerRessourcesMontantsCtrl', function($sco
     $scope.isNumber = angular.isNumber;
 
     _.forEach($scope.selectedRessourceTypes, function(value, key) {
-        RessourceService.setDefaultRessourceValueForCurrentYear($scope.situation.dateDeValeur, $scope.individu, $scope.ressourceTypes[key]);
+        RessourceService.setDefaultValueForCurrentYear($scope.situation.dateDeValeur, $scope.individu, $scope.ressourceTypes[key]);
     });
 
     $scope.submit = function(form) {

@@ -20,14 +20,14 @@ describe('RessourceService', function () {
 
             service.setDefaultRessourceValueForCurrentYear(dateDeValeur, individu, { id: 'basic' });
 
-            expect(Object.keys(individu.basic).length).toEqual(13);
+            expect(_.size(individu.basic)).toEqual(13);
             expect(_.countBy(individu.basic)['0']).toEqual(13);
         });
 
         it('should provide 12 zeros for exceptionnal ressource', function() {
             service.setDefaultRessourceValueForCurrentYear(dateDeValeur, individu, { id: 'exceptionnal', revenuExceptionnel: true });
 
-            expect(Object.keys(individu.exceptionnal).length).toEqual(12);
+            expect(_.size(individu.exceptionnal)).toEqual(12);
             expect(_.countBy(individu.exceptionnal)['0']).toEqual(12);
         });
 

@@ -57,7 +57,7 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
 
     return {
         isRessourceOnMainScreen: isRessourceOnMainScreen,
-        setDefaultRessourceValueForCurrentYear: setDefaultRessourceValueForCurrentYear,
         extractIndividuSelectedRessourceTypes: extractIndividuSelectedRessourceTypes,
+        setDefaultValueForCurrentYear: setDefaultValueForCurrentYear,
     };
 });

@@ -1,47 +1,53 @@
 'use strict';
 
 angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, ResultatService, droitsDescription, $analytics) {
-
+    $scope.awaitingResults = false;
     $scope.error = false;
-    $scope.awaitingResults = true;
+    $scope.warning = false;
 
     function loadSituation() {
         if ($stateParams.situationId) { // If we want the result page for an already existing situation.
-            return SituationService.restoreRemote($stateParams.situationId);
+            return $scope.restoreRemoteSituation($stateParams.situationId);
         } else {
-            return SituationService.save($scope.situation).then(function(situation) {
-                return SituationService.restoreRemote(situation._id);
-            });
+            return $scope.persistLocalSituation();
         }
     }
 
-    loadSituation()
-    .then(function(situation) {
-        $scope.situation = situation;
-        return situation;
-    }).then(ResultatService.simulate)
-    .then(function(droits) {
-        $scope.droits = droits.droitsEligibles;
-        $scope.droitsInjectes = droits.droitsInjectes;
-        $scope.noDroits = _.isEmpty($scope.droits.prestationsNationales) && _.isEmpty($scope.droits.partenairesLocaux);
-    })
-    .catch(function(error) {
-        $scope.error = JSON.stringify((error && error.data), null, 2);
-        $scope.encodedError = encodeURIComponent($scope.error);
-        $scope.encodedUserAgent = encodeURIComponent(window.navigator.userAgent);
-        $analytics.eventTrack('error', { label: $scope.error });
-    })
-    .finally(function() {
-        $scope.awaitingResults = false;
-    });
+    function triggerEvaluation() {
+        loadSituation()
+        .then(function(situation) {
+            $scope.awaitingResults = true;
+            return situation;
+        }).then(ResultatService.simulate)
+        .then(function(droits) {
+            $scope.droits = droits.droitsEligibles;
+            $scope.droitsInjectes = droits.droitsInjectes;
+            $scope.noDroits = _.isEmpty($scope.droits.prestationsNationales) && _.isEmpty($scope.droits.partenairesLocaux);
+        })
+        .catch(function(error) {
+            $scope.error = JSON.stringify((error && error.data), null, 2);
+            $scope.encodedError = encodeURIComponent($scope.error);
+            $scope.encodedUserAgent = encodeURIComponent(window.navigator.userAgent);
+            $analytics.eventTrack('error', { label: $scope.error });
+        })
+        .finally(function() {
+            $scope.awaitingResults = false;
 
-    $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
-    $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('years', 1).format('MMMM YYYY');
-    $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1).format('MMMM YYYY');
-    $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
-    $scope.isPatrimoineCaptured = function() {
-        return angular.isDefined(SituationService.hasPatrimoine($scope.situation));
-    };
+            $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
+            $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('years', 1).format('MMMM YYYY');
+            $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1).format('MMMM YYYY');
+            $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
+            $scope.isPatrimoineCaptured = function() {
+                return angular.isDefined(SituationService.hasPatrimoine($scope.situation));
+            };
+        });
+    }
+
+    if ($stateParams.situationId || SituationService.passSanityCheck($scope.situation)) {
+        triggerEvaluation();
+    } else {
+        $scope.warning = true;
+    }
 
     $scope.createTest = function() {
         // Merge national and local prestations into a flat object compatible with ludwig.

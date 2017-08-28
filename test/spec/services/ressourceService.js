@@ -36,6 +36,27 @@ describe('RessourceService', function () {
         });
     });
 
+    describe('unsetForCurrentYear', function() {
+        it('should drop ressource', function() {
+            individu.basic = {};
+            var periodKeys = service.unsetForCurrentYear(dateDeValeur, individu, { id: 'basic' });
+
+            expect(individu.basic).toBe(undefined);
+        });
+
+        it('should keep values outside of current year', function() {
+            individu.old = {
+                '1989': 42,
+            };
+            var recentMonthKey = moment(dateDeValeur).subtract(2, 'months').format('YYYY-MM');
+            individu.old[recentMonthKey] = 1;
+            var periodKeys = service.unsetForCurrentYear(dateDeValeur, individu, { id: 'old' });
+
+            expect(_.size(individu.old)).toEqual(1);
+            expect(individu.old[recentMonthKey]).toBe(undefined);
+        });
+    });
+
     describe('isRessourceOnMainScreen', function() {
         it('should filter pensions alimentaires versées and RNC resources', function() {
             var types = ['salaire_net_hors_revenus_exceptionnels', 'pensions_alimentaires_versees_individu'];

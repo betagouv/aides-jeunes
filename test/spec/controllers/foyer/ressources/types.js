@@ -73,16 +73,16 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
 
         it('should delete unselected ressource types in the ressources view model', function() {
             // given
-            scope.individu.toto = {};
+            scope.individu.pensions_alimentaires_versees_individu = {};
             initController();
-            scope.selectedRessourceTypes = { toto: false };
+            scope.selectedRessourceTypes = { pensions_alimentaires_versees_individu: false };
 
             // when
             scope.submit();
 
             // then
-            expect(scope.individu.toto).toBeFalsy();
-            expect(scope.selectedRessourceTypes.toto).toBe(undefined);
+            expect(scope.individu.pensions_alimentaires_versees_individu).toBeFalsy();
+            expect(scope.selectedRessourceTypes.pensions_alimentaires_versees_individu).toBe(undefined);
         });
 
         it('should keep previous ressource corresponding to the selected ressource type if it exists', function() {

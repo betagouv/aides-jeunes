@@ -30,7 +30,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
         }
 
         $scope.individus.forEach(function(individu) {
-            delete individu.pensions_alimentaires_versees_individu;
+            RessourceService.unsetForCurrentYear($scope.situation.dateDeValeur, individu, $scope.pensionsVersees);
         });
     }
 

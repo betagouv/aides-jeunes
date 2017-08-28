@@ -24,15 +24,27 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         return periodKeys;
     }
 
-    function setDefaultRessourceValueForCurrentYear(dateDeValeur, individu, ressourceType) {
-        var key = ressourceType.id;
-        individu[key] = individu[key] || {};
-        var ressource = individu[key];
+    function setDefaultValueForCurrentYear(dateDeValeur, individu, ressourceType) {
+        var ressourceId = ressourceType.id;
+        individu[ressourceId] = individu[ressourceId] || {};
+        var ressource = individu[ressourceId];
         var periodKeys = getPeriodKeysForCurrentYear(dateDeValeur, ressourceType);
+        periodKeys.forEach(function(periodKey) {
+            ressource[periodKey] = ressource[periodKey] || 0;
+        });
+    }
+
+    function unsetForCurrentYear(dateDeValeur, entity, ressourceType) {
+        var ressourceId = ressourceType.id;
+        entity[ressourceId] = entity[ressourceId] || {};
+        var ressource = entity[ressourceId];
+        var periodKeys = getPeriodKeysForCurrentYear(dateDeValeur, ressourceType);
+        periodKeys.forEach(function(periodKey) {
+            delete ressource[periodKey];
+        });
+
         if (_.isEmpty(ressource)) {
-            periodKeys.forEach(function(periodKey) {
-                ressource[periodKey] = 0;
-            });
+            delete entity[ressourceId];
         }
     }
 
@@ -66,5 +78,6 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         isRessourceOnMainScreen: isRessourceOnMainScreen,
         extractIndividuSelectedRessourceTypes: extractIndividuSelectedRessourceTypes,
         setDefaultValueForCurrentYear: setDefaultValueForCurrentYear,
+        unsetForCurrentYear: unsetForCurrentYear,
     };
 });

@@ -7,6 +7,7 @@ var expect = require('expect');
 var _ = require('lodash');
 
 var mongoose = require('mongoose');
+var es = require('event-stream');
 
 // Setup mongoose
 var AcceptanceTest = mongoose.model('AcceptanceTest');
@@ -53,118 +54,90 @@ function deepDiffRight(left, right) {
 
 var shouldFailOnError = false;
 
-function processSituations(err, retrievedTests) {
-    if (err) {
-        console.log(err);
-        process.exit(1);
-    }
-    var tests = retrievedTests.slice(0, 20000);
-    var done = 0;
+function processSituation(test, done) {
 
-    function manageRemoval(model, stop) {
+    function manageRemoval(model, done) {
         if (model) {
-            model.remove(function(err, removedModel) {
-                if (err) {
-                    console.log(JSON.stringify(err, null, 2));
-                    process.exit(1);
-                }
-
-                if (! stop) {
-                    done += 1;
-                    processTests();
-                } else {
-                    process.exit(1);
-                }
+            model.remove(function(err) {
+                done(err);
             });
-        } else if (! stop) {
-            done += 1;
-            processTests();
         } else {
-            process.exit(1);
+            done();
         }
     }
 
-    function processTests() {
-        if(done == tests.length) {
-            process.exit();
-        }
-        var test = tests[done];
-        var testId = test._id;
-        var situationId = test.scenario && test.scenario.situationId || (test.id || test._id || '').toString();
+    var testId = test._id;
+    var situationId = test.scenario && test.scenario.situationId || (test.id || test._id || '').toString();
 
-        LegacySituation.findById(situationId)
-        .then(function(dbLegacySituation) {
-            if (! dbLegacySituation) {
-                console.log('var Err_testID_ = \'' + testId + '\'; // Null');
-                done += 1;
-                return processTests();
+    LegacySituation.findById(situationId)
+    .then(function(dbLegacySituation) {
+        if (! dbLegacySituation) {
+            console.log('var Err_testID_ = \'' + testId + '\'; // Null');
+            return done();
+        }
+        var dbSituationJSON = JSON.stringify(dbLegacySituation.toObject(), null, 2);
+        var situation = dbLegacySituation.toObject();
+        migration.persistedSituationPretransformationUpdate(situation);
+
+        var legacyOpenfiscaRequest = legacyMapping.buildOpenFiscaRequest(_.cloneDeep(situation));
+
+        var frontSituation = migration.migratePersistedSituation(situation);
+        Situation.create(frontSituation, function(err, dbSituation) {
+            if (err) {
+                console.log('var Err_testID_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
+                return done(err);
             }
-            var dbSituationJSON = JSON.stringify(dbLegacySituation.toObject(), null, 2);
-            var situation = dbLegacySituation.toObject();
-            migration.persistedSituationPretransformationUpdate(situation);
 
-            var legacyOpenfiscaRequest = legacyMapping.buildOpenFiscaRequest(_.cloneDeep(situation));
+            var generatedSituation = frontSituation;
+            var persistedSituation = _.omit(dbSituation.toObject(), '__v');
 
-            var frontSituation = migration.migratePersistedSituation(situation);
-            Situation.create(frontSituation, function(err, dbSituation) {
-                if (err) {
-                    console.log('var Err_testID_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
-                    if (shouldFailOnError) {
-                        console.log(JSON.stringify(err, null, 2));
-                        process.exit(1);
+            var diff01 = deepDiffRight(generatedSituation, persistedSituation);
+            var diff02 = deepDiffRight(persistedSituation, generatedSituation);
+            if (diff01 || diff02) {
+                console.log('var testID_db_ = \'' + testId + '\' //  ' + frontSituation._id );
+                return manageRemoval(dbSituation, function(err) {
+                    var data = Object.assign(err || {},
+                    {
+                        diffs: [diff01, diff02],
+                        situations: [generatedSituation, persistedSituation],
+                    });
+                    if (err) {
+                        done(err);
                     } else {
-                        done += 1;
-                        return processTests();
+                        done(data);
                     }
-                }
+                });
+            }
 
-                var generatedSituation = frontSituation;
-                var persistedSituation = _.omit(dbSituation.toObject(), '__v');
+            var newOpenfiscaRequest = mapping.buildOpenFiscaRequest(_.cloneDeep(persistedSituation));
+            legacyOpenfiscaRequest.variables.sort();
 
-                var diff01 = deepDiffRight(generatedSituation, persistedSituation);
-                var diff02 = deepDiffRight(persistedSituation, generatedSituation);
-                if (diff01 || diff02) {
-                    console.log('var testID_db_ = \'' + testId + '\' //  ' + frontSituation._id );
-                    if (shouldFailOnError) {
-                        var structure0 = [diff01, diff02];
-                        console.log(JSON.stringify(structure0, null, 2));
-                        console.log(JSON.stringify([generatedSituation, persistedSituation], null, 2));
-                        return manageRemoval(dbSituation, true);
+            var diff1 = deepDiffRight(legacyOpenfiscaRequest, newOpenfiscaRequest);
+            var diff2 = deepDiffRight(newOpenfiscaRequest, legacyOpenfiscaRequest);
+            if (diff1 || diff2) {
+                console.log('var testID_req_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
+                return manageRemoval(dbSituation, function(err) {
+                    var data = Object.assign(err || {},
+                    {
+                        diffs: [diff1, diff2],
+                        situations: [newOpenfiscaRequest, legacyOpenfiscaRequest],
+                    });
+                    if (err) {
+                        done(err);
                     } else {
-                        return manageRemoval(dbSituation);
+                        done(data);
                     }
-                }
+                });
+            } else {
+                console.log('var situation_' + situationId + ' = \'ok\';');
+            }
 
-                var newOpenfiscaRequest = mapping.buildOpenFiscaRequest(_.cloneDeep(persistedSituation));
-
-                legacyOpenfiscaRequest.variables.sort();
-
-                var diff1 = deepDiffRight(legacyOpenfiscaRequest, newOpenfiscaRequest);
-                var diff2 = deepDiffRight(newOpenfiscaRequest, legacyOpenfiscaRequest);
-                if (diff1 || diff2) {
-                    console.log('var testID_req_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
-                    if (shouldFailOnError) {
-                        var structure = [diff1, diff2];
-                        console.log(JSON.stringify(structure, null, 2));
-                        console.log(JSON.stringify([newOpenfiscaRequest, legacyOpenfiscaRequest], null, 2));
-                        return manageRemoval(dbSituation, true);
-                    } else {
-                        return manageRemoval(dbSituation);
-                    }
-                } else {
-                    console.log('var situation_' + situationId + '_' + done + ' = \'ok\';');
-                }
-
-                return manageRemoval(dbLegacySituation);
-            });
-        }).catch(function(err) {
-            console.log('var Err_testID_ = \'' + testId + '\'; // LegacySituation.findById');
-            console.log(err);
-            console.log(JSON.stringify(err, null, 2));
-            process.exit(1);
+            return manageRemoval(dbLegacySituation, done);
         });
-    }
-    processTests();
+    }).catch(function(err) {
+        console.log('var Err_testID_ = \'' + testId + '\'; // LegacySituation.findById');
+        done(err);
+    });
 }
 
 function migrateTestSituations() {
@@ -223,15 +196,19 @@ function migrateRecentSituations() {
     }, processSituations);
 }
 
-function migrateSituationsTestStatus() {
-    LegacySituation.find({
-        status: 'test',
-        //_id: '58ce590a2883a3c94dccaf53',
-//        _id: {'$lte': '58ce590a2883a3c94dccaf53'},
-    }, {}, {
-        limit: 20000,
-        sort: { dateDeValeur: -1 },
-    }, processSituations);
-}
-
-migrateSituationsTestStatus();
+LegacySituation.find({
+    status: 'test',
+    //_id: '53d78cf4f6aa390200a6ccf9',
+}, {}, {
+    sort: { dateDeValeur: -1 },
+}).stream()
+.pipe(es.map(processSituation))
+.on('end', function() {
+    console.log('Terminé');
+    process.exit();
+})
+.on('error', function(err) {
+    console.log(JSON.stringify(err, null, 2));
+    process.exit();
+})
+.resume();

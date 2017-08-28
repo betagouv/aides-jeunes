@@ -15,29 +15,24 @@ describe('RessourceService', function () {
         dateDeValeur = Date();
     });
 
-    describe('setDefaultRessourceValueForCurrentYear', function() {
-        it('should provide 13 zeros by default', function() {
+    describe('getPeriodKeysForCurrentYear', function() {
+        it('should provide 13 periods by default', function() {
+            var periodKeys = service.getPeriodKeysForCurrentYear(dateDeValeur, { id: 'basic' });
 
-            service.setDefaultRessourceValueForCurrentYear(dateDeValeur, individu, { id: 'basic' });
-
-            expect(_.size(individu.basic)).toEqual(13);
-            expect(_.countBy(individu.basic)['0']).toEqual(13);
+            expect(_.size(periodKeys)).toEqual(13);
         });
 
         it('should provide 12 zeros for exceptionnal ressource', function() {
-            service.setDefaultRessourceValueForCurrentYear(dateDeValeur, individu, { id: 'exceptionnal', revenuExceptionnel: true });
+            var periodKeys = service.getPeriodKeysForCurrentYear(dateDeValeur, { id: 'exceptionnal', revenuExceptionnel: true });
 
-            expect(_.size(individu.exceptionnal)).toEqual(12);
-            expect(_.countBy(individu.exceptionnal)['0']).toEqual(12);
+            expect(_.size(periodKeys)).toEqual(12);
         });
 
         it('should provide 1 zero for annual ressource', function() {
-            service.setDefaultRessourceValueForCurrentYear(dateDeValeur, individu, { id: 'annual', isMontantAnnuel: true });
+            var periodKeys = service.getPeriodKeysForCurrentYear(dateDeValeur, { id: 'annual', isMontantAnnuel: true });
 
-            var keys = Object.keys(individu.annual);
-            expect(keys.length).toEqual(1);
-            expect(keys[0].length).toEqual(4); // year YYYY
-            expect(_.values(individu.annual)).toEqual([0]);
+            expect(periodKeys.length).toEqual(1);
+            expect(periodKeys[0].length).toEqual(4); // year YYYY
         });
     });
 

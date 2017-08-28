@@ -13,9 +13,11 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     }
 
     function getRessources (individu) {
-        return ressourceTypes.reduce(function(accum, ressource) {
-            if (individu[ressource.id] && _.some(individu[ressource.id])) {
-                accum[ressource.id] = individu[ressource.id];
+        return _
+        .keys(RessourceService.extractIndividuSelectedRessourceTypes(individu))
+        .reduce(function(accum, ressourceId) {
+            if (individu[ressourceId] && _.some(individu[ressourceId])) {
+                accum[ressourceId] = individu[ressourceId];
             }
             return accum;
         }, {});

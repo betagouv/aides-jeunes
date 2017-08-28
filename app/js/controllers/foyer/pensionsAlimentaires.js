@@ -24,7 +24,7 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
     function parentsPayPensionsAlimentairesUpdated() {
         if ($scope.locals.parentsPayPensionsAlimentaires) {
             $scope.individus.forEach(function(individu) {
-                RessourceService.setDefaultRessourceValue($scope.situation.dateDeValeur, individu, $scope.pensionsVersees);
+                RessourceService.setDefaultRessourceValueForCurrentYear($scope.situation.dateDeValeur, individu, $scope.pensionsVersees);
             });
             return;
         }

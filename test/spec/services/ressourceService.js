@@ -15,24 +15,24 @@ describe('RessourceService', function () {
         dateDeValeur = Date();
     });
 
-    describe('setDefaultRessourceValue', function() {
+    describe('setDefaultRessourceValueForCurrentYear', function() {
         it('should provide 13 zeros by default', function() {
 
-            service.setDefaultRessourceValue(dateDeValeur, individu, { id: 'basic' });
+            service.setDefaultRessourceValueForCurrentYear(dateDeValeur, individu, { id: 'basic' });
 
             expect(Object.keys(individu.basic).length).toEqual(13);
             expect(_.countBy(individu.basic)['0']).toEqual(13);
         });
 
         it('should provide 12 zeros for exceptionnal ressource', function() {
-            service.setDefaultRessourceValue(dateDeValeur, individu, { id: 'exceptionnal', revenuExceptionnel: true });
+            service.setDefaultRessourceValueForCurrentYear(dateDeValeur, individu, { id: 'exceptionnal', revenuExceptionnel: true });
 
             expect(Object.keys(individu.exceptionnal).length).toEqual(12);
             expect(_.countBy(individu.exceptionnal)['0']).toEqual(12);
         });
 
         it('should provide 1 zero for annual ressource', function() {
-            service.setDefaultRessourceValue(dateDeValeur, individu, { id: 'annual', isMontantAnnuel: true });
+            service.setDefaultRessourceValueForCurrentYear(dateDeValeur, individu, { id: 'annual', isMontantAnnuel: true });
 
             var keys = Object.keys(individu.annual);
             expect(keys.length).toEqual(1);

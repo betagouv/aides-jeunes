@@ -2,7 +2,7 @@
 
 angular.module('ddsCommon').factory('RessourceService', function(MonthService, categoriesRnc, ressourceTypes) {
 
-    function setDefaultRessourceValue(dateDeValeur, individu, ressourceType) {
+    function setDefaultRessourceValueForCurrentYear(dateDeValeur, individu, ressourceType) {
         var key = ressourceType.id;
         individu[key] = individu[key] || {};
         var ressource = individu[key];
@@ -57,7 +57,7 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
 
     return {
         isRessourceOnMainScreen: isRessourceOnMainScreen,
-        setDefaultRessourceValue: setDefaultRessourceValue,
+        setDefaultRessourceValueForCurrentYear: setDefaultRessourceValueForCurrentYear,
         extractIndividuSelectedRessourceTypes: extractIndividuSelectedRessourceTypes,
     };
 });

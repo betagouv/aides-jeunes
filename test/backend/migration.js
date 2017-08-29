@@ -234,4 +234,4 @@ function migrateSituationsTestStatus() {
     }, processSituations);
 }
 
-migrateSituationsTestStatus();
+migrateTestSituations();

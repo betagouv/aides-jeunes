@@ -52,24 +52,27 @@ function deepDiffRight(left, right) {
   return result;
 }
 
-function manageRemoval(model, done) {
-    if (model) {
-        model.remove(function(err) {
-            done(err);
-        });
-    } else {
-        done();
-    }
-}
+var shouldFailOnError = false;
 
-function processSituation(situationIdHolder, done) {
-    var holderId = situationIdHolder._id;
-    var situationId = situationIdHolder.scenario && situationIdHolder.scenario.situationId || (situationIdHolder.id || situationIdHolder._id || '').toString();
+function processSituation(test, done) {
+
+    function manageRemoval(model, done) {
+        if (model) {
+            model.remove(function(err) {
+                done(err);
+            });
+        } else {
+            done();
+        }
+    }
+
+    var testId = test._id;
+    var situationId = test.scenario && test.scenario.situationId || (test.id || test._id || '').toString();
 
     LegacySituation.findById(situationId)
     .then(function(dbLegacySituation) {
         if (! dbLegacySituation) {
-            console.log('var Err_holderId_ = \'' + holderId + '\'; // Null');
+            console.log('var Err_testID_ = \'' + testId + '\'; // Null');
             return done();
         }
         var dbSituationJSON = JSON.stringify(dbLegacySituation.toObject(), null, 2);
@@ -81,7 +84,7 @@ function processSituation(situationIdHolder, done) {
         var frontSituation = migration.migratePersistedSituation(situation);
         Situation.create(frontSituation, function(err, dbSituation) {
             if (err) {
-                console.log('var Err_holderId_ = \'' + holderId + '\'; // Situation.create ' + frontSituation._id );
+                console.log('var Err_testID_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
                 return done(err);
             }
 
@@ -91,7 +94,7 @@ function processSituation(situationIdHolder, done) {
             var diff01 = deepDiffRight(generatedSituation, persistedSituation);
             var diff02 = deepDiffRight(persistedSituation, generatedSituation);
             if (diff01 || diff02) {
-                console.log('var holderId_db_ = \'' + holderId + '\' //  ' + frontSituation._id );
+                console.log('var testID_db_ = \'' + testId + '\' //  ' + frontSituation._id );
                 return manageRemoval(dbSituation, function(err) {
                     var data = Object.assign(err || {},
                     {
@@ -112,7 +115,7 @@ function processSituation(situationIdHolder, done) {
             var diff1 = deepDiffRight(legacyOpenfiscaRequest, newOpenfiscaRequest);
             var diff2 = deepDiffRight(newOpenfiscaRequest, legacyOpenfiscaRequest);
             if (diff1 || diff2) {
-                console.log('var holderId_req_ = \'' + holderId + '\'; // Situation.create ' + frontSituation._id );
+                console.log('var testID_req_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
                 return manageRemoval(dbSituation, function(err) {
                     var data = Object.assign(err || {},
                     {
@@ -129,13 +132,10 @@ function processSituation(situationIdHolder, done) {
                 console.log('var situation_' + situationId + ' = \'ok\';');
             }
 
-            dbLegacySituation.remove(function(err) {
-                done(err);
-            });
+            return manageRemoval(dbLegacySituation, done);
         });
-    })
-    .catch(function(err) {
-        console.log('var Err_holderId_ = \'' + holderId + '\'; // LegacySituation.findById');
+    }).catch(function(err) {
+        console.log('var Err_testID_ = \'' + testId + '\'; // LegacySituation.findById');
         done(err);
     });
 }
@@ -196,21 +196,12 @@ function migrateRecentSituations() {
     }, processSituations);
 }
 
-/*LegacySituation.find({
+LegacySituation.find({
     status: 'test',
     //_id: '53d78cf4f6aa390200a6ccf9',
 }, {}, {
-    limit: 1000,
     sort: { dateDeValeur: -1 },
-})
-//*/
-AcceptanceTest.find({
-    state: { '$nin': [
-        'unclaimed',
-        'rejected'
-    ]}
-}, {}, { sort: '_id' })
-.stream()
+}).stream()
 .pipe(es.map(processSituation))
 .on('end', function() {
     console.log('Terminé');

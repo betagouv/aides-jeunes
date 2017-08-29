@@ -9,6 +9,7 @@
     "bower": "^1.4.1",
     "cleave.js": "~0.7.15",
     "codes-postaux": "^1.0.1",
+    "event-stream": "^3.1.7",
     "express": "~4.15.0",
     "font-awesome": "^4.7.0",
     "frozen-moment": "^0.4.0",

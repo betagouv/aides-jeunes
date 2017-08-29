@@ -17,7 +17,7 @@ function duplicateRessourcesForAnneeFiscaleDeReference(individu, dateDeValeur) {
         if (! result)
             return;
         // Variables can be defined on a yearly or a monthly basis
-        if (result[periods.lastYear]) {
+        if (_.isNumber(result[periods.lastYear])) {
             result[periods.anneeFiscaleReference] = result[periods.lastYear];
         } else {
             var sumOverLast12Months = periods.last12Months.reduce(function(sum, periodObject) {

@@ -61,6 +61,10 @@ exports.persistedSituationPretransformationUpdate = function persistedSituationP
         });
     });
 
+    if (! situation.logement) {
+        situation.logement = {};
+    }
+
     if (situation.logement.loyer === null) {
         situation.logement.loyer = 0;
     }

@@ -21,7 +21,8 @@
     "moment": "^2.8.3",
     "mongoose": "^4.5.1",
     "morgan": "~1.8.0",
-    "serve-favicon": "^2.4.0"
+    "serve-favicon": "^2.4.0",
+    "sgmap-mes-aides-api": "sgmap/mes-aides-api#v12.0.0"
   },
   "repository": {
     "type": "git",

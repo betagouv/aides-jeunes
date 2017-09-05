@@ -36,6 +36,28 @@ describe('RessourceService', function () {
         });
     });
 
+    describe('setDefaultValueForCurrentYear', function() {
+        it('should provide 13 zeros by default', function() {
+            var individu = {};
+            var periodKeys = service.setDefaultValueForCurrentYear(dateDeValeur, individu, { id: 'basic' });
+
+            expect(_.size(individu.basic)).toEqual(13);
+            expect(_.size(_.filter(individu.basic, function(v) { return v === 0; }))).toEqual(13);
+        });
+
+        it('shouldn‘t amend the ressource if a value is provided for a period in the current year', function() {
+            var currentMonth = moment(dateDeValeur).format('YYYY-MM');
+            var individu = {
+                basic: {}
+            };
+            individu.basic[currentMonth] = 0;
+
+            var periodKeys = service.getPeriodKeysForCurrentYear(dateDeValeur, individu, { id: 'basic' });
+
+            expect(_.size(individu.basic)).toEqual(1);
+        });
+    });
+
     describe('unsetForCurrentYear', function() {
         it('should drop ressource', function() {
             individu.basic = {};

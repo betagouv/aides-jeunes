@@ -29,6 +29,11 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         individu[ressourceId] = individu[ressourceId] || {};
         var ressource = individu[ressourceId];
         var periodKeys = getPeriodKeysForCurrentYear(dateDeValeur, ressourceType);
+
+        if (_.some(periodKeys, function(periodKey) { return _.isNumber(ressource[periodKey]); })) {
+            return;
+        }
+
         periodKeys.forEach(function(periodKey) {
             ressource[periodKey] = ressource[periodKey] || 0;
         });

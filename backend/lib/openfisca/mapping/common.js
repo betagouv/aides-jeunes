@@ -55,8 +55,12 @@ function generateRequestedVariables() {
         });
     });
 
-    return _.chain(structuredVariables).flatten().flatten().value()
+    var requestedVariables = _.chain(structuredVariables).flatten().flatten().value()
         .reduce(function(obj, accum) { return _.assign(accum, obj); } , {});
+
+    requestedVariables.loiret_apa = {};
+
+    return requestedVariables;
 }
 
 exports.requestedVariables = generateRequestedVariables();

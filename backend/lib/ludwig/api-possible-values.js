@@ -113,4 +113,8 @@ module.exports = [
         'shortLabel': 'Rennes - Transport',
         'unit': '%',
     },
+    {
+        'id': 'loiret_apa',
+        'shortLabel': 'Loiret - APA',
+    },
 ];

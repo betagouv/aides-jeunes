@@ -33,6 +33,41 @@ function toYAML(test) {
     return require('js-yaml').safeDump(test);
 }
 
+var EXTENSION_VARIABLES = {
+    'openfisca-paris': {
+        familles: [
+            'parisien',
+            'paris_complement_sante',
+            'paris_energie_famille',
+            'paris_logement_plfm',
+            'paris_logement_aspeh',
+            'paris_logement',
+            'paris_logement_psol',
+            'paris_forfait_famille',
+            'paris_logement_familles',
+        ],
+    },
+    'openfisca-rennesmetropole': {
+        individus: [ 'rennes_metropole_transport' ],
+    },
+};
+
+function prepareTestSituationForSpecificExtension(situation, extension) {
+    _.forEach(EXTENSION_VARIABLES, function(specificVariables, extensionName) {
+        if (extensionName == extension)
+            return;
+
+        _.forEach(specificVariables, function(fieldsToRemove, entityFieldName) {
+            _.forEach(situation[entityFieldName], function(entity) {
+                fieldsToRemove.forEach(function(fieldName) {
+                    delete entity[fieldName];
+                });
+            });
+        });
+    });
+    return situation;
+}
+
 var TEST_ATTRIBUTES = [
     'name',
     'description',

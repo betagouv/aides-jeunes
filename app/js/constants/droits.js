@@ -166,8 +166,12 @@ var droitsDescription = {
                     },
                     customization: {
                         'D93-SSD': {
-                            link: 'https://www.seine-saint-denis.fr/IMG/pdf/guide_rsa_a5_8p-2014.pdf'
-                        }
+                            link: 'https://www.seine-saint-denis.fr/IMG/pdf/guide_rsa_a5_8p-2014.pdf',
+                        },
+                        'D75-PARIS': {
+                            form: undefined, // Prevent default form recycling
+                            teleservice: 'https://www.paris.fr/rsa#ou-et-comment-faire-une-demande-de-rsa_6',
+                        },
                     }
                 },
                 'aide_logement': {

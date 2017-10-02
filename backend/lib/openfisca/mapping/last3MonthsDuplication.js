@@ -19,6 +19,7 @@ var individuProperties = [
     'enfant_place',
     'etudiant',
     'garde_alternee',
+    'gir',
     'habite_chez_parents',
     'handicap',
     'inapte_travail',

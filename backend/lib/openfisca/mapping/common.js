@@ -58,7 +58,10 @@ function generateRequestedVariables() {
     var requestedVariables = _.chain(structuredVariables).flatten().flatten().value()
         .reduce(function(obj, accum) { return _.assign(accum, obj); } , {});
 
-    requestedVariables.loiret_apa = {};
+    requestedVariables.apa_eligibilite = {
+        'entity': 'individu',
+        'type': 'bool',
+    };
 
     return requestedVariables;
 }

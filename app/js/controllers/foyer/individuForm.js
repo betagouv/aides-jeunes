@@ -136,6 +136,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
                 delete $scope.individu.scolarite;
             }
 
+            $scope.individu.perte_autonomie = $scope.individu.gir == 'Gir 1';
+
             $scope.$emit('individu.' + individuRole, $scope.individu);
         }
     };

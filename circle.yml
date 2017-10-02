@@ -12,8 +12,9 @@ machine:
 dependencies:
   post:
     - npm install saucelabs@0.1.1 # allow sending Watai results to SauceLabs
-    - wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz
-    - tar -xzf sc-latest-linux.tar.gz
+    # https://wiki.saucelabs.com/display/DOCS/Sauce+Connect+Proxy
+    - wget https://saucelabs.com/downloads/sc-4.4.9-linux.tar.gz
+    - tar -xzf sc-4.4.9-linux.tar.gz
     - virtualenv --python=python2 ~/virtualenv
     - source ~/virtualenv/bin/activate && pip install --upgrade pip
     - source ~/virtualenv/bin/activate && pip install gunicorn

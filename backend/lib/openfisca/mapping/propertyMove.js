@@ -21,16 +21,10 @@ var movedProperties = {
 };
 
 exports.movePropertyValuesToGroupEntity = function(testCase) {
-    var individus = {};
-
-    testCase.individus.forEach(function(individu) {
-        individus[individu.id] = individu;
-    });
-
     Object.keys(movedProperties).forEach(function(testCasePropertyName) {
         var moveDetails = movedProperties[testCasePropertyName];
 
-        testCase[testCasePropertyName].forEach(function(entity) {
+        _.forEach(testCase[testCasePropertyName], function(entity) {
             var entityIndividuIds = moveDetails.sourceKeys.reduce(function(accum, key) {
                 return accum.concat(entity[key] || []);
             }, []);
@@ -38,7 +32,7 @@ exports.movePropertyValuesToGroupEntity = function(testCase) {
             moveDetails.properties.forEach(function(property) {
                 var sign = property.sign || 1;
                 var accum = entityIndividuIds.reduce(function(accum, id) {
-                    var individu = individus[id];
+                    var individu = testCase.individus[id];
                     var individuRessource = individu[property.name];
                     for (var period in individu[property.name]) {
                         if (! accum[period])

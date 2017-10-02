@@ -49,6 +49,21 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         }
     ];
 
+    $scope.GIROptions = [
+        {
+            value: 'Gir 6',
+            label: 'Jamais',
+        },
+        {
+            value: 'Gir 5',
+            label: 'Ponctuellement',
+        },
+        {
+            value: 'Gir 1',
+            label: 'Régulièrement'
+        }
+    ];
+
     $scope.outOfFranceDisclaimers = {
         autre: 'Détenteur d‘une carte de résident ou d‘un titre de séjour valide et résidant en France plus de 9 mois par an.',
         ue: 'Détenteur d‘un droit au séjour valide et résidant en France plus de 9 mois par an.',
@@ -63,6 +78,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         echelon_bourse: -1,
         enfant_a_charge: {},
         enfant_place: false,
+        gir: 'Gir 6',
         role: individuRole,
         tns_autres_revenus_type_activite: 'bic',
         tns_micro_entreprise_type_activite: 'bic',

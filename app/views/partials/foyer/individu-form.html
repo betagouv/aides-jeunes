@@ -267,12 +267,29 @@
     <question>Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?</question>
   </yes-no-question>
 
-  <yes-no-question model="individu.perte_autonomie"
-    ng-if="capturePerteAutonomie"
-    size="4"
-    >
-    <question>Avez-vous des difficultés pour accomplir les gestes de la vie quotidienne&nbsp;?</question>
-  </yes-no-question>
+  <div class="form-group from-group-lg" ng-if="individu.role == 'demandeur' && capturePerteAutonomie">
+    <div class="col-sm-4 control-label">
+      <label for="gir" id="girQuestion">
+        Avez-vous besoin d’une aide à la personne&nbsp;?
+      </label>
+    </div>
+    <div class="button-row">
+      <label
+        ng-repeat="gir in GIROptions"
+        class="btn btn-sm btn-default"
+        ng-class="{ 'active': individu.gir == gir.value }"
+        >
+        <input type="radio"
+          name="gir"
+          class="sr-only"
+          aria-describedby="girQuestion"
+          ng-value="gir.value"
+          ng-model="individu.gir"
+          />
+        {{ gir.label }}
+      </label>
+    </div>
+  </div>
 
   <div class="pull-right">
     <button type="submit" class="btn btn-primary">

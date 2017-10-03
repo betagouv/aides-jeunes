@@ -13,7 +13,7 @@ function sendOpenfiscaRequest(simulation, callback) {
     var options = {
         hostname: openfiscaURL.hostname,
         port: openfiscaURL.port,
-        path: '/api/1/calculate',
+        path: 'calculate',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

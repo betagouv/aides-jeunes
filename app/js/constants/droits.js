@@ -246,6 +246,25 @@ var droitsDescription = {
                 },
             },
         },
+        'departements': {
+            label: 'Les conseils départementaux',
+            prestations: {
+                apa_eligibilite: {
+                    label: 'Allocation personnalisée d‘autonomie',
+                    shortLabel: 'APA',
+                    description: 'L’allocation personnalisée d’autonomie (APA) est une aide réservée aux plus de 60 ans en perte d’autonomie. À travers un plan d’action, elle favorise le maintien à domicile et l’amélioration de la qualité de vie des personnes âgées en établissement en subventionnant des services d’aides à la personne. Sa gestion est confiée aux conseils départementaux.',
+                    conditions: [
+                        'Faire évaluer votre perte d’autonomie (classement GIR) à domicile par les services sociaux de votre département.',
+                        'Accepter le plan d’aide proposé par votre département.',
+                        'Résider depuis plus de trois mois dans votre département.',
+                        'Ne pas percevoir <a target="_blank" rel="noopener" title="Service Public.fr - Peut-on cumuler l‘Apa avec d‘autres revenus ?" href="https://www.service-public.fr/particuliers/vosdroits/F11678">certaines autres aides à l‘autonomie</a> non cumulables avec l‘APA',
+                    ],
+                    link: 'http://www.pour-les-personnes-agees.gouv.fr/beneficier-daides/lapa-est-lallocation-personnalisee-dautonomie/facile-a-lire',
+                    instructions: 'http://www.pour-les-personnes-agees.gouv.fr/annuaire-conseils-departementaux',
+                    type: 'bool',
+                }
+            }
+        },
         'education_nationale': {
             'label': 'Éducation nationale',
             'imgSrc': 'logo_education_nationale.png',

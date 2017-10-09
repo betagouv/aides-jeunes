@@ -29,6 +29,6 @@ angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope) 
     // ng-class and uib-accordion don't work well together, hence this extra function.
     // See https://github.com/angular-ui/bootstrap/issues/4172
     $scope.getAccordionClass = function(droit) {
-        return [$scope.shouldDisplayYM2Warning(droit) ? 'result-needs-n-2' : '', droit.open ? 'panel-opened': ''].join(' ');
+        return [$scope.shouldDisplayYM2Warning(droit) ? 'needs-n-2' : '', droit.open ? 'panel-opened': ''].join(' ');
     };
 });

@@ -13,5 +13,5 @@ prestationMoreInfoLink: '.result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') 
 openPrimeActiviteLink: { a: 'Prime d’activité' },
 requestPrimeActiviteLink: { a: 'Faire une demande' },
 
-greyedPrestation: '.result-needs-n-2',
+greyedPrestation: '.needs-n-2',
 declareYM2ResourcesLink: { a: 'Déclarez vos ressources' },

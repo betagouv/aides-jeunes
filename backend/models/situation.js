@@ -51,6 +51,7 @@ var individuDef = Object.assign({
     enceinte: Boolean,
     firstName: String,
     garde_alternee: Boolean,
+    gir: { type: String, default: 'Non défini' },
     habite_chez_parents: Boolean,
     nationalite: { type: String, enum: ['fr', 'ue', 'autre'] },
     perte_autonomie: Boolean,

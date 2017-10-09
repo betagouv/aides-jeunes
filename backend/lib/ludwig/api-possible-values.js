@@ -9,6 +9,11 @@ module.exports = [
         'shortLabel':'ACS',
     },
     {
+        'hasMontant':false,
+        'id': 'apa_eligibilite',
+        'shortLabel': 'APA - Éligibilité',
+    },
+    {
         'id':'aspa',
         'shortLabel':'ASPA',
     },
@@ -112,9 +117,5 @@ module.exports = [
         'id': 'rennes_metropole_transport',
         'shortLabel': 'Rennes - Transport',
         'unit': '%',
-    },
-    {
-        'id': 'loiret_apa',
-        'shortLabel': 'Loiret - APA',
     },
 ];

@@ -4,8 +4,8 @@
      ng-repeat="(droitId, droit) in list|orderObjectBy:'label'">
     <uib-accordion-heading>
       <div class="row">
-        <div class="col-xs-2 col-sm-1">
-          <img class="droit-logo"
+        <div class="col-xs-2 col-sm-1 droit-logo">
+          <img
                ng-src="/img/{{ droit.provider.imgSrc }}"
                alt="">
         </div>

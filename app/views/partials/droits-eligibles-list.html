@@ -68,6 +68,10 @@
             href="{{ droit.link }}"
             target="_blank"
             rel="noopener"
+            analytics-on="click"
+            analytics-name="{{ droit.label }}"
+            analytics-event="Info"
+            analytics-category="Liens sortants"
             >
             <i class="fa fa-external-link" aria-hidden="true" role="presentation"></i>
             Plus d'informations
@@ -92,6 +96,10 @@
               'btn-primary': droit.form,
               'btn-default': droit.instructions,
             }"
+            analytics-on="click"
+            analytics-name="{{ droit.label }}"
+            analytics-event="Action"
+            analytics-category="Liens sortants"
             >
             <span ng-if="droit.teleservice">Faire une demande</span>
             <span ng-if="droit.form">Accéder au formulaire</span>

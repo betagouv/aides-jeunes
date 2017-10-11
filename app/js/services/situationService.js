@@ -5,6 +5,31 @@ var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'dateDernierContra
 angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc, patrimoineTypes, RessourceService) {
     var situation;
 
+    /*
+     * Input values may be bogus for OpenFisca.
+     * Validations and amendments should not be done on 'Valider' as click may not happen (user may click back on views).
+     */
+    function cleanSituation(situation) {
+        situation.individus.forEach(function(individu) {
+            var yearMoins2 = moment(situation.dateDeValeur).subtract('years', 2).format('YYYY');
+            // OpenFisca expects an integer for frais_reels and conversion is not done automatically
+            var fraisReels = individu.frais_reels || {};
+            if (fraisReels[yearMoins2]) {
+                fraisReels[yearMoins2] = Math.round(fraisReels[yearMoins2]);
+            }
+
+            // nulls are zeroed in OpenFisca
+            categoriesRnc.forEach(function(categorieRnc) {
+                var ressource = individu[categorieRnc.id];
+                if (ressource &&
+                    yearMoins2 in ressource &&
+                    (! _.isNumber(ressource[yearMoins2]))) {
+                    delete ressource[yearMoins2];
+                }
+            });
+        });
+    }
+
     function adaptPersistedIndividu(individu) {
         DATE_FIELDS.forEach(function(dateField) {
             if (individu[dateField]) {
@@ -27,6 +52,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
     }
 
     return {
+        _cleanSituation: cleanSituation, // Exported for testing
         newSituation: function() {
             situation = $sessionStorage.situation = {
                 individus: [],
@@ -62,6 +88,9 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 situation.modifiedFrom = situation._id;
                 delete situation._id;
             }
+
+            cleanSituation(situation);
+
             return $http.post('/api/situations/', situation)
             .then(function(result) { return result.data; })
             .then(saveLocally);

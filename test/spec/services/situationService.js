@@ -194,4 +194,49 @@ describe('Service: situationService', function () {
             expect(ressources_captured).toBeTruthy();
         });
     });
+
+    describe('cleanSituation', function() {
+
+        function createSituationWithInitialValue(initialValue) {
+            var demandeur = {
+                role: 'demandeur',
+                frais_reels: {
+                    '2014': initialValue,
+                },
+            };
+            var conjoint = { role: 'conjoint' };
+            var enfant = { role: 'enfant' };
+            return {
+                dateDeValeur: '2016-08-23',
+                individus: [demandeur, conjoint, enfant],
+            };
+        }
+
+
+        it('should round ym2 ressources', function() {
+            var situation = createSituationWithInitialValue(42.24);
+            service._cleanSituation(situation);
+            var demandeur = situation.individus[0];
+
+            expect(demandeur.frais_reels['2014']).toBe(42);
+        });
+
+        describe('null removal', function() {
+            it('should drop nulls in Y-2 ressources', function() {
+                var situation = createSituationWithInitialValue(null);
+                var demandeur = situation.individus[0];
+
+                service._cleanSituation(situation);
+                expect('2014' in demandeur.frais_reels).toBe(false);
+            });
+
+            it('should keep zeros in Y-2 ressources', function() {
+                var situation = createSituationWithInitialValue(0);
+                var demandeur = situation.individus[0];
+
+                service._cleanSituation(situation);
+                expect(demandeur.frais_reels['2014']).toBe(0);
+            });
+        });
+    });
 });

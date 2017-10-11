@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService, SituationService, MonthService) {
-    var today = $scope.situation.dateDeValeur;
-    var months = MonthService.getMonths(today, 12);
-    $scope.yearMoins2 = moment(today).subtract('years', 2).format('YYYY');
-    $scope.yearMoins1 = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
-    $scope.debutAnneeGlissante = moment(today).subtract('years', 1).format('MMMM YYYY');
+    var dateDeValeur = $scope.situation.dateDeValeur;
+    var months = MonthService.getMonths(dateDeValeur, 12);
+    $scope.yearMoins2 = moment(dateDeValeur).subtract('years', 2).format('YYYY');
+    $scope.yearMoins1 = moment(dateDeValeur).subtract('years', 1).format('YYYY');
+    $scope.debutAnneeGlissante = moment(dateDeValeur).subtract('years', 1).format('MMMM YYYY');
 
     $scope.individuRefsToDisplay = [];
     $scope.individuRefsToHide = [];
@@ -53,25 +53,6 @@ angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($sc
     $scope.submit = function(form) {
         if (form && (! form.$valid))
             return;
-
-        $scope.individuRefsToDisplay.forEach(function(individuRef) {
-            var individu = individuRef.individu;
-
-            // OpenFisca expects an integer for frais_reels and conversion is not done automatically
-            var fraisReels = individu.frais_reels || {};
-            if (fraisReels[$scope.yearMoins2]) {
-                fraisReels[$scope.yearMoins2] = Math.round(fraisReels[$scope.yearMoins2]);
-            }
-
-            // nulls are zeroed in OpenFisca
-            categoriesRnc.forEach(function(categorieRnc) {
-                var ressource = individu[categorieRnc.id];
-                if ($scope.yearMoins2 in ressource &&
-                    (! _.isNumber(ressource[$scope.yearMoins2]))) {
-                    delete ressource[$scope.yearMoins2];
-                }
-            });
-        });
 
         $scope.$emit('rnc');
     };

@@ -262,6 +262,15 @@ var droitsDescription = {
                     link: 'http://www.pour-les-personnes-agees.gouv.fr/beneficier-daides/lapa-est-lallocation-personnalisee-dautonomie/facile-a-lire',
                     instructions: 'http://www.pour-les-personnes-agees.gouv.fr/annuaire-conseils-departementaux',
                     type: 'bool',
+                    customization: {
+                        'D75-PARIS': {
+                            provider: {
+                                imgSrc: 'logo_paris.png',
+                            },
+                            instructions: 'https://apa.paris.fr/portailAPA/',
+                            link: 'https://www.paris.fr/aides_soutien_a_domicile#allocation-personnalisee-d-autonomie-a-domicile-apa_21',
+                        },
+                    }
                 }
             }
         },

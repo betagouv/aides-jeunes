@@ -52,6 +52,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
     }
 
     return {
+        _cleanSituation: cleanSituation, // Exported for testing
         newSituation: function() {
             situation = $sessionStorage.situation = {
                 individus: [],

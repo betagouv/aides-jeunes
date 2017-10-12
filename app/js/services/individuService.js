@@ -5,6 +5,17 @@ angular.module('ddsCommon').service('IndividuService', function($filter, specifi
         return _.includes(['demandeur', 'conjoint'], role);
     }
 
+    function ressourceHeader(individu) {
+        switch (individu.role) {
+            case 'demandeur':
+                return 'Vos ressources personnelles uniquement';
+            case 'conjoint':
+                return 'Les ressources de votre conjoint';
+            default:
+                return 'Les ressources de ' + individu.firstName;
+        }
+    }
+
     return {
         age: function(individu, dateDeReference) {
             return moment(dateDeReference).diff(individu.date_naissance, 'years');
@@ -22,14 +33,14 @@ angular.module('ddsCommon').service('IndividuService', function($filter, specifi
             return individu.firstName;
         },
 
-        ressourceHeader: function(individu) {
+        ressourceHeader: ressourceHeader,
+
+        ressourceShortLabel: function(individu) {
             switch (individu.role) {
                 case 'demandeur':
                     return 'Vos ressources';
-                case 'conjoint':
-                    return 'Les ressources de votre conjoint';
                 default:
-                    return 'Les ressources de ' + individu.firstName;
+                    return ressourceHeader(individu);
             }
         },
 

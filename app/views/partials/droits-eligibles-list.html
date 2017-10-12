@@ -70,8 +70,8 @@
             rel="noopener"
             analytics-on="click"
             analytics-name="{{ droit.label }}"
-            analytics-event="Info"
-            analytics-category="Liens sortants"
+            analytics-event="{{ droit.link }}"
+            analytics-category="Info"
             >
             <i class="fa fa-external-link" aria-hidden="true" role="presentation"></i>
             Plus d'informations
@@ -98,8 +98,8 @@
             }"
             analytics-on="click"
             analytics-name="{{ droit.label }}"
-            analytics-event="Action"
-            analytics-category="Liens sortants"
+            analytics-event="{{ droit.teleservice || droit.form || droit.instructions }}"
+            analytics-category="Action"
             >
             <span ng-if="droit.teleservice">Faire une demande</span>
             <span ng-if="droit.form">Accéder au formulaire</span>

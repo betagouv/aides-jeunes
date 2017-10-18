@@ -172,6 +172,12 @@ var droitsDescription = {
                             form: undefined, // Prevent default form recycling
                             teleservice: 'https://www.paris.fr/rsa#ou-et-comment-faire-une-demande-de-rsa_6',
                         },
+                        'M69-LYON': {
+                            provider: {
+                                imgSrc: 'logo_grand_lyon.png',
+                            },
+                            link: 'https://www.grandlyon.com/services/rsa-mode-d-emploi.html',
+                        },
                     }
                 },
                 'aide_logement': {

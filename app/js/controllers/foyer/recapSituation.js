@@ -3,7 +3,7 @@
 angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, nationalites, ressourceTypes, patrimoineTypes, categoriesRnc, CityService, SituationService, IndividuService, LogementService, MonthService, RessourceService) {
     $scope.keyedRessourceTypes = _.keyBy(ressourceTypes, 'id');
     $scope.categoriesRnc = categoriesRnc;
-    $scope.getIndividuRessourcesHeader = IndividuService.ressourceHeader;
+    $scope.getIndividuRessourcesHeader = IndividuService.ressourceShortLabel;
 
     function buildRecapLogement () {
         var logementLabels = LogementService.getLabels($scope.situation.menage.statut_occupation_logement);

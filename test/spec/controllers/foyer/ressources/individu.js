@@ -24,7 +24,7 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
     };
 
     describe('initialization', function() {
-        it('should set the page title to "Vos ressources" if individu is demandeur', function() {
+        it('should set the page title to "Vos ressources personnelles uniquement" if individu is demandeur', function() {
             // given
             var individuIndex = 0;
 
@@ -32,7 +32,7 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
             initController(individuIndex);
 
             // then
-            expect(scope.pageTitle).toBe('Vos ressources');
+            expect(scope.pageTitle).toBe('Vos ressources personnelles uniquement');
         });
 
         it('should set the page title to "Les ressources de votre conjoint" if individu is conjoint', function() {

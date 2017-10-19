@@ -270,6 +270,13 @@ var droitsDescription = {
                             instructions: 'https://apa.paris.fr/portailAPA/',
                             link: 'https://www.paris.fr/aides_soutien_a_domicile#allocation-personnalisee-d-autonomie-a-domicile-apa_21',
                         },
+                        'D93-SSD': {
+                            provider: {
+                                imgSrc: 'logo_cd93.png',
+                            },
+                            form: 'https://www.seine-saint-denis.fr/IMG/pdf/dossier_2.pdf',
+                            link: 'https://www.seine-saint-denis.fr/ADPA.html',
+                        },
                     }
                 }
             }

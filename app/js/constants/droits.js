@@ -411,25 +411,6 @@ var droitsDescription = {
                 }
             }
         },
-        'cd93': {
-            'imgSrc': 'logo_cd93.png',
-            'label': 'Département de Seine-Saint-Denis',
-            'prefix': 'du',
-            'prestations': {
-                'adpa': {
-                    'isMontantAnnuel': false,
-                    'unit': '%',
-                    'legend': 'des frais de dépendance',
-                    'label': 'Allocation départementale personnalisée d’autonomie',
-                    'shortLabel': 'ADPA',
-                    'description': 'L’Allocation Départementale Personnalisée d’Autonomie (ADPA) permet de financer une partie des dépenses nécessaires à votre maintien à domicile ou de couvrir une partie des frais liés à votre accueil en établissement. Elle est versée aux personnes âgées de 60 ans ou plus en perte d’autonomie.',
-                    'conditions': [],
-                    'link': 'https://www.seine-saint-denis.fr/ADPA.html',
-                    'form': 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa_mai_2016_vdef.pdf',
-                    'isBaseRessourcesYearMoins2': false
-                },
-            }
-        },
         'rennes_metropole': {
             'imgSrc': 'logo_rennes_metropole.png',
             'label': 'Rennes Métropole',

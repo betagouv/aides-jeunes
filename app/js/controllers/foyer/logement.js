@@ -12,9 +12,13 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
     var logement = $scope.logement = LogementService.getLogementVariables(menage.statut_occupation_logement);
 
+    function getMostPopulatedCity(cities) {
+        return _.maxBy(cities, 'population') || {};
+    }
+
     function getSelectedCity() {
         return _.find($scope.cities, { codeInsee: menage.depcom }) ||
-            ($scope.cities.length && $scope.cities[0]) || {};
+            getMostPopulatedCity($scope.cities);
     }
 
     $scope.updateCities = function updateCities(initial) {

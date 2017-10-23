@@ -19,7 +19,7 @@ steps: [
     },
     LogementFormComponent.setZipCodeInput('61500'),
     {
-        'LogementFormComponent.city': /AUNAY/i,
+        'LogementFormComponent.city': /SÉES/i,
     },
     LogementFormComponent.submit(),
     {

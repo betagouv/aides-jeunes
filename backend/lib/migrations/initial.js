@@ -116,7 +116,6 @@ exports.migratePersistedSituation = function(sourceSituation) {
         id: 'id',
         microEntrepriseActiviteType: 'tns_micro_entreprise_type_activite',
         nationalite: 'nationalite',
-        perteAutonomie: 'perte_autonomie',
         place: 'enfant_place',
         role: 'role',
         specificSituations: 'specificSituations',

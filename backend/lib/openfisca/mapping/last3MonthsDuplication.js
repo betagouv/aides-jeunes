@@ -23,7 +23,6 @@ var individuProperties = [
     'habite_chez_parents',
     'handicap',
     'inapte_travail',
-    'perte_autonomie',
     'scolarite',
     'statut_marital',
     'taux_incapacite',

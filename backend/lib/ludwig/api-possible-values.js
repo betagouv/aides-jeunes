@@ -98,11 +98,6 @@ module.exports = [
         'shortLabel': 'CSP'
     },
     {
-        'id':'adpa',
-        'unit': '%',
-        'shortLabel':'ADPA',
-    },
-    {
         'id': 'aah',
         'shortLabel': 'AAH',
         'uncomputabilityReasons': {

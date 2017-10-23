@@ -14,7 +14,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         $scope.capturePrenom = true;
 
         $scope.specificSituations = _.filter($scope.specificSituations, function(statut) {
-          return (statut.id !== 'retraite') && (statut.id !== 'perte_autonomie');
+          return (statut.id !== 'retraite');
         });
     }
 
@@ -82,7 +82,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         role: individuRole,
         tns_autres_revenus_type_activite: 'bic',
         tns_micro_entreprise_type_activite: 'bic',
-        perte_autonomie: false,
         tns_auto_entrepreneur_type_activite: 'bic',
         specificSituations: []
     };
@@ -135,8 +134,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
             if (! $scope.captureScolarite(form)) {
                 delete $scope.individu.scolarite;
             }
-
-            $scope.individu.perte_autonomie = $scope.individu.gir == 'Gir 1';
 
             $scope.$emit('individu.' + individuRole, $scope.individu);
         }

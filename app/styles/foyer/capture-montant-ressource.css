@@ -72,6 +72,9 @@
     background-color: #d7dee8;
 }
 
+.ressource-input-type-label {
+    padding-top: 6px;
+}
 
 @media (max-width: 768px) {
     .ressource-input .months {

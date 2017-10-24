@@ -1,5 +1,7 @@
 declareFirstChildHasIncomeRadio: 'yes-no-question [ng-class*="true"]',
 hasSalaryCheckbox: 'uib-accordion label',
+monthlyValueInput: '#salaire_net_hors_revenus_exceptionnels-monthly-value',
+detailedButton: '.salaire_net_hors_revenus_exceptionnels .ressource-input-type-label a',
 firstMonthInput: '#salaire_net_hors_revenus_exceptionnels-month_0',
 secondMonthInput: '#salaire_net_hors_revenus_exceptionnels-month_1',
 thirdMonthInput: '#salaire_net_hors_revenus_exceptionnels-month_2',

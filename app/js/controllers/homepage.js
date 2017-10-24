@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('HomepageCtrl', function($scope, droitsDescription, $timeout) {
+angular.module('ddsApp').controller('HomepageCtrl', function($scope, droitsDescription, $timeout, ABTestingService) {
     [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
         $scope[type] = droitsDescription[type];
 
@@ -12,4 +12,6 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, droitsDescr
     $timeout(function() {
         document.querySelector('#valueProposition a').focus();
     }, 1500);
+
+    ABTestingService.setABTestingEnvironment();
 });

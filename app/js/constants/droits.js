@@ -270,6 +270,14 @@ var droitsDescription = {
                             instructions: 'https://apa.paris.fr/portailAPA/',
                             link: 'https://www.paris.fr/aides_soutien_a_domicile#allocation-personnalisee-d-autonomie-a-domicile-apa_21',
                         },
+                        'D93-SSD': {
+                            provider: {
+                                imgSrc: 'logo_cd93.png',
+                            },
+                            instructions: undefined, // Prevent default instructions recycling
+                            form: 'https://www.seine-saint-denis.fr/IMG/pdf/dossier_2.pdf',
+                            link: 'https://www.seine-saint-denis.fr/ADPA.html',
+                        },
                     }
                 }
             }
@@ -402,25 +410,6 @@ var droitsDescription = {
                     'isBaseRessourcesYearMoins2': false,
                     'roundToNearest10': false
                 }
-            }
-        },
-        'cd93': {
-            'imgSrc': 'logo_cd93.png',
-            'label': 'Département de Seine-Saint-Denis',
-            'prefix': 'du',
-            'prestations': {
-                'adpa': {
-                    'isMontantAnnuel': false,
-                    'unit': '%',
-                    'legend': 'des frais de dépendance',
-                    'label': 'Allocation départementale personnalisée d’autonomie',
-                    'shortLabel': 'ADPA',
-                    'description': 'L’Allocation Départementale Personnalisée d’Autonomie (ADPA) permet de financer une partie des dépenses nécessaires à votre maintien à domicile ou de couvrir une partie des frais liés à votre accueil en établissement. Elle est versée aux personnes âgées de 60 ans ou plus en perte d’autonomie.',
-                    'conditions': [],
-                    'link': 'https://www.seine-saint-denis.fr/ADPA.html',
-                    'form': 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa_mai_2016_vdef.pdf',
-                    'isBaseRessourcesYearMoins2': false
-                },
             }
         },
         'rennes_metropole': {

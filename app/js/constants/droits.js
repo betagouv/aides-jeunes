@@ -323,7 +323,7 @@ var droitsDescription = {
                     'isMontantAnnuel': false,
                     'label': 'Paris Logement Famille',
                     'shortLabel': 'PLF',
-                    'description': 'L’allocation Paris Logement Famille est destinée aux familles d’au moins deux enfants ou ayant un enfant handicapé. Elle leur permet de mieux supporter leurs dépenses de logement. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.',
+                    'description': 'L’allocation Paris Logement Famille est destinée aux familles d’au moins trois enfants ou ayant un enfant handicapé. Elle leur permet de mieux supporter leurs dépenses de logement. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.',
                     'conditions': [
                         'Avoir demandé le versements des aides logement auxquelles vous avez droit auprès de la CAF.',
                         'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'

@@ -46,7 +46,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     $scope.updateCities(true);
 
     function cityStartsWith(prefix) {
-        return $scope.isAdresseValid() && $scope.menage.nom_commune.indexOf(prefix.toUpperCase()) === 0;
+        return $scope.isAdresseValid() && $scope.menage.nom_commune.toUpperCase().indexOf(prefix.toUpperCase()) === 0;
     }
 
     $scope.yearsAgo = function yearsAgo(amount) {

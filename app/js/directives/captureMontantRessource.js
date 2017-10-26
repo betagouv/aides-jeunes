@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').directive('captureMontantRessource', function(MonthService, ABTestingService) {
+angular.module('ddsApp').directive('captureMontantRessource', function(MonthService) {
 
     return {
         restrict: 'E',
@@ -45,10 +45,6 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
                     return previousValuesAreEqual && scope.ressource[month.id] == lastMonthValue;
                 }, true),
             };
-
-            var abtesting = ABTestingService.getABTestingEnvironment();
-            scope.testing = (abtesting && abtesting.ressource && abtesting.ressource.value) || 'B';
-            scope.locals.detailed = scope.testing == 'B' || scope.locals.detailed;
 
             function updatePrevious9MonthsValues() {
                 var toSpread = ((scope.locals.annualValue || 0) - getRecentSum())/9;

@@ -278,7 +278,8 @@ var droitsDescription = {
                             form: 'https://www.seine-saint-denis.fr/IMG/pdf/dossier_2.pdf',
                             link: 'https://www.seine-saint-denis.fr/ADPA.html',
                         },
-                    }
+                    },
+                    'entity': 'individu', // default entity is famille
                 }
             }
         },

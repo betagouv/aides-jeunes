@@ -87,7 +87,7 @@
     "db": "mongod --dbpath db",
     "db-update": "./import-tests.sh",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
-    "openfisca": "gunicorn --workers 1 --paster openfisca/api_config.ini"
+    "openfisca": "openfisca serve --configuration-file openfisca/api_config.py"
   },
   "license": "AGPL-3.0"
 }

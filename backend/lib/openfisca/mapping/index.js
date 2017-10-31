@@ -1,4 +1,3 @@
-var moment = require('moment');
 var _ = require('lodash');
 
 var common = require('./common');
@@ -17,7 +16,7 @@ function allocateIndividualsToEntities(situation) {
     if (demandeurId) {
         famille.parents = [ demandeurId ];
         foyer.declarants = [ demandeurId ];
-        menage.personne_de_reference = demandeurId;
+        menage.personne_de_reference = [ demandeurId ];
     }
 
     var conjoint = common.getConjoint(situation);
@@ -25,7 +24,7 @@ function allocateIndividualsToEntities(situation) {
     if (conjointId) {
         famille.parents.push(conjointId);
         foyer.declarants.push(conjointId);
-        menage.conjoint = conjointId;
+        menage.conjoint = [ conjointId ];
     }
 
     var enfants = common.getEnfants(situation);
@@ -41,6 +40,9 @@ function setNonInjectedPrestationsToZero(familles, individus, dateDeValeur) {
         famille: familles,
         individu: individus,
     };
+    var periods = common.getPeriods(dateDeValeur);
+    var thisMonth = periods.thisMonth;
+    var last12Months = periods.last12Months;
 
     var prestationsFinancieres = _.pickBy(common.requestedVariables, function(definition) {
         return (! definition.type) || definition.type === 'float';
@@ -49,13 +51,19 @@ function setNonInjectedPrestationsToZero(familles, individus, dateDeValeur) {
     _.forEach(prestationsFinancieres, function(definition, prestationName) {
         _.forEach(subjects[definition.entity || 'famille'], function(entity) {
             entity[prestationName] = entity[prestationName] || {};
-            _.forEach(common.getPeriods(dateDeValeur).last12Months, function(period) {
+            _.forEach(last12Months, function(period) {
                 entity[prestationName][period] = entity[prestationName][period] || 0;
             });
         });
     });
-}
 
+    _.forEach(common.requestedVariables, function(definition, prestationName) {
+        _.forEach(subjects[definition.entity || 'famille'], function(entity) {
+            entity[prestationName] = entity[prestationName] || {};
+            entity[prestationName][thisMonth] = entity[prestationName][thisMonth] || null;
+        });
+    });
+}
 
 
 function mapIndividus(situation) {
@@ -65,11 +73,16 @@ function mapIndividus(situation) {
 
     return _.map(individus, function(individu) {
         return buildOpenFiscaIndividu(individu, situation);
-    });
+    }).reduce(function(accum, individu) {
+        accum[individu.id] = individu;
+        delete individu.id;
+        return accum;
+    }, {});
 }
 
-function buildOpenFiscaTestCase(situation) {
-    var familles = [ situation.famille ];
+exports.buildOpenFiscaRequest = function(sourceSituation) {
+    var situation = sourceSituation.toObject ? sourceSituation.toObject() : _.cloneDeep(sourceSituation);
+
     var individus = mapIndividus(situation);
     allocateIndividualsToEntities(situation);
 
@@ -78,29 +91,35 @@ function buildOpenFiscaTestCase(situation) {
 
     var testCase = {
         individus: individus,
-        familles: familles,
-        foyers_fiscaux: [ situation.foyer_fiscal ],
-        menages: [ situation.menage ],
+        familles: {
+            _: situation.famille
+        },
+        foyers_fiscaux: {
+            _: situation.foyer_fiscal
+        },
+        menages: {
+            _: situation.menage
+        },
     };
 
+    var statuts_occupation_logement = {
+        'Non renseigné': 'Non renseigné',
+        'Accédant à la propriété': 'Accédant à la propriété',
+        'Propriétaire (non accédant) du logement': 'Propriétaire (non accédant) du logement',
+        'Locataire d‘un logement HLM': 'Locataire d\'un logement HLM',
+        'Locataire ou sous-locataire d‘un logement loué vide non-HLM': 'Locataire ou sous-locataire d\'un logement loué vide non-HLM',
+        'Locataire ou sous-locataire d‘un logement loué meublé ou d‘une chambre d‘hôtel': 'Locataire ou sous-locataire d\'un logement loué meublé ou d\'une chambre d\'hôtel',
+        'Logé gratuitement par des parents, des amis ou l‘employeur': 'Logé gratuitement par des parents, des amis ou l\'employeur',
+        'Locataire d‘un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)': 'Locataire d\'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)',
+        'Sans domicile stable': 'Sans domicile stable'
+    };
+
+    testCase.menages._.statut_occupation_logement = statuts_occupation_logement[testCase.menages._.statut_occupation_logement];
+
     propertyMove.movePropertyValuesToGroupEntity(testCase);
-    setNonInjectedPrestationsToZero(familles, individus, situation.dateDeValeur);
+    setNonInjectedPrestationsToZero(testCase.familles, individus, situation.dateDeValeur);
 
     last3MonthsDuplication(testCase, situation.dateDeValeur);
 
     return testCase;
-}
-
-exports.buildOpenFiscaRequest = function(sourceSituation) {
-    var situation = sourceSituation.toObject ? sourceSituation.toObject() : _.cloneDeep(sourceSituation);
-
-    return {
-        //intermediate_variables: true,
-        labels: true,
-        scenarios: [{
-            test_case: buildOpenFiscaTestCase(situation),
-            period: 'month:' + moment(sourceSituation.dateDeValeur).format('YYYY-MM'),
-        }],
-        variables: _.keys(common.requestedVariables).sort(),
-    };
 };

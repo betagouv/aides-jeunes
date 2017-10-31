@@ -12,7 +12,7 @@ module.exports = function(mongoose, Situation) {
                 if (err) return done(err);
                 if (!situation) return done(new Error('Situation not found'));
                 openfisca.calculate(situation, function(err, result) {
-                    return done(err, result && extractResults(result));
+                    return done(err, result && extractResults(result, situation.dateDeValeur));
                 });
             });
         },

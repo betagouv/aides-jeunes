@@ -22,7 +22,7 @@ describe('ResultatService', function () {
                 paris: {}
             },
         };
-        var service, droits, openfiscaResult;
+        var service, droits, situation, openfiscaResult;
 
         beforeEach(function() {
             module('ddsApp');
@@ -33,41 +33,38 @@ describe('ResultatService', function () {
                 service = ResultatService;
             });
 
+            situation = {
+                dateDeValeur: '2014-11-01',
+                individus: [{
+                    aah: {
+                        '2014-10': 1
+                    },
+                    apl: {
+                        '2014-10': 1
+                    }
+                }]
+            };
+
             openfiscaResult = {
-                params: {
-                    scenarios: [{
-                        period: 'month:2014-11',
-                        test_case: {
-                            familles: [{
-                                apl: {
-                                    '2014-10': 1
-                                }
-                            }],
-                            individus: [{
-                                aah: {
-                                    '2014-10':1
-                                }
-                            }]
-                        }
-                    }]
-                },
-                value: [{
-                    familles: [{
+                familles: {
+                    _: {
                         rsa_non_calculable: {
                             '2014-11': 'error'
                         }
-                    }],
-                    individus: [{
+                    }
+                },
+                individus: {
+                    demandeur: {
                         acs: {
                             '2014-11':1
                         },
                         cmu_c: {
                             '2014-11': false
                         }
-                    }]
-                }]
+                    }
+                }
             };
-            droits = service._processOpenfiscaResult(openfiscaResult);
+            droits = service._computeAides(situation, openfiscaResult);
         });
 
         it('should extract eligibles droits from openfisca result', function() {

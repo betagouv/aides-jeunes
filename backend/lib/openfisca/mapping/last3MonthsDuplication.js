@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var common = require('./common');
 
 var familleProperties = [
@@ -52,7 +53,7 @@ function copyTo3PreviousMonths(testCase, dateDeValeur) {
     };
     Object.keys(forDuplication).forEach(function(entityName) {
         forDuplication[entityName].forEach(function(entityPropertyName) {
-            testCase[entityName].forEach(function(entity) {
+            _.forEach(testCase[entityName], function(entity) {
                 var value = entity[entityPropertyName];
                 var result = {};
                 if (value !== undefined) {

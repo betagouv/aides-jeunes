@@ -33,7 +33,7 @@ test:
     - while [ ! -e ~/sauce_is_ready ]; do sleep 1; done:
         parallel: true
     # wait for OpenFisca
-    - wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000:
+    - wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000/variable/parisien:
         parallel: true
     # prepare CI-specific config holder and add CI-specific config to Watai
     - cp $WATAI_TESTS/config-ci.js $WATAI_TESTS/config.js && rm $WATAI_TESTS/config.json:

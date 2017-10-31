@@ -21,3 +21,21 @@ header, footer {
 .body-front {
 	background-color: whitesmoke;
 }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+#chart {
+  width: 800px;
+  height: 300px;
+}

@@ -5,10 +5,12 @@
   "dependencies": {
     "angulartics": "^1.3.0",
     "angulartics-piwik": "^1.0.4",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.9.0",
     "bower": "^1.4.1",
     "cleave.js": "~0.7.15",
     "codes-postaux": "etalab/codes-postaux#003ea027941e7a40c6094c7a02e7299d37619712",
+    "d3": "^4.11.0",
     "event-stream": "^3.1.7",
     "express": "~4.15.0",
     "font-awesome": "^4.7.0",
@@ -21,6 +23,7 @@
     "moment": "^2.8.3",
     "mongoose": "^4.5.1",
     "morgan": "~1.8.0",
+    "request-promise": "^4.2.2",
     "serve-favicon": "^2.4.0",
     "sgmap-mes-aides-api": "sgmap/mes-aides-api#v12.0.0"
   },
@@ -87,7 +90,8 @@
     "db": "mongod --dbpath db",
     "db-update": "./import-tests.sh",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
-    "openfisca": "openfisca serve --configuration-file openfisca/api_config.py"
+    "openfisca": "openfisca serve --configuration-file openfisca/api_config.py",
+    "stats": "node backend/lib/stats"
   },
   "license": "AGPL-3.0"
 }

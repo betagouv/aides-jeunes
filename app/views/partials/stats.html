@@ -1,25 +1,21 @@
 <article class="text container">
 
   <h1>Statistiques d'usage</h1>
-
-  <p ng-if="! allStatsRetrieved">
+  <p ng-if="(! allStatsRetrieved) && (! error)">
     Récupération des dernières données… <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
   </p>
+  <div ng-show="allStatsRetrieved">
+    <h2>Visites et simulations journalières</h2>
+    <svg id="chart"></svg>
+  </div>
 
-  <p ng-repeat="period in statPeriods" ng-if="allStatsRetrieved">
-    {{ period.label }}, il y a eu {{ period.data.nb_visits | number }} visites et
-    {{ period.data.nb_conversions | number }} simulations terminées.
-  <p>
-    
-  <h2 id="visitors">Visiteurs sur les 30 derniers jours</h2>
-  <img src="https://stats.data.gouv.fr/index.php?module=API&method=ImageGraph.get&idSite=9&apiModule=VisitsSummary&apiAction=get&token_auth=anonymous&graphType=evolution&period=day&date=previous30&showLegend=0&width=700&height=200">
-  
-  <h2 id="simulations">Visites avec au moins une simulation sur les 30 derniers jours</h2>
-  <img src="https://stats.data.gouv.fr/index.php?module=API&method=ImageGraph.get&idSite=9&apiModule=Goals&apiAction=get&token_auth=anonymous&graphType=evolution&period=day&date=previous30&idGoal=1&showLegend=0&width=700&height=200&">
-  
+  <p ng-if="error">
+    Les données ne sont pas disponibles.
+  </p>
+
   <h2 id="pays">Pays d'origine des simulations effectuées hier</h2>
   <img src="https://stats.data.gouv.fr/index.php?module=API&method=ImageGraph.get&idSite=9&period=day&date=yesterday&apiModule=UserCountry&apiAction=getCountry&outputType=0&showLegend=0&fontSize=9&aliasedGraph=1&textColor=222222&backgroundColor=FFFFFF&gridColor=CCCCCC&legendAppendMetric=1&format=xml&token_auth=anonymous">
-  
+
   <h2>Données</h2>
   <p>Les <a href="http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=9&period=day&date=yesterday#?module=Dashboard&action=embeddedIndex&idSite=9&period=day&date=yesterday&idDashboard=1">statistiques d'usage de Mes Aides</a> sont publiques.</p>
   <p>Comprenez comment nous évaluons la <a href="https://beta.gouv.fr/2016/11/04/mes-aides-metriques-pirates-tunnel-conversion-public">performance de Mes Aides</a> et comment nous <a href="https://beta.gouv.fr/2017/05/03/mes-aides-datascience-public.html">améliorons notre simulateur</a>.</p>

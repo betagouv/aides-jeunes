@@ -28,7 +28,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
             $scope.error = JSON.stringify((error && error.data), null, 2);
             $scope.encodedError = encodeURIComponent($scope.error);
             $scope.encodedUserAgent = encodeURIComponent(window.navigator.userAgent);
-            $analytics.eventTrack('error', { label: $scope.error });
+            $analytics.eventTrack('error', { label: $scope.error || $scope.situation._id });
         })
         .finally(function() {
             $scope.awaitingResults = false;

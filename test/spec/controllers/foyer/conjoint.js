@@ -188,6 +188,10 @@ describe('Controller: FoyerConjointCtrl', function() {
                 it('displays the submit button', function() {
                     expect(scope.shouldDisplaySubmit()).toBe(true);
                 });
+
+                it('removes the conjoint', function() {
+                    expect(scope.situation.individus.length).toBe(1);
+                });
             });
         });
     });

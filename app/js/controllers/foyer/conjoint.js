@@ -14,14 +14,15 @@ angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state
         if ($scope.locals.isInCouple) {
             delete $scope.famille.rsa_isolement_recent;
         } else {
-            demandeur.statut_marital = 'Célibataire';  // Célibataire is the default value - Enum index 2 in OpenFisca
-        }
-        if (isFirstView && (! $scope.locals.isInCouple) && (! captureRsaIsolementRecent())) {
-            // on supprime l'éventuel conjoint qui existait avant
+            // Célibataire is the default value - Enum index 2 in OpenFisca
+            demandeur.statut_marital = 'Célibataire';
+            // On supprime l'éventuel conjoint qui existait avant
             $scope.situation.individus = _.filter($scope.situation.individus, function(individu) {
                 return 'conjoint' !== individu.role;
             });
-            $scope.submit();
+            if (isFirstView && (! captureRsaIsolementRecent())) {
+                $scope.submit();
+            }
         }
     }
     $scope.isInCoupleUpdated = isInCoupleUpdated;

@@ -68,7 +68,93 @@
     </div>
   </div>
 
-</div>
+
+  <div class="frame-resultats" ng-if="etablissements && etablissements.length">
+    <div class="row">
+      <div class="col-sm-12">
+        Si vous le souhaitez, vous pouvez <strong>être accompagné pour effectuer les démarches</strong> relatives aux aides auxquelles vous êtes éligible. Vous pouvez vous rendre dans&nbsp;:
+      </div>
+    </div>
+    <br />
+    <uib-accordion close-others="false">
+      <uib-accordion-group is-open="true"
+         ng-repeat="etablissement in etablissements">
+        <uib-accordion-heading>
+          <p>{{ etablissement.properties.Nom }}</p>
+        </uib-accordion-heading>
+
+          <div class="row">
+            <div class="col-md-4">
+              <adress>
+                <i class="fa fa-home" aria-hidden="true"></i> Adresse&nbsp;:<br />
+                <div ng-repeat="ligne in etablissement.properties.Adresse.Ligne">
+                  {{ ligne }}<br />
+                </div>
+                {{ etablissement.properties.Adresse.CodePostal }} {{ etablissement.properties.Adresse.NomCommune }}
+              </adress>
+            </div>
+            <div class="col-md-4" ng-if="etablissement.properties.Ouverture">
+              <i class="fa fa-clock-o" aria-hidden="true"></i> Horaires&nbsp;:<br />
+              <div ng-repeat="plage_jour in etablissement.properties.Ouverture.PlageJ">
+                <div ng-if="plage_jour['début'] === plage_jour.fin">
+                  Les {{ plage_jour['début'] }}s&nbsp;:
+                </div>
+                <div ng-if="plage_jour['début'] !== plage_jour.fin">
+                  Du {{ plage_jour['début'] }} au {{ plage_jour.fin }}&nbsp;:
+                </div>
+                <ul>
+                  <li ng-repeat="plage_heure in plage_jour.PlageH">
+                    de {{ extractHHMM(plage_heure['début']) }} à {{ extractHHMM(plage_heure.fin) }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-4" ng-if="etablissement.properties['CoordonnéesNum']">
+              Contact&nbsp;:<br />
+              <div ng-if="etablissement.properties['CoordonnéesNum']['Téléphone']">
+                <i class="fa fa-phone-square" aria-hidden="true"></i>
+                <a
+                  href="tel:{{ etablissement.properties['CoordonnéesNum']['Téléphone'] }}"
+                  analytics-on="click"
+                  analytics-name="{{ etablissement.properties.id }}"
+                  analytics-event="Téléphone"
+                  analytics-category="Partenaire"
+                >
+                  {{ etablissement.properties['CoordonnéesNum']['Téléphone'] }}
+                </a>
+
+              </div>
+              <div ng-if="etablissement.properties['CoordonnéesNum'].Email">
+                <i class="fa fa-envelope-square" aria-hidden="true"></i>
+                <a
+                  href="mailto:{{ etablissement.properties['CoordonnéesNum'].Email }}"
+                  analytics-on="click"
+                  analytics-name="{{ etablissement.properties.id }}"
+                  analytics-event="Email"
+                  analytics-category="Partenaire"
+                >
+                  {{ etablissement.properties['CoordonnéesNum'].Email }}
+                </a>
+              </div>
+              <div ng-if="etablissement.properties['CoordonnéesNum'].Url">
+                <i class="fa fa-share-square-o" aria-hidden="true"></i>
+                <a
+                  href="{{ etablissement.properties['CoordonnéesNum'].Url }}"
+                  target="_blank"
+                  rel="noopener"
+                  analytics-on="click"
+                  analytics-name="{{ etablissement.properties.id }}"
+                  analytics-event="Site internet"
+                  analytics-category="Partenaire"
+                >
+                  Site internet
+                </a>
+              </div>
+            </div>
+          </div>
+      </uib-accordion-group>
+    </uib-accordion>
+  </div>
 
 <div id="feedback">
   <h4>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider&nbsp;!</h4>

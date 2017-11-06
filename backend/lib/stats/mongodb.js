@@ -46,7 +46,9 @@ exports.getDailySituationCount = function(fromDate, toDate) {
     .connectAsync('mongodb://localhost:27017/dds')
     .then(saveDb)
     .then(function(db) { return extractSimulationDailyCount(db, fromDate, toDate); })
-    .then(function(response) { return response.results; })
+    // MongoDB 2.4 (production) does not embed metadata of the operation, the result is directly available in the response
+    // MongoDB 3.4 (dev environment) returns results with metadata and are available in the results property
+    .then(function(response) { return response.results || response; })
     .then(formatMongo);
 };
 

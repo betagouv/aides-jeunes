@@ -15,12 +15,13 @@ var nineWeeksAgo = dateDaysAgo(7 * 9);
 var yesterday = dateDaysAgo(1);
 var today = dateDaysAgo(0);
 
+var relative_path = __dirname + '/../../../dist/documents/stats.json';
 Promise.all([
     mongodb.getDailySituationCount(nineWeeksAgo,today),
     piwik.getUsageData(nineWeeksAgo, yesterday)
 ])
 .then(function(data) { return [].concat(data[0], data[1]); })
-.then(function(data) { return fs.writeFileAsync('dist/documents/stats.json', JSON.stringify(data, null, 2), 'utf-8'); })
+.then(function(data) { return fs.writeFileAsync(relative_path, JSON.stringify(data, null, 2), 'utf-8'); })
 .catch(function(error) {
     console.error('error', error);
     process.exitCode = 1;

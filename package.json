@@ -81,7 +81,7 @@
   },
   "scripts": {
     "postinstall": "bower prune && bower install",
-    "prestart": "grunt build",
+    "prestart": "grunt build && npm run stats",
     "start": "NODE_ENV=production node server.js",
     "dev": "grunt serve",
     "test": "jshint . && mocha test/backend/* && grunt",

@@ -109,34 +109,9 @@
                 </ul>
               </div>
             </div>
-            <div class="col-md-4" ng-if="etablissement.properties['CoordonnéesNum']">
+            <div class="col-md-4" ng-if="etablissement.properties['CoordonnéesNum'] && etablissement.properties['CoordonnéesNum'].Url">
               Contact&nbsp;:<br />
-              <div ng-if="etablissement.properties['CoordonnéesNum']['Téléphone']">
-                <i class="fa fa-phone-square" aria-hidden="true"></i>
-                <a
-                  href="tel:{{ etablissement.properties['CoordonnéesNum']['Téléphone'] }}"
-                  analytics-on="click"
-                  analytics-name="{{ etablissement.properties.id }}"
-                  analytics-event="Téléphone"
-                  analytics-category="Partenaire"
-                >
-                  {{ etablissement.properties['CoordonnéesNum']['Téléphone'] }}
-                </a>
-
-              </div>
-              <div ng-if="etablissement.properties['CoordonnéesNum'].Email">
-                <i class="fa fa-envelope-square" aria-hidden="true"></i>
-                <a
-                  href="mailto:{{ etablissement.properties['CoordonnéesNum'].Email }}"
-                  analytics-on="click"
-                  analytics-name="{{ etablissement.properties.id }}"
-                  analytics-event="Email"
-                  analytics-category="Partenaire"
-                >
-                  {{ etablissement.properties['CoordonnéesNum'].Email }}
-                </a>
-              </div>
-              <div ng-if="etablissement.properties['CoordonnéesNum'].Url">
+              <div>
                 <i class="fa fa-share-square-o" aria-hidden="true"></i>
                 <a
                   href="{{ etablissement.properties['CoordonnéesNum'].Url }}"

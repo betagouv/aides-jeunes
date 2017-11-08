@@ -172,6 +172,12 @@ var droitsDescription = {
                             form: undefined, // Prevent default form recycling
                             teleservice: 'https://www.paris.fr/rsa#ou-et-comment-faire-une-demande-de-rsa_6',
                         },
+                        'M69-LYON': {
+                            provider: {
+                                imgSrc: 'logo_grand_lyon.png',
+                            },
+                            link: 'https://www.grandlyon.com/services/rsa-mode-d-emploi.html',
+                        },
                     }
                 },
                 'aide_logement': {
@@ -277,6 +283,14 @@ var droitsDescription = {
                             instructions: undefined, // Prevent default instructions recycling
                             form: 'https://www.seine-saint-denis.fr/IMG/pdf/dossier_2.pdf',
                             link: 'https://www.seine-saint-denis.fr/ADPA.html',
+                        },
+                        'M69-LYON': {
+                            provider: {
+                                imgSrc: 'logo_grand_lyon.png',
+                            },
+                            instructions: undefined, // Prevent default form recycling
+                            form: 'https://www.grandlyon.com/fileadmin/user_upload/media/pdf/pa-ph/personnes-agees/20170802_dossier_demande_apa.pdf',
+                            link: 'https://www.grandlyon.com/services/allocation-personnalisee-d-autonomie.html',
                         },
                     },
                     'entity': 'individu', // default entity is famille

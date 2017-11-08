@@ -278,6 +278,14 @@ var droitsDescription = {
                             form: 'https://www.seine-saint-denis.fr/IMG/pdf/dossier_2.pdf',
                             link: 'https://www.seine-saint-denis.fr/ADPA.html',
                         },
+                        'M69-LYON': {
+                            provider: {
+                                imgSrc: 'logo_grand_lyon.png',
+                            },
+                            instructions: undefined, // Prevent default form recycling
+                            form: 'https://www.grandlyon.com/fileadmin/user_upload/media/pdf/pa-ph/personnes-agees/20170802_dossier_demande_apa.pdf',
+                            link: 'https://www.grandlyon.com/services/allocation-personnalisee-d-autonomie.html',
+                        },
                     },
                     'entity': 'individu', // default entity is famille
                 }

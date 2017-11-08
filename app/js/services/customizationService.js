@@ -9,6 +9,8 @@ angular.module('ddsCommon').factory('CustomizationService', function() {
                 return 'D93-SSD';
             if (testCase.menages._.depcom[currentPeriod].match(/^75/))
                 return 'D75-PARIS';
+            if (testCase.menages._.depcom[currentPeriod].match(/^69/))
+                return 'M69-LYON';
         }
 
         return undefined;

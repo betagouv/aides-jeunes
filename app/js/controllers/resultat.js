@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, ResultatService, droitsDescription, $analytics) {
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, CityService, ResultatService, droitsDescription, $analytics) {
     $scope.awaitingResults = false;
     $scope.error = false;
     $scope.warning = false;
@@ -72,4 +72,52 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
             $window.alert(data.error.apiError);
         });
     };
+
+    function normalizeEtablissement(etablissement) {
+        var properties = etablissement.properties;
+        properties.Adresse = properties.Adresse || {};
+        if (properties.Adresse && properties.Adresse.Ligne && (typeof properties.Adresse.Ligne === 'string')) {
+            properties.Adresse.Ligne = [ properties.Adresse.Ligne ];
+        }
+
+        if (properties.Ouverture) {
+            if (! properties.Ouverture.PlageJ.length) {
+                properties.Ouverture.PlageJ = [ properties.Ouverture.PlageJ ];
+            }
+            properties.Ouverture.PlageJ.forEach(function(plageJour) {
+                if (! plageJour.PlageH.length) {
+                    plageJour.PlageH = [ plageJour.PlageH ];
+                }
+            });
+            var mapping = {
+                lundi: 1,
+                mardi: 2,
+                mercredi: 3,
+                jeudi: 4,
+                vendredi: 5,
+                samedi: 6,
+                dimanche: 7
+            };
+            properties.Ouverture.PlageJ = _.sortBy(properties.Ouverture.PlageJ, function(a) {
+                return mapping[a['début']];
+            });
+        }
+
+        return etablissement;
+    }
+
+    $scope.extractHHMM = function(dateString) {
+        return dateString.slice(0,5);
+    };
+
+    CityService
+    .getCities($scope.situation.menage.code_postal)
+    .then(function(cities) { return _.find(cities, { codeInsee: $scope.situation.menage.depcom }); })
+    .then(function(city) { return $http.get('https://etablissements-publics.api.gouv.fr/v1/organismes/' + city.departement.code + '/msap'); })
+    .then(function(response) { return response.data; }, function(error) { return { features: [] }; })
+    .then(function(data) {
+        $scope.etablissements = _.filter(data.features, function(etablissement) {
+            return etablissement.properties.Adresse.CodePostal === $scope.situation.menage.code_postal;
+        }).map(normalizeEtablissement);
+    });
 });

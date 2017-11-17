@@ -114,6 +114,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/stats.html',
             controller: 'StatsCtrl',
         })
+        .state('validation', {
+            url: '/validation',
+            templateUrl: '/partials/validation.html',
+            controller: 'ValidationCtrl'
+        })
         .state('foyer', {
             abstract: true,
             url: '/foyer',

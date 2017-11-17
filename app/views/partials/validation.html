@@ -1,0 +1,15 @@
+<div>
+  <div ng-repeat="source in sources">
+    {{ source.name }}
+
+    -
+    <span ng-if="source.tests">
+      {{ source.tests.length }}
+    </span>
+
+    <p>{{ test.error }}</p>
+    <div ng-repeat="test in source.tests">
+      <p>{{ test.data.name }}</p>
+    </div>
+  </div>
+</div>

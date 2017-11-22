@@ -41,6 +41,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'À propos'
             }
         })
+        .state('ameli', {
+            url: '/ameli',
+            templateUrl: '/content-pages/ameli.html',
+            data: {
+                pageTitle: 'Bienvenue sur Mes Aides'
+            }
+        })
         .state('cgu', {
             url: '/cgu',
             templateUrl: '/content-pages/cgu.html',

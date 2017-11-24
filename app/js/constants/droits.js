@@ -308,6 +308,7 @@ var droitsDescription = {
                     'description': 'La bourse de collège est une aide destinée à favoriser la scolarité des collégiens. Elle est versée aux familles ayant de faibles ressources. Son montant dépend du nombre d’enfants à charge.',
                     conditions: [
                         'Déposer votre dossier avant octobre 2017 pour l’année scolaire 2017-2018.',
+                        'Déposer votre dossier à partir de l’été 2018 pour l’année scolaire 2018-2019.',
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F984',
                     'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12539.do',
@@ -323,6 +324,7 @@ var droitsDescription = {
                     'description': 'La bourse de lycée est accordée aux responsables d’un lycéen qui ont de faibles ressources. Si l’élève entre au lycée ou s’il n’a jamais touché de bourse de lycée, il pourra y prétendre selon les ressources et les charges de sa famille. Une nouvelle demande doit être effectuée en cas de redoublement ou réorientation.',
                     conditions: [
                         'Déposer votre dossier avant juillet 2017 pour l’année scolaire 2017-2018.',
+                        'Déposer votre dossier à partir du printemps 2018 pour l’année scolaire 2018-2019.',
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F616',
                     'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do',

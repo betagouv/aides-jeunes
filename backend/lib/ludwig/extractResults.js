@@ -6,7 +6,8 @@ var requestedVariables = require('../openfisca/mapping/common').requestedVariabl
 module.exports = function extractResults(openfiscaResults, date) {
     var period = moment(date).format('YYYY-MM');
 
-    var aideEntity = _.assign({}, openfiscaResults.familles._, openfiscaResults.individus.demandeur);
+    var individuId = openfiscaResults.menages._.personne_de_reference[0];
+    var aideEntity = _.assign({}, openfiscaResults.familles._, openfiscaResults.individus[individuId]);
     return _.reduce(requestedVariables, function(result, aide, aideId) {
         if (aide.type == 'string') {
             return result;

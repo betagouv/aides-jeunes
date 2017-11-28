@@ -130,6 +130,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/validation.html',
             controller: 'ValidationCtrl'
         })
+        .state('trace', {
+            url: '/trace?situationId',
+            templateUrl: '/partials/trace.html',
+            controller: 'TraceCtrl'
+        })
         .state('foyer', {
             abstract: true,
             url: '/foyer',

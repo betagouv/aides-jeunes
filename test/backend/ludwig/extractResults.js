@@ -22,6 +22,11 @@ var response = {
                 "2017-06": "intervention_CDAPH_necessaire"
             },
         }
+    },
+    "menages": {
+        _: {
+            personne_de_reference: ['demandeur']
+        }
     }
 };
 

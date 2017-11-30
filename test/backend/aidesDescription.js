@@ -30,7 +30,7 @@ describe('aides descriptions', function() {
 
                     it('should have a description', function() {
                         expect(aide.description).toBeA('string');
-                        expect(aide.description.length).toBeGreaterThanOrEqualTo(220);
+                        expect(aide.description.length).toBeGreaterThanOrEqualTo(190);
                         expect(aide.description.length).toBeLessThanOrEqualTo(420);
                     });
 

@@ -45,7 +45,7 @@
   <div class="form-group" ng-if="capturePrenom" ng-class="{'has-error': submitted && form.firstName.$invalid}">
     <label class="control-label col-sm-4" for="first-name">Prénom</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="firstName" id="first-name" required ng-model="individu.firstName" aria-describedby="help-first-name">
+      <input type="text" class="form-control" name="firstName" id="first-name" required select-on-focus ng-model="individu.firstName" aria-describedby="help-first-name">
       <p class="help-block" ng-if="submitted && form.firstName.$invalid">Ce champ est obligatoire.</p>
     </div>
     <div class="col-sm-4">

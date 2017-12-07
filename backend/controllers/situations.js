@@ -33,6 +33,14 @@ exports.openfiscaResponse = function(req, res, next) {
     });
 };
 
+exports.openfiscaTrace = function(req, res, next) {
+    return openfisca.trace(req.situation, function(err, result) {
+        if (err) return next(Object.assign(err, { _id: req.situation._id }));
+
+        res.send(Object.assign(result, { _id: req.situation._id }));
+    });
+};
+
 exports.openfiscaRequest = function(req, res) {
     res.send(openfisca.buildOpenFiscaRequest(req.situation));
 };

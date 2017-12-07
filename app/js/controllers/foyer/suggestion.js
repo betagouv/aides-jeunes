@@ -80,16 +80,26 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http,dro
     };
 
     function createSuggestionFile() {
+        delete $scope.error;
         if ($scope.submitting) {
             return;
         }
 
+        var extensions = _.uniq($scope.test.expectedResults.map(function(expectedValue) {
+            return (expectedValue.ref.level == 'partenairesLocaux' && expectedValue.ref.provider) || 'france';
+        }));
+        if (extensions.length != 1) {
+            $scope.error = 'Vous avez spécifié des prestations de plusieurs extensions. Dans un test donné, vous ne pouvez spécifier que des prestations nationales et celle d‘une seule extension. Pour plus d‘information, contactez-nous';
+            return;
+        }
+        var extension = extensions[0];
+
         $scope.submitting = true;
-        var testMetadata = generateState($scope.test);
+        var testMetadata = Object.assign({ extension: extension }, generateState($scope.test));
+
         $http.post('api/situations/' + $scope.situation._id + '/openfisca-test', testMetadata)
         .then(function(result) {
-            var repository = 'openfisca-france';
-            return $http.post('https://ludwig.incubateur.net/api/repositories/github/ludwig-test/' + repository + '/suggest', {
+            return $http.post('https://ludwig.incubateur.net/api/repositories/github/ludwig-test/openfisca-' + (testMetadata.extension) + '/suggest', {
                 title: testMetadata.name,
                 body: testMetadata.description,
                 content: result.data

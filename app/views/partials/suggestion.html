@@ -139,6 +139,7 @@
     </button></p>
 
     <div class="text-center">
+      <p ng-if="error">{{ error }}</p>
       <button
         class="btn btn-primary"
         ng-click="createSuggestionFile()"

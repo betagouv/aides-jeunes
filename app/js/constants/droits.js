@@ -450,7 +450,7 @@ var droitsDescription = {
                 }
             }
         },
-        'rennes_metropole': {
+        'rennesmetropole': {
             'imgSrc': 'logo_rennes_metropole.png',
             'label': 'Rennes Métropole',
             'interactionWithNationalPrestationsHandled': true,

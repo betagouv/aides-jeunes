@@ -79,9 +79,13 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http,dro
         delete expectedResult.shouldCompute;
     };
 
-    function createSuggestionFile() {
+    function createSuggestionFile(form) {
         delete $scope.error;
-        if ($scope.submitting) {
+        if ($scope.submitting || (! form.$valid)) {
+            return;
+        }
+        if (_.some($scope.test.expectedResults, function(expectedResult) { return ! expectedResult.ref; })) {
+            $scope.error = 'Une prestation est mal définie.';
             return;
         }
 
@@ -105,8 +109,8 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http,dro
                 content: result.data
             });
         })
-        .then(function(result) {
-            console.log(result.data);
+        .then(function(response) {
+            $scope.result = response.data;
         })
         .catch(function(error) {
             $scope.error = error.message;

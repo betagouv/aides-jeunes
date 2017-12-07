@@ -11,7 +11,11 @@
     </p>
   </div>
 
-  <form method="post" name="form" class="form-horizontal" ng-submit="submit()">
+  <div ng-if="result">
+    Merci, le test a bien été enregistré. Il est visible à l'<a href="{{ result.data.html_url }}">adresse suivante</a>.
+  </div>
+
+  <form method="post" name="form" class="form-horizontal" ng-submit="submit()" ng-if="! result">
     <h3>Récapitulatif du scénario</h3>
     <div class="row form-group" ng-class="{'has-error': form.submitted && form.name.$invalid, 'has-success': form.submitted && form.name.$valid}">
       <label class="control-label col-md-3" for="test-name">Nom du test</label>
@@ -142,7 +146,7 @@
       <p ng-if="error">{{ error }}</p>
       <button
         class="btn btn-primary"
-        ng-click="createSuggestionFile()"
+        ng-click="createSuggestionFile(form)"
         ng-disabled="! test.expectedResults.length"
         type="submit"
       >

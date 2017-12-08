@@ -1,0 +1,160 @@
+<div>
+  <h1>
+    Création d'une situation de test
+    <small ng-show="awaitingResults"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></small>
+  </h1>
+
+  <div id="warning" class="alert alert-warning" ng-show="warning" role="alert">
+    <h2><i class="fa fa-warning" aria-hidden="true"></i> Aucun résultat disponible</h2>
+    <p>
+      Pour commencer votre simulation, rendez-vous sur la <a ui-sref="home">page d'accueil</a>.
+    </p>
+  </div>
+
+  <form method="post" name="form" class="form-horizontal" ng-submit="submit()">
+    <h3>Récapitulatif du scénario</h3>
+    <div class="row form-group" ng-class="{'has-error': form.submitted && form.name.$invalid, 'has-success': form.submitted && form.name.$valid}">
+      <label class="control-label col-md-3" for="test-name">Nom du test</label>
+      <div class="col-md-6">
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          id="test-name"
+          ng-model="test.name"
+          placeholder="Exemple : Les bourses de l'enseignement supérieur ne sont pas prises en compte dans les ressources"
+          select-on-focus
+          required>
+      </div>
+    </div>
+
+    <div class="row h2">
+      <label class="control-label col-md-3" for="test-description">Description</label>
+      <div class="col-md-6">
+        <textarea name="description" rows="5" class="form-control" id="test-description" ng-model="test.description" select-on-focus></textarea>
+      </div>
+    </div>
+
+    <h3>Valeurs attendues</h3>
+    <div ng-repeat="droit in test.expectedResults" class="frame-resultats">
+
+    <div class="row">
+      <div class="col-md-1">
+        <button type="button" class="btn btn-default btn-xs" ng-click="test.expectedResults.splice($index, 1)"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="control-label col-md-4" for="droit-{{ $index }}">Prestation</label>
+      <div class="col-md-7">
+        <select
+          id="droit-{{ $index }}"
+          class="form-control"
+          ng-options="possibleValue as possibleValue.label for possibleValue in possibleValues track by possibleValue.label"
+          ng-model="droit.ref"
+          ng-change="droitSelected(droit)">
+        </select>
+      </div>
+    </div>
+
+    <div class="row" ng-if="droit.result">
+      <div class="form-group">
+        <label class="control-label col-md-4">Valeur obtenue</label>
+        <div class="col-md-7">
+          <p class="form-control-static text-center"><b>{{ displayValueFor(droit.ref, droit.result) }}</b></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-if="droit.ref.uncomputability">
+      <div class="form-group">
+        <label class="control-label col-md-4" for="expected-value-{{ $index }}">
+          La valeur doît-elle être calculable&nbsp;?
+        </label>
+        <div class="col-md-7 text-center">
+          <label
+            class="btn btn-sm btn-default"
+            ng-class="{active: droit.shouldCompute == true}">
+            <input
+              type="radio"
+              name="shouldCompute-true"
+              class="sr-only"
+              ng-model="droit.shouldCompute"
+              ng-value=true
+              />
+            Oui
+          </label>
+          <label
+            class="btn btn-sm btn-default"
+            ng-class="{active: droit.shouldCompute === false}">
+            <input
+              type="radio"
+              name="shouldCompute-false"
+              class="sr-only"
+              ng-model="droit.shouldCompute"
+              ng-value=false
+              />
+            Non
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-if="droit.ref.uncomputability && (droit.shouldCompute === false)">
+      <div class="form-group">
+        <label class="control-label col-md-4" for="uncomputability-value-{{ $index }}">
+          Quelle est la raison&nbsp;?
+        </label>
+        <div class="col-md-7">
+          <select
+            class="form-control"
+            id="uncomputability-value-{{ $index }}"
+            ng-options="uncomputabilityReasonId as displayValueFor(droit.ref, uncomputabilityReasonId) for (uncomputabilityReasonId, uncomputabilityReason) in droit.ref.uncomputability"
+            ng-model="droit.expectedValue"
+          ></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-if="droit.ref && ((! droit.ref.uncomputability) || droit.shouldCompute)">
+      <div class="form-group">
+        <label class="control-label col-md-4" for="expected-value-{{ $index }}">
+          Valeur attendue
+        </label>
+
+        <div class="col-md-7" ng-if="droit.ref.hasMontant !== false">
+          <div class="input-group">
+            <input id="expected-value-{{ $index }}" class="form-control text-right" name="expected-value" type="number" lang="fr" step="any" ng-model="droit.expectedValue" required select-on-focus>
+            <span class="input-group-addon">{{ droit.ref.unit || '€' }}</span>
+          </div>
+        </div>
+
+        <yes-no-question model="droit.expectedValue" ng-if="droit.ref.hasMontant === false"/>
+      </div>
+    </div>
+  </div>
+
+    <p><button type="button" class="btn btn-default btn-xs" ng-click="test.expectedResults.push({}); showComputableInput.push(true)">
+    Ajouter une {{ test.expectedResults.length ? 'autre' : '' }} prestation
+    </button></p>
+
+    <div class="text-center">
+      <button
+        class="btn btn-primary"
+        ng-click="createSuggestionFile()"
+        ng-disabled="! test.expectedResults.length"
+        type="submit"
+      >
+        {{ submitLabel() }}
+        <span ng-if="submitting" class="fa fa-spinner fa-spin" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <h3>Détails de la situation</h3>
+    <div class="row h2">
+      <div class="col-md-12">
+        <pre><code>{{ situationYAML }}</code></pre>
+      </div>
+    </div>
+  </form>
+</div>

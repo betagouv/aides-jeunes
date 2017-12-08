@@ -27,6 +27,7 @@ angular.module('ddsApp').controller('TraceCtrl', function($scope, $http, $stateP
     $http.get('/api/situations/' + $scope.investigation.situationId + '/openfisca-trace')
     .then(function(response) {
         $scope.rawData = response.data;
+        $scope.rawData.requestedCalculations.sort();
         $scope.trace = $scope.rawData.trace;
     }, function(error) {
         $scope.error = error;

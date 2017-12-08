@@ -35,7 +35,7 @@
     <label for="root">Sélectionnez une prestation</label>
     <select
       name="root"
-      ng-options="value for value in rawData.requestedCalculations"
+      ng-options="value + ' - ' + trace[value].value for value in rawData.requestedCalculations"
       ng-model="investigation.root"
       ng-change="refreshView()"
     ></select>

@@ -35,35 +35,25 @@ function allocateIndividualsToEntities(situation) {
     menage.enfants = enfantIds;
 }
 
-function setNonInjectedPrestationsToZero(familles, individus, dateDeValeur) {
-    var subjects = {
-        famille: familles,
-        individu: individus,
-    };
-    var periods = common.getPeriods(dateDeValeur);
-    var thisMonth = periods.thisMonth;
-    var last12Months = periods.last12Months;
-
+function setNonInjectedPrestations(testCase, periods, value) {
     var prestationsFinancieres = _.pickBy(common.requestedVariables, function(definition) {
         return (! definition.type) || definition.type === 'float';
     });
 
     _.forEach(prestationsFinancieres, function(definition, prestationName) {
-        _.forEach(subjects[definition.entity || 'famille'], function(entity) {
+        _.forEach(testCase[(definition.entity || 'famille') + 's'], function(entity) {
             entity[prestationName] = entity[prestationName] || {};
-            _.forEach(last12Months, function(period) {
-                entity[prestationName][period] = entity[prestationName][period] || 0;
+            _.forEach(periods, function(period) {
+                if (value === undefined) {
+                    delete entity[prestationName][period];
+                } else {
+                    entity[prestationName][period] = entity[prestationName][period] || value;
+                }
             });
         });
     });
-
-    _.forEach(common.requestedVariables, function(definition, prestationName) {
-        _.forEach(subjects[definition.entity || 'famille'], function(entity) {
-            entity[prestationName] = entity[prestationName] || {};
-            entity[prestationName][thisMonth] = entity[prestationName][thisMonth] || null;
-        });
-    });
 }
+exports.setNonInjectedPrestations = setNonInjectedPrestations;
 
 
 function mapIndividus(situation) {
@@ -117,7 +107,10 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     testCase.menages._.statut_occupation_logement = statuts_occupation_logement[testCase.menages._.statut_occupation_logement];
 
     propertyMove.movePropertyValuesToGroupEntity(testCase);
-    setNonInjectedPrestationsToZero(testCase.familles, individus, situation.dateDeValeur);
+
+    var periods = common.getPeriods(situation.dateDeValeur);
+    setNonInjectedPrestations(testCase, periods.last12Months, 0);
+    setNonInjectedPrestations(testCase, [periods.thisMonth], null);
 
     last3MonthsDuplication(testCase, situation.dateDeValeur);
 

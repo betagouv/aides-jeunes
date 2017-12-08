@@ -1,15 +1,16 @@
+<ui-view>
 <h1>Résultats de votre simulation</h1>
 
-<p ng-if="awaitingResults"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
+<p ng-show="awaitingResults"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
 
-<div id="warning" class="alert alert-warning" ng-if="warning" role="alert">
+<div id="warning" class="alert alert-warning" ng-show="warning" role="alert">
   <h2><i class="fa fa-warning" aria-hidden="true"></i> Aucun résultat disponible</h2>
   <p>
     Pour commencer votre simulation, rendez-vous sur la <a ui-sref="home">page d'accueil</a>.
   </p>
 </div>
 
-<div id="error" class="alert alert-danger" ng-if="error" role="alert">
+<div id="error" class="alert alert-danger" ng-show="error" role="alert">
   <h2><i class="fa fa-warning" aria-hidden="true"></i> Une erreur est survenue.</h2>
   <p><a analytics-on="click" analytics-category="Contact" analytics-event="Support" href="mailto:bug@mes-aides.gouv.fr?subject=[{{ situation._id }}]%20Probleme%20technique&body=Bonjour%2c%0d%0a%0d%0aJ%27ai%20tent%c3%a9%20de%20XXX%2c%0d%0aEt%20en%20cliquant%20sur%20XXX%2c%0d%0aJ%27ai%20rencontr%c3%a9%20l%27erreur%20ci-dessous.%0d%0a%0d%0aJe%20vous%20joins%20%c3%a9galement%20une%20capture%20d%27%c3%a9cran%20pour%20faciliter%20la%20compr%c3%a9hension%20du%20probl%c3%a8me.%0d%0a%0d%0a%e2%80%94%e2%80%94%e2%80%94%e2%80%94%0d%0aID%20%3a%20{{ situation._id }}%0d%0aUser-agent%20%3a%20{{ encodedUserAgent }}%0d%0aErreur%20%3a%20{{ encodedError }}%0d%0a%e2%80%94%e2%80%94%e2%80%94%e2%80%94">Signalez ce problème</a> en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et en joignant si possible une capture d'écran. Nous vous répondrons au plus vite et corrigerons le problème dès que possible.</p>
 
@@ -21,13 +22,12 @@
   </small>
 </div>
 
-<div ng-if="! error && ! warning && ! awaitingResults">
-
+<div ng-show="! error && ! warning && ! awaitingResults">
   <div ng-if="! (droits.prestationsNationales | isEmpty)">
     <p>D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides <strong>{{ droits.partenairesLocaux ? "nationales" : "" }}</strong> : </p>
     <div class="frame-resultats">
       <droit-eligibles-list list="droits.prestationsNationales"></droit-eligibles-list>
-      <ym2-ressources-call-to-action ng-if="! ressourcesYearMoins2Captured"></ym2-ressources-call-to-action>
+      <ym2-ressources-call-to-action ng-hide="ressourcesYearMoins2Captured"></ym2-ressources-call-to-action>
     </div>
   </div>
 
@@ -45,17 +45,17 @@
     </div>
   </div>
 
-  <div class="frame-resultats" ng-if="noDroits && ! ressourcesYearMoins2Captured">
+  <div class="frame-resultats" ng-show="noDroits && ! ressourcesYearMoins2Captured">
       <h2>Juste une dernière étape…</h2>
       <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
   </div>
 
-  <div class="frame-resultats" ng-if="noDroits && ressourcesYearMoins2Captured">
+  <div class="frame-resultats" ng-show="noDroits && ressourcesYearMoins2Captured">
       <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
       <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
   </div>
 
-  <div class="frame-resultats" ng-if="! noDroits && ! isPatrimoineCaptured()">
+  <div class="frame-resultats" ng-show="! noDroits && ! isPatrimoineCaptured()">
     <div class="row">
       <div class="col-sm-8">
         <i class="fa fa-info-circle" aria-hidden="true"></i>
@@ -140,8 +140,7 @@
   </ul>
   <small ng-if="situation._id">Cette simulation a pour identifiant <span id="simulationId">{{ situation._id }}</span> (en savoir plus sur <a ui-sref="cgu_donnees">le traitement de vos données personnelles</a>).</small><br>
   <small ng-dblClick="showAdditionalLinks = ! showAdditionalLinks">
-    Partenaires&nbsp;: <a href="" ng-click="createTest()">créez un test</a><span ng-if="showAdditionalLinks" > ou bien
-      <a ui-sref="trace({ situationId: situation._id })">accédez au tracer pour cette simulation</a></span>.
+    Partenaires&nbsp;: <a href="" ng-click="createTest()">créez un test</a><span ng-if="showAdditionalLinks" > dans l'ancienne interface, <a ui-sref="foyer.resultat.suggestion">créez en un dans la nouvelle</a> ou bien <a ui-sref="trace({ situationId: situation._id })">accédez au tracer pour cette simulation</a></span>.
   </small>
 </div>
 
@@ -157,3 +156,4 @@
   <h4 ng-show="! (droitsInjectes | isEmpty)">Aides que vous percevez déjà aujourd'hui, et dont nous n'avons pas recalculé le montant</h4>
   <droits-list droits="droitsInjectes"></droits-list>
 </div>
+</ui-view>

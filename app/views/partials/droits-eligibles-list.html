@@ -51,7 +51,7 @@
         </div>
 
         <div ng-if="isString(droit.montant)" class="alert alert-warning-inverse">
-          <p>L'application Mes Aides ne peut pas calculer le montant de cette prestation, car <span ng-bind-html="droit.uncomputability[droit.montant].reason"></span>.</p>
+          <p>L'application Mes Aides ne peut pas calculer le montant de cette prestation, car <span ng-bind-html="droit.uncomputability[droit.montant].reason.user"></span>.</p>
           <p ng-if="droit.uncomputability[droit.montant].solution"><strong ng-bind-html="droit.uncomputability[droit.montant].solution"></strong></p>
         </div>
 

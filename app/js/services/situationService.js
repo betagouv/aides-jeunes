@@ -96,6 +96,16 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             .then(saveLocally);
         },
 
+        YAMLRepresentation: function(sourceSituation) {
+            var situation = _.cloneDeep(sourceSituation);
+            situation.dateDeValeur = moment(new Date(situation.dateDeValeur)).format('YYYY-MM-DD');
+            situation.individus.forEach(function(individu) {
+                individu.date_naissance = individu.date_naissance.format('YYYY-MM-DD');
+                delete individu.hasRessources;
+            });
+            return jsyaml.dump(_.omit(situation, '__v'));
+        },
+
         /**
         *@param    {String}  A situation model to send to the backend
         *@return   {String}  A boolean indicating whether the situation looks ready for OpenFisca or not

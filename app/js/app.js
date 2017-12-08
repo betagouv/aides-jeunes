@@ -221,6 +221,10 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/resultat?situationId',
             templateUrl: '/partials/resultat.html',
             controller: 'ResultatCtrl'
+        }).state('foyer.resultat.suggestion', {
+            url: '/suggestion',
+            templateUrl: '/partials/suggestion.html',
+            controller: 'SuggestionCtrl'
         })
         .state('foyer.ressourcesYearMoins2', {
             templateUrl: '/partials/foyer/ressources/year-moins-2.html',

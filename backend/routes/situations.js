@@ -12,4 +12,5 @@ module.exports = function(api) {
     api.route('/situations/:situationId/openfisca-response').get(situations.openfiscaResponse);
     api.route('/situations/:situationId/legacy-openfisca-request').get(situations.openfiscaRequestFromLegacy);
     api.route('/situations/:situationId/openfisca-request').get(situations.openfiscaRequest);
+    api.route('/situations/:situationId/openfisca-trace').get(situations.openfiscaTrace);
 };

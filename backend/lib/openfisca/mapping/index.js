@@ -110,9 +110,15 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
 
     var periods = common.getPeriods(situation.dateDeValeur);
     setNonInjectedPrestations(testCase, periods.last12Months, 0);
-    setNonInjectedPrestations(testCase, [periods.thisMonth], null);
 
     last3MonthsDuplication(testCase, situation.dateDeValeur);
+
+    _.forEach(common.requestedVariables, function(definition, prestationName) {
+        _.forEach(testCase[(definition.entity || 'famille') + 's'], function(entity) {
+            entity[prestationName] = entity[prestationName] || {};
+            entity[prestationName][periods.thisMonth] = entity[prestationName][periods.thisMonth] || null;
+        });
+    });
 
     return testCase;
 };

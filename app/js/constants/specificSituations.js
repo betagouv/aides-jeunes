@@ -3,11 +3,11 @@
 angular.module('ddsCommon').constant('specificSituations', [
     {
         id: 'etudiant',
-        label: 'Étudiant·e'
+        label: 'Étudiant•e, apprenti•e'
     },
     {
         id: 'retraite',
-        label: 'Retraité·e'
+        label: 'Retraité•e'
     },
     {
         id: 'chomeur',

@@ -8,7 +8,8 @@
         ng-class="{ 'has-error': form.submitted && form[ ressourceType.id + '-monthly-value'].$invalid }"
         >
         <label class="col-sm-5 control-label" for="{{ ressourceType.id }}-monthly-value">
-          Montant mensuel
+          Montant mensuel sur les 12 derniers mois
+          <span class="help-col">Si vos ressources sont restées les mêmes</span>
         </label>
         <div class="col-sm-3">
           <div class="input-group">
@@ -39,7 +40,7 @@
           href=""
           >
           <span class="fa fa-chevron-down"></span>
-          Préciser les montants pour les 12 derniers mois
+          Ou bien préciser en détail vos revenus
         </a>
       </div>
     </div>
@@ -129,7 +130,7 @@
           href=""
         >
           <span class="fa fa-chevron-up"></span>
-          Définir un montant mensuel
+          Définir un montant constant pour les 12 derniers mois
         </a>
       </div>
     </div>

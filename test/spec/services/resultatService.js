@@ -37,10 +37,10 @@ describe('ResultatService', function () {
                 dateDeValeur: '2014-11-01',
                 individus: [{
                     aah: {
-                        '2014-10': 1
+                        '2014-10': 100
                     },
                     apl: {
-                        '2014-10': 1
+                        '2014-10': 100
                     }
                 }]
             };
@@ -56,7 +56,7 @@ describe('ResultatService', function () {
                 individus: {
                     demandeur: {
                         acs: {
-                            '2014-11':1
+                            '2014-11':100.25
                         },
                         cmu_c: {
                             '2014-11': false
@@ -69,6 +69,7 @@ describe('ResultatService', function () {
 
         it('should extract eligibles droits from openfisca result', function() {
             expect(droits.droitsEligibles.prestationsNationales.acs).toBeTruthy();
+            expect(droits.droitsEligibles.prestationsNationales.acs.montant).toEqual(100);
             expect(droits.droitsEligibles.prestationsNationales.acs.provider.label).toEqual('CAF');
         });
 

@@ -51,7 +51,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
                         return;  // the aides were declared, do not re-compute the results
                     }
 
-                    var value = round(valueAt(aideId + '_non_calculable', computedRessources, period) || valueAt(aideId, computedRessources, period), aide);
+                    var value = valueAt(aideId + '_non_calculable', computedRessources, period) || round(valueAt(aideId, computedRessources, period), aide);
 
                     if (! value) return;
 

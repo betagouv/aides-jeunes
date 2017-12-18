@@ -22,6 +22,14 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
         }, false);
     }
 
+    function round(amount, aide) {
+        if (! aide.unit && aide.roundToNearest10 !== false) {
+            return Math.round(amount / 10) * 10;
+        } else {
+            return Math.round(amount);
+        }
+    }
+
     function computeAides(situation, openfiscaResponse) {
         var period = moment(situation.dateDeValeur).format('YYYY-MM');
         var customizationId = CustomizationService.determineCustomizationId(openfiscaResponse, period);
@@ -43,7 +51,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
                         return;  // the aides were declared, do not re-compute the results
                     }
 
-                    var value = valueAt(aideId + '_non_calculable', computedRessources, period) || valueAt(aideId, computedRessources, period);
+                    var value = valueAt(aideId + '_non_calculable', computedRessources, period) || round(valueAt(aideId, computedRessources, period), aide);
 
                     if (! value) return;
 

@@ -32,6 +32,8 @@
         </div>
       </div>
 
+      <div class="text-center">&horbar; ou bien &horbar;</div>
+
       <div class="row ressource-input-type-label"
         ng-click="locals.detailed = ! locals.detailed"
       >
@@ -40,7 +42,7 @@
           href=""
           >
           <span class="fa fa-chevron-down"></span>
-          Ou bien préciser en détail vos revenus
+          Préciser en détail vos revenus
         </a>
       </div>
     </div>
@@ -121,6 +123,8 @@
         ressource-type="ressourceType"
         ng-if="! ressourceType.revenuExceptionnel"
       ></capture-continuation>
+
+      <div class="text-center">&horbar; ou bien &horbar;</div>
 
       <div class="row ressource-input-type-label"
         ng-click="locals.detailed = ! locals.detailed"

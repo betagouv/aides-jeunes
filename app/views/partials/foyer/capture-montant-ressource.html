@@ -10,7 +10,7 @@
         <label class="col-sm-5 control-label" for="{{ ressourceType.id }}-monthly-value">
           Montant mensuel
         </label>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="input-group">
             <input
               type="number"
@@ -31,6 +31,8 @@
         </div>
       </div>
 
+      <div class="text-center">&horbar; ou &horbar;</div>
+
       <div class="row ressource-input-type-label"
         ng-click="locals.detailed = ! locals.detailed"
       >
@@ -39,7 +41,7 @@
           href=""
           >
           <span class="fa fa-chevron-down"></span>
-          Préciser les montants pour les 12 derniers mois
+          Détailler les montants sur les 12 derniers mois
         </a>
       </div>
     </div>
@@ -121,6 +123,8 @@
         ng-if="! ressourceType.revenuExceptionnel"
       ></capture-continuation>
 
+      <div class="text-center">&horbar; ou &horbar;</div>
+
       <div class="row ressource-input-type-label"
         ng-click="locals.detailed = ! locals.detailed"
       >
@@ -129,7 +133,7 @@
           href=""
         >
           <span class="fa fa-chevron-up"></span>
-          Définir un montant mensuel
+          Déclarer un même montant pour les 12 derniers mois
         </a>
       </div>
     </div>

@@ -73,22 +73,19 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         });
     };
 
-    function normalizeEtablissement(etablissement) {
-        var properties = etablissement.properties;
-        properties.Adresse = properties.Adresse || {};
-        if (properties.Adresse && properties.Adresse.Ligne && (typeof properties.Adresse.Ligne === 'string')) {
-            properties.Adresse.Ligne = [ properties.Adresse.Ligne ];
-        }
+    function normalizeEtablissement(etablissementData) {
+        var etablissement = etablissementData.Organisme;
 
-        if (properties.Ouverture) {
-            if (! properties.Ouverture.PlageJ.length) {
-                properties.Ouverture.PlageJ = [ properties.Ouverture.PlageJ ];
-            }
-            properties.Ouverture.PlageJ.forEach(function(plageJour) {
-                if (! plageJour.PlageH.length) {
-                    plageJour.PlageH = [ plageJour.PlageH ];
-                }
-            });
+        etablissement.Adresse = (etablissement.Adresse && etablissement.Adresse[0]) || {};
+        etablissement.Adresse.CodePostal = etablissement.Adresse.CodePostal[0];
+        etablissement.Adresse.NomCommune = etablissement.Adresse.NomCommune[0];
+        etablissement.Nom = etablissement.Nom[0];
+        etablissement['CoordonnéesNum'] = etablissement['CoordonnéesNum'][0];
+        etablissement['CoordonnéesNum'].Url = etablissement['CoordonnéesNum'].Url[0];
+
+
+        if (etablissement.Ouverture) {
+            etablissement.Ouverture = etablissement.Ouverture[0];
             var mapping = {
                 lundi: 1,
                 mardi: 2,
@@ -98,7 +95,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
                 samedi: 6,
                 dimanche: 7
             };
-            properties.Ouverture.PlageJ = _.sortBy(properties.Ouverture.PlageJ, function(a) {
+            etablissement.Ouverture.PlageJ = _.sortBy(etablissement.Ouverture.PlageJ, function(a) {
                 return mapping[a['début']];
             });
         }
@@ -113,11 +110,9 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     CityService
     .getCities($scope.situation.menage.code_postal)
     .then(function(cities) { return _.find(cities, { codeInsee: $scope.situation.menage.depcom }); })
-    .then(function(city) { return $http.get('https://etablissements-publics.api.gouv.fr/v1/organismes/' + city.departement.code + '/msap'); })
-    .then(function(response) { return response.data; }, function(error) { return { features: [] }; })
-    .then(function(data) {
-        $scope.etablissements = _.filter(data.features, function(etablissement) {
-            return etablissement.properties.Adresse.CodePostal === $scope.situation.menage.code_postal;
-        }).map(normalizeEtablissement);
+    .then(function(city) { return $http.get('https://etablissements-publics.api.gouv.fr/v2/communes/' + city.codeInsee + '/msap'); })
+    .then(function(response) { return response.data; }, function(error) { return []; })
+    .then(function(etablissements) {
+        $scope.etablissements = etablissements.map(normalizeEtablissement);
     });
 });

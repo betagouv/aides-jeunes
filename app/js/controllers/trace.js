@@ -29,6 +29,11 @@ angular.module('ddsApp').controller('TraceCtrl', function($scope, $http, $stateP
         $scope.rawData = response.data;
         $scope.rawData.requestedCalculations.sort();
         $scope.trace = $scope.rawData.trace;
+
+        var variables = Object.keys($scope.trace);
+        variables.forEach(function(variable) {
+            $scope.trace[variable].dependencies = _.uniq($scope.trace[variable].dependencies);
+        });
     }, function(error) {
         $scope.error = error;
     });

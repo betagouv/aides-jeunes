@@ -93,6 +93,7 @@ var situationSchema = {
     individus: [individuDef],
     menage: menageDef,
     modifiedFrom: String,
+    version: { type: Number, default: 0 },
 };
 
 mongoose.model('Situation', new mongoose.Schema(situationSchema, { minimize: false }));

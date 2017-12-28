@@ -3,6 +3,8 @@ var fs = require('fs');
 
 module.exports = function(mongoose, config) {
 
+    mongoose.Promise = require('bluebird');
+
     mongoose.connect(config.mongo.uri, config.mongo.options);
 
     // Bootstrap models

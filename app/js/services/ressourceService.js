@@ -13,9 +13,10 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         if (ressourceType.id == 'tns_auto_entrepreneur_chiffre_affaires')
         {
             periodKeys.push(lastYear);
+            periodKeys = periodKeys.concat(_.map(MonthService.getMonths(dateDeValeur, 3), 'id'));
+        } else {
+            periodKeys = periodKeys.concat(_.map(MonthService.getMonths(dateDeValeur, 12), 'id'));
         }
-
-        periodKeys = periodKeys.concat(_.map(MonthService.getMonths(dateDeValeur, 12), 'id'));
 
         if (! ressourceType.revenuExceptionnel) {
             periodKeys.push(moment(dateDeValeur).format('YYYY-MM'));

@@ -95,8 +95,8 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
                 samedi: 6,
                 dimanche: 7
             };
-            etablissement.Ouverture.PlageJ = _.sortBy(etablissement.Ouverture.PlageJ, function(a) {
-                return mapping[a['début']];
+            etablissement.Ouverture.PlageJ = _.sortBy(etablissement.Ouverture.PlageJ, function(plage) {
+                return mapping[plage.$['début']];
             });
         }
 

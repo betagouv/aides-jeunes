@@ -113,4 +113,9 @@ module.exports = [
         'shortLabel': 'Rennes - Transport',
         'unit': '%',
     },
+    {
+        'id': 'brest_metropole_transport',
+        'shortLabel': 'Brest - Transport',
+        'unit': '%',
+    },
 ];

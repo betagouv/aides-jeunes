@@ -269,6 +269,7 @@ var droitsDescription = {
         },
         'departements': {
             label: 'Les conseils départementaux',
+            'imgSrc': 'logo_cd_generique.png',
             prestations: {
                 apa_eligibilite: {
                     label: 'Allocation personnalisée d‘autonomie',

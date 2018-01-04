@@ -149,7 +149,7 @@ var droitsDescription = {
                         'Si vous êtes ressortissant·e d’un autre pays, résider en France depuis plus de 5 ans de manière continue (sous couvert de titres de séjours autorisant à travailler).'
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/N19775',
-                    'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
+                    'teleservice': 'https://wwwd.caf.fr/redirect/s/Redirect?page=demandeRsa',
                     'forms': {
                         'caf': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
                         'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do'

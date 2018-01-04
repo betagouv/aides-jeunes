@@ -472,15 +472,14 @@ var droitsDescription = {
         },
         'brestmetropole': {
             'imgSrc': 'logo_brest_metropole.png',
-            'label': 'Brest Métropole',
+            'label': 'Brest métropole',
             'interactionWithNationalPrestationsHandled': true,
             'prefix': 'de',
             'prestations': {
                 'brest_metropole_transport': {
                     'isMontantAnnuel': false,
-                    'unit': '%',
-                    'legend': 'de l’abonnement Bibus',
-                    'label': 'Tarification solidaire transports Brest Métropole',
+                    'legend': 'au lieu de 38.50 €',
+                    'label': 'Tarification solidaire transports',
                     'shortLabel': 'Brest Transport',
                     'description': 'Les familles aux ressources modestes bénéficient de forfaits mensuels à tarif réduit pour les transports : les forfaits Tempo, Tango et Rythmo. Tous les membres du foyer peuvent en bénéficier.',
                     conditions: [

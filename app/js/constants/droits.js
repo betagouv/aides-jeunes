@@ -469,6 +469,29 @@ var droitsDescription = {
                     'entity': 'individu', // default entity is famille
                 },
             }
+        },
+        'brestmetropole': {
+            'imgSrc': 'logo_brest_metropole.png',
+            'label': 'Brest métropole',
+            'interactionWithNationalPrestationsHandled': true,
+            'prefix': 'de',
+            'prestations': {
+                'brest_metropole_transport': {
+                    'isMontantAnnuel': false,
+                    'legend': 'au lieu de 38.50 €',
+                    'label': 'Tarification solidaire transports',
+                    'shortLabel': 'Brest Transport',
+                    'description': 'Les familles aux ressources modestes bénéficient de forfaits mensuels à tarif réduit pour les transports : les forfaits Tempo, Tango et Rythmo. Tous les membres du foyer peuvent en bénéficier.',
+                    conditions: [
+                        'Présenter un <a target="_blank" rel="noopener" href="http://www.caf.fr/allocataires/vies-de-famille/changement-de-situation/changement-familial/le-quotient-familial-c-est-quoi">justificatif de votre quotient familial</a> délivré par votre Caf.'
+                    ],
+                    'link': 'http://www.bibus.fr/1/215.aspx',
+                    'instructions': 'http://www.bibus.fr/1/198.aspx',
+                    'isBaseRessourcesYearMoins2': false,
+                    'roundToNearestCent': true,
+                    'entity': 'individu', // default entity is famille
+                },
+            }
         }
     }
 };

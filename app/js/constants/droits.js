@@ -488,6 +488,7 @@ var droitsDescription = {
                     'link': 'http://www.bibus.fr/1/215.aspx',
                     'instructions': 'http://www.bibus.fr/1/198.aspx',
                     'isBaseRessourcesYearMoins2': false,
+                    'roundToNearestCent': true,
                     'entity': 'individu', // default entity is famille
                 },
             }

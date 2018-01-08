@@ -35,7 +35,7 @@ function toYAML(test) {
 
 var EXTENSION_VARIABLES = {
     'openfisca-brestmetropole': {
-        familles: [ 'brest_metropole_transport' ],
+        individus: [ 'brest_metropole_transport' ],
     },
     'openfisca-paris': {
         familles: [

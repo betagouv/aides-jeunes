@@ -48,6 +48,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'Bienvenue sur Mes Aides'
             }
         })
+        .state('ameliorer', {
+            url: '/ameliorer',
+            templateUrl: '/content-pages/ameliorer.html',
+            data: {
+                pageTitle: 'Améliorer'
+            }
+        })
         .state('cgu', {
             url: '/cgu',
             templateUrl: '/content-pages/cgu.html',
@@ -68,27 +75,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 $scope.situationId = SituationService.restoreLocal()._id;
             }
         })
-        .state('sos', {
-            url: '/sos',
-            templateUrl: '/content-pages/sos.html',
-            data: {
-                pageTitle: 'SOS'
-            }
-        })
-		.state('liens-utiles', {
-            url: '/liens-utiles',
-            templateUrl: '/content-pages/liens-utiles.html',
-            data: {
-                pageTitle: 'Liens utiles'
-            }
-        })
-        .state('ameliorer', {
-            url: '/ameliorer',
-            templateUrl: '/content-pages/ameliorer.html',
-            data: {
-                pageTitle: 'Améliorer'
-            }
-        })
         .state('communication', {
             url: '/communication',
             templateUrl: '/content-pages/communication.html',
@@ -107,6 +93,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 $scope.contactABTestingEnv = (ABTesting.contact && ABTesting.contact.value) || 'A';
             }
         })
+        .state('liens-utiles', {
+            url: '/liens-utiles',
+            templateUrl: '/content-pages/liens-utiles.html',
+            data: {
+                pageTitle: 'Liens utiles'
+            }
+        })
         .state('social', {
             url: '/social',
             templateUrl: '/content-pages/social.html',
@@ -114,10 +107,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'Réseaux sociaux'
             }
         })
-        .state('tests', {
-            url: '/tests',
-            onEnter: function($window) {
-                $window.location.href = '/tests';
+        .state('sos', {
+            url: '/sos',
+            templateUrl: '/content-pages/sos.html',
+            data: {
+                pageTitle: 'SOS'
             }
         })
         .state('stats', {
@@ -125,15 +119,21 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/stats.html',
             controller: 'StatsCtrl',
         })
-        .state('validation', {
-            url: '/validation',
-            templateUrl: '/partials/validation.html',
-            controller: 'ValidationCtrl'
+        .state('tests', {
+            url: '/tests',
+            onEnter: function($window) {
+                $window.location.href = '/tests';
+            }
         })
         .state('trace', {
             url: '/trace?situationId',
             templateUrl: '/partials/trace.html',
             controller: 'TraceCtrl'
+        })
+        .state('validation', {
+            url: '/validation',
+            templateUrl: '/partials/validation.html',
+            controller: 'ValidationCtrl'
         })
         .state('foyer', {
             abstract: true,

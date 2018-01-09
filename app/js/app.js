@@ -93,6 +93,16 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 $scope.contactABTestingEnv = (ABTesting.contact && ABTesting.contact.value) || 'A';
             }
         })
+        .state('hameconnage', {
+            url: '/hameconnage',
+            templateUrl: '/content-pages/hameconnage.html',
+            data: {
+                pageTitle: '⚠️ Hameçonnage ⚠️'
+            },
+            controller: function($scope) {
+                $scope.referrer = document.referrer;
+            }
+        })
         .state('liens-utiles', {
             url: '/liens-utiles',
             templateUrl: '/content-pages/liens-utiles.html',

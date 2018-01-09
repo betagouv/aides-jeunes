@@ -122,3 +122,8 @@ main {
 #start-row {
     text-align: center;
 }
+
+.frame-aides-homepage img {
+    width: 100%;
+    max-width: 150px;
+}

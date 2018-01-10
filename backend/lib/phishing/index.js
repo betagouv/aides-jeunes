@@ -2,8 +2,7 @@ var crypto = require('crypto');
 var os = require('os');
 var path = require('path');
 var rp = require('request-promise');
-Promise = require('bluebird');
-
+Promise = require('bluebird'); // jshint ignore:line
 
 console.log(os.tmpdir());
 
@@ -13,7 +12,7 @@ var phishingExpressions = require('./../../../app/js/constants/phishingExpressio
 
 var OKSites = fs.readFileSync('backend/lib/phishing/ok-sites.txt', { encoding: 'utf-8' }).split('\n').filter(s => s !== '');
 function getFile(referrer) {
-    shasum = crypto.createHash('sha1')
+    shasum = crypto.createHash('sha1');
     shasum.update(referrer.label);
     var hash = shasum.digest('hex');
     var fullpath = path.join(os.tmpdir(), 'phishing-' + hash);
@@ -26,11 +25,14 @@ function getFile(referrer) {
     .then(data => {
         return fs.writeFileAsync(fullpath, data, 'utf-8')
         .then(() => data);
-    })
+    });
 }
 
 var uris = ['test', 'acusticanapoli'];
 function estimateFraudulentLevel(referrer) {
+    if (! referrer.label)
+        return Promise.fulfilled(-400);
+
     if (phishingExpressions.some(expr => referrer.label.match(expr)))
         return Promise.fulfilled(1);
 
@@ -76,7 +78,7 @@ rp({
         };
     });
 })
-.then(results => results.sort(function(a, b) { return a.referrer.label.localeCompare(b.referrer.label); }))
+.then(results => results.sort(function(a, b) { return (a.referrer.label || '').localeCompare((b.referrer.label || '')); }))
 .then(results => {
-    console.log(results.filter(r => r.status < 0 ).map(r => r.referrer.label + ' - ' + r.status + ' - ' + r.referrer.subtable[0].label).join('\n'));
+    console.log(results.filter(r => r.status < 0 ).map(r => r.referrer.label + ' - ' + r.status + ' - ' + (r.referrer.subtable ? r.referrer.subtable[0].label : '')).join('\n'));
 });

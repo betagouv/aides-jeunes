@@ -61,13 +61,13 @@ deployment:
   # Continuous deployment is done on a dedicated instance in OVH datacenters
   metal:
     branch: master
-    owner: sgmap
+    owner: betagouv
     commands:
       # CircleCI relies on a private key that triggers /opt/mes-aides/update.sh deploy
       - ssh root@metal.mes-aides.gouv.fr
   vps:
     branch: vps
-    owner: sgmap
+    owner: betagouv
     commands:
       # CircleCI relies on a private key that triggers /opt/mes-aides/update.sh deploy
       - ssh root@vps.mes-aides.gouv.fr

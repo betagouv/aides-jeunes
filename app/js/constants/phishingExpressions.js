@@ -2,12 +2,14 @@
 'use strict';
 
 var phishingExpressions = [
+    /\.beget\.tech/,
     /acusticanapoli\.com/,
     /archer\.fr/,
     /assurance-ameli-recouvrement\.com/,
+    /assurance\.remboursement-amelifr/,
+    /assure-ameli-portail-remboursement\.info/,
     /assurance-ameli-recouvrement\.net/,
     /assurance\.remboursement-amelifr\.kostidis\.gr/,
-    /depor420\.beget\.tech/,
     /intercoined\.com/,
     /liveone\.com\.br/,
     /mannishtalk\.com/,
@@ -15,7 +17,10 @@ var phishingExpressions = [
     /remboursement\.ameliassurance-fr36932693693269\.irds\.ro/,
     /remboursement\.caisse-assurance\.irds\.ro/,
     /remboursement\.ameliassurance\.marikala\.gr/,
-    /yzfg\.r\.bh\.d\.sendibt3\.com/
+    /sendibm/,
+    /yzfg\.r\.bh\.d\.sendibt3\.com/,
+    /www\.crplindia\.com/,
+    /www\.imakecollege\.com/
 ];
 
 /* Export either through Angular loader or CommonJS */

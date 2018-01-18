@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, droitsDescription, $timeout, ABTestingService, phishingExpressions) {
+angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $sessionStorage, droitsDescription, $timeout, ABTestingService, phishingExpressions) {
     [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
         $scope[type] = droitsDescription[type];
 
@@ -15,7 +15,10 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, dro
     if (referrer.match(/ameli\.fr/)) {
         $state.go('ameli');
     } else if (_.some(phishingExpressions, function(phishingExpression) { return referrer.match(phishingExpression); })) {
-        $state.go('hameconnage');
+        if (! $sessionStorage.phishingNoticationDone) {
+            $sessionStorage.phishingNoticationDone = true;
+            $state.go('hameconnage');
+        }
     } else {
         $timeout(function() {
             document.querySelector('#valueProposition a').focus();

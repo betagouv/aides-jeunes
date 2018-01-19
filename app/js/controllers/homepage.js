@@ -13,7 +13,10 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $se
 
     var referrer = document.referrer;
     if (referrer.match(/ameli\.fr/)) {
-        $state.go('ameli');
+        if (! $sessionStorage.ameliNoticationDone) {
+            $sessionStorage.ameliNoticationDone = true;
+            $state.go('ameli');
+        }
     } else if (_.some(phishingExpressions, function(phishingExpression) { return referrer.match(phishingExpression); })) {
         if (! $sessionStorage.phishingNoticationDone) {
             $sessionStorage.phishingNoticationDone = true;

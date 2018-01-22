@@ -4,7 +4,7 @@ var situation = {
     individus: [],
     menage: {
         personne_de_reference: ['id'],
-        statut_occupation_logement: 'Sans domicile stable'
+        statut_occupation_logement: 'sans_domicile'
     },
 };
 

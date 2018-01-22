@@ -65,13 +65,13 @@ var individuDef = Object.assign({
 }, ressourcesDefs);
 
 var statutOccupationLogementValues = [
-    'Accédant à la propriété',
-    'Propriétaire (non accédant) du logement',
-    'Locataire ou sous-locataire d‘un logement loué vide non-HLM',
-    'Locataire ou sous-locataire d‘un logement loué meublé ou d‘une chambre d‘hôtel',
-    'Logé gratuitement par des parents, des amis ou l‘employeur',
-    'Locataire d‘un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)',
-    'Sans domicile stable',
+    'primo_accedant',
+    'proprietaire',
+    'locataire_vide',
+    'locataire_meuble',
+    'loge_gratuitement',
+    'locataire_foyer',
+    'sans_domicile',
 ];
 
 var menageDef = {

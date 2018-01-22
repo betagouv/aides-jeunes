@@ -28,6 +28,19 @@ var statut_maritaux = {
     'Jeune veuf': 'jeune_veuf',
 };
 
+var statuts_occupation_logement = {
+    'Non renseigné': 'non_renseigne',
+    'Accédant à la propriété': 'primo_accedant',
+    'Propriétaire (non accédant) du logement': 'proprietaire',
+    'Locataire d‘un logement HLM': 'locataire_hlm',
+    'Locataire ou sous-locataire d‘un logement loué vide non-HLM': 'locataire_vide',
+    'Locataire ou sous-locataire d‘un logement loué meublé ou d‘une chambre d‘hôtel': 'locataire_meuble',
+    'Logé gratuitement par des parents, des amis ou l‘employeur': 'loge_gratuitement',
+    'Locataire d‘un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)': 'locataire_foyer',
+    'Sans domicile stable': 'sans_domicile'
+};
+
+
 module.exports = {
     function: function(situation) {
 
@@ -36,6 +49,8 @@ module.exports = {
             individu.scolarite = scolarites[individu.scolarite];
             individu.statut_marital = statut_maritaux[individu.statut_marital];
         });
+
+        situation.menage.statut_occupation_logement = statuts_occupation_logement[situation.menage.statut_occupation_logement];
 
         return situation;
     },

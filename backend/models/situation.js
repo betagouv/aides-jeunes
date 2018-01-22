@@ -32,9 +32,9 @@ var specificSituationValues = [
 ];
 
 var statutMaritalValues = [
-    'Marié',
-    'Pacsé',
-    'Célibataire',
+    'marie',
+    'pacse',
+    'celibataire',
 ];
 
 var individuDef = Object.assign({

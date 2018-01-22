@@ -15,7 +15,7 @@ angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state
             delete $scope.famille.rsa_isolement_recent;
         } else {
             // Célibataire is the default value - Enum index 2 in OpenFisca
-            demandeur.statut_marital = 'Célibataire';
+            demandeur.statut_marital = 'celibataire';
             // On supprime l'éventuel conjoint qui existait avant
             $scope.situation.individus = _.filter($scope.situation.individus, function(individu) {
                 return 'conjoint' !== individu.role;

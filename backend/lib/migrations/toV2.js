@@ -18,12 +18,23 @@ var scolarites = {
     'Inconnue': 'inconnue',
 };
 
+var statut_maritaux = {
+    '': 'non_renseigne',
+    'Marié': 'marie',
+    'Célibataire': 'celibataire',
+    'Divorcé': 'divorce',
+    'Veuf': 'veuf',
+    'Pacsé': 'pacse',
+    'Jeune veuf': 'jeune_veuf',
+};
+
 module.exports = {
     function: function(situation) {
 
         situation.individus.forEach(function(individu) {
             individu.gir = girs[individu.gir];
             individu.scolarite = scolarites[individu.scolarite];
+            individu.statut_marital = statut_maritaux[individu.statut_marital];
         });
 
         return situation;

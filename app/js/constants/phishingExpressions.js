@@ -17,8 +17,6 @@ var phishingExpressions = [
     /remboursement\.ameliassurance-fr36932693693269\.irds\.ro/,
     /remboursement\.caisse-assurance\.irds\.ro/,
     /remboursement\.ameliassurance\.marikala\.gr/,
-    /sendibm/,
-    /yzfg\.r\.bh\.d\.sendibt3\.com/,
     /www\.crplindia\.com/,
     /www\.imakecollege\.com/
 ];

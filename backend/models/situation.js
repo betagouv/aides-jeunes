@@ -55,7 +55,7 @@ var individuDef = Object.assign({
     habite_chez_parents: Boolean,
     nationalite: { type: String, enum: ['fr', 'ue', 'autre'] },
     role: { type: String, enum: ['demandeur', 'conjoint', 'enfant'] },
-    scolarite: { type: String, enum: ['Inconnue', 'Collège', 'Lycée'] },
+    scolarite: { type: String, enum: ['inconnue', 'college', 'lycee'] },
     specificSituations: [{ type: String, enum: specificSituationValues }],
     statut_marital: { type: String, enum: statutMaritalValues },
     taux_incapacite: Number,

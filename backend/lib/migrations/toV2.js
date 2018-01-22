@@ -12,11 +12,18 @@ var girs = {
     'Gir 6': 'gir_6',
 };
 
+var scolarites = {
+    'Collège': 'college',
+    'Lycée': 'lycee',
+    'Inconnue': 'inconnue',
+};
+
 module.exports = {
     function: function(situation) {
 
         situation.individus.forEach(function(individu) {
             individu.gir = girs[individu.gir];
+            individu.scolarite = scolarites[individu.scolarite];
         });
 
         return situation;

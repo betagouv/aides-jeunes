@@ -83,6 +83,9 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         etablissement['CoordonnéesNum'] = etablissement['CoordonnéesNum'][0];
         etablissement['CoordonnéesNum'].Url = etablissement['CoordonnéesNum'].Url[0];
 
+        if (etablissement['CoordonnéesNum'].Url == 'https://www.maisondeservicesaupublic.fr') {
+            delete etablissement['CoordonnéesNum'].Url;
+        }
 
         if (etablissement.Ouverture) {
             etablissement.Ouverture = etablissement.Ouverture[0];

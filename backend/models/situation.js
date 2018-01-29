@@ -22,7 +22,7 @@ var ressourcesDefs = _.concat(
 }, {});
 
 var specificSituationValues = [
-    'demandeur_emploi',
+    'chomeur',
     'etudiant',
     'retraite',
     'handicap',

@@ -145,7 +145,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
     $scope.captureEligibiliteAss = function() {
         /* jshint -W069 */
-        return isIndividuParent && $scope.selectedStatuts['demandeur_emploi'];
+        return isIndividuParent && $scope.selectedStatuts['chomeur'];
     };
 
     $scope.captureTauxIncapacite = function() {

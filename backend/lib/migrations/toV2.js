@@ -43,6 +43,7 @@ var statuts_occupation_logement = {
 
 module.exports = {
     function: function(situation) {
+        situation.version = 2;
 
         situation.individus.forEach(function(individu) {
             individu.gir = girs[individu.gir];

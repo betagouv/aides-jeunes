@@ -32,13 +32,13 @@ var individuSchema = {
         src: 'specificSituations',
         fn: function(specificSituations) {
             var returnValue;
-            _.forEach({
-                demandeur_emploi: 'Chômeur',
-                etudiant: 'Étudiant, élève',
-                retraite: 'Retraité',
-            }, function(situationIndex, situationId) {
-                if (specificSituations.indexOf(situationId) >= 0) {
-                    returnValue = situationIndex;
+            [
+                'chomeur',
+                'etudiant',
+                'retraite',
+            ].forEach(function(activite) {
+                if (specificSituations.indexOf(activite) >= 0) {
+                    returnValue = activite;
                 }
             });
             return returnValue;

@@ -10,7 +10,7 @@ angular.module('ddsCommon').constant('specificSituations', [
         label: 'Retraité·e'
     },
     {
-        id: 'demandeur_emploi',
+        id: 'chomeur',
         label: 'Inscrit·e comme demandeur d’emploi'
     },
     {

@@ -4,13 +4,13 @@ angular.module('ddsApp').service('LogementService', function($filter, logementTy
     // cf. https://legislation.openfisca.fr/statut_occupation_logement
     function getStatutOccupationLogement(logement) {
         var statusOccupationMap = {
-            'proprietaireprimoaccedant': 'Accédant à la propriété',
-            'proprietaire': 'Propriétaire (non accédant) du logement',
-            'locatairenonmeuble': 'Locataire ou sous-locataire d‘un logement loué vide non-HLM',
-            'locatairemeublehotel': 'Locataire ou sous-locataire d‘un logement loué meublé ou d‘une chambre d‘hôtel',
-            'heberge': 'Logé gratuitement par des parents, des amis ou l‘employeur',
-            'locatairefoyer': 'Locataire d‘un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)',
-            'sansDomicile' : 'Sans domicile stable'
+            proprietaireprimoaccedant: 'primo_accedant',
+            proprietaire: 'proprietaire',
+            locatairenonmeuble: 'locataire_vide',
+            locatairemeublehotel: 'locataire_meuble',
+            heberge: 'loge_gratuitement',
+            locatairefoyer: 'locataire_foyer',
+            sansDomicile : 'sans_domicile'
         };
         var statusOccupationId = logement.type;
         if (logement.type == 'proprietaire' && logement.primoAccedant) {
@@ -23,19 +23,19 @@ angular.module('ddsApp').service('LogementService', function($filter, logementTy
 
     function getLogementVariables(statusOccupationId) {
         var baseLogementMap = {
-            'Accédant à la propriété':
+            primo_accedant:
                 { type: 'proprietaire', primoAccedant: true },
-            'Propriétaire (non accédant) du logement':
+            proprietaire:
                 { type: 'proprietaire', primoAccedant: false },
-            'Locataire ou sous-locataire d‘un logement loué vide non-HLM':
+            locataire_vide:
                 { type: 'locataire', locationType: 'nonmeuble' },
-            'Locataire ou sous-locataire d‘un logement loué meublé ou d‘une chambre d‘hôtel':
+            locataire_meuble:
                 { type: 'locataire', locationType: 'meublehotel' },
-            'Logé gratuitement par des parents, des amis ou l‘employeur':
+            loge_gratuitement:
                 { type: 'heberge' },
-            'Locataire d‘un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)':
+            locataire_foyer:
                 { type: 'locataire', locationType: 'foyer' },
-            'Sans domicile stable':
+            sans_domicile:
                 { type: 'sansDomicile' },
         };
         return (statusOccupationId && baseLogementMap[statusOccupationId]) || {};

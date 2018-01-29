@@ -32,9 +32,9 @@ var specificSituationValues = [
 ];
 
 var statutMaritalValues = [
-    'Marié',
-    'Pacsé',
-    'Célibataire',
+    'marie',
+    'pacse',
+    'celibataire',
 ];
 
 var individuDef = Object.assign({
@@ -51,11 +51,11 @@ var individuDef = Object.assign({
     enceinte: Boolean,
     firstName: String,
     garde_alternee: Boolean,
-    gir: { type: String, default: 'Non défini' },
+    gir: { type: String, default: 'non_defini' },
     habite_chez_parents: Boolean,
     nationalite: { type: String, enum: ['fr', 'ue', 'autre'] },
     role: { type: String, enum: ['demandeur', 'conjoint', 'enfant'] },
-    scolarite: { type: String, enum: ['Inconnue', 'Collège', 'Lycée'] },
+    scolarite: { type: String, enum: ['inconnue', 'college', 'lycee'] },
     specificSituations: [{ type: String, enum: specificSituationValues }],
     statut_marital: { type: String, enum: statutMaritalValues },
     taux_incapacite: Number,
@@ -65,13 +65,13 @@ var individuDef = Object.assign({
 }, ressourcesDefs);
 
 var statutOccupationLogementValues = [
-    'Accédant à la propriété',
-    'Propriétaire (non accédant) du logement',
-    'Locataire ou sous-locataire d‘un logement loué vide non-HLM',
-    'Locataire ou sous-locataire d‘un logement loué meublé ou d‘une chambre d‘hôtel',
-    'Logé gratuitement par des parents, des amis ou l‘employeur',
-    'Locataire d‘un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)',
-    'Sans domicile stable',
+    'primo_accedant',
+    'proprietaire',
+    'locataire_vide',
+    'locataire_meuble',
+    'loge_gratuitement',
+    'locataire_foyer',
+    'sans_domicile',
 ];
 
 var menageDef = {
@@ -93,7 +93,7 @@ var situationSchema = {
     individus: [individuDef],
     menage: menageDef,
     modifiedFrom: String,
-    version: { type: Number, default: 1 },
+    version: Number,
 };
 
 mongoose.model('Situation', new mongoose.Schema(situationSchema, { minimize: false }));

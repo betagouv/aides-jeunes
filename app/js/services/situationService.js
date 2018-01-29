@@ -60,7 +60,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 famille: {},
                 foyer_fiscal: {},
                 menage: {},
-                version: 1,
+                version: 2,
             };
         },
 
@@ -136,7 +136,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         },
 
         hasEnfantScolarise: function(situation) {
-            return _.some(situation.individus, { role: 'enfant', scolarite: 'Collège' }) || _.some(situation.individus, { role: 'enfant', scolarite: 'Lycée' });
+            return _.some(situation.individus, { role: 'enfant', scolarite: 'college' }) || _.some(situation.individus, { role: 'enfant', scolarite: 'lycee' });
         },
 
         hasEnfant: function(situation) {

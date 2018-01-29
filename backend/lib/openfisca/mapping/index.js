@@ -92,20 +92,6 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
         },
     };
 
-    var statuts_occupation_logement = {
-        'Non renseigné': 'Non renseigné',
-        'Accédant à la propriété': 'Accédant à la propriété',
-        'Propriétaire (non accédant) du logement': 'Propriétaire (non accédant) du logement',
-        'Locataire d‘un logement HLM': 'Locataire d\'un logement HLM',
-        'Locataire ou sous-locataire d‘un logement loué vide non-HLM': 'Locataire ou sous-locataire d\'un logement loué vide non-HLM',
-        'Locataire ou sous-locataire d‘un logement loué meublé ou d‘une chambre d‘hôtel': 'Locataire ou sous-locataire d\'un logement loué meublé ou d\'une chambre d\'hôtel',
-        'Logé gratuitement par des parents, des amis ou l‘employeur': 'Logé gratuitement par des parents, des amis ou l\'employeur',
-        'Locataire d‘un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)': 'Locataire d\'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)',
-        'Sans domicile stable': 'Sans domicile stable'
-    };
-
-    testCase.menages._.statut_occupation_logement = statuts_occupation_logement[testCase.menages._.statut_occupation_logement];
-
     propertyMove.movePropertyValuesToGroupEntity(testCase);
 
     var periods = common.getPeriods(situation.dateDeValeur);

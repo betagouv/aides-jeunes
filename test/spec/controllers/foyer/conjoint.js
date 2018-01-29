@@ -111,7 +111,7 @@ describe('Controller: FoyerConjointCtrl', function() {
     describe('edition', function() {
         describe('single individual w/o kids', function() {
             beforeEach(function() {
-                scope.situation.individus[0].statut_marital = 'Célibataire';  // Enum value 2 in OpenFisca
+                scope.situation.individus[0].statut_marital = 'celibataire';  // Enum value 2 in OpenFisca
                 initController();
             });
 
@@ -130,7 +130,7 @@ describe('Controller: FoyerConjointCtrl', function() {
 
         describe('single individual with a kid', function() {
             beforeEach(function() {
-                scope.situation.individus[0].statut_marital = 'Célibataire';  // Enum value 2 in OpenFisca
+                scope.situation.individus[0].statut_marital = 'celibataire';  // Enum value 2 in OpenFisca
                 scope.situation.individus.push({ role: 'enfant' });
                 scope.situation.famille.rsa_isolement_recent = true;
                 initController();
@@ -162,7 +162,7 @@ describe('Controller: FoyerConjointCtrl', function() {
 
         describe('individual in union libre', function() {
             beforeEach(function() {
-                scope.situation.individus[0].statut_marital = 'Célibataire';  // Enum value 2 in OpenFisca
+                scope.situation.individus[0].statut_marital = 'celibataire';  // Enum value 2 in OpenFisca
                 scope.situation.individus.push({ role: 'conjoint' });
                 initController();
             });

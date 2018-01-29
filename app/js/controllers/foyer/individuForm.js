@@ -21,15 +21,15 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     $scope.selectedStatuts = {};
     $scope.scolariteOptions = [
         {
-            value: 'Inconnue',
+            value: 'inconnue',
             label: 'Aucun des deux'
         },
         {
-            value: 'Collège',
+            value: 'college',
             label: 'Au collège'
         },
         {
-            value: 'Lycée',
+            value: 'lycee',
             label: 'Au lycée / En CAP / En CPA'
         }
     ];
@@ -51,15 +51,15 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
     $scope.GIROptions = [
         {
-            value: 'Gir 6',
+            value: 'gir_6',
             label: 'Jamais',
         },
         {
-            value: 'Gir 5',
+            value: 'gir_5',
             label: 'Ponctuellement',
         },
         {
-            value: 'Gir 1',
+            value: 'gir_1',
             label: 'Régulièrement'
         }
     ];
@@ -73,12 +73,12 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         id: individuRole,
         nationalite: 'fr',
         ass_precondition_remplie: false,
-        scolarite: 'Collège',
+        scolarite: 'college',
         taux_incapacite: 0.9,
         echelon_bourse: -1,
         enfant_a_charge: {},
         enfant_place: false,
-        gir: 'Gir 6',
+        gir: 'gir_6',
         role: individuRole,
         tns_autres_revenus_type_activite: 'bic',
         tns_micro_entreprise_type_activite: 'bic',
@@ -90,7 +90,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
     // Required on DEFAULT_INDIVIDU to properly restore statut_marital
     if (DEFAULT_INDIVIDU.role == 'conjoint') {
-        DEFAULT_INDIVIDU.statut_marital = 'Marié';  // Marié(e)
+        DEFAULT_INDIVIDU.statut_marital = 'marie';  // Marié(e)
     }
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);

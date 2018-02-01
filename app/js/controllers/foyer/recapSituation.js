@@ -14,11 +14,12 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
 
     function getRessources (individu) {
         return _
-        .keys(RessourceService.extractIndividuSelectedRessourceTypes(individu))
+        .keys($scope.keyedRessourceTypes)
+        .filter(function(ressourceId) {
+            return RessourceService.isSelectedForCurrentYear(individu[ressourceId], ressourceId);
+        })
         .reduce(function(accum, ressourceId) {
-            if (individu[ressourceId] && _.some(individu[ressourceId])) {
-                accum[ressourceId] = individu[ressourceId];
-            }
+            accum[ressourceId] = individu[ressourceId];
             return accum;
         }, {});
     }

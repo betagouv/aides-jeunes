@@ -54,12 +54,16 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         }
     }
 
-    function isSelectedForCurrentYear(ressource, ressourceType) {
-        if (ressourceType.id != 'pensions_alimentaires_percues') {
-            return Boolean(ressource);
+    function isSelectedForCurrentYear(ressource, ressourceIdOrType) {
+        // pensions_alimentaires_percues is a YM2 and current year ressource
+        // Hence that special treatment:
+        // A single value means that a YM2 value has been specified
+        // Multiple values means that CY values were specified
+        if ((ressourceIdOrType.id || ressourceIdOrType) == 'pensions_alimentaires_percues') {
+            return _.keys(ressource).length > 1;
         }
 
-        return _.keys(ressource).length > 1;
+        return Boolean(ressource);
     }
 
     function extractIndividuSelectedRessourceTypes(individu) {
@@ -82,6 +86,7 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
     return {
         getPeriodKeysForCurrentYear: getPeriodKeysForCurrentYear,
         isRessourceOnMainScreen: isRessourceOnMainScreen,
+        isSelectedForCurrentYear: isSelectedForCurrentYear,
         extractIndividuSelectedRessourceTypes: extractIndividuSelectedRessourceTypes,
         setDefaultValueForCurrentYear: setDefaultValueForCurrentYear,
         unsetForCurrentYear: unsetForCurrentYear,

@@ -356,20 +356,36 @@ var categoriesRnc = [
 
 var patrimoineTypes = [
     {
+        id: 'valeur_patrimoine_loue',
+        label: 'Valeur de vos biens loués'
+    },
+    {
+        id: 'valeur_terrains_non_loues',
+        label: 'Valeur de vos terrains non loués'
+    },
+    {
+        id: 'valeur_locative_terrains_non_loues',
+        label: 'Valeur locative terrains non loués'
+    },
+    {
+        id: 'valeur_immo_non_loue',
+        label: 'Valeur de vos biens immobiliers non loués'
+    },
+    {
         id: 'valeur_locative_immo_non_loue',
         label: 'Valeur locative immobilier non loué'
     },
     {
-        id: 'valeur_locative_terrains_non_loue',
-        label: 'Valeur locative terrains non loués'
+        id: 'livret_a',
+        label: 'Épargne sur livret A'
     },
     {
-        id: 'interets_epargne_sur_livrets',
-        label: 'Intérêts d\'épargne sur livret'
+        id: 'epargne_revenus_non_imposables',
+        label: 'Épargne aux revenus non imposables'
     },
     {
-        id: 'epargne_non_remuneree',
-        label: 'Épargne sans revenus'
+        id: 'epargne_revenus_imposables',
+        label: 'Épargne aux revenus imposables'
     }
 ];
 

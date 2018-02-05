@@ -22,9 +22,5 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $se
             $sessionStorage.phishingNoticationDone = true;
             $state.go('hameconnage');
         }
-    } else {
-        $timeout(function() {
-            document.querySelector('#valueProposition a').focus();
-        }, 1500);
     }
 });

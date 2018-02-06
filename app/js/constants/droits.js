@@ -498,7 +498,7 @@ var droitsDescription = {
 };
 
 /* Export either through Angular loader or CommonJS */
-if (typeof module != 'undefined') {  // we're in Node
+if (typeof global != 'undefined') {  // we're in Node
     module.exports = droitsDescription;
 } else {  // we're in the browser
     angular.module('ddsCommon').constant('droitsDescription', droitsDescription);

@@ -374,7 +374,7 @@ var patrimoineTypes = [
 ];
 
 /* Export either through Angular loader or CommonJS */
-if ((typeof module != 'undefined') && (typeof angular == 'undefined')) {  // we're in Node
+if (typeof global != 'undefined') {  // we're in Node
     module.exports = {
         ressourceCategories: ressourceCategories,
         ressourceTypes: ressourceTypes,

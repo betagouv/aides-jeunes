@@ -24,7 +24,7 @@
 
 <div ng-show="! error && ! warning && ! awaitingResults">
   <div ng-if="! (droits.prestationsNationales | isEmpty)">
-    <p>D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides <strong>{{ droits.partenairesLocaux ? "nationales" : "" }}</strong> : </p>
+      <p>D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides <strong>{{ droits.partenairesLocaux ? "nationales" : "" }}</strong>. Les montants avancés sont arrondis à une dizaine d'euros près : </p>
     <div class="frame-resultats">
       <droit-eligibles-list list="droits.prestationsNationales"></droit-eligibles-list>
       <ym2-ressources-call-to-action ng-hide="ressourcesYearMoins2Captured"></ym2-ressources-call-to-action>
@@ -133,6 +133,7 @@
 
 <div id="feedback">
   <h4>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider&nbsp;!</h4>
+  <p>La plupart des résultats que nous vous proposons sont automatiquement arrondis à une dizaine d'euros près.</p> 
   <ul>
     <li><a analytics-on="click" analytics-category="Contact" analytics-event="Support" href="mailto:feedback@mes-aides.gouv.fr?subject=Suggestion">Vous avez une suggestion d'amélioration</a>.</li>
     <li><a analytics-on="click" analytics-category="Contact" analytics-event="Support" href="mailto:feedback@mes-aides.gouv.fr?subject=[{{ situation._id }}]%20Montants%20inattendus&body=Bonjour%2C%0A%0AEn%20effectuant%20une%20simulation%20sur%20mes-aides.gouv.fr%2C%20j%27ai%20obtenu%20le%20r%C3%A9sultat%20suivant%20%3A%0A%0A-%20XXX%20%E2%82%AC%20%2F%20mois%20pour%20la%20prestation%20%C2%AB%20%20%C2%BB.%0A%0AMais%20en%20effectuant%20la%20m%C3%AAme%20simulation%20sur%20le%20site%20XXX%2C%20j%27ai%20obtenu%20le%20r%C3%A9sultat%20suivant%20%3A%0A%0A-%20XXX%20%E2%82%AC%20%2F%20mois%20pour%20la%20prestation%20%C2%AB%20%20%C2%BB.%0A%0AVous%20pouvez%20me%20joindre%20par%20t%C3%A9l%C3%A9phone%20au%20XX%20XX%20XX%20XX%20XX%20%28de%20pr%C3%A9f%C3%A9rence%20en%20semaine%29%20pour%20une%20dizaine%20de%20minutes%20d%27%C3%A9change%20afin%20de%20comprendre%20d%27o%C3%B9%20provient%20cet%20%C3%A9cart.%0A%0ABonne%20journ%c3%a9e%2c%0d%0a%0d%0a%e2%80%94%e2%80%94%e2%80%94%e2%80%94%0d%0aID%20%3a%20{{ situation._id }}%20(%c3%a0%20conserver%20imp%c3%a9rativement%20pour%20traitement%20de%20votre%20demande)%0d%0a%e2%80%94%e2%80%94%e2%80%94%e2%80%94">Ces résultats ne correspondent pas à ceux d'un autre simulateur</a>.</li>

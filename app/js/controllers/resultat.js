@@ -73,22 +73,14 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
         });
     };
 
-    function normalizeEtablissement(etablissementData) {
-        var etablissement = etablissementData.Organisme;
+    function normalizeEtablissement(etablissementFeature) {
+        var etablissement = etablissementFeature.properties;
 
-        etablissement.Adresse = (etablissement.Adresse && etablissement.Adresse[0]) || {};
-        etablissement.Adresse.CodePostal = etablissement.Adresse.CodePostal[0];
-        etablissement.Adresse.NomCommune = etablissement.Adresse.NomCommune[0];
-        etablissement.Nom = etablissement.Nom[0];
-        etablissement['CoordonnéesNum'] = etablissement['CoordonnéesNum'][0];
-        etablissement['CoordonnéesNum'].Url = etablissement['CoordonnéesNum'].Url[0];
-
-        if (etablissement['CoordonnéesNum'].Url == 'https://www.maisondeservicesaupublic.fr') {
-            delete etablissement['CoordonnéesNum'].Url;
+        if (etablissement.url === 'https://www.maisondeservicesaupublic.fr') {
+            delete etablissement.url;
         }
 
-        if (etablissement.Ouverture) {
-            etablissement.Ouverture = etablissement.Ouverture[0];
+        if (etablissement.horaires) {
             var mapping = {
                 lundi: 1,
                 mardi: 2,
@@ -98,9 +90,17 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
                 samedi: 6,
                 dimanche: 7
             };
-            etablissement.Ouverture.PlageJ = _.sortBy(etablissement.Ouverture.PlageJ, function(plage) {
-                return mapping[plage.$['début']];
+            etablissement.horaires = _.sortBy(etablissement.horaires, function(plage) {
+                return mapping[plage.du];
             });
+        }
+
+        etablissement.adresse = _.find(etablissement.adresses, { type: 'physique' });
+        if (! etablissement.adresse) {
+            etablissement.adresse = _.find(etablissement.adresses, { type: 'géopostale' });
+        }
+        if (! etablissement.adresse) {
+            etablissement.adresse = etablissement.adresses[0];
         }
 
         return etablissement;
@@ -113,8 +113,8 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     CityService
     .getCities($scope.situation.menage.code_postal)
     .then(function(cities) { return _.find(cities, { codeInsee: $scope.situation.menage.depcom }); })
-    .then(function(city) { return $http.get('https://etablissements-publics.api.gouv.fr/v2/communes/' + city.codeInsee + '/msap'); })
-    .then(function(response) { return response.data; }, function(error) { return []; })
+    .then(function(city) { return $http.get('https://etablissements-publics.api.gouv.fr/v3/communes/' + city.codeInsee + '/cdas+msap'); })
+    .then(function(response) { return response.data.features; }, function(error) { return []; })
     .then(function(etablissements) {
         $scope.etablissements = etablissements.map(normalizeEtablissement);
     });

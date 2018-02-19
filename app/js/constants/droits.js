@@ -297,8 +297,8 @@ var droitsDescription = {
                                 imgSrc: 'logo_cd93.png',
                             },
                             instructions: undefined, // Prevent default instructions recycling
-                            form: 'https://www.seine-saint-denis.fr/IMG/pdf/dossier_2.pdf',
-                            link: 'https://www.seine-saint-denis.fr/ADPA.html',
+                            form: 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa.pdf',
+                            link: 'https://www.seine-saint-denis.fr/L-Allocation-Departementale-Personnalisee-d-Autonomie.html',
                         },
                         'M69-LYON': {
                             provider: {

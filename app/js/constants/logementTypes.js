@@ -14,7 +14,7 @@ angular.module('ddsCommon').constant('logementTypes', [
     {
         id: 'heberge',
         label: 'hébergé',
-        hint: 'Chez un particulier'
+        hint: 'Chez un particulier ou en logement de fonction'
     },
     {
         id: 'sansDomicile',

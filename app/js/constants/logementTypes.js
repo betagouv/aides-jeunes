@@ -4,12 +4,12 @@ angular.module('ddsCommon').constant('logementTypes', [
     {
         id: 'locataire',
         label: 'locataire',
-        hint: 'Figurant sur le bail'
+        hint: 'Figurant sur le bail, en foyer, ou en residence.'
     },
     {
         id: 'proprietaire',
         label: 'propriétaire',
-        hint: 'Ou en location-accession'
+        hint: 'Ou en location-accession, avec ou non un prêt'
     },
     {
         id: 'heberge',

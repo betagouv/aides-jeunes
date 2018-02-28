@@ -2,14 +2,14 @@ var config = require('../../config/config');
 var mapping = require('./mapping');
 var rp = require('request-promise');
 
-var migrate = require('../migrations/apply');
+var migrations = require('../migrations');
 
 var buildOpenFiscaRequest = exports.buildOpenFiscaRequest = mapping.buildOpenFiscaRequest;
 function sendToOpenfisca(endpoint) {
     return function(situation, callback) {
         var request;
         try {
-            request = buildOpenFiscaRequest(migrate(situation));
+            request = buildOpenFiscaRequest(migrations.apply(situation));
         } catch(e) {
             return callback({
                 message: e.message,

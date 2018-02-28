@@ -1,16 +1,41 @@
-var v1 = require('./toV1');
-var v2 = require('./toV2');
+var es = require('event-stream');
 
-var migrations = [
-    v1,
-    v2,
-];
+// Loads
+require('../../../backend');
+require('expect');
+var mongoose = require('mongoose');
+var migrations = require('.');
 
-module.exports = function(situation) {
-    migrations.forEach(function(migration) {
-        if (situation.version < migration.version) {
-            situation = migration.function(situation);
-        }
-    });
-    return situation;
-};
+// Setup mongoose
+var Situation = mongoose.model('Situation');
+
+var startDate = (new Date()).toISOString();
+var errors = 0;
+var counter = 0;
+
+function migrateAllSituations() {
+    Situation.find({ version: { $ne: migrations.list.length }}).sort({ dateDeValeur: -1 }).cursor()
+    .pipe(es.map(function (situation, done) {
+        migrations.apply(situation);
+        situation.save(function (err) {
+            if (err) {
+                console.log('Cannot save migrated situation %s', situation.id);
+                console.trace(err);
+                errors = errors + 1;
+            }
+            counter = counter + 1;
+            done();
+        });
+    }))
+    .on('end', function() {
+        console.log(['Terminé', startDate, (new Date()).toISOString(), counter, errors].join(';'));
+        process.exit();
+    })
+    .on('error', function(err) {
+        console.trace(err);
+        process.exit();
+    })
+    .resume();
+}
+
+migrateAllSituations();

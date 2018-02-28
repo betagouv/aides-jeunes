@@ -1,43 +1,18 @@
-var es = require('event-stream');
+var fs = require('fs');
 
-// Loads
-require('../../../backend');
-require('expect');
-var mongoose = require('mongoose');
+var migrations = fs
+.readdirSync(__dirname)
+.filter(function(file) { return file.match(/^toV\d+\.js$/); })
+.map(function(migrationFile) { return require('./' + migrationFile); });
 
-// Setup mongoose
-var Situation = mongoose.model('Situation');
-
-
-var BATCH_SIZE = 50000;
-var startDate = (new Date()).toISOString();
-var errors = 0;
-var counter = 0;
-
-function migrateAllSituations(migration) {
-    Situation.find({ version: (migration.version - 1) }).sort({ dateDeValeur: -1 }).limit(BATCH_SIZE).cursor()
-    .pipe(es.map(function (situation, done) {
-        migration.function(situation);
-        situation.save(function (err) {
-            if (err) {
-                console.log('Cannot save migrated situation %s', situation.id);
-                console.trace(err);
-                errors = errors + 1;
+module.exports = {
+    list: migrations,
+    apply: function(situation) {
+        migrations.forEach(function(migration) {
+            if (situation.version < migration.version) {
+                situation = migration.function(situation);
             }
-            counter = counter + 1;
-            done();
         });
-    }))
-    .on('end', function() {
-        console.log(['Terminé', migration.version, startDate, (new Date()).toISOString(), BATCH_SIZE, counter, errors].join(';'));
-        process.exit();
-    })
-    .on('error', function(err) {
-        console.trace(err);
-        process.exit();
-    })
-    .resume();
-}
-
-var migration = process.argv[process.argv.length - 1];
-migrateAllSituations(require('./' + migration));
+        return situation;
+    }
+};

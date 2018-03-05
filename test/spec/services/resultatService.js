@@ -35,6 +35,13 @@ describe('ResultatService', function () {
                     }
                 }
             },
+            menages: {
+                _: {
+                    depcom: {
+                        '2014-11': '00000'
+                    }
+                }
+            },
             individus: {
                 demandeur: {
                     acs: {

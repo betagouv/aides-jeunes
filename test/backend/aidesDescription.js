@@ -25,7 +25,7 @@ describe('aides descriptions', function() {
                     it('should have a shortLabel', function() {
                         expect(aide.shortLabel).toBeA('string');
                         expect(aide.shortLabel.length).toBeGreaterThan(1);
-                        expect(aide.shortLabel.length).toBeLessThanOrEqualTo(10);
+                        expect(aide.shortLabel.length).toBeLessThanOrEqualTo(15);
                     });
 
                     it('should have a description', function() {

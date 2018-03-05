@@ -267,21 +267,25 @@ var droitsDescription = {
                 },
             },
         },
-		'cheque_energie': {
+        'cheque_energie': {
             'label': 'Chèque Énergie',
             'imgSrc': 'logo_cheque_energie.png',
             'prestations': {
                 'cheque_energie': {
+                    'isMontantAnnuel': true,
                     'label': 'Chèque Énergie',
                     'shortLabel': 'cheque_energie',
                     'description': 'Le Chèque Énergie peut être utilisé pour toutes les dépenses d’énergie (électricité, gaz, fioul, bois, etc.) et les travaux de rénovation énergétique. Il est envoyé automatiquement chaque année en fonction de votre situation fiscale et de la composition de votre foyer.',
                     'conditions': [
                         'Effectuer chaque année votre déclaration auprès des impôts.',
-						'Utiliser votre Chèque Énergie reçu en avril avant le 31 mars de l’année suivante'
+                        'Utiliser votre Chèque Énergie reçu en avril avant le 31 mars de l’année suivante'
                     ],
                     'link': 'https://www.chequeenergie.gouv.fr/',
                     /* En principe, envoyé automatique : lien direct vers le formulaire d'utilisation en ligne */
                     'instructions': 'https://www.chequeenergie.gouv.fr/beneficiaire/paiement',
+                    'isBaseRessourcesYearMoins2': true,
+                    'roundToNearest10': false,
+                    'entity': 'menage', // default entity is famille
                 },
             },
         },

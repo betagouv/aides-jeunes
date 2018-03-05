@@ -113,7 +113,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     CityService
     .getCities($scope.situation.menage.code_postal)
     .then(function(cities) { return _.find(cities, { codeInsee: $scope.situation.menage.depcom }); })
-    .then(function(city) { return $http.get('https://etablissements-publics.api.gouv.fr/v3/communes/' + city.codeInsee + '/cdas+msap'); })
+    .then(function(city) { return $http.get('https://etablissements-publics.api.gouv.fr/v3/communes/' + city.codeInsee + '/mairie_mobile+cdas+msap'); })
     .then(function(response) { return response.data.features; }, function(error) { return []; })
     .then(function(etablissements) {
         $scope.etablissements = etablissements.map(normalizeEtablissement);

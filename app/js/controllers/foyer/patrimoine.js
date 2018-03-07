@@ -13,7 +13,7 @@ angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, patr
     $scope.locals = {
         hasBiensLoues: _.some($scope.situation.individus, function(individu) { return individu.revenus_locatifs; }),
         hasTerrainsNonLoues: $scope.demandeur.valeur_terrains_non_loues[periodKey] || $scope.demandeur.valeur_locative_terrains_non_loues[periodKey],
-        hasBatisNonLoues: true,
+        hasBatisNonLoues: $scope.demandeur.valeur_immo_non_loue[periodKey] || $scope.demandeur.valeur_locative_immo_non_loue[periodKey],
     };
 
     $scope.submit = function() {

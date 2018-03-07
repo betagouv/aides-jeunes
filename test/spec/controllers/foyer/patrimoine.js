@@ -65,4 +65,26 @@ describe('Controller: FoyerPatrimoineCtrl', function() {
             expect(scope.locals.hasTerrainsNonLoues).toBeTruthy();
         });
     });
+
+    describe('hasBatisNonLoues', function() {
+        it('is false by default', function() {
+            initController();
+
+            expect(scope.locals.hasTerrainsNonLoues).toBeFalsy();
+        });
+
+        it('is false with null valeur_immo_non_loue', function() {
+            scope.situation.individus[0].valeur_immo_non_loue = {'2012-01': 0 };
+            initController();
+
+            expect(scope.locals.hasBatisNonLoues).toBeFalsy();
+        });
+
+        it('is true with *immo_non_loue', function() {
+            scope.situation.individus[0].valeur_immo_non_loue = {'2012-01': 1 };
+            initController();
+
+            expect(scope.locals.hasBatisNonLoues).toBeTruthy();
+        });
+    });
 });

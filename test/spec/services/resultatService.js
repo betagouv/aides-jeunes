@@ -15,10 +15,14 @@ describe('ResultatService', function () {
             dateDeValeur: '2014-11-01',
             individus: [{
                 aah: {
-                    '2014-10': 100
+                    '2014-11': 100
                 },
                 aide_logement: {
-                    '2014-10': 100
+                    '2014-11': 100
+                }
+            },{
+                ppa: {
+                    '2014-11': 100
                 }
             }]
         };
@@ -50,10 +54,9 @@ describe('ResultatService', function () {
         });
 
         it('should extract injected droits', function() {
-            expect(droits.droitsInjectes).toEqual([
-                DROITS_DESCRIPTION.prestationsNationales.caf.prestations.aide_logement,
-                DROITS_DESCRIPTION.prestationsNationales.caf.prestations.aah
-            ]);
+            expect(droits.droitsInjectes).toContain(DROITS_DESCRIPTION.prestationsNationales.caf.prestations.aah);
+            expect(droits.droitsInjectes).toContain(DROITS_DESCRIPTION.prestationsNationales.caf.prestations.aide_logement);
+            expect(droits.droitsInjectes).toContain(DROITS_DESCRIPTION.prestationsNationales.caf.prestations.ppa);
         });
     });
 

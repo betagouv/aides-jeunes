@@ -50,7 +50,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
 
                 var eligibleAides = _.mapValues(aidesProvider.prestations, function(aide, aideId) {
 
-                    if (wasInjected(aideId, situation.individus[0])) {
+                    if (_.some(situation.individus, function(individu) { return wasInjected(aideId, individu); })) {
                         result.injectedAides.push(aide);
                         return;  // the aides were declared, do not re-compute the results
                     }

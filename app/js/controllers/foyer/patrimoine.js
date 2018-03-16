@@ -10,11 +10,36 @@ angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, patr
         demandeur[patrimoinePropertyName][$scope.periodKey] = demandeur[patrimoinePropertyName][$scope.periodKey] || 0;
     });
 
+    var mapping = {
+        hasTerrainsNonLoues: {
+            sources: ['valeur_terrains_non_loues', 'valeur_locative_terrains_non_loues'],
+        },
+        hasBatisNonLoues: {
+            sources: ['valeur_immo_non_loue', 'valeur_locative_immo_non_loue'],
+        },
+    };
+
     $scope.locals = {
         hasBiensLoues: _.some($scope.situation.individus, function(individu) { return individu.revenus_locatifs; }),
-        hasTerrainsNonLoues: $scope.demandeur.valeur_terrains_non_loues[periodKey] || $scope.demandeur.valeur_locative_terrains_non_loues[periodKey],
-        hasBatisNonLoues: $scope.demandeur.valeur_immo_non_loue[periodKey] || $scope.demandeur.valeur_locative_immo_non_loue[periodKey],
     };
+
+    var localKeys = Object.keys(mapping);
+    localKeys.forEach(function(keyName) {
+        $scope.locals[keyName] = false;
+        mapping[keyName].sources.forEach(function(attributeName) {
+            $scope.locals[keyName] = $scope.locals[keyName] || $scope.demandeur[attributeName][periodKey];
+        });
+
+        $scope.$watch('locals.' + keyName, function(newValue) {
+            if (newValue) {
+                return;
+            }
+
+            mapping[keyName].sources.forEach(function(attributeName) {
+                $scope.demandeur[attributeName][periodKey] = 0;
+            });
+        });
+    });
 
     $scope.submit = function() {
         $scope.$emit('patrimoine');

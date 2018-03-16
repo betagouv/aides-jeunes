@@ -267,6 +267,29 @@ var droitsDescription = {
                 },
             },
         },
+        'cheque_energie': {
+            'label': 'Chèque Énergie',
+            'imgSrc': 'logo_cheque_energie.png',
+            'prestations': {
+                'cheque_energie': {
+                    'isMontantAnnuel': true,
+                    'label': 'Chèque Énergie',
+                    'shortLabel': 'cheque_energie',
+                    'description': 'Le Chèque Énergie peut être utilisé pour toutes les dépenses d’énergie (électricité, gaz, fioul, bois, etc.) et les travaux de rénovation énergétique. Il est envoyé automatiquement chaque année en fonction de votre situation fiscale et de la composition de votre foyer.',
+                    'conditions': [
+                        'Résider en France au 1er janvier de l‘année.',
+                        'Effectuer chaque année votre déclaration auprès des impôts.',
+                        'Utiliser votre Chèque Énergie reçu en avril avant le 31 mars de l’année suivante.'
+                    ],
+                    'link': 'https://www.chequeenergie.gouv.fr/',
+                    /* En principe, envoyé automatique : lien direct vers le formulaire d'utilisation en ligne */
+                    'instructions': 'https://www.chequeenergie.gouv.fr/beneficiaire/paiement',
+                    'isBaseRessourcesYearMoins2': true,
+                    'roundToNearest10': false,
+                    'entity': 'menage', // default entity is famille
+                },
+            },
+        },
         'departements': {
             label: 'Les conseils départementaux',
             'imgSrc': 'logo_cd_generique.png',

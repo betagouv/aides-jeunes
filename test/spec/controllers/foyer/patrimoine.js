@@ -44,6 +44,24 @@ describe('Controller: FoyerPatrimoineCtrl', function() {
         });
     });
 
+    describe('hasEpargneAuxRevenusImposables', function() {
+        it('is false by default', function() {
+            initController();
+
+            expect(scope.locals.hasEpargneAuxRevenusImposables).toBeFalsy();
+        });
+
+        it('is true with revenus_locatifs', function() {
+            scope.situation.individus.push({
+                role: 'conjoint',
+                revenus_capital: {}
+            });
+            initController();
+
+            expect(scope.locals.hasEpargneAuxRevenusImposables).toBeTruthy();
+        });
+    });
+
     describe('hasTerrainsNonLoues', function() {
         it('is false by default', function() {
             initController();

@@ -21,6 +21,7 @@ angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, patr
 
     $scope.locals = {
         hasBiensLoues: _.some($scope.situation.individus, function(individu) { return individu.revenus_locatifs; }),
+        hasEpargneAuxRevenusImposables: _.some($scope.situation.individus, function(individu) { return individu.revenus_capital; }),
     };
 
     var localKeys = Object.keys(mapping);

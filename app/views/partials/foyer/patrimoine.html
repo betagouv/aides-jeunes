@@ -9,26 +9,6 @@
         </h2>
       </div>
       <div class="panel-body">
-        <div class="form-group" ng-if="locals.hasBiensLoues">
-          <label
-            class="col-sm-4 control-label"
-            for="valeur-loues">
-            Valeur <b>patrimoniale</b> de vos bien <b> loués</b>
-          </label>
-          <div class="col-sm-3">
-            <div class="input-group">
-              <input
-                type="number"
-                id="valeur-loues"
-                class="form-control text-right"
-                select-on-focus
-                zero-to-empty
-                ng-model="demandeur.valeur_patrimoine_loue[periodKey]">
-              <span class="input-group-addon">€</span>
-            </div>
-          </div>
-        </div>
-
         <div class="form-group">
           <legend class="col-sm-4 control-label">Avez-vous des terrains <b>non loués</b>&nbsp;?</legend>
           <div class="col-sm-3">
@@ -186,6 +166,26 @@
               <p class="help-block">
                 Pour la trouver, consultez votre avis d'imposition de taxe d'habitation ou de taxe foncière.
               </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" ng-if="locals.hasBiensLoues">
+          <label
+            class="col-sm-4 control-label"
+            for="valeur-loues">
+            Valeur <b>patrimoniale</b> de vos bien <b> loués</b>
+          </label>
+          <div class="col-sm-3">
+            <div class="input-group">
+              <input
+                type="number"
+                id="valeur-loues"
+                class="form-control text-right"
+                select-on-focus
+                zero-to-empty
+                ng-model="demandeur.valeur_patrimoine_loue[periodKey]">
+              <span class="input-group-addon">€</span>
             </div>
           </div>
         </div>

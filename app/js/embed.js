@@ -7,13 +7,22 @@ app.config(function($locationProvider, $stateProvider) {
     $locationProvider.html5Mode(true);
     $stateProvider.state('home', {
         url: '/:situationId',
-        template: '<recap-situation situation="situation"></recap-situation>',
-        controller: 'EmbedCtrl',
+        controller: '',
         resolve: {
             situation: function($stateParams, SituationService) {
                 return SituationService.restoreRemote($stateParams.situationId);
             }
-        }
+        },
+        views: {
+            '': {
+                controller: 'EmbedCtrl',
+                template: '<div ui-view="recap_situation"></div>',
+            },
+            'recap_situation@home': {
+                controller: 'RecapSituationCtrl',
+                templateUrl: '/partials/foyer/recap-situation.html'
+            }
+        },
     });
 }).controller('EmbedCtrl', function($scope, situation) {
     $scope.situation = situation;

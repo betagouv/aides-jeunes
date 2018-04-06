@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').factory('CityService', function($http) {
+angular.module('ddsCommon').factory('CityService', function($http) {
     function sortByName(aCity, bCity) {
         if (aCity.nomCommune < bCity.nomCommune)
             return -1;

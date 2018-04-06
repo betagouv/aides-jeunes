@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').service('LogementService', function($filter, logementTypes, locationTypes) {
+angular.module('ddsCommon').service('LogementService', function($filter, logementTypes, locationTypes) {
     // cf. https://legislation.openfisca.fr/statut_occupation_logement
     function getStatutOccupationLogement(logement) {
         var statusOccupationMap = {

@@ -29,7 +29,7 @@
       <droit-eligibles-list list="droits.prestationsNationales"></droit-eligibles-list>
       <ym2-ressources-call-to-action ng-hide="ressourcesYearMoins2Captured"></ym2-ressources-call-to-action>
 
-      <div class="row additional-info-cta" ng-show="! noDroits && ! isPatrimoineCaptured()">
+      <div class="row additional-info-cta" ng-show="! noDroits && shouldPatrimoineBeCaptured()">
         <div class="col-sm-8">
           <i class="fa fa-info-circle" aria-hidden="true"></i>
           Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ?

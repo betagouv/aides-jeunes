@@ -72,7 +72,10 @@
   <div class="frame-resultats" ng-if="etablissements && etablissements.length">
     <div class="row">
       <div class="col-sm-12">
-        Pour vous accompagner dans vos démarches, vous pouvez vous rendre ce <strong>point d'accueil</strong>. Vous pourrez trouver <strong>des informations supplémentaires et des conseils</strong> sur les aides que vous pouvez demander.
+        Pour vous accompagner dans vos démarches, vous pouvez vous rendre dans
+        <span ng-if="etablissements.length == 1">le <strong>point d'accueil</strong> suivant.</span>
+        <span ng-if="etablissements.length > 1">l'un de ces <strong>points d'accueil</strong>.</span>
+        Vous pourrez trouver <strong>des informations supplémentaires et des conseils</strong> sur les aides que vous pouvez demander.
       </div>
     </div>
     <br />

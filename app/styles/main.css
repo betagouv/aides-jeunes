@@ -39,3 +39,13 @@ header, footer {
   width: 800px;
   height: 300px;
 }
+
+@media print {
+    .layout a[href]::after {
+        content: '';
+    }
+
+    .print-hidden {
+        display: none !important;
+    }
+}

@@ -145,17 +145,15 @@
     </small>
   </div>
 
+  <div>
+    <h4 ng-show="! (droitsInjectes | isEmpty)">Aides que vous percevez déjà aujourd'hui, et dont nous n'avons pas recalculé le montant</h4>
+    <droits-list droits="droitsInjectes"></droits-list>
+  </div>
+
   <div id="social">
   	<p>Suivez-nous sur <a ui-sref="social">nos réseaux sociaux</a> ! Nos messages privés sont ouverts pour vous permettre de communiquer avec nous en toute discrétion.</p>
 
     <p style="text-align:center;"><a href="https://www.facebook.com/MesAides"><img src="/img/social/picto_facebook.png" alt="Facebook"></a>  <a href="https://twitter.com/MesAides"><img src="/img/social/picto_twitter.png" alt="Twitter"></a></p>
-  </div>
-
-
-  <div>
-    <hr>
-    <h4 ng-show="! (droitsInjectes | isEmpty)">Aides que vous percevez déjà aujourd'hui, et dont nous n'avons pas recalculé le montant</h4>
-    <droits-list droits="droitsInjectes"></droits-list>
   </div>
 </div>
 </ui-view>

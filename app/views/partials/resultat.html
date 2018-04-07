@@ -28,6 +28,17 @@
     <div class="frame-resultats">
       <droit-eligibles-list list="droits.prestationsNationales"></droit-eligibles-list>
       <ym2-ressources-call-to-action ng-hide="ressourcesYearMoins2Captured"></ym2-ressources-call-to-action>
+
+      <div class="row additional-info-cta" ng-show="! noDroits && ! isPatrimoineCaptured()">
+        <div class="col-sm-8">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+          Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ?
+          Vous devez renseigner des informations complémentaires.
+        </div>
+        <div class="col-sm-4">
+          <a class="btn btn-default btn-block" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -54,20 +65,6 @@
       <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
       <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
   </div>
-
-  <div class="frame-resultats" ng-show="! noDroits && ! isPatrimoineCaptured()">
-    <div class="row">
-      <div class="col-sm-8">
-        <i class="fa fa-info-circle" aria-hidden="true"></i>
-        Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ?
-        Vous devez renseigner des informations complémentaires.
-      </div>
-      <div class="col-sm-4">
-        <a class="btn btn-default btn-block" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
-      </div>
-    </div>
-  </div>
-
 
   <div class="frame-resultats" ng-if="etablissements && etablissements.length">
     <div class="row">

@@ -5,6 +5,10 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
     $scope.categoriesRnc = categoriesRnc;
     $scope.getIndividuRessourcesHeader = IndividuService.ressourceShortLabel;
 
+    $scope.locals = {
+        show: true,
+    };
+
     function buildRecapLogement () {
         var logementLabels = LogementService.getLabels($scope.situation.menage.statut_occupation_logement);
 

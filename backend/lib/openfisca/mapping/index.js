@@ -2,6 +2,7 @@ var _ = require('lodash');
 
 var common = require('./common');
 var buildOpenFiscaIndividu = require('./individu');
+var migrations = require('../../migrations');
 
 var propertyMove = require('./propertyMove');
 var last3MonthsDuplication = require('./last3MonthsDuplication');
@@ -71,7 +72,7 @@ function mapIndividus(situation) {
 }
 
 exports.buildOpenFiscaRequest = function(sourceSituation) {
-    var situation = sourceSituation.toObject ? sourceSituation.toObject() : _.cloneDeep(sourceSituation);
+    var situation = sourceSituation.toObject ? migrations.apply(sourceSituation).toObject() : _.cloneDeep(sourceSituation);
 
     var individus = mapIndividus(situation);
     allocateIndividualsToEntities(situation);

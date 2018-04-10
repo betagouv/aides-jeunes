@@ -26,3 +26,13 @@
 #simulationId {
     font-family: monospace;
 }
+
+#result-datetime {
+    display: none;
+}
+
+@media print {
+    #result-datetime {
+        display: initial;
+    }
+}

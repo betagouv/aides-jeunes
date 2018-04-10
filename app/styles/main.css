@@ -40,6 +40,10 @@ header, footer {
   height: 300px;
 }
 
+#print-disclaimer {
+    display: none;
+}
+
 @media print {
     .layout a[href]::after {
         content: '';
@@ -47,5 +51,9 @@ header, footer {
 
     .print-hidden {
         display: none !important;
+    }
+
+    #print-disclaimer {
+        display: initial;
     }
 }

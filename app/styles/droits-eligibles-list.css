@@ -58,3 +58,7 @@
         display: inline;
     }
 }
+
+.result {
+    page-break-inside: avoid;
+}

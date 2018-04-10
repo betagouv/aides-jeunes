@@ -80,3 +80,8 @@
         display: none;
     }
 }
+
+.recap-situation
+{
+    page-break-inside: avoid;
+}

@@ -66,3 +66,22 @@
 .ressources-value {
     text-align: right;
 }
+
+#recap-id {
+    display: none;
+}
+
+@media print {
+    #recap-id {
+        display: initial;
+    }
+
+    .pull-right {
+        display: none;
+    }
+}
+
+.recap-situation
+{
+    page-break-inside: avoid;
+}

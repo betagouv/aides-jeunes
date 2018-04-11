@@ -49,3 +49,16 @@
 .droit-logo img {
   height: 100%;
 }
+
+@media print {
+    .result .cta, .result .fa-chevron-down, .result .fa-chevron-right {
+      display: none;
+    }
+    .result .panel-collapse {
+        display: inline;
+    }
+}
+
+.result {
+    page-break-inside: avoid;
+}

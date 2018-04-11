@@ -18,3 +18,9 @@ footer li {
 footer a, footer a:hover, footer a:focus {
   color: inherit;
 }
+
+@media print {
+    footer {
+        display: none;
+    }
+}

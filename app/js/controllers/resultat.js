@@ -37,9 +37,18 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
             $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('years', 1).format('MMMM YYYY');
             $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1).format('MMMM YYYY');
             $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
-            $scope.isPatrimoineCaptured = function() {
-                return angular.isDefined(SituationService.hasPatrimoine($scope.situation));
+            $scope.shouldPatrimoineBeCaptured = function() {
+                return ! angular.isDefined(SituationService.hasPatrimoine($scope.situation));
             };
+
+            CityService
+            .getCities($scope.situation.menage.code_postal)
+            .then(function(cities) { return _.find(cities, { codeInsee: $scope.situation.menage.depcom }); })
+            .then(function(city) { return $http.get('https://etablissements-publics.api.gouv.fr/v3/communes/' + city.codeInsee + '/ccas+mairie_mobile+cdas+msap'); })
+            .then(function(response) { return response.data.features; }, function(error) { return []; })
+            .then(function(etablissements) {
+                $scope.etablissements = etablissements.map(normalizeEtablissement);
+            });
         });
     }
 
@@ -109,13 +118,4 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     $scope.extractHHMM = function(dateString) {
         return dateString.slice(0,5);
     };
-
-    CityService
-    .getCities($scope.situation.menage.code_postal)
-    .then(function(cities) { return _.find(cities, { codeInsee: $scope.situation.menage.depcom }); })
-    .then(function(city) { return $http.get('https://etablissements-publics.api.gouv.fr/v3/communes/' + city.codeInsee + '/ccas+mairie_mobile+cdas+msap'); })
-    .then(function(response) { return response.data.features; }, function(error) { return []; })
-    .then(function(etablissements) {
-        $scope.etablissements = etablissements.map(normalizeEtablissement);
-    });
 });

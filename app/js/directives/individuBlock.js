@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').directive('individuBlock', function(IndividuService) {
+angular.module('ddsCommon').directive('individuBlock', function(IndividuService) {
     return {
         restrict: 'E',
         templateUrl: 'partials/individu-block.html',

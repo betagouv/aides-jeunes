@@ -4,9 +4,11 @@ var path = require('path');
 
 module.exports = function(app) {
     var env = app.get('env');
-    var viewsDirectory = __dirname;
+    var directory = 'dist';
 
     if ('development' === env) {
+        directory = 'app';
+
         app.use(require('connect-livereload')());
 
         // Disable caching of scripts for easier testing
@@ -19,17 +21,12 @@ module.exports = function(app) {
             next();
         });
 
-        app.use('/recap-situation', express.static(path.join(__dirname, 'app')));
-        app.use(express.static(path.join(__dirname, 'app')));
-
-        viewsDirectory += '/app/views';
-    } else {
-        app.use('/recap-situation', express.static(path.join(__dirname, 'dist')));
-
-        viewsDirectory += '/dist/views';
+        app.use(express.static(path.join(__dirname, directory)));
     }
+    app.use('/recap-situation', express.static(path.join(__dirname, directory)));
 
-    app.use(favicon(path.join(__dirname, 'dist', 'img', 'favicon', 'favicon.ico')));
+    var viewsDirectory = path.join(__dirname, directory, 'views');
+    app.use(favicon(path.join(__dirname, directory, 'img', 'favicon', 'favicon.ico')));
 
     var CACHE = {
         ONE_YEAR: { maxAge: 365 * 24 * 60 * 60 * 1000 },  // assets that are cachebusted through the `rev` build step that changes file names

@@ -19,12 +19,14 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
-
+    build: {
+      dist: 'dist',
+    },
     // Project settings
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
+      tmp: 'tmp'
     },
     express: {
       options: {
@@ -94,12 +96,12 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
-      dist: {
+      tmp: {
         files: [{
           dot: true,
           src: [
             '.tmp',
-            '<%= yeoman.dist %>/*'
+            '<%= yeoman.tmp %>/*'
           ]
         }]
       },
@@ -162,7 +164,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/styles',
           src: '**/*.scss',
-          dest: 'dist/styles',
+          dest: '<%= yeoman.tmp %>/styles',
           ext: '.css'
         }],
         options: {
@@ -176,9 +178,9 @@ module.exports = function (grunt) {
       dist: {
         files: {
           src: [
-            '<%= yeoman.dist %>/js/{,*/}*.js',
-            '<%= yeoman.dist %>/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/styles/fonts/*'
+            '<%= yeoman.tmp %>/js/{,*/}*.js',
+            '<%= yeoman.tmp %>/styles/{,*/}*.css',
+            '<%= yeoman.tmp %>/styles/fonts/*'
           ]
         }
       }
@@ -190,15 +192,15 @@ module.exports = function (grunt) {
     useminPrepare: {
       html: ['<%= yeoman.app %>/views/front.html', '<%= yeoman.app %>/views/embed.html'],
       options: {
-        dest: '<%= yeoman.dist %>'
+        dest: '<%= yeoman.tmp %>'
       }
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/views/{,*/}*.html'],
+      html: ['<%= yeoman.tmp %>/views/{,*/}*.html'],
       options: {
-        assetsDirs: ['<%= yeoman.dist %>']
+        assetsDirs: ['<%= yeoman.tmp %>']
       }
     },
 
@@ -214,7 +216,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/views',
           src: ['**/*.html'],
-          dest: '<%= yeoman.dist %>/views'
+          dest: '<%= yeoman.tmp %>/views'
         }]
       }
     },
@@ -234,12 +236,12 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
-      dist: {
+      tmp: {
         files: [{
           expand: true,
           dot: true,
           cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>',
+          dest: '<%= yeoman.tmp %>',
           src: [
             '*.{ico,png,txt}',
             'bower_components/**/*',
@@ -252,8 +254,19 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.tmp/img',
-          dest: '<%= yeoman.dist %>/img',
+          dest: '<%= yeoman.tmp %>/img',
           src: ['generated/*']
+        }]
+      },
+      dist: {
+        files: [{
+          expand: true,
+          dot: true,
+            cwd: 'tmp',
+            dest: 'dist',
+            src: [
+            '**/*'
+            ]
         }]
       }
     },
@@ -297,8 +310,8 @@ module.exports = function (grunt) {
 
     htmlrefs: {
       dist: {
-        src: './dist/views/front.html',
-        dest: './dist/views/front.html'
+        src: './<%= yeoman.tmp %>/views/front.html',
+        dest: './<%= yeoman.tmp %>/views/front.html'
       }
     }
   });
@@ -341,17 +354,18 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'clean:dist',
+    'clean:tmp',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
     'concat',
     'ngAnnotate',
-    'copy:dist',
+    'copy:tmp',
     'uglify',
     'rev',
     'usemin',
-    'htmlrefs:dist'
+    'htmlrefs:dist',
+    'copy:dist'
   ]);
 
   grunt.registerTask('default', [

@@ -1,5 +1,5 @@
 apps:
-  - name: worker
+  - name: ma-web
     script   : server.js
     instances: 4
     exec_mode: cluster

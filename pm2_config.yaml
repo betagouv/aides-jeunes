@@ -3,3 +3,8 @@ apps:
     script   : server.js
     instances: 4
     exec_mode: cluster
+    env:
+        MES_AIDES_ROOT_URL: https://mes-aides.gouv.fr
+        MONGODB_URL: mongodb://localhost/dds
+        NODE_ENV: production
+        PORT: 8000

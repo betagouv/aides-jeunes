@@ -9,12 +9,13 @@ var migrations = require('.');
 // Setup mongoose
 var Situation = mongoose.model('Situation');
 
-var startDate = (new Date()).toISOString();
-var errors = 0;
 var counter = 0;
+var errors = 0;
+var limit = 50000;
+var startDate = (new Date()).toISOString();
 
 function migrateAllSituations() {
-    Situation.find({ version: { $ne: migrations.list.length }}).sort({ dateDeValeur: -1 }).cursor()
+    Situation.find({ version: { $ne: migrations.list.length }}).sort({ dateDeValeur: -1 }).limit(limit).cursor()
     .pipe(es.map(function (situation, done) {
         migrations.apply(situation);
         situation.save(function (err) {
@@ -28,7 +29,7 @@ function migrateAllSituations() {
         });
     }))
     .on('end', function() {
-        console.log(['Terminé', startDate, (new Date()).toISOString(), counter, errors].join(';'));
+        console.log(['Terminé', migrations.list.length, startDate, (new Date()).toISOString(), counter, errors].join(';'));
         process.exit();
     })
     .on('error', function(err) {

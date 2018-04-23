@@ -22,6 +22,7 @@ module.exports = function(app) {
         });
 
         app.use(express.static(path.join(__dirname, directory)));
+        app.use('/styles/front.css', express.static(path.join(__dirname, 'tmp/styles/front.css')));
     }
     app.use('/recap-situation', express.static(path.join(__dirname, directory)));
 

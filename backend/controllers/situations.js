@@ -13,6 +13,12 @@ exports.situation = function(req, res, next, id) {
     });
 };
 
+exports.validateAccess = function(req, res, next) {
+    var situation = req.situation;
+    if (req.situation.status === 'test' || !situation.token || req.cookies['situation_' + situation.id] === situation.token) return next();
+    res.status(403).end();
+};
+
 exports.show = function(req, res) {
     res.send(req.situation);
 };
@@ -20,9 +26,10 @@ exports.show = function(req, res) {
 exports.create = function(req, res, next) {
     if (req.body._id) return res.status(403).send({ error: 'You can‘t provide _id when saving a situation. _id will be generated automatically.' });
 
-    return Situation.create(req.body, function(err, persistedSituation) {
+    return Situation.create(_.omit(req.body, 'status', 'token'), function(err, persistedSituation) {
         if (err) return next(err);
 
+        res.cookie('situation_' + persistedSituation.id, persistedSituation.token, { maxAge: 7 * 24 * 3600 * 1000, httpOnly: true });
         res.send(persistedSituation);
     });
 };

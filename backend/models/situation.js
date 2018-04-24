@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var ressources = require('../../app/js/constants/ressources');
+var utils = require('../lib/utils');
 
 var familleDef = {
     parisien: Boolean,
@@ -86,16 +87,30 @@ var menageDef = {
     statut_occupation_logement: { type: String, enum: statutOccupationLogementValues },
 };
 
-var situationSchema = {
+var situation = {
     dateDeValeur: Date,
     famille: familleDef,
     foyer_fiscal: foyerFiscalDef,
     individus: [individuDef],
     menage: menageDef,
     modifiedFrom: String,
+    status: { type: String, default: 'new' },
+    token: String,
     version: Number,
 };
 
-mongoose.model('Situation', new mongoose.Schema(situationSchema, { minimize: false }));
-mongoose.model('LegacySituation', new mongoose.Schema({}, { strict: false }));
+var SituationSchema = new mongoose.Schema(situation, { minimize: false });
 
+SituationSchema.pre('save', function(next) {
+    if (!this.isNew) next();
+    var situation = this;
+    utils.generateToken()
+    .then(function(token) {
+        situation.token = token;
+    })
+    .then(next)
+    .catch(next);
+});
+
+mongoose.model('Situation', SituationSchema);
+mongoose.model('LegacySituation', new mongoose.Schema({}, { strict: false }));

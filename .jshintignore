@@ -5,6 +5,7 @@ node_modules
 # Build outputs
 .tmp
 dist
+tmp
 
 # Watai files are not actual JS
 test/integration

@@ -1,17 +1,24 @@
+var express = require('express');
+
 var situations = require('../controllers/situations');
 
 module.exports = function(api) {
+    api.route('/situations').post(situations.create);
+
+    var route = new express.Router({ mergeParams: true });
+    route.use(situations.validateAccess);
+
+    route.get('/', situations.show);
+    route.get('/openfisca-response', situations.openfiscaResponse);
+    route.get('/legacy-openfisca-request', situations.openfiscaRequestFromLegacy);
+    route.get('/openfisca-request', situations.openfiscaRequest);
+    route.post('/openfisca-test', situations.openfiscaTest);
+    route.get('/openfisca-trace', situations.openfiscaTrace);
+
+    api.use('/situations/:situationId', route);
 
     /*
     ** Param injection
     */
     api.param('situationId', situations.situation);
-    api.route('/situations/:situationId').get(situations.show);
-    api.route('/situations').post(situations.create);
-
-    api.route('/situations/:situationId/openfisca-response').get(situations.openfiscaResponse);
-    api.route('/situations/:situationId/legacy-openfisca-request').get(situations.openfiscaRequestFromLegacy);
-    api.route('/situations/:situationId/openfisca-request').get(situations.openfiscaRequest);
-    api.route('/situations/:situationId/openfisca-test').post(situations.openfiscaTest);
-    api.route('/situations/:situationId/openfisca-trace').get(situations.openfiscaTrace);
 };

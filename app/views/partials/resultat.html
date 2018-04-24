@@ -5,6 +5,7 @@
 
 <div id="warning" class="alert alert-warning" ng-show="warning" role="alert">
   <h2><i class="fa fa-warning" aria-hidden="true"></i> Aucun résultat disponible</h2>
+  <h3 ng-show="warningMessage">{{ warningMessage }}</h3>
   <p>
     Pour commencer votre simulation, rendez-vous sur la <a ui-sref="home">page d'accueil</a>.
   </p>

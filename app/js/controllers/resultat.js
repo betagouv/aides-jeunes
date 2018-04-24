@@ -4,6 +4,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     $scope.awaitingResults = false;
     $scope.error = false;
     $scope.warning = false;
+    $scope.warningMessage = false;
 
     function loadSituation() {
         if ($stateParams.situationId) { // If we want the result page for an already existing situation.
@@ -25,6 +26,12 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
             $scope.noDroits = _.isEmpty($scope.droits.prestationsNationales) && _.isEmpty($scope.droits.partenairesLocaux);
         })
         .catch(function(error) {
+            if (error.status === 403) {
+                $scope.warning = true;
+                $scope.warningMessage = 'La simulation à laquelle vous souhaitez accéder n‘est pas accessible.';
+                $analytics.eventTrack('unauthorised');
+                return;
+            }
             $scope.error = JSON.stringify((error && error.data), null, 2);
             $scope.encodedError = encodeURIComponent($scope.error);
             $scope.encodedUserAgent = encodeURIComponent(window.navigator.userAgent);

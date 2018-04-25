@@ -14,7 +14,7 @@ module.exports = function extractResults(openfiscaResults, date) {
         }
 
         var non_calculable = (aideEntity[aideId + '_non_calculable'] && aideEntity[aideId + '_non_calculable'][period]);
-        if (non_calculable && non_calculable != 'calculable') {
+        if (non_calculable && non_calculable != 'calculable' && aideId !== 'aah') {
             result[aideId] = non_calculable;
             return result;
         }

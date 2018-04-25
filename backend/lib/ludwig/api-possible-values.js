@@ -100,9 +100,10 @@ module.exports = [
     {
         'id': 'aah',
         'shortLabel': 'AAH',
-        'uncomputabilityReasons': {
-            'intervention_CDAPH_necessaire': 'le taux d’incapacité est déterminé par la CDAPH',
-        },
+    },
+    {
+        'id': 'caah',
+        'shortLabel': 'CAAH',
     },
     {
        'id': 'ppa',

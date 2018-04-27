@@ -100,7 +100,7 @@ exports.generateTest = function generateYAMLTest(details, situation) {
             return menage;
         })
     };
-    mapping.setNonInjectedPrestations(testCase, [testCase.period], undefined);
+    mapping.giveValueToRequestedVariables(testCase, currentPeriod, undefined);
 
     var extensionSpecificSituation = prepareTestSituationForSpecificExtension(testCase, details.extension);
     return _.assign(_.pick(details, TEST_ATTRIBUTES), extensionSpecificSituation);

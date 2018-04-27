@@ -71,6 +71,29 @@ function mapIndividus(situation) {
     }, {});
 }
 
+function giveValueToRequestedVariables(testCase, periods, value) {
+    if (! (periods instanceof Array)) {
+        periods = [periods];
+    }
+
+    _.forEach(common.requestedVariables, function(definition, prestationName) {
+        _.forEach(testCase[(definition.entity || 'famille') + 's'], function(entity) {
+            entity[prestationName] = entity[prestationName] || {};
+            _.forEach(periods, function(period) {
+                if (typeof entity[prestationName][period] !== undefined) {
+                    return;
+                }
+                if (value === undefined) {
+                    delete entity[prestationName][period];
+                } else {
+                    entity[prestationName][period] = value;
+                }
+            });
+        });
+    });
+}
+exports.giveValueToRequestedVariables = giveValueToRequestedVariables;
+
 exports.buildOpenFiscaRequest = function(sourceSituation) {
     var situation = sourceSituation.toObject ? migrations.apply(sourceSituation).toObject() : _.cloneDeep(sourceSituation);
 
@@ -97,15 +120,8 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
 
     var periods = common.getPeriods(situation.dateDeValeur);
     setNonInjectedPrestations(testCase, periods.last12Months, 0);
-
     last3MonthsDuplication(testCase, situation.dateDeValeur);
-
-    _.forEach(common.requestedVariables, function(definition, prestationName) {
-        _.forEach(testCase[(definition.entity || 'famille') + 's'], function(entity) {
-            entity[prestationName] = entity[prestationName] || {};
-            entity[prestationName][periods.thisMonth] = entity[prestationName][periods.thisMonth] || null;
-        });
-    });
+    giveValueToRequestedVariables(testCase, periods.thisMonth, null);
 
     return testCase;
 };

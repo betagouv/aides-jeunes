@@ -79,10 +79,13 @@ var TEST_ATTRIBUTES = [
     'relative_error_margin',
 ];
 
-exports.generateYAMLTest = function generateYAMLTest(details, situation) {
+exports.generateTest = function generateYAMLTest(details, situation) {
     var openfiscaRequest = mapping.buildOpenFiscaRequest(situation.toObject ? situation.toObject() : situation);
+
+    var currentPeriod = moment(situation.dateDeValeur).format('YYYY-MM');
+
     var testCase = {
-        period: moment(situation.dateDeValeur).format('YYYY-MM'),
+        period: currentPeriod,
         individus: _.map(openfiscaRequest.individus, function(value, key) {
             value.id = key;
             return value;
@@ -97,9 +100,12 @@ exports.generateYAMLTest = function generateYAMLTest(details, situation) {
             return menage;
         })
     };
-    mapping.setNonInjectedPrestations(testCase, [testCase.period], undefined);
+    mapping.giveValueToRequestedVariables(testCase, currentPeriod, undefined);
 
     var extensionSpecificSituation = prepareTestSituationForSpecificExtension(testCase, details.extension);
-    var test = _.assign(_.pick(details, TEST_ATTRIBUTES), extensionSpecificSituation);
-    return toYAML(test);
+    return _.assign(_.pick(details, TEST_ATTRIBUTES), extensionSpecificSituation);
+};
+
+exports.generateYAMLTest = function generateYAMLTest(details, situation) {
+    return toYAML(exports.generateTest(details, situation));
 };

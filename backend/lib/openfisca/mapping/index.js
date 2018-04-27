@@ -80,7 +80,7 @@ function giveValueToRequestedVariables(testCase, periods, value) {
         _.forEach(testCase[(definition.entity || 'famille') + 's'], function(entity) {
             entity[prestationName] = entity[prestationName] || {};
             _.forEach(periods, function(period) {
-                if (typeof entity[prestationName][period] !== undefined) {
+                if (typeof entity[prestationName][period] !== 'undefined' && entity[prestationName][period] !== null) {
                     return;
                 }
                 if (value === undefined) {

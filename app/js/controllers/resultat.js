@@ -1,10 +1,13 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, SituationService, CityService, ResultatService, droitsDescription, $analytics) {
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, ABTestingService, SituationService, CityService, ResultatService, droitsDescription, $analytics) {
     $scope.awaitingResults = false;
     $scope.error = false;
     $scope.warning = false;
     $scope.warningMessage = false;
+
+    var env = ABTestingService.getABTestingEnvironment();
+    $scope.linkAlternative = (env.link && env.link.value) || 'B';
 
     function loadSituation() {
         if ($stateParams.situationId) { // If we want the result page for an already existing situation.

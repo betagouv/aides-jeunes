@@ -29,6 +29,10 @@
   .result .panel-title .description {
     padding-top: 0.5em;
   }
+
+  .result .panel-title .description.link {
+    text-decoration: underline;
+  }
 }
 
 .needs-n-2 .panel-heading {

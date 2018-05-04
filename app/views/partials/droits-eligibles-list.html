@@ -3,7 +3,7 @@
      class="result {{ getAccordionClass(droit) }}"
      ng-repeat="(droitId, droit) in list|orderObjectBy:'label'">
     <uib-accordion-heading>
-      <div class="row">
+      <div class="row" ng-if="linkAlternative == 'B'">
         <div class="col-xs-2 col-sm-1 droit-logo">
           <img
                ng-src="/img/{{ droit.provider.imgSrc }}"
@@ -33,6 +33,30 @@
             aria-hidden="true"
             role="presentation"
           ></i>
+        </div>
+      </div>
+
+      <div class="row" ng-if="linkAlternative == 'A'">
+        <div class="col-xs-2 col-sm-1 droit-logo">
+          <img
+               ng-src="/img/{{ droit.provider.imgSrc }}"
+               alt="">
+        </div>
+
+        <div class="col-xs-7 col-sm-9 description" ng-class="{ link: linkAlternative == 'A' }">
+          <span>{{ droit.label }}<span>
+        </div>
+
+        <div class="col-xs-3 col-sm-2">
+          <div class="montant">
+            <span ng-if="isNumber(droit.montant)">{{ droit.montant | currency : ( droit.unit || '€' ) : (droit.roundToNearestCent ? 2 : 0 ) }}</span>
+            <span ng-if="isString(droit.montant)" class="montant-inconnu">?</span>
+            <i class="fa fa-warning text-warning" ng-if="shouldDisplayYM2Warning(droit)"></i>
+          </div>
+
+          <div ng-if="isNumber(droit.montant)" class="montant-detail">
+            {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
+          </div>
         </div>
       </div>
     </uib-accordion-heading>

@@ -9,6 +9,9 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         $localStorage.ABTesting.contact = $localStorage.ABTesting.contact || { index: 1 };
         $localStorage.ABTesting.contact.deleted = true;
 
+        $localStorage.ABTesting.link = $localStorage.ABTesting.link || { index: 1 };
+        $localStorage.ABTesting.link.value = $localStorage.ABTesting.link.value || (Math.random() > 0.5 ? 'A' : 'B');
+
         _.forEach($localStorage.ABTesting, function(data, name) {
             if (data.deleted) {
                 $analytics.deleteCustomVariable(data.index, 'visit');

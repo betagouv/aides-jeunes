@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').directive('yesNoQuestion', function() {
+angular.module('ddsApp').directive('yesNoQuestion', function($parse) {
     return {
         restrict: 'E',
         transclude: true,
@@ -9,23 +9,12 @@ angular.module('ddsApp').directive('yesNoQuestion', function() {
         controller: 'yesNoQuestionCtrl',
         link: function ($scope, $element, $attributes) {
 
-            // To get the object and the property described by the `model` directive attribute.
-            function parse (propertyPath) {
-                var parts = propertyPath.split('.');
-                return {
-                    targetProperty: parts.pop(),
-                    targetObject: parts.join('.')
-                };
-            }
-
-            var propertyPath = $attributes.model,
-                parsedPropertyPath = parse(propertyPath),
-                targetProperty = parsedPropertyPath.targetProperty,
-                targetObject = $scope.$eval(parsedPropertyPath.targetObject);
+            var getter = $parse($attributes.model);
+            var setter = getter.assign;
 
             // We need a unique name for the radio input, in case this directive is used in a ng-repeat.
             $scope.uniqueFieldName = 'field.' + Math.random().toString(36).slice(2);
-            $scope.value = String(targetObject[targetProperty]);
+            $scope.value = String(getter($scope));
 
             $scope.gridSize = {
                 question: $attributes.size || 3,
@@ -34,7 +23,7 @@ angular.module('ddsApp').directive('yesNoQuestion', function() {
 
             // ng-model doesn't accept a dynamic parameter, so we have to transmit the value manually.
             $scope.updateValue = function() {
-                targetObject[targetProperty] = $scope.value == 'true';
+                setter($scope, ($scope.value == 'true'));
             };
         }
     };

@@ -10,6 +10,7 @@ angular.module('ddsCommon').directive('individuBlock', function(IndividuService)
         controller: function($scope) {
             $scope.individuLabel = IndividuService.label;
             $scope.nationalite = IndividuService.nationaliteLabel;
+            $scope.statutsSpecifiques = IndividuService.formatStatutsSpecifiques;
             var sref = function(individu) {
                 switch (individu.role) {
                     case 'demandeur':

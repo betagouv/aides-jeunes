@@ -45,7 +45,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
 
     $scope.$on('enfants', function(e, enfants) {
         SituationService.setEnfants(situation, enfants);
-        $state.go('foyer.conjoint');
+        $state.go('foyer.conjoint', {}, { location: 'replace' });
     });
 
     $scope.$on('logement', function(e) {

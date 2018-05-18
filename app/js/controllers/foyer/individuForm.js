@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
+
     $scope.specificSituations = specificSituations;
     $scope.situationsFamiliales = situationsFamiliales;
     $scope.today = moment();
@@ -94,9 +95,13 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     }
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
-    $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
 
-    if (individuRole == 'enfant') {
+    if (! $scope.individu) {
+        $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
+    }
+
+    if (individuRole == 'enfant' && $scope.isNew) {
+
         var nextEnfantCount = $scope.enfants.length + 1;
         $scope.individu.firstName = 'Votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
 

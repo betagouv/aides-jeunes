@@ -17,6 +17,8 @@ angular.module('ddsCommon').directive('individuBlock', function(IndividuService)
                         return 'foyer.demandeur';
                     case 'conjoint':
                         return 'foyer.conjoint';
+                    case 'enfant':
+                        return 'foyer.enfants.modifier({ id: individu.id })';
                     default:
                         return 'foyer.enfants';
                 }

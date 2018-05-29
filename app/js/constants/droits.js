@@ -9,7 +9,7 @@
                 'prestations': {
                     'aspa': {
                         'label': 'Allocation de solidarité aux personnes âgées',
-                        'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une prestation accordée aux personnes retraitées ayant de faibles ressources. Elle est versée tous les mois par la Carsat (ou la MSA si vous dépendez du régime agricole). Elle s’ajoute, dans une certaine limite, aux revenus personnels. Elle remplace le minimum vieillesse depuis 2006.',
+                        'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une prestation accordée aux personnes retraitées ayant de faibles ressources. Elle est versée tous les mois par la Carsat (ou la MSA si vous dépendez du régime agricole). Elle s’ajoute, dans une certaine limite, aux revenus personnels. Elle remplace le minimum vieillesse depuis 2006. Pour les personnes en situation de handicap, l’ASPA n’est pas compatible avec l’AAH : renseignez-vous auprès de votre MDPH avant de faire votre demande.',
                         'conditions': [
                             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
                             'Avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles vous avez droit.',

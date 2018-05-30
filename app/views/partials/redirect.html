@@ -1,0 +1,26 @@
+<article id="redirect" class="text container">
+  <p>
+  À titre expérimental sur le territoire du Loiret, Mes Aides vous propose de transmettre directement au service du conseil départemental les informations suivantes :
+  </p>
+
+  <ul>
+    <li ng-repeat="variable in data|orderObjectBy:'label'">
+      {{ variable.label }}&nbsp;: {{ variable.formatter ? variable.formatter(variable.value) : variable.value }}
+    </li>
+  </ul>
+
+  <p>
+  En continuant, vous acceptez de participer à cette expérimentation et vous accéderez au téléservice, vos informations seront préremplies pour simplifier la réalisation de la démarche.
+  </p>
+
+  <p>
+  Dès lors, vous aurez un droit d'accès et de rectification sur les informations nominatives stockées ou traitées informatiquement par le Département du Loiret. Pour exercer ce droit, vous devez vous adresser, en justifiant de votre identité, à Département du Loiret - 45945 Orléans.
+  </p>
+
+  <form method="post" action="http://localhost:3000/prefill">
+    <label ng-repeat="variable in data|orderObjectBy:'label'">
+      {{ variable.label }}<input name="{{ variable.key }}" value="{{ variable.value }}">
+    </label>
+    <input type="submit" value="Accéder au téléservice">
+  </form>
+</article>

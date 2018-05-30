@@ -251,6 +251,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/partials/foyer/patrimoine.html',
             controller: 'FoyerPatrimoineCtrl'
         })
+        .state('redirect', {
+            url: '/redirect',
+            templateUrl: '/partials/redirect.html',
+            controller: 'RedirectCtrl'
+        })
         .state('situation', { // Route used by Ludwig
             url: '/situations/:situationId',
             template: '',

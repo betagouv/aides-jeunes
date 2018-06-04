@@ -1,9 +1,35 @@
+.children {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
 .child {
   border: 1px solid #DDD;
   box-shadow: 0 .2em .4em rgba(0, 0, 0, 0.4);
   padding: 1em;
   padding-top: .25em;
   margin-bottom: 1em;
+  flex-grow: 1;
+  margin: 15px;
+}
+
+@media (max-width: 991px) {
+  .child {
+    width: calc(100% - 30px);
+  }
+}
+
+@media (min-width: 992px) {
+  .child {
+    max-width: calc(50% - 30px);
+  }
+}
+@media (min-width: 1200px) {
+  .child {
+    max-width: calc(33.3333% - 30px);
+  }
 }
 
 .child h3 {

@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - './db:/data/db'
+
+  openfisca:
+    build:
+      dockerfile: './docker/openfisca/Dockerfile'
+      context: '.'
+    environment:
+      OPENFISCA_BIND_HOST: 0.0.0.0:2000
+    ports:
+      - '2000:2000'
+
+  node:
+    build:
+      dockerfile: './docker/node/Dockerfile'
+      context: '.'
+    environment:
+      MONGODB_URL: mongodb://mongo:27017/dds
+      OPENFISCA_URL: http://openfisca:2000
+    ports:
+      - '9000:9000'
+    depends_on:
+      - mongo
+      - openfisca
+    links:
+      - mongo
+      - openfisca
+    volumes:
+      - 'node_modules:/srv/app/node_modules'
+      - 'bower_components:/srv/app/app/bower_components'
+      - './:/srv/app'
+
+volumes:
+  node_modules:
+  bower_components:

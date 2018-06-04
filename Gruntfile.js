@@ -338,14 +338,21 @@ module.exports = function (grunt) {
       ]);
     }
 
-    grunt.task.run([
-      'clean:server',
-      'concurrent:server',
-      'autoprefixer',
-      'express:dev',
-      'open',
-      'watch'
-    ]);
+    var tasks = [
+        'clean:server',
+        'concurrent:server',
+        'autoprefixer',
+        'express:dev',
+        'open',
+        'watch'
+    ];
+
+    // Remove "open" task
+    if (true === grunt.option('no-open')) {
+        tasks.splice(tasks.indexOf('open'), 1);
+    }
+
+    grunt.task.run(tasks);
   });
 
   grunt.registerTask('test', [

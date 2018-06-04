@@ -1,0 +1,63 @@
+.child {
+  border: 1px solid #DDD;
+  box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.4);
+  padding: 1em;
+  padding-top: .25em;
+  margin-bottom: 1em;
+}
+
+.child h3 {
+  margin-top: .5em;
+}
+
+.close {
+  float: right;
+  color: black;
+  margin-top: .25em;
+}
+
+.new-entity {
+  padding: 0 2em 1em 2em;
+  border: .25em dashed #DDD;
+  box-shadow: none;
+  width: 100%;
+}
+
+.card-icon {
+  font-size: 430%;
+}
+
+.foyer-enfants {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.foyer-enfant, .ajouter-enfant {
+  flex-grow: 1;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 991px) {
+  .foyer-enfant, .ajouter-enfant {
+    width: calc(100% - 30px);
+  }
+}
+
+@media (min-width: 992px) {
+  .foyer-enfant, .ajouter-enfant {
+    max-width: calc(50% - 30px);
+  }
+}
+@media (min-width: 1200px) {
+  .foyer-enfant, .ajouter-enfant {
+    max-width: calc(33.3333% - 30px);
+  }
+}
+
+.foyer-enfant > *, .ajouter-enfant > * {
+  flex: 1;
+}

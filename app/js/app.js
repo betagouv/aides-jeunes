@@ -255,10 +255,10 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
             templateUrl: '/partials/foyer/patrimoine.html',
             controller: 'FoyerPatrimoineCtrl'
         })
-        .state('redirect', {
-            url: '/redirect',
-            templateUrl: '/partials/redirect.html',
-            controller: 'RedirectCtrl'
+        .state('redirection', {
+            url: '/redirection',
+            templateUrl: '/partials/redirection.html',
+            controller: 'RedirectionCtrl'
         })
         .state('situation', { // Route used by Ludwig
             url: '/situations/:situationId',

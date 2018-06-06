@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('RedirectCtrl', function($scope, SituationService, $sce) {
+angular.module('ddsApp').controller('RedirectionCtrl', function($scope, SituationService, $sce) {
   $scope.endpoint = 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92/';
 
   $scope.fields = [{

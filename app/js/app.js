@@ -28,6 +28,8 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
     };
 
     var whitelist = $sceDelegateProvider.resourceUrlWhitelist();
+    whitelist.push('http://localhost:3000/prefill');
+    whitelist.push('http://test.mes-aides.gouv.fr/prefill');
     whitelist.push('https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92/');
     $sceDelegateProvider.resourceUrlWhitelist(whitelist);
 

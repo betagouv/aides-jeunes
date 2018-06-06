@@ -4,7 +4,7 @@
   </p>
 
   <ul>
-    <li ng-repeat="variable in fields|orderObjectBy:'label'">
+    <li ng-repeat="variable in fields">
       {{ variable.label }}&nbsp;: {{ variable.formatter ? variable.formatter(variable.value) : variable.value }}
     </li>
   </ul>

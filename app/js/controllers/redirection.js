@@ -1,7 +1,17 @@
 'use strict';
 
 angular.module('ddsApp').controller('RedirectionCtrl', function($scope, SituationService, $sce) {
-  $scope.endpoint = 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92/';
+
+  $scope.endpoints = [{
+    name: 'du Loiret',
+    url: 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92/',
+  }, {
+    name: 'de test en ligne',
+    url: 'http://test.mes-aides.gouv.fr/prefill',
+  }, {
+    name: 'en local',
+    url: 'http://localhost:3000/prefill',
+  }];
 
   $scope.fields = [{
     label: 'votre date de naissance',

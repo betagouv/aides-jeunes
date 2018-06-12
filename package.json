@@ -10,7 +10,7 @@
     "bower": "^1.4.1",
     "cleave.js": "~0.7.15",
     "codes-postaux": "etalab/codes-postaux#003ea027941e7a40c6094c7a02e7299d37619712",
-    "d3": "^4.11.0",
+    "d3": "4.11.0",
     "event-stream": "^3.1.7",
     "express": "~4.15.0",
     "font-awesome": "^4.7.0",

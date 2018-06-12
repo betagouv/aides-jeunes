@@ -387,6 +387,24 @@ var droitsDescription = {
                 },
             },
         },
+        'cohesion_territoires': {
+            'label': 'Ministère de la Cohésion des territoires',
+            'imgSrc': 'logo_ministere_cohesion_territoires.png',
+            'prestations': {
+                'logement_social_eligible': {
+                    'type': 'bool',
+                    'isBaseRessourcesYearMoins2': true,
+                    'label': 'Logement social',
+                    'shortLabel': 'LOGSOC',
+                    'description': 'Les logements sociaux sont attribués par les bailleurs sociaux qui choisissent des candidats sur une liste proposée par des organismes disposant de droits de réservation. Vos revenus ne doivent pas dépasser un plafond qui varie en fonction du nombre de personnes dans votre foyer et du type de logement.',
+                    'conditions': [
+                        'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
+                    ],
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F869',
+                    'form': 'https://www.demande-logement-social.gouv.fr/creation/accesCriteresEligibilites.do',
+                },
+            }
+        }
     },
     'partenairesLocaux': {
         'paris': {

@@ -42,7 +42,7 @@ var ressourceTypes = [
     },
     {
         id: 'primes_salaires_net',
-        label: 'Primes (dont 13ème mois)',
+        label: 'Primes (dont 13e mois)',
         category: 'revenusActivite',
         positionInList: '2',
         prefix: 'des',

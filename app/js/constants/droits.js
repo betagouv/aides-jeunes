@@ -396,9 +396,12 @@ var droitsDescription = {
                     'isBaseRessourcesYearMoins2': true,
                     'label': 'Logement social',
                     'shortLabel': 'LOGSOC',
-                    'description': 'Les logements sociaux sont attribués par les bailleurs sociaux qui choisissent des candidats sur une liste proposée par des organismes disposant de droits de réservation. Vos revenus ne doivent pas dépasser un plafond qui varie en fonction du nombre de personnes dans votre foyer et du type de logement.',
+                    'description': 'Le logement social est destiné aux personnes et familles dont les ressources ne dépassent pas un certain seuil et répondant à certaines conditions d’accès. Aucun frais de dossier n’est réclamé lors de la demande, ni lors de la signature du bail. Il n’est pas obligatoire de résider dans une commune pour y déposer un dossier.',
                     'conditions': [
-                        'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
+                        'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
+                        'Vous adresser aux organismes HLM du département où vous souhaiter résider à travers le téléservice que nous présentons',
+                        'Ou bien auprès de la préfecture du département, à la mairie de la ville ou des organismes collecteurs du 1% logement',
+                        'Renouveler chaque année votre demande jusqu’à obtention d’un logement',
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F869',
                     'form': 'https://www.demande-logement-social.gouv.fr/creation/accesCriteresEligibilites.do',

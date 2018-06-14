@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $state) {
+    $scope.allowValidation = function() { return $state.current.name == 'foyer.enfants' };
 
     $scope.enfants = _.filter($scope.situation.individus, { role: 'enfant' });
 

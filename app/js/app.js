@@ -214,9 +214,6 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
                 },
                 'validate@foyer.enfants': {
                     templateUrl: '/partials/foyer/enfants/validate.html',
-                    controller: function($scope) {
-                        $scope.disabled = false;
-                    },
                 },
             }
         })
@@ -230,9 +227,6 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
                 'form@foyer.enfants.ajouter': individuFormView('enfant'),
                 'validate@foyer.enfants': {
                     templateUrl: '/partials/foyer/enfants/validate.html',
-                    controller: function($scope) {
-                        $scope.disabled = true;
-                    },
                 },
             }
         })
@@ -247,9 +241,6 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
                 'form@foyer.enfants.modifier': individuFormView('enfant'),
                 'validate@foyer.enfants': {
                     templateUrl: '/partials/foyer/enfants/validate.html',
-                    controller: function($scope) {
-                        $scope.disabled = true;
-                    },
                 },
             }
         })

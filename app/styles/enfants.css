@@ -15,9 +15,9 @@
   margin: 15px;
 }
 
-.child:hover {
+.child:hover:not(.new-entity) {
   cursor: pointer;
-  border: 1px solid #CCC;
+  /*border: 1px solid #CCC;*/
   box-shadow: 0 .2em .4em rgba(0, 0, 0, 0.5);
 }
 
@@ -38,7 +38,7 @@
   }
 }
 
-.child.active {
+.child.active, .child.active:active {
   border: 1px solid #008cba;
   box-shadow: 0 .2em .4em rgba(0, 140, 186, 0.4);
 }

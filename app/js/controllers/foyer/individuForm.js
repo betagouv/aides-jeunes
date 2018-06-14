@@ -167,7 +167,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     };
 
     $scope.captureEnfantACharge = function(form) {
-        if (! isIndividuParent && form.dateDeNaissance.$valid) {
+        if (! isIndividuParent && form && form.dateDeNaissance.$valid) {
             return IndividuService.age($scope.individu) >= 1;
         }
     };

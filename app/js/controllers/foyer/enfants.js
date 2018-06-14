@@ -14,9 +14,7 @@ angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $state)
         var index = $scope.enfants.indexOf(enfant);
         $scope.enfants.splice(index, 1);
 
-        if ('foyer.enfants' !== $state.current.name) {
-            $state.go('foyer.enfants', {}, { location: 'replace' });
-        }
+        $state.go('foyer.enfants', {}, { location: 'replace' });
     };
 
     $scope.validate = function() {
@@ -30,9 +28,10 @@ angular.module('ddsApp').controller('FoyerNewEnfantCtrl', function($scope, $stat
 
     // Called when the form is submitted & valid
     $scope.$on('individu.enfant', function(e, enfant) {
-
         $scope.enfants.push(enfant);
-        $state.go('foyer.enfants', {}, { location: 'replace' });
+        $scope.$emit('enfant', $scope.enfants);
+
+        $state.go('foyer.enfants');
     });
 
     $timeout(function() { $anchorScroll('enfant-form'); });
@@ -44,15 +43,12 @@ angular.module('ddsApp').controller('FoyerEnfantCtrl', function($scope, $state, 
 
     // Called when the form is submitted & valid
     $scope.$on('individu.enfant', function(e, enfant) {
-
         var index = $scope.enfants.indexOf(enfant);
         if (-1 !== index) {
             $scope.enfants.splice(index, 1, enfant);
         }
 
-        // Use location = replace to clear history
-        // https://github.com/angular-ui/ui-router/wiki/Quick-Reference#options
-        $state.go('foyer.enfants', {}, { location: 'replace' });
+        $state.go('foyer.enfants');
     });
 
     var enfant = _.find($scope.situation.individus, {

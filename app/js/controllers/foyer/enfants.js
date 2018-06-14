@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $state) {
-    $scope.allowValidation = function() { return $state.current.name == 'foyer.enfants' };
+    $scope.allowValidation = function() { return $state.current.name == 'foyer.enfants'; };
+    $scope.isActive = function(enfant) { return $state.current.name == 'foyer.enfants.modifier' && $state.params.id == enfant.id; };
 
     $scope.enfants = _.filter($scope.situation.individus, { role: 'enfant' });
 
     $scope.$on('actionCancelled', function() {
-        $scope.activeEnfant = null;
         $state.go('foyer.enfants');
     });
 
@@ -22,8 +22,6 @@ angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $state)
     $scope.validate = function() {
         $scope.$emit('enfants', $scope.enfants);
     };
-
-    $scope.activeEnfant = null;
 });
 
 angular.module('ddsApp').controller('FoyerNewEnfantCtrl', function($scope, $state, $anchorScroll, $timeout) {
@@ -34,12 +32,7 @@ angular.module('ddsApp').controller('FoyerNewEnfantCtrl', function($scope, $stat
     $scope.$on('individu.enfant', function(e, enfant) {
 
         $scope.enfants.push(enfant);
-
-        // Use location = replace to clear history
-        // https://github.com/angular-ui/ui-router/wiki/Quick-Reference#options
         $state.go('foyer.enfants', {}, { location: 'replace' });
-
-        $scope.$parent.activeEnfant = null;
     });
 
     $timeout(function() { $anchorScroll('enfant-form'); });
@@ -60,8 +53,6 @@ angular.module('ddsApp').controller('FoyerEnfantCtrl', function($scope, $state, 
         // Use location = replace to clear history
         // https://github.com/angular-ui/ui-router/wiki/Quick-Reference#options
         $state.go('foyer.enfants', {}, { location: 'replace' });
-
-        $scope.$parent.activeEnfant = null;
     });
 
     var enfant = _.find($scope.situation.individus, {
@@ -71,6 +62,5 @@ angular.module('ddsApp').controller('FoyerEnfantCtrl', function($scope, $state, 
 
     if (enfant) {
         $scope.individu = enfant;
-        $scope.$parent.activeEnfant = enfant;
     }
 });

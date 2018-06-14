@@ -7,7 +7,7 @@
 
   <div class="children">
     <div ng-repeat="enfant in enfants" class="child"
-      ng-class="{ active: enfant === activeEnfant }"
+      ng-class="{ active: isActive(enfant) }"
       ui-sref="foyer.enfants.modifier({ id: enfant.id })">
       <button type="button" class="close" ng-click="removeEnfant(enfant)">
         <span class="sr-only">Effacer {{ enfant.firstName }}</span>

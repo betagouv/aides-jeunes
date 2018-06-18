@@ -47,6 +47,16 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
                 pageTitle: 'À propos'
             }
         })
+        .state('aah-en-test', {
+            url: '/aah-en-test?situationId',
+            templateUrl: '/partials/aah-en-test.html',
+            controller: function($scope, $stateParams) {
+                $scope.situationId = $stateParams.situationId;
+            },
+            data: {
+                pageTitle: 'L\'AAH en test !',
+            }
+        })
         .state('ameli', {
             url: '/ameli',
             templateUrl: '/content-pages/ameli.html',

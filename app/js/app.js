@@ -48,10 +48,11 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
             }
         })
         .state('aah-en-test', {
-            url: '/aah-en-test?situationId',
+            url: '/aah-en-test?situationId&montant',
             templateUrl: '/content-pages/aah-en-test.html',
             controller: function($scope, $stateParams) {
                 $scope.situationId = $stateParams.situationId;
+                $scope.montant = $stateParams.montant
             },
             data: {
                 pageTitle: 'Montant de l’AAH – Mes Aides est en phase de test',

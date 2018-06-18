@@ -105,7 +105,7 @@
           <a
             ng-if="droit.internalLink"
             class="btn btn-sm btn-default btn-block"
-            ui-sref="{{ droit.internalLink }}({ situationId: '{{ situation._id }}' })"
+            ui-sref="{{ droit.internalLink }}({ situationId: '{{ situation._id }}', montant: {{ droit.montant }} })"
             target="_blank"
             rel="noopener"
             analytics-on="click"

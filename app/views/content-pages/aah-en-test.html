@@ -2,31 +2,36 @@
 
   <h1> Montant de l’AAH – Mes Aides est en phase de test</h1>
 
-  <p>En partenariat avec <a href="https://www.faire-face.fr/">faire-face.com</a>, le simulateur <a ui-sref="home">Mes Aides</a> fiabilise son calcul de l’AAH.</p>
+  <p>En partenariat avec <a href="https://www.faire-face.fr/">faire-face.fr</a>, le simulateur <a ui-sref="home">Mes Aides</a> fiabilise son calcul de l’Allocation aux adultes handicapés (AAH).</p>
 
-  <p>Complémentaire au bimestriel éponyme, <a href="https://www.faire-face.fr/">faire-face.com</a> est le seul site d’informations sur le handicap moteur. Accessibilité, autonomie, droits, emploi, santé, vie affective et sexuelle, vie sociale… : tous les jours, ses journalistes décryptent l’actualité à travers le prisme du handicap. Le site faire-face.fr, édité par APF&nbsp;France&nbsp;Handicap, s’appuie sur les valeurs de cette association, telles que stipulées dans sa charte et son projet associatif.</p>
+  <p>Complémentaire au bimestriel éponyme, <a href="https://www.faire-face.fr/">faire-face.fr</a> est le seul site d’informations sur le handicap moteur. Il est édité par APF&nbsp;France&nbsp;Handicap et s’appuie sur les valeurs de cette association.</p>
 
-  <p><b>Dans le cadre de ce partenariat, Mes Aides souhaite attirer l’attention de ses utilisateurs éligibles à l’AAH sur le montant qui leur est proposé en fin de simulation.</b> En effet, comme toutes les formules utilisées par le simulateur, nous nous améliorons à l’aide des retours de nos utilisateurs.</p>
+  <p><b>Dans le cadre de ce partenariat, Mes Aides souhaite attirer l’attention de ses utilisateurs éligibles à l’AAH sur le montant qui leur est proposé en fin de simulation.</b> En effet, comme toutes les formules utilisées par le simulateur, nous l'améliorons aussi à l’aide des retours de nos utilisateurs.</p>
 
   <p>Ce test grandeur nature nous permet de contrôler la bonne prise en compte des ressources de l’allocataire et de sa composition familiale parmi toutes les variables prises en compte pour le calcul de l’AAH.</p>
 
-  <p ng-if="situationId">
-    Vous avez passé une simulation sur Mes Aides récemment. Vous pouvez nous <a href="mailto:feedback@mes-aides.gouv.fr?subject=[{{ situation._id }}]%20Suggestion%20-%20Test%20de%20l%27AAH">envoyer vos commentaires</a> sur le résultat que vous avez obtenu ou bien <a ui-sref="foyer.demandeur" ng-click="newSituation()">passer une nouvelle simulation</a>.
-  </p>
+  <div ng-if="situationId && montant">
+    <p>
+      Vous venez de passer une simulation sur Mes Aides. Le montant de l'AAH a été estimé à <b>{{ montant | currency : '€' : 0 }}</b>.
+    </p>
+    <p>
+      Vous pouvez nous <a href="mailto:feedback@mes-aides.gouv.fr?subject=[{{ situation._id }}]%20Suggestion%20-%20Test%20de%20l%27AAH">envoyer vos commentaires</a> sur le résultat que vous avez obtenu ou bien <a ui-sref="foyer.demandeur" ng-click="newSituation()">passer une nouvelle simulation</a>.
+    </p>
+  </div>
 
-  <ul ng-if="! situationId">Vous pouvez nous aider à améliorer notre calcul en nous faisant votre retour. Pour cela :
+  <ul ng-if="! situationId">Vous pouvez nous aider à améliorer notre calcul en nous faisant votre retour. Pour cela&nbsp;:
     <li><a ui-sref="foyer.demandeur" ng-click="newSituation()">passez la simulation sur Mes Aides</a> sans préciser l'AAH dans vos ressources ;</li>
-    <li>signalez-nous <u>à l’aide des liens proposés en fin de simulation</u> les différences avec la réalité</li>
+    <li>signalez-nous <u>à l’aide des liens proposés en fin de simulation</u> les différences constatées.</li>
   </ul>
 
-  <small>À noter : les montant que nous affichons sur Mes Aides sont tous arrondis à une dizaine d’euros près.</small>
+  <small>À noter : les montant que nous affichons sur Mes Aides sont généralement arrondis à une dizaine d’euros près.</small>
 
   <h2>À propos de l’AAH</h2>
 
-  <p>L'allocation aux adultes handicapés (AAH) est une aide financière qui permet d'assurer un minimum de ressources. Cette aide est attribuée sous réserve de respecter des critères d’incapacité, d'âge, de résidence et de ressources. Elle est accordée sur décision de la commission des droits et de l'autonomie des personnes handicapées. Son montant vient compléter les éventuelles autres ressources de la personne en situation de handicap.</p>
+  <p>{{ aah.description }}</p>
 
   <p>Le service de simulation proposé par Mes Aides est en phase de test : les résultats proposés ne sont pas garantis.</p>
 
-  <p><a href="https://www.service-public.fr/particuliers/vosdroits/F12242">En savoir plus et accéder aux instructions sur le site service-public.fr</a></p>
+  <p><a href="{{ aah.linkServicePublic }}">En savoir plus et accéder aux instructions sur le site service-public.fr</a></p>
 
 </article>

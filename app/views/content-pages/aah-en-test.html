@@ -15,7 +15,7 @@
       Vous venez de passer une simulation sur Mes Aides. Le montant de l'AAH a été estimé à <b>{{ montant | currency : '€' : 0 }}</b>.
     </p>
     <p>
-      Vous pouvez nous <a href="mailto:feedback@mes-aides.gouv.fr?subject=[{{ situation._id }}]%20Suggestion%20-%20Test%20de%20l%27AAH">envoyer vos commentaires</a> sur le résultat que vous avez obtenu ou bien <a ui-sref="foyer.demandeur" ng-click="newSituation()">passer une nouvelle simulation</a>.
+      Si ce résultat est différent du montant que vous recevez, n'hésitez pas à <a href="mailto:feedback@mes-aides.gouv.fr?subject=[{{ situationId }}]%20Test%20de%20l%27AAH&body=Bonjour%2C%0A%0ASuite%20%C3%A0%20ma%20simulation%20sur%20mes-aides.gouv.fr%2C%20j%27ai%20obtenu%20pour%20l%27AAH%20un%20montant%20de%20{{ montant | currency : '%E2%82%AC' : 0 }}%20%2F%20mois%20(arrondi%20%C3%A0%20une%20dizaine%20d%27euros).%0A%0ACependant%2C%20le%20montant%20que%20je%20re%C3%A7ois%20actuellement%20est%20de%20XXX.%0A%0AVous%20pouvez%20me%20joindre%20par%20t%C3%A9l%C3%A9phone%20au%20XX%20XX%20XX%20XX%20XX%20(de%20pr%C3%A9f%C3%A9rence%20en%20semaine)%20pour%20une%20dizaine%20de%20minutes%20d%27%C3%A9change%20afin%20de%20comprendre%20d%27o%C3%B9%20provient%20cet%20%C3%A9cart.%0A%0ABonne%20journ%C3%A9e%2C%0A%0A%E2%80%94%E2%80%94%E2%80%94%E2%80%94%0AID%20%3A%20{{ situationId }}%20(%C3%A0%20conserver%20imp%C3%A9rativement%20pour%20traitement%20de%20votre%20demande)">nous contacter</a> : vous participerez ainsi à l'amélioration de Mes Aides. Vous pouvez également <a ui-sref="foyer.demandeur" ng-click="newSituation()">passer une nouvelle simulation</a>.
     </p>
   </div>
 

@@ -29,7 +29,7 @@
 
 <div class="trace container">
   <h1>Tracer <i ng-hide="rawData || (! investigation.situationId)" class="fa fa-spinner fa-spin" aria-hidden="true"></i></h1>
-  <h3>Accédez aux détails des calculs des prestations sociales pour la simulation <span id="simulationId">{{ investigation.situationId }}</span>.</h3>
+  <h3>Accédez aux détails des calculs des prestations sociales pour la simulation <span class="preformatted">{{ investigation.situationId }}</span>.</h3>
   <p ng-if="! investigation.situationId">Il faut indiquer l‘identifiant d‘une simulation pour accéder aux détails des calculs.</p>
   <p>{{ error }}</p>
   <div ng-show="rawData">

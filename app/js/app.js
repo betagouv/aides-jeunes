@@ -49,12 +49,12 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
         })
         .state('aah-en-test', {
             url: '/aah-en-test?situationId',
-            templateUrl: '/partials/aah-en-test.html',
+            templateUrl: '/content-pages/aah-en-test.html',
             controller: function($scope, $stateParams) {
                 $scope.situationId = $stateParams.situationId;
             },
             data: {
-                pageTitle: 'L\'AAH en test !',
+                pageTitle: 'Montant de l’AAH – Mes Aides est en phase de test',
             }
         })
         .state('ameli', {

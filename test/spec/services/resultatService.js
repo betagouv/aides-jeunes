@@ -37,9 +37,10 @@ describe('ResultatService', function () {
             },
             menages: {
                 _: {
+                    personne_de_reference: ['demandeur'],
                     depcom: {
                         '2014-11': '00000'
-                    }
+                    },
                 }
             },
             individus: {

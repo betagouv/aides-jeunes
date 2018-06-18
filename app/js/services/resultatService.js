@@ -9,7 +9,8 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
     *@return   {Object}  A new object containing the ressources of the family and of the individual. The family ressources will be overridden if conflicting.
     */
     function normalizeOpenfiscaRessources(testCase) {
-        return _.merge({}, testCase.menages._, testCase.familles._, testCase.individus.demandeur);
+        var individuId = testCase.menages._.personne_de_reference[0];
+        return _.merge({}, testCase.menages._, testCase.familles._, testCase.individus.demandeur || testCase.individus[individuId]);
     }
 
     function valueAt(ressourceId, ressources, period) {

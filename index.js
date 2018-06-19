@@ -1,6 +1,18 @@
 var express = require('express');
 var favicon = require('serve-favicon');
 var path = require('path');
+var mustache = require('consolidate').mustache;
+
+var droitsDescription = require('./app/js/constants/droits');
+
+function countByType(type) {
+    return Object.keys(droitsDescription[type]).reduce(function(total, provider) {
+        return total + Object.keys(droitsDescription[type][provider].prestations).length;
+    }, 0);
+}
+
+var prestationsNationalesCount = countByType('prestationsNationales');
+var partenairesLocauxCount = countByType('partenairesLocaux');
 
 module.exports = function(app) {
     var env = app.get('env');
@@ -35,6 +47,10 @@ module.exports = function(app) {
         NONE: {},
     };
 
+    app.engine('html', mustache);
+    app.set('view engine', 'html');
+    app.set('views', viewsDirectory);
+
     app.use('/js',        express.static(path.join(__dirname, 'dist/js'),        CACHE.ONE_YEAR));
     app.use('/styles',    express.static(path.join(__dirname, 'dist/styles'),    CACHE.ONE_YEAR));
     app.use('/fonts',     express.static(path.join(__dirname, 'dist/fonts'),     CACHE.ONE_YEAR));
@@ -59,7 +75,9 @@ module.exports = function(app) {
     });
 
     app.route('/*').get(function(req, res) {
-        res.sendFile(viewsDirectory + '/front.html');
+        res.render('front', {
+            prestationsCount: prestationsNationalesCount + partenairesLocauxCount
+        });
     });
 
     app.use(function (err, req, res, next) {

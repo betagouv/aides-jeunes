@@ -47,6 +47,18 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
                 pageTitle: 'À propos'
             }
         })
+        .state('aah-en-test', {
+            url: '/aah-en-test?situationId&montant',
+            templateUrl: '/content-pages/aah-en-test.html',
+            controller: function($scope, $stateParams, droitsDescription) {
+                $scope.situationId = $stateParams.situationId;
+                $scope.montant = $stateParams.montant;
+                $scope.aah = droitsDescription.prestationsNationales.caf.prestations.aah;
+            },
+            data: {
+                pageTitle: 'Montant de l’AAH – Mes Aides est en phase de test',
+            }
+        })
         .state('ameli', {
             url: '/ameli',
             templateUrl: '/content-pages/ameli.html',

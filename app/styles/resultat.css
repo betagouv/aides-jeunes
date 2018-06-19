@@ -23,10 +23,6 @@
     font-size: 80%;
 }
 
-#simulationId {
-    font-family: monospace;
-}
-
 #result-datetime {
     display: none;
 }

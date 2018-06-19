@@ -12,6 +12,7 @@
 
         <div class="col-xs-6 col-sm-8 description">
           <span>{{ droit.label }}<span>
+          <span ng-if="droit.isExperimental">(en test)</span>
         </div>
 
         <div class="col-xs-2 col-sm-2">
@@ -88,6 +89,7 @@
       <div class="row cta">
         <div class="col-sm-3">
           <a
+            ng-if="droit.link"
             class="btn btn-sm btn-default btn-block"
             href="{{ droit.link }}"
             target="_blank"
@@ -95,6 +97,20 @@
             analytics-on="click"
             analytics-name="{{ droit.label }}"
             analytics-event="{{ droit.link }}"
+            analytics-category="Info"
+            >
+            <i class="fa fa-external-link" aria-hidden="true" role="presentation"></i>
+            Plus d'informations
+          </a>
+          <a
+            ng-if="droit.internalLink"
+            class="btn btn-sm btn-default btn-block"
+            ui-sref="{{ droit.internalLink }}({ situationId: '{{ situation._id }}', montant: {{ droit.montant }} })"
+            target="_blank"
+            rel="noopener"
+            analytics-on="click"
+            analytics-name="{{ droit.label }}"
+            analytics-event="{{ droit.internalLink }}"
             analytics-category="Info"
             >
             <i class="fa fa-external-link" aria-hidden="true" role="presentation"></i>

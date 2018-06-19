@@ -35,6 +35,10 @@ header, footer {
   stroke-width: 2px;
 }
 
+.preformatted {
+  font-family: monospace;
+}
+
 #chart {
   width: 800px;
   height: 300px;

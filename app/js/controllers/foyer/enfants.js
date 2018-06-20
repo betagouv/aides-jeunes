@@ -43,7 +43,12 @@ angular.module('ddsApp').controller('FoyerEnfantCtrl', function($scope, $state, 
 
     // Called when the form is submitted & valid
     $scope.$on('individu.enfant', function(e, enfant) {
-        var index = $scope.enfants.indexOf(enfant);
+
+        var resolved = _.find($scope.enfants, function(item) {
+            return item.id === enfant.id;
+        })
+
+        var index = $scope.enfants.indexOf(resolved);
         if (-1 !== index) {
             $scope.enfants.splice(index, 1, enfant);
         }
@@ -51,12 +56,14 @@ angular.module('ddsApp').controller('FoyerEnfantCtrl', function($scope, $state, 
         $state.go('foyer.enfants');
     });
 
-    var enfant = _.find($scope.situation.individus, {
+    var enfant = _.find($scope.enfants, {
         role: 'enfant',
         id: $stateParams.id
     });
 
     if (enfant) {
-        $scope.individu = enfant;
+        // Make a deep copy of the object before editing
+        // The changes will be actually saved when clicking on blue button
+        $scope.individu = angular.copy(enfant);
     }
 });

@@ -326,6 +326,15 @@ var droitsDescription = {
                             form: 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa.pdf',
                             link: 'https://www.seine-saint-denis.fr/L-Allocation-Departementale-Personnalisee-d-Autonomie.html',
                         },
+                        'D14-CALVADOS': {
+                            provider: {
+                                imgSrc: 'logo_cd14.png',
+                            },
+                            instructions: undefined, // Prevent default instructions recycling
+                            form: undefined, // Prevent default form recycling
+                            teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
+                            link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
+                        },
                         'M69-LYON': {
                             provider: {
                                 imgSrc: 'logo_grand_lyon.png',

@@ -9,6 +9,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D93-SSD';
             if (testCase.menages._.depcom[currentPeriod].match(/^75/))
                 return 'D75-PARIS';
+            if (testCase.menages._.depcom[currentPeriod].match(/^14/))
+                return 'D14-CALVADOS';
             if (_.includes(lyonMetropoleInseeCodes, testCase.menages._.depcom[currentPeriod]))
                 return 'M69-LYON';
         }

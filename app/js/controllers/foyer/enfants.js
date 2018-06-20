@@ -46,7 +46,7 @@ angular.module('ddsApp').controller('FoyerEnfantCtrl', function($scope, $state, 
 
         var resolved = _.find($scope.enfants, function(item) {
             return item.id === enfant.id;
-        })
+        });
 
         var index = $scope.enfants.indexOf(resolved);
         if (-1 !== index) {

@@ -223,6 +223,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
         return false;
     };
 
+    $scope.defaultScolarite = DEFAULT_INDIVIDU.scolarite;
+
     $scope.cancel = function() {
         $scope.$emit('actionCancelled');
     };

@@ -12,7 +12,7 @@ function findIndividu(individus, role, params) {
     }
 
     return _.find(individus, predicate);
-};
+}
 
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
 

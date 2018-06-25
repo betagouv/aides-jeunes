@@ -304,7 +304,7 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
             controller: 'FoyerPatrimoineCtrl'
         })
         .state('redirection', {
-            url: '/redirection',
+            url: '/redirection?vers',
             templateUrl: '/partials/redirection.html',
             controller: 'RedirectionCtrl'
         })

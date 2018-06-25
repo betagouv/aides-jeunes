@@ -4,8 +4,8 @@
   </p>
 
   <ul>
-    <li ng-repeat="variable in fields">
-      {{ variable.label }}&nbsp;: {{ variable.formatter ? variable.formatter(variable.value) : variable.value }}
+    <li ng-repeat="variable in teleservice.fields">
+      {{ variable.label }}&nbsp;: {{ variable.formattedValue || variable.value }}
     </li>
   </ul>
 
@@ -17,11 +17,6 @@
   Dès lors, vous aurez un droit d'accès et de rectification sur les informations nominatives stockées ou traitées informatiquement par le Département du Loiret. Pour exercer ce droit, vous devez vous adresser, en justifiant de votre identité, à Département du Loiret - 45945 Orléans.
   </p>
 
-  <form ng-repeat="endpoint in endpoints"  method="post" action="{{ endpoint.url }}">
-    <label ng-repeat="variable in fields|orderObjectBy:'label'">
-      {{ variable.label }}<input name="{{ variable.key }}" value="{{ variable.value }}">
-    </label>
-    <input type="submit" value="Accéder au téléservice {{ endpoint.name }}">
-  </form>
+  <a class="btn btn-primary btn-lg" href="{{ teleservice.destination.url }}">Accéder au téléservice {{ teleservice.destination.label }}</a>
 
 </article>

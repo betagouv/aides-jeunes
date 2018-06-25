@@ -97,6 +97,11 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             .then(saveLocally);
         },
 
+        fetchRepresentation: function(situationId, representation) {
+            return $http.get('api/situations/' + situationId + '/' + representation)
+            .then(function(response) { return response.data; });
+        },
+
         YAMLRepresentation: function(sourceSituation) {
             var situation = _.cloneDeep(sourceSituation);
             situation.dateDeValeur = moment(new Date(situation.dateDeValeur)).format('YYYY-MM-DD');

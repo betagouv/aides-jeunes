@@ -1,10 +1,13 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, ABTestingService, SituationService, CityService, ResultatService, droitsDescription, $analytics) {
+angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, ABTestingService, SituationService, TrampolineService, CityService, ResultatService, droitsDescription, $analytics) {
     $scope.awaitingResults = false;
     $scope.error = false;
     $scope.warning = false;
     $scope.warningMessage = false;
+
+    // For testing purposes
+    $scope.redirectionNames = ['localtest', 'livetest', 'loiret_APA_test'];
 
     var env = ABTestingService.getABTestingEnvironment();
     $scope.linkAlternative = (env && env.link && env.link.value) || 'B';
@@ -16,6 +19,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
             return $scope.persistLocalSituation();
         }
     }
+    $scope.trampoline = TrampolineService;
 
     function triggerEvaluation() {
         loadSituation()

@@ -2,7 +2,7 @@
 
 var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'dateDernierContratTravail'];
 
-angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc, patrimoineTypes, RessourceService) {
+angular.module('ddsCommon').factory('SituationService', function($http, $localStorage, $sessionStorage, categoriesRnc, patrimoineTypes, RessourceService) {
     var situation;
 
     /*
@@ -95,6 +95,22 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             return $http.post('/api/situations/', situation)
             .then(function(result) { return result.data; })
             .then(saveLocally);
+        },
+
+        /*
+         * The trampoline relies on localStorage to pass data from one session to another
+         */
+        saveToTrampoline: function(situation) {
+            $localStorage.trampoline = situation;
+            return situation;
+        },
+
+        getFromTrampoline: function() {
+            var situation = $sessionStorage.situation || $localStorage.trampoline;
+            delete $localStorage.trampoline;
+            $sessionStorage.situation = situation;
+
+            return situation;
         },
 
         fetchRepresentation: function(situationId, representation) {

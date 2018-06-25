@@ -1,16 +1,18 @@
 'use strict';
 
-angular.module('ddsApp').controller('RedirectionCtrl', function($scope, $localStorage, $sessionStorage, $stateParams, SituationService) {
-  $sessionStorage.situation = $sessionStorage.situation || { _id: $localStorage.trampoline && $localStorage.trampoline.id };
-  delete $localStorage.trampoline;
-  $scope.situation = $sessionStorage.situation;
+angular.module('ddsApp').controller('RedirectionCtrl', function($scope, $stateParams, SituationService, TrampolineService) {
+    var trampoline = TrampolineService.get();
+    if (trampoline && trampoline.situationId) {
+        SituationService.saveLocal({ _id: trampoline.situationId });
+    }
+    $scope.situation = SituationService.restoreLocal();
 
-  if (! $scope.situation || ! $scope.situation._id) {
-    return;
-  }
+    if (! $scope.situation._id) {
+        return;
+    }
 
-  SituationService.fetchRepresentation($scope.situation._id, $stateParams.vers)
-  .then(function(data) {
-    $scope.teleservice = data;
-  });
+    SituationService.fetchRepresentation($scope.situation._id, $stateParams.vers)
+    .then(function(data) {
+        $scope.teleservice = data;
+    });
 });

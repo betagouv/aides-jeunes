@@ -1,6 +1,20 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
+function findIndividu(individus, role, params) {
+    // In case of "demandeur" or "conjoint", the role is sufficient
+    var predicate = { role: role };
+    // For children, we also need to match the id
+    if (role === 'enfant' && !params.hasOwnProperty('id')) {
+        return;
+    }
+    if (params.hasOwnProperty('id')) {
+        predicate = _.assign(predicate, { id: params.id });
+    }
+
+    return _.find(individus, predicate);
+};
+
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
 
     $scope.specificSituations = specificSituations;
     $scope.situationsFamiliales = situationsFamiliales;
@@ -96,8 +110,13 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
 
-    if (! $scope.individu) {
-        $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
+    var individu = findIndividu($scope.situation.individus, individuRole, $stateParams);
+    if (individu) {
+        // Make a deep copy of the object before editing
+        // The changes will be actually saved when clicking on blue button
+        $scope.individu = angular.copy(individu);
+    } else {
+        $scope.individu = _.cloneDeep(DEFAULT_INDIVIDU);
     }
 
     if (individuRole == 'enfant' && $scope.isNew) {

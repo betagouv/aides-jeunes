@@ -254,6 +254,7 @@
       <select
         id="scolarite"
         class="form-control"
+        ng-init="individu.scolarite = individu.scolarite || 'college'"
         ng-model="individu.scolarite"
         ng-options="scolarite.value as scolarite.label for scolarite in scolariteOptions">
       </select>

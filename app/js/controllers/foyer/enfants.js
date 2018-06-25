@@ -55,15 +55,4 @@ angular.module('ddsApp').controller('FoyerEnfantCtrl', function($scope, $state, 
 
         $state.go('foyer.enfants');
     });
-
-    var enfant = _.find($scope.enfants, {
-        role: 'enfant',
-        id: $stateParams.id
-    });
-
-    if (enfant) {
-        // Make a deep copy of the object before editing
-        // The changes will be actually saved when clicking on blue button
-        $scope.individu = angular.copy(enfant);
-    }
 });

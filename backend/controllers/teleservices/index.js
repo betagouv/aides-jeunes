@@ -1,6 +1,9 @@
-var situations = require('./situations');
+var auth = require('basic-auth');
+var situations = require('../situations');
 var jwt = require('jsonwebtoken');
 var moment = require('moment');
+var config = require('../../config/config');
+
 moment.locale('fr');
 
 var fields = [{
@@ -58,8 +61,7 @@ var teleserviceMap = teleservices.reduce(function(obj, ts) {
     return obj;
 }, {});
 
-
-var prod = process.NODE_ENV == 'production';
+var prod = config.env == 'production';
 // Always returns 404 to avoid leaking information
 function fail(res, msg) {
     if (prod)
@@ -113,6 +115,21 @@ exports.decodePayload = function(req, res, next, token) {
     next();
 };
 
+var tokens = config.teleserviceAccessTokens || {};
+/*
+ * This callback validates the basic authorization cookie content
+ */
+exports.checkCredentials = function(req, res, next) {
+    var credentials = auth(req);
+    if ((! credentials) || (! tokens[credentials.name]) || (credentials.pass != tokens[credentials.name])) {
+        res.status(401)
+        .setHeader('WWW-Authenticate', 'Basic realm="MesAidesTeleservices"');
+        res.send({ error: 'Not autorized'});
+    } else {
+        next();
+    }
+};
+
 /*
  * This callback attachs the appropriate situations
  * It requires a payload with an identifier
@@ -122,21 +139,13 @@ exports.attachPayloadSituation = function(req, res, next) {
 };
 
 /*
- * This callback validates a third party request access to a situation representation.
- * It requires attached to the request object:
- * - a teleservice (who wants to access)
- * - a situation (what)
- * - a token (given some autorizations)
+ * This callback validates user consent to share data with the third party
+ * * The consent is considered given if the token is signed by the token attached to the situation
+ * It requires a situation
  */
 exports.verifyRequest = function(req, res, next) {
-    var envkey = 'MES_AIDES_TS_' + req.teleservice.name.toUpperCase() + '_TOKEN';
-
-    if (false && ! process.env[envkey]) return fail(res, 'No token on server');
-    if (false && req.headers.authorization != ('Bearer ' + process.env[envkey]) ) return fail(res, 'Authorization failed');
-
     jwt.verify(req.token, req.situation.token, function(err) {
         if (err) { return fail(res, err); }
-
         next();
     });
 };

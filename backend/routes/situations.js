@@ -23,6 +23,7 @@ module.exports = function(api) {
     });
 
     api.get('/situations/via/:signedPayload',
+        teleservices.checkCredentials,
         teleservices.attachPayloadSituation,
         teleservices.verifyRequest,
         teleservices.exportRepresentation);

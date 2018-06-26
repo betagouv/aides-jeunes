@@ -12,12 +12,14 @@ angular.module('ddsApp').directive('droitEligiblesList', function() {
     };
 });
 
-angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope) {
+angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope, TrampolineService) {
     $scope.isNumber = _.isNumber;
     $scope.isString = _.isString;
     $scope.shouldDisplayYM2Warning = function(droit) {
         return droit.isBaseRessourcesYearMoins2 && ! $scope.ressourcesYearMoins2Captured && ! _.isString(droit.montant);
     };
+
+    $scope.trampoline = TrampolineService;
 
     // ng-class and uib-accordion don't work well together, hence this extra function.
     // See https://github.com/angular-ui/bootstrap/issues/4172

@@ -105,7 +105,8 @@
           <a
             ng-if="droit.internalLink"
             class="btn btn-sm btn-default btn-block"
-            ui-sref="{{ droit.internalLink }}({ situationId: '{{ situation._id }}', montant: {{ droit.montant }} })"
+            ng-click="trampoline.set({ situationId: situation._id, montant: droit.montant })"
+            ui-sref="{{ droit.internalLink }}"
             target="_blank"
             rel="noopener"
             analytics-on="click"

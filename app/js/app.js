@@ -48,11 +48,12 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
             }
         })
         .state('aah-en-test', {
-            url: '/aah-en-test?situationId&montant',
+            url: '/aah-en-test',
             templateUrl: '/content-pages/aah-en-test.html',
-            controller: function($scope, $stateParams, droitsDescription) {
-                $scope.situationId = $stateParams.situationId;
-                $scope.montant = $stateParams.montant;
+            controller: function($scope, droitsDescription, TrampolineService) {
+                var trampoline = TrampolineService.get();
+                $scope.situationId = trampoline.situationId;
+                $scope.montant = trampoline.montant;
                 $scope.aah = droitsDescription.prestationsNationales.caf.prestations.aah;
             },
             data: {

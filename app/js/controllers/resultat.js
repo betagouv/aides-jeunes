@@ -7,7 +7,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     $scope.warningMessage = false;
 
     var env = ABTestingService.getABTestingEnvironment();
-    $scope.linkAlternative = (env.link && env.link.value) || 'B';
+    $scope.linkAlternative = (env && env.link && env.link.value) || 'B';
 
     function loadSituation() {
         if ($stateParams.situationId) { // If we want the result page for an already existing situation.

@@ -1,6 +1,21 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
+function findIndividu(individus, role, params) {
+    // In case of "demandeur" or "conjoint", the role is sufficient
+    var predicate = { role: role };
+    // For children, we also need to match the id
+    if (role === 'enfant' && ! params.hasOwnProperty('id')) {
+        return;
+    }
+    if (params.hasOwnProperty('id')) {
+        predicate = _.assign(predicate, { id: params.id });
+    }
+
+    return _.find(individus, predicate);
+}
+
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
+
     $scope.specificSituations = specificSituations;
     $scope.situationsFamiliales = situationsFamiliales;
     $scope.today = moment();
@@ -94,9 +109,12 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     }
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
-    $scope.individu = isIndividuParent && _.find($scope.situation.individus, { role: individuRole }) || _.cloneDeep(DEFAULT_INDIVIDU);
 
-    if (individuRole == 'enfant') {
+    var individu = findIndividu($scope.situation.individus, individuRole, $stateParams);
+    $scope.individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(individu));
+
+    if (individuRole == 'enfant' && $scope.isNew) {
+
         var nextEnfantCount = $scope.enfants.length + 1;
         $scope.individu.firstName = 'Votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
 
@@ -162,7 +180,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
     };
 
     $scope.captureEnfantACharge = function(form) {
-        if (! isIndividuParent && form.dateDeNaissance.$valid) {
+        if (! isIndividuParent && form && form.dateDeNaissance.$valid) {
             return IndividuService.age($scope.individu) >= 1;
         }
     };

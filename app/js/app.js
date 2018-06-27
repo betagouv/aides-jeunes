@@ -210,9 +210,38 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
             views: {
                 '': {
                     templateUrl: '/partials/foyer/enfants.html',
-                    controller: 'FoyerEnfantsCtrl'
+                    controller: 'FoyerEnfantsCtrl',
                 },
-                'enfantForm@foyer.enfants': individuFormView('enfant'),
+                'validate@foyer.enfants': {
+                    templateUrl: '/partials/foyer/enfants/validate.html',
+                },
+            }
+        })
+        .state('foyer.enfants.ajouter', {
+            url: '/ajouter',
+            views: {
+                'enfantForm': {
+                    controller: 'FoyerNewEnfantCtrl',
+                    templateUrl: '/partials/foyer/enfants/form.html',
+                },
+                'form@foyer.enfants.ajouter': individuFormView('enfant'),
+                'validate@foyer.enfants': {
+                    templateUrl: '/partials/foyer/enfants/validate.html',
+                },
+            }
+        })
+        .state('foyer.enfants.modifier', {
+            url: '/:id',
+            templateUrl: '/partials/foyer/enfants.html',
+            views: {
+                'enfantForm': {
+                    controller: 'FoyerEnfantCtrl',
+                    templateUrl: '/partials/foyer/enfants/form.html',
+                },
+                'form@foyer.enfants.modifier': individuFormView('enfant'),
+                'validate@foyer.enfants': {
+                    templateUrl: '/partials/foyer/enfants/validate.html',
+                },
             }
         })
         .state('foyer.logement', {

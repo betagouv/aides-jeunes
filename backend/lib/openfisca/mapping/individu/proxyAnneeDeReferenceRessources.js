@@ -3,7 +3,7 @@ var moment = require('moment');
 
 var common = require('../common');
 var individuRessources = require('./ressources');
-var ressources = require('../../../../../app/js/constants/ressources.js');
+var ressources = require('../../../../../app/js/constants/ressources');
 
 var ressourcesToDuplicate = _.concat(
     Object.keys(individuRessources.computedRessources),

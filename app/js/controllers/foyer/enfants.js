@@ -13,6 +13,7 @@ angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $state)
     $scope.removeEnfant = function(enfant) {
         var index = $scope.enfants.indexOf(enfant);
         $scope.enfants.splice(index, 1);
+        $scope.$emit('enfant', $scope.enfants);
 
         $state.go('foyer.enfants', {}, { location: 'replace' });
     };

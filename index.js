@@ -76,7 +76,8 @@ module.exports = function(app) {
 
     app.route('/*').get(function(req, res) {
         res.render('front', {
-            prestationsCount: prestationsNationalesCount + partenairesLocauxCount
+            prestationsCount: prestationsNationalesCount + partenairesLocauxCount,
+            sentry: process.env.NODE_ENV === 'production'
         });
     });
 

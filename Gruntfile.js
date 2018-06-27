@@ -79,7 +79,8 @@ module.exports = function (grunt) {
         files: [
           'server.js',
           'index.js',
-          'backend/**/*.js'
+          'backend/**/*.js',
+          'app/js/constant/**/*.js',
         ],
         tasks: ['express:dev', 'wait'],
         options: {

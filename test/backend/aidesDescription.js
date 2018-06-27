@@ -2,7 +2,7 @@ var expect = require('expect');
 
 
 describe('aides descriptions', function() {
-    var subject = require('../../app/js/constants/droits.js');
+    var subject = require('../../app/js/constants/droits');
 
     Object.keys(subject.prestationsNationales).forEach(function(providerName) {
         describe(providerName, function() {

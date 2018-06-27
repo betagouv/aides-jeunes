@@ -2,7 +2,7 @@
 
 var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'dateDernierContratTravail'];
 
-angular.module('ddsCommon').factory('SituationService', function($http, $localStorage, $sessionStorage, categoriesRnc, patrimoineTypes, RessourceService) {
+angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc, patrimoineTypes, RessourceService) {
     var situation;
 
     /*
@@ -41,18 +41,28 @@ angular.module('ddsCommon').factory('SituationService', function($http, $localSt
     }
 
     function adaptPersistedSituation(situation) {
-        situation.dateDeValeur = new Date(situation.dateDeValeur);
-        situation.individus.forEach(adaptPersistedIndividu);
+        if (situation.dateDeValeur) {
+            situation.dateDeValeur = new Date(situation.dateDeValeur);
+        }
+        if (situation.individus) {
+            situation.individus.forEach(adaptPersistedIndividu);
+        }
         return situation;
     }
 
-    function saveLocally(persistedSituation) {
+    function saveLocal(persistedSituation) {
         situation = $sessionStorage.situation = persistedSituation;
         return adaptPersistedSituation(persistedSituation);
     }
 
     return {
         _cleanSituation: cleanSituation, // Exported for testing
+
+        fetchRepresentation: function(situationId, representation) {
+            return $http.get('api/situations/' + situationId + '/' + representation)
+            .then(function(response) { return response.data; });
+        },
+
         newSituation: function() {
             situation = $sessionStorage.situation = {
                 individus: [],
@@ -81,7 +91,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $localSt
                 params: { cacheBust: Date.now() }
             })
             .then(function(result) { return result.data; })
-            .then(saveLocally);
+            .then(saveLocal);
         },
 
         save: function(situation) {
@@ -94,29 +104,10 @@ angular.module('ddsCommon').factory('SituationService', function($http, $localSt
 
             return $http.post('/api/situations/', situation)
             .then(function(result) { return result.data; })
-            .then(saveLocally);
+            .then(saveLocal);
         },
 
-        /*
-         * The trampoline relies on localStorage to pass data from one session to another
-         */
-        saveToTrampoline: function(situation) {
-            $localStorage.trampoline = situation;
-            return situation;
-        },
-
-        getFromTrampoline: function() {
-            var situation = $sessionStorage.situation || $localStorage.trampoline;
-            delete $localStorage.trampoline;
-            $sessionStorage.situation = situation;
-
-            return situation;
-        },
-
-        fetchRepresentation: function(situationId, representation) {
-            return $http.get('api/situations/' + situationId + '/' + representation)
-            .then(function(response) { return response.data; });
-        },
+        saveLocal: saveLocal,
 
         YAMLRepresentation: function(sourceSituation) {
             var situation = _.cloneDeep(sourceSituation);

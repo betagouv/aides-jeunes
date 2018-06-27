@@ -111,13 +111,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
 
     var individu = findIndividu($scope.situation.individus, individuRole, $stateParams);
-    if (individu) {
-        // Make a deep copy of the object before editing
-        // The changes will be actually saved when clicking on blue button
-        $scope.individu = angular.copy(individu);
-    } else {
-        $scope.individu = _.cloneDeep(DEFAULT_INDIVIDU);
-    }
+    $scope.individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(individu));
 
     if (individuRole == 'enfant' && $scope.isNew) {
 
@@ -222,8 +216,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
 
         return false;
     };
-
-    $scope.defaultScolarite = DEFAULT_INDIVIDU.scolarite;
 
     $scope.cancel = function() {
         $scope.$emit('actionCancelled');

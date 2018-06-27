@@ -51,10 +51,14 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
             url: '/aah-en-test',
             templateUrl: '/content-pages/aah-en-test.html',
             controller: function($scope, droitsDescription, TrampolineService) {
+                $scope.aah = droitsDescription.prestationsNationales.caf.prestations.aah;
+
                 var trampoline = TrampolineService.get();
+                if (! trampoline) {
+                    return;
+                }
                 $scope.situationId = trampoline.situationId;
                 $scope.montant = trampoline.montant;
-                $scope.aah = droitsDescription.prestationsNationales.caf.prestations.aah;
             },
             data: {
                 pageTitle: 'Montant de l’AAH – Mes Aides est en phase de test',

@@ -38,21 +38,21 @@ var teleservices = [{
     fields: fields,
     destination: {
         label: 'du Loiret (test)',
-        url: 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92/'
+        urlPrefix: 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92?code='
     }
 }, {
     name: 'localtest',
     fields: fields,
     destination: {
         label: 'en local',
-        url: 'http://localhost:3000/prefill/'
+        urlPrefix: 'http://localhost:3000/prefill?code='
     }
 }, {
     name: 'livetest',
     fields: fields,
     destination: {
         label: 'en ligne',
-        url: 'http://test.mes-aides.gouv.fr/prefill/'
+        urlPrefix: 'http://test.mes-aides.gouv.fr/prefill?code='
     }
 }];
 
@@ -61,13 +61,8 @@ var teleserviceMap = teleservices.reduce(function(obj, ts) {
     return obj;
 }, {});
 
-var prod = config.env == 'production';
-// Always returns 404 to avoid leaking information
 function fail(res, msg) {
-    if (prod)
-        return res.sendStatus(404);
-
-    return res.status(404).send({ error: msg });
+    return res.status(400).send({ error: msg });
 }
 
 /*
@@ -93,7 +88,7 @@ exports.metadataResponseGenerator = function(teleservice) {
             }),
             destination: {
                 label: teleservice.destination.label,
-                url: teleservice.destination.url + '?code=' + token,
+                url: teleservice.destination.urlPrefix + token,
             },
         });
     };

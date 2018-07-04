@@ -6,7 +6,6 @@ angular.module('ddsApp').controller('RedirectionCtrl', function($scope, $statePa
         SituationService.saveLocal({ _id: trampoline.situationId });
     }
     $scope.situation = SituationService.restoreLocal();
-
     if (! $scope.situation._id) {
         return;
     }
@@ -14,5 +13,7 @@ angular.module('ddsApp').controller('RedirectionCtrl', function($scope, $statePa
     SituationService.fetchRepresentation($scope.situation._id, $stateParams.vers)
     .then(function(data) {
         $scope.teleservice = data;
+    }).catch(function(error) {
+        $scope.error = JSON.stringify(error, null, 2);
     });
 });

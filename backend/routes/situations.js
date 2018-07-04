@@ -1,6 +1,7 @@
 var express = require('express');
 
 var situations = require('../controllers/situations');
+var teleservices = require('../controllers/teleservices');
 
 module.exports = function(api) {
     api.route('/situations').post(situations.create);
@@ -15,10 +16,22 @@ module.exports = function(api) {
     route.post('/openfisca-test', situations.openfiscaTest);
     route.get('/openfisca-trace', situations.openfiscaTrace);
 
+    teleservices.names.forEach(function(name) {
+        route.get('/' + name,
+            teleservices.metadataResponseGenerator(teleservices[name])
+        );
+    });
+
+    api.get('/situations/via/:signedPayload',
+        teleservices.checkCredentials,
+        teleservices.attachPayloadSituation,
+        teleservices.verifyRequest,
+        teleservices.exportRepresentation);
     api.use('/situations/:situationId', route);
 
     /*
     ** Param injection
     */
     api.param('situationId', situations.situation);
+    api.param('signedPayload', teleservices.decodePayload);
 };

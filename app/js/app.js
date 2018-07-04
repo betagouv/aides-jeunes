@@ -2,7 +2,7 @@
 
 var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ddsCommon', 'ngSanitize', 'angulartics', 'angulartics.piwik']);
 
-ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, $urlRouterProvider, $uiViewScrollProvider) {
+ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $uiViewScrollProvider) {
     moment.lang('fr');
 
     var CURRENT_YEAR_TWO_DIGITS = (new Date()).getFullYear() - 2000;
@@ -26,12 +26,6 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
             }
         };
     };
-
-    var whitelist = $sceDelegateProvider.resourceUrlWhitelist();
-    whitelist.push('http://localhost:3000/prefill');
-    whitelist.push('http://test.mes-aides.gouv.fr/prefill');
-    whitelist.push('https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92/');
-    $sceDelegateProvider.resourceUrlWhitelist(whitelist);
 
     $stateProvider
         .state('home', {
@@ -304,7 +298,7 @@ ddsApp.config(function($locationProvider, $sceDelegateProvider, $stateProvider, 
             controller: 'FoyerPatrimoineCtrl'
         })
         .state('redirection', {
-            url: '/redirection',
+            url: '/redirection?vers',
             templateUrl: '/partials/redirection.html',
             controller: 'RedirectionCtrl'
         })

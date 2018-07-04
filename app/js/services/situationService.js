@@ -41,18 +41,28 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
     }
 
     function adaptPersistedSituation(situation) {
-        situation.dateDeValeur = new Date(situation.dateDeValeur);
-        situation.individus.forEach(adaptPersistedIndividu);
+        if (situation.dateDeValeur) {
+            situation.dateDeValeur = new Date(situation.dateDeValeur);
+        }
+        if (situation.individus) {
+            situation.individus.forEach(adaptPersistedIndividu);
+        }
         return situation;
     }
 
-    function saveLocally(persistedSituation) {
+    function saveLocal(persistedSituation) {
         situation = $sessionStorage.situation = persistedSituation;
         return adaptPersistedSituation(persistedSituation);
     }
 
     return {
         _cleanSituation: cleanSituation, // Exported for testing
+
+        fetchRepresentation: function(situationId, representation) {
+            return $http.get('api/situations/' + situationId + '/' + representation)
+            .then(function(response) { return response.data; });
+        },
+
         newSituation: function() {
             situation = $sessionStorage.situation = {
                 individus: [],
@@ -81,7 +91,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 params: { cacheBust: Date.now() }
             })
             .then(function(result) { return result.data; })
-            .then(saveLocally);
+            .then(saveLocal);
         },
 
         save: function(situation) {
@@ -94,8 +104,10 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
 
             return $http.post('/api/situations/', situation)
             .then(function(result) { return result.data; })
-            .then(saveLocally);
+            .then(saveLocal);
         },
+
+        saveLocal: saveLocal,
 
         YAMLRepresentation: function(sourceSituation) {
             var situation = _.cloneDeep(sourceSituation);

@@ -1,5 +1,17 @@
 <ui-view>
-<h1>Résultats de votre simulation<span id="result-datetime"> du{{ situation.dateDeValeur | date : 'medium' }}</span></h1>
+<h1><span ng-dblclick="showRedirection = ! showRedirection">Résultats de votre simulation</span><span id="result-datetime"> du{{ situation.dateDeValeur | date : 'medium' }}</span>
+  <small
+    ng-if="showRedirection">
+    Redirections&nbsp;:
+
+    <a ui-sref="redirection({ vers: name })"
+      target="_blank"
+      rel="noopener"
+      ng-click="trampoline.set({ situationId: situation._id })"
+      ng-repeat="name in redirectionNames"
+    >{{ name }} </a>
+  </small>
+</h1>
 
 <p ng-show="awaitingResults"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
 

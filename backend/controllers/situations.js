@@ -83,4 +83,3 @@ exports.openfiscaTest = function(req, res) {
     var situation = req.situation.toObject ? req.situation.toObject() : req.situation;
     res.type('yaml').send(openfiscaTest.generateYAMLTest(details, situation));
 };
-

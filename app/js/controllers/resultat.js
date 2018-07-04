@@ -7,7 +7,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     $scope.warningMessage = false;
 
     // For testing purposes
-    $scope.redirectionNames = ['local_PHP_test', 'local_node_test', 'live_test', 'loiret_APA_test'];
+    $scope.redirectionNames = [];
 
     var env = ABTestingService.getABTestingEnvironment();
     $scope.linkAlternative = (env && env.link && env.link.value) || 'B';
@@ -31,6 +31,14 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
             $scope.droits = droits.droitsEligibles;
             $scope.droitsInjectes = droits.droitsInjectes;
             $scope.noDroits = _.isEmpty($scope.droits.prestationsNationales) && _.isEmpty($scope.droits.partenairesLocaux);
+        })
+        .then(function() { // For testing purposes
+            $http
+            .get('/api/teleservices')
+            .then(function(response) { return response.data; })
+            .catch(function() { return []; })
+            .then(function(data) { return data.map(function(teleservice) { return teleservice.name; }); })
+            .then(function(names) { $scope.redirectionNames = names; });
         })
         .catch(function(error) {
             if (error.status === 403) {

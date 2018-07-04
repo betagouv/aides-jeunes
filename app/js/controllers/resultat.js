@@ -7,7 +7,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
     $scope.warningMessage = false;
 
     // For testing purposes
-    $scope.redirectionNames = ['localtest', 'livetest', 'loiret_APA_test'];
+    $scope.redirectionNames = ['local_PHP_test', 'local_node_test', 'live_test', 'loiret_APA_test'];
 
     var env = ABTestingService.getABTestingEnvironment();
     $scope.linkAlternative = (env && env.link && env.link.value) || 'B';

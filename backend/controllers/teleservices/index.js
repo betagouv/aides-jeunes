@@ -41,14 +41,21 @@ var teleservices = [{
         urlPrefix: 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92?code='
     }
 }, {
-    name: 'localtest',
+    name: 'local_node_test',
     fields: fields,
     destination: {
-        label: 'en local',
-        urlPrefix: 'http://localhost:3000/prefill?code='
+        label: 'en local (Node)',
+        urlPrefix: 'http://localhost:3000?code='
+    },
+}, {
+    name: 'local_PHP_test',
+    fields: fields,
+    destination: {
+        label: 'en local (PHP)',
+        urlPrefix: 'http://localhost:8000/basicAuth.php?code='
     }
 }, {
-    name: 'livetest',
+    name: 'live_node_test',
     fields: fields,
     destination: {
         label: 'en ligne',

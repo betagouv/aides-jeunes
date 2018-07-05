@@ -94,7 +94,7 @@ var situation = {
     individus: [individuDef],
     menage: menageDef,
     modifiedFrom: String,
-    status: { type: String, default: 'new' },
+    status: { type: String, default: 'new', enum: ['new', 'test', 'investigation'] },
     token: String,
     version: Number,
 };

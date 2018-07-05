@@ -15,7 +15,7 @@ exports.situation = function(req, res, next, id) {
 
 exports.validateAccess = function(req, res, next) {
     var situation = req.situation;
-    if (req.situation.status === 'test' || !situation.token || req.cookies['situation_' + situation.id] === situation.token) return next();
+    if (req.situation.status === 'test' || req.situation.status === 'investigation' || !situation.token || req.cookies['situation_' + situation.id] === situation.token) return next();
     res.status(403).send({ error: 'You do not have access to this situation.' });
 };
 

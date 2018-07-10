@@ -63,6 +63,15 @@ var teleservices = [{
     }
 }];
 
+exports.names = teleservices.map(function(ts) { return ts.name; });
+
+/*
+ * Express callback to expose teleservice data
+ */
+exports.list = function(req, res) {
+    res.json(teleservices);
+};
+
 var teleserviceMap = teleservices.reduce(function(obj, ts) {
     obj[ts.name] = ts;
     return obj;
@@ -166,5 +175,3 @@ exports.exportRepresentation = function(req, res) {
 for (var i = 0; i < teleservices.length; i++) {
     exports[teleservices[i].name] = teleservices[i];
 }
-
-exports.names = teleservices.map(function(ts) { return ts.name; });

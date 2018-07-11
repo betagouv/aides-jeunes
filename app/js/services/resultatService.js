@@ -24,7 +24,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
     }
 
     function round(amount, aide) {
-        if ((aide.type || 'float') != 'float') {
+        if ((aide.type || 'float') != 'float') {
             return amount;
         } else if (! aide.unit && aide.roundToNearest10 !== false && (! aide.roundToNearestCent)) {
             return Math.round(amount / 10) * 10;

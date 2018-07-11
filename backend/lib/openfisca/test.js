@@ -62,7 +62,7 @@ function prepareTestSituationForSpecificExtension(situation, extension) {
 
         _.forEach(specificVariables, function(fieldsToRemove, entityFieldName) {
             _.forEach(situation[entityFieldName], function(entity) {
-                fieldsToRemove.forEach(function(fieldName) {
+                fieldsToRemove.forEach(function(fieldName) {
                     delete entity[fieldName];
                 });
             });

@@ -64,10 +64,10 @@ function computeRessources(mesAidesIndividu, openFiscaIndividu) {
         var result = openFiscaIndividu[outputKey];
         _.forEach(sourceDefinitions, function(definition) {
             var srcKey = definition.src || definition;
-            var fn = definition.fn || function(x) { return x; };
+            var fn = definition.fn || function(x) { return x; };
 
             _.forEach(mesAidesIndividu[srcKey], function(value, period) {
-                result[period] = result[period] || 0;
+                result[period] = result[period] || 0;
                 result[period] += fn(value);
             });
         });

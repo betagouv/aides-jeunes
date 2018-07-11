@@ -98,7 +98,7 @@ describe('RessourceService', function () {
     });
 
 
-    describe('extractIndividuSelectedRessourceTypes', function() {
+    describe('extractIndividuSelectedRessourceTypes', function() {
 
         it('should retrieve the selected ressource types in the selectedRessourceTypes map if individus have ressources', function() {
             // given

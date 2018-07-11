@@ -30,7 +30,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
             return Math.round(amount / 10) * 10;
         } else if (aide.roundToNearestCent) {
             return Math.round(amount * 100) / 100;
-        } else {} {
+        } else {
             return Math.round(amount);
         }
     }

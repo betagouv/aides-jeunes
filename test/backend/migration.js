@@ -19,36 +19,36 @@ var migration = require('../../backend/lib/migrations/initial');
 var mapping = require('../../backend/lib/openfisca/mapping');
 
 function deepDiffRight(left, right) {
-  // if they are equals, return undefined
-  if (_.isEqual(left, right)) { return; }
-  if (_.isNumber(left) && _.isNumber(right) && Math.abs(right-left)<0.000001) { return; }
-  // form now on, we can assure that `left` and `right` are not equals (equivalents)
+    // if they are equals, return undefined
+    if (_.isEqual(left, right)) { return; }
+    if (_.isNumber(left) && _.isNumber(right) && Math.abs(right-left)<0.000001) { return; }
+    // form now on, we can assure that `left` and `right` are not equals (equivalents)
 
-  // if `left` and `right` are primitives, value changed
-  // if `left` is a primitive and `right` an object, value has been replaced with an object
-  // if `left` is an object and `right` a primitive, value has been replaced with a primitive
-  // use `_.copy` to prevent object referrence issues
-  if (! _.isObject(left) || ! _.isObject(right)) { return _.cloneDeep(right); }
+    // if `left` and `right` are primitives, value changed
+    // if `left` is a primitive and `right` an object, value has been replaced with an object
+    // if `left` is an object and `right` a primitive, value has been replaced with a primitive
+    // use `_.copy` to prevent object referrence issues
+    if (! _.isObject(left) || ! _.isObject(right)) { return _.cloneDeep(right); }
 
-  // make `result` the same type as `right`
-  var result = _.isArray(right) ? [] : {};
+    // make `result` the same type as `right`
+    var result = _.isArray(right) ? [] : {};
 
-  // since we know that both are objects,
-  // iterate on `right` to see what changed or what's new in `right`
-  _.forEach(right, function (value, key) {
+    // since we know that both are objects,
+    // iterate on `right` to see what changed or what's new in `right`
+    _.forEach(right, function (value, key) {
     // recursion
-    var diff = deepDiffRight(left[key], right[key]);
-    // since the function returns undefined when `left` and `right` are equals,
-    // only assing non-undefined values to result
-    if (! _.isUndefined(diff)) {
-        result[key] = diff;
-    }
-  });
+        var diff = deepDiffRight(left[key], right[key]);
+        // since the function returns undefined when `left` and `right` are equals,
+        // only assing non-undefined values to result
+        if (! _.isUndefined(diff)) {
+            result[key] = diff;
+        }
+    });
 
-  //console.log(result, (! result.length), (! Object.keys(result).length));
-  if ((! result.length) && (! Object.keys(result).length)) { return; }
+    //console.log(result, (! result.length), (! Object.keys(result).length));
+    if ((! result.length) && (! Object.keys(result).length)) { return; }
 
-  return result;
+    return result;
 }
 
 var shouldFailOnError = false;
@@ -93,76 +93,76 @@ function processSituations(err, retrievedTests) {
         var situationId = test.scenario && test.scenario.situationId || (test.id || test._id || '').toString();
 
         LegacySituation.findById(situationId)
-        .then(function(dbLegacySituation) {
-            if (! dbLegacySituation) {
-                console.log('var Err_testID_ = \'' + testId + '\'; // Null');
-                done += 1;
-                return processTests();
-            }
-            var dbSituationJSON = JSON.stringify(dbLegacySituation.toObject(), null, 2);
-            var situation = dbLegacySituation.toObject();
-            migration.persistedSituationPretransformationUpdate(situation);
-
-            var legacyOpenfiscaRequest = legacyMapping.buildOpenFiscaRequest(_.cloneDeep(situation));
-
-            var frontSituation = migration.migratePersistedSituation(situation);
-            Situation.create(frontSituation, function(err, dbSituation) {
-                if (err) {
-                    console.log('var Err_testID_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
-                    if (shouldFailOnError) {
-                        console.log(JSON.stringify(err, null, 2));
-                        process.exit(1);
-                    } else {
-                        done += 1;
-                        return processTests();
-                    }
+            .then(function(dbLegacySituation) {
+                if (! dbLegacySituation) {
+                    console.log('var Err_testID_ = \'' + testId + '\'; // Null');
+                    done += 1;
+                    return processTests();
                 }
+                var dbSituationJSON = JSON.stringify(dbLegacySituation.toObject(), null, 2);
+                var situation = dbLegacySituation.toObject();
+                migration.persistedSituationPretransformationUpdate(situation);
 
-                var generatedSituation = frontSituation;
-                var persistedSituation = _.omit(dbSituation.toObject(), '__v');
+                var legacyOpenfiscaRequest = legacyMapping.buildOpenFiscaRequest(_.cloneDeep(situation));
 
-                var diff01 = deepDiffRight(generatedSituation, persistedSituation);
-                var diff02 = deepDiffRight(persistedSituation, generatedSituation);
-                if (diff01 || diff02) {
-                    console.log('var testID_db_ = \'' + testId + '\' //  ' + frontSituation._id );
-                    if (shouldFailOnError) {
-                        var structure0 = [diff01, diff02];
-                        console.log(JSON.stringify(structure0, null, 2));
-                        console.log(JSON.stringify([generatedSituation, persistedSituation], null, 2));
-                        return manageRemoval(dbSituation, true);
-                    } else {
-                        return manageRemoval(dbSituation);
+                var frontSituation = migration.migratePersistedSituation(situation);
+                Situation.create(frontSituation, function(err, dbSituation) {
+                    if (err) {
+                        console.log('var Err_testID_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
+                        if (shouldFailOnError) {
+                            console.log(JSON.stringify(err, null, 2));
+                            process.exit(1);
+                        } else {
+                            done += 1;
+                            return processTests();
+                        }
                     }
-                }
 
-                var newOpenfiscaRequest = mapping.buildOpenFiscaRequest(_.cloneDeep(persistedSituation));
+                    var generatedSituation = frontSituation;
+                    var persistedSituation = _.omit(dbSituation.toObject(), '__v');
 
-                legacyOpenfiscaRequest.variables.sort();
-
-                var diff1 = deepDiffRight(legacyOpenfiscaRequest, newOpenfiscaRequest);
-                var diff2 = deepDiffRight(newOpenfiscaRequest, legacyOpenfiscaRequest);
-                if (diff1 || diff2) {
-                    console.log('var testID_req_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
-                    if (shouldFailOnError) {
-                        var structure = [diff1, diff2];
-                        console.log(JSON.stringify(structure, null, 2));
-                        console.log(JSON.stringify([newOpenfiscaRequest, legacyOpenfiscaRequest], null, 2));
-                        return manageRemoval(dbSituation, true);
-                    } else {
-                        return manageRemoval(dbSituation);
+                    var diff01 = deepDiffRight(generatedSituation, persistedSituation);
+                    var diff02 = deepDiffRight(persistedSituation, generatedSituation);
+                    if (diff01 || diff02) {
+                        console.log('var testID_db_ = \'' + testId + '\' //  ' + frontSituation._id );
+                        if (shouldFailOnError) {
+                            var structure0 = [diff01, diff02];
+                            console.log(JSON.stringify(structure0, null, 2));
+                            console.log(JSON.stringify([generatedSituation, persistedSituation], null, 2));
+                            return manageRemoval(dbSituation, true);
+                        } else {
+                            return manageRemoval(dbSituation);
+                        }
                     }
-                } else {
-                    console.log('var situation_' + situationId + '_' + done + ' = \'ok\';');
-                }
 
-                return manageRemoval(dbLegacySituation);
+                    var newOpenfiscaRequest = mapping.buildOpenFiscaRequest(_.cloneDeep(persistedSituation));
+
+                    legacyOpenfiscaRequest.variables.sort();
+
+                    var diff1 = deepDiffRight(legacyOpenfiscaRequest, newOpenfiscaRequest);
+                    var diff2 = deepDiffRight(newOpenfiscaRequest, legacyOpenfiscaRequest);
+                    if (diff1 || diff2) {
+                        console.log('var testID_req_ = \'' + testId + '\'; // Situation.create ' + frontSituation._id );
+                        if (shouldFailOnError) {
+                            var structure = [diff1, diff2];
+                            console.log(JSON.stringify(structure, null, 2));
+                            console.log(JSON.stringify([newOpenfiscaRequest, legacyOpenfiscaRequest], null, 2));
+                            return manageRemoval(dbSituation, true);
+                        } else {
+                            return manageRemoval(dbSituation);
+                        }
+                    } else {
+                        console.log('var situation_' + situationId + '_' + done + ' = \'ok\';');
+                    }
+
+                    return manageRemoval(dbLegacySituation);
+                });
+            }).catch(function(err) {
+                console.log('var Err_testID_ = \'' + testId + '\'; // LegacySituation.findById');
+                console.log(err);
+                console.log(JSON.stringify(err, null, 2));
+                process.exit(1);
             });
-        }).catch(function(err) {
-            console.log('var Err_testID_ = \'' + testId + '\'; // LegacySituation.findById');
-            console.log(err);
-            console.log(JSON.stringify(err, null, 2));
-            process.exit(1);
-        });
     }
     processTests();
 }
@@ -210,8 +210,8 @@ function migrateRecentSituations() {
             '5998001e4866593317f32e31', // aide_logement partially interrupted, new version has the correct behavior
             '5997642e4866593317f2f2e5', // aide_logement partially interrupted, new version has the correct behavior
             '59971f104866593317f2b3de' // paje_clca partially interrupted, new version has the correct behavior
-            ],
-            '$lte': '59971f104866593317f2b3de',
+        ],
+        '$lte': '59971f104866593317f2b3de',
             //'$in': ['5998d6d04866593317f3e45f']
         }, // Dodgy situation ?
         // _id: '5998d6d04866593317f3e45f', //
@@ -226,8 +226,8 @@ function migrateRecentSituations() {
 function migrateSituationsTestStatus() {
     LegacySituation.find({
         status: 'test',
-        //_id: '58ce590a2883a3c94dccaf53',
-//        _id: {'$lte': '58ce590a2883a3c94dccaf53'},
+        // _id: '58ce590a2883a3c94dccaf53',
+        //  _id: {'$lte': '58ce590a2883a3c94dccaf53'},
     }, {}, {
         limit: 20000,
         sort: { dateDeValeur: -1 },

@@ -2,9 +2,9 @@
 
 describe('RessourceService', function () {
     var service,
-    individu,
-    dateDeValeur,
-    ressource;
+        individu,
+        dateDeValeur,
+        ressource;
 
     beforeEach(function() {
         module('ddsApp');

@@ -22,7 +22,10 @@
           <div class="col-md-10">
             <dl ng-repeat="droit in provider.prestations">
               <dt>{{ droit.label }}</dt>
-              <dd ng-bind-html="droit.description"></dd>
+              <dd>
+                <div ng-bind-html="droit.description"></div>
+                <a ng-if="droit.link" href="{{ droit.link }}" target="_blank" rel="noopener">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+              </dd>
             </dl>
           </div>
         </div>
@@ -38,8 +41,10 @@
           <div class="col-md-10">
             <dl ng-repeat="droit in provider.prestations">
               <dt>{{ droit.label }}</dt>
-              <dd ng-bind-html="droit.description"></dd>
-              <dd><a href="{{ droit.link }}" target="_blank" rel="noopener">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a></dd>
+              <dd>
+                <div ng-bind-html="droit.description"></div>
+                <a ng-if="droit.link" href="{{ droit.link }}" target="_blank" rel="noopener">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+              </dd>
             </dl>
           </div>
         </div>

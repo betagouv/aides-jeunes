@@ -233,7 +233,7 @@ var droitsDescription = {
                             'solution': 'Contactez <a target="_blank" rel="noopener" href="https://informations.handicap.fr/carte-france-mdph.php">la <abbr title="Maison départementale des personnes handicapées">MDPH</abbr> la plus proche</a> pour faire établir ce taux. Attention, votre éligibilité à l’AAH peut impacter vos droits au RSA et à la CMU-C.'
                         }
                     },
-                    'linkServicePublic': 'https://www.service-public.fr/particuliers/vosdroits/F12242',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242',
                     //  'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                     'forms': {
                         'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',

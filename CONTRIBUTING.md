@@ -84,7 +84,6 @@ Vous êtes un organisme liquidateur ? Lisez plutôt [comment intégrer une nouve
 Une aide est décrite dans `app/js/constants/droits.js` par les champs suivants :
 
 - `label` : nom de l'aide. Utiliser le plus officiel possible, sinon, celui validé par l'organisme ; attention aux majuscules.
-- `shortLabel` : acronyme de l'aide. Bien vérifier les majuscules et les minuscules.
 - `description` : présentation des objectifs et enjeux de l'aide. Entre 280 et 420 caractères (entre 2 et 3 tweets) ; la description commence par le nom de l'aide en sujet d'une phrase active ; ne pas citer Mes Aides ; préférer la 3e personne ; [neutralité de genre](https://github.com/sgmap/beta.gouv.fr/wiki/Publier#syntaxe).
 - `link` : URL d'une description de l'aide. Préférer un lien vers `service-public.fr` pour la stabilité. À défaut, vers le site officiel de l'organisme attributeur.
 

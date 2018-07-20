@@ -17,10 +17,10 @@ var ressourcesDefs = _.concat(
     ressources.ressourceTypes,
     ressources.categoriesRnc,
     ressources.patrimoineTypes)
-.reduce(function(result, ressource) {
-    result[ressource.id] = Object;
-    return result;
-}, {});
+    .reduce(function(result, ressource) {
+        result[ressource.id] = Object;
+        return result;
+    }, {});
 
 var specificSituationValues = [
     'chomeur',
@@ -106,11 +106,11 @@ SituationSchema.pre('save', function(next) {
     if (!this.isNew) next();
     var situation = this;
     utils.generateToken()
-    .then(function(token) {
-        situation.token = token;
-    })
-    .then(next)
-    .catch(next);
+        .then(function(token) {
+            situation.token = token;
+        })
+        .then(next)
+        .catch(next);
 });
 
 mongoose.model('Situation', SituationSchema);

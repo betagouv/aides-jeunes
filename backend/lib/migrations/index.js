@@ -1,9 +1,9 @@
 var fs = require('fs');
 
 var migrations = fs
-.readdirSync(__dirname)
-.filter(function(file) { return file.match(/^toV\d+\.js$/); })
-.map(function(migrationFile) { return require('./' + migrationFile); });
+    .readdirSync(__dirname)
+    .filter(function(file) { return file.match(/^toV\d+\.js$/); })
+    .map(function(migrationFile) { return require('./' + migrationFile); });
 
 module.exports = {
     list: migrations,

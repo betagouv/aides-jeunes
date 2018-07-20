@@ -22,10 +22,10 @@ function getFile(referrer) {
     return rp({
         uri: referrer.subtable[0].label
     })
-    .then(data => {
-        return fs.writeFileAsync(fullpath, data, 'utf-8')
-        .then(() => data);
-    });
+        .then(data => {
+            return fs.writeFileAsync(fullpath, data, 'utf-8')
+                .then(() => data);
+        });
 }
 
 var uris = ['test', 'acusticanapoli'];
@@ -44,7 +44,7 @@ function estimateFraudulentLevel(referrer) {
         referrer.label.match(/webmail.*\.orange\.fr$/) ||
         referrer.label.match(/webmail\.laposte\.net$/) ||
         referrer.label.match(/webmail\.numericable\.fr$/)
-        )
+    )
         return Promise.fulfilled(0);
 
 
@@ -52,33 +52,33 @@ function estimateFraudulentLevel(referrer) {
         return Promise.fulfilled(-2);
 
     return getFile(referrer)
-    .then(content => {
-        if (content.match(/remboursement/)) {
-            return -3;
-        } else if (content.match(/ameli/)) {
-            return -2;
-        } else {
-            return -1;
-        }
-    })
-    .catch(error => -500);
+        .then(content => {
+            if (content.match(/remboursement/)) {
+                return -3;
+            } else if (content.match(/ameli/)) {
+                return -2;
+            } else {
+                return -1;
+            }
+        })
+        .catch(error => -500);
 }
 
 rp({
     uri: `https://stats.data.gouv.fr/index.php?module=API&method=Referrers.getWebsites&format=JSON&idSite=9&period=day&date=yesterday&expanded=1&token_auth=anonymous&filter_limit=500&token_auth=anonymous&filter_limit=500`,
     json: true,
 })
-.then(t => t.slice(0,100))
-.map((referrer) => {
-    return estimateFraudulentLevel(referrer)
-    .then(status => {
-        return {
-            status: status,
-            referrer: referrer,
-        };
+    .then(t => t.slice(0,100))
+    .map((referrer) => {
+        return estimateFraudulentLevel(referrer)
+            .then(status => {
+                return {
+                    status: status,
+                    referrer: referrer,
+                };
+            });
+    })
+    .then(results => results.sort(function(a, b) { return (a.referrer.label || '').localeCompare((b.referrer.label || '')); }))
+    .then(results => {
+        console.log(results.filter(r => r.status < 0 ).map(r => r.referrer.label + ' - ' + r.status + ' - ' + (r.referrer.subtable ? r.referrer.subtable[0].label : '')).join('\n'));
     });
-})
-.then(results => results.sort(function(a, b) { return (a.referrer.label || '').localeCompare((b.referrer.label || '')); }))
-.then(results => {
-    console.log(results.filter(r => r.status < 0 ).map(r => r.referrer.label + ' - ' + r.status + ' - ' + (r.referrer.subtable ? r.referrer.subtable[0].label : '')).join('\n'));
-});

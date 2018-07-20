@@ -6,8 +6,8 @@ exports.generateToken = function(lengthInBytes) {
         lengthInBytes = 48;
     }
     return crypto
-    .randomBytesAsync(lengthInBytes)
-    .then(function(buf) {
-        return buf.toString('base64').replace(/\//g,'_').replace(/\+/g,'-');
-    });
+        .randomBytesAsync(lengthInBytes)
+        .then(function(buf) {
+            return buf.toString('base64').replace(/\//g,'_').replace(/\+/g,'-');
+        });
 };

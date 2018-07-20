@@ -114,7 +114,7 @@ exports.checkCredentials = function(req, res, next) {
     var credentials = auth(req);
     if ((! credentials) || (! tokens[credentials.name]) || (credentials.pass != tokens[credentials.name])) {
         res.status(401)
-        .setHeader('WWW-Authenticate', 'Basic realm="MesAidesTeleservices"');
+            .setHeader('WWW-Authenticate', 'Basic realm="MesAidesTeleservices"');
         res.send({ error: 'Not autorized'});
     } else {
         next();

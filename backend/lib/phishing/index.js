@@ -2,7 +2,7 @@ var crypto = require('crypto');
 var os = require('os');
 var path = require('path');
 var rp = require('request-promise');
-Promise = require('bluebird'); // jshint ignore:line
+Promise = require('bluebird');
 
 console.log(os.tmpdir());
 

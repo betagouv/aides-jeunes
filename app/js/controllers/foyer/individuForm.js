@@ -167,7 +167,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     };
 
     $scope.captureEligibiliteAss = function() {
-        /* jshint -W069 */
         return isIndividuParent && $scope.selectedStatuts['chomeur'];
     };
 

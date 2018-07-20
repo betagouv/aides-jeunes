@@ -1,4 +1,4 @@
-/* jshint indent: 2 */
+/* eslint indent: [ "error", 2 ] */
 
 // Generated on 2014-06-19 using generator-angular-fullstack 1.4.3
 'use strict';
@@ -88,12 +88,6 @@ module.exports = function (grunt) {
           nospawn: true //Without this option specified express won't be reloaded
         }
       }
-    },
-    jscs: {
-        src: ['<%= yeoman.app %>/js/**/*.js'],
-        options: {
-            config: '.jscsrc'
-        }
     },
 
     // Empties folders to start fresh
@@ -378,7 +372,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'jscs',
     'test',
     'build'
   ]);

@@ -12,12 +12,12 @@ angular.module('ddsCommon').factory('CityService', function($http) {
 
     function getCities(postalCode) {
         return $http
-        .get('/api/outils/communes/' + postalCode)
-        .then(function(result) {
-            return result.data.sort(sortByName);
-        }, function(error) {
-            return [];
-        });
+            .get('/api/outils/communes/' + postalCode)
+            .then(function(result) {
+                return result.data.sort(sortByName);
+            }, function(error) {
+                return [];
+            });
     }
 
     return {

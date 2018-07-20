@@ -29,18 +29,18 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
         $scope.retrievingCities = true;
         CityService.getCities($scope.menage.code_postal)
-        .then(function(cities) {
-            $scope.cities = cities;
-            var city = getSelectedCity();
-            menage.depcom = city.codeInsee;
-            menage.nom_commune = city.nomCommune;
-            if (! initial) {
-                famille.parisien = cityStartsWith('Paris');
-            }
-        }, $log.error.bind($log))
-        .finally(function() {
-            $scope.retrievingCities = false;
-        });
+            .then(function(cities) {
+                $scope.cities = cities;
+                var city = getSelectedCity();
+                menage.depcom = city.codeInsee;
+                menage.nom_commune = city.nomCommune;
+                if (! initial) {
+                    famille.parisien = cityStartsWith('Paris');
+                }
+            }, $log.error.bind($log))
+            .finally(function() {
+                $scope.retrievingCities = false;
+            });
     };
 
     $scope.updateCities(true);

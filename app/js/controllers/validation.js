@@ -39,11 +39,11 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http) {
 
     $scope.sources = sourceNames.map(function(source) {
         $http.get('https://ludwig.incubateur.net/api/repositories/github/ludwig-test/' + source.id + '/tests')
-        .then(function(response) {
-            source.tests = response.data;
-        }, function(error) {
-            source.error = 'Récupération des informations impossible';
-        });
+            .then(function(response) {
+                source.tests = response.data;
+            }, function(error) {
+                source.error = 'Récupération des informations impossible';
+            });
         return source;
     });
 });

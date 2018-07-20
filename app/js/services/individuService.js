@@ -7,12 +7,12 @@ angular.module('ddsCommon').service('IndividuService', function($filter, specifi
 
     function ressourceHeader(individu) {
         switch (individu.role) {
-            case 'demandeur':
-                return 'Vos ressources personnelles uniquement';
-            case 'conjoint':
-                return 'Les ressources de votre conjoint';
-            default:
-                return 'Les ressources de ' + individu.firstName;
+        case 'demandeur':
+            return 'Vos ressources personnelles uniquement';
+        case 'conjoint':
+            return 'Les ressources de votre conjoint';
+        default:
+            return 'Les ressources de ' + individu.firstName;
         }
     }
 
@@ -37,10 +37,10 @@ angular.module('ddsCommon').service('IndividuService', function($filter, specifi
 
         ressourceShortLabel: function(individu) {
             switch (individu.role) {
-                case 'demandeur':
-                    return 'Vos ressources';
-                default:
-                    return ressourceHeader(individu);
+            case 'demandeur':
+                return 'Vos ressources';
+            default:
+                return ressourceHeader(individu);
             }
         },
 

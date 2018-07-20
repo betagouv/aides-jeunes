@@ -29,7 +29,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
         $scope.capturePrenom = true;
 
         $scope.specificSituations = _.filter($scope.specificSituations, function(statut) {
-          return (statut.id !== 'retraite');
+            return (statut.id !== 'retraite');
         });
     }
 

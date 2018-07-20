@@ -25,16 +25,16 @@ angular.module('ddsApp').controller('TraceCtrl', function($scope, $http, $stateP
     }
 
     $http.get('/api/situations/' + $scope.investigation.situationId + '/openfisca-trace')
-    .then(function(response) {
-        $scope.rawData = response.data;
-        $scope.rawData.requestedCalculations.sort();
-        $scope.trace = $scope.rawData.trace;
+        .then(function(response) {
+            $scope.rawData = response.data;
+            $scope.rawData.requestedCalculations.sort();
+            $scope.trace = $scope.rawData.trace;
 
-        var variables = Object.keys($scope.trace);
-        variables.forEach(function(variable) {
-            $scope.trace[variable].dependencies = _.uniq($scope.trace[variable].dependencies);
+            var variables = Object.keys($scope.trace);
+            variables.forEach(function(variable) {
+                $scope.trace[variable].dependencies = _.uniq($scope.trace[variable].dependencies);
+            });
+        }, function(error) {
+            $scope.error = error;
         });
-    }, function(error) {
-        $scope.error = error;
-    });
 });

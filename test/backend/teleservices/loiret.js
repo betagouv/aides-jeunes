@@ -1,4 +1,5 @@
 var expect = require('expect');
+var moment = require('moment');
 
 var situation = {
     "individus":[
@@ -60,10 +61,13 @@ var Loiret = require('../../../backend/lib/teleservices/loiret');
 describe('Loiret Teleservice', function() {
 
     it('returns expected values for internal purpose', function() {
+
+        moment.locale('fr');
+
         var loiret = new Loiret(situation);
         var formatted = loiret.toInternal();
         expect(formatted).toBeA('array');
-        expect(formatted).toInclude({ label: 'votre date de naissance', formattedValue: 'June 5, 1983' });
+        expect(formatted).toInclude({ label: 'votre date de naissance', formattedValue: '5 juin 1983' });
         expect(formatted).toInclude({ label: 'votre situation familiale', formattedValue: 'En union libre' });
         expect(formatted).toInclude({ label: 'vos salaires (net) sur les 12 derniers mois', formattedValue: '28600 €' });
         expect(formatted).toInclude({ label: 'votre retraite (net) sur les 12 derniers mois', formattedValue: '1300 €' });

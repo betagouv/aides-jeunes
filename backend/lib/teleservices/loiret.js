@@ -50,7 +50,10 @@ var fields = {
     },
     salaire_dem: {
         label: 'vos salaires (net) sur les 12 derniers mois',
-        keys: 'salaire_net_hors_revenus_exceptionnels',
+        keys: [
+            'salaire_net_hors_revenus_exceptionnels',
+            'primes_salaires_net'
+        ],
         toInternal: reduceToAmount
     },
     montantRetraite_dem: {

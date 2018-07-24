@@ -14,8 +14,6 @@ services:
     image: betagouv/mes-aides-openfisca:latest
     environment:
       OPENFISCA_BIND_HOST: 0.0.0.0:2000
-    ports:
-      - '2000:2000'
 
   node:
     build:
@@ -25,7 +23,6 @@ services:
       MONGODB_URL: mongodb://mongo:27017/dds
       OPENFISCA_URL: http://openfisca:2000
     ports:
-      - '9000:9000'
       - '35729:35729'
     depends_on:
       - mongo
@@ -36,6 +33,20 @@ services:
     volumes:
       - 'node_modules:/srv/app/node_modules'
       - './:/srv/app'
+
+  nginx:
+    image: 'nginx:1.14-alpine'
+    depends_on:
+      - node
+    links:
+      - node
+    ports:
+      - '2000:2000'
+      - '9000:9000'
+    volumes:
+      - './docker/nginx/conf.d:/etc/nginx/conf.d:ro'
+      - './docker/nginx/snippets:/etc/nginx/snippets:ro'
+      - './:/home/main/mes-aides-ui:ro'
 
 volumes:
   node_modules:

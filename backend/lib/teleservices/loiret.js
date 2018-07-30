@@ -48,6 +48,8 @@ var fields = {
             return situationFamiliale.label;
         },
         toExternal: function(demandeur) {
+            // Voir le menu déroulant "Situation" sur la page ci-dessous
+            // https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92/
             switch (demandeur.statut_marital) {
                 case 'marie':
                     return 1;

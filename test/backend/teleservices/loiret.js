@@ -84,12 +84,12 @@ describe('Loiret Teleservice', function() {
         expect(formatted).toBeA('array');
         expect(formatted).toInclude({ label: 'votre date de naissance', formattedValue: '5 juin 1983' });
         expect(formatted).toInclude({ label: 'votre situation familiale', formattedValue: 'En union libre' });
-        expect(formatted).toInclude({ label: 'vos salaires (net) sur les 12 derniers mois', formattedValue: '27400 €' });
-        expect(formatted).toInclude({ label: 'votre retraite (net) sur les 12 derniers mois', formattedValue: '1200 €' });
-        expect(formatted).toInclude({ label: 'vos allocations sur les 12 derniers mois', formattedValue: '2400 €' });
-        expect(formatted).toInclude({ label: 'vos pensions alimentaires perçues', formattedValue: '0 €' });
-        expect(formatted).toInclude({ label: 'vos revenus locatifs', formattedValue: '0 €' });
-        expect(formatted).toInclude({ label: 'vos revenus du capital', formattedValue: '0 €' });
+        expect(formatted).toInclude({ label: 'vos salaires (net) sur les 12 derniers mois', formattedValue: '27 400,00 €' });
+        expect(formatted).toInclude({ label: 'votre retraite (net) sur les 12 derniers mois', formattedValue: '1 200,00 €' });
+        expect(formatted).toInclude({ label: 'vos allocations sur les 12 derniers mois', formattedValue: '2 400,00 €' });
+        expect(formatted).toInclude({ label: 'vos pensions alimentaires perçues', formattedValue: '0,00 €' });
+        expect(formatted).toInclude({ label: 'vos revenus locatifs', formattedValue: '0,00 €' });
+        expect(formatted).toInclude({ label: 'vos revenus du capital', formattedValue: '0,00 €' });
     });
 
     it('returns expected values for date de naissance', function() {

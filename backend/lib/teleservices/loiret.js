@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var moment = require('moment');
+var CurrencyFormatter = require('currencyformatter.js');
 var situationsFamiliales = require('../../../app/js/constants/situationsFamiliales.js');
 
 function reduce(demandeur, field) {
@@ -26,7 +27,7 @@ function reduce(demandeur, field) {
 }
 
 function reduceToAmount(demandeur, field) {
-    return reduce(demandeur, field).toString() + ' €';
+    return CurrencyFormatter.format(reduce(demandeur, field), { currency: 'EUR', locale: 'fr' });
 }
 
 var fields = {

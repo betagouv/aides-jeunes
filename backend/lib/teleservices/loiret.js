@@ -7,9 +7,19 @@ function reduce(demandeur, field) {
     var total = 0;
     _.each(keys, function(key) {
         if (demandeur[key]) {
-            total = _.reduce(demandeur[key], function(accumulator, value) {
-                return accumulator + value;
-            }, total);
+
+            var lastTwelveMonths = _.sortBy(_.map(demandeur[key], function(value, key) {
+                return {
+                    month: key,
+                    value: value
+                };
+            }), ['month']).slice(-12);
+
+            var lastTwelveMonthsValues = _.map(lastTwelveMonths, function(item) {
+                return item.value;
+            });
+
+            total += _.sum(lastTwelveMonthsValues);
         }
     });
     return total;

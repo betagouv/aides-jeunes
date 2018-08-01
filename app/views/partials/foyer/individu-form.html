@@ -214,6 +214,15 @@
     </div>
   </div>
 
+  <yes-no-question model="individu.aah_restriction_substantielle_durable_acces_emploi"
+    ng-if="captureRestrictionSubstantielleDurableAccesEmploi()"
+    size="4"
+    >
+    <question>
+      {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
+      une restriction substantielle et durable d'accès à l'emploi reconnue par la <abbr title="Commission des droits et de l'autonomie des personnes handicapées">CDAPH</abbr>&nbsp;?</question>
+  </yes-no-question>
+
   <yes-no-question model="individu.enfant_place"
     ng-if="captureEnfantPlace()"
     size="4"

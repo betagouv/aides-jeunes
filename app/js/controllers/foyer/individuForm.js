@@ -87,6 +87,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     var DEFAULT_INDIVIDU = {
         id: individuRole,
         nationalite: 'fr',
+        aah_restriction_substantielle_durable_acces_emploi: true,
         ass_precondition_remplie: false,
         scolarite: 'college',
         taux_incapacite: 0.9,
@@ -149,6 +150,10 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
                 delete $scope.individu.taux_incapacite;
             }
 
+            if (! $scope.captureRestrictionSubstantielleDurableAccesEmploi()) {
+                delete $scope.individu.aah_restriction_substantielle_durable_acces_emploi;
+            }
+
             if (! $scope.captureScolarite(form)) {
                 delete $scope.individu.scolarite;
             }
@@ -168,6 +173,10 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
 
     $scope.captureTauxIncapacite = function() {
         return $scope.selectedStatuts.handicap;
+    };
+
+    $scope.captureRestrictionSubstantielleDurableAccesEmploi = function() {
+        return $scope.captureTauxIncapacite() && isIndividuParent && $scope.individu.taux_incapacite == 0.7;
     };
 
     $scope.captureEnfantPlace = function() {

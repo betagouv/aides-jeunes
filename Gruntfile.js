@@ -164,7 +164,7 @@ module.exports = function (grunt) {
           ext: '.css'
         }],
         options: {
-          includePaths: ['<%= yeoman.app %>/bower_components']
+          includePaths: ['<%= yeoman.app %>/../node_modules']
         }
       }
     },

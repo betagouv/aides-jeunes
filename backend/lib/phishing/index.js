@@ -2,7 +2,7 @@ var crypto = require('crypto');
 var os = require('os');
 var path = require('path');
 var rp = require('request-promise');
-const Promise = require('bluebird');
+var Promise = require('bluebird');
 
 console.log(os.tmpdir());
 
@@ -12,7 +12,7 @@ var phishingExpressions = require('./../../../app/js/constants/phishingExpressio
 
 var OKSites = fs.readFileSync('backend/lib/phishing/ok-sites.txt', { encoding: 'utf-8' }).split('\n').filter(s => s !== '');
 function getFile(referrer) {
-    const shasum = crypto.createHash('sha1');
+    var shasum = crypto.createHash('sha1');
     shasum.update(referrer.label);
     var hash = shasum.digest('hex');
     var fullpath = path.join(os.tmpdir(), 'phishing-' + hash);

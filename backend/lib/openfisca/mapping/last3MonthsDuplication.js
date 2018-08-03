@@ -8,6 +8,7 @@ var familleProperties = [
 ];
 
 var individuProperties = [
+    'aah_restriction_substantielle_durable_acces_emploi',
     'activite',
     'age',
     'age_en_mois',

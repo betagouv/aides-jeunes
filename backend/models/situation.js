@@ -41,6 +41,7 @@ var statutMaritalValues = [
 var individuDef = Object.assign({
     _id: false,
     id: String,
+    aah_restriction_substantielle_durable_acces_emploi: Boolean,
     ass_precondition_remplie: Boolean,
     boursier: Boolean,
     date_arret_de_travail: Date,

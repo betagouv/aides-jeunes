@@ -89,7 +89,7 @@
       <div class="row cta">
         <div class="col-sm-3">
           <a
-            ng-if="droit.link"
+            ng-if="droit.link && ! droit.internalLink"
             class="btn btn-sm btn-default btn-block"
             href="{{ droit.link }}"
             target="_blank"

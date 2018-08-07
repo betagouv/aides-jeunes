@@ -3,65 +3,47 @@ var situations = require('../situations');
 var jwt = require('jsonwebtoken');
 var moment = require('moment');
 var config = require('../../config/config');
+var Loiret = require('../../lib/teleservices/loiret');
 
 moment.locale('fr');
 
-var fields = [{
-    label: 'votre date de naissance',
-    value: '1940-12-12',
-    formatter: function(value) { return moment(value).format('LL'); },
-    key: 'date_naissance_dem'
-}, {
-    label: 'votre situation familiale',
-    value: 0,
-    formatter: function() { return 'Célibataire'; },
-    key: 'situationfam_dem'
-}, {
-    label: 'vos salaires (net) sur les 12 derniers mois',
-    value: 800*12,
-    formatter: function(value) { return value.toString() + ' €'; },
-    key: 'salaire_dem'
-}, {
-    label: 'votre retraite (net) sur les 12 derniers mois',
-    value: 500*12,
-    formatter: function(value) { return value.toString() + ' €'; },
-    key: 'montantRetraite_dem'
-}, {
-    label: 'vos allocations sur les 12 derniers mois',
-    value: 200*12,
-    formatter: function(value) { return value.toString() + ' €'; },
-    key: 'allocations_dem'
-}];
-
 var teleservices = [{
     name: 'loiret_APA_test',
-    fields: fields,
+    class: Loiret,
     destination: {
         label: 'du Loiret (test)',
         urlPrefix: 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92?code='
     }
 }, {
     name: 'local_node_test',
-    fields: fields,
+    class: Loiret,
     destination: {
         label: 'en local (Node)',
         urlPrefix: 'http://localhost:3000?code='
     },
 }, {
     name: 'local_PHP_test',
-    fields: fields,
+    class: Loiret,
     destination: {
         label: 'en local (PHP)',
         urlPrefix: 'http://localhost:8000/basicAuth.php?code='
     }
 }, {
     name: 'live_node_test',
-    fields: fields,
+    class: Loiret,
     destination: {
         label: 'en ligne',
         urlPrefix: 'http://test.mes-aides.gouv.fr/prefill?code='
     }
 }];
+
+function createClass(teleservice, situation) {
+    // Create object dynamically, and apply constructor
+    var ts = Object.create(teleservice.class.prototype);
+    teleservice.class.apply(ts, [ situation ]);
+
+    return ts;
+}
 
 exports.names = teleservices.map(function(ts) { return ts.name; });
 
@@ -99,9 +81,7 @@ exports.metadataResponseGenerator = function(teleservice) {
         var token = jwt.sign(payload, req.situation.token);
 
         return res.json({
-            fields: teleservice.fields.map(function(field) {
-                return Object.assign(field, { formattedValue: field.formatter ? field.formatter(field.value) : field.value });
-            }),
+            fields: createClass(teleservice, req.situation).toInternal(),
             destination: {
                 label: teleservice.destination.label,
                 url: teleservice.destination.urlPrefix + token,
@@ -166,10 +146,7 @@ exports.verifyRequest = function(req, res, next) {
  * At the moment, the key/value pairs are hardcoded but it mimics the expected behavior.
  */
 exports.exportRepresentation = function(req, res) {
-    return res.json(req.teleservice.fields.reduce(function(obj, field) {
-        obj[field.key] = field.value;
-        return obj;
-    }, {}));
+    return res.json(createClass(req.teleservice, req.situation).toExternal());
 };
 
 for (var i = 0; i < teleservices.length; i++) {

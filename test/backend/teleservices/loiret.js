@@ -2,6 +2,7 @@ var expect = require('expect');
 var moment = require('moment');
 
 var situation = {
+    "dateDeValeur": "2018-07-14",
     "individus":[
         {
             "role":"demandeur",
@@ -116,6 +117,7 @@ describe('Loiret Teleservice', function() {
         ];
         expectations.forEach(function(expectation) {
             var situation = {
+                "dateDeValeur": "2018-07-14",
                 "individus": [
                     {
                         "role": "demandeur",
@@ -139,6 +141,7 @@ describe('Loiret Teleservice', function() {
 
     it('returns expected values for retraite nette', function() {
         var situation = {
+            "dateDeValeur": "2018-07-14",
             "individus": [
                 {
                     "role": "demandeur",
@@ -184,6 +187,7 @@ describe('Loiret Teleservice', function() {
 
     it('returns expected values for salaire net', function() {
         var situation = {
+            "dateDeValeur": "2018-07-14",
             "individus": [
                 {
                     "role": "demandeur",
@@ -214,6 +218,7 @@ describe('Loiret Teleservice', function() {
 
     it('returns expected values for pensions alimentaires', function() {
         var situation = {
+            "dateDeValeur": "2018-07-14",
             "individus": [
                 {
                     "role": "demandeur",
@@ -244,6 +249,7 @@ describe('Loiret Teleservice', function() {
 
     it('returns expected values for revenus locatifs', function() {
         var situation = {
+            "dateDeValeur": "2018-07-14",
             "individus": [
                 {
                     "role": "demandeur",
@@ -274,6 +280,7 @@ describe('Loiret Teleservice', function() {
 
     it('returns expected values for revenus du capital', function() {
         var situation = {
+            "dateDeValeur": "2018-07-14",
             "individus": [
                 {
                     "role": "demandeur",
@@ -304,6 +311,7 @@ describe('Loiret Teleservice', function() {
 
     it('returns expected values for allocations', function() {
         var situation = {
+            "dateDeValeur": "2018-07-14",
             "individus": [
                 {
                     "role": "demandeur",

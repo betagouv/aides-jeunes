@@ -2,32 +2,24 @@ var _ = require('lodash');
 var moment = require('moment');
 var CurrencyFormatter = require('currencyformatter.js');
 var situationsFamiliales = require('../../../app/js/constants/situationsFamiliales.js');
+var getPeriods = require('../openfisca/mapping/common').getPeriods;
 
-function reduce(demandeur, field) {
+function reduce(demandeur, dateDeValeur, field) {
     var keys = Array.isArray(field.keys) ? field.keys : [ field.keys ];
     var total = 0;
+    var last12Months = getPeriods(dateDeValeur).last12Months;
     _.each(keys, function(key) {
         if (demandeur[key]) {
-
-            var lastTwelveMonths = _.sortBy(_.map(demandeur[key], function(value, key) {
-                return {
-                    month: key,
-                    value: value
-                };
-            }), ['month']).slice(-12);
-
-            var lastTwelveMonthsValues = _.map(lastTwelveMonths, function(item) {
-                return item.value;
-            });
-
-            total += _.sum(lastTwelveMonthsValues);
+            total += _.sum(_.values(_.pickBy(demandeur[key], function(value, key) {
+                return _.includes(last12Months, key);
+            })));
         }
     });
     return total;
 }
 
-function reduceToAmount(demandeur, field) {
-    return CurrencyFormatter.format(reduce(demandeur, field), { currency: 'EUR', locale: 'fr' });
+function reduceToAmount(demandeur, dateDeValeur, field) {
+    return CurrencyFormatter.format(reduce(demandeur, dateDeValeur, field), { currency: 'EUR', locale: 'fr' });
 }
 
 var fields = {
@@ -112,11 +104,12 @@ Loiret.prototype.toInternal = function() {
     var demandeur = _.find(this.situation.individus, function(individu) {
         return individu.role === "demandeur";
     });
+    var dateDeValeur = this.situation.dateDeValeur;
 
     return _.map(fields, function(field) {
         return {
             label: field.label,
-            formattedValue: field.toInternal.apply(null, [ demandeur, field ])
+            formattedValue: field.toInternal.apply(null, [ demandeur, dateDeValeur, field ])
         };
     });
 };
@@ -126,16 +119,17 @@ Loiret.prototype.toExternal = function() {
     var demandeur = _.find(this.situation.individus, function(individu) {
         return individu.role === "demandeur";
     });
+    var dateDeValeur = this.situation.dateDeValeur;
 
     return {
         date_naissance_dem: fields.date_naissance_dem.toExternal(demandeur),
         situationfam_dem: fields.situationfam_dem.toExternal(demandeur),
-        montantRetraite_dem: reduce(demandeur, fields.montantRetraite_dem),
-        salaire_dem: reduce(demandeur, fields.salaire_dem),
-        pension_dem: reduce(demandeur, fields.pension_dem),
-        rev_loca_dem: reduce(demandeur, fields.rev_loca_dem),
-        rev_biens_dem: reduce(demandeur, fields.rev_biens_dem),
-        allocations_dem: reduce(demandeur, fields.allocations_dem),
+        montantRetraite_dem: reduce(demandeur, dateDeValeur, fields.montantRetraite_dem),
+        salaire_dem: reduce(demandeur, dateDeValeur, fields.salaire_dem),
+        pension_dem: reduce(demandeur, dateDeValeur, fields.pension_dem),
+        rev_loca_dem: reduce(demandeur, dateDeValeur, fields.rev_loca_dem),
+        rev_biens_dem: reduce(demandeur, dateDeValeur, fields.rev_biens_dem),
+        allocations_dem: reduce(demandeur, dateDeValeur, fields.allocations_dem),
     };
 };
 

@@ -5,13 +5,13 @@ var situationsFamiliales = require('../../../app/js/constants/situationsFamilial
 var getPeriods = require('../openfisca/mapping/common').getPeriods;
 
 function reduce(demandeur, dateDeValeur, field) {
-    var keys = Array.isArray(field.keys) ? field.keys : [ field.keys ];
+    var resources = Array.isArray(field.resources) ? field.resources : [ field.resources ];
     var total = 0;
     var last12Months = getPeriods(dateDeValeur).last12Months;
-    _.each(keys, function(key) {
-        if (demandeur[key]) {
-            total += _.sum(_.values(_.pickBy(demandeur[key], function(value, key) {
-                return _.includes(last12Months, key);
+    _.each(resources, function(resource) {
+        if (demandeur[resource]) {
+            total += _.sum(_.values(_.pickBy(demandeur[resource], function(amount, period) {
+                return _.includes(last12Months, period);
             })));
         }
     });
@@ -55,7 +55,7 @@ var fields = {
     },
     salaire_dem: {
         label: 'vos salaires (net) sur les 12 derniers mois',
-        keys: [
+        resources: [
             'salaire_net_hors_revenus_exceptionnels',
             'primes_salaires_net'
         ],
@@ -63,7 +63,7 @@ var fields = {
     },
     montantRetraite_dem: {
         label: 'votre retraite (net) sur les 12 derniers mois',
-        keys: [
+        resources: [
             'retraite_nette',
             'retraite_combattant'
         ],
@@ -71,7 +71,7 @@ var fields = {
     },
     allocations_dem: {
         label: 'vos allocations sur les 12 derniers mois',
-        keys: [
+        resources: [
             'indemnites_journalieres_maladie_professionnelle',
             'indemnites_journalieres_maladie',
             'pensions_invalidite'
@@ -80,17 +80,17 @@ var fields = {
     },
     pension_dem: {
         label: 'vos pensions alimentaires perçues',
-        keys: 'pensions_alimentaires_percues',
+        resources: 'pensions_alimentaires_percues',
         toInternal: reduceToAmount
     },
     rev_loca_dem: {
         label: 'vos revenus locatifs',
-        keys: 'revenus_locatifs',
+        resources: 'revenus_locatifs',
         toInternal: reduceToAmount
     },
     rev_biens_dem: {
         label: 'vos revenus du capital',
-        keys: 'revenus_capital',
+        resources: 'revenus_capital',
         toInternal: reduceToAmount
     }
 };

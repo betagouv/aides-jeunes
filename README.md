@@ -16,3 +16,7 @@ docker build --no-cache -t betagouv/mes-aides-openfisca:0.0.1 .
 docker login
 docker push betagouv/mes-aides-openfisca:0.0.1
 ```
+
+### How to trigger a build manually
+
+https://docs.docker.com/docker-hub/builds/#remote-build-triggers

@@ -8,15 +8,6 @@ Therefore, we need to package OpenFisca in a Docker Image.
 
 See [Using Custom-Built Docker Images](https://circleci.com/docs/2.0/custom-images/)
 
-The Docker Image running OpenFisca is packaged using the same `Dockerfile` used by `docker-compose.yml`.
-Use the commands below to build the Docker Image and push it to Docker Hub.
-
-```
-docker build --no-cache -t betagouv/mes-aides-openfisca:0.0.1 .
-docker login
-docker push betagouv/mes-aides-openfisca:0.0.1
-```
-
 ### How to trigger a build manually
 
 https://docs.docker.com/docker-hub/builds/#remote-build-triggers

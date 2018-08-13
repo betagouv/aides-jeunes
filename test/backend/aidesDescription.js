@@ -22,12 +22,6 @@ describe('aides descriptions', function() {
                         expect(aide.label.length).toBeGreaterThan(1);
                     });
 
-                    it('should have a shortLabel', function() {
-                        expect(aide.shortLabel).toBeA('string');
-                        expect(aide.shortLabel.length).toBeGreaterThan(1);
-                        expect(aide.shortLabel.length).toBeLessThanOrEqualTo(15);
-                    });
-
                     it('should have a description', function() {
                         expect(aide.description).toBeA('string');
                         expect(aide.description.length).toBeGreaterThanOrEqualTo(190);

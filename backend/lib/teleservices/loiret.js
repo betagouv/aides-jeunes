@@ -44,12 +44,12 @@ var fields = {
             // Voir le menu déroulant "Situation" sur la page ci-dessous
             // https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92/
             switch (demandeur.statut_marital) {
-                case 'marie':
-                    return 1;
-                case 'pacse':
-                    return 5;
-                case 'celibataire':
-                    return 0;
+            case 'marie':
+                return 1;
+            case 'pacse':
+                return 5;
+            case 'celibataire':
+                return 0;
             }
         }
     },

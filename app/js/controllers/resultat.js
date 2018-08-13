@@ -72,7 +72,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
                     .then(function(etablissements) {
                         $scope.etablissements = etablissements.map(normalizeEtablissement);
 
-                });
+                    });
             });
     }
 

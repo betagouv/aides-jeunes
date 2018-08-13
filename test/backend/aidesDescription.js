@@ -39,9 +39,15 @@ describe('aides descriptions', function() {
                         expect(aide.link).toMatch(/^https?:\/\//);
                     });
 
-                    it('should have a teleservice, a form, or instructions', function() {
-                        expect(aide.teleservice || aide.form || aide.instructions).toBeA('string');
-                    });
+                    if (aide.isExperimental) {
+                        it('should have an internal link', function() {
+                            expect(aide.internalLink).toBeA('string');
+                        });
+                    } else {
+                        it('should have a teleservice, a form, or instructions', function() {
+                            expect(aide.teleservice || aide.form || aide.instructions).toBeA('string');
+                        });
+                    }
                 });
             });
         });

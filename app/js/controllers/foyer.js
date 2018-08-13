@@ -52,7 +52,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         $state.go('foyer.conjoint');
     });
 
-    $scope.$on('logement', function(e) {
+    $scope.$on('logement', function() {
         $scope.$broadcast('logementCaptured');
         $state.go('foyer.ressources.individu.types', { individu: 0 });
     });
@@ -72,12 +72,12 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         }
     });
 
-    $scope.$on('rfr', function(e) {
+    $scope.$on('rfr', function() {
         $scope.$broadcast('ym2Captured');
         $state.go('foyer.resultat');
     });
 
-    $scope.$on('patrimoine', function(e) {
+    $scope.$on('patrimoine', function() {
         $scope.$broadcast('patrimoineCaptured');
         $state.go('foyer.resultat');
     });

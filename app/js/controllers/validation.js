@@ -41,7 +41,7 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http) {
         $http.get('https://ludwig.incubateur.net/api/repositories/github/ludwig-test/' + source.id + '/tests')
             .then(function(response) {
                 source.tests = response.data;
-            }, function(error) {
+            }, function() {
                 source.error = 'Récupération des informations impossible';
             });
         return source;

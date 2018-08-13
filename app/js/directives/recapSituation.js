@@ -7,7 +7,7 @@ angular.module('ddsRecapSituation').directive('recapSituation', function(Situati
         scope: {
             situation: '='
         },
-        controller: function($scope, $filter) {
+        controller: function($scope) {
             $scope.situationYAML = SituationService.YAMLRepresentation($scope.situation);
         }
     };

@@ -28,7 +28,7 @@ angular.module('ddsApp').directive('captureContinuation', function(MonthService)
             individu: '=',
             ressourceType: '=',
         },
-        link: function(scope, element, attrs) {
+        link: function(scope) {
             var months = MonthService.getMonths(scope.dateDeValeur, 2, -1);
             var lastMonth = months[0];
             var currentMonth = months[1];

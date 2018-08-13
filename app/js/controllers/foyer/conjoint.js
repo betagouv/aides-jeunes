@@ -3,7 +3,7 @@
 angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state, SituationService) {
     var demandeur = SituationService.getDemandeur($scope.situation);
     var hasChildren = SituationService.hasEnfant($scope.situation);
-    var famille = $scope.famille = $scope.situation.famille;
+    $scope.famille = $scope.situation.famille;
 
     var isFirstView = demandeur.statut_marital == undefined;
     $scope.locals = {

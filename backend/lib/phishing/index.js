@@ -28,7 +28,6 @@ function getFile(referrer) {
         });
 }
 
-var uris = ['test', 'acusticanapoli'];
 function estimateFraudulentLevel(referrer) {
     if (! referrer.label)
         return Promise.fulfilled(-400);
@@ -61,7 +60,7 @@ function estimateFraudulentLevel(referrer) {
                 return -1;
             }
         })
-        .catch(error => -500);
+        .catch(() => -500);
 }
 
 rp({

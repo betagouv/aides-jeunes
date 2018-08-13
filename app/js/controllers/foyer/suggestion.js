@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http,droitsDescription, SituationService, ResultatService) {
+angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http,droitsDescription, SituationService) {
     $scope.test = {
         name: 'Nom du test',
         description: 'Description du test',

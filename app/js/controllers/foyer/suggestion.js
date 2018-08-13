@@ -102,22 +102,22 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http,dro
         var testMetadata = Object.assign({ extension: extension }, generateState($scope.test));
 
         $http.post('api/situations/' + $scope.situation._id + '/openfisca-test', testMetadata)
-        .then(function(result) {
-            return $http.post('https://ludwig.incubateur.net/api/repositories/github/ludwig-test/openfisca-' + (testMetadata.extension) + '/suggest', {
-                title: testMetadata.name,
-                body: testMetadata.description,
-                content: result.data
+            .then(function(result) {
+                return $http.post('https://ludwig.incubateur.net/api/repositories/github/ludwig-test/openfisca-' + (testMetadata.extension) + '/suggest', {
+                    title: testMetadata.name,
+                    body: testMetadata.description,
+                    content: result.data
+                });
+            })
+            .then(function(response) {
+                $scope.result = response.data;
+            })
+            .catch(function(error) {
+                $scope.error = error.message;
+            })
+            .finally(function() {
+                $scope.submitting = false;
             });
-        })
-        .then(function(response) {
-            $scope.result = response.data;
-        })
-        .catch(function(error) {
-            $scope.error = error.message;
-        })
-        .finally(function() {
-            $scope.submitting = false;
-        });
     }
     $scope.createSuggestionFile = createSuggestionFile;
 });

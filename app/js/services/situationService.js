@@ -60,7 +60,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
 
         fetchRepresentation: function(situationId, representation) {
             return $http.get('api/situations/' + situationId + '/' + representation)
-            .then(function(response) { return response.data; });
+                .then(function(response) { return response.data; });
         },
 
         newSituation: function() {
@@ -90,8 +90,8 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             return $http.get('/api/situations/' + situationId, {
                 params: { cacheBust: Date.now() }
             })
-            .then(function(result) { return result.data; })
-            .then(saveLocal);
+                .then(function(result) { return result.data; })
+                .then(saveLocal);
         },
 
         save: function(situation) {
@@ -103,8 +103,8 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             cleanSituation(situation);
 
             return $http.post('/api/situations/', situation)
-            .then(function(result) { return result.data; })
-            .then(saveLocal);
+                .then(function(result) { return result.data; })
+                .then(saveLocal);
         },
 
         saveLocal: saveLocal,

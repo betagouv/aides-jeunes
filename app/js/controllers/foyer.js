@@ -5,20 +5,20 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
 
     $scope.restoreRemoteSituation = function(situationId) {
         return SituationService.restoreRemote(situationId)
-        .then(function(persistedSituation) {
-            situation = $scope.situation = persistedSituation;
-            $scope.$broadcast('newSituation');
-            return situation;
-        });
+            .then(function(persistedSituation) {
+                situation = $scope.situation = persistedSituation;
+                $scope.$broadcast('newSituation');
+                return situation;
+            });
     };
 
     $scope.persistLocalSituation = function() {
         return SituationService.save(situation).then(function(situation) { return situation._id; })
-        .then(SituationService.restoreRemote)
-        .then(function(persistedSituation) {
-            situation = $scope.situation = persistedSituation;
-            return situation;
-        });
+            .then(SituationService.restoreRemote)
+            .then(function(persistedSituation) {
+                situation = $scope.situation = persistedSituation;
+                return situation;
+            });
     };
 
     $scope.statutsSpecifiques = IndividuService.formatStatutsSpecifiques;

@@ -39,6 +39,7 @@
   "devDependencies": {
     "connect-livereload": "~0.6.0",
     "errorhandler": "~1.5",
+    "eslint": "^5.0.1",
     "expect": "^1.20.2",
     "grunt": "^1.0.1",
     "grunt-autoprefixer": "^3.0.4",
@@ -54,7 +55,6 @@
     "grunt-env": "^0.4.4",
     "grunt-express-server": "*",
     "grunt-htmlrefs": "^0.5.0",
-    "grunt-jscs": "^3.0.1",
     "grunt-karma": "~2.0.0",
     "grunt-ng-annotate": "^3.0.0",
     "grunt-node-inspector": "~0.4.2",
@@ -64,7 +64,6 @@
     "grunt-sass": "^2.0.0",
     "grunt-usemin": "^3.1.1",
     "jasmine-core": "*",
-    "jshint": "^2.9.2",
     "karma": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-ng-html2js-preprocessor": "^1.0.0",
@@ -90,14 +89,15 @@
     "start": "NODE_ENV=production node server.js",
     "dev": "grunt serve",
     "sass": "grunt sass",
-    "test": "jshint . && mocha test/backend/**/*.js && grunt",
+    "test": "eslint . && mocha test/backend/**/*.js && grunt",
     "test-integration": "test/integration/run-integration-tests.sh",
     "predb": "mkdir -p db",
     "db": "mongod --dbpath db",
     "db-update": "./import-tests.sh",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
     "openfisca": "cd openfisca && gunicorn api --config config.py",
-    "stats": "node backend/lib/stats"
+    "stats": "node backend/lib/stats",
+    "eslint": "eslint ."
   },
   "license": "AGPL-3.0"
 }

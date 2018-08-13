@@ -11,9 +11,9 @@ angular.module('ddsApp').controller('RedirectionCtrl', function($scope, $statePa
     }
 
     SituationService.fetchRepresentation($scope.situation._id, $stateParams.vers)
-    .then(function(data) {
-        $scope.teleservice = data;
-    }).catch(function(error) {
-        $scope.error = JSON.stringify(error, null, 2);
-    });
+        .then(function(data) {
+            $scope.teleservice = data;
+        }).catch(function(error) {
+            $scope.error = JSON.stringify(error, null, 2);
+        });
 });

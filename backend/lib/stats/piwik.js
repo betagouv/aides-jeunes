@@ -33,5 +33,5 @@ exports.getUsageData = function(fromDate, toDate) {
         },
         json: true,
     })
-    .then(formatPiwik);
+        .then(formatPiwik);
 };

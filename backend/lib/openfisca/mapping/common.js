@@ -46,11 +46,11 @@ function generateRequestedVariables() {
     var structuredVariables = _.values(droitsDescription).map(function(level) {
         return _.values(level).map(function(provider) {
             return _.values(_.mapValues(provider.prestations, function(prestation, prestationName) {
-                    var prestations = {};
-                    prestations[prestationName] = _.assign({}, prestation);
-                    if (prestation.uncomputability)
-                        prestations[prestationName + '_non_calculable'] = _.assign({}, prestation, { type: 'string' });
-                    return prestations;
+                var prestations = {};
+                prestations[prestationName] = _.assign({}, prestation);
+                if (prestation.uncomputability)
+                    prestations[prestationName + '_non_calculable'] = _.assign({}, prestation, { type: 'string' });
+                return prestations;
             }));
         });
     });

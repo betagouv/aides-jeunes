@@ -24,13 +24,13 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
     }
 
     function round(amount, aide) {
-        if ((aide.type || 'float') != 'float') {
+        if ((aide.type || 'float') != 'float') {
             return amount;
         } else if (! aide.unit && aide.roundToNearest10 !== false && (! aide.roundToNearestCent)) {
             return Math.round(amount / 10) * 10;
         } else if (aide.roundToNearestCent) {
             return Math.round(amount * 100) / 100;
-        } else {} {
+        } else {
             return Math.round(amount);
         }
     }
@@ -94,11 +94,11 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
 
     function simulate(situation) {
         return $http.get('api/situations/' + situation._id + '/openfisca-response')
-        .then(function(OpenfiscaResponse) {
-            return OpenfiscaResponse.data;
-        }).then(function(openfiscaResponse) {
-            return computeAides(situation, openfiscaResponse);
-        });
+            .then(function(OpenfiscaResponse) {
+                return OpenfiscaResponse.data;
+            }).then(function(openfiscaResponse) {
+                return computeAides(situation, openfiscaResponse);
+            });
     }
 
     return {

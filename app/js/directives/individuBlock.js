@@ -13,14 +13,14 @@ angular.module('ddsCommon').directive('individuBlock', function(IndividuService)
             $scope.statutsSpecifiques = IndividuService.formatStatutsSpecifiques;
             var sref = function(individu) {
                 switch (individu.role) {
-                    case 'demandeur':
-                        return 'foyer.demandeur';
-                    case 'conjoint':
-                        return 'foyer.conjoint';
-                    case 'enfant':
-                        return 'foyer.enfants.modifier({ id: individu.id })';
-                    default:
-                        return 'foyer.enfants';
+                case 'demandeur':
+                    return 'foyer.demandeur';
+                case 'conjoint':
+                    return 'foyer.conjoint';
+                case 'enfant':
+                    return 'foyer.enfants.modifier({ id: individu.id })';
+                default:
+                    return 'foyer.enfants';
                 }
             };
 

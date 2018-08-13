@@ -1,0 +1,22 @@
+env:
+  node: true
+extends: 'eslint:recommended'
+parserOptions:
+  ecmaVersion: 3
+rules:
+  indent:
+    - error
+    - 4
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - off
+  no-console:
+    - off
+  # FIXME Activate this rule
+  no-unused-vars:
+    - off
+  semi:
+    - error
+    - always

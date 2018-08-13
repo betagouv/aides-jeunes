@@ -5,7 +5,7 @@ angular.module('ddsApp').controller('FoyerRessourcesEnfantsCtrl', function($scop
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
 
     $scope.enfants = SituationService.getEnfants($scope.situation);
-    $scope.enfants.forEach(function(enfant) {
+    $scope.enfants.forEach(function(enfant) {
         // yesNoQuestion requires a boolean
         enfant.hasRessources = ! _.isEmpty(RessourceService.extractIndividuSelectedRessourceTypes(enfant));
     });

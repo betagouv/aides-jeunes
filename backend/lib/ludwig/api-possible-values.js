@@ -106,8 +106,8 @@ module.exports = [
         'shortLabel': 'CAAH',
     },
     {
-       'id': 'ppa',
-       'shortLabel': 'PPA',
+        'id': 'ppa',
+        'shortLabel': 'PPA',
     },
     {
         'id': 'rennes_metropole_transport',

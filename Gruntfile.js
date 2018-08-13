@@ -1,4 +1,4 @@
-/* jshint indent: 2 */
+/* eslint indent: [ "warn", 2 ] */
 
 // Generated on 2014-06-19 using generator-angular-fullstack 1.4.3
 'use strict';
@@ -88,12 +88,6 @@ module.exports = function (grunt) {
           nospawn: true //Without this option specified express won't be reloaded
         }
       }
-    },
-    jscs: {
-        src: ['<%= yeoman.app %>/js/**/*.js'],
-        options: {
-            config: '.jscsrc'
-        }
     },
 
     // Empties folders to start fresh
@@ -264,11 +258,11 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-            cwd: 'tmp',
-            dest: 'dist',
-            src: [
+          cwd: 'tmp',
+          dest: 'dist',
+          src: [
             '**/*'
-            ]
+          ]
         }]
       }
     },
@@ -341,17 +335,17 @@ module.exports = function (grunt) {
     }
 
     var tasks = [
-        'clean:server',
-        'concurrent:server',
-        'autoprefixer',
-        'express:dev',
-        'open',
-        'watch'
+      'clean:server',
+      'concurrent:server',
+      'autoprefixer',
+      'express:dev',
+      'open',
+      'watch'
     ];
 
     // Remove "open" task
     if (true === grunt.option('no-open')) {
-        tasks.splice(tasks.indexOf('open'), 1);
+      tasks.splice(tasks.indexOf('open'), 1);
     }
 
     grunt.task.run(tasks);
@@ -378,7 +372,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'jscs',
     'test',
     'build'
   ]);

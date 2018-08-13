@@ -1,4 +1,4 @@
-    'use strict';
+'use strict';
 
 describe('Controller: FoyerPatrimoineCtrl', function() {
     var scope;

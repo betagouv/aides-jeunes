@@ -1,0 +1,19 @@
+env:
+  browser: true
+  commonjs: true
+rules:
+  space-unary-ops:
+    - error
+    - words: false
+      nonwords: true
+      overrides:
+        "-": false
+  no-console:
+    - error
+globals:
+  _: true
+  angular: true
+  Cleave: true
+  d3: true
+  jsyaml: true
+  moment: true

@@ -33,10 +33,10 @@ exports.ressourcesYearMoins2Captured = function ressourcesYearMoins2Captured(sit
         'pensions_alimentaires_versees',
     ];
     return (typeof situation.rfr == 'number') || situation.individus.some(function(individu) {
-            return individu.ressources && individu.ressources.some(function(ressource) {
-                return categoriesRncIds.indexOf(ressource.type) >= 0;
-            });
+        return individu.ressources && individu.ressources.some(function(ressource) {
+            return categoriesRncIds.indexOf(ressource.type) >= 0;
         });
+    });
 };
 
 exports.persistedSituationPretransformationUpdate = function persistedSituationPretransformationUpdate(situation) {

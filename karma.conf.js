@@ -1,4 +1,4 @@
-/* jshint indent: 2 */
+/* eslint indent: [ "warn", 2 ] */
 
 // Karma configuration
 // http://karma-runner.github.io/0.10/config/configuration-file.html

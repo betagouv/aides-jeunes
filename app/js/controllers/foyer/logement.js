@@ -29,18 +29,18 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
 
         $scope.retrievingCities = true;
         CityService.getCities($scope.menage.code_postal)
-        .then(function(cities) {
-            $scope.cities = cities;
-            var city = getSelectedCity();
-            menage.depcom = city.codeInsee;
-            menage.nom_commune = city.nomCommune;
-            if (! initial) {
-                famille.parisien = cityStartsWith('Paris');
-            }
-        }, $log.error.bind($log))
-        .finally(function() {
-            $scope.retrievingCities = false;
-        });
+            .then(function(cities) {
+                $scope.cities = cities;
+                var city = getSelectedCity();
+                menage.depcom = city.codeInsee;
+                menage.nom_commune = city.nomCommune;
+                if (! initial) {
+                    famille.parisien = cityStartsWith('Paris');
+                }
+            }, $log.error.bind($log))
+            .finally(function() {
+                $scope.retrievingCities = false;
+            });
     };
 
     $scope.updateCities(true);
@@ -70,7 +70,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return result;
     };
 
-    $scope.captureColocation= function() {
+    $scope.captureColocation = function() {
         return logement.type == 'locataire';
     };
 
@@ -86,12 +86,12 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return logement.type == 'locataire' && 'foyer' !== logement.locationType && angular.isDefined(logement.locationType);
     };
 
-    $scope.captureHabiteChezParents = function() {
+    $scope.captureHabiteChezParents = function() {
         var age = IndividuService.age($scope.demandeur);
         return (logement.type == 'heberge') && $scope.demandeur.fiscalementIndependant && (age >= 18) && (age < 25) && (! SituationService.hasEnfant($scope.situation));
     };
 
-    $scope.captureParticipationFrais = function() {
+    $scope.captureParticipationFrais = function() {
         return (logement.type == 'heberge') && (! $scope.captureHabiteChezParents() || angular.isDefined($scope.demandeur.habite_chez_parents));
     };
 

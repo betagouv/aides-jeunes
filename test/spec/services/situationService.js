@@ -15,9 +15,9 @@ describe('Service: situationService', function () {
         it('should return a truthy only when situation has a child with scolarite "college" or "lycee"', function() {
             // given
             var situations = [
-                { individus: [{ role: 'enfant', scolarite: 'college' }] },
-                { individus: [{ role: 'enfant', scolarite: 'lycee' }] },
-                { individus: [] }
+                { individus: [{ role: 'enfant', scolarite: 'college' }] },
+                { individus: [{ role: 'enfant', scolarite: 'lycee' }] },
+                { individus: [] }
             ];
 
             // when
@@ -36,7 +36,7 @@ describe('Service: situationService', function () {
         it('should return a truthy when there is a child', function() {
             // given
             var situations = [
-                { individus: [{ role: 'enfant'}] },
+                { individus: [{ role: 'enfant'}] },
             ];
 
             // when
@@ -52,7 +52,7 @@ describe('Service: situationService', function () {
         it('should return a falsy when there is no child', function() {
             // given
             var situations = [
-                { individus: [{ role: 'demandeur' }]},
+                { individus: [{ role: 'demandeur' }]},
             ];
 
             // when

@@ -21,9 +21,9 @@ function sendToOpenfisca(endpoint) {
             body: request,
             json: true,
         })
-        .then(function(result) {
-            callback(null, result);
-        }).catch(callback);
+            .then(function(result) {
+                callback(null, result);
+            }).catch(callback);
     };
 }
 

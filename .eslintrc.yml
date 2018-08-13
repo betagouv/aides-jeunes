@@ -14,9 +14,6 @@ rules:
     - off
   no-console:
     - off
-  # FIXME Activate this rule
-  no-unused-vars:
-    - off
   semi:
     - error
     - always

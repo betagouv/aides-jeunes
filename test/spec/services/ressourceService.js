@@ -3,8 +3,7 @@
 describe('RessourceService', function () {
     var service,
         individu,
-        dateDeValeur,
-        ressource;
+        dateDeValeur;
 
     beforeEach(function() {
         module('ddsApp');
@@ -39,7 +38,7 @@ describe('RessourceService', function () {
     describe('setDefaultValueForCurrentYear', function() {
         it('should provide 13 zeros by default', function() {
             var individu = {};
-            var periodKeys = service.setDefaultValueForCurrentYear(dateDeValeur, individu, { id: 'basic' });
+            service.setDefaultValueForCurrentYear(dateDeValeur, individu, { id: 'basic' });
 
             expect(_.size(individu.basic)).toEqual(13);
             expect(_.size(_.filter(individu.basic, function(v) { return v === 0; }))).toEqual(13);
@@ -51,8 +50,7 @@ describe('RessourceService', function () {
                 basic: {}
             };
             individu.basic[currentMonth] = 0;
-
-            var periodKeys = service.getPeriodKeysForCurrentYear(dateDeValeur, individu, { id: 'basic' });
+            service.getPeriodKeysForCurrentYear(dateDeValeur, individu, { id: 'basic' });
 
             expect(_.size(individu.basic)).toEqual(1);
         });
@@ -61,7 +59,7 @@ describe('RessourceService', function () {
     describe('unsetForCurrentYear', function() {
         it('should drop ressource', function() {
             individu.basic = {};
-            var periodKeys = service.unsetForCurrentYear(dateDeValeur, individu, { id: 'basic' });
+            service.unsetForCurrentYear(dateDeValeur, individu, { id: 'basic' });
 
             expect(individu.basic).toBe(undefined);
         });
@@ -72,7 +70,7 @@ describe('RessourceService', function () {
             };
             var recentMonthKey = moment(dateDeValeur).subtract(2, 'months').format('YYYY-MM');
             individu.old[recentMonthKey] = 1;
-            var periodKeys = service.unsetForCurrentYear(dateDeValeur, individu, { id: 'old' });
+            service.unsetForCurrentYear(dateDeValeur, individu, { id: 'old' });
 
             expect(_.size(individu.old)).toEqual(1);
             expect(individu.old[recentMonthKey]).toBe(undefined);

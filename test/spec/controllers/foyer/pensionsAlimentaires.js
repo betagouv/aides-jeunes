@@ -2,7 +2,7 @@
 
 describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
 
-    var scope, _ressourceTypes_, form;
+    var scope, _ressourceTypes_;
 
     beforeEach(function() {
         scope = {
@@ -11,7 +11,6 @@ describe('Controller: FoyerPensionsAlimentairesCtrl', function() {
             $watch: function() {},
             situation: { dateDeValeur: '2013-04-10' }
         };
-        form = { $valid: true };
         module('ddsApp');
         inject(function(ressourceTypes) {
             _ressourceTypes_ = ressourceTypes;

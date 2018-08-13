@@ -2,14 +2,13 @@
 
 describe('Controller: FoyerRessourcesIndividuCtrl', function() {
 
-    var scope, demandeur, controller;
+    var scope, controller;
 
     beforeEach(function() {
         scope = {
             situation: { dateDeValeur: '2013-04-10' },
             sortedIndividus: [{ role: 'demandeur' }, { role: 'conjoint' }, { role: 'enfant', firstName: 'Jérome' }]
         };
-        demandeur = scope.sortedIndividus[0];
         module('ddsApp');
         inject(function($controller) {
             controller = $controller;

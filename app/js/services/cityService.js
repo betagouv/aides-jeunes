@@ -15,7 +15,7 @@ angular.module('ddsCommon').factory('CityService', function($http) {
             .get('/api/outils/communes/' + postalCode)
             .then(function(result) {
                 return result.data.sort(sortByName);
-            }, function(error) {
+            }, function() {
                 return [];
             });
     }

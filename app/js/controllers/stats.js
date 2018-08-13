@@ -44,7 +44,7 @@ angular.module('ddsApp').controller('StatsCtrl', function($scope, $http) {
         .style('text-anchor', 'end');
 
     $http.get('/documents/stats.json')
-        .then(function(response, error) {
+        .then(function(response) {
             $scope.error = (response.headers('Content-Type').match(/html/));
             if ($scope.error)
                 return;
@@ -121,7 +121,7 @@ angular.module('ddsApp').controller('StatsCtrl', function($scope, $http) {
 
                 nodes
                     .attr('r', function(d) { return _.isNumber(d.value) ? 5 : 0; })
-                    .attr('cx', function(d) { return xScale(date); })
+                    .attr('cx', function() { return xScale(date); })
                     .attr('cy', function(d) { return yScale(d.value); })
                     .style("stroke", function(d) { return color(d.metric); })
                     .style("fill", function(d) { return color(d.metric); });
@@ -166,7 +166,7 @@ angular.module('ddsApp').controller('StatsCtrl', function($scope, $http) {
             });
 
             $scope.allStatsRetrieved = true;
-        }, function(error) {
+        }, function() {
             $scope.error = true;
         });
 });

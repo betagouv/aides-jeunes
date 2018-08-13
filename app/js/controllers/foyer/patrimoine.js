@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, patrimoineTypes, SituationService, RessourceService) {
+angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, patrimoineTypes) {
     var patrimoineProperties = _.map(patrimoineTypes, 'id');
 
     var periodKey = $scope.periodKey = '2012-01';

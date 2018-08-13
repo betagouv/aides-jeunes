@@ -12,7 +12,7 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
             dateDeValeur: '=',
             form: '=',
         },
-        link: function(scope, element, attrs) {
+        link: function(scope) {
             var momentDebutAnnee = moment(scope.dateDeValeur).subtract('years', 1);
             scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
             scope.threePreviousMonths = MonthService.getMonths(scope.dateDeValeur);

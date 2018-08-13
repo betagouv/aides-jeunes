@@ -38,7 +38,7 @@ angular.module('ddsApp').controller('FoyerNewEnfantCtrl', function($scope, $stat
     $timeout(function() { $anchorScroll('enfant-form'); });
 });
 
-angular.module('ddsApp').controller('FoyerEnfantCtrl', function($scope, $state, $stateParams) {
+angular.module('ddsApp').controller('FoyerEnfantCtrl', function($scope, $state) {
 
     $scope.isNew = false;
 

@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Controller: FoyerConjointCtrl', function() {
-    var rootScope, scope, state;
+    var scope, state;
 
     beforeEach(function() {
         scope = {

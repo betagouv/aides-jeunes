@@ -3,9 +3,9 @@
 angular.module('ddsApp').controller('FoyerRessourceYearMoins2Ctrl', function($scope, $state, categoriesRnc, IndividuService, SituationService, MonthService) {
     var dateDeValeur = $scope.situation.dateDeValeur;
     var months = MonthService.getMonths(dateDeValeur, 12);
-    $scope.yearMoins2 = moment(dateDeValeur).subtract('years', 2).format('YYYY');
-    $scope.yearMoins1 = moment(dateDeValeur).subtract('years', 1).format('YYYY');
-    $scope.debutAnneeGlissante = moment(dateDeValeur).subtract('years', 1).format('MMMM YYYY');
+    $scope.yearMoins2 = moment(dateDeValeur).subtract(2, 'years').format('YYYY');
+    $scope.yearMoins1 = moment(dateDeValeur).subtract(1, 'years').format('YYYY');
+    $scope.debutAnneeGlissante = moment(dateDeValeur).subtract(1, 'years').format('MMMM YYYY');
 
     $scope.individuRefsToDisplay = [];
     $scope.individuRefsToHide = [];

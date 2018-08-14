@@ -11,7 +11,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
      */
     function cleanSituation(situation) {
         situation.individus.forEach(function(individu) {
-            var yearMoins2 = moment(situation.dateDeValeur).subtract('years', 2).format('YYYY');
+            var yearMoins2 = moment(situation.dateDeValeur).subtract(2, 'years').format('YYYY');
             // OpenFisca expects an integer for frais_reels and conversion is not done automatically
             var fraisReels = individu.frais_reels || {};
             if (fraisReels[yearMoins2]) {
@@ -178,7 +178,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         },
 
         ressourcesYearMoins2Captured: function(situation) {
-            var yearMoins2 = moment(situation.dateDeValeur).subtract('years', 2).format('YYYY');
+            var yearMoins2 = moment(situation.dateDeValeur).subtract(2, 'years').format('YYYY');
             var januaryYearMoins2 = moment(yearMoins2).format('YYYY-MM');
             var rfr = situation.foyer_fiscal && situation.foyer_fiscal.rfr && situation.foyer_fiscal.rfr[yearMoins2];
             var hasYm2Ressources = situation.individus.some(function(individu) {

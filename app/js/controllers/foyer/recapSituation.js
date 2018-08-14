@@ -110,8 +110,8 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
 
     function refreshFullView() {
 
-        $scope.yearMoins1 = moment($scope.situation.dateDeValeur).subtract('years', 1).format('YYYY');
-        $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
+        $scope.yearMoins1 = moment($scope.situation.dateDeValeur).subtract(1, 'years').format('YYYY');
+        $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract(2, 'years').format('YYYY');
         $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
         $scope.months = MonthService.getMonths($scope.situation.dateDeValeur);
 

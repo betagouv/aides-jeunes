@@ -2,7 +2,7 @@
 
 angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($scope, ressourceTypes, SituationService, IndividuService, RessourceService) {
 
-    $scope.debutAnneeGlissante = moment($scope.situation.dateDeValeur).subtract('years', 1).format('MMMM YYYY');
+    $scope.debutAnneeGlissante = moment($scope.situation.dateDeValeur).subtract(1, 'years').format('MMMM YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
 
     $scope.pensionsVersees = _.find(ressourceTypes, { id: 'pensions_alimentaires_versees_individu' });

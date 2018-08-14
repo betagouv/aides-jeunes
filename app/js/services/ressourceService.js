@@ -4,7 +4,7 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
 
     function getPeriodKeysForCurrentYear(dateDeValeur, ressourceType) {
         var periodKeys = [];
-        var lastYear = moment(dateDeValeur).subtract('years', 1).format('YYYY');
+        var lastYear = moment(dateDeValeur).subtract(1, 'years').format('YYYY');
         if (ressourceType.isMontantAnnuel)
         {
             periodKeys.push(lastYear);

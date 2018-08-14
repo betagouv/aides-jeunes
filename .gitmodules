@@ -1,0 +1,3 @@
+[submodule "openfisca"]
+	path = openfisca
+	url = https://github.com/betagouv/mes-aides-openfisca.git

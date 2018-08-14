@@ -11,13 +11,7 @@ services:
       - './db:/data/db'
 
   openfisca:
-    build:
-      dockerfile: './docker/openfisca/Dockerfile'
-      context: '.'
-    environment:
-      OPENFISCA_BIND_HOST: 0.0.0.0:2000
-    ports:
-      - '2000:2000'
+    image: betagouv/mes-aides-openfisca:latest
 
   node:
     build:

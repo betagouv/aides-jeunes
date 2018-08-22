@@ -8,6 +8,12 @@ Therefore, we need to package OpenFisca in a Docker Image.
 
 See [Using Custom-Built Docker Images](https://circleci.com/docs/2.0/custom-images/)
 
+### How to build the image manually
+
+```
+docker build --no-cache -t betagouv/mes-aides-openfisca:<tag> .
+```
+
 ### How to trigger a build manually
 
 https://docs.docker.com/docker-hub/builds/#remote-build-triggers

@@ -340,10 +340,18 @@ module.exports = function (grunt) {
       }
     },
 
-    htmlrefs: {
+    // Uglify config for files compiled by Browserify
+    // Other files are uglified by grunt-usemin
+    uglify: {
       dist: {
-        src: './<%= yeoman.tmp %>/views/front.html',
-        dest: './<%= yeoman.tmp %>/views/front.html'
+        files: [{
+          expand: true,
+          src: ['./<%= yeoman.tmp %>/js/*.js'],
+          dest: './<%= yeoman.tmp %>',
+          rename: function (dst, src) {
+            return src;
+          }
+        }]
       }
     }
   });
@@ -396,18 +404,21 @@ module.exports = function (grunt) {
     'karma'
   ]);
 
+  // WARNING
+  // grunt-usemin automatically creates subtasks for grunt-concat & grunt-uglify
+  // https://github.com/yeoman/grunt-usemin#tasks
   grunt.registerTask('build', [
     'clean:tmp',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
-    'concat',
+    'concat:generated',
     'ngAnnotate',
     'copy:tmp',
-    'uglify',
+    'uglify:generated',
+    'uglify:dist',
     'rev',
     'usemin',
-    'htmlrefs:dist',
     'copy:dist'
   ]);
 

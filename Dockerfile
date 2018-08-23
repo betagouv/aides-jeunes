@@ -11,8 +11,8 @@ RUN apk add --no-cache \
     yaml \
     yaml-dev
 
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir /usr/src/openfisca
+WORKDIR /usr/src/openfisca
 
 COPY api.py ./
 COPY config.py ./
@@ -23,8 +23,8 @@ RUN pip install --upgrade -r requirements.txt
 # Remove packages not needed after build
 RUN apk del .build-deps
 
-COPY start.sh /usr/local/bin/openfisca-start
+COPY docker-entrypoint.sh /
 
-RUN chmod +x /usr/local/bin/openfisca-start
+RUN chmod +x /docker-entrypoint.sh
 
-CMD ["openfisca-start"]
+ENTRYPOINT ["/docker-entrypoint.sh"]

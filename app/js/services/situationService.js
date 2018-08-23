@@ -178,8 +178,13 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         },
 
         ressourcesYearMoins2Captured: function(situation) {
-            var yearMoins2 = moment(situation.dateDeValeur).subtract(2, 'years').format('YYYY');
-            var januaryYearMoins2 = moment(yearMoins2).format('YYYY-MM');
+            var yearMoins2 = moment(situation.dateDeValeur)
+                .subtract(2, 'years')
+                .format('YYYY');
+            var januaryYearMoins2 = moment(situation.dateDeValeur)
+                .subtract(2, 'years')
+                .set('month', 0)
+                .format('YYYY-MM');
             var rfr = situation.foyer_fiscal && situation.foyer_fiscal.rfr && situation.foyer_fiscal.rfr[yearMoins2];
             var hasYm2Ressources = situation.individus.some(function(individu) {
                 return categoriesRnc.reduce(function(hasYm2RessourcesAccum, categorieRnc) {

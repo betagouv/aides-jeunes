@@ -35,9 +35,7 @@ services:
       - openfisca
     volumes:
       - 'node_modules:/srv/app/node_modules'
-      - 'bower_components:/srv/app/app/bower_components'
       - './:/srv/app'
 
 volumes:
   node_modules:
-  bower_components:

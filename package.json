@@ -8,7 +8,6 @@
     "basic-auth": "^2.0.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.9.0",
-    "bower": "^1.4.1",
     "cleave.js": "~0.7.15",
     "codes-postaux": "etalab/codes-postaux#003ea027941e7a40c6094c7a02e7299d37619712",
     "consolidate": "^0.15.1",

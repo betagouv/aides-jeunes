@@ -55,13 +55,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restoring node_modules & bower_components
+          name: Restoring node_modules
           keys:
             - v12.1.3-dependencies-{{ .Branch }}-{{ checksum "package.json" }}
             - v12.1.3-dependencies-{{ .Branch }}-
-      - run:
-          name: Install Bower
-          command: npm install bower
       - run:
           name: NPM install
           command: npm install
@@ -69,16 +66,14 @@ jobs:
           name: Install SauceLabs
           command: npm install saucelabs
       - save_cache:
-          name: Saving node_modules & bower_components
+          name: Saving node_modules
           key: v12.1.3-dependencies-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - node_modules
-            - app/bower_components
       - persist_to_workspace:
           root: .
           paths:
             - node_modules
-            - app/bower_components
   wait_openfisca:
     <<: *defaults
     steps:

@@ -89,6 +89,7 @@
     "start": "NODE_ENV=production node server.js",
     "dev": "grunt serve",
     "sass": "grunt sass",
+    "build": "grunt build",
     "lint": "eslint .",
     "test:mocha": "mocha --recursive test/backend",
     "test:karma": "grunt test",

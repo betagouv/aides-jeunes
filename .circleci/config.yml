@@ -50,7 +50,7 @@ wait_for_mes_aides: &wait_for_mes_aides
 
 version: 2
 jobs:
-  build:
+  install:
     <<: *defaults
     steps:
       - checkout
@@ -83,8 +83,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/mes-aides-ui
       - run:
           name: Wait for OpenFisca
           command: wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000/variable/parisien
@@ -97,6 +95,15 @@ jobs:
       - run:
           name: JSHint
           command: npm run lint
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/mes-aides-ui
+      - run:
+          name: Grunt
+          command: npm run build
   test_mocha:
     <<: *defaults
     steps:
@@ -146,17 +153,20 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
       - wait_openfisca
+      - install
       - lint:
           requires:
-            - build
+            - install
+      - build:
+          requires:
+            - lint
       - test_mocha:
           requires:
-            - lint
+            - build
       - test_karma:
           requires:
-            - lint
+            - build
       - test_selenium_chrome:
           requires:
             - wait_openfisca

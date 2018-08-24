@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="/styles/redirection.css">
     <link rel="stylesheet" href="/styles/resultat.css">
     <link rel="stylesheet" href="/styles/validation.css">
-    <link rel="stylesheet" href="/js/lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/styles/text-container.css">
     <link rel="stylesheet" href="/styles/enfants.css">
     <link rel="stylesheet" href="/styles/foyer/capture-montant-ressource.css">
@@ -109,121 +108,76 @@
       </nav>
     </footer>
 
-    <!-- build:js(app) /js/vendor.js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/angular-i18n/angular-locale_fr.js"></script>
-    <script src="bower_components/ngstorage/ngStorage.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/lodash/dist/lodash.js"></script>
-    <script src="bower_components/moment/lang/fr.js"></script>
-    <!-- endbuild -->
+    <script src="/js/vendor.js"></script>
+    <script src="/js/stats.js"></script>
 
     {{#sentry}}
-    <script src="/js/lib/raven-js/dist/raven.js"></script>
-    <script src="/js/lib/raven-js/dist/plugins/angular.js"></script>
-    <script>
-    Raven
-      .config('https://fde1d4c9741e4ef3a3416e4e88b61392@sentry.data.gouv.fr/17', {
-        ignoreUrls: [
-          /^file:\/\//i
-        ]
-      })
-      .addPlugin(Raven.Plugins.Angular)
-      .install();
-    </script>
+    <script src="/js/sentry.js"></script>
     {{/sentry}}
 
-    <script src="/js/lib/cleave.js/dist/cleave.min.js"></script>
-
-    <script src="/js/lib/angulartics/dist/angulartics.min.js"></script>
-    <script src="/js/lib/angulartics-piwik/dist/angulartics-piwik.min.js"></script>
-    <script src="/js/lib/js-yaml/dist/js-yaml.min.js"></script>
-
-    <script src="/js/lib/d3-array/build/d3-array.min.js"></script>
-    <script src="/js/lib/d3-axis/build/d3-axis.min.js"></script>
-    <script src="/js/lib/d3-color/build/d3-color.min.js"></script>
-    <script src="/js/lib/d3-collection/build/d3-collection.min.js"></script>
-    <script src="/js/lib/d3-dispatch/build/d3-dispatch.min.js"></script>
-    <script src="/js/lib/d3-dsv/build/d3-dsv.min.js"></script>
-    <script src="/js/lib/d3-format/build/d3-format.min.js"></script>
-    <script src="/js/lib/d3-interpolate/build/d3-interpolate.min.js"></script>
-    <script src="/js/lib/d3-path/build/d3-path.min.js"></script>
-    <script src="/js/lib/d3-request/build/d3-request.min.js"></script>
-    <script src="/js/lib/d3-scale/build/d3-scale.min.js"></script>
-    <script src="/js/lib/d3-selection/build/d3-selection.min.js"></script>
-    <script src="/js/lib/d3-shape/build/d3-shape.min.js"></script>
-    <script src="/js/lib/d3-time/build/d3-time.min.js"></script>
-    <script src="/js/lib/d3-time-format/build/d3-time-format.min.js"></script>
-
-    <script src="/js/lib/js-yaml/dist/js-yaml.min.js"></script>
-
     <!-- build:js({.tmp,app}) /js/scripts.js -->
-    <script src="js/app.js"></script>
-    <script src="js/common.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/common.js"></script>
 
-    <script src="js/constants/situationsFamiliales.js"></script>
-    <script src="js/constants/ressources.js"></script>
-    <script src="js/constants/specificSituations.js"></script>
-    <script src="js/constants/nationalites.js"></script>
-    <script src="js/constants/logementTypes.js"></script>
-    <script src="js/constants/droits.js"></script>
-    <script src="js/constants/phishingExpressions.js"></script>
-    <script src="js/constants/lyonMetropoleInseeCodes.js"></script>
+    <script src="/js/constants/situationsFamiliales.js"></script>
+    <script src="/js/constants/ressources.js"></script>
+    <script src="/js/constants/specificSituations.js"></script>
+    <script src="/js/constants/nationalites.js"></script>
+    <script src="/js/constants/logementTypes.js"></script>
+    <script src="/js/constants/droits.js"></script>
+    <script src="/js/constants/phishingExpressions.js"></script>
+    <script src="/js/constants/lyonMetropoleInseeCodes.js"></script>
 
-    <script src="js/controllers/body.js"></script>
-    <script src="js/controllers/homepage.js"></script>
-    <script src="js/controllers/foyer.js"></script>
-    <script src="js/controllers/foyer/individuForm.js"></script>
-    <script src="js/controllers/foyer/conjoint.js"></script>
-    <script src="js/controllers/foyer/enfants.js"></script>
-    <script src="js/controllers/foyer/logement.js"></script>
-    <script src="js/controllers/foyer/ressources/ressources.js"></script>
-    <script src="js/controllers/foyer/ressources/individu.js"></script>
-    <script src="js/controllers/foyer/ressources/types.js"></script>
-    <script src="js/controllers/foyer/ressources/montants.js"></script>
-    <script src="js/controllers/foyer/ressources/enfants.js"></script>
-    <script src="js/controllers/foyer/pensionsAlimentaires.js"></script>
-    <script src="js/controllers/foyer/yearMoins2.js"></script>
-    <script src="js/controllers/foyer/rfr.js"></script>
-    <script src="js/controllers/foyer/suggestion.js"></script>
-    <script src="js/controllers/foyer/recapSituation.js"></script>
-    <script src="js/controllers/foyer/patrimoine.js"></script>
-    <script src="js/controllers/redirection.js"></script>
-    <script src="js/controllers/resultat.js"></script>
-    <script src="js/controllers/trace.js"></script>
-    <script src="js/controllers/stats.js"></script>
-    <script src="js/controllers/validation.js"></script>
+    <script src="/js/controllers/body.js"></script>
+    <script src="/js/controllers/homepage.js"></script>
+    <script src="/js/controllers/foyer.js"></script>
+    <script src="/js/controllers/foyer/individuForm.js"></script>
+    <script src="/js/controllers/foyer/conjoint.js"></script>
+    <script src="/js/controllers/foyer/enfants.js"></script>
+    <script src="/js/controllers/foyer/logement.js"></script>
+    <script src="/js/controllers/foyer/ressources/ressources.js"></script>
+    <script src="/js/controllers/foyer/ressources/individu.js"></script>
+    <script src="/js/controllers/foyer/ressources/types.js"></script>
+    <script src="/js/controllers/foyer/ressources/montants.js"></script>
+    <script src="/js/controllers/foyer/ressources/enfants.js"></script>
+    <script src="/js/controllers/foyer/pensionsAlimentaires.js"></script>
+    <script src="/js/controllers/foyer/yearMoins2.js"></script>
+    <script src="/js/controllers/foyer/rfr.js"></script>
+    <script src="/js/controllers/foyer/suggestion.js"></script>
+    <script src="/js/controllers/foyer/recapSituation.js"></script>
+    <script src="/js/controllers/foyer/patrimoine.js"></script>
+    <script src="/js/controllers/redirection.js"></script>
+    <script src="/js/controllers/resultat.js"></script>
+    <script src="/js/controllers/trace.js"></script>
+    <script src="/js/controllers/stats.js"></script>
+    <script src="/js/controllers/validation.js"></script>
 
-    <script src="js/services/abtestingService.js"></script>
-    <script src="js/services/cityService.js"></script>
-    <script src="js/services/situationService.js"></script>
-    <script src="js/services/resultatService.js"></script>
-    <script src="js/services/individuService.js"></script>
-    <script src="js/services/ressourceService.js"></script>
-    <script src="js/services/customizationService.js"></script>
-    <script src="js/services/logementService.js"></script>
-    <script src="js/services/trampolineService.js"></script>
-    <script src="js/services/monthService.js"></script>
+    <script src="/js/services/abtestingService.js"></script>
+    <script src="/js/services/cityService.js"></script>
+    <script src="/js/services/situationService.js"></script>
+    <script src="/js/services/resultatService.js"></script>
+    <script src="/js/services/individuService.js"></script>
+    <script src="/js/services/ressourceService.js"></script>
+    <script src="/js/services/customizationService.js"></script>
+    <script src="/js/services/logementService.js"></script>
+    <script src="/js/services/trampolineService.js"></script>
+    <script src="/js/services/monthService.js"></script>
 
-    <script src="js/directives/date.js"></script>
-    <script src="js/directives/selectOnFocus.js"></script>
-    <script src="js/directives/zeroToEmpty.js"></script>
-    <script src="js/directives/individuBlock.js"></script>
-    <script src="js/directives/droitsList.js"></script>
-    <script src="js/directives/focus.js"></script>
-    <script src="js/directives/captureMontantRessource.js"></script>
-    <script src="js/directives/captureContinuationRessource.js"></script>
-    <script src="js/directives/droitsEligiblesList.js"></script>
-    <script src="js/directives/ym2RessourcesCallToAction.js"></script>
-    <script src="js/directives/yesNoQuestion.js"></script>
+    <script src="/js/directives/date.js"></script>
+    <script src="/js/directives/selectOnFocus.js"></script>
+    <script src="/js/directives/zeroToEmpty.js"></script>
+    <script src="/js/directives/individuBlock.js"></script>
+    <script src="/js/directives/droitsList.js"></script>
+    <script src="/js/directives/focus.js"></script>
+    <script src="/js/directives/captureMontantRessource.js"></script>
+    <script src="/js/directives/captureContinuationRessource.js"></script>
+    <script src="/js/directives/droitsEligiblesList.js"></script>
+    <script src="/js/directives/ym2RessourcesCallToAction.js"></script>
+    <script src="/js/directives/yesNoQuestion.js"></script>
 
-    <script src="js/filters/strings.js"></script>
-    <script src="js/filters/isEmpty.js"></script>
-    <script src="js/filters/orderObjectBy.js"></script>
+    <script src="/js/filters/strings.js"></script>
+    <script src="/js/filters/isEmpty.js"></script>
+    <script src="/js/filters/orderObjectBy.js"></script>
 
     <!-- endbuild -->
 

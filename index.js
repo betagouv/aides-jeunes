@@ -34,6 +34,9 @@ module.exports = function(app) {
         });
 
         app.use(express.static(path.join(__dirname, directory)));
+        app.use('/fonts',            express.static(path.join(__dirname, 'tmp/fonts')));
+        app.use('/js/vendor.js',     express.static(path.join(__dirname, 'tmp/js/vendor.js')));
+        app.use('/js/stats.js',      express.static(path.join(__dirname, 'tmp/js/stats.js')));
         app.use('/styles/front.css', express.static(path.join(__dirname, 'tmp/styles/front.css')));
     }
     app.use('/recap-situation', express.static(path.join(__dirname, directory)));
@@ -64,11 +67,6 @@ module.exports = function(app) {
     app.use('/partials', function(req, res) {
         return res.sendStatus(404);
     });
-
-    app.use('/js/lib', express.static(path.join(__dirname, 'node_modules'), {
-        fallthrough: false,  // short-circuit 404s
-        index: false,
-    }));
 
     app.route('/recap-situation/*').get(function(req, res) {
         res.sendFile(viewsDirectory + '/embed.html');

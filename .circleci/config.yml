@@ -104,6 +104,11 @@ jobs:
       - run:
           name: Grunt
           command: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
+            - tmp
   test_mocha:
     <<: *defaults
     steps:

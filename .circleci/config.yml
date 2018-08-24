@@ -1,0 +1,170 @@
+# @see https://github.com/circleci/frontend/blob/master/.circleci/config.yml
+# @see https://github.com/CircleCI-Public/circleci-demo-workflows/blob/workspace-forwarding/.circleci/config.yml
+
+# https://circleci.com/blog/circleci-hacks-reuse-yaml-in-your-circleci-config-with-yaml/
+defaults: &defaults
+  working_directory: ~/mes-aides-ui
+  docker:
+    # https://circleci.com/docs/2.0/circleci-images/#language-image-variants
+    - image: circleci/node:6.14.1-browsers
+    # FIXME
+    # mongo 2.4.9 is not available on Docker Hub
+    # https://stackoverflow.com/questions/48233357/install-older-version-of-mongodb-with-docker
+    - image: mongo:3.2.18
+    - image: betagouv/mes-aides-openfisca:latest
+  environment:
+    SAUCE_USERNAME: mes-aides-bot
+    OPENFISCA_BIND_HOST: 0.0.0.0:2000
+
+configure_watai: &configure_watai
+  run:
+    name: Configure Watai
+    command: cp test/integration/config-ci.js test/integration/config.js && rm test/integration/config.json
+
+download_sauce_connect: &download_sauce_connect
+  run:
+    name: Download Sauce Connect
+    command: curl --remote-name https://saucelabs.com/downloads/sc-4.4.12-linux.tar.gz && tar -xzf sc-4.4.12-linux.tar.gz
+
+start_sauce_connect: &start_sauce_connect
+  run:
+    name: Start Sauce Connect
+    command: cd sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --tunnel-identifier "circle-$CIRCLE_PROJECT_USERNAME-$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM-$CIRCLE_NODE_INDEX" --readyfile ~/sauce_is_ready
+    background: true
+
+start_mes_aides: &start_mes_aides
+  run:
+    name: Start Mes Aides
+    command: npm start
+    background: true
+
+wait_for_sauce_connect: &wait_for_sauce_connect
+  run:
+    name: Wait for Sauce Connect
+    command: while [ ! -e ~/sauce_is_ready ]; do sleep 1; done
+
+wait_for_mes_aides: &wait_for_mes_aides
+  run:
+    name: Wait for Mes Aides
+    command: wget --retry-connrefused --no-check-certificate -T 30 http://localhost:9000
+
+version: 2
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restoring node_modules & bower_components
+          keys:
+            - v12.1.3-dependencies-{{ .Branch }}-{{ checksum "package.json" }}
+            - v12.1.3-dependencies-{{ .Branch }}-
+      - run:
+          name: Install Bower
+          command: npm install bower
+      - run:
+          name: NPM install
+          command: npm install
+      - run:
+          name: Install SauceLabs
+          command: npm install saucelabs
+      - save_cache:
+          name: Saving node_modules & bower_components
+          key: v12.1.3-dependencies-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+            - app/bower_components
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+            - app/bower_components
+  wait_openfisca:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/mes-aides-ui
+      - run:
+          name: Wait for OpenFisca
+          command: wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000/variable/parisien
+  lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/mes-aides-ui
+      - run:
+          name: JSHint
+          command: npm run lint
+  test_mocha:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/mes-aides-ui
+      - run:
+          name: Mocha
+          command: npm run test:mocha
+  test_karma:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/mes-aides-ui
+      - run:
+          name: Karma
+          command: npm run test:karma
+  test_selenium_chrome:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/mes-aides-ui
+      - *configure_watai
+      - *download_sauce_connect
+      - *start_sauce_connect
+      - *start_mes_aides
+      - *wait_for_sauce_connect
+      - *wait_for_mes_aides
+      - run:
+          name: Watai base suite
+          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"browserName":"chrome","version":"latest"}}'
+      - run:
+          name: Watai family suite
+          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"browserName":"chrome","version":"latest"}}'
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - run:
+          name: Deploy on production
+          command: |
+            ssh root@metal.mes-aides.gouv.fr
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - wait_openfisca
+      - lint:
+          requires:
+            - build
+      - test_mocha:
+          requires:
+            - lint
+      - test_karma:
+          requires:
+            - lint
+      - test_selenium_chrome:
+          requires:
+            - wait_openfisca
+            - test_mocha
+            - test_karma
+      - deploy:
+          requires:
+            - test_selenium_chrome
+          filters:
+            branches:
+              only: master

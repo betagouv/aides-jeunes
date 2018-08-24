@@ -90,7 +90,7 @@
     "dev": "grunt serve",
     "sass": "grunt sass",
     "lint": "eslint .",
-    "test:mocha": "mocha --recursive test/backend/**/*.js",
+    "test:mocha": "mocha --recursive test/backend",
     "test:karma": "grunt test",
     "test": "npm run test:mocha && npm run test:karma",
     "test-integration": "test/integration/run-integration-tests.sh",

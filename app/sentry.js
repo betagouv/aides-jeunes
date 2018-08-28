@@ -1,4 +1,3 @@
-var angular = require('angular');
 var Raven = require('raven-js');
 
 Raven
@@ -7,5 +6,5 @@ Raven
             /^file:\/\//i
         ]
     })
-    .addPlugin(require('raven-js/plugins/angular'), angular)
+    .addPlugin(require('raven-js/plugins/angular'), window.angular)
     .install();

@@ -13,45 +13,33 @@
   </head>
   <body>
     <ui-view></ui-view>
-    <!-- build:js(app) /js/vendor.recapSituation.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/angular-i18n/angular-locale_fr.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/lodash/dist/lodash.js"></script>
-    <script src="bower_components/ngstorage/ngStorage.js"></script>
-    <!-- endbower -->
-    <script src="bower_components/moment/lang/fr.js"></script>
-    <!-- endbuild -->
+
+    <script src="/js/vendor.js"></script>
 
     <!-- build:js({.tmp,app}) /js/scripts.recapSituation.js -->
-    <script src="js/embed.js"></script>
-    <script src="js/common.js"></script>
+    <script src="/js/embed.js"></script>
+    <script src="/js/common.js"></script>
 
-    <script src="js/controllers/foyer/recapSituation.js"></script>
+    <script src="/js/controllers/foyer/recapSituation.js"></script>
 
-    <script src="js/constants/situationsFamiliales.js"></script>
-    <script src="js/constants/ressources.js"></script>
-    <script src="js/constants/specificSituations.js"></script>
-    <script src="js/constants/nationalites.js"></script>
-    <script src="js/constants/logementTypes.js"></script>
+    <script src="/js/constants/situationsFamiliales.js"></script>
+    <script src="/js/constants/ressources.js"></script>
+    <script src="/js/constants/specificSituations.js"></script>
+    <script src="/js/constants/nationalites.js"></script>
+    <script src="/js/constants/logementTypes.js"></script>
 
-    <script src="js/directives/individuBlock.js"></script>
+    <script src="/js/directives/individuBlock.js"></script>
 
-    <script src="js/services/cityService.js"></script>
-    <script src="js/services/individuService.js"></script>
-    <script src="js/services/logementService.js"></script>
-    <script src="js/services/monthService.js"></script>
-    <script src="js/services/ressourceService.js"></script>
-    <script src="js/services/situationService.js"></script>
+    <script src="/js/services/cityService.js"></script>
+    <script src="/js/services/individuService.js"></script>
+    <script src="/js/services/logementService.js"></script>
+    <script src="/js/services/monthService.js"></script>
+    <script src="/js/services/ressourceService.js"></script>
+    <script src="/js/services/situationService.js"></script>
 
-    <script src="js/directives/recapSituation.js"></script>
+    <script src="/js/directives/recapSituation.js"></script>
 
-    <script src="js/filters/strings.js"></script>
+    <script src="/js/filters/strings.js"></script>
     <!-- endbuild -->
-
-    <script src="/js/lib/js-yaml/dist/js-yaml.min.js"></script>
   </body>
 </html>

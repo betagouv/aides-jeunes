@@ -2,7 +2,7 @@
 
 angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ressourceCategories, ressourceTypes, $state, RessourceService) {
 
-    var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
+    var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract(1, 'years');
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
 
     $scope.ressourceCategories = ressourceCategories;

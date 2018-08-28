@@ -25,7 +25,7 @@ module.exports = function (grunt) {
     // Project settings
     yeoman: {
       // configurable paths
-      app: require('./bower.json').appPath || 'app',
+      app: 'app',
       tmp: 'tmp'
     },
     express: {
@@ -70,7 +70,6 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.app %>}/../backend/{,*//*}*.js',
           '<%= yeoman.app %>/img/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
-
         options: {
           livereload: true
         }
@@ -87,6 +86,11 @@ module.exports = function (grunt) {
           livereload: true,
           nospawn: true //Without this option specified express won't be reloaded
         }
+      },
+      browserify: {
+        files: [ 'app/vendor.js' ],
+        tasks: [ 'browserify' ],
+        options: { livereload: true },
       }
     },
 
@@ -164,9 +168,33 @@ module.exports = function (grunt) {
           ext: '.css'
         }],
         options: {
-          includePaths: ['<%= yeoman.app %>/bower_components']
+          includePaths: ['<%= yeoman.app %>/../node_modules']
         }
       }
+    },
+
+    browserify: {
+      vendor: {
+        src: './app/vendor.js',
+        dest: '<%= yeoman.tmp %>/js/vendor.js',
+        options: {
+          debug: true,
+        },
+      },
+      stats: {
+        src: './app/stats.js',
+        dest: '<%= yeoman.tmp %>/js/stats.js',
+        options: {
+          debug: true,
+        },
+      },
+      sentry: {
+        src: './app/sentry.js',
+        dest: '<%= yeoman.tmp %>/js/sentry.js',
+        options: {
+          debug: true,
+        },
+      },
     },
 
     // Renames files for browser caching purposes
@@ -240,7 +268,6 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.tmp %>',
           src: [
             '*.{ico,png,txt}',
-            'bower_components/**/*',
             'img/**/*',
             'fonts/**/*',
             'resources/**/*',
@@ -252,6 +279,12 @@ module.exports = function (grunt) {
           cwd: '.tmp/img',
           dest: '<%= yeoman.tmp %>/img',
           src: ['generated/*']
+        }, {
+          expand: true,
+          flatten: true,
+          cwd: '.',
+          dest: '<%= yeoman.tmp %>/fonts',
+          src: 'node_modules/font-awesome/fonts/*'
         }]
       },
       dist: {
@@ -270,9 +303,11 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'browserify',
         'sass'
       ],
       test: [
+        'browserify',
         'sass'
       ],
       debug: {
@@ -285,6 +320,7 @@ module.exports = function (grunt) {
         }
       },
       dist: [
+        'browserify',
         'sass:dist',
         'htmlmin'
       ]
@@ -304,10 +340,18 @@ module.exports = function (grunt) {
       }
     },
 
-    htmlrefs: {
+    // Uglify config for files compiled by Browserify
+    // Other files are uglified by grunt-usemin
+    uglify: {
       dist: {
-        src: './<%= yeoman.tmp %>/views/front.html',
-        dest: './<%= yeoman.tmp %>/views/front.html'
+        files: [{
+          expand: true,
+          src: ['./<%= yeoman.tmp %>/js/*.js'],
+          dest: './<%= yeoman.tmp %>',
+          rename: function (dst, src) {
+            return src;
+          }
+        }]
       }
     }
   });
@@ -328,6 +372,7 @@ module.exports = function (grunt) {
     if (target === 'debug') {
       return grunt.task.run([
         'clean:server',
+        'copy:tmp',
         'concurrent:server',
         'autoprefixer',
         'concurrent:debug'
@@ -336,6 +381,7 @@ module.exports = function (grunt) {
 
     var tasks = [
       'clean:server',
+      'copy:tmp',
       'concurrent:server',
       'autoprefixer',
       'express:dev',
@@ -351,23 +397,28 @@ module.exports = function (grunt) {
     grunt.task.run(tasks);
   });
 
+  grunt.loadNpmTasks('grunt-browserify');
+
   grunt.registerTask('test', [
     'clean:server',
     'karma'
   ]);
 
+  // WARNING
+  // grunt-usemin automatically creates subtasks for grunt-concat & grunt-uglify
+  // https://github.com/yeoman/grunt-usemin#tasks
   grunt.registerTask('build', [
     'clean:tmp',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
-    'concat',
+    'concat:generated',
     'ngAnnotate',
     'copy:tmp',
-    'uglify',
+    'uglify:generated',
+    'uglify:dist',
     'rev',
     'usemin',
-    'htmlrefs:dist',
     'copy:dist'
   ]);
 

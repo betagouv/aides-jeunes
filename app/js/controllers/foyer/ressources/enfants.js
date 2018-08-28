@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ddsApp').controller('FoyerRessourcesEnfantsCtrl', function($scope, SituationService, RessourceService) {
-    var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract('years', 1);
+    var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract(1, 'years');
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
 
     $scope.enfants = SituationService.getEnfants($scope.situation);

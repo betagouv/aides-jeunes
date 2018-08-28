@@ -3,7 +3,7 @@
 var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ddsCommon', 'ngSanitize', 'angulartics', 'angulartics.piwik']);
 
 ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $uiViewScrollProvider) {
-    moment.lang('fr');
+    moment.locale('fr');
 
     var CURRENT_YEAR_TWO_DIGITS = (new Date()).getFullYear() - 2000;
     moment.parseTwoDigitYear = function(input) {  // see https://github.com/moment/moment/issues/2219

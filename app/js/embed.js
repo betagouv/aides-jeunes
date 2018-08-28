@@ -3,7 +3,7 @@
 var app = angular.module('ddsRecapSituation', ['ui.router', 'ddsCommon']);
 
 app.config(function($locationProvider, $stateProvider) {
-    moment.lang('fr');
+    moment.locale('fr');
     $locationProvider.html5Mode(true);
     $stateProvider.state('home', {
         url: '/:situationId',

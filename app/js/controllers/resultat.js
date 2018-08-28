@@ -56,9 +56,9 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
             .finally(function() {
                 $scope.awaitingResults = false;
 
-                $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract('years', 2).format('YYYY');
-                $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('years', 1).format('MMMM YYYY');
-                $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract('months', 1).format('MMMM YYYY');
+                $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract(2, 'years').format('YYYY');
+                $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract(1, 'years').format('MMMM YYYY');
+                $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract(1, 'months').format('MMMM YYYY');
                 $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
                 $scope.shouldPatrimoineBeCaptured = function() {
                     return ! angular.isDefined(SituationService.hasPatrimoine($scope.situation));

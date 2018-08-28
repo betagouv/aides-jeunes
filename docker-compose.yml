@@ -12,6 +12,10 @@ services:
 
   openfisca:
     image: betagouv/mes-aides-openfisca:latest
+    environment:
+      OPENFISCA_BIND_HOST: 0.0.0.0:2000
+    ports:
+      - '2000:2000'
 
   node:
     build:
@@ -22,6 +26,7 @@ services:
       OPENFISCA_URL: http://openfisca:2000
     ports:
       - '9000:9000'
+      - '35729:35729'
     depends_on:
       - mongo
       - openfisca
@@ -30,9 +35,7 @@ services:
       - openfisca
     volumes:
       - 'node_modules:/srv/app/node_modules'
-      - 'bower_components:/srv/app/app/bower_components'
       - './:/srv/app'
 
 volumes:
   node_modules:
-  bower_components:

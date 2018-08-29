@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 
 var situations = require('../controllers/situations');
 var teleservices = require('../controllers/teleservices');
@@ -12,7 +13,11 @@ module.exports = function(api) {
     route.get('/', situations.show);
     route.get('/openfisca-response', situations.openfiscaResponse);
     route.get('/legacy-openfisca-request', situations.openfiscaRequestFromLegacy);
-    route.get('/openfisca-request', situations.openfiscaRequest);
+
+    // Enable CORS for openfisca-tracer
+    route.options('/openfisca-request', cors());
+    route.get('/openfisca-request', cors({ origin: '*' }), situations.openfiscaRequest);
+
     route.post('/openfisca-test', situations.openfiscaTest);
     route.get('/openfisca-trace', situations.openfiscaTrace);
 

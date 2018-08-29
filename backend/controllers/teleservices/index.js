@@ -4,6 +4,7 @@ var jwt = require('jsonwebtoken');
 var moment = require('moment');
 var config = require('../../config/config');
 var Loiret = require('../../lib/teleservices/loiret');
+var OpenFiscaTracer = require('../../lib/teleservices/openfisca-tracer');
 
 moment.locale('fr');
 
@@ -35,6 +36,9 @@ var teleservices = [{
         label: 'en ligne',
         urlPrefix: 'http://test.mes-aides.gouv.fr/prefill?code='
     }
+}, {
+    name: 'openfisca_tracer',
+    class: OpenFiscaTracer
 }];
 
 function createClass(teleservice, situation) {

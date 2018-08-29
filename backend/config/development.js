@@ -6,5 +6,6 @@ module.exports = {
         local_node_test: 'token',
         local_PHP_test: 'token',
         live_node_test: 'token',
+        openfisca_tracer: 'token',
     },
 };

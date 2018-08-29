@@ -27,7 +27,9 @@ module.exports = function(api) {
         );
     });
 
+    api.options('/situations/via/:signedPayload', cors());
     api.get('/situations/via/:signedPayload',
+        cors({ origin: '*' }),
         teleservices.checkCredentials,
         teleservices.attachPayloadSituation,
         teleservices.verifyRequest,

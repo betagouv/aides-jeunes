@@ -37,11 +37,11 @@
                             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                         ],
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F13375',
-                        'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
+                        'form': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
                         'forms': {
-                            'general': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
-                            'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
-                            'rsi': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do'
+                            'general': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
+                            'msa': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
+                            'rsi': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf'
                         },
                     },
                     'asi': {
@@ -64,11 +64,11 @@
                             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                         ],
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F10027',
-                        'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
+                        'form': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
                         'forms': {
-                            'general': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
-                            'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do',
-                            'rsi': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12504.do'
+                            'general': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
+                            'msa': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
+                            'rsi': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf'
                         },
                         'type': 'bool', // default type is float
                     },

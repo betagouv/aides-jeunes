@@ -43,6 +43,16 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
                     .then(function(data) { return data.map(function(teleservice) { return teleservice.name; }); })
                     .then(function(names) { $scope.redirectionNames = names; });
             })
+            .then(function() {
+                loadSituation()
+                    .then(function(situation) {
+                        SituationService
+                            .fetchRepresentation(situation._id, 'openfisca_tracer')
+                            .then(function(data) {
+                                $scope.openFiscaTracerURL = data.destination.url;
+                            }).catch(function() {});
+                    });
+            })
             .catch(function(error) {
                 if (error.status === 403) {
                     $scope.warning = true;

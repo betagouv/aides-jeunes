@@ -2,6 +2,8 @@ var auth = require('basic-auth');
 var situations = require('../situations');
 var jwt = require('jsonwebtoken');
 var moment = require('moment');
+var Mustache = require('mustache');
+
 var config = require('../../config/config');
 var Loiret = require('../../lib/teleservices/loiret');
 var OpenFiscaTracer = require('../../lib/teleservices/openfisca-tracer');
@@ -13,32 +15,36 @@ var teleservices = [{
     class: Loiret,
     destination: {
         label: 'du Loiret (test)',
-        urlPrefix: 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92?code='
+        url: 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92?code={{token}}'
     }
 }, {
     name: 'local_node_test',
     class: Loiret,
     destination: {
         label: 'en local (Node)',
-        urlPrefix: 'http://localhost:3000?code='
+        url: 'http://localhost:3000?code={{token}}'
     },
 }, {
     name: 'local_PHP_test',
     class: Loiret,
     destination: {
         label: 'en local (PHP)',
-        urlPrefix: 'http://localhost:8000/basicAuth.php?code='
+        url: 'http://localhost:8000/basicAuth.php?code={{token}}'
     }
 }, {
     name: 'live_node_test',
     class: Loiret,
     destination: {
         label: 'en ligne',
-        urlPrefix: 'http://test.mes-aides.gouv.fr/prefill?code='
+        url: 'http://test.mes-aides.gouv.fr/prefill?code={{token}}'
     }
 }, {
     name: 'openfisca_tracer',
-    class: OpenFiscaTracer
+    class: OpenFiscaTracer,
+    destination: {
+        label: 'en ligne',
+        url: '{{&openFiscaTracerURL}}/?source={{&baseURL}}/api/situations/via/{{token}}'
+    }
 }];
 
 function createClass(teleservice, situation) {
@@ -88,7 +94,11 @@ exports.metadataResponseGenerator = function(teleservice) {
             fields: createClass(teleservice, req.situation).toInternal(),
             destination: {
                 label: teleservice.destination.label,
-                url: teleservice.destination.urlPrefix + token,
+                url: Mustache.render(teleservice.destination.url, {
+                    token: token,
+                    baseURL: req.protocol + '://' + req.get('host'),
+                    openFiscaTracerURL: config.openFiscaTracerURL,
+                })
             },
         });
     };

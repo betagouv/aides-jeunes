@@ -320,6 +320,15 @@
                                 teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
                                 link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
                             },
+                            'D13-BDR': {
+                                provider: {
+                                    imgSrc: 'logo_cd13.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.departement13.fr/fileadmin/user_upload/Famille/Seniors/formulaires/dossier_APA.pdf',
+                                teleservice: undefined, // Prevent default instructions recycling
+                                link: 'https://www.departement13.fr/le-13-en-action/seniors/les-dispositifs/allocation-personnalisee-dautonomie-apa/',
+                            },
                             'M69-LYON': {
                                 provider: {
                                     imgSrc: 'logo_grand_lyon.png',

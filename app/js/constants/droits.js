@@ -320,6 +320,15 @@
                                 teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
                                 link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
                             },
+                            'D76-SEINE_MARITIME': {
+                                provider: {
+                                    imgSrc: 'logo_cd76.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.seinemaritime.fr/docs/1_apa-1ere-demande-domicile.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.seinemaritime.fr/vos-services/personnes-agees-1/beneficier-daides/lallocation-aux-personnes-agees.html',
+                            },
                             'M69-LYON': {
                                 provider: {
                                     imgSrc: 'logo_grand_lyon.png',

@@ -17,6 +17,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D33-GIRONDE';
             if (testCase.menages._.depcom[currentPeriod].match(/^34/))
                 return 'D34-HERAULT';
+            if (testCase.menages._.depcom[currentPeriod].match(/^44/))
+                return 'D44-LOIRE_ATLANTIQUE';
             if (testCase.menages._.depcom[currentPeriod].match(/^59/))
                 return 'D59-NORD';
             if (testCase.menages._.depcom[currentPeriod].match(/^75/))

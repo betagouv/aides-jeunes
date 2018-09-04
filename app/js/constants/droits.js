@@ -320,6 +320,15 @@
                                 teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
                                 link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
                             },
+                            'D33-GIRONDE': {
+                                provider: {
+                                    imgSrc: 'logo_cd33.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.gironde.fr/sites/default/files/2017-04/demande_apa_web_0.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.gironde.fr/handicap-grand-age/aides-et-prestations-apa-pch-et-cmi#apa',
+                            },
                             'M69-LYON': {
                                 provider: {
                                     imgSrc: 'logo_grand_lyon.png',

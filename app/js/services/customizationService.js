@@ -9,6 +9,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D13-BDR';
             if (testCase.menages._.depcom[currentPeriod].match(/^14/))
                 return 'D14-CALVADOS';
+            if (testCase.menages._.depcom[currentPeriod].match(/^31/))
+                return 'D31-HAUTE_GARONNE';
             if (testCase.menages._.depcom[currentPeriod].match(/^33/))
                 return 'D33-GIRONDE';
             if (testCase.menages._.depcom[currentPeriod].match(/^34/))

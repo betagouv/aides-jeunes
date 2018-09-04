@@ -377,6 +377,14 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'https://www.seinemaritime.fr/vos-services/personnes-agees-1/beneficier-daides/lallocation-aux-personnes-agees.html',
                             },
+                            'D83-VAR': {
+                                provider: {
+                                    imgSrc: 'logo_cd83.png',
+                                },
+                                instructions: 'https://www.var.fr/social/autonomie-personnes-agees/apa',
+                                form: undefined, // Prevent default instructions recycling
+                                teleservice: undefined, // Prevent default instructions recycling
+                            },
                             'D93-SSD': {
                                 provider: {
                                     imgSrc: 'logo_cd93.png',

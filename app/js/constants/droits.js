@@ -484,6 +484,15 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'https://www.seine-saint-denis.fr/L-Allocation-Departementale-Personnalisee-d-Autonomie.html',
                             },
+                            'D38-ISERE': {
+                                provider: {
+                                    imgSrc: 'logo_cd38.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: undefined, // Prevent default instructions recycling
+                                teleservice: 'https://www.isere.fr/espace-personnel/Pages/creer-mon-compte.aspx',
+                                link: 'https://www.isere.fr/mda38/particulier/pa/Pages/apa-en-ligne.aspx',
+                            },
                             'M69-LYON': {
                                 provider: {
                                     imgSrc: 'logo_grand_lyon.png',

@@ -296,6 +296,33 @@
                         instructions: 'http://www.pour-les-personnes-agees.gouv.fr/annuaire-conseils-departementaux',
                         type: 'bool',
                         customization: {
+                            'D13-BDR': {
+                                provider: {
+                                    imgSrc: 'logo_cd13.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.departement13.fr/fileadmin/user_upload/Famille/Seniors/formulaires/dossier_APA.pdf',
+                                teleservice: undefined, // Prevent default instructions recycling
+                                link: 'https://www.departement13.fr/le-13-en-action/seniors/les-dispositifs/allocation-personnalisee-dautonomie-apa/',
+                            },
+                            'D14-CALVADOS': {
+                                provider: {
+                                    imgSrc: 'logo_cd14.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: undefined, // Prevent default form recycling
+                                teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
+                                link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
+                            },
+                            'D33-GIRONDE': {
+                                provider: {
+                                    imgSrc: 'logo_cd33.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.gironde.fr/sites/default/files/2017-04/demande_apa_web_0.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.gironde.fr/handicap-grand-age/aides-et-prestations-apa-pch-et-cmi#apa',
+                            },
                             'D75-PARIS': {
                                 provider: {
                                     imgSrc: 'logo_paris.png',
@@ -310,24 +337,6 @@
                                 instructions: undefined, // Prevent default instructions recycling
                                 form: 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa.pdf',
                                 link: 'https://www.seine-saint-denis.fr/L-Allocation-Departementale-Personnalisee-d-Autonomie.html',
-                            },
-                            'D14-CALVADOS': {
-                                provider: {
-                                    imgSrc: 'logo_cd14.png',
-                                },
-                                instructions: undefined, // Prevent default instructions recycling
-                                form: undefined, // Prevent default form recycling
-                                teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
-                                link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
-                            },
-                            'D13-BDR': {
-                                provider: {
-                                    imgSrc: 'logo_cd13.png',
-                                },
-                                instructions: undefined, // Prevent default instructions recycling
-                                form: 'https://www.departement13.fr/fileadmin/user_upload/Famille/Seniors/formulaires/dossier_APA.pdf',
-                                teleservice: undefined, // Prevent default instructions recycling
-                                link: 'https://www.departement13.fr/le-13-en-action/seniors/les-dispositifs/allocation-personnalisee-dautonomie-apa/',
                             },
                             'M69-LYON': {
                                 provider: {

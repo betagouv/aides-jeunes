@@ -348,6 +348,15 @@
                                 instructions: 'https://apa.paris.fr/portailAPA/',
                                 link: 'https://www.paris.fr/aides_soutien_a_domicile#allocation-personnalisee-d-autonomie-a-domicile-apa_21',
                             },
+                            'D76-SEINE_MARITIME': {
+                                provider: {
+                                    imgSrc: 'logo_cd76.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.seinemaritime.fr/docs/1_apa-1ere-demande-domicile.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.seinemaritime.fr/vos-services/personnes-agees-1/beneficier-daides/lallocation-aux-personnes-agees.html',
+                            },
                             'D93-SSD': {
                                 provider: {
                                     imgSrc: 'logo_cd93.png',

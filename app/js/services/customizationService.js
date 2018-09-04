@@ -21,6 +21,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D44-LOIRE_ATLANTIQUE';
             if (testCase.menages._.depcom[currentPeriod].match(/^59/))
                 return 'D59-NORD';
+            if (testCase.menages._.depcom[currentPeriod].match(/^62/))
+                return 'D62-PDC';
             if (testCase.menages._.depcom[currentPeriod].match(/^75/))
                 return 'D75-PARIS';
             if (testCase.menages._.depcom[currentPeriod].match(/^76/))

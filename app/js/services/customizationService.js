@@ -17,6 +17,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D59-NORD';
             if (testCase.menages._.depcom[currentPeriod].match(/^75/))
                 return 'D75-PARIS';
+            if (testCase.menages._.depcom[currentPeriod].match(/^76/))
+                return 'D76-SEINE_MARITIME';
             if (testCase.menages._.depcom[currentPeriod].match(/^93/))
                 return 'D93-SSD';
             if (_.includes(lyonMetropoleInseeCodes, testCase.menages._.depcom[currentPeriod]))

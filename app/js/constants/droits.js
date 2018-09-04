@@ -296,6 +296,15 @@
                         instructions: 'http://www.pour-les-personnes-agees.gouv.fr/annuaire-conseils-departementaux',
                         type: 'bool',
                         customization: {
+                            'D06-ALPES_MARITIMES': {
+                                provider: {
+                                    imgSrc: 'logo_cd06.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.departement06.fr/documents/A-votre-service/Solidarite-Social/seniors/dpt06-avotreservice-seniors_apa-formulaire-apa-domicile.pdf',
+                                teleservice: 'https://www.departement06.fr/dossier-de-demande-d-allocation-personnalisee-d-autonomie-a-domicile-14249.html',
+                                link: 'https://www.departement06.fr/aides-aux-personnes-agees/allocation-personnalisee-d-autonomie-apa-2578.html',
+                            },
                             'D13-BDR': {
                                 provider: {
                                     imgSrc: 'logo_cd13.png',

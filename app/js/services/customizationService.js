@@ -13,6 +13,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D14-CALVADOS';
             if (testCase.menages._.depcom[currentPeriod].match(/^38/))
                 return 'D38-ISERE';
+            if (testCase.menages._.depcom[currentPeriod].match(/^83/))
+                return 'D83-VAR';
             if (_.includes(lyonMetropoleInseeCodes, testCase.menages._.depcom[currentPeriod]))
                 return 'M69-LYON';
         }

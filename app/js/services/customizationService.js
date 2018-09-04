@@ -13,13 +13,13 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D14-CALVADOS';
             if (testCase.menages._.depcom[currentPeriod].match(/^59/))
                 return 'D59-NORD';
+            if (testCase.menages._.depcom[currentPeriod].match(/^13/))
+                return 'D13-BDR';
             if (_.includes(lyonMetropoleInseeCodes, testCase.menages._.depcom[currentPeriod]))
                 return 'M69-LYON';
         }
-
         return undefined;
     }
-
     return {
         determineCustomizationId: determineCustomizationId,
     };

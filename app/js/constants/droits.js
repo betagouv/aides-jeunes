@@ -320,6 +320,15 @@
                                 teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
                                 link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
                             },
+                            'D34-HERAULT': {
+                                provider: {
+                                    imgSrc: 'logo_cd34.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: undefined, // Prevent default form recycling
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'http://www.herault.fr/lallocation-personnalisee-dautonomie-apa',
+                            },
                             'M69-LYON': {
                                 provider: {
                                     imgSrc: 'logo_grand_lyon.png',

@@ -63,6 +63,17 @@ npm run openfisca
 
 Each time you want to run OpenFisca, you have to `source .venv/bin/activate` to get a working OpenFisca environment.
 
+### Updating OpenFisca submodule
+
+OpenFisca lives in the `openfisca/` folder, as a [Git submodule](https://git-scm.com/docs/gitsubmodules). Use the command below to update the submodule to the latest version.
+
+```
+cd openfisca/
+git pull origin master
+cd -
+git commit -am 'Update submodule.'
+```
+
 ### Development mode
 
 If you are working on `openfisca-france` and want to use your local version:

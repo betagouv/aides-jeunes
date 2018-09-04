@@ -328,6 +328,15 @@
                                 form: 'https://www.grandlyon.com/fileadmin/user_upload/media/pdf/pa-ph/personnes-agees/20170802_dossier_demande_apa.pdf',
                                 link: 'https://www.grandlyon.com/services/allocation-personnalisee-d-autonomie.html',
                             },
+                            'D59-NORD': {
+                                provider: {
+                                    imgSrc: 'logo_cd59.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://lenord.fr/upload/docs/application/pdf/2018-04/formulaire_apa_2018-04-27_16-30-55_949.pdf',
+                                teleservice: undefined, // Prevent default instructions recycling
+                                link: 'https://lenord.fr/jcms/prd2_335926/allocation-personnalisee-d-autonomie-apa',
+                            },
                         },
                         'entity': 'individu', // default entity is famille
                     }

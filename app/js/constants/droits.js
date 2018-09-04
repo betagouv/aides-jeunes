@@ -329,6 +329,14 @@
                                 teleservice: 'https://www.isere.fr/espace-personnel/Pages/creer-mon-compte.aspx',
                                 link: 'https://www.isere.fr/mda38/particulier/pa/Pages/apa-en-ligne.aspx',
                             },
+                            'D83-VAR': {
+                                provider: {
+                                    imgSrc: 'logo_cd83.png',
+                                },
+                                instructions: 'https://www.var.fr/social/autonomie-personnes-agees/apa',
+                                form: undefined, // Prevent default instructions recycling
+                                teleservice: undefined, // Prevent default instructions recycling
+                            },
                             'M69-LYON': {
                                 provider: {
                                     imgSrc: 'logo_grand_lyon.png',

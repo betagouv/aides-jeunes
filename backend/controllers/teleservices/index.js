@@ -41,6 +41,7 @@ var teleservices = [{
 }, {
     name: 'openfisca_tracer',
     class: OpenFiscaTracer,
+    public: true,
     destination: {
         label: 'en ligne',
         url: '{{&openFiscaTracerURL}}/?source={{&baseURL}}/api/situations/via/{{token}}'
@@ -125,6 +126,13 @@ var tokens = config.teleserviceAccessTokens || {};
  * This callback validates the basic authorization cookie content
  */
 exports.checkCredentials = function(req, res, next) {
+
+    var isPublic = req.teleservice.hasOwnProperty('public') && req.teleservice.public;
+    if (isPublic) {
+        next();
+        return;
+    }
+
     var credentials = auth(req);
     if ((! credentials) || (! tokens[credentials.name]) || (credentials.pass != tokens[credentials.name])) {
         res.status(401)

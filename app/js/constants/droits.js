@@ -368,6 +368,15 @@
                                 teleservice: undefined, // Prevent default instructions recycling
                                 link: 'https://lenord.fr/jcms/prd2_335926/allocation-personnalisee-d-autonomie-apa',
                             },
+                            'D62-PDC': {
+                                provider: {
+                                    imgSrc: 'logo_cd62.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'http://www.pasdecalais.fr/content/download/79774/1263503/file/Dossier+de+demande+APA.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'http://www.pasdecalais.fr/Solidarite-Sante/Retraites-et-personnes-agees/Beneficier-d-aides/L-Allocation-Personnalisee-d-Autonomie-APA',
+                            },
                             'D75-PARIS': {
                                 provider: {
                                     imgSrc: 'logo_paris.png',

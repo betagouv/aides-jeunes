@@ -320,6 +320,15 @@
                                 teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
                                 link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
                             },
+                            'D31-HAUTE_GARONNE': {
+                                provider: {
+                                    imgSrc: 'logo_cd31.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.haute-garonne.fr/sites/default/files/20172707-formulaire-demande-_apa.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.haute-garonne.fr/guide-des-aides/allocation-personnalisee-dautonomie-apa',
+                            },
                             'M69-LYON': {
                                 provider: {
                                     imgSrc: 'logo_grand_lyon.png',

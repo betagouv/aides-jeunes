@@ -350,6 +350,15 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: undefined,
                             },
+                            'D44-LOIRE_ATLANTIQUE': {
+                                provider: {
+                                    imgSrc: 'logo_cd44.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.loire-atlantique.fr/upload/docs/application/pdf/2014-02/personnes_agees_for_apa_2006_10_03__16_42_50_200.pdf',
+                                teleservice: undefined, // Prevent default instructions recycling
+                                link: 'https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/personne-agee/l-allocation-personnalisee-d-autonomie-apa-a-domicile-fr-p1_315752?portal=aca_6941&category=p2_807421',
+                            },
                             'D59-NORD': {
                                 provider: {
                                     imgSrc: 'logo_cd59.png',

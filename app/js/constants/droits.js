@@ -320,6 +320,15 @@
                                 teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
                                 link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
                             },
+                            'D38-ISERE': {
+                                provider: {
+                                    imgSrc: 'logo_cd38.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.isere.fr/mda38/Lists/Formulaires/Attachments/25/Dossier%20de%20demande%20APA.pdf',
+                                teleservice: 'https://www.isere.fr/espace-personnel/Pages/creer-mon-compte.aspx',
+                                link: 'https://www.isere.fr/mda38/particulier/pa/Pages/apa-en-ligne.aspx',
+                            },
                             'M69-LYON': {
                                 provider: {
                                     imgSrc: 'logo_grand_lyon.png',

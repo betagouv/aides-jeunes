@@ -301,7 +301,7 @@
                                     imgSrc: 'logo_cd06.png',
                                 },
                                 instructions: undefined, // Prevent default instructions recycling
-                                form: 'https://www.departement06.fr/documents/A-votre-service/Solidarite-Social/seniors/dpt06-avotreservice-seniors_apa-formulaire-apa-domicile.pdf',
+                                form: undefined, // Prevent default instructions recycling
                                 teleservice: 'https://www.departement06.fr/dossier-de-demande-d-allocation-personnalisee-d-autonomie-a-domicile-14249.html',
                                 link: 'https://www.departement06.fr/aides-aux-personnes-agees/allocation-personnalisee-d-autonomie-apa-2578.html',
                             },
@@ -345,10 +345,10 @@
                                 provider: {
                                     imgSrc: 'logo_cd34.png',
                                 },
-                                instructions: undefined, // Prevent default instructions recycling
+                                instructions: 'http://www.herault.fr/lallocation-personnalisee-dautonomie-apa',
                                 form: undefined, // Prevent default form recycling
                                 teleservice: undefined, // Prevent default form recycling
-                                link: 'http://www.herault.fr/lallocation-personnalisee-dautonomie-apa',
+                                link: undefined,
                             },
                             'D59-NORD': {
                                 provider: {
@@ -364,6 +364,8 @@
                                     imgSrc: 'logo_paris.png',
                                 },
                                 instructions: 'https://apa.paris.fr/portailAPA/',
+                                form: undefined, // Prevent default form recycling
+                                teleservice: undefined, // Prevent default form recycling
                                 link: 'https://www.paris.fr/aides_soutien_a_domicile#allocation-personnalisee-d-autonomie-a-domicile-apa_21',
                             },
                             'D76-SEINE_MARITIME': {
@@ -381,6 +383,7 @@
                                 },
                                 instructions: undefined, // Prevent default instructions recycling
                                 form: 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa.pdf',
+                                teleservice: undefined, // Prevent default form recycling
                                 link: 'https://www.seine-saint-denis.fr/L-Allocation-Departementale-Personnalisee-d-Autonomie.html',
                             },
                             'M69-LYON': {
@@ -389,6 +392,7 @@
                                 },
                                 instructions: undefined, // Prevent default form recycling
                                 form: 'https://www.grandlyon.com/fileadmin/user_upload/media/pdf/pa-ph/personnes-agees/20170802_dossier_demande_apa.pdf',
+                                teleservice: undefined, // Prevent default form recycling
                                 link: 'https://www.grandlyon.com/services/allocation-personnalisee-d-autonomie.html',
                             },
                         },

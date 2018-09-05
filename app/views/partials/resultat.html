@@ -83,6 +83,15 @@
       <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
   </div>
 
+  <div ng-if="! (droitsNonEligibles.prestationsNationales | isEmpty)">
+    <p>
+      Selon nos calculs, vous n'avez notamment pas droit aux aides ci-dessous :
+    </p>
+    <div class="frame-resultats">
+      <droit-non-eligibles-list list="droitsNonEligibles.prestationsNationales" filter="['cmu_c', 'acs']"></droit-non-eligibles-list>
+    </div>
+  </div>
+
   <div class="print-hidden">
 
     <div class="frame-resultats" ng-if="etablissements && etablissements.length">

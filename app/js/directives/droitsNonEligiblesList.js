@@ -1,23 +1,11 @@
 'use strict';
 
-angular.module('ddsApp').directive('droitEligiblesList', function() {
-    return {
-        restrict: 'E',
-        templateUrl: 'partials/droits-eligibles-list.html',
-        scope: true,
-        controller: 'droitsEligiblesListCtrl',
-        link: function ($scope, $element, $attributes) {
-            $scope.list = $scope.$eval($attributes.list);
-        }
-    };
-});
-
 angular.module('ddsApp').directive('droitNonEligiblesList', function() {
     return {
         restrict: 'E',
         templateUrl: 'partials/droits-non-eligibles-list.html',
         scope: true,
-        controller: 'droitsEligiblesListCtrl',
+        controller: 'droitsNonEligiblesListCtrl',
         link: function ($scope, $element, $attributes) {
             var filter = $scope.$eval($attributes.filter);
             $scope.list = _.pickBy($scope.$eval($attributes.list), function(value, key) {
@@ -27,7 +15,7 @@ angular.module('ddsApp').directive('droitNonEligiblesList', function() {
     };
 });
 
-angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope, TrampolineService) {
+angular.module('ddsApp').controller('droitsNonEligiblesListCtrl', function($scope, TrampolineService) {
     $scope.isNumber = _.isNumber;
     $scope.isString = _.isString;
     $scope.shouldDisplayYM2Warning = function(droit) {

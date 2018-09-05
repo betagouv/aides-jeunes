@@ -30,6 +30,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
             .then(ResultatService.simulate)
             .then(function(droits) {
                 $scope.droits = droits.droitsEligibles;
+                $scope.droitsNonEligibles = droits.droitsNonEligibles;
                 $scope.droitsInjectes = droits.droitsInjectes;
                 $scope.noDroits = _.isEmpty($scope.droits.prestationsNationales) && _.isEmpty($scope.droits.partenairesLocaux);
             })

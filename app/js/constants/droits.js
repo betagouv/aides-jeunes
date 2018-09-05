@@ -350,6 +350,15 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: undefined,
                             },
+                            'D44-LOIRE_ATLANTIQUE': {
+                                provider: {
+                                    imgSrc: 'logo_cd44.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.loire-atlantique.fr/upload/docs/application/pdf/2014-02/personnes_agees_for_apa_2006_10_03__16_42_50_200.pdf',
+                                teleservice: undefined, // Prevent default instructions recycling
+                                link: 'https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/personne-agee/l-allocation-personnalisee-d-autonomie-apa-a-domicile-fr-p1_315752?portal=aca_6941&category=p2_807421',
+                            },
                             'D59-NORD': {
                                 provider: {
                                     imgSrc: 'logo_cd59.png',
@@ -376,6 +385,14 @@
                                 form: 'https://www.seinemaritime.fr/docs/1_apa-1ere-demande-domicile.pdf',
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'https://www.seinemaritime.fr/vos-services/personnes-agees-1/beneficier-daides/lallocation-aux-personnes-agees.html',
+                            },
+                            'D83-VAR': {
+                                provider: {
+                                    imgSrc: 'logo_cd83.png',
+                                },
+                                instructions: 'https://www.var.fr/social/autonomie-personnes-agees/apa',
+                                form: undefined, // Prevent default instructions recycling
+                                teleservice: undefined, // Prevent default instructions recycling
                             },
                             'D93-SSD': {
                                 provider: {

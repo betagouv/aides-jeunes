@@ -17,12 +17,16 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D33-GIRONDE';
             if (testCase.menages._.depcom[currentPeriod].match(/^34/))
                 return 'D34-HERAULT';
+            if (testCase.menages._.depcom[currentPeriod].match(/^44/))
+                return 'D44-LOIRE_ATLANTIQUE';
             if (testCase.menages._.depcom[currentPeriod].match(/^59/))
                 return 'D59-NORD';
             if (testCase.menages._.depcom[currentPeriod].match(/^75/))
                 return 'D75-PARIS';
             if (testCase.menages._.depcom[currentPeriod].match(/^76/))
                 return 'D76-SEINE_MARITIME';
+            if (testCase.menages._.depcom[currentPeriod].match(/^83/))
+                return 'D83-VAR';
             if (testCase.menages._.depcom[currentPeriod].match(/^93/))
                 return 'D93-SSD';
             if (_.includes(lyonMetropoleInseeCodes, testCase.menages._.depcom[currentPeriod]))

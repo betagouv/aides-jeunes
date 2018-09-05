@@ -296,29 +296,14 @@
                         instructions: 'http://www.pour-les-personnes-agees.gouv.fr/annuaire-conseils-departementaux',
                         type: 'bool',
                         customization: {
-                            'D75-PARIS': {
+                            'D06-ALPES_MARITIMES': {
                                 provider: {
-                                    imgSrc: 'logo_paris.png',
-                                },
-                                instructions: 'https://apa.paris.fr/portailAPA/',
-                                link: 'https://www.paris.fr/aides_soutien_a_domicile#allocation-personnalisee-d-autonomie-a-domicile-apa_21',
-                            },
-                            'D93-SSD': {
-                                provider: {
-                                    imgSrc: 'logo_cd93.png',
+                                    imgSrc: 'logo_cd06.png',
                                 },
                                 instructions: undefined, // Prevent default instructions recycling
-                                form: 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa.pdf',
-                                link: 'https://www.seine-saint-denis.fr/L-Allocation-Departementale-Personnalisee-d-Autonomie.html',
-                            },
-                            'D14-CALVADOS': {
-                                provider: {
-                                    imgSrc: 'logo_cd14.png',
-                                },
-                                instructions: undefined, // Prevent default instructions recycling
-                                form: undefined, // Prevent default form recycling
-                                teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
-                                link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
+                                form: undefined, // Prevent default instructions recycling
+                                teleservice: 'https://www.departement06.fr/dossier-de-demande-d-allocation-personnalisee-d-autonomie-a-domicile-14249.html',
+                                link: 'https://www.departement06.fr/aides-aux-personnes-agees/allocation-personnalisee-d-autonomie-apa-2578.html',
                             },
                             'D13-BDR': {
                                 provider: {
@@ -329,13 +314,41 @@
                                 teleservice: undefined, // Prevent default instructions recycling
                                 link: 'https://www.departement13.fr/le-13-en-action/seniors/les-dispositifs/allocation-personnalisee-dautonomie-apa/',
                             },
-                            'M69-LYON': {
+                            'D14-CALVADOS': {
                                 provider: {
-                                    imgSrc: 'logo_grand_lyon.png',
+                                    imgSrc: 'logo_cd14.png',
                                 },
-                                instructions: undefined, // Prevent default form recycling
-                                form: 'https://www.grandlyon.com/fileadmin/user_upload/media/pdf/pa-ph/personnes-agees/20170802_dossier_demande_apa.pdf',
-                                link: 'https://www.grandlyon.com/services/allocation-personnalisee-d-autonomie.html',
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: undefined, // Prevent default form recycling
+                                teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
+                                link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
+                            },
+                            'D31-HAUTE_GARONNE': {
+                                provider: {
+                                    imgSrc: 'logo_cd31.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.haute-garonne.fr/sites/default/files/20172707-formulaire-demande-_apa.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.haute-garonne.fr/guide-des-aides/allocation-personnalisee-dautonomie-apa',
+                            },
+                            'D33-GIRONDE': {
+                                provider: {
+                                    imgSrc: 'logo_cd33.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.gironde.fr/sites/default/files/2017-04/demande_apa_web_0.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.gironde.fr/handicap-grand-age/aides-et-prestations-apa-pch-et-cmi#apa',
+                            },
+                            'D34-HERAULT': {
+                                provider: {
+                                    imgSrc: 'logo_cd34.png',
+                                },
+                                instructions: 'http://www.herault.fr/lallocation-personnalisee-dautonomie-apa',
+                                form: undefined, // Prevent default form recycling
+                                teleservice: undefined, // Prevent default form recycling
+                                link: undefined,
                             },
                             'D59-NORD': {
                                 provider: {
@@ -345,6 +358,42 @@
                                 form: 'https://lenord.fr/upload/docs/application/pdf/2018-04/formulaire_apa_2018-04-27_16-30-55_949.pdf',
                                 teleservice: undefined, // Prevent default instructions recycling
                                 link: 'https://lenord.fr/jcms/prd2_335926/allocation-personnalisee-d-autonomie-apa',
+                            },
+                            'D75-PARIS': {
+                                provider: {
+                                    imgSrc: 'logo_paris.png',
+                                },
+                                instructions: 'https://apa.paris.fr/portailAPA/',
+                                form: undefined, // Prevent default form recycling
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.paris.fr/aides_soutien_a_domicile#allocation-personnalisee-d-autonomie-a-domicile-apa_21',
+                            },
+                            'D76-SEINE_MARITIME': {
+                                provider: {
+                                    imgSrc: 'logo_cd76.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.seinemaritime.fr/docs/1_apa-1ere-demande-domicile.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.seinemaritime.fr/vos-services/personnes-agees-1/beneficier-daides/lallocation-aux-personnes-agees.html',
+                            },
+                            'D93-SSD': {
+                                provider: {
+                                    imgSrc: 'logo_cd93.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.seine-saint-denis.fr/L-Allocation-Departementale-Personnalisee-d-Autonomie.html',
+                            },
+                            'M69-LYON': {
+                                provider: {
+                                    imgSrc: 'logo_grand_lyon.png',
+                                },
+                                instructions: undefined, // Prevent default form recycling
+                                form: 'https://www.grandlyon.com/fileadmin/user_upload/media/pdf/pa-ph/personnes-agees/20170802_dossier_demande_apa.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.grandlyon.com/services/allocation-personnalisee-d-autonomie.html',
                             },
                         },
                         'entity': 'individu', // default entity is famille

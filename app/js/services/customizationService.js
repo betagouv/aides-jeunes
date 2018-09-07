@@ -29,6 +29,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D76-SEINE_MARITIME';
             if (testCase.menages._.depcom[currentPeriod].match(/^83/))
                 return 'D83-VAR';
+            if (testCase.menages._.depcom[currentPeriod].match(/^92/))
+                return 'D92-HAUTS_DE_SEINE';
             if (testCase.menages._.depcom[currentPeriod].match(/^93/))
                 return 'D93-SSD';
             if (_.includes(lyonMetropoleInseeCodes, testCase.menages._.depcom[currentPeriod]))

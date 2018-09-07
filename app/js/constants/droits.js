@@ -377,6 +377,15 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'http://www.pasdecalais.fr/Solidarite-Sante/Retraites-et-personnes-agees/Beneficier-d-aides/L-Allocation-Personnalisee-d-Autonomie-APA',
                             },
+                            'D67-BAS_RHIN': {
+                                provider: {
+                                    imgSrc: 'logo_cd67.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'http://www.bas-rhin.fr/eCommunityDocuments/%7BE34C4D98-631D-459B-AA4E-61C91D2F7BA0%7D/3759/document_conseil-departemental-bas-rhin-formulaire-demande-apa.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'http://www.bas-rhin.fr/acces-direct/guide-aides/detail-guide-aides/381/Allocation-personnalisee-d-autonomie--APA--a-domicile',
+                            },
                             'D75-PARIS': {
                                 provider: {
                                     imgSrc: 'logo_paris.png',

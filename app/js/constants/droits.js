@@ -440,6 +440,15 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'https://www.seinemaritime.fr/vos-services/personnes-agees-1/beneficier-daides/lallocation-aux-personnes-agees.html',
                             },
+                            'D77-SEINE_ET_MARNE': {
+                                provider: {
+                                    imgSrc: 'logo_cd77.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'http://www.seine-et-marne.fr/content/download/84288/750532/version/1/file/17-DGAS-Allocation%20personnalisee%20d%2527autonomie%20a%20domicile.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'http://www.seine-et-marne.fr/Solidarite/Seniors/Maintien-a-domicile-APA/Allocation-Personnalisee-d-Autonomie-APA',
+                            },
                             'D83-VAR': {
                                 provider: {
                                     imgSrc: 'logo_cd83.png',

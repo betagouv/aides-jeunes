@@ -296,6 +296,15 @@
                         instructions: 'http://www.pour-les-personnes-agees.gouv.fr/annuaire-conseils-departementaux',
                         type: 'bool',
                         customization: {
+                            'D05-HAUTES_ALPES': {
+                                provider: {
+                                    imgSrc: 'logo_cd05.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.hautes-alpes.fr/include/viewFile.php?idtf=16823&path=a0%2F16823_639_1-dossier_apa_web_elec.pdf',
+                                teleservice: undefined, // Prevent default instructions recycling
+                                link: 'https://www.hautes-alpes.fr/1647-l-allocation-personnalisee-d-autonomie-apa-.htm',
+                            },
                             'D06-ALPES_MARITIMES': {
                                 provider: {
                                     imgSrc: 'logo_cd06.png',

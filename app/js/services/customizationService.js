@@ -5,6 +5,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
     function determineCustomizationId(testCase, currentPeriod) {
         if (testCase.menages &&
             testCase.menages._) {
+            if (testCase.menages._.depcom[currentPeriod].match(/^05/))
+                return 'D05-HAUTES_ALPES';
             if (testCase.menages._.depcom[currentPeriod].match(/^06/))
                 return 'D06-ALPES_MARITIMES';
             if (testCase.menages._.depcom[currentPeriod].match(/^13/))

@@ -296,6 +296,15 @@
                         instructions: 'http://www.pour-les-personnes-agees.gouv.fr/annuaire-conseils-departementaux',
                         type: 'bool',
                         customization: {
+                            'D05-HAUTES_ALPES': {
+                                provider: {
+                                    imgSrc: 'logo_cd05.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.hautes-alpes.fr/include/viewFile.php?idtf=16823&path=a0%2F16823_639_1-dossier_apa_web_elec.pdf',
+                                teleservice: undefined, // Prevent default instructions recycling
+                                link: 'https://www.hautes-alpes.fr/1647-l-allocation-personnalisee-d-autonomie-apa-.htm',
+                            },
                             'D06-ALPES_MARITIMES': {
                                 provider: {
                                     imgSrc: 'logo_cd06.png',
@@ -322,6 +331,15 @@
                                 form: undefined, // Prevent default form recycling
                                 teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
                                 link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
+                            },
+                            'D29-FINISTERE': {
+                                provider: {
+                                    imgSrc: 'logo_cd29.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.finistere.fr/var/finistere/storage/original/application/1f10539819d74121420da96880b95716.pdf',
+                                teleservice: undefined, // Prevent default instructions recycling
+                                link: 'https://www.finistere.fr/A-votre-service/Personnes-age-es-APA/Allocation-personnalisee-d-autonomie',
                             },
                             'D31-HAUTE_GARONNE': {
                                 provider: {
@@ -350,6 +368,24 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: undefined,
                             },
+                            'D35-ILLE_ET_VILAINE': {
+                                provider: {
+                                    imgSrc: 'logo_cd35.png',
+                                },
+                                instructions: undefined, // Prevent default form recycling
+                                form: 'http://www.ille-et-vilaine.fr/sites/default/files/asset/document/faire_demande_allocation_apa_juillet_2014.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'http://www.ille-et-vilaine.fr/fr/demande-apa',
+                            },
+                            'D42-LOIRE': {
+                                provider: {
+                                    imgSrc: 'logo_cd42.png',
+                                },
+                                instructions: undefined, // Prevent default form recycling
+                                form: 'http://www.loire.fr/upload/docs/application/pdf/dossierapa.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'http://www.loire.fr/jcms/c_308179/comment-beneficier-de-l-apa-a-domicile',
+                            },
                             'D44-LOIRE_ATLANTIQUE': {
                                 provider: {
                                     imgSrc: 'logo_cd44.png',
@@ -358,6 +394,15 @@
                                 form: 'https://www.loire-atlantique.fr/upload/docs/application/pdf/2014-02/personnes_agees_for_apa_2006_10_03__16_42_50_200.pdf',
                                 teleservice: undefined, // Prevent default instructions recycling
                                 link: 'https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/personne-agee/l-allocation-personnalisee-d-autonomie-apa-a-domicile-fr-p1_315752?portal=aca_6941&category=p2_807421',
+                            },
+                            'D57-MOSELLE': {
+                                provider: {
+                                    imgSrc: 'logo_cd57.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'http://www.moselle.fr/sitecollectiondocuments/lamoselleetvous/solidarite/seniors/formulaire_demande_apa_domicile.pdf',
+                                teleservice: undefined, // Prevent default instructions recycling
+                                link: 'http://www.moselle.fr/moselleetvous/pages/fiche_senior_apa.aspx',
                             },
                             'D59-NORD': {
                                 provider: {
@@ -377,6 +422,15 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'http://www.pasdecalais.fr/Solidarite-Sante/Retraites-et-personnes-agees/Beneficier-d-aides/L-Allocation-Personnalisee-d-Autonomie-APA',
                             },
+                            'D67-BAS_RHIN': {
+                                provider: {
+                                    imgSrc: 'logo_cd67.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'http://www.bas-rhin.fr/eCommunityDocuments/%7BE34C4D98-631D-459B-AA4E-61C91D2F7BA0%7D/3759/document_conseil-departemental-bas-rhin-formulaire-demande-apa.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'http://www.bas-rhin.fr/acces-direct/guide-aides/detail-guide-aides/381/Allocation-personnalisee-d-autonomie--APA--a-domicile',
+                            },
                             'D75-PARIS': {
                                 provider: {
                                     imgSrc: 'logo_paris.png',
@@ -394,6 +448,15 @@
                                 form: 'https://www.seinemaritime.fr/docs/1_apa-1ere-demande-domicile.pdf',
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'https://www.seinemaritime.fr/vos-services/personnes-agees-1/beneficier-daides/lallocation-aux-personnes-agees.html',
+                            },
+                            'D77-SEINE_ET_MARNE': {
+                                provider: {
+                                    imgSrc: 'logo_cd77.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'http://www.seine-et-marne.fr/content/download/84288/750532/version/1/file/17-DGAS-Allocation%20personnalisee%20d%2527autonomie%20a%20domicile.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'http://www.seine-et-marne.fr/Solidarite/Seniors/Maintien-a-domicile-APA/Allocation-Personnalisee-d-Autonomie-APA',
                             },
                             'D83-VAR': {
                                 provider: {

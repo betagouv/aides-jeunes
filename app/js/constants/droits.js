@@ -377,6 +377,15 @@
                                 teleservice: undefined, // Prevent default instructions recycling
                                 link: 'https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/personne-agee/l-allocation-personnalisee-d-autonomie-apa-a-domicile-fr-p1_315752?portal=aca_6941&category=p2_807421',
                             },
+                            'D57-MOSELLE': {
+                                provider: {
+                                    imgSrc: 'logo_cd57.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'http://www.moselle.fr/sitecollectiondocuments/lamoselleetvous/solidarite/seniors/formulaire_demande_apa_domicile.pdf',
+                                teleservice: undefined, // Prevent default instructions recycling
+                                link: 'http://www.moselle.fr/moselleetvous/pages/fiche_senior_apa.aspx',
+                            },
                             'D59-NORD': {
                                 provider: {
                                     imgSrc: 'logo_cd59.png',

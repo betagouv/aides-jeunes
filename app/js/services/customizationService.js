@@ -37,6 +37,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D75-PARIS';
             if (testCase.menages._.depcom[currentPeriod].match(/^76/))
                 return 'D76-SEINE_MARITIME';
+            if (testCase.menages._.depcom[currentPeriod].match(/^77/))
+                return 'D77-SEINE_ET_MARNE';
             if (testCase.menages._.depcom[currentPeriod].match(/^83/))
                 return 'D83-VAR';
             if (testCase.menages._.depcom[currentPeriod].match(/^92/))

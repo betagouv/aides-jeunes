@@ -359,6 +359,15 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: undefined,
                             },
+                            'D42-LOIRE': {
+                                provider: {
+                                    imgSrc: 'logo_cd42.png',
+                                },
+                                instructions: 'http://www.herault.fr/lallocation-personnalisee-dautonomie-apa',
+                                form: 'http://www.loire.fr/upload/docs/application/pdf/dossierapa.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'http://www.loire.fr/jcms/c_308179/comment-beneficier-de-l-apa-a-domicile',
+                            },
                             'D44-LOIRE_ATLANTIQUE': {
                                 provider: {
                                     imgSrc: 'logo_cd44.png',

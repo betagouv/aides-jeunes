@@ -83,7 +83,7 @@
       <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
   </div>
 
-  <div ng-if="! (droitsNonEligibles.prestationsNationales | isEmpty)">
+  <div ng-if="! (droitsNonEligibles.prestationsNationales | isEmpty)" ng-show="droitsNonEligiblesShow">
     <p>
       Selon nos calculs, vous n'avez notamment pas droit aux aides ci-dessous :
     </p>

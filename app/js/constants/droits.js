@@ -359,6 +359,15 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: undefined,
                             },
+                            'D35-ILLE_ET_VILAINE': {
+                                provider: {
+                                    imgSrc: 'logo_cd35.png',
+                                },
+                                instructions: undefined, // Prevent default form recycling
+                                form: 'http://www.ille-et-vilaine.fr/sites/default/files/asset/document/faire_demande_allocation_apa_juillet_2014.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'http://www.ille-et-vilaine.fr/fr/demande-apa',
+                            },
                             'D42-LOIRE': {
                                 provider: {
                                     imgSrc: 'logo_cd42.png',

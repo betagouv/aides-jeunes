@@ -323,6 +323,15 @@
                                 teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
                                 link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
                             },
+                            'D29-FINISTERE': {
+                                provider: {
+                                    imgSrc: 'logo_cd29.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'https://www.finistere.fr/var/finistere/storage/original/application/1f10539819d74121420da96880b95716.pdf',
+                                teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
+                                link: 'https://www.finistere.fr/A-votre-service/Personnes-age-es-APA/Allocation-personnalisee-d-autonomie',
+                            },
                             'D31-HAUTE_GARONNE': {
                                 provider: {
                                     imgSrc: 'logo_cd31.png',

@@ -338,7 +338,7 @@
                                 },
                                 instructions: undefined, // Prevent default instructions recycling
                                 form: 'https://www.finistere.fr/var/finistere/storage/original/application/1f10539819d74121420da96880b95716.pdf',
-                                teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
+                                teleservice: undefined, // Prevent default instructions recycling
                                 link: 'https://www.finistere.fr/A-votre-service/Personnes-age-es-APA/Allocation-personnalisee-d-autonomie',
                             },
                             'D31-HAUTE_GARONNE': {
@@ -381,7 +381,7 @@
                                 provider: {
                                     imgSrc: 'logo_cd42.png',
                                 },
-                                instructions: 'http://www.herault.fr/lallocation-personnalisee-dautonomie-apa',
+                                instructions: undefined, // Prevent default form recycling
                                 form: 'http://www.loire.fr/upload/docs/application/pdf/dossierapa.pdf',
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'http://www.loire.fr/jcms/c_308179/comment-beneficier-de-l-apa-a-domicile',

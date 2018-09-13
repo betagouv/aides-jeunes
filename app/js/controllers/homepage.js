@@ -2,10 +2,22 @@
 
 angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $sessionStorage, droitsDescription, $timeout, ABTestingService, phishingExpressions) {
     [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
-        $scope[type] = droitsDescription[type];
+        var providersWithoutPrivatePrestations = _.mapValues(droitsDescription[type], function(provider) {
+            provider = Object.assign({}, provider);
+            provider.prestations = _.reduce(provider.prestations, function(prestations, prestation, name) {
+                if (! prestation.private) {
+                    prestations[name] = prestation;
+                }
 
-        $scope[type + 'Count'] = Object.keys(droitsDescription[type]).reduce(function(total, provider) {
-            return total + Object.keys(droitsDescription[type][provider].prestations).length;
+                return prestations;
+            }, {});
+            return provider;
+        });
+
+        $scope[type] = _.filter(providersWithoutPrivatePrestations, function(provider) { return _.size(provider.prestations); });
+
+        $scope[type + 'Count'] = Object.keys($scope[type]).reduce(function(total, provider) {
+            return total + _.size($scope[type][provider].prestations);
         }, 0);
     });
 

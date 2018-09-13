@@ -696,6 +696,28 @@
                         'entity': 'individu', // default entity is famille
                     },
                 }
+            },
+            'alfortville': {
+                'imgSrc': 'logo_alfortville.png',
+                'label': 'Alfortville',
+                'interactionWithNationalPrestationsHandled': true,
+                'prefix': 'd’',
+                'prestations': {
+                    'alfortville_noel_enfants': {
+                        'isMontantAnnuel': true,
+                        'legend': 'en chèque cadeau',
+                        'label': 'Noël des enfants',
+                        'description': 'La mairie d’Alfortville offre un chèque cadeau à chaque enfant de moins de 16 ans des familles aux ressources modestes. ',
+                        conditions: [
+                            'En cas de séparation, être le bénéficiaire des allocations familiales pour la demande.',
+                            'Habiter Alfortville depuis au moins trois mois.'
+                        ],
+                        'instructions': 'https://www.alfortville.fr/le-pole-solidarite-insertion#Noel-des-enfants',
+                        'isBaseRessourcesYearMoins2': false,
+                        'roundToNearestCent': true,
+                        'private': true,
+                    },
+                }
             }
         }
     };

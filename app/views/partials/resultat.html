@@ -85,7 +85,7 @@
 
   <div ng-if="! (droitsNonEligibles.prestationsNationales | isEmpty)" ng-show="droitsNonEligiblesShow">
     <p>
-      Selon nos calculs, vous n'avez notamment pas droit aux aides ci-dessous :
+      Les conditions des aides suivantes <strong>ne sont pas</strong> remplies&nbsp;:
     </p>
     <div class="frame-resultats">
       <droit-non-eligibles-list list="droitsNonEligibles.prestationsNationales" filter="['cmu_c', 'acs']"></droit-non-eligibles-list>

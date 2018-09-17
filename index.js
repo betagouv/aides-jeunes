@@ -5,14 +5,18 @@ var mustache = require('consolidate').mustache;
 
 var droitsDescription = require('./app/js/constants/droits');
 
-function countByType(type) {
+function countPublicByType(type) {
     return Object.keys(droitsDescription[type]).reduce(function(total, provider) {
-        return total + Object.keys(droitsDescription[type][provider].prestations).length;
+        return total + Object.keys(droitsDescription[type][provider].prestations).reduce(function(count, prestationName) {
+            var prestation = droitsDescription[type][provider].prestations[prestationName];
+
+            return count + (prestation.private ? 0 : 1);
+        }, 0);
     }, 0);
 }
 
-var prestationsNationalesCount = countByType('prestationsNationales');
-var partenairesLocauxCount = countByType('partenairesLocaux');
+var prestationsNationalesCount = countPublicByType('prestationsNationales');
+var partenairesLocauxCount = countPublicByType('partenairesLocaux');
 
 module.exports = function(app) {
     var env = app.get('env');

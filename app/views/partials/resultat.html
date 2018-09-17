@@ -59,6 +59,15 @@
     </div>
   </div>
 
+  <div ng-if="! (droitsNonEligibles.prestationsNationales | isEmpty)" ng-show="droitsNonEligiblesShow">
+    <p>
+      Les conditions des aides suivantes <strong>ne sont pas</strong> remplies&nbsp;:
+    </p>
+    <div class="frame-resultats">
+      <droit-non-eligibles-list list="droitsNonEligibles.prestationsNationales" filter="['cmu_c', 'acs']"></droit-non-eligibles-list>
+    </div>
+  </div>
+
   <div ng-repeat="(partenaireId, prestationsPartenaire) in droits.partenairesLocaux">
     <p>Vous êtes {{ droits.prestationsNationales ? "également" : "" }} a priori éligible à ces aides {{ prestationsPartenaire.prefix }} <strong>{{ prestationsPartenaire.label }}</strong>&nbsp;:</p>
     <div class="frame-resultats">
@@ -81,15 +90,6 @@
   <div class="frame-resultats" ng-show="noDroits && ressourcesYearMoins2Captured">
       <h2>Vous n'êtes a priori éligible à aucune des aides calculées par ce simulateur.</h2>
       <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
-  </div>
-
-  <div ng-if="! (droitsNonEligibles.prestationsNationales | isEmpty)" ng-show="droitsNonEligiblesShow">
-    <p>
-      Les conditions des aides suivantes <strong>ne sont pas</strong> remplies&nbsp;:
-    </p>
-    <div class="frame-resultats">
-      <droit-non-eligibles-list list="droitsNonEligibles.prestationsNationales" filter="['cmu_c', 'acs']"></droit-non-eligibles-list>
-    </div>
   </div>
 
   <div class="print-hidden">

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope, $window, $http, $state, $stateParams, $timeout, ABTestingService, SituationService, TrampolineService, CityService, ResultatService, droitsDescription, $analytics, $sessionStorage) {
+angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, $scope, $sessionStorage, $stateParams, $window, ABTestingService, CityService, ResultatService, SituationService, TrampolineService) {
     $scope.awaitingResults = false;
     $scope.error = false;
     $scope.warning = false;
@@ -31,7 +31,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($scope, $rootScope,
             .then(function(droits) {
                 $scope.droits = droits.droitsEligibles;
                 $scope.droitsNonEligibles = droits.droitsNonEligibles;
-                $scope.droitsNonEligiblesShow = !! $sessionStorage.ameliNoticationDone;
+                $scope.droitsNonEligiblesShow = new Boolean($sessionStorage.ameliNoticationDone);
                 $scope.droitsInjectes = droits.droitsInjectes;
                 $scope.noDroits = _.isEmpty($scope.droits.prestationsNationales) && _.isEmpty($scope.droits.partenairesLocaux);
             })

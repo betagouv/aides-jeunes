@@ -19,6 +19,7 @@ angular.module('ddsApp').directive('droitNonEligiblesList', function() {
         scope: true,
         controller: 'droitsEligiblesListCtrl',
         link: function ($scope, $element, $attributes) {
+            // Inject list into scope, filtered by benefits specified via the "filter" attribute
             var filter = $scope.$eval($attributes.filter);
             $scope.list = _.pickBy($scope.$eval($attributes.list), function(value, key) {
                 return _.includes(filter, key);

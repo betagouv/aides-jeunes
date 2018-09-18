@@ -1,32 +1,32 @@
 'use strict';
 
-angular.module('ddsApp').directive('droitEligiblesList', function() {
-    return {
-        restrict: 'E',
-        templateUrl: 'partials/droits-eligibles-list.html',
-        scope: true,
-        controller: 'droitsEligiblesListCtrl',
-        link: function ($scope, $element, $attributes) {
-            $scope.list = $scope.$eval($attributes.list);
-        }
-    };
-});
-
-angular.module('ddsApp').directive('droitNonEligiblesList', function() {
-    return {
-        restrict: 'E',
-        templateUrl: 'partials/droits-non-eligibles-list.html',
-        scope: true,
-        controller: 'droitsEligiblesListCtrl',
-        link: function ($scope, $element, $attributes) {
+var controllerOptions = function(templateUrl) {
+    return function() {
+        return {
+            restrict: 'E',
+            templateUrl: templateUrl,
+            scope: true,
+            controller: 'droitsEligiblesListCtrl',
             // Inject list into scope, filtered by benefits specified via the "filter" attribute
-            var filter = $scope.$eval($attributes.filter);
-            $scope.list = _.pickBy($scope.$eval($attributes.list), function(value, key) {
-                return _.includes(filter, key);
-            });
-        }
+            link: function ($scope, $element, $attributes) {
+                if ($attributes.hasOwnProperty('filter')) {
+                    var filter = $scope.$eval($attributes.filter);
+                    $scope.list = _.pickBy($scope.$eval($attributes.list), function(value, key) {
+                        return _.includes(filter, key);
+                    });
+                } else {
+                    $scope.list = $scope.$eval($attributes.list);
+                }
+            }
+        };
     };
-});
+};
+
+angular.module('ddsApp')
+    .directive('droitEligiblesList', controllerOptions('partials/droits-eligibles-list.html'));
+
+angular.module('ddsApp')
+    .directive('droitNonEligiblesList', controllerOptions('partials/droits-non-eligibles-list.html'));
 
 angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope, TrampolineService) {
     $scope.isNumber = _.isNumber;

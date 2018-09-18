@@ -31,7 +31,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
             .then(function(droits) {
                 $scope.droits = droits.droitsEligibles;
                 $scope.droitsNonEligibles = droits.droitsNonEligibles;
-                $scope.droitsNonEligiblesShow = new Boolean($sessionStorage.ameliNoticationDone);
+                $scope.droitsNonEligiblesShow = !! $sessionStorage.ameliNoticationDone;
                 $scope.droitsInjectes = droits.droitsInjectes;
                 $scope.noDroits = _.isEmpty($scope.droits.prestationsNationales) && _.isEmpty($scope.droits.partenairesLocaux);
             })

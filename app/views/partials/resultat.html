@@ -36,6 +36,12 @@
 </div>
 
 <div ng-show="! error && ! warning && ! awaitingResults">
+
+  <div class="frame-resultats" ng-show="noDroits && ! ressourcesYearMoins2Captured">
+      <h2>Juste une dernière étape…</h2>
+      <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
+  </div>
+
   <div ng-if="! (droits.prestationsNationales | isEmpty)">
     <p>
       D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides <strong>{{ droits.partenairesLocaux ? "nationales" : "" }}</strong>.
@@ -80,11 +86,6 @@
         </p>
       </div>
     </div>
-  </div>
-
-  <div class="frame-resultats" ng-show="noDroits && ! ressourcesYearMoins2Captured">
-      <h2>Juste une dernière étape…</h2>
-      <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
   </div>
 
   <div class="frame-resultats" ng-show="noDroits && ressourcesYearMoins2Captured">

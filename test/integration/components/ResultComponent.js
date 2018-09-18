@@ -1,6 +1,6 @@
 title: 'h1',
 
-resultatFrame: '.frame-resultats',
+resultatFrame: '.frame-resultats .droits-eligibles',
 
 prestationName: '.droits-eligibles .result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .description',
 prestationMontant: '.droits-eligibles .result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .montant',

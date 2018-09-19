@@ -42,18 +42,19 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
         var computedRessources = normalizeOpenfiscaRessources(openfiscaResponse);
 
         var result = {
-            eligibleAides: undefined,
-            injectedAides: [],
+            eligibleAides: {},
+            nonEligibleAides: {},
+            injectedAides: [], // declared by the user
         };
 
-        result.eligibleAides = _.mapValues(droitsDescription, function(aidesProviders) {
-            return _.mapValues(aidesProviders, function(aidesProvider) {
+        _.mapValues(droitsDescription, function(aidesProviders, aidesLevel) {
+            result.eligibleAides[aidesLevel] = {};
+            result.nonEligibleAides[aidesLevel] = {};
 
-                var eligibleAides = _.mapValues(aidesProvider.prestations, function(aide, aideId) {
-
+            _.mapValues(aidesProviders, function(aidesProvider) {
+                _.forEach(aidesProvider.prestations, function(aide, aideId) {
                     if (_.some(situation.individus, function(individu) { return wasInjected(aideId, individu); })) {
-                        result.injectedAides.push(aide);
-                        return;  // the aides were declared, do not re-compute the results
+                        return result.injectedAides.push(aide);
                     }
 
                     var value = valueAt(aideId + '_non_calculable', computedRessources, period);
@@ -62,9 +63,8 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
                         value = round(valueAt(aideId, computedRessources, period), aide);
                     }
 
-                    if (! value) return;
-
-                    return _.assign({},
+                    var dest = (value) ? result.eligibleAides[aidesLevel] : result.nonEligibleAides[aidesLevel];
+                    dest[aideId] = _.assign({},
                         aide,
                         {
                             montant: value,
@@ -73,14 +73,8 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
                         customizationId && aide.customization && aide.customization[customizationId]
                     );
                 });
-
-                return _.assign({}, aidesProvider, { prestations: _.pickBy(eligibleAides) });
             });
         });
-
-        result.eligibleAides.prestationsNationales = _.reduce(result.eligibleAides.prestationsNationales, function(aides, aidesProvider) {
-            return _.assign(aides, aidesProvider.prestations);  // flatten all national prestations
-        }, {});
 
         result.eligibleAides.partenairesLocaux = _.pickBy(result.eligibleAides.partenairesLocaux, function(aidesProvider) {
             return _.keys(aidesProvider.prestations).length;  // exclude partenaires with no eligible prestations
@@ -88,6 +82,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
 
         return {
             droitsEligibles: result.eligibleAides,
+            droitsNonEligibles: result.nonEligibleAides,
             droitsInjectes: result.injectedAides,
         };
     }

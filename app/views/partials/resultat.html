@@ -36,6 +36,12 @@
 </div>
 
 <div ng-show="! error && ! warning && ! awaitingResults">
+
+  <div class="frame-resultats" ng-show="noDroits && ! ressourcesYearMoins2Captured">
+      <h2>Juste une dernière étape…</h2>
+      <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
+  </div>
+
   <div ng-if="! (droits.prestationsNationales | isEmpty)">
     <p>
       D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides <strong>{{ droits.partenairesLocaux ? "nationales" : "" }}</strong>.
@@ -59,6 +65,15 @@
     </div>
   </div>
 
+  <div ng-if="! (droitsNonEligibles.prestationsNationales | isEmpty)" ng-show="droitsNonEligiblesShow">
+    <p>
+      Les conditions des aides suivantes <strong>ne sont pas</strong> remplies&nbsp;:
+    </p>
+    <div class="frame-resultats">
+      <droit-non-eligibles-list list="droitsNonEligibles.prestationsNationales" filter="['cmu_c', 'acs']"></droit-non-eligibles-list>
+    </div>
+  </div>
+
   <div ng-repeat="(partenaireId, prestationsPartenaire) in droits.partenairesLocaux">
     <p>Vous êtes {{ droits.prestationsNationales ? "également" : "" }} a priori éligible à ces aides {{ prestationsPartenaire.prefix }} <strong>{{ prestationsPartenaire.label }}</strong>&nbsp;:</p>
     <div class="frame-resultats">
@@ -71,11 +86,6 @@
         </p>
       </div>
     </div>
-  </div>
-
-  <div class="frame-resultats" ng-show="noDroits && ! ressourcesYearMoins2Captured">
-      <h2>Juste une dernière étape…</h2>
-      <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
   </div>
 
   <div class="frame-resultats" ng-show="noDroits && ressourcesYearMoins2Captured">

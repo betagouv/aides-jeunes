@@ -55,7 +55,7 @@ angular.module('ddsApp').controller('etablissementsListCtrl', function($http, $i
             .getCities($scope.codePostal)
             .then(function(cities) { return _.find(cities, { codeInsee: $scope.codeInsee }); })
             .then(function(city) { return city; })
-            .then(function(city) { return $http.get('https://etablissements-publics.api.gouv.fr/v3/communes/' + city.codeInsee + '/ccas+cdas+sdsei+msap'); })
+            .then(function(city) { return $http.get('https://etablissements-publics.api.gouv.fr/v3/communes/' + city.codeInsee + '/ccas+cdas+sdsei+edas+msap'); })
             .then(function(response) { return response.data.features; }, function() { return []; })
             .then(function(etablissements) {
                 $scope.etablissements = etablissements.map(normalizeEtablissement);

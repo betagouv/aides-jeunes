@@ -47,6 +47,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D92-HAUTS_DE_SEINE';
             if (testCase.menages._.depcom[currentPeriod].match(/^93/))
                 return 'D93-SSD';
+            if (testCase.menages._.depcom[currentPeriod].match(/^38/))
+                return 'D38-ISERE';
             if (_.includes(lyonMetropoleInseeCodes, testCase.menages._.depcom[currentPeriod]))
                 return 'M69-LYON';
         }

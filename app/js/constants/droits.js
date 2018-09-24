@@ -712,7 +712,8 @@
                             'En cas de séparation, être le bénéficiaire des allocations familiales pour la demande.',
                             'Habiter Alfortville depuis au moins trois mois.'
                         ],
-                        'instructions': 'https://www.alfortville.fr/le-pole-solidarite-insertion#Noel-des-enfants',
+                        'link': 'https://www.alfortville.fr/le-pole-solidarite-insertion#Noel-des-enfants',
+                        'instructions': 'https://www.alfortville.fr/le-pole-solidarite-insertion',
                         'isBaseRessourcesYearMoins2': false,
                         'roundToNearestCent': true,
                         'private': true,

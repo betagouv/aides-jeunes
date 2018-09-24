@@ -1,0 +1,38 @@
+<div class="text-center">
+  <ul class="breadcrumb--circles hidden-xs">
+    <li ng-class="{ 'done': steps.includes('foyer.demandeur'), 'active': step === 'foyer.demandeur' }">
+      <span class="step"></span>
+      <a ui-sref="foyer.demandeur">Votre profil</a>
+    </li>
+    <li ng-class="{ 'done': steps.includes('foyer.enfants'), 'active': step === 'foyer.enfants' }">
+      <span class="step"></span>
+      <a ui-sref="foyer.enfants" ng-if="steps.includes('foyer.enfants')">Enfants</a>
+      <span ng-if="! steps.includes('foyer.enfants')">Enfants</span>
+    </li>
+    <li ng-class="{ 'done': steps.includes('foyer.conjoint'), 'active': step === 'foyer.conjoint' }">
+      <span class="step"></span>
+      <a ui-sref="foyer.conjoint" ng-if="steps.includes('foyer.conjoint')">Conjoint</a>
+      <span ng-if="! steps.includes('foyer.conjoint')">Conjoint</span>
+    </li>
+    <li ng-class="{ 'done': steps.includes('foyer.logement'), 'active': step === 'foyer.logement' }">
+      <span class="step"></span>
+      <a ui-sref="foyer.logement" ng-if="steps.includes('foyer.logement')">Logement</a>
+      <span ng-if="! steps.includes('foyer.logement')">Logement</span>
+    </li>
+    <li ng-class="{ 'done': steps.includes('foyer.ressources'), 'active': step === 'foyer.ressources' }">
+      <span class="step"></span>
+      <a ui-sref="foyer.ressources" ng-if="steps.includes('foyer.ressources')">Ressources</a>
+      <span ng-if="! steps.includes('foyer.ressources')">Ressources</span>
+    </li>
+    <li ng-class="{ 'done': steps.includes('foyer.pensionsAlimentaires'), 'active': step === 'foyer.pensionsAlimentaires' }">
+      <span class="step"></span>
+      <a ui-sref="foyer.pensionsAlimentaires" ng-if="steps.includes('foyer.pensionsAlimentaires')">Pensions alimentaires</a>
+      <span ng-if="! steps.includes('foyer.pensionsAlimentaires')">Pensions alimentaires</span>
+    </li>
+    <li ng-class="{ 'done': step === 'foyer.resultat', 'active': step === 'foyer.resultat' }">
+      <span class="step"></span>
+      <a ui-sref="foyer.resultat" ng-if="steps.includes('foyer.resultat')">Résultat</a>
+      <span ng-if="! steps.includes('foyer.resultat')">Résultat</span>
+    </li>
+  </ul>
+</div>

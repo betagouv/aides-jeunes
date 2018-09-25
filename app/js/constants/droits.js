@@ -500,7 +500,7 @@
                                 instructions: undefined, // Prevent default instructions recycling
                                 form: 'https://www.valdemarne.fr/download/sites/default/files/formulaires/webformudemande_apa_-2018_.pdf',
                                 teleservice: undefined, // Prevent default form recycling
-                                link: 'https://www.valdemarne.fr/a-votre-service/personnes-agees/allocation-personnalisee-dautonomie-apa',
+                                link: 'https://www.valdemarne.fr/a-votre-service/personnes-agees/allocation-personnalisee-dautonomie-a-domicile-apad',
                             },
                             'M69-LYON': {
                                 provider: {

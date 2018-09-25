@@ -23,6 +23,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D34-HERAULT';
             if (testCase.menages._.depcom[currentPeriod].match(/^35/))
                 return 'D35-ILLE_ET_VILAINE';
+            if (testCase.menages._.depcom[currentPeriod].match(/^38/))
+                return 'D38-ISERE';
             if (testCase.menages._.depcom[currentPeriod].match(/^42/))
                 return 'D42-LOIRE';
             if (testCase.menages._.depcom[currentPeriod].match(/^44/))
@@ -47,8 +49,8 @@ angular.module('ddsCommon').factory('CustomizationService', function(lyonMetropo
                 return 'D92-HAUTS_DE_SEINE';
             if (testCase.menages._.depcom[currentPeriod].match(/^93/))
                 return 'D93-SSD';
-            if (testCase.menages._.depcom[currentPeriod].match(/^38/))
-                return 'D38-ISERE';
+            if (testCase.menages._.depcom[currentPeriod].match(/^94/))
+                return 'D94-VAL_DE_MARNE';
             if (_.includes(lyonMetropoleInseeCodes, testCase.menages._.depcom[currentPeriod]))
                 return 'M69-LYON';
         }

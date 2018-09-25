@@ -377,6 +377,15 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'http://www.ille-et-vilaine.fr/fr/demande-apa',
                             },
+                            'D38-ISERE': {
+                                provider: {
+                                    imgSrc: 'logo_cd38.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: undefined, // Prevent default instructions recycling
+                                teleservice: 'https://www.isere.fr/espace-personnel/Pages/creer-mon-compte.aspx',
+                                link: 'https://www.isere.fr/mda38/particulier/pa/Pages/apa-en-ligne.aspx',
+                            },
                             'D42-LOIRE': {
                                 provider: {
                                     imgSrc: 'logo_cd42.png',
@@ -484,14 +493,14 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'https://www.seine-saint-denis.fr/L-Allocation-Departementale-Personnalisee-d-Autonomie.html',
                             },
-                            'D38-ISERE': {
+                            'D94-VAL_DE_MARNE': {
                                 provider: {
-                                    imgSrc: 'logo_cd38.png',
+                                    imgSrc: 'logo_cd94.png',
                                 },
                                 instructions: undefined, // Prevent default instructions recycling
-                                form: undefined, // Prevent default instructions recycling
-                                teleservice: 'https://www.isere.fr/espace-personnel/Pages/creer-mon-compte.aspx',
-                                link: 'https://www.isere.fr/mda38/particulier/pa/Pages/apa-en-ligne.aspx',
+                                form: 'https://www.valdemarne.fr/download/sites/default/files/formulaires/webformudemande_apa_-2018_.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'https://www.valdemarne.fr/a-votre-service/personnes-agees/allocation-personnalisee-dautonomie-a-domicile-apad',
                             },
                             'M69-LYON': {
                                 provider: {

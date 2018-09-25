@@ -5,8 +5,8 @@
         <p class="text-center"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Chargement en cours…</p>
       </div>
     </div>
-    <aside class="col-md-3 col-sm-12 recap-situation well whiteframe-z1" ng-if="situation.individus.length">
-      <div ui-view="recap_situation">
+    <aside class="col-md-3 col-sm-12" ng-if="situation.individus.length">
+      <div ui-view="recap_situation" class="recap-situation well whiteframe-z1">
         <p class="text-center"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Chargement en cours…</p>
       </div>
     </aside>

@@ -20,7 +20,7 @@ sudo apt-get install mongodb
 
 ### For all platforms
 
-The runtime is Node 0.10 for the web application, and Python 2.7 for Openfisca.
+The runtime is Node 6.14.1 for the web application, and Python 2.7 for Openfisca.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 

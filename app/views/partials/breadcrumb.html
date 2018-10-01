@@ -21,7 +21,7 @@
     </li>
     <li ng-class="{ 'done': steps.includes('foyer.ressources'), 'active': step === 'foyer.ressources' }">
       <span class="step"></span>
-      <a ui-sref="foyer.ressources" ng-if="steps.includes('foyer.ressources')">Ressources</a>
+      <a ui-sref="foyer.ressources.individu.types({ individu: 0 })" ng-if="steps.includes('foyer.ressources')">Ressources</a>
       <span ng-if="! steps.includes('foyer.ressources')">Ressources</span>
     </li>
     <li ng-class="{ 'done': steps.includes('foyer.pensionsAlimentaires'), 'active': step === 'foyer.pensionsAlimentaires' }">

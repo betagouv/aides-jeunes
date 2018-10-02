@@ -2,6 +2,8 @@ var express = require('express');
 var favicon = require('serve-favicon');
 var path = require('path');
 var mustache = require('consolidate').mustache;
+var bodyParser = require('body-parser');
+var pdf = require('html-pdf');
 
 var droitsDescription = require('./app/js/constants/droits');
 
@@ -70,6 +72,25 @@ module.exports = function(app) {
     app.use('/content-pages', express.static(viewsDirectory + '/content-pages'));
     app.use('/partials', function(req, res) {
         return res.sendStatus(404);
+    });
+
+    app.use(bodyParser.urlencoded({ limit: '1024kb' }));
+
+    // Route to download a PDF
+    app.route('/foyer/resultat').post(function(req, res) {
+        var html = Buffer.from(req.body.base64, 'base64').toString('utf-8');
+        var pdfOptions = {
+            phantomArgs: [
+                '--ignore-ssl-errors=yes'
+            ]
+        };
+        pdf.create(html, pdfOptions).toBuffer(function(err, buffer) {
+            res.writeHead(200, {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': 'attachment; filename=MesAides_simulation_' + req.body.basename + '.pdf',
+            });
+            res.end(buffer, 'binary');
+        });
     });
 
     app.route('/recap-situation/*').get(function(req, res) {

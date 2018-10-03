@@ -1,5 +1,5 @@
 <ui-view>
-<h1><span ng-dblclick="showRedirection = ! showRedirection">Résultats de votre simulation</span><span id="result-datetime"> du{{ situation.dateDeValeur | date : 'medium' }}</span>
+<h1><span ng-dblclick="showRedirection = ! showRedirection">Résultats de votre simulation</span><span id="result-datetime"> du {{ situation.dateDeValeur | date : 'medium' }}</span>
   <small
     ng-if="showRedirection">
     Redirections&nbsp;:

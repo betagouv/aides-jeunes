@@ -81,4 +81,47 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         $scope.$broadcast('patrimoineCaptured');
         $state.go('foyer.resultat');
     });
+
+    $scope.downloadAsPdf = function() {
+
+        var baseURL = window.location.protocol
+            + '//' + window.location.hostname
+            + (window.location.port ? (':' + window.location.port) : '');
+
+        var documentElement = document.documentElement.cloneNode(true);
+
+        var body = documentElement.querySelector('body');
+        var scripts = documentElement.querySelectorAll('body > script');
+
+        // Remove Piwik script to avoid CORS errors with PhantomJS
+        var scriptsToFilter = _.filter(scripts, function(script) {
+            if (script.innerHTML.match(/piwik/gm)) {
+                return true;
+            }
+
+            return script.src.match(/piwik/g);
+        });
+        _.forEach(scriptsToFilter, function(script) {
+            body.removeChild(script);
+        });
+
+        // Convert some links to absolute to have a correct rendering
+
+        var stylesheets = documentElement.querySelectorAll('link');
+        _.forEach(stylesheets, function (stylesheet) {
+            stylesheet.setAttribute('href', baseURL + stylesheet.getAttribute('href'));
+        });
+        var images = documentElement.querySelectorAll('img');
+        _.forEach(images, function (image) {
+            image.setAttribute('src', baseURL + image.getAttribute('src'));
+        });
+
+        var base64 = window.btoa(unescape(encodeURIComponent(documentElement.innerHTML)));
+
+        $scope.base64 = base64;
+
+        setTimeout(function() {
+            document.getElementById("download").submit();
+        }, 2000);
+    };
 });

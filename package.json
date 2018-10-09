@@ -30,6 +30,7 @@
     "lodash": "^4.17.4",
     "ludwig-api": "^1.2.0",
     "ludwig-ui": "^1.5.4",
+    "mingo": "^2.2.4",
     "moment": "^2.8.3",
     "mongoose": "^4.5.1",
     "morgan": "~1.8.0",

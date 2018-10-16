@@ -60,6 +60,8 @@ module.exports = function(app) {
     app.set('view engine', 'html');
     app.set('views', viewsDirectory);
 
+    app.set('trust proxy', true);
+
     app.use('/js',        express.static(path.join(__dirname, 'dist/js'),        CACHE.ONE_YEAR));
     app.use('/styles',    express.static(path.join(__dirname, 'dist/styles'),    CACHE.ONE_YEAR));
     app.use('/fonts',     express.static(path.join(__dirname, 'dist/fonts'),     CACHE.ONE_YEAR));

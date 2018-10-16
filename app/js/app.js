@@ -152,11 +152,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 $window.location.href = '/tests';
             }
         })
-        .state('trace', {
-            url: '/trace?situationId',
-            templateUrl: '/partials/trace.html',
-            controller: 'TraceCtrl'
-        })
         .state('validation', {
             url: '/validation',
             templateUrl: '/partials/validation.html',

@@ -7,4 +7,5 @@ module.exports = {
         local_PHP_test: 'token',
         live_node_test: 'token',
     },
+    openFiscaTracerURL: 'http://localhost:3000'
 };

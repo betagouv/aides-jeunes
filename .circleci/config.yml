@@ -6,15 +6,28 @@ defaults: &defaults
   working_directory: ~/mes-aides-ui
   docker:
     # https://circleci.com/docs/2.0/circleci-images/#language-image-variants
-    - image: circleci/node:6.14.1-browsers
+    - image: betagouv/mes-aides-docker:latest
     # FIXME
     # mongo 2.4.9 is not available on Docker Hub
     # https://stackoverflow.com/questions/48233357/install-older-version-of-mongodb-with-docker
     - image: mongo:3.2.18
-    - image: betagouv/mes-aides-openfisca:latest
   environment:
     SAUCE_USERNAME: mes-aides-bot
-    OPENFISCA_BIND_HOST: 0.0.0.0:2000
+    OPENFISCA_BIND_HOST: 127.0.0.1:2000
+    PIPENV_VENV_IN_PROJECT: true
+
+initialize_submodules: &initialize_submodules
+  run:
+    name: Initialize submodules
+    command: git submodule update --init --recursive
+
+install_pip_and_pipenv: &install_pip_and_pipenv
+  run:
+    name: Install pip & pipenv
+    command: |
+      curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+      python get-pip.py
+      pip install pipenv
 
 configure_watai: &configure_watai
   run:
@@ -74,13 +87,19 @@ jobs:
           root: .
           paths:
             - node_modules
-  wait_openfisca:
+  install_openfisca:
     <<: *defaults
     steps:
       - checkout
+      - *initialize_submodules
+      - *install_pip_and_pipenv
       - run:
-          name: Wait for OpenFisca
-          command: wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000/variable/parisien
+          name: Install OpenFisca
+          command: pipenv install -r openfisca/requirements.txt
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ".venv"
   lint:
     <<: *defaults
     steps:
@@ -126,8 +145,17 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - *initialize_submodules
       - attach_workspace:
           at: ~/mes-aides-ui
+      - *install_pip_and_pipenv
+      - run:
+          name: Start OpenFisca
+          command: pipenv run gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=-
+          background: true
+      - run:
+          name: Wait for OpenFisca
+          command: wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000/variable/parisien
       - *configure_watai
       - *download_sauce_connect
       - *start_sauce_connect
@@ -153,7 +181,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - wait_openfisca
+      - install_openfisca
       - install
       - lint:
           requires:
@@ -169,7 +197,7 @@ workflows:
             - build
       - test_selenium_chrome:
           requires:
-            - wait_openfisca
+            - install_openfisca
             - test_mocha
             - test_karma
       - deploy:

@@ -16,11 +16,6 @@ defaults: &defaults
     OPENFISCA_BIND_HOST: 127.0.0.1:2000
     PIPENV_VENV_IN_PROJECT: true
 
-initialize_submodules: &initialize_submodules
-  run:
-    name: Initialize submodules
-    command: git submodule update --init --recursive
-
 install_pip_and_pipenv: &install_pip_and_pipenv
   run:
     name: Install pip & pipenv
@@ -91,7 +86,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *initialize_submodules
       - *install_pip_and_pipenv
       - run:
           name: Install OpenFisca
@@ -145,7 +139,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *initialize_submodules
       - attach_workspace:
           at: ~/mes-aides-ui
       - *install_pip_and_pipenv

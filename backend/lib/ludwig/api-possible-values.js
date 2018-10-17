@@ -1,5 +1,18 @@
 var droits = require('../../../app/js/constants/droits');
 
+// Mitigate label duplicates by counting them and appending provider label when necessary
+var labelCount = {};
+Object.keys(droits).forEach(function(prestationLevel) {
+    var providers = droits[prestationLevel];
+    Object.keys(providers).forEach(function(providerName) {
+        var provider = providers[providerName];
+        Object.keys(provider.prestations).forEach(function(prestationName) {
+            var prestation = provider.prestations[prestationName];
+            labelCount[prestation.label] = (labelCount[prestation.label] || 0 ) + 1;
+        });
+    });
+});
+
 var possibleValues = [];
 Object.keys(droits).forEach(function(prestationLevel) {
     var providers = droits[prestationLevel];
@@ -9,8 +22,7 @@ Object.keys(droits).forEach(function(prestationLevel) {
 
         var options = Object.keys(provider.prestations).map(function(prestationName) {
             var prestation = provider.prestations[prestationName];
-            var label = prestation.label == 'Tarification solidaire transports' ? (provider.label + ' - ' + prestation.label) : prestation.label;
-
+            var label = (labelCount[prestation.label] == 1) ? prestation.label : (prestation.label + ' - ' + provider.label);
             var value = {
                 id: prestationName,
                 shortLabel: label,

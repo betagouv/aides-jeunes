@@ -48,3 +48,6 @@ dist
 .tmp
 
 tmp
+
+.v8flags.*.json
+v8-compile-cache-*/

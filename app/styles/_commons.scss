@@ -1,7 +1,9 @@
 @import 'theme-variables';
 @import 'variables';
-@import 'font-awesome/scss/font-awesome';
-@import 'bootstrap-sass/assets/stylesheets/bootstrap';
+$fa-font-path: '~font-awesome/fonts';
+@import '~font-awesome/scss/font-awesome';
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import 'font-open-sans';
 @import 'theme';
 

@@ -110,13 +110,12 @@ jobs:
       - attach_workspace:
           at: ~/mes-aides-ui
       - run:
-          name: Grunt
+          name: Build assets
           command: npm run build
       - persist_to_workspace:
           root: .
           paths:
             - dist
-            - tmp
   test_mocha:
     <<: *defaults
     steps:

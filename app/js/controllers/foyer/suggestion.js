@@ -99,7 +99,7 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http,dro
         var extension = extensions[0];
 
         $scope.submitting = true;
-        var testMetadata = Object.assign({ extension: extension }, generateState($scope.test));
+        var testMetadata = _.assign({ extension: extension }, generateState($scope.test));
 
         $http.post('api/situations/' + $scope.situation._id + '/openfisca-test', testMetadata)
             .then(function(result) {

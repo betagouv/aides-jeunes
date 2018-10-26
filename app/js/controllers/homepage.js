@@ -3,7 +3,7 @@
 angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $sessionStorage, droitsDescription, $timeout, ABTestingService, phishingExpressions) {
     [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
         var providersWithoutPrivatePrestations = _.mapValues(droitsDescription[type], function(provider) {
-            provider = Object.assign({}, provider);
+            provider = _.assign({}, provider);
             provider.prestations = _.reduce(provider.prestations, function(prestations, prestation, name) {
                 if (! prestation.private) {
                     prestations[name] = prestation;

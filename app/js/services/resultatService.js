@@ -51,7 +51,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
             result.eligibleAides[aidesLevel] = {};
             result.nonEligibleAides[aidesLevel] = {};
 
-            _.mapValues(aidesProviders, function(aidesProvider) {
+            _.mapValues(aidesProviders, function(aidesProvider, aidesProviderId) {
                 _.forEach(aidesProvider.prestations, function(aide, aideId) {
                     if (_.some(situation.individus, function(individu) { return wasInjected(aideId, individu); })) {
                         return result.injectedAides.push(aide);
@@ -67,8 +67,10 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
                     dest[aideId] = _.assign({},
                         aide,
                         {
+                            id: aideId,
                             montant: value,
                             provider: aidesProvider,
+                            providerId: aidesProviderId,
                         },
                         customizationId && aide.customization && aide.customization[customizationId]
                     );
@@ -76,8 +78,14 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
             });
         });
 
-        result.eligibleAides.partenairesLocaux = _.pickBy(result.eligibleAides.partenairesLocaux, function(aidesProvider) {
-            return _.keys(aidesProvider.prestations).length;  // exclude partenaires with no eligible prestations
+        var localGroups = _.groupBy(result.eligibleAides.partenairesLocaux, 'providerId');
+        result.eligibleAides.partenairesLocaux = Object.keys(localGroups).map(function(partenaireLocal) {
+            return _.assign({}, localGroups[partenaireLocal][0].provider, {
+                prestations: localGroups[partenaireLocal].reduce(function(obj, prestation) {
+                    obj[prestation.id] = prestation;
+                    return obj;
+                }, {})
+            });
         });
 
         return {

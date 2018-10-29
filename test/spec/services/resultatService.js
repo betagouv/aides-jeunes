@@ -32,6 +32,9 @@ describe('ResultatService', function () {
                 _: {
                     rsa_non_calculable: {
                         '2014-11': 'error'
+                    },
+                    paris_logement_familles: {
+                        '2014-11': 10
                     }
                 }
             },
@@ -66,6 +69,10 @@ describe('ResultatService', function () {
             expect(droits.droitsInjectes).toContain(DROITS_DESCRIPTION.prestationsNationales.caf.prestations.aide_logement);
             expect(droits.droitsInjectes).toContain(DROITS_DESCRIPTION.prestationsNationales.caf.prestations.ppa);
         });
+
+        it('should not have injected droits duplicates', function() {
+            expect(droits.droitsInjectes.filter(function(d) { return d.label == "Allocation aux adultes handicapés"; }).length).toEqual(1);
+        });
     });
 
     describe('_computeAides of numeric value', function() {
@@ -77,6 +84,10 @@ describe('ResultatService', function () {
             expect(droits.droitsEligibles.prestationsNationales.acs).toBeTruthy();
             expect(droits.droitsEligibles.prestationsNationales.acs.montant).toEqual(100);
             expect(droits.droitsEligibles.prestationsNationales.acs.provider.label).toEqual('Assurance maladie');
+
+            expect(droits.droitsEligibles.partenairesLocaux[0].label).toEqual('Ville de Paris');
+            expect(droits.droitsEligibles.partenairesLocaux[0].prestations.paris_logement_familles).toBeTruthy();
+            expect(droits.droitsEligibles.partenairesLocaux[0].prestations.paris_logement_familles.montant).toEqual(10);
         });
     });
 
@@ -108,7 +119,7 @@ describe('ResultatService', function () {
         });
 
         it('should exclude local partenaire without prestation', function() {
-            expect(droits.droitsEligibles.partenairesLocaux.paris).toBeFalsy();
+            expect(droits.droitsEligibles.partenairesLocaux.filter(function(p) { return p.label == "Rennes Métropole"; }).length).toBeFalsy();
         });
     });
 });

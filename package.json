@@ -92,6 +92,7 @@
     "mustache": "^2.3.0",
     "ng-annotate-loader": "^0.6.1",
     "ngstorage": "~0.3.0",
+    "node-sass": "^4.9.4",
     "open": "0.0.5",
     "phantomjs-prebuilt": "^2.1.14",
     "postcss-loader": "^3.0.0",

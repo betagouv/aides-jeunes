@@ -70,7 +70,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 famille: {},
                 foyer_fiscal: {},
                 menage: {},
-                version: 4,
+                version: 5,
             };
         },
 

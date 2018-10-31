@@ -224,15 +224,6 @@
                         'label': 'Allocation aux adultes handicapés',
                         'description': 'L’allocation aux adultes handicapés (AAH) est une aide financière qui permet d’assurer un revenu minimum. Cette aide est attribuée sous réserve de respecter 4 critères : le taux d’incapacité, l’âge, la nationalité et les ressources. L’AAH peut se cumuler soit avec le complément de ressources, soit avec la majoration pour la vie autonome ou, dans certains cas, l’aide à l’autonomie.',
                         'isBaseRessourcesYearMoins2': true,
-                        'uncomputability': {
-                            'intervention_CDAPH_necessaire': {
-                                'reason': {
-                                    user: 'votre taux d’incapacité sera déterminé par la <abbr title="Commission des droits et de l’autonomie des personnes handicapées">CDAPH</abbr> après le dépôt de votre demande',
-                                    admin: 'le taux d‘incapacité du demandeur doit être déterminé par la CDAPH',
-                                },
-                                'solution': 'Contactez <a target="_blank" rel="noopener" href="https://informations.handicap.fr/carte-france-mdph.php">la <abbr title="Maison départementale des personnes handicapées">MDPH</abbr> la plus proche</a> pour faire établir ce taux. Attention, votre éligibilité à l’AAH peut impacter vos droits au RSA et à la CMU-C.'
-                            }
-                        },
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242',
                         //  'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                         'forms': {
@@ -254,6 +245,7 @@
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F12484',
                         /* En principe, formulaire envoyé automatiquement ; lien vers brochure pole emploi */
                         'instructions': 'http://www.pole-emploi.fr/front/common/tools/download_file.jspz?mediaid=186108',
+                        'entity': 'individu', // default entity is famille
                     },
                 },
             },

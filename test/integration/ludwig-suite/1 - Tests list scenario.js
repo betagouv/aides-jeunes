@@ -10,5 +10,5 @@ steps: [
         'TestComponent.testedAideName'  : true,
         'TestComponent.expectedValue'   : /(\d+ €|Oui|Non)/,
     },
-    TestComponent.checkRecapSituationContains('dateDeValeur'),
+    TestComponent.checkRecapSituationContains('Identifiant'),
 ]

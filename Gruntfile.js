@@ -68,11 +68,8 @@ module.exports = function (grunt) {
     },
 
     webpack: {
-      prod: Object.assign(webpackProductionConfig, {
-        mode: 'production',
-      }),
+      prod: webpackProductionConfig,
       dev: Object.assign(webpackDevelopmentConfig, {
-        mode: 'development',
         keepalive: false,
       })
     },
@@ -81,17 +78,12 @@ module.exports = function (grunt) {
     // @see https://github.com/webpack/webpack-with-common-libs/blob/master/Gruntfile.js
     'webpack-dev-server': {
       options: {
-        webpack: Object.assign(webpackDevelopmentConfig, {
-          mode: 'development',
-        }),
+        webpack: webpackDevelopmentConfig,
         // TODO Parameterize via env for Docker / local
         host: '0.0.0.0',
       },
       start: {
         keepalive: false,
-        webpack: {
-          mode: 'development'
-        }
       }
     },
 

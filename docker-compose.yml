@@ -24,6 +24,7 @@ services:
       OPENFISCA_URL: http://openfisca:2000
     ports:
       - '35729:35729'
+      - '8080:8080'
     depends_on:
       - mongo
       - openfisca

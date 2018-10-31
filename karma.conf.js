@@ -13,12 +13,15 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'tmp/js/*vendor.js',
+      'dist/js/vendor.*.js',
+      'dist/js/stats.*.js',
+      'dist/js/scripts.recapSituation.*.js',
+      'dist/js/scripts.*.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'app/js/embed.js',    // depth-first glob interpretation of karma test runner means we need a forward declaration of the module
-      'app/js/**/*.js',
+      // FIXME Can't find variable: moment
+      'node_modules/moment/moment.js',
+      'dist/views/**/*.html',
       'test/spec/**/*.js',
-      'app/views/**/*.html',
     ],
 
     // list of files / patterns to exclude
@@ -30,7 +33,7 @@ module.exports = function(config) {
     },
 
     ngHtml2JsPreprocessor: {
-      stripPrefix: 'app/views',
+      stripPrefix: 'dist/views',
       moduleName: 'templates'
     },
 

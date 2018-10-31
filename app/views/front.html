@@ -14,24 +14,7 @@
 
     <base href="/">
 
-    <link rel="stylesheet" href="/styles/front.css">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/footer.css">
-    <link rel="stylesheet" href="/styles/homepage.css">
-    <link rel="stylesheet" href="/styles/individu-form.css">
-    <link rel="stylesheet" href="/styles/resources.css">
-    <link rel="stylesheet" href="/styles/logement.css">
-    <link rel="stylesheet" href="/styles/redirection.css">
-    <link rel="stylesheet" href="/styles/resultat.css">
-    <link rel="stylesheet" href="/styles/validation.css">
-    <link rel="stylesheet" href="/styles/text-container.css">
-    <link rel="stylesheet" href="/styles/enfants.css">
-    <link rel="stylesheet" href="/styles/foyer/capture-montant-ressource.css">
-    <link rel="stylesheet" href="/styles/foyer/capture-continuation-ressource.css">
-    <link rel="stylesheet" href="/styles/recap-situation.css">
-    <link rel="stylesheet" href="/styles/droits-eligibles-list.css">
-    <link rel="stylesheet" href="/styles/breadcrumb.css">
+    <link href="<%= htmlWebpackPlugin.files.chunks['scripts'].css %>" rel="stylesheet" />
 
     <meta name="description" content="Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.">
 
@@ -109,79 +92,18 @@
       </nav>
     </footer>
 
-    <script src="/js/vendor.js"></script>
-    <script src="/js/stats.js"></script>
-
+    <% if (htmlWebpackPlugin.options.devServer) { %>
+    <script src="<%= htmlWebpackPlugin.options.devServer %><%= htmlWebpackPlugin.files.chunks['vendor'].entry %>"></script>
+    <script src="<%= htmlWebpackPlugin.options.devServer %><%= htmlWebpackPlugin.files.chunks['stats'].entry %>"></script>
+    <script src="<%= htmlWebpackPlugin.options.devServer %><%= htmlWebpackPlugin.files.chunks['scripts'].entry %>"></script>
+    <% } else { %>
+    <script src="<%= htmlWebpackPlugin.files.chunks['vendor'].entry %>"></script>
+    <script src="<%= htmlWebpackPlugin.files.chunks['stats'].entry %>"></script>
     {{#sentry}}
-    <script src="/js/sentry.js"></script>
+    <script src="<%= htmlWebpackPlugin.files.chunks['sentry'].entry %>"></script>
     {{/sentry}}
-
-    <!-- build:js({.tmp,app}) /js/scripts.js -->
-    <script src="/js/app.js"></script>
-    <script src="/js/common.js"></script>
-
-    <script src="/js/constants/situationsFamiliales.js"></script>
-    <script src="/js/constants/ressources.js"></script>
-    <script src="/js/constants/specificSituations.js"></script>
-    <script src="/js/constants/nationalites.js"></script>
-    <script src="/js/constants/logementTypes.js"></script>
-    <script src="/js/constants/droits.js"></script>
-    <script src="/js/constants/phishingExpressions.js"></script>
-    <script src="/js/constants/lyonMetropoleInseeCodes.js"></script>
-
-    <script src="/js/controllers/body.js"></script>
-    <script src="/js/controllers/homepage.js"></script>
-    <script src="/js/controllers/foyer.js"></script>
-    <script src="/js/controllers/foyer/individuForm.js"></script>
-    <script src="/js/controllers/foyer/conjoint.js"></script>
-    <script src="/js/controllers/foyer/enfants.js"></script>
-    <script src="/js/controllers/foyer/logement.js"></script>
-    <script src="/js/controllers/foyer/ressources/ressources.js"></script>
-    <script src="/js/controllers/foyer/ressources/individu.js"></script>
-    <script src="/js/controllers/foyer/ressources/types.js"></script>
-    <script src="/js/controllers/foyer/ressources/montants.js"></script>
-    <script src="/js/controllers/foyer/ressources/enfants.js"></script>
-    <script src="/js/controllers/foyer/pensionsAlimentaires.js"></script>
-    <script src="/js/controllers/foyer/yearMoins2.js"></script>
-    <script src="/js/controllers/foyer/rfr.js"></script>
-    <script src="/js/controllers/foyer/suggestion.js"></script>
-    <script src="/js/controllers/foyer/recapSituation.js"></script>
-    <script src="/js/controllers/foyer/patrimoine.js"></script>
-    <script src="/js/controllers/redirection.js"></script>
-    <script src="/js/controllers/resultat.js"></script>
-    <script src="/js/controllers/stats.js"></script>
-    <script src="/js/controllers/validation.js"></script>
-
-    <script src="/js/services/abtestingService.js"></script>
-    <script src="/js/services/cityService.js"></script>
-    <script src="/js/services/situationService.js"></script>
-    <script src="/js/services/resultatService.js"></script>
-    <script src="/js/services/individuService.js"></script>
-    <script src="/js/services/ressourceService.js"></script>
-    <script src="/js/services/customizationService.js"></script>
-    <script src="/js/services/logementService.js"></script>
-    <script src="/js/services/trampolineService.js"></script>
-    <script src="/js/services/monthService.js"></script>
-
-    <script src="/js/directives/breadcrumb.js"></script>
-    <script src="/js/directives/date.js"></script>
-    <script src="/js/directives/selectOnFocus.js"></script>
-    <script src="/js/directives/zeroToEmpty.js"></script>
-    <script src="/js/directives/individuBlock.js"></script>
-    <script src="/js/directives/etablissementsList.js"></script>
-    <script src="/js/directives/droitsList.js"></script>
-    <script src="/js/directives/focus.js"></script>
-    <script src="/js/directives/captureMontantRessource.js"></script>
-    <script src="/js/directives/captureContinuationRessource.js"></script>
-    <script src="/js/directives/droitsEligiblesList.js"></script>
-    <script src="/js/directives/ym2RessourcesCallToAction.js"></script>
-    <script src="/js/directives/yesNoQuestion.js"></script>
-
-    <script src="/js/filters/strings.js"></script>
-    <script src="/js/filters/isEmpty.js"></script>
-    <script src="/js/filters/orderObjectBy.js"></script>
-
-    <!-- endbuild -->
+    <script src="<%= htmlWebpackPlugin.files.chunks['scripts'].entry %>"></script>
+    <% } %>
 
     <!-- Piwik -->
     <script type="text/javascript">
@@ -204,5 +126,8 @@
     </script>
     <noscript><p><img src="https://stats.data.gouv.fr/piwik.php?idsite=9&rec=1&action_name=no-js" style="border:0;" alt="" /></p></noscript>
     <!-- End Piwik Code -->
+    <% if (htmlWebpackPlugin.options.devServer) { %>
+    <script src="<%= htmlWebpackPlugin.options.devServer %>/webpack-dev-server.js" type="text/javascript"></script>
+    <% } %>
   </body>
 </html>

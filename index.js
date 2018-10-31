@@ -25,7 +25,6 @@ module.exports = function(app) {
     var directory = 'dist';
 
     if ('development' === env) {
-        directory = 'app';
 
         app.use(require('connect-livereload')());
 
@@ -39,11 +38,6 @@ module.exports = function(app) {
             next();
         });
 
-        app.use(express.static(path.join(__dirname, directory)));
-        app.use('/fonts',            express.static(path.join(__dirname, 'tmp/fonts')));
-        app.use('/js/vendor.js',     express.static(path.join(__dirname, 'tmp/js/vendor.js')));
-        app.use('/js/stats.js',      express.static(path.join(__dirname, 'tmp/js/stats.js')));
-        app.use('/styles/front.css', express.static(path.join(__dirname, 'tmp/styles/front.css')));
     }
     app.use('/recap-situation', express.static(path.join(__dirname, directory)));
 

@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var merge = require('webpack-merge');
@@ -147,7 +146,6 @@ module.exports = function(env, argv) {
 
     if (argv.mode === 'production') {
 
-        plugins.push(new CleanWebpackPlugin([ 'dist' ]));
         plugins.push(new webpack.HashedModuleIdsPlugin());
 
         overrideConfig = {

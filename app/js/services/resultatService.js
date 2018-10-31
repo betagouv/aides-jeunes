@@ -35,44 +35,6 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
         }
     }
 
-    function computeEligibleAides(situation, computedRessources, period, customizationId, aidesProvider, injectedAides, isEligible, aide, aideId) {
-
-        if (_.some(situation.individus, function(individu) { return wasInjected(aideId, individu); })) {
-            injectedAides.push(aide);
-            return;  // the aides were declared, do not re-compute the results
-        }
-
-        var value = valueAt(aideId + '_non_calculable', computedRessources, period);
-
-        if ((! value) || value === 'calculable') {
-            value = round(valueAt(aideId, computedRessources, period), aide);
-        }
-
-        if (isEligible) {
-            if (! value) return;
-
-            return _.assign({},
-                aide,
-                {
-                    montant: value,
-                    provider: aidesProvider,
-                },
-                customizationId && aide.customization && aide.customization[customizationId]
-            );
-        } else {
-            if (value) return;
-
-            return _.assign({},
-                aide,
-                {
-                    montant: 0,
-                    provider: aidesProvider,
-                },
-                customizationId && aide.customization && aide.customization[customizationId]
-            );
-        }
-    }
-
     function computeAides(situation, openfiscaResponse) {
         var period = moment(situation.dateDeValeur).format('YYYY-MM');
         var customizationId = CustomizationService.determineCustomizationId(openfiscaResponse, period);
@@ -80,39 +42,50 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
         var computedRessources = normalizeOpenfiscaRessources(openfiscaResponse);
 
         var result = {
-            eligibleAides: undefined,
-            nonEligibleAides: undefined,
+            eligibleAides: {},
+            nonEligibleAides: {},
             injectedAides: [], // declared by the user
         };
 
-        result.eligibleAides = _.mapValues(droitsDescription, function(aidesProviders) {
-            return _.mapValues(aidesProviders, function(aidesProvider) {
-                var callback = computeEligibleAides.bind(null, situation, computedRessources, period, customizationId, aidesProvider, result.injectedAides, true);
-                var eligibleAides = _.mapValues(aidesProvider.prestations, callback);
+        _.mapValues(droitsDescription, function(aidesProviders, aidesLevel) {
+            result.eligibleAides[aidesLevel] = {};
+            result.nonEligibleAides[aidesLevel] = {};
 
-                return _.assign({}, aidesProvider, { prestations: _.pickBy(eligibleAides) });
+            _.mapValues(aidesProviders, function(aidesProvider, aidesProviderId) {
+                _.forEach(aidesProvider.prestations, function(aide, aideId) {
+                    if (_.some(situation.individus, function(individu) { return wasInjected(aideId, individu); })) {
+                        return result.injectedAides.push(aide);
+                    }
+
+                    var value = valueAt(aideId + '_non_calculable', computedRessources, period);
+
+                    if ((! value) || value === 'calculable') {
+                        value = round(valueAt(aideId, computedRessources, period), aide);
+                    }
+
+                    var dest = (value) ? result.eligibleAides[aidesLevel] : result.nonEligibleAides[aidesLevel];
+                    dest[aideId] = _.assign({},
+                        aide,
+                        {
+                            id: aideId,
+                            montant: value,
+                            provider: aidesProvider,
+                            providerId: aidesProviderId,
+                        },
+                        customizationId && aide.customization && aide.customization[customizationId]
+                    );
+                });
             });
         });
 
-        result.nonEligibleAides = _.mapValues(droitsDescription, function(aidesProviders) {
-            return _.mapValues(aidesProviders, function(aidesProvider) {
-                var callback = computeEligibleAides.bind(null, situation, computedRessources, period, customizationId, aidesProvider, result.injectedAides, false);
-                var eligibleAides = _.mapValues(aidesProvider.prestations, callback);
-
-                return _.assign({}, aidesProvider, { prestations: _.pickBy(eligibleAides) });
+        var localGroups = _.groupBy(result.eligibleAides.partenairesLocaux, 'providerId');
+        result.eligibleAides.partenairesLocaux = Object.keys(localGroups).map(function(partenaireLocal) {
+            return _.assign({}, localGroups[partenaireLocal][0].provider, {
+                prestations: localGroups[partenaireLocal].reduce(function(obj, prestation) {
+                    obj[prestation.id] = prestation;
+                    return obj;
+                }, {})
             });
-        });
-
-        result.eligibleAides.prestationsNationales = _.reduce(result.eligibleAides.prestationsNationales, function(aides, aidesProvider) {
-            return _.assign(aides, aidesProvider.prestations);  // flatten all national prestations
-        }, {});
-
-        result.nonEligibleAides.prestationsNationales = _.reduce(result.nonEligibleAides.prestationsNationales, function(aides, aidesProvider) {
-            return _.assign(aides, aidesProvider.prestations);  // flatten all national prestations
-        }, {});
-
-        result.eligibleAides.partenairesLocaux = _.pickBy(result.eligibleAides.partenairesLocaux, function(aidesProvider) {
-            return _.keys(aidesProvider.prestations).length;  // exclude partenaires with no eligible prestations
         });
 
         return {

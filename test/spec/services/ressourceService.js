@@ -11,7 +11,7 @@ describe('RessourceService', function () {
             service = RessourceService;
         });
         individu = {};
-        dateDeValeur = Date();
+        dateDeValeur = moment();
     });
 
     describe('getPeriodKeysForCurrentYear', function() {

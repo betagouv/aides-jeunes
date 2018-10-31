@@ -160,6 +160,16 @@ jobs:
       - run:
           name: Watai family suite
           command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"browserName":"chrome","version":"latest"}}'
+  test_openfisca_test_generation:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/mes-aides-ui
+      - *install_pip_and_pipenv
+      - run:
+          name: Check OpenFisca test generation
+          command: npm run test:openfisca
   deploy:
     machine:
       enabled: true
@@ -192,9 +202,15 @@ workflows:
             - install_openfisca
             - test_mocha
             - test_karma
+      - test_openfisca_test_generation:
+          requires:
+            - install_openfisca
+            - test_mocha
+            - test_karma
       - deploy:
           requires:
             - test_selenium_chrome
+            - test_openfisca_test_generation
           filters:
             branches:
               only: master

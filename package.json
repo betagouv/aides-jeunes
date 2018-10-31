@@ -37,7 +37,8 @@
     "raven-js": "^3.26.3",
     "request-promise": "^4.2.2",
     "serve-favicon": "^2.4.0",
-    "sgmap-mes-aides-api": "sgmap/mes-aides-api#v12.0.0"
+    "sgmap-mes-aides-api": "sgmap/mes-aides-api#v12.0.0",
+    "tmp": "0.0.33"
   },
   "repository": {
     "type": "git",
@@ -118,6 +119,7 @@
     "build": "NODE_ENV=production webpack --mode=production",
     "build:dev": "webpack --mode=development",
     "lint": "eslint .",
+    "test:openfisca": "INTEGRATION_TEST=1 mocha test/backend/openfisca/test.js --timeout 10000",
     "test:mocha": "mocha --recursive test/backend",
     "test:karma": "grunt test",
     "test": "npm run test:mocha && npm run test:karma",

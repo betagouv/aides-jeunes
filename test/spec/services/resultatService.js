@@ -88,6 +88,10 @@ describe('ResultatService', function () {
             expect(droits.droitsEligibles.partenairesLocaux[0].label).toEqual('Ville de Paris');
             expect(droits.droitsEligibles.partenairesLocaux[0].prestations.paris_logement_familles).toBeTruthy();
             expect(droits.droitsEligibles.partenairesLocaux[0].prestations.paris_logement_familles.montant).toEqual(10);
+
+            expect(droits.droitsNonEligibles.prestationsNationales.cmu_c).toBeTruthy();
+            expect(droits.droitsNonEligibles.prestationsNationales.cmu_c.montant).toBeFalsy();
+            expect(droits.droitsNonEligibles.prestationsNationales.cmu_c.provider.label).toEqual('Assurance maladie');
         });
     });
 

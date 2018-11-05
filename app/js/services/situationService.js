@@ -115,8 +115,12 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             situation.individus.forEach(function(individu) {
                 individu.date_naissance = individu.date_naissance.format('YYYY-MM-DD');
                 delete individu.hasRessources;
+
+                if (individu.dateDernierContratTravail) {
+                    individu.dateDernierContratTravail = individu.dateDernierContratTravail.format('YYYY-MM-DD');
+                }
             });
-            return jsyaml.dump(_.omit(situation, '__v'));
+            return jsyaml.dump(_.omit(situation, ['__v', 'modifiedFrom', 'status', 'token', 'version']));
         },
 
         /**

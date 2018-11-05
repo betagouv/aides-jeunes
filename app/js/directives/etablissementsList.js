@@ -12,7 +12,7 @@ angular.module('ddsApp').directive('etablissementsList', function() {
     };
 });
 
-angular.module('ddsApp').controller('etablissementsListCtrl', function($http, $interval, $scope, SituationService, EtablissementService) {
+angular.module('ddsApp').controller('etablissementsListCtrl', function($http, $interval, $scope, EtablissementService, SituationService) {
     function getEtablissements() {
         if (! $scope.codePostal) {
             return;

@@ -1,4 +1,5 @@
 var expect = require('expect');
+var _ = require('lodash');
 var fs = require('fs');
 var subject = require('../../../backend/lib/openfisca/test');
 var tmp = require('tmp');
@@ -92,10 +93,13 @@ describe('openfisca generateYAMLTest', function() {
 
             Object.keys(subject.EXTENSION_VARIABLES).forEach(function(extensionName) {
                 it('passes OpenFisca test with ' + extensionName  + ' extension', function(done) {
-                    var details = Object.assign({}, details, { output_variables: { rsa: 545.48 }});
-                    var yaml = subject.generateYAMLTest(details, situation);
+                    var details = Object.assign({ extension: extensionName }, details, { output_variables: { rsa: 545.48 }});
+                    var yamlContent = subject.generateYAMLTest(details, situation);
 
-                    runOpenFiscaTest(yaml, extensionName.replace('-', '_'), done);
+                    var variableListRegex = _.values(subject.EXTENSION_VARIABLES[extensionName]).map(function(variableList) { return variableList.join('|'); }).join('|');
+                    expect(yamlContent).toMatch(new RegExp(variableListRegex));
+
+                    runOpenFiscaTest(yamlContent, extensionName.replace('-', '_'), done);
                 });
             });
         });

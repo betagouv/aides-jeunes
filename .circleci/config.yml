@@ -204,9 +204,8 @@ workflows:
             - test_karma
       - test_openfisca_test_generation:
           requires:
+            - install
             - install_openfisca
-            - test_mocha
-            - test_karma
       - deploy:
           requires:
             - test_selenium_chrome

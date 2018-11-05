@@ -46,6 +46,7 @@ require('./js/services/logementService.js');
 require('./js/services/trampolineService.js');
 require('./js/services/monthService.js');
 require('./js/services/etablissementService.js');
+require('./js/services/suggestionService.js');
 
 var situationsFamiliales = require('./js/constants/situationsFamiliales.js');
 angular.module('ddsCommon').constant('situationsFamiliales', situationsFamiliales);

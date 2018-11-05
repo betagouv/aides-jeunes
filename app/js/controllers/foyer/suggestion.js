@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http,droitsDescription, SituationService) {
+angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http, droitsDescription, SituationService, SuggestionService) {
     $scope.test = {
         name: 'Nom du test',
         description: 'Description du test',
@@ -21,6 +21,7 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http,dro
                     code: prestation,
                     level: level,
                     provider: provider,
+                    repository: droitsDescription[level][provider].repository,
                 }, droitsDescription[level][provider].prestations[prestation]));
             }
         }
@@ -44,19 +45,6 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http,dro
         return value;
     }
     $scope.displayValueFor = displayValueFor;
-
-    function generateState(test) {
-        var outputVariables = test.expectedResults.reduce(function(results, expectedValue) {
-            results[expectedValue.ref.code] = expectedValue.expectedValue;
-            return results;
-        }, {});
-
-        return {
-            name: test.name,
-            description: test.description,
-            output_variables: outputVariables
-        };
-    }
 
     function getActualValue(droitId) {
         if (! $scope.droits) {
@@ -84,26 +72,25 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http,dro
         if ($scope.submitting || (! form.$valid)) {
             return;
         }
+
         if (_.some($scope.test.expectedResults, function(expectedResult) { return ! expectedResult.ref; })) {
             $scope.error = 'Une prestation est mal définie.';
             return;
         }
 
-        var extensions = _.uniq($scope.test.expectedResults.map(function(expectedValue) {
-            return (expectedValue.ref.level == 'partenairesLocaux' && expectedValue.ref.provider) || 'france';
-        }));
-        if (extensions.length != 1) {
-            $scope.error = 'Vous avez spécifié des prestations de plusieurs extensions. Dans un test donné, vous ne pouvez spécifier que des prestations nationales et celle d‘une seule extension. Pour plus d‘information, contactez-nous';
+        var aidsWithAnExpectedValue = $scope.test.expectedResults.map(function(expectedValue) { return expectedValue.ref; });
+        var metadata = SuggestionService.determineExtensionAndRepository(aidsWithAnExpectedValue);
+        if (metadata.error) {
+            $scope.error = metadata.error;
             return;
         }
-        var extension = extensions[0];
+
+        var testMetadata = SuggestionService.generateTestMetadata($scope.test, metadata.extension);
 
         $scope.submitting = true;
-        var testMetadata = _.assign({ extension: extension }, generateState($scope.test));
-
         $http.post('api/situations/' + $scope.situation._id + '/openfisca-test', testMetadata)
             .then(function(result) {
-                return $http.post('https://ludwig.incubateur.net/api/repositories/github/ludwig-test/openfisca-' + (testMetadata.extension) + '/suggest', {
+                return $http.post('https://ludwig.incubateur.net/api/repositories/github/betagouv/' + (metadata.repository) + '/suggest', {
                     title: testMetadata.name,
                     body: testMetadata.description,
                     content: result.data

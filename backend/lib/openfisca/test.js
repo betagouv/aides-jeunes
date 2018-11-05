@@ -53,6 +53,9 @@ var EXTENSION_VARIABLES = {
     'openfisca-rennesmetropole': {
         individus: [ 'rennes_metropole_transport' ],
     },
+    'openfisca-bacASable': {
+        familles: [ 'alfortville_noel_enfants']
+    }
 };
 
 function prepareTestSituationForSpecificExtension(situation, extension) {
@@ -109,3 +112,5 @@ exports.generateTest = function generateYAMLTest(details, situation) {
 exports.generateYAMLTest = function generateYAMLTest(details, situation) {
     return toYAML(exports.generateTest(details, situation));
 };
+
+exports.EXTENSION_VARIABLES = EXTENSION_VARIABLES;

@@ -169,7 +169,7 @@ jobs:
       - *install_pip_and_pipenv
       - run:
           name: Check OpenFisca test generation
-          command: npm run test:openfisca
+          command: pipenv run npm run test:openfisca
   deploy:
     machine:
       enabled: true

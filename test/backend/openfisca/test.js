@@ -1,6 +1,7 @@
 var expect = require('expect');
 var _ = require('lodash');
-var fs = require('fs');
+var Promise = require('bluebird');
+var fs = Promise.promisifyAll(require('fs'));
 var subject = require('../../../backend/lib/openfisca/test');
 var tmp = require('tmp');
 
@@ -38,36 +39,39 @@ describe('openfisca generateTest', function() {
     });
 });
 
-function run_cmd(cmd, args, callback ) {
-    var spawn = require('child_process').spawn;
-    var child = spawn(cmd, args);
-    var respErr = "";
-    var respOut = "";
+function run_cmd(cmd, args) {
+    return new Promise(function(resolve, reject) {
+        var spawn = require('child_process').spawn;
+        var child = spawn(cmd, args);
+        var respErr = "";
+        var respOut = "";
 
-    child.stdout.on('data', function (buffer) { respOut += buffer.toString(); });
-    child.stderr.on('data', function (buffer) { respErr += buffer.toString(); });
-    child.on('exit', function(code) { callback(code ? 'Exit code was ' + code : null, respOut, respErr); });
-    child.on('error', function(err) { callback(err); });
+        child.stdout.on('data', function (buffer) { respOut += buffer.toString(); });
+        child.stderr.on('data', function (buffer) { respErr += buffer.toString(); });
+        child.on('exit', function(code) {
+            var result = {
+                stdout: respOut,
+                stderr: respErr
+            };
+            if (code) {
+                result.error = 'Exit code was ' + code;
+                reject(result);
+            } else {
+                resolve(result);
+            }
+        });
+        child.on('error', function(err) { reject({ error: err }); });
+    });
 }
 
-function runAndCheckOpenFiscaTest(yaml, extension, done) {
-    if (! done) {
-        done = extension;
-        extension = undefined;
-    }
-
+function runOpenFiscaTest(yaml, extension) {
     var tmpobj = tmp.fileSync();
-    fs.writeFileSync(tmpobj.fd, yaml, 'utf8');
-    var args = extension ? [tmpobj.name, '--extension', extension] : [tmpobj.name];
+    return fs.writeFileAsync(tmpobj.fd, yaml, 'utf8')
+        .then(function() {
+            var args = extension ? [tmpobj.name, '--extension', extension] : [tmpobj.name];
 
-    run_cmd('openfisca-run-test', args, function(error, stdout, stderr) {
-        if (error) {
-            console.log(yaml);
-        }
-        expect(error).toBeFalsy(stderr);
-        expect(stderr).toMatch(/\nOK\n$/);
-        done();
-    });
+            return run_cmd('openfisca-run-test', args);
+        });
 }
 
 describe('openfisca generateYAMLTest', function() {
@@ -85,9 +89,17 @@ describe('openfisca generateYAMLTest', function() {
         describe('generates processable YAML files', function() {
             it('passes OpenFisca test without extension', function(done) {
                 var details = Object.assign({}, details, { output_variables: { rsa: 545.48 }});
-                var yaml = subject.generateYAMLTest(details, situation);
+                var yamlContent = subject.generateYAMLTest(details, situation);
 
-                runAndCheckOpenFiscaTest(yaml, done);
+                runOpenFiscaTest(yamlContent)
+                    .then(function(result) {
+                        expect(result.stderr).toMatch(/\nOK\n$/);
+                    })
+                    .catch(function(failure) {
+                        console.log(yamlContent);
+                        expect(failure).toBeFalsy(failure.stderr);
+                    })
+                    .finally(done);
             });
 
             Object.keys(subject.EXTENSION_VARIABLES).forEach(function(extensionName) {
@@ -98,7 +110,15 @@ describe('openfisca generateYAMLTest', function() {
                     var variableListRegex = _.values(subject.EXTENSION_VARIABLES[extensionName]).map(function(variableList) { return variableList.join('|'); }).join('|');
                     expect(yamlContent).toMatch(new RegExp(variableListRegex));
 
-                    runAndCheckOpenFiscaTest(yamlContent, extensionName.replace('-', '_'), done);
+                    runOpenFiscaTest(yamlContent, extensionName.replace('-', '_'))
+                        .then(function(result) {
+                            expect(result.stderr).toMatch(/\nOK\n$/);
+                        })
+                        .catch(function(failure) {
+                            console.log(yamlContent);
+                            expect(failure).toBeFalsy(failure.stderr);
+                        })
+                        .finally(done);
                 });
             });
         });

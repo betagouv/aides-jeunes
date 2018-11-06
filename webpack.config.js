@@ -60,11 +60,21 @@ var config = {
                 use: [
                     'file-loader?name=img/[name].[ext]',
                 ]
+            },
+            {
+                test: /\.html$/,
+                exclude: /(front|embed)\.html$/,
+                use: [{
+                    loader: 'html-loader',
+                    options: {
+                        minimize: true,
+                    }
+                }],
             }
         ]
     },
     devServer: {
-        contentBase: './app',
+        contentBase: path.join(__dirname, 'dist'),
     },
     plugins: [
         new CopyWebpackPlugin([

@@ -80,7 +80,6 @@ var config = {
         new CopyWebpackPlugin([
             { from: 'app/documents', to: 'documents/' },
             { from: 'app/img', to: 'img/' },
-            { from: 'app/views', to: 'views/', ignore: [ 'front.html', 'embed.html' ] },
         ]),
         // Avoid bundling all Moment locales
         // @see https://github.com/moment/moment/issues/2517

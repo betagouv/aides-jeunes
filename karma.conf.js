@@ -3,6 +3,30 @@
 // Karma configuration
 // http://karma-runner.github.io/0.10/config/configuration-file.html
 
+// https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables
+var isCircleCI = process.env.CIRCLECI && process.env.CIRCLECI === 'true';
+var useProductionAssets = isCircleCI || process.env.NODE_ENV === 'production';
+
+var files = [];
+if (useProductionAssets) {
+    files = [
+        // On CircleCI, we test against production build
+        'dist/js/vendor.*.js',
+        'dist/js/stats.*.js',
+        'dist/js/scripts.recapSituation.*.js',
+        'dist/js/scripts.*.js',
+    ];
+} else {
+    // TODO Make sure Webpack DevServer is running (?)
+    files = [
+        // Serve files from Webpack DevServer
+        'http://localhost:8080/js/vendor.js',
+        'http://localhost:8080/js/stats.js',
+        'http://localhost:8080/js/scripts.recapSituation.js',
+        'http://localhost:8080/js/scripts.js',
+    ];
+}
+
 module.exports = function(config) {
   config.set({
     // base path, that will be used to resolve files and exclude
@@ -12,16 +36,12 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
-    files: [
-      'dist/js/vendor.*.js',
-      'dist/js/stats.*.js',
-      'dist/js/scripts.recapSituation.*.js',
-      'dist/js/scripts.*.js',
+    files: files.concat([
       'node_modules/angular-mocks/angular-mocks.js',
       // FIXME Can't find variable: moment
       'node_modules/moment/moment.js',
       'test/spec/**/*.js',
-    ],
+    ]),
 
     // list of files / patterns to exclude
     exclude: [

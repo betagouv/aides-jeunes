@@ -3,7 +3,7 @@
 angular.module('ddsApp').directive('etablissementsList', function() {
     return {
         restrict: 'E',
-        templateUrl: 'partials/etablissements-list.html',
+        templateUrl: '/partials/etablissements-list.html',
         scope: {
             codeInsee: '=',
             codePostal: '='

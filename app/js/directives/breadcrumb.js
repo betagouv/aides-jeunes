@@ -17,7 +17,7 @@ function matchStep(state, step) {
 angular.module('ddsApp').directive('breadcrumb', function($rootScope) {
     return {
         restrict: 'E',
-        templateUrl: 'partials/breadcrumb.html',
+        templateUrl: '/partials/breadcrumb.html',
         controller: function($scope, $state) {
 
             // @see https://ui-router.github.io/guide/ng1/migrate-to-1_0#state-change-events

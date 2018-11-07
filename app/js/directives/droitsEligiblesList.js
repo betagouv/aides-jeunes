@@ -23,10 +23,10 @@ var controllerOptions = function(templateUrl) {
 };
 
 angular.module('ddsApp')
-    .directive('droitEligiblesList', controllerOptions('partials/droits-eligibles-list.html'));
+    .directive('droitEligiblesList', controllerOptions('/partials/droits-eligibles-list.html'));
 
 angular.module('ddsApp')
-    .directive('droitNonEligiblesList', controllerOptions('partials/droits-non-eligibles-list.html'));
+    .directive('droitNonEligiblesList', controllerOptions('/partials/droits-non-eligibles-list.html'));
 
 angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope, TrampolineService) {
     $scope.isNumber = _.isNumber;

@@ -4,7 +4,7 @@ angular.module('ddsApp').directive('yesNoQuestion', function($parse) {
     return {
         restrict: 'E',
         transclude: true,
-        templateUrl: 'partials/foyer/yes-no-question.html',
+        templateUrl: '/partials/foyer/yes-no-question.html',
         scope: true,
         controller: 'yesNoQuestionCtrl',
         link: function ($scope, $element, $attributes) {

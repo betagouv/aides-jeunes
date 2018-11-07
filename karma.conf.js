@@ -20,22 +20,12 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       // FIXME Can't find variable: moment
       'node_modules/moment/moment.js',
-      'dist/views/**/*.html',
       'test/spec/**/*.js',
     ],
 
     // list of files / patterns to exclude
     exclude: [
     ],
-
-    preprocessors: {
-      '**/*.html': ['ng-html2js']
-    },
-
-    ngHtml2JsPreprocessor: {
-      stripPrefix: 'dist/views',
-      moduleName: 'templates'
-    },
 
     // web server port
     port: 8002,

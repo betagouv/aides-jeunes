@@ -83,7 +83,6 @@
     "jasmine-core": "*",
     "karma": "^1.0.0",
     "karma-jasmine": "^1.0.2",
-    "karma-ng-html2js-preprocessor": "^1.0.0",
     "karma-ng-scenario": "^1.0.0",
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-requirejs": "^1.0.0",

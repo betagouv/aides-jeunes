@@ -4,7 +4,6 @@ describe('directive dds-date', function() {
     var $scope, form;
 
     beforeEach(module('ddsApp'));
-    beforeEach(module('templates'));
 
     beforeEach(inject(function($compile, $rootScope) {
         $scope = $rootScope;

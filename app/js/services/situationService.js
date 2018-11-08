@@ -97,12 +97,10 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         save: function(situation) {
             if (situation._id) {
                 situation.modifiedFrom = situation._id;
-                delete situation._id;
             }
-
             cleanSituation(situation);
 
-            return $http.post('/api/situations/', situation)
+            return $http.post('/api/situations/', _.omit(situation, '_id'))
                 .then(function(result) { return result.data; })
                 .then(saveLocal);
         },

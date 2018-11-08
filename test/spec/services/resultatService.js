@@ -9,6 +9,9 @@ describe('ResultatService', function () {
         {
             service = ResultatService;
             DROITS_DESCRIPTION = droitsDescription;
+            DROITS_DESCRIPTION.prestationsNationales.assurance_retraite.prestations.private_aid = {
+                private: true
+            };
         });
 
         situation = {
@@ -20,7 +23,7 @@ describe('ResultatService', function () {
                 aide_logement: {
                     '2014-11': 100
                 }
-            },{
+            }, {
                 ppa: {
                     '2014-11': 100
                 }
@@ -34,6 +37,9 @@ describe('ResultatService', function () {
                         '2014-11': 'error'
                     },
                     paris_logement_familles: {
+                        '2014-11': 10
+                    },
+                    private_aid: {
                         '2014-11': 10
                     }
                 }
@@ -124,6 +130,16 @@ describe('ResultatService', function () {
 
         it('should exclude local partenaire without prestation', function() {
             expect(droits.droitsEligibles.partenairesLocaux.filter(function(p) { return p.label == "Rennes Métropole"; }).length).toBeFalsy();
+        });
+    });
+
+    describe('_computeAides exclude private aids', function() {
+        beforeEach(function() {
+            droits = service._computeAides(situation, openfiscaResult);
+        });
+
+        it('should exclude private aid', function() {
+            expect(droits.droitsEligibles.prestationsNationales.private_aid).toBeFalsy();
         });
     });
 });

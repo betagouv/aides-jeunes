@@ -35,7 +35,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
         }
     }
 
-    function computeAides(situation, openfiscaResponse) {
+    function computeAides(situation, openfiscaResponse, showPrivate) {
         var period = moment(situation.dateDeValeur).format('YYYY-MM');
         var customizationId = CustomizationService.determineCustomizationId(openfiscaResponse, period);
 
@@ -53,6 +53,10 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
 
             _.mapValues(aidesProviders, function(aidesProvider, aidesProviderId) {
                 _.forEach(aidesProvider.prestations, function(aide, aideId) {
+                    if ((! showPrivate) && aide.private) {
+                        return;
+                    }
+
                     if (_.some(situation.individus, function(individu) { return wasInjected(aideId, individu); })) {
                         return result.injectedAides.push(aide);
                     }
@@ -95,12 +99,12 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
         };
     }
 
-    function simulate(situation) {
+    function simulate(situation, showPrivate) {
         return $http.get('api/situations/' + situation._id + '/openfisca-response')
             .then(function(OpenfiscaResponse) {
                 return OpenfiscaResponse.data;
             }).then(function(openfiscaResponse) {
-                return computeAides(situation, openfiscaResponse);
+                return computeAides(situation, openfiscaResponse, showPrivate);
             });
     }
 

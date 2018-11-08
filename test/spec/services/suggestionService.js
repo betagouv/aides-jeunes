@@ -15,7 +15,7 @@ describe('Service: Suggestion', function() {
         describe('national aids', function() {
             beforeEach(function() {
                 result = service.determineExtensionAndRepository([{
-                    level: 'prestationsNationales'
+                    provider: { level: 'prestationsNationales' }
                 }]);
             });
 
@@ -31,8 +31,10 @@ describe('Service: Suggestion', function() {
         describe('local aids', function() {
             beforeEach(function() {
                 result = service.determineExtensionAndRepository([{
-                    level: 'partenairesLocaux',
-                    repository: 'provider'
+                    provider: {
+                        level: 'partenairesLocaux',
+                        repository: 'provider'
+                    }
                 }]);
             });
 

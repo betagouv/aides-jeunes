@@ -1,33 +1,54 @@
 'use strict';
 
-angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http, droitsDescription, SituationService, SuggestionService) {
+angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http, droitsDescription, ResultatService, SituationService, SuggestionService) {
     $scope.test = {
         name: 'Nom du test',
         description: 'Description du test',
         expectedResults: []
     };
+
     $scope.situationYAML = SituationService.YAMLRepresentation($scope.situation);
+    ResultatService.simulate($scope.situation, true)
+        .then(bootstrap);
 
-    $scope.submitting = false;
-    $scope.submitLabel = function() {
-        return $scope.submitting ? 'Enregistrement…' : 'Enregistrer';
-    };
+    function bootstrap(results) {
+        $scope.results = processResults(results);
 
-    var droits = [];
-    for (var level in droitsDescription) {
-        for (var provider in droitsDescription[level]) {
-            for (var prestation in droitsDescription[level][provider].prestations) {
-                droits.push(_.assign({
-                    code: prestation,
-                    level: level,
-                    provider: provider,
-                    repository: droitsDescription[level][provider].repository,
-                }, droitsDescription[level][provider].prestations[prestation]));
+
+        $scope.submitting = false;
+        $scope.submitLabel = function() {
+            return $scope.submitting ? 'Enregistrement…' : 'Enregistrer';
+        };
+
+        var droits = [];
+        for (var level in droitsDescription) {
+            for (var provider in droitsDescription[level]) {
+                for (var prestation in droitsDescription[level][provider].prestations) {
+                    droits.push(_.assign({
+                        id: prestation,
+                        provider: _.assign({ id: provider, level: level }, droitsDescription[level][provider]),
+                    }, droitsDescription[level][provider].prestations[prestation]));
+                }
             }
         }
+
+        var droitCountByLabel = _.countBy(droits, 'label');
+        droits.forEach(function(droit) {
+            if (droitCountByLabel[droit.label] > 1) {
+                droit.label = droit.provider.label + ' - ' + droit.label;
+            }
+        });
+        $scope.droitsById = _.keyBy(droits, 'id');
+
+        $scope.possibleValues = _.sortBy(droits, 'label');
     }
-    var droitsById = _.keyBy(droits, 'code');
-    $scope.possibleValues = _.sortBy(droits, 'label');
+
+    // Remove complexity from result object
+    function processResults(results) {
+        return results.droitsEligibles.partenairesLocaux.reduce(function(aggregate, partenairesLocal) {
+            return _.assign(aggregate, partenairesLocal.prestations);
+        }, _.assign({}, results.droitsEligibles.prestationsNationales));
+    }
 
     function displayValueFor(droit, value) {
         if (_.isBoolean(value)) {
@@ -46,22 +67,10 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http, dr
     }
     $scope.displayValueFor = displayValueFor;
 
-    function getActualValue(droitId) {
-        if (! $scope.droits) {
-            return;
-        }
-        var droit = droitsById[droitId];
-        var providerData = $scope.droits[droit.level];
-        if (droit.level == 'prestationsNationales')
-            return providerData[droitId];
-
-        return providerData[droit.provider] && providerData[droit.provider].prestations[droitId];
-    }
-
     $scope.droitSelected = function(expectedResult) {
-        if (! expectedResult)
+        if ((! expectedResult) || (! $scope.results))
             return;
-        var actualValue = getActualValue(expectedResult.ref.code) || {};
+        var actualValue = $scope.results[expectedResult.ref.id] || {};
         expectedResult.result = actualValue.montant;
         expectedResult.expectedValue = expectedResult.result;
         delete expectedResult.shouldCompute;

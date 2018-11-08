@@ -54,7 +54,7 @@
         <select
           id="droit-{{ $index }}"
           class="form-control"
-          ng-options="possibleValue as possibleValue.label for possibleValue in possibleValues track by possibleValue.label"
+          ng-options="possibleValue as possibleValue.label for possibleValue in possibleValues track by possibleValue.id"
           ng-model="droit.ref"
           ng-change="droitSelected(droit)">
         </select>
@@ -126,14 +126,14 @@
           Valeur attendue
         </label>
 
-        <div class="col-md-7" ng-if="droit.ref.hasMontant !== false">
+        <div class="col-md-7" ng-if="(! droit.ref.type) || droit.ref.type === 'float'">
           <div class="input-group">
             <input id="expected-value-{{ $index }}" class="form-control text-right" name="expected-value" type="number" lang="fr" step="any" ng-model="droit.expectedValue" required select-on-focus>
             <span class="input-group-addon">{{ droit.ref.unit || '€' }}</span>
           </div>
         </div>
 
-        <yes-no-question model="droit.expectedValue" ng-if="droit.ref.hasMontant === false"/>
+        <yes-no-question model="droit.expectedValue" ng-if="droit.ref.type === 'bool'"/>
       </div>
     </div>
   </div>

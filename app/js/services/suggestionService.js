@@ -4,8 +4,8 @@ angular.module('ddsApp').factory('SuggestionService', function() {
     return {
         determineExtensionAndRepository: function(aids) {
             var extensions = _.chain(aids)
-                .filter(function(aid) { return aid.level == 'partenairesLocaux'; })
-                .map(function(aid) { return aid.repository || aid.provider; })
+                .filter(function(aid) { return aid.provider.level == 'partenairesLocaux'; })
+                .map(function(aid) { return aid.provider.repository || aid.provider.id; })
                 .uniq()
                 .value();
 
@@ -30,7 +30,7 @@ angular.module('ddsApp').factory('SuggestionService', function() {
         },
         generateTestMetadata: function(test, extension) {
             var outputVariables = test.expectedResults.reduce(function(results, expectedValue) {
-                results[expectedValue.ref.code] = expectedValue.expectedValue;
+                results[expectedValue.ref.id] = expectedValue.expectedValue;
                 return results;
             }, {});
 

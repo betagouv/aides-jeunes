@@ -63,13 +63,6 @@ module.exports = function(app) {
     app.use('/documents', express.static(path.join(__dirname, 'dist/documents'), CACHE.FIVE_MINUTES));
     app.use(              express.static(path.join(__dirname, 'dist'),           CACHE.NONE));
 
-    app.use('/recap-situation/partials', express.static(path.join(viewsDirectory + '/partials')));
-    app.use('/partials', express.static(viewsDirectory + '/partials'));
-    app.use('/content-pages', express.static(viewsDirectory + '/content-pages'));
-    app.use('/partials', function(req, res) {
-        return res.sendStatus(404);
-    });
-
     app.use(bodyParser.urlencoded({ limit: '1024kb' }));
 
     // Route to download a PDF

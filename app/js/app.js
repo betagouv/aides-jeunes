@@ -1,5 +1,10 @@
 'use strict';
 
+// Use Webpack's require.context to manage dynamic requires for templates
+// The templates will be cached when the application is booted
+// https://webpack.js.org/guides/dependency-management/#require-context
+var template = require.context('../views', true, /(partials|content-pages)\/.*\.html$/);
+
 var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ddsCommon', 'ngSanitize', 'angulartics', 'angulartics.piwik']);
 
 ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $uiViewScrollProvider) {
@@ -306,7 +311,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $anchorScroll, $timeout) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $anchorScroll, $templateCache, $timeout) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -333,6 +338,15 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $anchorScroll, $t
                 title.focus();
             }
         });
+    });
+
+    // Preload templates in cache
+    // We use the keys() function of the context module API
+    // to iterate over the templates, and we store them in Angular's template cache.
+    // This means Angular won't try to load the template via AJAX
+    _.forEach(template.keys(), function(path) {
+        var cacheKey = path.replace('./', '/');
+        $templateCache.put(cacheKey, template(path));
     });
 
     $rootScope.$on('$locationChangeSuccess', function(event, current) {

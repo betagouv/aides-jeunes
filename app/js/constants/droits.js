@@ -481,9 +481,9 @@
                                     imgSrc: 'logo_cd93.png',
                                 },
                                 instructions: undefined, // Prevent default instructions recycling
-                                form: 'https://www.seine-saint-denis.fr/IMG/pdf/formulaire_demande_adpa.pdf',
+                                form: 'https://seinesaintdenis.fr/IMG/pdf/formulaire_demande_adpa.pdf',
                                 teleservice: undefined, // Prevent default form recycling
-                                link: 'https://www.seine-saint-denis.fr/L-Allocation-Departementale-Personnalisee-d-Autonomie.html',
+                                link: 'https://seinesaintdenis.fr/Allocation-Departementale-Personnalisee-d-Autonomie.html',
                             },
                             'D94-VAL_DE_MARNE': {
                                 provider: {

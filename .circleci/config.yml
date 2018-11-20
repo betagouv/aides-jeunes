@@ -22,7 +22,7 @@ install_pip_and_pipenv: &install_pip_and_pipenv
     command: |
       curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
       python get-pip.py
-      pip install pipenv
+      pip install pipenv==2018.10.13
 
 configure_watai: &configure_watai
   run:

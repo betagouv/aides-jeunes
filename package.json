@@ -28,7 +28,7 @@
     "jsonwebtoken": "^8.3.0",
     "kerberos": "0.0.23",
     "lodash": "^4.17.4",
-    "ludwig-api": "^1.2.0",
+    "ludwig-api": "betagouv/ludwig-api#v1.3.0",
     "ludwig-ui": "^1.5.4",
     "mingo": "^2.2.4",
     "moment": "^2.8.3",

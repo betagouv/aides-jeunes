@@ -44,7 +44,7 @@ If you need to add features to the API, the best is to [`npm link`](https://docs
 Openfisca
 ---------
 
-Openfisca relies on Python 2. You should [install it in a `virtualenv`](https://doc.openfisca.fr/for_developers.html#create-a-virtualenv) to prevent yourself from messing with your main python installation. You can either create the `virtualenv` yourself or rely on tools such as [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) or [pew](https://github.com/berdario/pew):
+Openfisca is compatible with Python 2 and Python 3. So far, Mes Aides relies on Python 2. You should [install it in a `virtualenv`](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. You can either create the `virtualenv` yourself or rely on tools such as [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) or [pew](https://github.com/berdario/pew):
 
 ```bash
 cd mes-aides-ui
@@ -62,17 +62,6 @@ npm run openfisca
 ```
 
 Each time you want to run OpenFisca, you have to `source .venv/bin/activate` to get a working OpenFisca environment.
-
-### Updating OpenFisca submodule
-
-OpenFisca lives in the `openfisca/` folder, as a [Git submodule](https://git-scm.com/docs/gitsubmodules). Use the command below to update the submodule to the latest version.
-
-```
-cd openfisca/
-git pull origin master
-cd -
-git commit -am 'Update submodule.'
-```
 
 ### Development mode
 
@@ -151,38 +140,13 @@ Déploiement
 Préparation
 -----------
 
-### API
-
-Pour publier une nouvelle version de l'application qui inclut des modifications de l'API, il est nécessaire de publier une nouvelle version de `sgmap/mes-aides-api` et de mettre à jour la référence à cette version dans `sgmap/mes-aides-ui`.
-
-Cette API est un module NPM, mais n'est pas publiée sur le registre public NPM. Il faut donc synchroniser les tags Git avec le numéro de version indiqué dans le `package.json`. Le plus simple est de laisser NPM effectuer cette opération, en utilisant les commandes suivantes :
-
-```sh
-cd mes-aides-api
-npm version patch
-git push
-git push --tags
-```
-
-> Il est possible de remplacer `patch` par `minor` selon les conventions [SemVer](http://semver.org).
-
-Dans le module `sgmap/mes-aides-ui`, mettre à jour la référence à l'API dans le fichier `package.json` :
-
-```json
-"sgmap-mes-aides-api": "sgmap/mes-aides-api#vx.y.z",
-```
-
-### UI
-
-Pousser sur `sgmap/mes-aides-ui#master` la version du code à déployer.
-
+En plus de l'intégration continue, ce dépôt est configuré pour avoir du déploiement continu. À l'ajout de commits sur `betagouv/mes-aides-ui#master` les tests sont relancés puis la production mise à jour.
 
 ### OpenFisca
 
 Éditer le fichier `openfisca/requirements.txt` en y indiquant la version d'Openfisca que vous souhaitez utiliser.
 
 Ce fichier est au format [`requirements.txt`](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file) de `pip`. Généralement, vous le mettrez à jour pour faire pointer l'un des modules Openfisca vers une branche de développement en attendant la publication de ce module sur PyPI.
-
 
 Déploiement
 -----------

@@ -3,11 +3,13 @@
 // Make sure to require Mingo for the browser
 var mingo = require('mingo/dist/mingo');
 
+// Sorted by relevancy
 var defaultEtablissementTypes = [
     'ccas',
     'cdas',
     'sdsei',
     'edas',
+    'centre_social',
     'msap',
 ];
 

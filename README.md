@@ -36,11 +36,6 @@ cd mes-aides-ui
 npm install
 ```
 
-### Development mode
-
-If you need to add features to the API, the best is to [`npm link`](https://docs.npmjs.com/cli/link) `sgmap/mes-aides-api` into `mes-aides-ui`, to avoid depending on the published version.
-
-
 Openfisca
 ---------
 

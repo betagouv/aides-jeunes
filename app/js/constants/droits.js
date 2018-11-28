@@ -256,7 +256,7 @@
                     'cheque_energie': {
                         'isMontantAnnuel': true,
                         'label': 'Chèque Énergie',
-                        'description': 'Le Chèque Énergie peut être utilisé pour toutes les dépenses d’énergie (électricité, gaz, fioul, bois, etc.) et les travaux de rénovation énergétique. Il est envoyé automatiquement chaque année en fonction de votre situation fiscale et de la composition de votre foyer et de votre ménage.',
+                        'description': 'Le Chèque Énergie peut être utilisé pour toutes les dépenses d’énergie (électricité, gaz, fioul, bois, etc.) et les travaux de rénovation énergétique. Il est envoyé automatiquement chaque année en fonction de votre situation fiscale et de votre ménage.',
                         'conditions': [
                             'Résider en France au 1er janvier de l‘année.',
                             'Effectuer chaque année votre déclaration auprès des impôts.',

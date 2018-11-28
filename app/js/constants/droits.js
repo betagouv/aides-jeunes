@@ -455,7 +455,7 @@
                                     imgSrc: 'logo_cd77.png',
                                 },
                                 instructions: undefined, // Prevent default instructions recycling
-                                form: 'http://www.seine-et-marne.fr/content/download/84288/750532/version/1/file/17-DGAS-Allocation%20personnalisee%20d%2527autonomie%20a%20domicile.pdf',
+                                form: 'https://e-service.seine-et-marne.fr/',
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'http://www.seine-et-marne.fr/Solidarite/Seniors/Maintien-a-domicile-APA/Allocation-Personnalisee-d-Autonomie-APA',
                             },

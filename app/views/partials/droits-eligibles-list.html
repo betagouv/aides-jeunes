@@ -104,24 +104,7 @@
         </div>
         <div ng-if="droit.teleservice || droit.form || droit.instructions"
           class="col-sm-3 {{ (droit.id != 'ppa') && 'col-sm-offset-6' }}">
-          <a href="{{ droit.teleservice || droit.form || droit.instructions }}"
-            target="_blank"
-            rel="noopener"
-            class="btn btn-sm btn-block"
-            ng-class="{
-              'btn-success': droit.teleservice,
-              'btn-primary': droit.form,
-              'btn-default': droit.instructions,
-            }"
-            analytics-on="click"
-            analytics-name="{{ droit.label }}"
-            analytics-event="{{ droit.teleservice || droit.form || droit.instructions }}"
-            analytics-category="Action"
-            >
-            <span ng-if="droit.teleservice">Faire une demande</span>
-            <span ng-if="droit.form">Accéder au formulaire</span>
-            <span ng-if="droit.instructions">Accéder aux instructions</span>
-          </a>
+          <droit-cta droit="droit" />
         </div>
       </div>
     </div>

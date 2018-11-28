@@ -455,8 +455,8 @@
                                     imgSrc: 'logo_cd77.png',
                                 },
                                 instructions: undefined, // Prevent default instructions recycling
-                                form: 'https://e-service.seine-et-marne.fr/',
-                                teleservice: undefined, // Prevent default form recycling
+                                form: undefined, // Prevent default form recycling
+                                teleservice: 'https://e-service.seine-et-marne.fr/',
                                 link: 'http://www.seine-et-marne.fr/Solidarite/Seniors/Maintien-a-domicile-APA/Allocation-Personnalisee-d-Autonomie-APA',
                             },
                             'D83-VAR': {

@@ -14,7 +14,11 @@
 
     <base href="/">
 
+    <% if (htmlWebpackPlugin.options.devServer) { %>
+    <link href="<%= htmlWebpackPlugin.options.devServer %><%= htmlWebpackPlugin.files.chunks['scripts'].css %>" rel="stylesheet" />
+    <% } else { %>
     <link href="<%= htmlWebpackPlugin.files.chunks['scripts'].css %>" rel="stylesheet" />
+    <% } %>
 
     <meta name="description" content="Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.">
 

@@ -9,6 +9,7 @@
                 'prestations': {
                     'aspa': {
                         'label': 'Allocation de solidarité aux personnes âgées',
+                        'acronym': 'ASPA',
                         'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une prestation accordée aux personnes retraitées ayant de faibles ressources. Elle est versée tous les mois par la Carsat (ou la MSA si vous dépendez du régime agricole). Elle s’ajoute, dans une certaine limite, aux revenus personnels. Elle remplace le minimum vieillesse depuis 2006.',
                         'conditions': [
                             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
@@ -32,6 +33,7 @@
                     'acs': {
                         'isMontantAnnuel': true,
                         'label': 'Aide au paiement d’une complémentaire santé',
+                        'acronym': 'ACS',
                         'description': 'L’aide au paiement d’une assurance complémentaire santé (ACS) est une aide financière pour payer une complémentaire santé (mutuelle). L’ACS ouvre droit à d’autres avantages comme le tiers-payant. Une fois attribuée, l’ACS est accordée pour un an.',
                         'conditions': [
                             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
@@ -46,6 +48,7 @@
                     },
                     'asi': {
                         'label': 'Allocation supplémentaire d’invalidité',
+                        'acronym': 'ASI',
                         'description': 'L’allocation supplémentaire d’invalidité (Asi) est une prestation accordée à certaines personnes invalides. Elle s’adresse à celles et ceux qui ont de faibles ressources et n’ont pas atteint l’âge de départ à la retraite. Elle est versée tous les mois et s’ajoute, dans une certaine limite, aux revenus personnels.',
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F16940',
                         'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S4151.pdf',
@@ -59,6 +62,7 @@
                     },
                     'cmu_c': {
                         'label': 'Couverture maladie universelle complémentaire',
+                        'acronym': 'CMU-C',
                         'description': 'La couverture maladie universelle complémentaire (CMU-C) est une protection complémentaire santé (mutuelle) gratuite. Elle est destinée aux personnes qui ont de faibles ressources et résident en France de manière stable et régulière. Une fois attribuée, la CMU-C est accordée pour un an.',
                         'conditions': [
                             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
@@ -105,6 +109,7 @@
                     },
                     'asf': {
                         'label': 'Allocation de soutien familial',
+                        'acronym': 'ASF',
                         'description': 'L’allocation de soutien familial (ASF) est destinée soit au parent qui élève seul un enfant non reconnu, privé de l’aide d’un parent ou dont l’autre parent est décédé, soit à la personne seule ou en couple qui recueille un enfant. L’ASF est versée par la Caf ou la MSA tous les mois.',
                         'conditions': [
                             'Toucher une pension alimentaire d’un montant inférieur à celui de l’ASF ou ne pas toucher en intégralité une pension alimentaire attribuée par une décision de justice. À noter : la Caf ou la MSA peut vous aider à <a target="_blank" rel="noopener" title="Agence de recouvrement des impayés de pensions alimentaires (ARIPA)" href="https://www.pension-alimentaire.caf.fr/">récupérer les sommes dues</a>.'
@@ -118,6 +123,7 @@
                     },
                     'paje_base': {
                         'label': 'Prestation d’accueil du jeune enfant – Allocation de base',
+                        'acronym': 'PAJE',
                         'description': 'L’allocation de base de la prestation d’accueil du jeune enfant (Paje) a pour objet d’aider à assurer les dépenses liées à l’entretien et l’éducation d’un enfant. Elle est destinée aux parents d’un enfant de moins de 3 ans ayant de faibles ressources. Elle est versée par la Caf ou la MSA.',
                         'conditions': [
                             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
@@ -133,6 +139,7 @@
                     },
                     'rsa': {
                         'label': 'Revenu de solidarité active',
+                        'acronym': 'RSA',
                         'description': 'Le revenu de solidarité active (RSA) assure aux personnes sans ressources un niveau minimum de revenu variable selon la composition du foyer. Le RSA, le RSA parent isolé et le RSA jeunes parents sont simulés. Financé par les conseils départementaux, son versement se fait à travers la Caf ou la MSA. Les services sociaux de votre département vous orienteront vers l’organisme à qui adresser votre demande.',
                         'conditions': [
                             'Signer un <a target="_blank" rel="noopener" href="http://social-sante.gouv.fr/affaires-sociales/lutte-contre-l-exclusion/droits-et-aides/le-revenu-de-solidarite-active-rsa/article/quels-sont-les-droits-et-devoirs-des-beneficiaires-du-rsa" title="Détails sur les droits et devoirs des bénéficiaires du RSA">contrat d’engagement réciproque</a> (CER) avec votre département ou un <a target="_blank" rel="noopener"  href="https://www.service-public.fr/particuliers/vosdroits/F14926" title="Détails sur les droits et devoirs des bénéficiaires du RSA">Projet Personnalisé d’Accès à l’Emploi</a> (PPAE) avec Pôle emploi.',
@@ -222,6 +229,7 @@
                     'aah': {
                         'isMontantAnnuel': false,
                         'label': 'Allocation aux adultes handicapés',
+                        'acronym': 'AAH',
                         'description': 'L’allocation aux adultes handicapés (AAH) est une aide financière qui permet d’assurer un revenu minimum. Cette aide est attribuée sous réserve de respecter 4 critères : le taux d’incapacité, l’âge, la nationalité et les ressources. L’AAH peut se cumuler soit avec le complément de ressources, soit avec la majoration pour la vie autonome ou, dans certains cas, l’aide à l’autonomie.',
                         'isBaseRessourcesYearMoins2': true,
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242',
@@ -241,6 +249,7 @@
                 'prestations': {
                     'ass': {
                         'label': 'Allocation de solidarité spécifique',
+                        'acronym': 'ASS',
                         'description': 'L’allocation de solidarité spécifique (ASS) est attribuée aux personnes ayant épuisé leurs droits au chômage sous conditions d’activité antérieure et de ressources. Elle peut être versée à taux plein ou à taux réduit. En cas de reprise d’activité, elle peut être maintenue.',
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F12484',
                         /* En principe, formulaire envoyé automatiquement ; lien vers brochure pole emploi */
@@ -277,6 +286,7 @@
                 prestations: {
                     apa_eligibilite: {
                         label: 'Allocation personnalisée d‘autonomie',
+                        acronym: 'APA',
                         description: 'L’allocation personnalisée d’autonomie (APA) est une aide réservée aux plus de 60 ans en perte d’autonomie. À travers un plan d’action, elle favorise le maintien à domicile et l’amélioration de la qualité de vie des personnes âgées en établissement en subventionnant des services d’aides à la personne. Sa gestion est confiée aux conseils départementaux.',
                         conditions: [
                             'Faire évaluer votre perte d’autonomie (classement GIR) à domicile par les services sociaux de votre département.',

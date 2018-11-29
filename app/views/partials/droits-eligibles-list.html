@@ -11,7 +11,8 @@
         </div>
 
         <div class="col-xs-6 col-sm-8 description">
-          <span>{{ droit.label }}<span>
+          <span class="hidden-xs">{{ droit.label }}</span>
+          <span class="visible-xs-inline">{{ droit.acronym || droit.label }}</span>
           <span ng-if="droit.isExperimental">(en test)</span>
         </div>
 

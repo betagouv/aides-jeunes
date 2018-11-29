@@ -10,7 +10,7 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         $localStorage.ABTesting.contact.deleted = true;
 
         $localStorage.ABTesting.link = $localStorage.ABTesting.link || { index: 1 };
-        $localStorage.ABTesting.link.value = $localStorage.ABTesting.link.value || (Math.random() > 0.5 ? 'A' : 'B');
+        $localStorage.ABTesting.link.deleted = true;
 
         _.forEach($localStorage.ABTesting, function(data, name) {
             if (data.deleted) {

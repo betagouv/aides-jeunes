@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, $scope, $sessionStorage, $stateParams, $window, ABTestingService, CityService, ResultatService, SituationService, TrampolineService) {
+angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, $scope, $sessionStorage, $stateParams, $window, CityService, ResultatService, SituationService, TrampolineService) {
     $scope.awaitingResults = false;
     $scope.error = false;
     $scope.warning = false;
@@ -8,9 +8,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
 
     // For testing purposes
     $scope.redirectionNames = [];
-
-    var env = ABTestingService.getABTestingEnvironment();
-    $scope.linkAlternative = (env && env.link && env.link.value) || 'B';
 
     function loadSituation() {
         if ($stateParams.situationId) { // If we want the result page for an already existing situation.

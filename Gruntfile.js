@@ -81,6 +81,9 @@ module.exports = function (grunt) {
         webpack: webpackDevelopmentConfig,
         // TODO Parameterize via env for Docker / local
         host: '0.0.0.0',
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        },
       },
       start: {
         keepalive: false,

@@ -19,7 +19,6 @@
     "cors": "^2.8.4",
     "currencyformatter.js": "^2.1.0",
     "d3": "4.11.0",
-    "event-stream": "^3.1.7",
     "express": "~4.15.0",
     "font-awesome": "^4.7.0",
     "frozen-moment": "^0.4.0",

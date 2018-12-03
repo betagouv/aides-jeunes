@@ -12,7 +12,7 @@
 
   <div class="container">
     <div class="frame-aides-homepage whiteframe-z1">
-      <h2 class="text-center">Évaluez vos droits à {{ prestationsNationalesCount }} aides nationales</h2>
+      <h2 class="text-center">{{ prestationsNationalesCount }} aides nationales évaluées par le simulateur</h2>
       <div ng-repeat="provider in prestationsNationales | orderObjectBy:'prestations':true">
         <hr>
         <div class="row">
@@ -31,7 +31,7 @@
         </div>
       </div>
       <hr>
-      <h2 class="text-center">Évaluez vos droits à {{ partenairesLocauxCount }} aides locales</h2>
+      <h2 class="text-center">{{ partenairesLocauxCount }} aides locales évaluées par le simulateur</h2>
       <div ng-repeat="provider in partenairesLocaux | orderObjectBy:'prestations':true">
         <hr>
         <div class="row">

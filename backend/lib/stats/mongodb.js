@@ -1,6 +1,7 @@
 /* global emit: true */
 var Promise = require('bluebird');
 var MongoClient = Promise.promisifyAll(require('mongodb').MongoClient);
+var config = require('../../config/config');
 
 var db;
 function saveDb(refDb) {
@@ -51,7 +52,7 @@ function formatMongo(data) {
 
 exports.getDailySituationCount = function(fromDate, toDate) {
     return MongoClient
-        .connectAsync('mongodb://localhost:27017/dds')
+        .connectAsync(config.mongo.uri)
         .then(saveDb)
         .then(function(db) { return extractSimulationDailyCount(db, fromDate, toDate); })
         .catch(manageMissingCollection)

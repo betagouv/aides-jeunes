@@ -96,12 +96,21 @@ exports.giveValueToRequestedVariables = giveValueToRequestedVariables;
 
 exports.buildOpenFiscaRequest = function(sourceSituation) {
     var situation = sourceSituation.toObject ? migrations.apply(sourceSituation).toObject() : _.cloneDeep(sourceSituation);
+    var periods = common.getPeriods(situation.dateDeValeur);
 
     var individus = mapIndividus(situation);
     allocateIndividualsToEntities(situation);
 
     delete situation.menage.nom_commune;
     delete situation.menage.code_postal;
+
+    var menage = _.assign({}, {
+        logement_conventionne: {},
+        aide_logement_date_pret_conventionne: {}
+    }, situation.menage);
+
+    menage.logement_conventionne[periods.thisMonth] = menage.statut_occupation_logement == 'primo_accedant' && menage.loyer == 0;
+    menage.aide_logement_date_pret_conventionne[periods.thisMonth] = '2017-12-31';
 
     var testCase = {
         individus: individus,
@@ -112,13 +121,12 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
             _: situation.foyer_fiscal
         },
         menages: {
-            _: situation.menage
+            _: menage
         },
     };
 
     propertyMove.movePropertyValuesToGroupEntity(testCase);
 
-    var periods = common.getPeriods(situation.dateDeValeur);
     setNonInjectedPrestations(testCase, periods.last12Months, 0);
     last3MonthsDuplication(testCase, situation.dateDeValeur);
     giveValueToRequestedVariables(testCase, periods.thisMonth, null);

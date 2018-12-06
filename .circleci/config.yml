@@ -16,13 +16,13 @@ defaults: &defaults
     OPENFISCA_BIND_HOST: 127.0.0.1:2000
     PIPENV_VENV_IN_PROJECT: true
 
-install_pip_and_pipenv: &install_pip_and_pipenv
+install_virtualenv: &install_virtualenv
   run:
-    name: Install pip & pipenv
+    name: Install VirtualEnv
     command: |
       curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
       python get-pip.py
-      pip install pipenv==2018.10.13
+      pip install virtualenv
 
 configure_watai: &configure_watai
   run:
@@ -86,10 +86,16 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *install_pip_and_pipenv
+      - *install_virtualenv
+      - run:
+          name: Create Virtual Env
+          command: virtualenv .venv
       - run:
           name: Install OpenFisca
-          command: pipenv install -r openfisca/requirements.txt
+          command: |
+            source .venv/bin/activate
+            pip install -r openfisca/requirements.txt
+            deactivate
       - persist_to_workspace:
           root: .
           paths:
@@ -140,10 +146,13 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/mes-aides-ui
-      - *install_pip_and_pipenv
+      - *install_virtualenv
       - run:
           name: Start OpenFisca
-          command: pipenv run gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=-
+          command: |
+            source .venv/bin/activate
+            gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=-
+            deactivate
           background: true
       - run:
           name: Wait for OpenFisca
@@ -166,10 +175,12 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/mes-aides-ui
-      - *install_pip_and_pipenv
+      - *install_virtualenv
       - run:
           name: Check OpenFisca test generation
-          command: pipenv run npm run test:openfisca
+          command: |
+            source .venv/bin/activate
+            npm run test:openfisca
   deploy:
     machine:
       enabled: true

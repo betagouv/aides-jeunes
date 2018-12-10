@@ -11,7 +11,7 @@ System dependencies
 
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb` and `node` v0.10 are installed on your machine:
+Make sure `build-essential`, `mongodb` and `node` 8.x are installed on your machine:
 
 ```sh
 sudo apt-get install build-essential
@@ -20,7 +20,7 @@ sudo apt-get install mongodb
 
 ### For all platforms
 
-The runtime is Node 6.14.1 for the web application, and Python 2.7 for Openfisca.
+The runtime is Node 8.x for the web application, and Python 2.7 for Openfisca.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 

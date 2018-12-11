@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').factory('RessourceService', function(MonthService, categoriesRnc, ressourceTypes) {
+angular.module('ddsCommon').factory('RessourceService', function($http, MonthService, categoriesRnc, ressourceTypes) {
 
     function getPeriodKeysForCurrentYear(dateDeValeur, ressourceType) {
         var periodKeys = [];
@@ -83,6 +83,10 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         return type != 'pensions_alimentaires_versees_individu';
     }
 
+    function getParameterFromOpenfisca(parameterId) {
+        return $http.get('https://openfisca.mes-aides.gouv.fr/parameter/' + parameterId);
+    }
+
     return {
         getPeriodKeysForCurrentYear: getPeriodKeysForCurrentYear,
         isRessourceOnMainScreen: isRessourceOnMainScreen,
@@ -90,5 +94,6 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         extractIndividuSelectedRessourceTypes: extractIndividuSelectedRessourceTypes,
         setDefaultValueForCurrentYear: setDefaultValueForCurrentYear,
         unsetForCurrentYear: unsetForCurrentYear,
+        getParameterFromOpenfisca: getParameterFromOpenfisca
     };
 });

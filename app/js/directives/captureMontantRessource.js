@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').directive('captureMontantRessource', function(MonthService) {
+angular.module('ddsApp').directive('captureMontantRessource', function(MonthService, RessourceService) {
     function getInitialLabel (individu, ressource, debutAnneeGlissante) {
         var subject = {
             'demandeur': 'Vous',
@@ -52,6 +52,7 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
             if (! scope.ressourceType.revenuExceptionnel) {
                 isoMonths = isoMonths.concat(currentMonth);
             }
+            
             var lastMonthValue = scope.ressource[lastMonth.id] || 0;
 
             function determineAnnualValue() {
@@ -67,6 +68,14 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
                     return previousValuesAreEqual && Math.abs(scope.ressource[month.id] - lastMonthValue) < 1e-3;
                 }, true) || scope.ressourceType.revenuExceptionnel
             };
+
+            if (scope.ressourceType.montantForfaitaire) {
+                RessourceService.getParameterFromOpenfisca(scope.ressourceType.source)
+                    .then(function(resp) { 
+                        var values = resp.data.values;
+                        scope.locals.monthlyValue = values[Object.keys(values).sort().pop()];
+                    });
+            }
 
             function updatePrevious9MonthsValues() {
                 var toSpread = ((scope.locals.annualValue || 0) - getRecentSum())/9;

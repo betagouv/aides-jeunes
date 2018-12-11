@@ -1,6 +1,7 @@
 <div ng-repeat="(ressourceId, selected) in selectedRessourceTypes"
   ng-init="ressourceType = ressourceTypes[ressourceId]; ressource = individu[ressourceId];"
 >
+
   <div ng-if="ressourceType.category !== 'rpns'">
     <capture-montant-ressource
       individu="individu"

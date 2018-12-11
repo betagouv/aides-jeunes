@@ -84,6 +84,10 @@ module.exports = function (grunt) {
         headers: {
             'Access-Control-Allow-Origin': '*',
         },
+        // Activate this option if watching doesn't work on your machine
+        // watchOptions: {
+        //   poll: true
+        // }
       },
       start: {
         keepalive: false,

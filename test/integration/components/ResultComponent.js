@@ -1,14 +1,10 @@
 title: 'h1',
 
-resultatFrame: '.frame-resultats .droits-eligibles',
-
-prestationName: '.droits-eligibles .result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .description',
-prestationMontant: '.droits-eligibles .result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .montant',
-prestationMontantDetail: '.droits-eligibles .result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .montant-detail',
-prestationYM2Warning: '.droits-eligibles .result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') i.fa-warning',
-togglePrestationTabLink: '.droits-eligibles .result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') a',
-prestationDescription: '.droits-eligibles .result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') p',
-prestationMoreInfoLink: '.droits-eligibles .result:nth-child(' + PRESTATION_TO_TEST_POSITION + ') .btn-default',
+prestationName: '.droits-eligibles-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' + PRESTATION_TO_TEST_POSITION + ') [itemprop="name"]',
+prestationMontant: '.droits-eligibles-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' + PRESTATION_TO_TEST_POSITION + ') [itemprop="offers"]',
+prestationYM2Warning: '#' + PRESTATION_ID + ' .alert-warning',
+prestationDescription: '#' + PRESTATION_ID + ' [itemprop="description"]',
+prestationMoreInfoLink: '#' + PRESTATION_ID + ' [itemprop="termsOfService"]',
 
 openPrimeActiviteLink: { a: 'Prime d’activité' },
 requestPrimeActiviteLink: { a: 'Faire une demande' },

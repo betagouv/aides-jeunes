@@ -1,97 +1,19 @@
-<uib-accordion close-others="false" class="droits-eligibles">
-  <div uib-accordion-group is-open="droit.open"
-     class="result panel-default"
-     ng-class="{ 'needs-n-2': shouldDisplayYM2Warning(droit) }"
-     ng-repeat="(droitId, droit) in list|orderObjectBy:'label'">
-    <uib-accordion-heading>
-      <div class="row">
-        <div class="col-xs-2 col-sm-1 droit-logo">
-          <img
-               ng-src="/img/{{ droit.provider.imgSrc }}"
-               alt="">
-        </div>
-
-        <div class="col-xs-6 col-sm-8 description">
-          <span>{{ droit.label }}<span>
-        </div>
-
-        <div class="col-xs-2 col-sm-2">
-          <div class="montant">
-            <span ng-if="isNumber(droit.montant)">{{ droit.montant | currency : ( droit.unit || '€' ) : (droit.roundToNearestCent ? 2 : 0 ) }}</span>
-            <span ng-if="isString(droit.montant)" class="montant-inconnu">?</span>
-            <i class="fa fa-warning text-warning" ng-if="shouldDisplayYM2Warning(droit)"></i>
-          </div>
-
-          <div ng-if="isNumber(droit.montant)" class="montant-detail">
-            {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
-          </div>
-
-        </div>
-
-        <div class="col-sm-1 col-xs-1 description">
-          <i class="fa"
-            ng-class="{'fa-chevron-down': droit.open, 'fa-chevron-right': !droit.open}"
-            aria-hidden="true"
-            role="presentation"
-          ></i>
-        </div>
-      </div>
-    </uib-accordion-heading>
-
-    <div class="caption">
-      <div ng-if="droit.montant">
-        <p ng-bind-html="droit.description"></p>
-        <div ng-if="droit.conditions">
-          Pour en bénéficier, vous devez également :
-          <ul>
-            <li ng-repeat="condition in droit.conditions">
-              <i class="fa fa-check" aria-hidden="true"></i>
-              <span ng-bind-html="condition"></span>
-            </li>
-          </ul>
-        </div>
-
-        <div ng-if="isString(droit.montant)" class="alert alert-warning-inverse">
-          <p>L'application Mes Aides ne peut pas calculer le montant de cette prestation, car <span ng-bind-html="droit.uncomputability[droit.montant].reason.user"></span>.</p>
-          <p ng-if="droit.uncomputability[droit.montant].solution"><strong ng-bind-html="droit.uncomputability[droit.montant].solution"></strong></p>
-        </div>
-
-        <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && ! ressourcesYearMoins2Captured && ! isString(droit.montant)">
-          <i class="fa fa-warning" aria-hidden="true"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
-          <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
-        </div>
-      </div>
-
-      <div class="row cta">
-        <div class="col-sm-3">
-          <a
-            ng-if="droit.link"
-            class="btn btn-sm btn-default btn-block"
-            href="{{ droit.link }}"
-            target="_blank"
-            rel="noopener"
-            analytics-on="click"
-            analytics-name="{{ droit.label }}"
-            analytics-event="{{ droit.link }}"
-            analytics-category="Info"
-            >
-            <i class="fa fa-external-link" aria-hidden="true" role="presentation"></i>
-            Plus d'informations
-          </a>
-        </div>
-        <div ng-if="droit.id == 'ppa'"
-          class="col-sm-5 col-sm-offset-1">
-          <a
-            class="btn btn-sm btn-secondary btn-block"
-            href="http://www.msa.fr/lfr/web/msa/espace-prive">
-            Démarches pour les professions agricoles
-          </a>
-        </div>
-        <div ng-if="droit.teleservice || droit.form || droit.instructions"
-          class="col-sm-3 {{ (droit.id != 'ppa') && 'col-sm-offset-6' }}">
-          <droit-cta droit="droit" />
-        </div>
+<div class="droits-eligibles-list">
+  <a ng-repeat="droit in list" href ng-click="scrollTo(droit, $event)" class="droits-eligibles-list-item"
+    itemscope itemtype="http://schema.org/GovernmentService">
+    <div class="droits-eligibles-list-item-left">
+      <img ng-src="/img/{{ droit.provider.imgSrc }}" alt="{{ droit.label }}">
+      <div>
+        <h2>
+          <span itemprop="name">{{ droit.label }}</span>
+          <small>Comment l'obtenir ?</small>
+        </h2>
       </div>
     </div>
-  </div>
-</uib-accordion>
+    <div class="dotted-line"></div>
+    <droit-montant droit="droit" ng-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
+    <div ng-if="droit.montant && isBoolean(droit.montant)">
+      <i class="fa fa-check-circle fa-2x"></i>
+    </div>
+  </a>
+</div>

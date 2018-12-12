@@ -11,13 +11,8 @@ steps: [
     YM2ResourcesComponent.setDemandeurRevenuActiviteInput(12000),
     YM2ResourcesComponent.submit(),
     {
-        'ResultComponent.declareYM2ResourcesLink': false,
-    },
-    {
         'ResultComponent.title': /Résultats/,
-    },
-    {
-        'ResultComponent.resultatFrame': true,
+        'ResultComponent.declareYM2ResourcesLink': false,
     },
 ]
 

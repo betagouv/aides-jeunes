@@ -29,7 +29,7 @@ require('./styles/enfants.css');
 require('./styles/foyer/capture-montant-ressource.css');
 require('./styles/foyer/capture-continuation-ressource.css');
 require('./styles/recap-situation.css');
-require('./styles/droits-eligibles-list.css');
+require('./styles/droits-eligibles-list.scss');
 require('./styles/breadcrumb.css');
 
 if (process.env.NODE_ENV === 'production') {

@@ -34,54 +34,46 @@
 
   <div ng-if="! (droits.prestationsNationales | isEmpty)">
     <p>
-      D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides <strong>{{ droits.partenairesLocaux ? "nationales" : "" }}</strong>.
+      D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides.
       <span id="print-disclaimer">Ces résultats sont fondés sur les seules informations que vous avez indiquées et ne constituent en aucune façon un engagement de la part des organismes cités.</span>
       Les montants avancés sont arrondis à une dizaine d'euros près :
     </p>
-    <div class="frame-resultats">
-      <droit-eligibles-list list="droits.prestationsNationales"></droit-eligibles-list>
-      <ym2-ressources-call-to-action ng-hide="ressourcesYearMoins2Captured"></ym2-ressources-call-to-action>
-
-      <div class="row additional-info-cta" ng-show="! noDroits && shouldPatrimoineBeCaptured()">
-        <div class="col-sm-8">
+    <droit-eligibles-list droits="droits"></droit-eligibles-list>
+    <ym2-ressources-call-to-action ng-hide="ressourcesYearMoins2Captured"></ym2-ressources-call-to-action>
+    <!--
+    <div class="row additional-info-cta" ng-show="! noDroits && shouldPatrimoineBeCaptured()">
+      <div class="col-sm-8">
+        <p>
           <i class="fa fa-info-circle" aria-hidden="true"></i>
           Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ?
           Vous devez renseigner des informations complémentaires.
-        </div>
-        <div class="col-sm-4 print-hidden">
-          <a class="btn btn-default btn-block" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
-        </div>
+        </p>
+      </div>
+      <div class="col-sm-4 print-hidden">
+        <a class="btn btn-default btn-block" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
       </div>
     </div>
+    -->
   </div>
 
   <div ng-if="! (droitsNonEligibles.prestationsNationales | isEmpty)" ng-show="droitsNonEligiblesShow">
     <p>
       Les conditions des aides suivantes <strong>ne sont pas</strong> remplies&nbsp;:
     </p>
-    <div class="frame-resultats">
-      <droit-non-eligibles-list list="droitsNonEligibles.prestationsNationales" filter="['cmu_c', 'acs']"></droit-non-eligibles-list>
-    </div>
-  </div>
-
-  <div ng-repeat="(partenaireId, prestationsPartenaire) in droits.partenairesLocaux">
-    <p>Vous êtes {{ droits.prestationsNationales ? "également" : "" }} a priori éligible à ces aides {{ prestationsPartenaire.prefix }} <strong>{{ prestationsPartenaire.label }}</strong>&nbsp;:</p>
-    <div class="frame-resultats">
-      <droit-eligibles-list list="prestationsPartenaire.prestations"></droit-eligibles-list>
-      <div class="additional-info-cta">
-        <p ng-if="prestationsPartenaire.interactionWithNationalPrestationCalculated !== false">
-          <i class="fa fa-info-circle" aria-hidden="true"></i>
-          {{ (! droits.prestationsNationales && (droitsInjectes | isEmpty)) ? "Si vous percevez aussi des aides nationales, le" : "Le" }}
-           montant de ces aides locales pourrait être partiellement déduit de vos aides nationales. Nous travaillons avec nos partenaires pour déterminer plus précisément ces interactions.
-        </p>
-      </div>
-    </div>
+    <droit-non-eligibles-list
+      droits="droitsNonEligibles"
+      filter="['cmu_c', 'acs']"></droit-non-eligibles-list>
   </div>
 
   <div class="frame-resultats" ng-show="noDroits && ressourcesYearMoins2Captured">
       <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
       <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
   </div>
+
+  <h1 ng-if="! noDroits">Comment obtenir vos aides ?</h1>
+  <droit-eligibles-details
+    droits="droits"
+    year-moins-2="yearMoins2"></droit-eligibles-details>
 
   <div class="print-hidden">
     <etablissements-list code-postal="situation.menage.code_postal" code-insee="situation.menage.depcom"></etablissements-list>

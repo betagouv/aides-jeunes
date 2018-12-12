@@ -6,7 +6,7 @@ defaults: &defaults
   working_directory: ~/mes-aides-ui
   docker:
     # https://circleci.com/docs/2.0/circleci-images/#language-image-variants
-    - image: betagouv/mes-aides-docker:node6-python2.7
+    - image: betagouv/mes-aides-docker:node8-python2.7
     # FIXME
     # mongo 2.4.9 is not available on Docker Hub
     # https://stackoverflow.com/questions/48233357/install-older-version-of-mongodb-with-docker
@@ -65,8 +65,7 @@ jobs:
       - restore_cache:
           name: Restoring node_modules
           keys:
-            - v12.1.3-dependencies-{{ .Branch }}-{{ checksum "package.json" }}
-            - v12.1.3-dependencies-{{ .Branch }}-
+            - v12.1.3-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run:
           name: NPM install
           command: npm install
@@ -75,7 +74,7 @@ jobs:
           command: npm install saucelabs
       - save_cache:
           name: Saving node_modules
-          key: v12.1.3-dependencies-{{ .Branch }}-{{ checksum "package.json" }}
+          key: v12.1.3-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
       - persist_to_workspace:

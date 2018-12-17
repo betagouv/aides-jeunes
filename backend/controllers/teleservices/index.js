@@ -15,28 +15,7 @@ var teleservices = [{
     class: Loiret,
     destination: {
         label: 'du Loiret (test)',
-        url: 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92?code={{token}}'
-    }
-}, {
-    name: 'local_node_test',
-    class: Loiret,
-    destination: {
-        label: 'en local (Node)',
-        url: 'http://localhost:3000?code={{token}}'
-    },
-}, {
-    name: 'local_PHP_test',
-    class: Loiret,
-    destination: {
-        label: 'en local (PHP)',
-        url: 'http://localhost:8000/basicAuth.php?code={{token}}'
-    }
-}, {
-    name: 'live_node_test',
-    class: Loiret,
-    destination: {
-        label: 'en ligne',
-        url: 'http://test.mes-aides.gouv.fr/prefill?code={{token}}'
+        url: 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92?situation={{token}}'
     }
 }, {
     name: 'openfisca_tracer',

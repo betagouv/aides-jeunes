@@ -43,7 +43,7 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
                 monthlyValue: lastMonthValue,
                 detailed: ! isoMonths.reduce(function(previousValuesAreEqual, month) {
                     return previousValuesAreEqual && scope.ressource[month.id] == lastMonthValue;
-                }, true),
+                }, true) || scope.ressourceType.revenuExceptionnel
             };
 
             function updatePrevious9MonthsValues() {

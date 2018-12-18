@@ -109,6 +109,12 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
         aide_logement_date_pret_conventionne: {}
     }, situation.menage);
 
+    // Use heuristics to pass functional tests
+    // Complexity may be added in the future in the application (new questions to ask)
+    // So far, due to a bug or some ambiguity
+    // cf. https://github.com/openfisca/openfisca-france/pull/1233
+    // logement_conventionne needs to be true when the loan in fully paid
+    // to avoid a benefit from appearing
     menage.logement_conventionne[periods.thisMonth] = menage.statut_occupation_logement == 'primo_accedant' && menage.loyer == 0;
     menage.aide_logement_date_pret_conventionne[periods.thisMonth] = '2017-12-31';
 

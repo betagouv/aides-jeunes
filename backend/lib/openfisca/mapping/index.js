@@ -94,6 +94,26 @@ function giveValueToRequestedVariables(testCase, periods, value) {
 }
 exports.giveValueToRequestedVariables = giveValueToRequestedVariables;
 
+// Use heuristics to pass functional tests
+// Complexity may be added in the future in the application (new questions to ask)
+// So far, due to a bug or some ambiguity
+// cf. https://github.com/openfisca/openfisca-france/pull/1233
+// logement_conventionne needs to be true when the loan in fully paid
+// to avoid a benefit from appearing
+function applyHeuristicsAndFix(testCase, dateDeValeur) {
+    var thisMonth = common.getPeriods(dateDeValeur).thisMonth;
+
+    var menage = _.assign({}, {
+        logement_conventionne: {},
+        aide_logement_date_pret_conventionne: {}
+    }, testCase.menages._);
+    menage.logement_conventionne[thisMonth] = menage.statut_occupation_logement && menage.statut_occupation_logement[thisMonth] == 'primo_accedant' && menage.loyer && menage.loyer[thisMonth] == 0;
+    menage.aide_logement_date_pret_conventionne[thisMonth] = '2017-12-31';
+
+    testCase.menages._ = menage;
+    return testCase;
+}
+
 exports.buildOpenFiscaRequest = function(sourceSituation) {
     var situation = sourceSituation.toObject ? migrations.apply(sourceSituation).toObject() : _.cloneDeep(sourceSituation);
 
@@ -123,5 +143,5 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     last3MonthsDuplication(testCase, situation.dateDeValeur);
     giveValueToRequestedVariables(testCase, periods.thisMonth, null);
 
-    return testCase;
+    return applyHeuristicsAndFix(testCase, sourceSituation.dateDeValeur);
 };

@@ -94,29 +94,34 @@ function giveValueToRequestedVariables(testCase, periods, value) {
 }
 exports.giveValueToRequestedVariables = giveValueToRequestedVariables;
 
+// Use heuristics to pass functional tests
+// Complexity may be added in the future in the application (new questions to ask)
+// So far, due to a bug or some ambiguity
+// cf. https://github.com/openfisca/openfisca-france/pull/1233
+// logement_conventionne needs to be true when the loan in fully paid
+// to avoid a benefit from appearing
+function applyHeuristicsAndFix(testCase, dateDeValeur) {
+    var thisMonth = common.getPeriods(dateDeValeur).thisMonth;
+
+    var menage = _.assign({}, {
+        logement_conventionne: {},
+        aide_logement_date_pret_conventionne: {}
+    }, testCase.menages._);
+    menage.logement_conventionne[thisMonth] = menage.statut_occupation_logement && menage.statut_occupation_logement[thisMonth] == 'primo_accedant' && menage.loyer && menage.loyer[thisMonth] == 0;
+    menage.aide_logement_date_pret_conventionne[thisMonth] = '2017-12-31';
+
+    testCase.menages._ = menage;
+    return testCase;
+}
+
 exports.buildOpenFiscaRequest = function(sourceSituation) {
     var situation = sourceSituation.toObject ? migrations.apply(sourceSituation).toObject() : _.cloneDeep(sourceSituation);
-    var periods = common.getPeriods(situation.dateDeValeur);
 
     var individus = mapIndividus(situation);
     allocateIndividualsToEntities(situation);
 
     delete situation.menage.nom_commune;
     delete situation.menage.code_postal;
-
-    var menage = _.assign({}, {
-        logement_conventionne: {},
-        aide_logement_date_pret_conventionne: {}
-    }, situation.menage);
-
-    // Use heuristics to pass functional tests
-    // Complexity may be added in the future in the application (new questions to ask)
-    // So far, due to a bug or some ambiguity
-    // cf. https://github.com/openfisca/openfisca-france/pull/1233
-    // logement_conventionne needs to be true when the loan in fully paid
-    // to avoid a benefit from appearing
-    menage.logement_conventionne[periods.thisMonth] = menage.statut_occupation_logement == 'primo_accedant' && menage.loyer == 0;
-    menage.aide_logement_date_pret_conventionne[periods.thisMonth] = '2017-12-31';
 
     var testCase = {
         individus: individus,
@@ -127,15 +132,16 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
             _: situation.foyer_fiscal
         },
         menages: {
-            _: menage
+            _: situation.menage
         },
     };
 
     propertyMove.movePropertyValuesToGroupEntity(testCase);
 
+    var periods = common.getPeriods(situation.dateDeValeur);
     setNonInjectedPrestations(testCase, periods.last12Months, 0);
     last3MonthsDuplication(testCase, situation.dateDeValeur);
     giveValueToRequestedVariables(testCase, periods.thisMonth, null);
 
-    return testCase;
+    return applyHeuristicsAndFix(testCase, sourceSituation.dateDeValeur);
 };

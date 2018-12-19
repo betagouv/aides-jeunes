@@ -1,6 +1,7 @@
 <uib-accordion close-others="false" class="droits-non-eligibles">
   <div uib-accordion-group is-open="droit.open"
-     class="result {{ getAccordionClass(droit) }}"
+     class="result panel-default"
+     ng-class="{ 'needs-n-2': shouldDisplayYM2Warning(droit) }"
      ng-repeat="(droitId, droit) in list|orderObjectBy:'label'">
     <uib-accordion-heading>
       <div class="row">

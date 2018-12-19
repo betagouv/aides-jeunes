@@ -38,7 +38,8 @@
             label: 'Salaire (hors primes)',
             category: 'revenusActivite',
             interuptionQuestionLabel: 'un salaire, des allocations chômage, ou des indemnités de la sécurité sociale',
-            positionInList: '1'
+            positionInList: '1',
+            hint: 'Entrez le montant avant la retenue à la source'
         },
         {
             id: 'primes_salaires_net',

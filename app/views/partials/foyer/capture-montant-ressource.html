@@ -21,6 +21,11 @@
               ng-model="locals.monthlyValue"
               select-on-focus
               zero-to-empty
+              uib-tooltip="{{ ressourceType.hint || '' }}"
+              tooltip-trigger="'mouseenter'"
+              tooltip-placement="top"
+              tooltip-enable="!! ressourceType.hint"
+              tooltip-append-to-body="true"
               >
             <div class="input-group-addon">€</div>
           </div>
@@ -69,6 +74,11 @@
                 zero-to-empty
                 ng-model="ressource[month.id]"
                 aria-describedby="help-{{ ressourceType.id }}-month_{{ $index }}"
+                uib-tooltip="{{ ressourceType.hint || '' }}"
+                tooltip-trigger="'mouseenter'"
+                tooltip-placement="top"
+                tooltip-enable="!! ressourceType.hint"
+                tooltip-append-to-body="true"
                 >
               <span class="input-group-addon">€</span>
             </div>
@@ -94,6 +104,11 @@
                 zero-to-empty
                 ng-model="locals.annualValue"
                 aria-describedby="help-{{ ressourceType.id }}-year"
+                uib-tooltip="{{ ressourceType.hint || '' }}"
+                tooltip-trigger="'mouseenter'"
+                tooltip-placement="top"
+                tooltip-enable="!! ressourceType.hint"
+                tooltip-append-to-body="true"
                 >
               <span class="input-group-addon">€</span>
             </div>

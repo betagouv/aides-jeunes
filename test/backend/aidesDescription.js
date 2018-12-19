@@ -9,7 +9,7 @@ describe('aides descriptions', function() {
             var provider = subject.prestationsNationales[providerName];
 
             it('should have a label', function() {
-                expect(provider.label).toBeA('string');
+                expect(typeof provider.label).toBe('string');
                 expect(provider.label.length).toBeGreaterThan(1);
             });
 
@@ -18,28 +18,28 @@ describe('aides descriptions', function() {
                     var aide = provider.prestations[aideName];
 
                     it('should have a label', function() {
-                        expect(aide.label).toBeA('string');
+                        expect(typeof aide.label).toBe('string');
                         expect(aide.label.length).toBeGreaterThan(1);
                     });
 
                     it('should have a description', function() {
-                        expect(aide.description).toBeA('string');
-                        expect(aide.description.length).toBeGreaterThanOrEqualTo(190);
-                        expect(aide.description.length).toBeLessThanOrEqualTo(420);
+                        expect(typeof aide.description).toBe('string');
+                        expect(aide.description.length).toBeGreaterThanOrEqual(190);
+                        expect(aide.description.length).toBeLessThanOrEqual(420);
                     });
 
                     it('should have a link', function() {
-                        expect(aide.link).toBeA('string');
+                        expect(typeof aide.link).toBe('string');
                         expect(aide.link).toMatch(/^https?:\/\//);
                     });
 
                     if (aide.isExperimental) {
                         it('should have an internal link', function() {
-                            expect(aide.internalLink).toBeA('string');
+                            expect(typeof aide.internalLink).toBe('string');
                         });
                     } else {
                         it('should have a teleservice, a form, or instructions', function() {
-                            expect(aide.teleservice || aide.form || aide.instructions).toBeA('string');
+                            expect(typeof (aide.teleservice || aide.form || aide.instructions)).toBe('string');
                         });
                     }
                 });

@@ -82,21 +82,24 @@ describe('Loiret Teleservice', function() {
 
         var loiret = new Loiret(situation);
         var formatted = loiret.toInternal();
-        expect(formatted).toBeA('array');
-        expect(formatted).toInclude({ label: 'votre date de naissance', formattedValue: '5 juin 1983' });
-        expect(formatted).toInclude({ label: 'votre situation familiale', formattedValue: 'En union libre' });
-        expect(formatted).toInclude({ label: 'vos salaires (net) sur les 12 derniers mois', formattedValue: '27 400,00 €' });
-        expect(formatted).toInclude({ label: 'votre retraite (net) sur les 12 derniers mois', formattedValue: '1 200,00 €' });
-        expect(formatted).toInclude({ label: 'vos allocations sur les 12 derniers mois', formattedValue: '2 400,00 €' });
-        expect(formatted).toInclude({ label: 'vos pensions alimentaires perçues', formattedValue: '0,00 €' });
-        expect(formatted).toInclude({ label: 'vos revenus locatifs', formattedValue: '0,00 €' });
-        expect(formatted).toInclude({ label: 'vos revenus du capital', formattedValue: '0,00 €' });
+
+        expect(formatted).toBeInstanceOf(Array);
+        expect(formatted).toMatchObject([
+            { label: 'votre date de naissance', formattedValue: '5 juin 1983' },
+            { label: 'votre situation familiale', formattedValue: 'En union libre' },
+            { label: 'vos salaires (net) sur les 12 derniers mois', formattedValue: '27 400,00 €' },
+            { label: 'votre retraite (net) sur les 12 derniers mois', formattedValue: '1 200,00 €' },
+            { label: 'vos allocations sur les 12 derniers mois', formattedValue: '2 400,00 €' },
+            { label: 'vos pensions alimentaires perçues', formattedValue: '0,00 €' },
+            { label: 'vos revenus locatifs', formattedValue: '0,00 €' },
+            { label: 'vos revenus du capital', formattedValue: '0,00 €' }
+        ]);
     });
 
     it('returns expected values for date de naissance', function() {
         var loiret = new Loiret(situation);
         var formatted = loiret.toExternal();
-        expect(formatted).toIncludeKey('date_naissance_dem');
+        expect(formatted).toHaveProperty('date_naissance_dem');
         expect(formatted.date_naissance_dem).toEqual('05/06/1983');
     });
 
@@ -127,7 +130,7 @@ describe('Loiret Teleservice', function() {
             };
             var loiret = new Loiret(situation);
             var formatted = loiret.toExternal();
-            expect(formatted).toIncludeKey('situationfam_dem');
+            expect(formatted).toHaveProperty('situationfam_dem');
             expect(formatted.situationfam_dem).toEqual(expectation.situationfam_dem);
         });
     });
@@ -135,7 +138,7 @@ describe('Loiret Teleservice', function() {
     it('returns expected values for date de naissance', function() {
         var loiret = new Loiret(situation);
         var formatted = loiret.toExternal();
-        expect(formatted).toIncludeKey('date_naissance_dem');
+        expect(formatted).toHaveProperty('date_naissance_dem');
         expect(formatted.date_naissance_dem).toEqual('05/06/1983');
     });
 
@@ -181,7 +184,7 @@ describe('Loiret Teleservice', function() {
 
         var loiret = new Loiret(situation);
         var formatted = loiret.toExternal();
-        expect(formatted).toIncludeKey('montantRetraite_dem');
+        expect(formatted).toHaveProperty('montantRetraite_dem');
         expect(formatted.montantRetraite_dem).toEqual(2400);
     });
 
@@ -212,7 +215,7 @@ describe('Loiret Teleservice', function() {
 
         var loiret = new Loiret(situation);
         var formatted = loiret.toExternal();
-        expect(formatted).toIncludeKey('salaire_dem');
+        expect(formatted).toHaveProperty('salaire_dem');
         expect(formatted.salaire_dem).toEqual(24000);
     });
 
@@ -243,7 +246,7 @@ describe('Loiret Teleservice', function() {
 
         var loiret = new Loiret(situation);
         var formatted = loiret.toExternal();
-        expect(formatted).toIncludeKey('pension_dem');
+        expect(formatted).toHaveProperty('pension_dem');
         expect(formatted.pension_dem).toEqual(1200);
     });
 
@@ -274,7 +277,7 @@ describe('Loiret Teleservice', function() {
 
         var loiret = new Loiret(situation);
         var formatted = loiret.toExternal();
-        expect(formatted).toIncludeKey('rev_loca_dem');
+        expect(formatted).toHaveProperty('rev_loca_dem');
         expect(formatted.rev_loca_dem).toEqual(6000);
     });
 
@@ -305,7 +308,7 @@ describe('Loiret Teleservice', function() {
 
         var loiret = new Loiret(situation);
         var formatted = loiret.toExternal();
-        expect(formatted).toIncludeKey('rev_biens_dem');
+        expect(formatted).toHaveProperty('rev_biens_dem');
         expect(formatted.rev_biens_dem).toEqual(6000);
     });
 
@@ -366,7 +369,7 @@ describe('Loiret Teleservice', function() {
 
         var loiret = new Loiret(situation);
         var formatted = loiret.toExternal();
-        expect(formatted).toIncludeKey('allocations_dem');
+        expect(formatted).toHaveProperty('allocations_dem');
         expect(formatted.allocations_dem).toEqual(3600);
     });
 

@@ -29,14 +29,19 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
     $urlRouterProvider.otherwise('/');
     $uiViewScrollProvider.useAnchorScroll();
 
-    var individuFormView = function(individuRole) {
+    var individuFormView = function() {
+
         return {
             templateUrl: '/partials/foyer/individu-form.html',
             controller: 'FoyerIndividuFormCtrl',
-            resolve: {
-                individuRole: function() {
-                    return individuRole;
-                }
+        };
+    };
+
+    var resolveIndividuRole = function(individuRole) {
+
+        return {
+            individuRole: function() {
+                return individuRole;
             }
         };
     };
@@ -196,6 +201,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 },
                 'individuForm@foyer.demandeur': individuFormView('demandeur')
             },
+            resolve: resolveIndividuRole('demandeur'),
             preventFocus: true
         })
         .state('foyer.conjoint', {
@@ -206,7 +212,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     controller: 'FoyerConjointCtrl',
                 },
                 'individuForm@foyer.conjoint': individuFormView('conjoint')
-            }
+            },
+            resolve: resolveIndividuRole('conjoint'),
         })
         .state('foyer.enfants', {
             url: '/enfants',
@@ -231,12 +238,15 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 'validate@foyer.enfants': {
                     templateUrl: '/partials/foyer/enfants/validate.html',
                 },
-            }
+            },
+            resolve: resolveIndividuRole('enfant'),
         })
         .state('foyer.enfants.modifier', {
             url: '/:id',
-            templateUrl: '/partials/foyer/enfants.html',
             views: {
+                '': {
+                    templateUrl: '/partials/foyer/enfants.html',
+                },
                 'enfantForm': {
                     controller: 'FoyerEnfantCtrl',
                     templateUrl: '/partials/foyer/enfants/form.html',
@@ -245,7 +255,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 'validate@foyer.enfants': {
                     templateUrl: '/partials/foyer/enfants/validate.html',
                 },
-            }
+            },
+            resolve: resolveIndividuRole('enfant'),
         })
         .state('foyer.logement', {
             url: '/logement',

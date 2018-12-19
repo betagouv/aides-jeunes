@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $stateParams, $filter, $http, $location, $q, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filter, $http, $location, $q, SituationService, IndividuService) {
     var situation = $scope.situation = SituationService.restoreLocal();
 
     $scope.restoreRemoteSituation = function(situationId) {

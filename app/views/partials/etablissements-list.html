@@ -27,7 +27,7 @@
     </div>
     <br />
     <uib-accordion close-others="false">
-      <uib-accordion-group is-open="true"
+      <div uib-accordion-group is-open="true"
          ng-repeat="etablissement in etablissements">
         <uib-accordion-heading>
           <p>{{ etablissement.nom }}</p>
@@ -91,7 +91,7 @@
             </div>
           </div>
         </div>
-      </uib-accordion-group>
+      </div>
     </uib-accordion>
   </div>
 </div>

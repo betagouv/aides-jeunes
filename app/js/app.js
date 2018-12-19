@@ -320,7 +320,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anchorScroll, $templateCache, $timeout) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anchorScroll, $templateCache, $timeout, $transitions) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -339,8 +339,8 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anch
         }
     });
 
-    $rootScope.$on('$stateChangeSuccess', function focusTitleForScreenReaders(event, current) {
-        if (current.preventFocus)
+    $transitions.onSuccess({}, function focusTitleForScreenReaders(transition) {
+        if (transition.to().preventFocus)
             return;
 
         $timeout(function() {  // add the function to the next angular digest cycle, waiting for the page to load before executing it

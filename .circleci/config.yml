@@ -67,8 +67,8 @@ jobs:
           keys:
             - v12.1.3-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run:
-          name: NPM install
-          command: npm install
+          name: Install packages from package-lock.json
+          command: npm ci
       - run:
           name: Install SauceLabs
           command: npm install saucelabs

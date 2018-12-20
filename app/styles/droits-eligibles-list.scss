@@ -82,7 +82,6 @@ $fa-font-path: '~font-awesome/fonts';
 }
 
 .droits-eligibles-list-item {
-
     padding: 10px 15px;
     display: flex;
     flex-direction: row;
@@ -92,7 +91,6 @@ $fa-font-path: '~font-awesome/fonts';
     position: relative;
 
     @media (max-width: $screen-sm-max) {
-
         padding: 10px 15px;
         border-bottom: 1px solid #e0e0e0;
 
@@ -119,7 +117,6 @@ $fa-font-path: '~font-awesome/fonts';
     }
 
     &-left {
-
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -155,7 +152,6 @@ $fa-font-path: '~font-awesome/fonts';
 }
 
 .droit-montant {
-
     display: inline-block;
     text-align: right;
 
@@ -172,11 +168,9 @@ $fa-font-path: '~font-awesome/fonts';
 }
 
 .droit-detail {
-
     margin-bottom: 30px;
 
     &-heading {
-
         display: flex;
         flex-direction: row;
         justify-content: space-between;

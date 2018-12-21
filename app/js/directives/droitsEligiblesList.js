@@ -67,8 +67,9 @@ var controllerOptions = function(templateUrl) {
             templateUrl: templateUrl,
             scope: {
                 droits: '=',
-                yearMoins2: '=',
                 filter: '=',
+                ressourcesYearMoins2Captured: '=',
+                yearMoins2: '=',
             },
             controller: 'droitsEligiblesListCtrl',
         };

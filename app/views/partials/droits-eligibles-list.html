@@ -1,19 +1,21 @@
 <div class="droits-eligibles-list">
   <a ng-repeat="droit in list" href ng-click="scrollTo(droit, $event)" class="droits-eligibles-list-item"
     itemscope itemtype="http://schema.org/GovernmentService">
-    <div class="droits-eligibles-list-item-left">
-      <img ng-src="/img/{{ droit.provider.imgSrc }}" alt="{{ droit.label }}">
-      <div>
-        <h2>
-          <span itemprop="name">{{ droit.label }}</span>
-          <small>Comment l'obtenir ?</small>
-        </h2>
+    <div class="droits-eligibles-list-item-cell">
+      <div class="droits-eligibles-list-item-cell-left">
+        <img ng-src="/img/{{ droit.provider.imgSrc }}" alt="{{ droit.label }}">
+        <div>
+          <h2>
+            <span itemprop="name">{{ droit.label }}</span>
+            <small>Comment l'obtenir ?</small>
+          </h2>
+        </div>
       </div>
-    </div>
-    <div class="dotted-line"></div>
-    <droit-montant droit="droit" ng-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
-    <div ng-if="droit.montant && isBoolean(droit.montant)">
-      <i class="fa fa-check-circle fa-2x"></i>
+      <div class="dotted-line"></div>
+      <droit-montant droit="droit" ng-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
+      <div ng-if="droit.montant && isBoolean(droit.montant)">
+        <i class="fa fa-check-circle fa-2x"></i>
+      </div>
     </div>
   </a>
 </div>

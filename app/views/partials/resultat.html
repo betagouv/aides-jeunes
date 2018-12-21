@@ -39,20 +39,6 @@
       Les montants avancés sont arrondis à une dizaine d'euros près :
     </p>
     <droit-eligibles-list droits="droits"></droit-eligibles-list>
-    <!--
-    <div class="row additional-info-cta" ng-show="! noDroits && shouldPatrimoineBeCaptured()">
-      <div class="col-sm-8">
-        <p>
-          <i class="fa fa-info-circle" aria-hidden="true"></i>
-          Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ?
-          Vous devez renseigner des informations complémentaires.
-        </p>
-      </div>
-      <div class="col-sm-4 print-hidden">
-        <a class="btn btn-default btn-block" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
-      </div>
-    </div>
-    -->
   </div>
 
   <div ng-if="! (droitsNonEligibles.prestationsNationales | isEmpty)" ng-show="droitsNonEligiblesShow">
@@ -73,6 +59,7 @@
   <droit-eligibles-details
     droits="droits"
     ressources-year-moins-2-captured="ressourcesYearMoins2Captured"
+    patrimoine-captured="! shouldPatrimoineBeCaptured()"
     year-moins-2="yearMoins2"
     ></droit-eligibles-details>
 

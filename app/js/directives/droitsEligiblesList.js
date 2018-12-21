@@ -68,6 +68,7 @@ var controllerOptions = function(templateUrl) {
             scope: {
                 droits: '=',
                 filter: '=',
+                patrimoineCaptured: '=',
                 ressourcesYearMoins2Captured: '=',
                 yearMoins2: '=',
             },

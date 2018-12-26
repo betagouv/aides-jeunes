@@ -1,7 +1,7 @@
 gunicorn>=19.1.1
-Openfisca-France==32.1.0
-git+https://github.com/openfisca/openfisca-core.git@simplify-cycle-detection-24.11.0#egg=openfisca-core [web-api]
-git+https://github.com/betagouv/openfisca-bacASable.git@9e4c107#egg=openfisca-BacASable
-git+https://github.com/betagouv/openfisca-paris.git@63c5c2e#egg=openfisca-paris
-git+https://github.com/betagouv/openfisca-brestmetropole.git@63af363#egg=openfisca-BrestMetropole
-git+https://github.com/betagouv/openfisca-rennesmetropole.git@ef2b4b3#egg=openfisca-RennesMetropole
+Openfisca-France==32.3.0
+git+https://github.com/openfisca/openfisca-core.git@simplify-cycle-detection-25.2.2#egg=openfisca-core [web-api]
+git+https://github.com/betagouv/openfisca-bacASable.git@bd1ea0e#egg=openfisca-BacASable
+git+https://github.com/betagouv/openfisca-paris.git@01743ba#egg=openfisca-paris
+git+https://github.com/betagouv/openfisca-brestmetropole.git@0341592#egg=openfisca-BrestMetropole
+git+https://github.com/betagouv/openfisca-rennesmetropole.git@c7e2e87#egg=openfisca-RennesMetropole

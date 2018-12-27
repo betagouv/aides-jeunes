@@ -5,6 +5,7 @@ var mustache = require('consolidate').mustache;
 var bodyParser = require('body-parser');
 var pdf = require('html-pdf');
 
+var config = require('./backend/config/config');
 var droitsDescription = require('./app/js/constants/droits');
 
 function countPublicByType(type) {
@@ -92,6 +93,10 @@ module.exports = function(app) {
             sentry: env === 'production'
         });
     });
+
+    if (config.sentry.instance) {
+        app.use(config.sentry.instance.errorHandler());
+    }
 
     app.use(function (err, req, res, next) {
         console.error(err);

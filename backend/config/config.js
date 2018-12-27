@@ -10,7 +10,8 @@ var all = {
             useMongoClient: true,
         },
     },
-    sessionSecret: process.env.SESSION_SECRET || 'fghjdfjkdf785a-jreu'
+    sessionSecret: process.env.SESSION_SECRET || 'fghjdfjkdf785a-jreu',
+    sentry: require('./sentry'),
 };
 
 var override = {};
@@ -18,6 +19,11 @@ try
 {
     override = require('./' + env);
     console.info('Using specific configuration for ' + env + '.');
+
+    if (override && override.sentry && override.sentry.privateDsn) {
+        override.sentry.instance = require('raven');
+        override.sentry.instance.config(override.override.privateDsn);
+    }
 } catch (e) {
     if (e.toString().match(/Cannot find module/)) {
         console.warn('No specific configuration for ' + env + '.');

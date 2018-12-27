@@ -8,6 +8,9 @@ require('./config/mongoose')(mongoose, config);
 // Setup Express
 var app = express();
 
+if (config.sentry.instance) {
+    app.use(config.sentry.instance.requestHandler());
+}
 app.use(require('./lib/ludwig')(mongoose, mongoose.model('Situation')));
 app.use(require('./config/api'));
 

@@ -8,7 +8,8 @@ var all = {
         options: {
             useMongoClient: true,
         },
-    }
+    },
+    openFiscaTracerURL: 'https://betagouv.github.io/openfisca-tracer'
 };
 
 var override = {};

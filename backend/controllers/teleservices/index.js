@@ -23,7 +23,7 @@ var teleservices = [{
     public: true,
     destination: {
         label: 'en ligne',
-        url: '{{&openFiscaTracerURL}}/?source={{&baseURL}}/api/situations/via/{{token}}'
+        url: '{{&openfiscaTracerURL}}/?source={{&baseURL}}/api/situations/via/{{token}}'
     }
 }];
 
@@ -77,7 +77,7 @@ exports.metadataResponseGenerator = function(teleservice) {
                 url: Mustache.render(teleservice.destination.url, {
                     token: token,
                     baseURL: req.protocol + '://' + req.get('host'),
-                    openFiscaTracerURL: config.openFiscaTracerURL,
+                    openfiscaTracerURL: config.openfiscaTracerURL,
                 })
             },
         });

@@ -1,23 +1,28 @@
 var env = process.env.NODE_ENV || 'development';
 
 var all = {
-    openfiscaApi: process.env.OPENFISCA_URL || 'http://localhost:2000',
-    sessionSecret: process.env.SESSION_SECRET || 'fghjdfjkdf785a-jreu',
+    openfiscaURL: process.env.OPENFISCA_URL || 'http://localhost:2000',
+    openfiscaTracerURL: 'https://betagouv.github.io/openfisca-tracer',
     mongo: {
         uri: process.env.MONGODB_URL || 'mongodb://localhost/dds',
         options: {
             useMongoClient: true,
         },
     },
-    openFiscaTracerURL: 'https://betagouv.github.io/openfisca-tracer'
+    sessionSecret: process.env.SESSION_SECRET || 'fghjdfjkdf785a-jreu'
 };
 
 var override = {};
 try
 {
     override = require('./' + env);
+    console.info('Using specific configuration for ' + env + '.');
 } catch (e) {
-    console.warn('No specific configuration for ' + env + '.');
+    if (e.toString().match(/Cannot find module/)) {
+        console.warn('No specific configuration for ' + env + '.');
+    } else {
+        throw e;
+    }
 }
 
 module.exports = Object.assign(all, override);

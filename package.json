@@ -33,6 +33,7 @@
     "moment": "^2.8.3",
     "mongoose": "^4.5.1",
     "morgan": "~1.8.0",
+    "raven": "^2.6.4",
     "raven-js": "^3.26.3",
     "request-promise": "^4.2.2",
     "serve-favicon": "^2.4.0",

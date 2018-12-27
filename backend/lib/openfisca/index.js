@@ -16,7 +16,7 @@ function sendToOpenfisca(endpoint) {
             });
         }
         rp({
-            uri: config.openfiscaApi + '/' + endpoint,
+            uri: config.openfiscaURL + '/' + endpoint,
             method: 'POST',
             body: request,
             json: true,

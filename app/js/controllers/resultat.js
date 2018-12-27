@@ -46,7 +46,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
                         SituationService
                             .fetchRepresentation(situation._id, 'openfisca_tracer')
                             .then(function(data) {
-                                $scope.openFiscaTracerURL = data.destination.url;
+                                $scope.openfiscaTracerURL = data.destination.url;
                             }).catch(function() {});
                     });
             })

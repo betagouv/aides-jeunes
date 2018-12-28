@@ -10,7 +10,8 @@ var all = {
             useMongoClient: true,
         },
     },
-    sessionSecret: process.env.SESSION_SECRET || 'fghjdfjkdf785a-jreu'
+    sessionSecret: process.env.SESSION_SECRET || 'fghjdfjkdf785a-jreu',
+    sentry: require('./sentry'),
 };
 
 var override = {};

@@ -4,6 +4,7 @@ var path = require('path');
 var mustache = require('consolidate').mustache;
 var bodyParser = require('body-parser');
 var pdf = require('html-pdf');
+var raven = require('raven');
 
 var droitsDescription = require('./app/js/constants/droits');
 
@@ -92,6 +93,10 @@ module.exports = function(app) {
             sentry: env === 'production'
         });
     });
+
+    if (raven.installed) {
+        app.use(raven.errorHandler());
+    }
 
     app.use(function (err, req, res, next) {
         console.error(err);

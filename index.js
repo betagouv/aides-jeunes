@@ -40,7 +40,6 @@ module.exports = function(app) {
         });
 
     }
-    app.use('/recap-situation', express.static(path.join(__dirname, directory)));
 
     var viewsDirectory = path.join(__dirname, directory, 'views');
     app.use(favicon(path.join(__dirname, directory, 'img', 'favicon', 'favicon.ico')));

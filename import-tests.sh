@@ -37,7 +37,7 @@ ssh $USER@$REMOTE "mongodump --db $DATABASE"
 if [[ $limited == 'y' ]]
 then
     ssh $USER@$REMOTE "mongodump --db=dds --collection=situations --query='{status: \"test\"}'"
-    read -p "Do you want to rename the local 'situations' collection in 'legacysituations' after the import?  [y/N]" rename
+    ssh $USER@$REMOTE "rm dump/dds/legacysituations.*"
 fi
 
 ssh $USER@$REMOTE "mkdir -p `dirname $DISTANT_DUMP_FOLDER` && mv dump $DISTANT_DUMP_FOLDER/ && gzip -rv $DISTANT_DUMP_FOLDER"
@@ -51,8 +51,3 @@ then
     RESTORE_PARAM=--noIndexRestore
 fi
 mongorestore --db $DATABASE $LOCAL_DUMP_FOLDER $RESTORE_PARAM
-
-if [[ $rename == 'y'  ]]
-then
-    mongo $DATABASE --eval 'db.situations.renameCollection("legacysituations")'
-fi

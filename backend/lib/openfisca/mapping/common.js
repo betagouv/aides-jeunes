@@ -28,6 +28,10 @@ exports.getPeriods = function (dateDeValeur) {
         '1MonthsAgo': dateDeValeur.clone().subtract(1, 'months').format('YYYY-MM'),
         '2MonthsAgo': dateDeValeur.clone().subtract(2, 'months').format('YYYY-MM'),
         '3MonthsAgo': dateDeValeur.clone().subtract(3, 'months').format('YYYY-MM'),
+        // 3-element array of the latest 3 months
+        last3Months: _.map(_.range(1, 3 + 1), function(monthIndex) {
+            return dateDeValeur.clone().subtract(monthIndex, 'months').format('YYYY-MM');
+        }),
         // 12-element array of the latest 12 months
         last12Months: _.map(_.range(1, 12 + 1), function(monthIndex) {
             return dateDeValeur.clone().subtract(monthIndex, 'months').format('YYYY-MM');

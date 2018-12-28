@@ -8,8 +8,18 @@ require('./config/mongoose')(mongoose, config);
 // Setup Express
 var app = express();
 
-if (config.sentry.instance) {
-    app.use(config.sentry.instance.requestHandler());
+if (config.sentry && config.sentry.privateDsn) {
+    var raven = require('raven');
+    raven.config(config.sentry.privateDsn);
+    var installedValuePreInstall = raven.installed;
+    raven.install();
+    var installedValuePostInstall = raven.installed;
+    app.use(raven.requestHandler());
+
+    // Ensure installed property exists and behaves as expected
+    if (installedValuePreInstall || !installedValuePostInstall) {
+        throw new Error('raven.installed does not behave as expected! Aborting...');
+    }
 }
 app.use(require('./lib/ludwig')(mongoose, mongoose.model('Situation')));
 app.use(require('./config/api'));

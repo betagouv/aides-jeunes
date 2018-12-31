@@ -8,7 +8,7 @@
         ng-class="{ 'has-error': form.submitted && form[ ressourceType.id + '-monthly-value'].$invalid }"
         >
         <label class="col-sm-5 control-label" for="{{ ressourceType.id }}-monthly-value">
-          Vous recevez tous les mois depuis {{ debutAnneeGlissante }}&nbsp;:
+          {{ regularResourcePrompt }}&nbsp;:
         </label>
         <div class="col-sm-4">
           <div class="input-group">

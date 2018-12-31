@@ -1,6 +1,26 @@
 'use strict';
 
 angular.module('ddsApp').directive('captureMontantRessource', function(MonthService) {
+    function getInitialLabel (individu, ressource, debutAnneeGlissante) {
+        var subject = {
+            'demandeur': 'Vous',
+            'conjoint': 'Votre conjoint·e',
+            'enfant': individu.firstName,
+        }[individu.role];
+        var verbForms = {
+            pensions_alimentaires_versees_individu: {
+                demandeur: 'versez',
+                default: 'verse'
+            },
+            default: {
+                demandeur: 'recevez',
+                default: 'reçoit'
+            }
+        };
+        var verbForm = verbForms[ressource.id] || verbForms.default;
+        var verb = verbForm[individu.role] || verbForm.default;
+        return [subject, verb, 'tous les mois depuis', debutAnneeGlissante].join(' ');
+    }
 
     return {
         restrict: 'E',
@@ -23,6 +43,8 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
             var lastMonth = recentMonths[0];
             var currentMonth = recentMonths[1];
             var isoMonths = last12Months;
+
+            scope.regularResourcePrompt = getInitialLabel(scope.individu, scope.ressourceType, scope.debutAnneeGlissante);
 
             scope.isNumber = angular.isNumber;
             scope.ressource = scope.individu[scope.ressourceType.id];

@@ -1,5 +1,5 @@
 gunicorn>=19.1.1
-Openfisca-France==32.3.0
+git+https://github.com/openfisca/openfisca-france.git@reval-ppa#egg=Openfisca-France
 git+https://github.com/openfisca/openfisca-core.git@mitigate-cycle-and-simplify-cycle-detection-25.2.2#egg=openfisca-core [web-api]
 git+https://github.com/betagouv/openfisca-bacASable.git#egg=openfisca-BacASable
 git+https://github.com/betagouv/openfisca-paris.git@01743ba#egg=openfisca-paris

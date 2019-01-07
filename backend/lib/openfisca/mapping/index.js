@@ -36,10 +36,9 @@ function allocateIndividualsToEntities(situation) {
     menage.enfants = enfantIds;
 }
 
-var notInjectedAids = ['aah'];
 function setNonInjectedPrestations(testCase, periods, value) {
-    var prestationsFinancieres = _.pickBy(common.requestedVariables, function(definition, definitionName) {
-        return ((! definition.type) || definition.type === 'float') && notInjectedAids.indexOf(definitionName) == -1;
+    var prestationsFinancieres = _.pickBy(common.requestedVariables, function(definition) {
+        return ((! definition.type) || definition.type === 'float');
     });
 
     _.forEach(prestationsFinancieres, function(definition, prestationName) {
@@ -140,9 +139,9 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     propertyMove.movePropertyValuesToGroupEntity(testCase);
 
     var periods = common.getPeriods(situation.dateDeValeur);
-    setNonInjectedPrestations(testCase, periods.last12Months, 0);
+    setNonInjectedPrestations(testCase, _.difference(periods.last12Months, periods.last3Months), 0);
     last3MonthsDuplication(testCase, situation.dateDeValeur);
-    giveValueToRequestedVariables(testCase, periods.thisMonth, null);
+    giveValueToRequestedVariables(testCase, _.concat(periods.last3Months, periods.thisMonth), null);
 
     return applyHeuristicsAndFix(testCase, sourceSituation.dateDeValeur);
 };

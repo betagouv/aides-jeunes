@@ -74,11 +74,13 @@ module.exports = function(app) {
             ]
         };
         pdf.create(html, pdfOptions).toBuffer(function(err, buffer) {
-            res.writeHead(200, {
-                'Content-Type': 'application/pdf',
-                'Content-Disposition': 'attachment; filename=MesAides_simulation_' + req.body.basename + '.pdf',
-            });
-            res.end(buffer, 'binary');
+            if (!err) {
+                res.writeHead(200, {
+                    'Content-Type': 'application/pdf',
+                    'Content-Disposition': 'attachment; filename=MesAides_simulation_' + req.body.basename + '.pdf',
+                });
+                res.end(buffer, 'binary');
+            }
         });
     });
 

@@ -93,21 +93,25 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         var body = documentElement.querySelector('body');
         var scripts = documentElement.querySelectorAll('body > script');
 
-        // Remove Piwik script to avoid CORS errors with PhantomJS
+        // Remove some scripts to avoid CORS errors with PhantomJS
         var scriptsToFilter = _.filter(scripts, function(script) {
             if (script.innerHTML.match(/piwik/gm)) {
                 return true;
             }
 
-            return script.src.match(/piwik/g);
+            return script.src.match(/piwik/g)
+                || script.src.match(/webpack-dev-server\.js/g)
+                || script.src.match(/livereload\.js/g)
+                || script.src.match(/localhost:8080/g);
         });
+
         _.forEach(scriptsToFilter, function(script) {
             body.removeChild(script);
         });
 
         // Convert some links to absolute to have a correct rendering
 
-        var stylesheets = documentElement.querySelectorAll('link');
+        var stylesheets = documentElement.querySelectorAll('link[rel="stylesheet"]');
         _.forEach(stylesheets, function (stylesheet) {
             stylesheet.setAttribute('href', baseURL + stylesheet.getAttribute('href'));
         });
@@ -116,7 +120,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
             image.setAttribute('src', baseURL + image.getAttribute('src'));
         });
 
-        var base64 = window.btoa(unescape(encodeURIComponent(documentElement.innerHTML)));
+        var base64 = window.btoa(unescape(encodeURIComponent('<html>' + documentElement.innerHTML + '</html>')));
 
         $scope.base64 = base64;
 

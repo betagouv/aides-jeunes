@@ -120,7 +120,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
             image.setAttribute('src', baseURL + image.getAttribute('src'));
         });
 
-        var base64 = window.btoa(unescape(encodeURIComponent('<html>' + documentElement.innerHTML + '</html>')));
+        var base64 = window.btoa(unescape(encodeURIComponent(documentElement.outerHTML)));
 
         $scope.base64 = base64;
 

@@ -9,7 +9,8 @@ RUN apk add --no-cache --virtual .build-deps \
 
 RUN apk add --no-cache \
     yaml \
-    yaml-dev
+    yaml-dev \
+    libstdc++
 
 RUN mkdir /usr/src/openfisca
 WORKDIR /usr/src/openfisca

@@ -73,6 +73,9 @@ module.exports = function(app) {
                 '--ignore-ssl-errors=yes'
             ]
         };
+        if (process.env.PHANTOMJS_BIN) {
+            pdfOptions['phantomPath'] = process.env.PHANTOMJS_BIN;
+        }
         pdf.create(html, pdfOptions).toBuffer(function(err, buffer) {
             if (!err) {
                 res.writeHead(200, {
@@ -80,6 +83,8 @@ module.exports = function(app) {
                     'Content-Disposition': 'attachment; filename=MesAides_simulation_' + req.body.basename + '.pdf',
                 });
                 res.end(buffer, 'binary');
+            } else {
+                res.end();
             }
         });
     });

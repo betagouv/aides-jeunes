@@ -15,6 +15,10 @@ require('angular-i18n/angular-locale_fr');
 
 require('./styles/front.scss');
 
+if (process.env.NODE_ENV === 'production') {
+    require('./sentry.js');
+}
+
 require('./js/embed.js');
 require('./js/common.js');
 

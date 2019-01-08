@@ -32,6 +32,10 @@ require('./styles/recap-situation.css');
 require('./styles/droits-eligibles-list.css');
 require('./styles/breadcrumb.css');
 
+if (process.env.NODE_ENV === 'production') {
+    require('./sentry.js');
+}
+
 require('./js/common.js');
 require('./js/app.js');
 

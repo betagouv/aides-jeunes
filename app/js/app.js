@@ -1,11 +1,20 @@
 'use strict';
 
+var Raven = require('raven-js');
+var ngRaven = require('raven-js/plugins/angular').moduleName;
+
 // Use Webpack's require.context to manage dynamic requires for templates
 // The templates will be cached when the application is booted
 // https://webpack.js.org/guides/dependency-management/#require-context
 var template = require.context('../views', true, /(partials|content-pages)\/.*\.html$/);
 
-var ddsApp = angular.module('ddsApp', ['ui.router', 'ngAnimate', 'ddsCommon', 'ngSanitize', 'angulartics', 'angulartics.piwik']);
+var requires = ['ui.router', 'ngAnimate', 'ddsCommon', 'ngSanitize', 'angulartics', 'angulartics.piwik'];
+
+if (Raven.isSetup()) {
+    requires.push(ngRaven);
+}
+
+var ddsApp = angular.module('ddsApp', requires);
 
 ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $uiViewScrollProvider) {
     moment.locale('fr');

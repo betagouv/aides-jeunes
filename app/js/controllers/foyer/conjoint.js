@@ -5,7 +5,7 @@ angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state
     var hasChildren = SituationService.hasEnfant($scope.situation);
     $scope.famille = $scope.situation.famille;
 
-    var isFirstView = demandeur.statut_marital == undefined;
+    var isFirstView = demandeur.statut_marital === undefined;
     $scope.locals = {
         isInCouple : isFirstView ? undefined : Boolean(SituationService.getConjoint($scope.situation)),
     };

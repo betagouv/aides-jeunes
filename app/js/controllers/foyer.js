@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $stateParams, $filter, $location, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $stateParams, $filter, $http, $location, $q, SituationService, IndividuService) {
     var situation = $scope.situation = SituationService.restoreLocal();
 
     $scope.restoreRemoteSituation = function(situationId) {
@@ -93,35 +93,51 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $state
         var body = documentElement.querySelector('body');
         var scripts = documentElement.querySelectorAll('body > script');
 
-        // Remove Piwik script to avoid CORS errors with PhantomJS
+        // Remove some scripts to avoid CORS errors with PhantomJS
         var scriptsToFilter = _.filter(scripts, function(script) {
             if (script.innerHTML.match(/piwik/gm)) {
                 return true;
             }
 
-            return script.src.match(/piwik/g);
+            return script.src.match(/piwik/g)
+                || script.src.match(/webpack-dev-server\.js/g)
+                || script.src.match(/livereload\.js/g)
+                || script.src.match(/localhost:8080/g);
         });
+
         _.forEach(scriptsToFilter, function(script) {
             body.removeChild(script);
         });
 
         // Convert some links to absolute to have a correct rendering
-
-        var stylesheets = documentElement.querySelectorAll('link');
-        _.forEach(stylesheets, function (stylesheet) {
-            stylesheet.setAttribute('href', baseURL + stylesheet.getAttribute('href'));
-        });
         var images = documentElement.querySelectorAll('img');
         _.forEach(images, function (image) {
             image.setAttribute('src', baseURL + image.getAttribute('src'));
         });
 
-        var base64 = window.btoa(unescape(encodeURIComponent(documentElement.innerHTML)));
+        var stylesheets = documentElement.querySelectorAll('link[rel="stylesheet"]');
+        var promises = _.map(stylesheets, function (stylesheet) {
+            var promise = $http.get(stylesheet.getAttribute('href'));
+            stylesheet.parentNode.removeChild(stylesheet);
 
-        $scope.base64 = base64;
+            return promise;
+        });
 
-        setTimeout(function() {
-            document.getElementById("download").submit();
-        }, 2000);
+        $q.all(promises)
+            .then(function(values) {
+                // Inline styles
+                _.forEach(values, function(response) {
+                    var style = document.createElement('style');
+                    style.innerHTML = response.data.replace(/url\(\/fonts/g, 'url(' + baseURL + '/fonts');
+                    documentElement.querySelector('head').appendChild(style);
+                });
+            })
+            .then(function() {
+                $scope.base64 = window.btoa(unescape(encodeURIComponent(documentElement.outerHTML)));
+
+                setTimeout(function() {
+                    document.getElementById("download").submit();
+                }, 2000);
+            });
     };
 });

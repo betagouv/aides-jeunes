@@ -1,7 +1,7 @@
 FROM node:8-alpine
 
 RUN apk update \
-    && apk add --no-cache git
+    && apk add --no-cache git fontconfig
 
 RUN set -ex \
   && apk add --no-cache --virtual .build-deps ca-certificates openssl bzip2 \

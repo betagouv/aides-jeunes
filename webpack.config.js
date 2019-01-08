@@ -9,9 +9,6 @@ var merge = require('webpack-merge');
 
 var config = {
     entry: {
-        sentry: [
-            './app/sentry.js'
-        ],
         scripts: [
             './app/scripts.js'
         ],

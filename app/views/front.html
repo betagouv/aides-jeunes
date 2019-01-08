@@ -104,9 +104,6 @@
     <% } else { %>
     <script src="<%= htmlWebpackPlugin.files.chunks['vendor'].entry %>"></script>
     <script src="<%= htmlWebpackPlugin.files.chunks['stats'].entry %>"></script>
-    {{#sentry}}
-    <script src="<%= htmlWebpackPlugin.files.chunks['sentry'].entry %>"></script>
-    {{/sentry}}
     <script src="<%= htmlWebpackPlugin.files.chunks['scripts'].entry %>"></script>
     <% } %>
 

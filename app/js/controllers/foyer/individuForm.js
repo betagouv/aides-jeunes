@@ -217,7 +217,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     $scope.$watch('locals.fiscalementIndependant', fiscalementIndependantUpdated);
 
     $scope.captureScolarite = function(form) {
-        if (! isIndividuParent && form.dateDeNaissance.$valid) {
+        if (! isIndividuParent && form && form.dateDeNaissance && form.dateDeNaissance.$valid) {
             var age = IndividuService.age($scope.individu);
             return age <= 25 && age > 8;
         }

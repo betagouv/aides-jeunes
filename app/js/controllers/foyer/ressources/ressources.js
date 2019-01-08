@@ -2,7 +2,7 @@
 
 angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $state, ressourceTypes, SituationService) {
 
-    $scope.sortedIndividus = SituationService.getIndividusSortedParentsFirst($scope.situation);
+    var sortedIndividus = SituationService.getIndividusSortedParentsFirst($scope.situation);
     var haveEnfantsResourcesBeenDeclared;
 
     $scope.markEnfantsAsDeclared = function() {
@@ -14,7 +14,7 @@ angular.module('ddsApp').controller('FoyerRessourcesCtrl', function($scope, $sta
     $scope.declareNextIndividuResources = function (lastIndividuDeclaredIndex) {
         $scope.$parent.$broadcast('ressourcesUpdated');
         var nextIndividuIndex = lastIndividuDeclaredIndex + 1;
-        var nextIndividu = $scope.sortedIndividus[nextIndividuIndex];
+        var nextIndividu = sortedIndividus[nextIndividuIndex];
         if (! nextIndividu) {
             $state.go('foyer.pensionsAlimentaires');
             return;

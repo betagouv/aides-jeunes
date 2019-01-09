@@ -4,6 +4,7 @@
 User-agent: *
 Disallow: /aah-en-test
 Disallow: /ameli
+Disallow: /hameconnage
 Disallow: /api
 Disallow: /api/*
 Allow: /foyer/demandeur

@@ -423,6 +423,15 @@
                                 teleservice: undefined, // Prevent default form recycling
                                 link: 'http://www.pasdecalais.fr/Solidarite-Sante/Retraites-et-personnes-agees/Beneficier-d-aides/L-Allocation-Personnalisee-d-Autonomie-APA',
                             },
+                            'D64-PYRENEES_ATLANTIQUES': {
+                                provider: {
+                                    imgSrc: 'logo_cd64.png',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: 'http://www.le64.fr/fileadmin/mediatheque/cg64/documents/actualites/APA_2017/dossier_APA_modifi%C3%A9_juin_2017.pdf',
+                                teleservice: undefined, // Prevent default form recycling
+                                link: 'http://www.le64.fr/solidarite/autonomie/soutien-a-domicile/compenser-la-dependance-par-lapa.html',
+                            },
                             'D67-BAS_RHIN': {
                                 provider: {
                                     imgSrc: 'logo_cd67.png',

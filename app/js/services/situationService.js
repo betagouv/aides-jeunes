@@ -129,7 +129,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
         *@return   {String}  A boolean indicating whether the situation looks ready for OpenFisca or not
         */
         passSanityCheck: function(situation) {
-            return situation.individus && situation.individus.length;
+            return situation.individus && situation.individus.length > 0;
         },
 
         getDemandeur: function(situation) {

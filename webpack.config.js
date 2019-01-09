@@ -81,6 +81,7 @@ var config = {
             { from: 'app/documents', to: 'documents/' },
             { from: 'app/img', to: 'img/' },
             { from: 'robots.txt' },
+            { from: 'sitemap.xml' },
         ]),
         // Avoid bundling all Moment locales
         // @see https://github.com/moment/moment/issues/2517

@@ -1,0 +1,14 @@
+# www.robotstxt.org/
+# www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
+
+User-agent: *
+Disallow: /aah-en-test
+Disallow: /ameli
+Disallow: /api
+Disallow: /api/*
+Allow: /foyer/demandeur
+Disallow: /foyer/*
+Disallow: /redirection
+Disallow: /situations/*
+Disallow: /tests
+Disallow: /tests/*

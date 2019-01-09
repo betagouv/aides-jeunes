@@ -6,8 +6,10 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
 
     beforeEach(function() {
         scope = {
-            situation: { dateDeValeur: '2013-04-10' },
-            sortedIndividus: [{ role: 'demandeur' }, { role: 'conjoint' }, { role: 'enfant', firstName: 'Jérome' }]
+            situation: {
+                dateDeValeur: '2013-04-10',
+                individus: [{ role: 'demandeur' }, { role: 'enfant', firstName: 'Jérome' }, { role: 'conjoint' }]
+            }
         };
         module('ddsApp');
         inject(function($controller) {

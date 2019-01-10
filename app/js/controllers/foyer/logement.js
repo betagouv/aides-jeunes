@@ -87,12 +87,15 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.captureHabiteChezParents = function() {
+        if (! $scope.demandeur) {
+            return false;
+        }
         var age = IndividuService.age($scope.demandeur);
         return (logement.type == 'heberge') && $scope.demandeur.fiscalementIndependant && (age >= 18) && (age < 25) && (! SituationService.hasEnfant($scope.situation));
     };
 
     $scope.captureParticipationFrais = function() {
-        return (logement.type == 'heberge') && (! $scope.captureHabiteChezParents() || angular.isDefined($scope.demandeur.habite_chez_parents));
+        return $scope.demandeur && (logement.type == 'heberge') && (! $scope.captureHabiteChezParents() || angular.isDefined($scope.demandeur.habite_chez_parents));
     };
 
     $scope.captureLoyer = function() {

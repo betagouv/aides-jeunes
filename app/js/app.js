@@ -320,12 +320,16 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $anchorScroll, $templateCache, $timeout) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anchorScroll, $templateCache, $timeout) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
     // Offset de l'anchorscroll à 60px, nécessaire à cause de la navbar en position fixed
     $anchorScroll.yOffset = 60;
+
+    document.addEventListener('ravenSuccess', function(event) {
+        $analytics.eventTrack('Sentry', { label: event.data.event_id });
+    });
 
     // changement d'url vers /api => débranchement de ui-router
     $rootScope.$on('$locationChangeStart', function(e, location) {

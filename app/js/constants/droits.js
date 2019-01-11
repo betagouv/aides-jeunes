@@ -37,9 +37,9 @@
                             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                         ],
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F13375',
-                        'form': 'https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true&_pageID=P1_DEMANDE_CMUC',
+                        'teleservice': 'https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true&_pageID=P1_DEMANDE_CMUC',
                         'forms': {
-                            'general': 'https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true&_pageID=P1_DEMANDE_CMUC',
+                            'general': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
                             'msa': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf'
                         },
                     },
@@ -63,7 +63,7 @@
                             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                         ],
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F10027',
-                        'form': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
+                        'teleservice': 'https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true&_pageID=P1_DEMANDE_CMUC',
                         'forms': {
                             'general': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
                             'msa': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',

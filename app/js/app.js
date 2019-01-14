@@ -342,14 +342,6 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anch
         $analytics.eventTrack('Sentry', { label: event.data.event_id });
     });
 
-    // changement d'url vers /api => débranchement de ui-router
-    $rootScope.$on('$locationChangeStart', function(e, location) {
-        if (0 === location.indexOf($window.location.origin + '/api')) {
-            e.preventDefault();
-            $window.location.href = location;
-        }
-    });
-
     $transitions.onSuccess({}, function focusTitleForScreenReaders(transition) {
         if (transition.to().preventFocus)
             return;

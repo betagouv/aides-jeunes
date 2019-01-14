@@ -18,6 +18,13 @@ var teleservices = [{
         url: 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92?situation={{token}}'
     }
 }, {
+    name: 'loiret_APA',
+    class: Loiret,
+    destination: {
+        label: 'du Loiret',
+        url: 'https://services.loiret.fr/public/requestv2/accountless/teleprocedure_id/264?situation={{token}}'
+    }
+}, {
     name: 'openfisca_tracer',
     class: OpenFiscaTracer,
     public: true,

@@ -395,6 +395,17 @@
                                 teleservice: undefined, // Prevent default instructions recycling
                                 link: 'https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/personne-agee/l-allocation-personnalisee-d-autonomie-apa-a-domicile-fr-p1_315752?portal=aca_6941&category=p2_807421',
                             },
+                            'D45-DAMPIERRE-EN-BURLY': {
+                                provider: {
+                                    imgSrc: 'logo_cd45.jpg',
+                                },
+                                instructions: undefined, // Prevent default instructions recycling
+                                form: undefined, // Prevent default form recycling
+                                teleservice: {
+                                    state: 'redirection',
+                                    params: { vers: 'loiret_APA' }
+                                }
+                            },
                             'D57-MOSELLE': {
                                 provider: {
                                     imgSrc: 'logo_cd57.png',

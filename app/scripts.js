@@ -98,6 +98,7 @@ require('./js/controllers/validation.js');
 
 require('./js/directives/breadcrumb.js');
 require('./js/directives/date.js');
+require('./js/directives/droitCta.js');
 require('./js/directives/selectOnFocus.js');
 require('./js/directives/zeroToEmpty.js');
 require('./js/directives/individuBlock.js');

@@ -1,0 +1,19 @@
+<a ng-href="{{ getActionURL(droit) }}"
+  target="_blank"
+  rel="noopener"
+  class="btn btn-sm btn-block"
+  ng-class="{
+    'btn-success': droit.teleservice,
+    'btn-primary': droit.form,
+    'btn-default': droit.instructions,
+  }"
+  ng-click="onClick(droit)"
+  analytics-on="click"
+  analytics-name="{{ droit.label }}"
+  analytics-event="{{ getActionURL(droit) }}"
+  analytics-category="Action"
+  >
+  <span ng-if="droit.teleservice">Faire une demande</span>
+  <span ng-if="droit.form">Accéder au formulaire</span>
+  <span ng-if="droit.instructions">Accéder aux instructions</span>
+</a>

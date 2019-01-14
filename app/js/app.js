@@ -137,6 +137,13 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'Liens utiles'
             }
         })
+        .state('depannage', {
+            url: '/depannage',
+            templateUrl: '/content-pages/depannage.html',
+            data: {
+                pageTitle: 'Dépannage'
+            }
+        })
         .state('social', {
             url: '/social',
             templateUrl: '/content-pages/social.html',

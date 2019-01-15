@@ -3,10 +3,14 @@
 angular.module('ddsApp').directive('yesNoQuestion', function($parse) {
     return {
         restrict: 'E',
-        transclude: true,
+        // Use transclusion slots
+        // @see https://docs.angularjs.org/api/ng/directive/ngTransclude
+        transclude: {
+            question: 'question',
+            helpBlock: '?helpBlock' // This slot is optional
+        },
         templateUrl: '/partials/foyer/yes-no-question.html',
         scope: true,
-        controller: 'yesNoQuestionCtrl',
         link: function ($scope, $element, $attributes) {
 
             var getter = $parse($attributes.model);
@@ -27,14 +31,4 @@ angular.module('ddsApp').directive('yesNoQuestion', function($parse) {
             };
         }
     };
-});
-
-angular.module('ddsApp').controller('yesNoQuestionCtrl', function($scope, $transclude, $element, $interpolate) {
-    _.forEach($transclude(), function(elem) {
-        if (elem.localName == 'question') {
-            $element.find('legend').append($interpolate(elem.innerHTML)($scope));
-        } else if (elem.localName == 'help-block') {
-            $element.find('p').append($interpolate(elem.innerHTML)($scope));
-        }
-    });
 });

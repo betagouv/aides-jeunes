@@ -33,15 +33,9 @@ describe('aides descriptions', function() {
                         expect(aide.link).toMatch(/^https?:\/\//);
                     });
 
-                    if (aide.isExperimental) {
-                        it('should have an internal link', function() {
-                            expect(typeof aide.internalLink).toBe('string');
-                        });
-                    } else {
-                        it('should have a teleservice, a form, or instructions', function() {
-                            expect(typeof (aide.teleservice || aide.form || aide.instructions)).toBe('string');
-                        });
-                    }
+                    it('should have a teleservice, a form, or instructions', function() {
+                        expect(typeof (aide.teleservice || aide.form || aide.instructions)).toBe('string');
+                    });
                 });
             });
         });

@@ -8,8 +8,8 @@
         dds-date
         format="JJ/MM/AAAA"
         class="form-control"
-        max="{{ today }}"
-        min="{{ minBirthDate }}"
+        max="{{ today.format() }}"
+        min="{{ minBirthDate.format() }}"
         name="dateDeNaissance"
         id="date-de-naissance"
         required

@@ -14,15 +14,14 @@ function matchStep(state, step) {
     return state.name.match(new RegExp('^' + step));
 }
 
-angular.module('ddsApp').directive('breadcrumb', function($rootScope) {
+angular.module('ddsApp').directive('breadcrumb', function($transitions) {
     return {
         restrict: 'E',
         templateUrl: '/partials/breadcrumb.html',
         controller: function($scope, $state) {
 
-            // @see https://ui-router.github.io/guide/ng1/migrate-to-1_0#state-change-events
-            $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-                var stepIndex = _.findIndex(steps, matchStep.bind(null, toState));
+            $transitions.onSuccess({}, function(transition) {
+                var stepIndex = _.findIndex(steps, matchStep.bind(null, transition.to()));
                 if (-1 !== stepIndex) {
                     $scope.step = steps[stepIndex];
                     var prevStep = steps[stepIndex - 1];

@@ -2,7 +2,6 @@
 # www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
 
 User-agent: *
-Disallow: /aah-en-test
 Disallow: /ameli
 Disallow: /hameconnage
 Disallow: /api

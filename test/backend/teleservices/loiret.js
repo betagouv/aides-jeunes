@@ -1,12 +1,14 @@
 var expect = require('expect');
 var moment = require('moment');
 
+moment.locale('fr');
+
 var situation = {
     "dateDeValeur": "2018-07-14",
     "individus":[
         {
             "role":"demandeur",
-            "date_naissance":"1983-06-05T22:00:00.000Z",
+            "date_naissance": moment('1983-06-05T22:00:00+01'),
             "statut_marital":"celibataire",
             "indemnites_journalieres_maladie_professionnelle":{
                 "2017-07":200,

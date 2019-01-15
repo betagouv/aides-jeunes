@@ -69,8 +69,13 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
                 $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract(1, 'years').format('MMMM YYYY');
                 $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract(1, 'months').format('MMMM YYYY');
                 $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
+
                 $scope.shouldPatrimoineBeCaptured = function() {
-                    return ! angular.isDefined(SituationService.hasPatrimoine($scope.situation));
+                    if ((! $scope.droits) || (! $scope.droits.prestationsNationales)) {
+                        return;
+                    }
+
+                    return _.some($scope.droits.prestationsNationales, 'isBaseRessourcesPatrimoine') && ! angular.isDefined(SituationService.hasPatrimoine($scope.situation));
                 };
             });
     }

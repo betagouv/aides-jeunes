@@ -145,6 +145,7 @@
                             'caf': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do',
                             'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do'
                         },
+                        'isBaseRessourcesPatrimoine': true,
                         'uncomputability': {
                             'tns': {
                                 'reason': {
@@ -191,6 +192,7 @@
                             'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=98643'
                         },
                         'isBaseRessourcesYearMoins2': true,
+                        'isBaseRessourcesPatrimoine': true,
                         'uncomputability': {
                             'primo_accedant': {
                                 'reason': {

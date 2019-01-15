@@ -8,7 +8,7 @@ var situation = {
     "individus":[
         {
             "role":"demandeur",
-            "date_naissance": moment('1983-06-05T22:00:00+01'),
+            "date_naissance": moment('1983-06-05'),
             "statut_marital":"celibataire",
             "indemnites_journalieres_maladie_professionnelle":{
                 "2017-07":200,
@@ -79,9 +79,6 @@ var Loiret = require('../../../backend/lib/teleservices/loiret');
 describe('Loiret Teleservice', function() {
 
     it('returns expected values for internal purpose', function() {
-
-        moment.locale('fr');
-
         var loiret = new Loiret(situation);
         var formatted = loiret.toInternal();
 

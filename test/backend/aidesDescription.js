@@ -32,10 +32,6 @@ describe('aides descriptions', function() {
                         expect(typeof aide.link).toBe('string');
                         expect(aide.link).toMatch(/^https?:\/\//);
                     });
-
-                    it('should have a teleservice, a form, or instructions', function() {
-                        expect(typeof (aide.teleservice || aide.form || aide.instructions)).toBe('string');
-                    });
                 });
             });
         });

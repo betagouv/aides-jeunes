@@ -82,7 +82,7 @@ describe('openfisca generateYAMLTest', function() {
     });
 
     it('contains provided output_variables', function() {
-        expect(result).toInclude('valueOne: 1');
+        expect(result).toContain('valueOne: 1');
     });
 
     if (process.env.VIRTUAL_ENV) {

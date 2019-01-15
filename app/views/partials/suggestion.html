@@ -128,7 +128,7 @@
 
         <div class="col-md-7" ng-if="(! droit.ref.type) || droit.ref.type === 'float'">
           <div class="input-group">
-            <input id="expected-value-{{ $index }}" class="form-control text-right" name="expected-value" type="number" lang="fr" step="any" ng-model="droit.expectedValue" required select-on-focus>
+            <input id="expected-value-{{ $index }}" class="form-control text-right" name="expected-value" type="number" lang="fr" ng-model="droit.expectedValue" required select-on-focus>
             <span class="input-group-addon">{{ droit.ref.unit || '€' }}</span>
           </div>
         </div>

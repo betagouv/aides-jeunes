@@ -15,7 +15,6 @@
             <input
               type="number"
               min="0"
-              step="100"
               class="form-control text-right"
               id="{{ ressourceType.id }}-monthly-value"
               name="{{ ressourceType.id }}-monthly-value"
@@ -66,7 +65,6 @@
                 name="{{ ressourceType.id }}-month_{{ $index }}"
                 required
                 min="0"
-                step="100"
                 select-on-focus
                 zero-to-empty
                 ng-model="ressource[month.id]"
@@ -92,7 +90,6 @@
                 name="{{ ressourceType.id }}-year"
                 required
                 min="{{ monthsSum }}"
-                step="100"
                 select-on-focus
                 zero-to-empty
                 ng-model="locals.annualValue"

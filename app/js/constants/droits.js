@@ -226,13 +226,10 @@
                         'description': 'L’allocation aux adultes handicapés (AAH) est une aide financière qui permet d’assurer un revenu minimum. Cette aide est attribuée sous réserve de respecter 4 critères : le taux d’incapacité, l’âge, la nationalité et les ressources. L’AAH peut se cumuler soit avec le complément de ressources, soit avec la majoration pour la vie autonome ou, dans certains cas, l’aide à l’autonomie.',
                         'isBaseRessourcesYearMoins2': true,
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242',
-                        //  'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                         'forms': {
                             'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                         },
                         'entity': 'individu', // default entity is famille
-                        'isExperimental': true,
-                        'internalLink': 'aah-en-test'
                     },
                 },
             },

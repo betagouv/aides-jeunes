@@ -60,23 +60,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'À propos'
             }
         })
-        .state('aah-en-test', {
-            url: '/aah-en-test',
-            templateUrl: '/content-pages/aah-en-test.html',
-            controller: function($scope, droitsDescription, TrampolineService) {
-                $scope.aah = droitsDescription.prestationsNationales.caf.prestations.aah;
-
-                var trampoline = TrampolineService.get();
-                if (! trampoline) {
-                    return;
-                }
-                $scope.situationId = trampoline.situationId;
-                $scope.montant = trampoline.montant;
-            },
-            data: {
-                pageTitle: 'Montant de l’AAH – Mes Aides est en phase de test',
-            }
-        })
         .state('ameli', {
             url: '/ameli',
             templateUrl: '/content-pages/ameli.html',

@@ -361,11 +361,4 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anch
         var cacheKey = path.replace('./', '/');
         $templateCache.put(cacheKey, template(path));
     });
-
-    $rootScope.$on('$locationChangeSuccess', function(event, current) {
-        if ($window._paq) {
-            $window._paq.push(['setCustomUrl', current]);
-            $window._paq.push(['trackPageView']);
-        }
-    });
 });

@@ -144,6 +144,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'Dépannage'
             },
             controller: function($scope, SituationService) {
+                $scope.currentYear = moment().format('YYYY');
+                $scope.yearMinusTwo = moment().subtract(2, 'year').format('YYYY');
                 $scope.situationId = SituationService.restoreLocal()._id;
             }
         })

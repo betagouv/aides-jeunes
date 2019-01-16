@@ -22,7 +22,7 @@
               select-on-focus
               zero-to-empty
               uib-tooltip="{{ ressourceType.hint || '' }}"
-              tooltip-trigger="'mouseenter'"
+              tooltip-trigger="'focus'"
               tooltip-placement="top"
               tooltip-enable="!! ressourceType.hint"
               tooltip-append-to-body="true"
@@ -75,7 +75,7 @@
                 ng-model="ressource[month.id]"
                 aria-describedby="help-{{ ressourceType.id }}-month_{{ $index }}"
                 uib-tooltip="{{ ressourceType.hint || '' }}"
-                tooltip-trigger="'mouseenter'"
+                tooltip-trigger="'focus'"
                 tooltip-placement="top"
                 tooltip-enable="!! ressourceType.hint"
                 tooltip-append-to-body="true"
@@ -105,7 +105,7 @@
                 ng-model="locals.annualValue"
                 aria-describedby="help-{{ ressourceType.id }}-year"
                 uib-tooltip="{{ ressourceType.hint || '' }}"
-                tooltip-trigger="'mouseenter'"
+                tooltip-trigger="'focus'"
                 tooltip-placement="top"
                 tooltip-enable="!! ressourceType.hint"
                 tooltip-append-to-body="true"

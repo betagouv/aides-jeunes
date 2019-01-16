@@ -3,7 +3,7 @@ description: 'Declare YM2 resources',
 steps: [
     ResultComponent.declareYM2Resources(),
     {
-        'YM2ResourcesComponent.suggestionText': /12 000,00 €/,
+        'YM2ResourcesComponent.suggestionText': /12 017,04 €/,
     },
     YM2ResourcesComponent.setDemandeurRevenuActiviteInput(10000),
     YM2ResourcesComponent.setConjointChomageImposableInput(5000),

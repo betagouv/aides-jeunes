@@ -12,3 +12,4 @@ Disallow: /redirection
 Disallow: /situations/*
 Disallow: /tests
 Disallow: /tests/*
+Disallow: /validation

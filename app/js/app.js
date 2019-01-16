@@ -159,6 +159,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('validation', {
             url: '/validation',
             templateUrl: '/partials/validation.html',
+            data: {
+                robots: 'noindex'
+            },
             controller: 'ValidationCtrl'
         })
         .state('foyer', {

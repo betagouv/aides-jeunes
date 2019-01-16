@@ -64,7 +64,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/ameli',
             templateUrl: '/content-pages/ameli.html',
             data: {
-                pageTitle: 'Bienvenue sur Mes Aides'
+                pageTitle: 'Bienvenue sur Mes Aides',
+                robots: 'noindex'
             }
         })
         .state('ameliorer', {
@@ -116,7 +117,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/hameconnage',
             templateUrl: '/content-pages/hameconnage.html',
             data: {
-                pageTitle: '⚠️ Hameçonnage ⚠️'
+                pageTitle: '⚠️ Hameçonnage ⚠️',
+                robots: 'noindex'
             },
             controller: function($scope) {
                 $scope.referrer = document.referrer;
@@ -157,6 +159,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('validation', {
             url: '/validation',
             templateUrl: '/partials/validation.html',
+            data: {
+                robots: 'noindex'
+            },
             controller: 'ValidationCtrl'
         })
         .state('foyer', {
@@ -197,6 +202,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 'individuForm@foyer.conjoint': individuFormView('conjoint')
             },
             resolve: resolveIndividuRole('conjoint'),
+            data: {
+                robots: 'noindex'
+            }
         })
         .state('foyer.enfants', {
             url: '/enfants',
@@ -208,6 +216,9 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 'validate@foyer.enfants': {
                     templateUrl: '/partials/foyer/enfants/validate.html',
                 },
+            },
+            data: {
+                robots: 'noindex'
             }
         })
         .state('foyer.enfants.ajouter', {
@@ -244,12 +255,18 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('foyer.logement', {
             url: '/logement',
             templateUrl: '/partials/foyer/logement.html',
-            controller: 'FoyerLogementCtrl'
+            controller: 'FoyerLogementCtrl',
+            data: {
+                robots: 'noindex'
+            }
         })
         .state('foyer.ressources', {
             url: '/ressources',
             controller: 'FoyerRessourcesCtrl',
-            templateUrl: '/partials/foyer/ressources/layout.html'
+            templateUrl: '/partials/foyer/ressources/layout.html',
+            data: {
+                robots: 'noindex'
+            }
         })
         .state('foyer.ressources.enfants', {
             templateUrl: '/partials/foyer/ressources/enfants.html',
@@ -274,12 +291,18 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('foyer.pensionsAlimentaires', {
             templateUrl: '/partials/foyer/pensions-alimentaires.html',
             controller: 'FoyerPensionsAlimentairesCtrl',
-            url: '/pensions-alimentaires'
+            url: '/pensions-alimentaires',
+            data: {
+                robots: 'noindex'
+            }
         })
         .state('foyer.resultat', {
             url: '/resultat?situationId',
             templateUrl: '/partials/resultat.html',
-            controller: 'ResultatCtrl'
+            controller: 'ResultatCtrl',
+            data: {
+                robots: 'noindex'
+            }
         }).state('foyer.resultat.suggestion', {
             url: '/suggestion',
             templateUrl: '/partials/suggestion.html',
@@ -303,13 +326,19 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('redirection', {
             url: '/redirection?vers',
             templateUrl: '/partials/redirection.html',
-            controller: 'RedirectionCtrl'
+            controller: 'RedirectionCtrl',
+            data: {
+                robots: 'noindex'
+            }
         })
         .state('situation', { // Route used by Ludwig
             url: '/situations/:situationId',
             template: '',
             controller: function(SituationService, $state, $stateParams) {
                 $state.go('foyer.resultat', { situationId: $stateParams.situationId });
+            },
+            data: {
+                robots: 'noindex'
             }
         });
 });
@@ -337,6 +366,24 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anch
                 title.focus();
             }
         });
+    });
+
+    // Update <meta name="robots"> in vanilla JavaScript,
+    // because nothing else works
+    $transitions.onSuccess({}, function(transition) {
+
+        var robots = $window.document.querySelector('head meta[name="robots"]');
+        if (! robots) {
+
+            return;
+        }
+
+        var state = transition.to();
+        if (state.data && state.data.robots) {
+            robots.content = state.data.robots;
+        } else {
+            robots.content = 'index,follow';
+        }
     });
 
     // Preload templates in cache

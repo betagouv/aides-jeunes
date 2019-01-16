@@ -7,7 +7,7 @@
         vous pourrez ensuite saisir les montants.
       </legend>
       <uib-accordion close-others="false">
-        <uib-accordion-group
+        <div uib-accordion-group
           class="capture-{{ category.id }}"
           ng-repeat="category in ressourceCategories"
           is-open="status.open"
@@ -31,7 +31,7 @@
                 {{ ressourceType.label }}
             </label>
           </div>
-        </uib-accordion-group>
+        </div>
       </uib-accordion>
       <div class="text-right">
         <button type="submit" class="btn btn-primary">

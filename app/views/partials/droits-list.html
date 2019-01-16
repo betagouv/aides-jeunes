@@ -3,7 +3,7 @@
     <div ng-repeat="droit in droits">
       <div ng-if="$index % 3 === 0" class="clearfix"></div>
       <div class="panel-non-eligible">
-        <uib-accordion-group is-open="droit.open">
+        <div uib-accordion-group is-open="droit.open">
           <uib-accordion-heading>
             <div class="row">
               <div class="col-xs-10">{{ droit.label }}</div>
@@ -22,7 +22,7 @@
             <i class="fa fa-external-link" aria-hidden="true" role="presentation"></i>
             Plus d'informations
           </a>
-        </uib-accordion-group>
+        </div>
       </div>
     </div>
   </div>

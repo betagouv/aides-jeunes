@@ -65,7 +65,8 @@
             id: 'chomage_net',
             label: 'Allocations chômage (ARE)',
             category: 'allocations',
-            interuptionQuestionLabel: 'des allocations chômage, un salaire ou des indemnités de la sécurité sociale'
+            interuptionQuestionLabel: 'des allocations chômage, un salaire ou des indemnités de la sécurité sociale',
+            hint: 'Entrez le montant avant la retenue à la source'
         },
         {
             id: 'allocation_securisation_professionnelle',
@@ -192,7 +193,8 @@
             id: 'indemnites_journalieres_maladie',
             label: 'Indemnités maladie',
             category: 'indemnites',
-            interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'
+            interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage',
+            hint: 'Entrez le montant avant la retenue à la source'
         },
         {
             id: 'indemnites_journalieres_maladie_professionnelle',
@@ -224,6 +226,7 @@
             category: 'revenusActivite',
             prefix: 'des',
             revenuExceptionnel: true,
+            hint: 'Entrez le montant avant la retenue à la source'
         },
         {
             id: 'dedommagement_victime_amiante',
@@ -253,7 +256,8 @@
             id: 'retraite_nette',
             label: 'Retraite (y compris reversion), rente',
             category: 'pensions',
-            prefix: 'une'
+            prefix: 'une',
+            hint: 'Entrez le montant avant la retenue à la source'
         },
         {
             id: 'retraite_combattant',

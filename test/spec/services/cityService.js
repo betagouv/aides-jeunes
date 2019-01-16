@@ -1,45 +1,36 @@
 'use strict';
 
 describe('CityService', function() {
-    var service, q, scope, http;
+    var service, $httpBackend;
 
     beforeEach(function() {
-        module('ddsApp', function($provide) {
-            $provide.value('$http', {
-                get: function(url) {
-                    // Prevent mocking real $http calls
-                    if (! url.match(/\d{5}$/)) {
-                        return http.get(url);
-                    }
-
-                    var deferred = q.defer();
-                    var data = [{
-                        codeInsee: '75119',
-                        codePostal: '75019',
-                        nomCommune: 'paris 19',
-                    }];
-                    if (url && url.slice && url.slice(-5) === '33610') {
-                        data = [{
-                            codeInsee: "33090",
-                            codePostal: "33610",
-                            nomCommune: "CANEJAN",
-                        },
-                        {
-                            codeInsee: "33122",
-                            codePostal: "33610",
-                            nomCommune: "CESTAS",
-                        }];
-                    }
-                    deferred.resolve({ data: data });
-                    return deferred.promise;
-                },
-            });
-        });
-        inject(function($rootScope, $q, $http, CityService) {
-            scope = $rootScope.$new();
+        module('ddsApp');
+        inject(function($injector, CityService) {
             service = CityService;
-            http = $http;
-            q = $q;
+
+            $httpBackend = $injector.get('$httpBackend');
+
+            $httpBackend
+                .whenGET('/api/outils/communes/75019')
+                .respond(200, JSON.stringify([{
+                    codeInsee: '75119',
+                    codePostal: '75019',
+                    nomCommune: 'paris 19',
+                }]));
+
+            $httpBackend
+                .whenGET('/api/outils/communes/33610')
+                .respond(200, JSON.stringify([{
+                    codeInsee: "33090",
+                    codePostal: "33610",
+                    nomCommune: "CANEJAN",
+                },
+                {
+                    codeInsee: "33122",
+                    codePostal: "33610",
+                    nomCommune: "CESTAS",
+                }]));
+
         });
     });
 
@@ -53,7 +44,8 @@ describe('CityService', function() {
                 expect(cities.length).toBe(1);
                 done();
             });
-            scope.$apply();
+
+            $httpBackend.flush();
         });
 
         it('Should return a two-element array for 33610', function(done) {
@@ -65,7 +57,8 @@ describe('CityService', function() {
                 expect(cities.length).toBe(2);
                 done();
             });
-            scope.$apply();
+
+            $httpBackend.flush();
         });
     });
 });

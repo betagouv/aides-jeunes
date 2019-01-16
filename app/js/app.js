@@ -142,7 +142,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/content-pages/depannage.html',
             data: {
                 pageTitle: 'Dépannage'
-            }
+            },
             controller: function($scope, SituationService) {
                 $scope.situationId = SituationService.restoreLocal()._id;
             }

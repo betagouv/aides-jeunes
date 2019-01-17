@@ -98,6 +98,13 @@ npm install --global grunt-cli
 grunt watch
 ```
 
+You can specify ports to run multiple instances
+
+```sh
+PORT=9001 WEBPACK_DEV_PORT=8081 LIVERELOAD_PORT=35728 DEBUG_PORT=9230 npm run dev
+```
+Those ports are the default ones incremented by 1.
+
 
 Testing
 =======

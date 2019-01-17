@@ -44,3 +44,6 @@ angular.module('ddsApp')
 
 angular.module('ddsApp')
     .directive('droitNonEligiblesList', controllerOptions('/partials/droits-non-eligibles-list.html'));
+
+angular.module('ddsApp')
+    .directive('droitEligiblesAccordion', controllerOptions('/partials/droits-eligibles-accordion.html'));

@@ -1,10 +1,13 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, $scope, $sessionStorage, $stateParams, $window, CityService, ResultatService, SituationService, TrampolineService) {
+angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, $scope, $sessionStorage, $stateParams, $window, ABTestingService, CityService, ResultatService, SituationService, TrampolineService) {
     $scope.awaitingResults = false;
     $scope.error = false;
     $scope.warning = false;
     $scope.warningMessage = false;
+
+    var env = ABTestingService.getEnvironment();
+    $scope.variante = env.resultat;
 
     // For testing purposes
     $scope.redirectionNames = [];

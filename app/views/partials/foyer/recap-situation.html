@@ -78,7 +78,7 @@
       class="ressources-accordion">
       <div uib-accordion-group
         ng-repeat="ym2IndividuRecap in ressourcesYearMoins2"
-        class="ressources-recap"
+        class="ressources-recap panel panel-default"
         heading="{{ ym2IndividuRecap.label }}"
         is-open="ym2IndividuRecap.isOpen">
         <div class="row" ng-repeat="ressource in ym2IndividuRecap.ressources">
@@ -104,7 +104,7 @@
       <div uib-accordion-group
         ng-if="patrimoine.length"
         heading="Patrimoine"
-        class="ressources-recap"
+        class="ressources-recap panel panel-default"
         is-open="revenu.isOpen">
         <div ng-repeat="value in patrimoine">
           {{ value.label }}&nbsp;: {{ value.montant | currency }}

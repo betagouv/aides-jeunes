@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $sessionStorage, droitsDescription, $timeout, ABTestingService, phishingExpressions) {
+angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $sessionStorage, droitsDescription, $timeout, phishingExpressions) {
     [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
         var providersWithoutPrivatePrestations = _.mapValues(droitsDescription[type], function(provider) {
             provider = _.assign({}, provider);
@@ -20,8 +20,6 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $se
             return total + _.size($scope[type][provider].prestations);
         }, 0);
     });
-
-    ABTestingService.setABTestingEnvironment();
 
     var referrer = document.referrer;
     if (referrer.match(/ameli\.fr/)) {

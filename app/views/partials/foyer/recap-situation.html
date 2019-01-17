@@ -38,7 +38,7 @@
         <div uib-accordion-group
           ng-repeat="(type, ressource) in ressourcesByIndividu[$index] track by type"
           ng-init="ressourceType = keyedRessourceTypes[type]"
-          class="ressources-recap {{ ressourceType.category }}"
+          class="ressources-recap panel panel-default {{ ressourceType.category }}"
           heading="{{ ressourceType.label }}"
           >
           <div class="row" ng-if="ressource[month.id]" ng-repeat="month in months">

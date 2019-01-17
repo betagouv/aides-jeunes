@@ -27,7 +27,9 @@ module.exports = function(app) {
 
     if ('development' === env) {
 
-        app.use(require('connect-livereload')());
+        app.use(require('connect-livereload')({
+            port: parseInt(process.env.LIVERELOAD_PORT) || 35729
+        }));
 
         // Disable caching of scripts for easier testing
         app.use(function noCache(req, res, next) {

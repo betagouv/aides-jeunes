@@ -102,7 +102,7 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
             return script.src.match(/piwik/g)
                 || script.src.match(/webpack-dev-server\.js/g)
                 || script.src.match(/livereload\.js/g)
-                || script.src.match(/localhost:8080/g);
+                || script.src.match(/localhost:/g);
         });
 
         _.forEach(scriptsToFilter, function(script) {

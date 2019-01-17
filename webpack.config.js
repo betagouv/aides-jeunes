@@ -5,6 +5,9 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var merge = require('webpack-merge');
 
+// https://webpack.js.org/configuration/dev-server/#devserver-port
+var webpackDevServerPort = parseInt(process.env.WEBPACK_DEV_PORT) || 8080;
+
 // @see https://github.com/preboot/angularjs-webpack
 
 var config = {
@@ -75,6 +78,7 @@ var config = {
             'Access-Control-Allow-Origin': '*',
         },
         contentBase: path.join(__dirname, 'dist'),
+        port: webpackDevServerPort
     },
     plugins: [
         new CopyWebpackPlugin([
@@ -150,7 +154,7 @@ module.exports = function(env, argv) {
     if (argv.mode === 'development') {
         htmlWebpackPluginConfigs = htmlWebpackPluginConfigs.map(function(htmlWebpackPluginConfig) {
             return Object.assign(htmlWebpackPluginConfig, {
-                devServer: 'http://localhost:8080'
+                devServer: 'http://localhost:' + webpackDevServerPort
             });
         });
     }

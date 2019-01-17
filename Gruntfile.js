@@ -9,6 +9,9 @@ var webpackConfig = require('./webpack.config');
 var webpackDevelopmentConfig = webpackConfig(process.env, { mode: 'development' });
 var webpackProductionConfig = webpackConfig(process.env, { mode: 'production' });
 
+// https://webpack.js.org/configuration/dev-server/#devserver-port
+var webpackDevServerPort = parseInt(process.env.WEBPACK_DEV_PORT) || 8080;
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -33,7 +36,7 @@ module.exports = function (grunt) {
       dev: {
         options: {
           script: 'server.js',
-          debug: true
+          debug: process.env.DEBUG_PORT || true
         }
       }
     },
@@ -61,10 +64,10 @@ module.exports = function (grunt) {
         ],
         tasks: ['express:dev', 'wait'],
         options: {
-          livereload: true,
+          livereload: parseInt(process.env.LIVERELOAD_PORT) || 35729,
           nospawn: true // Without this option specified express won't be reloaded
         }
-      },
+      }
     },
 
     webpack: {
@@ -81,6 +84,7 @@ module.exports = function (grunt) {
         webpack: webpackDevelopmentConfig,
         // TODO Parameterize via env for Docker / local
         host: '0.0.0.0',
+        port: webpackDevServerPort,
         headers: {
             'Access-Control-Allow-Origin': '*',
         },
@@ -110,7 +114,7 @@ module.exports = function (grunt) {
             // opens browser on initial server start
             nodemon.on('config:update', function () {
               setTimeout(function () {
-                require('open')('http://localhost:8080/debug?port=5858');
+                require('open')('http://localhost:' + webpackDevServerPort + '/debug?port=5858');
               }, 500);
             });
           }

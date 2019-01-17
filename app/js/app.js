@@ -141,7 +141,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/depannage',
             templateUrl: '/content-pages/depannage.html',
             data: {
-                pageTitle: 'Dépannage'
+                pageTitle: 'Dépannage',
+                robots: 'noindex'
             },
             controller: function($scope, SituationService) {
                 $scope.currentYear = moment().format('YYYY');

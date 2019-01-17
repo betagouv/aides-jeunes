@@ -39,6 +39,7 @@
     "request-promise": "^4.2.2",
     "serve-favicon": "^2.4.0",
     "sgmap-mes-aides-api": "sgmap/mes-aides-api#v12.0.0",
+    "smooth-scroll": "^15.0.0",
     "tmp": "0.0.33"
   },
   "repository": {

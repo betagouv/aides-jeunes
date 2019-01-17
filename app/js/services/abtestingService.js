@@ -1,16 +1,21 @@
 'use strict';
 
 angular.module('ddsCommon').factory('ABTestingService', function($localStorage, $analytics) {
-    function setABTestingEnvironment() {
+    /*
+     * L'AB testing repose sur les custom variables de Matomo
+     * https://matomo.org/docs/custom-variables/
+     */
+    function getABTestingEnvironment() {
         $localStorage.ABTesting = $localStorage.ABTesting || {};
-        $localStorage.ABTesting.ressource = $localStorage.ABTesting.ressource || { index: 1 };
-        $localStorage.ABTesting.ressource.deleted = true;
 
-        $localStorage.ABTesting.contact = $localStorage.ABTesting.contact || { index: 1 };
-        $localStorage.ABTesting.contact.deleted = true;
-
-        $localStorage.ABTesting.link = $localStorage.ABTesting.link || { index: 1 };
-        $localStorage.ABTesting.link.deleted = true;
+        // // Prépare la variable d'AB testing
+        // $localStorage.ABTesting.link = $localStorage.ABTesting.link || { index: 1 };
+        // // Réparti les visiteurs l'AB testing avec cette variable
+        // $localStorage.ABTesting.link.value = $localStorage.ABTesting.link.value || (Math.random() > 0.5 ? 'A' : 'B');
+        // // Après l'AB testing
+        // // Pour le désactiver
+        // // et libérer une custom variable
+        // // $localStorage.ABTesting.link.deleted = true;
 
         _.forEach($localStorage.ABTesting, function(data, name) {
             if (data.deleted) {
@@ -23,12 +28,7 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         return $localStorage.ABTesting;
     }
 
-    function getABTestingEnvironment() {
-        return $localStorage.ABTesting;
-    }
-
     return {
-        setABTestingEnvironment: setABTestingEnvironment,
         getABTestingEnvironment: getABTestingEnvironment,
     };
 });

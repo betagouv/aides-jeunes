@@ -107,10 +107,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             templateUrl: '/content-pages/contact.html',
             data: {
                 pageTitle: 'Contact'
-            },
-            controller: function($scope, ABTestingService) {
-                var ABTesting = ABTestingService.getABTestingEnvironment();
-                $scope.contactABTestingEnv = (ABTesting.contact && ABTesting.contact.value) || 'A';
             }
         })
         .state('hameconnage', {

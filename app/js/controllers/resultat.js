@@ -7,7 +7,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
     $scope.warningMessage = false;
 
     var env = ABTestingService.getEnvironment();
-    $scope.variante = env.resultat;
+    $scope.variante = env.resultat && env.resultat.value;
 
     // For testing purposes
     $scope.redirectionNames = [];

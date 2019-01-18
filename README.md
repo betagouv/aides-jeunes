@@ -43,7 +43,6 @@ Openfisca is compatible with Python 2 and Python 3. So far, Mes Aides relies on 
 
 ```bash
 cd mes-aides-ui
-git submodule update --init --recursive
 virtualenv  --python=python2.7 .venv # To create your virtualenv in ./.venv (a hidden folder)
 source .venv/bin/activate # To activate your virtualenv
 pip install pip --upgrade # To make sure you're using pip latest version

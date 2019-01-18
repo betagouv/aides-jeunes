@@ -16,6 +16,7 @@
     "cleave.js": "~0.7.15",
     "codes-postaux": "etalab/codes-postaux#003ea027941e7a40c6094c7a02e7299d37619712",
     "consolidate": "^0.15.1",
+    "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "currencyformatter.js": "^2.1.0",
     "d3": "4.11.0",

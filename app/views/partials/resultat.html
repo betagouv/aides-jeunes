@@ -95,6 +95,41 @@
     </div>
   </div>
 
+  <div ng-show="variante === 'A'">
+
+    <div ng-if="! (droits.prestationsNationales | isEmpty)">
+      <p>
+        D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides.
+        <span id="print-disclaimer">Ces résultats sont fondés sur les seules informations que vous avez indiquées et ne constituent en aucune façon un engagement de la part des organismes cités.</span>
+        Les montants avancés sont arrondis à une dizaine d'euros près :
+      </p>
+      <droit-eligibles-list droits="droits"></droit-eligibles-list>
+    </div>
+
+    <div ng-if="! (droitsNonEligibles.prestationsNationales | isEmpty)" ng-show="droitsNonEligiblesShow">
+      <p>
+        Les conditions des aides suivantes <strong>ne sont pas</strong> remplies&nbsp;:
+      </p>
+      <droit-non-eligibles-list
+        droits="droitsNonEligibles"
+        filter="['cmu_c', 'acs']"></droit-non-eligibles-list>
+    </div>
+
+    <div class="frame-resultats" ng-show="noDroits && ressourcesYearMoins2Captured">
+        <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
+        <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
+    </div>
+
+    <h1 ng-if="! noDroits">Comment obtenir vos aides ?</h1>
+    <droit-eligibles-details
+      droits="droits"
+      patrimoine-captured="! shouldPatrimoineBeCaptured()"
+      ressources-year-moins-2-captured="ressourcesYearMoins2Captured"
+      year-moins-2="yearMoins2"
+      ></droit-eligibles-details>
+
+  </div>
+
   <div class="print-hidden">
     <etablissements-list code-postal="situation.menage.code_postal" code-insee="situation.menage.depcom"></etablissements-list>
 

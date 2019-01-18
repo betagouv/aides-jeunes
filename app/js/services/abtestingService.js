@@ -20,7 +20,7 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         // Prépare la variable d'AB testing
         $localStorage.ABTesting.resultat = $localStorage.ABTesting.resultat || { index: 1 };
         // Réparti les visiteurs l'AB testing avec cette variable
-        $localStorage.ABTesting.resultat.value = $localStorage.ABTesting.resultat.value || (Math.random() > 2 ? 'A' : 'B');
+        $localStorage.ABTesting.resultat.value = $localStorage.ABTesting.resultat.value || (Math.random() > 0.5 ? 'A' : 'B');
         // Après l'AB testing
         // Pour le désactiver
         // et libérer une custom variable

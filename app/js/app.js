@@ -53,6 +53,16 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'HomepageCtrl',
             preventFocus: true
         })
+        .state('init-ci', {
+            url: '/init-ci',
+            data: {
+                robots: 'noindex'
+            },
+            controller: function($state, ABTestingService) {
+                ABTestingService.setVariante('resultat', 'B');
+                $state.go('home');
+            }
+        })
         .state('a-propos', {
             url: '/a-propos',
             templateUrl: '/content-pages/a-propos.html',

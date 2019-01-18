@@ -151,8 +151,8 @@
         <input
             dds-date
             format="MM/AAAA"
-            min="{{ individu.date_naissance }}"
-            max="{{ situation.dateDeValeur }}"
+            min="{{ individu.date_naissance.format() }}"
+            max="{{ situation.dateDeValeur.format() }}"
             name="dateDernierContratTravail"
             id="last-job-end-date"
             ng-model="individu.dateDernierContratTravail"
@@ -178,7 +178,7 @@
       ng-if="individu.dateDernierContratTravail.year()"
       size="4"
       >
-      <question ng-non-bindable><!-- We don't interpolate the following text, so that it can be re-interpolated several times if dateDernierContratTravail changes-->
+      <question>
         {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
         travaillé au moins 5&nbsp;ans entre&nbsp;{{ individu.dateDernierContratTravail.clone().subtract(10, 'years').format('MMMM YYYY') }}
         et&nbsp;{{ individu.dateDernierContratTravail.format('MMMM YYYY') }}&nbsp;?

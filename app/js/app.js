@@ -58,8 +58,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             data: {
                 robots: 'noindex'
             },
-            controller: function($state, ABTestingService) {
-                ABTestingService.setVariante('resultat', 'A');
+            controller: function($state/*, ABTestingService*/) {
                 $state.go('home');
             }
         })

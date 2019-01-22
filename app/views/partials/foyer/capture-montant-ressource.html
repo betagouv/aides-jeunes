@@ -33,6 +33,13 @@
             Montant invalide
           </span>
         </div>
+        <a
+          ng-if="locals.montantForfaitaire"
+          class="col-sm-3 help-block"
+          ng-click="locals.monthlyValue=locals.montantForfaitaire"
+          href="">
+          Cliquez ici pour remplir automatiquement la case avec le montant forfaitaire de {{ locals.montantForfaitaire }} €
+        </a>
       </div>
 
       <div class="text-center">&horbar; ou &horbar;</div>

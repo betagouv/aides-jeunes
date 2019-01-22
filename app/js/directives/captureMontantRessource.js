@@ -69,11 +69,10 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
                 }, true) || scope.ressourceType.revenuExceptionnel
             };
 
-            if (scope.ressourceType.montantForfaitaire) {
-                RessourceService.getParameterFromOpenfisca(scope.ressourceType.source)
-                    .then(function(resp) { 
-                        var values = resp.data.values;
-                        scope.locals.monthlyValue = values[Object.keys(values).sort().pop()];
+            if (scope.ressourceType.sourceOpenfisca) {
+                RessourceService.getParameterFromOpenfisca(scope.ressourceType.sourceOpenfisca)
+                    .then(function(resp) {
+                        scope.locals.montantForfaitaire = resp;
                     });
             }
 

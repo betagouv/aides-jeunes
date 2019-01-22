@@ -33,7 +33,7 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $se
             $state.go('hameconnage');
         }
     } else {
-        document.querySelector('#startButtons').focus();
+        document.querySelector('#startRow').focus();
     }
 
     $scope.hasLocalSituation = function() {

@@ -36,15 +36,38 @@ main {
     font-weight: 600;
     margin: 1em;
     border-color: transparent;
-    background-image: linear-gradient(to bottom, #54c5f4 0%, #5dcefd 50%, #40b1e0 51%, #36a7d6 100%);
-    background-color: rgb(64, 177, 224);
-    box-shadow: 0 0 1em rgba(54, 167, 214, .5);
-
     transition: background-color linear .4s, box-shadow linear .4s;
 }
 
+#valueProposition a.btn-primary {
+    background-image: linear-gradient(to bottom, 
+        hsl(198, 88%, 64%) 0%,
+        hsl(198, 98%, 68%) 50%,
+        hsl(198, 72%, 56%) 51%,
+        hsl(198, 66%, 53%) 100%);
+    background-color: hsl(198, 72%, 56%);
+    box-shadow: 0 0 1em hsl(198, 66%, 53%);
+}
+
+#valueProposition a.btn-primary:hover, #valueProposition a.btn-primary:focus {
+    background-color: hsl(198, 88%, 64%);
+}
+
+#valueProposition a.btn-success {
+    background-image: linear-gradient(to bottom, 
+        hsl(145, 88%, 64%) 0%,
+        hsl(145, 98%, 68%) 50%,
+        hsl(145, 72%, 56%) 51%,
+        hsl(145, 66%, 53%) 100%);
+    background-color: hsl(145, 72%, 56%);
+    box-shadow: 0 0 1em hsl(145, 66%, 53%);
+}
+
+#valueProposition a.btn-success:hover, #valueProposition a.btn-success:focus {
+    background-color: hsl(145, 88%, 64%);
+}
+
 #valueProposition a:hover, #valueProposition a:focus {
-    background-color: rgb(84, 197, 244);
     box-shadow: 0 0 1.5em rgba(204, 207, 184, .8);
 }
 
@@ -119,8 +142,9 @@ main {
     margin-top: 1em;
 }
 
-#start-row {
+#startRow a {
     text-align: center;
+    float: none;
 }
 
 .frame-aides-homepage img {

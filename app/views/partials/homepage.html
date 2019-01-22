@@ -5,7 +5,38 @@
       En moins de 7 minutes.
     </h1>
 
-    <a class="btn btn-primary btn-lg" ui-sref="foyer.demandeur" ng-click="newSituation()">Évaluer mes droits</a>
+    <div id="startButtons">
+      <div ng-if="! hasLocalSituation()">
+        <a 
+          class="btn btn-primary btn-lg"
+          ui-sref="foyer.demandeur"
+          ng-click="newSituation()"
+          >
+          Évaluer mes droits
+        </a>
+      </div>
+
+     <div class="row" ng-if="hasLocalSituation()">
+        <div class="col-sm-6">
+          <a 
+            class="btn btn-success btn-lg"
+            ui-sref="foyer.demandeur"
+            ng-click="restoreLocal()"
+            >
+            Reprendre la simulation
+          </a>
+        </div>
+        <div class="col-sm-6">
+          <a 
+            class="btn btn-primary btn-lg"
+            ui-sref="foyer.demandeur"
+            ng-click="newSituation()"
+            >
+            Commencer une nouvelle simulation
+          </a>
+        </div>
+      </div>
+    </div>
 
     <p>Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.</p>
   </div>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $sessionStorage, droitsDescription, $timeout, phishingExpressions) {
+angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $sessionStorage, droitsDescription, $timeout, phishingExpressions, SituationService) {
     [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
         var providersWithoutPrivatePrestations = _.mapValues(droitsDescription[type], function(provider) {
             provider = _.assign({}, provider);
@@ -33,6 +33,10 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $se
             $state.go('hameconnage');
         }
     } else {
-        document.querySelector('#valueProposition a').focus();
+        document.querySelector('#startButtons').focus();
     }
+
+    $scope.hasLocalSituation = function() {
+        return SituationService.hasLocalSituation();
+    };
 });

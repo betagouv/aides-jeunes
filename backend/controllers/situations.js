@@ -3,6 +3,8 @@ var openfisca = require('../lib/openfisca');
 var openfiscaTest = require('../lib/openfisca/test');
 var Situation = require('mongoose').model('Situation');
 
+var cookiePrefix = 'situation_';
+
 exports.situation = function(req, res, next, id) {
     Situation.findById(id, function(err, situation) {
         if (err) return next(err);
@@ -15,7 +17,7 @@ exports.situation = function(req, res, next, id) {
 
 exports.validateAccess = function(req, res, next) {
     var situation = req.situation;
-    if (req.situation.status === 'test' || req.situation.status === 'investigation' || !situation.token || req.cookies['situation_' + situation.id] === situation.token) return next();
+    if (req.situation.status === 'test' || req.situation.status === 'investigation' || !situation.token || req.cookies[cookiePrefix + situation.id] === situation.token) return next();
     res.status(403).send({ error: 'You do not have access to this situation.' });
 };
 
@@ -23,13 +25,30 @@ exports.show = function(req, res) {
     res.send(req.situation);
 };
 
+function clearCookies(req, res) {
+    var limit = 10;
+
+    var keys = Object.keys(req.cookies);
+    var situationCookies = _.filter(keys, function(k) { return k.startsWith(cookiePrefix); });
+    situationCookies.sort();
+
+    if (situationCookies.length-limit>=0) {
+        var cookieToClear = situationCookies.slice(0, situationCookies.length-limit);
+        cookieToClear.forEach(function(name) {
+            res.clearCookie(name, { httpOnly: true });
+        });
+    }
+}
+
 exports.create = function(req, res, next) {
     if (req.body._id) return res.status(403).send({ error: 'You can‘t provide _id when saving a situation. _id will be generated automatically.' });
 
     return Situation.create(_.omit(req.body, 'status', 'token'), function(err, persistedSituation) {
         if (err) return next(err);
 
-        res.cookie('situation_' + persistedSituation.id, persistedSituation.token, { maxAge: 7 * 24 * 3600 * 1000, httpOnly: true });
+        clearCookies(req, res);
+
+        res.cookie(cookiePrefix + persistedSituation.id, persistedSituation.token, { maxAge: 7 * 24 * 3600 * 1000, httpOnly: true });
         res.send(persistedSituation);
     });
 };

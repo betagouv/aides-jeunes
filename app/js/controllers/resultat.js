@@ -9,9 +9,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
     var env = ABTestingService.getEnvironment();
     $scope.variante = env.resultat && env.resultat.value;
 
-    // For testing purposes
-    $scope.redirectionNames = [];
-
     function loadSituation() {
         if ($stateParams.situationId) { // If we want the result page for an already existing situation.
             return $scope.restoreRemoteSituation($stateParams.situationId);
@@ -35,23 +32,12 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
                 $scope.droitsInjectes = droits.droitsInjectes;
                 $scope.noDroits = _.isEmpty($scope.droits.prestationsNationales) && _.isEmpty($scope.droits.partenairesLocaux);
             })
-            .then(function() { // For testing purposes
-                $http
-                    .get('/api/teleservices')
-                    .then(function(response) { return response.data; })
-                    .catch(function() { return []; })
-                    .then(function(data) { return data.map(function(teleservice) { return teleservice.name; }); })
-                    .then(function(names) { $scope.redirectionNames = names; });
-            })
             .then(function() {
-                loadSituation()
-                    .then(function(situation) {
-                        SituationService
-                            .fetchRepresentation(situation._id, 'openfisca_tracer')
-                            .then(function(data) {
-                                $scope.openfiscaTracerURL = data.destination.url;
-                            }).catch(function() {});
-                    });
+                return SituationService
+                    .fetchRepresentation($scope.situation._id, 'openfisca_tracer')
+                    .then(function(data) {
+                        $scope.openfiscaTracerURL = data.destination.url;
+                    }).catch(function() {});
             })
             .catch(function(error) {
                 if (error.status === 403) {

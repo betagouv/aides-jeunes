@@ -147,8 +147,8 @@
         dds-date
         format="JJ/MM/AAAA"
         class="form-control"
-        min="{{ individu.date_naissance }}"
-        max="{{ dateDeValeur }}"
+        min="{{ individu.date_naissance.format() }}"
+        max="{{ dateDeValeur.format() }}"
         name="dateArretDeTravail"
         id="date-arret-travail"
         required

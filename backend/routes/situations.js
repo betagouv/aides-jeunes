@@ -1,4 +1,5 @@
 var express = require('express');
+var cookieParser = require('cookie-parser');
 var cors = require('cors');
 
 var situations = require('../controllers/situations');
@@ -8,6 +9,7 @@ module.exports = function(api) {
     api.route('/situations').post(situations.create);
 
     var route = new express.Router({ mergeParams: true });
+    route.use(cookieParser());
     route.use(situations.validateAccess);
 
     route.get('/', situations.show);

@@ -141,7 +141,7 @@
         },
         {
             id: 'caah',
-            label: 'Complément à l’Allocation adulte handicapé (AAH)',
+            label: 'Complément de ressources adulte handicapé',
             category: 'allocations',
             prefix: 'le'
         },

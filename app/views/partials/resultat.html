@@ -55,17 +55,7 @@
       <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
   </div>
 
-  <h1 ng-if="! noDroits">Comment obtenir vos aides ?</h1>
-  <droit-eligibles-details
-    droits="droits"
-    patrimoine-captured="! shouldPatrimoineBeCaptured()"
-    ressources-year-moins-2-captured="ressourcesYearMoins2Captured"
-    year-moins-2="yearMoins2"
-    ></droit-eligibles-details>
-
   <div class="print-hidden">
-    <etablissements-list code-postal="situation.menage.code_postal" code-insee="situation.menage.depcom"></etablissements-list>
-
     <div id="feedback">
       <h4>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider&nbsp;!</h4>
       <p>La plupart des résultats que nous vous proposons sont automatiquement arrondis à une dizaine d'euros près.</p>
@@ -79,6 +69,18 @@
         Partenaires&nbsp;: <a href="" ng-click="createTest()">créez un test</a><span ng-if="showAdditionalLinks" > dans l'ancienne interface, <a ui-sref="foyer.resultat.suggestion">créez en un dans la nouvelle</a> ou bien <a target="_blank" ng-href="{{openfiscaTracerURL}}">accédez au tracer pour cette simulation</a></span>.
       </small>
     </div>
+  </div>
+
+  <h1 ng-if="! noDroits">Comment obtenir vos aides ?</h1>
+  <droit-eligibles-details
+    droits="droits"
+    patrimoine-captured="! shouldPatrimoineBeCaptured()"
+    ressources-year-moins-2-captured="ressourcesYearMoins2Captured"
+    year-moins-2="yearMoins2"
+    ></droit-eligibles-details>
+
+  <div class="print-hidden">
+    <etablissements-list code-postal="situation.menage.code_postal" code-insee="situation.menage.depcom"></etablissements-list>
 
     <div>
       <h4 ng-show="! (droitsInjectes | isEmpty)">Vous avez indiqué ces aides au cours la simulation et elles n'ont pas été recalculées</h4>

@@ -87,9 +87,6 @@ angular.module('ddsApp')
     .directive('droitNonEligiblesList', controllerOptions('/partials/droits-non-eligibles-list.html'));
 
 angular.module('ddsApp')
-    .directive('droitEligiblesAccordion', controllerOptions('/partials/droits-eligibles-accordion.html'));
-
-angular.module('ddsApp')
     .directive('droitMontant', function() {
         return {
             restrict: 'E',

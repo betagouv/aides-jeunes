@@ -97,43 +97,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Use nodemon to run server in debug mode with an initial breakpoint
-    nodemon: {
-      debug: {
-        script: 'server.js',
-        options: {
-          nodeArgs: ['--debug-brk'],
-          env: {
-            PORT: process.env.PORT || 9000
-          },
-          callback: function (nodemon) {
-            nodemon.on('log', function (event) {
-              console.log(event.colour);
-            });
-
-            // opens browser on initial server start
-            nodemon.on('config:update', function () {
-              setTimeout(function () {
-                require('open')('http://localhost:' + webpackDevServerPort + '/debug?port=5858');
-              }, 500);
-            });
-          }
-        }
-      }
-    },
-
-    // Run some tasks in parallel to speed up the build process
-    concurrent: {
-      debug: {
-        tasks: [
-          'nodemon',
-        ],
-        options: {
-          logConcurrentOutput: true
-        }
-      },
-    },
-
     // Test settings
     karma: {
       unit: {
@@ -164,13 +127,7 @@ module.exports = function (grunt) {
     }, 500);
   });
 
-  grunt.registerTask('serve', function (target) {
-    if (target === 'debug') {
-      return grunt.task.run([
-        'concurrent:debug'
-      ]);
-    }
-
+  grunt.registerTask('serve', function () {
     var tasks = [
       'webpack:dev',
       'express:dev',

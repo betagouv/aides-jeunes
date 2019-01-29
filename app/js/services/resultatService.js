@@ -26,12 +26,16 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
     function round(amount, aide) {
         if (aide.type && aide.type !== 'float') {
             return amount;
-        } else if (! aide.unit && aide.roundToNearest10 !== false && (! aide.roundToNearestCent)) {
-            return Math.round(amount / 10) * 10;
-        } else if (aide.roundToNearestCent) {
-            return Math.round(amount * 100) / 100;
-        } else {
+        }
+
+        switch (aide.round) {
+        case 'default':
             return Math.round(amount);
+        case 'nearest_cent':
+            return Math.round(amount * 100) / 100;
+        case 'nearest_10':
+        default:
+            return Math.round(amount / 10) * 10;
         }
     }
 

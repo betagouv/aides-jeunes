@@ -110,6 +110,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
 
     return {
         _computeAides: computeAides,  // exposed for testing only
+        round: round, // exposed for testing only
         simulate: simulate
     };
 });

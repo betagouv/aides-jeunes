@@ -18,12 +18,16 @@ if (useProductionAssets) {
     ];
 } else {
     // TODO Make sure Webpack DevServer is running (?)
+
+    // https://webpack.js.org/configuration/dev-server/#devserver-port
+    var port = parseInt(process.env.WEBPACK_DEV_PORT) || 8080;
+
     files = [
         // Serve files from Webpack DevServer
-        'http://localhost:8080/js/vendor.js',
-        'http://localhost:8080/js/stats.js',
-        'http://localhost:8080/js/scripts.recapSituation.js',
-        'http://localhost:8080/js/scripts.js',
+        'http://localhost:' + port + '/js/vendor.js',
+        'http://localhost:' + port + '/js/stats.js',
+        'http://localhost:' + port + '/js/scripts.recapSituation.js',
+        'http://localhost:' + port + '/js/scripts.js',
     ];
 }
 

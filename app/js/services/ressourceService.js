@@ -87,7 +87,9 @@ angular.module('ddsCommon').factory('RessourceService', function($http, MonthSer
         return $http.get('https://openfisca.mes-aides.gouv.fr/parameter/' + parameterId)
             .then(function(resp) {
                 var values = resp.data.values;
-                return values[Object.keys(values).sort().pop()];
+                var sortedByDates = Object.keys(values).sort();
+                var latestValue = values[sortedByDates.pop()];
+                return latestValue;
             });
     }
 

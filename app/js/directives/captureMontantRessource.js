@@ -71,8 +71,8 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
 
             if (scope.ressourceType.sourceOpenfisca) {
                 RessourceService.getParameterFromOpenfisca(scope.ressourceType.sourceOpenfisca)
-                    .then(function(resp) {
-                        scope.locals.montantForfaitaire = resp;
+                    .then(function(parameter) {
+                        scope.locals.montantForfaitaire = parameter;
                     });
             }
 

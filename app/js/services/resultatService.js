@@ -26,13 +26,10 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
     function round(amount, aide) {
         if (aide.type && aide.type !== 'float') {
             return amount;
-        } else if (! aide.unit && aide.roundToNearest10 !== false && (! aide.roundToNearestCent)) {
-            return Math.round(amount / 10) * 10;
-        } else if (aide.roundToNearestCent) {
-            return Math.round(amount * 100) / 100;
-        } else {
-            return Math.round(amount);
         }
+
+        var rounding = aide.roundTo || 10; // default rounding to 10
+        return Math.round(amount / rounding) * rounding;
     }
 
     function computeAides(situation, openfiscaResponse, showPrivate) {
@@ -110,6 +107,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
 
     return {
         _computeAides: computeAides,  // exposed for testing only
+        round: round, // exposed for testing only
         simulate: simulate
     };
 });

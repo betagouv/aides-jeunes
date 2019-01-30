@@ -142,4 +142,29 @@ describe('ResultatService', function () {
             expect(droits.droitsEligibles.prestationsNationales.private_aid).toBeFalsy();
         });
     });
+
+    describe('round', function() {
+        it('should not round for type "bool"', function() {
+            expect(service.round(true, { type: 'bool' })).toEqual(true);
+        });
+        it('should round for unit "%"', function() {
+            expect(service.round(10.25, { unit: '%' })).toEqual(10);
+            expect(service.round(10.2499, { unit: '%', roundTo: 0.01 })).toEqual(10.25);
+        });
+        it('should round to nearest 10', function() {
+            expect(service.round(132.17, { roundTo: 10 })).toEqual(130);
+            expect(service.round(135, { roundTo: 10 })).toEqual(140);
+            expect(service.round(139.47, { roundTo: 10 })).toEqual(140);
+        });
+        it('should round to nearest cent', function() {
+            expect(service.round(132.1789, { roundTo: 0.01 })).toEqual(132.18);
+            expect(service.round(135, { roundTo: 0.01 })).toEqual(135);
+            expect(service.round(139.0001, { roundTo: 0.01 })).toEqual(139.00);
+        });
+        it('should round to nearest 10 by default', function() {
+            expect(service.round(132.17, {})).toEqual(130);
+            expect(service.round(135, {})).toEqual(140);
+            expect(service.round(139.47, {})).toEqual(140);
+        });
+    });
 });

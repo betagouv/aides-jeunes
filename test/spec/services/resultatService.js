@@ -149,27 +149,22 @@ describe('ResultatService', function () {
         });
         it('should round for unit "%"', function() {
             expect(service.round(10.25, { unit: '%' })).toEqual(10);
-            expect(service.round(10.2499, { unit: '%', round: 'nearest_cent' })).toEqual(10.25);
+            expect(service.round(10.2499, { unit: '%', roundTo: 0.01 })).toEqual(10.25);
         });
         it('should round to nearest 10', function() {
-            expect(service.round(132.17, { round: 'nearest_10' })).toEqual(130);
-            expect(service.round(135, { round: 'nearest_10' })).toEqual(140);
-            expect(service.round(139.47, { round: 'nearest_10' })).toEqual(140);
-
-            // By default, we round to nearest 10
+            expect(service.round(132.17, { roundTo: 10 })).toEqual(130);
+            expect(service.round(135, { roundTo: 10 })).toEqual(140);
+            expect(service.round(139.47, { roundTo: 10 })).toEqual(140);
+        });
+        it('should round to nearest cent', function() {
+            expect(service.round(132.1789, { roundTo: 0.01 })).toEqual(132.18);
+            expect(service.round(135, { roundTo: 0.01 })).toEqual(135);
+            expect(service.round(139.0001, { roundTo: 0.01 })).toEqual(139.00);
+        });
+        it('should round to nearest 10 by default', function() {
             expect(service.round(132.17, {})).toEqual(130);
             expect(service.round(135, {})).toEqual(140);
             expect(service.round(139.47, {})).toEqual(140);
-        });
-        it('should round to nearest cent', function() {
-            expect(service.round(132.1789, { round: 'nearest_cent' })).toEqual(132.18);
-            expect(service.round(135, { round: 'nearest_cent' })).toEqual(135);
-            expect(service.round(139.0001, { round: 'nearest_cent' })).toEqual(139.00);
-        });
-        it('should round to default', function() {
-            expect(service.round(132.1789, { round: 'default' })).toEqual(132);
-            expect(service.round(135, { round: 'default' })).toEqual(135);
-            expect(service.round(139.0001, { round: 'default' })).toEqual(139);
         });
     });
 });

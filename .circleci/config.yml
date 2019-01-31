@@ -6,7 +6,7 @@ defaults: &defaults
   working_directory: ~/mes-aides-ui
   docker:
     # https://circleci.com/docs/2.0/circleci-images/#language-image-variants
-    - image: betagouv/mes-aides-docker:node8-python2.7
+    - image: betagouv/mes-aides-docker:latest
     # FIXME
     # mongo 2.4.9 is not available on Docker Hub
     # https://stackoverflow.com/questions/48233357/install-older-version-of-mongodb-with-docker
@@ -14,15 +14,16 @@ defaults: &defaults
   environment:
     SAUCE_USERNAME: mes-aides-bot
     OPENFISCA_BIND_HOST: 127.0.0.1:2000
-    PIPENV_VENV_IN_PROJECT: true
+    LC_ALL: C.UTF-8
+    LANG: C.UTF-8
 
 install_virtualenv: &install_virtualenv
   run:
     name: Install VirtualEnv
     command: |
       curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-      python get-pip.py
-      pip install virtualenv
+      python3 get-pip.py
+      pip3 install virtualenv
 
 configure_watai: &configure_watai
   run:
@@ -93,7 +94,7 @@ jobs:
           name: Install OpenFisca
           command: |
             source .venv/bin/activate
-            pip install -r openfisca/requirements.txt
+            pip3 install -r openfisca/requirements.txt
             deactivate
       - persist_to_workspace:
           root: .

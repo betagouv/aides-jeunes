@@ -270,6 +270,21 @@
                     },
                 },
             },
+            'garantie_jeunes': {
+                'label': 'Garantie Jeunes',
+                'imgSrc': 'logo_garantie_jeunes.png',
+                'prestations': {
+                    'garantie_jeunes': {
+                        'label': 'Garantie Jeunes',
+                        'description': 'La garantie jeunes permet d’accompagner les jeunes entre 16 et 25 ans en situation de grande précarité vers l’emploi ou la formation. C’est une modalité spécifique du parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA). Pour la mettre en œuvre, un contrat est signé entre le jeune et la mission locale. Le contrat est conclu pour 1 an. Cette durée peut être prolongée jusqu’à 6 mois.',
+                        'conditions': [
+                            'Faire votre demande auprès de <a target="_blank" rel="noopener" href="https://www.unml.info/les-missions-locales/annuaire/" title="Annuaire des missions locales" >la Mission Locale</a> dont vous dépendez.'
+                        ],
+                        'link': 'https://www.service-public.fr/particuliers/vosdroits/F32700',
+                        'entity': 'individu', // default entity is famille
+                    },
+                },
+            },
             'departements': {
                 label: 'Les conseils départementaux',
                 'imgSrc': 'logo_cd_generique.png',

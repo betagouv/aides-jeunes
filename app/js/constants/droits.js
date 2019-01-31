@@ -276,9 +276,10 @@
                 'prestations': {
                     'garantie_jeunes': {
                         'label': 'Garantie Jeunes',
-                        'description': 'La garantie jeunes permet d’accompagner les jeunes entre 16 et 25 ans en situation difficile vers l’emploi ou la formation. C’est un parcours d’accompagnement d´un an en partenariat avec la mission locale qui peut être prolongé jusqu’à 6 mois.',
+                        'description': 'La garantie jeunes permet d’accompagner vers l’emploi ou la formation les jeunes entre 16 et 25 ans en situation difficile. C’est un parcours d´un an en partenariat avec la mission locale qui peut être prolongé jusqu’à 6 mois.',
                         'conditions': [
-                            'Faire votre demande d´accompagnement auprès de <a target="_blank" rel="noopener" href="https://www.unml.info/les-missions-locales/annuaire/" title="Annuaire des missions locales" >la Mission Locale</a> dont vous dépendez.'
+                            'Faire votre demande d´accompagnement auprès de <a target="_blank" rel="noopener" href="https://www.unml.info/les-missions-locales/annuaire/" title="Annuaire des missions locales" >la Mission Locale</a> dont vous dépendez.',
+                            'Être indépendant.'
                         ],
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F32700',
                         'entity': 'individu', // default entity is famille

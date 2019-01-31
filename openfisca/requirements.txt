@@ -1,8 +1,8 @@
 gunicorn>=19.1.1
-#git+https://github.com/openfisca/openfisca-france.git@move-enum#egg=Openfisca-France
-Openfisca-France==34.3.1
+git+https://github.com/openfisca/openfisca-france.git@move-enum#egg=Openfisca-France
+#Openfisca-France==34.3.1
 git+https://github.com/openfisca/openfisca-core.git@mitigate-cycle-and-simplify-cycle-detection-25.2.2#egg=openfisca-core [web-api]
-git+https://github.com/betagouv/openfisca-bacASable.git#egg=openfisca-BacASable
+git+https://github.com/betagouv/openfisca-bacASable.git@garantie-jeune#egg=openfisca-BacASable
 git+https://github.com/betagouv/openfisca-paris.git@2980899#egg=openfisca-paris
 git+https://github.com/betagouv/openfisca-brestmetropole.git@aefb613#egg=openfisca-BrestMetropole
 git+https://github.com/betagouv/openfisca-rennesmetropole.git@84350ba#egg=openfisca-RennesMetropole

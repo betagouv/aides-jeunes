@@ -35,6 +35,16 @@
       </div>
     </div>
 
+    <div ng-if="isString(droit.montant)" class="alert alert-warning">
+      <p>
+        L'application Mes Aides ne peut pas calculer le montant de cette prestation, car <span ng-bind-html="droit.uncomputability[droit.montant].reason.user"></span>.
+        <br>
+        <strong
+          ng-if="droit.uncomputability[droit.montant].solution"
+          ng-bind-html="droit.uncomputability[droit.montant].solution"></strong>
+      </p>
+    </div>
+
     <div class="droit-detail-buttons">
       <a href="{{ droit.teleservice || droit.form || droit.instructions }}"
         target="_blank"

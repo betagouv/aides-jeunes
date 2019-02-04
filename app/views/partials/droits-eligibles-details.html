@@ -22,6 +22,16 @@
       <a class="btn btn-sm btn-warning" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
     </div>
 
+    <div class="alert alert-warning" ng-if="isString(droit.montant)">
+      <p>
+        L'application Mes Aides ne peut pas calculer le montant de cette prestation, car <span ng-bind-html="droit.uncomputability[droit.montant].reason.user"></span>.
+        <br>
+        <strong
+          ng-if="droit.uncomputability[droit.montant].solution"
+          ng-bind-html="droit.uncomputability[droit.montant].solution"></strong>
+      </p>
+    </div>
+
     <div class="droit-detail-description">
       <p ng-bind-html="droit.description" itemprop="description"></p>
       <div ng-if="droit.conditions">

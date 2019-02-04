@@ -86,6 +86,7 @@ var menageDef = {
     nom_commune: String,
     participation_frais: Boolean,
     statut_occupation_logement: { type: String, enum: statutOccupationLogementValues },
+    aide_logement_date_pret_conventionne: String,
 };
 
 var situation = {

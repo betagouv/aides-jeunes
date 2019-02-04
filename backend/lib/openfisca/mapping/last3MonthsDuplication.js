@@ -41,6 +41,7 @@ var menageProperties = [
     'loyer',
     'participation_frais',
     'statut_occupation_logement',
+    'aide_logement_date_pret_conventionne',
 ];
 
 function copyTo3PreviousMonths(testCase, dateDeValeur) {

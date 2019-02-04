@@ -1,4 +1,4 @@
-FROM python:2.7-alpine
+FROM python:3.6-alpine
 
 # Install packages needed for build
 RUN apk add --no-cache --virtual .build-deps \

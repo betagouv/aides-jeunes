@@ -29,3 +29,14 @@ function sendToOpenfisca(endpoint) {
 
 exports.calculate = sendToOpenfisca('calculate');
 exports.trace = sendToOpenfisca('trace');
+
+exports.getParameter = function(parameterId, callback) {
+    rp({
+        uri: config.openfiscaURL + '/parameter/' + parameterId,
+        method: 'GET',
+        json: true
+    })
+        .then(function(result) {
+            callback(result);
+        });
+};

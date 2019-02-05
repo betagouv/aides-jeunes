@@ -105,8 +105,10 @@ function applyHeuristicsAndFix(testCase, dateDeValeur) {
 
     var menage = _.assign({}, {
         logement_conventionne: {},
+        aide_logement_date_pret_conventionne: {}
     }, testCase.menages._);
     menage.logement_conventionne[thisMonth] = menage.statut_occupation_logement && menage.statut_occupation_logement[thisMonth] == 'primo_accedant' && menage.loyer && menage.loyer[thisMonth] == 0;
+    menage.aide_logement_date_pret_conventionne[thisMonth] = '2017-12-31';
 
     testCase.menages._ = menage;
     return testCase;

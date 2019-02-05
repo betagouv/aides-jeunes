@@ -69,8 +69,10 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 dateDeValeur: moment().format(),
                 famille: {},
                 foyer_fiscal: {},
-                menage: {},
-                version: 5,
+                menage: {
+                    aide_logement_date_pret_conventionne: '2017-12-31'
+                },
+                version: 6,
             };
         },
 

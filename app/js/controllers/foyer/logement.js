@@ -97,7 +97,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.capturePretSigneAvant2018 = function() {
-        return logement.type == 'proprietaire' && logement.primoAccedant && (menage.loyer && menage.loyer > 0);
+        return logement.type == 'proprietaire' && logement.primoAccedant && (menage && menage.loyer > 0);
     };
 
     $scope.captureLoyer = function() {

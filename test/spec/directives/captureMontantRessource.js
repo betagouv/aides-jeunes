@@ -11,7 +11,7 @@ describe('directive capture-montant-ressource', function() {
         RessourceService_ = RessourceService;
     }));
 
-    it('should be closed', function() {
+    it('should display a single input because 0.0001 is close enough to 0', function() {
 
         $scope.individu = { 'ressourceTypeId': {} };
         $scope.ressourceType = { id: 'ressourceTypeId', label: 'ressourceTypeLabel' };
@@ -31,7 +31,7 @@ describe('directive capture-montant-ressource', function() {
         + 'form="form" />')($scope);
 
         $scope.$digest();
-
-        expect(element.text().trim()).toContain('Sinon');
+        
+        expect(element.text().trim()).toContain('Sinon détaillez les montants sur les 12 derniers mois');
     });
 });

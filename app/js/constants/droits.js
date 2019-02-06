@@ -219,7 +219,8 @@
                         'teleservices': {
                             'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/',
                             'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=44739105'
-                        }
+                        },
+                        roundTo: 2
                     },
                     'aah': {
                         'isMontantAnnuel': false,

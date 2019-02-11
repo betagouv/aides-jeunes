@@ -160,6 +160,18 @@ $fa-font-path: '~font-awesome/fonts';
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 15px;
+
+    @media (max-width: $screen-sm-max) {
+      flex-wrap: wrap;
+      > .btn {
+        flex-grow: 1;
+        width: 50%;
+      }
+      .btn-secondary {
+        order: 3;
+      }
+    }
+
   }
 
   .alert-warning {

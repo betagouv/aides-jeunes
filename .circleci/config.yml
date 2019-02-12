@@ -94,7 +94,9 @@ jobs:
           name: Install OpenFisca
           command: |
             source .venv/bin/activate
-            pip3 install -r openfisca/requirements.txt
+            pip3 install -r openfisca/requirements.txt 2> ci-err.log
+            test -n ci-err.log && grep incompatible ci-err.log && cat ci-err.log && exit 1
+            rm ci-err.log
             deactivate
       - persist_to_workspace:
           root: .

@@ -34,7 +34,7 @@ var config = {
             },
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+                exclude: path.resolve(__dirname, 'node_modules'),
                 use: [
                     { loader: 'babel-loader' },
                     { loader: 'ng-annotate-loader' },
@@ -102,6 +102,7 @@ var config = {
             jsyaml: 'js-yaml',
             d3: 'd3'
         }),
+        new webpack.IgnorePlugin(/backend\/config\/config\.js/)
     ],
     optimization: {
         splitChunks: {

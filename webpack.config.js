@@ -34,7 +34,7 @@ var config = {
             },
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+                exclude: path.resolve(__dirname, 'node_modules'),
                 use: [
                     { loader: 'babel-loader' },
                     { loader: 'ng-annotate-loader' },
@@ -101,7 +101,7 @@ var config = {
             Cleave: 'cleave.js',
             jsyaml: 'js-yaml',
             d3: 'd3'
-        }),
+        })
     ],
     optimization: {
         splitChunks: {
@@ -123,6 +123,13 @@ var config = {
                 default: false
             }
         },
+    },
+    externals: function(context, request, callback) {
+        if (request.match(/backend/)) {
+            callback(request + ' is a backend file, should not be imported.');
+        } else {
+            callback();
+        }
     }
 };
 

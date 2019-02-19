@@ -11,7 +11,6 @@ var all = {
         },
     },
     sessionSecret: process.env.SESSION_SECRET || 'fghjdfjkdf785a-jreu',
-    sentry: require('./sentry'),
 };
 
 var override = {};

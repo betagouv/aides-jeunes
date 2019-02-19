@@ -33,6 +33,13 @@
             Montant invalide
           </span>
         </div>
+        <a
+          ng-if="isNumber(locals.montantForfaitaire)"
+          class="col-sm-3 small"
+          ng-click="locals.monthlyValue=locals.montantForfaitaire"
+          href="">
+          Remplir avec le montant mensuel de {{ locals.montantForfaitaire | currency : '€' : 2 }}
+        </a>
       </div>
 
       <div class="text-center">&horbar; ou &horbar;</div>

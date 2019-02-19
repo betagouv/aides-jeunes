@@ -145,13 +145,15 @@
             id: 'caah',
             label: 'Complément de ressources adulte handicapé',
             category: 'allocations',
-            prefix: 'le'
+            prefix: 'le',
+            sourceOpenfisca: 'prestations.minima_sociaux.caah.montant_complement_ressources'
         },
         {
             id: 'mva',
             label: 'Majoration pour vie autonome (MVA)',
             category: 'allocations',
-            prefix: 'la'
+            prefix: 'la',
+            sourceOpenfisca: 'prestations.minima_sociaux.caah.majoration_vie_autonome'
         },
         {
             id: 'aeeh',

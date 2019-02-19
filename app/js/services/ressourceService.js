@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').factory('RessourceService', function(MonthService, categoriesRnc, ressourceTypes) {
+angular.module('ddsCommon').factory('RessourceService', function($http, MonthService, categoriesRnc, ressourceTypes) {
 
     function getPeriodKeysForCurrentYear(dateDeValeur, ressourceType) {
         var periodKeys = [];
@@ -83,6 +83,16 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         return type != 'pensions_alimentaires_versees_individu';
     }
 
+    function getParameterFromOpenfisca(parameterId) {
+        return $http.get('/api/parameters/' + parameterId)
+            .then(function(resp) {
+                var values = resp.data.values;
+                var sortedByDates = Object.keys(values).sort();
+                var latestValue = values[sortedByDates.pop()];
+                return latestValue;
+            });
+    }
+
     return {
         getPeriodKeysForCurrentYear: getPeriodKeysForCurrentYear,
         isRessourceOnMainScreen: isRessourceOnMainScreen,
@@ -90,5 +100,6 @@ angular.module('ddsCommon').factory('RessourceService', function(MonthService, c
         extractIndividuSelectedRessourceTypes: extractIndividuSelectedRessourceTypes,
         setDefaultValueForCurrentYear: setDefaultValueForCurrentYear,
         unsetForCurrentYear: unsetForCurrentYear,
+        getParameterFromOpenfisca: getParameterFromOpenfisca
     };
 });

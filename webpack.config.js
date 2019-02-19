@@ -101,8 +101,7 @@ var config = {
             Cleave: 'cleave.js',
             jsyaml: 'js-yaml',
             d3: 'd3'
-        }),
-        new webpack.IgnorePlugin(/backend\/config\/config\.js/)
+        })
     ],
     optimization: {
         splitChunks: {
@@ -124,6 +123,13 @@ var config = {
                 default: false
             }
         },
+    },
+    externals: function(context, request, callback) {
+        if (request.match(/backend/)) {
+            callback(request + ' is a backend file, should not be imported.');
+        } else {
+            callback();
+        }
     }
 };
 

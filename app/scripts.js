@@ -2,8 +2,6 @@
 // @see https://babeljs.io/docs/en/babel-polyfill
 require('@babel/polyfill');
 
-require('../backend/config/config');
-
 require('angular-ui-router');
 require('angular-ui-bootstrap');
 require('angular-animate');

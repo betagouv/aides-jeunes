@@ -1,6 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var config = require('./config/config');
+var config = require('./config');
 
 // Setup mongoose
 require('./config/mongoose')(mongoose, config);

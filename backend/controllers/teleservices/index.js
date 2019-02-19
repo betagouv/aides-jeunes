@@ -4,7 +4,7 @@ var jwt = require('jsonwebtoken');
 var moment = require('moment');
 var Mustache = require('mustache');
 
-var config = require('../../config/config');
+var config = require('../../config');
 var Loiret = require('../../lib/teleservices/loiret');
 var OpenFiscaTracer = require('../../lib/teleservices/openfisca-tracer');
 

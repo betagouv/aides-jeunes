@@ -169,8 +169,8 @@
         dds-date
         format="JJ/MM/AAAA"
         class="form-control"
-        min="{{ individu.date_naissance.format() }}"
-        max="{{ dateDeValeur.format() }}"
+        min="{{ individu.date_naissance.format('YYYY-MM-DD') }}"
+        max="{{ dateDeValeur.toISOString().slice(0, 7) }}"
         name="dateArretDeTravail"
         id="date-arret-travail"
         required

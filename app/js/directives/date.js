@@ -13,7 +13,7 @@ var FORMATS = {
     }
 };
 
-angular.module('ddsApp').directive('ddsDate', function() {
+angular.module('ddsApp').directive('ddsDate', function($analytics) {
     return {
         require: 'ngModel',
         restrict: 'A',
@@ -26,8 +26,20 @@ angular.module('ddsApp').directive('ddsDate', function() {
             element.attr('maxlength', format.length);
             element.attr('type', 'text');
 
+            var previousLength = 0;
             ctrl.$parsers.push(function(viewValue) {
-                return viewValue && moment(viewValue, FORMATS[format].acceptedFormats, true);
+                var value = viewValue && moment(viewValue, FORMATS[format].acceptedFormats, true);
+
+                if (value && value.isValid() && viewValue.length !== previousLength) {
+                    previousLength = viewValue.length;
+                    if (previousLength === 8) {
+                        $analytics.eventTrack(value.year(), { label: 'shortDate', category: 'log' });
+                    } else {
+                        $analytics.eventTrack(value.year(), { label: 'longDate', category: 'log' });
+                    }
+                }
+
+                return value;
             });
 
             ctrl.$formatters.push(function(date) {

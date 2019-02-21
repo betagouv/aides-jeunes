@@ -34,6 +34,8 @@ angular.module('ddsApp').directive('ddsDate', function($analytics) {
                     previousLength = viewValue.length;
                     if (previousLength === 8) {
                         $analytics.eventTrack(value.year(), { label: 'shortDate', category: 'log' });
+                    } else {
+                        $analytics.eventTrack(value.year(), { label: 'longDate', category: 'log' });
                     }
                 }
 

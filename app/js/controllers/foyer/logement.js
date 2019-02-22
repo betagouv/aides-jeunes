@@ -13,7 +13,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     var logement = $scope.logement = LogementService.getLogementVariables(menage.statut_occupation_logement);
 
     function getMostPopulatedCity(cities) {
-        return _.maxBy(cities, 'population') || {};
+        return _.maxBy(cities, 'population') || (cities.length && cities[0]) || {};
     }
 
     function getSelectedCity() {

@@ -1,7 +1,7 @@
 var moment = require('moment');
 var _ = require('lodash');
 var individuRessource = require('./ressources');
-var proxyAnneeDeReferenceRessources = require('./proxyAnneeDeReferenceRessources');
+var pastResourcesProxy = require('./pastResourcesProxy');
 
 function formatDate(date) {
     return moment(date).format('YYYY-MM-DD');
@@ -82,7 +82,7 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
     });
 
     individuRessource.computeRessources(mesAidesIndividu, openFiscaIndividu);
-    proxyAnneeDeReferenceRessources(openFiscaIndividu, situation);
+    pastResourcesProxy(openFiscaIndividu, situation);
 
     // Variables stored to properly restore UI
     var propertiesToDelete = [

@@ -13,7 +13,7 @@ describe('CityService', function() {
             $httpBackend
                 .whenGET('/api/outils/communes/75019')
                 .respond(200, JSON.stringify([{
-                    codeInsee: '75119',
+                    codeCommune: '75119',
                     codePostal: '75019',
                     nomCommune: 'paris 19',
                 }]));
@@ -21,12 +21,12 @@ describe('CityService', function() {
             $httpBackend
                 .whenGET('/api/outils/communes/33610')
                 .respond(200, JSON.stringify([{
-                    codeInsee: "33090",
+                    codeCommune: "33090",
                     codePostal: "33610",
                     nomCommune: "CANEJAN",
                 },
                 {
-                    codeInsee: "33122",
+                    codeCommune: "33122",
                     codePostal: "33610",
                     nomCommune: "CESTAS",
                 }]));

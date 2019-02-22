@@ -71,7 +71,7 @@ exports.persistedSituationPretransformationUpdate = function persistedSituationP
 
     if (! situation.logement.adresse) {
         situation.logement.adresse = {
-            codeInsee: '-1',
+            codeCommune: '-1',
             code_postal: '-1',
         };
     }
@@ -202,7 +202,7 @@ exports.migratePersistedSituation = function(sourceSituation) {
     situation.menage = {
         code_postal: sourceSituation.logement.adresse.codePostal,
         coloc: sourceSituation.logement.colocation,
-        depcom: sourceSituation.logement.adresse.codeInsee,
+        depcom: sourceSituation.logement.adresse.codeCommune,
         loyer: sourceSituation.logement.loyer,
         logement_chambre: sourceSituation.logement.isChambre,
         participation_frais: sourceSituation.logement.participationFrais,

@@ -10,7 +10,7 @@ var ressourcesToDuplicate = _.concat(
     ressources.ressourceTypes.map(function(ressourceType) { return ressourceType.id; })
 );
 
-function duplicateRessourcesForAnneeFiscaleDeReference(individu, dateDeValeur) {
+function proxyWithCurrentResources(individu, dateDeValeur) {
     var periods = common.getPeriods(dateDeValeur);
     ressourcesToDuplicate.forEach(function(ressourceTypeName) {
         var result = individu[ressourceTypeName];
@@ -52,8 +52,10 @@ function ressourcesYearMoins2Captured(situation) {
 
 function proxyRessources(individu, situation) {
     if (! ressourcesYearMoins2Captured(situation)) {
-        duplicateRessourcesForAnneeFiscaleDeReference(individu, situation.dateDeValeur);
+        proxyWithCurrentResources(individu, situation.dateDeValeur);
     }
 }
+
+proxyRessources.proxyWithCurrentResources = proxyWithCurrentResources;
 
 module.exports = proxyRessources;

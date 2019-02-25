@@ -233,6 +233,21 @@
                         },
                         'entity': 'individu', // default entity is famille
                     },
+                    'caah': {
+                        'isMontantAnnuel': false,
+                        'label': 'Complément à l’allocation adultes handicapés',
+                        'description': 'Les personnes en situation de handicap les plus éloignées de l’emploi peuvent recevoir le complément de ressources. Il a pour objectif de compenser l’absence durable de revenus d’activité si vous êtes dans l’incapacité de travailler. Le CAAH forme, avec l’AAH, ce que l’on appelle la garantie de ressources.',
+                        'conditions': [
+                            'Avoir une capacité de travail (appréciée par la CADPH) inférieure à 5 % du fait de votre handicap.'
+                        ],
+                        'isBaseRessourcesYearMoins2': true,
+                        'link': 'https://www.service-public.fr/particuliers/vosdroits/F12911',
+                        'forms': {
+                            'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
+                        },
+                        'entity': 'individu', // default entity is famille
+                        roundTo: 1 // le CAAH a une valeur fixe
+                    },
                 },
             },
             'pole_emploi': {

@@ -33,6 +33,22 @@ function proxyWithCurrentResources(individu, dateDeValeur) {
     });
 }
 
+function extendFiscalDataBackward(individu, dateDeValeur) {
+    var periods = common.getPeriods(dateDeValeur);
+    var fy = periods.fiscalYear;
+    var pfy = periods.previousFiscalYear;
+
+    ressources.categoriesRnc.forEach(function(ressource) {
+        if (!individu[ressource.id]) {
+            return;
+        }
+
+        var value = individu[ressource.id][fy];
+        individu[ressource.id][pfy] = value;
+    });
+
+}
+
 function ressourcesYearMoins2Captured(situation) {
     var yearMoins2 = moment(situation.dateDeValeur).subtract(2, 'years').format('YYYY');
     var januaryYearMoins2 = yearMoins2 + '-01';
@@ -54,9 +70,12 @@ function ressourcesYearMoins2Captured(situation) {
 function proxyRessources(individu, situation) {
     if (! ressourcesYearMoins2Captured(situation)) {
         proxyWithCurrentResources(individu, situation.dateDeValeur);
+    } else {
+        extendFiscalDataBackward(individu, situation.dateDeValeur);
     }
 }
 
 proxyRessources.proxyWithCurrentResources = proxyWithCurrentResources;
+proxyRessources.extendFiscalDataBackward = extendFiscalDataBackward;
 
 module.exports = proxyRessources;

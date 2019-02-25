@@ -25,5 +25,21 @@ describe('openfisca past resource proxy', function() {
                 expect(individu.salaire_net['2016-01']).toEqual(1000);
             });
         });
+
+        describe('situation with fiscal data', function() {
+            var individu = {
+                salaire_imposable: {
+                    '2017': 12120
+                }
+            };
+
+            beforeEach(function() {
+                subject.extendFiscalDataBackward(individu, date);
+            })
+
+            it('populates previous fiscal year', function() {
+                expect(individu.salaire_imposable['2016']).toEqual(12120);
+            });
+        });
     });
 });

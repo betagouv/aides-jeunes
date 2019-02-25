@@ -20,6 +20,10 @@ describe('openfisca past resource proxy', function() {
             it('populates current fiscal year', function() {
                 expect(individu.salaire_net['2017-01']).toEqual(100);
             });
+
+            it('populates the previous fiscal year', function() {
+                expect(individu.salaire_net['2016-01']).toEqual(100);
+            });
         });
     });
 });

@@ -13,11 +13,11 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     var logement = $scope.logement = LogementService.getLogementVariables(menage.statut_occupation_logement);
 
     function getMostPopulatedCity(cities) {
-        return _.maxBy(cities, 'population') || {};
+        return _.maxBy(cities, 'population') || (cities.length && cities[0]) || {};
     }
 
     function getSelectedCity() {
-        return _.find($scope.cities, { codeInsee: menage.depcom }) ||
+        return _.find($scope.cities, { codeCommune: menage.depcom }) ||
             getMostPopulatedCity($scope.cities);
     }
 
@@ -32,7 +32,7 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
             .then(function(cities) {
                 $scope.cities = cities;
                 var city = getSelectedCity();
-                menage.depcom = city.codeInsee;
+                menage.depcom = city.codeCommune;
                 menage.nom_commune = city.nomCommune;
                 if (! initial) {
                     famille.parisien = cityStartsWith('Paris');

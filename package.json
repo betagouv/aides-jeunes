@@ -14,7 +14,7 @@
     "bluebird": "^3.5.1",
     "body-parser": "^1.9.0",
     "cleave.js": "~0.7.15",
-    "codes-postaux": "github:etalab/codes-postaux#003ea027941e7a40c6094c7a02e7299d37619712",
+    "codes-postaux": "^3.0.0",
     "consolidate": "^0.15.1",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",

@@ -5,7 +5,7 @@ angular.module('ddsApp').directive('etablissementsList', function() {
         restrict: 'E',
         templateUrl: '/partials/etablissements-list.html',
         scope: {
-            codeInsee: '=',
+            codeCommune: '=',
             codePostal: '='
         },
         controller: 'etablissementsListCtrl',
@@ -21,13 +21,13 @@ angular.module('ddsApp').controller('etablissementsListCtrl', function($http, $i
         var situation = SituationService.restoreLocal();
 
         EtablissementService
-            .getEtablissements(situation, $scope.codePostal, $scope.codeInsee)
+            .getEtablissements(situation, $scope.codePostal, $scope.codeCommune)
             .then(function (etablissements) {
                 $scope.etablissements = etablissements;
             });
     }
 
-    ['codeInsee', 'codePostal'].forEach(function(key) {
+    ['codeCommune', 'codePostal'].forEach(function(key) {
         $scope.$watch(key, getEtablissements);
     });
 

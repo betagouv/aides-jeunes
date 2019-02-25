@@ -69,15 +69,15 @@ angular.module('ddsCommon').factory('EtablissementService', function($http, City
         return defaultEtablissementTypes.concat(etablissementTypes);
     }
 
-    function getEtablissements(situation, codePostal, codeInsee) {
+    function getEtablissements(situation, codePostal, codeCommune) {
         return CityService
             .getCities(codePostal)
-            .then(function(cities) { return _.find(cities, { codeInsee: codeInsee }); })
+            .then(function(cities) { return _.find(cities, { codeCommune: codeCommune }); })
             .then(function(city) { return city; })
             .then(function(city) {
                 var etablissementTypes = getEtablissementTypesBySituation(situation);
 
-                return $http.get('https://etablissements-publics.api.gouv.fr/v3/communes/' + city.codeInsee + '/' + etablissementTypes.join('+'));
+                return $http.get('https://etablissements-publics.api.gouv.fr/v3/communes/' + city.codeCommune + '/' + etablissementTypes.join('+'));
             })
             .then(function(response) { return response.data.features; }, function() { return []; })
             .then(function(etablissements) {

@@ -24,7 +24,8 @@ function proxyWithCurrentResources(individu, dateDeValeur) {
                 return sum + (result[periodObject] || 0);
             }, 0);
             if (sumOverLast12Months) {
-                periods.fiscalYear12Months.forEach(function(month) {
+                var months = [].concat(periods.fiscalYear12Months, periods.previousFiscalYear12Months);
+                months.forEach(function(month) {
                     result[month] = sumOverLast12Months / 12;
                 });
             }

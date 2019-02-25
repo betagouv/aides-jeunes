@@ -15,7 +15,7 @@ describe('openfisca past resource proxy', function() {
 
             beforeEach(function() {
                 subject.proxyWithCurrentResources(individu, date);
-            })
+            });
 
             it('populates current fiscal year', function() {
                 expect(individu.salaire_net['2017-01']).toEqual(1000);
@@ -35,7 +35,7 @@ describe('openfisca past resource proxy', function() {
 
             beforeEach(function() {
                 subject.extendFiscalDataBackward(individu, date);
-            })
+            });
 
             it('populates previous fiscal year', function() {
                 expect(individu.salaire_imposable['2016']).toEqual(12120);

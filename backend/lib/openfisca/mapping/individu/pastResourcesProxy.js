@@ -18,13 +18,13 @@ function proxyWithCurrentResources(individu, dateDeValeur) {
             return;
         // Variables can be defined on a yearly or a monthly basis
         if (_.isNumber(result[periods.lastYear])) {
-            result[periods.anneeFiscaleReference] = result[periods.lastYear];
+            result[periods.fiscalYear] = result[periods.lastYear];
         } else {
             var sumOverLast12Months = periods.last12Months.reduce(function(sum, periodObject) {
                 return sum + (result[periodObject] || 0);
             }, 0);
             if (sumOverLast12Months) {
-                periods.anneeFiscaleReference12Months.forEach(function(month) {
+                periods.fiscalYear12Months.forEach(function(month) {
                     result[month] = sumOverLast12Months / 12;
                 });
             }

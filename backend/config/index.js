@@ -1,6 +1,7 @@
 var env = process.env.NODE_ENV || 'development';
 
 var all = {
+    env: env,
     openfiscaURL: process.env.OPENFISCA_URL || 'http://localhost:2000',
     openfiscaPublicURL: 'https://openfisca.mes-aides.gouv.fr',
     openfiscaTracerURL: 'https://betagouv.github.io/openfisca-tracer',

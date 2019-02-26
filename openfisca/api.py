@@ -7,7 +7,7 @@ extensions = ['openfisca_bacASable', 'openfisca_paris', 'openfisca_brestmetropol
 tax_benefit_system = build_tax_benefit_system(
     country_package_name = country_package,
     extensions = extensions,
-    reforms = ['openfisca_bacASable.simulation_reform.simulation_reform']
+    reforms = []
 )
 
 application = create_app(tax_benefit_system)

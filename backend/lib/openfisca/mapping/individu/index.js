@@ -61,14 +61,6 @@ var individuSchema = {
         fn: function(specificSituations) {
             return specificSituations.indexOf('inapte_travail') >= 0;
         }
-    },
-    date_simulation: {
-        fn: function (individu, situation) {
-            var obj = {};
-            var month = moment(situation.dateDeValeur).format('YYYY-MM');
-            obj[month] = month;
-            return obj;
-        }
     }
 };
 

@@ -29,9 +29,9 @@ describe('directive dds-date', function() {
         expect(form.date.$valid).toBe(false);
     });
 
-    it('should pass with a 2-digit year', function() {
+    it('should not pass with a 2-digit year', function() {
         form.date.$setViewValue('12/08/80');
         $scope.$digest();
-        expect(form.date.$valid).toBe(true);
+        expect(form.date.$valid).toBe(false);
     });
 });

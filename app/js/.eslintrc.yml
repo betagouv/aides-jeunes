@@ -13,7 +13,6 @@ rules:
 globals:
   _: true
   angular: true
-  Cleave: true
   d3: true
   jsyaml: true
   moment: true

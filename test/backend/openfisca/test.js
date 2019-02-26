@@ -85,40 +85,35 @@ describe('openfisca generateYAMLTest', function() {
         expect(result).toContain('valueOne: 1');
     });
 
+    function validateYAMLRun(payload) {
+        return runOpenFiscaTest(payload)
+            .then(function(result) {
+                expect(result.stderr).toMatch(/\nOK\n$/);
+            })
+            .catch(function(failure) {
+                console.log(payload);
+                expect(failure).toBeFalsy(failure.stderr);
+            });
+    }
+
     if (process.env.VIRTUAL_ENV) {
         describe('generates processable YAML files', function() {
-            it('passes OpenFisca test without extension', function(done) {
+            it('passes OpenFisca test without extension', function() {
                 var details = Object.assign({}, details, { output_variables: { rsa: 545.48 }});
                 var yamlContent = subject.generateYAMLTest(details, situation);
 
-                runOpenFiscaTest(yamlContent)
-                    .then(function(result) {
-                        expect(result.stderr).toMatch(/\nOK\n$/);
-                    })
-                    .catch(function(failure) {
-                        console.log(yamlContent);
-                        expect(failure).toBeFalsy(failure.stderr);
-                    })
-                    .finally(done);
+                return validateYAMLRun(yamlContent);
             });
 
             Object.keys(subject.EXTENSION_VARIABLES).forEach(function(extensionName) {
-                it('passes OpenFisca test with ' + extensionName  + ' extension', function(done) {
+                it('passes OpenFisca test with ' + extensionName  + ' extension', function() {
                     var details = Object.assign({ extension: extensionName }, details, { output_variables: { rsa: 545.48 }});
                     var yamlContent = subject.generateYAMLTest(details, situation);
 
                     var variableListRegex = _.values(subject.EXTENSION_VARIABLES[extensionName]).map(function(variableList) { return variableList.join('|'); }).join('|');
                     expect(yamlContent).toMatch(new RegExp(variableListRegex));
 
-                    runOpenFiscaTest(yamlContent, extensionName.replace('-', '_'))
-                        .then(function(result) {
-                            expect(result.stderr).toMatch(/\nOK\n$/);
-                        })
-                        .catch(function(failure) {
-                            console.log(yamlContent);
-                            expect(failure).toBeFalsy(failure.stderr);
-                        })
-                        .finally(done);
+                    return validateYAMLRun(yamlContent);
                 });
             });
         });

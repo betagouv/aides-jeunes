@@ -44,7 +44,9 @@ start_sauce_connect: &start_sauce_connect
 start_mes_aides: &start_mes_aides
   run:
     name: Start Mes Aides
-    command: npm start
+    command: |
+      cp backend/config/continuous_integration.js backend/config/production.js
+      npm start
     background: true
 
 wait_for_sauce_connect: &wait_for_sauce_connect

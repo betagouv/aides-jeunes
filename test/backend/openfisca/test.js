@@ -8,8 +8,8 @@ var tmp = require('tmp');
 var details = {
     name: 'Ideal name',
     description: 'Thorough description',
-    output_variables: {
-        valueOne: 1,
+    output: {
+        rsa: 545.48,
     },
     absolute_error_margin: 0.1,
 };
@@ -35,9 +35,10 @@ describe('openfisca generateTest', function() {
     var result = subject.generateTest(details, situation);
 
     it('does not add rsa_non_calculable', function() {
-        expect(typeof result.familles[0].rsa_non_calculable[currentPeriod]).toBe('undefined');
+        expect(typeof result.input.familles._.rsa_non_calculable[currentPeriod]).toBe('undefined');
     });
 });
+
 
 function run_cmd(cmd, args) {
     return new Promise(function(resolve, reject) {
@@ -68,7 +69,7 @@ function runOpenFiscaTest(yaml, extension) {
     var tmpobj = tmp.fileSync();
     return fs.writeFileAsync(tmpobj.fd, yaml, 'utf8')
         .then(function() {
-            var args = extension ? [tmpobj.name, '--extension', extension] : [tmpobj.name];
+            var args = extension ? [tmpobj.name, '--extensions', extension] : [tmpobj.name];
 
             return run_cmd('openfisca-run-test', args);
         });
@@ -81,39 +82,39 @@ describe('openfisca generateYAMLTest', function() {
         expect(result).toBeTruthy();
     });
 
-    it('contains provided output_variables', function() {
-        expect(result).toContain('valueOne: 1');
+    it('contains provided output', function() {
+        expect(result).toContain('rsa: 545.48');
     });
 
-    function validateYAMLRun(payload) {
-        return runOpenFiscaTest(payload)
-            .then(function(result) {
-                expect(result.stderr).toMatch(/\nOK\n$/);
-            })
+    function validateYAMLRun(payload, extension) {
+        return runOpenFiscaTest(payload, extension)
             .catch(function(failure) {
                 console.log(payload);
-                expect(failure).toBeFalsy(failure.stderr);
+                expect(failure).toBeFalsy();
+            })
+            .then(function(result) {
+                expect(result.stderr).toMatch(/\nOK\n$/);
             });
     }
 
     if (process.env.VIRTUAL_ENV) {
         describe('generates processable YAML files', function() {
             it('passes OpenFisca test without extension', function() {
-                var details = Object.assign({}, details, { output_variables: { rsa: 545.48 }});
-                var yamlContent = subject.generateYAMLTest(details, situation);
+                var info = Object.assign({}, details);
+                var yamlContent = subject.generateYAMLTest(info, situation);
 
                 return validateYAMLRun(yamlContent);
             });
 
             Object.keys(subject.EXTENSION_VARIABLES).forEach(function(extensionName) {
                 it('passes OpenFisca test with ' + extensionName  + ' extension', function() {
-                    var details = Object.assign({ extension: extensionName }, details, { output_variables: { rsa: 545.48 }});
-                    var yamlContent = subject.generateYAMLTest(details, situation);
+                    var info = Object.assign({ extension: extensionName }, details);
+                    var yamlContent = subject.generateYAMLTest(info, situation);
 
                     var variableListRegex = _.values(subject.EXTENSION_VARIABLES[extensionName]).map(function(variableList) { return variableList.join('|'); }).join('|');
                     expect(yamlContent).toMatch(new RegExp(variableListRegex));
 
-                    return validateYAMLRun(yamlContent);
+                    return validateYAMLRun(yamlContent, extensionName.replace('-', '_'));
                 });
             });
         });

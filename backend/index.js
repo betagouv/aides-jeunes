@@ -8,7 +8,10 @@ require('./config/mongoose')(mongoose, config);
 // Setup Express
 var app = express();
 
-if (config.sentry && config.sentry.privateDsn) {
+if (config.env.match(/production/) || (config.sentry && config.sentry.privateDsn)) {
+    if ((! config.sentry) || (! config.sentry.privateDsn)) {
+        throw new Error('Sentry monitoring in production is mandatory. Missing configuration details! Aborting...');
+    }
     var raven = require('raven');
     raven.config(config.sentry.privateDsn);
     var installedValuePreInstall = raven.installed;

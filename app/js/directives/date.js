@@ -5,8 +5,7 @@ var createAutoCorrectedDatePipe = require('text-mask-addons').createAutoCorrecte
 
 var FORMATS = {
     'JJ/MM/AAAA': {
-        acceptedFormats: ['DD/MM/YY', 'DD/MM/YYYY'],
-        outputFormat: 'DD/MM/YYYY',
+        format: 'DD/MM/YYYY',
         mask: [
             /\d/, /\d/,
             '/',
@@ -17,8 +16,7 @@ var FORMATS = {
         autoCorrectedDatePipe: createAutoCorrectedDatePipe('dd/mm/yyyy'),
     },
     'MM/AAAA': {
-        acceptedFormats: ['MM/YY', 'MM/YYYY'],
-        outputFormat: 'MM/YYYY',
+        format: 'MM/YYYY',
         mask: [
             /\d/, /\d/,
             '/',
@@ -41,7 +39,7 @@ angular.module('ddsApp').directive('ddsDate', function($analytics) {
 
             var previousLength = 0;
             ctrl.$parsers.push(function(viewValue) {
-                var value = viewValue && moment(viewValue, FORMATS[format].acceptedFormats, true);
+                var value = viewValue && moment(viewValue, FORMATS[format].format, true);
 
                 if (value && value.isValid() && viewValue.length !== previousLength) {
                     previousLength = viewValue.length;
@@ -56,7 +54,7 @@ angular.module('ddsApp').directive('ddsDate', function($analytics) {
             });
 
             ctrl.$formatters.push(function(date) {
-                return date && moment(date).format(FORMATS[format].outputFormat);
+                return date && moment(date).format(FORMATS[format].format);
             });
 
             ctrl.$validators.format = function(modelValue) {

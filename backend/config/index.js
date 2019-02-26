@@ -1,6 +1,7 @@
 var env = process.env.NODE_ENV || 'development';
 
 var all = {
+    env: env,
     openfiscaURL: process.env.OPENFISCA_URL || 'http://localhost:2000',
     openfiscaPublicURL: 'https://openfisca.mes-aides.gouv.fr',
     openfiscaTracerURL: 'https://betagouv.github.io/openfisca-tracer',
@@ -19,7 +20,7 @@ try
     override = require('./' + env);
     console.info('Using specific configuration for ' + env + '.');
 } catch (e) {
-    if (e.toString().match(/Cannot find module/)) {
+    if (e.toString().match(/Cannot find module/) && !env.match(/production/)) {
         console.warn('No specific configuration for ' + env + '.');
     } else {
         throw e;

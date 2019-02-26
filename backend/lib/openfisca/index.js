@@ -1,4 +1,4 @@
-var config = require('../../config/config');
+var config = require('../../config');
 var mapping = require('./mapping');
 var rp = require('request-promise');
 

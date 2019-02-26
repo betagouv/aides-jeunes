@@ -1,7 +1,7 @@
 /* global emit: true */
 var Promise = require('bluebird');
 var MongoClient = Promise.promisifyAll(require('mongodb').MongoClient);
-var config = require('../../config/config');
+var config = require('../../config');
 
 var db;
 function saveDb(refDb) {

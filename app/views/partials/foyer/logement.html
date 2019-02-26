@@ -121,6 +121,10 @@
       </div>
     </div>
 
+    <yes-no-question model="logement.pretSigneAvant2018" ng-if="capturePretSigneAvant2018()">
+      <question>Avez-vous signé votre prêt <strong>avant</strong> le 1er janvier 2018 ?</question>
+    </yes-no-question>
+
     <div class="row" ng-show="captureCodePostal()">
 
       <div class="col-sm-6">

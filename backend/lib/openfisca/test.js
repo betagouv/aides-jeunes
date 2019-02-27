@@ -1,6 +1,6 @@
+var common = require('./mapping/common');
 var mapping = require('./mapping');
 var _ = require('lodash');
-var moment = require('moment');
 
 function toStringOf(obj) {
     return obj.toString();
@@ -54,7 +54,8 @@ var EXTENSION_VARIABLES = {
         individus: [ 'rennes_metropole_transport' ],
     },
     'openfisca-bacASable': {
-        familles: [ 'alfortville_noel_enfants']
+        familles: [ 'alfortville_noel_enfants' ],
+        individus: [ 'garantie_jeunes' ]
     }
 };
 
@@ -77,36 +78,26 @@ function prepareTestSituationForSpecificExtension(situation, extension) {
 var TEST_ATTRIBUTES = [
     'name',
     'description',
-    'output_variables',
+    'output',
     'absolute_error_margin',
     'relative_error_margin',
 ];
 
 exports.generateTest = function generateYAMLTest(details, situation) {
     var openfiscaRequest = mapping.buildOpenFiscaRequest(situation.toObject ? situation.toObject() : situation);
+    var periods = common.getPeriods(situation.dateDeValeur);
+    var dropPeriods = [periods.thisMonth].concat(periods.last3Months);
 
-    var currentPeriod = moment(situation.dateDeValeur).format('YYYY-MM');
+    mapping.giveValueToRequestedVariables(openfiscaRequest, dropPeriods, undefined);
+    var testInputs = prepareTestSituationForSpecificExtension(openfiscaRequest, details.extension);
 
     var testCase = {
-        period: currentPeriod,
-        individus: _.map(openfiscaRequest.individus, function(value, key) {
-            value.id = key;
-            return value;
-        }),
-        familles: _.values(openfiscaRequest.familles),
-        foyers_fiscaux: _.values(openfiscaRequest.foyers_fiscaux),
-        menages: _.values(openfiscaRequest.menages).map(function(menage) {
-            menage.personne_de_reference = menage.personne_de_reference[0];
-            if (menage.conjoint) {
-                menage.conjoint = menage.conjoint[0];
-            }
-            return menage;
-        })
+        period: periods.thisMonth,
+        input: testInputs
     };
-    mapping.giveValueToRequestedVariables(testCase, currentPeriod, undefined);
 
-    var extensionSpecificSituation = prepareTestSituationForSpecificExtension(testCase, details.extension);
-    return _.assign(_.pick(details, TEST_ATTRIBUTES), extensionSpecificSituation);
+    var result = _.assign(_.pick(details, TEST_ATTRIBUTES), testCase);
+    return result;
 };
 
 exports.generateYAMLTest = function generateYAMLTest(details, situation) {

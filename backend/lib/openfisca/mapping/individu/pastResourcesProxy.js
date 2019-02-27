@@ -10,7 +10,7 @@ var ressourcesToDuplicate = _.concat(
     ressources.ressourceTypes.map(function(ressourceType) { return ressourceType.id; })
 );
 
-function duplicateRessourcesForAnneeFiscaleDeReference(individu, dateDeValeur) {
+function proxyWithCurrentResources(individu, dateDeValeur) {
     var periods = common.getPeriods(dateDeValeur);
     ressourcesToDuplicate.forEach(function(ressourceTypeName) {
         var result = individu[ressourceTypeName];
@@ -18,18 +18,35 @@ function duplicateRessourcesForAnneeFiscaleDeReference(individu, dateDeValeur) {
             return;
         // Variables can be defined on a yearly or a monthly basis
         if (_.isNumber(result[periods.lastYear])) {
-            result[periods.anneeFiscaleReference] = result[periods.lastYear];
+            result[periods.fiscalYear] = result[periods.lastYear];
         } else {
             var sumOverLast12Months = periods.last12Months.reduce(function(sum, periodObject) {
                 return sum + (result[periodObject] || 0);
             }, 0);
             if (sumOverLast12Months) {
-                periods.anneeFiscaleReference12Months.forEach(function(month) {
+                var months = [].concat(periods.fiscalYear12Months, periods.previousFiscalYear12Months);
+                months.forEach(function(month) {
                     result[month] = sumOverLast12Months / 12;
                 });
             }
         }
     });
+}
+
+function extendFiscalDataBackward(individu, dateDeValeur) {
+    var periods = common.getPeriods(dateDeValeur);
+    var fy = periods.fiscalYear;
+    var pfy = periods.previousFiscalYear;
+
+    ressources.categoriesRnc.forEach(function(ressource) {
+        if (!individu[ressource.id]) {
+            return;
+        }
+
+        var value = individu[ressource.id][fy];
+        individu[ressource.id][pfy] = value;
+    });
+
 }
 
 function ressourcesYearMoins2Captured(situation) {
@@ -52,8 +69,13 @@ function ressourcesYearMoins2Captured(situation) {
 
 function proxyRessources(individu, situation) {
     if (! ressourcesYearMoins2Captured(situation)) {
-        duplicateRessourcesForAnneeFiscaleDeReference(individu, situation.dateDeValeur);
+        proxyWithCurrentResources(individu, situation.dateDeValeur);
+    } else {
+        extendFiscalDataBackward(individu, situation.dateDeValeur);
     }
 }
+
+proxyRessources.proxyWithCurrentResources = proxyWithCurrentResources;
+proxyRessources.extendFiscalDataBackward = extendFiscalDataBackward;
 
 module.exports = proxyRessources;

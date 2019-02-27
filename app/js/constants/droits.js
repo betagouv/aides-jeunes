@@ -93,7 +93,6 @@
                             'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                         },
                         'isBaseRessourcesYearMoins2': true,
-                        floorAt: 0.01,
                     },
                     'cf': {
                         'label': 'Complément familial',
@@ -105,7 +104,6 @@
                             'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                         },
                         'isBaseRessourcesYearMoins2': true,
-                        floorAt: 0.01,
                     },
                     'asf': {
                         'label': 'Allocation de soutien familial',
@@ -135,7 +133,6 @@
                             'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                         },
                         'isBaseRessourcesYearMoins2': true,
-                        floorAt: 10,
                     },
                     'rsa': {
                         'label': 'Revenu de solidarité active',
@@ -255,7 +252,7 @@
                             'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                         },
                         'entity': 'individu', // default entity is famille
-                        floorAt: 1, // le CAAH a une valeur fixe
+                        floorAt: 1,
                     },
                 },
             },
@@ -586,7 +583,6 @@
                             '2017-18': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12539.do',
                         },
                         'isBaseRessourcesYearMoins2': true,
-                        floorAt: 10,
                     },
                     'bourse_lycee': {
                         'isMontantAnnuel': true,
@@ -603,7 +599,6 @@
                             '2018-19': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do',
                         },
                         'isBaseRessourcesYearMoins2': true,
-                        floorAt: 10,
                     },
                 },
             },

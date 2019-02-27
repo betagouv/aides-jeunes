@@ -23,6 +23,7 @@
                             'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14953.do',
                             'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/Formulaire_allocation_solidarite_personnes_agees.pdf'
                         },
+                        floorAt: 10,
                     },
                 },
             },
@@ -56,6 +57,7 @@
                             'cnav': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-asi.pdf'
                         },
                         'entity': 'individu', // default entity is famille
+                        floorAt: 10,
                     },
                     'cmu_c': {
                         'label': 'Couverture maladie universelle complémentaire',
@@ -90,7 +92,8 @@
                             'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                             'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                         },
-                        'isBaseRessourcesYearMoins2': true
+                        'isBaseRessourcesYearMoins2': true,
+                        floorAt: 0.01,
                     },
                     'cf': {
                         'label': 'Complément familial',
@@ -101,7 +104,8 @@
                             'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                             'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                         },
-                        'isBaseRessourcesYearMoins2': true
+                        'isBaseRessourcesYearMoins2': true,
+                        floorAt: 0.01,
                     },
                     'asf': {
                         'label': 'Allocation de soutien familial',
@@ -115,6 +119,7 @@
                             'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationdesoutienfamilial/!ut/p/a1/',
                             'msa': 'http://www.msa.fr/lfr/documents/11566/48472/Demande+d%27allocation+de+soutien+familial+%28ASF%29.pdf'
                         },
+                        floorAt: 10,
                     },
                     'paje_base': {
                         'label': 'Prestation d’accueil du jeune enfant – Allocation de base',
@@ -129,7 +134,8 @@
                             'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                             'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                         },
-                        'isBaseRessourcesYearMoins2': true
+                        'isBaseRessourcesYearMoins2': true,
+                        floorAt: 10,
                     },
                     'rsa': {
                         'label': 'Revenu de solidarité active',
@@ -177,7 +183,8 @@
                                 },
                                 link: 'https://www.grandlyon.com/services/rsa-mode-d-emploi.html',
                             },
-                        }
+                        },
+                        floorAt: 10,
                     },
                     'aide_logement': {
                         'label': 'Aides au logement',
@@ -209,7 +216,8 @@
                                 },
                                 'solution': 'Le <a target="_blank" rel="noopener" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> vous donnera des estimations selon les différentes conventions possibles de votre foyer.'
                             }
-                        }
+                        },
+                        floorAt: 10,
                     },
                     'ppa': {
                         'label': 'Prime d’activité',
@@ -220,7 +228,7 @@
                             'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/',
                             'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=44739105'
                         },
-                        floorAt: 2
+                        floorAt: 5,
                     },
                     'aah': {
                         'isMontantAnnuel': false,
@@ -231,7 +239,8 @@
                         'forms': {
                             'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                         },
-                        'entity': 'individu', // default entity is famille
+                        'entity': 'individu', // default entity is famille,
+                        floorAt: 10,
                     },
                     'caah': {
                         'isMontantAnnuel': false,
@@ -246,7 +255,7 @@
                             'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                         },
                         'entity': 'individu', // default entity is famille
-                        floorAt: 1 // le CAAH a une valeur fixe
+                        floorAt: 1, // le CAAH a une valeur fixe
                     },
                 },
             },
@@ -261,6 +270,7 @@
                         /* En principe, formulaire envoyé automatiquement ; lien vers brochure pole emploi */
                         'instructions': 'http://www.pole-emploi.fr/front/common/tools/download_file.jspz?mediaid=186108',
                         'entity': 'individu', // default entity is famille
+                        floorAt: 10,
                     },
                 },
             },
@@ -281,7 +291,6 @@
                         /* En principe, envoyé automatique : lien direct vers le formulaire d'utilisation en ligne */
                         'instructions': 'https://www.chequeenergie.gouv.fr/beneficiaire/paiement',
                         'isBaseRessourcesYearMoins2': true,
-                        'floorAt': 1,
                         'entity': 'menage', // default entity is famille
                     },
                 },
@@ -576,7 +585,8 @@
                         'forms': {
                             '2017-18': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12539.do',
                         },
-                        'isBaseRessourcesYearMoins2': true
+                        'isBaseRessourcesYearMoins2': true,
+                        floorAt: 10,
                     },
                     'bourse_lycee': {
                         'isMontantAnnuel': true,
@@ -592,7 +602,8 @@
                             '2017-18': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do',
                             '2018-19': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do',
                         },
-                        'isBaseRessourcesYearMoins2': true
+                        'isBaseRessourcesYearMoins2': true,
+                        floorAt: 10,
                     },
                 },
             },
@@ -634,7 +645,6 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille_7',
                         'form': 'https://api-site.paris.fr/images/73485',
                         'isBaseRessourcesYearMoins2': false,
-                        'floorAt': 1,
                     },
                     'paris_forfait_famille': {
                         'isMontantAnnuel': true,
@@ -643,7 +653,6 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-forfait-famille_2',
                         'form': 'https://api-site-cdn.paris.fr/images/97066',
                         'isBaseRessourcesYearMoins2': false,
-                        'floorAt': 1,
                     },
                     'paris_logement_psol': {
                         'label': 'Paris Solidarité',
@@ -654,7 +663,6 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-solidarite_3',
                         'form': 'https://api-site-cdn.paris.fr/images/97049',
                         'isBaseRessourcesYearMoins2': false,
-                        'floorAt': 1,
                     },
                     'paris_logement': {
                         'label': 'Paris Logement',
@@ -666,7 +674,6 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement_6',
                         'form': 'https://api-site-cdn.paris.fr/images/97085',
                         'isBaseRessourcesYearMoins2': false,
-                        'floorAt': 1,
                     },
                     'paris_logement_aspeh': {
                         'label': 'Allocation de Soutien aux Parents d’Enfants Handicapés',
@@ -674,7 +681,6 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#allocation-de-soutien-aux-parents-d-enfants-handicapes_9',
                         'form': 'https://api-site-cdn.paris.fr/images/97060',
                         'isBaseRessourcesYearMoins2': false,
-                        'floorAt': 1,
                     },
                     'paris_logement_plfm': {
                         'label': 'Paris Logement Familles Monoparentales',
@@ -686,7 +692,6 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille-monoparentale_5',
                         'form': 'https://api-site-cdn.paris.fr/images/90099',
                         'isBaseRessourcesYearMoins2': false,
-                        'floorAt': 1,
                     },
                     'paris_energie_famille': {
                         'isMontantAnnuel': true,
@@ -695,7 +700,6 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-energie-famille_8',
                         'form': 'https://api-site-cdn.paris.fr/images/97093',
                         'isBaseRessourcesYearMoins2': false,
-                        'floorAt': 1,
                     },
                     'paris_complement_sante': {
                         'isMontantAnnuel': true,
@@ -704,7 +708,6 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
                         'form': 'https://api-site.paris.fr/images/78343',
                         'isBaseRessourcesYearMoins2': false,
-                        'floorAt': 1,
                     }
                 }
             },
@@ -744,7 +747,7 @@
                         'link': 'https://www.bibus.fr/titres-tarifs/titres-tarifs-bibus/les-abonnements/les-forfaits-solidaires/',
                         'instructions': 'https://www.bibus.fr/fileadmin/Sites/Bibus/Titres_et_tarifs/Forfaits_solidaires_2018.jpg',
                         'isBaseRessourcesYearMoins2': false,
-                        'floorAt': 0.01,
+                        floorAt: 0.01,
                         'entity': 'individu', // default entity is famille
                     },
                 }
@@ -767,7 +770,7 @@
                         'link': 'https://www.alfortville.fr/le-pole-solidarite-insertion#Noel-des-enfants',
                         'instructions': 'https://www.alfortville.fr/le-pole-solidarite-insertion',
                         'isBaseRessourcesYearMoins2': false,
-                        'round': 0.01,
+                        floorAt: 0.01,
                         'private': true,
                     },
                 },

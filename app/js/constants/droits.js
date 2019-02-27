@@ -220,7 +220,7 @@
                             'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/',
                             'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=44739105'
                         },
-                        roundTo: 2
+                        floorAt: 5
                     },
                     'aah': {
                         'isMontantAnnuel': false,
@@ -246,7 +246,7 @@
                             'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                         },
                         'entity': 'individu', // default entity is famille
-                        roundTo: 1 // le CAAH a une valeur fixe
+                        floorAt: 1 // le CAAH a une valeur fixe
                     },
                 },
             },
@@ -281,7 +281,7 @@
                         /* En principe, envoyé automatique : lien direct vers le formulaire d'utilisation en ligne */
                         'instructions': 'https://www.chequeenergie.gouv.fr/beneficiaire/paiement',
                         'isBaseRessourcesYearMoins2': true,
-                        'roundTo': 1,
+                        'floorAt': 1,
                         'entity': 'menage', // default entity is famille
                     },
                 },
@@ -634,7 +634,7 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille_7',
                         'form': 'https://api-site.paris.fr/images/73485',
                         'isBaseRessourcesYearMoins2': false,
-                        'roundTo': 1,
+                        'floorAt': 1,
                     },
                     'paris_forfait_famille': {
                         'isMontantAnnuel': true,
@@ -643,7 +643,7 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-forfait-famille_2',
                         'form': 'https://api-site-cdn.paris.fr/images/97066',
                         'isBaseRessourcesYearMoins2': false,
-                        'roundTo': 1,
+                        'floorAt': 1,
                     },
                     'paris_logement_psol': {
                         'label': 'Paris Solidarité',
@@ -654,7 +654,7 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-solidarite_3',
                         'form': 'https://api-site-cdn.paris.fr/images/97049',
                         'isBaseRessourcesYearMoins2': false,
-                        'roundTo': 1,
+                        'floorAt': 1,
                     },
                     'paris_logement': {
                         'label': 'Paris Logement',
@@ -666,7 +666,7 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement_6',
                         'form': 'https://api-site-cdn.paris.fr/images/97085',
                         'isBaseRessourcesYearMoins2': false,
-                        'roundTo': 1,
+                        'floorAt': 1,
                     },
                     'paris_logement_aspeh': {
                         'label': 'Allocation de Soutien aux Parents d’Enfants Handicapés',
@@ -674,7 +674,7 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#allocation-de-soutien-aux-parents-d-enfants-handicapes_9',
                         'form': 'https://api-site-cdn.paris.fr/images/97060',
                         'isBaseRessourcesYearMoins2': false,
-                        'roundTo': 1,
+                        'floorAt': 1,
                     },
                     'paris_logement_plfm': {
                         'label': 'Paris Logement Familles Monoparentales',
@@ -686,7 +686,7 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille-monoparentale_5',
                         'form': 'https://api-site-cdn.paris.fr/images/90099',
                         'isBaseRessourcesYearMoins2': false,
-                        'roundTo': 1,
+                        'floorAt': 1,
                     },
                     'paris_energie_famille': {
                         'isMontantAnnuel': true,
@@ -695,7 +695,7 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-energie-famille_8',
                         'form': 'https://api-site-cdn.paris.fr/images/97093',
                         'isBaseRessourcesYearMoins2': false,
-                        'roundTo': 1,
+                        'floorAt': 1,
                     },
                     'paris_complement_sante': {
                         'isMontantAnnuel': true,
@@ -704,7 +704,7 @@
                         'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
                         'form': 'https://api-site.paris.fr/images/78343',
                         'isBaseRessourcesYearMoins2': false,
-                        'roundTo': 1,
+                        'floorAt': 1,
                     }
                 }
             },
@@ -744,7 +744,7 @@
                         'link': 'https://www.bibus.fr/titres-tarifs/titres-tarifs-bibus/les-abonnements/les-forfaits-solidaires/',
                         'instructions': 'https://www.bibus.fr/fileadmin/Sites/Bibus/Titres_et_tarifs/Forfaits_solidaires_2018.jpg',
                         'isBaseRessourcesYearMoins2': false,
-                        'roundTo': 0.01,
+                        'floorAt': 0.01,
                         'entity': 'individu', // default entity is famille
                     },
                 }

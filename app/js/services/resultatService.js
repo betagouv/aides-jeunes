@@ -28,8 +28,8 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
             return amount;
         }
 
-        var rounding = aide.roundTo || 10; // default rounding to 10
-        return Math.round(amount / rounding) * rounding;
+        var rounding = aide.floorAt || 10; // default rounding to 10
+        return Math.floor(amount / rounding) * rounding;
     }
 
     function computeAides(situation, openfiscaResponse, showPrivate) {

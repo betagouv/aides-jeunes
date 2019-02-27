@@ -28,7 +28,7 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
             return amount;
         }
 
-        var rounding = aide.floorAt || 10; // default rounding to 10
+        var rounding = aide.floorAt || 1;
         return Math.floor(amount / rounding) * rounding;
     }
 

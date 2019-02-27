@@ -1,6 +1,6 @@
 <div class="droit-montant" itemscope itemtype="http://schema.org/Offer" itemprop="offers">
   <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
-    {{ droit.montant | currency : ( droit.unit || '€' ) : (droit.roundToNearestCent ? 2 : 0 ) }}
+    {{ droit.montant | currency : ( droit.unit || '€' ) : getFractionSize(droit) }}
   </span>
   <span ng-if="isString(droit.montant)">
     <i class="fa fa-question-circle fa-2x"></i>

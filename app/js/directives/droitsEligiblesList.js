@@ -97,6 +97,9 @@ angular.module('ddsApp')
             link: function(scope) {
                 scope.isNumber = _.isNumber;
                 scope.isString = _.isString;
+                scope.getFractionSize = function(droit) {
+                    return droit.floorAt < 1 ? 2 : 0;
+                };
             }
         };
     });

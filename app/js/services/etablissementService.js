@@ -5,11 +5,13 @@ var mingo = require('mingo/dist/mingo');
 
 // Sorted by relevancy
 var defaultEtablissementTypes = [
+    'mairie',
+    'mds',
     'ccas',
     'cdas',
-    'sdsei',
-    'edas',
     'centre_social',
+    'edas',
+    'sdsei',
     'msap',
 ];
 

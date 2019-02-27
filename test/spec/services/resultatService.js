@@ -153,23 +153,23 @@ describe('ResultatService', function () {
             expect(service.round(10.2499, { unit: '%', floorAt: 0.01 })).toEqual(10.24);
         });
 
-        it('should floor to nearest 10', function() {
+        it('should floor to lower 10s', function() {
             expect(service.round(132.17, { floorAt: 10 })).toEqual(130);
             expect(service.round(135, { floorAt: 10 })).toEqual(130);
             expect(service.round(139.47, { floorAt: 10 })).toEqual(130);
             expect(service.round(139.7, { floorAt: 10 })).toEqual(130);
         });
 
-        it('should floor to nearest cent', function() {
+        it('should floor to lower cent', function() {
             expect(service.round(132.1789, { floorAt: 0.01 })).toBeCloseTo(132.17);
             expect(service.round(135, { floorAt: 0.01 })).toEqual(135);
             expect(service.round(139.0001, { floorAt: 0.01 })).toEqual(139.00);
         });
 
-        it('should floor to nearest 10 by default', function() {
-            expect(service.round(132.17, {})).toEqual(130);
-            expect(service.round(135, {})).toEqual(130);
-            expect(service.round(139.47, {})).toEqual(130);
+        it('should floor to lower integer by default', function() {
+            expect(service.round(132.17, {})).toEqual(132);
+            expect(service.round(135, {})).toEqual(135);
+            expect(service.round(139.47, {})).toEqual(139);
         });
     });
 });

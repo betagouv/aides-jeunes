@@ -11,6 +11,7 @@ var defaultEtablissementTypes = [
     'edas',
     'centre_social',
     'msap',
+    'mairie',
 ];
 
 var etablissementFilters = [

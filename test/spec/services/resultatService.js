@@ -161,7 +161,7 @@ describe('ResultatService', function () {
         });
 
         it('should floor to nearest cent', function() {
-            expect(service.round(132.1789, { floorAt: 0.01 })).toEqual(132.17);
+            expect(service.round(132.1789, { floorAt: 0.01 })).toBeCloseTo(132.17);
             expect(service.round(135, { floorAt: 0.01 })).toEqual(135);
             expect(service.round(139.0001, { floorAt: 0.01 })).toEqual(139.00);
         });

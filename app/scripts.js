@@ -65,7 +65,7 @@ require('./js/constants/specificSituations.js');
 require('./js/constants/nationalites.js');
 require('./js/constants/logementTypes.js');
 
-var droits = require('./js/constants/droits.js');
+var droits = require('./js/constants/benefits');
 angular.module('ddsCommon').constant('droitsDescription', droits);
 
 var phishingExpressions = require('./js/constants/phishingExpressions.js');

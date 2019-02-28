@@ -312,7 +312,7 @@
                 label: 'Les conseils départementaux',
                 'imgSrc': 'logo_cd_generique.png',
                 prestations: {
-                    apa_eligibilite: require('./aids/apa_eligibilite.js')
+                    apa_eligibilite: require('./apa_eligibilite')
                 }
             },
             'education_nationale': {

@@ -1,9 +1,9 @@
-var droits = require('../../../app/js/constants/droits');
+var benefits = require('../../../app/js/constants/benefits');
 
 // Mitigate label duplicates by counting them and appending provider label when necessary
 var labelCount = {};
-Object.keys(droits).forEach(function(prestationLevel) {
-    var providers = droits[prestationLevel];
+Object.keys(benefits).forEach(function(prestationLevel) {
+    var providers = benefits[prestationLevel];
     Object.keys(providers).forEach(function(providerName) {
         var provider = providers[providerName];
         Object.keys(provider.prestations).forEach(function(prestationName) {
@@ -14,8 +14,8 @@ Object.keys(droits).forEach(function(prestationLevel) {
 });
 
 var possibleValues = [];
-Object.keys(droits).forEach(function(prestationLevel) {
-    var providers = droits[prestationLevel];
+Object.keys(benefits).forEach(function(prestationLevel) {
+    var providers = benefits[prestationLevel];
 
     Object.keys(providers).forEach(function(providerName) {
         var provider = providers[providerName];

@@ -1,7 +1,7 @@
 var moment = require('moment');
 var _ = require('lodash');
 
-var droitsDescription = require('../../../../app/js/constants/droits');
+var benefits = require('../../../../app/js/constants/benefits');
 
 exports.isIndividuValid = function(individu, situation) {
     var age = moment(situation.dateDeValeur).diff(moment(individu.date_naissance), 'years');
@@ -52,7 +52,7 @@ exports.getPeriods = function (dateDeValeur) {
 };
 
 function generateRequestedVariables() {
-    var structuredVariables = _.values(droitsDescription).map(function(level) {
+    var structuredVariables = _.values(benefits).map(function(level) {
         return _.values(level).map(function(provider) {
             return _.values(_.mapValues(provider.prestations, function(prestation, prestationName) {
                 var prestations = {};

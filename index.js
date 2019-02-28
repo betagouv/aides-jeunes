@@ -6,12 +6,12 @@ var bodyParser = require('body-parser');
 var pdf = require('html-pdf');
 var raven = require('raven');
 
-var droitsDescription = require('./app/js/constants/droits');
+var benefits = require('./app/js/constants/benefits');
 
 function countPublicByType(type) {
-    return Object.keys(droitsDescription[type]).reduce(function(total, provider) {
-        return total + Object.keys(droitsDescription[type][provider].prestations).reduce(function(count, prestationName) {
-            var prestation = droitsDescription[type][provider].prestations[prestationName];
+    return Object.keys(benefits[type]).reduce(function(total, provider) {
+        return total + Object.keys(benefits[type][provider].prestations).reduce(function(count, prestationName) {
+            var prestation = benefits[type][provider].prestations[prestationName];
 
             return count + (prestation.private ? 0 : 1);
         }, 0);

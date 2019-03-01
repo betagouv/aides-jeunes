@@ -358,6 +358,11 @@
             id: 'pensions_alimentaires_versees',
             label: 'Pensions alimentaires versées',
             sources: ['pensions_alimentaires_versees_individu']
+        },
+        {
+            id: 'revenus_locatifs',
+            label: 'Revenus fonciers nets',
+            sources: ['revenus_locatifs']
         }
     ];
 

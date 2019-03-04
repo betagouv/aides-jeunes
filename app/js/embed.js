@@ -12,7 +12,6 @@ app.config(function($locationProvider, $stateProvider) {
     $locationProvider.html5Mode(true);
     $stateProvider.state('home', {
         url: '/:situationId',
-        controller: '',
         resolve: {
             situation: function($stateParams, SituationService) {
                 return SituationService.restoreRemote($stateParams.situationId);

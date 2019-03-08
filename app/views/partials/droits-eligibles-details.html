@@ -46,24 +46,7 @@
     </div>
 
     <div class="droit-detail-buttons">
-      <a href="{{ droit.teleservice || droit.form || droit.instructions }}"
-        target="_blank"
-        rel="noopener"
-        class="btn"
-        ng-class="{
-          'btn-success': droit.teleservice,
-          'btn-primary': droit.form,
-          'btn-default': droit.instructions,
-        }"
-        analytics-on="click"
-        analytics-name="{{ droit.label }}"
-        analytics-event="{{ droit.teleservice || droit.form || droit.instructions }}"
-        analytics-category="Action"
-        >
-        <span ng-if="droit.teleservice">Faire une demande</span>
-        <span ng-if="droit.form">Accéder au formulaire</span>
-        <span ng-if="droit.instructions">Accéder aux instructions</span>
-      </a>
+      <droit-cta droit="droit"></droit-cta>
       <a ng-if="droit.id == 'ppa'"
         class="btn btn-sm btn-secondary"
         href="http://www.msa.fr/lfr/web/msa/espace-prive">

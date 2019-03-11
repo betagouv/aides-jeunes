@@ -233,6 +233,10 @@ $fa-font-path: '~font-awesome/fonts';
   .result .panel-collapse {
     display: inline;
   }
+
+  .droit-detail {
+    page-break-inside: avoid;
+  }
 }
 
 .result {

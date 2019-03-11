@@ -3,8 +3,8 @@ var favicon = require('serve-favicon');
 var path = require('path');
 var mustache = require('consolidate').mustache;
 var bodyParser = require('body-parser');
-var pdf = require('html-pdf');
 var raven = require('raven');
+var puppeteer = require('puppeteer');
 
 var benefits = require('./app/js/constants/benefits');
 
@@ -20,6 +20,49 @@ function countPublicByType(type) {
 
 var prestationsNationalesCount = countPublicByType('prestationsNationales');
 var partenairesLocauxCount = countPublicByType('partenairesLocaux');
+
+// @see https://github.com/westmonroe/pdf-puppeteer
+const convertHTMLToPDF = async (html, callback, options = null, puppeteerArgs = null, remoteContent = true) => {
+    if (typeof html !== 'string') {
+        throw new Error(
+            'Invalid Argument: HTML expected as type of string and received a value of a different type. Check your request body and request headers.'
+        );
+    }
+    let browser;
+    if (puppeteerArgs) {
+        browser = await puppeteer.launch(puppeteerArgs);
+    } else {
+        browser = await puppeteer.launch();
+    }
+
+    const page = await browser.newPage();
+    if (!options) {
+        options = { format: 'Letter' };
+    }
+
+    if (remoteContent === true) {
+        await page.goto(`data:text/html,${html}`, {
+            waitUntil: 'networkidle0'
+        });
+    } else {
+        // page.setContent will be faster than page.goto if html is a static
+        await page.setContent(html, { waitUntil: ['domcontentloaded', 'networkidle0'] });
+    }
+
+    await page.pdf(options).then(callback, function(error) {
+        console.log(error);
+    });
+    await browser.close();
+};
+
+let puppeteerArgs = {};
+if (process.env.PUPPETEER_ARGS) {
+    try {
+        puppeteerArgs = JSON.parse(process.env.PUPPETEER_ARGS);
+    } catch(e) {
+        // Do nothing
+    }
+}
 
 module.exports = function(app) {
     var env = app.get('env');
@@ -70,25 +113,26 @@ module.exports = function(app) {
     // Route to download a PDF
     app.route('/foyer/resultat').post(function(req, res) {
         var html = Buffer.from(req.body.base64, 'base64').toString('utf-8');
+
         var pdfOptions = {
-            phantomArgs: [
-                '--ignore-ssl-errors=yes'
-            ]
-        };
-        if (process.env.PHANTOMJS_BIN) {
-            pdfOptions['phantomPath'] = process.env.PHANTOMJS_BIN;
-        }
-        pdf.create(html, pdfOptions).toBuffer(function(err, buffer) {
-            if (!err) {
-                res.writeHead(200, {
-                    'Content-Type': 'application/pdf',
-                    'Content-Disposition': 'attachment; filename=MesAides_simulation_' + req.body.basename + '.pdf',
-                });
-                res.end(buffer, 'binary');
-            } else {
-                res.end();
+            format: 'A4',
+            margin: {
+                top: '0.5cm',
+                right: '2cm',
+                bottom: '0.5cm',
+                left: '2cm'
             }
-        });
+        };
+
+        var callback = function (pdf) {
+            res.writeHead(200, {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': 'attachment; filename=MesAides_simulation_' + req.body.basename + '.pdf',
+            });
+            res.end(pdf, 'binary');
+        };
+
+        convertHTMLToPDF(html, callback, pdfOptions, puppeteerArgs, false);
     });
 
     app.route('/recap-situation/*').get(function(req, res) {

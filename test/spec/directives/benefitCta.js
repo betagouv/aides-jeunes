@@ -1,6 +1,6 @@
 'use strict';
 
-describe('directive droit-cta', function() {
+describe('directive benefit-cta', function() {
     var $compile, $scope;
 
     beforeEach(module('ddsApp'));
@@ -19,11 +19,11 @@ describe('directive droit-cta', function() {
 
     it('should use string', function() {
 
-        $scope.droit = {
+        $scope.benefit = {
             teleservice: 'http://example.com'
         };
 
-        var element = $compile('<droit-cta droit="droit" />')($scope);
+        var element = $compile('<benefit-cta benefit="benefit" />')($scope);
 
         $scope.$digest();
 
@@ -35,14 +35,14 @@ describe('directive droit-cta', function() {
 
     it('should use function', function() {
 
-        $scope.droit = {
+        $scope.benefit = {
             teleservice: {
                 state: 'foo',
                 params: { bar: 'baz' }
             }
         };
 
-        var element = $compile('<droit-cta droit="droit" />')($scope);
+        var element = $compile('<benefit-cta benefit="benefit" />')($scope);
 
         $scope.$digest();
 

@@ -51,6 +51,16 @@ function modernize(scope, element, attributes, ctrl) {
         return date && moment(date).format(FORMATS[format].isoFormat);
     });
 
+    ctrl.$validators.required = function() {
+
+        if (element[0].checkValidity()) {
+
+            return true;
+        }
+
+        return ! element[0].validity.valueMissing;
+    };
+
     ctrl.$validators.isAfterMax = function() {
 
         if (element[0].checkValidity()) {
@@ -59,12 +69,12 @@ function modernize(scope, element, attributes, ctrl) {
         }
 
         var validityState = element[0].validity;
-        if (validityState.valueMissing || validityState.rangeOverflow) {
 
-            return false;
+        if (validityState.valueMissing) {
+            return true;
         }
 
-        return true;
+        return ! validityState.rangeOverflow;
     };
     ctrl.$validators.isBeforeMin = function() {
 
@@ -74,12 +84,12 @@ function modernize(scope, element, attributes, ctrl) {
         }
 
         var validityState = element[0].validity;
-        if (validityState.valueMissing || validityState.rangeUnderflow) {
 
-            return false;
+        if (validityState.valueMissing) {
+            return true;
         }
 
-        return true;
+        return ! validityState.rangeUnderflow;
     };
 }
 

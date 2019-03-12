@@ -31,9 +31,8 @@ var FORMATS = {
     }
 };
 
-function shouldModernize(navigator) {
-    return Modernizr.inputtypes.date
-        && Modernizr.inputtypes.month
+function shouldModernize(navigator, format) {
+    return Modernizr.inputtypes[FORMATS[format].inputType]
         && Modernizr.formvalidation
         && navigator.userAgent.match(/iPhone|iPad|iPod/i);
 }
@@ -67,7 +66,7 @@ angular.module('ddsApp').directive('ddsDate', function($window) {
         require: 'ngModel',
         restrict: 'A',
         link: function(scope, element, attributes, ctrl) {
-            if (shouldModernize($window.navigator)) {
+            if (shouldModernize($window.navigator, attributes.format)) {
                 modernize(scope, element, attributes, ctrl);
                 return;
             }

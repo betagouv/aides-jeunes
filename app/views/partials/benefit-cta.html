@@ -1,14 +1,5 @@
-<a ng-href="{{ getActionURL(benefit) }}"
-  target="_blank"
-  rel="noopener"
-  class="btn btn-block btn-success"
-  ng-click="onClick(benefit)"
-  analytics-on="click"
-  analytics-name="{{ benefit.label }}"
-  analytics-event="{{ getActionURL(benefit) }}"
-  analytics-category="Action"
-  >
-  <span ng-if="benefit.teleservice">Faire une demande</span>
-  <span ng-if="benefit.form">Accéder au formulaire</span>
-  <span ng-if="benefit.instructions">Accéder aux instructions</span>
-</a>
+<benefit-cta-link
+  analytics-name="benefit.label"
+  link="link"
+  type="type"
+></benefit-cta-link>

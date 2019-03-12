@@ -8,8 +8,8 @@
         dds-date
         format="JJ/MM/AAAA"
         class="form-control"
-        max="{{ today.format() }}"
-        min="{{ minBirthDate.format() }}"
+        max="{{ today.format('YYYY-MM-DD') }}"
+        min="{{ minBirthDate.format('YYYY-MM-DD') }}"
         name="dateDeNaissance"
         id="date-de-naissance"
         required
@@ -151,8 +151,8 @@
         <input
             dds-date
             format="MM/AAAA"
-            min="{{ individu.date_naissance.format() }}"
-            max="{{ situation.dateDeValeur.format() }}"
+            min="{{ individu.date_naissance.format('YYYY-MM') }}"
+            max="{{ situation.dateDeValeur.toISOString().slice(0, 7) }}"
             name="dateDernierContratTravail"
             id="last-job-end-date"
             ng-model="individu.dateDernierContratTravail"

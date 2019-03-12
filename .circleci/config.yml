@@ -169,10 +169,10 @@ jobs:
       - *wait_for_mes_aides
       - run:
           name: Watai base suite
-          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"browserName":"chrome","version":"latest"}}'
+          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"browserName":"chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
       - run:
           name: Watai family suite
-          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"browserName":"chrome","version":"latest"}}'
+          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"browserName":"chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
   test_openfisca_test_generation:
     <<: *defaults
     steps:

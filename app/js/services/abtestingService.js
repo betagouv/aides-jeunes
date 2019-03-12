@@ -21,6 +21,10 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         $localStorage.ABTesting.resultat.value = $localStorage.ABTesting.resultat.value || (Math.random() > 0.5 ? 'A' : 'B');
         $localStorage.ABTesting.resultat.deleted = true;
 
+        $localStorage.ABTesting.datepicker = $localStorage.ABTesting.datepicker || { index: 2 };
+        $localStorage.ABTesting.datepicker.value = $localStorage.ABTesting.datepicker.value || (Math.random() > 0.5 ? 'A' : 'B');
+        //$localStorage.ABTesting.datepicker.deleted = true;
+
         _.forEach($localStorage.ABTesting, function(data, name) {
             if (data.deleted) {
                 $analytics.deleteCustomVariable(data.index, 'visit');

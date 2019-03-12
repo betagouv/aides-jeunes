@@ -70,6 +70,10 @@ var config = {
                         minimize: true,
                     }
                 }],
+            },
+            {
+                test: /\.modernizrrc$/,
+                use: ['modernizr-loader', 'json-loader'],
             }
         ]
     },
@@ -129,6 +133,11 @@ var config = {
             callback(request + ' is a backend file, should not be imported.');
         } else {
             callback();
+        }
+    },
+    resolve: {
+        alias: {
+            modernizr$: path.resolve(__dirname, '.modernizrrc')
         }
     }
 };

@@ -2,9 +2,9 @@
 
 angular.module('ddsCommon').factory('CityService', function($http) {
     function sortByName(aCity, bCity) {
-        if (aCity.nomCommune < bCity.nomCommune)
+        if (aCity.nom < bCity.nom)
             return -1;
-        if (aCity.nomCommune > bCity.nomCommune)
+        if (aCity.nom > bCity.nom)
             return 1;
 
         return 0;

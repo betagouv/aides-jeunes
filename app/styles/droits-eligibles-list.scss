@@ -163,7 +163,7 @@ $fa-font-path: '~font-awesome/fonts';
 
     @media (max-width: $screen-sm-max) {
       flex-wrap: wrap;
-      > .btn {
+      > * {
         flex-grow: 1;
         width: 50%;
       }

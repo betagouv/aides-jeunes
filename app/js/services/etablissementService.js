@@ -13,6 +13,7 @@ var defaultEtablissementTypes = [
     'edas',
     'sdsei',
     'msap',
+    'mission_locale',
 ];
 
 var etablissementFilters = [

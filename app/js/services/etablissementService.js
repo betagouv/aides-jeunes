@@ -5,6 +5,7 @@ var mingo = require('mingo/dist/mingo');
 
 // Sorted by relevancy
 var defaultEtablissementTypes = [
+    'mission_locale',
     'mairie',
     'mds',
     'ccas',
@@ -13,7 +14,6 @@ var defaultEtablissementTypes = [
     'edas',
     'sdsei',
     'msap',
-    'mission_locale',
 ];
 
 var etablissementFilters = [

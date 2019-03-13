@@ -1,12 +1,7 @@
 <a ng-href="{{ getActionURL(droit) }}"
   target="_blank"
   rel="noopener"
-  class="btn btn-block"
-  ng-class="{
-    'btn-success': droit.teleservice,
-    'btn-primary': droit.form,
-    'btn-default': droit.instructions,
-  }"
+  class="btn btn-block btn-success"
   ng-click="onClick(droit)"
   analytics-on="click"
   analytics-name="{{ droit.label }}"

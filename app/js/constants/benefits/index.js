@@ -368,7 +368,7 @@
                             'Renouveler chaque année votre demande jusqu’à obtention d’un logement',
                         ],
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F869',
-                        'form': 'https://www.demande-logement-social.gouv.fr/creation/accesCriteresEligibilites.do',
+                        'teleservice': 'https://www.demande-logement-social.gouv.fr/creation/accesCriteresEligibilites.do',
                     },
                 }
             }

@@ -6,6 +6,10 @@ communes.forEach(function(commune) {
         return;
     }
 
+    // Backward compatibility
+    commune.codeCommune = commune.code;
+    commune.nomCommune = commune.nom;
+
     commune.codesPostaux.forEach(function(codePostal) {
         if (!(codePostal in index)) {
             index[codePostal] = [];

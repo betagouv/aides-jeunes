@@ -13,22 +13,22 @@ describe('CityService', function() {
             $httpBackend
                 .whenGET('/api/outils/communes/75019')
                 .respond(200, JSON.stringify([{
-                    codeCommune: '75119',
-                    codePostal: '75019',
-                    nomCommune: 'paris 19',
+                    code: '75119',
+                    codesPostaux: ['75019'],
+                    nom: 'paris 19',
                 }]));
 
             $httpBackend
                 .whenGET('/api/outils/communes/33610')
                 .respond(200, JSON.stringify([{
-                    codeCommune: "33090",
-                    codePostal: "33610",
-                    nomCommune: "CANEJAN",
+                    code: "33090",
+                    codesPostaux: ["33610"],
+                    nom: "CANEJAN",
                 },
                 {
-                    codeCommune: "33122",
-                    codePostal: "33610",
-                    nomCommune: "CESTAS",
+                    code: "33122",
+                    codesPostaux: ["33610"],
+                    nom: "CESTAS",
                 }]));
 
         });

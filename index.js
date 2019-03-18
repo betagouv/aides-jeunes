@@ -4,8 +4,7 @@ var path = require('path');
 var mustache = require('consolidate').mustache;
 var bodyParser = require('body-parser');
 var raven = require('raven');
-var puppeteer = require('puppeteer');
-
+var utils = require('./backend/lib/utils');
 var benefits = require('./app/js/constants/benefits');
 
 function countPublicByType(type) {
@@ -20,40 +19,6 @@ function countPublicByType(type) {
 
 var prestationsNationalesCount = countPublicByType('prestationsNationales');
 var partenairesLocauxCount = countPublicByType('partenairesLocaux');
-
-// @see https://github.com/westmonroe/pdf-puppeteer
-const convertHTMLToPDF = async (html, callback, options = null, puppeteerArgs = null, remoteContent = true) => {
-    if (typeof html !== 'string') {
-        throw new Error(
-            'Invalid Argument: HTML expected as type of string and received a value of a different type. Check your request body and request headers.'
-        );
-    }
-    let browser;
-    if (puppeteerArgs) {
-        browser = await puppeteer.launch(puppeteerArgs);
-    } else {
-        browser = await puppeteer.launch();
-    }
-
-    const page = await browser.newPage();
-    if (!options) {
-        options = { format: 'Letter' };
-    }
-
-    if (remoteContent === true) {
-        await page.goto(`data:text/html,${html}`, {
-            waitUntil: 'networkidle0'
-        });
-    } else {
-        // page.setContent will be faster than page.goto if html is a static
-        await page.setContent(html, { waitUntil: ['domcontentloaded', 'networkidle0'] });
-    }
-
-    await page.pdf(options).then(callback, function(error) {
-        console.log(error);
-    });
-    await browser.close();
-};
 
 let puppeteerArgs = {};
 if (process.env.PUPPETEER_ARGS) {
@@ -132,7 +97,7 @@ module.exports = function(app) {
             res.end(pdf, 'binary');
         };
 
-        convertHTMLToPDF(html, callback, pdfOptions, puppeteerArgs, false);
+        utils.convertHTMLToPDF(html, callback, pdfOptions, puppeteerArgs, false);
     });
 
     app.route('/recap-situation/*').get(function(req, res) {

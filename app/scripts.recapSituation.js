@@ -2,6 +2,8 @@
 // @see https://babeljs.io/docs/en/babel-polyfill
 require('@babel/polyfill');
 
+global.moment = require('moment');
+
 require('angular-ui-router');
 require('angular-ui-bootstrap');
 require('angular-animate');

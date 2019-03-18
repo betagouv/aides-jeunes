@@ -42,8 +42,6 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: files.concat([
       'node_modules/angular-mocks/angular-mocks.js',
-      // FIXME Can't find variable: moment
-      'node_modules/moment/moment.js',
       'test/spec/**/*.js',
     ]),
 

@@ -3,9 +3,8 @@ var favicon = require('serve-favicon');
 var path = require('path');
 var mustache = require('consolidate').mustache;
 var bodyParser = require('body-parser');
-var pdf = require('html-pdf');
 var raven = require('raven');
-
+var utils = require('./backend/lib/utils');
 var benefits = require('./app/js/constants/benefits');
 
 function countPublicByType(type) {
@@ -20,6 +19,15 @@ function countPublicByType(type) {
 
 var prestationsNationalesCount = countPublicByType('prestationsNationales');
 var partenairesLocauxCount = countPublicByType('partenairesLocaux');
+
+let puppeteerArgs = {};
+if (process.env.PUPPETEER_ARGS) {
+    try {
+        puppeteerArgs = JSON.parse(process.env.PUPPETEER_ARGS);
+    } catch(e) {
+        // Do nothing
+    }
+}
 
 module.exports = function(app) {
     var env = app.get('env');
@@ -70,25 +78,26 @@ module.exports = function(app) {
     // Route to download a PDF
     app.route('/foyer/resultat').post(function(req, res) {
         var html = Buffer.from(req.body.base64, 'base64').toString('utf-8');
+
         var pdfOptions = {
-            phantomArgs: [
-                '--ignore-ssl-errors=yes'
-            ]
-        };
-        if (process.env.PHANTOMJS_BIN) {
-            pdfOptions['phantomPath'] = process.env.PHANTOMJS_BIN;
-        }
-        pdf.create(html, pdfOptions).toBuffer(function(err, buffer) {
-            if (!err) {
-                res.writeHead(200, {
-                    'Content-Type': 'application/pdf',
-                    'Content-Disposition': 'attachment; filename=MesAides_simulation_' + req.body.basename + '.pdf',
-                });
-                res.end(buffer, 'binary');
-            } else {
-                res.end();
+            format: 'A4',
+            margin: {
+                top: '0.5cm',
+                right: '2cm',
+                bottom: '0.5cm',
+                left: '2cm'
             }
-        });
+        };
+
+        var callback = function (pdf) {
+            res.writeHead(200, {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': 'attachment; filename=MesAides_simulation_' + req.body.basename + '.pdf',
+            });
+            res.end(pdf, 'binary');
+        };
+
+        utils.convertHTMLToPDF(html, callback, pdfOptions, puppeteerArgs, false);
     });
 
     app.route('/recap-situation/*').get(function(req, res) {

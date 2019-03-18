@@ -76,5 +76,39 @@ describe('EtablissementService', function() {
 
             expect(service.getEtablissementTypesBySituation(situation)).toContain('maison_handicapees');
         });
+
+        it('Should have "mission_locale" has a first item when the demandeur is 20yo', function() {
+            var dateOfBirth = moment().subtract(20, 'years');
+
+            var situation = {
+                "individus": [
+                    {
+                        "id": "demandeur",
+                        "role": "demandeur",
+                        "date_naissance": dateOfBirth,
+                        "specificSituations": [],
+                    }
+                ],
+            };
+
+            expect(service.getEtablissementTypesBySituation(situation)[0]).toBe('mission_locale');
+        });
+
+        it('Should not contain "mission_locale" when the demandeur is 30yo', function() {
+            var dateOfBirth = moment().subtract(30, 'years');
+
+            var situation = {
+                "individus": [
+                    {
+                        "id": "demandeur",
+                        "role": "demandeur",
+                        "date_naissance": dateOfBirth,
+                        "specificSituations": [],
+                    }
+                ],
+            };
+
+            expect(service.getEtablissementTypesBySituation(situation)).not.toContain('mission_locale');
+        });
     });
 });

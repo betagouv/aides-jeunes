@@ -15,11 +15,30 @@ var defaultEtablissementTypes = [
     'msap',
 ];
 
+var born25YearsAgo = moment().subtract(25, 'years');
+var born16YearsAgo = moment().subtract(16, 'years');
+
 var etablissementFilters = [
     {
         // One of the individuals has specific situation "handicap"
         query: { individus: { $elemMatch: { specificSituations: "handicap" } } },
         types: ['maison_handicapees']
+    },
+    {
+        // The applicant is between 16 & 25 years old
+        query: {
+            individus: {
+                $elemMatch: {
+                    id: 'demandeur',
+                    date_naissance: {
+                        $gte: born25YearsAgo,
+                        $lte: born16YearsAgo,
+                    }
+                }
+            }
+        },
+        types: ['mission_locale'],
+        prepend: true
     }
 ];
 
@@ -59,16 +78,20 @@ angular.module('ddsCommon').factory('EtablissementService', function($http, City
     }
 
     function getEtablissementTypesBySituation(situation) {
+        var etablissementTypes = defaultEtablissementTypes.slice();
 
-        var etablissementTypes = [];
         _.forEach(etablissementFilters, function(etablissementFilter) {
             var query = new mingo.Query(etablissementFilter.query);
             if (query.test(situation)) {
-                etablissementTypes = etablissementTypes.concat(etablissementFilter.types);
+                if (etablissementFilter.prepend) {
+                    etablissementTypes = etablissementFilter.types.concat(etablissementTypes);
+                } else {
+                    etablissementTypes = etablissementTypes.concat(etablissementFilter.types);
+                }
             }
         });
 
-        return defaultEtablissementTypes.concat(etablissementTypes);
+        return etablissementTypes;
     }
 
     function getEtablissements(situation, codePostal, codeCommune) {

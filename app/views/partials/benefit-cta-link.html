@@ -1,11 +1,11 @@
 <a ng-href="{{ getURL(link) }}"
   target="_blank"
   rel="noopener"
-  class="btn btn-block btn-success"
+  class="btn btn-block btn-{{ size }} btn-{{ level }}"
   ng-click="onClick(link)"
   analytics-on="click"
   analytics-name="{{ analyticsName }}"
   analytics-event="{{ type }}"
-  analytics-category="Action"
-  > {{ label }}
+  analytics-category="General"
+  ng-bind-html="label">
 </a>

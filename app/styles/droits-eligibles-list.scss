@@ -161,11 +161,16 @@ $fa-font-path: '~font-awesome/fonts';
     justify-content: space-between;
     margin-bottom: 15px;
 
+    &-cta {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+    }
+
     @media (max-width: $screen-sm-max) {
-      flex-wrap: wrap;
-      > * {
-        flex-grow: 1;
-        width: 50%;
+      &, > * {
+        flex-direction: column;
+        width: 100%;
       }
       .btn-secondary {
         order: 3;

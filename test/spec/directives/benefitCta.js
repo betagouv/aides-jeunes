@@ -30,7 +30,7 @@ describe('directive benefit-cta-link', function() {
 
         var el = element[0].childNodes[0];
 
-        expect(element.text().trim()).toEqual('Faire une demande');
+        expect(element.text().trim()).toEqual('Faire une demande en ligne');
         expect(el.getAttribute('href')).toBe('http://example.com');
     });
 
@@ -50,7 +50,7 @@ describe('directive benefit-cta-link', function() {
 
         var el = element[0].childNodes[0];
 
-        expect(element.text().trim()).toEqual('Faire une demande');
+        expect(element.text().trim()).toEqual('Faire une demande en ligne');
         expect(el.getAttribute('href')).toBe('/foo?bar=baz');
     });
 

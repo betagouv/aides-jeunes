@@ -2,22 +2,28 @@
 
 angular.module('ddsApp').controller('benefitCtaCtrl', function($scope) {
     var types = ['teleservice', 'form', 'instructions'];
+    $scope.levels = ['success', 'default'];
 
-    var type = types.reduce(function(value, type) {
-        return value || ($scope.benefit[type] && type);
-    }, false);
-    $scope.link = $scope.benefit[type];
-    $scope.type = type;
+    $scope.ctas = types.map(function(type) {
+        return {
+            type: type,
+            link: $scope.benefit[type],
+        };
+    }).filter(function(item) {
+        return item.link;
+    }).slice(0, 2);
 });
 
 var typeLabels = {
-    teleservice: 'Faire une demande',
-    form: 'Accéder au formulaire',
-    instructions: 'Accéder aux instructions'
+    teleservice: 'Faire une demande en ligne',
+    form: 'Accéder au formulaire papier',
+    instructions: 'Accéder aux instructions',
+    link: "<i class='fa fa-external-link' aria-hidden='true' role='presentation'></i> Plus d'informations",
 };
 
 angular.module('ddsApp').controller('benefitCtaLinkCtrl', function($scope, $state, SituationService, TrampolineService) {
     $scope.label = typeLabels[$scope.type];
+    $scope.level = $scope.level || 'success';
 
     $scope.getURL = function(link) {
         if (typeof link === 'object') {
@@ -52,8 +58,10 @@ angular.module('ddsApp').directive('benefitCtaLink', function() {
         templateUrl: '/partials/benefit-cta-link.html',
         scope: {
             analyticsName: '=',
+            level: '<',
             link: '=',
             type: '=',
+            size: '<',
         },
         controller: 'benefitCtaLinkCtrl',
     };

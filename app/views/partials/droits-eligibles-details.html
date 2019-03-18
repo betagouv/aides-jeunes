@@ -46,43 +46,19 @@
     </div>
 
     <div class="droit-detail-buttons">
-      <benefit-cta benefit="droit"></benefit-cta>
+      <benefit-cta class="droit-detail-buttons-cta" benefit="droit"></benefit-cta>
       <a ng-if="droit.id == 'ppa'"
         class="btn btn-sm btn-secondary"
         href="http://www.msa.fr/lfr/web/msa/espace-prive">
         Démarches pour les professions agricoles
       </a>
-      <a
-        ng-if="droit.link && ! droit.internalLink"
-        class="btn btn-default"
-        href="{{ droit.link }}"
-        target="_blank"
-        rel="noopener"
+      <benefit-cta-link
+        analytics-name="droit.label"
+        link="droit.link"
+        type="'link'"
+        level="'default'"
         itemprop="termsOfService"
-        analytics-on="click"
-        analytics-name="{{ droit.label }}"
-        analytics-event="{{ droit.link }}"
-        analytics-category="Info"
-        >
-        <i class="fa fa-external-link" aria-hidden="true" role="presentation"></i>
-        Plus d'informations
-      </a>
-      <a
-        ng-if="droit.internalLink"
-        class="btn btn-default"
-        ng-click="trampoline.set({ situationId: situation._id, montant: droit.montant })"
-        ui-sref="{{ droit.internalLink }}"
-        target="_blank"
-        rel="noopener"
-        itemprop="termsOfService"
-        analytics-on="click"
-        analytics-name="{{ droit.label }}"
-        analytics-event="{{ droit.internalLink }}"
-        analytics-category="Info"
-        >
-        <i class="fa fa-external-link" aria-hidden="true" role="presentation"></i>
-        Plus d'informations
-      </a>
+      ></benefit-cta-link>
     </div>
 
     <div class="text-center">

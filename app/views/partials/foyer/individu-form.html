@@ -112,7 +112,7 @@
     </div>
   </div>
 
-  <div class="form-group from-group-lg">
+  <div class="form-group">
     <label class="control-label col-sm-4" id="situations-particulieres">
       <span ng-if="individu.role == 'demandeur'">Vous êtes</span>
       <span ng-if="individu.role == 'conjoint'">Votre conjoint·e est</span>
@@ -142,7 +142,7 @@
     </div>
   </div>
 
-  <div class="form-group from-group-lg" ng-if="captureEligibiliteAss()">
+  <div ng-if="captureEligibiliteAss()">
     <div class="form-group" ng-class="{'has-error': submitted && form.dateDernierContratTravail.$invalid}">
       <label class="control-label col-sm-4" for="last-job-end-date">
         Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?
@@ -170,8 +170,9 @@
           </li>
         </ul>
       </div>
-
-      <span class="help-block">Si vous n’avez jamais eu de contrat de travail, laissez ce champ vide.</span>
+      <div class="col-sm-4">
+        <span class="help-block">Si vous n’avez jamais eu de contrat de travail, laissez ce champ vide.</span>
+      </div>
     </div>
 
     <yes-no-question model="individu.ass_precondition_remplie"
@@ -187,7 +188,7 @@
     </yes-no-question>
   </div>
 
-  <div class="form-group from-group-lg" ng-if="captureTauxIncapacite()">
+  <div class="form-group" ng-if="captureTauxIncapacite()">
     <div class="col-sm-4 control-label">
       <label for="eligibiliteAss" id="tauxIncapaciteQuestion">
         {{ individu.role == 'demandeur' ? 'Votre' : 'Son' }} taux d'incapacité
@@ -256,7 +257,7 @@
     <question>Remplirez-vous vous-même votre prochaine déclaration de revenus aux impôts&nbsp;?</question>
   </yes-no-question>
 
-  <div class="form-group from-group-lg" ng-if="captureScolarite(form)">
+  <div class="form-group" ng-if="captureScolarite(form)">
     <label class="control-label col-sm-4" for="scolarite">
       Où sera-t-il/elle scolarisé·e à la rentrée prochaine ?
     </label>
@@ -277,7 +278,7 @@
     <question>Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?</question>
   </yes-no-question>
 
-  <div class="form-group from-group-lg" ng-if="individu.role == 'demandeur' && capturePerteAutonomie">
+  <div class="form-group" ng-if="individu.role == 'demandeur' && capturePerteAutonomie">
     <div class="col-sm-4 control-label">
       <label for="gir" id="girQuestion">
         Avez-vous besoin d’une aide à la personne&nbsp;?

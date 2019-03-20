@@ -126,7 +126,18 @@
     </yes-no-question>
 
     <div class="row" ng-show="captureCodePostal()">
+      <div class="col-xs-12">
+        <div
+          class="form-group">
+          <label class="col-sm-3 control-label" for="postal-code">Ville</label>
+          <div class="col-sm-9">
+            <city-autosuggest menage="menage"></city-autosuggest>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="row" ng-show="captureCodePostal()">
       <div class="col-sm-6">
         <div
           class="form-group"
@@ -151,6 +162,7 @@
         </div>
       </div>
 
+      <!--
       <div class="col-sm-6">
         <div class="form-group">
           <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
@@ -169,6 +181,7 @@
           </div>
         </div>
       </div>
+      -->
 
     </div>
 

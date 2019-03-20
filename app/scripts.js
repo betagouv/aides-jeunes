@@ -102,6 +102,7 @@ require('./js/directives/benefitCta.js');
 require('./js/directives/breadcrumb.js');
 require('./js/directives/captureMontantRessource.js');
 require('./js/directives/captureContinuationRessource.js');
+require('./js/directives/cityAutosuggest.js');
 require('./js/directives/date.js');
 require('./js/directives/droitsEligiblesList.js');
 require('./js/directives/droitsList.js');

@@ -1,0 +1,8 @@
+<div class="address-autosuggest" ng-class="{ 'address-autosuggest--loading': loading }">
+  <input type="text" class="form-control" autocomplete="no" placeholder="Entrez votre adresse ou votre code postal" ng-model="value">
+  <ul class="address-autosuggest__items">
+    <li ng-repeat="match in matches" class="address-autosuggest__item">
+      <a href="#" ng-click="select(match)">{{ match.nom }}</a>
+    </li>
+  </ul>
+</div>

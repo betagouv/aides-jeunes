@@ -2,6 +2,7 @@
 $fa-font-path: '~font-awesome/fonts';
 
 @import '~font-awesome/scss/mixins';
+@import '~font-awesome/scss/animated';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/variables';
 @import 'variables';
 @import 'theme-variables';
@@ -241,4 +242,48 @@ $fa-font-path: '~font-awesome/fonts';
 
 .result {
   page-break-inside: avoid;
+}
+
+.address-autosuggest {
+
+  position: relative;
+
+  &::after {
+    @include fa-icon();
+    @extend .fa-spin;
+
+    color: #ccc;
+    content: $fa-var-spinner;
+    display: none;
+
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  &--loading {
+    &::after {
+      display: block;
+    }
+  }
+}
+
+.address-autosuggest__items {
+    list-style-type: none;
+    padding: 0;
+}
+
+.address-autosuggest__item {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.address-autosuggest__item > a {
+    padding: 10px;
+    display: block;
+}
+
+.address-autosuggest__item > a:hover {
+    background-color: #ddd;
 }

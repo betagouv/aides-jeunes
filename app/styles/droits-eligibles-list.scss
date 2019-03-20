@@ -3,6 +3,7 @@ $fa-font-path: '~font-awesome/fonts';
 
 @import '~font-awesome/scss/mixins';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 @import 'variables';
 @import 'theme-variables';
 
@@ -241,4 +242,45 @@ $fa-font-path: '~font-awesome/fonts';
 
 .result {
   page-break-inside: avoid;
+}
+
+.submit-button-nav {
+
+  $submit-button-nav: &;
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &--sticky {
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    z-index: 1;
+    padding: 15px 0;
+    border-top: 1px solid #dadada;
+    background-color: whitesmoke;
+
+    #{$submit-button-nav}-container  {
+
+      @include container-fixed;
+      @media (min-width: $screen-sm-min) {
+        width: $container-sm;
+      }
+      @media (min-width: $screen-md-min) {
+        width: $container-md;
+      }
+      @media (min-width: $screen-lg-min) {
+        width: $container-lg;
+      }
+
+      > span {
+        flex: 1;
+      }
+    }
+  }
 }

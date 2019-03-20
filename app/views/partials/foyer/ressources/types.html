@@ -12,7 +12,7 @@
           ng-repeat="category in ressourceCategories"
           is-open="isOpen[category.id]">
           <uib-accordion-heading>
-            <span class="panel-title-ressource-category">
+            <span class="panel-title-ressource-category" ng-click="onClickHeading()">
               <span>
                 <span class="panel-title-ressource-category-name">{{ category.label }}</span>
                 <span ng-hide="hideHelp" class="panel-title-ressource-category-help">{{ category.help }}</span>
@@ -30,6 +30,7 @@
               ng-class="{ active: selectedRessourceTypes[ressourceType.id] }">
               <input type="checkbox"
                 ng-model="selectedRessourceTypes[ressourceType.id]"
+                ng-change="onSelectedRessourceTypesChanged()"
                 class="sr-only"
                 />
                 {{ ressourceType.label }}
@@ -37,11 +38,20 @@
           </div>
         </div>
       </uib-accordion>
-      <div class="text-right">
-        <button type="submit" class="btn btn-primary">
-          Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-        </button>
+
+      <div id="scroll-detector" style="width: 100%; border-top: 1px solid transparent;"></div>
+      <div class="submit-button-nav" id="submit-button">
+        <div class="submit-button-nav-container">
+          <span>
+            <i class="fa fa-check"></i>
+            <span>{{ selectedRessourceTypesCount }} ressource(s) sélectionné(e)s</span>
+          </span>
+          <button type="submit" class="btn btn-primary">
+            Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
+
     </fieldset>
   </form>
 </div>

@@ -28,6 +28,10 @@ var individuSchema = {
         src: 'date_arret_de_travail',
         fn: formatDate
     },
+    date_debut_chomage: {
+        src: 'date_debut_chomage',
+        fn: formatDate
+    },
     activite: {
         src: 'specificSituations',
         fn: function(specificSituations) {
@@ -86,7 +90,6 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
 
     // Variables stored to properly restore UI
     var propertiesToDelete = [
-        'dateDernierContratTravail', // for ass_precondition_remplie
         'firstName', // for kids
         'nationalite',
         'role',

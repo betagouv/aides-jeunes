@@ -143,7 +143,7 @@
   </div>
 
   <div ng-if="captureEligibiliteAss()">
-    <div class="form-group" ng-class="{'has-error': submitted && form.dateDernierContratTravail.$invalid}">
+    <div class="form-group" ng-class="{'has-error': submitted && form.date_debut_chomage.$invalid}">
       <label class="control-label col-sm-4" for="last-job-end-date">
         Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?
       </label>
@@ -153,19 +153,19 @@
             format="MM/AAAA"
             min="{{ individu.date_naissance.format('YYYY-MM') }}"
             max="{{ situation.dateDeValeur.toISOString().slice(0, 7) }}"
-            name="dateDernierContratTravail"
+            name="date_debut_chomage"
             id="last-job-end-date"
-            ng-model="individu.dateDernierContratTravail"
+            ng-model="individu.date_debut_chomage"
             >
 
-        <ul class="help-block" ng-if="submitted && form.dateDernierContratTravail.$invalid">
-          <li ng-show="form.dateDernierContratTravail.$error.format">
+        <ul class="help-block" ng-if="submitted && form.date_debut_chomage.$invalid">
+          <li ng-show="form.date_debut_chomage.$error.format">
             Veuillez utiliser le format MM/AAAA. Par exemple&nbsp;: 04/2016.
           </li>
-          <li ng-if="form.dateDernierContratTravail.$error.isBeforeMin">
+          <li ng-if="form.date_debut_chomage.$error.isBeforeMin">
             Il semblerait que votre contrat de travail se soit arrêté avant votre naissance.
           </li>
-          <li ng-if="form.dateDernierContratTravail.$error.isAfterMax">
+          <li ng-if="form.date_debut_chomage.$error.isAfterMax">
             Le simulateur ne permet pas d'indiquer une date de fin de travail dans le futur.
           </li>
         </ul>
@@ -176,13 +176,13 @@
     </div>
 
     <yes-no-question model="individu.ass_precondition_remplie"
-      ng-if="individu.dateDernierContratTravail.year()"
+      ng-if="individu.date_debut_chomage.year()"
       size="4"
       >
       <question>
         {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
-        travaillé au moins 5&nbsp;ans entre&nbsp;{{ individu.dateDernierContratTravail.clone().subtract(10, 'years').format('MMMM YYYY') }}
-        et&nbsp;{{ individu.dateDernierContratTravail.format('MMMM YYYY') }}&nbsp;?
+        travaillé au moins 5&nbsp;ans entre&nbsp;{{ individu.date_debut_chomage.clone().subtract(10, 'years').format('MMMM YYYY') }}
+        et&nbsp;{{ individu.date_debut_chomage.format('MMMM YYYY') }}&nbsp;?
       </question>
       <help-block>1825&nbsp;jours (5&nbsp;fois&nbsp;365) couverts par un contrat de travail, en activité ou en congés.</help-block>
     </yes-no-question>

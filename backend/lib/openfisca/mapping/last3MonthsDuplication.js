@@ -15,6 +15,7 @@ var individuProperties = [
     'ass_precondition_remplie',
     'boursier',
     'date_arret_de_travail',
+    'date_debut_chomage',
     'date_naissance',
     'echelon_bourse',
     'enceinte',

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filter, $http, $location, $q, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filter, $http, $location, $q, ResultatService, SituationService, IndividuService) {
     var situation = $scope.situation = SituationService.restoreLocal();
 
     $scope.restoreRemoteSituation = function(situationId) {
@@ -80,6 +80,11 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
     $scope.$on('patrimoine', function() {
         $scope.$broadcast('patrimoineCaptured');
         $state.go('foyer.resultat');
+    });
+
+    $scope.awaitingResults = ResultatService.isLoading();
+    $scope.$on('resultat:loading:changed', function(event, loading) {
+        $scope.awaitingResults = loading;
     });
 
     $scope.downloadAsPdf = function() {

@@ -142,7 +142,7 @@
     </div>
   </div>
 
-  <div class="form-group" ng-if="captureEligibiliteAss()">
+  <div ng-if="captureEligibiliteAss()">
     <div class="form-group" ng-class="{'has-error': submitted && form.dateDernierContratTravail.$invalid}">
       <label class="control-label col-sm-4" for="last-job-end-date">
         Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?

@@ -54,12 +54,14 @@ angular.module('ddsCommon').factory('RessourceService', function($http, MonthSer
         }
     }
 
+    var ressourcesForTrailingMonthsAndFiscalYear = categoriesRnc.filter(function(fiscalRessource) {
+        return fiscalRessource.sources && fiscalRessource.sources.indexOf(fiscalRessource.id) >= 0;
+    }).map(function(fiscalRessource) { return fiscalRessource.id; });
+
     function isSelectedForCurrentYear(ressource, ressourceIdOrType) {
-        // pensions_alimentaires_percues is a YM2 and current year ressource
-        // Hence that special treatment:
-        // A single value means that a YM2 value has been specified
+        // A single value means that ONLY a YM2 value has been specified
         // Multiple values means that CY values were specified
-        if ((ressourceIdOrType.id || ressourceIdOrType) == 'pensions_alimentaires_percues') {
+        if (ressourcesForTrailingMonthsAndFiscalYear.indexOf(ressourceIdOrType.id || ressourceIdOrType) >= 0) {
             return _.keys(ressource).length > 1;
         }
 

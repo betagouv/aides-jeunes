@@ -30,7 +30,10 @@ describe('openfisca past resource proxy', function() {
             var individu = {
                 salaire_imposable: {
                     '2017': 12120
-                }
+                },
+                frais_reels: {
+                    '2017': 24240
+                },
             };
 
             beforeEach(function() {
@@ -38,7 +41,8 @@ describe('openfisca past resource proxy', function() {
             });
 
             it('populates previous fiscal year', function() {
-                expect(individu.salaire_imposable['2016']).toEqual(12120);
+                expect(individu.salaire_imposable['2016-01']).toEqual(1010);
+                expect(individu.frais_reels['2016']).toEqual(24240);
             });
         });
     });

@@ -144,6 +144,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
 
             if (! $scope.captureEligibiliteAss()) {
                 delete $scope.individu.ass_precondition_remplie;
+                delete $scope.individu.date_debut_chomage;
             }
 
             if (! $scope.captureTauxIncapacite()) {

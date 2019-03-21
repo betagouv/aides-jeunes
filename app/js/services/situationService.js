@@ -1,6 +1,6 @@
 'use strict';
 
-var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'dateDernierContratTravail'];
+var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage'];
 
 angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc, patrimoineTypes, RessourceService) {
     var situation;
@@ -72,7 +72,7 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 menage: {
                     aide_logement_date_pret_conventionne: '2017-12-31'
                 },
-                version: 6,
+                version: 7,
             };
         },
 
@@ -113,12 +113,13 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
             var situation = _.cloneDeep(sourceSituation);
             situation.dateDeValeur = moment(new Date(situation.dateDeValeur)).format('YYYY-MM-DD');
             situation.individus.forEach(function(individu) {
-                individu.date_naissance = individu.date_naissance.format('YYYY-MM-DD');
-                delete individu.hasRessources;
+                DATE_FIELDS.forEach(function(dateField) {
+                    if (individu[dateField]) {
+                        individu[dateField] = individu[dateField].format('YYYY-MM-DD');
+                    }
+                });
 
-                if (individu.dateDernierContratTravail) {
-                    individu.dateDernierContratTravail = individu.dateDernierContratTravail.format('YYYY-MM-DD');
-                }
+                delete individu.hasRessources;
             });
             return jsyaml.dump(_.omit(situation, ['__v', 'modifiedFrom', 'status', 'token', 'version']));
         },

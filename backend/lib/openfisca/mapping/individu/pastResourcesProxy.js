@@ -43,8 +43,23 @@ function extendFiscalDataBackward(individu, dateDeValeur) {
             return;
         }
 
-        var value = individu[ressource.id][fy];
-        individu[ressource.id][pfy] = value;
+        if (!_.isNumber(individu[ressource.id][fy])) {
+            return;
+        }
+
+        if (ressource.yearly) {
+            individu[ressource.id][pfy] = individu[ressource.id][fy];
+        } else {
+            var result = individu[ressource.id];
+            var monthlyValue = result[fy] / 12;
+
+            var months = [].concat(periods.fiscalYear12Months, periods.previousFiscalYear12Months);
+            months.forEach(function(month) {
+                result[month] = monthlyValue;
+            });
+
+            delete result[fy];
+        }
     });
 
 }

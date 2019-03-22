@@ -7,10 +7,14 @@ var VERSION = 7;
 module.exports = {
     function: function(situation) {
         situation.individus.forEach(function(individu) {
-            if (individu.dateDernierContratTravail) {
-                individu.date_debut_chomage = individu.dateDernierContratTravail;
-
-                delete individu.dateDernierContratTravail;
+            var dateDernierContratTravail = individu.get('dateDernierContratTravail');
+            // includes null
+            if (dateDernierContratTravail !== undefined) {
+                // excludes null
+                if (dateDernierContratTravail) {
+                    individu.date_debut_chomage = dateDernierContratTravail;
+                }
+                individu.set('dateDernierContratTravail', undefined, { strict: false });
             } else {
                 var chomage_net = individu.chomage_net;
                 if (chomage_net) {

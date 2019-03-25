@@ -10,8 +10,7 @@
         <div uib-accordion-group
           class="capture-{{ category.id }}"
           ng-repeat="category in ressourceCategories"
-          is-open="status.open"
-          ng-init="status.open = shouldInitiallyOpen(category)">
+          is-open="isOpen[category.id]">
           <uib-accordion-heading>
             <span class="panel-title-ressource-category">
               <span>

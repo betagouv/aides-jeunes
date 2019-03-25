@@ -14,16 +14,14 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     var abtesting = ABTestingService.getEnvironment();
     $scope.hideHelp = abtesting && abtesting.resourceHelp && abtesting.resourceHelp.value === "Hide";
 
-    $scope.shouldInitiallyOpen = function(category) {
-        var selectedRessourceTypes = Object.keys($scope.selectedRessourceTypes);
-        if (! selectedRessourceTypes.length) {
-            return category.id == 'revenusActivite';
-        }
-
-        return _.some(selectedRessourceTypes, function(ressourceTypeId) {
-            return keyedRessourceTypes[ressourceTypeId].category == category.id;
-        });
+    $scope.isOpen = {
+        'revenusActivite': true // If nothing is selected
     };
+    _.each($scope.selectedRessourceTypes, function(isSelected, ressourceTypeId) {
+        if (isSelected) {
+            $scope.isOpen[keyedRessourceTypes[ressourceTypeId].category] = true;
+        }
+    });
 
     function updateIndividuRessources(individu, selectedRessourceTypes) {
         Object.keys(selectedRessourceTypes).forEach(function(ressourceTypeId) {

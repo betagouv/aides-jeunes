@@ -13,14 +13,17 @@
           is-open="status.open"
           ng-init="status.open = shouldInitiallyOpen(category)">
           <uib-accordion-heading>
-            <div>
+            <span class="panel-title-ressource-category">
+              <span>
+                <span class="panel-title-ressource-category-name">{{ category.label }}</span>
+                <span class="panel-title-ressource-category-help">{{ category.help }}</span>
+              </span>
               <i class="fa"
                 aria-hidden="true"
                 role="presentation"
                 ng-class="{'fa-chevron-down': status.open, 'fa-chevron-right': !status.open}">
               </i>
-              {{ category.label }}
-            </div>
+            </span>
           </uib-accordion-heading>
           <div class="button-grid">
             <label ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']"

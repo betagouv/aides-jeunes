@@ -16,10 +16,6 @@
 }
 
 @media (max-width: 768px) {
-    .button-grid {
-        flex-direction: column;
-    }
-
     .button-grid label {
         width: 100%;
     }

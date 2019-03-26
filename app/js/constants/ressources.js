@@ -4,31 +4,38 @@
     var ressourceCategories = [
         {
             id: 'revenusActivite',
-            label: 'Revenus d’activité'
+            label: 'Revenus d’activité',
+            help: 'Salaire, rémunération de stage, prime d’activité…',
         },
         {
             id: 'allocations',
-            label: 'Allocations'
+            label: 'Allocations',
+            help: 'Aides au logement, prestations familiales, revenu de solidarité active…',
         },
         {
             id: 'indemnites',
-            label: 'Indemnités'
+            label: 'Indemnités',
+            help: 'Indemnités journalières (maladie, maternité, etc.), indemnité de volontariat…',
         },
         {
             id: 'pensions',
-            label: 'Pensions'
+            label: 'Pensions',
+            help: 'Pension alimentaire, prestation de compensation (suite à séparation)…',
         },
         {
             id: 'rpns',
-            label: 'Revenus professionnels non salariés'
+            label: 'Revenus professionnels non salariés',
+            help: 'Auto-entrepreneur, profession libérale…',
         },
         {
             id: 'patrimoine',
-            label: 'Revenus du patrimoine'
+            label: 'Revenus du patrimoine',
+            help: 'Revenus locatifs et du capital',
         },
         {
             id: 'autre',
-            label: 'Autres'
+            label: 'Autres',
+            help: 'Bourses, dons, héritage et autres gains exceptionnels',
         }
     ];
 

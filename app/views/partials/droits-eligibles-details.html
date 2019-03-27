@@ -47,9 +47,13 @@
 
     <div class="droit-detail-buttons print-hidden">
       <benefit-cta class="droit-detail-buttons-cta" benefit="droit"></benefit-cta>
-      <a ng-if="droit.id == 'ppa'"
+      <a ng-if="droit.msa"
         class="btn btn-sm btn-secondary"
-        href="http://www.msa.fr/lfr/web/msa/espace-prive">
+        href="http://www.msa.fr/lfr/web/msa/espace-prive"
+        analytics-on="click"
+        analytics-name="droit.label"
+        analytics-event="msa"
+      >
         Démarches pour les professions agricoles
       </a>
       <benefit-cta-link

@@ -526,6 +526,18 @@
         }
     };
 
+    var msaAdditionProviders = [
+        'assurance_retraite',
+        'assurance_maladie',
+        'caf'
+    ];
+    msaAdditionProviders.forEach(function(providerId) {
+        var prestations = droitsDescription.prestationsNationales[providerId].prestations;
+        Object.keys(prestations).forEach(function(benefitId) {
+            prestations[benefitId].msa = true;
+        });
+    });
+
     /* Export either through Angular loader or CommonJS */
     if (typeof global != 'undefined') {  // we're in Node
         module.exports = droitsDescription;

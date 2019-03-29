@@ -67,7 +67,7 @@ angular.module('ddsApp').directive('ddsDate', function($window, ABTestingService
         restrict: 'A',
         link: function(scope, element, attributes, ctrl) {
             var abtesting = ABTestingService.getEnvironment();
-            var testing = abtesting && abtesting.datepicker && abtesting.datepicker === "B";
+            var testing = abtesting && abtesting.datepicker && abtesting.datepicker.value === "New";
             if (shouldModernize($window.navigator, attributes.format) && testing) {
                 modernize(scope, element, attributes, ctrl);
                 return;

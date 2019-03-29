@@ -22,7 +22,13 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         $localStorage.ABTesting.resultat.deleted = true;
 
         $localStorage.ABTesting.datepicker = $localStorage.ABTesting.datepicker || { index: 2 };
-        $localStorage.ABTesting.datepicker.value = $localStorage.ABTesting.datepicker.value || (Math.random() > 0.5 ? 'A' : 'B');
+        // Ugly fix because A/B wasn't triggering any changes in the UI
+        if ($localStorage.ABTesting.datepicker.value) {
+            if ($localStorage.ABTesting.datepicker.value === 'A' && $localStorage.ABTesting.datepicker.value === 'B') {
+                delete $localStorage.ABTesting.datepicker.value;
+            }
+        }
+        $localStorage.ABTesting.datepicker.value = $localStorage.ABTesting.datepicker.value || (Math.random() > 0.5 ? 'Current' : 'New');
         //$localStorage.ABTesting.datepicker.deleted = true;
 
         _.forEach($localStorage.ABTesting, function(data, name) {

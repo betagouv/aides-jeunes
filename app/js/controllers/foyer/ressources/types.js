@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ressourceCategories, ressourceTypes, $state, RessourceService) {
+angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ABTestingService, ressourceCategories, ressourceTypes, $state, RessourceService) {
 
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract(1, 'years');
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
@@ -10,6 +10,9 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     var keyedRessourceTypes = _.keyBy(ressourceTypes, 'id');
     var filteredRessourceTypes = _.filter(ressourceTypes, RessourceService.isRessourceOnMainScreen);
     $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
+
+    var abtesting = ABTestingService.getEnvironment();
+    $scope.hideHelp = abtesting && abtesting.resourceHelp && abtesting.resourceHelp.value === "Hide";
 
     $scope.shouldInitiallyOpen = function(category) {
         var selectedRessourceTypes = Object.keys($scope.selectedRessourceTypes);

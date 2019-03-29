@@ -97,14 +97,13 @@ $rpns-light: #a8a1c8;
 }
 
 @mixin ressource-category-capture($color-light) {
-  border: 1px solid $color-light;
+  border: 4px solid $color-light;
   border-left-width: 4px;
   margin-bottom: 10px;
 
   .panel-heading {
     margin: 0;
-    padding-left: 10px;
-    background-color: lighten($color-light, 10%);
+    padding: 0;
     color: #333;
     cursor: pointer;
     user-select: none;
@@ -112,6 +111,47 @@ $rpns-light: #a8a1c8;
     .panel-title {
       font-weight: 400;
       font-size: 21px;
+
+      & > a:hover,
+      & > a:active,
+      & > a:focus,
+      & > a:visited {
+        text-decoration: none;
+      }
+
+      & > a:hover {
+        .panel-title-ressource-category {
+          background-color: lighten($color-light, 5%);
+        }
+      }
+
+      &-ressource-category {
+        display: block;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        background-color: lighten($color-light, 10%);
+
+        & > *:first-child {
+          flex: 10;
+        }
+        & > *:last-child {
+          flex: 2;
+          text-align: right;
+        }
+
+        &-name {
+          display: block;
+          margin-bottom: 5px;
+        }
+        &-help {
+          display: block;
+          font-size: 14px;
+          color: darken($color-light, 55%);
+        }
+      }
+
     }
   }
 }

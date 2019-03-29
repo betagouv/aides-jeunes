@@ -69,7 +69,7 @@ var individuSchema = {
 };
 
 function isNotValidValue(value) {
-    return _.isNaN(value) || _.isUndefined(value) || value === null;
+    return _.isNaN(value) || _.isUndefined(value) || value === null || value === "Invalid date";
 }
 
 function buildOpenFiscaIndividu(mesAidesIndividu, situation) {

@@ -49,6 +49,10 @@ var EXTENSION_VARIABLES = {
             'paris_forfait_famille',
             'paris_logement_familles',
         ],
+        individus: [
+            'paris_pass_access',
+            'paris_pass_seniors',
+        ],
     },
     'openfisca-rennesmetropole': {
         individus: [ 'rennes_metropole_transport' ],

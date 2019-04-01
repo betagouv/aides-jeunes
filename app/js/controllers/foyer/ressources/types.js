@@ -69,7 +69,6 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
                         elementWatcher.recalculateLocation();
                         elementWatcher.update();
                         elementWatcher.triggerCallbacks();
-                        break;
                     }
                 });
             }

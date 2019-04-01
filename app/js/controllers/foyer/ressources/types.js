@@ -9,6 +9,7 @@ function countSelectedRessourceTypes(selectedRessourceTypes) {
 }
 
 var elementWatcher;
+var collapseObserver;
 
 angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ABTestingService, ressourceCategories, ressourceTypes, $state, RessourceService) {
 
@@ -39,6 +40,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
         // We need to wait for page to be loaded before initializing scrollmonitor,
         // otherwise the element position may be wrong
         angular.element(function() {
+
             if (elementWatcher) {
                 elementWatcher.destroy();
             }
@@ -53,21 +55,36 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
             if (elementWatcher.isBelowViewport) {
                 document.getElementById('submit-button').classList.add('submit-button-nav--sticky');
             }
+
+            // We force scrollmonitor to refresh when accordions are toggled
+            // As we are using AngularUI, we can't use standard Boostrap events (like "shown.bs.collapse")
+            // AngularUI doesn't provide event listeners so we use MutationObserver
+            if (! collapseObserver) {
+                collapseObserver = new MutationObserver(function (mutations) {
+                    for (var mutation of mutations) {
+                        if (mutation.target.classList.contains('collapsing')) {
+                            continue;
+                        }
+
+                        elementWatcher.recalculateLocation();
+                        elementWatcher.update();
+                        elementWatcher.triggerCallbacks();
+                        break;
+                    }
+                });
+            }
+
+            var collapseElements = Array.from(document.querySelectorAll('.collapse'));
+            collapseElements.forEach(function (el) {
+                collapseObserver.observe(el, { attributes: true, attributeFilter: ['class'] });
+            });
+
         });
         angular.element($scrollDetector).on('$destroy', function() {
             elementWatcher.destroy();
+            collapseObserver.disconnect();
         });
     }
-
-    // We force scrollmonitor to refresh when accordions are toggled
-    $scope.onClickHeading = function() {
-        // FIXME Find a better way than setTimeout
-        setTimeout(function() {
-            elementWatcher.recalculateLocation();
-            elementWatcher.update();
-            elementWatcher.triggerCallbacks();
-        }, 500);
-    };
 
     // We can't use $scope.$watch('selectedRessourceTypes'),
     // because the reference is untouched

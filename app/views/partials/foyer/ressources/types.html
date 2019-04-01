@@ -12,7 +12,7 @@
           ng-repeat="category in ressourceCategories"
           is-open="isOpen[category.id]">
           <uib-accordion-heading>
-            <span class="panel-title-ressource-category" ng-click="onClickHeading()">
+            <span class="panel-title-ressource-category">
               <span>
                 <span class="panel-title-ressource-category-name">{{ category.label }}</span>
                 <span ng-hide="hideHelp" class="panel-title-ressource-category-help">{{ category.help }}</span>

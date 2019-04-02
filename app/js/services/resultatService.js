@@ -99,11 +99,14 @@ angular.module('ddsApp').service('ResultatService', function($http, $rootScope, 
     }
 
     function simulate(situation, showPrivate) {
+        setLoading(true);
         return $http.get('api/situations/' + situation._id + '/openfisca-response')
             .then(function(OpenfiscaResponse) {
                 return OpenfiscaResponse.data;
             }).then(function(openfiscaResponse) {
                 return computeAides(situation, openfiscaResponse, showPrivate);
+            }).finally(function() {
+                setLoading(false);
             });
     }
 
@@ -122,7 +125,6 @@ angular.module('ddsApp').service('ResultatService', function($http, $rootScope, 
         _computeAides: computeAides,  // exposed for testing only
         round: round, // exposed for testing only
         simulate: simulate,
-        setLoading: setLoading,
         isLoading: isLoading
     };
 });

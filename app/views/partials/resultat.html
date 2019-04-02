@@ -32,7 +32,7 @@
       <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
   </div>
 
-  <div ng-if="! (droits.prestationsNationales | isEmpty)">
+  <div ng-if="! (droits.prestationsNationales | isEmpty) || ! (droits.partenairesLocaux | isEmpty)">
     <p>
       D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides.
       <span id="print-disclaimer">Ces résultats sont fondés sur les seules informations que vous avez indiquées et ne constituent en aucune façon un engagement de la part des organismes cités.</span>

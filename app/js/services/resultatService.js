@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('ddsApp').service('ResultatService', function($http, droitsDescription, CustomizationService) {
+angular.module('ddsApp').service('ResultatService', function($http, $rootScope, droitsDescription, CustomizationService) {
+
+    var _loading = false;
 
     /**
     * OpenFisca test cases separate ressources between two entities: individuals and families.
@@ -97,17 +99,32 @@ angular.module('ddsApp').service('ResultatService', function($http, droitsDescri
     }
 
     function simulate(situation, showPrivate) {
+        setLoading(true);
         return $http.get('api/situations/' + situation._id + '/openfisca-response')
             .then(function(OpenfiscaResponse) {
                 return OpenfiscaResponse.data;
             }).then(function(openfiscaResponse) {
                 return computeAides(situation, openfiscaResponse, showPrivate);
+            }).finally(function() {
+                setLoading(false);
             });
+    }
+
+    function setLoading(loading) {
+        if (loading !== _loading) {
+            $rootScope.$broadcast('resultat:loading:changed', loading);
+        }
+        _loading = loading;
+    }
+
+    function isLoading() {
+        return _loading;
     }
 
     return {
         _computeAides: computeAides,  // exposed for testing only
         round: round, // exposed for testing only
-        simulate: simulate
+        simulate: simulate,
+        isLoading: isLoading
     };
 });

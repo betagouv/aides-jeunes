@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, $scope, $sessionStorage, $stateParams, $window, CityService, ResultatService, SituationService, TrampolineService) {
-    $scope.awaitingResults = false;
     $scope.error = false;
     $scope.warning = false;
     $scope.warningMessage = false;
@@ -17,10 +16,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
 
     function triggerEvaluation() {
         loadSituation()
-            .then(function(situation) {
-                $scope.awaitingResults = true;
-                return situation;
-            })
             .then(ResultatService.simulate)
             .then(function(droits) {
                 $scope.droits = droits.droitsEligibles;
@@ -53,8 +48,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
                 $analytics.eventTrack('error', { label: $scope.error || $scope.situation._id });
             })
             .finally(function() {
-                $scope.awaitingResults = false;
-
                 $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract(2, 'years').format('YYYY');
                 $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract(1, 'years').format('MMMM YYYY');
                 $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract(1, 'months').format('MMMM YYYY');

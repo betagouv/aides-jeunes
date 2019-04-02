@@ -5,11 +5,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
     $scope.warning = false;
     $scope.warningMessage = false;
 
-    $scope.awaitingResults = ResultatService.isLoading();
-    $scope.$on('resultat:loading:changed', function(event, loading) {
-        $scope.awaitingResults = loading;
-    });
-
     function loadSituation() {
         if ($stateParams.situationId) { // If we want the result page for an already existing situation.
             return $scope.restoreRemoteSituation($stateParams.situationId);
@@ -21,10 +16,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
 
     function triggerEvaluation() {
         loadSituation()
-            .then(function(situation) {
-                ResultatService.setLoading(true);
-                return situation;
-            })
             .then(ResultatService.simulate)
             .then(function(droits) {
                 $scope.droits = droits.droitsEligibles;
@@ -57,8 +48,6 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
                 $analytics.eventTrack('error', { label: $scope.error || $scope.situation._id });
             })
             .finally(function() {
-                ResultatService.setLoading(false);
-
                 $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract(2, 'years').format('YYYY');
                 $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract(1, 'years').format('MMMM YYYY');
                 $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract(1, 'months').format('MMMM YYYY');

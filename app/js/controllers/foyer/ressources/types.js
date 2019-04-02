@@ -1,6 +1,14 @@
 'use strict';
 
-var scrollMonitor = require('scrollmonitor');
+// https://stackoverflow.com/a/22480938
+function isScrolledIntoView(el) {
+    var rect = el.getBoundingClientRect();
+    var elemTop = rect.top;
+    var elemBottom = rect.bottom;
+
+    var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+    return isVisible;
+}
 
 function countSelectedRessourceTypes(selectedRessourceTypes) {
     return _.reduce(selectedRessourceTypes, function(accumulator, value) {
@@ -35,55 +43,21 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
         }
     });
 
-    var $scrollDetector = document.getElementById('scroll-detector');
-    if ($scrollDetector) {
-        // We need to wait for page to be loaded before initializing scrollmonitor,
-        // otherwise the element position may be wrong
-        angular.element(function() {
+    var handler = function() {
+        var submitButton = document.getElementById('submit-button');
+        if (! submitButton) {
+            window.removeEventListener('scroll', listener);
+            return;
+        }
 
-            if (elementWatcher) {
-                elementWatcher.destroy();
-            }
-            elementWatcher = scrollMonitor.create($scrollDetector);
-            elementWatcher.stateChange(function() {
-                if (this.isBelowViewport) {
-                    document.getElementById('submit-button').classList.add('submit-button-nav--sticky');
-                } else {
-                    document.getElementById('submit-button').classList.remove('submit-button-nav--sticky');
-                }
-            });
-            if (elementWatcher.isBelowViewport) {
-                document.getElementById('submit-button').classList.add('submit-button-nav--sticky');
-            }
-
-            // We force scrollmonitor to refresh when accordions are toggled
-            // As we are using AngularUI, we can't use standard Boostrap events (like "shown.bs.collapse")
-            // AngularUI doesn't provide event listeners so we use MutationObserver
-            if (! collapseObserver) {
-                collapseObserver = new MutationObserver(function (mutations) {
-                    for (var mutation of mutations) {
-                        if (mutation.target.classList.contains('collapsing')) {
-                            continue;
-                        }
-
-                        elementWatcher.recalculateLocation();
-                        elementWatcher.update();
-                        elementWatcher.triggerCallbacks();
-                    }
-                });
-            }
-
-            var collapseElements = Array.from(document.querySelectorAll('.collapse'));
-            collapseElements.forEach(function (el) {
-                collapseObserver.observe(el, { attributes: true, attributeFilter: ['class'] });
-            });
-
-        });
-        angular.element($scrollDetector).on('$destroy', function() {
-            elementWatcher.destroy();
-            collapseObserver.disconnect();
-        });
+        if (isScrolledIntoView(document.getElementById('scroll-detector'))) {
+            submitButton.classList.remove('submit-button-nav--sticky');
+        } else {
+            submitButton.classList.add('submit-button-nav--sticky');
+        }
     }
+    var listener = $scope.$apply.bind($scope, handler);
+    window.addEventListener('scroll', listener);
 
     // We can't use $scope.$watch('selectedRessourceTypes'),
     // because the reference is untouched

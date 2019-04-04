@@ -57,7 +57,7 @@ var EXTENSION_VARIABLES = {
     'openfisca-rennesmetropole': {
         individus: [ 'rennes_metropole_transport' ],
     },
-    'openfisca-bacASable': {
+    'openfisca-france-local': {
         familles: [ 'alfortville_noel_enfants' ],
         individus: [ 'garantie_jeunes' ]
     }

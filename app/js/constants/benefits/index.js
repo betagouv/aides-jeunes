@@ -440,7 +440,6 @@
                         'private': true,
                     },
                 },
-                repository: 'bacASable'
             }
         }
     };

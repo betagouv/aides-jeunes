@@ -38,7 +38,7 @@ angular.module('ddsApp').controller('ValidationCtrl', function($scope, $http) {
     };
 
     $scope.sources = sourceNames.map(function(source) {
-        $http.get('https://ludwig.incubateur.net/api/repositories/github/ludwig-test/' + source.id + '/tests')
+        $http.get('https://ludwig.incubateur.net/api/repository/github/ludwig-test/' + source.id + '/tests')
             .then(function(response) {
                 source.tests = response.data;
             }, function() {

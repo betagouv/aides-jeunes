@@ -114,7 +114,7 @@ describe('openfisca generateYAMLTest', function() {
                     var variableListRegex = _.values(subject.EXTENSION_VARIABLES[extensionName]).map(function(variableList) { return variableList.join('|'); }).join('|');
                     expect(yamlContent).toMatch(new RegExp(variableListRegex));
 
-                    return validateYAMLRun(yamlContent, extensionName.replace('-', '_'));
+                    return validateYAMLRun(yamlContent, extensionName.replace(/-/g, '_'));
                 });
             });
         });

@@ -99,7 +99,7 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http, dr
         $scope.submitting = true;
         $http.post('api/situations/' + $scope.situation._id + '/openfisca-test', testMetadata)
             .then(function(result) {
-                return $http.post('https://ludwig.incubateur.net/api/repositories/github/betagouv/' + (metadata.repository) + '/suggest', {
+                return $http.post('https://ludwig.incubateur.net/api/repository/github/betagouv/' + (metadata.repository) + '/suggest', {
                     title: testMetadata.name,
                     body: testMetadata.description,
                     content: result.data

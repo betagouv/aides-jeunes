@@ -215,7 +215,7 @@ module.exports = {
                 imgSrc: 'logo_cd92.png',
             },
             instructions: undefined, // Prevent default instructions recycling
-            form: 'http://www.hauts-de-seine.fr/fileadmin/PDF/Solidarites/Autonomie/DossierAPADomJuillet2018.pdf',
+            form: 'http://www.hauts-de-seine.fr/fileadmin/PDF/Solidarites/Autonomie/APA_DossierDemandeDom_dec2018.pdf',
             teleservice: undefined, // Prevent default form recycling
             link: 'http://www.hauts-de-seine.fr/solidarites/personnes-agees/maintien-a-domicile/comment-beneficier-de-lapa/',
         },

@@ -132,7 +132,7 @@ angular.module('ddsApp').controller('StatsCtrl', function($scope, $http) {
 
                 var names = {
                     visit: 'Visites',
-                    simulation: 'Simulations',
+                    simulation: 'Simulations terminées',
                 };
                 var legendData = legend
                     .selectAll('tspan')

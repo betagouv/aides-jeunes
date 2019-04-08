@@ -1,51 +1,27 @@
-<uib-accordion close-others="false" class="droits-non-eligibles">
-  <div uib-accordion-group is-open="droit.open"
-     class="result panel-default"
-     ng-class="{ 'needs-n-2': shouldDisplayYM2Warning(droit) }"
-     ng-repeat="(droitId, droit) in list|orderObjectBy:'label'">
-    <uib-accordion-heading>
-      <div class="row">
-        <div class="col-xs-2 col-sm-1 droit-logo">
-          <img
-            ng-src="/img/{{ droit.provider.imgSrc }}" alt="">
-        </div>
-        <div class="col-xs-11 col-sm-10 description" class="link">
-          <span>{{ droit.label }}<span>
-        </div>
-        <div class="col-xs-1">
-          <div class="montant">
-            <i class="fa fa-info-circle"></i>
-          </div>
+<div class="droits-list">
+  <a ng-repeat="droit in list" href="{{ droit.link }}"
+    target="_blank"
+    rel="noopener"
+    analytics-on="click"
+    analytics-name="{{ droit.label }}"
+    analytics-event="{{ droit.link }}"
+    analytics-category="Info"
+    class="droits-list-item"
+    itemscope itemtype="http://schema.org/GovernmentService">
+    <div class="droits-list-item-cell">
+      <div class="droits-list-item-cell-left">
+        <img ng-src="/img/{{ droit.provider.imgSrc }}" alt="{{ droit.label }}">
+        <div>
+          <h2>
+            <span itemprop="name">{{ droit.label }}</span>
+            <small>Plus d'informations</small>
+          </h2>
         </div>
       </div>
-    </uib-accordion-heading>
-
-    <div class="caption">
+      <div class="dotted-line"></div>
       <div>
-        <p ng-bind-html="droit.description"></p>
-        <div class="alert alert-warning-inverse" ng-if="droit.isBaseRessourcesYearMoins2 && ! ressourcesYearMoins2Captured">
-          <i class="fa fa-warning" aria-hidden="true"></i> Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}.
-          <a ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
-        </div>
-      </div>
-      <div class="row cta">
-        <div class="col-sm-3">
-          <a
-            ng-if="droit.link"
-            class="btn btn-sm btn-default btn-block"
-            href="{{ droit.link }}"
-            target="_blank"
-            rel="noopener"
-            analytics-on="click"
-            analytics-name="{{ droit.label }}"
-            analytics-event="{{ droit.link }}"
-            analytics-category="Info"
-            >
-            <i class="fa fa-external-link" aria-hidden="true" role="presentation"></i>
-            Plus d'informations
-          </a>
-        </div>
+        <i class="fa fa-times-circle fa-2x"></i>
       </div>
     </div>
-  </div>
-</uib-accordion>
+  </a>
+</div>

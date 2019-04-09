@@ -22,14 +22,14 @@ $fa-font-path: '~font-awesome/fonts';
   margin: 0 15px;
 }
 
-.droits-eligibles-list {
+.droits-list {
   background-color: white;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   display: block;
   margin-bottom: 40px;
 }
 
-.droits-eligibles-list-item-cell {
+.droits-list-item-cell {
   align-items: center;
   color: #333;
   display: flex;
@@ -73,7 +73,7 @@ $fa-font-path: '~font-awesome/fonts';
   }
 }
 
-.droits-eligibles-list-item {
+.droits-list-item {
   align-items: center;
   display: flex;
   flex-direction: row;

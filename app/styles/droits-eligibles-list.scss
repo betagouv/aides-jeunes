@@ -22,14 +22,14 @@ $fa-font-path: '~font-awesome/fonts';
   margin: 0 15px;
 }
 
-.droits-eligibles-list {
+.droits-list {
   background-color: white;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   display: block;
   margin-bottom: 40px;
 }
 
-.droits-eligibles-list-item-cell {
+.droits-list-item-cell {
   align-items: center;
   color: #333;
   display: flex;
@@ -73,7 +73,7 @@ $fa-font-path: '~font-awesome/fonts';
   }
 }
 
-.droits-eligibles-list-item {
+.droits-list-item {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -187,58 +187,13 @@ $fa-font-path: '~font-awesome/fonts';
   }
 }
 
-.needs-n-2 .panel-heading {
-  background-color: whitesmoke;
-  color: #888;
-}
-
 .montant i {
   position: relative;
   top: 0.4em;
 }
 
-.result .panel-heading {
-  background-color: white;
-  padding: 5px 0;
-}
-
-.result .panel-opened .panel-heading {
-  background-color: whitesmoke;
-}
-
-.result .panel-heading:hover {
-  background-color: #ededed;
-}
-
-.result .panel-heading .montant {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.result .panel-heading .montant-detail {
-  font-size: 12px;
-}
-
-.result .panel-title .description {
-  padding-top: 0.5em;
-}
-
 @media print {
-  .result .cta,
-  .result .fa-chevron-down,
-  .result .fa-chevron-right {
-    display: none;
-  }
-
-  .result .panel-collapse {
-    display: inline;
-  }
-
   .droit-detail {
     page-break-inside: avoid;
   }
-}
-
-.result {
-  page-break-inside: avoid;
 }

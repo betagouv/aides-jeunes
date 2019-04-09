@@ -38,14 +38,6 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   margin-top: 15px;
 }
 
-.alert-warning-inverse {
-  background-color: white;
-  border: 1px solid $btn-warning-border;
-  color: $brand-warning;
-  font-weight: 400;
-  text-align: justify;
-}
-
 @mixin panel-custom($color) {
   .panel-heading {
     border-bottom: 2px solid $color;

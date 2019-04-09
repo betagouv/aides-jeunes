@@ -113,10 +113,11 @@
   </div>
 
   <div class="form-group">
-    <label class="control-label col-sm-4" id="situations-particulieres">
+    <label class="control-label col-sm-4">
       <span ng-if="individu.role == 'demandeur'">Vous êtes</span>
       <span ng-if="individu.role == 'conjoint'">Votre conjoint·e est</span>
       <span ng-if="individu.role == 'enfant'">Il ou elle est</span>
+      <span class="help-block">Plusieurs choix possibles</span>
     </label>
     <div class="col-sm-8">
       <div class="checkbox" ng-if="captureGardeAlternee">
@@ -137,8 +138,14 @@
           Enceinte
         </label>
       </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="individu.no_specific_situation">
+          Je ne suis dans aucune de ces situations
+        </label>
+      </div>
 
-      <p class="help-block">Validez directement si vous n'êtes dans aucune de ces situations.</p>
+
     </div>
   </div>
 

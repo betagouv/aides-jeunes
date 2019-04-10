@@ -115,8 +115,15 @@ $fa-font-path: '~font-awesome/fonts';
 }
 
 .droit-montant {
+
   display: inline-block;
   text-align: right;
+  color: $text-color;
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
 
   .montant {
     font-size: 18px;
@@ -129,6 +136,23 @@ $fa-font-path: '~font-awesome/fonts';
 
   .montant-detail {
     display: inline-block;
+  }
+
+  &--unexpected {
+    .droit-montant-label {
+      display: block;
+    }
+  }
+
+  .droit-montant-unexpected {
+    display: block;
+    padding: 4px 8px;
+    margin-top: 4px;
+    background-color: $brand-primary;
+    color: white;
+    font-size: $font-size-small;
+    text-align: center;
+    white-space: nowrap;
   }
 }
 

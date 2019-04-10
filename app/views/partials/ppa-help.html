@@ -1,0 +1,22 @@
+<div style="padding: 20px;">
+
+  <h2 class="text-center"><i class="fa fa-info-circle"></i> Prime d'activité</h2>
+
+  <div ng-if="isProprietaireAvecPretEnCours || isHebergeParticipeFrais">
+    <p>
+    Vous avez indiqué être
+    <strong ng-if="isProprietaireAvecPretEnCours">propriétaire de votre logement principal avec un prêt en cours.</strong>
+    <strong ng-if="isHebergeParticipeFrais">hébergé en participant aux frais du logement.</strong>
+    </p>
+    <p>
+    Sur le simulateur de la Caf, vous devez répondre "Non" à la question "Vous (ou votre conjoint) êtes propriétaire de votre logement principal ou êtes logés gratuitement". Répondez "oui" uniquement si
+    <span ng-if="isProprietaireAvecPretEnCours">vous n’avez <strong>aucun prêt pour votre habitation principale.</strong></span>
+    <span ng-if="isHebergeParticipeFrais">vous <strong>ne participez pas aux frais du logement.</strong></span>
+    </p>
+  </div>
+
+  <p class="text-center">
+    <a href ng-click="closeModal()">Fermer</a>
+  </p>
+
+</div>

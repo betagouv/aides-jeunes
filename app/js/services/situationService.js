@@ -221,5 +221,18 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
 
             }, undefined);
         },
+
+        isProprietaireAvecPretEnCours(situation) {
+            var isProprietaire =
+                ['primo_accedant', 'proprietaire'].includes(situation.menage.statut_occupation_logement);
+
+            return isProprietaire && situation.menage.loyer > 0;
+        },
+
+        isHebergeParticipeFrais(situation) {
+            return situation.menage.statut_occupation_logement === 'loge_gratuitement'
+                && situation.menage.participation_frais === true;
+        },
+
     };
 });

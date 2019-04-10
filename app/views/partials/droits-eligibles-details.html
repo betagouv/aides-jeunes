@@ -5,7 +5,7 @@
     <div class="droit-detail-heading">
       <h3 itemprop="name">{{ droit.label }}</h3>
       <div class="dotted-line"></div>
-      <droit-montant droit="droit" ng-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
+      <droit-montant droit="droit" unexpected ng-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
     </div>
 
     <div class="alert alert-warning print-hidden" ng-if="droit.isBaseRessourcesYearMoins2 && ! ressourcesYearMoins2Captured && ! isString(droit.montant)">

@@ -1,11 +1,16 @@
-<div class="droit-montant" itemscope itemtype="http://schema.org/Offer" itemprop="offers">
-  <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
-    {{ droit.montant | currency : ( droit.unit || '€' ) : getFractionSize(droit) }}
+<a class="droit-montant droit-montant--unexpected" itemscope itemtype="http://schema.org/Offer" itemprop="offers">
+  <span class="droit-montant-label">
+    <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
+      {{ droit.montant | currency : ( droit.unit || '€' ) : getFractionSize(droit) }}
+    </span>
+    <span ng-if="isString(droit.montant)">
+      <i class="fa fa-question-circle fa-2x"></i>
+    </span>
+    <span ng-if="isNumber(droit.montant)" class="montant-detail">
+      {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
+    </span>
   </span>
-  <span ng-if="isString(droit.montant)">
-    <i class="fa fa-question-circle fa-2x"></i>
+  <span class="droit-montant-unexpected" ng-click="openModal()" ng-if="showUnexpected">
+    Montant inattendu ?
   </span>
-  <span ng-if="isNumber(droit.montant)" class="montant-detail">
-    {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
-  </span>
-</div>
+</a>

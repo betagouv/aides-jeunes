@@ -145,14 +145,7 @@ $fa-font-path: '~font-awesome/fonts';
   }
 
   .droit-montant-unexpected {
-    display: block;
-    padding: 4px 8px;
-    margin-top: 4px;
-    background-color: $brand-primary;
-    color: white;
-    font-size: $font-size-small;
-    text-align: center;
-    white-space: nowrap;
+    cursor: pointer;
   }
 }
 

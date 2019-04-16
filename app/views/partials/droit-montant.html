@@ -1,4 +1,4 @@
-<a class="droit-montant droit-montant--unexpected" itemscope itemtype="http://schema.org/Offer" itemprop="offers">
+<span class="droit-montant droit-montant--unexpected" itemscope itemtype="http://schema.org/Offer" itemprop="offers">
   <span class="droit-montant-label">
     <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
       {{ droit.montant | currency : ( droit.unit || '€' ) : getFractionSize(droit) }}
@@ -10,7 +10,7 @@
       {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
     </span>
   </span>
-  <span class="droit-montant-unexpected" ng-click="openModal()" ng-if="showUnexpected">
+  <a class="droit-montant-unexpected" ng-click="openModal()" ng-if="showUnexpected">
     Montant inattendu ?
-  </span>
-</a>
+  </a>
+</span>

@@ -121,8 +121,7 @@ angular.module('ddsApp')
                 var isHebergeParticipeFrais = SituationService.isHebergeParticipeFrais(situation);
                 var isPpa = scope.droit.id === 'ppa';
 
-                scope.showUnexpected =
-                    attributes.hasOwnProperty('unexpected') && (isPpa && (isProprietaireAvecPretEnCours || isHebergeParticipeFrais));
+                scope.showUnexpected = attributes.hasOwnProperty('unexpected') && isPpa;
 
                 scope.openModal = function() {
                     $uibModal.open({

@@ -4,6 +4,14 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
     /*
      * L'AB testing repose sur les custom variables de Matomo
      * https://matomo.org/docs/custom-variables/
+     *
+     * NB :
+     * *  Les variables d'AB testing sont enregistrées dans le localStorage pour toujours
+    *       -> afficher la même version pour un usager donné
+     * *  L'utilisation des 5 customs variables de Piwik permet de
+    *       -> faire 5 tests différents en même temps
+     * *  La suppression des variables en fin de test permet de
+     *      -> ne pas polluer Matomo d'anciennes périodes de tests
      */
     function getEnvironment() {
         $localStorage.ABTesting = $localStorage.ABTesting || {};

@@ -60,9 +60,9 @@ angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope) 
 
 });
 
-angular.module('ddsApp').controller('ppaHelpCtrl', function($scope, $uibModalInstance, SituationService) {
-
-    var situation = SituationService.restoreLocal();
+angular.module('ddsApp').controller('ppaHelpCtrl', function($scope, $uibModalInstance, SituationService, situation, droit) {
+    $scope.situationId = situation._id;
+    $scope.droit = droit;
 
     $scope.isProprietaireAvecPretEnCours =
         SituationService.isProprietaireAvecPretEnCours(situation);
@@ -70,7 +70,7 @@ angular.module('ddsApp').controller('ppaHelpCtrl', function($scope, $uibModalIns
         SituationService.isHebergeParticipeFrais(situation);
 
     $scope.closeModal = function () {
-        $uibModalInstance.dismiss('cancel');
+        $uibModalInstance.close();
     };
 });
 
@@ -121,15 +121,24 @@ angular.module('ddsApp')
                 var isHebergeParticipeFrais = SituationService.isHebergeParticipeFrais(situation);
                 var isPpa = scope.droit.id === 'ppa';
 
-                scope.showUnexpected = attributes.hasOwnProperty('unexpected') && isPpa;
+                scope.showUnexpected = attributes.hasOwnProperty('unexpected') && (isPpa && (isProprietaireAvecPretEnCours || isHebergeParticipeFrais));
 
                 scope.openModal = function() {
                     $uibModal.open({
                         animation: true,
                         ariaLabelledBy: 'modal-title',
                         ariaDescribedBy: 'modal-body',
+                        size: 'lg',
                         templateUrl: '/partials/ppa-help.html',
                         controller: 'ppaHelpCtrl',
+                        resolve: {
+                            situation: function() {
+                                return situation;
+                            },
+                            droit: function() {
+                                return scope.droit;
+                            }
+                        }
                     });
                 };
             }

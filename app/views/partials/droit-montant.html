@@ -10,7 +10,12 @@
       {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
     </span>
   </span>
-  <a class="droit-montant-unexpected" ng-click="openModal()" ng-if="showUnexpected">
+  <a class="droit-montant-unexpected"
+    ng-click="openModal()"
+    analytics-on="click"
+    analytics-name="{{ droit.label }}"
+    analytics-event="show-unexpected"
+    ng-if="showUnexpected">
     Montant inattendu ?
   </a>
 </span>

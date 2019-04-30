@@ -60,6 +60,20 @@ angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope) 
 
 });
 
+angular.module('ddsApp').controller('ppaHelpCtrl', function($scope, $uibModalInstance, SituationService, situation, droit) {
+    $scope.situationId = situation._id;
+    $scope.droit = droit;
+
+    $scope.isProprietaireAvecPretEnCours =
+        SituationService.isProprietaireAvecPretEnCours(situation);
+    $scope.isHebergeParticipeFrais =
+        SituationService.isHebergeParticipeFrais(situation);
+
+    $scope.closeModal = function () {
+        $uibModalInstance.close();
+    };
+});
+
 var controllerOptions = function(templateUrl) {
     return function() {
         return {
@@ -87,18 +101,45 @@ angular.module('ddsApp')
     .directive('droitNonEligiblesList', controllerOptions('/partials/droits-non-eligibles-list.html'));
 
 angular.module('ddsApp')
-    .directive('droitMontant', function() {
+    .directive('droitMontant', function($uibModal, SituationService) {
         return {
             restrict: 'E',
             templateUrl: '/partials/droit-montant.html',
             scope: {
                 droit: '=',
             },
-            link: function(scope) {
+            link: function(scope, element, attributes) {
+
                 scope.isNumber = _.isNumber;
                 scope.isString = _.isString;
                 scope.getFractionSize = function(droit) {
                     return droit.floorAt < 1 ? 2 : 0;
+                };
+
+                var situation = SituationService.restoreLocal();
+                var isProprietaireAvecPretEnCours = SituationService.isProprietaireAvecPretEnCours(situation);
+                var isHebergeParticipeFrais = SituationService.isHebergeParticipeFrais(situation);
+                var isPpa = scope.droit.id === 'ppa';
+
+                scope.showUnexpected = attributes.hasOwnProperty('unexpected') && (isPpa && (isProprietaireAvecPretEnCours || isHebergeParticipeFrais));
+
+                scope.openModal = function() {
+                    $uibModal.open({
+                        animation: true,
+                        ariaLabelledBy: 'modal-title',
+                        ariaDescribedBy: 'modal-body',
+                        size: 'lg',
+                        templateUrl: '/partials/ppa-help.html',
+                        controller: 'ppaHelpCtrl',
+                        resolve: {
+                            situation: function() {
+                                return situation;
+                            },
+                            droit: function() {
+                                return scope.droit;
+                            }
+                        }
+                    });
                 };
             }
         };

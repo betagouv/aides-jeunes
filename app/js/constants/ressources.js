@@ -41,20 +41,12 @@
 
     var ressourceTypes = [
         {
-            id: 'salaire_net_hors_revenus_exceptionnels',
-            label: 'Salaire (hors primes)',
+            id: 'salaire_net',
+            label: 'Salaire (dont primes et indemnité de fin de contrat)',
             category: 'revenusActivite',
             interuptionQuestionLabel: 'un salaire, des allocations chômage, ou des indemnités de la sécurité sociale',
             positionInList: '1',
             hint: 'Entrez le montant avant la retenue à la source'
-        },
-        {
-            id: 'primes_salaires_net',
-            label: 'Primes (dont 13e mois)',
-            category: 'revenusActivite',
-            positionInList: '2',
-            prefix: 'des',
-            revenuExceptionnel: true,
         },
         {
             id: 'indemnites_stage',
@@ -230,14 +222,6 @@
             prefix: 'des'
         },
         {
-            id: 'indemnite_fin_contrat_net',
-            label: 'Indemnités de licenciement, rupture, fin de CDD…',
-            category: 'revenusActivite',
-            prefix: 'des',
-            revenuExceptionnel: true,
-            hint: 'Entrez le montant avant la retenue à la source'
-        },
-        {
             id: 'dedommagement_victime_amiante',
             label: 'Dédommagement aux victimes de l’amiante',
             category: 'indemnites',
@@ -340,7 +324,7 @@
         {
             id: 'salaire_imposable',
             label: 'Revenus d’activité connus',
-            sources: ['salaire_net_hors_revenus_exceptionnels']
+            sources: ['salaire_net']
         },
         {
             id: 'chomage_imposable',

@@ -96,7 +96,7 @@ describe('Controller: RecapSituationCtrl', function() {
             var individu = {
                 role: 'enfant',
                 hasRessources: true,
-                salaire_net_hors_revenus_exceptionnels: {
+                salaire_net: {
                     '2011': 1000,
                 },
             };

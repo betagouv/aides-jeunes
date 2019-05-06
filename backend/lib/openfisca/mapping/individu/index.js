@@ -93,7 +93,6 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
         'firstName', // for kids
         'nationalite',
         'role',
-        'salaire_net_hors_revenus_exceptionnels',
         'specificSituations',
     ];
 

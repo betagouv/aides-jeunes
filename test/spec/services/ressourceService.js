@@ -79,7 +79,7 @@ describe('RessourceService', function () {
 
     describe('isRessourceOnMainScreen', function() {
         it('should filter pensions alimentaires versées and RNC resources', function() {
-            var types = ['salaire_net_hors_revenus_exceptionnels', 'pensions_alimentaires_versees_individu'];
+            var types = ['salaire_net', 'pensions_alimentaires_versees_individu'];
             var ressourcesTypes = [
                 {
                     id: 'pensions_alimentaires_percues',
@@ -90,7 +90,7 @@ describe('RessourceService', function () {
             ];
             var filteredTypes = types.filter(service.isRessourceOnMainScreen);
             var filteredRessourcesTypes = ressourcesTypes.filter(service.isRessourceOnMainScreen);
-            expect(filteredTypes).toEqual(['salaire_net_hors_revenus_exceptionnels']);
+            expect(filteredTypes).toEqual(['salaire_net']);
             expect(filteredRessourcesTypes).toEqual([ { 'id': 'pensions_alimentaires_percues' } ]);
         });
     });
@@ -102,7 +102,7 @@ describe('RessourceService', function () {
             // given
             var individu = {
                 indemnites_stage: {},
-                salaire_net_hors_revenus_exceptionnels: {},
+                salaire_net: {},
             };
 
             // when
@@ -110,7 +110,7 @@ describe('RessourceService', function () {
 
             // then
             expect(selectedTypes).toEqual({
-                salaire_net_hors_revenus_exceptionnels: true,
+                salaire_net: true,
                 indemnites_stage: true,
             });
         });

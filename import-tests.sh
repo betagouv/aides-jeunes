@@ -32,12 +32,18 @@ read -p "Do you want to LIMIT the imported situations to the one used in tests O
 
 set -ex
 
-ssh $USER@$REMOTE "mongodump --db $DATABASE"
+ssh $USER@$REMOTE "mongodump --db=dds --collection=acceptancetestactivities"
+ssh $USER@$REMOTE "mongodump --db=dds --collection=acceptancetestexecutions"
+ssh $USER@$REMOTE "mongodump --db=dds --collection=acceptancetests"
+ssh $USER@$REMOTE "mongodump --db=dds --collection=agents"
+ssh $USER@$REMOTE "mongodump --db=dds --collection=sessions"
 
 if [[ $limited == 'y' ]]
 then
     ssh $USER@$REMOTE "mongodump --db=dds --collection=situations --query='{status: \"test\"}'"
-    ssh $USER@$REMOTE "rm dump/dds/legacysituations.*"
+else
+    ssh $USER@$REMOTE "mongodump --db=dds --collection=legacysituations"
+    ssh $USER@$REMOTE "mongodump --db=dds --collection=situations"
 fi
 
 ssh $USER@$REMOTE "mkdir -p `dirname $DISTANT_DUMP_FOLDER` && mv dump $DISTANT_DUMP_FOLDER/ && gzip -rv $DISTANT_DUMP_FOLDER"

@@ -42,7 +42,7 @@
     var ressourceTypes = [
         {
             id: 'salaire_net',
-            label: 'Salaire (dont primes et indemnité de fin de contrat)',
+            label: 'Salaire (dont primes et indemnités de fin de contrat)',
             category: 'revenusActivite',
             interuptionQuestionLabel: 'un salaire, des allocations chômage, ou des indemnités de la sécurité sociale',
             positionInList: '1',

@@ -28,33 +28,16 @@ var individuRessources = {
     }],
     salaire_de_base: [
         {
-            src: 'salaire_net_hors_revenus_exceptionnels',
-            fn: salaireNetToBrut
-        },
-        {
-            src: 'primes_salaires_net',
-            fn: salaireNetToBrut
-        },
-        {
-            src: 'indemnite_fin_contrat_net',
+            src: 'salaire_net',
             fn: salaireNetToBrut
         }
     ],
     salaire_imposable: [
         {
-            src: 'salaire_net_hors_revenus_exceptionnels',
-            fn: salaireNetToImposable
-        },
-        {
-            src: 'primes_salaires_net',
-            fn: salaireNetToImposable
-        },
-        {
-            src: 'indemnite_fin_contrat_net',
+            src: 'salaire_net',
             fn: salaireNetToImposable
         }
-    ],
-    salaire_net: ['salaire_net_hors_revenus_exceptionnels', 'primes_salaires_net', 'indemnite_fin_contrat_net'],
+    ]
 };
 
 function computeRessources(mesAidesIndividu, openFiscaIndividu) {

@@ -25,7 +25,7 @@ var situation = {
                 "2018-06":200,
                 "2018-07":200
             },
-            "salaire_net_hors_revenus_exceptionnels":{
+            "salaire_net":{
                 "2017-07":2200,
                 "2017-08":2200,
                 "2017-09":2200,
@@ -39,21 +39,6 @@ var situation = {
                 "2018-05":2200,
                 "2018-06":2200,
                 "2018-07":2200
-            },
-            "primes_salaires_net": {
-                "2017-07":0,
-                "2017-08":0,
-                "2017-09":0,
-                "2017-10":0,
-                "2017-11":0,
-                "2017-12":0,
-                "2018-01":0,
-                "2018-02":0,
-                "2018-03":0,
-                "2018-04":0,
-                "2018-05":0,
-                "2018-06":1000,
-                "2018-07":0
             },
             "retraite_nette":{
                 "2017-07":100,
@@ -86,7 +71,7 @@ describe('Loiret Teleservice', function() {
         expect(formatted).toMatchObject([
             { label: 'votre date de naissance', formattedValue: '5 juin 1983' },
             { label: 'votre situation familiale', formattedValue: 'En union libre' },
-            { label: 'vos salaires (net) sur les 12 derniers mois', formattedValue: '27 400,00 €' },
+            { label: 'vos salaires (net) sur les 12 derniers mois', formattedValue: '26 400,00 €' },
             { label: 'votre retraite (net) sur les 12 derniers mois', formattedValue: '1 200,00 €' },
             { label: 'vos allocations sur les 12 derniers mois', formattedValue: '2 400,00 €' },
             { label: 'vos pensions alimentaires perçues', formattedValue: '0,00 €' },
@@ -193,7 +178,7 @@ describe('Loiret Teleservice', function() {
             "individus": [
                 {
                     "role": "demandeur",
-                    "salaire_net_hors_revenus_exceptionnels":{
+                    "salaire_net":{
                         "2017-07":2000,
                         "2017-08":2000,
                         "2017-09":2000,

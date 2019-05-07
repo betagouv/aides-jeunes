@@ -31,7 +31,7 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             // given
             var demandeur = {
                 role: 'demandeur',
-                salaire_net_hors_revenus_exceptionnels: {
+                salaire_net: {
                     '2013-03': 6000,
                 },
             };
@@ -51,7 +51,7 @@ describe('Controller: FoyerRessourceYearMoins2Ctrl', function() {
             });
 
             // then
-            expect(scope.getDefaultValue(scope.individuRefsToDisplay[0], { sources: ['salaire_net_hors_revenus_exceptionnels'] })).toBe(6000);
+            expect(scope.getDefaultValue(scope.individuRefsToDisplay[0], { sources: ['salaire_net'] })).toBe(6000);
         });
 
         it('should display children Y-2 revenus if they have been filled', function() {

@@ -56,8 +56,7 @@ var fields = {
     salaire_dem: {
         label: 'vos salaires (net) sur les 12 derniers mois',
         resources: [
-            'salaire_net_hors_revenus_exceptionnels',
-            'primes_salaires_net'
+            'salaire_net'
         ],
         toInternal: reduceToAmount
     },

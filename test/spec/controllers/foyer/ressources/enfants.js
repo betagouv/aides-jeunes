@@ -11,7 +11,7 @@ describe('Controller: FoyerRessourcesEnfantsCtrl', function() {
                     { role: 'demandeur' },
                     { role: 'conjoint' },
                     { id: 'enfant_0', role: 'enfant', firstName: 'Jérome' },
-                    { id: 'enfant_1', role: 'enfant', firstName: 'Tom', primes_salaires_net: {
+                    { id: 'enfant_1', role: 'enfant', firstName: 'Tom', salaire_net: {
                         '2012-11': 42,
                         '2012-12': 42,
                     } },

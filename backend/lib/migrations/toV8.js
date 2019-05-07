@@ -27,6 +27,7 @@ module.exports = {
                     sourceKeys.forEach(function(key) {
                         dest[key] = (dest[key] | 0) + source[key];
                     });
+                    individu.set(sourceName, undefined, { strict: false });
                 }
             });
 

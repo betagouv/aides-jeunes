@@ -297,6 +297,7 @@
             'garantie_jeunes': {
                 'label': 'Garantie Jeunes',
                 'imgSrc': 'logo_garantie_jeunes.png',
+                'repository': 'france-local',
                 'prestations': {
                     'garantie_jeunes': {
                         'label': 'Garantie Jeunes',
@@ -420,6 +421,7 @@
             },
             'alfortville': {
                 'imgSrc': 'logo_alfortville.png',
+                'repository': 'france-local',
                 'label': 'Alfortville',
                 'interactionWithNationalPrestationsHandled': true,
                 'prefix': 'd’',

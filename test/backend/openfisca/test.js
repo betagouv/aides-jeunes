@@ -66,7 +66,7 @@ function run_cmd(cmd, args) {
 }
 
 function runOpenFiscaTest(yaml, extension) {
-    var tmpobj = tmp.fileSync();
+    var tmpobj = tmp.fileSync({postfix: '.yaml'});
     return fs.writeFileAsync(tmpobj.fd, yaml, 'utf8')
         .then(function() {
             var args = extension ? [tmpobj.name, '--extensions', extension] : [tmpobj.name];
@@ -91,9 +91,15 @@ describe('openfisca generateYAMLTest', function() {
             .catch(function(failure) {
                 console.log(payload);
                 expect(failure).toBeFalsy();
+
+                return failure;
             })
             .then(function(result) {
-                expect(result.stderr).toMatch(/\nOK\n$/);
+                expect(result.stdout).toMatch(/passed in/);
+
+                expect(result.stdout).not.toMatch(/failed in/);
+                expect(result.stdout).not.toMatch(/= ERRORS =/);
+                expect(result.stdout).not.toMatch(/= FAILURES =/);
             });
     }
 

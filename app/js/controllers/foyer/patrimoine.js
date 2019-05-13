@@ -3,11 +3,12 @@
 angular.module('ddsApp').controller('FoyerPatrimoineCtrl', function($scope, patrimoineTypes) {
     var patrimoineProperties = _.map(patrimoineTypes, 'id');
 
+    var historicalKey = '2012-01';
     var periodKey = $scope.periodKey = 'month:2012-01:120';
     var demandeur = $scope.demandeur = $scope.situation.individus[0];
     patrimoineProperties.forEach(function(patrimoinePropertyName) {
         demandeur[patrimoinePropertyName] = demandeur[patrimoinePropertyName] || {};
-        demandeur[patrimoinePropertyName][$scope.periodKey] = demandeur[patrimoinePropertyName][$scope.periodKey] || 0;
+        demandeur[patrimoinePropertyName][$scope.periodKey] = demandeur[patrimoinePropertyName][$scope.periodKey] ||  demandeur[patrimoinePropertyName][historicalKey] || 0;
     });
 
     var mapping = {

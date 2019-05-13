@@ -91,10 +91,15 @@ describe('openfisca generateYAMLTest', function() {
             .catch(function(failure) {
                 console.log(payload);
                 expect(failure).toBeFalsy();
+
+                return failure;
             })
             .then(function(result) {
                 expect(result.stdout).toMatch(/passed in/);
+
+                expect(result.stdout).not.toMatch(/failed in/);
                 expect(result.stdout).not.toMatch(/= ERRORS =/);
+                expect(result.stdout).not.toMatch(/= FAILURES =/);
             });
     }
 

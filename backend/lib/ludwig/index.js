@@ -12,6 +12,17 @@ module.exports = function(mongoose, Situation) {
                 if (err) return done(err);
                 if (!situation) return done(new Error('Situation not found'));
                 openfisca.calculate(situation, function(err, result) {
+                    if (err) {
+                        // En cas d'erreur, Ludwig n'enregistre pas le test en échec. Hack...
+                        var falseResults = acceptanceTest.expectedResults.reduce(function(accum, tuple) {
+                            accum[tuple.code] = (- tuple.expectedValue) || true;
+
+                            return accum;
+                        }, {});
+
+                        return done(null, falseResults);
+                    }
+
                     return done(err, result && extractResults(result, situation.dateDeValeur));
                 });
             });

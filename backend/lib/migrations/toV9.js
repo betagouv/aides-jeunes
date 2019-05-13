@@ -21,7 +21,10 @@ module.exports = {
         situation.individus.forEach(function(individu) {
             keys.forEach(function(key) {
                 if (individu[key] && individu[key][sourceDateKey] !== undefined) {
-                    individu[key][destinationDateKey] = individu[key][sourceDateKey];
+                    if (individu[key][sourceDateKey] !== null) {
+                        individu[key][destinationDateKey] = individu[key][sourceDateKey];
+                    }
+
                     delete individu[key][sourceDateKey];
                 }
             });

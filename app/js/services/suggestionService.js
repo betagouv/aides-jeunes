@@ -38,7 +38,7 @@ angular.module('ddsApp').factory('SuggestionService', function() {
                 extension: extension,
                 name: test.name,
                 description: test.description,
-                output_variables: outputVariables
+                output: outputVariables
             };
         }
     };

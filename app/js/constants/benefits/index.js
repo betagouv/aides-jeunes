@@ -318,6 +318,26 @@
                     apa_eligibilite: require('./apa_eligibilite')
                 }
             },
+            'banque_de_france': {
+                label: 'La Banque de France',
+                'imgSrc': 'logo_banque_de_france.png',
+                'prestations': {
+                    'livret_epargne_populaire_taux': {
+                        'label': 'Livret d’épargne populaire',
+                        'unit': '%',
+                        'description': 'Le livret d’épargne populaire (LEP) est un placement réservé aux personnes disposant de revenus modestes. Il offre de nombreux avantages parmi lesquels un taux d’intérêt garanti supérieur aux autres livrets réglementés.',
+                        'conditions': [
+                            'Avoir votre domicile fiscal situé en France.',
+                            'Effectuer chaque année votre déclaration auprès des impôts.',
+                            'Présenter à l’établissement bancaire votre avis d’imposition indiquant votre revenu fiscal.',
+                        ],
+                        'legend': 'au lieu de 0,75%',
+                        'link': 'https://www.service-public.fr/particuliers/vosdroits/F2367',
+                        'entity': 'individu', // default entity is famille
+                        floorAt: 0.01,
+                    },
+                },
+            },
             'education_nationale': {
                 'label': 'Éducation nationale',
                 'imgSrc': 'logo_education_nationale.png',

@@ -139,7 +139,7 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     var periods = common.getPeriods(situation.dateDeValeur);
     setNonInjectedPrestations(testCase, _.difference(periods.last3YearsMonths, periods.last3Months), 0);
     last3MonthsDuplication(testCase, situation.dateDeValeur);
-    giveValueToRequestedVariables(testCase, _.concat(periods.last3Months, periods.thisMonth), null);
+    giveValueToRequestedVariables(testCase, periods.thisMonth, null);
 
     return applyHeuristicsAndFix(testCase, sourceSituation.dateDeValeur);
 };

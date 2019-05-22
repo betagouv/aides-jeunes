@@ -5,6 +5,7 @@ var all = {
     env: env,
     baseURL: 'https://mes-aides.gouv.fr',
     openfiscaURL: process.env.OPENFISCA_URL || 'http://localhost:2000',
+    openfiscaAxeURL: 'https://betagouv.github.io/mes-aides-changent',
     openfiscaPublicURL: 'https://openfisca.mes-aides.gouv.fr',
     openfiscaTracerURL: 'https://betagouv.github.io/openfisca-tracer',
     mailjet: {

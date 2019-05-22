@@ -185,6 +185,13 @@
                   v-bind:href="openfiscaTracerURL"
                   v-analytics="{ category:'Tracer' }"
                   >Accédez à l'outil d'analyse des résultats de cette simulation</a></li>
+                <li><a
+                  v-if="openfiscaAxeURL"
+                  target="_blank"
+                  v-bind:href="openfiscaAxeURL"
+                  v-analytics="{ category:'Axe' }"
+                  >Voyez comment les aides évoluent en fonction des ressources
+                </a></li>
               </ul>
               </div>
           </small>
@@ -212,6 +219,7 @@ export default {
   data: function() {
     return {
       openfiscaTracerURL: false,
+      openfiscaAxeURL: false,
       showExpertLinks: false,
     }
   },
@@ -269,6 +277,11 @@ export default {
         this.$store.getters.fetchRepresentation('openfisca_tracer')
           .then(representation => {
             this.openfiscaTracerURL = representation.destination.url
+          })
+
+        this.$store.getters.fetchRepresentation('openfisca_axe')
+          .then(representation => {
+            this.openfiscaAxeURL = representation.destination.url
           })
       }
       this.showExpertLinks = ! this.showExpertLinks

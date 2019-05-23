@@ -5,6 +5,8 @@ var migrations = fs
     .filter(function(file) { return file.match(/^toV\d+\.js$/); })
     .map(function(migrationFile) { return require('./' + migrationFile); });
 
+migrations.sort(function(a, b) { return a.version - b.version; });
+
 module.exports = {
     list: migrations,
     apply: function(situation) {

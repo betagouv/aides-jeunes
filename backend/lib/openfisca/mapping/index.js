@@ -137,7 +137,7 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     propertyMove.movePropertyValuesToGroupEntity(testCase);
 
     var periods = common.getPeriods(situation.dateDeValeur);
-    setNonInjectedPrestations(testCase, _.difference(periods.last3YearsMonths, periods.last3Months), 0);
+    setNonInjectedPrestations(testCase, _.difference(periods.last12Months, periods.last3Months), 0);
     last3MonthsDuplication(testCase, situation.dateDeValeur);
     giveValueToRequestedVariables(testCase, periods.thisMonth, null);
 

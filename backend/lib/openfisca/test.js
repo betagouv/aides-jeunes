@@ -58,8 +58,11 @@ var EXTENSION_VARIABLES = {
         individus: [ 'rennes_metropole_transport' ],
     },
     'openfisca-france-local': {
-        familles: [ 'alfortville_noel_enfants', 'cotes_d_armor_fonds_solidarite_logement' ],
-        individus: [ 'garantie_jeunes' ]
+        familles: [ 'alfortville_noel_enfants' ],
+        individus: [
+            'cotes_d_armor_fonds_solidarite_logement_energie_eligibilite',
+            'garantie_jeunes'
+        ]
     }
 };
 

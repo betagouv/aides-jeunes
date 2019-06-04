@@ -471,15 +471,17 @@
                 'interactionWithNationalPrestationsHandled': true,
                 'prefix': 'des',
                 'prestations': {
-                    'cotes_d_armor_fonds_solidarite_logement_impaye_energie': {
-                        'label': 'Fonds de solidarité pour le logement - Impayé énergie',
-                        'description': 'Le fonds de solidarité accorde des aides aux personnes qui rencontrent des difficultés pour assurer les dépenses de leur logement. L’aide "impayé énergie" correspond plus spécifiquement à l’aide au maintien des fournitures en eau, gaz, électricité, fioul et bois. ',
+                    'cotes_d_armor_fonds_solidarite_logement_energie_eligibilite': {
+                        'label': 'Fonds de solidarité pour le logement - Aide au paiement des factures d’énergie',
+                        'description': 'Le fonds de solidarité accorde des aides aux personnes qui rencontrent des difficultés pour assurer les dépenses de leur logement. L’aide « impayé énergie » correspond plus spécifiquement à l’aide au maintien des fournitures en eau, gaz, électricité, fioul et bois.',
                         conditions: [
                             'Occuper, à titre de résidence principale, un logement sur le territoire du département des Côtes d\'Armor'
                         ],
-                        'link': 'https://cotesdarmor.fr/sites/default/files/2019-01/DOSSIER%20DE%20DEMANDE%20-%20Impay%C3%A9%20Energie%20.pdf',
-                        'instructions': 'https://cotesdarmor.fr/vos-services/acceder-ou-se-maintenir-dans-son-logement',
+                        'form': 'https://cotesdarmor.fr/sites/default/files/2019-01/DOSSIER%20DE%20DEMANDE%20-%20Impay%C3%A9%20Energie%20.pdf',
+                        'link': 'https://cotesdarmor.fr/vos-services/acceder-ou-se-maintenir-dans-son-logement',
                         'isBaseRessourcesYearMoins2': false,
+                        'entity': 'individu',
+                        'type': 'bool',
                     },
                 },
             }

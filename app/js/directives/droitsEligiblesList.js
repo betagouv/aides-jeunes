@@ -10,11 +10,7 @@ var mergeDroits = function(prestationsNationales, partenairesLocaux) {
         droits = droits.concat(_.values(partenaireLocal.prestations));
     });
 
-    droits.sort(function(a, b) {
-        return a.label < b.label ? -1 : 1;
-    });
-
-    return droits;
+    return _.sortBy(droits, ['top', 'label']);
 };
 
 angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope) {

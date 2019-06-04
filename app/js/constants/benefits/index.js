@@ -335,6 +335,7 @@
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/F2367',
                         'entity': 'individu', // default entity is famille
                         floorAt: 0.01,
+                        top: 20
                     },
                 },
             },
@@ -465,6 +466,26 @@
             }
         }
     };
+
+    function setDefaults(benefit, top) {
+        benefit.top = benefit.top || top;
+        benefit.floorAt = benefit.floorAt || 1;
+        benefit.entity = benefit.entity || 'famille';
+    }
+
+    var topLevels = {
+        prestationsNationales: 1,
+        partenairesLocaux: 5,
+    };
+
+    Object.keys(droitsDescription).forEach(function(levelId) {
+        Object.keys(droitsDescription[levelId]).forEach(function(providerId) {
+            Object.keys(droitsDescription[levelId][providerId].prestations).forEach(function(benefitId) {
+                var benefit = droitsDescription[levelId][providerId].prestations[benefitId];
+                setDefaults(benefit, topLevels[levelId]);
+            });
+        });
+    });
 
     var msaAdditionProviders = [
         'assurance_retraite',

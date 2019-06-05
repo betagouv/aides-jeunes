@@ -59,7 +59,10 @@ var EXTENSION_VARIABLES = {
     },
     'openfisca-france-local': {
         familles: [ 'alfortville_noel_enfants' ],
-        individus: [ 'garantie_jeunes' ]
+        individus: [
+            'cotes_d_armor_fonds_solidarite_logement_energie_eligibilite',
+            'garantie_jeunes'
+        ]
     }
 };
 

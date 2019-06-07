@@ -68,8 +68,15 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['ChromiumHeadless'],
+    browsers: [isCircleCI ? 'ChromiumHeadlessNoSandbox' : 'ChromiumHeadless'],
 
+    // https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
+    customLaunchers: {
+      ChromiumHeadlessNoSandbox: {
+        base: 'ChromiumHeadless',
+        flags: ['--no-sandbox', '--disable-setuid-sandbox']
+      }
+    },
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit

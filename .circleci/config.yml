@@ -142,9 +142,6 @@ jobs:
       - attach_workspace:
           at: ~/mes-aides-ui
       - run:
-          name: Chromium setup see https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#recommended-enable-user-namespace-cloning
-          command: sysctl -w kernel.unprivileged_userns_clone=1
-      - run:
           name: Karma
           command: npm run test:karma
   test_selenium_chrome:

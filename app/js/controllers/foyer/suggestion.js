@@ -7,7 +7,7 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http, dr
         expectedResults: []
     };
 
-    $scope.okWithPublicity = false;
+    $scope.locals = { okWithPublicity: false };
 
     $scope.situationYAML = SituationService.YAMLRepresentation($scope.situation);
     ResultatService.simulate($scope.situation, true)
@@ -81,8 +81,8 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http, dr
     function createSuggestionFile(form) {
         delete $scope.error;
 
-        if (! $scope.okWithPublicity) {
-            $scope.error = 'Vous devez accepter que les informations communiquées ici soient publiées. Si les informations correspondent à une situation réelle, vous pouvez les modifier en revenant à la page suivante.';
+        if (! $scope.locals.okWithPublicity) {
+            $scope.error = 'Vous devez accepter que les informations communiquées ici soient visibles en ligne. Si les informations correspondent à une situation réelle, vous pouvez les modifier en revenant à la page précédente.';
             return;
         }
 

@@ -150,6 +150,18 @@
     Ajouter une {{ test.expectedResults.length ? 'autre' : '' }} prestation
     </button></p>
 
+    <div class="row form-group">
+      <div class="col-md-offset-3 col-md-9 checkbox">
+        <label>
+          <input
+            type="checkbox"
+            class=""
+            ng-model="okWithPublicity"
+            required>
+          J'accepter que les données de cette simulation soient publiées. Si les informations correspondent à une situation réelle, vous pouvez les modifier en revenant à la page suivante.</label>
+      </div>
+    </div>
+
     <div class="text-center">
       <p class="alert alert-danger" ng-if="error">{{ error }}</p>
       <button

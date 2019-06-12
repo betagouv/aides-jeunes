@@ -3,6 +3,7 @@ apps:
     script   : server.js
     instances: 4
     exec_mode: cluster
+    merge_logs: true
     env:
         MES_AIDES_ROOT_URL: https://mes-aides.gouv.fr
         MONGODB_URL: mongodb://localhost/dds

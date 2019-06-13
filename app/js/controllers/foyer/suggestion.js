@@ -2,10 +2,12 @@
 
 angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http, droitsDescription, ResultatService, SituationService, SuggestionService) {
     $scope.test = {
-        name: 'Nom du test',
-        description: 'Description du test',
+        name: null,
+        description: null,
         expectedResults: []
     };
+
+    $scope.locals = { okWithPublicity: false };
 
     $scope.situationYAML = SituationService.YAMLRepresentation($scope.situation);
     ResultatService.simulate($scope.situation, true)
@@ -78,12 +80,33 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http, dr
 
     function createSuggestionFile(form) {
         delete $scope.error;
-        if ($scope.submitting || (! form.$valid)) {
+
+        if (! $scope.locals.okWithPublicity) {
+            $scope.error = 'Vous devez accepter que les informations communiquées ici soient visibles en ligne. Si les informations correspondent à une situation réelle, vous pouvez les modifier en revenant à la page précédente.';
+            return;
+        }
+
+        if (! $scope.test.name) {
+            $scope.error = 'Vous devez donner un nom à votre test. Le nom du test doit permettre de comprendre le problème identifié.';
+            return;
+        }
+
+        if (! $scope.test.description) {
+            $scope.error = 'Vous devez ajouter une description à votre test. Elle détaille le contexte et facilite la résolution du problème.';
+            return;
+        }
+
+        if (! $scope.test.expectedResults.length) {
+            $scope.error = 'Vous devez ajouter une prestation dont vous connaissez la valeur attendue dans cette situation.';
             return;
         }
 
         if (_.some($scope.test.expectedResults, function(expectedResult) { return ! expectedResult.ref; })) {
             $scope.error = 'Une prestation est mal définie.';
+            return;
+        }
+
+        if ($scope.submitting || (! form.$valid)) {
             return;
         }
 

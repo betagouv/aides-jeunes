@@ -88,15 +88,15 @@ var DETAILS_ATTRIBUTES = [
     'extension',
     'absolute_error_margin',
     'relative_error_margin',
-    'output_variables',
+    'output',
 ];
 
 exports.openfiscaTest = function(req, res) {
     var details = _.assign({}, DETAILS_DEFAULT_ATTRIBUTES,
         _.pick(req.body, DETAILS_ATTRIBUTES)
     );
-    if (! details.name || ! details.description || ! details.output_variables) {
-        return res.status(403).send({ error: 'You must provide a name, description and output_variables.' });
+    if (! details.name || ! details.description || ! details.output) {
+        return res.status(403).send({ error: 'You must provide a name, description and output.' });
     }
 
     var situation = req.situation.toObject ? req.situation.toObject() : req.situation;

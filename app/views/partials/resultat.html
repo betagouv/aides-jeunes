@@ -122,8 +122,29 @@ ID : {{ situation._id }} (à conserver impérativement pour traitement de votre 
 ————">Ces résultats ne correspondent pas à ce que l'administration vous a attribué</a>.</li>
       </ul>
       <small ng-if="situation._id">Cette simulation a pour identifiant <span class="preformatted">{{ situation._id }}</span> (en savoir plus sur <a ui-sref="cgu_donnees">le traitement de vos données personnelles</a>).</small><br>
-      <small ng-dblClick="showAdditionalLinks = ! showAdditionalLinks">
-        Partenaires&nbsp;: <a href="" ng-click="createTest()">créez un test</a><span ng-if="showAdditionalLinks" > dans l'ancienne interface, <a ui-sref="foyer.resultat.suggestion">créez en un dans la nouvelle</a> ou bien <a target="_blank" ng-href="{{openfiscaTracerURL}}">accédez au tracer pour cette simulation</a></span>.
+      <small>
+        Partenaires&nbsp;:
+        <a
+          href=""
+          ng-click="createTest()"
+          analytics-on="click"
+          analytics-category="Test"
+          analytics-event="Old"
+          >créez un test</a>
+        dans l'ancienne interface,
+        <a
+          ui-sref="foyer.resultat.suggestion"
+          analytics-on="click"
+          analytics-category="Test"
+          analytics-event="New"
+          >créez en un dans la nouvelle</a>
+        ou bien
+        <a
+          target="_blank"
+          ng-href="{{openfiscaTracerURL}}"
+          analytics-on="click"
+          analytics-category="Tracer"
+          >accédez au tracer pour cette simulation</a>.
       </small>
     </div>
   </div>

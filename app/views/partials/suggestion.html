@@ -26,7 +26,7 @@
           class="form-control"
           id="test-name"
           ng-model="test.name"
-          placeholder="Exemple : Les bourses de l'enseignement supérieur ne sont pas prises en compte dans les ressources"
+          placeholder="Les AL ne sont pas prises en compte dans le RSA"
           select-on-focus
           required>
       </div>
@@ -35,7 +35,15 @@
     <div class="row h2">
       <label class="control-label col-md-3" for="test-description">Description</label>
       <div class="col-md-6">
-        <textarea name="description" rows="5" class="form-control" id="test-description" ng-model="test.description" select-on-focus></textarea>
+        <textarea
+          name="description"
+          rows="9"
+          class="form-control"
+          id="test-description"
+          ng-model="test.description"
+          placeholder="Le RSA doit prend en compte les aides au logement. Un 'forfait logement' doit être appliqué cf. l'article R262-9 du Code de l'action sociale et des familles.&#10;&#10;- https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694445&cidTexte=LEGITEXT000006074069&dateTexte=20171222&fastPos=2&fastReqId=1534790830&oldAction=rechCodeArticle"
+          select-on-focus
+          ></textarea>
       </div>
     </div>
 
@@ -142,12 +150,23 @@
     Ajouter une {{ test.expectedResults.length ? 'autre' : '' }} prestation
     </button></p>
 
+    <div class="row form-group">
+      <div class="col-md-offset-3 col-md-9 checkbox">
+        <label>
+          <input
+            type="checkbox"
+            class=""
+            ng-model="locals.okWithPublicity"
+            required>
+          J'accepte que les données de cette simulation soient visibles en ligne. Si les informations correspondent à une situation réelle, vous pouvez les modifier en revenant à la page précédente.</label>
+      </div>
+    </div>
+
     <div class="text-center">
-      <p ng-if="error">{{ error }}</p>
+      <p class="alert alert-danger" ng-if="error">{{ error }}</p>
       <button
         class="btn btn-primary"
         ng-click="createSuggestionFile(form)"
-        ng-disabled="! test.expectedResults.length"
         type="submit"
       >
         {{ submitLabel() }}

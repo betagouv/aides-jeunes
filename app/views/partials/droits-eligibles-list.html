@@ -1,6 +1,14 @@
 <div class="droits-list droits-list--eligible">
-  <a ng-repeat="droit in list" href ng-click="scrollTo(droit, $event)" class="droits-list-item"
-    itemscope itemtype="http://schema.org/GovernmentService">
+  <a ng-repeat="droit in list"
+    href
+    ng-click="scrollTo(droit, $event)"
+    class="droits-list-item"
+    itemscope itemtype="http://schema.org/GovernmentService"
+    analytics-on="click"
+    analytics-name="{{ droit.label }}"
+    analytics-event="click"
+    analytics-category="General"
+    >
     <div class="droits-list-item-cell">
       <div class="droits-list-item-cell-left">
         <img ng-src="/img/{{ droit.provider.imgSrc }}" alt="{{ droit.label }}">

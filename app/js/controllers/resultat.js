@@ -19,6 +19,13 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
             .then(ResultatService.simulate)
             .then(function(droits) {
                 $scope.droits = droits.droitsEligibles;
+                var trackedBenefits = [].concat(_.values($scope.droits.prestationsNationales), _.values($scope.droits.partenairesLocaux).reduce(function(list, p) {
+                    return list.concat(_.values(p.prestations));
+                }, []));
+                trackedBenefits.forEach(function(d) {
+                    $analytics.eventTrack('show', { category: 'General', label: d.label });
+                });
+
                 $scope.droitsNonEligibles = droits.droitsNonEligibles;
                 $scope.droitsNonEligiblesShow = Boolean($sessionStorage.ameliNoticationDone);
                 $scope.droitsInjectes = droits.droitsInjectes;

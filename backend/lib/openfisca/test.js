@@ -46,7 +46,7 @@ var EXTENSION_VARIABLES = {
             'paris_logement_aspeh',
             'paris_logement',
             'paris_logement_psol',
-            'paris_forfait_famille',
+            'paris_forfait_familles',
             'paris_logement_familles',
         ],
         individus: [

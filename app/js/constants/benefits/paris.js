@@ -17,7 +17,7 @@ module.exports = {
             'form': 'https://api-site.paris.fr/images/73485',
             'isBaseRessourcesYearMoins2': false,
         },
-        'paris_forfait_famille': {
+        'paris_forfait_familles': {
             'isMontantAnnuel': true,
             'label': 'Paris Forfait Famille',
             'description': 'Paris Forfait Famille est une aide destinée aux familles nombreuses avec au moins trois enfants à charge. Elle peut se cumuler avec l’Allocation de Soutien aux Parents d’Enfants Handicapés. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.',
@@ -76,6 +76,10 @@ module.exports = {
             'isMontantAnnuel': true,
             'label': 'Complément Santé Paris',
             'description': 'Le Complément Santé Paris est destiné aux personnes âgées de 65 ans ou plus et aux personnes en situation de handicap. L’aide peut être versée à partir de 60 ans pour les personnes reconnues inaptes au travail. Elle a pour but d’aider les foyers modestes à régler leurs frais de mutuelle. L’aide est accordée pour une durée maximale d’un an. À partir du 2<sup>e</sup> renouvellement, le Complément Santé Paris peut être accordé pour une durée maximale de deux ans.',
+            'conditions': [
+                'Percevoir les avantages légaux auxquels vous pouvez prétendre (Couverture Maladie Universelle Complémentaire, Aide à la Complémentaire Santé).',
+                'Adhérer à titre payant à un organisme de protection complémentaire.'
+            ],
             'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
             'form': 'https://api-site.paris.fr/images/78343',
             'isBaseRessourcesYearMoins2': false,

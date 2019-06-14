@@ -42,12 +42,12 @@ Erreur : {{ encodedError }}
 
 <div ng-show="! error && ! warning && ! awaitingResults">
 
-  <div class="frame-resultats" ng-show="noDroits && ! ressourcesYearMoins2Captured">
+  <div class="frame-resultats" ng-show="(droits | isEmpty) && ! ressourcesYearMoins2Captured">
       <h2>Juste une dernière étape…</h2>
       <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
   </div>
 
-  <div ng-if="! (droits.prestationsNationales | isEmpty) || ! (droits.partenairesLocaux | isEmpty)">
+  <div ng-if="! (droits | isEmpty)">
     <p>
       D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides.
       <span id="print-disclaimer">Ces résultats sont fondés sur les seules informations que vous avez indiquées et ne constituent en aucune façon un engagement de la part des organismes cités.</span>
@@ -56,7 +56,7 @@ Erreur : {{ encodedError }}
     <droit-eligibles-list droits="droits"></droit-eligibles-list>
   </div>
 
-  <div ng-if="! (droitsNonEligibles.prestationsNationales | isEmpty)" ng-show="droitsNonEligiblesShow">
+  <div ng-if="! (droitsNonEligibles | isEmpty)" ng-show="droitsNonEligiblesShow">
     <p>
       Les conditions des aides suivantes <strong>ne sont pas</strong> remplies&nbsp;:
     </p>
@@ -65,7 +65,7 @@ Erreur : {{ encodedError }}
       filter="['cmu_c', 'acs']"></droit-non-eligibles-list>
   </div>
 
-  <div class="frame-resultats" ng-show="noDroits && ressourcesYearMoins2Captured">
+  <div class="frame-resultats" ng-show="(droits | isEmpty) && ressourcesYearMoins2Captured">
       <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
       <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
   </div>
@@ -152,7 +152,7 @@ ID : {{ situation._id }} (à conserver impérativement pour traitement de votre 
   <!-- Page break for print -->
   <div class="page-break"></div>
 
-  <h1 ng-if="! noDroits">Comment obtenir vos aides ?</h1>
+  <h1 ng-if="! (droits | isEmpty)">Comment obtenir vos aides ?</h1>
   <droit-eligibles-details
     droits="droits"
     patrimoine-captured="! shouldPatrimoineBeCaptured()"

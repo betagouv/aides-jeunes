@@ -41,15 +41,12 @@ angular.module('ddsApp').service('ResultatService', function($http, $rootScope, 
         var computedRessources = normalizeOpenfiscaRessources(openfiscaResponse);
 
         var result = {
-            eligibleAides: {},
-            nonEligibleAides: {},
-            injectedAides: [], // declared by the user
+            droitsEligibles: [],
+            droitsNonEligibles: [],
+            droitsInjectes: [], // declared by the user
         };
 
-        _.mapValues(droitsDescription, function(aidesProviders, aidesLevel) {
-            result.eligibleAides[aidesLevel] = {};
-            result.nonEligibleAides[aidesLevel] = {};
-
+        _.mapValues(droitsDescription, function(aidesProviders) {
             _.mapValues(aidesProviders, function(aidesProvider, aidesProviderId) {
                 _.forEach(aidesProvider.prestations, function(aide, aideId) {
                     if ((! showPrivate) && aide.private) {
@@ -57,7 +54,7 @@ angular.module('ddsApp').service('ResultatService', function($http, $rootScope, 
                     }
 
                     if (_.some(situation.individus, function(individu) { return wasInjected(aideId, individu); })) {
-                        return result.injectedAides.push(aide);
+                        return result.droitsInjectes.push(aide);
                     }
 
                     var value = valueAt(aideId + '_non_calculable', computedRessources, period);
@@ -66,8 +63,8 @@ angular.module('ddsApp').service('ResultatService', function($http, $rootScope, 
                         value = round(valueAt(aideId, computedRessources, period), aide);
                     }
 
-                    var dest = (value) ? result.eligibleAides[aidesLevel] : result.nonEligibleAides[aidesLevel];
-                    dest[aideId] = _.assign({},
+                    var dest = (value) ? result.droitsEligibles : result.droitsNonEligibles;
+                    dest.push(_.assign({},
                         aide,
                         {
                             id: aideId,
@@ -76,26 +73,12 @@ angular.module('ddsApp').service('ResultatService', function($http, $rootScope, 
                             providerId: aidesProviderId,
                         },
                         customizationId && aide.customization && aide.customization[customizationId]
-                    );
+                    ));
                 });
             });
         });
 
-        var localGroups = _.groupBy(result.eligibleAides.partenairesLocaux, 'providerId');
-        result.eligibleAides.partenairesLocaux = Object.keys(localGroups).map(function(partenaireLocal) {
-            return _.assign({}, localGroups[partenaireLocal][0].provider, {
-                prestations: localGroups[partenaireLocal].reduce(function(obj, prestation) {
-                    obj[prestation.id] = prestation;
-                    return obj;
-                }, {})
-            });
-        });
-
-        return {
-            droitsEligibles: result.eligibleAides,
-            droitsNonEligibles: result.nonEligibleAides,
-            droitsInjectes: result.injectedAides,
-        };
+        return result;
     }
 
     function simulate(situation, showPrivate) {

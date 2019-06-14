@@ -3,16 +3,6 @@
 var SmoothScroll = require('smooth-scroll');
 var scroll = new SmoothScroll();
 
-var mergeDroits = function(prestationsNationales, partenairesLocaux) {
-
-    var droits = _.values(prestationsNationales);
-    _.forEach(partenairesLocaux, function(partenaireLocal) {
-        droits = droits.concat(_.values(partenaireLocal.prestations));
-    });
-
-    return _.sortBy(droits, ['top', 'label']);
-};
-
 angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope) {
 
     $scope.isBoolean = _.isBoolean;
@@ -22,14 +12,13 @@ angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope) 
 
     $scope.$watch('droits', function(value) {
         if (value) {
-            var list = (value.prestationsNationales && mergeDroits(value.prestationsNationales, value.partenairesLocaux)) || value;
+            var list = value;
             if ($scope.filter) {
                 list = _.filter(list, function(value) {
-
                     return _.includes($scope.filter, value.id);
                 });
             }
-            $scope.list = list;
+            $scope.list = _.sortBy(list, ['top', 'label']);
         }
     });
 

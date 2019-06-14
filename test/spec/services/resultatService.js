@@ -1,5 +1,6 @@
 'use strict';
 
+
 describe('ResultatService', function () {
     var service, droits, situation, openfiscaResult, DROITS_DESCRIPTION;
 
@@ -86,18 +87,20 @@ describe('ResultatService', function () {
             droits = service._computeAides(situation, openfiscaResult);
         });
 
-        it('should extract eligibles droits from openfisca result', function() {
-            expect(droits.droitsEligibles.prestationsNationales.acs).toBeTruthy();
-            expect(droits.droitsEligibles.prestationsNationales.acs.montant).toEqual(100);
-            expect(droits.droitsEligibles.prestationsNationales.acs.provider.label).toEqual('Assurance maladie');
+        it('should extract droits from openfisca result', function() {
+            var acs = droits.droitsEligibles.find(function(element) { return element.id === 'acs'; });
+            expect(acs).toBeTruthy();
+            expect(acs.montant).toEqual(100);
+            expect(acs.provider.label).toEqual('Assurance maladie');
 
-            expect(droits.droitsEligibles.partenairesLocaux[0].label).toEqual('Ville de Paris');
-            expect(droits.droitsEligibles.partenairesLocaux[0].prestations.paris_logement_familles).toBeTruthy();
-            expect(droits.droitsEligibles.partenairesLocaux[0].prestations.paris_logement_familles.montant).toEqual(10);
+            var plf = droits.droitsEligibles.find(function(element) { return element.id === 'paris_logement_familles'; });
+            expect(plf).toBeTruthy();
+            expect(plf.provider.label).toEqual('Ville de Paris');
+            expect(plf.montant).toEqual(10);
 
-            expect(droits.droitsNonEligibles.prestationsNationales.cmu_c).toBeTruthy();
-            expect(droits.droitsNonEligibles.prestationsNationales.cmu_c.montant).toBeFalsy();
-            expect(droits.droitsNonEligibles.prestationsNationales.cmu_c.provider.label).toEqual('Assurance maladie');
+            var cmuc = droits.droitsNonEligibles.find(function(element) { return element.id === 'cmu_c'; });
+            expect(cmuc).toBeTruthy();  
+            expect(cmuc.provider.label).toEqual('Assurance maladie');
         });
     });
 
@@ -108,8 +111,9 @@ describe('ResultatService', function () {
         });
 
         it('should extract eligibles droits from openfisca result', function() {
-            expect(droits.droitsEligibles.prestationsNationales.cmu_c).toBeTruthy();
-            expect(droits.droitsEligibles.prestationsNationales.cmu_c.montant).toBeTruthy();
+            var cmuc = droits.droitsEligibles.find(function(element) { return element.id === 'cmu_c'; });
+            expect(cmuc).toBeTruthy();
+            expect(cmuc.montant).toBeTruthy();
         });
     });
 
@@ -119,7 +123,8 @@ describe('ResultatService', function () {
         });
 
         it('should extract reason of uncomputability', function() {
-            expect(droits.droitsEligibles.prestationsNationales.rsa.montant).toEqual('error');
+            var rsa = droits.droitsEligibles.find(function(element) { return element.id === 'rsa'; });
+            expect(rsa.montant).toEqual('error');
         });
     });
 
@@ -129,7 +134,7 @@ describe('ResultatService', function () {
         });
 
         it('should exclude local partenaire without prestation', function() {
-            expect(droits.droitsEligibles.partenairesLocaux.filter(function(p) { return p.label == "Rennes Métropole"; }).length).toBeFalsy();
+            expect(droits.droitsEligibles.filter(function(p) { return p.provider.label == "Rennes Métropole"; }).length).toBeFalsy();
         });
     });
 
@@ -139,7 +144,8 @@ describe('ResultatService', function () {
         });
 
         it('should exclude private aid', function() {
-            expect(droits.droitsEligibles.prestationsNationales.private_aid).toBeFalsy();
+            var private_aid = droits.droitsEligibles.find(function(element) { return element.id === 'private_aid'; });
+            expect(private_aid).toBeFalsy();
         });
     });
 

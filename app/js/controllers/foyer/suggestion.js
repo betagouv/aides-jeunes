@@ -14,8 +14,7 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http, dr
         .then(bootstrap);
 
     function bootstrap(results) {
-        $scope.results = processResults(results);
-
+        $scope.results = _.keyBy(results, 'id');
 
         $scope.submitting = false;
         $scope.submitLabel = function() {
@@ -41,15 +40,7 @@ angular.module('ddsApp').controller('SuggestionCtrl', function($scope, $http, dr
             }
         });
         $scope.droitsById = _.keyBy(droits, 'id');
-
         $scope.possibleValues = _.sortBy(droits, 'label');
-    }
-
-    // Remove complexity from result object
-    function processResults(results) {
-        return results.droitsEligibles.partenairesLocaux.reduce(function(aggregate, partenairesLocal) {
-            return _.assign(aggregate, partenairesLocal.prestations);
-        }, _.assign({}, results.droitsEligibles.prestationsNationales));
     }
 
     function displayValueFor(droit, value) {

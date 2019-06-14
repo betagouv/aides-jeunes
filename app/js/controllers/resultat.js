@@ -17,16 +17,15 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
     function triggerEvaluation() {
         loadSituation()
             .then(ResultatService.simulate)
-            .then(function(droits) {
-                $scope.droits = droits.droitsEligibles;
-                $scope.droitsNonEligibles = droits.droitsNonEligibles;
-                $scope.droitsNonEligiblesShow = Boolean($sessionStorage.ameliNoticationDone);
-                $scope.droitsInjectes = droits.droitsInjectes;
-                $scope.noDroits = _.isEmpty($scope.droits.prestationsNationales) && _.isEmpty($scope.droits.partenairesLocaux);
+            .then(function(resultats) {
+                $scope.droits = resultats.droitsEligibles;
+                $scope.droits.forEach(function(d) {
+                    $analytics.eventTrack('show', { category: 'General', label: d.label });
+                });
 
-                if ($scope.noDroits) {
-                    $analytics.eventTrack('Zero', { category: 'Résultats' });
-                }
+                $scope.droitsNonEligibles = resultats.droitsNonEligibles;
+                $scope.droitsNonEligiblesShow = Boolean($sessionStorage.ameliNoticationDone);
+                $scope.droitsInjectes = resultats.droitsInjectes;
             })
             .then(function() {
                 return SituationService
@@ -70,15 +69,9 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
     }
 
     $scope.createTest = function() {
-        // Merge national and local prestations into a flat object compatible with ludwig.
-        var flatPrestations = _.merge.apply(
-            null,
-            _.values($scope.droits.partenairesLocaux).concat($scope.droits.prestationsNationales)
-        );
-
-        var expectedResults = _.map(flatPrestations, function(droit, id) {
+        var expectedResults = _.map($scope.droits, function(droit) {
             return {
-                code: id,
+                code: droit.id,
                 expectedValue: droit.montant
             };
         });

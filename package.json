@@ -19,7 +19,7 @@
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.4",
     "currencyformatter.js": "^2.1.0",
-    "d3": "4.11.0",
+    "d3": "^5.9.2",
     "event-stream": "3.3.4",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",

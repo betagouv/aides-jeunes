@@ -104,7 +104,6 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "text-mask-addons": "^3.8.0",
-    "time-grunt": "^1.3.0",
     "url-loader": "^1.1.2",
     "vanilla-text-mask": "^5.1.1",
     "watai": "^0.7.0",

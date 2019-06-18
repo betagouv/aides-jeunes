@@ -1,8 +1,10 @@
 <div class="text-center">
   <ul class="breadcrumb--circles hidden-xs">
     <li ng-class="{ 'done': steps.includes('foyer.demandeur'), 'active': step === 'foyer.demandeur' }">
-      <span class="step"></span>
-      <a ui-sref="foyer.demandeur">Votre profil</a>
+      <a ui-sref="foyer.demandeur">
+        <span class="step"></span>
+        <span>Votre profil</span>
+      </a>
     </li>
     <li ng-class="{ 'done': steps.includes('foyer.enfants'), 'active': step === 'foyer.enfants' }">
       <breadcrumb-item target="foyer.enfants" title="Enfants"></breadcrumb-item>

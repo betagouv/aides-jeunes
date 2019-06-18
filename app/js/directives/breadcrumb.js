@@ -14,6 +14,19 @@ function matchStep(state, step) {
     return state.name.match(new RegExp('^' + step));
 }
 
+angular.module('ddsApp').directive('breadcrumbItem', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/partials/breadcrumb-item.html',
+        transclude: true,
+        scope: true,
+        link(scope , element, attrs) {
+            scope.target = attrs.target;
+            scope.title = attrs.title;
+        }
+    };
+});
+
 angular.module('ddsApp').directive('breadcrumb', function($transitions) {
     return {
         restrict: 'E',
@@ -38,6 +51,24 @@ angular.module('ddsApp').directive('breadcrumb', function($transitions) {
                     $scope.steps.push(steps[i]);
                 }
             }
+
+            $scope.isCompleted = function(step) {
+                return $scope.steps.includes(step);
+            };
+
+            $scope.getState = function(step) {
+                if (step === 'foyer.ressources') {
+                    return 'foyer.ressources.individu.types';
+                }
+                return step;
+            };
+
+            $scope.getStateParams = function(step) {
+                if (step === 'foyer.ressources') {
+                    return { individu: 0 };
+                }
+                return {};
+            };
         }
     };
 });

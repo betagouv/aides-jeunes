@@ -5,34 +5,22 @@
       <a ui-sref="foyer.demandeur">Votre profil</a>
     </li>
     <li ng-class="{ 'done': steps.includes('foyer.enfants'), 'active': step === 'foyer.enfants' }">
-      <span class="step"></span>
-      <a ui-sref="foyer.enfants" ng-if="steps.includes('foyer.enfants')">Enfants</a>
-      <span ng-if="! steps.includes('foyer.enfants')">Enfants</span>
+      <breadcrumb-item target="foyer.enfants" title="Enfants"></breadcrumb-item>
     </li>
     <li ng-class="{ 'done': steps.includes('foyer.conjoint'), 'active': step === 'foyer.conjoint' }">
-      <span class="step"></span>
-      <a ui-sref="foyer.conjoint" ng-if="steps.includes('foyer.conjoint')">Conjoint</a>
-      <span ng-if="! steps.includes('foyer.conjoint')">Conjoint</span>
+      <breadcrumb-item target="foyer.conjoint" title="Conjoint"></breadcrumb-item>
     </li>
     <li ng-class="{ 'done': steps.includes('foyer.logement'), 'active': step === 'foyer.logement' }">
-      <span class="step"></span>
-      <a ui-sref="foyer.logement" ng-if="steps.includes('foyer.logement')">Logement</a>
-      <span ng-if="! steps.includes('foyer.logement')">Logement</span>
+      <breadcrumb-item target="foyer.logement" title="Logement"></breadcrumb-item>
     </li>
     <li ng-class="{ 'done': steps.includes('foyer.ressources'), 'active': step === 'foyer.ressources' }">
-      <span class="step"></span>
-      <a ui-sref="foyer.ressources.individu.types({ individu: 0 })" ng-if="steps.includes('foyer.ressources')">Ressources</a>
-      <span ng-if="! steps.includes('foyer.ressources')">Ressources</span>
+      <breadcrumb-item target="foyer.ressources" title="Ressources"></breadcrumb-item>
     </li>
     <li ng-class="{ 'done': steps.includes('foyer.pensionsAlimentaires'), 'active': step === 'foyer.pensionsAlimentaires' }">
-      <span class="step"></span>
-      <a ui-sref="foyer.pensionsAlimentaires" ng-if="steps.includes('foyer.pensionsAlimentaires')">Pensions alimentaires</a>
-      <span ng-if="! steps.includes('foyer.pensionsAlimentaires')">Pensions alimentaires</span>
+      <breadcrumb-item target="foyer.pensionsAlimentaires" title="Pensions alimentaires"></breadcrumb-item>
     </li>
     <li ng-class="{ 'done': step === 'foyer.resultat', 'active': step === 'foyer.resultat' }">
-      <span class="step"></span>
-      <a ui-sref="foyer.resultat" ng-if="steps.includes('foyer.resultat')">Résultat</a>
-      <span ng-if="! steps.includes('foyer.resultat')">Résultat</span>
+      <breadcrumb-item target="foyer.resultat" title="Résultat"></breadcrumb-item>
     </li>
   </ul>
 </div>

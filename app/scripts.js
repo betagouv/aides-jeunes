@@ -6,6 +6,7 @@ global.moment = require('moment');
 
 require('angular-ui-router');
 require('angular-ui-bootstrap');
+require('ui-select');
 require('angular-animate');
 require('angular-sanitize');
 require('angulartics');

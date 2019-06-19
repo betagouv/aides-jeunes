@@ -42,6 +42,7 @@ if (process.env.NODE_ENV === 'production') {
 require('./js/common.js');
 require('./js/app.js');
 
+require('./js/services/nationaliteService.js');
 require('./js/services/abtestingService.js');
 require('./js/services/cityService.js');
 require('./js/services/situationService.js');
@@ -65,7 +66,6 @@ angular.module('ddsCommon').constant('categoriesRnc', ressources.categoriesRnc);
 angular.module('ddsCommon').constant('patrimoineTypes', ressources.patrimoineTypes);
 
 require('./js/constants/specificSituations.js');
-require('./js/constants/nationalites.js');
 require('./js/constants/logementTypes.js');
 
 var droits = require('./js/constants/benefits');

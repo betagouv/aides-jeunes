@@ -19,8 +19,8 @@ module.exports = {
         },
         'paris_forfait_familles': {
             'isMontantAnnuel': true,
-            'label': 'Paris Forfait Famille',
-            'description': 'Paris Forfait Famille est une aide destinée aux familles nombreuses avec au moins trois enfants à charge. Elle peut se cumuler avec l’Allocation de Soutien aux Parents d’Enfants Handicapés. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.',
+            'label': 'Paris Forfait Familles',
+            'description': 'Paris Forfait Familles est une aide destinée aux familles nombreuses avec au moins trois enfants à charge. Elle peut se cumuler avec l’Allocation de Soutien aux Parents d’Enfants Handicapés. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.',
             'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-forfait-famille_2',
             'form': 'https://api-site-cdn.paris.fr/images/97066',
             'isBaseRessourcesYearMoins2': false,
@@ -64,10 +64,10 @@ module.exports = {
             'form': 'https://api-site-cdn.paris.fr/images/90099',
             'isBaseRessourcesYearMoins2': false,
         },
-        'paris_energie_famille': {
+        'paris_energie_familles': {
             'isMontantAnnuel': true,
             'label': 'Paris Énergie Familles',
-            'description': 'L’allocation Paris Énergie Famille est réservée aux familles ayant un ou plusieurs enfants à charge, sous condition d’imposition. Cette aide permet de les soutenir dans leurs dépenses d’électricité et/ou de gaz. Paris Énergie Famille est directement versée aux fournisseurs d’énergie. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.',
+            'description': 'L’allocation Paris Énergie Familles est réservée aux familles ayant un ou plusieurs enfants à charge, sous condition d’imposition. Cette aide permet de les soutenir dans leurs dépenses d’électricité et/ou de gaz. Paris Énergie Famille est directement versée aux fournisseurs d’énergie. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.',
             'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-energie-famille_8',
             'form': 'https://api-site-cdn.paris.fr/images/97093',
             'isBaseRessourcesYearMoins2': false,

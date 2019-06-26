@@ -65,6 +65,7 @@ var controllerOptions = function(templateUrl) {
             restrict: 'E',
             templateUrl: templateUrl,
             scope: {
+                situation: '=',
                 droits: '=',
                 filter: '=',
                 patrimoineCaptured: '=',

@@ -1,7 +1,11 @@
 <a ng-href="{{ getURL(link) }}"
   target="_blank"
   rel="noopener"
-  class="btn btn-block btn-{{ level }}"
+  ng-class="{
+    'btn': type !== 'link',
+    'btn-block': type !== 'link',
+    'btn-default': level === 'default',
+    'btn-success': level === 'success' }"
   ng-click="onClick(link)"
   analytics-on="click"
   analytics-name="{{ analyticsName }}"

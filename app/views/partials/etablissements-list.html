@@ -32,65 +32,7 @@
         <uib-accordion-heading>
           <p>{{ etablissement.nom }}</p>
         </uib-accordion-heading>
-
-        <div class="row">
-          <div class="col-md-4">
-            <adress>
-              <i class="fa fa-home" aria-hidden="true"></i> Adresse&nbsp;:<br />
-              <div ng-repeat="ligne in etablissement.adresse.lignes">
-                {{ ligne }}<br />
-              </div>
-              {{ etablissement.adresse.codePostal }} {{ etablissement.adresse.commune }}
-            </adress>
-          </div>
-          <div class="col-md-4" ng-if="etablissement.horaires">
-            <i class="fa fa-clock-o" aria-hidden="true"></i> Horaires&nbsp;:<br />
-            <div ng-repeat="plage_jour in etablissement.horaires">
-              <div ng-if="plage_jour.du === plage_jour.au">
-                Les {{ plage_jour.du }}s&nbsp;:
-              </div>
-              <div ng-if="plage_jour.du !== plage_jour.au">
-                Du {{ plage_jour.du }} au {{ plage_jour.au }}&nbsp;:
-              </div>
-              <ul>
-                <li ng-repeat="plage_heure in plage_jour.heures">
-                  de {{ extractHHMM(plage_heure.de) }} à {{ extractHHMM(plage_heure.a) }}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4" ng-if="etablissement.url || etablissement.telephone">
-            Contact&nbsp;:<br />
-            <div ng-if="etablissement.url">
-              <i class="fa fa-share-square-o" aria-hidden="true"></i>
-              <a
-                href="{{ etablissement.url }}"
-                target="_blank"
-                rel="noopener"
-                analytics-on="click"
-                analytics-name="{{ etablissement.id }}"
-                analytics-event="Site internet"
-                analytics-category="Partenaire"
-              >
-                Site internet
-              </a>
-            </div>
-            <div ng-if="etablissement.telephone">
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              <a
-                href="tel:{{ etablissement.telephone }}"
-                target="_blank"
-                rel="noopener"
-                analytics-on="click"
-                analytics-name="{{ etablissement.id }}"
-                analytics-event="Téléphone"
-                analytics-category="Partenaire"
-              >
-                {{ etablissement.telephone }}
-              </a>
-            </div>
-          </div>
-        </div>
+        <etablissement etablissement="etablissement"></etablissement>
       </div>
     </uib-accordion>
   </div>

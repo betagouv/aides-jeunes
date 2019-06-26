@@ -41,12 +41,12 @@ var EXTENSION_VARIABLES = {
         familles: [
             'parisien',
             'paris_complement_sante',
-            'paris_energie_famille',
+            'paris_energie_familles',
             'paris_logement_plfm',
             'paris_logement_aspeh',
             'paris_logement',
             'paris_logement_psol',
-            'paris_forfait_famille',
+            'paris_forfait_familles',
             'paris_logement_familles',
         ],
         individus: [

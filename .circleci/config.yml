@@ -16,6 +16,7 @@ defaults: &defaults
     OPENFISCA_BIND_HOST: 127.0.0.1:2000
     LC_ALL: C.UTF-8
     LANG: C.UTF-8
+    PUPPETEER_ARGS: '{"args":["--no-sandbox","--disable-dev-shm-usage"]}'
 
 install_virtualenv: &install_virtualenv
   run:

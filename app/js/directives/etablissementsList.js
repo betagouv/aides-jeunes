@@ -13,23 +13,21 @@ angular.module('ddsApp').directive('etablissementsList', function() {
 });
 
 angular.module('ddsApp').controller('etablissementsListCtrl', function($http, $interval, $scope, EtablissementService, SituationService) {
-    function getEtablissements() {
-        if (! $scope.codePostal) {
+    function getEtablissements(newValues, oldValues, scope) {
+        if (! scope || ! scope.codeCommune || ! scope.codePostal) {
             return;
         }
 
         var situation = SituationService.restoreLocal();
 
         EtablissementService
-            .getEtablissements(situation, $scope.codePostal, $scope.codeCommune)
+            .getEtablissements(situation, scope.codePostal, scope.codeCommune)
             .then(function (etablissements) {
-                $scope.etablissements = etablissements;
+                scope.etablissements = etablissements;
             });
     }
 
-    ['codeCommune', 'codePostal'].forEach(function(key) {
-        $scope.$watch(key, getEtablissements);
-    });
+    $scope.$watchGroup(['codeCommune', 'codePostal'], getEtablissements);
 
     $scope.extractHHMM = function(dateString) {
         return dateString.slice(0,5);

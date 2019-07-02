@@ -6,11 +6,15 @@
         Sélectionnez les types de ressources perçues <strong>depuis {{ debutAnneeGlissante }}</strong>,
         vous pourrez ensuite saisir les montants.
       </legend>
+      <input type="text" 
+        ng-model="searchString" 
+        class="form-control search-input"
+        placeholder="Rechercher parmi les ressources">
       <uib-accordion close-others="false">
         <div uib-accordion-group
           class="capture-{{ category.id }}"
           ng-repeat="category in ressourceCategories"
-          is-open="status.open"
+          is-open="category.isOpen"
           ng-init="status.open = shouldInitiallyOpen(category)">
           <uib-accordion-heading>
             <span class="panel-title-ressource-category">
@@ -21,14 +25,15 @@
               <i class="fa"
                 aria-hidden="true"
                 role="presentation"
-                ng-class="{'fa-chevron-down': status.open, 'fa-chevron-right': !status.open}">
+                ng-class="{'fa-chevron-down': category.isOpen, 'fa-chevron-right': !category.isOpen}">
               </i>
             </span>
           </uib-accordion-heading>
           <div class="button-grid">
             <label ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']"
               class="btn btn-sm btn-default"
-              ng-class="{ active: selectedRessourceTypes[ressourceType.id] }">
+              ng-class="{ active: selectedRessourceTypes[ressourceType.id] }"
+              >
               <input type="checkbox"
                 ng-model="selectedRessourceTypes[ressourceType.id]"
                 class="sr-only"

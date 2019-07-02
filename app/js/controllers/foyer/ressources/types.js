@@ -1,5 +1,7 @@
 'use strict';
 
+var Fuse = require('fuse.js');
+
 angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, $stateParams, ABTestingService, ressourceCategories, ressourceTypes, $state, RessourceService) {
 
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract(1, 'years');
@@ -10,6 +12,38 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     var keyedRessourceTypes = _.keyBy(ressourceTypes, 'id');
     var filteredRessourceTypes = _.filter(ressourceTypes, RessourceService.isRessourceOnMainScreen);
     $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
+
+    function updateSearchedRessources(searchString) {
+        function isRessourceSearched(ressource) {
+            var fuseTypes = new Fuse(ressourceTypes, {
+                keys: ['label'],
+                id: 'id',
+                minMatchCharLength: 2,
+                threshold: 0.5,
+                distance: 100
+            });
+
+            var fuseCategories = new Fuse(ressourceCategories, {
+                keys: ['label', 'help'],
+                id: 'id',
+                minMatchCharLength: 3,
+                threshold: 0.5,
+                distance: 100
+            });
+
+            return searchString == undefined || searchString == '' ||
+            fuseTypes.search(searchString).includes(ressource.id) ||
+            fuseCategories.search(searchString).includes(ressource.category);
+        }
+
+        $scope.ressourceTypesByCategories = _.groupBy(
+            _.filter(filteredRessourceTypes, isRessourceSearched),
+            'category'
+        );
+
+        $scope.ressourceCategories.forEach(c => c.isOpen = ($scope.ressourceTypesByCategories[c.id] != undefined));
+    }
+    $scope.$watch('searchString', updateSearchedRessources);
 
     var abtesting = ABTestingService.getEnvironment();
     $scope.hideHelp = abtesting && abtesting.resourceHelp && abtesting.resourceHelp.value === "Hide";

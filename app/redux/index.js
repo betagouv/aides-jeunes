@@ -8,3 +8,13 @@ export default createStore(
   reducers,
   applyMiddleware(...middlewares)
 )
+
+export const create = (...otherMiddlewares) => {
+
+	const allMiddlewares = [
+    ...middlewares,
+    ...otherMiddlewares
+  ]
+
+	return createStore(reducers, applyMiddleware(...allMiddlewares))
+}

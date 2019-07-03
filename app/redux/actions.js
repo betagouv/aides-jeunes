@@ -43,7 +43,6 @@ export function modifyPostalCode(postalCode) {
       })
       .catch(e => console.log(e));
   }
-
 }
 
 export const PERSIST_REQUEST = 'PERSIST_REQUEST';
@@ -58,6 +57,13 @@ export const SIMULATE_SUCCESS = 'SIMULATE_SUCCESS';
 export const simulateRequest = createAction(SIMULATE_REQUEST)
 export const simulateSuccess = createAction(SIMULATE_SUCCESS)
 
+function doPersist(situation) {
+
+  return httpClient.post('/api/situations/', _.omit(situation, '_id'))
+    .then(response => response.data)
+    .catch(e => console.log(e));
+}
+
 export function persist() {
 
   return function(dispatch, getState) {
@@ -67,9 +73,20 @@ export function persist() {
   	dispatch(persistRequest());
 
   	httpClient.post('/api/situations/', _.omit(situation, '_id'))
-		.then(response => dispatch(persistSuccess(response.data)))
-		.catch(e => console.log(e));
+  		.then(response => dispatch(persistSuccess(response.data)))
+  		.catch(e => console.log(e));
   }
+}
+
+function doSimulate(situation) {
+
+  const headers = {
+    'Authorization': situation.token
+  }
+
+  return httpClient.get('api/situations/' + situation._id + '/openfisca-response', { headers })
+    .then(response => response.data)
+    .catch(e => console.log(e));
 }
 
 export function simulate() {
@@ -78,14 +95,25 @@ export function simulate() {
 
   	let { situation } = getState();
 
-  	dispatch(simulateRequest());
+    dispatch(simulateRequest());
 
-  	httpClient.get('api/situations/' + situation._id + '/openfisca-response', {
-  		headers: {
-  			'Authorization': situation.token
-  		}
-  	})
-		.then(response => dispatch(simulateSuccess(response.data)))
-		.catch(e => console.log(e));
+    if (situation.hasOwnProperty('_id') && situation.hasOwnProperty('token')) {
+      doSimulate(situation)
+        .then(resultat => dispatch(simulateSuccess(resultat)))
+    } else {
+      doPersist(situation)
+        .then(situation => doSimulate(situation))
+        .then(resultat => dispatch(simulateSuccess(resultat)))
+    }
+
+  	// dispatch(simulateRequest());
+
+   //  const headers = {
+   //    'Authorization': situation.token
+   //  }
+
+  	// httpClient.get('api/situations/' + situation._id + '/openfisca-response', { headers })
+  	// 	.then(response => dispatch(simulateSuccess(response.data)))
+  	// 	.catch(e => console.log(e));
   }
 }

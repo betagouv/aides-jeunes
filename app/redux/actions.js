@@ -5,10 +5,14 @@ import _ from 'lodash';
 export const MODIFY_INDIVIDU = 'MODIFY_INDIVIDU';
 export const MODIFY_DATE_OF_BIRTH = 'MODIFY_DATE_OF_BIRTH';
 export const MODIFY_NATIONALITY = 'MODIFY_NATIONALITY';
+export const MODIFY_MARITAL_STATUS = 'MODIFY_MARITAL_STATUS';
+export const MODIFY_HOUSING_STATUS = 'MODIFY_HOUSING_STATUS';
 
 export const modifyIndividu = createAction(MODIFY_INDIVIDU, (role, props = {}) => ({ role, props }))
-export const modifyNationality = createAction(MODIFY_NATIONALITY, (id, nationality) => ({ id, nationality }))
-export const modifyDateOfBirth = createAction(MODIFY_DATE_OF_BIRTH, (id, dateOfBirth) => ({ id, dateOfBirth }))
+export const modifyNationality   = createAction(MODIFY_NATIONALITY, (id, nationality) => ({ id, nationality }))
+export const modifyDateOfBirth   = createAction(MODIFY_DATE_OF_BIRTH, (id, dateOfBirth) => ({ id, dateOfBirth }))
+export const modifyMaritalStatus = createAction(MODIFY_MARITAL_STATUS, (id, maritalStatus) => ({ id, maritalStatus }))
+export const modifyHousingStatus = createAction(MODIFY_HOUSING_STATUS)
 
 export const PERSIST_REQUEST = 'PERSIST_REQUEST';
 export const PERSIST_SUCCESS = 'PERSIST_SUCCESS';

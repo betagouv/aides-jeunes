@@ -5,6 +5,8 @@ import {
   MODIFY_INDIVIDU,
   MODIFY_DATE_OF_BIRTH,
   MODIFY_NATIONALITY,
+  MODIFY_MARITAL_STATUS,
+  MODIFY_HOUSING_STATUS,
 } from './actions'
 
 // var DEFAULT_INDIVIDU = {
@@ -165,6 +167,34 @@ const replaceIndividu = (state, id, payload) => {
   return newState;
 }
 
+const modifyIndividuProps = (state, id, props) => {
+  let individus = replaceIndividu(state.situation.individus, id, props);
+
+  return {
+    ...state,
+    situation: {
+      ...state.situation,
+      individus
+    }
+  }
+}
+
+const modifyMenageProps = (state, props) => {
+
+  let menage = {
+    ...state.situation.menage,
+    ...props
+  }
+
+  return {
+    ...state,
+    situation: {
+      ...state.situation,
+      menage
+    }
+  }
+}
+
 export default (state = initialState, action = {}) => {
   let individus;
   switch (action.type) {
@@ -191,39 +221,27 @@ export default (state = initialState, action = {}) => {
 
     case MODIFY_DATE_OF_BIRTH:
 
-      individus = replaceIndividu(
-        state.situation.individus,
-        action.payload.id,
-        {
-          date_naissance: action.payload.dateOfBirth
-        }
-      )
-
-      return {
-        ...state,
-        situation: {
-          ...state.situation,
-          individus
-        }
-      }
+      return modifyIndividuProps(state, action.payload.id, {
+        date_naissance: action.payload.dateOfBirth
+      })
 
     case MODIFY_NATIONALITY:
 
-      individus = replaceIndividu(
-        state.situation.individus,
-        action.payload.id,
-        {
-          nationalite: action.payload.nationality
-        }
-      )
+      return modifyIndividuProps(state, action.payload.id, {
+        nationalite: action.payload.nationality
+      })
 
-      return {
-        ...state,
-        situation: {
-          ...state.situation,
-          individus
-        }
-      }
+    case MODIFY_MARITAL_STATUS:
+
+      return modifyIndividuProps(state, action.payload.id, {
+        statut_marital: action.payload.maritalStatus
+      })
+
+    case MODIFY_HOUSING_STATUS:
+
+      return modifyMenageProps(state, {
+        statut_occupation_logement: action.payload
+      })
 
     case PERSIST_SUCCESS:
 

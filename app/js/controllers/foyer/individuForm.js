@@ -22,12 +22,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     $scope.currentYear = $scope.today.format('YYYY');
     $scope.maxAgeYears = 130;
     $scope.minBirthDate = moment().subtract($scope.maxAgeYears, 'years');
-    $scope.nationalites = _.map(NationaliteService.getList(), function(value, key) {
-        return {
-            code: key,
-            name: value
-        };
-    });
+    $scope.nationalites = NationaliteService.getSortedArray();
 
     $scope.selectNationalite = function(item) {
         $scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(item.code);

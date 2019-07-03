@@ -48,6 +48,27 @@ angular.module('ddsCommon').factory('NationaliteService', function() {
         getList: function() {
             return NATIONALITES;
         },
+        getSortedArray: function() {
+
+            var nationalites = _.map(NATIONALITES, function(value, key) {
+                return {
+                    code: key,
+                    name: value
+                };
+            });
+
+            nationalites.sort(function(a, b) {
+                return a.name < b.name ? -1 : 1;
+            });
+
+            var index = _.findIndex(nationalites, function(nationalite) {
+                return nationalite.code === 'FR';
+            });
+            var spliced = nationalites.splice(index, 1);
+            nationalites.unshift(spliced[0]);
+
+            return nationalites;
+        },
         getLabel: function(nationalite) {
             return NATIONALITE_LABEL[nationalite];
         },

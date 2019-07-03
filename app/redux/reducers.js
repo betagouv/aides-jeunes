@@ -2,30 +2,33 @@ import _ from 'lodash'
 
 import {
   PERSIST_SUCCESS,
-  MODIFY_INDIVIDU,
+  SIMULATE_SUCCESS,
   MODIFY_DATE_OF_BIRTH,
   MODIFY_NATIONALITY,
   MODIFY_MARITAL_STATUS,
   MODIFY_HOUSING_STATUS,
+  MODIFY_RENT_AMOUNT,
+  MODIFY_POSTAL_CODE,
+  MODIFY_CITY,
 } from './actions'
 
-// var DEFAULT_INDIVIDU = {
-//     id: individuRole,
-//     nationalite: 'fr',
-//     aah_restriction_substantielle_durable_acces_emploi: true,
-//     ass_precondition_remplie: false,
-//     scolarite: 'college',
-//     taux_incapacite: 0.9,
-//     echelon_bourse: -1,
-//     enfant_a_charge: {},
-//     enfant_place: false,
-//     gir: 'gir_6',
-//     role: individuRole,
-//     tns_autres_revenus_type_activite: 'bic',
-//     tns_micro_entreprise_type_activite: 'bic',
-//     tns_auto_entrepreneur_type_activite: 'bic',
-//     specificSituations: []
-// };
+const DEFAULT_INDIVIDU = {
+  // id: individuRole,
+  // role: individuRole,
+  nationalite: 'fr',
+  aah_restriction_substantielle_durable_acces_emploi: true,
+  ass_precondition_remplie: false,
+  scolarite: 'college',
+  taux_incapacite: 0.9,
+  echelon_bourse: -1,
+  enfant_a_charge: {},
+  enfant_place: false,
+  gir: 'gir_6',
+  tns_autres_revenus_type_activite: 'bic',
+  tns_micro_entreprise_type_activite: 'bic',
+  tns_auto_entrepreneur_type_activite: 'bic',
+  specificSituations: []
+};
 
 // {
 //   "_id":"5d1b574a4b897200254c907f",
@@ -148,12 +151,31 @@ import {
 
 const initialState = {
   situation: {
-  	individus: []
+  	individus: [],
+    menage: {
+      // aide_logement_date_pret_conventionne: "2017-12-31",
+      loyer: 0,
+      coloc: false,
+      logement_chambre: false,
+      // code_postal: "75010",
+      // depcom: "75056",
+      // nom_commune: "Paris",
+      statut_occupation_logement: "locataire_vide"
+    },
+    foyer_fiscal: {}
   },
   resultat: {}
 }
 
-const createIndividu = (id, props) => ({ id, ...props })
+const createIndividu = (id, props) => {
+
+  return {
+    ...DEFAULT_INDIVIDU,
+    ...props,
+    id,
+    role: id
+  }
+}
 
 const replaceIndividu = (state, id, payload) => {
   const newState = state.slice(0);
@@ -196,28 +218,8 @@ const modifyMenageProps = (state, props) => {
 }
 
 export default (state = initialState, action = {}) => {
-  let individus;
+
   switch (action.type) {
-    case MODIFY_INDIVIDU:
-
-      individus = state.situation.individus.slice(0);
-      let index = _.findIndex(individus, individu => individu.role === action.payload.role);
-
-      if (-1 !== index) {
-        individus.splice(index, 1, Object.assign({}, individus[index], action.payload.props))
-      } else {
-        individus.push(createIndividu(action.payload.role, action.payload.props));
-      }
-
-      const situation = {
-        ...state.situation,
-        individus
-      }
-
-      return {
-        ...state,
-        situation,
-      }
 
     case MODIFY_DATE_OF_BIRTH:
 
@@ -243,6 +245,25 @@ export default (state = initialState, action = {}) => {
         statut_occupation_logement: action.payload
       })
 
+    case MODIFY_RENT_AMOUNT:
+
+      return modifyMenageProps(state, {
+        loyer: action.payload
+      })
+
+    case MODIFY_POSTAL_CODE:
+
+      return modifyMenageProps(state, {
+        code_postal: action.payload
+      })
+
+    case MODIFY_CITY:
+
+      return modifyMenageProps(state, {
+        depcom: action.payload.code,
+        nom_commune: action.payload.nom
+      })
+
     case PERSIST_SUCCESS:
 
       return {
@@ -251,6 +272,13 @@ export default (state = initialState, action = {}) => {
           ...state.situation,
           ...action.payload
         }
+      }
+
+    case SIMULATE_SUCCESS:
+
+      return {
+        ...state,
+        resultat: action.payload
       }
 
     default:

@@ -23,9 +23,11 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     $scope.maxAgeYears = 130;
     $scope.minBirthDate = moment().subtract($scope.maxAgeYears, 'years');
     $scope.nationalites = NationaliteService.getSortedArray();
+    $scope.nationalite = '';
 
     $scope.selectNationalite = function(item) {
         $scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(item.code);
+        $scope.individu.nationalite_code = item.code;
     };
 
     if (individuRole == 'enfant') {
@@ -92,6 +94,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     var DEFAULT_INDIVIDU = {
         id: individuRole,
         nationalite: 'fr',
+        nationalite_code: 'FR',
         aah_restriction_substantielle_durable_acces_emploi: true,
         ass_precondition_remplie: false,
         scolarite: 'college',
@@ -135,6 +138,12 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     $scope.individu.specificSituations.forEach(function(specificSituation) {
         $scope.selectedStatuts[specificSituation] = true;
     });
+
+    if ($scope.individu.nationalite_code) {
+        $scope.nationalite = _.find($scope.nationalites, function(item) {
+            return item.code === $scope.individu.nationalite_code;
+        });
+    }
 
     $scope.submit = function(form) {
         $scope.submitted = true;

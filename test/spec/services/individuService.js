@@ -67,7 +67,7 @@ describe('IndividuService', function() {
             var result = service.formatStatutsSpecifiques({ specificSituations: ['retraite' , 'etudiant'] });
 
             // then
-            expect(result).toBe('Étudiant·e, retraité·e');
+            expect(result).toBe('Étudiant·e, apprenti·e, retraité·e');
         });
 
         it('Should display "enceinte", "boursier" and "en garde alternée" if the individu has the corresponding fields to true', function() {

@@ -69,9 +69,9 @@ function runOpenFiscaTest(yaml, extension) {
     var tmpobj = tmp.fileSync({postfix: '.yaml'});
     return fs.writeFileAsync(tmpobj.fd, yaml, 'utf8')
         .then(function() {
-            var args = extension ? [tmpobj.name, '--extensions', extension] : [tmpobj.name];
+            var args = extension ? ['test', tmpobj.name, '--extensions', extension] : ['test', tmpobj.name];
 
-            return run_cmd('openfisca-run-test', args);
+            return run_cmd('openfisca', args);
         });
 }
 

@@ -14,7 +14,7 @@ function findIndividu(individus, role, params) {
     return _.find(individus, predicate);
 }
 
-angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, IndividuService, NationaliteService, SituationService) {
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, IndividuService) {
 
     $scope.specificSituations = specificSituations;
     $scope.situationsFamiliales = situationsFamiliales;
@@ -22,13 +22,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     $scope.currentYear = $scope.today.format('YYYY');
     $scope.maxAgeYears = 130;
     $scope.minBirthDate = moment().subtract($scope.maxAgeYears, 'years');
-    $scope.nationalites = NationaliteService.getSortedArray();
-    $scope.nationalite = '';
-
-    $scope.selectNationalite = function(item) {
-        $scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(item.code);
-        $scope.individu.nationalite_code = item.code;
-    };
 
     if (individuRole == 'enfant') {
         $scope.displayCancelButton = true;
@@ -139,12 +132,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
         $scope.selectedStatuts[specificSituation] = true;
     });
 
-    if ($scope.individu.nationalite_code) {
-        $scope.nationalite = _.find($scope.nationalites, function(item) {
-            return item.code === $scope.individu.nationalite_code;
-        });
-    }
-
     $scope.submit = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -243,8 +230,4 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     $scope.cancel = function() {
         $scope.$emit('actionCancelled');
     };
-
-    $scope.popoverEee = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, ' +
-        'France, Grèce, Hongrie, Irlande, Islande, Italie, Lettonie, Liechtenstein, Lituanie, Luxembourg, Malte, Norvège, Pays-Bas, ' +
-        'Pologne, Portugal, République Tchèque, Roumanie, Royaume-Uni, Slovaquie, Slovénie, Suède.';
 });

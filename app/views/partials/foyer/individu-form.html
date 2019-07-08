@@ -56,12 +56,7 @@
   <div ng-if="individu.role == 'demandeur'" class="form-group">
     <label class="control-label col-sm-4">Nationalité</label>
     <div class="col-sm-4">
-      <ui-select ng-model="nationalite" on-select="selectNationalite($item, $model)" theme="bootstrap">
-        <ui-select-match placeholder="Sélectionnez votre nationalité…">{{ $select.selected.name }}</ui-select-match>
-        <ui-select-choices repeat="nationalite in nationalites | filter: $select.search">
-          <div ng-bind-html="nationalite.name | highlight: $select.search"></div>
-        </ui-select-choices>
-      </ui-select>
+      <nationality-choice individu="individu"></nationality-choice>
     </div>
   </div>
 

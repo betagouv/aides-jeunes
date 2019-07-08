@@ -1,0 +1,29 @@
+<div ng-if="widget === 'radio'">
+  <div class="radio">
+    <label>
+      <input type="radio" name="nationalite" ng-model="nationalite" value="fr" aria-label="Nationalité Française">
+      Française
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="nationalite" ng-model="nationalite" value="ue" aria-label="Nationalité EEE, UE, Suisse">
+      <abbr title="" uib-popover="{{ popoverEee }}" popover-title="Liste des pays de l'EEE" popover-placement="bottom" popover-trigger="mouseenter">EEE</abbr> - <abbr title="" uib-popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr> - Suisse
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="nationalite" ng-model="nationalite" value="autre" aria-label="Hors UE">
+      Hors <abbr title="" uib-popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr>
+    </label>
+  </div>
+</div>
+
+<div ng-if="widget === 'select'">
+  <ui-select ng-model="nationalite" on-select="selectNationalite($item, $model)" theme="bootstrap">
+    <ui-select-match placeholder="Sélectionnez votre nationalité…">{{ $select.selected.name }}</ui-select-match>
+    <ui-select-choices repeat="nationalite in nationalites | filter: $select.search">
+      <div ng-bind-html="nationalite.name | highlight: $select.search"></div>
+    </ui-select-choices>
+  </ui-select>
+</div>

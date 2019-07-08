@@ -111,6 +111,7 @@ require('./js/directives/focus.js');
 require('./js/directives/individuBlock.js');
 require('./js/directives/iframe-resizer.js');
 require('./js/directives/mailTo.js');
+require('./js/directives/nationalityChoice.js');
 require('./js/directives/selectOnFocus.js');
 require('./js/directives/yesNoQuestion.js');
 require('./js/directives/ym2RessourcesCallToAction.js');

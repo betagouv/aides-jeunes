@@ -56,6 +56,7 @@ var individuDef = Object.assign({
     gir: { type: String, default: 'non_defini' },
     habite_chez_parents: Boolean,
     nationalite: { type: String, enum: ['fr', 'ue', 'autre'] },
+    nationalite_code: { type: String },
     role: { type: String, enum: ['demandeur', 'conjoint', 'enfant'] },
     scolarite: { type: String, enum: ['inconnue', 'college', 'lycee'] },
     specificSituations: [{ type: String, enum: specificSituationValues }],

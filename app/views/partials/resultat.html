@@ -125,26 +125,18 @@ ID : {{ situation._id }} (à conserver impérativement pour traitement de votre 
       <small>
         Partenaires&nbsp;:
         <a
-          href=""
-          ng-click="createTest()"
-          analytics-on="click"
-          analytics-category="Test"
-          analytics-event="Old"
-          >créez un test</a>
-        dans l'ancienne interface,
-        <a
           ui-sref="foyer.resultat.suggestion"
           analytics-on="click"
           analytics-category="Test"
           analytics-event="New"
-          >créez en un dans la nouvelle</a>
+          >créez un test</a>
         ou bien
         <a
           target="_blank"
           ng-href="{{openfiscaTracerURL}}"
           analytics-on="click"
           analytics-category="Tracer"
-          >accédez au tracer pour cette simulation</a>.
+          >accédez à l'outil d'analyse des résultats de cette simulation</a>.
       </small>
     </div>
   </div>

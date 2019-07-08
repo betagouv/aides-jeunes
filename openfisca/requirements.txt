@@ -1,7 +1,7 @@
 gunicorn>=19.1.1
-Openfisca-France==47.1.0
-Openfisca-Core[web-api]==34.2.5
-git+https://github.com/betagouv/openfisca-france-local.git@4c86e0c#egg=openfisca-France-Local
-git+https://github.com/betagouv/openfisca-paris.git@91a97e8#egg=openfisca-paris
-git+https://github.com/betagouv/openfisca-brestmetropole.git@8fb7260#egg=openfisca-BrestMetropole
-git+https://github.com/betagouv/openfisca-rennesmetropole.git@737328e#egg=openfisca-RennesMetropole
+Openfisca-France==48.0.0
+Openfisca-Core[web-api]==34.2.8
+git+https://github.com/betagouv/openfisca-france-local.git@ef258a4#egg=openfisca-France-Local
+git+https://github.com/betagouv/openfisca-paris.git@1a6f553#egg=openfisca-paris
+git+https://github.com/betagouv/openfisca-brestmetropole.git@fa2da0b#egg=openfisca-BrestMetropole
+git+https://github.com/betagouv/openfisca-rennesmetropole.git@bbcbef2#egg=openfisca-RennesMetropole

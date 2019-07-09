@@ -4,7 +4,7 @@ var EEE_TEXT = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danema
     'France, Grèce, Hongrie, Irlande, Islande, Italie, Lettonie, Liechtenstein, Lituanie, Luxembourg, Malte, Norvège, Pays-Bas, ' +
     'Pologne, Portugal, République Tchèque, Roumanie, Royaume-Uni, Slovaquie, Slovénie, Suède.';
 
-angular.module('ddsCommon').directive('nationalityChoice', function(NationaliteService) {
+angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingService, NationaliteService) {
     return {
         restrict: 'E',
         templateUrl: '/partials/nationality-choice.html',
@@ -16,7 +16,12 @@ angular.module('ddsCommon').directive('nationalityChoice', function(NationaliteS
             if (attrs.hasOwnProperty('widget')) {
                 scope.widget = attrs.type;
             } else {
-                scope.widget = 'select'
+                var abTesting = ABTestingService.getEnvironment();
+                if (abTesting && abTesting.nationaliteWidget && abTesting.nationaliteWidget.value) {
+                    scope.widget = abTesting.nationaliteWidget.value;
+                } else {
+                    scope.widget = 'select'
+                }
             }
 
             scope.nationalites = NationaliteService.getSortedArray();

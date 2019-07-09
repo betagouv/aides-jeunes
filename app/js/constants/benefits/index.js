@@ -12,6 +12,7 @@
                         'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une prestation accordée aux personnes retraitées ayant de faibles ressources. Elle est versée tous les mois par la Carsat (ou la MSA si vous dépendez du régime agricole). Elle s’ajoute, dans une certaine limite, aux revenus personnels. Elle remplace le minimum vieillesse depuis 2006.',
                         'conditions': [
                             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
+                            'Si vous êtes ressortissant·e d’un autre pays hors de l’UE, de l’EEE ou de Suisse, résider en France depuis plus de 10 ans avec des titres de séjours autorisant à travailler.',
                             'L’ASPA n’est pas compatible avec l’AAH. Avant de faire votre demande, renseignez-vous auprès de votre MDPH : le basculement vers le régime de l’ASPA n’est plus obligatoire pour les personnes qui atteignent depuis 2017 les 62 ans.',
                             'Avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles vous avez droit.',
                             'Votre conjoint·e doit avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles il ou elle a droit.'

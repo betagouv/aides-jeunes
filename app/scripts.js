@@ -108,6 +108,7 @@ require('./js/directives/droitsList.js');
 require('./js/directives/etablissementsList.js');
 require('./js/directives/focus.js');
 require('./js/directives/individuBlock.js');
+require('./js/directives/iframe-resizer.js');
 require('./js/directives/mailTo.js');
 require('./js/directives/selectOnFocus.js');
 require('./js/directives/yesNoQuestion.js');

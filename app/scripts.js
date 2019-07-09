@@ -120,3 +120,4 @@ require('./js/directives/zeroToEmpty.js');
 require('./js/filters/strings.js');
 require('./js/filters/isEmpty.js');
 require('./js/filters/orderObjectBy.js');
+require('./js/filters/nationaliteFilter.js');

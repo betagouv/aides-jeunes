@@ -9,28 +9,35 @@ angular.module('ddsCommon').directive('nationalityChoice', function(NationaliteS
         restrict: 'E',
         templateUrl: '/partials/nationality-choice.html',
         scope: {
-            individu: '='
+            individu: '=',
+            widget: '@'
+        },
+        link(scope , element, attrs) {
+            if (attrs.hasOwnProperty('widget')) {
+                scope.widget = attrs.widget;
+            }
         },
         controller: function($scope) {
 
             $scope.nationalites = NationaliteService.getSortedArray();
             $scope.nationalite = '';
-            $scope.widget = 'select';
+            $scope.popoverEee = EEE_TEXT;
+            $scope.widget = $scope.widget || 'select';
 
             if ($scope.individu.nationalite) {
                 $scope.nationalite = $scope.individu.nationalite;
             }
-
             if ($scope.individu.nationalite_code) {
-                $scope.nationalite = _.find($scope.nationalites, function(item) {
+                $scope.nationaliteCode = _.find($scope.nationalites, function(item) {
                     return item.code === $scope.individu.nationalite_code;
                 });
             }
 
-            $scope.popoverEee = EEE_TEXT;
-
             $scope.$watch('nationalite', function(value) {
                 $scope.individu.nationalite = value;
+            });
+            $scope.$watch('nationaliteCode', function(value) {
+                $scope.individu.nationalite_code = value.code;
             });
 
             $scope.selectNationalite = function(item) {

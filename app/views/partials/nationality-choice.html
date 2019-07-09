@@ -20,7 +20,7 @@
 </div>
 
 <div ng-if="widget === 'select'">
-  <ui-select ng-model="nationalite" on-select="selectNationalite($item, $model)" theme="bootstrap">
+  <ui-select ng-model="nationaliteCode" on-select="selectNationalite($item, $model)" theme="bootstrap">
     <ui-select-match placeholder="Sélectionnez votre nationalité…">{{ $select.selected.name }}</ui-select-match>
     <ui-select-choices repeat="nationalite in nationalites | filter: $select.search">
       <div ng-bind-html="nationalite.name | highlight: $select.search"></div>

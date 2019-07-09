@@ -208,6 +208,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             },
             resolve: resolveIndividuRole('conjoint'),
             data: {
+                guard: true,
                 robots: 'noindex'
             }
         })
@@ -223,6 +224,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 },
             },
             data: {
+                guard: true,
                 robots: 'noindex'
             }
         })
@@ -270,6 +272,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'FoyerRessourcesCtrl',
             templateUrl: '/partials/foyer/ressources/layout.html',
             data: {
+                guard: true,
                 robots: 'noindex'
             }
         })
@@ -298,6 +301,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'FoyerPensionsAlimentairesCtrl',
             url: '/pensions-alimentaires',
             data: {
+                guard: true,
                 robots: 'noindex'
             }
         })
@@ -348,7 +352,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         });
 });
 
-ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anchorScroll, $templateCache, $timeout, $transitions) {
+ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anchorScroll, $templateCache, $timeout, $transitions, SituationService) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -388,6 +392,20 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anch
             robots.content = state.data.robots;
         } else {
             robots.content = 'index,follow';
+        }
+    });
+
+    // Prevent direct access to a state if the user has not completed the foyer.demandeur state
+    // @see https://ui-router.github.io/guide/transitionhooks#redirecting-a-transition
+    $transitions.onStart({}, function(transition) {
+        var to = transition.to();
+        // The data.guard attribute is inherited when states are nested
+        if (to.data && to.data.guard) {
+            var situation = SituationService.restoreLocal();
+            if (! SituationService.passSanityCheck(situation)) {
+
+                return transition.router.stateService.target('foyer.demandeur');
+            }
         }
     });
 

@@ -20,7 +20,7 @@ angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingSer
                 if (abTesting && abTesting.nationaliteWidget && abTesting.nationaliteWidget.value) {
                     scope.widget = abTesting.nationaliteWidget.value;
                 } else {
-                    scope.widget = 'select'
+                    scope.widget = 'select';
                 }
             }
 
@@ -47,7 +47,7 @@ angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingSer
             scope.selectNationalite = function(item) {
                 scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(item.code);
                 scope.individu.nationalite_code = item.code;
-            }
+            };
         },
     };
 });

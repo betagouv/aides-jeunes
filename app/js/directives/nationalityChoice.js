@@ -10,40 +10,39 @@ angular.module('ddsCommon').directive('nationalityChoice', function(NationaliteS
         templateUrl: '/partials/nationality-choice.html',
         scope: {
             individu: '=',
-            widget: '@'
         },
         link(scope , element, attrs) {
+
             if (attrs.hasOwnProperty('widget')) {
-                scope.widget = attrs.widget;
+                scope.widget = attrs.type;
+            } else {
+                scope.widget = 'select'
             }
-        },
-        controller: function($scope) {
 
-            $scope.nationalites = NationaliteService.getSortedArray();
-            $scope.nationalite = '';
-            $scope.popoverEee = EEE_TEXT;
-            $scope.widget = $scope.widget || 'select';
+            scope.nationalites = NationaliteService.getSortedArray();
+            scope.nationalite = '';
+            scope.popoverEee = EEE_TEXT;
 
-            if ($scope.individu.nationalite) {
-                $scope.nationalite = $scope.individu.nationalite;
+            if (scope.individu.nationalite) {
+                scope.nationalite = scope.individu.nationalite;
             }
-            if ($scope.individu.nationalite_code) {
-                $scope.nationaliteCode = _.find($scope.nationalites, function(item) {
-                    return item.code === $scope.individu.nationalite_code;
+            if (scope.individu.nationalite_code) {
+                scope.nationaliteCode = _.find(scope.nationalites, function(item) {
+                    return item.code === scope.individu.nationalite_code;
                 });
             }
 
-            $scope.$watch('nationalite', function(value) {
-                $scope.individu.nationalite = value;
+            scope.$watch('nationalite', function(value) {
+                scope.individu.nationalite = value;
             });
-            $scope.$watch('nationaliteCode', function(value) {
-                $scope.individu.nationalite_code = value.code;
+            scope.$watch('nationaliteCode', function(value) {
+                scope.individu.nationalite_code = value.code;
             });
 
-            $scope.selectNationalite = function(item) {
-                $scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(item.code);
-                $scope.individu.nationalite_code = item.code;
-            };
-        }
+            scope.selectNationalite = function(item) {
+                scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(item.code);
+                scope.individu.nationalite_code = item.code;
+            }
+        },
     };
 });

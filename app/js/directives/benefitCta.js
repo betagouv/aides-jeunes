@@ -61,7 +61,6 @@ angular.module('ddsApp').directive('benefitCtaLink', function() {
             level: '<',
             link: '=',
             type: '=',
-            size: '<',
         },
         controller: 'benefitCtaLinkCtrl',
     };

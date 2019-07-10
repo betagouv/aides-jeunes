@@ -43,8 +43,13 @@ var EU_COUNTRY_CODES = [
 ];
 
 angular.module('ddsCommon').factory('NationaliteService', function() {
+    // @see https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
+    function normalizeString(text) {
+        return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
 
     return {
+        normalizeString,
         getList: function() {
             return NATIONALITES;
         },
@@ -53,12 +58,13 @@ angular.module('ddsCommon').factory('NationaliteService', function() {
             var nationalites = _.map(NATIONALITES, function(value, key) {
                 return {
                     code: key,
-                    name: value
+                    name: value,
+                    key: normalizeString(value)
                 };
             });
 
             nationalites.sort(function(a, b) {
-                return a.name < b.name ? -1 : 1;
+                return a.key < b.key ? -1 : 1;
             });
 
             var index = _.findIndex(nationalites, function(nationalite) {

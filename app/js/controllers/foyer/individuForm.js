@@ -14,7 +14,7 @@ function findIndividu(individus, role, params) {
     return _.find(individus, predicate);
 }
 
-angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, ABTestingService, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
 
     $scope.specificSituations = specificSituations;
     $scope.situationsFamiliales = situationsFamiliales;
@@ -22,11 +22,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     $scope.currentYear = $scope.today.format('YYYY');
     $scope.maxAgeYears = 130;
     $scope.minBirthDate = moment().subtract($scope.maxAgeYears, 'years');
-
-    var abtesting = ABTestingService.getEnvironment();
-
-    $scope.noSpecificSituationCheckbox =
-        abtesting && abtesting.noSpecificSituationCheckbox && abtesting.noSpecificSituationCheckbox.value === 'Show';
 
     if (individuRole == 'enfant') {
         $scope.displayCancelButton = true;

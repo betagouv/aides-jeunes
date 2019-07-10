@@ -45,7 +45,7 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
 
         $localStorage.ABTesting.noSpecificSituationCheckbox = $localStorage.ABTesting.noSpecificSituationCheckbox || { index: 4 };
         $localStorage.ABTesting.noSpecificSituationCheckbox.value = $localStorage.ABTesting.noSpecificSituationCheckbox.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
-        //$localStorage.ABTesting.noSpecificSituationCheckbox.deleted = true;
+        $localStorage.ABTesting.noSpecificSituationCheckbox.deleted = true;
 
         _.forEach($localStorage.ABTesting, function(data, name) {
             if (data.deleted) {

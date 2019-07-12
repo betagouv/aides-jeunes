@@ -13,24 +13,22 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     var filteredRessourceTypes = _.filter(ressourceTypes, RessourceService.isRessourceOnMainScreen);
     $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
 
+    var fuseTypes = new Fuse(ressourceTypes, {
+        keys: ['label'],
+        id: 'id',
+        minMatchCharLength: 2,
+        threshold: 0.4,
+    });
+
+    var fuseCategories = new Fuse(ressourceCategories, {
+        keys: ['label', 'help'],
+        id: 'id',
+        minMatchCharLength: 3,
+        threshold: 0.4,
+    });
+
     function updateSearchedRessources(searchString) {
         function isRessourceSearched(ressource) {
-            var fuseTypes = new Fuse(ressourceTypes, {
-                keys: ['label'],
-                id: 'id',
-                minMatchCharLength: 2,
-                threshold: 0.5,
-                distance: 100
-            });
-
-            var fuseCategories = new Fuse(ressourceCategories, {
-                keys: ['label', 'help'],
-                id: 'id',
-                minMatchCharLength: 3,
-                threshold: 0.5,
-                distance: 100
-            });
-
             return searchString == undefined || searchString == '' ||
             fuseTypes.search(searchString).includes(ressource.id) ||
             fuseCategories.search(searchString).includes(ressource.category);

@@ -7,9 +7,10 @@
         vous pourrez ensuite saisir les montants.
       </legend>
       <input type="text" 
-        ng-model="searchString" 
+        ng-model="searchString"
+        ng-model-options="{ debounce: 200 }"
         class="form-control search-input"
-        placeholder="Rechercher parmi les ressources">
+        placeholder="Rechercher parmi les types de ressources">
       <uib-accordion close-others="false">
         <div uib-accordion-group
           class="capture-{{ category.id }}"

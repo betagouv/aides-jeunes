@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').service('IndividuService', function($filter, specificSituations, nationalites) {
+angular.module('ddsCommon').service('IndividuService', function($filter, specificSituations, NationaliteService) {
     function isRoleParent (role) {
         return _.includes(['demandeur', 'conjoint'], role);
     }
@@ -45,7 +45,7 @@ angular.module('ddsCommon').service('IndividuService', function($filter, specifi
         },
 
         nationaliteLabel: function(individu) {
-            return _.find(nationalites, { id: individu.nationalite }).label;
+            return NationaliteService.getLabel(individu.nationalite);
         },
 
         isRoleParent: isRoleParent,

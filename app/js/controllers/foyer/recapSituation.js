@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, nationalites, ressourceTypes, patrimoineTypes, categoriesRnc, CityService, SituationService, IndividuService, LogementService, MonthService, RessourceService) {
+angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $state, ressourceTypes, patrimoineTypes, categoriesRnc, CityService, SituationService, IndividuService, LogementService, MonthService, RessourceService) {
     $scope.keyedRessourceTypes = _.keyBy(ressourceTypes, 'id');
     $scope.categoriesRnc = categoriesRnc;
     $scope.getIndividuRessourcesHeader = IndividuService.ressourceShortLabel;

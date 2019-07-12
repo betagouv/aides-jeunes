@@ -14,7 +14,7 @@ function findIndividu(individus, role, params) {
     return _.find(individus, predicate);
 }
 
-angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, IndividuService) {
 
     $scope.specificSituations = specificSituations;
     $scope.situationsFamiliales = situationsFamiliales;
@@ -87,6 +87,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     var DEFAULT_INDIVIDU = {
         id: individuRole,
         nationalite: 'fr',
+        nationalite_code: 'FR',
         aah_restriction_substantielle_durable_acces_emploi: true,
         ass_precondition_remplie: false,
         scolarite: 'college',
@@ -229,8 +230,4 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     $scope.cancel = function() {
         $scope.$emit('actionCancelled');
     };
-
-    $scope.popoverEee = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, ' +
-        'France, Grèce, Hongrie, Irlande, Islande, Italie, Lettonie, Liechtenstein, Lituanie, Luxembourg, Malte, Norvège, Pays-Bas, ' +
-        'Pologne, Portugal, République Tchèque, Roumanie, Royaume-Uni, Slovaquie, Slovénie, Suède.';
 });

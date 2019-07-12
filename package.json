@@ -105,6 +105,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "text-mask-addons": "^3.8.0",
+    "ui-select": "^0.19.8",
     "url-loader": "^2.0",
     "vanilla-text-mask": "^5.1.1",
     "watai": "^0.7.0",

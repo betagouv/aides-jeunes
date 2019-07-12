@@ -6,6 +6,7 @@ global.moment = require('moment');
 
 require('angular-ui-router');
 require('angular-ui-bootstrap');
+require('ui-select');
 require('angular-animate');
 require('angular-sanitize');
 require('angulartics');
@@ -41,6 +42,7 @@ if (process.env.NODE_ENV === 'production') {
 require('./js/common.js');
 require('./js/app.js');
 
+require('./js/services/nationaliteService.js');
 require('./js/services/abtestingService.js');
 require('./js/services/cityService.js');
 require('./js/services/situationService.js');
@@ -64,7 +66,6 @@ angular.module('ddsCommon').constant('categoriesRnc', ressources.categoriesRnc);
 angular.module('ddsCommon').constant('patrimoineTypes', ressources.patrimoineTypes);
 
 require('./js/constants/specificSituations.js');
-require('./js/constants/nationalites.js');
 require('./js/constants/logementTypes.js');
 
 var droits = require('./js/constants/benefits');
@@ -110,6 +111,7 @@ require('./js/directives/focus.js');
 require('./js/directives/individuBlock.js');
 require('./js/directives/iframe-resizer.js');
 require('./js/directives/mailTo.js');
+require('./js/directives/nationalityChoice.js');
 require('./js/directives/selectOnFocus.js');
 require('./js/directives/yesNoQuestion.js');
 require('./js/directives/ym2RessourcesCallToAction.js');
@@ -118,3 +120,4 @@ require('./js/directives/zeroToEmpty.js');
 require('./js/filters/strings.js');
 require('./js/filters/isEmpty.js');
 require('./js/filters/orderObjectBy.js');
+require('./js/filters/nationaliteFilter.js');

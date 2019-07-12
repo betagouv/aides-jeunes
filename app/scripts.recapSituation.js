@@ -36,11 +36,11 @@ angular.module('ddsCommon').constant('categoriesRnc', ressources.categoriesRnc);
 angular.module('ddsCommon').constant('patrimoineTypes', ressources.patrimoineTypes);
 
 require('./js/constants/specificSituations.js');
-require('./js/constants/nationalites.js');
 require('./js/constants/logementTypes.js');
 
 require('./js/directives/individuBlock.js');
 
+require('./js/services/nationaliteService.js');
 require('./js/services/cityService.js');
 require('./js/services/individuService.js');
 require('./js/services/logementService.js');

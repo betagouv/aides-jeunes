@@ -2,6 +2,8 @@
 
 var NATIONALITES = require('../constants/nationalites');
 
+var removeDiacritics = require('diacritics').remove;
+
 var NATIONALITE_LABEL = {
     'fr': 'française',
     'ue': 'UE',
@@ -43,9 +45,8 @@ var EU_COUNTRY_CODES = [
 ];
 
 angular.module('ddsCommon').factory('NationaliteService', function() {
-    // @see https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
     function normalizeString(text) {
-        return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        return removeDiacritics(text).toLowerCase();
     }
 
     return {

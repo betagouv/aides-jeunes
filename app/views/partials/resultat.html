@@ -146,7 +146,7 @@ ID : {{ situation._id }} (à conserver impérativement pour traitement de votre 
 
   <h1 ng-if="! (droits | isEmpty)">Comment obtenir vos aides ?</h1>
   <droit-eligibles-details
-    situation="situation"
+    city="situation.menage.depcom"
     droits="droits"
     patrimoine-captured="! shouldPatrimoineBeCaptured()"
     ressources-year-moins-2-captured="ressourcesYearMoins2Captured"

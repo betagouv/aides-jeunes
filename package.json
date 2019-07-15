@@ -108,12 +108,12 @@
     "style-loader": "^0.23.1",
     "text-mask-addons": "^3.8.0",
     "ui-select": "^0.19.8",
-    "url-loader": "^2.0",
+    "url-loader": "^2.0.1",
     "vanilla-text-mask": "^5.1.1",
     "watai": "^0.7.0",
-    "webpack": "^4.34.0",
-    "webpack-cli": "^3.3.4",
-    "webpack-dev-server": "^3.7.1",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2",
     "webpack-merge": "^4.2.1"
   },
   "engines": {

@@ -1,14 +1,15 @@
 .breadcrumb--circles {
+    display: flex;
+    justify-content: space-between;
     list-style: none;
     margin: 15px 0;
+    padding-left: 0;
 }
 
 .breadcrumb--circles li {
-    display: inline-block;
     position: relative;
     padding: 0 10px;
-    /* https://css-tricks.com/fighting-the-space-between-inline-block-elements/ */
-    margin-right: -4px;
+    width: 100%;
 }
 
 .breadcrumb--circles .step {
@@ -18,8 +19,8 @@
     line-height: 2em;
     /*box-sizing: border-box;*/
     border-radius: 1em;
-    border: .2em solid #008cba;
-    background: whitesmoke;
+    border: 0.1em solid #949494;
+    background: #e0e0e0;
     margin: 0 auto;
     display: block;
     color: white;
@@ -59,28 +60,29 @@ breadcrumb--circles .step:before {
 }
 .breadcrumb--circles li.active .step {
     background: #008cba;
+    border: none;
 }
 
 .breadcrumb--circles li:before,
 .breadcrumb--circles li:after {
-    content: '';
+    content: "";
     position: absolute;
-    top: .9em;
+    top: 0.9em;
     width: calc(50% + 2px);
-    height: .2em;
-    background: #008cba;
+    height: 0.1em;
+    background: #949494;
     z-index: -1;
 }
 
 .breadcrumb--circles li:before {
-  left: 0;
+    left: 0;
 }
 
 .breadcrumb--circles li:after {
-  right: 0;
+    right: 0;
 }
 
 .breadcrumb--circles li:first-child:before,
 .breadcrumb--circles li:last-child:after {
-  display: none;
+    display: none;
 }

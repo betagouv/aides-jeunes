@@ -5,29 +5,24 @@ angular.module('ddsApp').directive('etablissementsList', function() {
         restrict: 'E',
         templateUrl: '/partials/etablissements-list.html',
         scope: {
-            situation: '=',
-            droits: '='
+            city: '=',
+            types: '=',
         },
         controller: 'etablissementsListCtrl',
     };
 });
 
-angular.module('ddsApp').controller('etablissementsListCtrl', function($http, $interval, $scope, EtablissementService) {
-
+angular.module('ddsApp').controller('etablissementsListCtrl', function($scope, EtablissementService) {
     function getEtablissements(newValues, oldValues, scope) {
-
-        if (! scope.droits) {
-            return;
-        }
-
         EtablissementService
-            .getEtablissements(scope.situation, scope.droits)
+            .getEtablissements(scope.city, scope.types)
             .then(function (etablissements) {
                 scope.etablissements = etablissements;
             });
     }
 
-    $scope.$watch('droits', getEtablissements);
+    $scope.$watch('city', getEtablissements);
+    $scope.$watch('types', getEtablissements);
 });
 
 angular.module('ddsApp').directive('etablissement', function() {
@@ -50,9 +45,8 @@ angular.module('ddsApp').directive('etablissementsCta', function($uibModal, Etab
         restrict: 'E',
         templateUrl: '/partials/etablissements-cta.html',
         scope: {
-            situation: '=',
-            droits: '=',
-            droit: '=',
+            city: '=',
+            types: '='
         },
         link: function(scope) {
             scope.openModal = function() {
@@ -65,11 +59,7 @@ angular.module('ddsApp').directive('etablissementsCta', function($uibModal, Etab
                     controller: 'etablissementsModalCtrl',
                     resolve: {
                         etablissements: function() {
-                            return EtablissementService
-                                .getEtablissements(scope.situation, scope.droits);
-                        },
-                        droit: function() {
-                            return scope.droit;
+                            return EtablissementService.getEtablissements(scope.city, scope.types);
                         }
                     }
                 });
@@ -78,8 +68,6 @@ angular.module('ddsApp').directive('etablissementsCta', function($uibModal, Etab
     };
 });
 
-angular.module('ddsApp').controller('etablissementsModalCtrl', function($scope, droit, etablissements) {
-    $scope.etablissements = _.filter(etablissements, function(etablissement) {
-        return _.includes(droit.provider.etablissements, etablissement.pivotLocal);
-    });
+angular.module('ddsApp').controller('etablissementsModalCtrl', function($scope, etablissements) {
+    $scope.etablissements = etablissements;
 });

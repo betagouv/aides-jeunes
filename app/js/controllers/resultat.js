@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, $scope, $sessionStorage, $stateParams, $window, CityService, ResultatService, SituationService, TrampolineService) {
+angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, $scope, $sessionStorage, $stateParams, $window, CityService, EtablissementService, ResultatService, SituationService, TrampolineService) {
     $scope.error = false;
     $scope.warning = false;
     $scope.warningMessage = false;
@@ -47,6 +47,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
                 $analytics.eventTrack('error', { label: $scope.error || $scope.situation._id });
             })
             .finally(function() {
+                $scope.defaultEtablissementTypes = EtablissementService.getEtablissementTypesBySituation($scope.situation);
                 $scope.yearMoins2 = moment($scope.situation.dateDeValeur).subtract(2, 'years').format('YYYY');
                 $scope.debutPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract(1, 'years').format('MMMM YYYY');
                 $scope.finPeriode = moment($scope.situation.dateDeValeur).startOf('month').subtract(1, 'months').format('MMMM YYYY');

@@ -46,7 +46,8 @@ angular.module('ddsApp').directive('etablissementsCta', function($uibModal, Etab
         templateUrl: '/partials/etablissements-cta.html',
         scope: {
             city: '=',
-            types: '='
+            types: '=',
+            droit: '='
         },
         link: function(scope) {
             scope.openModal = function() {
@@ -60,6 +61,9 @@ angular.module('ddsApp').directive('etablissementsCta', function($uibModal, Etab
                     resolve: {
                         etablissements: function() {
                             return EtablissementService.getEtablissements(scope.city, scope.types);
+                        },
+                        title: function() {
+                            return scope.droit.label;
                         }
                     }
                 });
@@ -68,6 +72,10 @@ angular.module('ddsApp').directive('etablissementsCta', function($uibModal, Etab
     };
 });
 
-angular.module('ddsApp').controller('etablissementsModalCtrl', function($scope, etablissements) {
+angular.module('ddsApp').controller('etablissementsModalCtrl', function($scope, $uibModalInstance, etablissements, title) {
     $scope.etablissements = etablissements;
+    $scope.title = title;
+    $scope.closeModal = function () {
+        $uibModalInstance.close();
+    };
 });

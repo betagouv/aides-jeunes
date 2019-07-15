@@ -1,8 +1,19 @@
 <div class="benefit-etablissements-modal">
+	<div>
+		<button type="button" class="close" aria-label="Close" ng-click="closeModal()"><span aria-hidden="true">&times;</span></button>
+	</div>
+	<div class="text-center">
+		<h3>{{ title }}</h3>
+	</div>
+	<hr />
   <div ng-repeat="etablissement in etablissements">
   	<h4>{{ etablissement.nom }}</h4>
     <div class="container-fluid">
       <etablissement etablissement="etablissement"></etablissement>
     </div>
   </div>
+  <hr />
+  <div class="text-center">
+		<a href="#" ng-click="closeModal()">Fermer</h3>
+	</div>
 </div>

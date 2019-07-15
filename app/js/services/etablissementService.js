@@ -42,7 +42,7 @@ var etablissementFilters = [
     }
 ];
 
-angular.module('ddsCommon').factory('EtablissementService', function($http, $rootScope, CityService) {
+angular.module('ddsCommon').factory('EtablissementService', function($http, $q) {
 
     function normalizeEtablissement(etablissementFeature) {
         var etablissement = etablissementFeature.properties;
@@ -77,7 +77,7 @@ angular.module('ddsCommon').factory('EtablissementService', function($http, $roo
         return etablissement;
     }
 
-    function getEtablissementTypesBySituation(situation, droits) {
+    function getEtablissementTypesBySituation(situation) {
         var etablissementTypes = defaultEtablissementTypes.slice();
 
         _.forEach(etablissementFilters, function(etablissementFilter) {
@@ -91,31 +91,16 @@ angular.module('ddsCommon').factory('EtablissementService', function($http, $roo
             }
         });
 
-        var etablissementTypesForBenefits = [];
-        if (droits) {
-            droits.map(function(droit) {
-                if (droit.provider.hasOwnProperty('etablissements')) {
-                    etablissementTypesForBenefits = etablissementTypesForBenefits.concat(droit.provider.etablissements);
-                }
-            });
-        }
-
-        etablissementTypes = etablissementTypes.concat(etablissementTypesForBenefits);
-        etablissementTypes = _.uniq(etablissementTypes);
-
         return etablissementTypes;
     }
 
-    function getEtablissements(situation, droits) {
-        return CityService
-            .getCities(situation.menage.code_postal)
-            .then(function(cities) { return _.find(cities, { codeCommune: situation.menage.depcom }); })
-            .then(function(city) { return city; })
-            .then(function(city) {
-                var etablissementTypes = getEtablissementTypesBySituation(situation, droits);
+    function getEtablissements(city, types) {
+        if (! types || ! types.length) {
+            return $q.resolve([]);
+        }
 
-                return $http.get('https://etablissements-publics.api.gouv.fr/v3/communes/' + city.codeCommune + '/' + etablissementTypes.join('+'));
-            })
+        var url = 'https://etablissements-publics.api.gouv.fr/v3/communes/' + city + '/' + types.join('+');
+        return $http.get(url)
             .then(function(response) { return response.data.features; }, function() { return []; })
             .then(function(etablissements) {
                 return etablissements.map(normalizeEtablissement);

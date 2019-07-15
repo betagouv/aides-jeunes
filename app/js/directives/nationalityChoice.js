@@ -42,11 +42,11 @@ angular.module('ddsCommon').directive('nationalityChoice', function($analytics, 
             });
             scope.$watch('nationaliteCode', function(value) {
                 scope.individu.nationalite_code = value.code;
+                scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(value.code);
             });
 
             scope.selectNationalite = function(item) {
-                scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(item.code);
-                scope.individu.nationalite_code = item.code;
+                scope.nationaliteCode = item;
                 $analytics.eventTrack('select', { category: 'Nationalité', label: item.name });
             };
 

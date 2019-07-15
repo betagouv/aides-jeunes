@@ -19,12 +19,6 @@ angular.module('ddsApp').service('ResultatService', function($http, $rootScope, 
         return ressources[ressourceId] && ressources[ressourceId][period];
     }
 
-    function wasInjected(ressourceId, ressources) {
-        return _.reduce(ressources[ressourceId], function(result, value) {
-            return result || value;
-        }, false);
-    }
-
     function round(amount, aide) {
         if (aide.type && aide.type !== 'float') {
             return amount;
@@ -53,7 +47,7 @@ angular.module('ddsApp').service('ResultatService', function($http, $rootScope, 
                         return;
                     }
 
-                    if (_.some(situation.individus, function(individu) { return wasInjected(aideId, individu); })) {
+                    if (_.some(situation.individus, function(individu) { return valueAt(aideId, individu, period) !== undefined; })) {
                         return result.droitsInjectes.push(aide);
                     }
 

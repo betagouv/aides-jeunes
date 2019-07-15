@@ -28,7 +28,7 @@
     "js-yaml": "^3.13.1",
     "jsonwebtoken": "^8.5.1",
     "kerberos": "0.0.23",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.14",
     "ludwig-api": "github:betagouv/ludwig-api#v1.3.0",
     "ludwig-ui": "^1.5.4",
     "mingo": "^2.3.5",

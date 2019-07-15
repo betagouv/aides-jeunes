@@ -40,7 +40,7 @@ angular.module('ddsApp').directive('etablissement', function() {
     };
 });
 
-angular.module('ddsApp').directive('etablissementsCta', function($uibModal, EtablissementService) {
+angular.module('ddsApp').directive('etablissementsCta', function($analytics, $uibModal, EtablissementService) {
     return {
         restrict: 'E',
         templateUrl: '/partials/etablissements-cta.html',
@@ -51,6 +51,9 @@ angular.module('ddsApp').directive('etablissementsCta', function($uibModal, Etab
         },
         link: function(scope) {
             scope.openModal = function() {
+
+                $analytics.eventTrack('openModal', { category: 'Établissements', label: droit.label });
+
                 $uibModal.open({
                     animation: true,
                     ariaLabelledBy: 'modal-title',

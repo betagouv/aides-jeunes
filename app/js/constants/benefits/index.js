@@ -13,7 +13,6 @@
                         'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une prestation accordée aux personnes retraitées ayant de faibles ressources. Elle est versée tous les mois par la Carsat (ou la MSA si vous dépendez du régime agricole). Elle s’ajoute, dans une certaine limite, aux revenus personnels. Elle remplace le minimum vieillesse depuis 2006.',
                         'conditions': [
                             'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
-                            'Si vous êtes ressortissant·e d’un autre pays hors de l’UE, de l’EEE ou de Suisse, résider en France depuis plus de 10 ans avec des titres de séjours autorisant à travailler.',
                             'L’ASPA n’est pas compatible avec l’AAH. Avant de faire votre demande, renseignez-vous auprès de votre MDPH : le basculement vers le régime de l’ASPA n’est plus obligatoire pour les personnes qui atteignent depuis 2017 les 62 ans.',
                             'Avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles vous avez droit.',
                             'Votre conjoint·e doit avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles il ou elle a droit.'
@@ -146,8 +145,6 @@
                         'conditions': [
                             'Signer un <a target="_blank" rel="noopener" href="http://social-sante.gouv.fr/affaires-sociales/lutte-contre-l-exclusion/droits-et-aides/le-revenu-de-solidarite-active-rsa/article/quels-sont-les-droits-et-devoirs-des-beneficiaires-du-rsa" title="Détails sur les droits et devoirs des bénéficiaires du RSA">contrat d’engagement réciproque</a> (CER) avec votre département ou un <a target="_blank" rel="noopener"  href="https://www.service-public.fr/particuliers/vosdroits/F14926" title="Détails sur les droits et devoirs des bénéficiaires du RSA">Projet Personnalisé d’Accès à l’Emploi</a> (PPAE) avec Pôle emploi.',
                             'Résider en France plus de 9 mois par an.',
-                            'Si vous êtes ressortissant·e d’un pays de l’UE, de l’EEE ou Suisse, résider en France depuis plus de 3 mois et remplir les conditions du droit au séjour.',
-                            'Si vous êtes ressortissant·e d’un autre pays, résider en France depuis plus de 5 ans de manière continue (sous couvert de titres de séjours autorisant à travailler).'
                         ],
                         'link': 'https://www.service-public.fr/particuliers/vosdroits/N19775',
                         'teleservice': 'https://wwwd.caf.fr/redirect/s/Redirect?page=demandeRsa',

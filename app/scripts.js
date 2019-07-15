@@ -115,6 +115,7 @@ require('./js/directives/nationalityChoice.js');
 require('./js/directives/nextButton.js');
 require('./js/directives/offlineResult.js');
 require('./js/directives/selectOnFocus.js');
+require('./js/directives/titreSejourQuestion.js');
 require('./js/directives/yesNoQuestion.js');
 require('./js/directives/ym2RessourcesCallToAction.js');
 require('./js/directives/zeroToEmpty.js');

@@ -4,7 +4,7 @@ var EEE_TEXT = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danema
     'France, Grèce, Hongrie, Irlande, Islande, Italie, Lettonie, Liechtenstein, Lituanie, Luxembourg, Malte, Norvège, Pays-Bas, ' +
     'Pologne, Portugal, République Tchèque, Roumanie, Royaume-Uni, Slovaquie, Slovénie, Suède.';
 
-angular.module('ddsCommon').directive('nationalityChoice', function($analytics, ABTestingService, NationaliteService) {
+angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingService, NationaliteService) {
     return {
         restrict: 'E',
         templateUrl: '/partials/nationality-choice.html',
@@ -47,21 +47,6 @@ angular.module('ddsCommon').directive('nationalityChoice', function($analytics, 
 
             scope.selectNationalite = function(item) {
                 scope.nationaliteCode = item;
-                $analytics.eventTrack('select', { category: 'Nationalité', label: item.name });
-            };
-
-            // The function below allows to grab events when the user is typing
-            // @see https://github.com/angular-ui/ui-select/issues/499#issuecomment-287316355
-            var bindingDone = false;
-            scope.bindEvents = function($select) {
-                if (! bindingDone) {
-                    $select.searchInput.on('keyup', _.debounce(function() {
-                        if (this.value) {
-                            $analytics.eventTrack('input', { category: 'Nationalité', label: this.value });
-                        }
-                    }, 200));
-                    bindingDone = true;
-                }
             };
         },
     };

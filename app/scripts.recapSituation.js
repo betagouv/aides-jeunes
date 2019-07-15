@@ -1,6 +1,6 @@
-// Include @babel/polyfill at the top of the entry point
 // @see https://babeljs.io/docs/en/babel-polyfill
-require('@babel/polyfill');
+require('core-js/stable');
+require('regenerator-runtime/runtime');
 
 global.moment = require('moment');
 

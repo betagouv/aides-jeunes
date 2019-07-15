@@ -52,7 +52,7 @@ angular.module('ddsApp').directive('etablissementsCta', function($analytics, $ui
         link: function(scope) {
             scope.openModal = function() {
 
-                $analytics.eventTrack('openModal', { category: 'Établissements', label: droit.label });
+                $analytics.eventTrack('openModal', { category: 'Établissements', label: scope.droit.label });
 
                 $uibModal.open({
                     animation: true,

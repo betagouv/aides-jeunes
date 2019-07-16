@@ -10,7 +10,7 @@ var NATIONALITE_LABEL = {
     'autre': 'hors UE'
 };
 
-var EU_COUNTRY_CODES = [
+var EEE_COUNTRY_CODES = [
     'AT',
     'BE',
     'BG',
@@ -29,19 +29,18 @@ var EU_COUNTRY_CODES = [
     'IS',
     'IT',
     'LI',
-    'LT',
-    'LV',
     'LU',
-    'NO',
+    'LV',
     'MT',
     'NL',
+    'NO',
     'PL',
     'PT',
     'RO',
-    'UK',
     'SE',
     'SI',
     'SK',
+    'UK',
 ];
 
 angular.module('ddsCommon').factory('NationaliteService', function() {
@@ -86,7 +85,7 @@ angular.module('ddsCommon').factory('NationaliteService', function() {
             if (countryCode === 'FR') {
                 return 'fr';
             }
-            if (EU_COUNTRY_CODES.includes(countryCode)) {
+            if (EEE_COUNTRY_CODES.includes(countryCode) || countryCode === 'CH') {
                 return 'ue';
             }
 

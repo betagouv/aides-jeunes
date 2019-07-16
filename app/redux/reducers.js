@@ -2,6 +2,7 @@ import _ from 'lodash'
 
 import {
   PERSIST_SUCCESS,
+  SIMULATE_REQUEST,
   SIMULATE_SUCCESS,
   MODIFY_DATE_OF_BIRTH,
   MODIFY_NATIONALITY,
@@ -164,7 +165,8 @@ const initialState = {
     },
     foyer_fiscal: {}
   },
-  resultat: {}
+  resultat: {},
+  isSimulating: false
 }
 
 const createIndividu = (id, props) => {
@@ -274,11 +276,19 @@ export default (state = initialState, action = {}) => {
         }
       }
 
+    case SIMULATE_REQUEST:
+
+      return {
+        ...state,
+        isSimulating: true
+      }
+
     case SIMULATE_SUCCESS:
 
       return {
         ...state,
-        resultat: action.payload
+        resultat: action.payload,
+        isSimulating: false
       }
 
     default:

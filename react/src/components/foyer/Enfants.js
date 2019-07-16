@@ -5,24 +5,17 @@ import { connect } from 'react-redux'
 
 import { modifyDateOfBirth } from '../../../../app/redux/actions'
 
-const Demandeur = (props) => {
+const Enfants = (props) => {
 
   function handleSubmit(e) {
     e.preventDefault()
-    props.history.push('/foyer/enfants')
-  }
-
-  function handleChange(date, dateString) {
-    props.modifyDateOfBirth('demandeur', dateString)
+    props.history.push('/foyer/conjoint')
   }
 
 	return (
     <div>
-      <h1>Demandeur</h1>
+      <h1>Enfants</h1>
       <Form layout="vertical" onSubmit={ handleSubmit }>
-        <Form.Item label="Date de naissance">
-          <DatePicker format="DD/MM/YYYY" onChange={ handleChange } />
-        </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
             Valider
@@ -43,8 +36,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps (dispatch) {
 
   return {
-    modifyDateOfBirth: (id, date) => dispatch(modifyDateOfBirth(id, date))
+    // modifyDateOfBirth: date => dispatch(modifyDateOfBirth(date))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Demandeur))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Enfants))

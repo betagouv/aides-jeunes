@@ -9,6 +9,7 @@ import 'moment/locale/fr'
 import 'antd/dist/antd.css'
 
 import Foyer from './Foyer'
+import Resultat from './Resultat'
 
 moment.locale('fr')
 
@@ -29,6 +30,7 @@ export default () => {
           <div className="row">
             <Route path="/" exact component={ Index } />
             <Route path="/foyer" component={ Foyer } />
+            <Route path="/resultat" exact component={ Resultat } />
           </div>
         </div>
       </LocaleProvider>

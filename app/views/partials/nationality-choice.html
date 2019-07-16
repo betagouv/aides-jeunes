@@ -21,8 +21,8 @@
 
 <div ng-if="widget === 'select'">
   <ui-select ng-model="nationaliteCode"
-    ng-model-options="{ debounce: 200 }" on-select="selectNationalite($item, $model)"
-    ng-click="bindEvents($select)"
+    ng-model-options="{ debounce: 200 }"
+    on-select="selectNationalite($item, $model)"
     theme="bootstrap">
     <ui-select-match placeholder="Sélectionnez votre nationalité…">{{ $select.selected.name }}</ui-select-match>
     <ui-select-choices repeat="nationalite in nationalites | nationaliteFilter: $select.search">

@@ -75,7 +75,6 @@ module.exports = {
     "GN": "Guinéenne",
     "GY": "Guyanienne",
     "HT": "Haïtienne",
-    "GR": "Hellénique",
     "HN": "Hondurienne",
     "HU": "Hongroise",
     "IN": "Indienne",

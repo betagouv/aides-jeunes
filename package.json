@@ -57,6 +57,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
+    "@babel/preset-react": "^7.0.0",
     "angular": "^1.7.8",
     "angular-animate": "^1.7.8",
     "angular-i18n": "^1.7.8",
@@ -64,6 +65,7 @@
     "angular-sanitize": "^1.7.8",
     "angular-ui-bootstrap": "^2.5.6",
     "angular-ui-router": "^1.0.22",
+    "antd": "^3.20.3",
     "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
     "bootstrap-sass": "^3.4.1",
@@ -111,6 +113,10 @@
     "open": "^6.3.0",
     "ora": "^3.4.0",
     "postcss-loader": "^3.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
     "requirejs": "^2.2.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
@@ -147,7 +153,8 @@
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
     "openfisca": "cd openfisca && gunicorn api --config config.py",
     "stats": "node backend/lib/stats",
-    "eslint": "eslint ."
+    "eslint": "eslint .",
+    "react": "cd react && webpack-dev-server --host 0.0.0.0 --open --mode development"
   },
   "license": "AGPL-3.0",
   "jest": {

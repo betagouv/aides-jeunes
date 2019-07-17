@@ -30,7 +30,7 @@ module.exports = {
     "BA": "Bosnienne",
     "BW": "Botswanaise",
     "BR": "Brésilienne",
-    "UK": "Britannique",
+    "GB": "Britannique",
     "BN": "Brunéienne",
     "BG": "Bulgare",
     "BF": "Burkinabé",

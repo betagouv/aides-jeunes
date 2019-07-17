@@ -17,8 +17,10 @@
     <base href="/">
 
     <% if (htmlWebpackPlugin.options.devServer) { %>
+    <link href="<%= htmlWebpackPlugin.options.devServer %><%= htmlWebpackPlugin.files.chunks['vendor'].css %>" rel="stylesheet" />
     <link href="<%= htmlWebpackPlugin.options.devServer %><%= htmlWebpackPlugin.files.chunks['scripts'].css %>" rel="stylesheet" />
     <% } else { %>
+    <link href="<%= htmlWebpackPlugin.files.chunks['vendor'].css %>" rel="stylesheet" />
     <link href="<%= htmlWebpackPlugin.files.chunks['scripts'].css %>" rel="stylesheet" />
     <% } %>
 

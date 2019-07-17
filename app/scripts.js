@@ -6,12 +6,12 @@ global.moment = require('moment');
 
 require('angular-ui-router');
 require('angular-ui-bootstrap');
-require('ui-select');
 require('angular-animate');
 require('angular-sanitize');
 require('angulartics');
 require('angulartics-piwik');
 require('ngstorage');
+require('angucomplete-alt');
 
 require('moment/locale/fr');
 require('angular-i18n/angular-locale_fr');
@@ -120,4 +120,3 @@ require('./js/directives/zeroToEmpty.js');
 require('./js/filters/strings.js');
 require('./js/filters/isEmpty.js');
 require('./js/filters/orderObjectBy.js');
-require('./js/filters/nationaliteFilter.js');

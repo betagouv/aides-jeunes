@@ -8,7 +8,7 @@ var ngRaven = require('raven-js/plugins/angular').moduleName;
 // https://webpack.js.org/guides/dependency-management/#require-context
 var template = require.context('../views', true, /(partials|content-pages)\/.*\.html$/);
 
-var requires = ['ui.router', 'ngAnimate', 'ddsCommon', 'ngSanitize', 'angulartics', 'angulartics.piwik', 'ui.select'];
+var requires = ['ui.router', 'ngAnimate', 'ddsCommon', 'ngSanitize', 'angulartics', 'angulartics.piwik', 'angucomplete-alt'];
 
 if (Raven.isSetup()) {
     requires.push(ngRaven);

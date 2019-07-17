@@ -20,13 +20,21 @@
 </div>
 
 <div ng-if="widget === 'select2'">
-  <ui-select ng-model="individu.nationalite_code"
-    ng-model-options="{ debounce: 200 }"
-    on-select="selectNationalite($item.code)"
-    theme="bootstrap">
-    <ui-select-match placeholder="Sélectionnez votre nationalité…">{{ $select.selected.name }}</ui-select-match>
-    <ui-select-choices repeat="nationalite.code as nationalite in nationalites | nationaliteFilter: $select.search">
-      <div ng-bind-html="nationalite.name | highlight: $select.search"></div>
-    </ui-select-choices>
-  </ui-select>
+  <angucomplete-alt
+    id="nationalite"
+    placeholder="Ex : Française, France"
+    pause="100"
+    selected-object="selectNationalite"
+    initial-value="nationaliteObject"
+    local-data="nationalites"
+    local-search="search"
+    title-field="nationalite"
+    minlength="2"
+    input-class="form-control"
+    match-class="highlight"
+    text-searching="false"
+    text-no-results="Aucun résultat"
+    focus-first="true"
+    focus-in="focusIn()"
+    focus-out="focusOut()"></angucomplete-alt>
 </div>

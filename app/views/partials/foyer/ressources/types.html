@@ -7,6 +7,7 @@
         vous pourrez ensuite saisir les montants.
       </legend>
       <input type="text" 
+        ng-hide="hideSearch"
         ng-model="searchString"
         ng-model-options="{ debounce: 200 }"
         class="form-control search-input"

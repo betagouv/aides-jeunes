@@ -39,8 +39,8 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         $localStorage.ABTesting.datepicker.value = $localStorage.ABTesting.datepicker.value || (Math.random() > 0.5 ? 'Current' : 'New');
         //$localStorage.ABTesting.datepicker.deleted = true;
 
-        $localStorage.ABTesting.resourceHelp = $localStorage.ABTesting.resourceHelp || { index: 3 };
-        $localStorage.ABTesting.resourceHelp.value = $localStorage.ABTesting.resourceHelp.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
+        $localStorage.ABTesting.ressourceHelp = $localStorage.ABTesting.ressourceHelp || { index: 3 };
+        $localStorage.ABTesting.ressourceHelp.value = $localStorage.ABTesting.ressourceHelp.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
         //$localStorage.ABTesting.resourceHelp.deleted = true;
 
         $localStorage.ABTesting.noSpecificSituationCheckbox = $localStorage.ABTesting.noSpecificSituationCheckbox || { index: 4 };
@@ -59,6 +59,9 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
             }
         }
         //$localStorage.ABTesting.nationaliteWidget.deleted = true;
+
+        $localStorage.ABTesting.ressourceSearch = $localStorage.ABTesting.ressourceSearch || { index: 6 };
+        $localStorage.ABTesting.ressourceSearch.value = $localStorage.ABTesting.ressourceSearch.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
 
         _.forEach($localStorage.ABTesting, function(data, name) {
             if (data.deleted) {

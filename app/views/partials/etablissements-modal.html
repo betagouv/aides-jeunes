@@ -1,22 +1,31 @@
 <div class="benefit-etablissements-modal">
-	<div>
-		<button type="button" class="close" aria-label="Close" ng-click="closeModal()"><span aria-hidden="true">&times;</span></button>
-	</div>
-	<div class="text-center">
-		<h3><i class="fa fa-home"></i> {{ title }}</h3>
-		<p class="text-muted">
-			Des lieux près de chez vous où vous pouvez être accompagné·e pour faire votre demande et poser toutes vos questions
-		</p>
-	</div>
-	<hr />
+  <style type="text/css">
+    .benefit-etablissements-modal .footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+  </style>
+  <div>
+    <button type="button" class="close" aria-label="Close" ng-click="closeModal()"><span aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="text-center">
+    <h3><i class="fa fa-home"></i> Des lieux d'accueil près de chez vous</h3>
+    <p>
+      Vous pouvez y être accompagné·e pour faire votre demande et poser toutes vos questions.
+    </p>
+  </div>
+  <hr />
   <div ng-repeat="etablissement in etablissements">
-  	<h4>{{ etablissement.nom }}</h4>
+    <h4>{{ etablissement.nom }}</h4>
     <div class="container-fluid">
       <etablissement etablissement="etablissement"></etablissement>
     </div>
   </div>
   <hr />
-  <div class="text-center">
-		<a href="#" ng-click="closeModal()">Fermer</h3>
-	</div>
+  <div class="footer">
+    <a
+      class="btn btn-default"
+      ng-click="closeModal()">
+      Fermer</h3>
+  </div>
 </div>

@@ -52,7 +52,7 @@ angular.module('ddsApp').directive('etablissementsCta', function($analytics, $ui
         link: function(scope) {
             scope.openModal = function() {
 
-                $analytics.eventTrack('openModal', { category: 'Établissements', label: scope.droit.label });
+                $analytics.eventTrack('show-locations', { category: 'Établissements', label: scope.droit.label });
 
                 $uibModal.open({
                     animation: true,
@@ -64,9 +64,6 @@ angular.module('ddsApp').directive('etablissementsCta', function($analytics, $ui
                     resolve: {
                         etablissements: function() {
                             return EtablissementService.getEtablissements(scope.city, scope.types);
-                        },
-                        title: function() {
-                            return scope.droit.label;
                         }
                     }
                 });
@@ -75,9 +72,8 @@ angular.module('ddsApp').directive('etablissementsCta', function($analytics, $ui
     };
 });
 
-angular.module('ddsApp').controller('etablissementsModalCtrl', function($scope, $uibModalInstance, etablissements, title) {
+angular.module('ddsApp').controller('etablissementsModalCtrl', function($scope, $uibModalInstance, etablissements) {
     $scope.etablissements = etablissements;
-    $scope.title = title;
     $scope.closeModal = function () {
         $uibModalInstance.close();
     };

@@ -13,19 +13,14 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($scope, 
     var filteredRessourceTypes = _.filter(ressourceTypes, RessourceService.isRessourceOnMainScreen);
     $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
 
-    var fuseTypes = new Fuse(ressourceTypes, {
+    var fuseOptions = {
         keys: ['label'],
         id: 'id',
         minMatchCharLength: 2,
         threshold: 0.4,
-    });
-
-    var fuseCategories = new Fuse(ressourceCategories, {
-        keys: ['label', 'help'],
-        id: 'id',
-        minMatchCharLength: 3,
-        threshold: 0.4,
-    });
+    };
+    var fuseTypes = new Fuse(ressourceTypes, fuseOptions);
+    var fuseCategories = new Fuse(ressourceCategories, fuseOptions);
 
     function updateSearchedRessources(searchString) {
         function isRessourceSearched(ressource) {

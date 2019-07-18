@@ -5,16 +5,16 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
     var scope, _ressourceTypes_, controller;
 
     beforeEach(function() {
-        scope = {
-            situation: { dateDeValeur: '2013-04-10' },
-            ressources: [],
-            declareNextIndividuResources: function() {},
-        };
         module('ddsApp');
-        inject(function(ressourceTypes, $controller) {
+        inject(function(ressourceTypes, $controller, $rootScope) {
             _ressourceTypes_ = ressourceTypes;
             controller = $controller;
+            scope = $rootScope.$new();
         });
+
+        scope.situation = { dateDeValeur: '2013-04-10' };
+        scope.ressources = [];
+        scope.declareNextIndividuResources = function() {};
     });
 
     var initController = function(individuIndex) {

@@ -18,7 +18,7 @@ var typeLabels = {
     teleservice: 'Faire une demande en ligne',
     form: 'Accéder au formulaire papier',
     instructions: 'Accéder aux instructions',
-    link: "<i class='fa fa-external-link' aria-hidden='true' role='presentation'></i> Plus d'informations",
+    link: "Plus d'informations <i class='fa fa-external-link' aria-hidden='true' role='presentation'></i>",
 };
 
 angular.module('ddsApp').controller('benefitCtaLinkCtrl', function($scope, $state, SituationService, TrampolineService) {

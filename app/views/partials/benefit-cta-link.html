@@ -2,8 +2,8 @@
   target="_blank"
   rel="noopener"
   ng-class="{
-    'btn': type !== 'link',
-    'btn-block': type !== 'link',
+    'btn': !level.includes('inline'),
+    'btn-block': !level.includes('inline'),
     'btn-default': level === 'default',
     'btn-success': level === 'success' }"
   ng-click="onClick(link)"

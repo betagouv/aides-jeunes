@@ -40,7 +40,7 @@
             analytics-name="droit.label"
             link="droit.link"
             type="'link'"
-            level="'none'"
+            level="'inline'"
             itemprop="termsOfService"
           ></benefit-cta-link>
         </span>
@@ -69,7 +69,13 @@
       >
         Démarches pour les professions agricoles
       </a>
-      <etablissements-cta city="city" types="droit.provider.etablissements" droit="droit" ng-if="droit.provider.etablissements.length > 0"></etablissements-cta>
+      <etablissements-cta
+        city="city"
+        types="droit.provider.etablissements"
+        droit="droit"
+        ng-if="droit.provider.etablissements.length > 0"
+      >
+      </etablissements-cta>
     </div>
 
     <div class="text-center print-hidden">

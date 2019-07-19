@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-4">
     <adress>
-      <i class="fa fa-home" aria-hidden="true"></i> Adresse&nbsp;:<br />
+      <i class="fa fa-home" aria-hidden="true"></i> Adresse :<br />
       <div ng-repeat="ligne in etablissement.adresse.lignes">
         {{ ligne }}<br />
       </div>
@@ -9,13 +9,13 @@
     </adress>
   </div>
   <div class="col-md-4" ng-if="etablissement.horaires">
-    <i class="fa fa-clock-o" aria-hidden="true"></i> Horaires&nbsp;:<br />
+    <i class="fa fa-clock-o" aria-hidden="true"></i> Horaires :<br />
     <div ng-repeat="plage_jour in etablissement.horaires">
       <div ng-if="plage_jour.du === plage_jour.au">
-        Les {{ plage_jour.du }}s&nbsp;:
+        Les {{ plage_jour.du }}s :
       </div>
       <div ng-if="plage_jour.du !== plage_jour.au">
-        Du {{ plage_jour.du }} au {{ plage_jour.au }}&nbsp;:
+        Du {{ plage_jour.du }} au {{ plage_jour.au }} :
       </div>
       <ul>
         <li ng-repeat="plage_heure in plage_jour.heures">
@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="col-md-4" ng-if="etablissement.url || etablissement.telephone">
-    Contact&nbsp;:<br />
+    Contact :<br />
     <div ng-if="etablissement.url">
       <i class="fa fa-share-square-o" aria-hidden="true"></i>
       <a

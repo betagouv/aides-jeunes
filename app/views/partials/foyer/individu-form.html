@@ -19,7 +19,7 @@
         >
       <ul class="help-block" id="help-date-de-naissance" ng-if="submitted && form.dateDeNaissance.$invalid">
         <li ng-show="form.dateDeNaissance.$error.format">
-          Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
+          Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 15/06/1981.
         </li>
         <li ng-if="form.dateDeNaissance.$error.required">
           Ce champ est obligatoire.
@@ -133,7 +133,7 @@
   <div ng-if="captureEligibiliteAss()">
     <div class="form-group" ng-class="{'has-error': submitted && form.date_debut_chomage.$invalid}">
       <label class="control-label col-sm-4" for="last-job-end-date">
-        Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?
+        Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ?
       </label>
       <div class="col-sm-4">
         <input
@@ -148,7 +148,7 @@
 
         <ul class="help-block" ng-if="submitted && form.date_debut_chomage.$invalid">
           <li ng-show="form.date_debut_chomage.$error.format">
-            Veuillez utiliser le format MM/AAAA. Par exemple&nbsp;: 04/2016.
+            Veuillez utiliser le format MM/AAAA. Par exemple : 04/2016.
           </li>
           <li ng-if="form.date_debut_chomage.$error.isBeforeMin">
             Il semblerait que votre contrat de travail se soit arrêté avant votre naissance.
@@ -169,10 +169,10 @@
       >
       <question>
         {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
-        travaillé au moins 5&nbsp;ans entre&nbsp;{{ individu.date_debut_chomage.clone().subtract(10, 'years').format('MMMM YYYY') }}
-        et&nbsp;{{ individu.date_debut_chomage.format('MMMM YYYY') }}&nbsp;?
+        travaillé au moins 5 ans entre {{ individu.date_debut_chomage.clone().subtract(10, 'years').format('MMMM YYYY') }}
+        et {{ individu.date_debut_chomage.format('MMMM YYYY') }} ?
       </question>
-      <help-block>1825&nbsp;jours (5&nbsp;fois&nbsp;365) couverts par un contrat de travail, en activité ou en congés.</help-block>
+      <help-block>1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés.</help-block>
     </yes-no-question>
   </div>
 
@@ -209,7 +209,7 @@
     >
     <question>
       {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
-      une restriction substantielle et durable d'accès à l'emploi reconnue par la <abbr title="Commission des droits et de l'autonomie des personnes handicapées">CDAPH</abbr>&nbsp;?</question>
+      une restriction substantielle et durable d'accès à l'emploi reconnue par la <abbr title="Commission des droits et de l'autonomie des personnes handicapées">CDAPH</abbr> ?</question>
       <help-block>Attention, cette restriction est différente de la reconnaissance de la qualité de travailleur handicapé.</help-block>
   </yes-no-question>
 
@@ -217,12 +217,12 @@
     ng-if="captureEnfantPlace()"
     size="4"
     >
-    <question>Est-il/elle placé·e en structure spécialisée ou famille d'accueil&nbsp;?</question>
+    <question>Est-il/elle placé·e en structure spécialisée ou famille d'accueil ?</question>
   </yes-no-question>
 
   <fieldset class="form-group" ng-if="selectedStatuts.etudiant">
     <label class="col-sm-4 control-label" for="echelon-bourse">
-      À quel échelon {{ individu.role == 'demandeur' ? 'êtes-vous' : 'est-il/elle' }} boursier&nbsp;?
+      À quel échelon {{ individu.role == 'demandeur' ? 'êtes-vous' : 'est-il/elle' }} boursier ?
     </label>
     <div class="col-sm-4">
       <input id="echelon-bourse"
@@ -242,12 +242,12 @@
     ng-if="captureDemandeurACharge()"
     size="4"
     >
-    <question>Remplirez-vous vous-même votre prochaine déclaration de revenus aux impôts&nbsp;?</question>
+    <question>Remplirez-vous vous-même votre prochaine déclaration de revenus aux impôts ?</question>
   </yes-no-question>
 
   <div class="form-group" ng-if="captureScolarite(form)">
     <label class="control-label col-sm-4" for="scolarite">
-      Où sera-t-il/elle scolarisé·e à la rentrée prochaine ?
+      Où sera-t-il/elle scolarisé·e à la rentrée prochaine ?
     </label>
     <div class="col-sm-4">
       <select
@@ -263,13 +263,13 @@
     ng-if="captureEnfantACharge(form)"
     size="4"
     >
-    <question>Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?</question>
+    <question>Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu ?</question>
   </yes-no-question>
 
   <div class="form-group" ng-if="individu.role == 'demandeur' && capturePerteAutonomie">
     <div class="col-sm-4 control-label">
       <label for="gir" id="girQuestion">
-        Avez-vous besoin d’une aide à la personne&nbsp;?
+        Avez-vous besoin d’une aide à la personne ?
       </label>
     </div>
     <div class="button-row">

@@ -58,7 +58,7 @@ Erreur : {{ encodedError }}
 
   <div ng-if="! (droitsNonEligibles | isEmpty)" ng-show="droitsNonEligiblesShow">
     <p>
-      Les conditions des aides suivantes <strong>ne sont pas</strong> remplies&nbsp;:
+      Les conditions des aides suivantes <strong>ne sont pas</strong> remplies :
     </p>
     <droit-non-eligibles-list
       droits="droitsNonEligibles"
@@ -72,7 +72,7 @@ Erreur : {{ encodedError }}
 
   <div class="print-hidden">
     <div id="feedback">
-      <h4>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider&nbsp;!</h4>
+      <h4>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider !</h4>
       <p>La plupart des résultats que nous vous proposons sont automatiquement arrondis à une dizaine d'euros près.</p>
       <ul>
         <li><a analytics-on="click" analytics-category="Contact" analytics-event="Support"
@@ -123,7 +123,7 @@ ID : {{ situation._id }} (à conserver impérativement pour traitement de votre 
       </ul>
       <small ng-if="situation._id">Cette simulation a pour identifiant <span class="preformatted">{{ situation._id }}</span> (en savoir plus sur <a ui-sref="cgu_donnees">le traitement de vos données personnelles</a>).</small><br>
       <small>
-        Partenaires&nbsp;:
+        Partenaires :
         <a
           ui-sref="foyer.resultat.suggestion"
           analytics-on="click"
@@ -144,7 +144,7 @@ ID : {{ situation._id }} (à conserver impérativement pour traitement de votre 
   <!-- Page break for print -->
   <div class="page-break"></div>
 
-  <h1 ng-if="! (droits | isEmpty)">Comment obtenir vos aides&nbsp;?</h1>
+  <h1 ng-if="! (droits | isEmpty)">Comment obtenir vos aides ?</h1>
   <droit-eligibles-details
     city="situation.menage.depcom"
     droits="droits"

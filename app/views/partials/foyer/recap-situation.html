@@ -16,7 +16,7 @@
     <h4>Votre logement</h4>
     <div class="situation-block">
       <div ng-if="recapLogement" ng-bind-html="recapLogement | uppercaseFirst"></div>
-      <div ng-if="situation.menage.loyer">{{ loyerLabel }}&nbsp;: <b>{{ situation.menage.loyer | currency }}</b></div>
+      <div ng-if="situation.menage.loyer">{{ loyerLabel }} : <b>{{ situation.menage.loyer | currency }}</b></div>
       Code postal <b>{{ situation.menage.code_postal }}</b>
       <br><b>{{ situation.menage.nom_commune }}</b>
     </div>
@@ -107,7 +107,7 @@
         class="ressources-recap panel panel-default"
         is-open="revenu.isOpen">
         <div ng-repeat="value in patrimoine">
-          {{ value.label }}&nbsp;: {{ value.montant | currency }}
+          {{ value.label }} : {{ value.montant | currency }}
         </div>
       </div>
       <div uib-accordion-group
@@ -115,13 +115,13 @@
         heading="{{ revenu.label }}"
         is-open="revenu.isOpen">
         <div ng-repeat="value in revenu.values">
-          {{ value.periode|uppercaseFirst }}&nbsp;: {{ value.montant | currency }}
+          {{ value.periode|uppercaseFirst }} : {{ value.montant | currency }}
         </div>
       </div>
     </uib-accordion>
   </div>
 
   <h4 id="recap-id" ng-if="situation._id">
-    Identifiant&nbsp;: <span class="preformatted">{{ situation._id }}</span>
+    Identifiant : <span class="preformatted">{{ situation._id }}</span>
   </h4>
 </div>

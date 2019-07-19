@@ -5,33 +5,76 @@ angular.module('ddsApp').directive('etablissementsList', function() {
         restrict: 'E',
         templateUrl: '/partials/etablissements-list.html',
         scope: {
-            codeCommune: '=',
-            codePostal: '='
+            city: '=',
+            types: '=',
         },
         controller: 'etablissementsListCtrl',
     };
 });
 
-angular.module('ddsApp').controller('etablissementsListCtrl', function($http, $interval, $scope, EtablissementService, SituationService) {
+angular.module('ddsApp').controller('etablissementsListCtrl', function($scope, EtablissementService) {
     function getEtablissements(newValues, oldValues, scope) {
-        if (! scope || ! scope.codeCommune || ! scope.codePostal) {
-            return;
-        }
-
-        var situation = SituationService.restoreLocal();
-
         EtablissementService
-            .getEtablissements(situation, scope.codePostal, scope.codeCommune)
+            .getEtablissements(scope.city, scope.types)
             .then(function (etablissements) {
                 scope.etablissements = etablissements;
             });
     }
 
-    $scope.$watchGroup(['codeCommune', 'codePostal'], getEtablissements);
+    $scope.$watch('city', getEtablissements);
+    $scope.$watch('types', getEtablissements);
+});
 
-    $scope.extractHHMM = function(dateString) {
-        return dateString.slice(0,5);
+angular.module('ddsApp').directive('etablissement', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/partials/etablissement.html',
+        scope: {
+            etablissement: '=',
+        },
+        link: function(scope) {
+            scope.extractHHMM = function(dateString) {
+                return dateString.slice(0,5);
+            };
+        }
     };
+});
 
-    getEtablissements();
+angular.module('ddsApp').directive('etablissementsCta', function($analytics, $uibModal, EtablissementService) {
+    return {
+        restrict: 'E',
+        templateUrl: '/partials/etablissements-cta.html',
+        scope: {
+            city: '=',
+            types: '=',
+            droit: '='
+        },
+        link: function(scope) {
+            scope.openModal = function() {
+
+                $analytics.eventTrack('show-locations', { category: 'Établissements', label: scope.droit.label });
+
+                $uibModal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    size: 'lg',
+                    templateUrl: '/partials/etablissements-modal.html',
+                    controller: 'etablissementsModalCtrl',
+                    resolve: {
+                        etablissements: function() {
+                            return EtablissementService.getEtablissements(scope.city, scope.types);
+                        }
+                    }
+                });
+            };
+        }
+    };
+});
+
+angular.module('ddsApp').controller('etablissementsModalCtrl', function($scope, $uibModalInstance, etablissements) {
+    $scope.etablissements = etablissements;
+    $scope.closeModal = function () {
+        $uibModalInstance.close();
+    };
 });

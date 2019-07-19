@@ -146,6 +146,7 @@ ID : {{ situation._id }} (à conserver impérativement pour traitement de votre 
 
   <h1 ng-if="! (droits | isEmpty)">Comment obtenir vos aides ?</h1>
   <droit-eligibles-details
+    city="situation.menage.depcom"
     droits="droits"
     patrimoine-captured="! shouldPatrimoineBeCaptured()"
     ressources-year-moins-2-captured="ressourcesYearMoins2Captured"
@@ -153,7 +154,7 @@ ID : {{ situation._id }} (à conserver impérativement pour traitement de votre 
     ></droit-eligibles-details>
 
   <div class="print-hidden">
-    <etablissements-list code-postal="situation.menage.code_postal" code-commune="situation.menage.depcom"></etablissements-list>
+    <etablissements-list ng-if="defaultEtablissementTypes && defaultEtablissementTypes.length" city="situation.menage.depcom" types="defaultEtablissementTypes"></etablissements-list>
 
     <div>
       <h4 ng-show="! (droitsInjectes | isEmpty)">Vous avez indiqué ces aides au cours la simulation et elles n'ont pas été recalculées</h4>

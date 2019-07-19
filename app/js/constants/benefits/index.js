@@ -6,6 +6,7 @@
             'assurance_retraite': {
                 'label': 'Assurance retraite',
                 'imgSrc': 'logo_assurance_retraite.png',
+                'etablissements': ['carsat'],
                 'prestations': {
                     'aspa': {
                         'label': 'Allocation de solidarité aux personnes âgées',
@@ -31,6 +32,7 @@
             'assurance_maladie': {
                 'label': 'Assurance maladie',
                 'imgSrc': 'logo_assurance_maladie.png',
+                'etablissements': ['cpam'],
                 'prestations': {
                     'acs': {
                         'isMontantAnnuel': true,
@@ -82,6 +84,7 @@
             'caf': {
                 'label': 'Caisse d’allocations familiales',
                 'imgSrc': 'logo_caf.png',
+                'etablissements': ['caf'],
                 'prestations': {
                     'af': {
                         'label': 'Allocations familiales',
@@ -262,6 +265,7 @@
             'pole_emploi': {
                 'label': 'Pôle emploi',
                 'imgSrc': 'logo_pole_emploi.png',
+                'etablissements': ['pole_emploi'],
                 'prestations': {
                     'ass': {
                         'label': 'Allocation de solidarité spécifique',
@@ -298,6 +302,7 @@
             'garantie_jeunes': {
                 'label': 'Garantie Jeunes',
                 'imgSrc': 'logo_garantie_jeunes.png',
+                'etablissements': ['mission_locale'],
                 'repository': 'france-local',
                 'prestations': {
                     'garantie_jeunes': {
@@ -313,14 +318,21 @@
                 },
             },
             'departements': {
-                label: 'Les conseils départementaux',
+                'label': 'Les conseils départementaux',
                 'imgSrc': 'logo_cd_generique.png',
-                prestations: {
-                    apa_eligibilite: require('./apa_eligibilite')
+                'etablissements': [
+                    'mds',
+                    'cdas',
+                    'centre_social',
+                    'edas',
+                    'sdsei',
+                ],
+                'prestations': {
+                    'apa_eligibilite': require('./apa_eligibilite')
                 }
             },
             'banque_de_france': {
-                label: 'La Banque de France',
+                'label': 'La Banque de France',
                 'imgSrc': 'logo_banque_de_france.png',
                 'prestations': {
                     'livret_epargne_populaire_taux': {

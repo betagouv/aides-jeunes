@@ -33,7 +33,18 @@
     </div>
 
     <div class="droit-detail-description">
-      <p ng-bind-html="droit.description" itemprop="description"></p>
+      <p>
+        <span ng-bind-html="droit.description" itemprop="description"></span>
+        <span>
+          <benefit-cta-link
+            analytics-name="droit.label"
+            link="droit.link"
+            type="'link'"
+            level="'inline'"
+            itemprop="termsOfService"
+          ></benefit-cta-link>
+        </span>
+      </p>
       <div ng-if="droit.conditions">
         <p>Pour en bénéficier, vous devez également :</p>
         <ul class="list-unstyled">
@@ -58,13 +69,13 @@
       >
         Démarches pour les professions agricoles
       </a>
-      <benefit-cta-link
-        analytics-name="droit.label"
-        link="droit.link"
-        type="'link'"
-        level="'default'"
-        itemprop="termsOfService"
-      ></benefit-cta-link>
+      <etablissements-cta
+        city="city"
+        types="droit.provider.etablissements"
+        droit="droit"
+        ng-if="droit.provider.etablissements.length > 0"
+      >
+      </etablissements-cta>
     </div>
 
     <div class="text-center print-hidden">

@@ -48,7 +48,14 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         $localStorage.ABTesting.noSpecificSituationCheckbox.deleted = true;
 
         $localStorage.ABTesting.nationaliteWidget = $localStorage.ABTesting.nationaliteWidget || { index: 5 };
-        $localStorage.ABTesting.nationaliteWidget.value = $localStorage.ABTesting.nationaliteWidget.value || (Math.random() > 0.5 ? 'radio' : 'select');
+        $localStorage.ABTesting.nationaliteWidget.value = $localStorage.ABTesting.nationaliteWidget.value || (Math.random() > 0.5 ? 'radio2' : 'select2');
+        if ($localStorage.ABTesting.nationaliteWidget.value) {
+            if ($localStorage.ABTesting.nationaliteWidget.value === 'radio') {
+                $localStorage.ABTesting.nationaliteWidget.value = 'radio2';
+            } else if ($localStorage.ABTesting.nationaliteWidget.value === 'select') {
+                $localStorage.ABTesting.nationaliteWidget.value = 'select2';
+            }
+        }
         //$localStorage.ABTesting.nationaliteWidget.deleted = true;
 
         _.forEach($localStorage.ABTesting, function(data, name) {

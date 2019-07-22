@@ -25,28 +25,11 @@ angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingSer
             }
 
             scope.nationalites = NationaliteService.getSortedArray();
-            scope.nationalite = '';
             scope.popoverEee = EEE_TEXT;
 
-            if (scope.individu.nationalite) {
-                scope.nationalite = scope.individu.nationalite;
-            }
-            if (scope.individu.nationalite_code) {
-                scope.nationaliteCode = _.find(scope.nationalites, function(item) {
-                    return item.code === scope.individu.nationalite_code;
-                });
-            }
-
-            scope.$watch('nationalite', function(value) {
-                scope.individu.nationalite = value;
-            });
-            scope.$watch('nationaliteCode', function(value) {
-                scope.individu.nationalite_code = value.code;
-                scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(value.code);
-            });
-
-            scope.selectNationalite = function(item) {
-                scope.nationaliteCode = item;
+            scope.selectNationalite = function(value) {
+                scope.individu.nationaliteCode = value;
+                scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(value);
             };
         },
     };

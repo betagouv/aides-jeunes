@@ -5,7 +5,7 @@ module.exports = {
         'Faire évaluer votre perte d’autonomie (classement GIR) à domicile par les services sociaux de votre département.',
         'Accepter le plan d’aide proposé par votre département.',
         'Résider depuis plus de trois mois dans votre département.',
-        'Ne pas percevoir <a target="_blank" rel="noopener" title="Service Public.fr - Peut-on cumuler l‘Apa avec d‘autres revenus ?" href="https://www.service-public.fr/particuliers/vosdroits/F11678">certaines autres aides à l‘autonomie</a> non cumulables avec l‘APA',
+        'Ne pas percevoir <a target="_blank" rel="noopener" title="Service Public.fr - Peut-on cumuler l‘Apa avec d‘autres revenus ?" href="https://www.service-public.fr/particuliers/vosdroits/F11678">certaines autres aides à l‘autonomie</a> non cumulables avec l‘APA',
     ],
     link: 'http://www.pour-les-personnes-agees.gouv.fr/beneficier-daides/lapa-est-lallocation-personnalisee-dautonomie/facile-a-lire',
     instructions: 'http://www.pour-les-personnes-agees.gouv.fr/annuaire-conseils-departementaux',

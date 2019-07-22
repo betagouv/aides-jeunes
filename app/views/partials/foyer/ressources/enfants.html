@@ -3,7 +3,7 @@
     <form method="post" name="form" class="form-horizontal" novalidate ng-submit="submit()">
       <yes-no-question model="enfant.hasRessources" size="6" ng-repeat="enfant in enfants">
         <question>
-          {{ escape(enfant.firstName) }} a-t-il·elle perçu des ressources <strong>depuis {{ debutAnneeGlissante }}</strong>&nbsp;?
+          {{ escape(enfant.firstName) }} a-t-il·elle perçu des ressources <strong>depuis {{ debutAnneeGlissante }}</strong> ?
         </question>
       </yes-no-question>
 

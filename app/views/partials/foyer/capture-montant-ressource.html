@@ -8,7 +8,7 @@
         ng-class="{ 'has-error': form.submitted && form[ ressourceType.id + '-monthly-value'].$invalid }"
         >
         <label class="col-sm-5 control-label" for="{{ ressourceType.id }}-monthly-value">
-          {{ regularResourcePrompt }}&nbsp;:
+          {{ regularResourcePrompt }} :
         </label>
         <div class="col-sm-4">
           <div class="input-group">
@@ -97,7 +97,7 @@
             ng-class="{ 'has-error': form.submitted && form[ressourceType.id + '-year'].$invalid }"
             >
             <label for="{{ ressourceType.id }}-year">
-              Total de {{ debutAnneeGlissante }} à {{ threePreviousMonths[threePreviousMonths.length-1].label }}&nbsp;inclus
+              Total de {{ debutAnneeGlissante }} à {{ threePreviousMonths[threePreviousMonths.length-1].label }} inclus
             </label>
             <div class="input-group">
               <input
@@ -162,7 +162,7 @@
     ng-if="shouldAskDateArretDeTravail()"
     ng-class="{'has-error': form.submitted && form.dateArretDeTravail.$invalid}">
     <label class="control-label col-sm-4" for="date-arret-travail">
-      De quand date votre arrêt de travail ? <span class="visually-hidden">au format jour/mois/année</span>
+      De quand date votre arrêt de travail ? <span class="visually-hidden">au format jour/mois/année</span>
     </label>
     <div class="col-sm-4">
       <input
@@ -179,7 +179,7 @@
         >
       <ul class="help-block" id="help-arret-de-travail" ng-if="form.submitted && form.dateArretDeTravail.$invalid">
         <li ng-show="form.dateArretDeTravail.$error.format">
-          Veuillez utiliser le format JJ/MM/AAAA. Par exemple&nbsp;: 15/06/1981.
+          Veuillez utiliser le format JJ/MM/AAAA. Par exemple : 15/06/1981.
         </li>
         <li ng-if="form.dateArretDeTravail.$error.required">
           Ce champ est obligatoire.

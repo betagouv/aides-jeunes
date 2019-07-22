@@ -28,16 +28,16 @@
     </div>
 
     <yes-no-question model="menage.coloc" ng-if="captureColocation()">
-      <question>Est-ce une colocation&nbsp;?</question>
+      <question>Est-ce une colocation ?</question>
     </yes-no-question>
 
     <yes-no-question model="famille.proprietaire_proche_famille" ng-if="captureProprietaireProcheFamille()">
-      <question>Avez-vous un lien de parenté direct avec votre propriétaire&nbsp;?</question>
-      <help-block>Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant, grand-parent…)&nbsp;?</help-block>
+      <question>Avez-vous un lien de parenté direct avec votre propriétaire ?</question>
+      <help-block>Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant, grand-parent…) ?</help-block>
     </yes-no-question>
 
     <div class="form-group" ng-show="captureLocationType()">
-      <label class="control-label col-sm-3">Quel type de logement louez-vous&nbsp;?</label>
+      <label class="control-label col-sm-3">Quel type de logement louez-vous ?</label>
       <div class="col-sm-9">
         <div class="radio" ng-repeat="locationType in locationTypes">
           <label>
@@ -53,14 +53,14 @@
     </div>
 
     <yes-no-question model="menage.logement_chambre" ng-if="captureChambre()">
-      <question>Est-ce une chambre&nbsp;?</question>
+      <question>Est-ce une chambre ?</question>
       <help-block>
         Une chambre est un logement qui ne comporte qu'une seule pièce et n'est pas équipée d'un WC.
       </help-block>
     </yes-no-question>
 
     <yes-no-question model="logement.primoAccedant" ng-if="logement.type == 'proprietaire'">
-      <question>Êtes-vous primo-accédant pour cette propriété&nbsp;?</question>
+      <question>Êtes-vous primo-accédant pour cette propriété ?</question>
       <help-block>
         Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire
         de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.
@@ -68,12 +68,12 @@
     </yes-no-question>
 
     <yes-no-question model="demandeur.habite_chez_parents" ng-if="captureHabiteChezParents()">
-      <question>Habitez-vous avec vos parents&nbsp;?</question>
+      <question>Habitez-vous avec vos parents ?</question>
     </yes-no-question>
 
     <yes-no-question model="menage.participation_frais" ng-if="captureParticipationFrais()">
-      <question>Participez-vous aux frais du logement&nbsp;?</question>
-      <help-block>Par exemple aux dépenses d'électricité, de téléphone,&nbsp;etc.</help-block>
+      <question>Participez-vous aux frais du logement ?</question>
+      <help-block>Par exemple aux dépenses d'électricité, de téléphone, etc.</help-block>
     </yes-no-question>
 
     <div class="row" ng-if="captureLoyer()">
@@ -98,7 +98,7 @@
 
       <div class="col-sm-5" ng-if="logement.type == 'proprietaire'">
         <p class="help-block">
-          Laissez ce champ à 0&nbsp;€ si vous ne remboursez pas actuellement de crédit pour votre logement.
+          Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.
         </p>
       </div>
 
@@ -122,7 +122,7 @@
     </div>
 
     <yes-no-question model="logement.pretSigneAvant2018" ng-if="capturePretSigneAvant2018()">
-      <question>Avez-vous signé votre prêt <strong>avant</strong> le 1er janvier 2018 ?</question>
+      <question>Avez-vous signé votre prêt <strong>avant</strong> le 1er janvier 2018 ?</question>
     </yes-no-question>
 
     <div class="row" ng-show="captureCodePostal()">
@@ -173,7 +173,7 @@
     </div>
 
     <yes-no-question model="famille.parisien" ng-if="captureResidentParis()">
-      <question>Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }}&nbsp;?</question>
+      <question>Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }} ?</question>
       <help-block>Y compris de manière discontinue</help-block>
     </yes-no-question>
 

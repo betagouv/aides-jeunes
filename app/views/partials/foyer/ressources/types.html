@@ -1,23 +1,28 @@
 <div class="frame-foyer">
   <h1>{{ pageTitle }}</h1>
+  <legend>
+    Sélectionnez les types de ressources perçues <strong>depuis {{ debutAnneeGlissante }}</strong>,
+    vous pourrez ensuite saisir les montants.
+  </legend>
+  <div class="btn-group">
+    <input type="text"
+      ng-hide="hideSearch"
+      ng-model="searchString"
+      ng-model-options="{ debounce: 200 }"
+      class="form-control"
+      placeholder="Rechercher vos ressources"
+      id="search-input">
+    <span id="search-clear" class="fa fa-times" ng-click="searchString=''" ng-show="searchString.length > 0"></span>
+  </div>
   <form method="post" name="form" novalidate ng-submit="submit()">
     <fieldset>
-      <legend>
-        Sélectionnez les types de ressources perçues <strong>depuis {{ debutAnneeGlissante }}</strong>,
-        vous pourrez ensuite saisir les montants.
-      </legend>
-      <input type="text" 
-        ng-hide="hideSearch"
-        ng-model="searchString"
-        ng-model-options="{ debounce: 200 }"
-        class="form-control search-input"
-        placeholder="Rechercher vos ressources">
+      <span ng-show="noResult()">Nous n'avons trouvé aucune ressource pour cette recherche.</span>
       <uib-accordion close-others="false">
         <div uib-accordion-group
           class="capture-{{ category.id }}"
           ng-repeat="category in ressourceCategories"
           is-open="category.isOpen"
-          ng-show="ressourceTypesByCategories[category.id].length >0"
+          ng-show="ressourceTypesByCategories[category.id].length > 0"
           ng-init="category.isOpen = shouldInitiallyOpen(category)">
           <uib-accordion-heading>
             <span class="panel-title-ressource-category">
@@ -39,6 +44,7 @@
               >
               <input type="checkbox"
                 ng-model="selectedRessourceTypes[ressourceType.id]"
+                ng-change="countSelectedRessourceTypes()"
                 class="sr-only"
                 />
                 {{ ressourceType.label }}
@@ -47,6 +53,10 @@
         </div>
       </uib-accordion>
       <div class="text-right">
+        <span id="count-ressources">
+          <i class="fa fa-check"></i>
+          <span>{{ selectedRessourceTypesCount }}</span>
+        </span>
         <button type="submit" class="btn btn-primary">
           Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
         </button>

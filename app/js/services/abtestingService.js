@@ -60,7 +60,7 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         }
         //$localStorage.ABTesting.nationaliteWidget.deleted = true;
 
-        $localStorage.ABTesting.ressourceSearch = $localStorage.ABTesting.ressourceSearch || { index: 6 };
+        $localStorage.ABTesting.ressourceSearch = $localStorage.ABTesting.ressourceSearch || { index: 1 };
         $localStorage.ABTesting.ressourceSearch.value = $localStorage.ABTesting.ressourceSearch.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
 
         _.forEach($localStorage.ABTesting, function(data, name) {

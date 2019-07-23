@@ -90,6 +90,17 @@ angular.module('ddsCommon').factory('NationaliteService', function() {
             }
 
             return 'autre';
+        },
+        getCountryCodeByNationalite: function(nationalite) {
+
+            switch (nationalite) {
+            case 'ue':
+                return 'DE';
+            case 'autre':
+                return 'AF';
+            }
+
+            return 'FR';
         }
     };
 });

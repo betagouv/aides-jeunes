@@ -2,21 +2,19 @@
 
 var Fuse = require('fuse.js');
 
-var NATIONALITES = require('../constants/nationalites');
-var PAYS = require('../constants/pays');
+var worldCountries = require('world-countries');
 
-// TODO Some keys are missing
-var combined = _.mapValues(NATIONALITES, function(value, key) {
-    if (PAYS.hasOwnProperty(key)) {
-        return {
-            nationalite: value,
-            pays: PAYS[key]
-        };
+var countries = [];
+
+worldCountries.forEach(function(country) {
+    if (country.hasOwnProperty('demonyms')) {
+        countries.push({
+            code: country.cca2,
+            commonName: country.translations.fra.common,
+            demonym: country.demonyms.fra.f,
+            officialName: country.translations.fra.official,
+        });
     }
-});
-
-var searchItems = _.map(combined, function(value, key) {
-    return _.assign(value, { code: key });
 });
 
 var fuseOptions = {
@@ -27,11 +25,12 @@ var fuseOptions = {
     maxPatternLength: 32,
     minMatchCharLength: 1,
     keys: [
-        "nationalite",
-        "pays"
+        "commonName",
+        "demonym",
+        "officialName"
     ]
 };
-var fuse = new Fuse(searchItems, fuseOptions);
+var fuse = new Fuse(countries, fuseOptions);
 
 var NATIONALITE_LABEL = {
     'fr': 'française',
@@ -76,7 +75,7 @@ angular.module('ddsCommon').factory('NationaliteService', function() {
 
     return {
         toArray: function() {
-            return searchItems;
+            return countries;
         },
         getLabel: function(nationalite) {
             return NATIONALITE_LABEL[nationalite];

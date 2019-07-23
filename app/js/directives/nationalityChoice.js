@@ -37,6 +37,7 @@ angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingSer
 
             scope.selectNationalite = function(item) {
                 if (item) {
+                    scope.nationaliteObject = lookupObject(scope.nationalites, item.originalObject.code);
                     scope.individu.nationalite_code = item.originalObject.code;
                     scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(item.originalObject.code);
                 }

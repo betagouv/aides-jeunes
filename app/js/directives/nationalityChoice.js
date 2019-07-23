@@ -11,16 +11,16 @@ angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingSer
         scope: {
             individu: '=',
         },
-        link(scope , element, attrs) {
+        link(scope, element, attrs) {
 
-            if (attrs.hasOwnProperty('widget')) {
+            if (attrs.hasOwnProperty('type')) {
                 scope.widget = attrs.type;
             } else {
                 var abTesting = ABTestingService.getEnvironment();
                 if (abTesting && abTesting.nationaliteWidget && abTesting.nationaliteWidget.value) {
                     scope.widget = abTesting.nationaliteWidget.value;
                 } else {
-                    scope.widget = 'select';
+                    scope.widget = 'select2';
                 }
             }
 
@@ -28,8 +28,12 @@ angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingSer
             scope.popoverEee = EEE_TEXT;
 
             scope.selectNationalite = function(value) {
-                scope.individu.nationaliteCode = value;
+                scope.individu.nationalite_code = value;
                 scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(value);
+            };
+
+            scope.changeRadio = function() {
+                scope.individu.nationalite_code = NationaliteService.getCountryCodeByNationalite(scope.individu.nationalite);
             };
         },
     };

@@ -60,6 +60,7 @@
     "angular-ui-bootstrap": "^2.5.6",
     "angular-ui-router": "^1.0.22",
     "autoprefixer": "^9.6.1",
+    "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "bootstrap-sass": "^3.4.1",
     "connect-livereload": "^0.6.1",
@@ -86,6 +87,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "jasmine-core": "^3.4.0",
+    "jest": "^24.8.0",
     "json-loader": "^0.5.7",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.2.0",
@@ -94,6 +96,7 @@
     "karma-requirejs": "^1.0.0",
     "karma-script-launcher": "^1.0.0",
     "load-grunt-tasks": "^5.0",
+    "loader-utils": "^1.2.3",
     "mini-css-extract-plugin": "^0.7.0",
     "mocha": "^6.1.4",
     "modernizr": "^3.7.1",
@@ -104,6 +107,7 @@
     "node-sass": "^4.12.0",
     "open": "^6.3.0",
     "postcss-loader": "^3.0.0",
+    "require-from-string": "^2.0.2",
     "requirejs": "^2.2.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
@@ -131,7 +135,8 @@
     "test:openfisca": "mocha test/backend/openfisca/test.js --timeout 10000",
     "test:mocha": "mocha --recursive test/backend",
     "test:karma": "grunt test",
-    "test": "npm run test:mocha && npm run test:karma",
+    "test:jest": "jest",
+    "test": "npm run test:mocha && npm run test:karma && npm run test:jest",
     "test-integration": "test/integration/run-integration-tests.sh",
     "predb": "mkdir -p db",
     "db": "mongod --dbpath db",
@@ -141,5 +146,11 @@
     "stats": "node backend/lib/stats",
     "eslint": "eslint ."
   },
-  "license": "AGPL-3.0"
+  "license": "AGPL-3.0",
+  "jest": {
+    "testEnvironment": "node",
+    "roots": [
+      "test/jest"
+    ]
+  }
 }

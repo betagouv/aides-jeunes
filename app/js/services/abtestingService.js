@@ -25,10 +25,6 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         // // et libérer une custom variable
         // // $localStorage.ABTesting.link.deleted = true;
 
-        $localStorage.ABTesting.resultat = $localStorage.ABTesting.resultat || { index: 1 };
-        $localStorage.ABTesting.resultat.value = $localStorage.ABTesting.resultat.value || (Math.random() > 0.5 ? 'A' : 'B');
-        $localStorage.ABTesting.resultat.deleted = true;
-
         $localStorage.ABTesting.datepicker = $localStorage.ABTesting.datepicker || { index: 2 };
         // Ugly fix because A/B wasn't triggering any changes in the UI
         if ($localStorage.ABTesting.datepicker.value) {
@@ -39,8 +35,8 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         $localStorage.ABTesting.datepicker.value = $localStorage.ABTesting.datepicker.value || (Math.random() > 0.5 ? 'Current' : 'New');
         //$localStorage.ABTesting.datepicker.deleted = true;
 
-        $localStorage.ABTesting.ressourceHelp = $localStorage.ABTesting.ressourceHelp || { index: 3 };
-        $localStorage.ABTesting.ressourceHelp.value = $localStorage.ABTesting.ressourceHelp.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
+        $localStorage.ABTesting.resourceHelp = $localStorage.ABTesting.resourceHelp || { index: 3 };
+        $localStorage.ABTesting.resourceHelp.value = $localStorage.ABTesting.resourceHelp.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
         //$localStorage.ABTesting.resourceHelp.deleted = true;
 
         $localStorage.ABTesting.noSpecificSituationCheckbox = $localStorage.ABTesting.noSpecificSituationCheckbox || { index: 4 };
@@ -60,8 +56,8 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         }
         //$localStorage.ABTesting.nationaliteWidget.deleted = true;
 
-        $localStorage.ABTesting.ressourceSearch = $localStorage.ABTesting.ressourceSearch || { index: 1 };
-        $localStorage.ABTesting.ressourceSearch.value = $localStorage.ABTesting.ressourceSearch.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
+        $localStorage.ABTesting.resourceSearch = $localStorage.ABTesting.resourceSearch || { index: 1 };
+        $localStorage.ABTesting.resourceSearch.value = $localStorage.ABTesting.resourceSearch.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
 
         _.forEach($localStorage.ABTesting, function(data, name) {
             if (data.deleted) {

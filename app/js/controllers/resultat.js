@@ -54,11 +54,11 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
                 $scope.ressourcesYearMoins2Captured = SituationService.ressourcesYearMoins2Captured($scope.situation);
 
                 $scope.shouldPatrimoineBeCaptured = function() {
-                    if ((! $scope.droits) || (! $scope.droits.prestationsNationales)) {
+                    if ((! $scope.droits)) {
                         return;
                     }
 
-                    return _.some($scope.droits.prestationsNationales, 'isBaseRessourcesPatrimoine') && ! angular.isDefined(SituationService.hasPatrimoine($scope.situation));
+                    return _.some($scope.droits, 'isBaseRessourcesPatrimoine') && ! angular.isDefined(SituationService.hasPatrimoine($scope.situation));
                 };
             });
     }

@@ -7,56 +7,65 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($analyti
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract(1, 'years');
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
 
-    $scope.ressourceCategories = ressourceCategories;
-    var keyedRessourceTypes = _.keyBy(ressourceTypes, 'id');
-    var filteredRessourceTypes = _.filter(ressourceTypes, RessourceService.isRessourceOnMainScreen);
-    $scope.ressourceTypesByCategories = _.groupBy(filteredRessourceTypes, 'category');
+    var categories = ressourceCategories.map(function(c, i) {
+        return Object.assign({}, c, { index: i, ressources: [], score: i });
+    });
+    var categoryMap = _.keyBy(categories, 'id');
+    var types = ressourceTypes.map(function(t0) {
+        var t = Object.assign({}, t0, {
+            categoryId: t0.category,
+            category: categoryMap[t0.category]
+        });
+        categoryMap[t0.category].ressources.push(t);
+        return t;
+    });
+    var typeMap = _.keyBy(types, 'id');
+
+    $scope.ressourceCategories = categories;
+    $scope.ressourceTypesByCategories = _.groupBy(types, 'categoryId');
 
     var fuseOptions = {
-        keys: ['label'],
-        id: 'id',
+        keys: [{
+            name: 'label',
+            weight: 1
+        }, {
+            name: 'category.label',
+            weight: 0.5
+        }],
         minMatchCharLength: 2,
         threshold: 0.4,
-        distance: 1000
+        distance: 1000,
+        includeScore: true,
     };
-    var fuseTypes = new Fuse(ressourceTypes, fuseOptions);
-    var fuseCategories = new Fuse(ressourceCategories, fuseOptions);
+    var fuseSearch = (new Fuse(types, fuseOptions));
 
-    function updateSearchedRessources(searchString) {
-        function isRessourceSearched(ressource) {
-            return searchString.length == 0 ||
-                fuseTypes.search(searchString).includes(ressource.id) ||
-                fuseCategories.search(searchString).includes(ressource.category);
-        }
+    function updateSearchedRessources() {
+        var searchString = $scope.searchString;
+        var useFuse = (searchString && searchString.length);
+        var typeMatches = useFuse ? fuseSearch.search(searchString).map(t => {
+            t.item.score = t.score;
+            return t.item;
+        }) : types;
 
-        if (searchString != undefined) {
-            if (searchString.length > 0) {
-                $scope.ressourceTypesByCategories = _.groupBy(
-                    _.filter(filteredRessourceTypes, isRessourceSearched),
-                    'category'
-                );
+        $scope.ressourceTypesByCategories = _.groupBy(
+            typeMatches,
+            'categoryId'
+        );
 
-                $scope.ressourceCategories.forEach(function(c) {
-                    c.isOpen = ($scope.ressourceTypesByCategories[c.id] != undefined);
-                });
+        $scope.ressourceCategories.forEach(function(c) {
+            var ressources = $scope.ressourceTypesByCategories[c.id] || [];
+            c.isOpen = ressources.length > 0;
 
-                $analytics.eventTrack('update', { category: 'Search', label: $scope.searchString });
-            } else {
-                $scope.ressourceCategories.forEach(c => c.isOpen = $scope.shouldInitiallyOpen(c));
-            }
+            var minRessource = _.minBy(ressources, function(r) { return r.score; });
+            c.score = (useFuse && minRessource) ? minRessource.score : c.index;
+        });
+
+        $scope.zeroMatches = Object.keys($scope.ressourceTypesByCategories).length == 0;
+        if ($scope.zeroMatches) {
+            $analytics.eventTrack('noResult', { category: 'Search', label: $scope.searchString });
         }
     }
-    $scope.$watch('searchString', updateSearchedRessources);
-
-    $scope.noResult = function() {
-        var noResult = Object.keys($scope.ressourceTypesByCategories).length == 0;
-        if (noResult) {
-            $analytics.eventTrack('noResult', { category: 'Search', label: $scope.searchString });
-            return true;
-        } else {
-            return false;
-        }
-    };
+    $scope.updateSearchedRessources = updateSearchedRessources;
 
     var abtesting = ABTestingService.getEnvironment();
     $scope.hideHelp = abtesting && abtesting.resourceHelp && abtesting.resourceHelp.value === "Hide";
@@ -69,25 +78,24 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($analyti
         }
 
         return _.some(selectedRessourceTypes, function(ressourceTypeId) {
-            return keyedRessourceTypes[ressourceTypeId].category == category.id;
+            return typeMap[ressourceTypeId].categoryId == category.id;
         });
     };
 
-    $scope.countSelectedRessourceTypes = function() {
+    $scope.selectedRessourceTypesCountLabel = function() {
         var count = _.reduce($scope.selectedRessourceTypes, function(accumulator, value) {
             return true === value ? accumulator + 1 : accumulator;
         }, 0);
-        var phrase = (count == 0 || count == 1) ? ' ressource sélectionnée' : ' ressources sélectionnées';
-        $scope.selectedRessourceTypesCount = count.toString() + phrase;
+
+        return count.toString() + ' ' + (count == 1 ? 'ressource sélectionnée' : 'ressources sélectionnées');
     };
-    $scope.countSelectedRessourceTypes();
 
     function updateIndividuRessources(individu, selectedRessourceTypes) {
         Object.keys(selectedRessourceTypes).forEach(function(ressourceTypeId) {
             if (selectedRessourceTypes[ressourceTypeId]) {
                 individu[ressourceTypeId] = individu[ressourceTypeId] || {};
             } else {
-                RessourceService.unsetForCurrentYear($scope.situation.dateDeValeur, individu, keyedRessourceTypes[ressourceTypeId]);
+                RessourceService.unsetForCurrentYear($scope.situation.dateDeValeur, individu, typeMap[ressourceTypeId]);
                 delete selectedRessourceTypes[ressourceTypeId];
             }
         });

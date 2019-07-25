@@ -29,6 +29,28 @@
     }
 }
 
+.resourceTypeLabel.ng-move,
+.resourceTypeLabel.ng-enter,
+.resourceTypeLabel.ng-leave {
+  transition:all linear 0.4s;
+}
+
+
+.resourceTypeLabel.ng-leave.ng-leave-active,
+.resourceTypeLabel.ng-move,
+.resourceTypeLabel.ng-enter {
+  opacity: 0;
+  max-height: 0;
+}
+
+.resourceTypeLabel.ng-leave,
+.resourceTypeLabel.ng-move.ng-move-active,
+.resourceTypeLabel.ng-enter.ng-enter-active
+ {
+  opacity:1;
+  max-height: 50px;
+}
+
 #search-clear {
     position: absolute;
     right: 1em;

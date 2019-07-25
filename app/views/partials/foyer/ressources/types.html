@@ -8,6 +8,7 @@
     <input type="text"
       ng-hide="hideSearch"
       ng-model="searchString"
+      ng-change="updateSearchedRessources()"
       ng-model-options="{ debounce: 200 }"
       class="form-control"
       placeholder="Rechercher vos ressources"
@@ -16,11 +17,11 @@
   </div>
   <form method="post" name="form" novalidate ng-submit="submit()">
     <fieldset>
-      <span ng-show="noResult()">Nous n'avons trouvé aucune ressource pour cette recherche.</span>
+      <span ng-show="zeroMatches">Nous n'avons trouvé aucune ressource pour cette recherche.</span>
       <uib-accordion close-others="false">
         <div uib-accordion-group
           class="capture-{{ category.id }}"
-          ng-repeat="category in ressourceCategories"
+          ng-repeat="category in ressourceCategories | orderBy: 'score' track by category.id"
           is-open="category.isOpen"
           ng-show="ressourceTypesByCategories[category.id].length > 0"
           ng-init="category.isOpen = shouldInitiallyOpen(category)">
@@ -38,13 +39,13 @@
             </span>
           </uib-accordion-heading>
           <div class="button-grid">
-            <label ng-repeat="ressourceType in ressourceTypesByCategories[category.id]| orderBy:['positionInList','label']"
-              class="btn btn-sm btn-default"
+            <label ng-repeat="ressourceType in ressourceTypesByCategories[category.id] | orderBy:['score', 'positionInList','label'] track by ressourceType.id"
+              ng-animate  
+              class="btn btn-sm btn-default resourceTypeLabel"
               ng-class="{ active: selectedRessourceTypes[ressourceType.id] }"
               >
               <input type="checkbox"
                 ng-model="selectedRessourceTypes[ressourceType.id]"
-                ng-change="countSelectedRessourceTypes()"
                 class="sr-only"
                 />
                 {{ ressourceType.label }}
@@ -55,7 +56,9 @@
       <div class="text-right">
         <span id="count-ressources">
           <i class="fa fa-check"></i>
-          <span>{{ selectedRessourceTypesCount }}</span>
+          <span>
+            {{ selectedRessourceTypesCountLabel() }}
+          </span>
         </span>
         <button type="submit" class="btn btn-primary">
           Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>

@@ -56,9 +56,7 @@ angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingSer
                 scope.$broadcast('angucomplete-alt:changeInput', 'nationalite', scope.nationaliteObject);
             };
 
-            scope.search = function(q) {
-                return NationaliteService.search(q);
-            };
+            scope.search = NationaliteService.search;
         },
     };
 });

@@ -71,6 +71,20 @@ var EEE_COUNTRY_CODES = [
     'UK',
 ];
 
+function getNationaliteByCountryCode(countryCode) {
+
+    countryCode = countryCode.toUpperCase();
+
+    if (countryCode === 'FR') {
+        return 'fr';
+    }
+    if (EEE_COUNTRY_CODES.includes(countryCode) || countryCode === 'CH') {
+        return 'ue';
+    }
+
+    return 'autre';
+}
+
 angular.module('ddsCommon').factory('NationaliteService', function() {
 
     return {
@@ -78,21 +92,9 @@ angular.module('ddsCommon').factory('NationaliteService', function() {
             return countries;
         },
         getLabel: function(nationalite) {
-            return NATIONALITE_LABEL[nationalite];
+            return NATIONALITE_LABEL[getNationaliteByCountryCode(nationalite)];
         },
-        getNationaliteByCountryCode: function(countryCode) {
-
-            countryCode = countryCode.toUpperCase();
-
-            if (countryCode === 'FR') {
-                return 'fr';
-            }
-            if (EEE_COUNTRY_CODES.includes(countryCode) || countryCode === 'CH') {
-                return 'ue';
-            }
-
-            return 'autre';
-        },
+        getNationaliteByCountryCode: getNationaliteByCountryCode,
         getCountryCodeByNationalite: function(nationalite) {
 
             switch (nationalite) {

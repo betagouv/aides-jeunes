@@ -32,20 +32,20 @@ angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingSer
 
             scope.nationalites = NationaliteService.toArray();
             scope.popoverEee = EEE_TEXT;
+            scope.zone = NationaliteService.getNationaliteByCountryCode(scope.individu.nationalite);
 
-            scope.nationaliteObject = lookupObject(scope.nationalites, scope.individu.nationalite_code);
+            scope.nationaliteObject = lookupObject(scope.nationalites, scope.individu.nationalite);
 
             scope.selectNationalite = function(item) {
                 if (item) {
                     scope.nationaliteObject = lookupObject(scope.nationalites, item.originalObject.code);
-                    scope.individu.nationalite_code = item.originalObject.code;
-                    scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(item.originalObject.code);
+                    scope.individu.nationalite = item.originalObject.code;
                 }
             };
 
-            scope.changeRadio = function() {
-                scope.individu.nationalite_code = NationaliteService.getCountryCodeByNationalite(scope.individu.nationalite);
-                scope.nationaliteObject = lookupObject(scope.nationalites, scope.individu.nationalite_code);
+            scope.changeZone = function(e) {
+                scope.individu.nationalite = NationaliteService.getCountryCodeByNationalite(e.target.value);
+                scope.nationaliteObject = lookupObject(scope.nationalites, scope.individu.nationalite);
             };
 
             scope.focusIn = function() {

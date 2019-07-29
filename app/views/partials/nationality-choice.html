@@ -1,19 +1,19 @@
 <div ng-if="widget === 'radio3'">
   <div class="radio">
     <label>
-      <input type="radio" name="nationalite" ng-model="individu.nationalite" value="fr" aria-label="Nationalité Française">
+      <input type="radio" name="nationalite" ng-model="zone" value="fr" aria-label="Nationalité Française" ng-click="changeZone($event)">
       Française
     </label>
   </div>
   <div class="radio">
     <label>
-      <input type="radio" name="nationalite" ng-model="individu.nationalite" value="ue" aria-label="Nationalité EEE, UE, Suisse" ng-change="changeRadio()">
+      <input type="radio" name="nationalite" ng-model="zone" value="ue" aria-label="Nationalité EEE, UE, Suisse" ng-click="changeZone($event)">
       <abbr title="" uib-popover="{{ popoverEee }}" popover-title="Liste des pays de l'EEE" popover-placement="bottom" popover-trigger="mouseenter">EEE</abbr> - <abbr title="" uib-popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr> - Suisse
     </label>
   </div>
   <div class="radio">
     <label>
-      <input type="radio" name="nationalite" ng-model="individu.nationalite" value="autre" aria-label="Hors UE" ng-change="changeRadio()">
+      <input type="radio" name="nationalite" ng-model="zone" value="autre" aria-label="Hors UE" ng-click="changeZone($event)">
       Hors <abbr title="" uib-popover="Union Européenne" popover-placement="bottom" popover-trigger="mouseenter">UE</abbr>
     </label>
   </div>

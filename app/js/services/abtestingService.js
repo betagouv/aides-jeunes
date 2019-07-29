@@ -48,12 +48,12 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         $localStorage.ABTesting.noSpecificSituationCheckbox.deleted = true;
 
         $localStorage.ABTesting.nationaliteWidget = $localStorage.ABTesting.nationaliteWidget || { index: 5 };
-        $localStorage.ABTesting.nationaliteWidget.value = $localStorage.ABTesting.nationaliteWidget.value || (Math.random() > 0.5 ? 'radio2' : 'select2');
+        $localStorage.ABTesting.nationaliteWidget.value = $localStorage.ABTesting.nationaliteWidget.value || (Math.random() > 0.5 ? 'radio3' : 'select3');
         if ($localStorage.ABTesting.nationaliteWidget.value) {
             if ($localStorage.ABTesting.nationaliteWidget.value === 'radio') {
-                $localStorage.ABTesting.nationaliteWidget.value = 'radio2';
+                $localStorage.ABTesting.nationaliteWidget.value = 'radio3';
             } else if ($localStorage.ABTesting.nationaliteWidget.value === 'select') {
-                $localStorage.ABTesting.nationaliteWidget.value = 'select2';
+                $localStorage.ABTesting.nationaliteWidget.value = 'select3';
             }
         }
         //$localStorage.ABTesting.nationaliteWidget.deleted = true;

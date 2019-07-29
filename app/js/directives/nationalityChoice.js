@@ -26,7 +26,7 @@ angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingSer
                 if (abTesting && abTesting.nationaliteWidget && abTesting.nationaliteWidget.value) {
                     scope.widget = abTesting.nationaliteWidget.value;
                 } else {
-                    scope.widget = 'select2';
+                    scope.widget = 'select3';
                 }
             }
 

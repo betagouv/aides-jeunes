@@ -5,7 +5,8 @@
         "browsers": [
           "> 5%",
           "ie >= 11"
-        ]
+        ],
+        "node": "current"
       },
       "useBuiltIns": "entry",
       "corejs": 3

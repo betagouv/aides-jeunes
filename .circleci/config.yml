@@ -145,6 +145,15 @@ jobs:
       - run:
           name: Karma
           command: npm run test:karma
+  test_jest:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/mes-aides-ui
+      - run:
+          name: Jest
+          command: npm run test:jest
   test_selenium_chrome:
     <<: *defaults
     steps:
@@ -213,11 +222,15 @@ workflows:
       - test_karma:
           requires:
             - build
+      - test_jest:
+          requires:
+            - build
       - test_selenium_chrome:
           requires:
             - install_openfisca
             - test_mocha
             - test_karma
+            - test_jest
       - test_openfisca_test_generation:
           requires:
             - install

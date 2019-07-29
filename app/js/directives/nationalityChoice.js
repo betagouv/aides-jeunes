@@ -4,6 +4,12 @@ var EEE_TEXT = 'Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danema
     'France, Grèce, Hongrie, Irlande, Islande, Italie, Lettonie, Liechtenstein, Lituanie, Luxembourg, Malte, Norvège, Pays-Bas, ' +
     'Pologne, Portugal, République Tchèque, Roumanie, Royaume-Uni, Slovaquie, Slovénie, Suède.';
 
+function lookupObject(nationalites, code) {
+    return _.find(nationalites, function(item) {
+        return item.code === code;
+    });
+}
+
 angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingService, NationaliteService) {
     return {
         restrict: 'E',
@@ -20,21 +26,37 @@ angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingSer
                 if (abTesting && abTesting.nationaliteWidget && abTesting.nationaliteWidget.value) {
                     scope.widget = abTesting.nationaliteWidget.value;
                 } else {
-                    scope.widget = 'select2';
+                    scope.widget = 'select3';
                 }
             }
 
-            scope.nationalites = NationaliteService.getSortedArray();
+            scope.nationalites = NationaliteService.toArray();
             scope.popoverEee = EEE_TEXT;
 
-            scope.selectNationalite = function(value) {
-                scope.individu.nationalite_code = value;
-                scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(value);
+            scope.nationaliteObject = lookupObject(scope.nationalites, scope.individu.nationalite_code);
+
+            scope.selectNationalite = function(item) {
+                if (item) {
+                    scope.nationaliteObject = lookupObject(scope.nationalites, item.originalObject.code);
+                    scope.individu.nationalite_code = item.originalObject.code;
+                    scope.individu.nationalite = NationaliteService.getNationaliteByCountryCode(item.originalObject.code);
+                }
             };
 
             scope.changeRadio = function() {
                 scope.individu.nationalite_code = NationaliteService.getCountryCodeByNationalite(scope.individu.nationalite);
+                scope.nationaliteObject = lookupObject(scope.nationalites, scope.individu.nationalite_code);
             };
+
+            scope.focusIn = function() {
+                scope.$broadcast('angucomplete-alt:clearInput', 'nationalite');
+            };
+
+            scope.focusOut = function() {
+                scope.$broadcast('angucomplete-alt:changeInput', 'nationalite', scope.nationaliteObject);
+            };
+
+            scope.search = NationaliteService.search;
         },
     };
 });

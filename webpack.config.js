@@ -32,6 +32,16 @@ var config = {
                 test: require.resolve('angular'),
                 use: 'exports-loader?window.angular'
             },
+            // This avoids to load the whole countries.json file (~ 400Kb)
+            {
+                test: require.resolve('world-countries'),
+                use: {
+                    loader: path.resolve(__dirname, 'app/js/loaders/worldCountriesLoader.js'),
+                    options: {
+                        include: ['cca2', 'translations.fra', 'demonyms.fra']
+                    }
+                }
+            },
             {
                 test: /\.js$/,
                 exclude: path.resolve(__dirname, 'node_modules'),

@@ -1,8 +1,36 @@
 'use strict';
 
-var NATIONALITES = require('../constants/nationalites');
+var Fuse = require('fuse.js');
 
-var removeDiacritics = require('diacritics').remove;
+var worldCountries = require('world-countries');
+
+var countries = [];
+
+worldCountries.forEach(function(country) {
+    if (country.hasOwnProperty('demonyms')) {
+        countries.push({
+            code: country.cca2,
+            commonName: country.translations.fra.common,
+            demonym: country.demonyms.fra.f,
+            officialName: country.translations.fra.official,
+        });
+    }
+});
+
+var fuseOptions = {
+    shouldSort: true,
+    threshold: 0.5,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: [
+        "commonName",
+        "demonym",
+        "officialName"
+    ]
+};
+var fuse = new Fuse(countries, fuseOptions);
 
 var NATIONALITE_LABEL = {
     'fr': 'française',
@@ -44,36 +72,10 @@ var EEE_COUNTRY_CODES = [
 ];
 
 angular.module('ddsCommon').factory('NationaliteService', function() {
-    function normalizeString(text) {
-        return removeDiacritics(text).toLowerCase();
-    }
 
     return {
-        normalizeString,
-        getList: function() {
-            return NATIONALITES;
-        },
-        getSortedArray: function() {
-
-            var nationalites = _.map(NATIONALITES, function(value, key) {
-                return {
-                    code: key,
-                    name: value,
-                    key: normalizeString(value)
-                };
-            });
-
-            nationalites.sort(function(a, b) {
-                return a.key < b.key ? -1 : 1;
-            });
-
-            var index = _.findIndex(nationalites, function(nationalite) {
-                return nationalite.code === 'FR';
-            });
-            var spliced = nationalites.splice(index, 1);
-            nationalites.unshift(spliced[0]);
-
-            return nationalites;
+        toArray: function() {
+            return countries;
         },
         getLabel: function(nationalite) {
             return NATIONALITE_LABEL[nationalite];
@@ -101,6 +103,9 @@ angular.module('ddsCommon').factory('NationaliteService', function() {
             }
 
             return 'FR';
+        },
+        search: function(q) {
+            return fuse.search(q).slice(0, 10);
         }
     };
 });

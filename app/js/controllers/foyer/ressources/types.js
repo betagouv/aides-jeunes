@@ -3,7 +3,6 @@
 var Fuse = require('fuse.js');
 
 angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($analytics, $scope, $stateParams, ABTestingService, ressourceCategories, ressourceTypes, $state, RessourceService) {
-
     var momentDebutAnnee = moment($scope.situation.dateDeValeur).subtract(1, 'years');
     $scope.debutAnneeGlissante = momentDebutAnnee.format('MMMM YYYY');
 
@@ -11,7 +10,7 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($analyti
         return Object.assign({}, c, { index: i, ressources: [], score: i });
     });
     var categoryMap = _.keyBy(categories, 'id');
-    var types = ressourceTypes.map(function(t0) {
+    var types = _.filter(ressourceTypes, RessourceService.isRessourceOnMainScreen).map(function(t0) {
         var t = Object.assign({}, t0, {
             categoryId: t0.category,
             category: categoryMap[t0.category]
@@ -23,7 +22,6 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($analyti
 
     $scope.ressourceCategories = categories;
     $scope.ressourceTypesByCategories = _.groupBy(types, 'categoryId');
-
     var fuseOptions = {
         keys: [{
             name: 'label',

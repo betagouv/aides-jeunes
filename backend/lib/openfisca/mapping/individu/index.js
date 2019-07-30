@@ -91,6 +91,7 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
     // Variables stored to properly restore UI
     var propertiesToDelete = [
         'firstName', // for kids
+        'hasRessources',
         'nationalite',
         'role',
         'specificSituations',

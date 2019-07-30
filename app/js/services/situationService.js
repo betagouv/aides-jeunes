@@ -2,7 +2,7 @@
 
 var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage'];
 
-angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc, patrimoineTypes, RessourceService) {
+angular.module('ddsCommon').factory('SituationService', function($http, $sessionStorage, categoriesRnc, patrimoineTypes) {
     var situation;
 
     /*
@@ -36,8 +36,6 @@ angular.module('ddsCommon').factory('SituationService', function($http, $session
                 individu[dateField] = moment(new Date(individu[dateField]));
             }
         });
-
-        individu.hasRessources = ! _.isEmpty(RessourceService.extractIndividuSelectedRessourceTypes(individu));
     }
 
     function adaptPersistedSituation(situation) {

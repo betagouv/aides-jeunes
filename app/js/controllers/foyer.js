@@ -145,4 +145,20 @@ angular.module('ddsApp').controller('FoyerCtrl', function($scope, $state, $filte
                 }, 2000);
             });
     };
+
+    $scope.followupSubmitted = false;
+    $scope.followupError = false;
+    $scope.submitFollowup = function(form) {
+        var email = form.email.$modelValue;
+        var situation = SituationService.restoreLocal();
+        $http.post('api/situations/' + situation._id + '/followup', {
+            email: email,
+        }).then(function() {
+            $scope.followupSubmitted = true;
+            $scope.followupError = false;
+        }).catch(function() {
+            $scope.followupSubmitted = true;
+            $scope.followupError = true;
+        });
+    };
 });

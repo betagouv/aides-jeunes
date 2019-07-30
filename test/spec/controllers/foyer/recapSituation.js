@@ -25,20 +25,6 @@ describe('Controller: RecapSituationCtrl', function() {
         });
     };
 
-    describe('ressourcesUpdated event', function() {
-        it('should set the ressourcesCaptured value to true', function() {
-            // given
-            scope.situation.dateDeValeur = '2013-04-05';
-            initController();
-
-            // when
-            scope.$broadcast('ressourcesUpdated');
-
-            // then
-            expect(scope.ressourcesCaptured).toBeTruthy();
-        });
-    });
-
     describe('shouldDisplayPersonRessourcesRecap', function() {
         it('be false for demandeur without hasRessources', function() {
             // given

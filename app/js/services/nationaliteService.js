@@ -32,7 +32,7 @@ var fuseOptions = {
 };
 var fuse = new Fuse(countries, fuseOptions);
 
-var NATIONALITE_LABEL = {
+var ZONE_LABEL = {
     'fr': 'française',
     'ue': 'UE',
     'autre': 'hors UE'
@@ -71,7 +71,7 @@ var EEE_COUNTRY_CODES = [
     'UK',
 ];
 
-function getNationaliteByCountryCode(countryCode) {
+function getZone(countryCode) {
 
     countryCode = countryCode.toUpperCase();
 
@@ -92,9 +92,9 @@ angular.module('ddsCommon').factory('NationaliteService', function() {
             return countries;
         },
         getLabel: function(nationalite) {
-            return NATIONALITE_LABEL[getNationaliteByCountryCode(nationalite)];
+            return ZONE_LABEL[getZone(nationalite)];
         },
-        getNationaliteByCountryCode: getNationaliteByCountryCode,
+        getZone: getZone,
         getCountryCodeByNationalite: function(nationalite) {
 
             switch (nationalite) {

@@ -32,7 +32,7 @@ angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingSer
 
             scope.nationalites = NationaliteService.toArray();
             scope.popoverEee = EEE_TEXT;
-            scope.zone = NationaliteService.getNationaliteByCountryCode(scope.individu.nationalite);
+            scope.zone = NationaliteService.getZone(scope.individu.nationalite);
 
             scope.nationaliteObject = lookupObject(scope.nationalites, scope.individu.nationalite);
 

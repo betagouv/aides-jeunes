@@ -22,7 +22,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     $scope.currentYear = $scope.today.format('YYYY');
     $scope.maxAgeYears = 130;
     $scope.minBirthDate = moment().subtract($scope.maxAgeYears, 'years');
-    $scope.getZone = NationaliteService.getNationaliteByCountryCode;
+    $scope.getZone = NationaliteService.getZone;
 
     if (individuRole == 'enfant') {
         $scope.displayCancelButton = true;
@@ -202,7 +202,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
         outOfFranceDisclaimers: {},
     };
     if ($scope.individu.nationalite) {
-        $scope.locals.outOfFranceDisclaimers[NationaliteService.getNationaliteByCountryCode($scope.individu.nationalite)] = true;
+        $scope.locals.outOfFranceDisclaimers[$scope.getZone($scope.individu.nationalite)] = true;
     }
 
     $scope.$watch('individu.date_naissance', _.debounce(function() {

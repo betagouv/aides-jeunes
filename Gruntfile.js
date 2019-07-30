@@ -83,7 +83,7 @@ module.exports = function (grunt) {
         host: '0.0.0.0',
         port: webpackDevServerPort,
         headers: {
-            'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Origin': '*',
         },
         watchOptions: {
           poll: true

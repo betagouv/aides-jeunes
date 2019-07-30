@@ -25,10 +25,6 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         // // et libérer une custom variable
         // // $localStorage.ABTesting.link.deleted = true;
 
-        $localStorage.ABTesting.resultat = $localStorage.ABTesting.resultat || { index: 1 };
-        $localStorage.ABTesting.resultat.value = $localStorage.ABTesting.resultat.value || (Math.random() > 0.5 ? 'A' : 'B');
-        $localStorage.ABTesting.resultat.deleted = true;
-
         $localStorage.ABTesting.datepicker = $localStorage.ABTesting.datepicker || { index: 2 };
         // Ugly fix because A/B wasn't triggering any changes in the UI
         if ($localStorage.ABTesting.datepicker.value) {
@@ -59,6 +55,9 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
             }
         }
         //$localStorage.ABTesting.nationaliteWidget.deleted = true;
+
+        $localStorage.ABTesting.resourceSearch = $localStorage.ABTesting.resourceSearch || { index: 1 };
+        $localStorage.ABTesting.resourceSearch.value = $localStorage.ABTesting.resourceSearch.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
 
         _.forEach($localStorage.ABTesting, function(data, name) {
             if (data.deleted) {

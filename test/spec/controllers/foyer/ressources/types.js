@@ -1,47 +1,52 @@
 'use strict';
 
 describe('Controller: FoyerRessourceTypesCtrl', function() {
-
-    var scope, _ressourceTypes_, controller;
+    var scope, _ressourceTypes_, _ressourceCategories_, controller;
+    var month = '2019-07';
 
     beforeEach(function() {
-        scope = {
-            situation: { dateDeValeur: '2013-04-10' },
-            ressources: [],
-            declareNextIndividuResources: function() {},
-        };
         module('ddsApp');
-        inject(function(ressourceTypes, $controller) {
+        inject(function(ressourceTypes, ressourceCategories, $controller, $rootScope) {
             _ressourceTypes_ = ressourceTypes;
+            _ressourceCategories_ = ressourceCategories;
             controller = $controller;
+            scope = $rootScope.$new();
         });
+
+        scope.selectedRessourceTypes = {};
+        scope.situation = { dateDeValeur: month + '-10' };
+        scope.ressources = [];
+        scope.declareNextIndividuResources = function() {};
     });
 
     var initController = function(individuIndex) {
         controller('FoyerRessourceTypesCtrl', {
             $scope: scope,
             $stateParams: { individu: individuIndex || 0 },
-            ressourceTypes: _ressourceTypes_
+            ressourceTypes: _ressourceTypes_,
+            ressourceCategories: _ressourceCategories_
         });
     };
 
     describe('initialization', function() {
         it('should index the ressource types by their category', function() {
             // given
-            var ressourceTypes = [{ id: 'toto', category: 'tata' }];
+            var ressourceTypes = [{ id: 'salaire', category: 'activite' }];
+            var ressourceCategories = [{ id: 'activite' }];
 
             // when
             controller('FoyerRessourceTypesCtrl', {
                 $scope: scope,
                 $stateParams: { individu: 0 },
-                ressourceTypes: ressourceTypes
+                ressourceTypes: ressourceTypes,
+                ressourceCategories: ressourceCategories
             });
 
             // then
-            expect(scope.ressourceTypesByCategories).toEqual({ tata: [ressourceTypes[0]]});
+            expect(scope.ressourceTypesByCategories.activite[0].id).toEqual('salaire');
         });
 
-        it('should omit the "pensions alimentaires" ressource type', function() {
+        it('should omit pensions_alimentaires_versees_individu', function() {
 
             // when
             initController();
@@ -59,11 +64,10 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
         it('should create a new ressource field in the view model', function() {
             // given
             initController();
-            scope.selectedRessourceTypes = {};
-            scope.selectedRessourceTypes[_ressourceTypes_[0].id] = true;
-
             expect(scope.individu[_ressourceTypes_[0].id]).toBeFalsy();
+            expect(scope.selectedRessourceTypes[_ressourceTypes_[0].id]).toBeFalsy();
 
+            scope.selectedRessourceTypes[_ressourceTypes_[0].id] = true;
             // when
             scope.submit();
 
@@ -73,31 +77,31 @@ describe('Controller: FoyerRessourceTypesCtrl', function() {
 
         it('should delete unselected ressource types in the ressources view model', function() {
             // given
-            scope.individu.pensions_alimentaires_versees_individu = {};
+            scope.individu.chomage_net = {};
             initController();
-            scope.selectedRessourceTypes = { pensions_alimentaires_versees_individu: false };
+            scope.selectedRessourceTypes = { chomage_net: false };
 
             // when
             scope.submit();
 
             // then
-            expect(scope.individu.pensions_alimentaires_versees_individu).toBeFalsy();
-            expect(scope.selectedRessourceTypes.pensions_alimentaires_versees_individu).toBe(undefined);
+            expect(scope.individu.chomage_net).toBeFalsy();
+            expect(scope.selectedRessourceTypes.chomage_net).toBe(undefined);
         });
 
         it('should keep previous ressource corresponding to the selected ressource type if it exists', function() {
             // given
-            initController();
-            scope.selectedRessourceTypes = {};
-            scope.selectedRessourceTypes[_ressourceTypes_[0].id] = true;
-            var ressource = { '2017-08': 42 };
-            scope.individu[_ressourceTypes_[0].id] = ressource;
+            var ressource = {};
+            ressource[month] = 42;
+            scope.individu.chomage_net = ressource;
+            scope.selectedRessourceTypes = { chomage_net: true };
 
             // when
+            initController();
             scope.submit();
 
             // then
-            expect(scope.individu[_ressourceTypes_[0].id]).toBe(ressource);
+            expect(scope.individu.chomage_net).toBeTruthy();
         });
     });
 });

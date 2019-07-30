@@ -60,7 +60,7 @@
           </div>
         </div>
       </uib-accordion>
-      <div ng-if="! haveRessourcesDeclared">
+      <div ng-if="ressourcesByIndividu[$index] | isEmpty">
         <em class="small">Aucune ressource déclarée</em>
       </div>
     </div>

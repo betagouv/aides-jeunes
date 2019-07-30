@@ -28,15 +28,10 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
             }, {});
     }
 
-    function prepareRecapRessources() {
+    function buildRecapRessources() {
         $scope.individusSorted = SituationService.getIndividusSortedParentsFirst($scope.situation);
         $scope.ressourcesByIndividu = $scope.individusSorted.map(getRessources);
         $scope.haveRessourcesDeclared = _.some($scope.ressourcesByIndividu, _.negate(_.isEmpty));
-    }
-
-    function buildRecapRessources() {
-        $scope.ressourcesCaptured = true;
-        prepareRecapRessources();
     }
 
     function buildRecapPatrimoine () {
@@ -118,8 +113,7 @@ angular.module('ddsCommon').controller('RecapSituationCtrl', function($scope, $s
         if ($scope.situation.menage && $scope.situation.menage.statut_occupation_logement) {
             buildRecapLogement();
         }
-        prepareRecapRessources();
-        $scope.ressourcesCaptured = $scope.haveRessourcesDeclared || Boolean($scope.situation._id);
+        buildRecapRessources();
         if ($scope.ressourcesYearMoins2Captured) {
             buildYm2Recap();
         }

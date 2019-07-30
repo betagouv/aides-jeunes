@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 var ressources = require('../../app/js/constants/ressources');
 var utils = require('../lib/utils');
+var validator = require('validator');
 
 var familleDef = {
     parisien: Boolean,
@@ -115,5 +116,22 @@ SituationSchema.pre('save', function(next) {
         .catch(next);
 });
 
+var FollowupSchema = new mongoose.Schema({
+    situation: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Situation'
+    },
+    email: {
+        type: String,
+        validate:{
+            validator: validator.isEmail,
+            message: '{VALUE} n\'est pas un email valide',
+            isAsync: false
+        }
+    },
+    createdAt: Date,
+}, { minimize: false });
+
 mongoose.model('Situation', SituationSchema);
 mongoose.model('LegacySituation', new mongoose.Schema({}, { strict: false }));
+mongoose.model('Followup', FollowupSchema);

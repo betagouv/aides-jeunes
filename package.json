@@ -42,7 +42,8 @@
     "serve-favicon": "^2.4.0",
     "sgmap-mes-aides-api": "github:sgmap/mes-aides-api#v12.0.0",
     "smooth-scroll": "^16.1.0",
-    "tmp": "0.1.0"
+    "tmp": "0.1.0",
+    "validator": "^11.1.0"
   },
   "repository": {
     "type": "git",

@@ -21,19 +21,19 @@
           </button>
         </div>
       </form>
-      <div class="alert alert-success" ng-show="followupSubmitted">Email envoyé !</div>
-      <div class="alert alert-danger" ng-show="followupSubmitted && followupError">Une erreur s'est produite</div>
-      <form name="followup" ng-submit="submitFollowup(followup)"
-        ng-hide="awaitingResults || followupSubmitted || $state.current.name !== 'foyer.resultat' || ! situation._id">
-        <div class="form-group">
-          <input type="email" name="email" ng-model="email" placeholder="Entrez votre email" class="form-control" required />
-        </div>
-        <div class="form-group">
+      <div class="well" ng-hide="awaitingResults || $state.current.name !== 'foyer.resultat' || ! situation._id">
+        <div class="alert alert-success" ng-show="followupSubmitted">Email envoyé !</div>
+        <div class="alert alert-danger" ng-show="followupSubmitted && followupError">Une erreur s'est produite</div>
+        <form name="followup" ng-submit="submitFollowup(followup)"
+          ng-hide="awaitingResults || followupSubmitted || $state.current.name !== 'foyer.resultat' || ! situation._id">
+          <div class="form-group">
+            <input type="email" name="email" ng-model="email" placeholder="Entrez votre email" class="form-control" required />
+          </div>
           <button type="submit" class="btn btn-default btn-block">
             <i class="fa fa-envelope-o"></i>  Recevoir par email
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </aside>
   </div>
 </div>

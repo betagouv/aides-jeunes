@@ -14,7 +14,7 @@ function findIndividu(individus, role, params) {
     return _.find(individus, predicate);
 }
 
-angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, IndividuService) {
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, IndividuService, NationaliteService) {
 
     $scope.specificSituations = specificSituations;
     $scope.situationsFamiliales = situationsFamiliales;
@@ -22,6 +22,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     $scope.currentYear = $scope.today.format('YYYY');
     $scope.maxAgeYears = 130;
     $scope.minBirthDate = moment().subtract($scope.maxAgeYears, 'years');
+    $scope.getZone = NationaliteService.getZone;
 
     if (individuRole == 'enfant') {
         $scope.displayCancelButton = true;
@@ -86,8 +87,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
 
     var DEFAULT_INDIVIDU = {
         id: individuRole,
-        nationalite: 'fr',
-        nationalite_code: 'FR',
+        nationalite: 'FR',
         aah_restriction_substantielle_durable_acces_emploi: true,
         ass_precondition_remplie: false,
         scolarite: 'college',
@@ -202,7 +202,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
         outOfFranceDisclaimers: {},
     };
     if ($scope.individu.nationalite) {
-        $scope.locals.outOfFranceDisclaimers[$scope.individu.nationalite] = true;
+        $scope.locals.outOfFranceDisclaimers[$scope.getZone($scope.individu.nationalite)] = true;
     }
 
     $scope.$watch('individu.date_naissance', _.debounce(function() {

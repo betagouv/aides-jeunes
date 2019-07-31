@@ -7,14 +7,12 @@ angular.module('ddsCommon').directive('offlineResult', function($http, $q, Resul
         scope: {
             situation: '=',
         },
-        link(scope, element, attrs) {
+        link(scope) {
 
             scope.isLoading = ResultatService.isLoading();
             scope.$on('resultat:loading:changed', function(event, loading) {
                 scope.isLoading = loading;
             });
-
-            console.log('scope.situation._id', scope.situation._id)
 
             scope.downloadAsPdf = function() {
 

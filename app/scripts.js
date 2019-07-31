@@ -49,7 +49,6 @@ require('./js/services/situationService.js');
 require('./js/services/resultatService.js');
 require('./js/services/individuService.js');
 require('./js/services/ressourceService.js');
-require('./js/services/customizationService.js');
 require('./js/services/logementService.js');
 require('./js/services/trampolineService.js');
 require('./js/services/monthService.js');
@@ -73,8 +72,6 @@ angular.module('ddsCommon').constant('droitsDescription', droits);
 
 var phishingExpressions = require('./js/constants/phishingExpressions.js');
 angular.module('ddsCommon').constant('phishingExpressions', phishingExpressions);
-
-require('./js/constants/lyonMetropoleInseeCodes.js');
 
 require('./js/controllers/body.js');
 require('./js/controllers/homepage.js');

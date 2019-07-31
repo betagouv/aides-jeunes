@@ -1,6 +1,4 @@
-'use strict';
-
-angular.module('ddsCommon').constant('lyonMetropoleInseeCodes', [
+module.exports = [
     '69003', // Albigny-sur-Saône
     '69029', // Bron
     '69033', // Cailloux-sur-Fontaines
@@ -69,4 +67,4 @@ angular.module('ddsCommon').constant('lyonMetropoleInseeCodes', [
     '69387', // LYON 07
     '69388', // LYON 08
     '69389', // LYON 09
-]);
+];

@@ -37,7 +37,9 @@
 
 .offline-result {
 
-    @extend .well;
+    background-color: white;
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+    padding: 15px;
 
     .input-group  {
         > input[type="email"] {

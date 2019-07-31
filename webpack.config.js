@@ -139,8 +139,8 @@ var config = {
         },
     },
     externals: function(context, request, callback) {
-        if (request.match(/backend/)) {
-            callback(request + ' is a backend file, should not be imported.');
+        if (request.match(/backend\/config/)) {
+            callback(request + ' is a backend config file, should not be imported.');
         } else {
             callback();
         }

@@ -1,0 +1,32 @@
+<div class="offline-result" ng-class="{ hidden: isLoading }">
+
+  <p class="text-center text-muted">Enregistrez les résultats de votre simulation</p>
+
+  <div class="offline-result-buttons">
+
+    <form method="post" id="download" class="hidden-xs">
+      <input type="hidden" name="basename" ng-value="situation._id">
+      <input type="hidden" name="base64" ng-value="base64">
+      <button type="submit" class="btn btn-default btn-block" ng-click="downloadAsPdf()"
+        analytics-on="click"
+        analytics-category="Télécharger">
+        <i class="fa fa-file-pdf-o"></i>  Télécharger en PDF
+      </button>
+    </form>
+
+    <form name="followup" ng-submit="submitFollowup(followup)">
+      <span class="text-success" ng-show="followupSubmitted && followupSuccess"><i class="fa fa-check"></i>  Email envoyé !</span>
+      <span class="text-danger" ng-show="followupSubmitted && followupError"><i class="fa fa-exclamation-triangle"></i>  Une erreur s'est produite</span>
+      <div class="input-group" ng-hide="followupSubmitted">
+        <input type="email" name="email" ng-model="email" placeholder="Entrez votre email" class="form-control" required />
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="fa fa-envelope-o"></i>  Recevoir par email
+          </button>
+        </span>
+      </div>
+    </form>
+
+  </div>
+
+</div>

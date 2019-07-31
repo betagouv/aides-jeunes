@@ -42,7 +42,7 @@
           <div class="button-grid">
             <label ng-repeat="ressourceType in ressourceTypesByCategories[category.id] | orderBy:['score', 'positionInList','label'] track by ressourceType.id"
               ng-animate  
-              class="btn btn-sm btn-default resourceTypeLabel"
+              class="resourceTypeLabel btn btn-default"
               ng-class="{ active: selectedRessourceTypes[ressourceType.id] }"
               >
               <input type="checkbox"

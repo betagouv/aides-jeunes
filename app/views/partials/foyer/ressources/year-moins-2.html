@@ -53,11 +53,11 @@
         </button>
       </div>
     </div>
-    <div class="text-right">
-      <span class="text-danger" ng-if="form.$submitted && form.$invalid">
+
+    <next-button>
+      <message class="text-danger" ng-if="form.$submitted && form.$invalid">
         Un des montants indiqués est invalide
-      </span>
-      <button type="submit" class="btn btn-primary">Valider</button>
-    </div>
+      </message>
+    </next-button>
   </form>
 </div>

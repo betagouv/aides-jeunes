@@ -182,10 +182,6 @@
         Les règles spécifiques à Mayotte ne sont pas encore prises en compte par ce simulateur. Nous ne pouvons donc malheureusement pas évaluer vos droits pour ce code postal.
     </p>
 
-    <div class="text-right">
-      <button type="submit" class="btn btn-primary" ng-if="maySubmit()">
-        Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-      </button>
-    </div>
+    <next-button ng-if="maySubmit()"></next-button>
   </form>
 </div>

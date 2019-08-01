@@ -130,8 +130,20 @@ var FollowupSchema = new mongoose.Schema({
             isAsync: false
         }
     },
-    createdAt: Date,
-}, { minimize: false });
+    createdAt: { type: Date, default: Date.now },
+    _id: { type: String },
+}, { minimize: false, id: false });
+
+FollowupSchema.pre('save', function(next) {
+    if (!this.isNew) next();
+    var followup = this;
+    utils.generateToken()
+        .then(function(token) {
+            followup._id = token;
+        })
+        .then(next)
+        .catch(next);
+});
 
 mongoose.model('Situation', SituationSchema);
 mongoose.model('LegacySituation', new mongoose.Schema({}, { strict: false }));

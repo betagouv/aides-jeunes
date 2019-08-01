@@ -10,15 +10,6 @@
       <div ui-view="recap_situation" class="recap-situation well whiteframe-z1">
         <p class="text-center"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Chargement en cours…</p>
       </div>
-      <form method="post" id="download" ng-hide="awaitingResults || $state.current.name !== 'foyer.resultat' || ! situation._id" class="hidden-xs">
-        <input type="hidden" name="basename" ng-value="situation._id">
-        <input type="hidden" name="base64" ng-value="base64">
-        <button type="submit" class="btn btn-default btn-block" ng-click="downloadAsPdf()"
-          analytics-on="click"
-          analytics-category="Télécharger">
-          <i class="fa fa-file-pdf-o"></i>  Télécharger ma simulation
-        </button>
-      </form>
     </aside>
   </div>
 </div>

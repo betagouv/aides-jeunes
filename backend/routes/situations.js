@@ -23,6 +23,8 @@ module.exports = function(api) {
     route.post('/openfisca-test', situations.openfiscaTest);
     route.get('/openfisca-trace', situations.openfiscaTrace);
 
+    route.post('/followup', situations.followup);
+
     teleservices.names.forEach(function(name) {
         route.get('/' + name,
             teleservices.metadataResponseGenerator(teleservices[name])

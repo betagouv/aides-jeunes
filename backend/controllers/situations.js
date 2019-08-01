@@ -2,6 +2,8 @@ var _ = require('lodash');
 var openfisca = require('../lib/openfisca');
 var openfiscaTest = require('../lib/openfisca/test');
 var Situation = require('mongoose').model('Situation');
+var Followup = require('mongoose').model('Followup');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 var cookiePrefix = 'situation_';
 
@@ -101,4 +103,25 @@ exports.openfiscaTest = function(req, res) {
 
     var situation = req.situation.toObject ? req.situation.toObject() : req.situation;
     res.type('yaml').send(openfiscaTest.generateYAMLTest(details, situation));
+};
+
+exports.followup = function(req, res) {
+    Followup.find({
+        'situation': ObjectId(req.situation._id)
+    }, function(err, matches) {
+        if (matches.length > 0) {
+            res.send({ result: 'OK' });
+        } else {
+            Followup.create({
+                email: req.body.email,
+                situation: req.situation,
+                createdAt: new Date()
+            }, function(err) {
+                if (err) {
+                    return res.status(400).send({ result: 'KO' });
+                }
+                res.send({ result: 'OK' });
+            });
+        }
+    });
 };

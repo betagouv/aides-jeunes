@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var moment = require('moment');
-var droitsDescription = require('../../app/js/constants/benefits/');
-var determineCustomizationId = require('./mes-aides/customization');
+var droitsDescription = require('../../../app/js/constants/benefits/');
+var determineCustomizationId = require('./customization');
 
 /**
  * OpenFisca test cases separate ressources between two entities: individuals and families.

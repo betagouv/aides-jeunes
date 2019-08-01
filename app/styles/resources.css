@@ -8,7 +8,7 @@
 .button-grid label {
     width: calc(33.33% - .5em);
     margin: .25em;
-    padding: .25em;
+    padding: 8px 16px;
     font-size: 100%;
     display: flex;
     align-items: center;
@@ -60,8 +60,4 @@
     margin: auto;
     cursor: pointer;
     color: #ccc;
-}
-
-#count-ressources {
-    margin-right: 1em;
 }

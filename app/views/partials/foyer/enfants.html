@@ -29,8 +29,7 @@
     </button>
   </div>
 
-  <div ui-view="validate"></div>
-
+  <next-button ng-if="allowValidation()" ng-click="validate()"></next-button>
 </div>
 
 <div ui-view="enfantForm"></div>

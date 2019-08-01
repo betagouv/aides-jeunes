@@ -42,7 +42,7 @@
           <div class="button-grid">
             <label ng-repeat="ressourceType in ressourceTypesByCategories[category.id] | orderBy:['score', 'positionInList','label'] track by ressourceType.id"
               ng-animate  
-              class="btn btn-sm btn-default resourceTypeLabel"
+              class="resourceTypeLabel btn btn-default"
               ng-class="{ active: selectedRessourceTypes[ressourceType.id] }"
               >
               <input type="checkbox"
@@ -54,17 +54,9 @@
           </div>
         </div>
       </uib-accordion>
-      <div class="text-right">
-        <span id="count-ressources">
-          <i class="fa fa-check"></i>
-          <span>
-            {{ selectedRessourceTypesCountLabel() }}
-          </span>
-        </span>
-        <button type="submit" class="btn btn-primary">
-          Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-        </button>
-      </div>
+      <next-button>
+        <message><i class="fa fa-check"></i> {{selectedRessourceTypesCountLabel()}}</message>
+      </next-button>
     </fieldset>
   </form>
 </div>

@@ -82,7 +82,7 @@
           <label class="col-sm-6 control-label" for="loyer">
             {{ loyerLabel() }}
           </label>
-          <div class="col-sm-6">
+          <div class="col-sm-5">
             <div class="input-group">
               <input type="number" min="0" class="form-control text-right" id="loyer" name="loyer" ng-model="menage.loyer"
                 select-on-focus
@@ -104,10 +104,10 @@
 
       <div class="col-sm-6" ng-if="captureCharges()">
         <div class="form-group" ng-class="{'has-error': submitted && form.charges.$invalid}">
-          <label class="col-sm-3 control-label" for="charges">
+          <label class="col-sm-5 control-label" for="charges">
             Vos charges locatives
           </label>
-          <div class="col-sm-6">
+          <div class="col-sm-5">
             <div class="input-group">
               <input type="number" class="form-control text-right" id="charges" name="charges" ng-model="menage.charges_locatives"
                 select-on-focus
@@ -132,7 +132,7 @@
           class="form-group"
           ng-class="{'has-error': submitted && ! isAdresseValid()}">
           <label class="col-sm-6 control-label" for="postal-code">Code postal</label>
-          <div class="col-sm-6">
+          <div class="col-sm-5">
             <input
               type="text"
               inputmode="numeric"
@@ -155,8 +155,8 @@
         <div class="form-group">
           <p class="form-control-static" ng-if="retrievingCities"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
           <div ng-show="cities.length">
-            <label class="col-sm-3 control-label" for="city">Ville</label>
-            <div class="col-sm-6">
+            <label class="col-sm-5 control-label" for="city">Ville</label>
+            <div class="col-sm-5">
               <select
                 class="form-control"
                 required
@@ -182,10 +182,6 @@
         Les règles spécifiques à Mayotte ne sont pas encore prises en compte par ce simulateur. Nous ne pouvons donc malheureusement pas évaluer vos droits pour ce code postal.
     </p>
 
-    <div class="text-right">
-      <button type="submit" class="btn btn-primary" ng-if="maySubmit()">
-        Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-      </button>
-    </div>
+    <next-button ng-if="maySubmit()"></next-button>
   </form>
 </div>

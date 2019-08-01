@@ -49,11 +49,7 @@
     </div>
   </div>
 
-  <div class="text-right" ng-if="shouldDisplaySubmit()">
-    <button type="submit" class="btn btn-primary" ng-click="submit()">
-      Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-    </button>
-  </div>
+  <next-button ng-if="shouldDisplaySubmit()" ng-click="submit()"></next-button>
 </div>
 <div class="frame-new-individu" ng-if="locals.isInCouple">
   <h3>Votre conjoint</h3>

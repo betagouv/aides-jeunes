@@ -219,9 +219,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/enfants.html',
                     controller: 'FoyerEnfantsCtrl',
                 },
-                'validate@foyer.enfants': {
-                    templateUrl: '/partials/foyer/enfants/validate.html',
-                },
             },
             data: {
                 guard: true,
@@ -236,9 +233,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/enfants/form.html',
                 },
                 'form@foyer.enfants.ajouter': individuFormView('enfant'),
-                'validate@foyer.enfants': {
-                    templateUrl: '/partials/foyer/enfants/validate.html',
-                },
             },
             resolve: resolveIndividuRole('enfant'),
         })
@@ -253,9 +247,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                     templateUrl: '/partials/foyer/enfants/form.html',
                 },
                 'form@foyer.enfants.modifier': individuFormView('enfant'),
-                'validate@foyer.enfants': {
-                    templateUrl: '/partials/foyer/enfants/validate.html',
-                },
             },
             resolve: resolveIndividuRole('enfant'),
         })

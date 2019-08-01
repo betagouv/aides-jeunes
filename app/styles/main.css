@@ -66,3 +66,7 @@ header, footer {
     page-break-before: always;
     page-break-after: always;
 }
+
+.next.message {
+  padding: 1em;
+}

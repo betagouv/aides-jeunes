@@ -1,0 +1,27 @@
+<div class="form-group">
+  <div class="col-sm-4 control-label">
+    <label for="dureePossessionTitreSejour" id="dureePossessionTitreSejour">
+      Depuis combien de temps
+      <span ng-if="individu.role == 'demandeur'">êtes-vous</span>
+      <span ng-if="individu.role == 'conjoint'">votre conjoint·e vit-il/elle</span>
+      <span ng-if="individu.role == 'enfant'">votre enfant vit-il/elle</span>
+      en France dans cette situation&nbsp;?
+    </label>
+  </div>
+  <div class="button-row">
+    <label
+      ng-repeat="choice in choices"
+      class="btn btn-sm btn-default"
+      ng-class="{ 'active': individu.duree_possession_titre_sejour == choice.value }"
+      >
+      <input type="radio"
+        name="dureePossessionTitreSejour"
+        class="sr-only"
+        aria-describedby="dureePossessionTitreSejour"
+        ng-value="choice.value"
+        ng-model="individu.duree_possession_titre_sejour"
+        />
+      {{ choice.label }}
+    </label>
+  </div>
+</div>

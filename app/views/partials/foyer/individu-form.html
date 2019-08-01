@@ -53,7 +53,7 @@
     </div>
   </div>
 
-  <div ng-if="individu.role == 'demandeur'" class="form-group">
+  <div class="form-group">
     <label class="control-label col-sm-4">Nationalité</label>
     <div class="col-sm-4">
       <nationality-choice individu="individu"></nationality-choice>
@@ -62,25 +62,48 @@
 
   <div
     class="form-group"
-    ng-repeat="(key, label) in outOfFranceDisclaimers"
+    ng-if="individu.nationalite != 'FR'"
     ng-if="getZone(individu.nationalite) == key"
-    ng-class="{'has-error': submitted && form['outOfFranceDisclaimer-' + key].$invalid}">
+    ng-class="{'has-error': submitted && form.satisfyResidentialDurationPrerequisite.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
-        <label for="{{ 'out-of-france-disclaimer-' + key }}" >
+        <label for="satisfy-residential-duration-prerequisite" >
           <input
-            id="{{ 'out-of-france-disclaimer-' + key }}"
+            id="satisfy-residential-duration-prerequisite"
             type="checkbox"
-            name="{{ 'outOfFranceDisclaimer-' + key }}"
-            ng-model="locals.outOfFranceDisclaimers[key]"
+            name="satisfyResidentialDurationPrerequisite"
+            ng-model="locals.satisfyResidentialDurationPrerequisite"
             required
           >
-          {{ label }}
+          Résidant en France plus de 9 mois par an
         </label>
       </div>
-      <span class="help-block" id="help-disclaimer-non-ue" ng-if="submitted && form['outOfFranceDisclaimer-' + key ].$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
+      <span class="help-block" id="help-satisfy-residential-duration-prerequisite" ng-if="submitted && form.satisfyResidentialDurationPrerequisite.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
     </div>
   </div>
+
+  <div
+    class="form-group"
+    ng-if="individu.nationalite != 'FR' && locals.satisfyResidentialDurationPrerequisite"
+    ng-class="{'has-error': submitted && form.satisfyResidentialPermitPrerequisite.$invalid}">
+    <div class="col-sm-offset-4 col-sm-8">
+      <div class="checkbox">
+        <label for="satisfy-residential-permit-prerequisite" >
+          <input
+            id="satisfy-residential-permit-prerequisite"
+            type="checkbox"
+            name="satisfyResidentialPermitPrerequisite"
+            ng-model="locals.satisfyResidentialPermitPrerequisite[getZone(individu.nationalite)]"
+            required
+          >
+          <span ng-bind-html=residentialPermitLabel[getZone(individu.nationalite)]></span>
+        </label>
+      </div>
+      <span class="help-block" id="help-satisfy-residential-prerequisite" ng-if="submitted && form.satisfyResidentialPermitPrerequisite.$invalid">Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.</span>
+    </div>
+  </div>
+
+  <titre-sejour-question ng-if="captureDureePossessionTitreSejour()" individu="individu"></titre-sejour-question>
 
   <div class="form-group" ng-if="individu.role == 'conjoint'">
     <label class="control-label col-sm-4" for="relation-conjoint">Votre relation</label>

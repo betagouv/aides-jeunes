@@ -80,23 +80,24 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
         }
     ];
 
-    $scope.outOfFranceDisclaimers = {
-        autre: 'Détenteur d‘une carte de résident ou d‘un titre de séjour valide et résidant en France plus de 9 mois par an.',
-        ue: 'Détenteur d‘un droit au séjour valide et résidant en France plus de 9 mois par an.',
+    $scope.residentialPermitLabel = {
+        autre: 'En possession d‘une carte de résident ou d‘un titre de séjour valide',
+        ue: 'En possession d‘un <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2651">droit au séjour</a> valide',
     };
 
     var DEFAULT_INDIVIDU = {
         id: individuRole,
-        nationalite: 'FR',
         aah_restriction_substantielle_durable_acces_emploi: true,
         ass_precondition_remplie: false,
-        scolarite: 'college',
-        taux_incapacite: 0.9,
+        duree_possession_titre_sejour: 25,
         echelon_bourse: -1,
         enfant_a_charge: {},
         enfant_place: false,
         gir: 'gir_6',
+        nationalite: 'FR',
         role: individuRole,
+        scolarite: 'college',
+        taux_incapacite: 0.9,
         tns_autres_revenus_type_activite: 'bic',
         tns_micro_entreprise_type_activite: 'bic',
         tns_auto_entrepreneur_type_activite: 'bic',
@@ -112,8 +113,8 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
 
-    var individu = findIndividu($scope.situation.individus, individuRole, $stateParams);
-    $scope.individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(individu));
+    var existingIndividu = findIndividu($scope.situation.individus, individuRole, $stateParams);
+    $scope.individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(existingIndividu));
 
     if (individuRole == 'enfant' && $scope.isNew) {
 
@@ -143,6 +144,10 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
                 }
             });
 
+            if (! $scope.captureDureePossessionTitreSejour()) {
+                delete $scope.individu.duree_possession_titre_sejour;
+            }
+
             if (! $scope.captureEligibiliteAss()) {
                 delete $scope.individu.ass_precondition_remplie;
                 delete $scope.individu.date_debut_chomage;
@@ -166,6 +171,12 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
 
     $scope.isDemandeurMineur = function(form) {
         return individuRole == 'demandeur' && form && form.dateDeNaissance.$valid && IndividuService.age($scope.individu) < 18 ;
+    };
+
+    $scope.captureDureePossessionTitreSejour = function() {
+        return $scope.locals.satisfyResidentialDurationPrerequisite &&
+            $scope.locals.satisfyResidentialPermitPrerequisite &&
+            ['ue', 'autre'].indexOf($scope.individu.nationalite) >= 0;
     };
 
     $scope.captureEligibiliteAss = function() {
@@ -199,11 +210,10 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
 
     $scope.locals = {
         fiscalementIndependant: ! $scope.individu.enfant_a_charge[$scope.currentYear],
-        outOfFranceDisclaimers: {},
+        satisfyResidentialDurationPrerequisite: Boolean(existingIndividu) && existingIndividu.nationalite != 'FR',
+        satisfyResidentialPermitPrerequisite: {}
     };
-    if ($scope.individu.nationalite) {
-        $scope.locals.outOfFranceDisclaimers[$scope.getZone($scope.individu.nationalite)] = true;
-    }
+    $scope.locals.satisfyResidentialPermitPrerequisite[existingIndividu && $scope.getZone(existingIndividu.nationalite)] = true;
 
     $scope.$watch('individu.date_naissance', _.debounce(function() {
         $scope.capturePerteAutonomie = $scope.individu.date_naissance &&

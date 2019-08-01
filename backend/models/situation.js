@@ -48,6 +48,7 @@ var individuDef = Object.assign({
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,
+    duree_possession_titre_sejour: Number,
     echelon_bourse: Number,
     enfant_a_charge: Object,
     enfant_place: Boolean,

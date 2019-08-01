@@ -92,7 +92,6 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
     var propertiesToDelete = [
         'firstName', // for kids
         'hasRessources',
-        'nationalite',
         'role',
         'specificSituations',
     ];

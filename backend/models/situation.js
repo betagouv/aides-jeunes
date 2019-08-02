@@ -93,6 +93,7 @@ var menageDef = {
 };
 
 var situation = {
+    createdAt: { type: Date, default: Date.now },
     dateDeValeur: Date,
     famille: familleDef,
     foyer_fiscal: foyerFiscalDef,
@@ -105,6 +106,15 @@ var situation = {
 };
 
 var SituationSchema = new mongoose.Schema(situation, { minimize: false });
+
+SituationSchema.statics.cookiePrefix = 'situation_';
+SituationSchema.virtuals.cookieName = function() {
+    return SituationSchema.statics.cookiePrefix + this._id;
+};
+
+SituationSchema.methods.isAccessible = function(keychain) {
+    return ['demo', 'investigation', 'test'].includes(this.status) || (keychain && keychain[this.cookieName] === this.token);
+};
 
 SituationSchema.pre('save', function(next) {
     if (!this.isNew) next();

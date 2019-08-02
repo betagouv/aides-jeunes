@@ -108,9 +108,9 @@ var situation = {
 var SituationSchema = new mongoose.Schema(situation, { minimize: false });
 
 SituationSchema.statics.cookiePrefix = 'situation_';
-SituationSchema.virtuals.cookieName = function() {
-    return SituationSchema.statics.cookiePrefix + this._id;
-};
+SituationSchema.virtual('cookieName').get(function() {
+    return `${SituationSchema.statics.cookiePrefix}${this._id}`;
+});
 
 SituationSchema.methods.isAccessible = function(keychain) {
     return ['demo', 'investigation', 'test'].includes(this.status) || (keychain && keychain[this.cookieName] === this.token);

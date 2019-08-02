@@ -4,8 +4,6 @@ var openfiscaTest = require('../lib/openfisca/test');
 var Situation = require('mongoose').model('Situation');
 var Followup = require('mongoose').model('Followup');
 
-var cookiePrefix = 'situation_';
-
 exports.situation = function(req, res, next, id) {
     Situation.findById(id, function(err, situation) {
         if (err) return next(err);
@@ -16,9 +14,12 @@ exports.situation = function(req, res, next, id) {
     });
 };
 
+exports.attachAccessCookie = function(req, res) {
+    res.cookie(req.situation.cookieName, req.situation.token, { maxAge: 7 * 24 * 3600 * 1000, httpOnly: true });
+};
+
 exports.validateAccess = function(req, res, next) {
-    var situation = req.situation;
-    if (req.situation.status === 'test' || req.situation.status === 'investigation' || !situation.token || req.cookies[cookiePrefix + situation.id] === situation.token) return next();
+    if (req.situation.isAccessible(req.cookies)) return next();
     res.status(403).send({ error: 'You do not have access to this situation.' });
 };
 
@@ -30,7 +31,7 @@ function clearCookies(req, res) {
     var limit = 10;
 
     var keys = Object.keys(req.cookies);
-    var situationCookies = _.filter(keys, function(k) { return k.startsWith(cookiePrefix); });
+    var situationCookies = _.filter(keys, function(k) { return k.startsWith(Situation.cookiePrefix); });
     situationCookies.sort();
 
     if (situationCookies.length-limit>=0) {
@@ -44,12 +45,12 @@ function clearCookies(req, res) {
 exports.create = function(req, res, next) {
     if (req.body._id) return res.status(403).send({ error: 'You can‘t provide _id when saving a situation. _id will be generated automatically.' });
 
-    return Situation.create(_.omit(req.body, 'status', 'token'), function(err, persistedSituation) {
+    return Situation.create(_.omit(req.body, 'createdAt', 'status', 'token'), function(err, persistedSituation) {
         if (err) return next(err);
 
         clearCookies(req, res);
-
-        res.cookie(cookiePrefix + persistedSituation.id, persistedSituation.token, { maxAge: 7 * 24 * 3600 * 1000, httpOnly: true });
+        req.situation = persistedSituation;
+        exports.attachAccessCookie(req, res);
         res.send(persistedSituation);
     });
 };
@@ -107,8 +108,7 @@ exports.openfiscaTest = function(req, res) {
 exports.followup = function(req, res) {
     Followup.create({
         email: req.body.email,
-        situation: req.situation,
-        createdAt: new Date()
+        situation: req.situation
     }, function(err) {
         if (err) {
             return res.status(400).send({ result: 'KO' });

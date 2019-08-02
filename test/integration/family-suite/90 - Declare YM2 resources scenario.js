@@ -11,8 +11,7 @@ steps: [
     YM2ResourcesComponent.setRfrInput(15000),
     YM2ResourcesComponent.submit(),
     {
-        'ResultComponent.prestationYM2Warning': false,
-        'ResultComponent.declareYM2ResourcesLink': false,
+        'ResultComponent.prestationWarning': false,
         'ResultComponent.greyedPrestation': false,
     },
     RecapComponent.openYM2Demandeur(),

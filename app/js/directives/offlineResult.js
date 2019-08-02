@@ -79,6 +79,12 @@ angular.module('ddsCommon').directive('offlineResult', function($http, $q, Resul
 
             scope.submitFollowup = function(form) {
                 var email = form.email.$modelValue;
+                if (! email || ! email.length) {
+                    form.email.$setViewValue('');
+                    form.email.$render();
+                    return;
+                }
+
                 var situation = SituationService.restoreLocal();
                 $http.post('api/situations/' + situation._id + '/followup', {
                     email: email,

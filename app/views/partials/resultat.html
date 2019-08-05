@@ -76,10 +76,11 @@ Erreur : {{ encodedError }}
     <div>
       <h4>Nous améliorons ce simulateur en continu, et
         <a
+          href
           analytics-on="click"
           analytics-category="Contact"
           analytics-event="Go"
-          href="{{feedbackURL}}">
+          ng-click="goToFeedback($event)">
           vous pouvez nous y aider</a>&nbsp;!</h4>
     </div>
   </div>

@@ -2,6 +2,7 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
 
+var followups = require('../controllers/followups');
 var situations = require('../controllers/situations');
 var teleservices = require('../controllers/teleservices');
 
@@ -23,7 +24,7 @@ module.exports = function(api) {
     route.post('/openfisca-test', situations.openfiscaTest);
     route.get('/openfisca-trace', situations.openfiscaTrace);
 
-    route.post('/followup', situations.followup);
+    route.post('/followup', followups.followup);
 
     teleservices.names.forEach(function(name) {
         route.get('/' + name,

@@ -73,8 +73,33 @@ Erreur : {{ encodedError }}
   <offline-result situation="situation" ng-show="droits | isNotEmpty"></offline-result>
 
   <div class="print-hidden">
+    <div>
+      <h4>Nous améliorons ce simulateur en continu, et
+        <a
+          analytics-on="click"
+          analytics-category="Contact"
+          analytics-event="Go"
+          href="{{feedbackURL}}">
+          vous pouvez nous y aider</a>&nbsp;!</h4>
+    </div>
+  </div>
+  <!-- Page break for print -->
+  <div class="page-break"></div>
+
+  <h1 ng-if="! (droits | isEmpty)">Comment obtenir vos aides ?</h1>
+  <droit-eligibles-details
+    city="situation.menage.depcom"
+    droits="droits"
+    patrimoine-captured="! shouldPatrimoineBeCaptured()"
+    ressources-year-moins-2-captured="ressourcesYearMoins2Captured"
+    year-moins-2="yearMoins2"
+    ></droit-eligibles-details>
+
+  <div class="print-hidden">
+    <etablissements-list ng-if="defaultEtablissementTypes && defaultEtablissementTypes.length" city="situation.menage.depcom" types="defaultEtablissementTypes"></etablissements-list>
+
     <div id="feedback">
-      <h4>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider !</h4>
+      <h2>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider !</h2>
       <p>La plupart des résultats que nous vous proposons sont automatiquement arrondis à une dizaine d'euros près.</p>
       <ul>
         <li><a analytics-on="click" analytics-category="Contact" analytics-event="Support"
@@ -141,22 +166,6 @@ ID : {{ situation._id }} (à conserver impérativement pour traitement de votre 
           >accédez à l'outil d'analyse des résultats de cette simulation</a>.
       </small>
     </div>
-  </div>
-
-  <!-- Page break for print -->
-  <div class="page-break"></div>
-
-  <h1 ng-if="! (droits | isEmpty)">Comment obtenir vos aides ?</h1>
-  <droit-eligibles-details
-    city="situation.menage.depcom"
-    droits="droits"
-    patrimoine-captured="! shouldPatrimoineBeCaptured()"
-    ressources-year-moins-2-captured="ressourcesYearMoins2Captured"
-    year-moins-2="yearMoins2"
-    ></droit-eligibles-details>
-
-  <div class="print-hidden">
-    <etablissements-list ng-if="defaultEtablissementTypes && defaultEtablissementTypes.length" city="situation.menage.depcom" types="defaultEtablissementTypes"></etablissements-list>
 
     <div>
       <h4 ng-show="! (droitsInjectes | isEmpty)">Vous avez indiqué ces aides au cours la simulation et elles n'ont pas été recalculées</h4>
@@ -164,7 +173,7 @@ ID : {{ situation._id }} (à conserver impérativement pour traitement de votre 
     </div>
 
     <div id="social">
-    	<p>Suivez-nous sur <a ui-sref="social">nos réseaux sociaux</a> ! Nos messages privés sont ouverts pour vous permettre de communiquer avec nous en toute discrétion.</p>
+      <p>Suivez-nous sur <a ui-sref="social">nos réseaux sociaux</a> ! Nos messages privés sont ouverts pour vous permettre de communiquer avec nous en toute discrétion.</p>
 
       <p style="text-align:center;"><a href="https://www.facebook.com/MesAides"><img src="/img/social/picto_facebook.png" alt="Facebook"></a>  <a href="https://twitter.com/MesAides"><img src="/img/social/picto_twitter.png" alt="Twitter"></a></p>
     </div>

@@ -13,6 +13,7 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
         }
     }
     $scope.trampoline = TrampolineService;
+    $scope.feedbackURL = $window.location + ($window.location.href.includes('feedback') ? '' : '#feedback');
 
     function triggerEvaluation() {
         loadSituation()

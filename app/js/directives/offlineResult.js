@@ -76,8 +76,13 @@ angular.module('ddsCommon').directive('offlineResult', function($http, $q, Resul
             scope.followupSubmitted = false;
             scope.followupSuccess = false;
             scope.followupError = false;
+            scope.submitting = false;
 
             scope.submitFollowup = function(form) {
+                if (scope.submitting) {
+                    return;
+                }
+
                 var email = form.email.$modelValue;
                 if (! email || ! email.length) {
                     form.email.$setViewValue('');
@@ -85,6 +90,8 @@ angular.module('ddsCommon').directive('offlineResult', function($http, $q, Resul
                     return;
                 }
 
+
+                scope.submitting = true;
                 var situation = SituationService.restoreLocal();
                 $http.post('api/situations/' + situation._id + '/followup', {
                     email: email,
@@ -92,10 +99,12 @@ angular.module('ddsCommon').directive('offlineResult', function($http, $q, Resul
                     scope.followupSubmitted = true;
                     scope.followupSuccess = true;
                     scope.followupError = false;
+                    scope.submitting = false;
                 }).catch(function() {
                     scope.followupSubmitted = true;
                     scope.followupSuccess = false;
                     scope.followupError = true;
+                    scope.submitting = false;
                 });
             };
 

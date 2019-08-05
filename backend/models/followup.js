@@ -29,5 +29,8 @@ FollowupSchema.pre('save', function(next) {
         .then(next)
         .catch(next);
 });
+FollowupSchema.virtual('returnPath').get(function() {
+    return '/api/followups/' + this._id;
+});
 
 mongoose.model('Followup', FollowupSchema);

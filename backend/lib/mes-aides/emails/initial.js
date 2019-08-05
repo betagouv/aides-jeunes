@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 var mustache = require('consolidate').mustache;
 var config = require('../../../config');
 
@@ -14,12 +15,13 @@ function basicBenefitText(b) {
     return `${b.label} pour un montant de ${b.montant} € / ${b.isMontantAnnuel ? 'an' : 'mois'}`;
 }
 
-var textTemplate = fs.readFileSync('app/views/emails/initial.txt', 'utf8');
+var textTemplate = fs.readFileSync(path.join(__dirname, 'templates/initial.txt'), 'utf8');
 function render(followup) {
     return followup.situation.compute()
+        .then(function (results) { return results.droitsEligibles; })
         .then(function (benefits) {
             return {
-                benefitTexts: benefits.droitsEligibles.map(basicBenefitText),
+                benefitTexts: benefits.map(basicBenefitText),
                 subject: `[${followup.situation._id}] Récapitulatif de votre simulation sur Mes-Aides.gouv.fr`,
                 returnURL: `${config.baseURL}${followup.returnPath}`,
             };

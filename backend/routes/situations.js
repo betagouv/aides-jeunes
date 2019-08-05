@@ -24,7 +24,7 @@ module.exports = function(api) {
     route.post('/openfisca-test', situations.openfiscaTest);
     route.get('/openfisca-trace', situations.openfiscaTrace);
 
-    route.post('/followup', followups.persist);
+    route.post('/followup', followups.persistAndSendEmail);
 
     teleservices.names.forEach(function(name) {
         route.get('/' + name,

@@ -14,6 +14,7 @@ function basicBenefitText(b) {
     return `${b.label} pour un montant de ${b.montant} € / ${b.isMontantAnnuel ? 'an' : 'mois'}`;
 }
 
+var textTemplate = fs.readFileSync('app/views/emails/initial.txt', 'utf8');
 function render(followup) {
     return followup.situation.compute()
         .then(function (benefits) {
@@ -23,7 +24,6 @@ function render(followup) {
                 returnURL: `${config.baseURL}${followup.returnPath}`,
             };
         }).then(function(data) {
-            var textTemplate = fs.readFileSync('app/views/emails/initial.txt', 'utf8');
             return mustache.render(textTemplate, data)
                 .then(text => {
                     return {

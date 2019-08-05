@@ -18,7 +18,7 @@ angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope) 
                     return _.includes($scope.filter, value.id);
                 });
             }
-            $scope.list = _.sortBy(list, ['top', 'label']);
+            $scope.list = list;
         }
     });
 

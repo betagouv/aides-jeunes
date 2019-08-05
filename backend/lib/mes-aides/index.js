@@ -70,6 +70,10 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
         });
     });
 
+    Object.keys(result).forEach(function(group) {
+        result[group] = _.sortBy(result[group], ['top', 'label']);
+    });
+
     return result;
 }
 

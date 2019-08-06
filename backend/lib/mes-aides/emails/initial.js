@@ -32,55 +32,54 @@ function renderAsText(followup, benefits) {
 
 function renderAsHtml(followup, benefits) {
 
-    return new Promise(function (resolve, reject) {
 
-        var droits = _.map(benefits, function(droit) {
+    var droits = _.map(benefits, function(droit) {
 
-            var montant = '';
-            if (_.isNumber(droit.montant)) {
-                var unit = droit.unit || '€';
-                var legend = droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois');
-                montant = `${droit.montant} ${unit} ${legend}`;
-            }
+        var montant = '';
+        if (_.isNumber(droit.montant)) {
+            var unit = droit.unit || '€';
+            var legend = droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois');
+            montant = `${droit.montant} ${unit} ${legend}`;
+        }
 
-            var ctaLink = '';
-            var ctaLabel = '';
-            if (droit.teleservice) {
-                ctaLink = droit.teleservice;
-                ctaLabel = 'Faire une demande en ligne';
-            } else if (droit.form) {
-                ctaLink = droit.form;
-                ctaLabel = 'Accéder au formulaire papier';
-            } else if (droit.instructions) {
-                ctaLink = droit.instructions;
-                ctaLabel = 'Accéder aux instructions';
-            } else {
-                ctaLink = droit.link;
-                ctaLabel = 'Plus d\'informations';
-            }
+        var ctaLink = '';
+        var ctaLabel = '';
+        if (droit.teleservice) {
+            ctaLink = droit.teleservice;
+            ctaLabel = 'Faire une demande en ligne';
+        } else if (droit.form) {
+            ctaLink = droit.form;
+            ctaLabel = 'Accéder au formulaire papier';
+        } else if (droit.instructions) {
+            ctaLink = droit.instructions;
+            ctaLabel = 'Accéder aux instructions';
+        } else {
+            ctaLink = droit.link;
+            ctaLabel = 'Plus d\'informations';
+        }
 
-            return _.assign({}, droit, {
-                montant: montant,
-                ctaLink: ctaLink,
-                ctaLabel: ctaLabel,
-            });
+        return _.assign({}, droit, {
+            montant: montant,
+            ctaLink: ctaLink,
+            ctaLabel: ctaLabel,
         });
+    });
 
-        var data = {
-            droits: droits,
-            baseURL: config.baseURL,
-            returnURL: `${config.baseURL}${followup.returnPath}`,
-        };
+    var data = {
+        droits: droits,
+        baseURL: config.baseURL,
+        returnURL: `${config.baseURL}${followup.returnPath}`,
+    };
 
-        mustache.render(mjmlTemplate, data, function(err, templateString) {
+    return mustache.render(mjmlTemplate, data)
+        .then(function (templateString) {
             if (err) {
                 return reject(err);
             }
             const output = mjml(templateString);
-            resolve(output.html);
-        });
+            return output.html;
 
-    });
+        });
 }
 
 function render(followup) {

@@ -32,6 +32,7 @@ function sendEmail(followup, email) {
                     Subject: render.subject,
                     TextPart: render.text,
                     HTMLPart: render.html,
+                    CustomCampaign: 'Récapitulatif des droits affichés'
                 }]});
         }).then(() => {
             followup.sentAt = new Date();

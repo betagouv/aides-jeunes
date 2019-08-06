@@ -45,16 +45,16 @@ function sendEmail(followup, email) {
 }
 exports.sendEmail = sendEmail;
 
-exports.persistAndSendEmail = function(req, res) {
+exports.persist = function(req, res) {
     if (! req.body.email || ! req.body.email.length) {
         return res.status(400).send({ result: 'KO' });
     }
 
     Followup.create({
-        situation: req.situation
-    }).then(followup => {
-        return sendEmail(followup, req.body.email)
-            .then(() => res.send({ result: 'OK' }));
+        situation: req.situation,
+        email: req.body.email,
+    }).then(() => {
+        return res.send({ result: 'OK' });
     }).catch(error => {
         console.error('error', error);
         return res.status(400).send({ result: 'KO' });

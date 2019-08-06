@@ -32,7 +32,6 @@ function renderAsText(followup, benefits) {
 
 function renderAsHtml(followup, benefits) {
 
-
     var droits = _.map(benefits, function(droit) {
 
         var montant = '';
@@ -73,12 +72,8 @@ function renderAsHtml(followup, benefits) {
 
     return mustache.render(mjmlTemplate, data)
         .then(function (templateString) {
-            if (err) {
-                return reject(err);
-            }
             const output = mjml(templateString);
             return output.html;
-
         });
 }
 

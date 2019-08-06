@@ -31,6 +31,7 @@ function sendEmail(followup, email) {
                     To: [{ Email: email}],
                     Subject: render.subject,
                     TextPart: render.text,
+                    HTMLPart: render.html,
                 }]});
         }).then(() => {
             followup.sentAt = new Date();

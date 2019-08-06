@@ -20,7 +20,7 @@
           <p>
             <span>Vous avez récemment fait une simulation sur Mes-Aides.gouv.fr.</span>
             <br />
-            <span>D'après la situation que vous avez décrite, vous êtes a priori éligible aux aides suivantes :</span>
+            <span>D'après la situation que vous avez décrite, vous êtes a priori éligible aux aides suivantes&nbsp;:</span>
           </p>
         </mj-text>
       </mj-column>
@@ -61,7 +61,7 @@
           <br />
           <span>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider.</span>
           <br />
-          <span>Vous pouvez nous contacter à l'adresse suivante : <a href="mailto:contact@mes-aides.gouv.fr">contact@mes-aides.gouv.fr</a></span>
+          <span>Vous pouvez nous contacter à l'adresse suivante&nbsp;: <a href="mailto:contact@mes-aides.gouv.fr">contact@mes-aides.gouv.fr</a></span>
         </mj-text>
         <mj-text>
           <span>Bonne journée,</span>

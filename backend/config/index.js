@@ -17,6 +17,7 @@ var all = {
         },
     },
     sessionSecret: process.env.SESSION_SECRET || 'fghjdfjkdf785a-jreu',
+    backendOnly: 'this-text-should-not-appear-in-public-js-files'
 };
 
 var override = {};

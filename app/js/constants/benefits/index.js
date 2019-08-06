@@ -343,6 +343,7 @@ var droitsDescription = {
                     'legend': 'au lieu de 0,75%',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F2367',
                     'entity': 'individu', // default entity is famille
+                    'isBaseRessourcesYearMoins2': true,
                     floorAt: 0.01,
                     top: 20
                 },

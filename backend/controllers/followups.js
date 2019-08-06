@@ -54,7 +54,8 @@ exports.persist = function(req, res) {
 
     Followup.create({
         situation: req.situation,
-        email: req.body.email,
+    }).then(followup => {
+        return sendEmail(followup, req.body.email);
     }).then(() => {
         return res.send({ result: 'OK' });
     }).catch(error => {

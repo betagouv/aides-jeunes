@@ -23,7 +23,7 @@ function sendToOpenfisca(endpoint) {
         })
             .then(function(result) {
                 callback(null, result);
-            }).catch(callback);
+            }).catch(callback); // FIXME If the callback throw an Error, called twice
     };
 }
 

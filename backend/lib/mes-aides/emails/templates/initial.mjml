@@ -7,11 +7,11 @@
   <mj-body>
     <mj-section>
       <mj-column width="20%">
-        <mj-image alt="République Française" src="{{baseURL}}/img/marianne.svg" />
+        <mj-image alt="République Française" src="{{baseURL}}/img/marianne.png" />
       </mj-column>
       <mj-column width="40%"></mj-column>
       <mj-column width="40%">
-        <mj-image alt="Mes Aides" src="{{baseURL}}/img/logo.svg" />
+        <mj-image alt="Mes Aides" src="{{baseURL}}/img/logo.png" />
       </mj-column>
     </mj-section>
     <mj-section>

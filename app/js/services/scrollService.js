@@ -1,7 +1,7 @@
 'use strict';
+var SmoothScroll = require('smooth-scroll');
 
 angular.module('ddsCommon').factory('ScrollService', function() {
-    var SmoothScroll = require('smooth-scroll');
     var scroll = new SmoothScroll();
 
     function go(event, destination, offset) {
@@ -21,5 +21,4 @@ angular.module('ddsCommon').factory('ScrollService', function() {
         },
         go: go
     };
-
 });

@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var ressources = require('../../app/js/constants/ressources');
+var mesAides = require('../lib/mes-aides');
+var openfisca = require('../lib/openfisca');
 var utils = require('../lib/utils');
+var computeAides = mesAides.computeAides;
 
 var familleDef = {
     parisien: Boolean,
@@ -116,6 +119,19 @@ SituationSchema.virtual('returnPath').get(function() {
 
 SituationSchema.methods.isAccessible = function(keychain) {
     return ['demo', 'investigation', 'test'].includes(this.status) || (keychain && keychain[this.cookieName] === this.token);
+};
+SituationSchema.methods.compute = function() {
+    var that = this;
+    return new Promise(function(resolve, reject) {
+        openfisca.calculate(that, function(err, openfiscaResponse) {
+            if (err) {
+                return reject(err);
+            }
+
+            var aides = computeAides(that, openfiscaResponse, false);
+            resolve(aides);
+        });
+    });
 };
 
 SituationSchema.pre('save', function(next) {

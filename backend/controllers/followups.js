@@ -1,5 +1,8 @@
+var mailjet = require('node-mailjet');
 var Followup = require('mongoose').model('Followup');
 
+var config = require('../config');
+var sender = mailjet.connect(config.mailjet.publicKey, config.mailjet.privateKey);
 var situation = require('./situations');
 
 exports.followup = function(req, res, next, id) {
@@ -17,14 +20,39 @@ exports.resultRedirect = function(req, res) {
     res.redirect(req.situation.returnPath);
 };
 
+function sendEmail(followup, email) {
+    email = email || followup.email;
+
+    return followup.renderInitial()
+        .then(render => {
+            return sender.post('send', { version: 'v3.1' })
+                .request({ Messages: [{
+                    From: { Name: 'Équipe Mes Aides', Email: 'contact@mes-aides.gouv.fr'},
+                    To: [{ Email: email}],
+                    Subject: render.subject,
+                    TextPart: render.text,
+                }]});
+        }).then(() => {
+            followup.sentAt = new Date();
+            followup.email = undefined;
+
+            return followup.save();
+        }).catch(err => {
+            console.error(err);
+            followup.email = email;
+            return followup.save();
+        });
+}
+exports.sendEmail = sendEmail;
+
 exports.persist = function(req, res) {
     if (! req.body.email || ! req.body.email.length) {
         return res.status(400).send({ result: 'KO' });
     }
 
     Followup.create({
+        situation: req.situation,
         email: req.body.email,
-        situation: req.situation
     }).then(() => {
         return res.send({ result: 'OK' });
     }).catch(error => {

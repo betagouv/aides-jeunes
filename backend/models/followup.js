@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var validator = require('validator');
 var utils = require('../lib/utils');
+var renderInitial = require('../lib/mes-aides/emails/initial').render;
 
 var FollowupSchema = new mongoose.Schema({
     situation: {
@@ -16,9 +17,13 @@ var FollowupSchema = new mongoose.Schema({
         }
     },
     createdAt: { type: Date, default: Date.now },
+    sentAt: { type: Date, default: Date.now },
     _id: { type: String },
 }, { minimize: false, id: false });
 
+FollowupSchema.methods.renderInitial = function() {
+    return renderInitial(this);
+};
 FollowupSchema.pre('save', function(next) {
     if (!this.isNew) next();
     var followup = this;

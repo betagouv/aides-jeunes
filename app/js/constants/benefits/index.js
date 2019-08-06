@@ -140,6 +140,7 @@ var droitsDescription = {
                 },
                 'rsa': {
                     'label': 'Revenu de solidarité active',
+                    'labelFunction': function(b) { return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`; },
                     'description': 'Le revenu de solidarité active (RSA) assure aux personnes sans ressources un niveau minimum de revenu variable selon la composition du foyer. Le RSA, le RSA parent isolé et le RSA jeunes parents sont simulés. Financé par les conseils départementaux, son versement se fait à travers la Caf ou la MSA. Les services sociaux de votre département vous orienteront vers l’organisme à qui adresser votre demande.',
                     'conditions': [
                         'Signer un <a target="_blank" rel="noopener" href="http://social-sante.gouv.fr/affaires-sociales/lutte-contre-l-exclusion/droits-et-aides/le-revenu-de-solidarite-active-rsa/article/quels-sont-les-droits-et-devoirs-des-beneficiaires-du-rsa" title="Détails sur les droits et devoirs des bénéficiaires du RSA">contrat d’engagement réciproque</a> (CER) avec votre département ou un <a target="_blank" rel="noopener"  href="https://www.service-public.fr/particuliers/vosdroits/F14926" title="Détails sur les droits et devoirs des bénéficiaires du RSA">Projet Personnalisé d’Accès à l’Emploi</a> (PPAE) avec Pôle emploi.',
@@ -220,6 +221,7 @@ var droitsDescription = {
                 },
                 'ppa': {
                     'label': 'Prime d’activité',
+                    'labelFunction': function(b) { return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`; },
                     'description': 'La prime d’activité complète les revenus d’activité professionnelle des travailleurs de 18 ans ou plus, des étudiants salariés et apprentis et des non-salariés. La demande peut se faire à travers un téléservice sur, selon votre cas, le site de la Caf ou de la MSA. Elle remplace le RSA activité et la prime pour l’emploi depuis 2016.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F2882',
                     'teleservice': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/',
@@ -333,6 +335,7 @@ var droitsDescription = {
             'prestations': {
                 'livret_epargne_populaire_taux': {
                     'label': 'Livret d’épargne populaire',
+                    'labelFunction': function(b) { return `${b.label} avec un taux de ${b.montant}% an ${b.legend}`; },
                     'unit': '%',
                     'description': 'Le livret d’épargne populaire (LEP) est un placement réservé aux personnes disposant de revenus modestes. Il offre de nombreux avantages parmi lesquels un taux d’intérêt garanti supérieur aux autres livrets réglementés.',
                     'conditions': [

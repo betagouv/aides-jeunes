@@ -42,11 +42,6 @@ Erreur : {{ encodedError }}
 
 <div ng-show="! error && ! warning && ! awaitingResults">
 
-  <div class="frame-resultats" ng-show="(droits | isEmpty) && ! ressourcesYearMoins2Captured">
-      <h2>Juste une dernière étape…</h2>
-      <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
-  </div>
-
   <div ng-if="! (droits | isEmpty)">
     <p>
       D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides.
@@ -68,6 +63,11 @@ Erreur : {{ encodedError }}
   <div class="frame-resultats" ng-show="(droits | isEmpty) && ressourcesYearMoins2Captured">
       <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
       <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
+  </div>
+
+  <div class="frame-resultats" ng-show="! ressourcesYearMoins2Captured">
+    <h2 ng-show="(droits | isEmpty)">Juste une dernière étape…</h2>
+    <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
   </div>
 
   <offline-result situation="situation"></offline-result>

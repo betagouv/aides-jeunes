@@ -5,6 +5,10 @@ var mustache = require('consolidate').mustache;
 var mjml = require('mjml');
 var config = require('../../../config');
 
+function toBase64(file) {
+    return fs.readFileSync(file, 'base64');
+}
+
 function basicBenefitText(b) {
     if (b.labelFunction) {
         return b.labelFunction(b);
@@ -20,6 +24,18 @@ function basicBenefitText(b) {
 var textTemplate = fs.readFileSync(path.join(__dirname, 'templates/initial.txt'), 'utf8');
 var mjmlTemplate = fs.readFileSync(path.join(__dirname, 'templates/initial.mjml'), 'utf8');
 
+var defaultAttachments = [{
+    ContentType: 'image/png',
+    Filename: 'logo.png',
+    ContentID: "logo",
+    Base64Content: toBase64(path.join(__dirname, '../../../../app/img/logo.png'))
+}, {
+    ContentType: 'image/png',
+    Filename: 'marianne.png',
+    ContentID: "marianne",
+    Base64Content: toBase64(path.join(__dirname, '../../../../app/img/marianne.png'))
+}];
+
 function renderAsText(followup, benefits) {
 
     var data = {
@@ -31,6 +47,8 @@ function renderAsText(followup, benefits) {
 }
 
 function renderAsHtml(followup, benefits) {
+
+    var attachments = [];
 
     var droits = _.map(benefits, function(droit) {
 
@@ -57,7 +75,20 @@ function renderAsHtml(followup, benefits) {
             ctaLabel = 'Plus d\'informations';
         }
 
+        if (!_.find(attachments, attachment => attachment.ContentID === droit.providerId)) {
+            var imagePath =
+                path.join(__dirname, '../../../../app/img', droit.provider.imgSrc);
+
+            attachments.push({
+                ContentType: 'image/png',
+                Filename: path.basename(imagePath),
+                ContentID: droit.providerId,
+                Base64Content: toBase64(imagePath)
+            });
+        }
+
         return _.assign({}, droit, {
+            imgSrc: 'cid:' + droit.providerId,
             montant: montant,
             ctaLink: ctaLink,
             ctaLabel: ctaLabel,
@@ -73,7 +104,10 @@ function renderAsHtml(followup, benefits) {
     return mustache.render(mjmlTemplate, data)
         .then(function (templateString) {
             const output = mjml(templateString);
-            return output.html;
+            return {
+                html: output.html,
+                attachments: defaultAttachments.concat(attachments)
+            };
         });
 }
 
@@ -88,7 +122,8 @@ function render(followup) {
                 return {
                     subject: `[${followup.situation._id}] Récapitulatif de votre simulation sur Mes-Aides.gouv.fr`,
                     text: values[0],
-                    html: values[1],
+                    html: values[1].html,
+                    attachments: values[1].attachments,
                 };
             });
         });

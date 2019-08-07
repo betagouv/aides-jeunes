@@ -25,6 +25,7 @@ function sendEmail(followup, email) {
 
     return followup.renderInitial()
         .then(render => {
+
             return sender.post('send', { version: 'v3.1' })
                 .request({ Messages: [{
                     From: { Name: 'Équipe Mes Aides', Email: 'contact@mes-aides.gouv.fr'},
@@ -32,7 +33,8 @@ function sendEmail(followup, email) {
                     Subject: render.subject,
                     TextPart: render.text,
                     HTMLPart: render.html,
-                    CustomCampaign: 'Récapitulatif des droits affichés'
+                    CustomCampaign: 'Récapitulatif des droits affichés',
+                    InlinedAttachments: render.attachments
                 }]});
         }).then(() => {
             followup.sentAt = new Date();

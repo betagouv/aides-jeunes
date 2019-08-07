@@ -5,4 +5,9 @@ angular.module('ddsCommon')
         return function(object) {
             return _.isEmpty(object);
         };
+    })
+    .filter('isNotEmpty', function() {
+        return function(object) {
+            return ! _.isEmpty(object);
+        };
     });

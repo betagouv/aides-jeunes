@@ -7,14 +7,19 @@ angular.module('ddsApp').service('ResultatService', function($http, $rootScope) 
 
     var _loading = false;
 
-    function simulate(situation, showPrivate) {
-        setLoading(true);
+    function fetch(situation, showPrivate) {
         return $http.get('api/situations/' + situation._id + '/openfisca-response')
             .then(function(OpenfiscaResponse) {
                 return OpenfiscaResponse.data;
             }).then(function(openfiscaResponse) {
                 return computeAides(situation, openfiscaResponse, showPrivate);
-            }).finally(function() {
+            });
+    }
+
+    function simulate(situation, showPrivate) {
+        setLoading(true);
+        return fetch(situation, showPrivate)
+            .finally(function() {
                 setLoading(false);
             });
     }

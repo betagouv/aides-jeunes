@@ -65,7 +65,7 @@ Erreur : {{ encodedError }}
       <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
   </div>
 
-  <div class="frame-resultats" ng-show="! ressourcesYearMoins2Captured">
+  <div class="frame-resultats" ng-show="false === ressourcesYearMoins2Captured">
     <h2 ng-show="(droits | isEmpty)">Juste une dernière étape…</h2>
     <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
   </div>

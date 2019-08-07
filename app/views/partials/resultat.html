@@ -70,7 +70,7 @@ Erreur : {{ encodedError }}
     <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
   </div>
 
-  <offline-result situation="situation"></offline-result>
+  <offline-result situation="situation" ng-show="droits | isNotEmpty"></offline-result>
 
   <div class="print-hidden">
     <div id="feedback">

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, $scope, $sessionStorage, $stateParams, $window, CityService, EtablissementService, ResultatService, SituationService, TrampolineService) {
+angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, $scope, $sessionStorage, $stateParams, $window, CityService, EtablissementService, ResultatService, ScrollService, SituationService, TrampolineService) {
     $scope.error = false;
     $scope.warning = false;
     $scope.warningMessage = false;
@@ -13,6 +13,9 @@ angular.module('ddsApp').controller('ResultatCtrl', function($analytics, $http, 
         }
     }
     $scope.trampoline = TrampolineService;
+    $scope.goToFeedback = function(event) {
+        ScrollService.go(event, document.getElementById('feedback'), document.querySelector('header').offsetHeight);
+    };
 
     function triggerEvaluation() {
         loadSituation()

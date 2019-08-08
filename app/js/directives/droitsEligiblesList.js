@@ -1,9 +1,6 @@
 'use strict';
 
-var SmoothScroll = require('smooth-scroll');
-var scroll = new SmoothScroll();
-
-angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope) {
+angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope, ScrollService) {
 
     $scope.isBoolean = _.isBoolean;
     $scope.isNumber = _.isNumber;
@@ -26,23 +23,10 @@ angular.module('ddsApp').controller('droitsEligiblesListCtrl', function($scope) 
         return droit.isBaseRessourcesYearMoins2 && ! $scope.ressourcesYearMoins2Captured && ! _.isString(droit.montant);
     };
 
-    $scope.scrollTo = function(droit, $event) {
-        $event.preventDefault();
-        scroll.animateScroll(document.querySelector('#' + droit.id), $event.target, {
-            updateURL: false,
-            offset: function () {
-                return document.querySelector('header').offsetHeight;
-            }
-        });
+    $scope.scrollTo = function(event, droit) {
+        return ScrollService.go(event, document.getElementById(droit.id), document.querySelector('header').offsetHeight);
     };
-
-    $scope.scrollToTop = function($event) {
-        $event.preventDefault();
-        scroll.animateScroll(document.querySelector('body'), $event.target, {
-            updateURL: false
-        });
-    };
-
+    $scope.scrollToTop = ScrollService.handler(document.querySelector('body'));
 });
 
 angular.module('ddsApp').controller('ppaHelpCtrl', function($scope, $uibModalInstance, SituationService, situation, droit) {

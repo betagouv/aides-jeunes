@@ -68,5 +68,11 @@ header, footer {
 }
 
 .next.message {
-  padding: 1em;
+  padding-right: 15px;
+}
+
+.next-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

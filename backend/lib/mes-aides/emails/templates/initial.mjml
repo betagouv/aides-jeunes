@@ -45,7 +45,7 @@
       <mj-section>
         <mj-column>
           <mj-text>
-            {{description}}
+            {{&description}}
           </mj-text>
           <mj-button background-color="#43ac6a" color="white" href="{{ctaLink}}">
             {{ctaLabel}}

@@ -11,7 +11,7 @@ angular.module('ddsApp').directive('nextButton', function() {
         transclude: {
             message: '?message', // This slot is optional
         },
-        link(scope, element, attrs) {
+        link() {
 
             var $offsetMarker = document.getElementById('offset-marker');
             var $nextButton = document.getElementById('next-button');

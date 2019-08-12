@@ -67,6 +67,12 @@ header, footer {
     page-break-after: always;
 }
 
+.next-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .next.message {
   padding-right: 15px;
 }
@@ -75,4 +81,8 @@ header, footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.next-button--sticky .next.message {
+  padding-left: 0;
 }

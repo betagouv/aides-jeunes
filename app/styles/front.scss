@@ -281,3 +281,17 @@ legend {
 .benefit-etablissements-modal {
   padding: 30px;
 }
+
+.next-button--sticky {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  z-index: 4;
+  padding: 15px;
+  border-top: 1px solid #dadada;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

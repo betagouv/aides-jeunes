@@ -47,7 +47,7 @@
           <mj-text>
             {{&description}}
           </mj-text>
-          <mj-button background-color="#43ac6a" color="white" href="{{ctaLink}}">
+          <mj-button background-color="#43ac6a" color="white" href="{{&ctaLink}}">
             {{ctaLabel}}
           </mj-button>
         </mj-column>
@@ -57,7 +57,7 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          <span>Retrouvez les détails de votre simulation sur Mes-Aides.gouv.fr à en cliquant <a href="{{returnURL}}" target="_blank">ici</a>.</span>
+          <span>Retrouvez les détails de votre simulation sur Mes-Aides.gouv.fr à en cliquant <a href="{{&returnURL}}" target="_blank">ici</a>.</span>
           <br />
           <span>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider.</span>
           <br />

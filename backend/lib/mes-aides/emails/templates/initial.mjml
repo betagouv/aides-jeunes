@@ -7,11 +7,11 @@
   <mj-body>
     <mj-section>
       <mj-column width="20%">
-        <mj-image alt="République Française" src="{{baseURL}}/img/marianne.png" />
+        <mj-image alt="République Française" src="cid:marianne" />
       </mj-column>
       <mj-column width="40%"></mj-column>
       <mj-column width="40%">
-        <mj-image alt="Mes Aides" src="{{baseURL}}/img/logo.png" />
+        <mj-image alt="Mes Aides" src="cid:logo" />
       </mj-column>
     </mj-section>
     <mj-section>
@@ -29,7 +29,7 @@
     <mj-wrapper>
       <mj-section>
         <mj-column width="20%" vertical-align="middle">
-          <mj-image alt="{{provider.label}}" width="48px" src="{{baseURL}}/img/{{provider.imgSrc}}" />
+          <mj-image alt="{{provider.label}}" width="48px" src="{{imgSrc}}" />
         </mj-column>
         <mj-column width="50%" vertical-align="middle">
           <mj-text align="center">
@@ -57,7 +57,7 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          <span>Retrouvez les détails de votre simulation sur Mes-Aides.gouv.fr à en cliquant <a href="{{returnURL}}">ici</a>.</span>
+          <span>Retrouvez les détails de votre simulation sur Mes-Aides.gouv.fr à en cliquant <a href="{{returnURL}}" target="_blank">ici</a>.</span>
           <br />
           <span>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider.</span>
           <br />

@@ -174,9 +174,10 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     };
 
     $scope.captureDureePossessionTitreSejour = function() {
-        return $scope.locals.satisfyResidentialDurationPrerequisite &&
-            $scope.locals.satisfyResidentialPermitPrerequisite &&
-            ['ue', 'autre'].indexOf($scope.individu.nationalite) >= 0;
+        var zone = $scope.getZone($scope.individu.nationalite);
+        return ['ue', 'autre'].indexOf(zone) >= 0 &&
+            $scope.locals.satisfyResidentialDurationPrerequisite &&
+            $scope.locals.satisfyResidentialPermitPrerequisite[zone];
     };
 
     $scope.captureEligibiliteAss = function() {

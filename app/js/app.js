@@ -356,7 +356,9 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anch
     $anchorScroll.yOffset = 60;
 
     document.addEventListener('ravenSuccess', function(event) {
-        $analytics.eventTrack('Sentry', { label: event.data.event_id });
+        if (event && event.data && event.data.event_id) {
+            $analytics.eventTrack('Sentry', { label: event.data.event_id });
+        }
     });
 
     $transitions.onSuccess({}, function focusTitleForScreenReaders(transition) {

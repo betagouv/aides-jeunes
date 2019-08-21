@@ -180,6 +180,10 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 'recap_situation@foyer': {
                     controller: 'RecapSituationCtrl',
                     templateUrl: '/partials/foyer/recap-situation.html'
+                },
+                'etablissements@foyer': {
+                    controller: 'EtablissementsCtrl',
+                    templateUrl: '/partials/etablissements-default.html'
                 }
             },
             data: {

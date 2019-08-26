@@ -118,9 +118,9 @@
     "url-loader": "^2.1.0",
     "vanilla-text-mask": "^5.1.1",
     "watai": "^0.7.0",
-    "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.7.2",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0",
     "webpack-merge": "^4.2.1",
     "world-countries": "github:alexsegura/countries#translate-demonyms"
   },

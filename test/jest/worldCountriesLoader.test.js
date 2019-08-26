@@ -1,5 +1,3 @@
-import '@babel/polyfill';
-
 import path from 'path';
 import webpack from 'webpack';
 import memoryfs from 'memory-fs';

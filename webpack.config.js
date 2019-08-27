@@ -118,24 +118,8 @@ var config = {
     ],
     optimization: {
         splitChunks: {
-            cacheGroups: {
-                stats: {
-                    test: /[\\/]node_modules[\\/]d3/,
-                    priority: 20,
-                    chunks: 'initial',
-                    name: 'stats',
-                    enforce: true
-                },
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: 10,
-                    chunks: 'initial',
-                    name: 'vendor',
-                    enforce: true
-                },
-                default: false
-            }
-        },
+            chunks: 'all'
+        }
     },
     externals: function(context, request, callback) {
         if (request.match(/backend\/config/)) {
@@ -157,11 +141,13 @@ module.exports = function(env, argv) {
         {
             template: './app/views/front.html',
             filename: 'views/front.html',
+            excludeChunks: ['scripts.recapSituation'],
             inject: false,
         },
         {
             template: './app/views/embed.html',
             filename: 'views/embed.html',
+            excludeChunks: ['scripts'],
             inject: false,
         },
     ];

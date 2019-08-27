@@ -112,7 +112,6 @@ var config = {
             angular: 'angular',
             moment: 'moment',
             _: 'lodash',
-            Cleave: 'cleave.js',
             jsyaml: 'js-yaml',
             d3: 'd3'
         })

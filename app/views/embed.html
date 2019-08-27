@@ -5,18 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Embed récap situation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="<%= htmlWebpackPlugin.files.chunks['scripts.recapSituation'].css %>" rel="stylesheet" />
+    <% for (var css in htmlWebpackPlugin.files.css) { %>
+    <link href="<% if (htmlWebpackPlugin.options.devServer) { %><%= htmlWebpackPlugin.options.devServer %><% } %><%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+    <% } %>
     <base href="/recap-situation/">
   </head>
   <body>
     <ui-view></ui-view>
 
-    <% if (htmlWebpackPlugin.options.devServer) { %>
-    <script src="<%= htmlWebpackPlugin.options.devServer %><%= htmlWebpackPlugin.files.chunks['vendor'].entry %>"></script>
-    <script src="<%= htmlWebpackPlugin.options.devServer %><%= htmlWebpackPlugin.files.chunks['scripts.recapSituation'].entry %>"></script>
-    <% } else { %>
-    <script src="<%= htmlWebpackPlugin.files.chunks['vendor'].entry %>"></script>
-    <script src="<%= htmlWebpackPlugin.files.chunks['scripts.recapSituation'].entry %>"></script>
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <script src="<% if (htmlWebpackPlugin.options.devServer) { %><%= htmlWebpackPlugin.options.devServer %><% } %><%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
     <% } %>
 
   </body>

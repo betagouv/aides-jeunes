@@ -12,8 +12,8 @@ var files = [];
 if (useProductionAssets) {
   files = [
     // On CircleCI, we test against production build
-    'dist/js/vendor.*.js',
-    'dist/js/stats.*.js',
+    'dist/js/vendors~scripts~scripts.recapSituation.*.js',
+    'dist/js/vendors~scripts.*.js',
     'dist/js/scripts.recapSituation.*.js',
     'dist/js/scripts.*.js',
   ];
@@ -25,9 +25,9 @@ if (useProductionAssets) {
 
   files = [
     // Serve files from Webpack DevServer
-    'http://localhost:' + port + '/js/vendor.js',
-    'http://localhost:' + port + '/js/stats.js',
-    'http://localhost:' + port + '/js/scripts.recapSituation.js',
+    'http://localhost:' + port + '/js/vendors~scripts~scripts.recapSituation.js',
+    'http://localhost:' + port + '/js/vendors~scripts.js',
+    'http://localhost:' + port + '/js/scripts~scripts.recapSituation.js',
     'http://localhost:' + port + '/js/scripts.js',
   ];
 }

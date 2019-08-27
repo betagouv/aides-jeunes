@@ -1,7 +1,5 @@
 'use strict';
-
-// As we are using Babel, make sure to require smooth-scroll *WITHOUT* polyfills
-var SmoothScroll = require('smooth-scroll/dist/smooth-scroll.js');
+var SmoothScroll = require('smooth-scroll');
 
 angular.module('ddsCommon').factory('ScrollService', function() {
     var scroll = new SmoothScroll();

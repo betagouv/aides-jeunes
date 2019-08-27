@@ -52,9 +52,9 @@
     "url": "https://github.com/sgmap/mes-aides-ui"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.4",
+    "@babel/core": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.5.5",
-    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-env": "^7.5.5",
     "angucomplete-alt": "^3.0.0",
     "angular": "^1.7.8",
     "angular-animate": "^1.7.8",

@@ -1,7 +1,6 @@
 'use strict';
 
-var Raven = require('raven-js');
-var ngRaven = require('raven-js/plugins/angular').moduleName;
+const Sentry = require('@sentry/browser');
 
 // Use Webpack's require.context to manage dynamic requires for templates
 // The templates will be cached when the application is booted
@@ -10,8 +9,11 @@ var template = require.context('../views', true, /(partials|content-pages)\/.*\.
 
 var requires = ['ui.router', 'ngAnimate', 'ddsCommon', 'ngSanitize', 'angulartics', 'angulartics.piwik', 'angucomplete-alt'];
 
-if (Raven.isSetup()) {
-    requires.push(ngRaven);
+const hasSentry = Sentry.getCurrentHub().getClient() !== undefined;
+
+// Add ngSentry if Sentry is initialized
+if (hasSentry) {
+    requires.push('ngSentry');
 }
 
 var ddsApp = angular.module('ddsApp', requires);
@@ -355,11 +357,15 @@ ddsApp.run(function($rootScope, $state, $stateParams, $window, $analytics, $anch
     // Offset de l'anchorscroll à 60px, nécessaire à cause de la navbar en position fixed
     $anchorScroll.yOffset = 60;
 
-    document.addEventListener('ravenSuccess', function(event) {
-        if (event && event.data && event.data.event_id) {
-            $analytics.eventTrack('Sentry', { label: event.data.event_id });
-        }
-    });
+    if (hasSentry) {
+        Sentry.getCurrentHub().getScope().addEventProcessor(function(event) {
+            if (event && event.event_id) {
+                $analytics.eventTrack('Sentry', { label: event.event_id });
+            }
+
+            return event;
+        });
+    }
 
     $transitions.onSuccess({}, function focusTitleForScreenReaders(transition) {
         if (transition.to().preventFocus)

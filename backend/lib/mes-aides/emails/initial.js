@@ -115,6 +115,13 @@ function render(followup) {
     return followup.situation.compute()
         .then(function (results) { return results.droitsEligibles; })
         .then(function (benefits) {
+
+            followup.benefits = benefits.map(benefit => ({
+                id: benefit.id,
+                amount: benefit.montant
+            }));
+            followup.save();
+
             return Promise.all([
                 renderAsText(followup, benefits),
                 renderAsHtml(followup, benefits)

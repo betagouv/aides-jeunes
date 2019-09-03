@@ -166,6 +166,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
             }
 
             $scope.$emit('individu.' + individuRole, $scope.individu);
+            console.log($scope.individu);
         }
     };
 
@@ -173,9 +174,13 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
         return individuRole == 'demandeur' && form && form.dateDeNaissance.$valid && IndividuService.age($scope.individu) < 18 ;
     };
 
+    $scope.captureOutOfFranceQuestions = function() {
+        return $scope.individu.role == 'demandeur' && $scope.individu.nationalite != 'FR';
+    }
+
     $scope.captureDureePossessionTitreSejour = function() {
         var zone = $scope.getZone($scope.individu.nationalite);
-        return ['ue', 'autre'].indexOf(zone) >= 0 &&
+        return $scope.captureOutOfFranceQuestions() &&
             $scope.locals.satisfyResidentialDurationPrerequisite &&
             $scope.locals.satisfyResidentialPermitPrerequisite[zone];
     };

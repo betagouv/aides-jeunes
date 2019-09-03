@@ -38,7 +38,7 @@ angular.module('ddsCommon').constant('patrimoineTypes', ressources.patrimoineTyp
 require('./js/constants/specificSituations.js');
 require('./js/constants/logementTypes.js');
 
-require('./js/directives/individuBlock.js');
+require('./js/directives/simulation/individuBlock.js');
 
 require('./js/services/nationaliteService.js');
 require('./js/services/cityService.js');
@@ -48,6 +48,6 @@ require('./js/services/monthService.js');
 require('./js/services/ressourceService.js');
 require('./js/services/situationService.js');
 
-require('./js/directives/recapSituation.js');
+require('./js/directives/simulation/recapSituation.js');
 
 require('./js/filters/strings.js');

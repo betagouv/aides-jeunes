@@ -3,7 +3,7 @@
 angular.module('ddsCommon').directive('individuBlock', function(IndividuService) {
     return {
         restrict: 'E',
-        templateUrl: '/partials/resultat/individu-block.html',
+        templateUrl: '/partials/simulation/individu-block.html',
         scope: {
             individu: '='
         },

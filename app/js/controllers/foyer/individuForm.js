@@ -173,10 +173,15 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
         return individuRole == 'demandeur' && form && form.dateDeNaissance.$valid && IndividuService.age($scope.individu) < 18 ;
     };
 
+    $scope.captureOutOfFranceQuestions = function() {
+        return $scope.individu.role == 'demandeur' && $scope.individu.nationalite != 'FR';
+    };
+
     $scope.captureDureePossessionTitreSejour = function() {
-        return $scope.locals.satisfyResidentialDurationPrerequisite &&
-            $scope.locals.satisfyResidentialPermitPrerequisite &&
-            ['ue', 'autre'].indexOf($scope.individu.nationalite) >= 0;
+        var zone = $scope.getZone($scope.individu.nationalite);
+        return $scope.captureOutOfFranceQuestions() &&
+            $scope.locals.satisfyResidentialDurationPrerequisite &&
+            $scope.locals.satisfyResidentialPermitPrerequisite[zone];
     };
 
     $scope.captureEligibiliteAss = function() {

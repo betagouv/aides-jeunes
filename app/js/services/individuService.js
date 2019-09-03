@@ -10,7 +10,7 @@ angular.module('ddsCommon').service('IndividuService', function($filter, specifi
         case 'demandeur':
             return 'Vos ressources personnelles uniquement';
         case 'conjoint':
-            return 'Les ressources de votre conjoint';
+            return 'Les ressources de votre conjoint·e';
         default:
             return 'Les ressources de ' + individu.firstName;
         }
@@ -27,7 +27,7 @@ angular.module('ddsCommon').service('IndividuService', function($filter, specifi
             }
 
             if ('conjoint' === individu.role) {
-                return 'Votre conjoint';
+                return 'Votre conjoint·e';
             }
 
             return individu.firstName;

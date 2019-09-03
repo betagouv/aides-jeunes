@@ -25,7 +25,7 @@ var choices = { // Values in years
     }]
 };
 
-angular.module('ddsCommon').directive('titreSejourQuestion', function() {
+angular.module('ddsCommon').directive('titreSejourQuestion', function(NationaliteService) {
     return {
         restrict: 'E',
         templateUrl: '/partials/titre-sejour-question.html',
@@ -35,7 +35,7 @@ angular.module('ddsCommon').directive('titreSejourQuestion', function() {
         link(scope) {
             scope.$watchGroup(['individu', 'individu.nationalite'], function() {
                 var individu = scope.individu;
-                scope.choices = choices[individu.nationalite] || [];
+                scope.choices = choices[NationaliteService.getZone(individu.nationalite)] || [];
                 var currentIsValid = scope.choices.find(function(v) { return v.value == individu.duree_possession_titre_sejour; });
                 if (! currentIsValid) {
                     var defaultValue = scope.choices.find(function(v) { return v.default; });

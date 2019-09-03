@@ -22,7 +22,7 @@ angular.module('ddsApp').directive('captureContinuation', function(MonthService)
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: '/partials/foyer/capture-continuation-ressource.html',
+        templateUrl: '/partials/simulation/foyer/ressources/capture-continuation-ressource.html',
         scope: {
             dateDeValeur: '=',
             individu: '=',

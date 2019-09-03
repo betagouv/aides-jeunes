@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'production') {
 require('./js/embed.js');
 require('./js/common.js');
 
-require('./js/controllers/foyer/recapSituation.js');
+require('./js/controllers/simulation/foyer/recapSituation.js');
 
 var situationsFamiliales = require('./js/constants/situationsFamiliales.js');
 angular.module('ddsCommon').constant('situationsFamiliales', situationsFamiliales);

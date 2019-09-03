@@ -3,7 +3,7 @@
 angular.module('ddsCommon').directive('offlineResult', function($http, $q, ResultatService, SituationService) {
     return {
         restrict: 'E',
-        templateUrl: '/partials/offline-result.html',
+        templateUrl: '/partials/resultat/offline-result.html',
         scope: {
             situation: '=',
         },

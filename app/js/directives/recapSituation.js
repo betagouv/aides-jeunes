@@ -3,7 +3,7 @@
 angular.module('ddsRecapSituation').directive('recapSituation', function(SituationService) {
     return {
         restrict: 'E',
-        templateUrl: '/partials/recap-situation.html',
+        templateUrl: '/partials/resultat/recap-situation.html',
         scope: {
             situation: '='
         },

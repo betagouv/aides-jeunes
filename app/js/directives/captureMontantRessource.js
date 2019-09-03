@@ -25,7 +25,7 @@ angular.module('ddsApp').directive('captureMontantRessource', function(MonthServ
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: '/partials/foyer/capture-montant-ressource.html',
+        templateUrl: '/partials/simulation/foyer/ressources/capture-montant-ressource.html',
         scope: {
             individu: '=',
             ressourceType: '=',

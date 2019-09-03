@@ -10,10 +10,10 @@ function lookupObject(nationalites, code) {
     });
 }
 
-angular.module('ddsCommon').directive('nationalityChoice', function(ABTestingService, NationaliteService) {
+angular.module('ddsCommon').directive('nationaliteChoice', function(ABTestingService, NationaliteService) {
     return {
         restrict: 'E',
-        templateUrl: '/partials/nationality-choice.html',
+        templateUrl: '/partials/simulation/foyer/individus/nationalite-choice.html',
         scope: {
             individu: '=',
         },

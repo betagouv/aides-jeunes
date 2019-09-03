@@ -44,7 +44,7 @@ angular.module('ddsApp').controller('benefitCtaLinkCtrl', function($scope, $stat
 angular.module('ddsApp').directive('benefitCta', function() {
     return {
         restrict: 'E',
-        templateUrl: '/partials/benefit-cta.html',
+        templateUrl: '/partials/resultat/benefit-cta.html',
         scope: {
             benefit: '='
         },
@@ -55,7 +55,7 @@ angular.module('ddsApp').directive('benefitCta', function() {
 angular.module('ddsApp').directive('benefitCtaLink', function() {
     return {
         restrict: 'E',
-        templateUrl: '/partials/benefit-cta-link.html',
+        templateUrl: '/partials/resultat/benefit-cta-link.html',
         scope: {
             analyticsName: '=',
             level: '<',

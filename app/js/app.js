@@ -32,7 +32,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
     var individuFormView = function() {
 
         return {
-            templateUrl: '/partials/foyer/individu-form.html',
+            templateUrl: '/partials/simulation/foyer/individus/individu-form.html',
             controller: 'FoyerIndividuFormCtrl',
         };
     };
@@ -163,7 +163,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         })
         .state('validation', {
             url: '/validation',
-            templateUrl: '/partials/validation.html',
+            templateUrl: '/partials/resultats/tests/validation.html',
             data: {
                 robots: 'noindex'
             },
@@ -175,15 +175,15 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             views: {
                 '': {
                     controller: 'FoyerCtrl',
-                    templateUrl: '/partials/foyer/layout.html',
+                    templateUrl: '/partials/simulation/foyer/layout.html',
                 },
                 'recap_situation@foyer': {
                     controller: 'RecapSituationCtrl',
-                    templateUrl: '/partials/foyer/recap-situation.html'
+                    templateUrl: '/partials/simulation/foyer/recap-situation.html'
                 },
                 'etablissements@foyer': {
                     controller: 'EtablissementsCtrl',
-                    templateUrl: '/partials/etablissements-default.html'
+                    templateUrl: '/partials/resultat/etablissements/etablissements-default.html'
                 }
             },
             data: {
@@ -194,7 +194,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/demandeur',
             views: {
                 '': {
-                    templateUrl: '/partials/foyer/demandeur.html'
+                    templateUrl: '/partials/simulation/foyer/individus/demandeur.html'
                 },
                 'individuForm@foyer.demandeur': individuFormView('demandeur')
             },
@@ -205,7 +205,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/conjoint',
             views: {
                 '': {
-                    templateUrl: '/partials/foyer/conjoint.html',
+                    templateUrl: '/partials/simulation/foyer/individus/conjoint.html',
                     controller: 'FoyerConjointCtrl',
                 },
                 'individuForm@foyer.conjoint': individuFormView('conjoint')
@@ -220,7 +220,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/enfants',
             views: {
                 '': {
-                    templateUrl: '/partials/foyer/enfants.html',
+                    templateUrl: '/partials/simulation/foyer/individus/enfants.html',
                     controller: 'FoyerEnfantsCtrl',
                 },
             },
@@ -234,7 +234,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             views: {
                 'enfantForm': {
                     controller: 'FoyerNewEnfantCtrl',
-                    templateUrl: '/partials/foyer/enfants/form.html',
+                    templateUrl: '/partials/simulation/foyer/individus/enfant-form.html',
                 },
                 'form@foyer.enfants.ajouter': individuFormView('enfant'),
             },
@@ -244,11 +244,11 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             url: '/:id',
             views: {
                 '': {
-                    templateUrl: '/partials/foyer/enfants.html',
+                    templateUrl: '/partials/simulation/foyer/individus/enfants.html',
                 },
                 'enfantForm': {
                     controller: 'FoyerEnfantCtrl',
-                    templateUrl: '/partials/foyer/enfants/form.html',
+                    templateUrl: '/partials/simulation/foyer/individus/enfant-form.html',
                 },
                 'form@foyer.enfants.modifier': individuFormView('enfant'),
             },
@@ -256,7 +256,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         })
         .state('foyer.logement', {
             url: '/logement',
-            templateUrl: '/partials/foyer/logement.html',
+            templateUrl: '/partials/simulation/foyer/logement.html',
             controller: 'FoyerLogementCtrl',
             data: {
                 guard: true,
@@ -266,34 +266,34 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         .state('foyer.ressources', {
             url: '/ressources',
             controller: 'FoyerRessourcesCtrl',
-            templateUrl: '/partials/foyer/ressources/layout.html',
+            templateUrl: '/partials/simulation/foyer/ressources/layout.html',
             data: {
                 guard: true,
                 robots: 'noindex'
             }
         })
         .state('foyer.ressources.enfants', {
-            templateUrl: '/partials/foyer/ressources/enfants.html',
+            templateUrl: '/partials/simulation/foyer/ressources/enfants.html',
             controller: 'FoyerRessourcesEnfantsCtrl',
             url: '/enfants/'
         })
         .state('foyer.ressources.individu', {
             controller: 'FoyerRessourcesIndividuCtrl',
             url: '/:individu',
-            templateUrl: '/partials/foyer/ressources/layout.html'
+            templateUrl: '/partials/simulation/foyer/ressources/layout.html'
         })
         .state('foyer.ressources.individu.types', {
-            templateUrl: '/partials/foyer/ressources/types.html',
+            templateUrl: '/partials/simulation/foyer/ressources/types.html',
             controller: 'FoyerRessourceTypesCtrl',
             url: '/types'
         })
         .state('foyer.ressources.individu.montants', {
-            templateUrl: '/partials/foyer/ressources/montants.html',
+            templateUrl: '/partials/simulation/foyer/ressources/montants.html',
             controller: 'FoyerRessourcesMontantsCtrl',
             url: '/montants'
         })
         .state('foyer.pensionsAlimentaires', {
-            templateUrl: '/partials/foyer/pensions-alimentaires.html',
+            templateUrl: '/partials/simulation/foyer/pensions-alimentaires.html',
             controller: 'FoyerPensionsAlimentairesCtrl',
             url: '/pensions-alimentaires',
             data: {
@@ -303,34 +303,34 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
         })
         .state('foyer.resultat', {
             url: '/resultat?situationId',
-            templateUrl: '/partials/resultat.html',
+            templateUrl: '/partials/resultat/resultat.html',
             controller: 'ResultatCtrl',
             data: {
                 robots: 'noindex'
             }
         }).state('foyer.resultat.suggestion', {
             url: '/suggestion',
-            templateUrl: '/partials/suggestion.html',
+            templateUrl: '/partials/resultat/tests/suggestion.html',
             controller: 'SuggestionCtrl'
         })
         .state('foyer.ressourcesYearMoins2', {
-            templateUrl: '/partials/foyer/ressources/year-moins-2.html',
+            templateUrl: '/partials/simulation/foyer/ressources/year-moins-2.html',
             controller: 'FoyerRessourceYearMoins2Ctrl',
             url: '/revenus-impots'
         })
         .state('foyer.rfr', {
-            templateUrl: '/partials/foyer/ressources/rfr.html',
+            templateUrl: '/partials/simulation/foyer/ressources/rfr.html',
             controller: 'FoyerRessourceRfrCtrl',
             url: '/rfr'
         })
         .state('foyer.patrimoine', {
             url: '/patrimoine',
-            templateUrl: '/partials/foyer/patrimoine.html',
+            templateUrl: '/partials/simulation/foyer/patrimoine.html',
             controller: 'FoyerPatrimoineCtrl'
         })
         .state('redirection', {
             url: '/redirection?vers',
-            templateUrl: '/partials/redirection.html',
+            templateUrl: '/partials/resultat/redirection.html',
             controller: 'RedirectionCtrl',
             data: {
                 robots: 'noindex'

@@ -9,7 +9,7 @@ angular.module('ddsApp').directive('yesNoQuestion', function($parse) {
             question: 'question',
             helpBlock: '?helpBlock' // This slot is optional
         },
-        templateUrl: '/partials/foyer/yes-no-question.html',
+        templateUrl: '/partials/simulation/yes-no-question.html',
         scope: true,
         link: function ($scope, $element, $attributes) {
 

@@ -17,7 +17,7 @@ function matchStep(state, step) {
 angular.module('ddsApp').directive('breadcrumbItem', function() {
     return {
         restrict: 'E',
-        templateUrl: '/partials/breadcrumb-item.html',
+        templateUrl: '/partials/simulation/breadcrumb-item.html',
         transclude: true,
         scope: true,
         link(scope , element, attrs) {
@@ -30,7 +30,7 @@ angular.module('ddsApp').directive('breadcrumbItem', function() {
 angular.module('ddsApp').directive('breadcrumb', function($transitions) {
     return {
         restrict: 'E',
-        templateUrl: '/partials/breadcrumb.html',
+        templateUrl: '/partials/simulation/breadcrumb.html',
         controller: function($scope, $state) {
 
             $transitions.onSuccess({}, function(transition) {

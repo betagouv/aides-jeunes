@@ -3,7 +3,7 @@
 angular.module('ddsApp').directive('etablissementsList', function() {
     return {
         restrict: 'E',
-        templateUrl: '/partials/etablissements-list.html',
+        templateUrl: '/partials/resultat/etablissements/etablissements-list.html',
         scope: {
             city: '=',
             types: '=',
@@ -27,7 +27,7 @@ angular.module('ddsApp').controller('etablissementsListCtrl', function($scope, $
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
             size: 'lg',
-            templateUrl: '/partials/etablissements-modal.html',
+            templateUrl: '/partials/resultat/etablissements/etablissements-modal.html',
             controller: 'etablissementsModalCtrl',
             resolve: {
                 etablissements: function() {
@@ -44,7 +44,7 @@ angular.module('ddsApp').controller('etablissementsListCtrl', function($scope, $
 angular.module('ddsApp').directive('etablissement', function() {
     return {
         restrict: 'E',
-        templateUrl: '/partials/etablissement.html',
+        templateUrl: '/partials/resultat/etablissements/etablissement.html',
         scope: {
             etablissement: '=',
         },
@@ -59,7 +59,7 @@ angular.module('ddsApp').directive('etablissement', function() {
 angular.module('ddsApp').directive('etablissementsCta', function($analytics, $uibModal, EtablissementService) {
     return {
         restrict: 'E',
-        templateUrl: '/partials/etablissements-cta.html',
+        templateUrl: '/partials/resultat/etablissements/etablissements-cta.html',
         scope: {
             city: '=',
             types: '=',
@@ -75,7 +75,7 @@ angular.module('ddsApp').directive('etablissementsCta', function($analytics, $ui
                     ariaLabelledBy: 'modal-title',
                     ariaDescribedBy: 'modal-body',
                     size: 'lg',
-                    templateUrl: '/partials/etablissements-modal.html',
+                    templateUrl: '/partials/resultat/etablissements/etablissements-modal.html',
                     controller: 'etablissementsModalCtrl',
                     resolve: {
                         etablissements: function() {

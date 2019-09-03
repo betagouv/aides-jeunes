@@ -62,19 +62,19 @@ var controllerOptions = function(templateUrl) {
 };
 
 angular.module('ddsApp')
-    .directive('droitEligiblesList', controllerOptions('/partials/droits-eligibles-list.html'));
+    .directive('droitEligiblesList', controllerOptions('/partials/resultat/droits/droits-eligibles-list.html'));
 
 angular.module('ddsApp')
-    .directive('droitEligiblesDetails', controllerOptions('/partials/droits-eligibles-details.html'));
+    .directive('droitEligiblesDetails', controllerOptions('/partials/resultat/droits/droits-eligibles-details.html'));
 
 angular.module('ddsApp')
-    .directive('droitNonEligiblesList', controllerOptions('/partials/droits-non-eligibles-list.html'));
+    .directive('droitNonEligiblesList', controllerOptions('/partials/resultat/droits/droits-non-eligibles-list.html'));
 
 angular.module('ddsApp')
     .directive('droitMontant', function($uibModal, SituationService) {
         return {
             restrict: 'E',
-            templateUrl: '/partials/droit-montant.html',
+            templateUrl: '/partials/resultat/droits/droit-montant.html',
             scope: {
                 droit: '=',
             },
@@ -99,7 +99,7 @@ angular.module('ddsApp')
                         ariaLabelledBy: 'modal-title',
                         ariaDescribedBy: 'modal-body',
                         size: 'lg',
-                        templateUrl: '/partials/ppa-help.html',
+                        templateUrl: '/partials/simulation/foyer/ppa-help.html',
                         controller: 'ppaHelpCtrl',
                         resolve: {
                             situation: function() {

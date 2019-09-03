@@ -28,7 +28,7 @@ var choices = { // Values in years
 angular.module('ddsCommon').directive('titreSejourQuestion', function(NationaliteService) {
     return {
         restrict: 'E',
-        templateUrl: '/partials/titre-sejour-question.html',
+        templateUrl: '/partials/simulation/foyer/individus/titre-sejour-question.html',
         scope: {
             individu: '=',
         },

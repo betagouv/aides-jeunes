@@ -179,7 +179,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 },
                 'recap_situation@foyer': {
                     controller: 'RecapSituationCtrl',
-                    templateUrl: '/partials/simulation/foyer/recap-situation.html'
+                    templateUrl: '/partials/simulation/recap-situation.html'
                 },
                 'etablissements@foyer': {
                     controller: 'EtablissementsCtrl',

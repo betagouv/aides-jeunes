@@ -24,7 +24,7 @@ app.config(function($locationProvider, $stateProvider) {
             },
             'recap_situation@home': {
                 controller: 'RecapSituationCtrl',
-                templateUrl: '/partials/simulation/foyer/recap-situation.html'
+                templateUrl: '/partials/simulation/recap-situation.html'
             }
         },
     });

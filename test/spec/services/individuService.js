@@ -22,7 +22,7 @@ describe('IndividuService', function() {
             expect(result).toBe('Vous');
         });
 
-        it('Should return "Votre conjoint" if individu has role conjoint', function() {
+        it('Should return "Votre conjoint·e" if individu has role conjoint', function() {
             // given
             var individu = { role: 'conjoint', firstName: 'Arnaud' };
 
@@ -30,7 +30,7 @@ describe('IndividuService', function() {
             var result = service.label(individu);
 
             // then
-            expect(result).toBe('Votre conjoint');
+            expect(result).toBe('Votre conjoint·e');
         });
 
         it('Should return the individu\'s first name if individu has not role demandeur neither conjoint', function() {

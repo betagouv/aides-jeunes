@@ -166,7 +166,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
             }
 
             $scope.$emit('individu.' + individuRole, $scope.individu);
-            console.log($scope.individu);
         }
     };
 
@@ -176,7 +175,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
 
     $scope.captureOutOfFranceQuestions = function() {
         return $scope.individu.role == 'demandeur' && $scope.individu.nationalite != 'FR';
-    }
+    };
 
     $scope.captureDureePossessionTitreSejour = function() {
         var zone = $scope.getZone($scope.individu.nationalite);

@@ -62,8 +62,7 @@
 
   <div
     class="form-group"
-    ng-if="individu.nationalite != 'FR'"
-    ng-if="getZone(individu.nationalite) == key"
+    ng-if="captureOutOfFranceQuestions() && getZone(individu.nationalite)"
     ng-class="{'has-error': submitted && form.satisfyResidentialDurationPrerequisite.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
@@ -73,7 +72,6 @@
             type="checkbox"
             name="satisfyResidentialDurationPrerequisite"
             ng-model="locals.satisfyResidentialDurationPrerequisite"
-            required
           >
           Résidant en France plus de 9 mois par an
         </label>
@@ -84,7 +82,7 @@
 
   <div
     class="form-group"
-    ng-if="individu.nationalite != 'FR' && locals.satisfyResidentialDurationPrerequisite"
+    ng-if="captureOutOfFranceQuestions() && locals.satisfyResidentialDurationPrerequisite"
     ng-class="{'has-error': submitted && form.satisfyResidentialPermitPrerequisite.$invalid}">
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
@@ -94,7 +92,6 @@
             type="checkbox"
             name="satisfyResidentialPermitPrerequisite"
             ng-model="locals.satisfyResidentialPermitPrerequisite[getZone(individu.nationalite)]"
-            required
           >
           <span ng-bind-html=residentialPermitLabel[getZone(individu.nationalite)]></span>
         </label>
@@ -147,7 +144,7 @@
       <div class="checkbox">
         <label>
           <input type="checkbox" ng-model="individu.no_specific_situation">
-          Je ne suis dans aucune de ces situations
+          <i>{{ individu.role == 'demandeur' ? 'Je ne suis dans' : 'Il ou elle n\'est dans' }} aucune de ces situations</i>
         </label>
       </div>
     </div>
@@ -174,7 +171,7 @@
             Veuillez utiliser le format MM/AAAA. Par exemple : 04/2016.
           </li>
           <li ng-if="form.date_debut_chomage.$error.isBeforeMin">
-            Il semblerait que votre contrat de travail se soit arrêté avant votre naissance.
+            Il semblerait que {{ individu.role == 'demandeur' ? 'votre' : 'son' }} contrat de travail se soit arrêté avant {{ individu.role == 'demandeur' ? 'votre' : 'sa' }} naissance.
           </li>
           <li ng-if="form.date_debut_chomage.$error.isAfterMax">
             Le simulateur ne permet pas d'indiquer une date de fin de travail dans le futur.
@@ -182,7 +179,7 @@
         </ul>
       </div>
       <div class="col-sm-4">
-        <span class="help-block">Si vous n’avez jamais eu de contrat de travail, laissez ce champ vide.</span>
+        <span class="help-block">{{ individu.role == 'demandeur' ? 'Si vous n\'avez' : 'S\'il ou elle n\'a' }} jamais eu de contrat de travail, laissez ce champ vide.</span>
       </div>
     </div>
 
@@ -191,7 +188,7 @@
       size="4"
       >
       <question>
-        {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
+        {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il/elle' }}
         travaillé au moins 5 ans entre {{ individu.date_debut_chomage.clone().subtract(10, 'years').format('MMMM YYYY') }}
         et {{ individu.date_debut_chomage.format('MMMM YYYY') }} ?
       </question>
@@ -231,7 +228,7 @@
     size="4"
     >
     <question>
-      {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il (elle)' }}
+      {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il/elle' }}
       une restriction substantielle et durable d'accès à l'emploi reconnue par la <abbr title="Commission des droits et de l'autonomie des personnes handicapées">CDAPH</abbr> ?</question>
       <help-block>Attention, cette restriction est différente de la reconnaissance de la qualité de travailleur handicapé.</help-block>
   </yes-no-question>

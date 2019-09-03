@@ -36,7 +36,7 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
             expect(scope.pageTitle).toBe('Vos ressources personnelles uniquement');
         });
 
-        it('should set the page title to "Les ressources de votre conjoint" if individu is conjoint', function() {
+        it('should set the page title to "Les ressources de votre conjoint·e" if individu is conjoint', function() {
             // given
             var individuIndex = 1;
 
@@ -44,7 +44,7 @@ describe('Controller: FoyerRessourcesIndividuCtrl', function() {
             initController(individuIndex);
 
             // then
-            expect(scope.pageTitle).toBe('Les ressources de votre conjoint');
+            expect(scope.pageTitle).toBe('Les ressources de votre conjoint·e');
         });
 
         it('should set the page title to the first name if individu is not parent', function() {

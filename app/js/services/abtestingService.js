@@ -33,7 +33,7 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
             }
         }
         $localStorage.ABTesting.datepicker.value = $localStorage.ABTesting.datepicker.value || (Math.random() > 0.5 ? 'Current' : 'New');
-        //$localStorage.ABTesting.datepicker.deleted = true;
+        $localStorage.ABTesting.datepicker.deleted = true;
 
         $localStorage.ABTesting.resourceHelp = $localStorage.ABTesting.resourceHelp || { index: 3 };
         $localStorage.ABTesting.resourceHelp.value = $localStorage.ABTesting.resourceHelp.value || (Math.random() > 0.5 ? 'Show' : 'Hide');

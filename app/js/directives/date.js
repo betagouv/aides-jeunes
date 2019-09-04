@@ -61,14 +61,12 @@ function modernize(scope, element, attributes, ctrl) {
     };
 }
 
-angular.module('ddsApp').directive('ddsDate', function($window, ABTestingService) {
+angular.module('ddsApp').directive('ddsDate', function($window) {
     return {
         require: 'ngModel',
         restrict: 'A',
         link: function(scope, element, attributes, ctrl) {
-            var abtesting = ABTestingService.getEnvironment();
-            var testing = abtesting && abtesting.datepicker && abtesting.datepicker.value === "New";
-            if (shouldModernize($window.navigator, attributes.format) && testing) {
+            if (shouldModernize($window.navigator, attributes.format)) {
                 modernize(scope, element, attributes, ctrl);
                 return;
             }

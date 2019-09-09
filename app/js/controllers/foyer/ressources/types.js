@@ -66,7 +66,6 @@ angular.module('ddsApp').controller('FoyerRessourceTypesCtrl', function($analyti
     $scope.updateSearchedRessources = updateSearchedRessources;
 
     var abtesting = ABTestingService.getEnvironment();
-    $scope.hideHelp = abtesting && abtesting.resourceHelp && abtesting.resourceHelp.value === "Hide";
     $scope.hideSearch = abtesting && abtesting.resourceSearch && abtesting.resourceSearch.value === "Hide";
 
     $scope.shouldInitiallyOpen = function(category) {

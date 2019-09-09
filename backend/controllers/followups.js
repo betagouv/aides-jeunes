@@ -47,7 +47,6 @@ function sendEmail(followup, email) {
             return followup.save();
         });
 }
-exports.sendEmail = sendEmail;
 
 exports.persist = function(req, res) {
     if (! req.body.email || ! req.body.email.length) {

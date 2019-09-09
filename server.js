@@ -19,7 +19,7 @@ if (app.get('env') == 'development') {
 }
 
 // Setup app
-app.use('/api', require('./backend'));
+app.use('/api', require('./backend/api'));
 app.use(ludwigConfig.baseUrl, require('ludwig-ui')(ludwigConfig));
 require('./index.js')(app);
 

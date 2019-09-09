@@ -1,18 +1,19 @@
-var Raven = require('raven-js');
+const Sentry = require('@sentry/browser');
+const Integrations = require('@sentry/integrations');
 
-var sentry = {
-    publicDsn: 'https://fde1d4c9741e4ef3a3416e4e88b61392@sentry.data.gouv.fr/17',
-    frontOptions: {
-        whitelistUrls: [
-            /mes-aides\.gouv\.fr/
-        ],
-        ignoreUrls: [
-            /^file:\/\//i
-        ]
-    }
-};
+const whitelistUrls = [];
+if (process.env.NODE_ENV === 'production') {
+    whitelistUrls.push(/mes-aides\.gouv\.fr/);
+}
 
-Raven
-    .config(sentry.publicDsn, sentry.frontOptions)
-    .addPlugin(require('raven-js/plugins/angular'), window.angular)
-    .install();
+Sentry.init({
+    dsn: 'https://fde1d4c9741e4ef3a3416e4e88b61392@sentry.data.gouv.fr/17',
+    // @see https://docs.sentry.io/platforms/javascript/angular/
+    integrations: [
+        new Integrations.Angular(),
+    ],
+    whitelistUrls: whitelistUrls,
+    blacklistUrls: [
+        /^file:\/\//i
+    ],
+});

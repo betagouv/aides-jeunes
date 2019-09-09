@@ -3,7 +3,6 @@ var favicon = require('serve-favicon');
 var path = require('path');
 var mustache = require('consolidate').mustache;
 var bodyParser = require('body-parser');
-var raven = require('raven');
 var utils = require('./backend/lib/utils');
 var benefits = require('./app/js/constants/benefits');
 
@@ -109,10 +108,6 @@ module.exports = function(app) {
             prestationsCount: prestationsNationalesCount + partenairesLocauxCount,
         });
     });
-
-    if (raven.installed) {
-        app.use(raven.errorHandler());
-    }
 
     app.use(function (err, req, res, next) {
         console.error(err);

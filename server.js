@@ -21,6 +21,8 @@ if (app.get('env') == 'development') {
 // Setup app
 app.use('/api', require('./backend/api'));
 app.use(ludwigConfig.baseUrl, require('ludwig-ui')(ludwigConfig));
+app.use('/followups', require('./backend/followups'));
+
 require('./index.js')(app);
 
 // Start server

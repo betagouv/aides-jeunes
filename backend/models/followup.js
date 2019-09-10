@@ -18,6 +18,7 @@ var FollowupSchema = new mongoose.Schema({
     },
     createdAt: { type: Date, default: Date.now },
     sentAt: { type: Date },
+    benefits: { type: Object },
     _id: { type: String },
 }, { minimize: false, id: false });
 

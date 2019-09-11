@@ -15,6 +15,31 @@ exports.followup = function(req, res, next, id) {
     });
 };
 
+exports.show = function(req, res, next) {
+    Followup.findById(req.params.followupId).exec(function(err, followup) {
+        if (err) return next(err);
+        if (! followup) return res.sendStatus(404);
+
+        res.send(followup);
+    });
+};
+
+exports.postSurvey = function(req, res, next) {
+    Followup.findById(req.params.followupId).exec(function(err, followup) {
+        if (err) return next(err);
+        if (! followup) return res.sendStatus(404);
+
+        var surveys = Array.from(followup.surveys);
+        surveys.push(req.body);
+
+        followup.surveys = surveys;
+        followup.save()
+            .then(function() {
+                res.sendStatus(201);
+            });
+    });
+};
+
 exports.resultRedirect = function(req, res) {
     situation.attachAccessCookie(req, res);
     res.redirect(req.situation.returnPath);

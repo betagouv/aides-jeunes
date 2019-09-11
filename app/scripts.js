@@ -95,6 +95,7 @@ require('./js/controllers/foyer/patrimoine.js');
 require('./js/controllers/redirection.js');
 require('./js/controllers/resultat.js');
 require('./js/controllers/stats.js');
+require('./js/controllers/suivi.js');
 require('./js/controllers/validation.js');
 require('./js/controllers/etablissements.js');
 

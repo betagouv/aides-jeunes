@@ -1,0 +1,62 @@
+<div class="container">
+
+  <h2 class="text-center">Suivi Mes Aides</h2>
+
+  <p>
+    Vous avez effectué une simulation le <strong>{{createdAt}}</strong>.
+    <br>
+    Répondez à ce questionnaire afin de nous aider à améliorer la pertinence des résultats que nous affichons. Ça ne prend pas plus de 2 minutes !
+  </p>
+
+  <div class="alert alert-success" ng-if="submitted">
+    Merci d'avoir rempli ce questionnaire !
+  </div>
+
+  <form name="questionnaire" ng-submit="submit(questionnaire)" class="form-suivi" ng-if="! submitted">
+
+    <div class="droit-details">
+      <div ng-repeat="droit in droits track by droit.id" id="{{ droit.id }}" class="droit-detail"
+        itemscope itemtype="http://schema.org/GovernmentService">
+
+        <div class="droit-detail-heading">
+          <h3 itemprop="name">{{ droit.label }}</h3>
+          <div class="dotted-line"></div>
+          <span class="droit-montant droit-montant--unexpected" itemscope itemtype="http://schema.org/Offer" itemprop="offers">
+            <span class="droit-montant-label">
+              <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
+                {{ droit.montant | currency : ( droit.unit || '€' ) : getFractionSize(droit) }}
+              </span>
+              <span ng-if="isString(droit.montant)">
+                <i class="fa fa-question-circle fa-2x"></i>
+              </span>
+              <span ng-if="isNumber(droit.montant)" class="montant-detail">
+                {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
+              </span>
+            </span>
+          </span>
+        </div>
+
+        <div ng-repeat="choice in droit.choices" class="radio">
+          <label>
+            <input type="radio" name="choices_{{ $parent.$index }}" value="{{ choice.value }}"
+              ng-model="droit.choiceValue" ng-change="checkComplete(droit)">
+            {{ choice.label }}
+          </label>
+        </div>
+        <div ng-show="isNegative(droit.choiceValue)">
+          <div class="form-group">
+            <textarea class="form-control" ng-model="droit.choiceComments" placeholder="Pour quelle raison ?"></textarea>
+          </div>
+          <div class="text-right">
+            <button type="button" class="btn btn-sm btn-primary" ng-click="checkComplete(droit, true)">Suivant</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-block btn-primary" ng-disabled="! isComplete">Envoyer</button>
+
+  </form>
+
+</div>

@@ -20,6 +20,17 @@ var FollowupSchema = new mongoose.Schema({
     sentAt: { type: Date },
     benefits: { type: Object },
     surveyOptin: { type: Boolean, default: false },
+    surveys: {
+        type: [{
+            createdAt: { type: Date, default: Date.now },
+            answers: [{
+                id: String,
+                value: String,
+                comments: String
+            }]
+        }],
+        default: []
+    },
     _id: { type: String },
 }, { minimize: false, id: false });
 

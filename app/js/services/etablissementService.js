@@ -99,7 +99,7 @@ angular.module('ddsCommon').factory('EtablissementService', function($http, $q) 
             return $q.resolve([]);
         }
 
-        var url = 'https://etablissements-publics.api.gouv.fr/v3/communes/' + city + '/' + types.join('+');
+        var url = 'https://mes-aides.gouv.fr/annuaire-api/v3/communes/' + city + '/' + types.join('+');
         return $http.get(url)
             .then(function(response) { return response.data.features; }, function() { return []; })
             .then(function(etablissements) {

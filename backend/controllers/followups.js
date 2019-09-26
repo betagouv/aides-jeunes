@@ -68,6 +68,30 @@ function sendEmail(followup, email) {
         });
 }
 
+function sendSurvey(followup, email) {
+    email = email || followup.email;
+
+    return followup.renderSurvey()
+        .then(render => {
+            return sender.post('send', { version: 'v3.1' })
+                .request({ Messages: [{
+                    From: { Name: 'Équipe Mes Aides', Email: 'contact@mes-aides.gouv.fr'},
+                    To: [{ Email: email}],
+                    Subject: render.subject,
+                    TextPart: render.text,
+                    // HTMLPart: render.html,
+                    CustomCampaign: 'Envoi du formulaire de suivi',
+                    // InlinedAttachments: render.attachments
+                }]});
+        }).then(() => {
+            return followup.save();
+        }).catch(err => {
+            console.error(err);
+            followup.email = email;
+            return followup.save();
+        });
+}
+
 exports.persist = function(req, res) {
     if (! req.body.email || ! req.body.email.length) {
         return res.status(400).send({ result: 'KO' });

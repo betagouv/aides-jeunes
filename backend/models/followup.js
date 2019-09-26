@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 var validator = require('validator');
 var utils = require('../lib/utils');
+
 var renderInitial = require('../lib/mes-aides/emails/initial').render;
+var renderSurvey = require('../lib/mes-aides/emails/survey').render;
 
 var FollowupSchema = new mongoose.Schema({
     situation: {
@@ -50,6 +52,10 @@ FollowupSchema.methods.renderInitial = function() {
     return renderInitial(this);
 };
 
+FollowupSchema.methods.renderSurvey = function() {
+    return renderSurvey(this);
+}
+
 FollowupSchema.pre('save', function(next) {
     if (!this.isNew) { return next(); }
     var followup = this;
@@ -63,5 +69,8 @@ FollowupSchema.pre('save', function(next) {
 FollowupSchema.virtual('returnPath').get(function() {
     return '/followups/' + this._id;
 });
+FollowupSchema.virtual('surveyPath').get(function() {
+    return '/suivi/' + this._id
+})
 
 mongoose.model('Followup', FollowupSchema);

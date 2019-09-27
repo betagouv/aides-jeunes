@@ -30,8 +30,8 @@ function extractSimulationDailyCount(db, fromDate, toDate) {
     });
 }
 
-function manageMissingCollection(error) {
-    if (error.message == 'ns doesn\'t exist') {
+function manageMissingDBOrCollection(error) {
+    if ((error.message == 'ns doesn\'t exist') || error.message.match('does not exist')) {
         return { results: [] };
     } else {
         throw error;
@@ -55,7 +55,7 @@ exports.getDailySituationCount = function(fromDate, toDate) {
         .connectAsync(config.mongo.uri)
         .then(saveDb)
         .then(function(db) { return extractSimulationDailyCount(db, fromDate, toDate); })
-        .catch(manageMissingCollection)
+        .catch(manageMissingDBOrCollection)
     // MongoDB 2.4 (production) does not embed metadata of the operation, the result is directly available in the response
     // MongoDB 3.4 (dev environment) returns results with metadata and are available in the results property
         .then(function(response) { return response.results || response; })

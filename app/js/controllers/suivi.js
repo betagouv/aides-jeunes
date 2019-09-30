@@ -16,6 +16,14 @@ function isNegative(value) {
     return value === 'failed' || value === 'nothing';
 }
 
+var scrollOptions = {
+    updateURL: false,
+    popstate: false,
+    speed: 500,
+    speedAsDuration: true,
+    header: 'header.navbar-fixed-top'
+};
+
 angular.module('ddsApp').controller('SuiviCtrl', function($http, $scope, $stateParams, $timeout) {
 
     $http.get('/api/followups/' + $stateParams.followupId)
@@ -72,16 +80,9 @@ angular.module('ddsApp').controller('SuiviCtrl', function($http, $scope, $stateP
 
             var next = _.find($scope.droits, droit => droit.choiceValue === null);
             if (next) {
-                // FIXME We use timeout so that scroll is calculated AFTER choices have been hidden
-                $timeout(function() {
-                    scroll.animateScroll(document.querySelector(`#${next.id}`), null, {
-                        updateURL: false,
-                        popstate: false,
-                        speed: 500,
-                        speedAsDuration: true,
-                        header: 'header.navbar-fixed-top'
-                    });
-                }, 80);
+                scroll.animateScroll(document.querySelector(`#${next.id}`), null, scrollOptions);
+            } else {
+                scroll.animateScroll(document.querySelector('button[type="submit"]'), null, scrollOptions);
             }
         } else {
             $timeout(() => document.querySelector(`#${droit.id} textarea`).focus(), 250);

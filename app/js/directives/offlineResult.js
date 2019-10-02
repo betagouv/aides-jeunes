@@ -1,6 +1,49 @@
 'use strict';
 
-angular.module('ddsCommon').directive('offlineResult', function($http, $q, ResultatService, SituationService) {
+angular.module('ddsApp').controller('offlineResultOptinCtrl', function($http, $scope, $uibModalInstance, SituationService) {
+
+    $scope.yes = function(form) {
+        form.surveyOptin = true;
+    };
+
+    $scope.noThanks = function(form) {
+        form.surveyOptin = false;
+    };
+
+    $scope.submitFollowup = function(form) {
+
+        if (! form.$valid) {
+            form.email.$$element[0].focus();
+            return;
+        }
+
+        var email = form.email.$modelValue;
+        if (! email || ! email.length) {
+            form.email.$setViewValue('');
+            form.email.$render();
+            return;
+        }
+
+        $scope.submitting = true;
+        var situation = SituationService.restoreLocal();
+        $http.post('api/situations/' + situation._id + '/followup', {
+            email: email,
+            surveyOptin: form.surveyOptin
+        }).then(function() {
+            $scope.followupSubmitted = true;
+            $scope.followupSuccess = true;
+            $scope.followupError = false;
+            $scope.submitting = false;
+        }).catch(function() {
+            $scope.followupSubmitted = true;
+            $scope.followupSuccess = false;
+            $scope.followupError = true;
+            $scope.submitting = false;
+        });
+    };
+});
+
+angular.module('ddsCommon').directive('offlineResult', function($http, $q, $uibModal, ResultatService) {
     return {
         restrict: 'E',
         templateUrl: '/partials/offline-result.html',
@@ -73,41 +116,16 @@ angular.module('ddsCommon').directive('offlineResult', function($http, $q, Resul
                     });
             };
 
-            scope.followupSubmitted = false;
-            scope.followupSuccess = false;
-            scope.followupError = false;
-            scope.submitting = false;
-
-            scope.submitFollowup = function(form) {
-                if (scope.submitting) {
-                    return;
-                }
-
-                var email = form.email.$modelValue;
-                if (! email || ! email.length) {
-                    form.email.$setViewValue('');
-                    form.email.$render();
-                    return;
-                }
-
-
-                scope.submitting = true;
-                var situation = SituationService.restoreLocal();
-                $http.post('api/situations/' + situation._id + '/followup', {
-                    email: email,
-                }).then(function() {
-                    scope.followupSubmitted = true;
-                    scope.followupSuccess = true;
-                    scope.followupError = false;
-                    scope.submitting = false;
-                }).catch(function() {
-                    scope.followupSubmitted = true;
-                    scope.followupSuccess = false;
-                    scope.followupError = true;
-                    scope.submitting = false;
+            scope.openModal = function() {
+                $uibModal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    size: 'lg',
+                    templateUrl: '/partials/offline-result-optin.html',
+                    controller: 'offlineResultOptinCtrl',
                 });
             };
-
         },
     };
 });

@@ -15,27 +15,12 @@
       </button>
     </form>
 
-    <form name="followup" ng-submit="submitFollowup(followup)">
-      <span class="text-success" ng-show="followupSubmitted && followupSuccess">
-        <i class="fa fa-check"></i>
-        On vous envoie un email&nbsp;!
-      </span>
-      <span class="text-danger" ng-show="followupSubmitted && followupError">
-        <i class="fa fa-exclamation-triangle"></i>
-        Une erreur s'est produite
-      </span>
-      <div class="input-group" ng-hide="followupSubmitted">
-        <input type="email" name="email" ng-model="email" placeholder="Entrez votre email" class="form-control" required size="28" />
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="submit"
-            analytics-on="click"
-            analytics-category="Recevoir par email"
-            ng-disabled="submitting">
-            <i class="fa fa-envelope-o"></i>
-            Recevoir par email
-          </button>
-        </span>
-      </div>
-    </form>
+    <button class="btn btn-default" type="button"
+      analytics-on="click"
+      analytics-category="Recevoir par email"
+      ng-click="openModal()">
+      <i class="fa fa-envelope-o"></i>
+      Recevoir par email
+    </button>
   </div>
 </div>

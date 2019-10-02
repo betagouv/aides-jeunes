@@ -38,7 +38,11 @@ function sendEmail(followup, email) {
                 }]});
         }).then(() => {
             followup.sentAt = new Date();
-            followup.email = undefined;
+
+            // If the user has not opted in for surveys, we don't store the email
+            if (! followup.surveyOptin) {
+                followup.email = undefined;
+            }
 
             return followup.save();
         }).catch(err => {
@@ -55,6 +59,8 @@ exports.persist = function(req, res) {
 
     Followup.create({
         situation: req.situation,
+        email: req.body.email,
+        surveyOptin: req.body.surveyOptin,
     }).then(followup => {
         return sendEmail(followup, req.body.email);
     }).then(() => {

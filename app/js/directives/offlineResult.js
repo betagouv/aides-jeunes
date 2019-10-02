@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('ddsApp').controller('offlineResultOptinCtrl', function($http, $scope, $uibModalInstance, SituationService) {
+angular.module('ddsApp').controller('offlineResultOptinCtrl', function($http, $scope, $timeout, $uibModalInstance, SituationService) {
+
+    $scope.followupSubmitted = false;
+    $scope.followupSuccess = false;
+    $scope.followupError = false;
 
     $scope.yes = function(form) {
         form.surveyOptin = true;
@@ -34,6 +38,9 @@ angular.module('ddsApp').controller('offlineResultOptinCtrl', function($http, $s
             $scope.followupSuccess = true;
             $scope.followupError = false;
             $scope.submitting = false;
+            $timeout(function() {
+                $uibModalInstance.close();
+            }, 1000);
         }).catch(function() {
             $scope.followupSubmitted = true;
             $scope.followupSuccess = false;

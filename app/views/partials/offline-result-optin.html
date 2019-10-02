@@ -17,10 +17,10 @@
           <i class="fa fa-exclamation-triangle"></i>
           Une erreur s'est produite
         </span>
-        <div class="form-group" ng-class="{ 'has-error': followup.$submitted && followup.email.$invalid }">
+        <div class="form-group" ng-class="{ 'has-error': followup.$submitted && followup.email.$invalid }" ng-hide="followupSubmitted">
           <input type="email" name="email" ng-model="email" placeholder="Entrez votre email" class="form-control" required size="28" autofocus />
         </div>
-        <div class="text-center">
+        <div class="text-center" ng-hide="followupSubmitted">
           <div class="form-group">
             <button class="btn btn-success" type="submit"
               name="survey"

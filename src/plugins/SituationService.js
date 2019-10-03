@@ -1,3 +1,4 @@
+import axios from 'axios'
 import moment from 'moment'
 import _ from 'lodash'
 
@@ -105,9 +106,9 @@ const SituationService = {
             }
             cleanSituation(situation);
 
-            return /*$http.post('/api/situations/', _.omit(situation, '_id'))
+            return axios.post('/api/situations/', _.omit(situation, '_id'))
                 .then(function(result) { return result.data; })
-                .then(saveLocal);TODO*/
+                .then(saveLocal);
         },
 
         saveLocal: saveLocal,

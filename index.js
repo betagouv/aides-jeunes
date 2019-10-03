@@ -2,22 +2,7 @@ var express = require('express');
 var favicon = require('serve-favicon');
 var path = require('path');
 var mustache = require('consolidate').mustache;
-var bodyParser = require('body-parser');
 var utils = require('./backend/lib/utils');
-var benefits = require('./app/js/constants/benefits');
-
-function countPublicByType(type) {
-    return Object.keys(benefits[type]).reduce(function(total, provider) {
-        return total + Object.keys(benefits[type][provider].prestations).reduce(function(count, prestationName) {
-            var prestation = benefits[type][provider].prestations[prestationName];
-
-            return count + (prestation.private ? 0 : 1);
-        }, 0);
-    }, 0);
-}
-
-var prestationsNationalesCount = countPublicByType('prestationsNationales');
-var partenairesLocauxCount = countPublicByType('partenairesLocaux');
 
 let puppeteerArgs = {};
 if (process.env.PUPPETEER_ARGS) {
@@ -31,24 +16,6 @@ if (process.env.PUPPETEER_ARGS) {
 module.exports = function(app) {
     var env = app.get('env');
     var directory = 'dist';
-
-    if ('development' === env) {
-
-        app.use(require('connect-livereload')({
-            port: parseInt(process.env.LIVERELOAD_PORT) || 35729
-        }));
-
-        // Disable caching of scripts for easier testing
-        app.use(function noCache(req, res, next) {
-            if (req.url.indexOf('/js/') === 0) {
-                res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-                res.header('Pragma', 'no-cache');
-                res.header('Expires', 0);
-            }
-            next();
-        });
-
-    }
 
     var viewsDirectory = path.join(__dirname, directory, 'views');
     app.use(favicon(path.join(__dirname, directory, 'img', 'favicon', 'favicon.ico')));
@@ -72,46 +39,9 @@ module.exports = function(app) {
     app.use('/documents', express.static(path.join(__dirname, 'dist/documents'), CACHE.FIVE_MINUTES));
     app.use(              express.static(path.join(__dirname, 'dist'),           CACHE.NONE));
 
-    app.use(bodyParser.urlencoded({ limit: '1024kb' }));
-
-    // Route to download a PDF
-    app.route('/foyer/resultat').post(function(req, res) {
-        var html = Buffer.from(req.body.base64, 'base64').toString('utf-8');
-
-        var pdfOptions = {
-            format: 'A4',
-            margin: {
-                top: '0.5cm',
-                right: '2cm',
-                bottom: '0.5cm',
-                left: '2cm'
-            }
-        };
-
-        var callback = function (pdf) {
-            res.writeHead(200, {
-                'Content-Type': 'application/pdf',
-                'Content-Disposition': 'attachment; filename=MesAides_simulation_' + req.body.basename + '.pdf',
-            });
-            res.end(pdf, 'binary');
-        };
-
-        utils.convertHTMLToPDF(html, callback, pdfOptions, puppeteerArgs, false);
-    });
 
     app.route('/recap-situation/*').get(function(req, res) {
         res.sendFile(viewsDirectory + '/embed.html');
     });
 
-    app.route('/*').get(function(req, res) {
-        res.render('front', {
-            prestationsCount: prestationsNationalesCount + partenairesLocauxCount,
-        });
-    });
-
-    app.use(function (err, req, res, next) {
-        console.error(err);
-        res.status(parseInt(err.code) || 500).send(err);
-        next();
-    });
 };

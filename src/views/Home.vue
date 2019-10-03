@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import droitsDescription from './../../app/js/constants/benefits'
+import * as droitsDescription from './../../app/js/constants/benefits'
 import ProviderView from '@/components/ProviderView'
 import _ from 'lodash'
 
@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     newSituation: function() {
-      alert('newSituation')
+      this.$router.push('/foyer/demandeur')
     },
     sortDecreasing: function(items) {
       return items.filter(() => 1).sort(function(a, b) {
@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.xlarge {
+.xlarge, .xlarge:active {
   font-size: 2em;
 }
 

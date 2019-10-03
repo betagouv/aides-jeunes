@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($scope, ressourceTypes, SituationService, IndividuService, RessourceService) {
+angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($scope, $state, ressourceTypes, SituationService, IndividuService, RessourceService) {
 
     $scope.debutAnneeGlissante = moment($scope.situation.dateDeValeur).subtract(1, 'years').format('MMMM YYYY');
     $scope.currentMonth = moment($scope.situation.dateDeValeur).format('MMMM YYYY');
@@ -43,5 +43,12 @@ angular.module('ddsApp').controller('FoyerPensionsAlimentairesCtrl', function($s
         if (form.$valid) {
             $scope.$emit('pensionsAlimentaires');
         }
+    };
+
+    $scope.displayEndButton = true;
+
+    $scope.end = function() {
+        $scope.submit($scope.form);
+        $state.go('foyer.resultat');
     };
 });

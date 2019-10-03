@@ -25,8 +25,15 @@ angular.module('ddsApp').controller('FoyerEnfantsCtrl', function($scope, $state)
     $scope.displayPreviousButton = true;
 
     $scope.previous = function() {
-        $state.go('foyer.demandeur')
-    }
+        $state.go('foyer.demandeur');
+    };
+
+    $scope.displayEndButton = true;
+
+    $scope.end = function() {
+        $scope.validate();
+        $state.go('foyer.resultat');
+    };
 });
 
 angular.module('ddsApp').controller('FoyerNewEnfantCtrl', function($scope, $state, $anchorScroll, $timeout) {

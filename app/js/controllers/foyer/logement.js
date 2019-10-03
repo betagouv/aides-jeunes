@@ -173,5 +173,12 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $state
 
     $scope.previous = function() {
         $state.go('foyer.conjoint');
-    }
+    };
+
+    $scope.displayEndButton = true;
+
+    $scope.end = function() {
+        $scope.submit($scope.form);
+        $state.go('foyer.resultat');
+    };
 });

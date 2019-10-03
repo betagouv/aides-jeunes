@@ -14,7 +14,7 @@ function findIndividu(individus, role, params) {
     return _.find(individus, predicate);
 }
 
-angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, IndividuService, NationaliteService) {
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, $state, individuRole, situationsFamiliales, specificSituations, IndividuService, NationaliteService) {
 
     $scope.specificSituations = specificSituations;
     $scope.situationsFamiliales = situationsFamiliales;
@@ -244,5 +244,12 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
 
     $scope.cancel = function() {
         $scope.$emit('actionCancelled');
+    };
+
+    $scope.displayEndButton = true;
+
+    $scope.end = function() {
+        $scope.submit($scope.form);
+        $state.go('foyer.resultat');
     };
 });

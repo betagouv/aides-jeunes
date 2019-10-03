@@ -43,15 +43,21 @@ angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state
 
     $scope.previous = function() {
         $state.go('foyer.enfants');
-    }
+    };
 
     function shouldDisplaySubmit() {
         return ($scope.locals.isInCouple == false) && (! isFirstView);
     }
     $scope.shouldDisplaySubmit = shouldDisplaySubmit;
 
-    function submit() {
+    $scope.submit = function() {
         $state.go('foyer.logement');
-    }
-    $scope.submit = submit;
+    };
+
+    $scope.displayEndButton = true;
+
+    $scope.end = function() {
+        $scope.submit();
+        $state.go('foyer.resultat');
+    };
 });

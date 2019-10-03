@@ -310,7 +310,8 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             data: {
                 robots: 'noindex'
             }
-        }).state('foyer.resultat.suggestion', {
+        })
+        .state('foyer.resultat.suggestion', {
             url: '/suggestion',
             templateUrl: '/partials/suggestion.html',
             controller: 'SuggestionCtrl'

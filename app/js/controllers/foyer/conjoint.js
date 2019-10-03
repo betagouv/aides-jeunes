@@ -39,6 +39,12 @@ angular.module('ddsApp').controller('FoyerConjointCtrl', function($scope, $state
     }
     $scope.rsaIsolementRecentUpdated = rsaIsolementRecentUpdated;
 
+    $scope.displayPreviousButton = true;
+
+    $scope.previous = function() {
+        $state.go('foyer.enfants');
+    }
+
     function shouldDisplaySubmit() {
         return ($scope.locals.isInCouple == false) && (! isFirstView);
     }

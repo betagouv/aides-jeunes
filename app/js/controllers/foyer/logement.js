@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, CityService, SituationService, IndividuService, LogementService) {
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $state, $http, $log, logementTypes, locationTypes, loyerLabels, CityService, SituationService, IndividuService, LogementService) {
     var famille = $scope.famille = $scope.situation.famille;
     var menage = $scope.menage = $scope.situation.menage;
 
@@ -168,4 +168,10 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
             $scope.$emit('logement');
         }
     };
+
+    $scope.displayPreviousButton = true;
+
+    $scope.previous = function() {
+        $state.go('foyer.conjoint');
+    }
 });

@@ -111,7 +111,7 @@ require('./js/directives/individuBlock.js');
 require('./js/directives/iframe-resizer.js');
 require('./js/directives/mailTo.js');
 require('./js/directives/nationalityChoice.js');
-require('./js/directives/nextButton.js');
+require('./js/directives/navigationBar.js');
 require('./js/directives/offlineResult.js');
 require('./js/directives/selectOnFocus.js');
 require('./js/directives/titreSejourQuestion.js');

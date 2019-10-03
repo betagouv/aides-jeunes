@@ -1,0 +1,18 @@
+<div class="navigation-bar">
+	<div>
+		<button class="btn btn-default" ng-click="cancel()" ng-if="displayCancelButton">Annuler</button>
+		<button class="btn btn-default" ng-click="previous()" ng-if="!displayCancelButton && displayPreviousButton">
+	    	<i class="fa fa-arrow-left" aria-hidden="true"></i> Précédent
+	  	</button>
+	</div>
+
+  	<div>
+		<span class="navigation message" ng-transclude="message"></span>
+		<button type="submit" class="btn btn-lg btn-primary">
+			Valider <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+		</button>
+		<button ng-if="displayEndButton" class="btn btn-default">
+			Valider et retourner aux résultats <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+		</button>
+	</div>
+ </div>

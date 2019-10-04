@@ -95,4 +95,11 @@ export default {
 hr {
   border-top: 1px solid #ddd;
 }
+#homepage {
+  background-image: url('./../../app/img/homepage/homepage-5760.png');
+  background-attachment: fixed;
+  background-position: top center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
 </style>

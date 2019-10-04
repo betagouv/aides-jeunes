@@ -23,11 +23,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  background-image: url('./../../mes-aides-ui/app/img/homepage/homepage-5760.png');
-  background-attachment: fixed;
-  background-position: top center;
-  background-size: 100%;
-  background-repeat: no-repeat;
 }
 #nav {
   padding: 30px;

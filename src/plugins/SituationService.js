@@ -2,6 +2,9 @@ import axios from 'axios'
 import moment from 'moment'
 import _ from 'lodash'
 
+const response = require('../../sample-response.json')
+const sampleSituation = require('../../sample-situation.json')
+
 import { patrimoineTypes, categoriesRnc } from '../constants/resources'
 
 var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage'];
@@ -41,7 +44,7 @@ function adaptPersistedIndividu(individu) {
 
 function adaptPersistedSituation(situation) {
     if (situation.dateDeValeur) {
-        situation.dateDeValeur = new Date(situation.dateDeValeur);
+        situation.dateDeValeur = moment(situation.dateDeValeur).format();
     }
     if (situation.individus) {
         situation.individus.forEach(adaptPersistedIndividu);
@@ -59,7 +62,7 @@ const SituationService = {
         return adaptPersistedSituation(persistedSituation);
     }
 
-    Vue.prototype.$situationService = {
+    Vue.prototype.$SituationService = {
         _cleanSituation: cleanSituation, // Exported for testing
 
         fetchRepresentation: function(/*situationId, representation*/) {
@@ -68,7 +71,7 @@ const SituationService = {
         },
 
         newSituation: function() {
-            saveLocal({
+            saveLocal(sampleSituation/*{
                 individus: [],
                 dateDeValeur: moment().format(),
                 famille: {},
@@ -77,7 +80,7 @@ const SituationService = {
                     aide_logement_date_pret_conventionne: '2017-12-31'
                 },
                 version: 11,
-            })
+            }*/)
         },
 
         restoreLocal: function() {

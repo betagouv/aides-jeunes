@@ -12,7 +12,7 @@ export default {
   name: 'FoyerRecap',
   data () {
     return {
-      obj: this.$situationService.restoreLocal()
+      obj: this.$SituationService.restoreLocal()
     }
   },
   methods: {

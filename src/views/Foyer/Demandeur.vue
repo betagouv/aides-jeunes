@@ -23,17 +23,17 @@ export default {
   },
   data () {
     return {
-      obj: this.$situationService.restoreLocal(),
+      obj: this.$SituationService.restoreLocal(),
       saveResult: {}
     }
   },
   methods: {
     update: function() {
-      this.$situationService.update()
+      this.$SituationService.update()
     },
     save: function() {
       let vm = this
-      this.$situationService.save(this.obj)
+      this.$SituationService.save(this.obj)
       .then(r => {
         vm.saveResult = r
       })

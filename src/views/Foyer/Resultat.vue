@@ -188,11 +188,11 @@ import DroitsEligiblesList from './../../components/DroitsEligiblesList'
 import { computeAides } from '../../../backend/lib/mes-aides'
 
 const response = require('../../../sample-response.json')
-const situation = require('../../../sample-situation.json')
 
 export default {
   name: 'resultat',
   data: function() {
+    let situation = this.$SituationService.restoreLocal()
     return {
       awaitingResults: false,
       droitsNonEligiblesShow: true,

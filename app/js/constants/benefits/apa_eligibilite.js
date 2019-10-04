@@ -126,7 +126,7 @@ module.exports = {
             instructions: undefined, // Prevent default instructions recycling
             form: undefined, // Prevent default form recycling
             teleservice: {
-                state: 'redirection',
+                state: 'redirection', // TODO
                 params: { vers: 'loiret_APA' }
             }
         },

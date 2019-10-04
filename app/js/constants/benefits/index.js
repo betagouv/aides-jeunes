@@ -446,8 +446,7 @@ var droitsDescription = {
                     conditions: [
                         'Présenter un <a target="_blank" rel="noopener" href="http://www.caf.fr/allocataires/vies-de-famille/changement-de-situation/changement-familial/le-quotient-familial-c-est-quoi">justificatif de votre quotient familial</a> délivré par votre Caf.'
                     ],
-                    'link': 'https://www.bibus.fr/titres-tarifs/titres-tarifs-bibus/les-abonnements/les-forfaits-solidaires/',
-                    'instructions': 'https://www.bibus.fr/fileadmin/Sites/Bibus/Titres_et_tarifs/Forfaits_solidaires_2018.jpg',
+                    'link': 'https://www.bibus.fr/fr/titres-tarifs/titres/forfait-solidaire-mensuel-tempo',
                     'isBaseRessourcesYearMoins2': false,
                     floorAt: 0.01,
                     'entity': 'individu', // default entity is famille

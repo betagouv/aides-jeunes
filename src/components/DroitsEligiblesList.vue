@@ -1,5 +1,5 @@
 <template>
-  <div class="droits-list droits-list--eligible">
+  <div class="droits-list">
     <a v-for="droit in list"
       href
       v-on:click="scrollTo(droit)"
@@ -95,12 +95,6 @@ $fa-font-path: '~font-awesome/fonts';
   flex-direction: row;
   flex-grow: 1;
   justify-content: space-between;
-
-  @media (max-width: 300/*$screen-sm-max*/) {
-    .dotted-line {
-      display: none;
-    }
-  }
 
   &-left {
     align-items: center;

@@ -51,28 +51,28 @@
         </p>
         <DroitsEligiblesList v-bind:droits="droits"></DroitsEligiblesList>
       </div>
-<!-- 
+
       <div v-if="! (droitsNonEligibles | isEmpty)" v-show="droitsNonEligiblesShow">
         <p>
           Les conditions des aides suivantes <strong>ne sont pas</strong> remplies :
         </p>
-        <droit-non-eligibles-list
-          droits="droitsNonEligibles"
-          filter="['cmu_c', 'acs']"></droit-non-eligibles-list>
+        <DroitsEligiblesList
+          v-bind:droits="droitsNonEligibles"
+          v-bind:filter="['cmu_c', 'acs']"></DroitsEligiblesList>
       </div>
 
       <div class="frame-resultats" v-show="(droits | isEmpty) && ressourcesYearMoins2Captured">
           <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
           <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
       </div>
-
+<!-- 
       <div class="frame-resultats" v-show="ressourcesYearMoins2Captured === false">
         <h2 v-show="(droits | isEmpty)">Juste une dernière étape…</h2>
         <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
       </div>
 
       <offline-result situation="situation" v-show="droits | isNotEmpty"></offline-result>
-
+ -->
       <div class="print-hidden">
         <div>
           <h4>Nous améliorons ce simulateur en continu, et
@@ -89,13 +89,13 @@
       <div class="page-break"></div>
 
       <h1 v-if="! (droits | isEmpty)">Comment obtenir vos aides ?</h1>
-      <droit-eligibles-details
-        city="situation.menage.depcom"
-        droits="droits"
-        patrimoine-captured="! shouldPatrimoineBeCaptured()"
-        ressources-year-moins-2-captured="ressourcesYearMoins2Captured"
-        year-moins-2="yearMoins2"
-        ></droit-eligibles-details>
+      <DroitsDetails
+        v-bind:city="situation.menage.depcom"
+        v-bind:droits="droits"
+        v-bind:patrimoine-captured="! shouldPatrimoineBeCaptured"
+        v-bind:ressources-year-moins-2-captured="ressourcesYearMoins2Captured"
+        v-bind:year-moins-2="yearMoins2"
+        ></DroitsDetails>
 
       <div class="print-hidden">
         <div id="feedback">
@@ -169,7 +169,7 @@
 
         <div>
           <h4 v-show="! (droitsInjectes | isEmpty)">Vous avez indiqué ces aides au cours la simulation et elles n'ont pas été recalculées</h4>
-          <droits-list droits="droitsInjectes"></droits-list>
+          <!-- <droits-list droits="droitsInjectes"></droits-list> -->
         </div>
 
         <div id="social">
@@ -185,6 +185,7 @@
 <script>
 
 import DroitsEligiblesList from './../../components/DroitsEligiblesList'
+import DroitsDetails from './../../components/DroitsDetails'
 
 export default {
   name: 'resultat',
@@ -205,6 +206,7 @@ export default {
     }
   },
   components: {
+    DroitsDetails,
     DroitsEligiblesList,
   },
   mounted: function() {
@@ -215,6 +217,8 @@ export default {
     droits: function() { return this.resultats.droitsEligibles },
     droitsNonEligibles: function() { return this.resultats.droitsNonEligibles },
     droitsInjectes: function() { return this.resultats.droitsInjectes },
+    shouldPatrimoineBeCaptured: function() { return true },
+    yearMoins2: function() { return '2018' },
   },
   methods: {
     goToFeedback: function() {

@@ -185,9 +185,6 @@
 <script>
 
 import DroitsEligiblesList from './../../components/DroitsEligiblesList'
-import { computeAides } from '../../../backend/lib/mes-aides'
-
-const response = require('../../../sample-response.json')
 
 export default {
   name: 'resultat',
@@ -201,14 +198,18 @@ export default {
       error: false,//'Erreur',
       openfiscaTracerURL: 'openfiscaTracerURL',
       ressourcesYearMoins2Captured: false,
-      resultats: computeAides(situation, response),
       situation: situation,
+      resultats: {},
       warning: false,//true,
       warningMessage: 'Attention',
     }
   },
   components: {
     DroitsEligiblesList,
+  },
+  mounted: function() {
+    this.$SituationService.fetchResults(this.situation, true)
+    .then(resultats => this.resultats = resultats)
   },
   computed: {
     droits: function() { return this.resultats.droitsEligibles },

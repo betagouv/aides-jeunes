@@ -2,10 +2,11 @@ import axios from 'axios'
 import moment from 'moment'
 import _ from 'lodash'
 
-const response = require('../../sample-response.json')
-const sampleSituation = require('../../sample-situation.json')
-
+import { computeAides } from '../../backend/lib/mes-aides'
 import { patrimoineTypes, categoriesRnc } from '../constants/resources'
+
+const sampleResponse = require('../../sample-response.json')
+const sampleSituation = require('../../sample-situation.json')
 
 var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage'];
 
@@ -68,6 +69,16 @@ const SituationService = {
         fetchRepresentation: function(/*situationId, representation*/) {
             return /*$http.get('api/situations/' + situationId + '/' + representation)
                 .then(function(response) { return response.data; });*/
+        },
+
+        fetchResults: function(situation, showPrivate) {
+            return Promise.resolve({ data: sampleResponse })
+                //axios.get('api/situations/' + situation._id + '/openfisca-response')
+                .then(function(OpenfiscaResponse) {
+                    return OpenfiscaResponse.data;
+                }).then(function(openfiscaResponse) {
+                    return computeAides(situation, openfiscaResponse, showPrivate);
+                });
         },
 
         newSituation: function() {

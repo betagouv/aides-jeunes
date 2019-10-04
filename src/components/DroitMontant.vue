@@ -52,7 +52,7 @@ export default {
   },
   filters : {
     currency: function(value, currency, frac) {
-      return `${value} ${currency} ${frac} TODO`
+      return `${value} ${currency}`
     }
   },
   methods: {
@@ -87,3 +87,42 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="scss">
+@import '@/styles/main.scss';
+
+.droit-montant {
+
+  display: inline-block;
+  text-align: right;
+  color: $text-color;
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+
+  .montant {
+    font-size: 18px;
+    font-weight: 600;
+
+    @media (min-width: $screen-md-min) {
+      font-size: 22px;
+    }
+  }
+
+  .montant-detail {
+    display: inline-block;
+  }
+
+  &--unexpected {
+    .droit-montant-label {
+      display: block;
+    }
+  }
+
+  .droit-montant-unexpected {
+    cursor: pointer;
+  }
+}
+</style>

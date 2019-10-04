@@ -41,6 +41,7 @@
 
 <style scoped lang="scss">
 .navbar__container {
+  padding: 0.2em;
   flex-wrap: nowrap;
   -ms-flex-direction: row;
   flex-direction: row;

@@ -2,7 +2,7 @@
   <div id="homepage">
     <div class="container">
       <main class="hero">
-        <div class="hero__container">
+        <div class="hero__container text-center">
           <h1>
             Évaluez vos droits à {{ prestationsNationalesCount + partenairesLocauxCount }} aides sociales.<br/>
             En moins de 7 minutes.
@@ -82,6 +82,7 @@ export default {
 <style scoped lang="scss">
 .xlarge, .xlarge:active {
   font-size: 2em;
+  line-height: 1em;
 }
 
 #app {

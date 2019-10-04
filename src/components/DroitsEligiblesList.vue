@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="dotted-line"></div>
-        <droit-montant v-bind:droit="droit" ng-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
+        <droit-montant v-bind:droit="droit" v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
         <div v-if="droit.montant && isBoolean(droit.montant)">
           <i class="fa fa-check-circle fa-2x"></i>
         </div>
@@ -75,9 +75,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@/styles/main.scss';
 @import '~font-awesome/scss/variables';
-@import '~font-awesome/scss/mixins';
+$fa-font-path: '~font-awesome/fonts';
 
+@import '~font-awesome/scss/mixins';
 
 .droits-list {
   background-color: white;
@@ -113,9 +115,11 @@ export default {
       }
 
       small {
-        color: red/*$link-color*/;
+        color: $link-color;
         display: block;
         margin-top: 6px;
+        font-size: 65%;
+        font-weight: 400;
       }
     }
 
@@ -123,7 +127,7 @@ export default {
       margin-right: 15px;
       width: 60px;
 
-      @media (max-width: 300/*$screen-xs-max*/) {
+      @media (max-width: $screen-xs-max) {
         width: 40px;
       }
     }
@@ -137,6 +141,8 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   padding: 15px;
+  text-decoration: none;
+
 
   &:active,
   &:focus,
@@ -147,8 +153,9 @@ export default {
 
     text-decoration: none;
 
+
     h2 small {
-      color: red/*$link-color*/;
+      color: $link-color;
       text-decoration: underline;
     }
   }
@@ -163,7 +170,7 @@ export default {
     text-align: right;
   }
 
-  @media (max-width: 300/*$screen-sm-max*/) {
+  @media (max-width: $screen-sm-max) {
     border-bottom: 1px solid #e0e0e0;
 
     &::after {

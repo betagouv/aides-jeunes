@@ -36,15 +36,13 @@
       <div class="droit-detail-description">
         <p>
           <span v-html="droit.description" itemprop="description"></span>
-          <span>
-<!--             <benefit-cta-link
-              analytics-name="droit.label"
-              link="droit.link"
-              type="'link'"
-              level="'inline'"
-              itemprop="termsOfService"
-            ></benefit-cta-link> -->
-          </span>
+           <BenefitCtaLink
+            v-bind:analytics-name="droit.label"
+            v-bind:link="droit.link"
+            type="link"
+            level="'inline'"
+            itemprop="termsOfService"
+          />
         </p>
         <div v-if="droit.conditions">
           <p>Pour en bénéficier, vous devez également :</p>
@@ -55,29 +53,29 @@
           </ul>
         </div>
       </div>
-<!-- 
+
       <div class="droit-detail-buttons print-hidden">
-        <benefit-cta class="droit-detail-buttons-cta" benefit="droit"></benefit-cta>
+        <BenefitCta class="droit-detail-buttons-cta" v-bind:benefit="droit"></BenefitCta>
         <a v-if="droit.msa"
           target="_blank"
           rel="noopener"
           class="btn btn-sm btn-secondary"
           href="http://www.msa.fr/lfr/web/msa/espace-prive"
           analytics-on="click"
-          analytics-name="{{ droit.label }}"
+          v-bind:analytics-name="droit.label"
           analytics-event="msa"
         >
           Démarches pour les professions agricoles
         </a>
-        <etablissements-cta
+<!--         <etablissements-cta
           class="droit-detail-buttons-cta"
           city="city"
           types="droit.provider.etablissements"
           droit="droit"
           v-if="droit.provider.etablissements.length > 0"
         >
-        </etablissements-cta>
-      </div> -->
+        </etablissements-cta> -->
+      </div>
     </div>
   </div>
 </template>
@@ -85,6 +83,8 @@
 <script>
 import _ from 'lodash'
 
+import BenefitCta from './BenefitCta'
+import BenefitCtaLink from './BenefitCtaLink'
 import DroitMontant from './DroitMontant'
 
 export default {
@@ -97,7 +97,9 @@ export default {
     yearMoins2: String,
   },
   components: {
-    DroitMontant
+    BenefitCta,
+    BenefitCtaLink,
+    DroitMontant,
   },
   data: function() {
     return {

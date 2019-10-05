@@ -64,26 +64,12 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 $state.go('home');
             }
         })
-        .state('a-propos', {
-            url: '/a-propos',
-            templateUrl: '/content-pages/a-propos.html',
-            data: {
-                pageTitle: 'À propos'
-            }
-        })
         .state('ameli', {
             url: '/ameli',
             templateUrl: '/content-pages/ameli.html',
             data: {
                 pageTitle: 'Bienvenue sur Mes Aides',
                 robots: 'noindex'
-            }
-        })
-        .state('ameliorer', {
-            url: '/ameliorer',
-            templateUrl: '/content-pages/ameliorer.html',
-            data: {
-                pageTitle: 'Améliorer'
             }
         })
         .state('cgu', {
@@ -106,7 +92,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 $scope.situationId = SituationService.restoreLocal()._id;
             }
         })
-        .state('communication', {
+        .state('communication', { // TODO
             url: '/communication',
             templateUrl: '/content-pages/communication.html',
             data: {
@@ -129,27 +115,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             },
             controller: function($scope) {
                 $scope.referrer = document.referrer;
-            }
-        })
-        .state('liens-utiles', {
-            url: '/liens-utiles',
-            templateUrl: '/content-pages/liens-utiles.html',
-            data: {
-                pageTitle: 'Liens utiles'
-            }
-        })
-        .state('social', {
-            url: '/social',
-            templateUrl: '/content-pages/social.html',
-            data: {
-                pageTitle: 'Réseaux sociaux'
-            }
-        })
-        .state('sos', {
-            url: '/sos',
-            templateUrl: '/content-pages/sos.html',
-            data: {
-                pageTitle: 'SOS'
             }
         })
         .state('stats', {

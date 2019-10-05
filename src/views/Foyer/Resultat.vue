@@ -10,16 +10,14 @@
       <h2><i class="fa fa-warning" aria-hidden="true"></i> Aucun résultat disponible</h2>
       <h3 v-show="warningMessage">{{ warningMessage }}</h3>
       <p>
-        Pour commencer votre simulation, rendez-vous sur la <a ui-sref="home">page d'accueil</a>.
+        Pour commencer votre simulation, rendez-vous sur la <router-link to="home">page d'accueil</router-link>.
       </p>
     </div>
 
     <div id="error" class="alert alert-danger" v-show="error" role="alert">
       <h2><i class="fa fa-warning" aria-hidden="true"></i> Une erreur est survenue.</h2>
       <p><a analytics-on="click" analytics-category="Contact" analytics-event="Support"
-        mail-to="bug@mes-aides.gouv.fr"
-        v-bind:subject="`[${situation._id}] Problème technique`"
-        v-bind:body="`Bonjour,
+        v-mail="{to: 'bug@mes-aides.gouv.fr', subject:`[${situation._id}] Problème technique`, body:`Bonjour,
 
     J'ai tenté de XXX,
     Et en cliquant sur XXX,
@@ -31,7 +29,7 @@
     ID : ${ situation._id }
     User-agent : ${ encodedUserAgent }
     Erreur : ${ encodedError }
-    ————`">Signalez ce problème</a> en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et en joignant si possible une capture d'écran. Nous vous répondrons au plus vite et corrigerons le problème dès que possible.</p>
+    ————`}">Signalez ce problème</a> en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et en joignant si possible une capture d'écran. Nous vous répondrons au plus vite et corrigerons le problème dès que possible.</p>
 
       <p>Pour ne pas perdre les données que vous avez déclarées, vous pouvez garder cet onglet ouvert, puis actualiser la page une fois que le problème sera résolu.</p>
 
@@ -63,7 +61,7 @@
 
       <div class="frame-resultats" v-show="(droits | isEmpty) && ressourcesYearMoins2Captured">
           <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
-          <p>Si vous êtes dans une situation difficile, d'<a ui-sref="sos">autres solutions existent</a>.</p>
+          <p>Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
       </div>
 <!-- 
       <div class="frame-resultats" v-show="ressourcesYearMoins2Captured === false">
@@ -103,12 +101,9 @@
           <p>La plupart des résultats que nous vous proposons sont automatiquement arrondis à une dizaine d'euros près.</p>
           <ul>
             <li><a analytics-on="click" analytics-category="Contact" analytics-event="Support"
-              mail-to="feedback@mes-aides.gouv.fr"
-              v-bind:subject="`[${ situation._id }] Suggestion`">Vous avez une suggestion d'amélioration</a>.</li>
+              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ situation._id }] Suggestion`}">Vous avez une suggestion d'amélioration</a>.</li>
             <li><a analytics-on="click" analytics-category="Contact" analytics-event="Support"
-              mail-to="feedback@mes-aides.gouv.fr"
-              v-bind:subject="`[${ situation._id }] Montants inattendus`"
-              v-bind:body="`Bonjour,
+              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ situation._id }] Montants inattendus`, body:`Bonjour,
 
     En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
 
@@ -124,11 +119,9 @@
 
     ————
     ID : ${ situation._id } (à conserver impérativement pour traitement de votre demande)
-    ————`">Ces résultats ne correspondent pas à ceux d'un autre simulateur</a>.</li>
+    ————`}">Ces résultats ne correspondent pas à ceux d'un autre simulateur</a>.</li>
             <li><a analytics-on="click" analytics-category="Contact" analytics-event="Support"
-              mail-to="feedback@mes-aides.gouv.fr"
-              v-bind:subject="`[${situation._id}] Montants inattendus`"
-              v-bind:body="`Bonjour,
+              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${situation._id}] Montants inattendus`, body:`Bonjour,
 
     En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
 
@@ -146,7 +139,7 @@
 
     ————
     ID : ${situation._id} (à conserver impérativement pour traitement de votre demande)
-    ————`">Ces résultats ne correspondent pas à ce que l'administration vous a attribué</a>.</li>
+    ————`}">Ces résultats ne correspondent pas à ce que l'administration vous a attribué</a>.</li>
           </ul>
           <small v-if="situation._id">Cette simulation a pour identifiant <span class="preformatted">{{ situation._id }}</span> (en savoir plus sur <a ui-sref="cgu_donnees">le traitement de vos données personnelles</a>).</small><br>
           <small>
@@ -173,7 +166,7 @@
         </div>
 
         <div id="social">
-          <p>Suivez-nous sur <a ui-sref="social">nos réseaux sociaux</a> ! Nos messages privés sont ouverts pour vous permettre de communiquer avec nous en toute discrétion.</p>
+          <p>Suivez-nous sur <router-link to="/social">nos réseaux sociaux</router-link> ! Nos messages privés sont ouverts pour vous permettre de communiquer avec nous en toute discrétion.</p>
 
           <p style="text-align:center;"><a href="https://www.facebook.com/MesAides"><img src="/img/social/picto_facebook.png" alt="Facebook"></a>  <a href="https://twitter.com/MesAides"><img src="/img/social/picto_twitter.png" alt="Twitter"></a></p>
         </div>

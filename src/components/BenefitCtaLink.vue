@@ -56,8 +56,11 @@ export default {
     },
     onClick: function(link) {
       if (typeof link === 'object') {
+        alert('TODO')
+        /*
         var situation = SituationService.restoreLocal()
         TrampolineService.set({ situationId: situation._id })
+        //*/
       }
     },
   },

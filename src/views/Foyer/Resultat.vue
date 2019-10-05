@@ -218,7 +218,7 @@ export default {
     droitsNonEligibles: function() { return this.resultats.droitsNonEligibles },
     droitsInjectes: function() { return this.resultats.droitsInjectes },
     shouldPatrimoineBeCaptured: function() { return true },
-    yearMoins2: function() { return '2018' },
+    yearMoins2: function() { return this.situation.dateDeValeur.slice(4) },
   },
   methods: {
     goToFeedback: function() {

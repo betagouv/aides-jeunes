@@ -1,6 +1,6 @@
 gunicorn>=19.1.1
-Openfisca-France==48.5.2
-Openfisca-Core[web-api]==34.3.3
+Openfisca-France==48.7.0
+Openfisca-Core[web-api]==34.4.3
 git+https://github.com/betagouv/openfisca-france-local.git@a6528ff#egg=openfisca-France-Local
 git+https://github.com/betagouv/openfisca-paris.git@1a6f553#egg=openfisca-paris
 git+https://github.com/betagouv/openfisca-brestmetropole.git@fa2da0b#egg=openfisca-BrestMetropole

@@ -8,7 +8,9 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-md-offset-2">
         <h3 class="text-center">Recevoir un récapitulatif par email</h3>
-        <p class="text-muted">Si vous souhaitez engager les démarches plus tard, entrez votre email pour recevoir un récapitulaif. Si vous êtes d'accord pour nous aider à l'amélioration du service, indiquez-nous que vous acceptez d'être recontacté·e.</p>
+        <p>
+          Si vous le souhaitez nous pouvons vous recontacter à deux reprises pour faire le point sur les démarches que vous avez faites et les blocages que vous avez rencontrés.
+        </p>
         <span class="text-success" ng-show="followupSubmitted && followupSuccess">
           <i class="fa fa-check"></i>
           On vous envoie un email&nbsp;!
@@ -25,7 +27,7 @@
             <button class="btn btn-success" type="submit"
               name="survey"
               analytics-on="click"
-              analytics-category="Recevoir par email"
+              analytics-category="OK pour être recontacté·e"
               ng-click="yes(followup)"
               ng-disabled="submitting">
               J'accepte d'être recontacté·e par email
@@ -35,10 +37,10 @@
             <button class="btn btn-default" type="submit"
               name="noSurvey"
               analytics-on="click"
-              analytics-category="Recevoir par email"
+              analytics-category="Ne recevoir que le récapitulatif"
               ng-click="noThanks(followup)"
               ng-disabled="submitting">
-              Non, merci, je veux recevoir un seul email
+              Non merci, je préfère ne recevoir que le récapitulatif
             </button>
           </div>
         </div>

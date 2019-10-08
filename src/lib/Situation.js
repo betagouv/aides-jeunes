@@ -69,14 +69,15 @@ const Situation = {
     },
 
     setEnfants: function(situation, enfants) {
-        var individus = situation.individus;
+        var individus = situation.individus
         individus = _.filter(individus, function(individu) {
-            return 'enfant' !== individu.role;
-        });
+            return 'enfant' !== individu.role
+        })
         individus = individus.slice(0,1)
             .concat(enfants)
-            .concat(individus.slice(1));
-        situation.individus = individus;
+            .concat(individus.slice(1))
+        situation.individus = individus
+        return enfants
     },
 
     ressourcesYearMinusTwoCaptured: function(situation) {

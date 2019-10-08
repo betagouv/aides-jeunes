@@ -1,0 +1,142 @@
+<template>
+  <div class="container">
+    <div class="frame-foyer">
+      <h1>Les enfants de votre foyer</h1>
+      <div>
+        <p>Les personnes de <span data-tooltip="Les personnes à votre charge de plus de 25 ans non handicapées ne changent pas votre éligibilité aux aides calculées par ce simulateur.">moins de 25 ans ou handicapées</span> dont vous assumez la responsabilité, même sans lien de parenté.</p>
+      </div>
+      <div class="children">
+        <router-link v-for="enfant in enfants" class="child"
+          to="/foyer/enfants/modifier({ id: enfant.id })">
+          <button type="button" class="close" ng-click="removeEnfant(enfant)">
+            <span class="sr-only">Effacer {{ enfant.firstName }}</span>
+            <span role="presentation" aria-hidden="true">&times;</span>
+          </button>
+          <h3>{{ enfant.firstName }}</h3>
+          <div class="details">
+            <span class="card-icon fa fa-child" aria-hidden="true"></span>
+            <div>
+              Né·e le <strong>{{ enfant.date_naissance.toISOString().slice(0,10) }}</strong>
+              <br>Nationalité <strong>{{ "TODO"/*nationalite(enfant)*/ }}</strong>
+              <br><i>{{ "TODO"/*statutsSpecifiques(enfant)*/ }}</i>
+            </div>
+          </div>
+        </router-link>
+        <button class="new-entity child" v-on:click.prevent="add" >
+          <h3>Ajouter un enfant</h3>
+          <span class="card-icon fa fa-plus" aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+    <div class="text-right">
+      <button class="button large" v-on:click="next">Valider</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import Individu from '@/lib/Individu'
+import Situation from '@/lib/Situation'
+
+export default {
+  name: 'enfants',
+  components: {
+  },
+  data () {
+    let s = this.$SituationService.restoreLocal()
+    let enfants = Situation.getEnfants(s)
+    return {
+      situation: s,
+      enfants,
+    }
+  },
+  methods: {
+    next: function() {
+      Situation.setEnfants(this.situation, this.enfants)
+      this.$SituationService.saveLocal()
+      this.$router.push('/foyer/resultat')
+    },
+    add: function() {
+      var enf = Individu.get(this.enfants, 'enfant', 1)
+      enf.date_naissance = new Date('2010-12-12')
+      this.enfants.push(enf)
+    }
+  }
+}
+</script>
+
+
+<style scoped lang="css">
+.children {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.child {
+  border: 1px solid #DDD;
+  box-shadow: 0 .2em .4em rgba(0, 0, 0, 0.4);
+  padding: 1em;
+  padding-top: .25em;
+  margin-bottom: 1em;
+  flex-grow: 1;
+  margin: 15px;
+  text-decoration: none;
+}
+
+.child:hover:not(.new-entity) {
+  cursor: pointer;
+  /*border: 1px solid #CCC;*/
+  box-shadow: 0 .2em .4em rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 991px) {
+  .child {
+    width: calc(100% - 30px);
+  }
+}
+
+@media (min-width: 992px) {
+  .child {
+    max-width: calc(50% - 30px);
+  }
+}
+@media (min-width: 1200px) {
+  .child {
+    max-width: calc(33.3333% - 30px);
+  }
+}
+
+.child.active, .child.active:active {
+  border: 1px solid #008cba;
+  box-shadow: 0 .2em .4em rgba(0, 140, 186, 0.4);
+}
+
+.child h3 {
+  margin-top: .5em;
+}
+
+.close {
+  float: right;
+  color: black;
+  margin-top: .25em;
+}
+
+.new-entity {
+  padding: 0 2em 1em 2em;
+  border: .25em dashed #DDD;
+  box-shadow: none;
+  width: 100%;
+}
+
+.card-icon {
+  font-size: 430%;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+}
+
+</style>

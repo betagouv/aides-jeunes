@@ -68,6 +68,7 @@ export default {
   },
   methods: {
     newSituation: function() {
+      this.$SituationService.clear()
       this.$router.push('/foyer/demandeur')
     },
     sortDecreasing: function(items) {

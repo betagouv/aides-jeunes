@@ -23,6 +23,9 @@ export default new Router({
         path: 'demandeur',
         component: () => import(/* webpackChunkName: "demandeur" */ './views/Foyer/Demandeur.vue')
       }, {
+        path: 'enfants',
+        component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants.vue')
+      }, {
         path: 'resultat',
         component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat.vue')
       }]

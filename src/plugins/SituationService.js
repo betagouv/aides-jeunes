@@ -95,6 +95,11 @@ const SituationService = {
             })
         },
 
+        clear: function() {
+            Vue.situation = null
+            delete window.sessionStorage.situation
+        },
+
         restoreLocal: function() {
             if (! Vue.situation && window.sessionStorage.situation) {
                 Vue.situation = JSON.parse(window.sessionStorage.situation);

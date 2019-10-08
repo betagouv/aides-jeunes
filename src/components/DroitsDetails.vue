@@ -9,11 +9,11 @@
         <DroitMontant v-bind:droit="droit" unexpected v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))" />
       </div>
 
-      <div class="notification warning print-hidden" v-if="droit.isBaseRessourcesYearMoins2 && ! ressourcesYearMoins2Captured && ! isString(droit.montant)">
+      <div class="notification warning print-hidden" v-if="droit.isBaseRessourcesYearMinusTwo && ! ressourcesYearMinusTwoCaptured && ! isString(droit.montant)">
         <span>
-          <i class="fa fa-warning" aria-hidden="true"></i>  Cette aide se base sur vos ressources de l'année {{ yearMoins2 }}
+          <i class="fa fa-warning" aria-hidden="true"></i>  Cette aide se base sur vos ressources de l'année {{ yearMinusTwo }}
         </span>
-        <a class="button-outline warning" ui-sref="foyer.ressourcesYearMoins2">Déclarez vos ressources {{ yearMoins2 }}</a>
+        <a class="button-outline warning" ui-sref="foyer.ressourcesYearMinusTwo">Déclarez vos ressources {{ yearMinusTwo }}</a>
       </div>
 
       <div class="notification warning print-hidden" v-if="droit.isBaseRessourcesPatrimoine && ! patrimoineCaptured && ! isString(droit.montant)">
@@ -93,8 +93,8 @@ export default {
     droits: Array,
     filter: Array,
     patrimoineCaptured: Boolean,
-    ressourcesYearMoins2Captured: Boolean,
-    yearMoins2: String,
+    ressourcesYearMinusTwoCaptured: Boolean,
+    yearMinusTwo: String,
   },
   components: {
     BenefitCta,

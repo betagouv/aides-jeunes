@@ -2,41 +2,37 @@
   <div class="container">
     <div class="frame-foyer">
       <h1>Vous</h1>
-      <IndividuForm/>
+      <InputDate v-model="individu.date_naissance"/>
     </div>
-    <button v-on:click="save">Save</button>
-    <!-- <p>YOLO Demandeur</p>
-    <pre>{{JSON.stringify(obj, null, 2)}}</pre>
- -->
-
-    <router-link to="/foyer/resultat">Continue</router-link>
+    {{individu.date_naissance}}
+    <div class="text-right">
+      <button class="button large" v-on:click="next">Valider</button>
+    </div>
   </div>
 </template>
 
 <script>
-import IndividuForm from '@/components/IndividuForm.vue'
+import InputDate from '@/components/InputDate'
+import Individu from '@/lib/Individu'
 
 export default {
   name: 'demandeur',
   components: {
-    IndividuForm
+    InputDate
   },
   data () {
+    let s = this.$SituationService.restoreLocal()
+    let i = Individu.get(s.individus, 'demandeur')
     return {
-      obj: this.$SituationService.restoreLocal(),
-      saveResult: {}
+      situation: s,
+      individu: i,
     }
   },
   methods: {
-    update: function() {
-      this.$SituationService.update()
-    },
-    save: function() {
-      let vm = this
-      this.$SituationService.save(this.obj)
-      .then(r => {
-        vm.saveResult = r
-      })
+    next: function() {
+      this.situation.individus[0] = Object.assign({}, this.individu)
+      this.$SituationService.saveLocal()
+      this.$router.push('/foyer/resultat')
     }
   }
 }

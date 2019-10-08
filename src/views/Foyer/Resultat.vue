@@ -59,12 +59,12 @@
           v-bind:filter="['cmu_c', 'acs']"></DroitsEligiblesList>
       </div>
 
-      <div class="frame-resultats" v-show="(droits | isEmpty) && ressourcesYearMoins2Captured">
+      <div class="frame-resultats" v-show="(droits | isEmpty) && ressourcesYearMinusTwoCaptured">
           <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
           <p>Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
       </div>
 <!-- 
-      <div class="frame-resultats" v-show="ressourcesYearMoins2Captured === false">
+      <div class="frame-resultats" v-show="ressourcesYearMinusTwoCaptured === false">
         <h2 v-show="(droits | isEmpty)">Juste une dernière étape…</h2>
         <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
       </div>
@@ -91,8 +91,8 @@
         v-bind:city="situation.menage.depcom"
         v-bind:droits="droits"
         v-bind:patrimoine-captured="! shouldPatrimoineBeCaptured"
-        v-bind:ressources-year-moins-2-captured="ressourcesYearMoins2Captured"
-        v-bind:year-moins-2="yearMoins2"
+        v-bind:ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"
+        v-bind:year-minus-two="yearMinusTwo"
         ></DroitsDetails>
 
       <div class="print-hidden">
@@ -179,6 +179,7 @@
 
 import DroitsEligiblesList from './../../components/DroitsEligiblesList'
 import DroitsDetails from './../../components/DroitsDetails'
+import Situation from '@/lib/Situation'
 
 export default {
   name: 'resultat',
@@ -191,7 +192,7 @@ export default {
       encodedUserAgent: 'encodedUserAgent',
       error: false,//'Erreur',
       openfiscaTracerURL: 'openfiscaTracerURL',
-      ressourcesYearMoins2Captured: false,
+      ressourcesYearMinusTwoCaptured: false,
       situation: situation,
       resultats: {},
       warning: false,//true,
@@ -211,7 +212,7 @@ export default {
     droitsNonEligibles: function() { return this.resultats.droitsNonEligibles },
     droitsInjectes: function() { return this.resultats.droitsInjectes },
     shouldPatrimoineBeCaptured: function() { return true },
-    yearMoins2: function() { return this.situation.dateDeValeur.slice(4) },
+    yearMinusTwo: function() { return Situation.getYearMinusTwo(this) },
   },
   methods: {
     goToFeedback: function() {

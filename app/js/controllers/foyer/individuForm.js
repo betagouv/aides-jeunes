@@ -85,49 +85,9 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
         ue: 'En possession d‘un <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2651">droit au séjour</a> valide',
     };
 
-    var DEFAULT_INDIVIDU = {
-        id: individuRole,
-        aah_restriction_substantielle_durable_acces_emploi: true,
-        ass_precondition_remplie: false,
-        duree_possession_titre_sejour: 25,
-        echelon_bourse: -1,
-        enfant_a_charge: {},
-        enfant_place: false,
-        gir: 'gir_6',
-        nationalite: 'FR',
-        role: individuRole,
-        scolarite: 'college',
-        taux_incapacite: 0.9,
-        tns_autres_revenus_type_activite: 'bic',
-        tns_micro_entreprise_type_activite: 'bic',
-        tns_auto_entrepreneur_type_activite: 'bic',
-        specificSituations: []
-    };
-    // By default enfants are `à charge fiscale`, adults are not.
-    DEFAULT_INDIVIDU.enfant_a_charge[$scope.currentYear] = (individuRole == 'enfant');
-
-    // Required on DEFAULT_INDIVIDU to properly restore statut_marital
-    if (DEFAULT_INDIVIDU.role == 'conjoint') {
-        DEFAULT_INDIVIDU.statut_marital = 'marie';  // Marié(e)
-    }
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);
 
-    var existingIndividu = findIndividu($scope.situation.individus, individuRole, $stateParams);
-    $scope.individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(existingIndividu));
-
-    if (individuRole == 'enfant' && $scope.isNew) {
-
-        var nextEnfantCount = $scope.enfants.length + 1;
-        $scope.individu.firstName = 'Votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
-
-        var usedIds = $scope.enfants.map(function(enfant) { return enfant.id; });
-        var count = 0;
-        while (_.indexOf(usedIds, 'enfant_' + count) >= 0) {
-            count = count + 1;
-        }
-        $scope.individu.id = 'enfant_' + count;
-    }
 
     $scope.individu.specificSituations.forEach(function(specificSituation) {
         $scope.selectedStatuts[specificSituation] = true;

@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <p>YOLO Recap</p>
-    <button v-on:click="update">Update</button>
-    <pre>{{JSON.stringify(obj, null, 2)}}</pre>
+  <div class="container">
+    {{situation}}
   </div>
 </template>
 
@@ -12,12 +10,7 @@ export default {
   name: 'FoyerRecap',
   data () {
     return {
-      obj: this.$SituationService.restoreLocal()
-    }
-  },
-  methods: {
-    update: function() {
-      //this.obj.values.push(0);
+      situation: this.$SituationService.restoreLocal()
     }
   }
 }

@@ -21,7 +21,7 @@ export default {
 
 .foyer {
   background-color: whitesmoke;
-  padding-top: 1em;
+  padding: 1em 0em;
 }
 
 pre {

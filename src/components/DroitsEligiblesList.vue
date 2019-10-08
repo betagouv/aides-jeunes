@@ -42,8 +42,8 @@ export default {
     droits: Array,
     filter: Array,
     patrimoineCaptured: Boolean,
-    ressourcesYearMoins2Captured: Boolean,
-    yearMoins2: String,
+    ressourcesYearMinusTwoCaptured: Boolean,
+    yearMinusTwo: String,
   },
   components: {
     DroitMontant

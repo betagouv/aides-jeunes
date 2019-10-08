@@ -96,7 +96,7 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
-                    'isBaseRessourcesYearMoins2': true,
+                    'isBaseRessourcesYearMinusTwo': true,
                 },
                 'cf': {
                     'label': 'Complément familial',
@@ -107,7 +107,7 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
-                    'isBaseRessourcesYearMoins2': true,
+                    'isBaseRessourcesYearMinusTwo': true,
                 },
                 'asf': {
                     'label': 'Allocation de soutien familial',
@@ -136,7 +136,7 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
-                    'isBaseRessourcesYearMoins2': true,
+                    'isBaseRessourcesYearMinusTwo': true,
                 },
                 'rsa': {
                     'label': 'Revenu de solidarité active',
@@ -199,7 +199,7 @@ var droitsDescription = {
                         'caf': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/',
                         'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=98643'
                     },
-                    'isBaseRessourcesYearMoins2': true,
+                    'isBaseRessourcesYearMinusTwo': true,
                     'isBaseRessourcesPatrimoine': true,
                     'uncomputability': {
                         'primo_accedant': {
@@ -235,7 +235,7 @@ var droitsDescription = {
                     'isMontantAnnuel': false,
                     'label': 'Allocation aux adultes handicapés',
                     'description': 'L’allocation aux adultes handicapés (AAH) est une aide financière qui permet d’assurer un revenu minimum. Cette aide est attribuée sous réserve de respecter 4 critères : le taux d’incapacité, l’âge, la nationalité et les ressources. L’AAH peut se cumuler soit avec le complément de ressources, soit avec la majoration pour la vie autonome ou, dans certains cas, l’aide à l’autonomie.',
-                    'isBaseRessourcesYearMoins2': true,
+                    'isBaseRessourcesYearMinusTwo': true,
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242',
                     'forms': {
                         'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
@@ -250,7 +250,7 @@ var droitsDescription = {
                     'conditions': [
                         'Avoir une capacité de travail (appréciée par la CADPH) inférieure à 5 % du fait de votre handicap.'
                     ],
-                    'isBaseRessourcesYearMoins2': true,
+                    'isBaseRessourcesYearMinusTwo': true,
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F12911',
                     'forms': {
                         'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
@@ -292,7 +292,7 @@ var droitsDescription = {
                     'link': 'https://www.chequeenergie.gouv.fr/',
                     /* En principe, envoyé automatique : lien direct vers le formulaire d'utilisation en ligne */
                     'instructions': 'https://www.chequeenergie.gouv.fr/beneficiaire/paiement',
-                    'isBaseRessourcesYearMoins2': true,
+                    'isBaseRessourcesYearMinusTwo': true,
                     'entity': 'menage', // default entity is famille
                 },
             },
@@ -346,7 +346,7 @@ var droitsDescription = {
                     'legend': 'au lieu de 0,75%',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F2367',
                     'entity': 'individu', // default entity is famille
-                    'isBaseRessourcesYearMoins2': true,
+                    'isBaseRessourcesYearMinusTwo': true,
                     floorAt: 0.01,
                     top: 20
                 },
@@ -369,7 +369,7 @@ var droitsDescription = {
                     'forms': {
                         '2017-18': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12539.do',
                     },
-                    'isBaseRessourcesYearMoins2': true,
+                    'isBaseRessourcesYearMinusTwo': true,
                 },
                 'bourse_lycee': {
                     'isMontantAnnuel': true,
@@ -385,7 +385,7 @@ var droitsDescription = {
                         '2017-18': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do',
                         '2018-19': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do',
                     },
-                    'isBaseRessourcesYearMoins2': true,
+                    'isBaseRessourcesYearMinusTwo': true,
                 },
             },
         },
@@ -395,7 +395,7 @@ var droitsDescription = {
             'prestations': {
                 'logement_social_eligible': {
                     'type': 'bool',
-                    'isBaseRessourcesYearMoins2': true,
+                    'isBaseRessourcesYearMinusTwo': true,
                     'label': 'Logement social',
                     'description': 'Le logement social est destiné aux personnes et familles dont les ressources ne dépassent pas un certain seuil et répondant à certaines conditions d’accès. Aucun frais de dossier n’est réclamé lors de la demande, ni lors de la signature du bail. Il n’est pas obligatoire de résider dans une commune pour y déposer un dossier.',
                     'conditions': [
@@ -427,7 +427,7 @@ var droitsDescription = {
                     'description': 'La tarification solidaire est une réduction de 50 %, 85 % ou 100 % (gratuité) de l’abonnement mensuel du réseau de transports en commun Star. La réduction s’applique également au service Handistar. Elle est accordée aux familles de Rennes Métropole ayant de faibles ressources. La tarification est accordée à tous les membres du foyer.',
                     'link': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/',
                     'instructions': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/#c33081',
-                    'isBaseRessourcesYearMoins2': false,
+                    'isBaseRessourcesYearMinusTwo': false,
                     'entity': 'individu', // default entity is famille
                 },
             }
@@ -447,7 +447,7 @@ var droitsDescription = {
                         'Présenter un <a target="_blank" rel="noopener" href="http://www.caf.fr/allocataires/vies-de-famille/changement-de-situation/changement-familial/le-quotient-familial-c-est-quoi">justificatif de votre quotient familial</a> délivré par votre Caf.'
                     ],
                     'link': 'https://www.bibus.fr/fr/titres-tarifs/titres/forfait-solidaire-mensuel-tempo',
-                    'isBaseRessourcesYearMoins2': false,
+                    'isBaseRessourcesYearMinusTwo': false,
                     floorAt: 0.01,
                     'entity': 'individu', // default entity is famille
                 },
@@ -471,7 +471,7 @@ var droitsDescription = {
                     ],
                     'link': 'https://www.alfortville.fr/le-pole-solidarite-insertion#Noel-des-enfants',
                     'instructions': 'https://www.alfortville.fr/le-pole-solidarite-insertion',
-                    'isBaseRessourcesYearMoins2': false,
+                    'isBaseRessourcesYearMinusTwo': false,
                     floorAt: 0.01,
                     'private': true,
                 },
@@ -492,7 +492,7 @@ var droitsDescription = {
                     ],
                     'form': 'https://cotesdarmor.fr/sites/default/files/2019-01/DOSSIER%20DE%20DEMANDE%20-%20Impay%C3%A9%20Energie%20.pdf',
                     'link': 'https://cotesdarmor.fr/vos-services/acceder-ou-se-maintenir-dans-son-logement',
-                    'isBaseRessourcesYearMoins2': false,
+                    'isBaseRessourcesYearMinusTwo': false,
                     'entity': 'individu',
                     'type': 'bool',
                 },

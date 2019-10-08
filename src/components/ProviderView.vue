@@ -1,6 +1,6 @@
 <template>
   <div class="provider">
-    <img v-bind:src="require(`./../../app/img/${item.imgSrc}`)" v-bind:alt="item.label"/>
+    <img v-bind:src="require(`./../../public/img/${item.imgSrc}`)" v-bind:alt="item.label"/>
     <div class="list">
       <dl v-for="droit in item.prestations">
         <dt>{{ droit.label }}</dt>

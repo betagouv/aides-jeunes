@@ -12,12 +12,12 @@ exports.defaultAttachments = [{
     ContentType: 'image/png',
     Filename: 'logo.png',
     ContentID: "logo",
-    Base64Content: toBase64(path.join(__dirname, '../../../../app/img/logo.png'))
+    Base64Content: toBase64(path.join(__dirname, '../../../../public/img/logo.png'))
 }, {
     ContentType: 'image/png',
     Filename: 'marianne.png',
     ContentID: "marianne",
-    Base64Content: toBase64(path.join(__dirname, '../../../../app/img/marianne.png'))
+    Base64Content: toBase64(path.join(__dirname, '../../../../public/img/marianne.png'))
 }];
 
 exports.mjml = function(template) {

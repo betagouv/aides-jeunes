@@ -8,8 +8,8 @@
     <p>Vous pouvez nous suivre sur les réseaux suivants :</p>
 
     <div class="image-list"> <!-- CSS class TODO -->
-      <a href="https://www.facebook.com/MesAides"><img src="./../../app/img/social/picto_facebook.png" alt=""> /MesAides</a>
-      <a href="https://twitter.com/MesAides"><img src="./../../app/img/social/picto_twitter.png" alt=""> @MesAides</a>
+      <a href="https://www.facebook.com/MesAides"><img src="./../../public/img/social/picto_facebook.png" alt=""> /MesAides</a>
+      <a href="https://twitter.com/MesAides"><img src="./../../public/img/social/picto_twitter.png" alt=""> @MesAides</a>
     </div>
 
     <p>Nos messages privés sont ouverts pour vous permettre de communiquer avec nous en toute discrétion.</p>

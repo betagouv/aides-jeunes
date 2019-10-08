@@ -168,7 +168,7 @@
         <div id="social">
           <p>Suivez-nous sur <router-link to="/social">nos réseaux sociaux</router-link> ! Nos messages privés sont ouverts pour vous permettre de communiquer avec nous en toute discrétion.</p>
 
-          <p style="text-align:center;"><a href="https://www.facebook.com/MesAides"><img src="/img/social/picto_facebook.png" alt="Facebook"></a>  <a href="https://twitter.com/MesAides"><img src="/img/social/picto_twitter.png" alt="Twitter"></a></p>
+          <p style="text-align:center;"><a href="https://www.facebook.com/MesAides"><img src="./../../../public/img/social/picto_facebook.png" alt="Facebook"></a>  <a href="https://twitter.com/MesAides"><img src="/img/social/picto_twitter.png" alt="Twitter"></a></p>
         </div>
       </div> -->
     </div>

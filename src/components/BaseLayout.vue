@@ -3,13 +3,13 @@
     <header class="navbar" role="navigation">
       <div class="navbar__container">
         <div class="navbar__home">
-          <img class="navbar__logo" src="./../../app/img/marianne.svg"
+          <img class="navbar__logo" src="./../../public/img/marianne.svg"
             alt="Logo de la Marianne" />
         </div>
 
         <nav>
           <router-link to="/" class="navbar__home" id="logo">
-            <img class="navbar__logo" src="./../../app/img/logo.svg" alt="Logo de la Marianne" />
+            <img class="navbar__logo" src="./../../public/img/logo.svg" alt="Logo de la Marianne" />
           </router-link>
         </nav>
       </div>

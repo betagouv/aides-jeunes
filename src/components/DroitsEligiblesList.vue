@@ -12,7 +12,7 @@
       >
       <div class="droits-list-item-cell">
         <div class="droits-list-item-cell-left">
-          <img v-bind:src="require(`./../../app/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
+          <img v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
           <div>
             <h2>
               <span itemprop="name">{{ droit.label }}</span>

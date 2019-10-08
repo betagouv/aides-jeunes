@@ -36,7 +36,7 @@ app/bower_components
 
 # Python
 # virtualenv
-.venv
+.venv*
 
 *.pyc
 

@@ -1,8 +1,7 @@
 <template>
   <div class="droits-list">
     <a v-for="droit in list"
-      href
-      v-on:click="scrollTo(droit)"
+      v-on:click="scrollTo($event, droit)"
       class="droits-list-item"
       itemscope itemtype="http://schema.org/GovernmentService"
       analytics-on="click"
@@ -69,6 +68,10 @@ export default {
     isBoolean: _.isBoolean,
     isNumber: _.isNumber,
     isString: _.isString,
+    scrollTo: function(event, droit)
+    {
+        return this.$ScrollService.go(event, document.getElementById(droit.id));
+    },
 
   },
 }

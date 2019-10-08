@@ -4,7 +4,6 @@
       <h1>Vous</h1>
       <InputDate v-model="individu.date_naissance"/>
     </div>
-    {{individu.date_naissance}}
     <div class="text-right">
       <button class="button large" v-on:click="next">Valider</button>
     </div>
@@ -32,7 +31,7 @@ export default {
     next: function() {
       this.situation.individus[0] = Object.assign({}, this.individu)
       this.$SituationService.saveLocal()
-      this.$router.push('/foyer/resultat')
+      this.$router.push('/foyer/enfants')
     }
   }
 }

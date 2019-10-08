@@ -1,21 +1,30 @@
 <template>
   <div>
-    {{value}}
-    <button v-on:click="set('1989-02-14')">SET 1989-02-14</button>
-    <button v-on:click="set('2000-02-14')">SET 2000-02-14</button>
+    <input type="date" v-bind:value="item" v-on:input="emit($event)" >
   </div>
 </template>
 
 <script>
+
+import moment from 'moment'
+
 export default {
   name: 'InputDate',
   props: {
     value: Date,
   },
+  data: function() {
+    return {
+      item: this.value && this.value.toISOString().slice(0,10)
+    }
+  },
   methods: {
-    set: function(date) {
-      this.$emit('input', new Date(date))
-    },
+    emit: function($event) {
+      var value = new Date($event.target.value)
+      if (value) {
+        this.$emit('input', value)
+      }
+    }
   }
 }
 </script>

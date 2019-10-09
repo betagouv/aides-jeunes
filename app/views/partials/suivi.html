@@ -21,19 +21,7 @@
         <div class="droit-detail-heading">
           <h3 itemprop="name">{{ droit.label }}</h3>
           <div class="dotted-line"></div>
-          <span class="droit-montant droit-montant--unexpected" itemscope itemtype="http://schema.org/Offer" itemprop="offers">
-            <span class="droit-montant-label">
-              <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
-                {{ droit.montant | currency : ( droit.unit || '€' ) : getFractionSize(droit) }}
-              </span>
-              <span ng-if="isString(droit.montant)">
-                <i class="fa fa-question-circle fa-2x"></i>
-              </span>
-              <span ng-if="isNumber(droit.montant)" class="montant-detail">
-                {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
-              </span>
-            </span>
-          </span>
+          <droit-montant droit="droit" ng-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
         </div>
 
         <div ng-repeat="choice in droit.choices" class="radio">

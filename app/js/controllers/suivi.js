@@ -2,6 +2,7 @@
 
 var allBenefits = require('../constants/benefits');
 var SmoothScroll = require('smooth-scroll');
+var forEachBenefit = require('../../../backend/lib/mes-aides').forEach;
 
 var scroll = new SmoothScroll();
 
@@ -37,30 +38,26 @@ angular.module('ddsApp').controller('SuiviCtrl', function($http, $scope, $stateP
 
             $scope.createdAt = moment(followup.createdAt).format('ll');
 
-            _.mapValues(allBenefits, function(aidesProviders) {
-                _.mapValues(aidesProviders, function(aidesProvider, aidesProviderId) {
-                    _.forEach(aidesProvider.prestations, function(aide, aideId) {
+            forEachBenefit((benefit, benefitId, provider, providerId) => {
 
-                        if (! benefitsIds.includes(aideId)) {
-                            return;
-                        }
+                if (! benefitsIds.includes(benefitId)) {
+                    return;
+                }
 
-                        var montant = _.find(followup.benefits, benefit => benefit.id === aideId).amount;
+                var montant = _.find(followup.benefits, benefit => benefit.id === benefitId).amount;
 
-                        benefitsNormalized.push(_.assign({},
-                            aide,
-                            {
-                                id: aideId,
-                                montant: montant,
-                                provider: aidesProvider,
-                                providerId: aidesProviderId,
-                                choices: choices,
-                                choiceValue: null,
-                                choiceComments: ''
-                            }
-                        ));
-                    });
-                });
+                benefitsNormalized.push(_.assign({},
+                    benefit,
+                    {
+                        id: benefitId,
+                        montant: montant,
+                        provider: provider,
+                        providerId: providerId,
+                        choices: choices,
+                        choiceValue: null,
+                        choiceComments: ''
+                    }
+                ));
             });
 
             $scope.droits = benefitsNormalized;

@@ -72,16 +72,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 robots: 'noindex'
             }
         })
-        .state('cgu', {
-            url: '/cgu',
-            templateUrl: '/content-pages/cgu.html',
-            data: {
-                pageTitle: 'Conditions générales d’utilisation'
-            },
-            controller: function($scope, SituationService) {
-                $scope.situationId = SituationService.restoreLocal()._id;
-            }
-        })
         .state('cgu_donnees', {
             url: '/cgu#donnees',
             templateUrl: '/content-pages/cgu.html',
@@ -90,20 +80,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             },
             controller: function($scope, SituationService) {
                 $scope.situationId = SituationService.restoreLocal()._id;
-            }
-        })
-        .state('communication', { // TODO
-            url: '/communication',
-            templateUrl: '/content-pages/communication.html',
-            data: {
-                pageTitle: 'Supports de communication'
-            }
-        })
-        .state('contact', {
-            url: '/contact',
-            templateUrl: '/content-pages/contact.html',
-            data: {
-                pageTitle: 'Contact'
             }
         })
         .state('hameconnage', {
@@ -157,17 +133,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'Simulation'
             }
         })
-        .state('foyer.demandeur', {
-            url: '/demandeur',
-            views: {
-                '': {
-                    templateUrl: '/partials/foyer/demandeur.html'
-                },
-                'individuForm@foyer.demandeur': individuFormView('demandeur')
-            },
-            resolve: resolveIndividuRole('demandeur'),
-            preventFocus: true
-        })
         .state('foyer.conjoint', {
             url: '/conjoint',
             views: {
@@ -178,19 +143,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 'individuForm@foyer.conjoint': individuFormView('conjoint')
             },
             resolve: resolveIndividuRole('conjoint'),
-            data: {
-                guard: true,
-                robots: 'noindex'
-            }
-        })
-        .state('foyer.enfants', {
-            url: '/enfants',
-            views: {
-                '': {
-                    templateUrl: '/partials/foyer/enfants.html',
-                    controller: 'FoyerEnfantsCtrl',
-                },
-            },
             data: {
                 guard: true,
                 robots: 'noindex'

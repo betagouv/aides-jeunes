@@ -1,6 +1,5 @@
 'use strict';
 
-var allBenefits = require('../constants/benefits');
 var SmoothScroll = require('smooth-scroll');
 var forEachBenefit = require('../../../backend/lib/mes-aides').forEach;
 

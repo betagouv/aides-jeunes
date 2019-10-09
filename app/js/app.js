@@ -349,7 +349,7 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             }
         })
         .state('suivi', {
-            url: '/suivi/:followupId',
+            url: '/suivi?token',
             templateUrl: '/partials/suivi.html',
             controller: 'SuiviCtrl',
             data: {

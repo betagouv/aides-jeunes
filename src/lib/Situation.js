@@ -1,21 +1,8 @@
 import _ from 'lodash'
 import moment from 'moment'
+import { categoriesRnc, patrimoineTypes } from '../constants/resources'
 
 const Situation = {
-    YAMLRepresentation: function(sourceSituation) {
-        var situation = _.cloneDeep(sourceSituation);
-        situation.dateDeValeur = moment(new Date(situation.dateDeValeur)).format('YYYY-MM-DD');
-        situation.individus.forEach(function(individu) {
-            DATE_FIELDS.forEach(function(dateField) {
-                if (individu[dateField]) {
-                    individu[dateField] = individu[dateField].format('YYYY-MM-DD');
-                }
-            });
-
-            delete individu.hasRessources;
-        });
-        return 'TODO'//jsyaml.dump(_.omit(situation, ['__v', 'modifiedFrom', 'status', 'token', 'version']));
-    },
 
     /**
     *@param    {String}  A situation model to send to the backend

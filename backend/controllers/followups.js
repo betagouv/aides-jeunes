@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 var Followup = require('mongoose').model('Followup');
 
 var situation = require('./situations');

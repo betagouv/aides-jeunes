@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 var Promise = require('bluebird');
 var crypto = Promise.promisifyAll(require('crypto'));
 var puppeteer = require('puppeteer');

@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 var bodyParser = require('body-parser');
-var express = require('express');
 var morgan = require('morgan');
 var ludwigConfig = require('./ludwig/ui-config');
+var utils = require('./backend/lib/utils');
 var Sentry = require('@sentry/node');
+
 
 module.exports = function(app) {
   Sentry.init({

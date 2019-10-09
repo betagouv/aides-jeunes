@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 var ArgumentParser = require('argparse').ArgumentParser;
 
 var es = require('event-stream');

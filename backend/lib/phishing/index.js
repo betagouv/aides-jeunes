@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 var crypto = require('crypto');
 var os = require('os');
 var path = require('path');

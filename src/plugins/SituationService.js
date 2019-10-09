@@ -67,6 +67,21 @@ const SituationService = {
     Vue.prototype.$SituationService = {
         _cleanSituation: cleanSituation, // Exported for testing
 
+        YAMLRepresentation: function(sourceSituation) {
+            var situation = _.cloneDeep(sourceSituation);
+            situation.dateDeValeur = moment(new Date(situation.dateDeValeur)).format('YYYY-MM-DD');
+            situation.individus.forEach(function(individu) {
+                DATE_FIELDS.forEach(function(dateField) {
+                    if (individu[dateField]) {
+                        individu[dateField] = individu[dateField].format('YYYY-MM-DD');
+                    }
+                });
+
+                delete individu.hasRessources;
+            });
+            return 'TODO'//jsyaml.dump(_.omit(situation, ['__v', 'modifiedFrom', 'status', 'token', 'version']));
+        },
+
         fetchRepresentation: function(/*situationId, representation*/) {
             return /*$http.get('api/situations/' + situationId + '/' + representation)
                 .then(function(response) { return response.data; });*/

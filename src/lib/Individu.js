@@ -109,7 +109,7 @@ const Individu = {
     },
 
     nationaliteLabel: function(individu) {
-        return 'TODO';//NationaliteService.getLabel(individu.nationalite);
+        return 'TODO' + individu.id;//NationaliteService.getLabel(individu.nationalite);
     },
 
     isRoleParent: isRoleParent,
@@ -119,7 +119,6 @@ const Individu = {
     },
 
     formatStatutsSpecifiques: function(individu) {
-        return 'TODO'
         var statuts = [];
         /*specificSituations.forEach(function(statut) {
             if (individu.specificSituations && individu.specificSituations.indexOf(statut.id) >= 0) {
@@ -142,8 +141,7 @@ const Individu = {
         //TODO statuts = _.map(statuts, $filter('lowercaseFirst'));
         statuts = statuts.join(', ');
         //TODO statuts = $filter('uppercaseFirst')(statuts);
-
-        return statuts;
+        return 'TODO' //statuts;
     }
 }
 

@@ -1,18 +1,5 @@
 'use strict';
 
-function findIndividu(individus, role, params) {
-    // In case of "demandeur" or "conjoint", the role is sufficient
-    var predicate = { role: role };
-    // For children, we also need to match the id
-    if (role === 'enfant' && ! params.hasOwnProperty('id')) {
-        return;
-    }
-    if (params.hasOwnProperty('id')) {
-        predicate = _.assign(predicate, { id: params.id });
-    }
-
-    return _.find(individus, predicate);
-}
 
 angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $stateParams, individuRole, situationsFamiliales, specificSituations, IndividuService, NationaliteService) {
 
@@ -172,6 +159,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
     };
 
     $scope.capturePerteAutonomie = false;
+    var existingIndividu = true;//Hack linter
 
     $scope.locals = {
         fiscalementIndependant: ! $scope.individu.enfant_a_charge[$scope.currentYear],

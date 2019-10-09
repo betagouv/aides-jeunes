@@ -8,7 +8,7 @@
       <div class="children">
         <router-link v-for="enfant in enfants" class="child"
           to="/foyer/enfants/modifier({ id: enfant.id })">
-          <button type="button" class="close" ng-click="removeEnfant(enfant)">
+          <button type="button" class="close" v-on:click.prevent="removeEnfant(enfant)">
             <span class="sr-only">Effacer {{ enfant.firstName }}</span>
             <span role="presentation" aria-hidden="true">&times;</span>
           </button>
@@ -60,6 +60,13 @@ export default {
       var enf = Individu.get(this.enfants, 'enfant', 1)
       enf.date_naissance = new Date('2010-12-12')
       this.enfants.push(enf)
+    },
+    removeEnfant: function(enfant) {
+        var index = this.enfants.indexOf(enfant);
+        this.enfants.splice(index, 1);
+        if (/*TODO current route is about current kid*/false) {
+          this.$route.push('/foyer/enfants', replace=true)
+        }
     }
   }
 }

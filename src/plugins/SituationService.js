@@ -5,8 +5,6 @@ import _ from 'lodash'
 import { computeAides } from '../../backend/lib/mes-aides'
 import { categoriesRnc } from '../constants/resources'
 
-const sampleResponse = require('../../sample-response.json')
-
 var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage'];
 
 /*
@@ -87,13 +85,12 @@ const SituationService = {
                 .then(function(response) { return response.data; });*/
         },
 
-        fetchResults: function(situation, showPrivate) {
-            return Promise.resolve({ data: sampleResponse })
-                //axios.get('api/situations/' + situation._id + '/openfisca-response')
+        fetchResults: function(showPrivate) {
+            return axios.get('api/situations/' + Vue.situation._id + '/openfisca-response')
                 .then(function(OpenfiscaResponse) {
                     return OpenfiscaResponse.data;
                 }).then(function(openfiscaResponse) {
-                    return computeAides(situation, openfiscaResponse, showPrivate);
+                    return computeAides(Vue.situation, openfiscaResponse, showPrivate);
                 });
         },
 
@@ -135,13 +132,13 @@ const SituationService = {
                 .then(saveLocal);TODO*/
         },
 
-        save: function(situation) {
-            if (situation._id) {
-                situation.modifiedFrom = situation._id;
+        save: function() {
+            if (Vue.situation._id) {
+                Vue.situation.modifiedFrom = Vue.situation._id;
             }
-            cleanSituation(situation);
+            cleanSituation(Vue.situation);
 
-            return axios.post('/api/situations/', _.omit(situation, '_id'))
+            return axios.post('/api/situations/', _.omit(Vue.situation, '_id'))
                 .then(function(result) { return result.data; })
                 .then(saveLocal);
         },

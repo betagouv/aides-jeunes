@@ -186,16 +186,16 @@ export default {
   data: function() {
     let situation = this.$SituationService.restoreLocal()
     return {
-      awaitingResults: false,
+      awaitingResults: true,
       droitsNonEligiblesShow: true,
       encodedError: 'encodedError',
       encodedUserAgent: 'encodedUserAgent',
-      error: false,//'Erreur',
+      error: false,
       openfiscaTracerURL: 'openfiscaTracerURL',
       ressourcesYearMinusTwoCaptured: false,
       situation: situation,
       resultats: {},
-      warning: false,//true,
+      warning: false,
       warningMessage: 'Attention',
     }
   },
@@ -204,8 +204,15 @@ export default {
     DroitsEligiblesList,
   },
   mounted: function() {
-    this.$SituationService.fetchResults(this.situation, true)
-    .then(resultats => this.resultats = resultats)
+    this.$SituationService.save()
+      .then(() => this.$SituationService.fetchResults(false))
+      .then(resultats => this.resultats = resultats)
+      .catch(error => {
+        this.error = error
+      })
+      .finally(() => {
+        this.awaitingResults = false
+      })
   },
   computed: {
     droits: function() { return this.resultats.droitsEligibles },

@@ -3,11 +3,17 @@
 
 var express = require('express');
 var app = express();
+var path = require('path');
 
 var port = process.env.PORT || 9000;
 
 process.env.MES_AIDES_ROOT_URL = process.env.MES_AIDES_ROOT_URL || ('http://localhost:' + port);
 require('./configure')(app);
+
+app.use(express.static('dist'))
+app.route('/*').get(function(req, res) {
+    res.sendFile(path.join(__dirname, 'dist/index.html'))
+});
 
 app.use(function (err, req, res, next) {
     console.error(err);

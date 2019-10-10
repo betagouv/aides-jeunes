@@ -54,7 +54,7 @@ export default {
     next: function() {
       Situation.setEnfants(this.situation, this.enfants)
       this.$SituationService.saveLocal()
-      this.$router.push('/foyer/resultat')
+      this.$router.push('/foyer/logement')
     },
     add: function() {
       var enf = Individu.get(this.enfants, 'enfant', 1)

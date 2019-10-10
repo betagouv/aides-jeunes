@@ -13,38 +13,6 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     var logement = $scope.logement = LogementService.getLogementVariables(menage.statut_occupation_logement);
     logement.pretSigneAvant2018 = moment(menage.aide_logement_date_pret_conventionne, 'YYYY-MM-DD').get('year') < 2018;
 
-    function getMostPopulatedCity(cities) {
-        return _.maxBy(cities, 'population') || (cities.length && cities[0]) || {};
-    }
-
-    function getSelectedCity() {
-        return _.find($scope.cities, { code: menage.depcom }) ||
-            getMostPopulatedCity($scope.cities);
-    }
-
-    $scope.updateCities = function updateCities(initial) {
-        if (! $scope.menage.code_postal) {
-            $scope.cities = [];
-            return;  // the user has made the value invalid since we were called
-        }
-
-        $scope.retrievingCities = true;
-        CityService.getCities($scope.menage.code_postal)
-            .then(function(cities) {
-                $scope.cities = cities;
-                var city = getSelectedCity();
-                menage.depcom = city.code;
-                menage.nom_commune = city.nom;
-                if (! initial) {
-                    famille.parisien = cityStartsWith('Paris');
-                }
-            }, $log.error.bind($log))
-            .finally(function() {
-                $scope.retrievingCities = false;
-            });
-    };
-
-    $scope.updateCities(true);
 
     function cityStartsWith(prefix) {
         return $scope.isAdresseValid() && $scope.menage.nom_commune.toUpperCase().indexOf(prefix.toUpperCase()) === 0;
@@ -129,10 +97,6 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         return $scope.captureCodePostal() && logement.type != 'sansDomicile' && cityStartsWith('Paris');
     };
 
-    $scope.changeCodePostal = function() {
-        $scope.updateCities();
-    };
-
     $scope.changeLogementType = function() {
         ['locationType', 'primoAccedant'].forEach(function(field) {
             delete logement[field];
@@ -146,10 +110,6 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
         menage.loyer = 0;
 
         delete $scope.demandeur.habite_chez_parents;
-    };
-
-    $scope.changeNomCommune = function() {
-        menage.nom_commune = getSelectedCity().nom;
     };
 
     $scope.isResidentMayotte = function isResidentMayotte() {

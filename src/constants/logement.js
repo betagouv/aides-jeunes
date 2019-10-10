@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsCommon').constant('logementTypes', [
+const logementTypes = [
     {
         id: 'locataire',
         label: 'locataire',
@@ -21,9 +21,9 @@ angular.module('ddsCommon').constant('logementTypes', [
         label: 'sans domicile stable',
         hint: 'Ou domiciliation administrative'
     }
-]);
+]
 
-angular.module('ddsCommon').constant('locationTypes', [
+const locationTypes = [
     {
         id: 'nonmeuble',
         label: 'non meublé'
@@ -36,9 +36,15 @@ angular.module('ddsCommon').constant('locationTypes', [
         id: 'foyer',
         label: 'Foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale…)'
     }
-]);
+]
 
-angular.module('ddsCommon').constant('loyerLabels', {
-    'locataire': 'Votre loyer',
-    'proprietaire': 'Montant des mensualités'
-});
+const loyerLabels = {
+    locataire: 'Votre loyer',
+    proprietaire: 'Montant des mensualités'
+}
+
+module.exports = {
+    logementTypes,
+    locationTypes,
+    loyerLabels,
+}

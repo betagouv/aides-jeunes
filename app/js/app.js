@@ -173,15 +173,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             },
             resolve: resolveIndividuRole('enfant'),
         })
-        .state('foyer.logement', {
-            url: '/logement',
-            templateUrl: '/partials/foyer/logement.html',
-            controller: 'FoyerLogementCtrl',
-            data: {
-                guard: true,
-                robots: 'noindex'
-            }
-        })
         .state('foyer.ressources', {
             url: '/ressources',
             controller: 'FoyerRessourcesCtrl',

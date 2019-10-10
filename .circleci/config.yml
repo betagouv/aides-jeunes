@@ -242,3 +242,9 @@ workflows:
           filters:
             branches:
               only: master
+  deploy_next_vue:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: vue

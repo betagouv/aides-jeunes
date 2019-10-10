@@ -1,12 +1,12 @@
 apps:
-  - name: ma-web
+  - name: mes-aides
     script   : server.js
     instances: 4
     exec_mode: cluster
     merge_logs: true
     env:
-        MES_AIDES_ROOT_URL: https://mes-aides.gouv.fr
+        MES_AIDES_ROOT_URL: https://next.mes-aides.gouv.fr
         MONGODB_URL: mongodb://localhost/dds
         NODE_ENV: production
-        PORT: 8000
+        PORT: 8200
         CHROME_DEVEL_SANDBOX: /usr/local/sbin/chrome-devel-sandbox

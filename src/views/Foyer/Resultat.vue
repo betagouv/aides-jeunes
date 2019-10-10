@@ -79,7 +79,7 @@
               analytics-on="click"
               analytics-category="Contact"
               analytics-event="Go"
-              v-on:click="goToFeedback()">
+              v-on:click.prevent="goToFeedback($event)">
               vous pouvez nous y aider</a>&nbsp;!</h4>
         </div>
       </div>
@@ -222,8 +222,8 @@ export default {
     yearMinusTwo: function() { return Situation.getYearMinusTwo(this) },
   },
   methods: {
-    goToFeedback: function() {
-      alert('TODO')
+    goToFeedback: function(event) {
+      this.$ScrollService.go(event, document.getElementById('feedback'));
     },
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0

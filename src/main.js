@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
+import moment from 'moment'
+
 import ScrollService from './plugins/ScrollService'
 import SituationService from './plugins/SituationService'
 import Vuelidate from 'vuelidate'
@@ -18,6 +20,7 @@ Vue.use(SituationService)
 Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
+moment.locale('fr')
 
 new Vue({
   router,

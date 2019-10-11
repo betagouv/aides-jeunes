@@ -32,6 +32,9 @@ export default new Router({
         path: 'logement',
         component: () => import(/* webpackChunkName: "logement" */ './views/Foyer/Logement.vue')
       }, {
+        path: 'pensions-alimentaires',
+        component: () => import(/* webpackChunkName: "pensions-alimentaires" */ './views/Foyer/PensionsAlimentaires.vue')
+      }, {
         path: 'resultat',
         component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat.vue')
       }]

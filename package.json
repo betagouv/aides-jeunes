@@ -102,7 +102,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-irregular-whitespace": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     },

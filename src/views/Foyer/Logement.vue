@@ -8,7 +8,7 @@
       </div>
 
       <div class="form__group">
-        <label v-for="logementType in logementTypes">
+        <label v-for="logementType in logementTypes" v-bind:key="logementType.id">
           <input type="radio"
               name="logementType"
               v-model="logement.type"
@@ -145,7 +145,7 @@
                   required
                   v-model="menage.depcom"
                   id="commune">
-                  <option v-for="commune in communeOptions" v-bind:value="commune.code">
+                  <option v-for="commune in communeOptions" v-bind:value="commune.code" v-bind:key="commune.code">
                     {{ commune.value.nom }}
                   </option>
                 </select>
@@ -155,16 +155,19 @@
         </div>
       </div>
 
-      <!--yes-no-question model="famille.parisien" v-if="captureResidentParis()">
-        <question>Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }} ?</question>
-        <help-block>Y compris de manière discontinue</help-block>
-      </yes-no-question>
 
-      <p v-if="isResidentMayotte()" class="alert alert-danger" id="warning-mayotte">
+      <div v-if="captureResidentParis" class="form__group">
+        <fieldset>
+          <legend><h3>Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }} ?</h3></legend>
+          <label><input type="radio" v-bind:value="true" name="parisien" v-model="famille.parisien">Oui</label>
+          <label><input type="radio" v-bind:value="false" name="parisien" v-model="famille.parisien">Non</label>
+        </fieldset>
+      </div>
+
+      <p v-if="isResidentMayotte">
         <i class="fa fa-times-circle" aria-hidden="true"></i>
-          Les règles spécifiques à Mayotte ne sont pas encore prises en compte par ce simulateur. Nous ne pouvons donc malheureusement pas évaluer vos droits pour ce code postal.
-      </p-->
-
+        Les règles spécifiques à Mayotte ne sont pas encore prises en compte par ce simulateur. Nous ne pouvons donc malheureusement pas évaluer vos droits pour ce code postal.
+      </p>
     </div>
     <div class="text-right">
       <button class="button large" v-if="maySubmit" v-on:click="next">Valider</button>
@@ -303,8 +306,8 @@ export default {
                     this.famille.parisien = this.communeStartsWith('Paris');
                 }
             })
-            .catch(function(error) {
-
+            .catch(function() {
+              this.communes = []
             })
             .finally(() => {
                 this.retrievingCommunes = false;

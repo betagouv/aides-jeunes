@@ -157,11 +157,9 @@
 
 
       <div v-if="captureResidentParis" class="form__group">
-        <fieldset>
-          <legend><h3>Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }} ?</h3></legend>
-          <label><input type="radio" v-bind:value="true" name="parisien" v-model="famille.parisien">Oui</label>
-          <label><input type="radio" v-bind:value="false" name="parisien" v-model="famille.parisien">Non</label>
-        </fieldset>
+        <YesNoQuestion v-model="parentsPayPensionsAlimentaires"><h1>
+          <h3>Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }} ?</h3>
+        </h1></YesNoQuestion>
       </div>
 
       <p v-if="isResidentMayotte">

@@ -2,12 +2,10 @@
   <div class="container">
     <div>
       <div class="form__group">
-        <fieldset>
-          <legend><h1>Vous ou votre conjoint·e actuel·le avez-vous <b>versé</b> des pensions alimentaires <b>
-      depuis {{ debutAnneeGlissante }}</b> ?</h1></legend>
-          <label><input type="radio" v-bind:value="true" name="couple" v-model="parentsPayPensionsAlimentaires">Oui</label>
-          <label><input type="radio" v-bind:value="false" name="couple" v-model="parentsPayPensionsAlimentaires">Non</label>
-        </fieldset>
+        <YesNoQuestion v-model="parentsPayPensionsAlimentaires"><h1>
+          Vous ou votre conjoint·e actuel·le avez-vous <b>versé</b> des pensions alimentaires <b>
+          depuis {{ debutAnneeGlissante }}</b> ?
+        </h1></YesNoQuestion>
       </div>
     </div>
     <div class="text-right">
@@ -18,13 +16,16 @@
 
 <script>
 import moment from 'moment'
+import _ from 'lodash'
 import { ressourceTypes } from '@/constants/resources'
 import Individu from '@/lib/Individu'
 import Situation from '@/lib/Situation'
+import YesNoQuestion from '@/components/YesNoQuestion'
 
 export default {
   name: 'pensions-alimentaires',
   components: {
+    YesNoQuestion
   },
   data () {
     let situation = this.$SituationService.restoreLocal()

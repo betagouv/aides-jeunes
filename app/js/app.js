@@ -177,15 +177,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
             controller: 'FoyerRessourcesMontantsCtrl',
             url: '/montants'
         })
-        .state('foyer.pensionsAlimentaires', {
-            templateUrl: '/partials/foyer/pensions-alimentaires.html',
-            controller: 'FoyerPensionsAlimentairesCtrl',
-            url: '/pensions-alimentaires',
-            data: {
-                guard: true,
-                robots: 'noindex'
-            }
-        })
         .state('foyer.resultat', {
             url: '/resultat?situationId',
             templateUrl: '/partials/resultat.html',

@@ -123,21 +123,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 pageTitle: 'Simulation'
             }
         })
-        .state('foyer.conjoint', {
-            url: '/conjoint',
-            views: {
-                '': {
-                    templateUrl: '/partials/foyer/conjoint.html',
-                    controller: 'FoyerConjointCtrl',
-                },
-                'individuForm@foyer.conjoint': individuFormView('conjoint')
-            },
-            resolve: resolveIndividuRole('conjoint'),
-            data: {
-                guard: true,
-                robots: 'noindex'
-            }
-        })
         .state('foyer.enfants.ajouter', {
             url: '/ajouter',
             views: {

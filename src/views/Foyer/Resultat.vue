@@ -41,7 +41,7 @@
 
     <div v-show="! error && ! warning && ! awaitingResults">
 
-      <div v-if="! (droits | isEmpty)">
+      <div v-if="! isEmpty(droits)">
         <p>
           D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides.
           <span id="print-disclaimer">Ces résultats sont fondés sur les seules informations que vous avez indiquées et ne constituent en aucune façon un engagement de la part des organismes cités.</span>
@@ -50,7 +50,7 @@
         <DroitsEligiblesList v-bind:droits="droits"></DroitsEligiblesList>
       </div>
 
-      <div v-if="! (droitsNonEligibles | isEmpty)" v-show="droitsNonEligiblesShow">
+      <div v-if="! isEmpty(droitsNonEligibles)" v-show="droitsNonEligiblesShow">
         <p>
           Les conditions des aides suivantes <strong>ne sont pas</strong> remplies :
         </p>
@@ -59,7 +59,7 @@
           v-bind:filter="['cmu_c', 'acs']"></DroitsEligiblesList>
       </div>
 
-      <div class="frame-resultats" v-show="(droits | isEmpty) && ressourcesYearMinusTwoCaptured">
+      <div class="frame-resultats" v-show="isEmpty(droits) && ressourcesYearMinusTwoCaptured">
           <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
           <p>Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
       </div>
@@ -86,7 +86,7 @@
 
       <div class="page-break"></div>
 
-      <h1 v-if="! (droits | isEmpty)">Comment obtenir vos aides ?</h1>
+      <h1 v-if="! isEmpty(droits)">Comment obtenir vos aides ?</h1>
       <DroitsDetails
         v-bind:city="situation.menage.depcom"
         v-bind:droits="droits"
@@ -160,9 +160,12 @@
           </small>
         </div>
 
-        <div>
-          <h4 v-show="! (droitsInjectes | isEmpty)">Vous avez indiqué ces aides au cours la simulation et elles n'ont pas été recalculées</h4>
-          <!-- <droits-list droits="droitsInjectes"></droits-list> -->
+        <div v-show="isNotEmpty(droitsInjectes)">
+          <h4>Vous avez indiqué ces aides au cours la simulation et elles n'ont pas été recalculées</h4>
+            TODO {{droitsInjectes}}
+            <div v-for="d in droitsInjectes">
+              {{d}}
+            </div>
         </div>
 
         <div id="social">
@@ -170,7 +173,7 @@
 
           <p style="text-align:center;"><a href="https://www.facebook.com/MesAides"><img src="./../../../public/img/social/picto_facebook.png" alt="Facebook"></a>  <a href="https://twitter.com/MesAides"><img src="/img/social/picto_twitter.png" alt="Twitter"></a></p>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -191,7 +194,7 @@ export default {
       encodedError: 'encodedError',
       encodedUserAgent: 'encodedUserAgent',
       error: false,
-      openfiscaTracerURL: 'openfiscaTracerURL',
+      openfiscaTracerURL: 'TODO openfiscaTracerURL',
       ressourcesYearMinusTwoCaptured: false,
       situation: situation,
       resultats: {},
@@ -225,8 +228,8 @@ export default {
     goToFeedback: function(event) {
       this.$ScrollService.go(event, document.getElementById('feedback'));
     },
-    isEmpty: (array) => array.length === 0,
-    isNotEmpty: (array) => array.length !== 0
+    isEmpty: function(array) { return ! array || array.length === 0 },
+    isNotEmpty: function(array) { return array && array.length !== 0 },
   },
 }
 </script>

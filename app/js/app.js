@@ -72,16 +72,6 @@ ddsApp.config(function($locationProvider, $stateProvider, $urlRouterProvider, $u
                 robots: 'noindex'
             }
         })
-        .state('cgu_donnees', {
-            url: '/cgu#donnees',
-            templateUrl: '/content-pages/cgu.html',
-            data: {
-                pageTitle: 'Conditions générales d’utilisation'
-            },
-            controller: function($scope, SituationService) {
-                $scope.situationId = SituationService.restoreLocal()._id;
-            }
-        })
         .state('hameconnage', {
             url: '/hameconnage',
             templateUrl: '/content-pages/hameconnage.html',

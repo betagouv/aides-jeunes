@@ -73,5 +73,13 @@ export default new Router({
       name: 'sos',
       component: () => import(/* webpackChunkName: "sos" */ './views/SOS.vue')
     },
-  ]
+  ],
+  scrollBehavior (to/*, from, savedPosition*/) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    }
+    return {x: 0, y: 0}
+  }
 })

@@ -4,10 +4,8 @@ var _ = require('lodash');
 var mustache = require('consolidate').mustache;
 var mjml = require('mjml');
 var config = require('../../../config');
-
-function toBase64(file) {
-    return fs.readFileSync(file, 'base64');
-}
+var toBase64 = require('.').toBase64;
+var defaultAttachments = require('.').defaultAttachments;
 
 function basicBenefitText(b) {
     if (b.labelFunction) {
@@ -23,18 +21,6 @@ function basicBenefitText(b) {
 
 var textTemplate = fs.readFileSync(path.join(__dirname, 'templates/initial.txt'), 'utf8');
 var mjmlTemplate = fs.readFileSync(path.join(__dirname, 'templates/initial.mjml'), 'utf8');
-
-var defaultAttachments = [{
-    ContentType: 'image/png',
-    Filename: 'logo.png',
-    ContentID: "logo",
-    Base64Content: toBase64(path.join(__dirname, '../../../../app/img/logo.png'))
-}, {
-    ContentType: 'image/png',
-    Filename: 'marianne.png',
-    ContentID: "marianne",
-    Base64Content: toBase64(path.join(__dirname, '../../../../app/img/marianne.png'))
-}];
 
 function renderAsText(followup, benefits) {
 

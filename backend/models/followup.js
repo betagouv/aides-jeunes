@@ -70,7 +70,7 @@ FollowupSchema.virtual('returnPath').get(function() {
     return '/followups/' + this._id;
 });
 FollowupSchema.virtual('surveyPath').get(function() {
-    return '/suivi/' + this._id
+    return '/suivi?token=' + this._id
 })
 
 mongoose.model('Followup', FollowupSchema);

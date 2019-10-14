@@ -4,7 +4,9 @@ var path = require('path');
 var mustache = require('consolidate').mustache;
 var bodyParser = require('body-parser');
 var utils = require('./backend/lib/utils');
+var Followup = require('mongoose').model('Followup');
 var benefits = require('./app/js/constants/benefits');
+var renderSurvey = require('./backend/lib/mes-aides/emails/survey').render;
 
 function countPublicByType(type) {
     return Object.keys(benefits[type]).reduce(function(total, provider) {
@@ -102,6 +104,17 @@ module.exports = function(app) {
     app.route('/recap-situation/*').get(function(req, res) {
         res.sendFile(viewsDirectory + '/embed.html');
     });
+
+    if (app.get('env') === 'development') {
+        app.route('/emails/followups/:followupId/survey.html').get(function(req, res) {
+            Followup.findById(req.params.followupId).exec(function(err, followup) {
+                if (err) return next(err);
+                if (! followup) return res.sendStatus(404);
+                renderSurvey(followup)
+                    .then(survey => res.send(survey.html));
+            });
+        });
+    }
 
     app.route('/*').get(function(req, res) {
         res.render('front', {

@@ -79,15 +79,15 @@ function sendSurvey(followup, email) {
                     To: [{ Email: email}],
                     Subject: render.subject,
                     TextPart: render.text,
-                    // HTMLPart: render.html,
+                    HTMLPart: render.html,
                     CustomCampaign: 'Envoi du formulaire de suivi',
-                    // InlinedAttachments: render.attachments
+                    InlinedAttachments: render.attachments
                 }]});
         }).then(() => {
+            followup.surveySentAt = Date.now();
             return followup.save();
         }).catch(err => {
             console.error(err);
-            followup.email = email;
             return followup.save();
         });
 }

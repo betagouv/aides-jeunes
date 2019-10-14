@@ -1,0 +1,55 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-text color="#555" line-height="22px" font-size="14px" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body>
+    <mj-section>
+      <mj-column width="20%">
+        <mj-image alt="République Française" src="cid:marianne" />
+      </mj-column>
+      <mj-column width="40%"></mj-column>
+      <mj-column width="40%">
+        <mj-image alt="Mes Aides" src="cid:logo" />
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <p>
+            <span>Vous avez fait il y a quelques jours une simulation sur Mes-Aides.gouv.fr.</span>
+            <br />
+            <span>Nous aimerions savoir si cette simulation vous a été utile, et si elle vous a permis de demander de nouvelles aides : cela nous permettra de continuer à améliorer le simulateur !</span>
+          </p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          Pour nous aider, vous pouvez remplir le formulaire suivant, en moins de 30 secondes
+        </mj-text>
+        <mj-button background-color="#43ac6a" color="white" href="{{&ctaLink}}">
+          Répondre au questionnaire
+        </mj-button>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <span>Retrouvez les détails de votre simulation sur Mes-Aides.gouv.fr à en cliquant <a href="{{&returnURL}}" target="_blank">ici</a>.</span>
+          <br />
+          <span>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider.</span>
+          <br />
+          <span>Vous pouvez nous contacter à l'adresse suivante&nbsp;: <a href="mailto:contact@mes-aides.gouv.fr">contact@mes-aides.gouv.fr</a></span>
+        </mj-text>
+        <mj-text>
+          <span>Bonne journée,</span>
+          <br />
+          <span>L'équipe Mes Aides</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

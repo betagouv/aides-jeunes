@@ -15,31 +15,6 @@ exports.followup = function(req, res, next, id) {
     });
 };
 
-exports.show = function(req, res, next) {
-    Followup.findById(req.params.followupId).exec(function(err, followup) {
-        if (err) return next(err);
-        if (! followup) return res.sendStatus(404);
-
-        res.send(followup);
-    });
-};
-
-exports.postSurvey = function(req, res, next) {
-    Followup.findById(req.params.followupId).exec(function(err, followup) {
-        if (err) return next(err);
-        if (! followup) return res.sendStatus(404);
-
-        var surveys = Array.from(followup.surveys);
-        surveys.push(req.body);
-
-        followup.surveys = surveys;
-        followup.save()
-            .then(function() {
-                res.sendStatus(201);
-            });
-    });
-};
-
 exports.resultRedirect = function(req, res) {
     situation.attachAccessCookie(req, res);
     res.redirect(req.situation.returnPath);
@@ -68,30 +43,6 @@ function sendEmail(followup, email) {
         });
 }
 
-function sendSurvey(followup, email) {
-    email = email || followup.email;
-
-    return followup.renderSurvey()
-        .then(render => {
-            return sender.post('send', { version: 'v3.1' })
-                .request({ Messages: [{
-                    From: { Name: 'Équipe Mes Aides', Email: 'contact@mes-aides.gouv.fr'},
-                    To: [{ Email: email}],
-                    Subject: render.subject,
-                    TextPart: render.text,
-                    HTMLPart: render.html,
-                    CustomCampaign: 'Envoi du formulaire de suivi',
-                    InlinedAttachments: render.attachments
-                }]});
-        }).then(() => {
-            followup.surveySentAt = Date.now();
-            return followup.save();
-        }).catch(err => {
-            console.error(err);
-            return followup.save();
-        });
-}
-
 exports.persist = function(req, res) {
     if (! req.body.email || ! req.body.email.length) {
         return res.status(400).send({ result: 'KO' });
@@ -108,5 +59,49 @@ exports.persist = function(req, res) {
     }).catch(error => {
         console.error('error', error);
         return res.status(400).send({ result: 'KO' });
+    });
+};
+
+exports.showFromSurvey = function(req, res, next) {
+    Followup.find({ 'surveys._id': req.params.surveyId }).exec(function(err, followup) {
+        if (err) return next(err);
+        if (! followup) return res.sendStatus(404);
+
+        res.send(followup);
+    });
+};
+
+exports.sendSurvey = function(followup) {
+    return followup.renderSurvey()
+        .then(render => {
+            return sender.post('send', { version: 'v3.1' })
+                .request({ Messages: [{
+                    From: { Name: 'Équipe Mes Aides', Email: 'contact@mes-aides.gouv.fr'},
+                    To: [{ Email: followup.email }],
+                    Subject: render.subject,
+                    TextPart: render.text,
+                    HTMLPart: render.html,
+                    CustomCampaign: 'Envoi du formulaire de suivi',
+                    InlinedAttachments: render.attachments
+                }]});
+        }).then((response) => {
+            return response.body.Messages[0].To[0].MessageID;
+        }).then(messageID => {
+            return followup.addEmptySurvey(messageID);
+        }).catch(err => {
+            console.error(err);
+            return followup.save();
+        });
+};
+
+exports.postSurvey = function(req, res, next) {
+    Followup.find({ 'surveys._id': req.params.surveyId }).exec(function(err, followup) {
+        if (err) return next(err);
+        if (! followup) return res.sendStatus(404);
+
+        followup.updateSurvey(req.params.surveyId, req.body.answers)
+            .then(() => {
+                res.sendStatus(201);
+            });
     });
 };

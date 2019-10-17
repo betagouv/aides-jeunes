@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
+var _ = require('lodash');
 var validator = require('validator');
+
 var utils = require('../lib/utils');
 
 var renderInitial = require('../lib/mes-aides/emails/initial').render;
@@ -26,7 +28,10 @@ var FollowupSchema = new mongoose.Schema({
     surveyOptin: { type: Boolean, default: false },
     surveys: {
         type: [{
+            _id: { type: String },
             createdAt: { type: Date, default: Date.now },
+            messageId: { type: String },
+            repliedAt: { type: Date },
             answers: [{
                 id: String,
                 value: String,
@@ -53,9 +58,36 @@ FollowupSchema.methods.renderInitial = function() {
     return renderInitial(this);
 };
 
+FollowupSchema.methods.addEmptySurvey = function(messageID) {
+    var followup = this;
+
+    return utils.generateToken()
+        .then(function(token) {
+            var surveys = Array.from(followup.surveys);
+            var survey = {
+                _id: token,
+                messageID: messageID,
+                createdAt: Date.now(),
+            };
+            surveys.push(survey);
+
+            followup.surveys = surveys;
+            return followup.save();
+        });
+};
+
+FollowupSchema.methods.updateSurvey = function(id, answers) {
+    var surveys = Array.from(this.surveys);
+    var survey = _.find(surveys, function(s) { return s._id === id; });
+
+    Object.assign(survey, { answers: answers, repliedAt: Date.now() });
+    this.surveys = surveys;
+    return this.save();
+};
+
 FollowupSchema.methods.renderSurvey = function() {
     return renderSurvey(this);
-}
+};
 
 FollowupSchema.pre('save', function(next) {
     if (!this.isNew) { return next(); }
@@ -67,11 +99,13 @@ FollowupSchema.pre('save', function(next) {
         .then(next)
         .catch(next);
 });
+
 FollowupSchema.virtual('returnPath').get(function() {
     return '/followups/' + this._id;
 });
+
 FollowupSchema.virtual('surveyPath').get(function() {
-    return '/suivi?token=' + this._id
-})
+    return '/suivi?token=' + this._id;
+});
 
 mongoose.model('Followup', FollowupSchema);

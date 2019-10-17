@@ -25,7 +25,6 @@ function sendEmail(followup, email) {
 
     return followup.renderInitial()
         .then(render => {
-
             return sender.post('send', { version: 'v3.1' })
                 .request({ Messages: [{
                     From: { Name: 'Équipe Mes Aides', Email: 'contact@mes-aides.gouv.fr'},
@@ -36,16 +35,8 @@ function sendEmail(followup, email) {
                     CustomCampaign: 'Récapitulatif des droits affichés',
                     InlinedAttachments: render.attachments
                 }]});
-        }).then(() => {
-            followup.sentAt = new Date();
-
-            // If the user has not opted in for surveys, we don't store the email
-            if (! followup.surveyOptin) {
-                followup.email = undefined;
-            }
-
-            return followup.save();
-        }).catch(err => {
+        }).then((response) => { followup.postInitialEmail(response.body.Messages[0].To[0].MessageID); })
+        .catch(err => {
             console.error(err);
             followup.email = email;
             return followup.save();

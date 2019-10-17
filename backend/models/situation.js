@@ -135,7 +135,7 @@ SituationSchema.methods.compute = function() {
 };
 
 SituationSchema.pre('save', function(next) {
-    if (!this.isNew) next();
+    if (!this.isNew) { return next(); }
     var situation = this;
     utils.generateToken()
         .then(function(token) {

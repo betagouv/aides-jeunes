@@ -18,16 +18,29 @@ var FollowupSchema = new mongoose.Schema({
     },
     createdAt: { type: Date, default: Date.now },
     sentAt: { type: Date },
+    messageId: { type: String },
     benefits: { type: Object },
     surveyOptin: { type: Boolean, default: false },
     _id: { type: String },
 }, { minimize: false, id: false });
 
+
+FollowupSchema.methods.postInitialEmail = function(messageId) {
+    this.sentAt = Date.now();
+    if (! this.surveyOptin) {
+        this.email = undefined;
+    } else {
+        this.messageId = messageId;
+    }
+    return this.save();
+};
+
 FollowupSchema.methods.renderInitial = function() {
     return renderInitial(this);
 };
+
 FollowupSchema.pre('save', function(next) {
-    if (!this.isNew) next();
+    if (!this.isNew) { return next(); }
     var followup = this;
     utils.generateToken()
         .then(function(token) {

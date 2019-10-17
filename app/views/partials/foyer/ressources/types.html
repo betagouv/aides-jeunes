@@ -14,7 +14,7 @@
       class="form-control"
       placeholder="Rechercher vos ressources"
       id="search-input">
-    <span id="search-clear" class="fa fa-times" ng-click="searchString=''" ng-show="searchString.length > 0"></span>
+    <span id="search-clear" class="fa fa-times" ng-click="searchString=''; updateSearchedRessources()" ng-show="searchString.length > 0"></span>
   </div>
   <form method="post" name="form" novalidate ng-submit="submit()">
     <fieldset>

@@ -22,20 +22,21 @@
             </div>
           </div>
         </router-link>
-        <button class="new-entity child" v-on:click.prevent="add" >
+        <router-link class="new-entity child"
+          to="/foyer/enfants/ajouter">
           <h3>Ajouter un enfant</h3>
           <span class="card-icon fa fa-plus" aria-hidden="true" />
-        </button>
+        </router-link>
       </div>
     </div>
     <div class="text-right">
       <button class="button large" v-on:click="next">Valider</button>
     </div>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Individu from '@/lib/Individu'
 import Situation from '@/lib/Situation'
 
 export default {
@@ -43,29 +44,27 @@ export default {
   components: {
   },
   data () {
-    let s = this.$SituationService.restoreLocal()
-    let enfants = Situation.getEnfants(s)
+    let situation = this.$SituationService.restoreLocal()
     return {
-      situation: s,
-      enfants,
+      situation,
+    }
+  },
+  computed: {
+    enfants: function() {
+      return Situation.getEnfants(this.situation)
     }
   },
   methods: {
     next: function() {
-      Situation.setEnfants(this.situation, this.enfants)
       this.$SituationService.saveLocal()
       this.$router.push('/foyer/conjoint')
-    },
-    add: function() {
-      var enf = Individu.get(this.enfants, 'enfant', 1)
-      enf.date_naissance = new Date('2010-12-12')
-      this.enfants.push(enf)
     },
     removeEnfant: function(enfant) {
         var index = this.enfants.indexOf(enfant);
         this.enfants.splice(index, 1);
+        Situation.setEnfants(this.situation, this.enfants)
         if (/*TODO current route is about current kid*/false) {
-          this.$route.push('/foyer/enfants', replace=true)
+          this.$route.push('/foyer/enfants', true)
         }
     }
   }
@@ -135,6 +134,7 @@ export default {
   border: .25em dashed #DDD;
   box-shadow: none;
   width: 100%;
+  text-align: center;
 }
 
 .card-icon {

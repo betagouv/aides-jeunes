@@ -24,7 +24,11 @@ export default new Router({
         component: () => import(/* webpackChunkName: "demandeur" */ './views/Foyer/Demandeur.vue')
       }, {
         path: 'enfants',
-        component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants.vue')
+        component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants.vue'),
+        children: [{
+          path: 'ajouter',
+          component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants/Ajouter.vue'),
+        }]
       }, {
         path: 'conjoint',
         component: () => import(/* webpackChunkName: "conjoint" */ './views/Foyer/Conjoint.vue')

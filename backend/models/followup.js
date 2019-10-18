@@ -1,8 +1,12 @@
+var mailjet = require('node-mailjet');
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var validator = require('validator');
 
 var utils = require('../lib/utils');
+var config = require('../config');
+
+var sender = mailjet.connect(config.mailjet.publicKey, config.mailjet.privateKey);
 
 var renderInitial = require('../lib/mes-aides/emails/initial').render;
 var renderSurvey = require('../lib/mes-aides/emails/survey').render;
@@ -36,10 +40,12 @@ var FollowupSchema = new mongoose.Schema({
                 id: String,
                 value: String,
                 comments: String
-            }]
+            }],
+            type: { type: String }
         }],
         default: []
     },
+    error: { type: Object },
     _id: { type: String },
 }, { minimize: false, id: false });
 
@@ -54,11 +60,32 @@ FollowupSchema.methods.postInitialEmail = function(messageId) {
     return this.save();
 };
 
-FollowupSchema.methods.renderInitial = function() {
+FollowupSchema.methods.renderInitialEmail = function() {
     return renderInitial(this);
 };
 
-FollowupSchema.methods.addEmptySurvey = function(messageID) {
+FollowupSchema.methods.sendInitialEmail = function() {
+    var followup = this;
+    return this.renderInitialEmail()
+        .then(render => {
+            return sender.post('send', { version: 'v3.1' })
+                .request({ Messages: [{
+                    From: { Name: 'Équipe Mes Aides', Email: 'contact@mes-aides.gouv.fr'},
+                    To: [{ Email: followup.email}],
+                    Subject: render.subject,
+                    TextPart: render.text,
+                    HTMLPart: render.html,
+                    CustomCampaign: 'Récapitulatif des droits affichés',
+                    InlinedAttachments: render.attachments
+                }]});
+        }).then((response) => { followup.postInitialEmail(response.body.Messages[0].To[0].MessageID); })
+        .catch(err => {
+            followup.error = err;
+            return followup.save();
+        });
+};
+
+FollowupSchema.methods.addEmptySurvey = function(messageId, type) {
     var followup = this;
 
     return utils.generateToken()
@@ -66,7 +93,8 @@ FollowupSchema.methods.addEmptySurvey = function(messageID) {
             var surveys = Array.from(followup.surveys);
             var survey = {
                 _id: token,
-                messageID: messageID,
+                messageId: messageId,
+                type: type,
                 createdAt: Date.now(),
             };
             surveys.push(survey);
@@ -85,8 +113,33 @@ FollowupSchema.methods.updateSurvey = function(id, answers) {
     return this.save();
 };
 
-FollowupSchema.methods.renderSurvey = function() {
+
+FollowupSchema.methods.renderSurveyEmail = function() {
     return renderSurvey(this);
+};
+
+FollowupSchema.methods.sendSurvey = function() {
+    var followup = this;
+    return this.renderSurvey()
+        .then(render => {
+            return sender.post('send', { version: 'v3.1' })
+                .request({ Messages: [{
+                    From: { Name: 'Équipe Mes Aides', Email: 'contact@mes-aides.gouv.fr'},
+                    To: [{ Email: followup.email }],
+                    Subject: render.subject,
+                    TextPart: render.text,
+                    HTMLPart: render.html,
+                    CustomCampaign: 'Premier suivi',
+                    InlinedAttachments: render.attachments
+                }]});
+        }).then((response) => {
+            return response.body.Messages[0].To[0].MessageID;
+        }).then(messageID => {
+            return followup.addEmptySurvey(messageID, 'initial');
+        }).catch(err => {
+            console.error(err);
+            return followup.save();
+        });
 };
 
 FollowupSchema.pre('save', function(next) {

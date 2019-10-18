@@ -1,9 +1,11 @@
 var fs = require('fs');
 var path = require('path');
 var mustache = require('consolidate').mustache;
-var mjml = require('mjml');
 var config = require('../../../config');
-var defaultAttachments = require('.').defaultAttachments;
+
+var index = require('.');
+var defaultAttachments = index.defaultAttachments;
+var mjml = index.mjml;
 
 var textTemplate = fs.readFileSync(path.join(__dirname, 'templates/survey.txt'), 'utf8');
 var mjmlTemplate = fs.readFileSync(path.join(__dirname, 'templates/survey.mjml'), 'utf8');

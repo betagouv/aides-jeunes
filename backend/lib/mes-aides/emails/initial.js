@@ -2,10 +2,12 @@ var fs = require('fs');
 var path = require('path');
 var _ = require('lodash');
 var mustache = require('consolidate').mustache;
-var mjml = require('mjml');
 var config = require('../../../config');
 var toBase64 = require('.').toBase64;
-var defaultAttachments = require('.').defaultAttachments;
+
+var index = require('.');
+var defaultAttachments = index.defaultAttachments;
+var mjml = index.mjml;
 
 function basicBenefitText(b) {
     if (b.labelFunction) {

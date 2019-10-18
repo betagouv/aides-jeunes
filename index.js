@@ -4,7 +4,6 @@ var path = require('path');
 var mustache = require('consolidate').mustache;
 var bodyParser = require('body-parser');
 var utils = require('./backend/lib/utils');
-var Followup = require('mongoose').model('Followup');
 var benefits = require('./app/js/constants/benefits');
 
 function countPublicByType(type) {

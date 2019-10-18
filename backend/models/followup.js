@@ -11,6 +11,24 @@ var sender = mailjet.connect(config.mailjet.publicKey, config.mailjet.privateKey
 var renderInitial = require('../lib/mes-aides/emails/initial').render;
 var renderSurvey = require('../lib/mes-aides/emails/survey').render;
 
+var SurveySchema = new mongoose.Schema({
+    _id: { type: String },
+    createdAt: { type: Date, default: Date.now },
+    messageId: { type: String },
+    repliedAt: { type: Date },
+    error: { type: Object },
+    answers: [{
+        id: String,
+        value: String,
+        comments: String
+    }],
+    type: { type: String },
+}, { minimize: false, id: false });
+
+SurveySchema.virtual('returnPath').get(function() {
+    return '/suivi?token=' + this._id;
+});
+
 var FollowupSchema = new mongoose.Schema({
     situation: {
         type: mongoose.Schema.Types.ObjectId,
@@ -31,18 +49,7 @@ var FollowupSchema = new mongoose.Schema({
     benefits: { type: Object },
     surveyOptin: { type: Boolean, default: false },
     surveys: {
-        type: [{
-            _id: { type: String },
-            createdAt: { type: Date, default: Date.now },
-            messageId: { type: String },
-            repliedAt: { type: Date },
-            answers: [{
-                id: String,
-                value: String,
-                comments: String
-            }],
-            type: { type: String }
-        }],
+        type: [SurveySchema],
         default: []
     },
     error: { type: Object },
@@ -85,43 +92,25 @@ FollowupSchema.methods.sendInitialEmail = function() {
         });
 };
 
-FollowupSchema.methods.addEmptySurvey = function(messageId, type) {
-    var followup = this;
+FollowupSchema.methods.renderSurveyEmail = function(survey) {
+    return renderSurvey(this, survey);
+};
 
+FollowupSchema.methods.createSurvey = function(type) {
+    var followup = this;
     return utils.generateToken()
         .then(function(token) {
-            var surveys = Array.from(followup.surveys);
-            var survey = {
+            return followup.surveys.create({
                 _id: token,
-                messageId: messageId,
                 type: type,
-                createdAt: Date.now(),
-            };
-            surveys.push(survey);
-
-            followup.surveys = surveys;
-            return followup.save();
+            });
         });
-};
-
-FollowupSchema.methods.updateSurvey = function(id, answers) {
-    var surveys = Array.from(this.surveys);
-    var survey = _.find(surveys, function(s) { return s._id === id; });
-
-    Object.assign(survey, { answers: answers, repliedAt: Date.now() });
-    this.surveys = surveys;
-    return this.save();
-};
-
-
-FollowupSchema.methods.renderSurveyEmail = function() {
-    return renderSurvey(this);
 };
 
 FollowupSchema.methods.sendSurvey = function() {
     var followup = this;
-    return this.renderSurvey()
-        .then(render => {
+    return this.createSurvey('initial').then(survey => {
+        return this.renderSurveyEmail(survey).then(render => {
             return sender.post('send', { version: 'v3.1' })
                 .request({ Messages: [{
                     From: { Name: 'Équipe Mes Aides', Email: 'contact@mes-aides.gouv.fr'},
@@ -131,15 +120,33 @@ FollowupSchema.methods.sendSurvey = function() {
                     HTMLPart: render.html,
                     CustomCampaign: 'Premier suivi',
                     InlinedAttachments: render.attachments
-                }]});
-        }).then((response) => {
-            return response.body.Messages[0].To[0].MessageID;
-        }).then(messageID => {
-            return followup.addEmptySurvey(messageID, 'initial');
+                }]}).then((response) => {
+                    return response.body.Messages[0].To[0].MessageID;
+                }).then(messageId => {
+                    survey.messageId = messageId;
+                    return survey;
+                });
         }).catch(err => {
-            console.error(err);
+            console.log('error', err);
+            survey.error = err;
+            return survey;
+        }).then((survey) => {
+            var surveys = Array.from(followup.surveys);
+            surveys.push(survey);
+
+            followup.surveys = surveys;
             return followup.save();
         });
+    });
+};
+
+FollowupSchema.methods.updateSurvey = function(id, answers) {
+    var surveys = Array.from(this.surveys);
+    var survey = _.find(surveys, function(s) { return s._id === id; });
+
+    Object.assign(survey, { answers: answers, repliedAt: Date.now() });
+    this.surveys = surveys;
+    return this.save();
 };
 
 FollowupSchema.pre('save', function(next) {
@@ -155,10 +162,6 @@ FollowupSchema.pre('save', function(next) {
 
 FollowupSchema.virtual('returnPath').get(function() {
     return '/followups/' + this._id;
-});
-
-FollowupSchema.virtual('surveyPath').get(function() {
-    return '/suivi?token=' + this._id;
 });
 
 mongoose.model('Followup', FollowupSchema);

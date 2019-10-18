@@ -14,7 +14,7 @@ if (app.get('env') === 'development') {
         req.followup.renderInitialEmail().then(render => res.send(render.html));
     });
     router.get('/:followupId/survey.html', function(req, res) {
-        req.followup.renderSurveyEmail().then(render => res.send(render.html));
+        req.followup.renderSurveyEmail({returnPath: '/returnPath'}).then(render => res.send(render.html));
     });
 }
 app.use(router);

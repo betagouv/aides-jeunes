@@ -16,6 +16,7 @@ exports.resultRedirect = function(req, res) {
     situation.attachAccessCookie(req, res);
     res.redirect(req.situation.returnPath);
 };
+
 exports.persist = function(req, res) {
     if (! req.body.email || ! req.body.email.length) {
         return res.status(400).send({ result: 'KO' });
@@ -35,21 +36,23 @@ exports.persist = function(req, res) {
     });
 };
 
-exports.showFromSurvey = function(req, res, next) {
-    Followup.find({ 'surveys._id': req.params.surveyId }).exec(function(err, followup) {
-        if (err) return next(err);
+exports.showFromSurvey = function(req, res) {
+    Followup.findOne({
+        'surveys._id': req.params.surveyId
+    }).then((followup) => {
         if (! followup) return res.sendStatus(404);
 
         res.send(followup);
     });
 };
 
-exports.postSurvey = function(req, res, next) {
-    Followup.find({ 'surveys._id': req.params.surveyId }).exec(function(err, followup) {
-        if (err) return next(err);
+exports.postSurvey = function(req, res) {
+    Followup.findOne({
+        'surveys._id': req.params.surveyId
+    }).then((followup) => {
         if (! followup) return res.sendStatus(404);
 
-        followup.updateSurvey(req.params.surveyId, req.body.answers)
+        followup.updateSurvey(req.params.surveyId, req.body)
             .then(() => {
                 res.sendStatus(201);
             });

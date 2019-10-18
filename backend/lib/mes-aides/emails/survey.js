@@ -10,19 +10,20 @@ var mjml = index.mjml;
 var textTemplate = fs.readFileSync(path.join(__dirname, 'templates/survey.txt'), 'utf8');
 var mjmlTemplate = fs.readFileSync(path.join(__dirname, 'templates/survey.mjml'), 'utf8');
 
-function renderAsText(followup) {
+function renderAsText(followup, survey) {
 
     var data = {
+        ctaLink: `${config.baseURL}${survey.returnPath}`,
         returnURL: `${config.baseURL}${followup.surveyPath}`,
     };
 
     return mustache.render(textTemplate, data);
 }
 
-function renderAsHtml(followup) {
+function renderAsHtml(followup, survey) {
 
     var data = {
-        ctaLink: `${config.baseURL}${followup.surveyPath}`,
+        ctaLink: `${config.baseURL}${survey.returnPath}`,
         returnURL: `${config.baseURL}${followup.returnPath}`,
     };
 
@@ -36,14 +37,14 @@ function renderAsHtml(followup) {
         });
 }
 
-function render(followup) {
+function render(followup, survey) {
 
     return Promise.all([
-        renderAsText(followup),
-        renderAsHtml(followup)
+        renderAsText(followup, survey),
+        renderAsHtml(followup, survey)
     ]).then(function (values) {
         return {
-            subject: `[${followup.situation._id}] Votre simulation sur Mes-Aides.gouv.fr vous a-t-elle été utile ?`,
+            subject: `[${followup.situation._id || followup.situation}] Votre simulation sur Mes-Aides.gouv.fr vous a-t-elle été utile ?`,
             text: values[0],
             html: values[1].html,
             attachments: values[1].attachments,

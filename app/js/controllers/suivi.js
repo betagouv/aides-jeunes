@@ -26,7 +26,7 @@ var scrollOptions = {
 
 angular.module('ddsApp').controller('SuiviCtrl', function($http, $scope, $stateParams, $timeout) {
 
-    $http.get('/api/followups/' + $stateParams.token)
+    $http.get('/api/followups/surveys/' + $stateParams.token)
         .then(function(response) {
 
             var followup = response.data;
@@ -110,11 +110,7 @@ angular.module('ddsApp').controller('SuiviCtrl', function($http, $scope, $stateP
             comments: droit.choiceComments
         }));
 
-        var survey = {
-            answers: answers
-        };
-
-        $http.post('/api/followups/' + $stateParams.token + '/surveys', survey)
+        $http.post('/api/followups/surveys/' + $stateParams.token + '/answers', answers)
             .then(function(response) {
                 if (response.status === 201) {
                     $scope.submitted = true;

@@ -23,6 +23,19 @@ send.addArgument(
         help: 'Followup Id'
     }
 );
+send.addArgument(
+    [ '--multiple' ],
+    {
+        help: 'Number of survey to send'
+    }
+);
+send.addArgument(
+    [ '--all' ],
+    {
+        action: 'storeTrue',
+        help: 'Send multiple surveys'
+    }
+);
 
 var reply = subparsers.addParser('reply');
 reply.addArgument(
@@ -37,18 +50,32 @@ function main() {
     var args = parser.parseArgs();
     console.log(args);
     if (args.command === 'send') {
-        Followup.findOne({
-            '_id': args.id
-        }).then(f => {
-            return f.sendSurvey();
-        }).then(e => {
-            console.log('log', e);
-        }).catch(e => {
-            console.error('error', e);
-        }).finally(() => {
-            console.log('done');
-            process.exit(0);
-        });
+        if (args.id) {
+            Followup.findOne({
+                '_id': args.id
+            }).then(f => {
+                return f.sendSurvey();
+            }).then(e => {
+                console.log('log', e);
+            }).catch(e => {
+                console.error('error', e);
+            }).finally(() => {
+                console.log('done');
+                process.exit(0);
+            });
+        } else if (args.multiple) {
+            Followup.find({
+                'surveys._id': {$ne: 'initial'},
+                surveyOptin: true,
+            }).sort({createdAt: 1}).limit(parseInt(args.multiple)).then(list => {
+                console.log(list.length);
+            }).catch(err => {
+                console.error(err);
+            }).finally(() => {
+                console.log('done');
+                process.exit(0);
+            });
+        }
     } else if (args.command === 'reply') {
         Followup.findOne({
             'surveys._id': args.id
@@ -63,21 +90,5 @@ function main() {
         parser.printHelp();
         process.exit(1);
     }
-
-    // var surveyId = 'dxmx9m8B19IvgxMbt7jP8epT-kaMh9kCrB_2H-9Ev81om8wOo2YFUnghOpNmbehp'
-    // Followup.find({'surveys._id': surveyId})
-    // .then(f => {
-    //     e = f[0]
-    //     return e.updateSurvey(surveyId, [{id: 'test', value: 'ok', 'comments': '!!'}])
-    // })
-    // .then(e => {
-    //     console.log(e)
-    // })
-    // .catch(e => {
-    //     console.error(e)
-    // })
-    // .finally(() => {
-    //     process.exit(0);
-    // })
 }
 main();

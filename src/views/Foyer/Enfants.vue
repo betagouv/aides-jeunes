@@ -6,7 +6,7 @@
         <p>Les personnes de <span data-tooltip="Les personnes à votre charge de plus de 25 ans non handicapées ne changent pas votre éligibilité aux aides calculées par ce simulateur.">moins de 25 ans ou handicapées</span> dont vous assumez la responsabilité, même sans lien de parenté.</p>
       </div>
       <div class="children">
-        <router-link v-for="enfant in enfants" class="child"
+        <router-link v-for="enfant in enfants" v-bind:key="enfant.id" class="child"
           to="/foyer/enfants/modifier({ id: enfant.id })">
           <button type="button" class="close" v-on:click.prevent="removeEnfant(enfant)">
             <span class="sr-only">Effacer {{ enfant.firstName }}</span>

@@ -23,12 +23,7 @@ export default {
   methods: {
     submit: function() {
       this.$v.$touch()
-      console.log(this.individu.date_naissance)
-
     },
-    test: function() {
-      console.log(this.form)
-    }
   },
   validations: {
     individu: {

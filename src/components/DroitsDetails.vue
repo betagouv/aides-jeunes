@@ -1,6 +1,6 @@
 <template>
   <div class="droit-details">
-    <div v-for="droit in droits" v-bind:id="droit.id" class="droit-detail"
+    <div v-for="droit in droits" v-bind:id="droit.id" v-bind:key="droit.id" class="droit-detail"
       itemscope itemtype="http://schema.org/GovernmentService">
 
       <div class="droit-detail-heading">
@@ -47,7 +47,7 @@
         <div v-if="droit.conditions">
           <p>Pour en bénéficier, vous devez également :</p>
           <ul class="list-unstyled">
-            <li v-for="condition in droit.conditions">
+            <li v-for="(condition, index) in droit.conditions" v-bind:key="index">
               <i class="fa fa-check" aria-hidden="true"></i> <span v-html="condition"></span>
             </li>
           </ul>

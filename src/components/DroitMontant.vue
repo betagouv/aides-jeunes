@@ -51,7 +51,7 @@ export default {
     },
   },
   filters : {
-    currency: function(value, currency, frac) {
+    currency: function(value, currency/*, frac*/) {
       return `${value} ${currency}`
     }
   },

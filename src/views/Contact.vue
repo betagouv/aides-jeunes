@@ -43,9 +43,8 @@
 
   # Mes Aides est un simulateur indépendant, nous n'avons pas accès à vos dossiers pour les mettre à jour.
   # Il est inutile de nous envoyer des documents personnels (carte de mutuelle, pièce d'identité, etc.) : nous ne pouvons pas les traiter.
-  # Si vous souhaitez nous signaler une erreur, nous contacter à travers les liens proposés en fin de simulation améliore le traitement de votre demande.`}">courriel</a>.</p>
-
-    </div>
+  # Si vous souhaitez nous signaler une erreur, nous contacter à travers les liens proposés en fin de simulation améliore le traitement de votre demande.`}">courriel</a>.
+    </p>
   </article>
 
 </template>

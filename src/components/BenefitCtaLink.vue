@@ -39,12 +39,6 @@ export default {
   },
   computed: {
     label: function() { return typeLabels[this.type] },
-    list: function() {
-      let vm = this
-      return _.filter(this.droits, function(value) {
-        return (!vm.filter) ||_.includes(vm.filter, value.id)
-      })
-    },
   },
   methods: {
     getURL: function(link) {

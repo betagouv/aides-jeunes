@@ -2,7 +2,7 @@
   <div class="provider">
     <img v-bind:src="require(`./../../public/img/${item.imgSrc}`)" v-bind:alt="item.label"/>
     <div class="list">
-      <dl v-for="droit in item.prestations">
+      <dl v-for="(droit, key) in item.prestations" v-bind:key="key">
         <dt>{{ droit.label }}</dt>
         <dd>
           <div v-html="droit.description"></div>

@@ -163,7 +163,7 @@
         <div v-show="isNotEmpty(droitsInjectes)">
           <h4>Vous avez indiqué ces aides au cours la simulation et elles n'ont pas été recalculées</h4>
             TODO {{droitsInjectes}}
-            <div v-for="d in droitsInjectes">
+            <div v-for="d in droitsInjectes" v-bind:key="d">
               {{d}}
             </div>
         </div>

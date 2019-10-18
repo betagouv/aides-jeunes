@@ -1,6 +1,6 @@
 <template>
   <div class="droits-list">
-    <a v-for="droit in list"
+    <a v-for="(droit, index) in list"
       v-on:click="scrollTo($event, droit)"
       class="droits-list-item"
       itemscope itemtype="http://schema.org/GovernmentService"
@@ -8,6 +8,7 @@
       v-bind:analytics-name="droit.label"
       analytics-event="click"
       analytics-category="General"
+      v-bind:key="index"
       >
       <div class="droits-list-item-cell">
         <div class="droits-list-item-cell-left">

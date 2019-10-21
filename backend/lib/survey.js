@@ -65,7 +65,7 @@ function main() {
             const limit = parseInt(args.multiple) || 1;
             Followup.find({
                 'surveys.type': {$ne: 'initial'},
-                createdAt: { $lt: new Date(new Date().getTime() - (13 * 24 * 60 * 60 * 1000))},
+                createdAt: { $lt: new Date(new Date().getTime() - (6.5 * 24 * 60 * 60 * 1000))},
                 surveyOptin: true,
             }).sort({createdAt: 1}).limit(limit).then(list => {
                 return Promise.all(list.map(function(followup) {

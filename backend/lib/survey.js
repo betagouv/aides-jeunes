@@ -46,9 +46,7 @@ reply.addArgument(
 );
 
 function main() {
-    parser.printHelp();
     var args = parser.parseArgs();
-    console.log(args);
     if (args.command === 'send') {
         if (args.id) {
             Followup.findOne({
@@ -64,11 +62,23 @@ function main() {
                 process.exit(0);
             });
         } else if (args.multiple) {
+            const limit = parseInt(args.multiple) || 1;
             Followup.find({
-                'surveys._id': {$ne: 'initial'},
+                'surveys.type': {$ne: 'initial'},
+                createdAt: { $lt: new Date(new Date().getTime() - (13 * 24 * 60 * 60 * 1000))},
                 surveyOptin: true,
-            }).sort({createdAt: 1}).limit(parseInt(args.multiple)).then(list => {
-                console.log(list.length);
+            }).sort({createdAt: 1}).limit(limit).then(list => {
+                return Promise.all(list.map(function(followup) {
+                    return followup.sendSurvey()
+                        .then(function(result) {
+                            return {ok : result._id};
+                        })
+                        .catch(function(error) {
+                            return {ko : error};
+                        });
+                }));
+            }).then(list => {
+                console.log(list);
             }).catch(err => {
                 console.error(err);
             }).finally(() => {

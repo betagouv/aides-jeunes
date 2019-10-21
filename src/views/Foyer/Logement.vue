@@ -138,9 +138,9 @@
       </div>
 
       <div v-if="captureResidentParis" class="form__group">
-        <YesNoQuestion v-model="parentsPayPensionsAlimentaires"><h1>
-          <h3>Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }} ?</h3>
-        </h1></YesNoQuestion>
+        <YesNoQuestion v-model="famille.parisien">
+          Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }} ?
+        </YesNoQuestion>
       </div>
 
       <p v-if="isResidentMayotte">
@@ -313,8 +313,11 @@ export default {
             })
             .finally(() => {
                 this.retrievingCommunes = false
-            });
-    }
+            })
+    },
+    yearsAgo: function(years) {
+      return moment(this.situation.dateDeValeur).subtract(years, 'years').format('MMMM YYYY')
+    },
   },
   mounted: function() {
     this.updateCommunes(true)

@@ -18,42 +18,23 @@
       <mj-column>
         <mj-text>
           <p>
-            <span>Vous avez récemment fait une simulation sur Mes-Aides.gouv.fr.</span>
+            <span>Vous avez fait il y a quelques jours une simulation sur Mes-Aides.gouv.fr.</span>
             <br />
-            <span>D'après la situation que vous avez décrite, vous êtes a priori éligible aux aides suivantes&nbsp;:</span>
+            <span>Nous aimerions savoir si cette simulation vous a été utile, et si elle vous a permis de demander voir de bénéficier de nouvelles aides : cela nous permettra de continuer à améliorer le simulateur !</span>
           </p>
         </mj-text>
       </mj-column>
     </mj-section>
-    {{#droits}}
-    <mj-wrapper>
-      <mj-section>
-        <mj-column width="20%" vertical-align="middle">
-          <mj-image alt="{{provider.label}}" width="48px" src="{{imgSrc}}" />
-        </mj-column>
-        <mj-column width="50%" vertical-align="middle">
-          <mj-text align="center">
-            <strong>{{label}}</strong>
-          </mj-text>
-        </mj-column>
-        <mj-column width="30%" vertical-align="middle">
-          <mj-text align="right">
-            {{montant}}
-          </mj-text>
-        </mj-column>
-      </mj-section>
-      <mj-section>
-        <mj-column>
-          <mj-text>
-            {{&description}}
-          </mj-text>
-          <mj-button background-color="#43ac6a" color="white" href="{{&ctaLink}}">
-            {{ctaLabel}}
-          </mj-button>
-        </mj-column>
-      </mj-section>
-    </mj-wrapper>
-    {{/droits}}
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          Pour cela nous avons préparer le formulaire suivant que vous pouvez remplir en moins de 30 secondes
+        </mj-text>
+        <mj-button background-color="#43ac6a" color="white" href="{{&ctaLink}}">
+          Répondre au questionnaire
+        </mj-button>
+      </mj-column>
+    </mj-section>
     <mj-section>
       <mj-column>
         <mj-text>

@@ -1,0 +1,11 @@
+Bonjour,
+
+Vous avez fait il y a quelques jours une simulation sur Mes-Aides.gouv.fr.
+
+Nous aimerions savoir si cette simulation vous a été utile, et si elle vous a permis de demander de nouvelles aides : cela nous permettra de continuer à améliorer le simulateur !
+Pour nous aider, vous pouvez remplir le formulaire suivant, en moins de 30 secondes : {{&ctaLink}}
+
+Pour toute question ou remarque, vous pouvez également nous contacter à l'adresse suivante : contact@mes-aides.gouv.fr
+
+Bonne journée,
+L'équipe Mes Aides

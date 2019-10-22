@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "frozen-moment": "^0.4.0",
+    "fuse.js": "^3.4.5",
     "iframe-resizer": "^4.1.1",
     "js-yaml": "^3.13.1",
     "jsonwebtoken": "^8.5.1",

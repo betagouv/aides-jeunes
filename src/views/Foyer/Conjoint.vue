@@ -19,7 +19,7 @@
     </div>
     <div v-if="isInCouple">
       <h3>Votre conjoint</h3>
-      <div>TODO</div>
+      <IndividuForm v-model="conjoint" v-bind:date="situation.dateDeValeur" v-bind:existingIndividu="existingIndividu" v-on:input="next" />
     </div>
     <div class="text-right">
       <button class="button large" v-on:click="next">Valider</button>
@@ -28,28 +28,30 @@
 </template>
 
 <script>
+import IndividuForm from '@/components/IndividuForm'
 import Individu from '@/lib/Individu'
 import Situation from '@/lib/Situation'
 
 export default {
   name: 'conjoint',
   components: {
+    IndividuForm
   },
   data () {
-    let s = this.$SituationService.restoreLocal()
-    let demandeur = Situation.getDemandeur(s)
+    let situation = this.$SituationService.restoreLocal()
+    let demandeur = Situation.getDemandeur(situation)
     let isFirstView = demandeur.statut_marital === undefined
 
-    let { individu: conjoint} = Individu.get(s.individus, 'conjoint')
-    conjoint.date_naissance = new Date('1980-12-12')
+    let { existingIndividu, individu: conjoint} = Individu.get(situation.individus, 'conjoint')
         
     return {
       conjoint,
       demandeur,
-      situation: s,
-      famille: s.famille,
+      existingIndividu,
+      famille: situation.famille,
+      situation,
       isFirstView,
-      isInCouple: isFirstView ? undefined : Boolean(Situation.getConjoint(s)),
+      isInCouple: isFirstView ? undefined : existingIndividu,
     }
   },
   computed: {

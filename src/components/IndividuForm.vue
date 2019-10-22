@@ -17,9 +17,12 @@
     </p>
 
     <div class="form__group" v-if="captureFirstName">
-      <label>Prénom <!-- TODO Required -->
+      <label>Prénom
         <span>(il servira uniquement à vous faciliter la saisie par la suite)</span>
         <input type="text" v-model="individu.firstName">
+        <p class="notification warning" v-if="$v.individu.firstName.$error">
+          Ce champ est obligatoire.
+        </p>
       </label>
     </div>
 
@@ -48,6 +51,16 @@
         <p class="notification warning" v-if="$v.satisfyResidentialPermitPrerequisite[getZone()].$error">
           Vous devez remplir cette condition pour être éligible aux aides sociales calculées par ce simulateur.
         </p>
+      </label>
+    </div>
+
+    <div class="form__group" v-if="individu.role == 'conjoint'">
+      <label>Votre relation
+        <select v-model="individu.statut_marital">
+          <option v-for="situationFamiliale in situationsFamiliales" v-bind:value="situationFamiliale.value" v-bind:key="situationFamiliale.value">
+            {{situationFamiliale.label}}
+          </option>
+        </select>
       </label>
     </div>
 
@@ -210,6 +223,21 @@ const residentialPermitLabel = {
   ue: 'En possession d‘un <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2651">droit au séjour</a> valide',
 }
 
+const situationsFamiliales = [
+  {
+      value: 'marie',  // Enum value 1 in OpenFisca
+      label: 'Marié·e',
+  },
+  {
+      value: 'pacse',  // Enum value 5 in OpenFisca
+      label: 'Pacsé·e',
+  },
+  {
+      value: 'celibataire',  // Enum value 2 in OpenFisca
+      label: 'En union libre',
+  }
+]
+
 const mustBeTruthy = function(value) { return Boolean(value) }
 
 export default {
@@ -246,6 +274,7 @@ export default {
       satisfyResidentialPermitPrerequisite,
       scolariteOptions,
       selectedStatuts,
+      situationsFamiliales,
       specificSituations,
       tauxIncapaciteOptions,
     }

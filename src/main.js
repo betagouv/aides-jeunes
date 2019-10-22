@@ -6,6 +6,8 @@ import moment from 'moment'
 
 import ScrollService from './plugins/ScrollService'
 import SituationService from './plugins/SituationService'
+
+import AsyncComputed from 'vue-async-computed'
 import Vuelidate from 'vuelidate'
 
 import 'template.data.gouv.fr/dist/main.css'
@@ -15,6 +17,7 @@ import '@/styles/main.scss'
 import MailDirective from './directives/mail'
 MailDirective(Vue)
 
+Vue.use(AsyncComputed)
 Vue.use(ScrollService)
 Vue.use(SituationService)
 Vue.use(Vuelidate)

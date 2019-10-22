@@ -20,7 +20,7 @@
           <p>
             <span>Vous avez fait il y a quelques jours une simulation sur Mes-Aides.gouv.fr.</span>
             <br />
-            <span>Nous aimerions savoir si cette simulation vous a été utile, et si elle vous a permis de demander voir de bénéficier de nouvelles aides : cela nous permettra de continuer à améliorer le simulateur !</span>
+            <span>Nous aimerions savoir si cette simulation vous a été utile, et si elle vous a permis de demander voire de bénéficier de nouvelles aides : cela nous permettra de continuer à améliorer le simulateur !</span>
           </p>
         </mj-text>
       </mj-column>
@@ -28,7 +28,7 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          Pour cela nous avons préparer le formulaire suivant que vous pouvez remplir en moins de 30 secondes
+          Pour cela nous avons préparé le formulaire suivant que vous pouvez remplir en moins de 30 secondes
         </mj-text>
         <mj-button background-color="#43ac6a" color="white" href="{{&ctaLink}}">
           Répondre au questionnaire

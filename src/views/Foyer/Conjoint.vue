@@ -40,7 +40,7 @@ export default {
     let demandeur = Situation.getDemandeur(s)
     let isFirstView = demandeur.statut_marital === undefined
 
-    let conjoint = Individu.get(s.individus, 'conjoint')
+    let { individu: conjoint} = Individu.get(s.individus, 'conjoint')
     conjoint.date_naissance = new Date('1980-12-12')
         
     return {

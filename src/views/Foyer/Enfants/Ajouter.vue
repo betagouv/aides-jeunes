@@ -24,9 +24,9 @@ export default {
       let s = this.$SituationService.restoreLocal()
       let enfants = Situation.getEnfants(s)
 
-      var enf = Individu.get(enfants, 'enfant', 1)
-      enf.date_naissance = new Date('2010-12-12')
-      enfants.push(enf)
+      let {individu} = Individu.get(enfants, 'enfant', 1)
+      individu.date_naissance = new Date('2010-12-12')
+      enfants.push(individu)
       Situation.setEnfants(s, enfants)
 
       this.$SituationService.saveLocal()

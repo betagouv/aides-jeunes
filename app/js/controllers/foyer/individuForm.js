@@ -67,10 +67,6 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $s
         }
     ];
 
-    $scope.residentialPermitLabel = {
-        autre: 'En possession d‘une carte de résident ou d‘un titre de séjour valide',
-        ue: 'En possession d‘un <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2651">droit au séjour</a> valide',
-    };
 
 
     var isIndividuParent = IndividuService.isRoleParent(individuRole);

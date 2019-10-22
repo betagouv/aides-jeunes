@@ -77,7 +77,10 @@ function get(individus, role, id) {
         individu.id = 'enfant_' + count;
     }
 
-    return individu
+    return {
+        existingIndividu: Boolean(existingIndividu),
+        individu,
+    }
 }
 
 const Individu = {

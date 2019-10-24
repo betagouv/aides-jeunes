@@ -16,43 +16,28 @@
 </template>
 
 <script>
-import ressources from '@/constants/resources'
+import {ressourceTypes} from '@/constants/resources'
 import Situation from '@/lib/Situation'
+import Ressource from '@/lib/Ressource'
 
 export default {
   name: 'ressources-types',
   data: function() {
     let situation = this.$SituationService.restoreLocal()
-    var demandeur = Situation.getDemandeur(situation)
+    let demandeur = Situation.getDemandeur(situation)
+    let selectedRessourceTypes = Ressource.getIndividuRessourceTypes(demandeur)
 
     return {
-      demandeur: demandeur,
-      ressourceTypes: ressources.ressourceTypes,
-      selectedRessourceTypes: {}
+      ressourceTypes,
+      selectedRessourceTypes,
     }
   },
   methods: {
-    // initializeSelectedRessourceTypes: function() {
-    //   var selectedRessourceTypes = {}
-    //   ressources.ressourceTypes.forEach(function(ressourceType) {
-    //     if (this.demandeur[ressourceType.id]) {
-    //       selectedRessourceTypes[ressourceType.id] = true
-    //     }
-    //   })
-    //   return selectedRessourceTypes
-    // },
-    updateIndividuRessources: function(individu, selectedRessourceTypes) {
-        Object.keys(selectedRessourceTypes).forEach(function(ressourceTypeId) {
-            if (selectedRessourceTypes[ressourceTypeId]) {
-                individu[ressourceTypeId] = individu[ressourceTypeId] || {};
-            }
-        })
-    },
     next: function() {
-      console.log(this.demandeur)
-      console.log(this.selectedRessourceTypes)
-      this.updateIndividuRessources(this.demandeur, this.selectedRessourceTypes)
-      console.log(this.demandeur)
+      let situation = this.$SituationService.restoreLocal()
+      let demandeur = Situation.getDemandeur(situation)
+      Ressource.setIndividuRessourceTypes(demandeur, this.selectedRessourceTypes, situation.dateDeValeur)
+      this.$SituationService.saveLocal()
       this.$router.push('/foyer/pensions-alimentaires')
     }
   }

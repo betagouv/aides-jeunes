@@ -20,7 +20,7 @@ function ressourceHeader(individu) {
     }
 }
 
-function findIndividu(individus, role, id) {
+function find(individus, role, id) {
     // In case of "demandeur" or "conjoint", the role is sufficient
     var predicate = { role: role };
 
@@ -60,7 +60,7 @@ function get(individus, role, id) {
         DEFAULT_INDIVIDU.statut_marital = 'marie';  // Marié(e)
     }
 
-    var existingIndividu =  findIndividu(individus, role, id);
+    var existingIndividu = find(individus, role, id);
     var individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(existingIndividu));
     var enfants = Situation.getEnfants({individus})
 
@@ -99,8 +99,9 @@ const Individu = {
 
         return individu.firstName;
     },
-    get: get,
-    ressourceHeader: ressourceHeader,
+    find,
+    get,
+    ressourceHeader,
 
     ressourceShortLabel: function(individu) {
         switch (individu.role) {
@@ -115,7 +116,7 @@ const Individu = {
         return 'TODO' + individu.id;//NationaliteService.getLabel(individu.nationalite);
     },
 
-    isRoleParent: isRoleParent,
+    isRoleParent,
 
     isParent: function(individu) {
         return isRoleParent(individu.role);

@@ -237,7 +237,7 @@ export default {
       this.menage.statut_occupation_logement = Logement.getStatutOccupationLogement(this.logement)
       this.menage.aide_logement_date_pret_conventionne = this.logement.pretSigneAvant2018 ? '2017-12-31' : '2018-01-01'
       this.$SituationService.saveLocal()
-      this.$router.push('/foyer/ressources-types')
+      this.$router.push({ name: 'ressources/types', params: {role: 'demandeur'}})
     },
     yearsAgo: function(years) {
       return moment(this.situation.dateDeValeur).subtract(years, 'years').format('MMMM YYYY')

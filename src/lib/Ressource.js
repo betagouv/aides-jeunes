@@ -1,11 +1,8 @@
 import axios from 'axios'
 import {categoriesRnc, ressourceTypes} from '@/constants/resources'
-import Mois from '@/lib/Mois'
+import { getPeriods } from '@/../backend/lib/openfisca/mapping/common'
 import moment from 'moment'
 import _ from 'lodash'
-
-
-
 
 
 function getPeriodKeysForCurrentYear(dateDeValeur, ressourceType) {
@@ -19,9 +16,9 @@ function getPeriodKeysForCurrentYear(dateDeValeur, ressourceType) {
     if (ressourceType.id == 'tns_auto_entrepreneur_chiffre_affaires')
     {
         periodKeys.push(lastYear);
-        periodKeys = periodKeys.concat(_.map(Mois.get(dateDeValeur, 3), 'id'));
+        periodKeys = periodKeys.concat(_.map(getPeriods(dateDeValeur).last3Months, 'id'));
     } else {
-        periodKeys = periodKeys.concat(_.map(Mois.get(dateDeValeur, 12), 'id'));
+        periodKeys = periodKeys.concat(_.map(getPeriods(dateDeValeur).last12Months, 'id'));
     }
 
     if (! ressourceType.revenuExceptionnel) {

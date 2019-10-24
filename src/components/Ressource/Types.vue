@@ -9,13 +9,14 @@
         {{ type.label }}
       </label>
     </form>
-    <div class="text-right">
-      <button class="button large" v-on:click="next">Valider</button>
+    <div>
+      {{ count }} ressources sélectionées
     </div>
   </div>
 </template>
 
 <script>
+import _ from 'lodash'
 import {ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 
@@ -31,12 +32,9 @@ export default {
       selectedTypes,
     }
   },
-  methods: {
-    next: function() {
-      let situation = this.$SituationService.restoreLocal()
-      Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, situation.dateDeValeur)
-      this.$SituationService.saveLocal()
-      this.$router.push('/foyer/pensions-alimentaires')
+  computed: {
+    count: function() {
+      return _.filter(this.selectedTypes).length
     }
   }
 }

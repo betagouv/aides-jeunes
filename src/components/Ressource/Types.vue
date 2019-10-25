@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <h1>Vos ressources personnelles uniquement <!-- TODO --></h1>
-    Sélectionnez les types de ressources perçues <strong>depuis octobre 2018 <!-- TODO --> </strong>,
+    <h1>{{ title }}</h1>
+    Sélectionnez les types de ressources perçues <strong>depuis {{ debutAnneeGlissante }}</strong>,
     vous pourrez ensuite saisir les montants.
     <form>
       <label v-for="type in types" v-bind:key="type.id">
@@ -20,7 +20,9 @@
 
 <script>
 import _ from 'lodash'
+import moment from 'moment'
 import {ressourceTypes} from '@/constants/resources'
+import Individu from '@/lib/Individu'
 import Ressource from '@/lib/Ressource'
 import RouteLogic from '@/lib/RouteLogic'
 
@@ -30,16 +32,23 @@ export default {
     individu: Object
   },
   data: function() {
+    let situation = this.$SituationService.restoreLocal()
+    let debutAnneeGlissante = moment(situation.dateDeValeur).subtract(1, 'years').format('MMMM YYYY')
     let selectedTypes = Ressource.getIndividuRessourceTypes(this.individu)
+
     return {
-      types: ressourceTypes,
+      debutAnneeGlissante,
       selectedTypes,
+      types: _.filter(ressourceTypes, Ressource.isRessourceOnMainScreen),
     }
   },
   computed: {
     count: function() {
       return _.filter(this.selectedTypes).length
-    }
+    },
+    title: function() {
+      return Individu.ressourceHeader(this.individu)
+    },
   },
   methods: {
     next: function() {
@@ -51,6 +60,11 @@ export default {
       } else {
         this.$router.push(RouteLogic.next(situation, this.$route))
       }
+    }
+  },
+  watch: {
+    individu: function() {
+      this.selectedTypes = Ressource.getIndividuRessourceTypes(this.individu)
     }
   }
 }

@@ -21,5 +21,11 @@ export default {
       individu,
     }
   },
+  watch: {
+    $route(to) {
+      let situation = this.$SituationService.restoreLocal()
+      this.individu = Individu.find(situation.individus, to.params.role, to.params.id)
+    }
+  }
 }
 </script>

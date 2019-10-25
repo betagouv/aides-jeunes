@@ -18,27 +18,42 @@ function nextConjointRessources(situation) {
     }
 }
 
-function nextRoute(situation, currentRoute) {
-    if (currentRoute.count) {
-        return { name: 'ressources/montants', params: { role: currentRoute.individu.role, id: currentRoute.individu.id } }
-    } else {
-        switch (currentRoute.individu.role) {
-            case 'demandeur':
-                return nextDemandeurRessources(situation)
-            case 'conjoint':
-                return nextConjointRessources(situation)
-            case 'enfant':
-                // TODO multiple kids
-                return '/foyer/pensions-alimentaires'
-            default:
-                console.log('Sorry, we are out of ' + currentRoute.individu.role + '.');
-                return '/foyer/pensions-alimentaires'
+function nextEnfantRessources(situation, current) {
+    let enfants = Situation.getEnfants(situation)
+    const { next } = enfants.reduce((accum, enfant) => {
+        if (accum.next) {
+            return
         }
+
+        if (accum.trigger && enfant.hasRessources) {
+            accum.next = { name: 'ressources/types', params: { role: 'enfant', id: enfant.id } }
+            return accum
+        }
+
+        if (enfant.id === current.params.id) {
+            accum.trigger = true
+        }
+        return accum
+    }, { trigger: false, next: undefined })
+
+    return next || '/foyer/pensions-alimentaires'
+}
+
+function nextRoute(situation, current) {
+    switch (current.params.role) {
+        case 'demandeur':
+            return nextDemandeurRessources(situation)
+        case 'conjoint':
+            return nextConjointRessources(situation)
+        case 'enfant':
+            return nextEnfantRessources(situation, current)
+        default:
+            return '/foyer/pensions-alimentaires'
     }
 }
 
-function next(situation, currentRoute) {
-    var result = nextRoute(situation, currentRoute)
+function next(situation, current) {
+    var result = nextRoute(situation, current)
     return result
 }
 

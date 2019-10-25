@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    {{individu.id}}
     <label v-for="type in types" v-bind:key="type.id">
       {{ type.label }}
       <input type="number" v-model.number="type.montant"/>
@@ -22,10 +23,8 @@ export default {
   data: function() {
     let situation = this.$SituationService.restoreLocal()
     let periods = getPeriods(situation.dateDeValeur)
-    let individu = Individu.find(situation.individus, this.$route.params.role)
-    // TODO enfants
+    let individu = Individu.find(situation.individus, this.$route.params.role, this.$route.params.id)
     let selectedTypes = Ressource.getIndividuRessourceTypes(individu)
-    // TODO : la fonction getIndividuRessourceTypes pourrait renvoyer un simple array avec les id des ressources
 
     let types = ressourceTypes.reduce((result, ressource) => {
       if (selectedTypes[ressource.id]) {
@@ -35,22 +34,25 @@ export default {
     }, [])
 
     return {
-      periods,
       types,
       individu,
     }
   },
   methods: {
     next: function() {
+      let situation = this.$SituationService.restoreLocal()
+      let periods = getPeriods(situation.dateDeValeur)
+      let individu = Individu.find(situation.individus, this.$route.params.role, this.$route.params.id)
+
       this.types.forEach((t) => {
-        this.individu[t.id] = this.periods.last12Months.reduce((accum, p) => {
+        individu[t.id] = periods.last12Months.reduce((accum, p) => {
           accum[p] = t.montant
           return accum
         }, {})
-        this.individu[t.id][this.periods.thisMonth] = t.montant
+        individu[t.id][periods.thisMonth] = t.montant
       })
       let s = this.$SituationService.saveLocal()
-      this.$router.push(RouteLogic.next(s, this))
+      this.$router.push(RouteLogic.next(s, this.$route))
     }
   }
 }

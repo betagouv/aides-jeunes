@@ -1,9 +1,8 @@
 import axios from 'axios'
 import {categoriesRnc, ressourceTypes} from '@/constants/resources'
-import { getPeriods } from '@/../backend/lib/openfisca/mapping/common'
+import Mois from '@/lib/Mois'
 import moment from 'moment'
 import _ from 'lodash'
-import Situation from '@/lib/Situation'
 
 function getPeriodKeysForCurrentYear(dateDeValeur, ressourceType) {
     var periodKeys = [];
@@ -16,9 +15,9 @@ function getPeriodKeysForCurrentYear(dateDeValeur, ressourceType) {
     if (ressourceType.id == 'tns_auto_entrepreneur_chiffre_affaires')
     {
         periodKeys.push(lastYear);
-        periodKeys = periodKeys.concat(_.map(getPeriods(dateDeValeur).last3Months, 'id'));
+        periodKeys = periodKeys.concat(_.map(Mois.get(dateDeValeur, 3), 'id'));
     } else {
-        periodKeys = periodKeys.concat(_.map(getPeriods(dateDeValeur).last12Months, 'id'));
+        periodKeys = periodKeys.concat(_.map(Mois.get(dateDeValeur, 12), 'id'));
     }
 
     if (! ressourceType.revenuExceptionnel) {
@@ -49,11 +48,11 @@ function unsetForCurrentYear(dateDeValeur, entity, ressourceType) {
     var ressource = entity[ressourceId];
     var periodKeys = getPeriodKeysForCurrentYear(dateDeValeur, ressourceType);
     periodKeys.forEach(function(periodKey) {
-        delete ressource[periodKey];
+        delete ressource[periodKey]
     });
 
     if (_.isEmpty(ressource)) {
-        delete entity[ressourceId];
+        delete entity[ressourceId]
     }
 }
 
@@ -65,7 +64,7 @@ function isSelectedForCurrentYear(ressource, ressourceIdOrType) {
     // A single value means that a SINGLE value has been specified for the FISCAL year
     // Multiple values means that current year values were specified
     if (ressourcesForTrailingMonthsAndFiscalYear.indexOf(ressourceIdOrType.id || ressourceIdOrType) >= 0) {
-        return _.keys(ressource).length > 1;
+        return _.keys(ressource).length > 1
     }
 
     return Boolean(ressource);
@@ -84,7 +83,7 @@ function setIndividuRessourceTypes(individu, types, dateDeValeur) {
 
     Object.keys(types).forEach(function(ressourceTypeId) {
         if (types[ressourceTypeId]) {
-            individu[ressourceTypeId] = individu[ressourceTypeId] || {};
+            setDefaultValueForCurrentYear(dateDeValeur, individu, typeMap[ressourceTypeId])
         } else {
             unsetForCurrentYear(dateDeValeur, individu, typeMap[ressourceTypeId]);
         }

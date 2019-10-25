@@ -37,12 +37,15 @@ export default new Router({
         component: () => import(/* webpackChunkName: "logement" */ './views/Foyer/Logement.vue')
       }, {
         name: 'ressources/types',
-        path: ':role/:index?/ressources/types',
+        path: ':role/:id?/ressources/types',
         component: () => import(/* webpackChunkName: "ressources-types" */ './views/Foyer/Ressources/Types.vue')
       }, {
         name: 'ressources/montants',
-        path: ':role/:index?/ressources/montants',
+        path: ':role/:id?/ressources/montants',
         component: () => import(/* webpackChunkName: "ressources-montants" */ './views/Foyer/Ressources/Montants.vue')
+      }, {
+        path: 'ressources/enfants',
+        component: () => import(/* webpackChunkName: "ressources-enfants" */ './views/Foyer/Ressources/Enfants.vue')
       }, {
         path: 'pensions-alimentaires',
         component: () => import(/* webpackChunkName: "pensions-alimentaires" */ './views/Foyer/PensionsAlimentaires.vue')

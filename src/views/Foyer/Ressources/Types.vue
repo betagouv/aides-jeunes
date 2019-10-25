@@ -7,7 +7,6 @@
 <script>
 import RessourceTypes from '@/components/Ressource/Types'
 import Individu from '@/lib/Individu'
-import Ressource from '@/lib/Ressource'
 
 export default {
   name: 'ressources-types',
@@ -16,8 +15,7 @@ export default {
   },
   data: function() {
     let situation = this.$SituationService.restoreLocal()
-    let individu = Individu.find(situation.individus, this.$route.params.role)
-    // TODO enfants
+    let individu = Individu.find(situation.individus, this.$route.params.role, this.$route.params.id)
 
     return {
       individu,

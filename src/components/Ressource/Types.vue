@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Vos ressources personnelles uniquement</h1>
+    <h1>Vos ressources personnelles uniquement <!-- TODO --></h1>
     Sélectionnez les types de ressources perçues <strong>depuis octobre 2018 <!-- TODO --> </strong>,
     vous pourrez ensuite saisir les montants.
     <form>
@@ -46,7 +46,11 @@ export default {
       let situation = this.$SituationService.restoreLocal()
       Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, situation.dateDeValeur)
       this.$SituationService.saveLocal()
-      this.$router.push(RouteLogic.next(situation, this))
+      if (this.count) {
+        this.$router.push({ name: 'ressources/montants', params: this.$route.params })
+      } else {
+        this.$router.push(RouteLogic.next(situation, this.$route))
+      }
     }
   }
 }

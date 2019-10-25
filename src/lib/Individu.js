@@ -67,7 +67,7 @@ function get(individus, role, id) {
     if (role == 'enfant' && !existingIndividu) {
 
         var nextEnfantCount = enfants.length + 1;
-        individu.firstName = 'Votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
+        individu.firstName = 'votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
 
         var usedIds = enfants.map(function(enfant) { return enfant.id; });
         var count = 0;

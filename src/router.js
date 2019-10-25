@@ -38,11 +38,11 @@ export default new Router({
       }, {
         name: 'ressources/types',
         path: ':role/:index?/ressources/types',
-        component: () => import(/* webpackChunkName: "ressources-types" */ './views/Foyer/RessourceTypes.vue')
+        component: () => import(/* webpackChunkName: "ressources-types" */ './views/Foyer/Ressources/Types.vue')
       }, {
         name: 'ressources/montants',
         path: ':role/:index?/ressources/montants',
-        component: () => import(/* webpackChunkName: "ressources-montants" */ './views/Foyer/RessourceMontants.vue')
+        component: () => import(/* webpackChunkName: "ressources-montants" */ './views/Foyer/Ressources/Montants.vue')
       }, {
         path: 'pensions-alimentaires',
         component: () => import(/* webpackChunkName: "pensions-alimentaires" */ './views/Foyer/PensionsAlimentaires.vue')

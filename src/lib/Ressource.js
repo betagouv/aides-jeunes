@@ -3,7 +3,7 @@ import {categoriesRnc, ressourceTypes} from '@/constants/resources'
 import { getPeriods } from '@/../backend/lib/openfisca/mapping/common'
 import moment from 'moment'
 import _ from 'lodash'
-
+import Situation from '@/lib/Situation'
 
 function getPeriodKeysForCurrentYear(dateDeValeur, ressourceType) {
     var periodKeys = [];
@@ -115,7 +115,7 @@ const Ressource = {
     getIndividuRessourceTypes,
     setIndividuRessourceTypes,
     unsetForCurrentYear,
-    getParameterFromOpenfisca
+    getParameterFromOpenfisca,
 }
 
 export default Ressource

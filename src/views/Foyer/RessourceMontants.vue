@@ -14,6 +14,7 @@
 import {ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 import Individu from '@/lib/Individu'
+import RouteLogic from '@/lib/RouteLogic'
 import { getPeriods } from '@/../backend/lib/openfisca/mapping/common'
 
 export default {
@@ -48,8 +49,8 @@ export default {
         }, {})
         this.individu[t.id][this.periods.thisMonth] = t.montant
       })
-      this.$SituationService.saveLocal()
-      this.$router.push('/foyer/pensions-alimentaires')
+      let s = this.$SituationService.saveLocal()
+      this.$router.push(RouteLogic.next(s, this))
     }
   }
 }

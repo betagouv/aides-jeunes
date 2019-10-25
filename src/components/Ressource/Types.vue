@@ -12,6 +12,9 @@
     <div>
       {{ count }} ressources sélectionées
     </div>
+    <div class="text-right">
+      <button class="button large" v-on:click="next">Valider</button>
+    </div>
   </div>
 </template>
 
@@ -19,6 +22,7 @@
 import _ from 'lodash'
 import {ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
+import RouteLogic from '@/lib/RouteLogic'
 
 export default {
   name: 'RessourceTypes',
@@ -35,6 +39,14 @@ export default {
   computed: {
     count: function() {
       return _.filter(this.selectedTypes).length
+    }
+  },
+  methods: {
+    next: function() {
+      let situation = this.$SituationService.restoreLocal()
+      Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, situation.dateDeValeur)
+      this.$SituationService.saveLocal()
+      this.$router.push(RouteLogic.next(situation, this))
     }
   }
 }

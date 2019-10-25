@@ -36,8 +36,9 @@ function getLogementVariables(statusOccupationId) {
             { type: 'locataire', locationType: 'foyer' },
         sans_domicile:
             { type: 'sansDomicile' },
-    };
-    return (statusOccupationId && baseLogementMap[statusOccupationId]) || {};
+    }
+    let base = statusOccupationId && baseLogementMap[statusOccupationId]
+    return { type: undefined, primoAccedant: undefined, locationType: undefined, ...base }
 }
 
 function getLabels(statusOccupationId) {

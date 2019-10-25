@@ -85,7 +85,25 @@
         Avez-vous signé votre prêt <strong>avant</strong> le 1er janvier 2018 ?
       </YesNoQuestion>
 
-      <!-- TODO captureCodePostal -->
+      <div class="form__group" v-if="captureCodePostal">
+        <label class="form__group" for="postal-code">Code postal
+          <input v-model="menage.code_postal">
+        </label>
+
+        <div class="form__group">
+          <p v-if="retrievingCommunes"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
+          <div v-show="communes && communes.length">
+            <label for="commune">Ville</label>
+            <select
+              v-model="menage.depcom"
+              id="commune">
+              <option v-for="commune in communes" v-bind:value="commune.code" v-bind:key="commune.code">
+                {{ commune.nom }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
 
       <div v-if="captureResidentParis" class="form__group">
         <YesNoQuestion v-model="famille.parisien">
@@ -102,12 +120,15 @@
     <div class="text-right">
       <button class="button large" v-if="maySubmit" v-on:click="next">Valider</button>
     </div>
+    {{this.famille}}
+    {{this.menage}}
   </div>
 </template>
 
 <script>
 import moment from 'moment'
 import _ from 'lodash'
+import Commune from '@/lib/Commune'
 import Individu from '@/lib/Individu'
 import Logement from '@/lib/Logement'
 import Situation from '@/lib/Situation'
@@ -122,20 +143,57 @@ export default {
   },
   data () {
     var situation = this.$SituationService.restoreLocal()
-    var menage = situation.menage
-    var logement = Logement.getLogementVariables(menage.statut_occupation_logement)
-    logement.pretSigneAvant2018 = moment(menage.aide_logement_date_pret_conventionne, 'YYYY-MM-DD').get('year') < 2018
+    var logement = Logement.getLogementVariables(situation.menage.statut_occupation_logement)
+    logement.pretSigneAvant2018 = moment(situation.menage.aide_logement_date_pret_conventionne, 'YYYY-MM-DD').get('year') < 2018
+
     return {
       demandeur: situation.individus[0],
-      famille: situation.famille,
+      famille: {
+        parisien: undefined,
+        proprietaire_proche_famille: undefined,
+        ...situation.famille,
+      },
       locationTypes,
       logementTypes,
       logement,
-      menage,
-      selectedCodePostal: menage.code_postal,
+      menage: {
+        charges_locatives: 0,
+        code_postal: undefined,
+        coloc: undefined,
+        depcom: undefined,
+        logement_chambre: undefined,
+        loyer: 0,
+        nom_commune: undefined,
+        parisien: undefined,
+        participation_frais: undefined,
+        ...situation.menage
+      },
+      retrievingCommunes: false,
       situation,
       submitted: false,
     }
+  },
+  asyncComputed: {
+    communes: {
+      get: function() {
+        if (! this.menage.code_postal || this.menage.code_postal.length !== 5) {
+            return []
+        }
+
+        this.retrievingCommunes = true
+        return Commune.get(this.menage.code_postal)
+          .then((communes) => {
+            return communes
+          })
+          .catch(() => {
+            return []
+          })
+          .finally(() => {
+            this.retrievingCommunes = false
+          })
+      },
+      default: []
+    },
   },
   computed: {
     captureColocation: function() {
@@ -217,25 +275,29 @@ export default {
     changeLogementType: function() {
         const logementProps = ['locationType', 'primoAccedant']
         logementProps.forEach((field) => {
-            delete this.logement[field]
+            this.logement[field] = undefined
         })
 
         const familleProps = ['proprietaire_proche_famille']
         familleProps.forEach((field) => {
-            delete this.famille[field]
+            this.famille[field] = undefined
         })
 
         const menageProps = ['charges_locatives', 'coloc', 'logement_chambre', 'participation_frais']
         menageProps.forEach((field) => {
-            delete this.menage[field]
+            this.menage[field] = undefined
         })
         this.menage.loyer = 0
 
-        delete this.demandeur.habite_chez_parents
+        this.demandeur.habite_chez_parents = undefined
     },
     next: function() {
+      let situation = this.$SituationService.saveLocal()
       this.menage.statut_occupation_logement = Logement.getStatutOccupationLogement(this.logement)
       this.menage.aide_logement_date_pret_conventionne = this.logement.pretSigneAvant2018 ? '2017-12-31' : '2018-01-01'
+
+      situation.menage = this.menage
+      situation.famille = this.famille
       this.$SituationService.saveLocal()
       this.$router.push({ name: 'ressources/types', params: {role: 'demandeur'}})
     },
@@ -243,6 +305,21 @@ export default {
       return moment(this.situation.dateDeValeur).subtract(years, 'years').format('MMMM YYYY')
     },
   },
+  watch: {
+    communes: function() {
+      let c = _.find(this.communes, { code: this.menage.depcom }) || Commune.getMostPopulated(this.communes)
+      this.menage.depcom = c.code
+    },
+    'menage.depcom': function() {
+      let c = _.find(this.communes, { code: this.menage.depcom })
+      if (c) {
+        this.menage.nom_commune = c.nom
+        if (this.famille.parisien === undefined && this.isCommuneParis) {
+          this.famille.parisien = this.isCommuneParis
+        }
+      }
+    }
+  }
 }
 </script>
 

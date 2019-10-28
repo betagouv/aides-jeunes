@@ -32,7 +32,7 @@ function find(individus, role, id) {
     return _.find(individus, predicate);
 }
 
-function get(individus, role, id) {
+function get(individus, role, id, dates) {
     var DEFAULT_INDIVIDU = {
         id: role,
         aah_restriction_substantielle_durable_acces_emploi: true,
@@ -51,9 +51,11 @@ function get(individus, role, id) {
         tns_auto_entrepreneur_type_activite: 'bic',
         specificSituations: []
     };
+
     // By default enfants are `à charge fiscale`, adults are not.
-    // TODO ?
-    //DEFAULT_INDIVIDU.enfant_a_charge[$scope.currentYear] = (role == 'enfant');
+    if (DEFAULT_INDIVIDU.role == 'enfant' && dates && dates.thisYear) {
+        DEFAULT_INDIVIDU.enfant_a_charge[dates.thisYear.id] = true
+    }
 
     // Required on DEFAULT_INDIVIDU to properly restore statut_marital
     if (DEFAULT_INDIVIDU.role == 'conjoint') {

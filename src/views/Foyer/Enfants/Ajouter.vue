@@ -20,7 +20,7 @@ export default {
   data () {
     let situation = this.$SituationService.restoreLocal()
     let enfants = Situation.getEnfants(situation)
-    let { existingIndividu, individu } = Individu.get(enfants, 'enfant', 1)
+    let { existingIndividu, individu } = Individu.get(enfants, 'enfant', 1, this.dates)
 
     return {
       existingIndividu,

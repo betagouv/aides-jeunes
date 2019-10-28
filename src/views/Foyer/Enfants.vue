@@ -12,7 +12,7 @@
             <span class="sr-only">Effacer {{ enfant.firstName }}</span>
             <span role="presentation" aria-hidden="true">&times;</span>
           </button>
-          <h3>{{ enfant.firstName }}</h3>
+          <h2>{{ enfant.firstName }}</h2>
           <div class="details">
             <span class="card-icon fa fa-child" aria-hidden="true"></span>
             <div>
@@ -24,7 +24,7 @@
         </router-link>
         <router-link class="new-entity child"
           to="/foyer/enfants/ajouter">
-          <h3>Ajouter un enfant</h3>
+          <h2>Ajouter un enfant</h2>
           <span class="card-icon fa fa-plus" aria-hidden="true" />
         </router-link>
       </div>
@@ -120,7 +120,7 @@ export default {
   box-shadow: 0 .2em .4em rgba(0, 140, 186, 0.4);
 }
 
-.child h3 {
+.child h2 {
   margin-top: .5em;
 }
 

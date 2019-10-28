@@ -120,8 +120,6 @@
     <div class="text-right">
       <button class="button large" v-if="maySubmit" v-on:click="next">Valider</button>
     </div>
-    {{this.famille}}
-    {{this.menage}}
   </div>
 </template>
 

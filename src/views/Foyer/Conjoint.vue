@@ -72,7 +72,7 @@ export default {
         this.demandeur.statut_marital = 'celibataire'
         let c = Situation.getConjoint(this.situation)
         if (c) {
-          this.situtation.individus.pop()
+          this.situation.individus.pop()
         }
       }
 

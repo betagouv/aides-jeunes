@@ -1,8 +1,10 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
-    Sélectionnez les types de ressources perçues <strong>depuis {{ dates.twelveMonthsAgo.label }}</strong>,
-    vous pourrez ensuite saisir les montants.
+    <legend>
+      Sélectionnez les types de ressources perçues <strong>depuis {{ dates.twelveMonthsAgo.label }}</strong>,
+      vous pourrez ensuite saisir les montants.
+    </legend>
     <form>
       <label v-for="type in types" v-bind:key="type.id">
         <input type="checkbox" v-model="selectedTypes[type.id]"/>

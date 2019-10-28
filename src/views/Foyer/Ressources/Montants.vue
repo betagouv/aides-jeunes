@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    {{individu.id}}
+    <h1>{{ title }}</h1>
+    <p>
+      Indiquez toutes les ressources <strong>nettes versées</strong> perçues en France comme à l'étranger.
+    </p>
     <label v-for="type in types" v-bind:key="type.id">
       {{ type.label }}
       <input type="number" v-model.number="type.montant"/>
@@ -37,6 +40,11 @@ export default {
       types,
       individu,
     }
+  },
+  computed: {
+    title: function() {
+      return Individu.ressourceHeader(this.individu)
+    },
   },
   methods: {
     next: function() {

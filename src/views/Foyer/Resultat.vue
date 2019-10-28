@@ -184,6 +184,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import Situation from '@/lib/Situation'
 import DroitsEligiblesList from './../../components/DroitsEligiblesList'
 import DroitsDetails from './../../components/DroitsDetails'
@@ -221,7 +222,13 @@ export default {
     droitsNonEligibles: function() { return this.resultats.droitsNonEligibles || [] },
     droitsInjectes: function() { return this.resultats.droitsInjectes || [] },
     ressourcesYearMinusTwoCaptured: function() { return Situation.ressourcesYearMinusTwoCaptured(this.situation) },
-    shouldPatrimoineBeCaptured: function() { return true },
+    shouldPatrimoineBeCaptured: function() {
+      if (! this.droits) {
+        return
+      }
+
+      return _.some(this.droits, 'isBaseRessourcesPatrimoine') && ! Situation.hasPatrimoine(this.situation)
+    },
   },
   methods: {
     goToFeedback: function(event) {

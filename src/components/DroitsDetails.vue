@@ -21,7 +21,8 @@
         <span>
           <i class="fa fa-warning" aria-hidden="true"></i> Cette aide se base sur votre patrimoine. Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ? Vous devez renseigner des informations complémentaires.
         </span>
-        <a class="button-outline warning text-center" ui-sref="foyer.patrimoine">Déclarez votre patrimoine</a>
+
+        <router-link class="button-outline warning text-center" to="ressources/patrimoine">Déclarez votre patrimoine</router-link>
       </div>
 
       <div class="notification warning print-hidden" v-if="isString(droit.montant)">

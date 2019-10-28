@@ -55,6 +55,9 @@ export default new Router({
       }, {
         path: 'ressources/fiscales',
         component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue')
+      }, {
+        path: 'ressources/patrimoine',
+        component: () => import(/* webpackChunkName: "ressources-patrimoine" */ './views/Foyer/Ressources/Patrimoine.vue')
       }]
     },
     {

@@ -13,7 +13,8 @@
         <span>
           <i class="fa fa-warning" aria-hidden="true"></i>  Cette aide se base sur vos ressources de l'année {{ dates.fiscalYear.label }}
         </span>
-        <a class="button-outline warning" ui-sref="foyer.ressourcesYearMinusTwo">Déclarez vos ressources {{ dates.fiscalYear.label }}</a>
+
+        <router-link class="button-outline warning text-center" to="ressources/fiscales">Déclarez vos ressources {{ dates.fiscalYear.label }}</router-link>
       </div>
 
       <div class="notification warning print-hidden" v-if="droit.isBaseRessourcesPatrimoine && ! patrimoineCaptured && ! isString(droit.montant)">
@@ -129,12 +130,6 @@ export default {
 <style scoped lang="scss">
 @import '@/styles/main.scss';
 
-.notification {
-  display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
 .droit-detail {
   margin-bottom: 30px;
 

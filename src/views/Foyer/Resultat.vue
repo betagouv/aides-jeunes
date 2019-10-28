@@ -4,7 +4,7 @@
       Résultats de votre simulation<span id="result-datetime"> du {{ situation.dateDeValeur }}</span>
     </h1>
 
-    <p v-show="awaitingResults"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
+    <p v-show="$asyncComputed.resultats.updating"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
 
     <div id="warning" class="alert alert-warning" v-show="warning" role="alert">
       <h2><i class="fa fa-warning" aria-hidden="true"></i> Aucun résultat disponible</h2>
@@ -39,7 +39,7 @@
       </small>
     </div>
 
-    <div v-show="! error && ! warning && ! awaitingResults">
+    <div v-show="! warning && ! $asyncComputed.resultats.updating && ! $asyncComputed.resultats.error">
 
       <div v-if="! isEmpty(droits)">
         <p>
@@ -48,6 +48,17 @@
           Les montants avancés sont arrondis à une dizaine d'euros près :
         </p>
         <DroitsEligiblesList v-bind:droits="droits"></DroitsEligiblesList>
+      </div>
+
+      <div class="notification warning print-hidden" v-if="! ressourcesYearMinusTwoCaptured">
+        <span>
+          <h2 v-if="!droits.length">Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
+          <i class="fa fa-warning text-warning" aria-hidden="true"></i>
+
+          Nous avons supposé que vos ressources pour l’année {{ dates.fiscalYear.label }} étaient les mêmes qu’entre {{ dates.twelveMonthsAgo.label }} et {{ dates.oneMonthAgo.label }}.
+        </span>
+
+        <router-link class="button-outline warning text-center" to="ressources/fiscales">Déclarez vos ressources {{ dates.fiscalYear.label }}</router-link>
       </div>
 
       <div v-if="! isEmpty(droitsNonEligibles)" v-show="droitsNonEligiblesShow">
@@ -63,14 +74,9 @@
           <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
           <p>Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
       </div>
-<!-- 
-      <div class="frame-resultats" v-show="ressourcesYearMinusTwoCaptured === false">
-        <h2 v-show="(droits | isEmpty)">Juste une dernière étape…</h2>
-        <ym2-ressources-call-to-action></ym2-ressources-call-to-action>
-      </div>
 
-      <offline-result situation="situation" v-show="droits | isNotEmpty"></offline-result>
- -->
+<!-- TODO <offline-result situation="situation" v-show="droits | isNotEmpty"></offline-result> -->
+
       <div class="print-hidden">
         <div>
           <h4>Nous améliorons ce simulateur en continu, et
@@ -178,6 +184,7 @@
 </template>
 
 <script>
+import Situation from '@/lib/Situation'
 import DroitsEligiblesList from './../../components/DroitsEligiblesList'
 import DroitsDetails from './../../components/DroitsDetails'
 
@@ -186,15 +193,12 @@ export default {
   data: function() {
     let situation = this.$SituationService.restoreLocal()
     return {
-      awaitingResults: true,
       droitsNonEligiblesShow: true,
       encodedError: 'encodedError',
       encodedUserAgent: 'encodedUserAgent',
       error: false,
       openfiscaTracerURL: 'TODO openfiscaTracerURL',
-      ressourcesYearMinusTwoCaptured: false,
       situation: situation,
-      resultats: {},
       warning: false,
       warningMessage: 'Attention',
     }
@@ -203,21 +207,20 @@ export default {
     DroitsDetails,
     DroitsEligiblesList,
   },
-  mounted: function() {
-    this.$SituationService.save()
-      .then(() => this.$SituationService.fetchResults(false))
-      .then(resultats => this.resultats = resultats)
-      .catch(error => {
-        this.error = error
-      })
-      .finally(() => {
-        this.awaitingResults = false
-      })
+  asyncComputed: {
+    resultats: {
+      get: function() {
+        return this.$SituationService.save()
+        .then(() => this.$SituationService.fetchResults(false))
+      },
+      default: {}
+    },
   },
   computed: {
-    droits: function() { return this.resultats.droitsEligibles },
-    droitsNonEligibles: function() { return this.resultats.droitsNonEligibles },
-    droitsInjectes: function() { return this.resultats.droitsInjectes },
+    droits: function() { return this.resultats.droitsEligibles || [] },
+    droitsNonEligibles: function() { return this.resultats.droitsNonEligibles || [] },
+    droitsInjectes: function() { return this.resultats.droitsInjectes || [] },
+    ressourcesYearMinusTwoCaptured: function() { return Situation.ressourcesYearMinusTwoCaptured(this.situation) },
     shouldPatrimoineBeCaptured: function() { return true },
   },
   methods: {

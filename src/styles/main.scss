@@ -23,3 +23,10 @@ $screen-xs-max:     768px-1;
 .list-unstyled {
   list-style: none;
 }
+
+.notification {
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}

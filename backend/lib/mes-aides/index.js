@@ -94,3 +94,4 @@ function forEach(cb) {
 exports.computeAides = computeAides;
 exports.round = round;
 exports.forEach = forEach;
+exports.datesGenerator = require('./dates').generator;

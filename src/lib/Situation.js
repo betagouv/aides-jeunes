@@ -40,10 +40,6 @@ const Situation = {
         return _.some(situation.individus, { role: 'enfant' });
     },
 
-    getYearMinusTwo: function(situation) {
-        return moment(situation.dateDeValeur).subtract(2, 'years').format('YYYY');
-    },
-
     setConjoint: function(situation, conjoint) {
         var individus = situation.individus;
         // si le conjoint existait déjà avant, on l'écrase

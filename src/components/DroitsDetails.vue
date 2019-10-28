@@ -11,9 +11,9 @@
 
       <div class="notification warning print-hidden" v-if="droit.isBaseRessourcesYearMinusTwo && ! ressourcesYearMinusTwoCaptured && ! isString(droit.montant)">
         <span>
-          <i class="fa fa-warning" aria-hidden="true"></i>  Cette aide se base sur vos ressources de l'année {{ yearMinusTwo }}
+          <i class="fa fa-warning" aria-hidden="true"></i>  Cette aide se base sur vos ressources de l'année {{ dates.fiscalYear.label }}
         </span>
-        <a class="button-outline warning" ui-sref="foyer.ressourcesYearMinusTwo">Déclarez vos ressources {{ yearMinusTwo }}</a>
+        <a class="button-outline warning" ui-sref="foyer.ressourcesYearMinusTwo">Déclarez vos ressources {{ dates.fiscalYear.label }}</a>
       </div>
 
       <div class="notification warning print-hidden" v-if="droit.isBaseRessourcesPatrimoine && ! patrimoineCaptured && ! isString(droit.montant)">
@@ -94,7 +94,6 @@ export default {
     filter: Array,
     patrimoineCaptured: Boolean,
     ressourcesYearMinusTwoCaptured: Boolean,
-    yearMinusTwo: String,
   },
   components: {
     BenefitCta,

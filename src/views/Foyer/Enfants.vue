@@ -63,6 +63,7 @@ export default {
         var index = this.enfants.indexOf(enfant);
         this.enfants.splice(index, 1);
         Situation.setEnfants(this.situation, this.enfants)
+        this.$SituationService.saveLocal()
         if (/*TODO current route is about current kid*/false) {
           this.$route.push('/foyer/enfants', true)
         }

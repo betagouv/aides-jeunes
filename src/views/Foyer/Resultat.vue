@@ -92,7 +92,6 @@
         v-bind:droits="droits"
         v-bind:patrimoine-captured="! shouldPatrimoineBeCaptured"
         v-bind:ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"
-        v-bind:year-minus-two="yearMinusTwo"
         ></DroitsDetails>
 
       <div class="print-hidden">
@@ -179,10 +178,8 @@
 </template>
 
 <script>
-
 import DroitsEligiblesList from './../../components/DroitsEligiblesList'
 import DroitsDetails from './../../components/DroitsDetails'
-import Situation from '@/lib/Situation'
 
 export default {
   name: 'resultat',
@@ -222,7 +219,6 @@ export default {
     droitsNonEligibles: function() { return this.resultats.droitsNonEligibles },
     droitsInjectes: function() { return this.resultats.droitsInjectes },
     shouldPatrimoineBeCaptured: function() { return true },
-    yearMinusTwo: function() { return Situation.getYearMinusTwo(this) },
   },
   methods: {
     goToFeedback: function(event) {

@@ -4,7 +4,7 @@
       <div class="form__group">
         <YesNoQuestion v-model="parentsPayPensionsAlimentaires"><h1>
           Vous ou votre conjoint·e actuel·le avez-vous <b>versé</b> des pensions alimentaires <b>
-          depuis {{ debutAnneeGlissante }}</b> ?
+          depuis {{ dates.twelveMonthsAgo.label }}</b> ?
         </h1></YesNoQuestion>
       </div>
     </div>
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import moment from 'moment'
 import _ from 'lodash'
 import { ressourceTypes } from '@/constants/resources'
 import Individu from '@/lib/Individu'
@@ -29,7 +28,6 @@ export default {
   },
   data () {
     let situation = this.$SituationService.restoreLocal()
-    const debutAnneeGlissante = moment(situation.dateDeValeur).subtract(1, 'years').format('MMMM YYYY')
     var pensionsVersees = _.find(ressourceTypes, { id: 'pensions_alimentaires_versees_individu' })
 
     var demandeur = Situation.getDemandeur(situation)
@@ -44,7 +42,6 @@ export default {
         }, false),*/
 
     return {
-      debutAnneeGlissante,
       individus,
       parentsPayPensionsAlimentaires,
       pensionsVersees,

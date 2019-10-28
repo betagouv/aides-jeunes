@@ -1,37 +1,34 @@
 import axios from 'axios'
 import {categoriesRnc, ressourceTypes} from '@/constants/resources'
-import Mois from '@/lib/Mois'
-import moment from 'moment'
 import _ from 'lodash'
 
-function getPeriodKeysForCurrentYear(dateDeValeur, ressourceType) {
+function getPeriodKeysForCurrentYear(dates, ressourceType) {
     var periodKeys = [];
-    var lastYear = moment(dateDeValeur).subtract(1, 'years').format('YYYY');
     if (ressourceType.isMontantAnnuel)
     {
-        periodKeys.push(lastYear);
+        periodKeys.push(dates.lastYear.id);
         return periodKeys;
     }
     if (ressourceType.id == 'tns_auto_entrepreneur_chiffre_affaires')
     {
-        periodKeys.push(lastYear);
-        periodKeys = periodKeys.concat(_.map(Mois.get(dateDeValeur, 3), 'id'));
+        periodKeys.push(dates.lastYear.id);
+        periodKeys = periodKeys.concat(_.map(dates.last3Months, 'id'));
     } else {
-        periodKeys = periodKeys.concat(_.map(Mois.get(dateDeValeur, 12), 'id'));
+        periodKeys = periodKeys.concat(_.map(dates.last12Months, 'id'));
     }
 
     if (! ressourceType.revenuExceptionnel) {
-        periodKeys.push(moment(dateDeValeur).format('YYYY-MM'));
+        periodKeys.push(dates.thisMonth.id);
     }
 
     return periodKeys;
 }
 
-function setDefaultValueForCurrentYear(dateDeValeur, individu, ressourceType) {
+function setDefaultValueForCurrentYear(dates, individu, ressourceType) {
     var ressourceId = ressourceType.id;
     individu[ressourceId] = individu[ressourceId] || {};
     var ressource = individu[ressourceId];
-    var periodKeys = getPeriodKeysForCurrentYear(dateDeValeur, ressourceType);
+    var periodKeys = getPeriodKeysForCurrentYear(dates, ressourceType);
 
     if (_.some(periodKeys, function(periodKey) { return _.isNumber(ressource[periodKey]); })) {
         return;
@@ -42,11 +39,11 @@ function setDefaultValueForCurrentYear(dateDeValeur, individu, ressourceType) {
     });
 }
 
-function unsetForCurrentYear(dateDeValeur, entity, ressourceType) {
+function unsetForCurrentYear(dates, entity, ressourceType) {
     var ressourceId = ressourceType.id;
     entity[ressourceId] = entity[ressourceId] || {};
     var ressource = entity[ressourceId];
-    var periodKeys = getPeriodKeysForCurrentYear(dateDeValeur, ressourceType);
+    var periodKeys = getPeriodKeysForCurrentYear(dates, ressourceType);
     periodKeys.forEach(function(periodKey) {
         delete ressource[periodKey]
     });
@@ -78,14 +75,14 @@ function getIndividuRessourceTypes(individu) {
         }, {})
 }
 
-function setIndividuRessourceTypes(individu, types, dateDeValeur) {
+function setIndividuRessourceTypes(individu, types, dates) {
     var typeMap = _.keyBy(_.filter(ressourceTypes, isRessourceOnMainScreen), 'id');
 
     Object.keys(types).forEach(function(ressourceTypeId) {
         if (types[ressourceTypeId]) {
-            setDefaultValueForCurrentYear(dateDeValeur, individu, typeMap[ressourceTypeId])
+            setDefaultValueForCurrentYear(dates, individu, typeMap[ressourceTypeId])
         } else {
-            unsetForCurrentYear(dateDeValeur, individu, typeMap[ressourceTypeId]);
+            unsetForCurrentYear(dates, individu, typeMap[ressourceTypeId]);
         }
     })
 }

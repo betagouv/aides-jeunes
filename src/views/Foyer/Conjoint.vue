@@ -19,7 +19,7 @@
     </div>
     <div v-if="isInCouple">
       <h3>Votre conjoint</h3>
-      <IndividuForm v-model="conjoint" v-bind:date="situation.dateDeValeur" v-bind:existingIndividu="existingIndividu" v-on:input="next" />
+      <IndividuForm v-model="conjoint" v-bind:existingIndividu="existingIndividu" v-on:input="next" />
     </div>
     <div class="text-right">
       <button class="button large" v-on:click="next">Valider</button>

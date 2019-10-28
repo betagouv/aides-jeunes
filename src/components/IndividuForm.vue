@@ -139,7 +139,7 @@
       </select>
     </label>
 
-    <YesNoQuestion class="form__group" v-model="individu.enfant_a_charge[currentYear]" v-if="captureEnfantACharge">
+    <YesNoQuestion class="form__group" v-model="individu.enfant_a_charge[dates.thisYear.id]" v-if="captureEnfantACharge">
       Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu ?
     </YesNoQuestion>
 
@@ -162,7 +162,6 @@
 
 <script>
 import _ from 'lodash'
-import moment from 'moment'
 import { required } from 'vuelidate/lib/validators'
 
 import InputDate from '@/components/InputDate'
@@ -250,7 +249,6 @@ export default {
   },
   props: {
     existingIndividu: Boolean,
-    date: Date,
     value: Object,
   },
   data: function() {
@@ -281,14 +279,14 @@ export default {
   },
   computed: {
     captureDemandeurACharge: function() {
-      let age = Individu.age(this.individu, this.date)
+      let age = Individu.age(this.individu, this.dates.today.value)
       return this.individu.role == 'demandeur' && (age >= 18) && (age < 25)
     },
     captureEligibiliteAss: function() {
       return this.isIndividuParent && this.selectedStatuts['chomeur']
     },
     captureEnfantACharge: function() {
-      return (! this.isIndividuParent) && Individu.age(this.individu, this.date) >= 1
+      return (! this.isIndividuParent) && Individu.age(this.individu, this.dates.today.value) >= 1
     },
     captureEnfantPlace: function() {
       return (! this.isIndividuParent) && this.selectedStatuts.handicap
@@ -300,7 +298,7 @@ export default {
       return this.individu.role == 'demandeur' && this.individu.nationalite != 'FR'
     },
     capturePerteAutonomie: function() {
-      return Individu.age(this.individu, this.date) >= 60
+      return Individu.age(this.individu, this.dates.today.value) >= 60
     },
     captureFirstName: function() {
       return ! this.isIndividuParent
@@ -310,7 +308,7 @@ export default {
     },
     captureScolarite: function() {
       if (! this.isIndividuParent) {
-          let age = Individu.age(this.individu, this.date)
+          let age = Individu.age(this.individu, this.dates.today.value)
           return age <= 25 && age > 8
       }
 
@@ -319,15 +317,12 @@ export default {
     captureTauxIncapacite: function() {
       return this.selectedStatuts.handicap
     },
-    currentYear: function() {
-      return moment(this.date).format('YYYY')
-    },
     fiscalementIndependant: {
       get: function() {
-        return !this.individu.enfant_a_charge[this.currentYear]
+        return !this.individu.enfant_a_charge[this.dates.thisYear.id]
       },
       set: function(value) {
-        this.individu.enfant_a_charge[this.currentYear] = !value
+        this.individu.enfant_a_charge[this.dates.thisYear.id] = !value
       }
     },
     isNaissanceValid: function() {

@@ -2,7 +2,7 @@ import axios from 'axios'
 import moment from 'moment'
 import _ from 'lodash'
 
-import { computeAides } from '../../backend/lib/mes-aides'
+import { computeAides, datesGenerator } from '../../backend/lib/mes-aides'
 import { categoriesRnc } from '../constants/resources'
 
 var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage'];
@@ -120,6 +120,8 @@ const SituationService = {
             if (! Vue.situation) {
                 this.newSituation();
             }
+
+            Vue.prototype.dates = datesGenerator(Vue.situation.dateDeValeur)
 
             return adaptPersistedSituation(Vue.situation);
         },

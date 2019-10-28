@@ -16,19 +16,19 @@ import {ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 import Individu from '@/lib/Individu'
 import RouteLogic from '@/lib/RouteLogic'
-import { getPeriods } from '@/../backend/lib/openfisca/mapping/common'
+import { datesGenerator } from '@/../backend/lib/mes-aides'
 
 export default {
   name: 'ressources-montants',
   data: function() {
     let situation = this.$SituationService.restoreLocal()
-    let periods = getPeriods(situation.dateDeValeur)
+    let periods = datesGenerator(situation.dateDeValeur)
     let individu = Individu.find(situation.individus, this.$route.params.role, this.$route.params.id)
     let selectedTypes = Ressource.getIndividuRessourceTypes(individu)
 
     let types = ressourceTypes.reduce((result, ressource) => {
       if (selectedTypes[ressource.id]) {
-        result.push(Object.assign({ montant: individu[ressource.id][periods.thisMonth] || 0 }, ressource))
+        result.push(Object.assign({ montant: individu[ressource.id][periods.thisMonth.id] || 0 }, ressource))
       }
       return result
     }, [])
@@ -41,15 +41,15 @@ export default {
   methods: {
     next: function() {
       let situation = this.$SituationService.restoreLocal()
-      let periods = getPeriods(situation.dateDeValeur)
+      let periods = datesGenerator(situation.dateDeValeur)
       let individu = Individu.find(situation.individus, this.$route.params.role, this.$route.params.id)
 
       this.types.forEach((t) => {
-        individu[t.id] = periods.last12Months.reduce((accum, p) => {
-          accum[p] = t.montant
+        individu[t.id] = periods.last12Months.reduce((accum, period) => {
+          accum[period.id] = t.montant
           return accum
         }, {})
-        individu[t.id][periods.thisMonth] = t.montant
+        individu[t.id][periods.thisMonth.id] = t.montant
       })
       let s = this.$SituationService.saveLocal()
       this.$router.push(RouteLogic.next(s, this.$route))

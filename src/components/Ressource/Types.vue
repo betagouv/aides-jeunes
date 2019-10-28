@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
-    Sélectionnez les types de ressources perçues <strong>depuis {{ debutAnneeGlissante }}</strong>,
+    Sélectionnez les types de ressources perçues <strong>depuis {{ dates.twelveMonthsAgo.label }}</strong>,
     vous pourrez ensuite saisir les montants.
     <form>
       <label v-for="type in types" v-bind:key="type.id">
@@ -20,7 +20,6 @@
 
 <script>
 import _ from 'lodash'
-import moment from 'moment'
 import {ressourceTypes} from '@/constants/resources'
 import Individu from '@/lib/Individu'
 import Ressource from '@/lib/Ressource'
@@ -32,12 +31,9 @@ export default {
     individu: Object
   },
   data: function() {
-    let situation = this.$SituationService.restoreLocal()
-    let debutAnneeGlissante = moment(situation.dateDeValeur).subtract(1, 'years').format('MMMM YYYY')
     let selectedTypes = Ressource.getIndividuRessourceTypes(this.individu)
 
     return {
-      debutAnneeGlissante,
       selectedTypes,
       types: _.filter(ressourceTypes, Ressource.isRessourceOnMainScreen),
     }
@@ -53,7 +49,7 @@ export default {
   methods: {
     next: function() {
       let situation = this.$SituationService.restoreLocal()
-      Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, situation.dateDeValeur)
+      Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.dates)
       this.$SituationService.saveLocal()
       if (this.count) {
         this.$router.push({ name: 'ressources/montants', params: this.$route.params })

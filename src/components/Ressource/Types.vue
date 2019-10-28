@@ -11,9 +11,7 @@
         {{ type.label }}
       </label>
     </form>
-    <div>
-      {{ count }} ressources sélectionées
-    </div>
+    <div>{{ countLabel }}</div>
     <div class="text-right">
       <button class="button large" v-on:click="next">Valider</button>
     </div>
@@ -41,8 +39,9 @@ export default {
     }
   },
   computed: {
-    count: function() {
-      return _.filter(this.selectedTypes).length
+    countLabel: function() {
+      const count = _.filter(this.selectedTypes).length
+      return `${count} ${count == 1 ? 'ressource sélectionnée' : 'ressources sélectionnées'}`
     },
     title: function() {
       return Individu.ressourceHeader(this.individu)

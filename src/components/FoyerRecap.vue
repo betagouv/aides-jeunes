@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    {{situation}}
   </div>
 </template>
 

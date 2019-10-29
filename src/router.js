@@ -27,6 +27,10 @@ const router = new Router({
         children: [{
           path: 'ajouter',
           component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants/Ajouter.vue'),
+        }, {
+          name: 'enfants/modifier',
+          path: ':id',
+          component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants/Modifier.vue'),
         }]
       }, {
         path: 'conjoint',

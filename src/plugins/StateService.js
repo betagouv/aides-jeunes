@@ -91,6 +91,8 @@ function next(current, situation) {
         } 
         default:
             switch (current.name) {
+                case 'enfants/modifier':
+                    return '/foyer/enfants'
                 case 'ressources/types':
                     if (situation) {
                         let individu = Individu.find(situation.individus, current.params.role, current.params.id)
@@ -107,7 +109,7 @@ function next(current, situation) {
                 case 'ressources/montants':
                     return nextRessourceRoute(current, situation)
                 default:
-                    throw 'No route for ' + current
+                    throw 'No route for ' + JSON.stringify({path: current.path, name: current.name, params: current.params})
             }
     }
 }

@@ -7,7 +7,7 @@
       </div>
       <div class="children">
         <router-link v-for="enfant in enfants" v-bind:key="enfant.id" class="child"
-          to="/foyer/enfants/modifier({ id: enfant.id })">
+          v-bind:to="{ name: 'enfants/modifier', params:{ id: enfant.id }}">
           <button type="button" class="close" v-on:click.prevent="removeEnfant(enfant)">
             <span class="sr-only">Effacer {{ enfant.firstName }}</span>
             <span role="presentation" aria-hidden="true">&times;</span>
@@ -64,8 +64,8 @@ export default {
         this.enfants.splice(index, 1);
         Situation.setEnfants(this.situation, this.enfants)
         this.$SituationService.saveLocal()
-        if (/*TODO current route is about current kid*/false) {
-          this.$route.push('/foyer/enfants', true)
+        if (this.$route.name === 'enfants/modifier' && this.$route.params.id === enfant.id) {
+          this.$router.push('/foyer/enfants')
         }
     }
   }

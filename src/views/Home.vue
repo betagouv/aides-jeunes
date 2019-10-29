@@ -69,7 +69,7 @@ export default {
   methods: {
     newSituation: function() {
       this.$SituationService.clear()
-      this.$router.push('/foyer/demandeur')
+      this.$push()
     },
     sortDecreasing: function(items) {
       return items.filter(() => 1).sort(function(a, b) {

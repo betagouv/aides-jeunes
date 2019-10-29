@@ -4,8 +4,7 @@ import Home from './views/Home.vue'
 
 Vue.use(Router)
 
-
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -110,3 +109,5 @@ export default new Router({
     return {x: 0, y: 0}
   }
 })
+
+export default router

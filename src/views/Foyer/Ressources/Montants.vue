@@ -18,7 +18,6 @@
 import {ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 import Individu from '@/lib/Individu'
-import RouteLogic from '@/lib/RouteLogic'
 import { datesGenerator } from '@/../backend/lib/mes-aides'
 
 export default {
@@ -59,8 +58,8 @@ export default {
         }, {})
         individu[t.id][periods.thisMonth.id] = t.montant
       })
-      let s = this.$SituationService.saveLocal()
-      this.$router.push(RouteLogic.next(s, this.$route))
+      this.$SituationService.saveLocal()
+      this.$push(situation)
     }
   }
 }

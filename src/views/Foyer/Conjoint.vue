@@ -77,7 +77,7 @@ export default {
       }
 
       this.$SituationService.saveLocal()
-      this.$router.push('/foyer/logement')
+      this.$push()
     },
   }
 }

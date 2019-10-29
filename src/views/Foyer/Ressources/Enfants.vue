@@ -31,26 +31,15 @@ export default {
   },
   methods: {
     next: function() {
-      const { next } = this.enfants.reduce((accum, enfant) => {
-        if (accum.next) {
-          return accum
-        }
-
-        if (enfant.hasRessources) {
-          accum.next = { name: 'ressources/types', params: { role: 'enfant', id: enfant.id } }
-          return accum
-        } else {
+      this.enfants.forEach(enfant => {
+        if (! enfant.hasRessources) {
             var ressourceTypes = Ressource.getIndividuRessourceTypes(enfant)
             Object.keys(ressourceTypes).forEach(t => ressourceTypes[t] = false)
             Ressource.setIndividuRessourceTypes(enfant, ressourceTypes, this.dates)
         }
-
-        accum.index = accum.index + 1
-        return accum
-      }, { next: undefined, index: 0 })
-      this.$SituationService.saveLocal()
-
-      this.$router.push(next || '/foyer/pensions-alimentaires')
+      })
+      let situation = this.$SituationService.saveLocal()
+      this.$push(situation)
     }
   }
 }

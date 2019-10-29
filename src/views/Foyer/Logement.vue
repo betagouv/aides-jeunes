@@ -297,7 +297,7 @@ export default {
       situation.menage = this.menage
       situation.famille = this.famille
       this.$SituationService.saveLocal()
-      this.$router.push({ name: 'ressources/types', params: {role: 'demandeur'}})
+      this.$push()
     },
     yearsAgo: function(years) {
       return moment(this.situation.dateDeValeur).subtract(years, 'years').format('MMMM YYYY')

@@ -57,7 +57,7 @@ export default {
   methods: {
     next: function() {
       this.$SituationService.saveLocal()
-      this.$router.push('/foyer/conjoint')
+      this.$push()
     },
     removeEnfant: function(enfant) {
         var index = this.enfants.indexOf(enfant);

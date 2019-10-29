@@ -52,7 +52,7 @@ export default {
     individuLabel: Individu.label,
     next: function() {
       this.$SituationService.saveLocal()
-      this.$router.push('/foyer/resultat')
+      this.$push()
     },
   }
 }

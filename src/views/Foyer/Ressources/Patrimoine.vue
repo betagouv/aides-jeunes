@@ -151,7 +151,7 @@ export default {
   methods: {
     next: function() {
       this.$SituationService.saveLocal()
-      this.$router.push('/foyer/resultat')
+      this.$push()
     },
   }
 }

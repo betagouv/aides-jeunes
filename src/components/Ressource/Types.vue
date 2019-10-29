@@ -23,7 +23,6 @@ import _ from 'lodash'
 import {ressourceTypes} from '@/constants/resources'
 import Individu from '@/lib/Individu'
 import Ressource from '@/lib/Ressource'
-import RouteLogic from '@/lib/RouteLogic'
 
 export default {
   name: 'RessourceTypes',
@@ -52,11 +51,7 @@ export default {
       let situation = this.$SituationService.restoreLocal()
       Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.dates)
       this.$SituationService.saveLocal()
-      if (this.count) {
-        this.$router.push({ name: 'ressources/montants', params: this.$route.params })
-      } else {
-        this.$router.push(RouteLogic.next(situation, this.$route))
-      }
+      this.$push(situation)
     }
   },
   watch: {

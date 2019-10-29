@@ -35,7 +35,7 @@ export default {
       Situation.setEnfants(this.situation, enfants)
 
       this.$SituationService.saveLocal()
-      this.$router.push('/foyer/enfants')
+      this.$push()
     }
   }
 }

@@ -30,7 +30,7 @@ export default {
     emit: function() {
       this.situation.individus[0] = Object.assign({}, this.individu)
       this.$SituationService.saveLocal()
-      this.$router.push('/foyer/enfants')
+      this.$push()
     }
   }
 }

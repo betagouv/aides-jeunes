@@ -11,6 +11,7 @@
     v-bind:analytics-name="analyticsName"
     v-bind:analytics-event="type"
     analytics-category="General"
+    v-bind:aria-label="longLabel"
     v-html="label">
   </a>
 </template>
@@ -23,10 +24,16 @@ var typeLabels = {
     link: "Plus d'informations <i class='fa fa-external-link' aria-hidden='true' role='presentation'></i>",
 };
 
+var longLabels = {
+  ...typeLabels,
+  link: "Plus d'informations"
+}
+
 export default {
   name: 'BenefitCtaLink',
   props: {
     analyticsName: String,
+    benefit: Object,
     level: String,
     type: String,
     link: [String, Object],
@@ -38,7 +45,12 @@ export default {
     }
   },
   computed: {
-    label: function() { return typeLabels[this.type] },
+    label: function() {
+      return typeLabels[this.type]
+    },
+    longLabel: function() {
+      return `${longLabels[this.type]} pour ${ this.benefit.prefix }${ this.benefit.prefix && this.benefit.prefix.endsWith('’') ? '' : ' ' }${ this.benefit.label }`
+    },
   },
   methods: {
     getURL: function(link) {

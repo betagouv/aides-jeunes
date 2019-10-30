@@ -25,13 +25,26 @@
       aria-label="Année"
       v-model="year"
       placeholder="1973"
-      min="1789"
+      min="1900"
       max="2020">
   </div>
 </template>
 
 <script>
 import moment from 'moment'
+
+function stateManager(current, next) {
+  if ((current.element === 'day' && current.length === 0 && next.element === 'day' && next.length === 1) ||
+      (current.element === 'day' && current.length === 1 && next.element === 'day' && next.length === 2) ||
+      (current.element === 'day' && current.length === 2 && next.element === 'month' && next.length === 1) ||
+      (current.element === 'month' && current.length === 1 && next.element === 'month' && next.length === 2) ||
+      (current.element === 'month' && current.length === 2 && next.element === 'year' && next.length === 1) ||
+      (current.element === 'year' && current.length === 1 && next.element === 'year' && next.length === 2)) {
+    return next
+  } else {
+    return false
+  }
+}
 
 export default {
   name: 'InputDate',
@@ -40,13 +53,16 @@ export default {
   },
   data: function() {
     return {
-      auto: !this.value,
+      currentState: this.value ? 0 : { element: 'day', length: 0 },
       day: this.value && moment(this.value).format('DD'),
       month: this.value && moment(this.value).format('MM'),
       year: this.value && moment(this.value).format('YYYY'),
     }
   },
   computed: {
+    auto: function() {
+      return Boolean(this.currentState)
+    },
     date: function() {
       return `${this.year}-${this.month && this.month.padStart(2, '0')}-${this.day && this.day.padStart(2, '0')}`
     }
@@ -58,7 +74,9 @@ export default {
         this.$emit('input', value)
       }
     },
-    update: function() {
+    update: function(name) {
+      this.currentState = stateManager(this.currentState, { element: name, length: this[name] && this[name].length || 0 })
+
       const dt = moment(this.date, 'YYYY-MM-DD', true)
       if (dt.isValid()) {
         this.$emit('input', dt.toDate())
@@ -72,19 +90,19 @@ export default {
       if (to && to.length == 2 && this.auto) {
         this.$refs.month.focus()
       }
-      this.update()
+      this.update('day')
     },
     month: function(to) {
       if (to && to.length == 2 && this.auto) {
         this.$refs.year.focus()
       }
-      this.update()
+      this.update('month')
     },
     year: function(to) {
       if (to && to.length == 4 && this.auto) {
         this.$refs.year.focus()
       }
-      this.update()
+      this.update('year')
     },
   }
 }

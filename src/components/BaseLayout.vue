@@ -9,7 +9,7 @@
 
         <nav>
           <router-link to="/" class="navbar__home" id="logo">
-            <img class="navbar__logo" src="./../../public/img/logo.svg" alt="Logo de la Marianne" />
+            <img class="navbar__logo" src="./../../public/img/logo.svg" alt="Logo de Mes-Aides.gouv.fr" />
           </router-link>
         </nav>
       </div>

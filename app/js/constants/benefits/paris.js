@@ -52,6 +52,7 @@ module.exports = {
             'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#allocation-de-soutien-aux-parents-d-enfants-handicapes_9',
             'form': 'https://api-site-cdn.paris.fr/images/97060',
             'isBaseRessourcesYearMoins2': false,
+            prefix: 'l’',
         },
         'paris_logement_plfm': {
             'label': 'Paris Logement Familles Monoparentales',
@@ -83,6 +84,7 @@ module.exports = {
             'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10',
             'form': 'https://api-site.paris.fr/images/78343',
             'isBaseRessourcesYearMoins2': false,
+            prefix: 'le',
         },
         'paris_pass_seniors': {
             'label': 'Pass Paris Seniors',
@@ -91,6 +93,7 @@ module.exports = {
             'form': 'https://api-site-cdn.paris.fr/images/100460',
             'type': 'bool', // default type is float
             'entity': 'individu', // default entity is famille
+            prefix: 'le',
         },
         'paris_pass_access': {
             'label': 'Pass Paris Access’',
@@ -99,6 +102,7 @@ module.exports = {
             'form': 'https://api-site-cdn.paris.fr/images/100461',
             'type': 'bool', // default type is float
             'entity': 'individu', // default entity is famille
+            prefix: 'le',
         }
     }
 };

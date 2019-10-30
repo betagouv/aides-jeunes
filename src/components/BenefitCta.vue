@@ -3,6 +3,7 @@
     <BenefitCtaLink
       v-for="(cta, index) in ctas"
       v-bind:analytics-name="benefit.label"
+      v-bind:benefit="benefit"
       v-bind:link="cta.link"
       v-bind:key="index"
       v-bind:type="cta.type"

@@ -6,7 +6,7 @@
         <dt>{{ droit.label }}</dt>
         <dd>
           <div v-html="droit.description"></div>
-          <a v-if="droit.link" v-bind:href="droit.link" target="_blank" rel="noopener">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
+          <a v-if="droit.link" v-bind:href="droit.link" target="_blank" rel="noopener" v-bind:aria-label="getLongLabel(droit)">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>
         </dd>
       </dl>
     </div>
@@ -19,6 +19,11 @@ export default {
   name: 'ProviderView',
   props: {
     item: Object
+  },
+  methods: {
+    getLongLabel: function(benefit) {
+      return `En savoir plus sur ${ benefit.prefix }${ benefit.prefix && benefit.prefix.endsWith('’') ? '' : ' ' }${ benefit.label }`
+    }
   }
 }
 </script>

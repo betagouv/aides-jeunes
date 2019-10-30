@@ -16,7 +16,7 @@
           <div>
             <h2>
               <span itemprop="name">{{ droit.label }}</span>
-              <small>Comment l'obtenir ?</small>
+              <small v-bind:aria-label="longCta(droit)">Comment l'obtenir ?</small>
             </h2>
           </div>
         </div>
@@ -69,6 +69,9 @@ export default {
     isBoolean: _.isBoolean,
     isNumber: _.isNumber,
     isString: _.isString,
+    longCta: function(benefit) {
+      return `Comment obtenir ${benefit.prefix}${ benefit.prefix && benefit.prefix.endsWith('’') ? '' : ' ' }${benefit.label} ?`
+    },
     scrollTo: function(event, droit)
     {
         return this.$ScrollService.go(event, document.getElementById(droit.id));

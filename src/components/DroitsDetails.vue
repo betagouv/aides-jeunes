@@ -41,6 +41,7 @@
            <BenefitCtaLink
             v-bind:analytics-name="droit.label"
             v-bind:link="droit.link"
+            v-bind:benefit="droit"
             type="link"
             level="'inline'"
             itemprop="termsOfService"

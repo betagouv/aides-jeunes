@@ -24,6 +24,7 @@ var droitsDescription = {
                         'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/Formulaire_allocation_solidarite_personnes_agees.pdf'
                     },
                     floorAt: 10,
+                    prefix: 'l’',
                 },
             },
         },
@@ -46,6 +47,7 @@ var droitsDescription = {
                         'general': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
                         'msa': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf'
                     },
+                    prefix: 'l’',
                 },
                 'asi': {
                     'label': 'Allocation supplémentaire d’invalidité',
@@ -60,6 +62,7 @@ var droitsDescription = {
                     },
                     'entity': 'individu', // default entity is famille
                     floorAt: 10,
+                    prefix: 'l’',
                 },
                 'cmu_c': {
                     'label': 'Couverture maladie universelle complémentaire',
@@ -76,6 +79,7 @@ var droitsDescription = {
                         'rsi': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf'
                     },
                     'type': 'bool', // default type is float
+                    prefix: 'la',
                 },
             },
         },
@@ -97,6 +101,7 @@ var droitsDescription = {
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
                     'isBaseRessourcesYearMinusTwo': true,
+                    prefix: 'les',
                 },
                 'cf': {
                     'label': 'Complément familial',
@@ -108,6 +113,7 @@ var droitsDescription = {
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
                     'isBaseRessourcesYearMinusTwo': true,
+                    prefix: 'le',
                 },
                 'asf': {
                     'label': 'Allocation de soutien familial',
@@ -122,6 +128,7 @@ var droitsDescription = {
                         'msa': 'http://www.msa.fr/lfr/documents/11566/48472/Demande+d%27allocation+de+soutien+familial+%28ASF%29.pdf'
                     },
                     floorAt: 10,
+                    prefix: 'l’',
                 },
                 'paje_base': {
                     'label': 'Prestation d’accueil du jeune enfant – Allocation de base',
@@ -137,6 +144,7 @@ var droitsDescription = {
                         'msa': 'http://www.msa.fr/lfr/documents/11566/132715/D%C3%A9claration+de+situation+pour+les+prestations+familiales+et+aides+au+logement.pdf'
                     },
                     'isBaseRessourcesYearMinusTwo': true,
+                    prefix: 'la',
                 },
                 'rsa': {
                     'label': 'Revenu de solidarité active',
@@ -184,6 +192,7 @@ var droitsDescription = {
                             link: 'https://www.grandlyon.com/services/rsa-mode-d-emploi.html',
                         },
                     },
+                    prefix: 'le',
                     floorAt: 10,
                 },
                 'aide_logement': {
@@ -218,6 +227,7 @@ var droitsDescription = {
                         }
                     },
                     floorAt: 10,
+                    prefix: 'les',
                 },
                 'ppa': {
                     'label': 'Prime d’activité',
@@ -230,6 +240,7 @@ var droitsDescription = {
                         'msa': 'http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=44739105'
                     },
                     floorAt: 5,
+                    prefix: 'la',
                 },
                 'aah': {
                     'isMontantAnnuel': false,
@@ -242,6 +253,7 @@ var droitsDescription = {
                     },
                     'entity': 'individu', // default entity is famille,
                     floorAt: 10,
+                    prefix: 'l’',
                 },
                 'caah': {
                     'isMontantAnnuel': false,
@@ -257,6 +269,7 @@ var droitsDescription = {
                     },
                     'entity': 'individu', // default entity is famille
                     floorAt: 1,
+                    prefix: 'le',
                 },
             },
         },
@@ -273,6 +286,7 @@ var droitsDescription = {
                     'instructions': 'http://www.pole-emploi.fr/front/common/tools/download_file.jspz?mediaid=186108',
                     'entity': 'individu', // default entity is famille
                     floorAt: 10,
+                    prefix: 'l’',
                 },
             },
         },
@@ -294,6 +308,7 @@ var droitsDescription = {
                     'instructions': 'https://www.chequeenergie.gouv.fr/beneficiaire/paiement',
                     'isBaseRessourcesYearMinusTwo': true,
                     'entity': 'menage', // default entity is famille
+                    prefix: 'le',
                 },
             },
         },
@@ -312,6 +327,7 @@ var droitsDescription = {
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F32700',
                     'entity': 'individu', // default entity is famille
+                    prefix: 'la',
                 },
             },
         },
@@ -348,7 +364,8 @@ var droitsDescription = {
                     'entity': 'individu', // default entity is famille
                     'isBaseRessourcesYearMinusTwo': true,
                     floorAt: 0.01,
-                    top: 20
+                    top: 20,
+                    prefix: 'le',
                 },
             },
         },
@@ -370,6 +387,7 @@ var droitsDescription = {
                         '2017-18': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_12539.do',
                     },
                     'isBaseRessourcesYearMinusTwo': true,
+                    prefix: 'la',
                 },
                 'bourse_lycee': {
                     'isMontantAnnuel': true,
@@ -386,6 +404,7 @@ var droitsDescription = {
                         '2018-19': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do',
                     },
                     'isBaseRessourcesYearMinusTwo': true,
+                    prefix: 'la',
                 },
             },
         },
@@ -407,6 +426,7 @@ var droitsDescription = {
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F869',
                     'teleservice': 'https://www.demande-logement-social.gouv.fr/creation/accesCriteresEligibilites.do',
                     'top': 10,
+                    prefix: 'le',
                 },
             }
         }
@@ -429,6 +449,7 @@ var droitsDescription = {
                     'instructions': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/#c33081',
                     'isBaseRessourcesYearMinusTwo': false,
                     'entity': 'individu', // default entity is famille
+                    prefix: 'la',
                 },
             }
         },
@@ -450,6 +471,7 @@ var droitsDescription = {
                     'isBaseRessourcesYearMinusTwo': false,
                     floorAt: 0.01,
                     'entity': 'individu', // default entity is famille
+                    prefix: 'la',
                 },
             }
         },
@@ -474,6 +496,7 @@ var droitsDescription = {
                     'isBaseRessourcesYearMinusTwo': false,
                     floorAt: 0.01,
                     'private': true,
+                    prefix: 'le',
                 },
             },
         },
@@ -495,6 +518,7 @@ var droitsDescription = {
                     'isBaseRessourcesYearMinusTwo': false,
                     'entity': 'individu',
                     'type': 'bool',
+                    prefix: 'le',
                 },
             },
         }

@@ -8,7 +8,7 @@
       </p>
     </div>
 
-    <div class="form__group">
+    <fieldset class="form__group">
       <label v-for="logementType in logementTypes" v-bind:key="logementType.id">
         <input type="radio"
           name="logementType"
@@ -19,7 +19,7 @@
           {{ logementType.label | capitalize }}
           <span class="help">{{ logementType.hint }}</span>
       </label>
-    </div>
+    </fieldset>
 
     <YesNoQuestion class="form__group" v-model="menage.coloc" v-if="captureColocation">
       Est-ce une colocation ?
@@ -30,19 +30,17 @@
       <template v-slot:help>Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant, grand-parent…) ?</template>
     </YesNoQuestion>
 
-    <div class="form__group" v-show="captureLocationType">
-      <label>Quel type de logement louez-vous ?</label>
-      <div>
-        <label class="radio" v-for="locationType in locationTypes" v-bind:key="locationType.id">
-          <input
-            type="radio"
-            name="locationType"
-            v-model="logement.locationType"
-            v-bind:value="locationType.id">
-          {{ locationType.label }}
+    <fieldset class="form__group" v-show="captureLocationType">
+      <legend>Quel type de logement louez-vous ?</legend>
+      <label class="radio" v-for="locationType in locationTypes" v-bind:key="locationType.id">
+        <input
+          type="radio"
+          name="locationType"
+          v-model="logement.locationType"
+          v-bind:value="locationType.id">
+        {{ locationType.label | capitalize }}
         </label>
-      </div>
-    </div>
+    </fieldset>
 
     <YesNoQuestion class="form__group" v-model="menage.logement_chambre" v-if="captureChambre">
       Est-ce une chambre ?

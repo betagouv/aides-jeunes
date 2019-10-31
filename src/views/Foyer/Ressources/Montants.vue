@@ -14,9 +14,9 @@
         </label>
         <input type="number" v-model.number="type.montant.thisMonth" v-if="type.displayMonthly==true"/>
         <div v-if="type.displayMonthly==false">
-          <div v-for="month in type.months" v-bind:key="month.id">
+          <div v-for="(month, index) in type.months" v-bind:key="month.id">
             <label>{{ month.label | capitalize }}</label>
-            <input type="number" v-model.number="type.montant[month.id]">
+            <input type="number" v-model.number="type.montant[month.id]" v-on:input="autofill($event.target.value, index, type)">
           </div>
         </div>
       </fieldset>
@@ -41,7 +41,7 @@ export default {
   data: function() {
     let situation = this.$SituationService.restoreLocal()
     let individu = Individu.find(situation.individus, this.$route.params.role, this.$route.params.id)
-    let selectedTypes = Ressource.getIndividuRessourceTypes(individu)
+    const selectedTypes = Ressource.getIndividuRessourceTypes(individu)
 
     let types = ressourceTypes.reduce((result, type) => {
       if (selectedTypes[type.id]) {
@@ -87,6 +87,10 @@ export default {
       })
       this.$SituationService.saveLocal()
       this.$push(situation)
+    },
+    autofill: function(newValue, monthIndex, type) {
+      const nextMonths = type.months.slice(monthIndex+1)
+      nextMonths.forEach(m => type.montant[m.id] = newValue)
     }
   }
 }

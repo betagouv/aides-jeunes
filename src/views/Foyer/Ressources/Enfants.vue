@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Les ressources de vos enfants</h1>
     <YesNoQuestion class="form__group" v-model="enfant.hasRessources" v-for="enfant in enfants" v-bind:key="enfant.id">
-        {{ enfant.firstName }} a-t-il·elle perçu des ressources <strong>depuis {{ dates.twelveMonthsAgo.label }}</strong> ?
+        {{ enfant.firstName | capitalize }} a-t-il·elle perçu des ressources <strong>depuis {{ dates.twelveMonthsAgo.label }}</strong> ?
     </YesNoQuestion>
     <div class="text-right">
       <button class="button large" v-on:click="next">Valider</button>

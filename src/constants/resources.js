@@ -6,6 +6,10 @@ var ressourceCategories = [
         label: 'Revenus d’activité',
     },
     {
+        id: 'rpns',
+        label: 'Revenus professionnels non salariés',
+    },
+    {
         id: 'allocations',
         label: 'Allocations',
     },
@@ -16,10 +20,6 @@ var ressourceCategories = [
     {
         id: 'pensions',
         label: 'Pensions',
-    },
-    {
-        id: 'rpns',
-        label: 'Revenus professionnels non salariés',
     },
     {
         id: 'patrimoine',
@@ -297,6 +297,7 @@ var ressourceTypes = [
         label: 'Auto-entrepreneur',
         category: 'rpns',
         interuptionQuestionLabel: 'un chiffre d’affaires non nul',
+        extra: ['tns_auto_entrepreneur_type_activite']
     },
     {
         id: 'tns_benefice_exploitant_agricole',

@@ -8,13 +8,13 @@
     <div class="form__group">
       <label v-for="logementType in logementTypes" v-bind:key="logementType.id">
         <input type="radio"
-            name="logementType"
-            v-model="logement.type"
-            v-on:change="changeLogementType()"
-            v-bind:value="logementType.id"
-            />
-            {{ logementType.label }}
-            <span class="help-col">{{ logementType.hint }}</span>
+          name="logementType"
+          v-model="logement.type"
+          v-on:change="changeLogementType()"
+          v-bind:value="logementType.id"
+          />
+          {{ logementType.label | capitalize }}
+          <span class="help">{{ logementType.hint }}</span>
       </label>
     </div>
 
@@ -320,4 +320,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+span.help {
+    font-style: italic;
+}
 </style>

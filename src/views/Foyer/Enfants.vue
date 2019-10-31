@@ -12,7 +12,7 @@
             <span class="sr-only">Effacer {{ enfant.firstName }}</span>
             <span role="presentation" aria-hidden="true">&times;</span>
           </button>
-          <h2>{{ enfant.firstName }}</h2>
+          <h2>{{ enfant.firstName | capitalize }}</h2>
           <div class="details">
             <span class="card-icon fa fa-child" aria-hidden="true"></span>
             <div>

@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <fieldset>
+    <legend>Nationalité</legend>
     <label>
       <input type="radio" name="nationalite" v-model="zone" value="fr" />
       Française
@@ -12,7 +13,7 @@
       <input type="radio" name="nationalite" v-model="zone" value="autre" />
       Non européenne
     </label>
-  </div>
+  </fieldset>
 </template>
 
 

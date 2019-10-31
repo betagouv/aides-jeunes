@@ -27,10 +27,7 @@
       </label>
     </div>
 
-    <div class="form__group">
-      <label>Nationalité</label>
-      <NationalityChoice v-model="individu.nationalite" />
-    </div>
+    <NationalityChoice class="form__group" v-model="individu.nationalite" />
     
     <div class="form__group" v-if="captureOutOfFranceQuestions">
       <label>
@@ -65,13 +62,13 @@
       </label>
     </div>
 
-    <div class="form__group">
-      <label>
+    <fieldset class="form__group">
+      <legend>
         <span v-if="individu.role == 'demandeur'">Vous êtes</span>
         <span v-if="individu.role == 'conjoint'">Votre conjoint·e est</span>
         <span v-if="individu.role == 'enfant'">Il ou elle est</span>
         <span>(plusieurs choix possibles)</span>
-      </label>
+      </legend>
       <div>
         <label v-if="captureGardeAlternee">
           <input type="checkbox" v-model="individu.garde_alternee">
@@ -90,17 +87,17 @@
           <i>{{ individu.role == 'demandeur' ? 'Je ne suis dans' : 'Il ou elle n\'est dans' }} aucune de ces situations</i>
         </label>
       </div>
-    </div>
+    </fieldset>
 
     <ASSQuestions class="form__group" v-bind:individu="individu" v-if="captureEligibiliteAss" />
 
-    <div class="form__group" v-if="captureTauxIncapacite">
-      <label for="tauxIncapacite">
+    <fieldset class="form__group" v-if="captureTauxIncapacite">
+      <legend>
         {{ individu.role == 'demandeur' ? 'Votre' : 'Son' }} taux d'incapacité
         <span>
         évalué par <a target="_blank" rel="noopener" href="http://informations.handicap.fr/carte-france-mdph.php">votre <abbr title="Maison départementale des personnes handicapées">MDPH</abbr></a>.
         </span>
-      </label>
+      </legend>
       <label v-for="tauxIncapacite in tauxIncapaciteOptions" v-bind:key="tauxIncapacite.value">
         <input type="radio"
             name="tauxIncapacite"
@@ -109,7 +106,7 @@
             />
             {{ tauxIncapacite.label }}
       </label>
-    </div>
+    </fieldset>
 
     <YesNoQuestion class="form__group" v-model="individu.aah_restriction_substantielle_durable_acces_emploi"
       v-if="captureRestrictionSubstantielleDurableAccesEmploi"
@@ -145,18 +142,15 @@
     </YesNoQuestion>
 
 
-    <div class="form__group" v-if="capturePerteAutonomie">
-      <label for="gir" id="girQuestion">
+    <fieldset class="form__group" v-if="capturePerteAutonomie">
+      <legend for="gir" id="girQuestion">
         Avez-vous besoin d’une aide à la personne ?
-      </label>
+      </legend>
       <label v-for="gir in GIROptions" v-bind:key="gir.value">
         <input type="radio" name="gir" v-bind:value="gir.value" v-model="individu.gir"/>
         {{ gir.label }}
       </label>
-    </div>
-
-    <div v-if="showCancelButton">
-    </div>
+    </fieldset>
 
     <div class="text-right" >
       <button type="submit" class="button large">Valider</button>

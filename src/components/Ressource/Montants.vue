@@ -5,13 +5,13 @@
       Percevez-vous le même montant tous les mois ?
     </YesNoQuestion>
     <label v-if="type.displayMonthly!=undefined">
-      Indiquez {{ type.displayMonthly ? "le montant que vous percevez chaque mois" : "les montants que vous avez perçu en" }} :
-      <input type="number" v-model.number="type.montant.thisMonth" v-if="type.displayMonthly==true"/>
+      Indiquez {{ type.displayMonthly ? "le montant que vous percevez chaque mois" : "les montants que vous avez perçus en" }} :
+      <input type="number" v-model.number="type.montants[dates.thisMonth.id]" v-if="type.displayMonthly==true"/>
     </label>
     <div v-if="type.displayMonthly==false">
       <div v-for="(month, index) in type.months" v-bind:key="month.id">
         <label>{{ month.label | capitalize }}</label>
-        <input type="number" v-model.number="type.montant[month.id]" v-on:input="autofill($event.target.value, index, type)">
+        <input type="number" v-model.number="type.montants[month.id]" v-on:input="autofill($event.target.value, index, type)">
       </div>
     </div>
   </fieldset>
@@ -31,7 +31,7 @@ export default {
   methods: {
     autofill: function(newValue, monthIndex, type) {
       const nextMonths = type.months.slice(monthIndex+1)
-      nextMonths.forEach(m => type.montant[m.id] = newValue)
+      nextMonths.forEach(m => type.montants[m.id] = newValue)
     }
   }
 }

@@ -5,21 +5,7 @@
       <p>
         Indiquez toutes les ressources <strong>nettes versées</strong> perçues en France comme à l'étranger.
       </p>
-      <fieldset class="form__group" v-for="type in types" v-bind:key="type.meta.id">
-        <h3>{{ type.meta.label }}</h3>
-        <label>Percevez-vous le même montant tous les mois ?</label>
-        <YesNoQuestion v-model="type.displayMonthly"/>
-        <label v-if="type.displayMonthly!=undefined">
-          Indiquez {{ type.displayMonthly ? "le montant que vous percevez chaque mois" : "les montants que vous avez perçu en" }} :
-        </label>
-        <input type="number" v-model.number="type.montant.thisMonth" v-if="type.displayMonthly==true"/>
-        <div v-if="type.displayMonthly==false">
-          <div v-for="(month, index) in type.months" v-bind:key="month.id">
-            <label>{{ month.label | capitalize }}</label>
-            <input type="number" v-model.number="type.montant[month.id]" v-on:input="autofill($event.target.value, index, type)">
-          </div>
-        </div>
-      </fieldset>
+      <RessourceMontants v-for="type in types" v-bind:type="type"/>
       <div class="text-right">
         <button class="button large" v-on:click.prevent="next">Valider</button>
       </div>
@@ -29,6 +15,7 @@
 
 <script>
 import YesNoQuestion from '@/components/YesNoQuestion'
+import RessourceMontants from '@/components/Ressource/Montants'
 import {ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 import Individu from '@/lib/Individu'
@@ -36,7 +23,8 @@ import Individu from '@/lib/Individu'
 export default {
   name: 'ressources-montants',
   components: {
-    YesNoQuestion
+    YesNoQuestion,
+    RessourceMontants
   },
   data: function() {
     let situation = this.$SituationService.restoreLocal()
@@ -87,10 +75,6 @@ export default {
       })
       this.$SituationService.saveLocal()
       this.$push(situation)
-    },
-    autofill: function(newValue, monthIndex, type) {
-      const nextMonths = type.months.slice(monthIndex+1)
-      nextMonths.forEach(m => type.montant[m.id] = newValue)
     }
   }
 }

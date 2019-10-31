@@ -1,17 +1,14 @@
 <template>
-  <div class="container">
-    <div>
-      <div class="form__group">
-        <YesNoQuestion v-model="parentsPayPensionsAlimentaires"><h1>
-          Vous ou votre conjoint·e actuel·le avez-vous <b>versé</b> des pensions alimentaires <b>
-          depuis {{ dates.twelveMonthsAgo.label }}</b> ?
-        </h1></YesNoQuestion>
-      </div>
-    </div>
+  <form>
+    <h1>Pensions alimentaires versées</h1>
+    <YesNoQuestion v-model="parentsPayPensionsAlimentaires">
+      Vous ou votre conjoint·e actuel·le avez-vous <strong>versé</strong> des pensions alimentaires <b>
+      depuis {{ dates.twelveMonthsAgo.label }}</b> ?
+      </YesNoQuestion>
     <div class="text-right">
-      <button class="button large" v-on:click="next">Valider</button>
+      <button class="button large" v-on:click.prevent="next">Valider</button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>

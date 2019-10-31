@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <form>
       <h1>Les enfants de votre foyer</h1>
       <div>

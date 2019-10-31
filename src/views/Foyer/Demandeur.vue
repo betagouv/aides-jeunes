@@ -1,9 +1,5 @@
 <template>
-  <div class="container">
-    <div class="frame-foyer">
-      <IndividuForm v-model="individu" v-bind:existingIndividu="existingIndividu" v-on:input="emit()" />
-    </div>
-  </div>
+  <IndividuForm v-model="individu" v-bind:existingIndividu="existingIndividu" v-on:input="emit()" />
 </template>
 
 <script>

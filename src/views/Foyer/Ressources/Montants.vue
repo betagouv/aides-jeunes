@@ -10,7 +10,7 @@
         <input type="number" v-model.number="type.montant"/>
       </label>
       <div class="text-right">
-        <button class="button large" v-on:click="next">Valider</button>
+        <button class="button large" v-on:click.prevent="next">Valider</button>
       </div>
     </form>
   </div>

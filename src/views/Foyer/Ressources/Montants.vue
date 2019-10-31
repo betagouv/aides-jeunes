@@ -1,16 +1,18 @@
 <template>
   <div class="container">
-    <h1>{{ title }}</h1>
-    <p>
-      Indiquez toutes les ressources <strong>nettes versées</strong> perçues en France comme à l'étranger.
-    </p>
-    <label v-for="type in types" v-bind:key="type.id">
-      {{ type.label }}
-      <input type="number" v-model.number="type.montant"/>
-    </label>
-    <div class="text-right">
-      <button class="button large" v-on:click="next">Valider</button>
-    </div>
+    <form>
+      <h1>{{ title }}</h1>
+      <p>
+        Indiquez toutes les ressources <strong>nettes versées</strong> perçues en France comme à l'étranger.
+      </p>
+      <label v-for="type in types" v-bind:key="type.id">
+        {{ type.label }}
+        <input type="number" v-model.number="type.montant"/>
+      </label>
+      <div class="text-right">
+        <button class="button large" v-on:click="next">Valider</button>
+      </div>
+    </form>
   </div>
 </template>
 

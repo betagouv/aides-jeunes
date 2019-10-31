@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div>
+    <form class="form__group">
       <div class="form__group">
         <fieldset>
           <legend><h1>Vivez-vous seul·e ou en couple ?</h1></legend>
@@ -16,13 +16,11 @@
           <label><input type="radio" v-bind:value="false" name="isolement" v-model="famille.rsa_isolement_recent">Plus de 18 mois</label>
         </fieldset>
       </div>
-    </div>
-    <div v-if="isInCouple">
-      <IndividuForm v-model="conjoint" v-bind:existingIndividu="existingIndividu" v-on:input="next" />
-    </div>
-    <div class="text-right">
-      <button class="button large" v-on:click="next">Valider</button>
-    </div>
+      <div class="text-right" v-if="!isInCouple">
+        <button class="button large" v-on:click="next">Valider</button>
+      </div>
+    </form>
+    <IndividuForm v-if="isInCouple" class="form__group" v-model="conjoint" v-bind:existingIndividu="existingIndividu" v-on:input="next" />
   </div>
 </template>
 

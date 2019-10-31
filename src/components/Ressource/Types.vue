@@ -1,24 +1,22 @@
 <template>
-  <div class="container">
+  <form>
     <h1>{{ title }}</h1>
-    <legend>
+    <p>
       Sélectionnez les types de ressources perçues <strong>depuis {{ dates.twelveMonthsAgo.label }}</strong>,
       vous pourrez ensuite saisir les montants.
-    </legend>
-    <form>
-      <div v-for="category in categories" v-bind:key="category.id">
-        <h3>{{ category.label }}</h3>
-        <label v-for="type in typesByCategories[category.id]" v-bind:key="type.id">
+    </p>
+      <fieldset class="form__group" v-for="category in categories" v-bind:key="category.id">
+        <h2>{{ category.label }}</h2>
+        <label v-for="type in sort(typesByCategories[category.id])" v-bind:key="type.id">
           <input type="checkbox" v-model="selectedTypes[type.id]"/>
           {{ type.label }}
         </label>
-      </div>
-    </form>
-    <div>{{ countLabel }}</div>
+      </fieldset>
+    <div class="form__group">{{ countLabel }}</div>
     <div class="text-right">
-      <button class="button large" v-on:click="next">Valider</button>
+      <button class="button large" v-on:click.prevent="next">Valider</button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -39,7 +37,7 @@ export default {
     return {
       selectedTypes,
       categories: ressourceCategories,
-      typesByCategories: _.groupBy(types, t => t.category)
+      typesByCategories: _.groupBy(types, t => t.category),
     }
   },
   computed: {
@@ -50,6 +48,7 @@ export default {
     title: function() {
       return Individu.ressourceHeader(this.individu)
     },
+
   },
   methods: {
     next: function() {
@@ -57,6 +56,9 @@ export default {
       Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.dates)
       this.$SituationService.saveLocal()
       this.$push(situation)
+    },
+    sort: function(array) {
+      return _.orderBy(array, ['positionInList','label'])
     }
   },
   watch: {
@@ -66,3 +68,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="css">
+h2 {
+  font-size: 1.5em;
+}
+</style>

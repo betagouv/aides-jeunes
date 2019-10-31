@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="frame-foyer">
-      <h1>Nouvel enfant</h1>
       <IndividuForm v-model="individu" v-bind:existingIndividu="existingIndividu" v-on:input="emit()" />
     </div>
   </div>

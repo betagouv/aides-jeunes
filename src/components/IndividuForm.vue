@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="submit">
+    <h1>{{title}}</h1>
     <div class="form__group">
       <label>Date de naissance
         <InputDate v-model="individu.date_naissance" />
@@ -275,6 +276,7 @@ export default {
       situationsFamiliales,
       specificSituations,
       tauxIncapaciteOptions,
+      title: (individu.role === 'enfant' && ! this.existingIndividu) ? 'Nouvel enfant' : Individu.label(individu),
     }
   },
   computed: {

@@ -20,7 +20,6 @@
 import {ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 import Individu from '@/lib/Individu'
-import { datesGenerator } from '@/../backend/lib/mes-aides'
 
 export default {
   name: 'ressources-montants',

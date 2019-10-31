@@ -6,10 +6,13 @@
       vous pourrez ensuite saisir les montants.
     </legend>
     <form>
-      <label v-for="type in types" v-bind:key="type.id">
-        <input type="checkbox" v-model="selectedTypes[type.id]"/>
-        {{ type.label }}
-      </label>
+      <div v-for="category in categories" v-bind:key="category.id">
+        <h3>{{ category.label }}</h3>
+        <label v-for="type in typesByCategories[category.id]" v-bind:key="type.id">
+          <input type="checkbox" v-model="selectedTypes[type.id]"/>
+          {{ type.label }}
+        </label>
+      </div>
     </form>
     <div>{{ countLabel }}</div>
     <div class="text-right">
@@ -20,7 +23,7 @@
 
 <script>
 import _ from 'lodash'
-import {ressourceTypes} from '@/constants/resources'
+import {ressourceCategories, ressourceTypes} from '@/constants/resources'
 import Individu from '@/lib/Individu'
 import Ressource from '@/lib/Ressource'
 
@@ -31,10 +34,12 @@ export default {
   },
   data: function() {
     let selectedTypes = Ressource.getIndividuRessourceTypes(this.individu)
+    let types = _.filter(ressourceTypes, Ressource.isRessourceOnMainScreen)
 
     return {
       selectedTypes,
-      types: _.filter(ressourceTypes, Ressource.isRessourceOnMainScreen),
+      categories: ressourceCategories,
+      typesByCategories: _.groupBy(types, t => t.category)
     }
   },
   computed: {

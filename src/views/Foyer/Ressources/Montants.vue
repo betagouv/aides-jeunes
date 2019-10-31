@@ -26,13 +26,12 @@ export default {
   name: 'ressources-montants',
   data: function() {
     let situation = this.$SituationService.restoreLocal()
-    let periods = datesGenerator(situation.dateDeValeur)
     let individu = Individu.find(situation.individus, this.$route.params.role, this.$route.params.id)
     let selectedTypes = Ressource.getIndividuRessourceTypes(individu)
 
     let types = ressourceTypes.reduce((result, ressource) => {
       if (selectedTypes[ressource.id]) {
-        result.push(Object.assign({ montant: individu[ressource.id][periods.thisMonth.id] || 0 }, ressource))
+        result.push(Object.assign({ montant: individu[ressource.id][this.dates.thisMonth.id] || 0 }, ressource))
       }
       return result
     }, [])
@@ -50,15 +49,14 @@ export default {
   methods: {
     next: function() {
       let situation = this.$SituationService.restoreLocal()
-      let periods = datesGenerator(situation.dateDeValeur)
       let individu = Individu.find(situation.individus, this.$route.params.role, this.$route.params.id)
 
       this.types.forEach((t) => {
-        individu[t.id] = periods.last12Months.reduce((accum, period) => {
+        individu[t.id] = this.dates.last12Months.reduce((accum, period) => {
           accum[period.id] = t.montant
           return accum
         }, {})
-        individu[t.id][periods.thisMonth.id] = t.montant
+        individu[t.id][this.dates.thisMonth.id] = t.montant
       })
       this.$SituationService.saveLocal()
       this.$push(situation)

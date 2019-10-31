@@ -1,26 +1,27 @@
 <template>
-  <div class="container">
+  <form>
     <h1>{{ title }}</h1>
-    <legend>
+    <p>
       Sélectionnez les types de ressources perçues <strong>depuis {{ dates.twelveMonthsAgo.label }}</strong>,
       vous pourrez ensuite saisir les montants.
-    </legend>
-    <form>
-      <label v-for="type in types" v-bind:key="type.id">
-        <input type="checkbox" v-model="selectedTypes[type.id]"/>
-        {{ type.label }}
-      </label>
-    </form>
-    <div>{{ countLabel }}</div>
+    </p>
+      <fieldset class="form__group" v-for="category in categories" v-bind:key="category.id">
+        <h2>{{ category.label }}</h2>
+        <label v-for="type in sort(typesByCategories[category.id])" v-bind:key="type.id">
+          <input type="checkbox" v-model="selectedTypes[type.id]"/>
+          {{ type.label }}
+        </label>
+      </fieldset>
+    <div class="form__group">{{ countLabel }}</div>
     <div class="text-right">
-      <button class="button large" v-on:click="next">Valider</button>
+      <button class="button large" v-on:click.prevent="next">Valider</button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
 import _ from 'lodash'
-import {ressourceTypes} from '@/constants/resources'
+import {ressourceCategories, ressourceTypes} from '@/constants/resources'
 import Individu from '@/lib/Individu'
 import Ressource from '@/lib/Ressource'
 
@@ -31,10 +32,12 @@ export default {
   },
   data: function() {
     let selectedTypes = Ressource.getIndividuRessourceTypes(this.individu)
+    let types = _.filter(ressourceTypes, Ressource.isRessourceOnMainScreen)
 
     return {
       selectedTypes,
-      types: _.filter(ressourceTypes, Ressource.isRessourceOnMainScreen),
+      categories: ressourceCategories,
+      typesByCategories: _.groupBy(types, t => t.category),
     }
   },
   computed: {
@@ -45,6 +48,7 @@ export default {
     title: function() {
       return Individu.ressourceHeader(this.individu)
     },
+
   },
   methods: {
     next: function() {
@@ -52,6 +56,9 @@ export default {
       Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.dates)
       this.$SituationService.saveLocal()
       this.$push(situation)
+    },
+    sort: function(array) {
+      return _.orderBy(array, ['positionInList','label'])
     }
   },
   watch: {
@@ -61,3 +68,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="css">
+h2 {
+  font-size: 1.5em;
+}
+</style>

@@ -155,9 +155,14 @@
       </label>
     </div>
 
-    <div class="text-right">
+    <div v-if="showCancelButton">
+    </div>
+
+    <div class="text-right" >
       <button type="submit" class="button large">Valider</button>
     </div>
+
+    <button v-if="showCancelButton" class="button large secondary" v-on:click.prevent="$emit('cancel')">Annuler</button>
   </form>
 </template>
 
@@ -331,8 +336,11 @@ export default {
       return ! this.$v.individu.date_naissance.$invalid
     },
     isDemandeurMineur: function() {
-      return this.individu.role == 'demandeur' && this.isNaissanceValid && Individu.age(this.individu, this.date) < 18
-    }
+      return this.individu.role === 'demandeur' && this.isNaissanceValid && Individu.age(this.individu, this.date) < 18
+    },
+    showCancelButton: function() {
+      return (this.individu.role === 'enfant' && ! this.existingIndividu)
+    },
   },
   methods: {
     getZone: function(nationalite) {

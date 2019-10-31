@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="frame-foyer">
+    <form>
       <h1>Les enfants de votre foyer</h1>
       <div>
         <p>Les personnes de <span data-tooltip="Les personnes à votre charge de plus de 25 ans non handicapées ne changent pas votre éligibilité aux aides calculées par ce simulateur.">moins de 25 ans ou handicapées</span> dont vous assumez la responsabilité, même sans lien de parenté.</p>
@@ -28,10 +28,10 @@
           <span class="card-icon fa fa-plus" aria-hidden="true" />
         </router-link>
       </div>
-    </div>
-    <div class="text-right">
-      <button class="button large" v-on:click="next">Valider</button>
-    </div>
+      <div class="text-right">
+        <button class="button large" v-if="showValidate" v-on:click.prevent="next">Valider</button>
+      </div>
+    </form>
     <router-view/>
   </div>
 </template>
@@ -52,6 +52,9 @@ export default {
   computed: {
     enfants: function() {
       return Situation.getEnfants(this.situation)
+    },
+    showValidate: function() {
+      return this.$route.path === '/foyer/enfants'
     }
   },
   methods: {

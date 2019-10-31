@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="frame-foyer">
-      <IndividuForm v-model="individu" v-bind:existingIndividu="existingIndividu" v-on:input="emit()" />
+      <IndividuForm v-model="individu" v-bind:existingIndividu="existingIndividu" v-on:input="emit" v-on:cancel="cancel" />
     </div>
   </div>
 </template>
@@ -28,6 +28,10 @@ export default {
     }
   },
   methods: {
+    cancel: function() {
+      this.$SituationService.restoreLocal()
+      this.$router.push('/foyer/enfants')
+    },
     emit: function() {
       let enfants = Situation.getEnfants(this.situation)
       enfants.push(this.individu)

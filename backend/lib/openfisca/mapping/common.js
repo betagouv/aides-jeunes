@@ -59,6 +59,13 @@ function generateRequestedVariables() {
                 prestations[prestationName] = _.assign({}, prestation);
                 if (prestation.uncomputability)
                     prestations[prestationName + '_non_calculable'] = _.assign({}, prestation, { type: 'string' });
+
+
+                if (prestation.extra) {
+                    prestation.extra.forEach(function(extra) {
+                        prestations[extra.id] = _.assign({}, extra);
+                    });
+                }
                 return prestations;
             }));
         });

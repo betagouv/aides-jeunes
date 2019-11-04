@@ -32,20 +32,23 @@ var droitsDescription = {
             'imgSrc': 'logo_assurance_maladie.png',
             'etablissements': ['cpam'],
             'prestations': {
-                'acs': {
-                    'isMontantAnnuel': true,
-                    'label': 'Aide au paiement d’une complémentaire santé',
-                    'description': 'L’aide au paiement d’une assurance complémentaire santé (ACS) est une aide financière pour payer une complémentaire santé (mutuelle). L’ACS ouvre droit à d’autres avantages comme le tiers-payant. Une fois attribuée, l’ACS est accordée pour un an.',
+                'css_participation_forfaitaire': {
+                    'label': 'Complémentaire santé solidaire',
+                    'description': 'La Complémentaire Santé Solidaire (CSS) est une protection complémentaire santé (mutuelle). Elle remplace la Complémentaire Maladie Universelle Complémentaire (CMU-C) et l’Aide au paiement d’une Complémentaire Santé (ACS) à compter du 1ᵉʳ novembre 2019. Une fois attribuée, la CSS est accordée pour un an.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
                     ],
-                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F13375',
-                    'form': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711.pdf',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F10027',
+                    'form': 'https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/S3711%20HOMO%20COMPLEMENTAIRE%20SANTE%20SOLIDAIRE%20non%20secu%2009_2019.pdf',
                     'teleservice': 'https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true&_pageID=P1_DEMANDE_CMUC',
                     'forms': {
-                        'general': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
-                        'msa': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf'
                     },
+                    extra: [{ id:'cmu_c', type:'bool' }],
+                    compute: function(result, period) {
+                        return (result.cmu_c && result.cmu_c[period]) ? true : (result.css_participation_forfaitaire && result.css_participation_forfaitaire[period]) || 0;
+                    },
+                    participation: true,
+                    type: 'complex',
                 },
                 'asi': {
                     'label': 'Allocation supplémentaire d’invalidité',
@@ -60,22 +63,6 @@ var droitsDescription = {
                     },
                     'entity': 'individu', // default entity is famille
                     floorAt: 10,
-                },
-                'cmu_c': {
-                    'label': 'Couverture maladie universelle complémentaire',
-                    'description': 'La couverture maladie universelle complémentaire (CMU-C) est une protection complémentaire santé (mutuelle) gratuite. Elle est destinée aux personnes qui ont de faibles ressources et résident en France de manière stable et régulière. Une fois attribuée, la CMU-C est accordée pour un an.',
-                    'conditions': [
-                        'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
-                    ],
-                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F10027',
-                    'form': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711.pdf',
-                    'teleservice': 'https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true&_pageID=P1_DEMANDE_CMUC',
-                    'forms': {
-                        'general': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
-                        'msa': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf',
-                        'rsi': 'https://www.ameli.fr/sites/default/files/formulaires/170/s3711_homol_mai_2018_remp_non_sec_version_ameli_et_fiche_daccrf.pdf'
-                    },
-                    'type': 'bool', // default type is float
                 },
             },
         },
@@ -439,8 +426,7 @@ var droitsDescription = {
             'prefix': 'de',
             'prestations': {
                 'brest_metropole_transport': {
-                    'isMontantAnnuel': false,
-                    'legend': 'au lieu de 38.50 €',
+                    'legend': 'au lieu de 38.50 € / mois',
                     'label': 'Tarification solidaire transports',
                     'description': 'Les familles aux ressources modestes bénéficient de forfaits mensuels à tarif réduit pour les transports : les forfaits Tempo, Tango et Rythmo. Tous les membres du foyer peuvent en bénéficier.',
                     conditions: [
@@ -450,6 +436,7 @@ var droitsDescription = {
                     'isBaseRessourcesYearMoins2': false,
                     floorAt: 0.01,
                     'entity': 'individu', // default entity is famille
+                    participation: true,
                 },
             }
         },

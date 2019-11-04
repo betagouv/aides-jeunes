@@ -55,10 +55,10 @@ describe('ResultatService', function () {
             },
             individus: {
                 demandeur: {
-                    acs: {
-                        '2014-11':100.25
+                    css_participation_forfaitaire: {
+                        '2014-11': 10
                     },
-                    cmu_c: {
+                    logement_social_eligible: {
                         '2014-11': false
                     }
                 }
@@ -88,32 +88,32 @@ describe('ResultatService', function () {
         });
 
         it('should extract droits from openfisca result', function() {
-            var acs = droits.droitsEligibles.find(function(element) { return element.id === 'acs'; });
-            expect(acs).toBeTruthy();
-            expect(acs.montant).toEqual(100);
-            expect(acs.provider.label).toEqual('Assurance maladie');
+            var css = droits.droitsEligibles.find(function(element) { return element.id === 'css_participation_forfaitaire'; });
+            expect(css).toBeTruthy();
+            expect(css.montant).toEqual(10);
+            expect(css.provider.label).toEqual('Assurance maladie');
 
             var plf = droits.droitsEligibles.find(function(element) { return element.id === 'paris_logement_familles'; });
             expect(plf).toBeTruthy();
             expect(plf.provider.label).toEqual('Ville de Paris');
             expect(plf.montant).toEqual(10);
 
-            var cmuc = droits.droitsNonEligibles.find(function(element) { return element.id === 'cmu_c'; });
-            expect(cmuc).toBeTruthy();  
-            expect(cmuc.provider.label).toEqual('Assurance maladie');
+            var logement_social = droits.droitsNonEligibles.find(function(element) { return element.id === 'logement_social_eligible'; });
+            expect(logement_social).toBeTruthy();
+            expect(logement_social.provider.label).toEqual('Ministère de la Cohésion des territoires');
         });
     });
 
     describe('_computeAides of true boolean values', function() {
         beforeEach(function() {
-            openfiscaResult.individus.demandeur.cmu_c['2014-11'] = true;
+            openfiscaResult.individus.demandeur.logement_social_eligible['2014-11'] = true;
             droits = service._computeAides(situation, openfiscaResult);
         });
 
         it('should extract eligibles droits from openfisca result', function() {
-            var cmuc = droits.droitsEligibles.find(function(element) { return element.id === 'cmu_c'; });
-            expect(cmuc).toBeTruthy();
-            expect(cmuc.montant).toBeTruthy();
+            var logement_social = droits.droitsEligibles.find(function(element) { return element.id === 'logement_social_eligible'; });
+            expect(logement_social).toBeTruthy();
+            expect(logement_social.montant).toBeTruthy();
         });
     });
 

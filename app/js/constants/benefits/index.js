@@ -45,7 +45,7 @@ var droitsDescription = {
                     },
                     extra: [{ id:'cmu_c', type:'bool' }],
                     compute: function(result, period) {
-                        return result.cmu_c[period] ? true : result.css_participation_forfaitaire[period];
+                        return (result.cmu_c && result.cmu_c[period]) ? true : (result.css_participation_forfaitaire && result.css_participation_forfaitaire[period]) || 0;
                     },
                     participation: true,
                     type: 'complex',

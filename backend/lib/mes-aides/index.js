@@ -14,8 +14,12 @@ function normalizeOpenfiscaRessources(testCase) {
     return _.merge({}, testCase.menages._, testCase.familles._, testCase.individus.demandeur || testCase.individus[individuId]);
 }
 
-function valueAt(ressourceId, ressources, period) {
-    return ressources[ressourceId] && ressources[ressourceId][period];
+function valueAt(ressourceId, ressources, period, aide) {
+    if (aide && aide.compute) {
+        return aide.compute(ressources, period);
+    } else {
+        return ressources[ressourceId] && ressources[ressourceId][period];
+    }
 }
 
 function round(amount, aide) {
@@ -50,7 +54,7 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
         var value = valueAt(aideId + '_non_calculable', computedRessources, period);
 
         if ((! value) || value === 'calculable') {
-            value = round(valueAt(aideId, computedRessources, period), aide);
+            value = round(valueAt(aideId, computedRessources, period, aide), aide);
         }
 
         var dest = (value) ? result.droitsEligibles : result.droitsNonEligibles;

@@ -1,5 +1,8 @@
 <span class="droit-montant droit-montant--unexpected" itemscope itemtype="http://schema.org/Offer" itemprop="offers">
   <span class="droit-montant-label">
+    <span ng-if="isNumber(droit.montant) && droit.participation" class="montant">
+      pour
+    </span>
     <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
       {{ droit.montant | currency : ( droit.unit || '€' ) : getFractionSize(droit) }}
     </span>

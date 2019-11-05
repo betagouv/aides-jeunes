@@ -70,7 +70,7 @@ export default {
     isNumber: _.isNumber,
     isString: _.isString,
     longCta: function(benefit) {
-      return `Comment obtenir ${benefit.prefix}${ benefit.prefix && benefit.prefix.endsWith('’') ? '' : ' ' }${benefit.label} ?`
+      return `Comment obtenir ${benefit.prefix}${ benefit.prefix && benefit.prefix.endsWith('’') ? '' : ' ' }${benefit.label} ?`
     },
     scrollTo: function(event, droit)
     {

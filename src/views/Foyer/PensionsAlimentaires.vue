@@ -3,7 +3,7 @@
     <h1>Pensions alimentaires versées</h1>
     <YesNoQuestion v-model="parentsPayPensionsAlimentaires">
       Vous ou votre conjoint·e actuel·le avez-vous <strong>versé</strong> des pensions alimentaires <b>
-      depuis {{ dates.twelveMonthsAgo.label }}</b> ?
+      depuis {{ dates.twelveMonthsAgo.label }}</b> ?
       </YesNoQuestion>
     <div class="text-right">
       <button class="button large" v-on:click.prevent="next">Valider</button>

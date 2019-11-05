@@ -26,11 +26,32 @@ $screen-xs-max:     768px-1;
 
 .notification {
   display: flex;
-    justify-content: space-between;
-    align-items: center;
-
+  justify-content: space-between;
+  align-items: center;
 }
 
 form {
   max-width: 65em;
+}
+
+.next {
+  display: flex;
+
+  @media (min-width: $screen-md-min) {
+    justify-content: space-between;
+    align-items: center;
+
+    .button {
+      margin: 0;
+    }
+  }
+
+  @media (max-width: $screen-sm-max) {
+    flex-direction: column-reverse;
+
+    .button {
+      margin: 2px;
+    }
+  }
+
 }

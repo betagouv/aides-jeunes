@@ -6,7 +6,12 @@
         Indiquez toutes les ressources <strong>nettes versées</strong> perçues en France comme à l'étranger.
       </p>
       <RessourceMontants v-for="type in types" v-bind:type="type" v-bind:key="type.meta.id"/>
-      <div class="text-right">
+
+      <div class="next form__group">
+        <router-link tag="button" class="button secondary"
+          v-bind:to="{ name: 'ressources/types', params:$route.params }">
+          Déclarer d'autres ressources
+        </router-link>
         <button class="button large" v-on:click.prevent="next">Valider</button>
       </div>
     </form>

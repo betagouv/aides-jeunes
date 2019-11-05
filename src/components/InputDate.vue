@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <fieldset>
     <input
       type="number"
       autofocus
@@ -27,7 +27,7 @@
       placeholder="1973"
       min="1900"
       max="2020">
-  </div>
+  </fieldset>
 </template>
 
 <script>

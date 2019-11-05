@@ -1,14 +1,14 @@
 <template>
   <fieldset class="form__group" v-bind:key="type.meta.id">
-    <h3>{{ type.meta.label }}</h3>
-    <YesNoQuestion v-model="type.displayMonthly">
-      Percevez-vous le même montant tous les mois ?
+    <legend><h2>{{ type.meta.label }}</h2></legend>
+    <YesNoQuestion class="form__group" v-model="type.displayMonthly">
+      Percevez-vous le même montant tous les mois&nbsp;?
     </YesNoQuestion>
-    <label v-if="type.displayMonthly!=undefined">
+    <label class="form__group" v-if="type.displayMonthly">
       Indiquez {{ type.displayMonthly ? "le montant que vous percevez chaque mois" : "les montants que vous avez perçus en" }} :
       <input type="number" v-model.number="type.montants[dates.thisMonth.id]" v-if="type.displayMonthly==true"/>
     </label>
-    <div v-if="type.displayMonthly==false">
+    <div class="form__group" v-if="type.displayMonthly == false">
       <div v-for="(month, index) in type.months" v-bind:key="month.id">
         <label>{{ month.label | capitalize }}</label>
         <input type="number" v-model.number="type.montants[month.id]" v-on:input="autofill($event.target.value, index, type)">

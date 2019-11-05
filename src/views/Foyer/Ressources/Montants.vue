@@ -5,7 +5,7 @@
       <p>
         Indiquez toutes les ressources <strong>nettes versées</strong> perçues en France comme à l'étranger.
       </p>
-      <RessourceMontants v-for="type in types" v-bind:type="type" v-bind:key="type.meta.id"/>
+      <RessourceMontants v-for="type in types" v-bind:individu="individu" v-bind:type="type" v-bind:key="type.meta.id"/>
 
       <div class="next form__group">
         <router-link tag="button" type="button" class="button secondary"
@@ -64,6 +64,7 @@ export default {
     }, [])
 
     return {
+      individu,
       title: Individu.ressourceHeader(individu),
       types,
     }
@@ -75,7 +76,7 @@ export default {
 
       this.types.forEach(t => {
         t.months.forEach(m => {
-            individu[t.meta.id][m.id] = t.amounts[m.id] || t.amounts[this.dates.thisMonth.id]
+            individu[t.meta.id][m.id] = t.amounts[m.id] || t.amounts[this.dates.thisMonth.id] || 0
           })
         })
 

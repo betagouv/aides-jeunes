@@ -89,6 +89,9 @@
     <div class="form__group" v-if="captureCodePostal">
       <label class="form__group" for="postal-code">Code postal
         <input v-model="menage.code_postal">
+        <p class="notification warning" v-if="displayPostalCodeWarning">
+          Ce code postal est invalide
+        </p>
       </label>
 
       <div class="form__group">
@@ -117,9 +120,9 @@
       Les règles spécifiques à Mayotte ne sont pas encore prises en compte par ce simulateur. Nous ne pouvons donc malheureusement pas évaluer vos droits pour ce code postal.
     </p>
 
-  <div class="text-right">
-    <button class="button large" v-if="maySubmit" v-on:click.prevent="next">Valider</button>
-  </div>
+    <div class="text-right">
+      <button class="button large" v-if="maySubmit" v-on:click.prevent="next">Valider</button>
+    </div>
 
   </form>
 </template>
@@ -127,6 +130,8 @@
 <script>
 import moment from 'moment'
 import _ from 'lodash'
+import { required } from 'vuelidate/lib/validators'
+
 import Commune from '@/lib/Commune'
 import Individu from '@/lib/Individu'
 import Logement from '@/lib/Logement'
@@ -242,6 +247,9 @@ export default {
     captureResidentParis: function() {
         return this.captureCodePostal && this.isNotHomeless && this.isCommuneParis
     },
+    displayPostalCodeWarning: function() {
+      return (this.menage.code_postal.length >=5 || this.submitted) && ! this.retrievingCommunes && this.communes.length === 0
+    },
     isNotHomeless: function() {
         return this.logement.type != 'sansDomicile'
     },
@@ -291,6 +299,12 @@ export default {
         this.demandeur.habite_chez_parents = undefined
     },
     next: function() {
+      this.submitted = true
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        return
+      }
+
       let situation = this.$SituationService.saveLocal()
       this.menage.statut_occupation_logement = Logement.getStatutOccupationLogement(this.logement)
       this.menage.aide_logement_date_pret_conventionne = this.logement.pretSigneAvant2018 ? '2017-12-31' : '2018-01-01'
@@ -303,6 +317,13 @@ export default {
     yearsAgo: function(years) {
       return moment(this.situation.dateDeValeur).subtract(years, 'years').format('MMMM YYYY')
     },
+  },
+  validations: function() {
+    return {
+      menage: {
+        depcom: { required }
+      }
+    }
   },
   watch: {
     communes: function() {

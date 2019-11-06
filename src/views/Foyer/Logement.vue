@@ -248,7 +248,7 @@ export default {
         return this.captureCodePostal && this.isNotHomeless && this.isCommuneParis
     },
     displayPostalCodeWarning: function() {
-      return (this.menage.code_postal.length >=5 || this.submitted) && ! this.retrievingCommunes && this.communes.length === 0
+      return (this.menage.code_postal && this.menage.code_postal.length >= 5 || this.submitted) && ! this.retrievingCommunes && this.communes.length === 0
     },
     isNotHomeless: function() {
         return this.logement.type != 'sansDomicile'

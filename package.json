@@ -45,6 +45,7 @@
     "validator": "^11.1.0",
     "vue": "^2.6.10",
     "vue-async-computed": "^3.7.0",
+    "vue-matomo": "^3.12.0-4",
     "vue-router": "^3.0.3",
     "vuelidate": "^0.7.4"
   },

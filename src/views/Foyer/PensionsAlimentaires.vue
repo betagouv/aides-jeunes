@@ -84,6 +84,18 @@ export default {
   methods: {
     individuLabel: Individu.label,
     next: function() {
+      if (this.parentsPayPensionsAlimentaires) {
+        this.items.forEach(item => {
+          item.months.forEach(month => {
+            item.individu[item.meta.id][month.id] = item.amounts[month.id] || item.amounts[this.dates.thisMonth.id] || 0
+          })
+        })
+      } else {
+        this.items.forEach((item) => {
+            Ressource.unsetForCurrentYear(this.dates, item.individu, item.meta)
+        })
+      }
+
       this.$SituationService.saveLocal()
       this.$push()
     },

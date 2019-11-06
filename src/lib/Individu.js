@@ -92,11 +92,11 @@ const Individu = {
 
     label: function(individu) {
         if ('demandeur' === individu.role) {
-            return 'Vous';
+            return 'vous';
         }
 
         if ('conjoint' === individu.role) {
-            return 'Votre conjoint·e';
+            return 'votre conjoint·e';
         }
 
         return individu.firstName;
@@ -108,7 +108,7 @@ const Individu = {
     ressourceShortLabel: function(individu) {
         switch (individu.role) {
         case 'demandeur':
-            return 'Vos ressources';
+            return 'vos ressources';
         default:
             return ressourceHeader(individu);
         }

@@ -1,10 +1,18 @@
 <template>
   <form>
     <h1>Pensions alimentaires versées</h1>
-    <YesNoQuestion v-model="parentsPayPensionsAlimentaires">
+    <YesNoQuestion class="form__group" v-model="parentsPayPensionsAlimentaires">
       Vous ou votre conjoint·e actuel·le avez-vous <strong>versé</strong> des pensions alimentaires <b>
       depuis {{ dates.twelveMonthsAgo.label }}</b> ?
-      </YesNoQuestion>
+    </YesNoQuestion>
+
+    <div v-if="parentsPayPensionsAlimentaires">
+      <div class="form__group" v-for="item in items" v-bind:key="item.individu.id">
+        <h2>{{ individuLabel(item.individu) }}</h2>
+        <RessourceMontants v-bind:individu="item.individu" v-bind:type="item" />
+      </div>
+    </div>
+
     <div class="text-right">
       <button class="button large" v-on:click.prevent="next">Valider</button>
     </div>
@@ -15,34 +23,62 @@
 import _ from 'lodash'
 import { ressourceTypes } from '@/constants/resources'
 import Individu from '@/lib/Individu'
+import Ressource from '@/lib/Ressource'
 import Situation from '@/lib/Situation'
+import RessourceMontants from '@/components/Ressource/Montants'
 import YesNoQuestion from '@/components/YesNoQuestion'
+
+function getDisplayMonthly(months, amounts) {
+  const result = months.reduce((result, m) => {
+    result.allNull = result.allNull && amounts[m.id] === null
+    result.allSame = result.allSame && amounts[m.id] === result.initial
+    return result
+  }, { allNull: true, initial: amounts[months[0].id], allSame: true })
+
+  if (result.allNull) {
+    return undefined
+  } else {
+    return result.allSame
+  }
+}
 
 export default {
   name: 'pensions-alimentaires',
   components: {
+    RessourceMontants,
     YesNoQuestion
   },
   data () {
     let situation = this.$SituationService.restoreLocal()
-    var pensionsVersees = _.find(ressourceTypes, { id: 'pensions_alimentaires_versees_individu' })
+    let pensionsVersees = _.find(ressourceTypes, { id: 'pensions_alimentaires_versees_individu' })
 
-    var demandeur = Situation.getDemandeur(situation)
-    var conjoint = Situation.getConjoint(situation)
-    var individus = [ demandeur ]
+    let demandeur = Situation.getDemandeur(situation)
+    let conjoint = Situation.getConjoint(situation)
+    let individus = [ demandeur ]
     if (conjoint) {
         individus.push(conjoint)
     }
 
-    var parentsPayPensionsAlimentaires = false /* TODO $scope.individus.reduce(function(accum, individu) {
-            return accum || _.some(individu.pensions_alimentaires_versees_individu);
-        }, false),*/
+    let items = individus.map(individu => {
+      Ressource.setDefaultValueForCurrentYear(this.dates, individu, pensionsVersees)
+      let amounts = individu[pensionsVersees.id]
+      let months = Ressource.getPeriodsForCurrentYear(this.dates, pensionsVersees)
+
+      return {
+        individu,
+        amounts,
+        months,
+        displayMonthly: getDisplayMonthly(months, amounts),
+        meta: pensionsVersees
+      }
+    })
 
     return {
-      individus,
-      parentsPayPensionsAlimentaires,
+      items,
       pensionsVersees,
-      situation,
+      parentsPayPensionsAlimentaires: items.reduce(function(accum, item) {
+        return accum || _.some(item.amounts);
+      }, false)
     }
   },
   methods: {

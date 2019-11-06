@@ -5,11 +5,13 @@
       <p>
         Indiquez toutes les ressources <strong>nettes versées</strong> perçues en France comme à l'étranger.
       </p>
-      <label v-for="type in types" v-bind:key="type.id">
-        {{ type.label }}
-        <input type="number" v-model.number="type.montant"/>
-      </label>
-      <div class="text-right">
+      <RessourceMontants v-for="type in types" v-bind:individu="individu" v-bind:type="type" v-bind:key="type.meta.id"/>
+
+      <div class="next form__group">
+        <router-link tag="button" type="button" class="button secondary"
+          v-bind:to="{ name: 'ressources/types', params:$route.params }">
+          Déclarer d'autres ressources
+        </router-link>
         <button class="button large" v-on:click.prevent="next">Valider</button>
       </div>
     </form>
@@ -17,46 +19,67 @@
 </template>
 
 <script>
+import RessourceMontants from '@/components/Ressource/Montants'
 import {ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 import Individu from '@/lib/Individu'
 
+function getDisplayMonthly(months, amounts) {
+  const result = months.reduce((result, m) => {
+    result.allNull = result.allNull && amounts[m.id] === null
+    result.allSame = result.allSame && amounts[m.id] === result.initial
+    return result
+  }, { allNull: true, initial: amounts[months[0].id], allSame: true })
+
+  if (result.allNull) {
+    return undefined
+  } else {
+    return result.allSame
+  }
+}
+
 export default {
   name: 'ressources-montants',
+  components: {
+    RessourceMontants
+  },
   data: function() {
     let situation = this.$SituationService.restoreLocal()
     let individu = Individu.find(situation.individus, this.$route.params.role, this.$route.params.id)
-    let selectedTypes = Ressource.getIndividuRessourceTypes(individu)
+    const selectedTypes = Ressource.getIndividuRessourceTypes(individu)
 
-    let types = ressourceTypes.reduce((result, ressource) => {
-      if (selectedTypes[ressource.id]) {
-        result.push(Object.assign({ montant: individu[ressource.id][this.dates.thisMonth.id] || 0 }, ressource))
+    let types = ressourceTypes.reduce((result, type) => {
+      if (selectedTypes[type.id]) {
+        let amounts = individu[type.id]
+        let months = Ressource.getPeriodsForCurrentYear(this.dates, type)
+
+        result.push({ 
+          amounts,
+          months,
+          displayMonthly: getDisplayMonthly(months, amounts),
+          meta: type
+        })
       }
       return result
     }, [])
 
     return {
-      types,
       individu,
+      title: Individu.ressourceHeader(individu),
+      types,
     }
-  },
-  computed: {
-    title: function() {
-      return Individu.ressourceHeader(this.individu)
-    },
   },
   methods: {
     next: function() {
       let situation = this.$SituationService.restoreLocal()
       let individu = Individu.find(situation.individus, this.$route.params.role, this.$route.params.id)
 
-      this.types.forEach((t) => {
-        individu[t.id] = this.dates.last12Months.reduce((accum, period) => {
-          accum[period.id] = t.montant
-          return accum
-        }, {})
-        individu[t.id][this.dates.thisMonth.id] = t.montant
-      })
+      this.types.forEach(t => {
+        t.months.forEach(m => {
+            individu[t.meta.id][m.id] = t.amounts[m.id] || t.amounts[this.dates.thisMonth.id] || 0
+          })
+        })
+
       this.$SituationService.saveLocal()
       this.$push(situation)
     }

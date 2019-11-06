@@ -2,26 +2,30 @@ import axios from 'axios'
 import {categoriesRnc, ressourceTypes} from '@/constants/resources'
 import _ from 'lodash'
 
-function getPeriodKeysForCurrentYear(dates, ressourceType) {
+function getPeriodsForCurrentYear(dates, ressourceType) {
     var periodKeys = [];
-    if (ressourceType.isMontantAnnuel)
-    {
-        periodKeys.push(dates.lastYear.id);
+    if (ressourceType.isMontantAnnuel) {
+        periodKeys.push(dates.lastYear);
         return periodKeys;
     }
-    if (ressourceType.id == 'tns_auto_entrepreneur_chiffre_affaires')
-    {
-        periodKeys.push(dates.lastYear.id);
-        periodKeys = periodKeys.concat(_.map(dates.last3Months, 'id'));
+    if (ressourceType.id == 'tns_auto_entrepreneur_chiffre_affaires') {
+        periodKeys.push(dates.lastYear);
+        // periodKeys = periodKeys.concat(_.map(dates.last3Months, 'id'));
+        dates.last3Months.forEach(m => periodKeys.push(m))
     } else {
-        periodKeys = periodKeys.concat(_.map(dates.last12Months, 'id'));
+        // periodKeys = periodKeys.concat(_.map(dates.last12Months, 'id'));
+        dates.last12Months.forEach(m => periodKeys.push(m))
     }
 
     if (! ressourceType.revenuExceptionnel) {
-        periodKeys.push(dates.thisMonth.id);
+        periodKeys.unshift(dates.thisMonth);
     }
 
     return periodKeys;
+}
+
+function getPeriodKeysForCurrentYear(dates, ressourceType) {
+    return _.map(getPeriodsForCurrentYear(dates, ressourceType), 'id')
 }
 
 function setDefaultValueForCurrentYear(dates, individu, ressourceType) {
@@ -35,7 +39,7 @@ function setDefaultValueForCurrentYear(dates, individu, ressourceType) {
     }
 
     periodKeys.forEach(function(periodKey) {
-        ressource[periodKey] = ressource[periodKey] || 0;
+        ressource[periodKey] = ressource[periodKey] || null;
     });
 }
 
@@ -104,7 +108,9 @@ function getParameterFromOpenfisca(parameterId) {
 }
 
 const Ressource = {
-    getPeriodKeysForCurrentYear,
+    getPeriodsForCurrentYear,
+    // Ne semble pas être utilisée
+    // getPeriodKeysForCurrentYear,
     isRessourceOnMainScreen,
     isSelectedForCurrentYear,
     setDefaultValueForCurrentYear,

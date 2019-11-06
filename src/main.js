@@ -41,7 +41,7 @@ Vue.use(VueMatomo, {
   router: router,
 })
 
-_paq.push(['setCustomVariable', 1, 'version', 'VueJS', 'visit'])
+_paq.push(['setCustomVariable', 1, 'version', 'VueJS', 'visit']) // eslint-disable-line
 
 Vue.filter('capitalize', function (value) {
   if (!value) return ''

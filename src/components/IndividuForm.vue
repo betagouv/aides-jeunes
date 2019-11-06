@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submit">
-    <h1>{{title}}</h1>
+    <h1>{{title | capitalize}}</h1>
     <div class="form__group">
       <label>Date de naissance
         <InputDate v-model="individu.date_naissance" />

@@ -1,13 +1,15 @@
 <template>
   <fieldset class="form__group" v-bind:key="type.meta.id">
-    <legend><h2>{{ type.meta.label }}</h2></legend>
+    <legend><h2 v-if="!withoutHeader">{{ type.meta.label }}</h2></legend>
     <YesNoQuestion class="form__group" v-model="singleValue">
       <span v-html="getQuestionLabel(individu, type.meta, dates.twelveMonthsAgo.label)" />
     </YesNoQuestion>
+
     <label class="form__group" v-if="singleValue">
       Indiquez le montant <b>mensuel net</b> :
       <input type="number" v-model.number="amounts[dates.thisMonth.id]" v-on:input="update($event.target.value, 0, true)"/>
     </label>
+
     <div class="form__group" v-if="singleValue === false">
       <div>{{ getLongLabel(individu, type.meta) }}</div>
       <div v-for="(month, index) in type.months" v-bind:key="month.id">
@@ -63,7 +65,8 @@ export default {
   name: 'RessourceMontants',
   props: {
     individu: Object,
-    type: Object
+    type: Object,
+    withoutHeader: Boolean
   },
   computed: {
     singleValue: {

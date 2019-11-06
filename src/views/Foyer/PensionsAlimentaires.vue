@@ -6,10 +6,10 @@
       depuis {{ dates.twelveMonthsAgo.label }}</b> ?
     </YesNoQuestion>
 
-    <div v-if="parentsPayPensionsAlimentaires">
+    <div class="form__group" v-if="parentsPayPensionsAlimentaires">
       <div class="form__group" v-for="item in items" v-bind:key="item.individu.id">
-        <h2>{{ individuLabel(item.individu) }}</h2>
-        <RessourceMontants v-bind:individu="item.individu" v-bind:type="item" />
+        <h2>{{ individuLabel(item.individu) | capitalize }}</h2>
+        <RessourceMontants without-header v-bind:individu="item.individu" v-bind:type="item" />
       </div>
     </div>
 

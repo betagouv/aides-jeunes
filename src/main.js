@@ -12,6 +12,7 @@ import AsyncComputed from 'vue-async-computed'
 import Raven from 'raven-js'
 import RavenVue from 'raven-js/plugins/vue'
 import Vuelidate from 'vuelidate'
+import VueMatomo from 'vue-matomo'
 
 import 'template.data.gouv.fr/dist/main.css'
 import 'font-awesome/scss/font-awesome.scss'
@@ -33,6 +34,14 @@ Vue.use(ScrollService)
 Vue.use(SituationService)
 Vue.use(StateService)
 Vue.use(Vuelidate)
+Vue.use(VueMatomo, {
+  host: 'https://stats.data.gouv.fr',
+  trackerFileName: 'piwik',
+  siteId: 9,
+  router: router,
+})
+
+_paq.push(['setCustomVariable', 1, 'version', 'VueJS', 'visit'])
 
 Vue.filter('capitalize', function (value) {
   if (!value) return ''

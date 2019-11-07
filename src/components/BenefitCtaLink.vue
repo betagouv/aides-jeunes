@@ -55,14 +55,14 @@ export default {
   methods: {
     getURL: function(link) {
       if (typeof link === 'object') {
-        return 'TODO'
+        return 'TODO3'
       }
 
       return link;
     },
     onClick: function(link) {
       if (typeof link === 'object') {
-        alert('TODO')
+        alert('TODO3')
         /*
         var situation = SituationService.restoreLocal()
         TrampolineService.set({ situationId: situation._id })

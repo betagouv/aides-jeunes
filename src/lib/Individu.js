@@ -115,7 +115,7 @@ const Individu = {
     },
 
     nationaliteLabel: function(individu) {
-        return 'TODO' + individu.id;//NationaliteService.getLabel(individu.nationalite);
+        return 'TODO2' + individu.id;//NationaliteService.getLabel(individu.nationalite);
     },
 
     isRoleParent,
@@ -144,10 +144,10 @@ const Individu = {
             statuts.push('en garde alternée');
         }
 
-        //TODO statuts = _.map(statuts, $filter('lowercaseFirst'));
+        //TODO3 statuts = _.map(statuts, $filter('lowercaseFirst'));
         statuts = statuts.join(', ');
-        //TODO statuts = $filter('uppercaseFirst')(statuts);
-        return 'TODO' //statuts;
+        //TODO3 statuts = $filter('uppercaseFirst')(statuts);
+        return 'TODO3' //statuts;
     }
 }
 

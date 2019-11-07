@@ -17,8 +17,8 @@
             <span class="card-icon fa fa-child" aria-hidden="true"></span>
             <div>
               Né·e le <strong>{{ enfant.date_naissance.toISOString().slice(0,10) }}</strong>
-              <br>Nationalité <strong>{{ "TODO"/*nationalite(enfant)*/ }}</strong>
-              <br><i>{{ "TODO"/*statutsSpecifiques(enfant)*/ }}</i>
+              <!-- TODO3 <br>Nationalité <strong>{{ nationalite(enfant) }}</strong>
+              <br><i>{{ statutsSpecifiques(enfant) }}</i> -->
             </div>
           </div>
         </router-link>

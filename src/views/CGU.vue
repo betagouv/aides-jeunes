@@ -140,7 +140,7 @@ export default {
   name: 'cgu',
   data: () => {
     return {
-      situation: { // TODO
+      situation: { // TODO1
         _id: 'TEST'
       },
     }

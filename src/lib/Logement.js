@@ -45,7 +45,7 @@ function getLabels(statusOccupationId) {
     var logement = getLogementVariables(statusOccupationId);
     var logementLabel = _.find(logementTypes, { id: logement.type }).label;
 
-    //TODO logementLabel = logementLabel.$filter('uppercaseFirst')();
+    //TODO3 logementLabel = logementLabel.$filter('uppercaseFirst')();
     var recapLogement = '<b>' + logementLabel + '</b>';
     var loyerLabel;
     if ('locataire' === logement.type) {

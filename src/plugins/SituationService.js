@@ -77,7 +77,7 @@ const SituationService = {
 
                 delete individu.hasRessources;
             });
-            return 'TODO'//jsyaml.dump(_.omit(situation, ['__v', 'modifiedFrom', 'status', 'token', 'version']));
+            return 'TODO4'//jsyaml.dump(_.omit(situation, ['__v', 'modifiedFrom', 'status', 'token', 'version']));
         },
 
         fetchRepresentation: function(/*situationId, representation*/) {
@@ -131,7 +131,7 @@ const SituationService = {
                 params: { cacheBust: Date.now() }
             })
                 .then(function(result) { return result.data; })
-                .then(saveLocal);TODO*/
+                .then(saveLocal);TODO2*/
         },
 
         save: function() {

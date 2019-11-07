@@ -31,7 +31,7 @@ export default {
     droit: Object,
   },
   data: function() {
-    // TODO    
+    // TODO1 showUnexpected
     // var situation = SituationService.restoreLocal();
     // var isProprietaireAvecPretEnCours = SituationService.isProprietaireAvecPretEnCours(situation);
     // var isHebergeParticipeFrais = SituationService.isHebergeParticipeFrais(situation);
@@ -65,7 +65,7 @@ export default {
       return droit.floorAt < 1 ? 2 : 0;
     },
     openModal: function() {
-      alert('TODO')
+      alert('TODO1')
       /*
       $uibModal.open({
         animation: true,

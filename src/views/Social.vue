@@ -7,7 +7,7 @@
 
     <p>Vous pouvez nous suivre sur les réseaux suivants :</p>
 
-    <div class="image-list"> <!-- CSS class TODO -->
+    <div class="image-list"> <!-- CSS class TODO5 -->
       <a href="https://www.facebook.com/MesAides"><img src="./../../public/img/social/picto_facebook.png" alt=""> /MesAides</a>
       <a href="https://twitter.com/MesAides"><img src="./../../public/img/social/picto_twitter.png" alt=""> @MesAides</a>
     </div>

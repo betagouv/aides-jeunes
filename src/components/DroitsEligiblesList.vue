@@ -61,9 +61,6 @@ export default {
     },
   },
   methods: {
-    goToFeedback: function() {
-      alert('TODO')
-    },
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,
     isBoolean: _.isBoolean,

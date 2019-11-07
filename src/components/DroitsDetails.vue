@@ -117,7 +117,7 @@ export default {
   },
   methods: {
     goToFeedback: function() {
-      alert('TODO')
+      alert('TODO2')
     },
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,

@@ -165,13 +165,13 @@
           </small>
         </div>
 
-        <div v-show="isNotEmpty(droitsInjectes)">
+        <!-- TODO2 <div v-show="isNotEmpty(droitsInjectes)">
           <h4>Vous avez indiqué ces aides au cours la simulation et elles n'ont pas été recalculées</h4>
-            TODO {{droitsInjectes}}
+            {{droitsInjectes}}
             <div v-for="d in droitsInjectes" v-bind:key="d">
               {{d}}
             </div>
-        </div>
+        </div> -->
 
         <div id="social">
           <p>Suivez-nous sur <router-link to="/social">nos réseaux sociaux</router-link> ! Nos messages privés sont ouverts pour vous permettre de communiquer avec nous en toute discrétion.</p>
@@ -198,7 +198,7 @@ export default {
       encodedError: 'encodedError',
       encodedUserAgent: 'encodedUserAgent',
       error: false,
-      openfiscaTracerURL: 'TODO openfiscaTracerURL',
+      openfiscaTracerURL: 'TODO1 openfiscaTracerURL',
       situation: situation,
       warning: false,
       warningMessage: 'Attention',

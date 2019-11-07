@@ -18,8 +18,9 @@ import 'template.data.gouv.fr/dist/main.css'
 import 'font-awesome/scss/font-awesome.scss'
 import '@/styles/main.scss'
 
-
+import AnalyticsDirective from './directives/analytics'
 import MailDirective from './directives/mail'
+AnalyticsDirective(Vue)
 MailDirective(Vue)
 
 if (process.env.NODE_ENV === 'production') {

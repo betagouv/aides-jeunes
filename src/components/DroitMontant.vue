@@ -13,9 +13,7 @@
     </span>
     <a class="droit-montant-unexpected"
       v-on:click="openModal"
-      analytics-on="click"
-      v-bind:analytics-name="droit.label"
-      analytics-event="show-unexpected"
+      v-analytics="{ name:droit.label, action:'show-unexpected', category:'General'}"
       v-if="showUnexpected">
       Montant inattendu ?
     </a>

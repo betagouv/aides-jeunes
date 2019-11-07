@@ -64,9 +64,7 @@
           rel="noopener"
           class="btn btn-sm btn-secondary"
           href="http://www.msa.fr/lfr/web/msa/espace-prive"
-          analytics-on="click"
-          v-bind:analytics-name="droit.label"
-          analytics-event="msa"
+          v-analytics="{ name:droit.label, action:'msa', category:'General'}"
         >
           Démarches pour les professions agricoles
         </a>

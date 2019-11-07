@@ -16,7 +16,8 @@
 
     <div id="error" class="alert alert-danger" v-show="error" role="alert">
       <h2><i class="fa fa-warning" aria-hidden="true"></i> Une erreur est survenue.</h2>
-      <p><a analytics-on="click" analytics-category="Contact" analytics-event="Support"
+      <p><a
+        v-analytics="{ action:'Support', category:'Contact'}"
         v-mail="{to: 'bug@mes-aides.gouv.fr', subject:`[${situation._id}] Problème technique`, body:`Bonjour,
 
     J'ai tenté de XXX,
@@ -82,9 +83,7 @@
           <h4>Nous améliorons ce simulateur en continu, et
             <a
               href
-              analytics-on="click"
-              analytics-category="Contact"
-              analytics-event="Go"
+              v-analytics="{ action:'Go', category:'Contact'}"
               v-on:click.prevent="goToFeedback($event)">
               vous pouvez nous y aider</a>&nbsp;!</h4>
         </div>
@@ -105,9 +104,11 @@
           <h2>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider !</h2>
           <p>La plupart des résultats que nous vous proposons sont automatiquement arrondis à une dizaine d'euros près.</p>
           <ul>
-            <li><a analytics-on="click" analytics-category="Contact" analytics-event="Support"
+            <li><a
+              v-analytics="{ name: 'Suggestion', action:'Support', category:'General'}"
               v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ situation._id }] Suggestion`}">Vous avez une suggestion d'amélioration</a>.</li>
-            <li><a analytics-on="click" analytics-category="Contact" analytics-event="Support"
+            <li><a
+              v-analytics="{ name: 'Écart simulation', action:'Support', category:'General'}"
               v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ situation._id }] Montants inattendus`, body:`Bonjour,
 
     En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
@@ -125,7 +126,8 @@
     ————
     ID : ${ situation._id } (à conserver impérativement pour traitement de votre demande)
     ————`}">Ces résultats ne correspondent pas à ceux d'un autre simulateur</a>.</li>
-            <li><a analytics-on="click" analytics-category="Contact" analytics-event="Support"
+            <li><a
+              v-analytics="{ name: 'Écart instruction', action:'Support', category:'General'}"
               v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${situation._id}] Montants inattendus`, body:`Bonjour,
 
     En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
@@ -147,22 +149,19 @@
     ————`}">Ces résultats ne correspondent pas à ce que l'administration vous a attribué</a>.</li>
           </ul>
           <small v-if="situation._id">Cette simulation a pour identifiant <span class="preformatted">{{ situation._id }}</span> (en savoir plus sur <router-link to="/cgu#donnees">le traitement de vos données personnelles</router-link>).</small><br>
-          <small>
+          <!-- TODO2 <small>
             Partenaires :
             <a
               ui-sref="foyer.resultat.suggestion"
-              analytics-on="click"
-              analytics-category="Test"
-              analytics-event="New"
+              v-analytics="{ action:'New', category:'Test'}"
               >créez un test</a>
             ou bien
             <a
               target="_blank"
               v-bind:href="openfiscaTracerURL"
-              analytics-on="click"
-              analytics-category="Tracer"
+              v-analytics="{ category:'Tracer'}"
               >accédez à l'outil d'analyse des résultats de cette simulation</a>.
-          </small>
+          </small> -->
         </div>
 
         <!-- TODO2 <div v-show="isNotEmpty(droitsInjectes)">

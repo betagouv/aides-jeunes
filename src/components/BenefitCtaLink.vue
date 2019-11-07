@@ -7,10 +7,7 @@
       'button secondary': level === 'default',
       'button primary': level === 'success' }"
     v-on:click="onClick(link)"
-    analytics-on="click"
-    v-bind:analytics-name="analyticsName"
-    v-bind:analytics-event="type"
-    analytics-category="General"
+    v-analytics="{ name:analyticsName, action:type, category:'General'}"
     v-bind:aria-label="longLabel"
     v-html="label">
   </a>

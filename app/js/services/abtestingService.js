@@ -35,9 +35,9 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         // $localStorage.ABTesting.datepicker.value = $localStorage.ABTesting.datepicker.value || (Math.random() > 0.5 ? 'Current' : 'New');
         // $localStorage.ABTesting.datepicker.deleted = true;
 
-        $localStorage.ABTesting.resourceHelp = $localStorage.ABTesting.resourceHelp || { index: 3 };
-        $localStorage.ABTesting.resourceHelp.value = $localStorage.ABTesting.resourceHelp.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
-        $localStorage.ABTesting.resourceHelp.deleted = true;
+        // $localStorage.ABTesting.resourceHelp = $localStorage.ABTesting.resourceHelp || { index: 3 };
+        // $localStorage.ABTesting.resourceHelp.value = $localStorage.ABTesting.resourceHelp.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
+        // $localStorage.ABTesting.resourceHelp.deleted = true;
 
         $localStorage.ABTesting.noSpecificSituationCheckbox = $localStorage.ABTesting.noSpecificSituationCheckbox || { index: 4 };
         $localStorage.ABTesting.noSpecificSituationCheckbox.value = $localStorage.ABTesting.noSpecificSituationCheckbox.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
@@ -60,6 +60,9 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         $localStorage.ABTesting.resourceSearch.value = $localStorage.ABTesting.resourceSearch.value || (Math.random() > 0.5 ? 'Show' : 'Hide');
 
         $localStorage.ABTesting.version = $localStorage.ABTesting.version || { index: 2, value: 'AngularJS' };
+
+        $localStorage.ABTesting.newVersionLink = $localStorage.ABTesting.newVersionLink || { index: 3 };
+        $localStorage.ABTesting.newVersionLink.value = $localStorage.ABTesting.newVersionLink.value || (Math.random() > 0.95 ? 'Show' : 'Hide');
 
         _.forEach($localStorage.ABTesting, function(data, name) {
             if (data.deleted) {

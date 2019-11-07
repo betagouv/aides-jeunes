@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $sessionStorage, droitsDescription, $timeout, phishingExpressions) {
+angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $sessionStorage, droitsDescription, $timeout, ABTestingService, phishingExpressions) {
     [ 'prestationsNationales', 'partenairesLocaux' ].forEach(function(type) {
         var providersWithoutPrivatePrestations = _.mapValues(droitsDescription[type], function(provider) {
             provider = _.assign({}, provider);
@@ -33,4 +33,7 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $se
             $state.go('hameconnage');
         }
     }
+
+    var abtesting = ABTestingService.getEnvironment();
+    $scope.showNewVersionAlert = abtesting && abtesting.newVersionLink && abtesting.newVersionLink.value === 'Show';
 });

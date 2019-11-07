@@ -22,6 +22,18 @@ header, footer {
     background-color: whitesmoke;
 }
 
+.container.alert {
+  margin-top: 15px;
+
+  .alert {
+    font-weight: 500;
+  }
+  a {
+    text-decoration: underline;
+  }
+
+}
+
 .axis path,
 .axis line {
   fill: none;

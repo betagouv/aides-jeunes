@@ -89,6 +89,18 @@ export default {
   flex-direction: row;
 }
 
+@media (max-width: 600px) {
+  .navbar__home span {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 450px) {
+  .navbar__home {
+    height: 20px;
+  }
+}
+
 #logo {
   opacity: .5;
 }

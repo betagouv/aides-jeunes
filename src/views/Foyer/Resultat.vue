@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>
-      Résultats de votre simulation<span id="result-datetime"> du {{ situation.dateDeValeur }}</span>
+      Résultats de votre simulation
     </h1>
 
     <p v-show="$asyncComputed.resultats.updating"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
@@ -18,7 +18,7 @@
       <h2><i class="fa fa-warning" aria-hidden="true"></i> Une erreur est survenue.</h2>
       <p><a
         v-analytics="{ action:'Support', category:'Contact'}"
-        v-mail="{to: 'bug@mes-aides.gouv.fr', subject:`[${situation._id}] Problème technique`, body:`Bonjour,
+        v-mail="{to: 'bug@mes-aides.gouv.fr', subject:`[${resultats._id}] Problème technique`, body:`Bonjour,
 
     J'ai tenté de XXX,
     Et en cliquant sur XXX,
@@ -27,7 +27,7 @@
     Je vous joins également une capture d'écran pour faciliter la compréhension du problème.
 
     ————
-    ID : ${ situation._id }
+    ID : ${ resultats._id }
     User-agent : ${ encodedUserAgent }
     Erreur : ${ encodedError }
     ————`}">Signalez ce problème</a> en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et en joignant si possible une capture d'écran. Nous vous répondrons au plus vite et corrigerons le problème dès que possible.</p>
@@ -106,10 +106,10 @@
           <ul>
             <li><a
               v-analytics="{ name: 'Suggestion', action:'Support', category:'General'}"
-              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ situation._id }] Suggestion`}">Vous avez une suggestion d'amélioration</a>.</li>
+              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ resultats._id }] Suggestion`}">Vous avez une suggestion d'amélioration</a>.</li>
             <li><a
               v-analytics="{ name: 'Écart simulation', action:'Support', category:'General'}"
-              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ situation._id }] Montants inattendus`, body:`Bonjour,
+              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ resultats._id }] Montants inattendus`, body:`Bonjour,
 
     En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
 
@@ -124,11 +124,11 @@
     Bonne journée,
 
     ————
-    ID : ${ situation._id } (à conserver impérativement pour traitement de votre demande)
+    ID : ${ resultats._id } (à conserver impérativement pour traitement de votre demande)
     ————`}">Ces résultats ne correspondent pas à ceux d'un autre simulateur</a>.</li>
             <li><a
               v-analytics="{ name: 'Écart instruction', action:'Support', category:'General'}"
-              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${situation._id}] Montants inattendus`, body:`Bonjour,
+              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${resultats._id}] Montants inattendus`, body:`Bonjour,
 
     En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
 
@@ -145,10 +145,10 @@
     Bonne journée,
 
     ————
-    ID : ${situation._id} (à conserver impérativement pour traitement de votre demande)
+    ID : ${resultats._id} (à conserver impérativement pour traitement de votre demande)
     ————`}">Ces résultats ne correspondent pas à ce que l'administration vous a attribué</a>.</li>
           </ul>
-          <small v-if="situation._id">Cette simulation a pour identifiant <span class="preformatted">{{ situation._id }}</span> (en savoir plus sur <router-link to="/cgu#donnees">le traitement de vos données personnelles</router-link>).</small><br>
+          <small v-if="resultats._id">Cette simulation a pour identifiant <span class="preformatted">{{ resultats._id }}</span> (en savoir plus sur <router-link to="/cgu#donnees">le traitement de vos données personnelles</router-link>).</small><br>
           <!-- TODO2 <small>
             Partenaires :
             <a
@@ -221,7 +221,12 @@ export default {
           return results
         })
       },
-      default: {}
+      default: {
+        _id: undefined,
+        droitsEligibles: [],
+        droitsNonEligibles: [],
+        droitsInjectes: [],
+      }
     },
   },
   computed: {

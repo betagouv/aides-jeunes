@@ -20,6 +20,7 @@ export default {
 <style scoped lang="scss">
 
 .foyer {
+  flex-grow: 1;
   background-color: whitesmoke;
   padding: 1em 0em;
 }

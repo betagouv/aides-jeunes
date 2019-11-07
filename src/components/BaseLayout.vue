@@ -5,6 +5,32 @@
         <div class="navbar__home">
           <img class="navbar__logo" src="./../../public/img/marianne.svg"
             alt="Logo de la Marianne" />
+            <Modal>
+              <template v-slot:message>Je suis bloqué…</template>
+              <h2>Vous êtes bloqué</h2>
+              <h3>Veuillez nous excuser…</h3>
+              <p>
+                Cette version de Mes Aides est en cours de finalisation et peut encore contenir des dysfonctionnements, des erreurs ou des bugs. Si vous êtes bloqué, vous pouvez toujours revenir à
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  v-analytics="{ action: 'Retour à la version stable', category:'General'}"
+                  href="https://mes-aides.gouv.fr">
+                  la version stable</a>.
+              </p>
+              <p>
+                Vous pouvez aussi nous contacter <a v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'', body:`Bonjour,
+
+    En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
+
+    - XXX € / mois p`}">par email</a> pour nous dire comment et où vous êtes bloqué pour nous aider à améliorer cette version&nbsp;!
+              </p>
+
+              <p>
+                Merci,<br/>
+                L'équipe Mes Aides
+              </p>
+            </Modal>
         </div>
 
         <nav>
@@ -38,6 +64,17 @@
     </footer>
   </div>
 </template>
+
+<script>
+import Modal from '@/components/Modal'
+
+export default {
+  name: 'BaseLayout',
+  components: {
+    Modal
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .navbar__container {

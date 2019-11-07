@@ -1,11 +1,19 @@
 <template>
   <span>
-    <a v-on:click="show"><slot name="message"></slot></a>
-    <div v-if="displayed" class="modal__backdrop" v-on:click.self.prevent="hide">
+    <a
+      v-on:click="show"
+      v-analytics="{ action: 'Affiché', category:analyticsCategory}"
+    ><slot name="message"></slot></a>
+    <div v-if="displayed" class="modal__backdrop"
+      v-on:click.self.prevent="hide">
       <div class="modal">
         <slot></slot>
         <div class="form__group button__group">
-          <a class="button" v-on:click="hide">Valider</a>
+          <a class="button"
+            v-analytics="{ action: 'Fermé bouton', category:analyticsCategory}"
+            v-on:click="hide">
+            Fermer
+          </a>
         </div>
       </div>
     </div>
@@ -16,6 +24,9 @@
 
 export default {
   name: 'Modal',
+  props: {
+    analyticsCategory: String,
+  },
   data: function() {
     return {
       displayed: false
@@ -31,12 +42,17 @@ export default {
   },
   created: function() {
     let that = this
-    document.addEventListener('keyup', function (evt) {
+    this.escapeHandler = function (evt) {
       if (evt.keyCode === 27) { // esc
+        that.$matomo.trackEvent(that.analyticsCategory, 'Fermé ESC')
         that.hide()
       }
-    })
+    }
+    document.addEventListener('keyup', this.escapeHandler)
   },
+  beforeDestroy: function() {
+    document.removeEventListener('keyup', this.escapeHandler)
+  }
 }
 </script>
 <style scoped lang="scss">

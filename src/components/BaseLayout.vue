@@ -5,21 +5,23 @@
         <div class="navbar__home">
           <img class="navbar__logo" src="./../../public/img/marianne.svg"
             alt="Logo de la Marianne" />
-            <Modal>
+            <Modal analyticsCategory="Blocage">
               <template v-slot:message>Je suis bloqué·e…</template>
-              <h2>Vous êtes bloqué·e</h2>
-              <h3>Veuillez nous excuser…</h3>
+              <h1>Vous êtes bloqué·e</h1>
+              <h2>Veuillez nous excuser…</h2>
               <p>
                 Cette version de Mes Aides est en cours de finalisation et peut encore contenir des dysfonctionnements, des erreurs ou des bugs. Si vous êtes bloqué·e, vous pouvez toujours revenir à
                 <a
                   target="_blank"
                   rel="noopener"
-                  v-analytics="{ action: 'Retour à la version stable', category:'General'}"
+                  v-analytics="{ action: 'Retour à la version stable', category:'Blocage'}"
                   href="https://mes-aides.gouv.fr">
                   la version stable</a>.
               </p>
               <p>
-                Vous pouvez aussi nous contacter <a v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'Bloquage sur la nouvelle version', body:`Bonjour,
+                Vous pouvez aussi nous contacter <a
+                v-analytics="{ action: 'Envoi d\'email', category:'Blocage'}"
+                v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'Bloquage sur la nouvelle version', body:`Bonjour,
 
 En utilisant la nouvelle version de Mes Aides j'ai rencontré un bloquage.
 

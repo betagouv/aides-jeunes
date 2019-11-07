@@ -210,8 +210,16 @@ export default {
   asyncComputed: {
     resultats: {
       get: function() {
+        const vm = this
         return this.$SituationService.save()
         .then(() => this.$SituationService.fetchResults(false))
+        .then(results => {
+          results.droitsEligibles.forEach(function(d) {
+            vm.$matomo.trackEvent('General', 'show', d.label)
+          })
+
+          return results
+        })
       },
       default: {}
     },

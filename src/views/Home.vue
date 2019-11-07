@@ -94,6 +94,10 @@ export default {
   background-color: #fffa;
 }
 
+.hero__container {
+  min-height: 75vh;
+}
+
 hr {
   border-top: 1px solid #ddd;
 }

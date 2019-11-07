@@ -105,8 +105,8 @@ $fa-font-path: '~font-awesome/fonts';
     h2 {
       margin: 0;
 
-      @media (max-width: 300/*$screen-xs-max*/) {
-        font-size: 0.6;
+      @media (max-width: $screen-xs-max) {
+        font-size: ($font-size-h2 * 0.6);
       }
 
       small {

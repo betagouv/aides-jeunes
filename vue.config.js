@@ -1,4 +1,6 @@
 const configureAPI = require('./configure')
+const mock = require('./mock')
+const before = process.env.NODE_ENV === 'front_only' ? mock : configureAPI
 
 module.exports = {
   chainWebpack(config) {
@@ -15,6 +17,6 @@ module.exports = {
       }));
   },
   devServer: {
-    before: configureAPI
+    before: before
   }
 }

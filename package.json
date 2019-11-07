@@ -94,7 +94,9 @@
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
     "openfisca": "cd openfisca && gunicorn api --config config.py",
     "stats": "node backend/lib/stats",
-    "eslint": "eslint ."
+    "eslint": "eslint .",
+    "fast-install": "PUPPETEER_SKIP_DOWNLOAD=1 npm ci",
+    "front": "NODE_ENV=front_only npm run serve"
   },
   "eslintConfig": {
     "root": true,

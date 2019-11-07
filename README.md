@@ -3,8 +3,20 @@
 L'interface utilisateur (et le serveur principal) de [mes-aides](https://mes-aides.gouv.fr), un estimateur des prestations sociales françaises pour les particuliers. Il est basé sur simulateur socio-fiscal libre [Openfisca](https://www.openfisca.fr/).
 
 
-Installing
-==========
+# Front only install
+
+If you want to play with the UI, you can be set up very quickly:
+
+```bash
+npm run fast-install
+npm run front
+```
+
+Cf. `package.json` for more on the underlying commands.
+
+The application should be accessible at `localhost:8080`.
+
+# Full install
 
 System dependencies
 -------------------

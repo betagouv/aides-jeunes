@@ -6,11 +6,11 @@
           <img class="navbar__logo" src="./../../public/img/marianne.svg"
             alt="Logo de la Marianne" />
             <Modal>
-              <template v-slot:message>Je suis bloqué…</template>
-              <h2>Vous êtes bloqué</h2>
+              <template v-slot:message>Je suis bloqué·e…</template>
+              <h2>Vous êtes bloqué·e</h2>
               <h3>Veuillez nous excuser…</h3>
               <p>
-                Cette version de Mes Aides est en cours de finalisation et peut encore contenir des dysfonctionnements, des erreurs ou des bugs. Si vous êtes bloqué, vous pouvez toujours revenir à
+                Cette version de Mes Aides est en cours de finalisation et peut encore contenir des dysfonctionnements, des erreurs ou des bugs. Si vous êtes bloqué·e, vous pouvez toujours revenir à
                 <a
                   target="_blank"
                   rel="noopener"
@@ -19,11 +19,14 @@
                   la version stable</a>.
               </p>
               <p>
-                Vous pouvez aussi nous contacter <a v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'', body:`Bonjour,
+                Vous pouvez aussi nous contacter <a v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'Bloquage sur la nouvelle version', body:`Bonjour,
 
-    En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
+En utilisant la nouvelle version de Mes Aides j'ai rencontré un bloquage.
 
-    - XXX € / mois p`}">par email</a> pour nous dire comment et où vous êtes bloqué pour nous aider à améliorer cette version&nbsp;!
+
+————
+Page : ${$route.fullPath}
+————`}">par email</a> pour nous dire comment et où vous êtes bloqué·e pour nous aider à améliorer cette version&nbsp;!
               </p>
 
               <p>

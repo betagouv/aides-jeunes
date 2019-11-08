@@ -35,5 +35,5 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $se
     }
 
     var abtesting = ABTestingService.getEnvironment();
-    $scope.showNewVersionAlert = abtesting && abtesting.newVersionLink && abtesting.newVersionLink.value === 'Show';
+    $scope.newVersionLink = abtesting && abtesting.newVersionLink;
 });

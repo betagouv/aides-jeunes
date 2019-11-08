@@ -1,13 +1,13 @@
 <main>
-  <div class="container alert" ng-show="showNewVersionAlert">
+  <div class="container alert" ng-show="newVersionLink.value === 'Show'">
     <div class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="showNewVersionAlert = false"
-        analytics-on="click" analytics-category="Lien vers la nouvelle version" analytics-event="Ferme">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="newVersionLink.value = 'Hide'"
+        analytics-on="click" analytics-category="Alerte vers la nouvelle version" analytics-event="Ferme">
         <span aria-hidden="true">&times;</span></button>
       <strong>Bonjour&nbsp;👋</strong> Une nouvelle version de Mes Aides est en cours de préparation&nbsp;! Vous <a
         href="https://next.mes-aides.gouv.fr/"
         analytics-on="click"
-        analytics-category="Lien vers la nouvelle version"
+        analytics-category="Alterte vers la nouvelle version"
         analytics-event="Accède"
         target="_blank"
         aria-label="Accéder à la prochaine version de Mes Aides" 

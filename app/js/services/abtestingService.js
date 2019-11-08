@@ -62,7 +62,7 @@ angular.module('ddsCommon').factory('ABTestingService', function($localStorage, 
         $localStorage.ABTesting.version = $localStorage.ABTesting.version || { index: 2, value: 'AngularJS' };
 
         $localStorage.ABTesting.newVersionLink = $localStorage.ABTesting.newVersionLink || { index: 3 };
-        $localStorage.ABTesting.newVersionLink.value = $localStorage.ABTesting.newVersionLink.value || (Math.random() > 0.95 ? 'Show' : 'Hide');
+        $localStorage.ABTesting.newVersionLink.value = $localStorage.ABTesting.newVersionLink.value || (Math.random() > 0.99 ? 'Show' : 'Hide');
 
         _.forEach($localStorage.ABTesting, function(data, name) {
             if (data.deleted) {

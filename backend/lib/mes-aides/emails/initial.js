@@ -3,9 +3,10 @@ var path = require('path');
 var _ = require('lodash');
 var mustache = require('consolidate').mustache;
 var config = require('../../../config');
-var toBase64 = require('.').toBase64;
 
 var index = require('.');
+
+var toBase64 = index.toBase64;
 var defaultAttachments = index.defaultAttachments;
 var mjml = index.mjml;
 
@@ -65,7 +66,7 @@ function renderAsHtml(followup, benefits) {
 
         if (!_.find(attachments, attachment => attachment.ContentID === droit.providerId)) {
             var imagePath =
-                path.join(__dirname, '../../../../app/img', droit.provider.imgSrc);
+                path.join(index.imageRoot, droit.provider.imgSrc);
 
             attachments.push({
                 ContentType: 'image/png',

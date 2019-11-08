@@ -51,6 +51,8 @@
         <DroitsEligiblesList v-bind:droits="droits"></DroitsEligiblesList>
       </div>
 
+      <OfflineResults v-if="! isEmpty(droits)" v-bind:id="resultats._id" />
+
       <div class="notification warning print-hidden" v-if="! ressourcesYearMinusTwoCaptured">
         <span>
           <h2 v-if="!droits.length">Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
@@ -75,8 +77,6 @@
           <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
           <p>Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
       </div>
-
-<!-- TODO <offline-result situation="situation" v-show="droits | isNotEmpty"></offline-result> -->
 
       <div class="print-hidden">
         <div>
@@ -187,6 +187,7 @@ import _ from 'lodash'
 import Situation from '@/lib/Situation'
 import DroitsEligiblesList from './../../components/DroitsEligiblesList'
 import DroitsDetails from './../../components/DroitsDetails'
+import OfflineResults from './../../components/OfflineResults'
 
 export default {
   name: 'resultat',
@@ -206,6 +207,7 @@ export default {
   components: {
     DroitsDetails,
     DroitsEligiblesList,
+    OfflineResults
   },
   asyncComputed: {
     resultats: {

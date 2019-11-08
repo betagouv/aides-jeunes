@@ -1,9 +1,9 @@
 <template>
   <span>
-    <a
+    <component v-bind:is="tag || 'a'"
       v-on:click="show"
       v-analytics="{ action: 'Affiché', category:analyticsCategory}"
-    ><slot name="message"></slot></a>
+    ><slot name="message"></slot></component>
     <div v-if="displayed" class="modal__backdrop"
       v-on:click.self.prevent="hide">
       <div class="modal">
@@ -26,6 +26,7 @@ export default {
   name: 'Modal',
   props: {
     analyticsCategory: String,
+    tag: String,
   },
   data: function() {
     return {
@@ -58,5 +59,8 @@ export default {
 <style scoped lang="scss">
 .modal__backdrop {
   display: flex;
+  align-items: flex-start;
+  padding: 4em;
 }
+
 </style>

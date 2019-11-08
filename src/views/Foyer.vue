@@ -22,7 +22,7 @@ export default {
 .foyer {
   flex-grow: 1;
   background-color: whitesmoke;
-  padding: 1em 0em;
+  padding: 1em;
 }
 
 pre {

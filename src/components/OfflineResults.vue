@@ -1,12 +1,12 @@
 <template>
-  <div class="panel">
+  <div class="panel" v-if="!submitResult.ok">
     <span>
       Vous pouvez enregistrer les résultats de votre simulation pour les consulter plus tard.
     </span>
 
     <Modal tag="span" analyticsCategory="Email">
       <template v-slot:message>
-        <button type="button" class="button primary text-center">
+        <button type="button" class="button primary text-center" v-on:click="reset">
           <i class="fa fa-envelope-o" aria-hidden="true"></i>
           Recevoir par email
         </button>
@@ -66,6 +66,13 @@ export default {
     }
   },
   methods: {
+    reset: function() {
+      this.submitResult = {
+        ok: undefined,
+        waiting: undefined,
+        error: undefined,
+      }
+    },
     getRecap: function(surveyOptin) {
       this.$v.$touch()
       if (this.$v.$invalid) {

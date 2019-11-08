@@ -11,7 +11,14 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      beforeEnter: (to, from, next) => {
+        var referrer = document.referrer
+        if (referrer.match(/ameli\.fr/) || referrer.match(/mes-aides\.gouv\.fr\/ameli/)) {
+          return next('ameli')
+        }
+        next()
+      }
     },
     {
       path: '/foyer',
@@ -72,6 +79,11 @@ const router = new Router({
       path: '/ameliorer',
       name: 'ameliorer',
       component: () => import(/* webpackChunkName: "ameliorer" */ './views/Ameliorer.vue')
+    },
+    {
+      path: '/ameli',
+      name: 'ameli',
+      component: () => import(/* webpackChunkName: "ameli" */ './views/Ameli.vue')
     },
     {
       path: '/communication',

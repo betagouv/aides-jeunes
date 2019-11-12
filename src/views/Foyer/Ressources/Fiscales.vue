@@ -11,7 +11,7 @@
         Déclarer des ressources pour {{ individu.label }}
       </button>
       <div v-if="individu.display">
-        <h2>{{ individu.label }}</h2>
+        <h2>{{ individu.label | capitalize }}</h2>
         <label class="form__group" v-for="ressource in categoriesRnc" v-bind:key="ressource.id">
           {{ ressource.label }}
           <input type="number" v-model.number="individu.source[ressource.id][dates.fiscalYear.id]" />

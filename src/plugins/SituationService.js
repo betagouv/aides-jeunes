@@ -80,9 +80,13 @@ const SituationService = {
             return 'TODO4'//jsyaml.dump(_.omit(situation, ['__v', 'modifiedFrom', 'status', 'token', 'version']));
         },
 
-        fetchRepresentation: function(/*situationId, representation*/) {
-            return /*$http.get('api/situations/' + situationId + '/' + representation)
-                .then(function(response) { return response.data; });*/
+        fetchRepresentation: function(representation) {
+            if (!Vue.situation._id) {
+                return Promise.resolve(undefined)
+            }
+
+            return axios.get('api/situations/' + Vue.situation._id + '/' + representation)
+                .then((response) => response.data)
         },
 
         fetchResults: function(showPrivate) {

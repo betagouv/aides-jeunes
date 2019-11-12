@@ -149,19 +149,20 @@
     ————`}">Ces résultats ne correspondent pas à ce que l'administration vous a attribué</a>.</li>
           </ul>
           <small v-if="resultats._id">Cette simulation a pour identifiant <span class="preformatted">{{ resultats._id }}</span> (en savoir plus sur <router-link to="/cgu#donnees">le traitement de vos données personnelles</router-link>).</small><br>
-          <!-- TODO2 <small>
+          <small
+              v-if="openfiscaTracerURL">
             Partenaires :
-            <a
+            <!-- <a
               ui-sref="foyer.resultat.suggestion"
               v-analytics="{ action:'New', category:'Test'}"
               >créez un test</a>
-            ou bien
+            ou bien -->
             <a
               target="_blank"
               v-bind:href="openfiscaTracerURL"
-              v-analytics="{ category:'Tracer'}"
+              v-analytics="{ category:'Tracer' }"
               >accédez à l'outil d'analyse des résultats de cette simulation</a>.
-          </small> -->
+          </small>
         </div>
 
         <!-- TODO2 <div v-show="isNotEmpty(droitsInjectes)">
@@ -192,14 +193,11 @@ import OfflineResults from './../../components/OfflineResults'
 export default {
   name: 'resultat',
   data: function() {
-    let situation = this.$SituationService.restoreLocal()
     return {
       droitsNonEligiblesShow: true,
       encodedError: 'encodedError',
       encodedUserAgent: 'encodedUserAgent',
       error: false,
-      openfiscaTracerURL: 'TODO1 openfiscaTracerURL',
-      situation: situation,
       warning: false,
       warningMessage: 'Attention',
     }
@@ -210,11 +208,20 @@ export default {
     OfflineResults
   },
   asyncComputed: {
+    situation: {
+      lazy: true,
+      get: function() {
+        return this.$SituationService.save()
+      },
+      default: function() {
+        return this.$SituationService.restoreLocal()
+      }
+    },
     resultats: {
+      lazy: true,
       get: function() {
         const vm = this
-        return this.$SituationService.save()
-        .then(() => this.$SituationService.fetchResults(false))
+        return this.$SituationService.fetchResults(false)
         .then(results => {
           results.droitsEligibles.forEach(function(d) {
             vm.$matomo.trackEvent('General', 'show', d.label)
@@ -230,6 +237,23 @@ export default {
         droitsInjectes: [],
       }
     },
+    openfiscaTracerURL: {
+      get: function() {
+        const vm = this;
+        if (! vm.resultats._id) {
+          return undefined
+        }
+
+        return this.$SituationService
+          .fetchRepresentation('openfisca_tracer')
+          .then(function(data) {
+              return data.destination.url
+          }).catch(function() {
+            vm.$matomo.trackEvent('General', 'error-fetch-representation')
+          })
+      },
+      default: undefined
+    }
   },
   computed: {
     droits: function() { return this.resultats.droitsEligibles || [] },

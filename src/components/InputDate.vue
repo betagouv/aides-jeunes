@@ -32,6 +32,7 @@
 
 <script>
 import moment from 'moment'
+import _ from 'lodash'
 
 function stateManager(current, next) {
   if ((current.element === 'day' && current.length === 0 && next.element === 'day' && next.length === 1) ||
@@ -64,7 +65,7 @@ export default {
       return Boolean(this.currentState)
     },
     date: function() {
-      return `${this.year}-${this.month && this.month.padStart(2, '0')}-${this.day && this.day.padStart(2, '0')}`
+      return `${this.year}-${this.month && _.padStart(this.month, 2, '0')}-${this.day && _.padStart(this.day, 2, '0')}`
     }
   },
   methods: {

@@ -50,8 +50,13 @@
       <small>Ces données nous permettent par exemple de déterminer les options les plus pertinentes à vous proposer en fonction des usages les plus fréquents.</small>
     </p>
     <p>
-      Vous avez un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, <a
-      v-mail="{to: 'cil@mes-aides.gouv.fr', subject: 'Mes données', body: emailBody}">envoyez-nous un courriel</a> en précisant la date et l'heure précise de simulation. Si vous l'avez, merci d'indiquer l'identifiant de la simulation ; sinon, merci de nous fournir le plus possible d'éléments renseignés au cours de votre visite.
+      Vous avez un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, envoyez-nous un courriel à l'adresse <a
+      v-mail="{to: 'cil@mes-aides.gouv.fr', subject: 'Mes données', body: emailBody}">cil@mes-aides.gouv.fr</a> en précisant
+      <ul>
+        <li>la date et l'heure précise de simulation,</li>
+        <li v-if="situation._id">l'identifiant de la simulation : <strong>{{ situation._id }}</strong>,</li>
+        <li>le plus possible d'éléments renseignés au cours de votre visite : date de naissance, etc. </li>
+      </ul>
       <small>Comme nous n'enregistrons pas d'éléments nominatifs, seuls ces éléments peuvent nous permettre de retrouver votre simulation.</small>
     </p>
     <p>
@@ -136,32 +141,40 @@
 </template>
 
 <script>
+
 export default {
   name: 'cgu',
-  data: () => {
+  data: function() {
+    let situation = this.$SituationService.restoreLocal()
     return {
-      situation: { // TODO1
-        _id: 'TEST'
-      },
+      situation
     }
   },
   computed: {
     emailBody: function() {
-      return `Bonjour,
+      let p1 = `Bonjour,
 
 J'ai effectué une simulation sur Mes Aides le **JJ/MM/AAAA à HH:MM:SS**.
 
-La dernière simulation que j'ai effectuée porte l'identifiant ${this.situation._id}.
+`
 
-Voici quelques éléments que j'ai renseigné sur celle-ci pour vous aider à l'identifier.
+      let p2 = ''
+      if(this.situation._id) {
+        p2 = `La dernière simulation que j'ai effectuée porte l'identifiant **${this.situation._id}**.
+
+`
+      }
+
+      let p3 = `Voici quelques éléments que j'ai renseigné sur celle-ci pour vous aider à l'identifier.
 - Date de naissance : **JJ/MM/AAAA**.
 - Nombre d'enfants : …
 - …
 
 Je souhaite **supprimer** cette simulation de votre base de données.
 
-Merci d'avance.
-`
+Merci d'avance.`
+
+      return p1 + p2 + p3
     }
   },
 }

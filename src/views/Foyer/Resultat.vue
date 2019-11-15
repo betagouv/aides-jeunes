@@ -221,7 +221,7 @@ export default {
       lazy: true,
       get: function() {
         const vm = this
-        return this.$SituationService.fetchResults(false)
+        return this.situation._id && this.$SituationService.fetchResults(false)
         .then(results => {
           results.droitsEligibles.forEach(function(d) {
             vm.$matomo.trackEvent('General', 'show', d.label)

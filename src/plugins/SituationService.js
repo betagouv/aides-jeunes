@@ -90,6 +90,10 @@ const SituationService = {
         },
 
         fetchResults: function(showPrivate) {
+            if (!Vue.situation._id) {
+                return Promise.resolve(undefined)
+            }
+
             return axios.get('api/situations/' + Vue.situation._id + '/openfisca-response')
                 .then(function(OpenfiscaResponse) {
                     return OpenfiscaResponse.data;

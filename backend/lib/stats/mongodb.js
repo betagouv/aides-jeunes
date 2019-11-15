@@ -27,15 +27,9 @@ function extractSimulationDailyCount(db, fromDate, toDate) {
                 $exists: false,
             },
         },
-    });
-}
-
-function manageMissingDBOrCollection(error) {
-    if ((error.message == 'ns doesn\'t exist') || error.message.match('does not exist')) {
-        return { results: [] };
-    } else {
-        throw error;
-    }
+    })
+        .then(r => r.results || r)
+        .then(formatMongo);
 }
 
 function formatMongo(data) {
@@ -50,16 +44,120 @@ function formatMongo(data) {
     }];
 }
 
-exports.getDailySituationCount = function(fromDate, toDate) {
+function extractSurveySummary(db) {
+    var m = {
+        asked: 1,
+        failed: 2,
+        nothing: 3,
+        already: 4,
+    };
+    return db.collection('followups').mapReduce(function() {
+        var m = {
+            asked: 1,
+            failed: 2,
+            nothing: 3,
+            already: 4,
+        };
+        if(this.surveys[0].answers.length) {
+            this.surveys[0].answers.sort(function(a,b) { return m[a.value] > m[b.value]; });
+            emit(this.surveys[0].answers[0].value,1);
+        }
+    }, function(k,v) {
+        return Array.sum(v);
+    },
+    {
+        query:{
+            'surveys.type': 'initial',
+            'surveys.repliedAt': {$exists: true},
+        },
+        out: {inline: 1}
+    })
+        .then(r => r.results || r)
+        .then(summary => {
+            summary.sort(function(a,b) { return m[a._id] > m[b._id]; });
+            return summary.map(row => { return { category: row._id, value: row.value }; });
+        });
+}
+
+function extractSurveyDetails(db) {
+    return db.collection('followups').mapReduce(function() {
+        var obj = {};
+        this.benefits.forEach(function(b) {
+            obj[b.id] = b.amount;
+        });
+        this.surveys[0].answers.forEach(function(a) {
+            emit(a.id + ";" + a.value, 1);
+        });
+    }, function(k,v) {
+        return Array.sum(v);
+    },
+    { query:{
+        'surveys.type': 'initial',
+        'surveys.repliedAt': {$exists: true},
+    },
+    out: {inline: 1}})
+        .then(r => r.results || r)
+        .then(results => {
+            var groupMap = results.reduce(function(total, p) {
+                var fields = p._id.split(';');
+                var id = fields[0];
+                var state = fields[1];
+                total[id] = total[id] || { total: 0};
+                total[id][state] = p.value;
+                total[id].total += p.value;
+                return total;
+            }, {});
+
+            var groups = Object.keys(groupMap).map(g => {
+                return Object.assign({ id: g}, groupMap[g]);
+            });
+
+            groups.sort(function(a, b) { return a.total < b.total ? 1 : -1; });
+
+            return groups;
+        });
+}
+
+function manageMissingDBOrCollection(error) {
+    console.log(error);
+    if ((error.message == 'ns doesn\'t exist') || error.message.match('does not exist')) {
+        return {
+            dailySituationCount: [],
+            survey: {
+                summary: [],
+                details: []
+            }
+        };
+    } else {
+        throw error;
+    }
+}
+
+exports.getStats = function(fromDate, toDate) {
     return MongoClient
         .connectAsync(config.mongo.uri)
         .then(saveDb)
-        .then(function(db) { return extractSimulationDailyCount(db, fromDate, toDate); })
-        .catch(manageMissingDBOrCollection)
-    // MongoDB 2.4 (production) does not embed metadata of the operation, the result is directly available in the response
-    // MongoDB 3.4 (dev environment) returns results with metadata and are available in the results property
-        .then(function(response) { return response.results || response; })
-        .then(formatMongo);
+        .then(function(db) {
+            // MongoDB 2.4 (production) does not embed metadata of the operation, the result is directly available in the response
+            // MongoDB 3.4 (dev environment) returns results with metadata and are available in the results property
+            return extractSimulationDailyCount(db, fromDate, toDate)
+                .then(dailies => {
+                    return extractSurveySummary(db)
+                        .then(summary => {
+                            return extractSurveyDetails(db)
+                                .then(details => {
+                                    return {
+                                        dailySituationCount: formatMongo(dailies),
+                                        survey: {
+                                            summary,
+                                            details
+                                        }
+                                    };
+                                });
+                        });
+                });
+        })
+        .catch(manageMissingDBOrCollection);
 };
 
 exports.closeDb = function() {

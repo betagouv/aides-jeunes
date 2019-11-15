@@ -49,7 +49,7 @@ angular.module('ddsApp').controller('StatsCtrl', function($scope, $http) {
             if ($scope.error)
                 return;
 
-            var data = response.data;
+            var data = response.data.basic;
 
             data.forEach(function(dataset) {
                 dataset.datapoints.forEach(function(point) {

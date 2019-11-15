@@ -240,7 +240,7 @@ export default {
     openfiscaTracerURL: {
       get: function() {
         const vm = this;
-        if (! vm.resultats._id) {
+        if (! vm.resultats || ! vm.resultats._id) {
           return undefined
         }
 

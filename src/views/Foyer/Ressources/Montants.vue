@@ -76,7 +76,7 @@ export default {
 
       this.types.forEach(t => {
         t.months.forEach(m => {
-            individu[t.meta.id][m.id] = t.amounts[m.id] || t.amounts[this.dates.thisMonth.id] || 0
+            individu[t.meta.id][m.id] = parseFloat(t.amounts[m.id] || t.amounts[this.dates.thisMonth.id]) || 0
           })
         })
 

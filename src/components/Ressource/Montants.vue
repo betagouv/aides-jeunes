@@ -7,7 +7,7 @@
 
     <label class="form__group" v-if="singleValue">
       Indiquez le montant <b>mensuel net</b> :
-      <input type="number" v-model.number="amounts[dates.thisMonth.id]" v-on:input="update($event.target.value, 0, true)"/>
+      <input type="number" step="any" v-model.number="amounts[dates.thisMonth.id]" v-on:input="update($event.target.value, 0, true)"/>
     </label>
 
     <div class="form__group" v-if="singleValue === false">

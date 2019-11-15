@@ -17,7 +17,7 @@
         </fieldset>
       </div>
       <div class="text-right" v-if="!isInCouple">
-        <button class="button large" v-on:click.prevent="next">Valider</button>
+        <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
       </div>
     </form>
     <IndividuForm v-if="isInCouple" class="form__group" v-model="conjoint" v-bind:existingIndividu="existingIndividu" v-on:input="next" />

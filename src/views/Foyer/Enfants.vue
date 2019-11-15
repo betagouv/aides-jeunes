@@ -29,7 +29,7 @@
         </router-link>
       </div>
       <div class="text-right">
-        <button class="button large" v-if="showValidate" v-on:click.prevent="next">Valider</button>
+        <button type="submit" class="button large" v-if="showValidate" v-on:click.prevent="next">Valider</button>
       </div>
     </form>
     <router-view/>

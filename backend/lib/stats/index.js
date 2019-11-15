@@ -17,10 +17,15 @@ var today = dateDaysAgo(0);
 
 var relative_path = __dirname + '/../../../dist/documents/stats.json';
 Promise.all([
-    mongodb.getDailySituationCount(nineWeeksAgo,today),
+    mongodb.getStats(nineWeeksAgo,today),
     piwik.getUsageData(nineWeeksAgo, yesterday)
 ])
-    .then(function(data) { return [].concat(data[0], data[1]); })
+    .then(function(data) {
+        return {
+            basic: [].concat(data[0].dailySituationCount, data[1]),
+            survey: data[0].survey
+        };
+    })
     .then(function(data) { return fs.writeFileAsync(relative_path, JSON.stringify(data, null, 2), 'utf-8'); })
     .catch(function(error) {
         console.error('error', error);

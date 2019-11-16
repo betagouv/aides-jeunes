@@ -147,7 +147,7 @@ exports.getStats = function(fromDate, toDate) {
                             return extractSurveyDetails(db)
                                 .then(details => {
                                     return {
-                                        dailySituationCount: formatMongo(dailies),
+                                        dailySituationCount: dailies,
                                         survey: {
                                             summary,
                                             details

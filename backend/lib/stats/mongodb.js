@@ -45,12 +45,6 @@ function formatMongo(data) {
 }
 
 function extractSurveySummary(db) {
-    var m = {
-        asked: 1,
-        failed: 2,
-        nothing: 3,
-        already: 4,
-    };
     return db.collection('followups').mapReduce(function() {
         var m = {
             asked: 1,
@@ -73,10 +67,12 @@ function extractSurveySummary(db) {
         out: {inline: 1}
     })
         .then(r => r.results || r)
-        .then(summary => {
-            summary.sort(function(a,b) { return m[a._id] > m[b._id]; });
-            return summary.map(row => { return { category: row._id, value: row.value }; });
-        });
+        .then(summary => summary.reduce((set, row) => {
+            set[row._id] = row.value;
+            set.total += row.value;
+
+            return set;
+        }, { total: 0 }));
 }
 
 function extractSurveyDetails(db) {
@@ -147,7 +143,7 @@ exports.getStats = function(fromDate, toDate) {
                             return extractSurveyDetails(db)
                                 .then(details => {
                                     return {
-                                        dailySituationCount: formatMongo(dailies),
+                                        dailySituationCount: dailies,
                                         survey: {
                                             summary,
                                             details

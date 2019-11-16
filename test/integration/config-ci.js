@@ -1,7 +1,7 @@
 // this file is for use in CircleCI continuous integration environment
 module.exports = {
     bail        : true,
-    baseURL     : 'http://localhost:9000/init-ci',
+    baseURL     : 'http://localhost:8080/init-ci',
     build       : 'CircleCI-' + process.env.CIRCLE_PROJECT_USERNAME + '-' + process.env.CIRCLE_PROJECT_REPONAME +'#' + process.env.CIRCLE_BUILD_NUM,
     driverCapabilities: {
         platform            : 'Windows 7',

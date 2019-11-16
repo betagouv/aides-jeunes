@@ -37,7 +37,7 @@ start_mes_aides: &start_mes_aides
 wait_for_mes_aides: &wait_for_mes_aides
   run:
     name: Wait for Mes Aides
-    command: wget --retry-connrefused --no-check-certificate -T 30 http://localhost:9000
+    command: wget --retry-connrefused --no-check-certificate -T 30 http://localhost:8080
 
 version: 2
 jobs:

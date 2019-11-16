@@ -21,9 +21,9 @@
               <p>
                 Vous pouvez aussi nous contacter <a
                 v-analytics="{ action: 'Envoi d\'email', category:'Blocage'}"
-                v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'Bloquage sur la nouvelle version', body:`Bonjour,
+                v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'Blocage sur la nouvelle version', body:`Bonjour,
 
-En utilisant la nouvelle version de Mes Aides j'ai rencontré un bloquage.
+En utilisant la nouvelle version de Mes Aides j'ai rencontré un blocage.
 
 
 ————

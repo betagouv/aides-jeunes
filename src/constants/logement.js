@@ -38,13 +38,7 @@ const locationTypes = [
     }
 ]
 
-const loyerLabels = {
-    locataire: 'Votre loyer',
-    proprietaire: 'Montant des mensualités'
-}
-
 module.exports = {
     logementTypes,
     locationTypes,
-    loyerLabels,
 }

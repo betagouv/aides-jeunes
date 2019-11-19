@@ -134,7 +134,7 @@ import Commune from '@/lib/Commune'
 import Individu from '@/lib/Individu'
 import Logement from '@/lib/Logement'
 import Situation from '@/lib/Situation'
-import { locationTypes, logementTypes, loyerLabels } from '@/constants/logement'
+import { locationTypes, logementTypes } from '@/constants/logement'
 
 import YesNoQuestion from '@/components/YesNoQuestion'
 
@@ -260,17 +260,29 @@ export default {
     isResidentMayotte: function () {
         return this.isAddressValid && this.menage.code_postal.indexOf('976') === 0
     },
-    loyerLabel: function() {
-        var result = loyerLabels[this.logement.type]
-        if (this.logement.type === 'locataire') {
-            if (this.captureCharges) {
-                result += ' (hors charges)'
+    loyerLabel: function()  {
+        switch (this.logement.type) {
+        case 'locataire':
+        {
+            var elements = [];
+            if (this.menage.coloc) {
+                elements.push('Votre part du loyer');
             } else {
-                result += ' (charges comprises)'
+                elements.push('Votre loyer');
             }
-        }
 
-        return result
+            if (this.captureCharges) {
+                elements.push('(hors charges)');
+            } else {
+                elements.push('(charges comprises)');
+            }
+
+            return elements.join(' ');
+        }
+        default: {
+            return 'Montant des mensualités';
+        }
+        }
     },
     maySubmit: function() {
         return this.captureCodePostal && ! this.isResidentMayotte

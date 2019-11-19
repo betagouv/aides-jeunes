@@ -109,6 +109,7 @@
       "eslint:recommended"
     ],
     "rules": {
+      "eol-last": "error",
       "no-irregular-whitespace": "off"
     },
     "parserOptions": {

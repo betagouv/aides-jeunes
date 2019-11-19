@@ -17,7 +17,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss">
 
 .foyer {
   flex-grow: 1;
@@ -27,5 +27,9 @@ export default {
 
 pre {
   text-align: left;
+}
+
+h1[tabindex="-1"] {
+  outline: none;
 }
 </style>

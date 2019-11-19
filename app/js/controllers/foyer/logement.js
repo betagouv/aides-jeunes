@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, loyerLabels, CityService, SituationService, IndividuService, LogementService) {
+angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http, $log, logementTypes, locationTypes, CityService, SituationService, IndividuService, LogementService) {
     var famille = $scope.famille = $scope.situation.famille;
     var menage = $scope.menage = $scope.situation.menage;
 
@@ -59,16 +59,28 @@ angular.module('ddsApp').controller('FoyerLogementCtrl', function($scope, $http,
     };
 
     $scope.loyerLabel = function() {
-        var result = loyerLabels[logement.type];
-        if (logement.type === 'locataire') {
-            if ($scope.captureCharges()) {
-                result += ' (hors charges)';
+        switch (logement.type) {
+        case 'locataire':
+        {
+            var elements = [];
+            if (menage.coloc) {
+                elements.push('Votre part du loyer');
             } else {
-                result += ' (charges comprises)';
+                elements.push('Votre loyer');
             }
-        }
 
-        return result;
+            if ($scope.captureCharges()) {
+                elements.push('(hors charges)');
+            } else {
+                elements.push('(charges comprises)');
+            }
+
+            return elements.join(' ');
+        }
+        default: {
+            return 'Montant des mensualités';
+        }
+        }
     };
 
     $scope.captureColocation = function() {

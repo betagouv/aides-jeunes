@@ -37,8 +37,3 @@ angular.module('ddsCommon').constant('locationTypes', [
         label: 'Foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale…)'
     }
 ]);
-
-angular.module('ddsCommon').constant('loyerLabels', {
-    'locataire': 'Votre loyer',
-    'proprietaire': 'Montant des mensualités'
-});

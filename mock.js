@@ -36,11 +36,21 @@ function mock(app) {
     res.send(cache)
   })
 
-  app.get('/api/situations/:id/openfisca-response', function(req, res) {
+  app.get('/api/situations/:id/openfisca-response', function(req, res, next) {
     sendToOpenfisca(cache, function(err, result) {
+      if (err) {
+        return next(err)
+      }
+
       res.send(Object.assign({ _id: 'yolo' }, result))
     })
   })
+
+  app.use(function (err, req, res, next) {
+    res.status(500).send(err.message || err.error)
+    next()
+  })
+
 }
 
 module.exports = mock

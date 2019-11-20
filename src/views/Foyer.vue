@@ -16,7 +16,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 
 .foyer {
@@ -27,6 +26,8 @@ export default {
 
 pre {
   text-align: left;
+  white-space: break-spaces;
+  width: 100%
 }
 
 h1[tabindex="-1"] {

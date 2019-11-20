@@ -45,7 +45,7 @@ export default {
     let that = this
     this.escapeHandler = function (evt) {
       if (evt.keyCode === 27) { // esc
-        that.$matomo.trackEvent(that.analyticsCategory, 'Fermé ESC')
+        that.$matomo && that.$matomo.trackEvent(that.analyticsCategory, 'Fermé ESC')
         that.hide()
       }
     }

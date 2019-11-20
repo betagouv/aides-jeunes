@@ -36,7 +36,7 @@
     "mingo": "^2.3.5",
     "mjml": "^4.4.0",
     "moment": "^2.24.0",
-    "mongoose": "^4.13.18",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.0",
     "node-mailjet": "^3.3.1",
     "puppeteer": "1.18.0",

@@ -14,7 +14,7 @@
       </p>
     </div>
 
-    <div id="error" class="alert alert-danger" v-show="error"  role="alert">
+    <div id="error" class="alert alert-danger" v-if="hasError"  role="alert">
       <h2><i class="fa fa-warning" aria-hidden="true"></i> Une erreur est survenue.</h2>
       <p><a
         v-analytics="{ action:'Support', category:'Contact'}"
@@ -28,8 +28,8 @@
 
     ————
     ID : ${ resultatsId }
-    User-agent : ${ encodedUserAgent }
-    Erreur : ${ encodedError }
+    User-agent : ${ userAgent }
+    Erreur : ${ error }
     ————`}">Signalez ce problème</a> en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et en joignant si possible une capture d'écran. Nous vous répondrons au plus vite et corrigerons le problème dès que possible.</p>
 
       <p>Pour ne pas perdre les données que vous avez déclarées, vous pouvez garder cet onglet ouvert, puis actualiser la page une fois que le problème sera résolu.</p>
@@ -195,9 +195,6 @@ export default {
   data: function() {
     return {
       droitsNonEligiblesShow: true,
-      encodedError: 'encodedError',
-      encodedUserAgent: 'encodedUserAgent',
-      error: false,
       warning: false,
       warningMessage: 'Attention',
     }
@@ -222,9 +219,12 @@ export default {
       get: function() {
         const vm = this
         return this.situation._id && this.$SituationService.fetchResults(false)
+        .catch(error =>{
+          throw error.response && error.response.data || error
+        })
         .then(results => {
           results.droitsEligibles.forEach(function(d) {
-            vm.$matomo.trackEvent('General', 'show', d.label)
+            vm.$matomo && vm.$matomo.trackEvent('General', 'show', d.label)
           })
 
           return results
@@ -249,7 +249,7 @@ export default {
           .then(function(data) {
               return data.destination.url
           }).catch(function() {
-            vm.$matomo.trackEvent('General', 'error-fetch-representation')
+            vm.$matomo && vm.$matomo.trackEvent('General', 'error-fetch-representation')
           })
       },
       default: undefined
@@ -259,7 +259,7 @@ export default {
     droits: function() { return (this.resultats && this.resultats.droitsEligibles) || [] },
     droitsNonEligibles: function() { return (this.resultats && this.resultats.droitsNonEligibles) || [] },
     droitsInjectes: function() { return (this.resultats && this.resultats.droitsInjectes) || [] },
-    resultatsId: function() { return this.resultats && this.resultats._id },
+    resultatsId: function() { return this.resultats && this.resultats._id || '???' },
     ressourcesYearMinusTwoCaptured: function() { return Situation.ressourcesYearMinusTwoCaptured(this.situation) },
     shouldPatrimoineBeCaptured: function() {
       if (! this.droits) {
@@ -268,6 +268,16 @@ export default {
 
       return _.some(this.droits, 'isBaseRessourcesPatrimoine') && ! Situation.hasPatrimoine(this.situation)
     },
+    hasError: function() {
+      return this.$asyncComputed.resultats.error
+    },
+    error: function() {
+      let value = this.$asyncComputed.resultats.error && this.$asyncComputed.resultats.exception
+      return (_.isString(value) || value instanceof Error) ? value : JSON.stringify(value, null, 2)
+    },
+    userAgent: function() {
+      return window.navigator.userAgent
+    }
   },
   methods: {
     goToFeedback: function(event) {

@@ -152,29 +152,20 @@ export default {
   },
   computed: {
     emailBody: function() {
-      let p1 = `Bonjour,
+      return `Bonjour,
 
 J'ai effectué une simulation sur Mes Aides le **JJ/MM/AAAA à HH:MM:SS**.
 
-`
-
-      let p2 = ''
-      if(this.situation._id) {
-        p2 = `La dernière simulation que j'ai effectuée porte l'identifiant **${this.situation._id}**.
-
-`
-      }
-
-      let p3 = `Voici quelques éléments que j'ai renseigné sur celle-ci pour vous aider à l'identifier.
+${this.situation._id ? `La dernière simulation que j'ai effectuée porte l'identifiant **${this.situation._id}**.` : ""}
+Voici quelques éléments que j'ai renseigné sur celle-ci pour vous aider à l'identifier.
 - Date de naissance : **JJ/MM/AAAA**.
 - Nombre d'enfants : …
 - …
 
 Je souhaite **supprimer** cette simulation de votre base de données.
 
-Merci d'avance.`
-
-      return p1 + p2 + p3
+Merci d'avance.
+`
     }
   },
 }

@@ -22,6 +22,7 @@
 
 <script>
 import _ from 'lodash'
+import SituationService from '@/plugins/SituationService'
 
 export default {
   name: 'DroitMontant',
@@ -29,15 +30,21 @@ export default {
     droit: Object,
   },
   data: function() {
-    // TODO1 showUnexpected
-    // var situation = SituationService.restoreLocal();
-    // var isProprietaireAvecPretEnCours = SituationService.isProprietaireAvecPretEnCours(situation);
-    // var isHebergeParticipeFrais = SituationService.isHebergeParticipeFrais(situation);
-    // var isPpa = scope.droit.id === 'ppa';
+    let situation = this.$SituationService.restoreLocal();
 
-    // scope.showUnexpected = attributes.hasOwnProperty('unexpected') && (isPpa && (isProprietaireAvecPretEnCours || isHebergeParticipeFrais));
+    let isProprietaireAvecPretEnCours = this.$SituationService.isProprietaireAvecPretEnCours(situation);
+    console.log(isProprietaireAvecPretEnCours)
+
+    let isHebergeParticipeFrais = this.$SituationService.isHebergeParticipeFrais(situation);
+    console.log(isHebergeParticipeFrais)
+
+    console.log(this.droit.id)
+    let isPpa = this.droit.id === 'ppa';
+    console.log(isPpa)
+
+    let showUnexpected = (isPpa && (isProprietaireAvecPretEnCours || isHebergeParticipeFrais))
     return {
-      showUnexpected: false,
+      showUnexpected,
     }
   },
   computed: {

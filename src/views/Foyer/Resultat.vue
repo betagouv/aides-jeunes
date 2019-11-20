@@ -14,11 +14,11 @@
       </p>
     </div>
 
-    <div id="error" class="alert alert-danger" v-show="error" role="alert">
+    <div id="error" class="alert alert-danger" v-show="error"  role="alert">
       <h2><i class="fa fa-warning" aria-hidden="true"></i> Une erreur est survenue.</h2>
       <p><a
         v-analytics="{ action:'Support', category:'Contact'}"
-        v-mail="{to: 'bug@mes-aides.gouv.fr', subject:`[${resultats._id}] Problème technique`, body:`Bonjour,
+        v-mail="{to: 'bug@mes-aides.gouv.fr', subject:`[${resultatsId}] Problème technique`, body:`Bonjour,
 
     J'ai tenté de XXX,
     Et en cliquant sur XXX,
@@ -27,7 +27,7 @@
     Je vous joins également une capture d'écran pour faciliter la compréhension du problème.
 
     ————
-    ID : ${ resultats._id }
+    ID : ${ resultatsId }
     User-agent : ${ encodedUserAgent }
     Erreur : ${ encodedError }
     ————`}">Signalez ce problème</a> en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et en joignant si possible une capture d'écran. Nous vous répondrons au plus vite et corrigerons le problème dès que possible.</p>
@@ -51,7 +51,7 @@
         <DroitsEligiblesList v-bind:droits="droits"></DroitsEligiblesList>
       </div>
 
-      <OfflineResults v-if="! isEmpty(droits)" v-bind:id="resultats._id" />
+      <OfflineResults v-if="resultats && ! isEmpty(droits)" v-bind:id="resultatsId" />
 
       <div class="notification warning print-hidden" v-if="! ressourcesYearMinusTwoCaptured">
         <span>
@@ -106,10 +106,10 @@
           <ul>
             <li><a
               v-analytics="{ name: 'Suggestion', action:'Support', category:'General'}"
-              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ resultats._id }] Suggestion`}">Vous avez une suggestion d'amélioration</a>.</li>
+              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ resultatsId }] Suggestion`}">Vous avez une suggestion d'amélioration</a>.</li>
             <li><a
               v-analytics="{ name: 'Écart simulation', action:'Support', category:'General'}"
-              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ resultats._id }] Montants inattendus`, body:`Bonjour,
+              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ resultatsId }] Montants inattendus`, body:`Bonjour,
 
     En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
 
@@ -124,11 +124,11 @@
     Bonne journée,
 
     ————
-    ID : ${ resultats._id } (à conserver impérativement pour traitement de votre demande)
+    ID : ${ resultatsId } (à conserver impérativement pour traitement de votre demande)
     ————`}">Ces résultats ne correspondent pas à ceux d'un autre simulateur</a>.</li>
             <li><a
               v-analytics="{ name: 'Écart instruction', action:'Support', category:'General'}"
-              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${resultats._id}] Montants inattendus`, body:`Bonjour,
+              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${resultatsId}] Montants inattendus`, body:`Bonjour,
 
     En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
 
@@ -145,10 +145,10 @@
     Bonne journée,
 
     ————
-    ID : ${resultats._id} (à conserver impérativement pour traitement de votre demande)
+    ID : ${resultatsId} (à conserver impérativement pour traitement de votre demande)
     ————`}">Ces résultats ne correspondent pas à ce que l'administration vous a attribué</a>.</li>
           </ul>
-          <small v-if="resultats._id">Cette simulation a pour identifiant <span class="preformatted">{{ resultats._id }}</span> (en savoir plus sur <router-link to="/cgu#donnees">le traitement de vos données personnelles</router-link>).</small><br>
+          <small v-if="resultatsId">Cette simulation a pour identifiant <span class="preformatted">{{ resultatsId }}</span> (en savoir plus sur <router-link to="/cgu#donnees">le traitement de vos données personnelles</router-link>).</small><br>
           <small
               v-if="openfiscaTracerURL">
             Partenaires :
@@ -256,9 +256,10 @@ export default {
     }
   },
   computed: {
-    droits: function() { return this.resultats.droitsEligibles || [] },
-    droitsNonEligibles: function() { return this.resultats.droitsNonEligibles || [] },
-    droitsInjectes: function() { return this.resultats.droitsInjectes || [] },
+    droits: function() { return (this.resultats && this.resultats.droitsEligibles) || [] },
+    droitsNonEligibles: function() { return (this.resultats && this.resultats.droitsNonEligibles) || [] },
+    droitsInjectes: function() { return (this.resultats && this.resultats.droitsInjectes) || [] },
+    resultatsId: function() { return this.resultats && this.resultats._id },
     ressourcesYearMinusTwoCaptured: function() { return Situation.ressourcesYearMinusTwoCaptured(this.situation) },
     shouldPatrimoineBeCaptured: function() {
       if (! this.droits) {

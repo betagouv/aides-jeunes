@@ -5,7 +5,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
-var port = process.env.PORT || 9000;
+var port = process.env.PORT || 8080;
 
 process.env.MES_AIDES_ROOT_URL = process.env.MES_AIDES_ROOT_URL || ('http://localhost:' + port);
 require('./configure')(app);

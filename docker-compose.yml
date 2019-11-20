@@ -49,7 +49,7 @@ services:
       - node
     ports:
       - '2000:2000'
-      - '9000:9000'
+      - '8080:8080'
     volumes:
       - './docker/nginx/conf.d:/etc/nginx/conf.d:ro'
       - './docker/nginx/snippets:/etc/nginx/snippets:ro'

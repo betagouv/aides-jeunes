@@ -86,7 +86,7 @@
 
     <div class="form__group" v-if="captureCodePostal">
       <label class="form__group" for="postal-code">Code postal
-        <input v-model="menage.code_postal">
+        <input id="postal-code" v-model="menage.code_postal">
         <p class="notification warning" v-if="displayPostalCodeWarning">
           Ce code postal est invalide
         </p>
@@ -119,7 +119,7 @@
     </p>
 
     <div class="text-right">
-      <button class="button large" v-if="maySubmit" v-on:click.prevent="next">Valider</button>
+      <button type="submit" class="button large" v-if="maySubmit" v-on:click.prevent="next">Valider</button>
     </div>
 
   </form>

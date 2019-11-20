@@ -1,5 +1,5 @@
 {
-    "baseURL": "http://localhost:9000/init-ci",
+    "baseURL": "http://localhost:8080/init-ci",
     "browser": "chrome",
     "quit": "on success",
     "views": [ "Verbose"],

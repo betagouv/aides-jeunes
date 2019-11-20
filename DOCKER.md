@@ -9,7 +9,7 @@ Il est possible d'utiliser Docker Compose pour lancer Mes Aides.
 docker-compose up
 ```
 
-Mes Aides est ensuite disponible sur le port 9000 de la machine hôte Docker.
+Mes Aides est ensuite disponible sur le port 8080 de la machine hôte Docker.
 
 ### Pulling the latest Docker image for OpenFisca
 

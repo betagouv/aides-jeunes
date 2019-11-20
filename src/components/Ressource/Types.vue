@@ -14,7 +14,7 @@
       </fieldset>
     <div class="form__group">{{ countLabel }}</div>
     <div class="text-right">
-      <button class="button large" v-on:click.prevent="next">Valider</button>
+      <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
     </div>
   </form>
 </template>

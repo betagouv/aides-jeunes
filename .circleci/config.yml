@@ -6,7 +6,7 @@ defaults: &defaults
   working_directory: ~/mes-aides-ui
   docker:
     # https://circleci.com/docs/2.0/circleci-images/#language-image-variants
-    - image: betagouv/mes-aides-docker:node8-python3.7
+    - image: betagouv/mes-aides-docker:node8-python3.7-cy
     # FIXME
     # mongo 2.4.9 is not available on Docker Hub
     # https://stackoverflow.com/questions/48233357/install-older-version-of-mongodb-with-docker
@@ -26,22 +26,6 @@ install_virtualenv: &install_virtualenv
       python3 get-pip.py
       pip3 install virtualenv
 
-configure_watai: &configure_watai
-  run:
-    name: Configure Watai
-    command: cp test/integration/config-ci.js test/integration/config.js && rm test/integration/config.json
-
-download_sauce_connect: &download_sauce_connect
-  run:
-    name: Download Sauce Connect
-    command: curl --remote-name https://saucelabs.com/downloads/sc-4.4.12-linux.tar.gz && tar -xzf sc-4.4.12-linux.tar.gz
-
-start_sauce_connect: &start_sauce_connect
-  run:
-    name: Start Sauce Connect
-    command: cd sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --tunnel-identifier "circle-$CIRCLE_PROJECT_USERNAME-$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM-$CIRCLE_NODE_INDEX" --readyfile ~/sauce_is_ready
-    background: true
-
 start_mes_aides: &start_mes_aides
   run:
     name: Start Mes Aides
@@ -50,15 +34,10 @@ start_mes_aides: &start_mes_aides
       npm start
     background: true
 
-wait_for_sauce_connect: &wait_for_sauce_connect
-  run:
-    name: Wait for Sauce Connect
-    command: while [ ! -e ~/sauce_is_ready ]; do sleep 1; done
-
 wait_for_mes_aides: &wait_for_mes_aides
   run:
     name: Wait for Mes Aides
-    command: wget --retry-connrefused --no-check-certificate -T 30 http://localhost:9000
+    command: wget --retry-connrefused --no-check-certificate -T 30 http://localhost:8080
 
 version: 2
 jobs:
@@ -69,18 +48,16 @@ jobs:
       - restore_cache:
           name: Restoring node_modules
           keys:
-            - v12.1.3-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - v12.1.4-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run:
           name: Install packages from package-lock.json
           command: npm ci
-      - run:
-          name: Install SauceLabs
-          command: npm install saucelabs@^1.0.1
       - save_cache:
           name: Saving node_modules
-          key: v12.1.3-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: v12.1.4-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
+            - ~/.cache
       - persist_to_workspace:
           root: .
           paths:
@@ -154,7 +131,7 @@ jobs:
       - run:
           name: Jest
           command: npm run test:jest
-  test_selenium_chrome:
+  test_e2e:
     <<: *defaults
     steps:
       - checkout
@@ -171,18 +148,24 @@ jobs:
       - run:
           name: Wait for OpenFisca
           command: wget --retry-connrefused --waitretry=1 --output-document=/dev/null http://localhost:2000/variable/parisien
-      - *configure_watai
-      - *download_sauce_connect
-      - *start_sauce_connect
       - *start_mes_aides
-      - *wait_for_sauce_connect
       - *wait_for_mes_aides
+      - restore_cache:
+          name: Restoring node_modules
+          keys:
+            - v12.1.4-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run:
-          name: Watai base suite
-          command: node_modules/.bin/watai test/integration/base-suite --config '{"driverCapabilities":{"browserName":"chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
+          name: Start Xvfb
+          command: |
+            Xvfb :99
+          background: true
       - run:
-          name: Watai family suite
-          command: node_modules/.bin/watai test/integration/family-suite  --config '{"driverCapabilities":{"browserName":"chrome","version":"latest","chromeOptions":{"args":["lang=fr-FR"]}}}'
+          name: Cypress
+          command: node_modules/.bin/cypress run
+      - run:
+          name: Stop Xvfb
+          command: |
+            pkill Xvfb
   test_openfisca_test_generation:
     <<: *defaults
     steps:
@@ -206,7 +189,32 @@ jobs:
 
 workflows:
   version: 2
-  build_and_test:
+  # build_and_test:
+  #   jobs:
+  #     - install_openfisca
+  #     - install
+  #     - lint:
+  #         requires:
+  #           - install
+  #     - build:
+  #         requires:
+  #           - lint
+  #     - test_e2e:
+  #         requires:
+  #           - build
+  #           - install_openfisca
+  #     - test_openfisca_test_generation:
+  #         requires:
+  #           - install
+  #           - install_openfisca
+  #     - deploy:
+  #         requires:
+  #           - test_selenium_chrome
+  #           - test_openfisca_test_generation
+  #         filters:
+  #           branches:
+  #             only: master
+  deploy_next_vue:
     jobs:
       - install_openfisca
       - install
@@ -216,35 +224,13 @@ workflows:
       - build:
           requires:
             - lint
-      - test_mocha:
+      - test_e2e:
           requires:
             - build
-      - test_karma:
-          requires:
-            - build
-      - test_jest:
-          requires:
-            - build
-      - test_selenium_chrome:
-          requires:
-            - install_openfisca
-            - test_mocha
-            - test_karma
-            - test_jest
-      - test_openfisca_test_generation:
-          requires:
-            - install
             - install_openfisca
       - deploy:
           requires:
-            - test_selenium_chrome
-            - test_openfisca_test_generation
-          filters:
-            branches:
-              only: master
-  deploy_next_vue:
-    jobs:
-      - deploy:
+            - test_e2e
           filters:
             branches:
               only: vue

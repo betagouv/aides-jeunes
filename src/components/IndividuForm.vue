@@ -3,7 +3,7 @@
     <h1>{{title | capitalize}}</h1>
     <div class="form__group">
       <label>Date de naissance
-        <InputDate v-model="individu.date_naissance" />
+        <InputDate id="date-de-naissance" v-model="individu.date_naissance" />
         <p class="notification warning" v-if="$v.individu.date_naissance.$dirty && $v.individu.date_naissance.$error">
           Ce champ est obligatoire.
         </p>

@@ -12,7 +12,7 @@
           v-bind:to="{ name: 'ressources/types', params:$route.params }">
           Déclarer d'autres ressources
         </router-link>
-        <button class="button large" v-on:click.prevent="next">Valider</button>
+        <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
       </div>
     </form>
   </div>

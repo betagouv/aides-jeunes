@@ -33,4 +33,12 @@ pre {
 h1[tabindex="-1"] {
   outline: none;
 }
+
+a.button:focus,
+button.button:focus,
+input[type="submit"]:focus,
+input[type="button"]:focus {
+  background: #003b80;
+  background: var(--theme-secondary-darken);
+}
 </style>

@@ -8,6 +8,7 @@
       <div class="form__group" s v-for="type in types" v-bind:key="type.meta.id">
         <RessourceMontants v-if="isSimple(type.meta.id)" v-bind:individu="individu" v-bind:type="type"/>
         <RessourceAutoEntreprise v-if="type.meta.id === 'tns_auto_entrepreneur_chiffre_affaires'" v-bind:individu="individu" v-bind:ressource="type"/>
+        <RessourceMicroEntreprise v-if="type.meta.id === 'tns_micro_entreprise_chiffre_affaires'" v-bind:individu="individu" v-bind:ressource="type"/>
       </div>
 
       <div class="next form__group">
@@ -23,6 +24,7 @@
 
 <script>
 import RessourceAutoEntreprise from '@/components/Ressource/AutoEntreprise'
+import RessourceMicroEntreprise from '@/components/Ressource/MicroEntreprise'
 import RessourceMontants from '@/components/Ressource/Montants'
 
 import {ressourceTypes} from '@/constants/resources'
@@ -47,6 +49,7 @@ export default {
   name: 'ressources-montants',
   components: {
     RessourceAutoEntreprise,
+    RessourceMicroEntreprise,
     RessourceMontants,
   },
   data: function() {
@@ -81,7 +84,10 @@ export default {
   },
   methods: {
     isSimple: function(type) {
-      const complex = ['tns_auto_entrepreneur_chiffre_affaires']
+      const complex = [
+        'tns_auto_entrepreneur_chiffre_affaires',
+        'tns_micro_entreprise_chiffre_affaires',
+      ]
       return complex.indexOf(type) === - 1
     },
     next: function() {

@@ -290,7 +290,8 @@ var ressourceTypes = [
         id: 'tns_micro_entreprise_chiffre_affaires',
         label: 'Micro-entreprise',
         category: 'rpns',
-        isMontantAnnuel: true
+        isMontantAnnuel: true,
+        extra: ['tns_micro_entreprise_type_activite']
     },
     {
         id: 'tns_auto_entrepreneur_chiffre_affaires',

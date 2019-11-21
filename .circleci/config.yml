@@ -229,8 +229,6 @@ workflows:
             - build
             - install_openfisca
       - deploy:
-          requires:
-            - test_e2e
           filters:
             branches:
               only: vue

@@ -310,7 +310,8 @@ var ressourceTypes = [
         id: 'tns_autres_revenus',
         label: 'Profession libérale, entrepreneur',
         category: 'rpns',
-        isMontantAnnuel: true
+        isMontantAnnuel: true,
+        extra: ['tns_autres_revenus_type_activite']
     }
 ];
 

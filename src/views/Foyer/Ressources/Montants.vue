@@ -9,6 +9,7 @@
         <RessourceMontants v-if="isSimple(type.meta.id)" v-bind:individu="individu" v-bind:type="type"/>
         <RessourceAutoEntreprise v-if="type.meta.id === 'tns_auto_entrepreneur_chiffre_affaires'" v-bind:individu="individu" v-bind:ressource="type"/>
         <RessourceMicroEntreprise v-if="type.meta.id === 'tns_micro_entreprise_chiffre_affaires'" v-bind:individu="individu" v-bind:ressource="type"/>
+        <RessourceProfessionLiberale v-if="type.meta.id === 'tns_autres_revenus'" v-bind:individu="individu" v-bind:ressource="type"/>
       </div>
 
       <div class="next form__group">
@@ -25,6 +26,7 @@
 <script>
 import RessourceAutoEntreprise from '@/components/Ressource/AutoEntreprise'
 import RessourceMicroEntreprise from '@/components/Ressource/MicroEntreprise'
+import RessourceProfessionLiberale from '@/components/Ressource/ProfessionLiberale'
 import RessourceMontants from '@/components/Ressource/Montants'
 
 import {ressourceTypes} from '@/constants/resources'
@@ -50,6 +52,7 @@ export default {
   components: {
     RessourceAutoEntreprise,
     RessourceMicroEntreprise,
+    RessourceProfessionLiberale,
     RessourceMontants,
   },
   data: function() {
@@ -87,6 +90,7 @@ export default {
       const complex = [
         'tns_auto_entrepreneur_chiffre_affaires',
         'tns_micro_entreprise_chiffre_affaires',
+        'tns_autres_revenus',
       ]
       return complex.indexOf(type) === - 1
     },

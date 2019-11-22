@@ -68,7 +68,7 @@ function ressourcesYearMoins2Captured(situation) {
     var yearMoins2 = moment(situation.dateDeValeur).subtract(2, 'years').format('YYYY');
     var januaryYearMoins2 = yearMoins2 + '-01';
     var hasRfr = situation.foyer_fiscal && _.some(situation.foyer_fiscal.rfr, _.isNumber);
-    var hasYm2Ressources = situation.individus.some(function(individu) {
+    var hasYm2Ressources = common.getIndividusSortedParentsFirst(situation).some(function(individu) {
         return _.some(ressources.categoriesRnc, function(categorieRnc) {
             if (! individu[categorieRnc.id])
                 return false;

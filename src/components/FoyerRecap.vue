@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!-- <pre>{{JSON.stringify(situation, null, 2)}}</pre> -->
   </div>
 </template>
 
@@ -7,9 +8,9 @@
 
 export default {
   name: 'FoyerRecap',
-  data () {
-    return {
-      situation: this.$SituationService.restoreLocal()
+  computed: {
+    situation: function() {
+      return this.$store.state.situation
     }
   }
 }

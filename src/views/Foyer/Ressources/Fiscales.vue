@@ -1,8 +1,8 @@
 <template>
-  <form>
-    <h1>Les revenus imposables de votre foyer en {{ dates.fiscalYear.label }}</h1>
+  <form @submit.prevent="next">
+    <h1>Les revenus imposables de votre foyer en {{ $store.state.dates.fiscalYear.label }}</h1>
     <p>
-      Ces informations se trouvent sur votre avis d'imposition {{ dates.lastYear.label }} sur les revenus {{ dates.fiscalYear.label }}.
+      Ces informations se trouvent sur votre avis d'imposition {{ $store.state.dates.lastYear.label }} sur les revenus {{ $store.state.dates.fiscalYear.label }}.
       <br>Vous pouvez le retrouver en ligne sur <a target="_blank" rel="noopener" href="http://www.impots.gouv.fr/">impots.gouv.fr</a>.
     </p>
 
@@ -14,14 +14,14 @@
         <h2>{{ individu.label | capitalize }}</h2>
         <label class="form__group" v-for="ressource in categoriesRnc" v-bind:key="ressource.id">
           {{ ressource.label }}
-          <input type="number" v-model.number="individu.source[ressource.id][dates.fiscalYear.id]" />
+          <input type="number" v-model.number="individu.source[ressource.id][$store.state.dates.fiscalYear.id]" />
           <span v-if="individu.default[ressource.id]"> Ce montant vaut {{ individu.default[ressource.id] }} pour les 12 derniers mois.</span>
         </label>
       </div>
     </div>
 
     <div class="text-right">
-      <button class="button large" v-on:click="next">Valider</button>
+      <button type="submit" class="button large">Valider</button>
     </div>
   </form>
 </template>
@@ -48,8 +48,8 @@ export default {
   components: {
   },
   data: function() {
-    let situation = this.$SituationService.restoreLocal()
-    const fiscalYear = this.dates.fiscalYear.id
+    let situation = this.$store.state.situation
+    const fiscalYear = this.$store.state.dates.fiscalYear.id
     let individus = Situation.getIndividusSortedParentsFirst(situation).map((source) => {
       var individu = {
         label: Individu.label(source),
@@ -60,7 +60,7 @@ export default {
       categoriesRnc.forEach((categorieRnc) => {
         source[categorieRnc.id] = source[categorieRnc.id] || {}
         source[categorieRnc.id][fiscalYear] = source[categorieRnc.id][fiscalYear] || undefined
-        individu.default[categorieRnc.id] = getDefaultValue(this.dates.last12Months, source, categorieRnc)
+        individu.default[categorieRnc.id] = getDefaultValue(this.$store.state.dates.last12Months, source, categorieRnc)
       })
 
       individu.display = Individu.isParent(source) || _.some(categoriesRnc.map(ressource => source[ressource.id][fiscalYear] !== undefined))
@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     next: function() {
-      this.$SituationService.saveLocal()
+      this.individus.forEach(i => this.$store.commit('updateIndividu', i.source))
       this.$push()
     },
   }

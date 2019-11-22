@@ -1,10 +1,6 @@
 import moment from 'moment'
 import _ from 'lodash'
 
-
-import Situation from './Situation'
-
-
 function isRoleParent (role) {
     return _.includes(['demandeur', 'conjoint'], role);
 }
@@ -20,16 +16,20 @@ function ressourceHeader(individu) {
     }
 }
 
-function find(individus, role, id) {
-    // In case of "demandeur" or "conjoint", the role is sufficient
-    var predicate = { role: role };
-
-    // For children, we also need to match the id
+function find(situation, role, id) {
     if (role === 'enfant' && id) {
-        predicate = _.assign(predicate, { id: id });
+        return _.find(situation.enfants, { id: id })
     }
 
-    return _.find(individus, predicate);
+    return situation[role]
+}
+
+function getDemandeur() {
+    return get([], 'demandeur').individu
+}
+
+function getConjoint() {
+    return get([], 'conjoint').individu
 }
 
 function get(individus, role, id, dates) {
@@ -64,14 +64,13 @@ function get(individus, role, id, dates) {
 
     var existingIndividu = find(individus, role, id);
     var individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(existingIndividu));
-    var enfants = Situation.getEnfants({individus})
 
     if (role == 'enfant' && !existingIndividu) {
 
-        var nextEnfantCount = enfants.length + 1;
+        var nextEnfantCount = individus.length + 1;
         individu.firstName = 'votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
 
-        var usedIds = enfants.map(function(enfant) { return enfant.id; });
+        var usedIds = individus.map(function(enfant) { return enfant.id; });
         var count = 0;
         while (_.indexOf(usedIds, 'enfant_' + count) >= 0) {
             count = count + 1;
@@ -103,6 +102,8 @@ const Individu = {
     },
     find,
     get,
+    getDemandeur,
+    getConjoint,
     ressourceHeader,
 
     ressourceShortLabel: function(individu) {

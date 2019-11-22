@@ -37,21 +37,13 @@
 </template>
 
 <script>
-import Situation from '@/lib/Situation'
-
 export default {
   name: 'enfants',
   components: {
   },
-  data () {
-    let situation = this.$SituationService.restoreLocal()
-    return {
-      situation,
-    }
-  },
   computed: {
     enfants: function() {
-      return Situation.getEnfants(this.situation)
+      return this.$store.state.situation.enfants
     },
     showValidate: function() {
       return this.$route.path === '/foyer/enfants'
@@ -59,14 +51,11 @@ export default {
   },
   methods: {
     next: function() {
-      this.$SituationService.saveLocal()
       this.$push()
     },
     removeEnfant: function(enfant) {
-        var index = this.enfants.indexOf(enfant);
-        this.enfants.splice(index, 1);
-        Situation.setEnfants(this.situation, this.enfants)
-        this.$SituationService.saveLocal()
+        this.$store.commit('removeEnfant', enfant.id)
+      
         if (this.$route.name === 'enfants/modifier' && this.$route.params.id === enfant.id) {
           this.$router.push('/foyer/enfants')
         }

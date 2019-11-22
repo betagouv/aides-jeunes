@@ -1,18 +1,17 @@
 <template>
-  <div class="container">
+  <form @submit.prevent="next">
     <h1>Les ressources de vos enfants</h1>
     <YesNoQuestion class="form__group" v-model="enfant.hasRessources" v-for="enfant in enfants" v-bind:key="enfant.id">
-        {{ enfant.firstName | capitalize }} a-t-il·elle perçu des ressources <strong>depuis {{ dates.twelveMonthsAgo.label }}</strong> ?
+        {{ enfant.firstName | capitalize }} a-t-il·elle perçu des ressources <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong> ?
     </YesNoQuestion>
     <div class="text-right">
-      <button class="button large" v-on:click="next">Valider</button>
+      <button type="submit" class="button large">Valider</button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
 import Ressource from '@/lib/Ressource'
-import Situation from '@/lib/Situation'
 import YesNoQuestion from '@/components/YesNoQuestion'
 
 export default {
@@ -21,8 +20,7 @@ export default {
     YesNoQuestion,
   },
   data: function() {
-    let situation = this.$SituationService.restoreLocal()
-    let enfants = Situation.getEnfants(situation)
+    let enfants = this.$store.state.situation.enfants.map(e => Object.assign({}, e))
 
     enfants.forEach(e => e.hasRessources = e.hasRessources || false)
     return {
@@ -35,11 +33,11 @@ export default {
         if (! enfant.hasRessources) {
             var ressourceTypes = Ressource.getIndividuRessourceTypes(enfant)
             Object.keys(ressourceTypes).forEach(t => ressourceTypes[t] = false)
-            Ressource.setIndividuRessourceTypes(enfant, ressourceTypes, this.dates)
+            Ressource.setIndividuRessourceTypes(enfant, ressourceTypes, this.$store.state.dates)
         }
+        this.$store.commit('updateIndividu', enfant)
       })
-      let situation = this.$SituationService.saveLocal()
-      this.$push(situation)
+      this.$push(this.$store.state.situation)
     }
   }
 }

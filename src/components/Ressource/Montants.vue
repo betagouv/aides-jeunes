@@ -2,20 +2,23 @@
   <fieldset class="form__group" v-bind:key="type.meta.id">
     <legend><h2 v-if="!withoutHeader">{{ type.meta.label }}</h2></legend>
     <YesNoQuestion class="form__group" v-model="singleValue">
-      <span v-html="getQuestionLabel(individu, type.meta, dates.twelveMonthsAgo.label)" />
+      <span v-html="getQuestionLabel(individu, type.meta, $store.state.dates.twelveMonthsAgo.label)" />
     </YesNoQuestion>
 
-    <label class="form__group" v-if="singleValue">
+    <label class="form__group" v-if="type.displayMonthly === true">
       Indiquez le montant <b>mensuel net</b> :
-      <input type="number" step="any" v-model.number="amounts[dates.thisMonth.id]" v-on:input="update($event.target.value, 0, true)"/>
+      <input type="number" step="any"
+        v-model.number="type.amounts[$store.state.dates.thisMonth.id]"
+        v-on:input="$emit('update', 'singleValue', index, $event.target.value)"/>
     </label>
 
-    <div class="form__group" v-if="singleValue === false">
+    <div class="form__group" v-if="type.displayMonthly === false">
       <div>{{ getLongLabel(individu, type.meta) }}</div>
-      <div v-for="(month, index) in type.months" v-bind:key="month.id">
+      <div v-for="(month, monthIndex) in type.months" v-bind:key="month.id">
         <label>
           {{ month.label | capitalize }}
-          <input type="number" v-model.number="amounts[month.id]" v-on:input="update($event.target.value, index)"/>
+          <input type="number" v-bind:value="type.amounts[month.id]"
+          v-on:input="$emit('update', 'monthUpdate', index, { value: $event.target.value, monthIndex })"/>
         </label>
       </div>
     </div>
@@ -25,13 +28,6 @@
 <script>
 import YesNoQuestion from '@/components/YesNoQuestion'
 import Individu from '@/lib/Individu'
-
-function getAmounts(type) {
-  return type.months.reduce((r, m) => {
-    r[m.id] = type.amounts[m.id]
-    return r
-  }, {})
-}
 
 function getQuestionLabel(individu, ressource, debutAnneeGlissante) {
   let verbForms = {
@@ -66,6 +62,7 @@ export default {
   props: {
     individu: Object,
     type: Object,
+    index: Number,
     withoutHeader: Boolean
   },
   computed: {
@@ -74,16 +71,8 @@ export default {
         return this.type.displayMonthly
       },
       set: function(value) {
-        this.type.displayMonthly = value
-        if (this.type.displayMonthly) {
-          this.update(this.amounts[this.type.months[0].id], 0, true)
-        }
+        this.$emit('update', 'displayMonthly', this.index, value)
       }
-    },
-  },
-  data: function() {
-    return {
-      amounts: getAmounts(this.type)
     }
   },
   components: {
@@ -92,24 +81,6 @@ export default {
   methods: {
     getQuestionLabel,
     getLongLabel,
-    update: function(newValue, monthIndex, force) {
-      const oldValue = this.type.amounts[this.type.months[monthIndex].id]
-
-      const nextMonths = this.type.months.slice(monthIndex)
-      const valuesAreEqual = nextMonths.reduce((previousValuesAreEqual, m) => {
-          return previousValuesAreEqual && this.type.amounts[m.id] === oldValue
-        }, true)
-
-      const shouldAutofill = valuesAreEqual || force
-
-      if (shouldAutofill) {
-        nextMonths.forEach(m => this.type.amounts[m.id] = newValue)
-      } else {
-        this.type.amounts[this.type.months[monthIndex].id] = newValue
-      }
-
-      this.amounts = getAmounts(this.type)
-    }
   }
 }
 </script>

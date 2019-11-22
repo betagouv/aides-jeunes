@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="next">
     <h1>Votre patrimoine</h1>
     <h2>
       <i class="fa fa-home" aria-hidden="true"></i>
@@ -92,7 +92,7 @@
     </label>
 
     <div class="text-right">
-      <button class="button large" v-on:click="next">Valider</button>
+      <button type="submit" class="button large">Valider</button>
     </div>
   </form>
 </template>
@@ -101,6 +101,7 @@
 import _ from 'lodash'
 import { patrimoineTypes } from '@/constants/resources'
 import YesNoQuestion from '@/components/YesNoQuestion'
+import Situation from '@/lib/Situation'
 
 
 export default {
@@ -109,13 +110,14 @@ export default {
     YesNoQuestion,
   },
   data: function() {
-    let situation = this.$SituationService.restoreLocal()    
+    const situation = this.$store.state.situation
     let periodKey = 'month:2012-01:120'
-    let demandeur = situation.individus[0]
+    let demandeur = Object.assign({}, situation.demandeur)
+    let individus = Situation.getIndividusSortedParentsFirst(situation)
 
     let patrimoineProperties = _.map(patrimoineTypes, 'id')
     patrimoineProperties.forEach(function(patrimoinePropertyName) {
-        demandeur[patrimoinePropertyName] = demandeur[patrimoinePropertyName] || {}
+        demandeur[patrimoinePropertyName] = Object.assign({}, demandeur[patrimoinePropertyName])
         demandeur[patrimoinePropertyName][periodKey] = demandeur[patrimoinePropertyName][periodKey] || 0
     })
 
@@ -129,8 +131,8 @@ export default {
     }
 
     let locals = {
-        hasBiensLoues: _.some(situation.individus, individu => individu.revenus_locatifs),
-        hasEpargneAuxRevenusImposables: _.some(situation.individus, individu => individu.revenus_capital),
+        hasBiensLoues: _.some(individus, individu => individu.revenus_locatifs),
+        hasEpargneAuxRevenusImposables: _.some(individus, individu => individu.revenus_capital),
     }
 
     let localKeys = Object.keys(mapping)
@@ -150,7 +152,8 @@ export default {
   },
   methods: {
     next: function() {
-      this.$SituationService.saveLocal()
+      this.$store.commit('updateIndividu', this.demandeur)
+
       this.$push()
     },
   }

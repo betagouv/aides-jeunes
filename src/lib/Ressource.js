@@ -39,7 +39,7 @@ function setDefaultValueForCurrentYear(dates, individu, ressourceType) {
     }
 
     periodKeys.forEach(function(periodKey) {
-        ressource[periodKey] = ressource[periodKey] || undefined;
+        ressource[periodKey] = ressource[periodKey] || null;
     });
 }
 

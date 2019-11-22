@@ -2,11 +2,11 @@ import '@babel/polyfill'
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store'
 
 import moment from 'moment'
 
 import ScrollService from './plugins/ScrollService'
-import SituationService from './plugins/SituationService'
 import StateService from './plugins/StateService'
 
 import AsyncComputed from 'vue-async-computed'
@@ -33,7 +33,6 @@ if (process.env.NODE_ENV === 'production') {
 
 Vue.use(AsyncComputed)
 Vue.use(ScrollService)
-Vue.use(SituationService)
 Vue.use(StateService)
 Vue.use(Vuelidate)
 Vue.use(VueMatomo, {
@@ -56,5 +55,9 @@ moment.locale('fr')
 
 new Vue({
   router,
-  render: h => h(App)
+  store,
+  render: h => h(App),
+  beforeCreate () {
+    this.$store.commit('initialize')
+  }
 }).$mount('#app')

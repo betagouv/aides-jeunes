@@ -10,15 +10,23 @@ exports.isIndividuValid = function(individu, situation) {
 };
 
 exports.getDemandeur = function(situation) {
-    return _.find(situation.individus, { role: 'demandeur' });
+    return situation.demandeur;
 };
 
 exports.getConjoint = function(situation) {
-    return _.find(situation.individus, { role: 'conjoint' });
+    return situation.conjoint;
 };
 
 exports.getEnfants = function(situation) {
-    return _.filter(situation.individus, { role: 'enfant' });
+    return situation.enfants;
+};
+
+exports.getIndividusSortedParentsFirst = function(situation) {
+    return [].concat(
+        exports.getDemandeur(situation),
+        exports.getConjoint(situation),
+        exports.getEnfants(situation)
+    ).filter(function(individu) { return individu; });
 };
 
 exports.getPeriods = function (dateDeValeur) {

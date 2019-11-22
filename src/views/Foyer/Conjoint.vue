@@ -12,8 +12,8 @@
       <div v-if="captureRsaIsolementRecent" class="form__group">
         <fieldset>
           <legend><h2>Depuis combien de temps vivez-vous seul·e ?</h2></legend>
-          <label><input type="radio" v-bind:value="true" name="isolement" v-model="famille.rsa_isolement_recent">Moins de 18 mois</label>
-          <label><input type="radio" v-bind:value="false" name="isolement" v-model="famille.rsa_isolement_recent">Plus de 18 mois</label>
+          <label><input type="radio" v-bind:value="true" name="isolement" v-model="rsa_isolement_recent">Moins de 18 mois</label>
+          <label><input type="radio" v-bind:value="false" name="isolement" v-model="rsa_isolement_recent">Plus de 18 mois</label>
         </fieldset>
       </div>
       <div class="text-right" v-if="!isInCouple">
@@ -27,7 +27,6 @@
 <script>
 import IndividuForm from '@/components/IndividuForm'
 import Individu from '@/lib/Individu'
-import Situation from '@/lib/Situation'
 
 export default {
   name: 'conjoint',
@@ -35,17 +34,17 @@ export default {
     IndividuForm
   },
   data () {
-    let situation = this.$SituationService.restoreLocal()
-    let demandeur = Situation.getDemandeur(situation)
+    let situation = this.$store.state.situation
+    let demandeur = situation.demandeur
     let isFirstView = demandeur.statut_marital === undefined
 
-    let { existingIndividu, individu: conjoint} = Individu.get(situation.individus, 'conjoint')
+    let existingIndividu = Boolean(this.$store.state.situation.conjoint)
+    let conjoint = existingIndividu ? this.$store.state.situation.conjoint :  Individu.getConjoint()
         
     return {
       conjoint,
       demandeur,
       existingIndividu,
-      famille: situation.famille,
       situation,
       isFirstView,
       isInCouple: isFirstView ? undefined : existingIndividu,
@@ -56,24 +55,28 @@ export default {
       return this.isInCouple == false && this.hasChildren
     },
     hasChildren: function() {
-      return Situation.getEnfants(this.situation).length
+      return this.situation.enfants.length
     },
+    rsa_isolement_recent: {
+      get: function() {
+        return this.$store.state.situation.famille.rsa_isolement_recent
+      },
+      set: function(value) {
+        this.$store.commit('updateFamille', Object.assign({}, this.$store.state.situation.famille, {rsa_isolement_recent: value}))
+      }
+    }
   },
   methods: {
     next: function() {
       if (this.isInCouple) {
-        delete this.famille.rsa_isolement_recent
-        Situation.setConjoint(this.situation, this.conjoint)
-        this.demandeur.statut_marital = this.conjoint.statut_marital
+        this.$store.commit('updateFamille', Object.assign({}, this.$store.state.situation.famille, {rsa_isolement_recent: false}))
+        this.$store.commit('updateIndividu', this.conjoint)
+        this.$store.commit('updateIndividu', Object.assign({}, this.demandeur, { statut_marital: this.conjoint.statut_marital }))
       } else {
-        this.demandeur.statut_marital = 'celibataire'
-        let c = Situation.getConjoint(this.situation)
-        if (c) {
-          this.situation.individus.pop()
-        }
+        this.$store.commit('removeConjoint')
+        this.$store.commit('updateIndividu', Object.assign({}, this.demandeur, { statut_marital: 'celibataire' }))
       }
 
-      this.$SituationService.saveLocal()
       this.$push()
     },
   }

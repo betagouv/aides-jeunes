@@ -144,13 +144,10 @@
 
 export default {
   name: 'cgu',
-  data: function() {
-    let situation = this.$SituationService.restoreLocal()
-    return {
-      situation
-    }
-  },
   computed: {
+    situation: function() {
+      return this.$store.state.situation
+    },
     emailBody: function() {
       return `Bonjour,
 

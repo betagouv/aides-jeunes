@@ -13,18 +13,9 @@ export default {
   components: {
     RessourceTypes,
   },
-  data: function() {
-    let situation = this.$SituationService.restoreLocal()
-    let individu = Individu.find(situation.individus, this.$route.params.role, this.$route.params.id)
-
-    return {
-      individu,
-    }
-  },
-  watch: {
-    $route(to) {
-      let situation = this.$SituationService.restoreLocal()
-      this.individu = Individu.find(situation.individus, to.params.role, to.params.id)
+  computed: {
+    individu: function() {
+      return Individu.find(this.$store.state.situation, this.$route.params.role, this.$route.params.id)
     }
   }
 }

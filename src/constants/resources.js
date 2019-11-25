@@ -6,6 +6,10 @@ var ressourceCategories = [
         label: 'Revenus d’activité',
     },
     {
+        id: 'rpns',
+        label: 'Revenus professionnels non salariés',
+    },
+    {
         id: 'allocations',
         label: 'Allocations',
     },
@@ -16,10 +20,6 @@ var ressourceCategories = [
     {
         id: 'pensions',
         label: 'Pensions',
-    },
-    {
-        id: 'rpns',
-        label: 'Revenus professionnels non salariés',
     },
     {
         id: 'patrimoine',
@@ -290,13 +290,15 @@ var ressourceTypes = [
         id: 'tns_micro_entreprise_chiffre_affaires',
         label: 'Micro-entreprise',
         category: 'rpns',
-        isMontantAnnuel: true
+        isMontantAnnuel: true,
+        extra: ['tns_micro_entreprise_type_activite']
     },
     {
         id: 'tns_auto_entrepreneur_chiffre_affaires',
         label: 'Auto-entrepreneur',
         category: 'rpns',
         interuptionQuestionLabel: 'un chiffre d’affaires non nul',
+        extra: ['tns_auto_entrepreneur_type_activite']
     },
     {
         id: 'tns_benefice_exploitant_agricole',
@@ -308,7 +310,8 @@ var ressourceTypes = [
         id: 'tns_autres_revenus',
         label: 'Profession libérale, entrepreneur',
         category: 'rpns',
-        isMontantAnnuel: true
+        isMontantAnnuel: true,
+        extra: ['tns_autres_revenus_type_activite']
     }
 ];
 

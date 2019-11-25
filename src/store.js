@@ -81,7 +81,6 @@ function restoreLocal() {
 
 const store = new Vuex.Store({
   state: defaultStore(),
-  strict: true,
   mutations: {
     clear: function(state) {
       state.situation = {}
@@ -166,3 +165,10 @@ store.subscribe(({type}, { situation }) => {
   }
   window.sessionStorage.setItem('store', JSON.stringify({ situation }))
 })
+
+// Replicate strict mode
+store._vm.$watch(function () { return this._data.$$state }, () => {
+  if (!store._committing) {
+    throw 'Do not mutate vuex store state outside mutation handlers.'
+  }
+}, { deep: true, sync: true })

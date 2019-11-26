@@ -4,7 +4,7 @@
       Résultats de votre simulation
     </h1>
 
-    <p v-show="$asyncComputed.resultats.updating"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
+    <p v-show="resultatStatus.updating"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
 
     <div id="warning" class="alert alert-warning" v-show="warning" role="alert">
       <h2><i class="fa fa-warning" aria-hidden="true"></i> Aucun résultat disponible</h2>
@@ -40,7 +40,7 @@
       </small>
     </div>
 
-    <div v-show="! warning && ! $asyncComputed.resultats.updating && ! $asyncComputed.resultats.error">
+    <div v-show="! warning && ! resultatStatus.updating && ! resultatStatus.error">
 
       <div v-if="! isEmpty(droits)">
         <p>
@@ -51,17 +51,17 @@
         <DroitsEligiblesList v-bind:droits="droits"></DroitsEligiblesList>
       </div>
 
-      <OfflineResults v-if="resultats && ! isEmpty(droits)" v-bind:id="resultatsId" />
+      <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
 
       <div class="notification warning print-hidden" v-if="! ressourcesYearMinusTwoCaptured">
         <span>
           <h2 v-if="!droits.length">Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
           <i class="fa fa-warning text-warning" aria-hidden="true"></i>
 
-          Nous avons supposé que vos ressources pour l’année {{ dates.fiscalYear.label }} étaient les mêmes qu’entre {{ dates.twelveMonthsAgo.label }} et {{ dates.oneMonthAgo.label }}.
+          Nous avons supposé que vos ressources pour l’année {{ $store.state.dates.fiscalYear.label }} étaient les mêmes qu’entre {{ $store.state.dates.twelveMonthsAgo.label }} et {{ $store.state.dates.oneMonthAgo.label }}.
         </span>
 
-        <router-link class="button-outline warning text-center" to="ressources/fiscales">Déclarez vos ressources {{ dates.fiscalYear.label }}</router-link>
+        <router-link class="button-outline warning text-center" to="ressources/fiscales">Déclarez vos ressources {{ $store.state.dates.fiscalYear.label }}</router-link>
       </div>
 
       <div v-if="! isEmpty(droitsNonEligibles)" v-show="droitsNonEligiblesShow">
@@ -197,6 +197,7 @@ export default {
       droitsNonEligiblesShow: true,
       warning: false,
       warningMessage: 'Attention',
+      openfiscaTracerURL: 'TODO'
     }
   },
   components: {
@@ -204,58 +205,10 @@ export default {
     DroitsEligiblesList,
     OfflineResults
   },
-  asyncComputed: {
-    situation: {
-      lazy: true,
-      get: function() {
-        return this.$SituationService.save()
-      },
-      default: function() {
-        return this.$SituationService.restoreLocal()
-      }
-    },
-    resultats: {
-      lazy: true,
-      get: function() {
-        const vm = this
-        return this.situation._id && this.$SituationService.fetchResults(false)
-        .catch(error =>{
-          throw error.response && error.response.data || error
-        })
-        .then(results => {
-          results.droitsEligibles.forEach(function(d) {
-            vm.$matomo && vm.$matomo.trackEvent('General', 'show', d.label)
-          })
-
-          return results
-        })
-      },
-      default: {
-        _id: undefined,
-        droitsEligibles: [],
-        droitsNonEligibles: [],
-        droitsInjectes: [],
-      }
-    },
-    openfiscaTracerURL: {
-      get: function() {
-        const vm = this;
-        if (! vm.resultats || ! vm.resultats._id) {
-          return undefined
-        }
-
-        return this.$SituationService
-          .fetchRepresentation('openfisca_tracer')
-          .then(function(data) {
-              return data.destination.url
-          }).catch(function() {
-            vm.$matomo && vm.$matomo.trackEvent('General', 'error-fetch-representation')
-          })
-      },
-      default: undefined
-    }
-  },
   computed: {
+    resultatStatus: function() { return this.$store.state.calculs },
+    resultats: function() { return this.$store.state.calculs.resultats },
+    situation: function() { return this.$store.state.situation },
     droits: function() { return (this.resultats && this.resultats.droitsEligibles) || [] },
     droitsNonEligibles: function() { return (this.resultats && this.resultats.droitsNonEligibles) || [] },
     droitsInjectes: function() { return (this.resultats && this.resultats.droitsInjectes) || [] },
@@ -269,10 +222,10 @@ export default {
       return _.some(this.droits, 'isBaseRessourcesPatrimoine') && ! Situation.hasPatrimoine(this.situation)
     },
     hasError: function() {
-      return this.$asyncComputed.resultats.error
+      return this.resultatStatus.error
     },
     error: function() {
-      let value = this.$asyncComputed.resultats.error && this.$asyncComputed.resultats.exception
+      let value = this.resultatStatus.error && this.resultatStatus.exception
       return (_.isString(value) || value instanceof Error) ? value : JSON.stringify(value, null, 2)
     },
     userAgent: function() {
@@ -286,6 +239,34 @@ export default {
     isEmpty: function(array) { return ! array || array.length === 0 },
     isNotEmpty: function(array) { return array && array.length !== 0 },
   },
+  mounted: function () {
+    this.$store.commit('startComputation')
+    this.$store.dispatch('save')
+    .then(() => {
+      this.$store.dispatch('compute')
+    })
+
+    let vm = this
+    this.stopSubscription = this.$store.subscribe(({type}, { calculs }) => {
+      switch (type) {
+        case 'setResults':
+        {
+          calculs.resultats.droitsEligibles.forEach(function(d) {
+            vm.$matomo && vm.$matomo.trackEvent('General', 'show', d.label)
+          })
+          break
+        }
+        case 'saveComputationFailure':
+        {
+          vm.$matomo && vm.$matomo.trackEvent('General', 'Error')
+          break
+        }
+      }
+    })
+  },
+  beforeDestroy: function() {
+    this.stopSubscription()
+  }
 }
 </script>
 

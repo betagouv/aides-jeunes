@@ -9,10 +9,10 @@
       </select>
     </label>
 
-    <label class="form__group">Chiffre d’affaires {{ dates.lastYear.label }}
+    <label class="form__group">Chiffre d’affaires {{ $store.state.dates.lastYear.label }}
       <input
         type="number"
-        v-model="ressource.amounts[dates.lastYear.id]">
+        v-model="ressource.amounts[$store.state.dates.lastYear.id]">
     </label>
   </div>
 </template>

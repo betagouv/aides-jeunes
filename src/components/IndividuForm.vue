@@ -137,7 +137,7 @@
       </select>
     </label>
 
-    <YesNoQuestion class="form__group" v-model="individu.enfant_a_charge[dates.thisYear.id]" v-if="captureEnfantACharge">
+    <YesNoQuestion class="form__group" v-model="individu.enfant_a_charge[$store.state.dates.thisYear.id]" v-if="captureEnfantACharge">
       Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu ?
     </YesNoQuestion>
 
@@ -252,7 +252,7 @@ export default {
     value: Object,
   },
   data: function() {
-    let individu = this.value
+    let individu = Object.assign({}, this.value)
     let selectedStatuts = {}
     individu.specificSituations.forEach(function(specificSituation) {
         selectedStatuts[specificSituation] = true
@@ -280,14 +280,14 @@ export default {
   },
   computed: {
     captureDemandeurACharge: function() {
-      let age = Individu.age(this.individu, this.dates.today.value)
+      let age = Individu.age(this.individu, this.$store.state.dates.today.value)
       return this.individu.role == 'demandeur' && (age >= 18) && (age < 25)
     },
     captureEligibiliteAss: function() {
       return this.isIndividuParent && this.selectedStatuts['chomeur']
     },
     captureEnfantACharge: function() {
-      return (! this.isIndividuParent) && Individu.age(this.individu, this.dates.today.value) >= 1
+      return (! this.isIndividuParent) && Individu.age(this.individu, this.$store.state.dates.today.value) >= 1
     },
     captureEnfantPlace: function() {
       return (! this.isIndividuParent) && this.selectedStatuts.handicap
@@ -299,7 +299,7 @@ export default {
       return this.individu.role == 'demandeur' && this.individu.nationalite != 'FR'
     },
     capturePerteAutonomie: function() {
-      return Individu.age(this.individu, this.dates.today.value) >= 60
+      return Individu.age(this.individu, this.$store.state.dates.today.value) >= 60
     },
     captureFirstName: function() {
       return ! this.isIndividuParent
@@ -309,7 +309,7 @@ export default {
     },
     captureScolarite: function() {
       if (! this.isIndividuParent) {
-          let age = Individu.age(this.individu, this.dates.today.value)
+          let age = Individu.age(this.individu, this.$store.state.dates.today.value)
           return age <= 25 && age > 8
       }
 
@@ -320,10 +320,10 @@ export default {
     },
     fiscalementIndependant: {
       get: function() {
-        return !this.individu.enfant_a_charge[this.dates.thisYear.id]
+        return !this.individu.enfant_a_charge[this.$store.state.dates.thisYear.id]
       },
       set: function(value) {
-        this.individu.enfant_a_charge[this.dates.thisYear.id] = !value
+        this.individu.enfant_a_charge[this.$store.state.dates.thisYear.id] = !value
       }
     },
     isNaissanceValid: function() {

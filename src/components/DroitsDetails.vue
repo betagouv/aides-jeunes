@@ -11,10 +11,10 @@
 
       <div class="notification warning print-hidden" v-if="droit.isBaseRessourcesYearMinusTwo && ! ressourcesYearMinusTwoCaptured && ! isString(droit.montant)">
         <span>
-          <i class="fa fa-warning" aria-hidden="true"></i>  Cette aide se base sur vos ressources de l'année {{ dates.fiscalYear.label }}
+          <i class="fa fa-warning" aria-hidden="true"></i>  Cette aide se base sur vos ressources de l'année {{ $store.state.dates.fiscalYear.label }}
         </span>
 
-        <router-link class="button-outline warning text-center" to="ressources/fiscales">Déclarez vos ressources {{ dates.fiscalYear.label }}</router-link>
+        <router-link class="button-outline warning text-center" to="ressources/fiscales">Déclarez vos ressources {{ $store.state.dates.fiscalYear.label }}</router-link>
       </div>
 
       <div class="notification warning print-hidden" v-if="droit.isBaseRessourcesPatrimoine && ! patrimoineCaptured && ! isString(droit.montant)">

@@ -2,7 +2,7 @@
   <form>
     <h1>{{ title }}</h1>
     <p>
-      Sélectionnez les types de ressources perçues <strong>depuis {{ dates.twelveMonthsAgo.label }}</strong>,
+      Sélectionnez les types de ressources perçues <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong>,
       vous pourrez ensuite saisir les montants.
     </p>
       <fieldset class="form__group" v-for="category in categories" v-bind:key="category.id">
@@ -31,13 +31,12 @@ export default {
     individu: Object
   },
   data: function() {
-    let selectedTypes = Ressource.getIndividuRessourceTypes(this.individu)
     let types = _.filter(ressourceTypes, Ressource.isRessourceOnMainScreen)
 
     return {
-      selectedTypes,
       categories: ressourceCategories,
       typesByCategories: _.groupBy(types, t => t.category),
+      selectedTypes: Ressource.getIndividuRessourceTypes(this.individu)
     }
   },
   computed: {
@@ -48,22 +47,20 @@ export default {
     title: function() {
       return Individu.ressourceHeader(this.individu)
     },
-
-  },
-  methods: {
-    next: function() {
-      let situation = this.$SituationService.restoreLocal()
-      Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.dates)
-      this.$SituationService.saveLocal()
-      this.$push(situation)
-    },
-    sort: function(array) {
-      return _.orderBy(array, ['positionInList','label'])
-    }
   },
   watch: {
     individu: function() {
       this.selectedTypes = Ressource.getIndividuRessourceTypes(this.individu)
+    }
+  },
+  methods: {
+    next: function() {
+      Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.$store.state.dates)
+      this.$store.commit('updateIndividu', this.individu)
+      this.$push(this.$store.state.situation)
+    },
+    sort: function(array) {
+      return _.orderBy(array, ['positionInList','label'])
     }
   }
 }

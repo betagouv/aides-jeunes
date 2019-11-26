@@ -9,20 +9,20 @@
       </select>
     </label>
 
-    <label class="form__group">Chiffre d’affaires {{ dates.lastYear.label }}
+    <label class="form__group">Chiffre d’affaires {{ $store.state.dates.lastYear.label }}
       <input
         type="number"
-        v-model="ressource.amounts[dates.lastYear.id]">
+        v-model="ressource.amounts[$store.state.dates.lastYear.id]">
     </label>
 
     <fieldset class="form__group">
       <label>
-        Chiffre d'affaires pour {{ dates.thisMonth.label | capitalize }}
+        Chiffre d'affaires pour {{ $store.state.dates.thisMonth.label | capitalize }}
         <input
           type="number"
-          v-model="ressource.amounts[dates.thisMonth.id]">
+          v-model="ressource.amounts[$store.state.dates.thisMonth.id]">
       </label>
-      <label v-for="month in dates.last3Months" v-bind:key="month.id">
+      <label v-for="month in $store.state.dates.last3Months" v-bind:key="month.id">
         Chiffre d'affaires pour {{ month.label | capitalize }}
         <input
           type="number"

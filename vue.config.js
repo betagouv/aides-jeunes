@@ -3,6 +3,9 @@ const mock = require('./mock')
 const before = process.env.NODE_ENV === 'front_only' ? mock : configureAPI
 
 module.exports = {
+  configureWebpack: {
+    devtool: 'source-map'
+  },
   chainWebpack(config) {
     config.module
       .rule('vue')

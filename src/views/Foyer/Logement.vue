@@ -133,7 +133,6 @@ import { required } from 'vuelidate/lib/validators'
 import Commune from '@/lib/Commune'
 import Individu from '@/lib/Individu'
 import Logement from '@/lib/Logement'
-import Situation from '@/lib/Situation'
 import { locationTypes, logementTypes } from '@/constants/logement'
 
 import YesNoQuestion from '@/components/YesNoQuestion'
@@ -144,12 +143,12 @@ export default {
     YesNoQuestion,
   },
   data () {
-    var situation = this.$SituationService.restoreLocal()
+    var situation = this.$store.state.situation
     var logement = Logement.getLogementVariables(situation.menage.statut_occupation_logement)
     logement.pretSigneAvant2018 = moment(situation.menage.aide_logement_date_pret_conventionne, 'YYYY-MM-DD').get('year') < 2018
 
     return {
-      demandeur: situation.individus[0],
+      demandeur: situation.demandeur,
       famille: {
         parisien: undefined,
         proprietaire_proche_famille: undefined,
@@ -209,7 +208,7 @@ export default {
     },
     captureHabiteChezParents: function() {
         var age = Individu.age(this.demandeur)
-        return (this.logement.type == 'heberge') && this.demandeur.fiscalementIndependant && (age >= 18) && (age < 25) && (! Situation.hasEnfant(this.situation))
+        return (this.logement.type == 'heberge') && this.demandeur.fiscalementIndependant && (age >= 18) && (age < 25) && (this.situation.enfants.length === 0)
     },
     captureCodePostal: function() {
         return _.some([
@@ -315,13 +314,11 @@ export default {
         return
       }
 
-      let situation = this.$SituationService.saveLocal()
       this.menage.statut_occupation_logement = Logement.getStatutOccupationLogement(this.logement)
       this.menage.aide_logement_date_pret_conventionne = this.logement.pretSigneAvant2018 ? '2017-12-31' : '2018-01-01'
 
-      situation.menage = this.menage
-      situation.famille = this.famille
-      this.$SituationService.saveLocal()
+      this.$store.commit('updateMenage', this.menage)
+      this.$store.commit('updateFamille', this.famille)
       this.$push()
     },
     yearsAgo: function(years) {
@@ -338,7 +335,9 @@ export default {
   watch: {
     communes: function() {
       let c = _.find(this.communes, { code: this.menage.depcom }) || Commune.getMostPopulated(this.communes)
-      this.menage.depcom = c.code
+      if (c.code) {
+        this.menage.depcom = c.code
+      }
     },
     'menage.depcom': function() {
       let c = _.find(this.communes, { code: this.menage.depcom })

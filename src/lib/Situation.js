@@ -9,19 +9,19 @@ const Situation = {
     *@return   {String}  A boolean indicating whether the situation looks ready for OpenFisca or not
     */
     passSanityCheck: function(situation) {
-        return situation.individus && situation.individus.length > 0;
+        return situation.demandeur && situation.demandeur.date_naissance;
     },
 
     getDemandeur: function(situation) {
-        return _.find(situation.individus, { role: 'demandeur' });
+        return situation.demandeur
     },
 
     getConjoint: function(situation) {
-        return _.find(situation.individus, { role: 'conjoint' });
+        return situation.conjoint
     },
 
     getEnfants: function(situation) {
-        return _.filter(situation.individus, { role: 'enfant' });
+        return situation.enfants
     },
 
     getIndividusSortedParentsFirst: function(situation) {
@@ -33,22 +33,7 @@ const Situation = {
     },
 
     hasEnfantScolarise: function(situation) {
-        return _.some(situation.individus, { role: 'enfant', scolarite: 'college' }) || _.some(situation.individus, { role: 'enfant', scolarite: 'lycee' });
-    },
-
-    hasEnfant: function(situation) {
-        return _.some(situation.individus, { role: 'enfant' });
-    },
-
-    setConjoint: function(situation, conjoint) {
-        var individus = situation.individus;
-        // si le conjoint existait déjà avant, on l'écrase
-        if (this.getConjoint(situation)) {
-            individus[individus.length - 1] = conjoint;
-        } else {
-            // on insère le conjoint en dernier dans la liste des individus
-            individus.push(conjoint);
-        }
+        return _.some(situation.enfants, { scolarite: 'college' }) || _.some(situation.enfants, { scolarite: 'lycee' });
     },
 
     setEnfants: function(situation, enfants) {
@@ -72,7 +57,7 @@ const Situation = {
             .set('month', 0)
             .format('YYYY-MM');
         var rfr = situation.foyer_fiscal && situation.foyer_fiscal.rfr && situation.foyer_fiscal.rfr[yearMinusTwo];
-        var hasYm2Ressources = situation.individus.some(function(individu) {
+        var hasYm2Ressources = this.getIndividusSortedParentsFirst(situation).some(function(individu) {
             return categoriesRnc.reduce(function(hasYm2RessourcesAccum, categorieRnc) {
                 if (! individu[categorieRnc.id]) {
                     return hasYm2RessourcesAccum;
@@ -92,7 +77,7 @@ const Situation = {
      * - true
      */
     hasPatrimoine: function(situation) {
-        var demandeur = situation.individus[0];
+        var demandeur = situation.demandeur;
         return patrimoineTypes.reduce(function(accum, ressource) {
             if (! demandeur[ressource.id]) {
                 return accum;

@@ -12,19 +12,17 @@ export default {
     IndividuForm
   },
   data () {
-    let situation = this.$SituationService.restoreLocal()
-    let { existingIndividu, individu } = Individu.get(situation.individus, 'demandeur')
+    let existingIndividu = Boolean(this.$store.state.situation.demandeur)
+    let individu = existingIndividu ? this.$store.state.situation.demandeur :  Individu.getDemandeur()
 
     return {
       existingIndividu,
       individu,
-      situation
     }
   },
   methods: {
     emit: function() {
-      this.situation.individus[0] = Object.assign({}, this.individu)
-      this.$SituationService.saveLocal()
+      this.$store.commit('updateIndividu', this.individu)
       this.$push()
     }
   }

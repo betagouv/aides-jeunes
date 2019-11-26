@@ -11,7 +11,7 @@
 export default {
   name: 'YesNoQuestion',
   props: {
-    value: Boolean,
+    value: [Boolean, Number],
   },
   data: function() {
     const uniqueFieldName = 'field.' + Math.random().toString(36).slice(2)

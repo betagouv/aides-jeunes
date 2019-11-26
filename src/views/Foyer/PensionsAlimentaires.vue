@@ -3,13 +3,13 @@
     <h1>Pensions alimentaires versées</h1>
     <YesNoQuestion class="form__group" v-model="parentsPayPensionsAlimentaires">
       Vous ou votre conjoint·e actuel·le avez-vous <strong>versé</strong> des pensions alimentaires <b>
-      depuis {{ dates.twelveMonthsAgo.label }}</b> ?
+      depuis {{ $store.state.dates.twelveMonthsAgo.label }}</b> ?
     </YesNoQuestion>
 
     <div class="form__group" v-if="parentsPayPensionsAlimentaires">
-      <div class="form__group" v-for="item in items" v-bind:key="item.individu.id">
+      <div class="form__group" v-for="(item, index) in types" v-bind:key="item.individu.id">
         <h2>{{ individuLabel(item.individu) | capitalize }}</h2>
-        <RessourceMontants without-header v-bind:individu="item.individu" v-bind:type="item" />
+        <RessourceMontants without-header v-bind:individu="item.individu" v-bind:index="index" v-bind:type="item" v-on:update="process"/>
       </div>
     </div>
 
@@ -24,59 +24,46 @@ import _ from 'lodash'
 import { ressourceTypes } from '@/constants/resources'
 import Individu from '@/lib/Individu'
 import Ressource from '@/lib/Ressource'
-import Situation from '@/lib/Situation'
 import RessourceMontants from '@/components/Ressource/Montants'
 import YesNoQuestion from '@/components/YesNoQuestion'
-
-function getDisplayMonthly(months, amounts) {
-  const result = months.reduce((result, m) => {
-    result.allNull = result.allNull && amounts[m.id] === null
-    result.allSame = result.allSame && amounts[m.id] === result.initial
-    return result
-  }, { allNull: true, initial: amounts[months[0].id], allSame: true })
-
-  if (result.allNull) {
-    return undefined
-  } else {
-    return result.allSame
-  }
-}
+import RessourceProcessor from '@/mixins/RessourceProcessor'
 
 export default {
   name: 'pensions-alimentaires',
+  mixins: [RessourceProcessor],
   components: {
     RessourceMontants,
     YesNoQuestion
   },
   data () {
-    let situation = this.$SituationService.restoreLocal()
+    let situation = this.$store.state.situation
     let pensionsVersees = _.find(ressourceTypes, { id: 'pensions_alimentaires_versees_individu' })
 
-    let demandeur = Situation.getDemandeur(situation)
-    let conjoint = Situation.getConjoint(situation)
+    let demandeur = Object.assign({}, situation.demandeur)
+    let conjoint = situation.conjoint
     let individus = [ demandeur ]
     if (conjoint) {
-        individus.push(conjoint)
+        individus.push(Object.assign({}, conjoint))
     }
 
-    let items = individus.map(individu => {
-      Ressource.setDefaultValueForCurrentYear(this.dates, individu, pensionsVersees)
-      let amounts = individu[pensionsVersees.id]
-      let months = Ressource.getPeriodsForCurrentYear(this.dates, pensionsVersees)
+    let types = individus.map(individu => {
+      Ressource.setDefaultValueForCurrentYear(this.$store.state.dates, individu, pensionsVersees)
+      let amounts = Object.assign({}, individu[pensionsVersees.id])
+      let months = Ressource.getPeriodsForCurrentYear(this.$store.state.dates, pensionsVersees)
 
       return {
         individu,
         amounts,
         months,
-        displayMonthly: getDisplayMonthly(months, amounts),
+        displayMonthly: this.getDisplayMonthly(months, amounts),
         meta: pensionsVersees
       }
     })
 
     return {
-      items,
+      types,
       pensionsVersees,
-      parentsPayPensionsAlimentaires: items.reduce(function(accum, item) {
+      parentsPayPensionsAlimentaires: types.reduce(function(accum, item) {
         return accum || _.some(item.amounts);
       }, false)
     }
@@ -85,18 +72,13 @@ export default {
     individuLabel: Individu.label,
     next: function() {
       if (this.parentsPayPensionsAlimentaires) {
-        this.items.forEach(item => {
-          item.months.forEach(month => {
-            item.individu[item.meta.id][month.id] = item.amounts[month.id] || item.amounts[this.dates.thisMonth.id] || 0
-          })
-        })
+        this.save(this.types)
       } else {
-        this.items.forEach((item) => {
-            Ressource.unsetForCurrentYear(this.dates, item.individu, item.meta)
+        this.types.forEach((item) => {
+            Ressource.unsetForCurrentYear(this.$store.state.dates, item.individu, item.meta)
+            this.$store.commit('updateIndividu', item.individu)
         })
       }
-
-      this.$SituationService.saveLocal()
       this.$push()
     },
   }

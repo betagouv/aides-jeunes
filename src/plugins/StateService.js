@@ -1,10 +1,9 @@
 import _ from 'lodash'
 import Individu from '@/lib/Individu'
 import Ressource from '@/lib/Ressource'
-import Situation from '@/lib/Situation'
 
 function nextDemandeurRessources(situation) {
-    let conjoint = Situation.getConjoint(situation)
+    let conjoint = situation.conjoint
     if (conjoint) {
         return { name: 'ressources/types', params: { role: 'conjoint' } }
     } else {
@@ -13,7 +12,7 @@ function nextDemandeurRessources(situation) {
 }
 
 function nextConjointRessources(situation) {
-    let enfants = Situation.getEnfants(situation)
+    let enfants = situation.enfants
     if (enfants.length) {
         return '/foyer/ressources/enfants'
     } else {
@@ -22,7 +21,7 @@ function nextConjointRessources(situation) {
 }
 
 function nextEnfantRessources(current, situation) {
-    let enfants = Situation.getEnfants(situation)
+    let enfants = situation.enfants
     const { next } = enfants.reduce((accum, enfant) => {
         if (accum.next) {
             return
@@ -75,7 +74,7 @@ function next(current, situation) {
             return '/foyer/resultat'
         case '/foyer/ressources/enfants':
         {
-            let enfants = Situation.getEnfants(situation)
+            let enfants = situation.enfants
             const { next } = enfants.reduce((accum, enfant) => {
               if (accum.next) {
                 return accum
@@ -95,7 +94,7 @@ function next(current, situation) {
                     return '/foyer/enfants'
                 case 'ressources/types':
                     if (situation) {
-                        let individu = Individu.find(situation.individus, current.params.role, current.params.id)
+                        let individu = Individu.find(situation, current.params.role, current.params.id)
                         let selectedTypes = Ressource.getIndividuRessourceTypes(individu)
                         const count = _.filter(selectedTypes).length
                         if (count) {

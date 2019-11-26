@@ -12,7 +12,7 @@
     <label class="form__group">Bénéfice sur le dernier exercice clos
       <input
         type="number"
-        v-model="ressource.amounts[dates.lastYear.id]">
+        v-model="ressource.amounts[$store.state.dates.lastYear.id]">
     </label>
   </div>
 </template>

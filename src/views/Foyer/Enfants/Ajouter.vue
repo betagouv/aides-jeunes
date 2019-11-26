@@ -9,7 +9,6 @@
 <script>
 import IndividuForm from '@/components/IndividuForm'
 import Individu from '@/lib/Individu'
-import Situation from '@/lib/Situation'
 
 export default {
   name: 'enfants.ajouter',
@@ -17,27 +16,19 @@ export default {
     IndividuForm
   },
   data () {
-    let situation = this.$SituationService.restoreLocal()
-    let enfants = Situation.getEnfants(situation)
-    let { existingIndividu, individu } = Individu.get(enfants, 'enfant', 1, this.dates)
+    let { existingIndividu, individu } = Individu.get(this.$store.state.situation.enfants, 'enfant', 1, this.$store.state.dates)
 
     return {
       existingIndividu,
       individu,
-      situation
     }
   },
   methods: {
     cancel: function() {
-      this.$SituationService.restoreLocal()
       this.$router.push('/foyer/enfants')
     },
     emit: function() {
-      let enfants = Situation.getEnfants(this.situation)
-      enfants.push(this.individu)
-      Situation.setEnfants(this.situation, enfants)
-
-      this.$SituationService.saveLocal()
+      this.$store.commit('addEnfant', this.individu)
       this.$push()
     }
   }

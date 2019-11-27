@@ -58,7 +58,7 @@ import _ from 'lodash'
 import DroitMontant from './DroitMontant'
 
 export default {
-  name: 'DroitsEligiblesList',
+  name: 'DroitsList',
   props: {
     city: Object,
     droits: Array,

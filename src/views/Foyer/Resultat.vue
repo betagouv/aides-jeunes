@@ -48,7 +48,7 @@
           <span id="print-disclaimer">Ces résultats sont fondés sur les seules informations que vous avez indiquées et ne constituent en aucune façon un engagement de la part des organismes cités.</span>
           Les montants avancés sont arrondis à une dizaine d'euros près :
         </p>
-        <DroitsEligiblesList v-bind:droits="droits"></DroitsEligiblesList>
+        <DroitsList v-bind:droits="droits"></DroitsList>
       </div>
 
       <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
@@ -68,7 +68,7 @@
         <p>
           Les conditions des aides suivantes <strong>ne sont pas</strong> remplies :
         </p>
-        <DroitsEligiblesList ineligible v-bind:droits="droitsNonEligiblesShown"></DroitsEligiblesList>
+        <DroitsList ineligible v-bind:droits="droitsNonEligiblesShown"></DroitsList>
       </div>
 
       <div class="frame-resultats" v-show="isEmpty(droits) && ressourcesYearMinusTwoCaptured">
@@ -184,7 +184,7 @@
 <script>
 import _ from 'lodash'
 import Situation from '@/lib/Situation'
-import DroitsEligiblesList from './../../components/DroitsEligiblesList'
+import DroitsList from './../../components/DroitsList'
 import DroitsDetails from './../../components/DroitsDetails'
 import OfflineResults from './../../components/OfflineResults'
 
@@ -199,7 +199,7 @@ export default {
   },
   components: {
     DroitsDetails,
-    DroitsEligiblesList,
+    DroitsList,
     OfflineResults
   },
   computed: {

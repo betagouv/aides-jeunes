@@ -59,7 +59,8 @@ function defaultStore() {
       exception: false,
       updating: true,
     },
-    dates: datesGenerator(now)
+    dates: datesGenerator(now),
+    ameliNoticationDone: false,
   }
 }
 
@@ -75,7 +76,8 @@ function restoreLocal() {
 
   return {
     situation: adaptPersistedSituation(store.situation),
-    dates: datesGenerator(store.situation.dateDeValeur)
+    dates: datesGenerator(store.situation.dateDeValeur),
+    ameliNoticationDone: store.ameliNoticationDone
   }
 }
 
@@ -86,9 +88,10 @@ const store = new Vuex.Store({
       state.situation = {}
     },
     initialize: function(state) {
-      const { situation, dates } = restoreLocal()
+      const { situation, dates, ameliNoticationDone } = restoreLocal()
       state.situation = situation
       state.dates = dates
+      state.ameliNoticationDone = ameliNoticationDone
     },
     updateFamille: function(state, famille) {
       state.situation = Object.assign({}, state.situation, { famille })
@@ -125,6 +128,9 @@ const store = new Vuex.Store({
       state.calculs.exception = false
       state.calculs.error = false
     },
+    setAmeliNoticationDone: function(state) {
+      state.ameliNoticationDone = true
+    },
     setResults: function(state, results) {
       state.calculs.resultats = results
       state.calculs.updating = false
@@ -159,11 +165,11 @@ const store = new Vuex.Store({
 })
 export default store
 
-store.subscribe(({type}, { situation }) => {
+store.subscribe(({type}, { ameliNoticationDone, situation }) => {
   if (type === 'initialize') {
     return
   }
-  window.sessionStorage.setItem('store', JSON.stringify({ situation }))
+  window.sessionStorage.setItem('store', JSON.stringify({ ameliNoticationDone, situation }))
 })
 
 // Replicate strict mode

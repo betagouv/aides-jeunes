@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 
+import store from './store'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -14,8 +16,9 @@ const router = new Router({
       component: Home,
       beforeEnter: (to, from, next) => {
         var referrer = document.referrer
-        if (referrer.match(/ameli\.fr/) || referrer.match(/mes-aides\.gouv\.fr\/ameli/)) {
-          return next('ameli')
+        if (!store.state.ameliNoticationDone && (referrer.match(/ameli\.fr/) || referrer.match(/mes-aides\.gouv\.fr\/ameli/))) {
+          store.commit('setAmeliNoticationDone')
+          return next('/ameli')
         }
         next()
       }

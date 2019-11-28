@@ -1,29 +1,54 @@
 <template>
   <div class="droits-list">
-    <a v-for="(droit, index) in list"
-      v-on:click="scrollTo($event, droit)"
-      class="droits-list-item"
-      itemscope itemtype="http://schema.org/GovernmentService"
-      v-analytics="{ name:droit.label, action:'click', category:'General'}"
-      v-bind:key="index"
-      >
-      <div class="droits-list-item-cell">
-        <div class="droits-list-item-cell-left">
-          <img v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
-          <div>
-            <h2>
-              <span itemprop="name">{{ droit.label }}</span>
-              <small v-bind:aria-label="longCta(droit)">Comment l'obtenir ?</small>
-            </h2>
+    <div v-if="!ineligible">
+      <a v-for="(droit, index) in list"
+        v-on:click="scrollTo($event, droit)"
+        class="droits-list-item"
+        itemscope itemtype="http://schema.org/GovernmentService"
+        v-analytics="{ name:droit.label, action:'click', category:'General'}"
+        v-bind:key="index"
+        >
+        <div class="droits-list-item-cell">
+          <div class="droits-list-item-cell-left">
+            <img v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
+            <div>
+              <h2>
+                <span itemprop="name">{{ droit.label }}</span>
+                <small v-bind:aria-label="longCta(droit)">Comment l'obtenir ?</small>
+              </h2>
+            </div>
+          </div>
+          <div class="dotted-line"></div>
+          <droit-montant v-bind:droit="droit" v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
+          <div v-if="droit.montant && isBoolean(droit.montant)">
+            <i class="fa fa-check-circle fa-2x"></i>
           </div>
         </div>
-        <div class="dotted-line"></div>
-        <droit-montant v-bind:droit="droit" v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
-        <div v-if="droit.montant && isBoolean(droit.montant)">
-          <i class="fa fa-check-circle fa-2x"></i>
+      </a>
+    </div>
+    <div v-if="ineligible">
+      <a v-for="(droit, index) in list"
+        class="droits-list-item"
+        v-bind:href="droit.link"
+        target="_blank"
+        rel="noopener"
+        itemscope itemtype="http://schema.org/GovernmentService"
+        v-analytics="{ name:droit.label, action:'link-ineligible', category:'General'}"
+        v-bind:key="index"
+        >
+        <div class="droits-list-item-cell">
+          <div class="droits-list-item-cell-left">
+            <img v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
+            <div>
+              <h2>
+                <span itemprop="name">{{ droit.label }}</span>
+                <small v-bind:aria-label="`Plus d'informations sur ${ droit.label }`">Plus d'informations</small>
+              </h2>
+            </div>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -33,11 +58,12 @@ import _ from 'lodash'
 import DroitMontant from './DroitMontant'
 
 export default {
-  name: 'DroitsEligiblesList',
+  name: 'DroitsList',
   props: {
     city: Object,
     droits: Array,
     filter: Array,
+    ineligible: Boolean,
     patrimoineCaptured: Boolean,
     ressourcesYearMinusTwoCaptured: Boolean,
     yearMinusTwo: String,

@@ -48,7 +48,7 @@
           <span id="print-disclaimer">Ces résultats sont fondés sur les seules informations que vous avez indiquées et ne constituent en aucune façon un engagement de la part des organismes cités.</span>
           Les montants avancés sont arrondis à une dizaine d'euros près :
         </p>
-        <DroitsEligiblesList v-bind:droits="droits"></DroitsEligiblesList>
+        <DroitsList v-bind:droits="droits"></DroitsList>
       </div>
 
       <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
@@ -64,13 +64,11 @@
         <router-link class="button-outline warning text-center" to="ressources/fiscales">Déclarez vos ressources {{ $store.state.dates.fiscalYear.label }}</router-link>
       </div>
 
-      <div v-if="! isEmpty(droitsNonEligibles)" v-show="droitsNonEligiblesShow">
+      <div v-if="! isEmpty(droitsNonEligiblesShown)">
         <p>
           Les conditions des aides suivantes <strong>ne sont pas</strong> remplies :
         </p>
-        <DroitsEligiblesList
-          v-bind:droits="droitsNonEligibles"
-          v-bind:filter="['cmu_c', 'acs']"></DroitsEligiblesList>
+        <DroitsList ineligible v-bind:droits="droitsNonEligiblesShown"></DroitsList>
       </div>
 
       <div class="frame-resultats" v-show="isEmpty(droits) && ressourcesYearMinusTwoCaptured">
@@ -186,7 +184,7 @@
 <script>
 import _ from 'lodash'
 import Situation from '@/lib/Situation'
-import DroitsEligiblesList from './../../components/DroitsEligiblesList'
+import DroitsList from './../../components/DroitsList'
 import DroitsDetails from './../../components/DroitsDetails'
 import OfflineResults from './../../components/OfflineResults'
 
@@ -194,7 +192,6 @@ export default {
   name: 'resultat',
   data: function() {
     return {
-      droitsNonEligiblesShow: true,
       warning: false,
       warningMessage: 'Attention',
       openfiscaTracerURL: 'TODO'
@@ -202,18 +199,21 @@ export default {
   },
   components: {
     DroitsDetails,
-    DroitsEligiblesList,
+    DroitsList,
     OfflineResults
   },
   computed: {
+    droits: function() { return (this.resultats && this.resultats.droitsEligibles) || [] },
+    droitsInjectes: function() { return (this.resultats && this.resultats.droitsInjectes) || [] },
+    droitsNonEligibles: function() {
+      return (this.droitsNonEligiblesShow && this.resultats && this.resultats.droitsNonEligibles) || [] },
+    droitsNonEligiblesShown: function() { return this.droitsNonEligibles.filter(i => i.id === "css_participation_forfaitaire") },
+    droitsNonEligiblesShow: function() { return this.$store.state.ameliNoticationDone },
+    resultatsId: function() { return this.resultats && this.resultats._id || '???' },
     resultatStatus: function() { return this.$store.state.calculs },
     resultats: function() { return this.$store.state.calculs.resultats },
-    situation: function() { return this.$store.state.situation },
-    droits: function() { return (this.resultats && this.resultats.droitsEligibles) || [] },
-    droitsNonEligibles: function() { return (this.resultats && this.resultats.droitsNonEligibles) || [] },
-    droitsInjectes: function() { return (this.resultats && this.resultats.droitsInjectes) || [] },
-    resultatsId: function() { return this.resultats && this.resultats._id || '???' },
     ressourcesYearMinusTwoCaptured: function() { return Situation.ressourcesYearMinusTwoCaptured(this.situation) },
+    situation: function() { return this.$store.state.situation },
     shouldPatrimoineBeCaptured: function() {
       if (! this.droits) {
         return

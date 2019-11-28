@@ -11,7 +11,7 @@
 
     <label class="form__group">Bénéfice sur le dernier exercice clos
       <input
-        type="number"
+        type="number" v-select-on-click
         v-model="ressource.amounts[$store.state.dates.lastYear.id]">
     </label>
   </div>

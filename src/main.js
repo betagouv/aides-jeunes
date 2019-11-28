@@ -21,8 +21,10 @@ import '@/styles/main.scss'
 
 import AnalyticsDirective from './directives/analytics'
 import MailDirective from './directives/mail'
+import SelectOnClickDirective from './directives/selectOnClick'
 AnalyticsDirective(Vue)
 MailDirective(Vue)
+SelectOnClickDirective(Vue)
 
 if (process.env.NODE_ENV === 'production') {
   Raven

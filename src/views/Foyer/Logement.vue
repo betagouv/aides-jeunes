@@ -68,7 +68,7 @@
 
     <label v-if="captureLoyer" class="form__group">
       {{ loyerLabel }}
-      <input type="number" v-model.number="menage.loyer">
+      <input type="number" v-select-on-click v-model.number="menage.loyer">
     </label>
 
     <p v-if="logement.type == 'proprietaire'">
@@ -77,7 +77,7 @@
 
     <label v-if="captureCharges" class="form__group">
       Vos charges locatives
-      <input type="number" v-model.number="menage.charges_locatives">
+      <input type="number" v-select-on-click v-model.number="menage.charges_locatives">
     </label>
 
     <YesNoQuestion class="form__group" v-model="logement.pretSigneAvant2018" v-if="capturePretSigneAvant2018">

@@ -7,6 +7,7 @@
       aria-label="Jour"
       v-model="day"
       placeholder="23"
+      v-select-on-click
       min=1
       max=31 />
       /
@@ -16,6 +17,7 @@
       aria-label="Mois"
       v-model="month"
       placeholder="02"
+      v-select-on-click
       min=1
       max=12 />
       /
@@ -25,6 +27,7 @@
       aria-label="Année"
       v-model="year"
       placeholder="1973"
+      v-select-on-click
       min="1900"
       max="2020">
   </fieldset>

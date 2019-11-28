@@ -11,7 +11,7 @@
 
     <label class="form__group">Chiffre d’affaires {{ $store.state.dates.lastYear.label }}
       <input
-        type="number"
+        type="number" v-select-on-click
         v-model="ressource.amounts[$store.state.dates.lastYear.id]">
     </label>
   </div>

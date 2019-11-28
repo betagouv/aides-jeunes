@@ -2,7 +2,7 @@
   <form>
     <h1>Pensions alimentaires versées</h1>
     <YesNoQuestion class="form__group" v-model="parentsPayPensionsAlimentaires">
-      Vous ou votre conjoint·e actuel·le avez-vous <strong>versé</strong> des pensions alimentaires <b>
+      {{ subject }} <strong>versé</strong> des pensions alimentaires <b>
       depuis {{ $store.state.dates.twelveMonthsAgo.label }}</b> ?
     </YesNoQuestion>
 
@@ -66,6 +66,11 @@ export default {
       parentsPayPensionsAlimentaires: types.reduce(function(accum, item) {
         return accum || _.some(item.amounts);
       }, false)
+    }
+  },
+  computed: {
+    subject: function() {
+      return this.types.length === 1 ? 'Avez-vous' : 'Vous ou votre conjoint·e actuel·le avez-vous'
     }
   },
   methods: {

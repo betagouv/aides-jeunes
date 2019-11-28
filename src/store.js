@@ -49,6 +49,10 @@ function defaultStore() {
       },
       version: 13,
     },
+    access: {
+      fetching: false,
+      forbidden: false,
+    },
     calculs: {
       resultats: {
         droitsEligibles: [],
@@ -57,7 +61,7 @@ function defaultStore() {
       },
       error: false,
       exception: false,
-      updating: true,
+      updating: false,
     },
     dates: datesGenerator(now),
     ameliNoticationDone: false,
@@ -86,6 +90,8 @@ const store = new Vuex.Store({
   mutations: {
     clear: function(state) {
       state.situation = {}
+      state.access.forbidden = false
+      state.access.fetching = false
     },
     initialize: function(state) {
       const { situation, dates, ameliNoticationDone } = restoreLocal()
@@ -120,6 +126,22 @@ const store = new Vuex.Store({
     addEnfant: function(state, enfant) {
       state.situation.enfants.push(enfant)
     },
+    setAmeliNoticationDone: function(state) {
+      state.ameliNoticationDone = true
+    },
+    fetching: function(state) {
+      state.access.fetching = true
+    },
+    reset: function(state, situation) {
+      state.access.fetching = false
+      state.situation = adaptPersistedSituation(situation)
+      state.dates = datesGenerator(state.situation.dateDeValeur)
+      state.ameliNoticationDone = false
+    },
+    saveAccessFailure: function(state,) {
+      state.access.fetching = false
+      state.access.forbidden = true
+    },
     setId: function(state, id) {
       state.situation._id = id
     },
@@ -128,14 +150,12 @@ const store = new Vuex.Store({
       state.calculs.exception = false
       state.calculs.error = false
     },
-    setAmeliNoticationDone: function(state) {
-      state.ameliNoticationDone = true
-    },
     setResults: function(state, results) {
       state.calculs.resultats = results
       state.calculs.updating = false
     },
     saveComputationFailure: function(state, error) {
+      state.calculs.updating = false
       state.calculs.error = true
       state.calculs.exception = error.response && error.response.data || error
     },
@@ -150,6 +170,13 @@ const store = new Vuex.Store({
         .then(result => result.data)
         .then(payload => payload._id)
         .then(id => state.commit('setId', id))
+    },
+    fetch: function(state, id) {
+      state.commit('fetching')
+      return axios.get(`/api/situations/${id}`)
+        .then(result => result.data)
+        .then(payload => state.commit('reset', payload))
+        .catch(() => state.commit('saveAccessFailure'))
     },
     compute: function(state, showPrivate) {
       state.commit('startComputation')

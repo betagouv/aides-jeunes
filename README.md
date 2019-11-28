@@ -20,7 +20,7 @@ sudo apt-get install mongodb
 
 ### For all platforms
 
-The runtime is Node 8.x for the web application, and Python 2.7 for Openfisca.
+The runtime is Node 8.x for the web application, and Python 3.7 for Openfisca.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 
@@ -39,23 +39,22 @@ npm install
 Openfisca
 ---------
 
-Openfisca is compatible with Python 2 and Python 3. So far, Mes Aides relies on Python 2. You should [install it in a `virtualenv`](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. You can either create the `virtualenv` yourself or rely on tools such as [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) or [pew](https://github.com/berdario/pew):
+Openfisca is compatible with Python 3. So far, Mes Aides relies on Python 3.7. You should [install it in a `virtualenv`](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. You can either create the `virtualenv` yourself or rely on tools such as [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) or [pew](https://github.com/berdario/pew):
 
 ```bash
 cd mes-aides-ui
-virtualenv  --python=python2.7 .venv # To create your virtualenv in ./.venv (a hidden folder)
+virtualenv  --python=python3.7 .venv # To create your virtualenv in ./.venv (a hidden folder)
 source .venv/bin/activate # To activate your virtualenv
 pip install pip --upgrade # To make sure you're using pip latest version
 ```
 
-`virtualenv  --python=python2.7 .venv` will fail if your python executable is not `python2.7`. If it does you can try `virtualenv  --python=python2 .venv` or make sure that `python2.7` is installed and in your path.
+`virtualenv  --python=python3.7 .venv` will fail if your python executable is not `python3.7`. If it does, make sure that `python3.7` is installed and in your path.
 
+Each time you want to run OpenFisca, you have to `source .venv/bin/activate` to get a working OpenFisca environment. Then you can:
 ```sh
 npm run install-openfisca
 npm run openfisca
 ```
-
-Each time you want to run OpenFisca, you have to `source .venv/bin/activate` to get a working OpenFisca environment.
 
 ### Development mode
 
@@ -74,8 +73,9 @@ First, start a Mongo server:
 npm run db &
 ```
 
-Then, start the Openfisca server:
+Then, start the Openfisca server (in your virtualenv):
 ```sh
+source .venv/bin/activate
 npm run openfisca
 ```
 
@@ -105,9 +105,16 @@ PORT=9001 WEBPACK_DEV_PORT=8081 LIVERELOAD_PORT=35728 DEBUG_PORT=9230 npm run de
 ```
 Those ports are the default ones incremented by 1.
 
+WIP - Migration to VueJS
+-----
+
+Go to https://github.com/betagouv/mes-aides-ui/tree/vue :)
+
 
 Testing
 =======
+
+_Disclaimer: the information below is valid for the AngularJS front-end. For the VueJS front-end (WIP), testing will soon be implemented and documented._  
 
 There are several levels of tests:
 
@@ -137,6 +144,9 @@ To do so, run `npm run db-update` script at the root of the repository. You will
 
 Déploiement
 ===========
+
+_Cette section est uniquement destinée aux administrateurs du serveur de production.
+Si vous souhaitez déployer votre propre version de Mes Aides, n'hésitez pas à [nous contacter](mailto:bonjour@mes-aides.gouv.fr)._
 
 Préparation
 -----------

@@ -14,7 +14,7 @@
         <h2>{{ individu.label | capitalize }}</h2>
         <label class="form__group" v-for="ressource in categoriesRnc" v-bind:key="ressource.id">
           {{ ressource.label }}
-          <input type="number" v-model.number="individu.source[ressource.id][$store.state.dates.fiscalYear.id]" />
+          <input type="number" v-model="individu.values[ressource.id][$store.state.dates.fiscalYear.id]" />
           <span v-if="individu.default[ressource.id]"> Ce montant vaut {{ individu.default[ressource.id] }} pour les 12 derniers mois.</span>
         </label>
       </div>
@@ -54,16 +54,17 @@ export default {
       var individu = {
         label: Individu.label(source),
         default: {},
+        values: {},
         source,
       }
 
       categoriesRnc.forEach((categorieRnc) => {
-        source[categorieRnc.id] = source[categorieRnc.id] || {}
-        source[categorieRnc.id][fiscalYear] = source[categorieRnc.id][fiscalYear] || undefined
+        individu.values[categorieRnc.id] = Object.assign({}, source[categorieRnc.id] || {})
+        individu.values[categorieRnc.id][fiscalYear] = source[categorieRnc.id] && source[categorieRnc.id][fiscalYear]
         individu.default[categorieRnc.id] = getDefaultValue(this.$store.state.dates.last12Months, source, categorieRnc)
       })
 
-      individu.display = Individu.isParent(source) || _.some(categoriesRnc.map(ressource => source[ressource.id][fiscalYear] !== undefined))
+      individu.display = Individu.isParent(source) || _.some(categoriesRnc.map(ressource => source[ressource.id] && source[ressource.id][fiscalYear] !== undefined))
       return individu
     })
 
@@ -74,7 +75,16 @@ export default {
   },
   methods: {
     next: function() {
-      this.individus.forEach(i => this.$store.commit('updateIndividu', i.source))
+      const fiscalYear = this.$store.state.dates.fiscalYear.id
+
+      this.individus.forEach(i => {
+        this.categoriesRnc.forEach(categorieRnc => {
+          const raw = i.values[categorieRnc.id][fiscalYear]
+          const value = parseFloat(raw)
+          i.values[categorieRnc.id][fiscalYear] = (raw === undefined) ? raw : (_.isNaN(value) ? 0 : value)
+        })
+        this.$store.commit('updateIndividu', Object.assign({}, i.source, i.values))
+      })
       this.$push()
     },
   }

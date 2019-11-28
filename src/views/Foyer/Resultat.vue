@@ -4,14 +4,18 @@
       Résultats de votre simulation
     </h1>
 
+
+    <p v-show="accessStatus.fetching"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération de la situation en cours…</p>
     <p v-show="resultatStatus.updating"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
 
-    <div id="warning" class="alert alert-warning" v-show="warning" role="alert">
-      <h2><i class="fa fa-warning" aria-hidden="true"></i> Aucun résultat disponible</h2>
-      <h3 v-show="warningMessage">{{ warningMessage }}</h3>
-      <p>
-        Pour commencer votre simulation, rendez-vous sur la <router-link to="home">page d'accueil</router-link>.
-      </p>
+    <div class="notification warning" v-if="hasWarning">
+      <div>
+        <h2><i class="fa fa-warning" aria-hidden="true"></i> Aucun résultat disponible</h2>
+        <h3>La simulation à laquelle vous souhaitez accéder n‘est pas accessible.</h3>
+        <p>
+          Pour commencer votre simulation, rendez-vous sur la <router-link to="home">page d'accueil</router-link>.
+        </p>
+      </div>
     </div>
 
     <div id="error" class="alert alert-danger" v-if="hasError"  role="alert">
@@ -40,7 +44,7 @@
       </small>
     </div>
 
-    <div v-show="! warning && ! resultatStatus.updating && ! resultatStatus.error">
+    <div v-show="shouldDisplayResults">
 
       <div v-if="! isEmpty(droits)">
         <p>
@@ -192,8 +196,6 @@ export default {
   name: 'resultat',
   data: function() {
     return {
-      warning: false,
-      warningMessage: 'Attention',
       openfiscaTracerURL: 'TODO'
     }
   },
@@ -210,6 +212,7 @@ export default {
     droitsNonEligiblesShown: function() { return this.droitsNonEligibles.filter(i => i.id === "css_participation_forfaitaire") },
     droitsNonEligiblesShow: function() { return this.$store.state.ameliNoticationDone },
     resultatsId: function() { return this.resultats && this.resultats._id || '???' },
+    accessStatus: function() { return this.$store.state.access },
     resultatStatus: function() { return this.$store.state.calculs },
     resultats: function() { return this.$store.state.calculs.resultats },
     ressourcesYearMinusTwoCaptured: function() { return Situation.ressourcesYearMinusTwoCaptured(this.situation) },
@@ -221,8 +224,14 @@ export default {
 
       return _.some(this.droits, 'isBaseRessourcesPatrimoine') && ! Situation.hasPatrimoine(this.situation)
     },
+    hasWarning: function() {
+      return this.accessStatus.forbidden
+    },
     hasError: function() {
       return this.resultatStatus.error
+    },
+    shouldDisplayResults: function() {
+      return !(this.resultatStatus.updating || this.hasWarning || this.hasError)
     },
     error: function() {
       let value = this.resultatStatus.error && this.resultatStatus.exception
@@ -240,10 +249,11 @@ export default {
     isNotEmpty: function(array) { return array && array.length !== 0 },
   },
   mounted: function () {
-    this.$store.commit('startComputation')
-    this.$store.dispatch('save')
-    .then(() => {
-      this.$store.dispatch('compute')
+    let p = (this.$route.query && this.$route.query.situationId) ? this.$store.dispatch('fetch', this.$route.query.situationId) : this.$store.dispatch('save')
+    p.then(() => {
+      if (! this.$store.state.access.forbidden) {
+        this.$store.dispatch('compute')
+      }
     })
 
     let vm = this

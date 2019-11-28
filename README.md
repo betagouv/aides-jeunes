@@ -107,23 +107,8 @@ Those ports are the default ones incremented by 1.
 
 WIP - Migration to VueJS
 -----
-We are currently working on a new front-end based on VueJS instead of AngularJS.
-To contribute, you should follow the instructions above (MongoDB and Openfisca are used the exact same way), except the following:
 
-- Checkout to the corresponding branch:
-```sh
-git checkout origin/vue
-```
-
-- Install the corresponding dependencies:
-```sh
-npm install
-```
-
-- Start the VueJS instance instead of the AngularJS one:
-```sh
-npm run serve
-```
+Go to https://github.com/betagouv/mes-aides-ui/tree/vue :)
 
 
 Testing

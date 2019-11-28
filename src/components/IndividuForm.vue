@@ -83,7 +83,7 @@
           Enceinte
         </label>
         <label>
-          <input type="checkbox" v-model="individu.no_specific_situation">
+          <input type="checkbox" v-model="no_specific_situation">
           <i>{{ individu.role == 'demandeur' ? 'Je ne suis dans' : 'Il ou elle n\'est dans' }} aucune de ces situations</i>
         </label>
       </div>
@@ -264,6 +264,7 @@ export default {
     }
 
     return {
+      no_specific_situation: null,
       GIROptions,
       individu,
       isIndividuParent: Individu.isRoleParent(individu.role),

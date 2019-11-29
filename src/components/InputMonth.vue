@@ -15,7 +15,7 @@
       InputDate
     },
     data: function() {
-      let date
+      let date = this.value
       return { date: date }
     },
     methods: {

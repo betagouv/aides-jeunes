@@ -65,7 +65,7 @@ export default {
   },
   data: function() {
     return {
-      currentState: this.value ? 0 : { element: 'day', length: 0 },
+      currentState: this.value ? 0 : ((this.dateType === "date") ? { element: 'day', length: 0 } : { element: 'day', length: 2 }),
       day: (this.dateType === "date") ? this.value && moment(this.value).format('DD') : "01",
       month: this.value && moment(this.value).format('MM'),
       year: this.value && moment(this.value).format('YYYY'),

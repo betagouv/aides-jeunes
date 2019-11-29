@@ -140,6 +140,16 @@ FollowupSchema.methods.sendSurvey = function() {
     });
 };
 
+FollowupSchema.methods.mock = function() {
+    var followup = this;
+    return this.createSurvey('initial').then((survey) => {
+        var surveys = Array.from(followup.surveys);
+        surveys.push(survey);
+        followup.surveys = surveys;
+        return followup.save();
+    });
+};
+
 FollowupSchema.methods.updateSurvey = function(id, answers) {
     var surveys = Array.from(this.surveys);
     var survey = _.find(surveys, function(s) { return s._id === id; });

@@ -58,7 +58,7 @@
 
       <div class="notification warning print-hidden" v-if="! ressourcesYearMinusTwoCaptured">
         <span>
-          <h2 v-if="!droits.length">Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
+          <h2 v-if="droits && !droits.length">Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
           <i class="fa fa-warning text-warning" aria-hidden="true"></i>
 
           Nous avons supposé que vos ressources pour l’année {{ $store.state.dates.fiscalYear.label }} étaient les mêmes qu’entre {{ $store.state.dates.twelveMonthsAgo.label }} et {{ $store.state.dates.oneMonthAgo.label }}.
@@ -204,7 +204,7 @@ export default {
     OfflineResults
   },
   computed: {
-    droits: function() { return (this.resultats && this.resultats.droitsEligibles) || [] },
+    droits: function() { return this.resultats && this.resultats.droitsEligibles },
     droitsInjectes: function() { return (this.resultats && this.resultats.droitsInjectes) || [] },
     droitsNonEligibles: function() {
       return (this.droitsNonEligiblesShow && this.resultats && this.resultats.droitsNonEligibles) || [] },
@@ -230,7 +230,7 @@ export default {
       return this.resultatStatus.error
     },
     shouldDisplayResults: function() {
-      return !(this.resultatStatus.updating || this.hasWarning || this.hasError)
+      return !(this.resultatStatus.updating || this.hasWarning || this.hasError) && this.droits
     },
     error: function() {
       let value = this.resultatStatus.error && this.resultatStatus.exception

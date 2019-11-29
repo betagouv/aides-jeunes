@@ -56,9 +56,9 @@ function defaultStore() {
     },
     calculs: {
       resultats: {
-        droitsEligibles: [],
-        droitsNonEligibles: [],
-        droitsInjectes: [],
+        droitsEligibles: null,
+        droitsNonEligibles: null,
+        droitsInjectes: null,
       },
       error: false,
       exception: false,

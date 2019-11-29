@@ -1,7 +1,8 @@
 <template>
-  <div class="foyer">
-    <router-view/>
-    <FoyerRecap></FoyerRecap>
+  <div class="main">
+    <div v-if="$store.state.message" class="main notification warning full-width" v-html="$store.state.message" />
+    <router-view class="foyer" />
+    <FoyerRecap />
   </div>
 </template>
 
@@ -17,10 +18,16 @@ export default {
 </script>
 
 <style lang="scss">
-
-.foyer {
+.main {
   flex-grow: 1;
   background-color: whitesmoke;
+}
+
+.main.notification {
+  display: block;
+}
+
+.foyer {
   padding: 1em;
 }
 

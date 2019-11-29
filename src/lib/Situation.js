@@ -3,15 +3,6 @@ import moment from 'moment'
 import { categoriesRnc, patrimoineTypes } from '../constants/resources'
 
 const Situation = {
-
-    /**
-    *@param    {String}  A situation model to send to the backend
-    *@return   {String}  A boolean indicating whether the situation looks ready for OpenFisca or not
-    */
-    passSanityCheck: function(situation) {
-        return situation.demandeur && situation.demandeur.date_naissance;
-    },
-
     getDemandeur: function(situation) {
         return situation.demandeur
     },

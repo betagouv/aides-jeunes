@@ -100,7 +100,7 @@ var situation = {
     famille: familleDef,
     foyer_fiscal: foyerFiscalDef,
     demandeur: individuDef,
-    conjoint: individuDef,
+    conjoint: { type: individuDef, default: null },
     enfants: [individuDef],
     menage: menageDef,
     modifiedFrom: String,

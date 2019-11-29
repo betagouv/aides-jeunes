@@ -29,6 +29,7 @@ const router = new Router({
       redirect: '/foyer/demandeur',
       component: () => import(/* webpackChunkName: "demandeur" */ './views/Foyer.vue'),
       children: [{
+        name: 'demandeur',
         path: 'demandeur',
         component: () => import(/* webpackChunkName: "demandeur" */ './views/Foyer/Demandeur.vue')
       }, {
@@ -63,6 +64,7 @@ const router = new Router({
         path: 'pensions-alimentaires',
         component: () => import(/* webpackChunkName: "pensions-alimentaires" */ './views/Foyer/PensionsAlimentaires.vue')
       }, {
+        name: 'resultat',
         path: 'resultat',
         component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat.vue')
       }, {
@@ -127,6 +129,16 @@ const router = new Router({
     }
     return {x: 0, y: 0}
   }
+})
+
+router.beforeEach((to, from, next) => {
+  if (from.name === null) {
+    store.commit('initialize')
+    if (to.matched.some(r => r.name === 'foyer') && ['demandeur', 'resultat'].indexOf(to.name) === -1 && ! store.getters.passSanityCheck) {
+      return store.dispatch('redirection', route => next(route))
+    }
+  }
+  next()
 })
 
 router.afterEach(to => {

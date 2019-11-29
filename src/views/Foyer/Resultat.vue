@@ -4,7 +4,6 @@
       Résultats de votre simulation
     </h1>
 
-
     <p v-show="accessStatus.fetching"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération de la situation en cours…</p>
     <p v-show="resultatStatus.updating"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
 
@@ -59,7 +58,7 @@
 
       <div class="notification warning print-hidden" v-if="! ressourcesYearMinusTwoCaptured">
         <span>
-          <h2 v-if="!droits.length">Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
+          <h2 v-if="droits && !droits.length">Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
           <i class="fa fa-warning text-warning" aria-hidden="true"></i>
 
           Nous avons supposé que vos ressources pour l’année {{ $store.state.dates.fiscalYear.label }} étaient les mêmes qu’entre {{ $store.state.dates.twelveMonthsAgo.label }} et {{ $store.state.dates.oneMonthAgo.label }}.
@@ -205,7 +204,7 @@ export default {
     OfflineResults
   },
   computed: {
-    droits: function() { return (this.resultats && this.resultats.droitsEligibles) || [] },
+    droits: function() { return this.resultats && this.resultats.droitsEligibles },
     droitsInjectes: function() { return (this.resultats && this.resultats.droitsInjectes) || [] },
     droitsNonEligibles: function() {
       return (this.droitsNonEligiblesShow && this.resultats && this.resultats.droitsNonEligibles) || [] },
@@ -231,7 +230,7 @@ export default {
       return this.resultatStatus.error
     },
     shouldDisplayResults: function() {
-      return !(this.resultatStatus.updating || this.hasWarning || this.hasError)
+      return !(this.resultatStatus.updating || this.hasWarning || this.hasError) && this.droits
     },
     error: function() {
       let value = this.resultatStatus.error && this.resultatStatus.exception
@@ -249,7 +248,14 @@ export default {
     isNotEmpty: function(array) { return array && array.length !== 0 },
   },
   mounted: function () {
-    let p = (this.$route.query && this.$route.query.situationId) ? this.$store.dispatch('fetch', this.$route.query.situationId) : this.$store.dispatch('save')
+    let p
+    if (this.$route.query && this.$route.query.situationId) {
+      p = this.$store.dispatch('fetch', this.$route.query.situationId)
+    } else if (this.$store.getters.passSanityCheck) {
+      p = this.$store.dispatch('save')
+    } else {
+      return this.$store.dispatch('redirection', route => this.$router.push(route))
+    }
     p.then(() => {
       if (! this.$store.state.access.forbidden) {
         this.$store.dispatch('compute')
@@ -275,7 +281,7 @@ export default {
     })
   },
   beforeDestroy: function() {
-    this.stopSubscription()
+    this.stopSubscription && this.stopSubscription()
   }
 }
 </script>

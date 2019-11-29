@@ -38,6 +38,7 @@ function adaptPersistedSituation(situation) {
 function defaultStore() {
   const now = moment().format()
   return {
+    message: null,
     situation: {
       _id: null,
       dateDeValeur: now,
@@ -87,6 +88,11 @@ function restoreLocal() {
 
 const store = new Vuex.Store({
   state: defaultStore(),
+  getters: {
+    passSanityCheck: function(state) {
+        return state.situation.demandeur && state.situation.demandeur.date_naissance
+    },
+  },
   mutations: {
     clear: function(state) {
       state.situation = {}
@@ -159,6 +165,12 @@ const store = new Vuex.Store({
       state.calculs.error = true
       state.calculs.exception = error.response && error.response.data || error
     },
+    setMessage: function(state, message) {
+      state.message = message
+    },
+    clearMessage: function(state) {
+      state.message = null
+    }
   },
   actions: {
     clear: function({commit}) {
@@ -187,6 +199,10 @@ const store = new Vuex.Store({
           return computeAides(state.state.situation, openfiscaResponse, showPrivate)
         }).then(results => state.commit('setResults', results))
         .catch(error => state.commit('saveComputationFailure', error))
+    },
+    redirection: function(state, next) {
+      state.commit('setMessage', 'Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c\'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:bonjour@mes-aides.gouv.fr">bonjour@mes-aides.gouv.fr</a>.')
+      next('/foyer/demandeur')
     }
   }
 })

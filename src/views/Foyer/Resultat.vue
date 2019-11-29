@@ -4,7 +4,6 @@
       Résultats de votre simulation
     </h1>
 
-
     <p v-show="accessStatus.fetching"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération de la situation en cours…</p>
     <p v-show="resultatStatus.updating"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
 
@@ -249,7 +248,14 @@ export default {
     isNotEmpty: function(array) { return array && array.length !== 0 },
   },
   mounted: function () {
-    let p = (this.$route.query && this.$route.query.situationId) ? this.$store.dispatch('fetch', this.$route.query.situationId) : this.$store.dispatch('save')
+    let p
+    if (this.$route.query && this.$route.query.situationId) {
+      p = this.$store.dispatch('fetch', this.$route.query.situationId)
+    } else if (this.$store.getters.passSanityCheck) {
+      p = this.$store.dispatch('save')
+    } else {
+      return this.$store.dispatch('redirection', route => this.$router.push(route))
+    }
     p.then(() => {
       if (! this.$store.state.access.forbidden) {
         this.$store.dispatch('compute')
@@ -275,7 +281,7 @@ export default {
     })
   },
   beforeDestroy: function() {
-    this.stopSubscription()
+    this.stopSubscription && this.stopSubscription()
   }
 }
 </script>

@@ -11,7 +11,7 @@
 
     <label class="form__group">Chiffre d’affaires {{ $store.state.dates.lastYear.label }}
       <input
-        type="number"
+        type="number" v-select-on-click
         v-model="ressource.amounts[$store.state.dates.lastYear.id]">
     </label>
 
@@ -19,13 +19,13 @@
       <label>
         Chiffre d'affaires pour {{ $store.state.dates.thisMonth.label | capitalize }}
         <input
-          type="number"
+          type="number" v-select-on-click
           v-model="ressource.amounts[$store.state.dates.thisMonth.id]">
       </label>
       <label v-for="month in $store.state.dates.last3Months" v-bind:key="month.id">
         Chiffre d'affaires pour {{ month.label | capitalize }}
         <input
-          type="number"
+          type="number" v-select-on-click
           v-model="ressource.amounts[month.id]">
       </label>
     </fieldset>

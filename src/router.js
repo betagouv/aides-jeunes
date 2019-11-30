@@ -31,10 +31,16 @@ const router = new Router({
       children: [{
         name: 'demandeur',
         path: 'demandeur',
-        component: () => import(/* webpackChunkName: "demandeur" */ './views/Foyer/Demandeur.vue')
+        component: () => import(/* webpackChunkName: "demandeur" */ './views/Foyer/Demandeur.vue'),
+        meta: {
+          step: 1
+        }
       }, {
         path: 'enfants',
         component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants.vue'),
+        meta: {
+          step: 1
+        },
         children: [{
           path: 'ajouter',
           component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants/Ajouter.vue'),
@@ -45,14 +51,23 @@ const router = new Router({
         }]
       }, {
         path: 'conjoint',
-        component: () => import(/* webpackChunkName: "conjoint" */ './views/Foyer/Conjoint.vue')
+        component: () => import(/* webpackChunkName: "conjoint" */ './views/Foyer/Conjoint.vue'),
+        meta: {
+          step: 1
+        }
       }, {
         path: 'logement',
-        component: () => import(/* webpackChunkName: "logement" */ './views/Foyer/Logement.vue')
+        component: () => import(/* webpackChunkName: "logement" */ './views/Foyer/Logement.vue'),
+        meta: {
+          step: 1
+        }
       }, {
         name: 'ressources/types',
         path: ':role/:id?/ressources/types',
-        component: () => import(/* webpackChunkName: "ressources-types" */ './views/Foyer/Ressources/Types.vue')
+        component: () => import(/* webpackChunkName: "ressources-types" */ './views/Foyer/Ressources/Types.vue'),
+        meta: {
+          step: 1
+        }
       }, {
         name: 'ressources/montants',
         path: ':role/:id?/ressources/montants',
@@ -62,11 +77,17 @@ const router = new Router({
         component: () => import(/* webpackChunkName: "ressources-enfants" */ './views/Foyer/Ressources/Enfants.vue')
       }, {
         path: 'pensions-alimentaires',
-        component: () => import(/* webpackChunkName: "pensions-alimentaires" */ './views/Foyer/PensionsAlimentaires.vue')
+        component: () => import(/* webpackChunkName: "pensions-alimentaires" */ './views/Foyer/PensionsAlimentaires.vue'),
+        meta: {
+          step: 1
+        }
       }, {
         name: 'resultat',
         path: 'resultat',
-        component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat.vue')
+        component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat.vue'),
+        meta: {
+          step: 1
+        }
       }, {
         path: 'ressources/fiscales',
         component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue')

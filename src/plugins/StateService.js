@@ -67,10 +67,11 @@ function next(current, situation) {
         case '/foyer/conjoint':
             return '/foyer/logement'
         case '/foyer/logement':
-            return { name: 'ressources/types', params: {role: 'demandeur'}}
+            return { name: 'ressources/types', params: {role: 'demandeur', id: undefined}}
         case '/foyer/pensions-alimentaires':
         case '/foyer/ressources/fiscales':
         case '/foyer/ressources/patrimoine':
+        case '/foyer/resultat':
             return '/foyer/resultat'
         case '/foyer/ressources/enfants':
         {
@@ -95,6 +96,9 @@ function next(current, situation) {
                 case 'ressources/types':
                     if (situation) {
                         let individu = Individu.find(situation, current.params.role, current.params.id)
+                        if (!individu) {
+                            return nextRessourceRoute(current, situation)
+                        }
                         let selectedTypes = Ressource.getIndividuRessourceTypes(individu)
                         const count = _.filter(selectedTypes).length
                         if (count) {

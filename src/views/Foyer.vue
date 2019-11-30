@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <div class="progress" v-bind:style="style" />
     <div v-if="$store.state.message" class="main notification warning full-width" v-html="$store.state.message" />
     <router-view class="foyer" />
     <FoyerRecap />
@@ -7,12 +8,58 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import FoyerRecap from '@/components/FoyerRecap.vue'
+
+function findSibling(route) {
+  if (route.fullPath === '/foyer/enfants/ajouter'
+    || route.name === 'enfants/modifier') {
+    return '/foyer/enfants'
+  }
+
+  if (route.fullPath === '/foyer/ressources/patrimoine'
+    || route.fullPath === '/foyer/ressources/fiscales') {
+    return '/foyer/resultat'
+  }
+}
 
 export default {
   name: 'foyer',
   components: {
     FoyerRecap
+  },
+  computed: {
+    progress: function() {
+      return (this.step*2-1)/(2*this.total-1)
+    },
+    style: function() {
+      return { width: `${100*this.progress}%` }
+    },
+    steps: function() {
+      const start = '/foyer/demandeur'
+      return [start].concat(this.$state.full(start, this.$store.state.situation))
+    },
+    total: function() {
+      return this.steps.length
+    },
+    step: function() {
+      let idx = _.indexOf(this.steps, this.$route.fullPath)
+      if (idx >= 0) {
+        return idx+1
+      }
+      idx = _.findIndex(this.steps, { name: this.$route.name, params: this.$route.params })
+      if (idx >= 0) {
+        return idx+1
+      }
+
+      idx = _.indexOf(this.steps, findSibling(this.$route))
+      if (idx >= 0) {
+        return idx+1
+      }
+
+      this.$matomo && this.$matomo.trackEvent('General', 'Progress error', this.$route.fullPath)
+      return this.total
+    }
   }
 }
 </script>
@@ -48,4 +95,11 @@ input[type="button"]:focus {
   background: #003b80;
   background: var(--theme-secondary-darken);
 }
+
+.progress {
+  height: 0.7em;
+  background-color: #003b80;
+  transition: all 0.5s;
+}
+
 </style>

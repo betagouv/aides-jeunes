@@ -8,11 +8,16 @@ $text-color:        lighten(#000, 20%);
 $screen-md-min:     992px;
 $screen-sm-max:     $screen-md-min - 1;
 $screen-xs-max:     768px-1;
+$screen-smaller-than-mobile: 399px;
 
-button.button:active,
-button.button:focus {
-    width: 100%;
-    margin-right: 0;
+
+@media (max-width: $screen-smaller-than-mobile) {
+  button.button,
+  button.button:active,
+  button.button:focus {
+      width: 100%;
+      margin-right: 0;
+  }
 }
 
 .button.warning-light {
@@ -26,7 +31,7 @@ button.button:focus {
   flex: 1;
   margin: 0 15px;
 
-  @media ($screen-sm-max) {
+  @media (max-width: $screen-sm-max) {
     display: none;
   }
 }

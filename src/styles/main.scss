@@ -9,6 +9,12 @@ $screen-md-min:     992px;
 $screen-sm-max:     $screen-md-min - 1;
 $screen-xs-max:     768px-1;
 
+button.button:active,
+button.button:focus {
+    width: 100%;
+    margin-right: 0;
+}
+
 .button.warning-light {
   color: #454545;
 }

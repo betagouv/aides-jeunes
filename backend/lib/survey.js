@@ -24,6 +24,14 @@ send.addArgument(
     }
 );
 send.addArgument(
+    [ '--mock' ],
+    {
+        action: 'storeTrue',
+        help: 'Do not send emails'
+    }
+);
+
+send.addArgument(
     [ '--multiple' ],
     {
         help: 'Number of survey to send'
@@ -52,7 +60,11 @@ function main() {
             Followup.findOne({
                 '_id': args.id
             }).then(f => {
-                return f.sendSurvey();
+                if (args.mock) {
+                    return f.mock();
+                } else {
+                    return f.sendSurvey();
+                }
             }).then(e => {
                 console.log('log', e);
             }).catch(e => {

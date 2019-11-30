@@ -120,6 +120,11 @@ const router = new Router({
       name: 'sos',
       component: () => import(/* webpackChunkName: "sos" */ './views/SOS.vue')
     },
+    {
+      path: '/suivi',
+      name: 'suivi',
+      component: () => import(/* webpackChunkName: "suivi" */ './views/Suivi.vue')
+    },
   ],
   scrollBehavior (to/*, from, savedPosition*/) {
     if (to.hash) {

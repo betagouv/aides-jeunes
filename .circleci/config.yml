@@ -241,4 +241,6 @@ workflows:
             - test_openfisca_test_generation
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - angular

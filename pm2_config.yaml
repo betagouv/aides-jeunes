@@ -1,5 +1,5 @@
 apps:
-  - name: ma-web
+  - name: mes-aides-angular
     script   : server.js
     instances: 4
     exec_mode: cluster

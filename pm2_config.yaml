@@ -8,5 +8,5 @@ apps:
         MES_AIDES_ROOT_URL: https://mes-aides.gouv.fr
         MONGODB_URL: mongodb://localhost/dds
         NODE_ENV: production
-        PORT: 8000
+        PORT: 8300
         CHROME_DEVEL_SANDBOX: /usr/local/sbin/chrome-devel-sandbox

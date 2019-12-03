@@ -8,7 +8,21 @@
             En moins de 7 minutes.
           </h1>
 
-          <a class="button xlarge primary" v-on:click="newSituation()">Évaluer mes droits</a>
+          <div>
+            <a v-bind:class="`button ${ctaSize} primary`"
+              v-on:click="newSituation()"
+              v-analytics="{ action: ctaLabel, category:'Home'}"
+            >
+              {{ctaLabel}}
+            </a>
+            <a v-bind:class="`button ${ctaSize} secondary`"
+              v-on:click="next()"
+              v-analytics="{ action: 'Reprendre ma simulation', category:'Home'}"
+              v-if="hasExistingSituation"
+            >
+              Reprendre la simulation
+            </a>
+          </div>
           <p>Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.</p>
         </div>
       </main>
@@ -66,9 +80,23 @@ export default {
     });
     return value
   },
+  computed: {
+    hasExistingSituation: function() {
+      return this.$store.getters.passSanityCheck
+    },
+    ctaLabel: function() {
+      return this.hasExistingSituation ? 'Commencer une nouvelle simulation' : 'Évaluer mes droits'
+    },
+    ctaSize: function() {
+      return this.hasExistingSituation ? 'large' : 'xlarge'
+    }
+  },
   methods: {
     newSituation: function() {
       this.$store.dispatch('clear')
+      this.next()
+    },
+    next: function() {
       this.$push()
     },
     sortDecreasing: function(items) {

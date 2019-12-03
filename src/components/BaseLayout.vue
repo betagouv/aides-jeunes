@@ -14,9 +14,9 @@
                 <a
                   target="_blank"
                   rel="noopener"
-                  v-analytics="{ action: 'Retour à la version stable', category:'Blocage'}"
-                  href="https://mes-aides.gouv.fr">
-                  la version stable</a>.
+                  v-analytics="{ action: 'Retour à la version précédente', category:'Blocage'}"
+                  href="https://v1.mes-aides.gouv.fr">
+                  la version précédente</a>.
               </p>
               <p>
                 Vous pouvez aussi nous contacter <a

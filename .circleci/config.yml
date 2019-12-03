@@ -189,31 +189,6 @@ jobs:
 
 workflows:
   version: 2
-  # build_and_test:
-  #   jobs:
-  #     - install_openfisca
-  #     - install
-  #     - lint:
-  #         requires:
-  #           - install
-  #     - build:
-  #         requires:
-  #           - lint
-  #     - test_e2e:
-  #         requires:
-  #           - build
-  #           - install_openfisca
-  #     - test_openfisca_test_generation:
-  #         requires:
-  #           - install
-  #           - install_openfisca
-  #     - deploy:
-  #         requires:
-  #           - test_selenium_chrome
-  #           - test_openfisca_test_generation
-  #         filters:
-  #           branches:
-  #             only: master
   deploy_next_vue:
     jobs:
       - install_openfisca
@@ -231,4 +206,4 @@ workflows:
       - deploy:
           filters:
             branches:
-              only: vue
+              only: master

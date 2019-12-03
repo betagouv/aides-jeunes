@@ -40,7 +40,7 @@ Vue.use(Vuelidate)
 Vue.use(VueMatomo, {
   host: 'https://stats.data.gouv.fr',
   trackerFileName: 'piwik',
-  siteId: 102,
+  siteId: 9,
   router: router,
 })
 

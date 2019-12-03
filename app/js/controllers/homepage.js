@@ -33,7 +33,4 @@ angular.module('ddsApp').controller('HomepageCtrl', function($scope, $state, $se
             $state.go('hameconnage');
         }
     }
-
-    var abtesting = ABTestingService.getEnvironment();
-    $scope.newVersionLink = abtesting && abtesting.newVersionLink;
 });

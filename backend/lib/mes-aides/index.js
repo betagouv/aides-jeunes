@@ -42,12 +42,14 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
         droitsInjectes: [], // declared by the user
     };
 
+    var individus = _.filter([].concat(situation.demandeur, situation.conjoint, ...(situation.enfants || [])))
+
     forEach((aide, aideId, aidesProvider, aidesProviderId) => {
         if ((! showPrivate) && aide.private) {
             return;
         }
 
-        if (_.some(situation.individus, function(individu) { return valueAt(aideId, individu, period) !== undefined; })) {
+        if (_.some(individus, function(individu) { return valueAt(aideId, individu, period) !== undefined; })) {
             return result.droitsInjectes.push(aide);
         }
 

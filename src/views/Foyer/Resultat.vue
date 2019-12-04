@@ -100,6 +100,33 @@
         v-bind:ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"
         ></DroitsDetails>
 
+      <div class="injected" v-show="isNotEmpty(droitsInjectes)">
+        <h1><small>Vous avez indiqué ces aides au cours la simulation et elles n'ont pas été recalculées</small></h1>
+
+        <div v-for="droit in droitsInjectes" v-bind:key="droit.label" class="droit-detail"
+          itemscope itemtype="http://schema.org/GovernmentService">
+
+          <div class="droit-detail-heading">
+            <h2 itemprop="name"><small>{{ droit.label }}</small></h2>
+            <div class="dotted-line"></div>
+          </div>
+
+          <div class="droit-detail-description">
+            <p>
+              <span v-html="droit.description" itemprop="description"></span>
+               <BenefitCtaLink
+                v-bind:analytics-name="droit.label"
+                v-bind:link="droit.link"
+                v-bind:benefit="droit"
+                type="link"
+                level="'inline'"
+                itemprop="termsOfService"
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div class="print-hidden">
         <div id="feedback">
           <h2>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider !</h2>
@@ -166,14 +193,6 @@
           </small>
         </div>
 
-        <!-- TODO2 <div v-show="isNotEmpty(droitsInjectes)">
-          <h4>Vous avez indiqué ces aides au cours la simulation et elles n'ont pas été recalculées</h4>
-            {{droitsInjectes}}
-            <div v-for="d in droitsInjectes" v-bind:key="d">
-              {{d}}
-            </div>
-        </div> -->
-
         <div id="social">
           <p>Suivez-nous sur <router-link to="/social">nos réseaux sociaux</router-link> ! Nos messages privés sont ouverts pour vous permettre de communiquer avec nous en toute discrétion.</p>
 
@@ -187,6 +206,7 @@
 <script>
 import _ from 'lodash'
 import Situation from '@/lib/Situation'
+import BenefitCtaLink from './../../components/BenefitCtaLink'
 import DroitsList from './../../components/DroitsList'
 import DroitsDetails from './../../components/DroitsDetails'
 import OfflineResults from './../../components/OfflineResults'
@@ -199,6 +219,7 @@ export default {
     }
   },
   components: {
+    BenefitCtaLink,
     DroitsDetails,
     DroitsList,
     OfflineResults
@@ -290,6 +311,13 @@ export default {
 
 .container, .panel {
   opacity: 1;
+}
+
+.injected .droit-detail-heading {
+  padding: 0;
+}
+.injected .droit-detail-description p {
+  margin: 0;
 }
 
 </style>

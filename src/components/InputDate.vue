@@ -1,5 +1,5 @@
 <template>
-  <fieldset>
+  <div>
     <input
       type="number"
       autofocus
@@ -30,7 +30,7 @@
       v-select-on-click
       min="1900"
       max="2020">
-  </fieldset>
+  </div>
 </template>
 
 <script>

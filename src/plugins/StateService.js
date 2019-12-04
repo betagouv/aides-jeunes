@@ -24,7 +24,7 @@ function nextEnfantRessources(current, situation) {
     let enfants = situation.enfants
     const { next } = enfants.reduce((accum, enfant) => {
         if (accum.next) {
-            return
+            return accum
         }
 
         if (accum.trigger && enfant.hasRessources) {

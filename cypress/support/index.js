@@ -71,10 +71,10 @@ export function sansDomicileStable() {
 }
 
 export function salaireSeul() {
-  cy.get('fieldset').find('input[type="checkbox"]').first().check()
+  cy.get('div').find('input[type="checkbox"]').first().check()
   cy.get('button[type="submit"]').click()
 
-  cy.get('fieldset').as('salarySection')
+  cy.get('div').as('salarySection')
   cy.get('@salarySection').find('input[type="radio"][value="true"]').first().check()
   cy.get('@salarySection').find('input[type="number"]').type('1101.42')
   cy.get('button[type="submit"]').click()
@@ -82,7 +82,7 @@ export function salaireSeul() {
 
 export function sansPensionAlimentaireVersees() {
   cy.get('h1').invoke('text').should('contain', 'Pensions alimentaires versées')
-  cy.get('fieldset').find('input[type="radio"][value="false"]').first().check()
+  cy.get('div').find('input[type="radio"][value="false"]').first().check()
   cy.get('button[type="submit"]').click()
 }
 

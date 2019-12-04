@@ -61,10 +61,10 @@ context('Full simulation', () => {
     cy.contains('fieldset', 'Votre 1ᵉʳ enfant').find('input[value=true]').check()
     cy.get('button[type="submit"]').click()
 
-    cy.get('fieldset').find('input[type="checkbox"]').first().check()
+    cy.get('div').find('input[type="checkbox"]').first().check()
     cy.get('button[type="submit"]').click()
 
-    cy.get('fieldset').as('salarySection')
+    cy.get('div').as('salarySection')
     cy.get('@salarySection').find('input[type="radio"][value="false"]').first().check()
     cy.get('@salarySection').find('input[type="number"]').as('inputs')
     cy.get('@inputs').its('length').should('equal', 13)

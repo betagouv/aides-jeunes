@@ -15,7 +15,7 @@
         v-model="ressource.amounts[$store.state.dates.lastYear.id]">
     </label>
 
-    <fieldset class="form__group">
+    <div class="form__group">
       <label>
         Chiffre d'affaires pour {{ $store.state.dates.thisMonth.label | capitalize }}
         <input
@@ -28,7 +28,7 @@
           type="number" v-select-on-click
           v-model="ressource.amounts[month.id]">
       </label>
-    </fieldset>
+    </div>
   </div>
 </template>
 

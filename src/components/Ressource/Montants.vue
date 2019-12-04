@@ -1,5 +1,5 @@
 <template>
-  <fieldset class="form__group" v-bind:key="type.meta.id">
+  <div class="form__group" v-bind:key="type.meta.id">
     <legend><h2 v-if="!withoutHeader">{{ type.meta.label }}</h2></legend>
     <YesNoQuestion class="form__group" v-model="singleValue">
       <span v-html="getQuestionLabel(individu, type.meta, $store.state.dates.twelveMonthsAgo.label)" />
@@ -22,7 +22,7 @@
         </label>
       </div>
     </div>
-  </fieldset>
+  </div>
 </template>
 
 <script>

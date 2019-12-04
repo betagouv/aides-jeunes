@@ -5,13 +5,13 @@
       Sélectionnez les types de ressources perçues <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong>,
       vous pourrez ensuite saisir les montants.
     </p>
-      <fieldset class="form__group" v-for="category in categories" v-bind:key="category.id">
+      <div class="form__group" v-for="category in categories" v-bind:key="category.id">
         <h2>{{ category.label }}</h2>
         <label v-for="type in sort(typesByCategories[category.id])" v-bind:key="type.id">
           <input type="checkbox" v-model="selectedTypes[type.id]"/>
           {{ type.label }}
         </label>
-      </fieldset>
+      </div>
     <div class="form__group">{{ countLabel }}</div>
     <div class="text-right">
       <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>

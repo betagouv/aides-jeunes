@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <p v-show="accessStatus.fetching"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération de la situation en cours…</p>
     <p v-show="resultatStatus.updating"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
 

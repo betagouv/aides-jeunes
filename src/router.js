@@ -115,6 +115,12 @@ const router = new Router({
         meta: {
           title: 'Votre patrimoine'
         }
+      }, {
+        path: 'recapitulatif',
+        component: () => import(/* webpackChunkName: "recapitulatif" */ './views/Foyer/Recapitulatif.vue'),
+        meta: {
+          title: 'Vos informations'
+        }
       }]
     },
     {

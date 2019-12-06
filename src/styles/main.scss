@@ -61,7 +61,9 @@ form {
   @media (max-width: $screen-sm-max) {
     flex-direction: column-reverse;
 
-    .button {
+    button.button,
+    button.button:active,
+    button.button:focus {
       margin: 2px;
     }
   }

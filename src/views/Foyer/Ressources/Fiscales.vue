@@ -29,7 +29,6 @@
 <script>
 import _ from 'lodash'
 import Individu from '@/lib/Individu'
-import Situation from '@/lib/Situation'
 import { categoriesRnc } from '@/constants/resources'
 
 function getDefaultValue(months, individu, rnc) {
@@ -48,9 +47,8 @@ export default {
   components: {
   },
   data: function() {
-    let situation = this.$store.state.situation
     const fiscalYear = this.$store.state.dates.fiscalYear.id
-    let individus = Situation.getIndividusSortedParentsFirst(situation).map((source) => {
+    let individus = this.$store.getters.peopleParentsFirst.map((source) => {
       var individu = {
         label: Individu.label(source),
         default: {},

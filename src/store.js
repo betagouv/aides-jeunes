@@ -8,6 +8,7 @@ import moment from 'moment'
 import _ from 'lodash'
 
 import { computeAides, datesGenerator } from '../backend/lib/mes-aides'
+import { categoriesRnc, patrimoineTypes } from './constants/resources'
 
 var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage'];
 
@@ -91,6 +92,44 @@ const store = new Vuex.Store({
   getters: {
     passSanityCheck: function(state) {
         return state.situation.demandeur && state.situation.demandeur.date_naissance
+    },
+    peopleParentsFirst: function(state) {
+      return [].concat(
+          state.situation.demandeur,
+          state.situation.conjoint,
+          state.situation.enfants,
+      ).filter(function(individu) { return individu; });
+    },
+    ressourcesYearMinusTwoCaptured: function(state, getters) {
+      const yearMinusTwo = state.dates.fiscalYear.id
+      const januaryYearMinusTwo = state.dates.fiscalYear12Months[0].id
+      return getters.peopleParentsFirst.some(function(individu) {
+          return categoriesRnc.reduce(function(hasYm2RessourcesAccum, categorieRnc) {
+              if (! individu[categorieRnc.id]) {
+                  return hasYm2RessourcesAccum
+              }
+
+              return hasYm2RessourcesAccum ||
+                  typeof individu[categorieRnc.id][yearMinusTwo] == 'number' ||
+                  typeof individu[categorieRnc.id][januaryYearMinusTwo] == 'number'
+          }, false)
+      })
+    },
+    /* This function returns
+     * - undefined if demandeur do not have any patrimoine ressource
+     * - false if those ressources are all null else
+     * - true
+     */
+    hasPatrimoine: function(state) {
+        var demandeur = state.situation.demandeur
+        return patrimoineTypes.reduce(function(accum, ressource) {
+            if (! demandeur[ressource.id]) {
+                return accum
+            }
+
+            return accum || _.some(_.values(demandeur[ressource.id]))
+
+        }, undefined)
     },
   },
   mutations: {

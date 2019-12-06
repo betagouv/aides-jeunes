@@ -101,8 +101,6 @@
 import _ from 'lodash'
 import { patrimoineTypes } from '@/constants/resources'
 import YesNoQuestion from '@/components/YesNoQuestion'
-import Situation from '@/lib/Situation'
-
 
 export default {
   name: 'ressources-patrimoine',
@@ -113,7 +111,7 @@ export default {
     const situation = this.$store.state.situation
     let periodKey = 'month:2012-01:120'
     let demandeur = Object.assign({}, situation.demandeur)
-    let individus = Situation.getIndividusSortedParentsFirst(situation)
+    let individus = this.$store.getters.peopleParentsFirst
 
     let patrimoineProperties = _.map(patrimoineTypes, 'id')
     patrimoineProperties.forEach(function(patrimoinePropertyName) {

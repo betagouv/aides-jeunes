@@ -205,7 +205,6 @@
 
 <script>
 import _ from 'lodash'
-import Situation from '@/lib/Situation'
 import BenefitCtaLink from './../../components/BenefitCtaLink'
 import DroitsList from './../../components/DroitsList'
 import DroitsDetails from './../../components/DroitsDetails'
@@ -235,14 +234,14 @@ export default {
     accessStatus: function() { return this.$store.state.access },
     resultatStatus: function() { return this.$store.state.calculs },
     resultats: function() { return this.$store.state.calculs.resultats },
-    ressourcesYearMinusTwoCaptured: function() { return Situation.ressourcesYearMinusTwoCaptured(this.situation) },
+    ressourcesYearMinusTwoCaptured: function() { return this.$store.getters.ressourcesYearMinusTwoCaptured },
     situation: function() { return this.$store.state.situation },
     shouldPatrimoineBeCaptured: function() {
       if (! this.droits) {
         return
       }
 
-      return _.some(this.droits, 'isBaseRessourcesPatrimoine') && ! Situation.hasPatrimoine(this.situation)
+      return _.some(this.droits, 'isBaseRessourcesPatrimoine') && this.$store.getters.hasPatrimoine === undefined
     },
     hasWarning: function() {
       return this.accessStatus.forbidden

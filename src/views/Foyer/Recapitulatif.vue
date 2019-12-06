@@ -46,13 +46,15 @@ const steps = [
   route: '/foyer/ressources/fiscales',
   isPast: function(store) {
     return store.getters.ressourcesYearMinusTwoCaptured
-  }
+  },
+  hideAsNext: true
 }, {
   name: 'Votre patrimoine',
   route: '/foyer/ressources/patrimoine',
   isPast: function(store) {
     return store.getters.hasPatrimoine !== undefined
-  }
+  },
+  hideAsNext: true
 }]
 
 function isPast(past, step, store, bypass) {
@@ -84,7 +86,7 @@ export default {
       }, { missing: false, array: []}).array
     },
     nextSteps: function() {
-      return steps.slice(this.previousSteps.length)
+      return steps.slice(this.previousSteps.length).filter(s => !s.hideAsNext)
     },
     canGoToResults: function() {
       return this.$store.state.situation._id

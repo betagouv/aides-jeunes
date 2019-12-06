@@ -3,7 +3,6 @@
     <form class="form__group">
       <div class="form__group">
         <fieldset>
-          <legend><h1>Vivez-vous seul·e ou en couple ?</h1></legend>
           <label><input type="radio" v-bind:value="false" name="couple" v-model="isInCouple">Je vis seul·e</label>
           <label><input type="radio" v-bind:value="true" name="couple" v-model="isInCouple">Je vis en couple</label>
         </fieldset>

@@ -1,6 +1,5 @@
 <template>
   <form @submit.prevent="next">
-    <h1>Votre patrimoine</h1>
     <h2>
       <i class="fa fa-home" aria-hidden="true"></i>
       Immobilier

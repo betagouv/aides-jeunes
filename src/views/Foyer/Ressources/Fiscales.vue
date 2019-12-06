@@ -1,6 +1,5 @@
 <template>
   <form @submit.prevent="next">
-    <h1>Les revenus imposables de votre foyer en {{ $store.state.dates.fiscalYear.label }}</h1>
     <p>
       Ces informations se trouvent sur votre avis d'imposition {{ $store.state.dates.lastYear.label }} sur les revenus {{ $store.state.dates.fiscalYear.label }}.
       <br>Vous pouvez le retrouver en ligne sur <a target="_blank" rel="noopener" href="http://www.impots.gouv.fr/">impots.gouv.fr</a>.

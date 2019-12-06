@@ -1,7 +1,5 @@
 <template>
-  <div class="container">
-    <RessourceTypes v-bind:individu="individu" />
-  </div>
+  <RessourceTypes v-bind:individu="individu" />
 </template>
 
 <script>

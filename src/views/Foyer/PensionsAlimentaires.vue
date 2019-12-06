@@ -1,6 +1,5 @@
 <template>
   <form>
-    <h1>Pensions alimentaires versées</h1>
     <YesNoQuestion class="form__group" v-model="parentsPayPensionsAlimentaires">
       {{ subject }} <strong>versé</strong> des pensions alimentaires <b>
       depuis {{ $store.state.dates.twelveMonthsAgo.label }}</b> ?

@@ -3,8 +3,11 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 
 import store from './store'
+import Individu from '@/lib/Individu'
 
 Vue.use(Router)
+
+const kidPagesMeta = { title: 'Les enfants de votre foyer' }
 
 const router = new Router({
   mode: 'history',
@@ -32,68 +35,86 @@ const router = new Router({
         name: 'demandeur',
         path: 'demandeur',
         component: () => import(/* webpackChunkName: "demandeur" */ './views/Foyer/Demandeur.vue'),
-        meta: {
-          step: 1
-        }
+        meta: { title: 'Vous' }
       }, {
         path: 'enfants',
         component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants.vue'),
-        meta: {
-          step: 1
-        },
+        meta: kidPagesMeta,
         children: [{
           path: 'ajouter',
           component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants/Ajouter.vue'),
+          meta: kidPagesMeta
         }, {
           name: 'enfants/modifier',
           path: ':id',
           component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants/Modifier.vue'),
+          meta: kidPagesMeta
         }]
       }, {
         path: 'conjoint',
         component: () => import(/* webpackChunkName: "conjoint" */ './views/Foyer/Conjoint.vue'),
         meta: {
-          step: 1
+          title: 'Vivez-vous seul·e ou en couple&nbsp;?',
         }
       }, {
         path: 'logement',
         component: () => import(/* webpackChunkName: "logement" */ './views/Foyer/Logement.vue'),
         meta: {
-          step: 1
+          title: 'Votre logement principal',
         }
       }, {
         name: 'ressources/types',
         path: ':role/:id?/ressources/types',
         component: () => import(/* webpackChunkName: "ressources-types" */ './views/Foyer/Ressources/Types.vue'),
         meta: {
-          step: 1
+          title: function(to, situation) {
+            const individu = Individu.find(situation, to.params.role, to.params.id)
+            return Individu.ressourceHeader(individu)
+          }
         }
       }, {
         name: 'ressources/montants',
         path: ':role/:id?/ressources/montants',
-        component: () => import(/* webpackChunkName: "ressources-montants" */ './views/Foyer/Ressources/Montants.vue')
+        component: () => import(/* webpackChunkName: "ressources-montants" */ './views/Foyer/Ressources/Montants.vue'),
+        meta: {
+          title: function(to, situation) {
+            const individu = Individu.find(situation, to.params.role, to.params.id)
+            return Individu.ressourceHeader(individu)
+          }
+        }
       }, {
         path: 'ressources/enfants',
-        component: () => import(/* webpackChunkName: "ressources-enfants" */ './views/Foyer/Ressources/Enfants.vue')
+        component: () => import(/* webpackChunkName: "ressources-enfants" */ './views/Foyer/Ressources/Enfants.vue'),
+        meta: {
+          title: 'Les ressources de vos enfants'
+        }
       }, {
         path: 'pensions-alimentaires',
         component: () => import(/* webpackChunkName: "pensions-alimentaires" */ './views/Foyer/PensionsAlimentaires.vue'),
         meta: {
-          step: 1
+          title: 'Pensions alimentaires versées'
         }
       }, {
         name: 'resultat',
         path: 'resultat',
         component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat.vue'),
         meta: {
-          step: 1
+          title: 'Résultats de votre simulation'
         }
       }, {
         path: 'ressources/fiscales',
-        component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue')
+        component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue'),
+        meta: {
+          title: function() {
+            return `Les revenus imposables de votre foyer en ${ store.state.dates.fiscalYear.label }`
+          }
+        }
       }, {
         path: 'ressources/patrimoine',
-        component: () => import(/* webpackChunkName: "ressources-patrimoine" */ './views/Foyer/Ressources/Patrimoine.vue')
+        component: () => import(/* webpackChunkName: "ressources-patrimoine" */ './views/Foyer/Ressources/Patrimoine.vue'),
+        meta: {
+          title: 'Votre patrimoine'
+        }
       }]
     },
     {
@@ -163,6 +184,16 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(r => r.name === 'foyer') && ['demandeur', 'resultat'].indexOf(to.name) === -1 && ! store.getters.passSanityCheck) {
       return store.dispatch('redirection', route => next(route))
     }
+  }
+
+  if (to.meta.title) {
+    if (typeof to.meta.title === 'function') {
+      store.commit('setTitle', to.meta.title(to, store.state.situation))
+    } else {
+        store.commit('setTitle', to.meta.title)
+    }
+  } else {
+    store.commit('setTitle', 'Évaluez vos droits aux aides sociales')
   }
   next()
 })

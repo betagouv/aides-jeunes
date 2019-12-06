@@ -2,7 +2,13 @@
   <div class="main">
     <div class="progress" v-bind:style="style" />
     <div v-if="$store.state.message" class="main notification warning full-width" v-html="$store.state.message" />
-    <router-view class="foyer" />
+    <div class="foyer">
+      <div class="title">
+        <h1 v-html="title" />
+        <h2 v-if="canEdit" class="editor" aria-label="Modifier vos réponses">📝</h2>
+      </div>
+      <router-view />
+    </div>
     <FoyerRecap />
   </div>
 </template>
@@ -29,6 +35,9 @@ export default {
     FoyerRecap
   },
   computed: {
+    canEdit: function() {
+      return false
+    },
     progress: function() {
       return (this.step*2-1)/(2*this.total-1)
     },
@@ -59,6 +68,9 @@ export default {
 
       this.$matomo && this.$matomo.trackEvent('General', 'Progress error', this.$route.fullPath)
       return this.total
+    },
+    title: function() {
+      return this.$store.state.title
     }
   }
 }
@@ -76,6 +88,8 @@ export default {
 
 .foyer {
   padding: 1em;
+  max-width: 45em;
+  margin: 0 auto;
 }
 
 pre {
@@ -100,6 +114,15 @@ input[type="button"]:focus {
   height: 0.7em;
   background-color: #003b80;
   transition: all 0.5s;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.editor {
+  margin-top: 3px;
 }
 
 </style>

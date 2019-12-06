@@ -1,27 +1,24 @@
 <template>
-  <div class="container">
-    <form>
-      <h1>{{ title }}</h1>
-      <p>
-        Indiquez toutes les ressources <strong>nettes versées</strong> perçues en France comme à l'étranger.
-      </p>
-      <div class="form__group" s v-for="(type, index) in types" v-bind:key="type.meta.id">
-        <RessourceMontants v-if="isSimple(type.meta.id)" v-bind:individu="type.individu" v-bind:index="index" v-bind:type="type" v-on:update="process"/>
-        <RessourceAutoEntreprise v-if="type.meta.id === 'tns_auto_entrepreneur_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type"/>
-        <RessourceMicroEntreprise v-if="type.meta.id === 'tns_micro_entreprise_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type"/>
-        <RessourceProfessionLiberale v-if="type.meta.id === 'tns_autres_revenus'" v-bind:individu="type.individu" v-bind:ressource="type"/>
-        <RessourceExploitantAgricole v-if="type.meta.id === 'tns_benefice_exploitant_agricole'" v-bind:individu="type.individu" v-bind:ressource="type"/>
-      </div>
+  <form>
+    <p>
+      Indiquez toutes les ressources <strong>nettes versées</strong> perçues en France comme à l'étranger.
+    </p>
+    <div class="form__group" s v-for="(type, index) in types" v-bind:key="type.meta.id">
+      <RessourceMontants v-if="isSimple(type.meta.id)" v-bind:individu="type.individu" v-bind:index="index" v-bind:type="type" v-on:update="process"/>
+      <RessourceAutoEntreprise v-if="type.meta.id === 'tns_auto_entrepreneur_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type"/>
+      <RessourceMicroEntreprise v-if="type.meta.id === 'tns_micro_entreprise_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type"/>
+      <RessourceProfessionLiberale v-if="type.meta.id === 'tns_autres_revenus'" v-bind:individu="type.individu" v-bind:ressource="type"/>
+      <RessourceExploitantAgricole v-if="type.meta.id === 'tns_benefice_exploitant_agricole'" v-bind:individu="type.individu" v-bind:ressource="type"/>
+    </div>
 
-      <div class="next form__group">
-        <router-link tag="button" type="button" class="button secondary"
-          v-bind:to="{ name: 'ressources/types', params:$route.params }">
-          Déclarer d'autres ressources
-        </router-link>
-        <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
-      </div>
-    </form>
-  </div>
+    <div class="next form__group">
+      <router-link tag="button" type="button" class="button secondary"
+        v-bind:to="{ name: 'ressources/types', params:$route.params }">
+        Déclarer d'autres ressources
+      </router-link>
+      <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -52,11 +49,6 @@ export default {
       individu,
       types: this.getTypes(individu)
     }
-  },
-  computed: {
-    title: function() {
-      return Individu.ressourceHeader(this.individu)
-    },
   },
   methods: {
     getIndividu: function() {

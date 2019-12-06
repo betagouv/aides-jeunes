@@ -1,6 +1,5 @@
 <template>
   <form @submit.prevent="next">
-    <h1>Les ressources de vos enfants</h1>
     <YesNoQuestion class="form__group" v-model="enfant.hasRessources" v-for="enfant in enfants" v-bind:key="enfant.id">
         {{ enfant.firstName | capitalize }} a-t-il·elle perçu des ressources <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong> ?
     </YesNoQuestion>

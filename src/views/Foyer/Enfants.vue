@@ -1,7 +1,6 @@
 <template>
   <div>
     <form>
-      <h1>Les enfants de votre foyer</h1>
       <div>
         <p>Les personnes de <span data-tooltip="Les personnes à votre charge de plus de 25 ans non handicapées ne changent pas votre éligibilité aux aides calculées par ce simulateur.">moins de 25 ans ou handicapées</span> dont vous assumez la responsabilité, même sans lien de parenté.</p>
       </div>

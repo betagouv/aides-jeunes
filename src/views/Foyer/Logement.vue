@@ -1,6 +1,5 @@
 <template>
   <form>
-    <h1>Votre logement principal</h1>
     <div>
       <p>Si vous habitez actuellement à l'étranger, préférez le simulateur
         <a target="_blank" rel="noopener" href="http://retour-en-france.simplicite.fr/">Retour en France</a>.

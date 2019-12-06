@@ -46,10 +46,6 @@ $screen-smaller-than-mobile: 399px;
   align-items: center;
 }
 
-form {
-  max-width: 45em;
-}
-
 .next {
   display: flex;
 
@@ -131,5 +127,11 @@ form {
 @media print {
   .droit-detail {
     page-break-inside: avoid;
+  }
+}
+
+@media (max-width: $screen-sm-max) {
+  .container {
+    width: unset;
   }
 }

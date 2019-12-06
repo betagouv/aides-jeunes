@@ -67,6 +67,7 @@ function defaultStore() {
     },
     dates: datesGenerator(now),
     ameliNoticationDone: false,
+    title: null,
   }
 }
 
@@ -209,6 +210,9 @@ const store = new Vuex.Store({
     },
     clearMessage: function(state) {
       state.message = null
+    },
+    setTitle: function(state, newTitle) {
+      state.title = newTitle
     }
   },
   actions: {

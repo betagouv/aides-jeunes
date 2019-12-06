@@ -1,8 +1,6 @@
 <template>
-  <div class="container">
-    <div class="frame-foyer">
-      <IndividuForm v-model="individu" v-bind:existingIndividu="existingIndividu" v-on:input="emit" v-on:cancel="cancel" />
-    </div>
+  <div class="frame-foyer">
+    <IndividuForm v-model="individu" v-bind:existingIndividu="existingIndividu" v-on:input="emit" v-on:cancel="cancel" />
   </div>
 </template>
 

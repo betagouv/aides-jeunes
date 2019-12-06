@@ -1,5 +1,5 @@
 <template>
-  <IndividuForm v-model="individu" v-bind:existingIndividu="existingIndividu" v-on:input="emit()" />
+  <IndividuForm without-title v-model="individu" v-bind:existingIndividu="existingIndividu" v-on:input="emit()" />
 </template>
 
 <script>

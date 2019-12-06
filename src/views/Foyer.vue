@@ -2,14 +2,25 @@
   <div class="main">
     <div class="progress" v-bind:style="style" />
     <div v-if="$store.state.message" class="main notification warning full-width" v-html="$store.state.message" />
-    <router-view class="foyer" />
-    <FoyerRecap />
+    <div class="foyer">
+      <div class="title">
+        <div>
+          <router-link v-if="isRecapitulatif" v-bind:to="stepRoute">
+            <h2 aria-label="Retour à la page précédente"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Retour</h2>
+          </router-link>
+          <h1 v-html="title" />
+        </div>
+        <router-link v-if="!isRecapitulatif" v-bind:to="recapitulatifLink">
+          <h2 class="editor" aria-label="Modifier vos réponses">📝</h2>
+        </router-link>
+      </div>
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
-import FoyerRecap from '@/components/FoyerRecap.vue'
 
 function findSibling(route) {
   if (route.fullPath === '/foyer/enfants/ajouter'
@@ -25,12 +36,9 @@ function findSibling(route) {
 
 export default {
   name: 'foyer',
-  components: {
-    FoyerRecap
-  },
   computed: {
     progress: function() {
-      return (this.step*2-1)/(2*this.total-1)
+      return (this.currentStepIndex*2-1)/(2*this.total-1)
     },
     style: function() {
       return { width: `${100*this.progress}%` }
@@ -42,23 +50,45 @@ export default {
     total: function() {
       return this.steps.length
     },
-    step: function() {
-      let idx = _.indexOf(this.steps, this.$route.fullPath)
+    stepRoute: function() {
+      if (this.$route.query.depuis) {
+        const res = this.$router.resolve(this.$route.query.depuis)
+        if (res) {
+          return res.route
+        }
+      }
+      return this.$route
+    },
+    isRecapitulatif: function() {
+      return _.startsWith(this.$route.fullPath, '/foyer/recapitulatif')
+    },
+    currentStepIndex: function() {
+      let route = this.stepRoute
+      let idx = _.indexOf(this.steps, route.fullPath)
       if (idx >= 0) {
         return idx+1
       }
-      idx = _.findIndex(this.steps, { name: this.$route.name, params: this.$route.params })
+      idx = _.findIndex(this.steps, { name: route.name, params: route.params })
       if (idx >= 0) {
         return idx+1
       }
 
-      idx = _.indexOf(this.steps, findSibling(this.$route))
+      idx = _.indexOf(this.steps, findSibling(route))
       if (idx >= 0) {
         return idx+1
       }
 
-      this.$matomo && this.$matomo.trackEvent('General', 'Progress error', this.$route.fullPath)
+      this.$matomo && this.$matomo.trackEvent('General', 'Progress error', route.fullPath)
       return this.total
+    },
+    title: function() {
+      return this.$store.state.title
+    },
+    recapitulatifLink: function() {
+      return {
+        path: '/foyer/recapitulatif',
+        query: { depuis: this.$route.fullPath }
+      }
     }
   }
 }
@@ -76,6 +106,7 @@ export default {
 
 .foyer {
   padding: 1em;
+  margin: 0 auto;
 }
 
 pre {
@@ -100,6 +131,17 @@ input[type="button"]:focus {
   height: 0.7em;
   background-color: #003b80;
   transition: all 0.5s;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  max-width: 35em;
+  margin:  0 auto;
+}
+
+.editor {
+  margin-top: 3px;
 }
 
 </style>

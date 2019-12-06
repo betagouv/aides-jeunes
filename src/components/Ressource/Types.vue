@@ -1,6 +1,5 @@
 <template>
   <form>
-    <h1>{{ title }}</h1>
     <p>
       Sélectionnez les types de ressources perçues <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong>,
       vous pourrez ensuite saisir les montants.
@@ -22,7 +21,6 @@
 <script>
 import _ from 'lodash'
 import {ressourceCategories, ressourceTypes} from '@/constants/resources'
-import Individu from '@/lib/Individu'
 import Ressource from '@/lib/Ressource'
 
 export default {
@@ -43,9 +41,6 @@ export default {
     countLabel: function() {
       const count = _.filter(this.selectedTypes).length
       return `${count} ${count == 1 ? 'ressource sélectionnée' : 'ressources sélectionnées'}`
-    },
-    title: function() {
-      return Individu.ressourceHeader(this.individu)
     },
   },
   watch: {

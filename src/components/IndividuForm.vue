@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submit">
-    <h1>{{title | capitalize}}</h1>
+    <h1 v-if="!withoutTitle">{{title | capitalize}}</h1>
     <div class="form__group">
       <label for="date-de-naissance">Date de naissance</label>
         <InputDate id="date-de-naissance" v-model="individu.date_naissance" />
@@ -249,6 +249,7 @@ export default {
   props: {
     existingIndividu: Boolean,
     value: Object,
+    withoutTitle: Boolean,
   },
   data: function() {
     let individu = Object.assign({}, this.value)

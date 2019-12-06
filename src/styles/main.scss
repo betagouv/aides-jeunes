@@ -129,3 +129,9 @@ $screen-smaller-than-mobile: 399px;
     page-break-inside: avoid;
   }
 }
+
+@media (max-width: $screen-sm-max) {
+  .container {
+    width: unset;
+  }
+}

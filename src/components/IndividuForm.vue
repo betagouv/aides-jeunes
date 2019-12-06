@@ -2,12 +2,11 @@
   <form @submit.prevent="submit">
     <h1>{{title | capitalize}}</h1>
     <div class="form__group">
-      <label>Date de naissance
+      <label for="date-de-naissance">Date de naissance</label>
         <InputDate id="date-de-naissance" v-model="individu.date_naissance" />
         <p class="notification warning" v-if="$v.individu.date_naissance.$dirty && $v.individu.date_naissance.$error">
           Ce champ est obligatoire.
         </p>
-      </label>
     </div>
 
     <p class="notification warning" v-if="isDemandeurMineur">

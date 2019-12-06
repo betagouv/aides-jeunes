@@ -3,6 +3,7 @@
     <input
       type="number"
       autofocus
+      v-bind:id="firstId"
       ref="day"
       aria-label="Jour"
       v-model="day"
@@ -53,6 +54,7 @@ function stateManager(current, next) {
 export default {
   name: 'InputDate',
   props: {
+    id: String,
     value: Date,
   },
   data: function() {
@@ -69,6 +71,10 @@ export default {
     },
     date: function() {
       return `${this.year}-${this.month && _.padStart(this.month, 2, '0')}-${this.day && _.padStart(this.day, 2, '0')}`
+    },
+    firstId: function() {
+      const uniqueFieldName = 'id.' + Math.random().toString(36).slice(2)
+      return this.id || uniqueFieldName
     }
   },
   methods: {

@@ -173,19 +173,22 @@
     ————`}">Ces résultats ne correspondent pas à ce que l'administration vous a attribué</a>.</li>
           </ul>
           <small v-if="resultatsId">Cette simulation a pour identifiant <span class="preformatted">{{ resultatsId }}</span> (en savoir plus sur <router-link to="/cgu#donnees">le traitement de vos données personnelles</router-link>).</small><br>
-          <small
-              v-if="openfiscaTracerURL">
-            Partenaires :
-            <!-- <a
-              ui-sref="foyer.resultat.suggestion"
-              v-analytics="{ action:'New', category:'Test'}"
-              >créez un test</a>
-            ou bien -->
-            <a
-              target="_blank"
-              v-bind:href="openfiscaTracerURL"
-              v-analytics="{ category:'Tracer' }"
-              >accédez à l'outil d'analyse des résultats de cette simulation</a>.
+          <small>
+            <button v-on:click="toggleLinks" v-if="!showExpertLinks">Partenaires</button>
+              <span v-if="showExpertLinks">
+                Partenaires&nbsp;:
+              <!-- <a
+                ui-sref="foyer.resultat.suggestion"
+                v-analytics="{ action:'New', category:'Test'}"
+                >créez un test</a>
+              ou bien -->
+              <a
+                v-if="openfiscaTracerURL"
+                target="_blank"
+                v-bind:href="openfiscaTracerURL"
+                v-analytics="{ category:'Tracer' }"
+                >Accédez à l'outil d'analyse des résultats de cette simulation</a>
+              </span>
           </small>
         </div>
 
@@ -210,7 +213,8 @@ export default {
   name: 'resultat',
   data: function() {
     return {
-      openfiscaTracerURL: 'TODO'
+      openfiscaTracerURL: false,
+      showExpertLinks: false,
     }
   },
   components: {
@@ -262,6 +266,15 @@ export default {
     },
     isEmpty: function(array) { return ! array || array.length === 0 },
     isNotEmpty: function(array) { return array && array.length !== 0 },
+    toggleLinks: function() {
+      if (! this.openfiscaTracerURL) {
+        this.$store.getters.fetchRepresentation('openfisca_tracer')
+          .then(representation => {
+            this.openfiscaTracerURL = representation.destination.url
+          })
+      }
+      this.showExpertLinks = ! this.showExpertLinks
+    }
   },
   mounted: function () {
     let p

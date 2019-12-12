@@ -139,6 +139,9 @@ const store = new Vuex.Store({
           .then((response) => response.data)
       }
     },
+    hasResults: function(state) {
+      return state.calculs.resultats && state.calculs.resultats.droitsEligibles instanceof Array
+    }
   },
   mutations: {
     clear: function(state) {

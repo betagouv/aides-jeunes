@@ -277,18 +277,26 @@ export default {
     }
   },
   mounted: function () {
-    let p
+    let p = Promise.resolve()
     if (this.$route.query && this.$route.query.situationId) {
       p = this.$store.dispatch('fetch', this.$route.query.situationId)
-    } else if (this.$store.getters.passSanityCheck) {
-      p = this.$store.dispatch('save')
-    } else {
+    } else if (!this.$store.getters.passSanityCheck) {
       return this.$store.dispatch('redirection', route => this.$router.push(route))
     }
+
+    if (this.$store.state.calculs.dirty) {
+      p = p.then(() => this.$store.dispatch('save'))
+    }
     p.then(() => {
-      if (! this.$store.state.access.forbidden) {
-        this.$store.dispatch('compute')
+      if (this.$store.state.access.forbidden) {
+        return
       }
+
+      if (! this.$store.state.calculs.dirty && this.$store.getters.hasResults) {
+        return
+      }
+
+      return this.$store.dispatch('compute')
     })
 
     let vm = this

@@ -260,7 +260,12 @@ const store = new Vuex.Store({
       commit('setDirty')
     },
     save: function(state) {
-      return axios.post('/api/situations/', _.omit(state.state.situation, '_id'))
+      let situation = _.omit(state.state.situation, '_id')
+      if (state.state.situation._id) {
+          situation.modifiedFrom = state.state.situation._id
+      }
+
+      return axios.post('/api/situations/', situation)
         .then(result => result.data)
         .then(payload => payload._id)
         .then(id => state.commit('setId', id))

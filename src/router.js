@@ -100,7 +100,11 @@ const router = new Router({
         component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat.vue'),
         meta: {
           title: 'Résultats de votre simulation'
-        }
+        },
+      }, {
+        path: 'resultat/attendu',
+        component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat/Attendu.vue'),
+        meta: { title: 'Résultats attendus' }
       }, {
         path: 'ressources/fiscales',
         component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue'),

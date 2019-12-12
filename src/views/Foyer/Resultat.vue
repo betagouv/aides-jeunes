@@ -175,20 +175,18 @@
           <small v-if="resultatsId">Cette simulation a pour identifiant <span class="preformatted">{{ resultatsId }}</span> (en savoir plus sur <router-link to="/cgu#donnees">le traitement de vos données personnelles</router-link>).</small><br>
           <small>
             <button v-on:click="toggleLinks" v-if="!showExpertLinks">Partenaires</button>
-              <span v-if="showExpertLinks">
+              <div v-if="showExpertLinks">
                 Partenaires&nbsp;:
-              <!-- <a
-                ui-sref="foyer.resultat.suggestion"
-                v-analytics="{ action:'New', category:'Test'}"
-                >créez un test</a>
-              ou bien -->
-              <a
-                v-if="openfiscaTracerURL"
-                target="_blank"
-                v-bind:href="openfiscaTracerURL"
-                v-analytics="{ category:'Tracer' }"
-                >Accédez à l'outil d'analyse des résultats de cette simulation</a>
-              </span>
+              <ul>
+                <li><router-link to="/foyer/resultat/attendu">Indiquer les résultats attendus pour cette situation</router-link></li>
+                <li><a
+                  v-if="openfiscaTracerURL"
+                  target="_blank"
+                  v-bind:href="openfiscaTracerURL"
+                  v-analytics="{ category:'Tracer' }"
+                  >Accédez à l'outil d'analyse des résultats de cette simulation</a></li>
+              </ul>
+              </div>
           </small>
         </div>
 

@@ -36,6 +36,20 @@ function adaptPersistedSituation(situation) {
     return situation;
 }
 
+function defaultCalculs() {
+  return {
+    resultats: {
+      droitsEligibles: null,
+      droitsNonEligibles: null,
+      droitsInjectes: null,
+    },
+    dirty: false,
+    error: false,
+    exception: false,
+    updating: false,
+  }
+}
+
 function defaultStore() {
   const now = moment().format()
   return {
@@ -55,17 +69,7 @@ function defaultStore() {
       fetching: false,
       forbidden: false,
     },
-    calculs: {
-      resultats: {
-        droitsEligibles: null,
-        droitsNonEligibles: null,
-        droitsInjectes: null,
-      },
-      dirty: false,
-      error: false,
-      exception: false,
-      updating: false,
-    },
+    calculs: defaultCalculs(),
     dates: datesGenerator(now),
     ameliNoticationDone: false,
     title: null,
@@ -84,6 +88,7 @@ function restoreLocal() {
 
   return {
     situation: adaptPersistedSituation(store.situation),
+    calculs: store.calculs || defaultCalculs(),
     dates: datesGenerator(store.situation.dateDeValeur),
     ameliNoticationDone: store.ameliNoticationDone
   }
@@ -150,8 +155,9 @@ const store = new Vuex.Store({
       state.access.fetching = false
     },
     initialize: function(state) {
-      const { situation, dates, ameliNoticationDone } = restoreLocal()
+      const { situation, dates, ameliNoticationDone, calculs } = restoreLocal()
       state.situation = situation
+      state.calculs = calculs
       state.dates = dates
       state.ameliNoticationDone = ameliNoticationDone
     },
@@ -295,11 +301,11 @@ const store = new Vuex.Store({
 })
 export default store
 
-store.subscribe(({type}, { ameliNoticationDone, situation }) => {
+store.subscribe(({type}, { ameliNoticationDone, situation, calculs }) => {
   if (type === 'initialize') {
     return
   }
-  window.sessionStorage.setItem('store', JSON.stringify({ ameliNoticationDone, situation }))
+  window.sessionStorage.setItem('store', JSON.stringify({ ameliNoticationDone, situation, calculs }))
 })
 
 // Replicate strict mode

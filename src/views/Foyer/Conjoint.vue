@@ -69,11 +69,11 @@ export default {
     next: function() {
       if (this.isInCouple) {
         this.$store.commit('updateFamille', Object.assign({}, this.$store.state.situation.famille, {rsa_isolement_recent: false}))
-        this.$store.commit('updateIndividu', this.conjoint)
-        this.$store.commit('updateIndividu', Object.assign({}, this.demandeur, { statut_marital: this.conjoint.statut_marital }))
+        this.$store.dispatch('updateIndividu', this.conjoint)
+        this.$store.dispatch('updateIndividu', Object.assign({}, this.demandeur, { statut_marital: this.conjoint.statut_marital }))
       } else {
         this.$store.commit('removeConjoint')
-        this.$store.commit('updateIndividu', Object.assign({}, this.demandeur, { statut_marital: 'celibataire' }))
+        this.$store.dispatch('updateIndividu', Object.assign({}, this.demandeur, { statut_marital: 'celibataire' }))
       }
 
       this.$push()

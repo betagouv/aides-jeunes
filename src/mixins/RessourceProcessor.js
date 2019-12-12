@@ -74,7 +74,7 @@ export default {
             updatedRessources[e] = t.extra[e]
           })
         })
-        this.$store.commit('updateIndividu', Object.assign({}, this.types[0].individu, updatedRessources))
+        this.$store.dispatch('updateIndividu', Object.assign({}, this.types[0].individu, updatedRessources))
       } else {
         this.types.forEach(t => {
           let updatedRessources = {}
@@ -88,7 +88,7 @@ export default {
             updatedRessources[e] = t.extra[e]
           })
 
-          this.$store.commit('updateIndividu', Object.assign({}, t.individu, updatedRessources))
+          this.$store.dispatch('updateIndividu', Object.assign({}, t.individu, updatedRessources))
         })
       }
     }

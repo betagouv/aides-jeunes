@@ -51,7 +51,7 @@ export default {
   methods: {
     next: function() {
       Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.$store.state.dates)
-      this.$store.commit('updateIndividu', this.individu)
+      this.$store.dispatch('updateIndividu', this.individu)
       this.$push(this.$store.state.situation)
     },
     sort: function(array) {

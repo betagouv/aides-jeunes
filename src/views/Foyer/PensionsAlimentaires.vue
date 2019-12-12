@@ -80,7 +80,7 @@ export default {
       } else {
         this.types.forEach((item) => {
             Ressource.unsetForCurrentYear(this.$store.state.dates, item.individu, item.meta)
-            this.$store.commit('updateIndividu', item.individu)
+            this.$store.dispatch('updateIndividu', item.individu)
         })
       }
       this.$push()

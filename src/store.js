@@ -232,6 +232,14 @@ const store = new Vuex.Store({
       commit('clear')
       commit('initialize')
     },
+    removeEnfant: function({ commit }, id) {
+      commit('removeEnfant', id)
+      commit('setDirty')
+    },
+    addEnfant: function({ commit }, enfant) {
+      commit('addEnfant', enfant)
+      commit('setDirty')
+    },
     updateIndividu: function({ commit }, individu) {
       commit('saveIndividu', individu)
       commit('setDirty')

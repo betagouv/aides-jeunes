@@ -61,14 +61,14 @@ export default {
         return this.$store.state.situation.famille.rsa_isolement_recent
       },
       set: function(value) {
-        this.$store.commit('updateFamille', Object.assign({}, this.$store.state.situation.famille, {rsa_isolement_recent: value}))
+        this.$store.dispatch('updateFamille', Object.assign({}, this.$store.state.situation.famille, {rsa_isolement_recent: value}))
       }
     }
   },
   methods: {
     next: function() {
       if (this.isInCouple) {
-        this.$store.commit('updateFamille', Object.assign({}, this.$store.state.situation.famille, {rsa_isolement_recent: false}))
+        this.$store.dispatch('updateFamille', Object.assign({}, this.$store.state.situation.famille, {rsa_isolement_recent: false}))
         this.$store.dispatch('updateIndividu', this.conjoint)
         this.$store.dispatch('updateIndividu', Object.assign({}, this.demandeur, { statut_marital: this.conjoint.statut_marital }))
       } else {

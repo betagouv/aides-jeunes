@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     emit: function() {
-      this.$store.commit('updateIndividu', this.individu)
+      this.$store.dispatch('updateIndividu', this.individu)
       this.$store.commit('clearMessage')
       this.$push()
     }

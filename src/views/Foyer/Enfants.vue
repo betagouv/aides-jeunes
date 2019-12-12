@@ -53,7 +53,7 @@ export default {
       this.$push()
     },
     removeEnfant: function(enfant) {
-        this.$store.commit('removeEnfant', enfant.id)
+        this.$store.dispatch('removeEnfant', enfant.id)
       
         if (this.$route.name === 'enfants/modifier' && this.$route.params.id === enfant.id) {
           this.$router.push('/foyer/enfants')

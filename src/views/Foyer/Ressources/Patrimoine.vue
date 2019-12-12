@@ -149,7 +149,7 @@ export default {
   },
   methods: {
     next: function() {
-      this.$store.commit('updateIndividu', this.demandeur)
+      this.$store.dispatch('updateIndividu', this.demandeur)
 
       this.$push()
     },

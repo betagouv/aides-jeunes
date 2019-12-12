@@ -80,7 +80,7 @@ export default {
           const value = parseFloat(raw)
           i.values[categorieRnc.id][fiscalYear] = (raw === undefined) ? raw : (_.isNaN(value) ? 0 : value)
         })
-        this.$store.commit('updateIndividu', Object.assign({}, i.source, i.values))
+        this.$store.dispatch('updateIndividu', Object.assign({}, i.source, i.values))
       })
       this.$push()
     },

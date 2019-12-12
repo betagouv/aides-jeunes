@@ -34,7 +34,7 @@ export default {
             Object.keys(ressourceTypes).forEach(t => ressourceTypes[t] = false)
             Ressource.setIndividuRessourceTypes(enfant, ressourceTypes, this.$store.state.dates)
         }
-        this.$store.commit('updateIndividu', enfant)
+        this.$store.dispatch('updateIndividu', enfant)
       })
       this.$push(this.$store.state.situation)
     }

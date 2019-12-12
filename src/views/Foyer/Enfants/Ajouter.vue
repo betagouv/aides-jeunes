@@ -26,7 +26,7 @@ export default {
       this.$router.push('/foyer/enfants')
     },
     emit: function() {
-      this.$store.commit('addEnfant', this.individu)
+      this.$store.dispatch('addEnfant', this.individu)
       this.$push()
     }
   }

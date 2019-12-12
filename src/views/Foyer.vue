@@ -87,7 +87,7 @@ export default {
     recapitulatifLink: function() {
       return {
         path: '/foyer/recapitulatif',
-        query: { depuis: this.$route.fullPath }
+        query: { depuis: this.$route.path }
       }
     }
   }

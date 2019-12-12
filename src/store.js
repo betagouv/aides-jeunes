@@ -61,6 +61,7 @@ function defaultStore() {
         droitsNonEligibles: null,
         droitsInjectes: null,
       },
+      dirty: false,
       error: false,
       exception: false,
       updating: false,
@@ -138,6 +139,9 @@ const store = new Vuex.Store({
           .then((response) => response.data)
       }
     },
+    hasResults: function(state) {
+      return state.calculs.resultats && state.calculs.resultats.droitsEligibles instanceof Array
+    }
   },
   mutations: {
     clear: function(state) {
@@ -151,10 +155,10 @@ const store = new Vuex.Store({
       state.dates = dates
       state.ameliNoticationDone = ameliNoticationDone
     },
-    updateFamille: function(state, famille) {
+    saveFamille: function(state, famille) {
       state.situation = Object.assign({}, state.situation, { famille })
     },
-    updateMenage: function(state, menage) {
+    saveMenage: function(state, menage) {
       state.situation = Object.assign({}, state.situation, { menage })
     },
     removeConjoint: function(state) {
@@ -165,7 +169,7 @@ const store = new Vuex.Store({
     removeEnfant: function(state, id) {
       state.situation.enfants = state.situation.enfants.filter((e) => e.id !== id)
     },
-    updateIndividu: function(state, individu) {
+    saveIndividu: function(state, individu) {
       if (individu.id === 'demandeur') {
         state.situation = Object.assign({}, state.situation, { demandeur: individu })
       } else if (individu.id === 'conjoint') {
@@ -189,6 +193,7 @@ const store = new Vuex.Store({
       state.situation = adaptPersistedSituation(situation)
       state.dates = datesGenerator(state.situation.dateDeValeur)
       state.ameliNoticationDone = false
+      state.calculs.dirty = false
     },
     saveAccessFailure: function(state,) {
       state.access.fetching = false
@@ -196,6 +201,7 @@ const store = new Vuex.Store({
     },
     setId: function(state, id) {
       state.situation._id = id
+      state.calculs.dirty = false
     },
     startComputation: function(state) {
       state.calculs.updating = true
@@ -219,6 +225,9 @@ const store = new Vuex.Store({
     },
     setTitle: function(state, newTitle) {
       state.title = newTitle
+    },
+    setDirty: function(state) {
+      state.calculs.dirty = true
     }
   },
   actions: {
@@ -226,8 +235,37 @@ const store = new Vuex.Store({
       commit('clear')
       commit('initialize')
     },
+    removeConjoint: function({ commit }) {
+      commit('removeConjoint')
+      commit('setDirty')
+    },
+    removeEnfant: function({ commit }, id) {
+      commit('removeEnfant', id)
+      commit('setDirty')
+    },
+    addEnfant: function({ commit }, enfant) {
+      commit('addEnfant', enfant)
+      commit('setDirty')
+    },
+    updateIndividu: function({ commit }, individu) {
+      commit('saveIndividu', individu)
+      commit('setDirty')
+    },
+    updateFamille: function({ commit }, famille) {
+      commit('saveFamille', famille)
+      commit('setDirty')
+    },
+    updateMenage: function({ commit }, menage) {
+      commit('saveMenage', menage)
+      commit('setDirty')
+    },
     save: function(state) {
-      return axios.post('/api/situations/', _.omit(state.state.situation, '_id'))
+      let situation = _.omit(state.state.situation, '_id')
+      if (state.state.situation._id) {
+          situation.modifiedFrom = state.state.situation._id
+      }
+
+      return axios.post('/api/situations/', situation)
         .then(result => result.data)
         .then(payload => payload._id)
         .then(id => state.commit('setId', id))

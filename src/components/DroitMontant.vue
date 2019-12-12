@@ -11,43 +11,28 @@
         {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
       </span>
     </span>
-    <a class="droit-montant-unexpected"
-      v-on:click="openModal"
+    <router-link class="droit-montant-unexpected"
+      :to="{ name: 'resultat/inattendu', params: { id: droit.id }}"
       v-analytics="{ name:droit.label, action:'show-unexpected', category:'General'}"
       v-if="showUnexpected">
       Montant inattendu ?
-    </a>
+    </router-link>
   </span>
 </template>
 
 <script>
 import _ from 'lodash'
-import SituationService from '@/plugins/SituationService'
 
 export default {
   name: 'DroitMontant',
   props: {
     droit: Object,
   },
-  data: function() {
-    let situation = this.$SituationService.restoreLocal();
-
-    let isProprietaireAvecPretEnCours = this.$SituationService.isProprietaireAvecPretEnCours(situation);
-    console.log(isProprietaireAvecPretEnCours)
-
-    let isHebergeParticipeFrais = this.$SituationService.isHebergeParticipeFrais(situation);
-    console.log(isHebergeParticipeFrais)
-
-    console.log(this.droit.id)
-    let isPpa = this.droit.id === 'ppa';
-    console.log(isPpa)
-
-    let showUnexpected = (isPpa && (isProprietaireAvecPretEnCours || isHebergeParticipeFrais))
-    return {
-      showUnexpected,
-    }
-  },
   computed: {
+    showUnexpected: function() {
+      return (this.droit.id === 'ppa' && (this.$store.getters.isProprietaireAvecPretEnCours || this.$store.getters.isHebergeParticipeFrais)) || (this.droit.isBaseRessourcesYearMinusTwo && !this.$store.getters.ressourcesYearMinusTwoCaptured)
+    },
+
     list: function() {
       let vm = this
       return _.filter(this.droits, function(value) {

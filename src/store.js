@@ -155,7 +155,7 @@ const store = new Vuex.Store({
     saveFamille: function(state, famille) {
       state.situation = Object.assign({}, state.situation, { famille })
     },
-    updateMenage: function(state, menage) {
+    saveMenage: function(state, menage) {
       state.situation = Object.assign({}, state.situation, { menage })
     },
     removeConjoint: function(state) {
@@ -250,6 +250,10 @@ const store = new Vuex.Store({
     },
     updateFamille: function({ commit }, famille) {
       commit('saveFamille', famille)
+      commit('setDirty')
+    },
+    updateMenage: function({ commit }, menage) {
+      commit('saveMenage', menage)
       commit('setDirty')
     },
     save: function(state) {

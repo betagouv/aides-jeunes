@@ -316,7 +316,7 @@ export default {
       this.menage.statut_occupation_logement = Logement.getStatutOccupationLogement(this.logement)
       this.menage.aide_logement_date_pret_conventionne = this.logement.pretSigneAvant2018 ? '2017-12-31' : '2018-01-01'
 
-      this.$store.commit('updateMenage', this.menage)
+      this.$store.dispatch('updateMenage', this.menage)
       this.$store.dispatch('updateFamille', this.famille)
       this.$push()
     },

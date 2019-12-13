@@ -106,6 +106,13 @@ const router = new Router({
         component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat/Attendu.vue'),
         meta: { title: 'Résultats attendus' }
       }, {
+        name: 'resultat/inattendu',
+        path: 'resultat/inattendu/:id',
+        component: () => import(/* webpackChunkName: "resultat-inattendu" */ './views/Foyer/ResultatInattendu.vue'),
+        meta: {
+          title: "Montant inattendu"
+        }
+      }, {
         path: 'ressources/fiscales',
         component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue'),
         meta: {

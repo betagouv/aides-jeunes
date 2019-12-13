@@ -285,19 +285,16 @@ export default {
     }
 
     if (this.$store.state.calculs.dirty) {
-      p = p.then(() => this.$store.dispatch('save'))
+      p.then(() => this.$store.dispatch('save'))
+        .then(() => {
+          if (this.$store.state.access.forbidden) {
+            return
+          }
+          return this.$store.dispatch('compute')
+        })
+    } else if(! this.$store.getters.hasResults) {
+      p.then(() => this.$store.dispatch('compute'))
     }
-    p.then(() => {
-      if (this.$store.state.access.forbidden) {
-        return
-      }
-
-      if (! this.$store.state.calculs.dirty && this.$store.getters.hasResults) {
-        return
-      }
-
-      return this.$store.dispatch('compute')
-    })
 
     let vm = this
     this.stopSubscription = this.$store.subscribe(({type}, { calculs }) => {

@@ -7,6 +7,7 @@ var Mustache = require('mustache');
 var config = require('../../config');
 var Loiret = require('../../lib/teleservices/loiret');
 var OpenFiscaTracer = require('../../lib/teleservices/openfisca-tracer');
+var OpenFiscaAxe = require('../../lib/teleservices/openfisca-axe');
 
 moment.locale('fr');
 
@@ -31,6 +32,13 @@ var teleservices = [{
     destination: {
         label: 'en ligne',
         url: '{{&openfiscaTracerURL}}/?source={{&baseURL}}/api/situations/via/{{token}}&host={{&openFiscaURL}}'
+    }
+}, {
+    name: 'openfisca_axe',
+    class: OpenFiscaAxe,
+    public: true,
+    destination: {
+        url: '{{&openfiscaAxeURL}}/graphique?source={{&baseURL}}/api/situations/via/{{token}}'
     }
 }];
 
@@ -84,6 +92,7 @@ exports.metadataResponseGenerator = function(teleservice) {
                 url: Mustache.render(teleservice.destination.url, {
                     token: token,
                     baseURL: req.protocol + '://' + req.get('host'),
+                    openfiscaAxeURL: config.openfiscaAxeURL,
                     openFiscaURL: config.openfiscaPublicURL,
                     openfiscaTracerURL: config.openfiscaTracerURL,
                 })
@@ -155,7 +164,8 @@ exports.verifyRequest = function(req, res, next) {
  * At the moment, the key/value pairs are hardcoded but it mimics the expected behavior.
  */
 exports.exportRepresentation = function(req, res) {
-    return res.json(createClass(req.teleservice, req.situation).toExternal());
+    return Promise.resolve(createClass(req.teleservice, req.situation).toExternal())
+        .then(function(value) { return res.json(value); });
 };
 
 for (var i = 0; i < teleservices.length; i++) {

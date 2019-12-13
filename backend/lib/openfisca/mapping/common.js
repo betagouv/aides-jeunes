@@ -44,6 +44,7 @@ exports.getPeriods = function (dateDeValeur) {
         last12Months: _.map(_.range(1, 12 + 1), function(monthIndex) {
             return dateDeValeur.clone().subtract(monthIndex, 'months').format('YYYY-MM');
         }),
+        thisYear: dateDeValeur.clone().format('YYYY'),
         lastYear: dateDeValeur.clone().subtract(1, 'years').format('YYYY'),
         fiscalYear: dateDeValeur.clone().subtract(2, 'years').format('YYYY'),
         // 12-element array of the 12 months in the année fiscale de référence

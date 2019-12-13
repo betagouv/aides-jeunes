@@ -3,11 +3,15 @@ var mapping = require('./mapping');
 var rp = require('request-promise');
 
 var buildOpenFiscaRequest = exports.buildOpenFiscaRequest = mapping.buildOpenFiscaRequest;
-function sendToOpenfisca(endpoint) {
+function sendToOpenfisca(endpoint, transform) {
+    if (! transform) {
+        transform = buildOpenFiscaRequest;
+    }
+
     return function(situation, callback) {
         var request;
         try {
-            request = buildOpenFiscaRequest(situation);
+            request = transform(situation);
         } catch(e) {
             return callback({
                 message: e.message,
@@ -29,6 +33,7 @@ function sendToOpenfisca(endpoint) {
 
 exports.calculate = sendToOpenfisca('calculate');
 exports.trace = sendToOpenfisca('trace');
+exports.sendToOpenfisca = sendToOpenfisca;
 
 exports.getParameter = function(parameterId, callback) {
     rp({

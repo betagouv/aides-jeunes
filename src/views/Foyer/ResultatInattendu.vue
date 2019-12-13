@@ -8,17 +8,28 @@
       </router-link>
     </div>
 
-    <h3>Le montant indiqué pour {{ longLabel }} vous semble inexact ?</h3>
+    <h3>Le montant indiqué pour {{ longLabel }} vous semble inexact&nbsp;?</h3>
 
-    <ResultatInattenduPpa v-if="droit.id === 'ppa'" v-bind:montant="droit.montant"></ResultatInattenduPpa>
-    <ResultatInattenduYearMinusTwo v-else></ResultatInattenduYearMinusTwo>
+    <ResultatInattenduPpa v-if="droit.id === 'ppa'"></ResultatInattenduPpa>
+    <ResultatInattenduYearMinusTwo v-bind:droit="droit" v-else></ResultatInattenduYearMinusTwo>
   </form>
 </template>
 
 <script>
-
+import { forEach } from '@/../backend/lib/mes-aides'
 import ResultatInattenduPpa from '@/components/ResultatInattendu/Ppa'
 import ResultatInattenduYearMinusTwo from '@/components/ResultatInattendu/YearMinusTwo'
+
+let benefitKeyed = {}
+let benefits = []
+forEach((benefit, benefitId, provider, providerId, level) => {
+  const b = Object.assign({id: benefitId, provider: {...provider, id: providerId}, level}, benefit)
+  if (b.label === 'Tarification solidaire transports') {
+    b.label = `${b.label} - ${provider.label}`
+  }
+  benefits.push(b)
+  benefitKeyed[b.id] = b
+})
 
 export default {
   name: 'resultat-inattendu',
@@ -28,14 +39,11 @@ export default {
   },
   computed: {
     droit: function() { 
-      return this.$store.state.calculs.resultats && this.$store.state.calculs.resultats.droitsEligibles.filter((d) => {
-        return d.id == this.$route.params.id
-      })[0]
+      return benefitKeyed[this.$route.params.id]
     },
     longLabel: function() {
       let prefix = `${this.droit.prefix}${this.droit.prefix && this.droit.prefix.endsWith('’') ? '' : ' '}`
-      let label = this.droit.label.toLowerCase()
-      return `${prefix}${label}`
+      return `${prefix}${this.droit.label}`
     }
   }
 }

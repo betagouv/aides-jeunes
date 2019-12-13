@@ -122,14 +122,14 @@ const store = new Vuex.Store({
           }, false)
       })
     },
-    isProprietaireAvecPretEnCours: function(state, getters) {
+    isProprietaireAvecPretEnCours: function(state) {
       let menage = state.situation.menage
-      let isProprietaire = ['primo_accedant', 'proprietaire'].includes(menage.statut_occupation_logement);
-      return isProprietaire && menage.loyer > 0;
+      let isProprietaire = ['primo_accedant', 'proprietaire'].includes(menage.statut_occupation_logement)
+      return isProprietaire && menage.loyer > 0
     },
-    isHebergeParticipeFrais: function(state, getters) {
+    isHebergeParticipeFrais: function(state) {
       let menage = state.situation.menage
-      return menage.statut_occupation_logement === 'loge_gratuitement' && menage.participation_frais === true;
+      return menage.statut_occupation_logement === 'loge_gratuitement' && menage.participation_frais === true
     },
     /* This function returns
      * - undefined if demandeur do not have any patrimoine ressource

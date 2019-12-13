@@ -6,7 +6,7 @@
       <strong v-else-if="isHebergeParticipeFrais">hébergé·e en participant aux frais du logement.</strong>
     </p>
 
-    <p>
+    <div>
       Sur le simulateur de
       <a href="http://www.caf.fr/allocataires/mes-services-en-ligne/estimer-vos-droits/simulation-prime-d-activite">caf.fr</a>, la question suivante est posée :
 
@@ -19,11 +19,11 @@
           <strong v-else-if="isHebergeParticipeFrais">hébergé·e en participant aux frais du logement.</strong>
         </li>
         <li>« Oui » uniquement si
-        <span v-if="isProprietaireAvecPretEnCours">vous n’avez <strong>pas de prêt pour votre habitation principale.</strong></span>
-        <span v-else-if="isHebergeParticipeFrais">vous <strong>ne participez pas aux frais du logement.</strong></span>
+          <span v-if="isProprietaireAvecPretEnCours">vous n’avez <strong>pas de prêt pour votre habitation principale.</strong></span>
+          <span v-else-if="isHebergeParticipeFrais">vous <strong>ne participez pas aux frais du logement.</strong></span>
         </li>
       </ul>
-    </p>
+    </div>
 
     <p>
       Vous pouvez à présent :
@@ -37,11 +37,14 @@
 </template>
 
 <script>
-  
+import * as droitsDescription from '@/../app/js/constants/benefits'
+
 export default {
   name: 'ResultatInattenduPpa',
-  props: {
-    montant: Number
+  data: function() {
+    return {
+      droit: Object.assign({id: 'ppa'}, droitsDescription.prestationsNationales.caf.prestations.ppa)
+    }
   },
   computed: {
     isProprietaireAvecPretEnCours: function() { return this.$store.getters.isProprietaireAvecPretEnCours },

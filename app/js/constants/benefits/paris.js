@@ -4,6 +4,7 @@ module.exports = {
     'imgSrc': 'logo_paris.png',
     'label': 'Ville de Paris',
     'prefix': 'de la',
+    'repository': 'paris',
     'prestations': {
         'paris_logement_familles': {
             'isMontantAnnuel': false,

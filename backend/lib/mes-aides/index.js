@@ -89,10 +89,10 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
  * - providerId: the benefit provider id
  */
 function forEach(cb) {
-    _.mapValues(droitsDescription, function(aidesProviders) {
+    _.mapValues(droitsDescription, function(aidesProviders, aidesProviderLevel) {
         _.mapValues(aidesProviders, function(aidesProvider, aidesProviderId) {
             _.forEach(aidesProvider.prestations, function(aide, aideId) {
-                cb(aide, aideId, aidesProvider, aidesProviderId);
+                cb(aide, aideId, aidesProvider, aidesProviderId, aidesProviderLevel);
             });
         });
     });

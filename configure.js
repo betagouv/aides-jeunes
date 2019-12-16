@@ -36,6 +36,8 @@ module.exports = function(app) {
       }
   }
 
+  app.set('trust proxy', true)
+
   app.route('/foyer/resultat').post(function(req, res) {
       var html = Buffer.from(req.body.base64, 'base64').toString('utf-8');
 

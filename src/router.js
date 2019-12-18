@@ -180,6 +180,11 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "sos" */ './views/SOS.vue')
     },
     {
+      path: '/stats',
+      name: 'stats',
+      component: () => import(/* webpackChunkName: "stats" */ './views/Stats.vue')
+    },
+    {
       path: '/suivi',
       name: 'suivi',
       component: () => import(/* webpackChunkName: "suivi" */ './views/Suivi.vue')

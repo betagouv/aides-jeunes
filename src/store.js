@@ -154,7 +154,7 @@ const store = new Vuex.Store({
       }
     },
     hasResults: function(state) {
-      return state.calculs.resultats && state.calculs.resultats.droitsEligibles instanceof Array
+      return state.situation._id && state.calculs.resultats._id && state.calculs.resultats._id === state.situation._id
     }
   },
   mutations: {

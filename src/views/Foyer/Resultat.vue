@@ -288,23 +288,27 @@ export default {
     }
   },
   mounted: function () {
-    let p = Promise.resolve()
     if (this.$route.query && this.$route.query.situationId) {
-      p = this.$store.dispatch('fetch', this.$route.query.situationId)
+      if (this.$store.state.situation._id !== this.$route.query.situationId) {
+        this.$store.dispatch('fetch', this.$route.query.situationId)
+          .then(() => this.$store.dispatch('compute'))
+      } else if (! this.$store.getters.hasResults) {
+        this.$store.dispatch('compute')
+      } // Else nothing to do
     } else if (!this.$store.getters.passSanityCheck) {
       return this.$store.dispatch('redirection', route => this.$router.push(route))
-    }
-
-    if (this.$store.state.calculs.dirty) {
-      p.then(() => this.$store.dispatch('save'))
-        .then(() => {
-          if (this.$store.state.access.forbidden) {
-            return
-          }
-          return this.$store.dispatch('compute')
-        })
-    } else if(! this.$store.getters.hasResults) {
-      p.then(() => this.$store.dispatch('compute'))
+    } else {
+      if (this.$store.state.calculs.dirty) {
+        this.$store.dispatch('save')
+          .then(() => {
+            if (this.$store.state.access.forbidden) {
+              return
+            }
+            return this.$store.dispatch('compute')
+          })
+      } else if(! this.$store.getters.hasResults) {
+        this.$store.dispatch('compute')
+      }
     }
 
     let vm = this

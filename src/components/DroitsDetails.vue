@@ -62,20 +62,17 @@
         <a v-if="droit.msa"
           target="_blank"
           rel="noopener"
-          class="btn btn-sm btn-secondary"
           href="http://www.msa.fr/lfr/web/msa/espace-prive"
           v-analytics="{ name:droit.label, action:'msa', category:'General'}"
         >
           Démarches pour les professions agricoles
         </a>
-<!--         <etablissements-cta
-          class="droit-detail-buttons-cta"
-          city="city"
-          types="droit.provider.etablissements"
-          droit="droit"
-          v-if="droit.provider.etablissements.length > 0"
-        >
-        </etablissements-cta> -->
+        <router-link
+          class="button-outline primary"
+          v-if="droit.provider.etablissements && droit.provider.etablissements.length > 0"
+          v-bind:to="{ name: 'lieux', params: { id: droit.id }}">
+          <i class="fa fa-home"></i> Trouver une agence
+        </router-link>
       </div>
     </div>
   </div>
@@ -126,3 +123,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.droit-detail-buttons {
+  text-align: center;
+}
+</style>

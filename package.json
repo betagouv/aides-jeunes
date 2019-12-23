@@ -71,7 +71,7 @@
     "sass-loader": "^7.3",
     "vue-template-compiler": "^2.6.10",
     "watai": "^0.7.0",
-    "world-countries": "github:alexsegura/countries#translate-demonyms"
+    "world-countries": "github:mledoze/countries#25ac1083834"
   },
   "scripts": {
     "serve": "vue-cli-service serve",

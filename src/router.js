@@ -110,7 +110,7 @@ const router = new Router({
         path: 'resultat/inattendu/:id',
         component: () => import(/* webpackChunkName: "resultat-inattendu" */ './views/Foyer/ResultatInattendu.vue'),
         meta: {
-          title: "Montant inattendu"
+          title: " "
         }
       }, {
         path: 'ressources/fiscales',

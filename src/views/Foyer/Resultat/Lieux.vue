@@ -28,14 +28,14 @@ import { forEach } from '@/../backend/lib/mes-aides'
 import Etablissement from '@/components/Etablissement'
 
 function normalizeEtablissement(etablissementFeature) {
-    var etablissement = etablissementFeature.properties
+    let etablissement = etablissementFeature.properties
 
     if (etablissement.url === 'https://www.maisondeservicesaupublic.fr') {
         delete etablissement.url
     }
 
     if (etablissement.horaires) {
-        var mapping = {
+        let mapping = {
             lundi: 1,
             mardi: 2,
             mercredi: 3,
@@ -73,7 +73,7 @@ export default {
   },
   mounted: function() {
     const city = this.$store.state.situation.menage.depcom
-    var types = []
+    let types = []
     forEach((benefit, benefitId, provider) => {
       if (provider.etablissements && provider.etablissements.length > 0 && benefitId === this.$route.params.id) {
         types = provider.etablissements

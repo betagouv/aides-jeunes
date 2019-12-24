@@ -3,7 +3,7 @@ import {categoriesRnc, ressourceTypes} from '@/constants/resources'
 import _ from 'lodash'
 
 function getPeriodsForCurrentYear(dates, ressourceType) {
-    var periodKeys = [];
+    let periodKeys = [];
     if (ressourceType.isMontantAnnuel) {
         periodKeys.push(dates.lastYear);
         return periodKeys;
@@ -29,10 +29,10 @@ function getPeriodKeysForCurrentYear(dates, ressourceType) {
 }
 
 function setDefaultValueForCurrentYear(dates, individu, ressourceType) {
-    var ressourceId = ressourceType.id;
+    let ressourceId = ressourceType.id;
     individu[ressourceId] = individu[ressourceId] || {};
-    var ressource = individu[ressourceId];
-    var periodKeys = getPeriodKeysForCurrentYear(dates, ressourceType);
+    let ressource = individu[ressourceId];
+    let periodKeys = getPeriodKeysForCurrentYear(dates, ressourceType);
 
     if (_.some(periodKeys, function(periodKey) { return _.isNumber(ressource[periodKey]); })) {
         return;
@@ -44,10 +44,10 @@ function setDefaultValueForCurrentYear(dates, individu, ressourceType) {
 }
 
 function unsetForCurrentYear(dates, entity, ressourceType) {
-    var ressourceId = ressourceType.id;
+    let ressourceId = ressourceType.id;
     entity[ressourceId] = entity[ressourceId] || {};
-    var ressource = entity[ressourceId];
-    var periodKeys = getPeriodKeysForCurrentYear(dates, ressourceType);
+    let ressource = entity[ressourceId];
+    let periodKeys = getPeriodKeysForCurrentYear(dates, ressourceType);
     periodKeys.forEach(function(periodKey) {
         delete ressource[periodKey]
     });
@@ -57,7 +57,7 @@ function unsetForCurrentYear(dates, entity, ressourceType) {
     }
 }
 
-var ressourcesForTrailingMonthsAndFiscalYear = categoriesRnc.filter(function(fiscalRessource) {
+let ressourcesForTrailingMonthsAndFiscalYear = categoriesRnc.filter(function(fiscalRessource) {
     return fiscalRessource.sources && fiscalRessource.sources.indexOf(fiscalRessource.id) >= 0;
 }).map(function(fiscalRessource) { return fiscalRessource.id; });
 
@@ -80,7 +80,7 @@ function getIndividuRessourceTypes(individu) {
 }
 
 function setIndividuRessourceTypes(individu, types, dates) {
-    var typeMap = _.keyBy(_.filter(ressourceTypes, isRessourceOnMainScreen), 'id');
+    let typeMap = _.keyBy(_.filter(ressourceTypes, isRessourceOnMainScreen), 'id');
 
     Object.keys(types).forEach(function(ressourceTypeId) {
         if (types[ressourceTypeId]) {
@@ -93,16 +93,16 @@ function setIndividuRessourceTypes(individu, types, dates) {
 
 function isRessourceOnMainScreen(ressourceOrType) {
     // Make this function robust so that it can be called with a type from the ressourceTypes constant, or just a string.
-    var type = ressourceOrType.id || ressourceOrType;
+    let type = ressourceOrType.id || ressourceOrType;
     return type != 'pensions_alimentaires_versees_individu';
 }
 
 function getParameterFromOpenfisca(parameterId) {
     return axios.get('/api/parameters/' + parameterId)
         .then(function(resp) {
-            var values = resp.data.values;
-            var sortedByDates = Object.keys(values).sort();
-            var latestValue = values[sortedByDates.pop()];
+            let values = resp.data.values;
+            let sortedByDates = Object.keys(values).sort();
+            let latestValue = values[sortedByDates.pop()];
             return latestValue;
         });
 }

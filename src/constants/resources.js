@@ -1,6 +1,6 @@
 'use strict';
 
-var ressourceCategories = [
+let ressourceCategories = [
     {
         id: 'revenusActivite',
         label: 'Revenus d’activité',
@@ -31,7 +31,7 @@ var ressourceCategories = [
     }
 ];
 
-var ressourceTypes = [
+let ressourceTypes = [
     {
         id: 'salaire_net',
         label: 'Salaire (dont primes et indemnités de fin de contrat)',
@@ -315,7 +315,7 @@ var ressourceTypes = [
     }
 ];
 
-var categoriesRnc = [
+let categoriesRnc = [
     {
         id: 'salaire_imposable',
         label: 'Revenus d’activité connus',
@@ -354,7 +354,7 @@ var categoriesRnc = [
     }
 ];
 
-var patrimoineTypes = [
+let patrimoineTypes = [
     {
         id: 'valeur_patrimoine_loue',
         label: 'Valeur de vos biens loués'

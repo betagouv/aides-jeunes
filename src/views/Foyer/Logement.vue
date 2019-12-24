@@ -142,8 +142,8 @@ export default {
     YesNoQuestion,
   },
   data () {
-    var situation = this.$store.state.situation
-    var logement = Logement.getLogementVariables(situation.menage.statut_occupation_logement)
+    let situation = this.$store.state.situation
+    let logement = Logement.getLogementVariables(situation.menage.statut_occupation_logement)
     logement.pretSigneAvant2018 = moment(situation.menage.aide_logement_date_pret_conventionne, 'YYYY-MM-DD').get('year') < 2018
 
     return {
@@ -206,7 +206,7 @@ export default {
         return (this.logement.type == 'locataire') && (this.logement.locationType !== 'meublehotel') && this.captureLoyer
     },
     captureHabiteChezParents: function() {
-        var age = Individu.age(this.demandeur)
+        let age = Individu.age(this.demandeur)
         return (this.logement.type == 'heberge') && this.demandeur.fiscalementIndependant && (age >= 18) && (age < 25) && (this.situation.enfants.length === 0)
     },
     captureCodePostal: function() {
@@ -262,23 +262,23 @@ export default {
         switch (this.logement.type) {
         case 'locataire':
         {
-            var elements = [];
+            let elements = []
             if (this.menage.coloc) {
-                elements.push('Votre part du loyer');
+                elements.push('Votre part du loyer')
             } else {
-                elements.push('Votre loyer');
+                elements.push('Votre loyer')
             }
 
             if (this.captureCharges) {
-                elements.push('(hors charges)');
+                elements.push('(hors charges)')
             } else {
-                elements.push('(charges comprises)');
+                elements.push('(charges comprises)')
             }
 
-            return elements.join(' ');
+            return elements.join(' ')
         }
         default: {
-            return 'Montant des mensualités';
+            return 'Montant des mensualités'
         }
         }
     },

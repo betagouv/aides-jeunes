@@ -10,30 +10,30 @@ import _ from 'lodash'
 import { computeAides, datesGenerator } from '../backend/lib/mes-aides'
 import { categoriesRnc, patrimoineTypes } from './constants/resources'
 
-var DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage'];
+let DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage']
 
 function adaptPersistedIndividu(individu) {
     DATE_FIELDS.forEach(function(dateField) {
         if (individu[dateField]) {
-            individu[dateField] = new Date(individu[dateField]);
+            individu[dateField] = new Date(individu[dateField])
         }
-    });
+    })
 }
 
 function adaptPersistedSituation(situation) {
     if (situation.dateDeValeur) {
-        situation.dateDeValeur = new Date(situation.dateDeValeur);
+        situation.dateDeValeur = new Date(situation.dateDeValeur)
     }
     if (situation.demandeur) {
-        adaptPersistedIndividu(situation.demandeur);
+        adaptPersistedIndividu(situation.demandeur)
     }
     if (situation.enfants) {
-        situation.enfants.forEach(adaptPersistedIndividu);
+        situation.enfants.forEach(adaptPersistedIndividu)
     }
     if (situation.conjoint) {
-        adaptPersistedIndividu(situation.conjoint);
+        adaptPersistedIndividu(situation.conjoint)
     }
-    return situation;
+    return situation
 }
 
 function defaultCalculs() {
@@ -106,7 +106,7 @@ const store = new Vuex.Store({
           state.situation.demandeur,
           state.situation.conjoint,
           state.situation.enfants,
-      ).filter(function(individu) { return individu; });
+      ).filter((individu) => individu)
     },
     ressourcesYearMinusTwoCaptured: function(state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
@@ -138,7 +138,7 @@ const store = new Vuex.Store({
      * - true
      */
     hasPatrimoine: function(state) {
-        var demandeur = state.situation.demandeur
+        let demandeur = state.situation.demandeur
         return patrimoineTypes.reduce(function(accum, ressource) {
             if (! demandeur[ressource.id]) {
                 return accum

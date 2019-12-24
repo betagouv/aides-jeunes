@@ -1,12 +1,12 @@
 function buildHref({to, subject, body}) {
-    var params = [];
+    let params = [];
     if (subject) {
         params.push('subject=' + encodeURIComponent(subject))
     }
     if (body) {
         params.push('body=' + encodeURIComponent(body))
     }
-    var comps = ['mailto:' + to, params.join('&')]
+    let comps = ['mailto:' + to, params.join('&')]
     return comps.join('?')
 }
 

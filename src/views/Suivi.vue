@@ -78,7 +78,7 @@ export default {
       return this.followup && moment(this.followup.createdAt).format('ll')
     },
     isComplete: function() {
-        var choiceValues = _.map(this.droits, droit => droit.choiceValue)
+        let choiceValues = _.map(this.droits, droit => droit.choiceValue)
         return _.filter(choiceValues).length === this.droits.length
     }
   },
@@ -87,7 +87,7 @@ export default {
     isNumber: _.isNumber,
     isNegative,
     submit: function() {
-      var answers = this.droits.map(droit => ({
+      let answers = this.droits.map(droit => ({
         id: droit.id,
         value: droit.choiceValue,
         comments: droit.choiceComments
@@ -106,8 +106,8 @@ export default {
     axios.get(`/api/followups/surveys/${this.$route.query.token}`)
       .then((response) => {
         this.followup = response.data
-        var benefitsIds = this.followup.benefits.map(benefit => benefit.id)
-        var benefitsNormalized = []
+        let benefitsIds = this.followup.benefits.map(benefit => benefit.id)
+        let benefitsNormalized = []
 
         forEach((benefit, benefitId, provider, providerId) => {
 
@@ -115,7 +115,7 @@ export default {
               return
           }
 
-          var montant = _.find(this.followup.benefits, benefit => benefit.id === benefitId).amount
+          let montant = _.find(this.followup.benefits, benefit => benefit.id === benefitId).amount
 
           benefitsNormalized.push(_.assign({},
             benefit,

@@ -1,6 +1,6 @@
-var Fuse = require('fuse.js');
-var worldCountries = require('world-countries');
-var countries = [];
+let Fuse = require('fuse.js');
+let worldCountries = require('world-countries');
+let countries = [];
 
 worldCountries.forEach(function(country) {
     if (country.hasOwnProperty('demonyms')) {
@@ -13,7 +13,7 @@ worldCountries.forEach(function(country) {
     }
 });
 
-var fuseOptions = {
+let fuseOptions = {
     shouldSort: true,
     threshold: 0.5,
     location: 0,
@@ -26,15 +26,15 @@ var fuseOptions = {
         "officialName"
     ]
 };
-var fuse = new Fuse(countries, fuseOptions);
+let fuse = new Fuse(countries, fuseOptions);
 
-var ZONE_LABEL = {
+let ZONE_LABEL = {
     'fr': 'française',
     'ue': 'UE',
     'autre': 'hors UE'
 };
 
-var EEE_COUNTRY_CODES = [
+let EEE_COUNTRY_CODES = [
     'AT',
     'BE',
     'BG',

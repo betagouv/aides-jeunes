@@ -33,7 +33,7 @@ function getConjoint() {
 }
 
 function get(individus, role, id, dates) {
-    var DEFAULT_INDIVIDU = {
+    let DEFAULT_INDIVIDU = {
         id: role,
         aah_restriction_substantielle_durable_acces_emploi: true,
         ass_precondition_remplie: false,
@@ -62,16 +62,16 @@ function get(individus, role, id, dates) {
         DEFAULT_INDIVIDU.statut_marital = 'marie';  // Marié(e)
     }
 
-    var existingIndividu = find(individus, role, id);
-    var individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(existingIndividu));
+    let existingIndividu = find(individus, role, id);
+    let individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(existingIndividu));
 
     if (role == 'enfant' && !existingIndividu) {
 
-        var nextEnfantCount = individus.length + 1;
+        let nextEnfantCount = individus.length + 1;
         individu.firstName = 'votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
 
-        var usedIds = individus.map(function(enfant) { return enfant.id; });
-        var count = 0;
+        let usedIds = individus.map(function(enfant) { return enfant.id; });
+        let count = 0;
         while (_.indexOf(usedIds, 'enfant_' + count) >= 0) {
             count = count + 1;
         }
@@ -126,7 +126,7 @@ const Individu = {
     },
 
     formatStatutsSpecifiques: function(individu) {
-        var statuts = [];
+        let statuts = [];
         /*specificSituations.forEach(function(statut) {
             if (individu.specificSituations && individu.specificSituations.indexOf(statut.id) >= 0) {
                 statuts.push(statut.label);

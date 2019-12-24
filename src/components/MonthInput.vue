@@ -24,7 +24,7 @@ export default {
           return this.$emit('input', undefined)
         }
 
-        var result = moment(value, 'MM/YYYY', true)
+        let result = moment(value, 'MM/YYYY', true)
         if (result.isValid()) {
           this.$emit('input', result.toDate())
         }

@@ -24,11 +24,17 @@ function valueAt(ressourceId, ressources, period, aide) {
 
 function round(amount, aide) {
     if (aide.type && aide.type !== 'float') {
-        return amount;
+        return amount
     }
 
-    var rounding = aide.floorAt || 1;
-    return Math.floor(amount / rounding) * rounding;
+    var rounding = aide.floorAt || 1
+    var value = Math.floor(amount / rounding) * rounding
+
+    if (amount && !value) {
+        return Math.floor(amount)
+    } else {
+        return value
+    }
 }
 
 function computeAides(situation, openfiscaResponse, showPrivate) {

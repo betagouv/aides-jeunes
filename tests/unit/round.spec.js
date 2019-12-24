@@ -15,6 +15,7 @@ describe('round', function() {
         expect(round(135, { floorAt: 10 })).toEqual(130)
         expect(round(139.47, { floorAt: 10 })).toEqual(130)
         expect(round(139.7, { floorAt: 10 })).toEqual(130)
+        expect(round(3.7, { floorAt: 10 })).toEqual(3)
     })
 
     it('should floor to lower cent', function() {

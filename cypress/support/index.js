@@ -20,8 +20,10 @@ import './commands'
 // require('./commands')
 
 export function home() {
-  //TODO10 metaOGDescription
-  //TODO10 metaTwitterDescription
+  cy.get('meta[name="og:description"]')
+    .invoke('attr', 'content')
+    .should('match', /\d+ prestations/i)
+
   cy.get('.hero__container').invoke('text')
     .should('match', /\d+ aides/i)
 

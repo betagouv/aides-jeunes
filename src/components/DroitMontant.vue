@@ -53,26 +53,6 @@ export default {
     isString: _.isString,
     getFractionSize: function(droit) {
       return droit.floorAt < 1 ? 2 : 0;
-    },
-    openModal: function() {
-      alert('TODO1')
-      /*
-      $uibModal.open({
-        animation: true,
-        ariaLabelledBy: 'modal-title',
-        ariaDescribedBy: 'modal-body',
-        size: 'lg',
-        templateUrl: '/partials/ppa-help.html',
-        controller: 'ppaHelpCtrl',
-        resolve: {
-          situation: function() {
-            return situation
-          },
-          droit: function() {
-            return scope.droit;
-          }
-        }
-      })//*/
     }
   },
 }

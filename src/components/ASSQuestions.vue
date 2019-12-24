@@ -40,13 +40,13 @@ export default {
   },
   computed: {
     capturePreconditionAss: function() {
-      var dt = moment(this.individu.date_debut_chomage)
+      let dt = moment(this.individu.date_debut_chomage)
       return this.individu.date_debut_chomage && dt.year && dt.year()
     }
   },
   methods: {
     yearsAgo: function(years) {
-      var dt = moment(this.individu.date_debut_chomage)
+      let dt = moment(this.individu.date_debut_chomage)
       return this.individu.date_debut_chomage && dt.subtract(years, 'years').format('MMMM YYYY')
     }
   }

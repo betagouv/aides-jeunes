@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     emit: function($event) {
-      var value = new Date($event.target.value)
+      let value = new Date($event.target.value)
       if (value) {
         this.$emit('input', value)
       }

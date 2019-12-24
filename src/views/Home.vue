@@ -61,7 +61,7 @@ export default {
     let value = {}
     const types = ['prestationsNationales', 'partenairesLocaux']
     types.forEach(function(type) {
-        var providersWithoutPrivatePrestations = _.mapValues(droitsDescription[type], function(provider) {
+        let providersWithoutPrivatePrestations = _.mapValues(droitsDescription[type], function(provider) {
             provider = _.assign({}, provider)
             provider.prestations = _.reduce(provider.prestations, function(prestations, prestation, name) {
                 if (! prestation.private) {

@@ -2,7 +2,7 @@ import { logementTypes, locationTypes } from '../constants/logement'
 import _ from 'lodash'
 
 function getStatutOccupationLogement(logement) {
-    var statusOccupationMap = {
+    let statusOccupationMap = {
         proprietaireprimoaccedant: 'primo_accedant',
         proprietaire: 'proprietaire',
         locatairenonmeuble: 'locataire_vide',
@@ -11,7 +11,7 @@ function getStatutOccupationLogement(logement) {
         locatairefoyer: 'locataire_foyer',
         sansDomicile : 'sans_domicile'
     };
-    var statusOccupationId = logement.type;
+    let statusOccupationId = logement.type;
     if (logement.type == 'proprietaire' && logement.primoAccedant) {
         statusOccupationId = 'proprietaireprimoaccedant';
     } else if (logement.type == 'locataire' && logement.locationType) {
@@ -21,7 +21,7 @@ function getStatutOccupationLogement(logement) {
 }
 
 function getLogementVariables(statusOccupationId) {
-    var baseLogementMap = {
+    let baseLogementMap = {
         primo_accedant:
             { type: 'proprietaire', primoAccedant: true },
         proprietaire:
@@ -42,12 +42,12 @@ function getLogementVariables(statusOccupationId) {
 }
 
 function getLabels(statusOccupationId) {
-    var logement = getLogementVariables(statusOccupationId);
-    var logementLabel = _.find(logementTypes, { id: logement.type }).label;
+    let logement = getLogementVariables(statusOccupationId);
+    let logementLabel = _.find(logementTypes, { id: logement.type }).label;
 
     //TODO3 logementLabel = logementLabel.$filter('uppercaseFirst')();
-    var recapLogement = '<b>' + logementLabel + '</b>';
-    var loyerLabel;
+    let recapLogement = '<b>' + logementLabel + '</b>';
+    let loyerLabel;
     if ('locataire' === logement.type) {
         recapLogement += ' d’un logement <b>';
         recapLogement += _.find(locationTypes, { id: logement.locationType }).label;

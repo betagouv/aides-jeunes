@@ -36,7 +36,7 @@ function getDefaultValue(months, individu, rnc) {
       return 0
     }
 
-    var ressource = individu[sourceName]
+    let ressource = individu[sourceName]
     return _.sum(months.map(month => ressource[month.id] || 0))
   }))
 }
@@ -48,7 +48,7 @@ export default {
   data: function() {
     const fiscalYear = this.$store.state.dates.fiscalYear.id
     let individus = this.$store.getters.peopleParentsFirst.map((source) => {
-      var individu = {
+      let individu = {
         label: Individu.label(source),
         default: {},
         values: {},

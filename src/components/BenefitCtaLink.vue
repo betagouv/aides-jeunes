@@ -14,14 +14,14 @@
 </template>
 
 <script>
-var typeLabels = {
+let typeLabels = {
     teleservice: 'Faire une demande en ligne',
     form: 'Accéder au formulaire papier',
     instructions: 'Accéder aux instructions',
     link: "Plus d'informations <i class='fa fa-external-link' aria-hidden='true' role='presentation'></i>",
 };
 
-var longLabels = {
+let longLabels = {
   ...typeLabels,
   link: "Plus d'informations"
 }
@@ -61,7 +61,7 @@ export default {
       if (typeof link === 'object') {
         alert('TODO3')
         /*
-        var situation = SituationService.restoreLocal()
+        let situation = SituationService.restoreLocal()
         TrampolineService.set({ situationId: situation._id })
         //*/
       }

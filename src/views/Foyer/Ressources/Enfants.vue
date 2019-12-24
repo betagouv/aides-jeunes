@@ -30,7 +30,7 @@ export default {
     next: function() {
       this.enfants.forEach(enfant => {
         if (! enfant.hasRessources) {
-            var ressourceTypes = Ressource.getIndividuRessourceTypes(enfant)
+            let ressourceTypes = Ressource.getIndividuRessourceTypes(enfant)
             Object.keys(ressourceTypes).forEach(t => ressourceTypes[t] = false)
             Ressource.setIndividuRessourceTypes(enfant, ressourceTypes, this.$store.state.dates)
         }

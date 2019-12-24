@@ -156,7 +156,7 @@ export default {
       return _.filter(this.selection, i => i.ref && i.expected !== null)
     },
     extensionAndRepository: function() {
-      var extensions = _.chain(this.selection).map(i => i.ref)
+      let extensions = _.chain(this.selection).map(i => i.ref)
           .filter(aid => aid && aid.level == 'partenairesLocaux')
           .map(aid => aid.provider.repository || aid.provider.id)
           .uniq()
@@ -169,20 +169,20 @@ export default {
       }
 
       if (extensions.length > 1) {
-          var message = 'Vous avez spécifié des prestations de plusieurs extensions. Dans un test donné, vous ne pouvez spécifier que des prestations nationales et celle d‘une seule extension. Pour plus d‘information, contactez-nous.'
+          let message = 'Vous avez spécifié des prestations de plusieurs extensions. Dans un test donné, vous ne pouvez spécifier que des prestations nationales et celle d‘une seule extension. Pour plus d‘information, contactez-nous.'
           return {
               error: message
           }
       }
 
-      var dest = 'openfisca-' + extensions[0]
+      let dest = 'openfisca-' + extensions[0]
       return {
           extension: dest,
           repository: dest,
       }
     },
     testMetadata: function() {
-      var outputVariables = this.expectedResults.reduce(function(results, expectedValue) {
+      let outputVariables = this.expectedResults.reduce(function(results, expectedValue) {
         results[expectedValue.ref.id] = expectedValue.expected
         return results
       }, {})

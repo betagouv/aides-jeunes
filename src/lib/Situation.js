@@ -18,7 +18,7 @@ const Situation = {
     },
 
     setEnfants: function(situation, enfants) {
-        var individus = situation.individus
+        let individus = situation.individus
         individus = _.filter(individus, function(individu) {
             return 'enfant' !== individu.role
         })

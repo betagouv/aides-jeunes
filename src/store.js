@@ -72,6 +72,7 @@ function defaultStore() {
     calculs: defaultCalculs(),
     dates: datesGenerator(now),
     ameliNoticationDone: false,
+    lieux: null,
     title: null,
   }
 }

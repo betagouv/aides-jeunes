@@ -178,7 +178,7 @@
               <div v-if="showExpertLinks">
                 Partenaires&nbsp;:
               <ul>
-                <li><router-link to="/foyer/resultat/attendu">Indiquer les résultats attendus pour cette situation</router-link></li>
+                <li><router-link to="/foyer/resultat/attendu">Indiquez les résultats attendus pour cette situation</router-link></li>
                 <li><a
                   v-if="openfiscaTracerURL"
                   target="_blank"
@@ -190,7 +190,7 @@
                   target="_blank"
                   v-bind:href="openfiscaAxeURL"
                   v-analytics="{ category:'Axe' }"
-                  >Voyez comment les aides évoluent en fonction des ressources
+                  >Analysez l'évolution des aides en fonction des ressources
                 </a></li>
               </ul>
               </div>

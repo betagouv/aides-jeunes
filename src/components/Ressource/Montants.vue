@@ -16,7 +16,7 @@
       <div>{{ getLongLabel(individu, type.meta) }}</div>
       <div v-for="(month, monthIndex) in type.months" v-bind:key="month.id">
         <label>
-          {{ month.label | capitalize }}
+          <MonthLabel v-bind:month="month" />
           <input type="number" v-select-on-click v-bind:value="type.amounts[month.id]"
           v-on:input="$emit('update', 'monthUpdate', index, { value: $event.target.value, monthIndex })"/>
         </label>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import MonthLabel from '@/components/MonthLabel'
 import YesNoQuestion from '@/components/YesNoQuestion'
 import Individu from '@/lib/Individu'
 
@@ -76,6 +77,7 @@ export default {
     }
   },
   components: {
+    MonthLabel,
     YesNoQuestion
   },
   methods: {

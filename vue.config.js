@@ -2,6 +2,8 @@ const configureAPI = require('./configure')
 const mock = require('./mock')
 const before = process.env.NODE_ENV === 'front_only' ? mock : configureAPI
 
+process.env.VUE_APP_BENEFIT_COUNT = 33
+
 module.exports = {
   configureWebpack: {
     devtool: 'source-map'

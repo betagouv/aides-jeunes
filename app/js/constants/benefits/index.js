@@ -398,7 +398,7 @@ var droitsDescription = {
             'label': 'Ministère de la Cohésion des territoires',
             'imgSrc': 'logo_ministere_cohesion_territoires.png',
             'prestations': {
-                'logement_social_eligible': {
+                'logement_social': {
                     'type': 'bool',
                     'isBaseRessourcesYearMinusTwo': true,
                     'label': 'Logement social',

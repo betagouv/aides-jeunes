@@ -129,10 +129,15 @@ function manageMissingDBOrCollection(error) {
     }
 }
 
-exports.getStats = function(fromDate, toDate) {
+function connect() {
     return MongoClient
         .connectAsync(config.mongo.uri)
-        .then(saveDb)
+        .then(saveDb);
+};
+exports.connect = connect;
+
+exports.getStats = function(fromDate, toDate) {
+    return connect()
         .then(function(db) {
             // MongoDB 2.4 (production) does not embed metadata of the operation, the result is directly available in the response
             // MongoDB 3.4 (dev environment) returns results with metadata and are available in the results property

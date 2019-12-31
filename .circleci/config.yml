@@ -189,7 +189,7 @@ jobs:
 
 workflows:
   version: 2
-  deploy_next_vue:
+  test:
     jobs:
       - install_openfisca
       - install
@@ -203,6 +203,8 @@ workflows:
           requires:
             - build
             - install_openfisca
+  deploy:
+    jobs:
       - deploy:
           filters:
             branches:

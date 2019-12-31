@@ -1,18 +1,19 @@
 <template>
   <div>
-    <input
-      v-if="showDay"
-      type="number"
-      autofocus
-      v-bind:id="firstId"
-      ref="day"
-      aria-label="Jour"
-      v-model="day"
-      placeholder="23"
-      v-select-on-click
-      min=1
-      max=31 />
+    <div v-if="showDay">
+      <input
+        type="number"
+        autofocus
+        v-bind:id="firstId"
+        ref="day"
+        aria-label="Jour"
+        v-model="day"
+        placeholder="23"
+        v-select-on-click
+        min=1
+        max=31 />
       /
+    </div>
     <input
       type="number"
       ref="month"

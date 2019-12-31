@@ -3,9 +3,8 @@
     <div class="form__group">
       <label>
         Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ? (MM/AAAA)
-        <MonthInput v-model="individu.date_debut_chomage" />
+        <InputMonth v-model="individu.date_debut_chomage" />
       </label>
-      
       <div>
         {{ individu.role == 'demandeur' ? 'Si vous n\'avez' : 'S\'il ou elle n\'a' }} jamais eu de contrat de travail, laissez ce champ vide.
       </div>
@@ -26,13 +25,13 @@
 <script>
 import moment from 'moment'
 
-import MonthInput from '@/components/MonthInput'
 import YesNoQuestion from '@/components/YesNoQuestion'
+import InputMonth from "@/components/InputMonth";
 
 export default {
   name: 'ASSQuestions',
   components: {
-    MonthInput,
+    InputMonth,
     YesNoQuestion
   },
   props: {

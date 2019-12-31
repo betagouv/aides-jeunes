@@ -1,6 +1,7 @@
 <template>
   <div>
     <input
+      v-if="showDay"
       type="number"
       autofocus
       v-bind:id="firstId"
@@ -56,11 +57,18 @@ export default {
   props: {
     id: String,
     value: Date,
+    //dateType should be "date" for a DD-MM-YYY date input and "month" for MM-YYYY
+    dateType: {
+      type: String,
+      default: "date"
+    }
   },
   data: function() {
+    const captureFullDate = (this.dateType === "date")
+
     return {
-      currentState: this.value ? 0 : { element: 'day', length: 0 },
-      day: this.value && moment(this.value).format('DD'),
+      currentState: this.value ? 0 : (captureFullDate ? { element: 'day', length: 0 } : { element: 'day', length: 2 }),
+      day: captureFullDate ? this.value && moment(this.value).format('DD') : "01",
       month: this.value && moment(this.value).format('MM'),
       year: this.value && moment(this.value).format('YYYY'),
     }
@@ -75,6 +83,9 @@ export default {
     firstId: function() {
       const uniqueFieldName = 'id.' + Math.random().toString(36).slice(2)
       return this.id || uniqueFieldName
+    },
+    showDay: function() {
+      return this.dateType === "date"
     }
   },
   methods: {

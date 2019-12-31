@@ -27,7 +27,7 @@
     </div>
 
     <NationalityChoice class="form__group" v-model="individu.nationalite" />
-    
+
     <div class="form__group" v-if="captureOutOfFranceQuestions">
       <label>
         <input type="checkbox" v-model="satisfyResidentialDurationPrerequisite">

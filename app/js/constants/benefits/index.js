@@ -266,7 +266,10 @@ var droitsDescription = {
             'prestations': {
                 'ass': {
                     'label': 'Allocation de solidarité spécifique',
-                    'description': 'L’allocation de solidarité spécifique (ASS) est attribuée aux personnes ayant épuisé leurs droits au chômage sous conditions d’activité antérieure et de ressources. Elle peut être versée à taux plein ou à taux réduit. En cas de reprise d’activité, elle peut être maintenue.',
+                    'description': 'L’allocation de solidarité spécifique (ASS) est une aide financière attribuée aux personnes ayant épuisé leurs droits au chômage. Elle peut être versée à taux plein ou à taux réduit. En cas de reprise d’activité, elle peut être maintenue.',
+                    'conditions': [
+                        'Avoir travaillé au moins 5 ans au cours des 10 ans avant la fin de votre dernier contrat de travail.'
+                    ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F12484',
                     /* En principe, formulaire envoyé automatiquement ; lien vers brochure pole emploi */
                     'instructions': 'http://www.pole-emploi.fr/front/common/tools/download_file.jspz?mediaid=186108',

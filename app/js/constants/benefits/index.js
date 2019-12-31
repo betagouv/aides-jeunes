@@ -289,7 +289,7 @@ var droitsDescription = {
                         'Effectuer chaque année votre déclaration auprès des impôts.',
                         'Utiliser votre Chèque Énergie reçu en avril avant le 31 mars de l’année suivante.'
                     ],
-                    'link': 'https://www.chequeenergie.gouv.fr/',
+                    'link': 'https://www.chequeenergie.gouv.fr/beneficiaire/info',
                     /* En principe, envoyé automatique : lien direct vers le formulaire d'utilisation en ligne */
                     'instructions': 'https://www.chequeenergie.gouv.fr/beneficiaire/paiement',
                     'isBaseRessourcesYearMinusTwo': true,

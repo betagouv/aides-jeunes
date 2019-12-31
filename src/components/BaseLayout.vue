@@ -7,29 +7,20 @@
             alt="Logo de la Marianne" />
             <Modal analyticsCategory="Blocage">
               <template v-slot:message>Je suis bloqué·e…</template>
-              <h1>Vous êtes bloqué·e</h1>
-              <h2>Veuillez nous excuser…</h2>
-              <p>
-                Cette version de Mes Aides est en cours de finalisation et peut encore contenir des dysfonctionnements, des erreurs ou des bugs. Si vous êtes bloqué·e, vous pouvez toujours revenir à
-                <a
-                  target="_blank"
-                  rel="noopener"
-                  v-analytics="{ action: 'Retour à la version précédente', category:'Blocage'}"
-                  href="https://v1.mes-aides.gouv.fr">
-                  la version précédente</a>.
-              </p>
-              <p>
-                Vous pouvez aussi nous contacter <a
+              <h1>Veuillez nous excuser…</h1>
+              <p>Le simulateur Mes Aides est un service en constante évolution.<p>
+              <p>Si vous êtes bloqué·e, c'est que nous avons encore du travail à faire.</p>
+              <p>Aidez-nous en nous indiquant <a
                 v-analytics="{ action: 'Envoi d\'email', category:'Blocage'}"
-                v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'Blocage sur la nouvelle version', body:`Bonjour,
+                v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'Bloqué·e sur le simulateur', body:`Bonjour,
 
-En utilisant la nouvelle version de Mes Aides j'ai rencontré un blocage.
-
+En utilisant le simulateur Mes Aides, je me suis retrouvé·e bloqué·e.
 
 ————
 Page : ${$route.fullPath}
-————`}">par email</a> pour nous dire comment et où vous êtes bloqué·e pour nous aider à améliorer cette version&nbsp;!
+————`}">par email</a> comment vous vous êtes retrouvé·e bloqué·e.
               </p>
+              <p>Nous essaierons de vous débloquer et d'éviter que d'autres personnes se retrouvent bloquées comme vous.<p>
 
               <p>
                 Merci,<br/>

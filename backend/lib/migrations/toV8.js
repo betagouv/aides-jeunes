@@ -18,21 +18,21 @@ var destination = 'salaire_net';
 
 module.exports = {
     function: function(situation) {
-        situation.individus.forEach(function(individu) {
+        situation.get('individus').forEach(function(individu) {
             var dest = {};
             sources.forEach(function(sourceName) {
-                var source = individu.get(sourceName);
+                var source = individu[sourceName];
                 if (source) {
                     var sourceKeys = Object.keys(source);
                     sourceKeys.forEach(function(key) {
                         dest[key] = (dest[key] | 0) + source[key];
                     });
-                    individu.set(sourceName, undefined, { strict: false });
+                    delete individu[sourceName];
                 }
             });
 
             if (Object.keys(dest)) {
-                individu.set(destination, dest, { strict: false });
+                individu[destination] = dest;
             }
         });
 

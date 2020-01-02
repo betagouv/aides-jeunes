@@ -8,7 +8,7 @@
         ref="day"
         aria-label="Jour"
         v-model="day"
-        placeholder="23"
+        placeholder="JJ"
         v-select-on-click
         min=1
         max=31 />
@@ -19,7 +19,7 @@
       ref="month"
       aria-label="Mois"
       v-model="month"
-      placeholder="02"
+      placeholder="MM"
       v-select-on-click
       min=1
       max=12 />
@@ -29,7 +29,7 @@
       ref="year"
       aria-label="Année"
       v-model="year"
-      placeholder="1973"
+      placeholder="AAAA"
       v-select-on-click
       min="1900"
       max="2020">

@@ -372,7 +372,9 @@ export default {
       }
 
       this.$v.$touch()
-      if (! this.$v.$invalid) {
+      if (this.$v.$invalid) {
+        this.$matomo && this.$matomo.trackEvent('General', 'Invalid form', this.$route.fullPath)
+      } else {
         this.$emit('input', this.individu)
       }
     },

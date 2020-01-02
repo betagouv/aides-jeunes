@@ -76,6 +76,7 @@ export default {
     getRecap: function(surveyOptin) {
       this.$v.$touch()
       if (this.$v.$invalid) {
+        this.$matomo && this.$matomo.trackEvent('General', 'Invalid form', this.$route.fullPath)
         return
       }
 

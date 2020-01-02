@@ -257,6 +257,17 @@ var droitsDescription = {
                     floorAt: 1,
                     prefix: 'le',
                 },
+                'aeeh': {
+                    'isMontantAnnuel': false,
+                    'label': 'Allocation d’éducation de l’enfant handicapé (AEEH)',
+                    'description': 'L’allocation d’éducation de l’enfant handicapé (AEEH) est une prestation destinée à compenser les frais d’éducation et de soins apportés à un enfant en situation de handicap. Cette aide est versée à la personne qui en assume la charge.',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F14809',
+                    'forms': {
+                        'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15692.do',
+                    },
+                    floorAt: 1,
+                    prefix: 'l’',
+                },
             },
         },
         'pole_emploi': {

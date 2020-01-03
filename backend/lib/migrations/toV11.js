@@ -7,9 +7,9 @@ var VERSION = 11;
 module.exports = {
     function: function(situation) {
 
-        situation.individus.forEach(function(individu) {
+        situation.get('individus').forEach(function(individu) {
 
-            var nationaliteCode = individu.get('nationalite_code');
+            var nationaliteCode = individu.nationalite_code;
 
             if (nationaliteCode) {
                 individu.nationalite = nationaliteCode.toUpperCase();

@@ -18,7 +18,7 @@ var keys = [
 
 module.exports = {
     function: function(situation) {
-        situation.individus.forEach(function(individu) {
+        situation.get('individus').forEach(function(individu) {
             keys.forEach(function(key) {
                 if (individu[key] && individu[key][sourceDateKey] !== undefined) {
                     if (individu[key][sourceDateKey] !== null) {

@@ -6,8 +6,8 @@ var VERSION = 7;
 
 module.exports = {
     function: function(situation) {
-        situation.individus.forEach(function(individu) {
-            var dateDernierContratTravail = individu.get('dateDernierContratTravail');
+        situation.get('individus').forEach(function(individu) {
+            var dateDernierContratTravail = individu.dateDernierContratTravail;
             // includes null
             if (dateDernierContratTravail !== undefined) {
                 // excludes null

@@ -11,9 +11,9 @@ module.exports = {
 
         if (individus[individus.length - 1].role === 'conjoint') {
             situation.conjoint = individus[individus.length - 1]
-            situation.enfants = individus.slice(1, individus.length - 2)
-        } else {
             situation.enfants = individus.slice(1, individus.length - 1)
+        } else {
+            situation.enfants = individus.slice(1, individus.length)
         }
 
         return situation

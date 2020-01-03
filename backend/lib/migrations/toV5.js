@@ -7,7 +7,11 @@ var VERSION = 5;
 var variables = ['asi', 'ass'];
 module.exports = {
     function: function(situation) {
-        var destination = situation.individus.length ? situation.individus[0] : null;
+        var individus = situation.get('individus');
+        if (!individus || !individus.length) {
+            return situation;
+        }
+        var destination = individus[0];
         variables.forEach(function(variable) {
             var value = situation.famille.get(variable);
             if (value) {

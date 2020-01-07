@@ -96,7 +96,7 @@ export default {
 
 <style lang="scss">
 .main {
-  flex-grow: 1;
+  flex: 1 0 auto;
   background-color: whitesmoke;
 }
 

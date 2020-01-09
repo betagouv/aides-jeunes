@@ -533,7 +533,7 @@ var droitsDescription = {
                     'label': 'Carte Solidaire pour les transports',
                     unit: '%',
                     legend: 'de réduction',
-                    'description': 'La Carte Solidaire permet de bénéficier de réductions importantes sur les trajets en trains TER et cars régionaux en Nouvelle-Aquitaine. Elle est destinnée aux personnes qui ont de faibles revenus ou bénéficient de certaines prestations.',
+                    'description': 'La Carte Solidaire permet de bénéficier de réductions importantes sur les trajets en trains TER et cars régionaux en Nouvelle-Aquitaine. Elle est destinée aux personnes qui ont de faibles revenus ou bénéficient de certaines prestations.',
                     'link': 'https://transports.nouvelle-aquitaine.fr/fr/actualite/tarif-solidaire-unique-pour-trajets-en-trains-ter-cars-regionaux',
                     'instructions': 'https://cartesolidaire-nouvelle-aquitaine.cba.fr',
                     entity: 'individu',

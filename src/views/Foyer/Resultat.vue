@@ -50,6 +50,13 @@
         <DroitsList v-bind:droits="droits"></DroitsList>
       </div>
 
+      <div v-if="! isEmpty(droitsNonEligiblesShown)">
+        <p>
+          Les conditions des aides suivantes <strong>ne sont pas</strong> remplies :
+        </p>
+        <DroitsList ineligible v-bind:droits="droitsNonEligiblesShown"></DroitsList>
+      </div>
+
       <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
 
       <div class="notification warning print-hidden" v-if="! ressourcesYearMinusTwoCaptured">
@@ -61,13 +68,6 @@
         </span>
 
         <router-link class="button-outline warning text-center" to="ressources/fiscales">Déclarez vos ressources {{ $store.state.dates.fiscalYear.label }}</router-link>
-      </div>
-
-      <div v-if="! isEmpty(droitsNonEligiblesShown)">
-        <p>
-          Les conditions des aides suivantes <strong>ne sont pas</strong> remplies :
-        </p>
-        <DroitsList ineligible v-bind:droits="droitsNonEligiblesShown"></DroitsList>
       </div>
 
       <div class="frame-resultats" v-show="isEmpty(droits) && ressourcesYearMinusTwoCaptured">
@@ -235,7 +235,7 @@ export default {
     droitsNonEligibles: function() {
       return (this.droitsNonEligiblesShow && this.resultats && this.resultats.droitsNonEligibles) || [] },
     droitsNonEligiblesShown: function() { return this.droitsNonEligibles.filter(i => i.id === "css_participation_forfaitaire") },
-    droitsNonEligiblesShow: function() { return this.$store.state.ameliNoticationDone },
+    droitsNonEligiblesShow: function() { return this.$store.state.ameliNoticationDone },
     resultatsId: function() { return this.resultats && this.resultats._id || '???' },
     accessStatus: function() { return this.$store.state.access },
     resultatStatus: function() { return this.$store.state.calculs },
@@ -336,6 +336,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+h4 {
+  margin-top: 0.7em;
+}
 
 .container, .panel {
   opacity: 1;

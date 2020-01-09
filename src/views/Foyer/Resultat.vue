@@ -235,7 +235,7 @@ export default {
     droitsNonEligibles: function() {
       return (this.droitsNonEligiblesShow && this.resultats && this.resultats.droitsNonEligibles) || [] },
     droitsNonEligiblesShown: function() { return this.droitsNonEligibles.filter(i => i.id === "css_participation_forfaitaire") },
-    droitsNonEligiblesShow: function() { return this.$store.state.ameliNoticationDone },
+    droitsNonEligiblesShow: function() { return this.$store.state.ameliNoticationDone },
     resultatsId: function() { return this.resultats && this.resultats._id || '???' },
     accessStatus: function() { return this.$store.state.access },
     resultatStatus: function() { return this.$store.state.calculs },

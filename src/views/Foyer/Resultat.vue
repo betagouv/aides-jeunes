@@ -50,6 +50,13 @@
         <DroitsList v-bind:droits="droits"></DroitsList>
       </div>
 
+      <div v-if="! isEmpty(droitsNonEligiblesShown)">
+        <p>
+          Les conditions des aides suivantes <strong>ne sont pas</strong> remplies :
+        </p>
+        <DroitsList ineligible v-bind:droits="droitsNonEligiblesShown"></DroitsList>
+      </div>
+
       <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
 
       <div class="notification warning print-hidden" v-if="! ressourcesYearMinusTwoCaptured">
@@ -61,13 +68,6 @@
         </span>
 
         <router-link class="button-outline warning text-center" to="ressources/fiscales">Déclarez vos ressources {{ $store.state.dates.fiscalYear.label }}</router-link>
-      </div>
-
-      <div v-if="! isEmpty(droitsNonEligiblesShown)">
-        <p>
-          Les conditions des aides suivantes <strong>ne sont pas</strong> remplies :
-        </p>
-        <DroitsList ineligible v-bind:droits="droitsNonEligiblesShown"></DroitsList>
       </div>
 
       <div class="frame-resultats" v-show="isEmpty(droits) && ressourcesYearMinusTwoCaptured">
@@ -336,6 +336,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+h4 {
+  margin-top: 0.7em;
+}
 
 .container, .panel {
   opacity: 1;

@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="form__group">
-      <label>
+      <label for="mois-fin-contrat">
         Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ? (MM/AAAA)
-        <InputMonth v-model="individu.date_debut_chomage" />
       </label>
+      <InputMonth id="mois-fin-contrat" v-model="individu.date_debut_chomage" />
       <div>
         {{ individu.role == 'demandeur' ? 'Si vous n\'avez' : 'S\'il ou elle n\'a' }} jamais eu de contrat de travail, laissez ce champ vide.
       </div>

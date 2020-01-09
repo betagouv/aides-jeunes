@@ -27,6 +27,7 @@
     <input
       type="number"
       ref="year"
+      class="year"
       aria-label="Année"
       v-model="year"
       placeholder="AAAA"
@@ -138,5 +139,8 @@ div {
 }
 input {
   width: 5em;
+}
+input.year {
+  width: 6em;
 }
 </style>

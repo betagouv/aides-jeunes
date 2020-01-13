@@ -5,7 +5,7 @@ apps:
     exec_mode: cluster
     merge_logs: true
     env:
-        MES_AIDES_ROOT_URL: https://next.mes-aides.gouv.fr
+        MES_AIDES_ROOT_URL: https://mes-aides.org
         MONGODB_URL: mongodb://localhost/dds
         NODE_ENV: production
         PORT: 8000

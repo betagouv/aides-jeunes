@@ -3,10 +3,10 @@ var env = process.env.NODE_ENV || 'development';
 
 var all = {
     env: env,
-    baseURL: 'https://mes-aides.gouv.fr',
+    baseURL: 'https://mes-aides.org',
     openfiscaURL: process.env.OPENFISCA_URL || 'http://localhost:2000',
     openfiscaAxeURL: 'https://betagouv.github.io/mes-aides-changent',
-    openfiscaPublicURL: 'https://openfisca.mes-aides.gouv.fr',
+    openfiscaPublicURL: 'https://openfisca.mes-aides.org',
     openfiscaTracerURL: 'https://betagouv.github.io/openfisca-tracer',
     mailjet: {
         publicKey: process.env.MAILJET_PUBLIC_KEY,

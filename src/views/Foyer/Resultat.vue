@@ -17,7 +17,7 @@
       <h2><i class="fa fa-warning" aria-hidden="true"></i> Une erreur est survenue.</h2>
       <p><a
         v-analytics="{ action:'Support', category:'Contact'}"
-        v-mail="{to: 'bug@mes-aides.gouv.fr', subject:`[${resultatsId}] Problème technique`, body:`Bonjour,
+        v-mail="{to: 'equipe@mes-aides.org', subject:`[${resultatsId}] Problème technique`, body:`Bonjour,
 
     J'ai tenté de XXX,
     Et en cliquant sur XXX,
@@ -130,12 +130,12 @@
           <ul>
             <li><a
               v-analytics="{ name: 'Suggestion', action:'Support', category:'General'}"
-              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ resultatsId }] Suggestion`}">Vous avez une suggestion d'amélioration</a>.</li>
+              v-mail="{to: 'equipe@mes-aides.org', subject:`[${ resultatsId }] Suggestion`}">Vous avez une suggestion d'amélioration</a>.</li>
             <li><a
               v-analytics="{ name: 'Écart simulation', action:'Support', category:'General'}"
-              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${ resultatsId }] Montants inattendus`, body:`Bonjour,
+              v-mail="{to: 'equipe@mes-aides.org', subject:`[${ resultatsId }] Montants inattendus`, body:`Bonjour,
 
-    En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
+    En effectuant une simulation sur mes-aides.org, j'ai obtenu le résultat suivant :
 
     - XXX € / mois pour la prestation «  ».
 
@@ -152,9 +152,9 @@
     ————`}">Ces résultats ne correspondent pas à ceux d'un autre simulateur</a>.</li>
             <li><a
               v-analytics="{ name: 'Écart instruction', action:'Support', category:'General'}"
-              v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:`[${resultatsId}] Montants inattendus`, body:`Bonjour,
+              v-mail="{to: 'equipe@mes-aides.org', subject:`[${resultatsId}] Montants inattendus`, body:`Bonjour,
 
-    En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
+    En effectuant une simulation sur mes-aides.org, j'ai obtenu le résultat suivant :
 
     - XXX € / mois pour la prestation «  ».
 

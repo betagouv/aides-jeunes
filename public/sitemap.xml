@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://mes-aides.gouv.fr</loc>
+        <loc>https://mes-aides.org</loc>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://mes-aides.gouv.fr/foyer/demandeur</loc>
+        <loc>https://mes-aides.org/foyer/demandeur</loc>
         <priority>0.1</priority>
     </url>
     <url>
-        <loc>https://mes-aides.gouv.fr/sos</loc>
+        <loc>https://mes-aides.org/sos</loc>
         <priority>0.4</priority>
     </url>
     <url>
-        <loc>https://mes-aides.gouv.fr/liens-utiles</loc>
+        <loc>https://mes-aides.org/liens-utiles</loc>
         <priority>0.4</priority>
     </url>
     <url>
-        <loc>https://mes-aides.gouv.fr/contact</loc>
+        <loc>https://mes-aides.org/contact</loc>
         <priority>0.3</priority>
     </url>
     <url>
-        <loc>https://mes-aides.gouv.fr/social</loc>
+        <loc>https://mes-aides.org/social</loc>
         <priority>0.3</priority>
     </url>
     <url>
-        <loc>https://mes-aides.gouv.fr/ameliorer</loc>
+        <loc>https://mes-aides.org/ameliorer</loc>
         <priority>0.2</priority>
     </url>
     <url>
-        <loc>https://mes-aides.gouv.fr/communication</loc>
+        <loc>https://mes-aides.org/communication</loc>
         <priority>0.2</priority>
     </url>
     <url>
-        <loc>https://mes-aides.gouv.fr/stats</loc>
+        <loc>https://mes-aides.org/stats</loc>
         <priority>0.1</priority>
     </url>
     <url>
-        <loc>https://mes-aides.gouv.fr/a-propos</loc>
+        <loc>https://mes-aides.org/a-propos</loc>
         <priority>0.1</priority>
     </url>
     <url>
-        <loc>https://mes-aides.gouv.fr/cgu</loc>
+        <loc>https://mes-aides.org/cgu</loc>
         <priority>0.1</priority>
     </url>
 </urlset>

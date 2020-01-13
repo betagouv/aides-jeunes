@@ -136,7 +136,6 @@ $fa-font-path: '~font-awesome/fonts';
       }
 
       small {
-        color: $link-color;
         display: block;
         margin-top: 6px;
         font-size: 65%;
@@ -176,7 +175,6 @@ $fa-font-path: '~font-awesome/fonts';
 
 
     h2 small {
-      color: $link-color;
       text-decoration: underline;
     }
   }

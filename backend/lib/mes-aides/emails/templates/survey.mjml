@@ -18,7 +18,7 @@
       <mj-column>
         <mj-text>
           <p>
-            <span>Vous avez fait il y a quelques jours une simulation sur Mes-Aides.gouv.fr.</span>
+            <span>Vous avez fait il y a quelques jours une simulation sur Mes-Aides.org.</span>
             <br />
             <span>Nous aimerions savoir si cette simulation vous a été utile, et si elle vous a permis de demander voire de bénéficier de nouvelles aides : cela nous permettra de continuer à améliorer le simulateur !</span>
           </p>
@@ -38,11 +38,11 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          <span>Retrouvez les détails de votre simulation sur Mes-Aides.gouv.fr en cliquant <a href="{{&returnURL}}" target="_blank">ici</a>.</span>
+          <span>Retrouvez les détails de votre simulation sur Mes-Aides.org en cliquant <a href="{{&returnURL}}" target="_blank">ici</a>.</span>
           <br />
           <span>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider.</span>
           <br />
-          <span>Vous pouvez toujours nous contacter à l'adresse suivante&nbsp;: <a href="mailto:contact@mes-aides.gouv.fr">contact@mes-aides.gouv.fr</a></span>
+          <span>Vous pouvez toujours nous contacter à l'adresse suivante&nbsp;: <a href="mailto:equipe@mes-aides.org">equipe@mes-aides.org</a></span>
         </mj-text>
         <mj-text>
           <span>Bonne journée,</span>

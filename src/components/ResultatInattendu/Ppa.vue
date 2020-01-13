@@ -30,7 +30,7 @@
       <ul>
         <li>Retourner à la <router-link to="/foyer/logement">page « Logement »</router-link> pour modifier ces informations</li>
         <li>Faire une <router-link to="http://www.caf.fr/allocataires/mes-services-en-ligne/estimer-vos-droits/simulation-prime-d-activite" target="_blank">nouvelle simulation sur caf.fr</router-link></li>
-        <li>Nous contacter sur <a v-mail="{to: 'feedback@mes-aides.gouv.fr', subject: emailSubject, body: emailBody}">feedback@mes-aides.gouv.fr</a>, en précisant votre numéro de simulation : <strong>{{ situation._id }}</strong></li>
+        <li>Nous contacter sur <a v-mail="{to: 'equipe@mes-aides.org', subject: emailSubject, body: emailBody}">equipe@mes-aides.org</a>, en précisant votre numéro de simulation : <strong>{{ situation._id }}</strong></li>
       </ul>
     </p>
   </div>
@@ -54,7 +54,7 @@ export default {
     emailBody: function() { return `
 Bonjour,
 
-En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
+En effectuant une simulation sur mes-aides.org, j'ai obtenu le résultat suivant :
 
 - ${this.montant} € / mois pour la prestation «  ».
 

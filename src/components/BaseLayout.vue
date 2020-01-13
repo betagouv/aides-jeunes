@@ -2,9 +2,13 @@
   <div>
     <header class="navbar" role="navigation">
       <div class="navbar__container">
+        <nav>
+          <router-link to="/" class="navbar__home" id="logo">
+            <img class="navbar__logo" src="./../../public/img/logo.svg" alt="Logo de Mes-Aides.org" />
+          </router-link>
+        </nav>
+
         <div class="navbar__home">
-          <img class="navbar__logo" src="./../../public/img/marianne.svg"
-            alt="Logo de la Marianne" />
             <Modal analyticsCategory="Blocage">
               <template v-slot:message>Je suis bloqué·e…</template>
               <h1>Veuillez nous excuser…</h1>
@@ -12,7 +16,7 @@
               <p>Si vous êtes bloqué·e, c'est que nous avons encore du travail à faire.</p>
               <p>Aidez-nous en nous indiquant <a
                 v-analytics="{ action: 'Envoi d\'email', category:'Blocage'}"
-                v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'Bloqué·e sur le simulateur', body:`Bonjour,
+                v-mail="{to: 'equipe@mes-aides.org', subject:'Bloqué·e sur le simulateur', body:`Bonjour,
 
 En utilisant le simulateur Mes Aides, je me suis retrouvé·e bloqué·e en faisant XXX.
 
@@ -42,12 +46,6 @@ Page : ${$route.fullPath}
               </p>
             </Modal>
         </div>
-
-        <nav>
-          <router-link to="/" class="navbar__home" id="logo">
-            <img class="navbar__logo" src="./../../public/img/logo.svg" alt="Logo de Mes-Aides.gouv.fr" />
-          </router-link>
-        </nav>
       </div>
     </header>
 
@@ -106,10 +104,6 @@ export default {
   }
 }
 
-#logo {
-  opacity: .5;
-}
-
 #logo:hover, #logo:focus {
     opacity: 1;
     background-color: unset;
@@ -117,7 +111,7 @@ export default {
 
 footer, footer a {
   background-color: white;
-  color: #0475a4;
+  color: black;
   text-decoration: none;
 }
 </style>

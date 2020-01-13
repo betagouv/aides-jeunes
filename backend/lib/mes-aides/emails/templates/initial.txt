@@ -1,15 +1,15 @@
 Bonjour,
 
-Vous avez récemment fait une simulation sur Mes-Aides.gouv.fr.
+Vous avez récemment fait une simulation sur Mes-Aides.org.
 
 D'après la situation que vous avez décrite, vous êtes a priori éligible aux aides suivantes :
 {{#benefitTexts}}
 - {{&.}}
 {{/benefitTexts}}
 
-Retrouvez les détails de votre simulation sur Mes-Aides.gouv.fr à partir du lien suivant : {{&returnURL}}
+Retrouvez les détails de votre simulation sur Mes-Aides.org à partir du lien suivant : {{&returnURL}}
 
-Nous améliorons ce simulateur en continu, et vous pouvez nous y aider. Vous pouvez nous contacter à l'adresse suivante : contact@mes-aides.gouv.fr
+Nous améliorons ce simulateur en continu, et vous pouvez nous y aider. Vous pouvez nous contacter à l'adresse suivante : equipe@mes-aides.org
 
 Bonne journée,
 L'équipe Mes Aides

@@ -6,6 +6,6 @@ Cela peut être fait à la ligne de commande avec [Inkscape](https://inkscape.or
 
 ```shell
 cd mes-aides-ui
-inkscape --export-text-to-path `pwd`/app/img/sources/logo.svg -l `pwd`/app/img/logo.svg  # absolute paths are mandatory
-svgo --multipass app/img/logo.svg  # optimisation, cf. https://jakearchibald.github.io/svgomg/
+inkscape --export-text-to-path `pwd`/public/img/sources/logo.svg -l `pwd`/public/img/logo.svg  # absolute paths are mandatory
+svgo --multipass public/img/logo.svg  # optimisation, cf. https://jakearchibald.github.io/svgomg/
 ```

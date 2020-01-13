@@ -104,10 +104,6 @@ export default {
   }
 }
 
-#logo {
-  opacity: .5;
-}
-
 #logo:hover, #logo:focus {
     opacity: 1;
     background-color: unset;
@@ -115,7 +111,7 @@ export default {
 
 footer, footer a {
   background-color: white;
-  color: #0475a4;
+  color: black;
   text-decoration: none;
 }
 </style>

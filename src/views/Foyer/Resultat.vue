@@ -135,7 +135,7 @@
               v-analytics="{ name: 'Écart simulation', action:'Support', category:'General'}"
               v-mail="{to: 'equipe@mes-aides.org', subject:`[${ resultatsId }] Montants inattendus`, body:`Bonjour,
 
-    En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
+    En effectuant une simulation sur mes-aides.org, j'ai obtenu le résultat suivant :
 
     - XXX € / mois pour la prestation «  ».
 
@@ -154,7 +154,7 @@
               v-analytics="{ name: 'Écart instruction', action:'Support', category:'General'}"
               v-mail="{to: 'equipe@mes-aides.org', subject:`[${resultatsId}] Montants inattendus`, body:`Bonjour,
 
-    En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
+    En effectuant une simulation sur mes-aides.org, j'ai obtenu le résultat suivant :
 
     - XXX € / mois pour la prestation «  ».
 

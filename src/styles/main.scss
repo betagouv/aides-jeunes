@@ -3,7 +3,6 @@ $font-size-base:          15px;
 $font-size-h2:            floor(($font-size-base * 2.15)); // ~30px
 // END FROM BOOTSTRAP
 
-$link-color:        #008cba;
 $text-color:        lighten(#000, 20%);
 $screen-md-min:     992px;
 $screen-sm-max:     $screen-md-min - 1;

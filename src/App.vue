@@ -41,7 +41,7 @@ export default {
 }
 
 a {
-  color: #008cba;
+  color: black;
   text-decoration: none;
 }
 

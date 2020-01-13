@@ -54,7 +54,7 @@ export default {
     emailBody: function() { return `
 Bonjour,
 
-En effectuant une simulation sur mes-aides.gouv.fr, j'ai obtenu le résultat suivant :
+En effectuant une simulation sur mes-aides.org, j'ai obtenu le résultat suivant :
 
 - ${this.montant} € / mois pour la prestation «  ».
 

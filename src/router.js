@@ -19,7 +19,7 @@ const router = new Router({
       component: Home,
       beforeEnter: (to, from, next) => {
         let referrer = document.referrer
-        if (!store.state.ameliNoticationDone && (referrer.match(/ameli\.fr/) || referrer.match(/mes-aides\.gouv\.fr\/ameli/))) {
+        if (!store.state.ameliNoticationDone && (referrer.match(/ameli\.fr/) || referrer.match(/mes-aides\.org\/ameli/))) {
           store.commit('setAmeliNoticationDone')
           return next('/ameli')
         }

@@ -101,7 +101,7 @@
     <h2 id="utilisation">Utilisation</h2>
 
     <p>
-      Mes Aides est en accès libre à l'adresse <a href="https://mes-aides.gouv.fr">mes-aides.gouv.fr</a>.
+      Mes Aides est en accès libre à l'adresse <a href="https://mes-aides.org">mes-aides.org</a>.
       <small>Son utilisation est gratuite et facultative.</small>
     </p>
     <p>

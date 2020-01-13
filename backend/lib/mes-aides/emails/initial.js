@@ -116,7 +116,7 @@ function render(followup) {
                 renderAsHtml(followup, benefits)
             ]).then(function (values) {
                 return {
-                    subject: `[${followup.situation._id}] Récapitulatif de votre simulation sur Mes-Aides.gouv.fr`,
+                    subject: `[${followup.situation._id}] Récapitulatif de votre simulation sur Mes-Aides.org`,
                     text: values[0],
                     html: values[1].html,
                     attachments: values[1].attachments,

@@ -18,7 +18,7 @@
       <mj-column>
         <mj-text>
           <p>
-            <span>Vous avez récemment fait une simulation sur Mes-Aides.gouv.fr.</span>
+            <span>Vous avez récemment fait une simulation sur Mes-Aides.org.</span>
             <br />
             <span>D'après la situation que vous avez décrite, vous êtes a priori éligible aux aides suivantes&nbsp;:</span>
           </p>
@@ -57,7 +57,7 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          <span>Retrouvez les détails de votre simulation sur Mes-Aides.gouv.fr en cliquant <a href="{{&returnURL}}" target="_blank">ici</a>.</span>
+          <span>Retrouvez les détails de votre simulation sur Mes-Aides.org en cliquant <a href="{{&returnURL}}" target="_blank">ici</a>.</span>
           <br />
           <span>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider.</span>
           <br />

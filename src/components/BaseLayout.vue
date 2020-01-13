@@ -12,7 +12,7 @@
               <p>Si vous êtes bloqué·e, c'est que nous avons encore du travail à faire.</p>
               <p>Aidez-nous en nous indiquant <a
                 v-analytics="{ action: 'Envoi d\'email', category:'Blocage'}"
-                v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'Bloqué·e sur le simulateur', body:`Bonjour,
+                v-mail="{to: 'equipe@mes-aides.org', subject:'Bloqué·e sur le simulateur', body:`Bonjour,
 
 En utilisant le simulateur Mes Aides, je me suis retrouvé·e bloqué·e en faisant XXX.
 

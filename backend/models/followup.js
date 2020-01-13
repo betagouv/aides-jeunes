@@ -77,7 +77,7 @@ FollowupSchema.methods.sendInitialEmail = function() {
         .then(render => {
             return sender.post('send', { version: 'v3.1' })
                 .request({ Messages: [{
-                    From: { Name: 'Équipe Mes Aides', Email: 'contact@mes-aides.gouv.fr'},
+                    From: { Name: 'Équipe Mes Aides', Email: 'equipe@mes-aides.org'},
                     To: [{ Email: followup.email}],
                     Subject: render.subject,
                     TextPart: render.text,
@@ -113,7 +113,7 @@ FollowupSchema.methods.sendSurvey = function() {
         return this.renderSurveyEmail(survey).then(render => {
             return sender.post('send', { version: 'v3.1' })
                 .request({ Messages: [{
-                    From: { Name: 'Équipe Mes Aides', Email: 'contact@mes-aides.gouv.fr'},
+                    From: { Name: 'Équipe Mes Aides', Email: 'equipe@mes-aides.org'},
                     To: [{ Email: followup.email }],
                     Subject: render.subject,
                     TextPart: render.text,

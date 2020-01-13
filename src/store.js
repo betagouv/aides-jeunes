@@ -304,7 +304,7 @@ const store = new Vuex.Store({
         .catch(error => state.commit('saveComputationFailure', error))
     },
     redirection: function(state, next) {
-      state.commit('setMessage', 'Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c\'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:bonjour@mes-aides.gouv.fr">bonjour@mes-aides.gouv.fr</a>.')
+      state.commit('setMessage', 'Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c\'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:equipe@mes-aides.org">equipe@mes-aides.org</a>.')
       next('/foyer/demandeur')
     }
   }

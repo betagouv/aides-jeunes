@@ -21,16 +21,16 @@
     <h2 id="proposer">Proposer</h2>
 
     <p>Vous avez une idée pour améliorer Mes Aides, vous pensez qu’une option manque dans le simulateur ou bien vous souhaitez nous donner votre avis :
-      <a v-mail="{to: 'feedback@mes-aides.gouv.fr', subject:'Suggestion (depuis la page contribuer)}'}">contactez-nous directement</a> ou <a href="https://github.com/betagouv/mes-aides-ui">sur GitHub</a>. Toutes les <a href="https://github.com/betagouv/mes-aides-ui/issues">évolutions de Mes Aides</a>, espérées, planifiées ou réalisées, peuvent être suivies en permanence en ligne.</p>
+      <a v-mail="{to: 'equipe@mes-aides.org', subject:'Suggestion (depuis la page contribuer)}'}">contactez-nous directement</a> ou <a href="https://github.com/betagouv/mes-aides-ui">sur GitHub</a>. Toutes les <a href="https://github.com/betagouv/mes-aides-ui/issues">évolutions de Mes Aides</a>, espérées, planifiées ou réalisées, peuvent être suivies en permanence en ligne.</p>
 
-    <p>Un de nos buts est de toujours augmenter le nombre d’aides simulées en une seule fois. Si vous aimeriez qu'une prestation sociale soit ajoutée dans Mes Aides, <a href="https://github.com/betagouv/mes-aides-ui/labels/nouvelle%20aide">vérifiez</a> que nous n'y travaillons pas déjà, puis parlez de cette application à l'organisme qui l'attribue et enfin <a v-mail="{to:'contribuer@mes-aides.gouv.fr'}">indiquez-nous</a> que vous avez fait ce signalement.</p>
+    <p>Un de nos buts est de toujours augmenter le nombre d’aides simulées en une seule fois. Si vous aimeriez qu'une prestation sociale soit ajoutée dans Mes Aides, <a href="https://github.com/betagouv/mes-aides-ui/labels/nouvelle%20aide">vérifiez</a> que nous n'y travaillons pas déjà, puis parlez de cette application à l'organisme qui l'attribue et enfin <a v-mail="{to:'equipe@mes-aides.org'}">indiquez-nous</a> que vous avez fait ce signalement.</p>
 
 
     <h2 id="communiquer">Communiquer</h2>
 
     <p>Parler de Mes Aides autour de vous, c’est déjà beaucoup pour nous ! Si ce simulateur vous a aidé, n’hésitez pas à nous laisser un message sur
       <a
-      v-mail="{to:'bonjour@mes-aides.gouv.fr', subject:'Retour utilisateur (depuis la page contribuer)'}">notre courriel</a>. Rejoignez-nous également sur les réseaux sociaux de Mes Aides pour être tenu au courant des dernières nouveautés du simulateur et partager avec nous dans un cadre informel.</p>
+      v-mail="{to:'equipe@mes-aides.org', subject:'Retour utilisateur (depuis la page contribuer)'}">notre courriel</a>. Rejoignez-nous également sur les réseaux sociaux de Mes Aides pour être tenu au courant des dernières nouveautés du simulateur et partager avec nous dans un cadre informel.</p>
 
     <p><a href="https://twitter.com/MesAides">Suivez-nous sur Twitter</a> et <a href="https://twitter.com/intent/tweet?screen_name=MesAides" target="_blank">envoyez un message à @MesAides en public</a> ou en privé.</p>
      <p><a href="https://www.facebook.com/MesAides">Suivez-nous sur Facebook</a> et envoyez un message à la page en privé.</p>

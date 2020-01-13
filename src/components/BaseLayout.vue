@@ -2,9 +2,13 @@
   <div>
     <header class="navbar" role="navigation">
       <div class="navbar__container">
+        <nav>
+          <router-link to="/" class="navbar__home" id="logo">
+            <img class="navbar__logo" src="./../../public/img/logo.svg" alt="Logo de Mes-Aides.org" />
+          </router-link>
+        </nav>
+
         <div class="navbar__home">
-          <img class="navbar__logo" src="./../../public/img/marianne.svg"
-            alt="Logo de la Marianne" />
             <Modal analyticsCategory="Blocage">
               <template v-slot:message>Je suis bloqué·e…</template>
               <h1>Veuillez nous excuser…</h1>
@@ -42,12 +46,6 @@ Page : ${$route.fullPath}
               </p>
             </Modal>
         </div>
-
-        <nav>
-          <router-link to="/" class="navbar__home" id="logo">
-            <img class="navbar__logo" src="./../../public/img/logo.svg" alt="Logo de Mes-Aides.gouv.fr" />
-          </router-link>
-        </nav>
       </div>
     </header>
 

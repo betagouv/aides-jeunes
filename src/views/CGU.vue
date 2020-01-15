@@ -6,14 +6,14 @@
 
     <p>Mes Aides est un calculateur d'aides sociales à destination des particuliers et de celles et ceux qui les conseillent, dans un cadre professionnel ou bénévole. Il s'agit d'une application web qui permet de décrire en quelques minutes une situation individuelle et d'obtenir immédiatement une évaluation de son éligibilité à des aides sociales, nationales (« légales ») ou territoriales (« extra-légales »).</p>
 
-    <p>Le <a href="https://github.com/betagouv/mes-aides-ui">code du logiciel</a> est <abbr title="Sous licence AGPL" uib-popover="Sous licence AGPL" popover-trigger="mouseenter">libre</abbr>, et peut donc être vérifié et amélioré par tout·e·s.</p>
+    <p>Le <a href="https://github.com/mes-aides/simulateur">code du logiciel</a> est <abbr title="Sous licence AGPL" uib-popover="Sous licence AGPL" popover-trigger="mouseenter">libre</abbr>, et peut donc être vérifié et amélioré par tout·e·s.</p>
 
 
     <h2>Vocabulaire</h2>
 
     <p>
       <ul>
-        <li>« Nous » se réfère à l'<a href="#mentions-legales">éditeur</a> de Mes Aides.</li>
+        <li>« Nous » se réfère à l'<router-link to="cgu#mentions-legales">éditeur</router-link> de Mes Aides.</li>
         <li>« Vous » se réfère à un·e usager de Mes Aides.</li>
         <li>« Partenaires » se réfère aux organismes responsables d'attribuer les aides calculées par Mes Aides.</li>
       </ul>
@@ -43,7 +43,7 @@
       <small>La seule information nominative que vous pouvez renseigner est le prénom de vos enfants. Cela permet uniquement de les distinguer. Vous êtes libre d'inscrire le prénom que vous souhaitez.</small>
     </p>
     <p>
-      Pour autant, une fois réunies, les données nécessaires pour évaluer vos droits (revenus, âge, code postal…) ont un caractère personnel. Nous en avons donc déclaré le traitement auprès de la <abbr title="Commission Nationale de l'Informatique et des Libertés">CNIL</abbr>.
+      Pour autant, une fois réunies, les données nécessaires pour évaluer vos droits (revenus, âge, code postal…) ont un caractère personnel.<!--  Nous en avons donc déclaré le traitement auprès de la <abbr title="Commission Nationale de l'Informatique et des Libertés">CNIL</abbr>. -->
     </p>
     <p>
       Nous conservons ces données pendant deux ans à compter de la simulation pour analyser les usages, mesurer l'impact et la diffusion territoriale de Mes Aides, et améliorer le service.
@@ -94,7 +94,7 @@
     </p>
     <p>
       Nous pouvons amender ces conditions d’utilisation. En cas de changement significatif, une notification s'affichera lors de l'accès à Mes Aides au moins 30 jours avant l'entrée en vigueur des nouvelles conditions.
-      <small>Tout l'<a href="https://github.com/betagouv/mes-aides-ui/commits/master/app/views/content-pages/cgu.html">historique de ces conditions</a> est librement accessible.</small>
+      <small>Tout l'<a href="https://github.com/mes-aides/simulations/commits/master/src/views/CGU.vue">historique de ces conditions</a> est librement accessible.</small>
     </p>
 
 
@@ -106,11 +106,10 @@
     </p>
     <p>
       Si vous effectuez une simulation, vous acceptez ces conditions d'utilisation.
-      <small>Comme indiqué dans l'article <a href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031367350&cidTexte=LEGITEXT000031366350&dateTexte=20160329">L. 112-9</a> du code des relations entre le public et l'administration.</small>
     </p>
     <p>
       L’utilisation de Mes Aides requiert une connexion internet et un navigateur récent. L'application affichera un message si le navigateur utilisé est trop ancien pour être compatible.
-      <small>En particulier, les versions d'Internet Explorer antérieures à la 10 ne sont pas compatibles. Vous pouvez installer en autonomie <a href="https://support.google.com/chrome/answer/95346?hl=fr">Chrome</a> ou <a href="https://www.mozilla.org/fr/firefox/all/?q=Fran%C3%A7ais">Firefox</a>, sans droits d'administration sur votre poste.</small>
+      <small>En particulier, les versions d'Internet Explorer antérieures à la 11 ne sont pas compatibles. Vous pouvez installer en autonomie <a href="https://support.google.com/chrome/answer/95346?hl=fr">Chrome</a> ou <a href="https://www.mozilla.org/fr/firefox/all/?q=Fran%C3%A7ais">Firefox</a>, sans droits d'administration sur votre poste.</small>
     </p>
     <p>
       Nous nous réservons le droit de bloquer, sans information préalable ni compensation financière, les usages mettant en péril l'utilisation du logiciel par d'autres usagers.
@@ -122,14 +121,18 @@
 
     <h2>Éditeur</h2>
     <p>
-      <a href="https://beta.gouv.fr">Incubateur de services numériques</a> de la Direction interministérielle du numérique et du système d'information et de communication de l'État (DINSIC).
-      <small>20, avenue de Ségur - 75007 Paris.</small>
-      <small><a href="https://www.numerique.gouv.fr">Site Internet</a></small>
+      <a
+        v-analytics="{ action:'CGU', category:'Éditeur'}"
+        v-mail="{to: 'equipe@mes-aides.org', subject:'Éditeur', body:''}">Le collectif citoyen
+      </a>
     </p>
 
     <p>
-      Directeur de la publication : directeur interministériel du numérique et du système d'information et de communication de l'État.
-      <small>Nadi Bou Hanna</small>
+      Direction de la publication :
+      <a
+        v-analytics="{ action:'CGU', category:'Direction de la publication'}"
+        v-mail="{to: 'equipe@mes-aides.org', subject:'Direction de la publication', body:''}">Le collectif citoyen
+      </a>
     </p>
 
     <h2>Hébergeur</h2>

@@ -157,9 +157,9 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "ameli" */ './views/Ameli.vue')
     },
     {
-      path: '/communication',
-      name: 'communication',
-      component: () => import(/* webpackChunkName: "communication" */ './views/Communication.vue')
+      path: '/financement',
+      name: 'financement',
+      component: () => import(/* webpackChunkName: "financement" */ './views/Financement.vue')
     },
     {
       path: '/contact',

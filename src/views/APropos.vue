@@ -5,7 +5,7 @@
 
     <h2 id="presentation">Mes Aides, c’est quoi ?</h2>
 
-    <p>Simulez vos droits à plus d’une vingtaine de prestations sociales en quelques minutes. Mes Aides compare votre situation personnelle aux critères des principales aides nationales, comme le RSA, la CMU-C ou les allocations familiales, ainsi que de certaines aides locales.</p>
+    <p>Simulez vos droits à plus d’une trentaine de prestations sociales en quelques minutes. Mes Aides compare votre situation personnelle aux critères des principales aides nationales, comme le RSA, la CMU-C ou les allocations familiales, ainsi que de certaines aides locales.</p>
     
     <p>Grâce aux informations que vous nous transmettez, nous estimons à quelles aides vous avez droit ainsi que leurs montants et conditions d'attribution. Vous pouvez ensuite engager les démarches auprès des organismes ciblés.</p>
 
@@ -37,7 +37,9 @@
 
     <h2 id="startup-etat">Qui sommes-nous ?</h2>
 
-    <p>Mes Aides est une Startup d’État de l’<a href="https://beta.gouv.fr">Incubateur de services numériques</a>. Nous sommes un service public numérique produit par une <a href="http://beta.gouv.fr/2016/11/28/equipes-autonomes">petite équipe autonome</a>. Nous appliquons les pratiques des startups du numérique au service de l’action publique.</p>
+    <p>Un collectif citoyen.</p>
+
+    <p>Jusqu'en janvier 2020, Mes Aides était une Startup d’État de l’<a href="https://beta.gouv.fr">Incubateur de services numériques</a>. Un service public numérique produit par une <a href="http://beta.gouv.fr/2016/11/28/equipes-autonomes">petite équipe autonome</a>. Les pratiques des startups du numérique étaient mises au service de l’action publique.</p>
 
     <small>Pour en savoir plus, découvrez le programme <a href="https://beta.gouv.fr">beta.gouv.fr</a>, nos <a href="https://github.com/betagouv/mes-aides-ui/wiki/Partenaires">partenaires</a>, et accédez à tout <a href="https://github.com/betagouv">le code de l'Incubateur de services numériques</a>.</small>
 

@@ -21,9 +21,9 @@
     <h2 id="proposer">Proposer</h2>
 
     <p>Vous avez une idée pour améliorer Mes Aides, vous pensez qu’une option manque dans le simulateur ou bien vous souhaitez nous donner votre avis :
-      <a v-mail="{to: 'equipe@mes-aides.org', subject:'Suggestion (depuis la page contribuer)}'}">contactez-nous directement</a> ou <a href="https://github.com/betagouv/mes-aides-ui">sur GitHub</a>. Toutes les <a href="https://github.com/betagouv/mes-aides-ui/issues">évolutions de Mes Aides</a>, espérées, planifiées ou réalisées, peuvent être suivies en permanence en ligne.</p>
+      <a v-mail="{to: 'equipe@mes-aides.org', subject:'Suggestion (depuis la page contribuer)}'}">contactez-nous directement</a> ou <a href="https://github.com/mes-aides/simulateur">sur GitHub</a>. Toutes les <a href="https://github.com/mes-aides/simulateur/issues">évolutions de Mes Aides</a>, espérées, planifiées ou réalisées, peuvent être suivies en permanence en ligne.</p>
 
-    <p>Un de nos buts est de toujours augmenter le nombre d’aides simulées en une seule fois. Si vous aimeriez qu'une prestation sociale soit ajoutée dans Mes Aides, <a href="https://github.com/betagouv/mes-aides-ui/labels/nouvelle%20aide">vérifiez</a> que nous n'y travaillons pas déjà, puis parlez de cette application à l'organisme qui l'attribue et enfin <a v-mail="{to:'equipe@mes-aides.org'}">indiquez-nous</a> que vous avez fait ce signalement.</p>
+    <p>Un de nos buts est de toujours augmenter le nombre d’aides simulées en une seule fois. Si vous aimeriez qu'une prestation sociale <!-- soit ajoutée dans Mes Aides, <a href="https://github.com/betagouv/mes-aides-ui/labels/nouvelle%20aide">vérifiez</a> que nous n'y travaillons pas déjà, puis --> parlez de cette application à l'organisme qui l'attribue et <!-- enfin --> <a v-mail="{to:'equipe@mes-aides.org'}">indiquez-nous</a> que vous avez fait ce signalement.</p>
 
 
     <h2 id="communiquer">Communiquer</h2>
@@ -38,9 +38,9 @@
 
     <h2 id="developper">Développer</h2>
 
-    <p>Vous pouvez accéder à l’intégralité du code source de Mes Aides en ligne <a href="https://github.com/betagouv/mes-aides-ui">sur GitHub</a>. Toutes les <a href="https://github.com/betagouv/mes-aides-ui/issues">évolutions de Mes Aides</a>, espérées, planifiées ou réalisées, peuvent être suivies en permanence en ligne.</p>
+    <p>Vous pouvez accéder à l’intégralité du code source de Mes Aides en ligne <a href="https://github.com/mes-aides/simulateur">sur GitHub</a>. Toutes les <a href="https://github.com/mes-aides/simulateur/issues">évolutions de Mes Aides</a>, espérées, planifiées ou réalisées, peuvent être suivies en permanence en ligne.</p>
 
-    <p>Mes Aides se base sur <a href="https://www.openfisca.fr">OpenFisca</a>, un moteur de calcul libre et ouvert utilisé par des chercheurs en économie et d’autres services publics. L'<a href="https://github.com/betagouv/mes-aides-ui">interface graphique de Mes Aides</a> est elle aussi un <a href="https://fr.wikipedia.org/wiki/Logiciel_libre" title="Sous licence AGPL" uib-popover="Sous licence AGPL" popover-trigger="mouseenter">logiciel libre</a>. Cela signifie que toute entité peut librement vérifier, s'inspirer de, copier, et modifier ce service. La seule contrepartie est la mise à disposition à la communauté des améliorations effectuées.</p>
+    <p>Mes Aides se base sur <a href="https://www.openfisca.fr">OpenFisca</a>, un moteur de calcul libre et ouvert utilisé par des chercheurs en économie et d’autres services publics. L'<a href="https://github.com/mes-aides/simulateur">interface graphique de Mes Aides</a> est elle aussi un <a href="https://fr.wikipedia.org/wiki/Logiciel_libre" title="Sous licence AGPL" uib-popover="Sous licence AGPL" popover-trigger="mouseenter">logiciel libre</a>. Cela signifie que toute entité peut librement vérifier, s'inspirer de, copier, et modifier ce service. La seule contrepartie est la mise à disposition à la communauté des améliorations effectuées.</p>
      
   </article>
 </template>

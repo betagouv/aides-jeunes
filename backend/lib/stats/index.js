@@ -16,7 +16,7 @@ var nineWeeksAgo = dateDaysAgo(7 * 9);
 var yesterday = dateDaysAgo(1);
 var today = dateDaysAgo(0);
 
-var relative_path = __dirname + '/../../../dist/documents/stats.json';
+var relative_path = __dirname + '/../../../dist/stats.json';
 Promise.all([
     mongodb.getStats(nineWeeksAgo,today),
     piwik.getUsageData(nineWeeksAgo, yesterday)

@@ -59,7 +59,7 @@ Page : ${$route.fullPath}
           <li><span class="fa fa-fw fa-question-circle" aria-hidden="true"></span>&nbsp;<router-link to="/a-propos">À propos</router-link></li>
         </ul>
         <ul>
-          <li><span class="fa fa-fw fa-bullhorn" aria-hidden="true"></span>&nbsp;<router-link to="/communication">Supports de communication</router-link></li>
+          <li><span class="fa fa-fw fa-eur" aria-hidden="true"></span>&nbsp;<router-link to="/financement">Financement</router-link></li>
           <li><span class="fa fa-fw fa-pencil" aria-hidden="true"></span>&nbsp;<router-link to="/ameliorer">Contribuez</router-link></li>
           <li><span class="fa fa-fw fa-paperclip" aria-hidden="true"></span>&nbsp;<router-link to="/cgu">Conditions d'utilisation</router-link></li>
         </ul>

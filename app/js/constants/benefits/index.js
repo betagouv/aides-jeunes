@@ -17,9 +17,9 @@ var droitsDescription = {
                         'Votre conjoint·e doit avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles il ou elle a droit.'
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F16871',
-                    'form': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-aspa.pdf',
+                    'form': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub/files/PDF/demande-aspa.pdf',
                     'forms' : {
-                        'cnav': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-aspa.pdf',
+                        'cnav': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub/files/PDF/demande-aspa.pdf',
                         'msa': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_14953.do',
                         'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/Formulaire_allocation_solidarite_personnes_agees.pdf'
                     },

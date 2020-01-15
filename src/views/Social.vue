@@ -1,13 +1,23 @@
 <template>
   <article class="text container">
 
+    <h1>Sur les réseaux sociaux</h1>
+
+    <p>Notre présence est très faible sur les réseaux sociaux actuellement.</p>
+
+    <p>Si vous souhaitez être informés des évolutions que sont faites sur le simulateur, vou pouvez
+      <a
+        target="_blank" rel="noopener"
+        href="https://c8282fe1.sibforms.com/serve/MUIEALeK4cr3WdAp5x5mopAKSViUl_8HOgRWycyFqxzf2U2EwnfJS8GJ2ragsE3WagiU-OmKq_HhRamKpgndNUMN6wnrNKxk-wpY19N5N90_j6_hWPTjJ4XRa0djFNUrsWcCAWJQWR1fQgZRVqfinNCIqcGYRZsedqB9iaqWecSDEdP_dZN0PITSsB78r7SJkWvuSsWDc8nEj9eI">vous incrire à notre newsletter</a>.
+    </p>
+<!--
     <h1>Suivez-nous sur les réseaux</h1>
 
     <h2>Nos réseaux sociaux</h2>
 
     <p>Vous pouvez nous suivre sur les réseaux suivants :</p>
 
-    <div class="image-list"> <!-- CSS class TODO5 -->
+    <div class="image-list">
       <a href="https://www.facebook.com/MesAides"><img src="./../../public/img/social/picto_facebook.png" alt=""> /MesAides</a>
       <a href="https://twitter.com/MesAides"><img src="./../../public/img/social/picto_twitter.png" alt=""> @MesAides</a>
     </div>
@@ -38,8 +48,8 @@
 
     <h2>Pour les professionnel·le·s</h2>
 
-    <p>Professionnel·le·s du secteur social, <a target="_blank" rel="noopener" href="http://eepurl.com/bD9PNP">inscrivez-vous à la lettre de Mes Aides</a>.</p>
-
+    <p>Professionnel·le·s du secteur social, <a target="_blank" rel="noopener" href="https://c8282fe1.sibforms.com/serve/MUIEALeK4cr3WdAp5x5mopAKSViUl_8HOgRWycyFqxzf2U2EwnfJS8GJ2ragsE3WagiU-OmKq_HhRamKpgndNUMN6wnrNKxk-wpY19N5N90_j6_hWPTjJ4XRa0djFNUrsWcCAWJQWR1fQgZRVqfinNCIqcGYRZsedqB9iaqWecSDEdP_dZN0PITSsB78r7SJkWvuSsWDc8nEj9eI">inscrivez-vous à la lettre de Mes Aides</a>.</p>
+ -->
   </article>
 
 </template>

@@ -37,6 +37,7 @@ function get(individus, role, id, dates) {
         id: role,
         aah_restriction_substantielle_durable_acces_emploi: true,
         ass_precondition_remplie: false,
+        date_naissance: undefined,
         duree_possession_titre_sejour: 25,
         echelon_bourse: -1,
         enfant_a_charge: {},

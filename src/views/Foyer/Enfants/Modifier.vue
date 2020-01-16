@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="frame-foyer">
-      <IndividuForm v-model="individu" v-bind:existingIndividu="true" v-on:input="emit()" />
+      <IndividuForm v-bind:value="individu" v-bind:existingIndividu="true" v-on:input="emit" />
     </div>
   </div>
 </template>
@@ -15,14 +15,14 @@ export default {
   components: {
     IndividuForm
   },
-  data: function() {
-    return {
-      individu: _.find(this.$store.state.situation.enfants, { id: this.$route.params.id })
+  computed: {
+    individu: function() {
+      return _.find(this.$store.state.situation.enfants, { id: this.$route.params.id })
     }
   },
   methods: {
-    emit: function() {
-      this.$store.dispatch('updateIndividu', this.individu)
+    emit: function(individu) {
+      this.$store.dispatch('updateIndividu', individu)
       this.$push()
     }
   }

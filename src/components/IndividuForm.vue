@@ -252,31 +252,16 @@ export default {
     withoutTitle: Boolean,
   },
   data: function() {
-    let individu = Object.assign({}, this.value)
-    let selectedStatuts = {}
-    individu.specificSituations.forEach(function(specificSituation) {
-        selectedStatuts[specificSituation] = true
-    })
-
-    let satisfyResidentialPermitPrerequisite = {}
-    if (this.existingIndividu) {
-      satisfyResidentialPermitPrerequisite = {[this.getZone(individu && individu.nationalite)] :  true}
-    }
 
     return {
+      individu: Object.assign({}, this.value),
       no_specific_situation: null,
       GIROptions,
-      individu,
-      isIndividuParent: Individu.isRoleParent(individu.role),
       residentialPermitLabel,
-      satisfyResidentialDurationPrerequisite: this.existingIndividu,
-      satisfyResidentialPermitPrerequisite,
       scolariteOptions,
-      selectedStatuts,
       situationsFamiliales,
       specificSituations,
-      tauxIncapaciteOptions,
-      title: (individu.role === 'enfant' && ! this.existingIndividu) ? 'Nouvel enfant' : Individu.label(individu),
+      tauxIncapaciteOptions
     }
   },
   computed: {
@@ -333,8 +318,31 @@ export default {
     isDemandeurMineur: function() {
       return this.individu.role === 'demandeur' && this.isNaissanceValid && Individu.age(this.individu, this.date) < 18
     },
+    isIndividuParent: function() {
+      return Individu.isRoleParent(this.individu.role)
+    },
+    satisfyResidentialDurationPrerequisite: function() {
+      return this.existingIndividu
+    },
+    satisfyResidentialPermitPrerequisite: function() {
+      let satisfyResidentialPermitPrerequisite = {}
+      if (this.existingIndividu) {
+        satisfyResidentialPermitPrerequisite = {[this.getZone(this.individu && this.individu.nationalite)] :  true}
+      }
+      return satisfyResidentialPermitPrerequisite
+    },
+    selectedStatuts: function() {
+      let selectedStatuts = {}
+      this.individu.specificSituations.forEach(function(specificSituation) {
+          selectedStatuts[specificSituation] = true
+      })
+      return selectedStatuts
+    },
     showCancelButton: function() {
       return (this.individu.role === 'enfant' && ! this.existingIndividu)
+    },
+    title: function() {
+      return (this.individu.role === 'enfant' && ! this.existingIndividu) ? 'Nouvel enfant' : Individu.label(this.individu)
     },
   },
   methods: {
@@ -378,6 +386,11 @@ export default {
         this.$emit('input', this.individu)
       }
     },
+  },
+  watch: {
+    value: function() {
+      this.individu = Object.assign({}, this.value)
+    }
   },
   validations: function() {
     let validations = {

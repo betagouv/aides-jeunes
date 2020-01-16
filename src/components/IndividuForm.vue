@@ -252,12 +252,20 @@ export default {
     withoutTitle: Boolean,
   },
   data: function() {
+    let satisfyResidentialPermitPrerequisite = {}
+    if (this.existingIndividu) {
+      satisfyResidentialPermitPrerequisite = {[this.getZone(this.value && this.value.nationalite)] :  true}
+    }
+
+    let individu = Object.assign({}, this.value)
 
     return {
-      individu: Object.assign({}, this.value),
+      individu,
       no_specific_situation: null,
       GIROptions,
       residentialPermitLabel,
+      satisfyResidentialDurationPrerequisite: this.existingIndividu,
+      satisfyResidentialPermitPrerequisite,
       scolariteOptions,
       situationsFamiliales,
       specificSituations,
@@ -321,16 +329,6 @@ export default {
     isIndividuParent: function() {
       return Individu.isRoleParent(this.individu.role)
     },
-    satisfyResidentialDurationPrerequisite: function() {
-      return this.existingIndividu
-    },
-    satisfyResidentialPermitPrerequisite: function() {
-      let satisfyResidentialPermitPrerequisite = {}
-      if (this.existingIndividu) {
-        satisfyResidentialPermitPrerequisite = {[this.getZone(this.individu && this.individu.nationalite)] :  true}
-      }
-      return satisfyResidentialPermitPrerequisite
-    },
     selectedStatuts: function() {
       let selectedStatuts = {}
       this.individu.specificSituations.forEach(function(specificSituation) {
@@ -388,6 +386,9 @@ export default {
     },
   },
   watch: {
+    existingIndividu: function() {
+      this.satisfyResidentialDurationPrerequisite = this.existingIndividu
+    },
     value: function() {
       this.individu = Object.assign({}, this.value)
     }

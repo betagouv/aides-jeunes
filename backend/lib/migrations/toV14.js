@@ -14,6 +14,10 @@ var specificSituationValues = [
 ];
 
 function updatePerson(p) {
+    if (!p) {
+        return p
+    }
+
     const s = p.specific_situations || (p.get && p.get('specific_situations')) || []
     specificSituationValues.forEach(id => {
         p[id] = s.indexOf(id) >= 0

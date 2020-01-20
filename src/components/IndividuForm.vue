@@ -74,12 +74,8 @@
           En garde alternée
         </label>
         <label v-for="statut in specificSituations" v-bind:key="statut.id">
-          <input type="checkbox" v-model="selectedStatuts[statut.id]">
+          <input type="checkbox" v-model="individu[statut.id]">
           {{ statut.label }}
-        </label>
-        <label>
-          <input type="checkbox" v-model="individu.enceinte">
-          Enceinte
         </label>
         <label>
           <input type="checkbox" v-model="no_specific_situation">
@@ -119,7 +115,7 @@
       Est-il/elle placé·e en structure spécialisée ou famille d'accueil ?
     </YesNoQuestion>
 
-    <label class="form__group" v-if="selectedStatuts.etudiant">
+    <label class="form__group" v-if="individu.etudiant">
       À quel échelon {{ individu.role == 'demandeur' ? 'êtes-vous' : 'est-il/elle' }} boursier ?
       <input id="echelon-bourse" v-model="individu.echelon_bourse" type="range" min="-1" max="7">
       {{ individu.echelon_bourse == -1 ? 'Non boursier': 'Boursier échelon ' + individu.echelon_bourse }}
@@ -160,7 +156,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
 import { required } from 'vuelidate/lib/validators'
 
 import InputDate from '@/components/InputDate'
@@ -278,13 +273,13 @@ export default {
       return this.individu.role == 'demandeur' && (age >= 18) && (age < 25)
     },
     captureEligibiliteAss: function() {
-      return this.isIndividuParent && this.selectedStatuts['chomeur']
+      return this.isIndividuParent && this.individu.chomeur
     },
     captureEnfantACharge: function() {
       return (! this.isIndividuParent) && Individu.age(this.individu, this.$store.state.dates.today.value) >= 1
     },
     captureEnfantPlace: function() {
-      return (! this.isIndividuParent) && this.selectedStatuts.handicap
+      return (! this.isIndividuParent) && this.individu.handicap
     },
     captureGardeAlternee: function() {
       return ! this.isIndividuParent
@@ -310,7 +305,7 @@ export default {
       return false
     },
     captureTauxIncapacite: function() {
-      return this.selectedStatuts.handicap
+      return this.individu.handicap
     },
     fiscalementIndependant: {
       get: function() {
@@ -329,13 +324,6 @@ export default {
     isIndividuParent: function() {
       return Individu.isRoleParent(this.individu.role)
     },
-    selectedStatuts: function() {
-      let selectedStatuts = {}
-      this.individu.specificSituations.forEach(function(specificSituation) {
-          selectedStatuts[specificSituation] = true
-      })
-      return selectedStatuts
-    },
     showCancelButton: function() {
       return (this.individu.role === 'enfant' && ! this.existingIndividu)
     },
@@ -348,14 +336,6 @@ export default {
       return Nationality.getZone(nationalite || this.individu && this.individu.nationalite)
     },
     submit: function() {
-      this.individu.specificSituations = []
-      let individu = this.individu
-      _.forEach(this.selectedStatuts, function(selected, statut) {
-          if (selected) {
-              individu.specificSituations.push(statut)
-          }
-      })
-
       if (! this.captureDureePossessionTitreSejour) {
           delete this.individu.duree_possession_titre_sejour
       }

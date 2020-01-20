@@ -1,15 +1,15 @@
 const specificSituations = [
     {
-        id: 'etudiant',
-        label: 'Étudiant·e, apprenti·e'
-    },
-    {
-        id: 'retraite',
-        label: 'Retraité·e'
-    },
-    {
         id: 'chomeur',
         label: 'Inscrit·e comme demandeur d’emploi'
+    },
+    {
+        id: 'enceinte',
+        label: 'Enceinte'
+    },
+    {
+        id: 'etudiant',
+        label: 'Étudiant·e, apprenti·e'
     },
     {
         id: 'handicap',
@@ -18,7 +18,11 @@ const specificSituations = [
     {
         id: 'inapte_travail',
         label: 'Inapte au travail'
-    }
+    },
+    {
+        id: 'retraite',
+        label: 'Retraité·e'
+    },
 ]
 
 module.exports = {

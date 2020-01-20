@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var _ = require('lodash');
+var specificSituations = require('../../src/constants/specificSituations').specificSituations;
 var ressources = require('../../app/js/constants/ressources');
 var mesAides = require('../lib/mes-aides');
 var openfisca = require('../lib/openfisca');
@@ -25,21 +26,16 @@ var ressourcesDefs = _.concat(
         return result;
     }, {});
 
-var specificSituationValues = [
-    'chomeur',
-    'etudiant',
-    'retraite',
-    'handicap',
-    'boursier',
-    'inapte_travail',
-    'autre'
-];
-
 var statutMaritalValues = [
     'marie',
     'pacse',
     'celibataire',
 ];
+
+var specificSituationFields = specificSituations.reduce((fields, situation) => {
+    fields[situation.id] = Boolean
+    return fields
+}, {})
 
 var individuDef = Object.assign({
     _id: false,
@@ -54,7 +50,6 @@ var individuDef = Object.assign({
     echelon_bourse: Number,
     enfant_a_charge: Object,
     enfant_place: Boolean,
-    enceinte: Boolean,
     firstName: String,
     garde_alternee: Boolean,
     gir: { type: String, default: 'non_defini' },
@@ -63,13 +58,12 @@ var individuDef = Object.assign({
     nationalite: { type: String },
     role: { type: String, enum: ['demandeur', 'conjoint', 'enfant'] },
     scolarite: { type: String, enum: ['inconnue', 'college', 'lycee'] },
-    specificSituations: [{ type: String, enum: specificSituationValues }],
     statut_marital: { type: String, enum: statutMaritalValues },
     taux_incapacite: Number,
     tns_auto_entrepreneur_type_activite: { type: String, enum: ['achat_revente', 'bic', 'bnc'] },
     tns_autres_revenus_type_activite: { type: String, enum: ['achat_revente', 'bic', 'bnc'] },
     tns_micro_entreprise_type_activite: { type: String, enum: ['achat_revente', 'bic', 'bnc'] },
-}, ressourcesDefs);
+}, ressourcesDefs, specificSituationFields);
 
 var statutOccupationLogementValues = [
     'primo_accedant',
@@ -122,6 +116,11 @@ SituationSchema.virtual('returnPath').get(function() {
 SituationSchema.methods.isAccessible = function(keychain) {
     return ['demo', 'investigation', 'test'].includes(this.status) || (keychain && keychain[this.cookieName] === this.token);
 };
+
+SituationSchema.methods.getIndividus = function() {
+    return _.filter([].concat(this.demandeur, this.conjoint, ...(this.enfants || [])))
+}
+
 SituationSchema.methods.compute = function() {
     var that = this;
     return new Promise(function(resolve, reject) {

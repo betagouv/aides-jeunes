@@ -171,6 +171,12 @@ var ressourceTypes = [
         prefix: 'le'
     },
     {
+        id: 'paje_cmg',
+        label: 'Complément de libre choix du mode de garde (Cmg)',
+        category: 'allocations',
+        prefix: 'le'
+    },
+    {
         id: 'paje_prepare',
         label: 'Prestation partagée d’éducation de l’enfant (PreParE)',
         category: 'allocations',

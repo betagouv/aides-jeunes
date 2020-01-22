@@ -1,5 +1,5 @@
 gunicorn>=19.1.1
-Openfisca-France==48.9.4
+Openfisca-France==48.9.9
 Openfisca-Core[web-api]==34.6.6
 git+https://github.com/openfisca/openfisca-france-local.git@ebfa68d#egg=openfisca-France-Local
 git+https://github.com/openfisca/openfisca-paris.git@29891c2#egg=openfisca-paris

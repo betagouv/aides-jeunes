@@ -71,7 +71,7 @@
           class="button-outline primary"
           v-if="droit.provider.etablissements && droit.provider.etablissements.length > 0"
           v-analytics="{ name:droit.label, action:'show-locations', category:'General'}"
-          v-bind:to="{ name: 'lieux', params: { id: droit.id }}">
+          v-bind:to="{ name: 'resultat/lieux', params: { id: droit.id }}">
           <i class="fa fa-home"></i> Trouver une agence
         </router-link>
       </div>

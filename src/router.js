@@ -113,7 +113,7 @@ const router = new Router({
           title: " "
         }
       }, {
-        name: 'lieux',
+        name: 'resultat/lieux',
         path: 'resultat/lieux/:id',
         component: () => import(/* webpackChunkName: "lieux" */ './views/Foyer/Resultat/Lieux.vue'),
         meta: {
@@ -175,6 +175,11 @@ const router = new Router({
       path: '/liens-utiles',
       name: 'liens-utiles',
       component: () => import(/* webpackChunkName: "liens-utiles" */ './views/LiensUtiles.vue')
+    },
+    {
+      name: 'lieux',
+      path: '/lieux/:commune/:type',
+      component: () => import(/* webpackChunkName: "lieux" */ './views/Lieux.vue'),
     },
     {
       path: '/social',

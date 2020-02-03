@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h1>Des lieux d'accueil et d'accompagnement   près de chez vous</h1>
     <p>
       Vous pouvez y être accompagné·e pour faire votre demande et poser toutes vos questions.
     </p>
@@ -7,15 +8,7 @@
     <div v-if="list && list.length">
       <div v-for="(etablissement, index) in list" v-bind:key="index">
         <Etablissement v-bind:etablissement="etablissement"/>
-        <router-link to="/foyer/resultat">
-          <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Revenir aux résultats
-        </router-link>
       </div>
-    </div>
-    <div v-else>
-      <router-link to="/foyer/resultat">
-        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Revenir aux résultats
-      </router-link>
     </div>
   </div>
 </template>
@@ -23,12 +16,11 @@
 <script>
 import axios from 'axios'
 
-import { forEach } from '@/../backend/lib/mes-aides'
 import Etablissement from '@/components/Etablissement'
 import EtablissementLib from '@/lib/Etablissement'
 
 export default {
-  name: 'lieux',
+  name: 'Lieux',
   components: {
     Etablissement,
   },
@@ -39,14 +31,9 @@ export default {
     }
   },
   mounted: function() {
-    const city = this.$store.state.situation.menage.depcom
-    let types = []
-    forEach((benefit, benefitId, provider) => {
-      if (provider.etablissements && provider.etablissements.length > 0 && benefitId === this.$route.params.id) {
-        types = provider.etablissements
-      }
-    })
-    axios.get(`https://etablissements-publics.api.gouv.fr/v3/communes/${city}/${types.join('+')}`)
+    const commune = this.$route.params.commune
+    const type = this.$route.params.type
+    axios.get(`https://etablissements-publics.api.gouv.fr/v3/communes/${commune}/${type}`)
       .then(function(response) { return response.data.features }, function() { return [] })
       .then(function(etablissements) {
         return etablissements.map(EtablissementLib.normalize)
@@ -57,4 +44,5 @@ export default {
       })
   }
 }
+
 </script>

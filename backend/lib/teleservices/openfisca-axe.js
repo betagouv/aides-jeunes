@@ -52,7 +52,8 @@ function extractResults({ source, response }) {
             return benefitIds.reduce((benefitAccum, variable) => {
                 var base = response[group][id][variable];
                 if (base) {
-                    benefitAccum[prefix][variable] = 1 * (base[periods.thisMonth] || (base[periods.thisYear] / 12) || 0);
+                    benefitAccum[prefix][variable] = benefitAccum[prefix][variable] || 0;
+                    benefitAccum[prefix][variable] += 1 * (base[periods.thisMonth] || (base[periods.thisYear] / 12) || 0);
                 }
 
                 return benefitAccum;
@@ -74,7 +75,7 @@ function fetch(s) {
         return request(s.request)
             .then(payload => {
                 s.response = payload;
-                fs.writeFileAsync(cachePath, JSON.stringify(payload, null, 2));
+                return fs.writeFileAsync(cachePath, JSON.stringify(payload, null, 2));
             })
             .then(() => s);
     }

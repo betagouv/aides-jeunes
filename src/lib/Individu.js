@@ -1,3 +1,4 @@
+import { specificSituations } from '@/constants/specificSituations'
 import moment from 'moment'
 import _ from 'lodash'
 
@@ -37,6 +38,7 @@ function get(individus, role, id, dates) {
         id: role,
         aah_restriction_substantielle_durable_acces_emploi: true,
         ass_precondition_remplie: false,
+        date_naissance: undefined,
         duree_possession_titre_sejour: 25,
         echelon_bourse: -1,
         enfant_a_charge: {},
@@ -49,8 +51,11 @@ function get(individus, role, id, dates) {
         tns_autres_revenus_type_activite: 'bic',
         tns_micro_entreprise_type_activite: 'bic',
         tns_auto_entrepreneur_type_activite: 'bic',
-        specificSituations: []
     };
+
+    specificSituations.forEach(s => {
+        DEFAULT_INDIVIDU[s.id] = false
+    })
 
     // By default enfants are `à charge fiscale`, adults are not.
     if (DEFAULT_INDIVIDU.role == 'enfant' && dates && dates.thisYear) {

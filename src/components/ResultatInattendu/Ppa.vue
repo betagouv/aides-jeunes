@@ -29,8 +29,7 @@
       Vous pouvez à présent :
       <ul>
         <li>Retourner à la <router-link to="/foyer/logement">page « Logement »</router-link> pour modifier ces informations</li>
-        <li>Faire une <router-link to="http://www.caf.fr/allocataires/mes-services-en-ligne/estimer-vos-droits/simulation-prime-d-activite" target="_blank">nouvelle simulation sur caf.fr</router-link></li>
-        <li>Nous contacter sur <a v-mail="{to: 'equipe@mes-aides.org', subject: emailSubject, body: emailBody}">equipe@mes-aides.org</a>, en précisant votre numéro de simulation : <strong>{{ situation._id }}</strong></li>
+        <li>Faire une <a to="http://www.caf.fr/allocataires/mes-services-en-ligne/estimer-vos-droits/simulation-prime-d-activite" target="_blank">nouvelle simulation sur caf.fr</a></li>
       </ul>
     </p>
   </div>
@@ -50,29 +49,6 @@ export default {
     isProprietaireAvecPretEnCours: function() { return this.$store.getters.isProprietaireAvecPretEnCours },
     isHebergeParticipeFrais: function() { return this.$store.getters.isHebergeParticipeFrais },
     situation: function() { return this.$store.state.situation },
-    emailSubject: function() { return `[${this.situation._id}] Montants inattendus` },
-    emailBody: function() { return `
-Bonjour,
-
-En effectuant une simulation sur mes-aides.org, j'ai obtenu le résultat suivant :
-
-- ${this.montant} € / mois pour la prestation «  ».
-
-Mais en effectuant la même simulation sur le site caf.fr j'obtiens le résultat suivant / la CAF a fini par m'attribuer le montant suivant :
-
-- XXX € / mois pour la prestation « Prime d'activité ».
-
-Vous pouvez me joindre par téléphone au XX XX XX XX XX (de préférence en semaine) pour une dizaine de minutes d'échange afin de comprendre d'où provient cet écart.
-
-Bonne journée,
-
-————
-ID : ${this.situation._id} (à conserver impérativement pour traitement de votre demande)
-————
-isProprietaireAvecPretEnCours: ${this.$store.getters.isProprietaireAvecPretEnCours}
-isHebergeParticipeFrais: ${this.$store.getters.isHebergeParticipeFrais}
-`
-    }
   }
 }
 

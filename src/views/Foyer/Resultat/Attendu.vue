@@ -2,7 +2,7 @@
   <form @submit.prevent="submit">
     <div v-if="!result">
       <p>
-        Introduction détaillant l'intérêt de ce formulaire
+        Ce formulaire permet aux personnes ayant une expertise dans les prestations sociales de nous aider à améliorer le simulateur.
       </p>
       <p>Plusieurs situations sont possibles&nbsp;:</p>
       <ul>

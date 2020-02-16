@@ -33,39 +33,20 @@ var individuSchema = {
         fn: formatDate
     },
     activite: {
-        src: 'specificSituations',
-        fn: function(specificSituations) {
-            var returnValue;
+        fn: function(individu) {
+            let returnValue
             [
                 'chomeur',
                 'etudiant',
                 'retraite',
             ].forEach(function(activite) {
-                if (specificSituations.indexOf(activite) >= 0) {
-                    returnValue = activite;
+                if (individu[activite]) {
+                    returnValue = activite
                 }
-            });
-            return returnValue;
+            })
+            return returnValue
         }
     },
-    handicap: {
-        src: 'specificSituations',
-        fn: function(specificSituations) {
-            return specificSituations.indexOf('handicap') >= 0;
-        }
-    },
-    taux_incapacite: {
-        fn: function(individu) {
-            var handicap = individu.specificSituations.indexOf('handicap') >= 0;
-            return handicap && individu.taux_incapacite;
-        }
-    },
-    inapte_travail: {
-        src: 'specificSituations',
-        fn: function(specificSituations) {
-            return specificSituations.indexOf('inapte_travail') >= 0;
-        }
-    }
 };
 
 function isNotValidValue(value) {
@@ -90,10 +71,11 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
 
     // Variables stored to properly restore UI
     var propertiesToDelete = [
+        'chomeur',
         'firstName', // for kids
         'hasRessources',
+        'retraite',
         'role',
-        'specificSituations',
     ];
 
     propertiesToDelete.forEach(function(propertyName) {

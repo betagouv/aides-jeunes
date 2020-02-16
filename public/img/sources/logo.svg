@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -7,70 +9,73 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="253.3539mm"
+   height="37.982334mm"
+   viewBox="0 0 253.3539 37.982334"
    version="1.1"
-   width="366.57776"
-   height="52.400391"
-   id="svg8"
-   sodipodi:docname="logo.svg"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+   id="svg1786"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="logo.svg">
   <defs
-     id="defs12" />
+     id="defs1780" />
   <sodipodi:namedview
+     id="base"
      pagecolor="#ffffff"
      bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-181.22099"
+     inkscape:cy="-133.93661"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g5415"
+     showgrid="false"
+     fit-margin-top="5"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="5"
      inkscape:window-width="2493"
      inkscape:window-height="1385"
-     id="namedview10"
-     showgrid="false"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0"
-     inkscape:zoom="0.99775281"
-     inkscape:cx="-236.53153"
-     inkscape:cy="25.900391"
      inkscape:window-x="67"
      inkscape:window-y="27"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg8" />
+     inkscape:window-maximized="1" />
   <metadata
-     id="metadata2">
+     id="metadata1783">
     <rdf:RDF>
-      <cc:Work>
+      <cc:Work
+         rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title>Logo Mes Aides</dc:title>
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <text
-     xml:space="preserve"
-     style="font-size:50px;fill:#000000"
-     transform="skewX(-8)"
-     id="text6"><tspan
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50px;font-family:'Century Gothic Std';-inkscape-font-specification:'Century Gothic Std, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
-       id="tspan815">     </tspan><tspan
-       x="5"
-       y="42"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50px;font-family:'Century Gothic Std';-inkscape-font-specification:'Century Gothic Std, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-       id="tspan4">Mes-Aides.org</tspan><tspan
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50px;font-family:'Century Gothic Std';-inkscape-font-specification:'Century Gothic Std, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
-       id="tspan817">  </tspan></text>
-  <text
-     xml:space="preserve"
-     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-     x="97.218468"
-     y="45.775249"
-     id="text824"><tspan
-       sodipodi:role="line"
-       id="tspan822"
-       x="97.218468"
-       y="81.165878" /></text>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(19.331708,-75.413604)">
+    <g
+       style="fill:#d45500"
+       transform="translate(-711.74616,231.43952)"
+       id="g5415">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:31.75px;line-height:1.25;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#d45500;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="699.15479"
+         y="-123.42458"
+         id="text5397"><tspan
+           sodipodi:role="line"
+           x="699.15479"
+           y="-123.42458"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:31.75px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#d45500;stroke-width:0.26458332"
+           id="tspan5395"><tspan
+   id="tspan5391"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:42.33333206px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#d45500">M</tspan>ES-<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:42.33333206px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#d45500"
+   id="tspan5393">A</tspan>IDES.ORG</tspan></text>
+    </g>
+  </g>
 </svg>

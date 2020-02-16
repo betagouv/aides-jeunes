@@ -33,14 +33,20 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+
+
+  @media (max-width: 992px - 1) { // $screen-sm-max
+    flex-direction: column;
+  }
 }
 
 .provider img {
-  min-width: 20%;
+  flex-shrink: 0;
+  width: 250px;
 }
 
-.list {
-  margin-left: 1em;
+.list, .provider img {
+  margin: 1em;
 }
 
 dl {

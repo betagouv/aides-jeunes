@@ -541,6 +541,25 @@ var droitsDescription = {
                 },
             },
         },
+        toulouse_metropole: {
+            imgSrc: 'logo_toulouse_metropole.png',
+            repository: 'france-local',
+            label: 'Toulouse Métropole',
+            interactionWithNationalPrestationsHandled: true,
+            prefix: 'de',
+            prestations: {
+                tisseo_transport_reduction: {
+                    label: 'Réduction sur les titres de transports',
+                    unit: '%',
+                    legend: '',
+                    description: 'Des réductions de 70%, 80% ou 100% (gratuité) sont mises en place sur le réseau Tisséo pour cetaiens personnes (jeunes, familles à faibles revenus, personnes bénéficiant de certaines prestations, etc.).',
+                    link: 'http://www.mon-tarif-tisseo.fr',
+                    instructions: 'https://www.tisseo.fr/les-tarifs/e-agence',
+                    entity: 'individu',
+                    prefix: 'une',
+                },
+            },
+        },
     }
 };
 

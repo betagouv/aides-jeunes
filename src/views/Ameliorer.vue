@@ -23,8 +23,16 @@
     <p>Vous avez une idée pour améliorer Mes Aides, vous pensez qu’une option manque dans le simulateur ou bien vous souhaitez nous donner votre avis :
       <a v-mail="{to: 'equipe@mes-aides.org', subject:'Suggestion (depuis la page contribuer)}'}">contactez-nous directement</a> ou <a href="https://github.com/mes-aides/simulateur">sur GitHub</a>. Toutes les <a href="https://github.com/mes-aides/simulateur/issues">évolutions de Mes Aides</a>, espérées, planifiées ou réalisées, peuvent être suivies en permanence en ligne.</p>
 
-    <p>Un de nos buts est de toujours augmenter le nombre d’aides simulées en une seule fois. Si vous aimeriez qu'une prestation sociale <!-- soit ajoutée dans Mes Aides, <a href="https://github.com/betagouv/mes-aides-ui/labels/nouvelle%20aide">vérifiez</a> que nous n'y travaillons pas déjà, puis --> parlez de cette application à l'organisme qui l'attribue et <!-- enfin --> <a v-mail="{to:'equipe@mes-aides.org'}">indiquez-nous</a> que vous avez fait ce signalement.</p>
+    <h2 id="proposer-une-aide">Proposer une nouvelle aide</h2>
 
+    <p>Un de nos buts est de toujours augmenter le nombre d’aides simulées en une seule fois. Si vous aimeriez qu'une prestation sociale, parlez de cette application à l'organisme qui l'attribue et <a v-mail="{to:'equipe@mes-aides.org', subject: 'Proposition d\'une nouvelle aide'}">indiquez-nous</a> que vous avez fait ce signalement.</p>
+
+    <p>En fonction de votre expertise sur cette aide, vous pouvez nous aider en nous envoyant certains des éléments suivants&nbsp;:</p>
+
+    <ul>
+      <li>Les documents de référence des règles de calcul de l'aide&nbsp;</li>
+      <li>Une ou plusieurs situations pour laquelle ou lesquelles vous connaissez le résultat pour cette aide.</li>
+    </ul>
 
     <h2 id="communiquer">Communiquer</h2>
 

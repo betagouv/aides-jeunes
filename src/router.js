@@ -201,6 +201,11 @@ const router = new Router({
       name: 'suivi',
       component: () => import(/* webpackChunkName: "suivi" */ './views/Suivi.vue')
     },
+    {
+      path: '/toutes',
+      name: 'toutes',
+      component: () => import(/* webpackChunkName: "toutes" */ './views/Toutes.vue')
+    },
   ],
   scrollBehavior (to/*, from, savedPosition*/) {
     if (to.hash) {

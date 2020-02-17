@@ -31,15 +31,16 @@
     <div class="section">
       <div class="container">
         <div class="panel">
-          <h2 class="text-center">{{ prestationsNationalesCount }} aides nationales évaluées par le simulateur</h2>
-          <div v-for="(provider, index) in sortDecreasing(prestationsNationales)" v-bind:key="'n'+index">
-            <hr />
-            <ProviderView v-bind:item="provider" />
-          </div>
-          <h2 class="text-center">{{ partenairesLocauxCount }} aides locales évaluées par le simulateur</h2>
-          <div v-for="(provider, index) in sortDecreasing(partenairesLocaux)" v-bind:key="'l'+index">
-            <hr />
-            <ProviderView v-bind:item="provider" />
+          <h2 class="text-center">
+            {{ prestationsNationalesCount }} aides nationales et {{ partenairesLocauxCount }} aides locales évaluées par le simulateur
+          </h2>
+          <div class="cta">
+            <router-link class="button secondary" to="/toutes">
+              Accéder à la liste
+            </router-link>
+            <router-link class="button secondary" to="/ameliorer#proposer-une-aide">
+              Proposer une nouvelle aide
+            </router-link>
           </div>
         </div>
       </div>
@@ -49,14 +50,10 @@
 
 <script>
 import * as droitsDescription from './../../app/js/constants/benefits'
-import ProviderView from '@/components/ProviderView'
 import _ from 'lodash'
 
 export default {
   name: 'home',
-  components: {
-    ProviderView
-  },
   data: () => {
     let value = {}
     const types = ['prestationsNationales', 'partenairesLocaux']
@@ -99,11 +96,6 @@ export default {
     next: function() {
       this.$push()
     },
-    sortDecreasing: function(items) {
-      return items.filter(() => 1).sort(function(a, b) {
-        return Object.keys(a.prestations).length < Object.keys(b.prestations).length
-      });
-    }
   }
 }
 </script>
@@ -118,21 +110,32 @@ export default {
   height: 100%;
 }
 
+.cta {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
 .hero {
   background-color: #fffa;
 }
 
 .hero__container {
-  min-height: 75vh;
+  min-height: 55vh;
 }
 
 hr {
   border-top: 1px solid #ddd;
 }
+
 #homepage {
   background-attachment: fixed;
   background-position: top center;
   background-size: 100%;
   background-repeat: no-repeat;
+}
+
+.panel {
+  border-color: #d45500;
 }
 </style>

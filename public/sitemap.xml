@@ -21,6 +21,10 @@
         <priority>0.3</priority>
     </url>
     <url>
+        <loc>https://mes-aides.org/toutes</loc>
+        <priority>0.3</priority>
+    </url>
+    <url>
         <loc>https://mes-aides.org/social</loc>
         <priority>0.3</priority>
     </url>

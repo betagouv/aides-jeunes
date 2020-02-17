@@ -8,7 +8,7 @@
         <i class="fa fa-question-circle fa-2x"></i>
       </span>
       <span v-if="isNumber(droit.montant)" class="montant-detail">
-        {{ droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
+        {{ droit.legend !== undefined ? droit.legend : (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
       </span>
     </span>
     <router-link class="droit-montant-unexpected"

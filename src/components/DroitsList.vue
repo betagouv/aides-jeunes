@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="dotted-line"></div>
-          <droit-montant v-bind:droit="droit" v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
+          <DroitMontant v-bind:droit="droit" v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></DroitMontant>
           <div v-if="droit.montant && isBoolean(droit.montant)">
             <i class="fa fa-check-circle fa-2x"></i>
           </div>

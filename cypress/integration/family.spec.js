@@ -78,7 +78,7 @@ context('Full simulation', () => {
 
     // 80
     const position = 1
-    const name = /Allocations familiales/
+    const name = /allocations familiales/
     const id = 'af'
     const description = /au moins 2 enfants/
     cy.get('h1').invoke('text').should('contain', 'Résultats')

@@ -8,7 +8,7 @@ var droitsDescription = {
             'etablissements': ['carsat'],
             'prestations': {
                 'aspa': {
-                    'label': 'Allocation de solidarité aux personnes âgées',
+                    'label': 'allocation de solidarité aux personnes âgées',
                     'description': 'L’allocation de solidarité aux personnes âgées (Aspa) est une prestation accordée aux personnes retraitées ayant de faibles ressources. Elle est versée tous les mois par la Carsat (ou la MSA si vous dépendez du régime agricole). Elle s’ajoute, dans une certaine limite, aux revenus personnels. Elle remplace le minimum vieillesse depuis 2006.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
@@ -34,7 +34,7 @@ var droitsDescription = {
             'etablissements': ['cpam'],
             'prestations': {
                 'css_participation_forfaitaire': {
-                    'label': 'Complémentaire santé solidaire',
+                    'label': 'complémentaire santé solidaire',
                     'description': 'La Complémentaire Santé Solidaire (CSS) est une protection complémentaire santé (mutuelle). Elle remplace la Complémentaire Maladie Universelle Complémentaire (CMU-C) et l’Aide au paiement d’une Complémentaire Santé (ACS) à compter du 1ᵉʳ novembre 2019. Une fois attribuée, la CSS est accordée pour un an.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> depuis plus de 3 mois.'
@@ -53,7 +53,7 @@ var droitsDescription = {
                     type: 'complex',
                 },
                 'asi': {
-                    'label': 'Allocation supplémentaire d’invalidité',
+                    'label': 'allocation supplémentaire d’invalidité',
                     'description': 'L’allocation supplémentaire d’invalidité (Asi) est une prestation accordée à certaines personnes invalides. Elle s’adresse à celles et ceux qui ont de faibles ressources et n’ont pas atteint l’âge de départ à la retraite. Elle est versée tous les mois et s’ajoute, dans une certaine limite, aux revenus personnels.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F16940',
                     'form': 'http://www.ameli.fr/fileadmin/user_upload/formulaires/S4151.pdf',
@@ -75,7 +75,7 @@ var droitsDescription = {
             'etablissements': ['caf'],
             'prestations': {
                 'af': {
-                    'label': 'Allocations familiales',
+                    'label': 'allocations familiales',
                     'description': 'Les allocations familiales sont réservées aux personnes ayant au moins 2 enfants de moins de 20 ans à charge. Le montant des prestations dépend des ressources, du nombre d’enfants à charge et de leurs âges. Elles sont versées tous les mois. Dans les DOM, les allocations sont versées à partir du premier enfant.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
@@ -90,7 +90,7 @@ var droitsDescription = {
                     prefix: 'les',
                 },
                 'cf': {
-                    'label': 'Complément familial',
+                    'label': 'complément familial',
                     'description': 'Le complément familial s’ajoute aux allocations familiales à partir du troisième enfant à charge âgé de plus de 3 ans et de moins de 21 ans. Il est destiné aux familles ayant de faibles ressources. Dans les DOM, le complément familial concerne tous les enfants à charge âgés entre 3 et 5 ans.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F13214',
                     'form': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationsfamilialesouchangementdesituation',
@@ -102,7 +102,7 @@ var droitsDescription = {
                     prefix: 'le',
                 },
                 'asf': {
-                    'label': 'Allocation de soutien familial',
+                    'label': 'allocation de soutien familial',
                     'description': 'L’allocation de soutien familial (ASF) est destinée soit au parent qui élève seul un enfant non reconnu, privé de l’aide d’un parent ou dont l’autre parent est décédé, soit à la personne seule ou en couple qui recueille un enfant. L’ASF est versée par la Caf ou la MSA tous les mois.',
                     'conditions': [
                         'Toucher une pension alimentaire d’un montant inférieur à celui de l’ASF ou ne pas toucher en intégralité une pension alimentaire attribuée par une décision de justice. À noter : la Caf ou la MSA peut vous aider à <a target="_blank" rel="noopener" title="Agence de recouvrement des impayés de pensions alimentaires (ARIPA)" href="https://www.pension-alimentaire.caf.fr/">récupérer les sommes dues</a>.'
@@ -117,7 +117,7 @@ var droitsDescription = {
                     prefix: 'l’',
                 },
                 'paje_base': {
-                    'label': 'Prestation d’accueil du jeune enfant – Allocation de base',
+                    'label': 'prestation d’accueil du jeune enfant – Allocation de base',
                     'description': 'L’allocation de base de la prestation d’accueil du jeune enfant (Paje) a pour objet d’aider à assurer les dépenses liées à l’entretien et l’éducation d’un enfant. Elle est destinée aux parents d’un enfant de moins de 3 ans ayant de faibles ressources. Elle est versée par la Caf ou la MSA.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.'
@@ -133,7 +133,7 @@ var droitsDescription = {
                     prefix: 'la',
                 },
                 'rsa': {
-                    'label': 'Revenu de solidarité active',
+                    'label': 'revenu de solidarité active',
                     'labelFunction': function(b) { return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`; },
                     'description': 'Le revenu de solidarité active (RSA) assure aux personnes sans ressources un niveau minimum de revenu variable selon la composition du foyer. Le RSA, le RSA parent isolé et le RSA jeunes parents sont simulés. Financé par les conseils départementaux, son versement se fait à travers la Caf ou la MSA. Les services sociaux de votre département vous orienteront vers l’organisme à qui adresser votre demande.',
                     'conditions': [
@@ -182,7 +182,7 @@ var droitsDescription = {
                     floorAt: 10,
                 },
                 'aide_logement': {
-                    'label': 'Aides au logement',
+                    'label': 'aides au logement',
                     'description': 'Les aides au logement regroupent trois aides différentes non cumulables : l’aide personnalisée au logement (Apl), l’allocation de logement familiale (Alf) et l’allocation de logement sociale (Als). Elles concernent les personnes ayant de faibles ressources, locataires ou remboursant le prêt de leur résidence principale. Elles sont versées par la Caf ou la MSA.',
                     'conditions': [
                         'Résider au moins 8 mois par an dans le logement que vous avez décrit.',
@@ -216,7 +216,7 @@ var droitsDescription = {
                     prefix: 'les',
                 },
                 'ppa': {
-                    'label': 'Prime d’activité',
+                    'label': 'prime d’activité',
                     'labelFunction': function(b) { return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`; },
                     'description': 'La prime d’activité complète les revenus d’activité professionnelle des travailleurs de 18 ans ou plus, des étudiants salariés et apprentis et des non-salariés. La demande peut se faire à travers un téléservice sur, selon votre cas, le site de la Caf ou de la MSA. Elle remplace le RSA activité et la prime pour l’emploi depuis 2016.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F2882',
@@ -230,7 +230,7 @@ var droitsDescription = {
                 },
                 'aah': {
                     'isMontantAnnuel': false,
-                    'label': 'Allocation aux adultes handicapés',
+                    'label': 'allocation aux adultes handicapés',
                     'description': 'L’allocation aux adultes handicapés (AAH) est une aide financière qui permet d’assurer un revenu minimum. Cette aide est attribuée sous réserve de respecter 4 critères : le taux d’incapacité, l’âge, la nationalité et les ressources. L’AAH peut se cumuler soit avec le complément de ressources, soit avec la majoration pour la vie autonome ou, dans certains cas, l’aide à l’autonomie.',
                     'isBaseRessourcesYearMinusTwo': true,
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F12242',
@@ -243,7 +243,7 @@ var droitsDescription = {
                 },
                 'caah': {
                     'isMontantAnnuel': false,
-                    'label': 'Complément à l’allocation adultes handicapés',
+                    'label': 'complément à l’allocation adultes handicapés',
                     'description': 'Les personnes en situation de handicap les plus éloignées de l’emploi peuvent recevoir le complément de ressources. Il a pour objectif de compenser l’absence durable de revenus d’activité si vous êtes dans l’incapacité de travailler. Le CAAH forme, avec l’AAH, ce que l’on appelle la garantie de ressources.',
                     'conditions': [
                         'Avoir une capacité de travail (appréciée par la CADPH) inférieure à 5 % du fait de votre handicap.'
@@ -259,7 +259,7 @@ var droitsDescription = {
                 },
                 'aeeh': {
                     'isMontantAnnuel': false,
-                    'label': 'Allocation d’éducation de l’enfant handicapé (AEEH)',
+                    'label': 'allocation d’éducation de l’enfant handicapé (AEEH)',
                     'description': 'L’allocation d’éducation de l’enfant handicapé (AEEH) est une prestation destinée à compenser les frais d’éducation et de soins apportés à un enfant en situation de handicap. Cette aide est versée à la personne qui en assume la charge.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F14809',
                     'forms': {
@@ -276,7 +276,7 @@ var droitsDescription = {
             'etablissements': ['pole_emploi'],
             'prestations': {
                 'ass': {
-                    'label': 'Allocation de solidarité spécifique',
+                    'label': 'allocation de solidarité spécifique',
                     'description': 'L’allocation de solidarité spécifique (ASS) est une aide financière attribuée aux personnes ayant épuisé leurs droits au chômage. Elle peut être versée à taux plein ou à taux réduit. En cas de reprise d’activité, elle peut être maintenue.',
                     'conditions': [
                         'Avoir travaillé au moins 5 ans au cours des 10 ans avant la fin de votre dernier contrat de travail.'
@@ -296,7 +296,7 @@ var droitsDescription = {
             'prestations': {
                 'cheque_energie': {
                     'isMontantAnnuel': true,
-                    'label': 'Chèque Énergie',
+                    'label': 'chèque Énergie',
                     'description': 'Le Chèque Énergie peut être utilisé pour toutes les dépenses d’énergie (électricité, gaz, fioul, bois, etc.) et les travaux de rénovation énergétique. Il est envoyé automatiquement chaque année en fonction de votre situation fiscale et de votre ménage.',
                     'conditions': [
                         'Résider en France au 1er janvier de l‘année.',
@@ -319,7 +319,7 @@ var droitsDescription = {
             'repository': 'france-local',
             'prestations': {
                 'garantie_jeunes': {
-                    'label': 'Garantie Jeunes',
+                    'label': 'garantie Jeunes',
                     'description': 'La garantie jeunes permet d’accompagner vers l’emploi ou la formation les jeunes entre 16 et 25 ans en situation difficile. C’est un parcours d´un an en partenariat avec la mission locale qui peut être prolongé jusqu’à 6 mois.',
                     'conditions': [
                         'Faire votre demande d´accompagnement auprès de <a target="_blank" rel="noopener" href="https://www.unml.info/les-missions-locales/annuaire/" title="Annuaire des missions locales" >la Mission Locale</a> dont vous dépendez.',
@@ -350,7 +350,7 @@ var droitsDescription = {
             'imgSrc': 'logo_banque_de_france.png',
             'prestations': {
                 'livret_epargne_populaire_taux': {
-                    'label': 'Livret d’épargne populaire',
+                    'label': 'livret d’épargne populaire',
                     'labelFunction': function(b) { return `${b.label} avec un taux de ${b.montant}% an ${b.legend}`; },
                     'unit': '%',
                     'description': 'Le livret d’épargne populaire (LEP) est un placement réservé aux personnes disposant de revenus modestes. Il offre de nombreux avantages parmi lesquels un taux d’intérêt garanti supérieur aux autres livrets réglementés.',
@@ -375,7 +375,7 @@ var droitsDescription = {
             'prestations': {
                 'bourse_college': {
                     'isMontantAnnuel': true,
-                    'label': 'Bourse de collège',
+                    'label': 'bourse de collège',
                     'description': 'La bourse de collège est une aide destinée à favoriser la scolarité des collégiens. Elle est versée aux familles ayant de faibles ressources. Son montant dépend du nombre d’enfants à charge.',
                     conditions: [
                         'Déposer votre dossier à partir de l’été 2018 pour l’année scolaire 2018-2019.',
@@ -391,7 +391,7 @@ var droitsDescription = {
                 },
                 'bourse_lycee': {
                     'isMontantAnnuel': true,
-                    'label': 'Bourse de lycée',
+                    'label': 'bourse de lycée',
                     'description': 'La bourse de lycée est accordée aux responsables d’un lycéen qui ont de faibles ressources. Si l’élève entre au lycée ou s’il n’a jamais touché de bourse de lycée, il pourra y prétendre selon les ressources et les charges de sa famille. Une nouvelle demande doit être effectuée en cas de redoublement ou réorientation.',
                     conditions: [
                         'Déposer votre dossier avant le 20 juin 2018 pour l’année scolaire 2018-2019.',
@@ -415,7 +415,7 @@ var droitsDescription = {
                 'logement_social': {
                     'type': 'bool',
                     'isBaseRessourcesYearMinusTwo': true,
-                    'label': 'Logement social',
+                    'label': 'logement social',
                     'description': 'Le logement social est destiné aux personnes et familles dont les ressources ne dépassent pas un certain seuil et répondant à certaines conditions d’accès. Aucun frais de dossier n’est réclamé lors de la demande, ni lors de la signature du bail. Il n’est pas obligatoire de résider dans une commune pour y déposer un dossier.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
@@ -443,7 +443,7 @@ var droitsDescription = {
                     'isMontantAnnuel': false,
                     'unit': '%',
                     'legend': 'de l’abonnement STAR',
-                    'label': 'Tarification solidaire transports',
+                    'label': 'tarification solidaire transports',
                     'description': 'La tarification solidaire est une réduction de 50 %, 85 % ou 100 % (gratuité) de l’abonnement mensuel du réseau de transports en commun Star. La réduction s’applique également au service Handistar. Elle est accordée aux familles de Rennes Métropole ayant de faibles ressources. La tarification est accordée à tous les membres du foyer.',
                     'link': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/',
                     'instructions': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/#c33081',
@@ -461,7 +461,7 @@ var droitsDescription = {
             'prestations': {
                 'brest_metropole_transport': {
                     'legend': 'au lieu de 38.50 € / mois',
-                    'label': 'Tarification solidaire transports',
+                    'label': 'tarification solidaire transports',
                     'description': 'Les familles aux ressources modestes bénéficient de forfaits mensuels à tarif réduit pour les transports : les forfaits Tempo, Tango et Rythmo. Tous les membres du foyer peuvent en bénéficier.',
                     conditions: [
                         'Présenter un <a target="_blank" rel="noopener" href="http://www.caf.fr/allocataires/vies-de-famille/changement-de-situation/changement-familial/le-quotient-familial-c-est-quoi">justificatif de votre quotient familial</a> délivré par votre Caf.'
@@ -485,7 +485,7 @@ var droitsDescription = {
                 'alfortville_noel_enfants': {
                     'isMontantAnnuel': true,
                     'legend': 'en chèque cadeau',
-                    'label': 'Noël des enfants',
+                    'label': 'noël des enfants',
                     'description': 'La mairie d’Alfortville offre un chèque cadeau à chaque enfant de moins de 16 ans des familles aux ressources modestes. ',
                     conditions: [
                         'En cas de séparation, être le bénéficiaire des allocations familiales pour la demande.',
@@ -508,7 +508,7 @@ var droitsDescription = {
             'prefix': 'des',
             'prestations': {
                 'cotes_d_armor_fonds_solidarite_logement_energie_eligibilite': {
-                    'label': 'Fonds de solidarité pour le logement - Aide au paiement des factures d’énergie',
+                    'label': 'fonds de solidarité pour le logement - Aide au paiement des factures d’énergie',
                     'description': 'Le fonds de solidarité accorde des aides aux personnes qui rencontrent des difficultés pour assurer les dépenses de leur logement. L’aide « impayé énergie » correspond plus spécifiquement à l’aide au maintien des fournitures en eau, gaz, électricité, fioul et bois.',
                     conditions: [
                         'Occuper, à titre de résidence principale, un logement sur le territoire du département des Côtes d\'Armor'
@@ -530,7 +530,7 @@ var droitsDescription = {
             'prefix': 'de',
             'prestations': {
                 'nouvelle_aquitaine_carte_solidaire': {
-                    'label': 'Carte Solidaire pour les transports',
+                    'label': 'carte Solidaire pour les transports',
                     unit: '%',
                     legend: 'de réduction',
                     'description': 'La Carte Solidaire permet de bénéficier de réductions importantes sur les trajets en trains TER et cars régionaux en Nouvelle-Aquitaine. Elle est destinée aux personnes qui ont de faibles revenus ou bénéficient de certaines prestations.',

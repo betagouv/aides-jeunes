@@ -134,3 +134,7 @@ $screen-smaller-than-mobile: 399px;
     width: unset;
   }
 }
+
+[itemprop="name"]::first-letter {
+  text-transform: uppercase;
+}

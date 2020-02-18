@@ -90,7 +90,7 @@ export function sansPensionAlimentaireVersees() {
 
 export function hasPrimeActivite() {
   const position = 1
-  const name = /Prime d’activité/
+  const name = /prime d’activité/
   const id = 'ppa'
   const description = /revenus/
   cy.get('h1').invoke('text').should('contain', 'Résultats')

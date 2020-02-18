@@ -1,9 +1,11 @@
 <template>
-  <div class="provider">
+  <div class="provider" itemscope itemtype="http://schema.org/Organization">
+    <link itemprop="additionalType" href="https://schema.org/GovernmentOrganization"/>
     <img v-bind:src="require(`./../../public/img/${item.imgSrc}`)" v-bind:alt="item.label"/>
     <div class="list">
-      <dl v-for="(droit, key) in item.prestations" v-bind:key="key">
-        <dt>{{ droit.label }}</dt>
+      <dl itemscope itemtype="http://schema.org/GovernmentService"
+        v-for="(droit, key) in item.prestations" v-bind:key="key">
+        <dt itemprop="name">{{ droit.label }}</dt>
         <dd>
           <div v-html="droit.description"></div>
           <a v-if="droit.link" v-bind:href="droit.link" target="_blank" rel="noopener" v-bind:aria-label="getLongLabel(droit)">En savoir plus <i class="fa fa-external-link" aria-hidden="true"></i></a>

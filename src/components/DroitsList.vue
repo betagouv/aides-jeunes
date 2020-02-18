@@ -13,7 +13,7 @@
             <img v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
             <div>
               <h2>
-                <span itemprop="name">{{ droit.label }}</span>
+                <div itemprop="name">{{ droit.label }}</div>
                 <small v-bind:aria-label="longCta(droit)">Comment l'obtenir ?</small>
               </h2>
             </div>
@@ -41,7 +41,7 @@
             <img v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
             <div>
               <h2>
-                <span itemprop="name">{{ droit.label }}</span>
+                <div itemprop="name">{{ droit.label }}</div>
                 <small v-bind:aria-label="`Plus d'informations sur ${ droit.label }`">Plus d'informations</small>
               </h2>
             </div>

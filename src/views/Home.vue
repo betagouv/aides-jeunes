@@ -1,5 +1,8 @@
 <template>
   <div id="homepage">
+    <div class="main notification warning full-width bye"><div>
+      À partir du 1er mars, vous ne pourrez plus faire de simulations sur <a href="https://mes-aides.gouv.fr">mes-aides.gouv.fr</a>. En effet, les aides locales sont désormais disponibles sur <a target="_blank" rel="noopener" href="https://www.mesdroitssociaux.gouv.fr">mesdroitssociaux.gouv.fr</a>.</div>
+    </div>
     <div class="container">
       <main class="hero">
         <div class="hero__container text-center">
@@ -8,20 +11,37 @@
             En moins de 7 minutes.
           </h1>
 
-          <div>
-            <a v-bind:class="`button ${ctaSize} primary`"
-              v-on:click="newSituation()"
-              v-analytics="{ action: ctaLabel, category:'Home'}"
-            >
-              {{ctaLabel}}
-            </a>
-            <a v-bind:class="`button ${ctaSize} secondary`"
-              v-on:click="next()"
-              v-analytics="{ action: 'Reprendre ma simulation', category:'Home'}"
-              v-if="hasExistingSituation"
-            >
-              Reprendre la simulation
-            </a>
+          <div v-if="hasExistingSituation">
+            <div>
+              <a v-bind:class="`button ${ctaSize} primary`"
+                v-on:click="newSituation()"
+                v-analytics="{ action: ctaLabel, category:'Home'}"
+              >
+                {{ctaLabel}}
+              </a>
+              <a v-bind:class="`button ${ctaSize} secondary`"
+                v-on:click="next()"
+                v-analytics="{ action: 'Reprendre ma simulation', category:'Home'}"
+                v-if="hasExistingSituation"
+              >
+                Reprendre la simulation
+              </a>
+            </div>
+          </div>
+
+          <div v-else>
+
+            <div>
+              <a v-bind:class="`button ${ctaSize} primary`"
+                v-analytics="{ action: ctaLabel, category:'Au revoir'}"
+                href="https://mesdroitssociaux.gouv.fr"
+                target="_blank" rel="noopener"
+              >Évaluer vos droits sur mesdroitssociaux.gouv.fr</a>
+            </div>
+            <p>
+              Ou
+              <a v-on:click="newSituation()" v-analytics="{ action: ctaLabel, category:'Continue'}">continuez sur Mes Aides</a>
+            </p>
           </div>
           <p>Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.</p>
         </div>
@@ -51,7 +71,6 @@
 import * as droitsDescription from './../../app/js/constants/benefits'
 import ProviderView from '@/components/ProviderView'
 import _ from 'lodash'
-
 export default {
   name: 'home',
   components: {
@@ -67,12 +86,10 @@ export default {
                 if (! prestation.private) {
                     prestations[name] = prestation;
                 }
-
                 return prestations
             }, {});
             return provider
         })
-
         value[type] = _.filter(providersWithoutPrivatePrestations, function(provider) { return _.size(provider.prestations) })
         value[type + 'Count'] = Object.keys(value[type]).reduce(function(total, provider) {
             return total + _.size(value[type][provider].prestations)
@@ -113,19 +130,18 @@ export default {
   font-size: 2em;
   line-height: 1em;
 }
-
 #app {
   height: 100%;
 }
-
 .hero {
   background-color: #fffa;
 }
-
 .hero__container {
   min-height: 75vh;
 }
-
+.bye {
+  display: block;
+}
 hr {
   border-top: 1px solid #ddd;
 }

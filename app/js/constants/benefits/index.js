@@ -429,7 +429,25 @@ var droitsDescription = {
                     prefix: 'le',
                 },
             }
-        }
+        },
+        'etat': {
+            'label': 'L’État Français',
+            'imgSrc': 'logo_etat_francais.png',
+            'prestations': {
+                'covid_aide_exceptionnelle_tpe_montant': {
+                    'label': 'aide financière COVID-19',
+                    legend: '',
+                    'description': 'Cette aide est à destination des plus petites entreprises, des indépendants et des microentreprises des secteurs les plus touchés pendant l’épisode de crise sanitaire dûe au COVID-19.',
+                    'conditions': [
+                        'Subir une fermeture administrative ou bien',
+                        'Subir une perte de chiffre d’affaires de plus de 70% au mois de mars 2020 par rapport au mois de mars 2019',
+                    ],
+                    'link': 'https://www.economie.gouv.fr/coronavirus-soutien-entreprises',
+                    prefix: 'l’',
+                    entity: 'individu',
+                },
+            }
+        },
     },
     'partenairesLocaux': {
         'paris': require('./paris'),

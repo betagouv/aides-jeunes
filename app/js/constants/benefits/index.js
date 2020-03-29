@@ -600,6 +600,27 @@ var droitsDescription = {
                 },
             },
         },
+        departement_nord: {
+            imgSrc: 'logo_cd59.png',
+            repository: 'france-local',
+            label: 'Département du Nord',
+            interactionWithNationalPrestationsHandled: true,
+            prefix: 'de',
+            prestations: {
+                nord_fonds_solidarite_logement_aide_maintien_eligibilite: {
+                    label: 'aide au maintien dans votre logement',
+                    conditions: [
+                        'Occuper, à titre de résidence principale, un logement sur le territoire du département du Nord',
+                        'Satisfaire les conditions financières décrites dans le règlement.',
+                    ],
+                    description: 'Dans le cadre du Fonds de Solidarité Logement du département du Nord, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).',
+                    link: 'https://lenord.fr/jcms/prd1_334245/aide-au-maintien-dans-le-logement?thematique=&typePublic=&motsCles=maintien',
+                    entity: 'menage',
+                    type: 'bool',
+                    prefix: 'une',
+                },
+            },
+        },
     }
 };
 

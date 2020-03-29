@@ -578,6 +578,28 @@ var droitsDescription = {
                 },
             },
         },
+        lille_metropole: {
+            imgSrc: 'logo_lille_metropole.png',
+            repository: 'france-local',
+            label: 'Métropole européenne de Lille',
+            interactionWithNationalPrestationsHandled: true,
+            prefix: 'de',
+            prestations: {
+                metropole_lille_fonds_solidarite_logement_aide_maintien_eligibilite: {
+                    label: 'aide au maintien dans votre logement',
+                    description: 'Dans le cadre du Fonds de Solidarité Logement de la Métropole européenne de Lille, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).',
+                    conditions: [
+                        'Occuper, à titre de résidence principale, un logement sur le territoire de la Métropole de Lille',
+                        'Satisfaire les conditions financières décrites dans le règlement.',
+                    ],
+                    link: 'https://www.lillemetropole.fr/votre-metropole/competences/amenagement-du-territoire/logement/le-fonds-de-solidarite-logement',
+                    form: 'https://www.lillemetropole.fr/sites/default/files/2019-12/Volet%20demandeur%20maintien.pdf',
+                    entity: 'menage',
+                    type: 'bool',
+                    prefix: 'une',
+                },
+            },
+        },
     }
 };
 

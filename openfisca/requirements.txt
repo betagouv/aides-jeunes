@@ -1,7 +1,7 @@
 gunicorn>=19.1.1
 git+https://github.com/mes-aides/openfisca-france.git@covid-tpe#egg=openfisca-France
 Openfisca-Core[web-api]==34.7.2
-git+https://github.com/openfisca/openfisca-france-local.git@97c5a32#egg=openfisca-France-Local
+git+https://github.com/mes-aides/openfisca-france-local.git@fsl#egg=openfisca-France-Local
 git+https://github.com/openfisca/openfisca-paris.git@29891c2#egg=openfisca-paris
 git+https://github.com/openfisca/openfisca-brestmetropole.git@fa2da0b#egg=openfisca-BrestMetropole
 git+https://github.com/openfisca/openfisca-rennesmetropole.git@bbcbef2#egg=openfisca-RennesMetropole

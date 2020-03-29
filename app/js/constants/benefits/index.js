@@ -589,7 +589,7 @@ var droitsDescription = {
                     label: 'aide au maintien dans votre logement',
                     description: 'Dans le cadre du Fonds de Solidarité Logement de la Métropole européenne de Lille, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).',
                     conditions: [
-                        'Occuper, à titre de résidence principale, un logement sur le territoire de la Métropole de Lille',
+                        'Occuper, à titre de résidence principale, un logement sur le territoire de la Métropole de Lille.',
                         'Satisfaire les conditions financières décrites dans le règlement.',
                     ],
                     link: 'https://www.lillemetropole.fr/votre-metropole/competences/amenagement-du-territoire/logement/le-fonds-de-solidarite-logement',
@@ -607,20 +607,22 @@ var droitsDescription = {
             interactionWithNationalPrestationsHandled: true,
             prefix: 'de',
             prestations: {
-                nord_fonds_solidarite_logement_aide_maintien_eligibilite: {
+                ['nord_fonds_solidarite_logement_aide_maintien_eligibilite']: {
+                    link: 'https://lenord.fr/jcms/preprd1_145072/le-fonds-de-solidarite-pour-le-logement',
+                    instructions: 'https://lenord.fr/jcms/prd1_334245/aide-au-maintien-dans-le-logement?thematique=&typePublic=&motsCles=maintien',
                     label: 'aide au maintien dans votre logement',
                     conditions: [
-                        'Occuper, à titre de résidence principale, un logement sur le territoire du département du Nord',
+                        'Occuper, à titre de résidence principale, un logement sur le territoire du département du Nord.',
                         'Satisfaire les conditions financières décrites dans le règlement.',
                     ],
                     description: 'Dans le cadre du Fonds de Solidarité Logement du département du Nord, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).',
-                    link: 'https://lenord.fr/jcms/prd1_334245/aide-au-maintien-dans-le-logement?thematique=&typePublic=&motsCles=maintien',
                     entity: 'menage',
                     type: 'bool',
                     prefix: 'une',
                 },
             },
         },
+        ...require('./fonds_solidarite_logement'),
     }
 };
 

@@ -7,7 +7,7 @@ extensions = ['openfisca_france_local', 'openfisca_paris', 'openfisca_brestmetro
 tax_benefit_system = build_tax_benefit_system(
     country_package_name = country_package,
     extensions = extensions,
-    reforms = []
+    reforms = ['openfisca_france_local.fsl_factory.fsl_reform']
 )
 
 application = create_app(tax_benefit_system)

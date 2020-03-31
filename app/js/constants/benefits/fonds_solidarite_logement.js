@@ -57,6 +57,16 @@ module.exports = {
             instructions: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/aides-financieres-pour-le-mainti.html',
         }
     }),
+    departement_doubs: fsl_generator({
+        prefix: 'doubs',
+        label: 'du Doubs',
+        code: '25',
+        resources: {
+            link: 'https://www.doubs.fr/index.php/vous-accompagner/36-particuliers/2242-le-fonds-de-solidarite-logement-fsl',
+            form: 'http://www.adil25.org/fileadmin/user_upload/PDAHLPD/Grand_public/imprime_aide_financiere_individuelle_FSL_actualise.pdf',
+            instructions: 'http://www.adil25.org/le-pdalhpd/documentation/le-reglement-interieur-du-fsl-et-formulaire-de-demande-daide.html',
+        }
+    }),
     departement_finistere: fsl_generator({
         prefix: 'finistere',
         label: 'du Finistère',

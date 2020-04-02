@@ -20,7 +20,7 @@ context('Full simulation', () => {
     cy.get('form').next().first().as('addForm')
     cy.get('@addForm').get('h1').invoke('text').should('contain', 'Nouvel enfant')
     cy.get('#date-de-naissance')
-      .type('01042000')
+      .type('01042004')
     cy.get('button[type="submit"]').click()
     cy.get('.child').first().invoke('text').should('contain', 'Votre 1ᵉʳ enfant')
 

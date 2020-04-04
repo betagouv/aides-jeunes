@@ -22,6 +22,30 @@ function fsl_generator({ prefix, label, code, resources }) {
     }
 }
 
+function fsl_generator_metropole({ prefix, label, code, resources }) {
+    return {
+        imgSrc: 'logo_cd06.png',//`logo_${code}_metropole.png`,
+        repository: 'france-local',
+        label,
+        interactionWithNationalPrestationsHandled: true,
+        prefix,
+        prestations: {
+            [`${code}_metropole_fonds_solidarite_logement_aide_maintien_eligibilite`]: {
+                ...resources,
+                label: 'aide au maintien dans votre logement',
+                conditions: [
+                    `Occuper, à titre de résidence principale, un logement sur le territoire ${prefix} ${label}.`,
+                    'Satisfaire les conditions financières décrites dans le règlement.',
+                ],
+                description: `Dans le cadre du Fonds de Solidarité Logement ${prefix} ${label}, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).`,
+                entity: 'menage',
+                type: 'bool',
+                prefix: 'une',
+            },
+        },
+    }
+}
+
 module.exports = {
     departement_ain: fsl_generator({
         prefix: 'ain',

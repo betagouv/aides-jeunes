@@ -185,6 +185,7 @@ module.exports = {
         code: '44',
         resources: {
             link: 'https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/parent-/-famille/fonds-de-solidarite-pour-le-logement-fsl-les-aides-a-l-acces-ou-au-maintien-dans-votre-logement-fr-t1_16291',
+            form: 'https://www.loire-atlantique.fr/upload/docs/application/pdf/2020-03/formulaire_de_demande_daide_au_logement_2020-03-09_14-37-8_451.pdf',
         }
     }),
     departement_maine_et_loire: fsl_generator({

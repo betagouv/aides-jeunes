@@ -173,7 +173,7 @@ var droitsDescription = {
                         },
                         'M69-LYON': {
                             provider: {
-                                imgSrc: 'logo_grand_lyon.png',
+                                imgSrc: 'logo_lyon_metropole.png',
                             },
                             link: 'https://www.grandlyon.com/services/rsa-mode-d-emploi.html',
                         },

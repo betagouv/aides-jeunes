@@ -239,7 +239,7 @@ module.exports = {
         },
         'M69-LYON': {
             provider: {
-                imgSrc: 'logo_grand_lyon.png',
+                imgSrc: 'logo_lyon_metropole.png',
             },
             instructions: undefined, // Prevent default form recycling
             form: 'https://www.grandlyon.com/fileadmin/user_upload/media/pdf/pa-ph/personnes-agees/20170802_dossier_demande_apa.pdf',

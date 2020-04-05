@@ -416,12 +416,30 @@ module.exports = {
             form: 'https://www.manche.fr/conseil-departemental/iso_album/dossier_de_demande_logement.pdf',
         }
     }),
+    departement_marne: fsl_generator({
+        prefix: 'marne',
+        label: 'de la Marne',
+        code: '51',
+        resources: {
+            link: 'http://www.marne.fr/les-actions/sante-et-social/logement-social/acces-et-maintien-dans-le-logement-le-fonds-solidarite',
+        }
+    }),
     departement_mayenne: fsl_generator({
         prefix: 'mayenne',
         label: 'de la Mayenne',
         code: '53',
         resources: {
             link: 'https://www.lamayenne.fr/service/le-fonds-solidarite-pour-le-logement',
+        }
+    }),
+    departement_morbihan: fsl_generator({
+        prefix: 'morbihan',
+        label: 'du Morbihan',
+        code: '56',
+        resources: {
+            link: 'https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl/',
+            form: 'https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/20_morbihan_5_H08_FSL_maintien_logement.pdf',
+            instructions: 'https://www.morbihan.fr/les-services/aides-departementales/toutes-nos-aides/toutes-nos-aides/?tx_cg56aidesdep_guidedesaides[selectMotsCles]=fsl&tx_cg56aidesdep_guidedesaides[action]=resultsNoCache&tx_cg56aidesdep_guidedesaides[controller]=Aide#hautDePage',
         }
     }),
     departement_moselle: fsl_generator({
@@ -431,6 +449,14 @@ module.exports = {
         resources: {
             link: 'https://www.moselle.fr/jcms/pl_12538/fr/fonds-solidarite-logement-fsl',
             form: 'https://www.moselle.fr/upload/docs/application/pdf/2018-11/demande_dintervention_du_fsl_-_acces_impayes_locatifs.pdf',
+        }
+    }),
+    departement_oise: fsl_generator({
+        prefix: 'oise',
+        label: 'de l’Oise',
+        code: '60',
+        resources: {
+            link: 'http://www.oise.fr/guide-des-aides/aide/fonds-departemental-de-solidarite/',
         }
     }),
     departement_pas_de_calais: fsl_generator({
@@ -450,6 +476,14 @@ module.exports = {
             instructions: 'https://www.puy-de-dome.fr/fileadmin/user_upload/CD63-2020-RI-FSL.pdf',
         }
     }),
+    departement_pyrenees_atlantiques: fsl_generator({
+        prefix: 'pyrenees_atlantiques',
+        label: 'des Pyrénées-Atlantiques',
+        code: '64',
+        resources: {
+            link: 'http://www.le64.fr/solidarite/logement-et-habitat/accompagnement-des-publics/favoriser-lacces-et-le-maintien-dans-les-lieux.html',
+        }
+    }),
     departement_bas_rhin: fsl_generator({
         prefix: 'bas_rhin',
         label: 'du Bas-Rhin',
@@ -458,12 +492,54 @@ module.exports = {
             link: 'https://www.bas-rhin.fr/action-sociale-et-sante/difficultes-logement/',
         }
     }),
+    departement_haut_rhin: fsl_generator({
+        prefix: 'haut_rhin',
+        label: 'du Haut-Rhin',
+        code: '68',
+        resources: {
+            link: 'https://www.haut-rhin.fr/content/des-aides-pour-votre-logement',
+        }
+    }),
     departement_rhone: fsl_generator({
         prefix: 'rhone',
         label: 'du Rhône',
         code: '69',
         resources: {
             link: 'https://www.rhone.fr/solidarites/insertion/logement/le_fonds_de_solidarite_logement',
+        }
+    }),
+    lyon_metropole: fsl_generator_metropole({
+        prefix: 'de la',
+        label: 'Métropole de Lyon',
+        code: 'lyon',
+        resources: {
+            link: 'https://www.grandlyon.com/services/aides-fonds-solidarite-logement.html',
+            form: 'https://www.grandlyon.com/fileadmin/user_upload/media/pdf/habitat/20190111_fsl_demande-aide-acces-logement.pdf',
+        }
+    }),
+    departement_saone_et_loire: fsl_generator({
+        prefix: 'saone_et_loire',
+        label: 'de la Saône-et-Loire',
+        code: '71',
+        resources: {
+            link: 'https://www.saoneetloire71.fr/accueil/vous-etes-proprietaire/locataire/rester-dans-mon-logement',
+            form: 'https://www.saoneetloire71.fr/fileadmin/Que_peut-on_faire_pour_vous__/Vous_etes_proprietaire_locataire/Aides_logement/7733_DOSSIER_UNIQUE.pdf',
+        }
+    }),
+    departement_sarthe: fsl_generator({
+        prefix: 'sarthe',
+        label: 'de la Sarthe',
+        code: '72',
+        resources: {
+            link: 'https://www.sarthe.fr/insertion-logement/logement-habitat/fonds-de-solidarite-logement',
+        }
+    }),
+    departement_haute_savoie: fsl_generator({
+        prefix: 'haute_savoie',
+        label: 'de la Haute-Savoie',
+        code: '74',
+        resources: {
+            link: 'https://www.hautesavoie.fr/informations-services/logement',
         }
     }),
     departement_paris: fsl_generator({
@@ -490,6 +566,22 @@ module.exports = {
             link: 'https://www.seine-et-marne.fr/Solidarite/Logement/Aides-au-logement',
         }
     }),
+    departement_yvelines: fsl_generator({
+        prefix: 'yvelines',
+        label: 'des Yvelines',
+        code: '78',
+        resources: {
+            link: 'https://www.yvelines.fr/solidarite/adultes-en-difficulte/logement/acces-et-maintien-logement/',
+        }
+    }),
+    departement_somme: fsl_generator({
+        prefix: 'somme',
+        label: 'de la Somme',
+        code: '80',
+        resources: {
+            link: 'https://www.somme.fr/services/rsa-insertion/les-aides-a-linsertion/le-fonds-de-solidarite-logement/',
+        }
+    }),
     departement_var: fsl_generator({
         prefix: 'var',
         label: 'du Var',
@@ -497,6 +589,14 @@ module.exports = {
         resources: {
             link: 'https://www.var.fr/social/insertion/fonds-de-solidarite-logement',
             form: 'https://www.var.fr/documents/20142/2028094/MAINTIEN+A4.pdf/7623c7eb-daa0-cf0e-aabf-cd701c8c6d1d',
+        }
+    }),
+    departement_vaucluse: fsl_generator({
+        prefix: 'vaucluse',
+        label: 'du Vaucluse',
+        code: '84',
+        resources: {
+            link: 'http://www.vaucluse.fr/habitat-logement/les-aides-aux-particuliers/le-fonds-de-solidarite-pour-le-logement-1531.html',
         }
     }),
     departement_vendee: fsl_generator({
@@ -516,12 +616,29 @@ module.exports = {
             form: 'http://www.fsl86.fr/images/pdf/declaration_de_ressources.pdf',
         }
     }),
+    departement_essonne: fsl_generator({
+        prefix: 'essonne',
+        label: 'de l’Essonne',
+        code: '91',
+        resources: {
+            link: 'http://www.essonne.fr/le-departement/les-organismes-associes/le-fonds-de-solidarite-pour-le-logement-fsl/',
+        }
+    }),
+    departement_hauts_de_seine: fsl_generator({
+        prefix: 'hauts_de_seine',
+        label: 'des Hauts-de-Seine',
+        code: '92',
+        resources: {
+            link: 'https://www.78-92.fr/annuaire/aides-et-services/detail/fonds-de-solidarite-logement-fsl',
+        }
+    }),
     departement_seine_saint_denis: fsl_generator({
         prefix: 'seine_saint_denis',
         label: 'de Seine-Saint-Denis',
         code: '93',
         resources: {
             link: 'https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html',
+            instructions: 'https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html#comment_en_formuler_la_demande',
         }
     }),
     departement_val_de_marne: fsl_generator({

@@ -1,3 +1,12 @@
+const financial_requirement = '<strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.'
+const common_attributes = {
+    label: 'aide au maintien dans votre logement',
+    entity: 'menage',
+    type: 'bool',
+    prefix: 'une',
+    symbol: 'fa-exclamation-triangle'
+}
+
 function fsl_generator({ prefix, label, code, resources }) {
     return {
         imgSrc: `logo_cd${code}.png`,
@@ -7,16 +16,13 @@ function fsl_generator({ prefix, label, code, resources }) {
         prefix: 'de',
         prestations: {
             [`${prefix}_fonds_solidarite_logement_aide_maintien_eligibilite`]: {
+                ...common_attributes,
                 ...resources,
-                label: 'aide au maintien dans votre logement',
                 conditions: [
                     `Occuper, à titre de résidence principale, un logement sur le territoire du département ${label}.`,
-                    'Satisfaire les conditions financières décrites dans le règlement.',
+                    financial_requirement,
                 ],
                 description: `Dans le cadre du Fonds de Solidarité Logement du département ${label}, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).`,
-                entity: 'menage',
-                type: 'bool',
-                prefix: 'une',
             },
         },
     }
@@ -31,16 +37,13 @@ function fsl_generator_metropole({ prefix, label, code, resources }) {
         prefix,
         prestations: {
             [`${code}_metropole_fonds_solidarite_logement_aide_maintien_eligibilite`]: {
+                ...common_attributes,
                 ...resources,
-                label: 'aide au maintien dans votre logement',
                 conditions: [
                     `Occuper, à titre de résidence principale, un logement sur le territoire ${prefix} ${label}.`,
-                    'Satisfaire les conditions financières décrites dans le règlement.',
+                    financial_requirement,
                 ],
                 description: `Dans le cadre du Fonds de Solidarité Logement ${prefix} ${label}, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).`,
-                entity: 'menage',
-                type: 'bool',
-                prefix: 'une',
             },
         },
     }

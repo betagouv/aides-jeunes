@@ -16,7 +16,7 @@
     </p>
 
     <p>
-    Dans ce contexte d’urgence, les critères de ressources n’ont pas pu pris en compte de façon automatique. Nous souhaitons que cela soit rendu possible afin d’informer au mieux les particuliers fragiles. Ainsi, nous espérons entrer en collaboration avec les départements, les administrations et les associations qui partagent cette volonté.
+    Dans ce contexte d’urgence, les critères de ressources n’ont pas pu être pris en compte de façon automatique. Nous souhaitons que cela soit rendu possible afin d’informer au mieux les particuliers fragiles. Ainsi, nous espérons entrer en collaboration avec les départements, les administrations et les associations qui partagent cette volonté.
     </p>
 
     <p>

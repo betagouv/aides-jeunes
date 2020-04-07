@@ -162,6 +162,10 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "financement" */ './views/Financement.vue')
     },
     {
+      path: '/communication/2020-04-08-fonds-solidarites-logement-75-aides',
+      component: () => import(/* webpackChunkName: "communication" */ './views/Communication/2020-04-08-fonds-solidarites-logement-75-aides.vue'),
+    },
+    {
       path: '/contact',
       name: 'contact',
       component: () => import(/* webpackChunkName: "contact" */ './views/Contact.vue')

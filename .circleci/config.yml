@@ -185,7 +185,7 @@ jobs:
       - run:
           name: Deploy on production
           command: |
-            ssh root@wiru.mes-aides.org
+            ssh root@kuli.mes-aides.org
 
 workflows:
   version: 2

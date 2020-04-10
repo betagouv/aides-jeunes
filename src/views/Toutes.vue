@@ -8,12 +8,12 @@
           <h2 class="text-center">{{ prestationsNationalesCount }} aides nationales évaluées par le simulateur</h2>
           <div v-for="(provider, index) in sortDecreasing(prestationsNationales)" v-bind:key="'n'+index">
             <hr />
-            <ProviderView v-bind:item="provider" />
+            <ProviderView v-bind:id="provider.id" v-bind:item="provider" />
           </div>
           <h2 class="text-center">{{ partenairesLocauxCount }} aides locales évaluées par le simulateur</h2>
           <div v-for="(provider, index) in sortDecreasing(partenairesLocaux)" v-bind:key="'l'+index">
             <hr />
-            <ProviderView v-bind:item="provider" />
+            <ProviderView v-bind:id="provider.id" v-bind:item="provider" />
           </div>
         </div>
       </div>
@@ -36,8 +36,8 @@ export default {
     let value = {}
     const types = ['prestationsNationales', 'partenairesLocaux']
     types.forEach(function(type) {
-        let providersWithoutPrivatePrestations = _.mapValues(droitsDescription[type], function(provider) {
-            provider = _.assign({}, provider)
+        let providersWithoutPrivatePrestations = Object.keys(droitsDescription[type]).map(function(providerName) {
+            const provider = _.assign({id: providerName}, droitsDescription[type][providerName])
             provider.prestations = _.reduce(provider.prestations, function(prestations, prestation, name) {
                 if (! prestation.private) {
                     prestations[name] = prestation;

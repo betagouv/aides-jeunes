@@ -33,8 +33,8 @@
         <priority>0.2</priority>
     </url>
     <url>
-        <loc>https://mes-aides.org/communication</loc>
-        <priority>0.2</priority>
+        <loc>https://mes-aides.org/communication/2020-04-08-fonds-solidarites-logement-75-aides</loc>
+        <priority>0.6</priority>
     </url>
     <url>
         <loc>https://mes-aides.org/stats</loc>

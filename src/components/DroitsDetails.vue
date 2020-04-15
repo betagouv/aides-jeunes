@@ -39,6 +39,7 @@
         <p>
           <span v-html="droit.description" itemprop="description"></span>
            <BenefitCtaLink
+            v-if="droit.link"
             v-bind:analytics-name="droit.label"
             v-bind:link="droit.link"
             v-bind:benefit="droit"

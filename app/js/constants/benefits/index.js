@@ -435,7 +435,7 @@ var droitsDescription = {
             'imgSrc': 'logo_etat_francais.png',
             'prestations': {
                 'covid_aide_exceptionnelle_tpe_montant': {
-                    'label': 'aide financière COVID-19',
+                    'label': 'aide financière COVID-19 pour les petites entreprises',
                     legend: '',
                     'description': 'Cette aide est à destination des plus petites entreprises, des indépendants et des microentreprises des secteurs les plus touchés pendant l’épisode de crise sanitaire dûe au COVID-19.',
                     'conditions': [
@@ -445,6 +445,16 @@ var droitsDescription = {
                     'link': 'https://www.economie.gouv.fr/coronavirus-soutien-entreprises',
                     prefix: 'l’',
                     entity: 'individu',
+                },
+                'covid_aide_exceptionnelle_famille_montant': {
+                    'label': 'aide financière COVID-19 pour les familles',
+                    legend: 'le 15 mai prochain',
+                    'conditions': [
+                        'Percevoir le revenu de solidarité active (RSA) ou l’allocation de solidarité spécifique (ASS) ou',
+                        'Percevoir des aides au logement de la CAF et avoir des enfants dans son foyer',
+                    ],
+                    'description': 'Cette aide est à destination des familles en difficulté pendant l’épisode de crise sanitaire dûe au COVID-19. Aucune action n’est nécessaire de votre part. Si vous y êtes éligible, cette aide vous sera <strong>versée automatiquement</strong> le 15 mai 2020 en  complément de vos autres prestations.',
+                    prefix: 'l’',
                 },
             }
         },

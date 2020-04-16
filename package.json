@@ -33,7 +33,6 @@
     "moment": "^2.24.0",
     "mongoose": "^5.7.5",
     "morgan": "^1.9.0",
-    "node-mailjet": "^3.3.1",
     "puppeteer": "1.18.0",
     "raven": "^2.6.4",
     "raven-js": "^3.27.2",

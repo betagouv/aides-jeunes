@@ -6,13 +6,10 @@
   </mj-head>
   <mj-body>
     <mj-section>
-      <mj-column width="20%">
-        <mj-image alt="République Française" src="cid:marianne" />
+      <mj-column width="40%">
+        <mj-image alt="Mes Aides" src="{{&baseURL}}/img/logo.svg" />
       </mj-column>
       <mj-column width="40%"></mj-column>
-      <mj-column width="40%">
-        <mj-image alt="Mes Aides" src="cid:logo" />
-      </mj-column>
     </mj-section>
     <mj-section>
       <mj-column>
@@ -29,7 +26,7 @@
     <mj-wrapper>
       <mj-section>
         <mj-column width="20%" vertical-align="middle">
-          <mj-image alt="{{provider.label}}" width="48px" src="{{imgSrc}}" />
+          <mj-image alt="{{provider.label}}" width="48px" src="{{&baseURL}}{{&imgSrc}}" />
         </mj-column>
         <mj-column width="50%" vertical-align="middle">
           <mj-text align="center">

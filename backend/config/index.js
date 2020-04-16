@@ -14,9 +14,6 @@ var all = {
     },
     mongo: {
         uri: process.env.MONGODB_URL || 'mongodb://localhost/dds',
-        options: {
-            useMongoClient: true,
-        },
     },
     sessionSecret: process.env.SESSION_SECRET || 'fghjdfjkdf785a-jreu',
 };

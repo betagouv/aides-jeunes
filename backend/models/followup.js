@@ -1,12 +1,10 @@
-var mailjet = require('node-mailjet');
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var validator = require('validator');
 
+var {SendSmtpEmail, sendEmail} = require('../lib/send-in-blue')
 var utils = require('../lib/utils');
 var config = require('../config');
-
-var sender = mailjet.connect(config.mailjet.publicKey, config.mailjet.privateKey);
 
 var renderInitial = require('../lib/mes-aides/emails/initial').render;
 var renderSurvey = require('../lib/mes-aides/emails/survey').render;
@@ -75,19 +73,19 @@ FollowupSchema.methods.sendInitialEmail = function() {
     var followup = this;
     return this.renderInitialEmail()
         .then(render => {
-            return sender.post('send', { version: 'v3.1' })
-                .request({ Messages: [{
-                    From: { Name: 'Équipe Mes Aides', Email: 'equipe@mes-aides.org'},
-                    To: [{ Email: followup.email}],
-                    Subject: render.subject,
-                    TextPart: render.text,
-                    HTMLPart: render.html,
-                    CustomCampaign: 'Récapitulatif des droits affichés',
-                    InlinedAttachments: render.attachments
-                }]});
-        }).then((response) => { followup.postInitialEmail(response.body.Messages[0].To[0].MessageID); })
+            var email = new SendSmtpEmail()
+            email.to = [{email: followup.email}]
+            email.subject = render.subject
+            email.textContent = render.text
+            email.htmlContent = render.html
+            email.tags = ['initial']
+            return sendEmail(email)
+        }).then((response) => {
+            followup.postInitialEmail(response.messageId);
+        })
         .catch(err => {
-            followup.error = err;
+            console.log('error', err);
+            followup.error = JSON.stringify(err, null, 2);
             return followup.save();
         });
 };
@@ -111,21 +109,18 @@ FollowupSchema.methods.sendSurvey = function() {
     var followup = this;
     return this.createSurvey('initial').then(survey => {
         return this.renderSurveyEmail(survey).then(render => {
-            return sender.post('send', { version: 'v3.1' })
-                .request({ Messages: [{
-                    From: { Name: 'Équipe Mes Aides', Email: 'equipe@mes-aides.org'},
-                    To: [{ Email: followup.email }],
-                    Subject: render.subject,
-                    TextPart: render.text,
-                    HTMLPart: render.html,
-                    CustomCampaign: 'Premier suivi',
-                    InlinedAttachments: render.attachments
-                }]}).then((response) => {
-                    return response.body.Messages[0].To[0].MessageID;
-                }).then(messageId => {
-                    survey.messageId = messageId;
-                    return survey;
-                });
+            var email = new SendSmtpEmail()
+            email.to = [{email: followup.email}]
+            email.subject = render.subject
+            email.textContent = render.text
+            email.htmlContent = render.html
+            email.tags = ['survey']
+            return sendEmail(email).then((response) => {
+                return response.messageId
+            }).then(messageId => {
+                survey.messageId = messageId;
+                return survey;
+            });
         }).catch(err => {
             console.log('error', err);
             survey.error = err;

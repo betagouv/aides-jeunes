@@ -6,9 +6,6 @@ module.exports = Object.assign(require('./development'), {
         loiret_APA_test: 'loiret_APA_test',
         loiret_APA: 'loiret_APA',
     },
-    sendInBlue: {
-        apiKey: 'privateKey',
-    },
     sentry: {
         privateDsn: 'https://userID:password@sentry.data.gouv.fr/17'
     },

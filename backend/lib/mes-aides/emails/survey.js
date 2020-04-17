@@ -24,6 +24,7 @@ function renderAsHtml(followup, survey) {
 
     var data = {
         ctaLink: `${config.baseURL}${survey.returnPath}`,
+        baseURL: config.baseURL,
         returnURL: `${config.baseURL}${followup.returnPath}`,
     };
 
@@ -32,7 +33,6 @@ function renderAsHtml(followup, survey) {
             const output = mjml(templateString);
             return {
                 html: output.html,
-                attachments: defaultAttachments
             };
         });
 }
@@ -47,7 +47,6 @@ function render(followup, survey) {
             subject: `[${followup.situation._id || followup.situation}] Votre simulation sur Mes-Aides.org vous a-t-elle été utile ?`,
             text: values[0],
             html: values[1].html,
-            attachments: values[1].attachments,
         };
     });
 }

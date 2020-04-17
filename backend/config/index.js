@@ -8,15 +8,11 @@ var all = {
     openfiscaAxeURL: 'https://betagouv.github.io/mes-aides-changent',
     openfiscaPublicURL: 'https://openfisca.mes-aides.org',
     openfiscaTracerURL: 'https://betagouv.github.io/openfisca-tracer',
-    mailjet: {
-        publicKey: process.env.MAILJET_PUBLIC_KEY,
-        privateKey: process.env.MAILJET_PRIVATE_KEY,
+    sendInBlue: {
+        apiKey: process.env.SEND_IN_BLUE_PRIVATE_KEY || 'privateKey',
     },
     mongo: {
         uri: process.env.MONGODB_URL || 'mongodb://localhost/dds',
-        options: {
-            useMongoClient: true,
-        },
     },
     sessionSecret: process.env.SESSION_SECRET || 'fghjdfjkdf785a-jreu',
 };

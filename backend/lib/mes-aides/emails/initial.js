@@ -37,8 +37,6 @@ function renderAsText(followup, benefits) {
 
 function renderAsHtml(followup, benefits) {
 
-    var attachments = [];
-
     var droits = _.map(benefits, function(droit) {
 
         var montant = '';
@@ -64,20 +62,8 @@ function renderAsHtml(followup, benefits) {
             ctaLabel = 'Plus d\'informations';
         }
 
-        if (!_.find(attachments, attachment => attachment.ContentID === droit.providerId)) {
-            var imagePath =
-                path.join(index.imageRoot, droit.provider.imgSrc);
-
-            attachments.push({
-                ContentType: 'image/png',
-                Filename: path.basename(imagePath),
-                ContentID: droit.providerId,
-                Base64Content: toBase64(imagePath)
-            });
-        }
-
         return _.assign({}, droit, {
-            imgSrc: 'cid:' + droit.providerId,
+            imgSrc: '/img/' + droit.provider.imgSrc,
             montant: montant,
             ctaLink: ctaLink,
             ctaLabel: ctaLabel,
@@ -95,16 +81,16 @@ function renderAsHtml(followup, benefits) {
             const output = mjml(templateString);
             return {
                 html: output.html,
-                attachments: defaultAttachments.concat(attachments)
             };
         });
 }
 
 function render(followup) {
-    return followup.situation.compute()
+    var p = followup.populated('situation') ? Promise.resolve(followup) : followup.populate('situation').execPopulate()
+
+    return p.then(f => f.situation.compute())
         .then(function (results) { return results.droitsEligibles; })
         .then(function (benefits) {
-
             followup.benefits = benefits.map(benefit => ({
                 id: benefit.id,
                 amount: benefit.montant

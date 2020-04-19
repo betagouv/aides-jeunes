@@ -78,6 +78,8 @@ function processSend(args) {
                     } else {
                         return f.sendSurvey();
                     }
+                default:
+                    return;
             }
         }).then(e => {
             console.log('log', e);
@@ -88,10 +90,13 @@ function processSend(args) {
             process.exit(0);
         });
     } else if (args.multiple) {
+        if (args.type !== 'survey') {
+            process.exit(0);
+        }
         const limit = parseInt(args.multiple) || 1;
         Followup.find({
             'surveys.type': {$ne: 'initial'},
-            createdAt: { $lt: new Date(new Date().getTime() - (6.5 * 24 * 60 * 60 * 1000))},
+            sentAt: { $lt: new Date(new Date().getTime() - (6.5 * 24 * 60 * 60 * 1000))},
             surveyOptin: true,
         }).sort({createdAt: 1}).limit(limit).then(list => {
             return Promise.all(list.map(function(followup) {

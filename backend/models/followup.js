@@ -62,6 +62,7 @@ FollowupSchema.methods.postInitialEmail = function(messageId) {
     } else {
         this.messageId = messageId;
     }
+    this.error = undefined;
     return this.save();
 };
 
@@ -81,7 +82,7 @@ FollowupSchema.methods.sendInitialEmail = function() {
             email.tags = ['initial']
             return sendEmail(email)
         }).then((response) => {
-            followup.postInitialEmail(response.messageId);
+            return followup.postInitialEmail(response.messageId);
         })
         .catch(err => {
             console.log('error', err);

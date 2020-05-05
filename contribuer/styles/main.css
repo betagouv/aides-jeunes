@@ -1,0 +1,26 @@
+body, html {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
+.inline-link {
+  text-decoration: underline;
+}
+
+footer {
+  margin: 1em;
+}

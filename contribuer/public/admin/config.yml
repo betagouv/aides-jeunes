@@ -1,0 +1,35 @@
+locale: fr
+backend:
+  name: git-gateway
+  branch: master
+media_folder: public/img
+public_folder: img
+collections:
+  - name: contribution-pages
+    label: Pages du site pour contribuer
+    files:
+    - label: Accueil
+      name: accueil
+      file: "contribuer/content/home.md"
+      fields:
+        - { label: Titre, name: title, widget: string}
+        - { label: Corps, name: body, widget: markdown}
+        - label: Contributions
+          name: categories
+          widget: list
+          fields:
+            - { label: Nom, name: name, widget: string}
+            - label: Idées
+              name: ideas
+              widget: list
+              field: { label: Nom, name: name, widget: string }
+  - name: tasks
+    label: Contributions possibles
+    label_singular: Contribution possible
+    folder: "contribuer/content/tasks"
+    create: true
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: Nom, name: title, widget: string }
+      - { label: Description, name: "body", widget: "text", required: false }

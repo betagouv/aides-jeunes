@@ -1,0 +1,2 @@
+# https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file
+/api/*           https://mes-aides.org/api/:splat 200

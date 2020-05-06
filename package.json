@@ -83,6 +83,7 @@
     "cypress": "cypress run",
     "dev": "grunt serve",
     "sass": "grunt sass",
+    "build:netlify": "npm run build && cp netlify_redirects dist/_redirects",
     "build_old": "NODE_ENV=production webpack --mode=production",
     "build:dev": "webpack --mode=development",
     "test:openfisca": "mocha test/backend/openfisca/test.js --timeout 10000",

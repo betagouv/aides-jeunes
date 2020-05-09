@@ -2,10 +2,18 @@ locale: fr
 backend:
   name: git-gateway
   branch: master
+  commit_messages:
+    create: Création de {{slug}} dans {{collection}}
+    update: Mise à jour de {{slug}} dans {{collection}}
+    delete: Suppression de {{slug}} dans {{collection}}
+    uploadMedia: Nouvelle image {{path}}
+    deleteMedia: Suppression de l'image {{path}}
+
 media_folder: public/img
 public_folder: img
 
 # local_backend: true
+publish_mode: editorial_workflow
 
 collections:
   - name: partenaires
@@ -14,6 +22,7 @@ collections:
     identifier_field: name
     folder: "data/partenaires"
     create: true
+    delete: false
     editor:
       preview: false
     slug: "{{name}}"
@@ -27,11 +36,11 @@ collections:
         name: imgSrc
         widget: image
         allow_multiple: false
-      - label: Aides de test
-        label_singular: aide de test
+      - label: aides fictives
+        label_singular: aide fictive
         name: testing_benefits
         widget: list
-         hint: Vous pouvez ajouter une première aide pour vous appropriez le fonctionnement collaboratif du simulateur.
+        hint: Pour expérimenter la contribution sur Mes Aides, vous pouvez ajouter une aide, fictive. C'est une aide simplifiée mais cet premier ajout nous semble être une étape importante et nécessaire pour s'approprier les modalités de contribution.
         default: []
         collapsed: false
         fields:
@@ -42,6 +51,7 @@ collections:
           - label: Code du département
             name: geographic_sector
             widget: string
+            pattern: ['^.{2,5}$', "Un tel code doit être sur deux caractères"]
             hint: 33 pour la Gironde, l'aide ne sera affichée que pour les personnes ayant déclaré vivre dans ce département.
           - label: Lien vers la page d'informations de référence
             hint: Ce lien permet aux usagers d'aller plus loin dans leurs démarches et de bénéficier effectivement de l'aide. Il est préférable d'indiquer un lien vers un site institutionnel.
@@ -49,6 +59,8 @@ collections:
             widget: string
   - name: contribution-pages
     label: Pages du site pour contribuer
+    create: true
+    delete: false
     files:
     - label: Accueil
       name: accueil

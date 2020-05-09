@@ -69,6 +69,10 @@ function defaultStore() {
       fetching: false,
       forbidden: false,
     },
+    experimentations: {
+      fetching: false,
+      results: null,
+    },
     calculs: defaultCalculs(),
     dates: datesGenerator(now),
     ameliNoticationDone: false,
@@ -244,6 +248,13 @@ const store = new Vuex.Store({
     },
     setDirty: function(state) {
       state.calculs.dirty = true
+    },
+    setExperimentationsFetching(state) {
+      state.experimentations.fetching = true
+    },
+    setExperimentations: function(state, results) {
+      state.experimentations.results = results
+      state.experimentations.fetching = false
     }
   },
   actions: {
@@ -296,16 +307,52 @@ const store = new Vuex.Store({
     compute: function(state, showPrivate) {
       state.commit('startComputation')
       return axios.get('api/situations/' + state.state.situation._id + '/openfisca-response')
-        .then(function(OpenfiscaResponse) {
-          return OpenfiscaResponse.data
-        }).then(function(openfiscaResponse) {
+        .then(openfiscaResponse => openfiscaResponse.data)
+        .then(function(openfiscaResponse) {
           return computeAides(state.state.situation, openfiscaResponse, showPrivate)
-        }).then(results => state.commit('setResults', results))
+        }).then(results => {
+          const hasRsa = _.some(results.droitsEligibles, i => i.id === 'rsa') || _.some(results.droitsInjectes, i => i.id === 'rsa' && i.montant)
+          if (hasRsa) {
+            return state.dispatch('getExperimentations')
+              .then(xp => {
+                _.forEach(xp, (provider) => {
+                  _.forEach(provider.prestations, (benefit, bid) => {
+                    if (!state.state.situation.menage.depcom.startsWith(benefit.geographic_sector)) {
+                      return
+                    }
+                    results.droitsEligibles.unshift({
+                      ...benefit,
+                      id: bid,
+                      provider: provider,
+                      montant: true,
+                      top: 0
+                    })
+                  })
+                })
+                return results
+              })
+          } else {
+            return results
+          }
+        })
+        .then(results => state.commit('setResults', results))
         .catch(error => state.commit('saveComputationFailure', error))
     },
     redirection: function(state, next) {
       state.commit('setMessage', 'Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c\'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:equipe@mes-aides.org">equipe@mes-aides.org</a>.')
       next('/foyer/demandeur')
+    },
+    getExperimentations: function(state) {
+      if (state.state.experimentations.fetching || state.state.experimentations.results) {
+        return Promise.resolve(state.state.experimentations.results)
+      }
+      state.commit('setExperimentationsFetching')
+      return axios.get('api/experimentations')
+        .catch(() => {})
+        .then((response) => {
+          state.commit('setExperimentations', response.data)
+          return response.data
+        })
     }
   }
 })

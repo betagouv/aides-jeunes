@@ -157,6 +157,11 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "ameli" */ './views/Ameli.vue')
     },
     {
+      path: '/experimentations',
+      name: 'experimentations',
+      component: () => import(/* webpackChunkName: "experimentations" */ './views/Experimentations.vue')
+    },
+    {
       path: '/financement',
       name: 'financement',
       component: () => import(/* webpackChunkName: "financement" */ './views/Financement.vue')

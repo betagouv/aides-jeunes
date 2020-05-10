@@ -9,6 +9,7 @@ import _ from 'lodash'
 
 import { computeAides, datesGenerator } from '../backend/lib/mes-aides'
 import { categoriesRnc, patrimoineTypes } from './constants/resources'
+import Partenaire from './lib/Partenaire'
 
 let DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage']
 
@@ -300,7 +301,25 @@ const store = new Vuex.Store({
           return OpenfiscaResponse.data
         }).then(function(openfiscaResponse) {
           return computeAides(state.state.situation, openfiscaResponse, showPrivate)
-        }).then(results => state.commit('setResults', results))
+        }).then(results => {
+          const hasRsa = _.some(results.droitsEligibles, i => i.id === 'rsa') || _.some(results.droitsInjectes, i => i.id === 'rsa' && i.montant)
+          if (hasRsa) {
+            _.forEach(Partenaire.all, (provider) => {
+              _.forEach(provider.prestations, (benefit, bid) => {
+                results.droitsEligibles.unshift({
+                  ...benefit,
+                  id: bid,
+                  provider: provider,
+                  montant: true,
+                  top: 0
+                })
+              })
+            })
+          }
+
+          return results
+        })
+        .then(results => state.commit('setResults', results))
         .catch(error => state.commit('saveComputationFailure', error))
     },
     redirection: function(state, next) {

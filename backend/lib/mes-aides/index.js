@@ -56,7 +56,12 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
         }
 
         if (_.some(individus, function(individu) { return valueAt(aideId, individu, period) !== undefined; })) {
-            return result.droitsInjectes.push(aide);
+            return result.droitsInjectes.push(_.assign({},
+                aide,
+                {
+                    id: aideId,
+                    montant: _.sumBy(individus, i => Math.abs(valueAt(aideId, i, period)))
+                }));
         }
 
         var value = valueAt(aideId + '_non_calculable', computedRessources, period);

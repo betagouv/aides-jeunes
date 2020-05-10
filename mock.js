@@ -16,7 +16,7 @@ function sendToOpenfisca(situation, callback) {
         })
     }
     rp({
-        uri: 'https://openfisca.mes-aides.gouv.fr/calculate',
+        uri: 'https://openfisca.mes-aides.org/calculate',
         method: 'POST',
         body: request,
         json: true,

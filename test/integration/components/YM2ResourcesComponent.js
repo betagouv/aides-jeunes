@@ -1,8 +1,0 @@
-title: 'h1',
-demandeurRevenuActiviteInput: '#salaire_imposable-0',
-suggestionText: 'p.help-block:first-of-type',
-conjointChomageImposableInput: '#chomage_imposable-1',
-rfrInput: '#rfr',
-submitButton: 'button[type="submit"]',
-errorMessage: '.form-group .text-danger',
-globalErrorMessage: '.text-right .text-danger',

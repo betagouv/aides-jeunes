@@ -1,1 +1,0 @@
-../components/IndividualFormComponent.js

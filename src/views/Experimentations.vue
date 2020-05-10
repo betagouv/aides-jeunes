@@ -16,7 +16,7 @@
     </div>
 
     <p>
-      Maintenant vous pouvez faire une simulation en indiquant un logement dans le département que vous avez choisi.
+      Maintenant vous pouvez faire une simulation.
       <ul>
         <li>Dans un premier temps, n'indiquez <strong>aucune</strong> ressource. Cela devrait faire apparaître l'aide que vous avez ajoutée.</li>
         <li>Dans un second temps, vous pouvez modifier la situation décrite en indiquant un salaire de 1200&nbsp;€ par mois. Dans ce cas-là, votre aide ne devrez plus apparaître.</li>
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import Partenaire from '../lib/Partenaire'
 import ProviderView from '@/components/ProviderView'
 
 export default {
@@ -38,14 +39,10 @@ export default {
     ProviderView
   },
   data: () => {
-    return {}
-  },
-  computed: {
-    raw: function() { return this.$store.state.experimentations.results },
-    providers: function() { return this.raw && Object.keys(this.raw).map(k => this.raw[k]) },
-  },
-  mounted: function () {
-    this.$store.dispatch('getExperimentations')
+    const all = Partenaire.all
+    return {
+      providers: Object.keys(all).map(k => all[k])
+    }
   }
 }
 </script>

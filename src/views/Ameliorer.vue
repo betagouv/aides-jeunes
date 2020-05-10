@@ -49,33 +49,5 @@
     <p>Vous pouvez accéder à l’intégralité du code source de Mes Aides en ligne <a href="https://github.com/mes-aides/simulateur">sur GitHub</a>. Toutes les <a href="https://github.com/mes-aides/simulateur/issues">évolutions de Mes Aides</a>, espérées, planifiées ou réalisées, peuvent être suivies en permanence en ligne.</p>
 
     <p>Mes Aides se base sur <a href="https://www.openfisca.fr">OpenFisca</a>, un moteur de calcul libre et ouvert utilisé par des chercheurs en économie et d’autres services publics. L'<a href="https://github.com/mes-aides/simulateur">interface graphique de Mes Aides</a> est elle aussi un <a href="https://fr.wikipedia.org/wiki/Logiciel_libre" title="Sous licence AGPL" uib-popover="Sous licence AGPL" popover-trigger="mouseenter">logiciel libre</a>. Cela signifie que toute entité peut librement vérifier, s'inspirer de, copier, et modifier ce service. La seule contrepartie est la mise à disposition à la communauté des améliorations effectuées.</p>
-
-
-    <div v-if="showExperiment">
-      <h2 id="experimenter">🚀 Expérimenter</h2>
-
-      <p>
-      Depuis quelques mois, nous essayons au maximum de faciliter la contribution. Pour cela, beaucoup de choses ont été automatisées. Vous pouvez continuer votre expérimentation à la <router-link to="/experimentations">page suivante</router-link>.
-      </p>
-    </div>
-
   </article>
 </template>
-
-<script>
-import _ from 'lodash'
-
-export default {
-  name: 'experimentations',
-  data: () => {
-    return {}
-  },
-  computed: {
-    raw: function() { return this.$store.state.experimentations.results },
-    showExperiment: function() { return this.raw && _.some(this.raw, provider => _.size(provider.prestations)) },
-  },
-  mounted: function () {
-    this.$store.dispatch('getExperimentations')
-  }
-}
-</script>

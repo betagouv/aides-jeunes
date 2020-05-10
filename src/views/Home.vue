@@ -9,6 +9,13 @@
           </h1>
 
           <div>
+            <router-link
+              to="/experimentations"
+              v-bind:class="`button ${ctaSize} secondary`"
+              v-if="showExperiment"
+            >
+              🚀 Continuer l'expérimentation 🚀
+            </router-link>
             <a v-bind:class="`button ${ctaSize} primary`"
               v-on:click="newSituation()"
               v-analytics="{ action: ctaLabel, category:'Home'}"
@@ -49,6 +56,7 @@
 </template>
 
 <script>
+import Partenaire from '../lib/Partenaire'
 import * as droitsDescription from './../../app/js/constants/benefits'
 import _ from 'lodash'
 
@@ -75,6 +83,10 @@ export default {
             return total + _.size(value[type][provider].prestations)
         }, 0);
     });
+
+    const partenaires = Partenaire.all
+    value.showExperiment = _.some(partenaires, provider => _.size(provider.prestations))
+
     return value
   },
   computed: {

@@ -15,10 +15,12 @@ public_folder: img
 # local_backend: true
 publish_mode: editorial_workflow
 
+root: ../../..
+
 collections:
   - name: partenaires
     label: Partenaires
-    label_singular: Partenaire
+    label_singular: partenaire
     identifier_field: name
     folder: "data/partenaires"
     create: true
@@ -26,7 +28,7 @@ collections:
     editor:
       preview: false
     slug: "{{name}}"
-    format: yml
+    extension: yml
     fields:
       - label: Nom de votre institution
         hint: Département de la Gironde, Ville de Canéjan, Mauges Communauté, etc.
@@ -48,17 +50,13 @@ collections:
             name: name
             hint: Aide aux impayés de loyer, Chèque de Nöel, etc.
             widget: string
-          - label: Code du département
-            name: geographic_sector
-            widget: string
-            pattern: ['^.{2,5}$', "Un tel code doit être sur deux caractères"]
-            hint: 33 pour la Gironde, l'aide ne sera affichée que pour les personnes ayant déclaré vivre dans ce département.
           - label: Lien vers la page d'informations de référence
             hint: Ce lien permet aux usagers d'aller plus loin dans leurs démarches et de bénéficier effectivement de l'aide. Il est préférable d'indiquer un lien vers un site institutionnel.
             name: link
             widget: string
   - name: contribution-pages
-    label: Pages du site pour contribuer
+    label: Pages
+    label_singular: page
     create: true
     delete: false
     files:
@@ -78,8 +76,8 @@ collections:
               widget: list
               field: { label: Nom, name: name, widget: string }
   - name: tasks
-    label: Contributions possibles
-    label_singular: Contribution possible
+    label: Contributions
+    label_singular: contribution
     folder: "contribuer/content/tasks"
     create: true
     delete: false

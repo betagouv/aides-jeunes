@@ -1,1 +1,0 @@
-../base-suite/MetaFixture.js

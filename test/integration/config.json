@@ -1,8 +1,0 @@
-{
-    "baseURL": "http://localhost:8080/init-ci",
-    "browser": "chrome",
-    "quit": "on success",
-    "views": [ "Verbose"],
-    "timeout": 20000,
-    "bail": true
-}

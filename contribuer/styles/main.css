@@ -14,12 +14,8 @@ body {
 
 a {
   color: unset;
-  text-decoration: unset;
 }
 
-.inline-link {
-  text-decoration: underline;
-}
 
 footer {
   margin: 1em;

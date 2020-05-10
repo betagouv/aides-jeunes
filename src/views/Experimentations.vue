@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Partenaire from '../lib/Partenaire'
+import Institution from '../lib/Institution'
 import ProviderView from '@/components/ProviderView'
 
 export default {
@@ -39,7 +39,7 @@ export default {
     ProviderView
   },
   data: () => {
-    const all = Partenaire.all
+    const all = Institution.all
     return {
       providers: Object.keys(all).map(k => all[k])
     }

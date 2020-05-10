@@ -27,8 +27,8 @@ function transform(collection) {
 }
 
 
-const Partenaire = {
-  all: transform(jamstack.collections.partenaires.items),
+const Institution = {
+  all: transform(jamstack.collections.institutions.items),
 }
 
-export default Partenaire
+export default Institution

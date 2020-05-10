@@ -3,9 +3,9 @@ backend:
   name: git-gateway
   branch: master
   commit_messages:
-    create: Création de {{slug}} dans {{collection}}
-    update: Mise à jour de {{slug}} dans {{collection}}
-    delete: Suppression de {{slug}} dans {{collection}}
+    create: Création de {{slug}} comme {{collection}}
+    update: Mise à jour de {{slug}} comme {{collection}}
+    delete: Suppression de {{slug}} comme {{collection}}
     uploadMedia: Nouvelle image {{path}}
     deleteMedia: Suppression de l'image {{path}}
 
@@ -18,11 +18,11 @@ publish_mode: editorial_workflow
 root: ../../..
 
 collections:
-  - name: partenaires
-    label: Partenaires
-    label_singular: partenaire
+  - name: institution
+    label: Institutions
+    label_singular: institution
     identifier_field: name
-    folder: "data/partenaires"
+    folder: "data/institutions"
     create: true
     delete: false
     editor:

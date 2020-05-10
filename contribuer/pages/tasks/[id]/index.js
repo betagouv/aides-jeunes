@@ -33,7 +33,7 @@ function Task ({id}) {
         <task.react />
       </article>
       <div>
-        <a className="inline-link" href="/">Revenir à la liste</a>
+        <a href="/">Revenir à la liste</a>
       </div>
     </>
   )

@@ -36,18 +36,18 @@
 
     <h2 id="communiquer">📣 Communiquer</h2>
 
-    <p>Parler de Mes Aides autour de vous, c’est déjà beaucoup pour nous ! Si ce simulateur vous a aidé, n’hésitez pas à nous laisser un message sur
+    <p>Parler de Mes Aides autour de vous, c’est déjà beaucoup ! Si ce simulateur vous a été utile, n’hésitez pas à nous laisser un message sur
       <a
-      v-mail="{to:'equipe@mes-aides.org', subject:'Retour utilisateur (depuis la page contribuer)'}">notre courriel</a>. Rejoignez-nous également sur les réseaux sociaux de Mes Aides pour être tenu au courant des dernières nouveautés du simulateur et partager avec nous dans un cadre informel.</p>
+      v-mail="{to:'equipe@mes-aides.org', subject:'Retour utilisateur (depuis la page contribuer)'}">notre courriel</a>. Rejoignez-nous également sur les réseaux sociaux pour rester au courant des dernières nouveautés du simulateur et échanger.</p>
 
     <p><a href="https://twitter.com/MesAides">Suivez-nous sur Twitter</a> et <a href="https://twitter.com/intent/tweet?screen_name=MesAides" target="_blank">envoyez un message à @MesAides en public</a> ou en privé.</p>
      <p><a href="https://www.facebook.com/MesAides">Suivez-nous sur Facebook</a> et envoyez un message à la page en privé.</p>
 
 
-    <h2 id="developper">👷 Développer</h2>
+    <h2 id="developper">🛠 Développer</h2>
 
     <p>Vous pouvez accéder à l’intégralité du code source de Mes Aides en ligne <a href="https://github.com/mes-aides/simulateur">sur GitHub</a>. Toutes les <a href="https://github.com/mes-aides/simulateur/issues">évolutions de Mes Aides</a>, espérées, planifiées ou réalisées, peuvent être suivies en permanence en ligne.</p>
 
-    <p>Mes Aides se base sur <a href="https://www.openfisca.fr">OpenFisca</a>, un moteur de calcul libre et ouvert utilisé par des chercheurs en économie et d’autres services publics. L'<a href="https://github.com/mes-aides/simulateur">interface graphique de Mes Aides</a> est elle aussi un <a href="https://fr.wikipedia.org/wiki/Logiciel_libre" title="Sous licence AGPL" uib-popover="Sous licence AGPL" popover-trigger="mouseenter">logiciel libre</a>. Cela signifie que toute entité peut librement vérifier, s'inspirer de, copier, et modifier ce service. La seule contrepartie est la mise à disposition à la communauté des améliorations effectuées.</p>
+    <p>Mes Aides se base sur <a href="https://www.openfisca.fr">OpenFisca</a>, un moteur de calcul libre et ouvert utilisé par des laboratoires de recherche en économie et des services publics. L'<a href="https://github.com/mes-aides/simulateur">interface graphique de Mes Aides</a> est elle aussi un <a href="https://fr.wikipedia.org/wiki/Logiciel_libre" title="Sous licence AGPL" uib-popover="Sous licence AGPL" popover-trigger="mouseenter">logiciel libre</a>. Cela signifie que toute entité peut librement vérifier, s'inspirer de, copier, et modifier ce service. La seule contrepartie est la mise à disposition à la communauté des améliorations effectuées.</p>
   </article>
 </template>

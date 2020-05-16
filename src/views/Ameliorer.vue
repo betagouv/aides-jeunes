@@ -15,7 +15,7 @@
     <p>De la même façon, la simulation peut parfois s’arrêter en cours de calcul suite à une erreur inattendue. Une option de signalement est alors disponible : précisez-nous les informations que vous avez entrées. Nous vous contacterons pour améliorer Mes Aides et régler ce bug.</p>
 
     <p>Notez bien que les résultats de Mes Aides sont informatifs : en cas de différence entre notre simulateur et un organisme de prestations sociales, c’est ce dernier qui prend la décision.</p>
-    
+
     <small>En savoir plus sur <router-link to="/cgu">les résultats calculés par Mes Aides</router-link>.</small>
 
     <h2 id="proposer">💡 Proposer</h2>

@@ -1,0 +1,15 @@
+label: AdéFIP
+institution: departement_eure_et_loir
+description: Cette aide permet aux bénéficiaires du RSA qui reprennent une
+  activité de faire face très rapidement aux premières dépenses et aux besoins
+  de trésorerie. Son montant varie entre 300 et 700 euros en fonction de la
+  reprise d'activité (CCD, CDI, etc.).
+conditions:
+  - Avoir un contrat d'engagement réciproque (CER) ou un projet personnalisé
+    d’accès à l’emploi (PPAE).
+  - Ne pas avoir bénéficié de cette aide au cours des 12 derniers mois.
+link: https://eurelien.fr/guide/action-et-aides-sociales
+prefix: l’
+type: bool
+floorAt: 10
+entity: individu

@@ -16,13 +16,14 @@
 </template>
 
 <script>
-import { forEach } from '@/../backend/lib/mes-aides'
+
+import Institution from '@/lib/Institution'
 import ResultatInattenduPpa from '@/components/ResultatInattendu/Ppa'
 import ResultatInattenduYearMinusTwo from '@/components/ResultatInattendu/YearMinusTwo'
 
 let benefitKeyed = {}
 let benefits = []
-forEach((benefit, benefitId, provider, providerId, level) => {
+Institution.forEachBenefit((benefit, benefitId, provider, providerId, level) => {
   const b = Object.assign({id: benefitId, provider: {...provider, id: providerId}, level}, benefit)
   if (b.label === 'Tarification solidaire transports') {
     b.label = `${b.label} - ${provider.label}`

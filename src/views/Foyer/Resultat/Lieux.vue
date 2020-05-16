@@ -23,7 +23,7 @@
 <script>
 import axios from 'axios'
 
-import { forEach } from '@/../backend/lib/mes-aides'
+import Institution from '@/lib/Institution'
 import Etablissement from '@/components/Etablissement'
 import EtablissementLib from '@/lib/Etablissement'
 
@@ -41,7 +41,7 @@ export default {
   mounted: function() {
     const city = this.$store.state.situation.menage.depcom
     let types = []
-    forEach((benefit, benefitId, provider) => {
+    Institution.forEachBenefit((benefit, benefitId, provider) => {
       if (provider.etablissements && provider.etablissements.length > 0 && benefitId === this.$route.params.id) {
         types = provider.etablissements
       }

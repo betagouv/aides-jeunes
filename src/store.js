@@ -300,19 +300,20 @@ const store = new Vuex.Store({
         .then(function(OpenfiscaResponse) {
           return OpenfiscaResponse.data
         }).then(function(openfiscaResponse) {
-          return computeAides(state.state.situation, openfiscaResponse, showPrivate)
+          return computeAides.bind(Institution)(state.state.situation, openfiscaResponse, showPrivate)
         }).then(results => {
           const hasRsa = _.some(results.droitsEligibles, i => i.id === 'rsa') || _.some(results.droitsInjectes, i => i.id === 'rsa' && i.montant)
           if (hasRsa) {
-            _.forEach(Institution.all, (provider) => {
-              _.forEach(provider.prestations, (benefit, bid) => {
-                results.droitsEligibles.unshift({
-                  ...benefit,
-                  id: bid,
-                  provider: provider,
-                  montant: true,
-                  top: 0
-                })
+            Institution.forEachBenefit((benefit, id, provider) => {
+              if (!benefit.test) {
+                return
+              }
+              results.droitsEligibles.unshift({
+                ...benefit,
+                id,
+                provider,
+                montant: true,
+                top: 0
               })
             })
           }
@@ -325,6 +326,20 @@ const store = new Vuex.Store({
     redirection: function(state, next) {
       state.commit('setMessage', 'Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c\'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:equipe@mes-aides.org">equipe@mes-aides.org</a>.')
       next('/foyer/demandeur')
+    },
+    verifyBenefitVariables: function(state) {
+      return axios.get('api/openfisca/variables')
+        .then(response => response.data)
+        .then(variableNames => {
+          let warnUser = false
+          Institution.forEachBenefit((benefit, benefitId) => {
+            warnUser = warnUser || (!benefit.test && variableNames.indexOf(benefitId) <= 0)
+          })
+
+          if (warnUser) {
+            state.commit('setMessage', '🚀 Vous avez ajouté une nouvelle aide&nbsp;!<br/>Étant donné que nous ne savons pas encore comment celle-ci doit être calculée, si vous faites votre simulation jusqu’au bout vous obtiendrez un message d’erreur.')
+          }
+        })
     }
   }
 })

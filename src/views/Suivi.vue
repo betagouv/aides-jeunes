@@ -48,7 +48,7 @@ import _ from 'lodash'
 import moment from 'moment'
 
 import DroitMontant from '@/components/DroitMontant'
-import { forEach } from '../../backend/lib/mes-aides'
+import Institution from '@/lib/Institution'
 
 const choices = [
     { value: 'already', label: "J'en bénéficiais déjà" },
@@ -109,7 +109,7 @@ export default {
         let benefitsIds = this.followup.benefits.map(benefit => benefit.id)
         let benefitsNormalized = []
 
-        forEach((benefit, benefitId, provider, providerId) => {
+        Institution.forEachBenefit((benefit, benefitId, provider, providerId) => {
 
           if (! benefitsIds.includes(benefitId)) {
               return

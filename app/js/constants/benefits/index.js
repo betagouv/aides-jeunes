@@ -667,4 +667,8 @@ msaAdditionProviders.forEach(function(providerId) {
         prestations[benefitId].msa = true;
     });
 });
+
+const { generate } = require('./utils')
+droitsDescription.generate = (jam) => generate(jam, droitsDescription)
+
 module.exports = droitsDescription;

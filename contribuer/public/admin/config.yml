@@ -54,6 +54,104 @@ collections:
             hint: Ce lien permet aux usagers d'aller plus loin dans leurs démarches et de bénéficier effectivement de l'aide. Il est préférable d'indiquer un lien vers un site institutionnel.
             name: link
             widget: string
+  - name: benefits
+    label: Aides
+    label_singular: Aide
+    identifier_field: label
+    folder: "data/benefits"
+    create: true
+    delete: false
+    editor:
+      preview: false
+    slug: "{{label}}"
+    extension: yml
+    fields:
+      - label: Nom de l'aide
+        name: label
+        widget: string
+      - label: Institution
+        name: institution
+        widget: relation
+        collection: institutions
+        valueField: "{{slug}}"
+        searchFields: [slug, displayFields]
+        allow_multiple: false
+      - label: Courte description
+        name: description
+        widget: text
+        pattern: [".{10,120}", 'La description est trop longue. En cas de blocage, contactez nous à accompagnement@mes-aides.org']
+      - label: Conditions non prises ne comptent par le simulateur
+        label_singular: Condition non prise ne compte par le simulateur
+        hint: |
+          Certains critères d'éligibilité ne peuvent pas être demandés (trop précis)
+          ni pris en compte (trop complexe) dans le cadre d'un simulateur grand public.
+          Cette liste permet d'informer les usagers sur ces critères supplémentaires.
+          Par exemple : Signer un contrat d’engagement réciproque (CER) avec votre département
+          ou un Projet Personnalisé d’Accès à l’Emploi (PPAE) avec Pôle emploi.
+        name: conditions
+        widget: list
+        collapsed: false
+        field:
+          label: Texte
+          name: text
+          widget: text
+      - label: Lien vers la page d'informations de référence
+        hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)
+        name: link
+        widget: string
+        required: false
+      - label: Lien vers un formulaire à imprimer
+        name: form
+        widget: string
+        required: false
+      - label: Lien vers un téléservice
+        hint: Lorsqu'il y a la possibilité de faire la démarche en ligne.
+        name: teleservice
+        widget: string
+        required: false
+      - label: Article défini
+        name: prefix
+        hint: |
+          Pour permet la formation de phrase grammaticalement correcte.
+          Il s'agit d'indiquer le texte à insérer à la place de PPPP dans la phrase suivante dans laquelle AAAA correspondant au nom de l'aide :
+          Comment obtenir PPPP AAAA ? Par exemples dans « Comment obtenir l'aide exceptionnelle ? » « l' » est le préfix. Pour « Comment obtenir les aides au logement ? » le préfix est « les ».
+        widget: select
+        options: [le, la, les, l’, une]
+        default: la
+      - label: Type du résultat
+        name: type
+        default: "bool"
+        widget: select
+        options:
+          - label: Montant
+            value: float
+          - label: Éligibilité (Oui / Non)
+            value: "bool"
+      - label: Niveau de fiabilité lorsque le résultat est un montant
+        name: floorAt
+        widget: select
+        default: 10
+        options:
+          - label: 10 (pour arrondir à la dizaine inférieure)
+            value: 10
+          - label: 1 (pour l'euro inférieur)
+            value: 1
+          - label: 0.01 (pour éviter l'arrondi)
+            value: 0.01
+      - label: Entité de rattachement de la variable dans OpenFisca
+        name: entity
+        widget: select
+        hint: Cette variable fait le lien avec le moteur de calculs. Tant que vous ne savez pas quoi y indiquer, nous recommandons de laisser Ménage.
+        default: menage
+        options:
+          - label: Famille
+            value: famille
+          - label: Foyer Fiscal
+            value: foyer_fiscal
+          - label: Individu
+            value: individu
+          - label: Ménage
+            value: menage
   - name: contribution-pages
     label: Pages
     label_singular: page

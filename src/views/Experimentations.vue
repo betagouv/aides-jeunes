@@ -39,9 +39,8 @@ export default {
     ProviderView
   },
   data: () => {
-    const all = Institution.all
     return {
-      providers: Object.keys(all).map(k => all[k])
+      providers: Institution.experimentations
     }
   }
 }

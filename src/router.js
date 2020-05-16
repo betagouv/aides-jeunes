@@ -229,6 +229,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (from.name === null) {
     store.commit('initialize')
+    store.dispatch('verifyBenefitVariables')
     if (to.matched.some(r => r.name === 'foyer') && ['demandeur', 'resultat'].indexOf(to.name) === -1 && ! store.getters.passSanityCheck) {
       return store.dispatch('redirection', route => next(route))
     }

@@ -25,7 +25,7 @@
 
     <h2 id="proposer-une-aide">🎯 Proposer une nouvelle aide</h2>
 
-    <p>Un de nos buts est de toujours augmenter le nombre d’aides simulées en une seule fois. Si vous aimeriez qu'une prestation sociale, parlez de cette application à l'organisme qui l'attribue et <a v-mail="{to:'equipe@mes-aides.org', subject: 'Proposition d\'une nouvelle aide'}">indiquez-nous</a> que vous avez fait ce signalement.</p>
+    <p>Un de nos buts est de toujours augmenter le nombre d’aides simulées en une seule fois. Si vous aimeriez qu'une prestation sociale soit référencée, parlez de Mes Aides à l'organisme qui l'attribue et <a v-mail="{to:'equipe@mes-aides.org', subject: 'Proposition d\'une nouvelle aide'}">indiquez-nous</a> que vous avez fait ce signalement.</p>
 
     <p>En fonction de votre expertise sur cette aide, vous pouvez nous aider en nous envoyant certains des éléments suivants&nbsp;:</p>
 

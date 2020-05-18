@@ -57,7 +57,6 @@
 
 <script>
 import Institution from '../lib/Institution'
-import * as droitsDescription from './../../app/js/constants/benefits'
 import _ from 'lodash'
 
 export default {
@@ -66,26 +65,25 @@ export default {
     let value = {}
     const types = ['prestationsNationales', 'partenairesLocaux']
     types.forEach(function(type) {
-        let providersWithoutPrivatePrestations = _.mapValues(droitsDescription[type], function(provider) {
-            provider = _.assign({}, provider)
-            provider.prestations = _.reduce(provider.prestations, function(prestations, prestation, name) {
-                if (! prestation.private) {
-                    prestations[name] = prestation;
-                }
+      let providersWithoutPrivatePrestations = _.mapValues(Institution[type], function(provider) {
+        provider = _.assign({}, provider)
+        provider.prestations = _.reduce(provider.prestations, function(prestations, prestation, name) {
+          if (! prestation.private) {
+            prestations[name] = prestation;
+          }
 
-                return prestations
-            }, {});
-            return provider
-        })
+          return prestations
+        }, {});
+        return provider
+      })
 
-        value[type] = _.filter(providersWithoutPrivatePrestations, function(provider) { return _.size(provider.prestations) })
-        value[type + 'Count'] = Object.keys(value[type]).reduce(function(total, provider) {
-            return total + _.size(value[type][provider].prestations)
-        }, 0);
+      value[type] = _.filter(providersWithoutPrivatePrestations, function(provider) { return _.size(provider.prestations) })
+      value[type + 'Count'] = Object.keys(value[type]).reduce(function(total, provider) {
+        return total + _.size(value[type][provider].prestations)
+      }, 0);
     });
 
-    const institutions = Institution.all
-    value.showExperiment = _.some(institutions, provider => _.size(provider.prestations))
+    value.showExperiment = Institution.experimentations.length
 
     return value
   },
@@ -106,6 +104,7 @@ export default {
       this.next()
     },
     next: function() {
+      this.$store.dispatch('verifyBenefitVariables')
       this.$push()
     },
   }

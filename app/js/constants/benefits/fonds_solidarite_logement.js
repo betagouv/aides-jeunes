@@ -248,14 +248,6 @@ module.exports = {
             link: 'https://www.ladrome.fr/mon-quotidien/logement/en-cas-de-difficultes/les-aides-aux-locataires/',
         }
     }),
-    departement_eure_et_loir: fsl_generator({
-        prefix: 'eure_et_loir',
-        label: 'de l’Eure-et-Loir',
-        code: '28',
-        resources: {
-            link: 'https://www.eurelien.fr/guide/action-et-aides-sociales#guide-block-30',
-        }
-    }),
     departement_finistere: fsl_generator({
         prefix: 'finistere',
         label: 'du Finistère',

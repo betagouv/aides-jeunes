@@ -2,10 +2,11 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 var specificSituations = require('../../src/constants/specificSituations').specificSituations;
 var ressources = require('../../app/js/constants/ressources');
+var benefits = require('../../app/js/constants/benefits/back');
 var mesAides = require('../lib/mes-aides');
 var openfisca = require('../lib/openfisca');
 var utils = require('../lib/utils');
-var computeAides = mesAides.computeAides;
+var computeAides = mesAides.computeAides.bind(benefits);
 
 var familleDef = {
     parisien: Boolean,

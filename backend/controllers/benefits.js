@@ -1,10 +1,10 @@
-var mesAides = require('../lib/mes-aides');
+var { forEach } = require('../../app/js/constants/benefits/back')
 
-var data = [];
-mesAides.forEach((b, id) => {
-    data.push(Object.assign({id}, b));
-});
+var data = []
+forEach((b, id) => {
+  data.push(Object.assign({id}, b))
+})
 
 exports.list = function(req, res) {
-    res.send(data);
-};
+  res.send(data)
+}

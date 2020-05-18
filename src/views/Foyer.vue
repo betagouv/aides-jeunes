@@ -1,7 +1,9 @@
 <template>
   <div class="main">
     <div class="progress" v-bind:style="style" />
-    <div v-if="$store.state.message" class="main notification warning full-width" v-html="$store.state.message" />
+    <div v-if="$store.state.message" class="main notification warning full-width">
+      <div class="message" v-html="$store.state.message" />
+    </div>
     <div class="foyer">
       <div class="title">
         <div>
@@ -133,11 +135,15 @@ input[type="button"]:focus {
   transition: all 0.5s;
 }
 
+.message,
+.title {
+  max-width: 35em;
+  margin:  0 auto;
+}
+
 .title {
   display: flex;
   justify-content: space-between;
-  max-width: 35em;
-  margin:  0 auto;
 }
 
 .editor {

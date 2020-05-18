@@ -97,14 +97,14 @@
 <script>
 import _ from 'lodash'
 import axios from 'axios'
-import { forEach } from '@/../backend/lib/mes-aides'
+import Institution from '@/lib/Institution'
 
 export default {
   name: 'attendu',
   data: function() {
     let benefitKeyed = {}
     let benefits = []
-    forEach((benefit, benefitId, provider, providerId, level) => {
+    Institution.forEachBenefit((benefit, benefitId, provider, providerId, level) => {
       const b = Object.assign({id: benefitId, provider: {...provider, id: providerId}, level}, benefit)
       if (b.label === 'Tarification solidaire transports') {
         b.label = `${b.label} - ${provider.label}`

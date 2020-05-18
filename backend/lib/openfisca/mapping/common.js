@@ -1,7 +1,7 @@
 var moment = require('moment');
 var _ = require('lodash');
 
-var benefits = require('../../../../app/js/constants/benefits');
+var { forEach } = require('../../../../app/js/constants/benefits/back');
 
 exports.isIndividuValid = function(individu, situation) {
     var age = moment(situation.dateDeValeur).diff(moment(individu.date_naissance), 'years');
@@ -59,30 +59,17 @@ exports.getPeriods = function (dateDeValeur) {
     };
 };
 
-function generateRequestedVariables() {
-    var structuredVariables = _.values(benefits).map(function(level) {
-        return _.values(level).map(function(provider) {
-            return _.values(_.mapValues(provider.prestations, function(prestation, prestationName) {
-                var prestations = {};
-                prestations[prestationName] = _.assign({}, prestation);
-                if (prestation.uncomputability)
-                    prestations[prestationName + '_non_calculable'] = _.assign({}, prestation, { type: 'string' });
+let requestedVariables = {}
+forEach((aide, aideId) => {
+    requestedVariables[aideId] = _.assign({}, aide)
+    if (aide.uncomputability)
+        requestedVariables[aideId + '_non_calculable'] = _.assign({}, aide, { type: 'string' })
 
+    if (aide.extra) {
+        aide.extra.forEach(function(extra) {
+            requestedVariables[extra.id] = _.assign({}, extra)
+        })
+    }
+})
 
-                if (prestation.extra) {
-                    prestation.extra.forEach(function(extra) {
-                        prestations[extra.id] = _.assign({}, extra);
-                    });
-                }
-                return prestations;
-            }));
-        });
-    });
-
-    var requestedVariables = _.chain(structuredVariables).flatten().flatten().value()
-        .reduce(function(obj, accum) { return _.assign(accum, obj); } , {});
-
-    return requestedVariables;
-}
-
-exports.requestedVariables = generateRequestedVariables();
+exports.requestedVariables = requestedVariables

@@ -1,0 +1,16 @@
+label: aide au maintien dans votre logement
+institution: departement_eure_et_loir
+description: |
+  Dans le cadre du Fonds de Solidarité Logement du département de l’Eure-et-Loir,
+  des aides financières sont mises en place pour vous aider à rester dans votre logement et
+  à payer vos factures liées à votre logement (eau, électricité, etc.).
+conditions:
+  - Occuper, à titre de résidence principale, un logement sur le territoire du département de l’Eure-et-Loir.
+  - <strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.
+link: https://www.eurelien.fr/guide/action-et-aides-sociales#guide-block-30
+prefix: une
+type: bool
+floorAt: 10
+entity: menage
+symbol: fa-exclamation-triangle
+

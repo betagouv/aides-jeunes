@@ -36,13 +36,13 @@
 </template>
 
 <script>
-import * as droitsDescription from '@/../app/js/constants/benefits'
+import Institution from '@/lib/Institution'
 
 export default {
   name: 'ResultatInattenduPpa',
   data: function() {
     return {
-      droit: Object.assign({id: 'ppa'}, droitsDescription.prestationsNationales.caf.prestations.ppa)
+      droit: Object.assign({id: 'ppa'}, Institution.prestationsNationales.caf.prestations.ppa)
     }
   },
   computed: {

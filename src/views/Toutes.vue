@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import * as droitsDescription from './../../app/js/constants/benefits'
+import Institution from '@/lib/Institution'
 import ProviderView from '@/components/ProviderView'
 import _ from 'lodash'
 
@@ -36,8 +36,8 @@ export default {
     let value = {}
     const types = ['prestationsNationales', 'partenairesLocaux']
     types.forEach(function(type) {
-        let providersWithoutPrivatePrestations = Object.keys(droitsDescription[type]).map(function(providerName) {
-            const provider = _.assign({id: providerName}, droitsDescription[type][providerName])
+        let providersWithoutPrivatePrestations = Object.keys(Institution[type]).map(function(providerName) {
+            const provider = _.assign({id: providerName}, Institution[type][providerName])
             provider.prestations = _.reduce(provider.prestations, function(prestations, prestation, name) {
                 if (! prestation.private) {
                     prestations[name] = prestation;

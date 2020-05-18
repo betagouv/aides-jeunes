@@ -98,7 +98,7 @@ function isRessourceOnMainScreen(ressourceOrType) {
 }
 
 function getParameterFromOpenfisca(parameterId) {
-    return axios.get('/api/parameters/' + parameterId)
+    return axios.get('/api/openfisca/parameters/' + parameterId)
         .then(function(resp) {
             let values = resp.data.values;
             let sortedByDates = Object.keys(values).sort();

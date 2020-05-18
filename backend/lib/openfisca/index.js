@@ -35,9 +35,9 @@ exports.calculate = sendToOpenfisca('calculate');
 exports.trace = sendToOpenfisca('trace');
 exports.sendToOpenfisca = sendToOpenfisca;
 
-exports.getParameter = function(parameterId, callback) {
+exports.get = function(item, callback) {
     rp({
-        uri: config.openfiscaURL + '/parameter/' + parameterId,
+        uri: `${config.openfiscaURL}${item}`,
         method: 'GET',
         json: true
     })

@@ -1,4 +1,4 @@
-import '@babel/polyfill'
+import 'core-js/stable'
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -44,7 +44,9 @@ Vue.use(VueMatomo, {
   router: router,
 })
 
-_paq.push(['setCustomVariable', 2, 'version', 'VueJS', 'visit']) // eslint-disable-line
+if (window._paq) {
+  window._paq.push(['setCustomVariable', 2, 'version', 'VueJS', 'visit']) // eslint-disable-line
+}
 
 Vue.filter('capitalize', function (value) {
   if (!value) return ''

@@ -5,6 +5,6 @@ title: Comment contribuer à Mes Aides ?
 
 Nous avons mis en place ce site pour faciliter la contribution du plus grand nombre 🌍.
 
-Quelque soit le temps à ta disposition, il y a de quoi faire pour contribuer au simulateur Mes Aides.
+Quel que soit le temps à votre disposition, il y a toujours une façon de contribuer au simulateur Mes Aides.
 
-Voilà quelques exemples&nbsp;:
+En voilà quelques exemples&nbsp;:

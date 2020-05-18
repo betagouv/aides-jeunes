@@ -9,7 +9,7 @@ import _ from 'lodash'
 
 import { computeAides, datesGenerator } from '../backend/lib/mes-aides'
 import { categoriesRnc, patrimoineTypes } from './constants/resources'
-import Partenaire from './lib/Partenaire'
+import Institution from './lib/Institution'
 
 let DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage']
 
@@ -304,7 +304,7 @@ const store = new Vuex.Store({
         }).then(results => {
           const hasRsa = _.some(results.droitsEligibles, i => i.id === 'rsa') || _.some(results.droitsInjectes, i => i.id === 'rsa' && i.montant)
           if (hasRsa) {
-            _.forEach(Partenaire.all, (provider) => {
+            _.forEach(Institution.all, (provider) => {
               _.forEach(provider.prestations, (benefit, bid) => {
                 results.droitsEligibles.unshift({
                   ...benefit,

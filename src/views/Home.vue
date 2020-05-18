@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import Partenaire from '../lib/Partenaire'
+import Institution from '../lib/Institution'
 import * as droitsDescription from './../../app/js/constants/benefits'
 import _ from 'lodash'
 
@@ -84,8 +84,8 @@ export default {
         }, 0);
     });
 
-    const partenaires = Partenaire.all
-    value.showExperiment = _.some(partenaires, provider => _.size(provider.prestations))
+    const institutions = Institution.all
+    value.showExperiment = _.some(institutions, provider => _.size(provider.prestations))
 
     return value
   },

@@ -11,7 +11,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
           <footer>
-            <p>Dans tous les cas, nous sommes à votre disposition par <a class="inline-link" href="mailto:equipe@mes-aides.org&subject=Contribuer">email</a>.</p>
+            <p>Dans tous les cas, nous sommes à votre disposition par <a href="mailto:equipe@mes-aides.org&subject=Contribuer">email</a>.</p>
             <p>L'équipe Mes Aides</p>
           </footer>
         </body>

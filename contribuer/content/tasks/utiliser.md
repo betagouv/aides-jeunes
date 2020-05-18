@@ -1,5 +1,5 @@
 ---
-title: 📝 Faites une simulation et dites-nous ce que vous en avez pensé !
+title: 📝 Faire une simulation
 duration: 5
 ---
 * Allez sur [Mes-Aides.org](https://mes-aides.org).

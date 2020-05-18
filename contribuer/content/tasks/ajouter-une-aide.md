@@ -1,5 +1,6 @@
 ---
-title: 🛠 Testez l'ajout d'une aide et dites nous là où ça cloche! 😅
+title: 🛠 Ajouter une aide
 duration: 60
 ---
-Description à remplir
+
+Description à remplir 😅

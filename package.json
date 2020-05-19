@@ -87,7 +87,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^23.6.0",
-    "cypress": "^3.8.3",
+    "cypress": "^4.5.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "mustache": "^2.3.0",

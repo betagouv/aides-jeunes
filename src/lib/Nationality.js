@@ -3,7 +3,7 @@ let worldCountries = require('world-countries');
 let countries = [];
 
 worldCountries.forEach(function(country) {
-    if (country.hasOwnProperty('demonyms')) {
+    if (country.demonyms) {
         countries.push({
             code: country.cca2,
             commonName: country.translations.fra.common,

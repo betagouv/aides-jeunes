@@ -28,7 +28,7 @@ function transformInstitutions(collection) {
 function append(institutions, benefits) {
   benefits.forEach(benefit => {
     const institution = institutions[benefit.institution]
-    if (!institution) {
+    if (! institution) {
       return
     }
     institution.prestations[benefit.slug] = benefit

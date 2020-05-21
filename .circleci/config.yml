@@ -162,6 +162,8 @@ jobs:
       - run:
           name: Cypress
           command: npm run cypress
+      - store_artifacts:
+          path: cypress/videos
       - run:
           name: Stop Xvfb
           command: |

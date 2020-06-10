@@ -32,7 +32,7 @@ sudo apt-get install mongodb
 
 ### For all platforms
 
-The runtime is Node 8.x for the web application, and Python 2.7 for Openfisca.
+The runtime is Node 8.x for the web application, and Python 3 for Openfisca.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 
@@ -51,16 +51,14 @@ npm install
 Openfisca
 ---------
 
-Openfisca is compatible with Python 2 and Python 3. So far, Mes Aides relies on Python 2. You should [install it in a `virtualenv`](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. You can either create the `virtualenv` yourself or rely on tools such as [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) or [pew](https://github.com/berdario/pew):
+You should [install Python 3 in a `virtualenv`](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. You can either create the `virtualenv` yourself or rely on tools such as [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) or [pew](https://github.com/berdario/pew):
 
 ```bash
 cd mes-aides-ui
-virtualenv  --python=python2.7 .venv # To create your virtualenv in ./.venv (a hidden folder)
+virtualenv  --python=python3 .venv # To create your virtualenv in ./.venv (a hidden folder)
 source .venv/bin/activate # To activate your virtualenv
 pip install pip --upgrade # To make sure you're using pip latest version
 ```
-
-`virtualenv  --python=python2.7 .venv` will fail if your python executable is not `python2.7`. If it does you can try `virtualenv  --python=python2 .venv` or make sure that `python2.7` is installed and in your path.
 
 ```sh
 npm run install-openfisca
@@ -83,39 +81,19 @@ Usage
 First, start a Mongo server:
 
 ```sh
-npm run db &
+npm run db
 ```
 
-Then, start the Openfisca server:
+Then, in another shell (you will have to run `source .venv/bin/activate`), start the Openfisca server:
 ```sh
 npm run openfisca
 ```
 
-Finally, start the server:
+Finally, in a third shell, start the server:
 
 ```sh
-npm start
+npm run serve
 ```
-
-Or, if you want to have live reload on file changes, you can start it with:
-
-```sh
-npm run dev
-```
-
-If you like TDD, you will probably enjoy this command which will run the tests each time a file in the tests/ folder is modified :
-
-```sh
-npm install --global grunt-cli
-grunt watch
-```
-
-You can specify ports to run multiple instances
-
-```sh
-PORT=9001 WEBPACK_DEV_PORT=8081 LIVERELOAD_PORT=35728 DEBUG_PORT=9230 npm run dev
-```
-Those ports are the default ones incremented by 1.
 
 
 Testing
@@ -153,7 +131,7 @@ Déploiement
 Préparation
 -----------
 
-En plus de l'intégration continue, ce dépôt est configuré pour avoir du déploiement continu. À l'ajout de commits sur `betagouv/mes-aides-ui#master` les tests sont relancés puis la production mise à jour.
+En plus de l'intégration continue, ce dépôt est configuré pour avoir du déploiement continu. À l'ajout de commits sur `mes-aides/simulateur#master` les tests sont relancés puis la production mise à jour.
 
 ### OpenFisca
 
@@ -164,7 +142,7 @@ Ce fichier est au format [`requirements.txt`](https://pip.pypa.io/en/stable/refe
 Déploiement
 -----------
 
-Le serveur de production est rendu opérationnel avec [Puppet](https://puppet.com/). Les fichiers de configurations et de paramétrage sur disponibles dans [un dépôt séparé](https://github.com/sgmap/mes-aides-ops/).
+Le serveur de production est rendu opérationnel avec [Puppet](https://puppet.com/). Les fichiers de configurations et de paramétrage sur disponibles dans [un dépôt séparé](https://github.com/mes-aides/ops/).
 
 ### mes-aides
 
@@ -176,17 +154,3 @@ ssh root@mes-aides.gouv.fr -i deploy
 ```
 
 Pour effectuer des modifications plus exotiques, il est nécessaire de se connecter en tant que `root`.
-
-### Déployer une feature branch
-
-Le serveur de production ne permet plus le déploiement de `feature branch`. Cependant, un serveur peut être facilement provisionné pour servir une version spéficique de Mes-Aides. Des indications sont disponibles dans le dépôt de [mes-aides-ops](https://github.com/sgmap/mes-aides-ops/#initial-provisioning). Il s'agit d'initialiser le serveur en indiquant le nom de la branche à utiliser pour mes-aides-ui.
-
-Pour utiliser dans l'instance de staging une feature branch d'`openfisca-france`, éditer le fichier [`openfisca/requirements.txt`](openfisca/requirements.txt), par exemple en remplaçant :
-
-```
-openfisca_france==4.0.5
-```
-par
-```
-git+https://github.com/sgmap/openfisca-france.git@aah#egg=openfisca-france
-```

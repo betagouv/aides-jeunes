@@ -26,13 +26,43 @@ function Task ({id}) {
     <p><a href="/">Retourner à l'accueil</a></p>
   </div>)
 
+  const buildHref = ({url, title, body}) => {
+    let params = [];
+    if (title) {
+      params.push('title=' + encodeURIComponent(title))
+    }
+    if (body) {
+      params.push('body=' + encodeURIComponent(body))
+    }
+    let comps = [url, params.join('&')]
+    return comps.join('?')
+  }
+
+  const metaContributionCTA = () => (
+    <blockquote>
+      Si vous souhaitez modifier les informations disponible sur cette page (corrections, reformations), vous pouvez le faire à partir
+      de <a target="_blank" rel="noopener"
+        href={`https://github.com/mes-aides/simulateur/edit/master/contribuer/content/tasks/${id}.md`}>
+        la page suivante</a>. En cas de difficultés ou d'interrogations,
+        vous pouvez nous contacter <a href="mailto:equipe@mes-aides.org&subject=Contribuer">par email</a> ou les
+        partager <a target="_blank" rel="noopener"
+        href={buildHref({
+          url: 'https://github.com/mes-aides/simulateur/issues/new',
+          title: `Question sur ${task.attributes.title}`,
+          body: 'En contribuant à Mes Aides, je…'
+        })}>directement sur GitHub</a>.
+    </blockquote>
+  )
+
   return (
     <>
       <article>
         <h1>{task.attributes.title}</h1>
+        {metaContributionCTA()}
         <task.react />
       </article>
       <div>
+        {metaContributionCTA()}
         <a href="/">Revenir à la liste</a>
       </div>
     </>

@@ -69,6 +69,7 @@ function next(current, situation) {
         case '/foyer/logement':
             return { name: 'ressources/types', params: {role: 'demandeur', id: undefined}}
         case '/foyer/pensions-alimentaires':
+        case '/foyer/extra-pole-emploi':
         case '/foyer/ressources/fiscales':
         case '/foyer/ressources/patrimoine':
         case '/foyer/resultat':

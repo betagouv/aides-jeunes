@@ -288,6 +288,21 @@ var droitsDescription = {
                     floorAt: 10,
                     prefix: 'l’',
                 },
+                'agepi': {
+                    'label': 'AGEPI',
+                    'description': 'Description',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F1814',
+                    floorAt: 1,
+                    prefix: 'l’',
+                },
+                'complement_aide_retour_emploi': {
+                    'label': 'complément aide au retour à l’emploi',
+                    'description': 'Description',
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F14860',
+                    'entity': 'individu', // default entity is famille
+                    floorAt: 1,
+                    prefix: 'le',
+                }
             },
         },
         'cheque_energie': {

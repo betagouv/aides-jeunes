@@ -95,6 +95,12 @@ const router = new Router({
           title: 'Pensions alimentaires versées'
         }
       }, {
+        path: 'extra-pole-emploi',
+        component: () => import(/* webpackChunkName: "extra-pole-emploi" */ './views/Foyer/PoleEmploi.vue'),
+        meta: {
+          title: 'Question Estime Pôle Emploi'
+        }
+      }, {
         name: 'resultat',
         path: 'resultat',
         component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat.vue'),

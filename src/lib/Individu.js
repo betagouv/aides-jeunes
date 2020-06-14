@@ -51,6 +51,8 @@ function get(individus, role, id, dates) {
         tns_autres_revenus_type_activite: 'bic',
         tns_micro_entreprise_type_activite: 'bic',
         tns_auto_entrepreneur_type_activite: 'bic',
+        salaire_journalier_reference: 0,
+        temps_travail_semaine: 0,
     };
 
     specificSituations.forEach(s => {

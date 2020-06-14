@@ -15,6 +15,8 @@
     <div class="text-right">
       <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
     </div>
+
+    <router-link to="extra-pole-emploi">Expérimentation ESTIME</router-link>
   </form>
 </template>
 

@@ -446,6 +446,24 @@ module.exports = {
             form: 'https://www.moselle.fr/upload/docs/application/pdf/2018-11/demande_dintervention_du_fsl_-_acces_impayes_locatifs.pdf',
         }
     }),
+    departement_nord: fsl_generator({
+        prefix: 'nord',
+        label: 'du Nord',
+        code: '59',
+        resources: {
+            link: 'https://lenord.fr/jcms/preprd1_145072/le-fonds-de-solidarite-pour-le-logement',
+            instructions: 'https://lenord.fr/jcms/prd1_334245/aide-au-maintien-dans-le-logement?thematique=&typePublic=&motsCles=maintien',
+        }
+    }),
+    lille_metropole: fsl_generator_metropole({
+        prefix: 'de la',
+        label: 'Métropole européenne de Lille',
+        code: 'lille',
+        resources: {
+            link: 'https://www.lillemetropole.fr/votre-metropole/competences/amenagement-du-territoire/logement/le-fonds-de-solidarite-logement',
+            form: 'https://www.lillemetropole.fr/sites/default/files/2019-12/Volet%20demandeur%20maintien.pdf',
+        }
+    }),
     departement_oise: fsl_generator({
         prefix: 'oise',
         label: 'de l’Oise',

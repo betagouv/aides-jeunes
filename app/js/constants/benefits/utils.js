@@ -77,6 +77,17 @@ function extractExperimentations(institutions) {
   })
 }
 
+function setDefaults(benefit, top) {
+    benefit.top = benefit.top || top
+    benefit.floorAt = benefit.floorAt || 1
+    benefit.entity = benefit.entity || 'famille'
+}
+
+var topLevels = {
+    prestationsNationales: 1,
+    partenairesLocaux: 5,
+}
+
 function generate(jamstack, base) {
   const institutions = transformInstitutions(jamstack.collections.institutions.items)
   append(institutions, jamstack.collections.benefits.items)
@@ -86,6 +97,16 @@ function generate(jamstack, base) {
     partenairesLocaux: Object.assign(base.partenairesLocaux, institutions),
   }
   result.experimentations = extractExperimentations(result.partenairesLocaux)
+
+  const levels = ['prestationsNationales', 'partenairesLocaux']
+  levels.forEach(function(levelId) {
+      Object.keys(result[levelId]).forEach(function(providerId) {
+          Object.keys(result[levelId][providerId].prestations).forEach(function(benefitId) {
+              var benefit = result[levelId][providerId].prestations[benefitId]
+              setDefaults(benefit, topLevels[levelId])
+          })
+      })
+  })
 
   result.forEach = forEachFactory(result)
   return result

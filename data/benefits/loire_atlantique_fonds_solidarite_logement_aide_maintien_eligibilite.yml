@@ -1,0 +1,16 @@
+label: aide au maintien dans votre logement
+institution: departement_loire_atlantique
+description: |
+  Dans le cadre du Fonds de Solidarité Logement du département de Loire Atlantique,
+  des aides financières sont mises en place pour vous aider à rester dans votre logement et
+  à payer vos factures liées à votre logement (eau, électricité, etc.).
+conditions:
+  - Occuper, à titre de résidence principale, un logement sur le territoire du département de Loire Atlantique.
+  - <strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.
+link: https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/parent-/-famille/fonds-de-solidarite-pour-le-logement-fsl-les-aides-a-l-acces-ou-au-maintien-dans-votre-logement-fr-t1_16291
+form: https://www.loire-atlantique.fr/upload/docs/application/pdf/2020-03/formulaire_de_demande_daide_au_logement_2020-03-09_14-37-8_451.pdf
+prefix: une
+type: bool
+floorAt: 10
+entity: menage
+symbol: fa-exclamation-triangle

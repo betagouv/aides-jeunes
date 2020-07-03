@@ -3,7 +3,7 @@ pytest == 5.3.5
 git+https://github.com/mes-aides/openfisca-france.git@prod#egg=openfisca-France
 # Openfisca-Core[web-api]==34.7.2
 git+https://github.com/mes-aides/openfisca-core.git@fix-source-bug#egg=Openfisca-Core[web-api]
-git+https://github.com/mes-aides/openfisca-france-local.git@epci#egg=openfisca-France-Local[excel-reader]
+git+https://github.com/mes-aides/openfisca-france-local.git@prod#egg=openfisca-France-Local[excel-reader]
 git+https://github.com/openfisca/openfisca-paris.git@29891c2#egg=openfisca-paris
 git+https://github.com/openfisca/openfisca-brestmetropole.git@fa2da0b#egg=openfisca-BrestMetropole
 git+https://github.com/openfisca/openfisca-rennesmetropole.git@bbcbef2#egg=openfisca-RennesMetropole

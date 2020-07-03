@@ -15,3 +15,4 @@ prefix: l’
 floorAt: 1
 entity: individu
 legend: ''
+private: true

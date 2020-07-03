@@ -175,25 +175,27 @@
           <small v-if="resultatsId">Cette simulation a pour identifiant <span class="preformatted">{{ resultatsId }}</span> (en savoir plus sur <router-link to="/cgu#donnees">le traitement de vos données personnelles</router-link>).</small><br>
           <small>
             <button v-on:click="toggleLinks" v-if="!showExpertLinks">Partenaires</button>
-              <div v-if="showExpertLinks">
-                Partenaires&nbsp;:
-              <ul>
-                <li><router-link to="/foyer/resultat/attendu">Indiquez les résultats attendus pour cette situation</router-link></li>
-                <li><a
-                  v-if="openfiscaTracerURL"
-                  target="_blank"
-                  v-bind:href="openfiscaTracerURL"
-                  v-analytics="{ category:'Tracer' }"
-                  >Accédez à l'outil d'analyse des résultats de cette simulation</a></li>
-                <li><a
-                  v-if="openfiscaAxeURL"
-                  target="_blank"
-                  v-bind:href="openfiscaAxeURL"
-                  v-analytics="{ category:'Axe' }"
-                  >Analysez l'évolution des aides en fonction des ressources
-                </a></li>
-              </ul>
-              </div>
+            <div v-if="showExpertLinks">
+              Partenaires&nbsp;:
+            <ul>
+              <li><router-link to="/foyer/resultat/attendu">Indiquez les résultats attendus pour cette situation</router-link></li>
+              <li><a
+                v-if="openfiscaTracerURL"
+                target="_blank"
+                v-bind:href="openfiscaTracerURL"
+                v-analytics="{ category:'Tracer' }"
+                >Accédez à l'outil d'analyse des résultats de cette simulation</a></li>
+              <li><a
+                v-if="openfiscaAxeURL"
+                target="_blank"
+                v-bind:href="openfiscaAxeURL"
+                v-analytics="{ category:'Axe' }"
+                >Analysez l'évolution des aides en fonction des ressources
+              </a></li>
+            </ul>
+            <button v-on:click="togglePrivate">
+              <span v-if="showPrivate">Cacher</span><span v-else>Afficher</span> les aides en test</button>
+            </div>
           </small>
         </div>
 
@@ -221,6 +223,7 @@ export default {
       openfiscaTracerURL: false,
       openfiscaAxeURL: false,
       showExpertLinks: false,
+      showPrivate: false
     }
   },
   components: {
@@ -285,15 +288,19 @@ export default {
           })
       }
       this.showExpertLinks = ! this.showExpertLinks
+    },
+    togglePrivate: function() {
+      this.showPrivate = !this.showPrivate
+      this.$store.dispatch('compute', this.showPrivate)
     }
   },
   mounted: function () {
     if (this.$route.query && this.$route.query.situationId) {
       if (this.$store.state.situation._id !== this.$route.query.situationId) {
         this.$store.dispatch('fetch', this.$route.query.situationId)
-          .then(() => this.$store.dispatch('compute'))
+          .then(() => this.$store.dispatch('compute', this.showPrivate))
       } else if (! this.$store.getters.hasResults) {
-        this.$store.dispatch('compute')
+        this.$store.dispatch('compute', this.showPrivate)
       } // Else nothing to do
     } else if (!this.$store.getters.passSanityCheck) {
       return this.$store.dispatch('redirection', route => this.$router.push(route))

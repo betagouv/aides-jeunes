@@ -7,7 +7,7 @@ var all = {
     openfiscaURL: process.env.OPENFISCA_URL || 'http://localhost:2000',
     openfiscaAxeURL: 'https://betagouv.github.io/mes-aides-changent',
     openfiscaPublicURL: 'https://openfisca.mes-aides.org',
-    openfiscaTracerURL: 'https://betagouv.github.io/openfisca-tracer',
+    openfiscaTracerURL: 'https://openfisca.github.io/tracer',
     sendInBlue: {
         apiKey: process.env.SEND_IN_BLUE_PRIVATE_KEY || 'privateKey',
     },

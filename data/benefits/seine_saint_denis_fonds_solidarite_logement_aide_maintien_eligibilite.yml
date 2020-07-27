@@ -1,0 +1,16 @@
+label: aide au maintien dans votre logement
+institution: departement_seine_saint_denis
+description: |
+  Dans le cadre du Fonds de Solidarité Logement du département de Seine-Saint-Denis,
+  des aides financières sont mises en place pour vous aider à rester dans votre logement et
+  à payer vos factures liées à votre logement (eau, électricité, etc.).
+conditions:
+  - Occuper, à titre de résidence principale, un logement sur le territoire du département de Seine-Saint-Denis.
+  - <strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.
+link: https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html
+instructions: https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html#comment_en_formuler_la_demande
+prefix: une
+type: bool
+floorAt: 10
+entity: menage
+symbol: fa-exclamation-triangle

@@ -1,0 +1,13 @@
+label: chèque réussite
+institution: departement_seine_saint_denis
+description: |
+  Le chèque réussite est destiné aux élèves entrant en 6e dans un collège public de la Seine-Saint-Denis.
+  Il est réservé à l’achat de biens scolaires, c’est-à-dire des fournitures, des livres, des équipements numériques et culturels.
+conditions:
+  - Faire la demande en ligne <strong>avant le 11 octobre 2020</strong>.
+  - Utiliser les bons d’achats dans les commerces partenaires <strong>avant le 7 décembre 2020</strong>.
+link: https://seinesaintdenis.fr/enfance-education-jeunesse/colleges/article/un-cheque-reussite-de-200-eur-pour-les-sixiemes
+teleservice: https://chequereussite.up-gestion.com/CD93/homepage
+prefix: le
+floorAt: 1
+legend: en bons d’achat

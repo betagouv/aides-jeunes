@@ -636,15 +636,6 @@ module.exports = {
             link: 'https://www.78-92.fr/annuaire/aides-et-services/detail/fonds-de-solidarite-logement-fsl',
         }
     }),
-    departement_seine_saint_denis: fsl_generator({
-        prefix: 'seine_saint_denis',
-        label: 'de Seine-Saint-Denis',
-        code: '93',
-        resources: {
-            link: 'https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html',
-            instructions: 'https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html#comment_en_formuler_la_demande',
-        }
-    }),
     departement_val_de_marne: fsl_generator({
         prefix: 'val_de_marne',
         label: 'du Val-de-Marne',

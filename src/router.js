@@ -197,6 +197,11 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "lieux" */ './views/Lieux.vue'),
     },
     {
+      path: '/redirection',
+      name: 'redirection',
+      component: () => import(/* webpackChunkName: "redirection" */ './views/Redirection.vue')
+    },
+    {
       path: '/social',
       name: 'social',
       component: () => import(/* webpackChunkName: "social" */ './views/Social.vue')

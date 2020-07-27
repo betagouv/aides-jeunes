@@ -150,8 +150,8 @@ const store = new Vuex.Store({
         }, undefined)
     },
     fetchRepresentation: function(state) {
-      return function(representation) {
-        return axios.get(`api/situations/${state.situation._id}/${representation}`)
+      return function(representation, situationId) {
+        return axios.get(`api/situations/${situationId || state.situation._id}/${representation}`)
           .then((response) => response.data)
       }
     },

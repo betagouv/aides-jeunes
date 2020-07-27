@@ -6,8 +6,9 @@ var Mustache = require('mustache');
 
 var config = require('../../config');
 var Loiret = require('../../lib/teleservices/loiret');
-var OpenFiscaTracer = require('../../lib/teleservices/openfisca-tracer');
 var OpenFiscaAxe = require('../../lib/teleservices/openfisca-axe');
+var OpenFiscaResponse = require('../../lib/teleservices/openfisca-response');
+var OpenFiscaTracer = require('../../lib/teleservices/openfisca-tracer');
 
 moment.locale('fr');
 
@@ -15,15 +16,23 @@ var teleservices = [{
     name: 'loiret_APA_test',
     class: Loiret,
     destination: {
-        label: 'du Loiret (test)',
+        label: 'Accéder au téléservice du Loiret (test)',
         url: 'https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92?situation={{token}}'
     }
 }, {
     name: 'loiret_APA',
     class: Loiret,
     destination: {
-        label: 'du Loiret',
+        label: 'Accéder au téléservice du Loiret',
         url: 'https://services.loiret.fr/public/requestv2/accountless/teleprocedure_id/264?situation={{token}}'
+    }
+}, {
+    name: 'ccas_saint_louis_preprod',
+    class: OpenFiscaResponse,
+    public: true,
+    destination: {
+        label: 'Transférer les informations',
+        url: 'https://pprd-crisis.acadis-connect.re/agrum/analyse-des-droits/477/74071a673307ca7459bcf75fbd024e09/xx?situation={{token}}'
     }
 }, {
     name: 'openfisca_tracer',

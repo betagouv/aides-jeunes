@@ -52,18 +52,16 @@ export default {
   methods: {
     getURL: function(link) {
       if (typeof link === 'object') {
-        return 'TODO3'
+        return this.$router.resolve(link).href
       }
 
       return link;
     },
     onClick: function(link) {
       if (typeof link === 'object') {
-        alert('TODO3')
-        /*
-        let situation = SituationService.restoreLocal()
-        TrampolineService.set({ situationId: situation._id })
-        //*/
+        window.localStorage.setItem('trampoline', JSON.stringify({
+          situationId: this.$store.state.calculs.resultats._id
+        }))
       }
     },
   },

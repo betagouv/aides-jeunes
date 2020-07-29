@@ -32,7 +32,7 @@ var teleservices = [{
     public: true,
     destination: {
         label: 'Transférer les informations',
-        url: 'https://pprd-crisis.acadis-connect.re/agrum/analyse-des-droits/477/74071a673307ca7459bcf75fbd024e09/xx?situation={{token}}'
+        url: 'https://pprd-crisis.acadis-connect.re/agrum/analyse-des-droits/{{token}}'
     }
 }, {
     name: 'openfisca_tracer',

@@ -94,6 +94,7 @@ var menageDef = {
 var situation = {
     createdAt: { type: Date, default: Date.now },
     dateDeValeur: Date,
+    external_id: String,
     famille: familleDef,
     foyer_fiscal: foyerFiscalDef,
     demandeur: individuDef,

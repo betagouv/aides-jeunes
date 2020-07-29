@@ -100,7 +100,7 @@ export default {
   },
   methods: {
     newSituation: function() {
-      this.$store.dispatch('clear')
+      this.$store.dispatch('clear', this.$route.query.external_id)
       this.next()
     },
     next: function() {

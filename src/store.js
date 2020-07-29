@@ -57,6 +57,7 @@ function defaultStore() {
     message: null,
     situation: {
       _id: null,
+      external_id: null,
       dateDeValeur: now,
       enfants: [],
       famille: {},
@@ -220,6 +221,9 @@ const store = new Vuex.Store({
       state.situation._id = id
       state.calculs.dirty = false
     },
+    setExternalId: function(state, id) {
+      state.situation.external_id = id
+    },
     startComputation: function(state) {
       state.calculs.updating = true
       state.calculs.exception = false
@@ -248,9 +252,10 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    clear: function({commit}) {
+    clear: function({commit}, external_id) {
       commit('clear')
       commit('initialize')
+      commit('setExternalId', external_id)
     },
     removeConjoint: function({ commit }) {
       commit('removeConjoint')

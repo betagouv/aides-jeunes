@@ -34,9 +34,6 @@ RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
     && chown -R pptruser:pptruser /srv/app \
     && chmod g+w /srv/app
 
-COPY docker/node/start.sh /usr/local/bin/node-app-start
-RUN chmod +x /usr/local/bin/node-app-start
-
 # Running as root without --no-sandbox is not supported.
 # See https://crbug.com/638180.
 # Run everything after as non-privileged user.
@@ -47,4 +44,4 @@ COPY package-lock.json /srv/app
 
 RUN npm install
 
-CMD ["node-app-start"]
+CMD ["npm", "run", "serve"]

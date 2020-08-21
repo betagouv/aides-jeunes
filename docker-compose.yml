@@ -29,7 +29,6 @@ services:
       MAILJET_PRIVATE_KEY: ${MAILJET_PRIVATE_KEY}
     ports:
       - '35729:35729'
-      - '8080:8080'
       - '9001:9001'
     depends_on:
       - mongo

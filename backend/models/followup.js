@@ -57,10 +57,9 @@ var FollowupSchema = new mongoose.Schema({
 
 FollowupSchema.methods.postInitialEmail = function(messageId) {
     this.sentAt = Date.now();
+    this.messageId = messageId;
     if (! this.surveyOptin) {
         this.email = undefined;
-    } else {
-        this.messageId = messageId;
     }
     this.error = undefined;
     return this.save();

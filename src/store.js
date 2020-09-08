@@ -257,6 +257,9 @@ const store = new Vuex.Store({
       commit('initialize')
       commit('setExternalId', external_id)
     },
+    initialize: function({ commit }) {
+      commit('initialize')
+    },
     removeConjoint: function({ commit }) {
       commit('removeConjoint')
       commit('setDirty')

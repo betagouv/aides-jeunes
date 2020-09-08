@@ -4,7 +4,7 @@ var individuRessource = require('./ressources');
 var pastResourcesProxy = require('./pastResourcesProxy');
 
 function formatDate(date) {
-    return moment(date).format('YYYY-MM-DD');
+    return date && moment(date).format('YYYY-MM-DD');
 }
 
 var individuSchema = {
@@ -15,13 +15,13 @@ var individuSchema = {
     age: {
         src: 'date_naissance',
         fn: function (dateDeNaissance, individu, situation) {
-            return moment(situation.dateDeValeur).diff(moment(dateDeNaissance), 'years');
+            return dateDeNaissance && moment(situation.dateDeValeur).diff(moment(dateDeNaissance), 'years');
         }
     },
     age_en_mois: {
         src: 'date_naissance',
         fn: function (dateDeNaissance, individu, situation) {
-            return moment(situation.dateDeValeur).diff(moment(dateDeNaissance), 'months');
+            return dateDeNaissance && moment(situation.dateDeValeur).diff(moment(dateDeNaissance), 'months');
         }
     },
     date_arret_de_travail: {

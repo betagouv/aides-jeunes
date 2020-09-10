@@ -9,6 +9,15 @@ $screen-sm-max:     $screen-md-min - 1;
 $screen-xs-max:     768px-1;
 $screen-smaller-than-mobile: 399px;
 
+html {
+  height: unset;
+
+  background-color: #f2f5f9;
+}
+
+.container {
+  padding-top: 3em;
+}
 
 @media (max-width: $screen-smaller-than-mobile) {
   button.button,

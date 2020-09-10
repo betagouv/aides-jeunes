@@ -16,19 +16,19 @@
             >
               🚀 Continuer l'expérimentation 🚀
             </router-link>
-            <a v-bind:class="`button ${ctaSize} primary`"
+            <button v-bind:class="`button ${ctaSize} primary`"
               v-on:click="newSituation()"
               v-analytics="{ action: ctaLabel, category:'Home'}"
             >
               {{ctaLabel}}
-            </a>
-            <a v-bind:class="`button ${ctaSize} secondary`"
+            </button>
+            <button v-bind:class="`button ${ctaSize} secondary`"
               v-on:click="next()"
               v-analytics="{ action: 'Reprendre ma simulation', category:'Home'}"
               v-if="hasExistingSituation"
             >
               Reprendre la simulation
-            </a>
+            </button>
           </div>
           <p>Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.</p>
         </div>
@@ -112,7 +112,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.xlarge, .xlarge:active {
+.xlarge, .xlarge:active, .xlarge:focus {
   font-size: 2em;
   line-height: 1em;
 }
@@ -127,14 +127,6 @@ export default {
   align-items: stretch;
 }
 
-.hero {
-  background-color: #fffa;
-}
-
-.hero__container {
-  min-height: 55vh;
-}
-
 hr {
   border-top: 1px solid #ddd;
 }
@@ -147,6 +139,6 @@ hr {
 }
 
 .panel {
-  border-color: #d45500;
+  border: none;
 }
 </style>

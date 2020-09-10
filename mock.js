@@ -3,6 +3,7 @@ const rp = require('request-promise')
 const outils = require('./backend/controllers/outils')
 const mapping = require('./backend/lib/openfisca/mapping')
 
+const openfiscaRoot = 'https://openfisca.mes-aides.org'
 const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
 function sendToOpenfisca(situation, callback) {
     let request
@@ -16,7 +17,7 @@ function sendToOpenfisca(situation, callback) {
         })
     }
     rp({
-        uri: 'https://openfisca.mes-aides.org/calculate',
+        uri: `${openfiscaRoot}/calculate`,
         method: 'POST',
         body: request,
         json: true,
@@ -44,6 +45,15 @@ function mock(app) {
 
       res.send(Object.assign({ _id: 'yolo' }, result))
     })
+  })
+
+  app.get('/api/openfisca/variables', function(req, res, next) {
+    rp({
+      uri: `${openfiscaRoot}/variables`,
+      json: true
+    })
+    .then(mapping => res.send(Object.keys(mapping)))
+    .catch(error => next(error))
   })
 
   app.use(function (err, req, res, next) {

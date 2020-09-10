@@ -22,6 +22,14 @@ import '@/styles/main.scss'
 import AnalyticsDirective from './directives/analytics'
 import MailDirective from './directives/mail'
 import SelectOnClickDirective from './directives/selectOnClick'
+
+import { iframeResizerContentWindow } from 'iframe-resizer'
+
+const Resizer = {
+  install: function() {
+    iframeResizerContentWindow
+  }
+}
 AnalyticsDirective(Vue)
 MailDirective(Vue)
 SelectOnClickDirective(Vue)
@@ -34,6 +42,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 Vue.use(AsyncComputed)
+Vue.use(Resizer)
 Vue.use(ScrollService)
 Vue.use(StateService)
 Vue.use(Vuelidate)

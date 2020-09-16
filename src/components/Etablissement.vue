@@ -81,7 +81,10 @@ export default {
 
 <style lang="scss">
 .etablissement {
-  padding: 1em 0;
+  padding: 1em;
+  margin: 1em 0;
+  background-color: white;
+  border-radius: 10px;
 
   h2 {
     margin: 0;

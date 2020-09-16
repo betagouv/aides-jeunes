@@ -198,8 +198,13 @@ const router = new Router({
     },
     {
       name: 'lieux',
-      path: '/lieux/:commune/:type',
+      path: '/lieux',
       component: () => import(/* webpackChunkName: "lieux" */ './views/Lieux.vue'),
+    },
+    {
+      name: 'lieux-details',
+      path: '/lieux/:commune/:type',
+      component: () => import(/* webpackChunkName: "lieux" */ './views/Lieux/Details.vue'),
     },
     {
       path: '/redirection',

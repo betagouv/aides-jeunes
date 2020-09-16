@@ -15,6 +15,7 @@
                   <router-link to="/sos">SOS</router-link>
                   <router-link to="/liens-utiles">Liens utiles</router-link>
                   <router-link to="/contact">Contact</router-link>
+                  <router-link to="/toutes">Toutes les aides</router-link>
                 </div>
               </div>
             </li>

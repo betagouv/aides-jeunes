@@ -30,27 +30,14 @@
               Reprendre la simulation
             </button>
           </div>
-          <p>Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches.</p>
+          <p>
+            Ce questionnaire en ligne simple vous donnera un <strong>montant</strong> et vous donnera <strong>accès aux démarches</strong> pour les <strong>{{ prestationsNationalesCount }}</strong> aides nationales et <strong>{{ partenairesLocauxCount }}</strong> aides locales évaluées par le simulateur.
+          </p>
+          <router-link class="button large secondary" to="/lieux">
+            Trouver le bon interlocuteur près de chez moi
+          </router-link>
         </div>
       </main>
-    </div>
-
-    <div class="section">
-      <div class="container">
-        <div class="panel">
-          <h2 class="text-center">
-            {{ prestationsNationalesCount }} aides nationales et {{ partenairesLocauxCount }} aides locales évaluées par le simulateur
-          </h2>
-          <div class="cta">
-            <router-link class="button secondary" to="/toutes">
-              Accéder à la liste
-            </router-link>
-            <router-link class="button secondary" to="/ameliorer#proposer-une-aide">
-              Proposer une nouvelle aide
-            </router-link>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>

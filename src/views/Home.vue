@@ -2,6 +2,8 @@
   <div id="homepage">
     <div class="container">
       <main class="hero">
+        <img src="./../../public/img/5220.svg" alt="Illustration" />
+
         <div class="hero__container text-center">
           <h1>
             Évaluez vos droits à {{ prestationsNationalesCount + partenairesLocauxCount }} aides sociales.<br/>
@@ -127,5 +129,20 @@ hr {
 
 .panel {
   border: none;
+}
+
+.hero {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row-reverse;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
+}
+
+.hero img {
+  max-width: 40%;
+  margin: auto;
+
 }
 </style>

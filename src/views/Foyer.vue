@@ -130,7 +130,7 @@ input[type="button"]:focus {
 
 .progress {
   height: 0.7em;
-  background-color: #003b80;
+  background-color: #40ceb3;
   transition: all 0.5s;
 }
 

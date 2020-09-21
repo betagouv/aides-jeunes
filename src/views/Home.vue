@@ -6,11 +6,10 @@
 
         <div class="hero__container text-center">
           <h1>
-            Évaluez vos droits à {{ prestationsNationalesCount + partenairesLocauxCount }} aides sociales.<br/>
-            En moins de 7 minutes.
+            Évaluez vos droits à <strong>{{ prestationsNationalesCount + partenairesLocauxCount }} aides sociales</strong>. <br /> En moins de <strong>7 minutes</strong>.
           </h1>
 
-          <div>
+          <div class="cta">
             <router-link
               to="/experimentations"
               v-bind:class="`button ${ctaSize} secondary`"
@@ -35,7 +34,7 @@
           <p>
             Ce questionnaire en ligne simple vous donnera un <strong>montant</strong> et vous donnera <strong>accès aux démarches</strong> pour les <strong>{{ prestationsNationalesCount }}</strong> aides nationales et <strong>{{ partenairesLocauxCount }}</strong> aides locales évaluées par le simulateur.
           </p>
-          <router-link class="button large secondary" to="/lieux">
+          <router-link class="" to="/lieux">
             Trouver le bon interlocuteur près de chez moi
           </router-link>
         </div>
@@ -114,6 +113,7 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: stretch;
+  margin-bottom: 2em;
 }
 
 hr {
@@ -138,6 +138,18 @@ hr {
   @media (max-width: 1200px) {
     flex-direction: column;
   }
+
+  h1 {
+    line-height: 1.4;
+  }
+
+  p {
+    line-height: 1.5;
+  }
+}
+
+strong {
+    font-weight: 600;
 }
 
 .hero img {

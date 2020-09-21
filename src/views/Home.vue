@@ -6,7 +6,7 @@
 
         <div class="hero__container text-center">
           <h1>
-            Évaluez vos droits à <strong>{{ prestationsNationalesCount + partenairesLocauxCount }} aides sociales</strong>. <br /> En moins de <strong>7 minutes</strong>.
+            Évaluez vos droits à <strong>{{ prestationsNationalesCount + partenairesLocauxCount }} aides sociales</strong>. <br />En moins de <strong>7 minutes</strong>.
           </h1>
 
           <div class="cta">
@@ -135,6 +135,8 @@ hr {
   display: flex;
   align-items: flex-start;
   flex-direction: row-reverse;
+  border-radius: 4px;
+
   @media (max-width: 1200px) {
     flex-direction: column;
   }

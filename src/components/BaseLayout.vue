@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="navbar" role="navigation">
-      <div class="navbar__container">
+      <div class="container navbar__container">
         <router-link to="/" class="navbar__home" id="logo">
           <img class="navbar__logo" src="./../../public/img/logo.svg" alt="Logo de Mes-Aides.org" />
         </router-link>
@@ -54,8 +54,12 @@ export default {
 
 <style scoped lang="scss">
 
+.navbar__logo {
+    height: 80%;
+}
+
 .navbar__container {
-  padding: 0.2em;
+  padding: 1em 0.2em;
   flex-wrap: nowrap;
   -ms-flex-direction: row;
   flex-direction: row;

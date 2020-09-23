@@ -32,7 +32,7 @@ var teleservices = [{
     public: true,
     destination: {
         label: 'Transférer les informations',
-        url: 'https://agrums.acadis-connect.re/agrum/analyse-des-droits/{{token}}'
+        url: 'https://agrums-acadis-connect/agrum/analyse-des-droits/{{token}}'
     }
 }, {
     name: 'openfisca_tracer',

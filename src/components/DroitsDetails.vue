@@ -37,8 +37,7 @@
 
       <div class="droit-detail-description">
         <p>
-          <span v-html="droit.description" itemprop="description"></span>
-           <BenefitCtaLink
+          <span v-html="droit.description" itemprop="description"></span> <BenefitCtaLink
             v-if="droit.link"
             v-bind:analytics-name="droit.label"
             v-bind:link="droit.link"

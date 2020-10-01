@@ -471,6 +471,19 @@ var droitsDescription = {
                     'description': 'Cette aide est à destination des familles en difficulté pendant l’épisode de crise sanitaire dûe au COVID-19. Aucune action n’est nécessaire de votre part. Si vous y êtes éligible, cette aide vous sera <strong>versée automatiquement</strong> le 15 mai 2020 en  complément de vos autres prestations.',
                     prefix: 'l’',
                 },
+                'taxe_fonciere_degrevement_montant': {
+                    'isMontantAnnuel': true,
+                    'label': 'plafonnement de la taxe foncière',
+                    'conditions': [
+                        'Transmettre votre demande au centre des finances publiques de votre résidence principale',
+                        'Tout de même payer la taxe d’enlèvement des ordures ménagères'
+                    ],
+                    'description': 'La taxe foncière peut être diminuée pour les foyers aux revenus modestes. Pour cela, vous devez faire une demande de plafonnement de la taxe foncière.',
+                    prefix: 'le',
+                    link: 'https://www.service-public.fr/particuliers/vosdroits/F59',
+                    form: 'https://www.impots.gouv.fr/portail/files/formulaires/2041-dptf-sd/2019/2041-dptf-sd_2379.pdf',
+                    entity: 'foyers_fiscaux', // default entity is familles
+                },
             }
         },
     },

@@ -79,6 +79,11 @@
       <input type="number" v-select-on-click v-model.number="menage.charges_locatives">
     </label>
 
+    <label v-if="captureCodePostal && logement.type == 'proprietaire'" class="form__group">
+      Montant de votre dernière taxe foncière
+      <input type="number" v-select-on-click v-model.number="foyer_fiscal.taxe_fonciere_sur_avis[$store.state.dates.fiscalYear.id]">
+    </label>
+
     <YesNoQuestion class="form__group" v-model="logement.pretSigneAvant2018" v-if="capturePretSigneAvant2018">
       Avez-vous signé votre prêt <strong>avant</strong> le 1er janvier 2018 ?
     </YesNoQuestion>
@@ -152,6 +157,12 @@ export default {
         parisien: undefined,
         proprietaire_proche_famille: undefined,
         ...situation.famille,
+      },
+      foyer_fiscal: {
+        ...situation.foyer_fiscal,
+        taxe_fonciere_sur_avis: {
+          ...situation.foyer_fiscal.taxe_fonciere_sur_avis
+        },
       },
       locationTypes,
       logementTypes,
@@ -318,6 +329,7 @@ export default {
       this.menage.aide_logement_date_pret_conventionne = this.logement.pretSigneAvant2018 ? '2017-12-31' : '2018-01-01'
 
       this.$store.dispatch('updateMenage', this.menage)
+      this.$store.dispatch('updateFoyerFiscal', this.foyer_fiscal)
       this.$store.dispatch('updateFamille', this.famille)
       this.$push()
     },

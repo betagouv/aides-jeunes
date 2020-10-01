@@ -16,6 +16,7 @@ var familleDef = {
 
 var foyerFiscalDef = {
     rfr: Object,
+    taxe_fonciere_sur_avis: Object,
 };
 
 var ressourcesDefs = _.concat(

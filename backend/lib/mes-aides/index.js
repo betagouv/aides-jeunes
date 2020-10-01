@@ -10,7 +10,7 @@ var determineCustomizationId = require('./customization');
  */
 function normalizeOpenfiscaRessources(testCase) {
     var individuId = testCase.menages._.personne_de_reference[0];
-    return _.merge({}, testCase.menages._, testCase.familles._, testCase.individus.demandeur || testCase.individus[individuId]);
+    return _.merge({}, testCase.foyers_fiscaux._, testCase.menages._, testCase.familles._, testCase.individus.demandeur || testCase.individus[individuId]);
 }
 
 function valueAt(ressourceId, ressources, period, aide) {

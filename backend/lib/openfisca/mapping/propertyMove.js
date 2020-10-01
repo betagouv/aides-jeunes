@@ -4,7 +4,7 @@ var common = require('./common');
 var famillePropertiesGivenToIndividu = Object
     .keys(_.pickBy(common.requestedVariables, function(definition) {
         return ((! definition.type) || (definition.type == 'float')) &&
-            ((! definition.entity) || (definition.entity == 'famille'));
+            (definition.entity == 'familles');
     }))
     .concat(['aeeh', 'paje_prepare', 'paje_clca']);
 

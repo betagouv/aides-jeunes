@@ -42,7 +42,7 @@ function setNonInjectedPrestations(testCase, periods, value) {
     });
 
     _.forEach(prestationsFinancieres, function(definition, prestationName) {
-        _.forEach(testCase[(definition.entity || 'famille') + 's'], function(entity) {
+        _.forEach(testCase[definition.entity], function(entity) {
             entity[prestationName] = entity[prestationName] || {};
             _.forEach(periods, function(period) {
                 if (value === undefined) {
@@ -77,7 +77,7 @@ function giveValueToRequestedVariables(testCase, periods, value) {
     }
 
     _.forEach(common.requestedVariables, function(definition, prestationName) {
-        _.forEach(testCase[(definition.entity || 'famille') + 's'], function(entity) {
+        _.forEach(testCase[definition.entity], function(entity) {
             entity[prestationName] = entity[prestationName] || {};
             _.forEach(periods, function(period) {
                 if (typeof entity[prestationName][period] !== 'undefined' && entity[prestationName][period] !== null) {

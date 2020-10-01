@@ -59,13 +59,16 @@ export default {
 }
 
 .navbar__container {
-  padding: 1em 0.2em;
+  padding: 1em 0em;
   flex-wrap: nowrap;
   -ms-flex-direction: row;
   flex-direction: row;
 }
 
 @media (max-width: 600px) {
+  .navbar__container {
+    padding: 0em;
+  }
   .navbar__home span {
     font-size: 12px;
   }

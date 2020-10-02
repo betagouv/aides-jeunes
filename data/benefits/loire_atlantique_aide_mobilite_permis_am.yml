@@ -13,6 +13,6 @@ teleservice: https://demarche.loire-atlantique.fr/demande-aide-mobilite/
 form: https://www.loire-atlantique.fr/jcms/demande-daide-departementale-a-la-mobilite-novembre-2019-fr-p1_1147056
 prefix: l’
 floorAt: 1
-entity: individu
+entity: individus
 legend: ''
 private: true

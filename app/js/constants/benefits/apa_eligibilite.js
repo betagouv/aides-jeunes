@@ -247,5 +247,5 @@ module.exports = {
             link: 'https://www.grandlyon.com/services/allocation-personnalisee-d-autonomie.html',
         },
     },
-    'entity': 'individu', // default entity is famille
+    'entity': 'individus', // default entity is famille
 };

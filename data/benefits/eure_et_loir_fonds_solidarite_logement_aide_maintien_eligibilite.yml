@@ -11,6 +11,5 @@ link: https://www.eurelien.fr/guide/action-et-aides-sociales#guide-block-30
 prefix: une
 type: bool
 floorAt: 10
-entity: menage
+entity: menages
 symbol: fa-exclamation-triangle
-

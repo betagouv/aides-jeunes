@@ -63,7 +63,7 @@ var droitsDescription = {
                         'rsi': 'https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/formulaire_allocation_supplementaire_invalidite.pdf',
                         'cnav': 'https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-asi.pdf'
                     },
-                    'entity': 'individu', // default entity is famille
+                    'entity': 'individus', // default entity is familles
                     floorAt: 10,
                     prefix: 'l’',
                 },
@@ -237,7 +237,7 @@ var droitsDescription = {
                     'forms': {
                         'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                     },
-                    'entity': 'individu', // default entity is famille,
+                    'entity': 'individus', // default entity is familles,
                     floorAt: 10,
                     prefix: 'l’',
                 },
@@ -253,7 +253,7 @@ var droitsDescription = {
                     'forms': {
                         'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
                     },
-                    'entity': 'individu', // default entity is famille
+                    'entity': 'individus', // default entity is familles
                     floorAt: 1,
                     prefix: 'le',
                 },
@@ -284,7 +284,7 @@ var droitsDescription = {
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F12484',
                     /* En principe, formulaire envoyé automatiquement ; lien vers brochure pole emploi */
                     'instructions': 'http://www.pole-emploi.fr/front/common/tools/download_file.jspz?mediaid=186108',
-                    'entity': 'individu', // default entity is famille
+                    'entity': 'individus', // default entity is familles
                     floorAt: 10,
                     prefix: 'l’',
                 },
@@ -299,7 +299,7 @@ var droitsDescription = {
                     'label': 'complément aide au retour à l’emploi',
                     'description': 'Description',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F14860',
-                    'entity': 'individu', // default entity is famille
+                    'entity': 'individus', // default entity is familles
                     floorAt: 1,
                     prefix: 'le',
                 }
@@ -322,7 +322,7 @@ var droitsDescription = {
                     /* En principe, envoyé automatique : lien direct vers le formulaire d'utilisation en ligne */
                     'instructions': 'https://www.chequeenergie.gouv.fr/beneficiaire/cheque/paiement-en-ligne',
                     'isBaseRessourcesYearMinusTwo': true,
-                    'entity': 'menage', // default entity is famille
+                    'entity': 'menages', // default entity is familles
                     prefix: 'le',
                 },
             },
@@ -341,7 +341,7 @@ var droitsDescription = {
                         'Être indépendant.'
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F32700',
-                    'entity': 'individu', // default entity is famille
+                    'entity': 'individus', // default entity is familles
                     prefix: 'la',
                 },
             },
@@ -376,7 +376,7 @@ var droitsDescription = {
                     ],
                     'legend': 'au lieu de 0,75%',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F2367',
-                    'entity': 'individu', // default entity is famille
+                    'entity': 'individus', // default entity is familles
                     'isBaseRessourcesYearMinusTwo': true,
                     floorAt: 0.01,
                     top: 20,
@@ -471,6 +471,19 @@ var droitsDescription = {
                     'description': 'Cette aide est à destination des familles en difficulté pendant l’épisode de crise sanitaire dûe au COVID-19. Aucune action n’est nécessaire de votre part. Si vous y êtes éligible, cette aide vous sera <strong>versée automatiquement</strong> le 15 mai 2020 en  complément de vos autres prestations.',
                     prefix: 'l’',
                 },
+                'taxe_fonciere_degrevement_montant': {
+                    'isMontantAnnuel': true,
+                    'label': 'plafonnement de la taxe foncière',
+                    'conditions': [
+                        'Transmettre votre demande au centre des finances publiques de votre résidence principale',
+                        'Tout de même payer la taxe d’enlèvement des ordures ménagères'
+                    ],
+                    'description': 'La taxe foncière peut être diminuée pour les foyers aux revenus modestes. Pour cela, vous devez faire une demande de plafonnement de la taxe foncière.',
+                    prefix: 'le',
+                    link: 'https://www.service-public.fr/particuliers/vosdroits/F59',
+                    form: 'https://www.impots.gouv.fr/portail/files/formulaires/2041-dptf-sd/2019/2041-dptf-sd_2379.pdf',
+                    entity: 'foyers_fiscaux', // default entity is familles
+                },
             }
         },
     },
@@ -491,7 +504,7 @@ var droitsDescription = {
                     'link': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/',
                     'instructions': 'http://metropole.rennes.fr/pratique/infos-demarches/deplacements-stationnement-voirie/tarification-solidaire-des-transports/#c33081',
                     'isBaseRessourcesYearMinusTwo': false,
-                    'entity': 'individu', // default entity is famille
+                    'entity': 'individus', // default entity is familles
                     prefix: 'la',
                 },
             }
@@ -512,7 +525,7 @@ var droitsDescription = {
                     'link': 'https://www.bibus.fr/fr/titres-tarifs/titres/forfait-solidaire-mensuel-tempo',
                     'isBaseRessourcesYearMinusTwo': false,
                     floorAt: 0.01,
-                    'entity': 'individu', // default entity is famille
+                    'entity': 'individus', // default entity is familles
                     prefix: 'la',
                     participation: true,
                 },
@@ -559,7 +572,7 @@ var droitsDescription = {
                     'form': 'https://cotesdarmor.fr/sites/default/files/2019-01/DOSSIER%20DE%20DEMANDE%20-%20Impay%C3%A9%20Energie%20.pdf',
                     'link': 'https://cotesdarmor.fr/vos-services/acceder-ou-se-maintenir-dans-son-logement',
                     'isBaseRessourcesYearMinusTwo': false,
-                    'entity': 'individu',
+                    'entity': 'individus',
                     'type': 'bool',
                     prefix: 'le',
                 },

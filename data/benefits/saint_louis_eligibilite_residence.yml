@@ -8,4 +8,4 @@ teleservice:
   query:
     vers: ccas_saint_louis_preprod
 type: bool
-entity: menage
+entity: menages

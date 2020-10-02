@@ -93,7 +93,7 @@ module.exports = {
             'link': 'https://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/aides-aux-transports-3848#pass-paris-seniors_11',
             'form': 'https://api-site-cdn.paris.fr/images/100460',
             'type': 'bool', // default type is float
-            'entity': 'individu', // default entity is famille
+            'entity': 'individus', // default entity is famille
             prefix: 'le',
         },
         'paris_pass_access': {
@@ -102,7 +102,7 @@ module.exports = {
             'link': 'https://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/aides-aux-transports-3848#pass-paris-access_5',
             'form': 'https://api-site-cdn.paris.fr/images/100461',
             'type': 'bool', // default type is float
-            'entity': 'individu', // default entity is famille
+            'entity': 'individus', // default entity is famille
             prefix: 'le',
         }
     }

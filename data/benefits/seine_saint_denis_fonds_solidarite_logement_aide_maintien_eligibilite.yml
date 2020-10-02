@@ -12,5 +12,5 @@ instructions: https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html#comme
 prefix: une
 type: bool
 floorAt: 10
-entity: menage
+entity: menages
 symbol: fa-exclamation-triangle

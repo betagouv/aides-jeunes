@@ -12,5 +12,5 @@ form: https://www.loire-atlantique.fr/upload/docs/application/pdf/2020-03/formul
 prefix: une
 type: bool
 floorAt: 10
-entity: menage
+entity: menages
 symbol: fa-exclamation-triangle

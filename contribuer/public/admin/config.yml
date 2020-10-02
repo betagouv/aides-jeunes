@@ -145,13 +145,13 @@ collections:
         default: menage
         options:
           - label: Famille
-            value: famille
+            value: familles
           - label: Foyer Fiscal
-            value: foyer_fiscal
+            value: foyers_fiscaux
           - label: Individu
-            value: individu
+            value: individus
           - label: Ménage
-            value: menage
+            value: menages
   - name: contribution-pages
     label: Pages
     label_singular: page

@@ -1,7 +1,7 @@
 const financial_requirement = '<strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.'
 const common_attributes = {
     label: 'aide au maintien dans votre logement',
-    entity: 'menage',
+    entity: 'menages',
     type: 'bool',
     prefix: 'une',
     symbol: 'fa-exclamation-triangle'

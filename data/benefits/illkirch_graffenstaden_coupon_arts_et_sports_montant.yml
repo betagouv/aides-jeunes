@@ -1,0 +1,11 @@
+label: coupon Arts et Sports
+institution: ville_illkirch_graffenstaden
+description: Cette aide permet aux bénéficiaires du RSA qui reprennent une
+  activité de faire face très rapidement aux premières dépenses et aux besoins
+  de trésorerie. Son montant varie entre 300 et 700 euros en fonction de la
+  reprise d'activité (CCD, CDI, etc.).
+link: http://www.illkirch.eu/solidarite-et-sante/ccas/coupon-arts-sports/
+instructions: http://www.illkirch.eu/solidarite-et-sante/ccas/coupon-arts-sports/
+prefix: le
+floorAt: 1
+entity: familles

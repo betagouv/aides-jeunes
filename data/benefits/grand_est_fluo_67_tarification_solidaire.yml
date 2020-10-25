@@ -1,0 +1,11 @@
+label: tarification solidaire des transports du réseau Fluo 67
+institution: grand_est
+description: La tarification solidaire des transports est un tarif réduit sur les abonnements et les tickets à l'unité pour prendre les bus du réseau Fluo 67.
+conditions:
+  - Être titulaire d’une <a target="_blank" rel="noopener" href="https://www.ctbr67.fr/tarifs/billettique-fluo-grandest-67/carte-badgeo-fluo-grandest-67/">carte Badgeo fluo</a> (de couleur rouge) dont la demande est gratuite.
+link: https://www.ctbr67.fr/tarifs/tarifs-reduits-gratuite/
+instructions: https://www.ctbr67.fr/tarifs/tarifs-reduits-gratuite/
+prefix: la
+legend: / mois au lieu de 52.50 €
+floorAt: 1
+entity: individus

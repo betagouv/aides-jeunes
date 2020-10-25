@@ -41,20 +41,18 @@ You will need [`pip`](https://pip.pypa.io/) to install Openfisca.
 
 Application
 -----------
-
+Run the following from the root of the project to install the dependencies
 ```sh
-git clone https://github.com/sgmap/mes-aides-ui.git
-cd mes-aides-ui
 npm install
 ```
 
 Openfisca
 ---------
+:warning: As of now, python3.9 is not yet compatible with all python packages used in Openfisca. It is recommend to use a lower version such as `3.8.6`.
 
 You should [install Python 3 in a `virtualenv`](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. You can either create the `virtualenv` yourself or rely on tools such as [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) or [pew](https://github.com/berdario/pew):
 
 ```bash
-cd mes-aides-ui
 virtualenv  --python=python3 .venv # To create your virtualenv in ./.venv (a hidden folder)
 source .venv/bin/activate # To activate your virtualenv
 pip install pip --upgrade # To make sure you're using pip latest version

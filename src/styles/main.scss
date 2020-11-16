@@ -16,15 +16,9 @@ html {
 }
 
 .container {
-  padding-top: 3em;
+  padding: 0;
   max-width: 1200px;
   width: auto;
-
-  @media (max-width: calc(1200px + 4em) ) {
-    //width: 100%;
-    margin: 0 2em;
-  }
-
 }
 
 @media (max-width: $screen-smaller-than-mobile) {

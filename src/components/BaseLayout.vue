@@ -39,6 +39,21 @@
     </header>
 
     <slot></slot>
+
+    <footer>
+      <div>
+        <router-link to="/sos">SOS</router-link>
+        <router-link to="/liens-utiles">Liens utiles</router-link>
+        <router-link to="/contact">Contact</router-link>
+        <router-link to="/toutes">Toutes les aides</router-link>
+      </div>
+      <div>
+        <router-link to="/a-propos">À propos</router-link>
+        <router-link to="/cgu">Conditions d'utilisation</router-link>
+        <router-link to="/social">Réseaux sociaux</router-link>
+        <a target="_blank" rel="noopener" href="https://c8282fe1.sibforms.com/serve/MUIEALeK4cr3WdAp5x5mopAKSViUl_8HOgRWycyFqxzf2U2EwnfJS8GJ2ragsE3WagiU-OmKq_HhRamKpgndNUMN6wnrNKxk-wpY19N5N90_j6_hWPTjJ4XRa0djFNUrsWcCAWJQWR1fQgZRVqfinNCIqcGYRZsedqB9iaqWecSDEdP_dZN0PITSsB78r7SJkWvuSsWDc8nEj9eI">Abonnez-vous</a>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -55,7 +70,8 @@ export default {
 <style scoped lang="scss">
 
 .navbar__logo {
-    height: 80%;
+  height: 80%;
+  margin-left: 1em;
 }
 
 .navbar__container {
@@ -65,23 +81,31 @@ export default {
   flex-direction: row;
 }
 
-@media (max-width: 600px) {
-  .navbar__container {
-    padding: 0em;
-  }
-  .navbar__home span {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 450px) {
-  .navbar__home {
-    height: 20px;
+@media (max-width: 760px) {
+  nav {
+    display: none;
   }
 }
 
 #logo:hover, #logo:focus {
     opacity: 1;
     background-color: unset;
+}
+
+footer {
+  display: flex;
+
+  @media (min-width: 761px) {
+    display: none;
+  }
+  flex-direction: row;
+  margin: 1em;
+  justify-content: space-between;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 0em;
+  }
 }
 </style>

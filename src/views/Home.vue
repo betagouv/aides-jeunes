@@ -112,6 +112,7 @@ export default {
 .cta {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   align-items: stretch;
   margin-bottom: 2em;
 }
@@ -121,6 +122,10 @@ hr {
 }
 
 #homepage {
+  @media (min-width: 1200px) {
+    padding-top: 3em;
+  }
+
   background-attachment: fixed;
   background-position: top center;
   background-size: 100%;

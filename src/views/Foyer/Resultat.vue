@@ -57,6 +57,10 @@
         <DroitsList ineligible v-bind:droits="droitsNonEligiblesShown"></DroitsList>
       </div>
 
+      <div>
+        <p style="text-align:center;"><a target="_blank" href="https://www.facebook.com/MesAides"><img src="./../../../public/img/social/picto_facebook.png" alt="Facebook"></a>  <a target="_blank" href="https://twitter.com/MesAides"><img src="/img/social/picto_twitter.png" alt="Twitter"></a></p>
+      </div>
+
       <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
 
       <div class="notification warning print-hidden" v-if="! ressourcesYearMinusTwoCaptured">

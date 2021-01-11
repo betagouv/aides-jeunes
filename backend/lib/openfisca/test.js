@@ -30,7 +30,7 @@ function normalizeIDs(test) {
 
 function toYAML(test) {
     normalizeIDs(test);
-    return require('js-yaml').safeDump(test);
+    return require('js-yaml').dump(test);
 }
 
 var EXTENSION_VARIABLES = {

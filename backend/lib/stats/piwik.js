@@ -1,4 +1,4 @@
-var rp = require('request-promise');
+var axios = require('axios');
 
 function formatPiwik(data) {
     var metrics = [{
@@ -21,9 +21,9 @@ function formatPiwik(data) {
 }
 
 exports.getUsageData = function(fromDate, toDate) {
-    return rp({
-        uri: 'https://stats.data.gouv.fr/index.php',
-        qs: {
+    return axios.request({
+        url: 'https://stats.data.gouv.fr/index.php',
+        params: {
             module: 'API',
             method: 'API.get',
             format: 'JSON',
@@ -31,8 +31,8 @@ exports.getUsageData = function(fromDate, toDate) {
             period: 'day',
             date: fromDate.toISOString().slice(0,10) + ',' + toDate.toISOString().slice(0,10),
         },
-        json: true,
     })
+        .then(response => response.data)
         .then(formatPiwik)
         .catch(() => [])
 };

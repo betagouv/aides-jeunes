@@ -3,7 +3,6 @@
 
 User-agent: *
 Disallow: /ameli
-Disallow: /hameconnage
 Disallow: /api
 Disallow: /api/*
 Allow: /foyer/demandeur

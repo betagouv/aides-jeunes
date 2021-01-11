@@ -9,7 +9,7 @@ exports.sendEmail = function(sendSmtpEmail) {
   var partnerKey = defaultClient.authentications['partner-key'];
   partnerKey.apiKey = config.sendInBlue.apiKey;
 
-  var apiInstance = new SibApiV3Sdk.SMTPApi();
+  var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
   sendSmtpEmail.sender = {
     name: 'Équipe Mes Aides',

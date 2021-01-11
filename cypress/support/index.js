@@ -94,7 +94,7 @@ export function hasPrimeActivite() {
   const id = 'ppa'
   const description = /revenus/
   cy.get('h1').invoke('text').should('contain', 'Résultats')
-  cy.get('.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' + position + ')').as(id + '-summary')
+  cy.get('.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' + position + ')', { timeout: 6000 }).as(id + '-summary')
   cy.get('@' + id + '-summary').get('[itemprop="name"]').invoke('text')
     .should('match', name)
   cy.get('@' + id + '-summary').get('[itemprop="offers"]').invoke('text')

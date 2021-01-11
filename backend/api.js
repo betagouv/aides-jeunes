@@ -8,7 +8,6 @@ require('./config/mongoose')(mongoose, config);
 // Setup Express
 var app = express();
 
-app.use(require('./lib/ludwig')(mongoose, mongoose.model('Situation')));
 app.use(require('./config/api'));
 
 module.exports = app;

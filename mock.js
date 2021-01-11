@@ -1,5 +1,5 @@
 const bodyParser = require('body-parser')
-const rp = require('request-promise')
+const axios = require('axios')
 const outils = require('./backend/controllers/outils')
 const mapping = require('./backend/lib/openfisca/mapping')
 
@@ -16,13 +16,9 @@ function sendToOpenfisca(situation, callback) {
             stack: e.stack
         })
     }
-    rp({
-        uri: `${openfiscaRoot}/calculate`,
-        method: 'POST',
-        body: request,
-        json: true,
-    })
-    .then(function(result) {
+    axios.post(`${openfiscaRoot}/calculate`, request)
+    .then(response => response.data)
+    .then(result => {
         callback(null, result)
     }).catch(callback)
 }
@@ -48,10 +44,8 @@ function mock(app) {
   })
 
   app.get('/api/openfisca/variables', function(req, res, next) {
-    rp({
-      uri: `${openfiscaRoot}/variables`,
-      json: true
-    })
+    axios.get(`${openfiscaRoot}/variables`)
+    .then(response => response.data)
     .then(mapping => res.send(Object.keys(mapping)))
     .catch(error => next(error))
   })

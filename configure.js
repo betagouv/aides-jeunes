@@ -2,7 +2,6 @@
 
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var ludwigConfig = require('./ludwig/ui-config');
 var utils = require('./backend/lib/utils');
 var Sentry = require('@sentry/node');
 
@@ -20,8 +19,6 @@ module.exports = function(app) {
   // Setup app
   app.use('/api', require('./backend/api'));
 
-  ludwigConfig.mesAidesRootUrl = process.env.MES_AIDES_ROOT_URL;
-  app.use(ludwigConfig.baseUrl, require('ludwig-ui')(ludwigConfig));
   app.use('/followups', require('./backend/followups'));
 
   app.use(bodyParser.urlencoded({ limit: '1024kb' }));

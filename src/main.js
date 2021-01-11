@@ -46,12 +46,15 @@ Vue.use(Resizer)
 Vue.use(ScrollService)
 Vue.use(StateService)
 Vue.use(Vuelidate)
-Vue.use(VueMatomo, {
-  host: 'https://stats.data.gouv.fr',
-  trackerFileName: 'piwik',
-  siteId: 102,
-  router: router,
-})
+
+if (process.env.NODE_ENV === 'production') {
+  Vue.use(VueMatomo, {
+    host: 'https://stats.data.gouv.fr',
+    trackerFileName: 'piwik',
+    siteId: 102,
+    router: router,
+  })
+}
 
 if (window._paq) {
   window._paq.push(['setCustomVariable', 2, 'version', 'VueJS', 'visit']) // eslint-disable-line

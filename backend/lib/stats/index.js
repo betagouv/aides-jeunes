@@ -32,4 +32,4 @@ Promise.all([
         console.error('error', error);
         process.exitCode = 1;
     })
-    .finally(mongodb.closeDb);
+    .finally(mongodb.closeClient);

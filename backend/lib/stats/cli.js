@@ -38,4 +38,4 @@ mongodb.connect()
 .then(r => {
     console.log(r)
 })
-.finally(mongodb.closeDb)
+.finally(mongodb.closeClient)

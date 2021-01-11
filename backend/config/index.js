@@ -13,6 +13,10 @@ var all = {
     },
     mongo: {
         uri: process.env.MONGODB_URL || 'mongodb://localhost/dds',
+        options: {
+            useUnifiedTopology: true,
+            useNewUrlParser: true
+        }
     },
     sessionSecret: process.env.SESSION_SECRET || 'fghjdfjkdf785a-jreu',
 };

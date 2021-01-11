@@ -1,6 +1,6 @@
 var config = require('../../config');
 var mapping = require('./mapping');
-var rp = require('request-promise');
+var axios = require('axios');
 
 var buildOpenFiscaRequest = exports.buildOpenFiscaRequest = mapping.buildOpenFiscaRequest;
 function sendToOpenfisca(endpoint, transform) {
@@ -19,12 +19,8 @@ function sendToOpenfisca(endpoint, transform) {
                 stack: e.stack
             });
         }
-        rp({
-            uri: config.openfiscaURL + '/' + endpoint,
-            method: 'POST',
-            body: request,
-            json: true,
-        })
+        axios.post(config.openfiscaURL + '/' + endpoint, request)
+            .then(response => response.data)
             .then(function(result) {
                 callback(null, result);
             }).catch(callback);
@@ -36,11 +32,8 @@ exports.trace = sendToOpenfisca('trace');
 exports.sendToOpenfisca = sendToOpenfisca;
 
 exports.get = function(item, callback) {
-    rp({
-        uri: `${config.openfiscaURL}${item}`,
-        method: 'GET',
-        json: true
-    })
+    axios.get(`${config.openfiscaURL}${item}`)
+        .then(response => response.data)
         .then(function(result) {
             callback(result);
         });

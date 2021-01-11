@@ -3,10 +3,16 @@ var Promise = require('bluebird');
 var MongoClient = Promise.promisifyAll(require('mongodb').MongoClient);
 var config = require('../../config');
 
-var db;
-function saveDb(refDb) {
-    db = refDb;
-    return db;
+var client;
+function saveClient(refDb) {
+    client = refDb;
+    return client;
+}
+
+function  closeClient() {
+    if (client) {
+        client.close();
+    }
 }
 
 function extractSimulationDailyCount(db, fromDate, toDate) {
@@ -131,8 +137,9 @@ function manageMissingDBOrCollection(error) {
 
 function connect() {
     return MongoClient
-        .connectAsync(config.mongo.uri)
-        .then(saveDb);
+        .connectAsync(config.mongo.uri, config.mongo.options)
+        .then(saveClient)
+        .then(client => client.db());
 };
 exports.connect = connect;
 
@@ -158,11 +165,11 @@ exports.getStats = function(fromDate, toDate) {
                         });
                 });
         })
-        .catch(manageMissingDBOrCollection);
+        .catch(manageMissingDBOrCollection)
+        .finally(result => {
+            closeClient()
+            return result
+        })
 };
 
-exports.closeDb = function() {
-    if (db) {
-        db.close();
-    }
-};
+exports.closeClient = closeClient;

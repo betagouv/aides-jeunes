@@ -6,7 +6,7 @@ defaults: &defaults
   working_directory: ~/mes-aides-ui
   docker:
     # https://circleci.com/docs/2.0/circleci-images/#language-image-variants
-    - image: betagouv/mes-aides-docker:node8-python3.7-cy
+    - image: betagouv/mes-aides-docker:node14-python3.7-cy
     # FIXME
     # mongo 2.4.9 is not available on Docker Hub
     # https://stackoverflow.com/questions/48233357/install-older-version-of-mongodb-with-docker
@@ -49,6 +49,9 @@ jobs:
           name: Restoring node_modules
           keys:
             - v12.1.4-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run:
+          name: Check tool versions
+          command: npm --version && node --version
       - run:
           name: Install packages from package-lock.json
           command: npm ci

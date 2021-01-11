@@ -107,24 +107,6 @@ jobs:
           root: .
           paths:
             - dist
-  test_mocha:
-    <<: *defaults
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/mes-aides-ui
-      - run:
-          name: Mocha
-          command: npm run test:mocha
-  test_karma:
-    <<: *defaults
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/mes-aides-ui
-      - run:
-          name: Karma
-          command: npm run test:karma
   test_jest:
     <<: *defaults
     steps:
@@ -199,6 +181,9 @@ workflows:
       - install_openfisca
       - install
       - lint:
+          requires:
+            - install
+      - test_jest:
           requires:
             - install
       - build:

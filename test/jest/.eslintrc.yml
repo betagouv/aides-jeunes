@@ -1,4 +1,0 @@
-env:
-  jest: true
-parserOptions:
-  sourceType: module

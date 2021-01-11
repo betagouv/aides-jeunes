@@ -1,5 +1,7 @@
 import { computeAides } from '@/../backend/lib/mes-aides'
-import droitsDescription from '@/../app/js/constants/benefits'
+import droitsDescription from '@/../app/js/constants/benefits/back'
+
+var compute = computeAides.bind(droitsDescription)
 
 describe('computeAides', function () {
     var droits, situation, openfiscaResult
@@ -49,33 +51,39 @@ describe('computeAides', function () {
                     css_participation_forfaitaire: {
                         '2014-11': 10
                     },
-                    logement_social_eligible: {
+                    logement_social: {
                         '2014-11': false
                     }
                 }
+            },
+            foyers_fiscaux: {
+
             }
         }
     })
 
     describe('computeAides injected values', function() {
+        var ids
+
         beforeEach(function() {
-            droits = computeAides(situation, openfiscaResult)
+            droits = compute(situation, openfiscaResult)
+            ids = droits.droitsInjectes.map(d => d.id)
         })
 
         it('should extract injected droits', function() {
-            expect(droits.droitsInjectes).toContain(droitsDescription.prestationsNationales.caf.prestations.aah)
-            expect(droits.droitsInjectes).toContain(droitsDescription.prestationsNationales.caf.prestations.aide_logement)
-            expect(droits.droitsInjectes).toContain(droitsDescription.prestationsNationales.caf.prestations.ppa)
+            expect(ids).toContain("aah")
+            expect(ids).toContain("aide_logement")
+            expect(ids).toContain("ppa")
         })
 
         it('should not have injected droits duplicates', function() {
-            expect(droits.droitsInjectes.filter(function(d) { return d.label == "Allocation aux adultes handicapés" }).length).toEqual(1)
+            expect(ids.filter(function(d) { return d == "aah" }).length).toEqual(1)
         })
     })
 
     describe('computeAides of numeric value', function() {
         beforeEach(function() {
-            droits = computeAides(situation, openfiscaResult)
+            droits = compute(situation, openfiscaResult)
         })
 
         it('should extract droits from openfisca result', function() {
@@ -89,7 +97,7 @@ describe('computeAides', function () {
             expect(plf.provider.label).toEqual('Ville de Paris')
             expect(plf.montant).toEqual(10)
 
-            var logement_social = droits.droitsNonEligibles.find(function(element) { return element.id === 'logement_social_eligible' })
+            var logement_social = droits.droitsNonEligibles.find(function(element) { return element.id === 'logement_social' })
             expect(logement_social).toBeTruthy()
             expect(logement_social.provider.label).toEqual('Ministère de la Cohésion des territoires')
         })
@@ -97,12 +105,12 @@ describe('computeAides', function () {
 
     describe('computeAides of true boolean values', function() {
         beforeEach(function() {
-            openfiscaResult.individus.demandeur.logement_social_eligible['2014-11'] = true
-            droits = computeAides(situation, openfiscaResult)
+            openfiscaResult.individus.demandeur.logement_social['2014-11'] = true
+            droits = compute(situation, openfiscaResult)
         })
 
         it('should extract eligibles droits from openfisca result', function() {
-            var logement_social = droits.droitsEligibles.find(function(element) { return element.id === 'logement_social_eligible' })
+            var logement_social = droits.droitsEligibles.find(function(element) { return element.id === 'logement_social' })
             expect(logement_social).toBeTruthy()
             expect(logement_social.montant).toBeTruthy()
         })
@@ -110,7 +118,7 @@ describe('computeAides', function () {
 
     describe('computeAides uncomputability highlighted', function() {
         beforeEach(function() {
-            droits = computeAides(situation, openfiscaResult)
+            droits = compute(situation, openfiscaResult)
         })
 
         it('should extract reason of uncomputability', function() {
@@ -121,7 +129,7 @@ describe('computeAides', function () {
 
     describe('computeAides extraction of local partenaire without prestation', function() {
         beforeEach(function() {
-            droits = computeAides(situation, openfiscaResult)
+            droits = compute(situation, openfiscaResult)
         })
 
         it('should exclude local partenaire without prestation', function() {
@@ -131,7 +139,7 @@ describe('computeAides', function () {
 
     describe('computeAides exclude private aids', function() {
         beforeEach(function() {
-            droits = computeAides(situation, openfiscaResult)
+            droits = compute(situation, openfiscaResult)
         })
 
         it('should exclude private aid', function() {

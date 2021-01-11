@@ -289,15 +289,15 @@ var droitsDescription = {
                     prefix: 'l’',
                 },
                 'agepi': {
-                    'label': 'AGEPI',
-                    'description': 'Description',
+                    'label': 'aide à la garde d’enfants pour parent isolé',
+                    'description': 'L’aide à la garde d’enfants pour parent isolé (Agepi) est un dispositif de Pole Emploi pour les personnes qui reprennent un emploi.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F1814',
                     floorAt: 1,
                     prefix: 'l’',
                 },
                 'complement_aide_retour_emploi': {
-                    'label': 'complément aide au retour à l’emploi',
-                    'description': 'Description',
+                    'label': 'complément à l’aide au retour à l’emploi',
+                    'description': 'Le complément à l’aide au retour à l’emploi permet de continuer à percevoir une partie de ces allocations chômage lors de la reprise d’un emploi.',
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F14860',
                     'entity': 'individus', // default entity is familles
                     floorAt: 1,
@@ -449,28 +449,6 @@ var droitsDescription = {
             'label': 'L’État Français',
             'imgSrc': 'logo_etat_francais.png',
             'prestations': {
-                'covid_aide_exceptionnelle_tpe_montant': {
-                    'label': 'aide financière COVID-19 pour les petites entreprises',
-                    legend: '',
-                    'description': 'Cette aide est à destination des plus petites entreprises, des indépendants et des microentreprises des secteurs les plus touchés pendant l’épisode de crise sanitaire dûe au COVID-19.',
-                    'conditions': [
-                        'Subir une fermeture administrative ou bien',
-                        'Subir une perte de chiffre d’affaires de plus de 70% au mois de mars 2020 par rapport au mois de mars 2019',
-                    ],
-                    'link': 'https://www.economie.gouv.fr/coronavirus-soutien-entreprises',
-                    prefix: 'l’',
-                    entity: 'individu',
-                },
-                'covid_aide_exceptionnelle_famille_montant': {
-                    'label': 'aide financière COVID-19 pour les familles',
-                    legend: 'le 15 mai prochain',
-                    'conditions': [
-                        'Percevoir le revenu de solidarité active (RSA) ou l’allocation de solidarité spécifique (ASS) ou',
-                        'Percevoir des aides au logement de la CAF et avoir des enfants dans son foyer',
-                    ],
-                    'description': 'Cette aide est à destination des familles en difficulté pendant l’épisode de crise sanitaire dûe au COVID-19. Aucune action n’est nécessaire de votre part. Si vous y êtes éligible, cette aide vous sera <strong>versée automatiquement</strong> le 15 mai 2020 en  complément de vos autres prestations.',
-                    prefix: 'l’',
-                },
                 'taxe_fonciere_degrevement_montant': {
                     'isMontantAnnuel': true,
                     'label': 'plafonnement de la taxe foncière',

@@ -8,7 +8,7 @@
     <label class="form__group" v-if="type.displayMonthly === true">
       Indiquez le montant <b>mensuel net</b> :
       <input type="number" v-select-on-click step="any"
-        v-model.number="type.amounts[$store.state.dates.thisMonth.id]"
+        v-bind:value="type.amounts[$store.state.dates.thisMonth.id]"
         v-on:input="$emit('update', 'singleValue', index, $event.target.value)"/>
     </label>
 

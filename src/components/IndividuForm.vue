@@ -84,7 +84,10 @@
       </div>
     </fieldset>
 
-    <ASSQuestions class="form__group" v-bind:individu="individu" v-if="captureEligibiliteAss" />
+    <ASSQuestions class="form__group" v-bind:individu="individu"
+      v-if="captureEligibiliteAss"
+      v-on:updateDate="individu.date_debut_chomage = $event"
+      v-on:updateAssPrecondition="individu.ass_precondition_remplie = $event" />
 
     <fieldset class="form__group" v-if="captureTauxIncapacite">
       <legend>

@@ -4,14 +4,14 @@
       <label for="mois-fin-contrat">
         Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ? (MM/AAAA)
       </label>
-      <InputMonth id="mois-fin-contrat" v-model="individu.date_debut_chomage" />
+      <InputMonth id="mois-fin-contrat" v-bind:value="individu.date_debut_chomage" v-on:input="$emit('updateDate', $event)"  />
       <div>
         {{ individu.role == 'demandeur' ? 'Si vous n\'avez' : 'S\'il ou elle n\'a' }} jamais eu de contrat de travail, laissez ce champ vide.
       </div>
     </div>
 
     <div class="form__group">
-      <YesNoQuestion v-model="individu.ass_precondition_remplie"
+      <YesNoQuestion v-bind:value="individu.ass_precondition_remplie" v-on:input="$emit('updateAssPrecondition', $event)"
         v-if="capturePreconditionAss"
         >
           {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il/elle' }}

@@ -5,10 +5,10 @@
     </p>
     <div class="form__group" s v-for="(type, index) in types" v-bind:key="type.meta.id">
       <RessourceMontants v-if="isSimple(type.meta.id)" v-bind:individu="type.individu" v-bind:index="index" v-bind:type="type" v-on:update="process"/>
-      <RessourceAutoEntreprise v-if="type.meta.id === 'tns_auto_entrepreneur_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type"/>
-      <RessourceMicroEntreprise v-if="type.meta.id === 'tns_micro_entreprise_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type"/>
-      <RessourceProfessionLiberale v-if="type.meta.id === 'tns_autres_revenus'" v-bind:individu="type.individu" v-bind:ressource="type"/>
-      <RessourceExploitantAgricole v-if="type.meta.id === 'tns_benefice_exploitant_agricole'" v-bind:individu="type.individu" v-bind:ressource="type"/>
+      <RessourceAutoEntreprise v-if="type.meta.id === 'tns_auto_entrepreneur_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
+      <RessourceMicroEntreprise v-if="type.meta.id === 'tns_micro_entreprise_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
+      <RessourceProfessionLiberale v-if="type.meta.id === 'tns_autres_revenus'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
+      <RessourceExploitantAgricole v-if="type.meta.id === 'tns_benefice_exploitant_agricole'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
     </div>
 
     <div class="next form__group">
@@ -94,7 +94,13 @@ export default {
       this.types = this.getTypes(this.individu)
 
       this.$push(this.$store.state.situation)
-    }
+    },
+    updateTNSAmount: function(type, period, value) {
+      type.amounts[period] = value
+    },
+    updateTNSExtra: function(type, item, value) {
+      type.extra[item] = value
+    },
   }
 }
 </script>

@@ -23,6 +23,12 @@ const router = new Router({
           store.commit('setAmeliNoticationDone')
           return next('/ameli')
         }
+
+        const params = new URLSearchParams(document.location.search.substring(1))
+        const themeColor = params.get("themeColor")
+        if (themeColor) {
+          store.commit('setThemeColor', themeColor)
+        }
         next()
       }
     },

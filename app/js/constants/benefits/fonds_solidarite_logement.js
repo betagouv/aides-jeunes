@@ -1,22 +1,28 @@
 const financial_requirement = '<strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.'
-const common_attributes = {
+
+const provider_commun_attributes = {
+    repository: 'france-local',
+}
+
+const aid_common_attributes = {
     label: 'aide au maintien dans votre logement',
     entity: 'menages',
     type: 'bool',
     prefix: 'une',
-    symbol: 'fa-exclamation-triangle'
+    symbol: 'fa-exclamation-triangle',
+    top: 6,
 }
 
 function fsl_generator({ prefix, label, code, resources }) {
     return {
         imgSrc: `logo_cd${code}.png`,
-        repository: 'france-local',
+        ...provider_commun_attributes,
         label: `Département ${label}`,
         interactionWithNationalPrestationsHandled: true,
         prefix: 'de',
         prestations: {
             [`${prefix}_fonds_solidarite_logement_aide_maintien_eligibilite`]: {
-                ...common_attributes,
+                ...aid_common_attributes,
                 ...resources,
                 conditions: [
                     `Occuper, à titre de résidence principale, un logement sur le territoire du département ${label}.`,
@@ -31,13 +37,13 @@ function fsl_generator({ prefix, label, code, resources }) {
 function fsl_generator_metropole({ prefix, label, code, resources }) {
     return {
         imgSrc: `logo_${code}_metropole.png`,
-        repository: 'france-local',
+        ...provider_commun_attributes,
         label,
         interactionWithNationalPrestationsHandled: true,
         prefix,
         prestations: {
             [`${code}_metropole_fonds_solidarite_logement_aide_maintien_eligibilite`]: {
-                ...common_attributes,
+                ...aid_common_attributes,
                 ...resources,
                 conditions: [
                     `Occuper, à titre de résidence principale, un logement sur le territoire ${prefix} ${label}.`,

@@ -2,9 +2,16 @@
   <div>
     <header class="navbar" role="navigation">
       <div class="container navbar__container">
-        <router-link to="/" class="navbar__home" id="logo">
-          <img class="navbar__logo" src="./../../public/img/logo.svg" alt="Logo de Mes-Aides.org" />
-        </router-link>
+        <div class="navbar__container">
+          <router-link v-if="!$store.state.themeColor" to="/" class="navbar__home" id="logo">
+            <img class="navbar__logo" src="./../../public/img/logo.svg" alt="Logo de Mes-Aides.org" />
+          </router-link>
+          <div v-else>
+            <span class="large_screen_text">en partenariat</span> avec <a target="_blank" rel="noopener" href="https://incubateur.anct.gouv.fr/">
+              <img class="logo partenaire" src="./../../public/img/logo_incubateur.png" alt="Incubateur des Territoires de l'ANCT" />
+            </a> et <a target="_blank" rel="noopener" href="https://mes-aides.org/"><img class="logo partenaire mesaides" src="./../../public/img/logo.svg" alt="Mes-Aides.org" /></a>
+          </div>
+        </div>
 
         <nav>
           <ul class="nav__links">
@@ -74,19 +81,25 @@ export default {
   margin-left: 1em;
 }
 
+.logo.partenaire {
+  max-height: 30px;
+}
+
+.logo.mesaides {
+  position: relative;
+  top: 5px;
+  left: 2px;
+}
+
+.logo.incubateur {
+  display: flex;
+}
+
 .navbar__container {
-  padding: 1em 0em;
   flex-wrap: nowrap;
   -ms-flex-direction: row;
   flex-direction: row;
 }
-
-@media (max-width: 760px) {
-  nav {
-    display: none;
-  }
-}
-
 #logo:hover, #logo:focus {
     opacity: 1;
     background-color: unset;
@@ -95,9 +108,6 @@ export default {
 footer {
   display: flex;
 
-  @media (min-width: 761px) {
-    display: none;
-  }
   flex-direction: row;
   margin: 1em;
   justify-content: space-between;
@@ -108,4 +118,26 @@ footer {
     padding: 1em 0em;
   }
 }
+
+@media (max-width: 760px) {
+  nav {
+    display: none;
+  }
+}
+
+@media (max-width: 950px) {
+  .large_screen_text {
+    display: none;
+  }
+}
+
+@media (min-width: 761px) {
+  .navbar__container {
+    padding: 1em 0em;
+  }
+  footer {
+    display: none;
+  }
+}
+
 </style>

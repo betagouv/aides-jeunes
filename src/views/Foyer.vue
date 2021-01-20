@@ -43,7 +43,10 @@ export default {
       return (this.currentStepIndex*2-1)/(2*this.total-1)
     },
     style: function() {
-      return { width: `${100*this.progress}%` }
+      return {
+        width: `${100*this.progress}%`,
+        backgroundColor: this.$store.state.themeColor || '#40ceb3',
+      }
     },
     steps: function() {
       const start = '/foyer/demandeur'
@@ -130,7 +133,6 @@ input[type="button"]:focus {
 
 .progress {
   height: 0.7em;
-  background-color: #40ceb3;
   transition: all 0.5s;
 }
 

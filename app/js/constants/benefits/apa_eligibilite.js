@@ -10,6 +10,7 @@ module.exports = {
     link: 'http://www.pour-les-personnes-agees.gouv.fr/beneficier-daides/lapa-est-lallocation-personnalisee-dautonomie/facile-a-lire',
     instructions: 'http://www.pour-les-personnes-agees.gouv.fr/annuaire-conseils-departementaux',
     type: 'bool',
+    top: 6,
     customization: {
         'D05-HAUTES_ALPES': {
             provider: {
@@ -46,6 +47,15 @@ module.exports = {
             form: undefined, // Prevent default form recycling
             teleservice: 'https://teleservices.calvados.fr/demandes-apa/',
             link: 'https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html',
+        },
+        'D28-EURE_ET_LOIR': {
+            provider: {
+                imgSrc: 'logo_cd28.png',
+            },
+            instructions: undefined, // Prevent default instructions recycling
+            form: 'https://www.eurelien.fr/sites/default/files/mda-dossier-dallocation-personnalisee-dautonomie.pdf', // Prevent default form recycling
+            teleservice: undefined,
+            link: 'https://eurelien.fr/guide/autonomie',
         },
         'D29-FINISTERE': {
             provider: {

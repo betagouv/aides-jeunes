@@ -76,6 +76,7 @@ function defaultStore() {
     ameliNoticationDone: false,
     lieux: null,
     title: null,
+    themeColor: null
   }
 }
 
@@ -252,6 +253,9 @@ const store = new Vuex.Store({
     },
     setDirty: function(state) {
       state.calculs.dirty = true
+    },
+    setThemeColor: function(state, themeColor) {
+      state.themeColor = themeColor
     }
   },
   actions: {

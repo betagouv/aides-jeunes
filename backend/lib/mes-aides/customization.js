@@ -14,6 +14,8 @@ function determineCustomizationId(testCase, currentPeriod) {
             return 'D13-BDR';
         if (testCase.menages._.depcom[currentPeriod].match(/^14/))
             return 'D14-CALVADOS';
+        if (testCase.menages._.depcom[currentPeriod].match(/^28/))
+            return 'D28-EURE_ET_LOIR';
         if (testCase.menages._.depcom[currentPeriod].match(/^29/))
             return 'D29-FINISTERE';
         if (testCase.menages._.depcom[currentPeriod].match(/^31/))

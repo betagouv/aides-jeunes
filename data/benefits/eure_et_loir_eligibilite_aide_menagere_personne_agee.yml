@@ -1,0 +1,7 @@
+label: aide ménagère pour les personnes âgées
+institution: departement_eure_et_loir
+description: L'aide ménagère est une aide en nature accordée aux personnes âgées relevant du GIR 5 et 6 qui, du fait de leur état de santé ou de leur âge, ont besoin de recourir à un personnel pour effectuer les actes de la vie courante.
+link: https://eurelien.fr/guide/action-et-aides-sociales
+prefix: l’
+type: bool
+entity: individus

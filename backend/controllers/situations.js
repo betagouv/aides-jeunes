@@ -61,7 +61,7 @@ exports.create = function(req, res, next) {
 
 exports.openfiscaResponse = function(req, res, next) {
     return openfisca.calculate(req.situation, function(err, result) {
-        if (err) return next(Object.assign(err, { _id: req.situation._id }));
+        if (err) return next(Object.assign(err.response.data, { _id: req.situation._id }));
 
         res.send(Object.assign(result, { _id: req.situation._id }));
     });
@@ -69,7 +69,7 @@ exports.openfiscaResponse = function(req, res, next) {
 
 exports.openfiscaTrace = function(req, res, next) {
     return openfisca.trace(req.situation, function(err, result) {
-        if (err) return next(Object.assign(err, { _id: req.situation._id }));
+        if (err) return next(Object.assign(err.response.data, { _id: req.situation._id }));
 
         res.send(Object.assign(result, { _id: req.situation._id }));
     });

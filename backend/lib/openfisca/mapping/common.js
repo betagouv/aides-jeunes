@@ -55,7 +55,8 @@ exports.getPeriods = function (dateDeValeur) {
         previousFiscalYear12Months: _.map(_.range(12), function(monthIndex) {
             var fiscalYear = moment(dateDeValeur.clone().subtract(3, 'years').year(), 'YYYY');
             return fiscalYear.clone().add(monthIndex, 'months').format('YYYY-MM');
-        })
+        }),
+        '3YearsAgo': dateDeValeur.clone().subtract(3, 'years').format('YYYY-MM'),
     };
 };
 

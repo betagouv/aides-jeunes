@@ -1,0 +1,20 @@
+label: prestation de compensation à domicile
+institution: departement_eure_et_loir
+description: >-
+  La Prestation de compensation du handicap à domicile (PCH) a pour but de
+  compenser les conséquences du handicap. C’est une aide personnalisée,
+  modulable en fonction des besoins de chaque bénéficiaire. Elle peut financer
+  des aides humaines, des aides techniques, des aides pour l’aménagement du
+  logement et/ou du véhicule, les surcoûts liés au transport, des aides
+  animalières, des charges spécifiques (service de téléalarme, etc.) ou
+  exceptionnelles.
+conditions:
+  - Ne pas déjà bénéficier d’Allocation compensatrice pour tierce
+    personne (ACTP), d’Allocation personnalisée d’autonomie (APA) ou 
+    d’Allocation d’éducation de l’enfant handicapé (AEEH)
+  - Faire évaluer votre situation personnelle par la maison départementale de l'autonomie (MDA)
+link: https://www.eurelien.fr/guide/autonomie
+prefix: la
+type: bool
+floorAt: 10
+entity: individus

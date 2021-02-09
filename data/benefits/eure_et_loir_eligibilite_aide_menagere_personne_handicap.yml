@@ -1,0 +1,15 @@
+label: aide ménagère à domicile
+institution: departement_eure_et_loir
+description: L’aide-ménagère est accordée aux personnes en situation de handicap
+  ayant besoin, pour demeurer à leur domicile, d’une aide matérielle pour
+  effectuer les actes de la vie courante.  La participation financière du
+  bénéficiaire est définie par le Conseil départemental.
+conditions:
+  - Ne pas déjà bénéficier de l’Allocation compensatrice pour tierce personne
+    (ACTP), la Majoration Tierce Personne (MTP versée par la CPAM) ou encore des
+    prestations d’aide-ménagère servies par les caisses de retraite.
+link: https://eurelien.fr/guide/autonomie
+prefix: l’
+type: bool
+floorAt: 10
+entity: individus

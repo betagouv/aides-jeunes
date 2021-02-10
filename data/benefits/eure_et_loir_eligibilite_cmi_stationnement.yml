@@ -1,0 +1,9 @@
+label: carte mobilité inclusion stationnement
+institution: departement_eure_et_loir
+description: Cette carte donne droit au stationnement sur les places réservées
+  aux personnes en situation de handicap sur le stationnement public.
+link: https://www.eurelien.fr/guide/autonomie
+prefix: la
+type: bool
+floorAt: 10
+entity: individus

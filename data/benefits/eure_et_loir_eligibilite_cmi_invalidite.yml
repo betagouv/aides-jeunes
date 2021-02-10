@@ -1,0 +1,12 @@
+label: carte mobilité inclusion invalidité 
+institution: departement_eure_et_loir
+description: >
+  Cette carte permet d’obtenir une priorité d’accès aux places assises dans les
+  lieux publics, les salles d’attente et les transports en commun, de bénéficier
+  d’avantages fiscaux et de réductions tarifaires.
+conditions:
+link: https://www.eurelien.fr/guide/autonomie
+prefix: la
+type: bool
+floorAt: 10
+entity: individus

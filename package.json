@@ -38,6 +38,7 @@
     "cookie-parser": "^1.4.5",
     "core-js": "^3.8.2",
     "cors": "^2.8.4",
+    "currency.js": "^2.0.3",
     "currencyformatter.js": "^2.1.0",
     "errorhandler": "^1.5.1",
     "event-stream": "3.3.4",

@@ -123,7 +123,7 @@
     <p>
       <a
         v-analytics="{ action:'CGU', category:'Éditeur'}"
-        v-mail="{to: 'equipe@mes-aides.org', subject:'Éditeur', body:''}">Le collectif citoyen
+        v-mail="{to: 'equipe@mes-aides.org', subject:'Éditeur', body:''}">L'association Mes Aides
       </a>
     </p>
 
@@ -131,7 +131,7 @@
       Direction de la publication :
       <a
         v-analytics="{ action:'CGU', category:'Direction de la publication'}"
-        v-mail="{to: 'equipe@mes-aides.org', subject:'Direction de la publication', body:''}">Le collectif citoyen
+        v-mail="{to: 'equipe@mes-aides.org', subject:'Direction de la publication', body:''}">L'association Mes Aides
       </a>
     </p>
 

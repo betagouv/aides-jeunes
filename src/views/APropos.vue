@@ -16,7 +16,7 @@
 
     <p>Mes Aides a été lancé en novembre 2014. Depuis janvier 2017, chaque jour, plus de 10 000 usagers évaluent leurs droits à vingt-quatre prestations sociales. Plus de la moitié reçoivent une estimation en moins de sept minutes.</p>
 
-    <small>Explorez les <a href="http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=9&period=day&date=yesterday#?module=Dashboard&action=embeddedIndex&idSite=9&period=day&date=yesterday&idDashboard=1">statistiques d'usage</a> et comprenez comment nous évaluons la <a href="https://beta.gouv.fr/2016/11/04/mes-aides-metriques-pirates-tunnel-conversion-public">performance</a>.</small>
+    <small>Explorez les <a href="http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=102&period=day&date=yesterday#?module=Dashboard&action=embeddedIndex&idSite=102&period=day&date=yesterday&idDashboard=1">statistiques d'usage</a> et comprenez comment nous évaluons la <a href="https://beta.gouv.fr/2016/11/04/mes-aides-metriques-pirates-tunnel-conversion-public">performance</a>.</small>
 
 
     <h2 id="fonctionnement">Comment fonctionne Mes Aides ?</h2>
@@ -37,11 +37,15 @@
 
     <h2 id="startup-etat">Qui sommes-nous ?</h2>
 
-    <p>Un collectif citoyen.</p>
+    <p>L'association Mes Aides qui a pour but de lutter contre l’asymétrie d’information vis-à-vis des lois et règlements qui régissent l’attribution des prestations sociales, des aides publiques et des aides parapubliques pour les particuliers.</p>
 
-    <p>Jusqu'en janvier 2020, Mes Aides était une Startup d’État de l’<a href="https://beta.gouv.fr">Incubateur de services numériques</a>. Un service public numérique produit par une <a href="http://beta.gouv.fr/2016/11/28/equipes-autonomes">petite équipe autonome</a>. Les pratiques des startups du numérique étaient mises au service de l’action publique.</p>
+    <p>Jusqu'en mars 2020, Mes Aides <a href="https://beta.gouv.fr/startups/mes-aides.html">était une Startup d’État</a> de l’écosystème <a href="https://beta.gouv.fr">beta.gouv.fr</a>. Un service public numérique produit par une <a href="http://beta.gouv.fr/2016/11/28/equipes-autonomes">petite équipe autonome</a>. Les pratiques des startups du numérique étaient mises au service de l’action publique.</p>
 
-    <small>Pour en savoir plus, découvrez le programme <a href="https://beta.gouv.fr">beta.gouv.fr</a>, nos <a href="https://github.com/betagouv/mes-aides-ui/wiki/Partenaires">partenaires</a>, et accédez à tout <a href="https://github.com/betagouv">le code de l'Incubateur de services numériques</a>.</small>
+    <p>Les débuts de cette Startup d’État sont détaillés dans le premier chapitre de
+        <a href="https://pastel.archives-ouvertes.fr/tel-02418677v1">ALAUZEN M. (2019), Plis et replis de l’État plateforme. Enquête sur la modernisation des services publics en France, thèse de doctorat en Sciences, technologies et société, Mines ParisTech – PSL</a>.<br/>
+        De plus, les derniers moments de cette Startup d'État ont eux aussi fait l’objet d’un travail de recherche publié dans <a href="https://www.cairn.info/revue-reseaux-2021-1-page-121.htm">ALAUZEN M. (2021), Splendeurs et misères d’une start-up d’État: Dispute dans la lutte contre le non-recours aux droits sociaux en France (2013-2020). Réseaux, 1(1), 121-150</a>.</p>
+
+    <small>Pour en savoir plus, découvrez le programme <a href="https://beta.gouv.fr">beta.gouv.fr</a>.</small>
 
   </article>
 </template>

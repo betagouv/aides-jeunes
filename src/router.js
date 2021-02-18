@@ -23,12 +23,6 @@ const router = new Router({
           store.commit('setAmeliNoticationDone')
           return next('/ameli')
         }
-
-        const params = new URLSearchParams(document.location.search.substring(1))
-        const themeColor = params.get("themeColor")
-        if (themeColor) {
-          store.commit('setThemeColor', themeColor)
-        }
         next()
       }
     },
@@ -159,6 +153,15 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "a-propos" */ './views/APropos.vue')
     },
     {
+      path: '/a-propos-integre',
+      name: 'a-propos-integre',
+      component: () => import(/* webpackChunkName: "a-propos-integre" */ './views/AProposIntegre.vue'),
+      beforeEnter: (to, from, next) => {
+        store.commit('setIframeOrigin', from.path)
+        next()
+      },
+    },
+    {
       path: '/ameliorer',
       name: 'ameliorer',
       component: () => import(/* webpackChunkName: "ameliorer" */ './views/Ameliorer.vue')
@@ -228,6 +231,14 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "sos" */ './views/SOS.vue')
     },
     {
+      path: '/start',
+      name: 'start',
+      beforeEnter: (to, from, next) => {
+        store.dispatch('clear')
+        next({path: '/foyer/demandeur', replace: true})
+      },
+    },
+    {
       path: '/stats',
       name: 'stats',
       component: () => import(/* webpackChunkName: "stats" */ './views/Stats.vue')
@@ -254,12 +265,27 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  const params = new URLSearchParams(document.location.search.substring(1))
   if (from.name === null) {
     store.commit('initialize')
     store.dispatch('verifyBenefitVariables')
     if (to.matched.some(r => r.name === 'foyer') && ['demandeur', 'resultat'].indexOf(to.name) === -1 && ! store.getters.passSanityCheck) {
       return store.dispatch('redirection', route => next(route))
     }
+
+    const iframe = params.get("iframe")
+    if (iframe != null) {
+      store.commit('setIframeOrigin', null)
+    }
+  }
+
+  if (store.state.iframeOrigin) {
+    store.commit('setIframeOrigin', null)
+  }
+
+  const themeColor = params.get("themeColor")
+  if (themeColor) {
+    store.commit('setThemeColor', themeColor)
   }
 
   if (to.meta.title) {

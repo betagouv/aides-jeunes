@@ -69,7 +69,7 @@ export default {
     },
     currentStepIndex: function() {
       let route = this.stepRoute
-      let idx = _.indexOf(this.steps, route.fullPath)
+      let idx = _.indexOf(this.steps, route.path)
       if (idx >= 0) {
         return idx+1
       }
@@ -83,7 +83,7 @@ export default {
         return idx+1
       }
 
-      this.$matomo && this.$matomo.trackEvent('General', 'Progress error', route.fullPath)
+      this.$matomo && this.$matomo.trackEvent('General', 'Progress error', route.path)
       return this.total
     },
     title: function() {

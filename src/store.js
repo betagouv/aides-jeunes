@@ -76,7 +76,9 @@ function defaultStore() {
     ameliNoticationDone: false,
     lieux: null,
     title: null,
-    themeColor: null
+    themeColor: null,
+    inIframe: false,
+    iframeOrigin: null
   }
 }
 
@@ -256,7 +258,11 @@ const store = new Vuex.Store({
     },
     setThemeColor: function(state, themeColor) {
       state.themeColor = themeColor
-    }
+    },
+    setIframeOrigin: function(state, newOrigin) {
+      state.inIframe = true
+      state.iframeOrigin = newOrigin
+    },
   },
   actions: {
     clear: function({commit}, external_id) {

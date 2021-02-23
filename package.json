@@ -45,7 +45,6 @@
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "frozen-moment": "^0.4.0",
-    "fuse.js": "^3.6.1",
     "iframe-resizer": "^4.3.0",
     "jamstack-loader": "0.0.8",
     "js-yaml": "^4.0.0",
@@ -90,8 +89,7 @@
     "mustache": "^4.1.0",
     "sass": "^1.26.5",
     "sass-loader": "^10.1.1",
-    "vue-template-compiler": "^2.6.12",
-    "world-countries": "github:mledoze/countries#25ac1083834"
+    "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {
     "root": true,

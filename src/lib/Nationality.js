@@ -1,33 +1,3 @@
-let Fuse = require('fuse.js');
-let worldCountries = require('world-countries');
-let countries = [];
-
-worldCountries.forEach(function(country) {
-    if (country.demonyms) {
-        countries.push({
-            code: country.cca2,
-            commonName: country.translations.fra.common,
-            demonym: country.demonyms.fra.f,
-            officialName: country.translations.fra.official,
-        });
-    }
-});
-
-let fuseOptions = {
-    shouldSort: true,
-    threshold: 0.5,
-    location: 0,
-    distance: 100,
-    maxPatternLength: 32,
-    minMatchCharLength: 1,
-    keys: [
-        "commonName",
-        "demonym",
-        "officialName"
-    ]
-};
-let fuse = new Fuse(countries, fuseOptions);
-
 let ZONE_LABEL = {
     'fr': 'française',
     'ue': 'UE',
@@ -82,9 +52,6 @@ function getZone(countryCode) {
 }
 
 const Nationality = {
-    toArray: function() {
-        return countries;
-    },
     getLabel: function(nationality) {
         return ZONE_LABEL[getZone(nationality)];
     },
@@ -99,9 +66,6 @@ const Nationality = {
         }
 
         return 'FR';
-    },
-    search: function(q) {
-        return fuse.search(q).slice(0, 10);
     }
 }
 

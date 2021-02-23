@@ -1,5 +1,6 @@
 const configureAPI = require('./configure')
 const mock = require('./mock')
+const webpack = require('webpack')
 const before = process.env.NODE_ENV === 'front_only' ? mock : configureAPI
 var { forEach } = require('./app/js/constants/benefits/back')
 
@@ -10,8 +11,11 @@ forEach(() => {
 process.env.VUE_APP_BENEFIT_COUNT = count
 
 module.exports = {
-  configureWebpack: {
-    devtool: 'source-map'
+  configureWebpack: (config) => {
+    config.devtool = 'source-map'
+    config.plugins.push(
+      new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(fr)$/)
+    )
   },
   chainWebpack(config) {
     config.module

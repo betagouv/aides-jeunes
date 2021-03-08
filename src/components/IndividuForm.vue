@@ -120,8 +120,8 @@
 
     <label class="form__group" v-if="individu.etudiant">
       À quel échelon {{ individu.role == 'demandeur' ? 'êtes-vous' : 'est-il/elle' }} boursier ?
-      <input id="echelon-bourse" v-model="individu.echelon_bourse" type="range" min="-1" max="7">
-      {{ individu.echelon_bourse == -1 ? 'Non boursier': 'Boursier échelon ' + individu.echelon_bourse }}
+      <input id="echelon-bourse" v-model="individu.echelon_bourse" type="range" min="-2" max="7">
+      {{ labelBoursier }}
     </label>
 
     <YesNoQuestion class="form__group" v-model="fiscalementIndependant" v-if="captureDemandeurACharge">
@@ -333,6 +333,17 @@ export default {
     title: function() {
       return (this.individu._role === 'enfant' && ! this.existingIndividu) ? 'Nouvel enfant' : Individu.label(this.individu)
     },
+    labelBoursier: function() {
+      console.log(this.individu.echelon_bourse)
+      switch (1*this.individu.echelon_bourse) {
+      case -2:
+        return 'Je ne sais pas'
+      case -1:
+        return 'Non boursier'
+      default:
+        return 'Boursier échelon ' + this.individu.echelon_bourse
+      }
+    }
   },
   methods: {
     getZone: function(nationalite) {

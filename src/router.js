@@ -27,6 +27,18 @@ const router = new Router({
       }
     },
     {
+      path: '/simulation',
+      name: 'simulation',
+      redirect: '/simulation/demandeur/date_naissance',
+      component: () => import(/* webpackChunkName: "simulation" */ './views/Simulation.vue'),
+      children: [{
+        name: 'date_naissance',
+        path: ':role/date_naissance',
+        component: () => import(/* webpackChunkName: "simulation" */ './views/Simulation/DateNaissance.vue'),
+        meta: { title: 'Votre date de naissance' }
+      }]
+    },
+    {
       path: '/foyer',
       name: 'foyer',
       redirect: '/foyer/demandeur',

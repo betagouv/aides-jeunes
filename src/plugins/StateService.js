@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import Individu from '@/lib/Individu'
 import Ressource from '@/lib/Ressource'
+import Experimental from './ExperimentalStateService'
 
 function nextDemandeurRessources(situation) {
     let conjoint = situation.conjoint
@@ -54,10 +55,30 @@ function nextRessourceRoute(current, situation) {
     }
 }
 
-function next(current, situation) {
+function next_(current, situation, router) {
+    if (router) {
+        const journey = Experimental.generateJourney(situation, router.currentRoute)
+        let p = current.path || current
+        let matches = journey.map((element, index) => { return {element, index} }).filter(item => item.element == p)
+        if (matches.length) {
+            return journey[matches[0].index + 1]
+        } else {
+            console.log('KO XP', current.path || current)
+            const test = current.path || current
+            if (test.startsWith('/simulation')) {
+                throw new Error('Logic missing for ' + test)
+            }
+        }
+    }
     switch (current.path || current) {
         case '/':
-            return '/foyer/demandeur'
+            return '/simulation'
+        case '/simulation/individu/demandeur/date_naissance':
+            return '/simulation/individu/conjoint/date_naissance'
+        case '/simulation/individu/conjoint/date_naissance':
+            return '/simulation/individu/enfant_0/date_naissance'
+        case '/simulation/individu/enfant_0/date_naissance':
+            return '/simulation'
         case '/foyer/demandeur':
             return '/foyer/enfants'
         case '/foyer/enfants':
@@ -118,17 +139,29 @@ function next(current, situation) {
     }
 }
 
+function next(current, situation, router) {
+    const result = next_(current, situation, router)
+    if (result && router) {
+        const r = router.resolve(result)
+        if (r && r.resolved) {
+            return r.resolved
+        } else {
+            return result
+        }
+    }
+}
+
 function areSimilar(a, b) {
     const res = a === b || (a.path && b.path && a.path === b.path) || (a.name && b.name && a.name === b.name && a.params === b.params)
     return res
 }
 
-function full(start, situation) {
+function full(start, situation, router) {
     let steps = [start]
-    let nextStep = next(steps[steps.length-1], situation)
+    let nextStep = next(steps[steps.length-1], situation, router)
     while (! areSimilar(steps[steps.length-1], nextStep)) {
         steps.push(nextStep)
-        nextStep = next(steps[steps.length-1], situation)
+        nextStep = next(steps[steps.length-1], situation, router)
     }
 
     steps.shift()
@@ -144,7 +177,7 @@ const StateService = {
     }
 
     Vue.prototype.$push = function(situation) {
-        this.$router.push(next(this.$route, situation))
+        this.$router.push(next(this.$route, situation || this.$store.state.situation, this.$router))
     }
   }
 }

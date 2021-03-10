@@ -22,7 +22,7 @@ function find(situation, role, id) {
         return _.find(situation.enfants, { id: id })
     }
 
-    return situation[role]
+    return situation[role] || _.find(situation, { id: id })
 }
 
 function getDemandeur() {

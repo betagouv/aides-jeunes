@@ -2,9 +2,6 @@
   <div class="simulation">
     <div class="main">
       <router-view/>
-      <div class="actions">
-        <button class="button large">OK</button>
-      </div>
     </div>
     <div class="separator" />
     <SimulationProgress />
@@ -38,9 +35,5 @@ export default {
 
 .main {
   flex-grow: 20;
-}
-
-.actions {
-  display: flex;
 }
 </style>

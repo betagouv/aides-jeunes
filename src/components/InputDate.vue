@@ -11,7 +11,9 @@
         placeholder="JJ"
         v-select-on-click
         min=1
-        max=31 />
+        max=31
+        v-bind:required="showDay && required"
+        />
       /
     </div>
     <input
@@ -22,7 +24,9 @@
       placeholder="MM"
       v-select-on-click
       min=1
-      max=12 />
+      max=12
+      v-bind:required="required"
+      />
       /
     <input
       type="number"
@@ -33,7 +37,9 @@
       placeholder="AAAA"
       v-select-on-click
       min="1900"
-      max="2020">
+      max="2020"
+      v-bind:required="required"
+      />
   </div>
 </template>
 
@@ -63,7 +69,8 @@ export default {
     dateType: {
       type: String,
       default: "date"
-    }
+    },
+    required: Boolean,
   },
   data: function() {
     const captureFullDate = (this.dateType === "date")

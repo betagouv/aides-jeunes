@@ -29,13 +29,42 @@ const router = new Router({
     {
       path: '/simulation',
       name: 'simulation',
-      redirect: '/simulation/demandeur/date_naissance',
+      redirect: '/simulation/individu/demandeur/date_naissance',
       component: () => import(/* webpackChunkName: "simulation" */ './views/Simulation.vue'),
       children: [{
-        name: 'date_naissance',
-        path: ':role/date_naissance',
-        component: () => import(/* webpackChunkName: "simulation" */ './views/Simulation/DateNaissance.vue'),
-        meta: { title: 'Votre date de naissance' }
+        name: 'individu',
+        path: 'individu/:id',
+        redirect: '/simulation/individu/:id/date_naissance',
+        component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu.vue'),
+        children: [{
+          name: 'date_naissance',
+          path: 'date_naissance',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/DateNaissance.vue'),
+        }, {
+          name: 'handicap',
+          path: 'handicap',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap.vue'),
+        }, {
+          name: 'nationalite',
+          path: 'nationalite',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Nationalite.vue'),
+        }]
+      }, {
+        path: 'enfants',
+        component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Enfants.vue'),
+      }, {
+        path: 'famille',
+        component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille.vue'),
+        children: [{
+          path: 'en_couple',
+          component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/EnCouple.vue'),
+        }, {
+          path: 'rsa_isolement_recent',
+          component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/RsaIsolementRecent.vue'),
+        }]
+      }, {
+        path: 'resultats',
+        component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/Resultats.vue'),
       }]
     },
     {

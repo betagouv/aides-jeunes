@@ -143,3 +143,8 @@ html {
 [itemprop="name"]::first-letter {
   text-transform: uppercase;
 }
+
+form {
+  max-width: unset;
+  margin: unset;
+}

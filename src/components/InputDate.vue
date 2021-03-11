@@ -12,7 +12,6 @@
         v-select-on-click
         min=1
         max=31
-        v-bind:required="showDay && required"
         />
       /
     </div>
@@ -25,7 +24,6 @@
       v-select-on-click
       min=1
       max=12
-      v-bind:required="required"
       />
       /
     <input
@@ -38,7 +36,6 @@
       v-select-on-click
       min="1900"
       max="2020"
-      v-bind:required="required"
       />
   </div>
 </template>
@@ -70,7 +67,6 @@ export default {
       type: String,
       default: "date"
     },
-    required: Boolean,
   },
   data: function() {
     const captureFullDate = (this.dateType === "date")

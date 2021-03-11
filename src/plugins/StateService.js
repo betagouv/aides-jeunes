@@ -72,13 +72,7 @@ function next_(current, situation, router) {
     }
     switch (current.path || current) {
         case '/':
-            return '/simulation'
-        case '/simulation/individu/demandeur/date_naissance':
-            return '/simulation/individu/conjoint/date_naissance'
-        case '/simulation/individu/conjoint/date_naissance':
-            return '/simulation/individu/enfant_0/date_naissance'
-        case '/simulation/individu/enfant_0/date_naissance':
-            return '/simulation'
+            return '/foyer/demandeur'
         case '/foyer/demandeur':
             return '/foyer/enfants'
         case '/foyer/enfants':

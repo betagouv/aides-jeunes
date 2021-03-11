@@ -2,8 +2,8 @@
   <form @submit.prevent='onSubmit'>
     <fieldset>
       <legend><h1>Depuis combien de temps vivez-vous seul·e ?</h1></legend>
-      <label><input type="radio" v-bind:value="false" v-model="value">Moins de 18 mois</label>
-      <label><input type="radio" v-bind:value="true" v-model="value">Plus de 18 mois</label>
+      <label><input type="radio" v-bind:value="false" name="rsa_isolement_recent" v-model="value">Moins de 18 mois</label>
+      <label><input type="radio" v-bind:value="true" name="rsa_isolement_recent" v-model="value">Plus de 18 mois</label>
     </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

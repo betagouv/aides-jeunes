@@ -65,7 +65,7 @@ function defaultStore() {
       menage: {
         aide_logement_date_pret_conventionne: '2017-12-31'
       },
-      version: 14,
+      version: 15,
     },
     access: {
       fetching: false,

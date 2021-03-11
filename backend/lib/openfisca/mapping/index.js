@@ -118,9 +118,6 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     var individus = mapIndividus(situation);
     allocateIndividualsToEntities(situation);
 
-    delete situation.menage.nom_commune;
-    delete situation.menage.code_postal;
-
     var testCase = {
         individus: individus,
         familles: {
@@ -133,6 +130,16 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
             _: situation.menage
         },
     };
+
+    // Variables stored to properly restore UI
+    _.forEach(testCase, (items, type) => {
+        _.forEach(items, (item, id) => {
+            const propsToDelete = Object.keys(item).filter(i => i.startsWith('_'))
+            propsToDelete.forEach(function(propertyName) {
+                delete item[propertyName];
+            });
+        })
+    })
 
     propertyMove.movePropertyValuesToGroupEntity(testCase);
 

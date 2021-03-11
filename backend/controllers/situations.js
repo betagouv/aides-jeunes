@@ -61,7 +61,7 @@ exports.create = function(req, res, next) {
 
 exports.openfiscaResponse = function(req, res, next) {
     return openfisca.calculate(req.situation, function(err, result) {
-        if (err) return next(Object.assign(err.response.data, { _id: req.situation._id }));
+        if (err) return next(Object.assign((err.response && err.response.data) || err, { _id: req.situation._id }));
 
         res.send(Object.assign(result, { _id: req.situation._id }));
     });

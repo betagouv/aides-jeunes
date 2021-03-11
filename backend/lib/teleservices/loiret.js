@@ -101,7 +101,7 @@ function Loiret(situation) {
 Loiret.prototype.toInternal = function() {
 
     var demandeur = _.find(this.situation.individus, function(individu) {
-        return individu.role === "demandeur";
+        return individu._role === "demandeur";
     });
     var dateDeValeur = this.situation.dateDeValeur;
 
@@ -116,7 +116,7 @@ Loiret.prototype.toInternal = function() {
 Loiret.prototype.toExternal = function() {
 
     var demandeur = _.find(this.situation.individus, function(individu) {
-        return individu.role === "demandeur";
+        return individu._role === "demandeur";
     });
     var dateDeValeur = this.situation.dateDeValeur;
 

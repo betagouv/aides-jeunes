@@ -22,7 +22,7 @@ var situation = {
     individus: [{
         id: 'id',
         date_naissance: new Date('1989-01-01'),
-        role: 'demandeur',
+        _role: 'demandeur',
         specificSituations: []
     }],
     menage: {

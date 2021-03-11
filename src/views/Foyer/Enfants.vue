@@ -8,10 +8,10 @@
         <router-link v-for="enfant in enfants" v-bind:key="enfant.id" class="child"
           v-bind:to="{ name: 'enfants/modifier', params:{ id: enfant.id }}">
           <button type="button" class="close" v-on:click.prevent="removeEnfant(enfant)">
-            <span class="sr-only">Effacer {{ enfant.firstName }}</span>
+            <span class="sr-only">Effacer {{ enfant._firstName }}</span>
             <span role="presentation" aria-hidden="true">&times;</span>
           </button>
-          <h2>{{ enfant.firstName | capitalize }}</h2>
+          <h2>{{ enfant._firstName | capitalize }}</h2>
           <div class="details">
             <span class="card-icon fa fa-child" aria-hidden="true"></span>
             <div>

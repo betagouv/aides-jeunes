@@ -47,7 +47,7 @@ function getLongLabel(individu, ressource) {
     demandeur: 'avez',
     default: 'a'
   }
-  const aux = auxForms[individu.role] || auxForms.default
+  const aux = auxForms[individu._role] || auxForms.default
 
   const verbs = {
     pensions_alimentaires_versees_individu: 'versés',

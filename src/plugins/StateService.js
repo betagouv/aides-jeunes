@@ -27,7 +27,7 @@ function nextEnfantRessources(current, situation) {
             return accum
         }
 
-        if (accum.trigger && enfant.hasRessources) {
+        if (accum.trigger && enfant._hasRessources) {
             accum.next = { name: 'ressources/types', params: { role: 'enfant', id: enfant.id } }
             return accum
         }
@@ -82,7 +82,7 @@ function next(current, situation) {
                 return accum
               }
 
-              if (enfant.hasRessources) {
+              if (enfant._hasRessources) {
                 accum.next = { name: 'ressources/types', params: { role: 'enfant', id: enfant.id } }
               }
 

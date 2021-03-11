@@ -90,7 +90,7 @@
 
     <div class="form__group" v-if="captureCodePostal">
       <label class="form__group" for="postal-code">Code postal
-        <input id="postal-code" v-model="menage.code_postal">
+        <input id="postal-code" v-model="menage._codePostal">
         <p class="notification warning" v-if="displayPostalCodeWarning">
           Ce code postal est invalide
         </p>
@@ -169,12 +169,12 @@ export default {
       logement,
       menage: {
         charges_locatives: 0,
-        code_postal: undefined,
+        _codePostal: undefined,
         coloc: undefined,
         depcom: undefined,
         logement_chambre: undefined,
         loyer: 0,
-        nom_commune: undefined,
+        _nomCommune: undefined,
         parisien: undefined,
         participation_frais: undefined,
         ...situation.menage
@@ -187,12 +187,12 @@ export default {
   asyncComputed: {
     communes: {
       get: function() {
-        if (! this.menage.code_postal || this.menage.code_postal.length !== 5) {
+        if (! this.menage._codePostal || this.menage._codePostal.length !== 5) {
             return []
         }
 
         this.retrievingCommunes = true
-        return Commune.get(this.menage.code_postal)
+        return Commune.get(this.menage._codePostal)
           .then((communes) => {
             return communes
           })
@@ -255,7 +255,7 @@ export default {
         return this.captureCodePostal && this.isNotHomeless && this.isCommuneParis
     },
     displayPostalCodeWarning: function() {
-      return (this.menage.code_postal && this.menage.code_postal.length >= 5 || this.submitted) && ! this.retrievingCommunes && this.communes.length === 0
+      return (this.menage._codePostal && this.menage._codePostal.length >= 5 || this.submitted) && ! this.retrievingCommunes && this.communes.length === 0
     },
     isNotHomeless: function() {
         return this.logement.type != 'sansDomicile'
@@ -264,10 +264,10 @@ export default {
         return this.menage.depcom && this.menage.depcom.indexOf('75') === 0
     },
     isAddressValid: function() {
-        return this.menage.depcom && this.menage.code_postal
+        return this.menage.depcom && this.menage._codePostal
     },
     isResidentMayotte: function () {
-        return this.isAddressValid && this.menage.code_postal.indexOf('976') === 0
+        return this.isAddressValid && this.menage._codePostal.indexOf('976') === 0
     },
     loyerLabel: function()  {
         switch (this.logement.type) {
@@ -354,7 +354,7 @@ export default {
     'menage.depcom': function() {
       let c = _.find(this.communes, { code: this.menage.depcom })
       if (c) {
-        this.menage.nom_commune = c.nom
+        this.menage._nomCommune = c.nom
         if (this.famille.parisien === undefined && this.isCommuneParis) {
           this.famille.parisien = this.isCommuneParis
         }

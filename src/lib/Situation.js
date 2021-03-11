@@ -20,7 +20,7 @@ const Situation = {
     setEnfants: function(situation, enfants) {
         let individus = situation.individus
         individus = _.filter(individus, function(individu) {
-            return 'enfant' !== individu.role
+            return 'enfant' !== individu._role
         })
         individus = individus.slice(0,1)
             .concat(enfants)

@@ -1,6 +1,6 @@
 const specificSituations = [
     {
-        id: 'chomeur',
+        id: '_chomeur',
         label: 'Inscrit·e comme demandeur d’emploi'
     },
     {
@@ -20,7 +20,7 @@ const specificSituations = [
         label: 'Inapte au travail'
     },
     {
-        id: 'retraite',
+        id: '_retraite',
         label: 'Retraité·e'
     },
 ]

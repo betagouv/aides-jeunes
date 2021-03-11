@@ -2,11 +2,11 @@
   <div>
     <div class="form__group">
       <label for="mois-fin-contrat">
-        Quand s’est terminé {{ individu.role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ? (MM/AAAA)
+        Quand s’est terminé {{ individu._role == 'demandeur' ? 'votre' : 'son' }} dernier contrat de travail ? (MM/AAAA)
       </label>
       <InputMonth id="mois-fin-contrat" v-bind:value="individu.date_debut_chomage" v-on:input="$emit('updateDate', $event)"  />
       <div>
-        {{ individu.role == 'demandeur' ? 'Si vous n\'avez' : 'S\'il ou elle n\'a' }} jamais eu de contrat de travail, laissez ce champ vide.
+        {{ individu._role == 'demandeur' ? 'Si vous n\'avez' : 'S\'il ou elle n\'a' }} jamais eu de contrat de travail, laissez ce champ vide.
       </div>
     </div>
 
@@ -14,7 +14,7 @@
       <YesNoQuestion v-bind:value="individu.ass_precondition_remplie" v-on:input="$emit('updateAssPrecondition', $event)"
         v-if="capturePreconditionAss"
         >
-          {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il/elle' }}
+          {{ individu._role == 'demandeur' ? 'Avez-vous' : 'A-t-il/elle' }}
           travaillé <abbr title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés.">au moins 5 ans</abbr> entre {{ yearsAgo(10) }}
           et {{ yearsAgo(0) }} ?
       </YesNoQuestion>

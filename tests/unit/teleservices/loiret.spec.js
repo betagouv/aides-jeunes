@@ -7,7 +7,7 @@ var situation = {
     "dateDeValeur": "2018-07-14",
     "individus":[
         {
-            "role":"demandeur",
+            "_role":"demandeur",
             "date_naissance": moment('1983-06-05'),
             "statut_marital":"celibataire",
             "indemnites_journalieres_maladie_professionnelle":{
@@ -107,7 +107,7 @@ describe('Loiret Teleservice', function() {
                 "dateDeValeur": "2018-07-14",
                 "individus": [
                     {
-                        "role": "demandeur",
+                        "_role": "demandeur",
                         "statut_marital": expectation.statut_marital,
                     }
                 ]
@@ -131,7 +131,7 @@ describe('Loiret Teleservice', function() {
             "dateDeValeur": "2018-07-14",
             "individus": [
                 {
-                    "role": "demandeur",
+                    "_role": "demandeur",
                     "retraite_nette":{
                         "2017-07":100,
                         "2017-08":100,
@@ -177,7 +177,7 @@ describe('Loiret Teleservice', function() {
             "dateDeValeur": "2018-07-14",
             "individus": [
                 {
-                    "role": "demandeur",
+                    "_role": "demandeur",
                     "salaire_net":{
                         "2017-07":2000,
                         "2017-08":2000,
@@ -208,7 +208,7 @@ describe('Loiret Teleservice', function() {
             "dateDeValeur": "2018-07-14",
             "individus": [
                 {
-                    "role": "demandeur",
+                    "_role": "demandeur",
                     "pensions_alimentaires_percues":{
                         "2017-07":100,
                         "2017-08":100,
@@ -239,7 +239,7 @@ describe('Loiret Teleservice', function() {
             "dateDeValeur": "2018-07-14",
             "individus": [
                 {
-                    "role": "demandeur",
+                    "_role": "demandeur",
                     "revenus_locatifs":{
                         "2017-07":500,
                         "2017-08":500,
@@ -270,7 +270,7 @@ describe('Loiret Teleservice', function() {
             "dateDeValeur": "2018-07-14",
             "individus": [
                 {
-                    "role": "demandeur",
+                    "_role": "demandeur",
                     "revenus_capital":{
                         "2017-07":500,
                         "2017-08":500,
@@ -301,7 +301,7 @@ describe('Loiret Teleservice', function() {
             "dateDeValeur": "2018-07-14",
             "individus": [
                 {
-                    "role": "demandeur",
+                    "_role": "demandeur",
                     "indemnites_journalieres_maladie_professionnelle":{
                         "2017-07":100,
                         "2017-08":100,

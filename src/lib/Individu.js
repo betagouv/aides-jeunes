@@ -7,13 +7,13 @@ function isRoleParent (role) {
 }
 
 function ressourceHeader(individu) {
-    switch (individu.role) {
+    switch (individu._role) {
     case 'demandeur':
         return 'Vos ressources personnelles uniquement';
     case 'conjoint':
         return 'Les ressources de votre conjoint·e';
     default:
-        return 'Les ressources de ' + individu.firstName;
+        return 'Les ressources de ' + individu._firstName;
     }
 }
 
@@ -46,7 +46,7 @@ function get(individus, role, id, dates) {
         enfant_place: false,
         gir: 'gir_6',
         nationalite: 'FR',
-        role: role,
+        _role: role,
         scolarite: 'college',
         taux_incapacite: 0.9,
         tns_autres_revenus_type_activite: 'bic',
@@ -59,12 +59,12 @@ function get(individus, role, id, dates) {
     })
 
     // By default enfants are `à charge fiscale`, adults are not.
-    if (DEFAULT_INDIVIDU.role == 'enfant' && dates && dates.thisYear) {
+    if (DEFAULT_INDIVIDU._role == 'enfant' && dates && dates.thisYear) {
         DEFAULT_INDIVIDU.enfant_a_charge[dates.thisYear.id] = true
     }
 
     // Required on DEFAULT_INDIVIDU to properly restore statut_marital
-    if (DEFAULT_INDIVIDU.role == 'conjoint') {
+    if (DEFAULT_INDIVIDU._role == 'conjoint') {
         DEFAULT_INDIVIDU.statut_marital = 'marie';  // Marié(e)
     }
 
@@ -74,7 +74,7 @@ function get(individus, role, id, dates) {
     if (role == 'enfant' && !existingIndividu) {
 
         let nextEnfantCount = individus.length + 1;
-        individu.firstName = 'votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
+        individu._firstName = 'votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
 
         let usedIds = individus.map(function(enfant) { return enfant.id; });
         let count = 0;
@@ -96,15 +96,15 @@ const Individu = {
     },
 
     label: function(individu) {
-        if ('demandeur' === individu.role) {
+        if ('demandeur' === individu._role) {
             return 'vous';
         }
 
-        if ('conjoint' === individu.role) {
+        if ('conjoint' === individu._role) {
             return 'votre conjoint·e';
         }
 
-        return individu.firstName;
+        return individu._firstName;
     },
     find,
     get,
@@ -113,7 +113,7 @@ const Individu = {
     ressourceHeader,
 
     ressourceShortLabel: function(individu) {
-        switch (individu.role) {
+        switch (individu._role) {
         case 'demandeur':
             return 'vos ressources';
         default:
@@ -128,7 +128,7 @@ const Individu = {
     isRoleParent,
 
     isParent: function(individu) {
-        return isRoleParent(individu.role);
+        return isRoleParent(individu._role);
     },
 
     formatStatutsSpecifiques: function(individu) {

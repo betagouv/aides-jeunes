@@ -5,7 +5,7 @@ var { forEach } = require('../../../../app/js/constants/benefits/back');
 
 exports.isIndividuValid = function(individu, situation) {
     var age = moment(situation.dateDeValeur).diff(moment(individu.date_naissance), 'years');
-    return individu.role != 'enfant' || age <= 25 || individu.handicap;
+    return individu._role != 'enfant' || age <= 25 || individu.handicap;
 };
 
 exports.getDemandeur = function(situation) {

@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="next">
-    <YesNoQuestion class="form__group" v-model="enfant.hasRessources" v-for="enfant in enfants" v-bind:key="enfant.id">
-        {{ enfant.firstName | capitalize }} a-t-il·elle perçu des ressources <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong> ?
+    <YesNoQuestion class="form__group" v-model="enfant._hasRessources" v-for="enfant in enfants" v-bind:key="enfant.id">
+        {{ enfant._firstName | capitalize }} a-t-il·elle perçu des ressources <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong> ?
     </YesNoQuestion>
     <div class="text-right">
       <button type="submit" class="button large">Valider</button>
@@ -21,7 +21,7 @@ export default {
   data: function() {
     let enfants = this.$store.state.situation.enfants.map(e => Object.assign({}, e))
 
-    enfants.forEach(e => e.hasRessources = e.hasRessources || false)
+    enfants.forEach(e => e._hasRessources = e._hasRessources || false)
     return {
       enfants,
     }
@@ -29,7 +29,7 @@ export default {
   methods: {
     next: function() {
       this.enfants.forEach(enfant => {
-        if (! enfant.hasRessources) {
+        if (! enfant._hasRessources) {
             let ressourceTypes = Ressource.getIndividuRessourceTypes(enfant)
             Object.keys(ressourceTypes).forEach(t => ressourceTypes[t] = false)
             Ressource.setIndividuRessourceTypes(enfant, ressourceTypes, this.$store.state.dates)

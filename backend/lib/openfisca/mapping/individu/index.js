@@ -36,12 +36,12 @@ var individuSchema = {
         fn: function(individu) {
             let returnValue
             [
-                'chomeur',
+                '_chomeur',
                 'etudiant',
-                'retraite',
+                '_retraite',
             ].forEach(function(activite) {
                 if (individu[activite]) {
-                    returnValue = activite
+                    returnValue = activite.replace('_', '')
                 }
             })
             return returnValue
@@ -68,20 +68,6 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
 
     individuRessource.computeRessources(mesAidesIndividu, openFiscaIndividu);
     pastResourcesProxy(openFiscaIndividu, situation);
-
-    // Variables stored to properly restore UI
-    var propertiesToDelete = [
-        'chomeur',
-        'firstName', // for kids
-        'hasRessources',
-        'retraite',
-        'role',
-    ];
-
-    propertiesToDelete.forEach(function(propertyName) {
-        delete openFiscaIndividu[propertyName];
-    });
-
     return openFiscaIndividu;
 }
 

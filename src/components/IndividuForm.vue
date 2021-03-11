@@ -16,11 +16,11 @@
       Si ce n'est pas le cas, faites plutôt la simulation du point de vue d'un de vos parents ou tuteurs.
     </p>
 
-    <div class="form__group" v-if="captureFirstName">
+    <div class="form__group" v-if="capture_firstName">
       <label>Prénom
         <span>(il servira uniquement à vous faciliter la saisie par la suite)</span>
-        <input type="text" v-model="individu.firstName">
-        <p class="notification warning" v-if="$v.individu.firstName.$error">
+        <input type="text" v-model="individu._firstName">
+        <p class="notification warning" v-if="$v.individu._firstName.$error">
           Ce champ est obligatoire.
         </p>
       </label>
@@ -273,10 +273,10 @@ export default {
   computed: {
     captureDemandeurACharge: function() {
       let age = Individu.age(this.individu, this.$store.state.dates.today.value)
-      return this.individu.role == 'demandeur' && (age >= 18) && (age < 25)
+      return this.individu._role == 'demandeur' && (age >= 18) && (age < 25)
     },
     captureEligibiliteAss: function() {
-      return this.isIndividuParent && this.individu.chomeur
+      return this.isIndividuParent && this.individu._chomeur
     },
     captureEnfantACharge: function() {
       return (! this.isIndividuParent) && Individu.age(this.individu, this.$store.state.dates.today.value) >= 1
@@ -288,12 +288,12 @@ export default {
       return ! this.isIndividuParent
     },
     captureOutOfFranceQuestions: function() {
-      return this.individu.role == 'demandeur' && this.individu.nationalite != 'FR'
+      return this.individu._role == 'demandeur' && this.individu.nationalite != 'FR'
     },
     capturePerteAutonomie: function() {
       return Individu.age(this.individu, this.$store.state.dates.today.value) >= 60
     },
-    captureFirstName: function() {
+    capture_firstName: function() {
       return ! this.isIndividuParent
     },
     captureRestrictionSubstantielleDurableAccesEmploi: function() {
@@ -322,16 +322,16 @@ export default {
       return ! this.$v.individu.date_naissance.$invalid
     },
     isDemandeurMineur: function() {
-      return this.individu.role === 'demandeur' && this.isNaissanceValid && Individu.age(this.individu, this.date) < 18
+      return this.individu._role === 'demandeur' && this.isNaissanceValid && Individu.age(this.individu, this.date) < 18
     },
     isIndividuParent: function() {
-      return Individu.isRoleParent(this.individu.role)
+      return Individu.isRoleParent(this.individu._role)
     },
     showCancelButton: function() {
-      return (this.individu.role === 'enfant' && ! this.existingIndividu)
+      return (this.individu._role === 'enfant' && ! this.existingIndividu)
     },
     title: function() {
-      return (this.individu.role === 'enfant' && ! this.existingIndividu) ? 'Nouvel enfant' : Individu.label(this.individu)
+      return (this.individu._role === 'enfant' && ! this.existingIndividu) ? 'Nouvel enfant' : Individu.label(this.individu)
     },
   },
   methods: {
@@ -383,8 +383,8 @@ export default {
       }
     }
 
-    if (this.captureFirstName) {
-      validations.individu.firstName = { required }
+    if (this.capture_firstName) {
+      validations.individu._firstName = { required }
     }
 
     if (this.captureOutOfFranceQuestions) {

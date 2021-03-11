@@ -3,7 +3,6 @@
     <div class="main">
       <router-view/>
     </div>
-    <div class="separator" />
     <SimulationProgress />
   </div>
 </template>
@@ -35,5 +34,6 @@ export default {
 
 .main {
   flex-grow: 20;
+  padding-left: 10em;
 }
 </style>

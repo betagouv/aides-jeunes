@@ -294,14 +294,6 @@ var droitsDescription = {
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F1814',
                     floorAt: 1,
                     prefix: 'l’',
-                },
-                'complement_aide_retour_emploi': {
-                    'label': 'complément à l’aide au retour à l’emploi',
-                    'description': 'Le complément à l’aide au retour à l’emploi permet de continuer à percevoir une partie de ces allocations chômage lors de la reprise d’un emploi.',
-                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F14860',
-                    'entity': 'individus', // default entity is familles
-                    floorAt: 1,
-                    prefix: 'le',
                 }
             },
         },

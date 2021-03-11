@@ -12,6 +12,7 @@ var individuProperties = [
     'activite',
     'age',
     'age_en_mois',
+    'agepi_temps_travail_semaine',
     'ass_precondition_remplie',
     'boursier',
     'date_arret_de_travail',
@@ -28,17 +29,16 @@ var individuProperties = [
     'handicap',
     'inapte_travail',
     'nationalite',
-    'salaire_journalier_reference',
     'scolarite',
     'statut_marital',
     'taux_incapacite',
-    'temps_travail_semaine',
     'tns_auto_entrepreneur_type_activite',
     'tns_autres_revenus_type_activite',
     'tns_micro_entreprise_type_activite',
 ];
 
 var menageProperties = [
+    'aide_logement_date_pret_conventionne',
     'charges_locatives',
     'coloc',
     'depcom',
@@ -46,7 +46,6 @@ var menageProperties = [
     'loyer',
     'participation_frais',
     'statut_occupation_logement',
-    'aide_logement_date_pret_conventionne',
 ];
 
 function copyTo3PreviousMonths(testCase, dateDeValeur) {

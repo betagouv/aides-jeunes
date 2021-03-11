@@ -1,13 +1,8 @@
 <template>
   <form>
     <label class="form__group">
-      Salaire journalier de référence
-      <input type="number" v-select-on-click v-model.number="salaire_journalier_reference">
-    </label>
-
-    <label class="form__group">
       Temps de travail par semaine
-      <input type="number" v-select-on-click v-model.number="temps_travail_semaine">
+      <input type="number" v-select-on-click v-model.number="agepi_temps_travail_semaine">
     </label>
 
     <div class="text-right">
@@ -24,15 +19,13 @@ export default {
     const demandeur = this.$store.state.situation.demandeur
     return {
       demandeur,
-      salaire_journalier_reference: demandeur.salaire_journalier_reference,
-      temps_travail_semaine: demandeur.temps_travail_semaine,
+      agepi_temps_travail_semaine: demandeur.agepi_temps_travail_semaine,
     }
   },
   methods: {
     next: function() {
       this.$store.dispatch('updateIndividu', Object.assign({}, this.demandeur, {
-        salaire_journalier_reference: this.salaire_journalier_reference,
-        temps_travail_semaine: this.temps_travail_semaine
+        agepi_temps_travail_semaine: this.agepi_temps_travail_semaine
       }))
       this.$push()
     },

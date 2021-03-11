@@ -37,6 +37,7 @@ function get(individus, role, id, dates) {
     let DEFAULT_INDIVIDU = {
         id: role,
         aah_restriction_substantielle_durable_acces_emploi: true,
+        agepi_temps_travail_semaine: 0,
         ass_precondition_remplie: false,
         date_naissance: undefined,
         duree_possession_titre_sejour: 25,
@@ -51,8 +52,6 @@ function get(individus, role, id, dates) {
         tns_autres_revenus_type_activite: 'bic',
         tns_micro_entreprise_type_activite: 'bic',
         tns_auto_entrepreneur_type_activite: 'bic',
-        salaire_journalier_reference: 0,
-        temps_travail_semaine: 0,
     };
 
     specificSituations.forEach(s => {

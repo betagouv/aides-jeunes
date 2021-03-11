@@ -132,8 +132,7 @@ var tokens = config.teleserviceAccessTokens || {};
  */
 exports.checkCredentials = function(req, res, next) {
 
-    var isPublic = req.teleservice.hasOwnProperty('public') && req.teleservice.public;
-    if (isPublic) {
+    if (req.teleservice.public) {
         next();
         return;
     }

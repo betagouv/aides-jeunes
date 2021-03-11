@@ -140,7 +140,7 @@ function connect() {
         .connectAsync(config.mongo.uri, config.mongo.options)
         .then(saveClient)
         .then(client => client.db());
-};
+}
 exports.connect = connect;
 
 exports.getStats = function(fromDate, toDate) {

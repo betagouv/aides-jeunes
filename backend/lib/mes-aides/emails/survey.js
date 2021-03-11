@@ -3,9 +3,7 @@ var path = require('path');
 var mustache = require('consolidate').mustache;
 var config = require('../../../config');
 
-var index = require('.');
-var defaultAttachments = index.defaultAttachments;
-var mjml = index.mjml;
+var {mjml} = require('.');
 
 var textTemplate = fs.readFileSync(path.join(__dirname, 'templates/survey.txt'), 'utf8');
 var mjmlTemplate = fs.readFileSync(path.join(__dirname, 'templates/survey.mjml'), 'utf8');

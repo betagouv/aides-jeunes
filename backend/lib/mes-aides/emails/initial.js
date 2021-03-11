@@ -4,11 +4,7 @@ var _ = require('lodash');
 var mustache = require('consolidate').mustache;
 var config = require('../../../config');
 
-var index = require('.');
-
-var toBase64 = index.toBase64;
-var defaultAttachments = index.defaultAttachments;
-var mjml = index.mjml;
+var {mjml} = require('.');
 
 function basicBenefitText(b) {
     if (b.labelFunction) {

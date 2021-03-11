@@ -4,7 +4,6 @@ var validator = require('validator');
 
 var {SendSmtpEmail, sendEmail} = require('../lib/send-in-blue')
 var utils = require('../lib/utils');
-var config = require('../config');
 
 var renderInitial = require('../lib/mes-aides/emails/initial').render;
 var renderSurvey = require('../lib/mes-aides/emails/survey').render;

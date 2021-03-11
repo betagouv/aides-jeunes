@@ -93,7 +93,7 @@ jobs:
           at: ~/mes-aides-ui
       - run:
           name: JSHint
-          command: npm run lint
+          command: npm run lint app backend src tests
   build:
     <<: *defaults
     steps:
@@ -145,8 +145,11 @@ jobs:
             Xvfb :99
           background: true
       - run:
-          name: Cypress
-          command: npm run cypress
+          name: Test un scenario simple
+          command: "npm run cypress -- --spec \"cypress/integration/base.spec.js\" --config 'retries={\"runMode\":3, \"openMode\": 0}'"
+      - run:
+          name: Test un scenario familial
+          command: "npm run cypress -- --spec \"cypress/integration/family.spec.js\" --config 'retries={\"runMode\":3, \"openMode\": 0}'"
       - store_artifacts:
           path: cypress/videos
       - run:

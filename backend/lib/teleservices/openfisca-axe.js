@@ -2,7 +2,6 @@ var Promise = require('bluebird');
 var openfisca = Promise.promisifyAll(require('../openfisca'));
 var request = Promise.promisify(openfisca.sendToOpenfisca('calculate', (s) => s));
 
-var common = require('../openfisca/mapping/common');
 var { base, build, extractResults } = require('../openfisca/bulk');
 var droitsDescription = require('../../../app/js/constants/benefits');
 
@@ -34,7 +33,7 @@ function fetch(s) {
     var os = require('os');
     var path = require('path');
     var cachePath = path.join(os.tmpdir(), 'situation_' + s.source._id + '_' + base);
-    if (false && fs.existsSync(cachePath)) {
+    if (false && fs.existsSync(cachePath)) { // eslint-disable-line no-constant-condition
         return fs.readFileAsync(cachePath)
             .then(data => { s.response = JSON.parse(data); })
             .then(() => s);

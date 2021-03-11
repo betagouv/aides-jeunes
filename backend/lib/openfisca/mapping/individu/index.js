@@ -71,4 +71,5 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
     return openFiscaIndividu;
 }
 
+buildOpenFiscaIndividu.additionalProps = individuSchema;
 module.exports = buildOpenFiscaIndividu;

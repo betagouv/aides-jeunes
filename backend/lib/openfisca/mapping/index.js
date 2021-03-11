@@ -131,9 +131,9 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
         },
     };
 
-    // Variables stored to properly restore UI
-    _.forEach(testCase, (items, type) => {
-        _.forEach(items, (item, id) => {
+    // Variables stored to properly restore UI should not be sent to OpenFisca
+    _.forEach(testCase, (items) => {
+        _.forEach(items, (item) => {
             const propsToDelete = Object.keys(item).filter(i => i.startsWith('_'))
             propsToDelete.forEach(function(propertyName) {
                 delete item[propertyName];

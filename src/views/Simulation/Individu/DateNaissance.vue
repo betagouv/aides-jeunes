@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <label>
-      <h1>Quelle est la date de naissance de {{id}}&nbsp;?</h1>
+      <h1>Quelle est la date de naissance de {{individu._firstName || individu.id}}&nbsp;?</h1>
       <InputDate required id="date_naissance" v-model="date_naissance" />
       <p class="notification warning" v-if="error">
         Ce champ est obligatoire.

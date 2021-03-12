@@ -1,13 +1,8 @@
-<template>
+/* eslint-disable */
+  <template>
   <form @submit.prevent="submit">
     <h1 v-if="!withoutTitle">{{title | capitalize}}</h1>
-    <div class="form__group">
-      <label for="date-de-naissance">Date de naissance</label>
-        <InputDate id="date-de-naissance" v-model="individu.date_naissance" />
-        <p class="notification warning" v-if="$v.individu.date_naissance.$dirty && $v.individu.date_naissance.$error">
-          Ce champ est obligatoire.
-        </p>
-    </div>
+    <label for="date-de-naissance">Date de naissance</label>
 
     <p class="notification warning" v-if="isDemandeurMineur">
       <i class="fa fa-warning" aria-hidden="true"></i>
@@ -16,16 +11,7 @@
       Si ce n'est pas le cas, faites plutôt la simulation du point de vue d'un de vos parents ou tuteurs.
     </p>
 
-    <div class="form__group" v-if="capture_firstName">
-      <label>Prénom
-        <span>(il servira uniquement à vous faciliter la saisie par la suite)</span>
-        <input type="text" v-model="individu._firstName">
-        <p class="notification warning" v-if="$v.individu._firstName.$error">
-          Ce champ est obligatoire.
-        </p>
-      </label>
-    </div>
-
+    <label>Prénom</label>
     <NationalityChoice class="form__group" v-model="individu.nationalite" />
 
     <div class="form__group" v-if="captureOutOfFranceQuestions">
@@ -51,15 +37,7 @@
       </label>
     </div>
 
-    <div class="form__group" v-if="individu.role == 'conjoint'">
-      <label>Votre relation
-        <select v-model="individu.statut_marital">
-          <option v-for="situationFamiliale in situationsFamiliales" v-bind:value="situationFamiliale.value" v-bind:key="situationFamiliale.value">
-            {{situationFamiliale.label}}
-          </option>
-        </select>
-      </label>
-    </div>
+    <label>Votre relation statut_marital</label>
 
     <fieldset class="form__group">
       <legend>
@@ -69,18 +47,8 @@
         <span>(plusieurs choix possibles)</span>
       </legend>
       <div>
-        <label v-if="captureGardeAlternee">
-          <input type="checkbox" v-model="individu.garde_alternee">
-          En garde alternée
-        </label>
-        <label v-for="statut in specificSituations" v-bind:key="statut.id">
-          <input type="checkbox" v-model="individu[statut.id]">
-          {{ statut.label }}
-        </label>
-        <label>
-          <input type="checkbox" v-model="no_specific_situation">
-          <i>{{ individu.role == 'demandeur' ? 'Je ne suis dans' : 'Il ou elle n\'est dans' }} aucune de ces situations</i>
-        </label>
+        <label v-if="captureGardeAlternee"></label>
+        <label v-for="statut in specificSituations" v-bind:key="statut.id"></label>
       </div>
     </fieldset>
 

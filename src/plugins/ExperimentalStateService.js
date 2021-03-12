@@ -1,29 +1,7 @@
-// situation currentRoute
-// fullJourney
-// blocks
-/*
-Demandeur
-- DdN
-- Nationalité
-- handicap
-  - 50/80/+
-    - RSDAE
-Enfants
-  - détours
-- liste
-Conjoint
-- en_couple?
-  - depuis +/- 18 mois
-Logement
-Ressources
-Parents
-Fiscale
-Patrimoine
-//*/
-
-
 function individuBlockFactory(id) {
   const r = name => `/simulation/individu/${id}/${name}`
+  const conjoint = id == 'conjoint'
+  const enfant = id.startsWith('enfant')
   return {
     subject: situation => {
       if (situation[id]) {
@@ -34,21 +12,26 @@ function individuBlockFactory(id) {
       }
     },
     steps: [
+      ...(enfant ? [r('_firstName')] : []),
       r('date_naissance'),
       r('nationalite'),
+      ...(conjoint? [r('statut_marital')] : []),
+      ...(enfant ? [r('garde_alternee')] : []),
+      ...(!enfant ? [r('activite')] : []),
       r('handicap'),
-    //   {
-    //     isActive: (subject) => subject.handicap,
-    //     steps: [
-    //       r('taux_handicap'),
-    //       {
-    //         isActive: (subject) => 0.5 <= subject.taux_handicap && subject.taux_handicap <= 0.8,
-    //         steps: [
-    //           r('aah_restriction_substantielle_durable_acces_emploi'),
-    //         ]
-    //       }
-    //     ]
-    //   },
+      {
+        isActive: subject => subject.handicap,
+        steps: [
+          r('taux_handicap'),
+          {
+            isActive: subject => 0.5 <= subject.taux_handicap && subject.taux_handicap <= 0.8,
+            steps: [
+              r('aah_restriction_substantielle_durable_acces_emploi'),
+            ]
+          }
+        ]
+      },
+      ...(!enfant ? [r('inapte_travail')] : []),
     ]
   }
 }
@@ -75,7 +58,7 @@ function processBlock({journey, subject, situation, current}, b) {
   if (typeof(b) == 'string') {
     journey.push(b)
   } else {
-    let blockSubject = b.subject ? b.subject(situation) : (subject || situation)
+    let blockSubject = b.subject ? b.subject(subject, situation) : (subject || situation)
     if (!b.isActive || b.isActive(blockSubject, situation, current)) {
       b.steps.forEach(s => processBlock({journey, subject: blockSubject, situation, current}, s))
     }
@@ -92,8 +75,7 @@ function generateJourney(situation, current) {
     {
       steps: [
         '/simulation/famille/en_couple', {
-          subject: situation => situation.famille,
-          isActive: (subject, situation) => situation.enfants && situation.enfants.length && !subject.en_couple,
+          isActive: (situation) => situation.enfants && situation.enfants.length && !situation.famille.en_couple,
           steps: [
             '/simulation/famille/rsa_isolement_recent',
           ]
@@ -110,7 +92,7 @@ function generateJourney(situation, current) {
   function processBlocks({situation, current}) {
     let journey = []
     blocks.forEach(b => {
-      processBlock({journey, situation, current}, b)
+      processBlock({journey, subject: situation, situation, current}, b)
     })
     return journey
   }

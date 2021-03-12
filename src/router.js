@@ -48,6 +48,10 @@ const router = new Router({
           name: 'nationalite',
           path: 'nationalite',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Nationalite.vue'),
+        },{
+          name: 'property',
+          path: ':property',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Property.vue'),
         }]
       }, {
         path: 'enfants',

@@ -52,10 +52,7 @@
       </div>
     </fieldset>
 
-    <ASSQuestions class="form__group" v-bind:individu="individu"
-      v-if="captureEligibiliteAss"
-      v-on:updateDate="individu.date_debut_chomage = $event"
-      v-on:updateAssPrecondition="individu.ass_precondition_remplie = $event" />
+    <ASSQuestions />
 
     <fieldset class="form__group" v-if="captureTauxIncapacite">
       <legend>
@@ -75,38 +72,17 @@
     </fieldset>
 
     <YesNoQuestion class="form__group" v-model="individu.aah_restriction_substantielle_durable_acces_emploi"
-      v-if="captureRestrictionSubstantielleDurableAccesEmploi"
-    >
-    {{ individu.role == 'demandeur' ? 'Avez-vous' : 'A-t-il/elle' }}
-      une restriction substantielle et durable d'accès à l'emploi reconnue par la <abbr title="Commission des droits et de l'autonomie des personnes handicapées">CDAPH</abbr> ?
-      <span>Attention, cette restriction est différente de la reconnaissance de la qualité de travailleur handicapé.</span>
-    </YesNoQuestion>
+    />
 
-    <YesNoQuestion class="form__group" v-model="individu.enfant_place" v-if="captureEnfantPlace">
-      Est-il/elle placé·e en structure spécialisée ou famille d'accueil ?
-    </YesNoQuestion>
+    <YesNoQuestion class="form__group" v-model="individu.enfant_place" v-if="captureEnfantPlace"/>
 
-    <label class="form__group" v-if="individu.etudiant">
-      À quel échelon {{ individu.role == 'demandeur' ? 'êtes-vous' : 'est-il/elle' }} boursier ?
-      <input id="echelon-bourse" v-model="individu.echelon_bourse" type="range" min="-2" max="7">
-      {{ labelBoursier }}
-    </label>
+    <label class="form__group" v-if="individu.etudiant" v-model="individu.echelon_bourse" />
 
-    <YesNoQuestion class="form__group" v-model="fiscalementIndependant" v-if="captureDemandeurACharge">
-      Remplirez-vous vous-même votre prochaine déclaration de revenus aux impôts ?
-    </YesNoQuestion>
+    <YesNoQuestion class="form__group" v-model="fiscalementIndependant" v-if="captureDemandeurACharge"/>
 
-    <label class="form__group" v-if="captureScolarite">
-      Où sera-t-il/elle scolarisé·e à la rentrée prochaine ?
-      <select v-model="individu.scolarite">
-        <option v-for="scolarite in scolariteOptions" v-bind:value="scolarite.value" v-bind:key="scolarite.value">{{scolarite.label}}</option>
-      </select>
-    </label>
+    <label class="form__group" v-if="captureScolarite"/>
 
-    <YesNoQuestion class="form__group" v-model="individu.enfant_a_charge[$store.state.dates.thisYear.id]" v-if="captureEnfantACharge">
-      Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu ?
-    </YesNoQuestion>
-
+    <YesNoQuestion class="form__group" v-model="individu.enfant_a_charge[$store.state.dates.thisYear.id]"/>
 
     <fieldset class="form__group" v-if="capturePerteAutonomie">
       <legend for="gir" id="girQuestion">

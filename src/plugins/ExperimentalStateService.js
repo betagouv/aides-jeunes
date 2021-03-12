@@ -1,6 +1,8 @@
+
 function individuBlockFactory(id) {
   const r = name => `/simulation/individu/${id}/${name}`
   const conjoint = id == 'conjoint'
+  const demandeur = id == 'demandeur'
   const enfant = id.startsWith('enfant')
   return {
     subject: situation => {
@@ -24,14 +26,46 @@ function individuBlockFactory(id) {
         steps: [
           r('taux_handicap'),
           {
-            isActive: subject => 0.5 <= subject.taux_handicap && subject.taux_handicap <= 0.8,
+            isActive: subject => !enfant && 0.5 <= subject.taux_handicap && subject.taux_handicap < 0.8,
             steps: [
               r('aah_restriction_substantielle_durable_acces_emploi'),
             ]
           }
         ]
       },
-      ...(!enfant ? [r('inapte_travail')] : []),
+      ...(!enfant ? [
+        r('inapte_travail'),{
+          isActive: subject => subject.activite == 'chomeur',
+          steps: [
+            r('date_debut_chomage'),
+            r('ass_precondition_remplie')
+          ]
+        }
+      ] : []),
+      ...(enfant ? [{
+        isActive: subject => subject.handicap,
+        steps: [
+          r('date_debut_chomage'),
+          r('ass_precondition_remplie')
+        ]
+      }] : []),
+      {
+        isActive: subject => subject.activite == 'etudiant',
+        steps: [r('echelon_bourse')]
+      },
+      ...(demandeur ? [{
+        isActive: subject => subject.date_naissance  /* 18 <= age && age < 25 TODO */,
+        steps: [r('enfant_a_charge')]
+      }] : []),
+      ...(enfant ? [{
+        isActive: subject => subject.date_naissance /* 8 < age && age <= 25 TODO */,
+        steps: [r('scolarite')]
+      }] : []),
+      ...(enfant ? [r('enfant_a_charge')] : []),
+      ...(demandeur ? [{
+        isActive: subject => subject.date_naissance /* 60 <= age TODO */,
+        steps: [r('gir')]
+      }] : [])
     ]
   }
 }

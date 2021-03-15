@@ -117,7 +117,7 @@ jobs:
           at: ~/mes-aides-ui
       - run:
           name: Jest
-          command: npm run test:jest
+          command: npm run test
   test_e2e:
     <<: *defaults
     steps:

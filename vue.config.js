@@ -1,3 +1,4 @@
+const {matomo} = require('./backend/config')
 const configureAPI = require('./configure')
 const mock = require('./mock')
 const webpack = require('webpack')
@@ -9,6 +10,7 @@ forEach(() => {
   count = count + 1
 })
 process.env.VUE_APP_BENEFIT_COUNT = count
+process.env.VUE_APP_MATOMO_ID = matomo.id
 
 module.exports = {
   configureWebpack: (config) => {

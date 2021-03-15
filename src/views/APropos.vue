@@ -16,7 +16,7 @@
 
     <p>Mes Aides a été lancé en novembre 2014. Depuis janvier 2017, chaque jour, plus de 10 000 usagers évaluent leurs droits à vingt-quatre prestations sociales. Plus de la moitié reçoivent une estimation en moins de sept minutes.</p>
 
-    <small>Explorez les <a href="http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=102&period=day&date=yesterday#?module=Dashboard&action=embeddedIndex&idSite=102&period=day&date=yesterday&idDashboard=1">statistiques d'usage</a> et comprenez comment nous évaluons la <a href="https://beta.gouv.fr/2016/11/04/mes-aides-metriques-pirates-tunnel-conversion-public">performance</a>.</small>
+    <small>Explorez les <a v-bind:href="`http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=${siteID}&period=day&date=yesterday#?module=Dashboard&action=embeddedIndex&idSite=${siteID}&period=day&date=yesterday&idDashboard=1`">statistiques d'usage</a> et comprenez comment nous évaluons la <a href="https://beta.gouv.fr/2016/11/04/mes-aides-metriques-pirates-tunnel-conversion-public">performance</a>.</small>
 
 
     <h2 id="fonctionnement">Comment fonctionne Mes Aides ?</h2>
@@ -49,3 +49,15 @@
 
   </article>
 </template>
+
+<script>
+
+export default {
+  name: 'APropos',
+  data: function() {
+    return {
+      siteID: process.env.VUE_APP_MATOMO_ID
+    }
+  }
+}
+</script>

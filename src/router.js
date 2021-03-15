@@ -9,19 +9,6 @@ Vue.use(Router)
 
 const kidPagesMeta = { title: 'Les enfants de votre foyer' }
 
-const handicapSubRoute = [
-  {
-    name: 'taux_incapacite',
-    path: 'taux_incapacite',
-    component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap/TauxIncapacite.vue'),
-  },
-  {
-    name: 'aah_restriction_substantielle_durable_acces_emploi',
-    path: 'aah_restriction_substantielle_durable_acces_emploi',
-    component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap/AAHRestrictionSubstantielleDurableAccesEmploi.vue'),
-  },
-]
-
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -58,8 +45,17 @@ const router = new Router({
           name: 'handicap',
           path: 'handicap',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap.vue'),
-        }, 
-        ...handicapSubRoute,
+        },
+        {
+          name: 'taux_incapacite',
+          path: 'taux_incapacite',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap/TauxIncapacite.vue'),
+        },
+        {
+          name: 'aah_restriction_substantielle_durable_acces_emploi',
+          path: 'aah_restriction_substantielle_durable_acces_emploi',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap/AAHRestrictionSubstantielleDurableAccesEmploi.vue'),
+        },
         {
           name: 'nationalite',
           path: 'nationalite',
@@ -70,16 +66,19 @@ const router = new Router({
           path: ':property',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
         }]
-      }, {
+      },
+      {
         path: 'enfants',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Enfants.vue'),
-      }, {
+      },
+      {
         path: 'famille',
         component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille.vue'),
         children: [{
           path: 'en_couple',
           component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/EnCouple.vue'),
-        }, {
+        },
+        {
           path: 'rsa_isolement_recent',
           component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/RsaIsolementRecent.vue'),
         }]

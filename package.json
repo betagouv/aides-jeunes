@@ -22,10 +22,7 @@
     "prestart": "npm run build && npm run stats",
     "start": "NODE_ENV=production node server.js",
     "stats": "node backend/lib/stats",
-    "test": "npm run test:mocha && npm run test:karma && npm run test:jest",
-    "test:jest": "jest",
-    "test:mocha": "mocha --recursive test/backend",
-    "test:openfisca": "mocha test/backend/openfisca/test.js --timeout 10000"
+    "test": "jest"
   },
   "dependencies": {
     "@babel/runtime": "^7.9.6",

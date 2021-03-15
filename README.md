@@ -56,14 +56,10 @@ You should [install Python 3 in a virtual environment](https://virtualenv.pypa.i
 python3 -m venv .venv   # create the virtual environment in the .venv folder
 source .venv/bin/activate  # activate the virtual environment
 pip install pip --upgrade  # make sure we're using the latest pip version
+npm run install-openfisca  # install dependencies
 ```
 
-```sh
-npm run install-openfisca
-npm run openfisca
-```
-
-Each time you want to run OpenFisca, you have to `source .venv/bin/activate` to get a working OpenFisca environment.
+Then, to start the OpenFisca server, simply run `npm run openfisca`.
 
 ### Development mode
 

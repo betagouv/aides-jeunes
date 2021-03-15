@@ -17,7 +17,7 @@
     "fast-install": "PUPPETEER_SKIP_DOWNLOAD=1 npm ci",
     "front": "NODE_ENV=front_only npm run serve",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
-    "openfisca": "cd openfisca && gunicorn api --config config.py",
+    "openfisca": "source .venv/bin/activate && cd openfisca && gunicorn api --config config.py",
     "predb": "mkdir -p db",
     "prestart": "npm run build && npm run stats",
     "start": "NODE_ENV=production node server.js",

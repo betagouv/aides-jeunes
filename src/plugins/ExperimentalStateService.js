@@ -1,3 +1,4 @@
+const Individu = require('@/lib/Individu').default;
 
 function individuBlockFactory(id) {
   const r = name => `/simulation/individu/${id}/${name}`
@@ -34,7 +35,8 @@ function individuBlockFactory(id) {
         ]
       },
       ...(!enfant ? [
-        r('inapte_travail'),{
+        r('inapte_travail'),
+        {
           isActive: subject => subject.activite == 'chomeur',
           steps: [
             r('date_debut_chomage'),
@@ -49,20 +51,26 @@ function individuBlockFactory(id) {
         ]
       }] : []),
       {
-        isActive: subject => subject.activite == 'etudiant',
+        isActive: subject => true || subject.activite == 'etudiant',
         steps: [r('echelon_bourse')]
       },
       ...(demandeur ? [{
-        isActive: subject => subject.date_naissance  /* 18 <= age && age < 25 TODO */,
+        isActive: subject => {
+          const age = Individu.age(subject, new Date());
+          return 8 < age && age <= 25 /* 8 < age && age <= 25 TODO */
+        },
         steps: [r('enfant_a_charge')]
       }] : []),
       ...(enfant ? [{
-        isActive: subject => subject.date_naissance /* 8 < age && age <= 25 TODO */,
+        isActive: subject => {
+          const age = Individu.age(subject, new Date());
+          return 8 < age && age <= 25 /* 8 < age && age <= 25 TODO */
+        },
         steps: [r('scolarite')]
       }] : []),
       ...(enfant ? [r('enfant_a_charge')] : []),
       ...(demandeur ? [{
-        isActive: subject => subject.date_naissance /* 60 <= age TODO */,
+        isActive: subject => 60 <= Individu.age(subject, new Date()), /* 60 <= age TODO */
         steps: [r('gir')]
       }] : [])
     ]

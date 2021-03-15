@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Quel est {{ role == 'demandeur' ? 'votre' : 'son' }} taux d'incapacité évalué par votre MDPH.</h1>
+    <h1>Quel est {{ role == 'demandeur' ? 'votre' : 'son' }} taux d'incapacité évalué par {{ role == 'demandeur' ? 'votre' : 'sa' }} <abbr title="Maison départementale des personnes handicapées">MDPH</abbr>&nbsp;?</h1>
     <legend>
       {{ role == 'demandeur' ? 'Votre' : 'Son' }} taux d'incapacité
       <span>
@@ -38,9 +38,8 @@ const tauxIncapaciteOptions = [
   }
 ]
 
-
 export default {
-  name: 'SimulationIndividuTauxHandicap',
+  name: 'SimulationIndividuTauxIncapacite',
   components: {
     Actions,
   },

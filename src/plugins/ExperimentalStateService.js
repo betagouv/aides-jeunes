@@ -51,7 +51,7 @@ function individuBlockFactory(id) {
         ]
       }] : []),
       {
-        isActive: subject => true || subject.activite == 'etudiant',
+        isActive: subject => subject.activite == 'etudiant',
         steps: [r('echelon_bourse')]
       },
       ...(demandeur ? [{

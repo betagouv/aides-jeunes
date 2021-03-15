@@ -50,12 +50,12 @@ Openfisca
 ---------
 :warning: As of now, python3.9 is not yet compatible with all python packages used in Openfisca. It is recommend to use a lower version such as `3.8.6`.
 
-You should [install Python 3 in a `virtualenv`](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. You can either create the `virtualenv` yourself or rely on tools such as [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) or [pew](https://github.com/berdario/pew):
+You should [install Python 3 in a virtual environment](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. The instructions below rely on the built-in `venv` module so that there are no additional external dependencies:
 
 ```bash
-virtualenv  --python=python3 .venv # To create your virtualenv in ./.venv (a hidden folder)
-source .venv/bin/activate # To activate your virtualenv
-pip install pip --upgrade # To make sure you're using pip latest version
+python3 -m venv .venv   # create the virtual environment in the .venv folder
+source .venv/bin/activate  # activate the virtual environment
+pip install pip --upgrade  # make sure we're using the latest pip version
 ```
 
 ```sh

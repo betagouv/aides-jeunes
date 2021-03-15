@@ -47,17 +47,13 @@ Vue.use(ScrollService)
 Vue.use(StateService)
 Vue.use(Vuelidate)
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') { // eslint-disable-line
   Vue.use(VueMatomo, {
     host: 'https://stats.data.gouv.fr',
     trackerFileName: 'piwik',
-    siteId: 102,
+    siteId: process.env.VUE_APP_MATOMO_ID,
     router: router,
   })
-}
-
-if (window._paq) {
-  window._paq.push(['setCustomVariable', 2, 'version', 'VueJS', 'visit']) // eslint-disable-line
 }
 
 Vue.filter('capitalize', function (value) {

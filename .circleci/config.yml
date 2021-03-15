@@ -102,7 +102,9 @@ jobs:
           at: ~/mes-aides-ui
       - run:
           name: Build assets
-          command: npm run build
+          command: |
+            cp backend/config/continuous_integration.js backend/config/production.js
+            npm run build
       - persist_to_workspace:
           root: .
           paths:

@@ -1,3 +1,5 @@
+var { matomo } = require('../../../config')
+
 var axios = require('axios');
 
 function formatPiwik(data) {
@@ -27,7 +29,7 @@ exports.getUsageData = function(fromDate, toDate) {
             module: 'API',
             method: 'API.get',
             format: 'JSON',
-            idSite: '102',
+            idSite: matomo.id,
             period: 'day',
             date: fromDate.toISOString().slice(0,10) + ',' + toDate.toISOString().slice(0,10),
         },

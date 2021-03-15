@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      <h1>Êtes-vous en situation de handicap&nbsp;?</h1>
+      <h1>{{ role === 'demandeur' ? 'Êtes-vous' : 'Est-il/Est-elle'}} en situation de handicap&nbsp;?</h1>
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
@@ -27,6 +27,7 @@ export default {
       individu,
       id,
       value,
+      role
     }
   },
   methods: {

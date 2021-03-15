@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Quelle est votre nationalité&nbsp;?</h1>
+    <h1>Quelle est {{ role === 'demandeur' ? 'votre' : 'sa' }} nationalité&nbsp;?</h1>
     <NationalityChoice v-model="nationalite" />
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
@@ -26,6 +26,7 @@ export default {
       individu,
       id,
       nationalite,
+      role
     }
   },
   methods: {

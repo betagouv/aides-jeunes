@@ -87,6 +87,11 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/EnfantACharge.vue'),
         },
         {
+          name: 'enfant_place',
+          path: 'enfant_place',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/EnfantPlace.vue'),
+        },
+        {
           name: 'gir',
           path: 'gir',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/GIR.vue'),

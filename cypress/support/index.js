@@ -32,15 +32,21 @@ export function home() {
 }
 
 export function demandeur() {
-  cy.get('h1').invoke('text').should('contain', 'Vous')
-  cy.get('#date-de-naissance')
+  cy.get('h1').invoke('text').should('contain', 'naissance')
+  cy.get('#date_naissance')
     .type('12121980')
 
   cy.get('button[type="submit"]').click()
+  cy.get('button[type="submit"]').click() // Nationalité
+  cy.get('button[type="submit"]').click() // Activité
+  cy.get('button[type="submit"]').click() // Handicap
+  cy.get('button[type="submit"]').click() // Inapte au travail
+  cy.get('button[type="submit"]').click() // À charge de ses parents
+  cy.get('button[type="submit"]').click() // GIR / niveau d'autonomie
 }
 
 export function zeroEnfants() {
-  cy.get('h1').invoke('text').should('contain', ' enfants ')
+  cy.get('h1').invoke('text').should('contain', 'enfants')
   cy.get('button[type="submit"]').click()
 }
 
@@ -53,23 +59,12 @@ export function celibataire() {
 }
 
 export function sansDomicileStable() {
-    cy.get('h1').invoke('text').should('contain', 'logement')
-    cy.get('input[name="logementType"').get('[value="sansDomicile"]').check()
-
-    cy.get('button[type="submit"]').click()
-    cy.get('.notification.warning').invoke('text')
-      .should('match', /code postal est invalide/i)
-
-    cy.get('#postal-code').type('61509')
-    cy.get('button[type="submit"]').click()
-    cy.get('.notification.warning').invoke('text')
-      .should('match', /code postal est invalide/i)
-
-    cy.get('#postal-code').clear().type('61500')
-    cy.get('#commune').invoke('text')
-      .should('match', /Sées/i)
-
-    cy.get('button[type="submit"]').click()
+  cy.get('button[type="submit"]').click() // Logement
+  cy.get('button[type="submit"]').click() // Coloc
+  cy.get('button[type="submit"]').click() // Chambre
+  cy.get('button[type="submit"]').click() // Propriétaire proche familial
+  cy.get('button[type="submit"]').click() // Loyer et charges
+  cy.get('button[type="submit"]').click() // Commune de résidence
 }
 
 export function salaireSeul() {
@@ -100,6 +95,21 @@ export function hasPrimeActivite() {
   cy.get('@' + id + '-summary').get('[itemprop="offers"]').invoke('text')
     .should('match', /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
 
+  cy.get('.droit-detail:nth-of-type(' + position + ')').as(id)
+  cy.get('@' + id).get('[itemprop="description"]').invoke('text')
+    .should('match', description)
+  cy.get('@' + id).get('[itemprop="termsOfService"]').should('be.visible')
+}
+
+export function hasLogementSocial() {
+  const position = 2
+  const name = /logement social/
+  const id = 'logement'
+  const description = /revenus/
+  cy.get('#print-disclaimer', { timeout: 15000 }).invoke('text').should('contain', 'engagement')
+  cy.get('.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' + position + ')').as(id + '-summary')
+  cy.get('@' + id + '-summary').get('[itemprop="name"]').invoke('text')
+    .should('match', name)
   cy.get('.droit-detail:nth-of-type(' + position + ')').as(id)
   cy.get('@' + id).get('[itemprop="description"]').invoke('text')
     .should('match', description)

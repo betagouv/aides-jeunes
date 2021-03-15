@@ -148,10 +148,10 @@ jobs:
           background: true
       - run:
           name: Test un scenario simple
-          command: "npm run cypress -- --spec \"cypress/integration/base.spec.js\" --config 'retries={\"runMode\":3, \"openMode\": 0}'"
-      - run:
-          name: Test un scenario familial
-          command: "npm run cypress -- --spec \"cypress/integration/family.spec.js\" --config 'retries={\"runMode\":3, \"openMode\": 0}'"
+          command: "npm run cypress -- --spec \"cypress/integration/base.spec.js\""
+      # - run:
+      #     name: Test un scenario familial
+      #     command: "npm run cypress -- --spec \"cypress/integration/family.spec.js\" --config 'retries={\"runMode\":3, \"openMode\": 0}'"
       - store_artifacts:
           path: cypress/videos
       - run:

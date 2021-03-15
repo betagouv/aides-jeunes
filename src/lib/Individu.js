@@ -72,8 +72,7 @@ function get(individus, role, id, dates) {
     let individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(existingIndividu));
 
     if (role == 'enfant' && !existingIndividu) {
-
-        let nextEnfantCount = individus.length + 1;
+        let nextEnfantCount = individus.filter(c => c._role === 'enfant').length;
         individu._firstName = 'votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
 
         let usedIds = individus.map(function(enfant) { return enfant.id; });

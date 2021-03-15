@@ -7,12 +7,14 @@ function individuBlockFactory(id) {
   const enfant = id.startsWith('enfant')
   return {
     subject: situation => {
+      let subject;
       if (situation[id]) {
-        return situation[id]
+        subject = situation[id]
       } else if (situation.enfants && situation.enfants.length) {
         let matches = situation.enfants.filter(e => e.id == id)
-        return matches.length && matches[0]
+        subject = matches.length && matches[0]
       }
+      return subject;
     },
     steps: [
       ...(enfant ? [r('_firstName')] : []),

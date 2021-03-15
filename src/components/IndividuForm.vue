@@ -52,7 +52,7 @@
       </div>
     </fieldset>
 
-    <ASSQuestions />
+    <ASSQuestions v-bind:individu="individu" />
 
     <fieldset class="form__group" v-if="captureTauxIncapacite">
       <legend>
@@ -316,11 +316,7 @@ export default {
       }
 
       this.$v.$touch()
-      if (this.$v.$invalid) {
-        this.$matomo && this.$matomo.trackEvent('General', 'Invalid form', this.$route.fullPath)
-      } else {
-        this.$emit('input', this.individu)
-      }
+      this.$emit('input', this.individu)
     },
   },
   watch: {

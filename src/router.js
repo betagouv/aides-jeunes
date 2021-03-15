@@ -51,7 +51,7 @@ const router = new Router({
         },{
           name: 'property',
           path: ':property',
-          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Property.vue'),
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
         }]
       }, {
         path: 'enfants',
@@ -67,8 +67,14 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/RsaIsolementRecent.vue'),
         }]
       }, {
+        path: 'logement',
+        component: () => import(/* webpackChunkName: "logement" */ './views/Simulation/Logement.vue'),
+      }, {
         path: 'resultats',
-        component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/Resultats.vue'),
+        component: () => import(/* webpackChunkName: "resultats" */ './views/Foyer/Resultat.vue'),
+      }, {
+        path: ':id/:property',
+        component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
       }]
     },
     {

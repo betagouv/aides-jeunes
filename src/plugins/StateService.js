@@ -56,14 +56,14 @@ function nextRessourceRoute(current, situation) {
 }
 
 function next_(current, situation, router) {
-    if (router) {
+    const mm = current.match ? current : current.fullPath
+    if (router && !mm.match(/foyer/)) {
         const journey = Experimental.generateJourney(situation, router.currentRoute)
         let p = current.path || current
         let matches = journey.map((element, index) => { return {element, index} }).filter(item => item.element == p)
         if (matches.length) {
             return journey[matches[0].index + 1]
         } else {
-            console.log('KO XP', current.path || current)
             const test = current.path || current
             if (test.startsWith('/simulation')) {
                 throw new Error('Logic missing for ' + test)

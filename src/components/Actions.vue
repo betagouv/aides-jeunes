@@ -20,7 +20,6 @@ export default {
   },
   methods: {
     localOnSubmit: function(event) {
-      console.log(event)
       event.preventDefault()
       this.onSubmit()
     }

@@ -299,6 +299,7 @@ export default {
   },
   methods: {
     changeLogementType: function() {
+        // TODO
         const logementProps = ['locationType', 'primoAccedant']
         logementProps.forEach((field) => {
             this.logement[field] = undefined

@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Quelle est la valeur de {{property}} pour {{subject._firstName || subject.id}}&nbsp;?</h1>
+    <h1>Quelle est la valeur de {{property}} pour {{individu._firstName || individu.id}}&nbsp;?</h1>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>
@@ -18,17 +18,11 @@ export default {
     property: function() {
       return this.$route.params.property
     },
-    subject: function() {
+    individu: function() {
       const id = this.$route.params.id
       const role = id.split('_')[0]
-      if (this.$route.fullPath.match(/individu/)) {
-        const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-        return individu
-      } else {
-        return {
-          id
-        }
-      }
+      const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
+      return individu
     }
   },
   methods: {

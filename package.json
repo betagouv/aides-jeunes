@@ -1,7 +1,7 @@
 {
-  "name": "sgmap-mes-aides-ui",
+  "name": "mes-aides-jeunes",
   "version": "12.1.3",
-  "description": "Simulateur de prestations sociales mes-aides.gouv.fr",
+  "description": "Simulateur de prestations sociales pour les jeunes",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --no-clean",
@@ -161,6 +161,6 @@
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sgmap/mes-aides-ui"
+    "url": "https://github.com/betagouv/aides-jeunes"
   }
 }

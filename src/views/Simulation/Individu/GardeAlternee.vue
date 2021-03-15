@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      <h1>Enfant à charge&nbsp;?</h1>
+      <h1>Enfant en garde alternée&nbsp;?</h1>
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
@@ -13,7 +13,7 @@ import YesNoQuestion from '@/components/YesNoQuestion'
 import Individu from '@/lib/Individu'
 
 export default {
-  name: 'SimulationIndividuEnfantACharge',
+  name: 'SimulationIndividuGardeAlternee',
   components: {
     Actions,
     YesNoQuestion
@@ -22,7 +22,7 @@ export default {
     const id = this.$route.params.id
     const role = id.split('_')[0]
     const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-    const value = individu.enfant_a_charge
+    const value = individu.garde_alternee
     return {
       individu,
       id,
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     onSubmit: function() {
-      this.individu.enfant_a_charge = this.value
+      this.individu.garde_alternee = this.value
       this.$store.dispatch('updateIndividu', this.individu)
       this.$push()
     }

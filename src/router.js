@@ -77,6 +77,16 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Scolarite.vue'),
         },
         {
+          name: 'garde_alternee',
+          path: 'garde_alternee',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/GardeAlternee.vue'),
+        },
+        {
+          name: 'statut_marital',
+          path: 'statut_marital',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/StatutMarital.vue'),
+        },
+        {
           name: 'echelon_bourse',
           path: 'echelon_bourse',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/EchelonBourse.vue'),

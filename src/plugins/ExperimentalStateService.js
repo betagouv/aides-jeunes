@@ -24,9 +24,9 @@ function individuBlockFactory(id) {
       {
         isActive: subject => subject.handicap,
         steps: [
-          r('taux_handicap'),
+          r('taux_incapacite'),
           {
-            isActive: subject => !enfant && 0.5 <= subject.taux_handicap && subject.taux_handicap < 0.8,
+            isActive: subject => !enfant && 0.5 <= subject.taux_incapacite && subject.taux_incapacite < 0.8,
             steps: [
               r('aah_restriction_substantielle_durable_acces_emploi'),
             ]

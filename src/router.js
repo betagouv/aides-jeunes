@@ -40,29 +40,45 @@ const router = new Router({
           name: 'date_naissance',
           path: 'date_naissance',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/DateNaissance.vue'),
-        }, {
+        },
+        {
           name: 'handicap',
           path: 'handicap',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap.vue'),
-        }, {
+        },
+        {
+          name: 'taux_incapacite',
+          path: 'taux_incapacite',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap/TauxIncapacite.vue'),
+        },
+        {
+          name: 'aah_restriction_substantielle_durable_acces_emploi',
+          path: 'aah_restriction_substantielle_durable_acces_emploi',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap/AAHRestrictionSubstantielleDurableAccesEmploi.vue'),
+        },
+        {
           name: 'nationalite',
           path: 'nationalite',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Nationalite.vue'),
-        },{
+        },
+        {
           name: 'property',
           path: ':property',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
         }]
-      }, {
+      },
+      {
         path: 'enfants',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Enfants.vue'),
-      }, {
+      },
+      {
         path: 'famille',
         component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille.vue'),
         children: [{
           path: 'en_couple',
           component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/EnCouple.vue'),
-        }, {
+        },
+        {
           path: 'rsa_isolement_recent',
           component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/RsaIsolementRecent.vue'),
         }]

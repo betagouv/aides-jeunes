@@ -196,9 +196,9 @@ workflows:
           requires:
             - build
             - install_openfisca
-  deploy:
-    jobs:
-      - deploy:
-          filters:
-            branches:
-              only: master
+  # deploy:
+  #   jobs:
+  #     - deploy:
+  #         filters:
+  #           branches:
+  #             only: master

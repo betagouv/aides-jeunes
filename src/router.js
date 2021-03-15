@@ -57,6 +57,21 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap/AAHRestrictionSubstantielleDurableAccesEmploi.vue'),
         },
         {
+          name: 'inapte_travail',
+          path: 'inapte_travail',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/InapteTravail/InapteTravail.vue'),
+        },
+        {
+          name: 'date_debut_chomage',
+          path: 'date_debut_chomage',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/InapteTravail/DateDebutChomage.vue'),
+        },
+        {
+          name: 'ass_precondition_remplie',
+          path: 'ass_precondition_remplie',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/InapteTravail/AssPreconditionRemplie.vue'),
+        },
+        {
           name: 'nationalite',
           path: 'nationalite',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Nationalite.vue'),

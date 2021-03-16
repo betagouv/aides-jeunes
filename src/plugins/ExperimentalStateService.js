@@ -156,7 +156,8 @@ function generateJourney(situation, current) {
           steps: [
             '/simulation/famille/rsa_isolement_recent',
           ]
-        }
+        },
+        ...(situation.conjoint ? [individuBlockFactory('conjoint')] : []),
       ]
     },
     housingBlock(situation, current),

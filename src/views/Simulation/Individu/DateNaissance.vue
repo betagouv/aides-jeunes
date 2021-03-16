@@ -3,7 +3,7 @@
     <label>
       <h1>{{ role === 'demandeur' ? 
         `Quelle est votre date de naissance&nbsp;?` :
-        `Quelle est la date de naissance votre ${individu._firstName || individu.id }&nbsp;?`}}</h1>
+        `Quelle est la date de naissance ${individu._firstName || individu.id }&nbsp;?`}}</h1>
       <InputDate required id="date_naissance" v-model="value" />
       <p class="notification warning" v-if="error">
         Ce champ est obligatoire.

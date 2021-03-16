@@ -1,4 +1,4 @@
-var { matomo } = require('../../../config')
+var {matomo} = require('../../config')
 
 var axios = require('axios');
 

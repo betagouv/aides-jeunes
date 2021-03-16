@@ -1,4 +1,3 @@
-
 import Individu from '@/lib/Individu'
 
 export const createIndividuMixin = (props) => {
@@ -24,4 +23,3 @@ export const createIndividuMixin = (props) => {
         }
     };
 };
-

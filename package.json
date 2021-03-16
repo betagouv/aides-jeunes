@@ -1,7 +1,7 @@
 {
-  "name": "sgmap-mes-aides-ui",
+  "name": "mes-aides-jeunes",
   "version": "12.1.3",
-  "description": "Simulateur de prestations sociales mes-aides.gouv.fr",
+  "description": "Simulateur de prestations sociales pour les jeunes",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --no-clean",
@@ -17,15 +17,12 @@
     "fast-install": "PUPPETEER_SKIP_DOWNLOAD=1 npm ci",
     "front": "NODE_ENV=front_only npm run serve",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
-    "openfisca": "cd openfisca && gunicorn api --config config.py",
+    "openfisca": "source .venv/bin/activate && cd openfisca && gunicorn api --config config.py",
     "predb": "mkdir -p db",
     "prestart": "npm run build && npm run stats",
     "start": "NODE_ENV=production node server.js",
     "stats": "node backend/lib/stats",
-    "test": "npm run test:mocha && npm run test:karma && npm run test:jest",
-    "test:jest": "jest",
-    "test:mocha": "mocha --recursive test/backend",
-    "test:openfisca": "mocha test/backend/openfisca/test.js --timeout 10000"
+    "test": "jest"
   },
   "dependencies": {
     "@babel/runtime": "^7.9.6",
@@ -161,6 +158,6 @@
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sgmap/mes-aides-ui"
+    "url": "https://github.com/betagouv/aides-jeunes"
   }
 }

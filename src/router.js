@@ -112,6 +112,11 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Nationalite.vue'),
         },
         {
+          name: 'activite',
+          path: 'activite',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Activite.vue'),
+        },
+        {
           name: 'property',
           path: ':property',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),

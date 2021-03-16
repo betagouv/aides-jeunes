@@ -58,20 +58,20 @@ function individuBlockFactory(id) {
       ...(demandeur ? [{
         isActive: (subject, situation) => {
           const age = Individu.age(subject, datesGenerator(situation.dateDeValeur).today.value);
-          return 8 < age && age <= 25 /* 8 < age && age <= 25 TODO */
+          return 8 < age && age <= 25
         },
         steps: [r('enfant_a_charge')]
       }] : []),
       ...(enfant ? [{
         isActive: (subject, situation) => {
           const age = Individu.age(subject, datesGenerator(situation.dateDeValeur).today.value);
-          return 8 < age && age <= 25 /* 8 < age && age <= 25 TODO */
+          return 8 < age && age <= 25
         },
         steps: [r('scolarite')]
       }] : []),
       ...(enfant ? [r('enfant_a_charge')] : []),
       ...(demandeur ? [{
-        isActive: subject => 60 <= Individu.age(subject, new Date()), /* 60 <= age TODO */
+        isActive: subject => 60 <= Individu.age(subject, new Date()),
         steps: [r('gir')]
       }] : [])
     ]

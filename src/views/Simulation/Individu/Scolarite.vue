@@ -11,7 +11,7 @@
 
 <script>
 import Actions from '@/components/Actions'
-import Individu from '@/lib/Individu'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 const scolariteOptions = [
   {
@@ -33,24 +33,10 @@ export default {
     Actions,
   },
   data: function() {
-    const id = this.$route.params.id
-    const role = id.split('_')[0]
-    const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-    const value = individu.scolarite
     return {
-      individu,
-      id,
-      role,
-      value,
       scolariteOptions
     }
   },
-  methods: {
-    onSubmit: function() {
-      this.individu.scolarite = this.value
-      this.$store.dispatch('updateIndividu', this.individu)
-      this.$push()
-    }
-  }
+  mixins: [createIndividuMixin('scolarite')],
 }
 </script>

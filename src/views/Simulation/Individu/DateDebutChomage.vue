@@ -14,7 +14,7 @@
 <script>
 import Actions from '@/components/Actions'
 import InputDate from '@/components/InputDate'
-import Individu from '@/lib/Individu'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
   name: 'SimulationIndividuDateDebutChomage',
@@ -22,18 +22,7 @@ export default {
     Actions,
     InputDate,
   },
-  data: function() {
-    const id = this.$route.params.id
-    const role = id.split('_')[0]
-    const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-    const date_debut_chomage = individu.date_debut_chomage
-    return {
-      individu,
-      id,
-      date_debut_chomage,
-      error: false,
-    }
-  },
+  mixins: [createIndividuMixin('date_debut_chomage')], 
   methods: {
     onSubmit: function() {
       if (!this.date_debut_chomage) {
@@ -44,6 +33,6 @@ export default {
       this.$store.dispatch('updateIndividu', this.individu)
       this.$push()
     }
-  }
+  },
 }
 </script>

@@ -9,31 +9,13 @@
 
 <script>
 import Actions from '@/components/Actions'
-import Individu from '@/lib/Individu'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
   name: 'SimulationIndividuEchelonBourse',
   components: {
     Actions,
   },
-  data: function() {
-    const id = this.$route.params.id
-    const role = id.split('_')[0]
-    const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-    const echelon_bourse = individu.echelon_bourse
-    return {
-      individu,
-      id,
-      echelon_bourse,
-      role
-    }
-  },
-  methods: {
-    onSubmit: function() {
-      this.individu.echelon_bourse = this.echelon_bourse
-      this.$store.dispatch('updateIndividu', this.individu)
-      this.$push()
-    }
-  }
+  mixins: [createIndividuMixin('echelon_bourse')],
 }
 </script>

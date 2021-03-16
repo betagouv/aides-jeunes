@@ -12,7 +12,7 @@
 
 <script>
 import Actions from '@/components/Actions'
-import Individu from '@/lib/Individu'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 const situationsFamiliales = [
   {
@@ -34,25 +34,11 @@ export default {
   components: {
     Actions,
   },
+  mixins: [createIndividuMixin('statut_marital')],
   data: function() {
-    const id = this.$route.params.id
-    const role = id.split('_')[0]
-    const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-    const value = individu.statut_marital
     return {
-      individu,
-      id,
-      role,
-      value,
       situationsFamiliales
     }
   },
-  methods: {
-    onSubmit: function() {
-      this.individu.statut_marital = this.value
-      this.$store.dispatch('updateIndividu', this.individu)
-      this.$push()
-    }
-  }
 }
 </script>

@@ -11,7 +11,7 @@
 
 <script>
 import Actions from '@/components/Actions'
-import Individu from '@/lib/Individu'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 const GIROptions = [
     {
@@ -33,25 +33,11 @@ export default {
   components: {
     Actions,
   },
+  mixins: [createIndividuMixin('gir')],
   data: function() {
-    const id = this.$route.params.id
-    const role = id.split('_')[0]
-    const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-    const value = individu.gir
     return {
-      individu,
-      id,
-      role,
-      value,
       GIROptions
     }
   },
-  methods: {
-    onSubmit: function() {
-      this.individu.gir = this.value
-      this.$store.dispatch('updateIndividu', this.individu)
-      this.$push()
-    }
-  }
 }
 </script>

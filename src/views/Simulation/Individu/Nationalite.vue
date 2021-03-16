@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <h1>Quelle est {{ role === 'demandeur' ? 'votre' : 'sa' }} nationalité&nbsp;?</h1>
-    <NationalityChoice v-model="nationalite" />
+    <NationalityChoice v-model="value" />
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>
@@ -9,7 +9,7 @@
 <script>
 import Actions from '@/components/Actions'
 import NationalityChoice from '@/components/NationalityChoice'
-import Individu from '@/lib/Individu'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
   name: 'SimulationIndividuNationalite',
@@ -17,24 +17,6 @@ export default {
     Actions,
     NationalityChoice
   },
-  data: function() {
-    const id = this.$route.params.id
-    const role = id.split('_')[0]
-    const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-    const nationalite = individu.nationalite
-    return {
-      individu,
-      id,
-      nationalite,
-      role
-    }
-  },
-  methods: {
-    onSubmit: function() {
-      this.individu.nationalite = this.nationalite
-      this.$store.dispatch('updateIndividu', this.individu)
-      this.$push()
-    }
-  }
+  mixins: [createIndividuMixin('nationalite')],
 }
 </script>

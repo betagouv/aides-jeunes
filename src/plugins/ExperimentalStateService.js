@@ -71,7 +71,7 @@ function individuBlockFactory(id) {
       }] : []),
       ...(enfant ? [r('enfant_a_charge')] : []),
       ...(demandeur ? [{
-        isActive: subject => 60 <= Individu.age(subject, new Date()),
+        isActive: (subject, situation) => 60 <= Individu.age(subject, datesGenerator(situation.dateDeValeur).today.value),
         steps: [r('gir')]
       }] : [])
     ]

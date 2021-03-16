@@ -21,7 +21,7 @@
 
 <script>
 import Actions from '@/components/Actions'
-import Individu from '@/lib/Individu'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 const tauxIncapaciteOptions = [
   {
@@ -43,25 +43,11 @@ export default {
   components: {
     Actions,
   },
+  mixins: [createIndividuMixin('taux_incapacite')], 
   data: function() {
-    const id = this.$route.params.id
-    const role = id.split('_')[0]
-    const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-    const value = individu.taux_incapacite
     return {
-      individu,
-      id,
-      role,
-      value,
       tauxIncapaciteOptions
     }
   },
-  methods: {
-    onSubmit: function() {
-      this.individu.taux_incapacite = this.value
-      this.$store.dispatch('updateIndividu', this.individu)
-      this.$push()
-    }
-  }
 }
 </script>

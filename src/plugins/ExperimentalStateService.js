@@ -1,4 +1,5 @@
 const Individu = require('@/lib/Individu').default;
+const { datesGenerator } = require('../../backend/lib/mes-aides');
 
 function individuBlockFactory(id) {
   const r = name => `/simulation/individu/${id}/${name}`
@@ -57,15 +58,15 @@ function individuBlockFactory(id) {
         steps: [r('echelon_bourse')]
       },
       ...(demandeur ? [{
-        isActive: subject => {
-          const age = Individu.age(subject, new Date());
+        isActive: (subject, situation) => {
+          const age = Individu.age(subject, datesGenerator(situation.dateDeValeur).today.value);
           return 8 < age && age <= 25 /* 8 < age && age <= 25 TODO */
         },
         steps: [r('enfant_a_charge')]
       }] : []),
       ...(enfant ? [{
-        isActive: subject => {
-          const age = Individu.age(subject, new Date());
+        isActive: (subject, situation) => {
+          const age = Individu.age(subject, datesGenerator(situation.dateDeValeur).today.value);
           return 8 < age && age <= 25 /* 8 < age && age <= 25 TODO */
         },
         steps: [r('scolarite')]

@@ -101,10 +101,9 @@ function housingBlock(/*situation, current*/) {
     steps: [
       '/simulation/logement',
       {
-        isActive: subject => subject.statut_occupation_logement && subject.statut_occupation_logement.startsWith("proprietaire"),
+        isActive: subject => subject.statut_occupation_logement && (subject.statut_occupation_logement === 'primo_accedant' || subject.statut_occupation_logement === 'proprietaire'),
         steps: [
-          '/simulation/menage/loyer',
-          '/simulation/foyer_fiscal/taxe_fonciere_sur_avis'
+          '/simulation/menage/loyer'
         ]
      }, {
         isActive: subject => !subject.statut_occupation_logement || subject.statut_occupation_logement.startsWith("locataire"),
@@ -112,16 +111,18 @@ function housingBlock(/*situation, current*/) {
           '/simulation/menage/coloc',
           '/simulation/menage/logement_chambre',
           '/simulation/famille/proprietaire_proche_famille',
-          '/simulation/famille/loyer+charges',
+          '/simulation/menage/loyer',
         ]
      }, {
         isActive: subject => subject.statut_occupation_logement == "loge_gratuitement",
         steps: [
           '/simulation/menage/participation_frais',
-          '/simulation/demandeur/habite_chez_parents',
+          '/simulation/individu/demandeur/habite_chez_parents',
         ]
      }, ...[
         '/simulation/menage/depcom',
+     ], ...[
+        '/simulation/test/findeparcours',
      ],
      {
         isActive: subject => subject.depcom && subject.depcom.startsWith('75'),

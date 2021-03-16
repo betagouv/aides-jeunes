@@ -120,6 +120,15 @@ const store = new Vuex.Store({
         return items.length ? items[0] : null
       }
     },
+    getMenage: function (state) {
+      return state.situation.menage
+    },
+    getFamille: function (state) {
+      return state.situation.famille
+    },
+    getFoyerFiscal: function (state) {
+      return state.situation.foyer_fiscal
+    },
     getLogementStatut: function(state) {
       return state.situation.menage && state.situation.menage.statut_occupation_logement
     },

@@ -2,7 +2,7 @@
   <form @submit.prevent='onSubmit'>
     <label>
       <h1>Quelle est la date de naissance de {{individu._firstName || individu.id}}&nbsp;?</h1>
-      <InputDate required id="date_naissance" v-model="date_naissance" />
+      <InputDate required id="date_naissance" v-model="value" />
       <p class="notification warning" v-if="error">
         Ce champ est obligatoire.
       </p>
@@ -23,13 +23,18 @@ export default {
     InputDate,
   },
   mixins: [createIndividuMixin('date_naissance')],
+  data () {
+    return {
+      error: false
+    }
+  },
   methods: {
     onSubmit: function() {
-      if (!this.date_naissance) {
+      if (!this.value) {
         this.error = true
         return
       }
-      this.individu.date_naissance = this.date_naissance
+      this.individu.date_naissance = this.value
       this.$store.dispatch('updateIndividu', this.individu)
       this.$push()
     }

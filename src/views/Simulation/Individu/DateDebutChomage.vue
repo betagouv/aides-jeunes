@@ -23,6 +23,11 @@ export default {
     InputDate,
   },
   mixins: [createIndividuMixin('date_debut_chomage')], 
+  data () {
+    return {
+      error: false
+    }
+  },
   methods: {
     onSubmit: function() {
       if (!this.date_debut_chomage) {

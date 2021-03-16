@@ -127,8 +127,18 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/_FirstName.vue'),
         },
         {
+          name: 'ressources/types',
+          path: 'ressources/types',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Types.vue'),
+        },
+        {
+          name: 'ressources/montants',
+          path: 'ressources/montants/:category',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Montants.vue'),
+        },
+        {
           name: 'property',
-          path: ':property',
+          path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
         }]
       },

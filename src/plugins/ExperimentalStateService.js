@@ -129,6 +129,29 @@ function housingBlock(/*situation, current*/) {
   }
 }
 
+function resourceBlocks(situation/*, current*/) {
+  const individuResourceBlock = (individuId) => {
+    return {
+      steps: [
+        `/simulation/individu/${individuId}/ressources/types`,
+        `/simulation/individu/${individuId}/ressources/montants`,
+      ]
+    }
+  }
+  return {
+    steps: [
+      individuResourceBlock('demandeur'),
+      ...(situation.conjoint ? [individuResourceBlock('conjoint')] : []),
+      ...(situation.enfants.length ? ['/simulation/enfants/ressources'] : []),
+      {
+        steps: situation.enfants.map(e => {
+          return e._hasRessources ? individuResourceBlock(e.id) : {steps: []}
+        })
+      }
+    ]
+  }
+}
+
 function processBlock({journey, subject, situation, current}, b) {
   if (typeof(b) == 'string') {
     journey.push(b)
@@ -159,6 +182,7 @@ function generateJourney(situation, current) {
       ]
     },
     housingBlock(situation, current),
+    resourceBlocks(situation, current),
     {
       steps: [
         '/simulation/resultats',

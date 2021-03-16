@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Quelle est la valeur de {{property}} pour {{individu._firstName || individu.id}}&nbsp;?</h1>
+    <h1>Quelle est la valeur de {{property}}{{subproperty ? '/' + subproperty : ''}} pour {{individu._firstName || individu.id}}&nbsp;?</h1>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>
@@ -17,6 +17,9 @@ export default {
   computed: {
     property: function() {
       return this.$route.params.property
+    },
+    subproperty: function() {
+      return this.$route.params.subproperty
     },
     individu: function() {
       const id = this.$route.params.id

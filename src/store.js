@@ -119,7 +119,10 @@ const store = new Vuex.Store({
         let items = getters.peopleParentsFirst.filter(i => i.id == id)
         return items.length ? items[0] : null
       }
-    }, 
+    },
+    getLogementStatut: function(state) {
+      return state.situation.menage && state.situation.menage.statut_occupation_logement
+    },
     ressourcesYearMinusTwoCaptured: function(state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
       const januaryYearMinusTwo = state.dates.fiscalYear12Months[0].id

@@ -18,10 +18,6 @@ function ressourceHeader(individu) {
 }
 
 function find(situation, role, id) {
-    if (role === 'enfant' && id) {
-        return _.find(situation.enfants, { id: id })
-    }
-
     return situation[role] || _.find(situation, { id: id })
 }
 
@@ -67,22 +63,19 @@ function get(individus, role, id, dates) {
     if (DEFAULT_INDIVIDU._role == 'conjoint') {
         DEFAULT_INDIVIDU.statut_marital = 'marie';  // Marié(e)
     }
-
     let existingIndividu = find(individus, role, id);
     let individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(existingIndividu));
 
     if (role == 'enfant' && !existingIndividu) {
-        let nextEnfantCount = individus.filter(c => c._role === 'enfant').length;
-        individu._firstName = 'votre ' + nextEnfantCount + (nextEnfantCount === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
-
         let usedIds = individus.map(function(enfant) { return enfant.id; });
         let count = 0;
         while (_.indexOf(usedIds, 'enfant_' + count) >= 0) {
             count = count + 1;
         }
         individu.id = 'enfant_' + count;
+        const countDiplay = count + 1;
+        individu._firstName = 'votre ' + countDiplay + (countDiplay === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
     }
-
     return {
         existingIndividu: Boolean(existingIndividu),
         individu,

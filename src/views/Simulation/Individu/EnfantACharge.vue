@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      <h1>Enfant à charge&nbsp;?</h1>
+      <h1>{{ role === 'demandeur' ? `Figurez vous sur la dernière déclarion d'impôts de vos parents ?` : `Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?`}}</h1>
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
@@ -10,7 +10,7 @@
 <script>
 import Actions from '@/components/Actions'
 import YesNoQuestion from '@/components/YesNoQuestion'
-import { createIndividuMixin } from '@/mixins/IndividuMixin'
+import Individu from '@/lib/Individu'
 
 export default {
   name: 'SimulationIndividuEnfantACharge',
@@ -18,6 +18,24 @@ export default {
     Actions,
     YesNoQuestion
   },
-  mixins:[createIndividuMixin('enfant_a_charge')],
+  data: function() {
+    const id = this.$route.params.id
+    const role = id.split('_')[0]
+    const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
+    const value = individu['enfant_a_charge']['2021']
+    return {
+        individu,
+        id,
+        value,
+        role
+    }
+  },
+  methods: {
+    onSubmit: function() {
+        this.individu['enfant_a_charge']['2021'] = this.value
+        this.$store.dispatch('updateIndividu', this.individu)
+        this.$push()
+    },
+  }
 }
 </script>

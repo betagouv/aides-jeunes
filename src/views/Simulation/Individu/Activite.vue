@@ -15,32 +15,24 @@ import Individu from '@/lib/Individu'
 
 const ActiviteOptions = [
   {
-      id: '_chomeur',
-      label: 'Inscrit·e comme demandeur d’emploi'
+    value: 'actif',
+    label: 'Actif occupé'
   },
   {
-      id: 'enceinte',
-      label: 'Enceinte'
+    value: 'chomeur',
+    label: 'Chômeur'
   },
   {
-      id: 'etudiant',
-      label: 'Étudiant·e, apprenti·e'
-  },
-  // {
-  //     id: 'handicap',
-  //     label: 'En situation de handicap'
-  // },
-  // {
-  //     id: 'inapte_travail',
-  //     label: 'Inapte au travail'
-  // },
-  {
-    id: 'autre',
-    label: 'Autre'
+    value: 'etudiant',
+    label: 'Étudiant, élève'
   },
   {
-      id: '_retraite',
-      label: 'Retraité·e'
+    value: 'retraite',
+    label: 'Retraité'
+  },
+  {
+    value: 'inactif',
+    label: 'Autre, inactif'
   },
 ]
 

@@ -30,11 +30,7 @@ try
     override = require('./' + env);
     console.info('Using specific configuration for ' + env + '.');
 } catch (e) {
-    if (e.toString().match(/Cannot find module/) && !env.match(/production/)) {
-        console.warn('No specific configuration for ' + env + '.');
-    } else {
-        throw e;
-    }
+    console.warn('No specific configuration for ' + env + '.');
 }
 
 module.exports = Object.assign(all, override);

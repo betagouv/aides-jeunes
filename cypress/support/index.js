@@ -41,8 +41,6 @@ export function demandeur() {
   cy.get('button[type="submit"]').click() // Activité
   cy.get('button[type="submit"]').click() // Handicap
   cy.get('button[type="submit"]').click() // Inapte au travail
-  cy.get('button[type="submit"]').click() // À charge de ses parents
-  cy.get('button[type="submit"]').click() // GIR / niveau d'autonomie
 }
 
 export function zeroEnfants() {

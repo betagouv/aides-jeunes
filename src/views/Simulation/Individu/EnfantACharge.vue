@@ -22,7 +22,7 @@ export default {
     const id = this.$route.params.id
     const role = id.split('_')[0]
     const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-    const value = individu['enfant_a_charge']['2021']
+    const value = individu['enfant_a_charge'][this.$store.state.dates.thisYear.id]
     return {
         individu,
         id,
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     onSubmit: function() {
-        this.individu['enfant_a_charge']['2021'] = this.value
+        this.individu['enfant_a_charge'][this.$store.state.dates.thisYear.id] = this.value
         this.$store.dispatch('updateIndividu', this.individu)
         this.$push()
     },

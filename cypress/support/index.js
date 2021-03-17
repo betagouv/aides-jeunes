@@ -32,6 +32,7 @@ export function home() {
 }
 
 export function demandeur() {
+  cy.get('button[type="submit"]').click()
   cy.get('h1').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
     .type('12121980')

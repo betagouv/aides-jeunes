@@ -117,6 +117,11 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Activite.vue'),
         },
         {
+          name: 'habite_chez_parents',
+          path: 'habite_chez_parents',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/HabiteChezParents.vue'),
+        },
+        {
           name: 'property',
           path: ':property',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
@@ -136,10 +141,42 @@ const router = new Router({
         {
           path: 'rsa_isolement_recent',
           component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/RsaIsolementRecent.vue'),
+        },
+        {
+          path: 'proprietaire_proche_famille',
+          component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/ProprietaireProcheFamille.vue'),
         }]
       }, {
         path: 'logement',
         component: () => import(/* webpackChunkName: "logement" */ './views/Simulation/Logement.vue'),
+      }, {
+        path: 'menage',
+        component: () => import(/* webpackChunkName: "logement" */ './views/Simulation/Menage.vue'),
+        children: [{
+            name: 'loyer',
+            path: 'loyer',
+            component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Loyer.vue'),
+        },
+        {
+          name: 'coloc',
+          path: 'coloc',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Coloc.vue'),
+        },
+        {
+            name: 'logement_chambre',
+            path: 'logement_chambre',
+            component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/LogementChambre.vue'),
+        },
+        {
+            name: 'participation_frais',
+            path: 'participation_frais',
+            component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/ParticipationFrais.vue'),
+        },
+        {
+            name: 'depcom',
+            path: 'depcom',
+            component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Depcom.vue'),
+        }]
       }, {
         path: 'resultats',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Foyer/Resultat.vue'),

@@ -57,11 +57,8 @@ export function celibataire() {
 }
 
 export function sansDomicileStable() {
+  cy.get('input[name="logementType"').get('[value="sansDomicile"]').check()
   cy.get('button[type="submit"]').click() // Logement
-  cy.get('button[type="submit"]').click() // Coloc
-  cy.get('button[type="submit"]').click() // Chambre
-  cy.get('button[type="submit"]').click() // Propriétaire proche familial
-  cy.get('button[type="submit"]').click() // Loyer et charges
   cy.get('button[type="submit"]').click() // Commune de résidence
 }
 

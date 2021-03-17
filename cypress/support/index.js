@@ -44,103 +44,12 @@ export function demandeur(params={}) {
   // Activite
   cy.get('h1').invoke('text').should('contain', 'Êtes-vous')
   cy.get('label').invoke('text').should('contain', 'En activité')
-  if (params.activite) {
-    cy.get('input[type="radio"]').check(params.activite)
-    cy.get('button[type="submit"]').click()
-  } else {
-    cy.get('button[type="submit"]').click()
-  }
+  cy.get('button[type="submit"]').click()
+
   // Handicap
   handicap(params)
   // Inapte au travail
   cy.get('h1').invoke('text').should('contain', 'inapte au travail')
-  cy.get('button[type="submit"]').click()
-
-  if (params.activite === 'etudiant') {
-    // echelon
-    cy.get('h1').invoke('text').should('contain', 'À quel échelon')
-    cy.get('button[type="submit"]').click()  
-  }
-
-  if (params.activite === 'chomeur') {
-    // Date de début chomage
-    cy.get('h1').invoke('text').should('contain', 'debut de chômage')
-    cy.get('#date_debut_chomage')
-      .type(params.date_naissance || '12122005')
-    cy.get('button[type="submit"]').click()
-    // AssPreconditionRemplie
-    cy.get('h1').invoke('text').should('contain', 'travaillé au moins')
-    cy.get('button[type="submit"]').click()  
-  }
-  
-  if (params.enfantACharge) {
-    // Enfant a charge
-    enfantACharge()
-  }
-  if (params.gir) {
-    // girScreen
-    gir()
-  }
-}
-
-export function enfant(params={}) {
-  cy.get('button[type="submit"]').click()
-  // Naissance
-  cy.get('h1').invoke('text').should('contain', 'naissance')
-  cy.get('#date_naissance')
-    .type(params.date_naissance || '12122000')
-  cy.get('button[type="submit"]').click()
-  // Nationalite
-  cy.get('h1').invoke('text').should('contain', 'nationalité')
-  cy.get('button[type="submit"]').click() // Nationalité
-  // Garde Alterne
-  cy.get('h1').invoke('text').should('contain', 'en garde alternée')
-  cy.get('button[type="submit"]').click()
-  // Handicap
-  handicap(params)
-  // Scolarite
-  cy.get('h1').invoke('text').should('contain', 'Où sera-t-il/elle scolarisé·e à la rentrée prochaine')
-  cy.get('button[type="submit"]').click()
-  // Enfant a charge
-  enfantACharge()
-}
-
-export function conjoint(params={}) {
-  cy.get('button[type="submit"]').click()
-  // Naissance
-  cy.get('h1').invoke('text').should('contain', 'naissance')
-  cy.get('#date_naissance')
-    .type(params.date_naissance || '12121980')
-  cy.get('button[type="submit"]').click()
-  // Nationalite
-  cy.get('h1').invoke('text').should('contain', 'nationalité')
-  cy.get('button[type="submit"]').click()
-  // Statut Marital
-  cy.get('h1').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
-  cy.get('button[type="submit"]').click()
-  // Activite
-  cy.get('h1').invoke('text').should('contain', 'Est-il/elle')
-  cy.get('label').invoke('text').should('contain', 'En activité')
-  if (params.activite) {
-    cy.get('input[type="radio"]').check(params.activite)
-    cy.get('button[type="submit"]').click()
-  } else {
-    cy.get('button[type="submit"]').click()
-  }
-  // Handicap
-  handicap(params)
-  // Inapte au travail
-  cy.get('h1').invoke('text').should('contain', 'inapte au travail')
-  cy.get('button[type="submit"]').click()
-}
-
-export function gir() {
-  cy.get('h1').invoke('text').should('contain', 'Avez-vous besoin d’une aide à la personne ?')
-  cy.get('button[type="submit"]').click()
-}
-
-export function enfantACharge() {
-  cy.get('h1').invoke('text').should('contain', 'dernière déclaration d\'impôts')
   cy.get('button[type="submit"]').click()
 }
 
@@ -158,11 +67,6 @@ export function handicap(params) {
       cy.get('h1').invoke('text').should('contain', `CDAPH`)
       cy.get('button[type="submit"]').click()
     }
-    if (params.enfant) {
-      // Enfant placé
-      cy.get('h1').invoke('text').should('contain', `Est-il/elle placé·e en structure spécialisée ou famille d\'accueil ?`)
-      cy.get('button[type="submit"]').click()
-    }
   } else {
     cy.get('button[type="submit"]').click()
   }
@@ -172,15 +76,6 @@ export function zeroEnfants() {
   cy.get('h1').invoke('text').should('contain', 'enfants')
   cy.get('button[type="submit"]').click()
 }
-
-export function oneEnfants(params) {
-  cy.get('h1').invoke('text').should('contain', 'enfants')
-  cy.get('button#add-pac').click()
-  enfant(params)
-  cy.get('h1').invoke('text').should('contain', 'enfants')
-  cy.get('button[type="submit"]').click()
-}
-
 
 export function deuxEnfants() {
 }

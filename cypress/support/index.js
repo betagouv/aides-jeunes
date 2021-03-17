@@ -33,6 +33,7 @@ export function home() {
 
 export function demandeur(params={}) {
   // Naissance
+  cy.get('button[type="submit"]').click()
   cy.get('h1').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
     .type('12121980')
@@ -46,7 +47,7 @@ export function demandeur(params={}) {
   // Handicap
   handicap(params)
   // Inapte au travail
-  cy.get('button[type="submit"]').click().should('contain', 'inapte au travail')
+  cy.get('h1').invoke('text').should('contain', 'inapte au travail')
   cy.get('button[type="submit"]').click()
 }
 

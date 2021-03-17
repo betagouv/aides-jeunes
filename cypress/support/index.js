@@ -58,8 +58,8 @@ export function handicap(params) {
     cy.get('button[type="submit"]').click()
     // Taux d'incapacite
     cy.get('h1').invoke('text').should('contain', `taux d'incapacité`)
-    cy.get('select').select(params.handicap.taux_incapacite)
-    if (0.5 < params.handicap.taux_incapacite && params.handicap.taux_incapacite <= 0.8) {
+    cy.get('select').select(params.handicap.taux_incapacite.toString())
+    if (!params.enfant && 0.5 < params.handicap.taux_incapacite && params.handicap.taux_incapacite <= 0.8) {
       // AAH
       cy.get('h1').invoke('text').should('contain', `AAH`)
       cy.get('button[type="submit"]').click()

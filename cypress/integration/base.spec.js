@@ -23,4 +23,19 @@ context('Full simulation', () => {
     // steps.hasPrimeActivite()
     steps.hasLogementSocial()
   })
+
+  it('accepts a situation with handicap', () => {
+    steps.home()
+    steps.demandeur({
+      enfant: false,
+      taux_incapacite: 0.7
+    })
+    steps.zeroEnfants()
+    steps.celibataire()
+    steps.sansDomicileStable()
+    // steps.salaireSeul()
+    // steps.sansPensionAlimentaireVersees()
+    // steps.hasPrimeActivite()
+    steps.hasLogementSocial()
+  })
 })

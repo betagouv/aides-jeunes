@@ -12,7 +12,8 @@
         </label>
       </div>
     <div class="form__group">{{ countLabel }}</div>
-    <div class="text-right">
+    <div class="next form__group">
+        <button class="button secondary large" type="button" v-on:click="window && window.history.back()">Précédent</button>
       <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
     </div>
   </form>
@@ -32,6 +33,7 @@ export default {
     let types = _.filter(ressourceTypes, Ressource.isRessourceOnMainScreen)
 
     return {
+      window,
       categories: ressourceCategories,
       typesByCategories: _.groupBy(types, t => t.category),
       selectedTypes: Ressource.getIndividuRessourceTypes(this.individu)

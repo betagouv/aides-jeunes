@@ -12,11 +12,13 @@
     </div>
 
     <div class="next form__group">
-      <router-link tag="button" type="button" class="button secondary"
+        <!-- Maybe reusable after UX update -->
+        <!-- router-link tag="button" type="button" class="button secondary">
         v-bind:to="{ name: 'ressources/types', params:$route.params }">
         Déclarer d'autres ressources
-      </router-link>
-      <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
+        </router-link -->
+        <button class="button secondary large" type="button" v-on:click="window && window.history.back()">Précédent</button>
+        <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
     </div>
   </form>
 </template>
@@ -33,6 +35,8 @@ import {ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 import Individu from '@/lib/Individu'
 
+import _ from 'lodash'
+
 export default {
   name: 'ressources-montants',
   mixins: [RessourceProcessor],
@@ -46,14 +50,17 @@ export default {
   data: function() {
     const individu = this.getIndividu()
     return {
+      window,
       individu,
       types: this.getTypes(individu)
     }
   },
     watch: {
       $route (toRoute, fromRoute){
-          if (toRoute.params.category !== fromRoute.params.category)
-            this.types = this.getTypes(this.individu)
+          if (!_.isEqual(toRoute.params, fromRoute.params)) {
+              this.individu = this.getIndividu()
+              this.types = this.getTypes(this.individu)
+          }
       }
     },
   methods: {

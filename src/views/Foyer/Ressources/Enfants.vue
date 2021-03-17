@@ -3,7 +3,8 @@
     <YesNoQuestion class="form__group" v-model="enfant._hasRessources" v-for="enfant in enfants" v-bind:key="enfant.id">
         {{ enfant._firstName | capitalize }} a-t-il·elle perçu des ressources <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong> ?
     </YesNoQuestion>
-    <div class="text-right">
+    <div class="next form__group">
+      <button class="button secondary large" type="button" v-on:click="window && window.history.back()">Précédent</button>
       <button type="submit" class="button large">Valider</button>
     </div>
   </form>
@@ -23,6 +24,7 @@ export default {
 
     enfants.forEach(e => e._hasRessources = e._hasRessources || false)
     return {
+      window,
       enfants,
     }
   },

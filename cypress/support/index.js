@@ -85,12 +85,6 @@ export function celibataire() {
   cy.get('button[type="submit"]').click()
 }
 
-export function couple() {
-  cy.get('h1').invoke('text').should('contain', 'couple')
-  cy.get('input[type="radio"]').check('true')
-  cy.get('button[type="submit"]').click()
-}
-
 export function sansDomicileStable() {
   cy.get('button[type="submit"]').click() // Logement
   cy.get('button[type="submit"]').click() // Coloc

@@ -87,6 +87,18 @@ context('Full simulation', () => {
     steps.sansDomicileStable()
     // steps.hasLogementSocial()
   })
+
+  it('accepts a situation where individu is chomeur', () => {
+    steps.home()
+    steps.demandeur({
+      chomeur: true
+    })
+    steps.zeroEnfants()
+    steps.celibataire()
+    steps.sansDomicileStable()
+    steps.hasLogementSocial()
+  })
+   
    
    
 })

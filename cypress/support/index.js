@@ -44,12 +44,28 @@ export function demandeur(params={}) {
   // Activite
   cy.get('h1').invoke('text').should('contain', 'Êtes-vous')
   cy.get('label').invoke('text').should('contain', 'En activité')
-  cy.get('button[type="submit"]').click()
+  if (params.chomeur) {
+    cy.get('input[type="radio"]').check('chomeur')
+    cy.get('button[type="submit"]').click()
+  } else {
+    cy.get('button[type="submit"]').click()
+  }
   // Handicap
   handicap(params)
   // Inapte au travail
   cy.get('h1').invoke('text').should('contain', 'inapte au travail')
   cy.get('button[type="submit"]').click()
+
+  if (params.chomeur) {
+    // Date de début chomage
+    cy.get('h1').invoke('text').should('contain', 'debut de chômage')
+    cy.get('#date_debut_chomage')
+      .type(params.date_naissance || '12122005')
+    cy.get('button[type="submit"]').click()
+    // AssPreconditionRemplie
+    cy.get('h1').invoke('text').should('contain', 'travaillé au moins')
+    cy.get('button[type="submit"]').click()  
+  }
   
   if (params.enfantACharge) {
     // Enfant a charge

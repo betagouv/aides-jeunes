@@ -1,7 +1,8 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      <h1>{{ role === 'demandeur' ? `Figurez vous sur la dernière déclarion d'impôts de vos parents ?` : `Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?`}}</h1>    </YesNoQuestion>
+      <h1>{{ role === 'demandeur' ? `Figurez vous sur la dernière déclarion d'impôts de vos parents ?` : `Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?`}}</h1>
+    </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>

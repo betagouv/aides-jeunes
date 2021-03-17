@@ -2,13 +2,15 @@
     <form @submit.prevent='onSubmit'>
         <h1>{{ title }}</h1>
         <fieldset>
-            <label>{{  loyerQuestion.label }}</label>
-            <input type="number" v-model=" loyerQuestion.selectedValue">
-            <span class="help">{{  loyerQuestion.hint }}</span>
+            <label>{{  loyerQuestion.label }}
+                <input type="number" v-model=" loyerQuestion.selectedValue">
+                <span class="help">{{  loyerQuestion.hint }}</span>
+            </label>
         </fieldset>
         <fieldset>
-            <label>{{ chargesQuestion.label }}</label>
-            <input type="number" v-model="chargesQuestion.selectedValue">
+            <label>{{ chargesQuestion.label }}
+                <input type="number" v-model="chargesQuestion.selectedValue">
+            </label>
         </fieldset>
         <Actions v-bind:onSubmit='onSubmit'/>
     </form >

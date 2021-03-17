@@ -175,7 +175,7 @@ const router = new Router({
         {
             name: 'depcom',
             path: 'depcom',
-            component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/DepCom.vue'),
+            component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Depcom.vue'),
         }]
       }, {
         path: 'resultats',

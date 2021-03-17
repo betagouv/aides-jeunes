@@ -11,7 +11,7 @@
         </fieldset>
 
         <fieldset v-if="logementTypesQuestion.selectedValue == 'proprietaire'">
-            <label>{{ primoAccedantQuestion.label }}<span v-if="primoAccedantQuestion.hint" class="help">({{ primoAccedantQuestion.hint }})</span></label>
+            <legend>{{ primoAccedantQuestion.label }}<span v-if="primoAccedantQuestion.hint" class="help">({{ primoAccedantQuestion.hint }})</span></legend>
             <label v-for="response in primoAccedantQuestion.responses" v-bind:key="response.value">
                 <input type="radio" :name="response.value" v-model="primoAccedantQuestion.selectedValue" v-bind:value="response.value"
                 />
@@ -21,7 +21,7 @@
         </fieldset>
 
         <fieldset v-if="logementTypesQuestion.selectedValue == 'locataire'">
-            <label>{{ locataireTypesQuestion.label }}<span v-if="locataireTypesQuestion.hint" class="help">({{ locataireTypesQuestion.hint }})</span></label>
+            <legend>{{ locataireTypesQuestion.label }}<span v-if="locataireTypesQuestion.hint" class="help">({{ locataireTypesQuestion.hint }})</span></legend>
             <label v-for="response in locataireTypesQuestion.responses" v-bind:key="response.value">
                 <input type="radio" :name="response.value" v-model="locataireTypesQuestion.selectedValue" v-bind:value="response.value"
                 />

@@ -2,10 +2,10 @@
     <form @submit.prevent='onSubmit'>
         <h1>{{ title }}</h1>
         <fieldset>
-            <label>
+            <legend>
                 {{ habiteChezParentsQuestion.label }}
                 <span v-if="habiteChezParentsQuestion.hint" class="help">({{ habiteChezParentsQuestion.hint }})</span>
-            </label>
+            </legend>
             <label v-for="response in habiteChezParentsQuestion.responses" v-bind:key="response.value">
                 <input type="radio" name="coloc" v-model="habiteChezParentsQuestion.selectedValue" v-bind:value="response.value"
                 />

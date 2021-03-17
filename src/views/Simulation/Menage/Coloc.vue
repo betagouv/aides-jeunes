@@ -2,7 +2,7 @@
     <form @submit.prevent='onSubmit'>
         <h1>{{ title }}</h1>
         <fieldset>
-            <label>{{ colocQuestion.label }}</label>
+            <legend>{{ colocQuestion.label }}</legend>
             <label v-for="response in colocQuestion.responses" v-bind:key="response.value">
                 <input type="radio" name="coloc" v-model="colocQuestion.selectedValue" v-bind:value="response.value"
                 />

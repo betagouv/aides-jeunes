@@ -31,16 +31,45 @@ export function home() {
     .click()
 }
 
-export function demandeur() {
+export function demandeur(params={}) {
+  cy.get('button[type="submit"]').click()
+  // Naissance
   cy.get('h1').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
-    .type('12121980')
-
+    .type(params.date_naissance || '12121980')
   cy.get('button[type="submit"]').click()
+  // Nationalite
+  cy.get('h1').invoke('text').should('contain', 'nationalité')
   cy.get('button[type="submit"]').click() // Nationalité
-  cy.get('button[type="submit"]').click() // Activité
-  cy.get('button[type="submit"]').click() // Handicap
-  cy.get('button[type="submit"]').click() // Inapte au travail
+  // Activite
+  cy.get('h1').invoke('text').should('contain', 'Êtes-vous')
+  cy.get('label').invoke('text').should('contain', 'En activité')
+  cy.get('button[type="submit"]').click()
+
+  // Handicap
+  handicap(params)
+  // Inapte au travail
+  cy.get('h1').invoke('text').should('contain', 'inapte au travail')
+  cy.get('button[type="submit"]').click()
+}
+
+export function handicap(params) {
+  cy.get('h1').invoke('text').should('contain', 'handicap')
+  if (params.handicap) {
+    cy.get('input[type="radio"]').check('true')
+    cy.get('button[type="submit"]').click()
+    // Taux d'incapacite
+    cy.get('h1').invoke('text').should('contain', `taux d'incapacité`)
+    cy.get('input[type="radio"]').check(params.handicap.taux_incapacite.toString())
+    cy.get('button[type="submit"]').click()
+    if (!params.enfant && 0.5 < params.handicap.taux_incapacite && params.handicap.taux_incapacite <= 0.8) {
+      // AAH
+      cy.get('h1').invoke('text').should('contain', `CDAPH`)
+      cy.get('button[type="submit"]').click()
+    }
+  } else {
+    cy.get('button[type="submit"]').click()
+  }
 }
 
 export function zeroEnfants() {

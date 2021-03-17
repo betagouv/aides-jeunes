@@ -91,7 +91,7 @@ context('Full simulation', () => {
   it('accepts a situation where individu is chomeur', () => {
     steps.home()
     steps.demandeur({
-      chomeur: true
+      activite: 'chomeur'
     })
     steps.zeroEnfants()
     steps.celibataire()
@@ -99,6 +99,16 @@ context('Full simulation', () => {
     steps.hasLogementSocial()
   })
    
+  it('accepts a situation where individu is etudiant', () => {
+    steps.home()
+    steps.demandeur({
+      activite: 'etudiant'
+    })
+    steps.zeroEnfants()
+    steps.celibataire()
+    steps.sansDomicileStable()
+    steps.hasLogementSocial()
+  })
    
    
 })

@@ -44,8 +44,8 @@ export function demandeur(params={}) {
   // Activite
   cy.get('h1').invoke('text').should('contain', 'Êtes-vous')
   cy.get('label').invoke('text').should('contain', 'En activité')
-  if (params.chomeur) {
-    cy.get('input[type="radio"]').check('chomeur')
+  if (params.activite) {
+    cy.get('input[type="radio"]').check(params.activite)
     cy.get('button[type="submit"]').click()
   } else {
     cy.get('button[type="submit"]').click()
@@ -56,7 +56,13 @@ export function demandeur(params={}) {
   cy.get('h1').invoke('text').should('contain', 'inapte au travail')
   cy.get('button[type="submit"]').click()
 
-  if (params.chomeur) {
+  if (params.activite === 'etudiant') {
+    // echelon
+    cy.get('h1').invoke('text').should('contain', 'À quel échelon')
+    cy.get('button[type="submit"]').click()  
+  }
+
+  if (params.activite === 'chomeur') {
     // Date de début chomage
     cy.get('h1').invoke('text').should('contain', 'debut de chômage')
     cy.get('#date_debut_chomage')

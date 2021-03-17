@@ -106,7 +106,6 @@
 import { required } from 'vuelidate/lib/validators'
 
 import InputDate from '@/components/InputDate'
-import { specificSituations } from '@/constants/specificSituations'
 import ASSQuestions from '@/components/ASSQuestions'
 import Individu from '@/lib/Individu'
 import Nationality from '@/lib/Nationality'
@@ -210,7 +209,7 @@ export default {
       satisfyResidentialPermitPrerequisite,
       scolariteOptions,
       situationsFamiliales,
-      specificSituations,
+      specificSituations: [],
       tauxIncapaciteOptions
     }
   },

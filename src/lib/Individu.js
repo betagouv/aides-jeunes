@@ -1,4 +1,3 @@
-import { specificSituations } from '@/constants/specificSituations'
 import moment from 'moment'
 import _ from 'lodash'
 
@@ -49,10 +48,6 @@ function get(individus, role, id, dates) {
         tns_micro_entreprise_type_activite: 'bic',
         tns_auto_entrepreneur_type_activite: 'bic',
     };
-
-    specificSituations.forEach(s => {
-        DEFAULT_INDIVIDU[s.id] = false
-    })
 
     // By default enfants are `à charge fiscale`, adults are not.
     if (DEFAULT_INDIVIDU._role == 'enfant' && dates && dates.thisYear) {
@@ -125,11 +120,6 @@ const Individu = {
 
     formatStatutsSpecifiques: function(individu) {
         let statuts = [];
-        /*specificSituations.forEach(function(statut) {
-            if (individu.specificSituations && individu.specificSituations.indexOf(statut.id) >= 0) {
-                statuts.push(statut.label);
-            }
-        });//*/
 
         if (individu.enceinte) {
             statuts.push('enceinte');

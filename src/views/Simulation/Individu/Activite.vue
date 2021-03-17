@@ -50,6 +50,7 @@ export default {
       individu,
       id,
       value,
+      role,
       ActiviteOptions
     }
   },

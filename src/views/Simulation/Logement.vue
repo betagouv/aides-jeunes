@@ -116,6 +116,7 @@
         methods: {
             onSubmit: function() {
                 this.$store.dispatch('updateMenage', {
+                    ...this.$store.getters.getMenage,
                     statut_occupation_logement: Logement.getStatutOccupationLogement(
                         {
                             type: this.logementTypesQuestion.selectedValue,

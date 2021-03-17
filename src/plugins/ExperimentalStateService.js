@@ -119,11 +119,8 @@ function housingBlock(/*situation, current*/) {
           '/simulation/menage/participation_frais',
           '/simulation/individu/demandeur/habite_chez_parents',
         ]
-     }, ...[
-        '/simulation/menage/depcom',
-     ], ...[
-        '/simulation/test/findeparcours',
-     ],
+     },
+     '/simulation/menage/depcom',
      {
         isActive: subject => subject.depcom && subject.depcom.startsWith('75'),
         steps: ['/simulation/famille/parisien'],

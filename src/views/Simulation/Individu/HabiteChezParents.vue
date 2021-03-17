@@ -26,7 +26,7 @@
             Actions
         },
         data: function() {
-            const individu = this.$store.getters.getIndividu || {}
+            const individu = this.$store.getters.getIndividu(this.$route.params.id) || {}
             return {
                 title: 'Votre logement principal',
                 individu: individu,

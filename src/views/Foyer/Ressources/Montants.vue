@@ -1,7 +1,7 @@
 <template>
   <form>
     <p>
-      Indiquez toutes les ressources <strong>nettes versées</strong> perçues en France comme à l'étranger.
+        Indiquez toutes les ressources <strong>nettes versées</strong> perçues <span v-if="individu._role !== 'demandeur'"><strong>par {{ individu._firstName }}</strong></span> en France comme à l'étranger.
     </p>
     <div class="form__group" s v-for="(type, index) in types" v-bind:key="type.meta.id">
       <RessourceMontants v-if="isSimple(type.meta.id)" v-bind:individu="type.individu" v-bind:index="index" v-bind:type="type" v-on:update="process"/>
@@ -50,13 +50,18 @@ export default {
       types: this.getTypes(individu)
     }
   },
+    watch: {
+      $route (toRoute, fromRoute){
+          if (toRoute.params.category !== fromRoute.params.category)
+            this.types = this.getTypes(this.individu)
+      }
+    },
   methods: {
     getIndividu: function() {
       return Individu.find(this.$store.state.situation, this.$route.params.role, this.$route.params.id)
     },
     getTypes: function(individu) {
-      const selectedTypes = Ressource.getIndividuRessourceTypes(individu)
-
+      const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(individu, this.$route.params.category)
       return ressourceTypes.reduce((result, type) => {
         if (selectedTypes[type.id]) {
 
@@ -89,10 +94,6 @@ export default {
     },
     next: function() {
       this.save(this.types, true)
-
-      this.individu = this.getIndividu()
-      this.types = this.getTypes(this.individu)
-
       this.$push(this.$store.state.situation)
     },
     updateTNSAmount: function(type, period, value) {

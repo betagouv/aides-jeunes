@@ -1,7 +1,7 @@
 <template>
   <form>
     <p>
-      Sélectionnez les types de ressources perçues <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong>,
+      Sélectionnez les types de ressources perçues <strong><span v-if="individu._role !== 'demandeur'">par {{ individu._firstName }}</span> depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong>,
       vous pourrez ensuite saisir les montants.
     </p>
       <div class="form__group" v-for="category in categories" v-bind:key="category.id">
@@ -51,7 +51,7 @@ export default {
   methods: {
     next: function() {
       Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.$store.state.dates)
-      this.$store.dispatch('updateIndividu', this.individu)
+      this.$store.dispatch('updateIndividu', Object.assign({}, this.individu, {_ressourcesCategories: Ressource.getIndividuRessourceCategories(this.individu)}))
       this.$push(this.$store.state.situation)
     },
     sort: function(array) {

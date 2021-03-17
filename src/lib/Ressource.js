@@ -71,12 +71,32 @@ function isSelectedForCurrentYear(ressource, ressourceIdOrType) {
     return Boolean(ressource);
 }
 
+function getIndividuRessourceCategories(individu) {
+    return [
+        ...new Set(
+            _.filter(ressourceTypes, (ressourceType) => {
+                return isSelectedForCurrentYear(individu[ressourceType.id], ressourceType) && isRessourceOnMainScreen(ressourceType)
+            }, {})
+            .map(r => r.category)
+        )
+    ]
+}
+
 function getIndividuRessourceTypes(individu) {
     return _.filter(ressourceTypes, isRessourceOnMainScreen)
         .reduce((accumulator, ressourceType) => {
             accumulator[ressourceType.id] = isSelectedForCurrentYear(individu[ressourceType.id], ressourceType)
             return accumulator
         }, {})
+}
+
+function getIndividuRessourceTypesByCategory(individu, category) {
+    return _.filter(_.filter(ressourceTypes, isRessourceOnMainScreen), (ressourceType) => {
+        return ressourceType.category === category && isRessourceOnMainScreen(ressourceType)
+    }).reduce((accumulator, ressourceType) => {
+        accumulator[ressourceType.id] = isSelectedForCurrentYear(individu[ressourceType.id], ressourceType)
+        return accumulator
+    }, {})
 }
 
 function setIndividuRessourceTypes(individu, types, dates) {
@@ -114,7 +134,9 @@ const Ressource = {
     isRessourceOnMainScreen,
     isSelectedForCurrentYear,
     setDefaultValueForCurrentYear,
+    getIndividuRessourceCategories,
     getIndividuRessourceTypes,
+    getIndividuRessourceTypesByCategory,
     setIndividuRessourceTypes,
     unsetForCurrentYear,
     getParameterFromOpenfisca,

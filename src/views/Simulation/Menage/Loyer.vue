@@ -7,7 +7,7 @@
                 <span class="help">{{  loyerQuestion.hint }}</span>
             </label>
         </fieldset>
-        <fieldset>
+        <fieldset v-if="captureCharges">
             <label>{{ chargesQuestion.label }}
                 <input type="number" v-model="chargesQuestion.selectedValue">
             </label>
@@ -26,32 +26,28 @@
         },
         data: function() {
             const menage = this.$store.getters.getMenage || {}
-            const foyerFiscal = this.$store.getters.getFoyerFiscal || {}
             const logementStatut = this.$store.getters.getLogementStatut || ''
-            const isProprietaire = (logementStatut === 'proprietaire' || logementStatut === 'primo_accedant')
+            const isLocataire = !(logementStatut === 'proprietaire' || logementStatut === 'primo_accedant')
+            const captureCharges = isLocataire && logementStatut != 'locataire_meuble'
             return {
                 title: 'Votre logement principal',
-                menage: menage,
-                foyerFiscal: foyerFiscal,
-                isProprietaire: isProprietaire,
-                 loyerQuestion: {
-                    label: isProprietaire ? 'Montant des mensualités' : 'Votre loyer',
-                    hint: isProprietaire ? 'Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.' : null,
+                menage,
+                captureCharges,
+                loyerQuestion: {
+                    label: isLocataire ? 'Votre loyer' : 'Montant des mensualités',
+                    hint: !isLocataire ? 'Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.' : null,
                     selectedValue: parseInt(menage.loyer)
                 },
                 chargesQuestion: {
-                    label: isProprietaire ? 'Montant de votre dernière taxe foncière' : 'Vos charges locatives',
-                    selectedValue: isProprietaire ? parseInt(foyerFiscal.taxe_fonciere_sur_avis) : parseInt(menage.charges_locatives)
+                    label: 'Vos charges locatives',
+                    selectedValue: parseInt(menage.charges_locatives)
                 }
             }
         },
         methods: {
             onSubmit: function() {
                 this.menage.loyer = this. loyerQuestion.selectedValue.toString()
-                if (this.isProprietaire) {
-                    this.foyerFiscal.taxe_fonciere_sur_avis = this.chargesQuestion.selectedValue.toString()
-                    this.$store.dispatch('updateFoyerFiscal', this.foyerFiscal)
-                } else {
+                if (this.captureCharges) {
                     this.menage.charges_locatives = this.chargesQuestion.selectedValue.toString()
                 }
                 this.$store.dispatch('updateMenage', this.menage)

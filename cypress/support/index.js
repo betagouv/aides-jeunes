@@ -105,6 +105,35 @@ export function enfant(params={}) {
   enfantACharge()
 }
 
+export function conjoint(params={}) {
+  cy.get('button[type="submit"]').click()
+  // Naissance
+  cy.get('h1').invoke('text').should('contain', 'naissance')
+  cy.get('#date_naissance')
+    .type(params.date_naissance || '12121980')
+  cy.get('button[type="submit"]').click()
+  // Nationalite
+  cy.get('h1').invoke('text').should('contain', 'nationalité')
+  cy.get('button[type="submit"]').click()
+  // Statut Marital
+  cy.get('h1').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
+  cy.get('button[type="submit"]').click()
+  // Activite
+  cy.get('h1').invoke('text').should('contain', 'Est-il/elle')
+  cy.get('label').invoke('text').should('contain', 'En activité')
+  if (params.activite) {
+    cy.get('input[type="radio"]').check(params.activite)
+    cy.get('button[type="submit"]').click()
+  } else {
+    cy.get('button[type="submit"]').click()
+  }
+  // Handicap
+  handicap(params)
+  // Inapte au travail
+  cy.get('h1').invoke('text').should('contain', 'inapte au travail')
+  cy.get('button[type="submit"]').click()
+}
+
 export function gir() {
   cy.get('h1').invoke('text').should('contain', 'Avez-vous besoin d’une aide à la personne ?')
   cy.get('button[type="submit"]').click()
@@ -158,6 +187,12 @@ export function deuxEnfants() {
 
 export function celibataire() {
   cy.get('h1').invoke('text').should('contain', 'couple')
+  cy.get('button[type="submit"]').click()
+}
+
+export function couple() {
+  cy.get('h1').invoke('text').should('contain', 'couple')
+  cy.get('input[type="radio"]').check('true')
   cy.get('button[type="submit"]').click()
 }
 

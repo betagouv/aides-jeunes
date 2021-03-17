@@ -110,5 +110,16 @@ context('Full simulation', () => {
     steps.hasLogementSocial()
   })
    
-   
+  it('accepts a situation where individu has conjoint', () => {
+    steps.home()
+    steps.demandeur({
+      activite: 'etudiant'
+    })
+    steps.zeroEnfants()
+    steps.couple()
+    steps.conjoint()
+    steps.sansDomicileStable()
+    // steps.hasLogementSocial()
+  })
+
 })

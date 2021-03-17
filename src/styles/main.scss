@@ -21,6 +21,16 @@ html {
   width: auto;
 }
 
+:root {
+  --theme-border-radius: 25px;
+  --theme-primary: #5770be;
+}
+
+html, body, button, h1, h2, h3 {
+  font-family: "Marianne";
+}
+
+
 @media (max-width: $screen-smaller-than-mobile) {
   button.button,
   button.button:active,

@@ -6,7 +6,7 @@
          <router-link v-bind:to="`/simulation/individu/${enfant.id}`" >{{enfant.id}}</router-link>
       </li>
     </ul>
-    <button class="button large" id="add-pac" v-on:click="addPAC()">Ajouter une personne à charge</button>
+    <button class="button large" v-on:click="addPAC()">Ajouter une personne à charge</button>
     <Actions v-bind:onSubmit='$push'>
     </Actions>
   </div>

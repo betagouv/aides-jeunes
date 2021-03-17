@@ -12,7 +12,7 @@
 <script>
 import Actions from '@/components/Actions'
 import YesNoQuestion from '@/components/YesNoQuestion'
-import Individu from '@/lib/Individu'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
   name: 'SimulationIndividuHandicap',
@@ -20,24 +20,6 @@ export default {
     Actions,
     YesNoQuestion
   },
-  data: function() {
-    const id = this.$route.params.id
-    const role = id.split('_')[0]
-    const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-    const value = individu.aah_restriction_substantielle_durable_acces_emploi
-    return {
-      individu,
-      role,
-      id,
-      value,
-    }
-  },
-  methods: {
-    onSubmit: function() {
-      this.individu.aah_restriction_substantielle_durable_acces_emploi = this.value
-      this.$store.dispatch('updateIndividu', this.individu)
-      this.$push()
-    }
-  }
+  mixins: [createIndividuMixin('aah_restriction_substantielle_durable_acces_emploi')], 
 }
 </script>

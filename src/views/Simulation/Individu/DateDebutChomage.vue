@@ -1,10 +1,10 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <label>
-      <h1>{{ role === 'demandeur' ? 
-        `Quelle est votre date de naissance&nbsp;?` :
-        `Quelle est la date de naissance ${individu._firstName || individu.id }&nbsp;?`}}</h1>
-      <InputDate required id="date_naissance" v-model="value" />
+      <h1>{{ role === 'demandeur' ?
+        `Quelle est la date de votre debut de chômage ?` :
+        `Quelle est la date de de debut de chômage de ${individu._firstName} &nbsp;?`}}</h1>
+      <InputDate required id="date_debut_chomage" v-model="value" />
       <p class="notification warning" v-if="error">
         Ce champ est obligatoire.
       </p>
@@ -19,12 +19,12 @@ import InputDate from '@/components/InputDate'
 import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
-  name: 'SimulationIndividuDateNaissance',
+  name: 'SimulationIndividuDateDebutChomage',
   components: {
     Actions,
     InputDate,
   },
-  mixins: [createIndividuMixin('date_naissance')],
+  mixins: [createIndividuMixin('date_debut_chomage')], 
   data () {
     return {
       error: false
@@ -36,7 +36,7 @@ export default {
         this.error = true
         return
       }
-      this.individu.date_naissance = this.value
+      this.individu.date_debut_chomage = this.value
       this.$store.dispatch('updateIndividu', this.individu)
       this.$push()
     }

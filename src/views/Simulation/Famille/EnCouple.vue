@@ -11,6 +11,7 @@
 
 <script>
 import Actions from '@/components/Actions'
+import Individu from '@/lib/Individu'
 
 export default {
   name: 'SimulationFamilleEnCouple',
@@ -29,6 +30,13 @@ export default {
     onSubmit: function() {
       this.famille.en_couple = this.value
       this.$store.dispatch('updateFamille', this.famille)
+
+      if (this.value) {
+        const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, 'conjoint', 'conjoint', this.$store.state.dates)
+        this.$store.dispatch('updateIndividu', individu)
+      } else {
+        this.$store.dispatch('removeConjoint')
+      }
       this.$push()
     }
   }

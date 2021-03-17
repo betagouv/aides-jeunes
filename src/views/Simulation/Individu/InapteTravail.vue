@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      <h1>{{ role === 'demandeur' ? 'Êtes-vous' : 'Est-il/elle'}} en situation de handicap&nbsp;?</h1>
+      <h1>{{ role === 'demandeur' ? 'Êtes-vous' : 'Est-il' }} inapte au travail?</h1>
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
@@ -13,11 +13,11 @@ import YesNoQuestion from '@/components/YesNoQuestion'
 import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
-  name: 'SimulationIndividuHandicap',
+  name: 'SimulationIndividuInapteTravail',
   components: {
     Actions,
     YesNoQuestion
   },
-  mixins: [createIndividuMixin('handicap')],
+  mixins: [createIndividuMixin('inapte_travail')],
 }
 </script>

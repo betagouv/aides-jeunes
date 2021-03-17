@@ -57,6 +57,56 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap/AAHRestrictionSubstantielleDurableAccesEmploi.vue'),
         },
         {
+          name: 'inapte_travail',
+          path: 'inapte_travail',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/InapteTravail.vue'),
+        },
+        {
+          name: 'date_debut_chomage',
+          path: 'date_debut_chomage',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/DateDebutChomage.vue'),
+        },
+        {
+          name: 'ass_precondition_remplie',
+          path: 'ass_precondition_remplie',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/AssPreconditionRemplie.vue'),
+        },
+        {
+          name: 'scolarite',
+          path: 'scolarite',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Scolarite.vue'),
+        },
+        {
+          name: 'garde_alternee',
+          path: 'garde_alternee',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/GardeAlternee.vue'),
+        },
+        {
+          name: 'statut_marital',
+          path: 'statut_marital',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/StatutMarital.vue'),
+        },
+        {
+          name: 'echelon_bourse',
+          path: 'echelon_bourse',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/EchelonBourse.vue'),
+        },
+        {
+          name: 'enfant_a_charge',
+          path: 'enfant_a_charge',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/EnfantACharge.vue'),
+        },
+        {
+          name: 'enfant_place',
+          path: 'enfant_place',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/EnfantPlace.vue'),
+        },
+        {
+          name: 'gir',
+          path: 'gir',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/GIR.vue'),
+        },
+        {
           name: 'nationalite',
           path: 'nationalite',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Nationalite.vue'),

@@ -32,21 +32,6 @@ var individuSchema = {
         src: 'date_debut_chomage',
         fn: formatDate
     },
-    activite: {
-        fn: function(individu) {
-            let returnValue
-            [
-                '_chomeur',
-                'etudiant',
-                '_retraite',
-            ].forEach(function(activite) {
-                if (individu[activite]) {
-                    returnValue = activite.replace('_', '')
-                }
-            })
-            return returnValue
-        }
-    },
 };
 
 function isNotValidValue(value) {

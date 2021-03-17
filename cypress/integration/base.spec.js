@@ -28,7 +28,9 @@ context('Full simulation', () => {
     steps.home()
     steps.demandeur({
       enfant: false,
-      taux_incapacite: 0.7
+      handicap: {
+        taux_incapacite: 0.7
+      },
     })
     steps.zeroEnfants()
     steps.celibataire()
@@ -42,23 +44,18 @@ context('Full simulation', () => {
   it('accepts a situation where age between 8 && 25', () => {
     steps.home()
     steps.demandeur({
-      enfant: false,
-      taux_incapacite: 0.7,
-      enfantACharge: true,
-      date_naissance: '12122002'
+      date_naissance: '12122002',
+      enfantACharge: true
     })
     steps.zeroEnfants()
     steps.celibataire()
     steps.sansDomicileStable()
-
     steps.hasLogementSocial()
   })
 
   it('accepts a situation where age over 60', () => {
     steps.home()
     steps.demandeur({
-      enfant: false,
-      taux_incapacite: 0.7,
       gir: true,
       date_naissance: '12121923'
     })
@@ -70,16 +67,26 @@ context('Full simulation', () => {
 
   it('accepts a situation with one enfant', () => {
     steps.home()
-    steps.demandeur({
-      enfant: false,
-      taux_incapacite: 0.7,
-      gir: true,
-      date_naissance: '12121923'
-    })
+    steps.demandeur()
     steps.oneEnfants()
     steps.celibataire()
     steps.sansDomicileStable()
     // steps.hasLogementSocial()
   })
+
+  it('accepts a situation with one enfant+handicap', () => {
+    steps.home()
+    steps.demandeur()
+    steps.oneEnfants({
+      enfant: true,
+      handicap: {
+        taux_incapacite: 0.7
+      },
+    })
+    steps.celibataire()
+    steps.sansDomicileStable()
+    // steps.hasLogementSocial()
+  })
+   
    
 })

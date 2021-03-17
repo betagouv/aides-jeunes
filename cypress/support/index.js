@@ -95,14 +95,20 @@ export function enfantACharge() {
 export function handicap(params) {
   cy.get('h1').invoke('text').should('contain', 'handicap')
   if (params.handicap) {
-    cy.get('select').select('true')
+    cy.get('input[type="radio"]').check('true')
     cy.get('button[type="submit"]').click()
     // Taux d'incapacite
     cy.get('h1').invoke('text').should('contain', `taux d'incapacité`)
-    cy.get('select').select(params.handicap.taux_incapacite.toString())
+    cy.get('input[type="radio"]').check(params.handicap.taux_incapacite.toString())
+    cy.get('button[type="submit"]').click()
     if (!params.enfant && 0.5 < params.handicap.taux_incapacite && params.handicap.taux_incapacite <= 0.8) {
       // AAH
-      cy.get('h1').invoke('text').should('contain', `AAH`)
+      cy.get('h1').invoke('text').should('contain', `CDAPH`)
+      cy.get('button[type="submit"]').click()
+    }
+    if (params.enfant) {
+      // Enfant placé
+      cy.get('h1').invoke('text').should('contain', `Est-il/elle placé·e en structure spécialisée ou famille d\'accueil ?`)
       cy.get('button[type="submit"]').click()
     }
   } else {
@@ -115,10 +121,10 @@ export function zeroEnfants() {
   cy.get('button[type="submit"]').click()
 }
 
-export function oneEnfants() {
+export function oneEnfants(params) {
   cy.get('h1').invoke('text').should('contain', 'enfants')
   cy.get('button#add-pac').click()
-  enfant()
+  enfant(params)
   cy.get('h1').invoke('text').should('contain', 'enfants')
   cy.get('button[type="submit"]').click()
 }

@@ -159,10 +159,9 @@ function processBlock({journey, subject, situation, current}, b) {
   }
 }
 
-// First pass => block list generation
-// Second pass => block processint
-function generateJourney(situation, current) {
-  const blocks = [
+
+function generateBlocks(situation, current) {
+  return [
     {steps: ['/']},
     individuBlockFactory('demandeur'),
     kidBlock(situation, current),
@@ -186,6 +185,10 @@ function generateJourney(situation, current) {
       ]
     }
   ]
+}
+
+function generateJourney(situation, current) {
+  const blocks = generateBlocks(situation, current)
 
   function processBlocks({situation, current}) {
     let journey = []

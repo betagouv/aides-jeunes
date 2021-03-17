@@ -1,5 +1,4 @@
 var _ = require('lodash');
-var specificSituations = require('../../src/constants/specificSituations').specificSituations;
 var ressources = require('../../app/js/constants/ressources');
 
 var famille = {
@@ -28,15 +27,11 @@ var statutMaritalValues = [
     'celibataire',
 ];
 
-var specificSituationFields = specificSituations.reduce((fields, situation) => {
-    fields[situation.id] = Boolean
-    return fields
-}, {})
-
 var individu = Object.assign({
     _id: false,
     id: String,
     aah_restriction_substantielle_durable_acces_emploi: Boolean,
+    activite: { type: String, enum: ['actif', 'chomeur', 'etudiant', 'inactif', 'retraite'] },
     agepi_temps_travail_semaine: Number,
     ass_precondition_remplie: Boolean,
     boursier: Boolean,
@@ -45,13 +40,16 @@ var individu = Object.assign({
     date_naissance: Date,
     duree_possession_titre_sejour: Number,
     echelon_bourse: Number,
+    enceinte: Boolean,
     enfant_a_charge: Object,
     enfant_place: Boolean,
     _firstName: String,
     garde_alternee: Boolean,
     gir: { type: String, default: 'non_defini' },
     habite_chez_parents: Boolean,
+    handicap: Boolean,
     _hasRessources: Boolean,
+    inapte_travail: Boolean,
     nationalite: { type: String },
     _role: { type: String, enum: ['demandeur', 'conjoint', 'enfant'] },
     scolarite: { type: String, enum: ['inconnue', 'college', 'lycee'] },
@@ -60,7 +58,7 @@ var individu = Object.assign({
     tns_auto_entrepreneur_type_activite: { type: String, enum: ['achat_revente', 'bic', 'bnc'] },
     tns_autres_revenus_type_activite: { type: String, enum: ['achat_revente', 'bic', 'bnc'] },
     tns_micro_entreprise_type_activite: { type: String, enum: ['achat_revente', 'bic', 'bnc'] },
-}, allRessources, specificSituationFields);
+}, allRessources);
 
 var statutOccupationLogementValues = [
     'primo_accedant',

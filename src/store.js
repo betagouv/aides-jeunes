@@ -66,7 +66,7 @@ function defaultStore() {
       menage: {
         aide_logement_date_pret_conventionne: '2017-12-31'
       },
-      version: 15,
+      version: 1,
     },
     access: {
       fetching: false,
@@ -119,7 +119,19 @@ const store = new Vuex.Store({
         let items = getters.peopleParentsFirst.filter(i => i.id == id)
         return items.length ? items[0] : null
       }
-    }, 
+    },
+    getMenage: function (state) {
+      return state.situation.menage
+    },
+    getFamille: function (state) {
+      return state.situation.famille
+    },
+    getFoyerFiscal: function (state) {
+      return state.situation.foyer_fiscal
+    },
+    getLogementStatut: function(state) {
+      return state.situation.menage && state.situation.menage.statut_occupation_logement
+    },
     ressourcesYearMinusTwoCaptured: function(state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
       const januaryYearMinusTwo = state.dates.fiscalYear12Months[0].id

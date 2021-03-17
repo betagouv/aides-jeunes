@@ -42,8 +42,9 @@ export function demandeur(params={}) {
   cy.get('h1').invoke('text').should('contain', 'nationalité')
   cy.get('button[type="submit"]').click() // Nationalité
   // Activite
-  cy.get('h1').invoke('text').should('contain', 'activite')
-  cy.get('button[type="submit"]').click() // Activité
+  cy.get('h1').invoke('text').should('contain', 'Êtes-vous')
+  cy.get('label').invoke('text').should('contain', 'En activité')
+  cy.get('button[type="submit"]').click()
   // Handicap
   handicap(params)
   // Inapte au travail

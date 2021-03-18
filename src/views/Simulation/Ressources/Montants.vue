@@ -59,7 +59,7 @@ export default {
     },
   methods: {
     getIndividu: function() {
-      return Individu.find(this.$store.state.situation, this.$route.params.role, this.$route.params.id)
+      return Individu.find(this.$store.state.situation, _.get(this.$route.params.id.split('_'), '0', this.$route.params.id), this.$route.params.id)
     },
     getTypes: function(individu) {
       const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(individu, this.$route.params.category)

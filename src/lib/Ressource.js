@@ -72,14 +72,12 @@ function isSelectedForCurrentYear(ressource, ressourceIdOrType) {
 }
 
 function getIndividuRessourceCategories(individu) {
-    return [
-        ...new Set(
-            _.filter(ressourceTypes, (ressourceType) => {
-                return isSelectedForCurrentYear(individu[ressourceType.id], ressourceType) && isRessourceOnMainScreen(ressourceType)
-            }, {})
-            .map(r => r.category)
-        )
-    ]
+    return _.uniq(
+        _.filter(ressourceTypes, (ressourceType) => {
+            return isSelectedForCurrentYear(individu[ressourceType.id], ressourceType) && isRessourceOnMainScreen(ressourceType)
+        }, {})
+        .map(r => r.category)
+    )
 }
 
 function getIndividuRessourceTypes(individu) {
@@ -91,7 +89,7 @@ function getIndividuRessourceTypes(individu) {
 }
 
 function getIndividuRessourceTypesByCategory(individu, category) {
-    return _.filter(_.filter(ressourceTypes, isRessourceOnMainScreen), (ressourceType) => {
+    return _.filter(ressourceTypes, (ressourceType) => {
         return ressourceType.category === category && isRessourceOnMainScreen(ressourceType)
     }).reduce((accumulator, ressourceType) => {
         accumulator[ressourceType.id] = isSelectedForCurrentYear(individu[ressourceType.id], ressourceType)

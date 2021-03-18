@@ -224,7 +224,7 @@ const router = new Router({
         path: 'logement',
         component: () => import(/* webpackChunkName: "logement" */ './views/Foyer/Logement.vue'),
         meta: {
-          title: 'Votre logement principal',
+          title: 'Mon logement',
         }
       }, {
         name: 'ressources/types',

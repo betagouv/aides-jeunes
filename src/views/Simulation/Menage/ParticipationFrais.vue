@@ -4,7 +4,7 @@
         <fieldset>
             <legend>
                 {{ participationQuestion.label }}
-                <span v-if="participationQuestion.hint" class="help">({{ participationQuestion.hint }})</span>
+                <span v-if="participationQuestion.hint" class="help">{{ participationQuestion.hint }}</span>
             </legend>
             <label v-for="response in participationQuestion.responses" v-bind:key="response.value">
                 <input type="radio" name="coloc" v-model="participationQuestion.selectedValue" v-bind:value="response.value"
@@ -28,7 +28,7 @@
         data: function() {
             const menage = this.$store.getters.getMenage || {}
             return {
-                title: 'Votre logement principal',
+                title: 'Mon logement',
                 menage: menage,
                 participationQuestion: {
                     label: 'Participez-vous aux frais du logement ?',
@@ -60,6 +60,8 @@
 <style scoped lang="scss">
     span.help {
         font-style: italic;
+        display: block;
+        font-size: 0.8em;
     }
 
     fieldset {

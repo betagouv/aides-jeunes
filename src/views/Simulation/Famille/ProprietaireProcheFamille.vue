@@ -4,7 +4,7 @@
         <fieldset>
             <legend>
                 {{ proprietaireProcheQuestion.label }}
-                <span v-if="proprietaireProcheQuestion.hint" class="help">({{ proprietaireProcheQuestion.hint }})</span>
+                <span v-if="proprietaireProcheQuestion.hint" class="help">{{ proprietaireProcheQuestion.hint }}</span>
             </legend>
             <label v-for="response in proprietaireProcheQuestion.responses" v-bind:key="response.value">
                 <input type="radio" name="coloc" v-model="proprietaireProcheQuestion.selectedValue" v-bind:value="response.value"
@@ -28,11 +28,11 @@
         data: function() {
             const famille = this.$store.getters.getFamille || {}
             return {
-                title: 'Votre logement principal',
+                title: 'Mon logement',
                 famille: famille,
                 proprietaireProcheQuestion: {
                     label: 'Avez-vous un lien de parenté direct avec votre propriétaire ?',
-                    hint: ' Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant, grand-parent…) ?',
+                    hint: 'Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant, grand-parent…) ?',
                     selectedValue: famille.proprietaire_proche_famille,
                     responses: [
                         {
@@ -60,6 +60,8 @@
 <style scoped lang="scss">
     span.help {
         font-style: italic;
+        display: block;
+        font-size: 0.8em;
     }
 
     fieldset {

@@ -25,7 +25,7 @@
         data: function() {
             const menage = this.$store.getters.getMenage || {}
             return {
-                title: 'Votre logement principal',
+                title: 'Mon logement',
                 menage: menage,
                 colocQuestion: {
                     label: 'Est-ce une colocation ?',
@@ -56,6 +56,8 @@
 <style scoped lang="scss">
     span.help {
         font-style: italic;
+        display: block;
+        font-size: 0.8em;
     }
 
     fieldset {

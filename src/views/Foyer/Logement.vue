@@ -367,6 +367,8 @@ export default {
 
 <style scoped lang="scss">
 span.help {
-    font-style: italic;
-}
+        font-style: italic;
+        display: block;
+        font-size: 0.8em;
+    }
 </style>

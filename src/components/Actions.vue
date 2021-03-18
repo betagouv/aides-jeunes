@@ -1,8 +1,8 @@
 <template>
-  <div class="actions">
-    <button class="button large" type="submit" v-show="onSubmit" v-on:click="localOnSubmit($event)">Valider</button>
+  <div class="aj-actions">
+    <button v-if="next" class="button" type="submit" v-show="onSubmit" v-on:click="localOnSubmit($event)">Suivant</button>
     <slot></slot>
-    <button class="button secondary large" type="button" v-on:click="window && window.history.back()">Précédent</button>
+    <button class="button secondary" type="button" v-on:click="window && window.history.back()">Précédent</button>
   </div>
 </template>
 
@@ -10,9 +10,16 @@
 
 export default {
   name: 'Actions',
-  props: [
-    'onSubmit',
-  ],
+  props: {
+    onSubmit: {
+      type: Function,
+      default() {}
+    },
+    next: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
       window
@@ -28,10 +35,4 @@ export default {
 </script>
 
 <style type="text/css">
-  .actions {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-  }
-
 </style>

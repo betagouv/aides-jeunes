@@ -55,7 +55,4 @@
 </template>
 
 <style scoped lang="css">
-.image-list {
-    text-align: center;
-}
 </style>

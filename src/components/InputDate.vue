@@ -1,42 +1,47 @@
 <template>
-  <div>
-    <div v-if="showDay">
-      <input
-        type="number"
-        autofocus
-        v-bind:id="firstId"
-        ref="day"
-        aria-label="Jour"
-        v-model="day"
-        placeholder="JJ"
-        v-select-on-click
-        min=1
-        max=31
-        />
-      /
+  <div class="aj-input-date">
+    <div v-if="showDay" class="aj-input-date-component day">
+        <span class="aj-date-label">jour</span>
+        <input
+            type="number"
+            autofocus
+            v-bind:id="firstId"
+            ref="day"
+            aria-label="Jour"
+            v-model="day"
+            placeholder="JJ"
+            v-select-on-click
+            min=1
+            max=31
+            />
     </div>
-    <input
-      type="number"
-      ref="month"
-      aria-label="Mois"
-      v-model="month"
-      placeholder="MM"
-      v-select-on-click
-      min=1
-      max=12
-      />
-      /
-    <input
-      type="number"
-      ref="year"
-      class="year"
-      aria-label="Année"
-      v-model="year"
-      placeholder="AAAA"
-      v-select-on-click
-      min="1900"
-      max="2020"
-      />
+    <div class="aj-input-date-component month">
+        <span class="aj-date-label">mois</span>
+        <input
+          type="number"
+          ref="month"
+          aria-label="Mois"
+          v-model="month"
+          placeholder="MM"
+          v-select-on-click
+          min=1
+          max=12
+          />
+    </div>
+    <div class="aj-input-date-component year">
+        <span class="aj-date-label">année</span>
+        <input
+          type="number"
+          ref="year"
+          class="year"
+          aria-label="Année"
+          v-model="year"
+          placeholder="AAAA"
+          v-select-on-click
+          min="1900"
+          max="2020"
+          />
+      </div>
   </div>
 </template>
 
@@ -133,17 +138,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="css">
-div {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-}
-input {
-  width: 5em;
-}
-input.year {
-  width: 6em;
-}
-</style>

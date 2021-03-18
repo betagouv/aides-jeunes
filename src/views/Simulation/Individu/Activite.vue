@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Êtes-vous&nbsp;?</h1>
+    <h1>{{getLabel('être')}}&nbsp;?</h1>
     <label v-for="activite in ActiviteOptions" v-bind:key="activite.value">
     <input type="radio" name="activite" v-bind:value="activite.value" v-model="value"/>
     {{ activite.label }}
@@ -11,13 +11,14 @@
 
 <script>
 import Actions from '@/components/Actions'
-import Individu from '@/lib/Individu'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
   name: 'SimulationActivite',
   components: {
     Actions,
   },
+  mixins: [createIndividuMixin('activite')],
   data: function() {
     const id = this.$route.params.id
     const role = id.split('_')[0]
@@ -48,18 +49,8 @@ export default {
     ]
     const ActiviteOptions = options.filter(o => (! o.isRelevant) || o.isRelevant(individu))
     return {
-      individu,
-      id,
-      value,
       ActiviteOptions
     }
   },
-  methods: {
-    onSubmit: function() {
-      this.individu.activite = this.value
-      this.$store.dispatch('updateIndividu', this.individu)
-      this.$push()
-    }
-  }
 }
 </script>

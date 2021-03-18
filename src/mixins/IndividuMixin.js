@@ -15,6 +15,30 @@ export const createIndividuMixin = (props) => {
             }
         },
         methods: {
+            getLabel: function(type) {
+                const labelDict = {
+                    possessif: {
+                        demandeur: 'votre',
+                        conjoint: 'son',
+                        enfant: 'son',
+                    },
+                    nom: {
+                        conjoint: 'votre conjoint',
+                        enfant: `${this.individu._firstName}`,
+                    },
+                    avoir: {
+                        demandeur: 'Avez-vous',
+                        conjoint: 'Votre conjoint a-t-il/elle',
+                        enfant: `${this.individu._firstName} a-t-il/elle`
+                    },
+                    être: {
+                        demandeur: 'Êtes-vous',
+                        conjoint: 'Votre conjoint est-il/elle',
+                        enfant: `${this.individu._firstName} est-il/elle`
+                    }
+                }
+                return labelDict[type][this.role];
+            },
             onSubmit: function() {
                 this.individu[props] = this.value
                 this.$store.dispatch('updateIndividu', this.individu)

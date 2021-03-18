@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Avez-vous besoin d’une aide à la personne&nbsp;?</h1>
+    <h1>{{ getLabel('avoir') }} besoin d’une aide à la personne&nbsp;?</h1>
     <label v-for="gir in GIROptions" v-bind:key="gir.value">
     <input type="radio" name="gir" v-bind:value="gir.value" v-model="value"/>
     {{ gir.label }}

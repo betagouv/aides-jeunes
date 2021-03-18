@@ -1,0 +1,40 @@
+<template>
+  <form @submit.prevent='onSubmit'>
+    <h1>Prénom
+    <span>(il servira uniquement à vous faciliter la saisie par la suite)</span></h1>
+    <input type="text" v-model="value">
+    <p class="notification warning" v-if="error">
+        Ce champ est obligatoire.
+    </p>
+    <Actions v-bind:onSubmit='onSubmit'/>
+  </form>
+</template>
+
+<script>
+import Actions from '@/components/Actions'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
+
+export default {
+  name: 'SimulationIndividuFirstName',
+  components: {
+    Actions,
+  },
+  mixins: [createIndividuMixin('_firstName')],
+  data () {
+    return {
+      error: false
+    }
+  },
+  methods: {
+    onSubmit: function() {
+      if (!this.value) {
+        this.error = true
+        return
+      }
+      this.individu._firstName = this.value
+      this.$store.dispatch('updateIndividu', this.individu)
+      this.$push()
+    }
+  },
+}
+</script>

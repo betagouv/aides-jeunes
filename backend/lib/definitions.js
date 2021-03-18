@@ -2,6 +2,7 @@ var _ = require('lodash');
 var ressources = require('../../app/js/constants/ressources');
 
 var famille = {
+    en_couple: Boolean,
     parisien: Boolean,
     proprietaire_proche_famille: Boolean,
     rsa_isolement_recent: Boolean,

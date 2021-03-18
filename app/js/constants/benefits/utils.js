@@ -100,19 +100,20 @@ var topLevels = {
 function generate(collections, base) {
   const fileBasedInstitutions = transformInstitutions(collections.institutions.items)
 
+  const localInstitutions = {...base.partenairesLocaux, ...fileBasedInstitutions.local}
+  const nationalInstitutions = {...base.prestationsNationales, ...fileBasedInstitutions.national}
+
   const fileBasedBenefits = collections.benefits.items
-
-
-  const notLocalTextBasedBenefits = append(fileBasedInstitutions.local, fileBasedBenefits)
-  const remainingBenefits = append(base.prestationsNationales, notLocalTextBasedBenefits)
+  const notLocalTextBasedBenefits = append(localInstitutions, fileBasedBenefits)
+  const remainingBenefits = append(nationalInstitutions, notLocalTextBasedBenefits)
 
   if (remainingBenefits.length) {
     throw `Some benefits cannot be processed, their related entity is missing (${remainingBenefits.map(b => b.institution).join(', ')}).`
   }
 
   const result = {
-    prestationsNationales: base.prestationsNationales,
-    partenairesLocaux: Object.assign(base.partenairesLocaux, institutions),
+    prestationsNationales: nationalInstitutions,
+    partenairesLocaux: localInstitutions,
   }
   result.experimentations = extractExperimentations(result.partenairesLocaux)
 

@@ -583,6 +583,6 @@ msaAdditionProviders.forEach(function(providerId) {
 });
 
 const { generate } = require('./utils')
-droitsDescription.generate = (jam) => generate(jam, droitsDescription)
+droitsDescription.generate = (jam) => generate(jam.collections, droitsDescription)
 
 module.exports = droitsDescription;

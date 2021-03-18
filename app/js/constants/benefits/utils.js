@@ -18,21 +18,30 @@ function transformInstitutions(collection) {
     const item = {
       label: data.name,
       imgSrc: data.imgSrc.slice('img/'.length),
-      prestations: generateTestingBenefits(data.slug, data.testing_benefits || [])
+      prestations: generateTestingBenefits(data.slug, data.testing_benefits || []),
+      national: data.national,
     }
     return {[data.slug]: item}
   })
-  return Object.assign({}, ...items)
+  return {
+    national: Object.assign({}, ...items.filter(i => i.national)),
+    local: Object.assign({}, ...items.filter(i => !i.national)),
+  }
 }
 
 function append(institutions, benefits) {
+  remaining = []
+
   benefits.forEach(benefit => {
     const institution = institutions[benefit.institution]
     if (! institution) {
+      remaining.push(benefit)
       return
     }
     institution.prestations[benefit.slug] = benefit
   })
+
+  return remaining
 }
 
 /**
@@ -88,9 +97,18 @@ var topLevels = {
     partenairesLocaux: 5,
 }
 
-function generate(jamstack, base) {
-  const institutions = transformInstitutions(jamstack.collections.institutions.items)
-  append(institutions, jamstack.collections.benefits.items)
+function generate(collections, base) {
+  const fileBasedInstitutions = transformInstitutions(collections.institutions.items)
+
+  const fileBasedBenefits = collections.benefits.items
+
+
+  const notLocalTextBasedBenefits = append(fileBasedInstitutions.local, fileBasedBenefits)
+  const remainingBenefits = append(base.prestationsNationales, notLocalTextBasedBenefits)
+
+  if (remainingBenefits.length) {
+    throw `Some benefits cannot be processed, their related entity is missing (${remainingBenefits.map(b => b.institution).join(', ')}).`
+  }
 
   const result = {
     prestationsNationales: base.prestationsNationales,

@@ -3,7 +3,7 @@ const axios = require('axios')
 const outils = require('./backend/controllers/outils')
 const mapping = require('./backend/lib/openfisca/mapping')
 
-const openfiscaRoot = 'https://openfisca.mes-aides.org'
+const openfiscaRoot = 'https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr'
 const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
 function sendToOpenfisca(situation, callback) {
     let request
@@ -23,24 +23,43 @@ function sendToOpenfisca(situation, callback) {
     }).catch(callback)
 }
 
+var ID = function () {
+  // Math.random should be unique because of its seeding algorithm.
+  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+  // after the decimal.
+  return '_' + Math.random().toString(36).substr(2, 9);
+};
+
 function mock(app) {
   app.use(bodyParser.json())
 
   let cache
   app.route('/api/outils/communes/:codePostal').get(outils.communes)
   app.post('/api/situations', function(req, res) {
-    cache = Object.assign({ _id: 'yolo' }, req.body)
+    cache = Object.assign({ _id: `yolo` }, req.body)
     res.send(cache)
   })
 
-  app.get('/api/situations/:id/openfisca-response', function(req, res, next) {
-    sendToOpenfisca(cache, function(err, result) {
-      if (err) {
-        return next(err)
-      }
+  // app.get('/api/situations/:id/openfisca-response', function(req, res, next) {
+  //   sendToOpenfisca(cache, function(err, result) {
+  //     if (err) {
+  //       return next(err)
+  //     }
 
-      res.send(Object.assign({ _id: 'yolo' }, result))
-    })
+  //     res.send(Object.assign({ _id: `yolo` }, result))
+  //   })
+  // })
+
+  app.get('/api/situations/:id/openfisca-response', function(req, res, next) {
+    res.send(buildOpenFiscaRequest(cache))
+    // sendToOpenfisca(cache, function(err, result) {
+    //   console.log(err)
+    //   if (err) {
+    //     return next(err)
+    //   }
+
+    //   res.send(Object.assign({ _id: 'yolo' }, result))
+    // })
   })
 
   app.get('/api/openfisca/variables', function(req, res, next) {

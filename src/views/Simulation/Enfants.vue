@@ -3,8 +3,8 @@
     <h1>Vos enfants</h1>
     <ul>
       <li v-for="(enfant) in enfants" v-bind:key="enfant.id">
-         <router-link v-bind:to="`/simulation/individu/${enfant.id}`" >{{enfant.id}}{{enfant.date_naissance.toDateString()}}</router-link>
-         <button v-on:click="removePAC(enfant.id)">supprimer</button>
+         <router-link v-bind:to="`/simulation/individu/${enfant.id}/_firstName`" >{{enfant._firstName}}</router-link>
+         &nbsp;<button class="button small warning" v-on:click="removePAC(enfant.id)">supprimer</button>
       </li>
     </ul>
     <button class="button large" v-on:click="addPAC()">Ajouter une personne à charge</button>
@@ -31,7 +31,7 @@ export default {
     addPAC: function() {
       let { individu } = Individu.get(this.$store.state.situation.enfants, 'enfant', 1, this.$store.state.dates)
       this.$store.dispatch('addEnfant', individu)
-      this.$router.push(`/simulation/individu/${individu.id}`)
+      this.$router.push(`/simulation/individu/${individu.id}/_firstName`)
     },
     removePAC: function(id) {
       this.$store.dispatch('removeEnfant', id)

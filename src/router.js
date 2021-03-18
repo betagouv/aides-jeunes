@@ -122,6 +122,11 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/HabiteChezParents.vue'),
         },
         {
+          name: '_firstName',
+          path: '_firstName',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/_FirstName.vue'),
+        },
+        {
           name: 'property',
           path: ':property',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),

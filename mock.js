@@ -45,10 +45,10 @@ function mock(app) {
     res.send(cache[req.params.id])
   })
 
-  app.get('/api/situations/:id/openfisca-response', function(req, res, next) {
+  app.get('/api/situations/:id/openfisca-response', function(req, res) {
     sendToOpenfisca(cache[req.params.id], function(err, result) {
       if (err) {
-        return next(err)
+        return res.status(err.response.status).send(err.response.data)
       }
 
       res.send(Object.assign({ _id: cache[req.params.id]._id }, result))

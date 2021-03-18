@@ -3,8 +3,8 @@
     <h2>Récapitulatif de votre simulation</h2>
     <h3>Parcours complet</h3>
     <ul>
-      <li v-for="(step) in full" v-bind:key="step.key || step.route">
-        <router-link v-bind:class="{ inactive: !step.isActive, current: step.route == current}" v-bind:to="step.route" >{{step.route}}</router-link>
+      <li v-for="(step) in full" v-bind:key="step.key || step.fullPath">
+        <router-link v-bind:class="{ inactive: !step.isActive, current: step.fullPath == current}" v-bind:to="step.fullPath" >{{step.fullPath}}</router-link>
       </li>
     </ul>
   </div>
@@ -15,8 +15,7 @@ export default {
   name: 'Progress',
   computed: {
     full: function() {
-      const start = '/' || this.$route
-      return this.$state.full(start, this.$store.state.situation, this.$router)
+      return this.$state.full(this.$store.state.situation, this.$router)
     },
     active: function() {
       return this.full.filter(s => s.isActive)

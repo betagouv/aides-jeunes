@@ -1,9 +1,23 @@
 const Individu = require('@/lib/Individu').default;
 const Ressource = require('@/lib/Ressource').default;
-const { datesGenerator } = require('../../backend/lib/mes-aides');
+const { datesGenerator } = require('../../../backend/lib/mes-aides');
+
+function Step({key, entity, id, variable}) {
+  this.fullPath = entity ? `/simulation/${entity}${id ? `/${id}` : ''}${variable ? `/${variable}` : ''}` : '/'
+  this.key = key || this.fullPath
+  this.entity = entity
+  this.id = id
+  this.variable = variable
+}
+
+function ComplexStep({route, key, entity, id, variable, defaults}) {
+  Step.call(this, {route, key, entity, id, variable})
+  this.defaults = defaults
+}
+ComplexStep.prototype = Object.create(Step.prototype)
 
 function individuBlockFactory(id) {
-  const r = name => `/simulation/individu/${id}/${name}`
+  const r = variable => new Step({entity: 'individu', id, variable})
   const conjoint = id == 'conjoint'
   const demandeur = id == 'demandeur'
   const enfant = id.startsWith('enfant')
@@ -75,10 +89,10 @@ function individuBlockFactory(id) {
 function kidBlock(situation) {
   return {
     steps: [
-      '/simulation/enfants',
+      new Step({entity: 'enfants'}),
       ...(situation.enfants.length ? (situation.enfants.map(e => {
         return {
-          steps: [individuBlockFactory(e.id), {key: `/simulation/enfants#${e.id}`, route: '/simulation/enfants'}]
+          steps: [individuBlockFactory(e.id), new Step({entity: 'enfants', key:`enfants#${e.id}`})]
         }
       })) : [])
     ]
@@ -89,13 +103,13 @@ function housingBlock() {
   return {
     subject: situation => situation.menage,
     steps: [
-      '/simulation/logement',
+      new Step({entity: 'logement'}),
       {
         isActive: subject => !subject.statut_occupation_logement || subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
-          '/simulation/menage/coloc',
-          '/simulation/menage/logement_chambre',
-          '/simulation/famille/proprietaire_proche_famille',
+          new Step({entity: 'menage', variable: 'coloc'}),
+          new Step({entity: 'menage', variable: 'logement_chambre'}),
+          new Step({entity: 'famille', variable: 'proprietaire_proche_famille'}),
         ]
      },
      {
@@ -105,20 +119,22 @@ function housingBlock() {
           return locataire || proprietaire
         },
         steps: [
-          '/simulation/menage/loyer'
+          new ComplexStep({entity: 'menage', variable: 'loyer'}),
         ]
      },
      {
         isActive: subject => subject.statut_occupation_logement == "loge_gratuitement",
         steps: [
-          '/simulation/menage/participation_frais',
-          '/simulation/individu/demandeur/habite_chez_parents',
+          new Step({entity: 'menage', variable: 'participation_frais'}),
+          new Step({entity: 'individu', id: 'demandeur', variable: 'habite_chez_parents'}),
         ]
      },
-     '/simulation/menage/depcom',
+     new Step({entity: 'menage', variable: 'depcom'}),
      {
         isActive: subject => subject.depcom && subject.depcom.startsWith('75'),
-        steps: ['/simulation/famille/parisien'],
+        steps: [
+          new Step({entity: 'famille', variable: 'parisien'}),
+        ],
      }
     ]
   }
@@ -151,15 +167,16 @@ function resourceBlocks(situation) {
 
 function generateBlocks(situation) {
   return [
-    {steps: ['/']},
+    {steps: [new Step({})]},
     individuBlockFactory('demandeur'),
     kidBlock(situation),
     {
       steps: [
-        '/simulation/famille/en_couple', {
+        new Step({entity: 'famille', variable: 'en_couple'}),
+        {
           isActive: (situation) => situation.enfants && situation.enfants.length && !situation.famille.en_couple,
           steps: [
-            '/simulation/famille/rsa_isolement_recent',
+            new Step({entity: 'famille', variable: 'rsa_isolement_recent'}),
           ]
         },
         ...(situation.conjoint ? [individuBlockFactory('conjoint')] : []),
@@ -169,11 +186,15 @@ function generateBlocks(situation) {
     resourceBlocks(situation),
     {
       steps: [
-        '/simulation/resultats',
-        '/simulation/resultats'
+        new Step({entity: 'resultats'}),
+        new Step({entity: 'resultats'})
       ]
     }
   ]
 }
 
-exports.generateBlocks = generateBlocks
+module.exports = {
+  generateBlocks,
+  Step,
+  ComplexStep,
+}

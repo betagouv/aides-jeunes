@@ -1,0 +1,10 @@
+button.button,
+button.button:active,
+button.button:focus {
+  padding: 13px 30px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (max-width: $screen-smaller-than-mobile) {
+}

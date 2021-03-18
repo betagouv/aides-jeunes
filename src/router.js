@@ -146,6 +146,10 @@ const router = new Router({
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Enfants.vue'),
       },
       {
+        path: 'enfants/ressources',
+        component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Enfants.vue'),
+      },
+      {
         path: 'famille',
         component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille.vue'),
         children: [{
@@ -237,7 +241,7 @@ const router = new Router({
         }
       }, {
         path: 'ressources/enfants',
-        component: () => import(/* webpackChunkName: "ressources-enfants" */ './views/Foyer/Ressources/Enfants.vue'),
+        component: () => import(/* webpackChunkName: "ressources-enfants" */ './views/Simulation/Ressources/Enfants.vue'),
         meta: {
           title: 'Les ressources de vos enfants'
         }

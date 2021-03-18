@@ -3,14 +3,13 @@
     <YesNoQuestion class="form__group" v-model="enfant._hasRessources" v-for="enfant in enfants" v-bind:key="enfant.id">
         {{ enfant._firstName | capitalize }} a-t-il·elle perçu des ressources <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong> ?
     </YesNoQuestion>
-    <div class="next form__group">
-      <button class="button secondary large" type="button" v-on:click="window && window.history.back()">Précédent</button>
-      <button type="submit" class="button large">Valider</button>
-    </div>
+    <Actions v-bind:onSubmit='onSubmit'>
+    </Actions>
   </form>
 </template>
 
 <script>
+import Actions from '@/components/Actions'
 import Ressource from '@/lib/Ressource'
 import YesNoQuestion from '@/components/YesNoQuestion'
 
@@ -18,18 +17,18 @@ export default {
   name: 'ressources-types',
   components: {
     YesNoQuestion,
+    Actions
   },
   data: function() {
     let enfants = this.$store.state.situation.enfants.map(e => Object.assign({}, e))
 
     enfants.forEach(e => e._hasRessources = e._hasRessources || false)
     return {
-      window,
       enfants,
     }
   },
   methods: {
-    next: function() {
+    onSubmit: function() {
       this.enfants.forEach(enfant => {
         if (! enfant._hasRessources) {
             let ressourceTypes = Ressource.getIndividuRessourceTypes(enfant)

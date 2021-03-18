@@ -11,19 +11,13 @@
       <RessourceExploitantAgricole v-if="type.meta.id === 'tns_benefice_exploitant_agricole'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
     </div>
 
-    <div class="next form__group">
-        <!-- Maybe reusable after UX update -->
-        <!-- router-link tag="button" type="button" class="button secondary">
-        v-bind:to="{ name: 'ressources/types', params:$route.params }">
-        Déclarer d'autres ressources
-        </router-link -->
-        <button class="button secondary large" type="button" v-on:click="window && window.history.back()">Précédent</button>
-        <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
-    </div>
+    <Actions v-bind:onSubmit='onSubmit'>
+    </Actions>
   </form>
 </template>
 
 <script>
+import Actions from '@/components/Actions'
 import RessourceAutoEntreprise from '@/components/Ressource/AutoEntreprise'
 import RessourceExploitantAgricole from '@/components/Ressource/ExploitantAgricole'
 import RessourceMicroEntreprise from '@/components/Ressource/MicroEntreprise'
@@ -46,11 +40,11 @@ export default {
     RessourceMicroEntreprise,
     RessourceProfessionLiberale,
     RessourceMontants,
+    Actions
   },
   data: function() {
     const individu = this.getIndividu()
     return {
-      window,
       individu,
       types: this.getTypes(individu)
     }
@@ -99,7 +93,7 @@ export default {
       ]
       return complex.indexOf(type) === - 1
     },
-    next: function() {
+    onSubmit: function() {
       this.save(this.types, true)
       this.$push(this.$store.state.situation)
     },

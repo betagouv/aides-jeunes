@@ -1,7 +1,12 @@
 <template>
   <form>
     <p>
-      Sélectionnez les types de ressources perçues <strong><span v-if="individu._role !== 'demandeur'">par {{ individu._firstName }}</span> depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong>,
+      Sélectionnez les types de ressources perçues
+      <strong>
+      <span v-if="individu._role === 'conjoint'">par votre conjoint(e)</span>
+      <span v-else-if="individu._role !== 'demandeur'">par {{ individu._firstName }}</span>
+      depuis {{ $store.state.dates.twelveMonthsAgo.label }}
+      </strong>,
       vous pourrez ensuite saisir les montants.
     </p>
       <div class="form__group" v-for="category in categories" v-bind:key="category.id">
@@ -12,20 +17,22 @@
         </label>
       </div>
     <div class="form__group">{{ countLabel }}</div>
-    <div class="next form__group">
-        <button class="button secondary large" type="button" v-on:click="window && window.history.back()">Précédent</button>
-      <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
-    </div>
+    <Actions v-bind:onSubmit='onSubmit'>
+    </Actions>
   </form>
 </template>
 
 <script>
+import Actions from '@/components/Actions'
 import _ from 'lodash'
 import {ressourceCategories, ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 
 export default {
   name: 'RessourceTypes',
+  components: {
+      Actions
+  },
   props: {
     individu: Object
   },
@@ -33,7 +40,6 @@ export default {
     let types = _.filter(ressourceTypes, Ressource.isRessourceOnMainScreen)
 
     return {
-      window,
       categories: ressourceCategories,
       typesByCategories: _.groupBy(types, t => t.category),
       selectedTypes: Ressource.getIndividuRessourceTypes(this.individu)
@@ -51,7 +57,7 @@ export default {
     }
   },
   methods: {
-    next: function() {
+    onSubmit: function() {
       Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.$store.state.dates)
       this.$store.dispatch('updateIndividu', Object.assign({}, this.individu, {_ressourcesCategories: Ressource.getIndividuRessourceCategories(this.individu)}))
       this.$push(this.$store.state.situation)

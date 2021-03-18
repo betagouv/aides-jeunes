@@ -6,6 +6,12 @@ context('Full simulation', () => {
     cy.visit('http://localhost:8080/')
   })
 
+  afterEach(() => {
+    cy.window().then((win) => {
+      win.sessionStorage.clear()
+    })
+  })
+
   it('accepts a family situation', () => {
     steps.home()
     steps.demandeur()

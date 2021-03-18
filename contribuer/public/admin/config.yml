@@ -38,6 +38,9 @@ collections:
         name: imgSrc
         widget: image
         allow_multiple: false
+      - label: Institution nationale
+        name: national
+        widget: boolean
       - label: aides fictives
         label_singular: aide fictive
         name: testing_benefits

@@ -385,7 +385,7 @@ var droitsDescription = {
                     'label': 'bourse de collège',
                     'description': 'La bourse de collège est une aide destinée à favoriser la scolarité des collégiens. Elle est versée aux familles ayant de faibles ressources. Son montant dépend du nombre d’enfants à charge.',
                     conditions: [
-                        'Déposer votre dossier à partir de l’été 2018 pour l’année scolaire 2018-2019.',
+                        'Déposer votre dossier à partir de l’été 2021 pour l’année scolaire 2021-2022.',
                         'Pour les élèves scolarisés en collège public, la demande se fait en ligne sur le portail Scolarité Services de votre établissement.',
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F984',
@@ -401,8 +401,8 @@ var droitsDescription = {
                     'label': 'bourse de lycée',
                     'description': 'La bourse de lycée est accordée aux responsables d’un lycéen qui ont de faibles ressources. Si l’élève entre au lycée ou s’il n’a jamais touché de bourse de lycée, il pourra y prétendre selon les ressources et les charges de sa famille. Une nouvelle demande doit être effectuée en cas de redoublement ou réorientation.',
                     conditions: [
-                        'Déposer votre dossier avant le 20 juin 2018 pour l’année scolaire 2018-2019.',
-                        'Pour les élèves scolarisés en lycée public, la demande se fait en ligne sur le portail Scolarité-Services',
+                        'Déposer votre dossier avant le 20 juin 2021 pour l’année scolaire 2021-2022.',
+                        'Pour les élèves scolarisés en lycée public, la demande se fait en ligne sur le portail Scolarité-Services.',
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F616',
                     'form': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do',
@@ -426,9 +426,8 @@ var droitsDescription = {
                     'description': 'Le logement social est destiné aux personnes et familles dont les ressources ne dépassent pas un certain seuil et répondant à certaines conditions d’accès. Aucun frais de dossier n’est réclamé lors de la demande, ni lors de la signature du bail. Il n’est pas obligatoire de résider dans une commune pour y déposer un dossier.',
                     'conditions': [
                         'Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.',
-                        'Vous adresser aux organismes HLM du département où vous souhaiter résider à travers le téléservice que nous présentons',
-                        'Ou bien auprès de la préfecture du département, à la mairie de la ville ou des organismes collecteurs du 1% logement',
-                        'Renouveler chaque année votre demande jusqu’à obtention d’un logement',
+                        'Vous adresser aux organismes HLM du département où vous souhaiter résider à travers le téléservice que nous présentons ou bien auprès de la préfecture du département, à la mairie de la ville ou encore des organismes collecteurs du 1% logement.',
+                        'Renouveler chaque année votre demande jusqu’à obtention d’un logement.',
                     ],
                     'link': 'https://www.service-public.fr/particuliers/vosdroits/F869',
                     'teleservice': 'https://www.demande-logement-social.gouv.fr/creation/accesCriteresEligibilites.do',
@@ -518,7 +517,7 @@ var droitsDescription = {
                     'label': 'fonds de solidarité pour le logement - Aide au paiement des factures d’énergie',
                     'description': 'Le fonds de solidarité accorde des aides aux personnes qui rencontrent des difficultés pour assurer les dépenses de leur logement. L’aide « impayé énergie » correspond plus spécifiquement à l’aide au maintien des fournitures en eau, gaz, électricité, fioul et bois.',
                     conditions: [
-                        'Occuper, à titre de résidence principale, un logement sur le territoire du département des Côtes d\'Armor'
+                        'Occuper, à titre de résidence principale, un logement sur le territoire du département des Côtes d\'Armor.'
                     ],
                     'form': 'https://cotesdarmor.fr/sites/default/files/2019-01/DOSSIER%20DE%20DEMANDE%20-%20Impay%C3%A9%20Energie%20.pdf',
                     'link': 'https://cotesdarmor.fr/vos-services/acceder-ou-se-maintenir-dans-son-logement',
@@ -584,6 +583,6 @@ msaAdditionProviders.forEach(function(providerId) {
 });
 
 const { generate } = require('./utils')
-droitsDescription.generate = (jam) => generate(jam, droitsDescription)
+droitsDescription.generate = (jam) => generate(jam.collections, droitsDescription)
 
 module.exports = droitsDescription;

@@ -52,6 +52,7 @@ function get(individus, role, id, dates) {
     // By default enfants are `à charge fiscale`, adults are not.
     if (DEFAULT_INDIVIDU._role == 'enfant' && dates && dates.thisYear) {
         DEFAULT_INDIVIDU.enfant_a_charge[dates.thisYear.id] = true
+        DEFAULT_INDIVIDU.aah_restriction_substantielle_durable_acces_emploi = false
     }
 
     // Required on DEFAULT_INDIVIDU to properly restore statut_marital

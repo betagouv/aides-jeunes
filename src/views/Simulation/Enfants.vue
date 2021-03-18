@@ -22,11 +22,14 @@ export default {
   components: {
     Actions,
   },
-  data() {
-    return {
-      enfants: [].concat(...this.$store.state.situation.enfants)
+  computed: {
+    enfants: function() {
+      return [].concat(...this.$store.state.situation.enfants)
     } 
   },
+  // data() {
+     
+  // },
   methods: {
     addPAC: function() {
       let { individu } = Individu.get(this.$store.state.situation.enfants, 'enfant', 1, this.$store.state.dates)
@@ -35,7 +38,6 @@ export default {
     },
     removePAC: function(id) {
       this.$store.dispatch('removeEnfant', id)
-      this.enfants = [].concat(...this.$store.state.situation.enfants)
     }
   }
 }

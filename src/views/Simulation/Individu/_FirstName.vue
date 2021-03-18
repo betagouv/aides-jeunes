@@ -19,22 +19,6 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin('_firstName')],
-  data () {
-    return {
-      error: false
-    }
-  },
-  methods: {
-    onSubmit: function() {
-      if (!this.value) {
-        this.error = true
-        return
-      }
-      this.individu._firstName = this.value
-      this.$store.dispatch('updateIndividu', this.individu)
-      this.$push()
-    }
-  },
+  mixins: [createIndividuMixin('_firstName', true)],
 }
 </script>

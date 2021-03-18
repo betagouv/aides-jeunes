@@ -3,7 +3,7 @@
     <h1>Vos enfants</h1>
     <ul>
       <li v-for="(enfant) in enfants" v-bind:key="enfant.id">
-         <router-link v-bind:to="`/simulation/individu/${enfant.id}`" >{{enfant.id}}</router-link>
+         <router-link v-bind:to="`/simulation/individu/${enfant.id}`" >{{enfant.id}}{{enfant.date_naissance.toDateString()}}</router-link>
          <button v-on:click="removePAC(enfant.id)">supprimer</button>
       </li>
     </ul>

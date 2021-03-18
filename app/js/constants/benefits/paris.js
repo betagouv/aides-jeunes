@@ -28,9 +28,10 @@ module.exports = {
         },
         'paris_logement_psol': {
             'label': 'Paris Solidarité',
-            'description': 'Paris Solidarité est destinée aux personnes âgées de 65 ans ou plus et aux personnes en situation de handicap. L’aide peut être versée tous les mois à partir de 60 ans pour les personnes reconnus inaptes au travail. Elle a pour but de garantir aux foyers modestes un minimum de ressources. L’aide est accordée pour une durée maximale d’un an. À partir du 2<sup>e</sup> renouvellement, Paris Solidarité peut être accordée pour une durée maximale de deux ans.',
+            'description': 'Paris Solidarité est destinée aux personnes âgées de 65 ans ou plus et aux personnes en situation de handicap. L’aide peut être versée tous les mois à partir de 60 ans pour les personnes reconnus inaptes au travail. Elle a pour but de garantir aux foyers modestes un minimum de ressources. L’aide est accordée pour une durée maximale d’un an.',
             'conditions': [
                 'Percevoir tous les avantages légaux auxquels vous pouvez prétendre.',
+                'Ne pas avoir déjà bénéficié du dispositif sur une durée de deux ans.'
             ],
             'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-solidarite_3',
             'form': 'https://api-site-cdn.paris.fr/images/97049',
@@ -38,7 +39,7 @@ module.exports = {
         },
         'paris_logement': {
             'label': 'Paris Logement',
-            'description': 'L’allocation Paris Logement est destinée aux personnes seules ou en couple sans ou avec un enfant. Elle leur permet de mieux supporter leurs dépenses de logement. Ils doivent être locataires en titre et titulaires du bail du logement occupé à titre principal. L’aide est accordée pour une durée maximale d’un an. À partir du 2<sup>e</sup> renouvellement, Paris Logement peut être accordée pour une durée maximale de deux ans.',
+            'description': 'L’allocation Paris Logement est destinée aux foyers modestes pour leur permettre de mieux supporter leurs dépenses de logement. Ils doivent être locataires en titre et titulaires du bail du logement occupé à titre principal. L’aide est accordée pour une durée maximale d’un an. À partir du 2<sup>e</sup> renouvellement, Paris Logement peut être accordée pour une durée maximale de deux ans.',
             'conditions': [
                 'Avoir demandé le versement des aides logement auxquelles vous avez droit auprès de la CAF.',
                 'Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.'
@@ -49,7 +50,10 @@ module.exports = {
         },
         'paris_logement_aspeh': {
             'label': 'Allocation de Soutien aux Parents d’Enfants Handicapés',
-            'description': 'L’Allocation de Soutien aux Parents d’Enfants Handicapés est réservée aux familles ayant à charge un ou plusieurs enfants handicapés. Si l’enfant handicapé vit au domicile, l’aide est versée tous les mois et accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier. Si l’enfant est placé dans un établissement spécialisé, le montant dépend du nombre de jours passés par le ou les enfants au domicile.',
+            'description': 'L’Allocation de Soutien aux Parents d’Enfants Handicapés est réservée aux familles ayant à charge un ou plusieurs enfants handicapés. Elle est accordée pour un an et renouvelable. Si l’enfant handicapé vit au domicile, l’aide est versée tous les mois.',
+            'conditions': [
+                'Indiquer le nombre de jours passés par l’enfant handicapé au domicile, lorsqu’il est placé dans un établissement spécialisé.'
+            ],
             'link': 'http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#allocation-de-soutien-aux-parents-d-enfants-handicapes_9',
             'form': 'https://api-site-cdn.paris.fr/images/97060',
             'isBaseRessourcesYearMoins2': false,
@@ -77,7 +81,7 @@ module.exports = {
         'paris_complement_sante': {
             'isMontantAnnuel': true,
             'label': 'Complément Santé Paris',
-            'description': 'Le Complément Santé Paris est destiné aux personnes âgées de 65 ans ou plus et aux personnes en situation de handicap. L’aide peut être versée à partir de 60 ans pour les personnes reconnues inaptes au travail. Elle a pour but d’aider les foyers modestes à régler leurs frais de mutuelle. L’aide est accordée pour une durée maximale d’un an. À partir du 2<sup>e</sup> renouvellement, le Complément Santé Paris peut être accordé pour une durée maximale de deux ans.',
+            'description': 'Le Complément Santé Paris est destiné aux personnes âgées de 65 ans ou plus et aux personnes en situation de handicap. L’aide peut être versée à partir de 60 ans pour les personnes reconnues inaptes au travail. Elle a pour but d’aider les foyers modestes à régler leurs frais de mutuelle. L’aide est accordée pour une durée maximale d’un an.',
             'conditions': [
                 'Percevoir les avantages légaux auxquels vous pouvez prétendre (Couverture Maladie Universelle Complémentaire, Aide à la Complémentaire Santé).',
                 'Adhérer à titre payant à un organisme de protection complémentaire.'

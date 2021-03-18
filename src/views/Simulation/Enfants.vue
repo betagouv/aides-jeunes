@@ -4,6 +4,7 @@
     <ul>
       <li v-for="(enfant) in enfants" v-bind:key="enfant.id">
          <router-link v-bind:to="`/simulation/individu/${enfant.id}`" >{{enfant.id}}</router-link>
+         <button v-on:click="removePAC(enfant.id)">supprimer</button>
       </li>
     </ul>
     <button class="button large" v-on:click="addPAC()">Ajouter une personne à charge</button>
@@ -31,6 +32,10 @@ export default {
       let { individu } = Individu.get(this.$store.state.situation.enfants, 'enfant', 1, this.$store.state.dates)
       this.$store.dispatch('addEnfant', individu)
       this.$router.push(`/simulation/individu/${individu.id}`)
+    },
+    removePAC: function(id) {
+      this.$store.dispatch('removeEnfant', id)
+      this.enfants = [].concat(...this.$store.state.situation.enfants)
     }
   }
 }

@@ -2,7 +2,7 @@ var expect = require('expect');
 
 
 describe('benefit descriptions', function() {
-    var subject = require('../../app/js/constants/benefits');
+    var subject = require('../../app/js/constants/benefits/back');
 
     Object.keys(subject.prestationsNationales).forEach(function(providerName) {
         describe(providerName, function() {
@@ -32,6 +32,18 @@ describe('benefit descriptions', function() {
                         expect(typeof aide.link).toBe('string');
                         expect(aide.link).toMatch(/^https?:\/\//);
                     });
+
+                    if (aide.conditions) {
+                        describe('conditions', function() {
+                            aide.conditions.forEach(condition => {
+                                describe(`condition: '${condition}'`, function() {
+                                  it('should end with a comma.', function() {
+                                    expect(condition).toMatch(/\.$/);
+                                  })
+                                })
+                            })
+                        })
+                    }
                 });
             });
         });

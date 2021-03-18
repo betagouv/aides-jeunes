@@ -1,0 +1,10 @@
+label: repas du CROUS à 1€
+institution: etat
+description: Le repas du CROUS à 1€ permet à tous les étudiants, boursiers ou non, de bénéficier de deux repas par jour au tarif de 1 euro.
+conditions:
+  - Activer votre <a target="_blank" rel="noopener" href="https://www.etudiant.gouv.fr/fr/izly-votre-solution-de-paiement-sur-le-campus-1285">compte Izly<a/>
+link: https://www.etudiant.gouv.fr/fr/le-repas-au-crous-passe-1-euro-pour-tous-les-etudiants-2314
+instructions: https://www.etudiant.gouv.fr/fr/izly-votre-solution-de-paiement-sur-le-campus-1285
+prefix: le
+type: bool
+entity: individus

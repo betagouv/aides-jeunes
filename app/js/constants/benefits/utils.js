@@ -25,7 +25,7 @@ function transformInstitutions(collection) {
   })
   return {
     national: Object.assign({}, ...items.filter(i => i.national)),
-    local: Object.assign({}, ...items.filter(i => !i.national)),
+    local: Object.assign({}, ...items.filter(i => ! i.national)),
   }
 }
 

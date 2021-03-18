@@ -74,12 +74,14 @@ function individuBlockFactory(id) {
 
 function kidBlock(situation) {
   return {
-    steps: situation.enfants.length ? (situation.enfants.map(e => {
-      return {
-        steps: [individuBlockFactory(e.id), '/simulation/enfants']
-      }
-    })
-    ) : ['/simulation/enfants']
+    steps: [
+      '/simulation/enfants',
+      ...(situation.enfants.length ? (situation.enfants.map(e => {
+        return {
+          steps: [individuBlockFactory(e.id), {key: `/simulation/enfants#${e.id}`, route: '/simulation/enfants'}]
+        }
+      })) : [])
+    ]
   }
 }
 
@@ -89,19 +91,24 @@ function housingBlock() {
     steps: [
       '/simulation/logement',
       {
-        isActive: subject => subject.statut_occupation_logement && (subject.statut_occupation_logement === 'primo_accedant' || subject.statut_occupation_logement === 'proprietaire'),
-        steps: [
-          '/simulation/menage/loyer'
-        ]
-     }, {
         isActive: subject => !subject.statut_occupation_logement || subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
           '/simulation/menage/coloc',
           '/simulation/menage/logement_chambre',
           '/simulation/famille/proprietaire_proche_famille',
-          '/simulation/menage/loyer',
         ]
-     }, {
+     },
+     {
+        isActive: subject => {
+          const locataire = (! subject.statut_occupation_logement) || subject.statut_occupation_logement.startsWith("locataire")
+          const proprietaire = subject.statut_occupation_logement && (subject.statut_occupation_logement === 'primo_accedant' || subject.statut_occupation_logement === 'proprietaire')
+          return locataire || proprietaire
+        },
+        steps: [
+          '/simulation/menage/loyer'
+        ]
+     },
+     {
         isActive: subject => subject.statut_occupation_logement == "loge_gratuitement",
         steps: [
           '/simulation/menage/participation_frais',
@@ -169,35 +176,4 @@ function generateBlocks(situation) {
   ]
 }
 
-function processBlock({journey, subject, situation}, b) {
-  if (typeof(b) == 'string') {
-    journey.push(b)
-  } else {
-    let blockSubject = b.subject ? b.subject(subject, situation) : (subject || situation)
-    if (!b.isActive || b.isActive(blockSubject, situation)) {
-      if (!b.steps) {
-        throw Error('' + b + ' (' + (b instanceof Array ? 'array' : '?') + ')')
-      }
-      b.steps.forEach(s => processBlock({journey, subject: blockSubject, situation}, s))
-    }
-  }
-}
-
-function generateJourney(situation) {
-  const blocks = generateBlocks(situation)
-
-  function processBlocks({situation}) {
-    let journey = []
-    blocks.forEach(b => {
-      processBlock({journey, subject: situation, situation}, b)
-    })
-    return journey
-  }
-  try {
-    return processBlocks({situation})
-  } catch (e) {
-    console.log('error', e)
-  }
-}
-
-exports.generateJourney = generateJourney
+exports.generateBlocks = generateBlocks

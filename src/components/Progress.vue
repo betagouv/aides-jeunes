@@ -3,18 +3,8 @@
     <h2>Récapitulatif de votre simulation</h2>
     <h3>Parcours complet</h3>
     <ul>
-      <li v-for="(route) in full" v-bind:key="route.fullPath || route">
-        <router-link v-bind:to="route" >{{route.fullPath || route}}</router-link>
-      </li>
-    </ul>
-
-    <h3>Étape courante</h3>
-    <p>{{current.fullPath}}</p>
-
-    <h3>Étapes restantes</h3>
-    <ul>
-      <li v-for="(route) in next" v-bind:key="route.fullPath || route">
-        <router-link v-bind:to="route" >{{route.fullPath || route}}</router-link>
+      <li v-for="(step) in full" v-bind:key="step.key || step.route">
+        <router-link v-bind:class="{ inactive: !step.isActive, current: step.route == current}" v-bind:to="step.route" >{{step.route}}</router-link>
       </li>
     </ul>
   </div>
@@ -29,10 +19,10 @@ export default {
       return this.$state.full(start, this.$store.state.situation, this.$router)
     },
     active: function() {
-      return this.full.filter(s => s.isActive).map(s => s.fullPath)
+      return this.full.filter(s => s.isActive)
     },
     current: function() {
-      return this.$route
+      return this.$route.fullPath
     },
     next: function() {
       return this.$state.full(this.$route, this.$store.state.situation, this.$router)
@@ -40,3 +30,12 @@ export default {
   }
 }
 </script>
+
+<style type="text/css">
+  .inactive {
+    text-decoration: line-through;
+  }
+  .current {
+    font-weight: bold;
+  }
+</style>

@@ -9,7 +9,6 @@ var famille = {
 
 var foyerFiscal = {
     rfr: Object,
-    taxe_fonciere_sur_avis: Object,
 };
 
 var allRessources = _.concat(

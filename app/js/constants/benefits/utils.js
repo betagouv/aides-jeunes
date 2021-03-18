@@ -30,7 +30,7 @@ function transformInstitutions(collection) {
 }
 
 function append(institutions, benefits) {
-  remaining = []
+  const remaining = []
 
   benefits.forEach(benefit => {
     const institution = institutions[benefit.institution]

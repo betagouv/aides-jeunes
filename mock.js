@@ -33,25 +33,30 @@ var ID = function () {
 function mock(app) {
   app.use(bodyParser.json())
 
-  let cache
+  let cache = {}
   app.route('/api/outils/communes/:codePostal').get(outils.communes)
   app.post('/api/situations', function(req, res) {
-    cache = Object.assign({ _id: ID() }, req.body)
-    res.send(cache)
+    const data = Object.assign({ _id: ID() }, req.body)
+    cache[date._id] = data
+    res.send(data)
   })
 
-  app.get('/api/situations/:id/openfisca-response', function(req, res, next) {
-    sendToOpenfisca(cache, function(err, result) {
+  app.get('/api/situations/:id', function(req, res, next, id) {
+    res.send(cache[id])
+  })
+
+  app.get('/api/situations/:id/openfisca-response', function(req, res, next, id) {
+    sendToOpenfisca(cache[id], function(err, result) {
       if (err) {
         return next(err)
       }
 
-      res.send(Object.assign({ _id: ID() }, result))
+      res.send(Object.assign({ _id: cache[id]._id }, result))
     })
   })
 
-  app.get('/api/situations/:id/openfisca-request', function(req, res) {
-    res.send(buildOpenFiscaRequest(cache))
+  app.get('/api/situations/:id/openfisca-request', function(req, res, next, id) {
+    res.send(buildOpenFiscaRequest(cache[id]))
   })
 
   app.get('/api/openfisca/variables', function(req, res, next) {

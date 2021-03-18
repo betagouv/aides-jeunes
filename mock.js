@@ -41,7 +41,7 @@ function mock(app) {
     res.send(data)
   })
 
-  app.get('/api/situations/:id', function(req, res, next) {
+  app.get('/api/situations/:id', function(req, res) {
     res.send(cache[req.params.id])
   })
 

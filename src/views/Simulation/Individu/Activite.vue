@@ -12,29 +12,7 @@
 <script>
 import Actions from '@/components/Actions'
 import Individu from '@/lib/Individu'
-
-const ActiviteOptions = [
-  {
-    value: 'actif',
-    label: 'En activité'
-  },
-  {
-    value: 'chomeur',
-    label: 'Inscrit·e comme demandeur d’emploi'
-  },
-  {
-    value: 'etudiant',
-    label: 'En formation'
-  },
-  {
-    value: 'retraite',
-    label: 'Retraité·e'
-  },
-  {
-    value: 'inactif',
-    label: 'Autre'
-  },
-]
+import { datesGenerator } from '../../../../backend/lib/mes-aides'
 
 export default {
   name: 'SimulationActivite',
@@ -46,6 +24,34 @@ export default {
     const role = id.split('_')[0]
     const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
     const value = individu.activite
+    let situation = this.$store.state.situation
+    let ActiviteOptions = [
+      {
+        value: 'actif',
+        label: 'En activité'
+      },
+      {
+        value: 'chomeur',
+        label: 'Inscrit·e comme demandeur d’emploi'
+      },
+      {
+        value: 'etudiant',
+        label: 'En formation'
+      },
+      {
+        value: 'retraite',
+        label: 'Retraité·e'
+      },
+      {
+        value: 'inactif',
+        label: 'Autre'
+      },
+    ]
+    const RETRAITE_INDEX = 3
+    const age = Individu.age(individu, datesGenerator(situation.dateDeValeur).today.value);
+    if (age < 30) {
+      ActiviteOptions.splice(RETRAITE_INDEX, 1)
+    }
     return {
       individu,
       id,

@@ -30,14 +30,14 @@ function generateJourney(situation) {
   }
 }
 
-function full(start, situation, router) {
-    const journey = generateJourney(situation, router.currentRoute)
+function full(start, situation) {
+    const journey = generateJourney(situation)
     journey.pop()
     return journey
 }
 
-function next(current, situation, router) {
-    const journey = full(current, situation, router)
+function next(current, situation) {
+    const journey = full(current, situation)
     const activeJourney = journey.filter(s => s.isActive)
 
     let matches = activeJourney.map((element, index) => { return {element, index} }).filter(item => item.element.route == (current.fullPath || current))
@@ -59,7 +59,6 @@ const StateService = {
 
     Vue.prototype.$push = function(situation) {
         const nexts = next(this.$route, situation || this.$store.state.situation, this.$router)
-        console.log(nexts)
         this.$router.push(nexts.route)
     }
   }

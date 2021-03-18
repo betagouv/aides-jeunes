@@ -148,18 +148,6 @@ function resourceBlocks(situation/*, current*/) {
   }
 }
 
-function processBlock({journey, subject, situation, current}, b) {
-  if (typeof(b) == 'string') {
-    journey.push(b)
-  } else {
-    let blockSubject = b.subject ? b.subject(subject, situation) : (subject || situation)
-    if (!b.isActive || b.isActive(blockSubject, situation, current)) {
-      b.steps.forEach(s => processBlock({journey, subject: blockSubject, situation, current}, s))
-    }
-  }
-}
-
-
 function generateBlocks(situation, current) {
   return [
     {steps: ['/']},
@@ -185,6 +173,17 @@ function generateBlocks(situation, current) {
       ]
     }
   ]
+}
+
+function processBlock({journey, subject, situation, current}, b) {
+  if (typeof(b) == 'string') {
+    journey.push(b)
+  } else {
+    let blockSubject = b.subject ? b.subject(subject, situation) : (subject || situation)
+    if (!b.isActive || b.isActive(blockSubject, situation, current)) {
+      b.steps.forEach(s => processBlock({journey, subject: blockSubject, situation, current}, s))
+    }
+  }
 }
 
 function generateJourney(situation, current) {

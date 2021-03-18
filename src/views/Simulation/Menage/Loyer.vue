@@ -36,11 +36,11 @@
                 loyerQuestion: {
                     label: isLocataire ? 'Votre loyer' : 'Montant des mensualités',
                     hint: !isLocataire ? 'Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.' : null,
-                    selectedValue: parseInt(menage.loyer)
+                    selectedValue: menage.loyer
                 },
                 chargesQuestion: {
                     label: 'Vos charges locatives',
-                    selectedValue: parseInt(menage.charges_locatives)
+                    selectedValue: menage.charges_locatives
                 }
             }
         },

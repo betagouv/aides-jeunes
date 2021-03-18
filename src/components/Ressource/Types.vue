@@ -67,9 +67,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="css">
-h2 {
-  font-size: 1.5em;
-}
-</style>

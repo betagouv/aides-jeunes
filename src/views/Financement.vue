@@ -14,13 +14,4 @@
 </template>
 
 <style scoped lang="css">
-
-.text.container img {
-    max-width: 100%;
-}
-
-.text.container iframe {
-    display: block;
-    margin: auto;
-}
 </style>

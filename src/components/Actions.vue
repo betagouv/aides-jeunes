@@ -3,10 +3,10 @@
     <p class="notification warning" v-if="error">
       {{ error }}
     </p>
-    <div class="actions">
-      <button class="button large" type="submit" v-show="onSubmit" v-on:click="localOnSubmit($event)">Valider</button>
-      <slot></slot>
-      <button class="button secondary large" type="button" v-on:click="goBack()">Précédent</button>
+    <div class="aj-actions">
+        <button class="button" type="submit" v-show="onSubmit" v-on:click="localOnSubmit($event)">Suivant</button>
+        <slot></slot>
+        <button class="button secondary" type="button" v-on:click="window && window.history.back()">Précédent</button>
     </div>
   </div>
 </template>
@@ -18,6 +18,11 @@ export default {
   props: [
     'onSubmit',
   ],
+  data() {
+    return {
+      window
+    }
+  },
   computed: {
     error() {
       return this.$store.state.error
@@ -36,10 +41,4 @@ export default {
 </script>
 
 <style type="text/css">
-  .actions {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-  }
-
 </style>

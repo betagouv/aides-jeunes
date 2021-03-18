@@ -359,8 +359,13 @@ h4 {
 .injected .droit-detail-heading {
   padding: 0;
 }
+
 .injected .droit-detail-description p {
   margin: 0;
+}
+
+pre {
+  white-space: pre-wrap;
 }
 
 </style>

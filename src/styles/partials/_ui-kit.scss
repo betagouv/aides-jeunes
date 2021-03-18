@@ -1,0 +1,115 @@
+html {
+  height: unset;
+  background-color: #f2f5f9;
+
+  &, h1, h2, h3, h4, h5, h6 {
+    font-family: Marianne, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  }
+
+  body {
+    font-size: 16px;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--theme-primary);
+    }
+
+    form {
+      margin: 0;
+      max-width: 100%;
+    }
+
+    .container {
+      padding: 0;
+      max-width: 1200px;
+      width: auto;
+    }
+
+    .list-unstyled {
+      list-style: none;
+    }
+
+    .aj-box-wrapper {
+      background-color: #fff;
+      padding: 40px 40px 65px 40px;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+      border-radius: var(--theme-border-radius);
+      position: relative;
+
+      input[type="radio"] {
+        display: none;
+
+        & + label {
+          display: inline-flex;
+          border: 1px solid var(--theme-primary);
+          border-radius: var(--theme-border-radius);
+          color: var(--theme-primary);
+          padding: 10px 35px;
+          cursor: pointer;
+          user-select: none;
+          margin: 0 10px 10px 0;
+          -webkit-transition: background-color 300ms linear, color 300ms linear;
+          -moz-transition: background-color 300ms linear, color 300ms linear;
+          -o-transition: background-color 300ms linear, color 300ms linear;
+          -ms-transition: background-color 300ms linear, color 300ms linear;
+          transition: background-color 300ms linear, color 300ms linear;
+        }
+
+        &:checked + label, & + label:hover {
+          background-color: var(--theme-primary);
+          color: #fff;
+        }
+      }
+
+      input[type="text"], input[type="number"] {
+        border: 2px solid #AAAAAA;
+        border-radius: 4px;
+      }
+
+      .aj-actions {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 0;
+        right: 50px;
+        transform: translateY(50%);
+
+        button:first-child {
+          margin-left: 20px;
+        }
+      }
+
+      legend {
+        font-family: MarianneBold;
+        font-size: 1.25rem;
+      }
+
+      .aj-input-date {
+        display: flex;
+
+        .aj-input-date-component {
+          margin-right: 10px;
+
+          &.day, &.month {
+              max-width: 80px;
+          }
+
+          &.year {
+            max-width: 150px;
+          }
+
+          .aj-date-label {
+            font-size: 0.85rem;
+            color: #767676;
+          }
+        }
+      }
+    }
+
+    @media print {
+      .droit-detail {
+        page-break-inside: avoid;
+      }
+    }
+  }
+}

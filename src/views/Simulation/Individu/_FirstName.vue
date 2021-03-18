@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <h1>Quel est le prénom de votre enfant ?
-    <span>(il servira uniquement à vous faciliter la saisie par la suite)</span></h1>
+    <span>il servira uniquement à vous faciliter la saisie par la suite</span></h1>
     <input type="text" v-model="value">
     <p class="notification warning" v-if="error">
         Ce champ est obligatoire.

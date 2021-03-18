@@ -72,24 +72,18 @@ function individuBlockFactory(id) {
   }
 }
 
-function kidBlock(situation, current) {
-  // if currently on a kid
-  // finish local states and go to main kids view and proceed
-  // console.log('kidBlock', situation, current.name)
-  if (current.params && current.params.id && current.params.id.startsWith('enfant_')) {
-    let block = individuBlockFactory(current.params.id)
-    block.steps.push('/simulation/enfants')
-    return block
-  } else {
-    return {
-      steps: [
-      '/simulation/enfants'
-      ]
-    }
+function kidBlock(situation) {
+  return {
+    steps: situation.enfants.length ? (situation.enfants.map(e => {
+      return {
+        steps: [individuBlockFactory(e.id), '/simulation/enfants']
+      }
+    })
+    ) : ['/simulation/enfants']
   }
 }
 
-function housingBlock(/*situation, current*/) {
+function housingBlock() {
   return {
     subject: situation => situation.menage,
     steps: [
@@ -123,7 +117,7 @@ function housingBlock(/*situation, current*/) {
   }
 }
 
-function resourceBlocks(situation/*, current*/) {
+function resourceBlocks(situation) {
   const individuResourceBlock = (individuId) => {
     const individu = situation[individuId] || situation.enfants.find(enfant => enfant.id === individuId) || {}
     return {
@@ -148,11 +142,11 @@ function resourceBlocks(situation/*, current*/) {
   }
 }
 
-function generateBlocks(situation, current) {
+function generateBlocks(situation) {
   return [
     {steps: ['/']},
     individuBlockFactory('demandeur'),
-    kidBlock(situation, current),
+    kidBlock(situation),
     {
       steps: [
         '/simulation/famille/en_couple', {
@@ -164,8 +158,8 @@ function generateBlocks(situation, current) {
         ...(situation.conjoint ? [individuBlockFactory('conjoint')] : []),
       ]
     },
-    housingBlock(situation, current),
-    resourceBlocks(situation, current),
+    housingBlock(situation),
+    resourceBlocks(situation),
     {
       steps: [
         '/simulation/resultats',
@@ -175,28 +169,35 @@ function generateBlocks(situation, current) {
   ]
 }
 
-function processBlock({journey, subject, situation, current}, b) {
+function processBlock({journey, subject, situation}, b) {
   if (typeof(b) == 'string') {
     journey.push(b)
   } else {
     let blockSubject = b.subject ? b.subject(subject, situation) : (subject || situation)
-    if (!b.isActive || b.isActive(blockSubject, situation, current)) {
-      b.steps.forEach(s => processBlock({journey, subject: blockSubject, situation, current}, s))
+    if (!b.isActive || b.isActive(blockSubject, situation)) {
+      if (!b.steps) {
+        throw Error('' + b + ' (' + (b instanceof Array ? 'array' : '?') + ')')
+      }
+      b.steps.forEach(s => processBlock({journey, subject: blockSubject, situation}, s))
     }
   }
 }
 
-function generateJourney(situation, current) {
-  const blocks = generateBlocks(situation, current)
+function generateJourney(situation) {
+  const blocks = generateBlocks(situation)
 
-  function processBlocks({situation, current}) {
+  function processBlocks({situation}) {
     let journey = []
     blocks.forEach(b => {
-      processBlock({journey, subject: situation, situation, current}, b)
+      processBlock({journey, subject: situation, situation}, b)
     })
     return journey
   }
-  return processBlocks({situation, current})
+  try {
+    return processBlocks({situation})
+  } catch (e) {
+    console.log('error', e)
+  }
 }
 
 exports.generateJourney = generateJourney

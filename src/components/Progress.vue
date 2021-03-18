@@ -26,7 +26,10 @@ export default {
   computed: {
     full: function() {
       const start = '/' || this.$route
-      return [start].concat(this.$state.full(start, this.$store.state.situation, this.$router))
+      return this.$state.full(start, this.$store.state.situation, this.$router)
+    },
+    active: function() {
+      return this.full.filter(s => s.isActive).map(s => s.fullPath)
     },
     current: function() {
       return this.$route

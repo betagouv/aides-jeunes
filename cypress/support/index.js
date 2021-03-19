@@ -32,7 +32,6 @@ export function home() {
 }
 
 export function demandeur(params={}) {
-  cy.get('button[type="submit"]').click()
   // Naissance
   cy.get('h1').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
@@ -78,10 +77,73 @@ export function zeroEnfants() {
 }
 
 export function deuxEnfants() {
+  cy.get('h1').invoke('text').should('contain', 'enfants')
+  cy.get('button#add-pac').click()
+  enfant()
+  cy.get('h1').invoke('text').should('contain', 'enfants')
+  cy.get('button#add-pac').click()
+  enfant()
+  cy.get('h1').invoke('text').should('contain', 'enfants')
+  cy.get('button[type="submit"]').click()
+}
+
+export function conjoint(params={}) {
+  cy.get('button[type="submit"]').click()
+  // Naissance
+  cy.get('h1').invoke('text').should('contain', 'naissance')
+  cy.get('#date_naissance')
+    .type(params.date_naissance || '12121980')
+  cy.get('button[type="submit"]').click()
+  // Nationalite
+  cy.get('h1').invoke('text').should('contain', 'nationalité')
+  cy.get('button[type="submit"]').click()
+  // Statut Marital
+  cy.get('h1').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
+  cy.get('button[type="submit"]').click()
+  // Activite
+  cy.get('h1').invoke('text').should('contain', 'est-il/elle')
+  cy.get('label').invoke('text').should('contain', 'En activité')
+  cy.get('button[type="submit"]').click()
+  // Handicap
+  cy.get('h1').invoke('text').should('contain', 'handicap')
+  cy.get('button[type="submit"]').click()
+  // Inapte au travail
+  cy.get('h1').invoke('text').should('contain', 'inapte au travail')
+  cy.get('button[type="submit"]').click()
+}
+
+export function enfant(params={}) {
+  cy.get('button[type="submit"]').click()
+  // Naissance
+  cy.get('h1').invoke('text').should('contain', 'naissance')
+  cy.get('#date_naissance')
+    .type(params.date_naissance || '12122000')
+  cy.get('button[type="submit"]').click()
+  // Nationalite
+  cy.get('h1').invoke('text').should('contain', 'nationalité')
+  cy.get('button[type="submit"]').click() // Nationalité
+  // Garde Alterne
+  cy.get('h1').invoke('text').should('contain', 'en garde alternée')
+  cy.get('button[type="submit"]').click()
+  // Handicap
+  cy.get('h1').invoke('text').should('contain', 'handicap')
+  cy.get('button[type="submit"]').click()
+  // Scolarite
+  cy.get('h1').invoke('text').should('contain', 'scolarisé·e')
+  cy.get('button[type="submit"]').click()
+  // Enfant a charge
+  cy.get('h1').invoke('text').should('contain', 'dernière déclaration d\'impôts')
+  cy.get('button[type="submit"]').click()
 }
 
 export function celibataire() {
   cy.get('h1').invoke('text').should('contain', 'couple')
+  cy.get('button[type="submit"]').click()
+}
+
+export function couple() {
+  cy.get('h1').invoke('text').should('contain', 'couple')
+  cy.get('input[type="radio"]').check('true')
   cy.get('button[type="submit"]').click()
 }
 

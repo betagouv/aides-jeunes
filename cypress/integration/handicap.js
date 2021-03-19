@@ -6,9 +6,14 @@ context('Full simulation', () => {
     cy.visit('http://localhost:8080/')
   })
 
-  it('accepts a basic situation', () => {
+  it('accepts a situation with handicap', () => {
     steps.home()
-    steps.demandeur()
+    steps.demandeur({
+      enfant: false,
+      handicap: {
+        taux_incapacite: 0.7
+      },
+    })
     steps.zeroEnfants()
     steps.celibataire()
     steps.sansDomicileStable()

@@ -4,9 +4,8 @@
       {{ error }}
     </p>
     <div class="aj-actions">
-        <button class="button" type="submit" v-show="onSubmit" v-on:click="localOnSubmit($event)">Suivant</button>
+        <button v-if="next" class="button" type="submit" v-show="onSubmit" v-on:click="localOnSubmit($event)">Suivant</button>
         <slot></slot>
-        <button class="button secondary" type="button" v-on:click="window && window.history.back()">Précédent</button>
     </div>
   </div>
 </template>
@@ -15,9 +14,16 @@
 
 export default {
   name: 'Actions',
-  props: [
-    'onSubmit',
-  ],
+  props: {
+    onSubmit: {
+        type: Function,
+        default() {}
+    },
+    next: {
+        type: Boolean,
+        default: true
+    }
+  },
   data() {
     return {
       window

@@ -11,6 +11,7 @@
 
 <script>
 import Actions from '@/components/Actions'
+import Individu from '@/lib/Individu'
 import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
@@ -49,7 +50,8 @@ export default {
     ]
     const ActiviteOptions = options.filter(o => (! o.isRelevant) || o.isRelevant(individu))
     return {
-      ActiviteOptions
+      ActiviteOptions,
+      value,
     }
   },
 }

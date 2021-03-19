@@ -23,7 +23,7 @@ export default {
     const role = id.split('_')[0]
     const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
     const value = individu.activite
-    let ActiviteOptions = [
+    let options = [
       {
         value: 'actif',
         label: 'En activité'
@@ -38,18 +38,15 @@ export default {
       },
       {
         value: 'retraite',
-        label: 'Retraité·e'
+        label: 'Retraité·e',
+        isRelevant: individu => Individu.age(individu, this.$store.state.dates.today.value) > 30,
       },
       {
         value: 'inactif',
-        label: 'Autre'
+        label: 'Autre',
       },
     ]
-    const RETRAITE_INDEX = 3
-    const age = Individu.age(individu, this.$store.state.dates.today.value);
-    if (age < 30) {
-      ActiviteOptions.splice(RETRAITE_INDEX, 1)
-    }
+    const ActiviteOptions = options.filter(o => (! o.isRelevant) || o.isRelevant(individu))
     return {
       individu,
       id,

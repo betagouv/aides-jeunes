@@ -1,9 +1,38 @@
-button.button,
-button.button:active,
-button.button:focus {
-  padding: 13px 30px;
-  line-height: 24px;
+button.button {
   margin: 0;
+
+  &,
+  &:active,
+  &:focus,
+  &:hover {
+    padding: 13px 30px;
+    line-height: 24px;
+    border: 1px solid var(--theme-primary);
+    background-color: var(--theme-primary);
+    outline: none;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  &.outline {
+    background-color: transparent;
+    color: var(--theme-primary);
+
+    &.with-icon {
+      padding-left: 20px;
+      padding-right: 20px;
+
+      img, i {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  &.aj-back-button {
+    margin-top: 70px;
+  }
 }
 
 @media (max-width: $screen-smaller-than-mobile) {

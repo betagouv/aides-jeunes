@@ -24,22 +24,6 @@ export default {
     Actions,
     InputDate,
   },
-  mixins: [createIndividuMixin('date_debut_chomage')], 
-  data () {
-    return {
-      error: false
-    }
-  },
-  methods: {
-    onSubmit: function() {
-      if (!this.value) {
-        this.error = true
-        return
-      }
-      this.individu.date_debut_chomage = this.value
-      this.$store.dispatch('updateIndividu', this.individu)
-      this.$push()
-    }
-  },
+  mixins: [createIndividuMixin('date_debut_chomage', true)], 
 }
 </script>

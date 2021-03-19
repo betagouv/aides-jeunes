@@ -101,7 +101,7 @@ export function conjoint(params={}) {
   cy.get('h1').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
   cy.get('button[type="submit"]').click()
   // Activite
-  cy.get('h1').invoke('text').should('contain', 'Est-il/elle')
+  cy.get('h1').invoke('text').should('contain', 'est-il/elle')
   cy.get('label').invoke('text').should('contain', 'En activité')
   cy.get('button[type="submit"]').click()
   // Handicap
@@ -129,7 +129,7 @@ export function enfant(params={}) {
   cy.get('h1').invoke('text').should('contain', 'handicap')
   cy.get('button[type="submit"]').click()
   // Scolarite
-  cy.get('h1').invoke('text').should('contain', 'Où sera-t-il/elle scolarisé·e à la rentrée prochaine')
+  cy.get('h1').invoke('text').should('contain', 'scolarisé·e')
   cy.get('button[type="submit"]').click()
   // Enfant a charge
   cy.get('h1').invoke('text').should('contain', 'dernière déclaration d\'impôts')

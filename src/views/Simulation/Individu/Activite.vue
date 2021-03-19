@@ -24,7 +24,6 @@ export default {
     const id = this.$route.params.id
     const role = id.split('_')[0]
     const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-    const value = individu.activite
     let options = [
       {
         value: 'actif',
@@ -51,7 +50,6 @@ export default {
     const ActiviteOptions = options.filter(o => (! o.isRelevant) || o.isRelevant(individu))
     return {
       ActiviteOptions,
-      value,
     }
   },
 }

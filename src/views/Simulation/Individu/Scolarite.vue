@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Où est scolarisé·e {{individu._firstName}} à la rentrée prochaine&nbsp;?</h1>
+    <h1>Où sera scolarisé·e {{individu._firstName}} à la rentrée prochaine&nbsp;?</h1>
     <label v-for="scolarite in scolariteOptions" v-bind:key="scolarite.value">
     <input type="radio" name="scolarite" v-bind:value="scolarite.value" v-model="value"/>
     {{ scolarite.label }}

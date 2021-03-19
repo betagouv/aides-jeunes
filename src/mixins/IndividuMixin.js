@@ -27,13 +27,13 @@ export const createIndividuMixin = (props) => {
                         enfant: `${this.individu._firstName}`,
                     },
                     avoir: {
-                        demandeur: 'Avez-vous',
-                        conjoint: 'Votre conjoint a-t-il/elle',
+                        demandeur: 'avez-vous',
+                        conjoint: 'votre conjoint a-t-il/elle',
                         enfant: `${this.individu._firstName} a-t-il/elle`
                     },
                     être: {
-                        demandeur: 'Êtes-vous',
-                        conjoint: 'Votre conjoint est-il/elle',
+                        demandeur: 'êtes-vous',
+                        conjoint: 'votre conjoint est-il/elle',
                         enfant: `${this.individu._firstName} est-il/elle`
                     }
                 }

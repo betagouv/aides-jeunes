@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>{{getLabel('être')}}&nbsp;?</h1>
+    <h1>{{getLabel('être') | capitalize}}&nbsp;?</h1>
     <label v-for="activite in ActiviteOptions" v-bind:key="activite.value">
     <input type="radio" name="activite" v-bind:value="activite.value" v-model="value"/>
     {{ activite.label }}

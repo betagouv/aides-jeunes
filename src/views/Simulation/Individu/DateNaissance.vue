@@ -1,16 +1,16 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <label>
-      <h1>{{ role === 'demandeur' ? 
+    <legend>
+        {{ role === 'demandeur' ?
         `Quelle est votre date de naissance&nbsp;?` :
-        `Quelle est la date de naissance ${individu._firstName || individu.id }&nbsp;?`}}</h1>
-      <InputDate required id="date_naissance" v-model="value" />
-      <p class="notification warning" v-if="error">
+        `Quelle est la date de naissance ${individu._firstName || individu.id }&nbsp;?`}}
+    </legend>
+    <InputDate required id="date_naissance" v-model="value" />
+    <p class="notification warning" v-if="error">
         Ce champ est obligatoire.
-      </p>
-    </label>
+    </p>
     <Actions v-bind:onSubmit='onSubmit'/>
-  </form >
+  </form>
 </template>
 
 <script>

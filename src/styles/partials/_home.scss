@@ -1,0 +1,51 @@
+#homepage {
+  background-attachment: fixed;
+  background-position: top center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  @media (min-width: 1200px) {
+    padding-top: 3em;
+  }
+
+  .xlarge, .xlarge:active, .xlarge:focus {
+    font-size: 2em;
+    line-height: 1em;
+  }
+
+  hr {
+    border-top: 1px solid #ddd;
+  }
+
+  .panel {
+    border: none;
+  }
+
+  .hero {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row-reverse;
+    border-radius: 4px;
+
+    img {
+      max-width: 40%;
+      margin: auto;
+    }
+
+    @media (max-width: 1200px) {
+      flex-direction: column;
+    }
+
+    h1 {
+      line-height: 1.4;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}

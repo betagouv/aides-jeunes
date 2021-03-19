@@ -2,6 +2,7 @@
     <form @submit.prevent='onSubmit'>
         <h1>{{ title }}</h1>
         <fieldset>
+            <legend>{{ logementTypesQuestion.label }}</legend>
             <label v-for="logementType in logementTypesQuestion.responses" v-bind:key="logementType.value">
                 <input type="radio" name="logementType" v-model="logementTypesQuestion.selectedValue" v-bind:value="logementType.value"
                 />
@@ -46,8 +47,9 @@
         },
         data: function() {
             return {
-                title: 'Votre logement principal',
+                title: 'Mon logement',
                 logementTypesQuestion: {
+                    label: 'Êtes-vous ?',
                     selectedValue: _.get(Logement.getLogementVariables(this.$store.getters.getLogementStatut), 'type', null),
                     responses: [
                         {
@@ -134,6 +136,7 @@
 <style scoped lang="scss">
     span.help {
         font-style: italic;
+        font-size: 0.8em;
     }
 
     fieldset {

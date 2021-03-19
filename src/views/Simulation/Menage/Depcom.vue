@@ -9,15 +9,14 @@
 
         <p v-if="retrievingCommunes"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
         <fieldset v-show="communes && communes.length">
-            <label>{{ communeQuestion.label }}
-                <select
-                    v-model="communeQuestion.selectedValue"
-                    id="commune">
-                    <option v-for="commune in communes" v-bind:value="commune.nom" v-bind:key="commune.code">
-                        {{ commune.nom }}
-                    </option>
-                </select>
-            </label>
+            <label>{{ communeQuestion.label }}</label>
+            <select
+                v-model="communeQuestion.selectedValue"
+                id="commune">
+                <option v-for="commune in communes" v-bind:value="commune.nom" v-bind:key="commune.code">
+                    {{ commune.nom }}
+                </option>
+            </select>
         </fieldset>
         <Actions v-bind:onSubmit='onSubmit'/>
     </form >
@@ -36,15 +35,15 @@
         data: function() {
             const menage = this.$store.getters.getMenage || {}
             return {
-                title: 'Votre logement principal',
+                title: 'Mon logement',
                 menage: menage,
                 retrievingCommunes: false,
                 codePostalQuestion: {
-                    label: 'Code postal',
+                    label: 'Quel est votre postal ?',
                     selectedValue: menage._codePostal
                 },
                 communeQuestion: {
-                    label: 'Ville',
+                    label: 'Veuillez selectionner votre ville',
                     selectedValue: menage._nomCommune
                 }
             }
@@ -81,7 +80,7 @@
                     this.menage.depcom = communeMatches[0].code
                     this.menage._codePostal = this.codePostalQuestion.selectedValue.toString()
                     this.menage._nomCommune = this.communeQuestion.selectedValue
-                    this.$store.dispatch('updateMenage', this.menage)                    
+                    this.$store.dispatch('updateMenage', this.menage)
                 }
                 this.$push()
             }
@@ -92,6 +91,8 @@
 <style scoped lang="scss">
     span.help {
         font-style: italic;
+        display: block;
+        font-size: 0.8em;
     }
 
     fieldset {

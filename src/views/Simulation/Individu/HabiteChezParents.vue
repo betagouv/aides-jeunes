@@ -28,7 +28,7 @@
         data: function() {
             const individu = this.$store.getters.getIndividu(this.$route.params.id) || {}
             return {
-                title: 'Votre logement principal',
+                title: 'Mon logement',
                 individu: individu,
                 habiteChezParentsQuestion: {
                     label: 'Êtes vous hébergé chez vos parents ?',
@@ -59,6 +59,8 @@
 <style scoped lang="scss">
     span.help {
         font-style: italic;
+        display: block;
+        font-size: 0.8em;
     }
 
     fieldset {

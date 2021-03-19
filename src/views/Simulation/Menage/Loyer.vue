@@ -30,16 +30,16 @@
             const isLocataire = !(logementStatut === 'proprietaire' || logementStatut === 'primo_accedant')
             const captureCharges = isLocataire && logementStatut != 'locataire_meuble'
             return {
-                title: 'Votre logement principal',
-                menage,
+                title: 'Mon logement',
+                menage: menage,
                 captureCharges,
-                loyerQuestion: {
-                    label: isLocataire ? 'Votre loyer' : 'Montant des mensualités',
-                    hint: !isLocataire ? 'Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.' : null,
+                 loyerQuestion: {
+                    label: ! isLocataire ? 'Quelles sont vos mensualités ?' : 'Quel est le montant de votre loyer ?',
+                    hint: ! isLocataire ? 'Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.' : null,
                     selectedValue: menage.loyer
                 },
                 chargesQuestion: {
-                    label: 'Vos charges locatives',
+                    label: 'Quel est le montant de vos charges locatives ?',
                     selectedValue: menage.charges_locatives
                 }
             }
@@ -60,6 +60,8 @@
 <style scoped lang="scss">
     span.help {
         font-style: italic;
+        display: block;
+        font-size: 0.8em;
     }
 
     fieldset {

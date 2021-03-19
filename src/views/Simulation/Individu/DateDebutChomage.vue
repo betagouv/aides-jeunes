@@ -1,9 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <label>
-      <h1>{{ role === 'demandeur' ?
-        `Quelle est la date de votre debut de chômage ?` :
-        `Quelle est la date de de debut de chômage de ${individu._firstName} &nbsp;?`}}</h1>
+      <h1>`Quand ${getLabel('avoir')} commencé à être au chômage&nbsp;?`</h1>
       <InputDate required id="date_debut_chomage" v-model="value" />
       <p class="notification warning" v-if="error">
         Ce champ est obligatoire.

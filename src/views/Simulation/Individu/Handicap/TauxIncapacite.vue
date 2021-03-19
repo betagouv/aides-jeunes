@@ -1,12 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Quel est {{ role == 'demandeur' ? 'votre' : 'son' }} taux d'incapacité évalué par {{ role == 'demandeur' ? 'votre' : 'sa' }} <abbr title="Maison départementale des personnes handicapées">MDPH</abbr>&nbsp;?</h1>
-    <legend>
-      {{ role == 'demandeur' ? 'Votre' : 'Son' }} taux d'incapacité
-      <span>
-      évalué par <a target="_blank" rel="noopener" href="http://informations.handicap.fr/carte-france-mdph.php">votre <abbr title="Maison départementale des personnes handicapées">MDPH</abbr></a>.
-      </span>
-    </legend>
+    <h1>{{ role === 'demandeur' ? `Quel est votre taux d'incapacité` : `Quel est le taux d'incapacité de ${getLabel('nom')}` }} évalué par {{getLabel('possessif')}} <abbr title="Maison départementale des personnes handicapées">MDPH</abbr>&nbsp;?</h1>
     <label v-for="tauxIncapacite in tauxIncapaciteOptions" v-bind:key="tauxIncapacite.value">
       <input type="radio"
           name="tauxIncapacite"

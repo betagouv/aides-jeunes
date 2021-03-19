@@ -1,7 +1,8 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      <h1>{{ role === 'demandeur' ? `Figurez vous sur la dernière déclarion d'impôts de vos parents ?` : `Figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?`}}</h1>
+      <h1>{{ role === 'demandeur' ? `Figurez-vous sur la dernière déclarion d'impôts de vos parents ?` :
+        `${getLabel('nom')} figure-t-il/elle sur votre dernière déclaration d'impôt sur le revenu&nbsp;?` | capitalize }}</h1>
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
@@ -11,6 +12,7 @@
 import Actions from '@/components/Actions'
 import YesNoQuestion from '@/components/YesNoQuestion'
 import Individu from '@/lib/Individu'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
   name: 'SimulationIndividuEnfantACharge',
@@ -18,6 +20,7 @@ export default {
     Actions,
     YesNoQuestion
   },
+  mixins: [createIndividuMixin('enfant_a_charge')],
   data: function() {
     const id = this.$route.params.id
     const role = id.split('_')[0]

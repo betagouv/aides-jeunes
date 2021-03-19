@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Quelle est {{ role === 'demandeur' ? 'votre' : 'sa' }} nationalité&nbsp;?</h1>
+    <h1>{{ role === 'demandeur' ? 'Quelle est votre nationalité&nbsp;?' : `Quelle est la nationalité de ${getLabel('nom')}&nbsp;?` }}</h1>
     <NationalityChoice v-model="value" />
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

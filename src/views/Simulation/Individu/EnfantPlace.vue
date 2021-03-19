@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      <h1>Est-il/elle placé·e en structure spécialisée ou famille d'accueil ?</h1>
+      <h1>{{ getLabel('être') | capitalize }} placé·e en structure spécialisée ou famille d'accueil ?</h1>
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

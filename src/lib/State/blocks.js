@@ -145,7 +145,7 @@ function resourceBlocks(situation) {
     const individu = situation[individuId] || situation.enfants.find(enfant => enfant.id === individuId) || {}
     return {
       steps: [
-        `/simulation/individu/${individuId}/ressources/types`
+        new ComplexStep({entity: 'individu', id: individuId, variable: 'ressources/types'})
       ].concat(
           Ressource.getIndividuRessourceCategories(individu).map(category => `/simulation/individu/${individuId}/ressources/montants/${category}`)
       )
@@ -155,7 +155,7 @@ function resourceBlocks(situation) {
     steps: [
       individuResourceBlock('demandeur'),
       ...(situation.conjoint ? [individuResourceBlock('conjoint')] : []),
-      ...(situation.enfants.length ? ['/simulation/enfants/ressources'] : []),
+      ...(situation.enfants.length ? [new Step({entity:'enfants', variable: 'ressources'})] : []),
       {
         steps: situation.enfants.map(e => {
           return e._hasRessources ? individuResourceBlock(e.id) : {steps: []}

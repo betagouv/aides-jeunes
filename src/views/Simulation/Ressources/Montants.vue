@@ -40,12 +40,19 @@ export default {
     RessourceMontants,
     Actions
   },
-  computed: {
-    individu: function() {
-      return this.getIndividu()
-    },
-    types:function() {
-      return this.getTypes(this.individu)
+  data: function() {
+    const individu = this.getIndividu()
+    return {
+      individu,
+      types: this.getTypes(individu)
+    }
+  },
+  watch: {
+    $route (toRoute, fromRoute) {
+      if (toRoute.params.id != fromRoute.params.id) {
+        this.individu = this.getIndividu()
+        this.types = this.getTypes(this.individu)
+      }
     }
   },
   methods: {

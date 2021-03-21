@@ -61,7 +61,9 @@ export default {
       }
     },
     save: function(types, single) {
-      if (single) {
+      if (!types.length) {
+        return
+      } else if (single) {
         let updatedRessources = {}
         this.types.forEach(t => {
           updatedRessources[t.meta.id] = Object.assign({}, t.individu[t.meta.id])

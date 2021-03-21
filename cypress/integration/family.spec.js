@@ -13,7 +13,25 @@ context('Full simulation', () => {
     steps.couple()
     steps.conjoint()
     steps.sansDomicileStable()
-    // steps.salaireSeul()
+    steps.salaireSeul()
+
+    cy.get('button[type="submit"]').click()
+
+    cy.contains('fieldset', 'Votre 1ᵉʳ enfant').find('input[value=true]').check()
+    cy.get('button[type="submit"]').click()
+
+    cy.get('div').find('input[type="checkbox"]').first().check()
+    cy.get('button[type="submit"]').click()
+
+    cy.get('div').as('salarySection')
+    cy.get('@salarySection').find('input[type="radio"][value="false"]').first().check()
+    cy.get('@salarySection').find('input[type="number"]').as('inputs')
+    cy.get('@inputs').its('length').should('equal', 13)
+
+    cy.get('@inputs').eq(0).type(400)
+    cy.get('@inputs').eq(2).type('{selectall}0')
+    cy.get('button[type="submit"]').click()
+
     // steps.sansPensionAlimentaireVersees()
     // steps.hasPrimeActivite()
     steps.hasLogementSocial()

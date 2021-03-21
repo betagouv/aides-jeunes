@@ -3,31 +3,31 @@
 let ressourceCategories = [
     {
         id: 'revenusActivite',
-        label: 'Revenus d’activité',
+        label: 'Percevez vous des revenus d\'activité ?',
     },
     {
         id: 'rpns',
-        label: 'Revenus professionnels non salariés',
+        label: 'Percevez vous des revenus professionnels non salariés ?',
     },
     {
         id: 'allocations',
-        label: 'Allocations',
+        label: 'Quelle(s) allocation(s) percevez-vous déjà ?',
     },
     {
         id: 'indemnites',
-        label: 'Indemnités',
+        label: 'Percevez vous des indemnités ?',
     },
     {
         id: 'pensions',
-        label: 'Pensions',
+        label: 'Percevez vous des pensions ?',
     },
     {
         id: 'patrimoine',
-        label: 'Revenus du patrimoine',
+        label: 'Percevez-vous des revenus du patrimoine ?',
     },
     {
         id: 'autre',
-        label: 'Autres',
+        label: 'Percevez-vous d\'autres revenus ?',
     }
 ];
 
@@ -288,27 +288,27 @@ let ressourceTypes = [
     },
     {
         id: 'tns_micro_entreprise_chiffre_affaires',
-        label: 'Micro-entreprise',
+        label: 'Via une micro-entreprise',
         category: 'rpns',
         isMontantAnnuel: true,
         extra: ['tns_micro_entreprise_type_activite']
     },
     {
         id: 'tns_auto_entrepreneur_chiffre_affaires',
-        label: 'Auto-entrepreneur',
+        label: 'En tant qu\'auto-entrepreneur',
         category: 'rpns',
         interuptionQuestionLabel: 'un chiffre d’affaires non nul',
         extra: ['tns_auto_entrepreneur_type_activite']
     },
     {
         id: 'tns_benefice_exploitant_agricole',
-        label: 'Exploitant agricole',
+        label: 'En tant qu\'exploitant agricole',
         category: 'rpns',
         isMontantAnnuel: true
     },
     {
         id: 'tns_autres_revenus',
-        label: 'Profession libérale, entrepreneur',
+        label: 'En profession libérale (entrepreneur)',
         category: 'rpns',
         isMontantAnnuel: true,
         extra: ['tns_autres_revenus_type_activite']

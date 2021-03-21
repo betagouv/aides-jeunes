@@ -13,7 +13,10 @@ export default {
   },
   computed: {
     individu: function() {
-      return Individu.find(this.$store.state.situation, this.$route.params.role, this.$route.params.id)
+      const id = this.$route.params.id
+      const role = id.split('_')[0]
+      const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
+      return individu
     }
   }
 }

@@ -154,7 +154,7 @@ export function sansDomicileStable() {
 }
 
 export function salaireSeul() {
-  cy.get('div').find('input[type="checkbox"]').first().check()
+  cy.get('form').find('input[type="checkbox"] ').first().check()
   cy.get('button[type="submit"]').click()
 
   cy.get('div').as('salarySection')
@@ -174,7 +174,7 @@ export function hasPrimeActivite() {
   const name = /prime d’activité/
   const id = 'ppa'
   const description = /revenus/
-  cy.get('h1').invoke('text').should('contain', 'Résultats')
+  cy.get('#print-disclaimer', { timeout: 15000 }).invoke('text').should('contain', 'engagement')
   cy.get('.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' + position + ')', { timeout: 6000 }).as(id + '-summary')
   cy.get('@' + id + '-summary').get('[itemprop="name"]').invoke('text')
     .should('match', name)

@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 
 import store from './store'
-import Individu from '@/lib/Individu'
 
 Vue.use(Router)
 
@@ -127,14 +126,28 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/_FirstName.vue'),
         },
         {
+          name: 'ressources/types',
+          path: 'ressources/types',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Types.vue'),
+        },
+        {
+          name: 'ressources/montants',
+          path: 'ressources/montants/:category',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Montants.vue'),
+        },
+        {
           name: 'property',
-          path: ':property',
+          path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
         }]
       },
       {
         path: 'enfants',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Enfants.vue'),
+      },
+      {
+        path: 'enfants/ressources',
+        component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Enfants.vue'),
       },
       {
         path: 'famille',
@@ -227,28 +240,8 @@ const router = new Router({
           title: 'Mon logement',
         }
       }, {
-        name: 'ressources/types',
-        path: ':role/:id?/ressources/types',
-        component: () => import(/* webpackChunkName: "ressources-types" */ './views/Foyer/Ressources/Types.vue'),
-        meta: {
-          title: function(to, situation) {
-            const individu = Individu.find(situation, to.params.role, to.params.id)
-            return Individu.ressourceHeader(individu)
-          }
-        }
-      }, {
-        name: 'ressources/montants',
-        path: ':role/:id?/ressources/montants',
-        component: () => import(/* webpackChunkName: "ressources-montants" */ './views/Foyer/Ressources/Montants.vue'),
-        meta: {
-          title: function(to, situation) {
-            const individu = Individu.find(situation, to.params.role, to.params.id)
-            return Individu.ressourceHeader(individu)
-          }
-        }
-      }, {
         path: 'ressources/enfants',
-        component: () => import(/* webpackChunkName: "ressources-enfants" */ './views/Foyer/Ressources/Enfants.vue'),
+        component: () => import(/* webpackChunkName: "ressources-enfants" */ './views/Simulation/Ressources/Enfants.vue'),
         meta: {
           title: 'Les ressources de vos enfants'
         }

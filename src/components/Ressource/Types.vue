@@ -1,8 +1,12 @@
 <template>
   <form>
     <p>
-      Sélectionnez les types de ressources perçues <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong>,
-      vous pourrez ensuite saisir les montants.
+      Sélectionnez les types de ressources perçues
+      <strong>
+      <span v-if="individu._role === 'conjoint'">par votre conjoint(e)</span>
+      <span v-else-if="individu._role !== 'demandeur'">par {{ individu._firstName }}</span>
+      depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong>.
+      Vous pourrez ensuite saisir les montants.
     </p>
       <div class="form__group" v-for="category in categories" v-bind:key="category.id">
         <h2>{{ category.label }}</h2>
@@ -12,19 +16,22 @@
         </label>
       </div>
     <div class="form__group">{{ countLabel }}</div>
-    <div class="text-right">
-      <button type="submit" class="button large" v-on:click.prevent="next">Valider</button>
-    </div>
+    <Actions v-bind:onSubmit='onSubmit'>
+    </Actions>
   </form>
 </template>
 
 <script>
+import Actions from '@/components/Actions'
 import _ from 'lodash'
 import {ressourceCategories, ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 
 export default {
   name: 'RessourceTypes',
+  components: {
+      Actions
+  },
   props: {
     individu: Object
   },
@@ -49,7 +56,7 @@ export default {
     }
   },
   methods: {
-    next: function() {
+    onSubmit: function() {
       Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.$store.state.dates)
       this.$store.dispatch('updateIndividu', this.individu)
       this.$push(this.$store.state.situation)

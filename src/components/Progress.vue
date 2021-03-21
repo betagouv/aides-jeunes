@@ -3,18 +3,8 @@
     <h2>Récapitulatif de votre simulation</h2>
     <h3>Parcours complet</h3>
     <ul>
-      <li v-for="(route) in full" v-bind:key="route.fullPath || route">
-        <router-link v-bind:to="route" >{{route.fullPath || route}}</router-link>
-      </li>
-    </ul>
-
-    <h3>Étape courante</h3>
-    <p>{{current.fullPath}}</p>
-
-    <h3>Étapes restantes</h3>
-    <ul>
-      <li v-for="(route) in next" v-bind:key="route.fullPath || route">
-        <router-link v-bind:to="route" >{{route.fullPath || route}}</router-link>
+      <li v-for="(step) in full" v-bind:key="step.key || step.fullPath">
+        <router-link v-bind:class="{ inactive: !step.isActive, current: step.fullPath == current}" v-bind:to="step.fullPath" >{{step.fullPath}}</router-link>
       </li>
     </ul>
   </div>
@@ -25,15 +15,20 @@ export default {
   name: 'Progress',
   computed: {
     full: function() {
-      const start = '/' || this.$route
-      return [start].concat(this.$state.full(start, this.$store.state.situation, this.$router))
+      return this.$state.full(this.$store.state.situation, this.$router)
     },
     current: function() {
-      return this.$route
-    },
-    next: function() {
-      return this.$state.full(this.$route, this.$store.state.situation, this.$router)
+      return this.$route.fullPath
     },
   }
 }
 </script>
+
+<style type="text/css">
+  .inactive {
+    text-decoration: line-through;
+  }
+  .current {
+    font-weight: bold;
+  }
+</style>

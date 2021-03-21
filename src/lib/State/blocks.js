@@ -1,9 +1,23 @@
 const Individu = require('@/lib/Individu').default;
 const Ressource = require('@/lib/Ressource').default;
-const { datesGenerator } = require('../../backend/lib/mes-aides');
+const { datesGenerator } = require('../../../backend/lib/mes-aides');
+
+function Step({key, entity, id, variable}) {
+  this.fullPath = entity ? `/simulation/${entity}${id ? `/${id}` : ''}${variable ? `/${variable}` : ''}` : '/'
+  this.key = key || this.fullPath
+  this.entity = entity
+  this.id = id
+  this.variable = variable
+}
+
+function ComplexStep({route, key, entity, id, variable, defaults}) {
+  Step.call(this, {route, key, entity, id, variable})
+  this.defaults = defaults
+}
+ComplexStep.prototype = Object.create(Step.prototype)
 
 function individuBlockFactory(id) {
-  const r = name => `/simulation/individu/${id}/${name}`
+  const r = variable => new Step({entity: 'individu', id, variable})
   const conjoint = id == 'conjoint'
   const demandeur = id == 'demandeur'
   const enfant = id.startsWith('enfant')
@@ -72,63 +86,66 @@ function individuBlockFactory(id) {
   }
 }
 
-function kidBlock(situation, current) {
-  // if currently on a kid
-  // finish local states and go to main kids view and proceed
-  // console.log('kidBlock', situation, current.name)
-  if (current.params && current.params.id && current.params.id.startsWith('enfant_')) {
-    let block = individuBlockFactory(current.params.id)
-    block.steps.push('/simulation/enfants')
-    return block
-  } else {
-    return {
-      steps: [
-      '/simulation/enfants'
-      ]
-    }
+function kidBlock(situation) {
+  return {
+    steps: [
+      new Step({entity: 'enfants'}),
+      ...(situation.enfants.length ? (situation.enfants.map(e => {
+        return {
+          steps: [individuBlockFactory(e.id), new Step({entity: 'enfants', key:`enfants#${e.id}`})]
+        }
+      })) : [])
+    ]
   }
 }
 
-function housingBlock(/*situation, current*/) {
+function housingBlock() {
   return {
     subject: situation => situation.menage,
     steps: [
-      '/simulation/logement',
+      new Step({entity: 'logement'}),
       {
-        isActive: subject => subject.statut_occupation_logement && (subject.statut_occupation_logement === 'primo_accedant' || subject.statut_occupation_logement === 'proprietaire'),
-        steps: [
-          '/simulation/menage/loyer'
-        ]
-     }, {
         isActive: subject => !subject.statut_occupation_logement || subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
-          '/simulation/menage/coloc',
-          '/simulation/menage/logement_chambre',
-          '/simulation/famille/proprietaire_proche_famille',
-          '/simulation/menage/loyer',
-        ]
-     }, {
-        isActive: subject => subject.statut_occupation_logement == "loge_gratuitement",
-        steps: [
-          '/simulation/menage/participation_frais',
-          '/simulation/individu/demandeur/habite_chez_parents',
+          new Step({entity: 'menage', variable: 'coloc'}),
+          new Step({entity: 'menage', variable: 'logement_chambre'}),
+          new Step({entity: 'famille', variable: 'proprietaire_proche_famille'}),
         ]
      },
-     '/simulation/menage/depcom',
+     {
+        isActive: subject => {
+          const locataire = (! subject.statut_occupation_logement) || subject.statut_occupation_logement.startsWith("locataire")
+          const proprietaire = subject.statut_occupation_logement && (subject.statut_occupation_logement === 'primo_accedant' || subject.statut_occupation_logement === 'proprietaire')
+          return locataire || proprietaire
+        },
+        steps: [
+          new ComplexStep({entity: 'menage', variable: 'loyer'}),
+        ]
+     },
+     {
+        isActive: subject => subject.statut_occupation_logement == "loge_gratuitement",
+        steps: [
+          new Step({entity: 'menage', variable: 'participation_frais'}),
+          new Step({entity: 'individu', id: 'demandeur', variable: 'habite_chez_parents'}),
+        ]
+     },
+     new Step({entity: 'menage', variable: 'depcom'}),
      {
         isActive: subject => subject.depcom && subject.depcom.startsWith('75'),
-        steps: ['/simulation/famille/parisien'],
+        steps: [
+          new Step({entity: 'famille', variable: 'parisien'}),
+        ],
      }
     ]
   }
 }
 
-function resourceBlocks(situation/*, current*/) {
+function resourceBlocks(situation) {
   const individuResourceBlock = (individuId) => {
     const individu = situation[individuId] || situation.enfants.find(enfant => enfant.id === individuId) || {}
     return {
       steps: [
-        `/simulation/individu/${individuId}/ressources/types`
+        new ComplexStep({entity: 'individu', id: individuId, variable: 'ressources/types'})
       ].concat(
           Ressource.getIndividuRessourceCategories(individu).map(category => `/simulation/individu/${individuId}/ressources/montants/${category}`)
       )
@@ -138,7 +155,7 @@ function resourceBlocks(situation/*, current*/) {
     steps: [
       individuResourceBlock('demandeur'),
       ...(situation.conjoint ? [individuResourceBlock('conjoint')] : []),
-      ...(situation.enfants.length ? ['/simulation/enfants/ressources'] : []),
+      ...(situation.enfants.length ? [new Step({entity:'enfants', variable: 'ressources'})] : []),
       {
         steps: situation.enfants.map(e => {
           return e._hasRessources ? individuResourceBlock(e.id) : {steps: []}
@@ -148,53 +165,36 @@ function resourceBlocks(situation/*, current*/) {
   }
 }
 
-function processBlock({journey, subject, situation, current}, b) {
-  if (typeof(b) == 'string') {
-    journey.push(b)
-  } else {
-    let blockSubject = b.subject ? b.subject(subject, situation) : (subject || situation)
-    if (!b.isActive || b.isActive(blockSubject, situation, current)) {
-      b.steps.forEach(s => processBlock({journey, subject: blockSubject, situation, current}, s))
-    }
-  }
-}
-
-// First pass => block list generation
-// Second pass => block processint
-function generateJourney(situation, current) {
-  const blocks = [
-    {steps: ['/']},
+function generateBlocks(situation) {
+  return [
+    {steps: [new Step({})]},
     individuBlockFactory('demandeur'),
-    kidBlock(situation, current),
+    kidBlock(situation),
     {
       steps: [
-        '/simulation/famille/en_couple', {
+        new Step({entity: 'famille', variable: 'en_couple'}),
+        {
           isActive: (situation) => situation.enfants && situation.enfants.length && !situation.famille.en_couple,
           steps: [
-            '/simulation/famille/rsa_isolement_recent',
+            new Step({entity: 'famille', variable: 'rsa_isolement_recent'}),
           ]
         },
         ...(situation.conjoint ? [individuBlockFactory('conjoint')] : []),
       ]
     },
-    housingBlock(situation, current),
-    resourceBlocks(situation, current),
+    housingBlock(situation),
+    resourceBlocks(situation),
     {
       steps: [
-        '/simulation/resultats',
-        '/simulation/resultats'
+        new Step({entity: 'resultats'}),
+        new Step({entity: 'resultats'})
       ]
     }
   ]
-
-  function processBlocks({situation, current}) {
-    let journey = []
-    blocks.forEach(b => {
-      processBlock({journey, subject: situation, situation, current}, b)
-    })
-    return journey
-  }
-  return processBlocks({situation, current})
 }
 
-exports.generateJourney = generateJourney
+module.exports = {
+  generateBlocks,
+  Step,
+  ComplexStep,
+}

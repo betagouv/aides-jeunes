@@ -10,7 +10,6 @@ import _ from 'lodash'
 import { computeAides, datesGenerator } from '../backend/lib/mes-aides'
 import { categoriesRnc, patrimoineTypes } from './constants/resources'
 import Institution from './lib/Institution'
-import {full} from './lib/State'
 
 let DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage']
 
@@ -181,11 +180,7 @@ const store = new Vuex.Store({
     },
     hasResults: function(state) {
       return state.situation._id && state.calculs.resultats._id && state.calculs.resultats._id === state.situation._id
-    },
-    inactiveScreens: function({state}) {
-      return full(state.situation).filter(s => !s.isActive)
-    },
-
+    }
   },
   mutations: {
     clear: function(state) {

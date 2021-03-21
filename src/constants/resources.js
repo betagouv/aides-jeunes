@@ -11,7 +11,7 @@ let ressourceCategories = [
     },
     {
         id: 'allocations',
-        label: 'À quelle(s) allocation(s) avez vous droit ?',
+        label: 'Quelle(s) allocation(s) percevez-vous déjà ?',
     },
     {
         id: 'indemnites',
@@ -23,7 +23,7 @@ let ressourceCategories = [
     },
     {
         id: 'patrimoine',
-        label: 'Percevez-vous des revenus patrimoniaux ?',
+        label: 'Percevez-vous des revenus du patrimoine ?',
     },
     {
         id: 'autre',

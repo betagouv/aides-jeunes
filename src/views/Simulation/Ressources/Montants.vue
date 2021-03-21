@@ -29,8 +29,6 @@ import {ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 import Individu from '@/lib/Individu'
 
-import _ from 'lodash'
-
 export default {
   name: 'ressources-montants',
   mixins: [RessourceProcessor],
@@ -42,21 +40,14 @@ export default {
     RessourceMontants,
     Actions
   },
-  data: function() {
-    const individu = this.getIndividu()
-    return {
-      individu,
-      types: this.getTypes(individu)
+  computed: {
+    individu: function() {
+      return this.getIndividu()
+    },
+    types:function() {
+      return this.getTypes(this.individu)
     }
   },
-    watch: {
-      $route (toRoute, fromRoute){
-          if (!_.isEqual(toRoute.params, fromRoute.params)) {
-              this.individu = this.getIndividu()
-              this.types = this.getTypes(this.individu)
-          }
-      }
-    },
   methods: {
     getIndividu: function() {
       const id = this.$route.params.id

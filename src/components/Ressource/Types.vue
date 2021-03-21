@@ -5,9 +5,8 @@
       <strong>
       <span v-if="individu._role === 'conjoint'">par votre conjoint(e)</span>
       <span v-else-if="individu._role !== 'demandeur'">par {{ individu._firstName }}</span>
-      depuis {{ $store.state.dates.twelveMonthsAgo.label }}
-      </strong>,
-      vous pourrez ensuite saisir les montants.
+      depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong>.
+      Vous pourrez ensuite saisir les montants.
     </p>
       <div class="form__group" v-for="category in categories" v-bind:key="category.id">
         <h2>{{ category.label }}</h2>

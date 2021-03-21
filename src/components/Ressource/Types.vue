@@ -59,7 +59,7 @@ export default {
   methods: {
     onSubmit: function() {
       Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.$store.state.dates)
-      this.$store.dispatch('updateIndividu', Object.assign({}, this.individu, {_ressourcesCategories: Ressource.getIndividuRessourceCategories(this.individu)}))
+      this.$store.dispatch('updateIndividu', this.individu)
       this.$push(this.$store.state.situation)
     },
     sort: function(array) {

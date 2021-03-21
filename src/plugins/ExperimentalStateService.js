@@ -1,4 +1,5 @@
 const Individu = require('@/lib/Individu').default;
+const Ressource = require('@/lib/Ressource').default;
 const { datesGenerator } = require('../../backend/lib/mes-aides');
 
 function individuBlockFactory(id) {
@@ -7,14 +8,7 @@ function individuBlockFactory(id) {
   const demandeur = id == 'demandeur'
   const enfant = id.startsWith('enfant')
   return {
-    subject: situation => {
-      if (situation[id]) {
-        return situation[id]
-      } else if (situation.enfants && situation.enfants.length) {
-        let matches = situation.enfants.filter(e => e.id == id)
-        return matches.length && matches[0]
-      }
-    },
+    subject: situation => situation[id] || situation.enfants.find(enfant => enfant.id === id) || {},
     steps: [
       ...(enfant ? [r('_firstName')] : []),
       r('date_naissance'),
@@ -136,7 +130,7 @@ function resourceBlocks(situation/*, current*/) {
       steps: [
         `/simulation/individu/${individuId}/ressources/types`
       ].concat(
-          individu._ressourcesCategories ? individu._ressourcesCategories.map(category => `/simulation/individu/${individuId}/ressources/montants/${category}`) : []
+          Ressource.getIndividuRessourceCategories(individu).map(category => `/simulation/individu/${individuId}/ressources/montants/${category}`)
       )
     }
   }

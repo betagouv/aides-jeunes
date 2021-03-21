@@ -7,12 +7,6 @@
         <router-link v-bind:class="{ inactive: !step.isActive, current: step.fullPath == current}" v-bind:to="step.fullPath" >{{step.fullPath}}</router-link>
       </li>
     </ul>
-    <h3>Écrans évités</h3>
-    <ul>
-      <li v-for="(step) in inactiveScreens" v-bind:key="step.key || step.fullPath">
-        <router-link v-bind:class="{ inactive: !step.isActive, current: step.fullPath == current}" v-bind:to="step.fullPath" >{{step.fullPath}}</router-link>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -22,9 +16,6 @@ export default {
   computed: {
     full: function() {
       return this.$state.full(this.$store.state.situation, this.$router)
-    },
-    inactiveScreens: function() {
-      return this.full.filter(s => !s.isActive)
     },
     current: function() {
       return this.$route.fullPath

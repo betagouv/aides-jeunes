@@ -146,6 +146,7 @@ export function enfant(params={}) {
 
 export function celibataire() {
   cy.get('h1').invoke('text').should('contain', 'couple')
+  cy.get('input[type="radio"]').check('false')
   cy.get('button[type="submit"]').click()
 }
 

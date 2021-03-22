@@ -48,7 +48,7 @@
         },
         methods: {
             onSubmit: function() {
-                if (this.value === undefined) {
+                if (this.habiteChezParentsQuestion.selectedValue === undefined) {
                     this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
                     return
                 }

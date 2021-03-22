@@ -1,7 +1,7 @@
 <template>
   <div class="aj-input-date">
     <div v-if="showDay" class="aj-input-date-component day">
-        <span class="aj-date-label">jour</span>
+        <label class="aj-date-label">jour</label>
         <input
             type="number"
             autofocus
@@ -16,7 +16,7 @@
             />
     </div>
     <div class="aj-input-date-component month">
-        <span class="aj-date-label">mois</span>
+        <label class="aj-date-label">mois</label>
         <input
           type="number"
           ref="month"
@@ -29,7 +29,7 @@
           />
     </div>
     <div class="aj-input-date-component year">
-        <span class="aj-date-label">année</span>
+        <label class="aj-date-label">année</label>
         <input
           type="number"
           ref="year"

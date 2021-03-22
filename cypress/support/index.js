@@ -43,12 +43,13 @@ export function demandeur(params={}) {
   // Activite
   cy.get('h1').invoke('text').should('contain', 'Êtes-vous')
   cy.get('label').invoke('text').should('contain', 'En activité')
+  cy.get('input[type="radio"]').check('actif')
   cy.get('button[type="submit"]').click()
-
   // Handicap
   handicap(params)
   // Inapte au travail
   cy.get('h1').invoke('text').should('contain', 'inapte au travail')
+  cy.get('input[type="radio"]').check('true')
   cy.get('button[type="submit"]').click()
 }
 
@@ -67,6 +68,7 @@ export function handicap(params) {
       cy.get('button[type="submit"]').click()
     }
   } else {
+    cy.get('input[type="radio"]').check('false')
     cy.get('button[type="submit"]').click()
   }
 }
@@ -103,12 +105,15 @@ export function conjoint(params={}) {
   // Activite
   cy.get('h1').invoke('text').should('contain', 'est-il/elle')
   cy.get('label').invoke('text').should('contain', 'En activité')
+  cy.get('input[type="radio"]').check('actif')
   cy.get('button[type="submit"]').click()
   // Handicap
   cy.get('h1').invoke('text').should('contain', 'handicap')
+  cy.get('input[type="radio"]').check('false')
   cy.get('button[type="submit"]').click()
   // Inapte au travail
   cy.get('h1').invoke('text').should('contain', 'inapte au travail')
+  cy.get('input[type="radio"]').check('false')
   cy.get('button[type="submit"]').click()
 }
 
@@ -124,9 +129,11 @@ export function enfant(params={}) {
   cy.get('button[type="submit"]').click() // Nationalité
   // Garde Alterne
   cy.get('h1').invoke('text').should('contain', 'en garde alternée')
+  cy.get('input[type="radio"]').check('true')
   cy.get('button[type="submit"]').click()
   // Handicap
   cy.get('h1').invoke('text').should('contain', 'handicap')
+  cy.get('input[type="radio"]').check('false')
   cy.get('button[type="submit"]').click()
   // Scolarite
   cy.get('h1').invoke('text').should('contain', 'scolarisé·e')

@@ -46,7 +46,8 @@
         methods: {
             onSubmit: function() {
                 if (this.colocQuestion.selectedValue === undefined) {
-                    this.$store.dispatch('updateError', true)
+                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
+                    return
                 }
                 this.menage.coloc = this.colocQuestion.selectedValue
                 this.$store.dispatch('updateMenage', this.menage)

@@ -50,7 +50,8 @@
         methods: {
             onSubmit: function() {
                 if (this.chambreQuestion.selectedValue === undefined) {
-                    this.$store.dispatch('updateError', true)
+                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
+                    return
                 }
                 this.menage.logement_chambre = this.chambreQuestion.selectedValue
                 this.$store.dispatch('updateMenage', this.menage)

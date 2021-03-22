@@ -28,7 +28,8 @@ export default {
   methods: {
     onSubmit: function() {
       if (this.value === undefined) {
-        this.$store.dispatch('updateError', true)
+        this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
+        return
       }
       this.famille.rsa_isolement_recent = this.value
       this.$store.dispatch('updateFamille', this.famille)

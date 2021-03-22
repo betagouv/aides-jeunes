@@ -36,7 +36,7 @@ export default {
   methods: {
     onSubmit: function() {
         if (this.value === undefined) {
-          this.$store.dispatch('updateError', true)
+          this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
           return
         }
         this.individu['enfant_a_charge'][this.$store.state.dates.thisYear.id] = this.value

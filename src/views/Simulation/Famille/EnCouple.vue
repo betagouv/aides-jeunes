@@ -29,7 +29,7 @@ export default {
   methods: {
     onSubmit: function() {
       if (this.value === undefined) {
-        this.$store.dispatch('updateError', true)
+        this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
         return
       }
       this.famille.en_couple = this.value

@@ -71,7 +71,7 @@ function mapIndividus(situation) {
     }, {});
 }
 
-function giveValueToRequestedVariables(testCase, periods, value) {
+function giveValueToRequestedVariables(testCase, periods, value, situation) {
     if (! (periods instanceof Array)) {
         periods = [periods];
     }
@@ -85,6 +85,12 @@ function giveValueToRequestedVariables(testCase, periods, value) {
                 }
                 if (value === undefined) {
                     delete entity[prestationName][period];
+                } else if (definition.interestFlag) {
+                    if (situation.demandeur[definition.interestFlag]) {
+                        entity[prestationName][period] = value; 
+                    } else {
+                        delete entity[prestationName][period];
+                    }
                 } else {
                     entity[prestationName][period] = value;
                 }
@@ -146,7 +152,7 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     var periods = common.getPeriods(situation.dateDeValeur);
     setNonInjectedPrestations(testCase, _.difference(periods.last12Months, periods.last3Months), 0);
     last3MonthsDuplication(testCase, situation.dateDeValeur);
-    giveValueToRequestedVariables(testCase, periods.thisMonth, null);
+    giveValueToRequestedVariables(testCase, periods.thisMonth, null, situation);
 
     return applyHeuristicsAndFix(testCase, sourceSituation.dateDeValeur);
 };

@@ -1,15 +1,15 @@
 <template>
   <fieldset>
-    <label>
-      <input type="radio" name="nationalite" v-model="zone" value="fr" />
+    <input id="fr" type="radio" name="nationalite" v-model="zone" value="fr" />
+    <label for="fr">
       Française
     </label>
-    <label>
-      <input type="radio" name="nationalite" v-model="zone" value="ue" />
+    <input id="ue" type="radio" name="nationalite" v-model="zone" value="ue" />
+    <label for="ue">
       Européenne
     </label>
-    <label>
-      <input type="radio" name="nationalite" v-model="zone" value="autre" />
+    <input id="autre" type="radio" name="nationalite" v-model="zone" value="autre" />
+    <label for="autre">
       Non européenne
     </label>
   </fieldset>

@@ -112,6 +112,36 @@ html {
           border-radius: var(--theme-border-radius);
         }
 
+
+
+        input[type=range]::-moz-range-thumb {
+          -webkit-appearance: none !important;
+          border-radius: 100% !important;
+          background-color: var(--theme-primary);
+          border: 2px solid var(--theme-background-white);
+          height: 20px;
+          width: 20px;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+          -webkit-appearance: none !important;
+          border-radius: 100% !important;
+          background-color: var(--theme-primary);
+          border: 2px solid var(--theme-background-white);
+          height: 25px;
+          width: 25px;
+          margin-top: -10px;
+        }
+
+        input[type=range]::-ms-thumb {
+          -webkit-appearance: none !important;
+          border-radius: 100% !important;
+          background-color: var(--theme-primary);
+          border: 2px solid var(--theme-background-white);
+          height: 20px;
+          width: 20px;
+        }
+
         input[type=range] {
           -webkit-appearance: none;
           vertical-align: middle;
@@ -119,6 +149,8 @@ html {
           border: none;
           padding: 0;
           background: none;
+          box-sizing: border-box;
+          height: 2em;
 
           &::-webkit-slider-runnable-track {
             background-color: var(--theme-primary);
@@ -150,26 +182,8 @@ html {
             display: none;
           }
 
-          &::-moz-range-thumb {
-            border-radius: 20px;
-            height: 18px;
-            width: 18px;
-            border: none;
-            background: none;
-            background-color: var(--theme-primary);
-          }
-
-          &:active::-moz-range-thumb, &:active::-webkit-slider-thumb {
+          &:active::-moz-range-thumb, &:active::-webkit-slider-thumb, &:active::-ms-thumb {
             outline: none;
-          }
-
-          &::-webkit-slider-thumb, &::-ms-thumb {
-            -webkit-appearance: none !important;
-            border-radius: 100% !important;
-            background-color: var(--theme-primary);
-            height: 18px;
-            width: 18px;
-            margin-top: -7px;
           }
         }
 

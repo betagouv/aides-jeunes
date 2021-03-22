@@ -4,7 +4,7 @@
       {{ error }}
     </p>
     <div class="aj-actions">
-        <button v-if="next" class="button" type="submit" v-show="onSubmit" v-on:click="localOnSubmit($event)">Suivant</button>
+        <button class="button" type="submit" v-show="onSubmit" v-on:click="localOnSubmit($event)">Suivant</button>
         <slot></slot>
     </div>
   </div>
@@ -18,10 +18,6 @@ export default {
     onSubmit: {
         type: Function,
         default() {}
-    },
-    next: {
-        type: Boolean,
-        default: true
     }
   },
   data() {

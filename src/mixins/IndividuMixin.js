@@ -42,7 +42,7 @@ export const createIndividuMixin = (props, optional) => {
                 return labelDict[type][this.role];
             },
             onSubmit: function() {
-                if (!this.optional && !this.value) {
+                if (!this.optional && this.value !== undefined) {
                     this.error = true
                     return
                 }

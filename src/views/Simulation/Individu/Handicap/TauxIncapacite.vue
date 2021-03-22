@@ -1,14 +1,18 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>{{ role === 'demandeur' ? `Quel est votre taux d'incapacité` : `Quel est le taux d'incapacité de ${getLabel('nom')}` }} évalué par {{getLabel('possessif')}} <abbr title="Maison départementale des personnes handicapées">MDPH</abbr>&nbsp;?</h1>
-    <label v-for="tauxIncapacite in tauxIncapaciteOptions" v-bind:key="tauxIncapacite.value">
-      <input type="radio"
-          name="tauxIncapacite"
-          v-model="value"
-          v-bind:value="tauxIncapacite.value"
-          />
+    <legend>{{ role === 'demandeur' ? `Quel est votre taux d'incapacité` : `Quel est le taux d'incapacité de ${getLabel('nom')}` }} évalué par {{getLabel('possessif')}} <abbr title="Maison départementale des personnes handicapées">MDPH</abbr>&nbsp;?</legend>
+    <template v-for="tauxIncapacite in tauxIncapaciteOptions">
+      <input :id="tauxIncapacite.value"
+             type="radio"
+             name="tauxIncapacite"
+             v-model="value"
+             v-bind:value="tauxIncapacite.value"
+             v-bind:key="tauxIncapacite.value"
+      />
+      <label :for="tauxIncapacite.value" v-bind:key="tauxIncapacite.value">
           {{ tauxIncapacite.label }}
-    </label>
+      </label>
+    </template>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>
@@ -37,7 +41,7 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin('taux_incapacite')], 
+  mixins: [createIndividuMixin('taux_incapacite')],
   data: function() {
     return {
       tauxIncapaciteOptions

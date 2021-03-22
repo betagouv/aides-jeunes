@@ -1,8 +1,10 @@
 <template>
   <fieldset>
     <legend><slot></slot><slot name="help"></slot></legend>
-    <label><input type="radio" v-bind:value="true" v-bind:name="uniqueFieldName" v-model="model">Oui</label>
-    <label><input type="radio" v-bind:value="false" v-bind:name="uniqueFieldName" v-model="model">Non</label>
+    <input id="yes" type="radio" v-bind:value="true" v-bind:name="uniqueFieldName" v-model="model">
+    <label for="yes">Oui</label>
+    <input id="no" type="radio" v-bind:value="false" v-bind:name="uniqueFieldName" v-model="model">
+    <label for="no">Non</label>
   </fieldset>
 </template>
 

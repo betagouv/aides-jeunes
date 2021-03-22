@@ -8,12 +8,6 @@
 
     export default {
         name: 'TitreChapitre',
-        props: {
-            text: {
-                type: String,
-                default: 'Précédent'
-            }
-        },
         data() {
             return {}
         },

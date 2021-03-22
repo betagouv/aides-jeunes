@@ -159,6 +159,8 @@ export function couple() {
 export function sansDomicileStable() {
   cy.get('input[name="logementType"').get('[value="sansDomicile"]').check()
   cy.get('button[type="submit"]').click() // Logement
+  cy.get('input[type="number"')
+    .type('94120')
   cy.get('button[type="submit"]').click() // Commune de résidence
 }
 

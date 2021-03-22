@@ -119,7 +119,7 @@
             onSubmit: function() {
                 if (!this.logementTypesQuestion.selectedValue) {
                     this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
-                } else if (this.logementTypesQuestion.selectedValue === 'proprietaire' && !this.primoAccedantQuestion.selectedValue) {
+                } else if (this.logementTypesQuestion.selectedValue === 'proprietaire' && this.primoAccedantQuestion.selectedValue === null) {
                     this.$store.dispatch('updateError', 'Le champ primo-accédant est obligatoire.')
                 } else if (this.logementTypesQuestion.selectedValue === 'locataire' && !this.locataireTypesQuestion.selectedValue) {
                     this.$store.dispatch('updateError', 'Le champ type de logement est obligatoire.')

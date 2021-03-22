@@ -49,7 +49,7 @@
         },
         methods: {
             onSubmit: function() {
-                if (this.value === undefined) {
+                if (this.proprietaireProcheQuestion.selectedValue === undefined) {
                     this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
                     return
                 }

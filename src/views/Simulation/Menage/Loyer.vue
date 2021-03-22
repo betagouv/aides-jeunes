@@ -50,7 +50,7 @@
                     this.$store.dispatch('updateError', 'Le champ montant du loyer est obligatoire.')
                     return
                 }
-                if (this.chargesQuestion.selectedValue === undefined) {
+                if (this.captureCharges && this.chargesQuestion.selectedValue === undefined) {
                     this.$store.dispatch('updateError', 'Le champ charges locatives est obligatoire.')
                     return
                 }

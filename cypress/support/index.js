@@ -101,6 +101,7 @@ export function conjoint(params={}) {
   cy.get('button[type="submit"]').click()
   // Statut Marital
   cy.get('h1').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
+  cy.get('select').select('marie') 
   cy.get('button[type="submit"]').click()
   // Activite
   cy.get('h1').invoke('text').should('contain', 'est-il/elle')

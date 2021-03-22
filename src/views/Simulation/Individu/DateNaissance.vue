@@ -5,9 +5,6 @@
         `Quelle est votre date de naissance&nbsp;?` :
         `Quelle est la date de naissance ${getLabel('nom')}&nbsp;?`}}</h1>
       <InputDate required id="date_naissance" v-model="value" />
-      <p class="notification warning" v-if="error">
-        Ce champ est obligatoire.
-      </p>
     </label>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form >

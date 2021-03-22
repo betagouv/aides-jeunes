@@ -42,10 +42,11 @@ export const createIndividuMixin = (props, optional) => {
                 return labelDict[type][this.role];
             },
             onSubmit: function() {
-                if (!this.optional && this.value !== undefined) {
-                    this.error = true
+                if (!this.optional && this.value === undefined) {
+                    this.$store.dispatch('updateError', true)
                     return
                 }
+                this.$store.dispatch('updateError', false)
                 this.individu[props] = this.value
                 this.$store.dispatch('updateIndividu', this.individu)
                 this.$push()

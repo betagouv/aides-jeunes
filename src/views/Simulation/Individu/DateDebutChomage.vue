@@ -3,9 +3,6 @@
     <label>
       <h1>Quand {{getLabel('avoir')}} commencé à être au chômage&nbsp;?</h1>
       <InputDate required id="date_debut_chomage" v-model="value" />
-      <p class="notification warning" v-if="error">
-        Ce champ est obligatoire.
-      </p>
     </label>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form >

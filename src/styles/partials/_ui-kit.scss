@@ -42,7 +42,8 @@ html {
         position: relative;
 
         input[type="radio"] {
-          display: none;
+          //TO UNCOMMNET AFTER HTML REFACTOR
+          //display: none;
 
           & + label {
             display: inline-flex;

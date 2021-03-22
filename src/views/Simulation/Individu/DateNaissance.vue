@@ -4,6 +4,7 @@
         {{ role === 'demandeur' ?
         `Quelle est votre date de naissance&nbsp;?` :
         `Quelle est la date de naissance ${getLabel('nom')}&nbsp;?`}}
+        <EnSavoirPlus text="Lorem ipsum dolor sit amen insec elpur vim datae" />
     </legend>
     <InputDate required id="date_naissance" v-model="value" />
     <p class="notification warning" v-if="error">
@@ -16,6 +17,7 @@
 <script>
 import Actions from '@/components/Actions'
 import InputDate from '@/components/InputDate'
+import EnSavoirPlus from '@/components/EnSavoirPlus'
 import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
@@ -23,6 +25,7 @@ export default {
   components: {
     Actions,
     InputDate,
+    EnSavoirPlus
   },
   mixins: [createIndividuMixin('date_naissance')],
 }

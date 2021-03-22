@@ -43,6 +43,44 @@ html {
         border-radius: var(--theme-border-radius);
         position: relative;
 
+        .aj-checkbox-wrapper {
+          position: relative;
+          margin: 0 10px 10px 0;
+
+          input[type="checkbox"] {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            color: var(--theme-primary);
+
+            &:checked:before {
+              color: var(--theme-primary);
+            }
+
+            & + label {
+              display: inline-flex;
+              border: 1px solid var(--theme-primary);
+              border-radius: var(--theme-border-radius);
+              color: var(--theme-primary);
+              padding: 10px 35px 10px 40px;
+              cursor: pointer;
+              user-select: none;
+              -webkit-transition: background-color 300ms linear, color 300ms linear;
+              -moz-transition: background-color 300ms linear, color 300ms linear;
+              -o-transition: background-color 300ms linear, color 300ms linear;
+              -ms-transition: background-color 300ms linear, color 300ms linear;
+              transition: background-color 300ms linear, color 300ms linear;
+            }
+
+            &:checked + label, & + label:hover {
+              background-color: var(--theme-primary);
+              color: #fff;
+            }
+          }
+        }
+
         input[type="radio"] {
           //TO UNCOMMNET AFTER HTML REFACTOR
           //display: none;
@@ -180,6 +218,72 @@ html {
         h1 {
           font-size: 1.65rem;
           margin: 0 0 20px 30px;
+        }
+      }
+
+      .aj-help-popup {
+        display: inline-flex;
+        font-family: "MarianneBold";
+        font-size: 0.85rem;
+        align-items: center;
+        border: 1px solid var(--theme-primary);
+        padding: 3px 10px 3px 6px;
+        border-radius: var(--theme-border-radius);
+        color: var(--theme-primary);
+        width: auto;
+        user-select: none;
+        margin-left: 12px;
+
+        .aj-help-icon {
+          background-color: var(--theme-primary);
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          color: #fff;
+          text-align: center;
+          display: inline-block;
+          margin-right: 5px;
+          line-height: 22px;
+        }
+      }
+
+      .aj-tooltip {
+        position: relative;
+
+        &:hover:before, &:hover:after {
+          display:block;
+          opacity:1;
+        }
+
+        &:before {
+          font-family: "Marianne";
+          content: attr(data-text);
+          opacity:0;
+          transition:.1s opacity;
+          font-size: 0.85rem;
+          position:absolute;
+          bottom: 150%;
+          left: 0;
+          padding:10px;
+          border-radius: 10px;
+          background: var(--theme-primary-lighter);
+          color: var(--theme-primary-light);
+          width: 250px;
+          z-index: 100;
+        }
+
+        &:after {
+          content: '';
+          opacity:0;
+          transition:.1s opacity;
+          width: 25px;
+          height: 25px;
+          position: absolute;
+          top: -75%;
+          left: 20%;
+          transform: translateY(-50%)rotate(45deg);
+          background-color: var(--theme-primary-lighter);
+          z-index: 99;
         }
       }
     }

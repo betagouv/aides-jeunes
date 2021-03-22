@@ -21,6 +21,16 @@ button.button:not(.small) {
     }
   }
 
+  &.success {
+    background-color: var(--green);
+    border-color: var(--green);
+  }
+
+  &:disabled {
+    background-color: var(--light-grey);
+    border: 1px solid var(--light-grey);
+  }
+
   &.outline {
     background-color: transparent;
     color: var(--theme-primary);

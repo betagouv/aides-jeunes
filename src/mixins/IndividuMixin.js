@@ -3,6 +3,7 @@ import Individu from '@/lib/Individu'
 export const createIndividuMixin = (props, optional) => {
     return {
         data: function() {
+            this.$store.dispatch('updateError', false)
             const id = this.$route.params.id
             const role = id.split('_')[0]
             const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
@@ -43,7 +44,7 @@ export const createIndividuMixin = (props, optional) => {
             },
             onSubmit: function() {
                 if (!this.optional && this.value === undefined) {
-                    this.$store.dispatch('updateError', true)
+                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
                     return
                 }
                 this.$store.dispatch('updateError', false)

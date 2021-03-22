@@ -49,6 +49,9 @@
         },
         methods: {
             onSubmit: function() {
+                if (this.participationQuestion.selectedValue === undefined) {
+                    this.$store.dispatch('updateError', true)
+                }
                 this.menage.participation_frais = this.participationQuestion.selectedValue
                 this.$store.dispatch('updateMenage', this.menage)
                 this.$push()

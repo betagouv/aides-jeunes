@@ -46,6 +46,10 @@
         },
         methods: {
             onSubmit: function() {
+                if (this.loyerQuestion.selectedValue === undefined) {
+                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
+                    return
+                }
                 this.menage.loyer = this.loyerQuestion.selectedValue
                 if (this.captureCharges) {
                     this.menage.charges_locatives = this.chargesQuestion.selectedValue

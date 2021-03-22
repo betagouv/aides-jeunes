@@ -49,6 +49,9 @@
         },
         methods: {
             onSubmit: function() {
+                if (this.value === undefined) {
+                    this.$store.dispatch('updateError', true)
+                }
                 this.famille.proprietaire_proche_famille = this.proprietaireProcheQuestion.selectedValue
                 this.$store.dispatch('updateFamille', this.famille)
                 this.$push()

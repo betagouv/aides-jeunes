@@ -68,6 +68,7 @@ function defaultStore() {
       },
       version: 1,
     },
+    error: false,
     access: {
       fetching: false,
       forbidden: false,
@@ -223,7 +224,7 @@ const store = new Vuex.Store({
       }
     },
     saveError: function(state, error) {
-      state.situation.error = error
+      state.error = error
     },
     addEnfant: function(state, enfant) {
       state.situation.enfants.push(enfant)

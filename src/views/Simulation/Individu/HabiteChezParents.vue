@@ -48,6 +48,9 @@
         },
         methods: {
             onSubmit: function() {
+                if (this.value === undefined) {
+                    this.$store.dispatch('updateError', true)
+                }
                 this.individu.habite_chez_parents = this.habiteChezParentsQuestion.selectedValue
                 this.$store.dispatch('updateIndividu', this.individu)
                 this.$push()

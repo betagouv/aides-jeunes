@@ -45,6 +45,9 @@
         },
         methods: {
             onSubmit: function() {
+                if (this.colocQuestion.selectedValue === undefined) {
+                    this.$store.dispatch('updateError', true)
+                }
                 this.menage.coloc = this.colocQuestion.selectedValue
                 this.$store.dispatch('updateMenage', this.menage)
                 this.$push()

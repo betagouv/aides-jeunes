@@ -28,6 +28,10 @@ export default {
   },
   methods: {
     onSubmit: function() {
+      if (this.value === undefined) {
+        this.$store.dispatch('updateError', true)
+        return
+      }
       this.famille.en_couple = this.value
       this.$store.dispatch('updateFamille', this.famille)
 

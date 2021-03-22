@@ -27,6 +27,9 @@ export default {
   },
   methods: {
     onSubmit: function() {
+      if (this.value === undefined) {
+        this.$store.dispatch('updateError', true)
+      }
       this.famille.rsa_isolement_recent = this.value
       this.$store.dispatch('updateFamille', this.famille)
       this.$push()

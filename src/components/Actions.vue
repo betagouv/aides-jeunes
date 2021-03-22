@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="notification warning" v-if="error">
-      Ce champ est obligatoire.
+      {{ error }}
     </p>
     <div class="actions">
       <button class="button large" type="submit" v-show="onSubmit" v-on:click="localOnSubmit($event)">Valider</button>
@@ -20,10 +20,11 @@ export default {
   ],
   computed: {
     error() {
-      return this.$store.state.situation.error
+      return this.$store.state.error
     }
   },
   data() {
+    this.$store.dispatch('updateError', false)
     return {
       window
     }

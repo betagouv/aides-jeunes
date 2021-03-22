@@ -21,6 +21,6 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin('_firstName', true)],
+  mixins: [createIndividuMixin('_firstName')],
 }
 </script>

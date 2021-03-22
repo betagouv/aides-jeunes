@@ -22,6 +22,6 @@ export default {
     Actions,
     InputDate,
   },
-  mixins: [createIndividuMixin('date_debut_chomage', true)], 
+  mixins: [createIndividuMixin('date_debut_chomage')], 
 }
 </script>

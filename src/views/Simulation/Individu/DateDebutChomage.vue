@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <label>
-      <h1>Quand {{getLabel('avoir')}} commencé à être au chômage&nbsp;?</h1>
+      <legend>Quand {{getLabel('avoir')}} commencé à être au chômage&nbsp;?</legend>
       <InputDate required id="date_debut_chomage" v-model="value" />
     </label>
     <Actions v-bind:onSubmit='onSubmit'/>
@@ -19,6 +19,6 @@ export default {
     Actions,
     InputDate,
   },
-  mixins: [createIndividuMixin('date_debut_chomage')], 
+  mixins: [createIndividuMixin('date_debut_chomage', true)],
 }
 </script>

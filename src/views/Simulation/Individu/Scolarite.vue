@@ -1,10 +1,10 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Où sera scolarisé·e {{individu._firstName}} à la rentrée prochaine&nbsp;?</h1>
-    <label v-for="scolarite in scolariteOptions" v-bind:key="scolarite.value">
-    <input type="radio" name="scolarite" v-bind:value="scolarite.value" v-model="value"/>
-    {{ scolarite.label }}
-    </label>
+    <legend>Où sera scolarisé·e {{individu._firstName}} à la rentrée prochaine&nbsp;?</legend>
+    <template v-for="scolarite in scolariteOptions">
+      <input :id="scolarite.value" type="radio" name="scolarite" v-bind:value="scolarite.value" v-model="value" v-bind:key="scolarite.value"/>
+      <label :for="scolarite.value" v-bind:key="scolarite.value">{{ scolarite.label }}</label>
+    </template>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>

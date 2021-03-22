@@ -71,6 +71,67 @@ html {
           border-radius: var(--theme-border-radius);
         }
 
+        input[type=range] {
+          -webkit-appearance: none;
+          vertical-align: middle;
+          outline: none;
+          border: none;
+          padding: 0;
+          background: none;
+
+          &::-webkit-slider-runnable-track {
+            background-color: var(--theme-primary);
+            height: 6px;
+            border-radius: 3px;
+            border: 1px solid transparent;
+          }
+
+          &::-moz-range-track {
+            background-color: var(--theme-primary);
+            height: 6px;
+            border-radius: 3px;
+            border: none;
+          }
+
+          &::-ms-track {
+            color: transparent;
+            border: none;
+            background: none;
+            height: 6px;
+          }
+
+          &::-ms-fill-lower, &::-ms-fill-upper {
+            background-color: var(--theme-primary);
+            border-radius: 3px;
+          }
+
+          &::-ms-tooltip {
+            display: none;
+          }
+
+          &::-moz-range-thumb {
+            border-radius: 20px;
+            height: 18px;
+            width: 18px;
+            border: none;
+            background: none;
+            background-color: var(--theme-primary);
+          }
+
+          &:active::-moz-range-thumb, &:active::-webkit-slider-thumb {
+            outline: none;
+          }
+
+          &::-webkit-slider-thumb, &::-ms-thumb {
+            -webkit-appearance: none !important;
+            border-radius: 100% !important;
+            background-color: var(--theme-primary);
+            height: 18px;
+            width: 18px;
+            margin-top: -7px;
+          }
+        }
+
         .aj-actions {
           display: flex;
           flex-direction: row-reverse;

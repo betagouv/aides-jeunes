@@ -1,9 +1,9 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      <h1>{{ getLabel('avoir') | capitalize }}
+      {{ getLabel('avoir') | capitalize }}
         travaillé <abbr title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés.">au moins 5 ans</abbr> entre {{ yearsAgo(10) }}
-        et {{ yearsAgo(0) }} ?</h1>
+        et {{ yearsAgo(0) }} ?
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form >

@@ -1,6 +1,4 @@
 button.button {
-  margin: 0;
-
   &,
   &:active,
   &:focus,
@@ -10,6 +8,7 @@ button.button {
     border: 1px solid var(--theme-primary);
     background-color: var(--theme-primary);
     outline: none;
+    margin: 0;
 
     &:hover {
       transform: scale(1.02);

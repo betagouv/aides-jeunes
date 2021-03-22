@@ -19,9 +19,11 @@ function determinePropsToReplicate(entityTypeName, entityDefinition) {
     }
 }
 
-const types = ['famille', 'individu', 'menage']
+const types = ['famille', {type: 'foyerFiscal', plural: 'foyers_fiscaux'}, 'individu', 'menage']
 var forDuplication = types.reduce((accum, type) => {
-    accum[type + 's'] = determinePropsToReplicate(type, definitions[type])
+    var plural = type.type ? type.plural : type + 's'
+    type = type.type ? type.type : type
+    accum[plural] = determinePropsToReplicate(type, definitions[type])
     return accum
 }, {})
 

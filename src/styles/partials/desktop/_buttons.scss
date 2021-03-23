@@ -21,6 +21,10 @@ button.button:not(.small) {
     }
   }
 
+  &.m-auto {
+    margin: auto;
+  }
+
   &.success {
     background-color: var(--green);
     border-color: var(--green);
@@ -36,6 +40,8 @@ button.button:not(.small) {
     color: var(--theme-primary);
 
     &.with-icon {
+      display: flex;
+      align-items: center;
       padding-left: 20px;
       padding-right: 20px;
 

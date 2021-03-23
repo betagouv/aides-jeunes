@@ -4,7 +4,11 @@ const autoValidatedSteps = [
     'activite',
     'nationalite',
     'handicap',
-    'inapte_travail'
+    'inapte_travail',
+    'garde_alterne',
+    'handicap',
+    'enfant_a_charge',
+    'taux_incapacite'
 ];
 
 export const createIndividuMixin = (props, optional) => {

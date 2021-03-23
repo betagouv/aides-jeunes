@@ -2,6 +2,23 @@ html {
   body {
     .aj-children-container {
       margin-bottom: 30px;
+
+      .aj-children-line {
+        display: flex;
+
+        label {
+          font-size: 0.85rem;
+        }
+
+        .aj-children-birth-date, .aj-children-nationality, .aj-children-scolarite {
+          width: 33%;
+        }
+
+        .aj-children-delete {
+          width: 10%;
+          text-align: center;
+        }
+      }
     }
   }
 }

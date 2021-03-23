@@ -1,11 +1,19 @@
 import Individu from '@/lib/Individu'
 
+const autoValidatedSteps = [
+    'activite',
+    'nationalite',
+    'handicap',
+    'inapte_travail'
+];
+
 export const createIndividuMixin = (props, optional) => {
     return {
         data: function() {
             const id = this.$route.params.id
             const role = id.split('_')[0]
             const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
+            const autoValidate = autoValidatedSteps.includes(props)
             const value = individu[props]
             return {
                 error: false,
@@ -13,8 +21,16 @@ export const createIndividuMixin = (props, optional) => {
                 id,
                 value,
                 role,
+                autoValidate,
                 optional
             }
+        },
+        watch: {
+           value() {
+                if (this.autoValidate) {
+                    this.onSubmit()
+                }
+           }
         },
         methods: {
             getLabel: function(type) {

@@ -2,8 +2,8 @@
   <form @submit.prevent='onSubmit'>
     <legend>Où sera scolarisé·e {{individu._firstName}} à la rentrée prochaine&nbsp;?</legend>
     <template v-for="scolarite in scolariteOptions">
-      <input :id="scolarite.value" type="radio" name="scolarite" v-bind:value="scolarite.value" v-model="value" v-bind:key="scolarite.value"/>
-      <label :for="scolarite.value" v-bind:key="scolarite.value">{{ scolarite.label }}</label>
+      <input :id="scolarite.value" type="radio" name="scolarite" v-bind:value="scolarite.value" v-model="value" v-bind:key="'input-' + scolarite.value"/>
+      <label :for="scolarite.value" v-bind:key="'label-' + scolarite.value">{{ scolarite.label }}</label>
     </template>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

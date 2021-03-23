@@ -7,9 +7,9 @@
              name="tauxIncapacite"
              v-model="value"
              v-bind:value="tauxIncapacite.value"
-             v-bind:key="tauxIncapacite.value"
+             v-bind:key="'input-' + tauxIncapacite.value"
       />
-      <label :for="tauxIncapacite.value" v-bind:key="tauxIncapacite.value">
+      <label :for="tauxIncapacite.value" v-bind:key="'label-' + tauxIncapacite.value">
           {{ tauxIncapacite.label }}
       </label>
     </template>

@@ -47,8 +47,11 @@ function getZone(countryCode) {
     if (EEE_COUNTRY_CODES.includes(countryCode) || countryCode === 'CH') {
         return 'ue';
     }
+    if (countryCode === 'AF') {
+        return 'autre';
+    }
 
-    return 'autre';
+    return '';
 }
 
 const Nationality = {

@@ -2,8 +2,8 @@
   <form @submit.prevent='onSubmit'>
     <legend>{{ getLabel('avoir') | capitalize }} besoin d’une aide à la personne&nbsp;?</legend>
       <template v-for="gir in GIROptions">
-        <input :id="gir.value" type="radio" name="gir" v-bind:value="gir.value" v-model="value" v-bind:key="gir.value"/>
-        <label :for="gir.value" v-bind:key="gir.value">
+        <input :id="gir.value" type="radio" name="gir" v-bind:value="gir.value" v-model="value" v-bind:key="'input-' + gir.value"/>
+        <label :for="gir.value" v-bind:key="'label-' + gir.value">
             {{ gir.label }}
         </label>
       </template>

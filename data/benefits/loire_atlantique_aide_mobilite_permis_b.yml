@@ -16,3 +16,4 @@ floorAt: 1
 entity: individus
 legend: ''
 private: true
+interestFlag: _interetPermisDeConduire

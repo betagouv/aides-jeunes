@@ -126,6 +126,11 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/_FirstName.vue'),
         },
         {
+          name: '_interetPermisDeConduire',
+          path: '_interetPermisDeConduire',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/_InteretPermisDeConduire.vue'),
+        },
+        {
           name: 'ressources/types',
           path: 'ressources/types',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Types.vue'),

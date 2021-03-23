@@ -73,6 +73,16 @@ function individuBlockFactory(id) {
   }
 }
 
+function extraBlock(id) {
+  const demandeur = id == 'demandeur'
+  return {
+    subject: situation => situation[id] || situation.enfants.find(enfant => enfant.id === id) || {},
+    steps: [
+      ...(demandeur ? [new Step({ entity: 'individu', id: 'demandeur', variable: '_interetPermisDeConduire'})] : []),
+    ]
+  }
+}
+
 function kidBlock(situation) {
   return {
     steps: [
@@ -176,6 +186,7 @@ function generateBlocks(situation) {
     },
     housingBlock(situation),
     resourceBlocks(situation),
+    extraBlock('demandeur'),
     {
       steps: [
         new Step({entity: 'resultats'}),

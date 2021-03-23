@@ -19,7 +19,7 @@ context('Full simulation', () => {
     steps.sansDomicileStable()
     steps.salaireSeul()
     // steps.sansPensionAlimentaireVersees()
-    steps.hasPrimeActivite()
     steps.interestFlagExtra()
+    steps.hasPrimeActivite()
   })
 })

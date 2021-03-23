@@ -46,17 +46,9 @@
         },
         methods: {
             onSubmit: function() {
-                if (this.loyerQuestion.selectedValue === undefined) {
-                    this.$store.dispatch('updateError', 'Le champ montant du loyer est obligatoire.')
-                    return
-                }
-                if (this.captureCharges && this.chargesQuestion.selectedValue === undefined) {
-                    this.$store.dispatch('updateError', 'Le champ charges locatives est obligatoire.')
-                    return
-                }
-                this.menage.loyer = this.loyerQuestion.selectedValue
+                this.menage.loyer = this.loyerQuestion.selectedValue || 0
                 if (this.captureCharges) {
-                    this.menage.charges_locatives = this.chargesQuestion.selectedValue
+                    this.menage.charges_locatives = this.chargesQuestion.selectedValue || 0
                 }
                 this.$store.dispatch('updateMenage', this.menage)
                 this.$push()

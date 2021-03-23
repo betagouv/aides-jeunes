@@ -35,13 +35,12 @@ export default {
   },
   methods: {
     onSubmit: function() {
-        if (this.value === undefined) {
-          this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
+      if (this.requiredValueMissing()) {
           return
-        }
-        this.individu['enfant_a_charge'][this.$store.state.dates.thisYear.id] = this.value
-        this.$store.dispatch('updateIndividu', this.individu)
-        this.$push()
+      }
+      this.individu['enfant_a_charge'][this.$store.state.dates.thisYear.id] = this.value
+      this.$store.dispatch('updateIndividu', this.individu)
+      this.$push()
     },
   }
 }

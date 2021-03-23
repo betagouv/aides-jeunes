@@ -454,6 +454,8 @@ router.beforeEach((to, from, next) => {
   } else {
     store.commit('setTitle', 'Évaluez vos droits aux aides sociales')
   }
+  store.dispatch('updateError', false)
+
   next()
 })
 

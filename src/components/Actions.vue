@@ -6,7 +6,7 @@
     <div class="actions">
       <button class="button large" type="submit" v-show="onSubmit" v-on:click="localOnSubmit($event)">Valider</button>
       <slot></slot>
-      <button class="button secondary large" type="button" v-on:click="window && window.history.back()">Précédent</button>
+      <button class="button secondary large" type="button" v-on:click="goBack()">Précédent</button>
     </div>
   </div>
 </template>
@@ -23,16 +23,13 @@ export default {
       return this.$store.state.error
     }
   },
-  data() {
-    this.$store.dispatch('updateError', false)
-    return {
-      window
-    }
-  },
   methods: {
     localOnSubmit: function(event) {
       event.preventDefault()
       this.onSubmit()
+    },
+    goBack: function() {
+      window && window.history.back()
     }
   }
 }

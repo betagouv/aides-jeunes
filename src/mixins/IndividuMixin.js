@@ -3,7 +3,6 @@ import Individu from '@/lib/Individu'
 export const createIndividuMixin = (props, optional) => {
     return {
         data: function() {
-            this.$store.dispatch('updateError', false)
             const id = this.$route.params.id
             const role = id.split('_')[0]
             const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
@@ -42,12 +41,15 @@ export const createIndividuMixin = (props, optional) => {
                 }
                 return labelDict[type][this.role];
             },
+            requiredValueMissing: function() {
+                const hasError = !this.optional && this.value === undefined
+                this.$store.dispatch('updateError', hasError && 'Ce champ est obligatoire.')
+                return hasError
+            },
             onSubmit: function() {
-                if (!this.optional && this.value === undefined) {
-                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
+                if (this.requiredValueMissing()) {
                     return
                 }
-                this.$store.dispatch('updateError', false)
                 this.individu[props] = this.value
                 this.$store.dispatch('updateIndividu', this.individu)
                 this.$push()

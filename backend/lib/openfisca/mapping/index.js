@@ -56,6 +56,7 @@ function setNonInjectedPrestations(testCase, periods, value) {
 }
 exports.setNonInjectedPrestations = setNonInjectedPrestations;
 
+
 function mapIndividus(situation) {
     var individus = _.filter(common.getIndividusSortedParentsFirst(situation), function(individu) {
         return common.isIndividuValid(individu, situation);

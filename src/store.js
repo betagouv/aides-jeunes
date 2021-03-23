@@ -310,7 +310,6 @@ const store = new Vuex.Store({
     },
     updateError: function({ commit }, error) {
       commit('saveError', error)
-      commit('setDirty')
     },
     updateIndividu: function({ commit }, individu) {
       commit('saveIndividu', individu)

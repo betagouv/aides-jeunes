@@ -1,0 +1,15 @@
+label: prêt pour le permis de conduire à un euro par jour
+institution: etat
+description: |
+  Le permis à un euro par jour permet d'étaler, sans aucun frais supplémentaire, le paiement de la formation au permis de conduire.
+  Ce dispositif permet aux jeunes de 15 à 25 ans, selon certaines conditions, de lisser le coût de la formation à la catégorie A et B du permis de conduire à raison d'un euro par jour.
+  Il s'agit d'un prêt à taux zéro dont les intérêts sont pris en charge par l’État.
+conditions:
+  - Suivre votre formation dans une école de conduire <a target="_blank" rel="noopener" title="Liste des écoles de condtuire partenaires" href="https://www.securite-routiere.gouv.fr/sites/default/files/2021-03/liste_etablissements_labellises_au_01_03_2021.xls">partenaire</a>.
+  - Ne pas avoir déjà bénéficié pour <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/N530">la même catégorie de permis (A1, A2, B)</a> du prêt pour le permis de conduire à un euro par jour.
+link: https://www.securite-routiere.gouv.fr/passer-son-permis-de-conduire/financement-du-permis-de-conduire/permis-1-eu-par-jour
+instructions: https://www.securite-routiere.gouv.fr/passer-son-permis-de-conduire/financement-du-permis-de-conduire/permis-1-eu-par-jour/etapes-de
+prefix: le
+type: bool
+floorAt: 10
+entity: individus

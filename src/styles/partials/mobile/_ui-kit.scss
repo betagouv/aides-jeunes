@@ -1,13 +1,23 @@
-@media (max-width: 576px) {
-  html {
-    body {
-      .aj-main-container {
-        padding-left: 10px;
-        padding-right: 10px;
+html {
+  body {
+    .aj-main-container {
+      padding-left: 10px;
+      padding-right: 10px;
 
-        .aj-box-wrapper {
-          padding: 30px 20px 45px 20px;
+      .aj-category-title-wrapper {
+        h1 {
+          margin-left: 0;
+          text-align: center;
         }
+      }
+
+      .aj-box-wrapper {
+        padding: 30px 20px 45px 20px;
+      }
+
+      .aj-tooltip {
+        display: table;
+        margin: 10px 0 0 0;
       }
     }
   }

@@ -45,9 +45,14 @@ $screen-smaller-than-mobile: 399px;
 @import 'partials/desktop/children';
 
 /* TABLET IMPORTS */
-@import 'partials/tablet/ui-kit';
+@media (max-width: 768px) {
+  @import 'partials/tablet/ui-kit';
+}
 
 /* MOBILE IMPORTS */
-@import 'partials/mobile/ui-kit';
-@import 'partials/mobile/inputs';
+@media (max-width: 576px) {
+  @import 'partials/mobile/ui-kit';
+  @import 'partials/mobile/buttons';
+  @import 'partials/mobile/inputs';
+}
 

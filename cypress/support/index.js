@@ -92,7 +92,7 @@ export function deuxEnfants() {
 export function conjoint(params={}) {
   cy.get('button[type="submit"]').click()
   // Naissance
-  cy.get('h1').invoke('text').should('contain', 'naissance')
+  cy.get('legend').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
     .type(params.date_naissance || '12121980')
   cy.get('button[type="submit"]').click()
@@ -121,7 +121,7 @@ export function conjoint(params={}) {
 export function enfant(params={}) {
   cy.get('button[type="submit"]').click()
   // Naissance
-  cy.get('h1').invoke('text').should('contain', 'naissance')
+  cy.get('legend').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
     .type(params.date_naissance || '12122000')
   cy.get('button[type="submit"]').click()

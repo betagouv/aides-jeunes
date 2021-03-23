@@ -1,20 +1,7 @@
 const Individu = require('@/lib/Individu').default;
 const Ressource = require('@/lib/Ressource').default;
 const { datesGenerator } = require('../../../backend/lib/mes-aides');
-
-function Step({key, entity, id, variable}) {
-  this.fullPath = entity ? `/simulation/${entity}${id ? `/${id}` : ''}${variable ? `/${variable}` : ''}` : '/'
-  this.key = key || this.fullPath
-  this.entity = entity
-  this.id = id
-  this.variable = variable
-}
-
-function ComplexStep({route, key, entity, id, variable, defaults}) {
-  Step.call(this, {route, key, entity, id, variable})
-  this.defaults = defaults
-}
-ComplexStep.prototype = Object.create(Step.prototype)
+const { Step, ComplexStep } = require('./steps');
 
 function individuBlockFactory(id) {
   const r = variable => new Step({entity: 'individu', id, variable})
@@ -119,7 +106,12 @@ function housingBlock() {
           return locataire || proprietaire
         },
         steps: [
-          new ComplexStep({entity: 'menage', variable: 'loyer'}),
+          new ComplexStep({
+            route: 'menage/loyer',
+            variables: [
+              {entity: 'menage', variable: 'loyer'},
+              {entity: 'menage', variable: 'charges_locatives'},
+            ]}),
         ]
      },
      {
@@ -145,9 +137,9 @@ function resourceBlocks(situation) {
     const individu = situation[individuId] || situation.enfants.find(enfant => enfant.id === individuId) || {}
     return {
       steps: [
-        new ComplexStep({entity: 'individu', id: individuId, variable: 'ressources/types'})
+        new ComplexStep({route: `individu/${individuId}/ressources/types`})
       ].concat(
-          Ressource.getIndividuRessourceCategories(individu).map(category => `/simulation/individu/${individuId}/ressources/montants/${category}`)
+          Ressource.getIndividuRessourceCategories(individu).map(category => new ComplexStep({route: `individu/${individuId}/ressources/montants/${category}`}))
       )
     }
   }
@@ -195,6 +187,4 @@ function generateBlocks(situation) {
 
 module.exports = {
   generateBlocks,
-  Step,
-  ComplexStep,
 }

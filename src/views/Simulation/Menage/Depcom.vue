@@ -57,7 +57,6 @@
                     this.retrievingCommunes = true
                     return Commune.get(this.codePostalQuestion.selectedValue)
                         .then((communes) => {
-                            console.log(communes)
                             if (!_.includes(_.map(communes, 'nom'), this.communeQuestion.selectedValue)) {
                                 this.communeQuestion.selectedValue = Commune.getMostPopulated(communes).nom
                             }

@@ -15,12 +15,12 @@ export default {
   name: 'Progress',
   computed: {
     full: function() {
-      return this.$state.full(this.$store.state.situation, this.$router)
+      return this.$state.full(this.$store.state.situation)
     },
     current: function() {
       return this.$route.fullPath
     },
-  }
+  },
 }
 </script>
 

@@ -10,6 +10,7 @@ import _ from 'lodash'
 import { computeAides, datesGenerator } from '../backend/lib/mes-aides'
 import { categoriesRnc, patrimoineTypes } from './constants/resources'
 import Institution from './lib/Institution'
+import {full} from './lib/State'
 
 let DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage']
 
@@ -320,16 +321,21 @@ const store = new Vuex.Store({
       commit('saveMenage', menage)
       commit('setDirty')
     },
-    save: function(state) {
-      let situation = _.omit(state.state.situation, '_id')
-      if (state.state.situation._id) {
-          situation.modifiedFrom = state.state.situation._id
+    save: function(store) {
+      const disabledSteps = full(store.state.situation).filter(s => !s.isActive)
+      disabledSteps.forEach(step => {
+        step.clean(store, true)
+      })
+
+      let situation = _.omit(store.state.situation, '_id')
+      if (store.state.situation._id) {
+          situation.modifiedFrom = store.state.situation._id
       }
 
       return axios.post('/api/situations/', situation)
         .then(result => result.data)
         .then(payload => payload._id)
-        .then(id => state.commit('setId', id))
+        .then(id => store.commit('setId', id))
     },
     fetch: function(state, id) {
       state.commit('fetching')

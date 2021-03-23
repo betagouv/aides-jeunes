@@ -1,4 +1,5 @@
-var { generateBlocks, Step } = require('./blocks')
+var { generateBlocks } = require('./blocks')
+var { Step } = require('./steps')
 
 function processBlock({journey, subject, situation, isActive}, b) {
   if (b instanceof Step) {

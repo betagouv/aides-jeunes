@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h1>Vos enfants</h1>
+    <legend>Mes enfants à charge</legend>
+    <div v-for="enfant in enfants" class="aj-children-container" v-bind:key="enfant.id">
+      <legend class="small capitalize">{{ enfant._firstName }}</legend>
+      <hr class="aj-hr">
+    </div>
     <ul>
       <li v-for="(enfant) in enfants" v-bind:key="enfant.id">
          <router-link v-bind:to="`/simulation/individu/${enfant.id}/_firstName`" >{{enfant._firstName}}</router-link>
@@ -25,7 +29,7 @@ export default {
   computed: {
     enfants: function() {
       return [].concat(...this.$store.state.situation.enfants)
-    } 
+    }
   },
   methods: {
     addPAC: function() {

@@ -59,7 +59,9 @@ pip install pip --upgrade  # make sure we're using the latest pip version
 npm run install-openfisca  # install dependencies
 ```
 
-Then, to start the OpenFisca server, simply run `npm run openfisca`.
+Then, to start the OpenFisca server, simply run `source .venv/bin/activate` followed by `npm run openfisca`.
+
+In order to start a single worker for OpenFisca, you can run `OPENFISCA_WORKERS=1 npm run openfisca`.
 
 ### Development mode
 

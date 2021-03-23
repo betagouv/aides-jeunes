@@ -10,11 +10,39 @@ function Step({key, entity, id, variable}) {
   this.variable = variable
 }
 
-function ComplexStep({route, key, entity, id, variable, defaults}) {
-  Step.call(this, {route, key, entity, id, variable})
-  this.defaults = defaults
+const updateMethods = {
+  individu: 'updateIndividu',
+  famille: 'updateFamille',
+  foyerFiscal: 'updateFoyerFiscal',
+  menage: 'updateMenage',
 }
+
+const internalUpdateMethods = {
+  individu: 'saveIndividu',
+  famille: 'saveFamille',
+  foyerFiscal: 'saveFoyerFiscal',
+  menage: 'saveMenage',
+}
+
+Step.prototype.clean = function({commit, dispatch, state}, storeInternal) {
+  const subject = state.situation[state.entity] || state.situation[this.id] || state.situation.enfants.find(enfant => enfant.id === this.id)
+  const result = {...subject, [this.variable]: undefined}
+  const updateMethod = updateMethods[this.entity]
+  const internalUpdateMethod = internalUpdateMethods[this.entity]
+  return storeInternal ? commit(internalUpdateMethod, result) : dispatch(updateMethod, result)
+}
+
+function ComplexStep({route, variables}) {
+  Step.call(this, {key: route})
+  this.fullPath = `/simulation/${route}`
+
+  this.substeps = variables ? variables.map(v => new Step(v)) : []
+}
+
 ComplexStep.prototype = Object.create(Step.prototype)
+ComplexStep.prototype.clean = function(store) {
+  this.substeps.forEach(s => s.clean(store))
+}
 
 function individuBlockFactory(id) {
   const r = variable => new Step({entity: 'individu', id, variable})
@@ -119,7 +147,12 @@ function housingBlock() {
           return locataire || proprietaire
         },
         steps: [
-          new ComplexStep({entity: 'menage', variable: 'loyer'}),
+          new ComplexStep({
+            route: 'menage/loyer',
+            variables: [
+              {entity: 'menage', variable: 'loyer'},
+              {entity: 'menage', variable: 'charges_locatives'},
+            ]}),
         ]
      },
      {
@@ -145,9 +178,9 @@ function resourceBlocks(situation) {
     const individu = situation[individuId] || situation.enfants.find(enfant => enfant.id === individuId) || {}
     return {
       steps: [
-        new ComplexStep({entity: 'individu', id: individuId, variable: 'ressources/types'})
+        new ComplexStep({route: `individu/${individuId}/ressources/types`})
       ].concat(
-          Ressource.getIndividuRessourceCategories(individu).map(category => `/simulation/individu/${individuId}/ressources/montants/${category}`)
+          Ressource.getIndividuRessourceCategories(individu).map(category => new ComplexStep({route: `individu/${individuId}/ressources/montants/${category}`}))
       )
     }
   }

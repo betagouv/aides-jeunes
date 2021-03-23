@@ -1,10 +1,10 @@
 label: aide au financement du permis voiture (B)
 institution: departement_loire_atlantique
-description: |
+description: >
   Cette aide est un coup de pouce du Département de Loire Atlantique pour favoriser
   l’autonomie et l’insertion des jeunes de 17 à 24 ans en finançant
   <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2828">le permis voiture (B)</a>.
-conditions: 
+conditions:
   - Occuper, à titre de résidence principale, un logement sur le territoire du département de Loire Atlantique depuis <strong>plus d’un an<strong>.
   - Ne pas bénéficier d’une autre aide au permis de conduire.
   - Être inscrit·e dans une auto-école.
@@ -12,6 +12,7 @@ link: https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/
 teleservice: https://demarche.loire-atlantique.fr/demande-aide-mobilite/
 form: https://www.loire-atlantique.fr/jcms/demande-daide-departementale-a-la-mobilite-novembre-2019-fr-p1_1147056
 prefix: l’
+type: float
 floorAt: 1
 entity: individus
 legend: ''

@@ -141,6 +141,18 @@ collections:
             value: 1
           - label: 0.01 (pour éviter l'arrondi)
             value: 0.01
+      - label: Afficher l'aide
+        name: interestFlag
+        hint: |
+          En fin de parcours, des questions sont posées pour connaitre certains intérêts des usagers.
+          Cela permet d'éviter d'afficher certaines aides qui ne seraient pas pertinentes pour les usagers.
+        widget: select
+        required: false
+        options:
+          - label: dans tous les cas.
+            value: null
+          - label: lorsqu'il y a un intérêt pour passer le permis de conduire.
+            value: _interetPermisDeConduire
       - label: Entité de rattachement de la variable dans OpenFisca
         name: entity
         widget: select

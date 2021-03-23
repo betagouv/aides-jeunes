@@ -49,6 +49,10 @@
         },
         methods: {
             onSubmit: function() {
+                if (this.proprietaireProcheQuestion.selectedValue === undefined) {
+                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
+                    return
+                }
                 this.famille.proprietaire_proche_famille = this.proprietaireProcheQuestion.selectedValue
                 this.$store.dispatch('updateFamille', this.famille)
                 this.$push()

@@ -46,9 +46,9 @@
         },
         methods: {
             onSubmit: function() {
-                this.menage.loyer = this.loyerQuestion.selectedValue
+                this.menage.loyer = this.loyerQuestion.selectedValue || 0
                 if (this.captureCharges) {
-                    this.menage.charges_locatives = this.chargesQuestion.selectedValue
+                    this.menage.charges_locatives = this.chargesQuestion.selectedValue || 0
                 }
                 this.$store.dispatch('updateMenage', this.menage)
                 this.$push()

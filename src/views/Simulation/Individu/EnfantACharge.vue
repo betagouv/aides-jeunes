@@ -35,9 +35,12 @@ export default {
   },
   methods: {
     onSubmit: function() {
-        this.individu['enfant_a_charge'][this.$store.state.dates.thisYear.id] = this.value
-        this.$store.dispatch('updateIndividu', this.individu)
-        this.$push()
+      if (this.requiredValueMissing()) {
+          return
+      }
+      this.individu['enfant_a_charge'][this.$store.state.dates.thisYear.id] = this.value
+      this.$store.dispatch('updateIndividu', this.individu)
+      this.$push()
     },
   }
 }

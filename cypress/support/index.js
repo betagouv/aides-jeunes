@@ -43,12 +43,13 @@ export function demandeur(params={}) {
   // Activite
   cy.get('h1').invoke('text').should('contain', 'Êtes-vous')
   cy.get('label').invoke('text').should('contain', 'En activité')
+  cy.get('input[type="radio"]').check('actif')
   cy.get('button[type="submit"]').click()
-
   // Handicap
   handicap(params)
   // Inapte au travail
   cy.get('h1').invoke('text').should('contain', 'inapte au travail')
+  cy.get('input[type="radio"]').check('true')
   cy.get('button[type="submit"]').click()
 }
 
@@ -67,6 +68,7 @@ export function handicap(params) {
       cy.get('button[type="submit"]').click()
     }
   } else {
+    cy.get('input[type="radio"]').check('false')
     cy.get('button[type="submit"]').click()
   }
 }
@@ -99,16 +101,20 @@ export function conjoint(params={}) {
   cy.get('button[type="submit"]').click()
   // Statut Marital
   cy.get('h1').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
+  cy.get('select').select('marie') 
   cy.get('button[type="submit"]').click()
   // Activite
   cy.get('h1').invoke('text').should('contain', 'est-il/elle')
   cy.get('label').invoke('text').should('contain', 'En activité')
+  cy.get('input[type="radio"]').check('actif')
   cy.get('button[type="submit"]').click()
   // Handicap
   cy.get('h1').invoke('text').should('contain', 'handicap')
+  cy.get('input[type="radio"]').check('false')
   cy.get('button[type="submit"]').click()
   // Inapte au travail
   cy.get('h1').invoke('text').should('contain', 'inapte au travail')
+  cy.get('input[type="radio"]').check('false')
   cy.get('button[type="submit"]').click()
 }
 
@@ -124,9 +130,11 @@ export function enfant(params={}) {
   cy.get('button[type="submit"]').click() // Nationalité
   // Garde Alterne
   cy.get('h1').invoke('text').should('contain', 'en garde alternée')
+  cy.get('input[type="radio"]').check('true')
   cy.get('button[type="submit"]').click()
   // Handicap
   cy.get('h1').invoke('text').should('contain', 'handicap')
+  cy.get('input[type="radio"]').check('false')
   cy.get('button[type="submit"]').click()
   // Scolarite
   cy.get('h1').invoke('text').should('contain', 'scolarisé·e')
@@ -138,6 +146,7 @@ export function enfant(params={}) {
 
 export function celibataire() {
   cy.get('h1').invoke('text').should('contain', 'couple')
+  cy.get('input[type="radio"]').check('false')
   cy.get('button[type="submit"]').click()
 }
 
@@ -150,6 +159,8 @@ export function couple() {
 export function sansDomicileStable() {
   cy.get('input[name="logementType"').get('[value="sansDomicile"]').check()
   cy.get('button[type="submit"]').click() // Logement
+  cy.get('input[type="number"')
+    .type('94120')
   cy.get('button[type="submit"]').click() // Commune de résidence
 }
 

@@ -1,6 +1,6 @@
 import Individu from '@/lib/Individu'
 
-export const createIndividuMixin = (props, required) => {
+export const createIndividuMixin = (props, optional) => {
     return {
         data: function() {
             const id = this.$route.params.id
@@ -13,7 +13,7 @@ export const createIndividuMixin = (props, required) => {
                 id,
                 value,
                 role,
-                required
+                optional
             }
         },
         methods: {
@@ -41,9 +41,13 @@ export const createIndividuMixin = (props, required) => {
                 }
                 return labelDict[type][this.role];
             },
+            requiredValueMissing: function() {
+                const hasError = !this.optional && this.value === undefined
+                this.$store.dispatch('updateError', hasError && 'Ce champ est obligatoire.')
+                return hasError
+            },
             onSubmit: function() {
-                if (this.required && !this.value) {
-                    this.error = true
+                if (this.requiredValueMissing()) {
                     return
                 }
                 this.individu[props] = this.value

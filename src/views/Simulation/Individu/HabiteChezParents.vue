@@ -48,6 +48,10 @@
         },
         methods: {
             onSubmit: function() {
+                if (this.habiteChezParentsQuestion.selectedValue === undefined) {
+                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
+                    return
+                }
                 this.individu.habite_chez_parents = this.habiteChezParentsQuestion.selectedValue
                 this.$store.dispatch('updateIndividu', this.individu)
                 this.$push()

@@ -49,6 +49,10 @@
         },
         methods: {
             onSubmit: function() {
+                if (this.participationQuestion.selectedValue === undefined) {
+                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
+                    return
+                }
                 this.menage.participation_frais = this.participationQuestion.selectedValue
                 this.$store.dispatch('updateMenage', this.menage)
                 this.$push()

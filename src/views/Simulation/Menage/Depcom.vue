@@ -39,7 +39,7 @@
                 menage: menage,
                 retrievingCommunes: false,
                 codePostalQuestion: {
-                    label: 'Quel est votre postal ?',
+                    label: 'Quel est votre code postal ?',
                     selectedValue: menage._codePostal
                 },
                 communeQuestion: {
@@ -74,6 +74,10 @@
         },
         methods: {
             onSubmit: function() {
+                if (this.communeQuestion.selectedValue === undefined) {
+                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
+                    return
+                }
                 const communeMatches = this.communes.filter(c => c.nom == this.communeQuestion.selectedValue)
                 if (communeMatches.length) {
                     this.menage.depcom = communeMatches[0].code

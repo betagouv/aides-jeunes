@@ -5,9 +5,6 @@
       <span>il servira uniquement à vous faciliter la saisie par la suite</span></h1>
     </label>
     <input type="text" id="_firstName" v-model="value">
-    <p class="notification warning" v-if="error">
-        Ce champ est obligatoire.
-    </p>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>
@@ -21,6 +18,6 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin('_firstName', true)],
+  mixins: [createIndividuMixin('_firstName')],
 }
 </script>

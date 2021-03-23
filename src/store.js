@@ -69,6 +69,7 @@ function defaultStore() {
       },
       version: 1,
     },
+    error: false,
     access: {
       fetching: false,
       forbidden: false,
@@ -223,6 +224,9 @@ const store = new Vuex.Store({
         state.situation.enfants.splice(idx, 1, individu)
       }
     },
+    saveError: function(state, error) {
+      state.error = error
+    },
     addEnfant: function(state, enfant) {
       state.situation.enfants.push(enfant)
     },
@@ -304,6 +308,9 @@ const store = new Vuex.Store({
     addEnfant: function({ commit }, enfant) {
       commit('addEnfant', enfant)
       commit('setDirty')
+    },
+    updateError: function({ commit }, error) {
+      commit('saveError', error)
     },
     updateIndividu: function({ commit }, individu) {
       commit('saveIndividu', individu)

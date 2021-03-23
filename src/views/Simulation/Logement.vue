@@ -112,22 +112,30 @@
                             hint: 'résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...'
                         }
                     ]
-                }
+                },
             }
         },
         methods: {
             onSubmit: function() {
-                this.$store.dispatch('updateMenage', {
-                    ...this.$store.getters.getMenage,
-                    statut_occupation_logement: Logement.getStatutOccupationLogement(
-                        {
-                            type: this.logementTypesQuestion.selectedValue,
-                            primoAccedant: this.primoAccedantQuestion.selectedValue,
-                            locationType: this.locataireTypesQuestion.selectedValue
-                        }
-                    )
-                })
-                this.$push()
+                if (!this.logementTypesQuestion.selectedValue) {
+                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
+                } else if (this.logementTypesQuestion.selectedValue === 'proprietaire' && this.primoAccedantQuestion.selectedValue === null) {
+                    this.$store.dispatch('updateError', 'Le champ primo-accédant est obligatoire.')
+                } else if (this.logementTypesQuestion.selectedValue === 'locataire' && !this.locataireTypesQuestion.selectedValue) {
+                    this.$store.dispatch('updateError', 'Le champ type de logement est obligatoire.')
+                } else {
+                    this.$store.dispatch('updateMenage', {
+                        ...this.$store.getters.getMenage,
+                        statut_occupation_logement: Logement.getStatutOccupationLogement(
+                            {
+                                type: this.logementTypesQuestion.selectedValue,
+                                primoAccedant: this.primoAccedantQuestion.selectedValue,
+                                locationType: this.locataireTypesQuestion.selectedValue
+                            }
+                        )
+                    })
+                    this.$push()
+                }
             }
         }
     }

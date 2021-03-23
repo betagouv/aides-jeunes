@@ -95,7 +95,7 @@ exports.generateTest = function generateYAMLTest(details, situation) {
     var periods = common.getPeriods(situation.dateDeValeur);
     var dropPeriods = [periods.thisMonth].concat(periods.last3Months);
 
-    mapping.giveValueToRequestedVariables(openfiscaRequest, dropPeriods, undefined);
+    mapping.giveValueToRequestedVariables(openfiscaRequest, dropPeriods, undefined, situation.demandeur);
     var testInputs = prepareTestSituationForSpecificExtension(openfiscaRequest, details.extension);
 
     var testCase = {

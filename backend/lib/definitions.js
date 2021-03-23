@@ -44,6 +44,7 @@ var individu = Object.assign({
     enfant_a_charge: Object,
     enfant_place: Boolean,
     _firstName: String,
+    _interetPermisDeConduire: Boolean,
     garde_alternee: Boolean,
     gir: { type: String, default: 'non_defini' },
     habite_chez_parents: Boolean,

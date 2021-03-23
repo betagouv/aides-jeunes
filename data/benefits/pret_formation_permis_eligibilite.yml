@@ -13,3 +13,4 @@ prefix: le
 type: bool
 floorAt: 10
 entity: individus
+interestFlag: _interetPermisDeConduire

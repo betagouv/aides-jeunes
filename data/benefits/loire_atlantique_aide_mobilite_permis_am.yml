@@ -15,4 +15,6 @@ prefix: l’
 floorAt: 1
 entity: individus
 legend: ''
+type: float
 private: true
+interestFlag: _interetPermisDeConduire

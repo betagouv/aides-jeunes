@@ -174,6 +174,11 @@ export function salaireSeul() {
   cy.get('button[type="submit"]').click()
 }
 
+export function interestFlagExtra() {
+  cy.get('input[type="radio"]').check('false')
+  cy.get('button[type="submit"]').click()
+}
+
 export function sansPensionAlimentaireVersees() {
   cy.get('h1').invoke('text').should('contain', 'Pensions alimentaires versées')
   cy.get('div').find('input[type="radio"][value="false"]').first().check()

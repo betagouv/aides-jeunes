@@ -33,7 +33,7 @@ export function home() {
 
 export function demandeur(params={}) {
   // Naissance
-  cy.get('h1').invoke('text').should('contain', 'naissance')
+  cy.get('legend').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
     .type(params.date_naissance || '12121980')
   cy.get('button[type="submit"]').click()

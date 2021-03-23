@@ -54,7 +54,6 @@ function setNonInjectedPrestations(testCase, periods, value) {
         });
     });
 }
-
 exports.setNonInjectedPrestations = setNonInjectedPrestations;
 
 function mapIndividus(situation) {

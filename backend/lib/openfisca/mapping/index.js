@@ -91,7 +91,7 @@ function mapIndividus(situation) {
     }, {});
 }
 
-function giveValueToRequestedVariables(testCase, periods, value, situation) {
+function giveValueToRequestedVariables(testCase, periods, value) {
     if (! (periods instanceof Array)) {
         periods = [periods];
     }

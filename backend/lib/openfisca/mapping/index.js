@@ -57,22 +57,6 @@ function setNonInjectedPrestations(testCase, periods, value) {
 
 exports.setNonInjectedPrestations = setNonInjectedPrestations;
 
-function removePrestationWithoutInterest(testCase, periods, demandeur) {
-    var prestationsWithoutInterest = _.pickBy(common.requestedVariables, function(definition) {
-        return ((! definition.interestFlag) || demandeur[definition.interestFlag]);
-    });
-
-    _.forEach(prestationsWithoutInterest, function(definition, prestationName) {
-        _.forEach(testCase[definition.entity], function(entity) {
-            entity[prestationName] = entity[prestationName] || {};
-            _.forEach(periods, function(period) {
-                delete entity[prestationName][period];
-            });
-        });
-    });
-}
-exports.removePrestationWithoutInterest = removePrestationWithoutInterest;
-
 function mapIndividus(situation) {
     var individus = _.filter(common.getIndividusSortedParentsFirst(situation), function(individu) {
         return common.isIndividuValid(individu, situation);
@@ -87,12 +71,17 @@ function mapIndividus(situation) {
     }, {});
 }
 
-function giveValueToRequestedVariables(testCase, periods, value) {
+function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
+
+    var prestationsWithInterest = _.pickBy(common.requestedVariables, function(definition) {
+        return ((!definition.interestFlag) || demandeur[definition.interestFlag]);
+    });
+
     if (! (periods instanceof Array)) {
         periods = [periods];
     }
 
-    _.forEach(common.requestedVariables, function(definition, prestationName) {
+    _.forEach(prestationsWithInterest, function(definition, prestationName) {
         _.forEach(testCase[definition.entity], function(entity) {
             entity[prestationName] = entity[prestationName] || {};
             _.forEach(periods, function(period) {
@@ -162,8 +151,7 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     var periods = common.getPeriods(situation.dateDeValeur);
     setNonInjectedPrestations(testCase, _.difference(periods.last12Months, periods.last3Months), 0);
     last3MonthsDuplication(testCase, situation.dateDeValeur);
-    removePrestationWithoutInterest(testCase, periods.thisMonth, situation.demandeur)
-    giveValueToRequestedVariables(testCase, periods.thisMonth, null);
+    giveValueToRequestedVariables(testCase, periods.thisMonth, null, situation.demandeur);
 
     return applyHeuristicsAndFix(testCase, sourceSituation.dateDeValeur);
 };

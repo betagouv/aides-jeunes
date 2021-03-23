@@ -57,7 +57,7 @@ function setNonInjectedPrestations(testCase, periods, value) {
 
 exports.setNonInjectedPrestations = setNonInjectedPrestations;
 
-function removePrestationWithoutInterest(testCase, periods, value, demandeur) {
+function removePrestationWithoutInterest(testCase, periods, demandeur) {
     var prestationsWithoutInterest = _.pickBy(common.requestedVariables, function(definition) {
         return ((! definition.interestFlag) || demandeur[definition.interestFlag]);
     });
@@ -66,11 +66,7 @@ function removePrestationWithoutInterest(testCase, periods, value, demandeur) {
         _.forEach(testCase[definition.entity], function(entity) {
             entity[prestationName] = entity[prestationName] || {};
             _.forEach(periods, function(period) {
-                if (value === undefined) {
-                    delete entity[prestationName][period];
-                } else {
-                    entity[prestationName][period] = entity[prestationName][period] || value;
-                }
+                delete entity[prestationName][period];
             });
         });
     });

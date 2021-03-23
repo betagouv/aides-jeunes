@@ -34,8 +34,15 @@ $screen-smaller-than-mobile: 399px;
   src: url('../fonts/Marianne-ExtraBold.woff2') format('truetype')
 }
 
-@import 'partials/ui-kit';
-@import 'partials/buttons';
-@import 'partials/inputs';
-@import 'partials/home';
+/* DESKTOP IMPORTS */
+@import 'partials/desktop/ui-kit';
+@import 'partials/desktop/buttons';
+@import 'partials/desktop/inputs';
+@import 'partials/desktop/home';
+
+/* TABLET IMPORTS */
+@import 'partials/tablet/ui-kit';
+
+/* MOBILE IMPORTS */
+@import 'partials/mobile/ui-kit';
 

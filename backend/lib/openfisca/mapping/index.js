@@ -54,8 +54,28 @@ function setNonInjectedPrestations(testCase, periods, value) {
         });
     });
 }
+
 exports.setNonInjectedPrestations = setNonInjectedPrestations;
 
+function removePrestationWithoutInterest(testCase, periods, value, demandeur) {
+    var prestationsWithoutInterest = _.pickBy(common.requestedVariables, function(definition) {
+        return ((! definition.interestFlag) || demandeur[definition.interestFlag]);
+    });
+
+    _.forEach(prestationsWithoutInterest, function(definition, prestationName) {
+        _.forEach(testCase[definition.entity], function(entity) {
+            entity[prestationName] = entity[prestationName] || {};
+            _.forEach(periods, function(period) {
+                if (value === undefined) {
+                    delete entity[prestationName][period];
+                } else {
+                    entity[prestationName][period] = entity[prestationName][period] || value;
+                }
+            });
+        });
+    });
+}
+exports.removePrestationWithoutInterest = removePrestationWithoutInterest;
 
 function mapIndividus(situation) {
     var individus = _.filter(common.getIndividusSortedParentsFirst(situation), function(individu) {
@@ -85,12 +105,6 @@ function giveValueToRequestedVariables(testCase, periods, value, situation) {
                 }
                 if (value === undefined) {
                     delete entity[prestationName][period];
-                } else if (definition.interestFlag) {
-                    if (situation.demandeur[definition.interestFlag]) {
-                        entity[prestationName][period] = value; 
-                    } else {
-                        delete entity[prestationName][period];
-                    }
                 } else {
                     entity[prestationName][period] = value;
                 }
@@ -152,7 +166,8 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     var periods = common.getPeriods(situation.dateDeValeur);
     setNonInjectedPrestations(testCase, _.difference(periods.last12Months, periods.last3Months), 0);
     last3MonthsDuplication(testCase, situation.dateDeValeur);
-    giveValueToRequestedVariables(testCase, periods.thisMonth, null, situation);
+    removePrestationWithoutInterest(testCase, periods.thisMonth, situation.demandeur)
+    giveValueToRequestedVariables(testCase, periods.thisMonth, null);
 
     return applyHeuristicsAndFix(testCase, sourceSituation.dateDeValeur);
 };

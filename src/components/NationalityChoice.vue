@@ -1,17 +1,23 @@
 <template>
   <fieldset>
-    <input id="fr" type="radio" name="nationalite" v-model="zone" value="fr" />
-    <label for="fr">
-      Française
-    </label>
-    <input id="ue" type="radio" name="nationalite" v-model="zone" value="ue" />
-    <label for="ue">
-      Européenne
-    </label>
-    <input id="autre" type="radio" name="nationalite" v-model="zone" value="autre" />
-    <label for="autre">
-      Non européenne
-    </label>
+    <div class="aj-selection-wrapper">
+      <input id="fr" type="radio" name="nationalite" v-model="zone" value="fr" />
+      <label for="fr">
+        Française
+      </label>
+    </div>
+    <div class="aj-selection-wrapper">
+      <input id="ue" type="radio" name="nationalite" v-model="zone" value="ue" />
+      <label for="ue">
+        Européenne
+      </label>
+    </div>
+    <div class="aj-selection-wrapper">
+      <input id="autre" type="radio" name="nationalite" v-model="zone" value="autre" />
+      <label for="autre">
+        Non européenne
+      </label>
+    </div>
   </fieldset>
 </template>
 

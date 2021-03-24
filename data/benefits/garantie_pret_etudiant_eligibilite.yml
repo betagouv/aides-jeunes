@@ -1,0 +1,8 @@
+label: prêt étudiant garanti par l'État
+institution: etat
+description: Le prêt étudiant est ouvert à l'ensemble des étudiants sans conditions de ressources et sans caution parentale ou d'un tiers. Avec la possibilité de rembourser l'emprunt de manière différée.
+link: https://www.etudiant.gouv.fr/fr/pret-etudiant-garanti-par-l-etat-1723
+instructions: https://www.etudiant.gouv.fr/fr/pret-etudiant-garanti-par-l-etat-1723#item2
+prefix: le
+type: bool
+entity: individus

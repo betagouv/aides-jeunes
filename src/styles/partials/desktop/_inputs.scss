@@ -86,11 +86,11 @@ html {
             padding: 10px 30px 10px 50px;
             cursor: pointer;
             user-select: none;
-            -webkit-transition: background-color 300ms linear, color 300ms linear;
-            -moz-transition: background-color 300ms linear, color 300ms linear;
-            -o-transition: background-color 300ms linear, color 300ms linear;
-            -ms-transition: background-color 300ms linear, color 300ms linear;
-            transition: background-color 300ms linear, color 300ms linear;
+            -webkit-transition: background-color 400ms linear, color 400ms linear;
+            -moz-transition: background-color 400ms linear, color 400ms linear;
+            -o-transition: background-color 400ms linear, color 400ms linear;
+            -ms-transition: background-color 400ms linear, color 400ms linear;
+            transition: background-color 400ms linear, color 400ms linear;
           }
 
           & + label:hover {

@@ -10,6 +10,7 @@ const autoValidatedSteps = [
     'enfant_a_charge',
     'taux_incapacite',
     'ass_precondition_remplie',
+    'aah_restriction_substantielle_durable_acces_emploi',
     'enfant_place'
 ];
 
@@ -34,7 +35,7 @@ export const createIndividuMixin = (props, optional) => {
         watch: {
            value() {
                 if (this.autoValidate) {
-                    this.onSubmit()
+                    setTimeout(this.onSubmit, 400)
                 }
            }
         },

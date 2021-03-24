@@ -191,12 +191,12 @@ export function hasPrimeActivite() {
   const id = 'ppa'
   const description = /revenus/
   cy.get('#print-disclaimer', { timeout: 15000 }).invoke('text').should('contain', 'engagement')
-  cy.get('.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' + position + ')', { timeout: 6000 }).as(id + '-summary')
+  const card = cy.get('.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' + position + ')', { timeout: 6000 }).as(id + '-summary')
   cy.get('@' + id + '-summary').get('[itemprop="name"]').invoke('text')
     .should('match', name)
   cy.get('@' + id + '-summary').get('[itemprop="offers"]').invoke('text')
     .should('match', /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
-
+  card.click()
   cy.get('.droit-detail:nth-of-type(' + position + ')').as(id)
   cy.get('@' + id).get('[itemprop="description"]').invoke('text')
     .should('match', description)

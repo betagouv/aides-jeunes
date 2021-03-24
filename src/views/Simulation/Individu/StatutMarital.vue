@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Quelle est votre relation avec votre conjoint&nbsp;?</h1>
+    <legend>Quelle est votre relation avec votre conjoint&nbsp;?</legend>
       <select v-model="value">
         <option v-for="situationFamiliale in situationsFamiliales" v-bind:value="situationFamiliale.value" v-bind:key="situationFamiliale.value">
           {{situationFamiliale.label}}

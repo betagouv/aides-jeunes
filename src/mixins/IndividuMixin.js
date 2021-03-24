@@ -9,7 +9,8 @@ const autoValidatedSteps = [
     'handicap',
     'enfant_a_charge',
     'taux_incapacite',
-    'ass_precondition_remplie'
+    'ass_precondition_remplie',
+    'enfant_place'
 ];
 
 export const createIndividuMixin = (props, optional) => {

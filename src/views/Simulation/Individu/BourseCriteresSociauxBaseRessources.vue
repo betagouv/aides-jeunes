@@ -2,7 +2,7 @@
   <form @submit.prevent='onSubmit'>
     <label class="form__group">
       Quel est le montant du revenu fiscal de référence de vos parents&nbsp;?
-      <input type="number" v-select-on-click v-model.number="demandeur.bourse_criteres_sociaux_base_ressource">
+      <input type="number" v-select-on-click v-model.number="value">
     </label>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

@@ -151,11 +151,6 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/BourseCriteresSociauxCommuneDomicileFamilial.vue'),
         },
         {
-          name: 'FO_bourse_criteres_sociaux_commune_domicile_familial_code_postal',
-          path: 'FO_bourse_criteres_sociaux_commune_domicile_familial_code_postal',
-          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/FOBourseCriteresSociauxCommuneDomicileFamilialCodePostal.vue'),
-        },
-        {
           name: 'property',
           path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),

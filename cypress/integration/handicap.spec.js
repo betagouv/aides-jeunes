@@ -20,6 +20,6 @@ context('Full simulation', () => {
     steps.salaireSeul()
     // steps.sansPensionAlimentaireVersees()
     steps.interestFlagExtra()
-    steps.hasPrimeActivite()
+    steps.hasAAH()
   })
 })

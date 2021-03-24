@@ -202,6 +202,23 @@ export function hasPrimeActivite() {
     .should('match', description)
   cy.get('@' + id).get('[itemprop="termsOfService"]').should('be.visible')
 }
+export function hasAAH() {
+  const position = 1
+  const name = /prime d’activité/
+  const id = 'aah'
+  const description = 'AAH'
+  cy.get('#print-disclaimer', { timeout: 15000 }).invoke('text').should('contain', 'engagement')
+  cy.get('.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' + position + ')', { timeout: 6000 }).as(id + '-summary')
+  cy.get('@' + id + '-summary').get('[itemprop="name"]').invoke('text')
+    .should('match', name)
+  cy.get('@' + id + '-summary').get('[itemprop="offers"]').invoke('text')
+    .should('match', /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
+  cy.get('@' + id + '-summary').click()
+  cy.get('.droit-detail:nth-of-type(' + position + ')').as(id)
+  cy.get('@' + id).get('[itemprop="description"]').invoke('text')
+    .should('contain', description)
+  cy.get('@' + id).get('[itemprop="termsOfService"]').should('be.visible')
+}
 
 export function hasLogementSocial() {
   const position = 2

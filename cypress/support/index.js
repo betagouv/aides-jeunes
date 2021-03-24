@@ -57,11 +57,9 @@ export function handicap(params) {
   cy.get('legend').invoke('text').should('contain', 'handicap')
   if (params.handicap) {
     cy.get('input[type="radio"]').check('true')
-    cy.get('button[type="submit"]').click()
     // Taux d'incapacite
     cy.get('legend').invoke('text').should('contain', `taux d'incapacité`)
     cy.get('input[type="radio"]').check(params.handicap.taux_incapacite.toString())
-    cy.get('button[type="submit"]').click()
     if (!params.enfant && 0.5 < params.handicap.taux_incapacite && params.handicap.taux_incapacite <= 0.8) {
       // AAH
       cy.get('legend').invoke('text').should('contain', `CDAPH`)
@@ -69,7 +67,6 @@ export function handicap(params) {
     }
   } else {
     cy.get('input[type="radio"]').check('false')
-    cy.get('button[type="submit"]').click()
   }
 }
 
@@ -107,15 +104,12 @@ export function conjoint(params={}) {
   cy.get('legend').invoke('text').should('contain', 'est-il/elle')
   cy.get('label').invoke('text').should('contain', 'En activité')
   cy.get('input[type="radio"]').check('actif')
-  cy.get('button[type="submit"]').click()
   // Handicap
   cy.get('legend').invoke('text').should('contain', 'handicap')
   cy.get('input[type="radio"]').check('false')
-  cy.get('button[type="submit"]').click()
   // Inapte au travail
   cy.get('legend').invoke('text').should('contain', 'inapte au travail')
   cy.get('input[type="radio"]').check('false')
-  cy.get('button[type="submit"]').click()
 }
 
 export function enfant(params={}) {

@@ -35,7 +35,8 @@ export const createIndividuMixin = (props, optional) => {
         watch: {
            value() {
                 if (this.autoValidate) {
-                    setTimeout(this.onSubmit, 400)
+                    this.onSubmit()
+                    // setTimeout(this.onSubmit, 400)
                 }
            }
         },

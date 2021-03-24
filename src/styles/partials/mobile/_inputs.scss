@@ -1,12 +1,13 @@
 html {
   body {
     .aj-main-container {
-      input[type="radio"] {
-        & + label {
-          width: 100%;
-          padding-left: 20px;
-          padding-right: 20px;
-          text-align: center;
+      .aj-selection-wrapper {
+        input[type="radio"] {
+          & + label {
+            width: 100%;
+            min-width: auto;
+            text-align: center;
+          }
         }
       }
     }

@@ -43,8 +43,8 @@ html {
           justify-content: flex-end;
           position: absolute;
           bottom: 0;
-          right: 50px;
-          transform: translateY(50%);
+          right: 0;
+          transform: translateY(150%);
 
           button:first-child {
             margin-left: 20px;
@@ -64,8 +64,8 @@ html {
 
       .aj-category-title-wrapper {
         h1 {
-          font-size: 3.25rem;
-          margin: 0 0 70px 0px;
+          font-size: 2.75rem;
+          margin: 0 0 5px 0;
         }
       }
 
@@ -77,17 +77,18 @@ html {
         border: 1px solid var(--theme-primary);
         padding: 3px 10px 3px 6px;
         border-radius: var(--theme-border-radius);
-        color: var(--theme-primary);
+        background-color: var(--theme-primary);
+        color: var(--white);
         width: auto;
         user-select: none;
         margin-left: 12px;
 
         .aj-help-icon {
-          background-color: var(--theme-primary);
+          background-color: var(--white);
+          color: var(--theme-primary);
           border-radius: 50%;
           width: 20px;
           height: 20px;
-          color: #fff;
           text-align: center;
           display: inline-block;
           margin-right: 5px;

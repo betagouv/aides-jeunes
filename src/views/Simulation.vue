@@ -5,19 +5,16 @@
       <div class="aj-box-wrapper">
         <router-view/>
       </div>
-      <BoutonRetour text="Retour"/>
     </div>
   </div>
 </template>
 
 <script>
-import BoutonRetour from '@/components/BoutonRetour'
 import TitreChapitre from '@/components/TitreChapitre'
 
 export default {
   name: 'Simulation',
   components: {
-    BoutonRetour,
     TitreChapitre
   },
   data() {

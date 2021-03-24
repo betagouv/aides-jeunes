@@ -13,6 +13,11 @@ html {
 
       .aj-box-wrapper {
         padding: 30px 20px 45px 20px;
+
+        .aj-actions {
+          width: 100%;
+          justify-content: space-between;
+        }
       }
 
       .aj-tooltip {

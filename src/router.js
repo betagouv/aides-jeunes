@@ -141,10 +141,25 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Montants.vue'),
         },
         {
+          name: 'bourse_criteres_sociaux_base_ressource',
+          path: 'bourse_criteres_sociaux_base_ressource',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/BourseCriteresSociauxBaseRessources.vue'),
+        },
+        {
+          name: 'bourse_criteres_sociaux_commune_domicile_familial',
+          path: 'bourse_criteres_sociaux_commune_domicile_familial',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/BourseCriteresSociauxCommuneDomicileFamilial.vue'),
+        },
+        {
+          name: 'FO_bourse_criteres_sociaux_commune_domicile_familial_code_postal',
+          path: 'FO_bourse_criteres_sociaux_commune_domicile_familial_code_postal',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/FOBourseCriteresSociauxCommuneDomicileFamilialCodePostal.vue'),
+        },
+        {
           name: 'property',
           path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
-        }]
+        },]
       },
       {
         path: 'enfants',
@@ -168,7 +183,18 @@ const router = new Router({
         {
           path: 'proprietaire_proche_famille',
           component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/ProprietaireProcheFamille.vue'),
-        }]
+        },
+        {
+          name: 'bourse_criteres_sociaux_nombre_enfants_a_charge',
+          path: 'bourse_criteres_sociaux_nombre_enfants_a_charge',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Famille/BourseCriteresSociauxNombreEnfantsACharge.vue'),
+        },
+        {
+          name: 'bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur',
+          path: 'bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Famille/BourseCriteresSociauxNombreEnfantsAChargeDansEnseignementSuperieur.vue'),
+        },
+      ]
       }, {
         path: 'logement',
         component: () => import(/* webpackChunkName: "logement" */ './views/Simulation/Logement.vue'),

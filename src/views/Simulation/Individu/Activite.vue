@@ -1,12 +1,12 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <legend>{{getLabel('être') | capitalize}}&nbsp;?</legend>
-    <template v-for="activite in ActiviteOptions">
-      <input :id="activite.value" type="radio" name="activite" v-bind:value="activite.value" v-model="value" v-bind:key="'input-' + activite.value"/>
-      <label :for="activite.value" v-bind:key="'label-' + activite.value">
+    <div class="aj-selection-wrapper" v-for="activite in ActiviteOptions" v-bind:key="activite.value">
+      <input :id="activite.value" type="radio" name="activite" v-bind:value="activite.value" v-model="value"/>
+      <label :for="activite.value">
           {{ activite.label }}
       </label>
-    </template>
+    </div>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>

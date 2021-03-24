@@ -1,10 +1,14 @@
 <template>
   <fieldset>
     <legend><slot></slot><slot name="help"></slot></legend>
-    <input id="yes" type="radio" v-bind:value="true" v-bind:name="uniqueFieldName" v-model="model">
-    <label for="yes">Oui</label>
-    <input id="no" type="radio" v-bind:value="false" v-bind:name="uniqueFieldName" v-model="model">
-    <label for="no">Non</label>
+    <div class="aj-selection-wrapper">
+      <input id="yes" type="radio" v-bind:value="true" v-bind:name="uniqueFieldName" v-model="model">
+      <label for="yes">Oui</label>
+    </div>
+    <div class="aj-selection-wrapper">
+      <input id="no" type="radio" v-bind:value="false" v-bind:name="uniqueFieldName" v-model="model">
+      <label for="no">Non</label>
+    </div>
   </fieldset>
 </template>
 

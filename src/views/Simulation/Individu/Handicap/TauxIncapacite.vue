@@ -1,18 +1,17 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <legend>{{ role === 'demandeur' ? `Quel est votre taux d'incapacité` : `Quel est le taux d'incapacité de ${getLabel('nom')}` }} évalué par {{getLabel('possessif')}} <abbr title="Maison départementale des personnes handicapées">MDPH</abbr>&nbsp;?</legend>
-    <template v-for="tauxIncapacite in tauxIncapaciteOptions">
+    <div class="aj-selection-wrapper" v-for="tauxIncapacite in tauxIncapaciteOptions" v-bind:key="tauxIncapacite.value">
       <input :id="tauxIncapacite.value"
              type="radio"
              name="tauxIncapacite"
              v-model="value"
              v-bind:value="tauxIncapacite.value"
-             v-bind:key="'input-' + tauxIncapacite.value"
       />
-      <label :for="tauxIncapacite.value" v-bind:key="'label-' + tauxIncapacite.value">
+      <label :for="tauxIncapacite.value">
           {{ tauxIncapacite.label }}
       </label>
-    </template>
+    </div>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>

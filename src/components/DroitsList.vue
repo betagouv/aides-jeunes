@@ -2,7 +2,7 @@
   <div class="droits-list">
     <div v-if="!ineligible">
       <a v-for="(droit, index) in list"
-        v-on:click="scrollTo($event, droit)"
+        v-on:click="push(droit)"
         class="droits-list-item"
         itemscope itemtype="http://schema.org/GovernmentService"
         v-analytics="{ name:droit.label, action:'click', category:'General'}"
@@ -96,7 +96,9 @@ export default {
     {
         return this.$ScrollService.go(event, document.getElementById(droit.id));
     },
-
+    push: function(droit) {
+      this.$router.push(`/simulation/resultats/${droit.id}`)
+    }
   },
 }
 </script>

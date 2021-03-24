@@ -1,6 +1,5 @@
 <template>
-  <div class="droit-details">
-    <div v-for="droit in droits" v-bind:id="droit.id" v-bind:key="droit.id" class="droit-detail"
+    <div class="droit-detail"
       itemscope itemtype="http://schema.org/GovernmentService">
 
       <div class="droit-detail-heading">
@@ -76,7 +75,6 @@
         </router-link>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -89,7 +87,7 @@ import DroitMontant from './DroitMontant'
 export default {
   name: 'DroitsDetails',
   props: {
-    droits: Array,
+    droit: Object,
     filter: Array,
     patrimoineCaptured: Boolean,
     ressourcesYearMinusTwoCaptured: Boolean,

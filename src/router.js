@@ -141,8 +141,8 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Ressources/Montants.vue'),
         },
         {
-          name: 'bourse_criteres_sociaux_base_ressource',
-          path: 'bourse_criteres_sociaux_base_ressource',
+          name: 'bourse_criteres_sociaux_base_ressources',
+          path: 'bourse_criteres_sociaux_base_ressources',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/BourseCriteresSociauxBaseRessources.vue'),
         },
         {

@@ -203,14 +203,14 @@ function generateBlocks(situation) {
     },
     housingBlock(situation),
     resourceBlocks(situation),
-    extraBlock('demandeur'),
     {
       subject: situation => situation,
       isActive: situation => situation.famille && situation.famille.bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur > 0,
       steps: [
-        new Step({entity:'individu', id:'demandeur', variable: 'bourse_criteres_sociaux_base_ressource'}),
+        new Step({entity:'individu', id:'demandeur', variable: 'bourse_criteres_sociaux_base_ressources'}),
       ]
     },
+    extraBlock('demandeur'),
     {
       steps: [
         new Step({entity: 'resultats'}),

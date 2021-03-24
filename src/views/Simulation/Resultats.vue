@@ -88,38 +88,9 @@ export default {
     shouldDisplayResults: function() {
       return !(this.resultatStatus.updating || this.hasWarning || this.hasError) && this.droits
     },
-    error: function() {
-      let value = this.resultatStatus.error && this.resultatStatus.exception
-      return (_.isString(value) || value instanceof Error) ? value : JSON.stringify(value, null, 2)
-    },
-    userAgent: function() {
-      return window.navigator.userAgent
-    }
   },
   methods: {
-    goToFeedback: function(event) {
-      this.$ScrollService.go(event, document.getElementById('feedback'));
-    },
     isEmpty: function(array) { return ! array || array.length === 0 },
-    isNotEmpty: function(array) { return array && array.length !== 0 },
-    toggleLinks: function() {
-      if (! this.openfiscaTracerURL) {
-        this.$store.getters.fetchRepresentation('openfisca_tracer')
-          .then(representation => {
-            this.openfiscaTracerURL = representation.destination.url
-          })
-
-        this.$store.getters.fetchRepresentation('openfisca_axe')
-          .then(representation => {
-            this.openfiscaAxeURL = representation.destination.url
-          })
-      }
-      this.showExpertLinks = ! this.showExpertLinks
-    },
-    togglePrivate: function() {
-      this.showPrivate = !this.showPrivate
-      this.$store.dispatch('compute', this.showPrivate)
-    }
   },
   mounted: function () {
     if (this.$route.query && this.$route.query.situationId) {
@@ -168,27 +139,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-
-h4 {
-  margin-top: 0.7em;
-}
-
-.container, .panel {
-  opacity: 1;
-}
-
-.injected .droit-detail-heading {
-  padding: 0;
-}
-
-.injected .droit-detail-description p {
-  margin: 0;
-}
-
-pre {
-  white-space: pre-wrap;
-}
-
-</style>

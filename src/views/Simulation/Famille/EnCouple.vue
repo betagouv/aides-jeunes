@@ -1,9 +1,11 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <fieldset>
-      <legend><h1>Vivez-vous seul·e ou en couple ?</h1></legend>
-      <label><input type="radio" v-bind:value="false" name="en_couple" v-model="value">Je vis seul·e</label>
-      <label><input type="radio" v-bind:value="true" name="en_couple" v-model="value">Je vis en couple</label>
+      <legend>Vivez-vous seul·e ou en couple ?</legend>
+      <input id="seul" type="radio" v-bind:value="false" name="en_couple" v-model="value">
+      <label for="seul">Je vis seul·e</label>
+      <input id="en-couple" type="radio" v-bind:value="true" name="en_couple" v-model="value">
+      <label for="en-couple">Je vis en couple</label>
     </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
@@ -24,6 +26,11 @@ export default {
     return {
       famille,
       value,
+    }
+  },
+  watch: {
+    value() {
+      this.onSubmit()
     }
   },
   methods: {

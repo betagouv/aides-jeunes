@@ -196,7 +196,7 @@ export function hasPrimeActivite() {
     .should('match', name)
   cy.get('@' + id + '-summary').get('[itemprop="offers"]').invoke('text')
     .should('match', /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
-  cy.get('.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' + position + ')').click()
+  cy.get('@' + id + '-summary').click()
   cy.get('.droit-detail:nth-of-type(' + position + ')').as(id)
   cy.get('@' + id).get('[itemprop="description"]').invoke('text')
     .should('match', description)

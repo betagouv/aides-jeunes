@@ -88,7 +88,11 @@ export default {
             }
         },
         scolarite: function (value) {
-            return scolariteOptions.find((s) => s.value === value).label
+            const s = scolariteOptions.find((s) => s.value === value)
+            if (s)
+                return scolariteOptions.find((s) => s.value === value).label
+            else
+                return 'Non renseigné'
         }
     },
   methods: {

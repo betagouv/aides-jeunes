@@ -1,9 +1,15 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <fieldset>
-      <legend><h1>Depuis combien de temps vivez-vous seul·e ?</h1></legend>
-      <label><input type="radio" v-bind:value="false" name="rsa_isolement_recent" v-model="value">Moins de 18 mois</label>
-      <label><input type="radio" v-bind:value="true" name="rsa_isolement_recent" v-model="value">Plus de 18 mois</label>
+      <legend>Depuis combien de temps vivez-vous seul·e ?</legend>
+        <div class="aj-selection-wrapper">
+            <input id="moins18" type="radio" v-bind:value="false" name="rsa_isolement_recent" v-model="value">
+            <label for="moins18">Moins de 18 mois</label>
+        </div>
+        <div class="aj-selection-wrapper">
+            <input id="plus18" type="radio" v-bind:value="true" name="rsa_isolement_recent" v-model="value">
+            <label for="plus18">Plus de 18 mois</label>
+        </div>
     </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

@@ -2,10 +2,14 @@
   <form @submit.prevent='onSubmit'>
     <fieldset>
       <legend>Vivez-vous seul·e ou en couple ?</legend>
-      <input id="seul" type="radio" v-bind:value="false" name="en_couple" v-model="value">
-      <label for="seul">Je vis seul·e</label>
-      <input id="en-couple" type="radio" v-bind:value="true" name="en_couple" v-model="value">
-      <label for="en-couple">Je vis en couple</label>
+      <div class="aj-selection-wrapper">
+        <input id="seul" type="radio" v-bind:value="false" name="en_couple" v-model="value">
+        <label for="seul">Je vis seul·e</label>
+      </div>
+      <div class="aj-selection-wrapper">
+        <input id="en-couple" type="radio" v-bind:value="true" name="en_couple" v-model="value">
+        <label for="en-couple">Je vis en couple</label>
+      </div>
     </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

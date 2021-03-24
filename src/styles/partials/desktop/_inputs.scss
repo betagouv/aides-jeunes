@@ -73,6 +73,7 @@ html {
       input[type="text"], input[type="number"] {
         border: 2px solid #AAAAAA;
         border-radius: var(--theme-border-radius);
+        max-width: 300px;
       }
 
       input[type=range]::-moz-range-thumb {

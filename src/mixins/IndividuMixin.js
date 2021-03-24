@@ -8,7 +8,8 @@ const autoValidatedSteps = [
     'garde_alterne',
     'handicap',
     'enfant_a_charge',
-    'taux_incapacite'
+    'taux_incapacite',
+    'ass_precondition_remplie'
 ];
 
 export const createIndividuMixin = (props, optional) => {

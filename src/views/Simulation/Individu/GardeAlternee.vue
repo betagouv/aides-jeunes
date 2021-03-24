@@ -18,6 +18,6 @@ export default {
     Actions,
     YesNoQuestion
   },
-  mixins: [createIndividuMixin('garde_alterne')],
+  mixins: [createIndividuMixin('garde_alternee')],
 }
 </script>

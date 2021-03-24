@@ -21,7 +21,7 @@ const internalUpdateMethods = {
 }
 
 Step.prototype.clean = function({commit, dispatch, state}, storeInternal) {
-  const subject = state.situation[state.entity] || state.situation[this.id] || state.situation.enfants.find(enfant => enfant.id === this.id)
+  const subject = state.situation[this.entity] || state.situation[this.id] || state.situation.enfants.find(enfant => enfant.id === this.id)
   const result = {...subject, [this.variable]: undefined}
   const updateMethod = updateMethods[this.entity]
   const internalUpdateMethod = internalUpdateMethods[this.entity]

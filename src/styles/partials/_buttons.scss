@@ -1,0 +1,60 @@
+button.button:not(.small) {
+  &,
+  &:active,
+  &:focus,
+  &:hover {
+    padding: 13px 30px;
+    line-height: 24px;
+    border: 1px solid var(--theme-primary);
+    background-color: var(--theme-primary);
+    outline: none;
+    margin: 0;
+
+    &:hover {
+      background-color: var(--theme-primary-dark);
+      border-color: var(--theme-primary-dark);
+      transform: scale(1.02);
+    }
+
+    &:focus {
+      background-color: var(--theme-primary-darker);
+    }
+  }
+
+  &.outline {
+    background-color: transparent;
+    color: var(--theme-primary);
+
+    &.with-icon {
+      padding-left: 20px;
+      padding-right: 20px;
+
+      img, i, svg {
+        margin-right: 10px;
+      }
+    }
+
+    &:hover {
+      color: var(--white);
+      background-color: var(--theme-primary-dark);
+      border-color: var(--theme-primary-dark);
+    }
+
+    &:focus {
+      background-color: var(--theme-primary-darker);
+    }
+
+    &.with-icon:hover {
+      svg path {
+        fill: var(--white);
+      }
+    }
+  }
+
+  &.aj-back-button {
+    margin-top: 70px;
+  }
+}
+
+@media (max-width: $screen-smaller-than-mobile) {
+}

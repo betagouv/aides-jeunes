@@ -1,39 +1,40 @@
 <template>
-  <div class="simulation">
-    <div class="main">
-      <router-view/>
-    </div>
+  <div class="container">
     <SimulationProgress />
+    <div class="aj-main-container">
+      <TitreChapitre />
+      <div class="aj-box-wrapper">
+        <router-view/>
+      </div>
+      <BoutonRetour text="Retour"/>
+    </div>
   </div>
 </template>
 
 <script>
+import BoutonRetour from '@/components/BoutonRetour'
+import TitreChapitre from '@/components/TitreChapitre'
 import SimulationProgress from '@/components/Progress'
 
 export default {
   name: 'Simulation',
   components: {
-    SimulationProgress,
+    BoutonRetour,
+    TitreChapitre,
+    SimulationProgress
   },
+  data() {
+    return {
+      window
+    }
+  }
 }
 </script>
 
 <style type="text/css" scoped>
-.simulation {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.simulation > * {
-  padding: 1em;
-}
-
-.separator {
-  flex-grow: 2;
-}
-
-.main {
-  flex-grow: 20;
-  padding-left: 10em;
-}
+    /* Hack for dev */
+    .container {
+        max-width: 100%;
+        display: flex;
+    }
 </style>

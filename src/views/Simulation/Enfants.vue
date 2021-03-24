@@ -2,7 +2,11 @@
   <div>
     <legend>Mes enfants à charge</legend>
     <div v-for="enfant in enfants" class="aj-children-container" v-bind:key="enfant.id">
-      <legend class="small capitalize">{{ enfant._firstName }}</legend>
+      <legend class="small capitalize">
+          {{ enfant._firstName }}
+          <a class="float-right delete-link" v-on:click="removePAC(enfant.id)">supprimer</a>
+          <router-link class="float-right" v-bind:to="`/simulation/individu/${enfant.id}/_firstName`" >éditer</router-link>
+      </legend>
       <hr class="aj-hr" />
       <div class="aj-children-line">
           <div class="aj-children-birth-date">
@@ -99,3 +103,10 @@ export default {
   }
 }
 </script>
+
+
+<style scoped lang="scss">
+    .delete-link {
+        margin-left: 10px;
+    }
+</style>

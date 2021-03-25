@@ -95,7 +95,6 @@
       <h1 v-if="! isEmpty(droits)">Comment obtenir vos aides ?</h1>
       <DroitsDetails
         v-bind:city="situation.menage.depcom"
-        v-bind:droits="droits"
         v-bind:patrimoine-captured="! shouldPatrimoineBeCaptured"
         v-bind:ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"
         ></DroitsDetails>

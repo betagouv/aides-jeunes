@@ -200,10 +200,16 @@ const router = new Router({
             path: 'depcom',
             component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Depcom.vue'),
         }]
-      }, {
+      }, 
+      {
         path: 'resultats',
-        component: () => import(/* webpackChunkName: "resultats" */ './views/Foyer/Resultat.vue'),
-      }, {
+        component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/Resultats.vue'),
+      },
+      {
+        path: 'resultats/:droitId',
+        component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/ResultatsDetail.vue'),
+      },
+      {
         path: ':id/:property',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
       }]

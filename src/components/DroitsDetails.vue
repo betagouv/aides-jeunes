@@ -1,6 +1,5 @@
 <template>
-  <div class="droit-details">
-    <div v-for="droit in droits" v-bind:id="droit.id" v-bind:key="droit.id" class="droit-detail"
+    <div class="droit-detail"
       itemscope itemtype="http://schema.org/GovernmentService">
 
       <div class="droit-detail-heading">
@@ -76,7 +75,6 @@
         </router-link>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -89,8 +87,7 @@ import DroitMontant from './DroitMontant'
 export default {
   name: 'DroitsDetails',
   props: {
-    droits: Array,
-    filter: Array,
+    droit: Object,
     patrimoineCaptured: Boolean,
     ressourcesYearMinusTwoCaptured: Boolean,
   },
@@ -99,25 +96,12 @@ export default {
     BenefitCtaLink,
     DroitMontant,
   },
-  data: function() {
-    return {
-    }
-  },
-  computed: {
-    list: function() {
-      let vm = this
-      return _.filter(this.droits, function(value) {
-        return (!vm.filter) ||_.includes(vm.filter, value.id)
-      })
-    },
-  },
   methods: {
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,
     isBoolean: _.isBoolean,
     isNumber: _.isNumber,
     isString: _.isString,
-
   },
 }
 </script>

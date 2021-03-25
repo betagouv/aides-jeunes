@@ -44,14 +44,6 @@ import OfflineResults from './../../components/OfflineResults'
 
 export default {
   name: 'SimulationResultats',
-  data: function() {
-    return {
-      openfiscaTracerURL: false,
-      openfiscaAxeURL: false,
-      showExpertLinks: false,
-      showPrivate: false
-    }
-  },
   components: {
     DroitsList,
     OfflineResults
@@ -86,9 +78,9 @@ export default {
     if (this.$route.query && this.$route.query.situationId) {
       if (this.$store.state.situation._id !== this.$route.query.situationId) {
         this.$store.dispatch('fetch', this.$route.query.situationId)
-          .then(() => this.$store.dispatch('compute', this.showPrivate))
+          .then(() => this.$store.dispatch('compute'))
       } else if (! this.$store.getters.hasResults) {
-        this.$store.dispatch('compute', this.showPrivate)
+        this.$store.dispatch('compute')
       } // Else nothing to do
     } else if (!this.$store.getters.passSanityCheck) {
       return this.$store.dispatch('redirection', route => this.$router.push(route))

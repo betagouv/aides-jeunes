@@ -1,17 +1,14 @@
 <template>
     <form @submit.prevent='onSubmit'>
-        <h1>{{ title }}</h1>
         <fieldset>
-            <legend>
-                {{ proprietaireProcheQuestion.label }}
-                <span v-if="proprietaireProcheQuestion.hint" class="help">{{ proprietaireProcheQuestion.hint }}</span>
-            </legend>
-            <label v-for="response in proprietaireProcheQuestion.responses" v-bind:key="response.value">
-                <input type="radio" name="coloc" v-model="proprietaireProcheQuestion.selectedValue" v-bind:value="response.value"
-                />
-                {{ response.label | capitalize }}
-                <span v-if="response.hint" class="help">({{ response.hint }})</span>
-            </label>
+            <YesNoQuestion v-model="value">
+                <legend>
+                    <h1>
+                        Avez-vous un lien de parenté direct avec votre propriétaire ?
+                    </h1>
+                </legend>
+            </YesNoQuestion>
+            <span class="help">(Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant, grand-parent…) ?)</span>
         </fieldset>
         <Actions v-bind:onSubmit='onSubmit'/>
     </form >
@@ -19,45 +16,18 @@
 
 <script>
     import Actions from '@/components/Actions'
+    import YesNoQuestion from '@/components/YesNoQuestion'
+    import { createFamilleMixin } from '@/mixins/FamilleMixin'
 
     export default {
         name: 'SimulationMenageLogementChambre',
         components: {
-            Actions
+            Actions,
+            YesNoQuestion,
         },
-        data: function() {
-            const famille = this.$store.getters.getFamille || {}
-            return {
-                title: 'Mon logement',
-                famille: famille,
-                proprietaireProcheQuestion: {
-                    label: 'Avez-vous un lien de parenté direct avec votre propriétaire ?',
-                    hint: 'Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant, grand-parent…) ?',
-                    selectedValue: famille.proprietaire_proche_famille,
-                    responses: [
-                        {
-                            label: 'Oui',
-                            value: true
-                        },
-                        {
-                            label: 'Non',
-                            value: false
-                        }
-                    ]
-                }
-            }
-        },
-        methods: {
-            onSubmit: function() {
-                if (this.proprietaireProcheQuestion.selectedValue === undefined) {
-                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
-                    return
-                }
-                this.famille.proprietaire_proche_famille = this.proprietaireProcheQuestion.selectedValue
-                this.$store.dispatch('updateFamille', this.famille)
-                this.$push()
-            }
-        }
+        mixins: [
+            createFamilleMixin('proprietaire_proche_famille')
+        ],
     }
 </script>
 

@@ -28,7 +28,7 @@ module.exports = {
         ...options,
         compilerOptions: {
           ...options.compilerOptions,
-          preserveWhitespace: true,
+          whitespace: 'preserve',
         },
       }));
   },

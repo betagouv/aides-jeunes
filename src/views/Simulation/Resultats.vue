@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <p v-show="accessStatus.fetching"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération de la situation en cours…</p>
     <p v-show="resultatStatus.updating"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
     <div v-show="shouldDisplayResults">
@@ -35,18 +35,21 @@
           <p>Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
       </div>
     </div>
+    <Feedback :resultatsId="resultatsId"/>
   </div>
 </template>
 
 <script>
 import DroitsList from './../../components/DroitsList'
+import Feedback from './../../components/Feedback'
 import OfflineResults from './../../components/OfflineResults'
 
 export default {
   name: 'SimulationResultats',
   components: {
     DroitsList,
-    OfflineResults
+    Feedback,
+    OfflineResults,
   },
   computed: {
     droits: function() { 

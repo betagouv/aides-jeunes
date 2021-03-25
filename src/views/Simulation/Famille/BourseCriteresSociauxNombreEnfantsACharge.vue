@@ -1,9 +1,11 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <label class="form__group">
-      Combien d'enfants (vous y compris) sont à la charge de vos parents&nbsp;?
-      <input min="1" type="number" v-select-on-click v-model.number="value">
-    </label>
+    <fieldset>
+      <legend><h1>Combien d'enfants (vous y compris) sont à la charge de vos parents&nbsp;?</h1></legend>
+      <label>
+        <input min="1" type="number" v-select-on-click v-model.number="value">
+      </label>
+    </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>

@@ -1,9 +1,11 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <label class="form__group">
-      Quel est le montant du revenu fiscal de référence de vos parents&nbsp;?
-      <input type="number" v-select-on-click v-model.number="value">
-    </label>
+    <fieldset>
+        <legend><h2>Quel est le montant du revenu fiscal de référence de vos parents&nbsp;?</h2></legend>
+      <label>
+        <input type="number" v-select-on-click v-model.number="value">
+      </label>
+    </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template> 

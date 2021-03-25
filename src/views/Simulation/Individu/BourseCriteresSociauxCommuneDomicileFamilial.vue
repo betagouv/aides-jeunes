@@ -1,14 +1,15 @@
 <template>
   <form @submit.prevent='onSubmit'>
+    <h1>Logement familial</h1>
     <fieldset>
-      <label>Code postal de la commune de vos parents
+      <label>Quel est le code postal de la commune de vos parents ?
         <input type="number" v-model="codePostal">
       </label>
       </fieldset>
 
       <p v-if="retrievingCommunes"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
       <fieldset v-show="communes && communes.length">
-          <label>Veuillez selectionner votre ville</label>
+          <label>Veuillez selectionner la ville qui correspond</label>
           <select
               v-model="nomCommune"
               id="commune">
@@ -86,3 +87,15 @@ export default {
   }
 }
 </script>
+<style scoped lang="scss">
+    span.help {
+        font-style: italic;
+        display: block;
+        font-size: 0.8em;
+    }
+
+    fieldset {
+        margin-bottom: 2em;
+    }
+</style>
+

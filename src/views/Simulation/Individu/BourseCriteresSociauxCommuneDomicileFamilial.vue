@@ -43,6 +43,7 @@ export default {
       codePostal,
       individu,
       nomCommune,
+      retrievingCommunes: false,
     }
   },
   asyncComputed: {

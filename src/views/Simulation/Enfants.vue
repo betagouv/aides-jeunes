@@ -40,6 +40,7 @@
 <script>
 import Actions from '@/components/Actions'
 import Individu from '@/lib/Individu'
+import Nationality from '@/lib/Nationality'
 import moment from 'moment'
 
 const scolariteOptions = [
@@ -71,16 +72,7 @@ export default {
         birthDate: function (date) {
             return moment(date).format('DD/MM/YYYY')
         },
-        nationality: function (code) {
-            switch (code) {
-                case 'DE':
-                    return 'Européenne';
-                case 'FR':
-                    return 'Français';
-                case 'AF':
-                    return 'Non européenne';
-            }
-        },
+        nationality: Nationality.getNationalityFromCountryCode,
         scolarite: function (value) {
             const s = scolariteOptions.find((s) => s.value === value)
             if (s)

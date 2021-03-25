@@ -12,8 +12,6 @@ var famille = {
 
 var foyerFiscal = {
     rfr: Object,
-    bourse_criteres_sociaux_nombre_enfants_a_charge: Number,
-    bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur: Number,
 };
 
 var allRessources = _.concat(

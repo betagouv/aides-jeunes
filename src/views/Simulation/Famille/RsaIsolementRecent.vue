@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <fieldset>
-      <legend>Depuis combien de temps vivez-vous seul·e ?</legend>
+      <h2 class="aj-question">Depuis combien de temps vivez-vous seul·e ?</h2>
         <div class="aj-selection-wrapper">
             <input id="moins18" type="radio" v-bind:value="false" name="rsa_isolement_recent" v-model="value">
             <label for="moins18">Moins de 18 mois</label>

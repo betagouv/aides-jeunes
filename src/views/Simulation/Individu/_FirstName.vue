@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <legend>Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.</legend>
+    <label class="aj-question">Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.</label>
     <input type="text" id="_firstName" v-model="value">
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

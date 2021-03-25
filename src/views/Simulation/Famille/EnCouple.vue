@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <fieldset>
-      <legend>Vivez-vous seul·e ou en couple ?</legend>
+      <h2 class="aj-question">Vivez-vous seul·e ou en couple ?</h2>
       <div class="aj-selection-wrapper">
         <input id="seul" type="radio" v-bind:value="false" name="en_couple" v-model="value">
         <label for="seul">Je vis seul·e</label>

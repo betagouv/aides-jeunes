@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <legend>{{ role === 'demandeur' ? 'Quelle est votre nationalité&nbsp;?' : `Quelle est la nationalité de ${getLabel('nom')}&nbsp;?` }}</legend>
+    <h2 class="aj-question">{{ role === 'demandeur' ? 'Quelle est votre nationalité&nbsp;?' : `Quelle est la nationalité de ${getLabel('nom')}&nbsp;?` }}</h2>
     <NationalityChoice v-model="value" @update="onSubmit"/>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

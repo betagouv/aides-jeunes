@@ -52,9 +52,11 @@ html {
           }
         }
 
-        legend {
+        .aj-question {
           font-family: MarianneBold;
+          color: var(--dark);
           font-size: 1.25rem;
+          margin-bottom: 1rem;
 
           &.small {
             font-size: 0.85rem;

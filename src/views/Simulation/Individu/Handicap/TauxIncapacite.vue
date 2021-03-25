@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <legend>{{ role === 'demandeur' ? `Quel est votre taux d'incapacité` : `Quel est le taux d'incapacité de ${getLabel('nom')}` }} évalué par {{getLabel('possessif')}} <abbr title="Maison départementale des personnes handicapées">MDPH</abbr>&nbsp;?</legend>
+    <h2 class="aj-question">{{ role === 'demandeur' ? `Quel est votre taux d'incapacité` : `Quel est le taux d'incapacité de ${getLabel('nom')}` }} évalué par {{getLabel('possessif')}} <abbr title="Maison départementale des personnes handicapées">MDPH</abbr>&nbsp;?</h2>
     <div class="aj-selection-wrapper" v-for="tauxIncapacite in tauxIncapaciteOptions" v-bind:key="tauxIncapacite.value">
       <input :id="tauxIncapacite.value"
              type="radio"

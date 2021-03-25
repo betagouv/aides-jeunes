@@ -1,6 +1,6 @@
 <template>
   <fieldset>
-    <legend><slot></slot><slot name="help"></slot></legend>
+    <h2 class="aj-question"><slot></slot><slot name="help"></slot></h2>
     <div class="aj-selection-wrapper">
       <input :id="'yes-' + uniqueFieldName" type="radio" v-bind:value="true" v-bind:name="uniqueFieldName" v-model="model">
       <label :for="'yes-' + uniqueFieldName">Oui</label>

@@ -1,9 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <label>
-      <legend>Quand {{getLabel('avoir')}} commencé à être au chômage&nbsp;?</legend>
-      <InputDate required id="date_debut_chomage" v-model="value" />
-    </label>
+    <h2 class="aj-question">Quand {{getLabel('avoir')}} commencé à être au chômage&nbsp;?</h2>
+    <InputDate required id="date_debut_chomage" v-model="value" />
     <Actions v-bind:onSubmit='onSubmit'/>
   </form >
 </template>

@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <legend>{{getLabel('être') | capitalize}}&nbsp;?</legend>
+    <h2 class="aj-question">{{getLabel('être') | capitalize}}&nbsp;?</h2>
     <div class="aj-selection-wrapper" v-for="activite in ActiviteOptions" v-bind:key="activite.value">
       <input :id="activite.value" type="radio" name="activite" v-bind:value="activite.value" v-model="value"/>
       <label :for="activite.value">

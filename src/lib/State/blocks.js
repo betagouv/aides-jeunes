@@ -137,6 +137,15 @@ function housingBlock() {
         steps: [
           new Step({entity: 'famille', variable: 'parisien'}),
         ],
+     },
+     {
+        isActive: (menage, situation) => {
+          const demandeur = situation.demandeur
+          return demandeur && demandeur.activite == 'etudiant' && demandeur.enfant_a_charge && !demandeur.habite_chez_parents
+        },
+        steps: [
+          new Step({entity: 'individu', id: 'demandeur', variable: 'bourse_criteres_sociaux_commune_domicile_familial'}),
+        ],
      }
     ]
   }
@@ -184,8 +193,23 @@ function generateBlocks(situation) {
         ...(situation.conjoint ? [individuBlockFactory('conjoint')] : []),
       ]
     },
+    {
+      subject: situation => situation.demandeur,
+      isActive: subject => subject && subject.activite == 'etudiant' && subject.enfant_a_charge,
+      steps: [
+        new Step({entity:'famille', variable: 'bourse_criteres_sociaux_nombre_enfants_a_charge'}),
+        new Step({entity:'famille', variable: 'bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur'}),
+      ]
+    },
     housingBlock(situation),
     resourceBlocks(situation),
+    {
+      subject: situation => situation,
+      isActive: situation => situation.famille && situation.famille.bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur > 0,
+      steps: [
+        new Step({entity:'individu', id:'demandeur', variable: 'bourse_criteres_sociaux_base_ressources'}),
+      ]
+    },
     extraBlock('demandeur'),
     {
       steps: [

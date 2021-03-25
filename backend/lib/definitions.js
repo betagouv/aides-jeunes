@@ -6,6 +6,8 @@ var famille = {
     parisien: Boolean,
     proprietaire_proche_famille: Boolean,
     rsa_isolement_recent: Boolean,
+    bourse_criteres_sociaux_nombre_enfants_a_charge: Number,
+    bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur: Number,
 };
 
 var foyerFiscal = {
@@ -35,6 +37,10 @@ var individu = Object.assign({
     agepi_temps_travail_semaine: Number,
     ass_precondition_remplie: Boolean,
     boursier: Boolean,
+    bourse_criteres_sociaux_base_ressources: Number,
+    bourse_criteres_sociaux_commune_domicile_familial: String,
+    _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: String,
+    _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: String,
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,

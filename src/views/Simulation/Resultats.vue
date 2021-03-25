@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
 import DroitsList from './../../components/DroitsList'
 import OfflineResults from './../../components/OfflineResults'
 
@@ -61,7 +60,6 @@ export default {
     droits: function() { 
       return this.resultats && this.resultats.droitsEligibles
     },
-    droitsInjectes: function() { return (this.resultats && this.resultats.droitsInjectes) || [] },
     droitsNonEligibles: function() {
       return (this.droitsNonEligiblesShow && this.resultats && this.resultats.droitsNonEligibles) || [] },
     droitsNonEligiblesShown: function() { return this.droitsNonEligibles.filter(i => i.id === "css_participation_forfaitaire") },
@@ -71,14 +69,6 @@ export default {
     resultatStatus: function() { return this.$store.state.calculs },
     resultats: function() { return this.$store.state.calculs.resultats },
     ressourcesYearMinusTwoCaptured: function() { return this.$store.getters.ressourcesYearMinusTwoCaptured },
-    situation: function() { return this.$store.state.situation },
-    shouldPatrimoineBeCaptured: function() {
-      if (! this.droits) {
-        return
-      }
-
-      return _.some(this.droits, 'isBaseRessourcesPatrimoine') && this.$store.getters.hasPatrimoine === undefined
-    },
     hasWarning: function() {
       return this.accessStatus.forbidden
     },

@@ -204,7 +204,7 @@ export function hasPrimeActivite() {
 }
 export function hasAAH() {
   const position = 1
-  const name = /prime d’activité/
+  const name = /allocation aux adultes handicapés/
   const id = 'aah'
   const description = 'AAH'
   cy.get('#print-disclaimer', { timeout: 15000 }).invoke('text').should('contain', 'engagement')

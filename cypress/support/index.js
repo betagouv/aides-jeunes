@@ -33,7 +33,7 @@ export function home() {
 
 export function demandeur(params={}) {
   // Naissance
-  cy.get('legend').invoke('text').should('contain', 'naissance')
+  cy.get('label').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
     .type(params.date_naissance || '12121980')
   cy.get('button[type="submit"]').click()
@@ -71,25 +71,25 @@ export function handicap(params) {
 }
 
 export function zeroEnfants() {
-  cy.get('legend').invoke('text').should('contain', 'enfants')
+  cy.get('h2').invoke('text').should('contain', 'enfants')
   cy.get('button[type="submit"]').click()
 }
 
 export function deuxEnfants() {
-  cy.get('legend').invoke('text').should('contain', 'enfants')
+  cy.get('h2').invoke('text').should('contain', 'enfants')
   cy.get('button#add-pac').click()
   enfant()
-  cy.get('legend').invoke('text').should('contain', 'enfants')
+  cy.get('h2').invoke('text').should('contain', 'enfants')
   cy.get('button#add-pac').click()
   enfant()
-  cy.get('legend').invoke('text').should('contain', 'enfants')
+  cy.get('h2').invoke('text').should('contain', 'enfants')
   cy.get('button[type="submit"]').click()
 }
 
 export function conjoint(params={}) {
   cy.get('button[type="submit"]').click()
   // Naissance
-  cy.get('legend').invoke('text').should('contain', 'naissance')
+  cy.get('label').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
     .type(params.date_naissance || '12121980')
   cy.get('button[type="submit"]').click()
@@ -97,7 +97,7 @@ export function conjoint(params={}) {
   cy.get('legend').invoke('text').should('contain', 'nationalité')
   cy.get('button[type="submit"]').click()
   // Statut Marital
-  cy.get('legend').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
+  cy.get('label').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
   cy.get('select').select('marie')
   cy.get('button[type="submit"]').click()
   // Activite
@@ -115,7 +115,7 @@ export function conjoint(params={}) {
 export function enfant(params={}) {
   cy.get('button[type="submit"]').click()
   // Naissance
-  cy.get('legend').invoke('text').should('contain', 'naissance')
+  cy.get('label').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
     .type(params.date_naissance || '12122000')
   cy.get('button[type="submit"]').click()

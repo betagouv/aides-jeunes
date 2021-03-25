@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <label class="aj-question">Quelle est votre relation avec votre conjoint&nbsp;?</label>
-      <select v-model="value">
+    <label for="statut_marital" class="aj-question">Quelle est votre relation avec votre conjoint&nbsp;?</label>
+      <select id="statut_marital" v-model="value">
         <option v-for="situationFamiliale in situationsFamiliales" v-bind:value="situationFamiliale.value" v-bind:key="situationFamiliale.value">
           {{situationFamiliale.label}}
         </option>

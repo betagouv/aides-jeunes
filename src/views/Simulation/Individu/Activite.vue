@@ -1,12 +1,15 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h2 class="aj-question">{{getLabel('être') | capitalize}}&nbsp;?</h2>
+    <fieldset>
+    <legend>
+    <h2 class="aj-question">{{getLabel('être') | capitalize}}&nbsp;?</h2></legend>
     <div class="aj-selection-wrapper" v-for="activite in ActiviteOptions" v-bind:key="activite.value">
       <input :id="activite.value" type="radio" name="activite" v-bind:value="activite.value" v-model="value"/>
       <label :for="activite.value">
           {{ activite.label }}
       </label>
     </div>
+    </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>

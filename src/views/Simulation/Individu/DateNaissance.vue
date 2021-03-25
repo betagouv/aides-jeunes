@@ -1,10 +1,10 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h2 class="aj-question">
+    <label for="date_naissance"><h2 class="aj-question">
         {{ role === 'demandeur' ?
         `Quelle est votre date de naissance&nbsp;?` :
         `Quelle est la date de naissance ${getLabel('nom')}&nbsp;?`}}
-    </h2>
+    </h2></label>
     <InputDate required id="date_naissance" v-model="value" />
     <p class="notification warning" v-if="error">
         Ce champ est obligatoire.

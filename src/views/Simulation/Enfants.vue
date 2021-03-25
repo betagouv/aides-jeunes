@@ -11,7 +11,7 @@
       <div class="aj-children-line">
           <div class="aj-children-birth-date">
             <label>Sa date de naissance</label>
-            <span>{{ enfant.date_naissance | age }}</span>
+            <span>{{ enfant.date_naissance | birthDate }}</span>
           </div>
           <div class="aj-children-nationality">
               <label>Sa nationalité</label>
@@ -74,7 +74,7 @@ export default {
     }
   },
     filters: {
-        age: function (date) {
+        birthDate: function (date) {
             return moment(date).format('DD/MM/YYYY')
         },
         nationality: function (code) {

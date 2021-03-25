@@ -6,6 +6,8 @@ var famille = {
     parisien: Boolean,
     proprietaire_proche_famille: Boolean,
     rsa_isolement_recent: Boolean,
+    bourse_criteres_sociaux_nombre_enfants_a_charge: Number,
+    bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur: Number,
 };
 
 var foyerFiscal = {

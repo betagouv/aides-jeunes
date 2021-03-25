@@ -1,7 +1,7 @@
 <template>
   <div id="feedback">
     <h2>
-      Nous améliorons ce simulateur en continu, et vous pouvez nous y aider !
+      Nous améliorons ce simulateur en continu, et vous pouvez nous y aider&nbsp;!
     </h2>
     <p>
       La plupart des résultats que nous vous proposons sont automatiquement
@@ -16,7 +16,6 @@
             category: 'General',
           }"
           v-mail="{
-            to: 'equipe@mes-aides.org',
             subject: `[${resultatsId}] Suggestion`,
           }"
           >Vous avez une suggestion d'amélioration</a
@@ -30,10 +29,9 @@
             category: 'General',
           }"
           v-mail="{
-            to: 'equipe@mes-aides.org',
             subject: `[${resultatsId}] Montants inattendus`,
             body: `Bonjour,
-En effectuant une simulation sur mes-aides.org, j'ai obtenu le résultat suivant :
+En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
 - XXX € / mois pour la prestation «  ».
 Mais en effectuant la même simulation sur le site XXX, j'ai obtenu le résultat suivant :
 - XXX € / mois pour la prestation «  ».
@@ -54,10 +52,9 @@ ID : ${resultatsId} (à conserver impérativement pour traitement de votre deman
             category: 'General',
           }"
           v-mail="{
-            to: 'equipe@mes-aides.org',
             subject: `[${resultatsId}] Montants inattendus`,
             body: `Bonjour,
-En effectuant une simulation sur mes-aides.org, j'ai obtenu le résultat suivant :
+En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
 - XXX € / mois pour la prestation «  ».
 Mais XXX a fini par m'attribuer le montant suivant :
 - XXX € / mois pour la prestation «  ».
@@ -109,10 +106,6 @@ ID : ${resultatsId} (à conserver impérativement pour traitement de votre deman
             </a>
           </li>
         </ul>
-        <button @click="togglePrivate">
-          <span v-if="showPrivate">Cacher</span><span v-else>Afficher</span> les
-          aides en test
-        </button>
       </div>
     </small>
   </div>
@@ -128,7 +121,6 @@ export default {
             openfiscaTracerURL: false,
             openfiscaAxeURL: false,
             showExpertLinks: false,
-            showPrivate: false
         }
     },
     methods: {
@@ -146,10 +138,6 @@ export default {
             }
             this.showExpertLinks = ! this.showExpertLinks
         },
-        togglePrivate: function() {
-            this.showPrivate = !this.showPrivate
-            this.$store.dispatch('compute', this.showPrivate)
-        }
     }
 }
 </script>

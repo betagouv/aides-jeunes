@@ -1,7 +1,21 @@
 <template>
   <div>
     <p v-show="accessStatus.fetching"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération de la situation en cours…</p>
+
     <p v-show="resultatStatus.updating"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
+
+    <div class="notification warning" v-if="hasWarning">
+      <div>
+        <h2><i class="fa fa-warning" aria-hidden="true"></i> Aucun résultat disponible</h2>
+        <h3>La simulation à laquelle vous souhaitez accéder n‘est pas accessible.</h3>
+        <p>
+          Pour commencer votre simulation, rendez-vous sur la <router-link to="home">page d'accueil</router-link>.
+        </p>
+      </div>
+    </div>
+
+    <ErrorBlock v-if="hasError" />
+
     <div v-show="shouldDisplayResults">
       <div v-if="! isEmpty(droits)">
         <p>
@@ -17,30 +31,23 @@
         </p>
         <DroitsList ineligible v-bind:droits="droitsNonEligiblesShown"></DroitsList>
       </div>
+
       <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
 
-      <div class="notification warning print-hidden" v-if="! ressourcesYearMinusTwoCaptured">
-        <span>
-          <h2 v-if="droits && !droits.length">Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
-          <i class="fa fa-warning text-warning" aria-hidden="true"></i>
-
-          Nous avons supposé que vos ressources pour l’année {{ $store.state.dates.fiscalYear.label }} étaient les mêmes qu’entre {{ $store.state.dates.twelveMonthsAgo.label }} et {{ $store.state.dates.oneMonthAgo.label }}.
-        </span>
-
-        <router-link class="button-outline warning text-center" to="ressources/fiscales">Déclarez vos ressources {{ $store.state.dates.fiscalYear.label }}</router-link>
-      </div>
-
-      <div class="frame-resultats" v-show="isEmpty(droits) && ressourcesYearMinusTwoCaptured">
+      <div class="frame-resultats" v-show="isEmpty(droits)">
           <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
           <p>Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
       </div>
+
+      <Feedback :resultatsId="resultatsId"/>
     </div>
-    <Feedback :resultatsId="resultatsId"/>
+
   </div>
 </template>
 
 <script>
 import DroitsList from './../../components/DroitsList'
+import ErrorBlock from './../../components/ErrorBlock'
 import Feedback from './../../components/Feedback'
 import OfflineResults from './../../components/OfflineResults'
 
@@ -48,6 +55,7 @@ export default {
   name: 'SimulationResultats',
   components: {
     DroitsList,
+    ErrorBlock,
     Feedback,
     OfflineResults,
   },
@@ -63,7 +71,6 @@ export default {
     accessStatus: function() { return this.$store.state.access },
     resultatStatus: function() { return this.$store.state.calculs },
     resultats: function() { return this.$store.state.calculs.resultats },
-    ressourcesYearMinusTwoCaptured: function() { return this.$store.getters.ressourcesYearMinusTwoCaptured },
     hasWarning: function() {
       return this.accessStatus.forbidden
     },

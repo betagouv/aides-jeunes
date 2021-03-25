@@ -3,8 +3,7 @@
     <DroitsDetails
         :droit="droit"
         :city="situation.menage.depcom"
-        :droits="droits"
-        :patrimoine-captured="! shouldPatrimoineBeCaptured"
+        :patrimoine-captured="patrimoineCaptured"
         :ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured" />
   </div>
 </template>
@@ -30,13 +29,7 @@ export default {
         });
         return droit || {}
     },
-    shouldPatrimoineBeCaptured: function() {
-      if (! this.droits) {
-        return
-      }
-
-      return _.some(this.droits, 'isBaseRessourcesPatrimoine') && this.$store.getters.hasPatrimoine === undefined
-    },
+    patrimoineCaptured: function() { return this.$store.getters.hasPatrimoine !== undefined },
     ressourcesYearMinusTwoCaptured: function() { return this.$store.getters.ressourcesYearMinusTwoCaptured },
   },
 }

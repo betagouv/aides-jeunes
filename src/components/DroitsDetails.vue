@@ -88,7 +88,6 @@ export default {
   name: 'DroitsDetails',
   props: {
     droit: Object,
-    filter: Array,
     patrimoineCaptured: Boolean,
     ressourcesYearMinusTwoCaptured: Boolean,
   },
@@ -97,25 +96,12 @@ export default {
     BenefitCtaLink,
     DroitMontant,
   },
-  data: function() {
-    return {
-    }
-  },
-  computed: {
-    list: function() {
-      let vm = this
-      return _.filter(this.droits, function(value) {
-        return (!vm.filter) ||_.includes(vm.filter, value.id)
-      })
-    },
-  },
   methods: {
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,
     isBoolean: _.isBoolean,
     isNumber: _.isNumber,
     isString: _.isString,
-
   },
 }
 </script>

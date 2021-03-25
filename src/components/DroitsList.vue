@@ -60,13 +60,8 @@ import DroitMontant from './DroitMontant'
 export default {
   name: 'DroitsList',
   props: {
-    city: Object,
     droits: Array,
-    filter: Array,
     ineligible: Boolean,
-    patrimoineCaptured: Boolean,
-    ressourcesYearMinusTwoCaptured: Boolean,
-    yearMinusTwo: String,
   },
   components: {
     DroitMontant

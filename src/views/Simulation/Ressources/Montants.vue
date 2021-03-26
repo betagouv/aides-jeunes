@@ -49,7 +49,9 @@ export default {
   },
   watch: {
     $route (toRoute, fromRoute) {
-      if (toRoute.params.id != fromRoute.params.id) {
+      if (
+          (toRoute.params.id != fromRoute.params.id) || (toRoute.params.category != fromRoute.params.category)
+      ) {
         this.individu = this.getIndividu()
         this.types = this.getTypes(this.individu)
       }

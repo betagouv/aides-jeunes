@@ -1,26 +1,12 @@
 import Individu from '@/lib/Individu'
+import { autoSubmitMixin } from '@/mixins/AutoSubmit'
 
-const autoValidatedSteps = [
-    'activite',
-    'nationalite',
-    'handicap',
-    'inapte_travail',
-    'garde_alterne',
-    'handicap',
-    'enfant_a_charge',
-    'taux_incapacite',
-    'ass_precondition_remplie',
-    'aah_restriction_substantielle_durable_acces_emploi',
-    'enfant_place'
-];
-
-export const createIndividuMixin = (props, optional) => {
+export const createIndividuMixin = (props, optional, manualValidation) => {
     return {
         data: function() {
             const id = this.$route.params.id
             const role = id.split('_')[0]
             const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-            const autoValidate = autoValidatedSteps.includes(props)
             const value = individu[props]
             return {
                 error: false,
@@ -28,18 +14,10 @@ export const createIndividuMixin = (props, optional) => {
                 id,
                 value,
                 role,
-                autoValidate,
                 optional
             }
         },
-        watch: {
-           value() {
-                if (this.autoValidate) {
-                    this.onSubmit()
-                    // setTimeout(this.onSubmit, 400)
-                }
-           }
-        },
+        mixins: [autoSubmitMixin('value', manualValidation)],
         methods: {
             getLabel: function(type) {
                 const labelDict = {

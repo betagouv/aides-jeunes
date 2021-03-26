@@ -17,6 +17,7 @@
 
 <script>
 import Actions from '@/components/Actions'
+import { autoSubmitMixin } from '@/mixins/AutoSubmit'
 
 export default {
   name: 'SimulationFamilleRsaIsolementRecent',
@@ -31,6 +32,7 @@ export default {
       value,
     }
   },
+  mixins: [autoSubmitMixin('value')],
   methods: {
     onSubmit: function() {
       if (this.value === undefined) {

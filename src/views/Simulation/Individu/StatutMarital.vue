@@ -34,7 +34,7 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin('statut_marital')],
+  mixins: [createIndividuMixin('statut_marital', false, true)],
   data: function() {
     return {
       situationsFamiliales

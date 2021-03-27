@@ -18,23 +18,20 @@
 <script>
 import Actions from '@/components/Actions'
 import Individu from '@/lib/Individu'
+import { autoSubmitMixin } from '@/mixins/AutoSubmit'
 
 export default {
   name: 'SimulationFamilleEnCouple',
   components: {
     Actions,
   },
+  mixins: [autoSubmitMixin('value')],
   data: function() {
     const famille = this.$store.state.situation.famille
     const value = famille.en_couple
     return {
       famille,
       value,
-    }
-  },
-  watch: {
-    value() {
-      this.onSubmit()
     }
   },
   methods: {

@@ -13,7 +13,7 @@ function processBlock({journey, subject, situation, isActive}, b) {
       throw Error('' + b + ' (' + (b instanceof Array ? 'array' : '?') + ')')
     }
     let blockSubject = b.subject ? b.subject(subject, situation) : (subject || situation)
-    const localActive = isActive && (!b.isActive || b.isActive(blockSubject, situation))
+    const localActive = isActive && (!b.isActive || (blockSubject && b.isActive(blockSubject, situation)))
     b.steps.forEach(s => processBlock({journey, subject: blockSubject, situation, isActive: localActive}, s))
   }
 }

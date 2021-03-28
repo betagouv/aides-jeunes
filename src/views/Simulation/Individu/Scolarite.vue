@@ -15,21 +15,8 @@
 <script>
 import Actions from '@/components/Actions'
 import { createIndividuMixin } from '@/mixins/IndividuMixin'
+import { scolariteOptions } from '@/lib/Individu'
 
-const scolariteOptions = [
-  {
-      value: 'inconnue',
-      label: 'Aucun des deux'
-  },
-  {
-      value: 'college',
-      label: 'Au collège'
-  },
-  {
-      value: 'lycee',
-      label: 'Au lycée / En CAP / En CPA'
-  }
-]
 export default {
   name: 'SimulationIndividuScolarite',
   components: {

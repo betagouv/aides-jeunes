@@ -137,7 +137,21 @@ const Individu = {
         statuts = statuts.join(', ');
         //TODO3 statuts = $filter('uppercaseFirst')(statuts);
         return 'TODO3' //statuts;
-    }
+    },
+    scolariteOptions: [
+        {
+          value: 'inconnue',
+          label: 'Aucun des deux'
+        },
+        {
+          value: 'college',
+          label: 'Au collège'
+        },
+        {
+          value: 'lycee',
+          label: 'Au lycée / En CAP / En CPA'
+        }
+    ],
 }
 
 export default Individu

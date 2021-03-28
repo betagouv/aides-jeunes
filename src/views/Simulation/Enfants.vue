@@ -41,22 +41,6 @@
 import Actions from '@/components/Actions'
 import Individu from '@/lib/Individu'
 import Nationality from '@/lib/Nationality'
-import moment from 'moment'
-
-const scolariteOptions = [
-    {
-        value: 'inconnue',
-        label: 'Aucun des deux'
-    },
-    {
-        value: 'college',
-        label: 'Au collège'
-    },
-    {
-        value: 'lycee',
-        label: 'Au lycée / En CAP / En CPA'
-    }
-]
 
 export default {
   name: 'SimulationEnfants',
@@ -69,17 +53,21 @@ export default {
     }
   },
     filters: {
-        birthDate: function (date) {
-            return moment(date).format('DD/MM/YYYY')
-        },
-        nationality: Nationality.getNationalityFromCountryCode,
-        scolarite: function (value) {
-            const s = scolariteOptions.find((s) => s.value === value)
-            if (s)
-                return scolariteOptions.find((s) => s.value === value).label
-            else
-                return 'Non renseigné'
+      birthDate: function (date) {
+        if (date) {
+          return date.toLocaleDateString('FR-fr', {day: 'numeric', month: 'numeric', year: 'numeric'})//).format('DD/MM/YYYY')
+        } else {
+          return 'Non renseigné'
         }
+      },
+      nationality: Nationality.getNationalityFromCountryCode,
+      scolarite: function (value) {
+        const s = Individu.scolariteOptions.find((s) => s.value === value)
+        if (s)
+          return Individu.scolariteOptions.find((s) => s.value === value).label
+        else
+          return 'Non renseigné'
+      }
     },
   methods: {
     addPAC: function() {

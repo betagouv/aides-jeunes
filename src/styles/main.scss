@@ -12,6 +12,11 @@ $screen-smaller-than-mobile: 399px;
 :root {
   --theme-border-radius: 25px;
   --theme-primary: #5770be;
+  --theme-primary-light: #6575EA;
+  --theme-primary-lighter: #E2E5FB;
+  --light-grey: #C4C4C4;
+  --green: #169B62;
+  --light-green: #EEFBF2;
   --space-xs: 20px;
 }
 
@@ -30,8 +35,26 @@ $screen-smaller-than-mobile: 399px;
   src: url('../fonts/Marianne-ExtraBold.woff2') format('truetype')
 }
 
-@import 'partials/ui-kit';
-@import 'partials/buttons';
-@import 'partials/inputs';
-@import 'partials/home';
+/* UTILS */
+@import 'partials/utils/helpers';
+
+/* DESKTOP IMPORTS */
+@import 'partials/desktop/ui-kit';
+@import 'partials/desktop/buttons';
+@import 'partials/desktop/inputs';
+@import 'partials/desktop/home';
+@import 'partials/desktop/children';
+
+/* TABLET IMPORTS */
+@media (max-width: 768px) {
+  @import 'partials/tablet/ui-kit';
+}
+
+/* MOBILE IMPORTS */
+@media (max-width: 576px) {
+  @import 'partials/mobile/ui-kit';
+  @import 'partials/mobile/buttons';
+  @import 'partials/mobile/inputs';
+  @import 'partials/mobile/children';
+}
 

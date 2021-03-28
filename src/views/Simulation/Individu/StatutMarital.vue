@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Quelle est votre relation avec votre conjoint&nbsp;?</h1>
-      <select v-model="value">
+    <label for="statut_marital" class="aj-question">Quelle est votre relation avec votre conjoint&nbsp;?</label>
+      <select id="statut_marital" v-model="value">
         <option v-for="situationFamiliale in situationsFamiliales" v-bind:value="situationFamiliale.value" v-bind:key="situationFamiliale.value">
           {{situationFamiliale.label}}
         </option>
@@ -34,7 +34,7 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin('statut_marital')],
+  mixins: [createIndividuMixin('statut_marital', false, true)],
   data: function() {
     return {
       situationsFamiliales

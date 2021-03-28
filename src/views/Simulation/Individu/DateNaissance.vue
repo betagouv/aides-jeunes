@@ -1,10 +1,10 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <legend>
+    <label for="date_naissance"><h2 class="aj-question">
         {{ role === 'demandeur' ?
         `Quelle est votre date de naissance&nbsp;?` :
         `Quelle est la date de naissance ${getLabel('nom')}&nbsp;?`}}
-    </legend>
+    </h2></label>
     <InputDate required id="date_naissance" v-model="value" />
     <p class="notification warning" v-if="error">
         Ce champ est obligatoire.
@@ -22,8 +22,8 @@ export default {
   name: 'SimulationIndividuDateNaissance',
   components: {
     Actions,
-    InputDate,
+    InputDate
   },
-  mixins: [createIndividuMixin('date_naissance')],
+  mixins: [createIndividuMixin('date_naissance', false, true)],
 }
 </script>

@@ -1,6 +1,7 @@
 import Individu from '@/lib/Individu'
+import { autoSubmitMixin } from '@/mixins/AutoSubmit'
 
-export const createIndividuMixin = (props, optional) => {
+export const createIndividuMixin = (props, optional, manualValidation) => {
     return {
         data: function() {
             const id = this.$route.params.id
@@ -16,6 +17,7 @@ export const createIndividuMixin = (props, optional) => {
                 optional
             }
         },
+        mixins: [autoSubmitMixin('value', manualValidation)],
         methods: {
             getLabel: function(type) {
                 const labelDict = {

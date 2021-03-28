@@ -1,0 +1,14 @@
+html {
+  body {
+    .aj-main-container {
+      .aj-selection-wrapper {
+        input[type="radio"] {
+          & + label {
+            width: 100%;
+            min-width: auto;
+          }
+        }
+      }
+    }
+  }
+}

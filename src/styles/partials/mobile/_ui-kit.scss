@@ -1,0 +1,29 @@
+html {
+  body {
+    .aj-main-container {
+      padding-left: 10px;
+      padding-right: 10px;
+
+      .aj-category-title-wrapper {
+        h1 {
+          margin-bottom: 20px;
+          text-align: center;
+        }
+      }
+
+      .aj-box-wrapper {
+        padding: 30px 20px 45px 20px;
+
+        .aj-actions {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+
+      .aj-tooltip {
+        display: table;
+        margin: 10px 0 0 0;
+      }
+    }
+  }
+}

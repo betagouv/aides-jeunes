@@ -1,4 +1,4 @@
-const {matomo} = require('./backend/config')
+const {animation, matomo} = require('./backend/config')
 const configureAPI = require('./configure')
 const mock = require('./mock')
 const webpack = require('webpack')
@@ -11,6 +11,7 @@ forEach(() => {
 })
 process.env.VUE_APP_BENEFIT_COUNT = count
 process.env.VUE_APP_MATOMO_ID = matomo.id
+process.env.VUE_APP_VALIDATION_DELAY = animation && animation.delay || 0
 
 module.exports = {
   configureWebpack: (config) => {

@@ -37,6 +37,17 @@ let EEE_COUNTRY_CODES = [
     'UK',
 ];
 
+function getNationalityFromCountryCode (countryCode) {
+    switch (countryCode) {
+        case 'DE':
+            return 'Européenne';
+        case 'FR':
+            return 'Français';
+        case 'AF':
+            return 'Non européenne';
+    }
+}
+
 function getZone(countryCode) {
 
     countryCode = countryCode.toUpperCase();
@@ -47,14 +58,18 @@ function getZone(countryCode) {
     if (EEE_COUNTRY_CODES.includes(countryCode) || countryCode === 'CH') {
         return 'ue';
     }
+    if (countryCode === 'AF') {
+        return 'autre';
+    }
 
-    return 'autre';
+    return '';
 }
 
 const Nationality = {
     getLabel: function(nationality) {
         return ZONE_LABEL[getZone(nationality)];
     },
+    getNationalityFromCountryCode: getNationalityFromCountryCode,
     getZone: getZone,
     getCountryCodeByNationality: function(nationality) {
 

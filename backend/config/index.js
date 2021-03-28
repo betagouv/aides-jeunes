@@ -3,6 +3,9 @@ var env = process.env.NODE_ENV || 'development';
 
 var all = {
     env: env,
+    animation: {
+        delay: 300
+    },
     baseURL: 'https://mes-aides.org',
     openfiscaURL: process.env.OPENFISCA_URL || 'http://localhost:2000',
     openfiscaAxeURL: 'https://betagouv.github.io/mes-aides-changent',

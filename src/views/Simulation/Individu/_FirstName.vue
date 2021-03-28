@@ -1,9 +1,6 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <label for="_firstName">
-      <h1>Quel est le prénom de votre enfant ?
-      <span>il servira uniquement à vous faciliter la saisie par la suite</span></h1>
-    </label>
+    <label class="aj-question">Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.</label>
     <input type="text" id="_firstName" v-model="value">
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
@@ -18,6 +15,6 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin('_firstName')],
+  mixins: [createIndividuMixin('_firstName', false, true)],
 }
 </script>

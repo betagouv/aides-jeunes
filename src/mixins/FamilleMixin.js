@@ -1,11 +1,13 @@
 import { autoSubmitMixin } from '@/mixins/AutoSubmit'
 
-export const createFamilleMixin = (props, optional, manualValidation) => {
+export const createFamilleMixin = (props) => {
+    const { fieldName = props, optional = false, manualValidation = false } = props
+
     return {
         mixins: [autoSubmitMixin('value', manualValidation)],
         data: function() {
             const famille = this.$store.state.situation.famille
-            const value = famille[props]
+            const value = famille[fieldName]
             return {
               famille,
               value,
@@ -17,7 +19,7 @@ export const createFamilleMixin = (props, optional, manualValidation) => {
                 this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
                 return
               }
-              this.famille[props] = this.value
+              this.famille[fieldName] = this.value
               this.$store.dispatch('updateFamille', this.famille)
               this.$push()
             }

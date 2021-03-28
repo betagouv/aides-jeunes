@@ -39,6 +39,7 @@ export default {
         this.$store.dispatch('updateIndividu', individu)
       } else {
         this.$store.dispatch('removeConjoint')
+        this.$store.dispatch('updateIndividu', Object.assign({}, this.$store.state.situation.demandeur, { statut_marital: 'celibataire' }))
       }
       this.$push()
     }

@@ -21,7 +21,7 @@ export default {
     Actions,
   },
   mixins: [
-    createFamilleMixin('bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur')
+    createFamilleMixin({fieldName: 'bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur', manualValidation: true})
   ],
 }
 </script>

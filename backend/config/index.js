@@ -4,7 +4,7 @@ var env = process.env.NODE_ENV || 'development';
 var all = {
     env: env,
     animation: {
-        delay: 300
+        delay: process.env.ANIMATION_DELAY || 300,
     },
     baseURL: 'https://mes-aides.org',
     openfiscaURL: process.env.OPENFISCA_URL || 'http://localhost:2000',

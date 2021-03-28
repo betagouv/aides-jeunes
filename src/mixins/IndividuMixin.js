@@ -1,15 +1,18 @@
 import Individu from '@/lib/Individu'
 import { autoSubmitMixin } from '@/mixins/AutoSubmit'
 
-export const createIndividuMixin = (props, optional, manualValidation) => {
+export const createIndividuMixin = (props) => {
+    const { fieldName = props, optional = false, manualValidation = false } = props
+
     return {
         data: function() {
             const id = this.$route.params.id
             const role = id.split('_')[0]
             const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
-            const value = individu[props]
+            const value = individu[fieldName]
             return {
                 error: false,
+                fieldName,
                 individu,
                 id,
                 value,
@@ -17,7 +20,7 @@ export const createIndividuMixin = (props, optional, manualValidation) => {
                 optional
             }
         },
-        mixins: [autoSubmitMixin('value', manualValidation)],
+        mixins: [autoSubmitMixin({fieldName: 'value', manualValidation})],
         methods: {
             getLabel: function(type) {
                 const labelDict = {
@@ -52,7 +55,7 @@ export const createIndividuMixin = (props, optional, manualValidation) => {
                 if (this.requiredValueMissing()) {
                     return
                 }
-                this.individu[props] = this.value
+                this.individu[fieldName] = this.value
                 this.$store.dispatch('updateIndividu', this.individu)
                 this.$push()
             },

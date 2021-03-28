@@ -24,6 +24,6 @@ export default {
     Actions,
     InputDate
   },
-  mixins: [createIndividuMixin('date_naissance', false, true)],
+  mixins: [createIndividuMixin({ fieldName: 'date_naissance', manualValidation: true })],
 }
 </script>

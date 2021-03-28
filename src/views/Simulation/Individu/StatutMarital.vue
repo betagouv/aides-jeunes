@@ -1,11 +1,13 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <label for="statut_marital" class="aj-question">Quelle est votre relation avec votre conjoint&nbsp;?</label>
-      <select id="statut_marital" v-model="value">
-        <option v-for="situationFamiliale in situationsFamiliales" v-bind:value="situationFamiliale.value" v-bind:key="situationFamiliale.value">
-          {{situationFamiliale.label}}
-        </option>
-      </select>
+    <fieldset>
+    <legend><h2 class="aj-question">Quelle est votre relation avec votre conjoint&nbsp;?
+    </h2></legend>
+    <div class="aj-selection-wrapper" v-for="situationFamiliale in situationsFamiliales" v-bind:key="situationFamiliale.value">
+      <input :id="situationFamiliale.value" type="radio" name="situationFamiliale" v-bind:value="situationFamiliale.value" v-model="value" />
+      <label :for="situationFamiliale.value">{{ situationFamiliale.label }}</label>
+    </div>
+    </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>
@@ -34,11 +36,19 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin('statut_marital', false, true)],
+  mixins: [createIndividuMixin('statut_marital')],
   data: function() {
     return {
       situationsFamiliales
     }
   },
+  methods: {
+    onSubmit: function() {
+      this.individu[this.fieldName] = this.value
+      this.$store.dispatch('updateIndividu', this.individu)
+      this.$store.dispatch('updateIndividu', Object.assign({}, this.$store.state.situation.demandeur, { [this.fieldName]: this.value }))
+      this.$push()
+    },
+  }
 }
 </script>

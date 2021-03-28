@@ -1,11 +1,13 @@
-export const autoSubmitMixin = (propName, manualValidation) => {
+export const autoSubmitMixin = (props) => {
+    const { fieldName = props, manualValidation = false } = props
+
     if (manualValidation)
         return {}
 
     return {
         data() {
             return {
-                value: this[propName]
+                value: this[fieldName]
             }
         },
         watch: {

@@ -14,7 +14,6 @@
 import Actions from '@/components/Actions'
 import { createFamilleMixin } from '@/mixins/FamilleMixin'
 
-
 export default {
   name: 'SimulationIndividuBourseCriteresSociauxNombreEnfantsAChargeDansEnseignementSuperieure',
   components: {

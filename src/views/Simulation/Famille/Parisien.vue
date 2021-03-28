@@ -22,9 +22,7 @@ export default {
     Actions,
     YesNoQuestion,
   },
-  mixins: [
-    createFamilleMixin('parisien')
-  ],
+  mixins: [createFamilleMixin('parisien')],
   methods: {
     yearsAgo: function(years) {
       return moment(this.$store.state.situation.dateDeValeur).subtract(years, 'years').format('MMMM YYYY')

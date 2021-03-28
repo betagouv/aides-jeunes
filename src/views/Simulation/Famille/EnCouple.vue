@@ -32,14 +32,15 @@ export default {
         this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
         return
       }
-      this.famille['en_couple'] = this.value
+      this.famille.en_couple = this.value
       this.$store.dispatch('updateFamille', this.famille)
+
       if (this.value) {
         const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, 'conjoint', 'conjoint', this.$store.state.dates)
         this.$store.dispatch('updateIndividu', individu)
       } else {
         this.$store.dispatch('removeConjoint')
-        this.$store.dispatch('updateIndividu', Object.assign({}, this.$store.state.situation.demandeur, { statut_marital: 'celibataire' }))
+        this.$store.dispatch('updateIndividu', {...this.$store.state.situation.demandeur, statut_marital: 'celibataire' })
       }
       this.$push()
     }

@@ -32,19 +32,19 @@
                         children: [
                             {
                                 label: 'CGU',
-                                href: '#'
+                                href: 'https://www.1jeune1solution.gouv.fr/cgu'
                             },
                             {
                                 label: 'Mentions légales',
-                                href: '#'
+                                href: 'https://www.1jeune1solution.gouv.fr/mentions-legales'
                             },
                             {
                                 label: 'Politique de confidentialité',
-                                href: '#'
+                                href: 'https://www.1jeune1solution.gouv.fr/confidentialite'
                             },
                             {
                                 label: 'Accessibilité',
-                                href: '#'
+                                href: 'https://www.1jeune1solution.gouv.fr/accessibilite'
                             },
                             {
                                 label: 'Gestion des cookies',
@@ -58,31 +58,31 @@
                         children: [
                             {
                                 label: 'Accueil',
-                                href: '#'
+                                href: 'https://www.1jeune1solution.gouv.fr/'
                             },
                             {
                                 label: 'Je postule à un job',
-                                href: '#'
+                                href: 'https://www.1jeune1solution.gouv.fr/emplois'
                             },
                             {
                                 label: 'Je participe à un événement',
-                                href: '#'
+                                href: 'https://www.1jeune1solution.gouv.fr/evenements'
                             },
                             {
                                 label: 'Les entreprises s\'engagent',
-                                href: '#'
+                                href: 'https://www.1jeune1solution.gouv.fr/entreprises'
                             },
                             {
                                 label: 'Les mesures pour les jeunes',
-                                href: '#'
+                                href: 'https://www.1jeune1solution.gouv.fr/espace-jeune'
                             },
                             {
                                 label: 'Les mesures pour les employeurs',
-                                href: '#'
+                                href: 'https://www.1jeune1solution.gouv.fr/je-recrute/articles'
                             },
                             {
                                 label: 'Je recrute !',
-                                href: '#'
+                                href: 'https://www.1jeune1solution.gouv.fr/je-recrute'
                             },
                             {
                                 label: 'Nous contacter',
@@ -96,27 +96,27 @@
                         children: [
                             {
                                 label: 'Gouvernement',
-                                href: '#'
+                                href: 'https://www.gouvernement.fr/'
                             },
                             {
                                 label: 'Ministère du travail, de l\'emploi et de l\'insertion',
-                                href: '#'
+                                href: 'https://travail-emploi.gouv.fr/'
                             },
                             {
                                 label: 'Pôle emploi',
-                                href: '#'
+                                href: 'https://www.pole-emploi.fr/accueil/'
                             },
                             {
                                 label: 'Annuaire des missions locales',
-                                href: '#'
+                                href: 'https://www.unml.info/les-missions-locales/annuaire/'
                             },
                             {
                                 label: 'Service Civique',
-                                href: '#'
+                                href: 'https://www.service-civique.gouv.fr/'
                             },
                             {
                                 label: 'France',
-                                href: '#'
+                                href: 'https://www.france.fr/'
                             }
                         ]
                     }

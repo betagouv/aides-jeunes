@@ -51,6 +51,7 @@ $screen-smaller-than-mobile: 399px;
 @media (max-width: 768px) {
   @import 'partials/tablet/ui-kit';
   @import 'partials/tablet/header';
+  @import 'partials/tablet/home';
 }
 
 /* MOBILE IMPORTS */

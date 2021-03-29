@@ -1,0 +1,40 @@
+#homepage {
+  background: var(--theme-primary);
+
+  .container {
+    padding: 0 1.5rem;
+
+    .aj-home-hero {
+      width: 100%;
+
+      .aj-home-hero-content {
+        h1 {
+          color: var(--white);
+          margin-top: 1rem;
+
+          small {
+            color: var(--white);
+          }
+        }
+
+        .aj-home-hero-buttons-wrapper {
+          margin-bottom: 1rem;
+          margin-top: 1rem;
+
+          button {
+            &, &:focus, &:hover {
+              background-color: var(--white);
+              border-color: var(--white);
+              color: var(--theme-primary);
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+
+    .aj-home-illustration {
+      display: none;
+    }
+  }
+}

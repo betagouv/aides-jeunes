@@ -11,6 +11,10 @@ html {
 
     h1, h2, h3, h4, h5, h6 {
       color: var(--theme-primary);
+
+      &:focus {
+        outline: none;
+      }
     }
 
     form {
@@ -25,11 +29,9 @@ html {
     }
 
     .aj-main-container {
-      padding: 25px 150px;
+      padding: 3rem 10rem 8rem 10rem;
       background-color: #f2f5f9;
       width: 100%;
-      min-height: 100vh;
-      maring-bottom: 100px;
 
       .aj-box-wrapper {
         background-color: #fff;

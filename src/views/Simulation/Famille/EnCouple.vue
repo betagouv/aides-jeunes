@@ -17,25 +17,17 @@
 
 <script>
 import Actions from '@/components/Actions'
+import { createFamilleMixin } from '@/mixins/FamilleMixin'
 import Individu from '@/lib/Individu'
-import { autoSubmitMixin } from '@/mixins/AutoSubmit'
 
 export default {
   name: 'SimulationFamilleEnCouple',
   components: {
     Actions,
   },
-  mixins: [autoSubmitMixin('value')],
-  data: function() {
-    const famille = this.$store.state.situation.famille
-    const value = famille.en_couple
-    return {
-      famille,
-      value,
-    }
-  },
+  mixins: [createFamilleMixin('en_couple')],
   methods: {
-    onSubmit: function() {
+    onSubmit() {
       if (this.value === undefined) {
         this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
         return
@@ -48,6 +40,7 @@ export default {
         this.$store.dispatch('updateIndividu', individu)
       } else {
         this.$store.dispatch('removeConjoint')
+        this.$store.dispatch('updateIndividu', {...this.$store.state.situation.demandeur, statut_marital: 'celibataire' })
       }
       this.$push()
     }

@@ -17,32 +17,13 @@
 
 <script>
 import Actions from '@/components/Actions'
-import { autoSubmitMixin } from '@/mixins/AutoSubmit'
+import { createFamilleMixin } from '@/mixins/FamilleMixin'
 
 export default {
   name: 'SimulationFamilleRsaIsolementRecent',
   components: {
     Actions,
   },
-  data: function() {
-    const famille = this.$store.state.situation.famille
-    const value = famille.rsa_isolement_recent
-    return {
-      famille,
-      value,
-    }
-  },
-  mixins: [autoSubmitMixin('value')],
-  methods: {
-    onSubmit: function() {
-      if (this.value === undefined) {
-        this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
-        return
-      }
-      this.famille.rsa_isolement_recent = this.value
-      this.$store.dispatch('updateFamille', this.famille)
-      this.$push()
-    }
-  }
+  mixins: [createFamilleMixin('rsa_isolement_recent')],
 }
 </script>

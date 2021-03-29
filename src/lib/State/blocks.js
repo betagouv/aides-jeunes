@@ -133,7 +133,7 @@ function housingBlock() {
      },
      new Step({entity: 'menage', variable: 'depcom'}),
      {
-        isActive: subject => subject.depcom && subject.depcom.startsWith('75'),
+        isActive: subject => subject.depcom && subject.depcom.startsWith('75') && subject.statut_occupation_logement != 'sans_domicile',
         steps: [
           new Step({entity: 'famille', variable: 'parisien'}),
         ],

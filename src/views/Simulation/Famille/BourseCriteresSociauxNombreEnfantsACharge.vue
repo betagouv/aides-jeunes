@@ -11,29 +11,15 @@
 </template>
 <script>
 import Actions from '@/components/Actions'
+import { createFamilleMixin } from '@/mixins/FamilleMixin'
 
 export default {
   name: 'SimulationIndividuBourseCriteresSociauxNombreEnfantsACharge',
   components: {
     Actions,
   },
-  data: function() {
-      const famille = this.$store.getters.getFamille || {}
-      return {
-        famille,
-        value: famille.bourse_criteres_sociaux_nombre_enfants_a_charge,
-      }
-  },
-  methods: {
-      onSubmit: function() {
-          if (this.value === undefined) {
-              this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
-              return
-          }
-          this.famille.bourse_criteres_sociaux_nombre_enfants_a_charge = this.value
-          this.$store.dispatch('updateFamille', this.famille)
-          this.$push()
-      }
-  }
+  mixins: [
+    createFamilleMixin({fieldName: 'bourse_criteres_sociaux_nombre_enfants_a_charge', manualValidation: true})
+  ],
 }
 </script>

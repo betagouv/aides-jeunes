@@ -95,8 +95,8 @@ export function conjoint(params={}) {
   cy.get('legend').invoke('text').should('contain', 'nationalité')
   cy.get('button[type="submit"]').click()
   // Statut Marital
-  cy.get('label').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
-  cy.get('select').select('marie')
+  cy.get('legend').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
+  cy.get('input[type="radio"]').check('marie')
   cy.get('button[type="submit"]').click()
   // Activite
   cy.get('legend').invoke('text').should('contain', 'est-il/elle')

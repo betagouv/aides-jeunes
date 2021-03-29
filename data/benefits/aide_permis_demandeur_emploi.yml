@@ -1,0 +1,12 @@
+label: aide à l’obtention du permis de conduire
+institution: pole_emploi
+description: L’aide à l’obtention du permis de conduire permet une prise en charge totale ou partielle par Pôle emploi des frais d'apprentissage du permis de conduire (permis B). L'aide est attribuée dans la limite des enveloppes budgétaires disponibles qui varient en fonction des régions.
+link: https://www.service-public.fr/particuliers/vosdroits/F1719
+conditions:
+  - Être inscrit comme demandeur d'emploi depuis au moins 6 ou bien avoir une promesse d’embauche en CDI, CDD ou contrat d'intérim d'au moins 3 mois.
+  - Ne pas bénéficier d'un autre dispositif d'aide au permis de la part d'un organisme public ou privé.
+instructions: https://www.pole-emploi.fr/candidat/vos-recherches/les-aides-financieres/aide-a-lobtention-du-permis-de-c.html
+prefix: l’
+type: float
+floorAt: 1
+entity: individus

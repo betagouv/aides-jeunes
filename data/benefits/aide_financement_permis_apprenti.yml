@@ -1,0 +1,9 @@
+label: aide au financement du permis de conduire pour les apprentis
+institution: etat
+description: Cette aide permet aux apprentis majeurs de financer leur une partie du coût de la formation au permis de conduire.
+link: https://travail-emploi.gouv.fr/formation-professionnelle/formation-en-alternance-10751/apprentissage/apprentis-aide-permis
+form: https://www.alternance.emploi.gouv.fr/portail_alternance/upload/docs/application/pdf/2019-02/permda-0958_saisissable.pdf
+prefix: l’
+type: float
+floorAt: 1
+entity: individus

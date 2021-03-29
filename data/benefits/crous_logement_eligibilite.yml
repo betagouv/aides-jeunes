@@ -1,0 +1,11 @@
+label: logement dans une résidence CROUS
+institution: etat
+description: Les logements gérés par le Crous sont destinés aux étudiants dont les familles disposent de faibles ressources. Plusieurs types de logement peuvent être proposés en fonction des résidences.
+conditions:
+  - Avoir rempli votre Dossier social étudiant (DSE) <strong>avant le 15 mai</strong> et avoir coché la case « Je demande un logement ».
+link: https://www.etudiant.gouv.fr/fr/bourse-et-logement-constituez-votre-dossier-social-etudiant-dse-409#item4
+teleservice: https://trouverunlogement.lescrous.fr
+prefix: un
+type: bool
+top: 2
+entity: individus

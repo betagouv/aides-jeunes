@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var isNumber = require('lodash/isNumber')
+var map = require('lodash/map')
 var assign = require('lodash/assign')
 
 var mustache = require('consolidate').mustache;
@@ -35,7 +36,7 @@ function renderAsText(followup, benefits) {
 
 function renderAsHtml(followup, benefits) {
 
-    var droits = benefits.map(function(droit) {
+    var droits = map(benefits, function(droit) {
 
         var montant = '';
         if (isNumber(droit.montant)) {

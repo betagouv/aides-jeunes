@@ -110,7 +110,8 @@ Loiret.prototype.toInternal = function() {
     });
     var dateDeValeur = this.situation.dateDeValeur;
 
-    return fields.map(function(field) {
+    return Object.keys(fields).map(function(key) {
+        var field = fields[key]
         return {
             label: field.label,
             formattedValue: field.toInternal.apply(null, [ demandeur, dateDeValeur, field ])

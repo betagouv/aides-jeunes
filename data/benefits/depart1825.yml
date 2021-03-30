@@ -1,0 +1,12 @@
+label: départ 18-25
+institution: etat
+description: Le programme Départ 18:25 permet aux jeunes de financer jusqu’à 75% de leurs vacances pour 200€ maximum par personne et par an.
+conditions:
+  - Financer au moins 50€ de vos vacances.
+link: https://programme-depart-1825.com/cest-quoi/
+instructions: https://programme-depart-1825.com/
+prefix: un
+type: float
+top: 4
+entity: individus
+isMontantAnnuel: true

@@ -59,6 +59,7 @@ var individu = Object.assign({
     inapte_travail: Boolean,
     nationalite: { type: String },
     _role: { type: String, enum: ['demandeur', 'conjoint', 'enfant'] },
+    rsa_jeune_condition_heures_travail_remplie: Boolean,
     scolarite: { type: String, enum: ['inconnue', 'college', 'lycee'] },
     statut_marital: { type: String, enum: statutMaritalValues },
     taux_incapacite: Number,

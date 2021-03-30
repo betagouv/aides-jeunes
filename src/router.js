@@ -151,6 +151,11 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/BourseCriteresSociauxCommuneDomicileFamilial.vue'),
         },
         {
+          name: 'rsa_jeune_condition_heures_travail_remplie',
+          path: 'rsa_jeune_condition_heures_travail_remplie',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/RsaJeuneConditionHeuresTravailRemplie.vue'),
+        },
+        {
           name: 'property',
           path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),

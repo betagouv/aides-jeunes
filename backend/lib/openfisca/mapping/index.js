@@ -66,8 +66,7 @@ function mapIndividus(situation) {
     var individus = filter(common.getIndividusSortedParentsFirst(situation), function(individu) {
         return common.isIndividuValid(individu, situation);
     });
-
-    return individus.abbrev.map(function(individu) {
+    return individus.map(function(individu) {
         return buildOpenFiscaIndividu(individu, situation);
     }).reduce(function(accum, individu) {
         accum[individu.id] = individu;

@@ -5,7 +5,6 @@ Vue.use(Vuex)
 
 import axios from 'axios'
 import moment from 'moment'
-import omit from 'lodash/omit'
 import values from 'lodash/values'
 import some from 'lodash/some'
 
@@ -338,7 +337,8 @@ const store = new Vuex.Store({
         step.clean(store, true)
       })
 
-      let situation = omit(store.state.situation, '_id')
+      let situation = { ...store.state.situation }
+      delete situation._id
       if (store.state.situation._id) {
           situation.modifiedFrom = store.state.situation._id
       }

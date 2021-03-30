@@ -4,7 +4,6 @@ import filter from 'lodash/filter'
 import keys from 'lodash/keys'
 import keyBy from 'lodash/keyBy'
 import uniq from 'lodash/uniq'
-import isEmpty from 'lodash/isEmpty'
 
 function getPeriodsForCurrentYear(dates, ressourceType) {
     let periodKeys = [];
@@ -55,8 +54,7 @@ function unsetForCurrentYear(dates, entity, ressourceType) {
     periodKeys.forEach(function(periodKey) {
         delete ressource[periodKey]
     });
-
-    if (isEmpty(ressource)) {
+    if (!ressource || Object.keys(ressource).length === 0) {
         delete entity[ressourceId]
     }
 }

@@ -64,6 +64,15 @@ function individuBlockFactory(id) {
         },
         steps: [r('scolarite')]
       }] : []),
+      ...(demandeur ? [{
+        isActive: (subject, situation) => {
+          const age = Individu.age(subject, datesGenerator(situation.dateDeValeur).today.value);
+          const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
+          const enfant_a_charge = subject.enfant_a_charge && subject.enfant_a_charge[thisYear]
+          return 20 <= age && age < 25 && subject.activite !== 'etudiant' && subject.activite !== 'actif' && !subject.ass_precondition_remplie && !enfant_a_charge
+        },
+        steps: [r('rsa_jeune_condition_heures_travail_remplie')]
+      }] : []),
       ...(enfant ? [r('enfant_a_charge')] : []),
       ...(demandeur ? [{
         isActive: (subject, situation) => 60 <= Individu.age(subject, datesGenerator(situation.dateDeValeur).today.value),

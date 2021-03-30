@@ -66,7 +66,7 @@ export default {
         if (s)
           return Individu.scolariteOptions.find((s) => s.value === value).label
         else
-          return 'Non renseigné'
+          return '-'
       }
     },
   methods: {

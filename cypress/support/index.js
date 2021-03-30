@@ -128,7 +128,7 @@ export function enfant(params={}) {
   cy.get('input[type="radio"]').check('false')
   // Scolarite
   cy.get('legend').invoke('text').should('contain', 'scolarisé·e')
-  cy.get('button[type="submit"]').click()
+  cy.get('input[type="radio"]').check('inconnue')
   // Enfant a charge
   cy.get('legend').invoke('text').should('contain', 'dernière déclaration d\'impôts')
   cy.get('button[type="submit"]').click()

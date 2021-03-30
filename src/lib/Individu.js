@@ -42,7 +42,7 @@ function get(individus, role, id, dates) {
         gir: 'gir_6',
         nationalite: 'FR',
         _role: role,
-        scolarite: 'college',
+        scolarite: undefined,
         taux_incapacite: 0.9,
         tns_autres_revenus_type_activite: 'bic',
         tns_micro_entreprise_type_activite: 'bic',

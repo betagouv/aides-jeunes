@@ -1,4 +1,4 @@
-var { includes } = require('lodash/includes');
+var includes = require('lodash/includes');
 var lyonMetropoleInseeCodes = require('./lyon-metropole-insee-codes');
 
 function determineCustomizationId(testCase, currentPeriod) {

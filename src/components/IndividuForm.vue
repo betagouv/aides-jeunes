@@ -277,7 +277,6 @@ export default {
       return (this.individu._role === 'enfant' && ! this.existingIndividu) ? 'Nouvel enfant' : Individu.label(this.individu)
     },
     labelBoursier: function() {
-      console.log(this.individu.echelon_bourse)
       switch (1*this.individu.echelon_bourse) {
       case -2:
         return 'Je ne sais pas'

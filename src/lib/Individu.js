@@ -68,9 +68,7 @@ function get(individus, role, id, dates) {
     if (role == 'enfant' && !existingIndividu) {
         let usedIds = individus.map(function(enfant) { return enfant.id; });
         let count = 0;
-        console.log(usedIds)
         while (usedIds.indexOf('enfant_' + count) >= 0) {
-            console.log(usedIds)
             count = count + 1;
         }
         individu.id = 'enfant_' + count;

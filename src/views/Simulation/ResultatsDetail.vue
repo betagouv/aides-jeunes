@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
-
 import DroitsDetails from '../../components/DroitsDetails.vue'
 import Feedback from './../../components/Feedback'
 
@@ -28,7 +26,7 @@ export default {
     situation: function() { return this.$store.state.situation },
     droit: function() {
         const droitId = this.$route.params.droitId
-        const droit = _.find(this.droits || [], function(droit) {
+        const droit = (this.droits || []).find(function(droit) {
             return droit.id === droitId;
         });
         return droit || {}

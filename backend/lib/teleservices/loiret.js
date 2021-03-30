@@ -1,4 +1,9 @@
-var _ = require('lodash');
+var sum = require('lodash/sum');
+var pickBy = require('lodash/pickBy');
+var includes = require('lodash/includes');
+var each = require('lodash/each');
+var values = require('lodash/values');
+
 var moment = require('moment');
 var CurrencyFormatter = require('currencyformatter.js');
 var situationsFamiliales = require('../../../app/js/constants/situationsFamiliales.js');
@@ -8,10 +13,10 @@ function reduce(demandeur, dateDeValeur, field) {
     var resources = Array.isArray(field.resources) ? field.resources : [ field.resources ];
     var total = 0;
     var last12Months = getPeriods(dateDeValeur).last12Months;
-    _.each(resources, function(resource) {
+    each(resources, function(resource) {
         if (demandeur[resource]) {
-            total += _.sum(_.values(_.pickBy(demandeur[resource], function(amount, period) {
-                return _.includes(last12Months, period);
+            total += sum(values(pickBy(demandeur[resource], function(amount, period) {
+                return includes(last12Months, period);
             })));
         }
     });
@@ -35,7 +40,7 @@ var fields = {
     situationfam_dem: {
         label: 'votre situation familiale',
         toInternal: function(demandeur) {
-            var situationFamiliale = _.find(situationsFamiliales, function(situationFamiliale) {
+            var situationFamiliale = find(situationsFamiliales, function(situationFamiliale) {
                 return situationFamiliale.value === demandeur.statut_marital;
             });
             return situationFamiliale.label;
@@ -100,12 +105,12 @@ function Loiret(situation) {
 
 Loiret.prototype.toInternal = function() {
 
-    var demandeur = _.find(this.situation.individus, function(individu) {
+    var demandeur = find(this.situation.individus, function(individu) {
         return individu._role === "demandeur";
     });
     var dateDeValeur = this.situation.dateDeValeur;
 
-    return _.map(fields, function(field) {
+    return fields.map(function(field) {
         return {
             label: field.label,
             formattedValue: field.toInternal.apply(null, [ demandeur, dateDeValeur, field ])
@@ -115,7 +120,7 @@ Loiret.prototype.toInternal = function() {
 
 Loiret.prototype.toExternal = function() {
 
-    var demandeur = _.find(this.situation.individus, function(individu) {
+    var demandeur = find(this.situation.individus, function(individu) {
         return individu._role === "demandeur";
     });
     var dateDeValeur = this.situation.dateDeValeur;

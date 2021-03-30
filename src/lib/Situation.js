@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 const Situation = {
     getDemandeur: function(situation) {
         return situation.demandeur
@@ -14,12 +12,12 @@ const Situation = {
     },
 
     hasEnfantScolarise: function(situation) {
-        return _.some(situation.enfants, { scolarite: 'college' }) || _.some(situation.enfants, { scolarite: 'lycee' });
+        return situation.enfants.some(enfant => enfant.scolarite === 'college') || situation.enfants.some(enfant => enfant.scolarite === 'lycee');
     },
 
     setEnfants: function(situation, enfants) {
         let individus = situation.individus
-        individus = _.filter(individus, function(individu) {
+        individus = individus.filter(function(individu) {
             return 'enfant' !== individu._role
         })
         individus = individus.slice(0,1)

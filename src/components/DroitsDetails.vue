@@ -78,8 +78,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
-
 import BenefitCta from './BenefitCta'
 import BenefitCtaLink from './BenefitCtaLink'
 import DroitMontant from './DroitMontant'
@@ -99,9 +97,9 @@ export default {
   methods: {
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,
-    isBoolean: _.isBoolean,
-    isNumber: _.isNumber,
-    isString: _.isString,
+    isBoolean: val => typeof val === 'boolean',
+    isNumber: val => typeof val === 'number',
+    isString: val => typeof val === 'string',
   },
 }
 </script>

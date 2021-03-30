@@ -1,4 +1,10 @@
-var _ = require('lodash');
+var merge = require('lodash/merge')
+var sortBy = require('lodash/sortBy')
+var assign = require('lodash/assign')
+var sumBy = require('lodash/sumBy')
+var some = require('lodash/some')
+var filter = require('lodash/filter')
+
 var moment = require('moment');
 var determineCustomizationId = require('./customization');
 
@@ -10,7 +16,7 @@ var determineCustomizationId = require('./customization');
  */
 function normalizeOpenfiscaRessources(testCase) {
     var individuId = testCase.menages._.personne_de_reference[0];
-    return _.merge({}, testCase.foyers_fiscaux._, testCase.menages._, testCase.familles._, testCase.individus.demandeur || testCase.individus[individuId]);
+    return merge({}, testCase.foyers_fiscaux._, testCase.menages._, testCase.familles._, testCase.individus.demandeur || testCase.individus[individuId]);
 }
 
 function valueAt(ressourceId, ressources, period, aide) {
@@ -47,19 +53,19 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
         droitsInjectes: [], // declared by the user
     };
 
-    var individus = _.filter([].concat(situation.demandeur, situation.conjoint, ...(situation.enfants || [])))
+    var individus = filter([].concat(situation.demandeur, situation.conjoint, ...(situation.enfants || [])))
 
     this.forEach((aide, aideId, aidesProvider, aidesProviderId) => {
         if ((! showPrivate) && aide.private) {
             return;
         }
 
-        if (_.some(individus, function(individu) { return valueAt(aideId, individu, period) !== undefined; })) {
-            return result.droitsInjectes.push(_.assign({},
+        if (some(individus, function(individu) { return valueAt(aideId, individu, period) !== undefined; })) {
+            return result.droitsInjectes.push(assign({},
                 aide,
                 {
                     id: aideId,
-                    montant: _.sumBy(individus, i => Math.abs(valueAt(aideId, i, period)))
+                    montant: sumBy(individus, i => Math.abs(valueAt(aideId, i, period)))
                 }));
         }
 
@@ -70,7 +76,7 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
         }
 
         var dest = (value) ? result.droitsEligibles : result.droitsNonEligibles;
-        dest.push(_.assign({},
+        dest.push(assign({},
             aide,
             {
                 id: aideId,
@@ -83,7 +89,7 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
     });
 
     Object.keys(result).forEach(function(group) {
-        result[group] = _.sortBy(result[group], ['top', 'label']);
+        result[group] = sortBy(result[group], ['top', 'label']);
     });
     result._id = situation._id;
 

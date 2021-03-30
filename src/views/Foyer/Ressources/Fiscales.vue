@@ -26,18 +26,20 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import sum from 'lodash/sum'
+import some from 'lodash/some'
+import isNaN from 'lodash/isNaN'
 import Individu from '@/lib/Individu'
 import { categoriesRnc } from '@/constants/resources'
 
 function getDefaultValue(months, individu, rnc) {
-  return _.sum((rnc.sources || []).map(function(sourceName) {
+  return sum((rnc.sources || []).map(function(sourceName) {
     if (! individu[sourceName]) {
       return 0
     }
 
     let ressource = individu[sourceName]
-    return _.sum(months.map(month => ressource[month.id] || 0))
+    return sum(months.map(month => ressource[month.id] || 0))
   }))
 }
 
@@ -61,7 +63,7 @@ export default {
         individu.default[categorieRnc.id] = getDefaultValue(this.$store.state.dates.last12Months, source, categorieRnc)
       })
 
-      individu.display = Individu.isParent(source) || _.some(categoriesRnc.map(ressource => source[ressource.id] && source[ressource.id][fiscalYear] !== undefined))
+      individu.display = Individu.isParent(source) || some(categoriesRnc.map(ressource => source[ressource.id] && source[ressource.id][fiscalYear] !== undefined))
       return individu
     })
 
@@ -78,7 +80,7 @@ export default {
         this.categoriesRnc.forEach(categorieRnc => {
           const raw = i.values[categorieRnc.id][fiscalYear]
           const value = parseFloat(raw)
-          i.values[categorieRnc.id][fiscalYear] = (raw === undefined) ? raw : (_.isNaN(value) ? 0 : value)
+          i.values[categorieRnc.id][fiscalYear] = (raw === undefined) ? raw : (isNaN(value) ? 0 : value)
         })
         this.$store.dispatch('updateIndividu', Object.assign({}, i.source, i.values))
       })

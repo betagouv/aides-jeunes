@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 var Promise = require('bluebird');
-var _ = require('lodash')
+var omit = require('lodash/omit');
 var fs = Promise.promisifyAll(require('fs'))
 var mongodb = require('./mongodb')
 
@@ -19,7 +19,7 @@ mongodb.connect()
                 }
 
                 i.surveys[0].answers.forEach(a => {
-                    rows.push(Object.assign({}, _.omit(a, '_id'), b))
+                    rows.push(Object.assign({}, omit(a, '_id'), b))
                 })
             })
 

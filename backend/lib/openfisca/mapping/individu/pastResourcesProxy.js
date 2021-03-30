@@ -1,11 +1,14 @@
-var _ = require('lodash');
+var concat = require('lodash/concat');
+var isNumber = require('lodash/isNumber');
+var some = require('lodash/some');
+
 var moment = require('moment');
 
 var common = require('../common');
 var individuRessources = require('./ressources');
 var ressources = require('../../../../../app/js/constants/ressources');
 
-var ressourcesToDuplicate = _.concat(
+var ressourcesToDuplicate = concat(
     Object.keys(individuRessources.computedRessources),
     ressources.ressourceTypes.map(function(ressourceType) { return ressourceType.id; })
 );
@@ -17,7 +20,7 @@ function proxyWithCurrentResources(individu, dateDeValeur) {
         if (! result)
             return;
         // Variables can be defined on a yearly or a monthly basis
-        if (_.isNumber(result[periods.lastYear])) {
+        if (isNumber(result[periods.lastYear])) {
             result[periods.fiscalYear] = result[periods.lastYear];
         } else {
             var sumOverLast12Months = periods.last12Months.reduce(function(sum, periodObject) {
@@ -43,7 +46,7 @@ function extendFiscalDataBackward(individu, dateDeValeur) {
             return;
         }
 
-        if (!_.isNumber(individu[ressource.id][fy])) {
+        if (!isNumber(individu[ressource.id][fy])) {
             return;
         }
 
@@ -67,16 +70,16 @@ function extendFiscalDataBackward(individu, dateDeValeur) {
 function ressourcesYearMoins2Captured(situation) {
     var yearMoins2 = moment(situation.dateDeValeur).subtract(2, 'years').format('YYYY');
     var januaryYearMoins2 = yearMoins2 + '-01';
-    var hasRfr = situation.foyer_fiscal && _.some(situation.foyer_fiscal.rfr, _.isNumber);
+    var hasRfr = situation.foyer_fiscal && some(situation.foyer_fiscal.rfr, isNumber);
     var hasYm2Ressources = common.getIndividusSortedParentsFirst(situation).some(function(individu) {
-        return _.some(ressources.categoriesRnc, function(categorieRnc) {
+        return some(ressources.categoriesRnc, function(categorieRnc) {
             if (! individu[categorieRnc.id])
                 return false;
 
-            return _.some([
+            return some([
                 individu[categorieRnc.id][yearMoins2],
                 individu[categorieRnc.id][januaryYearMoins2]
-            ], _.isNumber);
+            ], isNumber);
         });
     });
     return hasRfr || hasYm2Ressources;

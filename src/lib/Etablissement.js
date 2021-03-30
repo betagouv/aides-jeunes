@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import sortBy from 'lodash/sortBy'
 
 function normalize(etablissementFeature) {
     let etablissement = etablissementFeature.properties
@@ -17,14 +17,14 @@ function normalize(etablissementFeature) {
             samedi: 6,
             dimanche: 7
         }
-        etablissement.horaires = _.sortBy(etablissement.horaires, function(plage) {
+        etablissement.horaires = sortBy(etablissement.horaires, function(plage) {
             return mapping[plage.du]
         })
     }
 
-    etablissement.adresse = _.find(etablissement.adresses, { type: 'physique' })
+    etablissement.adresse = etablissement.adresses.find(adress => adress.type === 'physique')
     if (! etablissement.adresse) {
-        etablissement.adresse = _.find(etablissement.adresses, { type: 'géopostale' })
+        etablissement.adresse = etablissement.adresses.find(adress => adress.type === 'géopostale')
     }
     if (! etablissement.adresse) {
         etablissement.adresse = etablissement.adresses[0]

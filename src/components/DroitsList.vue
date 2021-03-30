@@ -53,8 +53,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
-
 import DroitMontant from './DroitMontant'
 
 export default {
@@ -73,17 +71,17 @@ export default {
   computed: {
     list: function() {
       let vm = this
-      return _.filter(this.droits, function(value) {
-        return (!vm.filter) ||_.includes(vm.filter, value.id)
+      return this.droits.filter(function(value) {
+        return (!vm.filter) || vm.filter.includes(value.id)
       })
     },
   },
   methods: {
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,
-    isBoolean: _.isBoolean,
-    isNumber: _.isNumber,
-    isString: _.isString,
+    isBoolean: val => typeof val === 'boolean',
+    isNumber: val => typeof val === 'number',
+    isString: val => typeof val === 'string',
     longCta: function(benefit) {
       return `Comment obtenir ${benefit.prefix}${ benefit.prefix && benefit.prefix.endsWith('’') ? '' : ' ' }${benefit.label} ?`
     },

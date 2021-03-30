@@ -4,9 +4,7 @@ const mock = require('./mock')
 const webpack = require('webpack')
 const before = process.env.NODE_ENV === 'front_only' ? mock : configureAPI
 var { forEach } = require('./app/js/constants/benefits/back')
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-    .BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 let count = 0
 forEach(() => {
@@ -23,9 +21,8 @@ module.exports = {
       new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(fr)$/)
     )
     config.plugins.push(
-      new VuetifyLoaderPlugin()
+      new BundleAnalyzerPlugin()
     )
-    config.plugins.push(new BundleAnalyzerPlugin())
   },
   chainWebpack(config) {
     config.module

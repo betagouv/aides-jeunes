@@ -1,5 +1,5 @@
 var expect = require('expect');
-var _ = require('lodash');
+var { values } = require('lodash');
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require('fs'));
 var subject = require('../../../backend/lib/openfisca/test');
@@ -34,7 +34,7 @@ describe('openfisca generateTest', function() {
     var result = subject.generateTest(details, situation);
 
     it('does not add rsa_non_calculable', function() {
-        expect(typeof result.input.familles._.rsa_non_calculable[currentPeriod]).toBe('undefined');
+        expect(typeof result.input.familles.rsa_non_calculable[currentPeriod]).toBe('undefined');
     });
 });
 
@@ -116,7 +116,7 @@ describe('openfisca generateYAMLTest', function() {
                     var info = Object.assign({ extension: extensionName }, details);
                     var yamlContent = subject.generateYAMLTest(info, situation);
 
-                    var variableListRegex = _.values(subject.EXTENSION_VARIABLES[extensionName]).map(function(variableList) { return variableList.join('|'); }).join('|');
+                    var variableListRegex = values(subject.EXTENSION_VARIABLES[extensionName]).map(function(variableList) { return variableList.join('|'); }).join('|');
                     expect(yamlContent).toMatch(new RegExp(variableListRegex));
 
                     return validateYAMLRun(yamlContent, extensionName.replace(/-/g, '_'));

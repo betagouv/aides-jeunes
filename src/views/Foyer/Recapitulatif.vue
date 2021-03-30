@@ -14,7 +14,8 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import indexOf from 'lodash/indexOf'
+import findIndex from 'lodash/findIndex'
 
 const steps = [
 {
@@ -62,7 +63,7 @@ function isPast(past, step, store, bypass) {
     return step.isPast(store)
   }
 
-  return bypass ||  _.indexOf(past, step.route) >= 0 || _.findIndex(past, step.route) >= 0
+  return bypass ||  indexOf(past, step.route) >= 0 || findIndex(past, step.route) >= 0
 }
 
 export default {

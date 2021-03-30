@@ -44,7 +44,6 @@
 
 <script>
 import axios from 'axios'
-import _ from 'lodash'
 import moment from 'moment'
 
 import DroitMontant from '@/components/DroitMontant'
@@ -78,13 +77,13 @@ export default {
       return this.followup && moment(this.followup.createdAt).format('ll')
     },
     isComplete: function() {
-        let choiceValues = _.map(this.droits, droit => droit.choiceValue)
-        return _.filter(choiceValues).length === this.droits.length
+        let choiceValues = this.droits.map(droit => droit.choiceValue)
+        return choiceValues.filter(choiceValue => choiceValue).length === this.droits.length
     }
   },
   methods: {
-    isString: _.isString,
-    isNumber: _.isNumber,
+    isString: (val) => typeof val === 'string',
+    isNumber: (val) => typeof val === 'number',
     isNegative,
     submit: function() {
       let answers = this.droits.map(droit => ({
@@ -115,20 +114,18 @@ export default {
               return
           }
 
-          let montant = _.find(this.followup.benefits, benefit => benefit.id === benefitId).amount
+          let montant = this.followup.benefits.find(benefit => benefit.id === benefitId).amount
 
-          benefitsNormalized.push(_.assign({},
-            benefit,
-            {
-              id: benefitId,
-              montant: montant,
-              provider: provider,
-              providerId: providerId,
-              choices: choices,
-              choiceValue: null,
-              choiceComments: ''
-            }
-          ))
+          benefitsNormalized.push({
+            ...benefit,
+            id: benefitId,
+            montant: montant,
+            provider: provider,
+            providerId: providerId,
+            choices: choices,
+            choiceValue: null,
+            choiceComments: ''
+          })
         })
 
         this.droits = benefitsNormalized

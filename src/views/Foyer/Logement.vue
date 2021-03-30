@@ -131,7 +131,6 @@
 
 <script>
 import moment from 'moment'
-import _ from 'lodash'
 import { required } from 'vuelidate/lib/validators'
 
 import Commune from '@/lib/Commune'
@@ -221,13 +220,13 @@ export default {
         return (this.logement.type == 'heberge') && this.demandeur.fiscalementIndependant && (age >= 18) && (age < 25) && (this.situation.enfants.length === 0)
     },
     captureCodePostal: function() {
-        return _.some([
-            this.logement.primoAccedant !== undefined,
-            this.logement.locationType == 'foyer',
-            this.menage.logement_chambre !== undefined,
-            this.logement.type == 'heberge' && this.menage.participation_frais !== undefined,
+        return (
+            this.logement.primoAccedant !== undefined ||
+            this.logement.locationType == 'foyer' ||
+            this.menage.logement_chambre !== undefined ||
+            this.logement.type == 'heberge' && this.menage.participation_frais !== undefined ||
             this.logement.type == 'sansDomicile'
-        ])
+        )
     },
     captureLocationType: function() {
         return this.logement.type == 'locataire' && this.famille.proprietaire_proche_famille !== undefined
@@ -236,11 +235,11 @@ export default {
         if (this.logement.type == 'heberge') {
             return false
         }
-        return _.some([
-            this.logement.primoAccedant !== undefined,
-            this.logement.locationType == 'foyer',
+        return (
+            this.logement.primoAccedant !== undefined ||
+            this.logement.locationType == 'foyer' ||
             this.menage.logement_chambre !== undefined
-        ])
+        )
     },
     captureParticipationFrais: function() {
         return (this.logement.type == 'heberge') && (! this.captureHabiteChezParents || this.demandeur.habite_chez_parents !== undefined)
@@ -347,13 +346,13 @@ export default {
   },
   watch: {
     communes: function() {
-      let c = _.find(this.communes, { code: this.menage.depcom }) || Commune.getMostPopulated(this.communes)
+      let c = this.communes.find(commune => commune.code === this.menage.depcom) || Commune.getMostPopulated(this.communes)
       if (c.code) {
         this.menage.depcom = c.code
       }
     },
     'menage.depcom': function() {
-      let c = _.find(this.communes, { code: this.menage.depcom })
+      let c = this.communes.find(commune => commune.code === this.menage.depcom)
       if (c) {
         this.menage._nomCommune = c.nom
         if (this.famille.parisien === undefined && this.isCommuneParis) {

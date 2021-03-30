@@ -1,4 +1,6 @@
-var _ = require('lodash');
+var forEach = require('lodash/forEach');
+var uniq = require('lodash/uniq');
+
 var common = require('./common');
 
 var {additionalProps} = require('./individu');
@@ -13,7 +15,7 @@ function determinePropsToReplicate(entityTypeName, entityDefinition) {
     })
 
     if (entityTypeName == 'individu') {
-        return _.uniq(filtered.concat(...Object.keys(additionalProps)))
+        return uniq(filtered.concat(...Object.keys(additionalProps)))
     } else {
         return filtered
     }
@@ -33,7 +35,7 @@ function copyTo3PreviousMonths(testCase, dateDeValeur) {
 
     Object.keys(forDuplication).forEach(function(entityName) {
         forDuplication[entityName].forEach(function(entityPropertyName) {
-            _.forEach(testCase[entityName], function(entity) {
+            forEach(testCase[entityName], function(entity) {
                 var value = entity[entityPropertyName];
                 var result = {};
                 if (value !== undefined) {

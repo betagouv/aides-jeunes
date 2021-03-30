@@ -1,8 +1,8 @@
 import moment from 'moment'
-import _ from 'lodash'
+import cloneDeep from 'lodash/cloneDeep'
 
 function isRoleParent (role) {
-    return _.includes(['demandeur', 'conjoint'], role);
+    return ['demandeur', 'conjoint'].includes(role);
 }
 
 function ressourceHeader(individu) {
@@ -17,7 +17,7 @@ function ressourceHeader(individu) {
 }
 
 function find(situation, role, id) {
-    return situation[role] || _.find(situation, { id: id })
+    return situation[role] || situation.find(s => s.id === id)
 }
 
 function getDemandeur() {
@@ -60,12 +60,17 @@ function get(individus, role, id, dates) {
         DEFAULT_INDIVIDU.statut_marital = 'marie';  // Marié(e)
     }
     let existingIndividu = find(individus, role, id);
-    let individu = _.assign({}, _.cloneDeep(DEFAULT_INDIVIDU), _.cloneDeep(existingIndividu));
+    let individu = {
+        ...cloneDeep(DEFAULT_INDIVIDU),
+        ...cloneDeep(existingIndividu)
+    };
 
     if (role == 'enfant' && !existingIndividu) {
         let usedIds = individus.map(function(enfant) { return enfant.id; });
         let count = 0;
-        while (_.indexOf(usedIds, 'enfant_' + count) >= 0) {
+        console.log(usedIds)
+        while (usedIds.indexOf('enfant_' + count) >= 0) {
+            console.log(usedIds)
             count = count + 1;
         }
         individu.id = 'enfant_' + count;

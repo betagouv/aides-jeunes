@@ -1,5 +1,6 @@
 var moment = require('moment');
-var _ = require('lodash');
+var range = require('lodash/range');
+var assign = require('lodash/assign')
 
 var { forEach } = require('../../../../app/js/constants/benefits/back');
 
@@ -36,23 +37,23 @@ exports.getPeriods = function (dateDeValeur) {
         '2MonthsAgo': dateDeValeur.clone().subtract(2, 'months').format('YYYY-MM'),
         '3MonthsAgo': dateDeValeur.clone().subtract(3, 'months').format('YYYY-MM'),
         // 3-element array of the latest 3 months
-        last3Months: _.map(_.range(1, 3 + 1), function(monthIndex) {
+        last3Months: range(1, 3 + 1).map(function(monthIndex) {
             return dateDeValeur.clone().subtract(monthIndex, 'months').format('YYYY-MM');
         }),
         // 12-element array of the latest 12 months
-        last12Months: _.map(_.range(1, 12 + 1), function(monthIndex) {
+        last12Months: range(1, 12 + 1).map(function(monthIndex) {
             return dateDeValeur.clone().subtract(monthIndex, 'months').format('YYYY-MM');
         }),
         thisYear: dateDeValeur.clone().format('YYYY'),
         lastYear: dateDeValeur.clone().subtract(1, 'years').format('YYYY'),
         fiscalYear: dateDeValeur.clone().subtract(2, 'years').format('YYYY'),
         // 12-element array of the 12 months in the année fiscale de référence
-        fiscalYear12Months: _.map(_.range(12), function(monthIndex) {
+        fiscalYear12Months: range(12).map(function(monthIndex) {
             var fiscalYear = moment(dateDeValeur.clone().subtract(2, 'years').year(), 'YYYY');
             return fiscalYear.clone().add(monthIndex, 'months').format('YYYY-MM');
         }),
         previousFiscalYear: dateDeValeur.clone().subtract(3, 'years').format('YYYY'),
-        previousFiscalYear12Months: _.map(_.range(12), function(monthIndex) {
+        previousFiscalYear12Months: range(12).map(function(monthIndex) {
             var fiscalYear = moment(dateDeValeur.clone().subtract(3, 'years').year(), 'YYYY');
             return fiscalYear.clone().add(monthIndex, 'months').format('YYYY-MM');
         }),
@@ -62,13 +63,13 @@ exports.getPeriods = function (dateDeValeur) {
 
 let requestedVariables = {}
 forEach((aide, aideId) => {
-    requestedVariables[aideId] = _.assign({}, aide)
+    requestedVariables[aideId] = assign({}, aide)
     if (aide.uncomputability)
-        requestedVariables[aideId + '_non_calculable'] = _.assign({}, aide, { type: 'string' })
+        requestedVariables[aideId + '_non_calculable'] = assign({}, aide, { type: 'string' })
 
     if (aide.extra) {
         aide.extra.forEach(function(extra) {
-            requestedVariables[extra.id] = _.assign({}, extra)
+            requestedVariables[extra.id] = assign({}, extra)
         })
     }
 })

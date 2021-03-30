@@ -1,6 +1,8 @@
 var common = require('./mapping/common');
 var mapping = require('./mapping');
-var _ = require('lodash');
+var forEach = require('lodash/forEach');
+var assign = require('lodash/assign')
+var pick = require('lodash/pick')
 
 function toStringOf(obj) {
     return obj.toString();
@@ -16,8 +18,8 @@ var ID_PROPERTIES = {
 function normalizeIDs(test) {
     Object.keys(ID_PROPERTIES).forEach(function(entity) {
         if (test[entity]) {
-            _.forEach(test[entity], function(value, index) {
-                _.forEach(ID_PROPERTIES[entity], function(property) {
+            forEach(test[entity], function(value, index) {
+                forEach(ID_PROPERTIES[entity], function(property) {
                     if (test[entity][index][property] instanceof Array)
                         test[entity][index][property] = test[entity][index][property].map(toStringOf);
                     else if (test[entity][index][property])
@@ -67,12 +69,12 @@ var EXTENSION_VARIABLES = {
 };
 
 function prepareTestSituationForSpecificExtension(situation, extension) {
-    _.forEach(EXTENSION_VARIABLES, function(specificVariables, extensionName) {
+    forEach(EXTENSION_VARIABLES, function(specificVariables, extensionName) {
         if (extensionName == extension)
             return;
 
-        _.forEach(specificVariables, function(fieldsToRemove, entityFieldName) {
-            _.forEach(situation[entityFieldName], function(entity) {
+        forEach(specificVariables, function(fieldsToRemove, entityFieldName) {
+            forEach(situation[entityFieldName], function(entity) {
                 fieldsToRemove.forEach(function(fieldName) {
                     delete entity[fieldName];
                 });
@@ -103,7 +105,7 @@ exports.generateTest = function generateYAMLTest(details, situation) {
         input: testInputs
     };
 
-    var result = _.assign(_.pick(details, TEST_ATTRIBUTES), testCase);
+    var result = assign(pick(details, TEST_ATTRIBUTES), testCase);
     return result;
 };
 

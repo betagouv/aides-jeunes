@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
 import IndividuForm from '@/components/IndividuForm'
 
 export default {
@@ -17,7 +16,7 @@ export default {
   },
   computed: {
     individu: function() {
-      return _.find(this.$store.state.situation.enfants, { id: this.$route.params.id })
+      return this.$store.state.situation.enfants.find(enfant => enfant.id === this.$route.params.id)
     }
   },
   methods: {

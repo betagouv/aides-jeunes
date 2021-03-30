@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var _ = require('lodash');
+var filter = require('lodash/filter');
 var benefits = require('../../app/js/constants/benefits/back');
 var mesAides = require('../lib/mes-aides');
 var openfisca = require('../lib/openfisca');
@@ -23,7 +23,7 @@ SituationSchema.methods.isAccessible = function(keychain) {
 };
 
 SituationSchema.methods.getIndividus = function() {
-    return _.filter([].concat(this.demandeur, this.conjoint, ...(this.enfants || [])))
+    return filter([].concat(this.demandeur, this.conjoint, ...(this.enfants || [])))
 }
 
 SituationSchema.methods.compute = function() {

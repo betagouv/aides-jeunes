@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var _ = require('lodash');
+var find = require('lodash/find');
 var validator = require('validator');
 
 var {SendSmtpEmail, sendEmail} = require('../lib/send-in-blue')
@@ -146,7 +146,7 @@ FollowupSchema.methods.mock = function() {
 
 FollowupSchema.methods.updateSurvey = function(id, answers) {
     var surveys = Array.from(this.surveys);
-    var survey = _.find(surveys, function(s) { return s._id === id; });
+    var survey = find(surveys, function(s) { return s._id === id; });
 
     Object.assign(survey, { answers: answers, repliedAt: Date.now() });
     this.surveys = surveys;

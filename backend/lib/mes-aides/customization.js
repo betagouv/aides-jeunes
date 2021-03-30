@@ -1,4 +1,4 @@
-var _ = require('lodash');
+var { includes } = require('lodash/includes');
 var lyonMetropoleInseeCodes = require('./lyon-metropole-insee-codes');
 
 function determineCustomizationId(testCase, currentPeriod) {
@@ -59,7 +59,7 @@ function determineCustomizationId(testCase, currentPeriod) {
             return 'D93-SSD';
         if (testCase.menages._.depcom[currentPeriod].match(/^94/))
             return 'D94-VAL_DE_MARNE';
-        if (_.includes(lyonMetropoleInseeCodes, testCase.menages._.depcom[currentPeriod]))
+        if (includes(lyonMetropoleInseeCodes, testCase.menages._.depcom[currentPeriod]))
             return 'M69-LYON';
     }
 

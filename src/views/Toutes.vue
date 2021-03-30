@@ -25,7 +25,7 @@
 <script>
 import Institution from '@/lib/Institution'
 import ProviderView from '@/components/ProviderView'
-import _ from 'lodash'
+import size from 'lodash/size'
 
 export default {
   name: 'toutes',
@@ -37,9 +37,13 @@ export default {
     const types = ['prestationsNationales', 'partenairesLocaux']
     types.forEach(function(type) {
         let providersWithoutPrivatePrestations = Object.keys(Institution[type]).map(function(providerName) {
-            const provider = _.assign({id: providerName}, Institution[type][providerName])
-            provider.prestations = _.reduce(provider.prestations, function(prestations, prestation, name) {
-                if (! prestation.private) {
+            const provider = {
+              id: providerName,
+              ...Institution[type][providerName]
+            }
+            provider.prestations = Object.keys(provider.prestations).reduce(function(prestations, name) {
+                const prestation = provider.prestations[name]
+                if (!prestation.private) {
                     prestations[name] = prestation;
                 }
 
@@ -48,9 +52,9 @@ export default {
             return provider
         })
 
-        value[type] = _.filter(providersWithoutPrivatePrestations, function(provider) { return _.size(provider.prestations) })
+        value[type] = providersWithoutPrivatePrestations.filter(function(provider) { return size(provider.prestations) })
         value[type + 'Count'] = Object.keys(value[type]).reduce(function(total, provider) {
-            return total + _.size(value[type][provider].prestations)
+            return total + Object.keys(value[type][provider].prestations).length
         }, 0);
     });
     return value

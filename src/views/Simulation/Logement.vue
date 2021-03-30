@@ -38,7 +38,6 @@
 <script>
     import Actions from '@/components/Actions'
     import Logement from '@/lib/Logement'
-    import _ from 'lodash'
 
     export default {
         name: 'SimulationLogement',
@@ -50,7 +49,7 @@
                 title: 'Mon logement',
                 logementTypesQuestion: {
                     label: 'Êtes-vous ?',
-                    selectedValue: _.get(Logement.getLogementVariables(this.$store.getters.getLogementStatut), 'type', null),
+                    selectedValue: (Logement.getLogementVariables(this.$store.getters.getLogementStatut) || {}).type || null,
                     responses: [
                         {
                             label: 'Locataire',
@@ -76,7 +75,7 @@
                 },
                 primoAccedantQuestion: {
                     label: 'Êtes-vous primo-accédant pour cette propriété ? Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.',
-                    selectedValue: _.get(Logement.getLogementVariables(this.$store.getters.getLogementStatut), 'primoAccedant', null),
+                    selectedValue: (Logement.getLogementVariables(this.$store.getters.getLogementStatut) || {}).primoAccedant || null,
                     hint: null,
                     responses: [
                         {
@@ -93,7 +92,7 @@
                 },
                 locataireTypesQuestion: {
                     label: 'Quel type de logement louez-vous ?',
-                    selectedValue: _.get(Logement.getLogementVariables(this.$store.getters.getLogementStatut), 'locationType', null),
+                    selectedValue: (Logement.getLogementVariables(this.$store.getters.getLogementStatut) || {}).locationType || null,
                     hint: null,
                     responses: [
                         {

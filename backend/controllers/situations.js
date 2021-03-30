@@ -1,4 +1,8 @@
-var _ = require('lodash');
+var omit = require('lodash/omit')
+var filter = require('lodash/filter')
+var pick = require('lodash/pick')
+var assign = require('lodash/assign')
+
 var openfisca = require('../lib/openfisca');
 var openfiscaTest = require('../lib/openfisca/test');
 var Situation = require('mongoose').model('Situation');
@@ -35,7 +39,7 @@ function clearCookies(req, res) {
     var limit = 10;
 
     var keys = Object.keys(req.cookies);
-    var situationCookies = _.filter(keys, function(k) { return k.startsWith(Situation.cookiePrefix); });
+    var situationCookies = filter(keys, function(k) { return k.startsWith(Situation.cookiePrefix); });
     situationCookies.sort();
 
     if (situationCookies.length-limit>=0) {
@@ -49,7 +53,7 @@ function clearCookies(req, res) {
 exports.create = function(req, res, next) {
     if (req.body._id) return res.status(403).send({ error: 'You can‘t provide _id when saving a situation. _id will be generated automatically.' });
 
-    return Situation.create(_.omit(req.body, 'createdAt', 'status', 'token'), function(err, persistedSituation) {
+    return Situation.create(omit(req.body, 'createdAt', 'status', 'token'), function(err, persistedSituation) {
         if (err) return next(err);
 
         clearCookies(req, res);
@@ -98,8 +102,8 @@ var DETAILS_ATTRIBUTES = [
 ];
 
 exports.openfiscaTest = function(req, res) {
-    var details = _.assign({}, DETAILS_DEFAULT_ATTRIBUTES,
-        _.pick(req.body, DETAILS_ATTRIBUTES)
+    var details = assign({}, DETAILS_DEFAULT_ATTRIBUTES,
+        pick(req.body, DETAILS_ATTRIBUTES)
     );
     if (! details.name || ! details.description || ! details.output) {
         return res.status(403).send({ error: 'You must provide a name, description and output.' });

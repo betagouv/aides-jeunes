@@ -90,7 +90,6 @@
 
 <script>
 import Individu from '@/lib/Individu'
-import _ from 'lodash'
 
 
 export default {
@@ -142,7 +141,7 @@ export default {
           if (!c || ! c.resultats) {
             return
           }
-          that.ppa = _.find(c.resultats.droitsEligibles, { id: 'ppa' })          
+          that.ppa = find(c.resultats.droitsEligibles, { id: 'ppa' })          
         })
         .catch(() => {
           that.$matomo && that.$matomo.trackEvent('AutoEntreprise', 'Erreur', 'ppa')

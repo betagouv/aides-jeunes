@@ -25,7 +25,8 @@
 
 <script>
 import Actions from '@/components/Actions'
-import _ from 'lodash'
+import orderBy from 'lodash/orderBy'
+import groupBy from 'lodash/groupBy'
 import {ressourceCategories, ressourceTypes} from '@/constants/resources'
 import Ressource from '@/lib/Ressource'
 
@@ -38,17 +39,17 @@ export default {
     individu: Object
   },
   data: function() {
-    let types = _.filter(ressourceTypes, Ressource.isRessourceOnMainScreen)
-
+    let types = ressourceTypes.filter(Ressource.isRessourceOnMainScreen)
+  
     return {
       categories: ressourceCategories,
-      typesByCategories: _.groupBy(types, t => t.category),
+      typesByCategories: groupBy(types, t => t.category),
       selectedTypes: Ressource.getIndividuRessourceTypes(this.individu)
     }
   },
   computed: {
     countLabel: function() {
-      const count = _.filter(this.selectedTypes).length
+      const count = Object.keys(this.selectedTypes).filter(selectType => this.selectedTypes[selectType]).length
       return `${count} ${count == 1 ? 'ressource sélectionnée' : 'ressources sélectionnées'}`
     },
   },
@@ -64,7 +65,7 @@ export default {
       this.$push(this.$store.state.situation)
     },
     sort: function(array) {
-      return _.orderBy(array, ['positionInList','label'])
+      return orderBy(array, ['positionInList','label'])
     }
   }
 }

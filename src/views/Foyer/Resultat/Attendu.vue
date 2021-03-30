@@ -95,7 +95,11 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import filter from 'lodash/filter'
+import sortBy from 'lodash/sortBy'
+import flow from 'lodash/flow'
+import uniq from 'lodash/uniq'
+
 import axios from 'axios'
 import Institution from '@/lib/Institution'
 
@@ -112,7 +116,7 @@ export default {
       benefits.push(b)
       benefitKeyed[b.id] = b
     })
-    benefits = _.sortBy(benefits, 'label')
+    benefits = sortBy(benefits, 'label')
 
     return {
       benefits,
@@ -153,14 +157,20 @@ export default {
       return resultats
     },
     expectedResults: function() {
-      return _.filter(this.selection, i => i.ref && i.expected !== null)
+      return filter(this.selection, i => i.ref && i.expected !== null)
     },
     extensionAndRepository: function() {
-      let extensions = _.chain(this.selection).map(i => i.ref)
-          .filter(aid => aid && aid.level == 'partenairesLocaux')
-          .map(aid => aid.provider.repository || aid.provider.id)
-          .uniq()
-          .value()
+      // let extensions = chain(this.selection).map(i => i.ref)
+      //     .filter(aid => aid && aid.level == 'partenairesLocaux')
+      //     .map(aid => aid.provider.repository || aid.provider.id)
+      //     .uniq()
+      //     .value()
+      let extensions = flow(
+        (values) => values.map(i => i.ref),
+        filter(aid => aid && aid.level == 'partenairesLocaux'),
+        (values) => values.map(aid => aid.provider.repository || aid.provider.id),
+        uniq
+      )(this.selection);
 
       if (! extensions.length) {
           return {

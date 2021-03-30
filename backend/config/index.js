@@ -6,10 +6,10 @@ var all = {
     animation: {
         delay: process.env.ANIMATION_DELAY || 300,
     },
-    baseURL: 'https://mes-aides.org',
+    baseURL: 'https://mes-aides.1jeune1solution.beta.gouv.fr',
     openfiscaURL: process.env.OPENFISCA_URL || 'http://localhost:2000',
     openfiscaAxeURL: 'https://betagouv.github.io/mes-aides-changent',
-    openfiscaPublicURL: 'https://openfisca.mes-aides.org',
+    openfiscaPublicURL: 'https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr',
     openfiscaTracerURL: 'https://openfisca.github.io/tracer',
     sendInBlue: {
         apiKey: process.env.SEND_IN_BLUE_PRIVATE_KEY || 'privateKey',

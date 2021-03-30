@@ -4,7 +4,6 @@ const mock = require('./mock')
 const webpack = require('webpack')
 const before = process.env.NODE_ENV === 'front_only' ? mock : configureAPI
 var { forEach } = require('./app/js/constants/benefits/back')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 let count = 0
 forEach(() => {
@@ -19,9 +18,6 @@ module.exports = {
     config.devtool = 'source-map'
     config.plugins.push(
       new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(fr)$/)
-    )
-    config.plugins.push(
-      new BundleAnalyzerPlugin()
     )
   },
   chainWebpack(config) {

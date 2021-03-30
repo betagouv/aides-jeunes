@@ -3,6 +3,7 @@ var pickBy = require('lodash/pickBy');
 var includes = require('lodash/includes');
 var each = require('lodash/each');
 var values = require('lodash/values');
+var find = require('lodash/find');
 
 var moment = require('moment');
 var CurrencyFormatter = require('currencyformatter.js');

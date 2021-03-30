@@ -2,6 +2,7 @@ var _ = require('lodash');
 var ressources = require('../../app/js/constants/ressources');
 
 var famille = {
+    bourse_lycee: Boolean,
     en_couple: Boolean,
     parisien: Boolean,
     proprietaire_proche_famille: Boolean,
@@ -35,12 +36,14 @@ var individu = Object.assign({
     aah_restriction_substantielle_durable_acces_emploi: Boolean,
     activite: { type: String, enum: ['actif', 'chomeur', 'etudiant', 'inactif', 'retraite'] },
     agepi_temps_travail_semaine: Number,
+    aide_mobilite_parcoursup_sortie_academie: Boolean,
     ass_precondition_remplie: Boolean,
     boursier: Boolean,
     bourse_criteres_sociaux_base_ressources: Number,
     bourse_criteres_sociaux_commune_domicile_familial: String,
     _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: String,
     _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: String,
+    classe_scolarite: { type: String, enum: ['terminale', 'licence_3', 'master_1'] },
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,

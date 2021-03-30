@@ -156,6 +156,16 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/RsaJeuneConditionHeuresTravailRemplie.vue'),
         },
         {
+          name: 'classe_scolarite',
+          path: 'classe_scolarite',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/ClasseScolarite.vue'),
+        },
+        {
+          name: 'aide_mobilite_parcoursup_sortie_academie',
+          path: 'aide_mobilite_parcoursup_sortie_academie',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/AideMobiliteParcoursupSortieAcademie.vue'),
+        },
+        {
           name: 'property',
           path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
@@ -198,6 +208,12 @@ const router = new Router({
           path: 'parisien',
           component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/Parisien.vue'),
         },
+        {
+          name: 'bourse_lycee',
+          path: 'bourse_lycee',
+          component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/BourseLycee.vue'),
+        },
+
       ]
       }, {
         path: 'logement',

@@ -8,7 +8,7 @@
     </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
-</template> 
+</template>
 
 <script>
 import Actions from '@/components/Actions'
@@ -20,7 +20,7 @@ export default {
     Actions,
   },
   mixins: [
-    createFamilleMixin({fieldName: 'bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur', manualValidation: true})
+    createFamilleMixin({fields: [{name: 'bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur'}], manualValidation: true})
   ],
 }
 </script>

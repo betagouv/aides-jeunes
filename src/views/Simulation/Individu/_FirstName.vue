@@ -15,6 +15,6 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin({fieldName:'_firstName', manualValidation: true})],
+  mixins: [createIndividuMixin({fields: [{name: '_firstName'}], manualValidation: true})],
 }
 </script>

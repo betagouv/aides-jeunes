@@ -20,7 +20,7 @@ export const createIndividuMixin = (props) => {
                 optional
             }
         },
-        mixins: [autoSubmitMixin({fieldName: 'value', manualValidation})],
+        mixins: [autoSubmitMixin({fields: [{name: 'value'}], manualValidation})],
         methods: {
             getLabel: function(type) {
                 const labelDict = {

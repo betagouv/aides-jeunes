@@ -1,0 +1,11 @@
+label: aide à la mobilité Master
+institution: etat
+description: Cette aide facilite la mobilité géographique des étudiants boursiers titulaires d'une licence, inscrits en première année de master, dans une région académique différente de celle dans laquelle la licence a été obtenue.
+link: https://www.service-public.fr/particuliers/vosdroits/F34343
+conditions:
+  - Faire la demande lors de votre première instructions en Master et cela l'année qui suit l'obtention de votre licence.
+instructions: https://www.etudiant.gouv.fr/fr/aide-la-mobilite-en-master-1504
+prefix: l’
+type: float
+floorAt: 1
+entity: individus

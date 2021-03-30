@@ -7,3 +7,4 @@ prefix: l’
 type: float
 floorAt: 1
 entity: individus
+interestFlag: _interetPermisDeConduire

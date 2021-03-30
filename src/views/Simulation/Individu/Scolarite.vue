@@ -15,7 +15,7 @@
 <script>
 import Actions from '@/components/Actions'
 import { createIndividuMixin } from '@/mixins/IndividuMixin'
-import { scolariteOptions } from '@/lib/Individu'
+import Individu from '@/lib/Individu'
 
 export default {
   name: 'SimulationIndividuScolarite',
@@ -24,7 +24,7 @@ export default {
   },
   data: function() {
     return {
-      scolariteOptions
+      scolariteOptions: Individu.scolariteOptions
     }
   },
   mixins: [createIndividuMixin('scolarite')],

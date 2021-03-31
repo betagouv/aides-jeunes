@@ -118,7 +118,7 @@ export function enfant(params={}) {
   cy.get('button[type="submit"]').click()
   // Nationalite
   cy.get('legend').invoke('text').should('contain', 'nationalité')
-  cy.get('input[type="radio"]').check('true')
+  cy.get('input[type="radio"]').check('fr')
   // Garde Alterne
   cy.get('legend').invoke('text').should('contain', 'en garde alternée')
   cy.get('input[type="radio"]').check('true')

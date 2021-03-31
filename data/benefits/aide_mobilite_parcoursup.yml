@@ -1,0 +1,9 @@
+label: aide à la mobilité ParcourSup
+institution: etat
+description: L'aide à la mobilité Parcoursup est destinée au bachelier qui effectue son entrée dans l'enseignement supérieur en dehors de son académie de résidence.
+link: https://www.service-public.fr/particuliers/vosdroits/F34643
+teleservice: https://amp.etudiant.gouv.fr
+prefix: l’
+type: float
+floorAt: 1
+entity: individus

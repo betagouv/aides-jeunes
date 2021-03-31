@@ -14,18 +14,20 @@ function generateTestingBenefits(slug, list) {
 }
 
 function transformInstitutions(collection) {
-  const items = collection.map(data => {
+  const processBenefits = (result, data) => {
     const item = {
       label: data.name,
-      imgSrc: data.imgSrc.slice('img/'.length),
+      imgSrc: data.imgSrc && data.imgSrc.slice('img/'.length),
       prestations: generateTestingBenefits(data.slug, data.testing_benefits || []),
       national: data.national,
     }
-    return {[data.slug]: item}
-  })
+    result[data.slug] = item
+    return result
+  }
+
   return {
-    national: Object.assign({}, ...items.filter(i => i.national)),
-    local: Object.assign({}, ...items.filter(i => ! i.national)),
+    national: collection.filter(i => i.national).reduce(processBenefits, {}),
+    local: collection.filter(i => ! i.national).reduce(processBenefits, {}),
   }
 }
 

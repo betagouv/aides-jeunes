@@ -17,6 +17,24 @@ function individuBlockFactory(id) {
       ...(conjoint ? [r('statut_marital')] : []),
       ...(enfant ? [r('garde_alternee')] : []),
       ...(!enfant ? [r('activite')] : []),
+      ...(demandeur ? [{
+        isActive: subject => subject.activite == 'etudiant',
+        steps: [
+          r('classe_scolarite'),
+          {
+            isActive: subject => subject.classe_scolarite == 'terminale',
+            steps: [
+              r('aide_mobilite_parcoursup_sortie_academie'),
+              {
+                isActive: subject => subject.aide_mobilite_parcoursup_sortie_academie,
+                steps: [
+                  r('aide_mobilite_parcoursup_boursier_lycee'),
+                ]
+              }
+            ]
+          }
+        ]
+      }] : []),
       r('handicap'),
       {
         isActive: subject => subject.handicap,

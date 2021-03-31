@@ -34,6 +34,7 @@ function get(individus, role, id, dates) {
         aah_restriction_substantielle_durable_acces_emploi: true,
         agepi_temps_travail_semaine: 0,
         ass_precondition_remplie: false,
+        classe_scolarite: undefined,
         date_naissance: undefined,
         duree_possession_titre_sejour: 25,
         echelon_bourse: -1,

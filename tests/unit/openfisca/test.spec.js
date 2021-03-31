@@ -19,11 +19,11 @@ var situation = {
     dateDeValeur: new Date(currentPeriod),
     famille: {},
     foyer_fiscal: {},
-    individus: [{
+    demandeur: {
         id: 'id',
         date_naissance: new Date('1989-01-01'),
         _role: 'demandeur',
-    }],
+    },
     menage: {
         personne_de_reference: ['id'],
         statut_occupation_logement: 'sans_domicile'

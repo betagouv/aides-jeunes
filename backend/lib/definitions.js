@@ -39,6 +39,7 @@ var individu = Object.assign({
     aide_mobilite_master_sortie_academie: Boolean,
     aide_mobilite_parcoursup_boursier_lycee: Boolean,
     aide_mobilite_parcoursup_sortie_academie: Boolean,
+    alternant: Boolean,
     ass_precondition_remplie: Boolean,
     boursier: Boolean,
     bourse_criteres_sociaux_base_ressources: Number,

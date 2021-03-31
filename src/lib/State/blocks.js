@@ -44,7 +44,8 @@ function individuBlockFactory(id) {
                 ]
               }
             ]
-          }
+          },
+          r('alternant')
         ]
       }] : []),
       r('handicap'),

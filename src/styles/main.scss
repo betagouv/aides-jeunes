@@ -46,6 +46,7 @@ $screen-smaller-than-mobile: 399px;
 @import 'partials/desktop/children';
 @import 'partials/desktop/header';
 @import 'partials/desktop/footer';
+@import 'partials/desktop/resultats';
 
 /* TABLET IMPORTS */
 @media (max-width: 768px) {

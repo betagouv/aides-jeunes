@@ -25,6 +25,12 @@ html {
         display: table;
         margin: 10px 0 0 0;
       }
+
+      .aj-loading-modal {
+        .aj-loading-modal-content {
+          margin: 0 1rem;
+        }
+      }
     }
   }
 }

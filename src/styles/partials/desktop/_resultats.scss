@@ -1,0 +1,61 @@
+html {
+  body {
+    .aj-loading-text {
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .aj-results-intro {
+      font-size: 1.25rem;
+      margin: 40px 0 50px 0;
+    }
+
+    .aj-aide-box {
+      border-radius: var(--theme-border-radius);
+      background-color: var(--white);
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 3rem;
+      position: relative;
+
+      .aj-aide-illustration {
+        width: 56px;
+      }
+
+      .aj-aide-text {
+        margin-left: 2rem;
+
+        h2 {
+          text-transform: capitalize;
+        }
+
+        .aj-aide-description {
+          text-align: justify;
+        }
+      }
+
+      .aj-aide-cta {
+        position: absolute;
+        bottom: 0;
+        right: 35px;
+        transform: translateY(50%);
+      }
+
+      .aj-aide-montant {
+        flex-basis: 200px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        text-align: center;
+
+        .aj-aide-montant-label {
+          font-weight: bold;
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}

@@ -130,7 +130,7 @@ export function enfant(params={}) {
   cy.get('input[type="radio"]').check('college')
   // Enfant a charge
   cy.get('legend').invoke('text').should('contain', 'dernière déclaration d\'impôts')
-  cy.get('button[type="submit"]').click()
+  cy.get('input[type="radio"]').check('false')
 }
 
 export function celibataire() {

@@ -241,21 +241,15 @@ var droitsDescription = {
                     floorAt: 10,
                     prefix: 'l’',
                 },
-                'caah': {
+                'caah': { // Les équipes de la DSS ont implémenté une V0 de la MVA dans la variable caah
                     'isMontantAnnuel': false,
-                    'label': 'complément à l’allocation adultes handicapés',
-                    'description': 'Les personnes en situation de handicap les plus éloignées de l’emploi peuvent recevoir le complément de ressources. Il a pour objectif de compenser l’absence durable de revenus d’activité si vous êtes dans l’incapacité de travailler. Le CAAH forme, avec l’AAH, ce que l’on appelle la garantie de ressources.',
-                    'conditions': [
-                        'Avoir une capacité de travail (appréciée par la CADPH) inférieure à 5 % du fait de votre handicap.'
-                    ],
+                    'label': 'majoration pour la vie autonome',
+                    'description': 'La majoration pour la vie autonome (MVA) est une aide financière qui peut s’ajouter à l’allocation aux adultes handicapés (AAH). Elle permet de faire face aux dépenses liées à votre handicap (par exemple, adaptation de votre logement).',
                     'isBaseRessourcesYearMinusTwo': true,
-                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F12911',
-                    'forms': {
-                        'mdph': 'https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do',
-                    },
+                    'link': 'https://www.service-public.fr/particuliers/vosdroits/F12903',
                     'entity': 'individus', // default entity is familles
                     floorAt: 1,
-                    prefix: 'le',
+                    prefix: 'la',
                 },
                 'aeeh': {
                     'isMontantAnnuel': false,

@@ -32,6 +32,18 @@ function individuBlockFactory(id) {
                 ]
               }
             ]
+          },
+          {
+            isActive: subject => subject.classe_scolarite == 'licence_3' || subject.classe_scolarite == 'master_1',
+            steps: [
+              r('aide_mobilite_master_sortie_academie'),
+              {
+                isActive: subject => subject.aide_mobilite_master_sortie_academie,
+                steps: [
+                  r('boursier'),
+                ]
+              }
+            ]
           }
         ]
       }] : []),
@@ -65,7 +77,7 @@ function individuBlockFactory(id) {
         ]
       }] : []),
       {
-        isActive: subject => subject.activite == 'etudiant',
+        isActive: () => false,
         steps: [r('echelon_bourse')]
       },
       ...(demandeur ? [{

@@ -6,8 +6,6 @@ import store from './store'
 
 Vue.use(Router)
 
-const kidPagesMeta = { title: 'Les enfants de votre foyer' }
-
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -262,46 +260,8 @@ const router = new Router({
     {
       path: '/foyer',
       name: 'foyer',
-      redirect: '/foyer/demandeur',
       component: () => import(/* webpackChunkName: "demandeur" */ './views/Foyer.vue'),
       children: [{
-        name: 'demandeur',
-        path: 'demandeur',
-        component: () => import(/* webpackChunkName: "demandeur" */ './views/Foyer/Demandeur.vue'),
-        meta: { title: 'Vous' }
-      }, {
-        path: 'enfants',
-        component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants.vue'),
-        meta: kidPagesMeta,
-        children: [{
-          path: 'ajouter',
-          component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants/Ajouter.vue'),
-          meta: kidPagesMeta
-        }, {
-          name: 'enfants/modifier',
-          path: ':id',
-          component: () => import(/* webpackChunkName: "enfants" */ './views/Foyer/Enfants/Modifier.vue'),
-          meta: kidPagesMeta
-        }]
-      }, {
-        path: 'conjoint',
-        component: () => import(/* webpackChunkName: "conjoint" */ './views/Foyer/Conjoint.vue'),
-        meta: {
-          title: 'Vivez-vous seul·e ou en couple&nbsp;?',
-        }
-      }, {
-        path: 'logement',
-        component: () => import(/* webpackChunkName: "logement" */ './views/Foyer/Logement.vue'),
-        meta: {
-          title: 'Mon logement',
-        }
-      }, {
-        path: 'ressources/enfants',
-        component: () => import(/* webpackChunkName: "ressources-enfants" */ './views/Simulation/Ressources/Enfants.vue'),
-        meta: {
-          title: 'Les ressources de vos enfants'
-        }
-      }, {
         path: 'pensions-alimentaires',
         component: () => import(/* webpackChunkName: "pensions-alimentaires" */ './views/Foyer/PensionsAlimentaires.vue'),
         meta: {
@@ -375,35 +335,6 @@ const router = new Router({
       },
     },
     {
-      path: '/ameliorer',
-      name: 'ameliorer',
-      component: () => import(/* webpackChunkName: "ameliorer" */ './views/Ameliorer.vue')
-    },
-    {
-      path: '/ameli',
-      name: 'ameli',
-      component: () => import(/* webpackChunkName: "ameli" */ './views/Ameli.vue')
-    },
-    {
-      path: '/auto-entreprise',
-      name: 'auto-entreprise',
-      component: () => import(/* webpackChunkName: "auto-entreprise" */ './views/AutoEntreprise.vue')
-    },
-    {
-      path: '/experimentations',
-      name: 'experimentations',
-      component: () => import(/* webpackChunkName: "experimentations" */ './views/Experimentations.vue')
-    },
-    {
-      path: '/financement',
-      name: 'financement',
-      component: () => import(/* webpackChunkName: "financement" */ './views/Financement.vue')
-    },
-    {
-      path: '/communication/2020-04-08-fonds-solidarites-logement-75-aides',
-      component: () => import(/* webpackChunkName: "communication" */ './views/Communication/2020-04-08-fonds-solidarites-logement-75-aides.vue'),
-    },
-    {
       path: '/contact',
       name: 'contact',
       component: () => import(/* webpackChunkName: "contact" */ './views/Contact.vue')
@@ -412,11 +343,6 @@ const router = new Router({
       path: '/cgu',
       name: 'cgu',
       component: () => import(/* webpackChunkName: "cgu" */ './views/CGU.vue')
-    },
-    {
-      path: '/liens-utiles',
-      name: 'liens-utiles',
-      component: () => import(/* webpackChunkName: "liens-utiles" */ './views/LiensUtiles.vue')
     },
     {
       name: 'lieux',
@@ -432,16 +358,6 @@ const router = new Router({
       path: '/redirection',
       name: 'redirection',
       component: () => import(/* webpackChunkName: "redirection" */ './views/Redirection.vue')
-    },
-    {
-      path: '/social',
-      name: 'social',
-      component: () => import(/* webpackChunkName: "social" */ './views/Social.vue')
-    },
-    {
-      path: '/sos',
-      name: 'sos',
-      component: () => import(/* webpackChunkName: "sos" */ './views/SOS.vue')
     },
     {
       path: '/start',
@@ -460,11 +376,6 @@ const router = new Router({
       path: '/suivi',
       name: 'suivi',
       component: () => import(/* webpackChunkName: "suivi" */ './views/Suivi.vue')
-    },
-    {
-      path: '/toutes',
-      name: 'toutes',
-      component: () => import(/* webpackChunkName: "toutes" */ './views/Toutes.vue')
     },
   ],
   scrollBehavior (to/*, from, savedPosition*/) {

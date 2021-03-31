@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      {{ getLabel('être') | capitalize }} boursier&nbsp;?
+      Bénéficiez-vous d'une bourse&nbsp;?
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

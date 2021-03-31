@@ -28,7 +28,7 @@ function getConjoint() {
     return get([], 'conjoint').individu
 }
 
-function get(individus, role, id, dates) {
+function get(individus, role, id) {
     let DEFAULT_INDIVIDU = {
         id: role,
         aah_restriction_substantielle_durable_acces_emploi: true,
@@ -39,26 +39,10 @@ function get(individus, role, id, dates) {
         duree_possession_titre_sejour: 25,
         echelon_bourse: -1,
         enfant_a_charge: {},
-        enfant_place: false,
-        gir: 'gir_6',
-        nationalite: 'FR',
+        nationalite: '',
         _role: role,
-        scolarite: undefined,
-        taux_incapacite: 0.9,
-        tns_autres_revenus_type_activite: 'bic',
-        tns_micro_entreprise_type_activite: 'bic',
-        tns_auto_entrepreneur_type_activite: 'bic',
     };
 
-    // By default enfants are `à charge fiscale`, adults are not.
-    if (DEFAULT_INDIVIDU._role == 'enfant' && dates && dates.thisYear) {
-        DEFAULT_INDIVIDU.enfant_a_charge[dates.thisYear.id] = true
-    }
-
-    // Required on DEFAULT_INDIVIDU to properly restore statut_marital
-    if (DEFAULT_INDIVIDU._role == 'conjoint') {
-        DEFAULT_INDIVIDU.statut_marital = 'marie';  // Marié(e)
-    }
     let existingIndividu = find(individus, role, id);
     let individu = {
         ...cloneDeep(DEFAULT_INDIVIDU),

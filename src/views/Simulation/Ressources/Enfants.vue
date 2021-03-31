@@ -22,7 +22,7 @@ export default {
   data: function() {
     let enfants = this.$store.state.situation.enfants.map(e => Object.assign({}, e))
 
-    enfants.forEach(e => e._hasRessources = e._hasRessources || false)
+    enfants.forEach(e => e._hasRessources = e._hasRessources || undefined)
     return {
       enfants,
     }

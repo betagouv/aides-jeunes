@@ -4,6 +4,7 @@
     <label class="form__group">Type d'activité
       <select v-bind:value="ressource.extra.tns_auto_entrepreneur_type_activite"
         v-on:input="updateExtra('tns_auto_entrepreneur_type_activite', $event.target.value)">
+        <option disabled>Selectionnez un type d'activité</option>
         <option value="achat_revente">Achat/revente ou fourniture de logement</option>
         <option value="bic">Autre activité relevant des BIC</option>
         <option value="bnc">Activité libérale et/ou intellectuelle (BNC)</option>
@@ -33,6 +34,9 @@
           v-on:input="update(month.id, $event.target.value)">
       </label>
     </div>
+    <p class="notification warning" v-if="error">
+      {{ error }}
+    </p>
   </div>
 </template>
 

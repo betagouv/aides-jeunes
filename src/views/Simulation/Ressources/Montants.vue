@@ -5,10 +5,10 @@
     </p>
     <div class="form__group" s v-for="(type, index) in types" v-bind:key="type.meta.id">
       <RessourceMontants v-if="isSimple(type.meta.id)" v-bind:individu="type.individu" v-bind:index="index" v-bind:type="type" v-on:update="process"/>
-      <RessourceAutoEntreprise v-if="type.meta.id === 'tns_auto_entrepreneur_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
-      <RessourceMicroEntreprise v-if="type.meta.id === 'tns_micro_entreprise_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
-      <RessourceProfessionLiberale v-if="type.meta.id === 'tns_autres_revenus'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
-      <RessourceExploitantAgricole v-if="type.meta.id === 'tns_benefice_exploitant_agricole'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
+      <RessourceAutoEntreprise v-if="type.meta.id === 'tns_auto_entrepreneur_chiffre_affaires'" :error="errors.tns_auto_entrepreneur_chiffre_affaires" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
+      <RessourceMicroEntreprise v-if="type.meta.id === 'tns_micro_entreprise_chiffre_affaires'" :error="errors.tns_micro_entreprise_chiffre_affaires" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
+      <RessourceProfessionLiberale v-if="type.meta.id === 'tns_autres_revenus'" v-bind:individu="type.individu" :error="errors.tns_autres_revenus" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
+      <RessourceExploitantAgricole v-if="type.meta.id === 'tns_benefice_exploitant_agricole'" v-bind:individu="type.individu" :error="errors.tns_benefice_exploitant_agricole" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
     </div>
 
     <Actions v-bind:onSubmit='onSubmit'>
@@ -44,7 +44,8 @@ export default {
     const individu = this.getIndividu()
     return {
       individu,
-      types: this.getTypes(individu)
+      types: this.getTypes(individu),
+      errors: {},
     }
   },
   watch: {
@@ -96,7 +97,20 @@ export default {
       ]
       return complex.indexOf(type) === - 1
     },
+    requiredValueMissing: function(type) {
+        return Object.keys(type.extra).reduce((hasError, key) => {
+          return hasError || type.extra[key] === undefined
+        }, false)
+    },
     onSubmit: function() {
+      const hasAnyValueMissing = this.types.filter(type => !this.isSimple(type.meta.id)).reduce((hasError, type) => {
+        const requiredValueMissing = this.requiredValueMissing(type, type.meta.id)
+        this.$set(this.errors, type.meta.id, requiredValueMissing && 'Ce champs est obligatoire.')
+        return hasError || requiredValueMissing
+      }, false)
+      if (hasAnyValueMissing) {
+          return
+      }
       this.save(this.types, true)
       this.$push(this.$store.state.situation)
     },

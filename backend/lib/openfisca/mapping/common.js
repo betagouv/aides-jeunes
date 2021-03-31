@@ -1,5 +1,4 @@
 var moment = require('moment');
-var range = require('lodash/range');
 var assign = require('lodash/assign')
 
 var { forEach } = require('../../../../app/js/constants/benefits/back');

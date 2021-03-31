@@ -1,5 +1,4 @@
 import { logementTypes, locationTypes } from '../constants/logement'
-import _ from 'lodash'
 
 function getStatutOccupationLogement(logement) {
     let statusOccupationMap = {
@@ -43,14 +42,14 @@ function getLogementVariables(statusOccupationId) {
 
 function getLabels(statusOccupationId) {
     let logement = getLogementVariables(statusOccupationId);
-    let logementLabel = _.find(logementTypes, { id: logement.type }).label;
+    let logementLabel = logementTypes.find(logementType => logementType.id === logement.type).label;
 
     //TODO3 logementLabel = logementLabel.$filter('uppercaseFirst')();
     let recapLogement = '<b>' + logementLabel + '</b>';
     let loyerLabel;
     if ('locataire' === logement.type) {
         recapLogement += ' d’un logement <b>';
-        recapLogement += _.find(locationTypes, { id: logement.locationType }).label;
+        recapLogement += locationTypes.find(locationType => locationType.id === logement.locationType).label;
         recapLogement += '</b>';
         loyerLabel = 'Loyer';
     } else {

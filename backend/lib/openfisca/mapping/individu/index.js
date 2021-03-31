@@ -1,5 +1,10 @@
 var moment = require('moment');
-var _ = require('lodash');
+var isNaN = require('lodash/isNaN');
+var forEach = require('lodash/forEach');
+var isUndefined = require('lodash/isUndefined');
+var cloneDeep = require('lodash/cloneDeep');
+var isString = require('lodash/isString');
+
 var individuRessource = require('./ressources');
 var pastResourcesProxy = require('./pastResourcesProxy');
 
@@ -35,13 +40,13 @@ var individuSchema = {
 };
 
 function isNotValidValue(value) {
-    return _.isNaN(value) || _.isUndefined(value) || value === null || value === "Invalid date";
+    return isNaN(value) || isUndefined(value) || value === null || value === "Invalid date";
 }
 
 function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
-    var openFiscaIndividu = _.cloneDeep(mesAidesIndividu);
-    _.forEach(individuSchema, function(definition, openfiscaKey) {
-        var params = _.isString(definition) ? { src: definition } : definition;
+    var openFiscaIndividu = cloneDeep(mesAidesIndividu);
+    forEach(individuSchema, function(definition, openfiscaKey) {
+        var params = isString(definition) ? { src: definition } : definition;
 
         openFiscaIndividu[openfiscaKey] = params.src ? params.fn(mesAidesIndividu[params.src], mesAidesIndividu, situation) : params.fn(mesAidesIndividu, situation);
 

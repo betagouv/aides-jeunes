@@ -47,7 +47,7 @@
 
 <script>
 import moment from 'moment'
-import _ from 'lodash'
+import padStart from 'lodash/padStart'
 
 function stateManager(current, next) {
   if ((current.element === 'day' && current.length === 0 && next.element === 'day' && next.length === 1) ||
@@ -88,7 +88,7 @@ export default {
       return Boolean(this.currentState)
     },
     date: function() {
-      return `${this.year}-${this.month && _.padStart(this.month, 2, '0')}-${this.day && _.padStart(this.day, 2, '0')}`
+      return `${this.year}-${this.month && padStart(this.month, 2, '0')}-${this.day && padStart(this.day, 2, '0')}`
     },
     firstId: function() {
       const uniqueFieldName = 'id.' + Math.random().toString(36).slice(2)

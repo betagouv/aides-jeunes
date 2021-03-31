@@ -22,7 +22,8 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import indexOf from 'lodash/indexOf'
+import findIndex from 'lodash/findIndex'
 
 function findSibling(route) {
   if (route.fullPath === '/foyer/enfants/ajouter'
@@ -65,20 +66,20 @@ export default {
       return this.$route
     },
     isRecapitulatif: function() {
-      return _.startsWith(this.$route.fullPath, '/foyer/recapitulatif')
+      return this.$route.fullPath.startsWith('/foyer/recapitulatif')
     },
     currentStepIndex: function() {
       let route = this.stepRoute
-      let idx = _.indexOf(this.steps, route.path)
+      let idx = this.steps.indexOf(route.path)
       if (idx >= 0) {
         return idx+1
       }
-      idx = _.findIndex(this.steps, { name: route.name, params: route.params })
+      idx = findIndex(this.steps, { name: route.name, params: route.params })
       if (idx >= 0) {
         return idx+1
       }
 
-      idx = _.indexOf(this.steps, findSibling(route))
+      idx = indexOf(this.steps, findSibling(route))
       if (idx >= 0) {
         return idx+1
       }

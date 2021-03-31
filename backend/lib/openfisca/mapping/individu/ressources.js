@@ -1,4 +1,4 @@
-var _ = require('lodash');
+var forEach = require('lodash/forEach');
 
 var TAUX_CSG_CRDS = 0.029,
     ASSIETTE_COTIS = 0.9825,
@@ -41,15 +41,15 @@ var individuRessources = {
 };
 
 function computeRessources(mesAidesIndividu, openFiscaIndividu) {
-    _.forEach(individuRessources, function(sourceDefinitions, outputKey) {
+    forEach(individuRessources, function(sourceDefinitions, outputKey) {
 
         openFiscaIndividu[outputKey] = openFiscaIndividu[outputKey] || {};
         var result = openFiscaIndividu[outputKey];
-        _.forEach(sourceDefinitions, function(definition) {
+        forEach(sourceDefinitions, function(definition) {
             var srcKey = definition.src || definition;
             var fn = definition.fn || function(x) { return x; };
 
-            _.forEach(mesAidesIndividu[srcKey], function(value, period) {
+            forEach(mesAidesIndividu[srcKey], function(value, period) {
                 result[period] = result[period] || 0;
                 result[period] += fn(value);
             });

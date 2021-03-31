@@ -1,5 +1,5 @@
 var expect = require('expect');
-var _ = require('lodash');
+var { values } = require('lodash');
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require('fs'));
 var subject = require('../../../backend/lib/openfisca/test');
@@ -116,7 +116,7 @@ describe('openfisca generateYAMLTest', function() {
                     var info = Object.assign({ extension: extensionName }, details);
                     var yamlContent = subject.generateYAMLTest(info, situation);
 
-                    var variableListRegex = _.values(subject.EXTENSION_VARIABLES[extensionName]).map(function(variableList) { return variableList.join('|'); }).join('|');
+                    var variableListRegex = values(subject.EXTENSION_VARIABLES[extensionName]).map(function(variableList) { return variableList.join('|'); }).join('|');
                     expect(yamlContent).toMatch(new RegExp(variableListRegex));
 
                     return validateYAMLRun(yamlContent, extensionName.replace(/-/g, '_'));

@@ -97,7 +97,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
 import { patrimoineTypes } from '@/constants/resources'
 import YesNoQuestion from '@/components/YesNoQuestion'
 
@@ -112,7 +111,7 @@ export default {
     let demandeur = Object.assign({}, situation.demandeur)
     let individus = this.$store.getters.peopleParentsFirst
 
-    let patrimoineProperties = _.map(patrimoineTypes, 'id')
+    let patrimoineProperties = patrimoineTypes.map(p => p.id)
     patrimoineProperties.forEach(function(patrimoinePropertyName) {
         demandeur[patrimoinePropertyName] = Object.assign({}, demandeur[patrimoinePropertyName])
         demandeur[patrimoinePropertyName][periodKey] = demandeur[patrimoinePropertyName][periodKey] || 0
@@ -128,8 +127,8 @@ export default {
     }
 
     let locals = {
-        hasBiensLoues: _.some(individus, individu => individu.revenus_locatifs),
-        hasEpargneAuxRevenusImposables: _.some(individus, individu => individu.revenus_capital),
+        hasBiensLoues: individus.some(individu => individu.revenus_locatifs),
+        hasEpargneAuxRevenusImposables: individus.some(individu => individu.revenus_capital),
     }
 
     let localKeys = Object.keys(mapping)

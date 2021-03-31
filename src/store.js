@@ -5,7 +5,10 @@ Vue.use(Vuex)
 
 import axios from 'axios'
 import moment from 'moment'
-import _ from 'lodash'
+import values from 'lodash/values'
+import some from 'lodash/some'
+
+import findIndex from 'lodash/findIndex'
 
 import { computeAides, datesGenerator } from '../backend/lib/mes-aides'
 import { categoriesRnc, patrimoineTypes } from './constants/resources'
@@ -170,7 +173,7 @@ const store = new Vuex.Store({
                 return accum
             }
 
-            return accum || _.some(_.values(demandeur[ressource.id]))
+            return accum || some(values(demandeur[ressource.id]))
 
         }, undefined)
     },
@@ -220,7 +223,7 @@ const store = new Vuex.Store({
       } else if (individu.id === 'conjoint') {
         state.situation = Object.assign({}, state.situation, { conjoint: individu })
       } else {
-        const idx = _.findIndex(state.situation.enfants, { id: individu.id })
+        const idx = findIndex(state.situation.enfants, { id: individu.id })
         state.situation.enfants.splice(idx, 1, individu)
       }
     },
@@ -334,7 +337,8 @@ const store = new Vuex.Store({
         step.clean(store, true)
       })
 
-      let situation = _.omit(store.state.situation, '_id')
+      let situation = { ...store.state.situation }
+      delete situation._id
       if (store.state.situation._id) {
           situation.modifiedFrom = store.state.situation._id
       }
@@ -359,7 +363,7 @@ const store = new Vuex.Store({
         }).then(function(openfiscaResponse) {
           return computeAides.bind(Institution)(state.state.situation, openfiscaResponse, showPrivate)
         }).then(results => {
-          const hasRsa = _.some(results.droitsEligibles, i => i.id === 'rsa') || _.some(results.droitsInjectes, i => i.id === 'rsa' && i.montant)
+          const hasRsa = some(results.droitsEligibles, i => i.id === 'rsa') || some(results.droitsInjectes, i => i.id === 'rsa' && i.montant)
           if (hasRsa) {
             Institution.forEachBenefit((benefit, id, provider) => {
               if (!benefit.test) {

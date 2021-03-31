@@ -1,4 +1,9 @@
-var _ = require('lodash');
+var filter = require('lodash/filter');
+var forEach = require('lodash/forEach');
+var assign = require('lodash/assign');
+var pickBy = require('lodash/pickBy');
+var difference = require('lodash/difference');
+var cloneDeep = require('lodash/cloneDeep')
 
 var common = require('./common');
 var buildOpenFiscaIndividu = require('./individu');
@@ -29,7 +34,7 @@ function allocateIndividualsToEntities(situation) {
     }
 
     var enfants = common.getEnfants(situation);
-    var validEnfants = _.filter(enfants, function(enfant) { return common.isIndividuValid(enfant, situation); });
+    var validEnfants = filter(enfants, function(enfant) { return common.isIndividuValid(enfant, situation); });
     var enfantIds = validEnfants.map(function(enfant) { return enfant.id; });
     famille.enfants = enfantIds;
     foyer.personnes_a_charge = enfantIds;
@@ -37,14 +42,14 @@ function allocateIndividualsToEntities(situation) {
 }
 
 function setNonInjectedPrestations(testCase, periods, value) {
-    var prestationsFinancieres = _.pickBy(common.requestedVariables, function(definition) {
+    var prestationsFinancieres = pickBy(common.requestedVariables, function(definition) {
         return ((! definition.type) || definition.type === 'float');
     });
 
-    _.forEach(prestationsFinancieres, function(definition, prestationName) {
-        _.forEach(testCase[definition.entity], function(entity) {
+    forEach(prestationsFinancieres, function(definition, prestationName) {
+        forEach(testCase[definition.entity], function(entity) {
             entity[prestationName] = entity[prestationName] || {};
-            _.forEach(periods, function(period) {
+            forEach(periods, function(period) {
                 if (value === undefined) {
                     delete entity[prestationName][period];
                 } else {
@@ -58,11 +63,10 @@ exports.setNonInjectedPrestations = setNonInjectedPrestations;
 
 
 function mapIndividus(situation) {
-    var individus = _.filter(common.getIndividusSortedParentsFirst(situation), function(individu) {
+    var individus = filter(common.getIndividusSortedParentsFirst(situation), function(individu) {
         return common.isIndividuValid(individu, situation);
     });
-
-    return _.map(individus, function(individu) {
+    return individus.map(function(individu) {
         return buildOpenFiscaIndividu(individu, situation);
     }).reduce(function(accum, individu) {
         accum[individu.id] = individu;
@@ -73,7 +77,7 @@ function mapIndividus(situation) {
 
 function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
 
-    var prestationsWithInterest = _.pickBy(common.requestedVariables, function(definition) {
+    var prestationsWithInterest = pickBy(common.requestedVariables, function(definition) {
         return ((!definition.interestFlag) || demandeur[definition.interestFlag]);
     });
 
@@ -81,10 +85,10 @@ function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
         periods = [periods];
     }
 
-    _.forEach(prestationsWithInterest, function(definition, prestationName) {
-        _.forEach(testCase[definition.entity], function(entity) {
+    forEach(prestationsWithInterest, function(definition, prestationName) {
+        forEach(testCase[definition.entity], function(entity) {
             entity[prestationName] = entity[prestationName] || {};
-            _.forEach(periods, function(period) {
+            forEach(periods, function(period) {
                 if (typeof entity[prestationName][period] !== 'undefined' && entity[prestationName][period] !== null) {
                     return;
                 }
@@ -108,7 +112,7 @@ exports.giveValueToRequestedVariables = giveValueToRequestedVariables;
 function applyHeuristicsAndFix(testCase, dateDeValeur) {
     var thisMonth = common.getPeriods(dateDeValeur).thisMonth;
 
-    var menage = _.assign({}, {
+    var menage = assign({}, {
         logement_conventionne: {}
     }, testCase.menages._);
     menage.logement_conventionne[thisMonth] = menage.statut_occupation_logement && menage.statut_occupation_logement[thisMonth] == 'primo_accedant' && menage.loyer && menage.loyer[thisMonth] == 0;
@@ -118,7 +122,7 @@ function applyHeuristicsAndFix(testCase, dateDeValeur) {
 }
 
 exports.buildOpenFiscaRequest = function(sourceSituation) {
-    var situation = sourceSituation.toObject ? migrations.apply(sourceSituation).toObject() : _.cloneDeep(sourceSituation);
+    var situation = sourceSituation.toObject ? migrations.apply(sourceSituation).toObject() : cloneDeep(sourceSituation);
 
     var individus = mapIndividus(situation);
     allocateIndividualsToEntities(situation);
@@ -137,8 +141,8 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     };
 
     // Variables stored to properly restore UI should not be sent to OpenFisca
-    _.forEach(testCase, (items) => {
-        _.forEach(items, (item) => {
+    forEach(testCase, (items) => {
+        forEach(items, (item) => {
             const propsToDelete = Object.keys(item).filter(i => i.startsWith('_'))
             propsToDelete.forEach(function(propertyName) {
                 delete item[propertyName];
@@ -149,7 +153,7 @@ exports.buildOpenFiscaRequest = function(sourceSituation) {
     propertyMove.movePropertyValuesToGroupEntity(testCase);
 
     var periods = common.getPeriods(situation.dateDeValeur);
-    setNonInjectedPrestations(testCase, _.difference(periods.last12Months, periods.last3Months), 0);
+    setNonInjectedPrestations(testCase, difference(periods.last12Months, periods.last3Months), 0);
     last3MonthsDuplication(testCase, situation.dateDeValeur);
     giveValueToRequestedVariables(testCase, periods.thisMonth, null, situation.demandeur);
 

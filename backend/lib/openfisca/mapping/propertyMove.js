@@ -1,8 +1,10 @@
-var _ = require('lodash');
+var forEach = require('lodash/forEach');
+var pickBy = require('lodash/pickBy');
+
 var common = require('./common');
 
 var famillePropertiesGivenToIndividu = Object
-    .keys(_.pickBy(common.requestedVariables, function(definition) {
+    .keys(pickBy(common.requestedVariables, function(definition) {
         return ((! definition.type) || (definition.type == 'float')) &&
             (definition.entity == 'familles');
     }))
@@ -24,7 +26,7 @@ exports.movePropertyValuesToGroupEntity = function(testCase) {
     Object.keys(movedProperties).forEach(function(testCasePropertyName) {
         var moveDetails = movedProperties[testCasePropertyName];
 
-        _.forEach(testCase[testCasePropertyName], function(entity) {
+        forEach(testCase[testCasePropertyName], function(entity) {
             var entityIndividuIds = moveDetails.sourceKeys.reduce(function(accum, key) {
                 return accum.concat(entity[key] || []);
             }, []);

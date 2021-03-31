@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
 import { ressourceTypes } from '@/constants/resources'
 import Individu from '@/lib/Individu'
 import Ressource from '@/lib/Ressource'
@@ -38,7 +37,7 @@ export default {
   },
   data () {
     let situation = this.$store.state.situation
-    let pensionsVersees = _.find(ressourceTypes, { id: 'pensions_alimentaires_versees_individu' })
+    let pensionsVersees = ressourceTypes.find(ressourceType => ressourceType.id === 'pensions_alimentaires_versees_individu')
 
     let demandeur = Object.assign({}, situation.demandeur)
     let conjoint = situation.conjoint
@@ -65,7 +64,7 @@ export default {
       types,
       pensionsVersees,
       parentsPayPensionsAlimentaires: types.reduce(function(accum, item) {
-        return accum || _.some(item.amounts);
+        return accum || item.some(item => item.amounts)
       }, false)
     }
   },

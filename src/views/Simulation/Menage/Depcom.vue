@@ -25,7 +25,6 @@
 <script>
     import Actions from '@/components/Actions'
     import Commune from '@/lib/Commune'
-    import _ from 'lodash'
 
     export default {
         name: 'SimulationMenageDepcom',
@@ -57,7 +56,7 @@
                     this.retrievingCommunes = true
                     return Commune.get(this.codePostalQuestion.selectedValue)
                         .then((communes) => {
-                            if (!_.includes(_.map(communes, 'nom'), this.communeQuestion.selectedValue)) {
+                            if (!communes.map(c => c.nom).includes(this.communeQuestion.selectedValue)) {
                                 this.communeQuestion.selectedValue = Commune.getMostPopulated(communes).nom
                             }
                             return communes

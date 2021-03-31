@@ -45,7 +45,10 @@
 
 <script>
 import Institution from '../lib/Institution'
-import _ from 'lodash'
+import reduce from 'lodash/reduce'
+import size from 'lodash/size'
+import filter from 'lodash/filter'
+import mapValues from 'lodash/mapValues'
 
 export default {
   name: 'home',
@@ -53,9 +56,9 @@ export default {
     let value = {}
     const types = ['prestationsNationales', 'partenairesLocaux']
     types.forEach(function(type) {
-      let providersWithoutPrivatePrestations = _.mapValues(Institution[type], function(provider) {
-        provider = _.assign({}, provider)
-        provider.prestations = _.reduce(provider.prestations, function(prestations, prestation, name) {
+      let providersWithoutPrivatePrestations = mapValues(Institution[type], function(provider) {
+        provider = { ...provider}
+        provider.prestations = reduce(provider.prestations, function(prestations, prestation, name) {
           if (! prestation.private) {
             prestations[name] = prestation;
           }
@@ -65,9 +68,9 @@ export default {
         return provider
       })
 
-      value[type] = _.filter(providersWithoutPrivatePrestations, function(provider) { return _.size(provider.prestations) })
+      value[type] = filter(providersWithoutPrivatePrestations, function(provider) { return size(provider.prestations) })
       value[type + 'Count'] = Object.keys(value[type]).reduce(function(total, provider) {
-        return total + _.size(value[type][provider].prestations)
+        return total + size(value[type][provider].prestations)
       }, 0);
     });
 

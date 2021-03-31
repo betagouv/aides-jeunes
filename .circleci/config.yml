@@ -93,7 +93,7 @@ jobs:
           at: ~/mes-aides-ui
       - run:
           name: JSHint
-          command: npm run lint app backend src tests
+          command: npm run lint
   build:
     <<: *defaults
     steps:

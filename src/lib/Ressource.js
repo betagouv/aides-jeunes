@@ -1,6 +1,9 @@
 import axios from 'axios'
 import {categoriesRnc, ressourceTypes} from '@/constants/resources'
-import _ from 'lodash'
+import filter from 'lodash/filter'
+import keys from 'lodash/keys'
+import keyBy from 'lodash/keyBy'
+import uniq from 'lodash/uniq'
 
 function getPeriodsForCurrentYear(dates, ressourceType) {
     let periodKeys = [];
@@ -25,7 +28,7 @@ function getPeriodsForCurrentYear(dates, ressourceType) {
 }
 
 function getPeriodKeysForCurrentYear(dates, ressourceType) {
-    return _.map(getPeriodsForCurrentYear(dates, ressourceType), 'id')
+    return getPeriodsForCurrentYear(dates, ressourceType).map(date => date.id)
 }
 
 function setDefaultValueForCurrentYear(dates, individu, ressourceType) {
@@ -34,7 +37,7 @@ function setDefaultValueForCurrentYear(dates, individu, ressourceType) {
     let ressource = individu[ressourceId];
     let periodKeys = getPeriodKeysForCurrentYear(dates, ressourceType);
 
-    if (_.some(periodKeys, function(periodKey) { return _.isNumber(ressource[periodKey]); })) {
+    if (periodKeys.some(function(periodKey) { return typeof ressource[periodKey] === 'number' })) {
         return;
     }
 
@@ -51,8 +54,7 @@ function unsetForCurrentYear(dates, entity, ressourceType) {
     periodKeys.forEach(function(periodKey) {
         delete ressource[periodKey]
     });
-
-    if (_.isEmpty(ressource)) {
+    if (!ressource || Object.keys(ressource).length === 0) {
         delete entity[ressourceId]
     }
 }
@@ -65,15 +67,15 @@ function isSelectedForCurrentYear(ressource, ressourceIdOrType) {
     // A single value means that a SINGLE value has been specified for the FISCAL year
     // Multiple values means that current year values were specified
     if (ressourcesForTrailingMonthsAndFiscalYear.indexOf(ressourceIdOrType.id || ressourceIdOrType) >= 0) {
-        return _.keys(ressource).length > 1
+        return keys(ressource).length > 1
     }
 
     return Boolean(ressource);
 }
 
 function getIndividuRessourceCategories(individu) {
-    return _.uniq(
-        _.filter(ressourceTypes, (ressourceType) => {
+    return uniq(
+        filter(ressourceTypes, (ressourceType) => {
             return isSelectedForCurrentYear(individu[ressourceType.id], ressourceType) && isRessourceOnMainScreen(ressourceType)
         }, {})
         .map(r => r.category)
@@ -81,7 +83,7 @@ function getIndividuRessourceCategories(individu) {
 }
 
 function getIndividuRessourceTypes(individu) {
-    return _.filter(ressourceTypes, isRessourceOnMainScreen)
+    return filter(ressourceTypes, isRessourceOnMainScreen)
         .reduce((accumulator, ressourceType) => {
             accumulator[ressourceType.id] = isSelectedForCurrentYear(individu[ressourceType.id], ressourceType)
             return accumulator
@@ -89,7 +91,7 @@ function getIndividuRessourceTypes(individu) {
 }
 
 function getIndividuRessourceTypesByCategory(individu, category) {
-    return _.filter(ressourceTypes, (ressourceType) => {
+    return filter(ressourceTypes, (ressourceType) => {
         return ressourceType.category === category && isRessourceOnMainScreen(ressourceType)
     }).reduce((accumulator, ressourceType) => {
         accumulator[ressourceType.id] = isSelectedForCurrentYear(individu[ressourceType.id], ressourceType)
@@ -98,7 +100,7 @@ function getIndividuRessourceTypesByCategory(individu, category) {
 }
 
 function setIndividuRessourceTypes(individu, types, dates) {
-    let typeMap = _.keyBy(_.filter(ressourceTypes, isRessourceOnMainScreen), 'id');
+    let typeMap = keyBy(filter(ressourceTypes, isRessourceOnMainScreen), 'id');
 
     Object.keys(types).forEach(function(ressourceTypeId) {
         if (types[ressourceTypeId]) {

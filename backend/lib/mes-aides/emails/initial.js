@@ -1,6 +1,9 @@
 var fs = require('fs');
 var path = require('path');
-var _ = require('lodash');
+var isNumber = require('lodash/isNumber')
+var map = require('lodash/map')
+var assign = require('lodash/assign')
+
 var mustache = require('consolidate').mustache;
 var config = require('../../../config');
 
@@ -33,10 +36,10 @@ function renderAsText(followup, benefits) {
 
 function renderAsHtml(followup, benefits) {
 
-    var droits = _.map(benefits, function(droit) {
+    var droits = map(benefits, function(droit) {
 
         var montant = '';
-        if (_.isNumber(droit.montant)) {
+        if (isNumber(droit.montant)) {
             var unit = droit.unit || '€';
             var legend = droit.legend || (droit.isMontantAnnuel ? '/ an' : '/ mois');
             montant = `${droit.montant} ${unit} ${legend}`;
@@ -58,7 +61,7 @@ function renderAsHtml(followup, benefits) {
             ctaLabel = 'Plus d\'informations';
         }
 
-        return _.assign({}, droit, {
+        return assign({}, droit, {
             imgSrc: '/img/' + droit.provider.imgSrc,
             montant: montant,
             ctaLink: ctaLink,

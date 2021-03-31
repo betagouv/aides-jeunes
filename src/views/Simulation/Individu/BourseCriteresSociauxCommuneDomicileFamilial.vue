@@ -22,8 +22,6 @@
   </form>
 </template> 
 <script>
-import _ from 'lodash'
-
 import Actions from '@/components/Actions'
 import Commune from '@/lib/Commune'
 import Individu from '@/lib/Individu'
@@ -55,7 +53,7 @@ export default {
             this.retrievingCommunes = true
             return Commune.get(this.codePostal)
                 .then((communes) => {
-                    if (!_.includes(_.map(communes, 'nom'), this.nomCommune)) {
+                    if (!communes.map(c => c.nom).includes(this.nomCommune)) {
                         this.nomCommune = Commune.getMostPopulated(communes).nom
                     }
                     return communes

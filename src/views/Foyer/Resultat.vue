@@ -213,7 +213,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
 import BenefitCtaLink from './../../components/BenefitCtaLink'
 import DroitsList from './../../components/DroitsList'
 import DroitsDetails from './../../components/DroitsDetails'
@@ -253,7 +252,7 @@ export default {
         return
       }
 
-      return _.some(this.droits, 'isBaseRessourcesPatrimoine') && this.$store.getters.hasPatrimoine === undefined
+      return this.droits.some(droit => droit.isBaseRessourcesPatrimoine) && this.$store.getters.hasPatrimoine === undefined
     },
     hasWarning: function() {
       return this.accessStatus.forbidden
@@ -266,7 +265,7 @@ export default {
     },
     error: function() {
       let value = this.resultatStatus.error && this.resultatStatus.exception
-      return (_.isString(value) || value instanceof Error) ? value : JSON.stringify(value, null, 2)
+      return (typeof value === 'string' || value instanceof Error) ? value : JSON.stringify(value, null, 2)
     },
     userAgent: function() {
       return window.navigator.userAgent

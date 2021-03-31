@@ -1,4 +1,5 @@
-var _ = require('lodash');
+var concat = require('lodash/concat')
+
 var ressources = require('../../app/js/constants/ressources');
 
 var famille = {
@@ -14,7 +15,7 @@ var foyerFiscal = {
     rfr: Object,
 };
 
-var allRessources = _.concat(
+var allRessources = concat(
     ressources.ressourceTypes,
     ressources.categoriesRnc,
     ressources.patrimoineTypes)

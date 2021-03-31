@@ -13,8 +13,9 @@
           color: var(--white);
           margin-top: 1rem;
 
-          small {
+          .hightlight {
             color: var(--white);
+            background-image: none;
           }
         }
 

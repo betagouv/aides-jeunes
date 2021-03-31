@@ -12,7 +12,8 @@
                 </h2>
                 <ul>
                     <li v-for="(child, childIndex) in item.children" :key="childIndex">
-                        <a :href="child.href">{{ child.label }}</a>
+                        <a v-if="child.href" :href="child.href">{{ child.label }}</a>
+                        <router-link v-else :to="child.route">{{ child.label }}</router-link>
                     </li>
                 </ul>
             </div>
@@ -31,25 +32,25 @@
                         show: false,
                         children: [
                             {
-                                label: 'CGU',
-                                href: 'https://www.1jeune1solution.gouv.fr/cgu'
-                            },
-                            {
-                                label: 'Mentions légales',
-                                href: 'https://www.1jeune1solution.gouv.fr/mentions-legales'
+                                label: 'CGU & Mentions légales',
+                                route: '/cgu'
                             },
                             {
                                 label: 'Politique de confidentialité',
-                                href: 'https://www.1jeune1solution.gouv.fr/confidentialite'
+                                route: '/confidentialite'
                             },
                             {
                                 label: 'Accessibilité',
-                                href: 'https://www.1jeune1solution.gouv.fr/accessibilite'
+                                route: '/accessibilite'
                             },
                             {
-                                label: 'Gestion des cookies',
-                                href: '#'
-                            }
+                                label: 'Nous contacter',
+                                route: '/contact',
+                            },
+                            {
+                                label: 'Statistiques',
+                                href: 'https://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=range&date=previous30'
+                            },
                         ]
                     },
                     {
@@ -76,18 +77,6 @@
                                 label: 'Les mesures pour les jeunes',
                                 href: 'https://www.1jeune1solution.gouv.fr/espace-jeune'
                             },
-                            {
-                                label: 'Les mesures pour les employeurs',
-                                href: 'https://www.1jeune1solution.gouv.fr/je-recrute/articles'
-                            },
-                            {
-                                label: 'Je recrute !',
-                                href: 'https://www.1jeune1solution.gouv.fr/je-recrute'
-                            },
-                            {
-                                label: 'Nous contacter',
-                                href: '#'
-                            }
                         ]
                     },
                     {
@@ -114,10 +103,6 @@
                                 label: 'Service Civique',
                                 href: 'https://www.service-civique.gouv.fr/'
                             },
-                            {
-                                label: 'France',
-                                href: 'https://www.france.fr/'
-                            }
                         ]
                     }
                 ]

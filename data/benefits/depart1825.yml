@@ -5,7 +5,7 @@ conditions:
   - Financer au moins 50€ de vos vacances.
 link: https://programme-depart-1825.com/cest-quoi/
 instructions: https://programme-depart-1825.com/
-prefix: un
+prefix: 'l’accès au dispositif '
 type: float
 top: 4
 entity: individus

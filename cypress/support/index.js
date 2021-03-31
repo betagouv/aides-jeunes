@@ -61,7 +61,7 @@ export function handicap(params) {
     if (!params.enfant && 0.5 < params.handicap.taux_incapacite && params.handicap.taux_incapacite <= 0.8) {
       // AAH
       cy.get('legend').invoke('text').should('contain', `CDAPH`)
-      cy.get('button[type="submit"]').click()
+      cy.get('input[type="radio"]').check('true')
     }
   } else {
     cy.get('input[type="radio"]').check('false')

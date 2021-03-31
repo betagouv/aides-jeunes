@@ -5,7 +5,6 @@
       <select
         v-bind:value="ressource.extra.tns_autres_revenus_type_activite"
         v-on:input="updateExtra('tns_autres_revenus_type_activite', $event.target.value)">
-        <option disabled>Selectionnez un type d'activité</option>
         <option value="achat_revente">Achat/revente ou fourniture de logement</option>
         <option value="bic">Autre activité relevant des BIC</option>
         <option value="bnc">Activité libérale et/ou intellectuelle (BNC)</option>
@@ -18,9 +17,6 @@
         v-bind:value="ressource.amounts[$store.state.dates.lastYear.id]"
         v-on:input="update($store.state.dates.lastYear.id, $event.target.value)">
     </label>
-    <p class="notification warning" v-if="error">
-      {{ error }}
-    </p>
   </div>
 </template>
 

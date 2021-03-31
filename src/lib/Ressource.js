@@ -41,6 +41,12 @@ function setDefaultValueForCurrentYear(dates, individu, ressourceType) {
         return;
     }
 
+    if (ressourceType.extra) {
+        ressourceType.extra.forEach(e => {
+            individu[e.id] = individu[e.id] || e.default
+        })
+    }
+
     periodKeys.forEach(function(periodKey) {
         ressource[periodKey] = ressource[periodKey] || null;
     });
@@ -54,6 +60,13 @@ function unsetForCurrentYear(dates, entity, ressourceType) {
     periodKeys.forEach(function(periodKey) {
         delete ressource[periodKey]
     });
+
+    if (ressourceType.extra) {
+        ressourceType.extra.forEach(e => {
+            delete entity[e.id]
+        })
+    }
+
     if (!ressource || Object.keys(ressource).length === 0) {
         delete entity[ressourceId]
     }

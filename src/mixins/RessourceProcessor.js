@@ -73,7 +73,7 @@ export default {
 
           const extras = t.meta.extra || []
           extras.forEach(e => {
-            updatedRessources[e] = t.extra[e]
+            updatedRessources[e.id] = t.extra[e.id]
           })
         })
         this.$store.dispatch('updateIndividu', Object.assign({}, this.types[0].individu, updatedRessources))
@@ -87,7 +87,7 @@ export default {
 
           const extras = t.meta.extra || []
           extras.forEach(e => {
-            updatedRessources[e] = t.extra[e]
+            updatedRessources[e.id] = t.extra[e.id]
           })
 
           this.$store.dispatch('updateIndividu', Object.assign({}, t.individu, updatedRessources))

@@ -1,7 +1,6 @@
 export default {
   props: {
     ressource: Object,
-    error: [Boolean, String],
   },
   methods: {
     update: function(month, value) {

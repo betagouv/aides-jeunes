@@ -39,7 +39,7 @@ export function demandeur(params={}) {
   cy.get('button[type="submit"]').click()
   // Nationalite
   cy.get('legend').invoke('text').should('contain', 'nationalité')
-  cy.get('button[type="submit"]').click()
+  cy.get('input[type="radio"]').check('fr')
   // Activite
   cy.get('legend').invoke('text').should('contain', 'Êtes-vous')
   cy.get('label').invoke('text').should('contain', 'En activité')
@@ -93,11 +93,10 @@ export function conjoint(params={}) {
   cy.get('button[type="submit"]').click()
   // Nationalite
   cy.get('legend').invoke('text').should('contain', 'nationalité')
-  cy.get('button[type="submit"]').click()
+  cy.get('input[type="radio"]').check('fr')
   // Statut Marital
   cy.get('legend').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
   cy.get('input[type="radio"]').check('marie')
-  cy.get('button[type="submit"]').click()
   // Activite
   cy.get('legend').invoke('text').should('contain', 'est-il/elle')
   cy.get('label').invoke('text').should('contain', 'En activité')
@@ -119,7 +118,7 @@ export function enfant(params={}) {
   cy.get('button[type="submit"]').click()
   // Nationalite
   cy.get('legend').invoke('text').should('contain', 'nationalité')
-  cy.get('button[type="submit"]').click() // Nationalité
+  cy.get('input[type="radio"]').check('true')
   // Garde Alterne
   cy.get('legend').invoke('text').should('contain', 'en garde alternée')
   cy.get('input[type="radio"]').check('true')

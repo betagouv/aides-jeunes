@@ -39,7 +39,7 @@ function get(individus, role, id) {
         duree_possession_titre_sejour: 25,
         echelon_bourse: -1,
         enfant_a_charge: {},
-        nationalite: '',
+        nationalite: undefined,
         _role: role,
     };
 

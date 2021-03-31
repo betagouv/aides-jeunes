@@ -49,7 +49,9 @@ function getNationalityFromCountryCode (countryCode) {
 }
 
 function getZone(countryCode) {
-
+    if (!countryCode) {
+        return ''
+    }
     countryCode = countryCode.toUpperCase();
 
     if (countryCode === 'FR') {

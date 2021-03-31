@@ -2,11 +2,7 @@
     <form @submit.prevent='onSubmit'>
         <fieldset>
             <YesNoQuestion v-model="value">
-                <legend>
-                    <h1>
-                        Avez-vous un lien de parenté direct avec votre propriétaire ?
-                    </h1>
-                </legend>
+                Avez-vous un lien de parenté direct avec votre propriétaire ?
             </YesNoQuestion>
             <span class="help">(Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant, grand-parent…) ?)</span>
         </fieldset>

@@ -114,10 +114,21 @@ html {
         }
       }
 
-      input[type="text"], input[type="number"] {
+      input[type="text"], input[type="number"], select {
         border: 2px solid #AAAAAA;
         border-radius: var(--theme-border-radius);
         max-width: 300px;
+        min-width: 150px;
+      }
+
+      input[type="number"] {
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          opacity: 0;
+          margin: 0;
+        }
       }
 
       input[type=range]::-moz-range-thumb {
@@ -211,6 +222,36 @@ html {
             font-size: 0.85rem;
             color: #767676;
           }
+        }
+
+        input[type="number"] {
+          min-width: 0;
+          -moz-appearance: button;
+
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            opacity: 1;
+            margin: 0;
+          }
+        }
+      }
+
+      .aj-input-currency-wrapper {
+        position: relative;
+        display: inline-block;
+
+        &:before {
+          content: '\20AC';
+          position: absolute;
+          right: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 99;
+          font-size: 1.5rem;
+        }
+
+        input[type="number"] {
+          padding-right: 2.2rem;
         }
       }
 

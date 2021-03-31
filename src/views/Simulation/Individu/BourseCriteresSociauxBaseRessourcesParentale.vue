@@ -10,7 +10,7 @@
   </form>
 </template>
 
-    <script>
+<script>
 import Actions from '@/components/Actions'
 import { createIndividuMixin } from '@/mixins/IndividuMixin'
 

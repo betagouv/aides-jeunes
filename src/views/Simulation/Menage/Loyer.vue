@@ -1,16 +1,18 @@
 <template>
     <form @submit.prevent='onSubmit'>
-        <h1>{{ title }}</h1>
         <fieldset>
-            <label>{{  loyerQuestion.label }}
-                <input type="number" v-model=" loyerQuestion.selectedValue">
+            <label for="loyer" class="aj-question">{{  loyerQuestion.label }}
                 <span class="help">{{  loyerQuestion.hint }}</span>
             </label>
+            <div class="aj-input-currency-wrapper">
+                <input id="loyer" type="number" class="aj-input-euros" v-model=" loyerQuestion.selectedValue">
+            </div>
         </fieldset>
         <fieldset v-if="captureCharges">
-            <label>{{ chargesQuestion.label }}
-                <input type="number" v-model="chargesQuestion.selectedValue">
-            </label>
+            <label for="charges" class="aj-question">{{ chargesQuestion.label }}</label>
+            <div class="aj-input-currency-wrapper">
+                <input id="charges" type="number" v-model="chargesQuestion.selectedValue">
+            </div>
         </fieldset>
         <Actions v-bind:onSubmit='onSubmit'/>
     </form >
@@ -30,7 +32,6 @@
             const isLocataire = !(logementStatut === 'proprietaire' || logementStatut === 'primo_accedant')
             const captureCharges = isLocataire && logementStatut != 'locataire_meuble'
             return {
-                title: 'Mon logement',
                 menage: menage,
                 captureCharges,
                  loyerQuestion: {

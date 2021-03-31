@@ -34,7 +34,7 @@ describe('openfisca generateTest', function() {
     var result = subject.generateTest(details, situation);
 
     it('does not add rsa_non_calculable', function() {
-        expect(typeof result.input.familles.rsa_non_calculable[currentPeriod]).toBe('undefined');
+        expect(typeof result.input.familles._.rsa_non_calculable[currentPeriod]).toBe('undefined');
     });
 });
 

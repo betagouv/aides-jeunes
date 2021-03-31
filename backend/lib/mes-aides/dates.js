@@ -49,7 +49,9 @@ function datesGenerator(dateDeValeur) {
         previousFiscalYear12Months: range(12).map(function(monthIndex) {
             var fiscalYear = moment(ref.clone().subtract(3, 'years').year(), 'YYYY')
             return generateMonth(fiscalYear.clone().add(monthIndex, 'months'))
-        })
+        }),
+        'threeYearsAgo': generateMonth(ref.clone().subtract(3, 'years')),
+
     }
 }
 

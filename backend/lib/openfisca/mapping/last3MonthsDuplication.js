@@ -30,7 +30,7 @@ var forDuplication = types.reduce((accum, type) => {
 }, {})
 
 function copyTo3PreviousMonths(testCase, dateDeValeur) {
-    var periodKeys = ['thisMonth', 'oneMonthsAgo', 'twoMonthsAgo', 'threeMonthsAgo'];
+    var periodKeys = ['thisMonth', 'oneMonthAgo', 'twoMonthsAgo', 'threeMonthsAgo'];
     var periods = common.getPeriods(dateDeValeur);
 
     Object.keys(forDuplication).forEach(function(entityName) {

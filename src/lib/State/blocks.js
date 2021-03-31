@@ -28,7 +28,7 @@ function individuBlockFactory(id) {
               {
                 isActive: subject => subject.aide_mobilite_parcoursup_sortie_academie,
                 steps: [
-                  new Step({entity:'famille', variable: 'bourse_lycee'}),
+                  r('aide_mobilite_parcoursup_boursier_lycee'),
                 ]
               }
             ]

@@ -10,14 +10,14 @@
 <script>
 import Actions from '@/components/Actions'
 import YesNoQuestion from '@/components/YesNoQuestion'
-import { createFamilleMixin } from '@/mixins/FamilleMixin'
+import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
-  name: 'SimulationFamilleBourseLycee',
+  name: 'SimulationIndividuAideMobiliteParcoursupBoursierLycee',
   components: {
     Actions,
     YesNoQuestion
   },
-  mixins: [createFamilleMixin('bourse_lycee')],
+  mixins: [createIndividuMixin('aide_mobilite_parcoursup_boursier_lycee')],
 }
 </script>

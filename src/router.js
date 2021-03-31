@@ -166,6 +166,11 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/AideMobiliteParcoursupSortieAcademie.vue'),
         },
         {
+          name: 'aide_mobilite_parcoursup_boursier_lycee',
+          path: 'aide_mobilite_parcoursup_boursier_lycee',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/AideMobiliteParcoursupBoursierLycee.vue'),
+        },
+        {
           name: 'property',
           path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
@@ -208,12 +213,6 @@ const router = new Router({
           path: 'parisien',
           component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/Parisien.vue'),
         },
-        {
-          name: 'bourse_lycee',
-          path: 'bourse_lycee',
-          component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/BourseLycee.vue'),
-        },
-
       ]
       }, {
         path: 'logement',

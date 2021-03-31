@@ -176,7 +176,7 @@ const router = new Router({
         {
           name: 'boursier',
           path: 'boursier',
-          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/AideMobiliteParcoursupBoursierLycee.vue'),
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Boursier.vue'),
         },
         {
           name: 'alternant',

@@ -17,6 +17,16 @@ html {
       }
     }
 
+    a {
+      &:hover {
+        background-color: transparent;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
     form {
       margin: 0;
       max-width: 100%;

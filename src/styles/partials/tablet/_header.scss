@@ -9,24 +9,34 @@ html {
           display: flex;
           align-items: center;
 
-          img {
-            margin-right: 0;
-
-            &.rf {
-              width: 5.625rem;
-              margin-left: 1.875rem;
-            }
-
-            &.fr {
-              width: 7.5rem;
-              margin-left: auto;
-            }
-          }
-
           svg {
             display: block;
             width: 24px;
             height: 24px;
+          }
+
+          & > a {
+            display: flex;
+            align-items: center;
+            width: 100%;
+
+            * {
+              color: #000;
+            }
+
+            img {
+              margin-right: 0;
+
+              &.rf {
+                width: 5.625rem;
+                margin-left: 1.875rem;
+              }
+
+              &.fr {
+                width: 7.5rem;
+                margin-left: auto;
+              }
+            }
           }
         }
       }

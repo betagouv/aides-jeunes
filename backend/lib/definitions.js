@@ -46,7 +46,7 @@ var individu = Object.assign({
     bourse_criteres_sociaux_commune_domicile_familial: String,
     _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: String,
     _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: String,
-    classe_scolarite: { type: String, enum: ['terminale', 'licence_3', 'master_1'] },
+    classe_scolarite: { type: String, enum: ['autre', 'terminale', 'licence_3', 'master_1'] },
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,

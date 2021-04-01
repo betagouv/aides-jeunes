@@ -44,10 +44,14 @@ $screen-smaller-than-mobile: 399px;
 @import 'partials/desktop/inputs';
 @import 'partials/desktop/home';
 @import 'partials/desktop/children';
+@import 'partials/desktop/header';
+@import 'partials/desktop/footer';
 
 /* TABLET IMPORTS */
 @media (max-width: 768px) {
   @import 'partials/tablet/ui-kit';
+  @import 'partials/tablet/header';
+  @import 'partials/tablet/home';
 }
 
 /* MOBILE IMPORTS */
@@ -56,5 +60,7 @@ $screen-smaller-than-mobile: 399px;
   @import 'partials/mobile/buttons';
   @import 'partials/mobile/inputs';
   @import 'partials/mobile/children';
+  @import 'partials/mobile/footer';
+  @import 'partials/mobile/home';
 }
 

@@ -1,51 +1,47 @@
 #homepage {
-  background-attachment: fixed;
-  background-position: top center;
-  background-size: 100%;
-  background-repeat: no-repeat;
+  background: linear-gradient(105deg, var(--white), 53%, var(--theme-primary) 47%);
 
-  @media (min-width: 1200px) {
-    padding-top: 3em;
-  }
-
-  .xlarge, .xlarge:active, .xlarge:focus {
-    font-size: 2em;
-    line-height: 1em;
-  }
-
-  hr {
-    border-top: 1px solid #ddd;
-  }
-
-  .panel {
-    border: none;
-  }
-
-  .hero {
+  .container {
     display: flex;
-    align-items: flex-start;
-    flex-direction: row-reverse;
-    border-radius: 4px;
+    flex-direction: row;
 
-    img {
-      max-width: 40%;
-      margin: auto;
+    .aj-home-hero {
+      width: 60%;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .aj-home-hero-content {
+        h1 {
+          .hightlight {
+            color: var(--green);
+            font-weight: normal;
+            background-image: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0) 56%, rgba(43, 182, 115, .1) 0, rgba(43, 182, 115, .1) 100%, hsla(0, 0%, 100%, 0) 0);
+          }
+        }
+
+        .aj-home-hero-buttons-wrapper {
+          margin-top: 3.75rem;
+          display: flex;
+          flex-direction: column;
+
+          button + button {
+            margin-top: 1rem;
+          }
+        }
+      }
     }
 
-    @media (max-width: 1200px) {
-      flex-direction: column;
-    }
+    .aj-home-illustration {
+      width: 40%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
 
-    h1 {
-      line-height: 1.4;
+      img {
+        max-width: 100%;
+        height: 87%;
+      }
     }
-
-    p {
-      line-height: 1.5;
-    }
-  }
-
-  strong {
-    font-weight: 600;
   }
 }

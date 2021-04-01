@@ -24,8 +24,8 @@ export function home() {
     .invoke('attr', 'content')
     .should('match', /\d+ prestations/i)
 
-  cy.get('.hero__container').invoke('text')
-    .should('match', /\d+ aides/i)
+  cy.get('.aj-home-hero-content').invoke('text')
+    .should('contain', 'aides')
 
   cy.get('.button.xlarge.primary')
     .click()

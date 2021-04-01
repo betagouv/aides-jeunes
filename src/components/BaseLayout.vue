@@ -1,15 +1,20 @@
 <template>
   <div>
-    <router-link to="/">Accueil</router-link>
-    <slot></slot>
+      <Header1J1S/>
+      <slot></slot>
+      <FooterJ1S/>
   </div>
 </template>
 
 <script>
+import Header1J1S from '@/components/Header1J1S'
+import FooterJ1S from "./Footer1J1S";
 
 export default {
   name: 'BaseLayout',
   components: {
+      FooterJ1S,
+      Header1J1S
   }
 }
 </script>

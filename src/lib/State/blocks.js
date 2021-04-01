@@ -186,7 +186,7 @@ function housingBlock() {
           return subject.activite == 'etudiant' && enfant_a_charge && !subject.habite_chez_parents
         },
         steps: [
-          new Step({entity: 'individu', id: 'demandeur', variable: 'bourse_criteres_sociaux_commune_domicile_familial'}),
+          new Step({entity: 'individu', id: 'demandeur', variable: '_bourseCriteresSociauxCommuneDomicileFamilial'}),
         ],
      }
     ]

@@ -144,9 +144,9 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/BourseCriteresSociauxBaseRessources.vue'),
         },
         {
-          name: 'bourse_criteres_sociaux_commune_domicile_familial',
-          path: 'bourse_criteres_sociaux_commune_domicile_familial',
-          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/BourseCriteresSociauxCommuneDomicileFamilial.vue'),
+          name: '_bourseCriteresSociauxCommuneDomicileFamilial',
+          path: '_bourseCriteresSociauxCommuneDomicileFamilial',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/_BourseCriteresSociauxCommuneDomicileFamilial.vue'),
         },
         {
           name: 'rsa_jeune_condition_heures_travail_remplie',

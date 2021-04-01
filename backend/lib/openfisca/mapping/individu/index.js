@@ -1,3 +1,4 @@
+var haversine = require('haversine');
 var moment = require('moment');
 var isNaN = require('lodash/isNaN');
 var forEach = require('lodash/forEach');
@@ -7,6 +8,12 @@ var isString = require('lodash/isString');
 
 var individuRessource = require('./ressources');
 var pastResourcesProxy = require('./pastResourcesProxy');
+var communes = require('../../../../../dist/communes.json');
+
+var communesMap = communes.reduce((map, item) => {
+    map[item.code] = item
+    return map
+}, {})
 
 function formatDate(date) {
     return date && moment(date).format('YYYY-MM-DD');
@@ -27,6 +34,17 @@ var individuSchema = {
         src: 'date_naissance',
         fn: function (dateDeNaissance, individu, situation) {
             return dateDeNaissance && moment(situation.dateDeValeur).diff(moment(dateDeNaissance), 'months');
+        }
+    },
+    bourse_criteres_sociaux_distance_domicile_familial: {
+        fn: function (individu, situation) {
+            var jeuneCommune = communesMap[situation.menage.depcom]
+            var parentCommune = communesMap[individu._bourseCriteresSociauxCommuneDomicileFamilial]
+            if (jeuneCommune && parentCommune) {
+                return haversine(jeuneCommune.centre.coordinates, parentCommune.centre.coordinates, {format: '[lon,lat]'})
+            } else {
+                return 0
+            }
         }
     },
     date_arret_de_travail: {

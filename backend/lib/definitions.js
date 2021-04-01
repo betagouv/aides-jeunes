@@ -43,7 +43,7 @@ var individu = Object.assign({
     ass_precondition_remplie: Boolean,
     boursier: Boolean,
     bourse_criteres_sociaux_base_ressources: Number,
-    bourse_criteres_sociaux_commune_domicile_familial: String,
+    _bourseCriteresSociauxCommuneDomicileFamilial: String,
     _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: String,
     _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: String,
     classe_scolarite: { type: String, enum: ['terminale', 'licence_3', 'master_1'] },

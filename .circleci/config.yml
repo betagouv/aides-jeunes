@@ -65,6 +65,7 @@ jobs:
           root: .
           paths:
             - node_modules
+            - dist
   install_openfisca:
     <<: *defaults
     steps:

@@ -8,7 +8,7 @@ var isString = require('lodash/isString');
 
 var individuRessource = require('./ressources');
 var pastResourcesProxy = require('./pastResourcesProxy');
-var communes = require('../../../../../dist/communes.json');
+var communes = require('../../../../mes-aides/communes');
 
 var communesMap = communes.reduce((map, item) => {
     map[item.code] = item

@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      {{ getLabel('être') | capitalize }} alternant&nbsp;?
+      {{ getLabel('être') | capitalize }} en alternance&nbsp;?
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

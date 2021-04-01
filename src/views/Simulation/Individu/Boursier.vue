@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      Bénéficiez-vous d'une bourse&nbsp;?
+      Bénéficiez-vous d'une bourse de l'enseignement supérieur&nbsp;?
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

@@ -44,7 +44,7 @@ export default {
     const individu = this.getIndividu()
     return {
       individu,
-      types: this.getTypes(individu)
+      types: this.getTypes(individu),
     }
   },
   watch: {
@@ -79,7 +79,7 @@ export default {
             displayMonthly: this.getDisplayMonthly(months, amounts),
             meta: type,
             extra: (type.extra || []).reduce((a, e) => {
-              a[e] = individu[e]
+              a[e.id] = individu[e.id]
               return a
             }, {})
           })

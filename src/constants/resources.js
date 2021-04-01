@@ -291,14 +291,14 @@ let ressourceTypes = [
         label: 'Via une micro-entreprise',
         category: 'rpns',
         isMontantAnnuel: true,
-        extra: ['tns_micro_entreprise_type_activite']
+        extra: [{ id: 'tns_micro_entreprise_type_activite', default: 'bic' }]
     },
     {
         id: 'tns_auto_entrepreneur_chiffre_affaires',
         label: 'En tant qu\'auto-entrepreneur',
         category: 'rpns',
         interuptionQuestionLabel: 'un chiffre d’affaires non nul',
-        extra: ['tns_auto_entrepreneur_type_activite']
+        extra: [{ id: 'tns_auto_entrepreneur_type_activite', default: 'bic' }]
     },
     {
         id: 'tns_benefice_exploitant_agricole',
@@ -311,7 +311,7 @@ let ressourceTypes = [
         label: 'En profession libérale (entrepreneur)',
         category: 'rpns',
         isMontantAnnuel: true,
-        extra: ['tns_autres_revenus_type_activite']
+        extra: [{ id: 'tns_autres_revenus_type_activite', default: 'bic' }]
     }
 ];
 

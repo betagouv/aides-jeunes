@@ -1,6 +1,6 @@
 var concat = require('lodash/concat')
 
-var ressources = require('../../app/js/constants/ressources');
+var ressources = require('../../src/constants/resources');
 
 var famille = {
     en_couple: Boolean,
@@ -58,7 +58,7 @@ var individu = Object.assign({
     _firstName: String,
     _interetPermisDeConduire: Boolean,
     garde_alternee: Boolean,
-    gir: { type: String, default: 'non_defini' },
+    gir: String,
     habite_chez_parents: Boolean,
     handicap: Boolean,
     _hasRessources: Boolean,

@@ -24,10 +24,10 @@ export const createIndividuMixin = (props) => {
         methods: {
             getLabel: function(type) {
                 const labelDict = {
-                    possessif: {
+                    possessive: {
                         demandeur: 'votre',
-                        conjoint: 'son',
-                        enfant: 'son',
+                        conjoint: 'sa',
+                        enfant: 'sa',
                     },
                     nom: {
                         conjoint: 'votre conjoint',
@@ -42,7 +42,7 @@ export const createIndividuMixin = (props) => {
                         demandeur: 'êtes-vous',
                         conjoint: 'votre conjoint est-il/elle',
                         enfant: `${this.individu._firstName} est-il/elle`
-                    }
+                    },
                 }
                 return labelDict[type][this.role];
             },

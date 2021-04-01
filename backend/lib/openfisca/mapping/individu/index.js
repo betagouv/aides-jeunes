@@ -8,12 +8,10 @@ var isString = require('lodash/isString');
 
 var individuRessource = require('./ressources');
 var pastResourcesProxy = require('./pastResourcesProxy');
-var communes = require('../../../../mes-aides/communes');
-
-var communesMap = communes.reduce((map, item) => {
+var communesMap = require('communes-lonlat').reduce((map, item) => {
     map[item.code] = item
     return map
-}, {})
+}, {});
 
 function formatDate(date) {
     return date && moment(date).format('YYYY-MM-DD');

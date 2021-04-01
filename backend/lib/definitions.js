@@ -42,7 +42,7 @@ var individu = Object.assign({
     alternant: Boolean,
     ass_precondition_remplie: Boolean,
     boursier: Boolean,
-    bourse_criteres_sociaux_base_ressources: Number,
+    bourse_criteres_sociaux_base_ressources_parentale: Number,
     _bourseCriteresSociauxCommuneDomicileFamilial: String,
     _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: String,
     _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: String,

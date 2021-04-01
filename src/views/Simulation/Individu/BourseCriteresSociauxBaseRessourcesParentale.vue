@@ -15,10 +15,10 @@ import Actions from '@/components/Actions'
 import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
-  name: 'SimulationIndividuBourseCriteresSociauxBaseRessources',
+  name: 'SimulationIndividuBourseCriteresSociauxBaseRessourcesParentale',
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin({ fieldName: 'bourse_criteres_sociaux_base_ressources', manualValidation: true})],
+  mixins: [createIndividuMixin({ fieldName: 'bourse_criteres_sociaux_base_ressources_parentale', manualValidation: true})],
 }
 </script>

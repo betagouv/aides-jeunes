@@ -180,10 +180,8 @@ function housingBlock() {
      },
      {
         subject: (menage, situation) => situation.demandeur,
-        isActive: (subject, situation) => {
-          const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
-          const enfant_a_charge = subject.enfant_a_charge && subject.enfant_a_charge[thisYear]
-          return subject.activite == 'etudiant' && enfant_a_charge && !subject.habite_chez_parents
+        isActive: subject => {
+          return subject.activite == 'etudiant' && !subject.habite_chez_parents
         },
         steps: [
           new Step({entity: 'individu', id: 'demandeur', variable: '_bourseCriteresSociauxCommuneDomicileFamilial'}),
@@ -238,9 +236,7 @@ function generateBlocks(situation) {
     {
       subject: situation => situation.demandeur,
       isActive: (subject, situation) => {
-        const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
-        const enfant_a_charge = subject.enfant_a_charge && subject.enfant_a_charge[thisYear]
-        return subject.activite == 'etudiant' && enfant_a_charge
+        return subject.activite == 'etudiant' && !situation.enfants.length
       },
       steps: [
         new Step({entity:'famille', variable: 'bourse_criteres_sociaux_nombre_enfants_a_charge'}),
@@ -253,7 +249,7 @@ function generateBlocks(situation) {
       subject: situation => situation,
       isActive: situation => situation.famille && situation.famille.bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur > 0,
       steps: [
-        new Step({entity:'individu', id:'demandeur', variable: 'bourse_criteres_sociaux_base_ressources'}),
+        new Step({entity:'individu', id:'demandeur', variable: 'bourse_criteres_sociaux_base_ressources_parentale'}),
       ]
     },
     extraBlock('demandeur'),

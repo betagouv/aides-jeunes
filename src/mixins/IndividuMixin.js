@@ -43,11 +43,6 @@ export const createIndividuMixin = (props) => {
                         conjoint: 'votre conjoint est-il/elle',
                         enfant: `${this.individu._firstName} est-il/elle`
                     },
-                    effectuer: {
-                        demandeur: 'effectuez-vous',
-                        conjoint: 'votre conjoint effectue-t-il/elle',
-                        enfant: `${this.individu._firstName} effectue-t-il/elle'`,
-                    }
                 }
                 return labelDict[type][this.role];
             },

@@ -4,7 +4,8 @@ import * as droitsDescription from '@/../app/js/constants/benefits'
 const Institution = droitsDescription.generate(jamstack)
 Institution.forEachBenefit = Institution.forEach
 
-Institution.mockResults = function(benefit) {
+Institution.mockResults = function(sublist) {
+  sublist = sublist ? sublist.split(',') : null
   const list = []
 
   const defaults = {
@@ -23,7 +24,7 @@ Institution.mockResults = function(benefit) {
       },
     )
 
-    if (!benefit || benefit == aideId) {
+    if (!sublist || sublist.indexOf(aideId) !== -1) {
       list.push(addition)
     }
   })

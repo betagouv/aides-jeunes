@@ -3,7 +3,7 @@
     <fieldset>
       <legend><h1>Et combien (vous y compris) font des études supérieures&nbsp;?</h1></legend>
       <label>
-        <input min="1" type="number" v-select-on-click v-model.number="value">
+        <input min="0" type="number" v-select-on-click v-model.number="value">
       </label>
     </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>

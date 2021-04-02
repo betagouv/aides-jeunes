@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      {{ getLabel('être') | capitalize }} inapte au travail ?
+      {{ getLabel('être') | capitalize }} reconnu·e inapte au travail ?
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>

@@ -42,7 +42,7 @@ export default {
   },
   filters : {
     currency: function(value, unit, frac) {
-      return currency(value, { symbol: ` ${unit}`, pattern: '#!', precision: frac }).format()
+      return currency(value, { symbol: ` ${unit}`, pattern: '#!', precision: frac }).format()
     }
   },
   methods: {

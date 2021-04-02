@@ -7,6 +7,7 @@ link: https://programme-depart-1825.com/cest-quoi/
 instructions: https://programme-depart-1825.com/
 prefix: 'l’accès au dispositif '
 type: float
+legend: 'maximum'
 top: 4
 entity: individus
 isMontantAnnuel: true

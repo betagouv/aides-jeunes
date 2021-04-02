@@ -48,6 +48,21 @@ function individuBlockFactory(id) {
           r('alternant')
         ]
       }] : []),
+      ...(!enfant ? [
+        {
+          isActive: subject => subject.activite == 'chomeur',
+          steps: [
+            r('date_debut_chomage'),
+            r('ass_precondition_remplie')
+          ]
+        },
+        {
+          isActive: subject => subject.activite != 'actif' && subject.activite != 'etudiant',
+          steps: [
+            r('inapte_travail'),
+          ]
+        },
+      ] : []),
       r('handicap'),
       {
         isActive: subject => subject.handicap,
@@ -61,16 +76,6 @@ function individuBlockFactory(id) {
           }
         ]
       },
-      ...(!enfant ? [
-        r('inapte_travail'),
-        {
-          isActive: subject => subject.activite == 'chomeur',
-          steps: [
-            r('date_debut_chomage'),
-            r('ass_precondition_remplie')
-          ]
-        }
-      ] : []),
       ...(enfant ? [{
         isActive: subject => subject.handicap,
         steps: [

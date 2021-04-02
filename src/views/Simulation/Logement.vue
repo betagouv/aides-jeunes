@@ -44,6 +44,7 @@
     import Actions from '@/components/Actions'
     import Logement from '@/lib/Logement'
     import { autoSubmitMixin } from '@/mixins/AutoSubmit'
+    import Individu from '@/lib/Individu'
 
     export default {
         name: 'SimulationLogement',
@@ -113,7 +114,7 @@
                         {
                             label: 'Foyer',
                             value: 'foyer',
-                            hint: 'résidence universitaire, foyer de jeune travailleur, résidence sociale...'
+                            hint: `résidence universitaire${this.demandeurAge() > 50 ? ', maison de retraite' : ''}, foyer de jeune travailleur, résidence sociale...`
                         }
                     ]
                 },
@@ -127,6 +128,9 @@
                 const proprietaireOk = this.logementTypesQuestion.selectedValue == 'proprietaire' && this.primoAccedantQuestion.selectedValue !== null
 
                 return defaultOk || locataireOk || proprietaireOk
+            },
+            demandeurAge: function() {
+                return Individu.age(this.$store.state.situation.demandeur, this.$store.state.dates.today.value)
             },
             onSubmit: function() {
                 if (!this.logementTypesQuestion.selectedValue) {

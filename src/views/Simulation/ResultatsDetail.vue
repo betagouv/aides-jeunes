@@ -11,6 +11,7 @@
 
 <script>
 import DroitsDetails from '../../components/DroitsDetails.vue'
+import Institution from '@/lib/Institution'
 import Feedback from './../../components/Feedback'
 
 export default {
@@ -26,10 +27,10 @@ export default {
     situation: function() { return this.$store.state.situation },
     droit: function() {
         const droitId = this.$route.params.droitId
-        const droit = (this.droits || []).find(function(droit) {
+        const droit = (this.droits || Institution.mockResults(droitId).droitsEligibles).find(function(droit) {
             return droit.id === droitId;
         });
-        return droit || {}
+        return droit
     },
     patrimoineCaptured: function() { return this.$store.getters.hasPatrimoine !== undefined },
     ressourcesYearMinusTwoCaptured: function() { return this.$store.getters.ressourcesYearMinusTwoCaptured },

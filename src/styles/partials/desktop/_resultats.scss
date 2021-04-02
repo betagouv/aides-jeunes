@@ -29,10 +29,6 @@ html {
       .aj-aide-text {
         margin-left: 2rem;
 
-        h2 {
-          text-transform: capitalize;
-        }
-
         .aj-aide-description {
           text-align: justify;
         }
@@ -54,6 +50,47 @@ html {
         .aj-aide-montant-label {
           font-weight: bold;
           font-size: 1.4rem;
+        }
+      }
+    }
+
+    .aj-results-tools {
+      display: flex;
+      align-items: flex-start;
+
+      .aj-offline-results, .aj-feedback {
+        background-color: var(--white);
+        padding: 25px;
+        border-radius: var(--theme-border-radius);
+        border: 1px solid var(--light-grey);
+
+        &.aj-offline-results {
+          margin-right: 1rem;
+        }
+
+        &.aj-feedback {
+          flex-basis: 60%;
+          flex-grow: 0;
+          flex-shrink: 0;
+        }
+      }
+
+      .aj-offline-results-button {
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      .aj-feedback-buttons {
+        margin-top: 1rem;
+        height: 7rem;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+
+        button {
+          width: 100%;
         }
       }
     }

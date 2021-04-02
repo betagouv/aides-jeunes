@@ -57,12 +57,28 @@ button.button:not(.small), a.button:not(.small) {
     }
 
     &:focus {
+      color: var(--white);
       background-color: var(--theme-primary-darker);
     }
 
     &.with-icon:hover {
       svg path {
         fill: var(--white);
+      }
+    }
+
+    &.red {
+      color: var(--red);
+      border-color: var(--red);
+
+      &:hover {
+        color: var(--white);
+        background-color: var(--red);
+      }
+
+      &:focus {
+        color: var(--white);
+        background-color: var(--dark-red);
       }
     }
   }

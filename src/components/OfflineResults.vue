@@ -1,17 +1,20 @@
 <template>
-  <div class="panel" v-if="!submitResult.ok">
+  <div class="aj-offline-results" v-if="!submitResult.ok">
+    <h2 class="aj-question">Je garde ces informations !</h2>
     <span>
       Vous pouvez enregistrer les résultats de votre simulation pour les consulter plus tard.
     </span>
 
     <Modal tag="span" analyticsCategory="Email">
       <template v-slot:message>
-        <button type="button" class="button primary text-center" v-on:click="reset">
-          <i class="fa fa-envelope-o" aria-hidden="true"></i>
-          Recevoir par email
-        </button>
+        <div class="aj-offline-results-button">
+            <button type="button" class="button primary text-center" v-on:click="reset">
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              Recevoir par email
+            </button>
+        </div>
       </template>
-      <h1>Recevoir un récapitulatif par email</h1>
+      <h2 class="aj-question">Recevoir un récapitulatif par email</h2>
       <p>
         Si vous le souhaitez nous pouvons vous recontacter à deux reprises pour faire le point sur les démarches que vous avez faites et les blocages que vous avez rencontrés.
       </p>
@@ -30,12 +33,15 @@
       </div>
 
       <form v-if="submitResult && !(submitResult.ok || submitResult.waiting || submitResult.error)">
-        <label class="form__group">Votre email<input name="email" v-model="email"></label>
+        <label for="email" class="form__group">Votre email</label>
+        <input type="text" id="email" name="email" v-model="email">
         <p class="notification warning" v-if="$v.email.$error">
           Un email doit être indiqué.
         </p>
-        <button v-on:click.prevent="getRecap(true)" type="submit" class="form__group button-outline primary text-center">J'accepte d'être recontacté·e par email</button>
-        <button v-on:click.prevent="getRecap(false)" type="submit" class="form__group button-outline warning text-center">Non merci, je préfère ne recevoir que le récapitulatif</button>
+        <div class="aj-feedback-buttons">
+            <button v-on:click.prevent="getRecap(true)" type="submit" class="button outline text-center">J'accepte d'être recontacté·e par email</button>
+            <button v-on:click.prevent="getRecap(false)" type="submit" class="button outline red text-center">Non merci, je préfère ne recevoir que le récapitulatif</button>
+        </div>
       </form>
     </Modal>
   </div>
@@ -104,12 +110,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.panel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-</style>

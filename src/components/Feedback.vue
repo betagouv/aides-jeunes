@@ -1,6 +1,6 @@
 <template>
-  <div id="feedback">
-    <h2>
+  <div class="aj-feedback">
+    <h2 class="aj-question">
       Nous améliorons ce simulateur en continu, et vous pouvez nous y aider&nbsp;!
     </h2>
     <p>

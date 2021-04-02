@@ -33,14 +33,16 @@
         <DroitsList ineligible v-bind:droits="droitsNonEligiblesShown"></DroitsList>
       </div>
 
-      <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
-
       <div class="frame-resultats" v-show="isEmpty(droits)">
-          <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
-          <p class="aj-results-intro">Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
+        <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
+        <p class="aj-results-intro">Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
       </div>
 
-      <Feedback :resultatsId="resultatsId"/>
+      <div class="aj-results-tools">
+        <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
+        <Feedback :resultatsId="resultatsId"/>
+      </div>
+
     </div>
 
   </div>

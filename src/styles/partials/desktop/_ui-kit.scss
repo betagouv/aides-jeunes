@@ -182,6 +182,21 @@ html {
       }
     }
 
+    .modal {
+      position: relative;
+
+      .aj-question {
+        margin-top: 0;
+      }
+
+      .aj-modal-close {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        cursor: pointer;
+      }
+    }
+
     @media print {
       .droit-detail {
         page-break-inside: avoid;

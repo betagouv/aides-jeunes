@@ -86,7 +86,7 @@ export default {
   },
   mounted: function () {
     if (this.$route.query.debug !== undefined) {
-      this.$store.dispatch('mockResults')
+      this.$store.dispatch('mockResults', this.$route.query.debug)
     } else if (this.$route.query && this.$route.query.situationId) {
       if (this.$store.state.situation._id !== this.$route.query.situationId) {
         this.$store.dispatch('fetch', this.$route.query.situationId)

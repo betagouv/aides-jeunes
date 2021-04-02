@@ -4,7 +4,7 @@ import * as droitsDescription from '@/../app/js/constants/benefits'
 const Institution = droitsDescription.generate(jamstack)
 Institution.forEachBenefit = Institution.forEach
 
-Institution.mockResults = function() {
+Institution.mockResults = function(benefit) {
   const list = []
 
   const defaults = {
@@ -13,15 +13,19 @@ Institution.mockResults = function() {
   }
 
   Institution.forEachBenefit((aide, aideId, aidesProvider, aidesProviderId) => {
-    list.push(Object.assign({},
-            aide,
-            {
-                id: aideId,
-                montant: defaults[aide.type || 'float'],
-                provider: aidesProvider,
-                providerId: aidesProviderId,
-            },
-        ))
+    const addition = Object.assign({},
+      aide,
+      {
+        id: aideId,
+        montant: defaults[aide.type || 'float'],
+        provider: aidesProvider,
+        providerId: aidesProviderId,
+      },
+    )
+
+    if (!benefit || benefit == aideId) {
+      list.push(addition)
+    }
   })
 
   return {

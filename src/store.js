@@ -355,8 +355,8 @@ const store = new Vuex.Store({
         .then(payload => state.commit('reset', payload))
         .catch(() => state.commit('saveAccessFailure'))
     },
-    mockResults: function(state) {
-      state.commit('setResults', Institution.mockResults())
+    mockResults: function(state, benefit) {
+      state.commit('setResults', Institution.mockResults(benefit))
     },
     compute: function(state, showPrivate) {
       state.commit('startComputation')

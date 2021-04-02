@@ -203,7 +203,7 @@ function resourceBlocks(situation) {
       steps: [
         new ComplexStep({route: `individu/${individuId}/ressources/types`})
       ].concat(
-          Ressource.getIndividuRessourceCategories(individu).map(category => new ComplexStep({route: `individu/${individuId}/ressources/montants/${category}`}))
+          Ressource.getIndividuRessourceCategories(individu, situation).map(category => new ComplexStep({route: `individu/${individuId}/ressources/montants/${category}`}))
       )
     }
   }

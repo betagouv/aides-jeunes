@@ -1,4 +1,6 @@
 'use strict';
+const Individu = require('@/lib/Individu').default;
+const { datesGenerator } = require('../../backend/lib/mes-aides');
 
 let ressourceCategories = [
     {
@@ -81,7 +83,8 @@ let ressourceTypes = [
         id: 'af',
         label: 'Allocations familiales',
         category: 'allocations',
-        prefix: 'des'
+        prefix: 'des',
+        isRelevant: situation => Boolean(situation.enfants.length)
     },
     {
         id: 'cf',
@@ -99,7 +102,8 @@ let ressourceTypes = [
         id: 'rsa',
         label: 'Revenu de solidarité active (RSA)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
+        isRelevant: situation => situation.demandeur.activite !== 'actif'
     },
     {
         id: 'ppa',
@@ -111,7 +115,10 @@ let ressourceTypes = [
         id: 'aspa',
         label: 'Allocation de solidarité aux personnes âgées (ASPA)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: (situation) => {
+            return  65 <= Individu.age(situation.demandeur, datesGenerator(situation.dateDeValeur).today.value)
+        },
     },
     {
         id: 'asi',
@@ -162,7 +169,10 @@ let ressourceTypes = [
         id: 'aeeh',
         label: 'Allocation d’éducation de l’enfant handicapé (AEEH)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: (situation) => {
+            return Boolean(situation.enfants.filter(enfant => enfant.handicap).length)
+        },
     },
     {
         id: 'pch',
@@ -197,7 +207,7 @@ let ressourceTypes = [
         category: 'indemnites',
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage',
         isRelevant: (situation) => {
-            situation.enfants.length > 0
+            return situation.enfants.length > 0
         },
     },
     {
@@ -284,7 +294,10 @@ let ressourceTypes = [
         id: 'bourse_enseignement_sup',
         label: 'Bourse de l’enseignement supérieur',
         category: 'autre',
-        prefix: 'une'
+        prefix: 'une',
+        isRelevant(situation) {
+            return situation.demandeur.boursier
+        }
     },
     {
         id: 'bourse_recherche',

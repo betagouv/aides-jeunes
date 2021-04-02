@@ -9,6 +9,14 @@ button.button:not(.small), a.button:not(.small) {
     background-color: var(--theme-primary);
     outline: none;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+
+    &.no-shadow {
+      box-shadow: none;
+    }
 
     &:hover {
       background-color: var(--theme-primary-dark);
@@ -18,6 +26,10 @@ button.button:not(.small), a.button:not(.small) {
 
     &:focus {
       background-color: var(--theme-primary-darker);
+    }
+
+    i {
+      margin-right: 10px;
     }
   }
 

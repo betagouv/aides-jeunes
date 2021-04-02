@@ -1,24 +1,21 @@
 <template>
-  <div>
+  <div class="normal-padding-bottom aj-results-details">
     <DroitsDetails
         :droit="droit"
         :city="situation.menage.depcom"
         :patrimoine-captured="patrimoineCaptured"
         :ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured" />
-    <Feedback :resultatsId="resultatsId"/>
   </div>
 </template>
 
 <script>
 import DroitsDetails from '../../components/DroitsDetails.vue'
 import Institution from '@/lib/Institution'
-import Feedback from './../../components/Feedback'
 
 export default {
   name: 'SimulationResultatsDetail',
   components: {
     DroitsDetails,
-    Feedback,
   },
   computed: {
     droits: function() { return this.resultats && this.resultats.droitsEligibles },

@@ -10,6 +10,16 @@ html {
       margin: 40px 0 50px 0;
     }
 
+    .aj-aide-montant {
+      text-align: center;
+      display: block;
+
+      .aj-aide-montant-label {
+        font-weight: bold;
+        font-size: 1.4rem;
+      }
+    }
+
     .aj-aide-box {
       border-radius: var(--theme-border-radius);
       background-color: var(--white);
@@ -34,23 +44,18 @@ html {
         }
       }
 
+      .aj-aide-montant {
+        text-align: center;
+        flex-basis: 200px;
+        flex-grow: 0;
+        flex-shrink: 0;
+      }
+
       .aj-aide-cta {
         position: absolute;
         bottom: 0;
         right: 35px;
         transform: translateY(50%);
-      }
-
-      .aj-aide-montant {
-        flex-basis: 200px;
-        flex-grow: 0;
-        flex-shrink: 0;
-        text-align: center;
-
-        .aj-aide-montant-label {
-          font-weight: bold;
-          font-size: 1.4rem;
-        }
       }
     }
 
@@ -72,12 +77,20 @@ html {
           flex-basis: 60%;
           flex-grow: 0;
           flex-shrink: 0;
+
+          .aj-feedback-partenaire {
+            margin-top: 1rem;
+          }
         }
       }
 
       .aj-offline-results-button {
         margin-top: 1rem;
         text-align: center;
+
+        button {
+          width: 100%;
+        }
       }
 
       .aj-feedback-buttons {
@@ -92,6 +105,78 @@ html {
         button {
           width: 100%;
         }
+      }
+    }
+
+    .aj-droit-detail {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+
+      .aj-droit-illustration {
+        width: 56px;
+      }
+
+      .aj-droit-content {
+        margin-left: 2rem;
+
+        .aj-droit-content-description {
+          text-align: justify;
+        }
+      }
+
+      .aj-droit-montant {
+        text-align: center;
+        flex-basis: 200px;
+        flex-grow: 0;
+        flex-shrink: 0;
+      }
+
+      .aj-droit-conditions {
+        background: #FEF3CF;
+        padding: 1rem 1.2rem;
+        border-radius: 10px;
+
+        .aj-droit-conditions-title {
+          font-size: 1rem;
+          font-family: "MarianneBold";
+          margin-top: 0;
+        }
+
+        ul {
+          padding: 0;
+
+          li {
+            img {
+              margin-right: 3px;
+            }
+          }
+        }
+      }
+
+      .aj-droit-notifications {
+        margin-top: 1rem;
+
+        .notification {
+          .button {
+            margin-top: 1rem;
+          }
+        }
+      }
+
+      .aj-droit-content-buttons {
+        display: flex;
+        flex-direction: row;
+        margin-top: 1.8rem;
+
+        .button {
+          margin-right: 1rem;
+        }
+      }
+
+      .aj-droit-pro-agricole {
+        margin-top: 1rem;
+        display: inline-block;
       }
     }
   }

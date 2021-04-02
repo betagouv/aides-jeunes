@@ -51,6 +51,10 @@ html {
           box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
           border-radius: var(--theme-border-radius);
           position: relative;
+
+          &.normal-padding-bottom {
+            padding-bottom: 40px;
+          }
         }
 
         .aj-actions {
@@ -72,6 +76,10 @@ html {
           color: var(--dark);
           font-size: 1.25rem;
           margin-bottom: 1rem;
+
+          &::first-letter {
+            text-transform: uppercase;
+          }
 
           &.small {
             font-size: 0.85rem;
@@ -195,6 +203,14 @@ html {
         top: 1rem;
         cursor: pointer;
       }
+    }
+
+    .fa-exclamation-triangle {
+      color: var(--orange);
+    }
+
+    .fa-check-circle {
+      color: var(--green);
     }
 
     @media print {

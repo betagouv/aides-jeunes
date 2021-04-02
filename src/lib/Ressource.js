@@ -111,7 +111,6 @@ function getIndividuRessourceTypes(individu, situation) {
 }
 
 function getIndividuRessourceTypesByCategory(individu, category, situation) {
-    console.log(individu)
     return filter(ressourceTypes, (ressourceType) => {
         return ressourceType.category === category &&
             isRessourceOnMainScreen(ressourceType) && 

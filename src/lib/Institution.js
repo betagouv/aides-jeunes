@@ -21,6 +21,7 @@ Institution.mockResults = function(sublist) {
         montant: defaults[aide.type || 'float'],
         provider: aidesProvider,
         providerId: aidesProviderId,
+        mock: true,
       },
     )
 

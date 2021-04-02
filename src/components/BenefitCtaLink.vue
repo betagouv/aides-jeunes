@@ -2,7 +2,7 @@
     <a v-bind:href="getURL(link)"
     target="_blank"
     rel="noopener"
-    class="text-center" 
+    class="text-center"
     v-bind:class="{
       'button secondary': level === 'default',
       'button primary': level === 'success' }"
@@ -16,7 +16,7 @@
 <script>
 let typeLabels = {
     teleservice: 'Faire une demande en ligne',
-    form: 'Accéder au formulaire papier',
+    form: 'Formulaire papier',
     instructions: 'Accéder aux instructions',
     link: "Plus d'informations <i class='fa fa-external-link' aria-hidden='true' role='presentation'></i>",
 };

@@ -90,13 +90,15 @@ let ressourceTypes = [
         id: 'cf',
         label: 'Complément familial (CF)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
+        isRelevant: situation => Boolean(situation.enfants.length)
     },
     {
         id: 'asf',
         label: 'Allocation de soutien familial (ASF)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: situation => Boolean(situation.enfants.length)
     },
     {
         id: 'rsa',

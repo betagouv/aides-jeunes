@@ -39,7 +39,6 @@
           placeholder="AAAA"
           v-select-on-click
           min="1900"
-          max="2020"
           />
       </div>
   </div>

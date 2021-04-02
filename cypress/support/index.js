@@ -46,9 +46,6 @@ export function demandeur(params={}) {
   cy.get('input[type="radio"]').check('actif')
   // Handicap
   handicap(params)
-  // Inapte au travail
-  cy.get('legend').invoke('text').should('contain', 'inapte au travail')
-  cy.get('input[type="radio"]').check('true')
 }
 
 export function handicap(params) {
@@ -103,9 +100,6 @@ export function conjoint(params={}) {
   cy.get('input[type="radio"]').check('actif')
   // Handicap
   cy.get('legend').invoke('text').should('contain', 'handicap')
-  cy.get('input[type="radio"]').check('false')
-  // Inapte au travail
-  cy.get('legend').invoke('text').should('contain', 'inapte au travail')
   cy.get('input[type="radio"]').check('false')
 }
 

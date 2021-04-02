@@ -34,7 +34,7 @@ const locationTypes = [
     },
     {
         id: 'foyer',
-        label: 'Foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale…)'
+        label: 'Foyer (résidence universitaire, foyer de jeune travailleur, résidence sociale…)'
     }
 ]
 

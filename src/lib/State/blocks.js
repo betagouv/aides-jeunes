@@ -173,7 +173,15 @@ function housingBlock() {
         isActive: subject => subject.statut_occupation_logement == "loge_gratuitement",
         steps: [
           new Step({entity: 'menage', variable: 'participation_frais'}),
-          new Step({entity: 'individu', id: 'demandeur', variable: 'habite_chez_parents'}),
+          {
+            isActive: (subject, situation) => {
+              const age = Individu.age(subject, datesGenerator(situation.dateDeValeur).today.value);
+              return age <= 30
+            },
+            steps: [
+              new Step({entity: 'individu', id: 'demandeur', variable: 'habite_chez_parents'}),
+            ],
+          },
         ]
      },
      new Step({entity: 'menage', variable: 'depcom'}),

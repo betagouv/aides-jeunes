@@ -113,7 +113,7 @@
                         {
                             label: 'Foyer',
                             value: 'foyer',
-                            hint: 'résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...'
+                            hint: 'résidence universitaire, foyer de jeune travailleur, résidence sociale...'
                         }
                     ]
                 },

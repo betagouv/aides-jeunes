@@ -168,6 +168,10 @@ const store = new Vuex.Store({
      */
     hasPatrimoine: function(state) {
         let demandeur = state.situation.demandeur
+        if (!demandeur) {
+          return undefined
+        }
+
         return patrimoineTypes.reduce(function(accum, ressource) {
             if (! demandeur[ressource.id]) {
                 return accum

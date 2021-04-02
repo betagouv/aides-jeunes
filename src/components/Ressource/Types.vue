@@ -40,7 +40,7 @@ export default {
   },
   data: function() {
     let types = ressourceTypes.filter(ressourceType => {
-      return Ressource.isRessourceOnMainScreen(ressourceType) && Ressource.isRessourceRelevant(ressourceType, this.$store.state.situation)
+      return Ressource.isRessourceOnMainScreen(ressourceType) && Ressource.isRessourceRelevant(ressourceType, this.$store.state.situation, this.individu)
     })
     let selectedTypes = Ressource.getIndividuRessourceTypes(this.individu, this.$store.state.situation)
     return {

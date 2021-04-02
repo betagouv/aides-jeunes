@@ -84,28 +84,33 @@ let ressourceTypes = [
         label: 'Allocations familiales',
         category: 'allocations',
         prefix: 'des',
-        isRelevant: situation => Boolean(situation.enfants.length)
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'cf',
         label: 'Complément familial (CF)',
         category: 'allocations',
         prefix: 'le',
-        isRelevant: situation => Boolean(situation.enfants.length)
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'asf',
         label: 'Allocation de soutien familial (ASF)',
         category: 'allocations',
         prefix: 'l’',
-        isRelevant: situation => Boolean(situation.enfants.length)
+        isRelevant: (situation, individu) => {
+            return individu.id === 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'rsa',
         label: 'Revenu de solidarité active (RSA)',
         category: 'allocations',
         prefix: 'le',
-        isRelevant: situation => situation.demandeur.activite !== 'actif'
     },
     {
         id: 'ppa',
@@ -118,8 +123,8 @@ let ressourceTypes = [
         label: 'Allocation de solidarité aux personnes âgées (ASPA)',
         category: 'allocations',
         prefix: 'l’',
-        isRelevant: (situation) => {
-            return  65 <= Individu.age(situation.demandeur, datesGenerator(situation.dateDeValeur).today.value)
+        isRelevant: (situation, individu) => {
+            return  65 <= Individu.age(individu, datesGenerator(situation.dateDeValeur).today.value)
         },
     },
     {
@@ -127,8 +132,8 @@ let ressourceTypes = [
         label: 'Allocation supplémentaire d’invalidité (ASI)',
         category: 'allocations',
         prefix: 'l’',
-        isRelevant: (situation) => {
-            return situation.demandeur.handicap
+        isRelevant: (situation, individu) => {
+            return individu.handicap
         },
     },
     {
@@ -136,8 +141,8 @@ let ressourceTypes = [
         label: 'Allocation de solidarité spécifique (ASS)',
         category: 'allocations',
         prefix: 'l’',
-        isRelevant: (situation) => {
-            return situation.demandeur.handicap
+        isRelevant: (situation, individu) => {
+            return individu.handicap
         },
 
     },
@@ -146,8 +151,8 @@ let ressourceTypes = [
         label: 'Allocation adulte handicapé (AAH)',
         category: 'allocations',
         prefix: 'l’',
-        isRelevant: (situation) => {
-            return situation.demandeur.handicap
+        isRelevant: (situation, individu) => {
+            return individu.handicap
         },
     },
     {
@@ -156,8 +161,8 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'le',
         sourceOpenfisca: 'prestations.minima_sociaux.caah.montant_complement_ressources',
-        isRelevant: (situation) => {
-            return situation.demandeur.handicap
+        isRelevant: (situation, individu) => {
+            return individu.handicap
         },
     },
     {
@@ -172,8 +177,8 @@ let ressourceTypes = [
         label: 'Allocation d’éducation de l’enfant handicapé (AEEH)',
         category: 'allocations',
         prefix: 'l’',
-        isRelevant: (situation) => {
-            return Boolean(situation.enfants.filter(enfant => enfant.handicap).length)
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.filter(enfant => enfant.handicap).length)
         },
     },
     {
@@ -181,8 +186,8 @@ let ressourceTypes = [
         label: 'Prestation de compensation du handicap (PCH)',
         category: 'allocations',
         prefix: 'la',
-        isRelevant: (situation) => {
-            return situation.demandeur.handicap
+        isRelevant: (situation, individu) => {
+            return individu.handicap
         },
     },
     {
@@ -208,8 +213,8 @@ let ressourceTypes = [
         label: 'Indemnités de maternité, paternité, adoption',
         category: 'indemnites',
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage',
-        isRelevant: (situation) => {
-            return situation.enfants.length > 0
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || situation.enfants.length > 0
         },
     },
     {
@@ -273,8 +278,8 @@ let ressourceTypes = [
         category: 'pensions',
         prefix: 'une',
         hint: 'Entrez le montant avant la retenue à la source',
-        isRelevant(situation) {
-            return situation.demandeur.activite === 'retraite'
+        isRelevant(situation, individu) {
+            return individu.activite === 'retraite'
         }
     },
     {
@@ -282,8 +287,8 @@ let ressourceTypes = [
         label: 'Retraite du combattant',
         category: 'pensions',
         prefix: 'une',
-        isRelevant(situation) {
-            return situation.demandeur.activite === 'retraite'
+        isRelevant(situation, individu) {
+            return individu.activite === 'retraite'
         }
     },
     {
@@ -297,8 +302,8 @@ let ressourceTypes = [
         label: 'Bourse de l’enseignement supérieur',
         category: 'autre',
         prefix: 'une',
-        isRelevant(situation) {
-            return situation.demandeur.boursier
+        isRelevant(situation, individu) {
+            return individu.boursier
         }
     },
     {

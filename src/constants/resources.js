@@ -103,7 +103,7 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'l’',
         isRelevant: (situation, individu) => {
-            return individu.id === 'demandeur' || Boolean(situation.enfants.length)
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
     {
@@ -170,7 +170,10 @@ let ressourceTypes = [
         label: 'Majoration pour vie autonome (MVA)',
         category: 'allocations',
         prefix: 'la',
-        sourceOpenfisca: 'prestations.minima_sociaux.caah.majoration_vie_autonome'
+        sourceOpenfisca: 'prestations.minima_sociaux.caah.majoration_vie_autonome',
+        isRelevant: (situation, individu) => {
+            return individu.handicap
+        },
     },
     {
         id: 'aeeh',
@@ -194,19 +197,28 @@ let ressourceTypes = [
         id: 'paje_base',
         label: 'Prestation d’accueil du jeune enfant (PAJE) - Allocation de base',
         category: 'allocations',
-        prefix: 'la'
+        prefix: 'la',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'paje_clca',
         label: 'Complément de libre choix d’activité (CLCA)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'paje_prepare',
         label: 'Prestation partagée d’éducation de l’enfant (PreParE)',
         category: 'allocations',
-        prefix: 'la'
+        prefix: 'la',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'indemnites_journalieres_maternite',
@@ -258,13 +270,19 @@ let ressourceTypes = [
         id: 'pensions_alimentaires_percues',
         label: 'Pension alimentaire',
         category: 'pensions',
-        prefix: 'une'
+        prefix: 'une',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'pensions_alimentaires_versees_individu',
         label: 'Pension alimentaire versée',
         category: 'pensions',
         interuptionQuestionLabel: 'une pension alimentaire',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'prestation_compensatoire',

@@ -260,13 +260,19 @@ let ressourceTypes = [
         label: 'Retraite (y compris reversion), rente',
         category: 'pensions',
         prefix: 'une',
-        hint: 'Entrez le montant avant la retenue à la source'
+        hint: 'Entrez le montant avant la retenue à la source',
+        isRelevant(situation) {
+            return situation.demandeur.activite === 'retraite'
+        }
     },
     {
         id: 'retraite_combattant',
         label: 'Retraite du combattant',
         category: 'pensions',
-        prefix: 'une'
+        prefix: 'une',
+        isRelevant(situation) {
+            return situation.demandeur.activite === 'retraite'
+        }
     },
     {
         id: 'pensions_invalidite',

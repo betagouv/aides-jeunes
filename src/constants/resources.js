@@ -117,27 +117,39 @@ let ressourceTypes = [
         id: 'asi',
         label: 'Allocation supplémentaire d’invalidité (ASI)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: (situation) => {
+            return situation.demandeur.handicap
+        },
     },
     {
         id: 'ass',
         label: 'Allocation de solidarité spécifique (ASS)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: (situation) => {
+            return situation.demandeur.handicap
+        },
 
     },
     {
         id: 'aah',
         label: 'Allocation adulte handicapé (AAH)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: (situation) => {
+            return situation.demandeur.handicap
+        },
     },
     {
         id: 'caah',
         label: 'Complément de ressources adulte handicapé',
         category: 'allocations',
         prefix: 'le',
-        sourceOpenfisca: 'prestations.minima_sociaux.caah.montant_complement_ressources'
+        sourceOpenfisca: 'prestations.minima_sociaux.caah.montant_complement_ressources',
+        isRelevant: (situation) => {
+            return situation.demandeur.handicap
+        },
     },
     {
         id: 'mva',
@@ -156,7 +168,10 @@ let ressourceTypes = [
         id: 'pch',
         label: 'Prestation de compensation du handicap (PCH)',
         category: 'allocations',
-        prefix: 'la'
+        prefix: 'la',
+        isRelevant: (situation) => {
+            return situation.demandeur.handicap
+        },
     },
     {
         id: 'paje_base',
@@ -180,7 +195,10 @@ let ressourceTypes = [
         id: 'indemnites_journalieres_maternite',
         label: 'Indemnités de maternité, paternité, adoption',
         category: 'indemnites',
-        interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'
+        interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage',
+        isRelevant: (situation) => {
+            situation.enfants.length > 0
+        },
     },
     {
         id: 'indemnites_journalieres_maladie',

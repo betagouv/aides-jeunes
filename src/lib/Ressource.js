@@ -72,6 +72,10 @@ function unsetForCurrentYear(dates, entity, ressourceType) {
     }
 }
 
+function isRessourceRelevant(ressourceType, situation) {
+    return !ressourceType.isRelevant || ressourceType.isRelevant(situation)
+}
+
 let ressourcesForTrailingMonthsAndFiscalYear = categoriesRnc.filter(function(fiscalRessource) {
     return fiscalRessource.sources && fiscalRessource.sources.indexOf(fiscalRessource.id) >= 0;
 }).map(function(fiscalRessource) { return fiscalRessource.id; });
@@ -86,26 +90,31 @@ function isSelectedForCurrentYear(ressource, ressourceIdOrType) {
     return Boolean(ressource);
 }
 
-function getIndividuRessourceCategories(individu) {
+function getIndividuRessourceCategories(individu, situation) {
     return uniq(
         filter(ressourceTypes, (ressourceType) => {
-            return isSelectedForCurrentYear(individu[ressourceType.id], ressourceType) && isRessourceOnMainScreen(ressourceType)
+            return isSelectedForCurrentYear(individu[ressourceType.id], ressourceType)
+                && isRessourceOnMainScreen(ressourceType)
+                && isRessourceRelevant(ressourceType, situation)
         }, {})
         .map(r => r.category)
     )
 }
 
-function getIndividuRessourceTypes(individu) {
-    return filter(ressourceTypes, isRessourceOnMainScreen)
+function getIndividuRessourceTypes(individu, situation) {
+    return filter(ressourceTypes, (ressourceType) => {
+            return isRessourceOnMainScreen(ressourceType) && isRessourceRelevant(ressourceType, situation)})
         .reduce((accumulator, ressourceType) => {
             accumulator[ressourceType.id] = isSelectedForCurrentYear(individu[ressourceType.id], ressourceType)
             return accumulator
         }, {})
 }
 
-function getIndividuRessourceTypesByCategory(individu, category) {
+function getIndividuRessourceTypesByCategory(individu, category, situation) {
     return filter(ressourceTypes, (ressourceType) => {
-        return ressourceType.category === category && isRessourceOnMainScreen(ressourceType)
+        return ressourceType.category === category &&
+            isRessourceOnMainScreen(ressourceType) && 
+            isRessourceRelevant(individu, situation)
     }).reduce((accumulator, ressourceType) => {
         accumulator[ressourceType.id] = isSelectedForCurrentYear(individu[ressourceType.id], ressourceType)
         return accumulator
@@ -144,6 +153,7 @@ const Ressource = {
     getPeriodsForCurrentYear,
     // Ne semble pas être utilisée
     // getPeriodKeysForCurrentYear,
+    isRessourceRelevant,
     isRessourceOnMainScreen,
     isSelectedForCurrentYear,
     setDefaultValueForCurrentYear,

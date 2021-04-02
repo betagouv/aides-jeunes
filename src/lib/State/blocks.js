@@ -175,8 +175,8 @@ function housingBlock() {
           new Step({entity: 'menage', variable: 'participation_frais'}),
           {
             isActive: (subject, situation) => {
-              const age = Individu.age(subject, datesGenerator(situation.dateDeValeur).today.value);
-              return age <= 30
+              const age = Individu.age(situation.demandeur, datesGenerator(situation.dateDeValeur).today.value);
+              return age < 30
             },
             steps: [
               new Step({entity: 'individu', id: 'demandeur', variable: 'habite_chez_parents'}),

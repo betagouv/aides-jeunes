@@ -32,7 +32,9 @@ button.button:not(.small), a.button:not(.small) {
       margin-right: 10px;
     }
   }
+}
 
+button.button, a.button {
   &.m-auto {
     margin: auto;
   }
@@ -50,6 +52,7 @@ button.button:not(.small), a.button:not(.small) {
   &.outline {
     background-color: transparent;
     color: var(--theme-primary);
+    border: 1px solid var(--theme-primary);
 
     &.with-icon {
       display: flex;
@@ -73,7 +76,7 @@ button.button:not(.small), a.button:not(.small) {
       background-color: var(--theme-primary-darker);
     }
 
-    &.with-icon:hover {
+    &.with-icon:hover, &.with-icon:focus {
       svg path {
         fill: var(--white);
       }

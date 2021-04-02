@@ -45,7 +45,7 @@ html {
 
       .aj-box-wrapper {
 
-        & > div:not(.aj-unbox), & > form:not(.aj-unbox) {
+        & > div:not(.aj-unbox), & > form:not(.aj-unbox), & .aj-box {
           background-color: #fff;
           padding: 40px 40px 65px 40px;
           box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);

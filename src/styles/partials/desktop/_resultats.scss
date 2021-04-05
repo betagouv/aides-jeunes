@@ -166,6 +166,20 @@ html {
         }
       }
 
+      .aj-droit-content-buttons-cta {
+        display: flex;
+        flex-wrap: wrap;
+
+        & > * {
+          flex: 1 1 40%;
+          margin-bottom: 1rem;
+
+          &:first-child {
+            margin-right: 1rem;
+          }
+        }
+      }
+
       .aj-droit-notifications {
         margin-top: 1rem;
 
@@ -173,16 +187,6 @@ html {
           .button {
             margin-top: 1rem;
           }
-        }
-      }
-
-      .aj-droit-content-buttons {
-        display: flex;
-        flex-direction: row;
-        margin-top: 1.8rem;
-
-        .button {
-          margin-right: 1rem;
         }
       }
 

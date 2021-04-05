@@ -1,15 +1,22 @@
 <template>
-  <div>
-    <BenefitCtaLink
-      v-for="(cta, index) in ctas"
-      v-bind:analytics-name="benefit.label"
-      v-bind:benefit="benefit"
-      v-bind:link="cta.link"
-      v-bind:key="index"
-      v-bind:type="cta.type"
-      v-bind:level="levels[index]"
-    ></BenefitCtaLink>
-  </div>
+    <div>
+        <BenefitCtaLink
+          v-for="(cta, index) in ctas"
+          v-bind:key="index"
+          v-bind:analytics-name="benefit.label"
+          v-bind:benefit="benefit"
+          v-bind:link="cta.link"
+          v-bind:type="cta.type"
+          v-bind:level="levels[index]"
+        ></BenefitCtaLink>
+        <router-link
+            class="button primary"
+            v-if="benefit.provider.etablissements && benefit.provider.etablissements.length > 0"
+            v-analytics="{ name:benefit.label, action:'show-locations', category:'General'}"
+            v-bind:to="{ name: 'resultat/lieux', params: { id: benefit.id }}">
+            Trouver une agence
+        </router-link>
+    </div>
 </template>
 
 <script>

@@ -18,7 +18,7 @@
                     />
                     </p>
                     <div v-if="droit.conditions" class="aj-droit-conditions">
-                        <p class="aj-droit-conditions-title">Conditions à réunir</p>
+                        <p class="aj-droit-conditions-title">Pour en bénéficier, vous devez également :</p>
                         <ul class="list-unstyled">
                             <li v-for="(condition, index) in droit.conditions" v-bind:key="index">
                                 <img src="@/assets/images/doigt.svg"> <span v-html="condition"></span>
@@ -51,13 +51,6 @@
                         </p>
                     </div>
                     <BenefitCta class="aj-droit-content-buttons-cta" v-bind:benefit="droit"></BenefitCta>
-                    <router-link
-                        class="button primary"
-                        v-if="droit.provider.etablissements && droit.provider.etablissements.length > 0"
-                        v-analytics="{ name:droit.label, action:'show-locations', category:'General'}"
-                        v-bind:to="{ name: 'resultat/lieux', params: { id: droit.id }}">
-                        Trouver une agence
-                    </router-link>
                 </div>
 
                 <a v-if="droit.msa"

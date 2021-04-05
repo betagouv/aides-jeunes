@@ -52,7 +52,7 @@ function renderAsHtml(followup, benefits) {
             ctaLabel = 'Faire une demande en ligne';
         } else if (droit.form) {
             ctaLink = droit.form;
-            ctaLabel = 'Formulaire papier';
+            ctaLabel = 'Accéder au formulaire papier';
         } else if (droit.instructions) {
             ctaLink = droit.instructions;
             ctaLabel = 'Accéder aux instructions';

@@ -1,7 +1,7 @@
 <template>
   <div class="droits-list">
     <div v-if="!ineligible">
-        <div v-for="(droit, index) in list" class="aj-aide-box" v-bind:key="index">
+        <div v-for="(droit, index) in list" class="aj-aide-box" v-bind:key="index" @click="push(droit)">
             <img class="aj-aide-illustration" v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
             <div class="aj-aide-text">
                 <h2 class="aj-question">{{ droit.label }}</h2>

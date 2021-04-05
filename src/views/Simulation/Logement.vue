@@ -3,7 +3,7 @@
         <fieldset>
             <legend><h2 class="aj-question">{{ logementTypesQuestion.label }}</h2></legend>
             <div v-for="logementType in logementTypesQuestion.responses" class="aj-selection-wrapper" v-bind:key="logementType.value">
-                <input :id="logementType.value" type="radio" name="logementType" v-model="logementTypesQuestion.selectedValue" v-bind:value="logementType.value"
+                <input :id="logementType.value" type="radio" v-on:change="tryAutoSubmit" name="logementType" v-model="logementTypesQuestion.selectedValue" v-bind:value="logementType.value"
                 />
                 <label :for="logementType.value">
                     {{ logementType.label | capitalize }}
@@ -15,7 +15,7 @@
         <fieldset v-if="logementTypesQuestion.selectedValue == 'proprietaire'">
             <legend><h2 class="aj-question">{{ primoAccedantQuestion.label }}<span v-if="primoAccedantQuestion.hint" class="help">({{ primoAccedantQuestion.hint }})</span></h2></legend>
             <div v-for="response in primoAccedantQuestion.responses" class="aj-selection-wrapper" v-bind:key="response.value">
-                <input :id="response.label" type="radio" :name="primoAccedantQuestion.label" v-model="primoAccedantQuestion.selectedValue" v-bind:value="response.value"
+                <input :id="response.label" type="radio" v-on:change="tryAutoSubmit" :name="primoAccedantQuestion.label" v-model="primoAccedantQuestion.selectedValue" v-bind:value="response.value"
                 />
                 <label :for="response.label">
                     {{ response.label | capitalize }}
@@ -27,7 +27,7 @@
         <fieldset v-if="logementTypesQuestion.selectedValue == 'locataire'">
             <legend><h2 class="aj-question">{{ locataireTypesQuestion.label }}<span v-if="locataireTypesQuestion.hint" class="help">({{ locataireTypesQuestion.hint }})</span></h2></legend>
             <div v-for="response in locataireTypesQuestion.responses" class="aj-selection-wrapper" v-bind:key="response.value">
-                <input :id="response.value" type="radio" :name="logementTypesQuestion.label" v-model="locataireTypesQuestion.selectedValue" v-bind:value="response.value"
+                <input :id="response.value" type="radio" v-on:change="tryAutoSubmit" :name="logementTypesQuestion.label" v-model="locataireTypesQuestion.selectedValue" v-bind:value="response.value"
                 />
                 <label :for="response.value">
                     {{ response.label | capitalize }}
@@ -150,17 +150,6 @@
                 }
             }
         },
-        watch: {
-            'logementTypesQuestion.selectedValue': function() {
-                this.autoSubmit()
-            },
-            'locataireTypesQuestion.selectedValue': function() {
-                this.autoSubmit()
-            },
-            'primoAccedantQuestion.selectedValue': function() {
-                this.autoSubmit()
-            },
-        }
     }
 </script>
 

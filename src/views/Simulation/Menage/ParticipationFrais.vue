@@ -50,7 +50,7 @@
                 }
             }
         },
-        mixins: [autoSubmitMixin({fields: [{name: 'participationQuestion.selectedValue'}]})],
+        mixins: [autoSubmitMixin('participationQuestion.selectedValue')],
         methods: {
             onSubmit: function() {
                 if (this.participationQuestion.selectedValue === undefined) {

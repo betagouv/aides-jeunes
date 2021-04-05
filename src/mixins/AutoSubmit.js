@@ -7,7 +7,6 @@ export const autoSubmitMixin = (props) => {
     const mixin = {
         methods: {
             autoSubmit() {
-                console.log('autoSubmit')
                 if(this.canAutoSubmit()) {
                     setTimeout(this.onSubmit, process.env.VUE_APP_VALIDATION_DELAY || 0)
                 }

@@ -1,4 +1,6 @@
 button.button:not(.small), a.button:not(.small) {
+  margin: 0;
+
   &,
   &:active,
   &:focus,
@@ -8,7 +10,6 @@ button.button:not(.small), a.button:not(.small) {
     border: 1px solid var(--theme-primary);
     background-color: var(--theme-primary);
     outline: none;
-    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;

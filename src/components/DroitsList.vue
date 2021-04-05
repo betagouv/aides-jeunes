@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="aj-aide-cta">
-                <a class="button primary" @click="push(droit)" target="_blank">Demander cette aide</a>
+                <a class="button primary">Demander cette aide</a>
             </div>
         </a>
     </div>

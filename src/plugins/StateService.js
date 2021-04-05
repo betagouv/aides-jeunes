@@ -1,4 +1,4 @@
-import { full, next } from '@/lib/State'
+import { full, next, current } from '@/lib/State'
 
 const StateService = {
   install (Vue) {
@@ -6,6 +6,7 @@ const StateService = {
     Vue.prototype.$state = {
         full,
         next,
+        current
     }
 
     Vue.prototype.$push = function(situation) {

@@ -9,22 +9,33 @@
     export default {
         name: 'TitreChapitre',
         data() {
-            return {}
+            return {
+                chapter: this.setChapterFromRoute(this.$route)
+            }
         },
         computed: {
             title() {
-                return this.getTitleByUrl(this.$route.params.chapter)
+                return this.getTitleByChapter(this.chapter)
+            }
+        },
+        watch:{
+            $route (to){
+                this.chapter = this.setChapterFromRoute(to)
             }
         },
         methods: {
-            getTitleByUrl(chapter) {
+            setChapterFromRoute(route) {
+                const step = this.$state.current(route, this.$store.state.situation)
+                return step && step.chapter || ''
+            },
+            getTitleByChapter(chapter) {
                 switch (chapter) {
                     case 'profil':
                         return 'Mon profil';
                     case 'foyer':
                         return 'Mon foyer';
                     case 'revenus':
-                        return 'Mon revenu';
+                        return 'Mes revenus';
                     case 'logement':
                         return 'Mon logement';
                     case 'resultats':

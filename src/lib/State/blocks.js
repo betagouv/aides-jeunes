@@ -4,7 +4,7 @@ const { datesGenerator } = require('../../../backend/lib/mes-aides');
 const { Step, ComplexStep } = require('./steps');
 
 function individuBlockFactory(id) {
-  const r = variable => new Step({entity: 'individu', id, variable})
+  const r = (variable, chapter) => new Step({entity: 'individu', id, variable, chapter})
   const conjoint = id == 'conjoint'
   const demandeur = id == 'demandeur'
   const enfant = id.startsWith('enfant')
@@ -12,7 +12,7 @@ function individuBlockFactory(id) {
     subject: situation => situation[id] || situation.enfants.find(enfant => enfant.id === id) || {},
     steps: [
       ...(enfant ? [r('_firstName')] : []),
-      r('date_naissance'),
+      r('date_naissance', 'profil'),
       r('nationalite'),
       ...(conjoint ? [r('statut_marital')] : []),
       ...(enfant ? [r('garde_alternee')] : []),
@@ -143,7 +143,7 @@ function extraBlock(id) {
 function kidBlock(situation) {
   return {
     steps: [
-      new Step({entity: 'enfants'}),
+      new Step({entity: 'enfants', chapter: 'foyer'}),
       ...(situation.enfants.length ? (situation.enfants.map(e => {
         return {
           steps: [individuBlockFactory(e.id), new Step({entity: 'enfants', key:`enfants#${e.id}`})]
@@ -157,7 +157,7 @@ function housingBlock() {
   return {
     subject: situation => situation.menage,
     steps: [
-      new Step({entity: 'logement'}),
+      new Step({entity: 'logement', chapter: 'logement'}),
       {
         isActive: subject => !subject.statut_occupation_logement || subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
@@ -213,7 +213,7 @@ function resourceBlocks(situation) {
     const individu = situation[individuId] || situation.enfants.find(enfant => enfant.id === individuId) || {}
     return {
       steps: [
-        new ComplexStep({route: `individu/${individuId}/ressources/types`})
+        new ComplexStep({route: `individu/${individuId}/ressources/types`, chapter: 'revenus'})
       ].concat(
           Ressource.getIndividuRessourceCategories(individu, situation).map(category => new ComplexStep({route: `individu/${individuId}/ressources/montants/${category}`}))
       )
@@ -272,7 +272,7 @@ function generateBlocks(situation) {
     extraBlock('demandeur'),
     {
       steps: [
-        new Step({entity: 'resultats'}),
+        new Step({entity: 'resultats', chapter: 'resultats'}),
         new Step({entity: 'resultats'})
       ]
     }

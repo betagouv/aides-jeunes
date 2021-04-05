@@ -10,7 +10,7 @@
                 <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
                 <p class="aj-aide-description" v-html="droit.description"></p>
                 <div class="aj-aide-warning" v-if="droit.montant && isBoolean(droit.montant) && droit.symbol === 'fa-exclamation-triangle'">
-                    <img src="@/assets/images/warning.svg"> Attention, cette aide vous est accessible sous certaines conditions
+                    <img src="@/assets/images/warning.svg"> Attention, cette aide vous est accessible sous certaines conditions supplémentaires.
                 </div>
             </div>
             <div class="aj-aide-montant">

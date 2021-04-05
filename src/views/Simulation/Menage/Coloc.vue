@@ -44,7 +44,7 @@
                 }
             }
         },
-        mixins: [autoSubmitMixin({fields: [{name: 'colocQuestion.selectedValue'}]})],
+        mixins: [autoSubmitMixin('colocQuestion.selectedValue')],
         methods: {
             onSubmit: function() {
                 if (this.colocQuestion.selectedValue === undefined) {

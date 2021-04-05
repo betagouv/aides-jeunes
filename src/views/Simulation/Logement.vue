@@ -81,7 +81,7 @@
                 },
                 primoAccedantQuestion: {
                     label: 'Êtes-vous primo-accédant pour cette propriété ? Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.',
-                    selectedValue: (Logement.getLogementVariables(this.$store.getters.getLogementStatut) || {}).primoAccedant || null,
+                    selectedValue: (Logement.getLogementVariables(this.$store.getters.getLogementStatut) || {}).primoAccedant,
                     hint: null,
                     responses: [
                         {
@@ -120,14 +120,15 @@
                 },
             }
         },
-        mixins: [autoSubmitMixin({
-            fields: [
-                {name: 'logementTypesQuestion.selectedValue', values: ['sansDomicile', 'heberge']},
-                {name: 'locataireTypesQuestion.selectedValue'},
-                {name: 'primoAccedantQuestion.selectedValue'}
-            ]
-        })],
+        mixins: [autoSubmitMixin()],
         methods: {
+            canAutoSubmit: function() {
+                const defaultOk = (['sansDomicile', 'heberge'].indexOf(this.logementTypesQuestion.selectedValue) > -1)
+                const locataireOk = this.logementTypesQuestion.selectedValue == 'locataire' && this.locataireTypesQuestion.selectedValue
+                const proprietaireOk = this.logementTypesQuestion.selectedValue == 'proprietaire' && this.primoAccedantQuestion.selectedValue !== null
+
+                return defaultOk || locataireOk || proprietaireOk
+            },
             onSubmit: function() {
                 if (!this.logementTypesQuestion.selectedValue) {
                     this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
@@ -149,6 +150,17 @@
                     this.$push()
                 }
             }
+        },
+        watch: {
+            'logementTypesQuestion.selectedValue': function() {
+                this.autoSubmit()
+            },
+            'locataireTypesQuestion.selectedValue': function() {
+                this.autoSubmit()
+            },
+            'primoAccedantQuestion.selectedValue': function() {
+                this.autoSubmit()
+            },
         }
     }
 </script>

@@ -50,7 +50,7 @@
                 }
             }
         },
-        mixins: [autoSubmitMixin({fields: [{name: 'chambreQuestion.selectedValue'}]})],
+        mixins: [autoSubmitMixin('chambreQuestion.selectedValue')],
         methods: {
             onSubmit: function() {
                 if (this.chambreQuestion.selectedValue === undefined) {

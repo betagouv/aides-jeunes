@@ -50,7 +50,7 @@
                 }
             }
         },
-        mixins: [autoSubmitMixin({fields: [{name: 'habiteChezParentsQuestion.selectedValue'}]})],
+        mixins: [autoSubmitMixin('habiteChezParentsQuestion.selectedValue')],
         methods: {
             onSubmit: function() {
                 if (this.habiteChezParentsQuestion.selectedValue === undefined) {

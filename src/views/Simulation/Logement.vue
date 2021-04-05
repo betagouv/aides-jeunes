@@ -7,31 +7,31 @@
                 />
                 <label :for="logementType.value">
                     {{ logementType.label | capitalize }}
-                    <span v-if="logementType.hint" class="help">({{ logementType.hint }})</span>
+                    <span v-if="logementType.hint" class="help">{{ logementType.hint }}</span>
                 </label>
             </div>
         </fieldset>
 
         <fieldset v-if="logementTypesQuestion.selectedValue == 'proprietaire'">
-            <legend><h2 class="aj-question">{{ primoAccedantQuestion.label }}<span v-if="primoAccedantQuestion.hint" class="help">({{ primoAccedantQuestion.hint }})</span></h2></legend>
+            <legend><h2 class="aj-question">{{ primoAccedantQuestion.label }}<span v-if="primoAccedantQuestion.hint" class="help">{{ primoAccedantQuestion.hint }}</span></h2></legend>
             <div v-for="response in primoAccedantQuestion.responses" class="aj-selection-wrapper" v-bind:key="response.value">
                 <input :id="response.label" type="radio" v-on:change="tryAutoSubmit" :name="primoAccedantQuestion.label" v-model="primoAccedantQuestion.selectedValue" v-bind:value="response.value"
                 />
                 <label :for="response.label">
                     {{ response.label | capitalize }}
-                    <span v-if="response.hint" class="help">({{ response.hint }})</span>
+                    <span v-if="response.hint" class="help">{{ response.hint }}</span>
                 </label>
             </div>
         </fieldset>
 
         <fieldset v-if="logementTypesQuestion.selectedValue == 'locataire'">
-            <legend><h2 class="aj-question">{{ locataireTypesQuestion.label }}<span v-if="locataireTypesQuestion.hint" class="help">({{ locataireTypesQuestion.hint }})</span></h2></legend>
+            <legend><h2 class="aj-question">{{ locataireTypesQuestion.label }}<span v-if="locataireTypesQuestion.hint" class="help">{{ locataireTypesQuestion.hint }}</span></h2></legend>
             <div v-for="response in locataireTypesQuestion.responses" class="aj-selection-wrapper" v-bind:key="response.value">
                 <input :id="response.value" type="radio" v-on:change="tryAutoSubmit" :name="logementTypesQuestion.label" v-model="locataireTypesQuestion.selectedValue" v-bind:value="response.value"
                 />
                 <label :for="response.value">
                     {{ response.label | capitalize }}
-                    <span v-if="response.hint" class="help">({{ response.hint }})</span>
+                    <span v-if="response.hint" class="help">{{ response.hint }}</span>
                 </label>
             </div>
         </fieldset>
@@ -70,7 +70,7 @@
                         {
                             label: 'Hébergé',
                             value: 'heberge',
-                            hint: 'chez un particulier ou en logement de fonction'
+                            hint: 'chez vos parents, chez un particulier ou en logement de fonction'
                         },
                         {
                             label: 'Sans domicile stable',
@@ -80,9 +80,9 @@
                     ]
                 },
                 primoAccedantQuestion: {
-                    label: 'Êtes-vous primo-accédant pour cette propriété ? Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.',
+                    label: 'Êtes-vous primo-accédant pour cette propriété ?',
                     selectedValue: (Logement.getLogementVariables(this.$store.getters.getLogementStatut) || {}).primoAccedant,
-                    hint: null,
+                    hint: 'Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.',
                     responses: [
                         {
                             label: 'Oui',
@@ -114,7 +114,12 @@
                         {
                             label: 'Foyer',
                             value: 'foyer',
-                            hint: `résidence universitaire${this.demandeurAge() > 50 ? ', maison de retraite' : ''}, foyer de jeune travailleur, résidence sociale...`
+                            hint: [
+                                this.$store.state.situation.demandeur.activite == 'etudiant' ? 'résidence universitaire' : '',
+                                this.demandeurAge() > 50 ? 'maison de retraite' : '',
+                                'foyer de jeune travailleur',
+                                'résidence sociale…',
+                                ].filter(present => present).join(', ')
                         }
                     ]
                 },

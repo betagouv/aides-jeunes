@@ -12,6 +12,7 @@
             <label for="charges" class="aj-question">{{ chargesQuestion.label }}</label>
             <div class="aj-input-currency-wrapper">
                 <input id="charges" type="number" v-model="chargesQuestion.selectedValue">
+                <span class="help">{{  loyerQuestion.hint }}</span>
             </div>
         </fieldset>
         <Actions v-bind:onSubmit='onSubmit'/>
@@ -31,17 +32,34 @@
             const logementStatut = this.$store.getters.getLogementStatut || ''
             const isLocataire = !(logementStatut === 'proprietaire' || logementStatut === 'primo_accedant')
             const captureCharges = isLocataire && logementStatut != 'locataire_meuble'
-            return {
-                menage: menage,
-                captureCharges,
-                 loyerQuestion: {
-                    label: ! isLocataire ? 'Quelles sont vos mensualités ?' : 'Quel est le montant de votre loyer ?',
-                    hint: ! isLocataire ? 'Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.' : null,
-                    selectedValue: menage.loyer
-                },
-                chargesQuestion: {
-                    label: 'Quel est le montant de vos charges locatives ?',
-                    selectedValue: menage.charges_locatives
+
+            if (isLocataire) {
+                const loyerLabel = [
+                    'Quel est le montant',
+                    captureCharges ? null : ', charges comprises,',
+                    menage.coloc ? ' de votre part du loyer' : ' de votre loyer',
+                ].filter(present => present).join('') + ' ?'
+                return {
+                    menage: menage,
+                    captureCharges,
+                     loyerQuestion: {
+                        label: loyerLabel,
+                        selectedValue: menage.loyer,
+                    },
+                    chargesQuestion: {
+                        label: 'Quel est le montant de vos charges locatives ?',
+                        selectedValue: menage.charges_locatives
+                    }
+                }
+
+            } else {
+                return {
+                    menage: menage,
+                    loyerQuestion: {
+                        label: 'Quelles sont vos mensualités ?',
+                        hint: 'Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.',
+                        selectedValue: menage.loyer
+                    }
                 }
             }
         },

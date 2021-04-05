@@ -8,7 +8,7 @@
     </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
-</template> 
+</template>
 
 <script>
 import Actions from '@/components/Actions'

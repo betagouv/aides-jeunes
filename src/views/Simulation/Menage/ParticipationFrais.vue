@@ -1,17 +1,20 @@
 <template>
     <form @submit.prevent='onSubmit'>
-        <h1>{{ title }}</h1>
         <fieldset>
             <legend>
-                {{ participationQuestion.label }}
-                <span v-if="participationQuestion.hint" class="help">{{ participationQuestion.hint }}</span>
+                <h2 class="aj-question">
+                    {{ participationQuestion.label }}
+                    <span v-if="participationQuestion.hint" class="help">{{ participationQuestion.hint }}</span>
+                </h2>
             </legend>
-            <label v-for="response in participationQuestion.responses" v-bind:key="response.value">
-                <input type="radio" name="coloc" v-model="participationQuestion.selectedValue" v-bind:value="response.value"
+            <div v-for="response in participationQuestion.responses" class="aj-selection-wrapper" v-bind:key="response.value">
+                <input :id="response.label" type="radio" name="coloc" v-model="participationQuestion.selectedValue" v-bind:value="response.value"
                 />
-                {{ response.label | capitalize }}
-                <span v-if="response.hint" class="help">({{ response.hint }})</span>
-            </label>
+                <label :for="response.label">
+                    {{ response.label | capitalize }}
+                    <span v-if="response.hint" class="help">({{ response.hint }})</span>
+                </label>
+            </div>
         </fieldset>
         <Actions v-bind:onSubmit='onSubmit'/>
     </form >
@@ -19,6 +22,7 @@
 
 <script>
     import Actions from '@/components/Actions'
+    import { autoSubmitMixin } from '@/mixins/AutoSubmit';
 
     export default {
         name: 'SimulationMenageParticipationFrais',
@@ -28,7 +32,6 @@
         data: function() {
             const menage = this.$store.getters.getMenage || {}
             return {
-                title: 'Mon logement',
                 menage: menage,
                 participationQuestion: {
                     label: 'Participez-vous aux frais du logement ?',
@@ -47,6 +50,7 @@
                 }
             }
         },
+        mixins: [autoSubmitMixin('participationQuestion.selectedValue')],
         methods: {
             onSubmit: function() {
                 if (this.participationQuestion.selectedValue === undefined) {

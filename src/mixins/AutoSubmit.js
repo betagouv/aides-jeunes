@@ -1,19 +1,35 @@
 export const autoSubmitMixin = (props) => {
-    const { fieldName = props, manualValidation = false } = props
+    const { fieldName = props, manualValidation = false } = props || {}
 
     if (manualValidation)
         return {}
 
-    return {
-        data() {
-            return {
-                value: this[fieldName]
-            }
+    const mixin = {
+        methods: {
+            tryAutoSubmit() {
+                if(this.canAutoSubmit()) {
+                    setTimeout(this.onSubmit, process.env.VUE_APP_VALIDATION_DELAY || 0)
+                }
+            },
         },
-        watch: {
-            value() {
-                setTimeout(this.onSubmit, process.env.VUE_APP_VALIDATION_DELAY || 0)
+    }
+
+    if (! fieldName) {
+        return mixin
+    } else {
+        return {
+            ...mixin,
+            methods: {
+                ...mixin.methods,
+                canAutoSubmit() {
+                    return true
+                },
+            },
+            created() {
+                this.$watch(fieldName, function () {
+                    this.tryAutoSubmit()
+                })
             }
-        },
+        }
     }
 }

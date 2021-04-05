@@ -8,9 +8,9 @@
     </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
-</template> 
+</template>
 
-    <script>
+<script>
 import Actions from '@/components/Actions'
 import { createIndividuMixin } from '@/mixins/IndividuMixin'
 

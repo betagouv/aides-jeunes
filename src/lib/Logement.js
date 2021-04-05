@@ -37,7 +37,7 @@ function getLogementVariables(statusOccupationId) {
             { type: 'sansDomicile' },
     }
     let base = statusOccupationId && baseLogementMap[statusOccupationId]
-    return { type: undefined, primoAccedant: undefined, locationType: undefined, ...base }
+    return { type: null, primoAccedant: null, locationType: null, ...base }
 }
 
 function getLabels(statusOccupationId) {

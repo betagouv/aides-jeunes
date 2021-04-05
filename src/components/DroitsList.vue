@@ -1,10 +1,13 @@
 <template>
   <div class="droits-list">
     <div v-if="!ineligible">
-        <div v-for="(droit, index) in list" class="aj-aide-box" v-bind:key="index" @click="push(droit)">
+        <div v-for="(droit, index) in list"
+          class="aj-aide-box" v-bind:key="index" @click="push(droit)"
+          itemscope itemtype="http://schema.org/GovernmentService"
+          >
             <img class="aj-aide-illustration" v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
             <div class="aj-aide-text">
-                <h2 class="aj-question">{{ droit.label }}</h2>
+                <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
                 <p class="aj-aide-description" v-html="droit.description"></p>
                 <div class="aj-aide-warning" v-if="droit.montant && isBoolean(droit.montant) && droit.symbol === 'fa-exclamation-triangle'">
                     <img src="@/assets/images/warning.svg"> Attention, cette aide vous est accessible sous certaines conditions

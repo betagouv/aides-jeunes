@@ -1,7 +1,6 @@
 <template>
     <div class="aj-droit-detail normal-padding-bottom"
       itemscope itemtype="http://schema.org/GovernmentService">
-
         <img class="aj-droit-illustration" v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
         <div class="aj-droit-content">
             <div class="aj-droit-content-heading">

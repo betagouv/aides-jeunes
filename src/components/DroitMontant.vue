@@ -12,12 +12,6 @@
         {{ droit.legend !== undefined ? droit.legend : (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
       </span>
     </span>
-    <!--<router-link class="droit-montant-unexpected"-->
-      <!--:to="{ name: 'resultat/inattendu', params: { id: droit.id }}"-->
-      <!--v-analytics="{ name:droit.label, action:'show-unexpected', category:'General'}"-->
-      <!--v-if="showUnexpected">-->
-      <!--Montant inattendu ?-->
-    <!--</router-link>-->
   </span>
 </template>
 

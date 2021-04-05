@@ -6,6 +6,9 @@
             <div class="aj-aide-text">
                 <h2 class="aj-question">{{ droit.label }}</h2>
                 <p class="aj-aide-description" v-html="droit.description"></p>
+                <div class="aj-aide-warning" v-if="droit.montant && isBoolean(droit.montant) && droit.symbol === 'fa-exclamation-triangle'">
+                    <img src="@/assets/images/warning.svg"> Attention, cette aide vous est accessible sous certaines conditions
+                </div>
             </div>
             <div class="aj-aide-montant">
                 <DroitMontant v-bind:droit="droit" v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></DroitMontant>

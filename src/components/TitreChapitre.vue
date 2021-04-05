@@ -10,7 +10,7 @@
         name: 'TitreChapitre',
         data() {
             return {
-                chapter: this.setChapterFromRoute(this.$route)
+                chapter: this.getChapterFromRoute(this.$route)
             }
         },
         computed: {
@@ -20,11 +20,11 @@
         },
         watch:{
             $route (to){
-                this.chapter = this.setChapterFromRoute(to)
+                this.chapter = this.getChapterFromRoute(to)
             }
         },
         methods: {
-            setChapterFromRoute(route) {
+            getChapterFromRoute(route) {
                 const step = this.$state.current(route, this.$store.state.situation)
                 return step && step.chapter || ''
             },

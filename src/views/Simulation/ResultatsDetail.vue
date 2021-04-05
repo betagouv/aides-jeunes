@@ -13,17 +13,22 @@
                 :patrimoine-captured="patrimoineCaptured"
                 :ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured" />
         </div>
+        <div class="aj-box normal-padding-bottom aj-results-details-feedback-box">
+            <Feedback :resultatsId="resultatsId"/>
+        </div>
     </div>
 </template>
 
 <script>
 import DroitsDetails from '../../components/DroitsDetails.vue'
 import Institution from '@/lib/Institution'
+import Feedback from '@/components/Feedback'
 
 export default {
   name: 'SimulationResultatsDetail',
   components: {
     DroitsDetails,
+    Feedback
   },
   data() {
     return {

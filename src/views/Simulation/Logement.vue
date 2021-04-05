@@ -52,7 +52,6 @@
         },
         data: function() {
             return {
-                title: 'Mon logement',
                 logementTypesQuestion: {
                     label: 'Êtes-vous ?',
                     selectedValue: (Logement.getLogementVariables(this.$store.getters.getLogementStatut) || {}).type || null,

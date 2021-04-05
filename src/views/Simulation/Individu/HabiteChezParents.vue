@@ -32,7 +32,6 @@
         data: function() {
             const individu = this.$store.getters.getIndividu(this.$route.params.id) || {}
             return {
-                title: 'Mon logement',
                 individu: individu,
                 habiteChezParentsQuestion: {
                     label: 'Êtes vous hébergé chez vos parents ?',

@@ -1,5 +1,5 @@
 'use strict';
-const Individu = require('@/lib/Individu').default;
+const Individu = require('../lib/Individu').default;
 const { datesGenerator } = require('../../backend/lib/mes-aides');
 
 let ressourceCategories = [
@@ -84,8 +84,8 @@ let ressourceTypes = [
         label: 'Allocations familiales',
         category: 'allocations',
         prefix: 'des',
-        isRelevant: (situation, individu) => {
-            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        isRelevant: (situation) => {
+            return Boolean(situation.enfants.length)
         }
     },
     {
@@ -93,8 +93,8 @@ let ressourceTypes = [
         label: 'Complément familial (CF)',
         category: 'allocations',
         prefix: 'le',
-        isRelevant: (situation, individu) => {
-            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        isRelevant: (situation) => {
+            return Boolean(situation.enfants.length)
         }
     },
     {
@@ -102,8 +102,8 @@ let ressourceTypes = [
         label: 'Allocation de soutien familial (ASF)',
         category: 'allocations',
         prefix: 'l’',
-        isRelevant: (situation, individu) => {
-            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        isRelevant: (situation) => {
+            return Boolean(situation.enfants.filter(e => e.garde_aternee).length)
         }
     },
     {
@@ -124,7 +124,7 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'l’',
         isRelevant: (situation, individu) => {
-            return  65 <= Individu.age(individu, datesGenerator(situation.dateDeValeur).today.value)
+            return  55 <= Individu.age(individu, datesGenerator(situation.dateDeValeur).today.value)
         },
     },
     {
@@ -142,7 +142,7 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'l’',
         isRelevant: (situation, individu) => {
-            return individu.handicap
+            return individu.activite != 'etudiant'
         },
 
     },
@@ -180,8 +180,8 @@ let ressourceTypes = [
         label: 'Allocation d’éducation de l’enfant handicapé (AEEH)',
         category: 'allocations',
         prefix: 'l’',
-        isRelevant: (situation, individu) => {
-            return individu.id !== 'demandeur' || Boolean(situation.enfants.filter(enfant => enfant.handicap).length)
+        isRelevant: (situation) => {
+            return Boolean(situation.enfants.filter(enfant => enfant.handicap).length)
         },
     },
     {
@@ -190,7 +190,7 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'la',
         isRelevant: (situation, individu) => {
-            return individu.handicap
+            return individu.handicap || Boolean(situation.enfants.filter(enfant => enfant.handicap).length)
         },
     },
     {
@@ -198,8 +198,8 @@ let ressourceTypes = [
         label: 'Prestation d’accueil du jeune enfant (PAJE) - Allocation de base',
         category: 'allocations',
         prefix: 'la',
-        isRelevant: (situation, individu) => {
-            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        isRelevant: (situation) => {
+            return Boolean(situation.enfants.length)
         }
     },
     {
@@ -207,8 +207,8 @@ let ressourceTypes = [
         label: 'Complément de libre choix d’activité (CLCA)',
         category: 'allocations',
         prefix: 'le',
-        isRelevant: (situation, individu) => {
-            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        isRelevant: (situation) => {
+            return Boolean(situation.enfants.length)
         }
     },
     {
@@ -216,8 +216,8 @@ let ressourceTypes = [
         label: 'Prestation partagée d’éducation de l’enfant (PreParE)',
         category: 'allocations',
         prefix: 'la',
-        isRelevant: (situation, individu) => {
-            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        isRelevant: (situation) => {
+            return Boolean(situation.enfants.length)
         }
     },
     {
@@ -225,8 +225,8 @@ let ressourceTypes = [
         label: 'Indemnités de maternité, paternité, adoption',
         category: 'indemnites',
         interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage',
-        isRelevant: (situation, individu) => {
-            return individu.id !== 'demandeur' || situation.enfants.length > 0
+        isRelevant: (situation) => {
+            return situation.enfants.length > 0
         },
     },
     {
@@ -271,8 +271,8 @@ let ressourceTypes = [
         label: 'Pension alimentaire',
         category: 'pensions',
         prefix: 'une',
-        isRelevant: (situation, individu) => {
-            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        isRelevant: (situation) => {
+            return Boolean(situation.enfants.length)
         }
     },
     {
@@ -280,9 +280,6 @@ let ressourceTypes = [
         label: 'Pension alimentaire versée',
         category: 'pensions',
         interuptionQuestionLabel: 'une pension alimentaire',
-        isRelevant: (situation, individu) => {
-            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
-        }
     },
     {
         id: 'prestation_compensatoire',
@@ -319,10 +316,7 @@ let ressourceTypes = [
         id: 'bourse_enseignement_sup',
         label: 'Bourse de l’enseignement supérieur',
         category: 'autre',
-        prefix: 'une',
-        isRelevant(situation, individu) {
-            return individu.boursier
-        }
+        prefix: 'une'
     },
     {
         id: 'bourse_recherche',

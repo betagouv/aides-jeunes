@@ -30,7 +30,7 @@
                     case 'resultats':
                         return 'Mes résultats';
                     default:
-                        return 'Titre du thème';
+                        return 'Ma simulation';
                 }
             }
         }

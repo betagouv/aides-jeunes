@@ -12,7 +12,7 @@ function individuBlockFactory(id) {
     subject: situation => situation[id] || situation.enfants.find(enfant => enfant.id === id) || {},
     steps: [
       ...(enfant ? [r('_firstName')] : []),
-      r('date_naissance', demandeur ? 'profil' : 'foyer'),
+      r('date_naissance', demandeur ? 'profil' : undefined),
       r('nationalite'),
       ...(conjoint ? [r('statut_marital')] : []),
       ...(enfant ? [r('garde_alternee')] : []),

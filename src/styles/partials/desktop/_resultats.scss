@@ -1,0 +1,236 @@
+html {
+  body {
+    .aj-loading-text {
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .aj-results-intro {
+      font-size: 1.25rem;
+      margin: 40px 0 50px 0;
+    }
+
+    .aj-aide-montant {
+      text-align: center;
+      display: block;
+
+      .aj-aide-montant-label {
+        font-weight: bold;
+        font-size: 1.4rem;
+      }
+    }
+
+    .aj-aide-box {
+      border-radius: var(--theme-border-radius);
+      background-color: var(--white);
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 3rem;
+      position: relative;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease-in-out;
+
+      &:hover {
+        box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .aj-aide-illustration {
+        width: 56px;
+      }
+
+      .aj-aide-text {
+        margin-left: 2rem;
+
+        .aj-aide-description {
+          text-align: justify;
+        }
+      }
+
+      .aj-aide-montant {
+        text-align: center;
+        flex-basis: 200px;
+        flex-grow: 0;
+        flex-shrink: 0;
+      }
+
+      .aj-aide-cta {
+        position: absolute;
+        bottom: 0;
+        right: 35px;
+        transform: translateY(50%);
+      }
+    }
+
+    .aj-results-tools {
+      display: flex;
+      align-items: flex-start;
+
+      .aj-offline-results, .aj-feedback {
+        background-color: var(--white);
+        padding: 25px;
+        border-radius: var(--theme-border-radius);
+        border: 1px solid var(--light-grey);
+
+        &.aj-offline-results {
+          margin-right: 1rem;
+        }
+
+        &.aj-feedback {
+          flex-basis: 60%;
+          flex-grow: 0;
+          flex-shrink: 0;
+
+          .aj-feedback-partenaire {
+            margin-top: 1rem;
+          }
+        }
+      }
+
+      .aj-offline-results-button {
+        margin-top: 1rem;
+        text-align: center;
+
+        button {
+          width: 100%;
+        }
+      }
+
+      .aj-feedback-buttons {
+        margin-top: 1rem;
+        height: 7rem;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+
+    .aj-droit-details-back-button {
+      &, &:focus {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .aj-droit-detail {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .aj-droit-identity {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        max-width: 70%;
+
+        .aj-droit-illustration {
+          width: 70px;
+          margin-right: 1.5rem;
+        }
+      }
+
+      .aj-droit-content {
+        order: 4;
+        margin-left: 0;
+        margin-top: 2rem;
+        width: 100%;
+        padding: 0 1rem;
+
+        h2 {
+          display: none;
+        }
+
+        .aj-droit-content-description {
+          text-align: justify;
+        }
+      }
+
+      .aj-droit-montant {
+        flex-basis: 200px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        text-align: right;
+
+        .aj-aide-montant {
+          text-align: right;
+        }
+      }
+
+      .aj-droit-conditions {
+        background: #FEF3CF;
+        padding: 1rem 1.2rem;
+        border-radius: 10px;
+
+        .aj-droit-conditions-title {
+          font-size: 1rem;
+          font-family: "MarianneBold";
+          margin-top: 0;
+        }
+
+        ul {
+          padding: 0;
+
+          li {
+            img {
+              margin-right: 3px;
+            }
+          }
+        }
+      }
+
+      .aj-droit-content-buttons-cta {
+        display: flex;
+        flex-wrap: wrap;
+
+        & > * {
+          flex: 1 1 40%;
+          margin-bottom: 1rem;
+
+          &:first-child {
+            margin-right: 1rem;
+          }
+        }
+      }
+
+      .aj-droit-notifications {
+        margin-top: 1rem;
+
+        .notification {
+          .button {
+            margin-top: 1rem;
+          }
+        }
+      }
+
+      .aj-droit-pro-agricole {
+        margin-top: 1rem;
+        display: inline-block;
+      }
+    }
+
+    .aj-results-details {
+      padding: 25px !important;
+    }
+
+    .aj-results-details-feedback-box {
+      margin-top: 2rem;
+    }
+
+    .aj-aide-warning {
+      background-color: #FEF3CF;
+      padding: 7px 1rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+  }
+}

@@ -1,7 +1,8 @@
 <template>
-  <span class="droit-montant droit-montant--unexpected" itemscope itemtype="http://schema.org/Offer" itemprop="offers">
-    <span class="droit-montant-label">
+  <span class="aj-aide-montant" itemscope itemtype="http://schema.org/Offer" itemprop="offers">
+    <span class="aj-aide-montant-label">
       <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
+        <span class="font-normal font-base">Montant estimé</span><br>
         {{ droit.montant | currency(( droit.unit || '€' ), getFractionSize(droit)) }}
       </span>
       <span v-if="isString(droit.montant)">
@@ -11,12 +12,6 @@
         {{ droit.legend !== undefined ? droit.legend : (droit.isMontantAnnuel ? '/ an' : '/ mois') }}
       </span>
     </span>
-    <router-link class="droit-montant-unexpected"
-      :to="{ name: 'resultat/inattendu', params: { id: droit.id }}"
-      v-analytics="{ name:droit.label, action:'show-unexpected', category:'General'}"
-      v-if="showUnexpected">
-      Montant inattendu ?
-    </router-link>
   </span>
 </template>
 
@@ -57,42 +52,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="scss">
-@import '@/styles/main.scss';
-
-.droit-montant {
-
-  display: inline-block;
-  text-align: right;
-  color: $text-color;
-
-  &:hover,
-  &:active {
-    text-decoration: none;
-  }
-
-  .montant {
-    font-size: 18px;
-    font-weight: 600;
-
-    @media (min-width: $screen-md-min) {
-      font-size: 22px;
-    }
-  }
-
-  .montant-detail {
-    display: inline-block;
-  }
-
-  &--unexpected {
-    .droit-montant-label {
-      display: block;
-    }
-  }
-
-  .droit-montant-unexpected {
-    cursor: pointer;
-  }
-}
-</style>

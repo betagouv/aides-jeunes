@@ -2,7 +2,7 @@
     <a v-bind:href="getURL(link)"
     target="_blank"
     rel="noopener"
-    class="text-center" 
+    class="text-center"
     v-bind:class="{
       'button secondary': level === 'default',
       'button primary': level === 'success' }"

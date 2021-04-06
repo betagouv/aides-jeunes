@@ -35,9 +35,6 @@ $screen-smaller-than-mobile: 399px;
   src: url('../fonts/Marianne-ExtraBold.woff2') format('truetype')
 }
 
-/* UTILS */
-@import 'partials/utils/helpers';
-
 /* DESKTOP IMPORTS */
 @import 'partials/desktop/ui-kit';
 @import 'partials/desktop/buttons';
@@ -46,6 +43,7 @@ $screen-smaller-than-mobile: 399px;
 @import 'partials/desktop/children';
 @import 'partials/desktop/header';
 @import 'partials/desktop/footer';
+@import 'partials/desktop/resultats';
 
 /* TABLET IMPORTS */
 @media (max-width: 768px) {
@@ -62,5 +60,9 @@ $screen-smaller-than-mobile: 399px;
   @import 'partials/mobile/children';
   @import 'partials/mobile/footer';
   @import 'partials/mobile/home';
+  @import 'partials/mobile/resultats';
 }
+
+/* UTILS */
+@import 'partials/utils/helpers';
 

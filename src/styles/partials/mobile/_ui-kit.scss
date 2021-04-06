@@ -13,7 +13,10 @@ html {
       }
 
       .aj-box-wrapper {
-        padding: 30px 20px 45px 20px;
+
+        & > div:not(.aj-unbox), & > form:not(.aj-unbox), & .aj-box {
+          padding: 1.5rem;
+        }
 
         .aj-actions {
           width: 100%;
@@ -25,6 +28,16 @@ html {
         display: table;
         margin: 10px 0 0 0;
       }
+
+      .aj-loading-modal {
+        .aj-loading-modal-content {
+          margin: 0 1rem;
+        }
+      }
+    }
+
+    .modal__backdrop {
+      padding: 4em 2rem !important;
     }
   }
 }

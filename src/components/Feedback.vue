@@ -1,6 +1,6 @@
 <template>
-  <div id="feedback">
-    <h2>
+  <div class="aj-feedback">
+    <h2 class="aj-question">
       Nous améliorons ce simulateur en continu, et vous pouvez nous y aider&nbsp;!
     </h2>
     <p>
@@ -78,28 +78,25 @@ ID : ${resultatsId} (à conserver impérativement pour traitement de votre deman
       >).</small
     ><br />
     <small>
-      <button v-if="!showExpertLinks" @click="toggleLinks">Partenaires</button>
-      <div v-if="showExpertLinks">
-        Partenaires&nbsp;:
+      <button v-if="!showExpertLinks" class="button small" @click="toggleLinks">Je suis partenaire</button>
+      <div v-if="showExpertLinks" class="aj-feedback-partenaire">
+        Je suis partenaire&nbsp;:
         <ul>
           <li>
             <router-link to="/foyer/resultat/attendu"
               >Indiquez les résultats attendus pour cette situation</router-link
             >
           </li>
-          <li>
+          <li v-if="openfiscaTracerURL">
             <a
-              v-if="openfiscaTracerURL"
               v-analytics="{ category: 'Tracer' }"
               target="_blank"
               :href="openfiscaTracerURL"
               >Accédez à l'outil d'analyse des résultats de cette simulation</a
             >
           </li>
-          <li>
-            <a
-              v-if="openfiscaAxeURL"
-              v-analytics="{ category: 'Axe' }"
+          <li v-if="openfiscaAxeURL">
+            <a v-analytics="{ category: 'Axe' }"
               target="_blank"
               :href="openfiscaAxeURL"
               >Analysez l'évolution des aides en fonction des ressources

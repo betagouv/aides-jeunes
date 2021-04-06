@@ -1,14 +1,15 @@
 <template>
-  <div>
-    <p v-show="accessStatus.fetching"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération de la situation en cours…</p>
-
-    <p v-show="resultatStatus.updating"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Calcul en cours de vos droits…</p>
+<div class="aj-unbox">
+    <LoadingModal v-if="resultatStatus.fetching || resultatStatus.updating">
+        <p v-show="resultatStatus.updating" class="aj-loading-text">Récupération de la situation en cours…</p>
+        <p v-show="resultatStatus.fetching" class="aj-loading-text">Calcul en cours de vos droits…</p>
+    </LoadingModal>
 
     <div class="notification warning" v-if="hasWarning">
       <div>
         <h2><i class="fa fa-warning" aria-hidden="true"></i> Aucun résultat disponible</h2>
         <h3>La simulation à laquelle vous souhaitez accéder n‘est pas accessible.</h3>
-        <p>
+        <p class="aj-results-intro">
           Pour commencer votre simulation, rendez-vous sur la <router-link to="home">page d'accueil</router-link>.
         </p>
       </div>
@@ -18,7 +19,7 @@
 
     <div v-show="shouldDisplayResults">
       <div v-if="! isEmpty(droits)">
-        <p>
+        <p class="aj-results-intro">
           D'après la situation que vous avez décrite, vous êtes a priori éligible à ces aides.
           <span id="print-disclaimer">Ces résultats sont fondés sur les seules informations que vous avez indiquées et ne constituent en aucune façon un engagement de la part des organismes cités.</span>
           Les montants avancés sont arrondis à une dizaine d'euros près :
@@ -32,14 +33,16 @@
         <DroitsList ineligible v-bind:droits="droitsNonEligiblesShown"></DroitsList>
       </div>
 
-      <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
-
       <div class="frame-resultats" v-show="isEmpty(droits)">
-          <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
-          <p>Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
+        <h2>Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2>
+        <p class="aj-results-intro">Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
       </div>
 
-      <Feedback :resultatsId="resultatsId"/>
+      <div class="aj-results-tools">
+        <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
+        <Feedback :resultatsId="resultatsId"/>
+      </div>
+
     </div>
 
   </div>
@@ -50,6 +53,7 @@ import DroitsList from './../../components/DroitsList'
 import ErrorBlock from './../../components/ErrorBlock'
 import Feedback from './../../components/Feedback'
 import OfflineResults from './../../components/OfflineResults'
+import LoadingModal from '@/components/LoadingModal'
 
 export default {
   name: 'SimulationResultats',
@@ -58,9 +62,10 @@ export default {
     ErrorBlock,
     Feedback,
     OfflineResults,
+    LoadingModal
   },
   computed: {
-    droits: function() { 
+    droits: function() {
       return this.resultats && this.resultats.droitsEligibles
     },
     droitsNonEligibles: function() {

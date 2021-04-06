@@ -8,19 +8,12 @@
 
     export default {
         name: 'TitreChapitre',
-        data() {
-            return {
-                chapter: this.getChapterFromRoute(this.$route)
-            }
-        },
         computed: {
+            chapter() {
+                return this.getChapterFromRoute(this.$route)
+            },
             title() {
                 return this.getTitleByChapter(this.chapter)
-            }
-        },
-        watch:{
-            $route (to){
-                this.chapter = this.getChapterFromRoute(to)
             }
         },
         methods: {

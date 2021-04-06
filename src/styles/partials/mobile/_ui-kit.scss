@@ -13,7 +13,10 @@ html {
       }
 
       .aj-box-wrapper {
-        padding: 30px 20px 45px 20px;
+
+        & > div:not(.aj-unbox), & > form:not(.aj-unbox), & .aj-box {
+          padding: 1.5rem;
+        }
 
         .aj-actions {
           width: 100%;

@@ -124,13 +124,31 @@ html {
       display: flex;
       flex-direction: row;
       align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: space-between;
 
-      .aj-droit-illustration {
-        width: 56px;
+      .aj-droit-identity {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        max-width: 70%;
+
+        .aj-droit-illustration {
+          width: 70px;
+          margin-right: 1.5rem;
+        }
       }
 
       .aj-droit-content {
-        margin-left: 2rem;
+        order: 4;
+        margin-left: 0;
+        margin-top: 2rem;
+        width: 100%;
+        padding: 0 1rem;
+
+        h2 {
+          display: none;
+        }
 
         .aj-droit-content-description {
           text-align: justify;
@@ -138,10 +156,14 @@ html {
       }
 
       .aj-droit-montant {
-        text-align: center;
         flex-basis: 200px;
         flex-grow: 0;
         flex-shrink: 0;
+        text-align: right;
+
+        .aj-aide-montant {
+          text-align: right;
+        }
       }
 
       .aj-droit-conditions {

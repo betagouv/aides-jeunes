@@ -44,15 +44,26 @@ html {
       flex-wrap: wrap;
       justify-content: space-between;
 
-      .aj-droit-illustration {
-        width: 80px;
+      .aj-droit-identity {
+        .aj-droit-illustration {
+          width: 80px;
+        }
+
+        h2 {
+          display: none;
+        }
       }
 
       .aj-droit-content {
         order: 3;
         margin-left: 0;
         margin-top: 1.5rem;
+        padding: 0 0.5rem;
         width: 100%;
+
+        h2 {
+          display: block;
+        }
       }
 
       .aj-droit-montant {

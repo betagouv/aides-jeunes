@@ -16,7 +16,7 @@
 <script>
 let typeLabels = {
     teleservice: 'Faire une demande en ligne',
-    form: 'Accéder au <br> formulaire papier',
+    form: 'Accéder au formulaire papier',
     instructions: 'Accéder aux instructions',
     link: "Plus d'informations <i class='fa fa-external-link' aria-hidden='true' role='presentation'></i>",
 };

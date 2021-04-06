@@ -1,10 +1,19 @@
 <template>
     <div class="aj-droit-detail normal-padding-bottom"
       itemscope itemtype="http://schema.org/GovernmentService">
-        <img class="aj-droit-illustration" v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
+        <div class="aj-droit-identity">
+            <img class="aj-droit-illustration" v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
+            <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
+        </div>
+        <div class="aj-droit-montant">
+            <DroitMontant v-bind:droit="droit" unexpected v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))" />
+            <div v-if="droit.montant && isBoolean(droit.montant)">
+                <i v-bind:class="`fa ${droit.symbol ? droit.symbol : 'fa-check-circle'} fa-2x`"></i>
+            </div>
+        </div>
         <div class="aj-droit-content">
+            <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
             <div class="aj-droit-content-heading">
-                <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
                 <div class="aj-droit-content-description">
                     <p>
                         <span v-html="droit.description" itemprop="description"></span> <BenefitCtaLink
@@ -62,12 +71,6 @@
                 >
                     <img src="@/assets/images/doigt.svg"> Démarches pour les professions agricoles
                 </a>
-            </div>
-        </div>
-        <div class="aj-droit-montant">
-            <DroitMontant v-bind:droit="droit" unexpected v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))" />
-            <div v-if="droit.montant && isBoolean(droit.montant)">
-                <i v-bind:class="`fa ${droit.symbol ? droit.symbol : 'fa-check-circle'} fa-2x`"></i>
             </div>
         </div>
     </div>

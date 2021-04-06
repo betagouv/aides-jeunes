@@ -9,19 +9,14 @@
     export default {
         name: 'TitreChapitre',
         computed: {
-            chapter() {
-                return this.getChapterFromRoute(this.$route)
-            },
             title() {
-                return this.getTitleByChapter(this.chapter)
+                return this.getTitleByRoute(this.$route)
             }
         },
         methods: {
-            getChapterFromRoute(route) {
+            getTitleByRoute(route) {
                 const step = this.$state.current(route, this.$store.state.situation)
-                return step && step.chapter || ''
-            },
-            getTitleByChapter(chapter) {
+                const chapter = step && step.chapter || ''
                 switch (chapter) {
                     case 'profil':
                         return 'Mon profil';

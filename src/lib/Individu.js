@@ -1,5 +1,5 @@
-var moment = require('moment')
-var cloneDeep = require('lodash/cloneDeep')
+import moment from 'moment'
+import cloneDeep from 'lodash/cloneDeep'
 
 function isRoleParent (role) {
     return ['demandeur', 'conjoint'].includes(role);
@@ -138,4 +138,4 @@ const Individu = {
     ],
 }
 
-module.exports = Individu
+export default Individu

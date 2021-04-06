@@ -1,4 +1,4 @@
-const Individu = require('@/lib/Individu').default;
+const Individu = require('@/lib/Individu');
 const Ressource = require('@/lib/Ressource').default;
 const { datesGenerator } = require('../../../backend/lib/mes-aides');
 const { Step, ComplexStep } = require('./steps');

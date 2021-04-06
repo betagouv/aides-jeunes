@@ -1,5 +1,5 @@
 'use strict';
-const Individu = require('../lib/Individu').default;
+const Individu = require('../lib/Individu');
 const { datesGenerator } = require('../../backend/lib/mes-aides');
 
 let ressourceCategories = [

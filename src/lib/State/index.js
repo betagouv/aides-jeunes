@@ -50,8 +50,7 @@ function full(situation) {
 
 function current(current, situation) {
     const journey = full(situation)
-    const activeJourney = journey.filter(s => s.isActive)
-    return activeJourney.find(item => item.fullPath == (current.fullPath || current))
+    return journey.find(item => item.fullPath == (current.fullPath || current))
 }
 
 function next(current, situation) {

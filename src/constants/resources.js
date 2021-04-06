@@ -84,7 +84,7 @@ let ressourceTypes = [
         label: 'Allocations familiales',
         category: 'allocations',
         prefix: 'des',
-        isRelevant: (situation) => {
+        isRelevant: (situation, individu) => {
             return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
@@ -93,7 +93,7 @@ let ressourceTypes = [
         label: 'Complément familial (CF)',
         category: 'allocations',
         prefix: 'le',
-        isRelevant: (situation) => {
+        isRelevant: (situation, individu) => {
             return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
@@ -102,7 +102,7 @@ let ressourceTypes = [
         label: 'Allocation de soutien familial (ASF)',
         category: 'allocations',
         prefix: 'l’',
-        isRelevant: (situation) => {
+        isRelevant: (situation, individu) => {
             return individu.id !== 'demandeur' || Boolean(situation.enfants.filter(e => e.garde_aternee).length)
         }
     },
@@ -180,7 +180,7 @@ let ressourceTypes = [
         label: 'Allocation d’éducation de l’enfant handicapé (AEEH)',
         category: 'allocations',
         prefix: 'l’',
-        isRelevant: (situation) => {
+        isRelevant: (situation, individu) => {
             return individu.id !== 'demandeur' || Boolean(situation.enfants.filter(enfant => enfant.handicap).length)
         },
     },
@@ -198,7 +198,7 @@ let ressourceTypes = [
         label: 'Prestation d’accueil du jeune enfant (PAJE) - Allocation de base',
         category: 'allocations',
         prefix: 'la',
-        isRelevant: (situation) => {
+        isRelevant: (situation, individu) => {
             return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
@@ -207,7 +207,7 @@ let ressourceTypes = [
         label: 'Complément de libre choix d’activité (CLCA)',
         category: 'allocations',
         prefix: 'le',
-        isRelevant: (situation) => {
+        isRelevant: (situation, individu) => {
             return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
@@ -216,7 +216,7 @@ let ressourceTypes = [
         label: 'Prestation partagée d’éducation de l’enfant (PreParE)',
         category: 'allocations',
         prefix: 'la',
-        isRelevant: (situation) => {
+        isRelevant: (situation, individu) => {
             return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
@@ -271,7 +271,7 @@ let ressourceTypes = [
         label: 'Pension alimentaire',
         category: 'pensions',
         prefix: 'une',
-        isRelevant: (situation) => {
+        isRelevant: (situation, individu) => {
             return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },

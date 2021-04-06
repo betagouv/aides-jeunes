@@ -23,13 +23,13 @@ context('Full simulation', () => {
     cy.get('div').find('input[type="checkbox"]').first().check()
     cy.get('button[type="submit"]').click()
 
-    cy.get('div').as('salarySection')
-    cy.get('@salarySection').find('input[type="radio"][value="false"]').first().check()
-    cy.get('@salarySection').find('input[type="number"]').as('inputs')
-    cy.get('@inputs').its('length').should('equal', 13)
+    // cy.get('div').as('salarySection')
+    // cy.get('@salarySection').find('input[type="radio"][value="false"]').first().check()
+    // cy.get('@salarySection').find('input[type="number"]').as('inputs')
+    // cy.get('@inputs').its('length').should('equal', 13)
 
-    cy.get('@inputs').eq(0).type(400)
-    cy.get('@inputs').eq(2).type('{selectall}0')
+    // cy.get('@inputs').eq(0).type(400)
+    // cy.get('@inputs').eq(2).type('{selectall}0')
     cy.get('button[type="submit"]').click()
 
     // steps.sansPensionAlimentaireVersees()

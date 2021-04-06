@@ -1,5 +1,3 @@
-import { logementTypes, locationTypes } from '../constants/logement'
-
 function getStatutOccupationLogement(logement) {
     let statusOccupationMap = {
         proprietaireprimoaccedant: 'primo_accedant',
@@ -40,33 +38,7 @@ function getLogementVariables(statusOccupationId) {
     return { type: null, primoAccedant: null, locationType: null, ...base }
 }
 
-function getLabels(statusOccupationId) {
-    let logement = getLogementVariables(statusOccupationId);
-    let logementLabel = logementTypes.find(logementType => logementType.id === logement.type).label;
-
-    //TODO3 logementLabel = logementLabel.$filter('uppercaseFirst')();
-    let recapLogement = '<b>' + logementLabel + '</b>';
-    let loyerLabel;
-    if ('locataire' === logement.type) {
-        recapLogement += ' d’un logement <b>';
-        recapLogement += locationTypes.find(locationType => locationType.id === logement.locationType).label;
-        recapLogement += '</b>';
-        loyerLabel = 'Loyer';
-    } else {
-        loyerLabel = 'Mensualité d’emprunt';
-        if (logement.primoAccedant) {
-            recapLogement += ' en accession';
-        }
-    }
-
-    return {
-        loyerLabel: loyerLabel,
-        recapLogement: recapLogement,
-    };
-}
-
 const Logement = {
-    getLabels,
     getLogementVariables,
     getStatutOccupationLogement,
 }

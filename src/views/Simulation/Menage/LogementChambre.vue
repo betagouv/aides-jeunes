@@ -4,7 +4,7 @@
             <legend>
                 <h2 class="aj-question">
                     {{ chambreQuestion.label }}
-                    <span v-if="chambreQuestion.hint" class="help">({{ chambreQuestion.hint }})</span>
+                    <span v-if="chambreQuestion.hint" class="help">{{ chambreQuestion.hint }}</span>
                 </h2>
             </legend>
             <div v-for="response in chambreQuestion.responses" class="aj-selection-wrapper" v-bind:key="response.value">

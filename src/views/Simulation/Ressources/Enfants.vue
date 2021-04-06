@@ -31,7 +31,7 @@ export default {
     onSubmit: function() {
       this.enfants.forEach(enfant => {
         if (! enfant._hasRessources) {
-            let ressourceTypes = Ressource.getIndividuRessourceTypes(enfant)
+            let ressourceTypes = Ressource.getIndividuRessourceTypes(enfant, this.$store.state.situation)
             Object.keys(ressourceTypes).forEach(t => ressourceTypes[t] = false)
             Ressource.setIndividuRessourceTypes(enfant, ressourceTypes, this.$store.state.dates)
         }

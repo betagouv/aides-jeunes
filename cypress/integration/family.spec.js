@@ -15,7 +15,7 @@ context('Full simulation', () => {
     steps.sansDomicileStable()
     steps.salaireSeul()
 
-    // cy.get('button[type="submit"]').click()
+    cy.get('button[type="submit"]').click()
 
     cy.contains('fieldset', 'Votre 1ᵉʳ enfant').find('input[value=true]').check()
     cy.get('button[type="submit"]').click()

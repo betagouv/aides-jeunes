@@ -13,11 +13,11 @@ import YesNoQuestion from '@/components/YesNoQuestion'
 import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
-  name: 'SimulationIndividuAideMobiliteMasterSortieAcademie',
+  name: 'SimulationIndividuAideMobiliteMasterSortieRegionAcademique',
   components: {
     Actions,
     YesNoQuestion
   },
-  mixins: [createIndividuMixin('aide_mobilite_master_sortie_academie')],
+  mixins: [createIndividuMixin('aide_mobilite_master_sortie_region_academique')],
 }
 </script>

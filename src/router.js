@@ -159,6 +159,11 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/ClasseScolarite.vue'),
         },
         {
+          name: 'statuts_etablissement_scolaire',
+          path: 'statuts_etablissement_scolaire',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/StatutsEtablissementScolaire.vue'),
+        },
+        {
           name: 'aide_mobilite_parcoursup_sortie_academie',
           path: 'aide_mobilite_parcoursup_sortie_academie',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/AideMobiliteParcoursupSortieAcademie.vue'),
@@ -169,9 +174,9 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/AideMobiliteParcoursupBoursierLycee.vue'),
         },
         {
-          name: 'aide_mobilite_master_sortie_academie',
-          path: 'aide_mobilite_master_sortie_academie',
-          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/AideMobiliteMasterSortieAcademie.vue'),
+          name: 'aide_mobilite_master_sortie_region_academique',
+          path: 'aide_mobilite_master_sortie_region_academique',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/AideMobiliteMasterSortieRegionAcademique.vue'),
         },
         {
           name: 'boursier',

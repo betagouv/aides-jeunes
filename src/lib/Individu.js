@@ -124,17 +124,21 @@ const Individu = {
     },
     scolariteOptions: [
         {
-          value: 'inconnue',
-          label: 'Aucun des deux'
-        },
-        {
           value: 'college',
           label: 'Au collège'
         },
         {
           value: 'lycee',
           label: 'Au lycée / En CAP / En CPA'
-        }
+        },
+        {
+          value: 'enseignement_superieur',
+          label: "Dans un établissement de l'enseignement supérieur",
+        },
+        {
+          value: 'inconnue',
+          label: 'Autre'
+        },
     ],
 }
 

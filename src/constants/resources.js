@@ -85,7 +85,7 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'des',
         isRelevant: (situation) => {
-            return Boolean(situation.enfants.length)
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
     {
@@ -94,7 +94,7 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'le',
         isRelevant: (situation) => {
-            return Boolean(situation.enfants.length)
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
     {
@@ -103,7 +103,7 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'l’',
         isRelevant: (situation) => {
-            return Boolean(situation.enfants.filter(e => e.garde_aternee).length)
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.filter(e => e.garde_aternee).length)
         }
     },
     {
@@ -181,7 +181,7 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'l’',
         isRelevant: (situation) => {
-            return Boolean(situation.enfants.filter(enfant => enfant.handicap).length)
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.filter(enfant => enfant.handicap).length)
         },
     },
     {
@@ -199,7 +199,7 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'la',
         isRelevant: (situation) => {
-            return Boolean(situation.enfants.length)
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
     {
@@ -208,7 +208,7 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'le',
         isRelevant: (situation) => {
-            return Boolean(situation.enfants.length)
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
     {
@@ -217,7 +217,7 @@ let ressourceTypes = [
         category: 'allocations',
         prefix: 'la',
         isRelevant: (situation) => {
-            return Boolean(situation.enfants.length)
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
     {
@@ -272,7 +272,7 @@ let ressourceTypes = [
         category: 'pensions',
         prefix: 'une',
         isRelevant: (situation) => {
-            return Boolean(situation.enfants.length)
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
         }
     },
     {

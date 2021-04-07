@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style type="text/css">
-    a:not(.inactive), a:not(.inactive):active, a:not(.inactive):visited {
+    .aj-debug-progress a:not(.inactive), .aj-debug-progress a:not(.inactive):active, .aj-debug-progress a:not(.inactive):visited {
         color: var(--green);
     }
   .inactive, .inactive:active, .inactive:visited {

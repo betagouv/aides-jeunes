@@ -18,7 +18,7 @@ export default {
   },
     created() {
         this.$router.onReady(() => {
-            if (this.$route.query.debug !== undefined) {
+            if (this.$route.query.debug === 'parcours') {
                 this.$store.dispatch('setDebug', true)
             }
         })

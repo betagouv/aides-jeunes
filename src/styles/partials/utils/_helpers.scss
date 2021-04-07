@@ -6,6 +6,10 @@ html {
 
     .list-unstyled {
       list-style: none;
+
+      &.no-padding {
+        padding: 0;
+      }
     }
 
     .m-auto {

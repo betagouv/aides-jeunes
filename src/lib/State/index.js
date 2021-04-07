@@ -57,7 +57,7 @@ function next(current, situation) {
     const journey = full(situation)
     const activeJourney = journey.filter(s => s.isActive)
 
-    let matches = activeJourney.map((element, index) => { return {element, index} }).filter(item => item.element.fullPath == (current.fullPath || current))
+    let matches = activeJourney.map((element, index) => { return {element, index} }).filter(item => item.element.fullPath == (current.path || current))
     if (matches.length) {
          return activeJourney[matches[matches.length - 1].index + 1]
      } else {

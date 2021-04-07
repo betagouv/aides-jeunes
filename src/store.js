@@ -59,6 +59,7 @@ function defaultStore() {
   const now = moment().format()
   return {
     message: null,
+    debug: false,
     situation: {
       _id: null,
       external_id: null,
@@ -111,6 +112,9 @@ const store = new Vuex.Store({
   getters: {
     passSanityCheck: function(state) {
         return state.situation.demandeur && state.situation.demandeur.date_naissance
+    },
+    getDebug: function(state) {
+        return state.debug
     },
     peopleParentsFirst: function(state) {
       return [].concat(
@@ -196,6 +200,9 @@ const store = new Vuex.Store({
       state.situation = {}
       state.access.forbidden = false
       state.access.fetching = false
+    },
+    setDebug: function (state, debug) {
+      state.debug = debug
     },
     initialize: function(state) {
       const { situation, dates, ameliNoticationDone, calculs } = restoreLocal()
@@ -300,6 +307,9 @@ const store = new Vuex.Store({
       commit('clear')
       commit('initialize')
       commit('setExternalId', external_id)
+    },
+    setDebug: function ({commit}, debug) {
+      commit('setDebug', debug)
     },
     initialize: function({ commit }) {
       commit('initialize')

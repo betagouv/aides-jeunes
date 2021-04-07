@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <h2>Récapitulatif de votre simulation</h2>
-    <h3>Parcours complet</h3>
-    <ul>
-      <li v-for="(step) in full" v-bind:key="step.key || step.fullPath">
+  <div class="aj-debug-progress">
+    <h3 class="aj-question">Parcours complet</h3>
+    <button v-if="!showInactiveRoutes" class="button small" @click="showInactiveRoutes = true">Afficher les étapes cachées</button>
+    <button v-if="showInactiveRoutes" class="button small" @click="showInactiveRoutes = false">N'afficher que les étapes actives</button>
+    <ul class="list-unstyled no-padding">
+      <li v-for="(step) in full" v-bind:key="step.key || step.fullPath" :class="{'hide-route': !showInactiveRoutes && !step.isActive}" >
         <router-link v-bind:class="{ inactive: !step.isActive, current: step.fullPath == current}" v-bind:to="step.fullPath" >{{step.fullPath}}</router-link> <abbr v-if="step.missing" title="Cette page n'existe pas encore dans le router.">🚧</abbr>
       </li>
     </ul>
@@ -13,6 +14,11 @@
 <script>
 export default {
   name: 'Progress',
+  data() {
+    return {
+      showInactiveRoutes: true
+    }
+  },
   computed: {
     full: function() {
       return this.$state.full(this.$store.state.situation).map(s => {
@@ -37,10 +43,18 @@ export default {
 </script>
 
 <style type="text/css">
-  .inactive {
+    a:not(.inactive), a:not(.inactive):active, a:not(.inactive):visited {
+        color: var(--green);
+    }
+  .inactive, .inactive:active, .inactive:visited {
     text-decoration: line-through;
+    color: var(--orange);
   }
   .current {
     font-weight: bold;
   }
+
+    .hide-route {
+        display: none;
+    }
 </style>

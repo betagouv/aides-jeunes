@@ -39,12 +39,14 @@ export default {
     individu: Object
   },
   data: function() {
-    let types = ressourceTypes.filter(Ressource.isRessourceOnMainScreen)
-  
+    let types = ressourceTypes.filter(ressourceType => {
+      return Ressource.isRessourceOnMainScreen(ressourceType) && Ressource.isRessourceRelevant(ressourceType, this.$store.state.situation, this.individu)
+    })
+    let selectedTypes = Ressource.getIndividuRessourceTypes(this.individu, this.$store.state.situation)
     return {
       categories: ressourceCategories,
       typesByCategories: groupBy(types, t => t.category),
-      selectedTypes: Ressource.getIndividuRessourceTypes(this.individu)
+      selectedTypes
     }
   },
   computed: {
@@ -55,7 +57,7 @@ export default {
   },
   watch: {
     individu: function() {
-      this.selectedTypes = Ressource.getIndividuRessourceTypes(this.individu)
+      this.selectedTypes = Ressource.getIndividuRessourceTypes(this.individu, this.$store.state.situation)
     }
   },
   methods: {

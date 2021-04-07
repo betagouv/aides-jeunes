@@ -1,4 +1,4 @@
-const Individu = require('@/lib/Individu').default;
+const Individu = require('@/lib/Individu');
 const Ressource = require('@/lib/Ressource').default;
 const { datesGenerator } = require('../../../backend/lib/mes-aides');
 const { Step, ComplexStep } = require('./steps');
@@ -203,7 +203,7 @@ function resourceBlocks(situation) {
       steps: [
         new ComplexStep({route: `individu/${individuId}/ressources/types`})
       ].concat(
-          Ressource.getIndividuRessourceCategories(individu).map(category => new ComplexStep({route: `individu/${individuId}/ressources/montants/${category}`}))
+          Ressource.getIndividuRessourceCategories(individu, situation).map(category => new ComplexStep({route: `individu/${individuId}/ressources/montants/${category}`}))
       )
     }
   }

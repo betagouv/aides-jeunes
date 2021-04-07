@@ -1,4 +1,6 @@
 'use strict';
+const Individu = require('../lib/Individu');
+const { datesGenerator } = require('../../backend/lib/mes-aides');
 
 let ressourceCategories = [
     {
@@ -81,25 +83,34 @@ let ressourceTypes = [
         id: 'af',
         label: 'Allocations familiales',
         category: 'allocations',
-        prefix: 'des'
+        prefix: 'des',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'cf',
         label: 'Complément familial (CF)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'asf',
         label: 'Allocation de soutien familial (ASF)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.filter(e => e.garde_aternee).length)
+        }
     },
     {
         id: 'rsa',
         label: 'Revenu de solidarité active (RSA)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
     },
     {
         id: 'ppa',
@@ -111,76 +122,112 @@ let ressourceTypes = [
         id: 'aspa',
         label: 'Allocation de solidarité aux personnes âgées (ASPA)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: (situation, individu) => {
+            return  55 <= Individu.age(individu, datesGenerator(situation.dateDeValeur).today.value)
+        },
     },
     {
         id: 'asi',
         label: 'Allocation supplémentaire d’invalidité (ASI)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: (situation, individu) => {
+            return individu.handicap
+        },
     },
     {
         id: 'ass',
         label: 'Allocation de solidarité spécifique (ASS)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: (situation, individu) => {
+            return individu.activite != 'etudiant'
+        },
 
     },
     {
         id: 'aah',
         label: 'Allocation adulte handicapé (AAH)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: (situation, individu) => {
+            return individu.handicap
+        },
     },
     {
         id: 'caah',
         label: 'Complément de ressources adulte handicapé',
         category: 'allocations',
         prefix: 'le',
-        sourceOpenfisca: 'prestations.minima_sociaux.caah.montant_complement_ressources'
+        sourceOpenfisca: 'prestations.minima_sociaux.caah.montant_complement_ressources',
+        isRelevant: (situation, individu) => {
+            return individu.handicap
+        },
     },
     {
         id: 'mva',
         label: 'Majoration pour vie autonome (MVA)',
         category: 'allocations',
         prefix: 'la',
-        sourceOpenfisca: 'prestations.minima_sociaux.caah.majoration_vie_autonome'
+        sourceOpenfisca: 'prestations.minima_sociaux.caah.majoration_vie_autonome',
+        isRelevant: (situation, individu) => {
+            return individu.handicap
+        },
     },
     {
         id: 'aeeh',
         label: 'Allocation d’éducation de l’enfant handicapé (AEEH)',
         category: 'allocations',
-        prefix: 'l’'
+        prefix: 'l’',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.filter(enfant => enfant.handicap).length)
+        },
     },
     {
         id: 'pch',
         label: 'Prestation de compensation du handicap (PCH)',
         category: 'allocations',
-        prefix: 'la'
+        prefix: 'la',
+        isRelevant: (situation, individu) => {
+            return individu.handicap || Boolean(situation.enfants.filter(enfant => enfant.handicap).length)
+        },
     },
     {
         id: 'paje_base',
         label: 'Prestation d’accueil du jeune enfant (PAJE) - Allocation de base',
         category: 'allocations',
-        prefix: 'la'
+        prefix: 'la',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'paje_clca',
         label: 'Complément de libre choix d’activité (CLCA)',
         category: 'allocations',
-        prefix: 'le'
+        prefix: 'le',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'paje_prepare',
         label: 'Prestation partagée d’éducation de l’enfant (PreParE)',
         category: 'allocations',
-        prefix: 'la'
+        prefix: 'la',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'indemnites_journalieres_maternite',
         label: 'Indemnités de maternité, paternité, adoption',
         category: 'indemnites',
-        interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage'
+        interuptionQuestionLabel: 'des indemnités de la sécurité sociale, un salaire ou des allocations chômage',
+        isRelevant: (situation) => {
+            return situation.enfants.length > 0
+        },
     },
     {
         id: 'indemnites_journalieres_maladie',
@@ -223,7 +270,10 @@ let ressourceTypes = [
         id: 'pensions_alimentaires_percues',
         label: 'Pension alimentaire',
         category: 'pensions',
-        prefix: 'une'
+        prefix: 'une',
+        isRelevant: (situation, individu) => {
+            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
+        }
     },
     {
         id: 'pensions_alimentaires_versees_individu',
@@ -242,13 +292,19 @@ let ressourceTypes = [
         label: 'Retraite (y compris reversion), rente',
         category: 'pensions',
         prefix: 'une',
-        hint: 'Entrez le montant avant la retenue à la source'
+        hint: 'Entrez le montant avant la retenue à la source',
+        isRelevant(situation, individu) {
+            return individu.activite === 'retraite'
+        }
     },
     {
         id: 'retraite_combattant',
         label: 'Retraite du combattant',
         category: 'pensions',
-        prefix: 'une'
+        prefix: 'une',
+        isRelevant(situation, individu) {
+            return individu.activite === 'retraite'
+        }
     },
     {
         id: 'pensions_invalidite',

@@ -81,7 +81,7 @@ const Individu = {
                 conjoint: () => 'votre conjoint·e',
                 enfant: () => `${individu._firstName}`,
             },
-            particule: {
+            préposition: {
                 conjoint: () => 'de ',
                 enfant: () => VOYELLES.includes(individu._firstName[0].toLowerCase()) ? `d'` : 'de ',
             },

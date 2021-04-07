@@ -3,7 +3,7 @@
     <label for="date_naissance"><h2 class="aj-question">
         {{ role === 'demandeur' ?
         `Quelle est votre date de naissance&nbsp;?` :
-        `Quelle est la date de naissance ${getLabel('particule')}${getLabel('nom')}&nbsp;?`}}
+        `Quelle est la date de naissance ${getLabel('préposition')}${getLabel('nom')}&nbsp;?`}}
     </h2></label>
     <InputDate required id="date_naissance" v-model="value" />
     <p class="notification warning" v-if="error">

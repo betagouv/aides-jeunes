@@ -49,7 +49,7 @@
                             },
                             {
                                 label: 'Statistiques',
-                                href: 'https://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=range&date=previous30&utm_source=mes-aides-beta&utm_medium=menu'
+                                href: 'https://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=range&date=previous30'
                             },
                         ]
                     },

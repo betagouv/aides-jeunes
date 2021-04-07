@@ -10,8 +10,7 @@ import ScrollService from './plugins/ScrollService'
 import StateService from './plugins/StateService'
 
 import AsyncComputed from 'vue-async-computed'
-import Raven from 'raven-js'
-import RavenVue from 'raven-js/plugins/vue'
+import * as Sentry from "@sentry/vue"
 import Vuelidate from 'vuelidate'
 import VueMatomo from 'vue-matomo'
 
@@ -35,10 +34,10 @@ MailDirective(Vue)
 SelectOnClickDirective(Vue)
 
 if (process.env.NODE_ENV === 'production') {
-  Raven
-    .config('https://d5f975565d1b46f8a90f968071422ba5@sentry.data.gouv.fr/39')
-    .addPlugin(RavenVue, Vue)
-    .install()
+  Sentry.init({
+    Vue,
+    dsn: "https://80847fcdc7e74cbfb9d2f47751e42889@o548798.ingest.sentry.io/5709078",
+  })
 }
 
 Vue.use(AsyncComputed)

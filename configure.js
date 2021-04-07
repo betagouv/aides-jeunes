@@ -10,7 +10,7 @@ module.exports = function(app) {
   Sentry.init({
       // Enable Sentry in production
       // https://docs.sentry.io/development/sdk-dev/overview/#usage-for-end-users
-      dsn: process.env.NODE_ENV === 'production' ? 'https://fde1d4c9741e4ef3a3416e4e88b61392@sentry.data.gouv.fr/17' : null,
+      dsn: process.env.NODE_ENV === 'production' ? 'https://dff4dd1245ed4ed2b05a11f513c23cb4@o548798.ingest.sentry.io/5709109' : null,
   });
 
   // The request handler must be the first middleware on the app

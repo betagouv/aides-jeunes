@@ -9,7 +9,7 @@
       Vous pourrez ensuite saisir les montants.
     </p>
     <div class="form__group" v-for="category in categories" v-bind:key="category.id">
-      <h2>{{ category.label(individu) | capitalize }}</h2>
+      <h2 class="aj-question">{{ category.label(individu) | capitalize }}</h2>
       <div v-for="type in sort(typesByCategories[category.id])" class="aj-selection-wrapper" v-bind:key="type.id">
         <input :id="type.id" type="checkbox" v-model="selectedTypes[type.id]"/>
         <label :for="type.id">

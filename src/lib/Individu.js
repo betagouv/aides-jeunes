@@ -13,7 +13,7 @@ function ressourceHeader(individu) {
     case 'conjoint':
         return 'Les ressources de votre conjoint·e';
     default:
-        return `Les ressources ${Individu.label(individu)}`;
+        return `Les ressources ${Individu.label(individu, 'préposition')}${Individu.label(individu)}`;
     }
 }
 

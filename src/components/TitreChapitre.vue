@@ -15,17 +15,19 @@
         },
         methods: {
             getTitleByRoute(route) {
-                const step = this.$state.current(route, this.$store.state.situation)
+                const step = this.$state.current(route.fullPath, this.$store.state.situation)
                 const chapter = step && step.chapter || ''
                 switch (chapter) {
                     case 'profil':
                         return 'Mon profil';
                     case 'foyer':
                         return 'Mon foyer';
-                    case 'revenus':
-                        return 'Mes revenus';
                     case 'logement':
                         return 'Mon logement';
+                    case 'revenus':
+                        return 'Mes revenus';
+                    case 'projets':
+                        return 'Mes projets';
                     case 'resultats':
                         return 'Mes résultats';
                     default:

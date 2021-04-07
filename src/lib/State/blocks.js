@@ -25,30 +25,6 @@ function individuBlockFactory(id) {
             isActive: subject => subject.scolarite == 'lycee' || subject.scolarite == 'enseignement_superieur',
             steps: [
               r('classe_scolarite'),
-              {
-                isActive: subject => subject.classe_scolarite == 'terminale',
-                steps: [
-                  r('aide_mobilite_parcoursup_sortie_academie'),
-                  {
-                    isActive: subject => subject.aide_mobilite_parcoursup_sortie_academie,
-                    steps: [
-                      r('aide_mobilite_parcoursup_boursier_lycee'),
-                    ]
-                  }
-                ]
-              },
-              {
-                isActive: subject => subject.classe_scolarite == 'licence_3' || subject.classe_scolarite == 'master_1',
-                steps: [
-                  r('aide_mobilite_master_sortie_region_academique'),
-                  {
-                    isActive: subject => subject.aide_mobilite_master_sortie_region_academique,
-                    steps: [
-                      r('boursier'),
-                    ]
-                  }
-                ]
-              },
             ]
           },
           {
@@ -130,12 +106,38 @@ function individuBlockFactory(id) {
   }
 }
 
-function extraBlock(id) {
-  const demandeur = id == 'demandeur'
+function extraBlock() {
+  const id = 'demandeur'
+  const s = (variable, chapter) => new Step({entity: 'individu', id, variable, chapter})
+
   return {
     subject: situation => situation[id] || situation.enfants.find(enfant => enfant.id === id) || {},
     steps: [
-      ...(demandeur ? [new Step({ entity: 'individu', id: 'demandeur', variable: '_interetPermisDeConduire'})] : []),
+      s('_interetPermisDeConduire', 'projets'),
+      {
+        isActive: subject => subject.classe_scolarite == 'terminale',
+        steps: [
+          s('aide_mobilite_parcoursup_sortie_academie'),
+          {
+            isActive: subject => subject.aide_mobilite_parcoursup_sortie_academie,
+            steps: [
+              s('aide_mobilite_parcoursup_boursier_lycee'),
+            ]
+          }
+        ]
+      },
+      {
+        isActive: subject => subject.classe_scolarite == 'licence_3' || subject.classe_scolarite == 'master_1',
+        steps: [
+          s('aide_mobilite_master_sortie_region_academique'),
+          {
+            isActive: subject => subject.aide_mobilite_master_sortie_region_academique,
+            steps: [
+              s('boursier'),
+            ]
+          }
+        ]
+      },
     ]
   }
 }
@@ -269,7 +271,7 @@ function generateBlocks(situation) {
         new Step({entity:'individu', id:'demandeur', variable: 'bourse_criteres_sociaux_base_ressources_parentale'}),
       ]
     },
-    extraBlock('demandeur'),
+    extraBlock(),
     {
       steps: [
         new Step({entity: 'resultats', chapter: 'resultats'}),

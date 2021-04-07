@@ -48,9 +48,9 @@ function full(situation) {
     })
 }
 
-function current(current, situation) {
+function current(currentFullPath, situation) {
     const journey = full(situation)
-    return journey.find(item => item.fullPath == (current.fullPath || current))
+    return journey.find(item => item.fullPath == currentFullPath)
 }
 
 function next(current, situation) {

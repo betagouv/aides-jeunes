@@ -20,29 +20,41 @@ function individuBlockFactory(id) {
       ...(demandeur ? [{
         isActive: subject => subject.activite == 'etudiant',
         steps: [
-          r('classe_scolarite'),
+          r('scolarite'),
           {
-            isActive: subject => subject.classe_scolarite == 'terminale',
+            isActive: subject => subject.scolarite == 'lycee' || subject.scolarite == 'enseignement_superieur',
             steps: [
-              r('aide_mobilite_parcoursup_sortie_academie'),
+              r('classe_scolarite'),
               {
-                isActive: subject => subject.aide_mobilite_parcoursup_sortie_academie,
+                isActive: subject => subject.classe_scolarite == 'terminale',
                 steps: [
-                  r('aide_mobilite_parcoursup_boursier_lycee'),
+                  r('aide_mobilite_parcoursup_sortie_academie'),
+                  {
+                    isActive: subject => subject.aide_mobilite_parcoursup_sortie_academie,
+                    steps: [
+                      r('aide_mobilite_parcoursup_boursier_lycee'),
+                    ]
+                  }
                 ]
-              }
+              },
+              {
+                isActive: subject => subject.classe_scolarite == 'licence_3' || subject.classe_scolarite == 'master_1',
+                steps: [
+                  r('aide_mobilite_master_sortie_region_academique'),
+                  {
+                    isActive: subject => subject.aide_mobilite_master_sortie_region_academique,
+                    steps: [
+                      r('boursier'),
+                    ]
+                  }
+                ]
+              },
             ]
           },
           {
-            isActive: subject => subject.classe_scolarite == 'licence_3' || subject.classe_scolarite == 'master_1',
+            isActive: subject => subject.scolarite == 'enseignement_superieur',
             steps: [
-              r('aide_mobilite_master_sortie_academie'),
-              {
-                isActive: subject => subject.aide_mobilite_master_sortie_academie,
-                steps: [
-                  r('boursier'),
-                ]
-              }
+              r('statuts_etablissement_scolaire'),
             ]
           },
           r('alternant')

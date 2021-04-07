@@ -17,25 +17,28 @@ import Actions from '@/components/Actions'
 import { createIndividuMixin } from '@/mixins/IndividuMixin'
 
 export default {
-  name: 'SimulationIndividuClassScolarite',
+  name: 'SimulationIndividuStatutsEtablissementScolaire',
   components: {
     Actions,
   },
-  data: function() {
-    return {
-      scolariteOptions: [{
+  computed: {
+    scolariteOptions: function() {
+      return [{
         value: 'terminale',
-        label: 'Terminale' 
+        label: 'Terminale',
+        only: 'lycee',
       },{
         value: 'licence_3',
-        label: 'Licence - 3ème année' 
+        label: 'Licence - 3ème année',
+        only: 'enseignement_superieur',
       },{
         value: 'master_1',
-        label: 'Master - 1ème année' 
+        label: 'Master - 1ème année',
+        only: 'enseignement_superieur',
       },{
         value: 'autre',
-        label: 'Autre' 
-      }]
+        label: 'Autre',
+      }].filter(item => (! item.only) || item.only == this.individu.scolarite)
     }
   },
   mixins: [createIndividuMixin('classe_scolarite')],

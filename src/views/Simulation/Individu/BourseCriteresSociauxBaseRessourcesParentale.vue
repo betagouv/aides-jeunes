@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <fieldset>
-        <legend><h2>Quel est le montant du revenu fiscal de référence de vos parents&nbsp;?</h2></legend>
+        <legend><h2>Quel est le revenu brut global de vos parents&nbsp;?</h2></legend>
       <label>
         <input type="number" v-select-on-click v-model.number="value">
       </label>

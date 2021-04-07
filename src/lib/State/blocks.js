@@ -4,7 +4,7 @@ const { datesGenerator } = require('../../../backend/lib/mes-aides');
 const { Step, ComplexStep } = require('./steps');
 
 function individuBlockFactory(id) {
-  const r = variable => new Step({entity: 'individu', id, variable})
+  const r = (variable, chapter) => new Step({entity: 'individu', id, variable, chapter})
   const conjoint = id == 'conjoint'
   const demandeur = id == 'demandeur'
   const enfant = id.startsWith('enfant')
@@ -12,7 +12,7 @@ function individuBlockFactory(id) {
     subject: situation => situation[id] || situation.enfants.find(enfant => enfant.id === id) || {},
     steps: [
       ...(enfant ? [r('_firstName')] : []),
-      r('date_naissance'),
+      r('date_naissance', demandeur ? 'profil' : undefined),
       r('nationalite'),
       ...(conjoint ? [r('statut_marital')] : []),
       ...(enfant ? [r('garde_alternee')] : []),
@@ -25,30 +25,6 @@ function individuBlockFactory(id) {
             isActive: subject => subject.scolarite == 'lycee' || subject.scolarite == 'enseignement_superieur',
             steps: [
               r('classe_scolarite'),
-              {
-                isActive: subject => subject.classe_scolarite == 'terminale',
-                steps: [
-                  r('aide_mobilite_parcoursup_sortie_academie'),
-                  {
-                    isActive: subject => subject.aide_mobilite_parcoursup_sortie_academie,
-                    steps: [
-                      r('aide_mobilite_parcoursup_boursier_lycee'),
-                    ]
-                  }
-                ]
-              },
-              {
-                isActive: subject => subject.classe_scolarite == 'licence_3' || subject.classe_scolarite == 'master_1',
-                steps: [
-                  r('aide_mobilite_master_sortie_region_academique'),
-                  {
-                    isActive: subject => subject.aide_mobilite_master_sortie_region_academique,
-                    steps: [
-                      r('boursier'),
-                    ]
-                  }
-                ]
-              },
             ]
           },
           {
@@ -130,12 +106,38 @@ function individuBlockFactory(id) {
   }
 }
 
-function extraBlock(id) {
-  const demandeur = id == 'demandeur'
+function extraBlock() {
+  const id = 'demandeur'
+  const s = (variable, chapter) => new Step({entity: 'individu', id, variable, chapter})
+
   return {
     subject: situation => situation[id] || situation.enfants.find(enfant => enfant.id === id) || {},
     steps: [
-      ...(demandeur ? [new Step({ entity: 'individu', id: 'demandeur', variable: '_interetPermisDeConduire'})] : []),
+      s('_interetPermisDeConduire', 'projets'),
+      {
+        isActive: subject => subject.classe_scolarite == 'terminale',
+        steps: [
+          s('aide_mobilite_parcoursup_sortie_academie'),
+          {
+            isActive: subject => subject.aide_mobilite_parcoursup_sortie_academie,
+            steps: [
+              s('aide_mobilite_parcoursup_boursier_lycee'),
+            ]
+          }
+        ]
+      },
+      {
+        isActive: subject => subject.classe_scolarite == 'licence_3' || subject.classe_scolarite == 'master_1',
+        steps: [
+          s('aide_mobilite_master_sortie_region_academique'),
+          {
+            isActive: subject => subject.aide_mobilite_master_sortie_region_academique,
+            steps: [
+              s('boursier'),
+            ]
+          }
+        ]
+      },
     ]
   }
 }
@@ -143,7 +145,7 @@ function extraBlock(id) {
 function kidBlock(situation) {
   return {
     steps: [
-      new Step({entity: 'enfants'}),
+      new Step({entity: 'enfants', chapter: 'foyer'}),
       ...(situation.enfants.length ? (situation.enfants.map(e => {
         return {
           steps: [individuBlockFactory(e.id), new Step({entity: 'enfants', key:`enfants#${e.id}`})]
@@ -157,7 +159,7 @@ function housingBlock() {
   return {
     subject: situation => situation.menage,
     steps: [
-      new Step({entity: 'logement'}),
+      new Step({entity: 'logement', chapter: 'logement'}),
       {
         isActive: subject => !subject.statut_occupation_logement || subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
@@ -213,7 +215,7 @@ function resourceBlocks(situation) {
     const individu = situation[individuId] || situation.enfants.find(enfant => enfant.id === individuId) || {}
     return {
       steps: [
-        new ComplexStep({route: `individu/${individuId}/ressources/types`})
+        new ComplexStep({route: `individu/${individuId}/ressources/types`, chapter: 'revenus'})
       ].concat(
           Ressource.getIndividuRessourceCategories(individu, situation).map(category => new ComplexStep({route: `individu/${individuId}/ressources/montants/${category}`}))
       )
@@ -269,10 +271,10 @@ function generateBlocks(situation) {
         new Step({entity:'individu', id:'demandeur', variable: 'bourse_criteres_sociaux_base_ressources_parentale'}),
       ]
     },
-    extraBlock('demandeur'),
+    extraBlock(),
     {
       steps: [
-        new Step({entity: 'resultats'}),
+        new Step({entity: 'resultats', chapter: 'resultats'}),
         new Step({entity: 'resultats'})
       ]
     }

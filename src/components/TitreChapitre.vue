@@ -8,25 +8,26 @@
 
     export default {
         name: 'TitreChapitre',
-        data() {
-            return {}
-        },
         computed: {
             title() {
-                return this.getTitleByUrl(this.$route.params.chapter)
+                return this.getTitleByRoute(this.$route)
             }
         },
         methods: {
-            getTitleByUrl(chapter) {
+            getTitleByRoute(route) {
+                const step = this.$state.current(route.fullPath, this.$store.state.situation)
+                const chapter = step && step.chapter || ''
                 switch (chapter) {
                     case 'profil':
                         return 'Mon profil';
                     case 'foyer':
                         return 'Mon foyer';
-                    case 'revenus':
-                        return 'Mon revenu';
                     case 'logement':
                         return 'Mon logement';
+                    case 'revenus':
+                        return 'Mes revenus';
+                    case 'projets':
+                        return 'Mes projets';
                     case 'resultats':
                         return 'Mes résultats';
                     default:

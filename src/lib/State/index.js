@@ -38,7 +38,19 @@ function generateJourney(situation) {
 function full(situation) {
     const journey = generateJourney(situation)
     journey.pop()
-    return journey
+    let lastChapter
+    return journey.map((s) => {
+        if (s.chapter)
+            lastChapter = s.chapter
+        else
+            s.chapter = lastChapter
+        return s
+    })
+}
+
+function current(currentFullPath, situation) {
+    const journey = full(situation)
+    return journey.find(item => item.fullPath == currentFullPath)
 }
 
 function next(current, situation) {
@@ -56,5 +68,6 @@ function next(current, situation) {
 
 module.exports = {
   full,
-  next
+  next,
+  current
 }

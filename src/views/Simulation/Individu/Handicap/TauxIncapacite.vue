@@ -2,7 +2,7 @@
   <form @submit.prevent='onSubmit'>
     <fieldset>
     <legend>
-    <h2 class="aj-question">{{ role === 'demandeur' ? `Quel est votre taux d'incapacité` : `Quel est le taux d'incapacité de ${getLabel('nom')}` }} évalué par {{getLabel('possessive')}} <abbr title="Maison départementale des personnes handicapées">MDPH</abbr>&nbsp;?</h2>
+    <h2 class="aj-question">{{ role === 'demandeur' ? `Quel est votre taux d'incapacité` : `Quel est le taux d'incapacité ${getLabel('préposition')}${getLabel('nom')}` }} évalué par {{getLabel('possessive')}} <abbr title="Maison départementale des personnes handicapées">MDPH</abbr>&nbsp;?</h2>
     </legend>
     <div class="aj-selection-wrapper" v-for="tauxIncapacite in tauxIncapaciteOptions" v-bind:key="tauxIncapacite.value">
       <input :id="tauxIncapacite.value"

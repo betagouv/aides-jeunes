@@ -59,23 +59,23 @@
                         children: [
                             {
                                 label: 'Accueil',
-                                href: 'https://www.1jeune1solution.gouv.fr/'
+                                href: 'https://www.1jeune1solution.gouv.fr/?utm_source=mes-aides-beta&utm_medium=menu'
                             },
                             {
                                 label: 'Je postule à un job',
-                                href: 'https://www.1jeune1solution.gouv.fr/emplois'
+                                href: 'https://www.1jeune1solution.gouv.fr/emplois?utm_source=mes-aides-beta&utm_medium=menu'
                             },
                             {
                                 label: 'Je participe à un événement',
-                                href: 'https://www.1jeune1solution.gouv.fr/evenements'
+                                href: 'https://www.1jeune1solution.gouv.fr/evenements?utm_source=mes-aides-beta&utm_medium=menu'
                             },
                             {
                                 label: 'Les entreprises s\'engagent',
-                                href: 'https://www.1jeune1solution.gouv.fr/entreprises'
+                                href: 'https://www.1jeune1solution.gouv.fr/entreprises?utm_source=mes-aides-beta&utm_medium=menu'
                             },
                             {
                                 label: 'Les mesures pour les jeunes',
-                                href: 'https://www.1jeune1solution.gouv.fr/espace-jeune'
+                                href: 'https://www.1jeune1solution.gouv.fr/espace-jeune?utm_source=mes-aides-beta&utm_medium=menu'
                             },
                         ]
                     },

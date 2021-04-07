@@ -78,7 +78,7 @@ const Individu = {
             },
             nom: {
                 demandeur: () => 'vous',
-                conjoint: () => 'votre conjoint',
+                conjoint: () => 'votre conjoint·e',
                 enfant: () => `${individu._firstName}`,
             },
             particule: {
@@ -87,12 +87,17 @@ const Individu = {
             },
             avoir: {
                 demandeur: () => 'avez-vous',
-                conjoint: () =>'votre conjoint a-t-il/elle',
+                conjoint: () =>'votre conjoint·e a-t-il/elle',
                 enfant: () => `${individu._firstName} a-t-il/elle`
+            },
+            percevoir: {
+                demandeur: () => 'percevez-vous',
+                conjoint:  () => 'votre conjoint·e perçoit-il/elle',
+                enfant: () => `${individu._firstName} perçoit-il/elle`
             },
             être: {
                 demandeur: () => 'êtes-vous',
-                conjoint:  () => 'votre conjoint est-il/elle',
+                conjoint:  () => 'votre conjoint·e est-il/elle',
                 enfant: () => `${individu._firstName} est-il/elle`
             },
         }

@@ -5,31 +5,31 @@ const { datesGenerator } = require('../../backend/lib/mes-aides');
 let ressourceCategories = [
     {
         id: 'revenusActivite',
-        label: 'Percevez vous des revenus d\'activité ?',
+        label: (individu) => `${Individu.label(individu, 'percevoir')} des revenus d'activité ?`,
     },
     {
         id: 'rpns',
-        label: 'Percevez vous des revenus professionnels non salariés ?',
+        label: (individu) => `${Individu.label(individu, 'percevoir')} des revenus professionnels non salariés ?`,
     },
     {
         id: 'allocations',
-        label: 'Quelle(s) allocation(s) percevez-vous déjà ?',
+        label: (individu) => `Quelle(s) allocation(s) ${Individu.label(individu, 'percevoir')} déjà ?`,
     },
     {
         id: 'indemnites',
-        label: 'Percevez vous des indemnités ?',
+        label: (individu) => `${Individu.label(individu, 'percevoir')} des indemnités ?`,
     },
     {
         id: 'pensions',
-        label: 'Percevez vous des pensions ?',
+        label: (individu) => `${Individu.label(individu, 'percevoir')} des pensions ?`,
     },
     {
         id: 'patrimoine',
-        label: 'Percevez-vous des revenus du patrimoine ?',
+        label: (individu) => `${Individu.label(individu, 'percevoir')} des revenus du patrimoine ?`,
     },
     {
         id: 'autre',
-        label: 'Percevez-vous d\'autres revenus ?',
+        label: (individu) => `${Individu.label(individu, 'percevoir')} d'autres revenus ?`,
     }
 ];
 

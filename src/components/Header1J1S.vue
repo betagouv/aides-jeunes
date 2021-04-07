@@ -40,27 +40,27 @@
                     {
                         key: '1',
                         label: 'Je postule à un job',
-                        href: 'https://www.1jeune1solution.gouv.fr/emplois'
+                        href: 'https://www.1jeune1solution.gouv.fr/emplois?utm_source=mes-aides-beta&utm_medium=menu'
                     },
                     {
                         key: '2',
                         label: 'Je participe à un évenement',
-                        href: 'https://www.1jeune1solution.gouv.fr/evenements'
+                        href: 'https://www.1jeune1solution.gouv.fr/evenements?utm_source=mes-aides-beta&utm_medium=menu'
                     },
                     {
                         key: '3',
                         label: 'Je consulte les mesures',
-                        href: 'https://www.1jeune1solution.gouv.fr/espace-jeune'
+                        href: 'https://www.1jeune1solution.gouv.fr/espace-jeune?utm_source=mes-aides-beta&utm_medium=menu'
                     },
                     {
                         key: '4',
                         label: 'Les entreprises s\'engagent',
-                        href: 'https://www.1jeune1solution.gouv.fr/entreprises'
+                        href: 'https://www.1jeune1solution.gouv.fr/entreprises?utm_source=mes-aides-beta&utm_medium=menu'
                     },
                     {
                         key: '5',
                         label: 'Je recrute !',
-                        href: 'https://www.1jeune1solution.gouv.fr/je-recrute'
+                        href: 'https://www.1jeune1solution.gouv.fr/je-recrute?utm_source=mes-aides-beta&utm_medium=menu'
                     }
                 ]
             }

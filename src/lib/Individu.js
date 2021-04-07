@@ -6,13 +6,14 @@ function isRoleParent (role) {
 }
 
 function ressourceHeader(individu) {
+
     switch (individu._role) {
     case 'demandeur':
         return 'Vos ressources personnelles uniquement';
     case 'conjoint':
         return 'Les ressources de votre conjoint·e';
     default:
-        return 'Les ressources de ' + individu._firstName;
+        return `Les ressources ${Individu.label(individu)}`;
     }
 }
 
@@ -66,16 +67,36 @@ const Individu = {
         return moment(dateDeReference).diff(individu.date_naissance, 'years');
     },
 
-    label: function(individu) {
-        if ('demandeur' === individu._role) {
-            return 'vous';
-        }
+    label: function(individu, type) {
+        const VOYELLES = ['a','e', 'i', 'o', 'u', 'y']
 
-        if ('conjoint' === individu._role) {
-            return 'votre conjoint·e';
+        const labelDict = {
+            possessive: {
+                demandeur: () => 'votre',
+                conjoint: () => 'sa',
+                enfant: () => 'sa',
+            },
+            nom: {
+                demandeur: () => 'vous',
+                conjoint: () => 'votre conjoint',
+                enfant: () => `${individu._firstName}`,
+            },
+            particule: {
+                conjoint: () => 'de ',
+                enfant: () => VOYELLES.includes(individu._firstName[0].toLowerCase()) ? `d'` : 'de ',
+            },
+            avoir: {
+                demandeur: () => 'avez-vous',
+                conjoint: () =>'votre conjoint a-t-il/elle',
+                enfant: () => `${individu._firstName} a-t-il/elle`
+            },
+            être: {
+                demandeur: () => 'êtes-vous',
+                conjoint:  () => 'votre conjoint est-il/elle',
+                enfant: () => `${individu._firstName} est-il/elle`
+            },
         }
-
-        return individu._firstName;
+        return labelDict[type || 'nom'][individu._role]();
     },
     find,
     get,

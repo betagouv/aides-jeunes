@@ -392,7 +392,7 @@ const store = new Vuex.Store({
         .catch(error => state.commit('saveComputationFailure', error))
     },
     redirection: function(state, next) {
-      state.commit('setMessage', 'Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c\'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:equipe@mes-aides.org">equipe@mes-aides.org</a>.')
+      state.commit('setMessage', 'Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c\'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:aides-jeunes@beta.gouv.fr">aides-jeunes@beta.gouv.fr</a>.')
       next('/foyer/demandeur')
     },
     verifyBenefitVariables: function(state) {

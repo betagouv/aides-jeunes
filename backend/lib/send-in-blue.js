@@ -13,7 +13,7 @@ exports.sendEmail = function(sendSmtpEmail) {
 
   sendSmtpEmail.sender = {
     name: 'Équipe Mes Aides',
-    email: 'equipe@mes-aides.org'
+    email: 'aides-jeunes@beta.gouv.fr'
   }
   return apiInstance.sendTransacEmail(sendSmtpEmail)
 }

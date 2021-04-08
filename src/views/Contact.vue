@@ -39,7 +39,7 @@
     <p>Nos pages <router-link to="/liens-utiles">Liens Utiles</router-link> et <router-link to="/sos">SOS</router-link> vous orientent vers les bons interlocuteurs. Vous pouvez aussi nous contacter directement par
       <a
         v-analytics="{ action:'Contact', category:'Contact'}"
-        v-mail="{to: 'equipe@mes-aides.org', body:`
+        v-mail="{to: 'aides-jeunes@beta.gouv.fr', body:`
 
 
 

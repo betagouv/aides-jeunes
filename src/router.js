@@ -294,13 +294,6 @@ const router = new Router({
           title: 'Question Estime Pôle Emploi'
         }
       }, {
-        name: 'resultat',
-        path: 'resultat',
-        component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat.vue'),
-        meta: {
-          title: 'Résultats de votre simulation'
-        },
-      }, {
         path: 'resultat/attendu',
         component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat/Attendu.vue'),
         meta: { title: 'Résultats attendus' }
@@ -344,15 +337,6 @@ const router = new Router({
       path: '/a-propos',
       name: 'a-propos',
       component: () => import(/* webpackChunkName: "a-propos" */ './views/APropos.vue')
-    },
-    {
-      path: '/a-propos-integre',
-      name: 'a-propos-integre',
-      component: () => import(/* webpackChunkName: "a-propos-integre" */ './views/AProposIntegre.vue'),
-      beforeEnter: (to, from, next) => {
-        store.commit('setIframeOrigin', from.path)
-        next()
-      },
     },
     {
       path: '/contact',

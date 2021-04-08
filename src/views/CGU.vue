@@ -51,7 +51,7 @@
     </p>
     <p>
       Vous avez un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, envoyez-nous un courriel à l'adresse <a
-      v-mail="{to: 'equipe@mes-aides.org', subject: 'Mes données', body: emailBody}">equipe@mes-aides.org</a> en précisant
+      v-mail="{to: 'aides-jeunes@beta.gouv.fr', subject: 'Mes données', body: emailBody}">aides-jeunes@beta.gouv.fr</a> en précisant
       <ul>
         <li>la date et l'heure précise de simulation,</li>
         <li v-if="situation._id">l'identifiant de la simulation : <strong>{{ situation._id }}</strong>,</li>
@@ -101,7 +101,7 @@
     <h2 id="utilisation">Utilisation</h2>
 
     <p>
-      Mes Aides est en accès libre à l'adresse <a href="https://mes-aides.org">mes-aides.org</a>.
+      Mes Aides est en accès libre à l'adresse <a href="https://mes-aides.1jeune1solution.beta.gouv.fr">mes-aides.org</a>.
       <small>Son utilisation est gratuite et facultative.</small>
     </p>
     <p>
@@ -123,7 +123,7 @@
     <p>
       <a
         v-analytics="{ action:'CGU', category:'Éditeur'}"
-        v-mail="{to: 'equipe@mes-aides.org', subject:'Éditeur', body:''}">L'association Mes Aides
+        v-mail="{to: 'aides-jeunes@beta.gouv.fr', subject:'Éditeur', body:''}">L'association Mes Aides
       </a>
     </p>
 
@@ -131,7 +131,7 @@
       Direction de la publication :
       <a
         v-analytics="{ action:'CGU', category:'Direction de la publication'}"
-        v-mail="{to: 'equipe@mes-aides.org', subject:'Direction de la publication', body:''}">L'association Mes Aides
+        v-mail="{to: 'aides-jeunes@beta.gouv.fr', subject:'Direction de la publication', body:''}">L'association Mes Aides
       </a>
     </p>
 

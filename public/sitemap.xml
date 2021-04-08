@@ -1,51 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://mes-aides.org</loc>
+        <loc><%= VUE_APP_BASE_URL %></loc>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://mes-aides.org/foyer/demandeur</loc>
-        <priority>0.1</priority>
+        <loc><%= VUE_APP_BASE_URL %>/simulation</loc>
+        <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://mes-aides.org/sos</loc>
-        <priority>0.4</priority>
-    </url>
-    <url>
-        <loc>https://mes-aides.org/liens-utiles</loc>
-        <priority>0.4</priority>
-    </url>
-    <url>
-        <loc>https://mes-aides.org/contact</loc>
+        <loc><%= VUE_APP_BASE_URL %>/contact</loc>
         <priority>0.3</priority>
     </url>
     <url>
-        <loc>https://mes-aides.org/toutes</loc>
-        <priority>0.3</priority>
-    </url>
-    <url>
-        <loc>https://mes-aides.org/social</loc>
-        <priority>0.3</priority>
-    </url>
-    <url>
-        <loc>https://mes-aides.org/ameliorer</loc>
-        <priority>0.2</priority>
-    </url>
-    <url>
-        <loc>https://mes-aides.org/communication/2020-04-08-fonds-solidarites-logement-75-aides</loc>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://mes-aides.org/stats</loc>
+        <loc><%= VUE_APP_BASE_URL %>/accessibilite</loc>
         <priority>0.1</priority>
     </url>
     <url>
-        <loc>https://mes-aides.org/a-propos</loc>
+        <loc><%= VUE_APP_BASE_URL %>/cgu</loc>
         <priority>0.1</priority>
     </url>
     <url>
-        <loc>https://mes-aides.org/cgu</loc>
+        <loc><%= VUE_APP_BASE_URL %>/confidentialite</loc>
         <priority>0.1</priority>
     </url>
 </urlset>

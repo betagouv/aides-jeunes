@@ -7,3 +7,4 @@ prefix: "l'avance "
 type: bool
 floorAt: 0.1
 entity: individus
+top: 5

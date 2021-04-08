@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="next">
+  <form>
     <h2>
       <i class="fa fa-home" aria-hidden="true"></i>
       Immobilier

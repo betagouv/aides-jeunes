@@ -1,5 +1,6 @@
 <template>
-  <form @submit.prevent="next">
+  <form>
+    <h2>Indiquez toutes les ressources  <strong>nettes versées</strong> perçues en {{ $store.state.dates.fiscalYear.label }}</h2>
     <p>
       Ces informations se trouvent sur votre avis d'imposition {{ $store.state.dates.lastYear.label }} sur les revenus {{ $store.state.dates.fiscalYear.label }}.
       <br>Vous pouvez le retrouver en ligne sur <a target="_blank" rel="noopener" href="http://www.impots.gouv.fr/">impots.gouv.fr</a>.
@@ -10,7 +11,6 @@
         Déclarer des ressources pour {{ individu.label }}
       </button>
       <div v-if="individu.display">
-        <h2>{{ individu.label | capitalize }}</h2>
         <label class="form__group" v-for="ressource in categoriesRnc" v-bind:key="ressource.id">
           {{ ressource.label }}
           <input type="number" v-select-on-click v-model="individu.values[ressource.id][$store.state.dates.fiscalYear.id]" />

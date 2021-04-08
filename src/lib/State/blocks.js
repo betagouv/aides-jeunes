@@ -277,13 +277,13 @@ function generateBlocks(situation) {
         new Step({entity: 'resultats', chapter: 'resultats'}),
         {
           steps: [
-            new Step({entity: 'foyer/ressources/patrimoine'}),
+            new Step({entity: 'foyer/ressources/patrimoine', chapter: 'revenus'}),
             new Step({entity: 'resultats'}),
           ]
         },
         {
           steps: [
-            new Step({entity: 'foyer/ressources/fiscales'}),
+            new Step({entity: 'foyer/ressources/fiscales', chapter: 'revenus'}),
             new Step({entity: 'resultats'}),
           ]
       },

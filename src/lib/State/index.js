@@ -7,7 +7,7 @@ function processBlock({journey, subject, situation, isActive}, b) {
     journey.push(b)
   } else if (typeof(b) == 'string') {
     console.warn(`string step should no longer be used: ${b}`)
-    journey.push({isActive, fullPath: b})
+    journey.push({isActive, path: b})
   } else {
     if (!b.steps) {
       throw Error('' + b + ' (' + (b instanceof Array ? 'array' : '?') + ')')
@@ -48,16 +48,16 @@ function full(situation) {
     })
 }
 
-function current(currentFullPath, situation) {
+function current(currentPath, situation) {
     const journey = full(situation)
-    return journey.find(item => item.fullPath == currentFullPath)
+    return journey.find(item => item.path == currentPath)
 }
 
 function next(current, situation) {
     const journey = full(situation)
     const activeJourney = journey.filter(s => s.isActive)
 
-    let matches = activeJourney.map((element, index) => { return {element, index} }).filter(item => item.element.fullPath == (current.path || current))
+    let matches = activeJourney.map((element, index) => { return {element, index} }).filter(item => item.element.path == (current.path || current))
     if (matches.length) {
          return activeJourney[matches[matches.length - 1].index + 1]
      } else {

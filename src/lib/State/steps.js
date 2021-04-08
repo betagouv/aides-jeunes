@@ -1,6 +1,6 @@
 function Step({key, entity, id, variable, chapter}) {
-  this.fullPath = entity ? `/simulation/${entity}${id ? `/${id}` : ''}${variable ? `/${variable}` : ''}` : '/'
-  this.key = key || this.fullPath
+  this.path = entity ? `/simulation/${entity}${id ? `/${id}` : ''}${variable ? `/${variable}` : ''}` : '/'
+  this.key = key || this.path
   this.entity = entity
   this.id = id
   this.variable = variable
@@ -31,7 +31,7 @@ Step.prototype.clean = function({commit, dispatch, state}, storeInternal) {
 
 function ComplexStep({route, variables, chapter}) {
   Step.call(this, {key: route, chapter: chapter})
-  this.fullPath = `/simulation/${route}`
+  this.path = `/simulation/${route}`
   this.substeps = variables ? variables.map(v => new Step(v)) : []
 }
 

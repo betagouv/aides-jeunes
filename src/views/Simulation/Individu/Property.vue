@@ -21,7 +21,7 @@ export default {
     subject: function() {
       const id = this.$route.params.id
       const role = id.split('_')[0]
-      if (this.$route.fullPath.match(/individu/)) {
+      if (this.$route.path.match(/individu/)) {
         const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
         return individu
       } else {

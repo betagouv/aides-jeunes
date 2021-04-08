@@ -15,7 +15,7 @@
         },
         methods: {
             getTitleByRoute(route) {
-                const step = this.$state.current(route.fullPath, this.$store.state.situation)
+                const step = this.$state.current(route.path, this.$store.state.situation)
                 const chapter = step && step.chapter || ''
                 switch (chapter) {
                     case 'profil':

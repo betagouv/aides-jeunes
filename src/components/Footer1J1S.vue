@@ -2,8 +2,8 @@
     <footer class="aj-1j1s-footer">
         <div class="container">
             <div class="aj-1j1s-footer-logo-container">
-                <img class="rf" src="@/assets/images/logo_rf.svg">
-                <img class="fr" src="@/assets/images/logo1j1s-france-relance.svg">
+                <img class="rf" src="@/../public/img/logo_rf.svg">
+                <img class="fr" src="@/../public/img/logo1j1s-france-relance.svg">
             </div>
             <div v-for="(item, index) in menu" class="aj-1j1s-footer-col" :class="{'show': item.show}" :key="index">
                 <h2 @click="toggleShowItem(item)" :class="{'last': index === (menu.length - 1)}">

@@ -2,24 +2,51 @@
 /* eslint-disable no-console */
 
 var express = require('express');
-var ObjectId = require('mongoose').Types.ObjectId;
 
-require('./backend');
+require('./backend/api');
 var Followup = require('mongoose').model('Followup');
-var render = require('./backend/lib/mes-aides/emails/initial').render;
+var renderInitial = require('./backend/lib/mes-aides/emails/initial').render;
+var renderSurvey = require('./backend/lib/mes-aides/emails/survey').render;
 
 var port = process.env.PORT || 9001;
 
 // Setup Express
 var app = express();
 
-app.route('/mjml/:situation').get(function(req, res) {
+const typeKeys = ['initial', 'survey']
+
+app.route('/').get(function(req, res) {
+  Followup.find().sort({createdAt: -1})
+  .exec(function(err, docs) {
+    res.send(`
+      <html><body><h1>List</h1><ul>
+      ${docs.map(d => `
+        <li>
+          ${d._id}&nbsp;
+          <ul>
+            ${typeKeys.map(t => `<li>${t} <a href="mjml/${d._id}/${t}?mode=html">HTML</a> <a href="mjml/${d._id}/${t}?mode=text">texte</a></li>`).join('')}
+          </ul>
+        </li>
+        `)}</ul></body></html>
+`)
+  })
+})
+
+app.route('/mjml/:id/:type').get(function(req, res) {
     Followup
-        .findOne({ situation: ObjectId(req.params.situation) })
+        .findOne({ _id: req.params.id })
         .populate('situation')
         .exec(function(err, followup) {
-            render(followup).then(function(result) {
-                res.send(result.html);
+          console.log('followup', { _id: req.params.id }, followup)
+
+            const p = req.params.type == 'initial' ? renderInitial(followup) : followup.createSurvey().then(s => followup.renderSurveyEmail(s))
+            p.then(function(result) {
+              const mode = req.query.mode || 'html'
+              if (mode == 'html') {
+                res.send(result[mode]);
+              } else {
+                res.set({'Content-Type': 'text/plain'}).send(result[mode]);
+              }
             });
         });
 });

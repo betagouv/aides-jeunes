@@ -26,13 +26,13 @@ import indexOf from 'lodash/indexOf'
 import findIndex from 'lodash/findIndex'
 
 function findSibling(route) {
-  if (route.fullPath === '/foyer/enfants/ajouter'
+  if (route.path === '/foyer/enfants/ajouter'
     || route.name === 'enfants/modifier') {
     return '/foyer/enfants'
   }
 
-  if (route.fullPath === '/foyer/ressources/patrimoine'
-    || route.fullPath === '/foyer/ressources/fiscales') {
+  if (route.path === '/foyer/ressources/patrimoine'
+    || route.path === '/foyer/ressources/fiscales') {
     return '/foyer/resultat'
   }
 }
@@ -66,7 +66,7 @@ export default {
       return this.$route
     },
     isRecapitulatif: function() {
-      return this.$route.fullPath.startsWith('/foyer/recapitulatif')
+      return this.$route.path.startsWith('/foyer/recapitulatif')
     },
     currentStepIndex: function() {
       let route = this.stepRoute

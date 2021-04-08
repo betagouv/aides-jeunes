@@ -38,6 +38,22 @@ html {
       width: auto;
     }
 
+    .aj-question {
+      font-family: MarianneBold;
+      color: var(--dark);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+
+      &.small {
+        font-size: 0.85rem;
+        margin: 0;
+      }
+    }
+
     .aj-main-container {
       padding: 3rem 10rem 8rem 10rem;
       background-color: #f2f5f9;
@@ -68,22 +84,6 @@ html {
 
           button:first-child {
             margin-left: 20px;
-          }
-        }
-
-        .aj-question {
-          font-family: MarianneBold;
-          color: var(--dark);
-          font-size: 1.25rem;
-          margin-bottom: 1rem;
-
-          &::first-letter {
-            text-transform: uppercase;
-          }
-
-          &.small {
-            font-size: 0.85rem;
-            margin: 0;
           }
         }
       }
@@ -211,6 +211,27 @@ html {
 
     .fa-check-circle {
       color: var(--green);
+    }
+
+    .aj-debug-container {
+      padding: 1rem 0;
+      display: flex;
+
+      .aj-debug-progress {
+        width: 50%;
+        word-break: break-all;
+      }
+
+      .aj-main-container {
+        padding: 0 0 0 3rem;
+      }
+
+      .aj-debug-switch {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+      }
     }
 
     @media print {

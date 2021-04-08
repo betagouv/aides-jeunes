@@ -15,6 +15,13 @@ export default {
   components: {
       FooterJ1S,
       Header1J1S
-  }
+  },
+    created() {
+        this.$router.onReady(() => {
+            if (this.$route.query.debug === 'parcours') {
+                this.$store.dispatch('setDebug', true)
+            }
+        })
+    }
 }
 </script>

@@ -40,13 +40,13 @@
                         <span>
                             <i class="fa fa-warning" aria-hidden="true"></i>  Cette aide se base sur vos ressources de l'année {{ $store.state.dates.fiscalYear.label }}
                         </span>
-                        <router-link class="button outline red no-shadow text-center" to="ressources/fiscales">Déclarez vos ressources {{ $store.state.dates.fiscalYear.label }}</router-link>
+                        <router-link class="button outline red no-shadow text-center" to="/simulation/foyer/ressources/fiscales">Déclarez vos ressources {{ $store.state.dates.fiscalYear.label }}</router-link>
                     </div>
                     <div class="notification warning print-hidden" v-if="false && droit.isBaseRessourcesPatrimoine && ! patrimoineCaptured && ! isString(droit.montant)">
                             <span>
                                 <i class="fa fa-warning" aria-hidden="true"></i> Cette aide se base sur votre patrimoine. Vous avez un patrimoine immobilier, d'épargne, des revenus fonciers et/ou du capital ? Vous devez renseigner des informations complémentaires.
                             </span>
-                        <router-link class="button outline red no-shadow text-center" to="ressources/patrimoine">Déclarez votre patrimoine</router-link>
+                        <router-link class="button outline red no-shadow text-center" to="/simulation/foyer/ressources/patrimoine">Déclarez votre patrimoine</router-link>
                     </div>
                 </div>
                 <div class="aj-droit-content-buttons print-hidden">

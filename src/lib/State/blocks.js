@@ -275,8 +275,20 @@ function generateBlocks(situation) {
     {
       steps: [
         new Step({entity: 'resultats', chapter: 'resultats'}),
-        new Step({entity: 'resultats'})
-      ]
+        {
+          steps: [
+            new Step({entity: 'foyer/ressources/patrimoine'}),
+            new Step({entity: 'resultats'}),
+          ]
+        },
+        {
+          steps: [
+            new Step({entity: 'foyer/ressources/fiscales'}),
+            new Step({entity: 'resultats'}),
+          ]
+      },
+      new Step({entity: 'resultats'}),
+    ]
     }
   ]
 }

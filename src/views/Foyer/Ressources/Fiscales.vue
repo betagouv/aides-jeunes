@@ -18,10 +18,7 @@
         </label>
       </div>
     </div>
-
-    <div class="text-right">
-      <button type="submit" class="button large">Valider</button>
-    </div>
+    <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>
 
@@ -30,6 +27,7 @@ import sum from 'lodash/sum'
 import some from 'lodash/some'
 import isNaN from 'lodash/isNaN'
 import Individu from '@/lib/Individu'
+import Actions from '@/components/Actions'
 import { categoriesRnc } from '@/constants/resources'
 
 function getDefaultValue(months, individu, rnc) {
@@ -46,6 +44,7 @@ function getDefaultValue(months, individu, rnc) {
 export default {
   name: 'ressources-fiscales',
   components: {
+    Actions,
   },
   data: function() {
     const fiscalYear = this.$store.state.dates.fiscalYear.id
@@ -73,7 +72,7 @@ export default {
     }
   },
   methods: {
-    next: function() {
+    onSubmit: function() {
       const fiscalYear = this.$store.state.dates.fiscalYear.id
 
       this.individus.forEach(i => {

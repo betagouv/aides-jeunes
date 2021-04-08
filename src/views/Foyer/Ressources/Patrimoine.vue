@@ -89,21 +89,20 @@
         etc.
       </span>
     </label>
-
-    <div class="text-right">
-      <button type="submit" class="button large">Valider</button>
-    </div>
+    <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>
 
 <script>
 import { patrimoineTypes } from '@/constants/resources'
+import Actions from '@/components/Actions'
 import YesNoQuestion from '@/components/YesNoQuestion'
 
 export default {
   name: 'ressources-patrimoine',
   components: {
     YesNoQuestion,
+    Actions,
   },
   data: function() {
     const situation = this.$store.state.situation
@@ -147,7 +146,7 @@ export default {
     }
   },
   methods: {
-    next: function() {
+    onSubmit: function() {
       this.$store.dispatch('updateIndividu', this.demandeur)
 
       this.$push()

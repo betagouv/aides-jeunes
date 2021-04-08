@@ -22,7 +22,7 @@ import './commands'
 export function home() {
   cy.get('meta[name="og:description"]')
     .invoke('attr', 'content')
-    .should('match', /\d+ prestations/i)
+    .should('match', /\d+ aides/i)
 
   cy.get('.aj-home-hero-content').invoke('text')
     .should('contain', 'aides')

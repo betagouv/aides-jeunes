@@ -48,7 +48,6 @@ export default {
     }
   .inactive, .inactive:active, .inactive:visited {
     text-decoration: line-through;
-    color: var(--orange);
   }
   .current {
     font-weight: bold;

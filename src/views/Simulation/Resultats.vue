@@ -1,8 +1,7 @@
 <template>
 <div class="aj-unbox">
-    <LoadingModal v-if="resultatStatus.fetching || resultatStatus.updating">
-        <p v-show="resultatStatus.updating" class="aj-loading-text">Récupération de la situation en cours…</p>
-        <p v-show="resultatStatus.fetching" class="aj-loading-text">Calcul en cours de vos droits…</p>
+    <LoadingModal v-if="resultatStatus.updating">
+        <p v-show="resultatStatus.updating" class="aj-loading-text">Calcul en cours de vos droits…</p>
     </LoadingModal>
 
     <div class="notification warning" v-if="hasWarning">

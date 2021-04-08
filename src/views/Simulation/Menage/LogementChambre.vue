@@ -35,7 +35,7 @@
                 menage: menage,
                 chambreQuestion: {
                     label: 'Est-ce une chambre ?',
-                    hint: 'Une chambre est un logement qui ne comporte qu\'une seule pièce et n\'est pas équipée d\'un WC.',
+                    hint: 'Une chambre est un logement qui ne comporte qu\'une seule pièce et n\'est pas équipé d\'un WC.',
                     selectedValue: menage.logement_chambre,
                     responses: [
                         {

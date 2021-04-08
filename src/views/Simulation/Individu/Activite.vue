@@ -31,16 +31,16 @@ export default {
     const {individu} = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
     let options = [
       {
+        value: 'etudiant',
+        label: 'En formation ou alternance'
+      },
+      {
         value: 'actif',
         label: 'En activité'
       },
       {
         value: 'chomeur',
         label: 'Inscrit·e comme demandeur d’emploi'
-      },
-      {
-        value: 'etudiant',
-        label: 'En formation'
       },
       {
         value: 'retraite',

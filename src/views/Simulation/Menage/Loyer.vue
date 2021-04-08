@@ -9,10 +9,11 @@
             </div>
         </fieldset>
         <fieldset v-if="captureCharges">
-            <label for="charges" class="aj-question">{{ chargesQuestion.label }}</label>
+            <label for="charges" class="aj-question">{{ chargesQuestion.label }}
+                <span class="help">{{  chargesQuestion.hint }}</span>
+            </label>
             <div class="aj-input-currency-wrapper">
                 <input id="charges" type="number" v-model="chargesQuestion.selectedValue">
-                <span class="help">{{  loyerQuestion.hint }}</span>
             </div>
         </fieldset>
         <Actions v-bind:onSubmit='onSubmit'/>
@@ -48,7 +49,8 @@
                     },
                     chargesQuestion: {
                         label: 'Quel est le montant de vos charges locatives ?',
-                        selectedValue: menage.charges_locatives
+                        selectedValue: menage.charges_locatives,
+                        hint: "Cela peut inclure l'eau froide, le chauffage collectif, l'entretien des parties communes…"
                     }
                 }
 

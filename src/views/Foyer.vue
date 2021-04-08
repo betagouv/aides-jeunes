@@ -24,16 +24,19 @@
 <script>
 import indexOf from 'lodash/indexOf'
 import findIndex from 'lodash/findIndex'
+
 function findSibling(route) {
   if (route.path === '/foyer/enfants/ajouter'
     || route.name === 'enfants/modifier') {
     return '/foyer/enfants'
   }
+
   if (route.path === '/foyer/ressources/patrimoine'
     || route.path === '/foyer/ressources/fiscales') {
     return '/foyer/resultat'
   }
 }
+
 export default {
   name: 'foyer',
   computed: {
@@ -75,10 +78,12 @@ export default {
       if (idx >= 0) {
         return idx+1
       }
+
       idx = indexOf(this.steps, findSibling(route))
       if (idx >= 0) {
         return idx+1
       }
+
       this.$matomo && this.$matomo.trackEvent('General', 'Progress error', route.path)
       return this.total
     },
@@ -99,21 +104,26 @@ export default {
 .main {
   flex: 1 0 auto;
 }
+
 .main.notification {
   display: block;
 }
+
 .foyer {
   padding: 1em;
   margin: 0 auto;
 }
+
 pre {
   text-align: left;
   white-space: break-spaces;
   width: 100%
 }
+
 h1[tabindex="-1"] {
   outline: none;
 }
+
 a.button:focus,
 button.button:focus,
 input[type="submit"]:focus,
@@ -121,20 +131,25 @@ input[type="button"]:focus {
   background: #003b80;
   background: var(--theme-secondary-darken);
 }
+
 .progress {
   height: 0.7em;
   transition: all 0.5s;
 }
+
 .message,
 .title {
   max-width: 35em;
   margin:  0 auto;
 }
+
 .title {
   display: flex;
   justify-content: space-between;
 }
+
 .editor {
   margin-top: 3px;
 }
+
 </style>

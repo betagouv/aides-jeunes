@@ -272,22 +272,6 @@ const router = new Router({
         path: 'resultats/:droitId',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/ResultatsDetail.vue'),
       },
-      // {
-      //   path: 'resultats/ressources/fiscales',
-      //   component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue'),
-      //   meta: {
-      //     title: function() {
-      //       return `Les revenus imposables de votre foyer en ${ store.state.dates.fiscalYear.label }`
-      //     }
-      //   }
-      // },
-      // {
-      //   path: 'resultats/ressources/patrimoine',
-      //   component: () => import(/* webpackChunkName: "ressources-patrimoine" */ './views/Foyer/Ressources/Patrimoine.vue'),
-      //   meta: {
-      //     title: 'Votre patrimoine'
-      //   }
-      // }, 
       {
         path: 'foyer/ressources/fiscales',
         name: 'ressources/fiscales',

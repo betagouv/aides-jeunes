@@ -43,6 +43,8 @@ html {
       color: var(--dark);
       font-size: 1.25rem;
       margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
 
       &::first-letter {
         text-transform: uppercase;
@@ -238,6 +240,10 @@ html {
       font-style: italic;
       font-size: 0.8em;
       margin-left: 0.5rem;
+    }
+
+    .aj-help-modal {
+      display: none;
     }
 
     @media print {

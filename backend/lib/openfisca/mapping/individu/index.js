@@ -53,6 +53,9 @@ var individuSchema = {
         src: 'date_debut_chomage',
         fn: formatDate
     },
+    mobili_jeune_eligibilite_employeur: {
+        fn: function () { return true }
+    }
 };
 
 function isNotValidValue(value) {

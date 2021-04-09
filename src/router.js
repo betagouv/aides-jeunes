@@ -269,6 +269,14 @@ const router = new Router({
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/Resultats.vue'),
       },
       {
+        name: 'resultat/lieux',
+        path: 'resultat/lieux/:id',
+        component: () => import(/* webpackChunkName: "lieux" */ './views/Foyer/Resultat/Lieux.vue'),
+        meta: {
+          title: "Des lieux près de chez vous"
+        }
+      },
+      {
         path: 'resultats/:droitId',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/ResultatsDetail.vue'),
       },

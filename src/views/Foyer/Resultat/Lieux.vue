@@ -7,13 +7,13 @@
     <div v-if="list && list.length">
       <div v-for="(etablissement, index) in list" v-bind:key="index">
         <Etablissement v-bind:etablissement="etablissement"/>
-        <router-link to="/foyer/resultat">
+        <router-link to="/simulation/resultats">
           <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Revenir aux résultats
         </router-link>
       </div>
     </div>
     <div v-else>
-      <router-link to="/foyer/resultat">
+      <router-link to="/simulation/resultats">
         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Revenir aux résultats
       </router-link>
     </div>

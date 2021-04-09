@@ -5,6 +5,11 @@ html {
       padding-right: 10px;
       padding-top: 1.5rem;
 
+      .aj-question {
+        flex-direction: column;
+        align-items: baseline;
+      }
+
       .aj-category-title-wrapper {
         h1 {
           margin-bottom: 20px;
@@ -27,6 +32,9 @@ html {
       .aj-tooltip {
         display: table;
         margin: 10px 0 0 0;
+        &:hover:before, &:hover:after {
+          display: none;
+        }
       }
 
       .aj-loading-modal {
@@ -38,6 +46,33 @@ html {
 
     .modal__backdrop {
       padding: 4em 2rem !important;
+    }
+
+    .aj-help-modal {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      background: var(--theme-primary-lighter);
+      z-index: 999;
+      overflow-y: scroll;
+
+      .aj-help-modal-close {
+        text-align: right;
+        padding: 1rem 1rem 0 0;
+
+        svg {
+          width: 30px;
+        }
+      }
+
+      .aj-help-modal-content {
+        padding: 1rem;
+      }
     }
 
     span.help {

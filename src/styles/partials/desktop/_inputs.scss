@@ -98,6 +98,11 @@ html {
             background-color: var(--theme-primary-lighter);
           }
 
+          & + label:focus {
+            background-color: #d5d9f5;
+            outline: none;
+          }
+
           &:checked {
             border-color: var(--green);
 

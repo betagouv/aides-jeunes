@@ -73,11 +73,11 @@ ID : ${resultatsId} (à conserver impérativement pour traitement de votre deman
     <small v-if="resultatsId"
       >Cette simulation a pour identifiant
       <span class="preformatted">{{ resultatsId }}</span> (en savoir plus sur
-      <router-link to="/cgu#donnees"
+      <router-link to="/confidentialite"
         >le traitement de vos données personnelles</router-link
       >).</small
     ><br />
-    <small>
+    <small v-if="resultatsId">
       <button v-if="!showExpertLinks" class="button small" @click="toggleLinks">Je suis partenaire</button>
       <div v-if="showExpertLinks" class="aj-feedback-partenaire">
         Je suis partenaire&nbsp;:

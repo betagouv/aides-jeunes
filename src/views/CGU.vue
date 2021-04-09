@@ -1,172 +1,91 @@
 <template>
   <article class="text container">
-    <h1>Conditions générales d'utilisation (lisibles, promis !)</h1>
+    <h1>Conditions générales d'utilisation</h1>
 
-    <h2 id="presentation">Présentation</h2>
+    <p>Les présentes conditions générales d’utilisation (dites « CGU ») fixent le cadre juridique de “Mes-Aides Jeunes” et définissent les conditions d’accès et d’utilisation des services par l’Utilisateur.</p>
 
-    <p>Mes Aides est un calculateur d'aides sociales à destination des particuliers et de celles et ceux qui les conseillent, dans un cadre professionnel ou bénévole. Il s'agit d'une application web qui permet de décrire en quelques minutes une situation individuelle et d'obtenir immédiatement une évaluation de son éligibilité à des aides sociales, nationales (« légales ») ou territoriales (« extra-légales »).</p>
+    <h2>Article 1 - Champ d’application</h2>
 
-    <p>Le <a href="https://github.com/mes-aides/simulateur">code du logiciel</a> est <abbr title="Sous licence AGPL" uib-popover="Sous licence AGPL" popover-trigger="mouseenter">libre</abbr>, et peut donc être vérifié et amélioré par tout·e·s.</p>
+    <p>Le simulateur en ligne est ouvert à tous. Il est principalement à destination des jeunes de moins de 30 ans qui le souhaite visitant le site de manière gratuite et sans création de comptes.</p>
 
+    <h2>Article 2 - Objet</h2>
 
-    <h2>Vocabulaire</h2>
+    <p>Mes-Aides Jeunes a pour objectif d’améliorer l’accompagnement et la connaissance des aides auxquelles les jeunes ont droit. L’outil vise également à pallier au non-recours aux aides de la part des jeunes.</p>
 
-    <p>
-      <ul>
-        <li>« Nous » se réfère à l'<router-link to="cgu#mentions-legales">éditeur</router-link> de Mes Aides.</li>
-        <li>« Vous » se réfère à un·e usager de Mes Aides.</li>
-        <li>« Partenaires » se réfère aux organismes responsables d'attribuer les aides calculées par Mes Aides.</li>
-      </ul>
-    </p>
+    <h2>Article 3 – Définitions</h2>
 
+    <p><ul>
+      <li>« L'Utilisateur » est toute personne utilisant la plateforme Mes-Aides Jeunes. Il ne peut s’agir que d’une personne physique.</li>
+      <li>Les « Services » sont les fonctionnalités offertes par la plateforme pour répondre à ses finalités.</li>
+      <li>« Le responsable de traitement » est la personne qui, au sens de l’article 4 du règlement (UE) n°2016/679 du Parlement européen et du Conseil du 27 avril 2016 relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données détermine les finalités et les moyens des traitements de données à caractère personnel.</li>
+    </ul></p>
 
-    <h2 id="absence-de-garantie">Absence de garantie</h2>
+    <h2>Article 4 - Fonctionnalités</h2>
 
-    <p>
-      Les résultats calculés par ce simulateur ont une valeur informative et ne représentent en aucun cas une décision d'ouverture de droits.
-      <small>Nos partenaires sont les seuls décisionnaires sur l'attribution d'un droit. Les résultats d'une simulation ne sont pas opposables en guichet.</small>
-    </p>
-    <p>
-      Nous ne garantissons pas l'exactitude du contenu des sites externes vers lesquels nous faisons des liens.
-      <small>Ces sites ne sont pas non plus régis par les mêmes conditions d'utilisation, notamment en ce qui concerne leur traitement des données à caractère personnel.</small>
-    </p>
-    <p>
-      Nous mettons Mes Aides à disposition sans garantie sur sa disponibilité, en « <em lang="en">best effort</em> ».
-      <small>Cela signifie que d'éventuelles indisponibilités n'ouvriront pas droit à compensation financière.</small>
-    </p>
+    <h3>4.1 Répondre au questionnaire « Mes-Aides Jeunes »</h3>
 
+    <p>Tout Utilisateur peut répondre au questionnaire « Mes-Aides Jeunes » regroupant les aides auxquelles il peut prétendre. Les réponses au questionnaire vont ensuite permettre au simulateur de proposer à titre indicatif des aides et des montants qu’il reviendra à l’Utilisateur de demander auprès des organismes qui les délivrent. Il peut, s’il le souhaite recevoir via son adresse e-mail, un récapitulatif contenant les aides auxquelles elle a droit.</p>
 
-    <h2 id="donnees">Vos données</h2>
+    <h3>4.2 Répondre au sondage</h3>
 
-    <p>
-      Mes Aides ne vous demande ni ne stocke d'information nominative telle que nom, prénoms ou adresse.
-      <small>La seule information nominative que vous pouvez renseigner est le prénom de vos enfants. Cela permet uniquement de les distinguer. Vous êtes libre d'inscrire le prénom que vous souhaitez.</small>
-    </p>
-    <p>
-      Pour autant, une fois réunies, les données nécessaires pour évaluer vos droits (revenus, âge, code postal…) ont un caractère personnel.<!--  Nous en avons donc déclaré le traitement auprès de la <abbr title="Commission Nationale de l'Informatique et des Libertés">CNIL</abbr>. -->
-    </p>
-    <p>
-      Nous conservons ces données pendant deux ans à compter de la simulation pour analyser les usages, mesurer l'impact et la diffusion territoriale de Mes Aides, et améliorer le service.
-      <small>Ces données nous permettent par exemple de déterminer les options les plus pertinentes à vous proposer en fonction des usages les plus fréquents.</small>
-    </p>
-    <p>
-      Vous avez un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, envoyez-nous un courriel à l'adresse <a
-      v-mail="{to: 'aides-jeunes@beta.gouv.fr', subject: 'Mes données', body: emailBody}">aides-jeunes@beta.gouv.fr</a> en précisant
-      <ul>
-        <li>la date et l'heure précise de simulation,</li>
-        <li v-if="situation._id">l'identifiant de la simulation : <strong>{{ situation._id }}</strong>,</li>
-        <li>le plus possible d'éléments renseignés au cours de votre visite : date de naissance, etc. </li>
-      </ul>
-      <small>Comme nous n'enregistrons pas d'éléments nominatifs, seuls ces éléments peuvent nous permettre de retrouver votre simulation.</small>
-    </p>
-    <p>
-      Nous conservons pendant 2 mois les emails des personnes ayant demandé un récapitulatif par courrier électronique.
-      <small>Nous stockons votre email dans le but de ne permettre qu'à vous seul·e d'accéder à votre situation.</small>
-    </p>
-    <p>
-      Nous nous engageons à ne jamais exploiter les informations que vous nous transmettrez dans un but commercial ou publicitaire.
-      <small>De manière générale, Mes Aides n’accepte aucune forme de publicité autre que celle que constitue la présentation des aides des partenaires.</small>
-    </p>
-    <p>
-      Nous collectons également des données anonymes d'audience, indépendamment des simulations effectuées.
-      <small>Cela nous permet par exemple de déterminer la <a href="https://beta.gouv.fr/2016/11/04/mes-aides-metriques-pirates-tunnel-conversion-public">durée d'une simulation et les pages à améliorer en priorité</a>.</small>
-    </p>
+    <p>Lorsqu’un Utilisateur a reçu son récapitulatif d’aide, il est, après 7 jours et lorsqu'il a donné son accord, invité à répondre à un sondage relatif à son parcours et son accès aux aides. S’il n’a pas réussi ou pas souhaité poursuivre son parcours, il est invité à détailler les raisons de ses difficultés dans un champ libre. L’outil lui propose des moyens pour faciliter son accompagnement. Le champ libre n’autorise pas les personnes à des propos insultants, non courtois ou déraisonnables.</p>
 
-    <iframe id="tracking-optout" src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr">
-      Vous pouvez choisir de <a href="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr">refuser ce suivi</a>.
-    </iframe>
+    <h2>Article 5 - Responsabilités</h2>
 
-    <p>
-      Nous nous engageons à prendre toutes les mesures nécessaires pour garantir la sécurité et la confidentialité des informations que vous nous fournissez.
-      <small>Les situations enregistrées sont enregistrées dans un centre de données <a href="https://www.ovh.com/fr/apropos/securite.xml">sécurisé</a>. Seules nos équipes techniques et celles de nos partenaires peuvent y <abbr title="Uniquement par clé privée révocable individuellement, pas par mot de passe 😉" uib-popover="Uniquement par clé privée révocable individuellement, pas par mot de passe 😉" popover-trigger="mouseenter">accéder</abbr>.</small>
-    </p>
+    <h3>5.1 L’éditeur de « MES-AIDES JEUNES »</h3>
 
+    <p>Les sources des informations diffusées sur le site sont réputées fiables mais le site ne garantit pas qu’il soit exempt de défauts, d’erreurs ou d’omissions.</p>
 
-    <h2 id="evolutions">Évolutions</h2>
+    <p>L’éditeur s’engage à la sécurisation du site, notamment en prenant toutes les mesures nécessaires permettant de garantir la sécurité et la confidentialité des informations fournies.</p>
 
-    <p>
-      Nous pouvons faire évoluer Mes Aides sans information préalable.
-      <small>Nous ajoutons régulièrement des aides, raffinons l'interface et modifions des formulations sur la base de vos retours et des évolutions règlementaires.</small>
-    </p>
-    <p>
-      Nous pouvons suspendre l'accès à Mes Aides sans information préalable, notamment pour des raisons de maintenance.
-      <small>Nous mettons l'application à jour plusieurs fois par semaine. L'indisponibilité ne dépasse généralement pas une dizaine de secondes.</small>
-    </p>
-    <p>
-      Nous pouvons amender ces conditions d’utilisation. En cas de changement significatif, une notification s'affichera lors de l'accès à Mes Aides au moins 30 jours avant l'entrée en vigueur des nouvelles conditions.
-      <small>Tout l'<a href="https://github.com/mes-aides/simulations/commits/master/src/views/CGU.vue">historique de ces conditions</a> est librement accessible.</small>
-    </p>
+    <p>L’éditeur fournit les moyens nécessaires et raisonnables pour assurer un accès continu, sans contrepartie financière, au site. Il se réserve la liberté de faire évoluer, de modifier ou de suspendre, sans préavis, le site pour des raisons de maintenance ou pour tout autre motif jugé nécessaire.</p>
 
+    <h3>5.2 L’Utilisateur</h3>
 
-    <h2 id="utilisation">Utilisation</h2>
+    <p>Il est rappelé que toute personne procédant à une fausse déclaration pour elle-même ou pour autrui s’expose, notamment, aux sanctions prévues à l’article 441-1 du code pénal, prévoyant des peines pouvant aller jusqu’à trois ans d’emprisonnement et 45 000 euros d’amende.</p>
 
-    <p>
-      Mes Aides est en accès libre à l'adresse <a href="https://mes-aides.1jeune1solution.beta.gouv.fr">mes-aides.org</a>.
-      <small>Son utilisation est gratuite et facultative.</small>
-    </p>
-    <p>
-      Si vous effectuez une simulation, vous acceptez ces conditions d'utilisation.
-    </p>
-    <p>
-      L’utilisation de Mes Aides requiert une connexion internet et un navigateur récent. L'application affichera un message si le navigateur utilisé est trop ancien pour être compatible.
-      <small>En particulier, les versions d'Internet Explorer antérieures à la 11 ne sont pas compatibles. Vous pouvez installer en autonomie <a href="https://support.google.com/chrome/answer/95346?hl=fr">Chrome</a> ou <a href="https://www.mozilla.org/fr/firefox/all/?q=Fran%C3%A7ais">Firefox</a>, sans droits d'administration sur votre poste.</small>
-    </p>
-    <p>
-      Nous nous réservons le droit de bloquer, sans information préalable ni compensation financière, les usages mettant en péril l'utilisation du logiciel par d'autres usagers.
-      <small>Cela nous permet d'anticiper d'éventuelles <a href="https://fr.wikipedia.org/wiki/Attaque_par_déni_de_service">attaques par déni de service</a>.</small>
-    </p>
+    <p>L'Utilisateur s'engage à ne pas mettre en ligne de contenus ou informations contraires aux dispositions légales et réglementaires en vigueur.</p>
 
+    <p>Particulièrement, il doit s’abstenir de tout propos injurieux, insultant, discriminant ou dénigrant à propos de lui-même ou d’une autre personne. Il doit également demeurer raisonnable dans les informations qu’il transmet à « Mes-Aides Jeunes » notamment lorsqu’il a accepté d’être recontacté par « Mes-Aides Jeunes » à la suite de sa réponse au questionnaire.</p>
+
+    <h2>Article 6 - Mise à jour des conditions d’utilisation</h2>
+
+    <p>Les termes des présentes conditions d’utilisation peuvent être amendés à tout moment, sans préavis, en fonction des modifications apportées à la plateforme, de l’évolution de la législation ou pour tout autre motif jugé nécessaire.</p>
 
     <h1 id="mentions-legales">Mentions légales</h1>
 
     <h2>Éditeur</h2>
     <p>
-      <a
-        v-analytics="{ action:'CGU', category:'Éditeur'}"
-        v-mail="{to: 'aides-jeunes@beta.gouv.fr', subject:'Éditeur', body:''}">L'association Mes Aides
-      </a>
+      Ce site est édité conjointement par :
+      <ul>
+        <li>la Délégation générale à l’emploi et à la formation professionnelle (DGEFP) - 10-18 place des 5-Martyrs-du-Lycée-Buffon 75015 Paris et</li>
+        <li>l'incubateur de services numériques de la Direction interministérielle du numérique (DINUM) - 20, avenue de Ségur - 75007 Paris.</li>
+      </ul>
     </p>
 
-    <p>
-      Direction de la publication :
-      <a
-        v-analytics="{ action:'CGU', category:'Direction de la publication'}"
-        v-mail="{to: 'aides-jeunes@beta.gouv.fr', subject:'Direction de la publication', body:''}">L'association Mes Aides
-      </a>
+    <h2>Direction de publication</h2>
+
+    <p>Le délégué générale à l’emploi et à la formation professionnelle et le directeur interministériel du numérique.</p>
+
+    <h2>Hébergement du site</h2>
+
+    <p>Ce site est hébergé par OVH SAS<br/>
+      2 rue Kellermann,<br/>
+      59100 Roubaix<br/><br/>
+      Téléphone : +339 72 10 10 0
     </p>
 
-    <h2>Hébergeur</h2>
-    <p>
-      <a href="https://www.ovh.com/fr/">OVH</a>.
-      <small>2 rue Kellermann, 59100 Roubaix. Téléphone : +33 9 72 10 10 07.</small>
-    </p>
+    <h2>Accessibilité</h2>
+
+    <p>La conformité aux normes d’accessibilité numérique est un objectif ultérieur mais nous tâchons de rendre ce site accessible à toutes et à tous.</p>
+
+    <p>Une page dédiée à ce sujet est mise à votre disposition.</p>
+
+    <h2>Sécurité</h2>
+
+    <p>Le site est protégé par un certificat électronique, matérialisé pour la grande majorité des navigateurs par un cadenas. Cette protection participe à la confidentialité des échanges.</p>
+
+    <p>En aucun cas les services associés à la plateforme ne seront à l’origine d’envoi de courriels pour demander la saisie d’informations personnelles.</p>
+
   </article>
 </template>
-
-<script>
-
-export default {
-  name: 'cgu',
-  computed: {
-    situation: function() {
-      return this.$store.state.situation
-    },
-    emailBody: function() {
-      return `Bonjour,
-
-J'ai effectué une simulation sur Mes Aides le **JJ/MM/AAAA à HH:MM:SS**.
-
-${this.situation._id ? `La dernière simulation que j'ai effectuée porte l'identifiant **${this.situation._id}**.` : ""}
-Voici quelques éléments que j'ai renseigné sur celle-ci pour vous aider à l'identifier.
-- Date de naissance : **JJ/MM/AAAA**.
-- Nombre d'enfants : …
-- …
-
-Je souhaite **supprimer** cette simulation de votre base de données.
-
-Merci d'avance.
-`
-    }
-  },
-}
-</script>

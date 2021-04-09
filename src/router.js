@@ -279,7 +279,7 @@ const router = new Router({
       {
         path: 'resultats/:droitId',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/ResultatsDetail.vue'),
-      }, 
+      },
       {
         path: ':id/:property',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),

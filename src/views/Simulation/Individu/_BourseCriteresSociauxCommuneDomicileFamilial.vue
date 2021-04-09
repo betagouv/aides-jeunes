@@ -1,15 +1,13 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    <h1>Logement familial</h1>
-    <fieldset>
-      <label>Quel est le code postal de la commune de vos parents ?
-        <input type="number" v-model="codePostal">
-      </label>
-      </fieldset>
+    <div class="form__group">
+      <label class="aj-question">Quel est le code postal de la commune de vos parents ?</label>
+      <input type="number" v-model="codePostal">
+    </div>
 
       <p v-if="retrievingCommunes"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></p>
-      <fieldset v-show="communes && communes.length">
-          <label>Veuillez selectionner la ville qui correspond</label>
+      <div class="form__group" v-show="communes && communes.length">
+          <label class="aj-question">Veuillez selectionner la ville qui correspond</label>
           <select
               v-model="nomCommune"
               id="commune">
@@ -17,10 +15,10 @@
                   {{ commune.nom }}
               </option>
           </select>
-      </fieldset>
+      </div>
   <Actions v-bind:onSubmit='onSubmit'/>
   </form>
-</template> 
+</template>
 <script>
 import Actions from '@/components/Actions'
 import Commune from '@/lib/Commune'

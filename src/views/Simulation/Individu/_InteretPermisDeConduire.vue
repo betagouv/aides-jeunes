@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      <h1>Prévoyez-vous de passer le permis de conduire ?</h1>
+      Prévoyez-vous de passer le permis de conduire ?
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form >

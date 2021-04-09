@@ -334,9 +334,9 @@ const router = new Router({
       }]
     },
     {
-      path: '/a-propos',
-      name: 'a-propos',
-      component: () => import(/* webpackChunkName: "a-propos" */ './views/APropos.vue')
+      path: '/accessibilite',
+      name: 'accessibilite',
+      component: () => import(/* webpackChunkName: "accessibilite" */ './views/Accessibilite.vue')
     },
     {
       path: '/contact',
@@ -347,6 +347,10 @@ const router = new Router({
       path: '/cgu',
       name: 'cgu',
       component: () => import(/* webpackChunkName: "cgu" */ './views/CGU.vue')
+    },    {
+      path: '/confidentialite',
+      name: 'confidentialite',
+      component: () => import(/* webpackChunkName: "cgu" */ './views/Confidentialite.vue')
     },
     {
       name: 'lieux',

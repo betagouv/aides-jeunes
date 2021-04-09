@@ -312,14 +312,8 @@ const router = new Router({
         meta: {
           title: " "
         }
-      }, {
-        name: 'resultat/lieux',
-        path: 'resultat/lieux/:id',
-        component: () => import(/* webpackChunkName: "lieux" */ './views/Foyer/Resultat/Lieux.vue'),
-        meta: {
-          title: "Des lieux près de chez vous"
-        }
-      }, {
+      },
+      {
         path: 'ressources/fiscales',
         component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue'),
         meta: {

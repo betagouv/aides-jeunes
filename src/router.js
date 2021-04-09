@@ -189,6 +189,24 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Alternant.vue'),
         },
         {
+          path: 'ressources/fiscales',
+          name: 'ressources/fiscales',
+          component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue'),
+          meta: {
+            title: function() {
+              return `Les revenus imposables de votre foyer en ${ store.state.dates.fiscalYear.label }`
+            }
+          }
+        },
+        {
+          path: 'ressources/patrimoine',
+          name: 'ressources/patrimoine',
+          component: () => import(/* webpackChunkName: "ressources-patrimoine" */ './views/Foyer/Ressources/Patrimoine.vue'),
+          meta: {
+            title: 'Votre patrimoine'
+          }
+        }, 
+        {
           name: 'property',
           path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
@@ -272,24 +290,6 @@ const router = new Router({
         path: 'resultats/:droitId',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/ResultatsDetail.vue'),
       },
-      {
-        path: 'foyer/ressources/fiscales',
-        name: 'ressources/fiscales',
-        component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue'),
-        meta: {
-          title: function() {
-            return `Les revenus imposables de votre foyer en ${ store.state.dates.fiscalYear.label }`
-          }
-        }
-      },
-      {
-        path: 'foyer/ressources/patrimoine',
-        name: 'ressources/patrimoine',
-        component: () => import(/* webpackChunkName: "ressources-patrimoine" */ './views/Foyer/Ressources/Patrimoine.vue'),
-        meta: {
-          title: 'Votre patrimoine'
-        }
-      }, 
       {
         path: ':id/:property',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),

@@ -255,7 +255,7 @@ function generateBlocks(situation) {
     {
       subject: situation => situation.demandeur,
       isActive: (subject, situation) => {
-        return subject.activite == 'etudiant' && !situation.enfants.length
+        return subject.activite == 'etudiant' && !subject.alternant && !situation.enfants.length
       },
       steps: [
         new Step({entity:'famille', variable: 'bourse_criteres_sociaux_nombre_enfants_a_charge'}),

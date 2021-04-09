@@ -39,5 +39,11 @@ html {
     .modal__backdrop {
       padding: 4em 2rem !important;
     }
+
+    span.help {
+      display: block;
+      width: 100%;
+      margin-left: 0;
+    }
   }
 }

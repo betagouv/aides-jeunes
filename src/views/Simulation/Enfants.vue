@@ -2,11 +2,15 @@
   <div>
     <h2 class="aj-question">Mes enfants à charge</h2>
     <div v-for="enfant in enfants" class="aj-children-container" v-bind:key="enfant.id">
-      <div class="small capitalize">
-          {{ enfant._firstName }}
-          <a class="float-right delete-link" v-on:click="removePAC(enfant.id)">supprimer</a>
-          <router-link class="float-right" v-bind:to="`/simulation/individu/${enfant.id}/_firstName`" >éditer</router-link>
-      </div>
+        <div class="aj-children-header">
+            <div class="aj-child-name small capitalize">
+                {{ enfant._firstName }}
+            </div>
+            <div class="aj-child-actions">
+                <router-link class="edit-link" v-bind:to="`/simulation/individu/${enfant.id}/_firstName`" >éditer</router-link>
+                <a class="delete-link" v-on:click="removePAC(enfant.id)">supprimer</a>
+            </div>
+        </div>
       <hr class="aj-hr" />
       <div class="aj-children-line">
           <div class="aj-children-birth-date">

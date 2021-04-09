@@ -163,12 +163,6 @@
 </script>
 
 <style scoped lang="scss">
-    span.help {
-        font-style: italic;
-        font-size: 0.8em;
-        margin-left: 0.5rem;
-    }
-
     fieldset {
         margin-bottom: 2em;
     }

@@ -3,6 +3,12 @@ html {
     .aj-children-container {
       margin-bottom: 30px;
 
+      .aj-children-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
       .aj-children-line {
         display: flex;
 

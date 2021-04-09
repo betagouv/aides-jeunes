@@ -41,12 +41,6 @@
 </script>
 
 <style scoped lang="scss">
-    span.help {
-        font-style: italic;
-        display: block;
-        font-size: 0.8em;
-    }
-
     fieldset {
         margin-bottom: 2em;
     }

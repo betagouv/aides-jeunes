@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="inline-block">
         <div class="aj-help-popup aj-tooltip" :data-text="text" @click="toggleModal(true)">
             <div class="aj-help-icon">i</div>
             en savoir plus

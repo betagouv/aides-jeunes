@@ -73,7 +73,7 @@ ID : ${resultatsId} (à conserver impérativement pour traitement de votre deman
     <small v-if="resultatsId"
       >Cette simulation a pour identifiant
       <span class="preformatted">{{ resultatsId }}</span> (en savoir plus sur
-      <router-link to="/cgu#donnees"
+      <router-link to="/confidentialite"
         >le traitement de vos données personnelles</router-link
       >).</small
     ><br />

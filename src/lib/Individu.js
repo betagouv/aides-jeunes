@@ -76,6 +76,11 @@ const Individu = {
                 conjoint: () => 'sa',
                 enfant: () => 'sa',
             },
+            possesiveMasculin: {
+                demandeur: () => 'votre',
+                conjoint: () => 'son',
+                enfant: () => 'son',
+            },
             nom: {
                 demandeur: () => 'vous',
                 conjoint: () => 'votre conjoint·e',
@@ -89,6 +94,16 @@ const Individu = {
                 demandeur: () => 'avez-vous',
                 conjoint: () =>'votre conjoint·e a-t-il/elle',
                 enfant: () => `${individu._firstName} a-t-il/elle`
+            },
+            avoirPasseSimple: {
+                demandeur: () => 'vous a',
+                conjoint: () => 'l\'a',
+                enfant: () => 'l\'a',
+            },
+            avoirPasseSimplePossesive: {
+                demandeur: () => 'vous a',
+                conjoint: () => 'lui a',
+                enfant: () => 'lui a',
             },
             percevoir: {
                 demandeur: () => 'percevez-vous',

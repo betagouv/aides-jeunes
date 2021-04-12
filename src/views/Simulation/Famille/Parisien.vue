@@ -3,7 +3,7 @@
   <form @submit.prevent='onSubmit'>
     <fieldset>
         <YesNoQuestion v-model="value">
-            <legend><h2 class="aj-question">Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }} ?</h2></legend>
+            Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }} ?
         </YesNoQuestion>
     </fieldset>
     <Actions v-bind:onSubmit='onSubmit'/>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="aj-question">Mes enfants à charge</h2>
+    <h2 class="aj-question">Mes enfants à charge <EnSavoirPlus :text="hint"/></h2>
     <div v-for="enfant in enfants" class="aj-children-container" v-bind:key="enfant.id">
         <div class="aj-children-header">
             <div class="aj-child-name small capitalize">
@@ -45,11 +45,18 @@
 import Actions from '@/components/Actions'
 import Individu from '@/lib/Individu'
 import Nationality from '@/lib/Nationality'
+import EnSavoirPlus from '@/components/EnSavoirPlus';
 
 export default {
   name: 'SimulationEnfants',
   components: {
+    EnSavoirPlus,
     Actions,
+  },
+  data() {
+    return {
+      hint: '"un enfant à charge", c\'est un enfant dont vous êtes responsable et dont vous vous occupez, qu\'il soit votre enfant naturel ou non.'
+    }
   },
   computed: {
     enfants: function() {

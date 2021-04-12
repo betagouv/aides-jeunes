@@ -63,27 +63,49 @@ html {
     .aj-help-modal {
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
-      max-height: 100vh;
-      background: var(--theme-primary-lighter);
-      z-index: 999;
+      height: 0;
+      background-color: transparentize(#000, .5);
+      z-index: 1000;
       overflow-y: scroll;
 
-      .aj-help-modal-close {
-        text-align: right;
-        padding: 1rem 1rem 0 0;
+      .aj-help-modal-container {
+        max-height: 0;
+        transition: max-height .5s;
+        background: var(--white);
+        border-top-right-radius: var(--theme-border-radius);
+        border-top-left-radius: var(--theme-border-radius);
 
-        svg {
-          width: 30px;
+        .aj-help-modal-header {
+          display: flex;
+          justify-content: space-between;
+          padding: 18px 20px;
+
+          * {
+            margin: 0;
+          }
+        }
+
+        .aj-help-modal-content {
+          font-family: "Marianne";
+          padding: 1rem;
+          font-size: 1rem;
+          font-weight: normal;
         }
       }
 
-      .aj-help-modal-content {
-        padding: 1rem;
+
+      &.open {
+        height: 100vh;
+
+        .aj-help-modal-container {
+          height: 80vh;
+          max-height: 80vh;
+        }
       }
     }
 

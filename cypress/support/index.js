@@ -42,7 +42,7 @@ export function demandeur(params={}) {
   cy.get('input[type="radio"]').check('fr')
   // Activite
   cy.get('legend').invoke('text').should('contain', 'Êtes-vous')
-  cy.get('label').invoke('text').should('contain', 'En activité')
+  cy.get('label').invoke('text').should('contain', 'salarié')
   cy.get('input[type="radio"]').check('actif')
   // Handicap
   handicap(params)
@@ -96,7 +96,7 @@ export function conjoint(params={}) {
   cy.get('input[type="radio"]').check('marie')
   // Activite
   cy.get('legend').invoke('text').should('contain', 'est-il/elle')
-  cy.get('label').invoke('text').should('contain', 'En activité')
+  cy.get('label').invoke('text').should('contain', 'salarié')
   cy.get('input[type="radio"]').check('actif')
   // Handicap
   cy.get('legend').invoke('text').should('contain', 'handicap')

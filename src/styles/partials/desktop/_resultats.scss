@@ -114,7 +114,7 @@ html {
       }
     }
 
-    .aj-droit-details-back-button {
+    .aj-droit-details-back-button, .aj-etablissements-back-button {
       &, &:focus {
         margin-bottom: 1rem;
       }
@@ -231,6 +231,56 @@ html {
       padding: 7px 1rem;
       margin-top: 1rem;
       margin-bottom: 2rem;
+    }
+
+    .aj-etablissements-intro {
+      font-size: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .aj-etablissement-container {
+      margin-bottom: 3rem;
+
+      .aj-etablissement {
+        position: relative;
+        padding-bottom: 50px !important;
+
+        .aj-etablissement-details {
+          address {
+            margin-bottom: 1rem;
+          }
+
+          .aj-etablissements-action-tel-desktop {
+            margin-bottom: 1rem;
+          }
+
+          .aj-etablissement-horaires-plage-container {
+            display: flex;
+            flex-direction: row;
+            margin-top: 0.5rem;
+
+            .aj-etablissement-horaires-plage {
+              width: 33%;
+            }
+          }
+        }
+
+        .aj-etablissements-actions {
+          position: absolute;
+          bottom: 0;
+          right: 2rem;
+          display: flex;
+          transform:translateY(50%);
+
+          .aj-etablissements-action-tel-mobile {
+            display: none;
+          }
+
+          .button {
+            margin-left: 1rem;
+          }
+        }
+      }
     }
   }
 }

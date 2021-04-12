@@ -11,10 +11,10 @@
         ></BenefitCtaLink>
         <router-link
             class="button primary"
-            v-if="false && benefit.provider.etablissements && benefit.provider.etablissements.length > 0"
+            v-if="benefit.provider.etablissements && benefit.provider.etablissements.length > 0"
             v-analytics="{ name:benefit.label, action:'show-locations', category:'General'}"
-            v-bind:to="{ name: 'resultat/lieux', params: { id: benefit.id }}">
-            Trouver une agence
+            v-bind:to="{ name: 'resultats/lieux', params: { id: benefit.id }}">
+            À proximité de chez vous
         </router-link>
     </div>
 </template>

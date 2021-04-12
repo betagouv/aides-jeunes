@@ -103,5 +103,43 @@ html {
         height: 11rem;
       }
     }
+
+    .aj-etablissement-container {
+      .aj-etablissement {
+        padding-bottom: 1rem !important;
+
+        .aj-etablissement-details {
+
+          .aj-etablissements-action-tel-desktop {
+            display: none;
+          }
+
+          .aj-etablissement-horaires-plage-container {
+            flex-direction: column;
+            .aj-etablissement-horaires-plage {
+              width: 100%;
+            }
+          }
+        }
+        .aj-etablissements-actions {
+          display: block;
+          position: static;
+          right: 0;
+          transform: none;
+
+          .aj-etablissements-action-tel-mobile {
+            display: block;
+          }
+
+          .button {
+            margin-left: 0;
+          }
+
+          & > div:not(:first-of-type) {
+            margin-top: 0.5rem;
+          }
+        }
+      }
+    }
   }
 }

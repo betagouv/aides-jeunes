@@ -269,6 +269,14 @@ const router = new Router({
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/Resultats.vue'),
       },
       {
+        name: 'resultats/lieux',
+        path: 'resultats/:id/lieux',
+        component: () => import(/* webpackChunkName: "lieux" */ './views/Simulation/Resultats/Lieux.vue'),
+        meta: {
+          title: "Des lieux près de chez vous"
+        }
+      },
+      {
         path: 'resultats/:droitId',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/ResultatsDetail.vue'),
       },
@@ -304,14 +312,8 @@ const router = new Router({
         meta: {
           title: " "
         }
-      }, {
-        name: 'resultat/lieux',
-        path: 'resultat/lieux/:id',
-        component: () => import(/* webpackChunkName: "lieux" */ './views/Foyer/Resultat/Lieux.vue'),
-        meta: {
-          title: "Des lieux près de chez vous"
-        }
-      }, {
+      },
+      {
         path: 'ressources/fiscales',
         component: () => import(/* webpackChunkName: "ressources-fiscales" */ './views/Foyer/Ressources/Fiscales.vue'),
         meta: {
@@ -325,7 +327,8 @@ const router = new Router({
         meta: {
           title: 'Votre patrimoine'
         }
-      }, {
+      }, 
+      {
         path: 'recapitulatif',
         component: () => import(/* webpackChunkName: "recapitulatif" */ './views/Foyer/Recapitulatif.vue'),
         meta: {
@@ -351,11 +354,6 @@ const router = new Router({
       path: '/confidentialite',
       name: 'confidentialite',
       component: () => import(/* webpackChunkName: "cgu" */ './views/Confidentialite.vue')
-    },
-    {
-      name: 'lieux',
-      path: '/lieux',
-      component: () => import(/* webpackChunkName: "lieux" */ './views/Lieux.vue'),
     },
     {
       name: 'lieux-details',

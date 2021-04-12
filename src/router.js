@@ -270,7 +270,7 @@ const router = new Router({
       },
       {
         name: 'resultats/lieux',
-        path: 'resultats/lieux/:id',
+        path: 'resultats/:id/lieux',
         component: () => import(/* webpackChunkName: "lieux" */ './views/Simulation/Resultats/Lieux.vue'),
         meta: {
           title: "Des lieux près de chez vous"

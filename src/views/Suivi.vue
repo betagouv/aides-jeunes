@@ -5,7 +5,6 @@
         <h1>Suivi Mes Aides</h1>
       </div>
       <div class="aj-box-wrapper">
-      <!-- <p v-show="!this.droits"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération de la situation en cours…</p> -->
       <div class="aj-unbox">
         <LoadingModal v-if="!this.droits">
           <p v-show="!this.droits">Récupération de la situation en cours…</p>

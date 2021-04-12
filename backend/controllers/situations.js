@@ -23,7 +23,9 @@ exports.situation = function(req, res, next, situationId) {
 };
 
 exports.attachAccessCookie = function(req, res) {
-    res.cookie(req.situation.cookieName, req.situation.token, { maxAge: 7 * 24 * 3600 * 1000, httpOnly: true });
+    const maxAge = 7 * 24 * 3600 * 1000
+    res.cookie(req.situation.cookieName, req.situation.token, { maxAge, httpOnly: true })
+    res.cookie('lastestSituation', req.situation._id.toString(), { maxAge })
 };
 
 exports.validateAccess = function(req, res, next) {

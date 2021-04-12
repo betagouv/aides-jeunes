@@ -1,8 +1,8 @@
 <template>
   <div class="droits-list">
     <div v-if="!ineligible">
-        <a v-for="(droit, index) in list"
-          class="aj-aide-box a-unstyled" v-bind:key="index" @click="push(droit)"
+        <router-link v-for="(droit, index) in list"
+          class="aj-aide-box a-unstyled" v-bind:key="index" v-bind:to="`/simulation/resultats/${droit.id}`"
           itemscope itemtype="http://schema.org/GovernmentService"
           >
             <img class="aj-aide-illustration" v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
@@ -22,7 +22,7 @@
             <div class="aj-aide-cta">
                 <a class="button primary">Demander cette aide</a>
             </div>
-        </a>
+        </router-link>
     </div>
     <div v-if="ineligible">
       <a v-for="(droit, index) in list"

@@ -54,6 +54,8 @@ import ErrorBlock from './../../components/ErrorBlock'
 import Feedback from './../../components/Feedback'
 import OfflineResults from './../../components/OfflineResults'
 import LoadingModal from '@/components/LoadingModal'
+import ResultatsMixin from '@/mixins/Resultats'
+
 
 export default {
   name: 'SimulationResultats',
@@ -64,34 +66,12 @@ export default {
     OfflineResults,
     LoadingModal
   },
-  computed: {
-    droits: function() {
-      return this.resultats && this.resultats.droitsEligibles
-    },
-    droitsNonEligibles: function() {
-      return (this.droitsNonEligiblesShow && this.resultats && this.resultats.droitsNonEligibles) || [] },
-    droitsNonEligiblesShown: function() { return this.droitsNonEligibles.filter(i => i.id === "css_participation_forfaitaire") },
-    droitsNonEligiblesShow: function() { return this.$store.state.ameliNoticationDone },
-    resultatsId: function() { return this.resultats && this.resultats._id || '???' },
-    accessStatus: function() { return this.$store.state.access },
-    resultatStatus: function() { return this.$store.state.calculs },
-    resultats: function() { return this.$store.state.calculs.resultats },
-    hasWarning: function() {
-      return this.accessStatus.forbidden
-    },
-    hasError: function() {
-      return this.resultatStatus.error
-    },
-    shouldDisplayResults: function() {
-      return !(this.resultatStatus.updating || this.hasWarning || this.hasError) && this.droits
-    },
-  },
+  mixins: [ResultatsMixin],
   methods: {
     isEmpty: function(array) { return ! array || array.length === 0 },
   },
   mounted: function () {
-    if (this.$route.query.debug !== undefined) {
-      this.$store.dispatch('mockResults', this.$route.query.debug)
+    if (this.mock(this.$route.params.droitId)) {
       return
     } else if (this.$route.query && this.$route.query.situationId) {
       if (this.$store.state.situation._id !== this.$route.query.situationId) {
@@ -111,8 +91,10 @@ export default {
             }
             return this.$store.dispatch('compute')
           })
-      } else if(! this.$store.getters.hasResults) {
+      } else if (! this.$store.getters.hasResults) {
         this.$store.dispatch('compute')
+      } else if (! this.$store.state.situation._id) {
+        this.restoreLatest()
       }
     }
 

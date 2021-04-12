@@ -7,58 +7,58 @@ require('../config/mongoose')(mongoose, config);
 var Followup = mongoose.model('Followup');
 
 var parser = new ArgumentParser({
-    addHelp:true,
+    add_help:true,
     description: 'Outil d\'envoi des emails de suivi',
 });
 
-var subparsers = parser.addSubparsers({
+var subparsers = parser.add_subparsers({
     title: 'Commandes',
     dest: 'command'
 });
 
-var send = subparsers.addParser('send');
+var send = subparsers.add_parser('send');
 
-var send_types = send.addSubparsers({
+var send_types = send.add_subparsers({
     title: 'Type',
     dest: 'type'
 })
 
-var send_initial = send_types.addParser('initial');
-var send_survey = send_types.addParser('survey');
+var send_initial = send_types.add_parser('initial');
+var send_survey = send_types.add_parser('survey');
 var senders = [send_initial, send_survey]
 senders.forEach(send => {
-    send.addArgument(
-        [ '--id' ],
+    send.add_argument(
+        '--id',
         {
             help: 'Followup Id'
         }
     );
-    send.addArgument(
-        [ '--mock' ],
+    send.add_argument(
+        '--mock',
         {
-            action: 'storeTrue',
+            action: 'store_true',
             help: 'Do not send emails'
         }
     );
 
-    send.addArgument(
-        [ '--multiple' ],
+    send.add_argument(
+        '--multiple',
         {
             help: 'Number of emails to send'
         }
     );
-    send.addArgument(
-        [ '--all' ],
+    send.add_argument(
+        '--all',
         {
-            action: 'storeTrue',
+            action: 'store_true',
             help: 'Send multiple emails'
         }
     );
 })
 
-var reply = subparsers.addParser('reply');
-reply.addArgument(
-    [ '--id' ],
+var reply = subparsers.add_parser('reply');
+reply.add_argument(
+    '--id',
     {
         help: 'Survey Id'
     }
@@ -82,9 +82,9 @@ function processSend(args) {
                     return;
             }
         }).then(e => {
-            console.log('log', e);
+            console.log('log!', e);
         }).catch(e => {
-            console.error('error', e);
+            console.error('error!', e.traceback);
         }).finally(() => {
             console.log('done');
             process.exit(0);
@@ -123,7 +123,7 @@ function processSend(args) {
 }
 
 function main() {
-    var args = parser.parseArgs();
+    var args = parser.parse_args();
     switch (args.command) {
         case 'send':
             processSend(args)

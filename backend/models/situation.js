@@ -15,7 +15,7 @@ SituationSchema.virtual('cookieName').get(function() {
     return `${SituationSchema.statics.cookiePrefix}${this._id}`;
 });
 SituationSchema.virtual('returnPath').get(function() {
-    return '/foyer/resultat?situationId=' + this._id;
+    return '/simulation/resultats?situationId=' + this._id;
 });
 
 SituationSchema.methods.isAccessible = function(keychain) {

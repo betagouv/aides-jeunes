@@ -12,7 +12,7 @@ exports.sendEmail = function(sendSmtpEmail) {
   var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
   sendSmtpEmail.sender = {
-    name: 'Équipe Mes Aides',
+    name: 'Équipe du simulateur 1jeune1solution.gouv.fr',
     email: 'aides-jeunes@beta.gouv.fr'
   }
   return apiInstance.sendTransacEmail(sendSmtpEmail)

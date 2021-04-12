@@ -1,11 +1,9 @@
 <template>
     <form @submit.prevent='onSubmit'>
-        <fieldset>
-            <YesNoQuestion v-model="value">
-                Avez-vous un lien de parenté direct avec votre propriétaire ?
-                <span class="help">Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant, grand-parent…) ?</span>
-            </YesNoQuestion>
-        </fieldset>
+        <YesNoQuestion v-model="value">
+            Avez-vous un lien de parenté direct avec votre propriétaire ?
+            <span class="help">Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant, grand-parent…) ?</span>
+        </YesNoQuestion>
         <Actions v-bind:onSubmit='onSubmit'/>
     </form >
 </template>

@@ -1,21 +1,11 @@
 <template>
     <form @submit.prevent='onSubmit'>
-        <fieldset>
-            <legend>
-                <h2 class="aj-question">
-                    {{ chambreQuestion.label }}
-                    <span v-if="chambreQuestion.hint" class="help">{{ chambreQuestion.hint }}</span>
-                </h2>
-            </legend>
-            <div v-for="response in chambreQuestion.responses" class="aj-selection-wrapper" v-bind:key="response.value">
-                <input :id="response.label" type="radio" name="coloc" v-model="chambreQuestion.selectedValue" v-bind:value="response.value"
-                />
-                <label :for="response.label">
-                    {{ response.label | capitalize }}
-                    <span v-if="response.hint" class="help">({{ response.hint }})</span>
-                </label>
-            </div>
-        </fieldset>
+        <YesNoQuestion v-model="value">
+            Est-ce une chambre ?
+            <span class="help">
+                Une chambre est un logement qui ne comporte qu'une seule pièce et n'est pas équipé d'un WC.
+            </span>
+        </YesNoQuestion>
         <Actions v-bind:onSubmit='onSubmit'/>
     </form >
 </template>
@@ -23,41 +13,29 @@
 <script>
     import Actions from '@/components/Actions'
     import { autoSubmitMixin } from '@/mixins/AutoSubmit'
+    import YesNoQuestion from '@/components/YesNoQuestion'
 
     export default {
         name: 'SimulationMenageLogementChambre',
         components: {
+            YesNoQuestion,
             Actions
         },
         data: function() {
             const menage = this.$store.getters.getMenage || {}
             return {
                 menage: menage,
-                chambreQuestion: {
-                    label: 'Est-ce une chambre ?',
-                    hint: 'Une chambre est un logement qui ne comporte qu\'une seule pièce et n\'est pas équipé d\'un WC.',
-                    selectedValue: menage.logement_chambre,
-                    responses: [
-                        {
-                            label: 'Oui',
-                            value: true
-                        },
-                        {
-                            label: 'Non',
-                            value: false
-                        }
-                    ]
-                }
+                value: menage.logement_chambre
             }
         },
-        mixins: [autoSubmitMixin('chambreQuestion.selectedValue')],
+        mixins: [autoSubmitMixin('value')],
         methods: {
             onSubmit: function() {
-                if (this.chambreQuestion.selectedValue === undefined) {
+                if (this.value === undefined) {
                     this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
                     return
                 }
-                this.menage.logement_chambre = this.chambreQuestion.selectedValue
+                this.menage.logement_chambre = this.value
                 this.$store.dispatch('updateMenage', this.menage)
                 this.$push()
             }

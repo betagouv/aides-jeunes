@@ -94,8 +94,13 @@ html {
             transition: background-color 400ms linear, color 400ms linear;
           }
 
-          & + label:hover {
+          &:hover + label, & + label:hover {
             background-color: var(--theme-primary-lighter);
+          }
+
+          &:focus + label, & + label:focus {
+            background-color: #d5d9f5;
+            outline: none;
           }
 
           &:checked {
@@ -115,10 +120,14 @@ html {
       }
 
       input[type="text"], input[type="number"], select {
-        border: 2px solid #AAAAAA;
+        border: 1px solid #E6E7F3;
         border-radius: var(--theme-border-radius);
         max-width: 300px;
         min-width: 150px;
+
+        &:hover, &:focus {
+          border-color: #030F8F;
+        }
       }
 
       input[type="number"] {
@@ -247,7 +256,7 @@ html {
           top: 50%;
           transform: translateY(-50%);
           z-index: 99;
-          font-size: 1.5rem;
+          font-size: 1.3rem;
         }
 
         input[type="number"] {

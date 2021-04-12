@@ -1,11 +1,8 @@
-
 <template>
   <form @submit.prevent='onSubmit'>
-    <fieldset>
-        <YesNoQuestion v-model="value">
-            Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }} ?
-        </YesNoQuestion>
-    </fieldset>
+    <YesNoQuestion v-model="value">
+      Avez-vous habité Paris au moins 3 ans depuis {{ yearsAgo(5) }} ?
+    </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>

@@ -94,11 +94,11 @@ html {
             transition: background-color 400ms linear, color 400ms linear;
           }
 
-          & + label:hover {
+          &:hover + label, & + label:hover {
             background-color: var(--theme-primary-lighter);
           }
 
-          & + label:focus {
+          &:focus + label, & + label:focus {
             background-color: #d5d9f5;
             outline: none;
           }

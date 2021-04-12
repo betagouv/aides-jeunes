@@ -26,6 +26,18 @@ html {
         .aj-actions {
           width: 100%;
           justify-content: space-between;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          transform: none;
+          padding: 1rem;
+          background-color: white;
+          z-index: 999;
+          border-top: 1px solid #dadada;
+
+          .button {
+            box-shadow: none;
+          }
         }
       }
 

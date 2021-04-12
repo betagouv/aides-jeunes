@@ -32,11 +32,11 @@ export default {
     let options = [
       {
         value: 'etudiant',
-        label: 'En formation ou alternance'
+        label: 'Étudiant·e en formation ou alternance'
       },
       {
         value: 'actif',
-        label: 'En activité'
+        label: 'En activité salariée ou indépendante'
       },
       {
         value: 'chomeur',

@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <fieldset>
-        <legend><h2 class="aj-question">Quel est le revenu brut global de vos parents&nbsp;?</h2></legend>
+        <legend><h2 class="aj-question">Quel est le revenu brut global 2019 figurant sur l’avis fiscal 2020 de vos parents&nbsp;?</h2></legend>
       <label>
         <input type="number" v-select-on-click v-model.number="value">
       </label>

@@ -43,7 +43,10 @@
                 </div>
               </div>
               <div class="aj-suivi-box-question">
-                <fieldset>
+                <div class="form__group">
+                  <legend>
+                    <h2 class="aj-question">Avez-vous demandé l'aide ?</h2>
+                  </legend>
                   <div v-for="choice in droit.choices" v-bind:key="choice.value" class="aj-selection-wrapper">
                     <input type="radio"
                       :id="`choices_${ droit.id }_${ choice.value }`"
@@ -54,13 +57,13 @@
                       {{ choice.label }}
                     </label>
                   </div>
-                </fieldset>
-                <fieldset v-show="isNegative(droit.choiceValue)">
-                  <label>
-                    Pour quelle raison ?
-                  </label>
-                  <textarea  v-model="droit.choiceComments" placeholder="Pour quelle raison ?"></textarea>
-                </fieldset>
+                </div>
+                <div class="form__group" v-show="isNegative(droit.choiceValue)">
+                  <legend>
+                    <h2 class="aj-question">Pour quelle raison ?</h2>
+                  </legend>
+                  <textarea  v-model="droit.choiceComments" placeholder="..."/>
+                </div>
               </div>
             </div>
           </div>
@@ -180,8 +183,7 @@ export default {
 .aj-suivi-box-question {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
 }
 .break {
   flex-basis: 100%;

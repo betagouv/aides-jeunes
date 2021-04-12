@@ -69,9 +69,9 @@ function mock(app) {
   app.get('/api/followups/surveys/:id', function(req, res) {
     res.send({
       benefits: [
-        { id: 'ppa', amount: '42'},
-        { id: 'rsa', amount: '42'},
-        { id: 'aide_logement', amount: '42'},
+        { id: 'ppa', amount: 42},
+        { id: 'rsa', amount: 145 },
+        { id: 'aide_logement', amount: 125 },
       ]
     })
   })

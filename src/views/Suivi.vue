@@ -1,45 +1,75 @@
 <template>
-  <form>
-    <h1>Suivi Mes Aides</h1>
-    <p v-show="!this.droits"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération de la situation en cours…</p>
+  <div class="container">
+    <div class="aj-main-container">
+      <div class="aj-category-title-wrapper">
+        <h1>Suivi Mes Aides</h1>
+      </div>
+      <div class="aj-box-wrapper">
+      <!-- <p v-show="!this.droits"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération de la situation en cours…</p> -->
+      <div class="aj-unbox">
+        <LoadingModal v-if="!this.droits">
+          <p v-show="!this.droits">Récupération de la situation en cours…</p>
+        </LoadingModal>
+        <div class="alert alert-success" v-if="submitted">
+          Merci d'avoir rempli ce questionnaire !
+        </div>
 
-
-    <div class="alert alert-success" v-if="submitted">
-      Merci d'avoir rempli ce questionnaire !
-    </div>
-
-    <div v-if="this.droits && ! submitted">
-      <p>
-        Vous avez effectué une simulation le <strong>{{createdAt}}</strong>.
-      </p>
-      <p>
-        Répondez à ce questionnaire afin de nous aider à améliorer la pertinence des résultats que nous affichons. Ça ne prend pas plus de 2 minutes !
-      </p>
-
-      <div class="droit-details">
-        <div v-for="droit in droits" v-bind:key="droit.id" class="droit-detail"
-          itemscope itemtype="http://schema.org/GovernmentService">
-
-          <div class="droit-detail-heading">
-            <h3 itemprop="name">{{ droit.label }}</h3>
-            <div class="dotted-line"></div>
-            <droit-montant v-bind:droit="droit" v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></droit-montant>
+        <form v-if="this.droits && ! submitted">
+          <p>
+            Vous avez effectué une simulation le <strong>{{createdAt}}</strong>.
+          </p>
+          <p>
+            Répondez à ce questionnaire afin de nous aider à améliorer la pertinence des résultats que nous affichons. Ça ne prend pas plus de 2 minutes !
+          </p>
+          <div class="droit-details">
+            <div v-for="droit in droits" v-bind:key="droit.id" class="droit-detail aj-aide-box aj-suivi-box"
+              itemscope itemtype="http://schema.org/GovernmentService">
+              <div class="aj-suivi-box-aide">
+                <img class="aj-aide-illustration" v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
+                <div class="aj-aide-text">
+                    <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
+                    <p class="aj-aide-description">
+                      {{ droit.description }}
+                    </p>
+                    <div class="aj-aide-warning" v-if="droit.montant && isBoolean(droit.montant) && droit.symbol === 'fa-exclamation-triangle'">
+                        <img src="@/assets/images/warning.svg"> Attention, cette aide vous est accessible sous certaines conditions supplémentaires.
+                    </div>
+                </div>
+                <div class="aj-aide-montant">
+                    <DroitMontant v-bind:droit="droit" v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></DroitMontant>
+                    <div v-if="droit.montant && isBoolean(droit.montant)">
+                        <i v-bind:class="`fa ${droit.symbol ? droit.symbol : 'fa-check-circle'} fa-2x`"></i>
+                    </div>
+                </div>
+              </div>
+              <div class="aj-suivi-box-question">
+                <fieldset>
+                  <div v-for="choice in droit.choices" v-bind:key="choice.value" class="aj-selection-wrapper">
+                    <input type="radio"
+                      :id="`choices_${ droit.id }_${ choice.value }`"
+                      v-bind:name="`choices_${ droit.id }_${ choice.value }`"
+                      v-bind:value="choice.value"
+                        v-model="droit.choiceValue"/>
+                    <label :for="`choices_${ droit.id }_${ choice.value }`">
+                      {{ choice.label }}
+                    </label>
+                  </div>
+                </fieldset>
+                <fieldset v-show="isNegative(droit.choiceValue)">
+                  <label>
+                    Pour quelle raison ?
+                  </label>
+                  <textarea  v-model="droit.choiceComments" placeholder="Pour quelle raison ?"></textarea>
+                </fieldset>
+              </div>
+            </div>
           </div>
-
-          <div v-for="choice in droit.choices" v-bind:key="choice.value">
-            <label>
-              <input type="radio" v-bind:name="`choices_${ droit.id }_${ choice.value }`" v-bind:value="choice.value"
-                v-model="droit.choiceValue">
-              {{ choice.label }}
-            </label>
-          </div>
-          <textarea v-show="isNegative(droit.choiceValue)" v-model="droit.choiceComments" placeholder="Pour quelle raison ?"></textarea>
+          <button type="submit" v-bind:class="`button large ${!isComplete ? 'secondary  ' : ''}`" v-bind:disabled="! isComplete" v-on:click.prevent="submit">Envoyer</button>
+          </form>
         </div>
       </div>
-
-      <button type="submit" v-bind:class="`button large ${!isComplete ? 'secondary  ' : ''}`" v-bind:disabled="! isComplete" v-on:click.prevent="submit">Envoyer</button>
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -48,6 +78,7 @@ import moment from 'moment'
 
 import DroitMontant from '@/components/DroitMontant'
 import Institution from '@/lib/Institution'
+import LoadingModal from '@/components/LoadingModal'
 
 const choices = [
     { value: 'already', label: "J'en bénéficiais déjà" },
@@ -70,7 +101,8 @@ export default {
     }
   },
   components: {
-    DroitMontant
+    DroitMontant,
+    LoadingModal
   },
   computed: {
     createdAt: function() {
@@ -82,6 +114,7 @@ export default {
     }
   },
   methods: {
+    isBoolean: val => typeof val === 'boolean',
     isString: (val) => typeof val === 'string',
     isNumber: (val) => typeof val === 'number',
     isNegative,
@@ -135,8 +168,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
-form {
-  flex-grow: 1;
-  padding: 1em;
+.aj-suivi-box {
+    flex-direction: column;
+}
+.aj-suivi-box-aide {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.aj-suivi-box-question {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.break {
+  flex-basis: 100%;
+  height: 0;
 }
 </style>

@@ -10,6 +10,10 @@
           </span>
           {{ etablissement.adresse.codePostal }} {{ etablissement.adresse.commune }}
         </address>
+        <div v-if="etablissement.telephone" class="aj-etablissements-action-tel-desktop">
+          <i class="fa fa-phone" aria-hidden="true"></i>
+          {{ etablissement.telephone }}
+        </div>
         <div v-if="etablissement.horaires" class="aj-etablissement-horaires">
           <i class="fa fa-clock-o" aria-hidden="true"></i> Horaires :<br />
           <div class="aj-etablissement-horaires-plage-container">
@@ -41,7 +45,7 @@
               Site internet
             </a>
           </div>
-          <div v-if="etablissement.telephone">
+          <div v-if="etablissement.telephone" class="aj-etablissements-action-tel-mobile">
             <a
               v-bind:href="`tel:${ etablissement.telephone }`"
               class="button primary with-icon"

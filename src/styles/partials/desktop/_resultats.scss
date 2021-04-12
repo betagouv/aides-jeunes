@@ -250,6 +250,10 @@ html {
             margin-bottom: 1rem;
           }
 
+          .aj-etablissements-action-tel-desktop {
+            margin-bottom: 1rem;
+          }
+
           .aj-etablissement-horaires-plage-container {
             display: flex;
             flex-direction: row;
@@ -267,6 +271,10 @@ html {
           right: 2rem;
           display: flex;
           transform:translateY(50%);
+
+          .aj-etablissements-action-tel-mobile {
+            display: none;
+          }
 
           .button {
             margin-left: 1rem;

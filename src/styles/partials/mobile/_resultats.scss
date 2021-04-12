@@ -109,6 +109,11 @@ html {
         padding-bottom: 1rem !important;
 
         .aj-etablissement-details {
+
+          .aj-etablissements-action-tel-desktop {
+            display: none;
+          }
+
           .aj-etablissement-horaires-plage-container {
             flex-direction: column;
             .aj-etablissement-horaires-plage {
@@ -121,6 +126,10 @@ html {
           position: static;
           right: 0;
           transform: none;
+
+          .aj-etablissements-action-tel-mobile {
+            display: block;
+          }
 
           .button {
             margin-left: 0;

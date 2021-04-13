@@ -13,7 +13,7 @@
         </button>
 
         <div class="aj-box normal-padding-bottom aj-results-details">
-            <DroitsDetails
+            <DroitsDetails v-if="droit"
                 :droit="droit"
                 :city="situation.menage.depcom"
                 :patrimoine-captured="patrimoineCaptured"

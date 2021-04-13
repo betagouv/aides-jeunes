@@ -64,9 +64,11 @@ export function handicap(params) {
       // AAH
       cy.get('legend').invoke('text').should('contain', `CDAPH`)
       cy.get('input[type="radio"]').check('true')
+      autoSubmit()
     }
   } else {
     cy.get('input[type="radio"]').check('false')
+    autoSubmit()
   }
 }
 

@@ -160,9 +160,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.aj-survey-details {
-  margin-bottom: 2em;
-}
-</style>

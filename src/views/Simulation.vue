@@ -1,6 +1,7 @@
 <template>
-  <div class="container" :class="{'aj-debug-container': debug}">
-    <Progress v-if="debug" />
+  <div class="container aj-layout-container" :class="{'aj-debug-container': debug}">
+      <Wizard/>
+      <Progress v-if="debug" />
     <div class="aj-main-container">
       <TitreChapitre />
       <div v-if="debug" class="aj-debug-switch">
@@ -16,12 +17,14 @@
 <script>
 import TitreChapitre from '@/components/TitreChapitre'
 import Progress from '@/components/Progress'
+import Wizard from '@/components/Wizard'
 
 export default {
   name: 'Simulation',
   components: {
     TitreChapitre,
-    Progress
+    Progress,
+    Wizard
   },
   data() {
     return {

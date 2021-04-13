@@ -20,52 +20,44 @@
           <p>
             Répondez à ce questionnaire afin de nous aider à améliorer la pertinence des résultats que nous affichons. Ça ne prend pas plus de 2 minutes !
           </p>
-          <div class="droit-details">
-            <div v-for="droit in droits" v-bind:key="droit.id" class="droit-detail aj-aide-box aj-suivi-box"
+            <div v-for="droit in droits" v-bind:key="droit.id" class="aj-box normal-padding-bottom aj-survey-details"
               itemscope itemtype="http://schema.org/GovernmentService">
-              <div class="aj-suivi-box-aide">
-                <img class="aj-aide-illustration" v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
-                <div class="aj-aide-text">
-                    <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
-                    <p class="aj-aide-description">
-                      {{ droit.description }}
-                    </p>
-                    <div class="aj-aide-warning" v-if="droit.montant && isBoolean(droit.montant) && droit.symbol === 'fa-exclamation-triangle'">
-                        <img src="@/assets/images/warning.svg"> Attention, cette aide vous est accessible sous certaines conditions supplémentaires.
-                    </div>
+              <div class="aj-droit-survey normal-padding-bottom">
+                <div class="aj-droit-identity">
+                  <img class="aj-droit-illustration" v-bind:src="require(`./../../public/img/${ droit.provider.imgSrc }`)" v-bind:alt="droit.label">
+                  <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
                 </div>
-                <div class="aj-aide-montant">
-                    <DroitMontant v-bind:droit="droit" v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))"></DroitMontant>
-                    <div v-if="droit.montant && isBoolean(droit.montant)">
-                        <i v-bind:class="`fa ${droit.symbol ? droit.symbol : 'fa-check-circle'} fa-2x`"></i>
-                    </div>
-                </div>
-              </div>
-              <div class="aj-suivi-box-question">
-                <div class="form__group">
-                  <legend>
-                    <h2 class="aj-question">Avez-vous demandé l'aide ?</h2>
-                  </legend>
-                  <div v-for="choice in droit.choices" v-bind:key="choice.value" class="aj-selection-wrapper">
-                    <input type="radio"
-                      :id="`choices_${ droit.id }_${ choice.value }`"
-                      v-bind:name="`choices_${ droit.id }_${ choice.value }`"
-                      v-bind:value="choice.value"
-                        v-model="droit.choiceValue"/>
-                    <label :for="`choices_${ droit.id }_${ choice.value }`">
-                      {{ choice.label }}
-                    </label>
+                <div class="aj-droit-montant">
+                  <DroitMontant v-bind:droit="droit" unexpected v-if="droit.montant && (isString(droit.montant) || isNumber(droit.montant))" />
+                  <div v-if="droit.montant && isBoolean(droit.montant)">
+                      <i v-bind:class="`fa ${droit.symbol ? droit.symbol : 'fa-check-circle'} fa-2x`"></i>
                   </div>
                 </div>
-                <div class="form__group" v-show="isNegative(droit.choiceValue)">
-                  <legend>
-                    <h2 class="aj-question">Pour quelle raison ?</h2>
-                  </legend>
-                  <textarea  v-model="droit.choiceComments" placeholder="..."/>
+                <div class="aj-droit-content">
+                  <div class="form__group">
+                    <legend>
+                      <h2 class="aj-question">Avez-vous demandé l'aide ?</h2>
+                    </legend>
+                    <div v-for="choice in droit.choices" v-bind:key="choice.value" class="aj-selection-wrapper">
+                      <input type="radio"
+                        :id="`choices_${ droit.id }_${ choice.value }`"
+                        v-bind:name="`choices_${ droit.id }_${ choice.value }`"
+                        v-bind:value="choice.value"
+                          v-model="droit.choiceValue"/>
+                      <label :for="`choices_${ droit.id }_${ choice.value }`">
+                        {{ choice.label }}
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form__group" v-show="false && isNegative(droit.choiceValue)">
+                    <legend>
+                      <h2 class="aj-question">Pour quelle raison ?</h2>
+                    </legend>
+                    <textarea  v-model="droit.choiceComments" placeholder="..."/>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           <button type="submit" v-bind:class="`button large ${!isComplete ? 'secondary  ' : ''}`" v-bind:disabled="! isComplete" v-on:click.prevent="submit">Envoyer</button>
           </form>
         </div>
@@ -170,22 +162,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.aj-suivi-box {
-    flex-direction: column;
-}
-.aj-suivi-box-aide {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-.aj-suivi-box-question {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-.break {
-  flex-basis: 100%;
-  height: 0;
+.aj-survey-details {
+  margin-bottom: 2em;
 }
 </style>

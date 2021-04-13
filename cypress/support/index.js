@@ -39,11 +39,14 @@ export function demandeur(params={}) {
   submit()
   // Nationalite
   cy.get('legend').invoke('text').should('contain', 'nationalité')
+  submit(true)
   cy.get('input[type="radio"]').check('fr')
+  submit(true)
   // Activite
   cy.get('legend').invoke('text').should('contain', 'Êtes-vous')
   cy.get('label').invoke('text').should('contain', 'salarié')
   cy.get('input[type="radio"]').check('actif')
+  submit(true)
   // Handicap
   handicap(params)
 }
@@ -52,9 +55,11 @@ export function handicap(params) {
   cy.get('legend').invoke('text').should('contain', 'handicap')
   if (params.handicap) {
     cy.get('input[type="radio"]').check('true')
+    submit(true)
     // Taux d'incapacite
     cy.get('legend').invoke('text').should('contain', `taux d'incapacité`)
     cy.get('input[type="radio"]').check(params.handicap.taux_incapacite.toString())
+    submit(true)
     if (!params.enfant && 0.5 < params.handicap.taux_incapacite && params.handicap.taux_incapacite <= 0.8) {
       // AAH
       cy.get('legend').invoke('text').should('contain', `CDAPH`)
@@ -65,8 +70,10 @@ export function handicap(params) {
   }
 }
 
-export function submit() {
-  cy.get('button[type="submit"]').click()
+export function submit(auto) {
+  if (!auto) {
+    cy.get('button[type="submit"]').click()
+  }
 }
 
 export function zeroEnfants() {
@@ -95,16 +102,20 @@ export function conjoint(params={}) {
   // Nationalite
   cy.get('legend').invoke('text').should('contain', 'nationalité')
   cy.get('input[type="radio"]').check('fr')
+  submit(true)
   // Statut Marital
   cy.get('legend').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
   cy.get('input[type="radio"]').check('marie')
+  submit(true)
   // Activite
   cy.get('legend').invoke('text').should('contain', 'est-il/elle')
   cy.get('label').invoke('text').should('contain', 'salarié')
   cy.get('input[type="radio"]').check('actif')
+  submit(true)
   // Handicap
   cy.get('legend').invoke('text').should('contain', 'handicap')
   cy.get('input[type="radio"]').check('false')
+  submit(true)
 }
 
 export function enfant(params={}) {
@@ -119,28 +130,35 @@ export function enfant(params={}) {
   // Nationalite
   cy.get('legend').invoke('text').should('contain', 'nationalité')
   cy.get('input[type="radio"]').check('fr')
+  submit(true)
   // Garde Alterne
   cy.get('legend').invoke('text').should('contain', 'en garde alternée')
   cy.get('input[type="radio"]').check('true')
+  submit(true)
   // Handicap
   cy.get('legend').invoke('text').should('contain', 'handicap')
   cy.get('input[type="radio"]').check('false')
+  submit(true)
   // Scolarite
   cy.get('legend').invoke('text').should('contain', 'scolarisé·e')
   cy.get('input[type="radio"]').check('college')
+  submit(true)
   // Enfant a charge
   cy.get('legend').invoke('text').should('contain', 'dernière déclaration d\'impôts')
   cy.get('input[type="radio"]').check('false')
+  submit(true)
 }
 
 export function celibataire() {
   cy.get('legend').invoke('text').should('contain', 'couple')
   cy.get('input[type="radio"]').check('false')
+  submit(true)
 }
 
 export function couple() {
   cy.get('legend').invoke('text').should('contain', 'couple')
   cy.get('input[type="radio"]').check('true')
+  submit(true)
 }
 
 export function sansDomicileStable() {

@@ -1,7 +1,14 @@
+
+import ABTestingService from '@/plugins/ABTestingService'
+
 export const autoSubmitMixin = (props) => {
+
     const { fieldName = props, manualValidation = false } = props || {}
 
-    if (manualValidation)
+    const abTesting = ABTestingService.getEnvironment();
+    var submitTesting = abTesting && abTesting.submit && abTesting.submit.value;
+
+    if (submitTesting === 'manual' || manualValidation)
         return {}
 
     const mixin = {

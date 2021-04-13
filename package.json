@@ -10,7 +10,7 @@
     "build:dev": "webpack --mode=development",
     "build:netlify": "npm run build && cp netlify_redirects dist/_redirects",
     "build_old": "NODE_ENV=production webpack --mode=production",
-    "cypress": "NODE_ENV=test cypress run",
+    "cypress": "cypress run",
     "db": "mongod --dbpath db",
     "db-update": "./import-tests.sh",
     "eslint": "eslint .",

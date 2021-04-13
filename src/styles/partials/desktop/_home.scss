@@ -1,6 +1,12 @@
+html {
+  body {
+    .aj-layout-container {
+      display: flex;
+    }
+  }
+}
 #homepage {
   background: linear-gradient(105deg, var(--white), 53%, var(--theme-primary) 47%);
-
   .container {
     display: flex;
     flex-direction: row;

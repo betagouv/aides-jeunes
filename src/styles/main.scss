@@ -37,6 +37,7 @@ $screen-smaller-than-mobile: 399px;
 
 /* DESKTOP IMPORTS */
 @import 'partials/desktop/ui-kit';
+@import 'partials/desktop/wizard';
 @import 'partials/desktop/buttons';
 @import 'partials/desktop/inputs';
 @import 'partials/desktop/home';

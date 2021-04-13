@@ -12,7 +12,7 @@ const ABTestingService = {
     *      -> ne pas polluer Matomo d'anciennes périodes de tests
     */
     getEnvironment() {
-        if (true) {
+        if (process.env.NODE_ENV !== 'production') {
             return {}
         }
         localStorage.ABTesting = localStorage.ABTesting || {};

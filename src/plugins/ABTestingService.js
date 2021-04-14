@@ -15,36 +15,38 @@ const ABTestingService = {
         if (process.env.NODE_ENV !== 'production' || !window._paq) {
             return {}
         }
-        localStorage.ABTesting = localStorage.ABTesting || {};
+        const ABTesting = JSON.parse(localStorage.ABTesting || '{}');
 
         // // Prépare la variable d'AB testing
-        // localStorage.ABTesting.link = localStorage.ABTesting.link || { index: 1 };
+        // ABTesting.link = ABTesting.link || { index: 1 };
         // // Réparti les visiteurs l'AB testing avec cette variable
-        // localStorage.ABTesting.link.value = localStorage.ABTesting.link.value || (Math.random() > 0.5 ? 'A' : 'B');
+        // ABTesting.link.value = ABTesting.link.value || (Math.random() > 0.5 ? 'A' : 'B');
         // // Après l'AB testing
         // // Pour le désactiver
         // // et libérer une custom variable
-        // // localStorage.ABTesting.link.deleted = true;
+        // // ABTesting.link.deleted = true;
         
-        localStorage.ABTesting.submit = localStorage.ABTesting.submit || { index: 1 };
-        localStorage.ABTesting.submit.value = localStorage.ABTesting.submit.value || (Math.random() > 0.5 ? "auto" : "manual");
-        localStorage.ABTesting.submit.deleted = true;
+        ABTesting.submit = ABTesting.submit || { index: 1 };
+        ABTesting.submit.value = ABTesting.submit.value || (Math.random() > 0.5 ? "auto" : "manual");
+        // ABTesting.submit.deleted = true;
 
-        Object.keys(localStorage.ABTesting).forEach(function(name) {
-            const data = localStorage.ABTesting[name]
+        Object.keys(ABTesting).forEach(function(name) {
+            const data = ABTesting[name]
             if (data.deleted) {
                 window._paq.push(['deleteCustomVariable', data.index, 'visit'])
             } else {
                 window._paq.push(['setCustomVariable', data.index, name, data.value, 'visit'])
             }
         });
-
-        return localStorage.ABTesting;
+        localStorage.ABTesting = JSON.stringify(ABTesting)
+        return ABTesting;
     },
     setVariante(key, value) {
-        var env = this.getEnvironment();
-        env[key].value = value;
-        return env;
+        const ABTesting = this.getEnvironment();
+        ABTesting[key].value = value;
+        localStorage.ABTesting = JSON.stringify(ABTesting)
+
+        return ABTesting;
     },
 }
 

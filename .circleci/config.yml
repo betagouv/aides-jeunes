@@ -109,7 +109,6 @@ jobs:
           root: .
           paths:
             - dist
-
   test_jest:
     <<: *defaults
     steps:

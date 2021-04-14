@@ -7,7 +7,7 @@
                     <div class="aj-step-icon" :class="[title.id < getCurrentStep ? 'aj-step-done' : 'aj-step-inactive', title.id === getCurrentStep ? 'aj-step-active' : '']">
                         <img v-if="title.id < getCurrentStep" src="../assets/images/done.svg" class="aj-check-icon">
                     </div>
-                    <a class="aj-step-title" :class="{'aj-active-title' : title.id === getCurrentStep, 'aj-disabled-title' : title.id > getCurrentStep }" @click="redirectToStep(title.id)"> {{ title.title }}</a>
+                    <a class="aj-step-title" :class="{'aj-active-title' : title.id === getCurrentStep, 'aj-disabled-title' : title.id > getCurrentStep }"> {{ title.title }}</a>
                 </div>
             </div>
             <div class="aj-progressBar"></div>
@@ -55,20 +55,6 @@ export default {
                     return this.currentStep = 5;
             }
         },
-        redirectToStep(id) {
-            if(id === 1) {
-                this.$router.push('/simulation/individu/demandeur/date_naissance')
-            }
-            if(id === 2) {
-                this.$router.push('/simulation/enfants')
-            }
-            if(id === 3) {
-                this.$router.push('/simulation/logement')
-            }
-            if(id === 4) {
-                this.$router.push('/simulation/individu/demandeur/ressources/types')
-            }
-        }
     }
 }
 </script>

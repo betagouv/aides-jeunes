@@ -1,7 +1,6 @@
 <template>
     <div class="inline-block">
-        <router-view></router-view>
-        <router-link :to="{name: routeName, params: {text: text}}" class="aj-help-popup aj-help-mobile aj-tooltip a-unstyled" exact>
+        <router-link :to="{name: 'en_savoir_plus', params: {element: routeElement, text: text}}" class="aj-help-popup aj-help-mobile aj-tooltip a-unstyled" exact>
             <div class="aj-help-icon">i</div>
             en savoir plus
         </router-link>
@@ -19,15 +18,11 @@
             text: {
                 type: String,
                 default: '...'
-            },
-            routeName: {
-                type: String,
-                default: 'en_savoir_plus'
             }
         },
         data() {
             return {
-                open: false
+                routeElement: this.$route.path.substring(this.$route.path.lastIndexOf('/') + 1)
             }
         },
         methods: {

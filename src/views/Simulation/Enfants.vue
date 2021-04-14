@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="aj-question">Mes enfants à charge <EnSavoirPlus :text="hint" routeName="enfants_en_savoir_plus"/></h2>
+    <h2 class="aj-question">Mes enfants à charge <EnSavoirPlus :text="hint"/></h2>
     <div v-for="enfant in enfants" class="aj-children-container" v-bind:key="enfant.id">
         <div class="aj-children-header">
             <div class="aj-child-name small capitalize">

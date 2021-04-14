@@ -15,13 +15,10 @@
         },
         methods: {
             getTitleByRoute(route) {
-                let path = route.path
+                if (route.name === 'en_savoir_plus')
+                    return this.title
 
-                if (route.name.includes('en_savoir_plus')) {
-                    path = path.substring(0, path.lastIndexOf('/'))
-                }
-
-                const step = this.$state.current(path, this.$store.state.situation)
+                const step = this.$state.current(route.path, this.$store.state.situation)
                 const chapter = step && step.chapter || ''
                 switch (chapter) {
                     case 'profil':

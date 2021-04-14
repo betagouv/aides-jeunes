@@ -105,6 +105,8 @@ jobs:
           command: |
             cp backend/config/continuous_integration.js backend/config/production.js
             npm run build
+          env:
+            NODE_ENV: test
       - persist_to_workspace:
           root: .
           paths:

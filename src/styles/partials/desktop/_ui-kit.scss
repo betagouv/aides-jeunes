@@ -109,6 +109,10 @@ html {
         user-select: none;
         margin-left: 12px;
 
+        &.aj-help-mobile {
+          display: none;
+        }
+
         .aj-help-icon {
           background-color: var(--white);
           color: var(--theme-primary);

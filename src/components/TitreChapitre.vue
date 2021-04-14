@@ -15,6 +15,11 @@
         },
         methods: {
             getTitleByRoute(route, situation) {
+                let path = route.path
+
+                if (route.name.includes('en_savoir_plus')) {
+                    path = path.substring(0, path.lastIndexOf('/'))
+                }
                 const step = this.$store.getters.passSanityCheck && this.$state.current(route.path, situation)
                 const chapter = step && step.chapter || ''
                 switch (chapter) {

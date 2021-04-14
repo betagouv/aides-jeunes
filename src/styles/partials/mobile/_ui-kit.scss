@@ -54,6 +54,19 @@ html {
           margin: 0 1rem;
         }
       }
+
+      .aj-help-popup {
+        &.aj-help-mobile {
+          display: block;
+        }
+        &.aj-help-desktop {
+          display: none;
+        }
+
+        &:before {
+          display: none;
+        }
+      }
     }
 
     .modal__backdrop {

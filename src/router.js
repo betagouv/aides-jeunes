@@ -42,6 +42,12 @@ const router = new Router({
           name: 'handicap',
           path: 'handicap',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap.vue'),
+          children: [{
+            name: 'handicap_en_savoir_plus',
+            path: 'en_savoir_plus',
+            props: true,
+            component: () => import(/* webpackChunkName: "individu" */ './components/EnSavoirPlusContent.vue')
+          }]
         },
         {
           name: 'taux_incapacite',
@@ -57,6 +63,12 @@ const router = new Router({
           name: 'inapte_travail',
           path: 'inapte_travail',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/InapteTravail.vue'),
+          children: [{
+            name: 'inapte_en_savoir_plus',
+            path: 'en_savoir_plus',
+            props: true,
+            component: () => import(/* webpackChunkName: "individu" */ './components/EnSavoirPlusContent.vue')
+          }]
         },
         {
           name: 'date_debut_chomage',
@@ -201,6 +213,12 @@ const router = new Router({
       {
         path: 'enfants',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Enfants.vue'),
+        children: [{
+          name: 'enfants_en_savoir_plus',
+          path: 'en_savoir_plus',
+          props: true,
+          component: () => import(/* webpackChunkName: "individu" */ './components/EnSavoirPlusContent.vue')
+        }]
       },
       {
         path: 'enfants/ressources',
@@ -267,7 +285,7 @@ const router = new Router({
             path: 'depcom',
             component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Depcom.vue'),
         }]
-      }, 
+      },
       {
         name: 'resultats',
         path: 'resultats',

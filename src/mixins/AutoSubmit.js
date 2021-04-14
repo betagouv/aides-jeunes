@@ -8,9 +8,8 @@ export const autoSubmitMixin = (props) => {
     const abTesting = ABTestingService.getEnvironment();
     var submitTesting = abTesting && abTesting.submit && abTesting.submit.value;
 
-    if (manualValidation || (submitTesting === 'manual' && !process.env.FORCE_AUTOSUBMIT))
+    if (manualValidation || (submitTesting !== 'auto' && !process.env.FORCE_AUTOSUBMIT))
         return {}
-
     const mixin = {
         methods: {
             tryAutoSubmit() {

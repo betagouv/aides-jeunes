@@ -33,9 +33,6 @@ start_mes_aides: &start_mes_aides
       cp backend/config/continuous_integration.js backend/config/production.js
       npm start
     background: true
-    environment:
-      FORCE_AUTOSUBMIT: true
-
 
 wait_for_mes_aides: &wait_for_mes_aides
   run:

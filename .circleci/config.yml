@@ -105,8 +105,6 @@ jobs:
           command: |
             cp backend/config/continuous_integration.js backend/config/production.js
             npm run build
-          env:
-            NODE_ENV: test
       - persist_to_workspace:
           root: .
           paths:
@@ -203,6 +201,8 @@ workflows:
           requires:
             - build
             - install_openfisca
+          env:
+            NODE_ENV: test
   deploy:
     jobs:
       - deploy:

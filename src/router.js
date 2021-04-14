@@ -387,7 +387,7 @@ const router = new Router({
       path: '/init-ci',
       name: 'init-ci',
       beforeEnter: () => {
-        ABTestingService.setVariante('submit', 'manual');
+        const test = ABTestingService.setVariante('submit', 'manual');
       },
       redirect: '/'
     }

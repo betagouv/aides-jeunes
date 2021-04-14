@@ -8,12 +8,12 @@ export const autoSubmitMixin = (props) => {
     const abTesting = ABTestingService.getEnvironment();
     var submitTesting = abTesting && abTesting.submit && abTesting.submit.value;
 
-    if (manualValidation || (submitTesting !== 'auto' && !process.env.FORCE_AUTOSUBMIT))
+    if (manualValidation)
         return {}
     const mixin = {
         methods: {
             tryAutoSubmit() {
-                if(this.canAutoSubmit()) {
+                if(this.canAutoSubmit() && (submitTesting === 'auto' || process.env.VUE_APP_FORCE_AUTOSUBMIT)) {
                     setTimeout(this.onSubmit, process.env.VUE_APP_VALIDATION_DELAY || 0)
                 }
             },

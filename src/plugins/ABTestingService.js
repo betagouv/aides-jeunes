@@ -15,7 +15,7 @@ const ABTestingService = {
         if (process.env.NODE_ENV !== 'production' || !window._paq) {
             return {}
         }
-        const ABTesting = JSON.parse(localStorage.ABTesting || '{}');
+        const ABTesting = JSON.parse(localStorage.getItem('ABTesting') || '{}');
 
         // // Prépare la variable d'AB testing
         // ABTesting.link = ABTesting.link || { index: 1 };
@@ -38,13 +38,13 @@ const ABTestingService = {
                 window._paq.push(['setCustomVariable', data.index, name, data.value, 'visit'])
             }
         });
-        localStorage.ABTesting = JSON.stringify(ABTesting)
+        localStorage.setItem('ABTesting', JSON.stringify(ABTesting));
         return ABTesting;
     },
     setVariante(key, value) {
         const ABTesting = this.getEnvironment();
         ABTesting[key].value = value;
-        localStorage.ABTesting = JSON.stringify(ABTesting)
+        localStorage.setItem('ABTesting', JSON.stringify(ABTesting));
 
         return ABTesting;
     },

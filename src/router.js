@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-
+import ABTestingService from '@/plugins/ABTestingService'
 import store from './store'
 
 Vue.use(Router)
@@ -383,6 +383,14 @@ const router = new Router({
       name: 'suivi',
       component: () => import(/* webpackChunkName: "suivi" */ './views/Suivi.vue')
     },
+    {
+      path: '/init-ci',
+      name: 'init-ci',
+      beforeEnter: () => {
+        ABTestingService.setVariante('submit', 'manual');
+      },
+      redirect: '/'
+    }
   ],
   scrollBehavior (to/*, from, savedPosition*/) {
     if (to.hash) {

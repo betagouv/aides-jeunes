@@ -26,8 +26,8 @@ const ABTestingService = {
         // // et libérer une custom variable
         // // localStorage.ABTesting.link.deleted = true;
         
-        localStorage.ABTesting.submit = localStorage.ABTesting.noSpecificSituationCheckbox || { index: 1 };
-        localStorage.ABTesting.submit.value = localStorage.ABTesting.noSpecificSituationCheckbox.value || (Math.random() > 0.5 ? "auto" : "manual");
+        localStorage.ABTesting.submit = localStorage.ABTesting.submit || { index: 1 };
+        localStorage.ABTesting.submit.value = localStorage.ABTesting.submit.value || (Math.random() > 0.5 ? "auto" : "manual");
         localStorage.ABTesting.submit.deleted = true;
 
         Object.keys(localStorage.ABTesting).forEach(function(name) {

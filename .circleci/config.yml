@@ -109,6 +109,9 @@ jobs:
           root: .
           paths:
             - dist
+      - env:
+        NODE_ENV: test
+        
   test_jest:
     <<: *defaults
     steps:
@@ -201,8 +204,6 @@ workflows:
           requires:
             - build
             - install_openfisca
-          env:
-            NODE_ENV: test
   deploy:
     jobs:
       - deploy:

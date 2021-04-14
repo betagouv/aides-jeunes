@@ -386,10 +386,10 @@ const router = new Router({
     {
       path: '/init-ci',
       name: 'init-ci',
-      beforeEnter: () => {
+      redirect: () => {
         ABTestingService.setVariante('submit', 'manual');
-      },
-      redirect: '/'
+        return '/'
+      }
     }
   ],
   scrollBehavior (to/*, from, savedPosition*/) {

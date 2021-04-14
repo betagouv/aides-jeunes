@@ -1,5 +1,6 @@
 <template>
     <div class="inline-block">
+        <router-view></router-view>
         <router-link :to="{name: routeName, params: {text: text}}" class="aj-help-popup aj-help-mobile aj-tooltip a-unstyled" exact>
             <div class="aj-help-icon">i</div>
             en savoir plus

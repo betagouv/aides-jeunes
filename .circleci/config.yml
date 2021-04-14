@@ -109,9 +109,9 @@ jobs:
           root: .
           paths:
             - dist
-      - env:
-        NODE_ENV: test
-        
+    environment:
+      NODE_ENV: test
+
   test_jest:
     <<: *defaults
     steps:

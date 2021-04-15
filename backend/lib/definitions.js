@@ -99,6 +99,7 @@ var menage = {
 };
 
 var situation = {
+    abtesting: Object,
     createdAt: { type: Date, default: Date.now },
     dateDeValeur: Date,
     external_id: String,

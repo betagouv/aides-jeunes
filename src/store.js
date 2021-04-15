@@ -14,6 +14,7 @@ import { computeAides, datesGenerator } from '../backend/lib/mes-aides'
 import { categoriesRnc, patrimoineTypes } from './constants/resources'
 import Institution from './lib/Institution'
 import {full} from './lib/State'
+import ABTestingService from '@/plugins/ABTestingService'
 
 let DATE_FIELDS = ['date_naissance', 'date_arret_de_travail', 'date_debut_chomage']
 
@@ -357,6 +358,7 @@ const store = new Vuex.Store({
           situation.modifiedFrom = store.state.situation._id
       }
 
+      situation.abtesting = ABTestingService.getEnvironment()
       return axios.post('/api/situations/', situation)
         .then(result => result.data)
         .then(payload => payload._id)

@@ -12,7 +12,7 @@ const ABTestingService = {
     *      -> ne pas polluer Matomo d'anciennes périodes de tests
     */
     getEnvironment() {
-        if (process.env.NODE_ENV !== 'production' || !window._paq) {
+        if (!window._paq) {
             return {}
         }
         const ABTesting = JSON.parse(localStorage.getItem('ABTesting') || '{}');

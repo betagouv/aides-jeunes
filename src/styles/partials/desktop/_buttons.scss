@@ -107,5 +107,19 @@ button.button, a.button {
   }
 }
 
+a.button {
+  &.disabled {
+    background-color: var(--light-grey);
+    border: 1px solid var(--light-grey);
+    pointer-events: none;
+
+    &:hover {
+      background-color: var(--grey);
+      border-color: var(--grey);
+    }
+
+  }
+}
+
 @media (max-width: $screen-smaller-than-mobile) {
 }

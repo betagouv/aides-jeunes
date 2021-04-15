@@ -60,6 +60,7 @@ function defaultStore() {
   return {
     message: null,
     debug: false,
+    userJourney: [],
     situation: {
       _id: null,
       external_id: null,
@@ -103,7 +104,8 @@ function restoreLocal() {
     situation: adaptPersistedSituation(store.situation),
     calculs: store.calculs || defaultCalculs(),
     dates: datesGenerator(store.situation.dateDeValeur),
-    ameliNoticationDone: store.ameliNoticationDone
+    ameliNoticationDone: store.ameliNoticationDone,
+    userJourney: store.userJourney
   }
 }
 
@@ -128,6 +130,9 @@ const store = new Vuex.Store({
         let items = getters.peopleParentsFirst.filter(i => i.id == id)
         return items.length ? items[0] : null
       }
+    },
+    getUserJourney: function(state) {
+      return state.userJourney
     },
     getMenage: function (state) {
       return state.situation.menage
@@ -198,6 +203,7 @@ const store = new Vuex.Store({
   mutations: {
     clear: function(state) {
       state.situation = {}
+      state.userJourney = []
       state.access.forbidden = false
       state.access.fetching = false
     },
@@ -205,11 +211,16 @@ const store = new Vuex.Store({
       state.debug = debug
     },
     initialize: function(state) {
-      const { situation, dates, ameliNoticationDone, calculs } = restoreLocal()
+      const { situation, dates, ameliNoticationDone, calculs, userJourney } = restoreLocal()
       state.situation = situation
       state.calculs = calculs
       state.dates = dates
       state.ameliNoticationDone = ameliNoticationDone
+      state.userJourney = userJourney
+    },
+    addPathToUserJourney: function (state, path) {
+      if (path !== state.userJourney[state.userJourney.length - 1])
+        state.userJourney.push(path)
     },
     saveFamille: function(state, famille) {
       state.situation = Object.assign({}, state.situation, { famille })
@@ -345,6 +356,9 @@ const store = new Vuex.Store({
       commit('saveMenage', menage)
       commit('setDirty')
     },
+    addPathToUserJourney: function({ commit }, path) {
+      commit('addPathToUserJourney', path)
+    },
     save: function(store) {
       const disabledSteps = full(store.state.situation).filter(s => !s.isActive)
       disabledSteps.forEach(step => {
@@ -423,11 +437,11 @@ const store = new Vuex.Store({
 })
 export default store
 
-store.subscribe(({type}, { ameliNoticationDone, situation, calculs }) => {
+store.subscribe(({type}, { ameliNoticationDone, situation, calculs, userJourney }) => {
   if (type === 'initialize') {
     return
   }
-  window.sessionStorage.setItem('store', JSON.stringify({ ameliNoticationDone, situation, calculs }))
+  window.sessionStorage.setItem('store', JSON.stringify({ ameliNoticationDone, situation, calculs, userJourney }))
 })
 
 // Replicate strict mode

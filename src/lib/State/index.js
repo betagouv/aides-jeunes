@@ -48,6 +48,12 @@ function full(situation) {
     })
 }
 
+function chapterRoot(chapter, situation) {
+    const journey = full(situation)
+    const activeJourney = journey.filter(s => s.isActive)
+    return activeJourney.find(item => item.chapter == chapter)
+}
+
 function current(currentPath, situation) {
     const journey = full(situation)
     return journey.find(item => item.path == currentPath)
@@ -69,5 +75,6 @@ function next(current, situation) {
 module.exports = {
   full,
   next,
+  chapterRoot,
   current
 }

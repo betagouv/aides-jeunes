@@ -3,11 +3,13 @@
         <h1>Ma simulation</h1>
         <div class="aj-progressBar-container">
             <div class="aj-step-container">
-                <div v-for="(title,index) in chapters" :key="index" class="aj-step">
-                    <div class="aj-step-icon" :class="[title.step < currentStep ? 'aj-step-done' : 'aj-step-inactive', title.step === currentStep ? 'aj-step-active' : '']">
-                        <img v-if="title.step < currentStep" src="../assets/images/done.svg" class="aj-check-icon">
+                <div v-for="(chapter,index) in chapters" :key="index" class="aj-step">
+                    <div class="aj-step-icon" :class="{'aj-step-done': chapter.done, 'aj-step-inactive': !chapter.done, 'aj-step-active' : index === currentStep}">
+                        <img v-if="chapter.done" src="../assets/images/done.svg" class="aj-check-icon">
                     </div>
-                    <a class="aj-step-title" :class="{'aj-active-title' : title.step === currentStep, 'aj-disabled-title' : title.step > currentStep }"> {{ title.title }}</a>
+                    <router-link :to="getRootChapterPath(chapter.value)" class="aj-step-title" :class="{'aj-active-title' : index === currentStep, 'aj-disabled-title' : disabledLink(chapter, index)}">
+                        {{ chapter.title }}
+                    </router-link>
                 </div>
             </div>
             <div class="aj-progressBar"></div>
@@ -25,10 +27,10 @@ export default {
     data() {
         return {
             chapters: [
-                {step: 1, title: 'Mon profil'},
-                {step: 2, title: 'Mon foyer'},
-                {step: 3, title: 'Mon logement'},
-                {step: 4, title: 'Mes revenus'},
+                {id: 1, title: 'Mon profil', value: 'profil', done: false},
+                {id: 2, title: 'Mon foyer', value: 'foyer', done: false},
+                {id: 3, title: 'Mon logement', value: 'logement', done: false},
+                {id: 4, title: 'Mes revenus', value: 'revenus', done: false},
             ]
         }
     },
@@ -38,22 +40,37 @@ export default {
         }
     },
     methods: {
+        setDoneChapters(step) {
+          const currentChapter = this.chapters.find(c => c.value === step.chapter)
+          this.chapters = this.chapters.map((c) => {
+              c.done = c.id < currentChapter.id
+              return c
+          })
+        },
         getStepByRoute(route) {
             const step = this.$state.current(route.path, this.$store.state.situation)
-            const chapter = step && step.chapter || ''
-            switch (chapter) {
+            const currentChapter = step && step.chapter || ''
+            this.setDoneChapters(step)
+            switch (currentChapter) {
                 case 'profil':
-                    return 1;
+                    return 0;
                 case 'foyer':
-                    return 2;
+                    return 1;
                 case 'logement':
-                    return 3;
+                    return 2;
                 case 'revenus':
-                    return 4;
+                    return 3;
                 default:
-                    return 5;
+                    return 4;
             }
         },
+        getRootChapterPath(chapter) {
+            const step = this.$state.chapterRoot(chapter, this.$store.state.situation)
+            return step.path
+        },
+        disabledLink(chapter, index) {
+            return index === 0 ? false : !chapter.done && !this.chapters[index - 1].done
+        }
     }
 }
 </script>

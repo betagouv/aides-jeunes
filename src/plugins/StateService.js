@@ -1,4 +1,4 @@
-import { full, next, current } from '@/lib/State'
+import { full, next, current, chapterRoot } from '@/lib/State'
 
 const StateService = {
   install (Vue) {
@@ -6,7 +6,8 @@ const StateService = {
     Vue.prototype.$state = {
         full,
         next,
-        current
+        current,
+        chapterRoot
     }
 
     Vue.prototype.$push = function(situation) {

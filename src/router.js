@@ -41,7 +41,7 @@ const router = new Router({
         {
           name: 'handicap',
           path: 'handicap',
-          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap.vue')
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Handicap.vue'),
         },
         {
           name: 'taux_incapacite',
@@ -56,7 +56,7 @@ const router = new Router({
         {
           name: 'inapte_travail',
           path: 'inapte_travail',
-          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/InapteTravail.vue')
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/InapteTravail.vue'),
         },
         {
           name: 'date_debut_chomage',
@@ -189,10 +189,16 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Alternant.vue'),
         },
         {
+            path: ':element/en_savoir_plus',
+            name: 'en_savoir_plus',
+            component: () => import(/* webpackChunkName: "en_savoir_plus" */ './components/EnSavoirPlusContent.vue')
+        },
+        {
           name: 'property',
           path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
-        },]
+        },
+        ]
       },
       {
         path: 'enfants',
@@ -262,7 +268,8 @@ const router = new Router({
             name: 'depcom',
             path: 'depcom',
             component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Depcom.vue'),
-        }]
+        },
+        ]
       },
       {
         path: 'resultats',
@@ -275,12 +282,8 @@ const router = new Router({
       {
         path: ':id/:property',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
-      }, {
-          path: ':element/en_savoir_plus',
-          name: 'en_savoir_plus',
-          props: true,
-          component: () => import(/* webpackChunkName: "individu" */ './components/EnSavoirPlusContent.vue')
-      }]
+      },
+      ]
     },
     {
       path: '/foyer',

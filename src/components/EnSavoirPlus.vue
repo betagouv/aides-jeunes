@@ -1,6 +1,6 @@
 <template>
     <div class="inline-block">
-        <router-link :to="{name: 'en_savoir_plus', params: {element: routeElement, text: text}}" class="aj-help-popup aj-help-mobile aj-tooltip a-unstyled" exact>
+        <router-link :to="{name: 'en_savoir_plus', params: {element: routeElement, text: text}}" :data-text="text" class="aj-help-popup aj-tooltip a-unstyled" exact>
             <div class="aj-help-icon">i</div>
             en savoir plus
         </router-link>

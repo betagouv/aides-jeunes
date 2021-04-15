@@ -3,99 +3,117 @@ html {
     .aj-wizard-container {
       display: flex;
       flex-direction: column;
-      width: 50%;
+      width: 32%;
       background: white;
-      padding: 32px 36px 32px 38px;
+      padding: 2.5rem 2rem;
       align-items: start;
 
-      .aj-progressBar-container {
-        position: relative;
-        margin-top: 60px;
+      .aj-wizard-content {
+        position: sticky;
+        top: 2.5rem;
 
-        .aj-step-container {
-          position: absolute;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          height: 100%;
-          z-index: 1;
-
-          a {
-            text-decoration: initial;
-          }
-          .aj-step {
-            display: flex;
-            height: 18px;
-          }
-          .aj-step-title {
-            font-weight: bold;
-            font-size: 14px;
-            line-height: 22px;
-            color: var(--darker-grey);
-            margin-left: 17px;
-            min-width: 100px;
-          }
-          .aj-step-done {
-            background: var(--theme-primary);
-          }
-          .aj-step-active {
-            background: var(--light-green);
-            position: relative;
-          }
-          .aj-disabled-title {
-            pointer-events: none;
-          }
-          .aj-step-active:before {
-            content: " ";
-            position: absolute;
-            z-index: -1;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 2px solid var(--light-green);
-            background: white;
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-          }
-          .aj-active-title {
-            color: var(--dark);
-          }
-        }
-        .aj-step-icon {
-          width: 18px;
-          height: 18px;
-          background: var(--light-grey);
-          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-          border-radius: 50%;
+        .aj-progressBar-container {
           position: relative;
+          margin-top: 2rem;
 
-          .aj-check-icon {
+          .aj-step-container {
             position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            z-index: 1;
+
+            a {
+              text-decoration: initial;
+            }
+
+            .aj-step {
+              display: flex;
+              height: 18px;
+            }
+
+            .aj-step-title {
+              font-weight: bold;
+              font-size: 14px;
+              line-height: 22px;
+              color: var(--darker-grey);
+              margin-left: 17px;
+              min-width: 100px;
+            }
+
+            .aj-step-done {
+              background: var(--theme-primary);
+            }
+
+            .aj-step-active {
+              background: var(--light-green);
+              position: relative;
+            }
+
+            .aj-disabled-title {
+              pointer-events: none;
+            }
+
+            .aj-step-active:before {
+              content: " ";
+              position: absolute;
+              z-index: -1;
+              width: 24px;
+              height: 24px;
+              border-radius: 50%;
+              border: 2px solid var(--light-green);
+              background: white;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+
+            .aj-active-title {
+              color: var(--dark);
+            }
+          }
+
+          .aj-step-icon {
+            width: 18px;
+            height: 18px;
+            background: var(--light-grey);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            position: relative;
+
+            .aj-check-icon {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
+
+          .aj-step-inactive {
+            background: var(--light-grey);
+          }
+
+          .aj-progressBar {
+            width: 4px;
+            height: 270px;
+            background: var(--light-grey);
+            opacity: 0.9;
+            margin-left: 7px;
           }
         }
-        .aj-step-inactive {
-          background: var(--light-grey);
-        }
-        .aj-progressBar {
-          width: 4px;
-          height: 270px;
-          background: var(--light-grey);
-          opacity: 0.9;
-          margin-left: 7px;
-        }
-      }
-      .aj-btn-container {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        margin-top: 46px;
 
-        .aj-gray-btn {
-          background: var(--light-grey);
-          border: var(--light-grey);
+        .aj-btn-container {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          margin-top: 46px;
+
+          .aj-gray-btn {
+            background: var(--light-grey);
+            border: var(--light-grey);
+          }
         }
       }
     }

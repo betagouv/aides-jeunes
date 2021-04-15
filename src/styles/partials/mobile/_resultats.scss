@@ -40,7 +40,7 @@ html {
       }
     }
 
-    .aj-droit-detail {
+    .aj-droit-detail, .aj-droit-survey {
       flex-wrap: wrap;
       justify-content: space-between;
 
@@ -81,6 +81,10 @@ html {
           margin-bottom: 1rem;
         }
       }
+    }
+
+    .aj-survey-details {
+      margin-bottom: 2rem;
     }
 
     .aj-results-tools {

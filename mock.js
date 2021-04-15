@@ -66,6 +66,20 @@ function mock(app) {
     .catch(error => next(error))
   })
 
+  app.get('/api/followups/surveys/:id', function(req, res) {
+    res.send({
+      benefits: [
+        { id: 'ppa', amount: 42},
+        { id: 'rsa', amount: 145 },
+        { id: 'aide_logement', amount: 125 },
+      ]
+    })
+  })
+
+  app.post('/api/followups/surveys/:id/answers', function(req, res) {
+    res.sendStatus(201)
+  })
+
   app.use(function (err, req, res, next) {
     res.status((err.response && err.response.status) || 500).send((err.response && err.response.data) || err.message || err.error || err)
     next()

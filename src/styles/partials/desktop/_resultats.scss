@@ -120,7 +120,7 @@ html {
       }
     }
 
-    .aj-droit-detail {
+    .aj-droit-detail, .aj-droit-survey {
       display: flex;
       flex-direction: row;
       align-items: flex-start;
@@ -216,6 +216,10 @@ html {
         margin-top: 1rem;
         display: inline-block;
       }
+    }
+
+    .aj-survey-details {
+      margin-bottom: 2rem;
     }
 
     .aj-results-details {

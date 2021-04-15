@@ -2,7 +2,7 @@
   <div class="container">
     <div class="aj-main-container">
       <div class="aj-category-title-wrapper">
-        <h1>Suivi Mes Aides</h1>
+        <h1>Qu'avez-vous fait avec votre simulation&nbsp;?</h1>
       </div>
       <div class="aj-box-wrapper">
       <div class="aj-unbox">
@@ -34,9 +34,9 @@
                   </div>
                 </div>
                 <div class="aj-droit-content">
-                  <div class="form__group">
+                  <fieldset class="form__group">
                     <legend>
-                      <h2 class="aj-question">Avez-vous demandé l'aide ?</h2>
+                      <h3 class="aj-question">Qu'avez-vous fait pour {{prefix(droit)}}{{droit.label}}&nbsp;?</h3>
                     </legend>
                     <div v-for="choice in droit.choices" v-bind:key="choice.value" class="aj-selection-wrapper">
                       <input type="radio"
@@ -48,12 +48,12 @@
                         {{ choice.label }}
                       </label>
                     </div>
-                  </div>
-                  <div class="form__group" v-show="false && isNegative(droit.choiceValue)">
-                    <legend>
-                      <h2 class="aj-question">Pour quelle raison ?</h2>
-                    </legend>
-                    <textarea  v-model="droit.choiceComments" placeholder="..."/>
+                  </fieldset>
+                  <div class="form__group" v-show="isNegative(droit.choiceValue)">
+                    <label><h3 v-bind:for="`choiceComments_${droit.id}`" class="aj-question">
+                      Pour quelles raisons&nbsp;?
+                    </h3></label>
+                    <textarea v-bind:id="`choiceComments_${droit.id}`" v-model="droit.choiceComments" placeholder="..."/>
                   </div>
                 </div>
               </div>
@@ -75,10 +75,10 @@ import Institution from '@/lib/Institution'
 import LoadingModal from '@/components/LoadingModal'
 
 const choices = [
-    { value: 'already', label: "J'en bénéficiais déjà" },
-    { value: 'asked',   label: "J'ai fait une demande" },
-    { value: 'failed',  label: "Je n'ai pas réussi à faire une demande" },
-    { value: 'nothing', label: "Je n'ai rien fait" },
+    { value: 'already', label: "Rien, j'en bénéficiais déjà." },
+    { value: 'failed',  label: "Je n'ai pas réussi à faire une demande." },
+    { value: 'asked',   label: "J'ai fait une demande." },
+    { value: 'nothing', label: "Je n'ai rien fait." },
 ]
 
 function isNegative(value) {
@@ -112,6 +112,9 @@ export default {
     isString: (val) => typeof val === 'string',
     isNumber: (val) => typeof val === 'number',
     isNegative,
+    prefix: function(droit) {
+      return `${droit.prefix}${droit.prefix[droit.prefix.length-1] == '’' ? '' : ' '}`
+    },
     submit: function() {
       let answers = this.droits.map(droit => ({
         id: droit.id,

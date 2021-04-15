@@ -36,14 +36,17 @@ export function demandeur(params={}) {
   cy.get('label').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
     .type(params.date_naissance || '12121980')
-  cy.get('button[type="submit"]').click()
+  submit()
   // Nationalite
   cy.get('legend').invoke('text').should('contain', 'nationalité')
+  autoSubmit()
   cy.get('input[type="radio"]').check('fr')
+  autoSubmit()
   // Activite
   cy.get('legend').invoke('text').should('contain', 'Êtes-vous')
   cy.get('label').invoke('text').should('contain', 'salarié')
   cy.get('input[type="radio"]').check('actif')
+  autoSubmit()
   // Handicap
   handicap(params)
 }
@@ -52,22 +55,38 @@ export function handicap(params) {
   cy.get('legend').invoke('text').should('contain', 'handicap')
   if (params.handicap) {
     cy.get('input[type="radio"]').check('true')
+    autoSubmit()
     // Taux d'incapacite
     cy.get('legend').invoke('text').should('contain', `taux d'incapacité`)
     cy.get('input[type="radio"]').check(params.handicap.taux_incapacite.toString())
+    autoSubmit()
     if (!params.enfant && 0.5 < params.handicap.taux_incapacite && params.handicap.taux_incapacite <= 0.8) {
       // AAH
       cy.get('legend').invoke('text').should('contain', `CDAPH`)
       cy.get('input[type="radio"]').check('true')
+      autoSubmit()
     }
   } else {
     cy.get('input[type="radio"]').check('false')
+    autoSubmit()
+  }
+}
+
+export function submit() {
+  cy.get('button[type="submit"]').click()
+}
+
+export function autoSubmit() {
+  if (process.env.FORCE_AUTOSUBMIT) {
+    return
+  } else {
+    cy.get('button[type="submit"]').click()
   }
 }
 
 export function zeroEnfants() {
   cy.get('h2').invoke('text').should('contain', 'enfants')
-  cy.get('button[type="submit"]').click()
+  submit()
 }
 
 export function deuxEnfants() {
@@ -78,93 +97,105 @@ export function deuxEnfants() {
   cy.get('button#add-pac').click()
   enfant()
   cy.get('h2').invoke('text').should('contain', 'enfants')
-  cy.get('button[type="submit"]').click()
+  submit()
 }
 
 export function conjoint(params={}) {
-  cy.get('button[type="submit"]').click()
+  submit()
   // Naissance
   cy.get('label').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
     .type(params.date_naissance || '12121980')
-  cy.get('button[type="submit"]').click()
+  submit()
   // Nationalite
   cy.get('legend').invoke('text').should('contain', 'nationalité')
   cy.get('input[type="radio"]').check('fr')
+  autoSubmit()
   // Statut Marital
   cy.get('legend').invoke('text').should('contain', 'Quelle est votre relation avec votre conjoint')
   cy.get('input[type="radio"]').check('marie')
+  autoSubmit()
   // Activite
   cy.get('legend').invoke('text').should('contain', 'est-il/elle')
   cy.get('label').invoke('text').should('contain', 'salarié')
   cy.get('input[type="radio"]').check('actif')
+  autoSubmit()
   // Handicap
   cy.get('legend').invoke('text').should('contain', 'handicap')
   cy.get('input[type="radio"]').check('false')
+  autoSubmit()
 }
 
 export function enfant(params={}) {
   // Prénom
   cy.get('label').invoke('text').should('contain', 'prénom')
-  cy.get('button[type="submit"]').click()
+  submit()
   // Naissance
   cy.get('label').invoke('text').should('contain', 'naissance')
   cy.get('#date_naissance')
     .type(params.date_naissance || '12122000')
-  cy.get('button[type="submit"]').click()
+  submit()
   // Nationalite
   cy.get('legend').invoke('text').should('contain', 'nationalité')
   cy.get('input[type="radio"]').check('fr')
+  autoSubmit()
   // Garde Alterne
   cy.get('legend').invoke('text').should('contain', 'en garde alternée')
   cy.get('input[type="radio"]').check('true')
+  autoSubmit()
   // Handicap
   cy.get('legend').invoke('text').should('contain', 'handicap')
   cy.get('input[type="radio"]').check('false')
+  autoSubmit()
   // Scolarite
   cy.get('legend').invoke('text').should('contain', 'scolarisé·e')
   cy.get('input[type="radio"]').check('college')
+  autoSubmit()
   // Enfant a charge
   cy.get('legend').invoke('text').should('contain', 'dernière déclaration d\'impôts')
   cy.get('input[type="radio"]').check('false')
+  autoSubmit()
 }
 
 export function celibataire() {
   cy.get('legend').invoke('text').should('contain', 'couple')
   cy.get('input[type="radio"]').check('false')
+  autoSubmit()
 }
 
 export function couple() {
   cy.get('legend').invoke('text').should('contain', 'couple')
   cy.get('input[type="radio"]').check('true')
+  autoSubmit()
 }
 
 export function sansDomicileStable() {
   cy.get('input[name="logementType"').get('[value="sansDomicile"]').check()
-  cy.get('button[type="submit"]').click()// Logement
+  submit()// Logement
   cy.get('input[type="number"')
     .type('94120')
-  cy.get('button[type="submit"]').click() // Commune de résidence
+  submit() // Commune de résidence
 }
 
 export function salaireSeul() {
   cy.get('form').find('input[type="checkbox"] ').first().check()
-  cy.get('button[type="submit"]').click()
+  submit()
 
   cy.get('div').as('salarySection')
   cy.get('@salarySection').find('input[type="radio"][value="true"]').first().check()
   cy.get('@salarySection').find('input[type="number"]').type('1101.42')
-  cy.get('button[type="submit"]').click()
+  submit()
 }
 
 export function interestFlagExtra() {
   cy.get('input[type="radio"]').check('false')
+  autoSubmit()
 }
 
 export function sansPensionAlimentaireVersees() {
   cy.get('legend').invoke('text').should('contain', 'Pensions alimentaires versées')
   cy.get('div').find('input[type="radio"][value="false"]').first().check()
-  cy.get('button[type="submit"]').click()
+  submit()
 }
 
 export function hasPrimeActivite() {

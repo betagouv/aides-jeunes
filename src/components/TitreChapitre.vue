@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import Chapters from '@/lib/Chapters'
 
     export default {
         name: 'TitreChapitre',
@@ -16,23 +17,8 @@
         methods: {
             getTitleByRoute(route) {
                 const step = this.$state.current(route.path, this.$store.state.situation)
-                const chapter = step && step.chapter || ''
-                switch (chapter) {
-                    case 'profil':
-                        return 'Mon profil';
-                    case 'foyer':
-                        return 'Mon foyer';
-                    case 'logement':
-                        return 'Mon logement';
-                    case 'revenus':
-                        return 'Mes revenus';
-                    case 'projets':
-                        return 'Mes projets';
-                    case 'resultats':
-                        return 'Mes résultats';
-                    default:
-                        return 'Ma simulation';
-                }
+                const chapterName = step && step.chapter || ''
+                return Chapters.getLabel(chapterName)
             }
         }
     }

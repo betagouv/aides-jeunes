@@ -1,4 +1,4 @@
-import { full, next, current, chapterRoot } from '@/lib/State'
+import { full, next, current, chapters, chapterRoot } from '@/lib/State'
 
 const StateService = {
   install (Vue) {
@@ -7,6 +7,7 @@ const StateService = {
         full,
         next,
         current,
+        chapters,
         chapterRoot
     }
 

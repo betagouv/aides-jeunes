@@ -1,5 +1,6 @@
 var { generateBlocks } = require('./blocks')
 var { Step } = require('./steps')
+var Chapters = require('../Chapters')
 
 function processBlock({journey, subject, situation, isActive}, b) {
   if (b instanceof Step) {
@@ -48,6 +49,21 @@ function full(situation) {
     })
 }
 
+function chapters(currentPath, situation) {
+  const journey = full(situation)
+  const activeJourney = journey.filter(s => s.isActive)
+  const activeChaptersNames = activeJourney.map(c => c.chapter).filter((value, index, self) => self.indexOf(value) === index)
+  const currentStep = journey.find(item => item.path == currentPath)
+  const activeChapters = Chapters.default.getWizardChapters().filter(c => activeChaptersNames.includes(c.name))
+  let passedChapter = true
+  return activeChapters.map((chapter) => {
+      passedChapter = chapter.name === (currentStep && currentStep.chapter) ? false : passedChapter
+      chapter.done = passedChapter
+      chapter.current = chapter.name === (currentStep && currentStep.chapter)
+      return chapter
+  })
+}
+
 function chapterRoot(chapter, situation) {
     const journey = full(situation)
     const activeJourney = journey.filter(s => s.isActive)
@@ -75,6 +91,7 @@ function next(current, situation) {
 module.exports = {
   full,
   next,
+  chapters,
   chapterRoot,
   current
 }

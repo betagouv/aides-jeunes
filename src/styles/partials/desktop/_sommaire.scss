@@ -1,6 +1,6 @@
 html {
   body {
-    .aj-wizard-container {
+    .aj-sommaire-container {
       display: flex;
       flex-direction: column;
       width: 32%;
@@ -9,7 +9,7 @@ html {
       align-items: start;
       border-right: 0.0625rem solid #e6e6e6;
 
-      .aj-wizard-content {
+      .aj-sommaire-content {
         position: sticky;
         top: 2.5rem;
 

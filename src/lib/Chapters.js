@@ -11,7 +11,7 @@ function getChapters () {
     return chapters
 }
 
-function getWizardChapters () {
+function getSommaireChapters () {
     return chapters.filter(c => c.name !== 'resultats')
 }
 
@@ -23,7 +23,7 @@ function getLabel (name) {
 const Chapters = {
     getLabel,
     getChapters,
-    getWizardChapters
+    getSommaireChapters
 }
 
 export default Chapters;

@@ -1,0 +1,11 @@
+label: Activ’emploi
+institution: departement_nord
+description: Activ’emploi est une aide financière destinée aux allocataires du RSA disposant d’un contrat de travail
+  pour démarrer un emploi ou d’une formation validée. Elle permet de financer les premiers frais liés à la
+  garde d’enfants, à la mobilité et au matériel professionnel.
+link: https://lenord.fr/jcms/prd1_630893/maisons-departementales-insertion-et-emploi
+instructions: https://github.com/mes-aides/simulateur/wiki/Brochure%20Activ%20Emploi.pdf
+prefix: ' '
+legend: maximum
+floorAt: 1
+entity: individus

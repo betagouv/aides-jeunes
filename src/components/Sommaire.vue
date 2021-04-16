@@ -1,6 +1,6 @@
 <template>
-    <div class="aj-wizard-container">
-        <div class="aj-wizard-content">
+    <div class="aj-sommaire-container">
+        <div class="aj-sommaire-content">
             <h1>Ma simulation</h1>
             <div class="aj-progressBar-container">
                 <div class="aj-step-container">
@@ -25,7 +25,7 @@
 <script>
 
 export default {
-    name: 'Wizard',
+    name: 'Sommaire',
     computed: {
         chapters() {
             return this.$state.chapters(this.$route.path, this.$store.state.situation)

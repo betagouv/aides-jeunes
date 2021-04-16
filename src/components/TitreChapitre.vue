@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import Chapters from '@/lib/Chapters'
 
     export default {
         name: 'TitreChapitre',
@@ -14,27 +15,12 @@
             }
         },
         methods: {
-            getTitleByRoute(route, situation) {
+            getTitleByRoute(route) {
                 const path = route.path
                 const current = path.replace(/\/en_savoir_plus/, '')
-                const step = this.$store.getters.passSanityCheck && this.$state.current(current, situation)
-                const chapter = step && step.chapter || ''
-                switch (chapter) {
-                    case 'profil':
-                        return 'Mon profil';
-                    case 'foyer':
-                        return 'Mon foyer';
-                    case 'logement':
-                        return 'Mon logement';
-                    case 'revenus':
-                        return 'Mes revenus';
-                    case 'projets':
-                        return 'Mes projets';
-                    case 'resultats':
-                        return 'Mes résultats';
-                    default:
-                        return 'Ma simulation';
-                }
+                const step = this.$store.getters.passSanityCheck && this.$state.current(current, this.$store.state.situation)
+                const chapterName = step && step.chapter || ''
+                return Chapters.getLabel(chapterName)
             }
         }
     }

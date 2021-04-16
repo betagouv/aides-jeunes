@@ -1,7 +1,9 @@
 <template>
-  <div>
-      <Header1J1S/>
-      <slot></slot>
+  <div class="aj-website">
+      <div class="aj-website-content">
+          <Header1J1S/>
+          <slot></slot>
+      </div>
       <FooterJ1S/>
   </div>
 </template>

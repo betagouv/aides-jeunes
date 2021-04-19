@@ -1,0 +1,11 @@
+label: aide à l'installation dans le logement du fonds de solidarité pour le logement
+institution: departement_eure_et_loir
+description: >
+  Cette aide pour des équipements de première nécessité est destinée à favoriser
+  l'installation dans le cadre d'un premier accès au logement sur le département.
+conditions:
+link: https://www.eurelien.fr/guide/logement
+prefix: la
+type: bool
+floorAt: 10
+entity: individus

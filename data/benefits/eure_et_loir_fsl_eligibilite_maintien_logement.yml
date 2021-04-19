@@ -1,0 +1,12 @@
+label: aide au maintien dans le logement du fonds de solidarité pour le logement
+institution: departement_eure_et_loir
+description: >
+  Cette aide, sous forme de subvention ou de prêt remboursable, peut être accordée
+  pour la mise en jeu du cautionnement, les impayés de loyer et le nettoyage
+  et les petits travaux du logement.
+conditions:
+link: https://www.eurelien.fr/guide/logement
+prefix: la
+type: bool
+floorAt: 10
+entity: individus

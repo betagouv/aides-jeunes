@@ -1,0 +1,11 @@
+label: aide au maintien des fournitures « Énergie-Eau-Téléphone » du fonds de solidarité pour le logement
+institution: departement_eure_et_loir
+description: >
+  Cette aide peut être versée au créancier afin de maintenir les flux
+  et de permettre de vivre décemment dans son logement.
+conditions:
+link: https://www.eurelien.fr/guide/logement
+prefix: la
+type: bool
+floorAt: 10
+entity: individus

@@ -5,7 +5,7 @@
             <div class="aj-progressBar-container">
                 <div class="aj-step-container">
                     <div v-for="(chapter,index) in chapters" :key="index" class="aj-step">
-                        <div class="aj-step-icon" :class="{'aj-step-done': chapter.done, 'aj-step-inactive': !chapter.done, 'aj-step-active' : chapter.current}">
+                        <div class="aj-step-icon" :class="{'aj-step-done': chapter.done, 'aj-step-inactive': !chapter.done, 'aj-step-active' : chapter.current, 'aj-step-inprogress': chapterInProgress(chapter, index)}">
                             <img v-if="chapter.done" src="../assets/images/done.svg" class="aj-check-icon">
                         </div>
                         <router-link :to="getRootChapterPath(chapter.name)" class="aj-step-title" :class="{'aj-active-title' : chapter.current, 'aj-disabled-title' : disabledLink(chapter, index)}">
@@ -28,7 +28,7 @@ export default {
     name: 'Sommaire',
     computed: {
         chapters() {
-            return this.$state.chapters(this.$route.path, this.$store.state.situation)
+            return this.$state.chapters(this.$route.path, this.$store.state.situation, this.$store.state.userJourney)
         },
         disableResults() {
             return this.chapters.filter(c => c.done).length !== this.chapters.length
@@ -41,6 +41,9 @@ export default {
         },
         disabledLink(chapter, index) {
             return index === 0 ? false : !chapter.done && !this.chapters[index - 1].done
+        },
+        chapterInProgress(chapter, index) {
+            return !chapter.current && !chapter.done && this.chapters[index - 1].done
         }
     }
 }

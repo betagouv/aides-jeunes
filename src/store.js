@@ -60,7 +60,10 @@ function defaultStore() {
   return {
     message: null,
     debug: false,
-    userJourney: [],
+    userJourney: {
+        history: [],
+        doneHistory: []
+    },
     situation: {
       _id: null,
       external_id: null,
@@ -203,7 +206,10 @@ const store = new Vuex.Store({
   mutations: {
     clear: function(state) {
       state.situation = {}
-      state.userJourney = []
+      state.userJourney = {
+          history: [],
+          doneHistory: []
+      }
       state.access.forbidden = false
       state.access.fetching = false
     },
@@ -219,8 +225,13 @@ const store = new Vuex.Store({
       state.userJourney = userJourney
     },
     addPathToUserJourney: function (state, path) {
-      if (path !== state.userJourney[state.userJourney.length - 1])
-        state.userJourney.push(path)
+        if (path !== state.userJourney.history[state.userJourney.history.length - 1])
+            state.userJourney.history.push(path)
+    },
+    addPathToUserDoneJourney: function (state, path) {
+      if (!state.userJourney.doneHistory.includes(path)) {
+          state.userJourney.doneHistory.push(path)
+      }
     },
     saveFamille: function(state, famille) {
       state.situation = Object.assign({}, state.situation, { famille })
@@ -311,7 +322,7 @@ const store = new Vuex.Store({
     setIframeOrigin: function(state, newOrigin) {
       state.inIframe = true
       state.iframeOrigin = newOrigin
-    },
+    }
   },
   actions: {
     clear: function({commit}, external_id) {
@@ -358,6 +369,9 @@ const store = new Vuex.Store({
     },
     addPathToUserJourney: function({ commit }, path) {
       commit('addPathToUserJourney', path)
+    },
+    addPathToUserDoneJourney: function({ commit }, path) {
+      commit('addPathToUserDoneJourney', path)
     },
     save: function(store) {
       const disabledSteps = full(store.state.situation).filter(s => !s.isActive)

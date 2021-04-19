@@ -49,15 +49,16 @@ function full(situation) {
     })
 }
 
-function chapters(currentPath, situation) {
+function chapters(currentPath, situation, userJourney) {
   const journey = full(situation)
   const activeJourney = journey.filter(s => s.isActive)
   const activeChaptersNames = activeJourney.map(c => c.chapter).filter((value, index, self) => self.indexOf(value) === index)
   const currentStep = journey.find(item => item.path == currentPath)
   const activeChapters = Chapters.default.getSommaireChapters().filter(c => activeChaptersNames.includes(c.name))
+  const maxStep = max(situation, userJourney)
   let passedChapter = true
   return activeChapters.map((chapter) => {
-      passedChapter = chapter.name === (currentStep && currentStep.chapter) ? false : passedChapter
+      passedChapter = chapter.name === (maxStep && maxStep.chapter) ? false : passedChapter
       chapter.done = passedChapter
       chapter.current = chapter.name === (currentStep && currentStep.chapter)
       return chapter
@@ -78,7 +79,7 @@ function current(currentPath, situation) {
 function max(situation, userJourney) {
     const journey = full(situation)
     const activeJourney = journey.filter(s => s.isActive)
-    return activeJourney.find(s => !userJourney.includes(s.path))
+    return activeJourney.find(s => !userJourney.doneHistory.includes(s.path))
 }
 
 function next(current, situation) {

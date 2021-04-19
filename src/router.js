@@ -263,7 +263,7 @@ const router = new Router({
             path: 'depcom',
             component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Depcom.vue'),
         }]
-      }, 
+      },
       {
         path: 'resultats',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/Resultats.vue'),
@@ -430,6 +430,12 @@ router.beforeEach((to, from, next) => {
     store.commit('setTitle', 'Évaluez vos droits aux aides sociales')
   }
   store.dispatch('updateError', false)
+
+  const userJourneyHistory = store.state.userJourney.history
+  if (userJourneyHistory[userJourneyHistory.length - 1] !== from.path) {
+    store.dispatch('addPathToUserJourney', from.path)
+  }
+  store.dispatch('addPathToUserJourney', to.path)
 
   next()
 })

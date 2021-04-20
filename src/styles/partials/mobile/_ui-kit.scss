@@ -86,6 +86,14 @@ html {
       z-index: 1000;
       overflow-y: scroll;
 
+      .aj-help-modal-back-button {
+        display: none !important;
+      }
+
+      .aj-help-modal-back-icon {
+        display: initial;
+      }
+
       .aj-help-modal-container {
         max-height: 0;
         transition: max-height .3s;

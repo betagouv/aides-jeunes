@@ -405,7 +405,7 @@ const store = new Vuex.Store({
     },
     redirection: function(state, next) {
       state.commit('setMessage', 'Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c\'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:aides-jeunes@beta.gouv.fr">aides-jeunes@beta.gouv.fr</a>.')
-      next('/foyer/demandeur')
+      next('/simulation')
     },
     verifyBenefitVariables: function(state) {
       return axios.get('api/openfisca/variables')

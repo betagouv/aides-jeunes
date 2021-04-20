@@ -59,7 +59,10 @@ function defaultCalculs() {
 function defaultStore() {
   const now = moment().format()
   return {
-    message: null,
+    message: {
+      text: null,
+      counter: null,
+    },
     debug: false,
     situation: {
       _id: null,
@@ -283,11 +286,21 @@ const store = new Vuex.Store({
       state.calculs.error = true
       state.calculs.exception = error.response && error.response.data || error
     },
-    setMessage: function(state, message) {
-      state.message = message
+    setMessage: function(state, message, counter) {
+      state.message = {
+        text: message,
+        counter: counter || 1,
+      }
     },
-    clearMessage: function(state) {
-      state.message = null
+    decrementMessageRemainingViewTime: function(state) {
+      if (!state.message.text) {
+        return
+      }
+
+      state.message.counter = state.message.counter - 1
+      if (state.message.counter < 0) {
+        state.message.text = null
+      }
     },
     setTitle: function(state, newTitle) {
       state.title = newTitle

@@ -436,8 +436,12 @@ router.beforeEach((to, from, next) => {
   } else {
     store.commit('setTitle', 'Évaluez vos droits aux aides sociales')
   }
+
   if (store.state.error) {
     store.dispatch('updateError', false)
+  }
+  if (store.state.message.text) {
+    store.commit('decrementMessageRemainingViewTime')
   }
 
   next()

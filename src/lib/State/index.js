@@ -60,14 +60,9 @@ function chapters(currentPath, situation) {
       passedChapter = chapter.name === (currentStep && currentStep.chapter) ? false : passedChapter
       chapter.done = passedChapter
       chapter.current = chapter.name === (currentStep && currentStep.chapter)
+      chapter.root = activeJourney.find(item => item.chapter == chapter.name).path
       return chapter
   })
-}
-
-function chapterRoot(chapter, situation) {
-    const journey = full(situation)
-    const activeJourney = journey.filter(s => s.isActive)
-    return activeJourney.find(item => item.chapter == chapter)
 }
 
 function current(currentPath, situation) {
@@ -92,6 +87,5 @@ module.exports = {
   full,
   next,
   chapters,
-  chapterRoot,
   current
 }

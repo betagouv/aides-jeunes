@@ -245,7 +245,13 @@ html {
     }
 
     .aj-help-modal {
-      display: none;
+      .aj-help-modal-back-button {
+        margin-top: 0;
+      }
+
+      .aj-help-modal-back-icon {
+        display: none;
+      }
     }
 
     @media print {

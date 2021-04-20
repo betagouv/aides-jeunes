@@ -1,29 +1,22 @@
 <template>
     <div class="inline-block">
-        <router-link :to="{name: 'en_savoir_plus', params: {element: routeElement, text: text}}" :data-text="text" class="aj-help-popup aj-tooltip a-unstyled" exact>
+        <router-link :to="{name: 'en_savoir_plus', params: {element: routeElement}}" :data-text="hint" class="aj-help-popup aj-tooltip a-unstyled" @mouseover="enSavoirPlusEvent()" exact>
             <div class="aj-help-icon">i</div>
             en savoir plus
         </router-link>
-        <div class="aj-help-popup aj-tooltip aj-help-desktop" :data-text="text" @mouseover="enSavoirPlusEvent()">
-            <div class="aj-help-icon">i</div>
-            en savoir plus
-        </div>
     </div>
 </template>
 
 <script>
+    import Hint from '@/lib/Hint'
+
     export default {
         name: 'EnSavoirPlus',
-        props: {
-            text: {
-                type: String,
-                default: '...'
-            }
-        },
         data() {
-            return {
-                routeElement: this.$route.path.substring(this.$route.path.lastIndexOf('/') + 1)
-            }
+          return {
+              hint: Hint.handicap(),
+              routeElement: this.$route.path.substring(this.$route.path.lastIndexOf('/') + 1)
+          }
         },
         methods: {
             enSavoirPlusEvent() {

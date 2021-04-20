@@ -265,6 +265,7 @@ const router = new Router({
         }]
       }, 
       {
+        name: 'resultats',
         path: 'resultats',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/Resultats.vue'),
       },
@@ -407,7 +408,7 @@ router.beforeEach((to, from, next) => {
   if (from.name === null) {
     store.commit('initialize')
     store.dispatch('verifyBenefitVariables')
-    if (to.matched.some(r => r.name === 'foyer') && ['demandeur', 'resultat'].indexOf(to.name) === -1 && ! store.getters.passSanityCheck) {
+    if (to.matched.some(r => r.name === 'foyer' || r.name === 'simulation') && ['date_naissance', 'resultats'].indexOf(to.name) === -1 && ! store.getters.passSanityCheck) {
       return store.dispatch('redirection', route => next(route))
     }
 
@@ -435,7 +436,13 @@ router.beforeEach((to, from, next) => {
   } else {
     store.commit('setTitle', 'Évaluez vos droits aux aides sociales')
   }
-  store.dispatch('updateError', false)
+
+  if (store.state.error) {
+    store.dispatch('updateError', false)
+  }
+  if (store.state.message.text) {
+    store.commit('decrementMessageRemainingViewTime')
+  }
 
   next()
 })

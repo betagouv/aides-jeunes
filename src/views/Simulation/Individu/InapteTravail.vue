@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='onSubmit'>
     <YesNoQuestion v-model="value">
-      {{ getLabel('être') | capitalize }} reconnu·e inapte au travail ? <EnSavoirPlus :text="hint" routeName="inapte_en_savoir_plus" />
+      {{ getLabel('être') | capitalize }} reconnu·e inapte au travail ? <EnSavoirPlus/>
     </YesNoQuestion>
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
@@ -20,11 +20,6 @@ export default {
     YesNoQuestion,
     EnSavoirPlus
   },
-    data() {
-        return {
-            hint: 'Vous pouvez être "inapte au travail" après un accident ou une maladie par exemple : c\'est le médecin du travail qui détermine cela.'
-        }
-    },
   mixins: [createIndividuMixin('inapte_travail')],
 }
 </script>

@@ -14,9 +14,13 @@
         name: 'EnSavoirPlus',
         data() {
           return {
-              hint: Hint.handicap(),
               routeElement: this.$route.path.substring(this.$route.path.lastIndexOf('/') + 1)
           }
+        },
+        computed: {
+            hint() {
+                return Hint[this.routeElement]()
+            }
         },
         methods: {
             enSavoirPlusEvent() {

@@ -20,13 +20,6 @@ export default {
     Actions,
     YesNoQuestion
   },
-  computed: {
-    hint() {
-        return '"en situation de handicap"\n' +
-      'c\'est ' + this.getLabel('possessive') + ' situation si vous avez déposé un dossier à la MDPH et que celle-ci ' + this.getLabel('avoirPasseSimple') + ' reconnu comme handicapé.' +
-      ' La MDPH ' + this.getLabel('avoirPasseSimplePossesive') + ' également attribué un "taux d\'incapacité", lié à ' + this.getLabel('possesiveMasculin') + ' handicap. '
-    }
-  },
   mixins: [createIndividuMixin('handicap')],
 }
 </script>

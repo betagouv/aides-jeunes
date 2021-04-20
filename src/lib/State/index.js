@@ -2,6 +2,8 @@ var { generateBlocks } = require('./blocks')
 var { Step } = require('./steps')
 var Chapters = require('../Chapters')
 
+let journey = []
+
 function processBlock({journey, subject, situation, isActive}, b) {
   if (b instanceof Step) {
     b.isActive = isActive
@@ -50,7 +52,9 @@ function full(situation) {
 }
 
 function chapters(currentPath, situation) {
-  const journey = full(situation)
+   if (!journey.length) {
+     journey = full(situation)
+  }
   const activeJourney = journey.filter(s => s.isActive)
   const activeChaptersNames = activeJourney.map(c => c.chapter).filter((value, index, self) => self.indexOf(value) === index)
   const currentStep = journey.find(item => item.path == currentPath)
@@ -66,7 +70,9 @@ function chapters(currentPath, situation) {
 }
 
 function current(currentPath, situation) {
-    const journey = full(situation)
+    if (!journey.length) {
+        journey = full(situation)
+    }
     return journey.find(item => item.path == currentPath)
 }
 

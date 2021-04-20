@@ -1,6 +1,6 @@
 <template>
     <div class="inline-block">
-        <router-link :to="{name: 'en_savoir_plus', params: {element: routeElement}}" :data-text="hint" class="aj-help-popup aj-tooltip a-unstyled" @mouseover="enSavoirPlusEvent()" exact>
+        <router-link :to="{path: routeElement + '/en_savoir_plus', params: {element: routeElement}}" :data-text="hint" class="aj-help-popup aj-tooltip a-unstyled" @mouseover="enSavoirPlusEvent()" exact>
             <div class="aj-help-icon">i</div>
             en savoir plus
         </router-link>

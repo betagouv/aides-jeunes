@@ -81,7 +81,11 @@ export default {
     },
     next: function() {
       this.$store.dispatch('verifyBenefitVariables')
-      this.$push()
+      if (this.hasExistingSituation) {
+        this.$router.push(this.$state.max(this.$store.state.situation, this.$store.state.userJourney).path)
+      } else {
+        this.$push()
+      }
     },
   }
 }

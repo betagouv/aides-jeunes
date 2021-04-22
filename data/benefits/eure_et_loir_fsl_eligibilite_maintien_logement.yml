@@ -5,8 +5,11 @@ description: >
   pour la mise en jeu du cautionnement, les impayés de loyer et le nettoyage
   et les petits travaux du logement.
 conditions:
-link: https://www.eurelien.fr/guide/logement
-prefix: la
+  - Être locataire ou propriétaire.
+  - Avoir des ressources inférieures ou égales à 60% du seuil de pauvreté 
+  (ressources hors aide personnelle au logement, allocation logement,
+  allocation de rentrée scolaire, allocation d’éducation spéciale et ses compléments).
+link: https://www.eurelien.fr/guide/action-et-aides-sociales#guide-block-30
+prefix: l'
 type: bool
-floorAt: 10
 entity: individus

@@ -7,8 +7,10 @@ description: >
   par le même bailleur, l’assurance habitation (6 premiers mois), les frais de déménagement,
   l’ouverture des compteurs, l’achat d’appareils ménagers et de mobilier de première nécessité.
 conditions:
-link: https://www.eurelien.fr/guide/logement
-prefix: la
+  - Avoir des ressources inférieures ou égales à 60% du seuil de pauvreté 
+  (ressources hors aide personnelle au logement, allocation logement, 
+  allocation de rentrée scolaire, allocation d’éducation spéciale et ses compléments).
+link: https://www.eurelien.fr/guide/action-et-aides-sociales#guide-block-30
+prefix: l'
 type: bool
-floorAt: 10
 entity: individus

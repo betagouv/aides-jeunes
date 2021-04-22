@@ -4,8 +4,10 @@ description: >
   Cette aide pour des équipements de première nécessité est destinée à favoriser
   l'installation dans le cadre d'un premier accès au logement sur le département.
 conditions:
-link: https://www.eurelien.fr/guide/logement
-prefix: la
+  - Avoir des ressources inférieures ou égales à 60% du seuil de pauvreté 
+  (ressources hors aide personnelle au logement, allocation logement, 
+  allocation de rentrée scolaire, allocation d’éducation spéciale et ses compléments).
+link: https://www.eurelien.fr/guide/action-et-aides-sociales#guide-block-30
+prefix: l'
 type: bool
-floorAt: 10
 entity: individus

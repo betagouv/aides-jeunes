@@ -28,7 +28,13 @@ const router = new Router({
       name: 'simulation',
       redirect: '/simulation/individu/demandeur/date_naissance',
       component: () => import(/* webpackChunkName: "simulation" */ './views/Simulation.vue'),
-      children: [{
+      children: [
+        {
+            path: ':parent+/en_savoir_plus',
+            name: 'en_savoir_plus',
+            component: () => import(/* webpackChunkName: "en_savoir_plus" */ './components/EnSavoirPlusContent.vue')
+        },
+        {
         name: 'individu',
         path: 'individu/:id',
         redirect: '/simulation/individu/:id/date_naissance',
@@ -189,11 +195,6 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/Alternant.vue'),
         },
         {
-            path: ':element/en_savoir_plus',
-            name: 'individu_en_savoir_plus',
-            component: () => import(/* webpackChunkName: "en_savoir_plus" */ './components/EnSavoirPlusContent.vue')
-        },
-        {
           name: 'property',
           path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
@@ -294,11 +295,6 @@ const router = new Router({
         name: 'resultatsDetails',
         path: 'resultats/:droitId',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/ResultatsDetail.vue'),
-      },
-      {
-          path: ':element/en_savoir_plus',
-          name: 'simulation_en_savoir_plus',
-          component: () => import(/* webpackChunkName: "en_savoir_plus" */ './components/EnSavoirPlusContent.vue')
       },
       {
         path: ':id/:property',

@@ -31,7 +31,14 @@
             return {
                 open: false,
                 window,
-                text: Hint[this.$route.params.element]()
+            }
+        },
+        computed: {
+            element: function() {
+                return this.$route.params.parent.split('/').pop()
+            },
+            text: function() {
+                return this.element && Hint[this.element] && Hint[this.element]()
             }
         },
         mounted() {

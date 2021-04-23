@@ -1,6 +1,6 @@
 <template>
     <div class="inline-block">
-        <router-link :to="{path: routeElement + '/en_savoir_plus', params: {element: routeElement}}" :data-text="hint" class="aj-help-popup aj-tooltip a-unstyled" @mouseover="enSavoirPlusEvent()" exact>
+        <router-link :to="{path: $route.path + '/en_savoir_plus'}" :data-text="hint" class="aj-help-popup aj-tooltip a-unstyled" @mouseover="enSavoirPlusEvent()">
             <div class="aj-help-icon">i</div>
             en savoir plus
         </router-link>
@@ -12,19 +12,17 @@
 
     export default {
         name: 'EnSavoirPlus',
-        data() {
-          return {
-              routeElement: this.$route.path.substring(this.$route.path.lastIndexOf('/') + 1)
-          }
-        },
         computed: {
+            attribute() {
+                return this.$route.path.substring(this.$route.path.lastIndexOf('/') + 1)
+            },
             hint() {
-                return Hint[this.routeElement]()
+                return this.attribute && Hint[this.attribute] && Hint[this.attribute]()
             }
         },
         methods: {
             enSavoirPlusEvent() {
-                this.$matomo && this.$matomo.trackEvent('General', 'En savoir plus', this.$route.path)
+                this.$matomo && this.$matomo.trackEvent('Parcours', 'En savoir plus hover', this.$route.path)
             }
         }
     }

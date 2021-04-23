@@ -16,7 +16,7 @@
         methods: {
             getTitleByRoute(route, situation) {
                 const path = route.path
-                const current = path.match(/en_savoir_plus/) ? path.split('/').slice(0, -1).join('/') : path
+                const current = path.replace(/\/en_savoir_plus/, '')
                 const step = this.$store.getters.passSanityCheck && this.$state.current(current, situation)
                 const chapter = step && step.chapter || ''
                 switch (chapter) {

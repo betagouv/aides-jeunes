@@ -38,7 +38,9 @@
         <p class="aj-results-intro">Si vous êtes dans une situation difficile, d'<router-link to="/sos">autres solutions existent</router-link>.</p>
       </div>
 
+
       <div class="aj-results-tools">
+        <TrouverInterlocuteur/>
         <OfflineResults v-if="!resultatStatus.updating && ! isEmpty(droits)" v-bind:id="resultatsId" />
         <Feedback :resultatsId="resultatsId"/>
       </div>
@@ -53,6 +55,7 @@ import DroitsList from './../../components/DroitsList'
 import ErrorBlock from './../../components/ErrorBlock'
 import Feedback from './../../components/Feedback'
 import OfflineResults from './../../components/OfflineResults'
+import TrouverInterlocuteur from '@/components/TrouverInterlocuteur'
 import LoadingModal from '@/components/LoadingModal'
 import ResultatsMixin from '@/mixins/Resultats'
 
@@ -64,6 +67,7 @@ export default {
     ErrorBlock,
     Feedback,
     OfflineResults,
+    TrouverInterlocuteur,
     LoadingModal
   },
   mixins: [ResultatsMixin],

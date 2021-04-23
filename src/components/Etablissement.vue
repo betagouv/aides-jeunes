@@ -18,13 +18,13 @@
           <i class="fa fa-clock-o" aria-hidden="true"></i> Horaires :<br />
           <div class="aj-etablissement-horaires-plage-container">
               <div v-for="plage_jour in etablissement.horaires" class="aj-etablissement-horaires-plage" v-bind:key="plage_jour.du">
-                <div v-if="plage_jour.du === plage_jour.au">
-                  Les {{ plage_jour.du }}s :
+                <div class="font-bold" v-if="plage_jour.du === plage_jour.au">
+                  Les {{ plage_jour.du }}s
                 </div>
-                <div v-if="plage_jour.du !== plage_jour.au">
-                  Du {{ plage_jour.du }} au {{ plage_jour.au }} :
+                <div class="font-bold" v-if="plage_jour.du !== plage_jour.au">
+                  Du {{ plage_jour.du }} au {{ plage_jour.au }}
                 </div>
-                <ul>
+                <ul class="list-unstyled">
                   <li v-for="plage_heure in plage_jour.heures" v-bind:key="plage_heure.de">
                     de {{ extractHHMM(plage_heure.de) }} à {{ extractHHMM(plage_heure.a) }}
                   </li>

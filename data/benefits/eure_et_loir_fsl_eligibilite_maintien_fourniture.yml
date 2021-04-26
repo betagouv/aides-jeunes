@@ -5,9 +5,9 @@ description: >
   et de permettre de vivre décemment dans son logement.
 conditions:
   - Être locataire ou propriétaire.
-  - Avoir des ressources inférieures ou égales à 60% du seuil de pauvreté 
-  (ressources hors aide personnelle au logement, allocation logement,
-  allocation de rentrée scolaire, allocation d’éducation spéciale et ses compléments).
+  - Avoir des ressources inférieures ou égales à 60% du seuil de pauvreté
+    (ressources hors aide personnelle au logement, allocation logement,
+    allocation de rentrée scolaire, allocation d’éducation spéciale et ses compléments).
 link: https://www.eurelien.fr/guide/action-et-aides-sociales#guide-block-30
 prefix: l'
 type: bool

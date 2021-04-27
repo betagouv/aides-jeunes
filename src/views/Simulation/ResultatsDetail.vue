@@ -63,7 +63,7 @@ export default {
   methods: {
     goBack: function(event) {
       event.preventDefault()
-      if (window && window.history.length > 1) {
+      if (window && window.history.length > 2) {
         history.back()
       } else {
         this.$router.push('/simulation/resultats')

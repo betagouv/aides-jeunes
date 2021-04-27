@@ -10,12 +10,12 @@
         name: 'TitreChapitre',
         computed: {
             title() {
-                return this.getTitleByRoute(this.$route)
+                return this.getTitleByRoute(this.$route, this.$store.state.situation)
             }
         },
         methods: {
-            getTitleByRoute(route) {
-                const step = this.$state.current(route.path, this.$store.state.situation)
+            getTitleByRoute(route, situation) {
+                const step = this.$store.getters.passSanityCheck && this.$state.current(route.path, situation)
                 const chapter = step && step.chapter || ''
                 switch (chapter) {
                     case 'profil':

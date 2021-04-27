@@ -310,7 +310,6 @@ var droitsDescription = {
                     'isBaseRessourcesYearMinusTwo': true,
                     'entity': 'menages', // default entity is familles
                     prefix: 'le',
-                    private: true,
                 },
             },
         },
@@ -428,7 +427,6 @@ var droitsDescription = {
                     'teleservice': 'https://www.demande-logement-social.gouv.fr/creation/accesCriteresEligibilites.do',
                     'top': 10,
                     prefix: 'le',
-                    private: true,
                 },
             }
         },

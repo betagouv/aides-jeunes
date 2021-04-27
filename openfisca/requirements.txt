@@ -1,4 +1,5 @@
 gunicorn>=19.1.1
+numpy == 1.20.2
 pytest == 5.3.5
 # Openfisca-France==51.3.0
 git+https://github.com/betagouv/openfisca-france.git@prd_aj_2021_04_26T21_08_29_02_00#egg=openfisca-France

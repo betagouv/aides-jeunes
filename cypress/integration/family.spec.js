@@ -33,8 +33,8 @@ context('Full simulation', () => {
     cy.get('button[type="submit"]').click()
 
     // steps.sansPensionAlimentaireVersees()
-    // steps.hasPrimeActivite()
     steps.interestFlagExtra()
-    steps.hasLogementSocial()
+    steps.hasPrimeActivite(2)
+    // steps.hasLogementSocial()
   })
 })

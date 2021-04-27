@@ -1,0 +1,16 @@
+label: aide à l'accès au logement du fonds de solidarité pour le logement
+institution: departement_eure_et_loir
+description: >
+  Cette une aide, sous forme de subvention ou de prêt remboursable, est accordée
+  pour le dépôt de garantie, le 1er loyer, les frais d’agence, la garantie
+  de loyers et de charges locatives, les dettes locatives en vue d’un relogement
+  par le même bailleur, l’assurance habitation (6 premiers mois), les frais de déménagement,
+  l’ouverture des compteurs, l’achat d’appareils ménagers et de mobilier de première nécessité.
+conditions:
+  - Avoir des ressources inférieures ou égales à 60% du seuil de pauvreté
+    (ressources hors aide personnelle au logement, allocation logement,
+    allocation de rentrée scolaire, allocation d’éducation spéciale et ses compléments).
+link: https://www.eurelien.fr/guide/action-et-aides-sociales#guide-block-30
+prefix: l'
+type: bool
+entity: menages

@@ -72,7 +72,7 @@ function individuBlockFactory(id) {
       }] : []),
       {
         isActive: () => false,
-        steps: [r('echelon_bourse')]
+        steps: [r('bourse_criteres_sociaux_echelon')]
       },
       ...(demandeur ? [{
         isActive: (subject, situation) => {

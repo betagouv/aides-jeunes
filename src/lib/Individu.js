@@ -34,7 +34,7 @@ function get(individus, role, id) {
         id: role,
         classe_scolarite: undefined,
         date_naissance: undefined,
-        bourse_criteres_sociaux_echelon: -1,
+        echelon_bourse: -1,
         enfant_a_charge: {},
         nationalite: undefined,
         _role: role,

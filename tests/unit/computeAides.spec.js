@@ -50,6 +50,9 @@ describe('computeAides', function () {
                 demandeur: {
                     css_participation_forfaitaire: {
                         '2014-11': 10
+                    },
+                    logement_social: {
+                        '2014-11': false
                     }
                 }
             },
@@ -93,13 +96,17 @@ describe('computeAides', function () {
             expect(plf).toBeTruthy()
             expect(plf.provider.label).toEqual('Ville de Paris')
             expect(plf.montant).toEqual(10)
+
+            var logement_social = droits.droitsNonEligibles.find(function(element) { return element.id === 'logement_social' })
+            expect(logement_social).toBeTruthy()
+            expect(logement_social.provider.label).toEqual('Ministère de la Cohésion des territoires')
         })
     })
 
     describe('computeAides of true boolean values', function() {
         beforeEach(function() {
-            openfiscaResult.individus.demandeur.logement_social = {'2014-11': true}
-            droits = compute(situation, openfiscaResult, true)
+            openfiscaResult.individus.demandeur.logement_social['2014-11'] = true
+            droits = compute(situation, openfiscaResult)
         })
 
         it('should extract eligibles droits from openfisca result', function() {

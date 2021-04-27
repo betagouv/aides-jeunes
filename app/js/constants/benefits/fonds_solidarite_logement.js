@@ -524,7 +524,7 @@ module.exports = {
         code: 'lyon',
         resources: {
             link: 'https://www.grandlyon.com/services/aides-fonds-solidarite-logement.html',
-            form: 'https://www.grandlyon.com/fileadmin/user_upload/media/pdf/habitat/20190111_fsl_demande-aide-acces-logement.pdf',
+            instructions: 'https://www.grandlyon.com/services/aides-fonds-solidarite-logement.html',
         }
     }),
     departement_saone_et_loire: fsl_generator({

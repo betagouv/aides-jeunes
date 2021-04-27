@@ -198,8 +198,8 @@ export function sansPensionAlimentaireVersees() {
   submit()
 }
 
-export function hasPrimeActivite() {
-  const position = 1
+export function hasPrimeActivite(position) {
+  position = position || 1
   const name = /prime d’activité/
   const id = 'ppa'
   const description = /revenus/
@@ -210,7 +210,8 @@ export function hasPrimeActivite() {
   cy.get('@' + id + '-summary').find('[itemprop="offers"]').invoke('text')
     .should('match', /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
   cy.get('@' + id + '-summary').find('.aj-aide-cta').click()
-  cy.get('.aj-droit-detail:nth-of-type(' + position + ')').as(id)
+
+  cy.get('.aj-droit-detail').as(id)
   cy.get('@' + id).get('[itemprop="description"]').invoke('text')
     .should('match', description)
   cy.get('@' + id).get('[itemprop="termsOfService"]').should('be.visible')
@@ -228,6 +229,7 @@ export function hasAAH() {
   cy.get('@' + id + '-summary').find('[itemprop="offers"]').invoke('text')
     .should('match', /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
   cy.get('@' + id + '-summary').find('.aj-aide-cta').click()
+
   cy.get('.aj-droit-detail').as(id)
   cy.get('@' + id).get('[itemprop="description"]').invoke('text')
     .should('contain', description)
@@ -244,6 +246,7 @@ export function hasLogementSocial() {
   cy.get('@' + id + '-summary').get('[itemprop="name"]').invoke('text')
     .should('match', name)
   cy.get('@' + id + '-summary').find('.aj-aide-cta').click()
+
   cy.get('.aj-droit-detail').as(id)
   cy.get('@' + id).get('[itemprop="description"]').invoke('text')
     .should('match', description)

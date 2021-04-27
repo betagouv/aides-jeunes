@@ -90,9 +90,9 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/StatutMarital.vue'),
         },
         {
-          name: 'echelon_bourse',
-          path: 'echelon_bourse',
-          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/EchelonBourse.vue'),
+          name: 'bourse_criteres_sociaux_echelon',
+          path: 'bourse_criteres_sociaux_echelon',
+          component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Individu/BourseCriteresSociauxEchelon.vue'),
         },
         {
           name: 'enfant_a_charge',

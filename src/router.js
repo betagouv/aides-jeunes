@@ -278,6 +278,7 @@ const router = new Router({
         }
       },
       {
+        name: 'resultatsDetails',
         path: 'resultats/:droitId',
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/ResultatsDetail.vue'),
       },
@@ -408,7 +409,7 @@ router.beforeEach((to, from, next) => {
   if (from.name === null) {
     store.commit('initialize')
     store.dispatch('verifyBenefitVariables')
-    if (to.matched.some(r => r.name === 'foyer' || r.name === 'simulation') && ['date_naissance', 'resultats'].indexOf(to.name) === -1 && ! store.getters.passSanityCheck) {
+    if (to.matched.some(r => r.name === 'foyer' || r.name === 'simulation') && ['date_naissance', 'resultats', 'resultatsDetails'].indexOf(to.name) === -1 && ! store.getters.passSanityCheck) {
       return store.dispatch('redirection', route => next(route))
     }
 

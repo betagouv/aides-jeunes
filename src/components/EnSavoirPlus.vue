@@ -17,7 +17,7 @@
                 return this.$route.path.substring(this.$route.path.lastIndexOf('/') + 1)
             },
             hint() {
-                return this.attribute && Hint[this.attribute] && Hint[this.attribute]()
+                return this.attribute && Hint[this.attribute] && Hint[this.attribute](this.$route.path)
             }
         },
         methods: {

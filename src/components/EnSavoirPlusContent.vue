@@ -38,7 +38,7 @@
                 return this.$route.params.parent.split('/').pop()
             },
             text: function() {
-                return this.element && Hint[this.element] && Hint[this.element]()
+                return this.element && Hint[this.element] && Hint[this.element](this.$route.params.parent)
             }
         },
         mounted() {

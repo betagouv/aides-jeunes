@@ -28,10 +28,15 @@ export default {
           accum[key] = value
           return accum
         }, {}).lastestSituation
-        if (lastestSituation) {
-          this.$store.dispatch('fetch', lastestSituation)
-            .then(() => this.$store.dispatch('compute'))
+        if (!lastestSituation) {
+          this.$matomo && this.$matomo.trackEvent('General', 'redirection', this.$route.path)
+          return this.$store.dispatch('redirection', route => this.$router.push(route))
         }
+
+        this.$matomo && this.$matomo.trackEvent('General', 'compute', this.$route.path)
+        this.$store.dispatch('fetch', lastestSituation)
+          .then(() => this.$store.dispatch('compute'))
+
         return lastestSituation
     },
     mock: function(detail) {

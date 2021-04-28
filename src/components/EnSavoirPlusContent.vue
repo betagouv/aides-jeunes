@@ -34,11 +34,14 @@
             }
         },
         computed: {
-            element: function() {
+            attribute: function() {
                 return this.$route.params.parent.split('/').pop()
             },
+            source: function() {
+                return this.$route.params.parent
+            },
             text: function() {
-                return this.element && Hint[this.element] && Hint[this.element](this.$route.params.parent)
+                return Hint.get(this.attribute, this.source)
             }
         },
         mounted() {

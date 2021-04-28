@@ -166,6 +166,16 @@ let ressourceTypes = [
         },
     },
     {
+        id: 'garantie_jeune',
+        label: 'Garantie jeun',
+        category: 'allocations',
+        prefix: 'la',
+        isRelevant: (situation, individu) => {
+            const age = Individu.age(individu, datesGenerator(situation.dateDeValeur).today.value)
+            return 16 <= age && age <= 25;
+        },
+    },
+    {
         id: 'mva',
         label: 'Majoration pour vie autonome (MVA)',
         category: 'allocations',

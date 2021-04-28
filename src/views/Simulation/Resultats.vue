@@ -81,7 +81,9 @@ export default {
         this.$store.dispatch('compute')
       } // Else nothing to do
     } else if (!this.$store.getters.passSanityCheck) {
-      return this.$store.dispatch('redirection', route => this.$router.push(route))
+      if (!this.restoreLatest()) {
+        return this.$store.dispatch('redirection', route => this.$router.push(route))
+      }
     } else {
       if (this.$store.state.calculs.dirty) {
         this.$store.dispatch('save')
@@ -93,8 +95,6 @@ export default {
           })
       } else if (! this.$store.getters.hasResults) {
         this.$store.dispatch('compute')
-      } else if (! this.$store.state.situation._id) {
-        this.restoreLatest()
       }
     }
 

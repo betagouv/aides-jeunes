@@ -43,9 +43,8 @@ export default {
   mounted: function () {
       if (this.mock(this.$route.params.droitId)) {
         return
-      }
-      if ((! this.droits) && this.restoreLatest()) {
-        this.$matomo && this.$matomo.trackEvent('General', 'compute', this.$route.params.droitId)
+      } else if (! this.droits) {
+        this.restoreLatest()
       }
   },
   computed: {

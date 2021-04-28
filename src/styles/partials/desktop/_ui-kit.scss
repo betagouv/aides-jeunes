@@ -109,6 +109,11 @@ html {
         user-select: none;
         margin-left: 12px;
 
+        &:focus {
+          background-color: var(--theme-primary-darker);
+          outline: none;
+        }
+
         &.aj-help-mobile {
           display: none;
         }
@@ -246,7 +251,7 @@ html {
 
     .aj-help-modal {
       .aj-help-modal-back-button {
-        margin-top: 0;
+        margin-top: 2rem;
       }
 
       .aj-help-modal-back-icon {

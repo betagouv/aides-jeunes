@@ -81,9 +81,7 @@ export default {
         this.$store.dispatch('compute')
       } // Else nothing to do
     } else if (!this.$store.getters.passSanityCheck) {
-      if (!this.restoreLatest()) {
-        return this.$store.dispatch('redirection', route => this.$router.push(route))
-      }
+      this.restoreLatest()
     } else {
       if (this.$store.state.calculs.dirty) {
         this.$store.dispatch('save')

@@ -98,17 +98,23 @@ var menage = {
     statut_occupation_logement: { type: String, enum: statutOccupationLogementValues },
 };
 
+var parents = {
+    _situation: { type: String, enum: ['en_coupe', 'separes', 'decedes', 'sans_autorite'] },
+    _en_france: Boolean,
+};
+
 var situation = {
     abtesting: Object,
     createdAt: { type: Date, default: Date.now },
     dateDeValeur: Date,
     external_id: String,
-    famille: famille,
+    famille,
     foyer_fiscal: foyerFiscal,
     demandeur: individu,
     conjoint: { type: individu, default: null },
     enfants: [individu],
-    menage: menage,
+    menage,
+    parents,
     modifiedFrom: String,
     status: { type: String, default: 'new', enum: ['new', 'test', 'investigation'] },
     token: String,

@@ -266,6 +266,7 @@ function generateBlocks(situation) {
       },
       steps: [
         new Step({entity:'parents', variable: '_situation'}),
+        new Step({entity:'parents', variable: '_en_france'}),
         {
           subject: (demandeur, situation) => situation.parents,
           isActive: parents => ['decedes', 'sans_autorite'].indexOf(parents.situation) < 0,

@@ -28,7 +28,7 @@ export default {
     name: 'Sommaire',
     computed: {
         chapters() {
-            return this.$state.chapters(this.$route.path, this.$store.state.situation)
+            return this.$state.chapters(this.$route.path, this.$store.getters.getFullSteps)
         },
         disableResults() {
             return this.chapters.filter(c => c.done).length !== this.chapters.length

@@ -18,7 +18,7 @@
             getTitleByRoute(route) {
                 const path = route.path
                 const current = path.replace(/\/en_savoir_plus/, '')
-                const step = this.$store.getters.passSanityCheck && this.$state.current(current, this.$store.state.situation)
+                const step = this.$store.getters.passSanityCheck && this.$state.current(current, this.$store.getters.getFullSteps)
                 const chapterName = step && step.chapter || ''
                 return Chapters.getLabel(chapterName)
             }

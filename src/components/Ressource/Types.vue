@@ -64,7 +64,7 @@ export default {
     onSubmit: function() {
       Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.$store.state.dates)
       this.$store.dispatch('updateIndividu', this.individu)
-      this.$push(this.$store.state.situation)
+      this.$push()
     },
     sort: function(array) {
       return orderBy(array, ['positionInList','label'])

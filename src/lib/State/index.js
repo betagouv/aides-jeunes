@@ -1,60 +1,6 @@
-var { generateBlocks } = require('./blocks')
-var { Step } = require('./steps')
 var Chapters = require('../Chapters')
 
-let journey = []
-
-function processBlock({journey, subject, situation, isActive}, b) {
-  if (b instanceof Step) {
-    b.isActive = isActive
-    journey.push(b)
-  } else if (typeof(b) == 'string') {
-    console.warn(`string step should no longer be used: ${b}`)
-    journey.push({isActive, path: b})
-  } else {
-    if (!b.steps) {
-      throw Error('' + b + ' (' + (b instanceof Array ? 'array' : '?') + ')')
-    }
-    let blockSubject = b.subject ? b.subject(subject, situation) : (subject || situation)
-    const localActive = isActive && (!b.isActive || (blockSubject && b.isActive(blockSubject, situation)))
-    b.steps.forEach(s => processBlock({journey, subject: blockSubject, situation, isActive: localActive}, s))
-  }
-}
-
-function generateJourney(situation) {
-  const blocks = generateBlocks(situation)
-
-  function processBlocks({situation}) {
-    let journey = []
-    blocks.forEach(b => {
-      processBlock({journey, subject: situation, situation, isActive: true}, b)
-    })
-    return journey
-  }
-  try {
-    return processBlocks({situation})
-  } catch (e) {
-    console.log('error', e)
-  }
-}
-
-function full(situation) {
-    const journey = generateJourney(situation)
-    journey.pop()
-    let lastChapter
-    return journey.map((s) => {
-        if (s.chapter)
-            lastChapter = s.chapter
-        else
-            s.chapter = lastChapter
-        return s
-    })
-}
-
-function chapters(currentPath, situation) {
-   if (!journey.length) {
-     journey = full(situation)
-  }
+function chapters(currentPath, journey) {
   const activeJourney = journey.filter(s => s.isActive)
   const activeChaptersNames = activeJourney.map(c => c.chapter).filter((value, index, self) => self.indexOf(value) === index)
   const currentStep = journey.find(item => item.path == currentPath)
@@ -69,15 +15,11 @@ function chapters(currentPath, situation) {
   })
 }
 
-function current(currentPath, situation) {
-    if (!journey.length) {
-        journey = full(situation)
-    }
+function current(currentPath, journey) {
     return journey.find(item => item.path == currentPath)
 }
 
-function next(current, situation) {
-    const journey = full(situation)
+function next(current, journey) {
     const activeJourney = journey.filter(s => s.isActive)
 
     let matches = activeJourney.map((element, index) => { return {element, index} }).filter(item => item.element.path == (current.path || current))
@@ -90,7 +32,6 @@ function next(current, situation) {
 }
 
 module.exports = {
-  full,
   next,
   chapters,
   current

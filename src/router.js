@@ -195,43 +195,8 @@ const router = new Router({
         },]
       },
       {
-        name: 'parents/_situation',
-        path: 'parents/_situation',
+        path: 'parents/:fieldName',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/ParentProperty.vue'),
-        props: {
-          fieldName: '_situation',
-          question: "Quel est la situation de vos parents ?",
-          questionType: 'enum',
-          items: [{
-              label: 'En couple',
-              value: 'en_couple'
-            }, 
-            {
-              label: 'Séparés',
-              value:'separes'
-            }, 
-            {
-              label: 'Décédés',
-              value: 'decedes'
-            },
-            {
-              label: 'Sans Autorité',
-              value: 'sans_autorite'
-            }
-          ],
-          optional: false
-        },
-      },
-      {
-        name: 'parents/_en_france',
-        path: 'parents/_en_france',
-        component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/ParentProperty.vue'),
-        props: {
-          fieldName: '_en_france',
-          question: "Vos parents habite-t-ils en France ?",
-          questionType: "boolean",
-          optional: false
-        },
       },
       {
         path: 'enfants',

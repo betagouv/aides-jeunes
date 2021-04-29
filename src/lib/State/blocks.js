@@ -200,13 +200,13 @@ function housingBlock() {
      {
         subject: (menage, situation) => situation.demandeur,
         isActive: (demandeur, situation) => {
-          return demandeur.activite == 'etudiant' && !demandeur.habite_chez_parents && ['decedes', 'sans_autorite'].indexOf(situation.parents.situation) < 0
+          return demandeur.activite == 'etudiant' && !demandeur.habite_chez_parents && ((!situation.parents) || ['decedes', 'sans_autorite'].indexOf(situation.parents._situation) < 0)
         },
         steps: [
           new Step({entity: 'parents', variable: '_en_france'}),
           {
-            subject: (demandeur, situation) => situation.parents,
-            isActive: (parents) => parents._en_france,
+            subject: (menage, situation) => situation.parents,
+            isActive: parents => (!parents) || parents._en_france,
             steps: [
               new Step({entity: 'individu', id: 'demandeur', variable: '_bourseCriteresSociauxCommuneDomicileFamilial'}),
             ]
@@ -265,11 +265,10 @@ function generateBlocks(situation) {
         return subject.activite == 'etudiant' && !subject.alternant && !situation.enfants.length
       },
       steps: [
-        new Step({entity:'parents', variable: '_situation'}),
-        new Step({entity:'parents', variable: '_en_france'}),
+        new Step({entity: 'parents', variable: '_situation'}),
         {
           subject: (demandeur, situation) => situation.parents,
-          isActive: parents => ['decedes', 'sans_autorite'].indexOf(parents.situation) < 0,
+          isActive: parents => (!parents) || ['decedes', 'sans_autorite'].indexOf(parents._situation) < 0,
           steps: [
             new Step({entity:'famille', variable: 'bourse_criteres_sociaux_nombre_enfants_a_charge'}),
             new Step({entity:'famille', variable: 'bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur'}),

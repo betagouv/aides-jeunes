@@ -1,6 +1,5 @@
 <template>
   <form @submit.prevent='onSubmit'>
-    {{ fieldName }}{{ value }}
     <!-- questionType === boolean -->
     <YesNoQuestion v-if="questionType === 'boolean'"
         v-model="value"

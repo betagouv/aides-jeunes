@@ -1,10 +1,8 @@
 gunicorn>=19.1.1
 pytest == 5.3.5
 # Openfisca-France==51.3.0
-git+https://github.com/betagouv/openfisca-france.git@prd_aj_2021_04_26T21_08_29_02_00#egg=openfisca-France
+git+https://github.com/betagouv/openfisca-france.git@prd_aj_2021_04_30T16_49_57_02_00#egg=openfisca-France
 Openfisca-Core[web-api]==35.3.6
 # git+https://github.com/mes-aides/openfisca-core.git@fix-source-bug#egg=Openfisca-Core[web-api]
-git+https://github.com/mes-aides/openfisca-france-local.git@prod_20210427#egg=openfisca-France-Local[excel-reader]
+git+https://github.com/mes-aides/openfisca-france-local.git@26415d0#egg=openfisca-France-Local[excel-reader]
 git+https://github.com/openfisca/openfisca-paris.git@3fba54b#egg=openfisca-paris
-git+https://github.com/openfisca/openfisca-brestmetropole.git@95f8db7#egg=openfisca-BrestMetropole
-git+https://github.com/openfisca/openfisca-rennesmetropole.git@53602ff#egg=openfisca-RennesMetropole

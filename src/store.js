@@ -75,6 +75,7 @@ function defaultStore() {
       menage: {
         aide_logement_date_pret_conventionne: '2017-12-31'
       },
+      parents: {},
       version: 1,
     },
     error: false,
@@ -135,6 +136,9 @@ const store = new Vuex.Store({
     },
     getMenage: function (state) {
       return state.situation.menage
+    },
+    getParents: function (state) {
+      return state.situation.parents
     },
     getFamille: function (state) {
       return state.situation.famille
@@ -223,6 +227,9 @@ const store = new Vuex.Store({
     },
     saveMenage: function(state, menage) {
       state.situation = Object.assign({}, state.situation, { menage })
+    },
+    saveParents: function(state, parents ) {
+      state.situation = Object.assign({}, state.situation, { parents })
     },
     removeConjoint: function(state) {
       const s = Object.assign({}, state.situation)
@@ -357,6 +364,10 @@ const store = new Vuex.Store({
     },
     updateMenage: function({ commit }, menage) {
       commit('saveMenage', menage)
+      commit('setDirty')
+    },
+    updateParents: function({ commit }, parents) {
+      commit('saveParents', parents)
       commit('setDirty')
     },
     save: function(store) {

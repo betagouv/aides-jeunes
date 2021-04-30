@@ -36,6 +36,10 @@ var individuSchema = {
     },
     bourse_criteres_sociaux_distance_domicile_familial: {
         fn: function (individu, situation) {
+            if (situation.parents && !situation.parents._en_france) {
+                return 260
+            }
+
             var jeuneCommune = communesMap[situation.menage.depcom]
             var parentCommune = communesMap[individu._bourseCriteresSociauxCommuneDomicileFamilial]
             if (jeuneCommune && parentCommune) {

@@ -195,6 +195,10 @@ const router = new Router({
         },]
       },
       {
+        path: 'parents/:fieldName',
+        component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/ParentProperty.vue'),
+      },
+      {
         path: 'enfants',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Enfants.vue'),
       },

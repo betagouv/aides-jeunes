@@ -435,13 +435,15 @@ const store = new Vuex.Store({
       return axios.get('api/openfisca/variables')
         .then(response => response.data)
         .then(variableNames => {
-          let warnUser = false
+          let missingBenefits = []
           Institution.forEachBenefit((benefit, benefitId) => {
-            warnUser = warnUser || (!benefit.test && variableNames.indexOf(benefitId) <= 0)
+            if (!benefit.test && variableNames.indexOf(benefitId) < 0) {
+              missingBenefits.push(benefitId)
+            }
           })
 
-          if (warnUser) {
-            state.commit('setMessage', '🚀 Vous avez ajouté une nouvelle aide&nbsp;!<br/>Étant donné que nous ne savons pas encore comment celle-ci doit être calculée, si vous faites votre simulation jusqu’au bout vous obtiendrez un message d’erreur.')
+          if (missingBenefits.length) {
+            state.commit('setMessage', `🚀 Vous avez ajouté <abbr title="${missingBenefits.join(', ')}">une nouvelle aide</abbr>&nbsp;!<br/>Étant donné que nous ne savons pas encore comment celle-ci doit être calculée, si vous faites votre simulation jusqu’au bout vous obtiendrez un message d’erreur.`)
           }
         })
     }

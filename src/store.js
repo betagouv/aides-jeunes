@@ -378,7 +378,7 @@ const store = new Vuex.Store({
       commit('setDirty')
     },
     save: function(store) {
-      const disabledSteps = generateFullSteps(store.state.situation).filter(s => !s.isActive)
+      const disabledSteps = store.getters.getFullSteps.filter(s => !s.isActive)
       disabledSteps.forEach(step => {
         step.clean(store, true)
       })

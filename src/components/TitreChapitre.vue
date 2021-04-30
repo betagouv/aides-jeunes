@@ -15,7 +15,9 @@
         },
         methods: {
             getTitleByRoute(route, situation) {
-                const step = this.$store.getters.passSanityCheck && this.$state.current(route.path, situation)
+                const path = route.path
+                const current = path.replace(/\/en_savoir_plus/, '')
+                const step = this.$store.getters.passSanityCheck && this.$state.current(current, situation)
                 const chapter = step && step.chapter || ''
                 switch (chapter) {
                     case 'profil':

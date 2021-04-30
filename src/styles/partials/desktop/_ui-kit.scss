@@ -109,6 +109,15 @@ html {
         user-select: none;
         margin-left: 12px;
 
+        &:focus {
+          background-color: var(--theme-primary-darker);
+          outline: none;
+        }
+
+        &.aj-help-mobile {
+          display: none;
+        }
+
         .aj-help-icon {
           background-color: var(--white);
           color: var(--theme-primary);
@@ -231,6 +240,22 @@ html {
         align-items: center;
         justify-content: flex-end;
         margin-bottom: 1rem;
+      }
+    }
+
+    span.help {
+      font-style: italic;
+      font-size: 0.8em;
+      margin-left: 0.5rem;
+    }
+
+    .aj-help-modal {
+      .aj-help-modal-back-button {
+        margin-top: 2rem;
+      }
+
+      .aj-help-modal-back-icon {
+        display: none;
       }
     }
 

@@ -28,7 +28,13 @@ const router = new Router({
       name: 'simulation',
       redirect: '/simulation/individu/demandeur/date_naissance',
       component: () => import(/* webpackChunkName: "simulation" */ './views/Simulation.vue'),
-      children: [{
+      children: [
+        {
+            path: ':parent+/en_savoir_plus',
+            name: 'en_savoir_plus',
+            component: () => import(/* webpackChunkName: "en_savoir_plus" */ './components/EnSavoirPlusContent.vue')
+        },
+        {
         name: 'individu',
         path: 'individu/:id',
         redirect: '/simulation/individu/:id/date_naissance',
@@ -192,7 +198,8 @@ const router = new Router({
           name: 'property',
           path: ':property/:subproperty?',
           component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
-        },]
+        },
+        ]
       },
       {
         path: 'parents/:fieldName',
@@ -236,10 +243,12 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "famille" */ './views/Simulation/Famille/Parisien.vue'),
         },
       ]
-      }, {
+      },
+      {
         path: 'logement',
         component: () => import(/* webpackChunkName: "logement" */ './views/Simulation/Logement.vue'),
-      }, {
+      },
+      {
         path: 'menage',
         component: () => import(/* webpackChunkName: "logement" */ './views/Simulation/Menage.vue'),
         children: [{
@@ -266,8 +275,9 @@ const router = new Router({
             name: 'depcom',
             path: 'depcom',
             component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Depcom.vue'),
-        }]
-      }, 
+        },
+        ]
+      },
       {
         name: 'resultats',
         path: 'resultats',
@@ -289,7 +299,8 @@ const router = new Router({
       {
         path: ':id/:property',
         component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Property.vue'),
-      }]
+      },
+      ]
     },
     {
       path: '/foyer',
@@ -333,7 +344,7 @@ const router = new Router({
         meta: {
           title: 'Votre patrimoine'
         }
-      }, 
+      },
       {
         path: 'recapitulatif',
         component: () => import(/* webpackChunkName: "recapitulatif" */ './views/Foyer/Recapitulatif.vue'),

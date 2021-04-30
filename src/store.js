@@ -59,29 +59,25 @@ function defaultCalculs() {
 function defaultStore() {
   const now = moment().format()
 
-  const defaultSituation = {
-    _id: null,
-    external_id: null,
-    dateDeValeur: now,
-    enfants: [],
-    famille: {},
-    logement: {},
-    foyer_fiscal: {},
-    menage: {
-        aide_logement_date_pret_conventionne: '2017-12-31'
-    },
-    parents: {},
-    version: 2,
-  }
-
   return {
     message: {
       text: null,
       counter: null,
     },
     debug: false,
-    fullSteps: generateFullSteps(defaultSituation),
-    situation: defaultSituation,
+    situation: {
+        _id: null,
+        external_id: null,
+        dateDeValeur: now,
+        enfants: [],
+        famille: {},
+        logement: {},
+        foyer_fiscal: {},
+        menage: {
+            aide_logement_date_pret_conventionne: '2017-12-31'
+        },
+        version: 1,
+    },
     error: false,
     access: {
       fetching: false,

@@ -8,7 +8,7 @@
       <img
         class="aj-droit-illustration"
         v-bind:src="require(`./../../public/img/${droit.provider.imgSrc}`)"
-        v-bind:alt="droit.label"
+        v-bind:alt="'Image pour ' + droit.label"
       />
       <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
     </div>

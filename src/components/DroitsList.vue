@@ -72,7 +72,7 @@
               v-bind:src="
                 require(`./../../public/img/${droit.provider.imgSrc}`)
               "
-              v-bind:alt="droit.label"
+              v-bind:alt="'Icone pour' + droit.label"
             />
             <div>
               <h2>

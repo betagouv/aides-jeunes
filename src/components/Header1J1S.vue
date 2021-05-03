@@ -105,7 +105,7 @@
             rx="0.9"
             transform="rotate(-45 0 1.3)"
             fill="currentColor"
-          ></rect>
+          />
         </svg>
         <ul>
           <li class="home-link">

@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <fieldset>
+    <div class="field-group">
       <label for="loyer" class="aj-question"
         >{{ loyerQuestion.label }}
         <span class="help">{{ loyerQuestion.hint }}</span>
@@ -13,8 +13,8 @@
           v-model="loyerQuestion.selectedValue"
         />
       </div>
-    </fieldset>
-    <fieldset v-if="captureCharges">
+    </div>
+    <div v-if="captureCharges">
       <label for="charges" class="aj-question"
         >{{ chargesQuestion.label }}
         <span class="help">{{ chargesQuestion.hint }}</span>
@@ -26,7 +26,7 @@
           v-model="chargesQuestion.selectedValue"
         />
       </div>
-    </fieldset>
+    </div>
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
@@ -96,7 +96,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-fieldset {
+.field-group {
   margin-bottom: 2em;
 }
 </style>

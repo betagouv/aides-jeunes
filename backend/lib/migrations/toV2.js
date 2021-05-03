@@ -6,7 +6,7 @@ var _ = require('lodash')
 var VERSION = 2
 
 function updatePerson(p) {
-    p.bourse_criteres_sociaux_echelon = p.echelon_bourse
+    p.bourse_criteres_sociaux_echelon = p && p.echelon_bourse
 
     return _.omit(p, 'echelon_bourse')
 }

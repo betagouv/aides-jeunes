@@ -9,7 +9,6 @@
 
 <script>
     import Actions from '@/components/Actions'
-    import { autoSubmitMixin } from '@/mixins/AutoSubmit';
     import YesNoQuestion from "../../../components/YesNoQuestion";
 
     export default {
@@ -25,7 +24,6 @@
                 value: individu.habite_chez_parents
             }
         },
-        mixins: [autoSubmitMixin('value')],
         methods: {
             onSubmit: function() {
                 if (this.value === undefined) {

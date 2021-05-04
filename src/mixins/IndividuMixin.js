@@ -1,8 +1,7 @@
 import Individu from '@/lib/Individu'
-import { autoSubmitMixin } from '@/mixins/AutoSubmit'
 
 export const createIndividuMixin = (props) => {
-    const { fieldName = props, optional = false, manualValidation = false } = props
+    const { fieldName = props, optional = false} = props
 
     return {
         data: function() {
@@ -20,7 +19,6 @@ export const createIndividuMixin = (props) => {
                 optional
             }
         },
-        mixins: [autoSubmitMixin({fieldName: 'value', manualValidation})],
         methods: {
             getLabel: function(type) {
                 return Individu.label(this.individu, type)

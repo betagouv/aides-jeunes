@@ -19,7 +19,6 @@
 
 <script>
 import Actions from '@/components/Actions'
-import { autoSubmitMixin } from '@/mixins/AutoSubmit'
 import YesNoQuestion from '../../components/YesNoQuestion.vue'
 
 const data = {
@@ -51,7 +50,6 @@ const data = {
 
 export default {
   name: 'SimulationParentProperty',
-  mixins: [autoSubmitMixin('value')],
   components: {
     Actions,
     YesNoQuestion,

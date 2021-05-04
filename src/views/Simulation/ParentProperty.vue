@@ -24,7 +24,7 @@ import YesNoQuestion from '../../components/YesNoQuestion.vue'
 
 const data = {
   _situation: {
-    question: "Quel est la situation de vos parents ?",
+    question: "Quelle est la situation de vos parents ?",
     questionType: 'enum',
     items: [{
         label: 'En couple',

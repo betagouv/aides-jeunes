@@ -27,8 +27,7 @@ const ABTestingService = {
         // // ABTesting.link.deleted = true;
         
         ABTesting.submit = ABTesting.submit || { index: 1 };
-        ABTesting.submit.value = ABTesting.submit.value || (Math.random() > 0.5 ? "auto" : "manual");
-        // ABTesting.submit.deleted = true;
+        ABTesting.submit.deleted = true;
 
         Object.keys(ABTesting).forEach(function(name) {
             const data = ABTesting[name]

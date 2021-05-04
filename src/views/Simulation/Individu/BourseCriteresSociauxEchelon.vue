@@ -16,6 +16,6 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin({fieldName: 'bourse_criteres_sociaux_echelon', manualValidation: true})],
+  mixins: [createIndividuMixin('bourse_criteres_sociaux_echelon')],
 }
 </script>

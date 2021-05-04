@@ -1,10 +1,7 @@
-import { autoSubmitMixin } from '@/mixins/AutoSubmit'
-
 export const createFamilleMixin = (props) => {
-    const { fieldName = props, optional = false, manualValidation = false } = props
+    const { fieldName = props, optional = false } = props
 
     return {
-        mixins: [autoSubmitMixin({fieldName: 'value', manualValidation})],
         data: function() {
             const famille = {...this.$store.state.situation.famille}
             const value = famille[fieldName]

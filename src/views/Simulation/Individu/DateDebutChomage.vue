@@ -17,6 +17,6 @@ export default {
     Actions,
     InputDate,
   },
-  mixins: [createIndividuMixin({fieldName: 'date_debut_chomage', manualValidation: true })],
+  mixins: [createIndividuMixin('date_debut_chomage')],
 }
 </script>

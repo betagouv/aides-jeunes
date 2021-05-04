@@ -15,7 +15,7 @@ export default {
   components: {
     Actions,
   },
-  mixins: [createIndividuMixin({fieldName:'_firstName', manualValidation: true})],
+  mixins: [createIndividuMixin('_firstName')],
   methods: {
     onSubmit: function() {
       if (this.value.length) {

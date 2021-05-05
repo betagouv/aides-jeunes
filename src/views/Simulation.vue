@@ -1,7 +1,5 @@
 <template>
   <div class="container aj-layout-container" :class="{'aj-debug-container': debug}">
-      <Sommaire/>
-      <Progress v-if="debug" />
     <div class="aj-main-container">
       <TitreChapitre />
       <div v-if="debug" class="aj-debug-switch">
@@ -14,6 +12,8 @@
         <router-view/>
       </div>
     </div>
+    <Progress v-if="debug" />
+    <Sommaire/>
   </div>
 </template>
 

@@ -41,6 +41,17 @@ html {
               color: var(--darker-grey);
               margin-left: 17px;
               min-width: 100px;
+
+              &:hover {
+                text-decoration: underline;
+                text-underline: var(--darker-grey);
+              }
+
+              &:focus {
+                color: var(--dark);
+              text-decoration: underline;
+                text-underline: var(--dark);
+              }
             }
 
             .aj-step-done {

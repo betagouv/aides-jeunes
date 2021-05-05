@@ -3,7 +3,7 @@
         <div class="aj-find-contact-box-content">
             <h2 class="aj-question">Trouver de l'aide près de chez moi</h2>
             <span>
-                Pour vous aider dans vos démarches, n'hésitez pas à consulter la liste des lieux pouvant être utiles
+                Pour vous aider dans vos démarches, n'hésitez pas à consulter la liste des lieux où vous pourrez être accompagné.
             </span>
         </div>
         <div class="aj-find-contact-box-action">

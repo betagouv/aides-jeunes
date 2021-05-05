@@ -284,7 +284,7 @@ const router = new Router({
         component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/Resultats.vue'),
       },
       {
-          name: 'resultats_lieux_generiques',
+          name: 'resultatsLieuxGeneriques',
           path: 'resultats/lieux',
           component: () => import(/* webpackChunkName: "lieux" */ './views/Simulation/Resultats/LieuxGeneriques.vue'),
           meta: {
@@ -292,8 +292,8 @@ const router = new Router({
           }
       },
       {
-        name: 'resultats_lieux',
-        path: 'resultats/:id/lieux',
+        name: 'resultatsLieuxDedies',
+        path: 'resultats/:benefit_id/lieux',
         component: () => import(/* webpackChunkName: "lieux" */ './views/Simulation/Resultats/Lieux.vue'),
         meta: {
           title: "Des lieux près de chez vous"

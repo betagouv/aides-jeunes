@@ -8,7 +8,7 @@
                         <div class="aj-step-icon" :class="{'aj-step-done': chapter.done, 'aj-step-inactive': !chapter.done, 'aj-step-active' : chapter.current}">
                             <img v-if="chapter.done" src="../assets/images/done.svg" class="aj-check-icon">
                         </div>
-                        <router-link :to="chapter.root" class="aj-step-title" :class="{'aj-active-title' : chapter.current, 'aj-disabled-title' : disabledLink(chapter, index)}">
+                        <router-link :to="chapter.root" class="aj-step-title" :class="{'aj-active-title' : chapter.current, 'aj-disabled-title' : disabledLink(chapter, index)}" :tabindex="disabledLink(chapter, index) ? -1 : 0">
                             {{ chapter.label }}
                         </router-link>
                     </div>

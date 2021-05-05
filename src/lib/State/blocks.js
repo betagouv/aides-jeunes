@@ -281,7 +281,7 @@ function generateBlocks(situation) {
     {
       isActive: situation => {
         const demandeur = situation.demandeur
-        const demandeur_ok = demandeur.activite == 'etudiant' && !demandeur.alternant && !situation.enfants.length
+        const demandeur_ok = demandeur && demandeur.activite == 'etudiant' && !demandeur.alternant && !situation.enfants.length
         const parents_ok = (!situation.parents) || ['decedes', 'sans_autorite'].indexOf(situation.parents._situation) < 0
         return demandeur_ok && parents_ok
       },

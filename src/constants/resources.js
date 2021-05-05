@@ -271,9 +271,6 @@ let ressourceTypes = [
         label: 'Pension alimentaire',
         category: 'pensions',
         prefix: 'une',
-        isRelevant: (situation, individu) => {
-            return individu.id !== 'demandeur' || Boolean(situation.enfants.length)
-        }
     },
     {
         id: 'pensions_alimentaires_versees_individu',

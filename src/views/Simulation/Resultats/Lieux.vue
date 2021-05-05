@@ -46,7 +46,7 @@ export default {
     const city = this.$store.state.situation.menage.depcom
     let types = []
     Institution.forEachBenefit((benefit, benefitId, provider) => {
-      if (provider.etablissements && provider.etablissements.length > 0 && benefitId === this.$route.params.id) {
+      if (provider.etablissements && provider.etablissements.length > 0 && benefitId === this.$route.params.benefit_id) {
         types = provider.etablissements
       }
     })

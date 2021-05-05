@@ -68,21 +68,34 @@ html {
     .aj-results-tools {
       display: flex;
       align-items: flex-start;
+      flex-wrap: wrap;
 
-      .aj-offline-results, .aj-feedback {
+      .aj-offline-results, .aj-feedback, .aj-find-contact-box {
         background-color: var(--white);
         padding: 25px;
         border-radius: var(--theme-border-radius);
         border: 1px solid var(--light-grey);
 
+        &.aj-find-contact-box {
+          width: 100%;
+          margin-bottom: 1rem;
+          display: flex;
+
+          .aj-find-contact-box-action {
+            width: 35%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+          }
+        }
+
         &.aj-offline-results {
           margin-right: 1rem;
+          width: calc(40% - 1rem);
         }
 
         &.aj-feedback {
-          flex-basis: 60%;
-          flex-grow: 0;
-          flex-shrink: 0;
+          width: 60%;
 
           .aj-feedback-partenaire {
             margin-top: 1rem;
@@ -265,6 +278,12 @@ html {
 
             .aj-etablissement-horaires-plage {
               width: 33%;
+              padding-right: 1rem;
+
+              .list-unstyled {
+                padding: 0;
+                margin-top: 0;
+              }
             }
           }
         }

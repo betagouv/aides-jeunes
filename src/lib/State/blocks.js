@@ -279,8 +279,12 @@ function generateBlocks(situation) {
     housingBlock(situation),
     resourceBlocks(situation),
     {
-      subject: situation => situation,
-      isActive: situation => situation.famille && situation.famille.bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur > 0,
+      isActive: situation => {
+        const demandeur = situation.demandeur
+        const demandeur_ok = demandeur && demandeur.activite == 'etudiant' && !demandeur.alternant && !situation.enfants.length
+        const parents_ok = (!situation.parents) || ['decedes', 'sans_autorite'].indexOf(situation.parents._situation) < 0
+        return demandeur_ok && parents_ok
+      },
       steps: [
         new Step({entity:'individu', id:'demandeur', variable: 'bourse_criteres_sociaux_base_ressources_parentale'}),
       ]

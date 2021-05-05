@@ -35,7 +35,7 @@ function generateJourney(situation) {
     }
 }
 
-function generateFullSteps(situation) {
+function generateAllSteps(situation) {
     const fullSteps = generateJourney(situation)
     fullSteps.pop()
     let lastChapter
@@ -50,5 +50,5 @@ function generateFullSteps(situation) {
 
 
 module.exports = {
-    generateFullSteps
+    generateAllSteps
 }

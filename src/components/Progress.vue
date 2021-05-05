@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     full: function() {
-      return this.$state.full(this.$store.state.situation).map(s => {
+      return this.$store.getters.getAllSteps.map(s => {
         if (process.env.NODE_ENV === 'production') {
           return s
         } else {

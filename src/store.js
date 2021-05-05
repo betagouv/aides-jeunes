@@ -12,7 +12,7 @@ import findIndex from 'lodash/findIndex'
 
 import { computeAides, datesGenerator } from '../backend/lib/mes-aides'
 import { categoriesRnc, patrimoineTypes } from './constants/resources'
-import { generateFullSteps } from './lib/State/generator'
+import { generateAllSteps } from './lib/State/generator'
 import Institution from './lib/Institution'
 import ABTestingService from '@/plugins/ABTestingService'
 
@@ -149,8 +149,8 @@ const store = new Vuex.Store({
     getLogementStatut: function(state) {
       return state.situation.menage && state.situation.menage.statut_occupation_logement
     },
-    getFullSteps: function (state) {
-      return generateFullSteps(state.situation)
+    getAllSteps: function (state) {
+      return generateAllSteps(state.situation)
     },
     ressourcesYearMinusTwoCaptured: function(state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
@@ -374,7 +374,7 @@ const store = new Vuex.Store({
       commit('setDirty')
     },
     save: function(store) {
-      const disabledSteps = store.getters.getFullSteps.filter(s => !s.isActive)
+      const disabledSteps = store.getters.getAllSteps.filter(s => !s.isActive)
       disabledSteps.forEach(step => {
         step.clean(store, true)
       })

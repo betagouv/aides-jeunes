@@ -12,6 +12,7 @@ const updateMethods = {
   famille: 'updateFamille',
   foyerFiscal: 'updateFoyerFiscal',
   menage: 'updateMenage',
+  parents: 'updateParents',
 }
 
 const internalUpdateMethods = {
@@ -19,6 +20,7 @@ const internalUpdateMethods = {
   famille: 'saveFamille',
   foyerFiscal: 'saveFoyerFiscal',
   menage: 'saveMenage',
+  parents: 'saveParents',
 }
 
 Step.prototype.clean = function({commit, dispatch, state}, storeInternal) {

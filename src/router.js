@@ -275,8 +275,7 @@ const router = new Router({
             name: 'depcom',
             path: 'depcom',
             component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Depcom.vue'),
-        },
-        ]
+        }]
       },
       {
         name: 'resultats',
@@ -474,6 +473,8 @@ router.beforeEach((to, from, next) => {
 router.afterEach(to => {
   if (to.preventFocus)
     return
+    
+  store.commit('setMobileMenu', false)
 
   Vue.nextTick(function() {
     let title = document.querySelector('h1')

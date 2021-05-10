@@ -3,11 +3,11 @@ html {
     .aj-sommaire-container {
       display: flex;
       flex-direction: column;
-      width: 32%;
       background: white;
       padding: 2.5rem 2rem;
       align-items: start;
       border-right: 0.0625rem solid #e6e6e6;
+      width: 32%;
 
       .aj-sommaire-content {
         position: sticky;
@@ -49,13 +49,21 @@ html {
 
               &:focus {
                 color: var(--dark);
-              text-decoration: underline;
+                text-decoration: underline;
                 text-underline: var(--dark);
               }
             }
 
+            .aj-check-icon {
+              display: none;
+            }
+
             .aj-step-done {
               background: var(--theme-primary);
+
+              .aj-check-icon {
+                display: block;
+              }
             }
 
             .aj-step-active {

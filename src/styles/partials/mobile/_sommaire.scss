@@ -1,7 +1,83 @@
 html {
   body {
     .aj-sommaire-container {
+      position: fixed;
+      top: 190px;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
       display: none;
+      padding-top: 1rem;
+
+      &.open {
+        display: flex;
+      }
+
+      .aj-sommaire-content {
+        width: 100%;
+
+        h1 {
+          display: none;
+        }
+
+        .aj-btn-container {
+          display: none;
+        }
+
+        .aj-progressBar-container {
+          .aj-step-icon {
+            width: 20px;
+            height: 20px;
+          }
+
+          .aj-step-icon {
+            background-color: var(--white);
+            border: 2px solid var(--light-grey);
+          }
+
+          .aj-check-icon {
+            width: 80%;
+          }
+
+          .aj-step-container {
+
+            .aj-step-title {
+              font-size: 1rem;
+              font-weight: normal;
+            }
+
+            .aj-step {
+              align-items: center;
+            }
+
+            .aj-step-active {
+              border-color: var(--light-green);
+
+              &:before {
+                background: none;
+                border: none;
+              }
+
+              &:after {
+                content: ''
+              }
+
+              .aj-check-icon {
+                display: block;
+              }
+            }
+
+            .aj-step-done {
+              border-color: var(--theme-primary);
+            }
+          }
+
+          .aj-progressBar {
+            background: none;
+          }
+        }
+      }
     }
   }
 }

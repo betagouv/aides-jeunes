@@ -64,6 +64,7 @@ function defaultStore() {
       text: null,
       counter: null,
     },
+    mobileMenu: false,
     debug: false,
     situation: {
         _id: null,
@@ -120,6 +121,9 @@ const store = new Vuex.Store({
     },
     getDebug: function(state) {
         return state.debug
+    },
+    getMobileMenu: function (state) {
+        return state.mobileMenu
     },
     peopleParentsFirst: function(state) {
       return [].concat(
@@ -214,6 +218,9 @@ const store = new Vuex.Store({
     },
     setDebug: function (state, debug) {
       state.debug = debug
+    },
+    setMobileMenu: function (state, mobileMenu) {
+        state.mobileMenu = mobileMenu
     },
     initialize: function(state) {
       const { situation, dates, ameliNoticationDone, calculs } = restoreLocal()
@@ -334,6 +341,9 @@ const store = new Vuex.Store({
     },
     setDebug: function ({commit}, debug) {
       commit('setDebug', debug)
+    },
+    setMobileMenu: function ({commit}, mobileMenu) {
+      commit('setMobileMenu', mobileMenu)
     },
     initialize: function({ commit }) {
       commit('initialize')

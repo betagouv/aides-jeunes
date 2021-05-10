@@ -473,7 +473,7 @@ router.beforeEach((to, from, next) => {
 router.afterEach(to => {
   if (to.preventFocus)
     return
-    
+
   store.commit('setMobileMenu', false)
 
   Vue.nextTick(function() {

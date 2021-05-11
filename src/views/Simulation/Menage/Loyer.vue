@@ -29,7 +29,7 @@
             Actions
         },
         data: function() {
-            const menage = this.$store.getters.getMenage || {}
+            const menage = { ...this.$store.getters.getMenage } || {}
             const logementStatut = this.$store.getters.getLogementStatut || ''
             const isLocataire = !(logementStatut === 'proprietaire' || logementStatut === 'primo_accedant')
             const captureCharges = isLocataire && logementStatut != 'locataire_meuble'

@@ -30,7 +30,7 @@
             Actions
         },
         data: function() {
-            const menage = this.$store.getters.getMenage || {}
+            const menage = { ...this.$store.getters.getMenage } || {}
             return {
                 menage: menage,
                 retrievingCommunes: false,

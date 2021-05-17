@@ -33,7 +33,7 @@ export default {
         only: 'enseignement_superieur',
       },{
         value: 'master_1',
-        label: 'Master - 1ème année',
+        label: 'Master - 1ère année',
         only: 'enseignement_superieur',
       },{
         value: 'autre',

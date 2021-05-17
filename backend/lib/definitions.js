@@ -99,7 +99,7 @@ var menage = {
 };
 
 var parents = {
-    _situation: { type: String, enum: ['en_couple', 'separes', 'decedes', 'sans_autorite'] },
+    _situation: { type: String, enum: ['en_couple', 'separes', 'decedes', 'sans_autorite', 'veuve'] },
     _en_france: Boolean,
 };
 

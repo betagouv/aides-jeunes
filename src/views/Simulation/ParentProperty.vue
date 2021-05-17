@@ -34,13 +34,17 @@ const data = {
         value:'separes'
       },
       {
+        label: 'Veuf ou veuve',
+        value: 'veuve'
+      },
+      {
         label: 'Décédés',
         value: 'decedes'
       },
       {
         label: 'Sans autorité parentale',
         value: 'sans_autorite'
-      }
+      },
     ],
   },
   _en_france: {

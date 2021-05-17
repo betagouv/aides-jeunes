@@ -1,4 +1,5 @@
 var communes = require('@etalab/decoupage-administratif/data/communes.json');
+var communesPolynesie = require('./communesPolynesie.json');
 var index = {};
 
 communes.forEach(function(commune) {
@@ -20,7 +21,7 @@ communes.forEach(function(commune) {
 });
 
 function find(postalCode) {
-    return index[postalCode] || [];
+    return index[postalCode] || communesPolynesie[postalCode] || [];
 }
 
 exports.communes = function(req, res) {

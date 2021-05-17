@@ -167,7 +167,7 @@ let ressourceTypes = [
     },
     {
         id: 'garantie_jeune',
-        label: 'Garantie jeun',
+        label: 'Garantie jeune',
         category: 'allocations',
         prefix: 'la',
         isRelevant: (situation, individu) => {

@@ -42,6 +42,7 @@
     "errorhandler": "^1.5.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-prettier-vue": "^3.0.0",
     "event-stream": "3.3.4",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",

@@ -7,6 +7,15 @@ html {
         border-bottom: .0625rem solid #e6e6e6;
         padding: 0.625rem;
 
+        .container {
+          display: flex;
+          align-items: center;
+
+          .aj-1j1s-header-right-links {
+            margin-left: auto;
+          }
+        }
+
         img {
           margin-right: 20px;
 

@@ -9,7 +9,7 @@
                     <img class="rf" src="@/../public/img/logo_rf.svg"><img class="fr" src="@/../public/img/logo1j1s-france-relance.svg">
                 </router-link>
                 <div class="aj-1j1s-header-right-links">
-                    <router-link class="button outline" to="/" v-if="$route.name !== 'home'">Retourner à l'accueil du simulateur</router-link>
+                    <router-link class="button outline" to="/" v-if="$route.name !== 'home'">Retour à l'accueil du simulateur</router-link>
                 </div>
             </div>
         </div>

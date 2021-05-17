@@ -15,32 +15,42 @@ html {
             height: 24px;
           }
 
-          & > a {
+          .aj-1j1s-header-left-links {
             display: flex;
-            align-items: center;
-            width: 100%;
+            flex-grow: 1;
+            margin-left: 1.875rem;
 
             * {
               color: #000;
             }
 
-            img {
-              margin-right: 0;
-
-              &.rf {
-                width: 5.625rem;
-                margin-left: 1.875rem;
-              }
-
-              &.fr {
-                width: 7.5rem;
+            a {
+              &:last-child {
                 margin-left: auto;
               }
-            }
-          }
 
-          .aj-1j1s-header-right-links {
-            display: none;
+              img {
+                margin-right: 0;
+
+                &.rf {
+                  width: 5.625rem;
+                }
+
+                &.fr {
+                  width: 7.5rem;
+                }
+              }
+            }
+
+            &.not-home {
+              a:first-child {
+                display: none;
+              }
+
+              a:last-child {
+                margin-left: 0;
+              }
+            }
           }
         }
       }

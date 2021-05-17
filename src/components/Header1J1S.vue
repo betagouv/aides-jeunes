@@ -2,15 +2,19 @@
     <header class="aj-1j1s-header">
         <div class="aj-1j1s-header-logo-container">
             <div class="container">
-                <router-link to="/">
-                    <svg width="100%" height="100%" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false" @click="toggleShowMenu()">
-                        <title>Logo république française</title>
-                        <rect x="26" width="2" height="26" rx="1" transform="rotate(90 26 0)" fill="currentColor"></rect><rect x="26" y="8" width="2" height="26" rx="1" transform="rotate(90 26 8)" fill="currentColor"></rect><rect x="26" y="16" width="2" height="26" rx="1" transform="rotate(90 26 16)" fill="currentColor"></rect>
-                    </svg>
-                </router-link>
-                <router-link to="/">
-                    <img class="rf" src="@/../public/img/logo_rf.svg"><img class="fr" src="@/../public/img/logo1j1s-france-relance.svg">
-                </router-link>
+                <svg width="100%" height="100%" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false" @click="toggleShowMenu()">
+                    <title>Logo bouton menu</title>
+                    <rect x="26" width="2" height="26" rx="1" transform="rotate(90 26 0)" fill="currentColor"></rect><rect x="26" y="8" width="2" height="26" rx="1" transform="rotate(90 26 8)" fill="currentColor"></rect><rect x="26" y="16" width="2" height="26" rx="1" transform="rotate(90 26 16)" fill="currentColor"></rect>
+                </svg>
+                <div class="aj-1j1s-header-left-links" :class="{'not-home': $route.name !== 'home'}">
+                    <a href="https://www.1jeune1solution.gouv.fr">
+                        <img class="rf" src="@/../public/img/logo_rf.svg">
+                    </a>
+                    <a href="https://www.1jeune1solution.gouv.fr">
+                        <img class="fr" src="@/../public/img/logo1j1s-france-relance.svg">
+                    </a>
+                </div>
+
                 <div class="aj-1j1s-header-right-links">
                     <router-link class="button outline" to="/" v-if="$route.name !== 'home'">Retour à l'accueil du simulateur</router-link>
                 </div>

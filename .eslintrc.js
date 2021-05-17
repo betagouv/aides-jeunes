@@ -17,11 +17,13 @@ module.exports = {
     },
     "parserOptions": {
         "ecmaVersion": 2018,
-        "sourceType": "module"
+        "sourceType": "module",
+        "parser": "babel-eslint",
     },
     "plugins": [
         "vue"
     ],
     "rules": {
+        "no-irregular-whitespace": 0
     }
 };

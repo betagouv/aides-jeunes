@@ -9,7 +9,7 @@ module.exports = {
         "prettier",
         "plugin:cypress/recommended"
     ],
-    "plugins": ["prettier"],
+    "plugins": ["prettier", "vue"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
@@ -20,9 +20,6 @@ module.exports = {
         "sourceType": "module",
         "parser": "babel-eslint",
     },
-    "plugins": [
-        "vue"
-    ],
     "rules": {
         "no-irregular-whitespace": 0
     }

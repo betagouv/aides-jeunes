@@ -107,6 +107,18 @@ Integration tests
 
 Integration tests are executed with [Watai](https://github.com/MattiSG/Watai) through `npm run test-integration`. These tests are **currently not run in CI** due to how complex installing all dependencies on a CI VM is.
 
+Linting and format
+-----------------
+
+We use ESLint as a linter and Prettier to format the codebase. 
+We also utilize some ESLint plugins, such as vue-eslint and eslint-plugin-cypress, to provide a support for tests and framework.
+
+More informations :
+Eslint: https://eslint.org/
+Prettier: https://prettier.io/
+Eslint plugin Cypress: https://github.com/cypress-io/eslint-plugin-cypress
+Eslint plugin Vue : https://eslint.vuejs.org/user-guide/
+
 Déploiement
 ===========
 

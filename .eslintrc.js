@@ -23,4 +23,4 @@ module.exports = {
   rules: {
     "no-irregular-whitespace": 0,
   },
-};
+}

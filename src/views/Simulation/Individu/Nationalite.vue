@@ -1,24 +1,32 @@
 <template>
-  <form @submit.prevent='onSubmit'>
+  <form @submit.prevent="onSubmit">
     <fieldset>
-    <legend><h2 class="aj-question">{{ role === 'demandeur' ? 'Quelle est votre nationalité&nbsp;?' : `Quelle est la nationalité ${getLabel('préposition')}${getLabel('nom')}&nbsp;?` }}</h2></legend>
-    <NationalityChoice v-model="value" @update="onSubmit"/>
+      <legend
+        ><h2 class="aj-question">{{
+          role === "demandeur"
+            ? "Quelle est votre nationalité&nbsp;?"
+            : `Quelle est la nationalité ${getLabel("préposition")}${getLabel(
+                "nom"
+              )}&nbsp;?`
+        }}</h2></legend
+      >
+      <NationalityChoice v-model="value" @update="onSubmit" />
     </fieldset>
-    <Actions v-bind:onSubmit='onSubmit'/>
+    <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from '@/components/Actions'
-import NationalityChoice from '@/components/NationalityChoice'
-import { createIndividuMixin } from '@/mixins/IndividuMixin'
+import Actions from "@/components/Actions"
+import NationalityChoice from "@/components/NationalityChoice"
+import { createIndividuMixin } from "@/mixins/IndividuMixin"
 
 export default {
-  name: 'SimulationIndividuNationalite',
+  name: "SimulationIndividuNationalite",
   components: {
     Actions,
-    NationalityChoice
+    NationalityChoice,
   },
-  mixins: [createIndividuMixin('nationalite')],
+  mixins: [createIndividuMixin("nationalite")],
 }
 </script>

@@ -148,13 +148,13 @@ jobs:
           background: true
       - run:
           name: Test un scenario simple
-          command: "npm run cypress -- --spec \"cypress/integration/base.spec.js\""
+          command: 'npm run cypress -- --spec "cypress/integration/base.spec.js"'
       - run:
           name: Test un scenario d'une personne en situation de handicap
-          command: "npm run cypress -- --spec \"cypress/integration/handicap.spec.js\""
+          command: 'npm run cypress -- --spec "cypress/integration/handicap.spec.js"'
       - run:
           name: Test un scenario familial
-          command: "npm run cypress -- --spec \"cypress/integration/family.spec.js\""
+          command: 'npm run cypress -- --spec "cypress/integration/family.spec.js"'
       - store_artifacts:
           path: cypress/videos
       - run:

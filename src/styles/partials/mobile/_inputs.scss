@@ -2,7 +2,8 @@ html {
   body {
     .aj-main-container {
       .aj-selection-wrapper {
-        input[type="radio"], input[type="checkbox"] {
+        input[type="radio"],
+        input[type="checkbox"] {
           & + label {
             width: 100%;
             min-width: auto;

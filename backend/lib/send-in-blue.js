@@ -1,19 +1,19 @@
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
-var config = require('../config');
+var SibApiV3Sdk = require("sib-api-v3-sdk")
+var defaultClient = SibApiV3Sdk.ApiClient.instance
+var config = require("../config")
 
 exports.SendSmtpEmail = SibApiV3Sdk.SendSmtpEmail
-exports.sendEmail = function(sendSmtpEmail) {
-  var apiKey = defaultClient.authentications['api-key'];
-  apiKey.apiKey = config.sendInBlue.apiKey;
-  var partnerKey = defaultClient.authentications['partner-key'];
-  partnerKey.apiKey = config.sendInBlue.apiKey;
+exports.sendEmail = function (sendSmtpEmail) {
+  var apiKey = defaultClient.authentications["api-key"]
+  apiKey.apiKey = config.sendInBlue.apiKey
+  var partnerKey = defaultClient.authentications["partner-key"]
+  partnerKey.apiKey = config.sendInBlue.apiKey
 
-  var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+  var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi()
 
   sendSmtpEmail.sender = {
-    name: 'Équipe du simulateur 1jeune1solution.gouv.fr',
-    email: 'aides-jeunes@beta.gouv.fr'
+    name: "Équipe du simulateur 1jeune1solution.gouv.fr",
+    email: "aides-jeunes@beta.gouv.fr",
   }
   return apiInstance.sendTransacEmail(sendSmtpEmail)
 }

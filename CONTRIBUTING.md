@@ -1,42 +1,32 @@
-**Si vous lisez ce fichier, c'est que vous pensez pouvoir nous aider d’une manière ou d’une autre, et nous vous en remercions d'ores et déjà !  :)**
+**Si vous lisez ce fichier, c'est que vous pensez pouvoir nous aider d’une manière ou d’une autre, et nous vous en remercions d'ores et déjà ! :)**
 
 Notre objectif est évidemment d’élargir l’étendue des aides simulées en une seule fois. Pour dépasser la limite de nos ressources, nous cherchons à ouvrir au maximum cet outil à la contribution. Ainsi, tout le code du [moteur de calcul](https://github.com/openfisca/openfisca-france) comme de l’[interface utilisateur](https://github.com/sgmap/mes-aides-ui) est sous [licence libre](http://fr.wikipedia.org/wiki/Logiciel_libre), et toute forme de contribution peut aider à l’intégration de nouvelles aides : recherche législative préalable et rédaction des règles à implémenter, ajout de [tests](https://mes-aides.gouv.fr/tests/) pour valider le calcul de prestations…
 
-Suggérer de nouvelles aides
-===========================
+# Suggérer de nouvelles aides
 
 **Pour suggérer l'ajout d'aides supplémentaires, créez une _issue_** pour chacune d'entre elles, avec la référence la plus officielle possible vers le descriptif de l'aide. Nous cherchons les conditions d'attributions et les modalités de calcul.
 
-Pour faciliter le suivi des demandes, chaque aide demandée est représentée par une [_issue_](https://github.com/sgmap/mes-aides-ui/labels/nouvelle%20aide) identifiée par le _tag_ « [nouvelle aide](https://github.com/sgmap/mes-aides-ui/labels/nouvelle%20aide) »,  afin que toute personne se sentant concernée puisse appuyer la demande, et en suivre l'évolution.
+Pour faciliter le suivi des demandes, chaque aide demandée est représentée par une [_issue_](https://github.com/sgmap/mes-aides-ui/labels/nouvelle%20aide) identifiée par le _tag_ « [nouvelle aide](https://github.com/sgmap/mes-aides-ui/labels/nouvelle%20aide) », afin que toute personne se sentant concernée puisse appuyer la demande, et en suivre l'évolution.
 
+# Suivre l'avancement
 
-Suivre l'avancement
-===================
-
-Langue
-------
+## Langue
 
 Par souci de lisibilité pour les partenaires, notamment administratifs, la langue utilisée pour la description et le suivi de fonctionnalités est le français.
 
 En revanche, pour éviter le coût du changement de contexte, les discussions techniques peuvent se faire en anglais, la langue la plus utilisée dans le cadre du développement logiciel.
 
-
-Stockage
---------
+## Stockage
 
 Toutes les évolutions de l'outil, espérées, planifiées ou réalisées, sont représentées par des [_issues_ GitHub](https://help.github.com/articles/about-issues/). L'ensemble des _issues_ sur tous les dépôts composant les différents modules de l'application mes-aides est donc la seule source de vérité sur ses évolutions.
 
 L'état d'avancement de la fonctionnalité représentée par l'_issue_ est donné par un _tag_.
 
-
-Représentation
---------------
+## Représentation
 
 Pour faciliter la lecture du processus et regrouper les _issues_ ouvertes sur tous les différents dépôts, nous utilisons [Waffle](https://waffle.io/sgmap/mes-aides-api).
 
-
-Processus
----------
+## Processus
 
 Le passage d'une étape du processus est rendu possible par la validation des conditions suivantes.
 
@@ -66,9 +56,7 @@ Décision informelle sur la base de l'analyse des besoins des usagers, des parte
 - [x] Le wiki a été mis à jour pour notifier de l'implémentation.
 - [x] Si la fonctionnalité touche les utilisateurs, un tweet l'a annoncée.
 
-
-Ajouter une aide
-================
+# Ajouter une aide
 
 Vous êtes un organisme liquidateur ? Lisez plutôt [comment intégrer une nouvelle aide dans Mes Aides](https://github.com/sgmap/mes-aides-ui/wiki/Integrer-une-nouvelle-aide-dans-mes-aides). La documentation ci-dessous est technique.
 
@@ -76,7 +64,6 @@ Vous êtes un organisme liquidateur ? Lisez plutôt [comment intégrer une nouve
 - Décrire le type de données dans `lib/simulation/openfisca/prestations.js` du module [`mes-aides-api`](https://github.com/sgmap/mes-aides-api).
 - Mettre à jour les données de réponse attendue dans `test/openfisca/mapping/reverse.coffee` du module [`mes-aides-api`](https://github.com/sgmap/mes-aides-api).
 - [Coder l'aide dans OpenFisca](https://github.com/sgmap/mes-aides-ui/wiki/Ajouter-une-aide-locale-dans-OpenFisca).
-
 
 ### Description d'une aide
 

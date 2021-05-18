@@ -3,21 +3,26 @@
 </template>
 
 <script>
-import RessourceTypes from '@/components/Ressource/Types'
-import Individu from '@/lib/Individu'
+import RessourceTypes from "@/components/Ressource/Types"
+import Individu from "@/lib/Individu"
 
 export default {
-  name: 'ressources-types',
+  name: "ressources-types",
   components: {
     RessourceTypes,
   },
   computed: {
-    individu: function() {
+    individu: function () {
       const id = this.$route.params.id
-      const role = id.split('_')[0]
-      const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
+      const role = id.split("_")[0]
+      const { individu } = Individu.get(
+        this.$store.getters.peopleParentsFirst,
+        role,
+        this.$route.params.id,
+        this.$store.state.dates
+      )
       return individu
-    }
-  }
+    },
+  },
 }
 </script>

@@ -7,19 +7,35 @@
   <mj-body>
     <mj-section>
       <mj-column width="40%">
-        <mj-image alt="Logo Marianne de la République Française" src="{{&baseURL}}/img/logo_rf.svg" />
+        <mj-image
+          alt="Logo Marianne de la République Française"
+          src="{{&baseURL}}/img/logo_rf.svg"
+        />
       </mj-column>
       <mj-column width="40%">
-        <mj-image alt="Logo de 1jeune1solution.gouv.fr" src="{{&baseURL}}/img/logo1j1s-france-relance.svg" />
+        <mj-image
+          alt="Logo de 1jeune1solution.gouv.fr"
+          src="{{&baseURL}}/img/logo1j1s-france-relance.svg"
+        />
       </mj-column>
     </mj-section>
     <mj-section>
       <mj-column>
         <mj-text>
           <p>
-            <span>Vous avez fait il y a quelques jours une simulation sur <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/">1jeune1solution.gouv.fr</a>.</span>
+            <span
+              >Vous avez fait il y a quelques jours une simulation sur
+              <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/"
+                >1jeune1solution.gouv.fr</a
+              >.</span
+            >
             <br />
-            <span>Nous aimerions savoir si cette simulation vous a été utile, et si elle vous a permis de demander voire de bénéficier de nouvelles aides : cela nous permettra de continuer à améliorer le simulateur !</span>
+            <span
+              >Nous aimerions savoir si cette simulation vous a été utile, et si
+              elle vous a permis de demander voire de bénéficier de nouvelles
+              aides : cela nous permettra de continuer à améliorer le simulateur
+              !</span
+            >
           </p>
         </mj-text>
       </mj-column>
@@ -27,7 +43,8 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          Pour cela nous avons préparé le formulaire suivant que vous pouvez remplir en moins de 30 secondes
+          Pour cela nous avons préparé le formulaire suivant que vous pouvez
+          remplir en moins de 30 secondes
         </mj-text>
         <mj-button background-color="#5770be" color="white" href="{{&ctaLink}}">
           Répondre au questionnaire
@@ -37,16 +54,32 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          <span>Retrouvez les détails de votre simulation en cliquant <a href="{{&returnURL}}" target="_blank">ici</a>.</span>
+          <span
+            >Retrouvez les détails de votre simulation en cliquant
+            <a href="{{&returnURL}}" target="_blank">ici</a>.</span
+          >
           <br />
-          <span>Nous améliorons ce simulateur en continu, et vous pouvez nous y aider.</span>
+          <span
+            >Nous améliorons ce simulateur en continu, et vous pouvez nous y
+            aider.</span
+          >
           <br />
-          <span>Vous pouvez toujours nous contacter à l'adresse suivante&nbsp;: <a href="mailto:aides-jeunes@beta.gouv.fr">aides-jeunes@beta.gouv.fr</a></span>
+          <span
+            >Vous pouvez toujours nous contacter à l'adresse suivante&nbsp;:
+            <a href="mailto:aides-jeunes@beta.gouv.fr"
+              >aides-jeunes@beta.gouv.fr</a
+            ></span
+          >
         </mj-text>
         <mj-text>
           <span>Bonne journée,</span>
           <br />
-          <span>L'équipe du <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/">simulateur de 1jeune1solution.gouv.fr</a></span>
+          <span
+            >L'équipe du
+            <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/"
+              >simulateur de 1jeune1solution.gouv.fr</a
+            ></span
+          >
         </mj-text>
       </mj-column>
     </mj-section>

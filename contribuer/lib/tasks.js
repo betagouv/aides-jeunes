@@ -1,16 +1,15 @@
-
 function importTask(slug) {
   return {
     ...require(`../content/tasks/${slug}.md`),
-    slug
+    slug,
   }
 }
 
 module.exports = [
-  importTask('utiliser'),
-  importTask('partager'),
-  importTask('ajouter-une-institution'),
-  importTask('ajouter-une-aide'),
-  importTask('cibler-associations'),
-  importTask('cibler-elus'),
+  importTask("utiliser"),
+  importTask("partager"),
+  importTask("ajouter-une-institution"),
+  importTask("ajouter-une-aide"),
+  importTask("cibler-associations"),
+  importTask("cibler-elus"),
 ]

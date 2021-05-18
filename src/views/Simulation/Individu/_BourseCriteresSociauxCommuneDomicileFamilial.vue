@@ -74,7 +74,7 @@ export default {
       }
       const communeMatches = this.communes.filter(c => c.nom == this.nomCommune)
       if (communeMatches.length) {
-          this.individu._BourseCriteresSociauxCommuneDomicileFamilial = communeMatches[0].code
+          this.individu._bourseCriteresSociauxCommuneDomicileFamilial = communeMatches[0].code
           this.individu._bourseCriteresSociauxCommuneDomicileFamilialCodePostal = this.codePostal.toString()
           this.individu._bourseCriteresSociauxCommuneDomicileFamilialNomCommune = this.nomCommune
           this.$store.dispatch('updateIndividu', this.individu)

@@ -91,7 +91,7 @@ export default {
         (c) => c.nom == this.nomCommune
       )
       if (communeMatches.length) {
-        this.individu._BourseCriteresSociauxCommuneDomicileFamilial =
+        this.individu._bourseCriteresSociauxCommuneDomicileFamilial =
           communeMatches[0].code
         this.individu._bourseCriteresSociauxCommuneDomicileFamilialCodePostal =
           this.codePostal.toString()

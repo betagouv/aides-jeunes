@@ -62,12 +62,10 @@ function clearCookies(req, res) {
 
 exports.create = function (req, res, next) {
   if (req.body._id)
-    return res
-      .status(403)
-      .send({
-        error:
-          "You can‘t provide _id when saving a situation. _id will be generated automatically.",
-      })
+    return res.status(403).send({
+      error:
+        "You can‘t provide _id when saving a situation. _id will be generated automatically.",
+    })
 
   return Situation.create(
     omit(req.body, "createdAt", "status", "token"),

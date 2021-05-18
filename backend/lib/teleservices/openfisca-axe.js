@@ -46,6 +46,7 @@ function fetch(s) {
     os.tmpdir(),
     "situation_" + s.source._id + "_" + base
   )
+  /* eslint-disable */
   if (false && fs.existsSync(cachePath)) {
     // eslint-disable-line no-constant-condition
     return fs

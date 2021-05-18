@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --no-clean",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "npm run eslint .",
+    "lint": "vue-cli-service lint app backend src tests",
     "build:dev": "webpack --mode=development",
     "build:netlify": "npm run build && cp netlify_redirects dist/_redirects",
     "build_old": "NODE_ENV=production webpack --mode=production",

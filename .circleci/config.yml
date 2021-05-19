@@ -92,8 +92,11 @@ jobs:
       - attach_workspace:
           at: ~/mes-aides-ui
       - run:
-          name: JSHint
+          name: Run ESLint
           command: npm run lint
+      - run:
+          name: Run Prettier
+          command: npm run prettier
   build:
     <<: *defaults
     steps:

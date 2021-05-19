@@ -21,7 +21,6 @@ communes.forEach(function(commune) {
 });
 
 function find(postalCode) {
-    debugger
     return index[postalCode] || communeCode98[postalCode] || [];
 }
 

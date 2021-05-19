@@ -11,7 +11,7 @@
             <select
                 v-model="communeQuestion.selectedValue"
                 id="commune">
-                <option v-for="commune in communes" v-bind:value="commune.nom" v-bind:key="commune.code">
+                <option v-for="(commune, index) in communes" v-bind:value="commune.nom" v-bind:key="`commune_${index}`">
                     {{ commune.nom }}
                 </option>
             </select>

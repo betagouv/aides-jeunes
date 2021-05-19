@@ -2,7 +2,6 @@
 
 L'interface utilisateur (et le serveur principal) de [mes-aides](https://mes-aides.gouv.fr), un estimateur des prestations sociales françaises pour les particuliers. Il est basé sur simulateur socio-fiscal libre [Openfisca](https://www.openfisca.fr/).
 
-
 # Front only install
 
 If you want to play with the UI, you can be set up very quickly:
@@ -18,8 +17,7 @@ The application should be accessible at `localhost:8080`.
 
 # Full install
 
-System dependencies
--------------------
+## System dependencies
 
 ### Ubuntu
 
@@ -38,16 +36,16 @@ You can for example use [`nvm`](https://github.com/creationix/nvm) to install th
 
 You will need [`pip`](https://pip.pypa.io/) to install Openfisca.
 
+## Application
 
-Application
------------
 Run the following from the root of the project to install the dependencies
+
 ```sh
 npm install
 ```
 
-Openfisca
----------
+## Openfisca
+
 :warning: As of now, python3.9 is not yet compatible with all python packages used in Openfisca. It is recommend to use a lower version such as `3.8.6`.
 
 You should [install Python 3 in a virtual environment](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. The instructions below rely on the built-in `venv` module so that there are no additional external dependencies:
@@ -66,13 +64,13 @@ In order to start a single worker for OpenFisca, you can run `OPENFISCA_WORKERS=
 ### Development mode
 
 If you are working on `openfisca-france` and want to use your local version:
+
 ```
 cd (...)/openfisca-france
 pip install -e .
 ```
 
-Usage
------
+## Usage
 
 First, start a Mongo server:
 
@@ -81,6 +79,7 @@ npm run db
 ```
 
 Then, in another shell (you will have to run `source .venv/bin/activate`), start the Openfisca server:
+
 ```sh
 npm run openfisca
 ```
@@ -91,27 +90,33 @@ Finally, in a third shell, start the server:
 npm run serve
 ```
 
-
-Testing
-=======
+# Testing
 
 There are several levels of tests:
 
-* Unit tests run with `npm test`.
-* Integration tests run with `npm run test-integration`.
+- Unit tests run with `npm test`.
+- Integration tests run with `npm run test-integration`.
 
 You can safely use `npm test && npm run test-integration` to drive your developments.
 
-Integration tests
------------------
+## Integration tests
 
 Integration tests are executed with [Watai](https://github.com/MattiSG/Watai) through `npm run test-integration`. These tests are **currently not run in CI** due to how complex installing all dependencies on a CI VM is.
 
-Déploiement
-===========
+## Linting and format
 
-Préparation
------------
+We use ESLint as a linter and Prettier to format the codebase.
+We also utilize some ESLint plugins, such as vue-eslint and eslint-plugin-cypress, to provide a support for tests and framework.
+
+More informations :
+Eslint: https://eslint.org/
+Prettier: https://prettier.io/
+Eslint plugin Cypress: https://github.com/cypress-io/eslint-plugin-cypress
+Eslint plugin Vue : https://eslint.vuejs.org/user-guide/
+
+# Déploiement
+
+## Préparation
 
 En plus de l'intégration continue, ce dépôt est configuré pour avoir du déploiement continu. À l'ajout de commits sur `mes-aides/simulateur#master` les tests sont relancés puis la production mise à jour.
 
@@ -121,8 +126,7 @@ En plus de l'intégration continue, ce dépôt est configuré pour avoir du dép
 
 Ce fichier est au format [`requirements.txt`](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file) de `pip`. Généralement, vous le mettrez à jour pour faire pointer l'un des modules Openfisca vers une branche de développement en attendant la publication de ce module sur PyPI.
 
-Déploiement
------------
+## Déploiement
 
 Le serveur de production est rendu opérationnel avec [Puppet](https://puppet.com/). Les fichiers de configurations et de paramétrage sur disponibles dans [un dépôt séparé](https://github.com/mes-aides/ops/).
 
@@ -131,6 +135,7 @@ Le serveur de production est rendu opérationnel avec [Puppet](https://puppet.co
 Des clés SSHs ont été générées pour [lancer des scripts à distance](http://man.openbsd.org/sshd#command=%22command%22) sur le serveur de production.
 
 Sachant que le fichier `deploy` contient la clé privée associée au script de déploiement, ce dernier permet être lancé via la commande suivante :
+
 ```sh
 ssh root@mes-aides.gouv.fr -i deploy
 ```

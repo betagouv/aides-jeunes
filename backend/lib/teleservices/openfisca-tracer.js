@@ -1,15 +1,15 @@
-var openfisca = require('../openfisca');
+var openfisca = require("../openfisca")
 
 function OpenFiscaTracer(situation) {
-    this.situation = situation;
+  this.situation = situation
 }
 
-OpenFiscaTracer.prototype.toInternal = function() {
-    return {};
-};
+OpenFiscaTracer.prototype.toInternal = function () {
+  return {}
+}
 
-OpenFiscaTracer.prototype.toExternal = function() {
-    return openfisca.buildOpenFiscaRequest(this.situation);
-};
+OpenFiscaTracer.prototype.toExternal = function () {
+  return openfisca.buildOpenFiscaRequest(this.situation)
+}
 
-module.exports = OpenFiscaTracer;
+module.exports = OpenFiscaTracer

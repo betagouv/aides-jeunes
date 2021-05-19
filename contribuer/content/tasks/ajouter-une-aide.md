@@ -9,7 +9,6 @@ L'objectif de cette contribution est d'ajouter une première aide dans le simula
 
 Il s'agira d'une version simplifiée par rapport à la réalité mais qui constituera déjà une première étape. La complexité de cette aide sera intégrée et mise en compte progressivement.
 
-
 ## Choisir une aide - 5 minutes grand max
 
 Il va falloir déterminer l'aide que vous souhaitez intégrer. Pour une première aide, il faut essayer d'en choisir une **simple**, pour laquelle vous avez à votre disposition des **documents de référence** (règlement intérieur, annexes de délibération, etc.) dans lesquels sont détaillées les règles permettant de la calculer. Enfin, il faut aussi que les **ressources** permettant aux usagers des **faire les démarches** soient **accessibles** (page d'information, formulaire en ligne, téléservice, etc.).
@@ -18,20 +17,21 @@ Il va falloir déterminer l'aide que vous souhaitez intégrer. Pour une premièr
 
 Dans un premier temps, seule l'éligibilité à cette aide sera indiquée. Si un montant peut être calculé (forfaitaire ou en fonction du foyer) il le sera plus tard. En effet de tels calculs augmentent la complexité et cette contribution n'en serait que plus difficile.
 
-
 ## Lister les critères - 5 minutes max
 
-Les documents de référence étant précis mais difficiles à comprendre par le plus grand nombre, la rédaction d'une liste de critère est un premier travail de simplification. 
+Les documents de référence étant précis mais difficiles à comprendre par le plus grand nombre, la rédaction d'une liste de critère est un premier travail de simplification.
 
 Il s'agit de remplir le paragraphe suivant :
 
 Pour bénéficier de l'aide, il faut :
+
 - ... **et**
 - ... **et**
 - ... **et**
 - ... **et**
 
 Voilà quelques exemples de critères :
+
 - Résider dans la ville de Canéjan
 - Résider dans le département du Bas-Rhin
 - Être âgé de plus de 65 ans
@@ -46,7 +46,6 @@ Il arrive aussi que des critères puissent être regroupés en un critère moins
 
 Cette liste sera un point de départ pour coder les règles de votre aide dans le moteur de calculs.
 
-
 ## Renseigner les informations relatives à l'aide - 5 minutes max
 
 En vous connectant à <a href="https://contribuer.mes-aides.org/admin/#/collections/benefits/new" target="_blank" rel="noopener">l'outil de contribution</a>, vous pouvez ajouter les informations de votre aide. Les informations recueillies jusqu'à présent vont vous faciliter la saisie des informations demandées.
@@ -57,11 +56,9 @@ Une fois les informations saisies, il faut les « Enregistrer » à partir du bo
 
 Avec cet enregistrement, une version de démonstration va être mise à disposition pour vous permettre de constater la présence de votre aide. Comme cela prend quelques minutes, vous pouvez continuer et nous y reviendrons plus tard.
 
-
 ## Préparer l'environnement de travail - 10 minutes max
 
 Avec cette contribution, vous allez écrire de premières règles dans un moteur de calculs. Le moteur de calculs que nous utilisons s'appelle OpenFisca. Pour vous faciliter la tâche, nous avons indiqué comment obtenir un environnement de travail en quelques minutes.
-
 
 ### Se créer un compte sur GitHub - 3 minutes max
 
@@ -69,7 +66,7 @@ GitHub est une plateforme qui facilite la collaboration autour des codes sources
 
 En développant en code ouvert, de nombreux outils facilitant la collaboration sont mis à disposition gratuitement.
 
-Nous vous conseillons de vous créer un compte **personnel**, en effet, l'activité d'un compte GitHub est à  valoriser pour les personnes qui travaillent dans le numérique.
+Nous vous conseillons de vous créer un compte **personnel**, en effet, l'activité d'un compte GitHub est à valoriser pour les personnes qui travaillent dans le numérique.
 
 Pour vous inscrire, c'est [ici](https://github.com/join).
 
@@ -83,12 +80,12 @@ Vous devriez arriver sur une page qui ressemble à ça :
 
 ![Page d'accueil de GitHub](/img/ajouter-une-aide/github.png)
 
-
 ### Lancer un environnement de travail en ligne - 4 minutes max
 
 Les travaux que nous réalisons sont dans leur grande majorité accessible à tous en ligne. Les règles de calculs des aides ajoutées par ou avec des partenaires sont regroupées dans ce que l'on appelle un dépôt. Il est accessible à la page [https://github.com/openfisca/openfisca-france-local](https://github.com/openfisca/openfisca-france-local) sur GitHub.
 
 Un dépôt (ici _openfisca/openfisca-france-local_) sur GitHub regroupe :
+
 - des dossiers et des fichiers, en l'occurence de la documentation et les fichiers OpenFisca contenant les règles de calculs (_Code_ - cf. n°1 sur la capture d'écran)
 - des discussions sur ces fichiers, leur limitation, leur améliorations potentielles (_Issues_ - n°2)
 - des suggestions d'amélioration, des nouvelles contributions (_Pull requests_ - n°3).
@@ -115,14 +112,15 @@ Après environ une minute d'installation, vous devriez arriver sur l'interface s
 ![Interface de GitPod](/img/ajouter-une-aide/gitpod.png)
 
 Nous allons commencer par décrire les 3 parties les plus importantes de cet écran :
+
 - sur la gauche (1), il y a l'explorateur de fichiers et de dossiers.
 - en centre (2), vous pouvez accéder au contenu des fichiers. Au départ, le fichier _README_ est ouvert. Généralement ce fichier contient des informations et des instructions qui permettent de se découvrir le projet.
 - en bas (3), il y a ce qu'on appelle un terminal. C'est un outil qui permet de communiquer avec l'ordinateur.
 
-
 ### Utiliser le terminal
 
 Pour donner un exemple :
+
 - Cliquez dans la zone en bas (n'importe où dans la zone).
   - Le petit carré noir va devenir gris pour indiquer que nous sommes bien dans la zone.
 - Écrivez « date », cela devrait aussi s'afficher dans la zone.
@@ -156,13 +154,15 @@ tests/test_dispositif.yml .
 Revenons plus en détails sur ce que vous venez de faire.
 
 La commande `openfisca_local_test tests/test_dispositif.yml` s'est terminée avec un message qui ressemble à
+
 ```console
 --------------- 2 passed --------------------
 ```
 
-Cela signifie que 2 deux [tests](https://fr.wikipedia.org/wiki/Test_(informatique)) ont été exécutés avec succès.
+Cela signifie que 2 deux [tests](<https://fr.wikipedia.org/wiki/Test_(informatique)>) ont été exécutés avec succès.
 
 Dans le fichier `tests/test_dispositif.yml`, il y a donc deux tests. Vous pouvez utiliser l'explorateur de fichiers de gauche pour accéder à ce fichier. En cliquant sur :
+
 - « tests » puis
 - « test_dispositif.yml ».
 
@@ -183,12 +183,13 @@ Le contenu du fichier devrait apparaître au centre de votre fenêtre. Cela devr
 ```
 
 Les deux tirets représentent le début de chaque test. Chacun comporte :
+
 - une période
 - des valeurs de variables en entrée `input` et
 - des valeurs de variables en sortie `output`.
 
-Dans le premier test, on indique `18` pour la variable `age` (c'est un âge en année) et **on s'attend en sortie** à ce que la valeur de la variable `test_dispositif` soit égale à *true* ou *vrai* en français.
-Dans le second test, on donne un âge de 0 et on s'attend à ce que `test_dispositif` vaut *false* ou *faux* en français.
+Dans le premier test, on indique `18` pour la variable `age` (c'est un âge en année) et **on s'attend en sortie** à ce que la valeur de la variable `test_dispositif` soit égale à _true_ ou _vrai_ en français.
+Dans le second test, on donne un âge de 0 et on s'attend à ce que `test_dispositif` vaut _false_ ou _faux_ en français.
 
 Afin de mieux comprendre ce qui se passe avec ces tests nous allons les modifier un peu et voir comment évoluent les résultats de la commande `openfisca_local_test tests/test_dispositif.yml`. On va remplacer la valeur de `age` dans le second test par `17`. Il faut enregistrer les modifications en cliquant sur « File » et « Save » ou avec le clavier Ctrl+S. Ensuite, lancez à nouveau la commande `openfisca_local_test tests/test_dispositif.yml`.
 
@@ -223,7 +224,6 @@ Normalement, le résultat finit à nouveau par `----------- 2 passed -----------
 
 Cet exercice peut sembler être un détour par rapport à l'ajout d'une aide mais la compréhension des tests et de leur intérêt est primordiale.
 
-
 ### Supprimer les modifications apportées
 
 Ces modifications ne doivent pas être conservées car elles constituaient un premier test pour vous familiariser avec GitPod.
@@ -234,11 +234,9 @@ En suivant ces étapes vous retrouvez votre environnement comme vous l'avez trou
 
 ![Étapes pour la suppression des modifications dans GitPod](/img/ajouter-une-aide/gitpod-suppression.png)
 
-
 ## Implémenter la première règle - 15 minutes
 
 Maintenant que vous avez un environnement de travail fonctionnel, vous allez pouvoir commencer à coder votre règle.
-
 
 ### Choisir le premier critère à prendre en compte
 
@@ -254,7 +252,7 @@ Nous allons continuer ce guide en considérant que nous souhaitons ajouter le «
 
 Si votre critère est très différent, faites-nous signe à [accompagnement@mes-aides.org](mailto:accompagnement@mes-aides.org), nous nous ferons un plaisir de compléter ces informations (on a été à l'essentiel 😅).
 
-Le critère « Résider dans la ville d'Alfortville » est facile à comprendre pour nous humains. Le moteur de calculs ne va pas utiliser  le nom de la ville mais son identifiant INSEE. Cela est préférable car le nom de la ville peut être orthographié de plusieurs façon (avec le tiret, tout en majuscules, etc.) alors que l'identifiant n'a pas cet inconvéniant. Il est existe plusieurs endroits où le code INSEE peut être trouvé. Sur [la page wikipédia de Alfortville](https://fr.wikipedia.org/wiki/Alfortville) on y apprend que son code commune (où code INSEE) est 94002.
+Le critère « Résider dans la ville d'Alfortville » est facile à comprendre pour nous humains. Le moteur de calculs ne va pas utiliser le nom de la ville mais son identifiant INSEE. Cela est préférable car le nom de la ville peut être orthographié de plusieurs façon (avec le tiret, tout en majuscules, etc.) alors que l'identifiant n'a pas cet inconvéniant. Il est existe plusieurs endroits où le code INSEE peut être trouvé. Sur [la page wikipédia de Alfortville](https://fr.wikipedia.org/wiki/Alfortville) on y apprend que son code commune (où code INSEE) est 94002.
 
 Avant d'aller plus loin, nous avons faire un dernier préparatif. Il va falloir donner un identifiant à votre aide. En voilà quelques exemples :
 
@@ -262,10 +260,10 @@ Avant d'aller plus loin, nous avons faire un dernier préparatif. Il va falloir 
 - `cotes_d_armor_fonds_solidarite_logement_acces_maintien_plafond`
 - `nouvelle_aquitaine_carte_solidaire`
 
-
 ### Créer un premier fichier de test
 
 Il y a un dossier intitulé `tests` à la racine du dossier principal. En fonction de votre administration, vous pouvez choisir le meilleur sous-dossier&nbsp;:
+
 - communes
 - départements
 - métropoles
@@ -277,7 +275,6 @@ Vous pouvez regarder les fichiers existants et essayer de reprendre les mêmes c
 - Indiquer le nom du fichier avec comme extension **`.yml`** par exemple `mon_aide.yml`.
 
 Dans le cas que nous utilisons, nous allons créer le fichier `tests/communes/alfortville/noel_enfants.yml`.
-
 
 ### Décrire vos premiers tests
 
@@ -345,7 +342,6 @@ En relançant le test (`openfisca_local_test openfisca_local_test tests/communes
 
 Vous avez rédigé votre première règle pour cette nouvelle aide.
 
-
 ## Partager avec nous vos premiers travaux - 5 minutes
 
 Votre travail ne réside encore sur votre ordinateur, il est temps de le mettre en ligne pour le partager avec nous.
@@ -363,7 +359,6 @@ Nous pouvons enfin enregistrer sur votre ordinateur cette contribution en cliqua
 L'enregistrement que vous venez de faire sur votre ordinateur doit être désormais partagé sur GitHub. Pour cela, vous pouvez cliquer sur le symbole de GitHub à droite (un chat sur fond blanc, cf. n°6).
 
 Cela va faire apparaître à droite un menu. Pour envoyer votre modification, vous devez la _push_ sur GitHub à l'aide du bouton bleu « Push ». Une fois cela fait, vous pourrez créer une suggestion de modification (ou _pull request_ en anglais) en cliquant sur _Create pull request_. Enfin vous pourrez voir à quoi cela ressemble sur GitHub en cliquant sur le lien en haut à droite « #XX » où _XX_ est un nombre.
-
 
 ## Modifier les informations sur votre aide - 5 minutes
 

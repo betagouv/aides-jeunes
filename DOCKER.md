@@ -1,7 +1,6 @@
-Docker
-======
+# Docker
 
-Il est possible d'utiliser Docker Compose pour lancer Mes Aides. 
+Il est possible d'utiliser Docker Compose pour lancer Mes Aides.
 
 [Installez Docker Compose](https://docs.docker.com/compose/install/)
 

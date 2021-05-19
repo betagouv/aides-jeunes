@@ -18,8 +18,9 @@ html {
       }
 
       .aj-box-wrapper {
-
-        & > div:not(.aj-unbox), & > form:not(.aj-unbox), & .aj-box {
+        & > div:not(.aj-unbox),
+        & > form:not(.aj-unbox),
+        & .aj-box {
           padding: 1.5rem;
         }
 
@@ -44,7 +45,8 @@ html {
       .aj-tooltip {
         display: table;
         margin: 10px 0 0 0;
-        &:hover:before, &:hover:after {
+        &:hover:before,
+        &:hover:after {
           display: none;
         }
       }
@@ -82,7 +84,7 @@ html {
       left: 0;
       width: 100vw;
       height: 0;
-      background-color: transparentize(#000, .5);
+      background-color: transparentize(#000, 0.5);
       z-index: 1000;
       overflow-y: scroll;
 
@@ -96,7 +98,7 @@ html {
 
       .aj-help-modal-container {
         max-height: 0;
-        transition: max-height .3s;
+        transition: max-height 0.3s;
         background: var(--white);
         border-top-right-radius: var(--theme-border-radius);
         border-top-left-radius: var(--theme-border-radius);
@@ -118,7 +120,6 @@ html {
           font-weight: normal;
         }
       }
-
 
       &.open {
         height: 100vh;

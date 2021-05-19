@@ -1,5 +1,5 @@
-var teleservices = require('../controllers/teleservices');
+var teleservices = require("../controllers/teleservices")
 
-module.exports = function(api) {
-    api.route('/teleservices').get(teleservices.list);
-};
+module.exports = function (api) {
+  api.route("/teleservices").get(teleservices.list)
+}

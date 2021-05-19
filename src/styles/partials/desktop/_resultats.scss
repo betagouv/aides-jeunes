@@ -70,7 +70,9 @@ html {
       align-items: flex-start;
       flex-wrap: wrap;
 
-      .aj-offline-results, .aj-feedback, .aj-find-contact-box {
+      .aj-offline-results,
+      .aj-feedback,
+      .aj-find-contact-box {
         background-color: var(--white);
         padding: 25px;
         border-radius: var(--theme-border-radius);
@@ -127,13 +129,16 @@ html {
       }
     }
 
-    .aj-droit-details-back-button, .aj-etablissements-back-button {
-      &, &:focus {
+    .aj-droit-details-back-button,
+    .aj-etablissements-back-button {
+      &,
+      &:focus {
         margin-bottom: 1rem;
       }
     }
 
-    .aj-droit-detail, .aj-droit-survey {
+    .aj-droit-detail,
+    .aj-droit-survey {
       display: flex;
       flex-direction: row;
       align-items: flex-start;
@@ -180,7 +185,7 @@ html {
       }
 
       .aj-droit-conditions {
-        background: #FEF3CF;
+        background: #fef3cf;
         padding: 1rem 1.2rem;
         border-radius: 10px;
 
@@ -244,7 +249,7 @@ html {
     }
 
     .aj-aide-warning {
-      background-color: #FEF3CF;
+      background-color: #fef3cf;
       padding: 7px 1rem;
       margin-top: 1rem;
       margin-bottom: 2rem;
@@ -293,7 +298,7 @@ html {
           bottom: 0;
           right: 2rem;
           display: flex;
-          transform:translateY(50%);
+          transform: translateY(50%);
 
           .aj-etablissements-action-tel-mobile {
             display: none;

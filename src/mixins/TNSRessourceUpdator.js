@@ -3,11 +3,11 @@ export default {
     ressource: Object,
   },
   methods: {
-    update: function(month, value) {
-      this.$emit('update', this.ressource, month, value)
+    update: function (month, value) {
+      this.$emit("update", this.ressource, month, value)
     },
-    updateExtra: function(item, value) {
-      this.$emit('updateExtra', this.ressource, item, value)
-    }
-  }
+    updateExtra: function (item, value) {
+      this.$emit("updateExtra", this.ressource, item, value)
+    },
+  },
 }

@@ -1,12 +1,12 @@
 /// <reference types="Cypress" />
-import * as steps from '../support'
+import * as steps from "../support"
 
-context('Full simulation', () => {
+context("Full simulation", () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/init-ci')
+    cy.visit("http://localhost:8080/init-ci")
   })
 
-  it('accepts a basic situation', () => {
+  it("accepts a basic situation", () => {
     steps.home()
     steps.demandeur()
     steps.zeroEnfants()

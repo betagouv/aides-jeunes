@@ -19,7 +19,7 @@
             Actions
         },
         data: function() {
-            const menage = this.$store.getters.getMenage || {}
+            const menage = { ...this.$store.getters.getMenage || {} }
             return {
                 menage: menage,
                 value: menage.participation_frais

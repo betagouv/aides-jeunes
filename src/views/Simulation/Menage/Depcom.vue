@@ -30,7 +30,7 @@
             Actions
         },
         data: function() {
-            const menage = this.$store.getters.getMenage || {}
+            const menage = { ...this.$store.getters.getMenage } || {}
             return {
                 menage: menage,
                 retrievingCommunes: false,
@@ -53,6 +53,9 @@
                     this.retrievingCommunes = true
                     return Commune.get(this.codePostalQuestion.selectedValue)
                         .then((communes) => {
+                            if (communes.length <= 0) {
+                                this.$matomo && this.$matomo.trackEvent("General", 'Depcom introuvable', `Code postal : ${this.codePostalQuestion.selectedValue}`)
+                            }
                             if (!communes.map(c => c.nom).includes(this.communeQuestion.selectedValue)) {
                                 this.communeQuestion.selectedValue = Commune.getMostPopulated(communes).nom
                             }

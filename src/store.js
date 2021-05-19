@@ -10,11 +10,11 @@ import some from "lodash/some"
 
 import findIndex from "lodash/findIndex"
 
-import { computeAides, datesGenerator } from '../backend/lib/mes-aides'
-import { categoriesRnc, patrimoineTypes } from './constants/resources'
-import { generateAllSteps } from './lib/State/generator'
-import Institution from './lib/Institution'
-import ABTestingService from '@/plugins/ABTestingService'
+import { computeAides, datesGenerator } from "../backend/lib/mes-aides"
+import { categoriesRnc, patrimoineTypes } from "./constants/resources"
+import { generateAllSteps } from "./lib/State/generator"
+import Institution from "./lib/Institution"
+import ABTestingService from "@/plugins/ABTestingService"
 
 let DATE_FIELDS = [
   "date_naissance",
@@ -71,17 +71,17 @@ function defaultStore() {
     mobileMenu: false,
     debug: false,
     situation: {
-        _id: null,
-        external_id: null,
-        dateDeValeur: now,
-        enfants: [],
-        famille: {},
-        logement: {},
-        foyer_fiscal: {},
-        menage: {
-            aide_logement_date_pret_conventionne: '2017-12-31'
-        },
-        version: 1,
+      _id: null,
+      external_id: null,
+      dateDeValeur: now,
+      enfants: [],
+      famille: {},
+      logement: {},
+      foyer_fiscal: {},
+      menage: {
+        aide_logement_date_pret_conventionne: "2017-12-31",
+      },
+      version: 1,
     },
     error: false,
     access: {
@@ -129,10 +129,11 @@ const store = new Vuex.Store({
       return state.debug
     },
     getMobileMenu: function (state) {
-        return state.mobileMenu
+      return state.mobileMenu
     },
-    peopleParentsFirst: function(state) {
-      return [].concat(
+    peopleParentsFirst: function (state) {
+      return []
+        .concat(
           state.situation.demandeur,
           state.situation.conjoint,
           state.situation.enfants
@@ -166,7 +167,7 @@ const store = new Vuex.Store({
     getAllSteps: function (state) {
       return generateAllSteps(state.situation)
     },
-    ressourcesYearMinusTwoCaptured: function(state, getters) {
+    ressourcesYearMinusTwoCaptured: function (state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
       const januaryYearMinusTwo = state.dates.fiscalYear12Months[0].id
       return getters.peopleParentsFirst.some(function (individu) {
@@ -249,9 +250,9 @@ const store = new Vuex.Store({
       state.debug = debug
     },
     setMobileMenu: function (state, mobileMenu) {
-        state.mobileMenu = mobileMenu
+      state.mobileMenu = mobileMenu
     },
-    initialize: function(state) {
+    initialize: function (state) {
       const { situation, dates, ameliNoticationDone, calculs } = restoreLocal()
       state.situation = situation
       state.calculs = calculs
@@ -377,11 +378,11 @@ const store = new Vuex.Store({
     setDebug: function ({ commit }, debug) {
       commit("setDebug", debug)
     },
-    setMobileMenu: function ({commit}, mobileMenu) {
-      commit('setMobileMenu', mobileMenu)
+    setMobileMenu: function ({ commit }, mobileMenu) {
+      commit("setMobileMenu", mobileMenu)
     },
-    initialize: function({ commit }) {
-      commit('initialize')
+    initialize: function ({ commit }) {
+      commit("initialize")
     },
     removeConjoint: function ({ commit }) {
       commit("removeConjoint")
@@ -418,9 +419,9 @@ const store = new Vuex.Store({
       commit("saveParents", parents)
       commit("setDirty")
     },
-    save: function(store) {
-      const disabledSteps = store.getters.getAllSteps.filter(s => !s.isActive)
-      disabledSteps.forEach(step => {
+    save: function (store) {
+      const disabledSteps = store.getters.getAllSteps.filter((s) => !s.isActive)
+      disabledSteps.forEach((step) => {
         step.clean(store, true)
       })
 

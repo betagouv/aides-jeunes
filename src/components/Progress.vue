@@ -46,9 +46,9 @@ export default {
     }
   },
   computed: {
-    full: function() {
-      return this.$store.getters.getAllSteps.map(s => {
-        if (process.env.NODE_ENV === 'production') {
+    full: function () {
+      return this.$store.getters.getAllSteps.map((s) => {
+        if (process.env.NODE_ENV === "production") {
           return s
         } else {
           const { route } = this.$router.resolve(s.path)

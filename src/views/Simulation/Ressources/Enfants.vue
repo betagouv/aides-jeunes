@@ -55,7 +55,7 @@ export default {
         this.$store.dispatch("updateIndividu", enfant)
       })
       this.$push()
-    }
-  }
+    },
+  },
 }
 </script>

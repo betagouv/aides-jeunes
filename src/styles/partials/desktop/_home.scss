@@ -7,7 +7,12 @@ html {
 }
 #homepage {
   height: 100%;
-  background: linear-gradient(105deg, var(--white), 53%, var(--theme-primary) 47%);
+  background: linear-gradient(
+    105deg,
+    var(--white),
+    53%,
+    var(--theme-primary) 47%
+  );
   .container {
     display: flex;
     flex-direction: row;

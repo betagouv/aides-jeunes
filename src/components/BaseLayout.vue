@@ -1,10 +1,10 @@
 <template>
-  <div class="aj-website" :class="{'overflow-hidden': mobileMenu}">
-      <div class="aj-website-content">
-          <Header1J1S/>
-          <slot></slot>
-      </div>
-      <FooterJ1S/>
+  <div class="aj-website" :class="{ 'overflow-hidden': mobileMenu }">
+    <div class="aj-website-content">
+      <Header1J1S />
+      <slot></slot>
+    </div>
+    <FooterJ1S />
   </div>
 </template>
 
@@ -25,17 +25,10 @@ export default {
       }
     })
   },
-  created() {
-      this.$router.onReady(() => {
-          if (this.$route.query.debug === 'parcours') {
-              this.$store.dispatch('setDebug', true)
-          }
-      })
-  },
   computed: {
     mobileMenu() {
       return this.$store.getters.getMobileMenu
-    }
-  }
+    },
+  },
 }
 </script>

@@ -87,9 +87,13 @@ export default {
     },
   },
   methods: {
-    onSubmit: function() {
-      Ressource.setIndividuRessourceTypes(this.individu, this.selectedTypes, this.$store.state.dates)
-      this.$store.dispatch('updateIndividu', this.individu)
+    onSubmit: function () {
+      Ressource.setIndividuRessourceTypes(
+        this.individu,
+        this.selectedTypes,
+        this.$store.state.dates
+      )
+      this.$store.dispatch("updateIndividu", this.individu)
       this.$push()
     },
     sort: function (array) {

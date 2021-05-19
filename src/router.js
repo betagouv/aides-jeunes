@@ -554,20 +554,11 @@ const router = new Router({
           },
         },
         {
-            name: 'depcom',
-            path: 'depcom',
-            component: () => import(/* webpackChunkName: "individu" */ './views/Simulation/Menage/Depcom.vue'),
-        }]
-      },
-      {
-        name: 'resultats',
-        path: 'resultats',
-        component: () => import(/* webpackChunkName: "resultats" */ './views/Simulation/Resultats.vue'),
-      },
-      {
-          name: 'resultatsLieuxGeneriques',
-          path: 'resultats/lieux',
-          component: () => import(/* webpackChunkName: "lieux" */ './views/Simulation/Resultats/LieuxGeneriques.vue'),
+          path: "recapitulatif",
+          component: () =>
+            import(
+              /* webpackChunkName: "recapitulatif" */ "./views/Foyer/Recapitulatif.vue"
+            ),
           meta: {
             title: "Vos informations",
           },
@@ -702,10 +693,10 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to) => {
   if (to.preventFocus) return
 
-  store.commit('setMobileMenu', false)
+  store.commit("setMobileMenu", false)
 
-  Vue.nextTick(function() {
-    let title = document.querySelector('h1')
+  Vue.nextTick(function () {
+    let title = document.querySelector("h1")
     // if anyone wants to set a tabindex manually, do not overwrite it
     if (title && title.tabIndex < 0) {
       // default is -1... https://html.spec.whatwg.org/multipage/interaction.html#dom-tabindex

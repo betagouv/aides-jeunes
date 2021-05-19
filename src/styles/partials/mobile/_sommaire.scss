@@ -41,7 +41,6 @@ html {
           }
 
           .aj-step-container {
-
             .aj-step-title {
               font-size: 1rem;
               font-weight: normal;
@@ -60,7 +59,7 @@ html {
               }
 
               &:after {
-                content: ''
+                content: "";
               }
 
               .aj-check-icon {

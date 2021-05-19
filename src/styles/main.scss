@@ -12,12 +12,12 @@ $screen-smaller-than-mobile: 399px;
 :root {
   --theme-border-radius: 25px;
   --theme-primary: #5770be;
-  --theme-primary-light: #6575EA;
-  --theme-primary-lighter: #E2E5FB;
-  --light-grey: #C4C4C4;
-  --green: #169B62;
-  --light-green: #51D27D;
-  --lighter-green: #EEFBF2;
+  --theme-primary-light: #6575ea;
+  --theme-primary-lighter: #e2e5fb;
+  --light-grey: #c4c4c4;
+  --green: #169b62;
+  --light-green: #51d27d;
+  --lighter-green: #eefbf2;
   --space-xs: 20px;
 }
 
@@ -37,15 +37,15 @@ $screen-smaller-than-mobile: 399px;
 }
 
 /* DESKTOP IMPORTS */
-@import 'partials/desktop/ui-kit';
-@import 'partials/desktop/sommaire';
-@import 'partials/desktop/buttons';
-@import 'partials/desktop/inputs';
-@import 'partials/desktop/home';
-@import 'partials/desktop/children';
-@import 'partials/desktop/header';
-@import 'partials/desktop/footer';
-@import 'partials/desktop/resultats';
+@import "partials/desktop/ui-kit";
+@import "partials/desktop/sommaire";
+@import "partials/desktop/buttons";
+@import "partials/desktop/inputs";
+@import "partials/desktop/home";
+@import "partials/desktop/children";
+@import "partials/desktop/header";
+@import "partials/desktop/footer";
+@import "partials/desktop/resultats";
 
 /* TABLET IMPORTS */
 @media (max-width: 768px) {
@@ -56,14 +56,14 @@ $screen-smaller-than-mobile: 399px;
 
 /* MOBILE IMPORTS */
 @media (max-width: 576px) {
-  @import 'partials/mobile/ui-kit';
-  @import 'partials/mobile/buttons';
-  @import 'partials/mobile/inputs';
-  @import 'partials/mobile/children';
-  @import 'partials/mobile/footer';
-  @import 'partials/mobile/home';
-  @import 'partials/mobile/resultats';
-  @import 'partials/mobile/sommaire';
+  @import "partials/mobile/ui-kit";
+  @import "partials/mobile/buttons";
+  @import "partials/mobile/inputs";
+  @import "partials/mobile/children";
+  @import "partials/mobile/footer";
+  @import "partials/mobile/home";
+  @import "partials/mobile/resultats";
+  @import "partials/mobile/sommaire";
 }
 
 /* UTILS */

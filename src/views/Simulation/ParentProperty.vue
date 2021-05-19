@@ -1,49 +1,57 @@
 <template>
-  <form @submit.prevent='onSubmit'>
+  <form @submit.prevent="onSubmit">
     <fieldset v-if="questionType === 'enum'">
-        <legend>
-        <h2 class="aj-question"><div v-html="question"></div></h2></legend>
-        <div class="aj-selection-wrapper" v-for="item in items" :key="item.value">
-          <input :id="item.value" type="radio" :name="fieldName" :value="item.value" v-model="value"/>
-          <label :for="item.value">
-              {{ item.label }}
-          </label>
-        </div>
+      <legend>
+        <h2 class="aj-question"><div v-html="question"></div></h2
+      ></legend>
+      <div class="aj-selection-wrapper" v-for="item in items" :key="item.value">
+        <input
+          :id="item.value"
+          type="radio"
+          :name="fieldName"
+          :value="item.value"
+          v-model="value"
+        />
+        <label :for="item.value">
+          {{ item.label }}
+        </label>
+      </div>
     </fieldset>
     <YesNoQuestion v-else v-model="value">
-        <div v-html="question"></div>
+      <div v-html="question"></div>
     </YesNoQuestion>
-    <Actions v-bind:onSubmit='onSubmit'/>
+    <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from '@/components/Actions'
-import YesNoQuestion from '../../components/YesNoQuestion.vue'
+import Actions from "@/components/Actions"
+import YesNoQuestion from "../../components/YesNoQuestion.vue"
 
 const data = {
   _situation: {
     question: "Quelle est la situation de vos parents ?",
-    questionType: 'enum',
-    items: [{
-        label: 'En couple',
-        value: 'en_couple'
+    questionType: "enum",
+    items: [
+      {
+        label: "En couple",
+        value: "en_couple",
       },
       {
-        label: 'Séparés',
-        value:'separes'
+        label: "Séparés",
+        value: "separes",
       },
       {
-        label: 'Veuf ou veuve',
-        value: 'veuve'
+        label: "Veuf ou veuve",
+        value: "veuve",
       },
       {
-        label: 'Décédés',
-        value: 'decedes'
+        label: "Décédés",
+        value: "decedes",
       },
       {
-        label: 'Sans autorité parentale',
-        value: 'sans_autorite'
+        label: "Sans autorité parentale",
+        value: "sans_autorite",
       },
     ],
   },
@@ -53,53 +61,56 @@ const data = {
 }
 
 export default {
-  name: 'SimulationParentProperty',
+  name: "SimulationParentProperty",
   components: {
     Actions,
     YesNoQuestion,
   },
-  data: function() {
+  data: function () {
     const parents = {
-      ...this.$store.getters.getParents || {}
+      ...(this.$store.getters.getParents || {}),
     }
     const value = parents[this.$route.params.fieldName]
     return {
-        error: false,
-        parents,
-        value,
+      error: false,
+      parents,
+      value,
     }
   },
   computed: {
-    fieldName: function() {
+    fieldName: function () {
       return this.$route.params.fieldName
     },
-    meta: function() {
+    meta: function () {
       return data[this.fieldName]
     },
-    questionType: function() {
+    questionType: function () {
       return this.meta.questionType
     },
-    question: function() {
+    question: function () {
       return this.meta.question
     },
-    items: function() {
+    items: function () {
       return this.meta.items
-    }
+    },
   },
   methods: {
-    requiredValueMissing: function() {
-        const hasError = this.value === undefined
-        this.$store.dispatch('updateError', hasError && 'Ce champ est obligatoire.')
-        return hasError
+    requiredValueMissing: function () {
+      const hasError = this.value === undefined
+      this.$store.dispatch(
+        "updateError",
+        hasError && "Ce champ est obligatoire."
+      )
+      return hasError
     },
-    onSubmit: function() {
-        if (this.requiredValueMissing()) {
-            return
-        }
-        this.parents[this.fieldName] = this.value
-        this.$store.dispatch('updateParents', this.parents)
-        this.$push()
-    }
-  }
+    onSubmit: function () {
+      if (this.requiredValueMissing()) {
+        return
+      }
+      this.parents[this.fieldName] = this.value
+      this.$store.dispatch("updateParents", this.parents)
+      this.$push()
+    },
+  },
 }
 </script>

@@ -1,8 +1,7 @@
 import { next, current, chapters } from '@/lib/State'
 
 const StateService = {
-  install (Vue) {
-
+  install(Vue) {
     Vue.prototype.$state = {
         next,
         current,
@@ -13,7 +12,7 @@ const StateService = {
         const nextStep = next(this.$route, this.$store.getters.getAllSteps)
         this.$router.push(nextStep.path)
     }
-  }
+  },
 }
 
 export default StateService

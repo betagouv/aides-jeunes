@@ -5,13 +5,12 @@
 </template>
 
 <script>
-
 export default {
-  name: 'FoyerRecap',
+  name: "FoyerRecap",
   computed: {
-    situation: function() {
+    situation: function () {
       return this.$store.state.situation
-    }
-  }
+    },
+  },
 }
 </script>

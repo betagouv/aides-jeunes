@@ -9,14 +9,21 @@
 </template>
 
 <script>
-import Header1J1S from '@/components/Header1J1S'
-import FooterJ1S from "./Footer1J1S";
+import Header1J1S from "@/components/Header1J1S"
+import FooterJ1S from "./Footer1J1S"
 
 export default {
-  name: 'BaseLayout',
+  name: "BaseLayout",
   components: {
-      FooterJ1S,
-      Header1J1S
+    FooterJ1S,
+    Header1J1S,
+  },
+  created() {
+    this.$router.onReady(() => {
+      if (this.$route.query.debug === "parcours") {
+        this.$store.dispatch("setDebug", true)
+      }
+    })
   },
   created() {
       this.$router.onReady(() => {

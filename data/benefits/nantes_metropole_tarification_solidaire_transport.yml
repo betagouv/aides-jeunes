@@ -5,6 +5,6 @@ link: https://metropole.nantes.fr/services/deplacements-stationnement/aides-depl
 instructions: https://metropole.nantes.fr/services/deplacements-stationnement/aides-deplacement/tarif-tan-solidaire#serviceTocEntry3
 prefix: la
 type: float
-unit: '%'
+unit: "%"
 legend: de réduction
 entity: menages

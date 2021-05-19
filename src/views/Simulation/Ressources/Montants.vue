@@ -1,36 +1,74 @@
 <template>
   <form>
     <p>
-        Indiquez toutes les ressources <strong>nettes versées</strong> perçues <span v-if="individu._role !== 'demandeur'"><strong>par {{ getIndividuNom() }}</strong></span> en France comme à l'étranger.
+      Indiquez toutes les ressources <strong>nettes versées</strong> perçues
+      <span v-if="individu._role !== 'demandeur'"
+        ><strong>par {{ getIndividuNom() }}</strong></span
+      >
+      en France comme à l'étranger.
     </p>
-    <div class="form__group" s v-for="(type, index) in types" v-bind:key="type.meta.id">
-      <RessourceMontants v-if="isSimple(type.meta.id)" v-bind:individu="type.individu" v-bind:index="index" v-bind:type="type" v-on:update="process"/>
-      <RessourceAutoEntreprise v-if="type.meta.id === 'tns_auto_entrepreneur_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
-      <RessourceMicroEntreprise v-if="type.meta.id === 'tns_micro_entreprise_chiffre_affaires'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
-      <RessourceProfessionLiberale v-if="type.meta.id === 'tns_autres_revenus'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
-      <RessourceExploitantAgricole v-if="type.meta.id === 'tns_benefice_exploitant_agricole'" v-bind:individu="type.individu" v-bind:ressource="type" v-on:update="updateTNSAmount" v-on:updateExtra="updateTNSExtra"/>
+    <div
+      class="form__group"
+      s
+      v-for="(type, index) in types"
+      v-bind:key="type.meta.id"
+    >
+      <RessourceMontants
+        v-if="isSimple(type.meta.id)"
+        v-bind:individu="type.individu"
+        v-bind:index="index"
+        v-bind:type="type"
+        v-on:update="process"
+      />
+      <RessourceAutoEntreprise
+        v-if="type.meta.id === 'tns_auto_entrepreneur_chiffre_affaires'"
+        v-bind:individu="type.individu"
+        v-bind:ressource="type"
+        v-on:update="updateTNSAmount"
+        v-on:updateExtra="updateTNSExtra"
+      />
+      <RessourceMicroEntreprise
+        v-if="type.meta.id === 'tns_micro_entreprise_chiffre_affaires'"
+        v-bind:individu="type.individu"
+        v-bind:ressource="type"
+        v-on:update="updateTNSAmount"
+        v-on:updateExtra="updateTNSExtra"
+      />
+      <RessourceProfessionLiberale
+        v-if="type.meta.id === 'tns_autres_revenus'"
+        v-bind:individu="type.individu"
+        v-bind:ressource="type"
+        v-on:update="updateTNSAmount"
+        v-on:updateExtra="updateTNSExtra"
+      />
+      <RessourceExploitantAgricole
+        v-if="type.meta.id === 'tns_benefice_exploitant_agricole'"
+        v-bind:individu="type.individu"
+        v-bind:ressource="type"
+        v-on:update="updateTNSAmount"
+        v-on:updateExtra="updateTNSExtra"
+      />
     </div>
 
-    <Actions v-bind:onSubmit='onSubmit'>
-    </Actions>
+    <Actions v-bind:onSubmit="onSubmit"> </Actions>
   </form>
 </template>
 
 <script>
-import Actions from '@/components/Actions'
-import RessourceAutoEntreprise from '@/components/Ressource/AutoEntreprise'
-import RessourceExploitantAgricole from '@/components/Ressource/ExploitantAgricole'
-import RessourceMicroEntreprise from '@/components/Ressource/MicroEntreprise'
-import RessourceProfessionLiberale from '@/components/Ressource/ProfessionLiberale'
-import RessourceMontants from '@/components/Ressource/Montants'
+import Actions from "@/components/Actions"
+import RessourceAutoEntreprise from "@/components/Ressource/AutoEntreprise"
+import RessourceExploitantAgricole from "@/components/Ressource/ExploitantAgricole"
+import RessourceMicroEntreprise from "@/components/Ressource/MicroEntreprise"
+import RessourceProfessionLiberale from "@/components/Ressource/ProfessionLiberale"
+import RessourceMontants from "@/components/Ressource/Montants"
 
-import RessourceProcessor from '@/mixins/RessourceProcessor'
-import {ressourceTypes} from '@/constants/resources'
-import Ressource from '@/lib/Ressource'
-import Individu from '@/lib/Individu'
+import RessourceProcessor from "@/mixins/RessourceProcessor"
+import { ressourceTypes } from "@/constants/resources"
+import Ressource from "@/lib/Ressource"
+import Individu from "@/lib/Individu"
 
 export default {
-  name: 'ressources-montants',
+  name: "ressources-montants",
   mixins: [RessourceProcessor],
   components: {
     RessourceAutoEntreprise,
@@ -38,9 +76,9 @@ export default {
     RessourceMicroEntreprise,
     RessourceProfessionLiberale,
     RessourceMontants,
-    Actions
+    Actions,
   },
-  data: function() {
+  data: function () {
     const individu = this.getIndividu()
     return {
       individu,
@@ -48,32 +86,44 @@ export default {
     }
   },
   watch: {
-    $route (toRoute, fromRoute) {
+    $route(toRoute, fromRoute) {
       if (
-          (toRoute.params.id != fromRoute.params.id) || (toRoute.params.category != fromRoute.params.category)
+        toRoute.params.id != fromRoute.params.id ||
+        toRoute.params.category != fromRoute.params.category
       ) {
         this.individu = this.getIndividu()
         this.types = this.getTypes(this.individu)
       }
-    }
+    },
   },
   methods: {
-    getIndividuNom: function() {
-      return Individu.label(this.individu, 'nom')
+    getIndividuNom: function () {
+      return Individu.label(this.individu, "nom")
     },
-    getIndividu: function() {
+    getIndividu: function () {
       const id = this.$route.params.id
-      const role = id.split('_')[0]
-      const { individu } = Individu.get(this.$store.getters.peopleParentsFirst, role, this.$route.params.id, this.$store.state.dates)
+      const role = id.split("_")[0]
+      const { individu } = Individu.get(
+        this.$store.getters.peopleParentsFirst,
+        role,
+        this.$route.params.id,
+        this.$store.state.dates
+      )
       return individu
     },
-    getTypes: function(individu) {
-      const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(individu, this.$route.params.category, this.$store.state.situation)
+    getTypes: function (individu) {
+      const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(
+        individu,
+        this.$route.params.category,
+        this.$store.state.situation
+      )
       return ressourceTypes.reduce((result, type) => {
         if (selectedTypes[type.id]) {
-
           let amounts = Object.assign({}, individu[type.id])
-          let months = Ressource.getPeriodsForCurrentYear(this.$store.state.dates, type)
+          let months = Ressource.getPeriodsForCurrentYear(
+            this.$store.state.dates,
+            type
+          )
 
           result.push({
             amounts,
@@ -84,31 +134,31 @@ export default {
             extra: (type.extra || []).reduce((a, e) => {
               a[e.id] = individu[e.id]
               return a
-            }, {})
+            }, {}),
           })
         }
         return result
       }, [])
     },
-    isSimple: function(type) {
+    isSimple: function (type) {
       const complex = [
-        'tns_auto_entrepreneur_chiffre_affaires',
-        'tns_benefice_exploitant_agricole',
-        'tns_micro_entreprise_chiffre_affaires',
-        'tns_autres_revenus',
+        "tns_auto_entrepreneur_chiffre_affaires",
+        "tns_benefice_exploitant_agricole",
+        "tns_micro_entreprise_chiffre_affaires",
+        "tns_autres_revenus",
       ]
-      return complex.indexOf(type) === - 1
+      return complex.indexOf(type) === -1
     },
-    onSubmit: function() {
+    onSubmit: function () {
       this.save(this.types, true)
       this.$push()
     },
-    updateTNSAmount: function(type, period, value) {
+    updateTNSAmount: function (type, period, value) {
       type.amounts[period] = value
     },
-    updateTNSExtra: function(type, item, value) {
+    updateTNSExtra: function (type, item, value) {
       type.extra[item] = value
     },
-  }
+  },
 }
 </script>

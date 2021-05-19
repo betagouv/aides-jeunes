@@ -6,9 +6,9 @@ conditions:
   - Financer au moins 50€ de vos vacances.
 link: https://depart1825.com/nos-sejours/
 teleservice: https://www.lesstations.com/
-prefix: 'l’accès au dispositif '
+prefix: "l’accès au dispositif "
 type: float
-legend: 'maximum'
+legend: "maximum"
 top: 4
 entity: individus
 isMontantAnnuel: true

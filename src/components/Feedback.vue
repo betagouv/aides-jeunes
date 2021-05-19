@@ -1,7 +1,8 @@
 <template>
   <div class="aj-feedback">
     <h2 class="aj-question">
-      Nous améliorons ce simulateur en continu, et vous pouvez nous y aider&nbsp;!
+      Nous améliorons ce simulateur en continu, et vous pouvez nous y
+      aider&nbsp;!
     </h2>
     <p>
       La plupart des résultats que nous vous proposons sont automatiquement
@@ -78,7 +79,9 @@ ID : ${resultatsId} (à conserver impérativement pour traitement de votre deman
       >).</small
     ><br />
     <small v-if="resultatsId">
-      <button v-if="!showExpertLinks" class="button small" @click="toggleLinks">Je suis partenaire</button>
+      <button v-if="!showExpertLinks" class="button small" @click="toggleLinks"
+        >Je suis partenaire</button
+      >
       <div v-if="showExpertLinks" class="aj-feedback-partenaire">
         Je suis partenaire&nbsp;:
         <ul>
@@ -96,7 +99,8 @@ ID : ${resultatsId} (à conserver impérativement pour traitement de votre deman
             >
           </li>
           <li v-if="openfiscaAxeURL">
-            <a v-analytics="{ category: 'Axe' }"
+            <a
+              v-analytics="{ category: 'Axe' }"
               target="_blank"
               :href="openfiscaAxeURL"
               >Analysez l'évolution des aides en fonction des ressources
@@ -109,32 +113,34 @@ ID : ${resultatsId} (à conserver impérativement pour traitement de votre deman
 </template>
 <script>
 export default {
-    name: 'Feedback',
-    props: {
-        resultatsId: String
-    },
-    data: function() {
-        return {
-            openfiscaTracerURL: false,
-            openfiscaAxeURL: false,
-            showExpertLinks: false,
-        }
-    },
-    methods: {
-        toggleLinks: function() {
-            if (! this.openfiscaTracerURL) {
-                this.$store.getters.fetchRepresentation('openfisca_tracer')
-                .then(representation => {
-                    this.openfiscaTracerURL = representation.destination.url
-                })
-
-                this.$store.getters.fetchRepresentation('openfisca_axe')
-                .then(representation => {
-                    this.openfiscaAxeURL = representation.destination.url
-                })
-            }
-            this.showExpertLinks = ! this.showExpertLinks
-        },
+  name: "Feedback",
+  props: {
+    resultatsId: String,
+  },
+  data: function () {
+    return {
+      openfiscaTracerURL: false,
+      openfiscaAxeURL: false,
+      showExpertLinks: false,
     }
+  },
+  methods: {
+    toggleLinks: function () {
+      if (!this.openfiscaTracerURL) {
+        this.$store.getters
+          .fetchRepresentation("openfisca_tracer")
+          .then((representation) => {
+            this.openfiscaTracerURL = representation.destination.url
+          })
+
+        this.$store.getters
+          .fetchRepresentation("openfisca_axe")
+          .then((representation) => {
+            this.openfiscaAxeURL = representation.destination.url
+          })
+      }
+      this.showExpertLinks = !this.showExpertLinks
+    },
+  },
 }
 </script>

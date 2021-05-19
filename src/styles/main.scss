@@ -1,12 +1,12 @@
 // FROM BOOTSTRAP
-$font-size-base:          15px;
-$font-size-h2:            floor(($font-size-base * 2.15)); // ~30px
+$font-size-base: 15px;
+$font-size-h2: floor(($font-size-base * 2.15)); // ~30px
 // END FROM BOOTSTRAP
 
-$text-color:        lighten(#000, 20%);
-$screen-md-min:     992px;
-$screen-sm-max:     $screen-md-min - 1;
-$screen-xs-max:     768px-1;
+$text-color: lighten(#000, 20%);
+$screen-md-min: 992px;
+$screen-sm-max: $screen-md-min - 1;
+$screen-xs-max: 768px-1;
 $screen-smaller-than-mobile: 399px;
 
 :root {
@@ -22,18 +22,18 @@ $screen-smaller-than-mobile: 399px;
 }
 
 @font-face {
-  font-family: 'Marianne';
-  src: url('../fonts/Marianne-Regular.woff2') format('truetype')
+  font-family: "Marianne";
+  src: url("../fonts/Marianne-Regular.woff2") format("truetype");
 }
 
 @font-face {
-  font-family: 'MarianneBold';
-  src: url('../fonts/Marianne-Bold.woff2') format('truetype')
+  font-family: "MarianneBold";
+  src: url("../fonts/Marianne-Bold.woff2") format("truetype");
 }
 
 @font-face {
-  font-family: 'MarianneExtraBold';
-  src: url('../fonts/Marianne-ExtraBold.woff2') format('truetype')
+  font-family: "MarianneExtraBold";
+  src: url("../fonts/Marianne-ExtraBold.woff2") format("truetype");
 }
 
 /* DESKTOP IMPORTS */
@@ -49,9 +49,9 @@ $screen-smaller-than-mobile: 399px;
 
 /* TABLET IMPORTS */
 @media (max-width: 768px) {
-  @import 'partials/tablet/ui-kit';
-  @import 'partials/tablet/header';
-  @import 'partials/tablet/home';
+  @import "partials/tablet/ui-kit";
+  @import "partials/tablet/header";
+  @import "partials/tablet/home";
 }
 
 /* MOBILE IMPORTS */
@@ -67,5 +67,4 @@ $screen-smaller-than-mobile: 399px;
 }
 
 /* UTILS */
-@import 'partials/utils/helpers';
-
+@import "partials/utils/helpers";

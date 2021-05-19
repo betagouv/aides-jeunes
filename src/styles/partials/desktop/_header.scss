@@ -4,7 +4,7 @@ html {
       background-color: var(--white);
 
       .aj-1j1s-header-logo-container {
-        border-bottom: .0625rem solid #e6e6e6;
+        border-bottom: 0.0625rem solid #e6e6e6;
         padding: 0.625rem;
 
         img {
@@ -27,8 +27,8 @@ html {
       .aj-1j1s-header-menu {
         display: flex;
         justify-content: center;
-        border-bottom: .0625rem solid #e6e6e6;
-        padding: .625rem 0;
+        border-bottom: 0.0625rem solid #e6e6e6;
+        padding: 0.625rem 0;
 
         svg {
           display: none;
@@ -68,9 +68,9 @@ html {
               svg {
                 background-repeat: no-repeat;
                 display: inline-block;
-                width: .625rem;
-                height: .625rem;
-                font-size: .625rem;
+                width: 0.625rem;
+                height: 0.625rem;
+                font-size: 0.625rem;
                 transform: rotate(90deg);
                 margin-left: 0.7rem;
                 position: relative;

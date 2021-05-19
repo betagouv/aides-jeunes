@@ -22,13 +22,17 @@ function current(currentPath, journey) {
 function next(current, journey) {
     const activeJourney = journey.filter(s => s.isActive)
 
-    let matches = activeJourney.map((element, index) => { return {element, index} }).filter(item => item.element.path == (current.path || current))
-    if (matches.length) {
-         return activeJourney[matches[matches.length - 1].index + 1]
-     } else {
-         const test = current.path || current.fullPath || current
-         throw new Error('Logic missing for ' + test)
-     }
+  let matches = activeJourney
+    .map((element, index) => {
+      return { element, index }
+    })
+    .filter((item) => item.element.path == (current.path || current))
+  if (matches.length) {
+    return activeJourney[matches[matches.length - 1].index + 1]
+  } else {
+    const test = current.path || current.fullPath || current
+    throw new Error("Logic missing for " + test)
+  }
 }
 
 module.exports = {

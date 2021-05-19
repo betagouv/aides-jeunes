@@ -17,6 +17,9 @@ export default {
     hasError: function() {
       return this.resultatStatus.error
     },
+    hasErrorSave: function () {
+      return this.$store.state.saveSituationError
+    },
     shouldDisplayResults: function() {
       return !(this.resultatStatus.updating || this.hasWarning || this.hasError) && this.droits
     },

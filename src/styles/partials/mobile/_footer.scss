@@ -33,31 +33,29 @@ html {
               position: absolute;
               right: 15px;
               top: 50%;
-              transform: translateY(-50%)rotate(90deg);
+              transform: translateY(-50%) rotate(90deg);
             }
           }
 
           ul {
             max-height: 0;
             margin: 0;
-            transition: max-height .15s;
+            transition: max-height 0.15s;
             overflow: hidden;
           }
-
-
 
           &.show {
             ul {
               max-height: none;
             }
 
-            h2{
+            h2 {
               &.last {
                 border-bottom: none;
               }
 
               svg {
-                transform: translateY(-51%)rotate(-90deg);
+                transform: translateY(-51%) rotate(-90deg);
               }
             }
           }

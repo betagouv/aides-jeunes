@@ -1,26 +1,25 @@
-version: '3'
+version: "3"
 
 services:
-
   mongo:
     image: mongo
     restart: always
     ports:
-      - '27017:27017'
+      - "27017:27017"
     volumes:
-      - './db:/data/db'
+      - "./db:/data/db"
 
   openfisca:
     build:
-      dockerfile: './docker/openfisca/Dockerfile'
-      context: '.'
+      dockerfile: "./docker/openfisca/Dockerfile"
+      context: "."
     environment:
       OPENFISCA_BIND_HOST: 0.0.0.0:2000
 
   node:
     build:
-      dockerfile: './docker/node/Dockerfile'
-      context: '.'
+      dockerfile: "./docker/node/Dockerfile"
+      context: "."
     environment:
       MONGODB_URL: mongodb://mongo:27017/dds
       OPENFISCA_URL: http://openfisca:2000
@@ -28,8 +27,8 @@ services:
       MAILJET_PUBLIC_KEY: ${MAILJET_PUBLIC_KEY}
       MAILJET_PRIVATE_KEY: ${MAILJET_PRIVATE_KEY}
     ports:
-      - '35729:35729'
-      - '9001:9001'
+      - "35729:35729"
+      - "9001:9001"
     depends_on:
       - mongo
       - openfisca
@@ -37,22 +36,22 @@ services:
       - mongo
       - openfisca
     volumes:
-      - 'node_modules:/srv/app/node_modules'
-      - './:/srv/app'
+      - "node_modules:/srv/app/node_modules"
+      - "./:/srv/app"
 
   nginx:
-    image: 'nginx:1.14-alpine'
+    image: "nginx:1.14-alpine"
     depends_on:
       - node
     links:
       - node
     ports:
-      - '2000:2000'
-      - '8080:8080'
+      - "2000:2000"
+      - "8080:8080"
     volumes:
-      - './docker/nginx/conf.d:/etc/nginx/conf.d:ro'
-      - './docker/nginx/snippets:/etc/nginx/snippets:ro'
-      - './:/home/main/mes-aides-ui:ro'
+      - "./docker/nginx/conf.d:/etc/nginx/conf.d:ro"
+      - "./docker/nginx/snippets:/etc/nginx/snippets:ro"
+      - "./:/home/main/mes-aides-ui:ro"
 
 volumes:
   node_modules:

@@ -1,7 +1,6 @@
 html {
   body {
     header.aj-1j1s-header {
-
       .aj-1j1s-header-logo-container {
         padding: 1.25rem;
 
@@ -63,14 +62,14 @@ html {
         width: 250%;
         z-index: -1;
         background-color: transparent;
-        transition: all .3s ease;
+        transition: all 0.3s ease;
 
         .container {
           opacity: 1;
           background-color: var(--white);
           max-width: 31.25rem;
           height: 100%;
-          margin-top: .6875rem;
+          margin-top: 0.6875rem;
           padding: 0 2rem;
           border-top-right-radius: var(--theme-border-radius);
           margin-left: 0;
@@ -102,7 +101,13 @@ html {
                 a {
                   color: var(--green);
                   font-weight: normal;
-                  background-image: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0) 56%, rgba(43, 182, 115, .1) 0, rgba(43, 182, 115, .1) 100%, hsla(0, 0%, 100%, 0) 0);
+                  background-image: linear-gradient(
+                    hsla(0, 0%, 100%, 0),
+                    hsla(0, 0%, 100%, 0) 56%,
+                    rgba(43, 182, 115, 0.1) 0,
+                    rgba(43, 182, 115, 0.1) 100%,
+                    hsla(0, 0%, 100%, 0) 0
+                  );
                 }
               }
 

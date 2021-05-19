@@ -1,5 +1,9 @@
-function Step({key, entity, id, variable, chapter}) {
-  this.path = entity ? `/simulation/${entity}${id ? `/${id}` : ''}${variable ? `/${variable}` : ''}` : '/'
+function Step({ key, entity, id, variable, chapter }) {
+  this.path = entity
+    ? `/simulation/${entity}${id ? `/${id}` : ""}${
+        variable ? `/${variable}` : ""
+      }`
+    : "/"
   this.key = key || this.path
   this.entity = entity
   this.id = id
@@ -8,41 +12,46 @@ function Step({key, entity, id, variable, chapter}) {
 }
 
 const updateMethods = {
-  individu: 'updateIndividu',
-  famille: 'updateFamille',
-  foyerFiscal: 'updateFoyerFiscal',
-  menage: 'updateMenage',
-  parents: 'updateParents',
+  individu: "updateIndividu",
+  famille: "updateFamille",
+  foyerFiscal: "updateFoyerFiscal",
+  menage: "updateMenage",
+  parents: "updateParents",
 }
 
 const internalUpdateMethods = {
-  individu: 'saveIndividu',
-  famille: 'saveFamille',
-  foyerFiscal: 'saveFoyerFiscal',
-  menage: 'saveMenage',
-  parents: 'saveParents',
+  individu: "saveIndividu",
+  famille: "saveFamille",
+  foyerFiscal: "saveFoyerFiscal",
+  menage: "saveMenage",
+  parents: "saveParents",
 }
 
-Step.prototype.clean = function({commit, dispatch, state}, storeInternal) {
-  const subject = state.situation[this.entity] || state.situation[this.id] || state.situation.enfants.find(enfant => enfant.id === this.id)
-  const result = {...subject, [this.variable]: undefined}
+Step.prototype.clean = function ({ commit, dispatch, state }, storeInternal) {
+  const subject =
+    state.situation[this.entity] ||
+    state.situation[this.id] ||
+    state.situation.enfants.find((enfant) => enfant.id === this.id)
+  const result = { ...subject, [this.variable]: undefined }
   const updateMethod = updateMethods[this.entity]
   const internalUpdateMethod = internalUpdateMethods[this.entity]
-  return storeInternal ? commit(internalUpdateMethod, result) : dispatch(updateMethod, result)
+  return storeInternal
+    ? commit(internalUpdateMethod, result)
+    : dispatch(updateMethod, result)
 }
 
-function ComplexStep({route, variables, chapter}) {
-  Step.call(this, {key: route, chapter: chapter})
+function ComplexStep({ route, variables, chapter }) {
+  Step.call(this, { key: route, chapter: chapter })
   this.path = `/simulation/${route}`
-  this.substeps = variables ? variables.map(v => new Step(v)) : []
+  this.substeps = variables ? variables.map((v) => new Step(v)) : []
 }
 
 ComplexStep.prototype = Object.create(Step.prototype)
-ComplexStep.prototype.clean = function(store) {
-  this.substeps.forEach(s => s.clean(store))
+ComplexStep.prototype.clean = function (store) {
+  this.substeps.forEach((s) => s.clean(store))
 }
 
 module.exports = {
   ComplexStep,
-  Step
+  Step,
 }

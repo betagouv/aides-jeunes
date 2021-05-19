@@ -7,6 +7,6 @@ link: https://www.service-public.fr/particuliers/vosdroits/F34643
 teleservice: https://amp.etudiant.gouv.fr
 prefix: l’
 type: float
-legend: ''
+legend: ""
 floorAt: 1
 entity: individus

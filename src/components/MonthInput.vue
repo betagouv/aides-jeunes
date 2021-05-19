@@ -3,33 +3,33 @@
 </template>
 
 <script>
-import moment from 'moment'
+import moment from "moment"
 
 export default {
-  name: 'MonthInput',
+  name: "MonthInput",
   props: {
     value: Date,
   },
   computed: {
     item: {
-      get: function() {
+      get: function () {
         if (!this.value) {
           return
         } else {
-          return moment(this.value).format('MM/YYYY')
+          return moment(this.value).format("MM/YYYY")
         }
       },
-      set: function(value) {
+      set: function (value) {
         if (!value) {
-          return this.$emit('input', undefined)
+          return this.$emit("input", undefined)
         }
 
-        let result = moment(value, 'MM/YYYY', true)
+        let result = moment(value, "MM/YYYY", true)
         if (result.isValid()) {
-          this.$emit('input', result.toDate())
+          this.$emit("input", result.toDate())
         }
-      }
-    }
-  }
+      },
+    },
+  },
 }
 </script>

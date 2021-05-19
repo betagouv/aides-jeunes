@@ -1,33 +1,36 @@
 <template>
-    <a v-bind:href="getURL(link)"
+  <a
+    v-bind:href="getURL(link)"
     target="_blank"
     rel="noopener"
     class="text-center"
     v-bind:class="{
       'button secondary': level === 'default',
-      'button primary': level === 'success' }"
+      'button primary': level === 'success',
+    }"
     v-on:click="onClick(link)"
-    v-analytics="{ name:analyticsName, action:type, category:'General'}"
+    v-analytics="{ name: analyticsName, action: type, category: 'General' }"
     v-bind:aria-label="longLabel"
-    v-html="label">
+    v-html="label"
+  >
   </a>
 </template>
 
 <script>
 let typeLabels = {
-    teleservice: 'Faire une demande en ligne',
-    form: 'Accéder au formulaire papier',
-    instructions: 'Accéder aux instructions',
-    link: "Plus d'informations <i class='fa fa-external-link' aria-hidden='true' role='presentation'></i>",
-};
+  teleservice: "Faire une demande en ligne",
+  form: "Accéder au formulaire papier",
+  instructions: "Accéder aux instructions",
+  link: "Plus d'informations <i class='fa fa-external-link' aria-hidden='true' role='presentation'></i>",
+}
 
 let longLabels = {
   ...typeLabels,
-  link: "Plus d'informations"
+  link: "Plus d'informations",
 }
 
 export default {
-  name: 'BenefitCtaLink',
+  name: "BenefitCtaLink",
   props: {
     analyticsName: String,
     benefit: Object,
@@ -35,36 +38,38 @@ export default {
     type: String,
     link: [String, Object],
   },
-  components: {
-  },
-  data: function() {
-    return {
-    }
+  components: {},
+  data: function () {
+    return {}
   },
   computed: {
-    label: function() {
+    label: function () {
       return typeLabels[this.type]
     },
-    longLabel: function() {
-      return `${longLabels[this.type]} pour ${ this.benefit.prefix }${ this.benefit.prefix && this.benefit.prefix.endsWith('’') ? '' : ' ' }${ this.benefit.label }`
+    longLabel: function () {
+      return `${longLabels[this.type]} pour ${this.benefit.prefix}${
+        this.benefit.prefix && this.benefit.prefix.endsWith("’") ? "" : " "
+      }${this.benefit.label}`
     },
   },
   methods: {
-    getURL: function(link) {
-      if (typeof link === 'object') {
+    getURL: function (link) {
+      if (typeof link === "object") {
         return this.$router.resolve(link).href
       }
 
-      return link;
+      return link
     },
-    onClick: function(link) {
-      if (typeof link === 'object') {
-        window.localStorage.setItem('trampoline', JSON.stringify({
-          situationId: this.$store.state.calculs.resultats._id
-        }))
+    onClick: function (link) {
+      if (typeof link === "object") {
+        window.localStorage.setItem(
+          "trampoline",
+          JSON.stringify({
+            situationId: this.$store.state.calculs.resultats._id,
+          })
+        )
       }
     },
   },
 }
-
 </script>

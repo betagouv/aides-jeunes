@@ -6,6 +6,6 @@ form: https://www.alternance.emploi.gouv.fr/portail_alternance/upload/docs/appli
 prefix: l’
 type: float
 floorAt: 1
-legend: ''
+legend: ""
 entity: individus
 interestFlag: _interetPermisDeConduire

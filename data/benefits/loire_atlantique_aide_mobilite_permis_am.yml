@@ -14,7 +14,7 @@ form: https://www.loire-atlantique.fr/jcms/demande-daide-departementale-a-la-mob
 prefix: l’
 floorAt: 1
 entity: individus
-legend: ''
+legend: ""
 type: float
 private: true
 interestFlag: _interetPermisDeConduire

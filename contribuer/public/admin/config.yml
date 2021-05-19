@@ -82,7 +82,11 @@ collections:
       - label: Courte description
         name: description
         widget: text
-        pattern: [".{10,120}", 'La description est trop longue. En cas de blocage, contactez nous à accompagnement@mes-aides.org']
+        pattern:
+          [
+            ".{10,120}",
+            "La description est trop longue. En cas de blocage, contactez nous à accompagnement@mes-aides.org",
+          ]
       - label: Conditions non prises ne comptent par le simulateur
         label_singular: Condition non prise ne compte par le simulateur
         hint: |
@@ -173,21 +177,21 @@ collections:
     create: true
     delete: false
     files:
-    - label: Accueil
-      name: accueil
-      file: "contribuer/content/home.md"
-      fields:
-        - { label: Titre, name: title, widget: string}
-        - { label: Corps, name: body, widget: markdown}
-        - label: Contributions
-          name: categories
-          widget: list
-          fields:
-            - { label: Nom, name: name, widget: string}
-            - label: Idées
-              name: ideas
-              widget: list
-              field: { label: Nom, name: name, widget: string }
+      - label: Accueil
+        name: accueil
+        file: "contribuer/content/home.md"
+        fields:
+          - { label: Titre, name: title, widget: string }
+          - { label: Corps, name: body, widget: markdown }
+          - label: Contributions
+            name: categories
+            widget: list
+            fields:
+              - { label: Nom, name: name, widget: string }
+              - label: Idées
+                name: ideas
+                widget: list
+                field: { label: Nom, name: name, widget: string }
   - name: tasks
     label: Contributions
     label_singular: contribution
@@ -197,4 +201,9 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: Nom, name: title, widget: string }
-      - { label: Description, name: "body", widget: "markdown", required: false }
+      - {
+          label: Description,
+          name: "body",
+          widget: "markdown",
+          required: false,
+        }

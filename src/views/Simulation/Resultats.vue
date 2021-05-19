@@ -16,6 +16,7 @@
     </div>
 
     <ErrorBlock v-if="hasError" />
+    <ErrorSaveBlock v-if="hasErrorSave" />
 
     <div v-show="shouldDisplayResults">
       <div v-if="! isEmpty(droits)">
@@ -53,6 +54,7 @@
 <script>
 import DroitsList from './../../components/DroitsList'
 import ErrorBlock from './../../components/ErrorBlock'
+import ErrorSaveBlock from '../../components/ErrorSaveBlock'
 import Feedback from './../../components/Feedback'
 import OfflineResults from './../../components/OfflineResults'
 import TrouverInterlocuteur from '@/components/TrouverInterlocuteur'
@@ -65,6 +67,7 @@ export default {
   components: {
     DroitsList,
     ErrorBlock,
+    ErrorSaveBlock,
     Feedback,
     OfflineResults,
     TrouverInterlocuteur,
@@ -88,12 +91,16 @@ export default {
       this.restoreLatest()
     } else {
       if (this.$store.state.calculs.dirty) {
+        this.$store.commit('setSaveSituationError', null)
         this.$store.dispatch('save')
           .then(() => {
             if (this.$store.state.access.forbidden) {
               return
             }
             return this.$store.dispatch('compute')
+          }).catch(error => {
+            this.$store.commit('setSaveSituationError', error.response && error.response.data || error)
+            this.$matomo && this.$matomo.trackEvent('General', 'Error')
           })
       } else if (! this.$store.getters.hasResults) {
         this.$store.dispatch('compute')

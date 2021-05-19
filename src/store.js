@@ -90,7 +90,8 @@ function defaultStore() {
     title: null,
     themeColor: null,
     inIframe: false,
-    iframeOrigin: null
+    iframeOrigin: null,
+    saveSituationError: null,
   }
 }
 
@@ -218,6 +219,7 @@ const store = new Vuex.Store({
       state.calculs = calculs
       state.dates = dates
       state.ameliNoticationDone = ameliNoticationDone
+      state.saveSituationError = null
     },
     saveFamille: function(state, famille) {
       state.situation = Object.assign({}, state.situation, { famille })
@@ -321,6 +323,9 @@ const store = new Vuex.Store({
     setIframeOrigin: function(state, newOrigin) {
       state.inIframe = true
       state.iframeOrigin = newOrigin
+    },
+    setSaveSituationError: function(state, saveSituationError) {
+      state.saveSituationError = saveSituationError
     },
   },
   actions: {

@@ -1,7 +1,9 @@
 label: aide sociale à l’hébergement
 institution: departement_eure_et_loir
-description: "L’aide sociale à l’hébergement (ASH) permet aux personnes dont l’état de santé ou le handicap nécessite l’entrée en établissement social ou médico-social (hébergement permanent, hébergement temporaire, accueil de jour),
-de bénéficier d’une prise en charge des frais de séjour en foyer d’hébergement, en foyer occupationnel, en foyer de vie et en foyer d’accueil médicalisé."
+description: L’aide sociale à l’hébergement (ASH) permet aux personnes dont l’état de santé ou le handicap nécessite
+  l’entrée en établissement social ou médico-social (hébergement permanent, hébergement temporaire, accueil de jour),
+  de bénéficier d’une prise en charge des frais de séjour en foyer d’hébergement, en foyer occupationnel, en foyer de
+  vie et en foyer d’accueil médicalisé.
 conditions:
   - Contribuer aux frais de séjour dans des conditions définies
     dans le cadre du règlement départemental d’aide sociale.

@@ -43,11 +43,11 @@ html {
             }
 
             &.not-home {
-              a:first-child {
+              a.rf-link {
                 display: none;
               }
 
-              a:last-child {
+              a.fr-link {
                 margin-left: 0;
               }
             }

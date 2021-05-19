@@ -7,10 +7,10 @@
                     <rect x="26" width="2" height="26" rx="1" transform="rotate(90 26 0)" fill="currentColor"></rect><rect x="26" y="8" width="2" height="26" rx="1" transform="rotate(90 26 8)" fill="currentColor"></rect><rect x="26" y="16" width="2" height="26" rx="1" transform="rotate(90 26 16)" fill="currentColor"></rect>
                 </svg>
                 <div class="aj-1j1s-header-left-links" :class="{'not-home': $route.name !== 'home'}">
-                    <a href="https://www.1jeune1solution.gouv.fr">
+                    <a href="https://www.1jeune1solution.gouv.fr" class="rf-link">
                         <img class="rf" src="@/../public/img/logo_rf.svg">
                     </a>
-                    <a href="https://www.1jeune1solution.gouv.fr">
+                    <a href="https://www.1jeune1solution.gouv.fr" class="fr-link">
                         <img class="fr" src="@/../public/img/logo1j1s-france-relance.svg">
                     </a>
                 </div>

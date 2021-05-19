@@ -1,0 +1,10 @@
+label: aide aux apprenants de la Grande École du Numérique
+institution: etat
+description: tdb
+link: https://www.grandeecolenumerique.fr/espace-apprenants/se-renseigner-sur-les-aides-
+teleservice: https://dse.phm.education.gouv.fr/GEN/
+prefix: l’
+type: float
+floorAt: 0.1
+legend: ''
+entity: individus

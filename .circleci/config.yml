@@ -96,7 +96,7 @@ jobs:
           command: npm run lint
       - run:
           name: Run Prettier
-          command: npm run prettier
+          command: npm run prettier:check
   build:
     <<: *defaults
     steps:

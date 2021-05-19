@@ -1,10 +1,12 @@
 label: aide aux apprenants de la Grande École du Numérique
 institution: etat
-description: tdb
-link: https://www.grandeecolenumerique.fr/espace-apprenants/se-renseigner-sur-les-aides-
+description: La Grande École du numérique (GEN) est une labellisation des formations courtes et qualifiantes permettent d’acquérir un socle professionnalisant de compétences numériques. Cette aide délivrée par le CROUS s’adresse à des personnes diplômées en situation de recherche d’emploi ou dépourvues de qualification professionnelle ou de diplôme.
+link: https://www.grandeecolenumerique.fr/espace-apprenants/se-renseigner-sur-les-aides
 teleservice: https://dse.phm.education.gouv.fr/GEN/
 prefix: l’
 type: float
 floorAt: 0.1
-legend: ''
 entity: individus
+conditions:
+  - Ne pas percevoir une aide à l’insertion, une aide à la formation professionnelle ou une bourse d’enseignement supérieur sur critères sociaux.
+  - Ne pas suivre une formation avec un contrat d’apprentissage ou de professionnalisation ou être en congé individuel de formation.

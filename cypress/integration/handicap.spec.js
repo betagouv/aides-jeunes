@@ -1,17 +1,17 @@
 /// <reference types="Cypress" />
-import * as steps from '../support'
+import * as steps from "../support"
 
-context('Full simulation', () => {
+context("Full simulation", () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/init-ci')
+    cy.visit("http://localhost:8080/init-ci")
   })
 
-  it('accepts a situation with handicap', () => {
+  it("accepts a situation with handicap", () => {
     steps.home()
     steps.demandeur({
       enfant: false,
       handicap: {
-        taux_incapacite: 0.7
+        taux_incapacite: 0.7,
       },
     })
     steps.zeroEnfants()

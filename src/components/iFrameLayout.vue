@@ -1,27 +1,25 @@
 <template>
   <div>
     <nav>
-      <router-link v-bind:to="link">{{label}}</router-link>
+      <router-link v-bind:to="link">{{ label }}</router-link>
     </nav>
     <slot></slot>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'iFrameLayout',
+  name: "iFrameLayout",
   computed: {
-    label: function() {
+    label: function () {
       return this.$store.state.iframeOrigin ? "Précédent" : "À propos"
     },
-    link: function() {
+    link: function () {
       return this.$store.state.iframeOrigin || "/a-propos-integre"
-    }
-  }
+    },
+  },
 }
 </script>
-
 
 <style scoped lang="scss">
 nav {

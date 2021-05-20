@@ -187,8 +187,8 @@ let ressourceTypes = [
     },
   },
   {
-    id: "garantie_jeune",
-    label: "Garantie jeune",
+    id: "garantie_jeunes",
+    label: "Garantie jeunes",
     category: "allocations",
     prefix: "la",
     isRelevant: (situation, individu) => {

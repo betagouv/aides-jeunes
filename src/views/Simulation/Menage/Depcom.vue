@@ -45,7 +45,7 @@ export default {
         selectedValue: menage._codePostal,
       },
       communeQuestion: {
-        label: "Veuillez selectionner votre ville",
+        label: "Veuillez sélectionner votre ville",
         selectedValue: menage._nomCommune,
       },
     }

@@ -72,7 +72,13 @@ var individu = Object.assign(
     rsa_jeune_condition_heures_travail_remplie: Boolean,
     scolarite: {
       type: String,
-      enum: ["inconnue", "college", "lycee", "enseignement_superieur"],
+      enum: [
+        "college",
+        "lycee",
+        "enseignement_superieur",
+        "grande_ecole_du_numerique",
+        "inconnue",
+      ],
     },
     statuts_etablissement_scolaire: {
       type: String,

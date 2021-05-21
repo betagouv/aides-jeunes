@@ -1,9 +1,9 @@
 <template>
   <div class="aj-unbox">
     <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
-      <p v-show="accessStatus.fetching"
-        >Récupération de la situation en cours…</p
-      >
+      <p v-show="accessStatus.fetching">
+        Récupération de la situation en cours…
+      </p>
       <p v-show="resultatStatus.updating">Récupération de vos droits…</p>
     </LoadingModal>
 
@@ -37,7 +37,7 @@
       />
     </div>
     <div class="aj-box normal-padding-bottom aj-results-details-feedback-box">
-      <Feedback :resultatsId="resultatsId" />
+      <Feedback :situationID="situation._id" />
     </div>
   </div>
 </template>

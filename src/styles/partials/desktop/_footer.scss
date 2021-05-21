@@ -11,14 +11,17 @@ html {
 
         .aj-1j1s-footer-logo-container {
           display: flex;
+          flex-wrap: wrap;
+
           width: 25%;
 
           .rf {
-            margin-right: 1.25rem;
+            margin:  0.625rem;
             max-width: 5.875rem;
           }
 
           .fr {
+            margin:  0.625rem;
             max-width: 8.25rem;
           }
         }

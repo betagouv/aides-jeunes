@@ -1,7 +1,7 @@
 label: Mobili-Jeune
 institution: action_logement
 description: L’aide MOBILI-JEUNE® s’adresse aux jeunes de moins de 30 ans, en formation en alternance. Elle permet de prendre en charge une partie du loyer (entre 10 € et 100 € maximum) chaque mois et pendant un an.
-link: https://www.actionlogement.fr/l-aide-mobili-jeune
+link: https://www.actionlogement.fr/l-aide-mobili-jeune?utm_source=mes-aides-jeunes&utm_medium=resultats
 teleservice: https://mobilijeune.actionlogement.fr
 prefix: "l'aide "
 type: float

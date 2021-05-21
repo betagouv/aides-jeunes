@@ -82,6 +82,7 @@ var individuSchema = {
     fn: function (_dureeMoisEtudesEtranger, _, situation) {
       return moment(situation.dateDeValeur)
         .add(_dureeMoisEtudesEtranger, "M")
+        .add(1, "d")
         .format("YYYY-MM-DD")
     },
   },

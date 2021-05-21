@@ -131,7 +131,8 @@ export default {
               "setSaveSituationError",
               (error.response && error.response.data) || error
             )
-            this.$matomo && this.$matomo.trackEvent("General", "Error")
+            this.$matomo &&
+              this.$matomo.trackEvent("General", "Erreur sauvegarde simulation")
           })
       } else if (!this.$store.getters.hasResults) {
         this.$store.dispatch("compute")

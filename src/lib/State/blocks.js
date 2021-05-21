@@ -189,8 +189,20 @@ function extraBlock() {
           },
         ],
       },
-      s("_interetEtudesEtranger"),
-      s("_dureeMoisEtudesEtranger"),
+      {
+        isActive: (subject) =>
+          subject.scolarite == "enseignement_superieur" &&
+          ["public", "prive_sous_contrat"].includes(
+            subject.statuts_etablissement_scolaire
+          ),
+        steps: [
+          s("_interetEtudesEtranger"),
+          {
+            isActive: (subject) => subject._interetEtudesEtranger,
+            steps: [s("_dureeMoisEtudesEtranger")],
+          },
+        ],
+      },
     ],
   }
 }

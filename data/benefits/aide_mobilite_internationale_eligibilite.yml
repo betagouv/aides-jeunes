@@ -4,7 +4,6 @@ description: L'aide à la mobilité internationale vous permet de suivre une for
 link: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
 instructions: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
 prefix: l’
-type: float
-floorAt: 1
+type: bool
 entity: individus
 interestFlag: _interetEtudesEtranger

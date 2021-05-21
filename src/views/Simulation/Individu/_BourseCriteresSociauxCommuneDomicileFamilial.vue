@@ -12,7 +12,7 @@
     ></p>
     <div class="form__group" v-show="communes && communes.length">
       <label class="aj-question"
-        >Veuillez selectionner la ville qui correspond</label
+        >Veuillez sélectionner la ville qui correspond</label
       >
       <select v-model="nomCommune" id="commune">
         <option

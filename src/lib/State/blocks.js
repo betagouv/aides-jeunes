@@ -189,6 +189,8 @@ function extraBlock() {
           },
         ],
       },
+      s("_interetEtudesEtranger"),
+      s("_dureeMoisEtudesEtranger"),
     ],
   }
 }

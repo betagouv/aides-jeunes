@@ -21,7 +21,7 @@ const router = new Router({
           (referrer.match(/ameli\.fr/) ||
             referrer.match(/mes-aides\.org\/ameli/))
         ) {
-          store.commit("setAmeliNoticationDone")
+          store.commit("setAmeliNoticationDone") /**/
           return next("/ameli")
         }
         next()
@@ -297,6 +297,22 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Alternant.vue"
+                ),
+            },
+            {
+              name: "_interetEtudesEtranger",
+              path: "_interetEtudesEtranger",
+              component: () =>
+                import(
+                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/_InteretEtudesEtranger.vue"
+                ),
+            },
+            {
+              name: "_dureeMoisEtudesEtranger",
+              path: "_dureeMoisEtudesEtranger",
+              component: () =>
+                import(
+                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/_DureeMoisEtudesEtranger.vue"
                 ),
             },
             {

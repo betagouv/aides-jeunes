@@ -1,0 +1,10 @@
+label: aide à la mobilité internationale
+institution: etat
+description: L'aide à la mobilité internationale vous permet de suivre une formation supérieure à l'étranger dans le cadre d'un programme d'échanges ou d'effectuer un stage international.
+link: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
+instructions: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
+prefix: l’
+type: float
+floorAt: 1
+entity: individus
+interestFlag: _interetEtudesEtranger

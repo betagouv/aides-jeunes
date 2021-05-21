@@ -72,6 +72,19 @@ var individuSchema = {
     src: "date_debut_chomage",
     fn: formatDate,
   },
+  debut_etudes_etranger: {
+    fn: function (_, situation) {
+      return moment(situation.dateDeValeur).format("YYYY-MM-DD")
+    },
+  },
+  fin_etudes_etranger: {
+    src: "_dureeMoisEtudesEtranger",
+    fn: function (_dureeMoisEtudesEtranger, _, situation) {
+      return moment(situation.dateDeValeur)
+        .add(_dureeMoisEtudesEtranger, "M")
+        .format("YYYY-MM-DD")
+    },
+  },
   mobili_jeune_eligibilite_employeur: {
     fn: function () {
       return true

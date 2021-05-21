@@ -4,6 +4,20 @@
       ><i class="fa fa-warning" aria-hidden="true"></i> Une erreur est
       survenue.</h2
     >
+
+    <div v-if="isTimeoutError" class="notification warning">
+      <p
+        >Vous êtes beaucoup à utiliser ce simulateur en ce moment. On n'a pas
+        réussi à répondre à tout le monde en même temps.</p
+      >
+
+      <p
+        >En actualisant la page vous pourrez obtenir les résultats de votre
+        simulation. Si vous le pouvez, attendez quelques minutes pour le
+        faire.</p
+      >
+    </div>
+
     <p
       ><a
         v-analytics="{ action: 'Support', category: 'Contact' }"
@@ -19,7 +33,7 @@
 
   ————
   ID : ${resultatsId}
-  Erreur : ${error}
+  Erreur : ${errorText}
   ————`,
         }"
         >Signalez ce problème</a
@@ -35,9 +49,14 @@
       sera résolu.</p
     >
 
-    <small>
+    <div>
+      <button v-on:click="showDetails = !showDetails">
+        Afficher les détails techniques
+      </button>
+    </div>
+    <small v-if="showDetails">
       Informations techniques :
-      <pre v-html="error"></pre>
+      <pre v-html="errorText"></pre>
     </small>
   </div>
 </template>
@@ -45,15 +64,23 @@
 <script>
 export default {
   name: "ErrorBlock",
+  data: function () {
+    return {
+      showDetails: false,
+    }
+  },
   computed: {
     resultatStatus: function () {
       return this.$store.state.calculs
     },
-    error: function () {
+    errorText: function () {
       let value = this.resultatStatus.error && this.resultatStatus.exception
       return value instanceof String || value instanceof Error
         ? value
         : JSON.stringify(value, null, 2)
+    },
+    isTimeoutError: function () {
+      return this.errorText && this.errorText.match(/time.?out/i)
     },
     resultats: function () {
       return this.$store.state.calculs.resultats

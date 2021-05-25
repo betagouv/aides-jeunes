@@ -4,6 +4,11 @@ var bodyParser = require("body-parser")
 var morgan = require("morgan")
 var utils = require("./backend/lib/utils")
 var Sentry = require("@sentry/node")
+var fs = require("fs")
+var path = require("path")
+var packageFile = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "package.json"), "utf8")
+)
 
 module.exports = function (app) {
   Sentry.init({
@@ -13,6 +18,7 @@ module.exports = function (app) {
       process.env.NODE_ENV === "production"
         ? "https://dff4dd1245ed4ed2b05a11f513c23cb4@o548798.ingest.sentry.io/5709109"
         : null,
+    release: packageFile["version"],
   })
 
   // The request handler must be the first middleware on the app

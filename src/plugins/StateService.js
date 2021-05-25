@@ -14,7 +14,9 @@ const StateService = {
         situation || this.$store.state.situation,
         this.$router
       )
-      this.$router.push(nextStep.path)
+      this.$router.push(nextStep.path).catch((failure) => {
+        throw new Error(failure)
+      })
     }
   },
 }

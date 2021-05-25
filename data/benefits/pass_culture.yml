@@ -1,0 +1,12 @@
+label: pass culture
+institution: etat
+description: Le pass Culture est une mission de service public portée par le ministère de la Culture. Ce dispositif te permet d’avoir accès l’année de tes 18 ans à une application sur laquelle tu disposes de 300€ pendant 24 mois pour découvrir et réserver selon tes envies les propositions culturelles de proximité et offres numériques (livres, concerts, théâtres, musées, cours de musique, abonnements numériques, etc.).
+conditions:
+  - Avoir 18 ans et s'inscrire sur l'application avant 19 ans.
+link: https://pass.culture.fr/
+instructions: https://pass.culture.fr/nosapplications/
+prefix: le
+type: float
+floorAt: 1
+legend: "pendant 24 mois"
+entity: individus

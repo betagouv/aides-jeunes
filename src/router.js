@@ -3,6 +3,7 @@ import Router from "vue-router"
 import Home from "./views/Home.vue"
 import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
+import QuestionsBlock from "@/views/QuestionsBlock"
 
 Vue.use(Router)
 
@@ -10,6 +11,11 @@ const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: "/questions/:step",
+      name: "QuestionsBlock",
+      component: QuestionsBlock,
+    },
     {
       path: "/",
       name: "home",

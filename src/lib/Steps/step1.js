@@ -7,8 +7,8 @@ export default {
       type: YesNoQuestion,
       label: "Quelle est la situation de vos parents ?",
       fieldName: "question1",
-      enSavoirPlus: function (store) {
-        store
+      enSavoirPlus: function (component) {
+        component
         return "info lol"
       },
     },

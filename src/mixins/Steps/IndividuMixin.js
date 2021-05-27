@@ -1,7 +1,7 @@
 import Individu from "@/lib/Individu"
 
 export const createIndividuMixin = (props) => {
-  const { fieldName = props, optional = false } = props
+  const fieldName = props
 
   return {
     data: function () {
@@ -15,13 +15,11 @@ export const createIndividuMixin = (props) => {
       )
       const value = individu[fieldName]
       return {
-        error: false,
         fieldName,
         individu,
         id,
         value,
         role,
-        optional,
       }
     },
     methods: {

@@ -32,6 +32,9 @@ export default {
       required: true,
     },
   },
+  mounted() {
+    console.log(this.question.label)
+  },
   methods: {},
 }
 </script>

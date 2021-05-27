@@ -49,13 +49,13 @@ export default {
     onSubmit() {
       let hasError = false
       for (const index in this.questions) {
-        if (this.$refs[`question_${index}`].requiredValueMissing())
+        if (this.$refs[`question_${index}`][0].requiredValueMissing())
           hasError = true
       }
       if (hasError) return
 
       for (const index in this.questions) {
-        this.$refs[`question_${index}`].onSubmit()
+        this.$refs[`question_${index}`][0].onSubmit()
       }
       if ("onSubmit" in this.currentStep) this.currentStep.onSubmit()
 

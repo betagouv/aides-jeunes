@@ -61,18 +61,6 @@ const router = new Router({
               path: "questions/:step",
               name: "IndividuQuestion",
               component: QuestionsBlock,
-              // component: () =>
-              //   import(
-              //     /* webpackChunkName: "individu" */ "./views/Simulation/QuestionsBlock.vue"
-              //   ),
-            },
-            {
-              name: "questions/date_naissance",
-              path: "date_naissance",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/DateNaissance.vue"
-                ),
             },
             {
               name: "handicap",
@@ -178,14 +166,14 @@ const router = new Router({
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/GIR.vue"
                 ),
             },
-            {
-              name: "nationalite",
-              path: "nationalite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Nationalite.vue"
-                ),
-            },
+            // {
+            //   name: "nationalite",
+            //   path: "nationalite",
+            //   component: () =>
+            //     import(
+            //       /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Nationalite.vue"
+            //     ),
+            // },
             {
               name: "activite",
               path: "activite",

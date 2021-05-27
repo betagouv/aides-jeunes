@@ -17,7 +17,7 @@ function individuBlockFactory(id) {
     steps: [
       ...(enfant ? [r("_firstName")] : []),
       r("date_naissance", demandeur ? "profil" : undefined, true),
-      r("nationalite"),
+      r("nationalite", undefined, true),
       ...(conjoint ? [r("statut_marital")] : []),
       ...(enfant ? [r("garde_alternee")] : []),
       ...(!enfant ? [r("activite")] : []),

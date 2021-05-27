@@ -2,7 +2,7 @@
   <fieldset>
     <legend>
       <h2 class="aj-question"
-        >{{ question.label
+        >{{ questionLabel
         }}<EnSavoirPlus v-if="enSavoirPlus" :text="enSavoirPlus"
       /></h2>
       <QuestionError v-if="hasQuestionError">
@@ -12,7 +12,7 @@
 
     <div
       class="aj-selection-wrapper"
-      v-for="item in question.items"
+      v-for="item in questionItems"
       :key="item.value"
     >
       <input
@@ -32,7 +32,8 @@
 <script>
 import EnSavoirPlus from "@/components/Questions/Components/EnSavoirPlus"
 import QuestionError from "@/components/Questions/Components/QuestionError"
-import { createQuestionMixin } from "@/mixins/QuestionMixins"
+import { createQuestionBaseMixin } from "@/mixins/Steps/QuestionBaseMixin"
+import { createBasicErrorMixin } from "@/mixins/Steps/BasicErrorMixin"
 
 export default {
   name: "EnumQuestion",
@@ -40,22 +41,18 @@ export default {
     EnSavoirPlus,
     QuestionError,
   },
-  mixins: [createQuestionMixin()],
+  mixins: [createQuestionBaseMixin(), createBasicErrorMixin()],
   props: {
     question: {
       type: Object,
       required: true,
     },
   },
-  methods: {
-    requiredValueMissing: function () {
-      const hasError = this.value === undefined
-      if (hasError) this.questionError = "Ce champ est obligatoire."
-      return hasError
-    },
-    onSubmit: function () {
-      if ("onSubmit" in this.question) this.question.onSubmit(this)
-      return this.value
+  computed: {
+    questionItems: function () {
+      return this.question.items.filter(
+        (obj) => !obj.isRelevant || obj.isRelevant(this)
+      )
     },
   },
 }

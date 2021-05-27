@@ -1,8 +1,8 @@
-function Step({ key, entity, id, variable, chapter }) {
+function Step({ key, entity, id, variable, chapter, newQuestion }) {
   this.path = entity
     ? `/simulation/${entity}${id ? `/${id}` : ""}${
-        variable ? `/${variable}` : ""
-      }`
+        newQuestion ? "/questions" : ""
+      }/${variable ? `/${variable}` : ""}`
     : "/"
   this.key = key || this.path
   this.entity = entity

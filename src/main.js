@@ -8,6 +8,7 @@ import moment from "moment"
 
 import ScrollService from "./plugins/ScrollService"
 import StateService from "./plugins/StateService"
+import StepService from "./plugins/StepService"
 
 import AsyncComputed from "vue-async-computed"
 import * as Sentry from "@sentry/vue"
@@ -44,6 +45,7 @@ Vue.use(AsyncComputed)
 Vue.use(Resizer)
 Vue.use(ScrollService)
 Vue.use(StateService)
+Vue.use(StepService)
 Vue.use(Vuelidate)
 
 Vue.use(VueMatomo, {

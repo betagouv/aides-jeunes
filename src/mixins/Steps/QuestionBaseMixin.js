@@ -1,8 +1,11 @@
 import { returnStringOrExecuteFunction } from "@/lib/Step"
 
-export const createQuestionMixin = () => {
+export const createQuestionBaseMixin = () => {
   return {
     computed: {
+      questionLabel: function () {
+        return returnStringOrExecuteFunction(this.question, "label", this)
+      },
       enSavoirPlus: function () {
         return returnStringOrExecuteFunction(
           this.question,
@@ -10,14 +13,10 @@ export const createQuestionMixin = () => {
           this
         )
       },
-      hasQuestionError: function () {
-        return this.questionError !== undefined
-      },
     },
     data: function () {
       return {
         value: undefined,
-        questionError: undefined,
       }
     },
   }

@@ -54,8 +54,7 @@ export default {
       return hasError
     },
     onSubmit: function () {
-      if ("onSubmit" in this.question)
-        this.question.onSubmit(this.$store, this.value)
+      if ("onSubmit" in this.question) this.question.onSubmit(this)
       return this.value
     },
   },

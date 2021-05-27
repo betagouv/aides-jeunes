@@ -3,7 +3,7 @@ import Router from "vue-router"
 import Home from "./views/Home.vue"
 import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
-import QuestionsBlock from "@/views/QuestionsBlock"
+import QuestionsBlock from "@/views/Simulation/QuestionsBlock"
 
 Vue.use(Router)
 
@@ -11,11 +11,6 @@ const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
-    {
-      path: "/questions/:step",
-      name: "QuestionsBlock",
-      component: QuestionsBlock,
-    },
     {
       path: "/",
       name: "home",
@@ -36,10 +31,15 @@ const router = new Router({
     {
       path: "/simulation",
       name: "simulation",
-      redirect: "/simulation/individu/demandeur/date_naissance",
+      redirect: "/simulation/individu/demandeur/questions/date_naissance",
       component: () =>
         import(/* webpackChunkName: "simulation" */ "./views/Simulation.vue"),
       children: [
+        // {
+        //   path: "questions/:step",
+        //   name: "QuestionsBlock",
+        //   component: QuestionsBlock,
+        // },
         {
           path: ":parent+/en_savoir_plus",
           name: "en_savoir_plus",
@@ -51,14 +51,23 @@ const router = new Router({
         {
           name: "individu",
           path: "individu/:id",
-          redirect: "/simulation/individu/:id/date_naissance",
+          redirect: "/simulation/individu/:id/questions/date_naissance",
           component: () =>
             import(
               /* webpackChunkName: "individu" */ "./views/Simulation/Individu.vue"
             ),
           children: [
             {
-              name: "date_naissance",
+              path: "questions/:step",
+              name: "IndividuQuestion",
+              component: QuestionsBlock,
+              // component: () =>
+              //   import(
+              //     /* webpackChunkName: "individu" */ "./views/Simulation/QuestionsBlock.vue"
+              //   ),
+            },
+            {
+              name: "questions/date_naissance",
               path: "date_naissance",
               component: () =>
                 import(

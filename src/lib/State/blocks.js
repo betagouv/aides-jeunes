@@ -4,8 +4,8 @@ const { datesGenerator } = require("../../../backend/lib/mes-aides")
 const { Step, ComplexStep } = require("./steps")
 
 function individuBlockFactory(id) {
-  const r = (variable, chapter) =>
-    new Step({ entity: "individu", id, variable, chapter })
+  const r = (variable, chapter, newQuestion = false) =>
+    new Step({ entity: "individu", id, variable, chapter, newQuestion })
   const conjoint = id == "conjoint"
   const demandeur = id == "demandeur"
   const enfant = id.startsWith("enfant")
@@ -16,7 +16,7 @@ function individuBlockFactory(id) {
       {},
     steps: [
       ...(enfant ? [r("_firstName")] : []),
-      r("date_naissance", demandeur ? "profil" : undefined),
+      r("date_naissance", demandeur ? "profil" : undefined, true),
       r("nationalite"),
       ...(conjoint ? [r("statut_marital")] : []),
       ...(enfant ? [r("garde_alternee")] : []),

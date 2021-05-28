@@ -1,0 +1,22 @@
+html {
+  body {
+    header.aj-1j1s-header {
+      .aj-1j1s-header-logo-container {
+        .container {
+          .aj-1j1s-header-right-links {
+            .button {
+              padding: 10px 20px;
+              &.is-not-mobile {
+                display: none;
+              }
+
+              &.is-mobile {
+                display: flex;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

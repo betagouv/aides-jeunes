@@ -7,12 +7,11 @@
           :ref="`question_${index}`"
           v-bind:is="types[question.fieldName]"
           :question="question"
+          :question-index="index"
         ></component>
       </keep-alive>
     </template>
-    <!--    <button type="button" @click="$router.push('/questions/step2')"-->
-    <!--      >dsds</button-->
-    <!--    >-->
+
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>

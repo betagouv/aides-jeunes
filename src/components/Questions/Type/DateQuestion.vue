@@ -2,7 +2,12 @@
   <div>
     <label :for="question.fieldName"
       ><h2 class="aj-question"> {{ questionLabel }} </h2
-      ><EnSavoirPlus v-if="enSavoirPlus" :text="enSavoirPlus"></EnSavoirPlus>
+      ><EnSavoirPlus
+        v-if="enSavoirPlus"
+        :question-label="questionLabel"
+        :question-index="questionIndex"
+        :text="enSavoirPlus"
+      ></EnSavoirPlus>
     </label>
     <QuestionError v-if="hasQuestionError">
       {{ questionError }}

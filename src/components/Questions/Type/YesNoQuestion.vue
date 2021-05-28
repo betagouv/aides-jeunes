@@ -1,9 +1,13 @@
 <template>
   <fieldset>
-    <legend
+    <legend class="width-100"
       ><h2 class="aj-question"
-        >{{ question.label
-        }}<EnSavoirPlus v-if="enSavoirPlus" :text="enSavoirPlus"
+        >{{ questionLabel
+        }}<EnSavoirPlus
+          v-if="enSavoirPlus"
+          :question-label="questionLabel"
+          :question-index="questionIndex"
+          :text="enSavoirPlus"
       /></h2>
       <QuestionError v-if="hasQuestionError">
         {{ questionError }}
@@ -33,9 +37,10 @@
 </template>
 
 <script>
-import EnSavoirPlus from "@/components/EnSavoirPlus"
 import QuestionError from "@/components/Questions/Components/QuestionError"
-import { createQuestionMixin } from "@/mixins/QuestionMixins"
+import { createQuestionBaseMixin } from "@/mixins/Steps/QuestionBaseMixin"
+import { createBasicErrorMixin } from "@/mixins/Steps/BasicErrorMixin"
+import EnSavoirPlus from "@/components/Questions/Components/EnSavoirPlus"
 
 export default {
   name: "YesNoQuestion",
@@ -43,7 +48,7 @@ export default {
     QuestionError,
     EnSavoirPlus,
   },
-  mixins: [createQuestionMixin()],
+  mixins: [createQuestionBaseMixin(), createBasicErrorMixin()],
   props: {
     question: {
       type: Object,
@@ -55,16 +60,6 @@ export default {
     return {
       uniqueFieldName,
     }
-  },
-  requiredValueMissing: function () {
-    const hasError = this.value === undefined
-    if (hasError) this.questionError = "Ce champ est obligatoire."
-    return hasError
-  },
-  onSubmit: function () {
-    if ("onSubmit" in this.question)
-      this.question.onSubmit(this.$store, this.value)
-    return this.value
   },
 }
 </script>

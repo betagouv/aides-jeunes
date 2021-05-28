@@ -35,11 +35,14 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "simulation" */ "./views/Simulation.vue"),
       children: [
-        // {
-        //   path: "questions/:step",
-        //   name: "QuestionsBlock",
-        //   component: QuestionsBlock,
-        // },
+        {
+          path: "en_savoir_plus/:step/:questionIndex",
+          name: "en_savoir_plus_question",
+          component: () =>
+            import(
+              /* webpackChunkName: "en_savoir_plus" */ "./components/Questions/Components/EnSavoirPlusContent.vue"
+            ),
+        },
         {
           path: ":parent+/en_savoir_plus",
           name: "en_savoir_plus",

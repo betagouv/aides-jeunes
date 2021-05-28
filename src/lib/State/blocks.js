@@ -26,19 +26,19 @@ function individuBlockFactory(id) {
             {
               isActive: (subject) => subject.activite == "etudiant",
               steps: [
-                r("scolarite"),
+                r("scolarite", undefined, true),
                 {
                   isActive: (subject) =>
                     subject.scolarite == "lycee" ||
                     subject.scolarite == "enseignement_superieur",
-                  steps: [r("classe_scolarite")],
+                  steps: [r("classe_scolarite", undefined, true)],
                 },
                 {
                   isActive: (subject) =>
                     subject.scolarite == "enseignement_superieur",
-                  steps: [r("statuts_etablissement_scolaire")],
+                  steps: [r("statuts_etablissement_scolaire", undefined, true)],
                 },
-                r("alternant"),
+                r("alternant", undefined, true),
               ],
             },
           ]
@@ -56,7 +56,7 @@ function individuBlockFactory(id) {
             },
           ]
         : []),
-      r("handicap"),
+      r("handicap", undefined, true),
       {
         isActive: (subject) => subject.handicap,
         steps: [

@@ -4,7 +4,6 @@
       {{ getLabel('avoir') | capitalize }} une restriction substantielle et durable d'accès à l'emploi reconnue par la <abbr title="Commission des droits et de l'autonomie des personnes handicapées">CDAPH</abbr>&nbsp;?
     <p>Attention, cette restriction est différente de la reconnaissance de la qualité de travailleur handicapé.</p>
     </YesNoQuestion>
-  
     <Actions v-bind:onSubmit='onSubmit'/>
   </form>
 </template>

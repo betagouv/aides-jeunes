@@ -7,11 +7,14 @@
         title="Commission des droits et de l'autonomie des personnes handicapées"
         >CDAPH</abbr
       >&nbsp;?
+      <template v-slot:description>
+        <p
+          >Attention, cette restriction est différente de la reconnaissance de
+          la qualité de travailleur handicapé.</p
+        >
+      </template>
     </YesNoQuestion>
-    <p
-      >Attention, cette restriction est différente de la reconnaissance de la
-      qualité de travailleur handicapé.</p
-    >
+
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>

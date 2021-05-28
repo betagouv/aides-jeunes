@@ -121,7 +121,7 @@ export default {
       menu: [
         {
           key: "1",
-          label: "Je postule à un job",
+          label: "Je candidate à un job",
           href: "https://www.1jeune1solution.gouv.fr/emplois?utm_source=mes-aides-beta&utm_medium=menu",
         },
         {

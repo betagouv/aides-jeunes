@@ -16,6 +16,10 @@ html {
 
             .button {
               margin-left: 20px;
+
+              &.is-mobile {
+                display: none;
+              }
             }
           }
         }

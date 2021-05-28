@@ -55,10 +55,16 @@
 
         <div class="aj-1j1s-header-right-links">
           <router-link
-            class="button outline"
+            class="button outline is-not-mobile"
             to="/"
             v-if="$route.name !== 'home'"
             >Retour à l'accueil du simulateur</router-link
+          >
+          <router-link
+            class="button outline is-mobile"
+            to="/"
+            v-if="$route.name !== 'home'"
+            >Accueil</router-link
           >
         </div>
       </div>

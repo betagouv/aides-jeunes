@@ -42,4 +42,21 @@ context("Full simulation", () => {
     steps.hasPrimeActivite(2)
     // steps.hasLogementSocial()
   })
+  it("displays a tooltip if the parents are separated ", () => {
+    steps.home()
+    steps.etudiant_public()
+    steps.zeroEnfants()
+    steps.celibataire()
+    steps.parentsSepares()
+    steps.unEnfantSuperieur()
+    steps.heberge()
+    steps.neParticipePasLogement()
+    steps.hebergeParents()
+
+    cy.get('input[type="number"').type("45200")
+    steps.submit()
+    // Ressources
+    steps.submit()
+    cy.get(".aj-tooltip")
+  })
 })

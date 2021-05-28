@@ -1,20 +1,25 @@
-import DateQuestion from "@/components/Questions/Type/DateQuestion"
+// import DateQuestion from "@/components/Questions/Type/DateQuestion"
 import { createIndividuMixin } from "@/mixins/Steps/IndividuMixin"
 import _ from "lodash"
 
 const fieldName = "date_naissance"
 
-const component = _.cloneDeep(DateQuestion)
-
-component.mixins = [
-  ...(DateQuestion.mixins || []),
-  createIndividuMixin(fieldName),
-]
-
 export default {
   questions: [
     {
-      type: component,
+      type: () => {
+        return import(
+          /* webpackChunkName: "QuestionType" */ "@/components/Questions/Type/DateQuestion"
+        ).then((DateQuestion) => {
+          const component = _.cloneDeep(DateQuestion.default)
+
+          component.mixins = [
+            ...(DateQuestion.default.mixins || []),
+            createIndividuMixin(fieldName),
+          ]
+          return component
+        })
+      },
       label: (component) => {
         return component.role === "demandeur"
           ? `Quelle est votre date de naissance ?`

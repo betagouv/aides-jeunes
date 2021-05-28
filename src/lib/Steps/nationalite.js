@@ -4,17 +4,18 @@ import EnumQuestion from "@/components/Questions/Type/EnumQuestion"
 
 const fieldName = "nationalite"
 
-const component = _.cloneDeep(EnumQuestion)
-
-component.mixins = [
-  ...(EnumQuestion.mixins || []),
-  createIndividuMixin(fieldName),
-]
-
 export default {
   questions: [
     {
-      type: component,
+      type: () => {
+        const component = _.cloneDeep(EnumQuestion)
+
+        component.mixins = [
+          ...(EnumQuestion.mixins || []),
+          createIndividuMixin(fieldName),
+        ]
+        return component
+      },
       label: (component) => {
         return component.role === "demandeur"
           ? "Quelle est votre nationalité ?"

@@ -38,7 +38,6 @@ export default {
     },
   },
   mounted() {
-    alert("QuestionsBlock mounted")
     this.loadStep(this.$route.params.step)
   },
   watch: {
@@ -55,11 +54,15 @@ export default {
     loadQuestions() {
       for (var member in this.types) delete this.types[member]
       for (const question of this.currentStep.questions) {
-        question.type().then((component) => {
-          debugger // eslint-disable-line no-debugger
-          Vue.set(this.types, question.fieldName, component)
-          console.log(this.types)
-        })
+        const questionType = question.type()
+        if (questionType instanceof Promise) {
+          question.type().then((component) => {
+            Vue.set(this.types, question.fieldName, component)
+            console.log(this.types)
+          })
+        } else {
+          Vue.set(this.types, question.fieldName, questionType)
+        }
       }
     },
     loadStep(step) {

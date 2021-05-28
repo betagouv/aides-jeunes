@@ -8,17 +8,17 @@ export default {
   questions: [
     {
       type: () => {
-        return import(
-          /* webpackChunkName: "QuestionType" */ "@/components/Questions/Type/DateQuestion"
-        ).then((DateQuestion) => {
-          const component = _.cloneDeep(DateQuestion.default)
+        return import("@/components/Questions/Type/DateQuestion").then(
+          (DateQuestion) => {
+            const component = _.cloneDeep(DateQuestion.default)
 
-          component.mixins = [
-            ...(DateQuestion.default.mixins || []),
-            createIndividuMixin(fieldName),
-          ]
-          return component
-        })
+            component.mixins = [
+              ...(DateQuestion.default.mixins || []),
+              createIndividuMixin(fieldName),
+            ]
+            return component
+          }
+        )
       },
       label: (component) => {
         return component.role === "demandeur"

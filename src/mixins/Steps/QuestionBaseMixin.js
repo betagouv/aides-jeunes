@@ -1,17 +1,13 @@
-import { returnStringOrExecuteFunction } from "@/lib/Utils"
+import { executeFunctionOrReturnValue } from "@/lib/Utils"
 
 export const createQuestionBaseMixin = () => {
   return {
     computed: {
       questionLabel: function () {
-        return returnStringOrExecuteFunction(this.question, "label", this)
+        return executeFunctionOrReturnValue(this.question, "label", this)
       },
       enSavoirPlus: function () {
-        return returnStringOrExecuteFunction(
-          this.question,
-          "enSavoirPlus",
-          this
-        )
+        return executeFunctionOrReturnValue(this.question, "enSavoirPlus", this)
       },
     },
     data: function () {

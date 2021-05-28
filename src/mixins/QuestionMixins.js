@@ -1,14 +1,10 @@
-import { returnStringOrExecuteFunction } from "@/lib/Utils"
+import { executeFunctionOrReturnValue } from "@/lib/Utils"
 
 export const createQuestionMixin = () => {
   return {
     computed: {
       enSavoirPlus: function () {
-        return returnStringOrExecuteFunction(
-          this.question,
-          "enSavoirPlus",
-          this
-        )
+        return executeFunctionOrReturnValue(this.question, "enSavoirPlus", this)
       },
       hasQuestionError: function () {
         return this.questionError !== undefined

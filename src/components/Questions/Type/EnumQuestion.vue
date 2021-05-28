@@ -34,6 +34,7 @@ import EnSavoirPlus from "@/components/Questions/Components/EnSavoirPlus"
 import QuestionError from "@/components/Questions/Components/QuestionError"
 import { createQuestionBaseMixin } from "@/mixins/Steps/QuestionBaseMixin"
 import { createBasicErrorMixin } from "@/mixins/Steps/BasicErrorMixin"
+import { executeFunctionOrReturnValue } from "@/lib/Utils"
 
 export default {
   name: "EnumQuestion",
@@ -50,7 +51,7 @@ export default {
   },
   computed: {
     questionItems: function () {
-      return this.question.items.filter(
+      return executeFunctionOrReturnValue(this.question, "items", this).filter(
         (obj) => !obj.isRelevant || obj.isRelevant(this)
       )
     },

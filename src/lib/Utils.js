@@ -1,8 +1,8 @@
-export const returnStringOrExecuteFunction = (obj, name, component) => {
+export const executeFunctionOrReturnValue = (obj, name, component) => {
   return obj && obj[name]
-    ? typeof obj[name] == "string"
-      ? obj[name]
-      : obj[name](component)
+    ? typeof obj[name] == "function"
+      ? obj[name](component)
+      : obj[name]
     : undefined
 }
 

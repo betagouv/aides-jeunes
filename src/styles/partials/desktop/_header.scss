@@ -7,6 +7,23 @@ html {
         border-bottom: 0.0625rem solid #e6e6e6;
         padding: 0.625rem;
 
+        .container {
+          display: flex;
+          align-items: center;
+
+          .aj-1j1s-header-right-links {
+            margin-left: auto;
+
+            .button {
+              margin-left: 20px;
+
+              &.is-mobile {
+                display: none;
+              }
+            }
+          }
+        }
+
         img {
           margin-right: 20px;
 

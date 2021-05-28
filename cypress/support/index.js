@@ -47,6 +47,38 @@ export function demandeur(params = {}) {
   // Handicap
   handicap(params)
 }
+export function etudiant_public(params = {}) {
+  // Naissance
+  cy.get("label").invoke("text").should("contain", "naissance")
+  cy.get("#date_naissance").type(params.date_naissance || "12122000")
+  submit()
+  // Nationalite
+  cy.get("legend").invoke("text").should("contain", "nationalité")
+  autoSubmit()
+
+  cy.get('input[type="radio"]').check("fr")
+  autoSubmit()
+
+  // Activite
+  etudiant()
+
+  // Type d'études
+  enseignementSuperieur()
+
+  // Niveau d'étude
+  master1()
+
+  // Type d'établissement
+  etablissementPublic()
+
+  // Alternance
+  sansAlternance()
+
+  // Handicap
+  handicap(params)
+  // Déclaration impôts parents
+  surDeclarationParents()
+}
 
 export function handicap(params) {
   cy.get("legend").invoke("text").should("contain", "handicap")
@@ -74,7 +106,34 @@ export function handicap(params) {
     autoSubmit()
   }
 }
-
+export function etudiant() {
+  cy.get('input[type="radio"]').check("etudiant")
+  submit()
+}
+export function enseignementSuperieur() {
+  cy.get("legend").invoke("text").should("contain", `scolarisé·e`)
+  cy.get('input[type="radio"]').check("enseignement_superieur")
+  submit()
+}
+export function etablissementPublic() {
+  cy.get("legend").invoke("text").should("contain", `type`)
+  cy.get('input[type="radio"]').check("public")
+  submit()
+}
+export function master1() {
+  cy.get("legend").invoke("text").should("contain", `classe`)
+  cy.get('input[type="radio"]').check("master_1")
+  submit()
+}
+export function sansAlternance() {
+  cy.get("legend").invoke("text").should("contain", `alternance`)
+  cy.get('input[type="radio"]').check("false")
+  submit()
+}
+export function surDeclarationParents() {
+  cy.get('input[type="radio"]').check("true")
+  submit()
+}
 export function submit() {
   cy.get('button[type="submit"]').click()
 }
@@ -100,6 +159,15 @@ export function deuxEnfants() {
   cy.get("button#add-pac").click()
   enfant()
   cy.get("h2").invoke("text").should("contain", "enfants")
+  submit()
+}
+
+export function unEnfantSuperieur() {
+  cy.get("legend").invoke("text").should("contain", "la charge")
+  cy.get('input[type="number"').type("1")
+  submit()
+  cy.get("legend").invoke("text").should("contain", "des études supérieures")
+  cy.get('input[type="number"').type("1")
   submit()
 }
 
@@ -174,13 +242,55 @@ export function couple() {
   autoSubmit()
 }
 
+export function parentsSepares() {
+  cy.get("legend").invoke("text").should("contain", "parents")
+  cy.get('input[name="_situation"]').get('[value="separes"]').check()
+  submit()
+}
+export function parentsEnCouple() {
+  cy.get("legend").invoke("text").should("contain", "parents")
+  cy.get('input[name="_situation"]').get('[value="en_couple"]').check()
+  submit()
+}
+export function parentsVeufs() {
+  cy.get("legend").invoke("text").should("contain", "parents")
+  cy.get('input[name="_situation"]').get('[value="veuve"]').check()
+  submit()
+}
+export function parentsSansAutorite() {
+  cy.get("legend").invoke("text").should("contain", "parents")
+  cy.get('input[name="_situation"]').get('[value="sans_autorite"]').check()
+  submit()
+}
+
 export function sansDomicileStable() {
   cy.get('input[name="logementType"').get('[value="sansDomicile"]').check()
   submit() // Logement
   cy.get('input[type="number"').type("94120")
-  submit() // Commune de résidence
+  submit()
+}
+export function heberge() {
+  cy.get('input[name="logementType"]').get('[value="heberge"]').check()
+  submit()
+}
+export function hebergeParents() {
+  cy.get("legend").invoke("text").should("contain", "parents")
+  cy.get('input[type="radio"]').check("true")
+  submit()
 }
 
+export function participeLogement() {
+  cy.get("legend").invoke("text").should("contain", "Participez-vous")
+  cy.get("legend").invoke("text").should("contain", "logement")
+  cy.get('input[type="radio"]').check("true")
+  submit()
+}
+export function neParticipePasLogement() {
+  cy.get("legend").invoke("text").should("contain", "Participez-vous")
+  cy.get("legend").invoke("text").should("contain", "logement")
+  cy.get('input[type="radio"]').check("false")
+  submit()
+}
 export function salaireSeul() {
   cy.get("form").find('input[type="checkbox"] ').first().check()
   submit()

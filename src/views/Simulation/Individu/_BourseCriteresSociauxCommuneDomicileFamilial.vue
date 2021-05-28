@@ -66,6 +66,14 @@ export default {
         this.retrievingCommunes = true
         return Commune.get(this.codePostal)
           .then((communes) => {
+            if (communes.length <= 0) {
+              this.$matomo &&
+                this.$matomo.trackEvent(
+                  "General",
+                  "Depcom introuvable",
+                  `Code postal : ${this.codePostalQuestion.selectedValue}`
+                )
+            }
             if (!communes.map((c) => c.nom).includes(this.nomCommune)) {
               this.nomCommune = Commune.getMostPopulated(communes).nom
             }

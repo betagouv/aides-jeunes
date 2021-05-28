@@ -17,6 +17,9 @@ const texts = {
   inapte_travail: function () {
     return "Vous pouvez être « inapte au travail » après un accident ou une maladie. C'est le médecin du travail qui détermine cela."
   },
+  bourse_criteres_sociaux_base_ressources_parentale: () => {
+    return "Lorsque les parents sont séparés, il faut prendre les ressources du parent ayant à la charge l'étudiant. Si l'étudiant est en garde alternée, il faut faire la somme des ressources des deux foyers fiscaux des parents séparés."
+  },
 }
 
 const Hint = {

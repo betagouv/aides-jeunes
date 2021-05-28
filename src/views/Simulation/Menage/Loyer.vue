@@ -62,6 +62,7 @@ export default {
         loyerQuestion: {
           label: loyerLabel,
           selectedValue: menage.loyer,
+          hint: "Hors aides au logement…",
         },
         chargesQuestion: {
           label: "Quel est le montant de vos charges locatives ?",

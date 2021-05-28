@@ -20,7 +20,7 @@ function individuBlockFactory(id) {
       r("nationalite", undefined, true),
       ...(conjoint ? [r("statut_marital")] : []),
       ...(enfant ? [r("garde_alternee")] : []),
-      ...(!enfant ? [r("activite")] : []),
+      ...(!enfant ? [r("activite", undefined, true)] : []),
       ...(demandeur
         ? [
             {

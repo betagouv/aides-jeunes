@@ -166,22 +166,6 @@ const router = new Router({
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/GIR.vue"
                 ),
             },
-            // {
-            //   name: "nationalite",
-            //   path: "nationalite",
-            //   component: () =>
-            //     import(
-            //       /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Nationalite.vue"
-            //     ),
-            // },
-            {
-              name: "activite",
-              path: "activite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Activite.vue"
-                ),
-            },
             {
               name: "habite_chez_parents",
               path: "habite_chez_parents",

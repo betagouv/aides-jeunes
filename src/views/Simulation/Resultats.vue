@@ -69,7 +69,7 @@
           v-if="!resultatStatus.updating && !isEmpty(droits)"
           v-bind:id="resultatsId"
         />
-        <Feedback :resultatsId="resultatsId" />
+        <Feedback :situationID="this.$store.state.situation._id" />
       </div>
     </div>
   </div>

@@ -28,6 +28,7 @@ export default {
             )}${component.getLabel("nom")} ?`
       },
       fieldName: fieldName,
+      errorMessage: "Veuillez renseigner une date de naissance valide.",
     },
   ],
 }

@@ -1,6 +1,6 @@
 <template>
   <fieldset>
-    <legend>
+    <legend class="legend">
       <h2 class="aj-question"
         >{{ questionLabel
         }}<EnSavoirPlus v-if="enSavoirPlus" :text="enSavoirPlus"
@@ -59,4 +59,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.legend {
+  width: 100%;
+}
+</style>

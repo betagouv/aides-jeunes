@@ -2,6 +2,7 @@ import { createIndividuMixin } from "@/mixins/Steps/IndividuMixin"
 import _ from "lodash"
 import Individu from "@/lib/Individu"
 import EnumQuestion from "@/components/Questions/Type/EnumQuestion"
+import { isRelevant } from "@/lib/Utils"
 
 const fieldName = "activite"
 
@@ -36,23 +37,20 @@ export default {
             label: "Inscrit·e comme demandeur d’emploi",
           },
           {
+            value: "retraite",
+            label: "Retraité·e",
+            isRelevant: (component) =>
+              Individu.age(
+                component.individu,
+                component.$store.state.dates.today.value
+              ) > 30,
+          },
+          {
             value: "inactif",
             label: "Autre",
           },
         ]
-
-        if (
-          Individu.age(
-            component.individu,
-            component.$store.state.dates.today.value
-          ) > 30
-        )
-          items.push({
-            value: "retraite",
-            label: "Retraité·e",
-          })
-
-        return items
+        return isRelevant(items, component)
       },
     },
   ],

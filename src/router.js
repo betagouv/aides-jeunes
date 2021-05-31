@@ -21,7 +21,7 @@ const router = new Router({
           (referrer.match(/ameli\.fr/) ||
             referrer.match(/mes-aides\.org\/ameli/))
         ) {
-          store.commit("setAmeliNoticationDone") /**/
+          store.commit("setAmeliNoticationDone")
           return next("/ameli")
         }
         next()

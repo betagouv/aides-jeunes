@@ -60,22 +60,6 @@ const router = new Router({
                 ),
             },
             {
-              name: "handicap",
-              path: "handicap",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Handicap.vue"
-                ),
-            },
-            {
-              name: "taux_incapacite",
-              path: "taux_incapacite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Handicap/TauxIncapacite.vue"
-                ),
-            },
-            {
               name: "aah_restriction_substantielle_durable_acces_emploi",
               path: "aah_restriction_substantielle_durable_acces_emploi",
               component: () =>
@@ -84,35 +68,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "inapte_travail",
-              path: "inapte_travail",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/InapteTravail.vue"
-                ),
-            },
-            {
               name: "date_debut_chomage",
               path: "date_debut_chomage",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/DateDebutChomage.vue"
-                ),
-            },
-            {
-              name: "ass_precondition_remplie",
-              path: "ass_precondition_remplie",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/AssPreconditionRemplie.vue"
-                ),
-            },
-            {
-              name: "scolarite",
-              path: "scolarite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Scolarite.vue"
                 ),
             },
             {
@@ -153,30 +113,6 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/EnfantPlace.vue"
-                ),
-            },
-            {
-              name: "gir",
-              path: "gir",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/GIR.vue"
-                ),
-            },
-            {
-              name: "nationalite",
-              path: "nationalite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Nationalite.vue"
-                ),
-            },
-            {
-              name: "activite",
-              path: "activite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Activite.vue"
                 ),
             },
             {
@@ -244,22 +180,6 @@ const router = new Router({
                 ),
             },
             {
-              name: "classe_scolarite",
-              path: "classe_scolarite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/ClasseScolarite.vue"
-                ),
-            },
-            {
-              name: "statuts_etablissement_scolaire",
-              path: "statuts_etablissement_scolaire",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/StatutsEtablissementScolaire.vue"
-                ),
-            },
-            {
               name: "aide_mobilite_parcoursup_sortie_academie",
               path: "aide_mobilite_parcoursup_sortie_academie",
               component: () =>
@@ -292,11 +212,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "alternant",
-              path: "alternant",
+              name: "IndividuProperty",
+              path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Alternant.vue"
+                  /* webpackChunkName: "individu" */ "./views/Simulation/IndividuProperty.vue"
                 ),
             },
             {

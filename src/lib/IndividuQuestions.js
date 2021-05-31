@@ -2,9 +2,6 @@ import Individu from "@/lib/Individu"
 import { capitalize, isRelevant, yearsAgo } from "@/lib/Utils"
 
 export default {
-  // TODO add date_naissance
-  //TODO add date_debut_chomage
-
   aah_restriction_substantielle_durable_acces_emploi: {
     question: (component) => {
       return `${capitalize(

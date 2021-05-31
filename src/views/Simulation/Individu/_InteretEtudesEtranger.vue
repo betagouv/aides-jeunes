@@ -1,8 +1,7 @@
 <template>
   <form @submit.prevent="onSubmit">
     <YesNoQuestion v-model="value">
-      Prévoyez-vous de réaliser une formation supérieure à l'étranger dans le
-      cadre d'un programme d'échanges ou d'effectuer un stage international ?
+      Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?
     </YesNoQuestion>
     <Actions v-bind:onSubmit="onSubmit" />
   </form>

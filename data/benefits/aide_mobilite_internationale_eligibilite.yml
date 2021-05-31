@@ -4,7 +4,7 @@ description: L'aide à la mobilité internationale vous permet de suivre une for
 link: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
 instructions: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
 conditions:
-  - Ne pas cumuler plus 9 mois d'aide à la mobilité internationale au cours de l'ensemble de vos études supérieures.
+  - Ne pas cumuler plus de 9 mois d'aide à la mobilité internationale au cours de l'ensemble de vos études supérieures.
 prefix: l’
 type: bool
 entity: individus

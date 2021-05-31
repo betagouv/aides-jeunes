@@ -3,8 +3,8 @@
     <fieldset>
       <legend
         ><h2 class="aj-question"
-          >Quelle est la durée en mois de votre programme d'échanges ou de votre
-          stage à l'international ?</h2
+          >Combien de mois envisagez-vous de partir à l'étranger dans le cadre
+          de vos études ?</h2
         ></legend
       >
       <label>
@@ -27,5 +27,3 @@ export default {
   mixins: [createIndividuMixin("_dureeMoisEtudesEtranger")],
 }
 </script>
-
-<style scoped lang="css"></style>

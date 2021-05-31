@@ -69,7 +69,7 @@
           v-if="!resultatStatus.updating && !isEmpty(droits)"
           v-bind:id="resultatsId"
         />
-        <Feedback :resultatsId="resultatsId" />
+        <Feedback :situationID="this.$store.state.situation._id" />
       </div>
     </div>
   </div>
@@ -131,7 +131,8 @@ export default {
               "setSaveSituationError",
               (error.response && error.response.data) || error
             )
-            this.$matomo && this.$matomo.trackEvent("General", "Error")
+            this.$matomo &&
+              this.$matomo.trackEvent("General", "Erreur sauvegarde simulation")
           })
       } else if (!this.$store.getters.hasResults) {
         this.$store.dispatch("compute")

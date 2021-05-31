@@ -7,7 +7,7 @@
         title="Commission des droits et de l'autonomie des personnes handicapées"
         >CDAPH</abbr
       >&nbsp;?
-      <template v-slot:description>
+      <template v-slot:help>
         <p
           >Attention, cette restriction est différente de la reconnaissance de
           la qualité de travailleur handicapé.</p

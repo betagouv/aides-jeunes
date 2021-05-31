@@ -154,6 +154,7 @@ export default {
         component.getLabel("être")
       )} placé·e en structure spécialisée ou famille d'accueil ?`
     },
+    questionType: "yesno",
   },
 
   garde_alternee: {

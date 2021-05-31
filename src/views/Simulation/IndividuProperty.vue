@@ -5,7 +5,8 @@
         <h2 class="aj-question"
           ><span v-html="question"></span>
           <EnSavoirPlus v-if="meta.enSavoirPlus" /></h2
-      ></legend>
+        ><p v-if="meta.help" v-html="meta.help"></p>
+      </legend>
       <div class="aj-selection-wrapper" v-for="item in items" :key="item.value">
         <input
           :id="item.value"
@@ -21,6 +22,9 @@
     </fieldset>
     <YesNoQuestion v-else v-model="value">
       <span v-html="question"></span><EnSavoirPlus v-if="meta.enSavoirPlus" />
+      <template v-slot:help v-if="meta.help"
+        ><p v-html="meta.help"></p
+      ></template>
     </YesNoQuestion>
     <Actions v-bind:onSubmit="onSubmit" />
   </form>

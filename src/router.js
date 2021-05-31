@@ -59,28 +59,13 @@ const router = new Router({
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/DateNaissance.vue"
                 ),
             },
-            {
-              name: "aah_restriction_substantielle_durable_acces_emploi",
-              path: "aah_restriction_substantielle_durable_acces_emploi",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Handicap/AAHRestrictionSubstantielleDurableAccesEmploi.vue"
-                ),
-            },
+
             {
               name: "date_debut_chomage",
               path: "date_debut_chomage",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/DateDebutChomage.vue"
-                ),
-            },
-            {
-              name: "garde_alternee",
-              path: "garde_alternee",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/GardeAlternee.vue"
                 ),
             },
             {
@@ -108,35 +93,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "enfant_place",
-              path: "enfant_place",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/EnfantPlace.vue"
-                ),
-            },
-            {
-              name: "habite_chez_parents",
-              path: "habite_chez_parents",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/HabiteChezParents.vue"
-                ),
-            },
-            {
               name: "_firstName",
               path: "_firstName",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/_FirstName.vue"
-                ),
-            },
-            {
-              name: "_interetPermisDeConduire",
-              path: "_interetPermisDeConduire",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/_InteretPermisDeConduire.vue"
                 ),
             },
             {
@@ -169,46 +130,6 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/_BourseCriteresSociauxCommuneDomicileFamilial.vue"
-                ),
-            },
-            {
-              name: "rsa_jeune_condition_heures_travail_remplie",
-              path: "rsa_jeune_condition_heures_travail_remplie",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/RsaJeuneConditionHeuresTravailRemplie.vue"
-                ),
-            },
-            {
-              name: "aide_mobilite_parcoursup_sortie_academie",
-              path: "aide_mobilite_parcoursup_sortie_academie",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/AideMobiliteParcoursupSortieAcademie.vue"
-                ),
-            },
-            {
-              name: "aide_mobilite_parcoursup_boursier_lycee",
-              path: "aide_mobilite_parcoursup_boursier_lycee",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/AideMobiliteParcoursupBoursierLycee.vue"
-                ),
-            },
-            {
-              name: "aide_mobilite_master_sortie_region_academique",
-              path: "aide_mobilite_master_sortie_region_academique",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/AideMobiliteMasterSortieRegionAcademique.vue"
-                ),
-            },
-            {
-              name: "boursier",
-              path: "boursier",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Boursier.vue"
                 ),
             },
             {

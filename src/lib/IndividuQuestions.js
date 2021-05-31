@@ -3,30 +3,21 @@ import { capitalize, isRelevant, yearsAgo } from "@/lib/Utils"
 
 export default {
   // TODO add date_naissance
+  //TODO add date_debut_chomage
 
-  nationalite: {
+  aah_restriction_substantielle_durable_acces_emploi: {
     question: (component) => {
-      return component.role === "demandeur"
-        ? "Quelle est votre nationalité ?"
-        : `Quelle est la nationalité ${component.getLabel(
-            "préposition"
-          )}${component.getLabel("nom")} ?`
+      return `${capitalize(
+        component.getLabel("avoir")
+      )} une restriction substantielle et
+      durable d'accès à l'emploi reconnue par la
+      <abbr
+        title="Commission des droits et de l'autonomie des personnes handicapées"
+        >CDAPH</abbr
+      > ?`
     },
-    questionType: "enum",
-    items: [
-      {
-        label: "Française",
-        value: "fr",
-      },
-      {
-        label: "Européenne",
-        value: "ue",
-      },
-      {
-        label: "Non européenne",
-        value: "autre",
-      },
-    ],
+    questionType: "yesno",
+    help: "Attention, cette restriction est différente de la reconnaissance de la qualité de travailleur handicapé.",
   },
 
   activite: {
@@ -66,35 +57,64 @@ export default {
     },
   },
 
-  scolarite: {
+  aide_mobilite_master_sortie_region_academique: {
     question: (component) => {
-      return component.role == "demandeur"
-        ? "Où êtes-vous scolarisé·e"
-        : `Où sera scolarisé·e ${component.individu._firstName} à la rentrée prochaine`
+      return `${capitalize(component.getLabel("avoir"))} prévu d'étudier
+      <a
+        target="_blank"
+        rel="noopener"
+        href="https://www.etudiant.gouv.fr/fr/aide-la-mobilite-en-master-1504#item2"
+        >hors de votre région académique</a
+      >
+      l'an prochain ?`
     },
-    questionType: "enum",
-    items: [
-      {
-        value: "college",
-        label: "Au collège",
-      },
-      {
-        value: "lycee",
-        label: "Au lycée / En CAP / En CPA",
-      },
-      {
-        value: "enseignement_superieur",
-        label: "Dans un établissement de l'enseignement supérieur",
-      },
-      {
-        value: "grande_ecole_du_numerique",
-        label: "Dans une grande école du numérique",
-      },
-      {
-        value: "inconnue",
-        label: "Autre",
-      },
-    ],
+    questionType: "yesno",
+  },
+
+  aide_mobilite_parcoursup_boursier_lycee: {
+    question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
+    questionType: "yesno",
+  },
+
+  aide_mobilite_parcoursup_sortie_academie: {
+    question: (component) => {
+      return `${capitalize(component.getLabel("avoir"))} prévu d'étudier
+      <a
+        target="_blank"
+        rel="noopener"
+        href="https://www.education.gouv.fr/les-regions-academiques-academies-et-services-departementaux-de-l-education-nationale-6557"
+        >hors de votre académie</a
+      >
+      l'an prochain ?`
+    },
+    questionType: "yesno",
+  },
+
+  alternant: {
+    question: (component) => {
+      return `${capitalize(component.getLabel("être"))} en alternance ?`
+    },
+    questionType: "yesno",
+  },
+
+  ass_precondition_remplie: {
+    question: (component) => {
+      return `${capitalize(component.getLabel("avoir"))} travaillé
+      <abbr
+        title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés."
+        >au moins 5 ans</abbr
+      >
+      entre ${yearsAgo(
+        10,
+        component.individu.date_debut_chomage
+      )} et ${yearsAgo(0, component.individu.date_debut_chomage)} ?`
+    },
+    questionType: "yesno",
+  },
+
+  boursier: {
+    question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
+    questionType: "yesno",
   },
 
   classe_scolarite: {
@@ -131,6 +151,124 @@ export default {
     },
   },
 
+  enfant_place: {
+    question: (component) => {
+      return `${capitalize(
+        component.getLabel("être")
+      )} placé·e en structure spécialisée ou famille d'accueil ?`
+    },
+  },
+
+  garde_alternee: {
+    question: (component) => {
+      return `${capitalize(component.getLabel("être"))} en garde alternée ?`
+    },
+    questionType: "yesno",
+  },
+
+  gir: {
+    question: (component) => {
+      return `${capitalize(component.getLabel("être"))} besoin d’une aide à la
+      personne ?`
+    },
+    questionType: "enum",
+    items: [
+      {
+        value: "gir_6",
+        label: "Jamais",
+      },
+      {
+        value: "gir_5",
+        label: "Ponctuellement",
+      },
+      {
+        value: "gir_1",
+        label: "Régulièrement",
+      },
+    ],
+  },
+
+  habite_chez_parents: {
+    question: "Êtes-vous hébergé chez vos parents ?",
+    questionType: "yesno",
+  },
+
+  handicap: {
+    question: (component) => {
+      return `${capitalize(
+        component.getLabel("être")
+      )} en situation de handicap ?`
+    },
+    questionType: "yesno",
+    enSavoirPlus: true,
+  },
+
+  inapte_travail: {
+    question: (component) => {
+      return `${capitalize(
+        component.getLabel("être")
+      )} reconnu·e inapte au travail ?`
+    },
+    questionType: "yesno",
+    enSavoirPlus: true,
+  },
+
+  nationalite: {
+    question: (component) => {
+      return component.role === "demandeur"
+        ? "Quelle est votre nationalité ?"
+        : `Quelle est la nationalité ${component.getLabel(
+            "préposition"
+          )}${component.getLabel("nom")} ?`
+    },
+    questionType: "enum",
+    items: [
+      {
+        label: "Française",
+        value: "fr",
+      },
+      {
+        label: "Européenne",
+        value: "ue",
+      },
+      {
+        label: "Non européenne",
+        value: "autre",
+      },
+    ],
+  },
+
+  scolarite: {
+    question: (component) => {
+      return component.role == "demandeur"
+        ? "Où êtes-vous scolarisé·e"
+        : `Où sera scolarisé·e ${component.individu._firstName} à la rentrée prochaine`
+    },
+    questionType: "enum",
+    items: [
+      {
+        value: "college",
+        label: "Au collège",
+      },
+      {
+        value: "lycee",
+        label: "Au lycée / En CAP / En CPA",
+      },
+      {
+        value: "enseignement_superieur",
+        label: "Dans un établissement de l'enseignement supérieur",
+      },
+      {
+        value: "grande_ecole_du_numerique",
+        label: "Dans une grande école du numérique",
+      },
+      {
+        value: "inconnue",
+        label: "Autre",
+      },
+    ],
+  },
+
   statuts_etablissement_scolaire: {
     question: "Dans quel type d'établissement étudiez-vous actuellement ?",
     questionType: "enum",
@@ -152,50 +290,6 @@ export default {
         label: "Autre",
       },
     ],
-  },
-
-  alternant: {
-    question: (component) => {
-      return `${capitalize(component.getLabel("être"))} en alternance ?`
-    },
-    questionType: "yesno",
-  },
-
-  //TODO add date_debut_chomage
-
-  ass_precondition_remplie: {
-    question: (component) => {
-      return `${capitalize(component.getLabel("avoir"))} travaillé
-      <abbr
-        title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés."
-        >au moins 5 ans</abbr
-      >
-      entre ${yearsAgo(
-        10,
-        component.individu.date_debut_chomage
-      )} et ${yearsAgo(0, component.individu.date_debut_chomage)} ?`
-    },
-    questionType: "yesno",
-  },
-
-  inapte_travail: {
-    question: (component) => {
-      return `${capitalize(
-        component.getLabel("être")
-      )} reconnu·e inapte au travail ?`
-    },
-    questionType: "yesno",
-    enSavoirPlus: true,
-  },
-
-  handicap: {
-    question: (component) => {
-      return `${capitalize(
-        component.getLabel("être")
-      )} en situation de handicap ?`
-    },
-    questionType: "yesno",
-    enSavoirPlus: true,
   },
 
   taux_incapacite: {
@@ -230,25 +324,20 @@ export default {
     ],
   },
 
-  gir: {
+  rsa_jeune_condition_heures_travail_remplie: {
     question: (component) => {
-      return `${capitalize(component.getLabel("être"))} besoin d’une aide à la
-      personne ?`
+      return `${capitalize(component.getLabel("avoir"))} travaillé
+      <abbr
+        title="ou 3 214 heures (2 fois 1 607) couvertes par un contrat de travail."
+        >au moins 2 ans</abbr
+      >
+      depuis ${yearsAgo(3, component.$store.state.dates.today.id)} ?`
     },
-    questionType: "enum",
-    items: [
-      {
-        value: "gir_6",
-        label: "Jamais",
-      },
-      {
-        value: "gir_5",
-        label: "Ponctuellement",
-      },
-      {
-        value: "gir_1",
-        label: "Régulièrement",
-      },
-    ],
+    questionType: "yesno",
+  },
+
+  _interetPermisDeConduire: {
+    question: "Prévoyez-vous de passer le permis de conduire ?",
+    questionType: "yesno",
   },
 }

@@ -27,9 +27,9 @@
       ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération en
       cours…</p
     >
-    <div v-if="list && list.length">
+    <div v-if="etablissements && etablissements.length">
       <div
-        v-for="(etablissement, index) in list"
+        v-for="(etablissement, index) in etablissements"
         class="aj-etablissement-container"
         v-bind:key="index"
       >
@@ -38,55 +38,92 @@
     </div>
     <div v-else>
       <router-link to="/simulation/resultats">
-        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Revenir aux
-        résultats
+        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        Revenir aux résultats
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios"
-
 import Etablissement from "@/components/Etablissement"
-import EtablissementLib from "@/lib/Etablissement"
+import Individu from "@/lib/Individu.js"
+// Sorted by relevancy
+var defaultEtablissementTypes = [
+  "mairie",
+  "mds",
+  "ccas",
+  "cdas",
+  "centre_social",
+  "edas",
+  "sdsei",
+  "msap",
+]
+const list = [
+  {
+    isRelevant: (demandeur, situation) => {
+      let demandeurAge = Math.abs(
+        Individu.age(situation.dateDeValeur, demandeur.date_naissance)
+      )
+      return demandeurAge <= 25 && demandeurAge >= 16
+    },
+    types: ["mission_locale", "cij"],
+    prepend: true,
+  },
+  {
+    types: ["service_social", "edas"],
+  },
+]
 
 export default {
   name: "LieuxGeneriques",
   components: {
     Etablissement,
   },
-  data: function () {
+  data() {
     return {
-      list: [],
-      updating: true,
       window,
     }
   },
-  mounted: function () {
-    const city = this.$store.state.situation.menage.depcom
-    const genericPlacesSlugs = "cij+mission_locale"
-    axios
-      .get(
-        `https://etablissements-publics.api.gouv.fr/v3/communes/${city}/${genericPlacesSlugs}`
-      )
-      .then(
-        function (response) {
-          return response.data.features
-        },
-        function () {
-          return []
+  computed: {
+    etablissements() {
+      return this.$store.getters["etablissementsSearch/get"]
+    },
+    updating() {
+      return this.$store.state.etablissementsSearch.updating
+    },
+  },
+  methods: {
+    getEtablissementsTypesBySituation() {
+      let etablissementsList = defaultEtablissementTypes.slice()
+      const relevantTypes = list.filter((item) => {
+        let isRelevant =
+          !item.isRelevant ||
+          item.isRelevant(
+            this.$store.state.situation.demandeur,
+            this.$store.state.situation
+          )
+        if (isRelevant) {
+          if (item.prepend) item.types = item.types.concat(etablissementsList)
+          else item.types = etablissementsList.concat(item.types)
         }
+        return item
+      })
+      return (
+        relevantTypes
+          .map((item) => item.types)
+          // merge arrays and de-duplicate items
+          .reduce((a, v) => [...new Set([...a, ...v])])
+          .join("+")
       )
-      .then(function (etablissements) {
-        return etablissements.map(EtablissementLib.normalize)
-      })
-      .then((o) => {
-        this.list = o
-      })
-      .finally(() => {
-        this.updating = false
-      })
+    },
+  },
+  mounted() {
+    let typeEtablissements = this.getEtablissementsTypesBySituation()
+    this.$store.dispatch("etablissementsSearch/get", {
+      city: this.$store.state.situation.menage.depcom,
+      type: typeEtablissements,
+    })
   },
 }
 </script>

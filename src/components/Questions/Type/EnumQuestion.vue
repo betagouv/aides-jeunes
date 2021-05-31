@@ -1,9 +1,8 @@
 <template>
   <fieldset>
     <legend class="width-100">
-      <h2 class="aj-question"
-        >{{ questionLabel
-        }}<EnSavoirPlus
+      <h2 class="aj-question" v-html="questionLabel"
+        ><EnSavoirPlus
           v-if="enSavoirPlus"
           :question-label="questionLabel"
           :question-index="questionIndex"

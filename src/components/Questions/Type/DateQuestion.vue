@@ -1,7 +1,7 @@
 <template>
   <div>
     <label :for="question.fieldName"
-      ><h2 class="aj-question"> {{ questionLabel }} </h2
+      ><h2 class="aj-question" v-html="questionLabel"></h2
       ><EnSavoirPlus
         v-if="enSavoirPlus"
         :question-label="questionLabel"

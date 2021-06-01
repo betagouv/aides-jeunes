@@ -232,11 +232,23 @@ export default {
     ],
   },
 
+  rsa_jeune_condition_heures_travail_remplie: {
+    question: (component) => {
+      return `${capitalize(component.getLabel("avoir"))} travaillé
+      <abbr
+        title="ou 3 214 heures (2 fois 1 607) couvertes par un contrat de travail."
+        >au moins 2 ans</abbr
+      >
+      depuis ${yearsAgo(3, component.$store.state.dates.today.id)} ?`
+    },
+    questionType: "yesno",
+  },
+
   scolarite: {
     question: (component) => {
       return component.role == "demandeur"
-        ? "Où êtes-vous scolarisé·e"
-        : `Où sera scolarisé·e ${component.individu._firstName} à la rentrée prochaine`
+        ? "Où êtes-vous scolarisé·e ?"
+        : `Où sera scolarisé·e ${component.individu._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
     items: [
@@ -266,24 +278,7 @@ export default {
   statuts_etablissement_scolaire: {
     question: "Dans quel type d'établissement étudiez-vous actuellement ?",
     questionType: "enum",
-    items: [
-      {
-        value: "public",
-        label: "Établissement public",
-      },
-      {
-        value: "prive_sous_contrat",
-        label: "Établissement privé sous contrat",
-      },
-      {
-        value: "prive_hors_contrat",
-        label: "Établissement privé hors contrat",
-      },
-      {
-        value: "inconnu",
-        label: "Autre",
-      },
-    ],
+    items: Individu.scolariteOptions,
   },
 
   taux_incapacite: {
@@ -316,18 +311,6 @@ export default {
         label: "Plus de 80%",
       },
     ],
-  },
-
-  rsa_jeune_condition_heures_travail_remplie: {
-    question: (component) => {
-      return `${capitalize(component.getLabel("avoir"))} travaillé
-      <abbr
-        title="ou 3 214 heures (2 fois 1 607) couvertes par un contrat de travail."
-        >au moins 2 ans</abbr
-      >
-      depuis ${yearsAgo(3, component.$store.state.dates.today.id)} ?`
-    },
-    questionType: "yesno",
   },
 
   _interetEtudesEtranger: {

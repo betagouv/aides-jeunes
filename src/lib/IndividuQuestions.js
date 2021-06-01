@@ -251,34 +251,30 @@ export default {
         : `Où sera scolarisé·e ${component.individu._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
-    items: [
-      {
-        value: "college",
-        label: "Au collège",
-      },
-      {
-        value: "lycee",
-        label: "Au lycée / En CAP / En CPA",
-      },
-      {
-        value: "enseignement_superieur",
-        label: "Dans un établissement de l'enseignement supérieur",
-      },
-      {
-        value: "grande_ecole_du_numerique",
-        label: "Dans une grande école du numérique",
-      },
-      {
-        value: "inconnue",
-        label: "Autre",
-      },
-    ],
+    items: Individu.scolariteOptions,
   },
 
   statuts_etablissement_scolaire: {
     question: "Dans quel type d'établissement étudiez-vous actuellement ?",
     questionType: "enum",
-    items: Individu.scolariteOptions,
+    items: [
+      {
+        value: "public",
+        label: "Établissement public",
+      },
+      {
+        value: "prive_sous_contrat",
+        label: "Établissement privé sous contrat",
+      },
+      {
+        value: "prive_hors_contrat",
+        label: "Établissement privé hors contrat",
+      },
+      {
+        value: "inconnu",
+        label: "Autre",
+      },
+    ],
   },
 
   taux_incapacite: {

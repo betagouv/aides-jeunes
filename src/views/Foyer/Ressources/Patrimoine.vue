@@ -38,7 +38,9 @@
     <YesNoQuestion class="form__group" v-model="hasBatisNonLoues">
       Avez-vous des appartements/immeubles <b>non loués</b> ?
       <template v-slot:help>
-        Sauf résidence principale et bâtiments de l'exploitation agricole.
+        <p>
+          Sauf résidence principale et bâtiments de l'exploitation agricole.
+        </p>
       </template>
     </YesNoQuestion>
 

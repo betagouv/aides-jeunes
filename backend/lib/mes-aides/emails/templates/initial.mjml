@@ -1,19 +1,25 @@
 <mjml>
   <mj-head>
     <mj-attributes>
-      <mj-text color="#555" line-height="22px" font-size="14px"/>
+      <mj-text color="#555" line-height="22px" font-size="14px" />
     </mj-attributes>
   </mj-head>
   <mj-body background-color="#F8F8F8">
     <mj-section padding="0px 24px">
       <mj-group>
         <mj-column>
-          <mj-image padding-left="0px" alt="Logo Marianne de la République Française"
-                    src="{{&baseURL}}/img/logo_rf.svg"/>
+          <mj-image
+            padding-left="0px"
+            alt="Logo Marianne de la République Française"
+            src="{{&baseURL}}/img/logo_rf.svg"
+          />
         </mj-column>
         <mj-column>
-          <mj-image padding-right="0px" alt="Logo de 1jeune1solution.gouv.fr"
-                    src="{{&baseURL}}/img/logo1j1s-france-relance.svg"/>
+          <mj-image
+            padding-right="0px"
+            alt="Logo de 1jeune1solution.gouv.fr"
+            src="{{&baseURL}}/img/logo1j1s-france-relance.svg"
+          />
         </mj-column>
       </mj-group>
     </mj-section>
@@ -21,11 +27,17 @@
       <mj-column>
         <mj-text padding="0px">
           <p>
-            <span>Vous avez récemment utilisé le simulateur de
-              <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/">1jeune1solution.gouv.fr</a>.
+            <span
+              >Vous avez récemment utilisé le simulateur de
+              <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/"
+                >1jeune1solution.gouv.fr</a
+              >.
             </span>
-            <br/>
-            <span>D'après la situation que vous avez décrite, vous êtes a priori éligible aux aides suivantes :</span>
+            <br />
+            <span
+              >D'après la situation que vous avez décrite, vous êtes a priori
+              éligible aux aides suivantes :</span
+            >
           </p>
         </mj-text>
       </mj-column>
@@ -38,7 +50,13 @@
           <mj-section padding="0px">
             <mj-group padding="0px">
               <mj-column width="20%" vertical-align="middle">
-                <mj-image alt="{{provider.label}}" width="60px" align="left" padding="0" src="{{&baseURL}}{{&imgSrc}}"/>
+                <mj-image
+                  alt="{{provider.label}}"
+                  width="60px"
+                  align="left"
+                  padding="0"
+                  src="{{&baseURL}}{{&imgSrc}}"
+                />
               </mj-column>
               <mj-column vertical-align="middle" width="80%">
                 <mj-text align="left" padding="0px 0px 0px 16px">
@@ -46,11 +64,15 @@
                 </mj-text>
               </mj-column>
             </mj-group>
-
           </mj-section>
           <mj-section padding="0px">
             <mj-column width="100%" vertical-align="middle" padding="0px">
-              <mj-divider border-width="1px" border-style="solid" border-color="#E7E7E7" padding="16px 0px"/>
+              <mj-divider
+                border-width="1px"
+                border-style="solid"
+                border-color="#E7E7E7"
+                padding="16px 0px"
+              />
             </mj-column>
           </mj-section>
           <mj-section padding="0">
@@ -58,8 +80,13 @@
               <mj-text padding="0px">{{&description}}</mj-text>
             </mj-column>
             <mj-column width="100%" padding="0">
-              <mj-button align="left" background-color="#5770be" color="white" href="{{&ctaLink}}"
-                         padding="16px 0px 0px 0px">
+              <mj-button
+                align="left"
+                background-color="#5770be"
+                color="white"
+                href="{{&ctaLink}}"
+                padding="16px 0px 0px 0px"
+              >
                 {{ctaLabel}}
               </mj-button>
             </mj-column>
@@ -70,29 +97,42 @@
     {{/droits}}
     <mj-section padding="0px 24px">
       <mj-column width="100%" vertical-align="middle" padding="0px">
-        <mj-divider border-width="1px" border-style="solid" border-color="#E7E7E7" padding="32px 0px"/>
+        <mj-divider
+          border-width="1px"
+          border-style="solid"
+          border-color="#E7E7E7"
+          padding="32px 0px"
+        />
       </mj-column>
     </mj-section>
     <mj-section padding="0px 24px">
       <mj-column padding="0px">
         <mj-text padding="0px">
-          <span>Retrouvez les détails de votre simulation en cliquant
+          <span
+            >Retrouvez les détails de votre simulation en cliquant
             <a href="{{&returnURL}}" target="_blank">ici</a>.
           </span>
-          <br/>
-          <span>Nous améliorons ce simulateur en continu, et vous pouvez nous y
+          <br />
+          <span
+            >Nous améliorons ce simulateur en continu, et vous pouvez nous y
             aider.
           </span>
-          <br/>
-          <span>Vous pouvez toujours nous contacter à l'adresse suivante&nbsp;:
-            <a href="mailto:aides-jeunes@beta.gouv.fr">aides-jeunes@beta.gouv.fr</a>
+          <br />
+          <span
+            >Vous pouvez toujours nous contacter à l'adresse suivante&nbsp;:
+            <a href="mailto:aides-jeunes@beta.gouv.fr"
+              >aides-jeunes@beta.gouv.fr</a
+            >
           </span>
         </mj-text>
         <mj-text padding="16px 0px">
           <span>Bonne journée,</span>
-          <br/>
-          <span>L'équipe du
-            <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/">simulateur de 1jeune1solution.gouv.fr</a>
+          <br />
+          <span
+            >L'équipe du
+            <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/"
+              >simulateur de 1jeune1solution.gouv.fr</a
+            >
           </span>
         </mj-text>
       </mj-column>

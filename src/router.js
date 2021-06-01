@@ -141,14 +141,6 @@ const router = new Router({
                 ),
             },
             {
-              name: "_interetEtudesEtranger",
-              path: "_interetEtudesEtranger",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/_InteretEtudesEtranger.vue"
-                ),
-            },
-            {
               name: "_dureeMoisEtudesEtranger",
               path: "_dureeMoisEtudesEtranger",
               component: () =>

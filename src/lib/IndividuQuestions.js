@@ -334,6 +334,12 @@ export default {
     questionType: "yesno",
   },
 
+  _interetEtudesEtranger: {
+    question:
+      "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
+    questionType: "yesno",
+  },
+
   _interetPermisDeConduire: {
     question: "Prévoyez-vous de passer le permis de conduire ?",
     questionType: "yesno",

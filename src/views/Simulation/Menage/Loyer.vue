@@ -62,6 +62,7 @@ export default {
         loyerQuestion: {
           label: loyerLabel,
           selectedValue: menage.loyer,
+          hint: "Sans déduire vos aides au logement si vous en avez.",
         },
         chargesQuestion: {
           label: "Quel est le montant de vos charges locatives ?",

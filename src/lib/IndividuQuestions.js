@@ -115,11 +115,7 @@ export default {
   },
 
   classe_scolarite: {
-    question: (component) => {
-      return component.role == "demandeur"
-        ? "Où êtes-vous scolarisé·e"
-        : `Où sera scolarisé·e ${component.individu._firstName} à la rentrée prochaine`
-    },
+    question: "Dans quelle classe êtes-vous actuellement ?",
     questionType: "enum",
     items: (component) => {
       return [

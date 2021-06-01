@@ -14,7 +14,6 @@
         >
       </template>
     </YesNoQuestion>
-
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>

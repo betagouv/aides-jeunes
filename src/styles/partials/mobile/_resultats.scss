@@ -8,37 +8,6 @@ html {
       margin-top: 0;
     }
 
-    .aj-aide-box {
-      flex-wrap: wrap;
-
-      .aj-aide-illustration {
-        width: 80px;
-      }
-
-      .aj-aide-text {
-        order: 3;
-        margin-left: 0;
-        margin-top: 1.5rem;
-        margin-bottom: 2.5rem;
-      }
-
-      .aj-aide-montant {
-        flex-basis: unset;
-      }
-
-      .aj-aide-cta {
-        right: 0;
-        transform: none;
-        width: 100%;
-        padding: 0 15px 15px 15px;
-
-        button {
-          width: 100%;
-          text-align: center;
-        }
-      }
-    }
-
     .aj-droit-detail,
     .aj-droit-survey {
       flex-wrap: wrap;

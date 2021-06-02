@@ -48,10 +48,6 @@ export default {
   data: function () {
     return this.loadQuestion(this.$route.params)
   },
-  beforeRouteUpdate(to, from, next) {
-    Object.assign(this.$data, this.loadQuestion(to.params))
-    next()
-  },
   computed: {
     fieldName: function () {
       return this.$route.params.fieldName

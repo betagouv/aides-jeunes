@@ -9,14 +9,14 @@ function chapters(currentPath, journey) {
   const activeChapters = Chapters.default
     .getSommaireChapters()
     .filter((c) => activeChaptersNames.includes(c.name))
+
+  let isCurrentChapter
   let passedChapter = true
   return activeChapters.map((chapter) => {
-    passedChapter =
-      chapter.name === (currentStep && currentStep.chapter)
-        ? false
-        : passedChapter
+    isCurrentChapter = chapter.name === (currentStep && currentStep.chapter)
+    passedChapter = isCurrentChapter ? false : passedChapter
     chapter.done = passedChapter
-    chapter.current = chapter.name === (currentStep && currentStep.chapter)
+    chapter.current = isCurrentChapter
     chapter.root = activeJourney.find(
       (item) => item.chapter == chapter.name
     ).path

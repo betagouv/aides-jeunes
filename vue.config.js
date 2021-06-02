@@ -45,5 +45,8 @@ module.exports = {
   },
   devServer: {
     before: before,
+    overlay: {
+      errors: false,
+    },
   },
 }

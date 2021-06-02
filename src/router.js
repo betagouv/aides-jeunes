@@ -33,6 +33,9 @@ const router = new Router({
       redirect: "/simulation/individu/demandeur/date_naissance",
       component: () =>
         import(/* webpackChunkName: "simulation" */ "./views/Simulation.vue"),
+      meta: {
+        title: "Ma simulation sur 1jeune1solution",
+      },
       children: [
         {
           path: ":parent+/en_savoir_plus",
@@ -291,6 +294,9 @@ const router = new Router({
         {
           name: "resultats",
           path: "resultats",
+          meta: {
+            title: "Les Résultats de ma simulation sur 1jeune1solution",
+          },
           component: () =>
             import(
               /* webpackChunkName: "resultats" */ "./views/Simulation/Resultats.vue"
@@ -539,10 +545,26 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
+const DEFAULT_TITLE =
+  "Évaluez vos droits aux aides avec le simulateur de 1jeune1solution"
+
+function getTitleMeta(route) {
+  let meta = route.meta
+  let index = route.matched.length
+  while (index >= 0) {
+    if (meta.title) return meta.title
+    index -= 1
+    meta = route.matched[index] && route.matched[index].meta
+  }
+  return DEFAULT_TITLE
+}
+
 router.afterEach((to) => {
   if (to.preventFocus) return
 
   Vue.nextTick(function () {
+    document.title = getTitleMeta(to)
+
     let title = document.querySelector("h1")
     // if anyone wants to set a tabindex manually, do not overwrite it
     if (title && title.tabIndex < 0) {

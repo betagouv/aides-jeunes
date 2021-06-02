@@ -34,7 +34,7 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "simulation" */ "./views/Simulation.vue"),
       meta: {
-        title: "Ma simulation sur 1jeune1solution",
+        title: "Ma simulation sur le simulateur d'aides 1jeune1solution ",
       },
       children: [
         {
@@ -295,7 +295,8 @@ const router = new Router({
           name: "resultats",
           path: "resultats",
           meta: {
-            title: "Les Résultats de ma simulation sur 1jeune1solution",
+            title:
+              "Les résultats de ma simulation sur le simulateur d'aides 1jeune1solution",
           },
           component: () =>
             import(

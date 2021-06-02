@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="aj-aide-cta">
-          <a class="button primary">Demander cette aide</a>
+          <button class="button primary">Demander cette aide</button>
         </div>
       </router-link>
     </div>

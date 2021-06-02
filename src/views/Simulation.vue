@@ -12,7 +12,7 @@
         <div class="message" v-html="$store.state.message.text" />
       </div>
       <div class="aj-box-wrapper">
-        <router-view />
+        <router-view v-bind:key="$route.path" />
       </div>
     </div>
   </div>

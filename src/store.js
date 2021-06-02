@@ -96,6 +96,7 @@ function defaultStore() {
     themeColor: null,
     inIframe: false,
     iframeOrigin: null,
+    saveSituationError: null,
   }
 }
 
@@ -258,6 +259,7 @@ const store = new Vuex.Store({
       state.calculs = calculs
       state.dates = dates
       state.ameliNoticationDone = ameliNoticationDone
+      state.saveSituationError = null
     },
     saveFamille: function (state, famille) {
       state.situation = Object.assign({}, state.situation, { famille })
@@ -364,9 +366,13 @@ const store = new Vuex.Store({
     setThemeColor: function (state, themeColor) {
       state.themeColor = themeColor
     },
+
     setIframeOrigin: function (state, newOrigin) {
       state.inIframe = true
       state.iframeOrigin = newOrigin
+    },
+    setSaveSituationError: function (state, saveSituationError) {
+      state.saveSituationError = saveSituationError
     },
   },
   actions: {

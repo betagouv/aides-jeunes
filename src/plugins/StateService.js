@@ -10,7 +10,9 @@ const StateService = {
 
     Vue.prototype.$push = function () {
       const nextStep = next(this.$route, this.$store.getters.getAllSteps)
-      this.$router.push(nextStep.path)
+      this.$router.push(nextStep.path).catch((failure) => {
+        throw new Error(failure)
+      })
     }
   },
 }

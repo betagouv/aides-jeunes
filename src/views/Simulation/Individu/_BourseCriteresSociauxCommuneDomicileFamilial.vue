@@ -12,7 +12,7 @@
     ></p>
     <div class="form__group" v-show="communes && communes.length">
       <label class="aj-question"
-        >Veuillez selectionner la ville qui correspond</label
+        >Veuillez sélectionner la ville qui correspond</label
       >
       <select v-model="nomCommune" id="commune">
         <option
@@ -66,6 +66,14 @@ export default {
         this.retrievingCommunes = true
         return Commune.get(this.codePostal)
           .then((communes) => {
+            if (communes.length <= 0) {
+              this.$matomo &&
+                this.$matomo.trackEvent(
+                  "General",
+                  "Depcom introuvable",
+                  `Code postal : ${this.codePostalQuestion.selectedValue}`
+                )
+            }
             if (!communes.map((c) => c.nom).includes(this.nomCommune)) {
               this.nomCommune = Commune.getMostPopulated(communes).nom
             }

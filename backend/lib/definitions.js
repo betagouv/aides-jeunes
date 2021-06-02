@@ -25,8 +25,6 @@ var allRessources = concat(
   return result
 }, {})
 
-var statutMaritalValues = ["marie", "pacse", "celibataire"]
-
 var individu = Object.assign(
   {
     _id: false,
@@ -55,11 +53,13 @@ var individu = Object.assign(
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,
+    _dureeMoisEtudesEtranger: Number,
     duree_possession_titre_sejour: Number,
     enceinte: Boolean,
     enfant_a_charge: Object,
     enfant_place: Boolean,
     _firstName: String,
+    _interetEtudesEtranger: Boolean,
     _interetPermisDeConduire: Boolean,
     garde_alternee: Boolean,
     gir: String,
@@ -72,7 +72,13 @@ var individu = Object.assign(
     rsa_jeune_condition_heures_travail_remplie: Boolean,
     scolarite: {
       type: String,
-      enum: ["inconnue", "college", "lycee", "enseignement_superieur"],
+      enum: [
+        "college",
+        "lycee",
+        "enseignement_superieur",
+        "grande_ecole_du_numerique",
+        "inconnue",
+      ],
     },
     statuts_etablissement_scolaire: {
       type: String,
@@ -95,6 +101,8 @@ var individu = Object.assign(
   },
   allRessources
 )
+
+var statutMaritalValues = ["marie", "pacse", "celibataire"]
 
 var statutOccupationLogementValues = [
   "primo_accedant",

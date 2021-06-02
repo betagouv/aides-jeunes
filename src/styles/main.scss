@@ -57,6 +57,7 @@ $screen-smaller-than-mobile: 399px;
 /* MOBILE IMPORTS */
 @media (max-width: 576px) {
   @import "partials/mobile/ui-kit";
+  @import "partials/mobile/header";
   @import "partials/mobile/buttons";
   @import "partials/mobile/inputs";
   @import "partials/mobile/children";

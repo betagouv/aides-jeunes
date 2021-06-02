@@ -1,8 +1,9 @@
 <template>
   <fieldset>
     <legend
-      ><h2 class="aj-question"><slot></slot><slot name="help"></slot></h2
-    ></legend>
+      ><h2 class="aj-question"><slot></slot></h2>
+      <slot name="help"></slot>
+    </legend>
     <div class="aj-selection-wrapper">
       <input
         :id="'yes-' + uniqueFieldName"

@@ -14,9 +14,9 @@
       }}</label>
       <select v-model="communeQuestion.selectedValue" id="commune">
         <option
-          v-for="commune in communes"
+          v-for="(commune, index) in communes"
           v-bind:value="commune.nom"
-          v-bind:key="commune.code"
+          v-bind:key="`commune_${index}`"
         >
           {{ commune.nom }}
         </option>
@@ -45,7 +45,7 @@ export default {
         selectedValue: menage._codePostal,
       },
       communeQuestion: {
-        label: "Veuillez selectionner votre ville",
+        label: "Veuillez sélectionner votre ville",
         selectedValue: menage._nomCommune,
       },
     }
@@ -90,6 +90,7 @@ export default {
       default: [],
     },
   },
+
   methods: {
     onSubmit: function () {
       if (this.communeQuestion.selectedValue === undefined) {

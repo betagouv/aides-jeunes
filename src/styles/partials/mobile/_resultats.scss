@@ -57,21 +57,12 @@ html {
     }
 
     .aj-results-tools {
-      flex-direction: column;
-
       .aj-offline-results,
       .aj-feedback {
-        &.aj-offline-results {
-          margin-right: 0;
-          margin-bottom: 1rem;
-          flex-basis: 100%;
-        }
-
-        &.aj-feedback {
-          flex-basis: 100%;
-        }
+        margin-right: 0 !important;
+        margin-bottom: 1rem;
+        flex-basis: 100%;
       }
-
       .aj-feedback-buttons {
         height: 11rem;
       }

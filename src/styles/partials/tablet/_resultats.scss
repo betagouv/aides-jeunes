@@ -30,5 +30,26 @@ html {
         }
       }
     }
+
+    .aj-results-tools {
+      .aj-offline-results,
+      .aj-feedback {
+        flex-basis: 100%;
+        margin-bottom: 1rem;
+      }
+
+      .aj-find-contact-box {
+        flex-direction: column;
+        .aj-find-contact-box-content {
+          margin-bottom: 1rem;
+        }
+        .aj-find-contact-box-action {
+          width: 100% !important;
+          .button {
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 }

@@ -34,7 +34,7 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "simulation" */ "./views/Simulation.vue"),
       meta: {
-        title: "Ma simulation sur le simulateur d'aides 1jeune1solution ",
+        headTitle: "Ma simulation sur le simulateur d'aides 1jeune1solution ",
       },
       children: [
         {
@@ -295,7 +295,7 @@ const router = new Router({
           name: "resultats",
           path: "resultats",
           meta: {
-            title:
+            headTitle:
               "Les résultats de ma simulation sur le simulateur d'aides 1jeune1solution",
           },
           component: () =>
@@ -553,7 +553,7 @@ function getTitleMeta(route) {
   let meta = route.meta
   let index = route.matched.length
   while (index >= 0) {
-    if (meta.title) return meta.title
+    if (meta.headTitle) return meta.headTitle
     index -= 1
     meta = route.matched[index] && route.matched[index].meta
   }

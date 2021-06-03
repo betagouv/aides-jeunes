@@ -13,7 +13,6 @@ export default {
         >CDAPH</abbr
       > ?`
     },
-    questionType: "yesno",
     help: "Attention, cette restriction est différente de la reconnaissance de la qualité de travailleur handicapé.",
   },
 
@@ -65,12 +64,10 @@ export default {
       >
       l'an prochain ?`
     },
-    questionType: "yesno",
   },
 
   aide_mobilite_parcoursup_boursier_lycee: {
     question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
-    questionType: "yesno",
   },
 
   aide_mobilite_parcoursup_sortie_academie: {
@@ -84,14 +81,12 @@ export default {
       >
       l'an prochain ?`
     },
-    questionType: "yesno",
   },
 
   alternant: {
     question: (component) => {
       return `${capitalize(component.getLabel("être"))} en alternance ?`
     },
-    questionType: "yesno",
   },
 
   ass_precondition_remplie: {
@@ -106,12 +101,10 @@ export default {
         component.individu.date_debut_chomage
       )} et ${yearsAgo(0, component.individu.date_debut_chomage)} ?`
     },
-    questionType: "yesno",
   },
 
   boursier: {
     question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
-    questionType: "yesno",
   },
 
   classe_scolarite: {
@@ -150,14 +143,12 @@ export default {
         component.getLabel("être")
       )} placé·e en structure spécialisée ou famille d'accueil ?`
     },
-    questionType: "yesno",
   },
 
   garde_alternee: {
     question: (component) => {
       return `${capitalize(component.getLabel("être"))} en garde alternée ?`
     },
-    questionType: "yesno",
   },
 
   gir: {
@@ -184,7 +175,6 @@ export default {
 
   habite_chez_parents: {
     question: "Êtes-vous hébergé chez vos parents ?",
-    questionType: "yesno",
   },
 
   handicap: {
@@ -193,7 +183,6 @@ export default {
         component.getLabel("être")
       )} en situation de handicap ?`
     },
-    questionType: "yesno",
     enSavoirPlus: true,
   },
 
@@ -203,7 +192,6 @@ export default {
         component.getLabel("être")
       )} reconnu·e inapte au travail ?`
     },
-    questionType: "yesno",
     enSavoirPlus: true,
   },
 
@@ -241,7 +229,6 @@ export default {
       >
       depuis ${yearsAgo(3, component.$store.state.dates.today.id)} ?`
     },
-    questionType: "yesno",
   },
 
   scolarite: {
@@ -312,11 +299,9 @@ export default {
   _interetEtudesEtranger: {
     question:
       "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
-    questionType: "yesno",
   },
 
   _interetPermisDeConduire: {
     question: "Prévoyez-vous de passer le permis de conduire ?",
-    questionType: "yesno",
   },
 }

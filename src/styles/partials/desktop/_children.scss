@@ -3,6 +3,12 @@ html {
     .aj-children-container {
       margin-bottom: 30px;
 
+      .aj-children-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
       .aj-children-line {
         display: flex;
 
@@ -10,7 +16,9 @@ html {
           font-size: 0.85rem;
         }
 
-        .aj-children-birth-date, .aj-children-nationality, .aj-children-scolarite {
+        .aj-children-birth-date,
+        .aj-children-nationality,
+        .aj-children-scolarite {
           width: 33%;
         }
 

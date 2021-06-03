@@ -1,78 +1,48 @@
 <template>
-    <form @submit.prevent='onSubmit'>
-        <fieldset>
-            <legend>
-                <h2 class="aj-question">
-                    {{ participationQuestion.label }}
-                    <span v-if="participationQuestion.hint" class="help">{{ participationQuestion.hint }}</span>
-                </h2>
-            </legend>
-            <div v-for="response in participationQuestion.responses" class="aj-selection-wrapper" v-bind:key="response.value">
-                <input :id="response.label" type="radio" name="coloc" v-model="participationQuestion.selectedValue" v-bind:value="response.value"
-                />
-                <label :for="response.label">
-                    {{ response.label | capitalize }}
-                    <span v-if="response.hint" class="help">({{ response.hint }})</span>
-                </label>
-            </div>
-        </fieldset>
-        <Actions v-bind:onSubmit='onSubmit'/>
-    </form >
+  <form @submit.prevent="onSubmit">
+    <YesNoQuestion v-model="value">
+      Participez-vous aux frais du logement ?
+      <span class="help"
+        >Par exemple aux dépenses d'électricité, de téléphone, etc.</span
+      >
+    </YesNoQuestion>
+    <Actions v-bind:onSubmit="onSubmit" />
+  </form>
 </template>
 
 <script>
-    import Actions from '@/components/Actions'
-    import { autoSubmitMixin } from '@/mixins/AutoSubmit';
+import Actions from "@/components/Actions"
+import YesNoQuestion from "@/components/YesNoQuestion"
 
-    export default {
-        name: 'SimulationMenageParticipationFrais',
-        components: {
-            Actions
-        },
-        data: function() {
-            const menage = this.$store.getters.getMenage || {}
-            return {
-                menage: menage,
-                participationQuestion: {
-                    label: 'Participez-vous aux frais du logement ?',
-                    hint: 'Par exemple aux dépenses d\'électricité, de téléphone, etc.',
-                    selectedValue: menage.participation_frais,
-                    responses: [
-                        {
-                            label: 'Oui',
-                            value: true
-                        },
-                        {
-                            label: 'Non',
-                            value: false
-                        }
-                    ]
-                }
-            }
-        },
-        mixins: [autoSubmitMixin('participationQuestion.selectedValue')],
-        methods: {
-            onSubmit: function() {
-                if (this.participationQuestion.selectedValue === undefined) {
-                    this.$store.dispatch('updateError', 'Ce champ est obligatoire.')
-                    return
-                }
-                this.menage.participation_frais = this.participationQuestion.selectedValue
-                this.$store.dispatch('updateMenage', this.menage)
-                this.$push()
-            }
-        }
+export default {
+  name: "SimulationMenageParticipationFrais",
+  components: {
+    YesNoQuestion,
+    Actions,
+  },
+  data: function () {
+    const menage = { ...(this.$store.getters.getMenage || {}) }
+    return {
+      menage: menage,
+      value: menage.participation_frais,
     }
+  },
+  methods: {
+    onSubmit: function () {
+      if (this.value === undefined) {
+        this.$store.dispatch("updateError", "Ce champ est obligatoire.")
+        return
+      }
+      this.menage.participation_frais = this.value
+      this.$store.dispatch("updateMenage", this.menage)
+      this.$push()
+    },
+  },
+}
 </script>
 
 <style scoped lang="scss">
-    span.help {
-        font-style: italic;
-        display: block;
-        font-size: 0.8em;
-    }
-
-    fieldset {
-        margin-bottom: 2em;
-    }
+fieldset {
+  margin-bottom: 2em;
+}
 </style>

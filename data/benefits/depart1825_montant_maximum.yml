@@ -2,12 +2,13 @@ label: départ 18-25
 institution: etat
 description: Le programme Départ 18:25 permet aux jeunes de financer jusqu’à 75% de leurs vacances pour 200€ maximum par personne et par an.
 conditions:
+  - Réserver vos vacances sur <a target="_blank" rel="noopener" href="https://www.lesstations.com/">un site partenaire</a>.
   - Financer au moins 50€ de vos vacances.
-link: https://programme-depart-1825.com/cest-quoi/
-instructions: https://programme-depart-1825.com/
-prefix: 'l’accès au dispositif '
+link: https://depart1825.com/nos-sejours/
+teleservice: https://www.lesstations.com/
+prefix: "l’accès au dispositif "
 type: float
-legend: 'maximum'
+legend: "maximum"
 top: 4
 entity: individus
 isMontantAnnuel: true

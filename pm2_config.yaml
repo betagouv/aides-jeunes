@@ -1,12 +1,12 @@
 apps:
   - name: ma-web
-    script   : server.js
-    instances: 1
+    script: server.js
+    instances: 4
     exec_mode: cluster
     merge_logs: true
     env:
-        MES_AIDES_ROOT_URL: https://mes-aides.1jeune1solution.beta.gouv.fr
-        MONGODB_URL: mongodb://localhost/dds
-        NODE_ENV: production
-        PORT: 8000
-        CHROME_DEVEL_SANDBOX: /usr/local/sbin/chrome-devel-sandbox
+      MES_AIDES_ROOT_URL: https://mes-aides.1jeune1solution.beta.gouv.fr
+      MONGODB_URL: mongodb://localhost/dds
+      NODE_ENV: production
+      PORT: 8000
+      CHROME_DEVEL_SANDBOX: /usr/local/sbin/chrome-devel-sandbox

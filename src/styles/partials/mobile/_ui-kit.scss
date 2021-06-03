@@ -3,30 +3,80 @@ html {
     .aj-main-container {
       padding-left: 10px;
       padding-right: 10px;
-      padding-top: 1.5rem;
+      padding-top: 0;
+
+      .aj-question {
+        flex-direction: column;
+        align-items: baseline;
+      }
 
       .aj-category-title-wrapper {
+        display: none;
+      }
+
+      .aj-category-title-wrapper-mobile {
+        display: block;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        margin-right: -10px;
+        margin-left: -10px;
+
         h1 {
-          margin-bottom: 20px;
-          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.68rem;
+
+          img {
+            margin-left: 0.7rem;
+            width: 1rem;
+            transition: transform 200ms;
+          }
+        }
+
+        &.open {
+          background-color: var(--white);
+
+          h1 {
+            img {
+              transform: rotate(-180deg);
+            }
+          }
         }
       }
 
       .aj-box-wrapper {
-
-        & > div:not(.aj-unbox), & > form:not(.aj-unbox), & .aj-box {
+        & > div:not(.aj-unbox),
+        & > form:not(.aj-unbox),
+        & .aj-box {
           padding: 1.5rem;
         }
 
         .aj-actions {
           width: 100%;
           justify-content: space-between;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          transform: none;
+          padding: 1rem;
+          background-color: white;
+          z-index: 999;
+          border-top: 1px solid #dadada;
+
+          .button {
+            box-shadow: none;
+          }
         }
       }
 
       .aj-tooltip {
         display: table;
         margin: 10px 0 0 0;
+        &:hover:before,
+        &:hover:after {
+          display: none;
+        }
       }
 
       .aj-loading-modal {
@@ -34,10 +84,85 @@ html {
           margin: 0 1rem;
         }
       }
+
+      .aj-help-popup {
+        &.aj-help-mobile {
+          display: block;
+        }
+        &.aj-help-desktop {
+          display: none;
+        }
+
+        &:before {
+          display: none;
+        }
+      }
     }
 
     .modal__backdrop {
       padding: 4em 2rem !important;
+    }
+
+    .aj-help-modal {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 0;
+      background-color: transparentize(#000, 0.5);
+      z-index: 1000;
+      overflow-y: scroll;
+
+      .aj-help-modal-back-button {
+        display: none !important;
+      }
+
+      .aj-help-modal-back-icon {
+        display: initial;
+      }
+
+      .aj-help-modal-container {
+        max-height: 0;
+        transition: max-height 0.3s;
+        background: var(--white);
+        border-top-right-radius: var(--theme-border-radius);
+        border-top-left-radius: var(--theme-border-radius);
+
+        .aj-help-modal-header {
+          display: flex;
+          justify-content: space-between;
+          padding: 18px 20px;
+
+          * {
+            margin: 0;
+          }
+        }
+
+        .aj-help-modal-content {
+          font-family: "Marianne";
+          padding: 1rem;
+          font-size: 1rem;
+          font-weight: normal;
+        }
+      }
+
+      &.open {
+        height: 100vh;
+
+        .aj-help-modal-container {
+          height: 80vh;
+          max-height: 80vh;
+        }
+      }
+    }
+
+    span.help {
+      display: block;
+      width: 100%;
+      margin-left: 0;
     }
   }
 }

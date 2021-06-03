@@ -1,7 +1,8 @@
 <template>
   <div class="aj-feedback">
     <h2 class="aj-question">
-      Nous améliorons ce simulateur en continu, et vous pouvez nous y aider&nbsp;!
+      Nous améliorons ce simulateur en continu, et vous pouvez nous y
+      aider&nbsp;!
     </h2>
     <p>
       La plupart des résultats que nous vous proposons sont automatiquement
@@ -15,9 +16,7 @@
             action: 'Support',
             category: 'General',
           }"
-          v-mail="{
-            subject: `[${resultatsId}] Suggestion`,
-          }"
+          v-mail="this.sendMailSuggestion()"
           >Vous avez une suggestion d'amélioration</a
         >.
       </li>
@@ -28,19 +27,7 @@
             action: 'Support',
             category: 'General',
           }"
-          v-mail="{
-            subject: `[${resultatsId}] Montants inattendus`,
-            body: `Bonjour,
-En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
-- XXX € / mois pour la prestation «  ».
-Mais en effectuant la même simulation sur le site XXX, j'ai obtenu le résultat suivant :
-- XXX € / mois pour la prestation «  ».
-Vous pouvez me joindre par téléphone au XX XX XX XX XX (de préférence en semaine) pour une dizaine de minutes d'échange afin de comprendre d'où provient cet écart.
-Bonne journée,
-————
-ID : ${resultatsId} (à conserver impérativement pour traitement de votre demande)
-————`,
-          }"
+          v-mail="this.sendMailEcartSimulation()"
           >Ces résultats ne correspondent pas à ceux d'un autre simulateur</a
         >.
       </li>
@@ -51,34 +38,23 @@ ID : ${resultatsId} (à conserver impérativement pour traitement de votre deman
             action: 'Support',
             category: 'General',
           }"
-          v-mail="{
-            subject: `[${resultatsId}] Montants inattendus`,
-            body: `Bonjour,
-En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
-- XXX € / mois pour la prestation «  ».
-Mais XXX a fini par m'attribuer le montant suivant :
-- XXX € / mois pour la prestation «  ».
-J'ai bien compris que vous n'étiez pas décisionnaires et ne pourrez pas intervenir en ma faveur.
-Vous pouvez me joindre par téléphone au XX XX XX XX XX (de préférence en semaine) pour une dizaine de minutes d'échange afin de comprendre d'où provient cet écart et améliorer le simulateur pour d'autres utilisateurs.
-Bonne journée,
-————
-ID : ${resultatsId} (à conserver impérativement pour traitement de votre demande)
-————`,
-          }"
+          v-mail="this.sendMailEcartInstruction()"
           >Ces résultats ne correspondent pas à ce que l'administration vous a
           attribué</a
         >.
       </li>
     </ul>
-    <small v-if="resultatsId"
+    <small v-if="situationID"
       >Cette simulation a pour identifiant
-      <span class="preformatted">{{ resultatsId }}</span> (en savoir plus sur
+      <span class="preformatted">{{ situationID }}</span> (en savoir plus sur
       <router-link to="/confidentialite"
         >le traitement de vos données personnelles</router-link
       >).</small
     ><br />
-    <small v-if="resultatsId">
-      <button v-if="!showExpertLinks" class="button small" @click="toggleLinks">Je suis partenaire</button>
+    <small v-if="situationID">
+      <button v-if="!showExpertLinks" class="button small" @click="toggleLinks">
+        Je suis partenaire
+      </button>
       <div v-if="showExpertLinks" class="aj-feedback-partenaire">
         Je suis partenaire&nbsp;:
         <ul>
@@ -96,7 +72,8 @@ ID : ${resultatsId} (à conserver impérativement pour traitement de votre deman
             >
           </li>
           <li v-if="openfiscaAxeURL">
-            <a v-analytics="{ category: 'Axe' }"
+            <a
+              v-analytics="{ category: 'Axe' }"
               target="_blank"
               :href="openfiscaAxeURL"
               >Analysez l'évolution des aides en fonction des ressources
@@ -108,33 +85,50 @@ ID : ${resultatsId} (à conserver impérativement pour traitement de votre deman
   </div>
 </template>
 <script>
-export default {
-    name: 'Feedback',
-    props: {
-        resultatsId: String
-    },
-    data: function() {
-        return {
-            openfiscaTracerURL: false,
-            openfiscaAxeURL: false,
-            showExpertLinks: false,
-        }
-    },
-    methods: {
-        toggleLinks: function() {
-            if (! this.openfiscaTracerURL) {
-                this.$store.getters.fetchRepresentation('openfisca_tracer')
-                .then(representation => {
-                    this.openfiscaTracerURL = representation.destination.url
-                })
+import {
+  sendEcartSimulation,
+  sendEcartInstructions,
+  sendSuggestion,
+} from "@/plugins/mails"
 
-                this.$store.getters.fetchRepresentation('openfisca_axe')
-                .then(representation => {
-                    this.openfiscaAxeURL = representation.destination.url
-                })
-            }
-            this.showExpertLinks = ! this.showExpertLinks
-        },
+export default {
+  name: "Feedback",
+  props: {
+    situationID: String,
+  },
+  data: function () {
+    return {
+      openfiscaTracerURL: false,
+      openfiscaAxeURL: false,
+      showExpertLinks: false,
     }
+  },
+  methods: {
+    toggleLinks: function () {
+      if (!this.openfiscaTracerURL) {
+        this.$store.getters
+          .fetchRepresentation("openfisca_tracer")
+          .then((representation) => {
+            this.openfiscaTracerURL = representation.destination.url
+          })
+
+        this.$store.getters
+          .fetchRepresentation("openfisca_axe")
+          .then((representation) => {
+            this.openfiscaAxeURL = representation.destination.url
+          })
+      }
+      this.showExpertLinks = !this.showExpertLinks
+    },
+    sendMailEcartSimulation() {
+      return sendEcartSimulation(this.situationID)
+    },
+    sendMailEcartInstruction() {
+      return sendEcartInstructions(this.situationID)
+    },
+    sendMailSuggestion() {
+      return sendSuggestion(this.situationID)
+    },
+  },
 }
 </script>

@@ -1,59 +1,74 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 
-var express = require('express');
+var express = require("express")
 
-require('./backend/api');
-var Followup = require('mongoose').model('Followup');
-var renderInitial = require('./backend/lib/mes-aides/emails/initial').render;
-var renderSurvey = require('./backend/lib/mes-aides/emails/survey').render;
+require("./backend/api")
+var Followup = require("mongoose").model("Followup")
+var renderInitial = require("./backend/lib/mes-aides/emails/initial").render
+// eslint-disable-next-line no-unused-vars
+var renderSurvey = require("./backend/lib/mes-aides/emails/survey").render
 
-var port = process.env.PORT || 9001;
+var port = process.env.PORT || 9001
 
 // Setup Express
-var app = express();
+var app = express()
 
-const typeKeys = ['initial', 'survey']
+const typeKeys = ["initial", "survey"]
 
-app.route('/').get(function(req, res) {
-  Followup.find().sort({createdAt: -1})
-  .exec(function(err, docs) {
-    res.send(`
+app.route("/").get(function (req, res) {
+  Followup.find()
+    .sort({ createdAt: -1 })
+    .exec(function (err, docs) {
+      res.send(`
       <html><body><h1>List</h1><ul>
-      ${docs.map(d => `
+      ${docs.map(
+        (d) => `
         <li>
           ${d._id}&nbsp;
           <ul>
-            ${typeKeys.map(t => `<li>${t} <a href="mjml/${d._id}/${t}?mode=html">HTML</a> <a href="mjml/${d._id}/${t}?mode=text">texte</a></li>`).join('')}
+            ${typeKeys
+              .map(
+                (t) =>
+                  `<li>${t} <a href="mjml/${d._id}/${t}?mode=html">HTML</a> <a href="mjml/${d._id}/${t}?mode=text">texte</a></li>`
+              )
+              .join("")}
           </ul>
         </li>
-        `)}</ul></body></html>
+        `
+      )}</ul></body></html>
 `)
-  })
+    })
 })
 
-app.route('/mjml/:id/:type').get(function(req, res) {
-    Followup
-        .findOne({ _id: req.params.id })
-        .populate('situation')
-        .exec(function(err, followup) {
-          console.log('followup', { _id: req.params.id }, followup)
+app.route("/mjml/:id/:type").get(function (req, res) {
+  Followup.findOne({ _id: req.params.id })
+    .populate("situation")
+    .exec(function (err, followup) {
+      console.log("followup", { _id: req.params.id }, followup)
 
-            const p = req.params.type == 'initial' ? renderInitial(followup) : followup.createSurvey().then(s => followup.renderSurveyEmail(s))
-            p.then(function(result) {
-              const mode = req.query.mode || 'html'
-              if (mode == 'html') {
-                res.send(result[mode]);
-              } else {
-                res.set({'Content-Type': 'text/plain'}).send(result[mode]);
-              }
-            });
-        });
-});
+      const p =
+        req.params.type == "initial"
+          ? renderInitial(followup)
+          : followup.createSurvey().then((s) => followup.renderSurveyEmail(s))
+      p.then(function (result) {
+        const mode = req.query.mode || "html"
+        if (mode == "html") {
+          res.send(result[mode])
+        } else {
+          res.set({ "Content-Type": "text/plain" }).send(result[mode])
+        }
+      })
+    })
+})
 
 // Start server
 app.listen(port, function () {
-    console.log('Mes Aides MJML preview server listening on port %d, in %s mode', port, app.get('env'));
-});
+  console.log(
+    "Mes Aides MJML preview server listening on port %d, in %s mode",
+    port,
+    app.get("env")
+  )
+})
 
-module.exports = app;
+module.exports = app

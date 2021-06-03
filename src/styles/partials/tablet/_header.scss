@@ -1,7 +1,6 @@
 html {
   body {
     header.aj-1j1s-header {
-
       .aj-1j1s-header-logo-container {
         padding: 1.25rem;
 
@@ -15,26 +14,40 @@ html {
             height: 24px;
           }
 
-          & > a {
+          .aj-1j1s-header-left-links {
             display: flex;
-            align-items: center;
-            width: 100%;
+            flex-grow: 1;
+            margin-left: 1.875rem;
 
             * {
               color: #000;
             }
 
-            img {
-              margin-right: 0;
-
-              &.rf {
-                width: 5.625rem;
-                margin-left: 1.875rem;
+            a {
+              &:last-child {
+                margin-left: auto;
               }
 
-              &.fr {
-                width: 7.5rem;
-                margin-left: auto;
+              img {
+                margin-right: 0;
+
+                &.rf {
+                  width: 5.625rem;
+                }
+
+                &.fr {
+                  width: 7.5rem;
+                }
+              }
+            }
+
+            &.not-home {
+              a.rf-link {
+                display: none;
+              }
+
+              a.fr-link {
+                margin-left: 0;
               }
             }
           }
@@ -49,14 +62,14 @@ html {
         width: 250%;
         z-index: -1;
         background-color: transparent;
-        transition: all .3s ease;
+        transition: all 0.3s ease;
 
         .container {
           opacity: 1;
           background-color: var(--white);
           max-width: 31.25rem;
           height: 100%;
-          margin-top: .6875rem;
+          margin-top: 0.6875rem;
           padding: 0 2rem;
           border-top-right-radius: var(--theme-border-radius);
           margin-left: 0;
@@ -88,7 +101,13 @@ html {
                 a {
                   color: var(--green);
                   font-weight: normal;
-                  background-image: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0) 56%, rgba(43, 182, 115, .1) 0, rgba(43, 182, 115, .1) 100%, hsla(0, 0%, 100%, 0) 0);
+                  background-image: linear-gradient(
+                    hsla(0, 0%, 100%, 0),
+                    hsla(0, 0%, 100%, 0) 56%,
+                    rgba(43, 182, 115, 0.1) 0,
+                    rgba(43, 182, 115, 0.1) 100%,
+                    hsla(0, 0%, 100%, 0) 0
+                  );
                 }
               }
 

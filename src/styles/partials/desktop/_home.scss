@@ -7,7 +7,12 @@ html {
 }
 #homepage {
   height: 100%;
-  background: linear-gradient(105deg, var(--white), 53%, var(--theme-primary) 47%);
+  background: linear-gradient(
+    105deg,
+    var(--white),
+    53%,
+    var(--theme-primary) 47%
+  );
   .container {
     display: flex;
     flex-direction: row;
@@ -24,7 +29,13 @@ html {
           .hightlight {
             color: var(--green);
             font-weight: normal;
-            background-image: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0) 56%, rgba(43, 182, 115, .1) 0, rgba(43, 182, 115, .1) 100%, hsla(0, 0%, 100%, 0) 0);
+            background-image: linear-gradient(
+              hsla(0, 0%, 100%, 0),
+              hsla(0, 0%, 100%, 0) 56%,
+              rgba(43, 182, 115, 0.1) 0,
+              rgba(43, 182, 115, 0.1) 100%,
+              hsla(0, 0%, 100%, 0) 0
+            );
           }
         }
 

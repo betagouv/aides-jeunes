@@ -1,6 +1,5 @@
 html {
   body {
-
     .aj-results-details {
       padding: 1rem !important;
     }
@@ -40,7 +39,8 @@ html {
       }
     }
 
-    .aj-droit-detail {
+    .aj-droit-detail,
+    .aj-droit-survey {
       flex-wrap: wrap;
       justify-content: space-between;
 
@@ -83,11 +83,15 @@ html {
       }
     }
 
+    .aj-survey-details {
+      margin-bottom: 2rem;
+    }
+
     .aj-results-tools {
       flex-direction: column;
 
-      .aj-offline-results, .aj-feedback {
-
+      .aj-offline-results,
+      .aj-feedback {
         &.aj-offline-results {
           margin-right: 0;
           margin-bottom: 1rem;
@@ -101,6 +105,43 @@ html {
 
       .aj-feedback-buttons {
         height: 11rem;
+      }
+    }
+
+    .aj-etablissement-container {
+      .aj-etablissement {
+        padding-bottom: 1rem !important;
+
+        .aj-etablissement-details {
+          .aj-etablissements-action-tel-desktop {
+            display: none;
+          }
+
+          .aj-etablissement-horaires-plage-container {
+            flex-direction: column;
+            .aj-etablissement-horaires-plage {
+              width: 100%;
+            }
+          }
+        }
+        .aj-etablissements-actions {
+          display: block;
+          position: static;
+          right: 0;
+          transform: none;
+
+          .aj-etablissements-action-tel-mobile {
+            display: block;
+          }
+
+          .button {
+            margin-left: 0;
+          }
+
+          & > div:not(:first-of-type) {
+            margin-top: 0.5rem;
+          }
+        }
       }
     }
   }

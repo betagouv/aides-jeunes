@@ -2,8 +2,17 @@ html {
   height: 100%;
   background: linear-gradient(90deg, transparent 50%, #f2f5f9 50%);
 
-  &, body, h1, h2, h3, h4, h5, h6 {
-    font-family: Marianne, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  &,
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Marianne, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+      Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+      Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   }
 
   body {
@@ -21,6 +30,7 @@ html {
         flex: 1 0 auto;
 
         .aj-layout-container {
+          flex-direction: row-reverse;
           flex: 1 1 auto;
           width: 100%;
         }
@@ -31,7 +41,12 @@ html {
       }
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       color: var(--theme-primary);
 
       &:focus {
@@ -82,8 +97,9 @@ html {
       width: 100%;
 
       .aj-box-wrapper {
-
-        & > div:not(.aj-unbox), & > form:not(.aj-unbox), & .aj-box {
+        & > div:not(.aj-unbox),
+        & > form:not(.aj-unbox),
+        & .aj-box {
           background-color: #fff;
           padding: 40px 40px 65px 40px;
           box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
@@ -117,6 +133,10 @@ html {
         }
       }
 
+      .aj-category-title-wrapper-mobile {
+        display: none;
+      }
+
       .aj-help-popup {
         display: inline-flex;
         font-family: "MarianneBold";
@@ -130,6 +150,15 @@ html {
         width: auto;
         user-select: none;
         margin-left: 12px;
+
+        &:focus {
+          background-color: var(--theme-primary-darker);
+          outline: none;
+        }
+
+        &.aj-help-mobile {
+          display: none;
+        }
 
         .aj-help-icon {
           background-color: var(--white);
@@ -147,21 +176,22 @@ html {
       .aj-tooltip {
         position: relative;
 
-        &:hover:before, &:hover:after {
-          display:block;
-          opacity:1;
+        &:hover:before,
+        &:hover:after {
+          display: block;
+          opacity: 1;
         }
 
         &:before {
           font-family: "Marianne";
           content: attr(data-text);
-          opacity:0;
-          transition:.1s opacity;
+          opacity: 0;
+          transition: 0.1s opacity;
           font-size: 0.85rem;
-          position:absolute;
+          position: absolute;
           bottom: 150%;
           left: 0;
-          padding:10px;
+          padding: 10px;
           border-radius: 10px;
           background: var(--theme-primary-lighter);
           color: var(--theme-primary-light);
@@ -170,15 +200,15 @@ html {
         }
 
         &:after {
-          content: '';
-          opacity:0;
-          transition:.1s opacity;
+          content: "";
+          opacity: 0;
+          transition: 0.1s opacity;
           width: 25px;
           height: 25px;
           position: absolute;
           top: -75%;
           left: 20%;
-          transform: translateY(-50%)rotate(45deg);
+          transform: translateY(-50%) rotate(45deg);
           background-color: var(--theme-primary-lighter);
           z-index: 99;
         }
@@ -190,14 +220,13 @@ html {
         margin: 5px 0;
       }
 
-
       .aj-loading-modal {
         position: fixed;
-        top:0;
+        top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-color: transparentize(#000, .3);
+        background-color: transparentize(#000, 0.3);
         z-index: 99;
         display: flex;
         align-items: center;
@@ -253,6 +282,22 @@ html {
         align-items: center;
         justify-content: flex-end;
         margin-bottom: 1rem;
+      }
+    }
+
+    span.help {
+      font-style: italic;
+      font-size: 0.8em;
+      margin-left: 0.5rem;
+    }
+
+    .aj-help-modal {
+      .aj-help-modal-back-button {
+        margin-top: 2rem;
+      }
+
+      .aj-help-modal-back-icon {
+        display: none;
       }
     }
 

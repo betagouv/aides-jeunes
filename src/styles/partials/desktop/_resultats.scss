@@ -68,21 +68,36 @@ html {
     .aj-results-tools {
       display: flex;
       align-items: flex-start;
+      flex-wrap: wrap;
 
-      .aj-offline-results, .aj-feedback {
+      .aj-offline-results,
+      .aj-feedback,
+      .aj-find-contact-box {
         background-color: var(--white);
         padding: 25px;
         border-radius: var(--theme-border-radius);
         border: 1px solid var(--light-grey);
 
+        &.aj-find-contact-box {
+          width: 100%;
+          margin-bottom: 1rem;
+          display: flex;
+
+          .aj-find-contact-box-action {
+            width: 35%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+          }
+        }
+
         &.aj-offline-results {
           margin-right: 1rem;
+          width: calc(40% - 1rem);
         }
 
         &.aj-feedback {
-          flex-basis: 60%;
-          flex-grow: 0;
-          flex-shrink: 0;
+          width: 60%;
 
           .aj-feedback-partenaire {
             margin-top: 1rem;
@@ -114,13 +129,16 @@ html {
       }
     }
 
-    .aj-droit-details-back-button {
-      &, &:focus {
+    .aj-droit-details-back-button,
+    .aj-etablissements-back-button {
+      &,
+      &:focus {
         margin-bottom: 1rem;
       }
     }
 
-    .aj-droit-detail {
+    .aj-droit-detail,
+    .aj-droit-survey {
       display: flex;
       flex-direction: row;
       align-items: flex-start;
@@ -167,7 +185,7 @@ html {
       }
 
       .aj-droit-conditions {
-        background: #FEF3CF;
+        background: #fef3cf;
         padding: 1rem 1.2rem;
         border-radius: 10px;
 
@@ -218,6 +236,10 @@ html {
       }
     }
 
+    .aj-survey-details {
+      margin-bottom: 2rem;
+    }
+
     .aj-results-details {
       padding: 25px !important;
     }
@@ -227,10 +249,66 @@ html {
     }
 
     .aj-aide-warning {
-      background-color: #FEF3CF;
+      background-color: #fef3cf;
       padding: 7px 1rem;
       margin-top: 1rem;
       margin-bottom: 2rem;
+    }
+
+    .aj-etablissements-intro {
+      font-size: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .aj-etablissement-container {
+      margin-bottom: 3rem;
+
+      .aj-etablissement {
+        position: relative;
+        padding-bottom: 50px !important;
+
+        .aj-etablissement-details {
+          address {
+            margin-bottom: 1rem;
+          }
+
+          .aj-etablissements-action-tel-desktop {
+            margin-bottom: 1rem;
+          }
+
+          .aj-etablissement-horaires-plage-container {
+            display: flex;
+            flex-direction: row;
+            margin-top: 0.5rem;
+
+            .aj-etablissement-horaires-plage {
+              width: 33%;
+              padding-right: 1rem;
+
+              .list-unstyled {
+                padding: 0;
+                margin-top: 0;
+              }
+            }
+          }
+        }
+
+        .aj-etablissements-actions {
+          position: absolute;
+          bottom: 0;
+          right: 2rem;
+          display: flex;
+          transform: translateY(50%);
+
+          .aj-etablissements-action-tel-mobile {
+            display: none;
+          }
+
+          .button {
+            margin-left: 1rem;
+          }
+        }
+      }
     }
   }
 }

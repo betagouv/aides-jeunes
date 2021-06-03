@@ -1,171 +1,182 @@
-const moment = require('moment')
-const cloneDeep = require('lodash/cloneDeep')
+const moment = require("moment")
+const cloneDeep = require("lodash/cloneDeep")
 
-function isRoleParent (role) {
-    return ['demandeur', 'conjoint'].includes(role);
+function isRoleParent(role) {
+  return ["demandeur", "conjoint"].includes(role)
 }
 
 function ressourceHeader(individu) {
-
-    switch (individu._role) {
-    case 'demandeur':
-        return 'Vos ressources personnelles uniquement';
-    case 'conjoint':
-        return 'Les ressources de votre conjoint·e';
+  switch (individu._role) {
+    case "demandeur":
+      return "Vos ressources personnelles uniquement"
+    case "conjoint":
+      return "Les ressources de votre conjoint·e"
     default:
-        return `Les ressources ${Individu.label(individu, 'préposition')}${Individu.label(individu)}`;
-    }
+      return `Les ressources ${Individu.label(
+        individu,
+        "préposition"
+      )}${Individu.label(individu)}`
+  }
 }
 
 function find(situation, role, id) {
-    return situation[role] || situation.find(s => s.id === id)
+  return situation[role] || situation.find((s) => s.id === id)
 }
 
 function getDemandeur() {
-    return get([], 'demandeur').individu
+  return get([], "demandeur").individu
 }
 
 function getConjoint() {
-    return get([], 'conjoint').individu
+  return get([], "conjoint").individu
 }
 
 function get(individus, role, id) {
-    let DEFAULT_INDIVIDU = {
-        id: role,
-        classe_scolarite: undefined,
-        date_naissance: undefined,
-        echelon_bourse: -1,
-        enfant_a_charge: {},
-        nationalite: undefined,
-        _role: role,
-    };
+  let DEFAULT_INDIVIDU = {
+    id: role,
+    classe_scolarite: undefined,
+    date_naissance: undefined,
+    bourse_criteres_sociaux_echelon: -1,
+    enfant_a_charge: {},
+    nationalite: undefined,
+    _role: role,
+  }
 
-    let existingIndividu = find(individus, role, id);
-    let individu = {
-        ...cloneDeep(DEFAULT_INDIVIDU),
-        ...cloneDeep(existingIndividu)
-    };
+  let existingIndividu = find(individus, role, id)
+  let individu = {
+    ...cloneDeep(DEFAULT_INDIVIDU),
+    ...cloneDeep(existingIndividu),
+  }
 
-    if (role == 'enfant' && !existingIndividu) {
-        let usedIds = individus.map(function(enfant) { return enfant.id; });
-        let count = 0;
-        while (usedIds.indexOf('enfant_' + count) >= 0) {
-            count = count + 1;
-        }
-        individu.id = 'enfant_' + count;
-        const countDiplay = count + 1;
-        individu._firstName = 'votre ' + countDiplay + (countDiplay === 1 ? 'ᵉʳ' : 'ᵉ' ) + ' enfant';
+  if (role == "enfant" && !existingIndividu) {
+    let usedIds = individus.map(function (enfant) {
+      return enfant.id
+    })
+    let count = 0
+    while (usedIds.indexOf("enfant_" + count) >= 0) {
+      count = count + 1
     }
-    return {
-        existingIndividu: Boolean(existingIndividu),
-        individu,
-    }
+    individu.id = "enfant_" + count
+    const countDiplay = count + 1
+    individu._firstName =
+      "votre " + countDiplay + (countDiplay === 1 ? "ᵉʳ" : "ᵉ") + " enfant"
+  }
+  return {
+    existingIndividu: Boolean(existingIndividu),
+    individu,
+  }
 }
 
 const Individu = {
-    age: function(individu, dateDeReference) {
-        return moment(dateDeReference).diff(individu.date_naissance, 'years');
+  age: function (individu, dateDeReference) {
+    return moment(dateDeReference).diff(individu.date_naissance, "years")
+  },
+
+  label: function (individu, type) {
+    const VOYELLES = ["a", "e", "i", "o", "u", "y"]
+
+    const labelDict = {
+      possessive: {
+        demandeur: () => "votre",
+        conjoint: () => "sa",
+        enfant: () => "sa",
+      },
+      nom: {
+        demandeur: () => "vous",
+        conjoint: () => "votre conjoint·e",
+        enfant: () => `${individu._firstName}`,
+      },
+      préposition: {
+        conjoint: () => "de ",
+        enfant: () =>
+          VOYELLES.includes(individu._firstName[0].toLowerCase())
+            ? `d'`
+            : "de ",
+      },
+      avoir: {
+        demandeur: () => "avez-vous",
+        conjoint: () => "votre conjoint·e a-t-il/elle",
+        enfant: () => `${individu._firstName} a-t-il/elle`,
+      },
+      percevoir: {
+        demandeur: () => "percevez-vous",
+        conjoint: () => "votre conjoint·e perçoit-il/elle",
+        enfant: () => `${individu._firstName} perçoit-il/elle`,
+      },
+      être: {
+        demandeur: () => "êtes-vous",
+        conjoint: () => "votre conjoint·e est-il/elle",
+        enfant: () => `${individu._firstName} est-il/elle`,
+      },
+    }
+    return labelDict[type || "nom"][individu._role]()
+  },
+  find,
+  get,
+  getDemandeur,
+  getConjoint,
+  ressourceHeader,
+
+  ressourceShortLabel: function (individu) {
+    switch (individu._role) {
+      case "demandeur":
+        return "vos ressources"
+      default:
+        return ressourceHeader(individu)
+    }
+  },
+
+  nationaliteLabel: function (individu) {
+    return "TODO2" + individu.id //NationaliteService.getLabel(individu.nationalite);
+  },
+
+  isRoleParent,
+
+  isParent: function (individu) {
+    return isRoleParent(individu._role)
+  },
+
+  formatStatutsSpecifiques: function (individu) {
+    let statuts = []
+    if (individu.enceinte) {
+      statuts.push("enceinte")
+    }
+
+    if (individu.boursier) {
+      statuts.push("boursier")
+    }
+
+    if (individu.garde_alternee) {
+      statuts.push("en garde alternée")
+    }
+
+    //TODO3 statuts = _.map(statuts, $filter('lowercaseFirst'));
+    statuts = statuts.join(", ")
+    //TODO3 statuts = $filter('uppercaseFirst')(statuts);
+    return "TODO3" //statuts;
+  },
+  scolariteOptions: [
+    {
+      value: "college",
+      label: "Au collège",
     },
-
-    label: function(individu, type) {
-        const VOYELLES = ['a','e', 'i', 'o', 'u', 'y']
-
-        const labelDict = {
-            possessive: {
-                demandeur: () => 'votre',
-                conjoint: () => 'sa',
-                enfant: () => 'sa',
-            },
-            nom: {
-                demandeur: () => 'vous',
-                conjoint: () => 'votre conjoint·e',
-                enfant: () => `${individu._firstName}`,
-            },
-            préposition: {
-                conjoint: () => 'de ',
-                enfant: () => VOYELLES.includes(individu._firstName[0].toLowerCase()) ? `d'` : 'de ',
-            },
-            avoir: {
-                demandeur: () => 'avez-vous',
-                conjoint: () =>'votre conjoint·e a-t-il/elle',
-                enfant: () => `${individu._firstName} a-t-il/elle`
-            },
-            percevoir: {
-                demandeur: () => 'percevez-vous',
-                conjoint:  () => 'votre conjoint·e perçoit-il/elle',
-                enfant: () => `${individu._firstName} perçoit-il/elle`
-            },
-            être: {
-                demandeur: () => 'êtes-vous',
-                conjoint:  () => 'votre conjoint·e est-il/elle',
-                enfant: () => `${individu._firstName} est-il/elle`
-            },
-        }
-        return labelDict[type || 'nom'][individu._role]();
+    {
+      value: "lycee",
+      label: "Au lycée / En CAP / En CPA",
     },
-    find,
-    get,
-    getDemandeur,
-    getConjoint,
-    ressourceHeader,
-
-    ressourceShortLabel: function(individu) {
-        switch (individu._role) {
-        case 'demandeur':
-            return 'vos ressources';
-        default:
-            return ressourceHeader(individu);
-        }
+    {
+      value: "enseignement_superieur",
+      label: "Dans un établissement de l'enseignement supérieur",
     },
-
-    nationaliteLabel: function(individu) {
-        return 'TODO2' + individu.id;//NationaliteService.getLabel(individu.nationalite);
+    {
+      value: "grande_ecole_du_numerique",
+      label: "Dans une grande école du numérique",
     },
-
-    isRoleParent,
-
-    isParent: function(individu) {
-        return isRoleParent(individu._role);
+    {
+      value: "inconnue",
+      label: "Autre",
     },
-
-    formatStatutsSpecifiques: function(individu) {
-        let statuts = [];
-
-        if (individu.enceinte) {
-            statuts.push('enceinte');
-        }
-
-        if (individu.boursier) {
-            statuts.push('boursier');
-        }
-
-        if (individu.garde_alternee) {
-            statuts.push('en garde alternée');
-        }
-
-        //TODO3 statuts = _.map(statuts, $filter('lowercaseFirst'));
-        statuts = statuts.join(', ');
-        //TODO3 statuts = $filter('uppercaseFirst')(statuts);
-        return 'TODO3' //statuts;
-    },
-    scolariteOptions: [
-        {
-          value: 'college',
-          label: 'Au collège'
-        },
-        {
-          value: 'lycee',
-          label: 'Au lycée / En CAP / En CPA'
-        },
-        {
-          value: 'enseignement_superieur',
-          label: "Dans un établissement de l'enseignement supérieur",
-        },
-        {
-          value: 'inconnue',
-          label: 'Autre'
-        },
-    ],
+  ],
 }
 
 module.exports = Individu

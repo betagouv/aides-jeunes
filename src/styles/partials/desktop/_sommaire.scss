@@ -3,11 +3,11 @@ html {
     .aj-sommaire-container {
       display: flex;
       flex-direction: column;
-      width: 32%;
       background: white;
       padding: 2.5rem 2rem;
       align-items: start;
       border-right: 0.0625rem solid #e6e6e6;
+      width: 32%;
 
       .aj-sommaire-content {
         position: sticky;
@@ -41,53 +41,53 @@ html {
               color: var(--darker-grey);
               margin-left: 17px;
               min-width: 100px;
+
+              &:hover {
+                text-decoration: underline;
+                text-underline: var(--darker-grey);
+              }
+
+              &:focus {
+                color: var(--dark);
+                text-decoration: underline;
+                text-underline: var(--dark);
+              }
+            }
+
+            .aj-check-icon {
+              display: none;
             }
 
             .aj-step-done {
               background: var(--theme-primary);
+
+              .aj-check-icon {
+                display: block;
+              }
             }
 
             .aj-step-active {
               background: var(--light-green);
               position: relative;
-
-              &:before {
-                content: " ";
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                z-index: -1;
-                width: 24px;
-                height: 24px;
-                border-radius: 50%;
-                border: 2px solid var(--light-green);
-                background: white;
-              }
-            }
-
-            .aj-step-inprogress {
-              border: 2px solid var(--theme-primary);
-              background-color: var(--theme-primary);
-              position: relative;
-
-              &:before {
-                content: '...';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                z-index: 1;
-                width: 24px;
-                height: 24px;
-                color: var(--white);
-                text-align: center;
-                line-height: 1;
-              }
             }
 
             .aj-disabled-title {
               pointer-events: none;
+            }
+
+            .aj-step-active:before {
+              content: " ";
+              position: absolute;
+              z-index: -1;
+              width: 24px;
+              height: 24px;
+              border-radius: 50%;
+              border: 2px solid var(--light-green);
+              background: white;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
             }
 
             .aj-active-title {

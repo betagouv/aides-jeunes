@@ -11,14 +11,14 @@ export default {
       <abbr
         title="Commission des droits et de l'autonomie des personnes handicapées"
         >CDAPH</abbr
-      > ?`
+      > ?`
     },
     help: "Attention, cette restriction est différente de la reconnaissance de la qualité de travailleur handicapé.",
   },
 
   activite: {
     question: (component) => {
-      return `${capitalize(component.getLabel("être"))} ?`
+      return `${capitalize(component.getLabel("être"))} ?`
     },
     questionType: "enum",
     items: (component) => {
@@ -62,12 +62,12 @@ export default {
         href="https://www.etudiant.gouv.fr/fr/aide-la-mobilite-en-master-1504#item2"
         >hors de votre région académique</a
       >
-      l'an prochain ?`
+      l'an prochain ?`
     },
   },
 
   aide_mobilite_parcoursup_boursier_lycee: {
-    question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
+    question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
   },
 
   aide_mobilite_parcoursup_sortie_academie: {
@@ -79,13 +79,13 @@ export default {
         href="https://www.education.gouv.fr/les-regions-academiques-academies-et-services-departementaux-de-l-education-nationale-6557"
         >hors de votre académie</a
       >
-      l'an prochain ?`
+      l'an prochain ?`
     },
   },
 
   alternant: {
     question: (component) => {
-      return `${capitalize(component.getLabel("être"))} en alternance ?`
+      return `${capitalize(component.getLabel("être"))} en alternance ?`
     },
   },
 
@@ -99,16 +99,16 @@ export default {
       entre ${yearsAgo(
         10,
         component.individu.date_debut_chomage
-      )} et ${yearsAgo(0, component.individu.date_debut_chomage)} ?`
+      )} et ${yearsAgo(0, component.individu.date_debut_chomage)} ?`
     },
   },
 
   boursier: {
-    question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
+    question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
   },
 
   classe_scolarite: {
-    question: "Dans quelle classe êtes-vous actuellement ?",
+    question: "Dans quelle classe êtes-vous actuellement ?",
     questionType: "enum",
     items: (component) => {
       return [
@@ -141,20 +141,20 @@ export default {
     question: (component) => {
       return `${capitalize(
         component.getLabel("être")
-      )} placé·e en structure spécialisée ou famille d'accueil ?`
+      )} placé·e en structure spécialisée ou famille d'accueil ?`
     },
   },
 
   garde_alternee: {
     question: (component) => {
-      return `${capitalize(component.getLabel("être"))} en garde alternée ?`
+      return `${capitalize(component.getLabel("être"))} en garde alternée ?`
     },
   },
 
   gir: {
     question: (component) => {
       return `${capitalize(component.getLabel("être"))} besoin d’une aide à la
-      personne ?`
+      personne ?`
     },
     questionType: "enum",
     items: [
@@ -174,14 +174,14 @@ export default {
   },
 
   habite_chez_parents: {
-    question: "Êtes-vous hébergé chez vos parents ?",
+    question: "Êtes-vous hébergé chez vos parents ?",
   },
 
   handicap: {
     question: (component) => {
       return `${capitalize(
         component.getLabel("être")
-      )} en situation de handicap ?`
+      )} en situation de handicap ?`
     },
     enSavoirPlus: true,
   },
@@ -190,7 +190,7 @@ export default {
     question: (component) => {
       return `${capitalize(
         component.getLabel("être")
-      )} reconnu·e inapte au travail ?`
+      )} reconnu·e inapte au travail ?`
     },
     enSavoirPlus: true,
   },
@@ -198,10 +198,10 @@ export default {
   nationalite: {
     question: (component) => {
       return component.role === "demandeur"
-        ? "Quelle est votre nationalité ?"
+        ? "Quelle est votre nationalité ?"
         : `Quelle est la nationalité ${component.getLabel(
             "préposition"
-          )}${component.getLabel("nom")} ?`
+          )}${component.getLabel("nom")} ?`
     },
     questionType: "enum",
     items: [
@@ -227,22 +227,22 @@ export default {
         title="ou 3 214 heures (2 fois 1 607) couvertes par un contrat de travail."
         >au moins 2 ans</abbr
       >
-      depuis ${yearsAgo(3, component.$store.state.dates.today.id)} ?`
+      depuis ${yearsAgo(3, component.$store.state.dates.today.id)} ?`
     },
   },
 
   scolarite: {
     question: (component) => {
       return component.role == "demandeur"
-        ? "Où êtes-vous scolarisé·e ?"
-        : `Où sera scolarisé·e ${component.individu._firstName} à la rentrée prochaine ?`
+        ? "Où êtes-vous scolarisé·e ?"
+        : `Où sera scolarisé·e ${component.individu._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
     items: Individu.scolariteOptions,
   },
 
   statuts_etablissement_scolaire: {
-    question: "Dans quel type d'établissement étudiez-vous actuellement ?",
+    question: "Dans quel type d'établissement étudiez-vous actuellement ?",
     questionType: "enum",
     items: [
       {
@@ -268,7 +268,7 @@ export default {
     question: (component) => {
       const start =
         component.role === "demandeur"
-          ? `Quel est votre taux d'incapacité`
+          ? `Quel est votre taux d'incapacité`
           : `Quel est le taux d'incapacité ${component.getLabel(
               "préposition"
             )}${component.getLabel("nom")}`
@@ -277,7 +277,7 @@ export default {
           évalué par ${component.getLabel("possessive")}
           <abbr title="Maison départementale des personnes handicapées"
             >MDPH</abbr
-          > ?`
+          > ?`
     },
     questionType: "enum",
     items: [
@@ -298,10 +298,10 @@ export default {
 
   _interetEtudesEtranger: {
     question:
-      "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
+      "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
   },
 
   _interetPermisDeConduire: {
-    question: "Prévoyez-vous de passer le permis de conduire ?",
+    question: "Prévoyez-vous de passer le permis de conduire ?",
   },
 }

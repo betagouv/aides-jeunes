@@ -15,6 +15,7 @@
                 'aj-step-done': chapter.done,
                 'aj-step-inactive': !chapter.done,
                 'aj-step-active': chapter.current,
+                'aj-step-inprogress': chapterInProgress(chapter, index),
               }"
             >
               <img src="../assets/images/done.svg" class="aj-check-icon" />

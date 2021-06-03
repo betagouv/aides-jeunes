@@ -83,6 +83,9 @@ export default {
         ? false
         : !chapter.done && !this.chapters[index - 1].done
     },
+    chapterInProgress(chapter, index) {
+      return !chapter.current && !chapter.done && this.chapters[index - 1].done
+    },
   },
 }
 </script>

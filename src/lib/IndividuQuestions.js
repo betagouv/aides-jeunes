@@ -1,12 +1,10 @@
 import Individu from "@/lib/Individu"
-import { capitalize, isRelevant, yearsAgo } from "@/lib/Utils"
+import { isRelevant, yearsAgo } from "@/lib/Utils"
 
 export default {
   aah_restriction_substantielle_durable_acces_emploi: {
     question: (component) => {
-      return `${capitalize(
-        component.getLabel("avoir")
-      )} une restriction substantielle et
+      return `${component.getLabel("avoir")} une restriction substantielle et
       durable d'accès à l'emploi reconnue par la
       <abbr
         title="Commission des droits et de l'autonomie des personnes handicapées"
@@ -18,7 +16,7 @@ export default {
 
   activite: {
     question: (component) => {
-      return `${capitalize(component.getLabel("être"))} ?`
+      return `${component.getLabel("être")} ?`
     },
     questionType: "enum",
     items: (component) => {
@@ -55,7 +53,7 @@ export default {
 
   aide_mobilite_master_sortie_region_academique: {
     question: (component) => {
-      return `${capitalize(component.getLabel("avoir"))} prévu d'étudier
+      return `${component.getLabel("avoir")} prévu d'étudier
       <a
         target="_blank"
         rel="noopener"
@@ -72,7 +70,7 @@ export default {
 
   aide_mobilite_parcoursup_sortie_academie: {
     question: (component) => {
-      return `${capitalize(component.getLabel("avoir"))} prévu d'étudier
+      return `${component.getLabel("avoir")} prévu d'étudier
       <a
         target="_blank"
         rel="noopener"
@@ -85,21 +83,20 @@ export default {
 
   alternant: {
     question: (component) => {
-      return `${capitalize(component.getLabel("être"))} en alternance ?`
+      return `${component.getLabel("être")} en alternance ?`
     },
   },
 
   ass_precondition_remplie: {
     question: (component) => {
-      return `${capitalize(component.getLabel("avoir"))} travaillé
+      const date_debut_chomage = component.individu.date_debut_chomage
+      return `${component.getLabel("avoir")} travaillé
       <abbr
         title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés."
         >au moins 5 ans</abbr
       >
-      entre ${yearsAgo(
-        10,
-        component.individu.date_debut_chomage
-      )} et ${yearsAgo(0, component.individu.date_debut_chomage)} ?`
+      entre ${yearsAgo(10, date_debut_chomage)}
+      et ${yearsAgo(0, date_debut_chomage)} ?`
     },
   },
 
@@ -139,21 +136,21 @@ export default {
 
   enfant_place: {
     question: (component) => {
-      return `${capitalize(
-        component.getLabel("être")
+      return `${component.getLabel(
+        "être"
       )} placé·e en structure spécialisée ou famille d'accueil ?`
     },
   },
 
   garde_alternee: {
     question: (component) => {
-      return `${capitalize(component.getLabel("être"))} en garde alternée ?`
+      return `${component.getLabel("être")} en garde alternée ?`
     },
   },
 
   gir: {
     question: (component) => {
-      return `${capitalize(component.getLabel("être"))} besoin d’une aide à la
+      return `${component.getLabel("avoir")} besoin d’une aide à la
       personne ?`
     },
     questionType: "enum",
@@ -179,18 +176,14 @@ export default {
 
   handicap: {
     question: (component) => {
-      return `${capitalize(
-        component.getLabel("être")
-      )} en situation de handicap ?`
+      return `${component.getLabel("être")} en situation de handicap ?`
     },
     enSavoirPlus: true,
   },
 
   inapte_travail: {
     question: (component) => {
-      return `${capitalize(
-        component.getLabel("être")
-      )} reconnu·e inapte au travail ?`
+      return `${component.getLabel("être")} reconnu·e inapte au travail ?`
     },
     enSavoirPlus: true,
   },
@@ -198,7 +191,7 @@ export default {
   nationalite: {
     question: (component) => {
       return component.role === "demandeur"
-        ? "Quelle est votre nationalité ?"
+        ? "Quelle est votre nationalité ?"
         : `Quelle est la nationalité ${component.getLabel(
             "préposition"
           )}${component.getLabel("nom")} ?`
@@ -222,7 +215,7 @@ export default {
 
   rsa_jeune_condition_heures_travail_remplie: {
     question: (component) => {
-      return `${capitalize(component.getLabel("avoir"))} travaillé
+      return `${component.getLabel("avoir")} travaillé
       <abbr
         title="ou 3 214 heures (2 fois 1 607) couvertes par un contrat de travail."
         >au moins 2 ans</abbr
@@ -234,7 +227,7 @@ export default {
   scolarite: {
     question: (component) => {
       return component.role == "demandeur"
-        ? "Où êtes-vous scolarisé·e ?"
+        ? "Où êtes-vous scolarisé·e ?"
         : `Où sera scolarisé·e ${component.individu._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
@@ -268,7 +261,7 @@ export default {
     question: (component) => {
       const start =
         component.role === "demandeur"
-          ? `Quel est votre taux d'incapacité`
+          ? `Quel est votre taux d'incapacité`
           : `Quel est le taux d'incapacité ${component.getLabel(
               "préposition"
             )}${component.getLabel("nom")}`

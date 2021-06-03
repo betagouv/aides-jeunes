@@ -35,7 +35,7 @@ import Actions from "@/components/Actions"
 import YesNoQuestion from "../../components/YesNoQuestion.vue"
 import Individu from "@/lib/Individu"
 import IndividuQuestions from "@/lib/IndividuQuestions"
-import { executeFunctionOrReturnValue } from "@/lib/Utils"
+import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 
 export default {
@@ -62,7 +62,9 @@ export default {
       return this.meta.questionType
     },
     question: function () {
-      return executeFunctionOrReturnValue(this.meta, "question", this)
+      return capitalize(
+        executeFunctionOrReturnValue(this.meta, "question", this)
+      )
     },
     items: function () {
       return executeFunctionOrReturnValue(this.meta, "items", this)

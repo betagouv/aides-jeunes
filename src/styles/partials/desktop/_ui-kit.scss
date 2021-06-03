@@ -37,7 +37,8 @@ html {
       }
 
       &:focus {
-        outline: none;
+        outline: 0.0625rem auto var(--theme-primary);
+        outline-offset: 0.3125rem;
       }
     }
 

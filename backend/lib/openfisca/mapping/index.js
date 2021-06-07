@@ -223,8 +223,5 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     situation.demandeur
   )
 
-  testCase.foyers_fiscaux._.nantes_metropole_tarification_solidaire_transport_quotient_familial =
-    { 2019: null }
-
   return applyHeuristicsAndFix(testCase, sourceSituation.dateDeValeur)
 }

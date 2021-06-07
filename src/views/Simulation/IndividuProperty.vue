@@ -2,10 +2,11 @@
   <form @submit.prevent="onSubmit">
     <fieldset v-if="questionType === 'enum'">
       <legend>
-        <h2 class="aj-question"
-          ><span v-html="question"></span>
-          <EnSavoirPlus v-if="showMoreInfo" /></h2
-        ><p v-if="meta.help" v-html="meta.help"></p>
+        <h2 class="aj-question">
+          <span v-html="question"></span>
+          <EnSavoirPlus v-if="showMoreInfo" />
+        </h2>
+        <p v-if="meta.help" v-html="meta.help"></p>
       </legend>
       <div class="aj-selection-wrapper" v-for="item in items" :key="item.value">
         <input

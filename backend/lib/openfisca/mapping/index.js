@@ -170,8 +170,8 @@ exports.dispatchIndividuals = dispatchIndividuals
 // cf. https://github.com/openfisca/openfisca-france/pull/1233
 // logement_conventionne needs to be true when the loan in fully paid
 // to avoid a benefit from appearing
-function applyHeuristicsAndFix(testCase, dateDeValeur) {
-  var thisMonth = common.getPeriods(dateDeValeur).thisMonth
+function applyHeuristicsAndFix(testCase, sourceSituation) {
+  var periods = common.getPeriods(sourceSituation.dateDeValeur)
 
   var menage = assign(
     {},
@@ -180,11 +180,18 @@ function applyHeuristicsAndFix(testCase, dateDeValeur) {
     },
     testCase.menages._
   )
-  menage.logement_conventionne[thisMonth] =
+  menage.logement_conventionne[periods.thisMonth] =
     menage.statut_occupation_logement &&
-    menage.statut_occupation_logement[thisMonth] == "primo_accedant" &&
+    menage.statut_occupation_logement[periods.thisMonth] == "primo_accedant" &&
     menage.loyer &&
-    menage.loyer[thisMonth] == 0
+    menage.loyer[periods.thisMonth] == 0
+
+  const aCharge =
+    demandeur.enfant_a_charge &&
+    Object.keys(demandeur.enfant_a_charge).length &&
+    demandeur.enfant_a_charge[Object.keys(demandeur.enfant_a_charge)]
+
+  testCase.foyers_fiscaux._
 
   testCase.menages._ = menage
   return testCase
@@ -223,5 +230,5 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     situation.demandeur
   )
 
-  return applyHeuristicsAndFix(testCase, sourceSituation.dateDeValeur)
+  return applyHeuristicsAndFix(testCase, sourceSituation)
 }

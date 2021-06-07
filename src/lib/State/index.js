@@ -64,20 +64,36 @@ function current(currentPath, situation) {
 }
 
 function next(current, situation) {
-  const journey = full(situation)
-  const activeJourney = journey.filter((s) => s.isActive)
+  const fullJourney = full(situation)
+  const journeys = [fullJourney.filter((s) => s.isActive), fullJourney]
 
-  let matches = activeJourney
-    .map((element, index) => {
-      return { element, index }
-    })
-    .filter((item) => item.element.path == (current.path || current))
-  if (matches.length) {
-    return activeJourney[matches[matches.length - 1].index + 1]
-  } else {
-    const test = current.path || current.fullPath || current
-    throw new Error("Logic missing for " + test)
+  const potentialNexts = journeys.map((journey) => {
+    let matches = journey
+      .map((element, index) => {
+        return { element, index }
+      })
+      .filter((item) => item.element.path == (current.path || current))
+    if (matches.length) {
+      let idx = matches[matches.length - 1].index + 1
+      while (idx < journey.length && !journey[idx].isActive) {
+        idx = idx + 1
+      }
+
+      if (idx == journey.length) {
+        return
+      }
+
+      return journey[idx]
+    }
+  })
+
+  const next = potentialNexts.filter((v) => v)
+  if (next.length) {
+    return next[0]
   }
+
+  const test = current.path || current.fullPath || current
+  throw new Error("Logic missing for " + test)
 }
 
 module.exports = {

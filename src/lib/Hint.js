@@ -1,4 +1,10 @@
 const texts = {
+  bourse_criteres_sociaux_base_ressources_parentale: () => {
+    return "Lorsque les parents sont séparés, il faut prendre les ressources du parent ayant à la charge l'étudiant. Si l'étudiant est en garde alternée, il faut faire la somme des ressources des deux foyers fiscaux des parents séparés."
+  },
+  enfants: function () {
+    return `« Un enfant à charge » est un enfant dont vous êtes responsable et dont vous vous occupez, qu'il soit votre enfant naturel ou non.`
+  },
   handicap: function (variation) {
     if (variation && variation.includes("enfant")) {
       return `Votre enfant est « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
@@ -11,14 +17,11 @@ const texts = {
           et que celle-ci vous a reconnu comme tel·le et qu'elle vous a également attribué un « taux d'incapacité » lié à votre handicap.`
     }
   },
-  enfants: function () {
-    return `« Un enfant à charge » est un enfant dont vous êtes responsable et dont vous vous occupez, qu'il soit votre enfant naturel ou non.`
-  },
   inapte_travail: function () {
     return "Vous pouvez être « inapte au travail » après un accident ou une maladie. C'est le médecin du travail qui détermine cela."
   },
-  bourse_criteres_sociaux_base_ressources_parentale: () => {
-    return "Lorsque les parents sont séparés, il faut prendre les ressources du parent ayant à la charge l'étudiant. Si l'étudiant est en garde alternée, il faut faire la somme des ressources des deux foyers fiscaux des parents séparés."
+  scolarite: () => {
+    return "Pour les étudiants en classes préparatoires aux grandes écoles, il faut sélectionner « Dans un établissement de l'enseignement supérieur »."
   },
 }
 

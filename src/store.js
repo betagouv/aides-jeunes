@@ -60,7 +60,12 @@ function defaultCalculs() {
     updating: false,
   }
 }
-
+function defaultUserJourney() {
+  return {
+    history: [],
+    doneHistory: [],
+  }
+}
 function defaultStore() {
   const now = moment().format()
 
@@ -71,10 +76,7 @@ function defaultStore() {
     },
     mobileMenu: false,
     debug: false,
-    userJourney: {
-      history: [],
-      doneHistory: [],
-    },
+    userJourney: defaultUserJourney(),
     situation: {
       _id: null,
       external_id: null,
@@ -253,10 +255,7 @@ const store = new Vuex.Store({
   mutations: {
     clear: function (state) {
       state.situation = {}
-      state.userJourney = {
-        history: [],
-        doneHistory: [],
-      }
+      state.userJourney = defaultUserJourney()
       state.access.forbidden = false
       state.access.fetching = false
     },
@@ -399,6 +398,9 @@ const store = new Vuex.Store({
     },
     setSaveSituationError: function (state, saveSituationError) {
       state.saveSituationError = saveSituationError
+    },
+    resetUserJourney: function (state) {
+      this.state.userJourney = defaultUserJourney()
     },
   },
   actions: {

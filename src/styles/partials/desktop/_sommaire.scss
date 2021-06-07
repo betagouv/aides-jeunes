@@ -140,7 +140,9 @@ html {
         }
 
         .aj-btn-container {
-          display: flex;
+          // TODO remplacer par un flex dans la version complète
+          //display: flex;
+          display: none;
           width: 100%;
           justify-content: center;
           margin-top: 46px;

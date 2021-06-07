@@ -3,8 +3,8 @@
     <div class="aj-1j1s-header-logo-container">
       <div class="container">
         <svg
-          width="100%"
-          height="100%"
+          width="26"
+          height="18"
           viewBox="0 0 26 18"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -80,8 +80,8 @@
     <nav class="aj-1j1s-header-menu" :class="{ show: showMenu }">
       <div class="container">
         <svg
-          width="100%"
-          height="100%"
+          width="18"
+          height="18"
           viewBox="0 0 18 18"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

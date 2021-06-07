@@ -232,6 +232,7 @@ export default {
     },
     questionType: "enum",
     items: Individu.scolariteOptions,
+    enSavoirPlus: true,
   },
 
   statuts_etablissement_scolaire: {

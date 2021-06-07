@@ -2,10 +2,11 @@
   <form @submit.prevent="onSubmit">
     <fieldset v-if="questionType === 'enum'">
       <legend>
-        <h2 class="aj-question"
-          ><span v-html="question"></span>
-          <EnSavoirPlus v-if="meta.enSavoirPlus" /></h2
-        ><p v-if="meta.help" v-html="meta.help"></p>
+        <h2 class="aj-question">
+          <span v-html="question"></span>
+          <EnSavoirPlus v-if="showMoreInfo" />
+        </h2>
+        <p v-if="meta.help" v-html="meta.help"></p>
       </legend>
       <div class="aj-selection-wrapper" v-for="item in items" :key="item.value">
         <input
@@ -21,7 +22,7 @@
       </div>
     </fieldset>
     <YesNoQuestion v-else v-model="value">
-      <span v-html="question"></span><EnSavoirPlus v-if="meta.enSavoirPlus" />
+      <span v-html="question"></span><EnSavoirPlus v-if="showMoreInfo" />
       <template v-slot:help v-if="meta.help"
         ><p v-html="meta.help"></p
       ></template>
@@ -33,6 +34,7 @@
 <script>
 import Actions from "@/components/Actions"
 import YesNoQuestion from "../../components/YesNoQuestion.vue"
+import Hint from "@/lib/Hint"
 import Individu from "@/lib/Individu"
 import IndividuQuestions from "@/lib/IndividuQuestions"
 import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
@@ -65,6 +67,9 @@ export default {
       return capitalize(
         executeFunctionOrReturnValue(this.meta, "question", this)
       )
+    },
+    showMoreInfo: function () {
+      return Hint.get(this.fieldName)
     },
     items: function () {
       return executeFunctionOrReturnValue(this.meta, "items", this)

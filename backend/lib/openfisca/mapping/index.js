@@ -197,8 +197,6 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
 
   var testCase = dispatchIndividuals(situation)
 
-  console.log(JSON.stringify(testCase, null, 2))
-
   // Variables stored to properly restore UI should not be sent to OpenFisca
   forEach(testCase, (items) => {
     forEach(items, (item) => {

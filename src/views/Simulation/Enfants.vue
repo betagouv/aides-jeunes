@@ -33,6 +33,10 @@
           <label>Sa situation</label>
           <span>{{ enfant.scolarite | scolarite }}</span>
         </div>
+        <div class="aj-children-scolarite">
+          <label>Complété ?</label>
+          <span>{{ enfantComplete(enfant) | complete }}</span>
+        </div>
         <div class="aj-children-delete"> </div>
       </div>
     </div>
@@ -55,7 +59,7 @@
       </svg>
       Ajouter un enfant à charge
     </button>
-    <Actions v-bind:onSubmit="$push"> </Actions>
+    <Actions v-bind:onSubmit="onSubmit"> </Actions>
   </div>
 </template>
 
@@ -88,6 +92,9 @@ export default {
         return "Non renseigné"
       }
     },
+    complete: function (value) {
+      return value ? "Oui" : "Non"
+    },
     nationality: Nationality.getNationalityFromCountryCode,
     scolarite: function (value) {
       const s = Individu.scolariteOptions.find((s) => s.value === value)
@@ -97,6 +104,17 @@ export default {
     },
   },
   methods: {
+    enfantComplete: function (enfant) {
+      return (
+        ![
+          enfant.date_naissance,
+          enfant.nationalite,
+          enfant.garde_alternee,
+          enfant.handicap,
+        ].includes(undefined) &&
+        this.$store.state.dates.thisYear.id in enfant.enfant_a_charge
+      )
+    },
     addPAC: function () {
       let { individu } = Individu.get(
         this.$store.state.situation.enfants,
@@ -109,6 +127,25 @@ export default {
     },
     removePAC: function (id) {
       this.$store.dispatch("removeEnfant", id)
+    },
+    requiredValueMissing: function () {
+      const hasError = this.enfants.some(
+        (enfant) => !this.enfantComplete(enfant)
+      )
+      this.$store.dispatch(
+        "updateError",
+        hasError &&
+          `Vous devez finir de compléter les informations liés à ${
+            this.enfants.length > 1 ? "vos enfants" : "votre enfant"
+          }.`
+      )
+      return hasError
+    },
+    onSubmit: function () {
+      if (this.requiredValueMissing()) {
+        return
+      }
+      this.$push()
     },
   },
 }

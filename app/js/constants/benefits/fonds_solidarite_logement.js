@@ -507,7 +507,7 @@ module.exports = {
     label: "des Pyrénées-Atlantiques",
     code: "64",
     resources: {
-      link: "http://www.le64.fr/solidarite/logement-et-habitat/accompagnement-des-publics/favoriser-lacces-et-le-maintien-dans-les-lieux.html",
+      link: "https://le64.fr/vous-aider-acceder-un-logement-ou-vous-y-maintenir",
     },
   }),
   departement_bas_rhin: fsl_generator({

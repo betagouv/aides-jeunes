@@ -540,7 +540,8 @@ router.beforeEach((to, from, next) => {
     userJourneyHistory = store.state.userJourney.history
   } catch {
     // Évite une erreur lorsque l'utilisateur récupère une simulation antérieure au sommaire complexe
-    store.dispatch("resetUserJourney")
+    store.commit("resetUserJourney")
+    userJourneyHistory = store.state.userJourney.history
   }
   if (userJourneyHistory[userJourneyHistory.length - 1] !== from.path) {
     store.dispatch("addPathToUserJourney", from.path)

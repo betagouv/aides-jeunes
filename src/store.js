@@ -400,7 +400,7 @@ const store = new Vuex.Store({
       state.saveSituationError = saveSituationError
     },
     resetUserJourney: function (state) {
-      this.state.userJourney = defaultUserJourney()
+      state.userJourney = defaultUserJourney()
     },
   },
   actions: {

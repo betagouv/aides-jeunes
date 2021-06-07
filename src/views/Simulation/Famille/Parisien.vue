@@ -7,11 +7,10 @@
   </form>
 </template>
 <script>
-import moment from "moment"
-
 import Actions from "@/components/Actions"
 import YesNoQuestion from "@/components/YesNoQuestion"
 import { createFamilleMixin } from "@/mixins/FamilleMixin"
+import { yearsAgo } from "@/lib/Utils"
 
 export default {
   name: "SimulationFamilleParisien",
@@ -22,9 +21,7 @@ export default {
   mixins: [createFamilleMixin("parisien")],
   methods: {
     yearsAgo: function (years) {
-      return moment(this.$store.state.situation.dateDeValeur)
-        .subtract(years, "years")
-        .format("MMMM YYYY")
+      return yearsAgo(years, this.$store.state.situation.dateDeValeur)
     },
   },
 }

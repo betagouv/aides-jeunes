@@ -59,68 +59,13 @@ const router = new Router({
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/DateNaissance.vue"
                 ),
             },
-            {
-              name: "handicap",
-              path: "handicap",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Handicap.vue"
-                ),
-            },
-            {
-              name: "taux_incapacite",
-              path: "taux_incapacite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Handicap/TauxIncapacite.vue"
-                ),
-            },
-            {
-              name: "aah_restriction_substantielle_durable_acces_emploi",
-              path: "aah_restriction_substantielle_durable_acces_emploi",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Handicap/AAHRestrictionSubstantielleDurableAccesEmploi.vue"
-                ),
-            },
-            {
-              name: "inapte_travail",
-              path: "inapte_travail",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/InapteTravail.vue"
-                ),
-            },
+
             {
               name: "date_debut_chomage",
               path: "date_debut_chomage",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/DateDebutChomage.vue"
-                ),
-            },
-            {
-              name: "ass_precondition_remplie",
-              path: "ass_precondition_remplie",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/AssPreconditionRemplie.vue"
-                ),
-            },
-            {
-              name: "scolarite",
-              path: "scolarite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Scolarite.vue"
-                ),
-            },
-            {
-              name: "garde_alternee",
-              path: "garde_alternee",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/GardeAlternee.vue"
                 ),
             },
             {
@@ -148,59 +93,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "enfant_place",
-              path: "enfant_place",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/EnfantPlace.vue"
-                ),
-            },
-            {
-              name: "gir",
-              path: "gir",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/GIR.vue"
-                ),
-            },
-            {
-              name: "nationalite",
-              path: "nationalite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Nationalite.vue"
-                ),
-            },
-            {
-              name: "activite",
-              path: "activite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Activite.vue"
-                ),
-            },
-            {
-              name: "habite_chez_parents",
-              path: "habite_chez_parents",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/HabiteChezParents.vue"
-                ),
-            },
-            {
               name: "_firstName",
               path: "_firstName",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/_FirstName.vue"
-                ),
-            },
-            {
-              name: "_interetPermisDeConduire",
-              path: "_interetPermisDeConduire",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/_InteretPermisDeConduire.vue"
                 ),
             },
             {
@@ -236,75 +133,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "rsa_jeune_condition_heures_travail_remplie",
-              path: "rsa_jeune_condition_heures_travail_remplie",
+              name: "IndividuProperty",
+              path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/RsaJeuneConditionHeuresTravailRemplie.vue"
-                ),
-            },
-            {
-              name: "classe_scolarite",
-              path: "classe_scolarite",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/ClasseScolarite.vue"
-                ),
-            },
-            {
-              name: "statuts_etablissement_scolaire",
-              path: "statuts_etablissement_scolaire",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/StatutsEtablissementScolaire.vue"
-                ),
-            },
-            {
-              name: "aide_mobilite_parcoursup_sortie_academie",
-              path: "aide_mobilite_parcoursup_sortie_academie",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/AideMobiliteParcoursupSortieAcademie.vue"
-                ),
-            },
-            {
-              name: "aide_mobilite_parcoursup_boursier_lycee",
-              path: "aide_mobilite_parcoursup_boursier_lycee",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/AideMobiliteParcoursupBoursierLycee.vue"
-                ),
-            },
-            {
-              name: "aide_mobilite_master_sortie_region_academique",
-              path: "aide_mobilite_master_sortie_region_academique",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/AideMobiliteMasterSortieRegionAcademique.vue"
-                ),
-            },
-            {
-              name: "boursier",
-              path: "boursier",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Boursier.vue"
-                ),
-            },
-            {
-              name: "alternant",
-              path: "alternant",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/Alternant.vue"
-                ),
-            },
-            {
-              name: "_interetEtudesEtranger",
-              path: "_interetEtudesEtranger",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/_InteretEtudesEtranger.vue"
+                  /* webpackChunkName: "individu" */ "./views/Simulation/IndividuProperty.vue"
                 ),
             },
             {

@@ -38,10 +38,9 @@
 </template>
 
 <script>
-import moment from "moment"
-
 import YesNoQuestion from "@/components/YesNoQuestion"
 import InputMonth from "@/components/InputMonth"
+import { yearsAgo } from "@/lib/Utils"
 
 export default {
   name: "ASSQuestions",
@@ -60,11 +59,7 @@ export default {
   },
   methods: {
     yearsAgo: function (years) {
-      let dt = moment(this.individu.date_debut_chomage)
-      return (
-        this.individu.date_debut_chomage &&
-        dt.subtract(years, "years").format("MMMM YYYY")
-      )
+      return yearsAgo(years, this.individu.date_debut_chomage)
     },
   },
 }

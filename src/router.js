@@ -3,6 +3,7 @@ import Router from "vue-router"
 import Home from "./views/Home.vue"
 import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
+import SommairePage from "@/views/Simulation/SommairePage"
 
 Vue.use(Router)
 
@@ -41,6 +42,11 @@ const router = new Router({
             import(
               /* webpackChunkName: "en_savoir_plus" */ "./components/EnSavoirPlusContent.vue"
             ),
+        },
+        {
+          path: ":parent+/sommaire",
+          name: "sommaire",
+          component: SommairePage,
         },
         {
           name: "individu",

@@ -12,7 +12,22 @@ html {
       .aj-sommaire-content {
         position: sticky;
         top: 2.5rem;
+      }
+    }
 
+    .aj-sommaire-page-container {
+      display: flex;
+      flex-direction: column;
+      padding: 2.5rem 2rem;
+      align-items: start;
+
+      .aj-sommaire-content {
+        width: 100%;
+      }
+    }
+
+    .aj-sommaire-container, .aj-sommaire-page-container {
+      .aj-sommaire-content {
         .aj-progressBar-container {
           position: relative;
           margin-top: 2rem;

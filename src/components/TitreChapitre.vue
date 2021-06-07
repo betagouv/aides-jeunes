@@ -3,27 +3,26 @@
     <div class="aj-category-title-wrapper">
       <h1>{{ title }}</h1>
     </div>
-    <div
-      class="aj-category-title-wrapper-mobile"
-      :class="{ open: mobileOpen }"
-      @click="switchMobileOpen"
-    >
-      <h1>{{ title }} <img src="@/assets/images/arrow-down.svg" /></h1>
+    <div class="aj-category-title-wrapper-mobile">
+      <h1>{{ title }}</h1>
+      <MenuButton
+        @click.native="switchMobileOpen"
+        v-show="$route.name !== 'sommaire'"
+      ></MenuButton>
     </div>
   </div>
 </template>
 
 <script>
 import Chapters from "@/lib/Chapters"
+import MenuButton from "@/components/Buttons/MenuButton"
 
 export default {
   name: "TitreChapitre",
+  components: { MenuButton },
   computed: {
     title() {
       return this.getTitleByRoute(this.$route)
-    },
-    mobileOpen() {
-      return this.$store.getters.getMobileMenu
     },
   },
   methods: {
@@ -37,10 +36,10 @@ export default {
       return Chapters.getLabel(chapterName)
     },
     switchMobileOpen() {
-      this.$store.commit("setMobileMenu", !this.$store.getters.getMobileMenu)
+      this.$router.push({ path: this.$route.path + "/sommaire" })
     },
   },
 }
 </script>
 
-<style type="text/css"></style>
+<style lang="scss"></style>

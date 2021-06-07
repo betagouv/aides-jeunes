@@ -134,13 +134,7 @@ function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
   var prestationsWithInterest = pickBy(
     common.requestedVariables,
     function (definition, prestationName) {
-      return (
-        (!definition.interestFlag || demandeur[definition.interestFlag]) &&
-        !prestationName.match(
-          /fonds_solidarite_logement_aide_maintien_eligibilite/
-        ) &&
-        !prestationName.match(/eure_et_loir/)
-      )
+      return !definition.interestFlag || demandeur[definition.interestFlag]
     }
   )
 

@@ -28,7 +28,7 @@ const EtablissementModule = {
         "https://etablissements-publics.api.gouv.fr/v3/communes/" +
         payload.city +
         "/" +
-        payload.type
+        payload.types.join("+")
 
       return axios
         .get(API_URL)
@@ -38,19 +38,14 @@ const EtablissementModule = {
             .map(EtablissementLib.normalize)
             .sort((a, b) => {
               return (
-                payload.type.indexOf(a.pivotLocal) -
-                payload.type.indexOf(b.pivotLocal)
+                payload.types.indexOf(a.pivotLocal) -
+                payload.types.indexOf(b.pivotLocal)
               )
             })
           state.commit("setEtablissements", listEtablissements)
           state.commit("setUpdating", false)
         })
         .catch(state.commit("setError", "Aucun résultat"))
-    },
-  },
-  getters: {
-    get(state) {
-      return state.search
     },
   },
 }

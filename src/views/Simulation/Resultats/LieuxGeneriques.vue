@@ -19,15 +19,17 @@
       </svg>
       Retour aux résultats
     </button>
-    <p class="aj-etablissements-intro">
-      Voici les lieux où vous pouvez y être accompagné(e) pour faire vos
-      demandes et poser toutes vos questions.
-    </p>
+
     <p v-show="updating"
       ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération en
       cours…</p
     >
     <div v-if="etablissements && etablissements.length">
+      <p class="aj-etablissements-intro">
+        Voici les lieux où vous pouvez y être accompagné(e) pour faire vos
+        demandes et poser toutes vos questions.
+      </p>
+
       <div
         v-for="(etablissement, index) in etablissements"
         class="aj-etablissement-container"
@@ -37,9 +39,12 @@
       </div>
     </div>
     <div v-else>
+      <p class="aj-etablissements-intro" :v-if="error">
+        {{ error }}
+      </p>
+      Revenir aux résultats
       <router-link to="/simulation/resultats">
         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-        Revenir aux résultats
       </router-link>
     </div>
   </div>
@@ -48,30 +53,36 @@
 <script>
 import Etablissement from "@/components/Etablissement"
 import Individu from "@/lib/Individu.js"
-// Sorted by relevancy
-var defaultEtablissementTypes = [
-  "mairie",
-  "mds",
-  "ccas",
-  "cdas",
-  "centre_social",
-  "edas",
-  "sdsei",
-  "msap",
-]
+
 const list = [
   {
     isRelevant: (demandeur, situation) => {
-      let demandeurAge = Math.abs(
-        Individu.age(situation.dateDeValeur, demandeur.date_naissance)
+      let demandeurAge = Individu.age(
+        demandeur.date_naissance,
+        situation.dateDeValeur
       )
       return demandeurAge <= 25 && demandeurAge >= 16
     },
     types: ["mission_locale", "cij"],
-    prepend: true,
   },
   {
-    types: ["service_social", "edas"],
+    isRelevant: (demandeur) => {
+      return demandeur.activite === "chomeur"
+    },
+    types: ["pole_emploi"],
+  },
+  {
+    isRelevant: (demandeur) => {
+      return demandeur.handicap
+    },
+    types: ["maison_handicapees"],
+  },
+  {
+    // Les centres départements d'action sociale ont des noms différents en fonction des territoires
+    types: ["cdas", "centre_social", "edas", "mds", "sdsei"],
+  },
+  {
+    types: ["ccas", "mairie", "msap"],
   },
 ]
 
@@ -87,16 +98,19 @@ export default {
   },
   computed: {
     etablissements() {
-      return this.$store.getters["etablissementsSearch/get"]
+      return this.$store.state.etablissementsSearch.list
     },
     updating() {
       return this.$store.state.etablissementsSearch.updating
     },
+    error() {
+      return this.$store.state.etablissementsSearch.error
+    },
   },
   methods: {
     getEtablissementsTypesBySituation() {
-      let etablissementsList = defaultEtablissementTypes.slice()
-      const relevantTypes = list.filter((item) => {
+      let relevantTypes = []
+      list.forEach((item) => {
         let isRelevant =
           !item.isRelevant ||
           item.isRelevant(
@@ -104,25 +118,17 @@ export default {
             this.$store.state.situation
           )
         if (isRelevant) {
-          if (item.prepend) item.types = item.types.concat(etablissementsList)
-          else item.types = etablissementsList.concat(item.types)
+          relevantTypes = relevantTypes.concat(...item.types)
         }
-        return item
       })
-      return (
-        relevantTypes
-          .map((item) => item.types)
-          // merge arrays and de-duplicate items
-          .reduce((a, v) => [...new Set([...a, ...v])])
-          .join("+")
-      )
+      return relevantTypes
     },
   },
   mounted() {
     let typeEtablissements = this.getEtablissementsTypesBySituation()
     this.$store.dispatch("etablissementsSearch/get", {
       city: this.$store.state.situation.menage.depcom,
-      type: typeEtablissements,
+      types: typeEtablissements,
     })
   },
 }

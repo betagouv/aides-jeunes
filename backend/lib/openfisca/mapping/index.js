@@ -186,16 +186,25 @@ function applyHeuristicsAndFix(testCase, sourceSituation) {
     menage.loyer &&
     menage.loyer[periods.thisMonth] == 0
 
+
+  const demandeur = sourceSituation.demandeur
+
   const aCharge =
     demandeur.enfant_a_charge &&
-    Object.keys(demandeur.enfant_a_charge).length &&
-    demandeur.enfant_a_charge[Object.keys(demandeur.enfant_a_charge)]
+    demandeur.enfant_a_charge[periods.thisYear]
 
-  testCase.foyers_fiscaux._
+  if (aCharge) {
+    if (demandeur.bourse_criteres_sociaux_base_ressources_parentale) {
+      testCase.foyers_fiscaux._.rbg = {
+        [periods.fiscalYear]: demandeur.bourse_criteres_sociaux_base_ressources_parentale
+      }
+    }
+  }
 
   testCase.menages._ = menage
   return testCase
 }
+exports.applyHeuristicsAndFix = applyHeuristicsAndFix
 
 exports.buildOpenFiscaRequest = function (sourceSituation) {
   var situation = sourceSituation.toObject

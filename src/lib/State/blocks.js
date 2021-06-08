@@ -407,23 +407,51 @@ function generateBlocks(situation) {
     resourceBlocks(situation),
     {
       isActive: (situation) => {
-        const demandeur = situation.demandeur
-        const demandeur_ok =
-          demandeur &&
-          demandeur.activite == "etudiant" &&
-          !demandeur.alternant &&
-          !situation.enfants.length
         const parents_ok =
           !situation.parents ||
           ["decedes", "sans_autorite"].indexOf(situation.parents._situation) < 0
-        return demandeur_ok && parents_ok
+        return parents_ok
       },
       steps: [
-        new Step({
-          entity: "individu",
-          id: "demandeur",
-          variable: "bourse_criteres_sociaux_base_ressources_parentale",
-        }),
+        {
+          isActive: (situation) => {
+            const demandeur = situation.demandeur
+            const demandeur_ok =
+              demandeur &&
+              demandeur.activite == "etudiant" &&
+              !demandeur.alternant &&
+              !situation.enfants.length
+            return demandeur_ok
+          },
+          steps: [
+            new Step({
+              entity: "individu",
+              id: "demandeur",
+              variable: "bourse_criteres_sociaux_base_ressources_parentale",
+            }),
+          ],
+        },
+        {
+          isActive: (situation) => {
+            const demandeur = situation.demandeur
+            const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
+            const enfant_a_charge =
+              demandeur.enfant_a_charge && demandeur.enfant_a_charge[thisYear]
+
+            const demandeur_ok_bcs =
+              demandeur &&
+              demandeur.activite == "etudiant" &&
+              !demandeur.alternant &&
+              !situation.enfants.length
+            return enfant_a_charge && !demandeur_ok_bcs
+          },
+          steps: [
+            new Step({
+              entity: "foyer_fiscal",
+              variable: "rfr",
+            }),
+          ],
+        },
       ],
     },
     extraBlock(),

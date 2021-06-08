@@ -1,15 +1,17 @@
 var Chapters = require("../Chapters")
 
 function chapters(currentPath, journey) {
+  const cleanPath = currentPath
+    .replace(/\/sommaire$/, "")
+    .replace(/\/en_savoir_plus$/, "")
   const activeJourney = journey.filter((s) => s.isActive)
   const activeChaptersNames = activeJourney
     .map((c) => c.chapter)
     .filter((value, index, self) => self.indexOf(value) === index)
-  const currentStep = journey.find((item) => item.path == currentPath)
+  const currentStep = journey.find((item) => item.path == cleanPath)
   const activeChapters = Chapters.default
     .getSommaireChapters()
     .filter((c) => activeChaptersNames.includes(c.name))
-
   let isCurrentChapter
   let passedChapter = true
   return activeChapters.map((chapter) => {

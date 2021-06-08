@@ -497,8 +497,12 @@ router.beforeEach((to, from, next) => {
     store.dispatch("verifyBenefitVariables")
     if (
       to.matched.some((r) => r.name === "foyer" || r.name === "simulation") &&
-      ["date_naissance", "resultats", "resultatsDetails"].indexOf(to.name) ===
-        -1 &&
+      [
+        "date_naissance",
+        "resultats",
+        "resultatsDetails",
+        "resultatsLieuxGeneriques",
+      ].indexOf(to.name) === -1 &&
       !store.getters.passSanityCheck
     ) {
       return store.dispatch("redirection", (route) => next(route))

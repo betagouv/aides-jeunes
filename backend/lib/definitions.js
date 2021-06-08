@@ -44,7 +44,7 @@ var individu = Object.assign({
     date_debut_chomage: Date,
     date_naissance: Date,
     duree_possession_titre_sejour: Number,
-    echelon_bourse: Number,
+    bourse_criteres_sociaux_echelon: Number,
     enfant_a_charge: Object,
     enfant_place: Boolean,
     _firstName: String,

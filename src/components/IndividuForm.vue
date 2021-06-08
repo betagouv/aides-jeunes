@@ -120,8 +120,8 @@
 
     <label class="form__group" v-if="individu.etudiant">
       À quel échelon {{ individu.role == 'demandeur' ? 'êtes-vous' : 'est-il/elle' }} boursier ?
-      <input id="echelon-bourse" v-model="individu.echelon_bourse" type="range" min="-1" max="7">
-      {{ individu.echelon_bourse == -1 ? 'Non boursier': 'Boursier échelon ' + individu.echelon_bourse }}
+      <input id="echelon-bourse" v-model="individu.bourse_criteres_sociaux_echelon" type="range" min="-1" max="7">
+      {{ individu.bourse_criteres_sociaux_echelon == -1 ? 'Non boursier': 'Boursier échelon ' + individu.bourse_criteres_sociaux_echelon }}
     </label>
 
     <YesNoQuestion class="form__group" v-model="fiscalementIndependant" v-if="captureDemandeurACharge">

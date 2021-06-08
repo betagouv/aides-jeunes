@@ -169,5 +169,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/betagouv/aides-jeunes"
+  },
+  "resolutions": {
+    "ssri": "^7.1.1"
   }
 }

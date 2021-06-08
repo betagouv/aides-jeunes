@@ -1,6 +1,6 @@
 <template>
   <div class="aj-sommaire-page-container">
-    <h2>Sommaire</h2>
+    <h2>Toutes les étapes</h2>
     <BackButton @click.native="window && window.history.back()"></BackButton>
 
     <div class="aj-sommaire-content">

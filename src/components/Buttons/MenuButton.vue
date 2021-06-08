@@ -29,7 +29,7 @@
         <circle cx="4.029" cy="48.661" r="4.029" />
       </g>
     </svg>
-    Sommaire
+    Toutes les étapes
   </button>
 </template>
 

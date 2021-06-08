@@ -5,6 +5,7 @@ var ressources = require('../../app/js/constants/ressources');
 var famille = {
     parisien: Boolean,
     proprietaire_proche_famille: Boolean,
+    aah_abattement_forfaitaire_amendement: Number,
     rsa_isolement_recent: Boolean,
 };
 

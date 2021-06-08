@@ -101,6 +101,11 @@ const router = new Router({
           title: 'Question Estime Pôle Emploi'
         }
       }, {
+        path: 'extra-aah',
+        component: () => import(/* webpackChunkName: "extra-pole-emploi" */ './views/Foyer/AAH.vue'),
+        meta: {
+        }
+      }, {
         name: 'resultat',
         path: 'resultat',
         component: () => import(/* webpackChunkName: "resultat" */ './views/Foyer/Resultat.vue'),

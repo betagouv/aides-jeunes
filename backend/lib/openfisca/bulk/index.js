@@ -85,14 +85,17 @@ function extractResults({ source, response }, benefitIds) {
     return entities.reduce((groupAccum, group) => {
         var entityNames = Object.keys(response[group])
         return entityNames.reduce((entityAccum, id) => {
-            var prefix = id.split('_')[0]
+            var id_comps = id.split('_')
+            var prefix = id_comps[0]
+            var suffix = id_comps.length > 1 ? id_comps[1] : ''
             entityAccum[prefix] = entityAccum[prefix] || {}
 
             return benefitIds.reduce((benefitAccum, variable) => {
                 var base = response[group][id][variable]
+                var store = variable + '_' + suffix
                 if (base) {
-                    benefitAccum[prefix][variable] = benefitAccum[prefix][variable] || 0
-                    benefitAccum[prefix][variable] += 1 * (base[periods.thisMonth] || (base[periods.thisYear] / 12) || 0)
+                    benefitAccum[prefix][store] = benefitAccum[prefix][store] || 0
+                    benefitAccum[prefix][store] += 1 * (base[periods.thisMonth] || (base[periods.thisYear] / 12) || 0)
                 }
 
                 return benefitAccum

@@ -17,6 +17,8 @@
     </div>
 
     <router-link to="extra-pole-emploi">Expérimentation ESTIME</router-link>
+    <br/>
+    <router-link to="extra-aah">Expérimentation AAH</router-link>
   </form>
 </template>
 

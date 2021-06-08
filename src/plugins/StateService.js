@@ -70,6 +70,7 @@ function next(current, situation) {
             return { name: 'ressources/types', params: {role: 'demandeur', id: undefined}}
         case '/foyer/pensions-alimentaires':
         case '/foyer/extra-pole-emploi':
+        case '/foyer/extra-aah':
         case '/foyer/ressources/fiscales':
         case '/foyer/ressources/patrimoine':
         case '/foyer/resultat':

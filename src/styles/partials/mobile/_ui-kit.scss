@@ -22,16 +22,12 @@ html {
         margin-left: -10px;
 
         h1 {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.68rem;
-
-          img {
-            margin-left: 0.7rem;
-            width: 1rem;
-            transition: transform 200ms;
-          }
+          text-align: center;
+          margin-right: 1rem;
+        }
+        .button {
+          margin-left: auto;
+          margin-right: auto;
         }
 
         &.open {

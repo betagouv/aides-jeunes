@@ -1,6 +1,6 @@
 const texts = {
   activite: () => {
-    return "Lorsque vous êtes étudiant salarié, vous devez sélectionner « Étudiant·e en formation ou alternance »."
+    return "Lorsque vous êtes étudiant·e salarié·e, vous devez sélectionner « Étudiant·e en formation ou alternance »."
   },
   bourse_criteres_sociaux_base_ressources_parentale: () => {
     return "Lorsque les parents sont séparés, il faut prendre les ressources du parent ayant à la charge l'étudiant. Si l'étudiant est en garde alternée, il faut faire la somme des ressources des deux foyers fiscaux des parents séparés."

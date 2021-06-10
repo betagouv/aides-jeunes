@@ -211,7 +211,7 @@ function kidBlock(situation) {
   return {
     steps: [
       new Step({ entity: "enfants", chapter: "foyer" }),
-      ...(situation.enfants.length
+      ...(situation.enfants && situation.enfants.length
         ? situation.enfants.map((e) => {
             return {
               steps: [
@@ -319,7 +319,8 @@ function resourceBlocks(situation) {
   const individuResourceBlock = (individuId) => {
     const individu =
       situation[individuId] ||
-      situation.enfants.find((enfant) => enfant.id === individuId) ||
+      (situation.enfants &&
+        situation.enfants.find((enfant) => enfant.id === individuId)) ||
       {}
     return {
       steps: [
@@ -341,14 +342,20 @@ function resourceBlocks(situation) {
     steps: [
       individuResourceBlock("demandeur"),
       ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
-      ...(situation.enfants.length
+      ...(situation.enfants && situation.enfants.length
         ? [new Step({ entity: "enfants", variable: "ressources" })]
         : []),
-      {
-        steps: situation.enfants.map((e) => {
-          return e._hasRessources ? individuResourceBlock(e.id) : { steps: [] }
-        }),
-      },
+      ...(situation.enfants && situation.enfants.length
+        ? [
+            {
+              steps: situation.enfants.map((e) => {
+                return e._hasRessources
+                  ? individuResourceBlock(e.id)
+                  : { steps: [] }
+              }),
+            },
+          ]
+        : []),
     ],
   }
 }

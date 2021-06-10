@@ -311,7 +311,8 @@ const router = new Router({
               /* webpackChunkName: "lieux" */ "./views/Simulation/Resultats/LieuxGeneriques.vue"
             ),
           meta: {
-            title: "De l'aide près de chez vous",
+            headTitle:
+              "Trouver de l'aide près de chez vous avec le simulateur d'aides 1jeune1solution",
           },
         },
         {
@@ -322,7 +323,8 @@ const router = new Router({
               /* webpackChunkName: "lieux" */ "./views/Simulation/Resultats/Lieux.vue"
             ),
           meta: {
-            title: "Des lieux près de chez vous",
+            headTitle:
+              "Trouver des lieux d'informations près de chez vous avec le simulateur d'aides 1jeune1solution",
           },
         },
         {

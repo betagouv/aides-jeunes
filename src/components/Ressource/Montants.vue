@@ -27,7 +27,10 @@
     </label>
 
     <div class="form__group" v-if="type.displayMonthly === false">
-      <div>{{ getLongLabel(individu, type.meta) }}</div>
+      <div
+        >Indiquez les montants <span class="font-bold">nets mensuels</span> que
+        {{ getLongLabel(individu, type.meta) }}</div
+      >
       <div v-for="(month, monthIndex) in type.months" v-bind:key="month.id">
         <label>
           <MonthLabel v-bind:month="month" />
@@ -82,10 +85,7 @@ function getLongLabel(individu, ressource) {
     default: "reçus",
   }
   const verb = verbs[ressource.id] || verbs.default
-
-  return `${["Indiquez les montants que", subject, aux, verb, "en"].join(
-    " "
-  )} :`
+  return `${[["Indiquez les montants que", subject, aux, verb, "en"].join(" ")} :`
 }
 
 export default {

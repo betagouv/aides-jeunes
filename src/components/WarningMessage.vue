@@ -1,22 +1,16 @@
 <template>
-  <div class="inline-block">
+  <div class="notification warning">
     {{ text }}
   </div>
 </template>
 
 <script>
-import Warning from "../lib/Warnings"
 export default {
   name: "WarningMessage",
   props: {
-    attribute: {
+    text: {
       type: String,
       required: true,
-    },
-  },
-  computed: {
-    text: function () {
-      return Warning.get(this.attribute)
     },
   },
 }

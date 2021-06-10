@@ -1,12 +1,21 @@
+const AJ_NOT_RELIABLE =
+  "Attention, les calculs du simulateur sont peu fiables pour les communes de"
+
 const texts = {
-  nc_code_postal() {
-    return "Attention, les calculs du simulateur sont peu fiables pour la NC."
+  aj_not_reliable(variation) {
+    if (variation) {
+      if (variation.startsWith("988"))
+        return `${AJ_NOT_RELIABLE} Nouvelle-Calédonie.`
+      if (variation.startsWith("987"))
+        return `${AJ_NOT_RELIABLE} Polynésie Française.`
+      if (variation.startsWith("976")) return `${AJ_NOT_RELIABLE} Mayotte.`
+    }
   },
 }
 
 const Warning = {
-  get: function (attribute) {
-    return texts[attribute]()
+  get(attribute, variation) {
+    return texts[attribute] && texts[attribute](variation)
   },
 }
 

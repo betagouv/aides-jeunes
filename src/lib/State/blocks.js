@@ -450,6 +450,10 @@ function generateBlocks(situation) {
               entity: "foyer_fiscal",
               variable: "rfr",
             }),
+            new Step({
+              entity: "foyer_fiscal",
+              variable: "nbptr",
+            }),
           ],
         },
       ],

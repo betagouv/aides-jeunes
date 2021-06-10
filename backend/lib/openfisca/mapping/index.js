@@ -41,13 +41,24 @@ function dispatchIndividuals(situation) {
       id: "parent1",
     }
     individus[parent1.id] = { ...parent1, id: undefined }
-    familles.parents = { parents: [parent1.id] }
+    familles.parents = { parents: [parent1.id], enfants: [] }
     foyers_fiscaux._.declarants.push(parent1.id)
     menages.parents = {
       personne_de_reference: [parent1.id],
+      enfants: [],
     }
 
     foyers_fiscaux._.personnes_a_charge.push(demandeurId)
+    /* creation et ajout des autres enfants f(
+      bourse_criteres_sociaux_nombre_enfants_a_charge
+      bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur
+    ) */
+    // enfants_a_charge_des_parents1 = {
+      "date_naissance": 10 // TODO 10 ans ou 19 ans si dans enseignement_superieur
+    }
+    familles.parents.enfants.push(enfants_a_charge_des_parents1)
+    menages.parents.enfants.push(enfants_a_charge_des_parents1)
+    foyers_fiscaux._.personnes_a_charge.push(enfants_a_charge_des_parents1)
   } else {
     foyers_fiscaux._.declarants.push(demandeurId)
   }

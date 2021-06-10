@@ -34,8 +34,6 @@ export default {
   computed: {
     isSepares() {
       return this.$store.state.situation.parents._situation === "separes"
-        ? true
-        : false
     },
   },
 }

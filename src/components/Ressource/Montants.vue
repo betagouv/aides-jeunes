@@ -3,7 +3,7 @@
     <legend>
       <h2 v-if="!withoutHeader">{{ type.meta.label }}</h2>
     </legend>
-    <YesNoQuestion class="form__group" v-model="singleValue" htmlHeading="h3">
+    <YesNoQuestion class="form__group" v-model="singleValue" html-heading="h3">
       <span
         v-html="
           getQuestionLabel(

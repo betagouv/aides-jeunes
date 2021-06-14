@@ -19,6 +19,7 @@ export default {
       return `${component.getLabel("être")} ?`
     },
     questionType: "enum",
+    enSavoirPlus: true,
     items: (component) => {
       let items = [
         {

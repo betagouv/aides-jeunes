@@ -554,7 +554,7 @@ const DEFAULT_TITLE =
 function getTitleMeta(route) {
   let meta
   for (let index = route.matched.length - 1; index >= 0; index -= 1) {
-    meta = route.matched[index] && route.matched[index].meta
+    meta = route.matched[index].meta
     if (meta.headTitle) return meta.headTitle
   }
   return DEFAULT_TITLE

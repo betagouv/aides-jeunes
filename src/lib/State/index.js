@@ -102,19 +102,20 @@ function max(situation, userJourney) {
 
 function next(current, situation) {
   const journey = full(situation)
-  const activeJourney = journey.filter((s) => s.isActive)
-
-  let matches = activeJourney
+  let matches = journey
     .map((element, index) => {
       return { element, index }
     })
     .filter((item) => item.element.path == (current.path || current))
-  if (matches.length) {
-    return activeJourney[matches[matches.length - 1].index + 1]
-  } else {
+
+  if (!matches.length) {
     const test = current.path || current.fullPath || current
     throw new Error("Logic missing for " + test)
   }
+
+  return journey
+    .slice(matches[matches.length - 1].index + 1)
+    .filter((step) => step.isActive)[0]
 }
 
 function previous(current, situation) {

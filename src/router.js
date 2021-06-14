@@ -139,19 +139,19 @@ const router = new Router({
                 ),
             },
             {
-              name: "IndividuProperty",
-              path: ":fieldName",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/IndividuProperty.vue"
-                ),
-            },
-            {
               name: "_dureeMoisEtudesEtranger",
               path: "_dureeMoisEtudesEtranger",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Individu/_DureeMoisEtudesEtranger.vue"
+                ),
+            },
+            {
+              name: "IndividuProperty",
+              path: ":fieldName",
+              component: () =>
+                import(
+                  /* webpackChunkName: "individu" */ "./views/Simulation/IndividuProperty.vue"
                 ),
             },
             {

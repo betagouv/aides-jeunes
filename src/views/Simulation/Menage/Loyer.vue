@@ -72,6 +72,7 @@ export default {
       }
     } else {
       return {
+        captureCharges,
         menage: menage,
         loyerQuestion: {
           label: "Quelles sont vos mensualités ?",

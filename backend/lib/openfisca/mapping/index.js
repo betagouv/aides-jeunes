@@ -48,17 +48,36 @@ function dispatchIndividuals(situation) {
       enfants: [],
     }
 
-    foyers_fiscaux._.personnes_a_charge.push(demandeurId)
-    /* creation et ajout des autres enfants f(
-      bourse_criteres_sociaux_nombre_enfants_a_charge
-      bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur
-    ) */
-    // enfants_a_charge_des_parents1 = {
-      "date_naissance": 10 // TODO 10 ans ou 19 ans si dans enseignement_superieur
+    if (situation.parents && situation.parents._situation == "en_couple") {
+      var parent2 = {
+        id: "parent2"
+      }
+      individus[parent2.id] = { ...parent2, id: undefined }
+      foyers_fiscaux._.declarants.push(parent2.id)
+      menages.parents.conjoint = [parent2.id]
     }
-    familles.parents.enfants.push(enfants_a_charge_des_parents1)
-    menages.parents.enfants.push(enfants_a_charge_des_parents1)
-    foyers_fiscaux._.personnes_a_charge.push(enfants_a_charge_des_parents1)
+
+    foyers_fiscaux._.personnes_a_charge.push(demandeurId)
+
+    var enfants_etudiants = situation.famille.bourse_criteres_sociaux_nombre_enfants_a_charge - 1
+    var enfants_jeunes = situation.famille.bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur - enfants_etudiants - 1
+    var addChild = (id, date_naissance) => {
+      var enf = {
+        id,
+        date_naissance,
+      }
+      individus[enf.id] = { ...enf, id: undefined }
+      familles.parents.enfants.push(enf)
+      menages.parents.enfants.push(enf)
+      foyers_fiscaux._.personnes_a_charge.push(enf)
+    }
+    for (var i = 0; i < enfants_etudiants; i++) {
+      addChild("enfant_etudiant_" + i, 20)
+    }
+
+    for (var i = 0; i < enfants_jeunes; i++) {
+      addChild("enfant_jeune_" + i, 10)
+    }
   } else {
     foyers_fiscaux._.declarants.push(demandeurId)
   }

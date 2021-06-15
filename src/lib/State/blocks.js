@@ -450,6 +450,12 @@ function generateBlocks(situation) {
               entity: "foyer_fiscal",
               variable: "rfr",
             }),
+          ],
+        },
+        {
+          subject: (situation) => situation.foyer_fiscal,
+          isActive: (foyer_fiscal) => foyer_fiscal.rfr !== 0,
+          steps: [
             new Step({
               entity: "foyer_fiscal",
               variable: "nbptr",

@@ -376,19 +376,33 @@ function generateBlocks(situation) {
     {
       subject: (situation) => situation.demandeur,
       isActive: (subject, situation) => {
+        const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
+        const enfant_a_charge =
+          subject.enfant_a_charge && subject.enfant_a_charge[thisYear]
+
         return (
-          subject.activite == "etudiant" &&
-          !subject.alternant &&
-          !situation.enfants.length
+          enfant_a_charge ||
+          (subject.activite == "etudiant" &&
+            !subject.alternant &&
+            !situation.enfants.length)
         )
       },
       steps: [
         new Step({ entity: "parents", variable: "_situation" }),
         {
           subject: (demandeur, situation) => situation.parents,
-          isActive: (parents) =>
-            !parents ||
-            ["decedes", "sans_autorite"].indexOf(parents._situation) < 0,
+          isActive: (parents, situation) => {
+            const parents_ok =
+              !parents ||
+              ["decedes", "sans_autorite"].indexOf(parents._situation) < 0
+
+            const demandeur_ok =
+              situation.demandeur.activite == "etudiant" &&
+              !situation.demandeur.alternant &&
+              !situation.enfants.length
+
+            return parents_ok && demandeur_ok
+          },
           steps: [
             new Step({
               entity: "famille",

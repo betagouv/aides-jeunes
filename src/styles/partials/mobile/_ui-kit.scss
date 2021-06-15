@@ -21,7 +21,10 @@ html {
         margin-left: auto;
         margin-right: auto;
         position: relative;
-        padding: 0 #{$menu-button-size + 10px};
+
+        &.has-menu-button {
+          padding: 0 #{$menu-button-size + 10px};
+        }
 
         .menu-button {
           position: absolute;

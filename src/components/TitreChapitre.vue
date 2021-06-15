@@ -3,10 +3,13 @@
     <div class="aj-category-title-wrapper">
       <h1>{{ title }}</h1>
     </div>
-    <div class="aj-category-title-wrapper-mobile">
+    <div
+      class="aj-category-title-wrapper-mobile"
+      :class="{ 'has-menu-button': hasMenuButton }"
+    >
       <MenuButton
         @click.native="switchMobileOpen"
-        v-show="$route.name !== 'sommaire'"
+        v-show="hasMenuButton"
       ></MenuButton>
       <h1>{{ title }}</h1>
     </div>
@@ -23,6 +26,9 @@ export default {
   computed: {
     title() {
       return this.getTitleByRoute(this.$route)
+    },
+    hasMenuButton() {
+      return this.$route.name !== "sommaire"
     },
   },
   methods: {

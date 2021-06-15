@@ -1,8 +1,6 @@
 <template>
   <div class="form__group" v-bind:key="type.meta.id">
-    <legend>
-      <h2 v-if="!withoutHeader">{{ type.meta.label }}</h2>
-    </legend>
+    <h2 v-if="!withoutHeader">{{ type.meta.label }}</h2>
     <YesNoQuestion class="form__group" v-model="singleValue" html-heading="h3">
       <span
         v-html="

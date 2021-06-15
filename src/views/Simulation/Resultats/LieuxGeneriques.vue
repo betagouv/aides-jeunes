@@ -19,17 +19,19 @@
       </svg>
       Retour aux résultats
     </button>
-    <p class="aj-etablissements-intro">
-      Voici les lieux où vous pouvez y être accompagné(e) pour faire vos
-      demandes et poser toutes vos questions.
-    </p>
+
     <p v-show="updating"
       ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération en
       cours…</p
     >
-    <div v-if="list && list.length">
+    <div v-if="etablissements && etablissements.length">
+      <p class="aj-etablissements-intro">
+        Voici les lieux où vous pouvez y être accompagné(e) pour faire vos
+        demandes et poser toutes vos questions.
+      </p>
+
       <div
-        v-for="(etablissement, index) in list"
+        v-for="(etablissement, index) in etablissements"
         class="aj-etablissement-container"
         v-bind:key="index"
       >
@@ -37,56 +39,97 @@
       </div>
     </div>
     <div v-else>
+      <p class="aj-etablissements-intro" :v-if="error">
+        {{ error }}
+      </p>
+      Revenir aux résultats
       <router-link to="/simulation/resultats">
-        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Revenir aux
-        résultats
+        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios"
-
 import Etablissement from "@/components/Etablissement"
-import EtablissementLib from "@/lib/Etablissement"
+import Individu from "@/lib/Individu.js"
+
+const list = [
+  {
+    isRelevant: (demandeur, situation) => {
+      let demandeurAge = Individu.age(
+        demandeur.date_naissance,
+        situation.dateDeValeur
+      )
+      return demandeurAge <= 25 && demandeurAge >= 16
+    },
+    types: ["mission_locale", "cij"],
+  },
+  {
+    isRelevant: (demandeur) => {
+      return demandeur.activite === "chomeur"
+    },
+    types: ["pole_emploi"],
+  },
+  {
+    isRelevant: (demandeur) => {
+      return demandeur.handicap
+    },
+    types: ["maison_handicapees"],
+  },
+  {
+    // Les centres départements d'action sociale ont des noms différents en fonction des territoires
+    types: ["cdas", "centre_social", "edas", "mds", "sdsei"],
+  },
+  {
+    types: ["ccas", "mairie", "msap"],
+  },
+]
 
 export default {
   name: "LieuxGeneriques",
   components: {
     Etablissement,
   },
-  data: function () {
+  data() {
     return {
-      list: [],
-      updating: true,
       window,
     }
   },
-  mounted: function () {
-    const city = this.$store.state.situation.menage.depcom
-    const genericPlacesSlugs = "cij+mission_locale"
-    axios
-      .get(
-        `https://etablissements-publics.api.gouv.fr/v3/communes/${city}/${genericPlacesSlugs}`
-      )
-      .then(
-        function (response) {
-          return response.data.features
-        },
-        function () {
-          return []
+  computed: {
+    etablissements() {
+      return this.$store.state.etablissementsSearch.list
+    },
+    updating() {
+      return this.$store.state.etablissementsSearch.updating
+    },
+    error() {
+      return this.$store.state.etablissementsSearch.error
+    },
+  },
+  methods: {
+    getEtablissementsTypesBySituation() {
+      let relevantTypes = []
+      list.forEach((item) => {
+        let isRelevant =
+          !item.isRelevant ||
+          item.isRelevant(
+            this.$store.state.situation.demandeur,
+            this.$store.state.situation
+          )
+        if (isRelevant) {
+          relevantTypes = relevantTypes.concat(...item.types)
         }
-      )
-      .then(function (etablissements) {
-        return etablissements.map(EtablissementLib.normalize)
       })
-      .then((o) => {
-        this.list = o
-      })
-      .finally(() => {
-        this.updating = false
-      })
+      return relevantTypes
+    },
+  },
+  mounted() {
+    let typeEtablissements = this.getEtablissementsTypesBySituation()
+    this.$store.dispatch("etablissementsSearch/get", {
+      city: this.$store.state.situation.menage.depcom,
+      types: typeEtablissements,
+    })
   },
 }
 </script>

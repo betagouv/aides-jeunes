@@ -27,6 +27,7 @@
           {{ text }}
         </div>
         <BackButton
+          class="aj-help-modal-back-button"
           @click.native="window && window.history.back()"
         ></BackButton>
       </div>

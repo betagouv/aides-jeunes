@@ -1,8 +1,5 @@
 <template>
-  <button
-    class="aj-help-modal-back-button button outline small with-icon"
-    type="button"
-  >
+  <button class="button outline small with-icon" type="button">
     <svg
       width="12"
       height="12"
@@ -25,8 +22,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.button {
-  margin: 0;
-}
-</style>
+<style scoped></style>

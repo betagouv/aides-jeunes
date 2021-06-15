@@ -1,7 +1,10 @@
 <template>
   <div class="aj-sommaire-page-container">
     <h2>Toutes les étapes</h2>
-    <BackButton @click.native="window && window.history.back()"></BackButton>
+    <BackButton
+      @click.native="window && window.history.back()"
+      class="aj-sommaire-page-back-button"
+    ></BackButton>
 
     <div class="aj-sommaire-content">
       <SommaireContent></SommaireContent>
@@ -27,4 +30,12 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.aj-sommaire-page-container .aj-sommaire-page-back-button {
+  margin-top: 0;
+  &:active,
+  &:focus {
+    margin-top: 0;
+  }
+}
+</style>

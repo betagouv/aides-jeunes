@@ -1,5 +1,5 @@
 <template>
-  <div class="aj-website" :class="{ 'overflow-hidden': mobileMenu }">
+  <div class="aj-website">
     <div class="aj-website-content">
       <Header1J1S />
       <slot></slot>
@@ -24,11 +24,6 @@ export default {
         this.$store.dispatch("setDebug", true)
       }
     })
-  },
-  computed: {
-    mobileMenu() {
-      return this.$store.getters.getMobileMenu
-    },
   },
 }
 </script>

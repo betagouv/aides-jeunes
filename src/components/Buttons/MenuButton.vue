@@ -1,8 +1,5 @@
 <template>
-  <button
-    class="aj-help-modal-back-button button outline small with-icon"
-    type="button"
-  >
+  <button class="menu-button button outline small" type="button">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +26,6 @@
         <circle cx="4.029" cy="48.661" r="4.029" />
       </g>
     </svg>
-    Toutes les étapes
   </button>
 </template>
 
@@ -39,13 +35,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.button.with-icon {
-  margin: 0;
-
-  svg {
-    margin-right: 5px !important;
-    fill: var(--theme-primary);
-  }
-}
-</style>
+<style></style>

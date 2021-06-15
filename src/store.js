@@ -14,8 +14,9 @@ import { computeAides, datesGenerator } from "../backend/lib/mes-aides"
 import { categoriesRnc, patrimoineTypes } from "./constants/resources"
 import { generateAllSteps } from "./lib/State/generator"
 import Institution from "./lib/Institution"
-import ABTestingService from "@/plugins/ABTestingService"
 import { full } from "./lib/State"
+import ABTestingService from "./plugins/ABTestingService"
+import EtablissementModule from "./modules/Etablissement"
 
 let DATE_FIELDS = [
   "date_naissance",
@@ -74,7 +75,6 @@ function defaultStore() {
       text: null,
       counter: null,
     },
-    mobileMenu: false,
     debug: false,
     userJourney: defaultUserJourney(),
     situation: {
@@ -88,7 +88,8 @@ function defaultStore() {
       menage: {
         aide_logement_date_pret_conventionne: "2017-12-31",
       },
-      version: 1,
+      parents: {},
+      version: 2,
     },
     error: false,
     access: {
@@ -136,9 +137,6 @@ const store = new Vuex.Store({
     },
     getDebug: function (state) {
       return state.debug
-    },
-    getMobileMenu: function (state) {
-      return state.mobileMenu
     },
     peopleParentsFirst: function (state) {
       return []
@@ -261,9 +259,6 @@ const store = new Vuex.Store({
     },
     setDebug: function (state, debug) {
       state.debug = debug
-    },
-    setMobileMenu: function (state, mobileMenu) {
-      state.mobileMenu = mobileMenu
     },
     initialize: function (state) {
       const { situation, dates, ameliNoticationDone, calculs, userJourney } =
@@ -412,9 +407,6 @@ const store = new Vuex.Store({
     setDebug: function ({ commit }, debug) {
       commit("setDebug", debug)
     },
-    setMobileMenu: function ({ commit }, mobileMenu) {
-      commit("setMobileMenu", mobileMenu)
-    },
     initialize: function ({ commit }) {
       commit("initialize")
     },
@@ -560,6 +552,9 @@ const store = new Vuex.Store({
           }
         })
     },
+  },
+  modules: {
+    etablissementsSearch: EtablissementModule,
   },
 })
 export default store

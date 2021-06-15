@@ -1,8 +1,8 @@
 label: tarification solidaire des transports
 institution: nantes_metropole
 description: La tarification solidaire des transports de Nantes Métropole est à destination des foyers aux ressources faibles. Ils peuvent profiter en illimité des trams, des bus et Navibus, des transports scolaires, des TER dans le périmètre de l'agglomération et de certaines lignes LILA.
-link: https://metropole.nantes.fr/services/deplacements-stationnement/aides-deplacement/tarif-tan-solidaire
-instructions: https://metropole.nantes.fr/services/deplacements-stationnement/aides-deplacement/tarif-tan-solidaire#serviceTocEntry3
+link: https://metropole.nantes.fr/tan-tarifs-solidaires
+instructions: https://metropole.nantes.fr/tan-tarifs-solidaires#serviceTocEntry3
 prefix: la
 type: float
 unit: "%"

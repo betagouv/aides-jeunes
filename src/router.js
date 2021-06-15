@@ -548,8 +548,6 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to) => {
   if (to.preventFocus) return
 
-  store.commit("setMobileMenu", false)
-
   Vue.nextTick(function () {
     let title = document.querySelector("h1")
     // if anyone wants to set a tabindex manually, do not overwrite it

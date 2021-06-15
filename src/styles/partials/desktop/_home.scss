@@ -35,7 +35,9 @@
           margin-top: 3.75rem;
           display: flex;
           flex-direction: column;
-
+          button {
+            font-weight: bold;
+          }
           button + button {
             margin-top: 1rem;
           }

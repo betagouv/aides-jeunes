@@ -33,13 +33,13 @@ html {
           transform: translateY(-50%);
           border: 1px solid var(--light-grey);
 
-
           svg {
             width: 15px;
             fill: var(--theme-primary);
           }
 
-          &:focus, &:active {
+          &:focus,
+          &:active {
             border: 1px solid var(--theme-primary);
 
             svg {

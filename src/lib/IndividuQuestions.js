@@ -198,15 +198,15 @@ export default {
     items: [
       {
         label: "Française",
-        value: "fr",
+        value: "FR",
       },
       {
         label: "Européenne",
-        value: "ue",
+        value: "DE",
       },
       {
         label: "Non européenne",
-        value: "autre",
+        value: "AF",
       },
     ],
   },

@@ -20,7 +20,6 @@
           :value="item.value"
           v-model="value"
           :autofocus="index === 0"
-          tabindex="1"
         />
         <label :for="item.value">
           {{ item.label }}

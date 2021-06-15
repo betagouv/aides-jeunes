@@ -3,7 +3,7 @@
     <div class="container">
       <div class="aj-home-hero">
         <div class="aj-home-hero-content">
-          <h1 tabindex="0">
+          <h1>
             <span class="hightlight"
               >Évaluez vos droits à<br />plus de 20 aides
             </span>

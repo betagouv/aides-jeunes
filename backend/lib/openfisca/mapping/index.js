@@ -53,6 +53,7 @@ function dispatchIndividuals(situation) {
         id: "parent2",
       }
       individus[parent2.id] = { ...parent2, id: undefined }
+      familles.parents.parents.push(parent2.id)
       foyers_fiscaux._.declarants.push(parent2.id)
       menages.parents.conjoint = [parent2.id]
     }

@@ -34,7 +34,7 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "simulation" */ "./views/Simulation.vue"),
       meta: {
-        headTitle: "Ma simulation sur le simulateur d'aides 1jeune1solution ",
+        headTitle: "Ma simulation sur le simulateur d'aides 1jeune1solution",
       },
       children: [
         {

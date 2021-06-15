@@ -28,6 +28,12 @@ html {
           top: 50%;
           left: 0;
           transform: translateY(-50%);
+
+          svg {
+            width: 15px;
+            fill: var(--theme-primary);
+          }
+
           &:focus, &:active {
             svg {
               fill: white;
@@ -48,10 +54,6 @@ html {
           padding: 0 !important;
 
           border: 1px solid var(--light-grey) !important;
-
-          svg {
-            fill: var(--theme-primary);
-          }
         }
 
         h1 {

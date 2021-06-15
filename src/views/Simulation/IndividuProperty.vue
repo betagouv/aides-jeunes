@@ -8,13 +8,18 @@
         </h2>
         <p v-if="meta.help" v-html="meta.help"></p>
       </legend>
-      <div class="aj-selection-wrapper" v-for="item in items" :key="item.value">
+      <div
+        class="aj-selection-wrapper"
+        v-for="(item, index) in items"
+        :key="item.value"
+      >
         <input
           :id="item.value"
           type="radio"
           :name="fieldName"
           :value="item.value"
           v-model="value"
+          :autofocus="index === 0"
         />
         <label :for="item.value">
           {{ item.label }}

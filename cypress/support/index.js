@@ -37,7 +37,7 @@ export function demandeur(params = {}) {
   // Nationalite
   cy.get("legend").invoke("text").should("contain", "nationalité")
   autoSubmit()
-  cy.get('input[type="radio"]').check("fr")
+  cy.get('input[type="radio"]').check("FR")
   autoSubmit()
   // Activite
   cy.get("legend").invoke("text").should("contain", "Êtes-vous")
@@ -56,7 +56,7 @@ export function etudiant_public(params = {}) {
   cy.get("legend").invoke("text").should("contain", "nationalité")
   autoSubmit()
 
-  cy.get('input[type="radio"]').check("fr")
+  cy.get('input[type="radio"]').check("FR")
   autoSubmit()
 
   // Activite
@@ -179,7 +179,7 @@ export function conjoint(params = {}) {
   submit()
   // Nationalite
   cy.get("legend").invoke("text").should("contain", "nationalité")
-  cy.get('input[type="radio"]').check("fr")
+  cy.get('input[type="radio"]').check("FR")
   autoSubmit()
   // Statut Marital
   cy.get("legend")
@@ -208,7 +208,7 @@ export function enfant(params = {}) {
   submit()
   // Nationalite
   cy.get("legend").invoke("text").should("contain", "nationalité")
-  cy.get('input[type="radio"]').check("fr")
+  cy.get('input[type="radio"]').check("FR")
   autoSubmit()
   // Garde Alterne
   cy.get("legend").invoke("text").should("contain", "en garde alternée")

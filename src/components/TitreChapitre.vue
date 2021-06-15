@@ -4,11 +4,11 @@
       <h1>{{ title }}</h1>
     </div>
     <div class="aj-category-title-wrapper-mobile">
-      <h1>{{ title }}</h1>
       <MenuButton
         @click.native="switchMobileOpen"
         v-show="$route.name !== 'sommaire'"
       ></MenuButton>
+      <h1>{{ title }}</h1>
     </div>
   </div>
 </template>

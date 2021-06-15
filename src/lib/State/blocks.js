@@ -432,8 +432,8 @@ function generateBlocks(situation) {
           ],
         },
         {
-          isActive: (situation) => {
-            const demandeur = situation.demandeur
+          subject: (situation) => situation.demandeur,
+          isActive: (demandeur, situation) => {
             const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
             const enfant_a_charge =
               demandeur.enfant_a_charge && demandeur.enfant_a_charge[thisYear]
@@ -447,17 +447,22 @@ function generateBlocks(situation) {
           },
           steps: [
             new Step({
-              entity: "foyer_fiscal",
+              entity: "parents",
               variable: "rfr",
             }),
           ],
         },
         {
-          subject: (situation) => situation.foyer_fiscal,
-          isActive: (foyer_fiscal) => foyer_fiscal.rfr !== 0,
+          subject: (situation) => situation.demandeur,
+          isActive: (demandeur, situation) => {
+            const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
+            return (
+              demandeur.enfant_a_charge && demandeur.enfant_a_charge[thisYear]
+            )
+          },
           steps: [
             new Step({
-              entity: "foyer_fiscal",
+              entity: "parents",
               variable: "nbptr",
             }),
           ],

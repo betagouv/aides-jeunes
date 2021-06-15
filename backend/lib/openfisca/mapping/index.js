@@ -50,7 +50,7 @@ function dispatchIndividuals(situation) {
 
     if (situation.parents && situation.parents._situation == "en_couple") {
       var parent2 = {
-        id: "parent2"
+        id: "parent2",
       }
       individus[parent2.id] = { ...parent2, id: undefined }
       foyers_fiscaux._.declarants.push(parent2.id)
@@ -143,7 +143,7 @@ function mapIndividus(situation) {
 function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
   var prestationsWithInterest = pickBy(
     common.requestedVariables,
-    function (definition, prestationName) {
+    function (definition) {
       return !definition.interestFlag || demandeur[definition.interestFlag]
     }
   )
@@ -196,17 +196,27 @@ function applyHeuristicsAndFix(testCase, sourceSituation) {
     menage.loyer &&
     menage.loyer[periods.thisMonth] == 0
 
-
   const demandeur = sourceSituation.demandeur
+  const parents = sourceSituation.parents
 
   const aCharge =
-    demandeur.enfant_a_charge &&
-    demandeur.enfant_a_charge[periods.thisYear]
+    demandeur.enfant_a_charge && demandeur.enfant_a_charge[periods.thisYear]
 
   if (aCharge) {
     if (demandeur.bourse_criteres_sociaux_base_ressources_parentale) {
       testCase.foyers_fiscaux._.rbg = {
-        [periods.fiscalYear]: demandeur.bourse_criteres_sociaux_base_ressources_parentale
+        [periods.fiscalYear]:
+          demandeur.bourse_criteres_sociaux_base_ressources_parentale,
+      }
+    }
+    if (parents.rfr) {
+      testCase.foyers_fiscaux._.rfr = {
+        [periods.fiscalYear]: parents.rfr,
+      }
+    }
+    if (parents.nbptr) {
+      testCase.foyers_fiscaux._.nbptr = {
+        [periods.fiscalYear]: parents.nbptr,
       }
     }
   }

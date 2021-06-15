@@ -194,40 +194,11 @@ const router = new Router({
                 ),
             },
             {
-              path: "rsa_isolement_recent",
+              name: "FamilleProperty",
+              path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "famille" */ "./views/Simulation/Famille/RsaIsolementRecent.vue"
-                ),
-            },
-            {
-              path: "proprietaire_proche_famille",
-              component: () =>
-                import(
-                  /* webpackChunkName: "famille" */ "./views/Simulation/Famille/ProprietaireProcheFamille.vue"
-                ),
-            },
-            {
-              name: "bourse_criteres_sociaux_nombre_enfants_a_charge",
-              path: "bourse_criteres_sociaux_nombre_enfants_a_charge",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Famille/BourseCriteresSociauxNombreEnfantsACharge.vue"
-                ),
-            },
-            {
-              name: "bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur",
-              path: "bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Famille/BourseCriteresSociauxNombreEnfantsAChargeDansEnseignementSuperieur.vue"
-                ),
-            },
-            {
-              path: "parisien",
-              component: () =>
-                import(
-                  /* webpackChunkName: "famille" */ "./views/Simulation/Famille/Parisien.vue"
+                  /* webpackChunkName: "famille" */ "./views/Simulation/FamilleProperty.vue"
                 ),
             },
           ],

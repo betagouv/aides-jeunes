@@ -28,6 +28,8 @@ html {
           top: 50%;
           left: 0;
           transform: translateY(-50%);
+          border: 1px solid var(--light-grey);
+
 
           svg {
             width: 15px;
@@ -35,6 +37,8 @@ html {
           }
 
           &:focus, &:active {
+            border: 1px solid var(--theme-primary);
+
             svg {
               fill: white;
             }
@@ -51,9 +55,7 @@ html {
           width: $menu-button-size;
           margin-top: 0;
           margin-right: 10px;
-          padding: 0 !important;
-
-          border: 1px solid var(--light-grey) !important;
+          padding: 0;
         }
 
         h1 {

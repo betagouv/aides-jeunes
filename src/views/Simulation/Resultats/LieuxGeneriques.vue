@@ -112,10 +112,9 @@ export default {
   mounted() {
     if (!this.$store.state.situation.menage.depcom) {
       this.restoreLatest()
-      const vm = this
       this.stopSubscription = this.$store.subscribe(({ type }) => {
         if (type === "reset") {
-          vm.loadEtablissements()
+          this.loadEtablissements()
         }
       })
     } else {

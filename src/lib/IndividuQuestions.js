@@ -178,14 +178,12 @@ export default {
     question: (component) => {
       return `${component.getLabel("être")} en situation de handicap ?`
     },
-    enSavoirPlus: true,
   },
 
   inapte_travail: {
     question: (component) => {
       return `${component.getLabel("être")} reconnu·e inapte au travail ?`
     },
-    enSavoirPlus: true,
   },
 
   nationalite: {

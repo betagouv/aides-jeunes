@@ -14,7 +14,8 @@ import { computeAides, datesGenerator } from "../backend/lib/mes-aides"
 import { categoriesRnc, patrimoineTypes } from "./constants/resources"
 import Institution from "./lib/Institution"
 import { full } from "./lib/State"
-import ABTestingService from "@/plugins/ABTestingService"
+import ABTestingService from "./plugins/ABTestingService"
+import EtablissementModule from "./modules/Etablissement"
 
 let DATE_FIELDS = [
   "date_naissance",
@@ -513,6 +514,9 @@ const store = new Vuex.Store({
           }
         })
     },
+  },
+  modules: {
+    etablissementsSearch: EtablissementModule,
   },
 })
 export default store

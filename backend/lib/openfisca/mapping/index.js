@@ -58,26 +58,6 @@ function dispatchIndividuals(situation) {
     }
 
     foyers_fiscaux._.personnes_a_charge.push(demandeurId)
-
-    var enfants_etudiants = situation.famille.bourse_criteres_sociaux_nombre_enfants_a_charge - 1
-    var enfants_jeunes = situation.famille.bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur - enfants_etudiants - 1
-    var addChild = (id, date_naissance) => {
-      var enf = {
-        id,
-        date_naissance,
-      }
-      individus[enf.id] = { ...enf, id: undefined }
-      familles.parents.enfants.push(enf)
-      menages.parents.enfants.push(enf)
-      foyers_fiscaux._.personnes_a_charge.push(enf)
-    }
-    for (var i = 0; i < enfants_etudiants; i++) {
-      addChild("enfant_etudiant_" + i, 20)
-    }
-
-    for (var i = 0; i < enfants_jeunes; i++) {
-      addChild("enfant_jeune_" + i, 10)
-    }
   } else {
     foyers_fiscaux._.declarants.push(demandeurId)
   }

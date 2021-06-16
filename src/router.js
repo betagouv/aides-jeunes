@@ -46,6 +46,14 @@ const router = new Router({
             ),
         },
         {
+          path: ":parent+/sommaire",
+          name: "sommaire",
+          component: () =>
+            import(
+              /* webpackChunkName: "simulation" */ "./views/Simulation/Sommaire.vue"
+            ),
+        },
+        {
           name: "individu",
           path: "individu/:id",
           redirect: "/simulation/individu/:id/date_naissance",

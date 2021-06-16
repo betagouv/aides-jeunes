@@ -16,7 +16,8 @@ $screen-smaller-than-mobile: 399px;
   --theme-primary-lighter: #e2e5fb;
   --light-grey: #c4c4c4;
   --green: #169b62;
-  --light-green: #eefbf2;
+  --light-green: #51d27d;
+  --lighter-green: #eefbf2;
   --space-xs: 20px;
 }
 
@@ -37,6 +38,7 @@ $screen-smaller-than-mobile: 399px;
 
 /* DESKTOP IMPORTS */
 @import "partials/desktop/ui-kit";
+@import "partials/desktop/sommaire";
 @import "partials/desktop/buttons";
 @import "partials/desktop/inputs";
 @import "partials/desktop/home";
@@ -63,6 +65,7 @@ $screen-smaller-than-mobile: 399px;
   @import "partials/mobile/footer";
   @import "partials/mobile/home";
   @import "partials/mobile/resultats";
+  @import "partials/mobile/sommaire";
 }
 
 /* UTILS */

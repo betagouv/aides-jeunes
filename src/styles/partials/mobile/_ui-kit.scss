@@ -3,7 +3,7 @@ html {
     .aj-main-container {
       padding-left: 10px;
       padding-right: 10px;
-      padding-top: 1.5rem;
+      padding-top: 0;
 
       .aj-question {
         flex-direction: column;
@@ -11,8 +11,57 @@ html {
       }
 
       .aj-category-title-wrapper {
+        display: none;
+      }
+
+      .aj-category-title-wrapper-mobile {
+        $menu-button-size: 40px;
+
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+
+        &.has-menu-button {
+          padding: 0 #{$menu-button-size + 10px};
+        }
+
+        .menu-button {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+          border: 1px solid var(--light-grey);
+
+          svg {
+            width: 15px;
+            fill: var(--theme-primary);
+          }
+
+          &:focus,
+          &:active {
+            border: 1px solid var(--theme-primary);
+
+            svg {
+              fill: white;
+            }
+          }
+        }
+
+        .menu-button,
+        .menu-button:focus,
+        .menu-button:active {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: $menu-button-size;
+          width: $menu-button-size;
+          margin-top: 0;
+          margin-right: 10px;
+          padding: 0;
+        }
+
         h1 {
-          margin-bottom: 20px;
           text-align: center;
         }
       }

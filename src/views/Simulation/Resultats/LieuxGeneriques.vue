@@ -1,9 +1,9 @@
 <template>
   <div class="aj-unbox">
-    <button
+    <router-link
+      :to="{ name: 'resultats' }"
+      tag="button"
       class="aj-etablissements-back-button button outline small with-icon"
-      type="button"
-      v-on:click="window && window.history.back()"
     >
       <svg
         width="12"
@@ -18,7 +18,7 @@
         />
       </svg>
       Retour aux résultats
-    </button>
+    </router-link>
 
     <p v-show="updating"
       ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération en
@@ -53,6 +53,7 @@
 <script>
 import Etablissement from "@/components/Etablissement"
 import Individu from "@/lib/Individu.js"
+import ResultatsMixin from "@/mixins/Resultats"
 
 const list = [
   {
@@ -91,7 +92,8 @@ export default {
   components: {
     Etablissement,
   },
-  data() {
+  mixins: [ResultatsMixin],
+  data: function () {
     return {
       window,
     }
@@ -106,6 +108,21 @@ export default {
     error() {
       return this.$store.state.etablissementsSearch.error
     },
+  },
+  mounted() {
+    if (!this.$store.state.situation.menage.depcom) {
+      this.restoreLatest()
+      this.stopSubscription = this.$store.subscribe(({ type }) => {
+        if (type === "reset") {
+          this.loadEtablissements()
+        }
+      })
+    } else {
+      this.loadEtablissements()
+    }
+  },
+  beforeDestroy: function () {
+    this.stopSubscription && this.stopSubscription()
   },
   methods: {
     getEtablissementsTypesBySituation() {
@@ -123,13 +140,13 @@ export default {
       })
       return relevantTypes
     },
-  },
-  mounted() {
-    let typeEtablissements = this.getEtablissementsTypesBySituation()
-    this.$store.dispatch("etablissementsSearch/get", {
-      city: this.$store.state.situation.menage.depcom,
-      types: typeEtablissements,
-    })
+    loadEtablissements: function () {
+      let typeEtablissements = this.getEtablissementsTypesBySituation()
+      this.$store.dispatch("etablissementsSearch/get", {
+        city: this.$store.state.situation.menage.depcom,
+        types: typeEtablissements,
+      })
+    },
   },
 }
 </script>

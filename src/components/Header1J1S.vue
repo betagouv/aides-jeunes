@@ -3,9 +3,9 @@
     <div class="aj-1j1s-header-logo-container">
       <div class="container">
         <svg
-          width="100%"
-          height="100%"
-          viewBox="0 0 26 18"
+          width="26"
+          height="18"
+          viewBox="0 0 18 26"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           fit=""
@@ -21,7 +21,7 @@
             rx="1"
             transform="rotate(90 26 0)"
             fill="currentColor"
-          ></rect>
+          />
           <rect
             x="26"
             y="8"
@@ -30,7 +30,7 @@
             rx="1"
             transform="rotate(90 26 8)"
             fill="currentColor"
-          ></rect>
+          />
           <rect
             x="26"
             y="16"
@@ -39,17 +39,25 @@
             rx="1"
             transform="rotate(90 26 16)"
             fill="currentColor"
-          ></rect>
+          />
         </svg>
         <div
           class="aj-1j1s-header-left-links"
           :class="{ 'not-home': $route.name !== 'home' }"
         >
           <a href="https://www.1jeune1solution.gouv.fr" class="rf-link">
-            <img class="rf" src="@/../public/img/logo_rf.svg" />
+            <img
+              class="rf"
+              alt="Logo République Française"
+              src="@/../public/img/logo_rf.svg"
+            />
           </a>
           <a href="https://www.1jeune1solution.gouv.fr" class="fr-link">
-            <img class="fr" src="@/../public/img/logo1j1s-france-relance.svg" />
+            <img
+              class="fr"
+              alt="Logo 1 jeune 1 solution France Relance"
+              src="@/../public/img/logo1j1s-france-relance.svg"
+            />
           </a>
         </div>
 
@@ -72,8 +80,8 @@
     <nav class="aj-1j1s-header-menu" :class="{ show: showMenu }">
       <div class="container">
         <svg
-          width="100%"
-          height="100%"
+          width="18"
+          height="18"
           viewBox="0 0 18 18"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +97,7 @@
             rx="0.9"
             transform="rotate(45 16.7 0)"
             fill="currentColor"
-          ></rect>
+          />
           <rect
             y="1.3"
             width="1.8"
@@ -97,7 +105,7 @@
             rx="0.9"
             transform="rotate(-45 0 1.3)"
             fill="currentColor"
-          ></rect>
+          />
         </svg>
         <ul>
           <li class="home-link">

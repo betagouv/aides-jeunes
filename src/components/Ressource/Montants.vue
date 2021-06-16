@@ -15,13 +15,11 @@
 
     <label class="form__group" v-if="type.displayMonthly === true">
       Indiquez le montant <b>mensuel net</b> :
-      <input
-        type="number"
-        v-select-on-click
+      <InputNumber
         step="any"
-        v-bind:value="type.amounts[$store.state.dates.thisMonth.id]"
-        v-on:input="$emit('update', 'singleValue', index, $event.target.value)"
-      />
+        :value="type.amounts[$store.state.dates.thisMonth.id]"
+        @input="$emit('update', 'singleValue', index, $event)"
+      ></InputNumber>
     </label>
 
     <div class="form__group" v-if="type.displayMonthly === false">
@@ -32,17 +30,15 @@
       <div v-for="(month, monthIndex) in type.months" v-bind:key="month.id">
         <label>
           <MonthLabel v-bind:month="month" />
-          <input
-            type="number"
-            v-select-on-click
-            v-bind:value="type.amounts[month.id]"
-            v-on:input="
+          <InputNumber
+            :value="type.amounts[month.id]"
+            @input="
               $emit('update', 'monthUpdate', index, {
-                value: $event.target.value,
+                value: $event,
                 monthIndex,
               })
             "
-          />
+          ></InputNumber>
         </label>
       </div>
     </div>
@@ -53,6 +49,7 @@
 import MonthLabel from "@/components/MonthLabel"
 import YesNoQuestion from "@/components/YesNoQuestion"
 import Individu from "@/lib/Individu"
+import InputNumber from "@/components/InputNumber"
 
 function getQuestionLabel(individu, ressource, debutAnneeGlissante) {
   let verbForms = {
@@ -106,6 +103,7 @@ export default {
     },
   },
   components: {
+    InputNumber,
     MonthLabel,
     YesNoQuestion,
   },

@@ -8,7 +8,7 @@
         ></legend
       >
       <label>
-        <input min="0" type="number" v-select-on-click v-model.number="value" />
+        <InputNumber min="0" v-model="value"></InputNumber>
       </label>
     </fieldset>
     <Actions v-bind:onSubmit="onSubmit" />
@@ -18,11 +18,13 @@
 <script>
 import { createIndividuMixin } from "@/mixins/IndividuMixin"
 import Actions from "@/components/Actions"
+import InputNumber from "@/components/InputNumber"
 
 export default {
   name: "SimulationIndividuDureeMoisEtudesEtranger",
   components: {
     Actions,
+    InputNumber,
   },
   mixins: [createIndividuMixin("_dureeMoisEtudesEtranger")],
 }

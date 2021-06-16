@@ -23,22 +23,22 @@
       <label for="liberaleLastBenef" class="aj-question"
         >Bénéfice sur le dernier exercice clos</label
       >
-      <input
+      <InputNumber
         id="liberaleLastBenef"
-        type="number"
-        v-select-on-click
-        v-bind:value="ressource.amounts[$store.state.dates.lastYear.id]"
-        v-on:input="update($store.state.dates.lastYear.id, $event.target.value)"
-      />
+        :value="ressource.amounts[$store.state.dates.lastYear.id]"
+        @input="update($store.state.dates.lastYear.id, $event)"
+      ></InputNumber>
     </div>
   </div>
 </template>
 
 <script>
 import TNSRessourceUpdator from "@/mixins/TNSRessourceUpdator"
+import InputNumber from "@/components/InputNumber"
 
 export default {
   name: "RessourceProfessionLiberale",
+  components: { InputNumber },
   mixins: [TNSRessourceUpdator],
 }
 </script>

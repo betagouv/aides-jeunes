@@ -12,7 +12,7 @@
         <img
           class="aj-aide-illustration"
           v-bind:src="require(`./../../public/img/${droit.provider.imgSrc}`)"
-          v-bind:alt="droit.label"
+          v-bind:alt="'Logo ' + droit.label"
         />
         <div class="aj-aide-text">
           <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="aj-aide-cta">
-          <a class="button primary">Demander cette aide</a>
+          <button class="button primary">Demander cette aide</button>
         </div>
       </router-link>
     </div>
@@ -72,7 +72,7 @@
               v-bind:src="
                 require(`./../../public/img/${droit.provider.imgSrc}`)
               "
-              v-bind:alt="droit.label"
+              v-bind:alt="'Icone pour' + droit.label"
             />
             <div>
               <h2>

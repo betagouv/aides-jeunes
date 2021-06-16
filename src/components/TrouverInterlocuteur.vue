@@ -8,7 +8,12 @@
       </span>
     </div>
     <div class="aj-find-contact-box-action">
-      <router-link to="/simulation/resultats/lieux" class="button primary">
+      <router-link
+        :to="{
+          name: 'resultatsLieuxGeneriques',
+        }"
+        class="button primary"
+      >
         Trouver de l'aide
       </router-link>
     </div>

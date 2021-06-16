@@ -34,6 +34,9 @@ const router = new Router({
       redirect: "/simulation/individu/demandeur/date_naissance",
       component: () =>
         import(/* webpackChunkName: "simulation" */ "./views/Simulation.vue"),
+      meta: {
+        headTitle: "Ma simulation sur le simulateur d'aides 1jeune1solution",
+      },
       children: [
         {
           path: ":parent+/en_savoir_plus",
@@ -200,40 +203,11 @@ const router = new Router({
                 ),
             },
             {
-              path: "rsa_isolement_recent",
+              name: "FamilleProperty",
+              path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "famille" */ "./views/Simulation/Famille/RsaIsolementRecent.vue"
-                ),
-            },
-            {
-              path: "proprietaire_proche_famille",
-              component: () =>
-                import(
-                  /* webpackChunkName: "famille" */ "./views/Simulation/Famille/ProprietaireProcheFamille.vue"
-                ),
-            },
-            {
-              name: "bourse_criteres_sociaux_nombre_enfants_a_charge",
-              path: "bourse_criteres_sociaux_nombre_enfants_a_charge",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Famille/BourseCriteresSociauxNombreEnfantsACharge.vue"
-                ),
-            },
-            {
-              name: "bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur",
-              path: "bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Famille/BourseCriteresSociauxNombreEnfantsAChargeDansEnseignementSuperieur.vue"
-                ),
-            },
-            {
-              path: "parisien",
-              component: () =>
-                import(
-                  /* webpackChunkName: "famille" */ "./views/Simulation/Famille/Parisien.vue"
+                  /* webpackChunkName: "famille" */ "./views/Simulation/FamilleProperty.vue"
                 ),
             },
           ],
@@ -297,6 +271,10 @@ const router = new Router({
         {
           name: "resultats",
           path: "resultats",
+          meta: {
+            headTitle:
+              "Les résultats de ma simulation sur le simulateur d'aides 1jeune1solution",
+          },
           component: () =>
             import(
               /* webpackChunkName: "resultats" */ "./views/Simulation/Resultats.vue"
@@ -310,7 +288,8 @@ const router = new Router({
               /* webpackChunkName: "lieux" */ "./views/Simulation/Resultats/LieuxGeneriques.vue"
             ),
           meta: {
-            title: "De l'aide près de chez vous",
+            headTitle:
+              "Trouver de l'aide près de chez vous avec le simulateur d'aides 1jeune1solution",
           },
         },
         {
@@ -321,7 +300,8 @@ const router = new Router({
               /* webpackChunkName: "lieux" */ "./views/Simulation/Resultats/Lieux.vue"
             ),
           meta: {
-            title: "Des lieux près de chez vous",
+            headTitle:
+              "Trouver des lieux d'informations près de chez vous avec le simulateur d'aides 1jeune1solution",
           },
         },
         {
@@ -503,8 +483,12 @@ router.beforeEach((to, from, next) => {
     store.dispatch("verifyBenefitVariables")
     if (
       to.matched.some((r) => r.name === "foyer" || r.name === "simulation") &&
-      ["date_naissance", "resultats", "resultatsDetails"].indexOf(to.name) ===
-        -1 &&
+      [
+        "date_naissance",
+        "resultats",
+        "resultatsDetails",
+        "resultatsLieuxGeneriques",
+      ].indexOf(to.name) === -1 &&
       !store.getters.passSanityCheck
     ) {
       return store.dispatch("redirection", (route) => next(route))
@@ -557,10 +541,24 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
+const DEFAULT_TITLE =
+  "Évaluez vos droits aux aides avec le simulateur de 1jeune1solution"
+
+function getTitleMeta(route) {
+  let meta
+  for (let index = route.matched.length - 1; index >= 0; index -= 1) {
+    meta = route.matched[index].meta
+    if (meta.headTitle) return meta.headTitle
+  }
+  return DEFAULT_TITLE
+}
+
 router.afterEach((to) => {
   if (to.preventFocus) return
 
   Vue.nextTick(function () {
+    document.title = getTitleMeta(to)
+
     let title = document.querySelector("h1")
     // if anyone wants to set a tabindex manually, do not overwrite it
     if (title && title.tabIndex < 0) {

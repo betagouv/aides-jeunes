@@ -1,14 +1,14 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <fieldset>
+    <div class="field-group">
       <label for="cp" class="aj-question">{{ codePostalQuestion.label }}</label>
       <input id="cp" type="number" v-model="codePostalQuestion.selectedValue" />
-    </fieldset>
+    </div>
 
     <p v-if="retrievingCommunes"
       ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i
     ></p>
-    <fieldset v-show="communes && communes.length">
+    <div class="field-group" v-show="communes && communes.length">
       <label for="commune" class="aj-question">{{
         communeQuestion.label
       }}</label>
@@ -21,7 +21,7 @@
           {{ commune.nom }}
         </option>
       </select>
-    </fieldset>
+    </div>
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
@@ -114,7 +114,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-fieldset {
+.field-group {
   margin-bottom: 2em;
 }
 </style>

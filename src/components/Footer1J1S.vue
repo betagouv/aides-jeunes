@@ -2,8 +2,16 @@
   <footer class="aj-1j1s-footer">
     <div class="container">
       <div class="aj-1j1s-footer-logo-container">
-        <img class="rf" src="@/../public/img/logo_rf.svg" />
-        <img class="fr" src="@/../public/img/logo1j1s-france-relance.svg" />
+        <img
+          class="rf"
+          alt="Logo République Française"
+          src="@/../public/img/logo_rf.svg"
+        />
+        <img
+          class="fr"
+          alt="Logo 1 jeune 1 solution France relance"
+          src="@/../public/img/logo1j1s-france-relance.svg"
+        />
       </div>
       <div
         v-for="(item, index) in menu"
@@ -17,8 +25,8 @@
         >
           {{ item.label }}
           <svg
-            width="100%"
-            height="100%"
+            width="12"
+            height="12"
             viewBox="0 0 12 12"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

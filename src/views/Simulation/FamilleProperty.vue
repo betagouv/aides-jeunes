@@ -1,30 +1,19 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <fieldset v-if="questionType === 'enum'">
-      <legend>
-        <h2 class="aj-question">
-          <span v-html="question"></span>
-          <EnSavoirPlus v-if="showMoreInfo" />
-        </h2>
-        <p v-if="meta.help" v-html="meta.help"></p>
-      </legend>
-      <div
-        class="aj-selection-wrapper"
-        v-for="(item, index) in items"
-        :key="item.value"
-      >
+    <fieldset v-if="questionType === 'number'">
+      <legend
+        ><h2 class="aj-question"
+          ><span v-html="question"></span
+          ><EnSavoirPlus v-if="showMoreInfo" /></h2
+      ></legend>
+      <label>
         <input
-          :id="item.value"
-          type="radio"
-          :name="fieldName"
-          :value="item.value"
-          v-model="value"
-          :autofocus="index === 0"
+          :min="meta.min"
+          type="number"
+          v-select-on-click
+          v-model.number="value"
         />
-        <label :for="item.value">
-          {{ item.label }}
-        </label>
-      </div>
+      </label>
     </fieldset>
     <YesNoQuestion v-else v-model="value">
       <span v-html="question"></span><EnSavoirPlus v-if="showMoreInfo" />
@@ -38,32 +27,28 @@
 
 <script>
 import Actions from "@/components/Actions"
-import YesNoQuestion from "../../components/YesNoQuestion.vue"
 import Hint from "@/lib/Hint"
-import Individu from "@/lib/Individu"
-import IndividuQuestions from "@/lib/IndividuQuestions"
+import FamilleQuestions from "@/lib/FamilleQuestions"
 import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
+import YesNoQuestion from "@/components/YesNoQuestion"
 
 export default {
-  name: "IndividuProperty",
+  name: "FamilleProperty",
   components: {
     Actions,
     YesNoQuestion,
     EnSavoirPlus,
   },
   data: function () {
-    return this.loadQuestion(this.$route.params)
+    return this.loadQuestion(this.$route.params.fieldName)
   },
   computed: {
     fieldName: function () {
       return this.$route.params.fieldName
     },
     meta: function () {
-      return IndividuQuestions[this.fieldName]
-    },
-    role: function () {
-      return this.$route.params.id.split("_")[0]
+      return FamilleQuestions[this.fieldName]
     },
     questionType: function () {
       return this.meta.questionType
@@ -81,23 +66,13 @@ export default {
     },
   },
   methods: {
-    loadQuestion(params) {
-      const role = params.id.split("_")[0]
-      const { individu } = Individu.get(
-        this.$store.getters.peopleParentsFirst,
-        role,
-        params.id,
-        this.$store.state.dates
-      )
-      const value = individu[params.fieldName]
+    loadQuestion(fieldName) {
+      const famille = { ...this.$store.state.situation.famille }
+      const value = famille[fieldName]
       return {
-        error: false,
-        individu,
+        famille,
         value,
       }
-    },
-    getLabel: function (type) {
-      return Individu.label(this.individu, type)
     },
     requiredValueMissing: function () {
       const hasError = this.value === undefined
@@ -111,8 +86,8 @@ export default {
       if (this.requiredValueMissing()) {
         return
       }
-      this.individu[this.fieldName] = this.value
-      this.$store.dispatch("updateIndividu", this.individu)
+      this.famille[this.fieldName] = this.value
+      this.$store.dispatch("updateFamille", this.famille)
       this.$push()
     },
   },

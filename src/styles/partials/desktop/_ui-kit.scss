@@ -60,7 +60,8 @@ html {
       }
 
       &:focus {
-        outline: none;
+        outline: 0.0625rem auto var(--theme-primary);
+        outline-offset: 0.3125rem;
       }
     }
 
@@ -92,7 +93,7 @@ html {
     }
 
     .aj-main-container {
-      padding: 3rem 3rem 10rem 3rem;
+      padding: 3% 15% 12% 15%;
       background-color: #f2f5f9;
       width: 100%;
 

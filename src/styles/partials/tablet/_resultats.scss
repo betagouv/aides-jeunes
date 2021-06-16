@@ -1,0 +1,63 @@
+html {
+  body {
+    .aj-box {
+      .aj-droit-detail,
+      .aj-droit-survey {
+        .aj-aide-montant {
+          text-align: left;
+        }
+      }
+    }
+    .aj-aide-box {
+      flex-wrap: wrap;
+
+      .aj-aide-illustration {
+        width: 80px;
+      }
+
+      .aj-aide-text {
+        order: 3;
+        margin-left: 0;
+        margin-top: 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .aj-aide-montant {
+        flex-basis: unset;
+      }
+
+      .aj-aide-cta {
+        right: 0;
+        transform: none;
+        width: 100%;
+        padding: 0 15px 15px 15px;
+
+        button {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+    .aj-results-tools {
+      .aj-offline-results,
+      .aj-feedback {
+        flex-basis: 100%;
+        margin-bottom: 1rem;
+        margin-right: 0 !important;
+      }
+
+      .aj-find-contact-box {
+        flex-direction: column;
+        .aj-find-contact-box-content {
+          margin-bottom: 1rem;
+        }
+        .aj-find-contact-box-action {
+          width: 100% !important;
+          .button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

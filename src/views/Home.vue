@@ -3,12 +3,12 @@
     <div class="container">
       <div class="aj-home-hero">
         <div class="aj-home-hero-content">
-          <h1
-            ><span class="hightlight"
-              >Évaluez vos droits à<br />plus de 20 aides</span
-            >
-            <br />en moins de 5 minutes.</h1
-          >
+          <h1>
+            <span class="hightlight"
+              >Évaluez vos droits à<br />plus de 20 aides
+            </span>
+            <br />en moins de 5 minutes.
+          </h1>
           <div class="aj-home-hero-buttons-wrapper">
             <button
               v-bind:class="`button ${ctaSize} secondary`"
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="aj-home-illustration">
-        <img src="@/assets/images/home_illustration.png" />
+        <img src="@/assets/images/home_illustration.png" alt="Portrait jeune" />
       </div>
     </div>
   </div>

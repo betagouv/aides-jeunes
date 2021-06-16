@@ -12,8 +12,8 @@ import findIndex from "lodash/findIndex"
 
 import { computeAides, datesGenerator } from "../backend/lib/mes-aides"
 import { categoriesRnc, patrimoineTypes } from "./constants/resources"
+import { generateAllSteps } from "./lib/State/generator"
 import Institution from "./lib/Institution"
-import { full } from "./lib/State"
 import ABTestingService from "./plugins/ABTestingService"
 import EtablissementModule from "./modules/Etablissement"
 
@@ -63,6 +63,7 @@ function defaultCalculs() {
 
 function defaultStore() {
   const now = moment().format()
+
   return {
     message: {
       text: null,
@@ -161,6 +162,9 @@ const store = new Vuex.Store({
         state.situation.menage &&
         state.situation.menage.statut_occupation_logement
       )
+    },
+    getAllSteps: function (state) {
+      return generateAllSteps(state.situation)
     },
     ressourcesYearMinusTwoCaptured: function (state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
@@ -414,9 +418,7 @@ const store = new Vuex.Store({
       commit("setDirty")
     },
     save: function (store) {
-      const disabledSteps = full(store.state.situation).filter(
-        (s) => !s.isActive
-      )
+      const disabledSteps = store.getters.getAllSteps.filter((s) => !s.isActive)
       disabledSteps.forEach((step) => {
         step.clean(store, true)
       })

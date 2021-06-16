@@ -1,71 +1,36 @@
-var { generateBlocks } = require("./blocks")
-var { Step } = require("./steps")
+var Chapters = require("../Chapters")
 
-function processBlock({ journey, subject, situation, isActive }, b) {
-  if (b instanceof Step) {
-    b.isActive = isActive
-    journey.push(b)
-  } else if (typeof b == "string") {
-    console.warn(`string step should no longer be used: ${b}`)
-    journey.push({ isActive, path: b })
-  } else {
-    if (!b.steps) {
-      throw Error("" + b + " (" + (b instanceof Array ? "array" : "?") + ")")
-    }
-    let blockSubject = b.subject
-      ? b.subject(subject, situation)
-      : subject || situation
-    const localActive =
-      isActive &&
-      (!b.isActive || (blockSubject && b.isActive(blockSubject, situation)))
-    b.steps.forEach((s) =>
-      processBlock(
-        { journey, subject: blockSubject, situation, isActive: localActive },
-        s
-      )
-    )
-  }
-}
-
-function generateJourney(situation) {
-  const blocks = generateBlocks(situation)
-
-  function processBlocks({ situation }) {
-    let journey = []
-    blocks.forEach((b) => {
-      processBlock(
-        { journey, subject: situation, situation, isActive: true },
-        b
-      )
-    })
-    return journey
-  }
-  try {
-    return processBlocks({ situation })
-  } catch (e) {
-    console.log("error", e)
-  }
-}
-
-function full(situation) {
-  const journey = generateJourney(situation)
-  journey.pop()
-  let lastChapter
-  return journey.map((s) => {
-    if (s.chapter) lastChapter = s.chapter
-    else s.chapter = lastChapter
-    return s
+function chapters(currentPath, journey) {
+  const cleanPath = currentPath
+    .replace(/\/sommaire$/, "")
+    .replace(/\/en_savoir_plus$/, "")
+  const activeJourney = journey.filter((s) => s.isActive)
+  const activeChaptersNames = activeJourney
+    .map((c) => c.chapter)
+    .filter((value, index, self) => self.indexOf(value) === index)
+  const currentStep = journey.find((item) => item.path == cleanPath)
+  const activeChapters = Chapters.default
+    .getSommaireChapters()
+    .filter((c) => activeChaptersNames.includes(c.name))
+  let isCurrentChapter
+  let passedChapter = true
+  return activeChapters.map((chapter) => {
+    isCurrentChapter = chapter.name === (currentStep && currentStep.chapter)
+    passedChapter = isCurrentChapter ? false : passedChapter
+    chapter.done = passedChapter
+    chapter.current = isCurrentChapter
+    chapter.root = activeJourney.find(
+      (item) => item.chapter == chapter.name
+    ).path
+    return chapter
   })
 }
 
-function current(currentPath, situation) {
-  const journey = full(situation)
+function current(currentPath, journey) {
   return journey.find((item) => item.path == currentPath)
 }
 
-function next(current, situation) {
-  const journey = full(situation)
-
+function next(current, journey) {
   let matches = journey
     .map((element, index) => {
       return { element, index }
@@ -76,14 +41,13 @@ function next(current, situation) {
     const test = current.path || current.fullPath || current
     throw new Error("Logic missing for " + test)
   }
-
   return journey
     .slice(matches[matches.length - 1].index + 1)
     .filter((step) => step.isActive)[0]
 }
 
 module.exports = {
-  full,
   next,
+  chapters,
   current,
 }

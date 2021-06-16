@@ -1,6 +1,6 @@
 html {
-  height: unset;
-  background-color: #f2f5f9;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 50%, #f2f5f9 50%);
 
   &,
   body,
@@ -16,7 +16,30 @@ html {
   }
 
   body {
+    height: 100%;
     font-size: 16px;
+
+    & > .aj-website {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .aj-website-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1 0 auto;
+
+        .aj-layout-container {
+          flex-direction: row-reverse;
+          flex: 1 1 auto;
+          width: 100%;
+        }
+      }
+
+      footer {
+        flex-shrink: 0;
+      }
+    }
 
     h1,
     h2,
@@ -109,6 +132,10 @@ html {
           font-size: 2.75rem;
           margin: 0 0 5px 0;
         }
+      }
+
+      .aj-category-title-wrapper-mobile {
+        display: none;
       }
 
       .aj-help-popup {

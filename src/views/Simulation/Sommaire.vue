@@ -17,7 +17,7 @@ import SommaireContent from "@/components/SommaireContent"
 import BackButton from "@/components/Buttons/BackButton"
 
 export default {
-  name: "SommairePage",
+  name: "Sommaire",
   components: {
     SommaireContent,
     BackButton,

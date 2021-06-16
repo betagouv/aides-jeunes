@@ -3,7 +3,6 @@ import Router from "vue-router"
 import Home from "./views/Home.vue"
 import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
-import SommairePage from "@/views/Simulation/SommairePage"
 
 Vue.use(Router)
 
@@ -49,7 +48,10 @@ const router = new Router({
         {
           path: ":parent+/sommaire",
           name: "sommaire",
-          component: SommairePage,
+          component: () =>
+            import(
+              /* webpackChunkName: "simulation" */ "./views/Simulation/Sommaire.vue"
+            ),
         },
         {
           name: "individu",

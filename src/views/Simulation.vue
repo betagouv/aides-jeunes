@@ -18,7 +18,7 @@
       </div>
     </div>
     <Progress v-if="debug" />
-    <Sommaire />
+    <Sommaire v-else />
   </div>
 </template>
 

@@ -38,6 +38,7 @@
                 monthIndex,
               })
             "
+            to-string="true"
           ></InputNumber>
         </label>
       </div>

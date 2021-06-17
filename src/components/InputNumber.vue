@@ -5,7 +5,7 @@
 <script>
 export default {
   name: "InputNumber",
-  props: ["value"],
+  props: ["value", "toString"],
   computed: {
     result: {
       get: function () {
@@ -13,7 +13,14 @@ export default {
       },
       set: function (value) {
         const floatValue = parseFloat(value)
-        this.$emit("input", floatValue ? floatValue : undefined)
+        this.$emit(
+          "input",
+          floatValue || floatValue === 0
+            ? this.toString
+              ? floatValue.toString()
+              : floatValue
+            : undefined
+        )
       },
     },
   },

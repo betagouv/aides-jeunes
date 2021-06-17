@@ -42,7 +42,8 @@ context("Full simulation", () => {
     steps.hasPrimeActivite(2)
     // steps.hasLogementSocial()
   })
-  it("displays a tooltip if the parents are separated ", () => {
+
+  it("accept a student situation", () => {
     steps.home()
     steps.etudiant_public()
     steps.zeroEnfants()
@@ -58,5 +59,19 @@ context("Full simulation", () => {
     // Ressources
     steps.submit()
     cy.get(".aj-tooltip")
+    cy.get("legend").invoke("text").should("contain", "revenu brut global")
+    cy.get('input[type="text"]').type("17860.35")
+    steps.submit()
+    steps.checkRadio("false")
+    steps.submit()
+    steps.checkRadio("true")
+    steps.submit()
+    steps.checkRadio("false")
+    steps.submit()
+    steps.checkRadio("true")
+    steps.submit()
+    cy.get('input[type="text"]').type("2")
+    steps.submit()
+    steps.hasBourseCriteresSociaux(3)
   })
 })

@@ -31,6 +31,7 @@
         id="autoAmount"
         :value="ressource.amounts[$store.state.dates.lastYear.id]"
         @input="update($store.state.dates.lastYear.id, $event)"
+        to-string
       ></InputNumber>
     </div>
 
@@ -43,6 +44,7 @@
         id="autoAmountLastMonth"
         :value="ressource.amounts[$store.state.dates.thisMonth.id]"
         @input="update($store.state.dates.thisMonth.id, $event)"
+        to-string
       ></InputNumber>
     </div>
     <div
@@ -57,6 +59,7 @@
         :id="'autoAmount' + month.label"
         :value="ressource.amounts[month.id]"
         @input="update(month.id, $event)"
+        to-string
       ></InputNumber>
     </div>
   </div>

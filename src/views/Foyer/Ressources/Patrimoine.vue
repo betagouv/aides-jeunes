@@ -20,9 +20,7 @@
       <label class="form__group">
         Valeur <b>locative</b> totale de vos terrains <b>non loués</b>
         <InputNumber
-          v-model.number="
-            demandeur.valeur_locative_terrains_non_loues[periodKey]
-          "
+          v-model="demandeur.valeur_locative_terrains_non_loues[periodKey]"
         ></InputNumber>
       </label>
       <p>

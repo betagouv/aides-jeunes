@@ -34,6 +34,7 @@
             v-model="
               individu.values[ressource.id][$store.state.dates.fiscalYear.id]
             "
+            to-string
           ></InputNumber>
 
           <span v-if="individu.default[ressource.id]">

@@ -19,6 +19,7 @@
         step="any"
         :value="type.amounts[$store.state.dates.thisMonth.id]"
         @input="$emit('update', 'singleValue', index, $event)"
+        to-string
       ></InputNumber>
     </label>
 
@@ -38,7 +39,7 @@
                 monthIndex,
               })
             "
-            to-string="true"
+            to-string
           ></InputNumber>
         </label>
       </div>

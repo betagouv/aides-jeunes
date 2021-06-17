@@ -13,10 +13,11 @@ export default {
       },
       set: function (value) {
         const floatValue = parseFloat(value)
+        debugger
         this.$emit(
           "input",
           floatValue || floatValue === 0
-            ? this.toString
+            ? this.toString !== undefined
               ? floatValue.toString()
               : floatValue
             : undefined

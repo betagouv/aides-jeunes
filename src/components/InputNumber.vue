@@ -13,9 +13,7 @@ export default {
       },
       set: function (value) {
         const floatValue = parseFloat(value)
-        let emittedValue
-        if (value) emittedValue = floatValue
-        this.$emit("input", emittedValue)
+        this.$emit("input", floatValue ? floatValue : undefined)
       },
     },
   },

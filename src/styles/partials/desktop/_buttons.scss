@@ -21,19 +21,19 @@ a.button:not(.small) {
       box-shadow: none;
     }
 
-    &:hover {
-      background-color: var(--theme-primary-dark);
-      border-color: var(--theme-primary-dark);
-      transform: scale(1.02);
-    }
-
-    &:focus {
-      background-color: var(--theme-primary-darker);
-    }
-
     i {
       margin-right: 10px;
     }
+  }
+
+  &:hover {
+    background-color: var(--theme-primary-dark);
+    border-color: var(--theme-primary-dark);
+    transform: scale(1.02);
+  }
+
+  &:focus {
+    background-color: var(--theme-primary-darker);
   }
 }
 
@@ -51,6 +51,11 @@ a.button {
   &:disabled {
     background-color: var(--light-grey);
     border: 1px solid var(--light-grey);
+
+    &:hover {
+      background-color: var(--grey);
+      border-color: var(--grey);
+    }
   }
 
   &.outline {
@@ -102,6 +107,19 @@ a.button {
         color: var(--white);
         background-color: var(--dark-red);
       }
+    }
+  }
+}
+
+a.button {
+  &.disabled {
+    background-color: var(--light-grey);
+    border: 1px solid var(--light-grey);
+    pointer-events: none;
+
+    &:hover {
+      background-color: var(--grey);
+      border-color: var(--grey);
     }
   }
 }

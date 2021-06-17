@@ -151,7 +151,7 @@ export default {
     },
     onSubmit: function () {
       this.save(this.types, true)
-      this.$push(this.$store.state.situation)
+      this.$push()
     },
     updateTNSAmount: function (type, period, value) {
       type.amounts[period] = value

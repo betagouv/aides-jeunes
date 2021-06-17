@@ -1,19 +1,15 @@
-import { full, next, current } from "@/lib/State"
+import { next, current, chapters } from "@/lib/State"
 
 const StateService = {
   install(Vue) {
     Vue.prototype.$state = {
-      full,
       next,
       current,
+      chapters,
     }
 
-    Vue.prototype.$push = function (situation) {
-      const nextStep = next(
-        this.$route,
-        situation || this.$store.state.situation,
-        this.$router
-      )
+    Vue.prototype.$push = function () {
+      const nextStep = next(this.$route, this.$store.getters.getAllSteps)
       this.$router.push(nextStep.path).catch((failure) => {
         throw new Error(failure)
       })

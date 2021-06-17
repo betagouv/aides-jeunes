@@ -1,14 +1,22 @@
+html {
+  body {
+    .aj-layout-container {
+      display: flex;
+    }
+  }
+}
 #homepage {
+  height: 100%;
   background: linear-gradient(
     105deg,
     var(--white),
     53%,
     var(--theme-primary) 47%
   );
-
   .container {
     display: flex;
     flex-direction: row;
+    height: 100%;
 
     .aj-home-hero {
       width: 60%;
@@ -46,7 +54,7 @@
     .aj-home-illustration {
       width: 40%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: flex-end;
 
       img {

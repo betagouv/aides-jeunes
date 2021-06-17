@@ -54,7 +54,7 @@ export default {
         }
         this.$store.dispatch("updateIndividu", enfant)
       })
-      this.$push(this.$store.state.situation)
+      this.$push()
     },
   },
 }

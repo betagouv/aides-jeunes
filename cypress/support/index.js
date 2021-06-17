@@ -164,10 +164,10 @@ export function deuxEnfants() {
 
 export function unEnfantSuperieur() {
   cy.get("legend").invoke("text").should("contain", "la charge")
-  cy.get('input[type="text"]').type("1")
+  cy.get('input[type="number"]').type("1")
   submit()
   cy.get("legend").invoke("text").should("contain", "des études supérieures")
-  cy.get('input[type="text"]').type("1")
+  cy.get('input[type="number"]').type("1")
   submit()
 }
 
@@ -300,7 +300,7 @@ export function salaireSeul() {
     .find('input[type="radio"][value="true"]')
     .first()
     .check()
-  cy.get("@salarySection").find('input[type="text"]').type("1101.42")
+  cy.get("@salarySection").find('input[type="number"]').type("1101.42")
   submit()
 }
 

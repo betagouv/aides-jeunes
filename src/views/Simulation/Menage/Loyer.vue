@@ -10,7 +10,6 @@
           id="loyer"
           class="aj-input-euros"
           v-model="loyerQuestion.selectedValue"
-          to-string
         ></InputNumber>
       </div>
     </div>
@@ -23,7 +22,6 @@
         <InputNumber
           id="charges"
           v-model="chargesQuestion.selectedValue"
-          to-string
         ></InputNumber>
       </div>
     </div>

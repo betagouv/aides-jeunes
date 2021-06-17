@@ -30,7 +30,7 @@ context("Full simulation", () => {
       .find('input[type="radio"][value="false"]')
       .first()
       .check()
-    cy.get("@salarySection").find('input[type="number"]').as("inputs")
+    cy.get("@salarySection").find('input[type="text"]').as("inputs")
     cy.get("@inputs").its("length").should("equal", 13)
 
     cy.get("@inputs").eq(0).type(400)

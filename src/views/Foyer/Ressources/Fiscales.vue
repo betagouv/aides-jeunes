@@ -30,12 +30,13 @@
           v-bind:key="ressource.id"
         >
           {{ ressource.label }}
-          <InputNumber
+          <input
+            type="number"
+            v-select-on-click
             v-model="
               individu.values[ressource.id][$store.state.dates.fiscalYear.id]
             "
-          ></InputNumber>
-
+          />
           <span v-if="individu.default[ressource.id]">
             Ce montant vaut {{ individu.default[ressource.id] }} pour les 12
             derniers mois.</span
@@ -56,7 +57,6 @@ import some from "lodash/some"
 import isNaN from "lodash/isNaN"
 import Individu from "@/lib/Individu"
 import { categoriesRnc } from "@/constants/resources"
-import InputNumber from "@/components/InputNumber"
 
 function getDefaultValue(months, individu, rnc) {
   return sum(
@@ -73,9 +73,7 @@ function getDefaultValue(months, individu, rnc) {
 
 export default {
   name: "ressources-fiscales",
-  components: {
-    InputNumber,
-  },
+  components: {},
   data: function () {
     const fiscalYear = this.$store.state.dates.fiscalYear.id
     let individus = this.$store.getters.peopleParentsFirst.map((source) => {

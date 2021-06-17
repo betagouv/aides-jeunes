@@ -42,7 +42,7 @@ function getNationalityFromCountryCode(countryCode) {
     case "DE":
       return "Européenne"
     case "FR":
-      return "Français"
+      return "Française"
     case "AF":
       return "Non européenne"
   }

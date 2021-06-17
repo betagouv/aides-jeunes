@@ -80,8 +80,8 @@ html {
           }
 
           & + label {
-            min-width: 325px;
             display: inline-flex;
+            align-items: center;
             border: 1px solid var(--theme-primary);
             border-radius: var(--theme-border-radius);
             color: var(--dark);
@@ -94,6 +94,9 @@ html {
             -o-transition: background-color 400ms linear, color 400ms linear;
             -ms-transition: background-color 400ms linear, color 400ms linear;
             transition: background-color 400ms linear, color 400ms linear;
+            span {
+              margin-left: 0.5rem;
+            }
           }
 
           &:hover + label,

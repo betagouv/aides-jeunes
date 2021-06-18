@@ -60,7 +60,8 @@ forEach((aide, aideId) => {
 
   if (aide.extra) {
     aide.extra.forEach(function (extra) {
-      requestedVariables[extra.id] = requestedVariables[extra.id] || assign({}, extra)
+      requestedVariables[extra.id] =
+        requestedVariables[extra.id] || assign({}, extra)
     })
   }
 })

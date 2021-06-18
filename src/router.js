@@ -50,7 +50,7 @@ const router = new Router({
           name: "sommaire",
           component: () =>
             import(
-              /* webpackChunkName: "simulation" */ "./views/Simulation/SommairePage.vue"
+              /* webpackChunkName: "simulation" */ "./views/Simulation/Sommaire.vue"
             ),
         },
         {

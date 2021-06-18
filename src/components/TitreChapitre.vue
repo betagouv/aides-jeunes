@@ -5,11 +5,11 @@
     </div>
     <div
       class="aj-category-title-wrapper-mobile"
-      :class="{ 'has-menu-button': hasMenuButton }"
+      :class="{ 'has-menu-button': showMenuButton }"
     >
       <MenuButton
-        @click.native="switchMobileOpen"
-        v-show="hasMenuButton"
+        @click.native="goToSummaryPage"
+        v-show="showMenuButton"
       ></MenuButton>
       <h1>{{ title }}</h1>
     </div>
@@ -27,7 +27,7 @@ export default {
     title() {
       return this.getTitleByRoute(this.$route)
     },
-    hasMenuButton() {
+    showMenuButton() {
       return this.$route.name !== "sommaire"
     },
   },
@@ -37,7 +37,7 @@ export default {
       const chapterName = (step && step.chapter) || ""
       return Chapters.getLabel(chapterName)
     },
-    switchMobileOpen() {
+    goToSummaryPage() {
       this.$router.push({ path: this.$route.path + "/sommaire" })
     },
   },

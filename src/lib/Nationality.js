@@ -39,14 +39,12 @@ let EEE_COUNTRY_CODES = [
 
 function getNationalityFromCountryCode(countryCode) {
   switch (countryCode) {
-    case "de":
+    case "DE":
       return "Européenne"
-    case "fr":
+    case "FR":
       return "Française"
-    case "af":
+    case "AF":
       return "Non européenne"
-    default:
-      return "Non renseignée"
   }
 }
 

@@ -14,7 +14,6 @@ import { computeAides, datesGenerator } from "../backend/lib/mes-aides"
 import { categoriesRnc, patrimoineTypes } from "./constants/resources"
 import { generateAllSteps } from "./lib/State/generator"
 import Institution from "./lib/Institution"
-import { full } from "./lib/State"
 import ABTestingService from "./plugins/ABTestingService"
 import EtablissementModule from "./modules/Etablissement"
 
@@ -452,9 +451,7 @@ const store = new Vuex.Store({
       commit("addPathToUserDoneJourney", path)
     },
     save: function (store) {
-      const disabledSteps = full(store.state.situation).filter(
-        (s) => !s.isActive
-      )
+      const disabledSteps = store.getters.getAllSteps.filter((s) => !s.isActive)
       disabledSteps.forEach((step) => {
         step.clean(store, true)
       })

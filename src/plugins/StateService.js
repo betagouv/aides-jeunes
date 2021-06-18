@@ -1,5 +1,4 @@
 import {
-  full,
   next,
   previous,
   current,
@@ -11,7 +10,6 @@ import {
 const StateService = {
   install(Vue) {
     Vue.prototype.$state = {
-      full,
       next,
       previous,
       current,

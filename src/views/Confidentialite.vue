@@ -1,5 +1,5 @@
 <template>
-  <article class="text container">
+  <article class="text container aj-text-container">
     <h1>Politique de confidentialité</h1>
 
     <h2>Traitements des données à caractère personnel</h2>

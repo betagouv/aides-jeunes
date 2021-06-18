@@ -1,5 +1,5 @@
 <template>
-  <article class="text container">
+  <article class="text container aj-text-container">
     <h1>Comment nous contacter ?</h1>
 
     <p

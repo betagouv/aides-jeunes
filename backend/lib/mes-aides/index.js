@@ -35,7 +35,7 @@ function valueAt(ressourceId, ressources, period, aide) {
 
 function round(amount, aide) {
   if (aide.type && aide.type !== "float") {
-    return amount
+    return Boolean(amount)
   }
 
   var rounding = aide.floorAt || 1
@@ -90,7 +90,10 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
     var value = valueAt(aideId + "_non_calculable", computedRessources, period)
 
     if (!value || value === "calculable") {
-      value = round(valueAt(aideId, computedRessources, period, aide), aide)
+      value = round(
+        valueAt(aide.internal_flag || aideId, computedRessources, period, aide),
+        aide
+      )
     }
 
     var dest = value ? result.droitsEligibles : result.droitsNonEligibles

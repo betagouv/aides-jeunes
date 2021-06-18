@@ -51,7 +51,7 @@ exports.getPeriods = function (dateDeValeur) {
 
 let requestedVariables = {}
 forEach((aide, aideId) => {
-  requestedVariables[aideId] = assign({}, aide)
+  requestedVariables[aide.internal_flag || aideId] = assign({}, aide)
   if (aide.uncomputability)
     requestedVariables[aideId + "_non_calculable"] = assign({}, aide, {
       type: "string",

@@ -501,7 +501,10 @@ const store = new Vuex.Store({
         .then((variableNames) => {
           let missingBenefits = []
           Institution.forEachBenefit((benefit, benefitId) => {
-            if (!benefit.test && variableNames.indexOf(benefitId) < 0) {
+            if (
+              !benefit.test &&
+              variableNames.indexOf(benefit.internal_flag || benefitId) < 0
+            ) {
               missingBenefits.push(benefitId)
             }
           })

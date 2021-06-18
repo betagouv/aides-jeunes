@@ -29,6 +29,10 @@ html {
         flex-direction: column;
         flex: 1 0 auto;
 
+        &.blue-background {
+          background-color: #f2f5f9;
+        }
+
         .aj-layout-container {
           flex-direction: row-reverse;
           flex: 1 1 auto;

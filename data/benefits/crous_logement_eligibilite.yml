@@ -9,4 +9,4 @@ prefix: un
 type: bool
 top: 2
 entity: individus
-internal_flag: bourse_criteres_sociaux
+openfisca_eligibility_source: bourse_criteres_sociaux

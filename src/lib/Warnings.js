@@ -4,11 +4,15 @@ const AJ_NOT_RELIABLE =
 const texts = {
   aj_not_reliable(variation) {
     if (variation) {
-      if (variation.startsWith("988"))
-        return `${AJ_NOT_RELIABLE} Nouvelle-Calédonie.`
-      if (variation.startsWith("987"))
+      if (variation.startsWith("976")) {
+        return `${AJ_NOT_RELIABLE} Mayotte.`
+      }
+      if (variation.startsWith("987")) {
         return `${AJ_NOT_RELIABLE} Polynésie Française.`
-      if (variation.startsWith("976")) return `${AJ_NOT_RELIABLE} Mayotte.`
+      }
+      if (variation.startsWith("988")) {
+        return `${AJ_NOT_RELIABLE} Nouvelle-Calédonie.`
+      }
     }
   },
 }

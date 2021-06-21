@@ -114,7 +114,10 @@
           <li
             v-for="(item, index) in menu"
             v-bind:key="item.key"
-            :class="{ 'last-item': index === menu.length - 1 }"
+            :class="{
+              'last-item': index === menu.length - 1,
+              active: item.href === '/',
+            }"
           >
             <a :href="item.href">
               {{ item.label }}
@@ -140,22 +143,27 @@ export default {
         },
         {
           key: "2",
+          label: "J'accède à mes aides",
+          href: "/",
+        },
+        {
+          key: "3",
           label: "Je participe à un évenement",
           href: "https://www.1jeune1solution.gouv.fr/evenements?utm_source=mes-aides-beta&utm_medium=menu",
         },
         {
-          key: "3",
-          label: "Je consulte les mesures",
-          href: "https://www.1jeune1solution.gouv.fr/espace-jeune?utm_source=mes-aides-beta&utm_medium=menu",
-        },
-        {
           key: "4",
-          label: "Les entreprises s'engagent",
-          href: "https://www.1jeune1solution.gouv.fr/entreprises?utm_source=mes-aides-beta&utm_medium=menu",
+          label: "Je m'engage",
+          href: "https://www.1jeune1solution.gouv.fr/service-civique?utm_source=mes-aides-beta&utm_medium=menu",
         },
         {
           key: "5",
-          label: "Je recrute !",
+          label: "Je souhaite entreprendre",
+          href: "https://www.1jeune1solution.gouv.fr/entreprendre?utm_source=mes-aides-beta&utm_medium=menu",
+        },
+        {
+          key: "6",
+          label: "Je suis employeur",
           href: "https://www.1jeune1solution.gouv.fr/je-recrute?utm_source=mes-aides-beta&utm_medium=menu",
         },
       ],

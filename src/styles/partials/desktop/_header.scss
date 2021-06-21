@@ -9,8 +9,7 @@ html {
 
         .container {
           display: flex;
-          align-items: center;
-
+          justify-content: center;
           .aj-1j1s-header-right-links {
             margin-left: auto;
 
@@ -76,6 +75,17 @@ html {
 
             &:not(.last-item) {
               margin-right: 2.3125rem;
+            }
+            &.active {
+              &:after {
+                display: block;
+                content: "";
+                position: absolute;
+                background: var(--green);
+                height: 0.1875rem;
+                width: 100%;
+                bottom: -0.6875rem;
+              }
             }
 
             a {

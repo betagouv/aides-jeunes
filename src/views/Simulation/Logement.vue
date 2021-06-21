@@ -173,9 +173,9 @@ export default {
             label: "Foyer",
             value: "foyer",
             hint: [
-              this.$store.state.situation.demandeur.activite == "etudiant"
-                ? "résidence universitaire"
-                : "",
+              ...(this.$store.state.situation.demandeur.activite == "etudiant"
+                ? ["résidence universitaire", "logement CROUS"]
+                : []),
               this.demandeurAge() > 50 ? "maison de retraite" : "",
               "foyer de jeune travailleur",
               "résidence sociale…",

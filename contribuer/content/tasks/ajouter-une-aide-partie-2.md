@@ -1,60 +1,14 @@
 ---
-title: 🛠 Ajouter une aide
-duration: 90
+title: 🛠 Ajouter une aide 2ème partie
+duration: 60
 prerequisites:
   - ajouter-une-institution
+  - ajouter-une-aide-partie-1
 ---
 
 L'objectif de cette contribution est d'ajouter une première aide dans le simulateur.
 
 Il s'agira d'une version simplifiée par rapport à la réalité mais qui constituera déjà une première étape. La complexité de cette aide sera intégrée et mise en compte progressivement.
-
-## Choisir une aide - 5 minutes grand max
-
-Il va falloir déterminer l'aide que vous souhaitez intégrer. Pour une première aide, il faut essayer d'en choisir une **simple**, pour laquelle vous avez à votre disposition des **documents de référence** (règlement intérieur, annexes de délibération, etc.) dans lesquels sont détaillées les règles permettant de la calculer. Enfin, il faut aussi que les **ressources** permettant aux usagers des **faire les démarches** soient **accessibles** (page d'information, formulaire en ligne, téléservice, etc.).
-
-![Schéma des étapes entre la contribution et le bénéfice de l'aide](/img/ajouter-une-aide/schema.svg)
-
-Dans un premier temps, seule l'éligibilité à cette aide sera indiquée. Si un montant peut être calculé (forfaitaire ou en fonction du foyer) il le sera plus tard. En effet de tels calculs augmentent la complexité et cette contribution n'en serait que plus difficile.
-
-## Lister les critères - 5 minutes max
-
-Les documents de référence étant précis mais difficiles à comprendre par le plus grand nombre, la rédaction d'une liste de critère est un premier travail de simplification.
-
-Il s'agit de remplir le paragraphe suivant :
-
-Pour bénéficier de l'aide, il faut :
-
-- ... **et**
-- ... **et**
-- ... **et**
-- ... **et**
-
-Voilà quelques exemples de critères :
-
-- Résider dans la ville de Canéjan
-- Résider dans le département du Bas-Rhin
-- Être âgé de plus de 65 ans
-- Être bénéficiaire du RSA
-- Être parent isolé
-- Avoir un taux d'incapacité supérieur à 80%
-- Avoir des ressources mensuelles inférieures au SMIC
-
-Il arrive que certains critères soient plus complexes, _être âgé de plus de 65 ans ou de plus de 60 avec un taux d'incapacité de plus de 50%_ en est un exemple.
-
-Il arrive aussi que des critères puissent être regroupés en un critère moins précis mais qui évite de faire une longue énumération. Par exemple, _Avoir signé un CDD de plus de 3 mois ou un CDI ou être entrée dans une formation de plus de 6 mois_ peut être résumée par _Avoir repris une activité_.
-
-Cette liste sera un point de départ pour coder les règles de votre aide dans le moteur de calculs.
-
-## Renseigner les informations relatives à l'aide - 5 minutes max
-
-En vous connectant à <a href="https://contribuer.mes-aides.org/admin/#/collections/benefits/new" target="_blank" rel="noopener">l'outil de contribution</a>, vous pouvez ajouter les informations de votre aide. Les informations recueillies jusqu'à présent vont vous faciliter la saisie des informations demandées.
-
-La liste des critères tout juste établies devra être indiquée dans « Conditions non prises ne comptent par le simulateur » en ajoutant les critères un par un à partir du bouton « add condition non prise ne comptent par le simulateur ».
-
-Une fois les informations saisies, il faut les « Enregistrer » à partir du bouton en haut à gauche.
-
-Avec cet enregistrement, une version de démonstration va être mise à disposition pour vous permettre de constater la présence de votre aide. Comme cela prend quelques minutes, vous pouvez continuer et nous y reviendrons plus tard.
 
 ## Préparer l'environnement de travail - 10 minutes max
 
@@ -250,7 +204,7 @@ Nous allons détaillé la suite des étapes pour 3 critères différents (1 seul
 
 Nous allons continuer ce guide en considérant que nous souhaitons ajouter le « [Noël des enfants](https://www.alfortville.fr/le-pole-solidarite-insertion) » mis en place par la ville d'Alfortville. Comme premier critère nous allons prendre « Résider dans la ville d'[Alfortville](https://fr.wikipedia.org/wiki/Alfortville) ».
 
-Si votre critère est très différent, faites-nous signe à [accompagnement@mes-aides.org](mailto:accompagnement@mes-aides.org), nous nous ferons un plaisir de compléter ces informations (on a été à l'essentiel 😅).
+Si votre critère est très différent, faites-nous signe à [aides-jeunes@beta.gouv.fr](mailto:aides-jeunes@beta.gouv.fr), nous nous ferons un plaisir de compléter ces informations (on a été à l'essentiel 😅).
 
 Le critère « Résider dans la ville d'Alfortville » est facile à comprendre pour nous humains. Le moteur de calculs ne va pas utiliser le nom de la ville mais son identifiant INSEE. Cela est préférable car le nom de la ville peut être orthographié de plusieurs façon (avec le tiret, tout en majuscules, etc.) alors que l'identifiant n'a pas cet inconvéniant. Il est existe plusieurs endroits où le code INSEE peut être trouvé. Sur [la page wikipédia de Alfortville](https://fr.wikipedia.org/wiki/Alfortville) on y apprend que son code commune (où code INSEE) est 94002.
 
@@ -364,11 +318,11 @@ Cela va faire apparaître à droite un menu. Pour envoyer votre modification, vo
 
 Normalement, le critère que vous avez codé dans le moteur de calculs est présent dans la liste rédigée initialement. Il est désormais pris en compte dans le simulateur donc ce critère devrait être supprimé de la liste des « conditions non prises en compte dans le simulateur ».
 
-Pour cela, vous pouvez accéder à votre contribution à [la page suivante](https://contribuer.mes-aides.org/admin/#/workflow), cliquer sur la carte correspondante, supprimer le critère de la liste et enregistrer vos modifications.
+Pour cela, vous pouvez accéder à votre contribution à [la page suivante](https://contribuer-aides-jeunes.netlify.app/admin/#/workflow), cliquer sur la carte correspondante, supprimer le critère de la liste et enregistrer vos modifications.
 
 ## Demander l'ajout de l'aide dans le simulateur (1 minute)
 
-Pour terminer, lorsque vous souhaitez ajouter cette aide au simulateur, vous pouvez nous contacter à [accompagnement@mes-aides.org](mailto:accompagnement@mes-aides.org). Vous pouvez aussi indiquer que votre contribution est prête directement dans l'outil. Pour cela, vous pouvez cliquer en haut à droite sur «&nbsp;définir le statut&nbsp;» et choisir «&nbsp;Prêt&nbsp;» ou bien déplacer [la carte de votre contribution](https://contribuer.mes-aides.org/admin/#/workflow) dans la colonne « Prêt ».
+Pour terminer, lorsque vous souhaitez ajouter cette aide au simulateur, vous pouvez nous contacter à [aides-jeunes@beta.gouv.fr](mailto:aides-jeunes@beta.gouv.fr). Vous pouvez aussi indiquer que votre contribution est prête directement dans l'outil. Pour cela, vous pouvez cliquer en haut à droite sur «&nbsp;définir le statut&nbsp;» et choisir «&nbsp;Prêt&nbsp;» ou bien déplacer [la carte de votre contribution](https://contribuer-aides-jeunes.netlify.app/admin/#/workflow) dans la colonne « Prêt ».
 
 <style>{`
 img {

@@ -22,6 +22,7 @@
         </option>
       </select>
     </div>
+    <WarningMessage v-if="warningMessage" :text="warningMessage" />
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
@@ -29,11 +30,14 @@
 <script>
 import Actions from "@/components/Actions"
 import Commune from "@/lib/Commune"
+import WarningMessage from "@/components/WarningMessage"
+import Warning from "../../../lib/Warnings"
 
 export default {
   name: "SimulationMenageDepcom",
   components: {
     Actions,
+    WarningMessage,
   },
   data: function () {
     const menage = { ...this.$store.getters.getMenage } || {}
@@ -49,6 +53,14 @@ export default {
         selectedValue: menage._nomCommune,
       },
     }
+  },
+  computed: {
+    warningMessage() {
+      return Warning.get(
+        "aj_not_reliable",
+        this.codePostalQuestion.selectedValue
+      )
+    },
   },
   asyncComputed: {
     communes: {

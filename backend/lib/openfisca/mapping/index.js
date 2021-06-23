@@ -12,25 +12,70 @@ var migrations = require("../../migrations")
 var propertyMove = require("./propertyMove")
 var last3MonthsDuplication = require("./last3MonthsDuplication")
 
-function allocateIndividualsToEntities(situation) {
-  var famille = situation.famille
-  var foyer = situation.foyer_fiscal
-  var menage = situation.menage
+function dispatchIndividuals(situation) {
+  var individus = mapIndividus(situation)
+
+  var familles = { _: situation.famille }
+  var foyers_fiscaux = {
+    _: {
+      declarants: [],
+      personnes_a_charge: [],
+      ...situation.foyer_fiscal,
+    },
+  }
+  var menages = { _: situation.menage }
 
   var demandeur = common.getDemandeur(situation)
   var demandeurId = demandeur && demandeur.id
-  if (demandeurId) {
-    famille.parents = [demandeurId]
-    foyer.declarants = [demandeurId]
-    menage.personne_de_reference = [demandeurId]
+
+  familles._.parents = [demandeurId]
+  menages._.personne_de_reference = [demandeurId]
+
+  const aCharge =
+    demandeur.enfant_a_charge &&
+    Object.keys(demandeur.enfant_a_charge).length &&
+    demandeur.enfant_a_charge[Object.keys(demandeur.enfant_a_charge)]
+
+  if (aCharge) {
+    var parent1 = {
+      id: "parent1",
+    }
+    individus[parent1.id] = { ...parent1, id: undefined }
+    familles.parents = { parents: [parent1.id], enfants: [] }
+    foyers_fiscaux._.declarants.push(parent1.id)
+    menages.parents = {
+      personne_de_reference: [parent1.id],
+      enfants: [],
+    }
+
+    if (situation.parents && situation.parents._situation == "en_couple") {
+      var parent2 = {
+        id: "parent2",
+      }
+      individus[parent2.id] = { ...parent2, id: undefined }
+      familles.parents.parents.push(parent2.id)
+      foyers_fiscaux._.declarants.push(parent2.id)
+      menages.parents.conjoint = [parent2.id]
+    }
+
+    foyers_fiscaux._.personnes_a_charge.push(demandeurId)
+  } else {
+    foyers_fiscaux._.declarants.push(demandeurId)
   }
 
   var conjoint = common.getConjoint(situation)
   var conjointId = conjoint && conjoint.id
   if (conjointId) {
-    famille.parents.push(conjointId)
-    foyer.declarants.push(conjointId)
-    menage.conjoint = [conjointId]
+    familles._.parents.push(conjointId)
+    menages._.conjoint = [conjointId]
+
+    if (aCharge) {
+      foyers_fiscaux[conjointId] = {
+        declarants: [conjointId],
+      }
+    } else {
+      foyers_fiscaux._.declarants.push(conjointId)
+    }
   }
 
   var enfants = common.getEnfants(situation)
@@ -40,9 +85,18 @@ function allocateIndividualsToEntities(situation) {
   var enfantIds = validEnfants.map(function (enfant) {
     return enfant.id
   })
-  famille.enfants = enfantIds
-  foyer.personnes_a_charge = enfantIds
-  menage.enfants = enfantIds
+  familles._.enfants = enfantIds
+  foyers_fiscaux._.personnes_a_charge = []
+    .concat(...foyers_fiscaux._.personnes_a_charge)
+    .concat(...enfantIds)
+  menages._.enfants = enfantIds
+
+  return {
+    individus: individus,
+    familles,
+    foyers_fiscaux,
+    menages,
+  }
 }
 
 function setNonInjectedPrestations(testCase, periods, value) {
@@ -119,6 +173,7 @@ function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
   })
 }
 exports.giveValueToRequestedVariables = giveValueToRequestedVariables
+exports.dispatchIndividuals = dispatchIndividuals
 
 // Use heuristics to pass functional tests
 // Complexity may be added in the future in the application (new questions to ask)
@@ -126,8 +181,8 @@ exports.giveValueToRequestedVariables = giveValueToRequestedVariables
 // cf. https://github.com/openfisca/openfisca-france/pull/1233
 // logement_conventionne needs to be true when the loan in fully paid
 // to avoid a benefit from appearing
-function applyHeuristicsAndFix(testCase, dateDeValeur) {
-  var thisMonth = common.getPeriods(dateDeValeur).thisMonth
+function applyHeuristicsAndFix(testCase, sourceSituation) {
+  var periods = common.getPeriods(sourceSituation.dateDeValeur)
 
   var menage = assign(
     {},
@@ -136,36 +191,48 @@ function applyHeuristicsAndFix(testCase, dateDeValeur) {
     },
     testCase.menages._
   )
-  menage.logement_conventionne[thisMonth] =
+  menage.logement_conventionne[periods.thisMonth] =
     menage.statut_occupation_logement &&
-    menage.statut_occupation_logement[thisMonth] == "primo_accedant" &&
+    menage.statut_occupation_logement[periods.thisMonth] == "primo_accedant" &&
     menage.loyer &&
-    menage.loyer[thisMonth] == 0
+    menage.loyer[periods.thisMonth] == 0
+
+  const demandeur = sourceSituation.demandeur
+  const parents = sourceSituation.parents
+
+  const aCharge =
+    demandeur.enfant_a_charge && demandeur.enfant_a_charge[periods.thisYear]
+
+  if (aCharge) {
+    if (demandeur.bourse_criteres_sociaux_base_ressources_parentale) {
+      testCase.foyers_fiscaux._.rbg = {
+        [periods.fiscalYear]:
+          demandeur.bourse_criteres_sociaux_base_ressources_parentale,
+      }
+    }
+    if (parents.rfr) {
+      testCase.foyers_fiscaux._.rfr = {
+        [periods.fiscalYear]: parents.rfr,
+      }
+    }
+    if (parents.nbptr) {
+      testCase.foyers_fiscaux._.nbptr = {
+        [periods.fiscalYear]: parents.nbptr,
+      }
+    }
+  }
 
   testCase.menages._ = menage
   return testCase
 }
+exports.applyHeuristicsAndFix = applyHeuristicsAndFix
 
 exports.buildOpenFiscaRequest = function (sourceSituation) {
   var situation = sourceSituation.toObject
     ? migrations.apply(sourceSituation).toObject()
     : cloneDeep(sourceSituation)
 
-  var individus = mapIndividus(situation)
-  allocateIndividualsToEntities(situation)
-
-  var testCase = {
-    individus: individus,
-    familles: {
-      _: situation.famille,
-    },
-    foyers_fiscaux: {
-      _: situation.foyer_fiscal,
-    },
-    menages: {
-      _: situation.menage,
-    },
-  }
+  var testCase = dispatchIndividuals(situation)
 
   // Variables stored to properly restore UI should not be sent to OpenFisca
   forEach(testCase, (items) => {
@@ -193,5 +260,5 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     situation.demandeur
   )
 
-  return applyHeuristicsAndFix(testCase, sourceSituation.dateDeValeur)
+  return applyHeuristicsAndFix(testCase, sourceSituation)
 }

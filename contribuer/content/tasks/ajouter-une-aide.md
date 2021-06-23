@@ -48,7 +48,7 @@ Cette liste sera un point de départ pour coder les règles de votre aide dans l
 
 ## Renseigner les informations relatives à l'aide - 5 minutes max
 
-En vous connectant à <a href="https://contribuer.mes-aides.org/admin/#/collections/benefits/new" target="_blank" rel="noopener">l'outil de contribution</a>, vous pouvez ajouter les informations de votre aide. Les informations recueillies jusqu'à présent vont vous faciliter la saisie des informations demandées.
+En vous connectant à <a href="https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits/new" target="_blank" rel="noopener">l'outil de contribution</a>, vous pouvez ajouter les informations de votre aide. Les informations recueillies jusqu'à présent vont vous faciliter la saisie des informations demandées.
 
 La liste des critères tout juste établies devra être indiquée dans « Conditions non prises ne comptent par le simulateur » en ajoutant les critères un par un à partir du bouton « add condition non prise ne comptent par le simulateur ».
 
@@ -250,7 +250,7 @@ Nous allons détaillé la suite des étapes pour 3 critères différents (1 seul
 
 Nous allons continuer ce guide en considérant que nous souhaitons ajouter le « [Noël des enfants](https://www.alfortville.fr/le-pole-solidarite-insertion) » mis en place par la ville d'Alfortville. Comme premier critère nous allons prendre « Résider dans la ville d'[Alfortville](https://fr.wikipedia.org/wiki/Alfortville) ».
 
-Si votre critère est très différent, faites-nous signe à [accompagnement@mes-aides.org](mailto:accompagnement@mes-aides.org), nous nous ferons un plaisir de compléter ces informations (on a été à l'essentiel 😅).
+Si votre critère est très différent, faites-nous signe à [aides-jeunes@beta.gouv.fr](mailto:aides-jeunes@beta.gouv.fr), nous nous ferons un plaisir de compléter ces informations (on a été à l'essentiel 😅).
 
 Le critère « Résider dans la ville d'Alfortville » est facile à comprendre pour nous humains. Le moteur de calculs ne va pas utiliser le nom de la ville mais son identifiant INSEE. Cela est préférable car le nom de la ville peut être orthographié de plusieurs façon (avec le tiret, tout en majuscules, etc.) alors que l'identifiant n'a pas cet inconvéniant. Il est existe plusieurs endroits où le code INSEE peut être trouvé. Sur [la page wikipédia de Alfortville](https://fr.wikipedia.org/wiki/Alfortville) on y apprend que son code commune (où code INSEE) est 94002.
 
@@ -364,11 +364,11 @@ Cela va faire apparaître à droite un menu. Pour envoyer votre modification, vo
 
 Normalement, le critère que vous avez codé dans le moteur de calculs est présent dans la liste rédigée initialement. Il est désormais pris en compte dans le simulateur donc ce critère devrait être supprimé de la liste des « conditions non prises en compte dans le simulateur ».
 
-Pour cela, vous pouvez accéder à votre contribution à [la page suivante](https://contribuer.mes-aides.org/admin/#/workflow), cliquer sur la carte correspondante, supprimer le critère de la liste et enregistrer vos modifications.
+Pour cela, vous pouvez accéder à votre contribution à [la page suivante](https://contribuer-aides-jeunes.netlify.app/admin/#/workflow), cliquer sur la carte correspondante, supprimer le critère de la liste et enregistrer vos modifications.
 
 ## Demander l'ajout de l'aide dans le simulateur (1 minute)
 
-Pour terminer, lorsque vous souhaitez ajouter cette aide au simulateur, vous pouvez nous contacter à [accompagnement@mes-aides.org](mailto:accompagnement@mes-aides.org). Vous pouvez aussi indiquer que votre contribution est prête directement dans l'outil. Pour cela, vous pouvez cliquer en haut à droite sur «&nbsp;définir le statut&nbsp;» et choisir «&nbsp;Prêt&nbsp;» ou bien déplacer [la carte de votre contribution](https://contribuer.mes-aides.org/admin/#/workflow) dans la colonne « Prêt ».
+Pour terminer, lorsque vous souhaitez ajouter cette aide au simulateur, vous pouvez nous contacter à [aides-jeunes@beta.gouv.fr](mailto:aides-jeunes@beta.gouv.fr). Vous pouvez aussi indiquer que votre contribution est prête directement dans l'outil. Pour cela, vous pouvez cliquer en haut à droite sur «&nbsp;définir le statut&nbsp;» et choisir «&nbsp;Prêt&nbsp;» ou bien déplacer [la carte de votre contribution](https://contribuer-aides-jeunes.netlify.app/admin/#/workflow) dans la colonne « Prêt ».
 
 <style>{`
 img {

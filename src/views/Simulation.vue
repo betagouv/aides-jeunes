@@ -5,7 +5,6 @@
       :class="{ 'aj-debug-container': debug }"
     >
       <div class="aj-main-container">
-        <div class="aj-container-"></div>
         <TitreChapitre />
         <div v-if="debug" class="aj-debug-switch">
           <button class="button small" @click="disableDebug"
@@ -62,8 +61,4 @@ export default {
 /*max-width: 100%;*/
 /*display: flex;*/
 /*}*/
-
-.aj-simulation {
-  background: linear-gradient(90deg, transparent 50%, #f2f5f9 50%);
-}
 </style>

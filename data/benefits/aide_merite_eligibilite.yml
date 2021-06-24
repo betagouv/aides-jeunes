@@ -1,0 +1,12 @@
+label: Toto
+institution: etat
+description: toto
+link: toto
+teleservice: toto
+prefix: l’
+type: float
+floorAt: 0.1
+entity: individus
+conditions:
+  -
+  -

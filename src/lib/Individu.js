@@ -35,6 +35,8 @@ function get(individus, role, id) {
   let DEFAULT_INDIVIDU = {
     id: role,
     annee_etude: undefined,
+    classe_scolarite: undefined,
+    mention_baccalaureat: "mention_tres_bien",
     date_naissance: undefined,
     bourse_criteres_sociaux_echelon: -1,
     enfant_a_charge: {},
@@ -175,6 +177,28 @@ const Individu = {
     {
       value: "inconnue",
       label: "Autre",
+    },
+  ],
+  mentionsBaccalaureat: [
+    {
+      label: "Mention assez bien",
+      value: "mention_assez_bien",
+    },
+    {
+      label: "Mention bien",
+      value: "mention_bien",
+    },
+    {
+      label: "Mention très bien",
+      value: "mention_tres_bien",
+    },
+    {
+      label: "Mention très bien avec félicitations du jury",
+      value: "mention_tres_bien_felicitations_jury",
+    },
+    {
+      label: "Autre",
+      value: "non_renseignee",
     },
   ],
 }

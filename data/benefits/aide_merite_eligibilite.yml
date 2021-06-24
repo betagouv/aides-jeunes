@@ -1,12 +1,12 @@
-label: Toto
+label: Aide au mérite
 institution: etat
-description: toto
-link: toto
-teleservice: toto
+description: L'aide au mérite est une aide de 900€, en supplément à la bourse sur critères sociaux, qui concerne les étudiants les plus méritants.
+link: https://www.etudiant.gouv.fr/fr/aide-au-merite-1291
 prefix: l’
-type: float
+type: bool
 floorAt: 0.1
 entity: individus
 conditions:
-  -
-  -
+  - avoir obtenu la mention « très bien » à la dernière session du baccalauréat
+  - ou l'avoir déjà reçue l'année précédente
+legend: ""

@@ -38,6 +38,11 @@ function individuBlockFactory(id) {
                     subject.scolarite == "enseignement_superieur",
                   steps: [r("statuts_etablissement_scolaire")],
                 },
+                {
+                  isActive: (subject) =>
+                    subject.classe_scolarite == "licence_3",
+                  steps: [r("mention_baccalaureat")],
+                },
                 r("alternant"),
                 {
                   isActive: (subject) => subject.alternant,

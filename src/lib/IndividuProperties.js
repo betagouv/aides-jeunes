@@ -362,7 +362,6 @@ const STEPS = {
     items: Individu.scolariteOptions,
     enSavoirPlus: true,
   },
-
   sortie_academie: {
     question: (component) => {
       return `${Individu.label(component.entity, "avoir")} prévu d'étudier
@@ -388,7 +387,11 @@ const STEPS = {
       l'an prochain ?`
     },
   },
-
+  mention_baccalaureat: {
+    question: "Avez-vous obtenu une mention au baccalauréat  ?",
+    questionType: "enum",
+    items: Individu.mentionsBaccalaureat,
+  },
   statuts_etablissement_scolaire: {
     question: "Dans quel type d'établissement étudiez-vous actuellement ?",
     questionType: "enum",
@@ -411,7 +414,6 @@ const STEPS = {
       },
     ],
   },
-
   taux_incapacite: {
     question: (component) => {
       const start =

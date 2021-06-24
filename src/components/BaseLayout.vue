@@ -1,9 +1,6 @@
 <template>
   <div class="aj-website">
-    <div
-      class="aj-website-content"
-      :class="{ 'blue-background': showBackground }"
-    >
+    <div class="aj-website-content">
       <Header1J1S />
       <slot></slot>
     </div>
@@ -20,11 +17,6 @@ export default {
   components: {
     FooterJ1S,
     Header1J1S,
-  },
-  computed: {
-    showBackground() {
-      return !this.$route.matched.some((route) => route.name === "simulation")
-    },
   },
   created() {
     this.$router.onReady(() => {

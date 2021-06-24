@@ -1,6 +1,5 @@
 html {
   height: 100%;
-  background: linear-gradient(90deg, transparent 50%, #f2f5f9 50%);
 
   &,
   body,
@@ -25,13 +24,10 @@ html {
       flex-direction: column;
 
       .aj-website-content {
+        position: relative;
         display: flex;
         flex-direction: column;
         flex: 1 0 auto;
-
-        &.blue-background {
-          background-color: #f2f5f9;
-        }
 
         .aj-layout-container {
           flex-direction: row-reverse;

@@ -4,7 +4,7 @@ const chapters = [
   { label: "Mon logement", name: "logement" },
   { label: "Mes revenus", name: "revenus" },
   { label: "Mes projets", name: "projets" },
-  { label: "Mes resultats", name: "resultats" },
+  { label: "Mes résultats", name: "resultats" },
 ]
 
 function getChapters() {

@@ -501,7 +501,8 @@ const store = new Vuex.Store({
         .then((variableNames) => {
           let missingBenefits = []
           Institution.forEachBenefit((benefit, benefitId) => {
-            if (!benefit.test && variableNames.indexOf(benefitId) < 0) {
+            const source = benefit.openfisca_eligibility_source || benefitId
+            if (!benefit.test && variableNames.indexOf(source) < 0) {
               missingBenefits.push(benefitId)
             }
           })

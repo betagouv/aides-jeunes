@@ -17,6 +17,19 @@
         </label>
       </div>
     </fieldset>
+    <div v-else-if="questionType === 'number'">
+      <label :for="fieldName">
+        <h2 class="aj-question"><div v-html="question"></div></h2>
+      </label>
+      <div :class="meta.wrapperClassName">
+        <input
+          :id="fieldName"
+          type="number"
+          :name="fieldName"
+          v-model="value"
+        />
+      </div>
+    </div>
     <YesNoQuestion v-else v-model="value">
       <div v-html="question"></div>
     </YesNoQuestion>
@@ -57,6 +70,17 @@ const data = {
   },
   _en_france: {
     question: "Vos parents habitent-ils en France ?",
+  },
+  nbptr: {
+    question:
+      "Quel est le nombre de parts sur le plus récent avis d'imposition de vos parents ?",
+    questionType: "number",
+  },
+  rfr: {
+    question:
+      "Quel est le revenu fiscal de référence (RFR) sur le plus récent avis d'imposition de vos parents ?",
+    questionType: "number",
+    wrapperClassName: "aj-input-currency-wrapper",
   },
 }
 

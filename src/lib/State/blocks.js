@@ -376,19 +376,33 @@ function generateBlocks(situation) {
     {
       subject: (situation) => situation.demandeur,
       isActive: (subject, situation) => {
+        const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
+        const enfant_a_charge =
+          subject.enfant_a_charge && subject.enfant_a_charge[thisYear]
+
         return (
-          subject.activite == "etudiant" &&
-          !subject.alternant &&
-          !situation.enfants.length
+          enfant_a_charge ||
+          (subject.activite == "etudiant" &&
+            !subject.alternant &&
+            !situation.enfants.length)
         )
       },
       steps: [
         new Step({ entity: "parents", variable: "_situation" }),
         {
           subject: (demandeur, situation) => situation.parents,
-          isActive: (parents) =>
-            !parents ||
-            ["decedes", "sans_autorite"].indexOf(parents._situation) < 0,
+          isActive: (parents, situation) => {
+            const parents_ok =
+              !parents ||
+              ["decedes", "sans_autorite"].indexOf(parents._situation) < 0
+
+            const demandeur_ok =
+              situation.demandeur.activite == "etudiant" &&
+              !situation.demandeur.alternant &&
+              !situation.enfants.length
+
+            return parents_ok && demandeur_ok
+          },
           steps: [
             new Step({
               entity: "famille",
@@ -407,23 +421,66 @@ function generateBlocks(situation) {
     resourceBlocks(situation),
     {
       isActive: (situation) => {
-        const demandeur = situation.demandeur
-        const demandeur_ok =
-          demandeur &&
-          demandeur.activite == "etudiant" &&
-          !demandeur.alternant &&
-          !situation.enfants.length
         const parents_ok =
           !situation.parents ||
           ["decedes", "sans_autorite"].indexOf(situation.parents._situation) < 0
-        return demandeur_ok && parents_ok
+        return parents_ok
       },
       steps: [
-        new Step({
-          entity: "individu",
-          id: "demandeur",
-          variable: "bourse_criteres_sociaux_base_ressources_parentale",
-        }),
+        {
+          isActive: (situation) => {
+            const demandeur = situation.demandeur
+            const demandeur_ok =
+              demandeur &&
+              demandeur.activite == "etudiant" &&
+              !demandeur.alternant &&
+              !situation.enfants.length
+            return demandeur_ok
+          },
+          steps: [
+            new Step({
+              entity: "individu",
+              id: "demandeur",
+              variable: "bourse_criteres_sociaux_base_ressources_parentale",
+            }),
+          ],
+        },
+        {
+          subject: (situation) => situation.demandeur,
+          isActive: (demandeur, situation) => {
+            const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
+            const enfant_a_charge =
+              demandeur.enfant_a_charge && demandeur.enfant_a_charge[thisYear]
+
+            const demandeur_ok_bcs =
+              demandeur &&
+              demandeur.activite == "etudiant" &&
+              !demandeur.alternant &&
+              !situation.enfants.length
+            return enfant_a_charge && !demandeur_ok_bcs
+          },
+          steps: [
+            new Step({
+              entity: "parents",
+              variable: "rfr",
+            }),
+          ],
+        },
+        {
+          subject: (situation) => situation.demandeur,
+          isActive: (demandeur, situation) => {
+            const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
+            return (
+              demandeur.enfant_a_charge && demandeur.enfant_a_charge[thisYear]
+            )
+          },
+          steps: [
+            new Step({
+              entity: "parents",
+              variable: "nbptr",
+            }),
+          ],
+        },
       ],
     },
     extraBlock(),

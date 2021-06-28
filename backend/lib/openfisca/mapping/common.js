@@ -51,7 +51,8 @@ exports.getPeriods = function (dateDeValeur) {
 
 let requestedVariables = {}
 forEach((aide, aideId) => {
-  requestedVariables[aideId] = assign({}, aide)
+  const item = aide.openfisca_eligibility_source || aideId
+  requestedVariables[item] = requestedVariables[item] || assign({}, aide)
   if (aide.uncomputability)
     requestedVariables[aideId + "_non_calculable"] = assign({}, aide, {
       type: "string",
@@ -59,7 +60,8 @@ forEach((aide, aideId) => {
 
   if (aide.extra) {
     aide.extra.forEach(function (extra) {
-      requestedVariables[extra.id] = assign({}, extra)
+      requestedVariables[extra.id] =
+        requestedVariables[extra.id] || assign({}, extra)
     })
   }
 })

@@ -136,6 +136,8 @@ var parents = {
     enum: ["en_couple", "separes", "decedes", "sans_autorite", "veuve"],
   },
   _en_france: Boolean,
+  nbptr: Number,
+  rfr: Number,
 }
 
 var situation = {

@@ -18,6 +18,12 @@ function formatDate(date) {
 }
 
 var individuSchema = {
+  // aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
+  //   src: "_aide_jeunes_diplomes_anciens_boursiers_base_ressources",
+  //   fn: function (_aide_jeunes_diplomes_anciens_boursiers_base_ressources) {
+  //     return _aide_jeunes_diplomes_anciens_boursiers_base_ressources ? 1 : 0
+  //   },
+  // },
   date_naissance: {
     src: "date_naissance",
     fn: formatDate,
@@ -64,6 +70,12 @@ var individuSchema = {
       }
     },
   },
+  chomage_brut: {
+    src: "_chomage_brut",
+    fn: function (_chomage_brut) {
+      return _chomage_brut ? 1 : 0
+    },
+  },
   date_arret_de_travail: {
     src: "date_arret_de_travail",
     fn: formatDate,
@@ -89,6 +101,17 @@ var individuSchema = {
   mobili_jeune_eligibilite_employeur: {
     fn: function () {
       return true
+    },
+  },
+  plus_haut_diplome_date_obtention: {
+    fn: function () {
+      return "2021-01-01"
+    },
+  },
+  plus_haut_diplome_niveau: {
+    src: "_plus_haut_diplome_niveau_2020_2021",
+    fn: function (_plus_haut_diplome_niveau_2020_2021) {
+      return _plus_haut_diplome_niveau_2020_2021
     },
   },
 }

@@ -1,0 +1,11 @@
+label: aide aux jeunes diplômés et anciens boursiers
+institution: etat
+description: L'aide aux jeunes diplômés et anciens boursiers est une aide financière vient en soutien aux jeunes diplômés qui ont achevé leurs études supérieures et ont des difficultés à trouver un emploi du fait de la crise sanitaire.
+link: https://www.pole-emploi.fr/candidat/mes-droits-aux-aides-et-allocati/allocations-et-aides--les-repons/aides-financieres-aux-jeunes-dip.html
+form: https://www.pole-emploi.fr/files/live/sites/PE/files/fichiers-en-telechargement/fichiers-en-telechargement---dem/Aide-jeune-diplome-1er%20versement.pdf
+prefix: l’
+type: float
+floorAt: 0.1
+entity: individus
+  - Ne pas percevoir l’allocation d’aide au retour à l’emploi (ARE), l’allocation de solidarité spécifique (ASS) ou l’allocation des travailleurs indépendants (ATI).
+  - Ne pas percevoir le revenu de solidarité active (RSA) ni l’allocation "Garantie Jeunes".

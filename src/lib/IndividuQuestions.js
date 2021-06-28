@@ -288,6 +288,19 @@ export default {
     ],
   },
 
+  _aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
+    question: "Avez-vous perçu la bourse critères sociaux en 2020 ou 2021 ?",
+  },
+
+  _chomage_brut: {
+    question:
+      "Percevez-vous l'allocation chômage d'aide au retour à l'emploi (ARE) ?",
+  },
+
+  _diplome_2020_2021: {
+    question: "Avez-vous obtenu un diplôme en 2020 ou 2021 ?",
+  },
+
   _interetEtudesEtranger: {
     question:
       "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
@@ -295,5 +308,41 @@ export default {
 
   _interetPermisDeConduire: {
     question: "Prévoyez-vous de passer le permis de conduire ?",
+  },
+
+  _plus_haut_diplome_niveau_2020_2021: {
+    question:
+      "Quel est votre plus haut niveau de diplôme obtenu en 2020 et 2021 ?",
+    questionType: "enum",
+    items: [
+      {
+        value: "non_renseigne",
+        label: "Non renseigné",
+      },
+      {
+        value: "niveau_3",
+        label: "CAP, DNP, CFG",
+      },
+      {
+        value: "niveau_4",
+        label: "Baccalauréat",
+      },
+      {
+        value: "niveau_5",
+        label: "BTS, CPGE",
+      },
+      {
+        value: "niveau_6",
+        label: "Licence, BUT",
+      },
+      {
+        value: "niveau_7",
+        label: "Bac+5 Master",
+      },
+      {
+        value: "niveau_8",
+        label: "Bac+8 Doctorat",
+      },
+    ],
   },
 }

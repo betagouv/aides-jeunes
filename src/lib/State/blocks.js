@@ -46,8 +46,21 @@ function individuBlockFactory(id) {
       ...(!enfant
         ? [
             {
-              isActive: (subject) => subject.activite == "chomeur",
-              steps: [r("date_debut_chomage"), r("ass_precondition_remplie")],
+              steps: [
+                r("date_debut_chomage"),
+                r("ass_precondition_remplie"),
+                r("_diplome_2020_2021"),
+                {
+                  isActive: (subject) => subject._diplome_2020_2021,
+                  steps: [
+                    r("_plus_haut_diplome_niveau_2020_2021"),
+                    r(
+                      "_aide_jeunes_diplomes_anciens_boursiers_base_ressources"
+                    ),
+                    r("_chomage_brut"),
+                  ],
+                },
+              ],
             },
             {
               isActive: (subject) =>

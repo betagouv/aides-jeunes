@@ -1,6 +1,8 @@
 label: bourse sur critères sociaux
 institution: etat
 description: La bourse d'enseignement supérieur sur critères sociaux (BCS) est accordée à l'étudiant qui a des difficultés matérielles pour poursuivre des études supérieures.
+conditions:
+  - Ne pas en avoir déjà bénéficié 7 (sept) fois.
 link: https://www.service-public.fr/particuliers/vosdroits/F12214
 teleservice: https://www.messervices.etudiant.gouv.fr
 prefix: une

@@ -74,6 +74,11 @@
               >Analysez l'évolution des aides en fonction des ressources
             </a>
           </li>
+          <li>
+            <router-link :to="{ path: '/resultats/attendu' }"
+              >Montants inattendus
+            </router-link>
+          </li>
         </ul>
       </div>
     </small>

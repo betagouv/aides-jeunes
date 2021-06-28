@@ -4,6 +4,7 @@
       type="number"
       v-select-on-click
       v-model.number="result"
+      :id="id"
       :min="min"
       :max="max"
       :step="step"
@@ -17,7 +18,7 @@
 <script>
 export default {
   name: "InputNumber",
-  props: ["value", "min", "max", "step"],
+  props: ["id", "value", "min", "max", "step"],
   data() {
     return {
       error: false,
@@ -44,7 +45,8 @@ export default {
 
 <style>
 .input-number-error {
-  color: red;
+  color: #d63626;
+  color: var(--red);
   padding-top: 5px;
   padding-left: 15px;
 }

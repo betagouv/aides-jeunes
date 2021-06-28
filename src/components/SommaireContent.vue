@@ -11,7 +11,11 @@
               'aj-step-active': chapter.current,
             }"
           >
-            <img src="../assets/images/done.svg" class="aj-check-icon" />
+            <img
+              src="../assets/images/done.svg"
+              class="aj-check-icon"
+              alt="Logo validé"
+            />
           </div>
           <router-link
             :to="chapter.root"

@@ -46,21 +46,7 @@ function individuBlockFactory(id) {
       ...(!enfant
         ? [
             {
-              steps: [
-                r("date_debut_chomage"),
-                r("ass_precondition_remplie"),
-                r("_diplome_2020_2021"),
-                {
-                  isActive: (subject) => subject._diplome_2020_2021,
-                  steps: [
-                    r("_plus_haut_diplome_niveau_2020_2021"),
-                    r(
-                      "_aide_jeunes_diplomes_anciens_boursiers_base_ressources"
-                    ),
-                    r("_chomage_brut"),
-                  ],
-                },
-              ],
+              steps: [r("date_debut_chomage"), r("ass_precondition_remplie")],
             },
             {
               isActive: (subject) =>
@@ -177,6 +163,11 @@ function extraBlock() {
       situation.enfants.find((enfant) => enfant.id === id) ||
       {},
     steps: [
+      {
+        isActive: (subject) =>
+          subject.activite === "chomeur" && !subject.chomage_net,
+        steps: [s("_diplome_2020_2021")],
+      },
       s("_interetPermisDeConduire", "projets"),
       {
         isActive: (subject) => subject.classe_scolarite == "terminale",

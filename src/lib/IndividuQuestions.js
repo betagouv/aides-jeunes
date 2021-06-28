@@ -288,17 +288,9 @@ export default {
     ],
   },
 
-  _aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
-    question: "Avez-vous perçu la bourse critères sociaux en 2020 ou 2021 ?",
-  },
-
-  _chomage_brut: {
-    question:
-      "Percevez-vous l'allocation chômage d'aide au retour à l'emploi (ARE) ?",
-  },
-
   _diplome_2020_2021: {
-    question: "Avez-vous obtenu un diplôme en 2020 ou 2021 ?",
+    question:
+      "Avez-vous obtenu un diplôme supérieur ou égal à un BAC +2 en 2020 ou 2021 ?",
   },
 
   _interetEtudesEtranger: {

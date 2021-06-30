@@ -59,7 +59,7 @@ a.button {
   }
 
   &.outline {
-    background-color: transparent;
+    background-color: var(--white);
     color: var(--theme-primary);
     border: 1px solid var(--theme-primary);
 

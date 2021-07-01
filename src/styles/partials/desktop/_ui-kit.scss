@@ -302,6 +302,10 @@ html {
       }
     }
 
+    legend {
+      margin-bottom: 0;
+    }
+
     @media print {
       .droit-detail {
         page-break-inside: avoid;

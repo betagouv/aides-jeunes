@@ -35,8 +35,6 @@ var individu = Object.assign(
       enum: ["actif", "chomeur", "etudiant", "inactif", "retraite"],
     },
     agepi_temps_travail_semaine: Number,
-    _aide_jeunes_diplomes_anciens_boursiers_base_ressources: Boolean,
-    aide_jeunes_diplomes_anciens_boursiers_base_ressources: Number,
     aide_mobilite_master_sortie_region_academique: Boolean,
     aide_mobilite_parcoursup_boursier_lycee: Boolean,
     aide_mobilite_parcoursup_sortie_academie: Boolean,

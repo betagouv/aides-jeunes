@@ -29,7 +29,7 @@
       </div>
       <div class="aj-progressBar"></div>
     </div>
-    <div class="aj-btn-container">
+    <div class="aj-btn-container" v-show="$route.name !== 'resultats'">
       <router-link
         to="/simulation/resultats"
         :class="{ disabled: disableResults }"

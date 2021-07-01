@@ -120,19 +120,22 @@ function next(current, situation) {
 
 function previous(current, situation) {
   const journey = full(situation)
-  const activeJourney = journey.filter((s) => s.isActive)
 
-  let matches = activeJourney
+  let matches = journey
     .map((element, index) => {
       return { element, index }
     })
     .filter((item) => item.element.path == (current.path || current))
-  if (matches.length) {
-    return activeJourney[matches[matches.length - 1].index - 1]
-  } else {
+
+  if (!matches.length) {
     const test = current.path || current.fullPath || current
     throw new Error("Logic missing for " + test)
   }
+
+  const activeJourney = journey
+    .slice(0, matches[matches.length - 1].index)
+    .filter((s) => s.isActive)
+  return activeJourney[activeJourney.length - 1]
 }
 
 module.exports = {

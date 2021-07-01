@@ -1,11 +1,10 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <fieldset v-if="questionType === 'number'">
-      <legend
-        ><h2 class="aj-question"
-          ><span v-html="question"></span
-          ><EnSavoirPlus v-if="showMoreInfo" /></h2
-      ></legend>
+    <div v-if="questionType === 'number'">
+      <h2 class="aj-question">
+        <span v-html="question" />
+        <EnSavoirPlus v-if="showMoreInfo" />
+      </h2>
       <label>
         <input
           :min="meta.min"
@@ -14,12 +13,13 @@
           v-model.number="value"
         />
       </label>
-    </fieldset>
+    </div>
     <YesNoQuestion v-else v-model="value">
-      <span v-html="question"></span><EnSavoirPlus v-if="showMoreInfo" />
-      <template v-slot:help v-if="meta.help"
-        ><p v-html="meta.help"></p
-      ></template>
+      <span v-html="question" />
+      <EnSavoirPlus v-if="showMoreInfo" />
+      <template v-slot:help v-if="meta.help">
+        <p v-html="meta.help" />
+      </template>
     </YesNoQuestion>
     <Actions v-bind:onSubmit="onSubmit" />
   </form>

@@ -12,7 +12,11 @@
               'aj-step-inprogress': chapterInProgress(chapter, index),
             }"
           >
-            <img src="../assets/images/done.svg" class="aj-check-icon" />
+            <img
+              src="../assets/images/done.svg"
+              class="aj-check-icon"
+              alt="Logo validé"
+            />
           </div>
           <router-link
             :to="getRootChapterPath(chapter, index)"

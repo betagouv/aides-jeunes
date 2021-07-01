@@ -1,19 +1,16 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <fieldset>
-      <legend>
-        <h2 class="aj-question"
-          >Quel est le revenu brut global 2019 figurant sur l’avis fiscal 2020
-          de vos parents&nbsp;?
-        </h2>
-        <!-- We only display this button if the parents are divided -->
-        <EnSavoirPlus v-if="isSepares" />
-      </legend>
-
+    <div>
+      <h2 class="aj-question"
+        >Quel est le revenu brut global 2019 figurant sur l’avis fiscal 2020 de
+        vos parents&nbsp;?
+      </h2>
+      <!-- We only display this button if the parents are divided -->
+      <EnSavoirPlus v-if="isSepares" />
       <label>
         <InputNumber v-model="value"></InputNumber>
       </label>
-    </fieldset>
+    </div>
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>

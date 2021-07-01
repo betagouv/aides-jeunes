@@ -163,11 +163,13 @@ export function deuxEnfants() {
 }
 
 export function unEnfantSuperieur() {
-  cy.get("legend").invoke("text").should("contain", "la charge")
-  cy.get('input[type="number"]').type("1")
+  cy.get(".aj-question > span").invoke("text").should("contain", "la charge")
+  cy.get('input[type="number"').type("1")
   submit()
-  cy.get("legend").invoke("text").should("contain", "des études supérieures")
-  cy.get('input[type="number"]').type("1")
+  cy.get(".aj-question > span")
+    .invoke("text")
+    .should("contain", "des études supérieures")
+  cy.get('input[type="number"').type("1")
   submit()
 }
 

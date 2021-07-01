@@ -1,16 +1,14 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <fieldset>
-      <legend
-        ><h2 class="aj-question"
-          >Combien de mois envisagez-vous de partir à l'étranger dans le cadre
-          de vos études ?</h2
-        ></legend
-      >
+    <div>
+      <h2 class="aj-question">
+        Combien de mois envisagez-vous de partir à l'étranger dans le cadre de
+        vos études ?
+      </h2>
       <label>
         <InputNumber min="0" v-model="value"></InputNumber>
       </label>
-    </fieldset>
+    </div>
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>

@@ -8,22 +8,24 @@
         </h2>
         <p v-if="meta.help" v-html="meta.help"></p>
       </legend>
-      <div
-        class="aj-selection-wrapper"
-        v-for="(item, index) in items"
-        :key="item.value"
-      >
-        <input
-          :id="item.value"
-          type="radio"
-          :name="fieldName"
-          :value="item.value"
-          v-model="value"
-          :autofocus="index === 0"
-        />
-        <label :for="item.value">
-          {{ item.label }}
-        </label>
+      <div class="aj-selections">
+        <div
+          class="aj-selection-wrapper"
+          v-for="(item, index) in items"
+          :key="item.value"
+        >
+          <input
+            :id="item.value"
+            type="radio"
+            :name="fieldName"
+            :value="item.value"
+            v-model="value"
+            :autofocus="index === 0"
+          />
+          <label :for="item.value">
+            {{ item.label }}
+          </label>
+        </div>
       </div>
     </fieldset>
     <YesNoQuestion v-else v-model="value">

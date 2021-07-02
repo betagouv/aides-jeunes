@@ -241,9 +241,9 @@ module.exports = {
     label: "de la Dordogne",
     code: "24",
     resources: {
-      link: "https://www.dordogne.fr/servir_les_citoyens/solidarite/logement_/_rsa/logement/aide_financiere_du_fsl_pour_l_acces_au_logement/262-2",
+      link: "https://www.service-public.fr/particuliers/vosdroits/F1334",
       instructions:
-        "https://www.dordogne.fr/logement/aide_financiere_du_fsl_pour_des_impayes_de_loyer_ou_de_charges/262-3",
+        "https://www.service-public.fr/particuliers/vosdroits/F1334",
     },
   }),
   departement_doubs: fsl_generator({
@@ -349,8 +349,8 @@ module.exports = {
     label: "de l’Indre-et-Loire",
     code: "37",
     resources: {
-      link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/lacces-au-logement.html",
-      form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/impr_FSL_interactif_departement.pdf",
+      link: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/Depliant_FSL_new.pdf",
+      form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/617_impr_FSL_CD37_interactif_jan_2021.pdf",
     },
   }),
   tours_metropole: fsl_generator_metropole({
@@ -358,8 +358,8 @@ module.exports = {
     label: "Tours Métropole Val de Loire",
     code: "tours",
     resources: {
-      link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/lacces-au-logement.html",
-      form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/impr_FSL_interactif_departement.pdf",
+      link: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/Depliant_FSL_new.pdf",
+      form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/617_impr_FSL_CD37_interactif_jan_2021.pdf",
     },
   }),
   departement_isere: fsl_generator({
@@ -549,7 +549,7 @@ module.exports = {
     label: "de la Saône-et-Loire",
     code: "71",
     resources: {
-      link: "https://www.saoneetloire71.fr/accueil/vous-etes-proprietaire/locataire/rester-dans-mon-logement",
+      link: "https://www.saoneetloire71.fr/que-peut-on-faire-pour-vous/vous-etes-proprietaire-locataire/rester-dans-mon-logement",
       form: "https://www.saoneetloire71.fr/fileadmin/Que_peut-on_faire_pour_vous__/Vous_etes_proprietaire_locataire/Aides_logement/7733_DOSSIER_UNIQUE.pdf",
     },
   }),

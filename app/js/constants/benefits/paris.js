@@ -13,8 +13,8 @@ module.exports = {
         "Avoir demandé le versements des aides logement auxquelles vous avez droit auprès de la CAF.",
         "Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.",
       ],
-      link: "http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille_7",
-      form: "https://api-site.paris.fr/images/73485",
+      link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-logement-familles",
+      form: "https://cdn.paris.fr/paris/2019/07/24/736d309a8cdbf436475f7514f443a08b.pdf",
       isBaseRessourcesYearMoins2: false,
     },
     paris_forfait_familles: {
@@ -80,7 +80,7 @@ module.exports = {
       description:
         "L’allocation Paris Énergie Familles est réservée aux familles ayant un ou plusieurs enfants à charge, sous condition d’imposition. Cette aide permet de les soutenir dans leurs dépenses d’électricité et/ou de gaz. Paris Énergie Famille est directement versée aux fournisseurs d’énergie. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.",
       link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-energie-familles",
-      form: "https://api-site-cdn.paris.fr/images/97093",
+      form: "https://cdn.paris.fr/paris/2019/07/24/ef5b3f1bcd3a62ec75576748e88a0dd7.pdf",
       isBaseRessourcesYearMoins2: false,
     },
     paris_complement_sante: {
@@ -92,8 +92,8 @@ module.exports = {
         "Percevoir les avantages légaux auxquels vous pouvez prétendre (Couverture Maladie Universelle Complémentaire, Aide à la Complémentaire Santé).",
         "Adhérer à titre payant à un organisme de protection complémentaire.",
       ],
-      link: "http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10",
-      form: "https://api-site.paris.fr/images/78343",
+      link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#complement-sante-paris",
+      form: "https://cdn.paris.fr/paris/2019/07/24/c3175c019a067ac0b1bf2714742f0bbc.pdf",
       isBaseRessourcesYearMoins2: false,
       prefix: "le",
     },

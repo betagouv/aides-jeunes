@@ -79,9 +79,9 @@ module.exports = {
     label: "de l’Allier",
     code: "03",
     resources: {
-      link: "http://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/logement-et-cadre-de-vie/le-fonds-de-solidarite-pour-le-logement-fsl",
+      link: "https://www.allier.fr/aide/11612/717-les-aides-et-services.htm",
       instructions:
-        "http://modules.allier.fr/guide3/contenu.asp?iddossier=11612",
+        "https://www.allier.fr/aide/11612/717-les-aides-et-services.htm",
     },
   }),
   departement_alpes_de_haute_provence: fsl_generator({
@@ -442,10 +442,9 @@ module.exports = {
     label: "du Morbihan",
     code: "56",
     resources: {
-      link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl/",
-      form: "https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/20_morbihan_5_H08_FSL_maintien_logement.pdf",
+      link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl",
       instructions:
-        "https://www.morbihan.fr/les-services/aides-departementales/toutes-nos-aides/toutes-nos-aides/?tx_cg56aidesdep_guidedesaides[selectMotsCles]=fsl&tx_cg56aidesdep_guidedesaides[action]=resultsNoCache&tx_cg56aidesdep_guidedesaides[controller]=Aide#hautDePage",
+        "https://www.morbihan.fr/fileadmin/Les_services/Logement_Habitat/Logement/MORBIHAN_FSL_maintien_doc_2020.pdf",
     },
   }),
   departement_moselle: fsl_generator({
@@ -481,7 +480,7 @@ module.exports = {
     label: "de l’Oise",
     code: "60",
     resources: {
-      link: "http://www.oise.fr/guide-des-aides/aide/fonds-departemental-de-solidarite/",
+      link: "https://www.oise.fr/information/guide-des-aides-departementales/fonds-departemental-de-solidarite-3145",
     },
   }),
   departement_pas_de_calais: fsl_generator({
@@ -648,7 +647,7 @@ module.exports = {
     label: "de l’Essonne",
     code: "91",
     resources: {
-      link: "http://www.essonne.fr/le-departement/les-organismes-associes/le-fonds-de-solidarite-pour-le-logement-fsl/",
+      link: "https://www.essonne.fr/le-departement/les-organismes-associes/le-fonds-de-solidarite-pour-le-logement-fsl",
     },
   }),
   departement_hauts_de_seine: fsl_generator({
@@ -656,7 +655,7 @@ module.exports = {
     label: "des Hauts-de-Seine",
     code: "92",
     resources: {
-      link: "https://www.78-92.fr/annuaire/aides-et-services/detail/fonds-de-solidarite-logement-fsl",
+      link: "https://www.78-92.fr/annuaire/aides-et-services/detail/le-fonds-de-solidarite-logement-fsl-92",
     },
   }),
   departement_val_de_marne: fsl_generator({

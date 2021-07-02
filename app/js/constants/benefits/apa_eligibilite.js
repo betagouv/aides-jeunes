@@ -8,9 +8,9 @@ module.exports = {
     "Résider depuis plus de trois mois dans votre département.",
     'Ne pas percevoir <a target="_blank" rel="noopener" title="Service Public.fr - Peut-on cumuler l‘Apa avec d‘autres revenus ?" href="https://www.service-public.fr/particuliers/vosdroits/F11678">certaines autres aides à l‘autonomie</a> non cumulables avec l‘APA.',
   ],
-  link: "http://www.pour-les-personnes-agees.gouv.fr/beneficier-daides/lapa-est-lallocation-personnalisee-dautonomie/facile-a-lire",
+  link: "https://www.pour-les-personnes-agees.gouv.fr/preserver-son-autonomie-s-informer-et-anticiper/perte-d-autonomie-evaluation-et-droits/lallocation-personnalisee-dautonomie-apa",
   instructions:
-    "http://www.pour-les-personnes-agees.gouv.fr/annuaire-conseils-departementaux",
+    "https://www.pour-les-personnes-agees.gouv.fr/preserver-son-autonomie-s-informer-et-anticiper/perte-d-autonomie-evaluation-et-droits/lallocation-personnalisee-dautonomie-apa#anchor5",
   type: "bool",
   top: 6,
   customization: {

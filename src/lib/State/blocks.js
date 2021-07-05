@@ -46,6 +46,7 @@ function individuBlockFactory(id) {
       ...(!enfant
         ? [
             {
+              isActive: (subject) => subject.activite == "chomeur",
               steps: [r("date_debut_chomage"), r("ass_precondition_remplie")],
             },
             {

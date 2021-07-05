@@ -40,6 +40,17 @@ var individuSchema = {
       )
     },
   },
+  aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
+    fn: function(individu, situation) {
+      if (individu._boursier_derniere_annee_etudes) {
+        return 10 * individu._montant_mensuel_bourse_derniere_annee_etudes
+      } else if(individu._continuite_etudes) {
+        return 0
+      } else {
+        return null
+      }
+    }
+  },
   bourse_criteres_sociaux_distance_domicile_familial: {
     fn: function (individu, situation) {
       if (individu.habite_chez_parents) {

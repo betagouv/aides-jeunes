@@ -41,16 +41,17 @@ var individu = Object.assign(
     alternant: Boolean,
     ass_precondition_remplie: Boolean,
     boursier: Boolean,
+    _boursier_derniere_annee_etudes: Boolean,
     bourse_criteres_sociaux_base_ressources_parentale: Number,
     bourse_criteres_sociaux_echelon: Number,
     _bourseCriteresSociauxCommuneDomicileFamilial: String,
     _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: String,
     _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: String,
-    _chomage_brut: Boolean,
     classe_scolarite: {
       type: String,
       enum: ["autre", "terminale", "licence_3", "master_1"],
     },
+    _continuite_etudes: Boolean,
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,
@@ -69,8 +70,10 @@ var individu = Object.assign(
     handicap: Boolean,
     _hasRessources: Boolean,
     inapte_travail: Boolean,
+    _montant_mensuel_bourse_derniere_annee_etudes: Number,
     nationalite: { type: String },
-    _plus_haut_diplome_niveau_2020_2021: {
+    plus_haut_diplome_date_obtention: Date,
+    plus_haut_diplome_niveau: {
       type: String,
       enum: [
         "non_renseigne",

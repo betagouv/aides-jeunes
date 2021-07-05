@@ -302,39 +302,59 @@ export default {
     question: "Prévoyez-vous de passer le permis de conduire ?",
   },
 
-  _plus_haut_diplome_niveau_2020_2021: {
-    question:
-      "Quel est votre plus haut niveau de diplôme obtenu en 2020 et 2021 ?",
+  plus_haut_diplome_date_obtention: {
+    type: Number,
+    question: "En quelle année avez-vous obtenu votre plus haut diplôme ?",
+    in: (value) => `{value}-01-01`,
+    out: (value) => value.slice(0, 4),
+  },
+
+  plus_haut_diplome_niveau: {
+    question: "Quelle le niveau de votre plus haut diplôme ?",
     questionType: "enum",
     items: [
-      {
-        value: "non_renseigne",
-        label: "Non renseigné",
-      },
-      {
-        value: "niveau_3",
-        label: "CAP, DNP, CFG",
-      },
-      {
-        value: "niveau_4",
-        label: "Baccalauréat",
-      },
-      {
-        value: "niveau_5",
-        label: "BTS, CPGE",
-      },
-      {
-        value: "niveau_6",
-        label: "Licence, BUT",
-      },
-      {
-        value: "niveau_7",
-        label: "Bac+5 Master",
-      },
-      {
-        value: "niveau_8",
-        label: "Bac+8 Doctorat",
-      },
+    {
+    value: "niveau_3",
+    label: "CAP, DNP, CFG",
+    },
+    {
+    value: "niveau_4",
+    label: "Baccalauréat",
+    },
+    {
+    value: "niveau_5",
+    label: "BTS, CPGE",
+    },
+    {
+    value: "niveau_6",
+    label: "Licence, BUT",
+    },
+    {
+    value: "niveau_7",
+    label: "Bac+5 Master",
+    },
+    {
+    value: "niveau_8",
+    label: "Bac+8 Doctorat",
+    },
+    {
+    value: "non_renseigne",
+    label: "Autre",
+    },
     ],
   },
+
+  _boursier_derniere_annee_etudes: {
+    question: "Étiez-vous boursier lors de votre dernière année d'études ?"
+  },
+
+  _montant_mensuel_bourse_derniere_annee_etudes: {
+    type: Number,
+    question: "Quel montant mensuel de bourse receviez-vous lors de votre dernière année d'études ?"
+  },
+
+  _continuite_etudes: {
+    question: "Avez-vous prévu de continuer vos études l'an prochain ?",
+  }
+
 }

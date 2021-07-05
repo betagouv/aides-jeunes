@@ -172,11 +172,6 @@ function extraBlock() {
       situation.enfants.find((enfant) => enfant.id === id) ||
       {},
     steps: [
-      {
-        isActive: (subject) =>
-          subject.activite === "chomeur" && !subject.chomage_net,
-        steps: [s("_diplome_2020_2021")],
-      },
       s("_interetPermisDeConduire", "projets"),
       {
         isActive: (subject) => subject.classe_scolarite == "terminale",

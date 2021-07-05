@@ -303,10 +303,8 @@ export default {
   },
 
   plus_haut_diplome_date_obtention: {
-    type: Number,
-    question: "En quelle année avez-vous obtenu votre plus haut diplôme ?",
-    in: (value) => `{value}-01-01`,
-    out: (value) => value.slice(0, 4),
+    type: Date,
+    question: "À quelle date (approximative) avez-vous obtenu votre plus haut diplôme ?",
   },
 
   plus_haut_diplome_niveau: {

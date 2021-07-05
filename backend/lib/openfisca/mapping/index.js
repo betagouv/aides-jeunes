@@ -121,7 +121,22 @@ function setNonInjectedPrestations(testCase, periods, value) {
     })
   })
 }
-exports.setNonInjectedPrestations = setNonInjectedPrestations
+
+function setNonInjected(testCase, prestations, periods, value) {
+  forEach(prestations, function (definition, prestationName) {
+    forEach(testCase[definition.entity], function (entity) {
+      entity[prestationName] = entity[prestationName] || {}
+      forEach(periods, function (period) {
+        if (value === undefined) {
+          delete entity[prestationName][period]
+        } else {
+          entity[prestationName][period] =
+            entity[prestationName][period] || value
+        }
+      })
+    })
+  })
+}
 
 function mapIndividus(situation) {
   var individus = filter(
@@ -247,9 +262,30 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
   propertyMove.movePropertyValuesToGroupEntity(testCase)
 
   var periods = common.getPeriods(situation.dateDeValeur)
-  setNonInjectedPrestations(
+
+  var prestationsFinancieres = pickBy(
+    common.requestedVariables,
+    function (definition) {
+      return !definition.type || definition.type === "float"
+    }
+  )
+  setNonInjected(
     testCase,
+    prestationsFinancieres,
     difference(periods.last12Months, periods.last3Months),
+    0
+  )
+
+  var prestationsFinancieresAtZeroRecently = pickBy(
+    common.requestedVariables,
+    function (definition) {
+      return (!definition.type || definition.type === "float") && definition.setToZeroRecently
+    }
+  )
+  setNonInjected(
+    testCase,
+    prestationsFinancieresAtZeroRecently,
+    periods.last3Months,
     0
   )
   last3MonthsDuplication(testCase, situation.dateDeValeur)

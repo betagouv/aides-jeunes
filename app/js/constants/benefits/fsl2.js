@@ -1,3 +1,20 @@
+
+build = function(code, name, base) {
+  return {
+    ...base,
+    provider: {
+      imgSrc: `logo_cd${code}.png`,
+    },
+    label: `Aide au maintien dans votre logement de ${name}`,
+    conditions: [
+      "Occuper, à titre de résidence principale, un logement sur le territoire du département de .",
+      "<strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.",
+    ],
+    description:
+      "Dans le cadre du Fonds de Solidarité Logement du département de l’Ain, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).",
+  }
+}
+
 module.exports = {
   label: "Aide au maintien dans votre logement",
   description:
@@ -9,18 +26,9 @@ module.exports = {
   top: 6,
   link: "https://www.service-public.fr/particuliers/vosdroits/F1334",
   customization: {
-    D01: {
-      provider: {
-        imgSrc: "logo_cd01.png",
-      },
-      label: "Aide au maintien dans votre logement de l’Ain",
-      conditions: [
-        "Occuper, à titre de résidence principale, un logement sur le territoire du département de l’Ain.",
-        "<strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.",
-      ],
-      description:
-        "Dans le cadre du Fonds de Solidarité Logement du département de l’Ain, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).",
-    },
+    D01: build("01", "l’Ain", {
+      link: "https://www.ain.fr/solutions/fond-solidarite-logement-maintien-dans-le-logement/",
+    }),
     D02: {
       provider: {
         imgSrc: "logo_cd02.png",

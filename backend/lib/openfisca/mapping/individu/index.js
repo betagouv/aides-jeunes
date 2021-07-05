@@ -102,6 +102,10 @@ var individuSchema = {
       return true
     },
   },
+  plus_haut_diplome_date_obtention: {
+    src: "plus_haut_diplome_date_obtention",
+    fn: formatDate,
+  },
 }
 
 function isNotValidValue(value) {

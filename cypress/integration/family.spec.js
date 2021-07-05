@@ -59,7 +59,9 @@ context("Full simulation", () => {
     // Ressources
     steps.submit()
     cy.get(".aj-tooltip")
-    cy.get("legend").invoke("text").should("contain", "revenu brut global")
+    cy.get(".aj-question")
+      .invoke("text")
+      .should("contain", "revenu brut global")
     cy.get('input[type="number"]').type("17860.35")
     steps.submit()
     steps.checkRadio("false")

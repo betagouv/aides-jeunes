@@ -26,6 +26,21 @@
         </label>
       </div>
     </fieldset>
+    <div v-else-if="questionType === 'number'">
+      <h2 class="aj-question">
+        <span v-html="question" />
+        <EnSavoirPlus v-if="showMoreInfo" />
+      </h2>
+      <p v-if="meta.help" v-html="meta.help"></p>
+      <label>
+        <input
+          :min="meta.min"
+          type="number"
+          v-select-on-click
+          v-model.number="value"
+        />
+      </label>
+    </div>
     <YesNoQuestion v-else v-model="value">
       <span v-html="question"></span><EnSavoirPlus v-if="showMoreInfo" />
       <template v-slot:help v-if="meta.help"

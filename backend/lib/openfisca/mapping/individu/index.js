@@ -41,15 +41,15 @@ var individuSchema = {
     },
   },
   aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
-    fn: function(individu, situation) {
+    fn: function (individu) {
       if (individu._boursier_derniere_annee_etudes) {
         return 10 * individu._montant_mensuel_bourse_derniere_annee_etudes
-      } else if(individu._continuite_etudes) {
+      } else if (individu._continuite_etudes) {
         return 0
       } else {
         return null
       }
-    }
+    },
   },
   bourse_criteres_sociaux_distance_domicile_familial: {
     fn: function (individu, situation) {
@@ -100,17 +100,6 @@ var individuSchema = {
   mobili_jeune_eligibilite_employeur: {
     fn: function () {
       return true
-    },
-  },
-  plus_haut_diplome_date_obtention: {
-    fn: function () {
-      return "2021-01-01"
-    },
-  },
-  plus_haut_diplome_niveau: {
-    src: "_diplome_2020_2021",
-    fn: function (_diplome_2020_2021) {
-      return _diplome_2020_2021 ? "niveau_3" : "non_renseigne"
     },
   },
 }

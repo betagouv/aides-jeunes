@@ -153,7 +153,7 @@ function individuBlockFactory(id) {
             r("plus_haut_diplome_date_obtention"),
             r("plus_haut_diplome_niveau"),
             r("_boursier_derniere_annee_etudes"),
-            r("_montant_bourse_derniere_annee_etudes"),
+            r("_montant_mensuel_bourse_derniere_annee_etudes"),
             r("_continuite_etudes"),
           ]
         : []),

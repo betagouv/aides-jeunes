@@ -211,6 +211,41 @@ export default {
     ],
   },
 
+  plus_haut_diplome_niveau: {
+    question: "Quelle le niveau de votre plus haut diplôme ?",
+    questionType: "enum",
+    items: [
+      {
+        value: "niveau_3",
+        label: "CAP, DNP, CFG",
+      },
+      {
+        value: "niveau_4",
+        label: "Baccalauréat",
+      },
+      {
+        value: "niveau_5",
+        label: "BTS, CPGE",
+      },
+      {
+        value: "niveau_6",
+        label: "Licence, BUT",
+      },
+      {
+        value: "niveau_7",
+        label: "Bac+5 Master",
+      },
+      {
+        value: "niveau_8",
+        label: "Bac+8 Doctorat",
+      },
+      {
+        value: "non_renseigne",
+        label: "Autre",
+      },
+    ],
+  },
+
   rsa_jeune_condition_heures_travail_remplie: {
     question: (component) => {
       return `${component.getLabel("avoir")} travaillé
@@ -288,6 +323,14 @@ export default {
     ],
   },
 
+  _boursier_derniere_annee_etudes: {
+    question: "Étiez-vous boursier lors de votre dernière année d'études ?",
+  },
+
+  _continuite_etudes: {
+    question: "Avez-vous prévu de continuer vos études l'an prochain ?",
+  },
+
   _diplome_2020_2021: {
     question:
       "Avez-vous obtenu un diplôme supérieur ou égal à un BAC +2 en 2020 ou 2021 ?",
@@ -302,52 +345,9 @@ export default {
     question: "Prévoyez-vous de passer le permis de conduire ?",
   },
 
-  plus_haut_diplome_niveau: {
-    question: "Quelle le niveau de votre plus haut diplôme ?",
-    questionType: "enum",
-    items: [
-      {
-        value: "niveau_3",
-        label: "CAP, DNP, CFG",
-      },
-      {
-        value: "niveau_4",
-        label: "Baccalauréat",
-      },
-      {
-        value: "niveau_5",
-        label: "BTS, CPGE",
-      },
-      {
-        value: "niveau_6",
-        label: "Licence, BUT",
-      },
-      {
-        value: "niveau_7",
-        label: "Bac+5 Master",
-      },
-      {
-        value: "niveau_8",
-        label: "Bac+8 Doctorat",
-      },
-      {
-        value: "non_renseigne",
-        label: "Autre",
-      },
-    ],
-  },
-
-  _boursier_derniere_annee_etudes: {
-    question: "Étiez-vous boursier lors de votre dernière année d'études ?",
-  },
-
   _montant_mensuel_bourse_derniere_annee_etudes: {
-    type: Number,
+    questionType: "number",
     question:
       "Quel montant mensuel de bourse receviez-vous lors de votre dernière année d'études ?",
-  },
-
-  _continuite_etudes: {
-    question: "Avez-vous prévu de continuer vos études l'an prochain ?",
   },
 }

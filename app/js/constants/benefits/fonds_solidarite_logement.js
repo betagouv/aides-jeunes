@@ -236,16 +236,6 @@ module.exports = {
       link: "https://www.cotedor.fr/votre-service/insertion/accompagnement-financier/accompagnement-et-aides-lacces-ou-au-maintien-dans",
     },
   }),
-  departement_dordogne: fsl_generator({
-    prefix: "dordogne",
-    label: "de la Dordogne",
-    code: "24",
-    resources: {
-      link: "https://www.service-public.fr/particuliers/vosdroits/F1334",
-      instructions:
-        "https://www.service-public.fr/particuliers/vosdroits/F1334",
-    },
-  }),
   departement_doubs: fsl_generator({
     prefix: "doubs",
     label: "du Doubs",

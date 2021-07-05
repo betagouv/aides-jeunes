@@ -55,7 +55,6 @@ var individu = Object.assign(
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,
-    _diplome_2020_2021: Boolean,
     _dureeMoisEtudesEtranger: Number,
     duree_possession_titre_sejour: Number,
     enceinte: Boolean,

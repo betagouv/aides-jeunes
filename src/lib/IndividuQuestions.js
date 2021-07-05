@@ -331,11 +331,6 @@ export default {
     question: "Avez-vous prévu de continuer vos études l'an prochain ?",
   },
 
-  _diplome_2020_2021: {
-    question:
-      "Avez-vous obtenu un diplôme supérieur ou égal à un BAC +2 en 2020 ou 2021 ?",
-  },
-
   _interetEtudesEtranger: {
     question:
       "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",

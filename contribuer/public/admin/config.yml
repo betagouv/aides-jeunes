@@ -85,7 +85,7 @@ collections:
         pattern:
           [
             ".{10,120}",
-            "La description est trop longue. En cas de blocage, contactez nous à accompagnement@mes-aides.org",
+            "La description est trop longue. En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
           ]
       - label: Conditions non prises ne comptent par le simulateur
         label_singular: Condition non prise ne compte par le simulateur

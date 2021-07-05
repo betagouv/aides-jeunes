@@ -58,10 +58,8 @@ import ResultatsMixin from "@/mixins/Resultats"
 const list = [
   {
     isRelevant: (demandeur, situation) => {
-      let demandeurAge = Individu.age(
-        demandeur.date_naissance,
-        situation.dateDeValeur
-      )
+      let demandeurAge = Individu.age(demandeur, situation.dateDeValeur)
+
       return demandeurAge <= 25 && demandeurAge >= 16
     },
     types: ["mission_locale", "cij"],

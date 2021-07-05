@@ -4,7 +4,7 @@
       >Quand {{ getLabel("avoir") }} obtenu votre plus haut diplôme ?
       (approximativement)</h2
     >
-    <InputDate required id="" v-model="value" />
+    <InputDate required id="plus_haut_diplome_date_obtention" v-model="value" />
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>

@@ -25,21 +25,21 @@ module.exports = {
   link: "https://www.service-public.fr/particuliers/vosdroits/F1334",
   customization: Object.entries({
     D01: {
-      codeImg: "01",
+      codeImg: "cd01",
       label: "du département de l’Ain",
       resources: {
         link: "https://www.ain.fr/solutions/fond-solidarite-logement-maintien-dans-le-logement/",
       },
     },
     D02: {
-      codeImg: "02",
+      codeImg: "cd02",
       label: "du département de l’Aisne",
       resources: {
         link: "https://aisne.com/aides/aide-a-lacces-au-logement-fonds-de-solidarite-pour-le-logement-fsl",
       },
     },
     D03: {
-      codeImg: "03",
+      codeImg: "cd03",
       label: "du département de l’Allier",
       resources: {
         link: "http://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/logement-et-cadre-de-vie/le-fonds-de-solidarite-pour-le-logement-fsl",
@@ -48,7 +48,7 @@ module.exports = {
       },
     },
     D04: {
-      codeImg: "04",
+      codeImg: "cd04",
       label: "du département des Alpes-de-Haute-Provence",
       resources: {
         link: "http://www.mondepartement04.fr/rechercher-plus-daides/habitat-logement-urbanisme/fsl-masp/fonds-social-daide-au-logement-fsl.html",
@@ -58,7 +58,7 @@ module.exports = {
       },
     },
     D05: {
-      codeImg: "05",
+      codeImg: "cd05",
       label: "du département des Hautes Alpes",
       resources: {
         link: "https://www.hautes-alpes.fr/4996-fonds-de-solidarite-pour-le-logement-fsl-.htm",
@@ -67,7 +67,7 @@ module.exports = {
       },
     },
     D06: {
-      codeImg: "06",
+      codeImg: "cd06",
       label: "du département des Alpes Maritimes",
       resources: {
         link: "https://www.departement06.fr/aides-a-l-insertion/fsl-2607.html",
@@ -82,7 +82,7 @@ module.exports = {
       },
     },
     D07: {
-      codeImg: "07",
+      codeImg: "cd07",
       label: "du département de l’Ardèche",
       resources: {
         link: "http://www.ardeche.fr/132-fonds-unique-logement.htm",
@@ -90,7 +90,7 @@ module.exports = {
       },
     },
     D08: {
-      codeImg: "08",
+      codeImg: "cd08",
       label: "du département de l’Ardennes",
       resources: {
         link: "https://cd08.fr/aides-et-subventionss/fonds-de-solidarite-logement-fsl-formulaire-unique-de-demande-de-subvention",
@@ -98,7 +98,7 @@ module.exports = {
       },
     },
     D09: {
-      codeImg: "09",
+      codeImg: "cd09",
       label: "du département de l’Ariège",
       resources: {
         link: "http://www.ariege.fr/Etre-solidaire/Logement/Le-Fonds-unique-Habitat-FUH",
@@ -107,28 +107,28 @@ module.exports = {
       },
     },
     D11: {
-      codeImg: "11",
+      codeImg: "cd11",
       label: "du département de l’Aude",
       resources: {
         link: "https://www.aude.fr/je-beneficie-du-fonds-unique-logement-ful",
       },
     },
     D12: {
-      codeImg: "12",
+      codeImg: "cd12",
       label: "du département de l’Aveyron",
       resources: {
         link: "https://aveyron.fr/pages/logement/des%20aides%20pour%20acc%C3%A9der%20%C3%A0%20un%20logement%20ou%20sy%20maintenir",
       },
     },
     D13: {
-      codeImg: "13",
+      codeImg: "cd13",
       label: "du département Des Bouches-du-Rhône",
       resources: {
         link: "https://www.departement13.fr/nos-actions/logement/les-dispositifs/le-fonds-de-solidarite-pour-le-logement/",
       },
     },
     D14: {
-      codeImg: "14",
+      codeImg: "cd14",
       label: "du département du Calvados",
       resources: {
         link: "https://www.calvados.fr/accueil/le-departement/solidarite---familles/aide-au-logement/fsl.html",
@@ -137,14 +137,14 @@ module.exports = {
       },
     },
     D15: {
-      codeImg: "15",
+      codeImg: "cd15",
       label: "du département du Cantal",
       resources: {
         link: "http://www.cantal.fr/fonds-de-solidarite-pour-le-logement/",
       },
     },
     D16: {
-      codeImg: "16",
+      codeImg: "cd16",
       label: "du département de Charente",
       resources: {
         link: "https://www.charentesolidarites.org/index.php/component/sppagebuilder/8-le-fsl.html",
@@ -153,21 +153,21 @@ module.exports = {
       },
     },
     D17: {
-      codeImg: "17",
+      codeImg: "cd17",
       label: "du département de Charente-Maritime",
       resources: {
         link: "https://la.charente-maritime.fr/fiches-aides/fonds-solidarite-pour-logement",
       },
     },
     D18: {
-      codeImg: "18",
+      codeImg: "cd18",
       label: "du département du Cher",
       resources: {
         link: "https://www.departement18.fr/Logement-habitat",
       },
     },
     D19: {
-      codeImg: "19",
+      codeImg: "cd19",
       label: "du département de Corrèze",
       resources: {
         link: "https://www.correze.fr/nos-missions/habitat/les-aides-sociales-pour-le-logement",
@@ -176,14 +176,14 @@ module.exports = {
       },
     },
     D21: {
-      codeImg: "21",
+      codeImg: "cd21",
       label: "du département de la Côte-d’Or",
       resources: {
         link: "https://www.cotedor.fr/votre-service/insertion/accompagnement-financier/accompagnement-et-aides-lacces-ou-au-maintien-dans",
       },
     },
     D25: {
-      codeImg: "25",
+      codeImg: "cd25",
       label: "du département du Doubs",
       resources: {
         link: "https://www.doubs.fr/index.php/vous-accompagner/36-particuliers/2242-le-fonds-de-solidarite-logement-fsl",
@@ -193,14 +193,14 @@ module.exports = {
       },
     },
     D26: {
-      codeImg: "26",
+      codeImg: "cd26",
       label: "du département de la Drôme",
       resources: {
         link: "https://www.ladrome.fr/mon-quotidien/logement/en-cas-de-difficultes/les-aides-aux-locataires/",
       },
     },
     D29: {
-      codeImg: "29",
+      codeImg: "cd29",
       label: "du département du Finistère",
       resources: {
         link: "https://www.finistere.fr/A-votre-service/Habitat-Logement/Acces-et-maintien-dans-un-logement-FSL",
@@ -217,7 +217,7 @@ module.exports = {
       },
     },
     D30: {
-      codeImg: "30",
+      codeImg: "cd30",
       label: "du département du Gard",
       resources: {
         link: "https://www.gard.fr/au-quotidien/bien-se-loger/locataires/fonds-solidarite-logement.html",
@@ -226,7 +226,7 @@ module.exports = {
       },
     },
     D31: {
-      codeImg: "31",
+      codeImg: "cd31",
       label: "du département de la Haute-Garonne",
       resources: {
         link: "https://www.haute-garonne.fr/aide/fonds-de-solidarite-logement-fsl",
@@ -240,7 +240,7 @@ module.exports = {
       },
     },
     D33: {
-      codeImg: "33",
+      codeImg: "cd33",
       label: "du département de la Gironde",
       resources: {
         link: "http://www.fsl33.org/html/aide_maitien.htm",
@@ -248,14 +248,14 @@ module.exports = {
       },
     },
     D34: {
-      codeImg: "34",
+      codeImg: "cd34",
       label: "du département de l’Hérault",
       resources: {
         link: "http://www.herault.fr/aides-financieres-fsl",
       },
     },
     D35: {
-      codeImg: "35",
+      codeImg: "cd35",
       label: "du département d’Ille-et-Vilaine",
       resources: {
         link: "https://www.ille-et-vilaine.fr/demande-fsl",
@@ -263,14 +263,14 @@ module.exports = {
       },
     },
     D36: {
-      codeImg: "36",
+      codeImg: "cd36",
       label: "du département de l’Indre",
       resources: {
         link: "https://www.adil36.org/aides-locales/locataires-en-difficultes",
       },
     },
     D37: {
-      codeImg: "37",
+      codeImg: "cd37",
       label: "du département de l’Indre-et-Loire",
       resources: {
         link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/lacces-au-logement.html",
@@ -286,7 +286,7 @@ module.exports = {
       },
     },
     D38: {
-      codeImg: "38",
+      codeImg: "cd38",
       label: "du département d’Isère",
       resources: {
         link: "https://www.isere.fr/aides-au-logement",
@@ -294,28 +294,28 @@ module.exports = {
       },
     },
     D40: {
-      codeImg: "40",
+      codeImg: "cd40",
       label: "du département des Landes",
       resources: {
         link: "https://www.landes.fr/logement",
       },
     },
     D41: {
-      codeImg: "41",
+      codeImg: "cd41",
       label: "du département du Loir-et-Cher",
       resources: {
         link: "https://www.departement41.fr/services-en-ligne/etre-accompagne/insertion-habitat/aide-au-logement/",
       },
     },
     D42: {
-      codeImg: "42",
+      codeImg: "cd42",
       label: "du département de la Loire",
       resources: {
         link: "https://www.loire.fr/jcms/lw_1024718/le-fonds-de-solidarite-pour-le-logement-fsl",
       },
     },
     D44: {
-      codeImg: "44",
+      codeImg: "cd44",
       label: "du département de Loire Atlantique",
       resources: {
         link: "https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/parent-/-famille/fonds-de-solidarite-pour-le-logement-fsl-les-aides-a-l-acces-ou-au-maintien-dans-votre-logement-fr-t1_16291",
@@ -331,14 +331,14 @@ module.exports = {
       },
     },
     D49: {
-      codeImg: "49",
+      codeImg: "cd49",
       label: "du département du Maine-et-Loire",
       resources: {
         link: "https://www.maine-et-loire.fr/aides-et-services/logement-et-habitat/fonds-solidarite-logement/aides-pour-le-maintien-dans-le-logement",
       },
     },
     D50: {
-      codeImg: "50",
+      codeImg: "cd50",
       label: "du département de la Manche",
       resources: {
         link: "https://www.manche.fr/conseil-departemental/FSL.aspx",
@@ -346,21 +346,21 @@ module.exports = {
       },
     },
     D51: {
-      codeImg: "51",
+      codeImg: "cd51",
       label: "du département de la Marne",
       resources: {
         link: "http://www.marne.fr/les-actions/sante-et-social/logement-social/acces-et-maintien-dans-le-logement-le-fonds-solidarite",
       },
     },
     D53: {
-      codeImg: "53",
+      codeImg: "cd53",
       label: "du département de la Mayenne",
       resources: {
         link: "https://www.lamayenne.fr/service/le-fonds-solidarite-pour-le-logement",
       },
     },
     D56: {
-      codeImg: "56",
+      codeImg: "cd56",
       label: "du département du Morbihan",
       resources: {
         link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl/",
@@ -370,7 +370,7 @@ module.exports = {
       },
     },
     D57: {
-      codeImg: "57",
+      codeImg: "cd57",
       label: "du département de la Moselle",
       resources: {
         link: "https://www.moselle.fr/jcms/pl_12538/fr/fonds-solidarite-logement-fsl",
@@ -378,7 +378,7 @@ module.exports = {
       },
     },
     D59: {
-      codeImg: "59",
+      codeImg: "cd59",
       label: "du département du Nord",
       resources: {
         link: "https://lenord.fr/jcms/preprd1_145072/le-fonds-de-solidarite-pour-le-logement",
@@ -395,21 +395,21 @@ module.exports = {
       },
     },
     D60: {
-      codeImg: "60",
+      codeImg: "cd60",
       label: "du département de l’Oise",
       resources: {
         link: "http://www.oise.fr/guide-des-aides/aide/fonds-departemental-de-solidarite/",
       },
     },
     D62: {
-      codeImg: "62",
+      codeImg: "cd62",
       label: "du département du Pas-de-Calais",
       resources: {
         link: "https://www.pasdecalais.fr/Solidarite-Sante/Reglement-Departemental-d-Aide-Sociale/Le-developpement-des-solidarites/Le-logement-des-personnes-defavorisees-et-le-Fonds-de-Solidarite-Logement/L-aide-financiere-Fonds-Solidarite-Logement-volet-acces-logement-identifie",
       },
     },
     D63: {
-      codeImg: "63",
+      codeImg: "cd63",
       label: "du département du Puy-de-Dôme",
       resources: {
         link: "https://www.puy-de-dome.fr/social/logement-habitat/fonds-solidarite-logement.html",
@@ -418,28 +418,28 @@ module.exports = {
       },
     },
     D64: {
-      codeImg: "64",
+      codeImg: "cd64",
       label: "du département des Pyrénées-Atlantiques",
       resources: {
         link: "https://le64.fr/vous-aider-acceder-un-logement-ou-vous-y-maintenir",
       },
     },
     D67: {
-      codeImg: "67",
+      codeImg: "cd67",
       label: "du département du Bas-Rhin",
       resources: {
         link: "https://www.bas-rhin.fr/action-sociale-et-sante/difficultes-logement/",
       },
     },
     D68: {
-      codeImg: "68",
+      codeImg: "cd68",
       label: "du département du Haut-Rhin",
       resources: {
         link: "https://www.haut-rhin.fr/content/des-aides-pour-votre-logement",
       },
     },
     D69: {
-      codeImg: "69",
+      codeImg: "cd69",
       label: "du département du Rhône",
       resources: {
         link: "https://www.rhone.fr/solidarites/insertion/logement/le_fonds_de_solidarite_logement",
@@ -455,7 +455,7 @@ module.exports = {
       },
     },
     D71: {
-      codeImg: "71",
+      codeImg: "cd71",
       label: "du département de la Saône-et-Loire",
       resources: {
         link: "https://www.saoneetloire71.fr/accueil/vous-etes-proprietaire/locataire/rester-dans-mon-logement",
@@ -463,56 +463,56 @@ module.exports = {
       },
     },
     D72: {
-      codeImg: "72",
+      codeImg: "cd72",
       label: "du département de la Sarthe",
       resources: {
         link: "https://www.sarthe.fr/insertion-logement/logement-habitat/fonds-de-solidarite-logement",
       },
     },
     D74: {
-      codeImg: "74",
+      codeImg: "cd74",
       label: "du département de la Haute-Savoie",
       resources: {
         link: "https://www.hautesavoie.fr/informations-services/logement",
       },
     },
     D75: {
-      codeImg: "75",
+      codeImg: "cd75",
       label: "du département de Paris",
       resources: {
         link: "https://www.paris.fr/pages/aides-au-logement-3827#le-fonds-de-solidarite-pour-le-logement-de-paris",
       },
     },
     D76: {
-      codeImg: "76",
+      codeImg: "cd76",
       label: "du département de Seine-Maritime",
       resources: {
         link: "https://www.seinemaritime.fr/vos-services/habitat-logement/le-plan-departemental-daction-pour-le-logement-des-personnes-defavorisees/fonds-solidarite-logement.html",
       },
     },
     D77: {
-      codeImg: "77",
+      codeImg: "cd77",
       label: "du département de Seine-et-Marne",
       resources: {
         link: "https://www.seine-et-marne.fr/Solidarite/Logement/Aides-au-logement",
       },
     },
     D78: {
-      codeImg: "78",
+      codeImg: "cd78",
       label: "du département des Yvelines",
       resources: {
         link: "https://www.yvelines.fr/solidarite/adultes-en-difficulte/logement/acces-et-maintien-logement/",
       },
     },
     D80: {
-      codeImg: "80",
+      codeImg: "cd80",
       label: "du département de la Somme",
       resources: {
         link: "https://www.somme.fr/services/rsa-insertion/les-aides-a-linsertion/le-fonds-de-solidarite-logement/",
       },
     },
     D83: {
-      codeImg: "83",
+      codeImg: "cd83",
       label: "du département du Var",
       resources: {
         link: "https://www.var.fr/social/insertion/fonds-de-solidarite-logement",
@@ -520,21 +520,21 @@ module.exports = {
       },
     },
     D84: {
-      codeImg: "84",
+      codeImg: "cd84",
       label: "du département du Vaucluse",
       resources: {
         link: "http://www.vaucluse.fr/habitat-logement/les-aides-aux-particuliers/le-fonds-de-solidarite-pour-le-logement-1531.html",
       },
     },
     D85: {
-      codeImg: "85",
+      codeImg: "cd85",
       label: "du département de la Vendée",
       resources: {
         link: "http://www.vendee.fr/Territoire-et-environnement/Habitat-Logement/42264-Habitat-Logement/L-accompagnement-des-menages-en-difficultes",
       },
     },
     D86: {
-      codeImg: "86",
+      codeImg: "cd86",
       label: "du département de la Vienne",
       resources: {
         link: "http://www.fsl86.fr/",
@@ -542,21 +542,21 @@ module.exports = {
       },
     },
     D91: {
-      codeImg: "91",
+      codeImg: "cd91",
       label: "du département de l’Essonne",
       resources: {
         link: "http://www.essonne.fr/le-departement/les-organismes-associes/le-fonds-de-solidarite-pour-le-logement-fsl/",
       },
     },
     D92: {
-      codeImg: "92",
+      codeImg: "cd92",
       label: "du département des Hauts-de-Seine",
       resources: {
         link: "https://www.78-92.fr/annuaire/aides-et-services/detail/fonds-de-solidarite-logement-fsl",
       },
     },
     D93: {
-      codeImg: "93",
+      codeImg: "cd93",
       label: "du département de Seine-Saint-Denis",
       resources: {
         link: "https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html",
@@ -565,21 +565,21 @@ module.exports = {
       },
     },
     D94: {
-      codeImg: "94",
+      codeImg: "cd94",
       label: "du département du Val-de-Marne",
       resources: {
         link: "https://www.valdemarne.fr/a-votre-service/habitat/logement/aides-aux-impayes-locatifs-fsh",
       },
     },
     D95: {
-      codeImg: "95",
+      codeImg: "cd95",
       label: "du département du Val d’Oise",
       resources: {
         link: "https://www.valdoise.fr/aide-et-service/11/6-fonds-de-solidarite-logement-aide-a-l-acces-au-logement.htm",
       },
     },
     D974: {
-      codeImg: "974",
+      codeImg: "cd974",
       label: "du département de la Réunion",
       resources: {
         link: "https://www.departement974.fr/aide/aide-habitat-fonds-de-solidarite-pour-logement-fsl#aidesimpayes",

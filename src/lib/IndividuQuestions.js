@@ -340,7 +340,7 @@ export default {
     question: "Prévoyez-vous de passer le permis de conduire ?",
   },
 
-  _montant_mensuel_bourse_derniere_annee_etudes: {
+  aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
     questionType: "number",
     question:
       "Quel montant mensuel de bourse receviez-vous lors de votre dernière année d'études ?",

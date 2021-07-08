@@ -40,17 +40,6 @@ var individuSchema = {
       )
     },
   },
-  aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
-    fn: function (individu) {
-      if (individu._boursier_derniere_annee_etudes) {
-        return 10 * individu._montant_mensuel_bourse_derniere_annee_etudes
-      } else if (individu._continuite_etudes) {
-        return 0
-      } else {
-        return null
-      }
-    },
-  },
   bourse_criteres_sociaux_distance_domicile_familial: {
     fn: function (individu, situation) {
       if (individu.habite_chez_parents) {
@@ -101,6 +90,15 @@ var individuSchema = {
     fn: function () {
       return true
     },
+  },
+  niveau_diplome_formation: {
+    fn: function(individu) {
+      if (individu._continuite_etudes) {
+        return "niveau_5"
+      } else {
+        return "non_renseigne"
+      }
+    }
   },
   plus_haut_diplome_date_obtention: {
     src: "plus_haut_diplome_date_obtention",

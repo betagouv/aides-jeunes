@@ -35,6 +35,7 @@ var individu = Object.assign(
       enum: ["actif", "chomeur", "etudiant", "inactif", "retraite"],
     },
     agepi_temps_travail_semaine: Number,
+    aide_jeunes_diplomes_anciens_boursiers_base_ressources: Number,
     aide_mobilite_master_sortie_region_academique: Boolean,
     aide_mobilite_parcoursup_boursier_lycee: Boolean,
     aide_mobilite_parcoursup_sortie_academie: Boolean,
@@ -69,7 +70,6 @@ var individu = Object.assign(
     handicap: Boolean,
     _hasRessources: Boolean,
     inapte_travail: Boolean,
-    _montant_mensuel_bourse_derniere_annee_etudes: Number,
     nationalite: { type: String },
     plus_haut_diplome_date_obtention: Date,
     plus_haut_diplome_niveau: {

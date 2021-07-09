@@ -162,6 +162,7 @@ var droitsDescription = {
             caf: "https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do",
             msa: "https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do",
           },
+          setToZeroRecently: true,
           isBaseRessourcesPatrimoine: true,
           uncomputability: {
             tns: {

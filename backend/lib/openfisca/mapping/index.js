@@ -99,29 +99,6 @@ function dispatchIndividuals(situation) {
   }
 }
 
-function setNonInjectedPrestations(testCase, periods, value) {
-  var prestationsFinancieres = pickBy(
-    common.requestedVariables,
-    function (definition) {
-      return !definition.type || definition.type === "float"
-    }
-  )
-
-  forEach(prestationsFinancieres, function (definition, prestationName) {
-    forEach(testCase[definition.entity], function (entity) {
-      entity[prestationName] = entity[prestationName] || {}
-      forEach(periods, function (period) {
-        if (value === undefined) {
-          delete entity[prestationName][period]
-        } else {
-          entity[prestationName][period] =
-            entity[prestationName][period] || value
-        }
-      })
-    })
-  })
-}
-
 function setNonInjected(testCase, prestations, periods, value) {
   forEach(prestations, function (definition, prestationName) {
     forEach(testCase[definition.entity], function (entity) {

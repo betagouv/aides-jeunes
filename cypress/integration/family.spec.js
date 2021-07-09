@@ -42,9 +42,14 @@ context("Full simulation", () => {
     steps.hasPrimeActivite(2)
     // steps.hasLogementSocial()
   })
+
   it("displays a tooltip if the parents are separated ", () => {
     steps.home()
     steps.etudiant_public()
+
+    cy.get("div").find('input[type="radio"][value="true"]').first().check()
+    cy.get('button[type="submit"]').click()
+
     steps.zeroEnfants()
     steps.celibataire()
     steps.parentsSepares()

@@ -615,7 +615,6 @@ var droitsDescription = {
         },
       },
     },
-    ...require("./fonds_solidarite_logement"),
   },
 }
 

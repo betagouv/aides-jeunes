@@ -369,7 +369,7 @@ var droitsDescription = {
           link: "https://www.service-public.fr/particuliers/vosdroits/F32700",
           entity: "individus", // default entity is familles
           prefix: "la",
-          setToZeroRecently: true
+          setToZeroRecently: true,
         },
       },
     },

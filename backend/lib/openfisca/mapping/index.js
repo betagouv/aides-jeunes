@@ -279,7 +279,10 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
   var prestationsFinancieresAtZeroRecently = pickBy(
     common.requestedVariables,
     function (definition) {
-      return (!definition.type || definition.type === "float") && definition.setToZeroRecently
+      return (
+        (!definition.type || definition.type === "float") &&
+        definition.setToZeroRecently
+      )
     }
   )
   setNonInjected(

@@ -79,9 +79,9 @@ module.exports = {
     label: "de l’Allier",
     code: "03",
     resources: {
-      link: "http://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/logement-et-cadre-de-vie/le-fonds-de-solidarite-pour-le-logement-fsl",
+      link: "https://www.allier.fr/aide/11612/717-les-aides-et-services.htm",
       instructions:
-        "http://modules.allier.fr/guide3/contenu.asp?iddossier=11612",
+        "https://www.allier.fr/aide/11612/717-les-aides-et-services.htm",
     },
   }),
   departement_alpes_de_haute_provence: fsl_generator({
@@ -236,16 +236,6 @@ module.exports = {
       link: "https://www.cotedor.fr/votre-service/insertion/accompagnement-financier/accompagnement-et-aides-lacces-ou-au-maintien-dans",
     },
   }),
-  departement_dordogne: fsl_generator({
-    prefix: "dordogne",
-    label: "de la Dordogne",
-    code: "24",
-    resources: {
-      link: "https://www.dordogne.fr/servir_les_citoyens/solidarite/logement_/_rsa/logement/aide_financiere_du_fsl_pour_l_acces_au_logement/262-2",
-      instructions:
-        "https://www.dordogne.fr/logement/aide_financiere_du_fsl_pour_des_impayes_de_loyer_ou_de_charges/262-3",
-    },
-  }),
   departement_doubs: fsl_generator({
     prefix: "doubs",
     label: "du Doubs",
@@ -349,8 +339,8 @@ module.exports = {
     label: "de l’Indre-et-Loire",
     code: "37",
     resources: {
-      link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/lacces-au-logement.html",
-      form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/impr_FSL_interactif_departement.pdf",
+      link: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/Depliant_FSL_new.pdf",
+      form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/617_impr_FSL_CD37_interactif_jan_2021.pdf",
     },
   }),
   tours_metropole: fsl_generator_metropole({
@@ -358,8 +348,8 @@ module.exports = {
     label: "Tours Métropole Val de Loire",
     code: "tours",
     resources: {
-      link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/lacces-au-logement.html",
-      form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/impr_FSL_interactif_departement.pdf",
+      link: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/Depliant_FSL_new.pdf",
+      form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/617_impr_FSL_CD37_interactif_jan_2021.pdf",
     },
   }),
   departement_isere: fsl_generator({
@@ -442,10 +432,9 @@ module.exports = {
     label: "du Morbihan",
     code: "56",
     resources: {
-      link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl/",
-      form: "https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/20_morbihan_5_H08_FSL_maintien_logement.pdf",
+      link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl",
       instructions:
-        "https://www.morbihan.fr/les-services/aides-departementales/toutes-nos-aides/toutes-nos-aides/?tx_cg56aidesdep_guidedesaides[selectMotsCles]=fsl&tx_cg56aidesdep_guidedesaides[action]=resultsNoCache&tx_cg56aidesdep_guidedesaides[controller]=Aide#hautDePage",
+        "https://www.morbihan.fr/fileadmin/Les_services/Logement_Habitat/Logement/MORBIHAN_FSL_maintien_doc_2020.pdf",
     },
   }),
   departement_moselle: fsl_generator({
@@ -481,7 +470,7 @@ module.exports = {
     label: "de l’Oise",
     code: "60",
     resources: {
-      link: "http://www.oise.fr/guide-des-aides/aide/fonds-departemental-de-solidarite/",
+      link: "https://www.oise.fr/information/guide-des-aides-departementales/fonds-departemental-de-solidarite-3145",
     },
   }),
   departement_pas_de_calais: fsl_generator({
@@ -549,7 +538,7 @@ module.exports = {
     label: "de la Saône-et-Loire",
     code: "71",
     resources: {
-      link: "https://www.saoneetloire71.fr/accueil/vous-etes-proprietaire/locataire/rester-dans-mon-logement",
+      link: "https://www.saoneetloire71.fr/que-peut-on-faire-pour-vous/vous-etes-proprietaire-locataire/rester-dans-mon-logement",
       form: "https://www.saoneetloire71.fr/fileadmin/Que_peut-on_faire_pour_vous__/Vous_etes_proprietaire_locataire/Aides_logement/7733_DOSSIER_UNIQUE.pdf",
     },
   }),
@@ -648,7 +637,7 @@ module.exports = {
     label: "de l’Essonne",
     code: "91",
     resources: {
-      link: "http://www.essonne.fr/le-departement/les-organismes-associes/le-fonds-de-solidarite-pour-le-logement-fsl/",
+      link: "https://www.essonne.fr/le-departement/les-organismes-associes/le-fonds-de-solidarite-pour-le-logement-fsl",
     },
   }),
   departement_hauts_de_seine: fsl_generator({
@@ -656,7 +645,7 @@ module.exports = {
     label: "des Hauts-de-Seine",
     code: "92",
     resources: {
-      link: "https://www.78-92.fr/annuaire/aides-et-services/detail/fonds-de-solidarite-logement-fsl",
+      link: "https://www.78-92.fr/annuaire/aides-et-services/detail/le-fonds-de-solidarite-logement-fsl-92",
     },
   }),
   departement_val_de_marne: fsl_generator({

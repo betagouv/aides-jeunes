@@ -13,8 +13,8 @@ module.exports = {
         "Avoir demandé le versements des aides logement auxquelles vous avez droit auprès de la CAF.",
         "Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.",
       ],
-      link: "http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille_7",
-      form: "https://api-site.paris.fr/images/73485",
+      link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-logement-familles",
+      form: "https://cdn.paris.fr/paris/2019/07/24/736d309a8cdbf436475f7514f443a08b.pdf",
       isBaseRessourcesYearMoins2: false,
     },
     paris_forfait_familles: {
@@ -22,8 +22,8 @@ module.exports = {
       label: "Paris Forfait Familles",
       description:
         "Paris Forfait Familles est une aide destinée aux familles nombreuses avec au moins trois enfants à charge. Elle peut se cumuler avec l’Allocation de Soutien aux Parents d’Enfants Handicapés. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.",
-      link: "http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-forfait-famille_2",
-      form: "https://api-site-cdn.paris.fr/images/97066",
+      link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-forfait-familles",
+      form: "https://cdn.paris.fr/paris/2019/07/24/8fa764ddcfa7659c447e2b383b8cb986.pdf",
       isBaseRessourcesYearMoins2: false,
     },
     paris_logement_psol: {
@@ -34,8 +34,8 @@ module.exports = {
         "Percevoir tous les avantages légaux auxquels vous pouvez prétendre.",
         "Ne pas avoir déjà bénéficié du dispositif sur une durée de deux ans.",
       ],
-      link: "http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-solidarite_3",
-      form: "https://api-site-cdn.paris.fr/images/97049",
+      link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-solidarite",
+      form: "https://cdn.paris.fr/paris/2019/07/24/44a441e89f01b513b678ecde6e088ce4.pdf",
       isBaseRessourcesYearMoins2: false,
     },
     paris_logement: {
@@ -57,8 +57,8 @@ module.exports = {
       conditions: [
         "Indiquer le nombre de jours passés par l’enfant handicapé au domicile, lorsqu’il est placé dans un établissement spécialisé.",
       ],
-      link: "http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#allocation-de-soutien-aux-parents-d-enfants-handicapes_9",
-      form: "https://api-site-cdn.paris.fr/images/97060",
+      link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#allocation-de-soutien-aux-parents-d-enfants-handicapes",
+      form: "https://cdn.paris.fr/paris/2019/07/24/3c8e229bd25b112eaf9227769873a230.pdf",
       isBaseRessourcesYearMoins2: false,
       prefix: "l’",
     },
@@ -70,8 +70,8 @@ module.exports = {
         "Avoir demandé le versement des aides logement auxquelles vous avez droit auprès de la CAF.",
         "Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.",
       ],
-      link: "http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-logement-famille-monoparentale_5",
-      form: "https://api-site-cdn.paris.fr/images/90099",
+      link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-logement-famille-monoparentale",
+      form: "https://cdn.paris.fr/paris/2019/07/24/75686b9338b397db4b05069015762d8b.pdf",
       isBaseRessourcesYearMoins2: false,
     },
     paris_energie_familles: {
@@ -79,8 +79,8 @@ module.exports = {
       label: "Paris Énergie Familles",
       description:
         "L’allocation Paris Énergie Familles est réservée aux familles ayant un ou plusieurs enfants à charge, sous condition d’imposition. Cette aide permet de les soutenir dans leurs dépenses d’électricité et/ou de gaz. Paris Énergie Famille est directement versée aux fournisseurs d’énergie. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.",
-      link: "http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#paris-energie-famille_8",
-      form: "https://api-site-cdn.paris.fr/images/97093",
+      link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-energie-familles",
+      form: "https://cdn.paris.fr/paris/2019/07/24/ef5b3f1bcd3a62ec75576748e88a0dd7.pdf",
       isBaseRessourcesYearMoins2: false,
     },
     paris_complement_sante: {
@@ -92,8 +92,8 @@ module.exports = {
         "Percevoir les avantages légaux auxquels vous pouvez prétendre (Couverture Maladie Universelle Complémentaire, Aide à la Complémentaire Santé).",
         "Adhérer à titre payant à un organisme de protection complémentaire.",
       ],
-      link: "http://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626#complement-sante-paris_10",
-      form: "https://api-site.paris.fr/images/78343",
+      link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#complement-sante-paris",
+      form: "https://cdn.paris.fr/paris/2019/07/24/c3175c019a067ac0b1bf2714742f0bbc.pdf",
       isBaseRessourcesYearMoins2: false,
       prefix: "le",
     },
@@ -101,8 +101,8 @@ module.exports = {
       label: "Pass Paris Seniors",
       description:
         "Le Pass Paris Seniors est destiné aux personnes âgées de 65 ans ou plus (et à partir de 60 ans pour les personnes reconnues inaptes au travail). Il permet de voyager gratuitement sur l’ensemble du réseau des transports en commun d’Île-de-France (zones 1 à 5).",
-      link: "https://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/aides-aux-transports-3848#pass-paris-seniors_11",
-      form: "https://api-site-cdn.paris.fr/images/100460",
+      link: "https://www.paris.fr/pages/aides-aux-transports-3848/#pass-paris-seniors",
+      form: "https://cdn.paris.fr/paris/2020/01/10/03d74c0a9d051a5736302fc861d66ef5.pdf",
       type: "bool", // default type is float
       entity: "individus", // default entity is famille
       prefix: "le",
@@ -111,8 +111,8 @@ module.exports = {
       label: "Pass Paris Access’",
       description:
         "Le Pass Paris Access’ est destiné aux personnes en situation de handicap. Il permet de voyager gratuitement sur l’ensemble du réseau des transports en commun d’Île-de-France (zones 1 à 5).",
-      link: "https://www.paris.fr/services-et-infos-pratiques/aides-et-demarches/aides-allocations-et-subventions/aides-aux-transports-3848#pass-paris-access_5",
-      form: "https://api-site-cdn.paris.fr/images/100461",
+      link: "https://www.paris.fr/pages/aides-aux-transports-3848/#pass-paris-access",
+      form: "https://cdn.paris.fr/paris/2019/11/18/ec559b1825e317b94c547d813dd1fd7d.pdf",
       type: "bool", // default type is float
       entity: "individus", // default entity is famille
       prefix: "le",

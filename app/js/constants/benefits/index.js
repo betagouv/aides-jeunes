@@ -162,6 +162,7 @@ var droitsDescription = {
             caf: "https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do",
             msa: "https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do",
           },
+          setToZeroRecently: true,
           isBaseRessourcesPatrimoine: true,
           uncomputability: {
             tns: {
@@ -369,6 +370,7 @@ var droitsDescription = {
           link: "https://www.service-public.fr/particuliers/vosdroits/F32700",
           entity: "individus", // default entity is familles
           prefix: "la",
+          setToZeroRecently: true,
         },
       },
     },
@@ -440,12 +442,10 @@ var droitsDescription = {
             "Pour les élèves scolarisés en lycée public, la demande se fait en ligne sur le portail Scolarité-Services.",
           ],
           link: "https://www.service-public.fr/particuliers/vosdroits/F616",
-          form: "https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do",
+          form: "https://www.service-public.fr/simulateur/calcul/11319",
           forms: {
-            "2017-18":
-              "https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do",
-            "2018-19":
-              "https://www.formulaires.modernisation.gouv.fr/gf/cerfa_11319.do",
+            "2017-18": "https://www.service-public.fr/simulateur/calcul/11319",
+            "2018-19": "https://www.service-public.fr/simulateur/calcul/11319",
           },
           isBaseRessourcesYearMinusTwo: true,
           prefix: "la",
@@ -588,8 +588,8 @@ var droitsDescription = {
           legend: "de réduction",
           description:
             "La Carte Solidaire permet de bénéficier de réductions importantes sur les trajets en trains TER et cars régionaux en Nouvelle-Aquitaine. Elle est destinée aux personnes qui ont de faibles revenus ou bénéficient de certaines prestations.",
-          link: "https://transports.nouvelle-aquitaine.fr/fr/actualite/tarif-solidaire-unique-pour-trajets-en-trains-ter-cars-regionaux",
-          instructions: "https://cartesolidaire-nouvelle-aquitaine.cba.fr",
+          link: "https://transports.nouvelle-aquitaine.fr/toute-lactualite-des-transports/un-tarif-solidaire-pour-les-trajets-en-trains-ter-et-cars-regionaux",
+          instructions: "https://cartesolidaire-nouvelle-aquitaine.cba.fr/",
           entity: "individu",
           prefix: "la",
         },

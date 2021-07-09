@@ -91,6 +91,19 @@ var individuSchema = {
       return true
     },
   },
+  niveau_diplome_formation: {
+    fn: function (individu) {
+      if (individu._continuite_etudes) {
+        return "niveau_5"
+      } else {
+        return "non_renseigne"
+      }
+    },
+  },
+  plus_haut_diplome_date_obtention: {
+    src: "plus_haut_diplome_date_obtention",
+    fn: formatDate,
+  },
 }
 
 function isNotValidValue(value) {

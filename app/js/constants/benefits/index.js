@@ -162,6 +162,7 @@ var droitsDescription = {
             caf: "https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do",
             msa: "https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15481.do",
           },
+          setToZeroRecently: true,
           isBaseRessourcesPatrimoine: true,
           uncomputability: {
             tns: {
@@ -369,6 +370,7 @@ var droitsDescription = {
           link: "https://www.service-public.fr/particuliers/vosdroits/F32700",
           entity: "individus", // default entity is familles
           prefix: "la",
+          setToZeroRecently: true,
         },
       },
     },

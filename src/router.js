@@ -152,6 +152,14 @@ const router = new Router({
                 ),
             },
             {
+              name: "plus_haut_diplome_date_obtention",
+              path: "plus_haut_diplome_date_obtention",
+              component: () =>
+                import(
+                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/PlusHautDiplomeDateObtention.vue"
+                ),
+            },
+            {
               name: "IndividuProperty",
               path: ":fieldName",
               component: () =>

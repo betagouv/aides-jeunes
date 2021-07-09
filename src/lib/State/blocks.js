@@ -164,8 +164,8 @@ function individuBlockFactory(id) {
             {
               isActive: (subject) => {
                 return (
-                  subject.plus_haut_diplome_date_obtention >
-                  new Date("2020-01-01")
+                  subject.plus_haut_diplome_date_obtention >=
+                  new Date("2020-01-01 00:00:00")
                 )
               },
               steps: [
@@ -180,7 +180,7 @@ function individuBlockFactory(id) {
                     ].includes(subject.plus_haut_diplome_niveau)
                     const ancien_diplome =
                       subject.plus_haut_diplome_date_obtention <
-                      new Date("2021-01-01")
+                      new Date("2021-01-01 00:00:00")
                     return diplome_ok && ancien_diplome
                   },
                   steps: [

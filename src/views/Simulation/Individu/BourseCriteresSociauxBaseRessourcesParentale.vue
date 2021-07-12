@@ -8,7 +8,7 @@
       <!-- We only display this button if the parents are divided -->
       <EnSavoirPlus v-if="isSepares" />
       <label>
-        <input type="number" v-select-on-click v-model.number="value" />
+        <InputNumber v-model="value"></InputNumber>
       </label>
     </div>
     <Actions v-bind:onSubmit="onSubmit" />
@@ -19,9 +19,11 @@
 import Actions from "@/components/Actions"
 import { createIndividuMixin } from "@/mixins/IndividuMixin"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
+import InputNumber from "@/components/InputNumber"
 export default {
   name: "SimulationIndividuBourseCriteresSociauxBaseRessourcesParentale",
   components: {
+    InputNumber,
     Actions,
     EnSavoirPlus,
   },

@@ -35,12 +35,7 @@
       </h2>
       <p v-if="meta.help" v-html="meta.help"></p>
       <label>
-        <input
-          :min="meta.min"
-          type="number"
-          v-select-on-click
-          v-model.number="value"
-        />
+        <InputNumber :min="meta.min" v-model="value"></InputNumber>
       </label>
     </div>
     <YesNoQuestion v-else v-model="value">
@@ -61,10 +56,12 @@ import Individu from "@/lib/Individu"
 import IndividuQuestions from "@/lib/IndividuQuestions"
 import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
+import InputNumber from "@/components/InputNumber"
 
 export default {
   name: "IndividuProperty",
   components: {
+    InputNumber,
     Actions,
     YesNoQuestion,
     EnSavoirPlus,

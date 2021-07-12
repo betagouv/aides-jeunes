@@ -2,11 +2,7 @@
   <form>
     <label class="form__group">
       Temps de travail par semaine
-      <input
-        type="number"
-        v-select-on-click
-        v-model.number="agepi_temps_travail_semaine"
-      />
+      <InputNumber v-model="agepi_temps_travail_semaine"></InputNumber>
     </label>
 
     <div class="text-right">
@@ -18,8 +14,10 @@
 </template>
 
 <script>
+import InputNumber from "@/components/InputNumber"
 export default {
   name: "pole-emploi",
+  components: { InputNumber },
   data() {
     const demandeur = this.$store.state.situation.demandeur
     return {

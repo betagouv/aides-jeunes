@@ -28,12 +28,11 @@
         <h2 class="aj-question"><div v-html="question"></div></h2>
       </label>
       <div :class="meta.wrapperClassName">
-        <input
+        <InputNumber
           :id="fieldName"
-          type="number"
           :name="fieldName"
           v-model="value"
-        />
+        ></InputNumber>
       </div>
     </div>
     <YesNoQuestion v-else v-model="value">
@@ -46,6 +45,7 @@
 <script>
 import Actions from "@/components/Actions"
 import YesNoQuestion from "../../components/YesNoQuestion.vue"
+import InputNumber from "@/components/InputNumber"
 
 const data = {
   _situation: {
@@ -93,6 +93,7 @@ const data = {
 export default {
   name: "SimulationParentProperty",
   components: {
+    InputNumber,
     Actions,
     YesNoQuestion,
   },

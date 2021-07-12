@@ -75,10 +75,9 @@ export default {
           )
           t.months.forEach((m) => {
             updatedRessources[t.meta.id][m.id] =
-              parseFloat(
-                t.amounts[m.id] ||
-                  t.amounts[this.$store.state.dates.thisMonth.id]
-              ) || 0
+              t.amounts[m.id] || t.amounts[m.id] === 0
+                ? t.amounts[m.id]
+                : t.amounts[this.$store.state.dates.thisMonth.id] || 0
           })
 
           const extras = t.meta.extra || []
@@ -99,10 +98,9 @@ export default {
           )
           t.months.forEach((m) => {
             updatedRessources[t.meta.id][m.id] =
-              parseFloat(
-                t.amounts[m.id] ||
-                  t.amounts[this.$store.state.dates.thisMonth.id]
-              ) || 0
+              t.amounts[m.id] || t.amounts[m.id] === 0
+                ? t.amounts[m.id]
+                : t.amounts[this.$store.state.dates.thisMonth.id] || 0
           })
 
           const extras = t.meta.extra || []

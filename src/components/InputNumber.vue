@@ -5,6 +5,7 @@
       v-select-on-click
       v-model.number="result"
       :id="id"
+      :name="name"
       :min="min"
       :max="max"
       :step="step"
@@ -18,7 +19,7 @@
 <script>
 export default {
   name: "InputNumber",
-  props: ["id", "value", "min", "max", "step"],
+  props: ["id", "name", "value", "min", "max", "step"],
   data() {
     return {
       error: false,

@@ -11,6 +11,13 @@ html {
           }
         }
       }
+      .aj-input-date .aj-input-date-component {
+        width: 70px;
+        margin-right: 5px;
+        &.year {
+          width: 100px;
+        }
+      }
     }
   }
 }

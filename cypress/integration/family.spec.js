@@ -46,6 +46,10 @@ context("Full simulation", () => {
   it("accept a student situation", () => {
     steps.home()
     steps.etudiant_public()
+
+    cy.get("div").find('input[type="radio"][value="true"]').first().check()
+    cy.get('button[type="submit"]').click()
+
     steps.zeroEnfants()
     steps.celibataire()
     steps.parentsSepares()
@@ -63,6 +67,8 @@ context("Full simulation", () => {
       .invoke("text")
       .should("contain", "revenu brut global")
     cy.get('input[type="number"]').type("17860.35")
+    steps.submit()
+    cy.get('input[type="number"]').type("1")
     steps.submit()
     steps.checkRadio("false")
     steps.submit()

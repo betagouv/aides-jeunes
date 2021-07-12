@@ -46,6 +46,13 @@ html {
         }
       }
 
+      .aj-selections {
+        display: table;
+        .aj-selection-wrapper label {
+          width: 100%;
+        }
+      }
+
       .aj-selection-wrapper {
         position: relative;
         margin-bottom: 10px;
@@ -231,11 +238,11 @@ html {
 
           &.day,
           &.month {
-            max-width: 80px;
+            width: 80px;
           }
 
           &.year {
-            max-width: 150px;
+            width: 150px;
           }
 
           .aj-date-label {

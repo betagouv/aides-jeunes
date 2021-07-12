@@ -7,8 +7,8 @@ description: |
 conditions:
   - Occuper, à titre de résidence principale, un logement sur le territoire du département de Seine-Saint-Denis.
   - <strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.
-link: https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html
-instructions: https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html#comment_en_formuler_la_demande
+link: https://seinesaintdenis.fr/solidarite/action-sociale/article/fonds-de-solidarite-logement
+instructions: https://seinesaintdenis.fr/solidarite/action-sociale/article/fonds-de-solidarite-logement#Comment-en-formuler-la-demande
 prefix: une
 type: bool
 floorAt: 10

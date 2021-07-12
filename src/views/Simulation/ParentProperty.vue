@@ -4,17 +4,23 @@
       <legend>
         <h2 class="aj-question"><div v-html="question"></div></h2
       ></legend>
-      <div class="aj-selection-wrapper" v-for="item in items" :key="item.value">
-        <input
-          :id="item.value"
-          type="radio"
-          :name="fieldName"
-          :value="item.value"
-          v-model="value"
-        />
-        <label :for="item.value">
-          {{ item.label }}
-        </label>
+      <div class="aj-selections">
+        <div
+          class="aj-selection-wrapper"
+          v-for="item in items"
+          :key="item.value"
+        >
+          <input
+            :id="item.value"
+            type="radio"
+            :name="fieldName"
+            :value="item.value"
+            v-model="value"
+          />
+          <label :for="item.value">
+            {{ item.label }}
+          </label>
+        </div>
       </div>
     </fieldset>
     <div v-else-if="questionType === 'number'">

@@ -46,6 +46,13 @@ html {
         }
       }
 
+      .aj-selections {
+        display: table;
+        .aj-selection-wrapper label {
+          width: 100%;
+        }
+      }
+
       .aj-selection-wrapper {
         position: relative;
         margin-bottom: 10px;

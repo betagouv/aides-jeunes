@@ -4,24 +4,26 @@
       <legend
         ><h2 class="aj-question">{{ logementTypesQuestion.label }}</h2></legend
       >
-      <div
-        v-for="logementType in logementTypesQuestion.responses"
-        class="aj-selection-wrapper"
-        v-bind:key="logementType.value"
-      >
-        <input
-          :id="logementType.value"
-          type="radio"
-          name="logementType"
-          v-model="logementTypesQuestion.selectedValue"
-          v-bind:value="logementType.value"
-        />
-        <label :for="logementType.value">
-          {{ logementType.label | capitalize }}
-          <span v-if="logementType.hint" class="help">{{
-            logementType.hint
-          }}</span>
-        </label>
+      <div class="aj-selections">
+        <div
+          v-for="logementType in logementTypesQuestion.responses"
+          class="aj-selection-wrapper"
+          v-bind:key="logementType.value"
+        >
+          <input
+            :id="logementType.value"
+            type="radio"
+            name="logementType"
+            v-model="logementTypesQuestion.selectedValue"
+            v-bind:value="logementType.value"
+          />
+          <label :for="logementType.value">
+            {{ logementType.label | capitalize }}
+            <span v-if="logementType.hint" class="help">{{
+              logementType.hint
+            }}</span>
+          </label>
+        </div>
       </div>
     </fieldset>
 
@@ -34,22 +36,24 @@
           }}</span></h2
         ></legend
       >
-      <div
-        v-for="response in primoAccedantQuestion.responses"
-        class="aj-selection-wrapper"
-        v-bind:key="response.value"
-      >
-        <input
-          :id="response.label"
-          type="radio"
-          :name="primoAccedantQuestion.label"
-          v-model="primoAccedantQuestion.selectedValue"
-          v-bind:value="response.value"
-        />
-        <label :for="response.label">
-          {{ response.label | capitalize }}
-          <span v-if="response.hint" class="help">{{ response.hint }}</span>
-        </label>
+      <div class="aj-selections">
+        <div
+          v-for="response in primoAccedantQuestion.responses"
+          class="aj-selection-wrapper"
+          v-bind:key="response.value"
+        >
+          <input
+            :id="response.label"
+            type="radio"
+            :name="primoAccedantQuestion.label"
+            v-model="primoAccedantQuestion.selectedValue"
+            v-bind:value="response.value"
+          />
+          <label :for="response.label">
+            {{ response.label | capitalize }}
+            <span v-if="response.hint" class="help">{{ response.hint }}</span>
+          </label>
+        </div>
       </div>
     </fieldset>
 

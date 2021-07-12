@@ -1,24 +1,26 @@
 <template>
-  <div
-    class="container aj-layout-container"
-    :class="{ 'aj-debug-container': debug }"
-  >
-    <div class="aj-main-container">
-      <TitreChapitre />
-      <div v-if="debug" class="aj-debug-switch">
-        <button class="button small" @click="disableDebug"
-          >Quitter le mode debug</button
-        >
+  <div class="aj-simulation">
+    <div
+      class="container aj-layout-container"
+      :class="{ 'aj-debug-container': debug }"
+    >
+      <div class="aj-main-container">
+        <TitreChapitre />
+        <div v-if="debug" class="aj-debug-switch">
+          <button class="button small" @click="disableDebug"
+            >Quitter le mode debug</button
+          >
+        </div>
+        <div v-if="$store.state.message.text" class="notification warning">
+          <div class="message" v-html="$store.state.message.text" />
+        </div>
+        <div class="aj-box-wrapper">
+          <router-view v-bind:key="$route.path" />
+        </div>
       </div>
-      <div v-if="$store.state.message.text" class="notification warning">
-        <div class="message" v-html="$store.state.message.text" />
-      </div>
-      <div class="aj-box-wrapper">
-        <router-view v-bind:key="$route.path" />
-      </div>
+      <Progress v-if="debug" />
+      <Sommaire v-else />
     </div>
-    <Progress v-if="debug" />
-    <Sommaire v-else />
   </div>
 </template>
 

@@ -1,9 +1,10 @@
-label: aide au permis de conduire - Haut de France
+label: Prêt pour le permis de conduire
 institution: haut_de_france
-description: xx
+description: La région Haut-de-France propose un prêt jusqu’à 1 000 euros pour aider les 18-30 ans à passer leur permis de conduire.
 conditions:
-  - xxx
-link: https://www.service-public.fr/particuliers/vosdroits/F20348
+  - être agé de 18 à 30 ans.
+  - être inscrit dans une formation, en CDD dont le terme est inférieur à 6 mois ou en intérim.
+link: https://www.hautsdefrance.fr/aide-au-permis-de-conduire/
 prefix: l’
 type: float
 interestFlag: _interetPermisDeConduire

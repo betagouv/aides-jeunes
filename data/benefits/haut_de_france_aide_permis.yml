@@ -1,0 +1,10 @@
+label: aide au permis de conduire - Haut de France
+institution: haut_de_france
+description: xx
+conditions:
+  - xxx
+link: https://www.service-public.fr/particuliers/vosdroits/F20348
+prefix: l’
+type: float
+interestFlag: _interetPermisDeConduire
+entity: individus

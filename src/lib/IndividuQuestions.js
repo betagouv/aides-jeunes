@@ -51,23 +51,51 @@ export default {
     },
   },
 
-  sortie_region_academique: {
-    question: (component) => {
-      return `${component.getLabel("avoir")} prévu d'étudier
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://www.etudiant.gouv.fr/fr/aide-la-mobilite-en-master-1504#item2"
-        >hors de votre région académique</a
-      >
-      l'an prochain ?`
-    },
+  aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
+    question:
+      "Quel montant mensuel de bourse receviez-vous lors de votre dernière année d'études ?",
+    questionType: "number",
   },
 
   alternant: {
     question: (component) => {
       return `${component.getLabel("être")} en alternance ?`
     },
+  },
+
+  ass_precondition_remplie: {
+    question: (component) => {
+      const date_debut_chomage = component.individu.date_debut_chomage
+      return `${component.getLabel("avoir")} travaillé
+      <abbr
+        title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés."
+        >au moins 5 ans</abbr
+      >
+      entre ${yearsAgo(10, date_debut_chomage)}
+      et ${yearsAgo(0, date_debut_chomage)} ?`
+    },
+  },
+
+  bourse_criteres_sociaux_base_ressources_parentale: {
+    question: (component) => {
+      return `Quel est le revenu brut global ${yearsAgo(
+        2,
+        component.$store.state.dates.today.id,
+        "YYYY"
+      )} figurant sur l’avis fiscal ${yearsAgo(
+        1,
+        component.$store.state.dates.today.id,
+        "YYYY"
+      )} de vos parents ?`
+    },
+    questionType: "number",
+    showMoreInfo: (component) => {
+      return component.$store.state.situation.parents._situation === "separes"
+    },
+  },
+
+  boursier: {
+    question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
   },
 
   annee_etude: {
@@ -140,21 +168,22 @@ export default {
     },
   },
 
-  ass_precondition_remplie: {
+  date_naissance: {
     question: (component) => {
-      const date_debut_chomage = component.individu.date_debut_chomage
-      return `${component.getLabel("avoir")} travaillé
-      <abbr
-        title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés."
-        >au moins 5 ans</abbr
-      >
-      entre ${yearsAgo(10, date_debut_chomage)}
-      et ${yearsAgo(0, date_debut_chomage)} ?`
+      return component.role === "demandeur"
+        ? `Quelle est votre date de naissance ?`
+        : `Quelle est la date de naissance ${component.getLabel(
+            "préposition"
+          )}${component.getLabel("nom")} ?`
     },
+    questionType: "date",
   },
 
-  boursier: {
-    question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
+  date_debut_chomage: {
+    question: (component) => {
+      return `Quand ${component.getLabel("avoir")} commencé à être au chômage ?`
+    },
+    questionType: "date",
   },
 
   enfant_place: {
@@ -234,6 +263,16 @@ export default {
     ],
   },
 
+  plus_haut_diplome_date_obtention: {
+    question: (component) => {
+      return `Quand ${component.getLabel(
+        "avoir"
+      )} obtenu votre plus haut diplôme ?
+      (approximativement)`
+    },
+    questionType: "date",
+  },
+
   plus_haut_diplome_niveau: {
     question: "Quelle le niveau de votre plus haut diplôme ?",
     questionType: "enum",
@@ -299,6 +338,19 @@ export default {
         rel="noopener"
         href="https://www.education.gouv.fr/les-regions-academiques-academies-et-services-departementaux-de-l-education-nationale-6557"
         >hors de votre académie</a
+      >
+      l'an prochain ?`
+    },
+  },
+
+  sortie_region_academique: {
+    question: (component) => {
+      return `${component.getLabel("avoir")} prévu d'étudier
+      <a
+        target="_blank"
+        rel="noopener"
+        href="https://www.etudiant.gouv.fr/fr/aide-la-mobilite-en-master-1504#item2"
+        >hors de votre région académique</a
       >
       l'an prochain ?`
     },
@@ -382,6 +434,12 @@ export default {
     ],
   },
 
+  _dureeMoisEtudesEtranger: {
+    question:
+      "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
+    questionType: "number",
+  },
+
   _interetEtudesEtranger: {
     question:
       "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
@@ -389,11 +447,5 @@ export default {
 
   _interetPermisDeConduire: {
     question: "Prévoyez-vous de passer le permis de conduire ?",
-  },
-
-  aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
-    questionType: "number",
-    question:
-      "Quel montant mensuel de bourse receviez-vous lors de votre dernière année d'études ?",
   },
 }

@@ -6,7 +6,7 @@ var communesMap = require("communes-lonlat").reduce((map, item) => {
 }, {})
 
 const processing = {
-  arrondissements(inseeCode) {
+  hasArrondissements(inseeCode) {
     if (inseeCode) {
       if (inseeCode.startsWith("132")) {
         return 13055
@@ -21,12 +21,12 @@ const processing = {
     return inseeCode
   },
 }
-var origin = communesMap[processing.arrondissements(process.argv[2])]
-var destination = communesMap[processing.arrondissements(process.argv[3])]
+var origin = communesMap[processing.hasArrondissements(process.argv[2])]
+var destination = communesMap[processing.hasArrondissements(process.argv[3])]
 console.log(origin)
 console.log(destination)
 if (origin && destination) {
-  distance = haversine(
+  const distance = haversine(
     origin.centre.coordinates,
     destination.centre.coordinates,
     { format: "[lon,lat]" }

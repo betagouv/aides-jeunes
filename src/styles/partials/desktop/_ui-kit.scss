@@ -317,4 +317,9 @@ html {
       }
     }
   }
+
+  .is-align-vertically-center {
+    display: flex;
+    justify-content: center;
+  }
 }

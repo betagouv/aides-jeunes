@@ -160,6 +160,14 @@ const router = new Router({
                 ),
             },
             {
+              name: "contrat_de_travail_debut",
+              path: "contrat_de_travail_debut",
+              component: () =>
+                import(
+                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/ContratDeTravailDebut.vue"
+                ),
+            },
+            {
               name: "IndividuProperty",
               path: ":fieldName",
               component: () =>
@@ -274,6 +282,14 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Menage/Depcom.vue"
+                ),
+            },
+            {
+              name: "date_entree_logement",
+              path: "date_entree_logement",
+              component: () =>
+                import(
+                  /* webpackChunkName: "individu" */ "./views/Simulation/Menage/DateEntreeLogement.vue"
                 ),
             },
           ],

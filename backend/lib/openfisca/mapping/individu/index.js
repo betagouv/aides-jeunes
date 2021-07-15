@@ -62,6 +62,10 @@ var individuSchema = {
       return computeDistanceCommunes(jeuneCommune, parentCommune)
     },
   },
+  contrat_de_travail_debut: {
+    src: "contrat_de_travail_debut",
+    fn: formatDate,
+  },
   date_arret_de_travail: {
     src: "date_arret_de_travail",
     fn: formatDate,

@@ -15,7 +15,7 @@
       <button
         class="button outline with-icon"
         type="button"
-        v-on:click="window && window.history.back()"
+        v-on:click="goBack"
       >
         <svg
           width="12"
@@ -61,6 +61,12 @@ export default {
     },
     goBack: function () {
       window && window.history.back()
+      this.$matomo &&
+        this.$matomo.trackEvent(
+          "General",
+          "Bouton précédent",
+          this.$route.fullPath
+        )
     },
   },
 }

@@ -8,7 +8,7 @@ link: https://www.epassjeunes-paysdelaloire.fr/#!
 instructions: https://www.epassjeunes-paysdelaloire.fr/#!
 prefix: l’
 type: float
-legend: ''
+legend: ""
 floorAt: 10
 interestFlag: null
 entity: individus

@@ -5,24 +5,22 @@ var communesMap = require("communes-lonlat").reduce((map, item) => {
   return map
 }, {})
 
-const processing = {
-  hasArrondissements(inseeCode) {
-    if (inseeCode) {
-      if (inseeCode.startsWith("132")) {
-        return 13055
-      }
-      if (inseeCode.startsWith("693")) {
-        return 69123
-      }
-      if (inseeCode.startsWith("751")) {
-        return 75056
-      }
+const processArrondissements = (inseeCode) => {
+  if (inseeCode) {
+    if (inseeCode.startsWith("132")) {
+      return 13055
     }
-    return inseeCode
-  },
+    if (inseeCode.startsWith("693")) {
+      return 69123
+    }
+    if (inseeCode.startsWith("751")) {
+      return 75056
+    }
+  }
+  return inseeCode
 }
-var origin = communesMap[processing.hasArrondissements(process.argv[2])]
-var destination = communesMap[processing.hasArrondissements(process.argv[3])]
+var origin = communesMap[processArrondissements(process.argv[2])]
+var destination = communesMap[processArrondissements(process.argv[3])]
 console.log(origin)
 console.log(destination)
 if (origin && destination) {

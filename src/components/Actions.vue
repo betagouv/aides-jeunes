@@ -63,7 +63,7 @@ export default {
       window && window.history.back()
       this.$matomo &&
         this.$matomo.trackEvent(
-          "General",
+          "Parcours",
           "Bouton précédent",
           this.$route.fullPath
         )

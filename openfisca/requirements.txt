@@ -4,5 +4,5 @@ pytest == 5.3.5
 git+https://github.com/betagouv/openfisca-france.git@prd_aj_2021_07_08#egg=openfisca-France
 Openfisca-Core[web-api]==35.3.6
 # git+https://github.com/mes-aides/openfisca-core.git@fix-source-bug#egg=Openfisca-Core[web-api]
-git+https://github.com/openfisca/openfisca-france-local.git@35bd061#egg=openfisca-France-Local[excel-reader]
+git+https://github.com/openfisca/openfisca-france-local.git@crij_pdll#egg=openfisca-France-Local[excel-reader]
 git+https://github.com/openfisca/openfisca-paris.git@1875e12#egg=openfisca-paris

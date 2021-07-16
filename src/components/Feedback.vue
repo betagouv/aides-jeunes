@@ -75,7 +75,7 @@
             </a>
           </li>
           <li>
-            <router-link :to="{ path: '/resultats/attendu' }"
+            <router-link :to="{ name: 'resultatsAttendus' }"
               >Montants inattendus
             </router-link>
           </li>

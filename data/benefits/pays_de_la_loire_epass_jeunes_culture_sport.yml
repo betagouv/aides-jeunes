@@ -1,15 +1,14 @@
 label: e.pass jeunes Culture Sport
-institution: grand_est
+institution: region_pays_de_la_loire
 description: "L'e.pass Culture Sport de la Région Pays de la Loire représente
-  des avantages dématérialisés. Pour un coût de 8 € vous bénéficiez de plus de
-  200 € d'avantages auprès de 6 000 partenaires à travers les offres suivantes :
-  cinéma ; livres ; visites culturelles, scientifiques et techniques liées au
-  patrimoine ; événements sportifs ; pratique sportive ou artistique
-  ;  spectacles ; engagement citoyen (Bafa, PSC1...) ou des chantiers de jeunes
-  bénévoles et assister à un festival partenaire gratuitement."
+  des avantages dématérialisés. Pour un coût de 8 € vous bénéficiez de plus de
+  200 € d'avantages auprès de 6 000 partenaires : des entrées gatuites et des réductions
+  tout au long de l'année pour des activités et évènements."
 link: https://www.epassjeunes-paysdelaloire.fr/#!
+instructions: https://www.epassjeunes-paysdelaloire.fr/#!
 prefix: l’
 type: float
+legend: ''
 floorAt: 10
 interestFlag: null
 entity: individus

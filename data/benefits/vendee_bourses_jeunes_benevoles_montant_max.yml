@@ -1,5 +1,5 @@
 label: Bourses aux jeunes bénévoles vendéens
-institution: grand_est
+institution: departement_vendee
 description: Le Département de la Vendée attribue des bourses d'études ou pour
   passer le permis de conduire aux jeunes de 16-25 ans qui sont engagés dans des
   actions bénévoles.
@@ -13,6 +13,7 @@ link: https://www.benevolat.vendee.fr/Le-plan-Vendee-Double-Coeur/La-bourse-aux-
 form: https://benevolat.vendee.fr/content/download/3539930/114782465/file/formulaire_bourse2021.pdf
 prefix: les
 type: float
+legend: maximum
 floorAt: 10
 interestFlag: null
 entity: individus

@@ -5,7 +5,6 @@ conditions:
   - être agé de 18 à 30 ans.
   - être inscrit dans une formation, en CDD dont le terme est inférieur à 6 mois ou en intérim.
 link: https://www.hautsdefrance.fr/aide-au-permis-de-conduire/
-prefix: l’
 type: float
 interestFlag: _interetPermisDeConduire
 entity: individus

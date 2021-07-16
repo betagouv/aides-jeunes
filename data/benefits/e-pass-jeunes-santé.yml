@@ -1,0 +1,10 @@
+label: e.pass jeunes Santé
+institution: grand_est
+description: L'e.pass jeunes Santé de la Région des Pays de la Loire vous permet
+  d'accéder à un parcours de soin gratuit et anonyme.
+link: https://www.epassjeunes-paysdelaloire.fr/#!
+prefix: l’
+type: bool
+floorAt: 10
+interestFlag: null
+entity: individus

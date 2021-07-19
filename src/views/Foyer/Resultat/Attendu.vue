@@ -192,8 +192,6 @@
 <script>
 import filter from "lodash/filter"
 import sortBy from "lodash/sortBy"
-import flow from "lodash/flow"
-import uniq from "lodash/uniq"
 
 import axios from "axios"
 import Institution from "@/lib/Institution"
@@ -263,41 +261,6 @@ export default {
     expectedResults() {
       return filter(this.selection, (i) => i.ref && i.expected !== null)
     },
-    extensionAndRepository() {
-      // let extensions = chain(this.selection).map(i => i.ref)
-      //     .filter(aid => aid && aid.level == 'partenairesLocaux')
-      //     .map(aid => aid.provider.repository || aid.provider.id)
-      //     .uniq()
-      //     .value()
-      let extensions = flow(
-        (values) => values.map((i) => i.ref),
-        filter((aid) => {
-          aid.provider && aid.level == "partenairesLocaux"
-        }),
-        (values) =>
-          values.map((aid) => aid.provider.repository || aid.provider.id),
-        uniq
-      )(this.selection)
-      if (!extensions.length) {
-        return {
-          repository: "openfisca-france",
-        }
-      }
-
-      if (extensions.length > 1) {
-        let message =
-          "Vous avez spécifié des prestations de plusieurs extensions. Dans un test donné, vous ne pouvez spécifier que des prestations nationales et celle d‘une seule extension. Pour plus d‘information, contactez-nous."
-        return {
-          error: message,
-        }
-      }
-
-      let dest = "openfisca-" + extensions[0]
-      return {
-        extension: dest,
-        repository: dest,
-      }
-    },
     testMetadata: function () {
       let outputVariables = this.expectedResults.reduce(function (
         results,
@@ -309,7 +272,6 @@ export default {
       {})
 
       return {
-        extension: this.extensionAndRepository.extension,
         name: this.shortDescription,
         description: this.details,
         output: outputVariables,
@@ -325,6 +287,9 @@ export default {
     },
     filename() {
       return this.$store.state.situation._id + ".yml"
+    },
+    sendMail() {
+      return sendMontantsAttendus(this.$store.state.situation._id)
     },
   },
   methods: {
@@ -400,9 +365,6 @@ export default {
           this.submitting = false
           this.trackMontantAttendu("Sauvegarde des données")
         })
-    },
-    sendMail() {
-      return sendMontantsAttendus(this.$store.state.situation._id)
     },
   },
 }

@@ -25,7 +25,6 @@ function determineCustomizationIds(testCase, currentPeriod) {
       metropole && `M${metropole.code}`,
     ]
   }
-
   return undefined
 }
 

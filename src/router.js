@@ -327,7 +327,7 @@ const router = new Router({
           path: "resultats/attendus",
           component: () =>
             import(
-              /* webpackChunkName: "resultat" */ "./views/Foyer/Resultat/Attendu.vue"
+              /* webpackChunkName: "attendu" */ "./views/Foyer/Resultat/Attendu.vue"
             ),
           meta: { title: "Résultats attendus" },
         },

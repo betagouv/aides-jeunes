@@ -58,6 +58,11 @@
       <div v-if="showExpertLinks" class="aj-feedback-partenaire">
         Je suis partenaire&nbsp;:
         <ul>
+          <li>
+            <router-link :to="{ name: 'resultatsAttendus' }"
+              >Indiquez les résultats attendus pour cette situation
+            </router-link>
+          </li>
           <li v-if="openfiscaTracerURL">
             <a
               v-analytics="{ category: 'Tracer' }"
@@ -73,11 +78,6 @@
               :href="openfiscaAxeURL"
               >Analysez l'évolution des aides en fonction des ressources
             </a>
-          </li>
-          <li>
-            <router-link :to="{ name: 'resultatsAttendus' }"
-              >Montants Attendus
-            </router-link>
           </li>
         </ul>
       </div>

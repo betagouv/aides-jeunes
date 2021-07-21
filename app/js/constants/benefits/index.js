@@ -184,15 +184,15 @@ var droitsDescription = {
             },
           },
           customization: {
-            "D93-SSD": {
+            D93: {
               link: "https://www.seine-saint-denis.fr/IMG/pdf/guide_rsa_a5_8p-2014.pdf",
             },
-            "D75-PARIS": {
+            D75: {
               form: undefined, // Prevent default form recycling
               teleservice:
                 "https://www.paris.fr/rsa#ou-et-comment-faire-une-demande-de-rsa_6",
             },
-            "M69-LYON": {
+            M200046977: {
               provider: {
                 imgSrc: "logo_lyon_metropole.png",
               },
@@ -476,6 +476,16 @@ var droitsDescription = {
         },
       },
     },
+    departements_et_metropole: {
+      imgSrc: "logo_etat_francais.png",
+      repository: "france-local",
+      label: "Départements et métropoles de France",
+      interactionWithNationalPrestationsHandled: true,
+      prefix: "les",
+      prestations: {
+        fsl_eligibilite: require("./fsl"),
+      },
+    },
   },
   partenairesLocaux: {
     paris: require("./paris"),
@@ -615,7 +625,6 @@ var droitsDescription = {
         },
       },
     },
-    ...require("./fonds_solidarite_logement"),
   },
 }
 

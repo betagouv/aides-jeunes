@@ -6,7 +6,7 @@ var some = require("lodash/some")
 var filter = require("lodash/filter")
 
 var moment = require("moment")
-var determineCustomizationId = require("./customization")
+var determineCustomizationIds = require("./customization")
 
 /**
  * OpenFisca test cases separate ressources between two entities: individuals and families.
@@ -50,7 +50,7 @@ function round(amount, aide) {
 
 function computeAides(situation, openfiscaResponse, showPrivate) {
   var period = moment(situation.dateDeValeur).format("YYYY-MM")
-  var customizationId = determineCustomizationId(openfiscaResponse, period)
+  var customizationIds = determineCustomizationIds(openfiscaResponse, period)
   var computedRessources = normalizeOpenfiscaRessources(openfiscaResponse)
 
   var result = {
@@ -105,9 +105,10 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
           provider: aidesProvider,
           providerId: aidesProviderId,
         },
-        customizationId &&
+        customizationIds &&
           aide.customization &&
-          aide.customization[customizationId]
+          ((customizationIds[1] && aide.customization[customizationIds[1]]) ||
+            (customizationIds[0] && aide.customization[customizationIds[0]]))
       )
     )
   })

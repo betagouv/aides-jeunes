@@ -158,8 +158,8 @@ function computeDistanceCommunes(origin, destination) {
   return 0
 }
 
-exports.findCommuneByInseeCode = findCommuneByInseeCode
 exports.computeAides = computeAides
 exports.computeDistanceCommunes = computeDistanceCommunes
-exports.round = round
 exports.datesGenerator = require("./dates").generator
+exports.findCommuneByInseeCode = findCommuneByInseeCode
+exports.round = round

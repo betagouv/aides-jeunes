@@ -197,6 +197,7 @@ import axios from "axios"
 import Institution from "@/lib/Institution"
 import ResultatsMixin from "@/mixins/Resultats"
 import { sendMontantsAttendus } from "@/plugins/mails"
+import { capitalize } from "../../../lib/Utils"
 
 export default {
   name: "attendu",
@@ -210,6 +211,7 @@ export default {
           { id: benefitId, provider: { ...provider, id: providerId }, level },
           benefit
         )
+        benefit.label = capitalize(benefits.label)
         if (b.label === "Tarification solidaire transports") {
           b.label = `${b.label} - ${provider.label}`
         }

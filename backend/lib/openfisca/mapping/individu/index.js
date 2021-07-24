@@ -1,4 +1,3 @@
-var haversine = require("haversine")
 var moment = require("moment")
 var isNaN = require("lodash/isNaN")
 var forEach = require("lodash/forEach")
@@ -8,10 +7,10 @@ var isString = require("lodash/isString")
 
 var individuRessource = require("./ressources")
 var pastResourcesProxy = require("./pastResourcesProxy")
-var communesMap = require("communes-lonlat").reduce((map, item) => {
-  map[item.code] = item
-  return map
-}, {})
+const {
+  computeDistanceCommunes,
+  findCommuneByInseeCode,
+} = require("../../../mes-aides")
 
 function formatDate(date) {
   return date && moment(date).format("YYYY-MM-DD")
@@ -50,18 +49,11 @@ var individuSchema = {
         return 260
       }
 
-      var jeuneCommune = communesMap[situation.menage.depcom]
-      var parentCommune =
-        communesMap[individu._bourseCriteresSociauxCommuneDomicileFamilial]
-      if (jeuneCommune && parentCommune) {
-        return haversine(
-          jeuneCommune.centre.coordinates,
-          parentCommune.centre.coordinates,
-          { format: "[lon,lat]" }
-        )
-      } else {
-        return 0
-      }
+      var jeuneCommune = findCommuneByInseeCode(situation.menage.depcom)
+      var parentCommune = findCommuneByInseeCode(
+        individu._bourseCriteresSociauxCommuneDomicileFamilial
+      )
+      return computeDistanceCommunes(jeuneCommune, parentCommune)
     },
   },
   date_arret_de_travail: {

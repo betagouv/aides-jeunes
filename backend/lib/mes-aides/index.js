@@ -6,6 +6,7 @@ var some = require("lodash/some")
 var filter = require("lodash/filter")
 
 var moment = require("moment")
+var haversine = require("haversine")
 var determineCustomizationIds = require("./customization")
 
 /**
@@ -121,6 +122,44 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
   return result
 }
 
+const processArrondissements = (inseeCode) => {
+  if (inseeCode) {
+    if (inseeCode.startsWith("132")) {
+      return 13055
+    }
+    if (inseeCode.startsWith("693")) {
+      return 69123
+    }
+    if (inseeCode.startsWith("751")) {
+      return 75056
+    }
+  }
+  return inseeCode
+}
+
+const communes = require("communes-lonlat").reduce((map, item) => {
+  map[item.code] = item
+  return map
+}, {})
+
+function findCommuneByInseeCode(inseeCode) {
+  inseeCode = processArrondissements(inseeCode)
+  return communes[inseeCode]
+}
+
+function computeDistanceCommunes(origin, destination) {
+  if (origin && destination) {
+    return haversine(
+      origin.centre.coordinates,
+      destination.centre.coordinates,
+      { format: "[lon,lat]" }
+    )
+  }
+  return 0
+}
+
+exports.findCommuneByInseeCode = findCommuneByInseeCode
 exports.computeAides = computeAides
+exports.computeDistanceCommunes = computeDistanceCommunes
 exports.round = round
 exports.datesGenerator = require("./dates").generator

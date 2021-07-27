@@ -324,7 +324,7 @@ export function hasPrimeActivite(position) {
   const name = /prime d’activité/
   const id = "ppa"
   const description = /revenus/
-  cy.get("#print-disclaimer", { timeout: 15000 })
+  cy.get("#print-disclaimer", { timeout: 20000 })
     .invoke("text")
     .should("contain", "engagement")
   cy.get(
@@ -360,7 +360,7 @@ export function hasAAH() {
   const name = /allocation aux adultes handicapés/
   const id = "aah"
   const description = "AAH"
-  cy.get("#print-disclaimer", { timeout: 15000 })
+  cy.get("#print-disclaimer", { timeout: 20000 })
     .invoke("text")
     .should("contain", "engagement")
   cy.get(
@@ -396,7 +396,7 @@ export function hasLogementSocial() {
   const name = /logement social/
   const id = "logement"
   const description = /revenus/
-  cy.get("#print-disclaimer", { timeout: 15000 })
+  cy.get("#print-disclaimer", { timeout: 20000 })
     .invoke("text")
     .should("contain", "engagement")
   cy.get(
@@ -427,7 +427,7 @@ export function hasBourseCriteresSociaux(position) {
   const name = /bourse sur critères sociaux/
   const id = "bourse_criteres_sociaux"
   const description = /BCS/
-  cy.get("#print-disclaimer", { timeout: 15000 })
+  cy.get("#print-disclaimer", { timeout: 20000 })
     .invoke("text")
     .should("contain", "engagement")
   cy.get(

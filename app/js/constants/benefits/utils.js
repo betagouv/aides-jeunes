@@ -24,6 +24,7 @@ function transformInstitutions(collection) {
         data.testing_benefits || []
       ),
       national: data.national,
+      repository: data.repository,
     }
     result[data.slug] = item
     return result

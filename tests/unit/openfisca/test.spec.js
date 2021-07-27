@@ -3,6 +3,7 @@ var { values } = require("lodash")
 var Promise = require("bluebird")
 var fs = Promise.promisifyAll(require("fs"))
 var subject = require("../../../backend/lib/openfisca/test")
+var resources = require("../../../src/constants/resources")
 var tmp = require("tmp")
 
 var details = {
@@ -96,7 +97,6 @@ describe("openfisca generateYAMLTest", function () {
   function validateYAMLRun(payload, extension) {
     return runOpenFiscaTest(payload, extension)
       .catch(function (failure) {
-        console.log(payload)
         expect(failure).toBeFalsy()
 
         return failure
@@ -117,6 +117,25 @@ describe("openfisca generateYAMLTest", function () {
         var yamlContent = subject.generateYAMLTest(info, situation)
 
         return validateYAMLRun(yamlContent)
+      })
+
+      describe("with all possible resources", function() {
+        it("passes OpenFisca test without extension", function () {
+          var info = Object.assign({}, details, { output: { rsa: 0 } })
+          var resourceSituation = Object.assign({}, situation, {
+            demandeur: Object.assign({}, situation.demandeur)
+          })
+          resources.ressourceTypes.forEach(resource => {
+            const period = resource.isMontantAnnuel ? currentPeriod.slice(0, 4) : currentPeriod
+            resourceSituation.demandeur[resource.id] = {
+              [period]: 0
+            }
+          })
+
+          var yamlContent = subject.generateYAMLTest(info, resourceSituation)
+
+          return validateYAMLRun(yamlContent)
+        })
       })
 
       Object.keys(subject.EXTENSION_VARIABLES).forEach(function (

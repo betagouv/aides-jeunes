@@ -10,7 +10,7 @@ var pastResourcesProxy = require("./pastResourcesProxy")
 const {
   computeDistanceCommunes,
   findCommuneByInseeCode,
-} = require("../../../mes-aides")
+} = require("../../../mes-aides/distance")
 
 function formatDate(date) {
   return date && moment(date).format("YYYY-MM-DD")

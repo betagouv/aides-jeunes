@@ -315,14 +315,6 @@ const router = new Router({
           },
         },
         {
-          name: "resultatsDetails",
-          path: "resultats/:droitId",
-          component: () =>
-            import(
-              /* webpackChunkName: "resultats" */ "./views/Simulation/ResultatsDetail.vue"
-            ),
-        },
-        {
           name: "resultatsAttendus",
           path: "resultats/attendus",
           component: () =>
@@ -330,6 +322,14 @@ const router = new Router({
               /* webpackChunkName: "attendu" */ "./views/Foyer/Resultat/Attendu.vue"
             ),
           meta: { title: "Résultats attendus" },
+        },
+        {
+          name: "resultatsDetails",
+          path: "resultats/:droitId",
+          component: () =>
+            import(
+              /* webpackChunkName: "resultats" */ "./views/Simulation/ResultatsDetail.vue"
+            ),
         },
         {
           path: ":id/:property",

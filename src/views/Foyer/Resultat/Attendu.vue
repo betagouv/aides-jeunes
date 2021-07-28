@@ -158,7 +158,7 @@
           <p>
             Vous pouvez nous aider à améliorer le simulateur en nous envoyant
             par mail à
-            <a v-mail="this.sendMail()">aides-jeunes@beta.gouv.fr</a> avec :
+            <a v-mail="sendMail">aides-jeunes@beta.gouv.fr</a> avec :
           </p>
           <ul>
             <li>
@@ -211,7 +211,7 @@ export default {
           { id: benefitId, provider: { ...provider, id: providerId }, level },
           benefit
         )
-        benefit.label = capitalize(benefits.label)
+        benefit.label = capitalize(benefit.label)
         if (b.label === "Tarification solidaire transports") {
           b.label = `${b.label} - ${provider.label}`
         }

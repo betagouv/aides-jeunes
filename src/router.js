@@ -315,6 +315,15 @@ const router = new Router({
           },
         },
         {
+          name: "resultatsAttendus",
+          path: "resultats/attendus",
+          component: () =>
+            import(
+              /* webpackChunkName: "attendu" */ "./views/Simulation/Resultats/Attendu.vue"
+            ),
+          meta: { title: "Résultats attendus" },
+        },
+        {
           name: "resultatsDetails",
           path: "resultats/:droitId",
           component: () =>
@@ -356,14 +365,6 @@ const router = new Router({
           meta: {
             title: "Question Estime Pôle Emploi",
           },
-        },
-        {
-          path: "resultat/attendu",
-          component: () =>
-            import(
-              /* webpackChunkName: "resultat" */ "./views/Foyer/Resultat/Attendu.vue"
-            ),
-          meta: { title: "Résultats attendus" },
         },
         {
           name: "resultat/inattendu",

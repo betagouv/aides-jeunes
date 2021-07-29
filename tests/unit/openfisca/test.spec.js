@@ -119,16 +119,18 @@ describe("openfisca generateYAMLTest", function () {
         return validateYAMLRun(yamlContent)
       })
 
-      describe("with all possible resources", function() {
+      describe("with all possible resources", function () {
         it("passes OpenFisca test without extension", function () {
           var info = Object.assign({}, details, { output: { rsa: 0 } })
           var resourceSituation = Object.assign({}, situation, {
-            demandeur: Object.assign({}, situation.demandeur)
+            demandeur: Object.assign({}, situation.demandeur),
           })
-          resources.ressourceTypes.forEach(resource => {
-            const period = resource.isMontantAnnuel ? currentPeriod.slice(0, 4) : currentPeriod
+          resources.ressourceTypes.forEach((resource) => {
+            const period = resource.isMontantAnnuel
+              ? currentPeriod.slice(0, 4)
+              : currentPeriod
             resourceSituation.demandeur[resource.id] = {
-              [period]: 0
+              [period]: 0,
             }
           })
 

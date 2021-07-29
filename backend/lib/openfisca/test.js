@@ -40,9 +40,7 @@ function toYAML(test) {
 
 var EXTENSION_VARIABLES = {
   "openfisca-paris": {
-    familles: [
-      "parisien",
-    ],
+    familles: ["parisien"],
     individus: [],
   },
   "openfisca-france-local": {
@@ -54,7 +52,7 @@ var EXTENSION_VARIABLES = {
 
 benefits.forEach((benefit, benefitId, institution) => {
   if (institution.repository) {
-    const repository = 'openfisca-' + institution.repository
+    const repository = "openfisca-" + institution.repository
     const entity = benefit.entity
 
     if (!EXTENSION_VARIABLES[repository][entity]) {
@@ -64,7 +62,6 @@ benefits.forEach((benefit, benefitId, institution) => {
     EXTENSION_VARIABLES[repository][entity].push(benefitId)
   }
 })
-
 
 function prepareTestSituationForSpecificExtension(situation, extension) {
   forEach(EXTENSION_VARIABLES, function (specificVariables, extensionName) {

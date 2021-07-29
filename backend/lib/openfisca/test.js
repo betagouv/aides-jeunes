@@ -3,6 +3,7 @@ var mapping = require("./mapping")
 var forEach = require("lodash/forEach")
 var assign = require("lodash/assign")
 var pick = require("lodash/pick")
+var benefits = require("../../../app/js/constants/benefits/back")
 
 function toStringOf(obj) {
   return obj.toString()
@@ -38,34 +39,29 @@ function toYAML(test) {
 }
 
 var EXTENSION_VARIABLES = {
-  "openfisca-brestmetropole": {
-    individus: ["brest_metropole_transport"],
-  },
   "openfisca-paris": {
-    familles: [
-      "parisien",
-      "paris_complement_sante",
-      "paris_energie_familles",
-      "paris_logement_plfm",
-      "paris_logement_aspeh",
-      "paris_logement",
-      "paris_logement_psol",
-      "paris_forfait_familles",
-      "paris_logement_familles",
-    ],
-    individus: ["paris_pass_access", "paris_pass_seniors"],
-  },
-  "openfisca-rennesmetropole": {
-    individus: ["rennes_metropole_transport"],
+    familles: ["parisien"],
+    individus: [],
   },
   "openfisca-france-local": {
-    familles: ["alfortville_noel_enfants"],
-    individus: [
-      "cotes_d_armor_fonds_solidarite_logement_energie_eligibilite",
-      "garantie_jeunes",
-    ],
+    familles: [],
+    individus: [],
+    menages: [],
   },
 }
+
+benefits.forEach((benefit, benefitId, institution) => {
+  if (institution.repository) {
+    const repository = "openfisca-" + institution.repository
+    const entity = benefit.entity
+
+    if (!EXTENSION_VARIABLES[repository][entity]) {
+      throw `Missing mapping for ${benefitId} in ${repository}/${entity}.`
+    }
+
+    EXTENSION_VARIABLES[repository][entity].push(benefitId)
+  }
+})
 
 function prepareTestSituationForSpecificExtension(situation, extension) {
   forEach(EXTENSION_VARIABLES, function (specificVariables, extensionName) {

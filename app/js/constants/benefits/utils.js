@@ -24,7 +24,7 @@ function transformInstitutions(collection) {
         data.testing_benefits || []
       ),
       national: data.national,
-      repository: data.repository,
+      repository: data.repository || 'france-local',
     }
     result[data.slug] = item
     return result

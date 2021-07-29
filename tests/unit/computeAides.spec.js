@@ -107,7 +107,9 @@ describe("computeAides", function () {
 
   describe("computeAides of true boolean values", function () {
     beforeEach(function () {
-      openfiscaResult.individus.demandeur.logement_social_eligible = { "2014-11": true }
+      openfiscaResult.individus.demandeur.logement_social_eligible = {
+        "2014-11": true,
+      }
       droits = compute(situation, openfiscaResult, true)
     })
 

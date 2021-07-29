@@ -542,7 +542,6 @@ var droitsDescription = {
       label: "Alfortville",
       interactionWithNationalPrestationsHandled: true,
       prefix: "d’",
-      repository: "france-local",
       prestations: {
         alfortville_noel_enfants: {
           isMontantAnnuel: true,
@@ -570,7 +569,6 @@ var droitsDescription = {
       label: "Côtes d'Armor",
       interactionWithNationalPrestationsHandled: true,
       prefix: "des",
-      repository: "france-local",
       prestations: {
         cotes_d_armor_fonds_solidarite_logement_energie_eligibilite: {
           label:
@@ -595,7 +593,6 @@ var droitsDescription = {
       label: "Nouvelle Aquitaine",
       interactionWithNationalPrestationsHandled: true,
       prefix: "de",
-      repository: "france-local",
       prestations: {
         nouvelle_aquitaine_carte_solidaire: {
           label: "carte Solidaire pour les transports",
@@ -616,7 +613,6 @@ var droitsDescription = {
       label: "Toulouse Métropole",
       interactionWithNationalPrestationsHandled: true,
       prefix: "de",
-      repository: "france-local",
       prestations: {
         tisseo_transport_reduction: {
           label: "Réduction sur les titres de transports",

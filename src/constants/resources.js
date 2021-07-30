@@ -384,27 +384,52 @@ let ressourceTypes = [
     prefix: "des",
   },
   {
-    id: "tns_micro_entreprise_chiffre_affaires",
-    label: "Via une micro-entreprise",
+    id: "rpns_micro_entreprise_CA_bic_vente_imp",
+    label: "Via une micro-entreprise (Achat/revente ou fourniture de logement)",
     category: "rpns",
     isMontantAnnuel: true,
-    extra: [{ id: "tns_micro_entreprise_type_activite", default: "bic" }],
   },
   {
-    id: "tns_auto_entrepreneur_chiffre_affaires",
-    label: "En tant qu'auto-entrepreneur",
+    id: "rpns_micro_entreprise_CA_bic_service_imp",
+    label: "Via une micro-entreprise (Autre activité relevant des BIC)",
+    category: "rpns",
+    isMontantAnnuel: true,
+  },
+  {
+    id: "rpns_micro_entreprise_CA_bnc_imp",
+    label:
+      "Via une micro-entreprise (Activité libérale et/ou intellectuelle (BNC))",
+    category: "rpns",
+    isMontantAnnuel: true,
+  },
+  {
+    id: "rpns_auto_entrepreneur_CA_achat_revente",
+    label:
+      "En tant qu'auto-entrepreneur (Achat/revente ou fourniture de logement)",
     category: "rpns",
     interuptionQuestionLabel: "un chiffre d’affaires non nul",
-    extra: [{ id: "tns_auto_entrepreneur_type_activite", default: "bic" }],
   },
   {
-    id: "tns_benefice_exploitant_agricole",
+    id: "rpns_auto_entrepreneur_CA_bic",
+    label: "En tant qu'auto-entrepreneur (Autre activité relevant des BIC)",
+    category: "rpns",
+    interuptionQuestionLabel: "un chiffre d’affaires non nul",
+  },
+  {
+    id: "rpns_auto_entrepreneur_CA_bnc",
+    label:
+      "En tant qu'auto-entrepreneur (Activité libérale et/ou intellectuelle (BNC))",
+    category: "rpns",
+    interuptionQuestionLabel: "un chiffre d’affaires non nul",
+  },
+  {
+    id: "rpns_benefice_exploitant_agricole",
     label: "En tant qu'exploitant agricole",
     category: "rpns",
     isMontantAnnuel: true,
   },
   {
-    id: "tns_autres_revenus",
+    id: "rpns_autres_revenus",
     label: "En profession libérale (entrepreneur)",
     category: "rpns",
     isMontantAnnuel: true,

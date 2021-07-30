@@ -125,10 +125,6 @@ var individu = Object.assign(
       type: String,
       enum: ["achat_revente", "bic", "bnc"],
     },
-    tns_micro_entreprise_type_activite: {
-      type: String,
-      enum: ["achat_revente", "bic", "bnc"],
-    },
   },
   allRessources
 )

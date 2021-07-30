@@ -20,6 +20,7 @@ function sendToOpenfisca(endpoint, transform) {
         stack: e.stack,
       })
     }
+
     axios
       .post(config.openfiscaURL + "/" + endpoint, request)
       .then((response) => response.data)

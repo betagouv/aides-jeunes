@@ -117,10 +117,6 @@ var individu = Object.assign(
     },
     statut_marital: { type: String, enum: statutMaritalValues },
     taux_incapacite: Number,
-    tns_auto_entrepreneur_type_activite: {
-      type: String,
-      enum: ["achat_revente", "bic", "bnc"],
-    },
     tns_autres_revenus_type_activite: {
       type: String,
       enum: ["achat_revente", "bic", "bnc"],

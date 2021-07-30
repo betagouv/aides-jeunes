@@ -11,7 +11,7 @@ function getPeriodsForCurrentYear(dates, ressourceType) {
     periodKeys.push(dates.lastYear)
     return periodKeys
   }
-  if (ressourceType.id == "rpns_auto_entrepreneur_chiffre_affaires") {
+  if (ressourceType.id.startsWith("rpns_auto_entrepreneur_CA")) {
     periodKeys.push(dates.lastYear)
     // periodKeys = periodKeys.concat(_.map(dates.last3Months, 'id'));
     dates.last3Months.forEach((m) => periodKeys.push(m))

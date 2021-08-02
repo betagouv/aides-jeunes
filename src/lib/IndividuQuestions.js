@@ -331,6 +331,21 @@ export default {
     question: "Avez-vous prévu de continuer vos études l'an prochain ?",
   },
 
+  _contrat_alternant: {
+    question: "Quel type de contrat régit votre alternance ?",
+    questionType: "enum",
+    items: [
+      {
+        value: "apprenti",
+        label: "Apprenti",
+      },
+      {
+        value: "professionnalisation",
+        label: "Professionnalisation",
+      },
+    ],
+  },
+
   _interetEtudesEtranger: {
     question:
       "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",

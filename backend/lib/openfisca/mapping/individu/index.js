@@ -17,6 +17,12 @@ function formatDate(date) {
 }
 
 var individuSchema = {
+  apprenti: {
+    src: "_contrat_alternant",
+    fn: function (contratAlternant) {
+      return contratAlternant === "apprenti"
+    },
+  },
   date_naissance: {
     src: "date_naissance",
     fn: formatDate,
@@ -95,6 +101,12 @@ var individuSchema = {
   plus_haut_diplome_date_obtention: {
     src: "plus_haut_diplome_date_obtention",
     fn: formatDate,
+  },
+  professionnalisation: {
+    src: "_contrat_alternant",
+    fn: function (contratAlternant) {
+      return contratAlternant === "professionnalisation"
+    },
   },
 }
 

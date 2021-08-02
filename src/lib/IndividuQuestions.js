@@ -241,7 +241,7 @@ export default {
       },
       {
         value: "non_renseigne",
-        label: "Autre",
+        label: "Aucun",
       },
     ],
   },

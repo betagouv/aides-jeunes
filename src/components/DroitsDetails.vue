@@ -126,6 +126,23 @@
             class="aj-droit-content-buttons-cta"
             v-bind:benefit="droit"
           ></BenefitCta>
+
+          <a
+            v-if="droit.msa"
+            target="_blank"
+            rel="noopener"
+            class="aj-droit-pro-agricole"
+            href="http://www.msa.fr/lfr/web/msa/espace-prive"
+            v-analytics="{
+              name: droit.label,
+              action: 'msa',
+              category: 'General',
+            }"
+          >
+            <img src="@/assets/images/doigt.svg" /> Démarches pour les
+            professions agricoles
+          </a>
+
           <div class="is-align-vertically-center">
             <a
               class="text-center"
@@ -141,22 +158,6 @@
             >
           </div>
         </div>
-
-        <a
-          v-if="droit.msa"
-          target="_blank"
-          rel="noopener"
-          class="aj-droit-pro-agricole"
-          href="http://www.msa.fr/lfr/web/msa/espace-prive"
-          v-analytics="{
-            name: droit.label,
-            action: 'msa',
-            category: 'General',
-          }"
-        >
-          <img src="@/assets/images/doigt.svg" /> Démarches pour les professions
-          agricoles
-        </a>
       </div>
     </div>
   </div>

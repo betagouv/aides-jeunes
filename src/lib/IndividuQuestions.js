@@ -332,16 +332,16 @@ export default {
   },
 
   _contrat_alternant: {
-    question: "Quel type de contrat régit votre alternance ?",
+    question: "Êtes-vous ?",
     questionType: "enum",
     items: [
       {
         value: "apprenti",
-        label: "Apprenti",
+        label: "En apprentissage",
       },
       {
         value: "professionnalisation",
-        label: "Professionnalisation",
+        label: "En contrat de professionnalisation",
       },
     ],
   },

@@ -130,10 +130,12 @@
             <a
               class="text-center"
               @click="alertBrokenLink()"
-              v-if="showBrokenLinkButton"
+              v-if="brokenLinkButtonState === 'show'"
               >Lien(s) invalide(s) ? Cliquer ici pour nous notifier !</a
             >
-            <span class="text-center" v-else-if="showThanksMessage"
+            <span
+              class="text-center"
+              v-else-if="brokenLinkButtonState === 'showThanksMessage'"
               >Merci pour votre aide ! Nous réglerons ce problème très
               prochainement.</span
             >
@@ -179,8 +181,7 @@ export default {
   },
   data() {
     return {
-      showBrokenLinkButton: true,
-      showThanksMessage: false,
+      brokenLinkButtonState: "show",
     }
   },
   methods: {
@@ -190,9 +191,8 @@ export default {
     isNumber: (val) => typeof val === "number",
     isString: (val) => typeof val === "string",
     alertBrokenLink() {
-      this.showBrokenLinkButton = false
-      this.showThanksMessage = true
-      setTimeout(() => (this.showThanksMessage = false), 5000)
+      this.brokenLinkButtonState = "showThanksMessage"
+      setTimeout(() => (this.brokenLinkButtonState = null), 5000)
       this.$matomo.trackEvent(
         "General",
         "Erreur lien aide invalide",

@@ -172,10 +172,10 @@ jobs:
           at: ~/mes-aides-ui
       - *install_virtualenv
       - run:
-          name: Check OpenFisca test generation
+          name: Validate OpenFisca test generation
           command: |
             source .venv/bin/activate
-            npm run test:openfisca
+            npm run test tests/unit/openfisca/test.spec.js
   deploy:
     machine:
       enabled: true
@@ -200,6 +200,10 @@ workflows:
       - build:
           requires:
             - lint
+      - test_openfisca_test_generation:
+          requires:
+            - install
+            - install_openfisca
       - test_e2e:
           requires:
             - build

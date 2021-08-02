@@ -66,3 +66,22 @@ export const sendError = (situationID, error) => {
   ————`,
   }
 }
+
+export const sendMontantsAttendus = (situationID) => {
+  if (!situationID) situationID = "??"
+  return {
+    subject: `[${situationID}] - Montant attendus`,
+    body: `Bonjour,
+
+    En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
+    - XXX € / mois pour la prestation «  ».
+
+    Cependant, pour la prestation XXX, le résultat est correct/incorrect.
+
+    Je vous joins le fichier de résultats pour faciliter la compréhension du problème.
+
+  ————
+  ID : ${situationID}
+  ————`,
+  }
+}

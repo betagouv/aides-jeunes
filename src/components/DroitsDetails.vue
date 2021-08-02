@@ -131,7 +131,7 @@
               class="text-center"
               @click="alertBrokenLink()"
               v-if="brokenLinkButtonState === 'show'"
-              >Lien(s) invalide(s) ? Cliquer ici pour nous notifier !</a
+              >Lien invalide ? Cliquer ici pour nous notifier !</a
             >
             <span
               class="text-center"

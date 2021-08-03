@@ -222,7 +222,7 @@ function extraBlock() {
           s("sortie_academie"),
           {
             isActive: (subject) => subject.sortie_academie,
-            steps: [s("bourse_lycee")],
+            steps: [new Step({ entity: "famille", variable: "bourse_lycee" })],
           },
         ],
       },

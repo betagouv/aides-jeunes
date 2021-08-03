@@ -236,6 +236,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     })
   })
 
+  // Move properties to its group (familles, foyers_fiscaux) define in definition.js
   propertyMove.movePropertyValuesToGroupEntity(testCase)
 
   var periods = common.getPeriods(situation.dateDeValeur)

@@ -6,10 +6,9 @@ var _ = require("lodash")
 var VERSION = 3
 
 const renames = {
-  aide_mobilite_master_sortie_region_academique: 'sortie_region_academique',
-  aide_mobilite_parcoursup_boursier_lycee: 'bourse_lycee',
-  aide_mobilite_parcoursup_sortie_academie: 'sortie_academie',
-  classe_scolarite: 'annee_etude'
+  aide_mobilite_master_sortie_region_academique: "sortie_region_academique",
+  aide_mobilite_parcoursup_sortie_academie: "sortie_academie",
+  classe_scolarite: "annee_etude",
 }
 
 function updatePerson(p) {
@@ -18,11 +17,14 @@ function updatePerson(p) {
   }
 
   const old_props = Object.keys(renames)
-  old_props.forEach(prop => {
+  old_props.forEach((prop) => {
     p[renames[prop]] = p[prop]
   })
 
-  extras = ["tns_auto_entrepreneur_type_activite", "tns_micro_entreprise_type_activite"]
+  extras = [
+    "tns_auto_entrepreneur_type_activite",
+    "tns_micro_entreprise_type_activite",
+  ]
 
   AE_map = {
     achat_revente: "rpns_auto_entrepreneur_CA_achat_revente",
@@ -48,7 +50,10 @@ function updatePerson(p) {
     }
   }
 
-  old_CA = ["tns_auto_entrepreneur_chiffre_affaires", "tns_micro_entreprise_chiffre_affaires"]
+  old_CA = [
+    "tns_auto_entrepreneur_chiffre_affaires",
+    "tns_micro_entreprise_chiffre_affaires",
+  ]
 
   return _.omit(p, old_props.concat(...extras, ...old_CA))
 }
@@ -61,6 +66,10 @@ module.exports = {
     situation.enfants = situation.enfants.map((e) => {
       return updatePerson(e)
     })
+
+    situation.famille.bourse_lycee =
+      situation.demandeur.aide_mobilite_parcoursup_boursier_lycee
+    delete situation.demandeur.aide_mobilite_parcoursup_boursier_lycee
 
     return situation
   },

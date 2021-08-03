@@ -14,6 +14,10 @@ export default {
     min: 0,
   },
 
+  bourse_lycee: {
+    question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
+  },
+
   parisien: {
     question: (component) => {
       return `Avez-vous habité Paris au moins 3 ans depuis ${yearsAgo(

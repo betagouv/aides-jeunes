@@ -3,6 +3,7 @@ var concat = require("lodash/concat")
 var ressources = require("../../src/constants/resources")
 
 var famille = {
+  bourse_lycee: Boolean,
   en_couple: Boolean,
   parisien: Boolean,
   proprietaire_proche_famille: Boolean,
@@ -55,7 +56,6 @@ var individu = Object.assign(
       ],
     },
     ass_precondition_remplie: Boolean,
-    bourse_lycee: Boolean,
     boursier: Boolean,
     _boursier_derniere_annee_etudes: Boolean,
     bourse_criteres_sociaux_base_ressources_parentale: Number,

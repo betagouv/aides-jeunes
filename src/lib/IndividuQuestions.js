@@ -64,10 +64,6 @@ export default {
     },
   },
 
-  bourse_lycee: {
-    question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
-  },
-
   alternant: {
     question: (component) => {
       return `${component.getLabel("être")} en alternance ?`

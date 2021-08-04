@@ -53,7 +53,10 @@ var individu = Object.assign(
       enum: ["autre", "terminale", "licence_3", "master_1"],
     },
     _continuite_etudes: Boolean,
-    _contrat_alternant: String,
+    _contrat_alternant: {
+      type: String,
+      enum: ["apprenti", "professionnalisation"],
+    },
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,

@@ -314,7 +314,7 @@ module.exports = {
     label: "de l’Hérault",
     code: "34",
     resources: {
-      link: "http://www.herault.fr/aides-financieres-fsl",
+      link: "https://herault.fr/402-aide-financiere.htm",
     },
   }),
   departement_ille_et_vilaine: fsl_generator({

@@ -12,22 +12,16 @@
     <div class="form__group" v-if="hasTerrainsNonLoues">
       <label class="form__group">
         Valeur <b>patrimoniale</b> totale de vos terrains <b>non loués</b>
-        <input
-          type="number"
-          v-select-on-click
-          v-model.number="demandeur.valeur_terrains_non_loues[periodKey]"
-        />
+        <InputNumber
+          v-model="demandeur.valeur_terrains_non_loues[periodKey]"
+        ></InputNumber>
       </label>
 
       <label class="form__group">
         Valeur <b>locative</b> totale de vos terrains <b>non loués</b>
-        <input
-          type="number"
-          v-select-on-click
-          v-model.number="
-            demandeur.valeur_locative_terrains_non_loues[periodKey]
-          "
-        />
+        <InputNumber
+          v-model="demandeur.valeur_locative_terrains_non_loues[periodKey]"
+        ></InputNumber>
       </label>
       <p>
         Pour la trouver, consultez votre avis d'imposition de taxe d'habitation
@@ -48,21 +42,17 @@
       <label class="form__group">
         Valeur <b>patrimoniale</b> de vos appartements/immeubles
         <b>non loués</b>
-        <input
-          type="number"
-          v-select-on-click
-          v-model.number="demandeur.valeur_immo_non_loue[periodKey]"
-        />
+        <InputNumber
+          v-model="demandeur.valeur_immo_non_loue[periodKey]"
+        ></InputNumber>
       </label>
 
       <label class="form__group">
         Valeur <b>locative</b> totale de vos appartements/immeubles
         <b>non loués</b>
-        <input
-          type="number"
-          v-select-on-click
-          v-model.number="demandeur.valeur_locative_immo_non_loue[periodKey]"
-        />
+        <InputNumber
+          v-model="demandeur.valeur_locative_immo_non_loue[periodKey]"
+        ></InputNumber>
       </label>
       <p>
         Pour la trouver, consultez votre avis d'imposition de taxe d'habitation
@@ -72,11 +62,9 @@
 
     <label v-if="hasBiensLoues" class="form__group"
       >Valeur <b>patrimoniale</b> de vos bien <b> loués</b>
-      <input
-        type="number"
-        v-select-on-click
-        v-model.number="demandeur.valeur_patrimoine_loue[periodKey]"
-      />
+      <InputNumber
+        v-model="demandeur.valeur_patrimoine_loue[periodKey]"
+      ></InputNumber>
     </label>
 
     <h2>
@@ -86,21 +74,15 @@
 
     <label class="form__group">
       Livret A <span class="help-block">Aussi appelé Livret bleu.</span>
-      <input
-        type="number"
-        v-select-on-click
-        v-model.number="demandeur.livret_a[periodKey]"
-      />
+      <InputNumber v-model="demandeur.livret_a[periodKey]"></InputNumber>
     </label>
 
     <label class="form__group">
       Total des autres produits d'épargne produisant des revenus
       <b>non imposables</b>
-      <input
-        type="number"
-        v-select-on-click
-        v-model.number="demandeur.epargne_revenus_non_imposables[periodKey]"
-      />
+      <InputNumber
+        v-model="demandeur.epargne_revenus_non_imposables[periodKey]"
+      ></InputNumber>
       <span>
         Assurance vie,
         <abbr title="Compte d'épargne-logement">CEL</abbr>,
@@ -114,11 +96,9 @@
 
     <label class="form__group">
       Total de l'épargne produisant des revenus <b>imposables</b>
-      <input
-        type="number"
-        v-select-on-click
-        v-model.number="demandeur.epargne_revenus_imposables[periodKey]"
-      />
+      <InputNumber
+        v-model="demandeur.epargne_revenus_imposables[periodKey]"
+      ></InputNumber>
       <span>
         Actions, comptes à terme,
         <abbr title="Fonds communs de placement">FCP</abbr>, obligations, parts
@@ -137,10 +117,12 @@
 <script>
 import { patrimoineTypes } from "@/constants/resources"
 import YesNoQuestion from "@/components/YesNoQuestion"
+import InputNumber from "@/components/InputNumber"
 
 export default {
   name: "ressources-patrimoine",
   components: {
+    InputNumber,
     YesNoQuestion,
   },
   data: function () {

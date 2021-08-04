@@ -6,12 +6,7 @@
         <EnSavoirPlus v-if="showMoreInfo" />
       </h2>
       <label>
-        <input
-          :min="meta.min"
-          type="number"
-          v-select-on-click
-          v-model.number="value"
-        />
+        <InputNumber :min="meta.min" v-model="value"></InputNumber>
       </label>
     </div>
     <YesNoQuestion v-else v-model="value">
@@ -32,10 +27,12 @@ import FamilleQuestions from "@/lib/FamilleQuestions"
 import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import YesNoQuestion from "@/components/YesNoQuestion"
+import InputNumber from "@/components/InputNumber"
 
 export default {
   name: "FamilleProperty",
   components: {
+    InputNumber,
     Actions,
     YesNoQuestion,
     EnSavoirPlus,

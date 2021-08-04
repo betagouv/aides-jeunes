@@ -324,7 +324,7 @@ export function hasPrimeActivite(position) {
   const name = /prime d’activité/
   const id = "ppa"
   const description = /revenus/
-  cy.get("#print-disclaimer", { timeout: 15000 })
+  cy.get("#print-disclaimer", { timeout: 20000 })
     .invoke("text")
     .should("contain", "engagement")
   cy.get(
@@ -360,7 +360,7 @@ export function hasAAH() {
   const name = /allocation aux adultes handicapés/
   const id = "aah"
   const description = "AAH"
-  cy.get("#print-disclaimer", { timeout: 15000 })
+  cy.get("#print-disclaimer", { timeout: 20000 })
     .invoke("text")
     .should("contain", "engagement")
   cy.get(
@@ -396,7 +396,7 @@ export function hasLogementSocial() {
   const name = /logement social/
   const id = "logement"
   const description = /revenus/
-  cy.get("#print-disclaimer", { timeout: 15000 })
+  cy.get("#print-disclaimer", { timeout: 20000 })
     .invoke("text")
     .should("contain", "engagement")
   cy.get(
@@ -420,4 +420,44 @@ export function hasLogementSocial() {
   cy.get("@" + id)
     .get('[itemprop="termsOfService"]')
     .should("be.visible")
+}
+
+export function hasBourseCriteresSociaux(position) {
+  position = position || 1
+  const name = /bourse sur critères sociaux/
+  const id = "bourse_criteres_sociaux"
+  const description = /BCS/
+  cy.get("#print-disclaimer", { timeout: 20000 })
+    .invoke("text")
+    .should("contain", "engagement")
+  cy.get(
+    '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
+      position +
+      ")",
+    { timeout: 6000 }
+  ).as(id + "-summary")
+  cy.get("@" + id + "-summary")
+    .find('[itemprop="name"]')
+    .invoke("text")
+    .should("match", name)
+  cy.get("@" + id + "-summary")
+    .find('[itemprop="offers"]')
+    .invoke("text")
+    .should("match", /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
+  cy.get("@" + id + "-summary")
+    .find(".aj-aide-cta")
+    .click()
+
+  cy.get(".aj-droit-detail").as(id)
+  cy.get("@" + id)
+    .get('[itemprop="description"]')
+    .invoke("text")
+    .should("match", description)
+  cy.get("@" + id)
+    .get('[itemprop="termsOfService"]')
+    .should("be.visible")
+}
+
+export function checkRadio(value) {
+  cy.get(`input[type="radio"][value="${value}"]`).first().check()
 }

@@ -184,15 +184,15 @@ var droitsDescription = {
             },
           },
           customization: {
-            "D93-SSD": {
+            D93: {
               link: "https://www.seine-saint-denis.fr/IMG/pdf/guide_rsa_a5_8p-2014.pdf",
             },
-            "D75-PARIS": {
+            D75: {
               form: undefined, // Prevent default form recycling
               teleservice:
                 "https://www.paris.fr/rsa#ou-et-comment-faire-une-demande-de-rsa_6",
             },
-            "M69-LYON": {
+            M200046977: {
               provider: {
                 imgSrc: "logo_lyon_metropole.png",
               },
@@ -456,7 +456,7 @@ var droitsDescription = {
       label: "Ministère de la Cohésion des territoires",
       imgSrc: "logo_ministere_cohesion_territoires.png",
       prestations: {
-        logement_social: {
+        logement_social_eligible: {
           type: "bool",
           isBaseRessourcesYearMinusTwo: true,
           label: "logement social",
@@ -476,6 +476,16 @@ var droitsDescription = {
         },
       },
     },
+    departements_et_metropole: {
+      imgSrc: "logo_etat_francais.png",
+      repository: "france-local",
+      label: "Départements et métropoles de France",
+      interactionWithNationalPrestationsHandled: true,
+      prefix: "les",
+      prestations: {
+        fsl_eligibilite: require("./fsl"),
+      },
+    },
   },
   partenairesLocaux: {
     paris: require("./paris"),
@@ -484,6 +494,7 @@ var droitsDescription = {
       label: "Rennes Métropole",
       interactionWithNationalPrestationsHandled: true,
       prefix: "de",
+      repository: "france-local",
       prestations: {
         rennes_metropole_transport: {
           isMontantAnnuel: false,
@@ -506,6 +517,7 @@ var droitsDescription = {
       label: "Brest métropole",
       interactionWithNationalPrestationsHandled: true,
       prefix: "de",
+      repository: "france-local",
       prestations: {
         brest_metropole_transport: {
           legend: "au lieu de 38.50 € / mois",
@@ -590,7 +602,7 @@ var droitsDescription = {
             "La Carte Solidaire permet de bénéficier de réductions importantes sur les trajets en trains TER et cars régionaux en Nouvelle-Aquitaine. Elle est destinée aux personnes qui ont de faibles revenus ou bénéficient de certaines prestations.",
           link: "https://transports.nouvelle-aquitaine.fr/toute-lactualite-des-transports/un-tarif-solidaire-pour-les-trajets-en-trains-ter-et-cars-regionaux",
           instructions: "https://cartesolidaire-nouvelle-aquitaine.cba.fr/",
-          entity: "individu",
+          entity: "individus",
           prefix: "la",
         },
       },
@@ -610,12 +622,11 @@ var droitsDescription = {
             "Des réductions de 70%, 80% ou 100% (gratuité) sont mises en place sur le réseau Tisséo pour cetaiens personnes (jeunes, familles à faibles revenus, personnes bénéficiant de certaines prestations, etc.).",
           link: "http://www.mon-tarif-tisseo.fr",
           instructions: "https://www.tisseo.fr/les-tarifs/e-agence",
-          entity: "individu",
+          entity: "individus",
           prefix: "une",
         },
       },
     },
-    ...require("./fonds_solidarite_logement"),
   },
 }
 

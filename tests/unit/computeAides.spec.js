@@ -51,7 +51,7 @@ describe("computeAides", function () {
           css_participation_forfaitaire: {
             "2014-11": 10,
           },
-          logement_social: {
+          logement_social_eligible: {
             "2014-11": false,
           },
         },
@@ -107,13 +107,15 @@ describe("computeAides", function () {
 
   describe("computeAides of true boolean values", function () {
     beforeEach(function () {
-      openfiscaResult.individus.demandeur.logement_social = { "2014-11": true }
+      openfiscaResult.individus.demandeur.logement_social_eligible = {
+        "2014-11": true,
+      }
       droits = compute(situation, openfiscaResult, true)
     })
 
     it("should extract eligibles droits from openfisca result", function () {
       var logement_social = droits.droitsEligibles.find(function (element) {
-        return element.id === "logement_social"
+        return element.id === "logement_social_eligible"
       })
       expect(logement_social).toBeTruthy()
       expect(logement_social.montant).toBeTruthy()

@@ -46,6 +46,13 @@ html {
         }
       }
 
+      .aj-selections {
+        display: table;
+        .aj-selection-wrapper label {
+          width: 100%;
+        }
+      }
+
       .aj-selection-wrapper {
         position: relative;
         margin-bottom: 10px;
@@ -264,8 +271,7 @@ html {
           content: "\20AC";
           position: absolute;
           right: 1rem;
-          top: 50%;
-          transform: translateY(-50%);
+          top: 10px;
           z-index: 99;
           font-size: 1.3rem;
         }

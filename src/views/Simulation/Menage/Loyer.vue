@@ -6,12 +6,11 @@
         <span class="help">{{ loyerQuestion.hint }}</span>
       </label>
       <div class="aj-input-currency-wrapper">
-        <input
+        <InputNumber
           id="loyer"
-          type="number"
           class="aj-input-euros"
           v-model="loyerQuestion.selectedValue"
-        />
+        ></InputNumber>
       </div>
     </div>
     <div v-if="captureCharges">
@@ -20,11 +19,10 @@
         <span class="help">{{ chargesQuestion.hint }}</span>
       </label>
       <div class="aj-input-currency-wrapper">
-        <input
+        <InputNumber
           id="charges"
-          type="number"
           v-model="chargesQuestion.selectedValue"
-        />
+        ></InputNumber>
       </div>
     </div>
     <Actions v-bind:onSubmit="onSubmit" />
@@ -33,10 +31,12 @@
 
 <script>
 import Actions from "@/components/Actions"
+import InputNumber from "@/components/InputNumber"
 
 export default {
   name: "SimulationMenageDepCom",
   components: {
+    InputNumber,
     Actions,
   },
   data: function () {

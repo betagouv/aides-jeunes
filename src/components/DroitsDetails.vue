@@ -126,23 +126,38 @@
             class="aj-droit-content-buttons-cta"
             v-bind:benefit="droit"
           ></BenefitCta>
-        </div>
 
-        <a
-          v-if="droit.msa"
-          target="_blank"
-          rel="noopener"
-          class="aj-droit-pro-agricole"
-          href="http://www.msa.fr/lfr/web/msa/espace-prive"
-          v-analytics="{
-            name: droit.label,
-            action: 'msa',
-            category: 'General',
-          }"
-        >
-          <img src="@/assets/images/doigt.svg" /> Démarches pour les professions
-          agricoles
-        </a>
+          <a
+            v-if="droit.msa"
+            target="_blank"
+            rel="noopener"
+            class="aj-droit-pro-agricole"
+            href="http://www.msa.fr/lfr/web/msa/espace-prive"
+            v-analytics="{
+              name: droit.label,
+              action: 'msa',
+              category: 'General',
+            }"
+          >
+            <img src="@/assets/images/doigt.svg" /> Démarches pour les
+            professions agricoles
+          </a>
+
+          <div class="is-align-vertically-center">
+            <a
+              class="text-center"
+              @click="alertBrokenLink()"
+              v-if="brokenLinkButtonState === 'show'"
+              >Lien invalide ? Cliquer ici pour nous notifier !</a
+            >
+            <span
+              class="text-center"
+              v-else-if="brokenLinkButtonState === 'showThanksMessage'"
+              >Merci pour votre aide ! Nous réglerons ce problème très
+              prochainement.</span
+            >
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -165,12 +180,26 @@ export default {
     BenefitCtaLink,
     DroitMontant,
   },
+  data() {
+    return {
+      brokenLinkButtonState: "show",
+    }
+  },
   methods: {
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,
     isBoolean: (val) => typeof val === "boolean",
     isNumber: (val) => typeof val === "number",
     isString: (val) => typeof val === "string",
+    alertBrokenLink() {
+      this.brokenLinkButtonState = "showThanksMessage"
+      setTimeout(() => (this.brokenLinkButtonState = null), 5000)
+      this.$matomo.trackEvent(
+        "General",
+        "Erreur lien aide invalide",
+        this.droit.label
+      )
+    },
   },
 }
 </script>

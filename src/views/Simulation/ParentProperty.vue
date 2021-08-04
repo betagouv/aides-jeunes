@@ -4,17 +4,23 @@
       <legend>
         <h2 class="aj-question"><div v-html="question"></div></h2
       ></legend>
-      <div class="aj-selection-wrapper" v-for="item in items" :key="item.value">
-        <input
-          :id="item.value"
-          type="radio"
-          :name="fieldName"
-          :value="item.value"
-          v-model="value"
-        />
-        <label :for="item.value">
-          {{ item.label }}
-        </label>
+      <div class="aj-selections">
+        <div
+          class="aj-selection-wrapper"
+          v-for="item in items"
+          :key="item.value"
+        >
+          <input
+            :id="item.value"
+            type="radio"
+            :name="fieldName"
+            :value="item.value"
+            v-model="value"
+          />
+          <label :for="item.value">
+            {{ item.label }}
+          </label>
+        </div>
       </div>
     </fieldset>
     <div v-else-if="questionType === 'number'">
@@ -22,12 +28,11 @@
         <h2 class="aj-question"><div v-html="question"></div></h2>
       </label>
       <div :class="meta.wrapperClassName">
-        <input
+        <InputNumber
           :id="fieldName"
-          type="number"
           :name="fieldName"
           v-model="value"
-        />
+        ></InputNumber>
       </div>
     </div>
     <YesNoQuestion v-else v-model="value">
@@ -40,6 +45,7 @@
 <script>
 import Actions from "@/components/Actions"
 import YesNoQuestion from "../../components/YesNoQuestion.vue"
+import InputNumber from "@/components/InputNumber"
 
 const data = {
   _situation: {
@@ -87,6 +93,7 @@ const data = {
 export default {
   name: "SimulationParentProperty",
   components: {
+    InputNumber,
     Actions,
     YesNoQuestion,
   },

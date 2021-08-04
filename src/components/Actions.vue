@@ -78,6 +78,12 @@ export default {
       } else {
         this.$pop()
       }
+      this.$matomo &&
+        this.$matomo.trackEvent(
+          "Parcours",
+          "Bouton précédent",
+          this.$route.fullPath
+        )
     },
   },
 }

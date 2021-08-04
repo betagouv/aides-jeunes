@@ -27,13 +27,11 @@
       <label for="autoAmount" class="aj-question"
         >Chiffre d’affaires {{ $store.state.dates.lastYear.label }}</label
       >
-      <input
+      <InputNumber
         id="autoAmount"
-        type="number"
-        v-select-on-click
-        v-bind:value="ressource.amounts[$store.state.dates.lastYear.id]"
-        v-on:input="update($store.state.dates.lastYear.id, $event.target.value)"
-      />
+        :value="ressource.amounts[$store.state.dates.lastYear.id]"
+        @input="update($store.state.dates.lastYear.id, $event)"
+      ></InputNumber>
     </div>
 
     <div class="form__group">
@@ -41,15 +39,11 @@
         >Chiffre d'affaires pour
         {{ $store.state.dates.thisMonth.label | capitalize }}</label
       >
-      <input
+      <InputNumber
         id="autoAmountLastMonth"
-        type="number"
-        v-select-on-click
-        v-bind:value="ressource.amounts[$store.state.dates.thisMonth.id]"
-        v-on:input="
-          update($store.state.dates.thisMonth.id, $event.target.value)
-        "
-      />
+        :value="ressource.amounts[$store.state.dates.thisMonth.id]"
+        @input="update($store.state.dates.thisMonth.id, $event)"
+      ></InputNumber>
     </div>
     <div
       class="form__group"
@@ -59,23 +53,25 @@
       <label :for="'autoAmount' + month.label" class="aj-question">
         Chiffre d'affaires pour {{ month.label | capitalize }}
       </label>
-      <input
+      <InputNumber
         :id="'autoAmount' + month.label"
-        type="number"
-        v-select-on-click
-        v-bind:value="ressource.amounts[month.id]"
-        v-on:input="update(month.id, $event.target.value)"
-      />
+        :value="ressource.amounts[month.id]"
+        @input="update(month.id, $event)"
+      ></InputNumber>
     </div>
   </div>
 </template>
 
 <script>
 import TNSRessourceUpdator from "@/mixins/TNSRessourceUpdator"
+import InputNumber from "@/components/InputNumber"
 
 export default {
   name: "RessourceAutoEntreprise",
   mixins: [TNSRessourceUpdator],
+  components: {
+    InputNumber,
+  },
 }
 </script>
 

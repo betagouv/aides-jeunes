@@ -29,7 +29,11 @@ function valueAt(ressourceId, ressources, period, aide) {
   if (aide && aide.compute) {
     return aide.compute(ressources, period)
   } else {
-    return ressources[ressourceId] && ressources[ressourceId][period]
+    return (
+      (typeof ressources[ressourceId] !== "object" &&
+        ressources[ressourceId]) ||
+      (ressources[ressourceId] && ressources[ressourceId][period])
+    )
   }
 }
 
@@ -75,7 +79,8 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
     if (
       some(individus, function (individu) {
         return valueAt(aideId, individu, period) !== undefined
-      })
+      }) ||
+      valueAt(aideId, situation.famille, period) !== undefined
     ) {
       return result.droitsInjectes.push(
         assign({}, aide, {

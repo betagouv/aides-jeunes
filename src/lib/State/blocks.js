@@ -221,7 +221,12 @@ function extraBlock() {
         steps: [
           s("sortie_academie"),
           {
-            isActive: (subject) => subject.sortie_academie,
+            isActive: (subject) => {
+              return (
+                subject.sortie_academie &&
+                typeof subject.bourse_lycee !== "object"
+              )
+            },
             steps: [new Step({ entity: "famille", variable: "bourse_lycee" })],
           },
         ],

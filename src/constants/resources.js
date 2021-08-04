@@ -366,6 +366,12 @@ let ressourceTypes = [
     prefix: "une",
   },
   {
+    id: "bourse_lycee",
+    label: "Bourse du lycée",
+    category: "autre",
+    prefix: "une",
+  },
+  {
     id: "gains_exceptionnels",
     label: "Gains exceptionnels (dons, gains aux jeux, héritage)",
     category: "autre",

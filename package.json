@@ -64,7 +64,7 @@
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.10",
     "morgan": "^1.10.0",
-    "puppeteer": "1.18.0",
+    "puppeteer": "^10.2.0",
     "require-from-string": "^2.0.2",
     "sib-api-v3-sdk": "^8.1.0",
     "smooth-scroll": "^16.1.3",

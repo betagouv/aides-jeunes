@@ -175,7 +175,7 @@ jobs:
           name: Validate OpenFisca test generation
           command: |
             source .venv/bin/activate
-            npm run test tests/unit/openfisca/test.spec.js
+            npm run test tests/unit/openfisca/test.spec.js --testTimeout=10000
   deploy:
     machine:
       enabled: true

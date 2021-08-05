@@ -36,7 +36,6 @@ describe("openfisca buildOpenFiscaRequest", function () {
         },
       })
     )
-    console.log(result.familles._.bourse_lycee)
     expect(result.familles._.bourse_lycee["2017-10"]).toBe(42)
   })
 
@@ -48,7 +47,6 @@ describe("openfisca buildOpenFiscaRequest", function () {
         },
       })
     )
-    console.log(result.familles._.bourse_lycee)
     expect(result.familles._.bourse_lycee["2017-09"]).toBe(true)
   })
 
@@ -64,7 +62,6 @@ describe("openfisca buildOpenFiscaRequest", function () {
         },
       })
     )
-    console.log(result.familles._.bourse_lycee)
     expect(result.familles._.bourse_lycee["2017-10"]).toBe(42)
   })
 })

@@ -264,7 +264,7 @@ export default {
       },
       {
         value: "non_renseigne",
-        label: "Autre",
+        label: "Aucun",
       },
     ],
   },
@@ -365,6 +365,21 @@ export default {
 
   _continuite_etudes: {
     question: "Avez-vous prévu de continuer vos études l'an prochain ?",
+  },
+
+  _contrat_alternant: {
+    question: "Êtes-vous ?",
+    questionType: "enum",
+    items: [
+      {
+        value: "apprenti",
+        label: "En apprentissage",
+      },
+      {
+        value: "professionnalisation",
+        label: "En contrat de professionnalisation",
+      },
+    ],
   },
 
   _interetEtudesEtranger: {

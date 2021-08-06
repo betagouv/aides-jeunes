@@ -64,6 +64,10 @@ var individu = Object.assign(
     _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: String,
     _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: String,
     _continuite_etudes: Boolean,
+    _contrat_alternant: {
+      type: String,
+      enum: ["apprenti", "professionnalisation"],
+    },
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,

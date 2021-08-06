@@ -39,6 +39,10 @@ function individuBlockFactory(id) {
                   steps: [r("statuts_etablissement_scolaire")],
                 },
                 r("alternant"),
+                {
+                  isActive: (subject) => subject.alternant,
+                  steps: [r("_contrat_alternant")],
+                },
               ],
             },
           ]
@@ -159,39 +163,30 @@ function individuBlockFactory(id) {
               isActive: (subject) =>
                 !subject._continuite_etudes &&
                 ["etudiant", "chomeur", "inactif"].includes(subject.activite),
-              steps: [r("plus_haut_diplome_date_obtention")],
-            },
-            {
-              isActive: (subject) => {
-                return (
-                  subject.plus_haut_diplome_date_obtention >=
-                  new Date("2020-01-01 00:00:00")
-                )
-              },
               steps: [
                 r("plus_haut_diplome_niveau"),
                 {
-                  isActive: (subject) => {
-                    const diplome_ok = [
-                      "niveau_5",
-                      "niveau_6",
-                      "niveau_7",
-                      "niveau_8",
-                    ].includes(subject.plus_haut_diplome_niveau)
-                    const ancien_diplome =
-                      subject.plus_haut_diplome_date_obtention <
-                      new Date("2021-01-01 00:00:00")
-                    return diplome_ok && ancien_diplome
-                  },
+                  isActive: (subject) =>
+                    ["niveau_5", "niveau_6", "niveau_7", "niveau_8"].includes(
+                      subject.plus_haut_diplome_niveau
+                    ),
                   steps: [
-                    r("_boursier_derniere_annee_etudes"),
+                    r("plus_haut_diplome_date_obtention"),
                     {
                       isActive: (subject) =>
-                        subject._boursier_derniere_annee_etudes,
+                        subject.plus_haut_diplome_date_obtention <
+                        new Date("2021-01-01 00:00:00"),
                       steps: [
-                        r(
-                          "aide_jeunes_diplomes_anciens_boursiers_base_ressources"
-                        ),
+                        r("_boursier_derniere_annee_etudes"),
+                        {
+                          isActive: (subject) =>
+                            subject._boursier_derniere_annee_etudes,
+                          steps: [
+                            r(
+                              "aide_jeunes_diplomes_anciens_boursiers_base_ressources"
+                            ),
+                          ],
+                        },
                       ],
                     },
                   ],

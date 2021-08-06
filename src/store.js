@@ -23,6 +23,7 @@ let DATE_FIELDS = [
   "date_debut_chomage",
   "plus_haut_diplome_date_obtention",
   "contrat_de_travail_debut",
+  "date_entree_logement",
 ]
 
 function adaptPersistedIndividu(individu) {

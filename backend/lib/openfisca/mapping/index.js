@@ -1,16 +1,17 @@
-var filter = require("lodash/filter")
-var forEach = require("lodash/forEach")
-var assign = require("lodash/assign")
-var pickBy = require("lodash/pickBy")
-var difference = require("lodash/difference")
-var cloneDeep = require("lodash/cloneDeep")
+const filter = require("lodash/filter")
+const forEach = require("lodash/forEach")
+const assign = require("lodash/assign")
+const pickBy = require("lodash/pickBy")
+const difference = require("lodash/difference")
+const cloneDeep = require("lodash/cloneDeep")
 
-var common = require("./common")
-var buildOpenFiscaIndividu = require("./individu")
-var migrations = require("../../migrations")
+const common = require("./common")
+const buildOpenFiscaIndividu = require("./individu")
+const buildOpenFiscaMenage = require("./menage")
+const migrations = require("../../migrations")
 
-var propertyMove = require("./propertyMove")
-var last3MonthsDuplication = require("./last3MonthsDuplication")
+const propertyMove = require("./propertyMove")
+const last3MonthsDuplication = require("./last3MonthsDuplication")
 
 function dispatchIndividuals(situation) {
   var individus = mapIndividus(situation)
@@ -23,7 +24,7 @@ function dispatchIndividuals(situation) {
       ...situation.foyer_fiscal,
     },
   }
-  var menages = { _: situation.menage }
+  var menages = { _: buildOpenFiscaMenage(situation.menage) }
 
   var demandeur = common.getDemandeur(situation)
   var demandeurId = demandeur && demandeur.id

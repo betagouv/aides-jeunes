@@ -49,19 +49,4 @@ describe("openfisca buildOpenFiscaRequest", function () {
     )
     expect(result.familles._.bourse_lycee["2017-09"]).toBe(true)
   })
-
-  it("send bourse_lycee of demandeur", function () {
-    var result = subject.buildOpenFiscaRequest(
-      Object.assign({}, situation, {
-        demandeur: {
-          id: "demandeur",
-          bourse_lycee: {
-            "2017-10": 42,
-            "2016-10": 3,
-          },
-        },
-      })
-    )
-    expect(result.familles._.bourse_lycee["2017-10"]).toBe(42)
-  })
 })

@@ -21,28 +21,28 @@
         v-on:update="process"
       />
       <RessourceAutoEntreprise
-        v-if="type.meta.id === 'tns_auto_entrepreneur_chiffre_affaires'"
+        v-if="type.meta.id.startsWith('rpns_auto_entrepreneur_CA')"
         v-bind:individu="type.individu"
         v-bind:ressource="type"
         v-on:update="updateTNSAmount"
         v-on:updateExtra="updateTNSExtra"
       />
       <RessourceMicroEntreprise
-        v-if="type.meta.id === 'tns_micro_entreprise_chiffre_affaires'"
+        v-if="type.meta.id.startsWith('rpns_micro_entreprise_CA')"
         v-bind:individu="type.individu"
         v-bind:ressource="type"
         v-on:update="updateTNSAmount"
         v-on:updateExtra="updateTNSExtra"
       />
       <RessourceProfessionLiberale
-        v-if="type.meta.id === 'tns_autres_revenus'"
+        v-if="type.meta.id === 'rpns_autres_revenus'"
         v-bind:individu="type.individu"
         v-bind:ressource="type"
         v-on:update="updateTNSAmount"
         v-on:updateExtra="updateTNSExtra"
       />
       <RessourceExploitantAgricole
-        v-if="type.meta.id === 'tns_benefice_exploitant_agricole'"
+        v-if="type.meta.id === 'rpns_benefice_exploitant_agricole'"
         v-bind:individu="type.individu"
         v-bind:ressource="type"
         v-on:update="updateTNSAmount"
@@ -142,10 +142,14 @@ export default {
     },
     isSimple: function (type) {
       const complex = [
-        "tns_auto_entrepreneur_chiffre_affaires",
-        "tns_benefice_exploitant_agricole",
-        "tns_micro_entreprise_chiffre_affaires",
-        "tns_autres_revenus",
+        "rpns_auto_entrepreneur_CA_achat_revente",
+        "rpns_auto_entrepreneur_CA_bic",
+        "rpns_auto_entrepreneur_CA_bnc",
+        "rpns_benefice_exploitant_agricole",
+        "rpns_micro_entreprise_CA_bic_vente_imp",
+        "rpns_micro_entreprise_CA_bic_service_imp",
+        "rpns_micro_entreprise_CA_bnc_imp",
+        "rpns_autres_revenus",
       ]
       return complex.indexOf(type) === -1
     },

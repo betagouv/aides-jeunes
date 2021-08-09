@@ -20,4 +20,33 @@ describe("openfisca buildOpenFiscaRequest", function () {
       null
     )
   })
+
+  it("not overrides resources with 3 month replication", function () {
+    var result = subject.buildOpenFiscaRequest(
+      Object.assign({}, situation, {
+        demandeur: {
+          id: "demandeur",
+          bourse_lycee: {
+            "2017-10": 42,
+            "2016-10": 3,
+          },
+        },
+        famille: {
+          bourse_lycee: true,
+        },
+      })
+    )
+    expect(result.familles._.bourse_lycee["2017-10"]).toBe(42)
+  })
+
+  it("allows resource overrides with 3 month replication", function () {
+    var result = subject.buildOpenFiscaRequest(
+      Object.assign({}, situation, {
+        famille: {
+          bourse_lycee: true,
+        },
+      })
+    )
+    expect(result.familles._.bourse_lycee["2017-09"]).toBe(true)
+  })
 })

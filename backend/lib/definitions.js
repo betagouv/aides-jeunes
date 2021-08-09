@@ -3,6 +3,7 @@ var concat = require("lodash/concat")
 var ressources = require("../../src/constants/resources")
 
 var famille = {
+  bourse_lycee: Boolean,
   en_couple: Boolean,
   parisien: Boolean,
   proprietaire_proche_famille: Boolean,
@@ -36,10 +37,24 @@ var individu = Object.assign(
     },
     agepi_temps_travail_semaine: Number,
     aide_jeunes_diplomes_anciens_boursiers_base_ressources: Number,
-    aide_mobilite_master_sortie_region_academique: Boolean,
-    aide_mobilite_parcoursup_boursier_lycee: Boolean,
-    aide_mobilite_parcoursup_sortie_academie: Boolean,
     alternant: Boolean,
+    annee_etude: {
+      type: String,
+      enum: [
+        "seconde",
+        "premiere",
+        "terminale",
+        "licence_1",
+        "licence_2",
+        "licence_3",
+        "master_1",
+        "master_2",
+        "doctorat_1",
+        "doctorat_2",
+        "doctorat_3",
+        "autre",
+      ],
+    },
     ass_precondition_remplie: Boolean,
     boursier: Boolean,
     _boursier_derniere_annee_etudes: Boolean,
@@ -48,10 +63,6 @@ var individu = Object.assign(
     _bourseCriteresSociauxCommuneDomicileFamilial: String,
     _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: String,
     _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: String,
-    classe_scolarite: {
-      type: String,
-      enum: ["autre", "terminale", "licence_3", "master_1"],
-    },
     _continuite_etudes: Boolean,
     _contrat_alternant: {
       type: String,
@@ -102,21 +113,15 @@ var individu = Object.assign(
         "inconnue",
       ],
     },
+    sortie_academie: Boolean,
+    sortie_region_academique: Boolean,
     statuts_etablissement_scolaire: {
       type: String,
       enum: ["inconnu", "public", "prive_sous_contrat", "prive_hors_contrat"],
     },
     statut_marital: { type: String, enum: statutMaritalValues },
     taux_incapacite: Number,
-    tns_auto_entrepreneur_type_activite: {
-      type: String,
-      enum: ["achat_revente", "bic", "bnc"],
-    },
     tns_autres_revenus_type_activite: {
-      type: String,
-      enum: ["achat_revente", "bic", "bnc"],
-    },
-    tns_micro_entreprise_type_activite: {
       type: String,
       enum: ["achat_revente", "bic", "bnc"],
     },

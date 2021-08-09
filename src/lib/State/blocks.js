@@ -31,7 +31,7 @@ function individuBlockFactory(id) {
                   isActive: (subject) =>
                     subject.scolarite == "lycee" ||
                     subject.scolarite == "enseignement_superieur",
-                  steps: [r("classe_scolarite")],
+                  steps: [r("annee_etude")],
                 },
                 {
                   isActive: (subject) =>
@@ -212,25 +212,28 @@ function extraBlock() {
     steps: [
       s("_interetPermisDeConduire", "projets"),
       {
-        isActive: (subject) => subject.classe_scolarite == "terminale",
+        isActive: (subject) => subject.annee_etude == "terminale",
         steps: [
-          s("aide_mobilite_parcoursup_sortie_academie"),
+          s("sortie_academie"),
           {
-            isActive: (subject) =>
-              subject.aide_mobilite_parcoursup_sortie_academie,
-            steps: [s("aide_mobilite_parcoursup_boursier_lycee")],
+            isActive: (subject) => {
+              return (
+                subject.sortie_academie &&
+                typeof subject.bourse_lycee !== "object"
+              )
+            },
+            steps: [new Step({ entity: "famille", variable: "bourse_lycee" })],
           },
         ],
       },
       {
         isActive: (subject) =>
-          subject.classe_scolarite == "licence_3" ||
-          subject.classe_scolarite == "master_1",
+          subject.annee_etude == "licence_3" ||
+          subject.annee_etude == "master_1",
         steps: [
-          s("aide_mobilite_master_sortie_region_academique"),
+          s("sortie_region_academique"),
           {
-            isActive: (subject) =>
-              subject.aide_mobilite_master_sortie_region_academique,
+            isActive: (subject) => subject.sortie_region_academique,
             steps: [s("boursier")],
           },
         ],

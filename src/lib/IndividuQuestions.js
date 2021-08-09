@@ -51,7 +51,7 @@ export default {
     },
   },
 
-  aide_mobilite_master_sortie_region_academique: {
+  sortie_region_academique: {
     question: (component) => {
       return `${component.getLabel("avoir")} prévu d'étudier
       <a
@@ -64,26 +64,79 @@ export default {
     },
   },
 
-  aide_mobilite_parcoursup_boursier_lycee: {
-    question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
-  },
-
-  aide_mobilite_parcoursup_sortie_academie: {
-    question: (component) => {
-      return `${component.getLabel("avoir")} prévu d'étudier
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://www.education.gouv.fr/les-regions-academiques-academies-et-services-departementaux-de-l-education-nationale-6557"
-        >hors de votre académie</a
-      >
-      l'an prochain ?`
-    },
-  },
-
   alternant: {
     question: (component) => {
       return `${component.getLabel("être")} en alternance ?`
+    },
+  },
+
+  annee_etude: {
+    question: "Dans quelle classe êtes-vous actuellement ?",
+    questionType: "enum",
+    items: (component) => {
+      return [
+        {
+          value: "seconde",
+          label: "Seconde",
+          only: "lycee",
+        },
+        {
+          value: "premiere",
+          label: "Première",
+          only: "lycee",
+        },
+        {
+          value: "terminale",
+          label: "Terminale",
+          only: "lycee",
+        },
+        {
+          label: "Licence - 1ère année",
+          value: "licence_1",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Licence - 2ème année",
+          value: "licence_2",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Licence - 3ème année",
+          value: "licence_3",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Master - 1ère année",
+          value: "master_1",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Master - 2ème année",
+          value: "master_2",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Doctorat - 1ère année",
+          value: "doctorat_1",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Doctorat - 2ème année",
+          value: "doctorat_2",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Doctorat - 3ème année",
+          value: "doctorat_3",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Autre",
+          value: "autre",
+        },
+      ].filter(
+        (item) => !item.only || item.only == component.individu.scolarite
+      )
     },
   },
 
@@ -102,36 +155,6 @@ export default {
 
   boursier: {
     question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
-  },
-
-  classe_scolarite: {
-    question: "Dans quelle classe êtes-vous actuellement ?",
-    questionType: "enum",
-    items: (component) => {
-      return [
-        {
-          value: "terminale",
-          label: "Terminale",
-          only: "lycee",
-        },
-        {
-          label: "Licence - 3ème année",
-          value: "licence_3",
-          only: "enseignement_superieur",
-        },
-        {
-          label: "Master - 1ère année",
-          value: "master_1",
-          only: "enseignement_superieur",
-        },
-        {
-          label: "Autre",
-          value: "autre",
-        },
-      ].filter(
-        (item) => !item.only || item.only == component.individu.scolarite
-      )
-    },
   },
 
   enfant_place: {
@@ -266,6 +289,19 @@ export default {
     questionType: "enum",
     items: Individu.scolariteOptions,
     enSavoirPlus: true,
+  },
+
+  sortie_academie: {
+    question: (component) => {
+      return `${component.getLabel("avoir")} prévu d'étudier
+      <a
+        target="_blank"
+        rel="noopener"
+        href="https://www.education.gouv.fr/les-regions-academiques-academies-et-services-departementaux-de-l-education-nationale-6557"
+        >hors de votre académie</a
+      >
+      l'an prochain ?`
+    },
   },
 
   statuts_etablissement_scolaire: {

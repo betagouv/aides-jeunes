@@ -28,6 +28,7 @@
         </div>
       </div>
     </fieldset>
+
     <div v-else-if="questionType === 'number'">
       <h2 class="aj-question">
         <span v-html="question" />
@@ -38,6 +39,16 @@
         <InputNumber :min="meta.min" v-model="value"></InputNumber>
       </label>
     </div>
+
+    <div v-else-if="questionType === 'date'">
+      <label :for="fieldName"
+        ><h2 class="aj-question">
+          <span v-html="question"></span>
+          <EnSavoirPlus v-if="showMoreInfo" /> </h2
+      ></label>
+      <InputDate required :id="fieldName" v-model="value" />
+    </div>
+
     <YesNoQuestion v-else v-model="value">
       <span v-html="question"></span><EnSavoirPlus v-if="showMoreInfo" />
       <template v-slot:help v-if="meta.help"
@@ -57,11 +68,13 @@ import IndividuQuestions from "@/lib/IndividuQuestions"
 import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import InputNumber from "@/components/InputNumber"
+import InputDate from "@/components/InputDate"
 
 export default {
   name: "IndividuProperty",
   components: {
     InputNumber,
+    InputDate,
     Actions,
     YesNoQuestion,
     EnSavoirPlus,
@@ -88,7 +101,10 @@ export default {
       )
     },
     showMoreInfo: function () {
-      return Hint.get(this.fieldName)
+      const showMoreInfo =
+        this.meta.showMoreInfo === undefined ||
+        executeFunctionOrReturnValue(this.meta, "showMoreInfo", this)
+      return showMoreInfo && Hint.get(this.fieldName)
     },
     items: function () {
       return executeFunctionOrReturnValue(this.meta, "items", this)

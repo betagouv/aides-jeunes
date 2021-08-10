@@ -2,20 +2,20 @@
   <form @submit.prevent="onSubmit">
     <div class="field-group">
       <label for="cp" class="aj-question"
-        >{{ codePostalQuestion.label }} <EnSavoirPlus
-      /></label>
-
-      <input id="cp" type="number" v-model="codePostalQuestion.selectedValue" />
+        >Quel est votre code postal&nbsp;?
+        <EnSavoirPlus />
+      </label>
+      <input id="cp" type="number" v-model="codePostal" />
     </div>
 
     <p v-if="retrievingCommunes"
       ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i
     ></p>
     <div class="field-group" v-show="communes && communes.length">
-      <label for="commune" class="aj-question">{{
-        communeQuestion.label
-      }}</label>
-      <select v-model="communeQuestion.selectedValue" id="commune">
+      <label for="commune" class="aj-question"
+        >Veuillez sélectionner la ville qui correspond
+      </label>
+      <select v-model="nomCommune" id="commune">
         <option
           v-for="(commune, index) in communes"
           v-bind:value="commune.nom"
@@ -32,13 +32,14 @@
 
 <script>
 import Actions from "@/components/Actions"
-import Commune from "@/lib/Commune"
 import WarningMessage from "@/components/WarningMessage"
-import Warning from "../../../lib/Warnings"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
+import Warning from "@/lib/Warnings"
+import DepcomMixin from "@/mixins/DepcomMixin"
 
 export default {
   name: "SimulationMenageDepcom",
+  mixins: [DepcomMixin],
   components: {
     Actions,
     WarningMessage,
@@ -49,79 +50,28 @@ export default {
     return {
       menage: menage,
       retrievingCommunes: false,
-      codePostalQuestion: {
-        label: "Quel est votre code postal ?",
-        selectedValue: menage._codePostal,
-      },
-      communeQuestion: {
-        label: "Veuillez sélectionner votre ville",
-        selectedValue: menage._nomCommune,
-      },
+      codePostal: menage._codePostal,
+      nomCommune: menage._nomCommune,
     }
   },
   computed: {
     warningMessage() {
-      return Warning.get(
-        "aj_not_reliable",
-        this.codePostalQuestion.selectedValue
-      )
+      return Warning.get("aj_not_reliable", this.codePostal)
     },
   },
-  asyncComputed: {
-    communes: {
-      get: function () {
-        if (
-          !this.codePostalQuestion.selectedValue ||
-          this.codePostalQuestion.selectedValue.toString().length !== 5
-        ) {
-          return []
-        }
-        this.retrievingCommunes = true
-        return Commune.get(this.codePostalQuestion.selectedValue)
-          .then((communes) => {
-            if (communes.length <= 0) {
-              this.$matomo &&
-                this.$matomo.trackEvent(
-                  "General",
-                  "Depcom introuvable",
-                  `Code postal : ${this.codePostalQuestion.selectedValue}`
-                )
-            }
-            if (
-              !communes
-                .map((c) => c.nom)
-                .includes(this.communeQuestion.selectedValue)
-            ) {
-              this.communeQuestion.selectedValue =
-                Commune.getMostPopulated(communes).nom
-            }
-            return communes
-          })
-          .catch(() => {
-            return []
-          })
-          .finally(() => {
-            this.retrievingCommunes = false
-          })
-      },
-      default: [],
-    },
-  },
-
   methods: {
     onSubmit: function () {
-      if (this.communeQuestion.selectedValue === undefined) {
+      if (!this.nomCommune) {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
         return
       }
       const communeMatches = this.communes.filter(
-        (c) => c.nom == this.communeQuestion.selectedValue
+        (c) => c.nom == this.nomCommune
       )
       if (communeMatches.length) {
         this.menage.depcom = communeMatches[0].code
-        this.menage._codePostal =
-          this.codePostalQuestion.selectedValue.toString()
-        this.menage._nomCommune = this.communeQuestion.selectedValue
+        this.menage._codePostal = this.codePostal.toString()
+        this.menage._nomCommune = this.nomCommune
         this.$store.dispatch("updateMenage", this.menage)
       }
       this.$push()

@@ -81,7 +81,7 @@ const list = [
     types: ["cdas", "centre_social", "edas", "mds", "sdsei"],
   },
   {
-    types: ["ccas", "mairie", "msap"],
+    types: ["ccas", "mairie", "mairie_com", "msap"],
   },
 ]
 

@@ -1,5 +1,6 @@
 import Individu from "@/lib/Individu"
 import { isRelevant, yearsAgo } from "@/lib/Utils"
+import Scolarite from "@/lib/Scolarite"
 
 const loadEntity = (component) => {
   const params = component.$route.params
@@ -359,7 +360,7 @@ const STEPS = {
         : `Où sera scolarisé·e ${component.entity._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
-    items: Individu.scolariteOptions,
+    items: Scolarite.options,
     enSavoirPlus: true,
   },
   sortie_academie: {
@@ -390,7 +391,7 @@ const STEPS = {
   mention_baccalaureat: {
     question: "Avez-vous obtenu une mention au baccalauréat ?",
     questionType: "enum",
-    items: Individu.mentionsBaccalaureat,
+    items: Scolarite.mentionsBaccalaureat,
   },
   statuts_etablissement_scolaire: {
     question: "Dans quel type d'établissement étudiez-vous actuellement ?",

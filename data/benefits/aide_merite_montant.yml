@@ -3,9 +3,8 @@ institution: etat
 description: L'aide au mérite est une aide de 900€ qui concerne les étudiants ayant reçu une mention "très bien" durant la dernière session du baccalauréat.
 link: https://www.etudiant.gouv.fr/fr/aide-au-merite-1291
 prefix: l’
-type: bool
+type: float
 entity: individus
 conditions:
   - avoir obtenu la mention « très bien » à la dernière session du baccalauréat.
   - ou l'avoir déjà reçue l'année précédente.
-legend: ""

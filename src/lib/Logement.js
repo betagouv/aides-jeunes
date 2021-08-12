@@ -31,9 +31,79 @@ function getLogementVariables(statusOccupationId) {
   return { type: null, primoAccedant: null, locationType: null, ...base }
 }
 
+const STATUT_OCCUPATION_LABEL = {
+  primo_accedant: "Propriétaire primo-accédant",
+  proprietaire: "Propriétaire primo-accédant",
+  locataire_vide: "Locataire",
+  locataire_meuble: "Locataire de meublé ou hotel",
+  loge_gratuitement: "Logé gratuitement",
+  locataire_foyer: "Locataire foyer",
+  sans_domicile: "Sans domicile stable",
+}
+
+function getStatutOccupationLabel(statut) {
+  return STATUT_OCCUPATION_LABEL[statut]
+}
+
+function isOwner(logementStatut) {
+  return (
+    logementStatut === "proprietaire" || logementStatut === "primo_accedant"
+  )
+}
+
+function captureCharges(logementStatut) {
+  return !(
+    Logement.isOwner(logementStatut) || logementStatut === "locataire_meuble"
+  )
+}
+
+function getLoyerData(menage, logementStatut) {
+  const isLocataire = !Logement.isOwner(logementStatut)
+  const captureCharges = Logement.captureCharges(logementStatut)
+
+  if (isLocataire) {
+    const loyerLabel =
+      [
+        "Quel est le montant",
+        captureCharges ? null : ", charges comprises,",
+        menage.coloc ? " de votre part du loyer" : " de votre loyer",
+      ]
+        .filter((present) => present)
+        .join("") + " ?"
+    return {
+      menage: menage,
+      captureCharges,
+      loyerQuestion: {
+        label: loyerLabel,
+        selectedValue: menage.loyer,
+        hint: "Sans déduire vos aides au logement si vous en avez.",
+      },
+      chargesQuestion: {
+        label: "Quel est le montant de vos charges locatives ?",
+        selectedValue: menage.charges_locatives,
+        hint: "Cela peut inclure l'eau froide, le chauffage collectif, l'entretien des parties communes…",
+      },
+    }
+  } else {
+    return {
+      captureCharges,
+      menage: menage,
+      loyerQuestion: {
+        label: "Quelles sont vos mensualités ?",
+        hint: "Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.",
+        selectedValue: menage.loyer,
+      },
+    }
+  }
+}
+
 const Logement = {
   getLogementVariables,
   getStatutOccupationLogement,
+  getStatutOccupationLabel,
+  isOwner,
+  captureCharges,
+  getLoyerData,
 }
 
 export default Logement

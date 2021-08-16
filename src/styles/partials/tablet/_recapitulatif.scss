@@ -1,0 +1,26 @@
+.recapitulatif-form {
+  .recapitulatif-row {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+
+    &:not(.recapitulatif-row-wrap) {
+      flex-direction: column;
+      .question-col,
+      .value-col,
+      .edit-col {
+        width: auto;
+      }
+      .question-col {
+        font-style: italic;
+        order: 1;
+      }
+      .value-col {
+        order: 3;
+      }
+      .edit-col {
+        order: 2;
+      }
+    }
+  }
+}

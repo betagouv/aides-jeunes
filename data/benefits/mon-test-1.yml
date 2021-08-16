@@ -1,0 +1,7 @@
+label: Mon test
+institution: action_logement
+description: ma courte description
+prefix: la
+type: bool
+floorAt: 10
+entity: menages

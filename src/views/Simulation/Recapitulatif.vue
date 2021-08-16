@@ -1,6 +1,5 @@
 <template>
   <form @submit.prevent="onSubmit" class="recapitulatif-form">
-    <h2>Récapitulatif</h2>
     <div>
       <template v-for="(chapter, chapterIndex) in chapters">
         <div
@@ -8,7 +7,7 @@
           :key="chapter.name"
           v-if="chapter.questions.length"
         >
-          <h3 class="aj-question">{{ chapter.label }}</h3>
+          <h2 class="aj-question">{{ chapter.label }}</h2>
           <template v-for="(question, questionIndex) in chapter.questions">
             <template v-if="question.isChapterSubtitle">
               <div

@@ -63,22 +63,12 @@
 import Actions from "@/components/Actions"
 import YesNoQuestion from "../../components/YesNoQuestion.vue"
 import Hint from "@/lib/Hint"
-import IndividuProperties from "@/lib/IndividuProperties"
-import FamilleProperties from "@/lib/FamilleProperties"
-import ParentsProperties from "@/lib/ParentsProperties"
-import MenageProperties from "@/lib/MenageProperties"
+
 import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import InputNumber from "@/components/InputNumber"
 import InputDate from "@/components/InputDate"
-import { UPDATE_METHODS } from "@/lib/State/steps"
-
-const ENTITIES_PROPERTIES = {
-  famille: FamilleProperties,
-  individu: IndividuProperties,
-  menage: MenageProperties,
-  parents: ParentsProperties,
-}
+import { ENTITIES_PROPERTIES, UPDATE_METHODS } from "@/lib/State/steps"
 
 export default {
   name: "MutualizedStep",

@@ -35,7 +35,7 @@ export const displayYesNoValue = (value) => {
 }
 
 export const displayCurrencyValue = (value) => {
-  return `${value}€`
+  return `${value}\xa0€`
 }
 
 export const displayDepcomValue = (codePostal, nom) => {
@@ -57,7 +57,7 @@ export const displayValue = (value, question, component) => {
       )
       break
     case "number":
-      result = `${value}${question.unit}`
+      result = `${value} ${question.unit}`
       break
     case undefined:
       result = displayYesNoValue(value)

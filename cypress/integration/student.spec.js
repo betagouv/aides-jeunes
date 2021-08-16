@@ -44,6 +44,7 @@ context("Full simulation", () => {
     cy.get('input[type="number"]').type("2")
     steps.submit()
 
+    steps.autoSubmit()
     steps.waitForResults()
     steps.hasBourseCriteresSociaux(3)
   })

@@ -3,7 +3,7 @@ import { isRelevant, yearsAgo } from "@/lib/Utils"
 import Scolarite from "@/lib/Scolarite"
 
 const loadEntity = (component) => {
-  const params = component.$route.params
+  const params = component.params || component.$route.params
   const role = params.id.split("_")[0]
   const { individu } = Individu.get(
     component.$store.getters.peopleParentsFirst,

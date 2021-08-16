@@ -1,0 +1,42 @@
+.recapitulatif-form {
+  .chapter-block:not(:last-child) {
+    margin-bottom: 1.25rem;
+  }
+
+  .subtitle {
+    font-weight: 700;
+  }
+
+  .recapitulatif-row {
+    $edit-col: 70px;
+    $question-col: calc(70% - #{$edit-col});
+    $value-col: calc(30% - #{$edit-col});
+
+    display: flex;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    &.recapitulatif-row-wrap {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .question-col {
+      width: $question-col;
+    }
+    .value-col {
+      width: $value-col;
+    }
+    .edit-col {
+      width: $edit-col;
+    }
+    .value-cell {
+      width: 120px;
+      border: 1px solid #c4c4c4;
+      border: 1px solid var(--light-grey);
+    }
+  }
+}

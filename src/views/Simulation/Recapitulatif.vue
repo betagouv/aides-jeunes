@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="onSubmit">
+  <form @submit.prevent="onSubmit" class="recapitulatif-form">
     <h2>Récapitulatif</h2>
     <div>
       <template v-for="(chapter, chapterIndex) in chapters">
@@ -40,7 +40,7 @@
                   class="recapitulatif-row recapitulatif-row-wrap"
                 >
                   <div
-                    class="table-cell"
+                    class="value-cell"
                     v-for="(value, name) in question.value"
                     :key="name"
                   >
@@ -321,7 +321,7 @@ export default {
     questionsPerStep(step) {
       if (!step.entity || !step.variable) console.log(step)
       let data = {
-        step: step.variable,
+        variable: step.variable,
       }
       if (SIMPLE_STEPS[step.variable]) {
         return SIMPLE_STEPS[step.variable].bind(this)(step)
@@ -362,44 +362,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.chapter-block:not(:last-child) {
-  margin-bottom: 1.25rem;
-}
-
-.subtitle {
-  font-weight: 700;
-}
-
-.recapitulatif-row {
-  $edit-col: 70px;
-  $question-col: calc(70% - #{$edit-col});
-  $value-col: calc(30% - #{$edit-col});
-
-  display: flex;
-  justify-content: space-between;
-
-  &:not(:last-child) {
-    margin-bottom: 8px;
-  }
-  &.recapitulatif-row-wrap {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-
-  .question-col {
-    width: $question-col;
-  }
-  .value-col {
-    width: $value-col;
-  }
-  .edit-col {
-    width: $edit-col;
-  }
-  .table-cell {
-    width: 120px;
-    border: 1px solid #c4c4c4;
-    border: 1px solid var(--light-grey);
-  }
-}
-</style>
+<style scoped lang="scss"></style>

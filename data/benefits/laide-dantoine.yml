@@ -1,0 +1,13 @@
+label: L'aide d'Antoine
+institution: etat
+description: La description d'antoine
+conditions:
+  - Habiter à Lille
+link: https://developer.mozilla.org/
+form: https://developer.mozilla.org/
+teleservice: https://developer.mozilla.org/
+prefix: la
+type: bool
+floorAt: 10
+interestFlag: null
+entity: individus

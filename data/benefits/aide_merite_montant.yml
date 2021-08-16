@@ -8,3 +8,4 @@ entity: individus
 conditions:
   - avoir obtenu la mention « très bien » à la dernière session du baccalauréat.
   - ou l'avoir déjà reçue l'année précédente.
+legend: "par année"

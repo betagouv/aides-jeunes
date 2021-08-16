@@ -185,7 +185,11 @@ const STEPS = {
       ].filter((item) => !item.only || item.only == component.entity.scolarite)
     },
   },
-
+  mention_baccalaureat: {
+    question: "Avez-vous obtenu une mention au baccalauréat ?",
+    questionType: "enum",
+    items: Scolarite.mentionsBaccalaureat,
+  },
   date_naissance: {
     question: (component) => {
       return component.entity._role === "demandeur"
@@ -387,11 +391,6 @@ const STEPS = {
       >
       l'an prochain ?`
     },
-  },
-  mention_baccalaureat: {
-    question: "Avez-vous obtenu une mention au baccalauréat ?",
-    questionType: "enum",
-    items: Scolarite.mentionsBaccalaureat,
   },
   statuts_etablissement_scolaire: {
     question: "Dans quel type d'établissement étudiez-vous actuellement ?",

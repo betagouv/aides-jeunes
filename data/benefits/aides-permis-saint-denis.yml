@@ -1,0 +1,7 @@
+label: Aides Permis Saint Denis
+institution: departement_seine_saint_denis
+description: Ville de Saint Denis
+prefix: la
+type: bool
+floorAt: 10
+entity: individus

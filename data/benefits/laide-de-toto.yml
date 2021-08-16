@@ -1,0 +1,7 @@
+label: L'aide de toto
+institution: etat
+description: Ma courte description de l'aide de toot
+prefix: la
+type: bool
+floorAt: 10
+entity: individus

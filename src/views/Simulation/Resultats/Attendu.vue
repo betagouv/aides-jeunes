@@ -198,6 +198,7 @@ import Institution from "@/lib/Institution"
 import ResultatsMixin from "@/mixins/Resultats"
 import { sendMontantsAttendus } from "@/plugins/mails"
 import { capitalize } from "../../../lib/Utils"
+import { load } from "js-yaml"
 
 export default {
   name: "attendu",
@@ -215,6 +216,7 @@ export default {
         if (b.label === "Tarification solidaire transports") {
           b.label = `${b.label} - ${provider.label}`
         }
+        console.log(b)
         benefits.push(b)
         benefitKeyed[b.id] = b
       }
@@ -327,6 +329,50 @@ export default {
       this.$refs["aj-textarea-results"].select()
       document.execCommand("copy")
     },
+    fetchOpenContributions() {
+      let contributions = []
+      axios
+        .get("https://api.github.com/repos/betagouv/aides-jeunes/pulls")
+        .then((res) => {
+          if (res.data) {
+            contributions = res.data.filter((k) =>
+              k.labels.some((e) => e.name.startsWith("netlify-cms"))
+            )
+          }
+        })
+        .then(() => {
+          if (contributions) {
+            contributions.forEach((contribution) => {
+              axios
+                .get(
+                  `https://api.github.com/repos/betagouv/aides-jeunes/pulls/${contribution.number}/files`
+                )
+                .then((res) => {
+                  if (res.data) {
+                    res.data.forEach((el) => {
+                      fetch(
+                        "https://raw.githubusercontent.com/betagouv/aides-jeunes/e8d53048401dbd1e08d0129df5b20ce0e5a52c4d/data/benefits/laide-de-toto.yml"
+                      )
+                        .then((respo) => respo.blob())
+                        .then((blob) => {
+                          blob.text().then((text) => {
+                            let toJson = load(text, { encoding: "utf-8" })
+                            console.log(toJson)
+                            this.benefits.push(toJson)
+                            console.log(this.benefits)
+                            /* const b = Object.assign(
+                              { id: benefitId, provider: { ...provider, id: providerId }, level },
+                              benefit
+                            )*/
+                          })
+                        })
+                    })
+                  }
+                })
+            })
+          }
+        })
+    },
     submit: function () {
       this.message = null
       if (this.submitting) {
@@ -368,6 +414,9 @@ export default {
           this.trackMontantAttendu("Sauvegarde des données")
         })
     },
+  },
+  mounted() {
+    this.fetchOpenContributions()
   },
 }
 </script>

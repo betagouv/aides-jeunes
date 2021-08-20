@@ -6,7 +6,7 @@
           <span v-html="question"></span>
           <EnSavoirPlus v-if="showMoreInfo" />
         </h2>
-        <p v-if="meta.help" v-html="meta.help"></p>
+        <p v-if="property.help" v-html="property.help"></p>
       </legend>
       <div class="aj-selections">
         <div
@@ -34,9 +34,9 @@
         <span v-html="question" />
         <EnSavoirPlus v-if="showMoreInfo" />
       </h2>
-      <p v-if="meta.help" v-html="meta.help"></p>
+      <p v-if="property.help" v-html="property.help"></p>
       <label>
-        <InputNumber :min="meta.min" v-model="value"></InputNumber>
+        <InputNumber :min="property.min" v-model="value"></InputNumber>
       </label>
     </div>
 
@@ -51,8 +51,8 @@
 
     <YesNoQuestion v-else v-model="value">
       <span v-html="question"></span><EnSavoirPlus v-if="showMoreInfo" />
-      <template v-slot:help v-if="meta.help"
-        ><p v-html="meta.help"></p
+      <template v-slot:help v-if="property.help"
+        ><p v-html="property.help"></p
       ></template>
     </YesNoQuestion>
     <Actions v-bind:onSubmit="onSubmit" />
@@ -63,12 +63,19 @@
 import Actions from "@/components/Actions"
 import YesNoQuestion from "../../components/YesNoQuestion.vue"
 import Hint from "@/lib/Hint"
-import Individu from "@/lib/Individu"
-import IndividuQuestions from "@/lib/IndividuQuestions"
+import IndividuProperties from "@/lib/IndividuProperties"
+import FamilleProperties from "@/lib/FamilleProperties"
+import ParentsProperties from "@/lib/ParentsProperties"
 import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import InputNumber from "@/components/InputNumber"
 import InputDate from "@/components/InputDate"
+
+const PROPERTIES_BY_ENTITY_NAME = {
+  individu: IndividuProperties,
+  famille: FamilleProperties,
+  parents: ParentsProperties,
+}
 
 export default {
   name: "IndividuProperty",
@@ -79,57 +86,45 @@ export default {
     YesNoQuestion,
     EnSavoirPlus,
   },
-  data: function () {
-    return this.loadQuestion(this.$route.params)
+  data() {
+    const entityName = this.$route.path.split("/")[2]
+    const entity = PROPERTIES_BY_ENTITY_NAME[entityName].loadEntity(this)
+    return {
+      value: entity[this.$route.params.fieldName],
+      entityName,
+      entity,
+    }
   },
   computed: {
-    fieldName: function () {
+    fieldName() {
       return this.$route.params.fieldName
     },
-    meta: function () {
-      return IndividuQuestions[this.fieldName]
+    properties() {
+      return PROPERTIES_BY_ENTITY_NAME[this.entityName]
     },
-    role: function () {
-      return this.$route.params.id.split("_")[0]
+    property() {
+      return this.properties.PROPERTIES[this.fieldName]
     },
-    questionType: function () {
-      return this.meta.questionType
+    questionType() {
+      return this.property.questionType
     },
-    question: function () {
+    question() {
       return capitalize(
-        executeFunctionOrReturnValue(this.meta, "question", this)
+        executeFunctionOrReturnValue(this.property, "question", this)
       )
     },
-    showMoreInfo: function () {
+    showMoreInfo() {
       const showMoreInfo =
-        this.meta.showMoreInfo === undefined ||
-        executeFunctionOrReturnValue(this.meta, "showMoreInfo", this)
+        this.property.showMoreInfo === undefined ||
+        executeFunctionOrReturnValue(this.property, "showMoreInfo", this)
       return showMoreInfo && Hint.get(this.fieldName)
     },
-    items: function () {
-      return executeFunctionOrReturnValue(this.meta, "items", this)
+    items() {
+      return executeFunctionOrReturnValue(this.property, "items", this)
     },
   },
   methods: {
-    loadQuestion(params) {
-      const role = params.id.split("_")[0]
-      const { individu } = Individu.get(
-        this.$store.getters.peopleParentsFirst,
-        role,
-        params.id,
-        this.$store.state.dates
-      )
-      const value = individu[params.fieldName]
-      return {
-        error: false,
-        individu,
-        value,
-      }
-    },
-    getLabel: function (type) {
-      return Individu.label(this.individu, type)
-    },
-    requiredValueMissing: function () {
+    requiredValueMissing() {
       const hasError = this.value === undefined
       this.$store.dispatch(
         "updateError",
@@ -137,12 +132,12 @@ export default {
       )
       return hasError
     },
-    onSubmit: function () {
+    onSubmit() {
       if (this.requiredValueMissing()) {
         return
       }
-      this.individu[this.fieldName] = this.value
-      this.$store.dispatch("updateIndividu", this.individu)
+      this.entity[this.fieldName] = this.value
+      this.$store.dispatch(this.properties.DISPATCH_NAME, this.entity)
       this.$push()
     },
   },

@@ -123,7 +123,7 @@ const router = new Router({
               path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/IndividuProperty.vue"
+                  /* webpackChunkName: "mutualized-properties" */ "./views/Simulation/MutualizedProperty.vue"
                 ),
             },
             {
@@ -140,7 +140,7 @@ const router = new Router({
           path: "parents/:fieldName",
           component: () =>
             import(
-              /* webpackChunkName: "individu" */ "./views/Simulation/ParentProperty.vue"
+              /* webpackChunkName: "mutualized-properties" */ "./views/Simulation/MutualizedProperty.vue"
             ),
         },
         {
@@ -176,7 +176,7 @@ const router = new Router({
               path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "famille" */ "./views/Simulation/FamilleProperty.vue"
+                  /* webpackChunkName: "mutualized-properties" */ "./views/Simulation/MutualizedProperty.vue"
                 ),
             },
           ],

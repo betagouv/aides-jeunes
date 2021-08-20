@@ -11,6 +11,11 @@
             >Quitter le mode debug</button
           >
         </div>
+        <div v-else-if="contribution" class="aj-debug-switch">
+          <button class="button small" @click="disableContribution"
+            >Quitter le mode contribution</button
+          >
+        </div>
         <div v-if="$store.state.message.text" class="notification warning">
           <div class="message" v-html="$store.state.message.text" />
         </div>
@@ -45,11 +50,18 @@ export default {
     debug() {
       return this.$store.getters.getDebug
     },
+    contribution() {
+      return this.$store.getters.getContribution
+    },
   },
   methods: {
     disableDebug() {
       this.$store.dispatch("setDebug", false)
       this.$router.replace({ debug: null })
+    },
+    disableContribution() {
+      this.$store.dispatch("setContribution", false)
+      this.$router.replace({ contribution: null })
     },
   },
 }

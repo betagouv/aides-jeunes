@@ -55,6 +55,17 @@
         ><p v-html="step.help"></p
       ></template>
     </YesNoQuestion>
+
+    <template
+      v-if="
+        isRelevantQuestionForContribution(fieldName, meta.openfiscaVariable)
+      "
+    >
+      <ContributionForm
+        v-model="contribution[entityName][fieldName]"
+      ></ContributionForm>
+    </template>
+
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
@@ -72,6 +83,8 @@ import EnSavoirPlus from "@/components/EnSavoirPlus"
 import InputNumber from "@/components/InputNumber"
 import InputDate from "@/components/InputDate"
 import { UPDATE_METHODS } from "@/lib/State/steps"
+import ContributionForm from "@/components/ContributionForm"
+import { createContributionMixin } from "@/mixins/ContributionMixin"
 
 const ENTITIES_PROPERTIES = {
   famille: FamilleProperties,
@@ -88,14 +101,25 @@ export default {
     InputNumber,
     InputDate,
     YesNoQuestion,
+    EnSavoirPlus,
+    ContributionForm,
   },
+  mixins: [createContributionMixin()],
   data() {
+    const params = this.$route.params
     const entityName = this.$route.path.split("/")[2]
     const entity = ENTITIES_PROPERTIES[entityName].loadEntity(this)
+
+    const contribution = this.initContribution(
+      params.id,
+      params.fieldName,
+      entity[params.fieldName].openfiscaVariable
+    )
     return {
-      value: entity[this.$route.params.fieldName],
+      value: entity[params.fieldName],
       entityName,
       entity,
+      contribution,
     }
   },
   computed: {
@@ -128,11 +152,24 @@ export default {
   },
   methods: {
     onSubmit() {
-      if (!this.step.optional && this.requiredValueMissing()) {
+      if (
+        (this.needCheckContrib(
+          this.entityName,
+          this.fieldName,
+          this.step.openfiscaVariable
+        ) ||
+          !this.step.optional) &&
+        this.requiredValueMissing()
+      ) {
         return
       }
       this.entity[this.fieldName] = this.value
       this.$store.dispatch(UPDATE_METHODS[this.entityName], this.entity)
+      this.saveContribution(
+        this.entityName,
+        this.fieldName,
+        this.step.openfiscaVariable
+      )
       this.$push()
     },
     requiredValueMissing() {

@@ -5,15 +5,19 @@ export const createIndividuMixin = (props) => {
 
   return {
     data: function () {
-      const id = this.$route.params.id
+      const params = this.$route.params
+      const id = params.id
       const role = id.split("_")[0]
       const { individu } = Individu.get(
         this.$store.getters.peopleParentsFirst,
         role,
-        this.$route.params.id,
+        params.id,
         this.$store.state.dates
       )
       const value = individu[fieldName]
+      let contribution
+      if (typeof this.initContribution === "function")
+        contribution = this.initContribution(id, "enfant_a_charge")
       return {
         error: false,
         fieldName,
@@ -22,6 +26,7 @@ export const createIndividuMixin = (props) => {
         value,
         role,
         optional,
+        contribution,
       }
     },
     methods: {

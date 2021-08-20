@@ -25,6 +25,11 @@
         </option>
       </select>
     </div>
+
+    <template v-if="isRelevantQuestionForContribution('depcom')">
+      <ContributionForm v-model="contribution.menage.depcom"></ContributionForm>
+    </template>
+
     <WarningMessage v-if="warningMessage" :text="warningMessage" />
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
@@ -36,22 +41,27 @@ import WarningMessage from "@/components/WarningMessage"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import Warning from "@/lib/Warnings"
 import DepcomMixin from "@/mixins/DepcomMixin"
+import ContributionForm from "@/components/ContributionForm"
+import { createContributionMixin } from "@/mixins/ContributionMixin"
 
 export default {
   name: "SimulationMenageDepcom",
-  mixins: [DepcomMixin],
+  mixins: [DepcomMixin, createContributionMixin()],
   components: {
     Actions,
     WarningMessage,
     EnSavoirPlus,
+    ContributionForm,
   },
   data: function () {
     const menage = { ...this.$store.getters.getMenage } || {}
+    const contribution = this.initContribution("menage", "depcom")
     return {
       menage: menage,
       retrievingCommunes: false,
       codePostal: menage._codePostal,
       nomCommune: menage._nomCommune,
+      contribution,
     }
   },
   computed: {
@@ -61,11 +71,17 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      if (!this.nomCommune || !this.codePostal) {
+      if (
+        this.needCheckContrib("menage", "depcom") &&
+        (!this.nomCommune || !this.codePostal)
+      ) {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
         return
       }
-      if (!this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
+      if (
+        this.needCheckContrib("menage", "depcom") &&
+        !this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)
+      ) {
         this.$store.dispatch(
           "updateError",
           "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment."
@@ -81,6 +97,7 @@ export default {
         this.menage._nomCommune = this.nomCommune
         this.$store.dispatch("updateMenage", this.menage)
       }
+      this.saveContribution("menage", "depcom")
       this.$push()
     },
   },

@@ -10,6 +10,13 @@
             | capitalize
       }}&nbsp;?
     </YesNoQuestion>
+
+    <template v-if="isRelevantQuestionForContribution('enfant_a_charge')">
+      <ContributionForm
+        v-model="contribution[entityName].enfant_a_charge"
+      ></ContributionForm>
+    </template>
+
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
@@ -19,40 +26,56 @@ import Actions from "@/components/Actions"
 import YesNoQuestion from "@/components/YesNoQuestion"
 import Individu from "@/lib/Individu"
 import { createIndividuMixin } from "@/mixins/IndividuMixin"
+import { createContributionMixin } from "@/mixins/ContributionMixin"
+import ContributionForm from "@/components/ContributionForm"
 
 export default {
   name: "SimulationIndividuEnfantACharge",
   components: {
     Actions,
     YesNoQuestion,
+    ContributionForm,
   },
-  mixins: [createIndividuMixin("enfant_a_charge")],
+  mixins: [createIndividuMixin("enfant_a_charge"), createContributionMixin()],
   data: function () {
-    const id = this.$route.params.id
+    const params = this.$route.params
+    const id = params.id
     const role = id.split("_")[0]
     const { individu } = Individu.get(
       this.$store.getters.peopleParentsFirst,
       role,
-      this.$route.params.id,
+      params.id,
       this.$store.state.dates
     )
     const value =
       individu["enfant_a_charge"][this.$store.state.dates.thisYear.id]
+    const contribution = this.initContribution(id, "enfant_a_charge")
+
     return {
       individu,
       id,
       value,
       role,
+      contribution,
     }
+  },
+  computed: {
+    entityName: function () {
+      return this.$route.params.id
+    },
   },
   methods: {
     onSubmit: function () {
-      if (this.requiredValueMissing()) {
+      if (
+        this.needCheckContrib(this.entityName, "enfant_a_charge") &&
+        this.requiredValueMissing()
+      ) {
         return
       }
       this.individu["enfant_a_charge"][this.$store.state.dates.thisYear.id] =
         this.value
       this.$store.dispatch("updateIndividu", this.individu)
+      this.saveContribution(this.entityName, "enfant_a_charge")
       this.$push()
     },
   },

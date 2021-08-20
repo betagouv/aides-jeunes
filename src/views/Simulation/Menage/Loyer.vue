@@ -25,6 +25,13 @@
         ></InputNumber>
       </div>
     </div>
+
+    <template v-if="isRelevantQuestionForContribution('charges_locatives')">
+      <ContributionForm
+        v-model="contribution.menage.charges_locatives"
+      ></ContributionForm>
+    </template>
+
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
@@ -32,13 +39,17 @@
 <script>
 import Actions from "@/components/Actions"
 import InputNumber from "@/components/InputNumber"
+import ContributionForm from "@/components/ContributionForm"
+import { createContributionMixin } from "@/mixins/ContributionMixin"
 
 export default {
   name: "SimulationMenageDepCom",
   components: {
     InputNumber,
     Actions,
+    ContributionForm,
   },
+  mixins: [createContributionMixin()],
   data: function () {
     const menage = { ...this.$store.getters.getMenage } || {}
     const logementStatut = this.$store.getters.getLogementStatut || ""
@@ -46,6 +57,8 @@ export default {
       logementStatut === "proprietaire" || logementStatut === "primo_accedant"
     )
     const captureCharges = isLocataire && logementStatut != "locataire_meuble"
+
+    const contribution = this.initContribution("menage", "charges_locatives")
 
     if (isLocataire) {
       const loyerLabel =
@@ -56,6 +69,7 @@ export default {
         ]
           .filter((present) => present)
           .join("") + " ?"
+
       return {
         menage: menage,
         captureCharges,
@@ -69,6 +83,7 @@ export default {
           selectedValue: menage.charges_locatives,
           hint: "Cela peut inclure l'eau froide, le chauffage collectif, l'entretien des parties communes…",
         },
+        contribution,
       }
     } else {
       return {
@@ -79,6 +94,7 @@ export default {
           hint: "Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.",
           selectedValue: menage.loyer,
         },
+        contribution,
       }
     }
   },
@@ -89,6 +105,7 @@ export default {
         this.menage.charges_locatives = this.chargesQuestion.selectedValue || 0
       }
       this.$store.dispatch("updateMenage", this.menage)
+      this.saveContribution("menage", "charges_locatives")
       this.$push()
     },
   },

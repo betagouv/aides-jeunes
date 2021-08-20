@@ -5,9 +5,14 @@ export const createFamilleMixin = (props) => {
     data: function () {
       const famille = { ...this.$store.state.situation.famille }
       const value = famille[fieldName]
+
+      let contribution
+      if (typeof this.initContribution === "function")
+        contribution = this.initContribution("famille", fieldName)
       return {
         famille,
         value,
+        contribution,
       }
     },
     methods: {

@@ -25,6 +25,13 @@
         <label for="en-couple">Je vis en couple</label>
       </div>
     </fieldset>
+
+    <template v-if="isRelevantQuestionForContribution('en_couple')">
+      <ContributionForm
+        v-model="contribution.famille.en_couple"
+      ></ContributionForm>
+    </template>
+
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
@@ -33,16 +40,22 @@
 import Actions from "@/components/Actions"
 import { createFamilleMixin } from "@/mixins/FamilleMixin"
 import Individu from "@/lib/Individu"
+import ContributionForm from "@/components/ContributionForm"
+import { createContributionMixin } from "@/mixins/ContributionMixin"
 
 export default {
   name: "SimulationFamilleEnCouple",
   components: {
     Actions,
+    ContributionForm,
   },
-  mixins: [createFamilleMixin("en_couple")],
+  mixins: [createFamilleMixin("en_couple"), createContributionMixin()],
   methods: {
     onSubmit() {
-      if (this.value === undefined) {
+      if (
+        this.needCheckContrib("famille", "en_couple") &&
+        this.value === undefined
+      ) {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
         return
       }
@@ -64,6 +77,7 @@ export default {
           statut_marital: "celibataire",
         })
       }
+      this.saveContribution("famille", "en_couple")
       this.$push()
     },
   },

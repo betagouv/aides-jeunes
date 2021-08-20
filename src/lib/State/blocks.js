@@ -549,9 +549,17 @@ function generateBlocks(situation) {
     },
     extraBlock(),
     {
+      isActive: (situation) => !situation._contribution,
       steps: [
         new Step({ entity: "resultats", chapter: "resultats" }),
         new Step({ entity: "resultats" }),
+      ],
+    },
+    {
+      isActive: (situation) => situation._contribution,
+      steps: [
+        new Step({ entity: "resultats_contribution", chapter: "resultats" }),
+        new Step({ entity: "resultats_contribution" }),
       ],
     },
   ]

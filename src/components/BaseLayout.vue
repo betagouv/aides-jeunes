@@ -22,6 +22,8 @@ export default {
     this.$router.onReady(() => {
       if (this.$route.query.debug === "parcours") {
         this.$store.dispatch("setDebug", true)
+      } else if (this.$route.query.contribution !== undefined) {
+        this.$store.dispatch("setContribution", true)
       }
     })
   },

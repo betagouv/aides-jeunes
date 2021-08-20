@@ -34,6 +34,13 @@
       </div>
     </div>
     <div class="form__group">{{ countLabel }}</div>
+
+    <template v-if="isRelevantQuestionForContribution('ressourceTypes')">
+      <ContributionForm
+        v-model="contribution[entityName].ressourceTypes"
+      ></ContributionForm>
+    </template>
+
     <Actions v-bind:onSubmit="onSubmit"> </Actions>
   </form>
 </template>
@@ -44,16 +51,25 @@ import orderBy from "lodash/orderBy"
 import groupBy from "lodash/groupBy"
 import { ressourceCategories, ressourceTypes } from "@/constants/resources"
 import Ressource from "@/lib/Ressource"
+import ContributionForm from "@/components/ContributionForm"
+import { createContributionMixin } from "@/mixins/ContributionMixin"
 
 export default {
   name: "RessourceTypes",
   components: {
     Actions,
+    ContributionForm,
   },
   props: {
     individu: Object,
   },
+  mixins: [createContributionMixin()],
   data: function () {
+    const contribution = this.initContribution(
+      this.$route.params.id,
+      "resourceTypes"
+    )
+
     let types = ressourceTypes.filter((ressourceType) => {
       return (
         Ressource.isRessourceOnMainScreen(ressourceType) &&
@@ -72,9 +88,13 @@ export default {
       categories: ressourceCategories,
       typesByCategories: groupBy(types, (t) => t.category),
       selectedTypes,
+      contribution,
     }
   },
   computed: {
+    entityName: function () {
+      return this.$route.params.id
+    },
     countLabel: function () {
       const count = Object.keys(this.selectedTypes).filter(
         (selectType) => this.selectedTypes[selectType]
@@ -100,6 +120,13 @@ export default {
         this.$store.state.dates
       )
       this.$store.dispatch("updateIndividu", this.individu)
+      this.saveContribution(
+        this.entityName,
+        "ressourceTypes",
+        Object.keys(this.selectedTypes).filter(
+          (type) => this.selectedTypes[type]
+        )
+      )
       this.$push()
     },
     sort: function (array) {

@@ -23,6 +23,13 @@
         }}</label>
       </div>
     </fieldset>
+
+    <template v-if="isRelevantQuestionForContribution('statut_marital')">
+      <ContributionForm
+        v-model="contribution[entityName].statut_marital"
+      ></ContributionForm>
+    </template>
+
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
@@ -30,6 +37,8 @@
 <script>
 import Actions from "@/components/Actions"
 import { createIndividuMixin } from "@/mixins/IndividuMixin"
+import ContributionForm from "@/components/ContributionForm"
+import { createContributionMixin } from "@/mixins/ContributionMixin"
 
 const situationsFamiliales = [
   {
@@ -50,15 +59,32 @@ export default {
   name: "SimulationIndividuStatutMarital",
   components: {
     Actions,
+    ContributionForm,
   },
-  mixins: [createIndividuMixin("statut_marital")],
+  mixins: [createIndividuMixin("statut_marital"), createContributionMixin()],
   data: function () {
+    const contribution = this.initContribution(
+      this.$route.params.id,
+      "statut_marital"
+    )
     return {
       situationsFamiliales,
+      contribution,
     }
+  },
+  computed: {
+    entityName: function () {
+      return this.$route.params.id
+    },
   },
   methods: {
     onSubmit: function () {
+      if (
+        this.needCheckContrib(this.entityName, "statut_marital") &&
+        this.requiredValueMissing()
+      ) {
+        return
+      }
       this.individu[this.fieldName] = this.value
       this.$store.dispatch("updateIndividu", this.individu)
       this.$store.dispatch(
@@ -67,6 +93,7 @@ export default {
           [this.fieldName]: this.value,
         })
       )
+      this.saveContribution(this.entityName, "statut_marital")
       this.$push()
     },
   },

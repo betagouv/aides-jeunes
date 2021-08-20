@@ -24,6 +24,20 @@
         </option>
       </select>
     </div>
+    <template
+      v-if="
+        isRelevantQuestionForContribution(
+          '_bourseCriteresSociauxCommuneDomicileFamilial',
+          'bourse_criteres_sociaux_distance_domicile_familial'
+        )
+      "
+    >
+      <ContributionForm
+        v-model="
+          contribution[entityName]._bourseCriteresSociauxCommuneDomicileFamilial
+        "
+      ></ContributionForm>
+    </template>
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
@@ -31,12 +45,15 @@
 import Actions from "@/components/Actions"
 import Individu from "@/lib/Individu"
 import DepcomMixin from "@/mixins/DepcomMixin"
+import { createContributionMixin } from "@/mixins/ContributionMixin"
+import ContributionForm from "@/components/ContributionForm"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxCommuneDomicileFamilial",
-  mixins: [DepcomMixin],
+  mixins: [DepcomMixin, createContributionMixin()],
   components: {
     Actions,
+    ContributionForm,
   },
   data() {
     const id = this.$route.params.id
@@ -51,20 +68,41 @@ export default {
       individu._bourseCriteresSociauxCommuneDomicileFamilialCodePostal
     const nomCommune =
       individu._bourseCriteresSociauxCommuneDomicileFamilialNomCommune
+
+    const contribution = this.initContribution(
+      id,
+      "_bourseCriteresSociauxCommuneDomicileFamilial",
+      "bourse_criteres_sociaux_distance_domicile_familial"
+    )
     return {
       codePostal,
       individu,
       nomCommune,
       retrievingCommunes: false,
+      contribution,
     }
   },
   methods: {
     onSubmit: function () {
-      if (!this.nomCommune || !this.codePostal) {
+      if (
+        this.needCheckContrib(
+          this.entityName,
+          "_bourseCriteresSociauxCommuneDomicileFamilial",
+          "bourse_criteres_sociaux_distance_domicile_familial"
+        ) &&
+        (!this.nomCommune || !this.codePostal)
+      ) {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
         return
       }
-      if (!this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
+      if (
+        this.needCheckContrib(
+          this.entityName,
+          "_bourseCriteresSociauxCommuneDomicileFamilial",
+          "bourse_criteres_sociaux_distance_domicile_familial"
+        ) &&
+        !this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)
+      ) {
         this.$store.dispatch(
           "updateError",
           "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment."
@@ -83,6 +121,11 @@ export default {
           this.nomCommune
         this.$store.dispatch("updateIndividu", this.individu)
       }
+      this.saveContribution(
+        this.entityName,
+        "_bourseCriteresSociauxCommuneDomicileFamilial",
+        "bourse_criteres_sociaux_distance_domicile_familial"
+      )
       this.$push()
     },
   },

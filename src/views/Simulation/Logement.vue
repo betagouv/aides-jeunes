@@ -85,6 +85,14 @@
       </div>
     </fieldset>
 
+    <template
+      v-if="isRelevantQuestionForContribution('statut_occupation_logement')"
+    >
+      <ContributionForm
+        v-model="contribution.menage.statut_occupation_logement"
+      ></ContributionForm>
+    </template>
+
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
@@ -93,13 +101,22 @@
 import Actions from "@/components/Actions"
 import Logement from "@/lib/Logement"
 import Individu from "@/lib/Individu"
+import { createContributionMixin } from "@/mixins/ContributionMixin"
+import ContributionForm from "@/components/ContributionForm"
 
 export default {
   name: "SimulationLogement",
   components: {
     Actions,
+    ContributionForm,
   },
+  mixins: [createContributionMixin()],
   data: function () {
+    const contribution = this.initContribution(
+      "menage",
+      "statut_occupation_logement"
+    )
+
     return {
       logementTypesQuestion: {
         label: "Êtes-vous ?",
@@ -189,6 +206,7 @@ export default {
           },
         ],
       },
+      contribution,
     }
   },
   methods: {
@@ -199,9 +217,13 @@ export default {
       )
     },
     onSubmit: function () {
-      if (!this.logementTypesQuestion.selectedValue) {
+      if (
+        this.needCheckContrib("menage", "statut_occupation_logement") &&
+        !this.logementTypesQuestion.selectedValue
+      ) {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
       } else if (
+        this.needCheckContrib("menage", "statut_occupation_logement") &&
         this.logementTypesQuestion.selectedValue === "proprietaire" &&
         this.primoAccedantQuestion.selectedValue === null
       ) {
@@ -210,6 +232,7 @@ export default {
           "Le champ primo-accédant est obligatoire."
         )
       } else if (
+        this.needCheckContrib("menage", "statut_occupation_logement") &&
         this.logementTypesQuestion.selectedValue === "locataire" &&
         !this.locataireTypesQuestion.selectedValue
       ) {
@@ -226,6 +249,7 @@ export default {
             locationType: this.locataireTypesQuestion.selectedValue,
           }),
         })
+        this.saveContribution("menage", "statut_occupation_logement")
         this.$push()
       }
     },

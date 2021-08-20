@@ -479,12 +479,14 @@ const STEPS = {
         label: "En contrat de professionnalisation",
       },
     ],
+    openfiscaVariable: ["apprenti", "professionnalisation"],
   },
 
   _dureeMoisEtudesEtranger: {
     question:
       "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
     questionType: "number",
+    openfiscaVariable: ["debut_etudes_etranger", "fin_etudes_etranger"],
   },
 
   _interetEtudesEtranger: {

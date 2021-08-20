@@ -234,6 +234,18 @@ const router = new Router({
             ),
         },
         {
+          name: "resultats_contribution",
+          path: "resultats_contribution",
+          meta: {
+            headTitle:
+              "Les résultats de ma simulation sur le simulateur d'aides 1jeune1solution",
+          },
+          component: () =>
+            import(
+              /* webpackChunkName: "resultats" */ "./views/Simulation/ResultatsContribution.vue"
+            ),
+        },
+        {
           name: "resultatsLieuxGeneriques",
           path: "resultats/lieux",
           component: () =>

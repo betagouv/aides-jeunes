@@ -204,35 +204,19 @@ const router = new Router({
                 ),
             },
             {
-              name: "coloc",
-              path: "coloc",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Menage/Coloc.vue"
-                ),
-            },
-            {
-              name: "logement_chambre",
-              path: "logement_chambre",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Menage/LogementChambre.vue"
-                ),
-            },
-            {
-              name: "participation_frais",
-              path: "participation_frais",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Menage/ParticipationFrais.vue"
-                ),
-            },
-            {
               name: "depcom",
               path: "depcom",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Menage/Depcom.vue"
+                ),
+            },
+            {
+              name: "MenageProperty",
+              path: ":fieldName",
+              component: () =>
+                import(
+                  /* webpackChunkName: "mutualized-properties" */ "./views/Simulation/MutualizedProperty.vue"
                 ),
             },
           ],

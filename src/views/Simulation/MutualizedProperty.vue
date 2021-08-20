@@ -66,6 +66,7 @@ import Hint from "@/lib/Hint"
 import IndividuProperties from "@/lib/IndividuProperties"
 import FamilleProperties from "@/lib/FamilleProperties"
 import ParentsProperties from "@/lib/ParentsProperties"
+import MenageProperties from "@/lib/MenageProperties"
 import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import InputNumber from "@/components/InputNumber"
@@ -74,6 +75,7 @@ import InputDate from "@/components/InputDate"
 const PROPERTIES_BY_ENTITY_NAME = {
   individu: IndividuProperties,
   famille: FamilleProperties,
+  menage: MenageProperties,
   parents: ParentsProperties,
 }
 

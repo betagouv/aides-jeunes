@@ -38,7 +38,10 @@ export const createContributionMixin = () => {
         if (this.contribution[entityName][fieldName]) {
           this.contribution[entityName] = {
             ...(this.contribution[entityName] || {}),
-            [fieldName]: openfiscaVariable || fieldName,
+            [fieldName]: {
+              openfiscaVariable: openfiscaVariable || fieldName,
+              path: this.$route.path,
+            },
           }
         } else {
           delete this.contribution[entityName][fieldName]

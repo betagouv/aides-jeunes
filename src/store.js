@@ -279,9 +279,6 @@ const store = new Vuex.Store({
       state.saveSituationError = null
       state.contribution = contribution
     },
-    setContribution: function (state, contribution) {
-      state.situation._contribution = contribution
-    },
     saveFamille: function (state, famille) {
       state.situation = Object.assign({}, state.situation, { famille })
     },
@@ -395,6 +392,9 @@ const store = new Vuex.Store({
     setSaveSituationError: function (state, saveSituationError) {
       state.saveSituationError = saveSituationError
     },
+    setContribution: function (state, contribution) {
+      state.situation._contribution = contribution
+    },
     saveContribution: function (state, contribution) {
       Vue.set(state, "contribution", contribution)
     },
@@ -407,9 +407,6 @@ const store = new Vuex.Store({
     },
     setDebug: function ({ commit }, debug) {
       commit("setDebug", debug)
-    },
-    setContribution: function ({ commit }, contribution) {
-      commit("setContribution", contribution)
     },
     initialize: function ({ commit }) {
       commit("initialize")
@@ -550,6 +547,9 @@ const store = new Vuex.Store({
             )
           }
         })
+    },
+    setContribution: function ({ commit }, contribution) {
+      commit("setContribution", contribution)
     },
     saveContribution: function ({ commit }, contribution) {
       commit("saveContribution", contribution)

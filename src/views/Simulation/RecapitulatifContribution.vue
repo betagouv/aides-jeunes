@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div> Résultats contribution </div>
+    <div> Récapitulatif contribution </div>
 
     <div>
       <table>
@@ -8,6 +8,7 @@
           <tr>
             <th>Variable Openfisca</th>
             <th>Valeur en lien</th>
+            <th>Modifier</th>
           </tr>
         </thead>
         <tbody>
@@ -15,6 +16,7 @@
             <tr :key="index">
               <td>{{ resultat.openfiscaVariable }}</td>
               <td>{{ resultat.value }}</td>
+              <td><router-link :to="resultat.path">Modifier</router-link></td>
             </tr>
           </template>
         </tbody>
@@ -27,7 +29,7 @@
 import Individu from "@/lib/Individu"
 
 export default {
-  name: "SimulationResultatsContribution",
+  name: "SimulationRecapitulatifContribution",
   components: {},
   computed: {
     contribution() {

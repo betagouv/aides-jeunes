@@ -1,6 +1,7 @@
 const loadEntity = (component) => {
   const parents = {
     ...(component.$store.getters.getParents || {}),
+    _entityName: "parents",
   }
   return parents
 }

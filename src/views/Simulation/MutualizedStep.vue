@@ -58,11 +58,11 @@
 
     <template
       v-if="
-        isRelevantQuestionForContribution(fieldName, meta.openfiscaVariable)
+        isRelevantQuestionForContribution(fieldName, step.openfiscaVariable)
       "
     >
       <ContributionForm
-        v-model="contribution[entityName][fieldName]"
+        v-model="contribution[entity._entityName][fieldName]"
       ></ContributionForm>
     </template>
 
@@ -101,7 +101,6 @@ export default {
     InputNumber,
     InputDate,
     YesNoQuestion,
-    EnSavoirPlus,
     ContributionForm,
   },
   mixins: [createContributionMixin()],
@@ -111,9 +110,9 @@ export default {
     const entity = ENTITIES_PROPERTIES[entityName].loadEntity(this)
 
     const contribution = this.initContribution(
-      params.id,
+      entity._entityName,
       params.fieldName,
-      entity[params.fieldName].openfiscaVariable
+      ENTITIES_PROPERTIES[entityName].STEPS[params.fieldName].openfiscaVariable
     )
     return {
       value: entity[params.fieldName],
@@ -154,7 +153,7 @@ export default {
     onSubmit() {
       if (
         (this.needCheckContrib(
-          this.entityName,
+          this.entity._entityName,
           this.fieldName,
           this.step.openfiscaVariable
         ) ||
@@ -166,7 +165,7 @@ export default {
       this.entity[this.fieldName] = this.value
       this.$store.dispatch(UPDATE_METHODS[this.entityName], this.entity)
       this.saveContribution(
-        this.entityName,
+        this.entity._entityName,
         this.fieldName,
         this.step.openfiscaVariable
       )

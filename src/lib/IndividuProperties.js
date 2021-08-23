@@ -11,6 +11,7 @@ const loadEntity = (component) => {
     params.id,
     component.$store.state.dates
   )
+  individu._entityName = params.id
   return individu
 }
 

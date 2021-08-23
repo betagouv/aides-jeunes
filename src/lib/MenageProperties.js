@@ -1,5 +1,8 @@
 const loadEntity = (component) => {
-  const menage = { ...(component.$store.getters.getMenage || {}) }
+  const menage = {
+    ...(component.$store.getters.getMenage || {}),
+    _entityName: "menage",
+  }
   return menage
 }
 

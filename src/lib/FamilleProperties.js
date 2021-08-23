@@ -1,7 +1,10 @@
 import { yearsAgo } from "@/lib/Utils"
 
 const loadEntity = (component) => {
-  const famille = { ...component.$store.state.situation.famille }
+  const famille = {
+    ...component.$store.state.situation.famille,
+    _entityName: "famille",
+  }
   return famille
 }
 

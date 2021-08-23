@@ -60,8 +60,8 @@ export default {
       this.$router.replace({ debug: null })
     },
     disableContribution() {
-      this.$store.dispatch("setContribution", false)
-      this.$router.replace({ contribution: null })
+      this.$store.dispatch("clear")
+      this.$router.push({ name: "simulation" })
     },
   },
 }

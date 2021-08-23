@@ -234,15 +234,15 @@ const router = new Router({
             ),
         },
         {
-          name: "resultats_contribution",
-          path: "resultats_contribution",
+          name: "recapitulatif_contribution",
+          path: "recapitulatif_contribution",
           meta: {
             headTitle:
               "Les résultats de ma simulation sur le simulateur d'aides 1jeune1solution",
           },
           component: () =>
             import(
-              /* webpackChunkName: "resultats" */ "./views/Simulation/ResultatsContribution.vue"
+              /* webpackChunkName: "resultats" */ "./views/Simulation/RecapitulatifContribution.vue"
             ),
         },
         {

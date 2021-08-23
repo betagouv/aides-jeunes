@@ -6,7 +6,7 @@
           <span v-html="question"></span>
           <EnSavoirPlus v-if="showMoreInfo" />
         </h2>
-        <p v-if="property.help" v-html="property.help"></p>
+        <p v-if="step.help" v-html="step.help"></p>
       </legend>
       <div class="aj-selections">
         <div
@@ -34,9 +34,9 @@
         <span v-html="question" />
         <EnSavoirPlus v-if="showMoreInfo" />
       </h2>
-      <p v-if="property.help" v-html="property.help"></p>
+      <p v-if="step.help" v-html="step.help"></p>
       <label>
-        <InputNumber :min="property.min" v-model="value"></InputNumber>
+        <InputNumber :min="step.min" v-model="value"></InputNumber>
       </label>
     </div>
 
@@ -51,8 +51,8 @@
 
     <YesNoQuestion v-else v-model="value">
       <span v-html="question"></span><EnSavoirPlus v-if="showMoreInfo" />
-      <template v-slot:help v-if="property.help"
-        ><p v-html="property.help"></p
+      <template v-slot:help v-if="step.help"
+        ><p v-html="step.help"></p
       ></template>
     </YesNoQuestion>
     <Actions v-bind:onSubmit="onSubmit" />
@@ -71,26 +71,27 @@ import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import InputNumber from "@/components/InputNumber"
 import InputDate from "@/components/InputDate"
+import { UPDATE_METHODS } from "@/lib/State/steps"
 
-const PROPERTIES_BY_ENTITY_NAME = {
-  individu: IndividuProperties,
+const ENTITIES_PROPERTIES = {
   famille: FamilleProperties,
+  individu: IndividuProperties,
   menage: MenageProperties,
   parents: ParentsProperties,
 }
 
 export default {
-  name: "IndividuProperty",
+  name: "MutualizedStep",
   components: {
+    Actions,
+    EnSavoirPlus,
     InputNumber,
     InputDate,
-    Actions,
     YesNoQuestion,
-    EnSavoirPlus,
   },
   data() {
     const entityName = this.$route.path.split("/")[2]
-    const entity = PROPERTIES_BY_ENTITY_NAME[entityName].loadEntity(this)
+    const entity = ENTITIES_PROPERTIES[entityName].loadEntity(this)
     return {
       value: entity[this.$route.params.fieldName],
       entityName,
@@ -98,34 +99,42 @@ export default {
     }
   },
   computed: {
+    entityProperties() {
+      return ENTITIES_PROPERTIES[this.entityName]
+    },
     fieldName() {
       return this.$route.params.fieldName
     },
-    properties() {
-      return PROPERTIES_BY_ENTITY_NAME[this.entityName]
-    },
-    property() {
-      return this.properties.PROPERTIES[this.fieldName]
-    },
-    questionType() {
-      return this.property.questionType
+    items() {
+      return executeFunctionOrReturnValue(this.step, "items", this)
     },
     question() {
       return capitalize(
-        executeFunctionOrReturnValue(this.property, "question", this)
+        executeFunctionOrReturnValue(this.step, "question", this)
       )
+    },
+    questionType() {
+      return this.step.questionType
     },
     showMoreInfo() {
       const showMoreInfo =
-        this.property.showMoreInfo === undefined ||
-        executeFunctionOrReturnValue(this.property, "showMoreInfo", this)
+        this.step.showMoreInfo === undefined ||
+        executeFunctionOrReturnValue(this.step, "showMoreInfo", this)
       return showMoreInfo && Hint.get(this.fieldName)
     },
-    items() {
-      return executeFunctionOrReturnValue(this.property, "items", this)
+    step() {
+      return this.entityProperties.STEPS[this.fieldName]
     },
   },
   methods: {
+    onSubmit() {
+      if (this.requiredValueMissing()) {
+        return
+      }
+      this.entity[this.fieldName] = this.value
+      this.$store.dispatch(UPDATE_METHODS[this.entityName], this.entity)
+      this.$push()
+    },
     requiredValueMissing() {
       const hasError = this.value === undefined
       this.$store.dispatch(
@@ -133,14 +142,6 @@ export default {
         hasError && "Ce champ est obligatoire."
       )
       return hasError
-    },
-    onSubmit() {
-      if (this.requiredValueMissing()) {
-        return
-      }
-      this.entity[this.fieldName] = this.value
-      this.$store.dispatch(this.properties.DISPATCH_NAME, this.entity)
-      this.$push()
     },
   },
 }

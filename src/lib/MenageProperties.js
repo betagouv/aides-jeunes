@@ -1,4 +1,9 @@
-const PROPERTIES = {
+const loadEntity = (component) => {
+  const menage = { ...(component.$store.getters.getMenage || {}) }
+  return menage
+}
+
+const STEPS = {
   coloc: {
     question: "Est-ce une colocation ?",
   },
@@ -16,15 +21,7 @@ const PROPERTIES = {
   },
 }
 
-const loadEntity = (component) => {
-  const menage = { ...(component.$store.getters.getMenage || {}) }
-  return menage
-}
-
-const DISPATCH_NAME = "updateMenage"
-
 export default {
-  PROPERTIES,
   loadEntity,
-  DISPATCH_NAME,
+  STEPS,
 }

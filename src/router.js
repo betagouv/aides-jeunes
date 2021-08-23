@@ -119,11 +119,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "IndividuProperty",
+              name: "IndividuStep",
               path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "mutualized-properties" */ "./views/Simulation/MutualizedProperty.vue"
+                  /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
                 ),
             },
             {
@@ -140,7 +140,7 @@ const router = new Router({
           path: "parents/:fieldName",
           component: () =>
             import(
-              /* webpackChunkName: "mutualized-properties" */ "./views/Simulation/MutualizedProperty.vue"
+              /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
             ),
         },
         {
@@ -172,11 +172,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "FamilleProperty",
+              name: "FamilleStep",
               path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "mutualized-properties" */ "./views/Simulation/MutualizedProperty.vue"
+                  /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
                 ),
             },
           ],
@@ -212,11 +212,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "MenageProperty",
+              name: "MenageStep",
               path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "mutualized-properties" */ "./views/Simulation/MutualizedProperty.vue"
+                  /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
                 ),
             },
           ],

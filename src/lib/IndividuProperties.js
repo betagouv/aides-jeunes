@@ -1,7 +1,19 @@
 import Individu from "@/lib/Individu"
 import { isRelevant, yearsAgo } from "@/lib/Utils"
 
-const PROPERTIES = {
+const loadEntity = (component) => {
+  const params = component.$route.params
+  const role = params.id.split("_")[0]
+  const { individu } = Individu.get(
+    component.$store.getters.peopleParentsFirst,
+    role,
+    params.id,
+    component.$store.state.dates
+  )
+  return individu
+}
+
+const STEPS = {
   aah_restriction_substantielle_durable_acces_emploi: {
     question: (component) => {
       return `${Individu.label(
@@ -468,22 +480,7 @@ const PROPERTIES = {
   },
 }
 
-const loadEntity = (component) => {
-  const params = component.$route.params
-  const role = params.id.split("_")[0]
-  const { individu } = Individu.get(
-    component.$store.getters.peopleParentsFirst,
-    role,
-    params.id,
-    component.$store.state.dates
-  )
-  return individu
-}
-
-const DISPATCH_NAME = "updateIndividu"
-
 export default {
-  PROPERTIES,
   loadEntity,
-  DISPATCH_NAME,
+  STEPS,
 }

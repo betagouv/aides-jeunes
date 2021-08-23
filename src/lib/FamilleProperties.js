@@ -1,6 +1,11 @@
 import { yearsAgo } from "@/lib/Utils"
 
-const PROPERTIES = {
+const loadEntity = (component) => {
+  const famille = { ...component.$store.state.situation.famille }
+  return famille
+}
+
+const STEPS = {
   bourse_criteres_sociaux_nombre_enfants_a_charge: {
     question:
       "Combien d'enfants (vous y compris) sont à la charge de vos parents ?",
@@ -40,15 +45,7 @@ const PROPERTIES = {
   },
 }
 
-const loadEntity = (component) => {
-  const famille = { ...component.$store.state.situation.famille }
-  return famille
-}
-
-const DISPATCH_NAME = "updateFamille"
-
 export default {
-  PROPERTIES,
   loadEntity,
-  DISPATCH_NAME,
+  STEPS,
 }

@@ -1,4 +1,11 @@
-const PROPERTIES = {
+const loadEntity = (component) => {
+  const parents = {
+    ...(component.$store.getters.getParents || {}),
+  }
+  return parents
+}
+
+const STEPS = {
   _situation: {
     question: "Quelle est la situation de vos parents ?",
     questionType: "enum",
@@ -41,17 +48,7 @@ const PROPERTIES = {
   },
 }
 
-const loadEntity = (component) => {
-  const parents = {
-    ...(component.$store.getters.getParents || {}),
-  }
-  return parents
-}
-
-const DISPATCH_NAME = "updateParents"
-
 export default {
-  PROPERTIES,
   loadEntity,
-  DISPATCH_NAME,
+  STEPS,
 }

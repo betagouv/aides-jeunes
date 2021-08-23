@@ -30,7 +30,7 @@ function current(currentPath, journey) {
   return journey.find((item) => item.path == currentPath)
 }
 
-function next(current, journey) {
+function next(current, journey, isContributionMode) {
   let matches = journey
     .map((element, index) => {
       return { element, index }
@@ -41,9 +41,11 @@ function next(current, journey) {
     const test = current.path || current.fullPath || current
     throw new Error("Logic missing for " + test)
   }
-  return journey
-    .slice(matches[matches.length - 1].index + 1)
-    .filter((step) => step.isActive)[0]
+
+  const nextSteps = journey.slice(matches[matches.length - 1].index + 1)
+  return isContributionMode
+    ? nextSteps[0]
+    : nextSteps.filter((step) => step.isActive)[0]
 }
 
 module.exports = {

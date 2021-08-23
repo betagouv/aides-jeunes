@@ -51,7 +51,7 @@ export default {
       return this.$store.getters.getDebug
     },
     contribution() {
-      return this.$store.getters.getContribution
+      return this.$store.getters.isContributionMode
     },
   },
   methods: {

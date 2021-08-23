@@ -15,13 +15,13 @@ export const createContributionMixin = () => {
       },
       isRelevantQuestionForContribution(fieldName, openfiscaVariable) {
         return Boolean(
-          this.$store.getters.getContribution &&
+          this.$store.getters.isContributionMode &&
             (!fieldName.startsWith("_") || openfiscaVariable)
         )
       },
       needCheckContrib(entityName, fieldName, openfiscaVariable) {
         return (
-          !this.$store.getters.getContribution ||
+          !this.$store.getters.isContributionMode ||
           (this.isRelevantQuestionForContribution(
             fieldName,
             openfiscaVariable

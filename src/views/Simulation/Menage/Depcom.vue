@@ -61,7 +61,8 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      if (!this.nomCommune && !this.codePostal.match("/^[0-9]*$/")) {
+      const expr = new RegExp("^[0-9]{5}$")
+      if (!this.nomCommune || !expr.test(this.codePostal)) {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
         return
       }

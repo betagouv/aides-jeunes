@@ -24,7 +24,7 @@
     "prestart": "npm run build && npm run stats",
     "start": "NODE_ENV=production node server.js",
     "stats": "node backend/lib/stats",
-    "test": "jest",
+    "test": "jest --testTimeout=10000",
     "test-benefits-urls": "node testBenefitsUrls.js"
   },
   "dependencies": {

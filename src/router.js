@@ -119,11 +119,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "IndividuProperty",
+              name: "IndividuStep",
               path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/IndividuProperty.vue"
+                  /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
                 ),
             },
             {
@@ -140,7 +140,7 @@ const router = new Router({
           path: "parents/:fieldName",
           component: () =>
             import(
-              /* webpackChunkName: "individu" */ "./views/Simulation/ParentProperty.vue"
+              /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
             ),
         },
         {
@@ -172,11 +172,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "FamilleProperty",
+              name: "FamilleStep",
               path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "famille" */ "./views/Simulation/FamilleProperty.vue"
+                  /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
                 ),
             },
           ],
@@ -204,35 +204,19 @@ const router = new Router({
                 ),
             },
             {
-              name: "coloc",
-              path: "coloc",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Menage/Coloc.vue"
-                ),
-            },
-            {
-              name: "logement_chambre",
-              path: "logement_chambre",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Menage/LogementChambre.vue"
-                ),
-            },
-            {
-              name: "participation_frais",
-              path: "participation_frais",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Menage/ParticipationFrais.vue"
-                ),
-            },
-            {
               name: "depcom",
               path: "depcom",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Menage/Depcom.vue"
+                ),
+            },
+            {
+              name: "MenageStep",
+              path: ":fieldName",
+              component: () =>
+                import(
+                  /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
                 ),
             },
           ],

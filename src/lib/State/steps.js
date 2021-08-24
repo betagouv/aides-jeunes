@@ -11,7 +11,7 @@ function Step({ key, entity, id, variable, chapter }) {
   this.chapter = chapter
 }
 
-const updateMethods = {
+const UPDATE_METHODS = {
   individu: "updateIndividu",
   famille: "updateFamille",
   foyerFiscal: "updateFoyerFiscal",
@@ -19,7 +19,7 @@ const updateMethods = {
   parents: "updateParents",
 }
 
-const internalUpdateMethods = {
+const INTERNAL_UPDATE_METHODS = {
   individu: "saveIndividu",
   famille: "saveFamille",
   foyerFiscal: "saveFoyerFiscal",
@@ -33,8 +33,8 @@ Step.prototype.clean = function ({ commit, dispatch, state }, storeInternal) {
     state.situation[this.id] ||
     state.situation.enfants.find((enfant) => enfant.id === this.id)
   const result = { ...subject, [this.variable]: undefined }
-  const updateMethod = updateMethods[this.entity]
-  const internalUpdateMethod = internalUpdateMethods[this.entity]
+  const updateMethod = UPDATE_METHODS[this.entity]
+  const internalUpdateMethod = INTERNAL_UPDATE_METHODS[this.entity]
   return storeInternal
     ? commit(internalUpdateMethod, result)
     : dispatch(updateMethod, result)
@@ -54,4 +54,5 @@ ComplexStep.prototype.clean = function (store) {
 module.exports = {
   ComplexStep,
   Step,
+  UPDATE_METHODS,
 }

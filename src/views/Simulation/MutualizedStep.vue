@@ -6,7 +6,7 @@
           <span v-html="question"></span>
           <EnSavoirPlus v-if="showMoreInfo" />
         </h2>
-        <p v-if="meta.help" v-html="meta.help"></p>
+        <p v-if="step.help" v-html="step.help"></p>
       </legend>
       <div class="aj-selections">
         <div
@@ -34,9 +34,9 @@
         <span v-html="question" />
         <EnSavoirPlus v-if="showMoreInfo" />
       </h2>
-      <p v-if="meta.help" v-html="meta.help"></p>
+      <p v-if="step.help" v-html="step.help"></p>
       <label>
-        <InputNumber :min="meta.min" v-model="value"></InputNumber>
+        <InputNumber :min="step.min" v-model="value"></InputNumber>
       </label>
     </div>
 
@@ -51,8 +51,8 @@
 
     <YesNoQuestion v-else v-model="value">
       <span v-html="question"></span><EnSavoirPlus v-if="showMoreInfo" />
-      <template v-slot:help v-if="meta.help"
-        ><p v-html="meta.help"></p
+      <template v-slot:help v-if="step.help"
+        ><p v-html="step.help"></p
       ></template>
     </YesNoQuestion>
     <Actions v-bind:onSubmit="onSubmit" />
@@ -63,87 +63,85 @@
 import Actions from "@/components/Actions"
 import YesNoQuestion from "../../components/YesNoQuestion.vue"
 import Hint from "@/lib/Hint"
-import Individu from "@/lib/Individu"
-import IndividuQuestions from "@/lib/IndividuQuestions"
+import IndividuProperties from "@/lib/IndividuProperties"
+import FamilleProperties from "@/lib/FamilleProperties"
+import ParentsProperties from "@/lib/ParentsProperties"
+import MenageProperties from "@/lib/MenageProperties"
 import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import InputNumber from "@/components/InputNumber"
 import InputDate from "@/components/InputDate"
+import { UPDATE_METHODS } from "@/lib/State/steps"
+
+const ENTITIES_PROPERTIES = {
+  famille: FamilleProperties,
+  individu: IndividuProperties,
+  menage: MenageProperties,
+  parents: ParentsProperties,
+}
 
 export default {
-  name: "IndividuProperty",
+  name: "MutualizedStep",
   components: {
+    Actions,
+    EnSavoirPlus,
     InputNumber,
     InputDate,
-    Actions,
     YesNoQuestion,
-    EnSavoirPlus,
   },
-  data: function () {
-    return this.loadQuestion(this.$route.params)
+  data() {
+    const entityName = this.$route.path.split("/")[2]
+    const entity = ENTITIES_PROPERTIES[entityName].loadEntity(this)
+    return {
+      value: entity[this.$route.params.fieldName],
+      entityName,
+      entity,
+    }
   },
   computed: {
-    fieldName: function () {
+    entityProperties() {
+      return ENTITIES_PROPERTIES[this.entityName]
+    },
+    fieldName() {
       return this.$route.params.fieldName
     },
-    meta: function () {
-      return IndividuQuestions[this.fieldName]
+    items() {
+      return executeFunctionOrReturnValue(this.step, "items", this)
     },
-    role: function () {
-      return this.$route.params.id.split("_")[0]
-    },
-    questionType: function () {
-      return this.meta.questionType
-    },
-    question: function () {
+    question() {
       return capitalize(
-        executeFunctionOrReturnValue(this.meta, "question", this)
+        executeFunctionOrReturnValue(this.step, "question", this)
       )
     },
-    showMoreInfo: function () {
+    questionType() {
+      return this.step.questionType
+    },
+    showMoreInfo() {
       const showMoreInfo =
-        this.meta.showMoreInfo === undefined ||
-        executeFunctionOrReturnValue(this.meta, "showMoreInfo", this)
+        this.step.showMoreInfo === undefined ||
+        executeFunctionOrReturnValue(this.step, "showMoreInfo", this)
       return showMoreInfo && Hint.get(this.fieldName)
     },
-    items: function () {
-      return executeFunctionOrReturnValue(this.meta, "items", this)
+    step() {
+      return this.entityProperties.STEPS[this.fieldName]
     },
   },
   methods: {
-    loadQuestion(params) {
-      const role = params.id.split("_")[0]
-      const { individu } = Individu.get(
-        this.$store.getters.peopleParentsFirst,
-        role,
-        params.id,
-        this.$store.state.dates
-      )
-      const value = individu[params.fieldName]
-      return {
-        error: false,
-        individu,
-        value,
+    onSubmit() {
+      if (this.requiredValueMissing()) {
+        return
       }
+      this.entity[this.fieldName] = this.value
+      this.$store.dispatch(UPDATE_METHODS[this.entityName], this.entity)
+      this.$push()
     },
-    getLabel: function (type) {
-      return Individu.label(this.individu, type)
-    },
-    requiredValueMissing: function () {
+    requiredValueMissing() {
       const hasError = this.value === undefined
       this.$store.dispatch(
         "updateError",
         hasError && "Ce champ est obligatoire."
       )
       return hasError
-    },
-    onSubmit: function () {
-      if (this.requiredValueMissing()) {
-        return
-      }
-      this.individu[this.fieldName] = this.value
-      this.$store.dispatch("updateIndividu", this.individu)
-      this.$push()
     },
   },
 }

@@ -22,6 +22,7 @@ describe("computeAides", function () {
           "2014-11": 100,
         },
       },
+      famille: {},
     }
 
     openfiscaResult = {

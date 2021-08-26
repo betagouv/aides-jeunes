@@ -1,6 +1,11 @@
 import { yearsAgo } from "@/lib/Utils"
 
-export default {
+const loadEntity = (component) => {
+  const famille = { ...component.$store.state.situation.famille }
+  return famille
+}
+
+const STEPS = {
   bourse_criteres_sociaux_nombre_enfants_a_charge: {
     question:
       "Combien d'enfants (vous y compris) sont à la charge de vos parents ?",
@@ -12,6 +17,10 @@ export default {
     question: "Et combien (vous y compris) font des études supérieures ?",
     questionType: "number",
     min: 0,
+  },
+
+  bourse_lycee: {
+    question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
   },
 
   parisien: {
@@ -34,4 +43,9 @@ export default {
   rsa_isolement_recent: {
     question: "Vivez-vous seul·e depuis plus de 18 mois ?",
   },
+}
+
+export default {
+  loadEntity,
+  STEPS,
 }

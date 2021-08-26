@@ -1,10 +1,25 @@
 import Individu from "@/lib/Individu"
 import { isRelevant, yearsAgo } from "@/lib/Utils"
 
-export default {
+const loadEntity = (component) => {
+  const params = component.$route.params
+  const role = params.id.split("_")[0]
+  const { individu } = Individu.get(
+    component.$store.getters.peopleParentsFirst,
+    role,
+    params.id,
+    component.$store.state.dates
+  )
+  return individu
+}
+
+const STEPS = {
   aah_restriction_substantielle_durable_acces_emploi: {
     question: (component) => {
-      return `${component.getLabel("avoir")} une restriction substantielle et
+      return `${Individu.label(
+        component.entity,
+        "avoir"
+      )} une restriction substantielle et
       durable d'accès à l'emploi reconnue par la
       <abbr
         title="Commission des droits et de l'autonomie des personnes handicapées"
@@ -16,7 +31,7 @@ export default {
 
   activite: {
     question: (component) => {
-      return `${component.getLabel("être")} ?`
+      return `${Individu.label(component.entity, "être")} ?`
     },
     questionType: "enum",
     items: (component) => {
@@ -38,7 +53,7 @@ export default {
           label: "Retraité·e",
           isRelevant: (component) =>
             Individu.age(
-              component.individu,
+              component.entity,
               component.$store.state.dates.today.value
             ) > 30,
         },
@@ -51,46 +66,22 @@ export default {
     },
   },
 
-  aide_mobilite_master_sortie_region_academique: {
-    question: (component) => {
-      return `${component.getLabel("avoir")} prévu d'étudier
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://www.etudiant.gouv.fr/fr/aide-la-mobilite-en-master-1504#item2"
-        >hors de votre région académique</a
-      >
-      l'an prochain ?`
-    },
-  },
-
-  aide_mobilite_parcoursup_boursier_lycee: {
-    question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
-  },
-
-  aide_mobilite_parcoursup_sortie_academie: {
-    question: (component) => {
-      return `${component.getLabel("avoir")} prévu d'étudier
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://www.education.gouv.fr/les-regions-academiques-academies-et-services-departementaux-de-l-education-nationale-6557"
-        >hors de votre académie</a
-      >
-      l'an prochain ?`
-    },
+  aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
+    question:
+      "Quel montant mensuel de bourse receviez-vous lors de votre dernière année d'études ?",
+    questionType: "number",
   },
 
   alternant: {
     question: (component) => {
-      return `${component.getLabel("être")} en alternance ?`
+      return `${Individu.label(component.entity, "être")} en alternance ?`
     },
   },
 
   ass_precondition_remplie: {
     question: (component) => {
-      const date_debut_chomage = component.individu.date_debut_chomage
-      return `${component.getLabel("avoir")} travaillé
+      const date_debut_chomage = component.entity.date_debut_chomage
+      return `${Individu.label(component.entity, "avoir")} travaillé
       <abbr
         title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés."
         >au moins 5 ans</abbr
@@ -100,19 +91,57 @@ export default {
     },
   },
 
+  bourse_criteres_sociaux_base_ressources_parentale: {
+    question: (component) => {
+      return `Quel est le revenu brut global ${yearsAgo(
+        2,
+        component.$store.state.dates.today.id,
+        "YYYY"
+      )} figurant sur l’avis fiscal ${yearsAgo(
+        1,
+        component.$store.state.dates.today.id,
+        "YYYY"
+      )} de vos parents ?`
+    },
+    questionType: "number",
+    showMoreInfo: (component) => {
+      return component.$store.state.situation.parents._situation === "separes"
+    },
+  },
+
   boursier: {
     question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
   },
 
-  classe_scolarite: {
+  annee_etude: {
     question: "Dans quelle classe êtes-vous actuellement ?",
     questionType: "enum",
     items: (component) => {
       return [
         {
+          value: "seconde",
+          label: "Seconde",
+          only: "lycee",
+        },
+        {
+          value: "premiere",
+          label: "Première",
+          only: "lycee",
+        },
+        {
           value: "terminale",
           label: "Terminale",
           only: "lycee",
+        },
+        {
+          label: "Licence - 1ère année",
+          value: "licence_1",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Licence - 2ème année",
+          value: "licence_2",
+          only: "enseignement_superieur",
         },
         {
           label: "Licence - 3ème année",
@@ -125,18 +154,59 @@ export default {
           only: "enseignement_superieur",
         },
         {
+          label: "Master - 2ème année",
+          value: "master_2",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Doctorat - 1ère année",
+          value: "doctorat_1",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Doctorat - 2ème année",
+          value: "doctorat_2",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "Doctorat - 3ème année",
+          value: "doctorat_3",
+          only: "enseignement_superieur",
+        },
+        {
           label: "Autre",
           value: "autre",
         },
-      ].filter(
-        (item) => !item.only || item.only == component.individu.scolarite
-      )
+      ].filter((item) => !item.only || item.only == component.entity.scolarite)
     },
+  },
+
+  date_naissance: {
+    question: (component) => {
+      return component.entity._role === "demandeur"
+        ? `Quelle est votre date de naissance ?`
+        : `Quelle est la date de naissance ${Individu.label(
+            component.entity,
+            "préposition"
+          )}${Individu.label(component.entity, "nom")} ?`
+    },
+    questionType: "date",
+  },
+
+  date_debut_chomage: {
+    question: (component) => {
+      return `Quand ${Individu.label(
+        component.entity,
+        "avoir"
+      )} commencé à être au chômage ?`
+    },
+    questionType: "date",
   },
 
   enfant_place: {
     question: (component) => {
-      return `${component.getLabel(
+      return `${Individu.label(
+        component.entity,
         "être"
       )} placé·e en structure spécialisée ou famille d'accueil ?`
     },
@@ -144,13 +214,16 @@ export default {
 
   garde_alternee: {
     question: (component) => {
-      return `${component.getLabel("être")} en garde alternée ?`
+      return `${Individu.label(component.entity, "être")} en garde alternée ?`
     },
   },
 
   gir: {
     question: (component) => {
-      return `${component.getLabel("avoir")} besoin d’une aide à la
+      return `${Individu.label(
+        component.entity,
+        "avoir"
+      )} besoin d’une aide à la
       personne ?`
     },
     questionType: "enum",
@@ -176,23 +249,30 @@ export default {
 
   handicap: {
     question: (component) => {
-      return `${component.getLabel("être")} en situation de handicap ?`
+      return `${Individu.label(
+        component.entity,
+        "être"
+      )} en situation de handicap ?`
     },
   },
 
   inapte_travail: {
     question: (component) => {
-      return `${component.getLabel("être")} reconnu·e inapte au travail ?`
+      return `${Individu.label(
+        component.entity,
+        "être"
+      )} reconnu·e inapte au travail ?`
     },
   },
 
   nationalite: {
     question: (component) => {
-      return component.role === "demandeur"
+      return component.entity._role === "demandeur"
         ? "Quelle est votre nationalité ?"
-        : `Quelle est la nationalité ${component.getLabel(
+        : `Quelle est la nationalité ${Individu.label(
+            component.entity,
             "préposition"
-          )}${component.getLabel("nom")} ?`
+          )}${Individu.label(component.entity, "nom")} ?`
     },
     questionType: "enum",
     items: [
@@ -209,6 +289,17 @@ export default {
         value: "AF",
       },
     ],
+  },
+
+  plus_haut_diplome_date_obtention: {
+    question: (component) => {
+      return `Quand ${Individu.label(
+        component.entity,
+        "avoir"
+      )} obtenu votre plus haut diplôme ?
+      (approximativement)`
+    },
+    questionType: "date",
   },
 
   plus_haut_diplome_niveau: {
@@ -241,14 +332,14 @@ export default {
       },
       {
         value: "non_renseigne",
-        label: "Autre",
+        label: "Aucun",
       },
     ],
   },
 
   rsa_jeune_condition_heures_travail_remplie: {
     question: (component) => {
-      return `${component.getLabel("avoir")} travaillé
+      return `${Individu.label(component.entity, "avoir")} travaillé
       <abbr
         title="ou 3 214 heures (2 fois 1 607) couvertes par un contrat de travail."
         >au moins 2 ans</abbr
@@ -259,13 +350,39 @@ export default {
 
   scolarite: {
     question: (component) => {
-      return component.role == "demandeur"
+      return component.entity._role == "demandeur"
         ? "Où êtes-vous scolarisé·e ?"
-        : `Où sera scolarisé·e ${component.individu._firstName} à la rentrée prochaine ?`
+        : `Où sera scolarisé·e ${component.entity._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
     items: Individu.scolariteOptions,
     enSavoirPlus: true,
+  },
+
+  sortie_academie: {
+    question: (component) => {
+      return `${Individu.label(component.entity, "avoir")} prévu d'étudier
+      <a
+        target="_blank"
+        rel="noopener"
+        href="https://www.education.gouv.fr/les-regions-academiques-academies-et-services-departementaux-de-l-education-nationale-6557"
+        >hors de votre académie</a
+      >
+      l'an prochain ?`
+    },
+  },
+
+  sortie_region_academique: {
+    question: (component) => {
+      return `${Individu.label(component.entity, "avoir")} prévu d'étudier
+      <a
+        target="_blank"
+        rel="noopener"
+        href="https://www.etudiant.gouv.fr/fr/aide-la-mobilite-en-master-1504#item2"
+        >hors de votre région académique</a
+      >
+      l'an prochain ?`
+    },
   },
 
   statuts_etablissement_scolaire: {
@@ -294,14 +411,15 @@ export default {
   taux_incapacite: {
     question: (component) => {
       const start =
-        component.role === "demandeur"
+        component.entity._role === "demandeur"
           ? `Quel est votre taux d'incapacité`
-          : `Quel est le taux d'incapacité ${component.getLabel(
+          : `Quel est le taux d'incapacité ${Individu.label(
+              component.entity,
               "préposition"
-            )}${component.getLabel("nom")}`
+            )}${Individu.label(component.entity, "nom")}`
 
       return `${start}
-          évalué par ${component.getLabel("possessive")}
+          évalué par ${Individu.label(component.entity, "possessive")}
           <abbr title="Maison départementale des personnes handicapées"
             >MDPH</abbr
           > ?`
@@ -331,6 +449,27 @@ export default {
     question: "Avez-vous prévu de continuer vos études l'an prochain ?",
   },
 
+  _contrat_alternant: {
+    question: "Êtes-vous ?",
+    questionType: "enum",
+    items: [
+      {
+        value: "apprenti",
+        label: "En apprentissage",
+      },
+      {
+        value: "professionnalisation",
+        label: "En contrat de professionnalisation",
+      },
+    ],
+  },
+
+  _dureeMoisEtudesEtranger: {
+    question:
+      "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
+    questionType: "number",
+  },
+
   _interetEtudesEtranger: {
     question:
       "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
@@ -339,10 +478,9 @@ export default {
   _interetPermisDeConduire: {
     question: "Prévoyez-vous de passer le permis de conduire ?",
   },
+}
 
-  aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
-    questionType: "number",
-    question:
-      "Quel montant mensuel de bourse receviez-vous lors de votre dernière année d'études ?",
-  },
+export default {
+  loadEntity,
+  STEPS,
 }

@@ -16,7 +16,7 @@ export const isRelevant = (items, component) => {
   return items.filter((item) => !item.isRelevant || item.isRelevant(component))
 }
 
-export const yearsAgo = (years, date) => {
+export const yearsAgo = (years, date, format = "MMMM YYYY") => {
   let dt = moment(date)
-  return date && dt.subtract(years, "years").format("MMMM YYYY")
+  return date && dt.subtract(years, "years").format(format)
 }

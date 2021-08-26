@@ -53,7 +53,7 @@ function copyTo3PreviousMonths(testCase, dateDeValeur) {
       forEach(testCase[entityName], function (entity) {
         var value = entity[entityPropertyName]
         var result = {}
-        if (value !== undefined) {
+        if (value !== undefined && typeof value !== "object") {
           periodKeys.forEach(function (periodKey) {
             result[periods[periodKey]] = value
           })

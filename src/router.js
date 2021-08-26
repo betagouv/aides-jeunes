@@ -63,23 +63,6 @@ const router = new Router({
             ),
           children: [
             {
-              name: "date_naissance",
-              path: "date_naissance",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/DateNaissance.vue"
-                ),
-            },
-
-            {
-              name: "date_debut_chomage",
-              path: "date_debut_chomage",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/DateDebutChomage.vue"
-                ),
-            },
-            {
               name: "statut_marital",
               path: "statut_marital",
               component: () =>
@@ -128,14 +111,6 @@ const router = new Router({
                 ),
             },
             {
-              name: "bourse_criteres_sociaux_base_ressources_parentale",
-              path: "bourse_criteres_sociaux_base_ressources_parentale",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/BourseCriteresSociauxBaseRessourcesParentale.vue"
-                ),
-            },
-            {
               name: "_bourseCriteresSociauxCommuneDomicileFamilial",
               path: "_bourseCriteresSociauxCommuneDomicileFamilial",
               component: () =>
@@ -144,27 +119,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "_dureeMoisEtudesEtranger",
-              path: "_dureeMoisEtudesEtranger",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/_DureeMoisEtudesEtranger.vue"
-                ),
-            },
-            {
-              name: "plus_haut_diplome_date_obtention",
-              path: "plus_haut_diplome_date_obtention",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/PlusHautDiplomeDateObtention.vue"
-                ),
-            },
-            {
-              name: "IndividuProperty",
+              name: "IndividuStep",
               path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/IndividuProperty.vue"
+                  /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
                 ),
             },
             {
@@ -181,7 +140,7 @@ const router = new Router({
           path: "parents/:fieldName",
           component: () =>
             import(
-              /* webpackChunkName: "individu" */ "./views/Simulation/ParentProperty.vue"
+              /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
             ),
         },
         {
@@ -213,11 +172,11 @@ const router = new Router({
                 ),
             },
             {
-              name: "FamilleProperty",
+              name: "FamilleStep",
               path: ":fieldName",
               component: () =>
                 import(
-                  /* webpackChunkName: "famille" */ "./views/Simulation/FamilleProperty.vue"
+                  /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
                 ),
             },
           ],
@@ -245,35 +204,19 @@ const router = new Router({
                 ),
             },
             {
-              name: "coloc",
-              path: "coloc",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Menage/Coloc.vue"
-                ),
-            },
-            {
-              name: "logement_chambre",
-              path: "logement_chambre",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Menage/LogementChambre.vue"
-                ),
-            },
-            {
-              name: "participation_frais",
-              path: "participation_frais",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Menage/ParticipationFrais.vue"
-                ),
-            },
-            {
               name: "depcom",
               path: "depcom",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/Simulation/Menage/Depcom.vue"
+                ),
+            },
+            {
+              name: "MenageStep",
+              path: ":fieldName",
+              component: () =>
+                import(
+                  /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
                 ),
             },
           ],
@@ -494,12 +437,10 @@ router.beforeEach((to, from, next) => {
     store.dispatch("verifyBenefitVariables")
     if (
       to.matched.some((r) => r.name === "foyer" || r.name === "simulation") &&
-      [
-        "date_naissance",
-        "resultats",
-        "resultatsDetails",
-        "resultatsLieuxGeneriques",
-      ].indexOf(to.name) === -1 &&
+      !to.path.endsWith("/date_naissance") &&
+      ["resultats", "resultatsDetails", "resultatsLieuxGeneriques"].indexOf(
+        to.name
+      ) === -1 &&
       !store.getters.passSanityCheck
     ) {
       return store.dispatch("redirection", (route) => next(route))

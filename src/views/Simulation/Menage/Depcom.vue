@@ -1,7 +1,10 @@
 <template>
   <form @submit.prevent="onSubmit">
     <div class="field-group">
-      <label for="cp" class="aj-question">{{ codePostalQuestion.label }}</label>
+      <label for="cp" class="aj-question"
+        >{{ codePostalQuestion.label }} <EnSavoirPlus
+      /></label>
+
       <input id="cp" type="number" v-model="codePostalQuestion.selectedValue" />
     </div>
 
@@ -32,12 +35,14 @@ import Actions from "@/components/Actions"
 import Commune from "@/lib/Commune"
 import WarningMessage from "@/components/WarningMessage"
 import Warning from "../../../lib/Warnings"
+import EnSavoirPlus from "@/components/EnSavoirPlus"
 
 export default {
   name: "SimulationMenageDepcom",
   components: {
     Actions,
     WarningMessage,
+    EnSavoirPlus,
   },
   data: function () {
     const menage = { ...this.$store.getters.getMenage } || {}

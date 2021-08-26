@@ -1,7 +1,13 @@
 <template>
   <form @submit.prevent="onSubmit">
     <div class="field-group">
-      <label for="cp" class="aj-question">{{ codePostalQuestion.label }}</label>
+      <label for="cp" class="aj-question"
+        >{{ codePostalQuestion.label
+        }}<span class="help"
+          >Il faut obligatoirement indiquer un code postal Français.
+        </span></label
+      >
+
       <input id="cp" type="number" v-model="codePostalQuestion.selectedValue" />
     </div>
 

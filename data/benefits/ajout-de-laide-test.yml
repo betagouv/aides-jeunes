@@ -1,8 +1,0 @@
-label: Ajout de l'aide test
-institution: departement_eure_et_loir
-description: Ma courte description
-prefix: la
-type: bool
-floorAt: 10
-interestFlag: null
-entity: individus

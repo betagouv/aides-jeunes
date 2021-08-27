@@ -212,16 +212,15 @@ export default {
           { id: benefitId, provider: { ...provider, id: providerId }, level },
           benefit
         )
-        benefit.label = capitalize(benefit.label)
+        b.label = capitalize(benefit.label)
         if (b.label === "Tarification solidaire transports") {
           b.label = `${b.label} - ${provider.label}`
         }
-        console.log(b)
         benefits.push(b)
         benefitKeyed[b.id] = b
       }
     )
-    benefits = sortBy(benefits, "label")
+    this.benefits = sortBy(this.benefits, "label")
     return {
       benefits,
       benefitKeyed,
@@ -325,11 +324,21 @@ export default {
         content,
       }
     },
+    async getGithubFiles(contribution) {
+      const filename = contribution.head.label.split("/")[2]
+      const response = await fetch(
+        `https://raw.githubusercontent.com/betagouv/aides-jeunes/${contribution.head.sha}/data/benefits/${filename}.yml`
+      )
+      const blob = await response.blob()
+      const text = await blob.text()
+      const toJson = load(text, { encoding: "utf-8" })
+      this.benefits.push(toJson)
+    },
     copyToClipboard() {
       this.$refs["aj-textarea-results"].select()
       document.execCommand("copy")
     },
-    fetchOpenContributions() {
+    async fetchOpenContributions() {
       let contributions = []
       axios
         .get("https://api.github.com/repos/betagouv/aides-jeunes/pulls")
@@ -342,33 +351,12 @@ export default {
         })
         .then(() => {
           if (contributions) {
+            let promises = []
             contributions.forEach((contribution) => {
-              axios
-                .get(
-                  `https://api.github.com/repos/betagouv/aides-jeunes/pulls/${contribution.number}/files`
-                )
-                .then((res) => {
-                  if (res.data) {
-                    res.data.forEach((el) => {
-                      fetch(
-                        "https://raw.githubusercontent.com/betagouv/aides-jeunes/e8d53048401dbd1e08d0129df5b20ce0e5a52c4d/data/benefits/laide-de-toto.yml"
-                      )
-                        .then((respo) => respo.blob())
-                        .then((blob) => {
-                          blob.text().then((text) => {
-                            let toJson = load(text, { encoding: "utf-8" })
-                            console.log(toJson)
-                            this.benefits.push(toJson)
-                            console.log(this.benefits)
-                            /* const b = Object.assign(
-                              { id: benefitId, provider: { ...provider, id: providerId }, level },
-                              benefit
-                            )*/
-                          })
-                        })
-                    })
-                  }
-                })
+              promises.push(this.getGithubFiles(contribution))
+            })
+            Promise.all(promises).then(() => {
+              this.benefits = sortBy(this.benefits, "label")
             })
           }
         })

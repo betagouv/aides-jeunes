@@ -61,9 +61,12 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      const expr = new RegExp("^[0-9]{5}$")
-      if (!this.nomCommune || !expr.test(this.codePostal)) {
+      if (!this.nomCommune || !this.codePostal) {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
+        return
+      }
+      if (!this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
+        this.$store.dispatch("updateError", "Le code postal n'est pas valide.")
         return
       }
       const communeMatches = this.communes.filter(

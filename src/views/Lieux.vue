@@ -92,7 +92,6 @@ export default {
       if (!this.depcom) {
         return
       }
-
       const types = this.types.filter((t) => t.selected).map((t) => t.code)
       if (!types.length) {
         return

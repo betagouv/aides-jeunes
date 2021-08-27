@@ -213,6 +213,7 @@ export default {
           benefit
         )
         b.label = capitalize(benefit.label)
+
         if (b.label === "Tarification solidaire transports") {
           b.label = `${b.label} - ${provider.label}`
         }
@@ -220,7 +221,7 @@ export default {
         benefitKeyed[b.id] = b
       }
     )
-    this.benefits = sortBy(this.benefits, "label")
+    benefits = sortBy(benefits, "label")
     return {
       benefits,
       benefitKeyed,
@@ -235,6 +236,10 @@ export default {
       shortDescription: null,
       showConsentNotice: false,
       submitting: false,
+      institutions: {
+        ...Institution.partenairesLocaux,
+        ...Institution.prestationsNationales,
+      },
     }
   },
   computed: {
@@ -315,6 +320,8 @@ export default {
       return this.benefitKeyed[item.id]
     },
     getActual: function (item) {
+      //Todo : Retirer cette ligne lorsque l'on pourra accéder aux résultats des contributions.
+      if (!this.resultats[item.id]) return 0
       return this.resultats[item.id].montant
     },
     getSuggestionPayload(content) {
@@ -324,21 +331,41 @@ export default {
         content,
       }
     },
-    async getGithubFiles(contribution) {
-      const filename = contribution.head.label.split("/")[2]
+    async fetchBenefit(fileAttribute) {
+      const benefit = await this.getGithubPRFiles(fileAttribute)
+      const provider = this.institutions[benefit.institution]
+      if (provider) {
+        benefit.provider = Object.assign({}, provider)
+        this.benefits.push(benefit)
+        this.benefitKeyed[benefit.id] = benefit
+      }
+      // Todo : gérer le cas où l'aide n'a aucune institution et/ou l'institution est en PR sur Github
+    },
+    async getGithubPRFiles({ sha, folder, filename }) {
       const response = await fetch(
-        `https://raw.githubusercontent.com/betagouv/aides-jeunes/${contribution.head.sha}/data/benefits/${filename}.yml`
+        `https://raw.githubusercontent.com/betagouv/aides-jeunes/${sha}/data/${folder}/${filename}`
       )
       const blob = await response.blob()
       const text = await blob.text()
-      const toJson = load(text, { encoding: "utf-8" })
-      this.benefits.push(toJson)
+      const data = load(text, { encoding: "utf-8" })
+      return data
     },
     copyToClipboard() {
       this.$refs["aj-textarea-results"].select()
       document.execCommand("copy")
     },
-    async fetchOpenContributions() {
+    reduceContributions(acc, contribution, type) {
+      const splitLabel = contribution.head.label.split("/")
+      if (splitLabel[1] === type) {
+        acc.push({
+          sha: contribution.head.sha,
+          filename: splitLabel[2] + ".yml",
+          folder: type,
+        })
+      }
+      return acc
+    },
+    fetchContributions() {
       let contributions = []
       axios
         .get("https://api.github.com/repos/betagouv/aides-jeunes/pulls")
@@ -350,12 +377,17 @@ export default {
           }
         })
         .then(() => {
+          const benefits = contributions.reduce(
+            (acc, contribution) =>
+              this.reduceContributions(acc, contribution, "benefits"),
+            []
+          )
           if (contributions) {
-            let promises = []
-            contributions.forEach((contribution) => {
-              promises.push(this.getGithubFiles(contribution))
+            const benefitsPromises = []
+            benefits.forEach((benefit) => {
+              benefitsPromises.push(this.fetchBenefit(benefit))
             })
-            Promise.all(promises).then(() => {
+            Promise.all(benefitsPromises).then(() => {
               this.benefits = sortBy(this.benefits, "label")
             })
           }
@@ -404,7 +436,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchOpenContributions()
+    this.fetchContributions()
   },
 }
 </script>

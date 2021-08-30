@@ -44,6 +44,9 @@ Run the following from the root of the project to install the dependencies
 npm install
 ```
 
+This command may be necessary for kerberos package:
+`sudo apt-get install libkrb5-dev`
+
 ## Openfisca
 
 :warning: As of now, python3.9 is not yet compatible with all python packages used in Openfisca. It is recommend to use a lower version such as `3.8.6`.

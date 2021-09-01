@@ -36,14 +36,3 @@ export function fetchContributions() {
     return contributions
   })
 }
-
-export const fetchBenefit = async (fileAttribute) => {
-  const benefit = await getGithubPRFiles(fileAttribute)
-  const provider = this.institutions[benefit.institution]
-  if (provider) {
-    benefit.provider = Object.assign({}, provider)
-    this.benefits.push(benefit)
-    this.benefitKeyed[benefit.id] = benefit
-  }
-  // Todo : gérer le cas où l'aide n'a aucune institution et/ou l'institution est en PR sur Github
-}

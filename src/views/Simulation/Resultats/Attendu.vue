@@ -198,7 +198,6 @@ import Institution from "@/lib/Institution"
 import ResultatsMixin from "@/mixins/Resultats"
 import { sendMontantsAttendus } from "@/plugins/mails"
 import { capitalize } from "../../../lib/Utils"
-import { load } from "js-yaml"
 import {
   fetchContributions,
   reduceContributions,

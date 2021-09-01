@@ -199,6 +199,11 @@ import ResultatsMixin from "@/mixins/Resultats"
 import { sendMontantsAttendus } from "@/plugins/mails"
 import { capitalize } from "../../../lib/Utils"
 import { load } from "js-yaml"
+import {
+  fetchContributions,
+  reduceContributions,
+  getGithubPRFiles,
+} from "@/../backend/lib/mes-aides/contributions"
 
 export default {
   name: "attendu",
@@ -332,7 +337,7 @@ export default {
       }
     },
     async fetchBenefit(fileAttribute) {
-      const benefit = await this.getGithubPRFiles(fileAttribute)
+      const benefit = await getGithubPRFiles(fileAttribute)
       const provider = this.institutions[benefit.institution]
       if (provider) {
         benefit.provider = Object.assign({}, provider)
@@ -341,57 +346,27 @@ export default {
       }
       // Todo : gérer le cas où l'aide n'a aucune institution et/ou l'institution est en PR sur Github
     },
-    async getGithubPRFiles({ sha, folder, filename }) {
-      const response = await fetch(
-        `https://raw.githubusercontent.com/betagouv/aides-jeunes/${sha}/data/${folder}/${filename}`
-      )
-      const blob = await response.blob()
-      const text = await blob.text()
-      const data = load(text, { encoding: "utf-8" })
-      return data
-    },
     copyToClipboard() {
       this.$refs["aj-textarea-results"].select()
       document.execCommand("copy")
     },
-    reduceContributions(acc, contribution, type) {
-      const splitLabel = contribution.head.label.split("/")
-      if (splitLabel[1] === type) {
-        acc.push({
-          sha: contribution.head.sha,
-          filename: splitLabel[2] + ".yml",
-          folder: type,
-        })
-      }
-      return acc
-    },
-    fetchContributions() {
-      let contributions = []
-      axios
-        .get("https://api.github.com/repos/betagouv/aides-jeunes/pulls")
-        .then((res) => {
-          if (res.data) {
-            contributions = res.data.filter((k) =>
-              k.labels.some((e) => e.name.startsWith("netlify-cms"))
-            )
-          }
-        })
-        .then(() => {
-          const benefits = contributions.reduce(
-            (acc, contribution) =>
-              this.reduceContributions(acc, contribution, "benefits"),
-            []
-          )
-          if (contributions) {
-            const benefitsPromises = []
-            benefits.forEach((benefit) => {
-              benefitsPromises.push(this.fetchBenefit(benefit))
-            })
-            Promise.all(benefitsPromises).then(() => {
-              this.benefits = sortBy(this.benefits, "label")
-            })
-          }
-        })
+    async getContributions() {
+      await fetchContributions().then((contributions) => {
+        const benefits = contributions.reduce(
+          (acc, contribution) =>
+            reduceContributions(acc, contribution, "benefits"),
+          []
+        )
+        if (contributions) {
+          const benefitsPromises = []
+          benefits.forEach((benefit) => {
+            benefitsPromises.push(this.fetchBenefit(benefit))
+          })
+          Promise.all(benefitsPromises).then(() => {
+            this.benefits = sortBy(this.benefits, "label")
+          })
+        }
+      })
     },
     submit: function () {
       this.message = null
@@ -436,7 +411,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchContributions()
+    this.getContributions()
   },
 }
 </script>

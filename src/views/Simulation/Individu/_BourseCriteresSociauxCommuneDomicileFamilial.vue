@@ -67,7 +67,7 @@ export default {
       if (!this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
         this.$store.dispatch(
           "updateError",
-          "Le code postal n'est pas valide. Le simulateur accepte uniquement les codes postaux français."
+          "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français."
         )
         return
       }

@@ -320,9 +320,6 @@ export default {
     getTitle: function (item) {
       return this.benefitKeyed[item.id].label
     },
-    getBenefit: function (item) {
-      return this.benefitKeyed[item.id]
-    },
     getActual: function (item) {
       //Todo : Retirer cette ligne lorsque l'on pourra accéder aux résultats des contributions.
       if (!this.resultats[item.id]) return 0

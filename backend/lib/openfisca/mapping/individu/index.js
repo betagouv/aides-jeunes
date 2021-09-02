@@ -17,6 +17,12 @@ function formatDate(date) {
 }
 
 var individuSchema = {
+  activite: {
+    src: "activite",
+    fn: function (activite) {
+      return activite === "service_civique" ? "actif" : activite
+    },
+  },
   apprenti: {
     src: "_contrat_alternant",
     fn: function (contratAlternant) {

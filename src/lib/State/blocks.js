@@ -55,7 +55,9 @@ function individuBlockFactory(id) {
             },
             {
               isActive: (subject) =>
-                subject.activite != "actif" && subject.activite != "etudiant",
+                !["actif", "etudiant", "service_civique"].includes(
+                  subject.activite
+                ),
               steps: [r("inapte_travail")],
             },
           ]
@@ -129,8 +131,9 @@ function individuBlockFactory(id) {
                 return (
                   20 <= age &&
                   age < 25 &&
-                  subject.activite !== "etudiant" &&
-                  subject.activite !== "actif" &&
+                  !["actif", "etudiant", "service_civique"].includes(
+                    subject.activite
+                  ) &&
                   !subject.ass_precondition_remplie &&
                   !enfant_a_charge
                 )

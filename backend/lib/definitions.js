@@ -33,7 +33,14 @@ var individu = Object.assign(
     aah_restriction_substantielle_durable_acces_emploi: Boolean,
     activite: {
       type: String,
-      enum: ["actif", "chomeur", "etudiant", "inactif", "retraite"],
+      enum: [
+        "actif",
+        "chomeur",
+        "etudiant",
+        "inactif",
+        "retraite",
+        "service_civique",
+      ],
     },
     agepi_temps_travail_semaine: Number,
     aide_jeunes_diplomes_anciens_boursiers_base_ressources: Number,

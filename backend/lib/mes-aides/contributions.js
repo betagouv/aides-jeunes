@@ -25,6 +25,7 @@ export async function getGithubPRFiles({ sha, folder, filename }) {
   const data = load(text, { encoding: "utf-8" })
   return data
 }
+
 export function fetchContributions() {
   return axios.get(MES_AIDES_PR_GITHUB).then((res) => {
     let contributions = []

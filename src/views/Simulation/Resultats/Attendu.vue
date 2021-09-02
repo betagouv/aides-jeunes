@@ -340,7 +340,6 @@ export default {
         this.benefits.push(benefit)
         this.benefitKeyed[benefit.id] = benefit
       }
-      // Todo : gérer le cas où l'aide n'a aucune institution et/ou l'institution est en PR sur Github
     },
     copyToClipboard() {
       this.$refs["aj-textarea-results"].select()

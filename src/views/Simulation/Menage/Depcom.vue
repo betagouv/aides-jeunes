@@ -66,7 +66,10 @@ export default {
         return
       }
       if (!this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
-        this.$store.dispatch("updateError", "Le code postal n'est pas valide.")
+        this.$store.dispatch(
+          "updateError",
+          "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment."
+        )
         return
       }
       const communeMatches = this.communes.filter(

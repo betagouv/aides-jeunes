@@ -14,7 +14,7 @@ const AuthContribution = {
     const verifyIdentity = await AuthContribution.verifyIdentity(req.body.token)
     if (verifyIdentity.status !== 200)
       return res.send({
-        msg: verifyIdentity,
+        msg: "Not found",
         statusCode: 404,
       })
     res.cookie("contribution_token", req.body.token)

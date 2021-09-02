@@ -63,6 +63,12 @@
               >Indiquez les résultats attendus pour cette situation
             </router-link>
           </li>
+          <li>
+            <router-link
+              :to="{ name: 'resultatInattendu', params: { id: 'ppa' } }"
+              >Indiquez les résultats inattendu pour cette situation
+            </router-link>
+          </li>
           <li v-if="openfiscaTracerURL">
             <a
               v-analytics="{ category: 'Tracer' }"

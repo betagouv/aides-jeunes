@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>
+    <p v-if="isProprietaireAvecPretEnCours || isHebergeParticipeFrais">
       Vous avez indiqué être
       <strong v-if="isProprietaireAvecPretEnCours"
         >toujours en train de rembourser le crédit pour votre logement
@@ -87,6 +87,7 @@ export default {
   },
   computed: {
     isProprietaireAvecPretEnCours: function () {
+      console.log(this.$store.getters.isProprietaireAvecPretEnCours)
       return this.$store.getters.isProprietaireAvecPretEnCours
     },
     isHebergeParticipeFrais: function () {

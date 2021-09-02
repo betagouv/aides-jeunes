@@ -60,7 +60,7 @@
               </mj-column>
               <mj-column vertical-align="middle" width="60%">
                 <mj-text align="left" padding="0px 16px">
-                  <strong>{{label}}</strong>
+                  <strong>{{droitLabel}}</strong>
                 </mj-text>
               </mj-column>
               <mj-column vertical-align="middle" width="20%">

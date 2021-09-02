@@ -1,0 +1,16 @@
+label: aide au financement du permis
+institution: mutualite_sociale_agricole
+description:
+  Cette aide est un coup de pouce de la Mutualité Sociale Agricole (MSA) Armorique pour favoriser l’autonomie et l’insertion des jeunes de moins de 25 ans en finançant
+  <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2828">le permis voiture (B)</a> ou <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2830">le permis moto (A)</a>.
+conditions:
+  - Avoir obtenu le code de la route.
+  - Ne pas avoir obtenu l’aide à la mobilité.
+link: https://armorique.msa.fr/lfy/l-aide-au-permis-de-conduire
+form: https://armorique.msa.fr/lfy/documents/98925/100861102/Formulaire+PASS+permis+de+conduire.pdf
+prefix: l’
+type: float
+floorAt: 1
+entity: individus
+legend: ""
+interestFlag: _interetPermisDeConduire

@@ -54,13 +54,18 @@
                   alt="{{provider.label}}"
                   width="60px"
                   align="left"
-                  padding="0"
+                  padding="0px"
                   src="{{&baseURL}}{{&imgSrc}}"
                 />
               </mj-column>
-              <mj-column vertical-align="middle" width="80%">
-                <mj-text align="left" padding="0px 0px 0px 16px">
-                  <strong>{{label}}</strong>
+              <mj-column vertical-align="middle" width="60%">
+                <mj-text align="left" padding="0px 16px">
+                  <strong>{{droitLabel}}</strong>
+                </mj-text>
+              </mj-column>
+              <mj-column vertical-align="middle" width="20%">
+                <mj-text align="right" padding="0px">
+                  <strong>{{montant}}</strong>
                 </mj-text>
               </mj-column>
             </mj-group>

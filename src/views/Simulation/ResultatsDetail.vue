@@ -37,7 +37,7 @@
       />
     </div>
     <div class="aj-box normal-padding-bottom aj-results-details-feedback-box">
-      <Feedback :situationID="situation._id" />
+      <Feedback :situationID="situation._id" :droit="droit" />
     </div>
   </div>
 </template>

@@ -63,10 +63,10 @@
               >Indiquez les résultats attendus pour cette situation
             </router-link>
           </li>
-          <li>
+          <li v-if="droit">
             <router-link
-              :to="{ name: 'resultatInattendu', params: { id: 'ppa' } }"
-              >Indiquez les résultats inattendu pour cette situation
+              :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
+              >Indiquez le montant inattendu pour cette situation
             </router-link>
           </li>
           <li v-if="openfiscaTracerURL">
@@ -101,6 +101,10 @@ export default {
   name: "Feedback",
   props: {
     situationID: String,
+    droit: {
+      type: Object,
+      optional: true,
+    },
   },
   data: function () {
     return {

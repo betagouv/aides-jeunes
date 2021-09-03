@@ -3,8 +3,8 @@
     <p
       >Cette aide se base sur
       <strong
-        >vos ressources de l'année
-        {{ $store.state.dates.fiscalYear.label }}</strong
+        >vos ressources de l'année depuis
+        {{ $store.state.dates.twelveMonthsAgo.label }}</strong
       >, que vous n'avez pas encore déclarées lors de cette simulation.</p
     >
 
@@ -17,12 +17,16 @@
       ></p
     >
 
-    <router-link class="button text-center" to="/foyer/ressources/fiscales"
+    <router-link
+      class="button text-center"
+      to="/simulation/individu/demandeur/ressources/types"
       >Déclarez vos ressources
       {{ $store.state.dates.fiscalYear.label }}</router-link
     >
 
-    <router-link class="button-outline text-center primary" to="/foyer/resultat"
+    <router-link
+      class="button-outline text-center primary"
+      to="/simulation/resultats"
       >Retourner aux résultats</router-link
     >
   </div>

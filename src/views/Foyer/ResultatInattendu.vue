@@ -13,7 +13,7 @@
 
     <ResultatInattenduPpa v-if="droit.id === 'ppa'"></ResultatInattenduPpa>
     <ResultatInattenduYearMinusTwo
-      v-bind:droit="droit"
+      :droit="droit"
       v-else
     ></ResultatInattenduYearMinusTwo>
   </form>

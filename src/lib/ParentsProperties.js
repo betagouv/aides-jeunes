@@ -39,6 +39,7 @@ const STEPS = {
     question:
       "Quel est le nombre de parts sur le plus récent avis d'imposition de vos parents ?",
     questionType: "number",
+    optional: true,
   },
   rfr: {
     question:

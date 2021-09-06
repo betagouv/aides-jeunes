@@ -111,6 +111,7 @@ function individuBlockFactory(id) {
               },
               steps: [r("enfant_a_charge")],
             },
+            r("_securite_sociale"),
           ]
         : []),
       ...(enfant

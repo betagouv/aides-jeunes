@@ -25,6 +25,11 @@
         }}
       </span>
     </span>
+    <router-link
+      :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
+      v-if="showUnexpected"
+      >Montant inattendu ?
+    </router-link>
   </span>
 </template>
 
@@ -38,6 +43,7 @@ export default {
   },
   computed: {
     showUnexpected: function () {
+      console.log("toto")
       return (
         (this.droit.id === "ppa" &&
           (this.$store.getters.isProprietaireAvecPretEnCours ||

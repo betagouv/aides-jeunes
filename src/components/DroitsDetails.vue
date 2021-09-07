@@ -60,9 +60,6 @@
           </div>
         </div>
         <div class="aj-droit-notifications">
-          <pre>
-            <code>{{ droit }}</code>
-          </pre>
           <div
             class="notification warning print-hidden"
             v-if="

@@ -6,6 +6,7 @@ description:
 conditions:
   - Avoir obtenu le code de la route.
   - Ne pas avoir obtenu l’aide à la mobilité.
+  - Ne pas avoir de capitaux supérieurs à 78 000 € pour une personne seule et 117 000 € pour un couple.
 link: https://portesdebretagne.msa.fr/lfy/aide-au-permis-de-conduire
 form: https://portesdebretagne.msa.fr/lfy/documents/98950/95688407/Formulaire+aide+permis+conduire.pdf
 prefix: l’

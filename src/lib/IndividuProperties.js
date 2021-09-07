@@ -45,6 +45,10 @@ const STEPS = {
           label: "En activité salariée ou indépendante",
         },
         {
+          value: "service_civique",
+          label: "En service civique",
+        },
+        {
           value: "chomeur",
           label: "Inscrit·e comme demandeur d’emploi",
         },

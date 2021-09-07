@@ -24,31 +24,33 @@ import Institution from "@/lib/Institution"
 import ResultatInattenduPpa from "@/components/ResultatInattendu/Ppa"
 import ResultatInattenduYearMinusTwo from "@/components/ResultatInattendu/YearMinusTwo"
 
-let benefitKeyed = {}
-let benefits = []
-Institution.forEachBenefit(
-  (benefit, benefitId, provider, providerId, level) => {
-    const b = Object.assign(
-      { id: benefitId, provider: { ...provider, id: providerId }, level },
-      benefit
-    )
-    if (b.label === "Tarification solidaire transports") {
-      b.label = `${b.label} - ${provider.label}`
-    }
-    benefits.push(b)
-    benefitKeyed[b.id] = b
-  }
-)
-
 export default {
   name: "resultat-inattendu",
   components: {
     ResultatInattenduPpa,
     ResultatInattenduYearMinusTwo,
   },
+  data: function () {
+    let benefitKeyed = {}
+    Institution.forEachBenefit(
+      (benefit, benefitId, provider, providerId, level) => {
+        const b = Object.assign(
+          { id: benefitId, provider: { ...provider, id: providerId }, level },
+          benefit
+        )
+        if (b.label === "Tarification solidaire transports") {
+          b.label = `${b.label} - ${provider.label}`
+        }
+        benefitKeyed[b.id] = b
+      }
+    )
+    return {
+      benefitKeyed,
+    }
+  },
   computed: {
     droit: function () {
-      return benefitKeyed[this.$route.params.id]
+      return this.benefitKeyed[this.$route.params.id]
     },
     longLabel: function () {
       let prefix = `${this.droit.prefix}${

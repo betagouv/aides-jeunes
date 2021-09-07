@@ -246,6 +246,7 @@ var droitsDescription = {
           labelFunction: function (b) {
             return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
           },
+          isBaseRessourcesYearMinusTwo: true,
           description:
             "La prime d’activité complète les revenus d’activité professionnelle des travailleurs de 18 ans ou plus, des étudiants salariés et apprentis et des non-salariés. La demande peut se faire à travers un téléservice sur, selon votre cas, le site de la Caf ou de la MSA. Elle remplace le RSA activité et la prime pour l’emploi depuis 2016.",
           link: "https://www.service-public.fr/particuliers/vosdroits/F2882",

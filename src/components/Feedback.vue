@@ -66,7 +66,7 @@
           <li v-if="droit">
             <router-link
               :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
-              >Indiquez le montant inattendu pour cette situation
+              >Montant inattendu ?
             </router-link>
           </li>
           <li v-if="openfiscaTracerURL">

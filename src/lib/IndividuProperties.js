@@ -188,7 +188,7 @@ const STEPS = {
 
   contrat_de_travail_debut: {
     question: (component) => {
-      return component.individu.alternant
+      return component.entity.alternant
         ? "Quand avez-vous commencé votre alternance ?"
         : "Quand avez-vous commencé votre contrat de travail ?"
     },

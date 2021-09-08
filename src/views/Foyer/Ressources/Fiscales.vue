@@ -1,15 +1,5 @@
 <template>
   <form>
-    <p>
-      Ces informations se trouvent sur votre avis d'imposition
-      {{ $store.state.dates.lastYear.label }} sur les revenus
-      {{ $store.state.dates.fiscalYear.label }}. <br />Vous pouvez le retrouver
-      en ligne sur
-      <a target="_blank" rel="noopener" href="http://www.impots.gouv.fr/"
-        >impots.gouv.fr</a
-      >.
-    </p>
-
     <div
       class="form__group"
       v-for="individu in individus"
@@ -42,6 +32,15 @@
           >
           en France comme à l'étranger.
         </h2>
+        <p>
+          Ces informations se trouvent sur votre avis d'imposition
+          {{ $store.state.dates.lastYear.label }} sur les revenus
+          {{ $store.state.dates.fiscalYear.label }}. <br />Vous pouvez le
+          retrouver en ligne sur
+          <a target="_blank" rel="noopener" href="http://www.impots.gouv.fr/"
+            >impots.gouv.fr</a
+          >.
+        </p>
         <label
           class="form__group"
           v-for="ressource in categoriesRnc"

@@ -1,7 +1,7 @@
 <template>
   <form>
     <div>
-      <router-link to="/foyer/resultat/">
+      <router-link to="/simulation/resultats/">
         <h2 aria-label="Retour aux résultats">
           <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Retour aux
           résultats

@@ -43,7 +43,6 @@ export default {
   },
   computed: {
     showUnexpected: function () {
-      console.log("toto")
       return (
         (this.droit.id === "ppa" &&
           (this.$store.getters.isProprietaireAvecPretEnCours ||

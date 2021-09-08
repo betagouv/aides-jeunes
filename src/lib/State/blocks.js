@@ -177,8 +177,8 @@ function individuBlockFactory(id) {
                     r("plus_haut_diplome_date_obtention"),
                     {
                       isActive: (subject) =>
-                        subject.plus_haut_diplome_date_obtention <
-                        new Date("2021-01-01 00:00:00"),
+                        subject.plus_haut_diplome_date_obtention >=
+                        new Date("2019-12-31 00:00:00"),
                       steps: [
                         r("_boursier_derniere_annee_etudes"),
                         {

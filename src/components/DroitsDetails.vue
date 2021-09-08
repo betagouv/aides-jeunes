@@ -75,7 +75,7 @@
             </span>
             <router-link
               class="button outline red no-shadow text-center"
-              to="ressources/fiscales"
+              to="/simulation/individu/demandeur/ressources/fiscales"
               >Déclarez vos ressources
               {{ $store.state.dates.fiscalYear.label }}</router-link
             >
@@ -83,7 +83,6 @@
           <div
             class="notification warning print-hidden"
             v-if="
-              false &&
               droit.isBaseRessourcesPatrimoine &&
               !patrimoineCaptured &&
               !isString(droit.montant)
@@ -97,7 +96,7 @@
             </span>
             <router-link
               class="button outline red no-shadow text-center"
-              to="ressources/patrimoine"
+              to="/simulation/individu/demandeur/ressources/patrimoine"
               >Déclarez votre patrimoine</router-link
             >
           </div>

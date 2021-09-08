@@ -51,6 +51,9 @@ html {
         flex-basis: 200px;
         flex-grow: 0;
         flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+
       }
 
       .aj-aide-cta {
@@ -171,8 +174,11 @@ html {
         flex-shrink: 0;
         text-align: right;
 
+
         .aj-aide-montant {
           text-align: right;
+          flex-direction: column;
+          display: flex;
         }
       }
 

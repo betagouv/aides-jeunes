@@ -25,11 +25,13 @@
         }}
       </span>
     </span>
-    <router-link
-      :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
-      v-if="showUnexpected"
-      >Montant inattendu ?
-    </router-link>
+    <span class="montant-inattendu">
+      <router-link
+        :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
+        v-if="showUnexpected"
+        >Montant inattendu ?
+      </router-link>
+    </span>
   </span>
 </template>
 

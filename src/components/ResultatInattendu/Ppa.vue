@@ -56,8 +56,8 @@
       <ul>
         <li
           >Retourner à la
-          <router-link to="/foyer/logement">page « Logement »</router-link> pour
-          modifier ces informations</li
+          <router-link to="/simulation/logement">page « Logement »</router-link>
+          pour modifier ces informations</li
         >
         <li
           >Faire une
@@ -73,18 +73,8 @@
 </template>
 
 <script>
-import Institution from "@/lib/Institution"
-
 export default {
   name: "ResultatInattenduPpa",
-  data: function () {
-    return {
-      droit: Object.assign(
-        { id: "ppa" },
-        Institution.prestationsNationales.caf.prestations.ppa
-      ),
-    }
-  },
   computed: {
     isProprietaireAvecPretEnCours: function () {
       return this.$store.getters.isProprietaireAvecPretEnCours

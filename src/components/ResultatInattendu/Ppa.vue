@@ -87,7 +87,6 @@ export default {
   },
   computed: {
     isProprietaireAvecPretEnCours: function () {
-      console.log(this.$store.getters.isProprietaireAvecPretEnCours)
       return this.$store.getters.isProprietaireAvecPretEnCours
     },
     isHebergeParticipeFrais: function () {

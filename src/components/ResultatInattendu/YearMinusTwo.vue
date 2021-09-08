@@ -3,8 +3,8 @@
     <p
       >Cette aide se base sur
       <strong
-        >vos ressources de l'année depuis
-        {{ $store.state.dates.twelveMonthsAgo.label }}</strong
+        >vos ressources de l'année
+        {{ $store.state.dates.fiscalYear.label }}</strong
       >, que vous n'avez pas encore déclarées lors de cette simulation.</p
     >
 

@@ -79,6 +79,14 @@
               >Analysez l'évolution des aides en fonction des ressources
             </a>
           </li>
+          <li v-if="PNDSURL">
+            <a
+              v-analytics="{ category: 'PNDS' }"
+              target="_blank"
+              :href="PNDSURL"
+              >Transférer les données au PNDS
+            </a>
+          </li>
         </ul>
       </div>
     </small>
@@ -100,6 +108,7 @@ export default {
     return {
       openfiscaTracerURL: false,
       openfiscaAxeURL: false,
+      PNDSURL: false,
       showExpertLinks: false,
     }
   },
@@ -116,6 +125,12 @@ export default {
           .fetchRepresentation("openfisca_axe")
           .then((representation) => {
             this.openfiscaAxeURL = representation.destination.url
+          })
+
+        this.$store.getters
+          .fetchRepresentation("PNDS")
+          .then((representation) => {
+            this.PNDSURL = representation.destination.url
           })
       }
       this.showExpertLinks = !this.showExpertLinks

@@ -364,7 +364,7 @@ const STEPS = {
         : `Où sera scolarisé·e ${component.entity._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
-    items: Scolarite.options,
+    items: Scolarite.types,
     enSavoirPlus: true,
   },
   sortie_academie: {

@@ -1,5 +1,5 @@
 const Scolarite = {
-  options: [
+  types: [
     {
       value: "college",
       label: "Au collège",

@@ -91,8 +91,8 @@ export default {
     },
     nationality: Nationality.getNationalityFromCountryCode,
     scolarite: function (value) {
-      const s = Scolarite.options.find((s) => s.value === value)
-      if (s) return Scolarite.options.find((s) => s.value === value).label
+      const s = Scolarite.types.find((s) => s.value === value)
+      if (s) return Scolarite.types.find((s) => s.value === value).label
       else return "-"
     },
   },

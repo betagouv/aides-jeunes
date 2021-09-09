@@ -1,22 +1,20 @@
-var moment = require("moment")
-var isNaN = require("lodash/isNaN")
-var forEach = require("lodash/forEach")
-var isUndefined = require("lodash/isUndefined")
-var cloneDeep = require("lodash/cloneDeep")
-var isString = require("lodash/isString")
+const moment = require("moment")
+const isNaN = require("lodash/isNaN")
+const forEach = require("lodash/forEach")
+const isUndefined = require("lodash/isUndefined")
+const cloneDeep = require("lodash/cloneDeep")
+const isString = require("lodash/isString")
 
-var individuRessource = require("./ressources")
-var pastResourcesProxy = require("./pastResourcesProxy")
+const { formatDate } = require("../utils")
+const individuRessource = require("./ressources")
+const pastResourcesProxy = require("./pastResourcesProxy")
+
 const {
   computeDistanceCommunes,
   findCommuneByInseeCode,
 } = require("../../../mes-aides/distance")
 
-function formatDate(date) {
-  return date && moment(date).format("YYYY-MM-DD")
-}
-
-var individuSchema = {
+const individuSchema = {
   activite: {
     src: "activite",
     fn: function (activite) {

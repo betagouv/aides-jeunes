@@ -1,9 +1,5 @@
-var moment = require("moment")
-var cloneDeep = require("lodash/cloneDeep")
-
-function formatDate(date) {
-  return date && moment(date).format("YYYY-MM-DD")
-}
+const cloneDeep = require("lodash/cloneDeep")
+const { formatDate } = require("../utils")
 
 function buildOpenFiscaMenage(mesAidesMenage) {
   var openFiscaMenage = cloneDeep(mesAidesMenage)

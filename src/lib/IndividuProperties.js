@@ -1,5 +1,6 @@
 import Individu from "@/lib/Individu"
 import { isRelevant, yearsAgo } from "@/lib/Utils"
+import Scolarite from "@/lib/Scolarite"
 
 const loadEntity = (component) => {
   const params = component.$route.params
@@ -184,7 +185,11 @@ const STEPS = {
       ].filter((item) => !item.only || item.only == component.entity.scolarite)
     },
   },
-
+  mention_baccalaureat: {
+    question: "Avez-vous obtenu une mention au baccalauréat ?",
+    questionType: "enum",
+    items: Scolarite.mentionsBaccalaureat,
+  },
   date_naissance: {
     question: (component) => {
       return component.entity._role === "demandeur"
@@ -359,10 +364,9 @@ const STEPS = {
         : `Où sera scolarisé·e ${component.entity._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
-    items: Individu.scolariteOptions,
+    items: Scolarite.types,
     enSavoirPlus: true,
   },
-
   sortie_academie: {
     question: (component) => {
       return `${Individu.label(component.entity, "avoir")} prévu d'étudier
@@ -388,7 +392,6 @@ const STEPS = {
       l'an prochain ?`
     },
   },
-
   statuts_etablissement_scolaire: {
     question: "Dans quel type d'établissement étudiez-vous actuellement ?",
     questionType: "enum",
@@ -411,7 +414,6 @@ const STEPS = {
       },
     ],
   },
-
   taux_incapacite: {
     question: (component) => {
       const start =

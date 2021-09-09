@@ -35,6 +35,7 @@ function get(individus, role, id) {
   let DEFAULT_INDIVIDU = {
     id: role,
     annee_etude: undefined,
+    classe_scolarite: undefined,
     date_naissance: undefined,
     bourse_criteres_sociaux_echelon: -1,
     enfant_a_charge: {},
@@ -155,28 +156,6 @@ const Individu = {
     //TODO3 statuts = $filter('uppercaseFirst')(statuts);
     return "TODO3" //statuts;
   },
-  scolariteOptions: [
-    {
-      value: "college",
-      label: "Au collège",
-    },
-    {
-      value: "lycee",
-      label: "Au lycée / En CAP / En CPA",
-    },
-    {
-      value: "enseignement_superieur",
-      label: "Dans un établissement de l'enseignement supérieur",
-    },
-    {
-      value: "grande_ecole_du_numerique",
-      label: "Dans une grande école du numérique",
-    },
-    {
-      value: "inconnue",
-      label: "Autre",
-    },
-  ],
 }
 
 module.exports = Individu

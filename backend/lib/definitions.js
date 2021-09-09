@@ -75,6 +75,16 @@ var individu = Object.assign(
       type: String,
       enum: ["apprenti", "professionnalisation"],
     },
+    mention_baccalaureat: {
+      type: String,
+      enum: [
+        "non_renseignee",
+        "mention_assez_bien",
+        "mention_bien",
+        "mention_tres_bien",
+        "mention_tres_bien_felicitations_jury",
+      ],
+    },
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,

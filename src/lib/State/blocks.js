@@ -35,6 +35,12 @@ function individuBlockFactory(id) {
                 },
                 {
                   isActive: (subject) =>
+                    subject.annee_etude == "licence_1" ||
+                    subject.annee_etude == "licence_2",
+                  steps: [r("mention_baccalaureat")],
+                },
+                {
+                  isActive: (subject) =>
                     subject.scolarite == "enseignement_superieur",
                   steps: [r("statuts_etablissement_scolaire")],
                 },

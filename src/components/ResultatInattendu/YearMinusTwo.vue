@@ -19,7 +19,7 @@
 
     <router-link
       class="button text-center"
-      to="/simulation/individu/demandeur/ressources/types"
+      to="/simulation/individu/demandeur/ressources/fiscales"
       >Déclarez vos ressources
       {{ $store.state.dates.fiscalYear.label }}</router-link
     >

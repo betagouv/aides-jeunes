@@ -185,11 +185,16 @@ const STEPS = {
       ].filter((item) => !item.only || item.only == component.entity.scolarite)
     },
   },
-  mention_baccalaureat: {
-    question: "Avez-vous obtenu une mention au baccalauréat ?",
-    questionType: "enum",
-    items: Scolarite.mentionsBaccalaureat,
+
+  contrat_de_travail_debut: {
+    question: (component) => {
+      return component.entity.alternant
+        ? "Quand avez-vous commencé votre alternance ?"
+        : "Quand avez-vous commencé votre contrat de travail ?"
+    },
+    questionType: "date",
   },
+
   date_naissance: {
     question: (component) => {
       return component.entity._role === "demandeur"
@@ -272,6 +277,12 @@ const STEPS = {
         "être"
       )} reconnu·e inapte au travail ?`
     },
+  },
+
+  mention_baccalaureat: {
+    question: "Avez-vous obtenu une mention au baccalauréat ?",
+    questionType: "enum",
+    items: Scolarite.mentionsBaccalaureat,
   },
 
   nationalite: {

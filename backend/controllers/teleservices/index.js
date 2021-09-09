@@ -9,6 +9,7 @@ var Loiret = require("../../lib/teleservices/loiret")
 var OpenFiscaAxe = require("../../lib/teleservices/openfisca-axe")
 var OpenFiscaResponse = require("../../lib/teleservices/openfisca-response")
 var OpenFiscaTracer = require("../../lib/teleservices/openfisca-tracer")
+var PNDS = require("../../lib/teleservices/pnds")
 
 moment.locale("fr")
 
@@ -53,6 +54,13 @@ var teleservices = [
     public: true,
     destination: {
       url: "{{&openfiscaAxeURL}}/graphique?source={{&baseURL}}/api/situations/via/{{token}}",
+    },
+  },
+  {
+    name: "PNDS",
+    class: PNDS,
+    destination: {
+      url: "https://www.mesdroitssociaux.gouv.fr?token={{token}}",
     },
   },
 ]

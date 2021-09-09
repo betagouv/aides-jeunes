@@ -128,7 +128,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      if (this.requiredValueMissing()) {
+      if (!this.step.optional && this.requiredValueMissing()) {
         return
       }
       this.entity[this.fieldName] = this.value

@@ -411,7 +411,6 @@ function resourceExtraBlocks(situation, type) {
       steps: [
         new ComplexStep({
           route: `individu/${individuId}/ressources/${type}`,
-          chapter: "revenus",
         }),
       ],
     }

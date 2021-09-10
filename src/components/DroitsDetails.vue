@@ -75,7 +75,9 @@
             </span>
             <router-link
               class="button outline red no-shadow text-center"
-              to="/simulation/individu/demandeur/ressources/fiscales"
+              to="/foyer/ressources/fiscales"
+              name="ressources/fiscales"
+              v-if="!aCharge"
               >Déclarez vos ressources
               {{ $store.state.dates.fiscalYear.label }}</router-link
             >
@@ -165,6 +167,7 @@
 import BenefitCta from "./BenefitCta"
 import BenefitCtaLink from "./BenefitCtaLink"
 import DroitMontant from "./DroitMontant"
+import Situation from "../lib/Situation"
 
 export default {
   name: "DroitsDetails",
@@ -182,6 +185,11 @@ export default {
     return {
       brokenLinkButtonState: "show",
     }
+  },
+  computed: {
+    aCharge() {
+      return Situation.aCharge(this.$store.state.situation)
+    },
   },
   methods: {
     isEmpty: (array) => array.length === 0,

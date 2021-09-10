@@ -1,3 +1,5 @@
+import moment from "moment"
+
 const Situation = {
   getDemandeur: function (situation) {
     return situation.demandeur
@@ -9,6 +11,13 @@ const Situation = {
 
   getEnfants: function (situation) {
     return situation.enfants
+  },
+
+  aCharge: function (situation) {
+    let demandeur = situation.demandeur
+    let period =
+      situation.dateDeValeur && moment(situation.dateDeValeur).format("YYYY")
+    return demandeur.enfant_a_charge && demandeur.enfant_a_charge[period]
   },
 
   hasEnfantScolarise: function (situation) {

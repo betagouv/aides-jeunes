@@ -111,30 +111,6 @@ const router = new Router({
                 ),
             },
             {
-              name: "ressources/fiscales",
-              path: "ressources/fiscales",
-              component: () =>
-                import(
-                  /* webpackChunkName: "ressources-fiscales" */ "./views/Foyer/Ressources/Fiscales.vue"
-                ),
-              meta: {
-                title: function () {
-                  return `Les revenus imposables de votre foyer en ${store.state.dates.fiscalYear.label}`
-                },
-              },
-            },
-            {
-              name: "ressources/patrimoine",
-              path: "ressources/patrimoine",
-              component: () =>
-                import(
-                  /* webpackChunkName: "ressources-patrimoine" */ "./views/Foyer/Ressources/Patrimoine.vue"
-                ),
-              meta: {
-                title: "Votre patrimoine",
-              },
-            },
-            {
               name: "_bourseCriteresSociauxCommuneDomicileFamilial",
               path: "_bourseCriteresSociauxCommuneDomicileFamilial",
               component: () =>
@@ -299,6 +275,30 @@ const router = new Router({
             ),
           meta: {
             title: "Resultats Attendus ",
+          },
+        },
+        {
+          name: "ressourcesFiscales",
+          path: "ressources/fiscales",
+          component: () =>
+            import(
+              /* webpackChunkName: "ressources-fiscales" */ "./views/Foyer/Ressources/Fiscales.vue"
+            ),
+          meta: {
+            title: function () {
+              return `Les revenus imposables de votre foyer en ${store.state.dates.fiscalYear.label}`
+            },
+          },
+        },
+        {
+          name: "ressourcesPatrimoine",
+          path: "ressources/patrimoine",
+          component: () =>
+            import(
+              /* webpackChunkName: "ressources-patrimoine" */ "./views/Foyer/Ressources/Patrimoine.vue"
+            ),
+          meta: {
+            title: "Votre patrimoine",
           },
         },
         {

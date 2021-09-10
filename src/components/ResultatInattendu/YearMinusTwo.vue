@@ -38,7 +38,6 @@
 
 <script>
 import FeedbackUtils from "@/mixins/FeedbackUtils"
-import moment from "moment"
 import Situation from "../../lib/Situation"
 export default {
   name: "ResultatInattenduYearMinusTwo",

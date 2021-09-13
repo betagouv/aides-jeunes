@@ -1,0 +1,16 @@
+label: aide au financement du permis
+institution: ville_le_cateau
+description:
+  Cette aide est un coup de pouce de la ville de Le Cateau-Cambrésis pour favoriser l’autonomie et l’insertion des jeunes de 18 à 25 ans en finançant
+  <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2828">le permis voiture (B)</a>.
+conditions:
+  - Avoir obtenu le code de la route.
+  - Habiter à Le Cateau-Cambrésis depuis plus d'un an.
+link: https://www.lecateau.fr/vivre-au-cateau/enfance-jeunesse/jeunesse/aide-au-permis-de-conduire.html
+instructions: https://www.lecateau.fr/vivre-au-cateau/enfance-jeunesse/jeunesse/aide-au-permis-de-conduire.html
+prefix: l’
+type: float
+floorAt: 1
+entity: individus
+legend: ""
+interestFlag: _interetPermisDeConduire

@@ -1,0 +1,18 @@
+label: aide au financement du permis
+institution: ville_iwuy
+description:
+  Cette aide est un coup de pouce de la ville de Iwuy pour favoriser l’autonomie et l’insertion des jeunes de 18 à 25 ans en finançant
+  <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2828">le permis voiture (B)</a>.
+conditions:
+  - Avoir obtenu le code de la route.
+  - Habiter à Iwuy depuis plus d'un an.
+  - Être inscrit en Mission Locale.
+  - Effectuer une mission bénévole au service de la collectivité.
+link: http://www.iwuy.fr/page.php?id=6#39
+instructions: http://www.iwuy.fr/page.php?id=6#39
+prefix: l’
+type: float
+floorAt: 1
+entity: individus
+legend: ""
+interestFlag: _interetPermisDeConduire

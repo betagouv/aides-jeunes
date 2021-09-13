@@ -1,0 +1,17 @@
+label: aide au financement du permis
+institution: ville_les_rues_des_vignes
+description:
+  Cette aide est un coup de pouce de la ville de Les Rues-des-Vignes pour favoriser l’autonomie et l’insertion des jeunes de 16 à 25 ans en finançant
+  <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2828">le permis voiture (B)</a>.
+conditions:
+  - Avoir obtenu le code de la route.
+  - Habiter à Les Rues-des-Vignes depuis plus de 6 mois.
+  - Être inscrit en Mission Locale.
+link: https://www.lesruesdesvignes.fr/vie-pratique/demarches-administratives/aides-sociales
+instructions: https://www.lesruesdesvignes.fr/vie-pratique/demarches-administratives/aides-sociales
+prefix: l’
+type: float
+floorAt: 1
+entity: individus
+legend: ""
+interestFlag: _interetPermisDeConduire

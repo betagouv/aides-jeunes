@@ -186,15 +186,6 @@ const STEPS = {
     },
   },
 
-  contrat_de_travail_debut: {
-    question: (component) => {
-      return component.entity.alternant
-        ? "Quand avez-vous commencé votre alternance ?"
-        : "Quand avez-vous commencé votre contrat de travail ?"
-    },
-    questionType: "date",
-  },
-
   date_naissance: {
     question: (component) => {
       return component.entity._role === "demandeur"
@@ -479,6 +470,45 @@ const STEPS = {
         label: "En contrat de professionnalisation",
       },
     ],
+  },
+
+  _dureeContratDeTravailDebut: {
+    question: (component) => {
+      return component.entity.activite === "etudiant" &&
+        component.entity.alternant
+        ? "Depuis quand avez-vous signé votre contrat d'alternance ?"
+        : "Depuis quand avez-vous signé votre contrat de travail ?"
+    },
+    questionType: "enum",
+    items: (component) => {
+      const jeune_actif =
+        Individu.age(
+          component.entity,
+          component.$store.state.dates.today.value
+        ) <= 25
+      return [
+        {
+          value: 2,
+          label: "Moins de 3 mois",
+          isRelevant: true,
+        },
+        {
+          value: 5,
+          label: "Moins de 6 mois",
+          isRelevant: jeune_actif,
+        },
+        {
+          value: 12,
+          label: "Plus de 3 mois",
+          isRelevant: !jeune_actif,
+        },
+        {
+          value: 12,
+          label: "Plus 6 mois",
+          isRelevant: jeune_actif,
+        },
+      ].filter((item) => item.isRelevant)
+    },
   },
 
   _dureeMoisEtudesEtranger: {

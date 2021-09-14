@@ -180,8 +180,7 @@ export default {
   methods: {
     onSubmit: function () {
       this.$store.dispatch("updateIndividu", this.demandeur)
-
-      this.$push()
+      this.$router.push("/simulation/resultats")
     },
   },
 }

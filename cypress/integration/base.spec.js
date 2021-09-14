@@ -1,5 +1,6 @@
 /// <reference types="Cypress" />
 import * as steps from "../support"
+import { hasLivretEpargnePopulaire, saisieRessourcesFiscales } from "../support"
 
 context("Full simulation", () => {
   beforeEach(() => {
@@ -16,5 +17,6 @@ context("Full simulation", () => {
     // steps.sansPensionAlimentaireVersees()
     steps.interestFlagExtra()
     steps.hasPrimeActivite()
+    steps.saisieRessourcesFiscales()
   })
 })

@@ -149,7 +149,7 @@ export default {
           Object.assign({}, i.source, i.values)
         )
       })
-      this.$push()
+      this.$router.push("/simulation/resultats")
     },
   },
 }

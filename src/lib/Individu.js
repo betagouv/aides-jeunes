@@ -35,7 +35,6 @@ function get(individus, role, id) {
   let DEFAULT_INDIVIDU = {
     id: role,
     annee_etude: undefined,
-    classe_scolarite: undefined,
     date_naissance: undefined,
     bourse_criteres_sociaux_echelon: -1,
     enfant_a_charge: {},

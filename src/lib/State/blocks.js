@@ -405,24 +405,6 @@ function resourceBlocks(situation) {
   }
 }
 
-function resourceExtraBlocks(situation, type) {
-  const individuResourceExtraBlock = (individuId) => {
-    return {
-      steps: [
-        new ComplexStep({
-          route: `individu/${individuId}/ressources/${type}`,
-        }),
-      ],
-    }
-  }
-  return {
-    steps: [
-      individuResourceExtraBlock("demandeur"),
-      new Step({ entity: "resultats" }),
-    ],
-  }
-}
-
 function generateBlocks(situation) {
   return [
     { steps: [new Step({})] },

@@ -44,7 +44,7 @@ module.exports = {
       resources: {
         link: "http://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/logement-et-cadre-de-vie/le-fonds-de-solidarite-pour-le-logement-fsl",
         instructions:
-          "http://modules.allier.fr/guide3/contenu.asp?iddossier=11612",
+          "http://www.allier.gouv.fr/l-acces-au-logement-pour-tous-a402.html",
       },
     },
     D04: {

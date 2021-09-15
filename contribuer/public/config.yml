@@ -1,0 +1,201 @@
+locale: fr
+backend:
+  name: git-gateway
+  branch: master
+  commit_messages:
+    create: Création de {{slug}} comme {{collection}}
+    update: Mise à jour de {{slug}} comme {{collection}}
+    delete: Suppression de {{slug}} comme {{collection}}
+    uploadMedia: Nouvelle image {{path}}
+    deleteMedia: Suppression de l'image {{path}}
+
+media_folder: public/img
+public_folder: img
+
+# local_backend: true
+publish_mode: editorial_workflow
+
+root: ../../..
+
+collections:
+  - name: institutions
+    label: Institutions
+    label_singular: institution
+    identifier_field: name
+    folder: "data/institutions"
+    create: true
+    delete: false
+    editor:
+      preview: false
+    slug: "{{name}}"
+    extension: yml
+    fields:
+      - label: Nom de votre institution
+        hint: Département de la Gironde, Ville de Canéjan, Mauges Communauté, etc.
+        name: name
+        widget: string
+      - label: Logo
+        name: imgSrc
+        widget: image
+        allow_multiple: false
+      - label: Institution nationale
+        name: national
+        widget: boolean
+      - label: aides fictives
+        label_singular: aide fictive
+        name: testing_benefits
+        widget: list
+        hint: Pour expérimenter la contribution sur Mes Aides, vous pouvez ajouter une aide, fictive. C'est une aide simplifiée mais cet premier ajout nous semble être une étape importante et nécessaire pour s'approprier les modalités de contribution.
+        default: []
+        collapsed: false
+        fields:
+          - label: Nom
+            name: name
+            hint: Aide aux impayés de loyer, Chèque de Nöel, etc.
+            widget: string
+          - label: Lien vers la page d'informations de référence
+            hint: Ce lien permet aux usagers d'aller plus loin dans leurs démarches et de bénéficier effectivement de l'aide. Il est préférable d'indiquer un lien vers un site institutionnel.
+            name: link
+            widget: string
+  - name: benefits
+    label: Aides
+    label_singular: Aide
+    identifier_field: label
+    folder: "data/benefits"
+    create: true
+    delete: false
+    editor:
+      preview: false
+    slug: "{{label}}"
+    extension: yml
+    fields:
+      - label: Nom de l'aide
+        name: label
+        widget: string
+      - label: Institution
+        name: institution
+        widget: relation
+        collection: institutions
+        value_field: "{{slug}}"
+        search_fields: [slug, displayFields]
+        allow_multiple: false
+      - label: Courte description
+        name: description
+        widget: text
+        pattern:
+          [
+              ".{10,120}", "La description est trop courte ou longue. En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
+          ]
+      - label: Conditions non prises ne comptent par le simulateur
+        label_singular: Condition non prise ne compte par le simulateur
+        hint: |
+          Certains critères d'éligibilité ne peuvent pas être demandés (trop précis)
+          ni pris en compte (trop complexe) dans le cadre d'un simulateur grand public.
+          Cette liste permet d'informer les usagers sur ces critères supplémentaires.
+          Par exemple : Signer un contrat d’engagement réciproque (CER) avec votre département
+          ou un Projet Personnalisé d’Accès à l’Emploi (PPAE) avec Pôle emploi.
+        name: conditions
+        widget: list
+        collapsed: false
+        field:
+          label: Texte
+          name: text
+          widget: text
+      - label: Lien vers la page d'informations de référence
+        hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)
+        name: link
+        widget: string
+        required: false
+      - label: Lien vers un formulaire à imprimer
+        name: form
+        widget: string
+        required: false
+      - label: Lien vers un téléservice
+        hint: Lorsqu'il y a la possibilité de faire la démarche en ligne.
+        name: teleservice
+        widget: string
+        required: false
+      - label: Article défini
+        name: prefix
+        hint: |
+          Pour permet la formation de phrase grammaticalement correcte.
+          Il s'agit d'indiquer le texte à insérer à la place de PPPP dans la phrase suivante dans laquelle AAAA correspondant au nom de l'aide :
+          Comment obtenir PPPP AAAA ? Par exemples dans « Comment obtenir l'aide exceptionnelle ? » « l' » est le préfix. Pour « Comment obtenir les aides au logement ? » le préfix est « les ».
+        widget: select
+        options: [le, la, les, l’, une]
+        default: la
+      - label: Type du résultat
+        name: type
+        default: "bool"
+        widget: select
+        options:
+          - label: Montant
+            value: float
+          - label: Éligibilité (Oui / Non)
+            value: "bool"
+      - label: Niveau de fiabilité lorsque le résultat est un montant
+        name: floorAt
+        widget: select
+        default: 10
+        options:
+          - label: 10 (pour arrondir à la dizaine inférieure)
+            value: 10
+          - label: 1 (pour l'euro inférieur)
+            value: 1
+          - label: 0.01 (pour éviter l'arrondi)
+            value: 0.01
+      - label: Afficher l'aide
+        name: interestFlag
+        hint: |
+          En fin de parcours, des questions sont posées pour connaitre certains intérêts des usagers.
+          Cela permet d'éviter d'afficher certaines aides qui ne seraient pas pertinentes pour les usagers.
+        widget: select
+        required: false
+        options:
+          - { label: "dans tous les cas.", value: "null" }
+          - { label: "lorsqu'il y a un intérêt pour passer le permis de conduire.", value: "_interetPermisDeConduire" }
+      - label: Entité de rattachement de la variable dans OpenFisca
+        name: entity
+        widget: select
+        hint: Cette variable fait le lien avec le moteur de calculs. Tant que vous ne savez pas quoi y indiquer, nous recommandons de laisser Ménage.
+        default: menage
+        options:
+          - label: Famille
+            value: familles
+          - label: Foyer Fiscal
+            value: foyers_fiscaux
+          - label: Individu
+            value: individus
+          - label: Ménage
+            value: menages
+  - name: contribution-pages
+    label: Pages
+    label_singular: page
+    create: true
+    delete: false
+    files:
+      - label: Accueil
+        name: accueil
+        file: "contribuer/content/home.md"
+        fields:
+          - { label: Titre, name: title, widget: string }
+          - { label: Corps, name: body, widget: markdown }
+          - label: Contributions
+            name: categories
+            widget: list
+            fields:
+              - { label: Nom, name: name, widget: string }
+              - label: Idées
+                name: ideas
+                widget: list
+                field: { label: Nom, name: name, widget: string }
+  - name: tasks
+    label: Contributions
+    label_singular: contribution
+    folder: "contribuer/content/tasks"
+    create: true
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: Nom, name: title, widget: string }
+      - { label: Description, name: "body", widget: "markdown", required: false }

@@ -1,5 +1,6 @@
 import Individu from "@/lib/Individu"
 import { isRelevant, yearsAgo } from "@/lib/Utils"
+import Scolarite from "@/lib/Scolarite"
 
 const loadEntity = (component) => {
   const params = component.$route.params
@@ -43,6 +44,10 @@ const STEPS = {
         {
           value: "actif",
           label: "En activité salariée ou indépendante",
+        },
+        {
+          value: "service_civique",
+          label: "En service civique",
         },
         {
           value: "chomeur",
@@ -181,6 +186,15 @@ const STEPS = {
     },
   },
 
+  contrat_de_travail_debut: {
+    question: (component) => {
+      return component.entity.alternant
+        ? "Quand avez-vous commencé votre alternance ?"
+        : "Quand avez-vous commencé votre contrat de travail ?"
+    },
+    questionType: "date",
+  },
+
   date_naissance: {
     question: (component) => {
       return component.entity._role === "demandeur"
@@ -263,6 +277,12 @@ const STEPS = {
         "être"
       )} reconnu·e inapte au travail ?`
     },
+  },
+
+  mention_baccalaureat: {
+    question: "Avez-vous obtenu une mention au baccalauréat ?",
+    questionType: "enum",
+    items: Scolarite.mentionsBaccalaureat,
   },
 
   nationalite: {
@@ -355,10 +375,9 @@ const STEPS = {
         : `Où sera scolarisé·e ${component.entity._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
-    items: Individu.scolariteOptions,
+    items: Scolarite.types,
     enSavoirPlus: true,
   },
-
   sortie_academie: {
     question: (component) => {
       return `${Individu.label(component.entity, "avoir")} prévu d'étudier
@@ -384,7 +403,6 @@ const STEPS = {
       l'an prochain ?`
     },
   },
-
   statuts_etablissement_scolaire: {
     question: "Dans quel type d'établissement étudiez-vous actuellement ?",
     questionType: "enum",
@@ -407,7 +425,6 @@ const STEPS = {
       },
     ],
   },
-
   taux_incapacite: {
     question: (component) => {
       const start =

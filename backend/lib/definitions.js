@@ -33,7 +33,14 @@ var individu = Object.assign(
     aah_restriction_substantielle_durable_acces_emploi: Boolean,
     activite: {
       type: String,
-      enum: ["actif", "chomeur", "etudiant", "inactif", "retraite"],
+      enum: [
+        "actif",
+        "chomeur",
+        "etudiant",
+        "inactif",
+        "retraite",
+        "service_civique",
+      ],
     },
     agepi_temps_travail_semaine: Number,
     aide_jeunes_diplomes_anciens_boursiers_base_ressources: Number,
@@ -68,6 +75,7 @@ var individu = Object.assign(
       type: String,
       enum: ["apprenti", "professionnalisation"],
     },
+    contrat_de_travail_debut: Date,
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,
@@ -85,6 +93,16 @@ var individu = Object.assign(
     handicap: Boolean,
     _hasRessources: Boolean,
     inapte_travail: Boolean,
+    mention_baccalaureat: {
+      type: String,
+      enum: [
+        "non_renseignee",
+        "mention_assez_bien",
+        "mention_bien",
+        "mention_tres_bien",
+        "mention_tres_bien_felicitations_jury",
+      ],
+    },
     nationalite: { type: String },
     plus_haut_diplome_date_obtention: Date,
     plus_haut_diplome_niveau: {
@@ -146,6 +164,7 @@ var menage = {
   charges_locatives: Number,
   _codePostal: String,
   coloc: Boolean,
+  date_entree_logement: Date,
   depcom: String,
   logement_chambre: Boolean,
   loyer: Number,

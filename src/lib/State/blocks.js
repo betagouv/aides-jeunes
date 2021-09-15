@@ -35,6 +35,12 @@ function individuBlockFactory(id) {
                 },
                 {
                   isActive: (subject) =>
+                    subject.annee_etude == "licence_1" ||
+                    subject.annee_etude == "licence_2",
+                  steps: [r("mention_baccalaureat")],
+                },
+                {
+                  isActive: (subject) =>
                     subject.scolarite == "enseignement_superieur",
                   steps: [r("statuts_etablissement_scolaire")],
                 },
@@ -44,6 +50,11 @@ function individuBlockFactory(id) {
                   steps: [r("_contrat_alternant")],
                 },
               ],
+            },
+            {
+              isActive: (subject) =>
+                subject.activite === "actif" || subject.alternant,
+              steps: [r("contrat_de_travail_debut")],
             },
           ]
         : []),
@@ -55,7 +66,9 @@ function individuBlockFactory(id) {
             },
             {
               isActive: (subject) =>
-                subject.activite != "actif" && subject.activite != "etudiant",
+                !["actif", "etudiant", "service_civique"].includes(
+                  subject.activite
+                ),
               steps: [r("inapte_travail")],
             },
           ]
@@ -129,8 +142,9 @@ function individuBlockFactory(id) {
                 return (
                   20 <= age &&
                   age < 25 &&
-                  subject.activite !== "etudiant" &&
-                  subject.activite !== "actif" &&
+                  !["actif", "etudiant", "service_civique"].includes(
+                    subject.activite
+                  ) &&
                   !subject.ass_precondition_remplie &&
                   !enfant_a_charge
                 )
@@ -174,8 +188,8 @@ function individuBlockFactory(id) {
                     r("plus_haut_diplome_date_obtention"),
                     {
                       isActive: (subject) =>
-                        subject.plus_haut_diplome_date_obtention <
-                        new Date("2021-01-01 00:00:00"),
+                        subject.plus_haut_diplome_date_obtention >=
+                        new Date("2019-12-31 00:00:00"),
                       steps: [
                         r("_boursier_derniere_annee_etudes"),
                         {
@@ -284,6 +298,7 @@ function housingBlock() {
           !subject.statut_occupation_logement ||
           subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
+          new Step({ entity: "menage", variable: "date_entree_logement" }),
           new Step({ entity: "menage", variable: "coloc" }),
           new Step({ entity: "menage", variable: "logement_chambre" }),
           new Step({

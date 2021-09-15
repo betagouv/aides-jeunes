@@ -16,7 +16,7 @@ const processArrondissements = (inseeCode) => {
 }
 
 function computeDistanceCommunes(origin, destination) {
-  if (origin && destination) {
+  if (origin && origin.centre && destination && destination.centre) {
     return haversine(
       origin.centre.coordinates,
       destination.centre.coordinates,

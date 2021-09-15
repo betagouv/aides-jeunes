@@ -20,3 +20,13 @@ a {
 footer {
   margin: 1em;
 }
+
+.contribution-submit {
+  background: transparent;
+  font-size: 1em;
+  border: none;
+  font-weight: bold;
+}
+.contribution-form {
+  display: flex;
+}

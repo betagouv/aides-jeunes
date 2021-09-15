@@ -76,16 +76,15 @@ collections:
         name: institution
         widget: relation
         collection: institutions
-        valueField: "{{slug}}"
-        searchFields: [slug, displayFields]
+        value_field: "{{slug}}"
+        search_fields: [slug, displayFields]
         allow_multiple: false
       - label: Courte description
         name: description
         widget: text
         pattern:
           [
-            ".{10,120}",
-            "La description est trop longue. En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
+              ".{10,120}", "La description est trop courte ou longue. En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
           ]
       - label: Conditions non prises ne comptent par le simulateur
         label_singular: Condition non prise ne compte par le simulateur
@@ -153,10 +152,8 @@ collections:
         widget: select
         required: false
         options:
-          - label: dans tous les cas.
-            value: null
-          - label: lorsqu'il y a un intérêt pour passer le permis de conduire.
-            value: _interetPermisDeConduire
+          - { label: "dans tous les cas.", value: "null" }
+          - { label: "lorsqu'il y a un intérêt pour passer le permis de conduire.", value: "_interetPermisDeConduire" }
       - label: Entité de rattachement de la variable dans OpenFisca
         name: entity
         widget: select
@@ -201,9 +198,4 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: Nom, name: title, widget: string }
-      - {
-          label: Description,
-          name: "body",
-          widget: "markdown",
-          required: false,
-        }
+      - { label: Description, name: "body", widget: "markdown", required: false }

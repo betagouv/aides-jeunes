@@ -1,14 +1,16 @@
 const axios = require("axios")
+const config = require("../config/index")
 
-const API_URL = "http://localhost:8080"
-const API_AUTH = "https://test-contribution.netlify.app"
 const AuthContribution = {
   async verifyIdentity(token) {
-    return await axios.get(`${API_AUTH}/.netlify/identity/user`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    return await axios.get(
+      `${config.netlifyContributionURL}/.netlify/identity/user`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
   },
   async verify(req, res) {
     const verifyIdentity = await AuthContribution.verifyIdentity(req.body.token)
@@ -18,7 +20,7 @@ const AuthContribution = {
         statusCode: 404,
       })
     res.cookie("contribution_token", req.body.token)
-    return res.redirect(301, API_URL)
+    return res.redirect(301, "/")
   },
 }
 

@@ -33,7 +33,7 @@ function getLogementVariables(statusOccupationId) {
 
 const STATUT_OCCUPATION_LABEL = {
   primo_accedant: "Propriétaire primo-accédant",
-  proprietaire: "Propriétaire primo-accédant",
+  proprietaire: "Propriétaire",
   locataire_vide: "Locataire",
   locataire_meuble: "Locataire de meublé ou hotel",
   loge_gratuitement: "Logé gratuitement",
@@ -62,14 +62,9 @@ function getLoyerData(menage, logementStatut) {
   const captureCharges = Logement.captureCharges(logementStatut)
 
   if (isLocataire) {
-    const loyerLabel =
-      [
-        "Quel est le montant",
-        captureCharges ? null : ", charges comprises,",
-        menage.coloc ? " de votre part du loyer" : " de votre loyer",
-      ]
-        .filter((present) => present)
-        .join("") + " ?"
+    const loyerLabel = `Quel est le montant${
+      captureCharges ? "" : ", charges comprises,"
+    } de votre ${menage.coloc ? "part du " : ""}loyer`
     return {
       menage: menage,
       captureCharges,

@@ -7,6 +7,7 @@
     "build": "vue-cli-service build --no-clean",
     "test:unit": "vue-cli-service test:unit",
     "lint": "npm run eslint .",
+    "build:analyze": "npm run build -- --env.BUNDLEANALYZE",
     "build:dev": "webpack --mode=development",
     "build:netlify": "npm run build && cp netlify_redirects dist/_redirects",
     "build_old": "NODE_ENV=production webpack --mode=production",
@@ -92,12 +93,14 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-prettier-vue": "^3.1.0",
     "eslint-plugin-vue": "^7.17.0",
+    "minimist": "^1.2.5",
     "mustache": "^4.2.0",
     "postcss": "^8.3.6",
     "prettier": "2.4.1",
     "sass": "^1.41.0",
     "sass-loader": "^10.1.1",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "webpack-bundle-analyzer": "^4.4.2"
   },
   "eslintConfig": {
     "root": true,

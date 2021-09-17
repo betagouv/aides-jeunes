@@ -1,9 +1,11 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 const { animation, baseURL, matomo } = require("./backend/config")
 const configureAPI = require("./configure")
 const mock = require("./mock")
 const webpack = require("webpack")
 const before = process.env.NODE_ENV === "front_only" ? mock : configureAPI
+const parseArgs = require("minimist")
 var { forEach } = require("./app/js/constants/benefits/back")
 
 let count = 0
@@ -29,6 +31,10 @@ module.exports = {
         templateParameters: { VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL },
       })
     )
+    const args = parseArgs(process.argv.slice(2))
+    if (args.env && args.env.BUNDLEANALYZE) {
+      config.plugins.push(new BundleAnalyzerPlugin({}))
+    }
   },
   chainWebpack(config) {
     config.module

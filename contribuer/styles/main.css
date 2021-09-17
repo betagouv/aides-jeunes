@@ -26,6 +26,7 @@ footer {
   font-size: 1em;
   border: none;
   font-weight: bold;
+  cursor: pointer;
 }
 .contribution-form {
   display: flex;

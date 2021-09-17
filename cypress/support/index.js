@@ -355,8 +355,7 @@ export function hasPrimeActivite(position) {
     .should("be.visible")
 }
 
-export function saisieRessourcesFiscales(position) {
-  position = position || 2
+export function captureFiscalResources(position) {
   const name = /livret d’épargne populaire/
   const id = "livretEpargnePopulaire"
   cy.get(".aj-droit-details-back-button").click()
@@ -364,9 +363,9 @@ export function saisieRessourcesFiscales(position) {
     .invoke("text")
     .should("contain", "engagement")
   cy.get(
-    '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
-      position +
-      ")",
+    `.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(${
+      position || 2
+    })`,
     { timeout: 6000 }
   ).as(id + "-summary")
   cy.get("@" + id + "-summary")

@@ -16,6 +16,6 @@ context("Full simulation", () => {
     // steps.sansPensionAlimentaireVersees()
     steps.interestFlagExtra()
     steps.hasPrimeActivite()
-    steps.saisieRessourcesFiscales()
+    steps.captureFiscalResources()
   })
 })

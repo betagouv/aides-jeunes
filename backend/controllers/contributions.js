@@ -2,8 +2,8 @@ const axios = require("axios")
 const config = require("../config/index")
 
 const AuthContribution = {
-  async verifyIdentity(token) {
-    return await axios.get(
+  verifyIdentity(token) {
+    return axios.get(
       `${config.netlifyContributionURL}/.netlify/identity/user`,
       {
         headers: {

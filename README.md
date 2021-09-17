@@ -94,14 +94,22 @@ npm run serve
 
 There are several levels of tests:
 
-- Unit tests run with `npm test`.
-- Integration tests run with `npm run test-integration`.
+- Unit tests are executed by [Jest](https://jestjs.io/fr/) and run with `npm test`.
+- End-to-end test are executed with [Cypress](https://www.cypress.io/) with `npm run cypress`
 
-You can safely use `npm test && npm run test-integration` to drive your developments.
+You can safely use `npm test && npm run cypress` to drive your developments.
 
-## Integration tests
+## Continuous Integration
 
-Integration tests are executed with [Watai](https://github.com/MattiSG/Watai) through `npm run test-integration`. These tests are **currently not run in CI** due to how complex installing all dependencies on a CI VM is.
+We use [CircleCI](https://circleci.com/) as a continuous integration and deployment. The CI is currently configured with these jobs:
+
+`install_openfisca`: installs the server openfisca.
+`install`: installs the server and the client.
+`lint`: identifies and corrects the lint problems.
+`test_jest`: runs unit tests.
+`test_openfisca_test_generation` : validates the openfisca tests.
+`build` : builds the project.
+`test_e2e`: runs the end-to-end tests.
 
 ## Linting and format
 

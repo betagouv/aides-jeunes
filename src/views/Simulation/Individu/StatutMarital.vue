@@ -30,21 +30,7 @@
 <script>
 import Actions from "@/components/Actions"
 import { createIndividuMixin } from "@/mixins/IndividuMixin"
-
-const situationsFamiliales = [
-  {
-    value: "marie", // Enum value 1 in OpenFisca
-    label: "Marié·e",
-  },
-  {
-    value: "pacse", // Enum value 5 in OpenFisca
-    label: "Pacsé·e",
-  },
-  {
-    value: "celibataire", // Enum value 2 in OpenFisca
-    label: "En union libre",
-  },
-]
+import Individu from "@/lib/Individu"
 
 export default {
   name: "SimulationIndividuStatutMarital",
@@ -54,7 +40,7 @@ export default {
   mixins: [createIndividuMixin("statut_marital")],
   data: function () {
     return {
-      situationsFamiliales,
+      situationsFamiliales: Individu.situationsFamiliales,
     }
   },
   methods: {

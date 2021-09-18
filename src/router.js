@@ -222,6 +222,18 @@ const router = new Router({
           ],
         },
         {
+          name: "recapitulatif",
+          path: "recapitulatif",
+          meta: {
+            headTitle:
+              "Récapitulatif de vos réponses sur le simulateur d'aides 1jeune1solution",
+          },
+          component: () =>
+            import(
+              /* webpackChunkName: "resultats" */ "./views/Simulation/Recapitulatif.vue"
+            ),
+        },
+        {
           name: "resultats",
           path: "resultats",
           meta: {

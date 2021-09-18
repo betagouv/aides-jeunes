@@ -39,7 +39,11 @@ context("Full simulation", () => {
 
     // steps.sansPensionAlimentaireVersees()
     steps.interestFlagExtra()
+
+    steps.autoSubmit()
+
     steps.hasPrimeActivite(2)
+
     // steps.hasLogementSocial()
   })
 
@@ -80,6 +84,8 @@ context("Full simulation", () => {
     steps.submit()
     cy.get('input[type="number"]').type("2")
     steps.submit()
+    steps.autoSubmit()
+
     steps.hasBourseCriteresSociaux(3)
   })
 })

@@ -11,6 +11,13 @@ function Step({ key, entity, id, variable, chapter }) {
   this.chapter = chapter
 }
 
+const ENTITIES_PROPERTIES = {
+  famille: require("@/lib/FamilleProperties").default,
+  individu: require("@/lib/IndividuProperties").default,
+  menage: require("@/lib/MenageProperties").default,
+  parents: require("@/lib/ParentsProperties").default,
+}
+
 const UPDATE_METHODS = {
   individu: "updateIndividu",
   famille: "updateFamille",
@@ -52,6 +59,7 @@ ComplexStep.prototype.clean = function (store) {
 }
 
 module.exports = {
+  ENTITIES_PROPERTIES,
   ComplexStep,
   Step,
   UPDATE_METHODS,

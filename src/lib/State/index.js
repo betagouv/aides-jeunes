@@ -2,24 +2,27 @@ var { generateBlocks } = require("./blocks")
 var { Step } = require("./steps")
 var Chapters = require("../Chapters")
 
-function processBlock({ journey, subject, situation, isActive }, b) {
-  if (b instanceof Step) {
-    b.isActive = isActive
-    journey.push(b)
-  } else if (typeof b == "string") {
-    console.warn(`string step should no longer be used: ${b}`)
-    journey.push({ isActive, path: b })
+function processBlock({ journey, subject, situation, isActive }, block) {
+  if (block instanceof Step) {
+    block.isActive = isActive
+    journey.push(block)
+  } else if (typeof block == "string") {
+    console.warn(`string step should no longer be used: ${block}`)
+    journey.push({ isActive, path: block })
   } else {
-    if (!b.steps) {
-      throw Error("" + b + " (" + (b instanceof Array ? "array" : "?") + ")")
+    if (!block.steps) {
+      throw Error(
+        "" + block + " (" + (block instanceof Array ? "array" : "?") + ")"
+      )
     }
-    let blockSubject = b.subject
-      ? b.subject(subject, situation)
+    let blockSubject = block.subject
+      ? block.subject(subject, situation)
       : subject || situation
     const localActive =
       isActive &&
-      (!b.isActive || (blockSubject && b.isActive(blockSubject, situation)))
-    b.steps.forEach((s) =>
+      (!block.isActive ||
+        (blockSubject && block.isActive(blockSubject, situation)))
+    block.steps.forEach((s) =>
       processBlock(
         { journey, subject: blockSubject, situation, isActive: localActive },
         s
@@ -31,7 +34,7 @@ function processBlock({ journey, subject, situation, isActive }, b) {
 function generateJourney(situation) {
   const blocks = generateBlocks(situation)
 
-  function processBlocks({ situation }) {
+  try {
     let journey = []
     blocks.forEach((b) => {
       processBlock(
@@ -40,9 +43,6 @@ function generateJourney(situation) {
       )
     })
     return journey
-  }
-  try {
-    return processBlocks({ situation })
   } catch (e) {
     console.log("error", e)
   }
@@ -52,11 +52,11 @@ function full(situation) {
   const journey = generateJourney(situation)
   journey.pop()
   let lastChapter
-  return journey.map((s) => {
+  journey.forEach((s) => {
     if (s.chapter) lastChapter = s.chapter
     else s.chapter = lastChapter
-    return s
   })
+  return journey
 }
 
 function chapters(currentPath, situation, userJourney) {
@@ -106,10 +106,10 @@ function next(current, situation) {
     .map((element, index) => {
       return { element, index }
     })
-    .filter((item) => item.element.path == (current.path || current))
+    .filter((item) => item.element.path === (current.path || current))
 
   if (!matches.length) {
-    const test = current.path || current.fullPath || current
+    const test = current.path || current
     throw new Error("Logic missing for " + test)
   }
 
@@ -125,10 +125,10 @@ function previous(current, situation) {
     .map((element, index) => {
       return { element, index }
     })
-    .filter((item) => item.element.path == (current.path || current))
+    .filter((item) => item.element.path === (current.path || current))
 
   if (!matches.length) {
-    const test = current.path || current.fullPath || current
+    const test = current.path || current
     throw new Error("Logic missing for " + test)
   }
 

@@ -1,3 +1,4 @@
+import VueRouter from "vue-router"
 import {
   next,
   previous,
@@ -25,7 +26,23 @@ const StateService = {
         this.$router
       )
       this.$store.commit("addPathToUserDoneJourney", this.$route.path)
-      this.$router.push(nextStep.path)
+      this.$router.push(nextStep.path).catch((failure) => {
+        if (
+          VueRouter.isNavigationFailure(
+            failure,
+            VueRouter.NavigationFailureType.cancelled
+          )
+        ) {
+          this.$matomo &&
+            this.$matomo.trackEvent(
+              "Parcours",
+              "Navigation cancelled",
+              failure.toString()
+            )
+        } else {
+          throw new Error(failure)
+        }
+      })
     }
 
     Vue.prototype.$pop = function (situation) {

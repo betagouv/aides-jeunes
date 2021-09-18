@@ -12,6 +12,9 @@ var all = {
   openfiscaPublicURL:
     "https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr",
   openfiscaTracerURL: "https://openfisca.github.io/tracer",
+  netlifyContributionURL:
+    process.env.NETLIFY_CONTRIBUTION_URL ||
+    "https://contribuer-aides-jeunes.netlify.app",
   sendInBlue: {
     apiKey: process.env.SEND_IN_BLUE_PRIVATE_KEY || "privateKey",
   },

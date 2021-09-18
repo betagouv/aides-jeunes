@@ -198,6 +198,11 @@ import Institution from "@/lib/Institution"
 import ResultatsMixin from "@/mixins/Resultats"
 import { sendMontantsAttendus } from "@/plugins/mails"
 import { capitalize } from "../../../lib/Utils"
+import {
+  fetchContributions,
+  reduceContributions,
+  getGithubPRFiles,
+} from "@/../backend/lib/mes-aides/contributions"
 
 export default {
   name: "attendu",
@@ -211,7 +216,8 @@ export default {
           { id: benefitId, provider: { ...provider, id: providerId }, level },
           benefit
         )
-        benefit.label = capitalize(benefit.label)
+        b.label = capitalize(benefit.label)
+
         if (b.label === "Tarification solidaire transports") {
           b.label = `${b.label} - ${provider.label}`
         }
@@ -234,6 +240,10 @@ export default {
       shortDescription: null,
       showConsentNotice: false,
       submitting: false,
+      institutions: {
+        ...Institution.partenairesLocaux,
+        ...Institution.prestationsNationales,
+      },
     }
   },
   computed: {
@@ -310,10 +320,9 @@ export default {
     getTitle: function (item) {
       return this.benefitKeyed[item.id].label
     },
-    getBenefit: function (item) {
-      return this.benefitKeyed[item.id]
-    },
     getActual: function (item) {
+      //Todo : Retirer cette ligne lorsque l'on pourra accéder aux résultats des contributions.
+      if (!this.resultats[item.id]) return 0
       return this.resultats[item.id].montant
     },
     getSuggestionPayload(content) {
@@ -323,9 +332,36 @@ export default {
         content,
       }
     },
+    async fetchBenefit(fileAttribute) {
+      const benefit = await getGithubPRFiles(fileAttribute)
+      const provider = this.institutions[benefit.institution]
+      if (provider) {
+        benefit.provider = Object.assign({}, provider)
+        this.benefits.push(benefit)
+        this.benefitKeyed[benefit.id] = benefit
+      }
+    },
     copyToClipboard() {
       this.$refs["aj-textarea-results"].select()
       document.execCommand("copy")
+    },
+    async getContributions() {
+      await fetchContributions().then((contributions) => {
+        const benefits = contributions.reduce(
+          (acc, contribution) =>
+            reduceContributions(acc, contribution, "benefits"),
+          []
+        )
+        if (contributions) {
+          const benefitsPromises = []
+          benefits.forEach((benefit) => {
+            benefitsPromises.push(this.fetchBenefit(benefit))
+          })
+          Promise.all(benefitsPromises).then(() => {
+            this.benefits = sortBy(this.benefits, "label")
+          })
+        }
+      })
     },
     submit: function () {
       this.message = null
@@ -368,6 +404,9 @@ export default {
           this.trackMontantAttendu("Sauvegarde des données")
         })
     },
+  },
+  mounted() {
+    this.getContributions()
   },
 }
 </script>

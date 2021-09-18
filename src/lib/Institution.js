@@ -1,11 +1,15 @@
 import jamstack from "jamstack-loader!./../../contribuer/public/admin/config.yml"
 import * as droitsDescription from "@/../app/js/constants/benefits"
+import BenefitsCategories from "@/lib/BenefitsCategories"
 
 const Institution = droitsDescription.generate(jamstack)
 Institution.forEachBenefit = Institution.forEach
 
 Institution.mockResults = function (sublist) {
-  sublist = sublist ? sublist.split(",") : null
+  let filterSublist
+  if (sublist) {
+    filterSublist = BenefitsCategories[sublist] || sublist.split(",")
+  }
   const list = []
 
   const defaults = {
@@ -22,7 +26,7 @@ Institution.mockResults = function (sublist) {
       mock: true,
     })
 
-    if (!sublist || sublist.indexOf(aideId) !== -1) {
+    if (!filterSublist || filterSublist.includes(aideId)) {
       list.push(addition)
     }
   })

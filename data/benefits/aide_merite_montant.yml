@@ -1,0 +1,10 @@
+label: Aide au mérite
+institution: etat
+description: L'aide au mérite concerne les étudiants ayant reçu une mention "très bien" durant la dernière session du baccalauréat.
+link: https://www.etudiant.gouv.fr/fr/aide-au-merite-1291
+prefix: l’
+type: float
+entity: individus
+conditions:
+  - avoir obtenu la mention « très bien » à la dernière session du baccalauréat ou durant celle de l'année précédente.
+legend: "par année"

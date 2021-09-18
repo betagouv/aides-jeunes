@@ -17,17 +17,28 @@ import Institution from "./lib/Institution"
 import ABTestingService from "./plugins/ABTestingService"
 import EtablissementModule from "./modules/Etablissement"
 
-let DATE_FIELDS = [
+const INDIVIDU_DATE_FIELDS = [
   "date_naissance",
   "date_arret_de_travail",
   "date_debut_chomage",
   "plus_haut_diplome_date_obtention",
+  "contrat_de_travail_debut",
 ]
 
+const MENAGE_DATE_FIELDS = ["date_entree_logement"]
+
 function adaptPersistedIndividu(individu) {
-  DATE_FIELDS.forEach(function (dateField) {
+  INDIVIDU_DATE_FIELDS.forEach(function (dateField) {
     if (individu[dateField]) {
       individu[dateField] = new Date(individu[dateField])
+    }
+  })
+}
+
+function adaptPersistedMenage(menage) {
+  MENAGE_DATE_FIELDS.forEach(function (dateField) {
+    if (menage[dateField]) {
+      menage[dateField] = new Date(menage[dateField])
     }
   })
 }
@@ -44,6 +55,9 @@ function adaptPersistedSituation(situation) {
   }
   if (situation.conjoint) {
     adaptPersistedIndividu(situation.conjoint)
+  }
+  if (situation.menage) {
+    adaptPersistedMenage(situation.menage)
   }
   return situation
 }
@@ -86,7 +100,7 @@ function defaultStore() {
       logement: {},
       foyer_fiscal: {},
       menage: {
-        aide_logement_date_pret_conventionne: "2017-12-31",
+        aide_logement_date_pret_conventionne: "2018-12-31",
       },
       parents: {},
       version: 3,

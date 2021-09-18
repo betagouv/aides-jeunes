@@ -1,9 +1,9 @@
 <template>
   <form @submit.prevent="onSubmit">
     <div class="form__group">
-      <label class="aj-question"
-        >Quel est le code postal de la commune de vos parents ?</label
-      >
+      <label class="aj-question">
+        Quel est le code postal de la commune de vos parents ?
+      </label>
       <input type="number" v-model="codePostal" />
     </div>
 
@@ -11,9 +11,9 @@
       ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i
     ></p>
     <div class="form__group" v-show="communes && communes.length">
-      <label class="aj-question"
-        >Veuillez sélectionner la ville qui correspond</label
-      >
+      <label class="aj-question">
+        Veuillez sélectionner la ville qui correspond
+      </label>
       <select v-model="nomCommune" id="commune">
         <option
           v-for="commune in communes"
@@ -29,11 +29,12 @@
 </template>
 <script>
 import Actions from "@/components/Actions"
-import Commune from "@/lib/Commune"
 import Individu from "@/lib/Individu"
+import DepcomMixin from "@/mixins/DepcomMixin"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxCommuneDomicileFamilial",
+  mixins: [DepcomMixin],
   components: {
     Actions,
   },
@@ -57,42 +58,17 @@ export default {
       retrievingCommunes: false,
     }
   },
-  asyncComputed: {
-    communes: {
-      get: function () {
-        if (!this.codePostal || this.codePostal.toString().length !== 5) {
-          return []
-        }
-        this.retrievingCommunes = true
-        return Commune.get(this.codePostal)
-          .then((communes) => {
-            if (communes.length <= 0) {
-              this.$matomo &&
-                this.$matomo.trackEvent(
-                  "General",
-                  "Depcom introuvable",
-                  `Code postal : ${this.codePostalQuestion.selectedValue}`
-                )
-            }
-            if (!communes.map((c) => c.nom).includes(this.nomCommune)) {
-              this.nomCommune = Commune.getMostPopulated(communes).nom
-            }
-            return communes
-          })
-          .catch(() => {
-            return []
-          })
-          .finally(() => {
-            this.retrievingCommunes = false
-          })
-      },
-      default: [],
-    },
-  },
   methods: {
     onSubmit: function () {
-      if (this.nomCommune === undefined) {
+      if (!this.nomCommune || !this.codePostal) {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
+        return
+      }
+      if (!this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
+        this.$store.dispatch(
+          "updateError",
+          "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment."
+        )
         return
       }
       const communeMatches = this.communes.filter(

@@ -68,6 +68,7 @@ import Actions from "@/components/Actions"
 import Individu from "@/lib/Individu"
 import Nationality from "@/lib/Nationality"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
+import Scolarite from "@/lib/Scolarite"
 
 export default {
   name: "SimulationEnfants",
@@ -97,9 +98,8 @@ export default {
     },
     nationality: Nationality.getNationalityFromCountryCode,
     scolarite: function (value) {
-      const s = Individu.scolariteOptions.find((s) => s.value === value)
-      if (s)
-        return Individu.scolariteOptions.find((s) => s.value === value).label
+      const s = Scolarite.types.find((s) => s.value === value)
+      if (s) return Scolarite.types.find((s) => s.value === value).label
       else return "-"
     },
   },

@@ -1,13 +1,14 @@
-var fs = require("fs")
-var path = require("path")
-var isNumber = require("lodash/isNumber")
-var map = require("lodash/map")
-var assign = require("lodash/assign")
+const capitalize = require("lodash/capitalize")
+const fs = require("fs")
+const path = require("path")
+const isNumber = require("lodash/isNumber")
+const map = require("lodash/map")
+const assign = require("lodash/assign")
 
-var mustache = require("consolidate").mustache
-var config = require("../../../config")
+const mustache = require("consolidate").mustache
+const config = require("../../../config")
 
-var { mjml } = require(".")
+const { mjml } = require(".")
 
 function basicBenefitText(b) {
   if (b.labelFunction) {
@@ -47,7 +48,7 @@ function renderAsHtml(followup, benefits) {
     if (isNumber(droit.montant)) {
       var unit = droit.unit || "€"
       var legend = droit.legend || (droit.isMontantAnnuel ? "/ an" : "/ mois")
-      montant = `${droit.montant} ${unit} ${legend}`
+      montant = `${droit.montant.toFixed(0)} ${unit} ${legend}`
     }
 
     var ctaLink = ""
@@ -71,6 +72,7 @@ function renderAsHtml(followup, benefits) {
       montant: montant,
       ctaLink: ctaLink,
       ctaLabel: ctaLabel,
+      droitLabel: capitalize(droit.label),
     })
   })
 

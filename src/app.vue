@@ -6,9 +6,11 @@
 </template>
 
 <script>
-import BaseLayout from "@/components/base-layout.vue"
-import iFrameLayout from "@/components/iframe-layout.vue"
+import variation from "@/variations"
 import BandeauDemo from "@/components/bandeau-demo"
+import iFrameLayout from "@/components/iframe-layout.vue"
+
+const BaseLayout = variation.BaseLayout
 
 export default {
   name: "App",

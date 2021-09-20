@@ -1,8 +1,8 @@
 import { nextTick } from "vue"
-import Home from "./views/home.vue"
-import store from "./store"
-
 import { createWebHistory, createRouter } from "vue-router"
+
+import store from "./store"
+import variation from "./variations"
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -10,7 +10,7 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: Home,
+      component: variation.Home,
       beforeEnter: (to, from, next) => {
         let referrer = document.referrer
         if (
@@ -283,31 +283,6 @@ const router = createRouter({
       ],
     },
     {
-      path: "/accessibilite",
-      name: "accessibilite",
-      component: () =>
-        import(
-          /* webpackChunkName: "accessibilite" */ "./views/accessibilite.vue"
-        ),
-    },
-    {
-      path: "/contact",
-      name: "contact",
-      component: () =>
-        import(/* webpackChunkName: "contact" */ "./views/contact.vue"),
-    },
-    {
-      path: "/cgu",
-      name: "cgu",
-      component: () => import(/* webpackChunkName: "cgu" */ "./views/cgu.vue"),
-    },
-    {
-      path: "/confidentialite",
-      name: "confidentialite",
-      component: () =>
-        import(/* webpackChunkName: "cgu" */ "./views/confidentialite.vue"),
-    },
-    {
       name: "lieux-details",
       path: "/lieux/:commune/:type",
       component: () =>
@@ -347,6 +322,7 @@ const router = createRouter({
         return "/"
       },
     },
+    ...variation.routes,
   ],
   scrollBehavior(to /*, from, savedPosition*/) {
     if (to.hash) {

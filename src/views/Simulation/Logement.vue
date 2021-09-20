@@ -213,12 +213,12 @@ export default {
     },
     onSubmit: function () {
       if (
-        this.needCheckContrib("menage", "statut_occupation_logement") &&
+        this.isValueRequired("menage", "statut_occupation_logement") &&
         !this.logementTypesQuestion.selectedValue
       ) {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
       } else if (
-        this.needCheckContrib("menage", "statut_occupation_logement") &&
+        this.isValueRequired("menage", "statut_occupation_logement") &&
         this.logementTypesQuestion.selectedValue === "proprietaire" &&
         this.primoAccedantQuestion.selectedValue === null
       ) {
@@ -227,7 +227,7 @@ export default {
           "Le champ primo-accédant est obligatoire."
         )
       } else if (
-        this.needCheckContrib("menage", "statut_occupation_logement") &&
+        this.isValueRequired("menage", "statut_occupation_logement") &&
         this.logementTypesQuestion.selectedValue === "locataire" &&
         !this.locataireTypesQuestion.selectedValue
       ) {

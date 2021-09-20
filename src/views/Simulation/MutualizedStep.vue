@@ -144,8 +144,11 @@ export default {
   methods: {
     onSubmit() {
       if (
-        (this.needCheckContrib(this.entity._entityName, this.fieldName) ||
-          !this.step.optional) &&
+        this.isValueRequired(
+          this.entity._entityName,
+          this.fieldName,
+          this.step.optional
+        ) &&
         this.requiredValueMissing()
       ) {
         return

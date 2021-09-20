@@ -72,14 +72,14 @@ export default {
   methods: {
     onSubmit: function () {
       if (
-        this.needCheckContrib("menage", "depcom") &&
+        this.isValueRequired("menage", "depcom") &&
         (!this.nomCommune || !this.codePostal)
       ) {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
         return
       }
       if (
-        this.needCheckContrib("menage", "depcom") &&
+        this.isValueRequired("menage", "depcom") &&
         !this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)
       ) {
         this.$store.dispatch(

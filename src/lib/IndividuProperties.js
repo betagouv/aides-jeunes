@@ -296,6 +296,7 @@ const STEPS = {
           )}${Individu.label(component.entity, "nom")} ?`
     },
     questionType: "enum",
+    optional: true,
     items: [
       {
         label: "Française",

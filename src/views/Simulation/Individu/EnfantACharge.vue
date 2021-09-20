@@ -67,7 +67,7 @@ export default {
   methods: {
     onSubmit: function () {
       if (
-        this.needCheckContrib(this.entityName, "enfant_a_charge") &&
+        this.isValueRequired(this.entityName, "enfant_a_charge") &&
         this.requiredValueMissing()
       ) {
         return

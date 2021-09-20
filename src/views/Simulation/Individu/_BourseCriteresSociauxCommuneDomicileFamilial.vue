@@ -74,7 +74,7 @@ export default {
   methods: {
     onSubmit: function () {
       if (
-        this.needCheckContrib(
+        this.isValueRequired(
           this.entityName,
           "_bourseCriteresSociauxCommuneDomicileFamilial"
         ) &&
@@ -84,7 +84,7 @@ export default {
         return
       }
       if (
-        this.needCheckContrib(
+        this.isValueRequired(
           this.entityName,
           "_bourseCriteresSociauxCommuneDomicileFamilial"
         ) &&

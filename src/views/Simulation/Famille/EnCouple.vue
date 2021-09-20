@@ -53,7 +53,7 @@ export default {
   methods: {
     onSubmit() {
       if (
-        this.needCheckContrib("famille", "en_couple") &&
+        this.isValueRequired("famille", "en_couple") &&
         this.value === undefined
       ) {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")

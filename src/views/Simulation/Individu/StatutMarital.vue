@@ -77,7 +77,7 @@ export default {
   methods: {
     onSubmit: function () {
       if (
-        this.needCheckContrib(this.entityName, "statut_marital") &&
+        this.isValueRequired(this.entityName, "statut_marital") &&
         this.requiredValueMissing()
       ) {
         return

@@ -13,9 +13,9 @@ export const createContributionMixin = () => {
       isRelevantQuestionForContribution() {
         return this.$store.getters.isContributionMode
       },
-      needCheckContrib(entityName, fieldName) {
+      isValueRequired(entityName, fieldName, optional) {
         return (
-          !this.$store.getters.isContributionMode ||
+          !(this.$store.getters.isContributionMode || optional) ||
           (this.isRelevantQuestionForContribution() &&
             this.contribution[entityName][fieldName])
         )

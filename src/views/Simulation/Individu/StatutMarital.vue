@@ -24,7 +24,7 @@
       </div>
     </fieldset>
 
-    <template v-if="isRelevantQuestionForContribution('statut_marital')">
+    <template v-if="isRelevantQuestionForContribution()">
       <ContributionForm
         v-model="contribution[entityName].statut_marital"
       ></ContributionForm>
@@ -63,10 +63,7 @@ export default {
   },
   mixins: [createIndividuMixin("statut_marital"), createContributionMixin()],
   data: function () {
-    const contribution = this.initContribution(
-      this.$route.params.id,
-      "statut_marital"
-    )
+    const contribution = this.initContribution(this.$route.params.id)
     return {
       situationsFamiliales,
       contribution,

@@ -3,37 +3,25 @@ const cloneDeep = require("lodash/cloneDeep")
 export const createContributionMixin = () => {
   return {
     methods: {
-      initContribution(entityName, fieldName, openfiscaVariable) {
-        if (
-          !this.isRelevantQuestionForContribution(fieldName, openfiscaVariable)
-        )
-          return
+      initContribution(entityName) {
+        if (!this.isRelevantQuestionForContribution()) return
 
         const contribution = cloneDeep(this.$store.state.contribution)
         if (!contribution[entityName]) contribution[entityName] = {}
         return contribution
       },
-      isRelevantQuestionForContribution(fieldName, openfiscaVariable) {
-        return Boolean(
-          this.$store.getters.isContributionMode &&
-            (!fieldName.startsWith("_") || openfiscaVariable)
-        )
+      isRelevantQuestionForContribution() {
+        return this.$store.getters.isContributionMode
       },
-      needCheckContrib(entityName, fieldName, openfiscaVariable) {
+      needCheckContrib(entityName, fieldName) {
         return (
           !this.$store.getters.isContributionMode ||
-          (this.isRelevantQuestionForContribution(
-            fieldName,
-            openfiscaVariable
-          ) &&
+          (this.isRelevantQuestionForContribution() &&
             this.contribution[entityName][fieldName])
         )
       },
       saveContribution(entityName, fieldName, openfiscaVariable) {
-        if (
-          !this.isRelevantQuestionForContribution(fieldName, openfiscaVariable)
-        )
-          return
+        if (!this.isRelevantQuestionForContribution()) return
 
         if (this.contribution[entityName][fieldName]) {
           this.contribution[entityName] = {

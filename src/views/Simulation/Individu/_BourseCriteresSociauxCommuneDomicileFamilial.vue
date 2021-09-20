@@ -24,14 +24,7 @@
         </option>
       </select>
     </div>
-    <template
-      v-if="
-        isRelevantQuestionForContribution(
-          '_bourseCriteresSociauxCommuneDomicileFamilial',
-          'bourse_criteres_sociaux_distance_domicile_familial'
-        )
-      "
-    >
+    <template v-if="isRelevantQuestionForContribution()">
       <ContributionForm
         v-model="
           contribution[entityName]._bourseCriteresSociauxCommuneDomicileFamilial
@@ -69,11 +62,7 @@ export default {
     const nomCommune =
       individu._bourseCriteresSociauxCommuneDomicileFamilialNomCommune
 
-    const contribution = this.initContribution(
-      id,
-      "_bourseCriteresSociauxCommuneDomicileFamilial",
-      "bourse_criteres_sociaux_distance_domicile_familial"
-    )
+    const contribution = this.initContribution(id)
     return {
       codePostal,
       individu,
@@ -87,8 +76,7 @@ export default {
       if (
         this.needCheckContrib(
           this.entityName,
-          "_bourseCriteresSociauxCommuneDomicileFamilial",
-          "bourse_criteres_sociaux_distance_domicile_familial"
+          "_bourseCriteresSociauxCommuneDomicileFamilial"
         ) &&
         (!this.nomCommune || !this.codePostal)
       ) {
@@ -98,8 +86,7 @@ export default {
       if (
         this.needCheckContrib(
           this.entityName,
-          "_bourseCriteresSociauxCommuneDomicileFamilial",
-          "bourse_criteres_sociaux_distance_domicile_familial"
+          "_bourseCriteresSociauxCommuneDomicileFamilial"
         ) &&
         !this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)
       ) {

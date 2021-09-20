@@ -26,7 +26,7 @@
       </select>
     </div>
 
-    <template v-if="isRelevantQuestionForContribution('depcom')">
+    <template v-if="isRelevantQuestionForContribution()">
       <ContributionForm v-model="contribution.menage.depcom"></ContributionForm>
     </template>
 
@@ -55,7 +55,7 @@ export default {
   },
   data: function () {
     const menage = { ...this.$store.getters.getMenage } || {}
-    const contribution = this.initContribution("menage", "depcom")
+    const contribution = this.initContribution("menage")
     return {
       menage: menage,
       retrievingCommunes: false,

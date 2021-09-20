@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <template v-if="isRelevantQuestionForContribution('charges_locatives')">
+    <template v-if="isRelevantQuestionForContribution()">
       <ContributionForm
         v-model="contribution.menage.charges_locatives"
       ></ContributionForm>
@@ -58,7 +58,7 @@ export default {
     )
     const captureCharges = isLocataire && logementStatut != "locataire_meuble"
 
-    const contribution = this.initContribution("menage", "charges_locatives")
+    const contribution = this.initContribution("menage")
 
     if (isLocataire) {
       const loyerLabel =

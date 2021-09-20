@@ -35,7 +35,7 @@
     </div>
     <div class="form__group">{{ countLabel }}</div>
 
-    <template v-if="isRelevantQuestionForContribution('ressourceTypes')">
+    <template v-if="isRelevantQuestionForContribution()">
       <ContributionForm
         v-model="contribution[entityName].ressourceTypes"
       ></ContributionForm>
@@ -65,10 +65,7 @@ export default {
   },
   mixins: [createContributionMixin()],
   data: function () {
-    const contribution = this.initContribution(
-      this.$route.params.id,
-      "resourceTypes"
-    )
+    const contribution = this.initContribution(this.$route.params.id)
 
     let types = ressourceTypes.filter((ressourceType) => {
       return (

@@ -56,11 +56,7 @@
       ></template>
     </YesNoQuestion>
 
-    <template
-      v-if="
-        isRelevantQuestionForContribution(fieldName, step.openfiscaVariable)
-      "
-    >
+    <template v-if="isRelevantQuestionForContribution()">
       <ContributionForm
         v-model="contribution[entity._entityName][fieldName]"
       ></ContributionForm>
@@ -109,11 +105,7 @@ export default {
     const entityName = this.$route.path.split("/")[2]
     const entity = ENTITIES_PROPERTIES[entityName].loadEntity(this)
 
-    const contribution = this.initContribution(
-      entity._entityName,
-      params.fieldName,
-      ENTITIES_PROPERTIES[entityName].STEPS[params.fieldName].openfiscaVariable
-    )
+    const contribution = this.initContribution(entity._entityName)
     return {
       value: entity[params.fieldName],
       entityName,
@@ -152,11 +144,7 @@ export default {
   methods: {
     onSubmit() {
       if (
-        (this.needCheckContrib(
-          this.entity._entityName,
-          this.fieldName,
-          this.step.openfiscaVariable
-        ) ||
+        (this.needCheckContrib(this.entity._entityName, this.fieldName) ||
           !this.step.optional) &&
         this.requiredValueMissing()
       ) {

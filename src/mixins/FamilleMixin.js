@@ -8,7 +8,7 @@ export const createFamilleMixin = (props) => {
 
       let contribution
       if (typeof this.initContribution === "function")
-        contribution = this.initContribution("famille", fieldName)
+        contribution = this.initContribution("famille")
       return {
         famille,
         value,

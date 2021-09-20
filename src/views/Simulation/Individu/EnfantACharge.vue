@@ -11,7 +11,7 @@
       }}&nbsp;?
     </YesNoQuestion>
 
-    <template v-if="isRelevantQuestionForContribution('enfant_a_charge')">
+    <template v-if="isRelevantQuestionForContribution()">
       <ContributionForm
         v-model="contribution[entityName].enfant_a_charge"
       ></ContributionForm>
@@ -49,7 +49,7 @@ export default {
     )
     const value =
       individu["enfant_a_charge"][this.$store.state.dates.thisYear.id]
-    const contribution = this.initContribution(id, "enfant_a_charge")
+    const contribution = this.initContribution(id)
 
     return {
       individu,

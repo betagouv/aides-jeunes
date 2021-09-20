@@ -17,7 +17,7 @@ export const createIndividuMixin = (props) => {
       const value = individu[fieldName]
       let contribution
       if (typeof this.initContribution === "function")
-        contribution = this.initContribution(id, "enfant_a_charge")
+        contribution = this.initContribution(id)
       return {
         error: false,
         fieldName,

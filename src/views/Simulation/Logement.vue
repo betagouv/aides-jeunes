@@ -85,9 +85,7 @@
       </div>
     </fieldset>
 
-    <template
-      v-if="isRelevantQuestionForContribution('statut_occupation_logement')"
-    >
+    <template v-if="isRelevantQuestionForContribution()">
       <ContributionForm
         v-model="contribution.menage.statut_occupation_logement"
       ></ContributionForm>
@@ -112,10 +110,7 @@ export default {
   },
   mixins: [createContributionMixin()],
   data: function () {
-    const contribution = this.initContribution(
-      "menage",
-      "statut_occupation_logement"
-    )
+    const contribution = this.initContribution("menage")
 
     return {
       logementTypesQuestion: {

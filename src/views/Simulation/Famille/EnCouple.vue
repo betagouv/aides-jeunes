@@ -26,7 +26,7 @@
       </div>
     </fieldset>
 
-    <template v-if="isRelevantQuestionForContribution('en_couple')">
+    <template v-if="isRelevantQuestionForContribution()">
       <ContributionForm
         v-model="contribution.famille.en_couple"
       ></ContributionForm>

@@ -10,11 +10,7 @@ const StateService = {
     }
 
     Vue.prototype.$push = function () {
-      const nextStep = next(
-        this.$route,
-        this.$store.getters.getAllSteps,
-        this.$store.getters.isContributionMode
-      )
+      const nextStep = next(this.$route, this.$store.getters.getAllSteps)
       this.$router.push(nextStep.path).catch((failure) => {
         if (
           VueRouter.isNavigationFailure(

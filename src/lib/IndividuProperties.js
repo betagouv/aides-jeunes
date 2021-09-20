@@ -472,7 +472,22 @@ const STEPS = {
     ],
   },
 
-  _dureeContratDeTravailDebut: {
+  _dureeMoisEtudesEtranger: {
+    question:
+      "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
+    questionType: "number",
+  },
+
+  _interetEtudesEtranger: {
+    question:
+      "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
+  },
+
+  _interetPermisDeConduire: {
+    question: "Prévoyez-vous de passer le permis de conduire ?",
+  },
+
+  _nombreMoisDebutContratDeTravail: {
     question: (component) => {
       return component.entity.activite === "etudiant" &&
         component.entity.alternant
@@ -494,7 +509,7 @@ const STEPS = {
         },
         {
           value: 5,
-          label: "Moins de 6 mois",
+          label: "Entre 3 et 6 mois",
           isRelevant: jeune_actif,
         },
         {
@@ -509,21 +524,6 @@ const STEPS = {
         },
       ].filter((item) => item.isRelevant)
     },
-  },
-
-  _dureeMoisEtudesEtranger: {
-    question:
-      "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
-    questionType: "number",
-  },
-
-  _interetEtudesEtranger: {
-    question:
-      "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
-  },
-
-  _interetPermisDeConduire: {
-    question: "Prévoyez-vous de passer le permis de conduire ?",
   },
 }
 

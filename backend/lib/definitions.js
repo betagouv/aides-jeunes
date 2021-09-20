@@ -75,10 +75,6 @@ var individu = Object.assign(
       type: String,
       enum: ["apprenti", "professionnalisation"],
     },
-    _dureeContratDeTravailDebut: {
-      type: Number,
-      enum: [2, 5, 12],
-    },
     date_arret_de_travail: Date,
     date_debut_chomage: Date,
     date_naissance: Date,
@@ -107,6 +103,10 @@ var individu = Object.assign(
       ],
     },
     nationalite: { type: String },
+    _nombreMoisDebutContratDeTravail: {
+      type: Number,
+      enum: [2, 5, 12],
+    },
     plus_haut_diplome_date_obtention: Date,
     plus_haut_diplome_niveau: {
       type: String,
@@ -167,11 +167,10 @@ var menage = {
   charges_locatives: Number,
   _codePostal: String,
   coloc: Boolean,
-  _dureeDateEntreeLogement: Boolean,
-  date_entree_logement: Date,
   depcom: String,
   logement_chambre: Boolean,
   loyer: Number,
+  _nombreMoisEntreeLogement: Boolean,
   _nomCommune: String,
   participation_frais: Boolean,
   statut_occupation_logement: {

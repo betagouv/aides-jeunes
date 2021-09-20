@@ -22,7 +22,7 @@ const STEPS = {
       >`,
   },
 
-  _dureeDateEntreeLogement: {
+  _nombreMoisEntreeLogement: {
     question: "Êtes-vous locataire depuis moins de 3 mois ?",
   },
 }

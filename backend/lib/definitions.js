@@ -167,6 +167,7 @@ var menage = {
   charges_locatives: Number,
   _codePostal: String,
   coloc: Boolean,
+  date_entree_logement: Date,
   depcom: String,
   logement_chambre: Boolean,
   loyer: Number,

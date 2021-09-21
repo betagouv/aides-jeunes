@@ -549,11 +549,9 @@ function generateBlocks(situation) {
     },
     extraBlock(),
     {
-      steps: [
-        new Step({ entity: "resultats", chapter: "resultats" }),
-        new Step({ entity: "resultats" }),
-      ],
+      steps: [new Step({ entity: "resultats", chapter: "resultats" })],
     },
+    new Step({ entity: "resultats" }),
   ]
 }
 

@@ -267,6 +267,41 @@ const router = new Router({
           meta: { title: "Résultats attendus" },
         },
         {
+          name: "resultatInattendu",
+          path: "resultat/inattendu/:id",
+          component: () =>
+            import(
+              /* webpackChunkName: "resultat-inattendu" */ "./views/Foyer/ResultatInattendu.vue"
+            ),
+          meta: {
+            title: "Resultats Attendus ",
+          },
+        },
+        {
+          name: "ressourcesFiscales",
+          path: "ressources/fiscales",
+          component: () =>
+            import(
+              /* webpackChunkName: "ressources-fiscales" */ "./views/Foyer/Ressources/Fiscales.vue"
+            ),
+          meta: {
+            title: function () {
+              return `Les revenus imposables de votre foyer en ${store.state.dates.fiscalYear.label}`
+            },
+          },
+        },
+        {
+          name: "ressourcesPatrimoine",
+          path: "ressources/patrimoine",
+          component: () =>
+            import(
+              /* webpackChunkName: "ressources-patrimoine" */ "./views/Foyer/Ressources/Patrimoine.vue"
+            ),
+          meta: {
+            title: "Votre patrimoine",
+          },
+        },
+        {
           name: "resultatsDetails",
           path: "resultats/:droitId",
           component: () =>
@@ -307,39 +342,6 @@ const router = new Router({
             ),
           meta: {
             title: "Question Estime Pôle Emploi",
-          },
-        },
-        {
-          name: "resultat/inattendu",
-          path: "resultat/inattendu/:id",
-          component: () =>
-            import(
-              /* webpackChunkName: "resultat-inattendu" */ "./views/Foyer/ResultatInattendu.vue"
-            ),
-          meta: {
-            title: " ",
-          },
-        },
-        {
-          path: "ressources/fiscales",
-          component: () =>
-            import(
-              /* webpackChunkName: "ressources-fiscales" */ "./views/Foyer/Ressources/Fiscales.vue"
-            ),
-          meta: {
-            title: function () {
-              return `Les revenus imposables de votre foyer en ${store.state.dates.fiscalYear.label}`
-            },
-          },
-        },
-        {
-          path: "ressources/patrimoine",
-          component: () =>
-            import(
-              /* webpackChunkName: "ressources-patrimoine" */ "./views/Foyer/Ressources/Patrimoine.vue"
-            ),
-          meta: {
-            title: "Votre patrimoine",
           },
         },
         {

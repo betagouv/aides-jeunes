@@ -358,6 +358,31 @@ export function hasPrimeActivite(position) {
     .should("be.visible")
 }
 
+export function captureFiscalResources(position) {
+  const name = /livret d’épargne populaire/
+  const id = "livretEpargnePopulaire"
+  cy.get(".aj-droit-details-back-button").click()
+  cy.get("#print-disclaimer", { timeout: 20000 })
+    .invoke("text")
+    .should("contain", "engagement")
+  cy.get(
+    `.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(${
+      position || 2
+    })`,
+    { timeout: 6000 }
+  ).as(id + "-summary")
+  cy.get("@" + id + "-summary")
+    .find('[itemprop="name"]')
+    .invoke("text")
+    .should("match", name)
+  cy.get("@" + id + "-summary").click()
+  cy.get(".notification.warning").invoke("text").should("contain", "ressources")
+  cy.get(".button.outline.red").click()
+  cy.get('input[type="number"]').first().type("50000")
+  submit()
+  cy.get(id + "-summary").should("not.exist")
+}
+
 export function hasAAH() {
   const position = 1
   const name = /allocation aux adultes handicapés/

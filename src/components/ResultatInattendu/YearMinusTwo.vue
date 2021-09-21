@@ -29,7 +29,7 @@
     >
 
     <router-link
-      class="button-outline text-center primary"
+      class="button outline text-center back-button"
       to="/simulation/resultats"
       >Retourner aux résultats</router-link
     >
@@ -52,3 +52,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.back-button {
+  margin-top: 16px !important;
+}
+</style>

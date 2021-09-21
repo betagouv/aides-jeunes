@@ -22,23 +22,12 @@ const INDIVIDU_DATE_FIELDS = [
   "date_arret_de_travail",
   "date_debut_chomage",
   "plus_haut_diplome_date_obtention",
-  "contrat_de_travail_debut",
 ]
-
-const MENAGE_DATE_FIELDS = ["date_entree_logement"]
 
 function adaptPersistedIndividu(individu) {
   INDIVIDU_DATE_FIELDS.forEach(function (dateField) {
     if (individu[dateField]) {
       individu[dateField] = new Date(individu[dateField])
-    }
-  })
-}
-
-function adaptPersistedMenage(menage) {
-  MENAGE_DATE_FIELDS.forEach(function (dateField) {
-    if (menage[dateField]) {
-      menage[dateField] = new Date(menage[dateField])
     }
   })
 }
@@ -56,9 +45,7 @@ function adaptPersistedSituation(situation) {
   if (situation.conjoint) {
     adaptPersistedIndividu(situation.conjoint)
   }
-  if (situation.menage) {
-    adaptPersistedMenage(situation.menage)
-  }
+
   return situation
 }
 

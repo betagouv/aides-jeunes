@@ -44,7 +44,7 @@ export function demandeur(params = {}) {
   cy.get("label").invoke("text").should("contain", "salarié")
   cy.get('input[type="radio"]').check("actif")
   autoSubmit()
-  cy.get("#contrat_de_travail_debut").type("12122020")
+  cy.get('input[type="radio"]').check("2")
   submit()
   // Handicap
   handicap(params)

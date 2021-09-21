@@ -8,11 +8,6 @@ const STEPS = {
     question: "Est-ce une colocation ?",
   },
 
-  date_entree_logement: {
-    question: "Depuis quand êtes-vous locataire de votre logement ?",
-    questionType: "date",
-  },
-
   logement_chambre: {
     question: `Est-ce une chambre ?
       <span class="help">
@@ -25,6 +20,10 @@ const STEPS = {
       <span class="help"
         >Par exemple aux dépenses d'électricité, de téléphone, etc.</span
       >`,
+  },
+
+  _nombreMoisEntreeLogement: {
+    question: "Êtes-vous locataire depuis moins de 3 mois ?",
   },
 }
 

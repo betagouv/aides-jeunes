@@ -462,6 +462,7 @@ const STEPS = {
 
   _boursier_derniere_annee_etudes: {
     question: "Étiez-vous boursier lors de votre dernière année d'études ?",
+    openfiscaVariable: ["boursier", "bourse_lycee"],
   },
 
   _continuite_etudes: {

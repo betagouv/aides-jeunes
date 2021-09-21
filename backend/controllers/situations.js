@@ -7,6 +7,8 @@ var openfisca = require("../lib/openfisca")
 var openfiscaTest = require("../lib/openfisca/test")
 var Situation = require("mongoose").model("Situation")
 
+const fs = require("fs")
+
 exports.situation = function (req, res, next, situationId) {
   if (situationId && situationId._id) {
     req.situation = situationId
@@ -140,4 +142,39 @@ exports.openfiscaTest = function (req, res) {
     ? req.situation.toObject()
     : req.situation
   res.type("yaml").send(openfiscaTest.generateYAMLTest(details, situation))
+}
+
+const RELATIVE_PATH = __dirname + "/../lib/openfisca/tests/"
+
+exports.openfiscaTestFile = function (req, res) {
+  var details = assign(
+    {},
+    DETAILS_DEFAULT_ATTRIBUTES,
+    pick(req.body, DETAILS_ATTRIBUTES)
+  )
+  if (!details.name || !details.description || !details.output) {
+    return res
+      .status(403)
+      .send({ error: "You must provide a name, description and output." })
+  }
+
+  var situation = req.situation.toObject
+    ? req.situation.toObject()
+    : req.situation
+
+  const fileContent = openfiscaTest.generateYAMLTest(details, situation)
+  const fileName = `contribution-${situation._id}.yml`
+  fs.writeFile(
+    `${RELATIVE_PATH}${fileName}`,
+    fileContent,
+    { flag: "w+" },
+    (err) => {
+      if (err) {
+        console.error(err)
+        return
+      }
+      //file written successfully
+    }
+  )
+  res.type("yaml").send(fileName)
 }

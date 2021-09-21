@@ -22,11 +22,15 @@
         </tbody>
       </table>
     </div>
+    <div>
+      <button @click="test">test</button>
+    </div>
   </div>
 </template>
 
 <script>
 import Individu from "@/lib/Individu"
+import axios from "axios"
 
 export default {
   name: "SimulationRecapitulatifContribution",
@@ -102,6 +106,30 @@ export default {
             }
           )
         : `Pas de valeur`
+    },
+    test() {
+      const aide = {
+        name: `haut_de_france_aide_permis`,
+        value: 1000,
+      }
+      var details = {
+        name: `Contribution ${this.$store.state.situation._id}`,
+        description: `Test pour l'aide ${aide.name}`,
+        output: {
+          [aide.name]: aide.value,
+        },
+        absolute_error_margin: 0.1,
+      }
+      this.$store.dispatch("save", this.resultats).then(() => {
+        axios
+          .post(
+            `api/situations/${this.$store.state.situation._id}/openfisca-test-file`,
+            details
+          )
+          .then(() => {
+            // todo, gérer la réponse du fichier
+          })
+      })
     },
   },
 }

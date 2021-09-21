@@ -448,7 +448,7 @@ const store = new Vuex.Store({
     },
     save: function (store) {
       const disabledSteps = store.getters.getAllSteps.filter((s) => !s.isActive)
-      if (this.$store.getters.isContributionMode) {
+      if (!store.getters.isContributionMode) {
         disabledSteps.forEach((step) => {
           step.clean(store, true)
         })

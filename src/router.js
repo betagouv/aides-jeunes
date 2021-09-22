@@ -431,6 +431,14 @@ const router = new Router({
         return "/"
       },
     },
+    {
+      path: "/contribution-home",
+      name: "contribution-home",
+      component: () =>
+        import(
+          /* webpackChunkName: "simulation" */ "./views/Simulation/ContributionHome"
+        ),
+    },
   ],
   scrollBehavior(to /*, from, savedPosition*/) {
     if (to.hash) {

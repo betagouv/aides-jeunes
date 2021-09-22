@@ -27,6 +27,7 @@ module.exports = function (api) {
 
   route.post("/openfisca-test", situations.openfiscaTest)
   route.post("/openfisca-test-file", situations.openfiscaTestFile)
+  route.post("/openfisca-execute-test", situations.executeOpenfiscaTest)
   route.get("/openfisca-trace", situations.openfiscaTrace)
 
   route.post("/followup", followups.persist)

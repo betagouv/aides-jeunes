@@ -1,8 +1,21 @@
 <template>
   <div>
-    <div> Récapitulatif contribution </div>
+    <h2> Récapitulatif contribution </h2>
 
     <div>
+      <div>
+        <h3>Détails de la contribution</h3>
+        <ul>
+          <li>Name : {{ contribution._details.name }}</li>
+          <li>Output : {{ contribution._details.output }}</li>
+          <li>Description : {{ contribution._details.description }}</li>
+          <li
+            >Absolute_error_margin :
+            {{ contribution._details.absolute_error_margin }}</li
+          >
+        </ul>
+      </div>
+      <h3>Résultats</h3>
       <table>
         <thead>
           <tr>
@@ -23,7 +36,13 @@
       </table>
     </div>
     <div>
-      <button @click="test">test</button>
+      <button @click="generateTestFile" class="button"
+        >Générer le fichier de test</button
+      >
+      <div>Etat du test : {{ testStatus }}</div>
+      <button class="button" @click="executeOpenfiscaTest">
+        Tester l'aide</button
+      >
     </div>
   </div>
 </template>
@@ -35,6 +54,11 @@ import axios from "axios"
 export default {
   name: "SimulationRecapitulatifContribution",
   components: {},
+  data() {
+    return {
+      testStatus: false,
+    }
+  },
   computed: {
     contribution() {
       return this.$store.state.contribution
@@ -47,6 +71,7 @@ export default {
 
       return Object.entries(this.contribution).reduce(
         (accum, [entityName, entity]) => {
+          if (entityName === "_details") return accum
           const situationEntity = entityName.startsWith("enfant")
             ? Individu.get(
                 this.$store.getters.peopleParentsFirst,
@@ -93,6 +118,9 @@ export default {
         []
       )
     },
+    filename() {
+      return `${this.contribution._details.name}-${this.$store.state.situation._id}`
+    },
   },
   methods: {
     getPropertyValue(entityName, propertyName) {
@@ -107,29 +135,27 @@ export default {
           )
         : `Pas de valeur`
     },
-    test() {
-      const aide = {
-        name: `haut_de_france_aide_permis`,
-        value: 1000,
-      }
-      var details = {
-        name: `Contribution ${this.$store.state.situation._id}`,
-        description: `Test pour l'aide ${aide.name}`,
-        output: {
-          [aide.name]: aide.value,
-        },
-        absolute_error_margin: 0.1,
+    generateTestFile() {
+      const details = {
+        ...this.contribution._details,
+        name: this.filename,
       }
       this.$store.dispatch("save", this.resultats).then(() => {
-        axios
-          .post(
-            `api/situations/${this.$store.state.situation._id}/openfisca-test-file`,
-            details
-          )
-          .then(() => {
-            // todo, gérer la réponse du fichier
-          })
+        axios.post(
+          `api/situations/${this.$store.state.situation._id}/openfisca-test-file`,
+          details
+        )
       })
+    },
+    executeOpenfiscaTest() {
+      axios
+        .get(
+          `api/situations/${this.$store.state.situation._id}/openfisca-execute-test`,
+          { params: { filename: this.filename } }
+        )
+        .then(() => {
+          // todo, gérer la réponse du fichier
+        })
     },
   },
 }

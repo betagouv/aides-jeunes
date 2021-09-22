@@ -163,7 +163,16 @@ exports.openfiscaTestFile = function (req, res) {
     : req.situation
 
   const fileContent = openfiscaTest.generateYAMLTest(details, situation)
-  const fileName = `contribution-${situation._id}.yml`
+  const fileName = `${details.name}.yml`
+
+  // On crée le dossier s'il existe pas
+  if (!fs.existsSync(RELATIVE_PATH)) {
+    fs.mkdir(RELATIVE_PATH, { recursive: true }, (err) => {
+      if (err) throw err
+    })
+  }
+
+  // On génère le fichier de tests
   fs.writeFile(
     `${RELATIVE_PATH}${fileName}`,
     fileContent,
@@ -173,8 +182,14 @@ exports.openfiscaTestFile = function (req, res) {
         console.error(err)
         return
       }
-      //file written successfully
     }
   )
   res.type("yaml").send(fileName)
+}
+
+exports.executeOpenfiscaTest = function (req, res) {
+  if (!req.params.filename) {
+    return res.status(403).send({ error: "You must provide a filename." })
+  }
+  return res.status(200).send({ success: true })
 }

@@ -1,12 +1,12 @@
 <template>
   <div class="aj-main-container aj-resultats-attendus">
     <form @submit.prevent="submit">
-      <div v-if="!result">
+      <div>
         <p> Bienvenue dans le mode contribution ! </p>
         <fieldset class="form__group">
           <legend v-if="selection.id"
-            ><h2>{{ getTitle(selection) }}</h2></legend
-          >
+            ><h2>{{ selection.id }}</h2>
+          </legend>
           <div class="form__group">
             <label for="de"
               >Quelle est la prestation pour laquelle vous souhaitez contribuer
@@ -49,13 +49,9 @@
 </template>
 
 <script>
-import filter from "lodash/filter"
 import sortBy from "lodash/sortBy"
 import Institution from "@/lib/Institution"
 import ResultatsMixin from "@/mixins/Resultats"
-/*
-import { capitalize } from "../../../lib/Utils"
-*/
 import {
   fetchContributions,
   reduceContributions,
@@ -70,11 +66,7 @@ export default {
     let benefits = []
     Institution.forEachBenefit((benefit, benefitId) => {
       const b = Object.assign({ id: benefitId }, benefit)
-      /*
-        b.label = capitalize(benefit.label)
-*/
       benefits.push(b)
-      benefitKeyed[b.id] = b
     })
     benefits = sortBy(benefits, "label")
     return {
@@ -85,19 +77,11 @@ export default {
       description: null,
       error: null,
       message: null,
-      result: null,
       selection: {},
       submitting: false,
-      institutions: {
-        ...Institution.partenairesLocaux,
-        ...Institution.prestationsNationales,
-      },
     }
   },
   methods: {
-    getTitle: function (selection) {
-      return this.benefitKeyed[selection.id].label
-    },
     async fetchBenefit(fileAttribute) {
       return await getGithubPRFiles(fileAttribute)
     },

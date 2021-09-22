@@ -6,7 +6,7 @@
       <div>
         <h3>Détails de la contribution</h3>
         <ul>
-          <li>Name : {{ contribution._details.name }}</li>
+          <li>Nom : {{ contribution._details.name }}</li>
           <li>Output : {{ contribution._details.output }}</li>
           <li>Description : {{ contribution._details.description }}</li>
           <li

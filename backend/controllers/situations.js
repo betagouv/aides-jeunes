@@ -134,6 +134,7 @@ const generateOpenfiscaDetails = (details) => {
     pick(details, DETAILS_ATTRIBUTES)
   ))
 }
+
 const createDirectoryIfNotExists = (path) => {
   if (fs.existsSync(path)) {
     return
@@ -142,6 +143,7 @@ const createDirectoryIfNotExists = (path) => {
     if (err) throw err
   })
 }
+
 const writeTestFile = (fileName, fileContent) => {
   if (!fileName || !fileContent)
     return "You must provide the filename and the content file."

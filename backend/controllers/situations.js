@@ -1,11 +1,11 @@
-var omit = require("lodash/omit")
-var filter = require("lodash/filter")
-var pick = require("lodash/pick")
-var assign = require("lodash/assign")
+const omit = require("lodash/omit")
+const filter = require("lodash/filter")
+const pick = require("lodash/pick")
+const assign = require("lodash/assign")
 
-var openfisca = require("../lib/openfisca")
-var openfiscaTest = require("../lib/openfisca/test")
-var Situation = require("mongoose").model("Situation")
+const openfisca = require("../lib/openfisca")
+const openfiscaTest = require("../lib/openfisca/test")
+const Situation = require("mongoose").model("Situation")
 
 const fs = require("fs")
 
@@ -126,54 +126,26 @@ var DETAILS_ATTRIBUTES = [
   "output",
 ]
 
-exports.openfiscaTest = function (req, res) {
-  var details = assign(
+const generateOpenfiscaDetails = (details) => {
+  if (!details) return
+  return (details = assign(
     {},
     DETAILS_DEFAULT_ATTRIBUTES,
-    pick(req.body, DETAILS_ATTRIBUTES)
-  )
-  if (!details.name || !details.description || !details.output) {
-    return res
-      .status(403)
-      .send({ error: "You must provide a name, description and output." })
-  }
-
-  var situation = req.situation.toObject
-    ? req.situation.toObject()
-    : req.situation
-  res.type("yaml").send(openfiscaTest.generateYAMLTest(details, situation))
+    pick(details, DETAILS_ATTRIBUTES)
+  ))
 }
-
-const RELATIVE_PATH = __dirname + "/../lib/openfisca/tests/"
-
-exports.openfiscaTestFile = function (req, res) {
-  var details = assign(
-    {},
-    DETAILS_DEFAULT_ATTRIBUTES,
-    pick(req.body, DETAILS_ATTRIBUTES)
-  )
-  if (!details.name || !details.description || !details.output) {
-    return res
-      .status(403)
-      .send({ error: "You must provide a name, description and output." })
+const createDirectoryIfNotExists = (path) => {
+  if (fs.existsSync(path)) {
+    return
   }
-
-  var situation = req.situation.toObject
-    ? req.situation.toObject()
-    : req.situation
-
-  const fileContent = openfiscaTest.generateYAMLTest(details, situation)
-  const fileName = `${details.name}.yml`
-
-  // On crée le dossier s'il existe pas
-  if (!fs.existsSync(RELATIVE_PATH)) {
-    fs.mkdir(RELATIVE_PATH, { recursive: true }, (err) => {
-      if (err) throw err
-    })
-  }
-
-  // On génère le fichier de tests
-  fs.writeFile(
+  fs.mkdir(path, { recursive: true }, (err) => {
+    if (err) throw err
+  })
+}
+const writeTestFile = (fileName, fileContent) => {
+  if (!fileName || !fileContent)
+    return "You must provide the filename and the content file."
+  return fs.writeFile(
     `${RELATIVE_PATH}${fileName}`,
     fileContent,
     { flag: "w+" },
@@ -184,6 +156,37 @@ exports.openfiscaTestFile = function (req, res) {
       }
     }
   )
+}
+
+const assertFileDetails = (details, res) => {
+  if (!details.name || !details.description || !details.output) {
+    return res
+      .status(403)
+      .send({ error: "You must provide a name, description and output." })
+  }
+}
+exports.openfiscaTest = function (req, res) {
+  let details = generateOpenfiscaDetails(req.body)
+  assertFileDetails(details, res)
+  var situation = req.situation.toObject
+    ? req.situation.toObject()
+    : req.situation
+  res.type("yaml").send(openfiscaTest.generateYAMLTest(details, situation))
+}
+
+const RELATIVE_PATH = __dirname + "/../lib/openfisca/tests/"
+
+exports.openfiscaTestFile = function (req, res) {
+  let details = generateOpenfiscaDetails(req.body)
+  assertFileDetails(details, res)
+  let situation = req.situation.toObject
+    ? req.situation.toObject()
+    : req.situation
+
+  const fileContent = openfiscaTest.generateYAMLTest(details, situation)
+  const fileName = `${details.name}.yml`
+  createDirectoryIfNotExists(RELATIVE_PATH)
+  writeTestFile(fileName, fileContent)
   res.type("yaml").send(fileName)
 }
 

@@ -171,6 +171,45 @@ collections:
             value: individus
           - label: Ménage
             value: menages
+      - label: Montant maximal de l'aide
+        name: montant
+        widget: number
+      - label: Régions
+        name: regions
+        required: false
+        widget: select
+        options:
+          - label: Hauts-de-France
+            value: XX
+          - label: Nouvelle-Aquitaine
+            value: AA
+      - label: Code des départements
+        name: departements
+        required: false
+        widget: list
+      - label: Codes INSEE des communes
+        name: communes
+        required: false
+        widget: list
+      - label: Age minimal inclu
+        name: age_min
+        widget: number
+      - label: Age maximal inclu
+        name: age_max
+        widget: number
+      - label: Statuts
+        name: statuts
+        multiple: true
+        widget: select
+        options:
+          - label: Lycéen
+            value: lyceen
+          - label: Étudiant
+            value: etudiant
+          - label: En recherche d'emploi
+            value: chomeur
+          - label: En service civique
+            value: service_civique
   - name: contribution-pages
     label: Pages
     label_singular: page

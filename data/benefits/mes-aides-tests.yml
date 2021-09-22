@@ -1,0 +1,20 @@
+label: Mes Aides tests
+institution: etat
+description: Ma courte description
+prefix: la
+type: bool
+floorAt: 10
+interestFlag: contribution
+entity: menage
+montant: 200
+regions:
+  - xx
+departements:
+  - "95"
+communes:
+  - "95102"
+age_min: 10
+age_max: 20
+statuts:
+  - etudiant
+  - lyceen

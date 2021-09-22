@@ -8,8 +8,7 @@
 <script>
 export default {
   name: "BaseLayout",
-  components: {
-  },
+  components: {},
   created() {
     this.$router.isReady().then(() => {
       if (this.$route.query.debug === "parcours") {

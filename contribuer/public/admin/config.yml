@@ -178,11 +178,37 @@ collections:
         name: regions
         required: false
         widget: select
+        multiple: true
         options:
           - label: Hauts-de-France
-            value: XX
+            value: hauts_de_france
           - label: Nouvelle-Aquitaine
             value: AA
+          - label: Île-de-France
+            value: xx
+          - label: Centre-Val de Loire
+            value: xx
+          - label: Bourgogne-Franche-Comte
+            value: xx
+          - label: Normandie
+            value: xx
+          - label: Hauts-de-france
+            value: xx
+          - label: Grand Est
+            value: xx
+          - label: Pays de la Loire
+            value: xx
+          - label: Bretagne
+            value: xx
+          - label: Nouvelle-Aquitaine
+            value: xx
+          - label: Occitanie
+            value: xx
+          - label: Auvergne-Rhône-Alpes
+            value: xx
+          - label: Provence-Alpes-Côte D'azur
+            value: xx
+
       - label: Code des départements
         name: departements
         required: false
@@ -210,6 +236,11 @@ collections:
             value: chomeur
           - label: En service civique
             value: service_civique
+      - label: interestFlag
+        name: interestFlag
+        widget: hidden
+        default: "contribution"
+
   - name: contribution-pages
     label: Pages
     label_singular: page

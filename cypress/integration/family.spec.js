@@ -39,7 +39,8 @@ context("Full simulation", () => {
 
     // steps.sansPensionAlimentaireVersees()
     steps.interestFlagExtra()
-    steps.hasPrimeActivite(2)
+    steps.hasCSS(2)
+    steps.hasPrimeActivite(3)
     // steps.hasLogementSocial()
   })
 

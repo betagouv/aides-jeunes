@@ -7,7 +7,9 @@
   >
     <span class="aj-aide-montant-label">
       <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
-        <span class="font-normal font-base">Montant estimé</span><br />
+        <span class="font-normal font-base"
+          >{{ droit.participation ? "Coût" : "Montant" }} estimé</span
+        ><br />
         {{
           droit.montant | currency(droit.unit || "€", getFractionSize(droit))
         }}

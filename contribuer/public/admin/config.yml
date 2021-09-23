@@ -239,7 +239,7 @@ collections:
       - label: interestFlag
         name: interestFlag
         widget: hidden
-        default: "contribution"
+        default: "_localBenefit"
 
   - name: contribution-pages
     label: Pages

@@ -1,4 +1,4 @@
-label: a
+label: benefit_front_test
 institution: etat
 description: Cette aide permet aux apprentis majeurs de financer leur une partie du coût de la formation au permis de conduire.
 link: https://travail-emploi.gouv.fr/formation-professionnelle/formation-en-alternance-10751/apprentissage/apprentis-aide-permis
@@ -8,6 +8,7 @@ type: float
 floorAt: 1
 legend: ""
 montant: 200
+interestFlag: _localBenefit
 departements:
   - "64"
   - "12"

@@ -59,6 +59,9 @@ forEach((aide, aideId) => {
     })
   }
 
+  if (aide.interestFlag && aide.interestFlag === "_localBenefit")
+    delete requestedVariables[item]
+
   if (aide.extra) {
     aide.extra.forEach(function (extra) {
       requestedVariables[extra.id] =

@@ -24,7 +24,7 @@ function dispatchIndividuals(situation) {
       ...situation.foyer_fiscal,
     },
   }
-  var menages = { _: buildOpenFiscaMenage(situation) }
+  var menages = { _: buildOpenFiscaMenage(situation.menage) }
 
   var demandeur = common.getDemandeur(situation)
   var demandeurId = demandeur && demandeur.id
@@ -138,11 +138,7 @@ function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
   var prestationsWithInterest = pickBy(
     common.requestedVariables,
     function (definition) {
-      return (
-        !definition.interestFlag ||
-        demandeur[definition.interestFlag] ||
-        definition.id != "a"
-      )
+      return !definition.interestFlag || demandeur[definition.interestFlag]
     }
   )
 

@@ -239,7 +239,7 @@ collections:
       - label: flag
         name: flag
         widget: hidden
-        default: "_localBenefit"
+        default: "_contributionBenefit"
 
   - name: contribution-pages
     label: Pages

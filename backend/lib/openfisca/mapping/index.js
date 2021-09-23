@@ -24,7 +24,7 @@ function dispatchIndividuals(situation) {
       ...situation.foyer_fiscal,
     },
   }
-  var menages = { _: buildOpenFiscaMenage(situation.menage) }
+  var menages = { _: buildOpenFiscaMenage(situation) }
 
   var demandeur = common.getDemandeur(situation)
   var demandeurId = demandeur && demandeur.id

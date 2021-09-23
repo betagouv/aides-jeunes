@@ -7,7 +7,7 @@ var filter = require("lodash/filter")
 
 var moment = require("moment")
 var determineCustomizationIds = require("./customization")
-var { computeFrontEndBenefits } = require('./computeFrontEndBenefits')
+var { computeFrontEndBenefits } = require("./computeFrontEndBenefits")
 /**
  * OpenFisca test cases separate ressources between two entities: individuals and families.
  * In Mes Aides, we don't care about this separation and want to show eligibilty results for the demandeur only.

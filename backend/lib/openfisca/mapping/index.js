@@ -138,7 +138,11 @@ function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
   var prestationsWithInterest = pickBy(
     common.requestedVariables,
     function (definition) {
-      return !definition.interestFlag || demandeur[definition.interestFlag] || definition.id != "a"
+      return (
+        !definition.interestFlag ||
+        demandeur[definition.interestFlag] ||
+        definition.id != "a"
+      )
     }
   )
 

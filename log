@@ -1,0 +1,4 @@
+
+> mes-aides-jeunes@12.1.3 test:unit
+> vue-cli-service test:unit "tests/unit/computeFrontEndBenefits.spec.js"
+

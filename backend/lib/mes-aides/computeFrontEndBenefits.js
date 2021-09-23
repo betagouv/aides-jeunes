@@ -1,6 +1,5 @@
 const moment = require("moment")
 const { generator } = require("./dates")
-const { datesGenerator } = require("./index")
 
 function computeFrontEndBenefits(
   droitsDescription,
@@ -17,7 +16,6 @@ function computeFrontEndBenefits(
   ) {
     if (benefitId === "benefit_front_test") {
       let period = generator(situation.dateDeValeur).thisMonth.id
-      console.log(period)
       const elegibilite_age =
         moment().diff(situation.demandeur.date_naissance, "years") >=
           benefit.age_min &&

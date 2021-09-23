@@ -58,7 +58,7 @@ forEach((aide, aideId) => {
       type: "string",
     })
 
-  if (aide.interestFlag && aide.interestFlag === "_localBenefit")
+  if (aide.flag && aide.flag === "_localBenefit")
     delete requestedVariables[item]
 
   if (aide.extra) {

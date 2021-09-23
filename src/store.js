@@ -508,7 +508,7 @@ const store = new Vuex.Store({
             if (
               !benefit.test &&
               variableNames.indexOf(source) < 0 &&
-              ["_localBenefit"].includes(source)
+              ["_contributionBenefit"].includes(source)
             ) {
               missingBenefits.push(benefitId)
             }

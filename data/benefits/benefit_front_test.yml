@@ -8,7 +8,7 @@ type: float
 floorAt: 1
 legend: ""
 montant: 200
-flag: _localBenefit
+flag: _contributionBenefit
 departements:
   - "64"
   - "12"

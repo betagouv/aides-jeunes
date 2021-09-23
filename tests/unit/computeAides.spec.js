@@ -23,6 +23,7 @@ describe("computeAides", function () {
         },
       },
       famille: {},
+      menage: {},
     }
 
     openfiscaResult = {

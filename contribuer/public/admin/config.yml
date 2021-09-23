@@ -217,10 +217,10 @@ collections:
         name: communes
         required: false
         widget: list
-      - label: Age minimal inclu
+      - label: Age minimal inclus
         name: age_min
         widget: number
-      - label: Age maximal inclu
+      - label: Age maximal inclus
         name: age_max
         widget: number
       - label: Statuts
@@ -236,8 +236,8 @@ collections:
             value: chomeur
           - label: En service civique
             value: service_civique
-      - label: interestFlag
-        name: interestFlag
+      - label: flag
+        name: flag
         widget: hidden
         default: "_localBenefit"
 

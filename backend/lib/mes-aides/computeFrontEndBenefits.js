@@ -19,10 +19,8 @@ function computeFrontEndBenefits(
       let period = generator(situation.dateDeValeur).thisMonth.id
       console.log(period)
       const elegibilite_age =
-        (moment().diff(situation.demandeur.date_naissance, "years") >=
+        moment().diff(situation.demandeur.date_naissance, "years") >=
           benefit.age_min &&
-          moment().diff(situation.demandeur.date_naissance, "years") <=
-            benefit.age_max) ||
         moment().diff(situation.demandeur.date_naissance, "years") <=
           benefit.age_max
 

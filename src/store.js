@@ -483,7 +483,6 @@ const store = new Vuex.Store({
               })
             })
           }
-
           return results
         })
         .then((results) => state.commit("setResults", results))
@@ -504,7 +503,6 @@ const store = new Vuex.Store({
           let missingBenefits = []
           Institution.forEachBenefit((benefit, benefitId) => {
             const source = benefit.openfisca_eligibility_source || benefitId
-            console.log(source)
             if (
               !benefit.test &&
               variableNames.indexOf(source) < 0 &&

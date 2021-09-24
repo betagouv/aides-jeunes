@@ -42,7 +42,8 @@ function computeFrontEndBenefits(
       const eligibilite =
         eligibiliteStatuts && elegibiliteAge && period && eligibiliteGeo
 
-      const result = eligibilite ? montant : false
+      const result = montant ? eligibilite * montant : eligibilite
+
       openfiscaResponse.individus.demandeur[benefitId] = { [period]: result }
     }
   })

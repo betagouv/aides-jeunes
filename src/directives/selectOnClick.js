@@ -1,12 +1,12 @@
-const SelectOnClickDirective = (Vue) => {
-  Vue.directive("selectOnClick", {
-    bind: function (el) {
+const SelectOnClickDirective = (app) => {
+  app.directive("selectOnClick", {
+    beforeMount: function (el) {
       el.myClickHandler = () => {
         el.select()
       }
       el.addEventListener("click", el.myClickHandler)
     },
-    unbind: function (el) {
+    unmounted: function (el) {
       el.removeEventListener("click", el.myClickHandler)
     },
   })

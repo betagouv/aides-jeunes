@@ -23,15 +23,15 @@
       <div class="aj-children-line">
         <div class="aj-children-birth-date">
           <label>Sa date de naissance</label>
-          <span>{{ enfant.date_naissance | birthDate }}</span>
+          <span>{{ $filters.capitalize(enfant.date_naissance) }}</span>
         </div>
         <div class="aj-children-nationality">
           <label>Sa nationalité</label>
-          <span>{{ enfant.nationalite | nationality }}</span>
+          <span>{{ $filters.capitalize(enfant.nationalite) }}</span>
         </div>
         <div class="aj-children-scolarite">
           <label>Sa situation</label>
-          <span>{{ enfant.scolarite | scolarite }}</span>
+          <span>{{ $filters.capitalize(enfant.scolarite) }}</span>
         </div>
         <div class="aj-children-delete"> </div>
       </div>

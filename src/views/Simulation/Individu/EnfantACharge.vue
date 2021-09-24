@@ -2,12 +2,13 @@
   <form @submit.prevent="onSubmit">
     <YesNoQuestion v-model="value">
       {{
-        role === "demandeur"
-          ? `Figurez-vous sur la dernière déclaration d'impôts de vos parents`
-          : `${getLabel(
-              "nom"
-            )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu`
-            | capitalize
+        $filters.capitalize(
+          role === "demandeur"
+            ? `Figurez-vous sur la dernière déclaration d'impôts de vos parents`
+            : `${getLabel(
+                "nom"
+              )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu`
+        )
       }}&nbsp;?
     </YesNoQuestion>
     <Actions v-bind:onSubmit="onSubmit" />

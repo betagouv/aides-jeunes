@@ -1,12 +1,12 @@
 import SmoothScroll from "smooth-scroll"
 
 const ScrollService = {
-  install(Vue) {
-    Vue.scroll = new SmoothScroll()
+  install(app) {
+    app.scroll = new SmoothScroll()
 
     function go(event, destination, offset) {
       event.preventDefault()
-      Vue.scroll.animateScroll(destination, event.target, {
+      app.scroll.animateScroll(destination, event.target, {
         updateURL: false,
         offset: function () {
           return offset || 0
@@ -14,7 +14,7 @@ const ScrollService = {
       })
     }
 
-    Vue.prototype.$ScrollService = {
+    app.config.globalProperties.$ScrollService = {
       go: go,
     }
   },

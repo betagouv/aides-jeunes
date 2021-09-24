@@ -12,7 +12,7 @@
         v-for="(item, index) in types"
         v-bind:key="item.individu.id"
       >
-        <h2>{{ individuLabel(item.individu) | capitalize }}</h2>
+        <h2>{{ $filters.capitalize(individuLabel(item.individu)) }}</h2>
         <RessourceMontants
           without-header
           v-bind:individu="item.individu"

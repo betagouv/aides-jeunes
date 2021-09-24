@@ -13,8 +13,8 @@ function buildHref({ to, subject, body }) {
   return comps.join("?")
 }
 
-const MailDirective = (Vue) => {
-  Vue.directive("mail", function (el, binding) {
+const MailDirective = (app) => {
+  app.directive("mail", function (el, binding) {
     el.setAttribute("href", buildHref(binding.value))
   })
 }

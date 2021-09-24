@@ -1,7 +1,4 @@
-import Vue from "vue"
-import Vuex from "vuex"
-
-Vue.use(Vuex)
+import { createStore } from "vuex"
 
 import axios from "axios"
 import moment from "moment"
@@ -121,7 +118,7 @@ function restoreLocal() {
   }
 }
 
-const store = new Vuex.Store({
+const store = createStore({
   state: defaultStore(),
   getters: {
     passSanityCheck: function (state) {
@@ -523,6 +520,7 @@ const store = new Vuex.Store({
   modules: {
     etablissementsSearch: EtablissementModule,
   },
+  strict: true,
 })
 export default store
 
@@ -535,16 +533,3 @@ store.subscribe(({ type }, { ameliNoticationDone, situation, calculs }) => {
     JSON.stringify({ ameliNoticationDone, situation, calculs })
   )
 })
-
-// Replicate strict mode
-store._vm.$watch(
-  function () {
-    return this._data.$$state
-  },
-  () => {
-    if (!store._committing) {
-      throw "Do not mutate vuex store state outside mutation handlers."
-    }
-  },
-  { deep: true, sync: true }
-)

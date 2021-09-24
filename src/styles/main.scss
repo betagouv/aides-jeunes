@@ -37,7 +37,8 @@ $screen-smaller-than-mobile: 399px;
 }
 
 /* DESKTOP IMPORTS */
-@import "partials/desktop/ui-kit";
+@import "./partials/desktop/_ui-kit.scss";
+@import "./partials/desktop/ui-kit";
 @import "partials/desktop/sommaire";
 @import "partials/desktop/stats";
 @import "partials/desktop/buttons";

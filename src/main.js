@@ -1,5 +1,5 @@
 import "core-js/stable"
-import Vue from "vue"
+import Vue, { createApp, h } from "vue"
 import App from "./App.vue"
 import router from "./router"
 import store from "./store"
@@ -29,9 +29,12 @@ const Resizer = {
     iframeResizerContentWindow
   },
 }
-AnalyticsDirective(Vue)
-MailDirective(Vue)
-SelectOnClickDirective(Vue)
+
+const app = createApp({ render: () => h(App) })
+
+AnalyticsDirective(app)
+MailDirective(app)
+SelectOnClickDirective(app)
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
@@ -40,30 +43,30 @@ if (process.env.NODE_ENV === "production") {
   })
 }
 
-Vue.use(AsyncComputed)
-Vue.use(Resizer)
-Vue.use(ScrollService)
-Vue.use(StateService)
-Vue.use(Vuelidate)
+app.use(AsyncComputed)
+app.use(Resizer)
+app.use(ScrollService)
+app.use(StateService)
+app.use(Vuelidate)
 
-Vue.use(VueMatomo, {
+app.use(VueMatomo, {
   host: "https://stats.data.gouv.fr",
   trackerFileName: "piwik",
   siteId: process.env.VUE_APP_MATOMO_ID,
   router: router,
 })
 
-Vue.filter("capitalize", function (value) {
-  if (!value) return ""
-  value = value.toString()
-  return value.charAt(0).toUpperCase() + value.slice(1)
-})
+app.config.globalProperties.$filters = {
+  capitalize: (value) => {
+    if (!value) return ""
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  },
+}
 
-Vue.config.productionTip = false
+app.config.productionTip = false
 moment.locale("fr")
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app")
+app.use(router)
+app.use(store)
+app.mount("#app")

@@ -1,14 +1,12 @@
-import Vue from "vue"
-import Router from "vue-router"
+import { nextTick } from "vue"
+import { createRouter, createWebHistory } from "vue-router"
 import Home from "./views/Home.vue"
 import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
 
-Vue.use(Router)
-
-const router = new Router({
-  mode: "history",
-  base: process.env.BASE_URL,
+const history = createWebHistory(process.env.BASE_URL)
+const router = createRouter({
+  history,
   routes: [
     {
       path: "/",
@@ -498,7 +496,7 @@ function getTitleMeta(route) {
 router.afterEach((to) => {
   if (to.preventFocus) return
 
-  Vue.nextTick(function () {
+  nextTick(function () {
     document.title = getTitleMeta(to)
 
     let title = document.querySelector("h1")

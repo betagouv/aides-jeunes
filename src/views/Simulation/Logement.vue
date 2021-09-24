@@ -18,7 +18,7 @@
             v-bind:value="logementType.value"
           />
           <label :for="logementType.value">
-            {{ logementType.label | capitalize }}
+            {{ $filters.capitalize(logementType.label) }}
             <span v-if="logementType.hint" class="help">{{
               logementType.hint
             }}</span>
@@ -50,7 +50,7 @@
             v-bind:value="response.value"
           />
           <label :for="response.label">
-            {{ response.label | capitalize }}
+            {{ $filters.capitalize(response.label) }}
             <span v-if="response.hint" class="help">{{ response.hint }}</span>
           </label>
         </div>
@@ -79,7 +79,7 @@
           v-bind:value="response.value"
         />
         <label :for="response.value">
-          {{ response.label | capitalize }}
+          {{ $filters.capitalize(response.label) }}
           <span v-if="response.hint" class="help">{{ response.hint }}</span>
         </label>
       </div>

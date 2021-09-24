@@ -15,7 +15,7 @@
     <div class="form__group">
       <label for="autoAmountLastMonth" class="aj-question"
         >Chiffre d'affaires pour
-        {{ $store.state.dates.thisMonth.label | capitalize }}</label
+        {{ $filters.capitalize($store.state.dates.thisMonth.label) }}</label
       >
       <InputNumber
         id="autoAmountLastMonth"
@@ -29,7 +29,7 @@
       v-bind:key="month.id"
     >
       <label :for="'autoAmount' + month.label" class="aj-question">
-        Chiffre d'affaires pour {{ month.label | capitalize }}
+        Chiffre d'affaires pour {{ $filters.capitalize(month.label) }}
       </label>
       <InputNumber
         :id="'autoAmount' + month.label"

@@ -15,7 +15,9 @@
       v-for="category in categories"
       v-bind:key="category.id"
     >
-      <h2 class="aj-question">{{ category.label(individu) | capitalize }}</h2>
+      <h2 class="aj-question">{{
+        $filters.capitalize(category.label(individu))
+      }}</h2>
       <div class="aj-selections">
         <div
           v-for="type in sort(typesByCategories[category.id])"

@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-block" @mouseover="trackInterest()">
+  <div @mouseover="trackInterest()">
     <router-link
       :to="{ path: $route.path + '/en_savoir_plus' }"
       :data-text="text"

@@ -82,6 +82,10 @@ html {
     }
 
     .aj-question {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px;
       font-family: MarianneBold;
       color: var(--dark);
       font-size: 1.25rem;
@@ -98,7 +102,7 @@ html {
     }
 
     .aj-main-container {
-      padding: 1.5rem 4% 7rem 4%;
+      padding: 1.5rem 4%;
       background-color: #f2f5f9;
       width: 100%;
 
@@ -107,7 +111,7 @@ html {
         & > form:not(.aj-unbox),
         & .aj-box {
           background-color: #fff;
-          padding: 40px 40px 65px 40px;
+          padding: 32px;
           box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
           border-radius: var(--theme-border-radius);
           position: relative;
@@ -117,13 +121,17 @@ html {
           }
         }
 
+        .aj-actions-error {
+          margin: 1rem 0 0 0;
+        }
+
         .aj-actions {
           display: flex;
           flex-direction: row-reverse;
           justify-content: flex-end;
           position: absolute;
           bottom: 0;
-          left: 0;
+          left: 32px;
           transform: translateY(150%);
 
           button:first-child {
@@ -135,7 +143,7 @@ html {
       .aj-category-title-wrapper {
         h1 {
           font-size: 2.75rem;
-          margin: 0 0 5px 0;
+          margin: 0 0 8px 32px;
         }
       }
 
@@ -155,7 +163,6 @@ html {
         color: var(--white);
         width: auto;
         user-select: none;
-        margin-left: 12px;
 
         &:focus {
           background-color: var(--theme-primary-darker);
@@ -294,7 +301,6 @@ html {
     span.help {
       font-style: italic;
       font-size: 0.8em;
-      margin-left: 0.5rem;
     }
 
     .aj-help-modal {

@@ -12,8 +12,6 @@ flag: _contributionBenefit
 departements:
   - "64"
   - "12"
-communes:
-  - "64000"
 age_min: 16
 age_max: 25
 statuts:

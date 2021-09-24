@@ -50,7 +50,8 @@ export default {
           (this.$store.getters.isProprietaireAvecPretEnCours ||
             this.$store.getters.isHebergeParticipeFrais)) ||
         (this.droit.isBaseRessourcesYearMinusTwo &&
-          !this.$store.getters.ressourcesYearMinusTwoCaptured)
+          !this.$store.getters.ressourcesYearMinusTwoCaptured) ||
+        this.droit.showUnexpectedAmount
       )
     },
 

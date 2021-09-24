@@ -217,7 +217,16 @@ var droitsDescription = {
             caf: "https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/",
             msa: "http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=98643",
           },
-          isBaseRessourcesYearMinusTwo: true,
+          computeUnexpectedAmount: (situation) => {
+            // not ideal because we are not computing other incomes => but covers 90% of the cases
+            const salary = situation.demandeur.salaire_net
+              ? Object.values(situation.demandeur.salaire_net).reduce(
+                  (acc, value) => acc + value,
+                  0
+                )
+              : 0
+            return situation.demandeur.activite === "etudiant" && salary >= 7000
+          },
           isBaseRessourcesPatrimoine: true,
           uncomputability: {
             primo_accedant: {

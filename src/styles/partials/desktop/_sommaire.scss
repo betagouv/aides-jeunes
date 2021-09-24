@@ -106,6 +106,25 @@ html {
               transform: translate(-50%, -50%);
             }
 
+            .aj-step-inprogress {
+              border: 2px solid var(--theme-primary);
+              background-color: var(--theme-primary);
+
+              &:before {
+                content: "...";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+                width: 24px;
+                height: 24px;
+                color: var(--white);
+                text-align: center;
+                line-height: 1;
+              }
+            }
+
             .aj-active-title {
               color: var(--dark);
             }
@@ -141,9 +160,7 @@ html {
         }
 
         .aj-btn-container {
-          // TODO remplacer par un flex dans la version complète
-          //display: flex;
-          display: none;
+          display: flex;
           width: 100%;
           justify-content: center;
           margin-top: 46px;

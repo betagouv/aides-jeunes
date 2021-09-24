@@ -479,6 +479,18 @@ router.beforeEach((to, from, next) => {
   if (store.state.message.text) {
     store.commit("decrementMessageRemainingViewTime")
   }
+  let userJourneyHistory
+  try {
+    userJourneyHistory = store.state.userJourney.history
+  } catch {
+    // Évite une erreur lorsque l'utilisateur récupère une simulation antérieure au sommaire complexe
+    store.commit("resetUserJourney")
+    userJourneyHistory = store.state.userJourney.history
+  }
+  if (userJourneyHistory[userJourneyHistory.length - 1] !== from.path) {
+    store.dispatch("addPathToUserJourney", from.path)
+  }
+  store.dispatch("addPathToUserJourney", to.path)
 
   next()
 })

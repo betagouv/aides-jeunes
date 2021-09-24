@@ -33,11 +33,7 @@ export default {
   },
   methods: {
     getTitleByRoute(route) {
-      const path = route.path
-      const current = path.replace(/\/en_savoir_plus/, "")
-      const step =
-        this.$store.getters.passSanityCheck &&
-        this.$state.current(current, this.$store.getters.getAllSteps)
+      const step = this.$state.current(route.path, this.$store.state.situation)
       const chapterName = (step && step.chapter) || ""
       return Chapters.getLabel(chapterName)
     },

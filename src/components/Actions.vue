@@ -15,7 +15,7 @@
       <button
         class="button outline with-icon"
         type="button"
-        v-on:click="goBack"
+        v-on:click="goBack()"
       >
         <svg
           width="12"
@@ -53,6 +53,16 @@ export default {
     error() {
       return this.$store.state.error
     },
+    userJourney() {
+      return this.$store.getters.getUserJourney
+    },
+    previousStep() {
+      return this.$state.previous(
+        this.$route,
+        this.$store.state.situation,
+        this.$router
+      )
+    },
   },
   methods: {
     localOnSubmit: function (event) {
@@ -60,7 +70,14 @@ export default {
       this.onSubmit()
     },
     goBack: function () {
-      window && window.history.back()
+      if (
+        this.userJourney.history[this.userJourney.history.length - 2] ===
+        this.previousStep.path
+      ) {
+        window && window.history.back()
+      } else {
+        this.$pop()
+      }
       this.$matomo &&
         this.$matomo.trackEvent(
           "Parcours",

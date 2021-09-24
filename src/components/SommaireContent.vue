@@ -9,6 +9,7 @@
               'aj-step-done': chapter.done,
               'aj-step-inactive': !chapter.done,
               'aj-step-active': chapter.current,
+              'aj-step-inprogress': chapterInProgress(chapter, index),
             }"
           >
             <img
@@ -18,7 +19,7 @@
             />
           </div>
           <router-link
-            :to="chapter.root"
+            :to="getRootChapterPath(chapter, index)"
             class="aj-step-title"
             :class="{
               'aj-active-title': chapter.current,
@@ -32,7 +33,7 @@
       </div>
       <div class="aj-progressBar"></div>
     </div>
-    <div class="aj-btn-container">
+    <div class="aj-btn-container" v-show="$route.name !== 'resultats'">
       <router-link
         to="/simulation/resultats"
         :class="{ disabled: disableResults }"
@@ -50,7 +51,8 @@ export default {
     chapters() {
       return this.$state.chapters(
         this.$route.path,
-        this.$store.getters.getAllSteps
+        this.$store.state.situation,
+        this.$store.state.userJourney
       )
     },
     disableResults() {
@@ -58,10 +60,31 @@ export default {
     },
   },
   methods: {
+    getRootChapterPath(chapter, index) {
+      if (this.chapterInProgress(chapter, index)) {
+        return this.$state.max(
+          this.$store.state.situation,
+          this.$store.state.userJourney
+        ).path
+      } else {
+        return this.$state.chapterRoot(
+          chapter.name,
+          this.$store.state.situation
+        ).path
+      }
+    },
     disabledLink(chapter, index) {
       return index === 0
         ? false
         : !chapter.done && !this.chapters[index - 1].done
+    },
+    chapterInProgress(chapter, index) {
+      return (
+        chapter &&
+        !chapter.current &&
+        !chapter.done &&
+        this.chapters[index - 1].done
+      )
     },
   },
 }

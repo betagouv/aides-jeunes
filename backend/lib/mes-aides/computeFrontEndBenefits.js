@@ -7,33 +7,41 @@ function computeFrontEndBenefits(
   situation,
   openfiscaResponse
 ) {
+  const depcom = situation.menage.depcom || ""
+  const age = moment().diff(situation.demandeur.date_naissance, "years")
+  const period = generator(situation.dateDeValeur).thisMonth.id
+  const commune = communes.find((com) => com.code === depcom)
+
   droitsDescription.forEach(function (benefit, benefitId) {
     if (benefitId === "benefit_front_test") {
-      const period = generator(situation.dateDeValeur).thisMonth.id
-
-      const age = moment().diff(situation.demandeur.date_naissance, "years")
       const elegibiliteAge = age >= benefit.age_min && age <= benefit.age_max
-
-      const listBenefitsCommunes = communes.filter(
-        (commune) =>
-          (benefit.departements &&
-            benefit.departements.includes(commune.departement)) ||
-          (benefit.region && benefit.region.includes(commune.region)) ||
-          (benefit.communes && benefit.communes.includes(commune.code))
-      )
-      const depcom = situation.menage.depcom || ""
-      const eligibiliteGeo = listBenefitsCommunes.some(
-        (commune) =>
-          depcom === commune.code || depcom.startsWith(commune.departement)
-      )
 
       const eligibiliteStatuts = benefit.statuts.some(
         (statut) => statut === situation.demandeur.activite
       )
 
+      let eligibiliteGeo = true
+
+      if (benefit.communes)
+        eligibiliteGeo = eligibiliteGeo && benefit.communes.includes(depcom)
+
+      if (benefit.departements)
+        eligibiliteGeo =
+          eligibiliteGeo &&
+          benefit.departements.some((department) =>
+            depcom.startsWith(department)
+          )
+
+      if (benefit.region) {
+        eligibiliteGeo =
+          eligibiliteGeo && benefit.regions.includes(commune.region)
+      }
+
       const montant = 200
+
       const eligibilite =
         eligibiliteStatuts && elegibiliteAge && period && eligibiliteGeo
+
       const result = eligibilite ? montant : false
       openfiscaResponse.individus.demandeur[benefitId] = { [period]: result }
     }

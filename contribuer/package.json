@@ -19,13 +19,13 @@
   },
   "homepage": "https://github.com/mes-aides/simulateur/#readme",
   "dependencies": {
-    "netlify-identity-widget": "^1.5.6",
-    "next": "^11.1.1",
+    "netlify-identity-widget": "^1.9.2",
+    "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
-    "frontmatter-markdown-loader": "^3.6.0-1"
+    "frontmatter-markdown-loader": "^3.6.3"
   }
 }

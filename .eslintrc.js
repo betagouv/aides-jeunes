@@ -18,7 +18,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
-    parser: "babel-eslint",
+    parser: "@babel/eslint-parser",
   },
   rules: {
     "no-irregular-whitespace": 0,

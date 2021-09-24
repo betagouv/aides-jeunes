@@ -22,7 +22,7 @@ describe("computeAides", function () {
     }
   })
   it("adds the benefit amount when eligible", function () {
-    var openfiscaRequest = buildOpenFiscaRequest(situation)
+    const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeFrontEndBenefits(droitsDescription, situation, openfiscaRequest)
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
@@ -31,7 +31,7 @@ describe("computeAides", function () {
 
   it("adds 0 when ineligible statut", function () {
     situation.demandeur.activite = "actif"
-    var openfiscaRequest = buildOpenFiscaRequest(situation)
+    const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeFrontEndBenefits(droitsDescription, situation, openfiscaRequest)
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
@@ -39,7 +39,7 @@ describe("computeAides", function () {
   })
   it("adds 0 when ineligible city", function () {
     situation.menage.depcom = "95201"
-    var openfiscaRequest = buildOpenFiscaRequest(situation)
+    const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeFrontEndBenefits(droitsDescription, situation, openfiscaRequest)
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
@@ -47,7 +47,7 @@ describe("computeAides", function () {
   })
   it("adds 0 when ineligible age", function () {
     situation.demandeur.date_naissance = "1988-01-01"
-    var openfiscaRequest = buildOpenFiscaRequest(situation)
+    const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeFrontEndBenefits(droitsDescription, situation, openfiscaRequest)
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]

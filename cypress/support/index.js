@@ -322,6 +322,25 @@ export function sansPensionAlimentaireVersees() {
   submit()
 }
 
+export function hasCSS(position) {
+  position = position || 1
+  const name = /complémentaire santé solidaire/
+  const id = "css"
+  cy.get(
+    '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
+      position +
+      ")",
+    { timeout: 6000 }
+  ).as(id + "-summary")
+  cy.get("@" + id + "-summary")
+    .find('[itemprop="name"]')
+    .invoke("text")
+    .should("match", name)
+  cy.get("@" + id + "-summary").find(
+    '[data-testid="droit-montant-icon-fa-check-circle"]'
+  )
+}
+
 export function hasPrimeActivite(position) {
   position = position || 1
   const name = /prime d’activité/

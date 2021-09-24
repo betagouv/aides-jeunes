@@ -39,6 +39,9 @@
           ></DroitMontant>
           <div v-if="droit.montant && isBoolean(droit.montant)">
             <i
+              :data-testid="`droit-montant-icon-${
+                droit.symbol ? droit.symbol : 'fa-check-circle'
+              }`"
               v-bind:class="`fa ${
                 droit.symbol ? droit.symbol : 'fa-check-circle'
               } fa-2x`"

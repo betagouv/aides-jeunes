@@ -47,7 +47,7 @@ var droitsDescription = {
             "https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true&_pageID=P1_DEMANDE_CMUC",
           forms: {},
           prefix: "la",
-          extra: [{ id: "cmu_c", type: "bool" }],
+          extra: [{ id: "cmu_c", entity: "familles", type: "bool" }],
           compute: function (result, period) {
             return result.cmu_c && result.cmu_c[period]
               ? true

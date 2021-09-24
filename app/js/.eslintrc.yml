@@ -8,8 +8,7 @@ rules:
       nonwords: true
       overrides:
         "-": false
-  no-console:
-    - error
+  no-console: 0
 globals:
   _: true
   angular: true

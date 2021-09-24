@@ -36,11 +36,7 @@
         <div class="aj-children-delete"> </div>
       </div>
     </div>
-    <button
-      class="button outline with-icon m-auto"
-      id="add-pac"
-      v-on:click="addPAC()"
-    >
+    <button class="button outline with-icon" id="add-pac" v-on:click="addPAC()">
       <svg
         width="16"
         height="16"

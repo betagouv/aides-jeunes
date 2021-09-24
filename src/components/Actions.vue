@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p class="notification warning" v-if="error">
+    <div class="notification warning aj-actions-error" v-if="error">
       {{ error }}
-    </p>
+    </div>
     <div class="aj-actions">
       <button
         class="button"

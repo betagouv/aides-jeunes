@@ -208,10 +208,12 @@ collections:
         name: departements
         required: false
         widget: list
-      - label: Codes INSEE des communes
+        hint: Pour saisir plusieurs département, séparez les codes des départements par une virgule.
+      - label: Code INSEE des communes
         name: communes
         required: false
         widget: list
+        hint: Pour saisir plusieurs communes, séparez les codes INSEE des communes par une virgule.
       - label: Age minimal inclus
         name: age_min
         widget: number
@@ -231,6 +233,10 @@ collections:
             value: chomeur
           - label: En service civique
             value: service_civique
+          - label: Retraité
+            value: retraite
+          - label: Autre
+            value: inactif
       - label: flag
         name: flag
         widget: hidden

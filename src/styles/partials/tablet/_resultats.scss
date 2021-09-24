@@ -10,6 +10,7 @@ html {
     }
     .aj-aide-box {
       flex-wrap: wrap;
+      margin-bottom: 1rem;
 
       .aj-aide-illustration {
         width: 80px;
@@ -42,8 +43,6 @@ html {
       .aj-offline-results,
       .aj-feedback {
         flex-basis: 100%;
-        margin-bottom: 1rem;
-        margin-right: 0 !important;
       }
 
       .aj-find-contact-box {

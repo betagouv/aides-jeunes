@@ -180,35 +180,30 @@ collections:
         widget: select
         multiple: true
         options:
-          - label: Hauts-de-France
-            value: hauts_de_france
-          - label: Nouvelle-Aquitaine
-            value: AA
           - label: Île-de-France
-            value: xx
+            value: 11
           - label: Centre-Val de Loire
-            value: xx
+            value: 24
           - label: Bourgogne-Franche-Comte
-            value: xx
+            value: 27
           - label: Normandie
-            value: xx
+            value: 28
           - label: Hauts-de-france
-            value: xx
+            value: 32
           - label: Grand Est
-            value: xx
+            value: 44
           - label: Pays de la Loire
-            value: xx
+            value: 52
           - label: Bretagne
-            value: xx
+            value: 53
           - label: Nouvelle-Aquitaine
-            value: xx
+            value: 75
           - label: Occitanie
-            value: xx
+            value: 76
           - label: Auvergne-Rhône-Alpes
-            value: xx
+            value: 84
           - label: Provence-Alpes-Côte D'azur
-            value: xx
-
+            value: 93
       - label: Code des départements
         name: departements
         required: false

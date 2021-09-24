@@ -18,3 +18,4 @@ statuts:
   - lyceen
   - chomeur
   - service_civique
+private: true

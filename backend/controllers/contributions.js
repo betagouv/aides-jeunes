@@ -2,25 +2,35 @@ const axios = require("axios")
 const config = require("../config/index")
 
 const AuthContribution = {
-  verifyIdentity(token) {
-    return axios.get(
-      `${config.netlifyContributionURL}/.netlify/identity/user`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
+  async verifyIdentity(token) {
+    try {
+      // 200 if authentify then 404
+      await axios.get(
+        `${config.netlifyContributionURL}/.netlify/identity/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      return true
+    } catch {
+      return false
+    }
   },
-  async verify(req, res) {
-    const verifyIdentity = await AuthContribution.verifyIdentity(req.body.token)
-    if (verifyIdentity.status !== 200)
-      return res.send({
-        msg: "Not found",
-        statusCode: 404,
-      })
+  verify(req, res) {
     res.cookie("contribution_token", req.body.token)
     return res.redirect(301, "/")
+  },
+  async isLogged(req, res, next) {
+    if (await AuthContribution.verifyIdentity(req.body.token)) {
+      next()
+    } else {
+      res.send({
+        msg: "Not authorized",
+        statusCode: 401,
+      })
+    }
   },
 }
 

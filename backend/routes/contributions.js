@@ -10,6 +10,7 @@ module.exports = function (api) {
     .route("/contribution/auth")
     .post(
       cors({ origin: config.netlifyContributionURL }),
+      AuthContribution.isLogged,
       AuthContribution.verify
     )
 }

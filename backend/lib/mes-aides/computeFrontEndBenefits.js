@@ -1,28 +1,19 @@
 const moment = require("moment")
 const { generator } = require("./dates")
+const communes = require("@etalab/decoupage-administratif/data/communes.json")
 
 function computeFrontEndBenefits(
   droitsDescription,
   situation,
   openfiscaResponse
 ) {
-  droitsDescription.forEach(function (
-    benefit,
-    benefitId
-    /*
-    provider,
-    providerID
-    */
-  ) {
+  droitsDescription.forEach(function (benefit, benefitId) {
     if (benefitId === "benefit_front_test") {
-      let period = generator(situation.dateDeValeur).thisMonth.id
-      const elegibilite_age =
-        moment().diff(situation.demandeur.date_naissance, "years") >=
-          benefit.age_min &&
-        moment().diff(situation.demandeur.date_naissance, "years") <=
-          benefit.age_max
+      const period = generator(situation.dateDeValeur).thisMonth.id
 
-      const communes = require("@etalab/decoupage-administratif/data/communes.json")
+      const age = moment().diff(situation.demandeur.date_naissance, "years")
+      const elegibiliteAge = age >= benefit.age_min && age <= benefit.age_max
+
       const listBenefitsCommunes = communes.filter(
         (commune) =>
           (benefit.departements &&
@@ -31,19 +22,19 @@ function computeFrontEndBenefits(
           (benefit.communes && benefit.communes.includes(commune.code))
       )
       const depcom = situation.menage.depcom || ""
-      const eligibilite_geo = listBenefitsCommunes.some(
+      const eligibiliteGeo = listBenefitsCommunes.some(
         (commune) =>
           depcom === commune.code || depcom.startsWith(commune.departement)
       )
 
-      const eligibilite_statuts = benefit.statuts
-        .map((statut) => statut === situation.demandeur.activite)
-        .reduce((a, v) => a || v, false) // any([true, true, false])
+      const eligibiliteStatuts = benefit.statuts.some(
+        (statut) => statut === situation.demandeur.activite
+      )
 
       const montant = 200
       const eligibilite =
-        eligibilite_statuts && elegibilite_age && period && eligibilite_geo
-      const result = eligibilite ? montant || true : montant ? 0 : false
+        eligibiliteStatuts && elegibiliteAge && period && eligibiliteGeo
+      const result = eligibilite ? montant : false
       openfiscaResponse.individus.demandeur[benefitId] = { [period]: result }
     }
   })

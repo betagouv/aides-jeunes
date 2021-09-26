@@ -32,7 +32,10 @@
         </div>
       </div>
       <div class="aj-home-illustration">
-        <img src="@/../public/mes-aides.org/img/illustration.svg" alt="Illustration d'une famille" />
+        <img
+          src="@/../public/mes-aides.org/img/illustration.svg"
+          alt="Illustration d'une famille"
+        />
       </div>
     </div>
   </div>

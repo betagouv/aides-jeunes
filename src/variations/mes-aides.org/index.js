@@ -4,7 +4,7 @@ import BaseLayout from "./base-layout.vue"
 export default {
   Home,
   BaseLayout,
-  name: 'mes-aides.org',
+  name: "mes-aides.org",
   routes: [
     {
       path: "/a-propos",
@@ -29,6 +29,6 @@ export default {
         import(
           /* webpackChunkName: "static" */ "@/variations/mes-aides.org/views/LiensUtiles.vue"
         ),
-    }
+    },
   ],
 }

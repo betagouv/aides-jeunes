@@ -197,7 +197,8 @@ const router = createRouter({
           path: "resultats",
           meta: {
             headTitle:
-              "Les résultats de ma simulation sur le simulateur d'aides " + variation.name,
+              "Les résultats de ma simulation sur le simulateur d'aides " +
+              variation.name,
           },
           component: () =>
             import(
@@ -213,7 +214,8 @@ const router = createRouter({
             ),
           meta: {
             headTitle:
-              "Trouver de l'aide près de chez vous avec le simulateur d'aides " + variation.name,
+              "Trouver de l'aide près de chez vous avec le simulateur d'aides " +
+              variation.name,
           },
         },
         {
@@ -225,7 +227,8 @@ const router = createRouter({
             ),
           meta: {
             headTitle:
-              "Trouver des lieux d'informations près de chez vous avec le simulateur d'aides " + variation.name,
+              "Trouver des lieux d'informations près de chez vous avec le simulateur d'aides " +
+              variation.name,
           },
         },
         {

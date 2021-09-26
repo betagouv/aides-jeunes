@@ -126,7 +126,7 @@ html {
             & + label {
               background-color: var(--lighter-green);
               border-color: transparent;
-              box-shadow: 0px 0px 7px #2fac66;
+              box-shadow: 0px 0px 7px var(--lighter-green-shadow);
             }
           }
         }

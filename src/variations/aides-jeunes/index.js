@@ -38,5 +38,6 @@ const routes = [
 export default {
   Home,
   BaseLayout,
+  name: "1jeune1solution",
   routes,
 }

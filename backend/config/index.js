@@ -33,6 +33,7 @@ const all = {
       useNewUrlParser: true,
     },
   },
+  variation: process.env.AIDES_JEUNES_VARIATION || 'aides-jeunes',
   sessionSecret: process.env.SESSION_SECRET || "fghjdfjkdf785a-jreu",
 }
 

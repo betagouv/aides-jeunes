@@ -31,7 +31,7 @@ const router = createRouter({
       component: () =>
         import(/* webpackChunkName: "simulation" */ "./views/simulation.vue"),
       meta: {
-        headTitle: "Ma simulation sur le simulateur d'aides 1jeune1solution",
+        headTitle: "Ma simulation sur le simulateur d'aides " + variation.name,
       },
       children: [
         {
@@ -197,7 +197,7 @@ const router = createRouter({
           path: "resultats",
           meta: {
             headTitle:
-              "Les résultats de ma simulation sur le simulateur d'aides 1jeune1solution",
+              "Les résultats de ma simulation sur le simulateur d'aides " + variation.name,
           },
           component: () =>
             import(
@@ -213,7 +213,7 @@ const router = createRouter({
             ),
           meta: {
             headTitle:
-              "Trouver de l'aide près de chez vous avec le simulateur d'aides 1jeune1solution",
+              "Trouver de l'aide près de chez vous avec le simulateur d'aides " + variation.name,
           },
         },
         {
@@ -225,7 +225,7 @@ const router = createRouter({
             ),
           meta: {
             headTitle:
-              "Trouver des lieux d'informations près de chez vous avec le simulateur d'aides 1jeune1solution",
+              "Trouver des lieux d'informations près de chez vous avec le simulateur d'aides " + variation.name,
           },
         },
         {
@@ -388,7 +388,7 @@ router.beforeEach((to, from, next) => {
 })
 
 const DEFAULT_TITLE =
-  "Évaluez vos droits aux aides avec le simulateur de 1jeune1solution"
+  "Évaluez vos droits aux aides avec le simulateur de " + variation.name
 
 function getTitleMeta(route) {
   let meta

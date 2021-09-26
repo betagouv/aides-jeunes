@@ -2,8 +2,7 @@ import aidesJeunes from "./aides-jeunes"
 import mesAides from "./mes-aides.org"
 
 let variation
-// eslint-disable-next-line no-constant-condition
-if ("b" == "a") {
+if (process.env.VUE_APP_VARIATION !== "mes-aides.org") {
   variation = aidesJeunes
 } else {
   variation = mesAides

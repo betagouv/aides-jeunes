@@ -4,9 +4,9 @@
       >Cette aide se base sur
       <strong>
         vos ressources de l'année
-        {{ $store.state.dates.fiscalYear.label }}
+        {{ $store.state.dates.fiscalYear.label }},
       </strong>
-      ,que vous n'avez pas encore déclarées lors de cette simulation.
+      que vous n'avez pas encore déclarées lors de cette simulation.
     </p>
 
     <p>

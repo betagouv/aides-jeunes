@@ -12,6 +12,9 @@
     <h3>Le montant indiqué pour {{ longLabel }} vous semble inexact&nbsp;?</h3>
 
     <ResultatInattenduPpa v-if="droit.id === 'ppa'"></ResultatInattenduPpa>
+    <ResultatInattenduAideLogement
+      v-else-if="droit.id === 'aide_logement'"
+    ></ResultatInattenduAideLogement>
     <ResultatInattenduYearMinusTwo
       :droit="droit"
       v-else
@@ -22,12 +25,14 @@
 <script>
 import Institution from "@/lib/Institution"
 import ResultatInattenduPpa from "@/components/ResultatInattendu/Ppa"
+import ResultatInattenduAideLogement from "@/components/ResultatInattendu/AideLogement"
 import ResultatInattenduYearMinusTwo from "@/components/ResultatInattendu/YearMinusTwo"
 
 export default {
   name: "resultat-inattendu",
   components: {
     ResultatInattenduPpa,
+    ResultatInattenduAideLogement,
     ResultatInattenduYearMinusTwo,
   },
   data: function () {

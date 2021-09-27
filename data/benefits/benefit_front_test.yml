@@ -19,3 +19,4 @@ statuts:
   - chomeur
   - service_civique
 private: true
+computesLocally: true

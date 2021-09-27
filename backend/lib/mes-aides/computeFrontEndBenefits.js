@@ -13,7 +13,7 @@ function computeFrontEndBenefits(
   const commune = communes.find((com) => com.code === depcom)
 
   droitsDescription.forEach(function (benefit, benefitId) {
-    if (benefitId === "benefit_front_test") {
+    if (benefit.computesLocally) {
       const elegibiliteAge =
         (benefit.age_min === undefined || age >= benefit.age_min) &&
         (benefit.age_max === undefined || age <= benefit.age_max)

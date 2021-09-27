@@ -18,4 +18,45 @@ context("Full simulation", () => {
     steps.hasPrimeActivite()
     steps.captureFiscalResources()
   })
+
+  it("accept a student situation", () => {
+    steps.home()
+    steps.etudiant_public()
+
+    cy.get("div").find('input[type="radio"][value="true"]').first().check()
+    cy.get('button[type="submit"]').click()
+
+    steps.zeroEnfants()
+    steps.celibataire()
+    steps.parentsSepares()
+    steps.unEnfantSuperieur()
+    steps.locataire()
+
+    cy.get('input[type="number"').type("45200")
+    steps.submit()
+
+    // Parents habitent en france
+    steps.checkRadio(false)
+    steps.submit()
+
+    // Ressources
+
+    steps.salaireSeul()
+
+    cy.get('input[type="number"]').type("0")
+    steps.submit()
+    cy.get('input[type="number"]').type("1")
+    steps.submit()
+    steps.checkRadio("false")
+    steps.submit()
+    steps.checkRadio("true")
+    steps.submit()
+    steps.checkRadio("false")
+    steps.submit()
+    steps.checkRadio("true")
+    steps.submit()
+    cy.get('input[type="number"]').type("2")
+    steps.submit()
+    steps.hasAideLogement(3)
+  })
 })

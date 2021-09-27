@@ -1,6 +1,6 @@
 <template>
   <form>
-    <h2>
+    <h2 data-testid="immobilier-title">
       <i class="fa fa-home" aria-hidden="true"></i>
       Immobilier
     </h2>

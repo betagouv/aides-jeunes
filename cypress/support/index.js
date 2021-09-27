@@ -19,6 +19,10 @@ import "./commands"
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
+export function checkRadio(value) {
+  cy.get(`input[type="radio"][value="${value}"]`).first().check()
+}
+
 export function home() {
   cy.get('meta[name="og:description"]')
     .invoke("attr", "content")
@@ -283,6 +287,29 @@ export function hebergeParents() {
   cy.get('input[type="radio"]').check("true")
   submit()
 }
+export function locataire() {
+  cy.get('input[name="logementType"]').get('[value="locataire"]').check()
+  cy.get("#nonmeuble").get('[value="nonmeuble"]').check()
+  submit()
+  // Êtes-vous locataire depuis moins de 3 mois ?
+  checkRadio(true)
+  submit()
+  // Coloc
+  checkRadio(false)
+  submit()
+  // Chambre
+  checkRadio(false)
+
+  submit()
+  // Lien de parenté direct
+  checkRadio(false)
+  submit()
+  // Montant loyer
+  cy.get("#loyer").type("600")
+  // Montant charge
+  cy.get("#charges").type("100")
+  submit()
+}
 
 export function participeLogement() {
   cy.get("legend").invoke("text").should("contain", "Participez-vous")
@@ -486,6 +513,42 @@ export function hasBourseCriteresSociaux(position) {
     .should("be.visible")
 }
 
-export function checkRadio(value) {
-  cy.get(`input[type="radio"][value="${value}"]`).first().check()
+export function hasAideLogement(position) {
+  position = position || 1
+  const name = /aides au logement/
+  const id = "aide_logement"
+  const description = /Apl/
+  cy.get("#print-disclaimer", { timeout: 20000 })
+    .invoke("text")
+    .should("contain", "engagement")
+  cy.get(
+    '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
+      position +
+      ")",
+    { timeout: 6000 }
+  ).as(id + "-summary")
+  cy.get("@" + id + "-summary")
+    .find('[itemprop="name"]')
+    .invoke("text")
+    .should("match", name)
+  cy.get("@" + id + "-summary")
+    .find('[itemprop="offers"]')
+    .invoke("text")
+    .should("match", /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
+  cy.get("@" + id + "-summary")
+    .find(".aj-aide-cta")
+    .click()
+
+  cy.get(".aj-droit-detail").as(id)
+  cy.get("@" + id)
+    .get('[itemprop="description"]')
+    .invoke("text")
+    .should("match", description)
+  cy.get("@" + id)
+    .get('[itemprop="termsOfService"]')
+    .should("be.visible")
+  // Vérifie si la page patrimoine est bien affichée
+  cy.get("#patrimoine-link").click()
+  cy.get('h2[data-testid="immobilier-title"]').should("exist")
+  submit()
 }

@@ -1,0 +1,23 @@
+label: test aide logement
+institution: action_logement
+description: Testdasdasdad
+conditions:
+  - pas déployer en prod
+link: https://mes-aides.1jeune1solution.beta.gouv.fr/
+prefix: la
+type: float
+floorAt: 10
+interestFlag: null
+entity: individus
+montant: 7
+regions:
+  - 52
+departements:
+  - "59"
+communes:
+  - "59350"
+age_min: 12
+age_max: 33
+statuts:
+  - etudiant
+flag: _contributionBenefit

@@ -8,15 +8,15 @@ type: float
 floorAt: 1
 legend: ""
 montant: 200
-flag: _contributionBenefit
 departements:
   - "64"
+  - "45"
   - "12"
 age_min: 16
 age_max: 25
 statuts:
-  - lyceen
+  - etudiant
   - chomeur
   - service_civique
-private: true
 computesLocally: true
+private: true

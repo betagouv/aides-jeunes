@@ -59,8 +59,7 @@ forEach((aide, aideId) => {
     })
   }
 
-  if (aide.flag && aide.flag === "_contributionBenefit")
-    delete requestedVariables[item]
+  if (aide.computesLocally) delete requestedVariables[item]
 
   if (aide.extra) {
     aide.extra.forEach(function (extra) {

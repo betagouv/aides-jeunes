@@ -229,8 +229,8 @@ collections:
         widget: select
         required: false
         options:
-          - label: Lycéen
-            value: lyceen
+          - label: Actif
+            value: actif
           - label: Étudiant
             value: etudiant
           - label: En recherche d'emploi

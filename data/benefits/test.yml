@@ -1,0 +1,7 @@
+label: test
+institution: etat
+description: C'est une jolie aide.
+prefix: la
+type: bool
+floorAt: 10
+entity: menage

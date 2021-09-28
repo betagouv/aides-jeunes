@@ -1,0 +1,7 @@
+label: nouvelle aide
+institution: etat
+description: nouvelle aide
+prefix: la
+type: bool
+floorAt: 10
+entity: menage

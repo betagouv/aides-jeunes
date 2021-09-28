@@ -162,6 +162,7 @@ collections:
         widget: select
         hint: Cette variable fait le lien avec le moteur de calculs. Tant que vous ne savez pas quoi y indiquer, nous recommandons de laisser Ménage.
         default: menage
+        required: false
         options:
           - label: Famille
             value: familles
@@ -171,6 +172,10 @@ collections:
             value: individus
           - label: Ménage
             value: menages
+      - label: Règles de calcul explicitées ?
+        hint: Il faut cocher cette case si les critères sont explicités (âge, montant, statut, localisation, etc)
+        name: computesLocally
+        widget: boolean
       - label: Montant maximal de l'aide
         name: montant
         widget: number
@@ -229,22 +234,22 @@ collections:
         widget: select
         required: false
         options:
-          - label: Actif
-            value: actif
+          - label: Lycéen
+            value: lyceen
           - label: Étudiant
             value: etudiant
+          - label: Apprenti
+            value: apprenti
+          - label: En contrat de professionnalisation
+            value: professionnalisation
           - label: En recherche d'emploi
             value: chomeur
+          - label: Salarié
+            value: salarie
+          - label: Travailleur indépendant
+            value: independant
           - label: En service civique
             value: service_civique
-          - label: Retraité
-            value: retraite
-          - label: Autre
-            value: inactif
-      - label: computesLocally
-        name: computesLocally
-        widget: hidden
-        default: true
 
   - name: contribution-pages
     label: Pages

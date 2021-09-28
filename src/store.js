@@ -483,6 +483,7 @@ const store = new Vuex.Store({
               })
             })
           }
+
           return results
         })
         .then((results) => state.commit("setResults", results))

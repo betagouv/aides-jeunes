@@ -177,7 +177,7 @@ describe("computeAides", function () {
         (droit) => droit.id === "css_participation_forfaitaire"
       )
 
-      expect(css.montant).toBeTruthy()
+      expect(css.montant).toEqual(true)
     })
 
     it("should extract complex number values", () => {

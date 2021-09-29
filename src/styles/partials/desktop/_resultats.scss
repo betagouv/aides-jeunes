@@ -77,25 +77,6 @@ html {
         border-radius: var(--theme-border-radius);
         border: 1px solid var(--light-grey);
 
-        &.aj-find-contact-box {
-          width: 100%;
-          margin-bottom: 1rem;
-          display: flex;
-          gap: 16px;
-
-          .aj-find-contact-box-action {
-            width: 35%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-          }
-        }
-
-        &.aj-offline-results {
-          margin-right: 1rem;
-          width: calc(40% - 1rem);
-        }
-
         &.aj-feedback {
           width: 60%;
 
@@ -103,6 +84,28 @@ html {
             margin-top: 1rem;
           }
         }
+      }
+
+      .aj-find-contact-box {
+        width: 100%;
+        margin-bottom: 1rem;
+        display: flex;
+
+        .aj-find-contact-box-content {
+          margin-right: 16px;
+        }
+
+        .aj-find-contact-box-action {
+          width: 35%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+        }
+      }
+
+      .aj-offline-results {
+        margin-right: 1rem;
+        width: calc(40% - 1rem);
       }
 
       .aj-offline-results-button {

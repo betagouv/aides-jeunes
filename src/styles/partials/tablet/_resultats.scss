@@ -40,6 +40,11 @@ html {
       }
     }
     .aj-results-tools {
+      .aj-offline-results {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
       .aj-offline-results,
       .aj-feedback {
         flex-basis: 100%;
@@ -48,6 +53,7 @@ html {
       .aj-find-contact-box {
         flex-direction: column;
         .aj-find-contact-box-content {
+          margin-right: 0;
           margin-bottom: 1rem;
         }
         .aj-find-contact-box-action {

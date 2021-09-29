@@ -63,7 +63,6 @@
           <div
             class="notification warning print-hidden"
             v-if="
-              false &&
               droit.isBaseRessourcesYearMinusTwo &&
               !ressourcesYearMinusTwoCaptured &&
               !isString(droit.montant)
@@ -76,7 +75,8 @@
             </span>
             <router-link
               class="button outline red no-shadow text-center"
-              to="ressources/fiscales"
+              to="/simulation/ressources/fiscales"
+              v-if="!aCharge"
               >Déclarez vos ressources
               {{ $store.state.dates.fiscalYear.label }}</router-link
             >
@@ -84,7 +84,6 @@
           <div
             class="notification warning print-hidden"
             v-if="
-              false &&
               droit.isBaseRessourcesPatrimoine &&
               !patrimoineCaptured &&
               !isString(droit.montant)
@@ -98,7 +97,8 @@
             </span>
             <router-link
               class="button outline red no-shadow text-center"
-              to="ressources/patrimoine"
+              to="/simulation/ressources/patrimoine"
+              id="patrimoine-link"
               >Déclarez votre patrimoine</router-link
             >
           </div>
@@ -167,6 +167,7 @@
 import BenefitCta from "./BenefitCta"
 import BenefitCtaLink from "./BenefitCtaLink"
 import DroitMontant from "./DroitMontant"
+import Situation from "../lib/Situation"
 
 export default {
   name: "DroitsDetails",
@@ -184,6 +185,11 @@ export default {
     return {
       brokenLinkButtonState: "show",
     }
+  },
+  computed: {
+    aCharge() {
+      return Situation.aCharge(this.$store.state.situation)
+    },
   },
   methods: {
     isEmpty: (array) => array.length === 0,

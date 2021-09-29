@@ -109,6 +109,9 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
           montant: value,
           provider: aidesProvider,
           providerId: aidesProviderId,
+          showUnexpectedAmount:
+            aide.computeUnexpectedAmount &&
+            aide.computeUnexpectedAmount(situation),
         },
         customizationIds &&
           aide.customization &&

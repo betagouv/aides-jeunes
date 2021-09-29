@@ -1,11 +1,11 @@
 const cloneDeep = require("lodash/cloneDeep")
-const { formatDate } = require("../utils")
+const moment = require("moment")
 
-function buildOpenFiscaMenage(mesAidesMenage) {
-  var openFiscaMenage = cloneDeep(mesAidesMenage)
-  openFiscaMenage.date_entree_logement = formatDate(
-    openFiscaMenage.date_entree_logement
-  )
+function buildOpenFiscaMenage(situation) {
+  var openFiscaMenage = cloneDeep(situation.menage)
+  openFiscaMenage.date_entree_logement = moment(situation.dateDeValeur)
+    .subtract(openFiscaMenage._nombreMoisEntreeLogement ? 2 : 12, "months")
+    .format("YYYY-MM-DD")
   return openFiscaMenage
 }
 

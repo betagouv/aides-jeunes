@@ -67,8 +67,12 @@ const individuSchema = {
     },
   },
   contrat_de_travail_debut: {
-    src: "contrat_de_travail_debut",
-    fn: formatDate,
+    src: "_nombreMoisDebutContratDeTravail",
+    fn: function (_nombreMoisDebutContratDeTravail, _, situation) {
+      return moment(situation.dateDeValeur)
+        .subtract(_nombreMoisDebutContratDeTravail, "months")
+        .format("YYYY-MM-DD")
+    },
   },
   date_arret_de_travail: {
     src: "date_arret_de_travail",

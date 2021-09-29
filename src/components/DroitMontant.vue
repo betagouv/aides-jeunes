@@ -25,6 +25,13 @@
         }}
       </span>
     </span>
+    <span class="montant-inattendu">
+      <router-link
+        :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
+        v-if="showUnexpected"
+        >Montant inattendu ?
+      </router-link>
+    </span>
   </span>
 </template>
 
@@ -43,7 +50,8 @@ export default {
           (this.$store.getters.isProprietaireAvecPretEnCours ||
             this.$store.getters.isHebergeParticipeFrais)) ||
         (this.droit.isBaseRessourcesYearMinusTwo &&
-          !this.$store.getters.ressourcesYearMinusTwoCaptured)
+          !this.$store.getters.ressourcesYearMinusTwoCaptured) ||
+        this.droit.showUnexpectedAmount
       )
     },
 

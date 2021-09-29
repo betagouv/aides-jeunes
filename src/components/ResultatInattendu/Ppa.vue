@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>
+    <p v-if="isProprietaireAvecPretEnCours || isHebergeParticipeFrais">
       Vous avez indiqué être
       <strong v-if="isProprietaireAvecPretEnCours"
         >toujours en train de rembourser le crédit pour votre logement
@@ -56,13 +56,13 @@
       <ul>
         <li
           >Retourner à la
-          <router-link to="/foyer/logement">page « Logement »</router-link> pour
-          modifier ces informations</li
+          <router-link to="/simulation/logement">page « Logement »</router-link>
+          pour modifier ces informations</li
         >
         <li
           >Faire une
           <a
-            to="http://www.caf.fr/allocataires/mes-services-en-ligne/estimer-vos-droits/simulation-prime-d-activite"
+            href="http://www.caf.fr/allocataires/mes-services-en-ligne/estimer-vos-droits/simulation-prime-d-activite"
             target="_blank"
             >nouvelle simulation sur caf.fr</a
           ></li
@@ -73,18 +73,8 @@
 </template>
 
 <script>
-import Institution from "@/lib/Institution"
-
 export default {
   name: "ResultatInattenduPpa",
-  data: function () {
-    return {
-      droit: Object.assign(
-        { id: "ppa" },
-        Institution.prestationsNationales.caf.prestations.ppa
-      ),
-    }
-  },
   computed: {
     isProprietaireAvecPretEnCours: function () {
       return this.$store.getters.isProprietaireAvecPretEnCours

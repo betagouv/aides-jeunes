@@ -1,7 +1,7 @@
 <template>
   <form>
     <div>
-      <router-link to="/foyer/resultat/">
+      <router-link to="/simulation/resultats/">
         <h2 aria-label="Retour aux résultats">
           <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Retour aux
           résultats
@@ -12,8 +12,11 @@
     <h3>Le montant indiqué pour {{ longLabel }} vous semble inexact&nbsp;?</h3>
 
     <ResultatInattenduPpa v-if="droit.id === 'ppa'"></ResultatInattenduPpa>
+    <ResultatInattenduAideLogement
+      v-else-if="droit.id === 'aide_logement'"
+    ></ResultatInattenduAideLogement>
     <ResultatInattenduYearMinusTwo
-      v-bind:droit="droit"
+      :droit="droit"
       v-else
     ></ResultatInattenduYearMinusTwo>
   </form>
@@ -22,33 +25,37 @@
 <script>
 import Institution from "@/lib/Institution"
 import ResultatInattenduPpa from "@/components/ResultatInattendu/Ppa"
+import ResultatInattenduAideLogement from "@/components/ResultatInattendu/AideLogement"
 import ResultatInattenduYearMinusTwo from "@/components/ResultatInattendu/YearMinusTwo"
-
-let benefitKeyed = {}
-let benefits = []
-Institution.forEachBenefit(
-  (benefit, benefitId, provider, providerId, level) => {
-    const b = Object.assign(
-      { id: benefitId, provider: { ...provider, id: providerId }, level },
-      benefit
-    )
-    if (b.label === "Tarification solidaire transports") {
-      b.label = `${b.label} - ${provider.label}`
-    }
-    benefits.push(b)
-    benefitKeyed[b.id] = b
-  }
-)
 
 export default {
   name: "resultat-inattendu",
   components: {
     ResultatInattenduPpa,
+    ResultatInattenduAideLogement,
     ResultatInattenduYearMinusTwo,
+  },
+  data: function () {
+    let benefitKeyed = {}
+    Institution.forEachBenefit(
+      (benefit, benefitId, provider, providerId, level) => {
+        const benefit_temp = Object.assign(
+          { id: benefitId, provider: { ...provider, id: providerId }, level },
+          benefit
+        )
+        if (benefit_temp.label === "Tarification solidaire transports") {
+          benefit_temp.label = `${benefit_temp.label} - ${provider.label}`
+        }
+        benefitKeyed[benefit_temp.id] = benefit_temp
+      }
+    )
+    return {
+      benefitKeyed,
+    }
   },
   computed: {
     droit: function () {
-      return benefitKeyed[this.$route.params.id]
+      return this.benefitKeyed[this.$route.params.id]
     },
     longLabel: function () {
       let prefix = `${this.droit.prefix}${

@@ -1,6 +1,6 @@
 <template>
-  <form @submit.prevent="next">
-    <h2>
+  <form>
+    <h2 data-testid="immobilier-title">
       <i class="fa fa-home" aria-hidden="true"></i>
       Immobilier
     </h2>
@@ -108,9 +108,7 @@
       </span>
     </label>
 
-    <div class="text-right">
-      <button type="submit" class="button large">Valider</button>
-    </div>
+    <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
 
@@ -118,12 +116,14 @@
 import { patrimoineTypes } from "@/constants/resources"
 import YesNoQuestion from "@/components/YesNoQuestion"
 import InputNumber from "@/components/InputNumber"
+import Actions from "@/components/Actions"
 
 export default {
   name: "ressources-patrimoine",
   components: {
     InputNumber,
     YesNoQuestion,
+    Actions,
   },
   data: function () {
     const situation = this.$store.state.situation
@@ -178,10 +178,9 @@ export default {
     }
   },
   methods: {
-    next: function () {
+    onSubmit: function () {
       this.$store.dispatch("updateIndividu", this.demandeur)
-
-      this.$push()
+      this.$router.push("/simulation/resultats")
     },
   },
 }

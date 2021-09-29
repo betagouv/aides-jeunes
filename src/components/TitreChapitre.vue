@@ -8,7 +8,7 @@
       :class="{ 'has-menu-button': showMenuButton }"
     >
       <MenuButton
-        @click.native="goToSummaryPage"
+        @click.native="goToRecapitulatifPage"
         v-show="showMenuButton"
       ></MenuButton>
       <h1>{{ title }}</h1>
@@ -41,8 +41,8 @@ export default {
       const chapterName = (step && step.chapter) || ""
       return Chapters.getLabel(chapterName)
     },
-    goToSummaryPage() {
-      this.$router.push({ path: this.$route.path + "/sommaire" })
+    goToRecapitulatifPage() {
+      this.$router.push({ name: "recapitulatif" })
     },
   },
 }

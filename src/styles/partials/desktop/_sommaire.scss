@@ -140,6 +140,14 @@ html {
           }
         }
 
+        .aj-btn-recapitulatif-container {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          margin-top: 24px;
+
+        }
+
         .aj-btn-container {
           // TODO remplacer par un flex dans la version complète
           //display: flex;

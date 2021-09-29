@@ -1,5 +1,12 @@
 <template>
-  <form @submit.prevent="onSubmit" class="recapitulatif-form">
+  <div class="recapitulatif">
+    <h2>Récapitulatif</h2>
+    <BackButton
+      @click.native="goBack()"
+      class="recapitulatif-back-button"
+      size="small"
+      >Retour</BackButton
+    >
     <div>
       <template v-for="(chapter, chapterIndex) in chapters">
         <div
@@ -53,13 +60,14 @@
         </div>
       </template>
     </div>
-
-    <Actions v-bind:onSubmit="onSubmit" />
-  </form>
+    <div class="aj-actions">
+      <div></div>
+      <BackButton @click.native="goBack"></BackButton>
+    </div>
+  </div>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
 import {
   capitalize,
   displayValue,
@@ -67,11 +75,12 @@ import {
 } from "@/lib/Utils"
 import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/Recapitulatif"
 import { ENTITIES_PROPERTIES } from "@/lib/State/steps"
+import BackButton from "@/components/Buttons/BackButton"
 
 export default {
   name: "Recapitulatif",
   components: {
-    Actions,
+    BackButton,
   },
   computed: {
     activeJourney() {
@@ -100,14 +109,6 @@ export default {
     },
   },
   methods: {
-    stepPerChapter(chapterName) {
-      return this.activeJourney.filter((step) => step.chapter === chapterName)
-    },
-
-    onSubmit() {
-      this.$push()
-    },
-
     buildMutualizedQuestion({ question, value, component }) {
       return question
         ? [
@@ -119,6 +120,10 @@ export default {
             },
           ]
         : []
+    },
+
+    goBack() {
+      window && window.history.back()
     },
 
     questionsPerStep(step) {
@@ -148,6 +153,10 @@ export default {
         console.log("### This step is not displayed:", step)
       }
       return []
+    },
+
+    stepPerChapter(chapterName) {
+      return this.activeJourney.filter((step) => step.chapter === chapterName)
     },
   },
 }

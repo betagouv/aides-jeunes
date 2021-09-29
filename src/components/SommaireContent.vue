@@ -32,6 +32,7 @@
       </div>
       <div class="aj-progressBar"></div>
     </div>
+
     <div class="aj-btn-container">
       <router-link
         to="/simulation/resultats"
@@ -39,6 +40,13 @@
         class="button"
         >Voir les résultats</router-link
       >
+    </div>
+
+    <div
+      class="aj-btn-recapitulatif-container"
+      v-if="$store.getters.passSanityCheck"
+    >
+      <router-link :to="{ name: 'recapitulatif' }">Récapitulatif</router-link>
     </div>
   </div>
 </template>

@@ -4,7 +4,9 @@
     <BackButton
       @click.native="window && window.history.back()"
       class="aj-sommaire-page-back-button"
-    ></BackButton>
+      size="small"
+      >Retour</BackButton
+    >
 
     <div class="aj-sommaire-content">
       <SommaireContent></SommaireContent>

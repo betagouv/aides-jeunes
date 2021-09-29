@@ -16,7 +16,7 @@ html {
         position: relative;
 
         &.has-menu-button {
-          padding: 0 #{$menu-button-size};
+          padding: 0 $menu-button-size;
         }
 
         .menu-button {

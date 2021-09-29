@@ -1,21 +1,14 @@
 const moment = require("moment")
 const { generator } = require("./dates")
+const resources = require("../../../src/constants/resources")
 const communes = require("@etalab/decoupage-administratif/data/communes.json")
 
-const ressourcesIndependant = [
-  "rpns_micro_entreprise_CA_bic_vente_imp",
-  "rpns_micro_entreprise_CA_bic_service_imp",
-  "rpns_micro_entreprise_CA_bnc_imp",
-  "rpns_auto_entrepreneur_CA_achat_revente",
-  "rpns_auto_entrepreneur_CA_bic",
-  "rpns_auto_entrepreneur_CA_bnc",
-  "rpns_benefice_exploitant_agricole",
-  "rpns_autres_revenus",
-]
-
-function isIndependant(individu) {
-  return ressourcesIndependant.some((ressource) => individu[ressource])
-}
+const ressourcesIndependant = resources.ressourceTypes.filter(
+  (r) => r.category == "rpns"
+)
+const ressourcesActivite = resources.ressourceTypes.filter(
+  (r) => r.category == "revenusActivite"
+)
 
 const STATUT_STATEGY = {
   apprenti: (situation) => {
@@ -30,7 +23,9 @@ const STATUT_STATEGY = {
   independant: (situation) => {
     return (
       situation.demandeur.activite === "actif" &&
-      isIndependant(situation.demandeur)
+      ressourcesIndependant.some(
+        (ressource) => situation.demandeur[ressource.id]
+      )
     )
   },
   lyceen: (situation) => {
@@ -44,7 +39,7 @@ const STATUT_STATEGY = {
   salarie: (situation) => {
     return (
       situation.demandeur.activite === "actif" &&
-      !isIndependant(situation.demandeur)
+      ressourcesActivite.some((ressource) => situation.demandeur[ressource.id])
     )
   },
   service_civique: (situation) => {

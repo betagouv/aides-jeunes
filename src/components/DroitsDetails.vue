@@ -97,7 +97,8 @@
             </span>
             <router-link
               class="button outline red no-shadow text-center"
-              to="/simulation/individu/demandeur/ressources/patrimoine"
+              to="/simulation/ressources/patrimoine"
+              id="patrimoine-link"
               >Déclarez votre patrimoine</router-link
             >
           </div>

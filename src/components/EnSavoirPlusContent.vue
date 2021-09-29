@@ -29,7 +29,9 @@
         <BackButton
           class="aj-help-modal-back-button"
           @click.native="window && window.history.back()"
-        ></BackButton>
+          size="small"
+          >Retour</BackButton
+        >
       </div>
     </div>
   </div>

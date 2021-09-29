@@ -1,5 +1,5 @@
 <template>
-  <button class="button outline small with-icon" type="button">
+  <button class="button outline with-icon" :class="[size]" type="button">
     <svg
       width="12"
       height="12"
@@ -12,13 +12,18 @@
         fill="#030F8F"
       />
     </svg>
-    Retour
+    <slot>Précédent</slot>
   </button>
 </template>
 
 <script>
 export default {
   name: "BackButton",
+  props: {
+    size: {
+      default: null,
+    },
+  },
 }
 </script>
 

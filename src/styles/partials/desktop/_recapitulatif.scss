@@ -1,4 +1,8 @@
-.recapitulatif-form {
+.recapitulatif {
+  .recapitulatif-back-button, .recapitulatif-back-button:focus{
+    margin-bottom: 32px;
+  }
+
   .chapter-block:not(:last-child) {
     margin-bottom: 24px;
   }

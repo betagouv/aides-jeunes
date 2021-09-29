@@ -46,7 +46,7 @@ const router = new Router({
             ),
         },
         {
-          path: ":parent+/sommaire",
+          path: "sommaire",
           name: "sommaire",
           component: () =>
             import(

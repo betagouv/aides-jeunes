@@ -1,4 +1,4 @@
-label: benefit_front_test
+label: Aide de test pour les calculs hors d'OpenFisca
 institution: etat
 description: Cette aide permet aux apprentis majeurs de financer une partie du coût de la formation au permis de conduire.
 link: https://travail-emploi.gouv.fr/formation-professionnelle/formation-en-alternance-10751/apprentissage/apprentis-aide-permis
@@ -12,11 +12,14 @@ departements:
   - "64"
   - "45"
   - "12"
+  - "55"
 age_min: 16
 age_max: 25
 statuts:
-  - etudiant
   - chomeur
+  - etudiant
+  - independant
+  - salarie
   - service_civique
 computesLocally: true
 private: true

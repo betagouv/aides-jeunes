@@ -232,11 +232,11 @@ html {
 
       .aj-input-date {
         display: flex;
-        gap: 16px;
 
         .aj-input-date-component {
           &.day,
           &.month {
+            margin-right: 16px;
             width: 80px;
           }
 

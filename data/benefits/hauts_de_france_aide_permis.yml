@@ -1,0 +1,12 @@
+label: Aide pour le permis de conduire
+institution: hauts_de_france
+description: La région Hauts-de-France prend en charge 90% du prix du permis pour aider ses habitants de 18-30 ans à passer leur permis de conduire.
+conditions:
+  - être agé de 18 à 30 ans.
+  - être en apprentissage, demandeur d'emploi, stagiaire ou dans un parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA).
+link: https://www.hautsdefrance.fr/permis-de-conduire-aide-2/
+teleservice: https://www.hautsdefrance.fr/testez-votre-eligibilite-aide-au-permis-de-conduire/
+type: float
+interestFlag: _interetPermisDeConduire
+entity: individus
+legend: "maximum"

@@ -43,6 +43,8 @@ context("Full simulation", () => {
     steps.submit()
     cy.get('input[type="number"]').type("2")
     steps.submit()
+
+    steps.waitForResults()
     steps.hasBourseCriteresSociaux(3)
   })
 })

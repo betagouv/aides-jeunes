@@ -20,6 +20,8 @@ context("Full simulation", () => {
     steps.salaireSeul()
     // steps.sansPensionAlimentaireVersees()
     steps.interestFlagExtra()
+
+    steps.waitForResults()
     steps.hasAAH()
   })
 })

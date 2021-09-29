@@ -506,7 +506,8 @@ const store = new Vuex.Store({
             const source = benefit.openfisca_eligibility_source || benefitId
             if (
               !benefit.test &&
-              !(variableNames.includes(source) || benefit.computesLocally)
+              !benefit.computesLocally &&
+              !variableNames.includes(source)
             ) {
               missingBenefits.push(benefitId)
             }

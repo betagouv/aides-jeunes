@@ -48,6 +48,7 @@ $screen-smaller-than-mobile: 399px;
 @import "partials/desktop/header";
 @import "partials/desktop/footer";
 @import "partials/desktop/resultats";
+@import "partials/desktop/recapitulatif";
 
 /* TABLET IMPORTS */
 @media (max-width: 768px) {
@@ -55,6 +56,7 @@ $screen-smaller-than-mobile: 399px;
   @import "partials/tablet/header";
   @import "partials/tablet/home";
   @import "partials/tablet/resultats";
+  @import "partials/tablet/recapitulatif";
 }
 
 /* MOBILE IMPORTS */
@@ -68,6 +70,7 @@ $screen-smaller-than-mobile: 399px;
   @import "partials/mobile/home";
   @import "partials/mobile/resultats";
   @import "partials/mobile/sommaire";
+  @import "partials/mobile/recapitulatif";
 }
 
 /* UTILS */

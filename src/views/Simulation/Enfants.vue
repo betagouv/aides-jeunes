@@ -51,7 +51,7 @@
       </svg>
       Ajouter un enfant à charge
     </button>
-    <Actions v-bind:onSubmit="$push"> </Actions>
+    <Actions v-bind:onSubmit="onSubmit" />
   </div>
 </template>
 
@@ -70,7 +70,7 @@ export default {
   },
   computed: {
     enfants: function () {
-      return [].concat(...this.$store.state.situation.enfants)
+      return this.$store.state.situation.enfants || []
     },
   },
   filters: {
@@ -95,7 +95,7 @@ export default {
   methods: {
     addPAC: function () {
       let { individu } = Individu.get(
-        this.$store.state.situation.enfants,
+        this.$store.state.situation.enfants || [],
         "enfant",
         1,
         this.$store.state.dates
@@ -105,6 +105,12 @@ export default {
     },
     removePAC: function (id) {
       this.$store.dispatch("removeEnfant", id)
+    },
+    onSubmit: function () {
+      if (!this.$store.state.situation.enfants) {
+        this.$store.dispatch("zeroEnfant")
+      }
+      this.$push()
     },
   },
 }

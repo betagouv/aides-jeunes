@@ -3,7 +3,7 @@ import { isRelevant, yearsAgo } from "@/lib/Utils"
 import Scolarite from "@/lib/Scolarite"
 
 const loadEntity = (component) => {
-  const params = component.$route.params
+  const params = component.params || component.$route.params
   const role = params.id.split("_")[0]
   const { individu } = Individu.get(
     component.$store.getters.peopleParentsFirst,
@@ -75,6 +75,7 @@ const STEPS = {
     question:
       "Quel montant mensuel de bourse receviez-vous lors de votre dernière année d'études ?",
     questionType: "number",
+    unit: "€",
   },
 
   alternant: {
@@ -112,6 +113,7 @@ const STEPS = {
     showMoreInfo: (component) => {
       return component.$store.state.situation.parents._situation === "separes"
     },
+    unit: "€",
   },
 
   boursier: {
@@ -476,6 +478,7 @@ const STEPS = {
     question:
       "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
     questionType: "number",
+    unit: "mois",
   },
 
   _interetEtudesEtranger: {

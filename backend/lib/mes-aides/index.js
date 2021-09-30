@@ -1,13 +1,13 @@
-var merge = require("lodash/merge")
-var sortBy = require("lodash/sortBy")
-var assign = require("lodash/assign")
-var sumBy = require("lodash/sumBy")
-var some = require("lodash/some")
-var filter = require("lodash/filter")
+const merge = require("lodash/merge")
+const sortBy = require("lodash/sortBy")
+const assign = require("lodash/assign")
+const sumBy = require("lodash/sumBy")
+const some = require("lodash/some")
+const filter = require("lodash/filter")
 
-var moment = require("moment")
-var determineCustomizationIds = require("./customization")
-
+const moment = require("moment")
+const determineCustomizationIds = require("./customization")
+const { computeFrontEndBenefits } = require("./computeFrontEndBenefits")
 /**
  * OpenFisca test cases separate ressources between two entities: individuals and families.
  * In Mes Aides, we don't care about this separation and want to show eligibilty results for the demandeur only.
@@ -58,6 +58,9 @@ function round(amount, aide) {
 
 function computeAides(situation, openfiscaResponse, showPrivate) {
   var period = moment(situation.dateDeValeur).format("YYYY-MM")
+
+  computeFrontEndBenefits(this, situation, openfiscaResponse)
+
   var customizationIds = determineCustomizationIds(openfiscaResponse, period)
   var computedRessources = normalizeOpenfiscaRessources(openfiscaResponse)
 

@@ -45,9 +45,13 @@ export const SIMPLE_STEPS = {
                 "nom"
               )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu ?`
         ),
-        value: displayYesNoValue(
-          individu["enfant_a_charge"][this.$store.state.dates.thisYear.id]
-        ),
+        value:
+          individu["enfant_a_charge"][this.$store.state.dates.thisYear.id] ===
+          undefined
+            ? undefined
+            : displayYesNoValue(
+                individu["enfant_a_charge"][this.$store.state.dates.thisYear.id]
+              ),
       },
     ]
   },

@@ -43,25 +43,21 @@ export const displayDepcomValue = (codePostal, nom) => {
 }
 
 export const displayValue = (value, question, component) => {
-  if (value === undefined) return value
-  let result
+  if (value === undefined) {
+    return value
+  }
 
   switch (question.questionType) {
     case "date":
-      result = displayDateValue(value)
-      break
+      return displayDateValue(value)
     case "enum":
-      result = displayEnumValue(
+      return displayEnumValue(
         value,
         executeFunctionOrReturnValue(question, "items", component)
       )
-      break
     case "number":
-      result = `${value} ${question.unit}`
-      break
+      return question.unit ? `${value} ${question.unit}` : value
     case undefined:
-      result = displayYesNoValue(value)
-      break
+      return displayYesNoValue(value)
   }
-  return result
 }

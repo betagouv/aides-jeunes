@@ -76,7 +76,7 @@ function defaultStore() {
       _id: null,
       external_id: null,
       dateDeValeur: now,
-      enfants: [],
+      enfants: null,
       famille: {},
       logement: {},
       foyer_fiscal: {},

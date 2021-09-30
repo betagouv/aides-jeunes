@@ -12,7 +12,8 @@ function individuBlockFactory(id) {
   return {
     subject: (situation) =>
       situation[id] ||
-      situation.enfants.find((enfant) => enfant.id === id) ||
+      (situation.enfants &&
+        situation.enfants.find((enfant) => enfant.id === id)) ||
       {},
     steps: [
       ...(enfant ? [r("_firstName")] : []),
@@ -221,7 +222,8 @@ function extraBlock() {
   return {
     subject: (situation) =>
       situation[id] ||
-      situation.enfants.find((enfant) => enfant.id === id) ||
+      (situation.enfants &&
+        situation.enfants.find((enfant) => enfant.id === id)) ||
       {},
     steps: [
       s("_interetPermisDeConduire", "projets"),
@@ -274,7 +276,7 @@ function kidBlock(situation) {
   return {
     steps: [
       new Step({ entity: "enfants", chapter: "foyer" }),
-      ...(situation.enfants.length
+      ...(situation.enfants && situation.enfants.length
         ? situation.enfants.map((e) => {
             return {
               steps: [
@@ -383,7 +385,8 @@ function resourceBlocks(situation) {
   const individuResourceBlock = (individuId) => {
     const individu =
       situation[individuId] ||
-      situation.enfants.find((enfant) => enfant.id === individuId) ||
+      (situation.enfants &&
+        situation.enfants.find((enfant) => enfant.id === individuId)) ||
       {}
     return {
       steps: [
@@ -405,13 +408,17 @@ function resourceBlocks(situation) {
     steps: [
       individuResourceBlock("demandeur"),
       ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
-      ...(situation.enfants.length
+      ...(situation.enfants && situation.enfants.length
         ? [new Step({ entity: "enfants", variable: "ressources" })]
         : []),
       {
-        steps: situation.enfants.map((e) => {
-          return e._hasRessources ? individuResourceBlock(e.id) : { steps: [] }
-        }),
+        steps: situation.enfants
+          ? situation.enfants.map((e) => {
+              return e._hasRessources
+                ? individuResourceBlock(e.id)
+                : { steps: [] }
+            })
+          : [],
       },
     ],
   }
@@ -448,7 +455,7 @@ function generateBlocks(situation) {
           enfant_a_charge ||
           (subject.activite == "etudiant" &&
             !subject.alternant &&
-            !situation.enfants.length)
+            !(situation.enfants && situation.enfants.length))
         )
       },
       steps: [
@@ -463,7 +470,7 @@ function generateBlocks(situation) {
             const demandeur_ok =
               situation.demandeur.activite == "etudiant" &&
               !situation.demandeur.alternant &&
-              !situation.enfants.length
+              !(situation.enfants && situation.enfants.length)
 
             return parents_ok && demandeur_ok
           },
@@ -498,7 +505,7 @@ function generateBlocks(situation) {
               demandeur &&
               demandeur.activite == "etudiant" &&
               !demandeur.alternant &&
-              !situation.enfants.length
+              !(situation.enfants && situation.enfants.length)
             return demandeur_ok
           },
           steps: [
@@ -520,7 +527,7 @@ function generateBlocks(situation) {
               demandeur &&
               demandeur.activite == "etudiant" &&
               !demandeur.alternant &&
-              !situation.enfants.length
+              !(situation.enfants && situation.enfants.length)
             return enfant_a_charge && !demandeur_ok_bcs
           },
           steps: [

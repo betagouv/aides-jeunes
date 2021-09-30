@@ -51,7 +51,7 @@
       </svg>
       Ajouter un enfant à charge
     </button>
-    <Actions v-bind:onSubmit="$push"> </Actions>
+    <Actions v-bind:onSubmit="onSubmit" />
   </div>
 </template>
 
@@ -105,6 +105,12 @@ export default {
     },
     removePAC: function (id) {
       this.$store.dispatch("removeEnfant", id)
+    },
+    onSubmit: function () {
+      if (!this.$store.state.situation.enfants) {
+        this.$store.dispatch("zeroEnfant")
+      }
+      this.$push()
     },
   },
 }

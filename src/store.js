@@ -304,6 +304,11 @@ const store = new Vuex.Store({
         state.situation.enfants = [enfant]
       }
     },
+    zeroEnfant: function (state) {
+      if (!state.situation.enfants) {
+        state.situation.enfants = []
+      }
+    },
     setAmeliNoticationDone: function (state) {
       state.ameliNoticationDone = true
     },
@@ -398,6 +403,10 @@ const store = new Vuex.Store({
     },
     addEnfant: function ({ commit }, enfant) {
       commit("addEnfant", enfant)
+      commit("setDirty")
+    },
+    zeroEnfant: function ({ commit }) {
+      commit("zeroEnfant")
       commit("setDirty")
     },
     updateError: function ({ commit }, error) {

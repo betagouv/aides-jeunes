@@ -4,6 +4,7 @@
   "description": "Faciliter la contribution au simulateur Mes Aides",
   "scripts": {
     "dev": "next",
+    "lint": "next lint",
     "build": "next build",
     "start": "next start",
     "export": "npm run build && next export"
@@ -26,6 +27,8 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
+    "@next/eslint-plugin-next": "^11.1.2",
+    "eslint-config-next": "11.1.2",
     "frontmatter-markdown-loader": "^3.6.3"
   }
 }

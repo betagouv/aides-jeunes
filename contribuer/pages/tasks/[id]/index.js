@@ -22,7 +22,7 @@ function Task({ id }) {
       <h1>{id} not found</h1>
       <pre>{JSON.stringify(tasks.map((t) => t.slug))}</pre>
       <p>
-        <a href="/">Retourner à l'accueil</a>
+        <a href="/">Retourner à l’accueil</a>
       </p>
     </div>
   )
@@ -50,7 +50,7 @@ function Task({ id }) {
       >
         la page suivante
       </a>
-      . En cas de difficultés ou d'interrogations, vous pouvez nous contacter{" "}
+      . En cas de difficultés ou d’interrogations, vous pouvez nous contacter{" "}
       <a href="mailto:aides-jeunes@beta.gouv.fr&subject=Contribuer">
         par email
       </a>{" "}

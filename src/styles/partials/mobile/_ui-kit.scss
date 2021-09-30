@@ -3,11 +3,6 @@ html {
     .aj-main-container {
       padding: 0 10px 10px 10px;
 
-      .aj-question {
-        flex-direction: column;
-        align-items: baseline;
-      }
-
       .aj-category-title-wrapper {
         display: none;
       }
@@ -15,20 +10,17 @@ html {
       .aj-category-title-wrapper-mobile {
         $menu-button-size: 40px;
 
-        display: table;
-        margin-left: auto;
-        margin-right: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: relative;
 
         &.has-menu-button {
-          padding: 0 #{$menu-button-size + 10px};
+          padding: 0 $menu-button-size;
         }
 
         .menu-button {
-          position: absolute;
-          top: 50%;
-          left: 0;
-          transform: translateY(-50%);
+          flex-shrink: 0;
           border: 1px solid var(--light-grey);
 
           svg {
@@ -61,10 +53,12 @@ html {
 
         h1 {
           text-align: center;
+          margin: 16px 0;
         }
       }
 
       .aj-box-wrapper {
+        margin-bottom: 0;
         & > div:not(.aj-unbox),
         & > form:not(.aj-unbox),
         & .aj-box {
@@ -90,8 +84,6 @@ html {
       }
 
       .aj-tooltip {
-        display: table;
-        margin: 10px 0 0 0;
         &:hover:before,
         &:hover:after {
           display: none;
@@ -180,8 +172,8 @@ html {
 
     span.help {
       display: block;
-      width: 100%;
       margin-left: 0;
+      width: 100%;
     }
   }
 }

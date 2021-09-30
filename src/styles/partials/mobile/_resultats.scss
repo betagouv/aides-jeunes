@@ -5,7 +5,7 @@ html {
     }
 
     .aj-results-intro {
-      margin-top: 0;
+      margin: 0 16px 16px 16px;
     }
 
     .aj-droit-detail,
@@ -57,8 +57,6 @@ html {
     .aj-results-tools {
       .aj-offline-results,
       .aj-feedback {
-        margin-right: 0 !important;
-        margin-bottom: 1rem;
         flex-basis: 100%;
       }
       .aj-feedback-buttons {

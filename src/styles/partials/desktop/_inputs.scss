@@ -149,7 +149,7 @@ html {
 
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
-          opacity: 0;
+          -webkit-appearance: none;
           margin: 0;
         }
       }
@@ -234,10 +234,9 @@ html {
         display: flex;
 
         .aj-input-date-component {
-          margin-right: 10px;
-
           &.day,
           &.month {
+            margin-right: 16px;
             width: 80px;
           }
 
@@ -246,6 +245,7 @@ html {
           }
 
           .aj-date-label {
+            text-align: center;
             font-size: 0.85rem;
             color: #767676;
           }
@@ -257,6 +257,7 @@ html {
 
           &::-webkit-outer-spin-button,
           &::-webkit-inner-spin-button {
+            -webkit-appearance: button;
             opacity: 1;
             margin: 0;
           }

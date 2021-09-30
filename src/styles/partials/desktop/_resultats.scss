@@ -7,7 +7,8 @@ html {
 
     .aj-results-intro {
       font-size: 1.25rem;
-      margin: 40px 0 50px 0;
+      margin: 32px;
+      text-align: justify;
     }
 
     .aj-aide-montant {
@@ -24,7 +25,7 @@ html {
       border-radius: var(--theme-border-radius);
       background-color: var(--white);
       box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-      padding: 25px;
+      padding: 24px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -72,27 +73,9 @@ html {
       .aj-feedback,
       .aj-find-contact-box {
         background-color: var(--white);
-        padding: 25px;
+        padding: 24px;
         border-radius: var(--theme-border-radius);
         border: 1px solid var(--light-grey);
-
-        &.aj-find-contact-box {
-          width: 100%;
-          margin-bottom: 1rem;
-          display: flex;
-
-          .aj-find-contact-box-action {
-            width: 35%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-          }
-        }
-
-        &.aj-offline-results {
-          margin-right: 1rem;
-          width: calc(40% - 1rem);
-        }
 
         &.aj-feedback {
           width: 60%;
@@ -101,6 +84,28 @@ html {
             margin-top: 1rem;
           }
         }
+      }
+
+      .aj-find-contact-box {
+        width: 100%;
+        margin-bottom: 1rem;
+        display: flex;
+
+        .aj-find-contact-box-content {
+          margin-right: 16px;
+        }
+
+        .aj-find-contact-box-action {
+          width: 35%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+        }
+      }
+
+      .aj-offline-results {
+        margin-right: 1rem;
+        width: calc(40% - 1rem);
       }
 
       .aj-offline-results-button {
@@ -238,18 +243,21 @@ html {
     }
 
     .aj-results-details {
-      padding: 25px !important;
+      padding: 24px !important;
     }
 
     .aj-results-details-feedback-box {
       margin-top: 2rem;
     }
 
+    .aj-aide-description {
+      text-align: justify;
+    }
+
     .aj-aide-warning {
       background-color: #fef3cf;
-      padding: 7px 1rem;
+      padding: 8px;
       margin-top: 1rem;
-      margin-bottom: 2rem;
     }
 
     .aj-etablissements-intro {

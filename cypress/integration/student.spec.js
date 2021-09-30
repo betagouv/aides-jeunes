@@ -6,21 +6,6 @@ context("Full simulation", () => {
     cy.visit("http://localhost:8080/init-ci")
   })
 
-  it("accepts a basic situation", () => {
-    steps.home()
-    steps.demandeur()
-    steps.zeroEnfants()
-    steps.celibataire()
-    steps.sansDomicileStable()
-    steps.salaireSeul()
-    // steps.sansPensionAlimentaireVersees()
-    steps.interestFlagExtra()
-
-    steps.waitForResults()
-    steps.hasPrimeActivite()
-    steps.captureFiscalResources()
-  })
-
   it("accept a student situation", () => {
     steps.home()
     steps.etudiant_public()
@@ -32,20 +17,19 @@ context("Full simulation", () => {
     steps.celibataire()
     steps.parentsSepares()
     steps.unEnfantSuperieur()
-    steps.locataire()
+    steps.heberge()
+    steps.neParticipePasLogement()
+    steps.hebergeParents()
 
     cy.get('input[type="number"').type("45200")
     steps.submit()
-
-    // Parents habitent en france
-    steps.checkRadio(false)
-    steps.submit()
-
     // Ressources
-
-    steps.salaireSeul()
-
-    cy.get('input[type="number"]').type("0")
+    steps.submit()
+    cy.get(".aj-tooltip")
+    cy.get(".aj-question")
+      .invoke("text")
+      .should("contain", "revenu brut global")
+    cy.get('input[type="number"]').type("17860.35")
     steps.submit()
     cy.get('input[type="number"]').type("1")
     steps.submit()
@@ -59,6 +43,8 @@ context("Full simulation", () => {
     steps.submit()
     cy.get('input[type="number"]').type("2")
     steps.submit()
-    steps.hasAideLogement(3)
+
+    steps.waitForResults()
+    steps.hasBourseCriteresSociaux(3)
   })
 })

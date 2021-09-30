@@ -53,10 +53,11 @@ let requestedVariables = {}
 forEach((aide, aideId) => {
   const item = aide.openfisca_eligibility_source || aideId
   requestedVariables[item] = requestedVariables[item] || assign({}, aide)
-  if (aide.uncomputability)
+  if (aide.uncomputability) {
     requestedVariables[aideId + "_non_calculable"] = assign({}, aide, {
       type: "string",
     })
+  }
 
   if (aide.extra) {
     aide.extra.forEach(function (extra) {

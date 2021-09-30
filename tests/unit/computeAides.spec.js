@@ -37,6 +37,9 @@ describe("computeAides", function () {
           alfortville_noel_enfants: {
             "2014-11": 10,
           },
+          css_participation_forfaitaire: {
+            "2014-11": 10,
+          },
         },
       },
       menages: {
@@ -49,9 +52,6 @@ describe("computeAides", function () {
       },
       individus: {
         demandeur: {
-          css_participation_forfaitaire: {
-            "2014-11": 10,
-          },
           logement_social_eligible: {
             "2014-11": false,
           },
@@ -160,6 +160,37 @@ describe("computeAides", function () {
         return element.id === "alfortville_noel_enfants"
       })
       expect(private_aid).toBeFalsy()
+    })
+  })
+
+  describe("computeAides of complex values", () => {
+    it("should extract complex boolean values", () => {
+      openfiscaResult.familles._.css_participation_forfaitaire = {
+        "2014-11": 0,
+      }
+      openfiscaResult.familles._.cmu_c = {
+        "2014-11": true,
+      }
+      droits = compute(situation, openfiscaResult)
+
+      const css = droits.droitsEligibles.find(
+        (droit) => droit.id === "css_participation_forfaitaire"
+      )
+
+      expect(css.montant).toEqual(true)
+    })
+
+    it("should extract complex number values", () => {
+      openfiscaResult.familles._.cmu_c = {
+        "2014-11": false,
+      }
+      droits = compute(situation, openfiscaResult)
+
+      const css = droits.droitsEligibles.find(
+        (droit) => droit.id === "css_participation_forfaitaire"
+      )
+
+      expect(css.montant).toEqual(10)
     })
   })
 })

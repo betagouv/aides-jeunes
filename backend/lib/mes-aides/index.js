@@ -38,7 +38,11 @@ function valueAt(ressourceId, ressources, period, aide) {
 }
 
 function round(amount, aide) {
-  if (aide.type && aide.type == "bool") {
+  if (aide.type && aide.type === "complex" && typeof amount === "boolean") {
+    return amount
+  }
+
+  if (aide.type && aide.type === "bool") {
     return Boolean(amount)
   }
 

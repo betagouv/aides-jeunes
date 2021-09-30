@@ -349,14 +349,36 @@ export function sansPensionAlimentaireVersees() {
   submit()
 }
 
+export function waitForResults() {
+  cy.get("#print-disclaimer", { timeout: 20000 })
+    .invoke("text")
+    .should("contain", "engagement")
+}
+
+export function hasCSS(position) {
+  position = position || 1
+  const name = /complémentaire santé solidaire/
+  const id = "css"
+  cy.get(
+    '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
+      position +
+      ")",
+    { timeout: 6000 }
+  ).as(id + "-summary")
+  cy.get("@" + id + "-summary")
+    .find('[itemprop="name"]')
+    .invoke("text")
+    .should("match", name)
+  cy.get("@" + id + "-summary").find(
+    '[data-testid="droit-montant-icon-fa-check-circle"]'
+  )
+}
+
 export function hasPrimeActivite(position) {
   position = position || 1
   const name = /prime d’activité/
   const id = "ppa"
   const description = /revenus/
-  cy.get("#print-disclaimer", { timeout: 20000 })
-    .invoke("text")
-    .should("contain", "engagement")
   cy.get(
     '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
       position +
@@ -389,9 +411,6 @@ export function captureFiscalResources(position) {
   const name = /livret d’épargne populaire/
   const id = "livretEpargnePopulaire"
   cy.get(".aj-droit-details-back-button").click()
-  cy.get("#print-disclaimer", { timeout: 20000 })
-    .invoke("text")
-    .should("contain", "engagement")
   cy.get(
     `.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(${
       position || 2
@@ -415,9 +434,6 @@ export function hasAAH() {
   const name = /allocation aux adultes handicapés/
   const id = "aah"
   const description = "AAH"
-  cy.get("#print-disclaimer", { timeout: 20000 })
-    .invoke("text")
-    .should("contain", "engagement")
   cy.get(
     '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
       position +
@@ -451,9 +467,6 @@ export function hasLogementSocial() {
   const name = /logement social/
   const id = "logement"
   const description = /revenus/
-  cy.get("#print-disclaimer", { timeout: 20000 })
-    .invoke("text")
-    .should("contain", "engagement")
   cy.get(
     '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
       position +
@@ -482,9 +495,6 @@ export function hasBourseCriteresSociaux(position) {
   const name = /bourse sur critères sociaux/
   const id = "bourse_criteres_sociaux"
   const description = /BCS/
-  cy.get("#print-disclaimer", { timeout: 20000 })
-    .invoke("text")
-    .should("contain", "engagement")
   cy.get(
     '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
       position +

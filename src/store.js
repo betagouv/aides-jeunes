@@ -298,7 +298,11 @@ const store = new Vuex.Store({
       state.error = error
     },
     addEnfant: function (state, enfant) {
-      state.situation.enfants.push(enfant)
+      if (state.situation.enfants) {
+        state.situation.enfants.push(enfant)
+      } else {
+        state.situation.enfants = [enfant]
+      }
     },
     setAmeliNoticationDone: function (state) {
       state.ameliNoticationDone = true

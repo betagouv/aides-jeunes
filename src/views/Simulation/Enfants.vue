@@ -70,7 +70,7 @@ export default {
   },
   computed: {
     enfants: function () {
-      return [].concat(...this.$store.state.situation.enfants)
+      return this.$store.state.situation.enfants || []
     },
   },
   filters: {
@@ -95,7 +95,7 @@ export default {
   methods: {
     addPAC: function () {
       let { individu } = Individu.get(
-        this.$store.state.situation.enfants,
+        this.$store.state.situation.enfants || [],
         "enfant",
         1,
         this.$store.state.dates

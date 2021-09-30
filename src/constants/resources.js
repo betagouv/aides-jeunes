@@ -97,7 +97,10 @@ let ressourceTypes = [
     category: "allocations",
     prefix: "des",
     isRelevant: (situation, individu) => {
-      return individu.id !== "demandeur" || Boolean(situation.enfants.length)
+      return (
+        individu.id !== "demandeur" ||
+        Boolean(situation.enfants && situation.enfants.length)
+      )
     },
   },
   {
@@ -106,7 +109,10 @@ let ressourceTypes = [
     category: "allocations",
     prefix: "le",
     isRelevant: (situation, individu) => {
-      return individu.id !== "demandeur" || Boolean(situation.enfants.length)
+      return (
+        individu.id !== "demandeur" ||
+        Boolean(situation.enfants && situation.enfants.length)
+      )
     },
   },
   {
@@ -117,7 +123,10 @@ let ressourceTypes = [
     isRelevant: (situation, individu) => {
       return (
         individu.id !== "demandeur" ||
-        Boolean(situation.enfants.filter((e) => e.garde_aternee).length)
+        Boolean(
+          situation.enfants &&
+            situation.enfants.filter((e) => e.garde_aternee).length
+        )
       )
     },
   },
@@ -217,7 +226,10 @@ let ressourceTypes = [
     isRelevant: (situation, individu) => {
       return (
         individu.id !== "demandeur" ||
-        Boolean(situation.enfants.filter((enfant) => enfant.handicap).length)
+        Boolean(
+          situation.enfants &&
+            situation.enfants.filter((enfant) => enfant.handicap).length
+        )
       )
     },
   },
@@ -229,7 +241,10 @@ let ressourceTypes = [
     isRelevant: (situation, individu) => {
       return (
         individu.handicap ||
-        Boolean(situation.enfants.filter((enfant) => enfant.handicap).length)
+        Boolean(
+          situation.enfants &&
+            situation.enfants.filter((enfant) => enfant.handicap).length
+        )
       )
     },
   },
@@ -239,7 +254,10 @@ let ressourceTypes = [
     category: "allocations",
     prefix: "la",
     isRelevant: (situation, individu) => {
-      return individu.id !== "demandeur" || Boolean(situation.enfants.length)
+      return (
+        individu.id !== "demandeur" ||
+        Boolean(situation.enfants && situation.enfants.length)
+      )
     },
   },
   {
@@ -248,7 +266,10 @@ let ressourceTypes = [
     category: "allocations",
     prefix: "le",
     isRelevant: (situation, individu) => {
-      return individu.id !== "demandeur" || Boolean(situation.enfants.length)
+      return (
+        individu.id !== "demandeur" ||
+        Boolean(situation.enfants && situation.enfants.length)
+      )
     },
   },
   {
@@ -257,7 +278,10 @@ let ressourceTypes = [
     category: "allocations",
     prefix: "la",
     isRelevant: (situation, individu) => {
-      return individu.id !== "demandeur" || Boolean(situation.enfants.length)
+      return (
+        individu.id !== "demandeur" ||
+        Boolean(situation.enfants && situation.enfants.length)
+      )
     },
   },
   {
@@ -266,9 +290,7 @@ let ressourceTypes = [
     category: "indemnites",
     interuptionQuestionLabel:
       "des indemnités de la sécurité sociale, un salaire ou des allocations chômage",
-    isRelevant: (situation) => {
-      return situation.enfants.length > 0
-    },
+    isRelevant: (situation) => situation.enfants && situation.enfants.length,
   },
   {
     id: "indemnites_journalieres_maladie",

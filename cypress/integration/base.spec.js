@@ -16,7 +16,6 @@ context("Full simulation", () => {
     // steps.sansPensionAlimentaireVersees()
     steps.interestFlagExtra()
 
-    steps.autoSubmit()
     steps.waitForResults()
     steps.hasPrimeActivite()
     steps.captureFiscalResources()

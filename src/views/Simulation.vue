@@ -19,7 +19,7 @@
         </div>
       </div>
       <Progress v-if="debug" />
-      <Sommaire v-else />
+      <Sommaire v-else-if="showSummary" />
     </div>
   </div>
 </template>
@@ -42,6 +42,9 @@ export default {
     }
   },
   computed: {
+    showSummary() {
+      return this.$route.path !== "/simulation/recapitulatif"
+    },
     debug() {
       return this.$store.getters.getDebug
     },

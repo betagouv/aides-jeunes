@@ -26,7 +26,9 @@ export const SIMPLE_STEPS = {
     return [
       {
         label: "Quel est votre code postal ?",
-        value: displayDepcomValue(menage._codePostal, menage._nomCommune),
+        value: menage._codePostal
+          ? displayDepcomValue(menage._codePostal, menage._nomCommune)
+          : undefined,
       },
     ]
   },
@@ -83,12 +85,14 @@ export const COMPLEX_STEPS = {
     },
     fn() {
       const enfants = this.$store.state.situation.enfants
+      let value = undefined
+      if (enfants) {
+        value = enfants.length ? `${enfants.length} enfant(s)` : `Aucun enfant`
+      }
       return [
         {
           label: "Mes enfants à charge",
-          value: enfants.length
-            ? `${enfants.length} enfant(s)`
-            : `Aucun enfant`,
+          value,
         },
       ]
     },
@@ -123,11 +127,15 @@ export const COMPLEX_STEPS = {
       return [
         {
           label: loyerData.loyerQuestion.label,
-          value: displayCurrencyValue(loyerData.loyerQuestion.selectedValue),
+          value: loyerData.loyerQuestion.selectedValue
+            ? displayCurrencyValue(loyerData.loyerQuestion.selectedValue)
+            : undefined,
         },
         loyerData.chargesQuestion && {
           label: loyerData.chargesQuestion.label,
-          value: displayCurrencyValue(loyerData.chargesQuestion.selectedValue),
+          value: loyerData.chargesQuestion.selectedValue
+            ? displayCurrencyValue(loyerData.chargesQuestion.selectedValue)
+            : undefined,
         },
       ].filter((item) => item)
     },

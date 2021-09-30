@@ -9,11 +9,7 @@
     >
     <div>
       <template v-for="(chapter, chapterIndex) in chapters">
-        <div
-          class="chapter-block"
-          :key="chapter.name"
-          v-if="chapter.questions.length"
-        >
+        <div class="chapter-block" :key="chapter.name">
           <h2 class="aj-question">{{ chapter.label }}</h2>
           <template v-for="(question, questionIndex) in chapter.questions">
             <template v-if="question.isChapterSubtitle">
@@ -28,6 +24,7 @@
               <div
                 :key="`chapter_${chapterIndex}_question_${questionIndex}`"
                 class="recapitulatif-row"
+                v-if="question.value !== undefined"
               >
                 <div class="question-col" v-html="question.label"></div>
 

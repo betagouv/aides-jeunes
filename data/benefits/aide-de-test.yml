@@ -1,0 +1,19 @@
+label: aide de test
+institution: etat
+description: Description de l'aide
+link: https://mes-aides.1jeune1solution.beta.gouv.fr/
+form: https://mes-aides.1jeune1solution.beta.gouv.fr/
+teleservice: https://mes-aides.1jeune1solution.beta.gouv.fr/
+prefix: l’
+type: float
+floorAt: 1
+interestFlag: null
+entity: menages
+computesLocally: true
+montant: 42
+regions:
+  - 52
+age_min: 16
+age_max: 26
+statuts:
+  - etudiant

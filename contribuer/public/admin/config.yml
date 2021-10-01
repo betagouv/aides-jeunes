@@ -18,45 +18,6 @@ publish_mode: editorial_workflow
 root: ../../..
 
 collections:
-  - name: institutions
-    label: Institutions
-    label_singular: institution
-    identifier_field: name
-    folder: "data/institutions"
-    create: true
-    delete: false
-    editor:
-      preview: false
-    slug: "{{name}}"
-    extension: yml
-    fields:
-      - label: Nom de votre institution
-        hint: Département de la Gironde, Ville de Canéjan, Mauges Communauté, etc.
-        name: name
-        widget: string
-      - label: Logo
-        name: imgSrc
-        widget: image
-        allow_multiple: false
-      - label: Institution nationale
-        name: national
-        widget: boolean
-      - label: aides fictives
-        label_singular: aide fictive
-        name: testing_benefits
-        widget: list
-        hint: Pour expérimenter la contribution sur Mes Aides, vous pouvez ajouter une aide, fictive. C'est une aide simplifiée mais cet premier ajout nous semble être une étape importante et nécessaire pour s'approprier les modalités de contribution.
-        default: []
-        collapsed: false
-        fields:
-          - label: Nom
-            name: name
-            hint: Aide aux impayés de loyer, Chèque de Nöel, etc.
-            widget: string
-          - label: Lien vers la page d'informations de référence
-            hint: Ce lien permet aux usagers d'aller plus loin dans leurs démarches et de bénéficier effectivement de l'aide. Il est préférable d'indiquer un lien vers un site institutionnel.
-            name: link
-            widget: string
   - name: benefits
     label: Aides
     label_singular: Aide
@@ -187,29 +148,29 @@ collections:
         multiple: true
         options:
           - label: Île-de-France
-            value: 11
+            value: "11"
           - label: Centre-Val de Loire
-            value: 24
+            value: "24"
           - label: Bourgogne-Franche-Comte
-            value: 27
+            value: "27"
           - label: Normandie
-            value: 28
+            value: "28"
           - label: Hauts-de-france
-            value: 32
+            value: "32"
           - label: Grand Est
-            value: 44
+            value: "44"
           - label: Pays de la Loire
-            value: 52
+            value: "52"
           - label: Bretagne
-            value: 53
+            value: "53"
           - label: Nouvelle-Aquitaine
-            value: 75
+            value: "75"
           - label: Occitanie
-            value: 76
+            value: "76"
           - label: Auvergne-Rhône-Alpes
-            value: 84
+            value: "84"
           - label: Provence-Alpes-Côte D'azur
-            value: 93
+            value: "93"
       - label: Code des départements
         name: departements
         required: false
@@ -250,7 +211,45 @@ collections:
             value: independant
           - label: En service civique
             value: service_civique
-
+  - name: institutions
+    label: Institutions
+    label_singular: institution
+    identifier_field: name
+    folder: "data/institutions"
+    create: true
+    delete: false
+    editor:
+      preview: false
+    slug: "{{name}}"
+    extension: yml
+    fields:
+      - label: Nom de votre institution
+        hint: Département de la Gironde, Ville de Canéjan, Mauges Communauté, etc.
+        name: name
+        widget: string
+      - label: Logo
+        name: imgSrc
+        widget: image
+        allow_multiple: false
+      - label: Institution nationale
+        name: national
+        widget: boolean
+      - label: aides fictives
+        label_singular: aide fictive
+        name: testing_benefits
+        widget: list
+        hint: Pour expérimenter la contribution sur Mes Aides, vous pouvez ajouter une aide, fictive. C'est une aide simplifiée mais cet premier ajout nous semble être une étape importante et nécessaire pour s'approprier les modalités de contribution.
+        default: []
+        collapsed: false
+        fields:
+          - label: Nom
+            name: name
+            hint: Aide aux impayés de loyer, Chèque de Nöel, etc.
+            widget: string
+          - label: Lien vers la page d'informations de référence
+            hint: Ce lien permet aux usagers d'aller plus loin dans leurs démarches et de bénéficier effectivement de l'aide. Il est préférable d'indiquer un lien vers un site institutionnel.
+            name: link
+            widget: string
   - name: contribution-pages
     label: Pages
     label_singular: page

@@ -49,7 +49,7 @@ export default {
     YesNoQuestion,
   },
   data() {
-    let situation = this.$store.state.situation
+    let situation = this.$store.getters.situation
     let pensionsVersees = ressourceTypes.find(
       (ressourceType) =>
         ressourceType.id === "pensions_alimentaires_versees_individu"

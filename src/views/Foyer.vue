@@ -62,7 +62,7 @@ export default {
     steps: function () {
       const start = "/foyer/demandeur"
       return [start].concat(
-        this.$state.full(start, this.$store.state.situation, this.$router)
+        this.$state.full(start, this.$store.getters.situation, this.$router)
       )
     },
     total: function () {

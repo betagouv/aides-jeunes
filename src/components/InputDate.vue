@@ -85,7 +85,7 @@ export default {
   name: "InputDate",
   props: {
     id: String,
-    value: Date,
+    value: [Date, String],
     //dateType should be "date" for a DD-MM-YYY date input and "month" for MM-YYYY
     dateType: {
       type: String,

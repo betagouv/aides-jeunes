@@ -10,7 +10,7 @@ export default {
       return (benefit && benefit.montant) || 0
     },
     situation: function () {
-      return this.$store.state.situation
+      return this.$store.getters.situation
     },
     emailSubject: function () {
       return `[${this.situation._id}] Montants inattendus`

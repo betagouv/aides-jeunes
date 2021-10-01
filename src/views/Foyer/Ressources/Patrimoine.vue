@@ -126,7 +126,7 @@ export default {
     Actions,
   },
   data: function () {
-    const situation = this.$store.state.situation
+    const situation = this.$store.getters.situation
     let periodKey = "month:2012-01:120"
     let demandeur = Object.assign({}, situation.demandeur)
     let individus = this.$store.getters.peopleParentsFirst

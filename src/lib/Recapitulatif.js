@@ -89,7 +89,7 @@ export const COMPLEX_STEPS = {
       return step.key.match(/\/simulation\/enfants$/)
     },
     fn() {
-      const enfants = this.$store.state.situation.enfants
+      const enfants = this.$store.getters.situation.enfants
       let value = undefined
       if (enfants) {
         value = enfants.length ? `${enfants.length} enfant(s)` : `Aucun enfant`
@@ -108,7 +108,7 @@ export const COMPLEX_STEPS = {
       return step.key.match(/\/logement$/)
     },
     fn() {
-      const menage = this.$store.state.situation.menage
+      const menage = this.$store.getters.situation.menage
       return [
         {
           label: "Êtes-vous ?",
@@ -125,10 +125,7 @@ export const COMPLEX_STEPS = {
       return step.key.match(/\/loyer$/)
     },
     fn() {
-      const loyerData = Logement.getLoyerData(
-        this.$store.getters.getMenage,
-        this.$store.getters.getLogementStatut || ""
-      )
+      const loyerData = Logement.getLoyerData(this.$store.getters.getAnswer)
       return [
         {
           label: loyerData.loyerQuestion.label,
@@ -158,7 +155,7 @@ export const COMPLEX_STEPS = {
       const categoryId = key_split[key_split.length - 1]
       const ressources = Ressource.getIndividuRessourceTypes(
         individu,
-        this.$store.state.situation
+        this.$store.getters.situation
       )
       const category = ressourceCategories.find(
         (category) => category.id === categoryId

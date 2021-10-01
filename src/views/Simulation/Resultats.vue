@@ -69,7 +69,7 @@
           v-if="!resultatStatus.updating && !isEmpty(droits)"
           v-bind:id="resultatsId"
         />
-        <Feedback :situationID="this.$store.state.situation._id" />
+        <Feedback :situationID="this.$store.getters.situation._id" />
       </div>
     </div>
   </div>
@@ -106,7 +106,7 @@ export default {
     if (this.mock(this.$route.params.droitId)) {
       return
     } else if (this.$route.query && this.$route.query.situationId) {
-      if (this.$store.state.situation._id !== this.$route.query.situationId) {
+      if (this.$store.getters.situation._id !== this.$route.query.situationId) {
         this.$store
           .dispatch("fetch", this.$route.query.situationId)
           .then(() => this.$store.dispatch("compute"))

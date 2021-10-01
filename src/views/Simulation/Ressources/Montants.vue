@@ -115,7 +115,7 @@ export default {
       const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(
         individu,
         this.$route.params.category,
-        this.$store.state.situation
+        this.$store.getters.situation
       )
       return ressourceTypes.reduce((result, type) => {
         if (selectedTypes[type.id]) {

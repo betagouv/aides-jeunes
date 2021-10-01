@@ -8,11 +8,9 @@ import moment from "moment"
 import values from "lodash/values"
 import some from "lodash/some"
 
-import findIndex from "lodash/findIndex"
-
 import { computeAides, datesGenerator } from "../backend/lib/mes-aides"
 import { categoriesRnc, patrimoineTypes } from "./constants/resources"
-import { generateAllSteps } from "./lib/State/generator"
+import { generateAllSteps, generateSituation } from "./lib/State/generator"
 import Institution from "./lib/Institution"
 import ABTestingService from "./plugins/ABTestingService"
 import EtablissementModule from "./modules/Etablissement"
@@ -67,25 +65,16 @@ function defaultStore() {
   const now = moment().format()
 
   return {
+    answers: {
+      all: [],
+      current: [],
+      enfants: [],
+    },
     message: {
       text: null,
       counter: null,
     },
     debug: false,
-    situation: {
-      _id: null,
-      external_id: null,
-      dateDeValeur: now,
-      enfants: null,
-      famille: {},
-      logement: {},
-      foyer_fiscal: {},
-      menage: {
-        aide_logement_date_pret_conventionne: "2018-12-31",
-      },
-      parents: {},
-      version: 3,
-    },
     error: false,
     access: {
       fetching: false,
@@ -109,35 +98,67 @@ function restoreLocal() {
     store = JSON.parse(window.sessionStorage.store)
   }
 
-  if (!store || !store.situation || !store.situation.dateDeValeur) {
+  const situation =
+    store && store.answers
+      ? generateSituation(store.answers)
+      : generateSituation()
+  if (!store || !situation || !situation.dateDeValeur) {
     store = defaultStore()
   }
 
   return {
-    situation: adaptPersistedSituation(store.situation),
+    answers: store.answers || { all: [], current: [], enfants: [] },
     calculs: store.calculs || defaultCalculs(),
-    dates: datesGenerator(store.situation.dateDeValeur),
+    dates: datesGenerator(situation.dateDeValeur),
     ameliNoticationDone: store.ameliNoticationDone,
   }
+}
+
+const storeAnswer = (answers, newAnswer, clean) => {
+  let found = false
+  let i = 0
+  while (!found && i < answers.length) {
+    const answer = answers[i]
+    if (
+      answer.id === newAnswer.id &&
+      answer.entityName === newAnswer.entityName &&
+      answer.fieldName === newAnswer.fieldName
+    ) {
+      answer.value = newAnswer.value
+      found = true
+    }
+    i++
+  }
+  let results
+  if (!found) {
+    results = [...answers, newAnswer]
+  } else if (clean) {
+    results = answers.slice(0, i)
+  } else {
+    results = [...answers]
+  }
+
+  return results
 }
 
 const store = new Vuex.Store({
   state: defaultStore(),
   getters: {
-    passSanityCheck: function (state) {
+    passSanityCheck: function (state, getters) {
       return (
-        state.situation.demandeur && state.situation.demandeur.date_naissance
+        getters.situation.demandeur &&
+        getters.situation.demandeur.date_naissance
       )
     },
     getDebug: function (state) {
       return state.debug
     },
-    peopleParentsFirst: function (state) {
+    peopleParentsFirst: function (state, getters) {
       return []
         .concat(
-          state.situation.demandeur,
-          state.situation.conjoint,
-          state.situation.enfants
+          getters.situation.demandeur,
+          getters.situation.conjoint,
+          getters.situation.enfants
         )
         .filter((individu) => individu)
     },
@@ -147,26 +168,25 @@ const store = new Vuex.Store({
         return items.length ? items[0] : null
       }
     },
-    getMenage: function (state) {
-      return state.situation.menage
+    getMenage: function (state, getters) {
+      return getters.situation.menage
     },
-    getParents: function (state) {
-      return state.situation.parents
+    getParents: function (state, getters) {
+      return getters.situation.parents
     },
-    getFamille: function (state) {
-      return state.situation.famille
-    },
-    getFoyerFiscal: function (state) {
-      return state.situation.foyer_fiscal
+    getFoyerFiscal: function (state, getters) {
+      return getters.situation.foyer_fiscal
     },
     getLogementStatut: function (state) {
-      return (
-        state.situation.menage &&
-        state.situation.menage.statut_occupation_logement
+      const answer = state.answers.all.find(
+        (answer) =>
+          answer.id === "menage" &&
+          answer.fieldName === "statut_occupation_logement"
       )
+      return answer && answer.value
     },
-    getAllSteps: function (state) {
-      return generateAllSteps(state.situation)
+    getAllSteps: function (state, getters) {
+      return generateAllSteps(getters.situation)
     },
     ressourcesYearMinusTwoCaptured: function (state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
@@ -189,15 +209,15 @@ const store = new Vuex.Store({
         false)
       })
     },
-    isProprietaireAvecPretEnCours: function (state) {
-      let menage = state.situation.menage
+    isProprietaireAvecPretEnCours: function (state, getters) {
+      let menage = getters.situation.menage
       let isProprietaire = ["primo_accedant", "proprietaire"].includes(
         menage.statut_occupation_logement
       )
       return isProprietaire && menage.loyer > 0
     },
-    isHebergeParticipeFrais: function (state) {
-      let menage = state.situation.menage
+    isHebergeParticipeFrais: function (state, getters) {
+      let menage = getters.situation.menage
       return (
         menage.statut_occupation_logement === "loge_gratuitement" &&
         menage.participation_frais === true
@@ -208,8 +228,8 @@ const store = new Vuex.Store({
      * - false if those ressources are all null else
      * - true
      */
-    hasPatrimoine: function (state) {
-      let demandeur = state.situation.demandeur
+    hasPatrimoine: function (state, getters) {
+      let demandeur = getters.situation.demandeur
       if (!demandeur) {
         return undefined
       }
@@ -222,28 +242,48 @@ const store = new Vuex.Store({
         return accum || some(values(demandeur[ressource.id]))
       }, undefined)
     },
-    fetchRepresentation: function (state) {
+    fetchRepresentation: function (state, getters) {
       return function (representation, situationId) {
         return axios
           .get(
             `api/situations/${
-              situationId || state.situation._id
+              situationId || getters.situation._id
             }/${representation}`
           )
           .then((response) => response.data)
       }
     },
-    hasResults: function (state) {
+    hasResults: function (state, getters) {
       return (
-        state.situation._id &&
+        getters.situation._id &&
         state.calculs.resultats._id &&
-        state.calculs.resultats._id === state.situation._id
+        state.calculs.resultats._id === getters.situation._id
       )
+    },
+    getAnswer: (state) => (id, entityName, fieldName) => {
+      const answer = state.answers.all.find(
+        (answer) =>
+          answer.id === id &&
+          answer.entityName === entityName &&
+          answer.fieldName === fieldName
+      )
+      return answer ? answer.value : undefined
+    },
+    situation: (state) => {
+      console.log("generateSituation")
+      return generateSituation(state.answers)
     },
   },
   mutations: {
+    answer: (state, answer) => {
+      state.answers = {
+        ...state.answers,
+        all: storeAnswer(state.answers.all, answer, false),
+        current: storeAnswer(state.answers.current, answer, true),
+      }
+    },
     clear: function (state) {
-      state.situation = {}
+      state.answers = { all: [], current: [], enfants: [] }
       state.access.forbidden = false
       state.access.fetching = false
     },
@@ -251,8 +291,8 @@ const store = new Vuex.Store({
       state.debug = debug
     },
     initialize: function (state) {
-      const { situation, dates, ameliNoticationDone, calculs } = restoreLocal()
-      state.situation = situation
+      const { answers, dates, ameliNoticationDone, calculs } = restoreLocal()
+      state.answers = answers
       state.calculs = calculs
       state.dates = dates
       state.ameliNoticationDone = ameliNoticationDone
@@ -271,37 +311,47 @@ const store = new Vuex.Store({
       state.situation = Object.assign({}, state.situation, { parents })
     },
     removeConjoint: function (state) {
-      const s = Object.assign({}, state.situation)
-      delete s.conjoint
-      state.situation = s
+      Vue.set(state.answers, "conjoint", false)
     },
     removeEnfant: function (state, id) {
-      state.situation.enfants = state.situation.enfants.filter(
-        (e) => e.id !== id
-      )
-    },
-    saveIndividu: function (state, individu) {
-      if (individu.id === "demandeur") {
-        state.situation = Object.assign({}, state.situation, {
-          demandeur: individu,
-        })
-      } else if (individu.id === "conjoint") {
-        state.situation = Object.assign({}, state.situation, {
-          conjoint: individu,
-        })
-      } else {
-        const idx = findIndex(state.situation.enfants, { id: individu.id })
-        state.situation.enfants.splice(idx, 1, individu)
+      const enfantIndex = id.split("_")[1]
+      state.answers = {
+        ...state.answers,
+        enfants: state.answers.enfants.filter((i) => i != enfantIndex),
       }
     },
+    saveIndividu: function () {},
     saveError: function (state, error) {
       state.error = error
     },
-    addEnfant: function (state, enfant) {
-      if (state.situation.enfants) {
-        state.situation.enfants.push(enfant)
+    addConjoint: function (state) {
+      Vue.set(state.answers, "conjoint", true)
+    },
+    addEnfant: function (state) {
+      let enfantId
+      let enfants
+      if (state.answers.enfants && state.answers.enfants.length > 0) {
+        enfantId = state.answers.enfants[state.answers.enfants.length - 1] + 1
+        enfants = [...state.answers.enfants, enfantId]
       } else {
-        state.situation.enfants = [enfant]
+        enfantId = 0
+        enfants = [enfantId]
+      }
+      const answer = {
+        entityName: "individu",
+        id: `enfant_${enfantId}`,
+        fieldName: "_firstName",
+        value:
+          "votre " +
+          enfants.length +
+          (enfants.length === 1 ? "ᵉʳ" : "ᵉ") +
+          " enfant",
+      }
+
+      state.answers = {
+        enfants,
+        all: storeAnswer(state.answers.all, answer, false),
+        current: storeAnswer(state.answers.current, answer, true),
       }
     },
     zeroEnfant: function (state) {
@@ -331,7 +381,7 @@ const store = new Vuex.Store({
       state.calculs.dirty = false
     },
     setExternalId: function (state, id) {
-      state.situation.external_id = id
+      state.external_id = id
     },
     startComputation: function (state) {
       state.calculs.updating = true
@@ -382,6 +432,10 @@ const store = new Vuex.Store({
     },
   },
   actions: {
+    answer: ({ commit }, answer) => {
+      commit("answer", answer)
+      commit("setDirty")
+    },
     clear: function ({ commit }, external_id) {
       commit("clear")
       commit("initialize")
@@ -401,8 +455,12 @@ const store = new Vuex.Store({
       commit("removeEnfant", id)
       commit("setDirty")
     },
-    addEnfant: function ({ commit }, enfant) {
-      commit("addEnfant", enfant)
+    addConjoint: function ({ commit }) {
+      commit("addConjoint")
+      commit("setDirty")
+    },
+    addEnfant: function ({ commit }) {
+      commit("addEnfant")
       commit("setDirty")
     },
     zeroEnfant: function ({ commit }) {
@@ -416,16 +474,8 @@ const store = new Vuex.Store({
       commit("saveIndividu", individu)
       commit("setDirty")
     },
-    updateFamille: function ({ commit }, famille) {
-      commit("saveFamille", famille)
-      commit("setDirty")
-    },
     updateFoyerFiscal: function ({ commit }, foyer_fiscal) {
       commit("saveFoyerFiscal", foyer_fiscal)
-      commit("setDirty")
-    },
-    updateMenage: function ({ commit }, menage) {
-      commit("saveMenage", menage)
       commit("setDirty")
     },
     updateParents: function ({ commit }, parents) {
@@ -543,15 +593,22 @@ const store = new Vuex.Store({
 })
 export default store
 
-store.subscribe(({ type }, { ameliNoticationDone, situation, calculs }) => {
-  if (type === "initialize") {
-    return
+store.subscribe(
+  ({ type }, { answers, enfants, ameliNoticationDone, calculs }) => {
+    if (type === "initialize") {
+      return
+    }
+    window.sessionStorage.setItem(
+      "store",
+      JSON.stringify({
+        answers,
+        enfants,
+        ameliNoticationDone,
+        calculs,
+      })
+    )
   }
-  window.sessionStorage.setItem(
-    "store",
-    JSON.stringify({ ameliNoticationDone, situation, calculs })
-  )
-})
+)
 
 // Replicate strict mode
 store._vm.$watch(

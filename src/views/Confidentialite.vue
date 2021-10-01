@@ -312,7 +312,7 @@ export default {
   name: "cgu",
   computed: {
     situation: function () {
-      return this.$store.state.situation
+      return this.$store.getters.situation
     },
     emailBody: function () {
       return `Bonjour,

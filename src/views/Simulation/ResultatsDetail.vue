@@ -65,7 +65,7 @@ export default {
   },
   computed: {
     situation: function () {
-      return this.$store.state.situation
+      return this.$store.getters.situation
     },
     droit: function () {
       const droitId = this.$route.params.droitId

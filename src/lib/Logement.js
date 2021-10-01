@@ -57,36 +57,43 @@ function captureCharges(logementStatut) {
   )
 }
 
-function getLoyerData(menage, logementStatut) {
+function getLoyerData(getAnswer) {
+  const logementStatut = getAnswer(
+    "menage",
+    "menage",
+    "statut_occupation_logement"
+  )
+  const coloc = getAnswer("menage", "menage", "coloc")
+  const loyer = getAnswer("menage", "menage", "loyer")
+  const chargesLocatives = getAnswer("menage", "menage", "charges_locatives")
+
   const isLocataire = !Logement.isOwner(logementStatut)
   const captureCharges = Logement.captureCharges(logementStatut)
 
   if (isLocataire) {
     const loyerLabel = `Quel est le montant${
       captureCharges ? "" : ", charges comprises,"
-    } de votre ${menage.coloc ? "part du " : ""}loyer`
+    } de votre ${coloc ? "part du " : ""}loyer`
     return {
-      menage: menage,
       captureCharges,
       loyerQuestion: {
         label: loyerLabel,
-        selectedValue: menage.loyer,
+        selectedValue: loyer,
         hint: "Sans déduire vos aides au logement si vous en avez.",
       },
       chargesQuestion: {
         label: "Quel est le montant de vos charges locatives ?",
-        selectedValue: menage.charges_locatives,
+        selectedValue: chargesLocatives,
         hint: "Cela peut inclure l'eau froide, le chauffage collectif, l'entretien des parties communes…",
       },
     }
   } else {
     return {
       captureCharges,
-      menage: menage,
       loyerQuestion: {
         label: "Quelles sont vos mensualités ?",
         hint: "Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.",
-        selectedValue: menage.loyer,
+        selectedValue: loyer,
       },
     }
   }

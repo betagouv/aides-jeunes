@@ -19,7 +19,7 @@ export default {
   name: "pole-emploi",
   components: { InputNumber },
   data() {
-    const demandeur = this.$store.state.situation.demandeur
+    const demandeur = this.$store.getters.situation.demandeur
     return {
       demandeur,
       agepi_temps_travail_semaine: demandeur.agepi_temps_travail_semaine,

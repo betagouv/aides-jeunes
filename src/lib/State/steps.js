@@ -20,9 +20,7 @@ const ENTITIES_PROPERTIES = {
 
 const UPDATE_METHODS = {
   individu: "updateIndividu",
-  famille: "updateFamille",
   foyerFiscal: "updateFoyerFiscal",
-  menage: "updateMenage",
   parents: "updateParents",
 }
 

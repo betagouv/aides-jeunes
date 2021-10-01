@@ -108,7 +108,7 @@ export default {
     },
   },
   mounted() {
-    if (!this.$store.state.situation.menage.depcom) {
+    if (!this.$store.getters.situation.menage.depcom) {
       this.restoreLatest()
       this.stopSubscription = this.$store.subscribe(({ type }) => {
         if (type === "reset") {
@@ -129,8 +129,8 @@ export default {
         let isRelevant =
           !item.isRelevant ||
           item.isRelevant(
-            this.$store.state.situation.demandeur,
-            this.$store.state.situation
+            this.$store.getters.situation.demandeur,
+            this.$store.getters.situation
           )
         if (isRelevant) {
           relevantTypes = relevantTypes.concat(...item.types)
@@ -141,7 +141,7 @@ export default {
     loadEtablissements: function () {
       let typeEtablissements = this.getEtablissementsTypesBySituation()
       this.$store.dispatch("etablissementsSearch/get", {
-        city: this.$store.state.situation.menage.depcom,
+        city: this.$store.getters.situation.menage.depcom,
         types: typeEtablissements,
       })
     },

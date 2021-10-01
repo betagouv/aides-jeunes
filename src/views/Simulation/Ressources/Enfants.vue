@@ -26,7 +26,7 @@ export default {
     Actions,
   },
   data: function () {
-    let enfants = this.$store.state.situation.enfants.map((e) =>
+    let enfants = this.$store.getters.situation.enfants.map((e) =>
       Object.assign({}, e)
     )
     return {
@@ -39,7 +39,7 @@ export default {
         if (!enfant._hasRessources) {
           let ressourceTypes = Ressource.getIndividuRessourceTypes(
             enfant,
-            this.$store.state.situation
+            this.$store.getters.situation
           )
           Object.keys(ressourceTypes).forEach(
             (t) => (ressourceTypes[t] = false)

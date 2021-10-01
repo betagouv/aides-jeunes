@@ -111,7 +111,7 @@ const STEPS = {
     },
     questionType: "number",
     showMoreInfo: (component) => {
-      return component.$store.state.situation.parents._situation === "separes"
+      return component.$store.getters.situation.parents._situation === "separes"
     },
     unit: "€",
   },

@@ -3,10 +3,13 @@ export const createFamilleMixin = (props) => {
 
   return {
     data: function () {
-      const famille = { ...this.$store.state.situation.famille }
-      const value = famille[fieldName]
+      const value = this.$store.getters.getAnswer(
+        "individu",
+        "conjoint",
+        fieldName
+      )
       return {
-        famille,
+        id: "individu",
         value,
       }
     },
@@ -16,8 +19,12 @@ export const createFamilleMixin = (props) => {
           this.$store.dispatch("updateError", "Ce champ est obligatoire.")
           return
         }
-        this.famille[fieldName] = this.value
-        this.$store.dispatch("updateFamille", this.famille)
+        this.$store.dispatch("answer", {
+          id: "conjoint",
+          entityName: "individu",
+          fieldName,
+          value: this.value,
+        })
         this.$push()
       },
     },

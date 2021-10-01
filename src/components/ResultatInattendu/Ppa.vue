@@ -83,7 +83,7 @@ export default {
       return this.$store.getters.isHebergeParticipeFrais
     },
     situation: function () {
-      return this.$store.state.situation
+      return this.$store.getters.situation
     },
   },
 }

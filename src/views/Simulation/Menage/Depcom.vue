@@ -76,10 +76,24 @@ export default {
         (c) => c.nom == this.nomCommune
       )
       if (communeMatches.length) {
-        this.menage.depcom = communeMatches[0].code
-        this.menage._codePostal = this.codePostal.toString()
-        this.menage._nomCommune = this.nomCommune
-        this.$store.dispatch("updateMenage", this.menage)
+        this.$store.dispatch("answer", {
+          id: "menage",
+          entityName: "menage",
+          fieldName: "depcom",
+          value: communeMatches[0].code,
+        })
+        this.$store.dispatch("answer", {
+          id: "menage",
+          entityName: "menage",
+          fieldName: "_codePostal",
+          value: this.codePostal.toString(),
+        })
+        this.$store.dispatch("answer", {
+          id: "menage",
+          entityName: "menage",
+          fieldName: "_nomCommune",
+          value: this.nomCommune,
+        })
       }
       this.$push()
     },

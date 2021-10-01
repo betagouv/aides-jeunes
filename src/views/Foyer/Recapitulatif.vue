@@ -107,7 +107,7 @@ export default {
       return steps.slice(this.previousSteps.length).filter((s) => !s.hideAsNext)
     },
     canGoToResults: function () {
-      return this.$store.state.situation._id
+      return this.$store.getters.situation._id
     },
   },
 }

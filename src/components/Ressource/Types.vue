@@ -59,14 +59,14 @@ export default {
         Ressource.isRessourceOnMainScreen(ressourceType) &&
         Ressource.isRessourceRelevant(
           ressourceType,
-          this.$store.state.situation,
+          this.$store.getters.situation,
           this.individu
         )
       )
     })
     let selectedTypes = Ressource.getIndividuRessourceTypes(
       this.individu,
-      this.$store.state.situation
+      this.$store.getters.situation
     )
     return {
       categories: ressourceCategories,
@@ -88,7 +88,7 @@ export default {
     individu: function () {
       this.selectedTypes = Ressource.getIndividuRessourceTypes(
         this.individu,
-        this.$store.state.situation
+        this.$store.getters.situation
       )
     },
   },

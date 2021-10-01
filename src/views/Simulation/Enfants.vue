@@ -57,7 +57,6 @@
 
 <script>
 import Actions from "@/components/Actions"
-import Individu from "@/lib/Individu"
 import Nationality from "@/lib/Nationality"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import Scolarite from "@/lib/Scolarite"
@@ -70,13 +69,15 @@ export default {
   },
   computed: {
     enfants: function () {
-      return this.$store.state.situation.enfants || []
+      return this.$store.getters.situation.enfants || []
     },
   },
   filters: {
     birthDate: function (date) {
       if (date) {
-        return date.toLocaleDateString("FR-fr", {
+        return (
+          typeof date === "string" ? new Date(date) : date
+        ).toLocaleDateString("FR-fr", {
           day: "numeric",
           month: "numeric",
           year: "numeric",
@@ -94,20 +95,16 @@ export default {
   },
   methods: {
     addPAC: function () {
-      let { individu } = Individu.get(
-        this.$store.state.situation.enfants || [],
-        "enfant",
-        1,
-        this.$store.state.dates
-      )
-      this.$store.dispatch("addEnfant", individu)
-      this.$router.push(`/simulation/individu/${individu.id}/_firstName`)
+      const children = this.$store.state.answers.enfants || []
+      const lastId = children.length > 0 ? children[children.length - 1] : -1
+      this.$store.dispatch("addEnfant")
+      this.$router.push(`/simulation/individu/enfant_${lastId + 1}/_firstName`)
     },
     removePAC: function (id) {
       this.$store.dispatch("removeEnfant", id)
     },
     onSubmit: function () {
-      if (!this.$store.state.situation.enfants) {
+      if (!this.$store.getters.situation.enfants) {
         this.$store.dispatch("zeroEnfant")
       }
       this.$push()

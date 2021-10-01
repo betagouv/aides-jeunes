@@ -1,7 +1,7 @@
 import { yearsAgo } from "@/lib/Utils"
 
 const loadEntity = (component) => {
-  const famille = { ...component.$store.state.situation.famille }
+  const famille = { ...component.$store.getters.situation.famille }
   return famille
 }
 
@@ -27,7 +27,7 @@ const STEPS = {
     question: (component) => {
       return `Avez-vous habité Paris au moins 3 ans depuis ${yearsAgo(
         5,
-        component.$store.state.situation.dateDeValeur
+        component.$store.getters.situation.dateDeValeur
       )} ?`
     },
   },

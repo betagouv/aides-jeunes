@@ -41,18 +41,24 @@ export default {
     Actions,
   },
   data: function () {
-    const menage = { ...this.$store.getters.getMenage } || {}
-    const logementStatut = this.$store.getters.getLogementStatut || ""
-
-    return Logement.getLoyerData(menage, logementStatut)
+    return Logement.getLoyerData(this.$store.getters.getAnswer)
   },
   methods: {
     onSubmit: function () {
-      this.menage.loyer = this.loyerQuestion.selectedValue || 0
+      this.$store.dispatch("answer", {
+        id: "menage",
+        entityName: "menage",
+        fieldName: "loyer",
+        value: this.loyerQuestion.selectedValue || 0,
+      })
       if (this.captureCharges) {
-        this.menage.charges_locatives = this.chargesQuestion.selectedValue || 0
+        this.$store.dispatch("answer", {
+          id: "menage",
+          entityName: "menage",
+          fieldName: "charges_locatives",
+          value: this.chargesQuestion.selectedValue || 0,
+        })
       }
-      this.$store.dispatch("updateMenage", this.menage)
       this.$push()
     },
   },

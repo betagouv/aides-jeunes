@@ -32,7 +32,6 @@
 <script>
 import Actions from "@/components/Actions"
 import { createFamilleMixin } from "@/mixins/FamilleMixin"
-import Individu from "@/lib/Individu"
 
 export default {
   name: "SimulationFamilleEnCouple",
@@ -46,21 +45,13 @@ export default {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
         return
       }
-      this.famille.en_couple = this.value
-      this.$store.dispatch("updateFamille", this.famille)
 
       if (this.value) {
-        const { individu } = Individu.get(
-          this.$store.getters.peopleParentsFirst,
-          "conjoint",
-          "conjoint",
-          this.$store.state.dates
-        )
-        this.$store.dispatch("updateIndividu", individu)
+        this.$store.dispatch("addConjoint")
       } else {
         this.$store.dispatch("removeConjoint")
         this.$store.dispatch("updateIndividu", {
-          ...this.$store.state.situation.demandeur,
+          ...this.$store.getters.situation.demandeur,
           statut_marital: "celibataire",
         })
       }

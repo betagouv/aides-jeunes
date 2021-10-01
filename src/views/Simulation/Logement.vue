@@ -177,7 +177,7 @@ export default {
             label: "Foyer",
             value: "foyer",
             hint: [
-              ...(this.$store.state.situation.demandeur.activite == "etudiant"
+              ...(this.$store.getters.situation.demandeur.activite == "etudiant"
                 ? ["résidence universitaire", "logement CROUS"]
                 : []),
               this.demandeurAge() > 50 ? "maison de retraite" : "",
@@ -194,7 +194,7 @@ export default {
   methods: {
     demandeurAge: function () {
       return Individu.age(
-        this.$store.state.situation.demandeur,
+        this.$store.getters.situation.demandeur,
         this.$store.state.dates.today.value
       )
     },
@@ -218,9 +218,11 @@ export default {
           "Le champ type de logement est obligatoire."
         )
       } else {
-        this.$store.dispatch("updateMenage", {
-          ...this.$store.getters.getMenage,
-          statut_occupation_logement: Logement.getStatutOccupationLogement({
+        this.$store.dispatch("answer", {
+          id: "menage",
+          entityName: "menage",
+          fieldName: "statut_occupation_logement",
+          value: Logement.getStatutOccupationLogement({
             type: this.logementTypesQuestion.selectedValue,
             primoAccedant: this.primoAccedantQuestion.selectedValue,
             locationType: this.locataireTypesQuestion.selectedValue,

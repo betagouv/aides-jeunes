@@ -190,7 +190,7 @@ export default {
   },
   computed: {
     aCharge() {
-      return Situation.aCharge(this.$store.state.situation)
+      return Situation.aCharge(this.$store.getters.situation)
     },
   },
   methods: {

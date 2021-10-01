@@ -13,6 +13,10 @@ computesLocally: true
 montant: 42
 regions:
   - 52
+departements:
+  - "49"
+communes:
+  - "49010"
 age_min: 16
 age_max: 26
 statuts:

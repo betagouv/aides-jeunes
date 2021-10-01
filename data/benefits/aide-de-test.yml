@@ -12,7 +12,7 @@ entity: menages
 computesLocally: true
 montant: 42
 regions:
-  - 52
+  - "52"
 departements:
   - "49"
 communes:

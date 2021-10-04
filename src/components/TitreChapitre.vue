@@ -28,7 +28,7 @@ export default {
       return this.getTitleByRoute(this.$route)
     },
     showMenuButton() {
-      return this.$route.name !== "sommaire"
+      return this.$route.name !== "recapitulatif"
     },
   },
   methods: {

@@ -16,6 +16,7 @@ process.env.VUE_APP_BENEFIT_COUNT = count
 process.env.VUE_APP_MATOMO_ID = matomo.id
 process.env.VUE_APP_VALIDATION_DELAY = (animation && animation.delay) || 0
 process.env.VUE_APP_BASE_URL = baseURL
+process.env.VUE_APP_DEPLOY = process.env.CONTEXT === "deploy-preview"
 
 module.exports = {
   configureWebpack: (config) => {

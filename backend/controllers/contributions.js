@@ -4,7 +4,6 @@ const config = require("../config/index")
 const AuthContribution = {
   async verifyIdentity(token) {
     try {
-      // 200 if authentify then 404
       await axios.get(
         `${config.netlifyContributionURL}/.netlify/identity/user`,
         {

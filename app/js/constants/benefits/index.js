@@ -1,5 +1,11 @@
 "use strict"
 
+const {
+  PERIODICITE_PONCTUELLE,
+  PERIODICITE_MENSUELLE,
+  PERIODICITE_ANNUELLE,
+} = require("../../../../lib/benefits")
+
 var droitsDescription = {
   prestationsNationales: {
     assurance_retraite: {
@@ -9,6 +15,7 @@ var droitsDescription = {
       prestations: {
         aspa: {
           label: "allocation de solidarité aux personnes âgées",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "L’allocation de solidarité aux personnes âgées (Aspa) est une prestation accordée aux personnes retraitées ayant de faibles ressources. Elle est versée tous les mois par la Carsat (ou la MSA si vous dépendez du régime agricole). Elle s’ajoute, dans une certaine limite, aux revenus personnels. Elle remplace le minimum vieillesse depuis 2006.",
           conditions: [
@@ -36,6 +43,7 @@ var droitsDescription = {
       prestations: {
         css_participation_forfaitaire: {
           label: "complémentaire santé solidaire",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "La Complémentaire Santé Solidaire (CSS) est une protection complémentaire santé (mutuelle). Elle remplace la Complémentaire Maladie Universelle Complémentaire (CMU-C) et l’Aide au paiement d’une Complémentaire Santé (ACS) à compter du 1ᵉʳ novembre 2019. Une fois attribuée, la CSS est accordée pour un an.",
           conditions: [
@@ -60,6 +68,7 @@ var droitsDescription = {
         },
         asi: {
           label: "allocation supplémentaire d’invalidité",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "L’allocation supplémentaire d’invalidité (Asi) est une prestation accordée à certaines personnes invalides. Elle s’adresse à celles et ceux qui ont de faibles ressources et n’ont pas atteint l’âge de départ à la retraite. Elle est versée tous les mois et s’ajoute, dans une certaine limite, aux revenus personnels.",
           link: "https://www.service-public.fr/particuliers/vosdroits/F16940",
@@ -84,6 +93,7 @@ var droitsDescription = {
       prestations: {
         af: {
           label: "allocations familiales",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "Les allocations familiales sont réservées aux personnes ayant au moins 2 enfants de moins de 20 ans à charge. Le montant des prestations dépend des ressources, du nombre d’enfants à charge et de leurs âges. Elles sont versées tous les mois. Dans les DOM, les allocations sont versées à partir du premier enfant.",
           conditions: [
@@ -100,6 +110,7 @@ var droitsDescription = {
         },
         cf: {
           label: "complément familial",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "Le complément familial s’ajoute aux allocations familiales à partir du troisième enfant à charge âgé de plus de 3 ans et de moins de 21 ans. Il est destiné aux familles ayant de faibles ressources. Dans les DOM, le complément familial concerne tous les enfants à charge âgés entre 3 et 5 ans.",
           link: "https://www.service-public.fr/particuliers/vosdroits/F13214",
@@ -113,6 +124,7 @@ var droitsDescription = {
         },
         asf: {
           label: "allocation de soutien familial",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "L’allocation de soutien familial (ASF) est destinée soit au parent qui élève seul un enfant non reconnu, privé de l’aide d’un parent ou dont l’autre parent est décédé, soit à la personne seule ou en couple qui recueille un enfant. L’ASF est versée par la Caf ou la MSA tous les mois.",
           conditions: [
@@ -129,6 +141,7 @@ var droitsDescription = {
         },
         paje_base: {
           label: "prestation d’accueil du jeune enfant – Allocation de base",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "L’allocation de base de la prestation d’accueil du jeune enfant (Paje) a pour objet d’aider à assurer les dépenses liées à l’entretien et l’éducation d’un enfant. Elle est destinée aux parents d’un enfant de moins de 3 ans ayant de faibles ressources. Elle est versée par la Caf ou la MSA.",
           conditions: [
@@ -146,6 +159,7 @@ var droitsDescription = {
         },
         rsa: {
           label: "revenu de solidarité active",
+          periodicite: PERIODICITE_MENSUELLE,
           labelFunction: function (b) {
             return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
           },
@@ -204,6 +218,7 @@ var droitsDescription = {
         },
         aide_logement: {
           label: "aides au logement",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "Les aides au logement regroupent trois aides différentes non cumulables : l’aide personnalisée au logement (Apl), l’allocation de logement familiale (Alf) et l’allocation de logement sociale (Als). Elles concernent les personnes ayant de faibles ressources, locataires ou remboursant le prêt de leur résidence principale. Elles sont versées par la Caf ou la MSA.",
           conditions: [
@@ -252,6 +267,7 @@ var droitsDescription = {
         },
         ppa: {
           label: "prime d’activité",
+          periodicite: PERIODICITE_MENSUELLE,
           labelFunction: function (b) {
             return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
           },
@@ -268,7 +284,7 @@ var droitsDescription = {
           prefix: "la",
         },
         aah: {
-          isMontantAnnuel: false,
+          periodicite: PERIODICITE_MENSUELLE,
           label: "allocation aux adultes handicapés",
           description:
             "L’allocation aux adultes handicapés (AAH) est une aide financière qui permet d’assurer un revenu minimum. Cette aide est attribuée sous réserve de respecter 4 critères : le taux d’incapacité, l’âge, la nationalité et les ressources. L’AAH peut se cumuler soit avec le complément de ressources, soit avec la majoration pour la vie autonome ou, dans certains cas, l’aide à l’autonomie.",
@@ -283,7 +299,7 @@ var droitsDescription = {
         },
         caah: {
           // Les équipes de la DSS ont implémenté une V0 de la MVA dans la variable caah
-          isMontantAnnuel: false,
+          periodicite: PERIODICITE_MENSUELLE,
           label: "majoration pour la vie autonome",
           description:
             "La majoration pour la vie autonome (MVA) est une aide financière qui peut s’ajouter à l’allocation aux adultes handicapés (AAH). Elle permet de faire face aux dépenses liées à votre handicap (par exemple, adaptation de votre logement).",
@@ -294,7 +310,7 @@ var droitsDescription = {
           prefix: "la",
         },
         aeeh: {
-          isMontantAnnuel: false,
+          periodicite: PERIODICITE_MENSUELLE,
           label: "allocation d’éducation de l’enfant handicapé (AEEH)",
           description:
             "L’allocation d’éducation de l’enfant handicapé (AEEH) est une prestation destinée à compenser les frais d’éducation et de soins apportés à un enfant en situation de handicap. Cette aide est versée à la personne qui en assume la charge.",
@@ -314,6 +330,7 @@ var droitsDescription = {
       prestations: {
         ass: {
           label: "allocation de solidarité spécifique",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "L’allocation de solidarité spécifique (ASS) est une aide financière attribuée aux personnes ayant épuisé leurs droits au chômage. Elle peut être versée à taux plein ou à taux réduit. En cas de reprise d’activité, elle peut être maintenue.",
           conditions: [
@@ -329,6 +346,7 @@ var droitsDescription = {
         },
         agepi: {
           label: "aide à la garde d’enfants pour parent isolé",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "L’aide à la garde d’enfants pour parent isolé (Agepi) est un dispositif de Pole Emploi pour les personnes qui reprennent un emploi.",
           link: "https://www.service-public.fr/particuliers/vosdroits/F1814",
@@ -342,7 +360,7 @@ var droitsDescription = {
       imgSrc: "logo_cheque_energie.png",
       prestations: {
         cheque_energie: {
-          isMontantAnnuel: true,
+          periodicite: PERIODICITE_ANNUELLE,
           label: "chèque Énergie",
           description:
             "Le Chèque Énergie peut être utilisé pour toutes les dépenses d’énergie (électricité, gaz, fioul, bois, etc.) et les travaux de rénovation énergétique. Il est envoyé automatiquement chaque année en fonction de votre situation fiscale et de votre ménage.",
@@ -370,6 +388,7 @@ var droitsDescription = {
       prestations: {
         garantie_jeunes: {
           label: "garantie Jeunes",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "La garantie jeunes permet d’accompagner vers l’emploi ou la formation des jeunes entre 16 et 25 ans en situation difficile. C’est un parcours d´un an en partenariat avec la mission locale qui peut être prolongé jusqu’à 6 mois.",
           conditions: [
@@ -409,6 +428,7 @@ var droitsDescription = {
             "Présenter à l’établissement bancaire votre avis d’imposition indiquant votre revenu fiscal.",
           ],
           legend: "au lieu de 0,50%",
+          periodicite: PERIODICITE_ANNUELLE,
           link: "https://www.service-public.fr/particuliers/vosdroits/F2367",
           entity: "individus", // default entity is familles
           isBaseRessourcesYearMinusTwo: true,
@@ -423,7 +443,7 @@ var droitsDescription = {
       imgSrc: "logo_education_nationale.png",
       prestations: {
         bourse_college: {
-          isMontantAnnuel: true,
+          periodicite: PERIODICITE_ANNUELLE,
           label: "bourse de collège",
           description:
             "La bourse de collège est une aide destinée à favoriser la scolarité des collégiens. Elle est versée aux familles ayant de faibles ressources. Son montant dépend du nombre d’enfants à charge.",
@@ -442,7 +462,7 @@ var droitsDescription = {
           prefix: "la",
         },
         bourse_lycee: {
-          isMontantAnnuel: true,
+          periodicite: PERIODICITE_ANNUELLE,
           label: "bourse de lycée",
           description:
             "La bourse de lycée est accordée aux responsables d’un lycéen qui ont de faibles ressources. Si l’élève entre au lycée ou s’il n’a jamais touché de bourse de lycée, il pourra y prétendre selon les ressources et les charges de sa famille. Une nouvelle demande doit être effectuée en cas de redoublement ou réorientation.",
@@ -506,7 +526,7 @@ var droitsDescription = {
       repository: "france-local",
       prestations: {
         rennes_metropole_transport: {
-          isMontantAnnuel: false,
+          periodicite: PERIODICITE_MENSUELLE,
           unit: "%",
           legend: "de l’abonnement STAR",
           label: "tarification solidaire transports",
@@ -530,6 +550,7 @@ var droitsDescription = {
       prestations: {
         brest_metropole_transport: {
           legend: "au lieu de 38.50 € / mois",
+          periodicite: "mensuelle",
           label: "tarification solidaire transports",
           description:
             "Les familles aux ressources modestes bénéficient de forfaits mensuels à tarif réduit pour les transports : les forfaits Tempo, Tango et Rythmo. Tous les membres du foyer peuvent en bénéficier.",
@@ -553,7 +574,7 @@ var droitsDescription = {
       prefix: "d’",
       prestations: {
         alfortville_noel_enfants: {
-          isMontantAnnuel: true,
+          periodicite: PERIODICITE_ANNUELLE,
           legend: "en chèque cadeau",
           label: "noël des enfants",
           description:
@@ -607,6 +628,7 @@ var droitsDescription = {
           label: "carte Solidaire pour les transports",
           unit: "%",
           legend: "de réduction",
+          periodicite: "ponctuelle",
           description:
             "La Carte Solidaire permet de bénéficier de réductions importantes sur les trajets en trains TER et cars régionaux en Nouvelle-Aquitaine. Elle est destinée aux personnes qui ont de faibles revenus ou bénéficient de certaines prestations.",
           link: "https://transports.nouvelle-aquitaine.fr/toute-lactualite-des-transports/un-tarif-solidaire-pour-les-trajets-en-trains-ter-et-cars-regionaux",
@@ -626,7 +648,7 @@ var droitsDescription = {
         tisseo_transport_reduction: {
           label: "Réduction sur les titres de transports",
           unit: "%",
-          legend: "",
+          periodicite: PERIODICITE_PONCTUELLE,
           description:
             "Des réductions de 70%, 80% ou 100% (gratuité) sont mises en place sur le réseau Tisséo pour cetaiens personnes (jeunes, familles à faibles revenus, personnes bénéficiant de certaines prestations, etc.).",
           link: "http://www.mon-tarif-tisseo.fr",

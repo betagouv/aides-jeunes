@@ -7,6 +7,7 @@ prefix: l’
 type: float
 floorAt: 0.1
 entity: individus
+periodicite: mensuelle
 conditions:
   - Ne pas percevoir l’allocation d’aide au retour à l’emploi (ARE), l’allocation de solidarité spécifique (ASS) ou l’allocation des travailleurs indépendants (ATI).
   - Ne pas percevoir le revenu de solidarité active (RSA) ni l’allocation "Garantie Jeunes".

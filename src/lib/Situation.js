@@ -17,7 +17,11 @@ const Situation = {
     let demandeur = situation.demandeur
     let period =
       situation.dateDeValeur && moment(situation.dateDeValeur).format("YYYY")
-    return demandeur.enfant_a_charge && demandeur.enfant_a_charge[period]
+    return (
+      demandeur &&
+      demandeur.enfant_a_charge &&
+      demandeur.enfant_a_charge[period]
+    )
   },
 
   hasEnfantScolarise: function (situation) {

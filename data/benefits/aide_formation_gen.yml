@@ -7,6 +7,7 @@ prefix: l’
 type: float
 floorAt: 0.1
 entity: individus
+periodicite: mensuelle
 conditions:
   - Ne pas percevoir une aide à l’insertion, une aide à la formation professionnelle ou une bourse d’enseignement supérieur sur critères sociaux.
   - Ne pas suivre une formation avec un contrat d’apprentissage ou de professionnalisation ou être en congé individuel de formation.

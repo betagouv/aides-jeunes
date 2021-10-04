@@ -141,6 +141,25 @@ collections:
         name: montant
         widget: number
         required: false
+      - label: "Périodicité du montant de l'aide"
+        name: periodicite
+        widget: select
+        hint: Cette variable permet de définir la période de versement du montant de l'aide.
+        required: false
+        options:
+          - label: Ponctuelle
+            value: ponctuelle
+          - label: Mensuelle (/ mois)
+            value: mensuelle
+          - label: Annuelle (/ an)
+            value: annuelle
+          - label: Autre
+            value: autre
+      - label: Légende du montant.
+        hint: Cette légende permet d'ajouter des informations complémentaires sur le montant.
+        name: legend
+        widget: string
+        required: false
       - label: Régions
         name: regions
         required: false

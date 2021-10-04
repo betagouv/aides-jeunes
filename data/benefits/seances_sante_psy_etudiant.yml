@@ -8,6 +8,6 @@ conditions:
 prefix: l’
 unit: séances
 type: float
-legend: ""
+periodicite: ponctuelle
 floorAt: 1
 entity: individus

@@ -9,6 +9,7 @@ instructions: https://www.pole-emploi.fr/candidat/vos-recherches/les-aides-finan
 prefix: l’
 type: float
 floorAt: 1
+periodicite: ponctuelle
 legend: "maximum"
 entity: individus
 interestFlag: _interetPermisDeConduire

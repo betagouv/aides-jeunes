@@ -7,3 +7,4 @@ prefix: "l'aide "
 type: float
 floorAt: 1
 entity: individus
+periodicite: mensuelle

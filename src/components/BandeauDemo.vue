@@ -11,7 +11,7 @@ export default {
   name: "BandeauDemo",
   computed: {
     afficheBandeau() {
-      return process.env.VUE_APP_DEMO === "true"
+      return process.env.VUE_APP_CONTEXT === "deploy-preview"
     },
     link() {
       return process.env.VUE_APP_PR_URL

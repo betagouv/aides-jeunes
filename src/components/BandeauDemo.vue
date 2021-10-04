@@ -1,6 +1,8 @@
 <template>
   <div class="bandeau-demo-wrapper" v-if="afficheBandeau">
-    <a class="bandeau-demo" :href="link"> Démo </a>
+    <a class="bandeau-demo" target="_blank" rel="noopener" :href="link">
+      Démo
+    </a>
   </div>
 </template>
 
@@ -9,13 +11,10 @@ export default {
   name: "BandeauDemo",
   computed: {
     afficheBandeau() {
-      return process.env.VUE_APP_DEPLOY
+      return process.env.VUE_APP_DEMO === "true"
     },
     link() {
-      const PRNumber = window.location.hostname.split("-")[2]
-      return PRNumber
-        ? `https://github.com/betagouv/aides-jeunes/pull/${PRNumber}`
-        : null
+      return process.env.VUE_APP_PR_URL
     },
   },
 }

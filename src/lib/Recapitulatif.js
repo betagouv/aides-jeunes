@@ -69,13 +69,14 @@ export const SIMPLE_STEPS = {
     ]
   },
 
-  _bourseCriteresSociauxCommuneDomicileFamilial() {
+  _bourseCriteresSociauxCommuneDomicileFamilial(step) {
+    const individu = getIndividuByStep(step, this)
     return [
       {
         label: "Quel est le code postal de la commune de vos parents ?",
         value: displayDepcomValue(
-          this.individu._bourseCriteresSociauxCommuneDomicileFamilialCodePostal,
-          this.individu._bourseCriteresSociauxCommuneDomicileFamilialNomCommune
+          individu._bourseCriteresSociauxCommuneDomicileFamilialCodePostal,
+          individu._bourseCriteresSociauxCommuneDomicileFamilialNomCommune
         ),
       },
     ]

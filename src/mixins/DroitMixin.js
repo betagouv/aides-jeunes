@@ -2,10 +2,10 @@ import { capitalize } from "../lib/Utils"
 
 export default {
   methods: {
-    isEmpty: (array) => array.length === 0,
+    capitalize: (label) => capitalize(label),
     isBoolean: (val) => typeof val === "boolean",
+    isEmpty: (array) => array.length === 0,
     isNumber: (val) => typeof val === "number",
     isString: (val) => typeof val === "string",
-    capitalize: (label) => capitalize(label),
   },
 }

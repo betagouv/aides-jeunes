@@ -146,8 +146,6 @@ export default {
           value: entity[step.variable],
           component: { ...this, entity },
         })
-      } else {
-        console.log("### This step is not displayed:", step)
       }
       return []
     },

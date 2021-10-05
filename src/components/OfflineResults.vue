@@ -1,6 +1,6 @@
 <template>
   <div class="aj-offline-results" v-if="!submitResult.ok">
-    <h2 class="aj-question">Je garde ces informations !</h2>
+    <h2 class="aj-question">Je garde ces informations&nbsp;!</h2>
     <span>
       Vous pouvez enregistrer les résultats de votre simulation pour les
       consulter plus tard.

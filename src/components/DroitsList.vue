@@ -97,7 +97,7 @@
 
 <script>
 import DroitMontant from "./DroitMontant"
-import { capitalize } from "lodash"
+import { capitalize } from "../lib/Utils"
 export default {
   name: "DroitsList",
   props: {

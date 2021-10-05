@@ -300,7 +300,20 @@ function housingBlock() {
           !subject.statut_occupation_logement ||
           subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
-          new Step({ entity: "menage", variable: "_nombreMoisEntreeLogement" }),
+          {
+            isActive: (_, situation) => {
+              return (
+                situation.demandeur &&
+                situation.demandeur._nombreMoisDebutContratDeTravail <= 6
+              )
+            },
+            steps: [
+              new Step({
+                entity: "menage",
+                variable: "_nombreMoisEntreeLogement",
+              }),
+            ],
+          },
           new Step({ entity: "menage", variable: "coloc" }),
           new Step({ entity: "menage", variable: "logement_chambre" }),
           new Step({

@@ -15,7 +15,9 @@
           v-bind:alt="'Logo ' + droit.label"
         />
         <div class="aj-aide-text">
-          <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
+          <h2 class="aj-question" itemprop="name">{{
+            capitalize(droit.label)
+          }}</h2>
           <p class="aj-aide-description" v-html="droit.description"></p>
           <div
             class="aj-aide-warning"
@@ -95,7 +97,7 @@
 
 <script>
 import DroitMontant from "./DroitMontant"
-
+import { capitalize } from "lodash"
 export default {
   name: "DroitsList",
   props: {
@@ -117,6 +119,7 @@ export default {
     },
   },
   methods: {
+    capitalize: (label) => capitalize(label),
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,
     isBoolean: (val) => typeof val === "boolean",

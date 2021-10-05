@@ -45,14 +45,20 @@
           class="aj-1j1s-header-left-links"
           :class="{ 'not-home': $route.name !== 'home' }"
         >
-          <a href="https://www.1jeune1solution.gouv.fr" class="rf-link">
+          <a
+            href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
+            class="rf-link"
+          >
             <img
               class="rf"
               alt="Logo République Française"
               src="@/../public/img/logo_rf.svg"
             />
           </a>
-          <a href="https://www.1jeune1solution.gouv.fr" class="fr-link">
+          <a
+            href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
+            class="fr-link"
+          >
             <img
               class="fr"
               alt="Logo 1 jeune 1 solution France Relance"

@@ -168,6 +168,7 @@ import BenefitCta from "./BenefitCta"
 import BenefitCtaLink from "./BenefitCtaLink"
 import DroitMontant from "./DroitMontant"
 import Situation from "../lib/Situation"
+import DroitMixin from "../mixins/DroitMixin"
 
 export default {
   name: "DroitsDetails",
@@ -181,6 +182,7 @@ export default {
     BenefitCtaLink,
     DroitMontant,
   },
+  mixins: [DroitMixin],
   data() {
     return {
       brokenLinkButtonState: "show",
@@ -192,11 +194,6 @@ export default {
     },
   },
   methods: {
-    isEmpty: (array) => array.length === 0,
-    isNotEmpty: (array) => array.length !== 0,
-    isBoolean: (val) => typeof val === "boolean",
-    isNumber: (val) => typeof val === "number",
-    isString: (val) => typeof val === "string",
     alertBrokenLink() {
       this.brokenLinkButtonState = "showThanksMessage"
       setTimeout(() => (this.brokenLinkButtonState = null), 5000)

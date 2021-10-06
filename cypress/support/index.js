@@ -291,9 +291,6 @@ export function locataire() {
   cy.get('input[name="logementType"]').get('[value="locataire"]').check()
   cy.get("#nonmeuble").get('[value="nonmeuble"]').check()
   submit()
-  // Êtes-vous locataire depuis moins de 3 mois ?
-  checkRadio(true)
-  submit()
   // Coloc
   checkRadio(false)
   submit()

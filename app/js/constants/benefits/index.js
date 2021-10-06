@@ -408,7 +408,7 @@ var droitsDescription = {
             "Effectuer chaque année votre déclaration auprès des impôts.",
             "Présenter à l’établissement bancaire votre avis d’imposition indiquant votre revenu fiscal.",
           ],
-          legend: "au lieu de 0,75%",
+          legend: "au lieu de 0,50%",
           link: "https://www.service-public.fr/particuliers/vosdroits/F2367",
           entity: "individus", // default entity is familles
           isBaseRessourcesYearMinusTwo: true,

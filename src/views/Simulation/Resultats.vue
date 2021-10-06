@@ -40,6 +40,17 @@
           Les montants avancés sont arrondis à une dizaine d'euros près :
         </p>
         <DroitsList v-bind:droits="droits"></DroitsList>
+        <a
+          href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
+          class="aj-cta-avis"
+          target="_blank"
+          @click="trackEvent"
+        >
+          <img
+            src="https://voxusagers.numerique.gouv.fr/static/bouton-blanc.svg"
+            alt="Je donne mon avis"
+          />
+        </a>
       </div>
       <div v-if="!isEmpty(droitsNonEligiblesShown)">
         <p>
@@ -92,14 +103,17 @@ export default {
     ErrorBlock,
     ErrorSaveBlock,
     Feedback,
+    LoadingModal,
     OfflineResults,
     TrouverInterlocuteur,
-    LoadingModal,
   },
   mixins: [ResultatsMixin],
   methods: {
     isEmpty: function (array) {
       return !array || array.length === 0
+    },
+    trackEvent: function () {
+      this.$matomo && this.$matomo.trackEvent("Parcours", "Je donne mon avis")
     },
   },
   mounted: function () {

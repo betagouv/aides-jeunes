@@ -1,0 +1,9 @@
+label: carte jeune région
+institution: region_occitanie
+description: La Région Occitanie soutient les jeunes grâce au dispositif Carte Jeune Région qui leur permet de bénéficier d'avantages comme un ordinateur portable, manuels scolaires et bien plus.
+link: https://www.laregion.fr/la-carte-jeune-region-c-est-quoi-35189
+teleservice: https://www.laregion.fr/Demander-la-Carte-Jeune-Region
+prefix: l’
+type: bool
+floorAt: 1
+entity: individus

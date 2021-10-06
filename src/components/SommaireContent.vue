@@ -33,20 +33,10 @@
       <div class="aj-progressBar"></div>
     </div>
 
-    <div class="aj-btn-container">
-      <router-link
-        to="/simulation/resultats"
-        :class="{ disabled: disableResults }"
-        class="button"
-        >Voir les résultats</router-link
+    <div class="aj-btn-container" v-if="$store.getters.passSanityCheck">
+      <router-link class="button outline" :to="{ name: 'recapitulatif' }"
+        >Récapitulatif</router-link
       >
-    </div>
-
-    <div
-      class="aj-btn-recapitulatif-container"
-      v-if="$store.getters.passSanityCheck"
-    >
-      <router-link :to="{ name: 'recapitulatif' }">Récapitulatif</router-link>
     </div>
   </div>
 </template>
@@ -60,9 +50,6 @@ export default {
         this.$route.path,
         this.$store.getters.getAllSteps
       )
-    },
-    disableResults() {
-      return this.chapters.filter((c) => c.done).length !== this.chapters.length
     },
   },
   methods: {

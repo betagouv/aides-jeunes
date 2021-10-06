@@ -354,7 +354,7 @@ export function waitForResults() {
 
 export function hasCSS(position) {
   position = position || 1
-  const name = /complémentaire santé solidaire/
+  const name = /Complémentaire santé solidaire/
   const id = "css"
   cy.get(
     '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
@@ -373,7 +373,7 @@ export function hasCSS(position) {
 
 export function hasPrimeActivite(position) {
   position = position || 1
-  const name = /prime d’activité/
+  const name = /Prime d’activité/
   const id = "ppa"
   const description = /revenus/
   cy.get(
@@ -405,7 +405,7 @@ export function hasPrimeActivite(position) {
 }
 
 export function captureFiscalResources(position) {
-  const name = /livret d’épargne populaire/
+  const name = /Livret d’épargne populaire/
   const id = "livretEpargnePopulaire"
   cy.get(".aj-droit-details-back-button").click()
   cy.get(
@@ -428,7 +428,7 @@ export function captureFiscalResources(position) {
 
 export function hasAAH() {
   const position = 1
-  const name = /allocation aux adultes handicapés/
+  const name = /Allocation aux adultes handicapés/
   const id = "aah"
   const description = "AAH"
   cy.get(
@@ -489,7 +489,7 @@ export function hasLogementSocial() {
 
 export function hasBourseCriteresSociaux(position) {
   position = position || 1
-  const name = /bourse sur critères sociaux/
+  const name = /Bourse sur critères sociaux/
   const id = "bourse_criteres_sociaux"
   const description = /BCS/
   cy.get(
@@ -522,7 +522,7 @@ export function hasBourseCriteresSociaux(position) {
 
 export function hasAideLogement(position) {
   position = position || 1
-  const name = /aides au logement/
+  const name = /Aides au logement/
   const id = "aide_logement"
   const description = /Apl/
   cy.get("#print-disclaimer", { timeout: 20000 })

@@ -45,14 +45,20 @@
           class="aj-1j1s-header-left-links"
           :class="{ 'not-home': $route.name !== 'home' }"
         >
-          <a href="https://www.1jeune1solution.gouv.fr" class="rf-link">
+          <a
+            href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
+            class="rf-link"
+          >
             <img
               class="rf"
               alt="Logo République Française"
               src="@/../public/img/logo_rf.svg"
             />
           </a>
-          <a href="https://www.1jeune1solution.gouv.fr" class="fr-link">
+          <a
+            href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
+            class="fr-link"
+          >
             <img
               class="fr"
               alt="Logo 1 jeune 1 solution France Relance"
@@ -143,23 +149,23 @@ export default {
         },
         {
           key: "2",
+          label: "Je cherche une formation",
+          href: "https://www.1jeune1solution.gouv.fr/formations?utm_source=mes-aides-beta&utm_medium=menu",
+        },
+        {
+          key: "3",
           label: "J'accède à mes aides",
           href: "/",
         },
         {
-          key: "3",
+          key: "4",
           label: "Je participe à un évenement",
           href: "https://www.1jeune1solution.gouv.fr/evenements?utm_source=mes-aides-beta&utm_medium=menu",
         },
         {
-          key: "4",
+          key: "5",
           label: "Je m'engage",
           href: "https://www.1jeune1solution.gouv.fr/service-civique?utm_source=mes-aides-beta&utm_medium=menu",
-        },
-        {
-          key: "5",
-          label: "Je souhaite entreprendre",
-          href: "https://www.1jeune1solution.gouv.fr/entreprendre?utm_source=mes-aides-beta&utm_medium=menu",
         },
         {
           key: "6",

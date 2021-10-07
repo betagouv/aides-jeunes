@@ -312,15 +312,23 @@ const store = new Vuex.Store({
           " enfant",
       }
 
+      // When you add a children you need to remove all current answer after the child validation
+      const currentLastIndex = state.answers.current.findIndex(
+        (answer) =>
+          answer.entityName === "individu" &&
+          answer.id === "demandeur" &&
+          answer.fieldName === "nombre_enfants"
+      )
+
+      const currentAnswers =
+        currentLastIndex === -1
+          ? state.answers.current
+          : state.answers.current.splice(0, currentLastIndex)
+
       state.answers = {
         enfants,
         all: storeAnswer(state.answers.all, answer, false),
-        current: storeAnswer(state.answers.current, answer, true),
-      }
-    },
-    zeroEnfant: function (state) {
-      if (!state.situation.enfants) {
-        state.state.answers.enfants = []
+        current: storeAnswer(currentAnswers, answer, true),
       }
     },
     setAmeliNoticationDone: function (state) {
@@ -425,10 +433,6 @@ const store = new Vuex.Store({
     },
     addEnfant: function ({ commit }) {
       commit("addEnfant")
-      commit("setDirty")
-    },
-    zeroEnfant: function ({ commit }) {
-      commit("zeroEnfant")
       commit("setDirty")
     },
     updateError: function ({ commit }, error) {

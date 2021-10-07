@@ -100,15 +100,17 @@ export default {
     Actions,
   },
   data: function () {
+    const logementStatut = this.$store.getters.getAnswer(
+      "menage",
+      "menage",
+      "statut_occupation_logement"
+    )
+    const logementVariables =
+      Logement.getLogementVariables(logementStatut) || {}
     return {
       logementTypesQuestion: {
         label: "Êtes-vous ?",
-        selectedValue:
-          (
-            Logement.getLogementVariables(
-              this.$store.getters.getLogementStatut
-            ) || {}
-          ).type || null,
+        selectedValue: logementVariables.type || null,
         responses: [
           {
             label: "Locataire",
@@ -134,11 +136,7 @@ export default {
       },
       primoAccedantQuestion: {
         label: "Êtes-vous primo-accédant pour cette propriété ?",
-        selectedValue: (
-          Logement.getLogementVariables(
-            this.$store.getters.getLogementStatut
-          ) || {}
-        ).primoAccedant,
+        selectedValue: logementVariables.primoAccedant,
         hint: "Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.",
         responses: [
           {
@@ -155,12 +153,7 @@ export default {
       },
       locataireTypesQuestion: {
         label: "Quel type de logement louez-vous ?",
-        selectedValue:
-          (
-            Logement.getLogementVariables(
-              this.$store.getters.getLogementStatut
-            ) || {}
-          ).locationType || null,
+        selectedValue: logementVariables.locationType || null,
         hint: null,
         responses: [
           {

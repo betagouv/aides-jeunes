@@ -1,8 +1,3 @@
-const loadEntity = (component) => {
-  const menage = { ...(component.$store.getters.getMenage || {}) }
-  return menage
-}
-
 const STEPS = {
   coloc: {
     question: "Est-ce une colocation ?",
@@ -28,6 +23,5 @@ const STEPS = {
 }
 
 export default {
-  loadEntity,
   STEPS,
 }

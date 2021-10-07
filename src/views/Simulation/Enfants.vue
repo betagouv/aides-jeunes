@@ -89,8 +89,7 @@ export default {
     nationality: Nationality.getNationalityFromCountryCode,
     scolarite: function (value) {
       const s = Scolarite.types.find((s) => s.value === value)
-      if (s) return Scolarite.types.find((s) => s.value === value).label
-      else return "-"
+      return s ? Scolarite.types.find((s) => s.value === value).label : "-"
     },
   },
   methods: {
@@ -104,9 +103,14 @@ export default {
       this.$store.dispatch("removeEnfant", id)
     },
     onSubmit: function () {
-      if (!this.$store.state.answers.enfants) {
-        this.$store.dispatch("zeroEnfant")
-      }
+      this.$store.dispatch("answer", {
+        id: "demandeur",
+        entityName: "individu",
+        fieldName: "nombre_enfants",
+        value: this.$store.state.answers.enfants
+          ? this.$store.state.answers.enfants.length
+          : 0,
+      })
       this.$push()
     },
   },

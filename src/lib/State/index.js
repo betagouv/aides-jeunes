@@ -1,9 +1,7 @@
 var Chapters = require("../Chapters")
 
 function chapters(currentPath, journey) {
-  const cleanPath = currentPath
-    .replace(/\/sommaire$/, "")
-    .replace(/\/en_savoir_plus$/, "")
+  const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")
   const activeJourney = journey.filter((s) => s.isActive)
   const activeChaptersNames = activeJourney
     .map((c) => c.chapter)

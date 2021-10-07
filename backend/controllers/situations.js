@@ -28,7 +28,7 @@ exports.attachAccessCookie = function (req, res) {
     maxAge,
     httpOnly: true,
   })
-  res.cookie("lastestSituation", req.situationId.toString(), { maxAge })
+  res.cookie("lastestSituation", req.situation._id.toString(), { maxAge })
 }
 
 exports.validateAccess = function (req, res, next) {

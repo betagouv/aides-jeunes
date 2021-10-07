@@ -67,8 +67,18 @@ function generateSituation(answers, dates) {
     },
     enfants:
       answers && answers.enfants && answers.enfants.length > 0
-        ? answers.enfants.map((enfant) => {
-            return generateDefaultIndividu("enfant", `enfant_${enfant}`)
+        ? answers.enfants.map((enfant, index) => {
+            const countDiplay = index + 1
+            const _firstName =
+              "votre " +
+              countDiplay +
+              (countDiplay === 1 ? "ᵉʳ" : "ᵉ") +
+              " enfant"
+
+            return {
+              ...generateDefaultIndividu("enfant", `enfant_${enfant}`),
+              _firstName,
+            }
           })
         : null,
     famille: {

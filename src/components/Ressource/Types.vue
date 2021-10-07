@@ -95,7 +95,7 @@ export default {
   methods: {
     onSubmit: function () {
       this.$store.dispatch("answer", {
-        id: "demandeur",
+        id: this.$route.params.id,
         entityName: "individu",
         fieldName: "ressources",
         value: Object.keys(this.selectedTypes).filter(

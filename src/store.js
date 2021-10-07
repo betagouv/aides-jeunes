@@ -291,18 +291,6 @@ const store = new Vuex.Store({
     initialize: function (state) {
       Object.assign(state, restoreLocal(), { saveSituationError: null })
     },
-    saveFamille: function (state, famille) {
-      state.situation = Object.assign({}, state.situation, { famille })
-    },
-    saveFoyerFiscal: function (state, foyer_fiscal) {
-      state.situation = Object.assign({}, state.situation, { foyer_fiscal })
-    },
-    saveMenage: function (state, menage) {
-      state.situation = Object.assign({}, state.situation, { menage })
-    },
-    saveParents: function (state, parents) {
-      state.situation = Object.assign({}, state.situation, { parents })
-    },
     removeConjoint: function (state) {
       Vue.set(state.answers, "conjoint", false)
     },
@@ -476,11 +464,6 @@ const store = new Vuex.Store({
       commit("setDirty")
     },
     save: function (store) {
-      const disabledSteps = store.getters.getAllSteps.filter((s) => !s.isActive)
-      disabledSteps.forEach((step) => {
-        step.clean(store, true)
-      })
-
       let situation = { ...store.getters.situation }
       if (store.situationId) {
         situation.modifiedFrom = store.state.situationId

@@ -94,12 +94,14 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      Ressource.setIndividuRessourceTypes(
-        this.individu,
-        this.selectedTypes,
-        this.$store.state.dates
-      )
-      this.$store.dispatch("updateIndividu", this.individu)
+      this.$store.dispatch("answer", {
+        id: "demandeur",
+        entityName: "individu",
+        fieldName: "ressources",
+        value: Object.keys(this.selectedTypes).filter(
+          (type) => this.selectedTypes[type]
+        ),
+      })
       this.$push()
     },
     sort: function (array) {

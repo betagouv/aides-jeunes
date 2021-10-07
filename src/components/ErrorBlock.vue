@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     sendErrorMail() {
-      return sendError(this.$store.getters.situation._id, this.errorText)
+      return sendError(this.$store.getters.situationId, this.errorText)
     },
   },
 }

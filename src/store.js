@@ -65,10 +65,11 @@ function defaultStore() {
   const now = moment().format()
 
   return {
+    situationId: null,
+    dateDeValeur: new Date(),
     answers: {
       all: [],
       current: [],
-      enfants: [],
     },
     message: {
       text: null,
@@ -98,18 +99,16 @@ function restoreLocal() {
     store = JSON.parse(window.sessionStorage.store)
   }
 
-  const situation =
-    store && store.answers
-      ? generateSituation(store.answers)
-      : generateSituation()
-  if (!store || !situation || !situation.dateDeValeur) {
+  if (!store || !store.answers || !store.dateDeValeur) {
     store = defaultStore()
   }
 
   return {
-    answers: store.answers || { all: [], current: [], enfants: [] },
+    situationId: store.situationId,
+    dateDeValeur: store.dateDeValeur,
+    answers: store.answers || { all: [], current: [] },
     calculs: store.calculs || defaultCalculs(),
-    dates: datesGenerator(situation.dateDeValeur),
+    dates: datesGenerator(store.dateDeValeur),
     ameliNoticationDone: store.ameliNoticationDone,
   }
 }
@@ -247,7 +246,7 @@ const store = new Vuex.Store({
         return axios
           .get(
             `api/situations/${
-              situationId || getters.situation._id
+              situationId || getters.situationId
             }/${representation}`
           )
           .then((response) => response.data)
@@ -255,9 +254,9 @@ const store = new Vuex.Store({
     },
     hasResults: function (state, getters) {
       return (
-        getters.situation._id &&
+        getters.situationId &&
         state.calculs.resultats._id &&
-        state.calculs.resultats._id === getters.situation._id
+        state.calculs.resultats._id === getters.situationId
       )
     },
     getAnswer: (state) => (id, entityName, fieldName) => {
@@ -270,8 +269,7 @@ const store = new Vuex.Store({
       return answer ? answer.value : undefined
     },
     situation: (state) => {
-      console.log("generateSituation")
-      return generateSituation(state.answers)
+      return generateSituation(state.answers, state.dates)
     },
   },
   mutations: {
@@ -291,12 +289,7 @@ const store = new Vuex.Store({
       state.debug = debug
     },
     initialize: function (state) {
-      const { answers, dates, ameliNoticationDone, calculs } = restoreLocal()
-      state.answers = answers
-      state.calculs = calculs
-      state.dates = dates
-      state.ameliNoticationDone = ameliNoticationDone
-      state.saveSituationError = null
+      Object.assign(state, restoreLocal(), { saveSituationError: null })
     },
     saveFamille: function (state, famille) {
       state.situation = Object.assign({}, state.situation, { famille })
@@ -356,7 +349,7 @@ const store = new Vuex.Store({
     },
     zeroEnfant: function (state) {
       if (!state.situation.enfants) {
-        state.situation.enfants = []
+        state.state.answers.enfants = []
       }
     },
     setAmeliNoticationDone: function (state) {
@@ -377,7 +370,7 @@ const store = new Vuex.Store({
       state.access.forbidden = true
     },
     setId: function (state, id) {
-      state.situation._id = id
+      state.situationId = id
       state.calculs.dirty = false
     },
     setExternalId: function (state, id) {
@@ -488,10 +481,9 @@ const store = new Vuex.Store({
         step.clean(store, true)
       })
 
-      let situation = { ...store.state.situation }
-      delete situation._id
-      if (store.state.situation._id) {
-        situation.modifiedFrom = store.state.situation._id
+      let situation = { ...store.getters.situation }
+      if (store.situationId) {
+        situation.modifiedFrom = store.state.situationId
       }
 
       situation.abtesting = ABTestingService.getEnvironment()
@@ -512,18 +504,18 @@ const store = new Vuex.Store({
     mockResults: function (state, benefit) {
       state.commit("setResults", Institution.mockResults(benefit))
     },
-    compute: function (state, showPrivate) {
-      state.commit("startComputation")
+    compute: function (store, showPrivate) {
+      store.commit("startComputation")
       return axios
         .get(
-          "api/situations/" + state.state.situation._id + "/openfisca-response"
+          "api/situations/" + store.state.situationId + "/openfisca-response"
         )
         .then(function (OpenfiscaResponse) {
           return OpenfiscaResponse.data
         })
         .then(function (openfiscaResponse) {
           return computeAides.bind(Institution)(
-            state.state.situation,
+            store.getters.situation,
             openfiscaResponse,
             showPrivate
           )
@@ -549,8 +541,8 @@ const store = new Vuex.Store({
 
           return results
         })
-        .then((results) => state.commit("setResults", results))
-        .catch((error) => state.commit("saveComputationFailure", error))
+        .then((results) => store.commit("setResults", results))
+        .catch((error) => store.commit("saveComputationFailure", error))
     },
     redirection: function (state, next) {
       state.commit(
@@ -594,13 +586,25 @@ const store = new Vuex.Store({
 export default store
 
 store.subscribe(
-  ({ type }, { answers, enfants, ameliNoticationDone, calculs }) => {
+  (
+    { type },
+    {
+      answers,
+      enfants,
+      ameliNoticationDone,
+      calculs,
+      dateDeValeur,
+      situationId,
+    }
+  ) => {
     if (type === "initialize") {
       return
     }
     window.sessionStorage.setItem(
       "store",
       JSON.stringify({
+        dateDeValeur,
+        situationId,
         answers,
         enfants,
         ameliNoticationDone,

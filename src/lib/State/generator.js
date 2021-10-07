@@ -1,5 +1,7 @@
 var { Step } = require("./steps")
 var { generateBlocks } = require("./blocks")
+var Ressource = require("@/lib/Ressource").default
+var { ressourceTypes } = require("@/constants/resources")
 
 function processBlock({ journey, subject, situation, isActive }, b) {
   if (b instanceof Step) {
@@ -57,11 +59,9 @@ const generateDefaultIndividu = (role, id) => ({
   _role: role,
 })
 
-function generateSituation(answers) {
+function generateSituation(answers, dates) {
   const situation = {
-    _id: null,
     external_id: null,
-    dateDeValeur: new Date(),
     demandeur: generateDefaultIndividu("demandeur", "demandeur"),
     enfants:
       answers && answers.enfants && answers.enfants.length > 0
@@ -94,7 +94,35 @@ function generateSituation(answers) {
       case "individu": {
         switch (answer.id) {
           case "demandeur": {
-            situation.demandeur[answer.fieldName] = answer.value
+            switch (answer.fieldName) {
+              case "ressources": {
+                answer.value.forEach((ressource) => {
+                  Ressource.setDefaultValueForCurrentYear(
+                    dates,
+                    situation.demandeur,
+                    ressourceTypes.find(
+                      (ressourceType) => ressourceType.id === ressource
+                    )
+                  )
+                })
+                break
+              }
+              case "revenusActivite":
+              case "indemnites":
+              case "pensions":
+              case "autre":
+              case "patrimoine":
+              case "allocations": {
+                answer.value.forEach((ressource) => {
+                  situation.demandeur[ressource.id] = ressource.amounts
+                })
+                break
+              }
+              default: {
+                situation.demandeur[answer.fieldName] = answer.value
+                break
+              }
+            }
             break
           }
           case "conjoint": {

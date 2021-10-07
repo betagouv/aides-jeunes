@@ -45,7 +45,7 @@ function render(followup, survey) {
   ]).then(function (values) {
     return {
       subject: `[${
-        followup.situation._id || followup.situation
+        followup.situationId || followup.situation
       }] Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ?`,
       text: values[0],
       html: values[1].html,

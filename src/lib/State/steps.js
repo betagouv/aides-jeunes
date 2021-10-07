@@ -32,11 +32,11 @@ const INTERNAL_UPDATE_METHODS = {
   parents: "saveParents",
 }
 
-Step.prototype.clean = function ({ commit, dispatch, state }, storeInternal) {
+Step.prototype.clean = function ({ commit, dispatch, getters }, storeInternal) {
   const subject =
-    state.situation[this.entity] ||
-    state.situation[this.id] ||
-    state.situation.enfants.find((enfant) => enfant.id === this.id)
+    getters.situation[this.entity] ||
+    getters.situation[this.id] ||
+    getters.situation.enfants.find((enfant) => enfant.id === this.id)
   const result = { ...subject, [this.variable]: undefined }
   const updateMethod = UPDATE_METHODS[this.entity]
   const internalUpdateMethod = INTERNAL_UPDATE_METHODS[this.entity]

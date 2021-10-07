@@ -167,23 +167,6 @@ const store = new Vuex.Store({
         return items.length ? items[0] : null
       }
     },
-    getMenage: function (state, getters) {
-      return getters.situation.menage
-    },
-    getParents: function (state, getters) {
-      return getters.situation.parents
-    },
-    getFoyerFiscal: function (state, getters) {
-      return getters.situation.foyer_fiscal
-    },
-    getLogementStatut: function (state) {
-      const answer = state.answers.all.find(
-        (answer) =>
-          answer.id === "menage" &&
-          answer.fieldName === "statut_occupation_logement"
-      )
-      return answer && answer.value
-    },
     getAllSteps: function (state, getters) {
       return generateAllSteps(getters.situation)
     },

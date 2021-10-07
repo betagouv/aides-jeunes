@@ -1,10 +1,5 @@
 import { yearsAgo } from "@/lib/Utils"
 
-const loadEntity = (component) => {
-  const famille = { ...component.$store.getters.situation.famille }
-  return famille
-}
-
 const STEPS = {
   bourse_criteres_sociaux_nombre_enfants_a_charge: {
     question:
@@ -46,6 +41,5 @@ const STEPS = {
 }
 
 export default {
-  loadEntity,
   STEPS,
 }

@@ -81,13 +81,15 @@ export default {
   },
   data() {
     const entityName = this.$route.path.split("/")[2]
-    const entity = ENTITIES_PROPERTIES[entityName].loadEntity(this)
     const id = (this.params || this.$route.params).id
     const value = this.$store.getters.getAnswer(
       id,
       entityName,
       this.$route.params.fieldName
     )
+    const entity =
+      ENTITIES_PROPERTIES[entityName].loadEntity &&
+      ENTITIES_PROPERTIES[entityName].loadEntity(this)
 
     return {
       id,

@@ -15,6 +15,9 @@
     <ResultatInattenduAideLogement
       v-else-if="droit.id === 'aide_logement'"
     ></ResultatInattenduAideLogement>
+    <ResultatInattenduGarantieJeune
+      v-else-if="droit.id === 'garantie_jeunes'"
+    ></ResultatInattenduGarantieJeune>
     <ResultatInattenduYearMinusTwo
       :droit="droit"
       v-else
@@ -24,15 +27,17 @@
 
 <script>
 import Institution from "@/lib/Institution"
-import ResultatInattenduPpa from "@/components/ResultatInattendu/Ppa"
 import ResultatInattenduAideLogement from "@/components/ResultatInattendu/AideLogement"
+import ResultatInattenduGarantieJeune from "@/components/ResultatInattendu/GarantieJeune"
+import ResultatInattenduPpa from "@/components/ResultatInattendu/Ppa"
 import ResultatInattenduYearMinusTwo from "@/components/ResultatInattendu/YearMinusTwo"
 
 export default {
   name: "resultat-inattendu",
   components: {
-    ResultatInattenduPpa,
     ResultatInattenduAideLogement,
+    ResultatInattenduGarantieJeune,
+    ResultatInattenduPpa,
     ResultatInattenduYearMinusTwo,
   },
   data: function () {

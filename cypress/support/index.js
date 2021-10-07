@@ -251,6 +251,18 @@ export function couple() {
   autoSubmit()
 }
 
+export function pasEnceinte() {
+  cy.get("legend").invoke("text").should("contain", "enceinte")
+  checkRadio("false")
+  submit()
+}
+
+export function enceinte() {
+  cy.get("legend").invoke("text").should("contain", "enceinte")
+  checkRadio("true")
+  submit()
+}
+
 export function parentsSepares() {
   cy.get("legend").invoke("text").should("contain", "parents")
   cy.get('input[name="_situation"]').get('[value="separes"]').check()

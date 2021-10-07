@@ -16,6 +16,7 @@ context("Full simulation", () => {
     })
     steps.zeroEnfants()
     steps.celibataire()
+    steps.pasEnceinte()
     steps.sansDomicileStable()
     steps.salaireSeul()
     // steps.sansPensionAlimentaireVersees()

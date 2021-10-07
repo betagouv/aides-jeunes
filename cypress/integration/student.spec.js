@@ -15,6 +15,7 @@ context("Full simulation", () => {
 
     steps.zeroEnfants()
     steps.celibataire()
+    steps.pasEnceinte()
     steps.parentsSepares()
     steps.unEnfantSuperieur()
     steps.heberge()

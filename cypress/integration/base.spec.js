@@ -11,6 +11,7 @@ context("Full simulation", () => {
     steps.demandeur()
     steps.zeroEnfants()
     steps.celibataire()
+    steps.pasEnceinte()
     steps.sansDomicileStable()
     steps.salaireSeul()
     // steps.sansPensionAlimentaireVersees()
@@ -30,6 +31,7 @@ context("Full simulation", () => {
 
     steps.zeroEnfants()
     steps.celibataire()
+    steps.pasEnceinte()
     steps.parentsSepares()
     steps.unEnfantSuperieur()
     steps.locataire()

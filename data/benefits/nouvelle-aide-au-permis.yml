@@ -1,0 +1,25 @@
+label: nouvelle aide au permis
+institution: etat
+description: Nouvelle aide pour les jeunes lycéens, lycéennes ou celles et ceux
+  en contrat de professionnalisation et leur permettre d'avoir un vélo !
+link: https://www.1jeune1solution.gouv.fr/
+form: ""
+teleservice: https://www.1jeune1solution.gouv.fr/
+prefix: la
+type: float
+floorAt: 10
+interestFlag: null
+entity: menage
+computesLocally: true
+montant: 200
+regions:
+  - "44"
+communes:
+  - "55039"
+  - "33010"
+  - "45010"
+age_min: 16
+age_max: 25
+statuts:
+  - lyceen
+  - professionnalisation

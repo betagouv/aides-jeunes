@@ -1,13 +1,30 @@
 import Head from "next/head"
-import { Component, useEffect } from "react"
+import { useEffect, useState  } from "react"
 import netlifyIdentity from "netlify-identity-widget"
 import { attributes, react as HomeContent } from "../content/home.md"
 import tasks from "../lib/tasks"
 
 function Home() {
   let { title } = attributes
+  const [token, setToken] = useState("")
+  const API_URL = "http://localhost:8080/api/contribution/auth"
+  function login(event) {
+    event.preventDefault()
+    netlifyIdentity.open()
+  }
+
+  function retrieveAccessToken() {
+    const user = netlifyIdentity.currentUser()
+    return user ? user.token.access_token : ""
+  }
+
+  async function initNetlify() {
+    await netlifyIdentity.init()
+    setToken(retrieveAccessToken())
+  }
+
   useEffect(() => {
-    netlifyIdentity.init()
+    initNetlify()
   })
 
   return (
@@ -37,6 +54,20 @@ function Home() {
               </h3>
             </li>
           ))}
+          {token ?
+            <form
+              action={API_URL}
+              method="POST"
+            >
+              <input type="hidden" name="token" value={token} />
+              <input
+                type="submit"
+                value="Contribuer sur la plateforme 1 jeune 1 solution."
+                />
+            </form>
+            : <button onClick={login}>Se connecter pour contribuer</button>
+          }
+
         </ul>
       </article>
     </>

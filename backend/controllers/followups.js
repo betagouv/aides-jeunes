@@ -8,7 +8,7 @@ exports.followup = function (req, res, next, id) {
     .populate("situation")
     .exec(function (err, followup) {
       if (err) return next(err)
-      if (!followup || !followup.situation || !followup.situation._id)
+      if (!followup ||  !followup.situationId)
         return res.redirect("/")
       req.followup = followup
 

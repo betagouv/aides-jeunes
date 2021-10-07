@@ -104,7 +104,7 @@ export default {
       this.$store.dispatch("removeEnfant", id)
     },
     onSubmit: function () {
-      if (!this.$store.getters.situation.enfants) {
+      if (!this.$store.state.answers.enfants) {
         this.$store.dispatch("zeroEnfant")
       }
       this.$push()

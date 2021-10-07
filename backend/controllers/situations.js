@@ -28,7 +28,7 @@ exports.attachAccessCookie = function (req, res) {
     maxAge,
     httpOnly: true,
   })
-  res.cookie("lastestSituation", req.situation._id.toString(), { maxAge })
+  res.cookie("lastestSituation", req.situationId.toString(), { maxAge })
 }
 
 exports.validateAccess = function (req, res, next) {
@@ -85,20 +85,20 @@ exports.openfiscaResponse = function (req, res, next) {
     if (err)
       return next(
         Object.assign((err.response && err.response.data) || err, {
-          _id: req.situation._id,
+          _id: req.situationId,
         })
       )
 
-    res.send(Object.assign(result, { _id: req.situation._id }))
+    res.send(Object.assign(result, { _id: req.situationId }))
   })
 }
 
 exports.openfiscaTrace = function (req, res, next) {
   return openfisca.trace(req.situation, function (err, result) {
     if (err)
-      return next(Object.assign(err.response.data, { _id: req.situation._id }))
+      return next(Object.assign(err.response.data, { _id: req.situationId }))
 
-    res.send(Object.assign(result, { _id: req.situation._id }))
+    res.send(Object.assign(result, { _id: req.situationId }))
   })
 }
 

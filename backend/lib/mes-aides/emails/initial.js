@@ -110,7 +110,7 @@ function render(followup) {
         renderAsHtml(followup, benefits),
       ]).then(function (values) {
         return {
-          subject: `[${followup.situation._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
+          subject: `[${followup.situationId}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
           text: values[0],
           html: values[1].html,
           attachments: values[1].attachments,

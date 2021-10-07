@@ -18,7 +18,7 @@ OpenFiscaResponse.prototype.toExternal = function () {
   const p = new Promise((resolve, reject) => {
     openfisca.calculate(this.situation, (err, result) => {
       const additions = {
-        _id: this.situation._id,
+        _id: this.situationId,
         external_id: this.situation.external_id,
       }
       if (err) {

@@ -10,8 +10,12 @@ context("Full simulation", () => {
     steps.home()
     steps.etudiant_public()
 
-    cy.get("div").find('input[type="radio"][value="true"]').first().check()
-    cy.get('button[type="submit"]').click()
+    // _continuite_etude
+    steps.checkRadio("true")
+    steps.submit()
+    // _securite_sociale
+    steps.checkRadio("caf")
+    steps.submit()
 
     steps.zeroEnfants()
     steps.celibataire()

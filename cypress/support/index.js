@@ -52,6 +52,9 @@ export function demandeur(params = {}) {
   submit()
   // Handicap
   handicap(params)
+  // _securite_sociale
+  checkRadio("caf")
+  submit()
 }
 
 export function etudiant_public(params = {}) {

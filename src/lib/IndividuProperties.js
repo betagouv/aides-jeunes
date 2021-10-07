@@ -210,6 +210,15 @@ const STEPS = {
     questionType: "date",
   },
 
+  enceinte: {
+    question: (component) => {
+      const famille = component.$store.state.situation.famille
+      return `Je suis${
+        famille.en_couple ? " ou ma conjointe est" : ""
+      } enceinte ?`
+    },
+  },
+
   enfant_place: {
     question: (component) => {
       return `${Individu.label(

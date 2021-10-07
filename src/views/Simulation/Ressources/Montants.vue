@@ -117,10 +117,28 @@ export default {
         this.$route.params.category,
         this.$store.getters.situation
       )
+
+      const answers = this.$store.getters.getAnswer(
+        this.$route.params.id,
+        "individu",
+        this.$route.params.category
+      )
+
       return ressourceTypes.reduce((result, type) => {
         if (selectedTypes[type.id]) {
           let amounts = Object.assign({}, individu[type.id])
-          let months = Ressource.getPeriodsForCurrentYear(
+          if (answers) {
+            const answer = answers.find((value) => value.id === type.id)
+            if (answer) {
+              Object.keys(amounts).forEach((amount) => {
+                if (amounts[amount] === null) {
+                  amounts[amount] = answer.amounts[amount]
+                }
+              })
+            }
+          }
+          console.log(amounts)
+          const months = Ressource.getPeriodsForCurrentYear(
             this.$store.state.dates,
             type
           )

@@ -53,7 +53,6 @@ const generateDefaultIndividu = (role, id) => ({
   id: id,
   annee_etude: undefined,
   date_naissance: undefined,
-  bourse_criteres_sociaux_echelon: -1,
   enfant_a_charge: {},
   nationalite: undefined,
   _role: role,
@@ -62,7 +61,10 @@ const generateDefaultIndividu = (role, id) => ({
 function generateSituation(answers, dates) {
   const situation = {
     external_id: null,
-    demandeur: generateDefaultIndividu("demandeur", "demandeur"),
+    demandeur: {
+      ...generateDefaultIndividu("demandeur", "demandeur"),
+      state_marital: answers && !answers.conjoint ? "celibataire" : undefined,
+    },
     enfants:
       answers && answers.enfants && answers.enfants.length > 0
         ? answers.enfants.map((enfant) => {
@@ -90,68 +92,87 @@ function generateSituation(answers, dates) {
   }
 
   answers.current.forEach((answer) => {
-    switch (answer.entityName) {
-      case "individu": {
+    if (answer.entityName === "individu") {
+      if (answer.id === "enfants") {
+        answer.value.forEach((response) => {
+          const enfant =
+            situation.enfants &&
+            situation.enfants.find((enfant) => enfant.id == response.id)
+          if (enfant) {
+            enfant[answer.fieldName] = response.value
+          }
+        })
+      } else {
+        let individu
         switch (answer.id) {
           case "demandeur": {
-            switch (answer.fieldName) {
-              case "ressources": {
-                answer.value.forEach((ressource) => {
-                  Ressource.setDefaultValueForCurrentYear(
-                    dates,
-                    situation.demandeur,
-                    ressourceTypes.find(
-                      (ressourceType) => ressourceType.id === ressource
-                    )
-                  )
-                })
-                break
-              }
-              case "revenusActivite":
-              case "indemnites":
-              case "pensions":
-              case "autre":
-              case "patrimoine":
-              case "allocations": {
-                answer.value.forEach((ressource) => {
-                  situation.demandeur[ressource.id] = ressource.amounts
-                })
-                break
-              }
-              default: {
-                situation.demandeur[answer.fieldName] = answer.value
-                break
-              }
-            }
+            individu = situation.demandeur
             break
           }
           case "conjoint": {
-            situation.conjoint[answer.fieldName] = answer.value
+            individu = situation.conjoint
             break
           }
-          default:
-            {
-              const [role] = answer.id.split("_")
-              if (role === "enfant") {
-                const enfant =
-                  situation.enfants &&
-                  situation.enfants.find((enfant) => enfant.id == answer.id)
-                if (enfant) {
-                  enfant[answer.fieldName] = answer.value
-                }
-              }
+          default: {
+            const [role] = answer.id.split("_")
+            if (role === "enfant") {
+              individu =
+                situation.enfants &&
+                situation.enfants.find((enfant) => enfant.id == answer.id)
             }
             break
+          }
         }
-        break
+
+        if (individu) {
+          switch (answer.fieldName) {
+            case "depcom": {
+              Object.keys(answer.value).forEach(
+                (key) => (situation[answer.entityName][key] = answer.value[key])
+              )
+              break
+            }
+            case "enfant_a_charge": {
+              individu["enfant_a_charge"][dates.thisYear.id] = answer.value
+              break
+            }
+            case "ressources": {
+              answer.value.forEach((ressource) => {
+                Ressource.setDefaultValueForCurrentYear(
+                  dates,
+                  individu,
+                  ressourceTypes.find(
+                    (ressourceType) => ressourceType.id === ressource
+                  )
+                )
+              })
+              break
+            }
+            case "revenusActivite":
+            case "indemnites":
+            case "pensions":
+            case "autre":
+            case "patrimoine":
+            case "allocations": {
+              answer.value.forEach((ressource) => {
+                individu[ressource.id] = ressource.amounts
+              })
+              break
+            }
+            default: {
+              individu[answer.fieldName] = answer.value
+              break
+            }
+          }
+        }
       }
-      case "menage": {
-        situation.menage[answer.fieldName] = answer.value
-        break
-      }
-      default: {
-        console.log("answer.entityName", answer)
-        break
+    } else {
+      if (answer.fieldName === "depcom") {
+        Object.keys(answer.value).forEach(
+          (key) => (situation[answer.entityName][key] = answer.value[key])
+        )
+      } else {
+        situation[answer.entityName][answer.fieldName] = answer.value
       }
     }
   })

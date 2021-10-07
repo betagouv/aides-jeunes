@@ -31,14 +31,15 @@
 
 <script>
 import Actions from "@/components/Actions"
-import { createFamilleMixin } from "@/mixins/FamilleMixin"
 
 export default {
   name: "SimulationFamilleEnCouple",
   components: {
     Actions,
   },
-  mixins: [createFamilleMixin("en_couple")],
+  data: function () {
+    return { value: this.$store.state.answers.conjoint }
+  },
   methods: {
     onSubmit() {
       if (this.value === undefined) {
@@ -46,15 +47,7 @@ export default {
         return
       }
 
-      if (this.value) {
-        this.$store.dispatch("addConjoint")
-      } else {
-        this.$store.dispatch("removeConjoint")
-        this.$store.dispatch("updateIndividu", {
-          ...this.$store.getters.situation.demandeur,
-          statut_marital: "celibataire",
-        })
-      }
+      this.$store.dispatch(this.value ? "addConjoint" : "removeConjoint")
       this.$push()
     },
   },

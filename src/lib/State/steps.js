@@ -24,27 +24,6 @@ const UPDATE_METHODS = {
   parents: "updateParents",
 }
 
-const INTERNAL_UPDATE_METHODS = {
-  individu: "saveIndividu",
-  famille: "saveFamille",
-  foyerFiscal: "saveFoyerFiscal",
-  menage: "saveMenage",
-  parents: "saveParents",
-}
-
-Step.prototype.clean = function ({ commit, dispatch, getters }, storeInternal) {
-  const subject =
-    getters.situation[this.entity] ||
-    getters.situation[this.id] ||
-    getters.situation.enfants.find((enfant) => enfant.id === this.id)
-  const result = { ...subject, [this.variable]: undefined }
-  const updateMethod = UPDATE_METHODS[this.entity]
-  const internalUpdateMethod = INTERNAL_UPDATE_METHODS[this.entity]
-  return storeInternal
-    ? commit(internalUpdateMethod, result)
-    : dispatch(updateMethod, result)
-}
-
 function ComplexStep({ route, variables, chapter }) {
   Step.call(this, { key: route, chapter: chapter })
   this.path = `/simulation/${route}`

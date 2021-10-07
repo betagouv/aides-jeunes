@@ -36,8 +36,11 @@ export default {
       this.$route.params.id,
       this.$store.state.dates
     )
-    const value =
-      individu["enfant_a_charge"][this.$store.state.dates.thisYear.id]
+    const value = this.$store.getters.getAnswer(
+      id,
+      "individu",
+      "enfant_a_charge"
+    )
     return {
       individu,
       id,
@@ -50,9 +53,13 @@ export default {
       if (this.requiredValueMissing()) {
         return
       }
-      this.individu["enfant_a_charge"][this.$store.state.dates.thisYear.id] =
-        this.value
-      this.$store.dispatch("updateIndividu", this.individu)
+
+      this.$store.dispatch("answer", {
+        id: this.id,
+        entityName: "individu",
+        fieldName: "enfant_a_charge",
+        value: this.value,
+      })
       this.$push()
     },
   },

@@ -10,7 +10,6 @@ exports.followup = function (req, res, next, id) {
       if (err) return next(err)
       if (!followup || !followup.situationId) return res.redirect("/")
       req.followup = followup
-
       situation.situation(req, res, next, followup.situation)
     })
 }

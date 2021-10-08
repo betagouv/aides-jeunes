@@ -1,6 +1,6 @@
 <template>
   <form>
-    <router-link v-if="canGoToResults" to="/foyer/resultat"
+    <router-link v-if="this.$store.state.situationId" to="/foyer/resultat"
       >Aller directement à la page de résultat</router-link
     >
 
@@ -105,9 +105,6 @@ export default {
     },
     nextSteps: function () {
       return steps.slice(this.previousSteps.length).filter((s) => !s.hideAsNext)
-    },
-    canGoToResults: function () {
-      return this.$store.getters.situationId
     },
   },
 }

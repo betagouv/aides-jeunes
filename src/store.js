@@ -244,11 +244,11 @@ const store = new Vuex.Store({
           .then((response) => response.data)
       }
     },
-    hasResults: function (state, getters) {
+    hasResults: function (state) {
       return (
-        getters.situationId &&
+        state.situationId &&
         state.calculs.resultats._id &&
-        state.calculs.resultats._id === getters.situationId
+        state.calculs.resultats._id === state.situationId
       )
     },
     getAnswer: (state) => (id, entityName, fieldName, currentOnly) => {

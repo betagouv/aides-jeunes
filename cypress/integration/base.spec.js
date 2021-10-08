@@ -30,8 +30,8 @@ context("Full simulation", () => {
     checkRadio("true")
     submit()
 
-    // _securite_sociale
-    checkRadio("caf")
+    // regime_securite_sociale
+    checkRadio("regime_general")
     submit()
 
     steps.zeroEnfants()

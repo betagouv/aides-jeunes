@@ -52,8 +52,8 @@ export function demandeur(params = {}) {
   submit()
   // Handicap
   handicap(params)
-  // _securite_sociale
-  checkRadio("caf")
+  // regime_securite_sociale
+  checkRadio("regime_general")
   submit()
 }
 

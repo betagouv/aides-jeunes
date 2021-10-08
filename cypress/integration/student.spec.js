@@ -13,8 +13,8 @@ context("Full simulation", () => {
     // _continuite_etude
     steps.checkRadio("true")
     steps.submit()
-    // _securite_sociale
-    steps.checkRadio("caf")
+    // regime_securite_sociale
+    steps.checkRadio("regime_general")
     steps.submit()
 
     steps.zeroEnfants()

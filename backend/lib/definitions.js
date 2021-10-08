@@ -122,6 +122,7 @@ var individu = Object.assign(
         "niveau_8",
       ],
     },
+    regime_securite_sociale: String,
     _role: { type: String, enum: ["demandeur", "conjoint", "enfant"] },
     rsa_jeune_condition_heures_travail_remplie: Boolean,
     scolarite: {

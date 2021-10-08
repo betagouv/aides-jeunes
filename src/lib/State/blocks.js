@@ -220,7 +220,7 @@ function individuBlockFactory(id) {
                 },
               ],
             },
-            r("_securite_sociale"),
+            r("regime_securite_sociale"),
           ]
         : []),
     ],

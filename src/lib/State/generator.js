@@ -58,13 +58,34 @@ const generateDefaultIndividu = (role, id) => ({
   _role: role,
 })
 
+const getIndividu = (situation, id) => {
+  let individu
+  switch (id) {
+    case "demandeur": {
+      individu = situation.demandeur
+      break
+    }
+    case "conjoint": {
+      individu = situation.conjoint
+      break
+    }
+    default: {
+      const [role] = id.split("_")
+      if (role === "enfant") {
+        individu =
+          situation.enfants &&
+          situation.enfants.find((enfant) => enfant.id == id)
+      }
+      break
+    }
+  }
+  return individu
+}
+
 function generateSituation(answers, dates) {
   const situation = {
     external_id: null,
-    demandeur: {
-      ...generateDefaultIndividu("demandeur", "demandeur"),
-      state_marital: answers && !answers.conjoint ? "celibataire" : undefined,
-    },
+    demandeur: generateDefaultIndividu("demandeur", "demandeur"),
     enfants:
       answers && answers.enfants && answers.enfants.length > 0
         ? answers.enfants.map((enfant, index) => {
@@ -81,15 +102,7 @@ function generateSituation(answers, dates) {
             }
           })
         : null,
-    famille: {
-      en_couple: answers && answers.conjoint,
-    },
-    conjoint:
-      answers && answers.conjoint
-        ? generateDefaultIndividu("conjoint", "conjoint")
-        : undefined,
-    logement: {},
-    foyer_fiscal: {},
+    famille: {},
     menage: {
       aide_logement_date_pret_conventionne: "2018-12-31",
     },
@@ -112,28 +125,19 @@ function generateSituation(answers, dates) {
             enfant[answer.fieldName] = response.value
           }
         })
+      } else if (answer.id === "ressourcesFiscales") {
+        const fiscalYear = dates.fiscalYear.id
+        Object.keys(answer.value).forEach((individuId) => {
+          const individu = getIndividu(situation, individuId)
+          if (individu) {
+            const ressources = answer.value[individuId]
+            Object.keys(ressources).forEach((ressource) => {
+              individu[ressource] = { [fiscalYear]: ressources[ressource] }
+            })
+          }
+        })
       } else {
-        let individu
-        switch (answer.id) {
-          case "demandeur": {
-            individu = situation.demandeur
-            break
-          }
-          case "conjoint": {
-            individu = situation.conjoint
-            break
-          }
-          default: {
-            const [role] = answer.id.split("_")
-            if (role === "enfant") {
-              individu =
-                situation.enfants &&
-                situation.enfants.find((enfant) => enfant.id == answer.id)
-            }
-            break
-          }
-        }
-
+        const individu = getIndividu(situation, answer.id)
         if (individu) {
           switch (answer.fieldName) {
             case "depcom": {
@@ -181,6 +185,13 @@ function generateSituation(answers, dates) {
         Object.keys(answer.value).forEach(
           (key) => (situation[answer.entityName][key] = answer.value[key])
         )
+      } else if (answer.fieldName === "en_couple") {
+        situation[answer.entityName][answer.fieldName] = answer.value
+        if (answer.value) {
+          situation.conjoint = generateDefaultIndividu("conjoint", "conjoint")
+        } else {
+          situation.demandeur.statut_marital = "celibataire"
+        }
       } else {
         situation[answer.entityName][answer.fieldName] = answer.value
       }

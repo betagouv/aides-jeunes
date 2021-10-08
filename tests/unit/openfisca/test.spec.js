@@ -19,7 +19,6 @@ var currentPeriod = "2018-01"
 var situation = {
   dateDeValeur: new Date(currentPeriod),
   famille: {},
-  foyer_fiscal: {},
   demandeur: {
     id: "id",
     date_naissance: new Date("1989-01-01"),

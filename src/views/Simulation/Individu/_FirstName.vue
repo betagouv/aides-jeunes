@@ -19,18 +19,5 @@ export default {
     Actions,
   },
   mixins: [createIndividuMixin("_firstName")],
-  methods: {
-    onSubmit: function () {
-      if (this.value.length) {
-        this.$store.dispatch("answer", {
-          id: this.$route.params.id,
-          entityName: "individu",
-          fieldName: this.fieldName,
-          value: this.value,
-        })
-      }
-      this.$push()
-    },
-  },
 }
 </script>

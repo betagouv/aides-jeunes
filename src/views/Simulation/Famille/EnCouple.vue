@@ -38,7 +38,12 @@ export default {
     Actions,
   },
   data: function () {
-    return { value: this.$store.state.answers.conjoint }
+    const value = this.$store.getters.getAnswer(
+      "famille",
+      "famille",
+      "en_couple"
+    )
+    return { value }
   },
   methods: {
     onSubmit() {
@@ -47,7 +52,12 @@ export default {
         return
       }
 
-      this.$store.dispatch(this.value ? "addConjoint" : "removeConjoint")
+      this.$store.dispatch("answer", {
+        id: "famille",
+        entityName: "famille",
+        fieldName: "en_couple",
+        value: this.value,
+      })
       this.$push()
     },
   },

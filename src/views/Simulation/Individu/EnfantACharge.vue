@@ -33,35 +33,12 @@ export default {
     const { individu } = Individu.get(
       this.$store.getters.peopleParentsFirst,
       role,
-      this.$route.params.id,
-      this.$store.state.dates
-    )
-    const value = this.$store.getters.getAnswer(
       id,
-      "individu",
-      "enfant_a_charge"
+      this.$store.state.dates
     )
     return {
       individu,
-      id,
-      value,
-      role,
     }
-  },
-  methods: {
-    onSubmit: function () {
-      if (this.requiredValueMissing()) {
-        return
-      }
-
-      this.$store.dispatch("answer", {
-        id: this.id,
-        entityName: "individu",
-        fieldName: "enfant_a_charge",
-        value: this.value,
-      })
-      this.$push()
-    },
   },
 }
 </script>

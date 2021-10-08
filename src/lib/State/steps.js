@@ -18,12 +18,6 @@ const ENTITIES_PROPERTIES = {
   parents: require("@/lib/ParentsProperties").default,
 }
 
-const UPDATE_METHODS = {
-  individu: "updateIndividu",
-  foyerFiscal: "updateFoyerFiscal",
-  parents: "updateParents",
-}
-
 function ComplexStep({ route, variables, chapter }) {
   Step.call(this, { key: route, chapter: chapter })
   this.path = `/simulation/${route}`
@@ -39,5 +33,4 @@ module.exports = {
   ENTITIES_PROPERTIES,
   ComplexStep,
   Step,
-  UPDATE_METHODS,
 }

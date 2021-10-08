@@ -21,7 +21,6 @@ function dispatchIndividuals(situation) {
     _: {
       declarants: [],
       personnes_a_charge: [],
-      ...situation.foyer_fiscal,
     },
   }
   var menages = { _: buildOpenFiscaMenage(situation) }

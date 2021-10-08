@@ -43,16 +43,5 @@ export default {
       situationsFamiliales: Individu.situationsFamiliales,
     }
   },
-  methods: {
-    onSubmit: function () {
-      this.$store.dispatch("answer", {
-        id: "conjoint",
-        entityName: "individu",
-        fieldName: "statut_marital",
-        value: this.value,
-      })
-      this.$push()
-    },
-  },
 }
 </script>

@@ -2,7 +2,6 @@ var situation = {
   dateDeValeur: new Date("2017-10-02"),
   demandeur: {},
   famille: {},
-  foyer_fiscal: {},
   menage: {
     personne_de_reference: ["id"],
     statut_occupation_logement: "sans_domicile",

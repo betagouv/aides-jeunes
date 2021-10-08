@@ -280,6 +280,12 @@ const store = new Vuex.Store({
         ressourcesFiscales,
       }
     },
+    patrimoine: (state, patrimoine) => {
+      state.answers = {
+        ...state.answers,
+        patrimoine,
+      }
+    },
     clear: function (state) {
       state.answers = { all: [], current: [], enfants: [] }
       state.access.forbidden = false
@@ -441,8 +447,12 @@ const store = new Vuex.Store({
       commit("answer", answer)
       commit("setDirty")
     },
-    ressourcesFiscales: ({ commit }, answer) => {
-      commit("ressourcesFiscales", answer)
+    ressourcesFiscales: ({ commit }, ressourcesFiscales) => {
+      commit("ressourcesFiscales", ressourcesFiscales)
+      commit("setDirty")
+    },
+    patrimoine: ({ commit }, patrimoine) => {
+      commit("patrimoine", patrimoine)
       commit("setDirty")
     },
     clear: function ({ commit }, external_id) {

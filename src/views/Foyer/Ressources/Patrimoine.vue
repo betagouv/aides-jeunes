@@ -118,6 +118,18 @@ import YesNoQuestion from "@/components/YesNoQuestion"
 import InputNumber from "@/components/InputNumber"
 import Actions from "@/components/Actions"
 
+const mapping = {
+  hasTerrainsNonLoues: {
+    sources: [
+      "valeur_terrains_non_loues",
+      "valeur_locative_terrains_non_loues",
+    ],
+  },
+  hasBatisNonLoues: {
+    sources: ["valeur_immo_non_loue", "valeur_locative_immo_non_loue"],
+  },
+}
+
 export default {
   name: "ressources-patrimoine",
   components: {
@@ -140,18 +152,6 @@ export default {
       demandeur[patrimoinePropertyName][periodKey] =
         demandeur[patrimoinePropertyName][periodKey] || 0
     })
-
-    let mapping = {
-      hasTerrainsNonLoues: {
-        sources: [
-          "valeur_terrains_non_loues",
-          "valeur_locative_terrains_non_loues",
-        ],
-      },
-      hasBatisNonLoues: {
-        sources: ["valeur_immo_non_loue", "valeur_locative_immo_non_loue"],
-      },
-    }
 
     let locals = {
       hasBiensLoues: individus.some((individu) => individu.revenus_locatifs),
@@ -179,7 +179,25 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      this.$store.dispatch("updateIndividu", this.demandeur)
+      const values = {}
+
+      patrimoineTypes.forEach((patrimoinType) => {
+        values[patrimoinType.id] =
+          this.demandeur[patrimoinType.id][this.periodKey]
+      })
+
+      Object.values(mapping).forEach((valeur) =>
+        valeur.sources.forEach((source) => {
+          values[source] = this.demandeur[source][this.periodKey]
+        })
+      )
+
+      if (this.hasBiensLoues) {
+        values.valeur_patrimoine_loue =
+          this.demandeur.valeur_patrimoine_loue[this.periodKey]
+      }
+
+      this.$store.dispatch("patrimoine", values)
       this.$router.push("/simulation/resultats")
     },
   },

@@ -200,6 +200,13 @@ function generateSituation(answers, dates) {
     })
   }
 
+  if (answers.patrimoine) {
+    const periodKey = "month:2012-01:120"
+    Object.keys(answers.patrimoine).forEach((key) => {
+      situation.demandeur[key] = { [periodKey]: answers.patrimoine[key] }
+    })
+  }
+
   return situation
 }
 

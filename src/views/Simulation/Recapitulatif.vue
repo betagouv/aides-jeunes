@@ -139,7 +139,8 @@ export default {
         const answer = this.$store.getters.getAnswer(
           step.id,
           step.entity,
-          step.variable
+          step.variable,
+          true
         )
         const entity =
           ENTITIES_PROPERTIES[step.entity].loadEntity &&

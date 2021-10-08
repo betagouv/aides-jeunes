@@ -22,7 +22,12 @@ export const getIndividuByStep = (step, component) => {
 
 export const SIMPLE_STEPS = {
   depcom() {
-    const answer = this.$store.getters.getAnswer("menage", "menage", "depcom")
+    const answer = this.$store.getters.getAnswer(
+      "menage",
+      "menage",
+      "depcom",
+      true
+    )
     return [
       {
         label: "Quel est votre code postal ?",

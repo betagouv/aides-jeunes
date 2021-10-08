@@ -114,27 +114,19 @@ function restoreLocal() {
 }
 
 const storeAnswer = (answers, newAnswer, clean) => {
-  let found = false
-  let i = 0
-  while (!found && i < answers.length) {
-    const answer = answers[i]
-    if (
+  const existingAnswerIndex = answers.findIndex(
+    (answer) =>
       answer.id === newAnswer.id &&
       answer.entityName === newAnswer.entityName &&
       answer.fieldName === newAnswer.fieldName
-    ) {
-      answer.value = newAnswer.value
-      found = true
-    }
-    i++
-  }
+  )
   let results
-  if (!found) {
+  if (existingAnswerIndex === -1) {
     results = [...answers, newAnswer]
-  } else if (clean) {
-    results = answers.slice(0, i)
   } else {
-    results = [...answers]
+    const answer = answers[existingAnswerIndex]
+    answer.value = newAnswer.value
+    results = clean ? answers.slice(0, existingAnswerIndex + 1) : [...answers]
   }
 
   return results
@@ -242,8 +234,10 @@ const store = new Vuex.Store({
         state.calculs.resultats._id === getters.situationId
       )
     },
-    getAnswer: (state) => (id, entityName, fieldName) => {
-      const answer = state.answers.all.find(
+    getAnswer: (state) => (id, entityName, fieldName, currentOnly) => {
+      const answer = (
+        currentOnly ? state.answers.current : state.answers.all
+      ).find(
         (answer) =>
           answer.id === id &&
           answer.entityName === entityName &&

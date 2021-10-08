@@ -106,7 +106,7 @@ export default {
     if (this.mock(this.$route.params.droitId)) {
       return
     } else if (this.$route.query && this.$route.query.situationId) {
-      if (this.$store.getters.situationId !== this.$route.query.situationId) {
+      if (this.$store.state.situationId !== this.$route.query.situationId) {
         this.$store
           .dispatch("fetch", this.$route.query.situationId)
           .then(() => this.$store.dispatch("compute"))

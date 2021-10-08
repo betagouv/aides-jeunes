@@ -126,7 +126,24 @@ const storeAnswer = (answers, newAnswer, clean) => {
   } else {
     const answer = answers[existingAnswerIndex]
     answer.value = newAnswer.value
-    results = clean ? answers.slice(0, existingAnswerIndex + 1) : [...answers]
+    if (clean) {
+      if (newAnswer.id.startsWith("enfant_")) {
+        // If we are changing info about a children
+        // we want to keep the answer on others
+        results = answers
+          .slice(0, existingAnswerIndex + 1)
+          .concat(
+            answers.filter(
+              (answer) =>
+                answer.id.startsWith("enfant_") && answer.id !== newAnswer.id
+            )
+          )
+      } else {
+        results = answers.slice(0, existingAnswerIndex + 1)
+      }
+    } else {
+      results = [...answers]
+    }
   }
 
   return results
@@ -320,9 +337,31 @@ const store = new Vuex.Store({
           : state.answers.current.splice(0, currentLastIndex)
 
       state.answers = {
+        ...state.answers,
         enfants,
         all: storeAnswer(state.answers.all, answer, false),
         current: storeAnswer(currentAnswers, answer, true),
+      }
+    },
+    editEnfant: function (state, id) {
+      // When you edit a children you need to remove all current answer after the child validation
+      const currentLastIndex = state.answers.current.findIndex(
+        (answer) =>
+          answer.entityName === "individu" &&
+          answer.id === "demandeur" &&
+          answer.fieldName === "nombre_enfants"
+      )
+
+      const currentAnswers =
+        currentLastIndex === -1
+          ? state.answers.current
+          : state.answers.current.splice(0, currentLastIndex)
+
+      state.answers = {
+        ...state.answers,
+        current: currentAnswers.filter(
+          (answer) => answer.id !== `enfant_${id}`
+        ),
       }
     },
     setAmeliNoticationDone: function (state) {
@@ -423,6 +462,10 @@ const store = new Vuex.Store({
     },
     addEnfant: function ({ commit }) {
       commit("addEnfant")
+      commit("setDirty")
+    },
+    editEnfant: function ({ commit }, id) {
+      commit("editEnfant", id)
       commit("setDirty")
     },
     updateError: function ({ commit }, error) {

@@ -128,7 +128,7 @@ export default {
       }
       if (step.variable === undefined) {
         const match = Object.keys(COMPLEX_STEPS).find((key) =>
-          COMPLEX_STEPS[key].matcher(step)
+          COMPLEX_STEPS[key].matcher.bind(this)(step)
         )
         if (match) {
           return COMPLEX_STEPS[match].fn.bind(this)(step)

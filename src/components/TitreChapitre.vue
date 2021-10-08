@@ -34,6 +34,10 @@ export default {
   methods: {
     getTitleByRoute(route) {
       const path = route.path
+      if (path === "/simulation/recapitulatif") {
+        return "Récapitulatif"
+      }
+
       const current = path.replace(/\/en_savoir_plus/, "")
       const step =
         this.$store.getters.passSanityCheck &&

@@ -1,6 +1,5 @@
 <template>
   <div class="recapitulatif">
-    <h2>Récapitulatif</h2>
     <BackButton
       @click.native="goBack()"
       class="recapitulatif-back-button"

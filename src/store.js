@@ -442,14 +442,6 @@ const store = new Vuex.Store({
       commit("saveIndividu", individu)
       commit("setDirty")
     },
-    updateFoyerFiscal: function ({ commit }, foyer_fiscal) {
-      commit("saveFoyerFiscal", foyer_fiscal)
-      commit("setDirty")
-    },
-    updateParents: function ({ commit }, parents) {
-      commit("saveParents", parents)
-      commit("setDirty")
-    },
     save: function (store) {
       let situation = { ...store.getters.situation }
       if (store.situationId) {

@@ -3,7 +3,7 @@
     <div
       class="form__group"
       v-for="individu in individus"
-      v-bind:key="individu.source.id"
+      v-bind:key="individu.id"
     >
       <button
         class="button outline with-icon m-auto"
@@ -99,7 +99,7 @@ export default {
         label: Individu.label(source),
         default: {},
         values: {},
-        source,
+        id: source.id,
       }
 
       categoriesRnc.forEach((categorieRnc) => {
@@ -136,18 +136,23 @@ export default {
   methods: {
     onSubmit: function () {
       const fiscalYear = this.$store.state.dates.fiscalYear.id
-
-      this.individus.forEach((i) => {
+      const values = {}
+      this.individus.forEach((individu) => {
+        const individuValues = {}
         this.categoriesRnc.forEach((categorieRnc) => {
-          const raw = i.values[categorieRnc.id][fiscalYear]
+          const raw = individu.values[categorieRnc.id][fiscalYear]
           const value = parseFloat(raw)
-          i.values[categorieRnc.id][fiscalYear] =
+          individuValues[categorieRnc.id] =
             raw === undefined ? raw : isNaN(value) ? 0 : value
         })
-        this.$store.dispatch(
-          "updateIndividu",
-          Object.assign({}, i.source, i.values)
-        )
+        values[individu.id] = individuValues
+      })
+
+      this.$store.dispatch("answer", {
+        id: "ressourcesFiscales",
+        entityName: "individu",
+        fieldName: "ressourcesFiscales",
+        value: values,
       })
       this.$router.push("/simulation/resultats")
     },

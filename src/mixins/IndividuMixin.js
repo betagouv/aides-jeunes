@@ -34,8 +34,12 @@ export const createIndividuMixin = (props) => {
         if (this.requiredValueMissing()) {
           return
         }
-        this.individu[fieldName] = this.value
-        this.$store.dispatch("updateIndividu", this.individu)
+        this.$store.dispatch("answer", {
+          id: this.$route.params.id,
+          entityName: "individu",
+          fieldName: this.fieldName,
+          value: this.value,
+        })
         this.$push()
       },
     },

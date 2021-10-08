@@ -125,17 +125,6 @@ function generateSituation(answers, dates) {
             enfant[answer.fieldName] = response.value
           }
         })
-      } else if (answer.id === "ressourcesFiscales") {
-        const fiscalYear = dates.fiscalYear.id
-        Object.keys(answer.value).forEach((individuId) => {
-          const individu = getIndividu(situation, individuId)
-          if (individu) {
-            const ressources = answer.value[individuId]
-            Object.keys(ressources).forEach((ressource) => {
-              individu[ressource] = { [fiscalYear]: ressources[ressource] }
-            })
-          }
-        })
       } else {
         const individu = getIndividu(situation, answer.id)
         if (individu) {
@@ -197,6 +186,19 @@ function generateSituation(answers, dates) {
       }
     }
   })
+
+  if (answers.ressourcesFiscales) {
+    const fiscalYear = dates.fiscalYear.id
+    Object.keys(answers.ressourcesFiscales).forEach((individuId) => {
+      const individu = getIndividu(situation, individuId)
+      if (individu) {
+        const ressources = answers.ressourcesFiscales[individuId]
+        Object.keys(ressources).forEach((ressource) => {
+          individu[ressource] = { [fiscalYear]: ressources[ressource] }
+        })
+      }
+    })
+  }
 
   return situation
 }

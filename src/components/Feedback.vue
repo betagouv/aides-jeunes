@@ -44,14 +44,14 @@
         >.
       </li>
     </ul>
-    <small v-if="situationID"
+    <small v-if="situationId"
       >Cette simulation a pour identifiant
-      <span class="preformatted">{{ situationID }}</span> (en savoir plus sur
+      <span class="preformatted">{{ situationId }}</span> (en savoir plus sur
       <router-link to="/confidentialite"
         >le traitement de vos données personnelles</router-link
       >).</small
     ><br />
-    <small v-if="situationID">
+    <small v-if="situationId">
       <button v-if="!showExpertLinks" class="button small" @click="toggleLinks">
         Je suis partenaire
       </button>
@@ -115,9 +115,6 @@ import {
 
 export default {
   name: "Feedback",
-  props: {
-    situationID: String,
-  },
   data: function () {
     return {
       openfiscaTracerURL: false,
@@ -125,6 +122,11 @@ export default {
       PNDSURL: false,
       showExpertLinks: false,
     }
+  },
+  computed: {
+    situationId: function () {
+      return this.$store.state.situationId
+    },
   },
   methods: {
     toggleLinks: function () {
@@ -150,13 +152,13 @@ export default {
       this.showExpertLinks = !this.showExpertLinks
     },
     sendMailEcartSimulation() {
-      return sendEcartSimulation(this.situationID)
+      return sendEcartSimulation(this.situationId)
     },
     sendMailEcartInstruction() {
-      return sendEcartInstructions(this.situationID)
+      return sendEcartInstructions(this.situationId)
     },
     sendMailSuggestion() {
-      return sendSuggestion(this.situationID)
+      return sendSuggestion(this.situationId)
     },
   },
 }

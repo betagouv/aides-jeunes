@@ -233,12 +233,12 @@ const store = new Vuex.Store({
         return accum || some(values(demandeur[ressource.id]))
       }, undefined)
     },
-    fetchRepresentation: function (state, getters) {
+    fetchRepresentation: function (state) {
       return function (representation, situationId) {
         return axios
           .get(
             `api/situations/${
-              situationId || getters.situationId
+              situationId || state.situationId
             }/${representation}`
           )
           .then((response) => response.data)

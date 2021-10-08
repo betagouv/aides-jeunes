@@ -163,7 +163,7 @@
           <ul>
             <li>
               le contenu du formulaire et en indiquant l'identifiant suivant :
-              <span class="bold">{{ $store.getters.situationId }} .</span>
+              <span class="bold">{{ this.$store.state.situationId }} .</span>
             </li>
             <li>en téléchargeant le fichier avec le bouton ci-dessous.</li>
           </ul>
@@ -290,7 +290,7 @@ export default {
       }
     },
     testGenerationEndpoint: function () {
-      return `api/situations/${this.$store.getters.situationId}/openfisca-test`
+      return `api/situations/${this.$store.state.situationId}/openfisca-test`
     },
     resultToBase64() {
       return `data:text/octet-stream;charset=utf-8;base64,${window.btoa(
@@ -298,10 +298,10 @@ export default {
       )}`
     },
     filename() {
-      return this.$store.getters.situationId + ".yml"
+      return "mes-aides-" + this.$store.state.situationId + ".yml"
     },
     sendMail() {
-      return sendMontantsAttendus(this.$store.getters.situationId)
+      return sendMontantsAttendus(this.$store.state.situationId)
     },
   },
   methods: {

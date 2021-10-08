@@ -11,11 +11,7 @@
           {{ enfant._firstName }}
         </div>
         <div class="aj-child-actions">
-          <router-link
-            class="edit-link"
-            v-bind:to="`/simulation/individu/${enfant.id}/_firstName`"
-            >éditer</router-link
-          >
+          <a class="edit-link" v-on:click="editPAC(enfant.id)">éditer</a>
           <a class="delete-link" v-on:click="removePAC(enfant.id)">supprimer</a>
         </div>
       </div>
@@ -101,6 +97,10 @@ export default {
     },
     removePAC: function (id) {
       this.$store.dispatch("removeEnfant", id)
+    },
+    editPAC: function (id) {
+      this.$store.dispatch("editEnfant")
+      this.$router.push(`/simulation/individu/${id}/_firstName`)
     },
     onSubmit: function () {
       this.$store.dispatch("answer", {

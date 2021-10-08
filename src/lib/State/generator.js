@@ -86,7 +86,22 @@ function generateSituation(answers, dates) {
   const situation = {
     external_id: null,
     demandeur: generateDefaultIndividu("demandeur", "demandeur"),
-    enfants: null,
+    enfants:
+      answers && answers.enfants
+        ? answers.enfants.map((enfant, index) => {
+            const countDiplay = index + 1
+            const _firstName =
+              "votre " +
+              countDiplay +
+              (countDiplay === 1 ? "ᵉʳ" : "ᵉ") +
+              " enfant"
+
+            return {
+              ...generateDefaultIndividu("enfant", `enfant_${enfant}`),
+              _firstName,
+            }
+          })
+        : null,
     famille: {},
     menage: {
       aide_logement_date_pret_conventionne: "2018-12-31",
@@ -122,24 +137,6 @@ function generateSituation(answers, dates) {
             }
             case "enfant_a_charge": {
               individu["enfant_a_charge"][dates.thisYear.id] = answer.value
-              break
-            }
-            case "nombre_enfants": {
-              if (answers && answers.enfants) {
-                situation.enfants = answers.enfants.map((enfant, index) => {
-                  const countDiplay = index + 1
-                  const _firstName =
-                    "votre " +
-                    countDiplay +
-                    (countDiplay === 1 ? "ᵉʳ" : "ᵉ") +
-                    " enfant"
-
-                  return {
-                    ...generateDefaultIndividu("enfant", `enfant_${enfant}`),
-                    _firstName,
-                  }
-                })
-              }
               break
             }
             case "ressources": {

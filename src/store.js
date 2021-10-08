@@ -263,6 +263,12 @@ const store = new Vuex.Store({
         current: storeAnswer(state.answers.current, answer, true),
       }
     },
+    ressourcesFiscales: (state, ressourcesFiscales) => {
+      state.answers = {
+        ...state.answers,
+        ressourcesFiscales,
+      }
+    },
     clear: function (state) {
       state.answers = { all: [], current: [], enfants: [] }
       state.access.forbidden = false
@@ -274,9 +280,6 @@ const store = new Vuex.Store({
     initialize: function (state) {
       Object.assign(state, restoreLocal(), { saveSituationError: null })
     },
-    removeConjoint: function (state) {
-      Vue.set(state.answers, "conjoint", false)
-    },
     removeEnfant: function (state, id) {
       const enfantIndex = id.split("_")[1]
       state.answers = {
@@ -287,9 +290,6 @@ const store = new Vuex.Store({
     saveIndividu: function () {},
     saveError: function (state, error) {
       state.error = error
-    },
-    addConjoint: function (state) {
-      Vue.set(state.answers, "conjoint", true)
     },
     addEnfant: function (state) {
       let enfantId
@@ -408,6 +408,10 @@ const store = new Vuex.Store({
       commit("answer", answer)
       commit("setDirty")
     },
+    ressourcesFiscales: ({ commit }, answer) => {
+      commit("ressourcesFiscales", answer)
+      commit("setDirty")
+    },
     clear: function ({ commit }, external_id) {
       commit("clear")
       commit("initialize")
@@ -419,16 +423,8 @@ const store = new Vuex.Store({
     initialize: function ({ commit }) {
       commit("initialize")
     },
-    removeConjoint: function ({ commit }) {
-      commit("removeConjoint")
-      commit("setDirty")
-    },
     removeEnfant: function ({ commit }, id) {
       commit("removeEnfant", id)
-      commit("setDirty")
-    },
-    addConjoint: function ({ commit }) {
-      commit("addConjoint")
       commit("setDirty")
     },
     addEnfant: function ({ commit }) {

@@ -148,12 +148,7 @@ export default {
         values[individu.id] = individuValues
       })
 
-      this.$store.dispatch("answer", {
-        id: "ressourcesFiscales",
-        entityName: "individu",
-        fieldName: "ressourcesFiscales",
-        value: values,
-      })
+      this.$store.dispatch("ressourcesFiscales", values)
       this.$router.push("/simulation/resultats")
     },
   },

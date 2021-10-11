@@ -23,21 +23,7 @@ function Home() {
       `}</style>
       <Head></Head>
       <article>
-        <h1>{title}</h1>
         <HomeContent />
-
-        <ul>
-          {tasks.map((task, k) => (
-            <li key={k}>
-              <h3>
-                <a href={`/tasks/${task.slug}`}>
-                  {task.attributes.title} (≈&nbsp;{task.attributes.duration}
-                  &nbsp;min.)
-                </a>
-              </h3>
-            </li>
-          ))}
-        </ul>
       </article>
     </>
   )

@@ -549,6 +549,10 @@ const STEPS = {
         value: "autres_regimes",
         label: "Autre",
       },
+      {
+        value: "inconnu",
+        label: "Je ne sais pas",
+      },
     ],
   },
 }

@@ -52,9 +52,6 @@ export function demandeur(params = {}) {
   submit()
   // Handicap
   handicap(params)
-  // regime_securite_sociale
-  checkRadio("regime_general")
-  submit()
 }
 
 export function etudiant_public(params = {}) {

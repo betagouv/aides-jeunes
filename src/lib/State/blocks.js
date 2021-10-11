@@ -208,6 +208,7 @@ function individuBlockFactory(id) {
                 },
               ],
             },
+            r("enceinte"),
           ]
         : []),
     ],
@@ -445,7 +446,6 @@ function generateBlocks(situation) {
     {
       steps: [
         new Step({ entity: "famille", variable: "en_couple" }),
-        new Step({ entity: "individu", id: "demandeur", variable: "enceinte" }),
         {
           isActive: (situation) =>
             situation.enfants &&

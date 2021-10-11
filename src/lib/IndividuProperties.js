@@ -211,12 +211,7 @@ const STEPS = {
   },
 
   enceinte: {
-    question: (component) => {
-      const famille = component.$store.state.situation.famille
-      return `Je suis${
-        famille.en_couple ? " ou ma conjointe est" : ""
-      } enceinte ?`
-    },
+    question: "J'attends un enfant ?",
   },
 
   enfant_place: {

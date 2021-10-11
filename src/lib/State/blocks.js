@@ -53,8 +53,8 @@ function individuBlockFactory(id) {
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
-                const jeune_actif = subject.activite == "actif" && age <= 26
-                return subject.activite == "etudiant" || jeune_actif
+                const jeune_actif = subject.activite === "actif" && age <= 26
+                return subject.activite === "etudiant" || jeune_actif
               },
               steps: [
                 r("alternant"),

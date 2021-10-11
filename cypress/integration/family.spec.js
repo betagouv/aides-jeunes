@@ -11,7 +11,7 @@ context("Full simulation", () => {
     steps.demandeur()
     steps.deuxEnfants()
     steps.couple()
-    steps.enceinte()
+    steps.enceinte("true")
     steps.conjoint()
     steps.sansDomicileStable()
     steps.salaireSeul()

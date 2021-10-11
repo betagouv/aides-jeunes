@@ -251,15 +251,9 @@ export function couple() {
   autoSubmit()
 }
 
-export function pasEnceinte() {
+export function enceinte(enceinte) {
   cy.get("legend").invoke("text").should("contain", "enceinte")
-  checkRadio("false")
-  submit()
-}
-
-export function enceinte() {
-  cy.get("legend").invoke("text").should("contain", "enceinte")
-  checkRadio("true")
+  checkRadio(enceinte)
   submit()
 }
 

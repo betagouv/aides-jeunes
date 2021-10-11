@@ -45,6 +45,18 @@ function individuBlockFactory(id) {
                     subject.scolarite == "enseignement_superieur",
                   steps: [r("statuts_etablissement_scolaire")],
                 },
+              ],
+            },
+            {
+              isActive: (subject, situation) => {
+                const age = Individu.age(
+                  subject,
+                  datesGenerator(situation.dateDeValeur).today.value
+                )
+                const jeune_actif = subject.activite === "actif" && age <= 26
+                return subject.activite === "etudiant" || jeune_actif
+              },
+              steps: [
                 r("alternant"),
                 {
                   isActive: (subject) => subject.alternant,

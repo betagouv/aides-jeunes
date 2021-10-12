@@ -1,0 +1,76 @@
+label: Bourse « Jeunes à l’international » – Etudiants des Universités région Bretagne
+institution: etat
+description: >-
+  Cette aide vise à favoriser la mobilité internationale des étudiants inscrits
+  en Licence, Masters ou équivalent dans une université bretonne en les
+  accompagnant dans leur projet de stage professionnel ou de séjour d’études à
+  l’étranger.
+
+
+  La bourse attribuée est composée :
+
+
+  d’un montant journalier de 6,65 € par jour pour tous les candidats, dans la limite de 300 jours ;
+
+  d’un bonus de 5,00 € par jour pour les candidats boursiers sur critères sociaux de l’État, dans la limite de 300 jours ;
+
+  d’un bonus de 5,00 € par jour pour les candidats en situation de handicap, dans la limite de 300 jours.
+
+  Le montant de la bourse est calculé au prorata du nombre réel de jours de stage, arrondi à l’euro supérieur ; les temps de séjour en amont ou en aval du stage, consacrés à l’installation ou à la découverte du pays ne sont pas pris en compte.
+
+
+  Il s’agit d’une bourse individuelle, versée directement au candidat ou à son représentant légal. Aucune majoration du montant de la bourse ne sera attribuée après son versement, ni en cas de durée supérieure à celle initialement prévue selon la convention de stage, ni en cas de saisie erronée du candidat, validée par l’établissement (durée saisie plus courte que la durée réelle, situation « boursier » non cochée, statut erroné, etc).
+
+
+  Cette bourse n’est pas cumulable avec les aides suivantes :
+
+
+  toute une autre aide publique à la mobilité internationale (européenne, nationale, régionale, départementale, locale),
+
+  les bourses de mobilité de la fondation Pierre Ledoux, de l’Office Franco-Allemand pour la Jeunesse (OFAJ) ou de l’Office Franco-Québécois pour la Jeunesse (OFQJ).
+
+  Cette bourse n’est pas reconductible au cours d’un même cycle scolaire.
+
+
+  Le détail du règlement d’intervention du dispositif « Jeunes à l’international » est disponible sur l’extranet de la Région Bretagne.
+
+
+  Les étudiants qui répondent aux conditions suivantes :
+
+
+  être inscrit en formation initiale, à temps complet, en Licence, Master ou équivalent
+
+  au sein d’une université bretonne ou dans une école / un institut qui lui est rattaché et qui dispense des formations de cycle Licence et Master ou équivalentes.
+
+  justifier que le quotient familial de son foyer fiscal de rattachement est inférieur à 25 000 €. Ce quotient familial est calculé en divisant le Revenu Brut Global (RBG) par le nombre de parts fiscales du foyer fiscal. Ces deux informations, RBG et nombre de parts fiscales, figurent sur la deuxième page de l’avis d’imposition. Si l’étudiant répond aux critères d’indépendance financière, son avis d’imposition sera pris en compte. Si ce n’est pas le cas, ce sera le ou les avis d’imposition de ses parents.
+
+
+  Nature du séjour : il doit s’agir d’un stage professionnel ou d’un séjour d’études, réalisé dans le cadre du cursus de formation et faisant l’objet d’une validation par l’établissement breton.
+
+  Pour un stage professionnel : le stage doit être :
+
+  inscrit dans le référentiel de formation ou le cursus universitaire
+
+  un stage individuel ; les candidats issus d’un même établissement devront donc être seuls ou au maximum à deux en même temps par organisme d’accueil.
+
+  se dérouler dans un seul et même organisme et faire l’objet d’une convention tripartite entre l’établissement de formation, l’organisme d’accueil et le stagiaire ou son représentant légal s’il est mineur.
+
+  son contenu doit être en lien avec la formation suivie.
+
+  Pour un séjour d’études : le séjour d’étude doit :
+
+  se dérouler dans un organisme de formation étranger, en vue d’y suivre à temps plein des cours dans le cadre de la poursuite du cursus de formation initiale.
+
+  préparer l’étudiant à un diplôme de niveau équivalent ou supérieur à celui de l’inscription dans l’établissement d’origine (formation diplômante au retour, ou bi-diplômante).
+
+  être formalisé par une attestation d’accueil signée de l’organisme étranger. Les mobilités réalisées dans des filiales d’établissements de formation français à l’étranger sont exclues.
+
+  Durée du séjour : La durée minimum du stage ou du séjour d’études est de 26 jours consécutifs. Le financement de la mobilité est plafonné à 300 jours. Les dates portées sur la convention de stage ou sur l’attestation de l’établissement d’accueil à l’étranger font foi.
+
+  Destinations éligibles : tous les pays étrangers (les destinations en France métropolitaine et Outre-Mer ne sont pas éligibles).
+link: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-des-universites/
+prefix: la
+type: float
+floorAt: 10
+entity: menage
+computesLocally: true

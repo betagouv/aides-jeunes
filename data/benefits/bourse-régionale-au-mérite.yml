@@ -16,3 +16,5 @@ type: bool
 floorAt: 10
 entity: menage
 computesLocally: true
+regions:
+  - "52"

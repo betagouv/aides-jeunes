@@ -1,0 +1,19 @@
+label: Mon Abo Etudiant TER Hauts-de-France
+institution: hauts_de_france
+description: Proposer des tarifs réduits voire une totale gratuité sur les
+  trajets en TER entre le lieu de résidence et le lieu d'études/de
+  stage/d'apprentissage.
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=813
+prefix: l’
+type: float
+floorAt: 10
+interestFlag: null
+entity: menage
+computesLocally: false
+montant: ""
+regions:
+  - "32"
+age_max: 19
+statuts:
+  - etudiant
+  - apprenti

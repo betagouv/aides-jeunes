@@ -211,7 +211,7 @@ const STEPS = {
   },
 
   enceinte: {
-    question: "J'attends un enfant ?",
+    question: "Attendez-vous un enfant ?",
   },
 
   enfant_place: {

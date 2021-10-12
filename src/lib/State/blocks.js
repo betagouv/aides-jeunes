@@ -1,4 +1,5 @@
 const Individu = require("@/lib/Individu")
+const { ACTIVITES_ACTIF } = require("../../../lib/Activite")
 const Ressource = require("@/lib/Ressource").default
 const { datesGenerator } = require("../../../backend/lib/mes-aides")
 const { Step, ComplexStep } = require("./steps")
@@ -53,7 +54,7 @@ function individuBlockFactory(id) {
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
-                const jeune_actif = subject.activite === "actif" && age <= 26
+                const jeune_actif = subject.activite === "salarie" && age <= 26
                 return subject.activite === "etudiant" || jeune_actif
               },
               steps: [
@@ -66,7 +67,7 @@ function individuBlockFactory(id) {
             },
             {
               isActive: (subject) =>
-                subject.activite === "actif" || subject.alternant,
+                subject.activite === "salarie" || subject.alternant,
               steps: [r("_nombreMoisDebutContratDeTravail")],
             },
           ]
@@ -79,9 +80,7 @@ function individuBlockFactory(id) {
             },
             {
               isActive: (subject) =>
-                !["actif", "etudiant", "service_civique"].includes(
-                  subject.activite
-                ),
+                !["etudiant", ...ACTIVITES_ACTIF].includes(subject.activite),
               steps: [r("inapte_travail")],
             },
           ]
@@ -155,7 +154,7 @@ function individuBlockFactory(id) {
                 return (
                   20 <= age &&
                   age < 25 &&
-                  !["actif", "etudiant", "service_civique"].includes(
+                  !["etudiant", ...ACTIVITES_ACTIF].includes(
                     subject.activite
                   ) &&
                   !subject.ass_precondition_remplie &&

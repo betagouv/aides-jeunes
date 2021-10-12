@@ -42,8 +42,12 @@ const STEPS = {
           label: "Étudiant·e en formation ou alternance",
         },
         {
-          value: "actif",
-          label: "En activité salariée ou indépendante",
+          value: "salarie",
+          label: "Salarié·e",
+        },
+        {
+          value: "independant",
+          label: "Indépendant·e",
         },
         {
           value: "service_civique",

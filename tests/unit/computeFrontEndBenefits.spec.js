@@ -65,7 +65,7 @@ describe("computeAides", function () {
   })
 
   it("adds 0 when ineligible statut", function () {
-    situation.demandeur.activite = "actif"
+    situation.demandeur.activite = "salarie"
     const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeFrontEndBenefits(droitsDescription, situation, openfiscaRequest)
     expect(

@@ -40,16 +40,6 @@
           Les montants avancés sont arrondis à une dizaine d'euros près :
         </p>
         <DroitsList v-bind:droits="droits"></DroitsList>
-        <div>
-          <a
-            href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
-            class="aj-cta-avis button outline"
-            target="_blank"
-            @click="trackEvent"
-          >
-            Je donne mon avis
-          </a>
-        </div>
       </div>
       <div v-if="!isEmpty(droitsNonEligiblesShown)">
         <p>

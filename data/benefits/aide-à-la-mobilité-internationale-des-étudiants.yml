@@ -62,9 +62,14 @@ description: >-
 
   Par ailleurs, les séjours exclusivement linguistiques ne sont pas éligibles à l’aide régionale.
 link: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
+teleservice: ""
 prefix: l’
-type: float
+type: bool
 floorAt: 10
 entity: menage
 computesLocally: true
-age_max: 27
+regions:
+  - "44"
+age_max: 29
+statuts:
+  - etudiant

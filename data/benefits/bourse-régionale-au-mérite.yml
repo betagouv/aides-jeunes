@@ -1,0 +1,18 @@
+label: Bourse régionale au mérite
+institution: etat
+description: >
+  La région pays de la loire récompense les bacheliers mention très bien de
+  l'Académie de Nantes pour féliciter la qualité du travail accompli pendant la
+  scolarité au lycée et favoriser la réussite des jeunes et la poursuite des
+  études.
+conditions:
+  - avoir obtenu votre Bac avec mention très bien dans l'Académie de Nantes ou
+    dans une académie limitrophe de la Région Pays de la Loire l'année de
+    l'obtention du baccalauréat et prouver que vous résidiez  en Pays de la
+    Loire l'année de votre terminale.
+link: https://www.paysdelaloire.fr/les-aides/bourse-regionale-au-merite
+prefix: la
+type: bool
+floorAt: 10
+entity: menage
+computesLocally: true

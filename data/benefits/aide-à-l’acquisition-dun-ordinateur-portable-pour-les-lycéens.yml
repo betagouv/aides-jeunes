@@ -11,7 +11,7 @@ type: bool
 floorAt: 10
 entity: menage
 computesLocally: true
-montant: -3
+montant: ""
 regions:
   - "24"
 statuts:

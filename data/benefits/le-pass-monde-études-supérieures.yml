@@ -1,0 +1,19 @@
+label: Le pass monde études supérieures
+institution: etat
+description: Le pass monde études supérieures allouée par la Région Normandie,
+  est un appui financier aux projets de mobilité internationale à l’étranger et
+  vient en complément soit d’autres aides et/ou de l’apport du bénéficiaire.
+conditions:
+  - Ne pas avoir un quotient familial qui dépasse 30 000 €.
+link: https://aides.normandie.fr/pass-monde-etudes-superieures
+prefix: le
+type: bool
+floorAt: 10
+entity: menage
+computesLocally: true
+regions:
+  - "28"
+statuts:
+  - etudiant
+  - apprenti
+  - professionnalisation

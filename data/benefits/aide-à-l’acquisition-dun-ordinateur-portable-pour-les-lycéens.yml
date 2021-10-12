@@ -1,0 +1,18 @@
+label: Aide à l’acquisition d'un ordinateur portable pour les lycéens
+institution: etat
+description: "L'aide à l’acquisition d'un ordinateur portable permet de
+  faciliter l'équipement numérique des lycéens des établissements publics
+  scolarisés en seconde, première, terminale et CAP des lycées publics (aide
+  dédiée, y compris aux élèves scolarisés en Unités Localisées pour l’inclusion
+  scolaire (ULIS) "
+link: https://www.centre-valdeloire.fr/le-guide-des-aides-de-la-region-centre-val-de-loire/aide-lacquisition-dun-ordinateur-portable-pour
+prefix: l’
+type: bool
+floorAt: 10
+entity: menage
+computesLocally: true
+montant: -3
+regions:
+  - "24"
+statuts:
+  - lyceen

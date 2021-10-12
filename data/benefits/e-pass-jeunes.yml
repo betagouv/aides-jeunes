@@ -1,0 +1,18 @@
+label: e-pass jeunes
+institution: etat
+description: Le e-pass jeunes est carte et une application pour faciliter
+  l'accès de chaque jeune âgé de 15 à 25 ans scolarisé sur le territoire
+  régional, à la culture et au sport. Il permet de de 80 € et de bons plans.
+link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/e-pass-jeunes
+prefix: le
+type: bool
+floorAt: 10
+entity: menage
+computesLocally: true
+regions:
+  - "93"
+age_min: 15
+age_max: 13
+statuts:
+  - lyceen
+  - etudiant

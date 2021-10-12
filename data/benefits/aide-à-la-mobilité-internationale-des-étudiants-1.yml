@@ -1,0 +1,70 @@
+label: Aide à la mobilité internationale des étudiants
+institution: grand_est
+description: >-
+  Par ce dispositif, la Région Grand Est décide :
+
+
+  de soutenir la mobilité internationale des étudiants de la région Grand Est, afin de renforcer leur employabilité au terme de leurs études,
+
+  de favoriser l’attractivité des établissements et des formations d’enseignement supérieur du territoire Grand Est.
+
+  S’adressant à tous les étudiants, sans conditions de ressources, les aides attribuées au titre de ce dispositif seront bonifiées si les étudiants sont titulaires d’une bourse du CROUS ou s’ils effectuent leur mobilité dans un pays frontalier de la région Grand Est.
+
+
+  Le dispositif est ouvert aux étudiants jusqu’à 29 ans
+
+
+  inscrits en BTS, DUT, Bac+3 à Bac+5 au titre d’une formation diplômante dans un établissement d’enseignement supérieur de la région Grand Est, ainsi que dans le cadre d’une année de DUETE/DUETI
+
+  et effectuant des études ou un stage à l’étranger, validé dans le cadre de leur diplôme, à l’exception des étudiants de nationalité étrangère réalisant des études ou un stage dans le pays dont ils sont ressortissants.
+
+
+  La période d’études ou de stage doit être effectuée au sein d’un seul organisme à l’étranger (université, laboratoire ou entreprise).
+
+
+  Elle doit faire l’objet :
+
+
+  d’une attestation de l’établissement d’origine autorisant l’étudiant à effectuer des études ou un stage au titre de sa formation pour une durée déterminée au sein d’un organisme identifié (université, laboratoire, entreprise…),
+
+  d’une attestation de démarrage par l’établissement d’accueil confirmant l’arrivée de l’étudiant et la durée du séjour,
+
+  d’une convention de stage dans le cas de stage en laboratoire ou en entreprise.
+
+  Toutes les destinations sont éligibles, à l’exception de la France (DOM TOM inclus), et des principautés d’Andorre et de Monaco.
+
+
+  Pour les étudiants en Bac+3 à Bac+5, l’aide régionale est une aide forfaitaire unique dont le montant est variable selon la nature de la mobilité (études ou stage) et sa durée :
+
+
+  Forfait études : 500 € pour une durée minimum de 16 semaines,
+
+  Forfait stage court : 400 € pour une durée de 12 à 15 semaines,
+
+  Forfait stage long : 800 € pour une durée minimum de 16 semaines.
+
+  Pour les étudiants en BTS et DUT, l’aide régionale est une aide forfaitaire unique pour un seul stage :
+
+
+  Forfait stage BTS DUT : 200 € pour une durée minimum de 4 semaines.
+
+  Les étudiants boursiers peuvent bénéficier d’une aide supplémentaire de 200 €.
+
+
+  Les étudiants effectuant leur mobilité dans un pays frontalier de la Région Grand Est (Allemagne, Belgique, Luxembourg, Suisse) peuvent bénéficier d’un supplément de 100 €.
+
+
+  Chaque étudiant ne peut bénéficier qu’une seule fois d’un de ces forfaits pendant son cursus.
+
+
+  Un étudiant peut bénéficier de deux bourses régionales au maximum pendant son cursus.
+
+
+  Par ailleurs, les séjours exclusivement linguistiques ne sont pas éligibles à l’aide régionale.
+link: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
+prefix: l’
+type: float
+floorAt: 10
+entity: menage
+computesLocally: true
+age_max: 27

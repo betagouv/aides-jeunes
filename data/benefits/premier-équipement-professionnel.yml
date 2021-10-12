@@ -1,0 +1,21 @@
+label: " Premier équipement professionnel"
+institution: etat
+description: ' L’opération Gratuité " Premier Équipement Professionnel" est
+  destinée à aider les lycéen·ne·s en fournissant outillages et vêtements
+  nécessaires au suivi de la formation (sous réserve d’éligibilité de la
+  formation).'
+conditions:
+  - "Vous devez être en possession de la Carte Jeune Région et inscrits en
+    formation professionnelle dans un établissement public ou privé sous contrat
+    avec l’État, de la Région Occitanie / Pyrénées-Méditerranée "
+link: https://www.laregion.fr/Premier-equipement-professionnel
+prefix: le
+type: bool
+floorAt: 10
+entity: menage
+computesLocally: true
+montant: ""
+regions:
+  - "76"
+statuts:
+  - lyceen

@@ -11,28 +11,33 @@
 
     <h3>Le montant indiqué pour {{ longLabel }} vous semble inexact&nbsp;?</h3>
 
-    <ResultatInattenduPpa v-if="droit.id === 'ppa'"></ResultatInattenduPpa>
-    <ResultatInattenduAideLogement
-      v-else-if="droit.id === 'aide_logement'"
-    ></ResultatInattenduAideLogement>
-    <ResultatInattenduYearMinusTwo
-      :droit="droit"
-      v-else
-    ></ResultatInattenduYearMinusTwo>
+    <component
+      v-if="resultatsInattendus[droit.id]"
+      :is="resultatsInattendus[droit.id]"
+    />
+    <ResultatInattenduYearMinusTwo :droit="droit" v-else />
   </form>
 </template>
 
 <script>
 import Institution from "@/lib/Institution"
-import ResultatInattenduPpa from "@/components/ResultatInattendu/Ppa"
 import ResultatInattenduAideLogement from "@/components/ResultatInattendu/AideLogement"
+import ResultatInattenduGarantieJeune from "@/components/ResultatInattendu/GarantieJeune"
+import ResultatInattenduPpa from "@/components/ResultatInattendu/Ppa"
 import ResultatInattenduYearMinusTwo from "@/components/ResultatInattendu/YearMinusTwo"
+
+const RESULTATS_INATTENDUS = {
+  aide_logement: ResultatInattenduAideLogement,
+  garantie_jeunes: ResultatInattenduGarantieJeune,
+  ppa: ResultatInattenduPpa,
+}
 
 export default {
   name: "resultat-inattendu",
   components: {
-    ResultatInattenduPpa,
     ResultatInattenduAideLogement,
+    ResultatInattenduGarantieJeune,
+    ResultatInattenduPpa,
     ResultatInattenduYearMinusTwo,
   },
   data: function () {
@@ -51,6 +56,7 @@ export default {
     )
     return {
       benefitKeyed,
+      resultatsInattendus: RESULTATS_INATTENDUS,
     }
   },
   computed: {

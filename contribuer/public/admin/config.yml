@@ -12,7 +12,7 @@ backend:
 media_folder: public/img
 public_folder: img
 
-# local_backend: true
+local_backend: true
 publish_mode: editorial_workflow
 
 root: ../../..
@@ -46,8 +46,8 @@ collections:
         widget: text
         pattern:
           [
-            ".{10,120}",
-            "La description est trop longue. En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
+            "^.{10,120}$",
+            "La description est trop courte (<10 caractères) ou trop longue (>120 caractères). En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
           ]
       - label: Conditions non prises ne comptent par le simulateur
         label_singular: Condition non prise ne compte par le simulateur
@@ -85,8 +85,8 @@ collections:
           Il s'agit d'indiquer le texte à insérer à la place de PPPP dans la phrase suivante dans laquelle AAAA correspondant au nom de l'aide :
           Comment obtenir PPPP AAAA ? Par exemples dans « Comment obtenir l'aide exceptionnelle ? » « l' » est le préfix. Pour « Comment obtenir les aides au logement ? » le préfix est « les ».
         widget: select
+        required: false
         options: [le, la, les, l’, une]
-        default: la
       - label: Type du résultat
         name: type
         default: "bool"
@@ -99,7 +99,7 @@ collections:
       - label: Niveau de fiabilité lorsque le résultat est un montant
         name: floorAt
         widget: select
-        default: 10
+        required: false
         options:
           - label: 10 (pour arrondir à la dizaine inférieure)
             value: 10
@@ -107,7 +107,7 @@ collections:
             value: 1
           - label: 0.01 (pour éviter l'arrondi)
             value: 0.01
-      - label: Afficher l'aide
+      - label: Faut-il limiter l'affichage de l'aide en fonction d'un intérêt particulier ?
         name: interestFlag
         hint: |
           En fin de parcours, des questions sont posées pour connaitre certains intérêts des usagers.
@@ -115,15 +115,16 @@ collections:
         widget: select
         required: false
         options:
-          - label: dans tous les cas.
+          - label: Non, l'afficher dans tous les cas.
             value: null
-          - label: lorsqu'il y a un intérêt pour passer le permis de conduire.
+          - label: Oui, l'afficher en cas d'intérêt pour passer le permis de conduire.
             value: _interetPermisDeConduire
+          - label: Oui, l'afficher en cas d'intérêt pour faires des études à l'étrange.
+            value: _interetEtudesEtranger
       - label: Entité de rattachement de la variable dans OpenFisca
         name: entity
         widget: select
         hint: Cette variable fait le lien avec le moteur de calculs. Tant que vous ne savez pas quoi y indiquer, nous recommandons de laisser Ménage.
-        default: menage
         required: false
         options:
           - label: Famille

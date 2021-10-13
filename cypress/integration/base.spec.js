@@ -9,9 +9,9 @@ context("Full simulation", () => {
   it("accepts a basic situation", () => {
     steps.home()
     steps.demandeur()
+    steps.enceinte("false")
     steps.zeroEnfants()
     steps.celibataire()
-    steps.enceinte("false")
     steps.sansDomicileStable()
     steps.salaireSeul()
     // steps.sansPensionAlimentaireVersees()
@@ -29,9 +29,9 @@ context("Full simulation", () => {
     cy.get("div").find('input[type="radio"][value="true"]').first().check()
     cy.get('button[type="submit"]').click()
 
+    steps.enceinte("false")
     steps.zeroEnfants()
     steps.celibataire()
-    steps.enceinte("false")
     steps.parentsSepares()
     steps.unEnfantSuperieur()
     steps.locataire()

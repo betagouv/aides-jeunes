@@ -9,9 +9,9 @@ context("Full simulation", () => {
   it("accepts a family situation", () => {
     steps.home()
     steps.demandeur()
+    steps.enceinte("true")
     steps.deuxEnfants()
     steps.couple()
-    steps.enceinte("true")
     steps.conjoint()
     steps.sansDomicileStable()
     steps.salaireSeul()

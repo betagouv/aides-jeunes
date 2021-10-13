@@ -211,7 +211,9 @@ const STEPS = {
   },
 
   enceinte: {
-    question: "Attendez-vous un enfant ?",
+    question: (component) => {
+      return `${Individu.label(component.entity, "être")} enceinte ?`
+    },
   },
 
   enfant_place: {

@@ -5,6 +5,7 @@ const {
   PERIODICITE_MENSUELLE,
   PERIODICITE_ANNUELLE,
 } = require("../../../../lib/benefits")
+const moment = require("moment")
 
 var droitsDescription = {
   prestationsNationales: {
@@ -399,6 +400,18 @@ var droitsDescription = {
           entity: "individus", // default entity is familles
           prefix: "la",
           setToZeroRecently: true,
+          computeUnexpectedAmount: (situation) => {
+            let demandeur = situation.demandeur
+            let period =
+              situation.dateDeValeur &&
+              moment(situation.dateDeValeur).format("YYYY")
+
+            return (
+              situation.demandeur.habite_chez_parents &&
+              demandeur.enfant_a_charge &&
+              demandeur.enfant_a_charge[period]
+            )
+          },
         },
       },
     },

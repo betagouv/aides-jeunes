@@ -253,6 +253,7 @@ collections:
       - label: Institution nationale
         name: national
         widget: boolean
+        required: false
       - label: aides fictives
         label_singular: aide fictive
         name: testing_benefits

@@ -1,0 +1,13 @@
+label: aide au financement du permis
+institution: mutualite_sociale_agricole
+description:
+  Cette aide est un coup de pouce de la Mutualité Sociale Agricole (MSA) Haute-Normandie pour favoriser l’autonomie et l’insertion des jeunes de 18 à 25 ans en finançant
+  <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2828">le permis voiture (B)</a>.
+link: https://hautenormandie.msa.fr/lfy/aide-au-permis-de-conduire
+form: https://hautenormandie.msa.fr/lfy/documents/98860/1080430/Formulaire+aide+au+permis+de+conduire.pdf
+prefix: l’
+type: float
+floorAt: 1
+entity: individus
+periodicite: ponctuelle
+interestFlag: _interetPermisDeConduire

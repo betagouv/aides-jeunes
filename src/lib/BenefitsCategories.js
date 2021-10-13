@@ -10,6 +10,11 @@ export default {
     "les_rues_des_vignes_aide_mobilite_permis",
     "loire_atlantique_aide_mobilite_permis_am",
     "loire_atlantique_aide_mobilite_permis_b",
+    "msa_armorique_aide_permis",
+    "msa_haute_normandie_aide_permis",
+    "msa_midi_pyrenees_sud_aide_permis",
+    "msa_nord_pas_de_calais_aide_permis",
+    "msa_portes_de_bretagne_aide_permis",
     "pret_formation_permis_eligibilite",
   ],
 }

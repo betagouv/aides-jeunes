@@ -528,6 +528,33 @@ const STEPS = {
       ].filter((item) => item.isRelevant)
     },
   },
+
+  regime_securite_sociale: {
+    question: (component) => {
+      return component.entity.enfant_a_charge
+        ? "Quelle le régime de protection sociale de vos parents ?"
+        : "Quelle est votre régime de protection sociale ?"
+    },
+    questionType: "enum",
+    items: [
+      {
+        value: "regime_general",
+        label: "Caisse d'allocations familiales (CAF)",
+      },
+      {
+        value: "regime_agricole",
+        label: "Mutualité sociale agricole (MSA)",
+      },
+      {
+        value: "autres_regimes",
+        label: "Autre",
+      },
+      {
+        value: "inconnu",
+        label: "Je ne sais pas",
+      },
+    ],
+  },
 }
 
 export default {

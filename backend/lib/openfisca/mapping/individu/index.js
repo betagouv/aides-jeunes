@@ -120,6 +120,14 @@ const individuSchema = {
       return contratAlternant === "professionnalisation"
     },
   },
+  regime_securite_sociale: {
+    src: "regime_securite_sociale",
+    fn: function (regime_securite_sociale) {
+      return regime_securite_sociale !== "inconnu"
+        ? regime_securite_sociale
+        : "regime_general"
+    },
+  },
 }
 
 function isNotValidValue(value) {

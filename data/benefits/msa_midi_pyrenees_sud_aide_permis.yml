@@ -1,0 +1,15 @@
+label: aide au financement du permis
+institution: mutualite_sociale_agricole
+description:
+  Cette aide est un coup de pouce de la Mutualité Sociale Agricole (MSA) Midi-Pyrénées Sud pour favoriser l’autonomie et l’insertion des jeunes de 17 à 25 ans en finançant
+  <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2828">le permis voiture (B)</a>.
+conditions:
+  - Avoir obtenu le code de la route.
+link: https://mps.msa.fr/lfy/famille/aide-permis-de-conduire
+form: https://mps.msa.fr/lfy/documents/98775/99816930/Imprim%C3%A9+2021+-+Demande+pour+aide+au+permis+de+conduire+maj+2021+05.pdf
+prefix: l’
+type: float
+floorAt: 1
+entity: individus
+periodicite: ponctuelle
+interestFlag: _interetPermisDeConduire

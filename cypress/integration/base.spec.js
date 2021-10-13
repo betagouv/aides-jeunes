@@ -1,5 +1,6 @@
 /// <reference types="Cypress" />
 import * as steps from "../support"
+import { checkRadio, submit } from "../support"
 
 context("Full simulation", () => {
   beforeEach(() => {
@@ -25,8 +26,13 @@ context("Full simulation", () => {
     steps.home()
     steps.etudiant_public()
 
-    cy.get("div").find('input[type="radio"][value="true"]').first().check()
-    cy.get('button[type="submit"]').click()
+    // _continuite_etudes
+    checkRadio("true")
+    submit()
+
+    // regime_securite_sociale
+    checkRadio("regime_general")
+    submit()
 
     steps.zeroEnfants()
     steps.celibataire()

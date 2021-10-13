@@ -220,6 +220,16 @@ function individuBlockFactory(id) {
                 },
               ],
             },
+            {
+              isActive: (subject, situation) => {
+                const age = Individu.age(
+                  subject,
+                  datesGenerator(situation.dateDeValeur).today.value
+                )
+                return age <= 25
+              },
+              steps: [r("regime_securite_sociale")],
+            },
           ]
         : []),
     ],

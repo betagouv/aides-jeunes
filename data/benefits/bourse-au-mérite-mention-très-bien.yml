@@ -13,6 +13,7 @@ conditions:
     session du baccalauréat français et poursuivant un parcours d’études ou
     professionnel.
 link: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#BAM
+teleservice: https://bourseaumerite.auvergnerhonealpes.fr/bourses/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
 prefix: la
 type: float
 floorAt: 10

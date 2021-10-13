@@ -48,8 +48,7 @@ export default {
             this.$store.getters.isHebergeParticipeFrais)) ||
         (this.droit.isBaseRessourcesYearMinusTwo &&
           !this.$store.getters.ressourcesYearMinusTwoCaptured) ||
-        this.droit.showUnexpectedAmount ||
-        this.droit.id === "garantie_jeunes"
+        this.droit.showUnexpectedAmount
       )
     },
 

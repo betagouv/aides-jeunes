@@ -203,6 +203,9 @@ const store = new Vuex.Store({
         menage.participation_frais === true
       )
     },
+    hebergeChezParent: function (state) {
+      return state.situation.demandeur.habite_chez_parents
+    },
     /* This function returns
      * - undefined if demandeur do not have any patrimoine ressource
      * - false if those ressources are all null else

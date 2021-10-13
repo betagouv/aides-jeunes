@@ -10,3 +10,4 @@ type: float
 interestFlag: _interetPermisDeConduire
 entity: individus
 legend: "maximum"
+periodicite: ponctuelle

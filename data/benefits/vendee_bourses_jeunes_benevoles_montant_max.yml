@@ -13,6 +13,7 @@ link: https://www.benevolat.vendee.fr/Le-plan-Vendee-Double-Coeur/La-bourse-aux-
 form: https://benevolat.vendee.fr/content/download/3539930/114782465/file/formulaire_bourse2021.pdf
 prefix: les
 type: float
+periodicite: ponctuelle
 legend: maximum
 floorAt: 10
 interestFlag: null

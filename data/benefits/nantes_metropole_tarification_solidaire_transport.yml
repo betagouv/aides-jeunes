@@ -7,4 +7,5 @@ prefix: la
 type: float
 unit: "%"
 legend: de réduction
+periodicite: ponctuelle
 entity: menages

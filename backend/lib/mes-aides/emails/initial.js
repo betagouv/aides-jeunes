@@ -7,7 +7,7 @@ const assign = require("lodash/assign")
 
 const mustache = require("consolidate").mustache
 const config = require("../../../config")
-
+const { getBenefitLegend } = require("../../../../lib/benefits")
 const { mjml } = require(".")
 
 function basicBenefitText(b) {
@@ -19,9 +19,7 @@ function basicBenefitText(b) {
     return b.label
   }
 
-  return `${b.label} pour un montant de ${b.montant} € / ${
-    b.isMontantAnnuel ? "an" : "mois"
-  }`
+  return `${b.label} pour un montant de ${b.montant} ${getBenefitLegend(b)}`
 }
 
 var textTemplate = fs.readFileSync(
@@ -47,7 +45,7 @@ function renderAsHtml(followup, benefits) {
     var montant = ""
     if (isNumber(droit.montant)) {
       var unit = droit.unit || "€"
-      var legend = droit.legend || (droit.isMontantAnnuel ? "/ an" : "/ mois")
+      var legend = getBenefitLegend(droit)
       montant = `${droit.montant.toFixed(0)} ${unit} ${legend}`
     }
 

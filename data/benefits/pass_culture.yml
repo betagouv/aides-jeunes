@@ -6,5 +6,5 @@ instructions: https://pass.culture.fr/nosapplications/
 prefix: le
 type: float
 floorAt: 1
-legend: ""
+periodicite: ponctuelle
 entity: individus

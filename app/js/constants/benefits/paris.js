@@ -1,3 +1,8 @@
+const {
+  PERIODICITE_MENSUELLE,
+  PERIODICITE_ANNUELLE,
+} = require("../../../../lib/benefits")
+
 module.exports = {
   imgSrc: "logo_paris.png",
   label: "Ville de Paris",
@@ -5,7 +10,7 @@ module.exports = {
   repository: "paris",
   prestations: {
     paris_logement_familles: {
-      isMontantAnnuel: false,
+      periodicite: PERIODICITE_MENSUELLE,
       label: "Paris Logement Famille",
       description:
         "L’allocation Paris Logement Famille est destinée aux familles d’au moins deux enfants ou ayant un enfant handicapé. Elle leur permet de mieux supporter leurs dépenses de logement. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.",
@@ -18,7 +23,7 @@ module.exports = {
       isBaseRessourcesYearMoins2: false,
     },
     paris_forfait_familles: {
-      isMontantAnnuel: true,
+      periodicite: PERIODICITE_ANNUELLE,
       label: "Paris Forfait Familles",
       description:
         "Paris Forfait Familles est une aide destinée aux familles nombreuses avec au moins trois enfants à charge. Elle peut se cumuler avec l’Allocation de Soutien aux Parents d’Enfants Handicapés. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.",
@@ -28,6 +33,7 @@ module.exports = {
     },
     paris_logement_psol: {
       label: "Paris Solidarité",
+      periodicite: PERIODICITE_MENSUELLE,
       description:
         "Paris Solidarité est destinée aux personnes âgées de 65 ans ou plus et aux personnes en situation de handicap. L’aide peut être versée tous les mois à partir de 60 ans pour les personnes reconnus inaptes au travail. Elle a pour but de garantir aux foyers modestes un minimum de ressources. L’aide est accordée pour une durée maximale d’un an.",
       conditions: [
@@ -40,6 +46,7 @@ module.exports = {
     },
     paris_logement: {
       label: "Paris Logement",
+      periodicite: PERIODICITE_MENSUELLE,
       description:
         "L’allocation Paris Logement est destinée aux foyers modestes pour leur permettre de mieux supporter leurs dépenses de logement. Ils doivent être locataires en titre et titulaires du bail du logement occupé à titre principal. L’aide est accordée pour une durée maximale d’un an. À partir du 2<sup>e</sup> renouvellement, Paris Logement peut être accordée pour une durée maximale de deux ans.",
       conditions: [
@@ -52,6 +59,7 @@ module.exports = {
     },
     paris_logement_aspeh: {
       label: "Allocation de Soutien aux Parents d’Enfants Handicapés",
+      periodicite: PERIODICITE_MENSUELLE,
       description:
         "L’Allocation de Soutien aux Parents d’Enfants Handicapés est réservée aux familles ayant à charge un ou plusieurs enfants handicapés. Elle est accordée pour un an et renouvelable. Si l’enfant handicapé vit au domicile, l’aide est versée tous les mois.",
       conditions: [
@@ -64,6 +72,7 @@ module.exports = {
     },
     paris_logement_plfm: {
       label: "Paris Logement Familles Monoparentales",
+      periodicite: PERIODICITE_MENSUELLE,
       description:
         "L’allocation Paris Logement Famille Monoparentale est destinée aux parents seuls, ayant un ou plusieurs enfants à charge. Elle leur permet de mieux supporter leurs dépenses de logement. Elle est ouverte aux locataires, aux propriétaires et aux personnes accédant à la propriété. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.",
       conditions: [
@@ -75,7 +84,7 @@ module.exports = {
       isBaseRessourcesYearMoins2: false,
     },
     paris_energie_familles: {
-      isMontantAnnuel: true,
+      periodicite: PERIODICITE_ANNUELLE,
       label: "Paris Énergie Familles",
       description:
         "L’allocation Paris Énergie Familles est réservée aux familles ayant un ou plusieurs enfants à charge, sous condition d’imposition. Cette aide permet de les soutenir dans leurs dépenses d’électricité et/ou de gaz. Paris Énergie Famille est directement versée aux fournisseurs d’énergie. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.",
@@ -84,7 +93,7 @@ module.exports = {
       isBaseRessourcesYearMoins2: false,
     },
     paris_complement_sante: {
-      isMontantAnnuel: true,
+      periodicite: PERIODICITE_ANNUELLE,
       label: "Complément Santé Paris",
       description:
         "Le Complément Santé Paris est destiné aux personnes âgées de 65 ans ou plus et aux personnes en situation de handicap. L’aide peut être versée à partir de 60 ans pour les personnes reconnues inaptes au travail. Elle a pour but d’aider les foyers modestes à régler leurs frais de mutuelle. L’aide est accordée pour une durée maximale d’un an.",

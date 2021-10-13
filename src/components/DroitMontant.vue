@@ -18,13 +18,7 @@
         <i class="fa fa-question-circle fa-2x"></i>
       </span>
       <span v-if="isNumber(droit.montant)" class="montant-detail">
-        {{
-          droit.legend !== undefined
-            ? droit.legend
-            : droit.isMontantAnnuel
-            ? "/ an"
-            : "/ mois"
-        }}
+        {{ legend }}
       </span>
     </span>
     <span class="montant-inattendu">
@@ -39,6 +33,7 @@
 
 <script>
 import currency from "currency.js"
+import { getBenefitLegend } from "../../lib/benefits"
 
 export default {
   name: "DroitMontant",
@@ -62,6 +57,9 @@ export default {
       return this.droits.filter(this.droits, function (value) {
         return !vm.filter || vm.filter.includes(value.id)
       })
+    },
+    legend: function () {
+      return getBenefitLegend(this.droit)
     },
   },
   filters: {

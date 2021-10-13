@@ -14,7 +14,7 @@ form: https://www.loire-atlantique.fr/upload/docs/binary/octet-stream/2019-03/ai
 prefix: l’
 floorAt: 1
 entity: individus
-legend: ""
+periodicite: ponctuelle
 type: float
 private: true
 interestFlag: _interetPermisDeConduire

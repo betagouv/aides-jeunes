@@ -22,4 +22,5 @@ statuts:
   - salarie
   - service_civique
 computesLocally: true
+periodicite: mensuelle
 private: true

@@ -11,4 +11,4 @@ type: float
 legend: "maximum"
 top: 4
 entity: individus
-isMontantAnnuel: true
+periodicite: annuelle

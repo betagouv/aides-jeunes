@@ -8,5 +8,5 @@ conditions:
 prefix: l'
 type: float
 floorAt: 1
-legend: ""
+periodicite: ponctuelle
 entity: individus

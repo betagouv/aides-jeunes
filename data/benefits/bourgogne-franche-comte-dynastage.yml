@@ -1,10 +1,9 @@
 label: "Aide Dynastage"
-institution: etat
+institution: region_bourgogne_franche_comte
 description: L’aide Dynastage est une aide individuelle versée aux
-  apprentis qui permet d’effectuer des stages en entreprise dans le
-  monde entier (sauf France métropolitaine et DROM-COM) et de favoriser une
-  ouverture à d’autres cultures et une meilleure adaptation sur le marché
-  international du travail.
+  apprentis permettant d’effectuer des stages en entreprise dans le
+  monde entier et de favoriser une ouverture à d’autres cultures et
+  une meilleure adaptation sur le marché international du travail.
 conditions:
   - Être un apprenti infra bac inscrit dans un CFA
   - Avoir un quotient familial inférieur à 25 830 € (avis d’imposition année
@@ -12,7 +11,7 @@ conditions:
 link: https://www.bourgognefranchecomte.fr/node/332
 type: bool
 interestFlag: _interetEtudesEtranger
-entity: menage
+prefix: "l'"
 computesLocally: true
 regions:
   - "27"

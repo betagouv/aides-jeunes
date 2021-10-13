@@ -37,7 +37,7 @@ collections:
         name: institution
         widget: relation
         collection: institutions
-        valueField: "{{slug}}"
+        valueField: "{{name}}"
         searchFields: [slug, displayFields]
         allow_multiple: false
       - label: Courte description

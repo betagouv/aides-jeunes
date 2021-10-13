@@ -9,17 +9,12 @@ conditions:
     vous bénéficiez de cette aide en tant que stagiaire.
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=813
 teleservice: https://aspqol.sphinxonline.net/surveyserver/s/CRCAmiens/PASS2021/saisieetudiant.htm
-prefix: l’
 type: bool
-floorAt: 10
-interestFlag: null
-entity: menage
 computesLocally: true
-montant: ""
 regions:
   - "32"
   - "11"
-age_max: ""
+age_max: "26"
 statuts:
   - etudiant
   - apprenti

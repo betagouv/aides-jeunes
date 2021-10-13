@@ -1,6 +1,14 @@
 const moment = require("moment")
 const { generator } = require("./dates")
+const resources = require("../../../src/constants/resources")
 const communes = require("@etalab/decoupage-administratif/data/communes.json")
+
+const ressourcesIndependant = resources.ressourceTypes.filter(
+  (r) => r.category == "rpns"
+)
+const ressourcesActivite = resources.ressourceTypes.filter(
+  (r) => r.category == "revenusActivite"
+)
 
 const STATUT_STATEGY = {
   apprenti: (situation) => {
@@ -13,7 +21,12 @@ const STATUT_STATEGY = {
     return situation.demandeur.activite === "etudiant"
   },
   independant: (situation) => {
-    return situation.demandeur.activite === "independant"
+    return (
+      situation.demandeur.activite === "actif" &&
+      ressourcesIndependant.some(
+        (ressource) => situation.demandeur[ressource.id]
+      )
+    )
   },
   lyceen: (situation) => {
     return ["seconde", "premiere", "terminale"].includes(
@@ -24,7 +37,10 @@ const STATUT_STATEGY = {
     return situation.demandeur._contrat_alternant === "professionnalisation"
   },
   salarie: (situation) => {
-    return situation.demandeur.activite === "salarie"
+    return (
+      situation.demandeur.activite === "actif" &&
+      ressourcesActivite.some((ressource) => situation.demandeur[ressource.id])
+    )
   },
   service_civique: (situation) => {
     return situation.demandeur.activite === "service_civique"
@@ -77,7 +93,6 @@ function computeFrontEndBenefits(
       const montant = benefit.montant
 
       const eligibilite = eligibiliteStatuts && elegibiliteAge && eligibiliteGeo
-
       const result =
         benefit.type === "float" ? (eligibilite ? montant : 0) : eligibilite
 

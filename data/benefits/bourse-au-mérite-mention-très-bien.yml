@@ -19,6 +19,7 @@ floorAt: 10
 entity: menage
 computesLocally: true
 montant: 500
+legend: maximum
 regions:
   - "84"
 statuts:

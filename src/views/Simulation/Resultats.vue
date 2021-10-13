@@ -92,9 +92,9 @@ export default {
     ErrorBlock,
     ErrorSaveBlock,
     Feedback,
+    LoadingModal,
     OfflineResults,
     TrouverInterlocuteur,
-    LoadingModal,
   },
   mixins: [ResultatsMixin],
   methods: {

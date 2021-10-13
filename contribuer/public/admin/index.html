@@ -9,39 +9,37 @@
   <body>
     <!-- Include the script that builds the page and powers Netlify CMS -->
     <script src="https://unpkg.com/netlify-cms@2.10.171/dist/netlify-cms.js"></script>
-    <script>
-      CMS.registerPreviewStyle("/css/benefits.css");
+    <script type="module">
+      CMS.registerPreviewStyle("/css/benefits.css")
 
       const benefitPreviewTemplate = createClass({
-        render: function () {
+        render: function() {
           const entry = this.props.entry
           const label = entry.getIn(["data", "label"])
           const description = entry.getIn(["data", "description"])
           const typeMontant = entry.getIn(["data", "type"])
           const conditions = entry.getIn(["data", "conditions"])
 
-          return h('div', {className: "aj-main-container"},
-            h('div', { className: 'aj-results-details' },
-              h("div", {className: "aj-droit-detail"},
-                h("div", {className: "aj-droit-identity"}, label),
-                h("div", {className: "aj-droit-montant"}, typeMontant),
-                h("div", {className: "aj-droit-content"},
-                  h("div", {className: "aj-droit-content-description"},
-                    h("p", {className: "aj-content-description"}, description),
-                    h("p", {className: "aj-content-conditions"},
-                      h("p", {className: "aj-content-conditions-title"}, "Pour en bénéficier, vous devez également :"),
-                      h("ul", {className: "list-unstyled"}, conditions.map(condition => h("li", {}, condition))
+          return h("div", { className: "aj-main-container" },
+            h("div", { className: "aj-results-details" },
+              h("div", { className: "aj-droit-detail" },
+                h("div", { className: "aj-droit-identity" }, label),
+                h("div", { className: "aj-droit-montant" }, typeMontant),
+                h("div", { className: "aj-droit-content" },
+                  h("div", { className: "aj-droit-content-description" },
+                    h("p", { className: "aj-content-description" }, description),
+                    h("p", { className: "aj-content-conditions" },
+                      h("p", { className: "aj-content-conditions-title" }, "Pour en bénéficier, vous devez également :"),
+                      h("ul", { className: "list-unstyled" }, conditions.map(condition => h("li", {}, condition))
                       ))
-                  ),
+                  )
                 )
-              ),
+              )
             )
           )
-
-
         }
       })
-      CMS.registerPreviewTemplate('benefits', benefitPreviewTemplate)
+      CMS.registerPreviewTemplate("benefits", benefitPreviewTemplate)
 
     </script>
   </body>

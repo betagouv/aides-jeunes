@@ -93,6 +93,7 @@ function computeFrontEndBenefits(
       const montant = benefit.montant
 
       const eligibilite = eligibiliteStatuts && elegibiliteAge && eligibiliteGeo
+
       const result =
         benefit.type === "float" ? (eligibilite ? montant : 0) : eligibilite
 

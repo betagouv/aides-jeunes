@@ -1,22 +1,16 @@
 label: Aide à la mobilité internationale des étudiants
 institution: grand_est
-description: "L'aide à la mobilité internationale des étudiants a pour but de
-  soutenir la mobilité internationale des étudiants de la région Grand Est, afin
-  de renforcer leur employabilité au terme de leurs études, de favoriser
-  l’attractivité des établissements et des formations d’enseignement supérieur
-  du territoire Grand Est.
-
-
-  \ "
+description: L'aide à la mobilité internationale des étudiants a pour but de
+  soutenir la mobilité internationale des étudiants de la région Grand Est.
 conditions:
   - posséder une attestation de l’établissement d’origine autorisant l’étudiant
     à effectuer des études ou un stage au titre de sa formation pour une durée
     déterminée au sein d’un organisme identifié (université, laboratoire,
     entreprise…),
-  - posséder une attestation de démarrage par l’établissement d’accueil
-    confirmant l’arrivée de l’étudiant et la durée du séjour,
-  - posséder une convention de stage dans le cas de stage en laboratoire ou en
-    entreprise.
+  - Effectuer sa période d’études ou de stage doit au sein d’un organisme à
+    l’étranger (université, laboratoire ou entreprise).
+  - Choisir n'importe quelle destination à l’exception de la France (DOM TOM
+    inclus), et des principautés d’Andorre et de Monaco.
 link: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
 teleservice: ""
 prefix: l’

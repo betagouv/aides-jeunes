@@ -101,9 +101,6 @@ export default {
     isEmpty: function (array) {
       return !array || array.length === 0
     },
-    trackEvent: function () {
-      this.$matomo && this.$matomo.trackEvent("Parcours", "Je donne mon avis")
-    },
   },
   mounted: function () {
     if (this.mock(this.$route.params.droitId)) {

@@ -93,7 +93,10 @@
     <a
       href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
       class="aj-cta-avis"
-      @click="trackEvent"
+      v-analytics="{
+        action: 'Parcours',
+        category: 'Je donne mon avis',
+      }"
       target="_blank"
     >
       <img
@@ -154,9 +157,6 @@ export default {
     },
     sendMailSuggestion() {
       return sendSuggestion(this.situationID)
-    },
-    trackEvent: function () {
-      this.$matomo && this.$matomo.trackEvent("Parcours", "Je donne mon avis")
     },
   },
 }

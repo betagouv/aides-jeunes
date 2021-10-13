@@ -1,4 +1,4 @@
-label: "Aide Dynastage"
+label: "Dynastage"
 institution: region_bourgogne_franche_comte
 description: L’aide Dynastage est une aide individuelle versée aux
   apprentis permettant d’effectuer des stages en entreprise dans le
@@ -10,7 +10,7 @@ conditions:
 link: https://www.bourgognefranchecomte.fr/node/332
 type: bool
 interestFlag: _interetEtudesEtranger
-prefix: "l'"
+prefix: "l'aide"
 computesLocally: true
 regions:
   - "27"

@@ -14,6 +14,7 @@ context("Full simulation", () => {
         taux_incapacite: 0.7,
       },
     })
+    steps.enceinte("false")
     steps.zeroEnfants()
     steps.celibataire()
     steps.sansDomicileStable()

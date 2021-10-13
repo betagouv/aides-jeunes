@@ -10,6 +10,7 @@ context("Full simulation", () => {
   it("accepts a basic situation", () => {
     steps.home()
     steps.demandeur()
+    steps.enceinte("false")
     steps.zeroEnfants()
     steps.celibataire()
     steps.sansDomicileStable()
@@ -34,6 +35,7 @@ context("Full simulation", () => {
     checkRadio("regime_general")
     submit()
 
+    steps.enceinte("false")
     steps.zeroEnfants()
     steps.celibataire()
     steps.parentsSepares()

@@ -232,6 +232,7 @@ function individuBlockFactory(id) {
             },
           ]
         : []),
+      ...(!enfant ? [r("enceinte")] : []),
     ],
   }
 }

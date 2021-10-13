@@ -205,6 +205,7 @@ export function conjoint(params = {}) {
   cy.get("legend").invoke("text").should("contain", "handicap")
   cy.get('input[type="radio"]').check("false")
   autoSubmit()
+  enceinte("false")
 }
 
 export function enfant(params = {}) {
@@ -249,6 +250,12 @@ export function couple() {
   cy.get("legend").invoke("text").should("contain", "couple")
   cy.get('input[type="radio"]').check("true")
   autoSubmit()
+}
+
+export function enceinte(enceinte) {
+  cy.get("legend").invoke("text").should("contain", "enceinte")
+  checkRadio(enceinte)
+  submit()
 }
 
 export function parentsSepares() {

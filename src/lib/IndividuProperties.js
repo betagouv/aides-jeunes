@@ -210,6 +210,16 @@ const STEPS = {
     questionType: "date",
   },
 
+  enceinte: {
+    question: (component) => {
+      return `${
+        component.entity._role === "demandeur"
+          ? "Êtes-vous"
+          : "Votre conjointe est-elle"
+      } enceinte ?`
+    },
+  },
+
   enfant_place: {
     question: (component) => {
       return `${Individu.label(

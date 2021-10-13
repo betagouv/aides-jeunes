@@ -17,6 +17,7 @@ context("Full simulation", () => {
     steps.checkRadio("regime_general")
     steps.submit()
 
+    steps.enceinte("false")
     steps.zeroEnfants()
     steps.celibataire()
     steps.parentsSepares()

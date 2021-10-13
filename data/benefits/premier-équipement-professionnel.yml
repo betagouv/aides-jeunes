@@ -5,9 +5,9 @@ description: L’opération Gratuité "Premier Équipement Professionnel" est
   outillages et vêtements nécessaires au suivi de la formation (sous réserve
   d’éligibilité de la formation).
 conditions:
-  - Vous devez être en possession de la Carte Jeune Région.
-  - Vous devez être inscrits en formation professionnelle dans un établissement
-    public ou privé sous contrat avec l’État.
+  - être en possession de la Carte Jeune Région.
+  - être inscrits en formation professionnelle dans un établissement public ou
+    privé sous contrat avec l’État.
 link: https://www.laregion.fr/Premier-equipement-professionnel
 prefix: l’
 type: bool

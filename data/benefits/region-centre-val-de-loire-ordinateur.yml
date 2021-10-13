@@ -1,0 +1,19 @@
+label: Ordinateur portable pour les lycéens
+institution: region_centre_val_de_loire
+description: "L'aide à l’acquisition d'un ordinateur portable permet de bénéficier d'une aide pour acheter son équipement numérique."
+link: https://www.centre-valdeloire.fr/le-guide-des-aides-de-la-region-centre-val-de-loire/aide-lacquisition-dun-ordinateur-portable-pour
+prefix: "aide à l’acquisition"
+type: float
+floorAt: 10
+computesLocally: true
+montant: 50
+unit: "%"
+legend: "du prix d'achat"
+conditions:
+  - Ne pas avoir bénéficié de l'aide durant sa scolarité.
+regions:
+  - "24"
+statuts:
+  - lyceen
+age_max: 26
+teleservice: https://www.yeps.fr/my/dashboard

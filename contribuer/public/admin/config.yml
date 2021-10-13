@@ -46,7 +46,7 @@ collections:
         widget: text
         pattern:
           [
-            "^.{10,120}$",
+            "^[^]{10,120}$",
             "La description est trop courte (<10 caractères) ou trop longue (>120 caractères). En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
           ]
       - label: Conditions non prises ne comptent par le simulateur

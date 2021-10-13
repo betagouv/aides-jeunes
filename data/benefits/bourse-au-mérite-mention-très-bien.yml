@@ -19,7 +19,8 @@ floorAt: 10
 entity: menage
 computesLocally: true
 montant: 500
-legend: maximum
+periodicite: ponctuelle
+legend: ""
 regions:
   - "84"
 statuts:

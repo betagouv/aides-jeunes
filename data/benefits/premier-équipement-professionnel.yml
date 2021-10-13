@@ -1,13 +1,13 @@
-label: " Premier équipement professionnel"
+label: premier équipement professionnel avec la Carte Jeune Région Occitanie
 institution: etat
-description: ' L’opération Gratuité " Premier Équipement Professionnel" est
+description: L’opération Gratuité "Premier Équipement Professionnel" est
   destinée à aider les lycéen·ne·s en fournissant outillages et vêtements
   nécessaires au suivi de la formation (sous réserve d’éligibilité de la
-  formation).'
+  formation).
 conditions:
-  - "Vous devez être en possession de la Carte Jeune Région et inscrits en
-    formation professionnelle dans un établissement public ou privé sous contrat
-    avec l’État, de la Région Occitanie / Pyrénées-Méditerranée "
+  - Vous devez être en possession de la Carte Jeune Région.
+  - Vous devez être inscrits en formation professionnelle dans un établissement
+    public ou privé sous contrat avec l’État.
 link: https://www.laregion.fr/Premier-equipement-professionnel
 prefix: le
 type: bool

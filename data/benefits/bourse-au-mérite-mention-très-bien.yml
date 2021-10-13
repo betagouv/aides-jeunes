@@ -6,13 +6,11 @@ description: La bourse au mérite permet de récompenser les  lycéens méritant
   l’émulation pour développer des parcours de réussite dans notre système
   éducatif.
 conditions:
-  - >-
-    Être en formation initiale dans un établissement  d’enseignement secondaire
+  - Être en formation initiale dans un établissement d’enseignement secondaire
     d’Auvergne-Rhône-Alpes (Lycée public ou privé sous contrat  d’association
-    avec l’Etat, CFA) titulaires d’une mention « Très Bien » ou équivalent à
-    la  dernière session du baccalauréat français et poursuivant un parcours
-    d’études ou 
-
+    avec l’Etat, CFA).
+  - Être titulaire d’une mention « Très Bien » ou équivalent à la dernière
+    session du baccalauréat français et poursuivant un parcours d’études ou
     professionnel.
 link: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#BAM
 prefix: la

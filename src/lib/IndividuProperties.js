@@ -212,7 +212,11 @@ const STEPS = {
 
   enceinte: {
     question: (component) => {
-      return `${Individu.label(component.entity, "être")} enceinte ?`
+      return `${
+        component.entity.role === "demandeur"
+          ? "Êtes-vous"
+          : "Votre conjointe est-elle"
+      } enceinte ?`
     },
   },
 

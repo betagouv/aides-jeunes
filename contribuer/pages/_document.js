@@ -36,7 +36,7 @@ class MyDocument extends Document {
               </a>
               .
             </p>
-            <p>L’équipe du simulateur d'aides pour les jeunes</p>
+            <p>L’équipe du simulateur d’aides pour les jeunes</p>
           </footer>
         </body>
       </Html>

@@ -1,0 +1,16 @@
+label: "Jeunes à l’international"
+institution: region_bretagne
+description: La bourse « Jeunes à l’international » vise accompagner les étudiants dans leur projet de stage professionnel ou de séjour d’études à l’étranger.
+conditions:
+  - Ne pas être déjà bénéficiaire d'une autre aide publique à la mobilité
+    internationale (européenne, nationale, régionale, départementale, locale).
+  - Ne pas avoir déjà bénéficié d’une aide à la mobilité.
+link: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-des-universites/
+teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
+prefix: les
+type: bool
+computesLocally: true
+regions:
+  - "53"
+statuts:
+  - etudiant

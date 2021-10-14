@@ -8,22 +8,21 @@
     <span class="aj-aide-montant-label">
       <span itemprop="price" v-if="isNumber(droit.type)" class="montant">
         <span class="font-normal font-base">
-          {{ayantDroit.label}}
+          {{ ayantDroit.label }}
         </span>
         <br />
-        {{
-          ayantDroit.montant
-        }}
+        {{ ayantDroit.montant }}
       </span>
-       <span v-else-if="isBoolean(droit.type)">
-           <i
-             :data-testid="`droit-montant-icon-${
-              ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
-            }`"
-             v-bind:class="`fa ${
-              ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
-            } fa-2x`">
-             </i>
+      <span v-else-if="isBoolean(droit.type)">
+        <i
+          :data-testid="`droit-montant-icon-${
+            ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
+          }`"
+          v-bind:class="`fa ${
+            ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
+          } fa-2x`"
+        >
+        </i>
       </span>
       <span v-if="ayantDroit.legend" class="montant-detail">
         {{ ayantDroit.legend }}
@@ -49,7 +48,7 @@ export default {
     droit: Object,
   },
   computed: {
-    ayantDroit: function() {
+    ayantDroit: function () {
       return formatAyantDroit(this.droit)
     },
     showUnexpected: function () {

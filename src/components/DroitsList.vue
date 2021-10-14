@@ -32,11 +32,7 @@
           </div>
         </div>
         <div class="aj-aide-montant">
-          <AyantDroit
-            :droit="droit"
-            v-if="droit.type
-            "
-          ></AyantDroit>
+          <AyantDroit :droit="droit" v-if="droit.type"></AyantDroit>
         </div>
         <div class="aj-aide-cta">
           <button class="button primary">Demander cette aide</button>

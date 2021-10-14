@@ -35,7 +35,7 @@ var droitsDescription = {
           floorAt: 10,
           prefix: "l’",
           type: "number",
-          unit: "€"
+          unit: "€",
         },
       },
     },
@@ -279,7 +279,7 @@ var droitsDescription = {
           floorAt: 10,
           prefix: "les",
           unit: "€",
-          type: "number"
+          type: "number",
         },
         ppa: {
           label: "prime d’activité",
@@ -315,7 +315,7 @@ var droitsDescription = {
           },
           entity: "individus", // default entity is familles,
           floorAt: 10,
-          prefix: "l’"
+          prefix: "l’",
         },
         caah: {
           // Les équipes de la DSS ont implémenté une V0 de la MVA dans la variable caah
@@ -641,7 +641,7 @@ var droitsDescription = {
           private: true,
           prefix: "le",
           type: "number",
-          unit: "€"
+          unit: "€",
         },
       },
     },

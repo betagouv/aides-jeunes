@@ -13,17 +13,14 @@
       <h2 class="aj-question" itemprop="name">{{ capitalize(droit.label) }}</h2>
     </div>
     <div class="aj-droit-montant">
-      <AyantDroit
-        v-bind:droit="droit"
-        v-if="droit.type"
-      />
+      <AyantDroit v-bind:droit="droit" v-if="droit.type" />
     </div>
     <div class="aj-droit-content">
       <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
       <div class="aj-droit-content-heading">
         <div class="aj-droit-content-description">
           <p>
-            <span itemprop="description">{{droit.description}}</span>
+            <span itemprop="description">{{ droit.description }}</span>
             <BenefitCtaLink
               v-if="droit.link"
               v-bind:analytics-name="droit.label"
@@ -44,7 +41,7 @@
                 v-bind:key="index"
               >
                 <img src="@/assets/images/doigt.svg" />
-                <span> {{condition}}</span>
+                <span> {{ condition }}</span>
               </li>
             </ul>
           </div>
@@ -101,12 +98,12 @@
             <p>
               L'application Mes Aides ne peut pas calculer le montant de cette
               prestation, car
-              <span>{{droit.uncomputability[droit.montant].reason.user}}</span
+              <span>{{ droit.uncomputability[droit.montant].reason.user }}</span
               >.
               <br />
-              <strong
-                v-if="droit.uncomputability[droit.montant].solution"
-              >{{droit.uncomputability[droit.montant].solution}}</strong>
+              <strong v-if="droit.uncomputability[droit.montant].solution">{{
+                droit.uncomputability[droit.montant].solution
+              }}</strong>
             </p>
           </div>
           <BenefitCta

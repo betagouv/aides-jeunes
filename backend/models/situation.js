@@ -39,7 +39,7 @@ SituationSchema.methods.compute = function () {
         return reject(err)
       }
 
-      var aides = computeAides(that, openfiscaResponse, false)
+      var aides = computeAides(that, that._id, openfiscaResponse, false)
       resolve(aides)
     })
   })

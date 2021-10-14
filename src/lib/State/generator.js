@@ -151,6 +151,7 @@ function generateSituation(answers, dates) {
               })
               break
             }
+            case "rpns":
             case "revenusActivite":
             case "indemnites":
             case "pensions":

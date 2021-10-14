@@ -6,21 +6,33 @@
     itemprop="offers"
   >
     <span class="aj-aide-montant-label">
-      {{droit}}
-      <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
-        <span class="font-normal font-base"
-          >{{ droit.participation ? "Coût" : "Montant" }} estimé</span
-        ><br />
+
+      <span itemprop="price" v-if="isNumber(droit.type)" class="montant">
+        <span class="font-normal font-base">
+          {{ayantDroit.label}}
+        </span>
+        <br />
         {{
-          droit.montant | currency(droit.unit || "€", getFractionSize(droit))
+          ayantDroit.montant
         }}
       </span>
-      <span v-if="isString(droit.montant)">
+       <span v-if="isBoolean(droit.type)">
         <i class="fa fa-question-circle fa-2x"></i>
       </span>
-      <span v-if="isNumber(droit.montant)" class="montant-detail">
-        {{ legend }}
+
+      <span v-if="ayantDroit.legend" class="montant-detail">
+        {{ ayantDroit.legend }}
       </span>
+      <div v-if="ayantDroit.type === 'bool'">
+         <i
+           :data-testid="`droit-montant-icon-${
+              ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
+            }`"
+           v-bind:class="`fa ${
+              ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
+            } fa-2x`">
+         </i>
+      </div>
     </span>
     <span class="montant-inattendu">
       <router-link
@@ -34,7 +46,7 @@
 
 <script>
 import currency from "currency.js"
-import { getBenefitLegend } from "../../lib/benefits"
+import { getBenefitLegend, formatAyantDroit } from "../../lib/benefits"
 
 export default {
   name: "DroitMontant",
@@ -42,6 +54,9 @@ export default {
     droit: Object,
   },
   computed: {
+    ayantDroit: function() {
+      return formatAyantDroit(this.droit)
+    },
     showUnexpected: function () {
       return (
         (this.droit.id === "ppa" &&
@@ -59,13 +74,6 @@ export default {
         return !vm.filter || vm.filter.includes(value.id)
       })
     },
-    legend: function () {
-      return getBenefitLegend(this.droit)
-    },
-    format() {
-
-      return ""
-    },
   },
   filters: {
     currency: function (value, unit, frac) {
@@ -79,8 +87,8 @@ export default {
   methods: {
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,
-    isBoolean: (val) => typeof val === "boolean",
-    isNumber: (val) => typeof val === "number",
+    isBoolean: (val) => val === "bool",
+    isNumber: (val) => val === "number",
     isString: (val) => typeof val === "string",
     getFractionSize: function (droit) {
       return droit.floorAt < 1 ? 2 : 0

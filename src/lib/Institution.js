@@ -1,4 +1,4 @@
-import jamstack from "jamstack-loader!../../contribuer/public/config.yml"
+import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
 import * as droitsDescription from "@/../app/js/constants/benefits"
 import BenefitsCategories from "@/lib/BenefitsCategories"
 
@@ -20,7 +20,7 @@ Institution.mockResults = function (sublist) {
   Institution.forEachBenefit((aide, aideId, aidesProvider, aidesProviderId) => {
     const addition = Object.assign({}, aide, {
       id: aideId,
-      montant: aide.montant || defaults[aide.type || "float"],
+      montant: aide.montant || defaults[aide.type || "number"],
       provider: aidesProvider,
       providerId: aidesProviderId,
       mock: true,

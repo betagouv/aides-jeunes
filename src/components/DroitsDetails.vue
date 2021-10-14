@@ -16,17 +16,8 @@
       <DroitMontant
         v-bind:droit="droit"
         unexpected
-        v-if="
-          droit.montant && (isString(droit.montant) || isNumber(droit.montant))
-        "
+        v-if="droit.montant"
       />
-      <div v-if="droit.montant && isBoolean(droit.montant)">
-        <i
-          v-bind:class="`fa ${
-            droit.symbol ? droit.symbol : 'fa-check-circle'
-          } fa-2x`"
-        ></i>
-      </div>
     </div>
     <div class="aj-droit-content">
       <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
@@ -166,7 +157,7 @@
 <script>
 import BenefitCta from "./BenefitCta"
 import BenefitCtaLink from "./BenefitCtaLink"
-import DroitMontant from "./DroitMontant"
+import DroitMontant from "./AyantDroit"
 import Situation from "../lib/Situation"
 import DroitMixin from "../mixins/DroitMixin"
 

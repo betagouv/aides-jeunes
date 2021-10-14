@@ -123,7 +123,7 @@
 import axios from "axios"
 import moment from "moment"
 
-import DroitMontant from "@/components/DroitMontant"
+import DroitMontant from "@/components/AyantDroit"
 import Institution from "@/lib/Institution"
 import LoadingModal from "@/components/LoadingModal"
 

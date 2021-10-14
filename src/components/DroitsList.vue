@@ -32,23 +32,11 @@
           </div>
         </div>
         <div class="aj-aide-montant">
-          <DroitMontant
-            v-bind:droit="droit"
-            v-if="
-              droit.montant &&
-              (isString(droit.montant) || isNumber(droit.montant))
+          <AyantDroit
+            :droit="droit"
+            v-if="droit.type
             "
-          ></DroitMontant>
-          <div v-if="droit.montant && isBoolean(droit.montant)">
-            <i
-              :data-testid="`droit-montant-icon-${
-                droit.symbol ? droit.symbol : 'fa-check-circle'
-              }`"
-              v-bind:class="`fa ${
-                droit.symbol ? droit.symbol : 'fa-check-circle'
-              } fa-2x`"
-            ></i>
-          </div>
+          ></AyantDroit>
         </div>
         <div class="aj-aide-cta">
           <button class="button primary">Demander cette aide</button>
@@ -96,7 +84,7 @@
 </template>
 
 <script>
-import DroitMontant from "./DroitMontant"
+import AyantDroit from "./AyantDroit"
 import DroitMixin from "../mixins/DroitMixin"
 
 export default {
@@ -107,7 +95,7 @@ export default {
   },
   mixins: [DroitMixin],
   components: {
-    DroitMontant,
+    AyantDroit,
   },
   data: function () {
     return {}

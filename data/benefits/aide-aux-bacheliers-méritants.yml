@@ -12,6 +12,7 @@ floorAt: 10
 entity: menage
 computesLocally: true
 montant: 1000
+periodicite: ponctuelle
 regions:
   - "11"
 age_min: ""

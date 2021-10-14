@@ -6,7 +6,6 @@
     itemprop="offers"
   >
     <span class="aj-aide-montant-label">
-
       <span itemprop="price" v-if="isNumber(droit.type)" class="montant">
         <span class="font-normal font-base">
           {{ayantDroit.label}}
@@ -16,23 +15,19 @@
           ayantDroit.montant
         }}
       </span>
-       <span v-if="isBoolean(droit.type)">
-        <i class="fa fa-question-circle fa-2x"></i>
+       <span v-else-if="isBoolean(droit.type)">
+           <i
+             :data-testid="`droit-montant-icon-${
+              ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
+            }`"
+             v-bind:class="`fa ${
+              ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
+            } fa-2x`">
+             </i>
       </span>
-
       <span v-if="ayantDroit.legend" class="montant-detail">
         {{ ayantDroit.legend }}
       </span>
-      <div v-if="ayantDroit.type === 'bool'">
-         <i
-           :data-testid="`droit-montant-icon-${
-              ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
-            }`"
-           v-bind:class="`fa ${
-              ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
-            } fa-2x`">
-         </i>
-      </div>
     </span>
     <span class="montant-inattendu">
       <router-link

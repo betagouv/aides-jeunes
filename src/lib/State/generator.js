@@ -1,7 +1,10 @@
 var { Step } = require("./steps")
 var { generateBlocks } = require("./blocks")
 
-function processBlock({ journey, subject, situation, isActive }, b) {
+function processBlock(
+  { journey, subject, situation, isActive, parameters },
+  b
+) {
   if (b instanceof Step) {
     b.isActive = isActive
     journey.push(b)
@@ -17,38 +20,45 @@ function processBlock({ journey, subject, situation, isActive }, b) {
       : subject || situation
     const localActive =
       isActive &&
-      (!b.isActive || (blockSubject && b.isActive(blockSubject, situation)))
+      (!b.isActive ||
+        (blockSubject && b.isActive(blockSubject, situation, parameters)))
     b.steps.forEach((s) =>
       processBlock(
-        { journey, subject: blockSubject, situation, isActive: localActive },
+        {
+          journey,
+          subject: blockSubject,
+          situation,
+          parameters,
+          isActive: localActive,
+        },
         s
       )
     )
   }
 }
 
-function generateJourney(situation) {
+function generateJourney(situation, parameters) {
   const blocks = generateBlocks(situation)
 
-  function processBlocks({ situation }) {
+  function processBlocks({ situation, parameters }) {
     let journey = []
     blocks.forEach((b) => {
       processBlock(
-        { journey, subject: situation, situation, isActive: true },
+        { journey, subject: situation, situation, isActive: true, parameters },
         b
       )
     })
     return journey
   }
   try {
-    return processBlocks({ situation })
+    return processBlocks({ situation, parameters })
   } catch (e) {
     console.log("error", e)
   }
 }
 
-function generateAllSteps(situation) {
-  const fullSteps = generateJourney(situation)
+function generateAllSteps(situation, parameters) {
+  const fullSteps = generateJourney(situation, parameters)
   fullSteps.pop()
   let lastChapter
   return fullSteps.map((s) => {

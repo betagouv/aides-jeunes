@@ -43,3 +43,6 @@ exports.get = function (item, callback) {
       callback(result)
     })
 }
+
+exports.getPromise = async (item) =>
+  axios.get(`${config.openfiscaURL}${item}`).then((response) => response.data)

@@ -166,7 +166,7 @@ const store = new Vuex.Store({
       )
     },
     getAllSteps: function (state) {
-      return generateAllSteps(state.situation)
+      return generateAllSteps(state.situation, state.openFiscaParameters)
     },
     ressourcesYearMinusTwoCaptured: function (state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
@@ -380,6 +380,9 @@ const store = new Vuex.Store({
     setSaveSituationError: function (state, saveSituationError) {
       state.saveSituationError = saveSituationError
     },
+    openFiscaParameters: function (state, parameters) {
+      state.openFiscaParameters = parameters
+    },
   },
   actions: {
     clear: function ({ commit }, external_id) {
@@ -508,6 +511,13 @@ const store = new Vuex.Store({
         'Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c\'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:aides-jeunes@beta.gouv.fr">aides-jeunes@beta.gouv.fr</a>.'
       )
       next("/simulation")
+    },
+    openFiscaParameters: function (state) {
+      return axios
+        .get(
+          `api/openfisca/parameters/${state.state.situation.dateDeValeur.toISOString()}`
+        )
+        .then((response) => state.commit("openFiscaParameters", response.data))
     },
     verifyBenefitVariables: function (state) {
       return axios

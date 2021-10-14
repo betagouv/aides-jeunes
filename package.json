@@ -47,6 +47,7 @@
     "errorhandler": "^1.5.1",
     "event-stream": "4.0.1",
     "express": "^4.17.1",
+    "express-validator": "^6.13.0",
     "font-awesome": "^4.7.0",
     "frozen-moment": "^0.4.0",
     "haversine": "^1.1.1",

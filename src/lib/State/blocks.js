@@ -49,12 +49,14 @@ function individuBlockFactory(id) {
               ],
             },
             {
-              isActive: (subject, situation) => {
+              isActive: (subject, situation, parameters) => {
                 const age = Individu.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
-                const jeune_actif = subject.activite === "salarie" && age <= 26
+                const jeune_actif =
+                  subject.activite === "salarie" &&
+                  age <= parameters["prestations.carte_des_metiers.age_maximal"]
                 return subject.activite === "etudiant" || jeune_actif
               },
               steps: [

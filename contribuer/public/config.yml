@@ -100,7 +100,10 @@ collections:
             value: number
           - label: Eligibilité (Oui / Non)
             value: bool
-      - label: Unité lorsque le type de résultat est un nombre
+          - label: Autre
+            value: string
+      - label: Unité lorsque le type de résultat est un montant
+        hint: Il s'agit de spécifier l'unité du montant.
         name: unit
         widget: select
         default: €
@@ -112,8 +115,8 @@ collections:
             value: seances
           - label: pourcentage
             value: pourcentage
-      - label: Légende du montant.
-        hint: Cette légende permet d'ajouter des informations complémentaires sur le montant.
+      - label: Légende pour le résultat
+        hint: "Il s'agit d'ajouter des informations complémentaires au résultat. Exemple: X% de réduction."
         name: legend
         widget: string
         required: false

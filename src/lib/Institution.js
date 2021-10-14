@@ -1,4 +1,4 @@
-import jamstack from "jamstack-loader!./../../contribuer/public/admin/config.yml"
+import jamstack from "jamstack-loader!../../contribuer/public/config.yml"
 import * as droitsDescription from "@/../app/js/constants/benefits"
 import BenefitsCategories from "@/lib/BenefitsCategories"
 

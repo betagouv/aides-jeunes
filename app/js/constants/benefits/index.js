@@ -265,6 +265,7 @@ var droitsDescription = {
           },
           floorAt: 10,
           prefix: "les",
+          unit: "€"
         },
         ppa: {
           label: "prime d’activité",

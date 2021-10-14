@@ -126,6 +126,7 @@ export default {
         benefit.prefix && benefit.prefix.endsWith("’") ? "" : " "
       }${benefit.label} ?`
     },
+
     scrollTo: function (event, droit) {
       return this.$ScrollService.go(event, document.getElementById(droit.id))
     },

@@ -6,7 +6,7 @@
     itemprop="offers"
   >
     <span class="aj-aide-montant-label">
-      <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
+      <span itemprop="price" v-if="isNumber(droit.montant)" class="montant">
         <span class="font-normal font-base"
           >{{ droit.participation ? "Coût" : "Montant" }} estimé</span
         ><br />
@@ -33,7 +33,6 @@
 
 <script>
 import currency from "currency.js"
-import { getBenefitLegend } from "../../lib/benefits"
 
 export default {
   name: "DroitMontant",
@@ -58,8 +57,30 @@ export default {
         return !vm.filter || vm.filter.includes(value.id)
       })
     },
-    legend: function () {
-      return getBenefitLegend(this.droit)
+    benefitMontant() {
+      let benefitMontant = {
+        label: undefined,
+        legend: this.droit.legend || undefined,
+        montant: undefined,
+        unit: this.droit.unit || "€",
+      }
+
+      switch (typeof this.droit.montant) {
+        case "number":
+          switch (this.droit.unit) {
+            case "€":
+              benefitMontant.label = "Montant estimé"
+              if (this.droit.participation) benefitMontant.label = "Coût estimé"
+              break
+            case "%":
+            case "séances":
+          }
+          break
+        case "string":
+          benefitMontant.montant = this.droit.montant
+      }
+
+      return benefitMontant
     },
   },
   filters: {

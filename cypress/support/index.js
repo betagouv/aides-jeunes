@@ -45,8 +45,8 @@ export function demandeur(params = {}) {
   autoSubmit()
   // Activite
   cy.get("legend").invoke("text").should("contain", "Êtes-vous")
-  cy.get("label").invoke("text").should("contain", "salarié")
-  cy.get('input[type="radio"]').check("actif")
+  cy.get("label").invoke("text").should("contain", "Salarié")
+  cy.get('input[type="radio"]').check("salarie")
   autoSubmit()
   cy.get('input[type="radio"]').check("2")
   submit()
@@ -198,8 +198,8 @@ export function conjoint(params = {}) {
   autoSubmit()
   // Activite
   cy.get("legend").invoke("text").should("contain", "est-il/elle")
-  cy.get("label").invoke("text").should("contain", "salarié")
-  cy.get('input[type="radio"]').check("actif")
+  cy.get("label").invoke("text").should("contain", "Salarié")
+  cy.get('input[type="radio"]').check("salarie")
   autoSubmit()
   // Handicap
   cy.get("legend").invoke("text").should("contain", "handicap")

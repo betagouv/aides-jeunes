@@ -8,6 +8,7 @@ const isString = require("lodash/isString")
 const { formatDate } = require("../utils")
 const individuRessource = require("./ressources")
 const pastResourcesProxy = require("./pastResourcesProxy")
+const { estActif } = require("../../../../../lib/Activite")
 
 const {
   computeDistanceCommunes,
@@ -18,7 +19,7 @@ const individuSchema = {
   activite: {
     src: "activite",
     fn: function (activite) {
-      return activite === "service_civique" ? "actif" : activite
+      return estActif(activite) ? "actif" : activite
     },
   },
   apprenti: {

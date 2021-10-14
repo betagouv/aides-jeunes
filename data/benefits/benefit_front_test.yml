@@ -19,7 +19,6 @@ statuts:
   - chomeur
   - etudiant
   - independant
-  - salarie
   - service_civique
 computesLocally: true
 periodicite: mensuelle

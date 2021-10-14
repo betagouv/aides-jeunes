@@ -34,7 +34,8 @@ var individu = Object.assign(
     activite: {
       type: String,
       enum: [
-        "actif",
+        "salarie",
+        "independant",
         "chomeur",
         "etudiant",
         "inactif",

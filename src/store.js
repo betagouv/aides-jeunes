@@ -84,7 +84,7 @@ function defaultStore() {
         aide_logement_date_pret_conventionne: "2018-12-31",
       },
       parents: {},
-      version: 3,
+      version: 4,
     },
     error: false,
     access: {

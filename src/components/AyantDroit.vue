@@ -40,7 +40,7 @@
 
 <script>
 import currency from "currency.js"
-import { getBenefitLegend, formatAyantDroit } from "../../lib/benefits"
+import { formatAyantDroit } from "../../lib/benefits"
 
 export default {
   name: "DroitMontant",

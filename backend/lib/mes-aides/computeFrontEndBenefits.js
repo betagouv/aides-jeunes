@@ -79,7 +79,7 @@ function computeFrontEndBenefits(
       const eligibilite = eligibiliteStatuts && elegibiliteAge && eligibiliteGeo
 
       const result =
-        benefit.type === "float" ? (eligibilite ? montant : 0) : eligibilite
+        benefit.type === "number" ? (eligibilite ? montant : 0) : eligibilite
 
       openfiscaResponse.individus.demandeur[benefitId] = { [period]: result }
     }

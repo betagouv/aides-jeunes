@@ -19,7 +19,7 @@ describe("benefit amount", function () {
       unit:  "%",
     }
     ayantDroit = format(droit)
-    expect(ayantDroit.label).toEqual("Remise estimée")
+    expect(ayantDroit.label).toEqual("Valeur estimée")
 
     droit = {
       type: "number",

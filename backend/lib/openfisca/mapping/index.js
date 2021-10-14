@@ -244,7 +244,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
   var prestationsFinancieres = pickBy(
     common.requestedVariables,
     function (definition) {
-      return !definition.type || definition.type === "float"
+      return !definition.type || definition.type === "number"
     }
   )
   setNonInjected(
@@ -258,7 +258,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     common.requestedVariables,
     function (definition) {
       return (
-        (!definition.type || definition.type === "float") &&
+        (!definition.type || definition.type === "number") &&
         definition.setToZeroRecently
       )
     }

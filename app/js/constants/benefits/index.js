@@ -46,6 +46,7 @@ var droitsDescription = {
       prestations: {
         css_participation_forfaitaire: {
           label: "complémentaire santé solidaire",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "La Complémentaire Santé Solidaire (CSS) est une protection complémentaire santé (mutuelle). Elle remplace la Complémentaire Maladie Universelle Complémentaire (CMU-C) et l’Aide au paiement d’une Complémentaire Santé (ACS) à compter du 1ᵉʳ novembre 2019. Une fois attribuée, la CSS est accordée pour un an.",
           conditions: [
@@ -65,8 +66,7 @@ var droitsDescription = {
                   result.css_participation_forfaitaire[period]) ||
                   0
           },
-          participation: true,
-          type: "bool",
+          type: "complex",
         },
         asi: {
           label: "allocation supplémentaire d’invalidité",

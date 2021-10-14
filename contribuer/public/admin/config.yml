@@ -98,8 +98,25 @@ collections:
         options:
           - label: Montant
             value: number
-          - label: Éligibilité (Oui / Non)
-            value: "bool"
+          - label: Eligibilité (Oui / Non)
+            value: bool
+      - label: Unité lorsque le type de résultat est un nombre
+        name: unit
+        widget: select
+        default: €
+        required: false
+        options:
+          - label: €
+            value: €
+          - label: séances
+            value: seances
+          - label: pourcentage
+            value: pourcentage
+      - label: Légende du montant.
+        hint: Cette légende permet d'ajouter des informations complémentaires sur le montant.
+        name: legend
+        widget: string
+        required: false
       - label: Niveau de fiabilité lorsque le résultat est un montant
         name: floorAt
         widget: select
@@ -111,17 +128,6 @@ collections:
             value: 1
           - label: 0.01 (pour éviter l'arrondi)
             value: 0.01
-      - label: Unité lorsque le montant est un nombre
-        name: unit
-        widget: select
-        default: €
-        options:
-          - label: €
-            value: €
-          - label: séances
-            value: seances
-          - label: pourcentage
-            value: pourcent
       - label: Faut-il limiter l'affichage de l'aide en fonction d'un intérêt particulier ?
         name: interestFlag
         hint: |

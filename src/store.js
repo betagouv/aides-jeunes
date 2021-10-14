@@ -15,38 +15,6 @@ import Institution from "./lib/Institution"
 import ABTestingService from "./plugins/ABTestingService"
 import EtablissementModule from "./modules/Etablissement"
 
-const INDIVIDU_DATE_FIELDS = [
-  "date_naissance",
-  "date_arret_de_travail",
-  "date_debut_chomage",
-  "plus_haut_diplome_date_obtention",
-]
-
-function adaptPersistedIndividu(individu) {
-  INDIVIDU_DATE_FIELDS.forEach(function (dateField) {
-    if (individu[dateField]) {
-      individu[dateField] = new Date(individu[dateField])
-    }
-  })
-}
-
-function adaptPersistedSituation(situation) {
-  if (situation.dateDeValeur) {
-    situation.dateDeValeur = new Date(situation.dateDeValeur)
-  }
-  if (situation.demandeur) {
-    adaptPersistedIndividu(situation.demandeur)
-  }
-  if (situation.enfants) {
-    situation.enfants.forEach(adaptPersistedIndividu)
-  }
-  if (situation.conjoint) {
-    adaptPersistedIndividu(situation.conjoint)
-  }
-
-  return situation
-}
-
 function defaultCalculs() {
   return {
     resultats: {
@@ -376,10 +344,10 @@ const store = new Vuex.Store({
     fetching: function (state) {
       state.access.fetching = true
     },
-    reset: function (state, situation) {
+    reset: function (state, answers) {
       state.access.fetching = false
-      state.situation = adaptPersistedSituation(situation)
-      state.dates = datesGenerator(state.situation.dateDeValeur)
+      state.answers = answers
+      state.dates = datesGenerator(new Date())
       state.ameliNoticationDone = false
       state.calculs.dirty = false
     },
@@ -493,7 +461,7 @@ const store = new Vuex.Store({
 
       situation.abtesting = ABTestingService.getEnvironment()
       return axios
-        .post("/api/situations/", situation)
+        .post("/api/situations", { answers: store.state.answers, situation })
         .then((result) => result.data)
         .then((payload) => payload._id)
         .then((id) => store.commit("setId", id))
@@ -504,7 +472,11 @@ const store = new Vuex.Store({
         .get(`/api/situations/${id}`)
         .then((result) => result.data)
         .then((payload) => state.commit("reset", payload))
-        .catch(() => state.commit("saveAccessFailure"))
+        .then(() => store.commit("setId", id))
+        .catch((e) => {
+          console.log(e)
+          state.commit("saveAccessFailure")
+        })
     },
     mockResults: function (state, benefit) {
       state.commit("setResults", Institution.mockResults(benefit))
@@ -521,6 +493,7 @@ const store = new Vuex.Store({
         .then(function (openfiscaResponse) {
           return computeAides.bind(Institution)(
             store.getters.situation,
+            store.state.situationId,
             openfiscaResponse,
             showPrivate
           )

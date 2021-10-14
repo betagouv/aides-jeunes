@@ -13,10 +13,9 @@
       <h2 class="aj-question" itemprop="name">{{ capitalize(droit.label) }}</h2>
     </div>
     <div class="aj-droit-montant">
-      <DroitMontant
+      <AyantDroit
         v-bind:droit="droit"
-        unexpected
-        v-if="droit.montant"
+        v-if="droit.type"
       />
     </div>
     <div class="aj-droit-content">
@@ -24,7 +23,7 @@
       <div class="aj-droit-content-heading">
         <div class="aj-droit-content-description">
           <p>
-            <span v-html="droit.description" itemprop="description"></span>
+            <span itemprop="description">{{droit.description}}</span>
             <BenefitCtaLink
               v-if="droit.link"
               v-bind:analytics-name="droit.label"
@@ -45,7 +44,7 @@
                 v-bind:key="index"
               >
                 <img src="@/assets/images/doigt.svg" />
-                <span v-html="condition"></span>
+                <span> {{condition}}</span>
               </li>
             </ul>
           </div>
@@ -102,15 +101,12 @@
             <p>
               L'application Mes Aides ne peut pas calculer le montant de cette
               prestation, car
-              <span
-                v-html="droit.uncomputability[droit.montant].reason.user"
-              ></span
+              <span>{{droit.uncomputability[droit.montant].reason.user}}</span
               >.
               <br />
               <strong
                 v-if="droit.uncomputability[droit.montant].solution"
-                v-html="droit.uncomputability[droit.montant].solution"
-              ></strong>
+              >{{droit.uncomputability[droit.montant].solution}}</strong>
             </p>
           </div>
           <BenefitCta
@@ -157,7 +153,7 @@
 <script>
 import BenefitCta from "./BenefitCta"
 import BenefitCtaLink from "./BenefitCtaLink"
-import DroitMontant from "./AyantDroit"
+import AyantDroit from "./AyantDroit"
 import Situation from "../lib/Situation"
 import DroitMixin from "../mixins/DroitMixin"
 
@@ -171,7 +167,7 @@ export default {
   components: {
     BenefitCta,
     BenefitCtaLink,
-    DroitMontant,
+    AyantDroit,
   },
   mixins: [DroitMixin],
   data() {

@@ -12,7 +12,7 @@ type: float
 floorAt: 10
 entity: menage
 computesLocally: true
-montant: 994
+montant: 1000
 regions:
   - "11"
 age_min: ""

@@ -6,7 +6,7 @@ describe("benefit amount", function () {
     legend: undefined
   }
 
-  it("should format label with different type.", function () {
+  it("should format benefit amount label with a different type.", function () {
     droit = {
       type: "number",
       unit:  "€",
@@ -23,7 +23,7 @@ describe("benefit amount", function () {
 
     droit = {
       type: "number",
-      unit:  "seances",
+      unit:  "séances",
     }
     ayantDroit = format(droit)
     expect(ayantDroit.label).toEqual("Nombre estimé")

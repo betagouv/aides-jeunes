@@ -116,7 +116,7 @@ collections:
           - label: coupons
             value: coupons
           - label: séances
-            value: seances
+            value: séances
       - label: Légende pour le résultat
         hint: "Il s'agit d'ajouter des informations complémentaires au résultat. Exemple: X% de réduction."
         name: legend

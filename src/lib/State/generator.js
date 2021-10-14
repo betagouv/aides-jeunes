@@ -131,7 +131,7 @@ function generateSituation(answers, dates) {
           switch (answer.fieldName) {
             case "depcom": {
               Object.keys(answer.value).forEach(
-                (key) => (situation[answer.entityName][key] = answer.value[key])
+                (key) => (individu[key] = answer.value[key])
               )
               break
             }

@@ -7,7 +7,8 @@ conditions:
 link: https://depart1825.com/nos-sejours/
 teleservice: https://www.lesstations.com/
 prefix: "l’accès au dispositif "
-type: float
+type: number
+unit: "€"
 legend: "maximum"
 top: 4
 entity: individus

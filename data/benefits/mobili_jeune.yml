@@ -4,7 +4,8 @@ description: L’aide MOBILI-JEUNE® s’adresse aux jeunes de moins de 30 ans, 
 link: https://www.actionlogement.fr/l-aide-mobili-jeune?utm_source=mes-aides-jeunes&utm_medium=resultats
 teleservice: https://mobilijeune.actionlogement.fr
 prefix: "l'aide "
-type: float
+type: number
+unit: "€"
 floorAt: 1
 entity: individus
 periodicite: mensuelle

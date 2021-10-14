@@ -4,7 +4,8 @@ description: La Grande École du numérique (GEN) est une labellisation des form
 link: https://www.grandeecolenumerique.fr/espace-apprenants/se-renseigner-sur-les-aides
 teleservice: https://dse.phm.education.gouv.fr/GEN/
 prefix: l’
-type: float
+type: number
+unit: "€"
 floorAt: 0.1
 entity: individus
 periodicite: mensuelle

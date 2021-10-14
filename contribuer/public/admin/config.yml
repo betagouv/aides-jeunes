@@ -114,7 +114,7 @@ collections:
           - label: séances
             value: seances
           - label: pourcentage
-            value: pourcentage
+            value: "%"
       - label: Légende pour le résultat
         hint: "Il s'agit d'ajouter des informations complémentaires au résultat. Exemple: X% de réduction."
         name: legend

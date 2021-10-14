@@ -4,7 +4,8 @@ description: Le pass Culture est un dispositif du ministère de la Culture, qui 
 link: https://pass.culture.fr/
 instructions: https://pass.culture.fr/nosapplications/
 prefix: le
-type: float
+type: number
+unit: "€"
 floorAt: 1
 periodicite: ponctuelle
 entity: individus

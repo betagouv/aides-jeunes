@@ -6,6 +6,7 @@
     itemprop="offers"
   >
     <span class="aj-aide-montant-label">
+      {{droit}}
       <span itemprop="price" ng-if="isNumber(droit.montant)" class="montant">
         <span class="font-normal font-base"
           >{{ droit.participation ? "Coût" : "Montant" }} estimé</span
@@ -60,6 +61,10 @@ export default {
     },
     legend: function () {
       return getBenefitLegend(this.droit)
+    },
+    format() {
+
+      return ""
     },
   },
   filters: {

@@ -10,7 +10,8 @@ conditions:
 link: https://www.villedecambrai.com/jeunesse/bourses-et-aides/aide-au-permis-de-conduire
 instructions: https://www.villedecambrai.com/jeunesse/bourses-et-aides/aide-au-permis-de-conduire
 prefix: l’
-type: float
+type: number
+unit: "€"
 floorAt: 1
 entity: individus
 periodicite: ponctuelle

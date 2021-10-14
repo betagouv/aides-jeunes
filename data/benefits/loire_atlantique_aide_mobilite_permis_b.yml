@@ -11,7 +11,8 @@ conditions:
 link: https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/jeune/l-aide-au-permis-de-conduire-pour-les-jeunes-voiture-et-cyclomoteur-fr-t1_17944
 instructions: https://www.loire-atlantique.fr/44/jeunesse/l-aide-au-permis-de-conduire-pour-les-jeunes-voiture-et-cyclomoteur/c_1154102#idTitre5
 prefix: l’
-type: float
+type: number
+unit: "€"
 floorAt: 1
 entity: individus
 periodicite: ponctuelle

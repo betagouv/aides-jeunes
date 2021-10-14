@@ -6,7 +6,8 @@ teleservice: https://piv.actionlogement.fr/simulateur-mobilite
 conditions:
   - Ne pas avoir reçu l'aide à la mobilité et l’aide jeunes actifs.
 prefix: l'
-type: float
+type: number
+unit: "€"
 floorAt: 1
 periodicite: ponctuelle
 entity: individus

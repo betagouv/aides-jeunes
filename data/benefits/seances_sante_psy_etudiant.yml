@@ -6,8 +6,8 @@ instructions: https://santepsy.etudiant.gouv.fr
 conditions:
   - avoir pris contact avec un médecin.
 prefix: l’
-unit: séances
-type: float
+unit: seances
+type: number
 periodicite: ponctuelle
 floorAt: 1
 entity: individus

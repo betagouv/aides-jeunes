@@ -9,4 +9,7 @@ instructions: http://www.illkirch.eu/solidarite-et-sante/ccas/coupon-arts-sports
 prefix: le
 floorAt: 1
 entity: familles
+type: number
+unit: "€"
+legend: "en coupons"
 periodicite: ponctuelle

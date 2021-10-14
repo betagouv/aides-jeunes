@@ -4,7 +4,8 @@ description: L'aide aux jeunes diplômés et anciens boursiers est une aide fina
 link: https://www.pole-emploi.fr/candidat/mes-droits-aux-aides-et-allocati/allocations-et-aides--les-repons/aides-financieres-aux-jeunes-dip.html
 form: https://www.pole-emploi.fr/files/live/sites/PE/files/fichiers-en-telechargement/fichiers-en-telechargement---dem/Aide-jeune-diplome-1er%20versement.pdf
 prefix: l’
-type: float
+type: number
+unit: "€"
 floorAt: 0.1
 entity: individus
 periodicite: mensuelle

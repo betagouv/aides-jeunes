@@ -132,7 +132,7 @@
             target="_blank"
             rel="noopener"
             class="aj-droit-pro-agricole"
-            href="http://www.msa.fr/lfr/web/msa/espace-prive"
+            href="https://www.msa.fr/lfy/espace-prive"
             v-analytics="{
               name: droit.label,
               action: 'msa',

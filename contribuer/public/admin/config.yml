@@ -3,9 +3,9 @@ backend:
   name: git-gateway
   branch: master
   commit_messages:
-    create: Création de {{slug}} comme {{collection}}
-    update: Mise à jour de {{slug}} comme {{collection}}
-    delete: Suppression de {{slug}} comme {{collection}}
+    create: Crée {{slug}}
+    update: Met à jour {{slug}}
+    delete: Supprime {{slug}}
     uploadMedia: Nouvelle image {{path}}
     deleteMedia: Suppression de l'image {{path}}
 

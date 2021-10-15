@@ -61,6 +61,18 @@ export default {
       return
     } else if (!this.droits) {
       this.restoreLatest()
+    } else {
+      const droitId = this.$route.params.droitId
+      const i = this.droits.findIndex(function (droit) {
+        return droit.id === droitId
+      })
+
+      this.$matomo &&
+        this.$matomo.trackEvent(
+          "General",
+          "showDetails",
+          `${droitId} [${i + 1}/${this.droits.length}]`
+        )
     }
   },
   computed: {

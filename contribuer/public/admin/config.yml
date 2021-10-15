@@ -205,10 +205,12 @@ collections:
         name: age_min
         widget: number
         required: false
+        min: 0
       - label: Age maximal inclus
         name: age_max
         widget: number
         required: false
+        min: 0
       - label: Statuts
         name: statuts
         multiple: true

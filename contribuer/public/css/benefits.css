@@ -16,6 +16,7 @@ body {
 .aj-droit-identity {
   font-size: 1.25rem;
   margin-bottom: 1rem;
+  width: 70%;
   font-weight: bold;
 }
 
@@ -41,6 +42,10 @@ body {
   margin-top: 2rem;
   width: 100%;
   padding: 0 1rem;
+}
+.aj-droit-montant {
+  font-weight: bold;
+  font-size: 1.4rem;
 }
 
 .aj-content-conditions {

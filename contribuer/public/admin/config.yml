@@ -100,8 +100,6 @@ collections:
             value: number
           - label: Eligibilité (Oui / Non)
             value: bool
-          - label: Autre
-            value: string
       - label: Unité lorsque le type de résultat est un montant
         hint: Il s'agit de spécifier l'unité du montant.
         name: unit

@@ -6,12 +6,9 @@ description: Le e-pass jeunes est carte et une application pour faciliter
   plans.
 link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/e-pass-jeunes
 instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/e-pass-jeunes
-prefix: le
+prefix: l'
 type: bool
-floorAt: 10
-entity: menage
 computesLocally: true
-montant: ""
 regions:
   - "93"
 age_min: 15

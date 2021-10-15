@@ -5,6 +5,7 @@ description: Le e-pass jeunes est carte et une application pour faciliter
   Provence-Alpes-Côte d'Azur, à la culture et au sport avec 80 € et des bons
   plans.
 link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/e-pass-jeunes
+instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/e-pass-jeunes
 prefix: le
 type: bool
 floorAt: 10

@@ -12,10 +12,8 @@ teleservice: https://aspqol.sphinxonline.net/surveyserver/s/CRCAmiens/PASS2021/s
 prefix: la
 type: bool
 floorAt: 10
-interestFlag: null
-entity: menage
+entity: menages
 computesLocally: true
-montant: ""
 regions:
   - "32"
   - "11"

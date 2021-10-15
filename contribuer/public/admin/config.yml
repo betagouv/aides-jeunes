@@ -46,7 +46,7 @@ collections:
         widget: text
         pattern:
           [
-            "^[^]{10,120}$",
+            "^[^]{10,420}$",
             "La description est trop courte (<10 caractères) ou trop longue (>120 caractères). En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
           ]
       - label: Conditions non prises ne comptent par le simulateur
@@ -86,7 +86,7 @@ collections:
           Comment obtenir PPPP AAAA ? Par exemples dans « Comment obtenir l'aide exceptionnelle ? » « l' » est le préfix. Pour « Comment obtenir les aides au logement ? » le préfix est « les ».
         widget: select
         required: false
-        options: [le, la, les, l’, une]
+        options: [le, la, les, l’, une, l’aide]
       - label: Type du résultat
         name: type
         default: "bool"

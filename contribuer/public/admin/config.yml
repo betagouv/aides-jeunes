@@ -119,7 +119,7 @@ collections:
             value: null
           - label: Oui, l'afficher en cas d'intérêt pour passer le permis de conduire.
             value: _interetPermisDeConduire
-          - label: Oui, l'afficher en cas d'intérêt pour faires des études à l'étrange.
+          - label: Oui, l'afficher en cas d'intérêt pour faires des études à l'étranger.
             value: _interetEtudesEtranger
       - label: Entité de rattachement de la variable dans OpenFisca
         name: entity

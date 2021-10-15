@@ -3,6 +3,7 @@ var openfisca = require("../lib/openfisca")
 const parametersList = {
   "prestations.carte_des_metiers.age_maximal": 26,
   "prestations.minima_sociaux.aah.taux_incapacite": 0.8,
+  "epargne.livret_a.taux": 0.005,
 }
 
 let parameters = {}

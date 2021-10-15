@@ -440,7 +440,8 @@ var droitsDescription = {
             "Effectuer chaque année votre déclaration auprès des impôts.",
             "Présenter à l’établissement bancaire votre avis d’imposition indiquant votre revenu fiscal.",
           ],
-          legend: "au lieu de 0,50%",
+          legend: (parameters) =>
+            `au lieu de ${parameters["epargne.livret_a.taux"] * 100}%`,
           periodicite: PERIODICITE_ANNUELLE,
           link: "https://www.service-public.fr/particuliers/vosdroits/F2367",
           entity: "individus", // default entity is familles

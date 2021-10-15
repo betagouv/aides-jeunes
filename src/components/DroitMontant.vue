@@ -59,7 +59,7 @@ export default {
       })
     },
     legend: function () {
-      return getBenefitLegend(this.droit)
+      return getBenefitLegend(this.droit, this.$store.state.openFiscaParameters)
     },
   },
   filters: {

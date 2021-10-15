@@ -64,10 +64,19 @@ export default {
         )
       )
     })
-    let selectedTypes = Ressource.getIndividuRessourceTypes(
-      this.individu,
-      this.$store.getters.situation
+
+    const selectedRessources = this.$store.getters.getAnswer(
+      this.$route.params.id,
+      "individu",
+      "ressources"
     )
+
+    const selectedTypes = {}
+    types.forEach((type) => {
+      selectedTypes[type.id] =
+        selectedRessources && selectedRessources.includes(type.id)
+    })
+
     return {
       categories: ressourceCategories,
       typesByCategories: groupBy(types, (t) => t.category),

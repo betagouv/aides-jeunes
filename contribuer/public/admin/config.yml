@@ -69,6 +69,10 @@ collections:
         name: link
         widget: string
         required: false
+      - label: Lien vers des instructions à suivre
+        name: instructions
+        widget: string
+        required: false
       - label: Lien vers un formulaire à imprimer
         name: form
         widget: string

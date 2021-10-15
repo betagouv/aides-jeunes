@@ -14,6 +14,8 @@ var AnswerSchema = new mongoose.Schema(
     enfants: [Number],
     ressourceFiscales: Object,
     patrimoine: Object,
+    dateDeValeur: Date,
+    version: Number,
   },
   { minimize: false }
 )

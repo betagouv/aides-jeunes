@@ -16,7 +16,7 @@ computesLocally: true
 regions:
   - "32"
   - "11"
-age_max: 32
+age_max: ""
 statuts:
   - etudiant
   - apprenti

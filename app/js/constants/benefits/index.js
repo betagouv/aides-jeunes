@@ -340,6 +340,8 @@ var droitsDescription = {
           forms: {
             mdph: "https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15692.do",
           },
+          type: "number",
+          unit: "€",
           floorAt: 1,
           prefix: "l’",
         },

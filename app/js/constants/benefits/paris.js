@@ -124,8 +124,7 @@ module.exports = {
     },
     paris_pass_seniors: {
       label: "Pass Paris Seniors",
-      unit: "carte de transport offerte",
-      type: "number",
+      type: "bool",
       description:
         "Le Pass Paris Seniors est destiné aux personnes âgées de 65 ans ou plus (et à partir de 60 ans pour les personnes reconnues inaptes au travail). Il permet de voyager gratuitement sur l’ensemble du réseau des transports en commun d’Île-de-France (zones 1 à 5).",
       link: "https://www.paris.fr/pages/aides-aux-transports-3848/#pass-paris-seniors",
@@ -135,8 +134,7 @@ module.exports = {
     },
     paris_pass_access: {
       label: "Pass Paris Access’",
-      unit: "carte de transport offerte",
-      type: "number",
+      type: "bool",
       description:
         "Le Pass Paris Access’ est destiné aux personnes en situation de handicap. Il permet de voyager gratuitement sur l’ensemble du réseau des transports en commun d’Île-de-France (zones 1 à 5).",
       link: "https://www.paris.fr/pages/aides-aux-transports-3848/#pass-paris-access",

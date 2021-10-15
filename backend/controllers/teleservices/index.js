@@ -103,7 +103,7 @@ function fail(res, msg) {
 exports.metadataResponseGenerator = function (teleservice) {
   return function (req, res) {
     var payload = {
-      id: req.situationId,
+      id: req.situation._id,
       scope: teleservice.name,
       exp: Math.floor(Date.now() / 1000) + 60 * 60, // Expires after one hour
     }

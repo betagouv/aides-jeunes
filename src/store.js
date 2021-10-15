@@ -511,21 +511,9 @@ const store = new Vuex.Store({
     },
     verifyBenefitVariables: function (state) {
       return axios
-        .get("api/openfisca/variables")
+        .get("api/openfisca/verifybenefits")
         .then((response) => response.data)
-        .then((variableNames) => {
-          let missingBenefits = []
-          Institution.forEachBenefit((benefit, benefitId) => {
-            const source = benefit.openfisca_eligibility_source || benefitId
-            if (
-              !benefit.test &&
-              !benefit.computesLocally &&
-              !variableNames.includes(source)
-            ) {
-              missingBenefits.push(benefitId)
-            }
-          })
-
+        .then((missingBenefits) => {
           if (missingBenefits.length) {
             state.commit(
               "setMessage",

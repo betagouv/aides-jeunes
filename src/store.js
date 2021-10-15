@@ -34,10 +34,11 @@ function defaultStore() {
 
   return {
     situationId: null,
-    dateDeValeur: new Date(),
     answers: {
       all: [],
       current: [],
+      dateDeValeur: new Date(),
+      version: 3,
     },
     message: {
       text: null,
@@ -67,16 +68,15 @@ function restoreLocal() {
     store = JSON.parse(window.sessionStorage.store)
   }
 
-  if (!store || !store.answers || !store.dateDeValeur) {
+  if (!store || !store.answers || !store.answers.dateDeValeur) {
     store = defaultStore()
   }
 
   return {
     situationId: store.situationId,
-    dateDeValeur: store.dateDeValeur,
-    answers: store.answers || { all: [], current: [] },
+    answers: store.answers,
     calculs: store.calculs || defaultCalculs(),
-    dates: datesGenerator(store.dateDeValeur),
+    dates: datesGenerator(store.answers.dateDeValeur),
     ameliNoticationDone: store.ameliNoticationDone,
   }
 }
@@ -347,7 +347,7 @@ const store = new Vuex.Store({
     reset: function (state, answers) {
       state.access.fetching = false
       state.answers = answers
-      state.dates = datesGenerator(new Date())
+      state.dates = datesGenerator(answers.dateDeValeur || new Date())
       state.ameliNoticationDone = false
       state.calculs.dirty = false
     },

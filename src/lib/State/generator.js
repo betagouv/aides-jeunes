@@ -84,7 +84,8 @@ const getIndividu = (situation, id) => {
 
 function generateSituation(answers, dates) {
   const situation = {
-    external_id: null,
+    dateDeValeur: answers.dateDeValeur,
+    version: answers.version,
     demandeur: generateDefaultIndividu("demandeur", "demandeur"),
     enfants:
       answers && answers.enfants
@@ -107,7 +108,6 @@ function generateSituation(answers, dates) {
       aide_logement_date_pret_conventionne: "2018-12-31",
     },
     parents: {},
-    version: 3,
   }
 
   if (!answers) {

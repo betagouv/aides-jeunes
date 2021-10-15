@@ -6,23 +6,21 @@ const parametersList = {
   "epargne.livret_a.taux": 0.005,
 }
 
-let parameters = {}
-let expirationDate
+let parameters
 
 module.exports.getParameters = async (date) => {
-  const now = new Date()
-  if (!expirationDate || expirationDate < now) {
+  if (!parameters) {
     const values = await Promise.all(
       Object.keys(parametersList).map((parameter) =>
         openfisca.getPromise(`/parameter/${parameter}`)
       )
     )
 
+    let newParameters = {}
     values.forEach((value) => {
-      parameters[value.id] = value.values
+      newParameters[value.id] = value.values
     })
-    now.setDate(now.getDate() + 1)
-    expirationDate = now
+    parameters = newParameters
   }
 
   const results = {}

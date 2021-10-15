@@ -93,10 +93,11 @@ function individuBlockFactory(id) {
         steps: [
           r("taux_incapacite"),
           {
-            isActive: (subject) =>
+            isActive: (subject, situation, parameters) =>
               !enfant &&
               0.5 <= subject.taux_incapacite &&
-              subject.taux_incapacite < 0.8,
+              subject.taux_incapacite <
+                parameters["prestations.minima_sociaux.aah.taux_incapacite"],
             steps: [r("aah_restriction_substantielle_durable_acces_emploi")],
           },
         ],

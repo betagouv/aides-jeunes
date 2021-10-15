@@ -449,20 +449,26 @@ const STEPS = {
           > ?`
     },
     questionType: "enum",
-    items: [
-      {
-        value: 0.3,
-        label: "Moins de 50%",
-      },
-      {
-        value: 0.7,
-        label: "Entre 50% et 80%",
-      },
-      {
-        value: 0.9,
-        label: "Plus de 80%",
-      },
-    ],
+    items: (component) => {
+      const tauxMax =
+        component.$store.state.openFiscaParameters[
+          "prestations.minima_sociaux.aah.taux_incapacite"
+        ]
+      return [
+        {
+          value: 0.3,
+          label: "Moins de 50%",
+        },
+        {
+          value: (0.5 + tauxMax) / 2,
+          label: `Entre 50% et ${tauxMax * 100}%`,
+        },
+        {
+          value: (tauxMax + 1) / 2,
+          label: `Plus de ${tauxMax * 100}%`,
+        },
+      ]
+    },
   },
 
   _boursier_derniere_annee_etudes: {

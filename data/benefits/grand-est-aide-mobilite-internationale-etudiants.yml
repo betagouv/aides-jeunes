@@ -8,6 +8,7 @@ conditions:
   - Choisir n'importe quelle destination à l’exception de la France (DOM TOM
     inclus), et des principautés d’Andorre et de Monaco.
 link: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
+instructions: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
 prefix: l’
 type: bool
 interestFlag: _interetEtudesEtranger

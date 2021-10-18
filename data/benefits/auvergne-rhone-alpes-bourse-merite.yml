@@ -1,0 +1,25 @@
+label: bourse au mérite
+institution: region_auvergne_rhone_alpes
+description: La bourse au mérite permet de récompenser les lycéens et les élèves en formation professionnelle méritants
+  par un versement en une fois de 500 euros. La région souhaite les aider à
+  poursuivre leurs études dans de bonnes conditions et veut encourager
+  l’émulation pour développer des parcours de réussite dans notre système
+  éducatif.
+conditions:
+  - Être titulaire d’une mention « Très Bien » ou équivalent à la dernière
+    session du baccalauréat français et poursuivant un parcours d’études ou
+    professionnel.
+  - Ou avoir au moins 16 sur 20 au Certificat d’Aptitude Professionnelle ou au Brevet professionnel.
+link: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#BAM
+teleservice: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#BAM
+prefix: la
+type: float
+floorAt: 10
+computesLocally: true
+montant: 500
+periodicite: ponctuelle
+regions:
+  - "84"
+statuts:
+  - etudiant
+  - apprenti

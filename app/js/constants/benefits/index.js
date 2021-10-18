@@ -66,7 +66,7 @@ var droitsDescription = {
                   result.css_participation_forfaitaire[period]) ||
                   0
           },
-          type: "complex",
+          type: "mixed",
           participation: true
         },
         asi: {

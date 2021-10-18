@@ -12,7 +12,7 @@ teleservice: ""
 prefix: l’
 type: bool
 floorAt: 10
-entity: menage
+entity: null
 computesLocally: true
 regions:
   - "44"

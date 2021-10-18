@@ -15,3 +15,5 @@ entity: individus
 computesLocally: true
 regions:
   - "52"
+statuts:
+  - etudiant

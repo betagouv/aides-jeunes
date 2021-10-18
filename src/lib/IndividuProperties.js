@@ -546,8 +546,8 @@ const STEPS = {
   regime_securite_sociale: {
     question: (component) => {
       return component.entity.enfant_a_charge
-        ? "Quelle le régime de protection sociale de vos parents ?"
-        : "Quelle est votre régime de protection sociale ?"
+        ? "Quel est le régime de protection sociale de vos parents ?"
+        : "Quel est votre régime de protection sociale ?"
     },
     questionType: "enum",
     items: [

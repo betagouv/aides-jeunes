@@ -10,7 +10,7 @@ module.exports = function (api) {
     )
   })
 
-  api.route("/openfisca/verifybenefits").get(async (req, res) => {
+  api.route("/openfisca/missingbenefits").get(async (req, res) => {
     if (missingBenefits) {
       res.json(missingBenefits)
     }

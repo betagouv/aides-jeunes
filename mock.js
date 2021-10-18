@@ -61,7 +61,7 @@ function mock(app) {
     res.send(buildOpenFiscaRequest(cache[req.params.id]))
   })
 
-  app.get("/api/openfisca/verifybenefits", function (req, res) {
+  app.get("/api/openfisca/missingbenefits", function (req, res) {
     res.send([])
   })
 

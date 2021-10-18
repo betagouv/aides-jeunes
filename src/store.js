@@ -511,7 +511,7 @@ const store = new Vuex.Store({
     },
     verifyBenefitVariables: function (state) {
       return axios
-        .get("api/openfisca/verifybenefits")
+        .get("api/openfisca/missingbenefits")
         .then((response) => response.data)
         .then((missingBenefits) => {
           if (missingBenefits.length) {

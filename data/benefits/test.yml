@@ -1,0 +1,8 @@
+label: test
+institution: region_occitanie
+description: sadsadsddasdasdsadasd
+link: test
+type: bool
+computesLocally: true
+regions:
+  - "53"

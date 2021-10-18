@@ -7,9 +7,9 @@ description: La bourse au mérite permet de récompenser les lycéens et les él
   éducatif.
 conditions:
   - Être titulaire d’une mention « Très Bien » ou équivalent à la dernière
-    session du baccalauréat français et poursuivant un parcours d’études ou
-    professionnel.
+    session du baccalauréat français.
   - Ou avoir au moins 16 sur 20 au Certificat d’Aptitude Professionnelle ou au Brevet professionnel.
+  - Poursuivre un parcours d’études ou professionnel.
 link: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#BAM
 teleservice: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#BAM
 prefix: la

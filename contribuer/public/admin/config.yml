@@ -3,9 +3,9 @@ backend:
   name: git-gateway
   branch: master
   commit_messages:
-    create: Création de {{slug}} comme {{collection}}
-    update: Mise à jour de {{slug}} comme {{collection}}
-    delete: Suppression de {{slug}} comme {{collection}}
+    create: Crée {{slug}}
+    update: Met à jour {{slug}}
+    delete: Supprime {{slug}}
     uploadMedia: Nouvelle image {{path}}
     deleteMedia: Suppression de l'image {{path}}
 
@@ -38,7 +38,7 @@ collections:
         widget: relation
         collection: institutions
         valueField: "{{slug}}"
-        displayFields: "{{name}}"
+        displayFields: ["{{name}}"]
         searchFields: [slug, displayFields]
         allow_multiple: false
       - label: Courte description
@@ -46,7 +46,7 @@ collections:
         widget: text
         pattern:
           [
-            "^[^]{10,120}$",
+            "^[^]{10,420}$",
             "La description est trop courte (<10 caractères) ou trop longue (>120 caractères). En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
           ]
       - label: Conditions non prises ne comptent par le simulateur
@@ -69,6 +69,10 @@ collections:
         name: link
         widget: string
         required: false
+      - label: Lien vers des instructions à suivre
+        name: instructions
+        widget: string
+        required: false
       - label: Lien vers un formulaire à imprimer
         name: form
         widget: string
@@ -86,7 +90,7 @@ collections:
           Comment obtenir PPPP AAAA ? Par exemples dans « Comment obtenir l'aide exceptionnelle ? » « l' » est le préfix. Pour « Comment obtenir les aides au logement ? » le préfix est « les ».
         widget: select
         required: false
-        options: [le, la, les, l’, une]
+        options: [le, la, les, l’, une, l’aide]
       - label: Type du résultat
         name: type
         default: "bool"
@@ -115,8 +119,6 @@ collections:
         widget: select
         required: false
         options:
-          - label: Non, l'afficher dans tous les cas.
-            value: null
           - label: Oui, l'afficher en cas d'intérêt pour passer le permis de conduire.
             value: _interetPermisDeConduire
           - label: Oui, l'afficher en cas d'intérêt pour faires des études à l'étranger.
@@ -139,6 +141,7 @@ collections:
         hint: Il faut cocher cette case si les critères sont explicités (âge, montant, statut, localisation, etc)
         name: computesLocally
         widget: boolean
+        required: false
       - label: Montant maximal de l'aide
         name: montant
         widget: number
@@ -157,8 +160,8 @@ collections:
             value: annuelle
           - label: Autre
             value: autre
-      - label: Légende du montant.
-        hint: Cette légende permet d'ajouter des informations complémentaires sur le montant.
+      - label: Légende asssociée au montant
+        hint: Cette légende permet d'ajouter des informations complémentaires sur le montant. Cette légende correspond à « séances » dans l'affichage « N séances » et à « au lieu x de 0,5% dans « 1% au lieu de 0,5% ».
         name: legend
         widget: string
         required: false
@@ -168,29 +171,29 @@ collections:
         widget: select
         multiple: true
         options:
-          - label: Île-de-France
-            value: "11"
-          - label: Centre-Val de Loire
-            value: "24"
-          - label: Bourgogne-Franche-Comte
+          - label: Auvergne-Rhône-Alpes
+            value: "84"
+          - label: Bourgogne-Franche-Comté
             value: "27"
-          - label: Normandie
-            value: "28"
-          - label: Hauts-de-france
-            value: "32"
-          - label: Grand Est
-            value: "44"
-          - label: Pays de la Loire
-            value: "52"
           - label: Bretagne
             value: "53"
+          - label: Centre-Val de Loire
+            value: "24"
+          - label: Grand Est
+            value: "44"
+          - label: Hauts-de-France
+            value: "32"
+          - label: Île-de-France
+            value: "11"
+          - label: Normandie
+            value: "28"
           - label: Nouvelle-Aquitaine
             value: "75"
           - label: Occitanie
             value: "76"
-          - label: Auvergne-Rhône-Alpes
-            value: "84"
-          - label: Provence-Alpes-Côte D'azur
+          - label: Pays de la Loire
+            value: "52"
+          - label: Provence-Alpes-Côte d'Azur
             value: "93"
       - label: Code des départements
         name: departements

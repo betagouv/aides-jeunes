@@ -1,4 +1,4 @@
-label: Aide à la mobilité internationale des étudiants
+label: aide à la mobilité internationale des étudiants
 institution: grand_est
 description: L'aide à la mobilité internationale des étudiants a pour but de
   soutenir la mobilité internationale des étudiants de la région Grand Est.
@@ -8,12 +8,8 @@ conditions:
   - Choisir n'importe quelle destination à l’exception de la France (DOM TOM
     inclus), et des principautés d’Andorre et de Monaco.
 link: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
-teleservice: ""
 prefix: l’
 type: bool
-floorAt: 10
-interestFlag: _interetEtudesEtranger
-entity: null
 computesLocally: true
 regions:
   - "44"

@@ -8,6 +8,7 @@ conditions:
 link: https://aides.normandie.fr/pass-monde-etudes-superieures
 prefix: le
 type: bool
+interestFlag: _interetEtudesEtranger
 computesLocally: true
 regions:
   - "28"

@@ -61,12 +61,8 @@ function mock(app) {
     res.send(buildOpenFiscaRequest(cache[req.params.id]))
   })
 
-  app.get("/api/openfisca/variables", function (req, res, next) {
-    axios
-      .get(`${openfiscaRoot}/variables`)
-      .then((response) => response.data)
-      .then((mapping) => res.send(Object.keys(mapping)))
-      .catch((error) => next(error))
+  app.get("/api/openfisca/missingbenefits", function (req, res) {
+    res.send([])
   })
 
   app.get("/api/followups/surveys/:id", function (req, res) {

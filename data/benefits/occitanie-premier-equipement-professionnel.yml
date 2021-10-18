@@ -4,7 +4,8 @@ description: L’opération Gratuité Premier Équipement Professionnel est dest
   à aider les lycéen·ne·s en formation professionnelle de la région Occitanie en
   fournissant outillages et vêtements nécessaires au suivi de la formation.
 conditions:
-  - Être en possession de la Carte Jeune Région.
+  - Être en possession de la <a href="https://www.laregion.fr/-cartejeune-"
+    target="_blank" rel="noopener"> Carte Jeune Région</a>.
   - Suivre <a
     href="https://www.laregion.fr/IMG/pdf/23_-_liste_des_formations_eligibles_au_premier_equipement_lyceens_2021_2022.pdf"
     target="_blank" rel="noopener">une formation éligible</a> au premier

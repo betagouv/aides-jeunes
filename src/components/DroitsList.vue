@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="aj-aide-montant">
-          <AyantDroit :droit="droit" v-if="droit.type"></AyantDroit>
+          <DroitEstimé :droit="droit" v-if="droit.type"></DroitEstimé>
         </div>
         <div class="aj-aide-cta">
           <button class="button primary">Demander cette aide</button>
@@ -80,8 +80,8 @@
 </template>
 
 <script>
-import AyantDroit from "./AyantDroit"
 import DroitMixin from "../mixins/DroitMixin"
+import DroitEstimé from "./DroitEstime"
 
 export default {
   name: "DroitsList",
@@ -91,7 +91,7 @@ export default {
   },
   mixins: [DroitMixin],
   components: {
-    AyantDroit,
+    DroitEstimé,
   },
   data: function () {
     return {}

@@ -8,24 +8,24 @@
     <span class="aj-aide-montant-label">
       <span itemprop="price" v-if="isNumber(droit.type)" class="montant">
         <span class="font-normal font-base">
-          {{ ayantDroit.label }}
+          {{ droitEstime.label }}
         </span>
         <br />
-        {{ ayantDroit.value }}
+        {{ droitEstime.value }}
       </span>
       <span v-else-if="isBoolean(droit.type)">
         <i
           :data-testid="`droit-montant-icon-${
-            ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
+            droitEstime.symbol ? droitEstime.symbol : 'fa-check-circle'
           }`"
           v-bind:class="`fa ${
-            ayantDroit.symbol ? ayantDroit.symbol : 'fa-check-circle'
+            droitEstime.symbol ? droitEstime.symbol : 'fa-check-circle'
           } fa-2x`"
         >
         </i>
       </span>
-      <span v-if="ayantDroit.legend" class="montant-detail">
-        {{ ayantDroit.legend }}
+      <span v-if="droitEstime.legend" class="montant-detail">
+        {{ droitEstime.legend }}
       </span>
     </span>
     <span class="montant-inattendu">
@@ -40,16 +40,16 @@
 
 <script>
 import currency from "currency.js"
-import { formatAyantDroit } from "../../lib/benefits"
+import { formatDroitEstime } from "../../lib/benefits"
 
 export default {
-  name: "DroitMontant",
+  name: "DroitEstimé",
   props: {
     droit: Object,
   },
   computed: {
-    ayantDroit: function () {
-      return formatAyantDroit(this.droit)
+    droitEstime: function () {
+      return formatDroitEstime(this.droit)
     },
     showUnexpected: function () {
       return (

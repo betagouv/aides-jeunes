@@ -13,7 +13,7 @@
       <h2 class="aj-question" itemprop="name">{{ capitalize(droit.label) }}</h2>
     </div>
     <div class="aj-droit-montant">
-      <AyantDroit v-bind:droit="droit" v-if="droit.type" />
+      <DroitEstime v-bind:droit="droit" v-if="droit.type" />
     </div>
     <div class="aj-droit-content">
       <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
@@ -150,7 +150,7 @@
 <script>
 import BenefitCta from "./BenefitCta"
 import BenefitCtaLink from "./BenefitCtaLink"
-import AyantDroit from "./AyantDroit"
+import DroitEstime from "./DroitEstime"
 import Situation from "../lib/Situation"
 import DroitMixin from "../mixins/DroitMixin"
 
@@ -164,7 +164,7 @@ export default {
   components: {
     BenefitCta,
     BenefitCtaLink,
-    AyantDroit,
+    DroitEstime,
   },
   mixins: [DroitMixin],
   data() {

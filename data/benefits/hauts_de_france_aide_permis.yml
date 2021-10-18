@@ -6,7 +6,7 @@ conditions:
   - être en apprentissage, demandeur d'emploi, stagiaire ou dans un parcours contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA).
 link: https://www.hautsdefrance.fr/permis-de-conduire-aide-2/
 teleservice: https://www.hautsdefrance.fr/testez-votre-eligibilite-aide-au-permis-de-conduire/
-type: number
+type: float
 unit: "€"
 interestFlag: _interetPermisDeConduire
 entity: individus

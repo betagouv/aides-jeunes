@@ -14,7 +14,7 @@ prefix: l’
 floorAt: 1
 entity: individus
 periodicite: ponctuelle
-type: number
+type: float
 unit: "€"
 private: true
 interestFlag: _interetPermisDeConduire

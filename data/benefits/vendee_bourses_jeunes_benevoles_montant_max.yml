@@ -12,7 +12,7 @@ conditions:
 link: https://www.benevolat.vendee.fr/Le-plan-Vendee-Double-Coeur/La-bourse-aux-jeunes-benevoles-vendeens
 form: https://benevolat.vendee.fr/content/download/3539930/114782465/file/formulaire_bourse2021.pdf
 prefix: les
-type: number
+type: float
 unit: "€"
 periodicite: ponctuelle
 legend: maximum

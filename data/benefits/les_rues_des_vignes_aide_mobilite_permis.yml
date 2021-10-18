@@ -10,7 +10,7 @@ conditions:
 link: https://www.lesruesdesvignes.fr/vie-pratique/demarches-administratives/aides-sociales
 instructions: https://www.lesruesdesvignes.fr/vie-pratique/demarches-administratives/aides-sociales
 prefix: l’
-type: number
+type: float
 unit: "€"
 floorAt: 1
 entity: individus

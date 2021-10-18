@@ -4,7 +4,7 @@ description: Cette aide permet aux apprentis majeurs de financer leur une partie
 link: https://travail-emploi.gouv.fr/formation-professionnelle/formation-en-alternance-10751/apprentissage/apprentis-aide-permis
 instructions: https://travail-emploi.gouv.fr/formation-professionnelle/formation-en-alternance-10751/apprentissage/apprentis-aide-permis#Comment-obtenir-l-aide-au-financement-du-permis-de-conduire-B-nbsp
 prefix: l’
-type: number
+type: float
 unit: "€"
 floorAt: 1
 periodicite: ponctuelle

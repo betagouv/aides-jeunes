@@ -20,7 +20,7 @@ Institution.mockResults = function (sublist) {
   Institution.forEachBenefit((aide, aideId, aidesProvider, aidesProviderId) => {
     const addition = Object.assign({}, aide, {
       id: aideId,
-      montant: aide.montant || defaults[aide.type || "number"],
+      montant: aide.montant || defaults[aide.type || "float"],
       provider: aidesProvider,
       providerId: aidesProviderId,
       mock: true,

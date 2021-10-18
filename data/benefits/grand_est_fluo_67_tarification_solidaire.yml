@@ -9,6 +9,6 @@ prefix: la
 legend: / mois au lieu de 52.50 €
 periodicite: mensuelle
 floorAt: 1
-type: number
+type: float
 unit: "€"
 entity: individus

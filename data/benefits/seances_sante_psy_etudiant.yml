@@ -7,7 +7,7 @@ conditions:
   - avoir pris contact avec un médecin.
 prefix: l’
 unit: séances
-type: number
+type: float
 periodicite: ponctuelle
 floorAt: 1
 entity: individus

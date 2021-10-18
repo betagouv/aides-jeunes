@@ -6,7 +6,7 @@ conditions:
 link: https://www.service-public.fr/particuliers/vosdroits/F34643
 teleservice: https://amp.etudiant.gouv.fr
 prefix: l’
-type: number
+type: float
 unit: "€"
 periodicite: ponctuelle
 floorAt: 1

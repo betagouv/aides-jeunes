@@ -4,7 +4,7 @@ description: La tarification solidaire des transports de Nantes Métropole est �
 link: https://metropole.nantes.fr/tan-tarifs-solidaires
 instructions: https://metropole.nantes.fr/tan-tarifs-solidaires#serviceTocEntry3
 prefix: la
-type: number
+type: float
 unit: "%"
 legend: de réduction
 periodicite: ponctuelle

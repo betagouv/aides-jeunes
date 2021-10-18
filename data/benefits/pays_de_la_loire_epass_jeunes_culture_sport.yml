@@ -7,7 +7,7 @@ description: "L'e.pass Culture Sport de la Région Pays de la Loire représente
 link: https://www.epassjeunes-paysdelaloire.fr/#!
 instructions: https://www.epassjeunes-paysdelaloire.fr/#!
 prefix: l’
-type: number
+type: float
 unit: "€"
 periodicite: ponctuelle
 floorAt: 10

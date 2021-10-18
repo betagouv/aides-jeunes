@@ -9,7 +9,7 @@ conditions:
 link: https://www.lecateau.fr/vivre-au-cateau/enfance-jeunesse/jeunesse/aide-au-permis-de-conduire.html
 instructions: https://www.lecateau.fr/vivre-au-cateau/enfance-jeunesse/jeunesse/aide-au-permis-de-conduire.html
 prefix: l’
-type: number
+type: float
 unit: "€"
 floorAt: 1
 entity: individus

@@ -11,7 +11,7 @@ conditions:
 link: http://www.iwuy.fr/page.php?id=6#39
 instructions: http://www.iwuy.fr/page.php?id=6#39
 prefix: l’
-type: number
+type: float
 unit: "€"
 floorAt: 1
 entity: individus

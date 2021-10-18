@@ -4,7 +4,8 @@ description: L’aide Dynastage est une aide financière versée aux
   apprentis ou aux étudiants qui permet d’effectuer des stages en entreprise dans le
   monde entier.
 conditions:
-  - Être un apprenti inscrit dans un CFA.
+  - Être un apprenti infra-Bac inscrit dans un CFA.
+  - Effectuer un stage d'une durée de deux semaines à 6 mois.
   - Avoir un quotient familial inférieur à 25 830 € (avis d’imposition année
     N-1 sur revenus N-2).
 link: https://www.bourgognefranchecomte.fr/node/332

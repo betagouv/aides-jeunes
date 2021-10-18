@@ -16,10 +16,10 @@
       <span v-else-if="isBoolean(droit.type)">
         <i
           :data-testid="`droit-montant-icon-${
-            droitEstime.symbol ? droitEstime.symbol : 'fa-check-circle'
+            droitEstime.icon ? droitEstime.icon : 'fa-check-circle'
           }`"
           v-bind:class="`fa ${
-            droitEstime.symbol ? droitEstime.symbol : 'fa-check-circle'
+            droitEstime.icon ? droitEstime.icon : 'fa-check-circle'
           } fa-2x`"
         >
         </i>
@@ -72,7 +72,7 @@ export default {
   filters: {
     currency: function (value, unit, frac) {
       return currency(value, {
-        symbol: ` ${unit}`,
+        icon: ` ${unit}`,
         pattern: "#!",
         precision: frac,
       }).format()

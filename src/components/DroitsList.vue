@@ -24,7 +24,7 @@
             v-if="
               droit.montant &&
               isBoolean(droit.montant) &&
-              droit.symbol === 'fa-exclamation-triangle'
+              droit.icon === 'fa-exclamation-triangle'
             "
           >
             <img src="@/assets/images/warning.svg" /> Attention, cette aide vous

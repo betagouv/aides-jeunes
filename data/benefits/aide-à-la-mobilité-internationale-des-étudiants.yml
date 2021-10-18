@@ -12,6 +12,7 @@ teleservice: ""
 prefix: l’
 type: bool
 floorAt: 10
+interestFlag: _interetEtudesEtranger
 entity: null
 computesLocally: true
 regions:

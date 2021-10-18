@@ -1,4 +1,4 @@
-label: Jeunes à l’international
+label: bourse jeunes à l’international
 institution: region_bretagne
 description: La bourse « Jeunes à l’international » vise accompagner les
   étudiants dans leur projet de stage professionnel ou de séjour d’études à
@@ -8,9 +8,8 @@ conditions:
     internationale (européenne, nationale, régionale, départementale, locale).
 link: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-des-universites/
 teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
-prefix: les
+prefix: la
 type: bool
-floorAt: 10
 interestFlag: _interetEtudesEtranger
 computesLocally: true
 regions:

@@ -2,7 +2,7 @@ describe("benefit estimated", function () {
   const format = require("../../lib/benefits").formatDroitEstime
 
   it("should format the benefit estimated label with a different type.", function () {
-    droit = {
+    let droit = {
       type: "number",
       unit: "€",
     }

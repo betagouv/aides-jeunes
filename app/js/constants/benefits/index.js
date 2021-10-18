@@ -173,8 +173,6 @@ var droitsDescription = {
         rsa: {
           label: "revenu de solidarité active",
           periodicite: PERIODICITE_MENSUELLE,
-          type: "float",
-          unit: "€",
           labelFunction: function (b) {
             return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
           },
@@ -280,7 +278,6 @@ var droitsDescription = {
           floorAt: 10,
           prefix: "les",
           unit: "€",
-          type: "float",
         },
         ppa: {
           label: "prime d’activité",
@@ -491,8 +488,6 @@ var droitsDescription = {
         bourse_college: {
           periodicite: PERIODICITE_ANNUELLE,
           label: "bourse de collège",
-          unit: "€",
-          type: "float",
           description:
             "La bourse de collège est une aide destinée à favoriser la scolarité des collégiens. Elle est versée aux familles ayant de faibles ressources. Son montant dépend du nombre d’enfants à charge.",
           conditions: [
@@ -512,8 +507,6 @@ var droitsDescription = {
         bourse_lycee: {
           periodicite: PERIODICITE_ANNUELLE,
           label: "bourse de lycée",
-          unit: "€",
-          type: "float",
           description:
             "La bourse de lycée est accordée aux responsables d’un lycéen qui ont de faibles ressources. Si l’élève entre au lycée ou s’il n’a jamais touché de bourse de lycée, il pourra y prétendre selon les ressources et les charges de sa famille. Une nouvelle demande doit être effectuée en cas de redoublement ou réorientation.",
           conditions: [

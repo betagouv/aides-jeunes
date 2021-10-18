@@ -67,6 +67,7 @@ var droitsDescription = {
                   0
           },
           type: "complex",
+          participation: true
         },
         asi: {
           label: "allocation supplémentaire d’invalidité",

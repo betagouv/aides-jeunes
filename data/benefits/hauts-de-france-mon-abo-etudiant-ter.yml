@@ -1,6 +1,6 @@
 label: abonnement "mon Abo Etudiant TER"
 institution: hauts_de_france
-description: Mon Abo Etudiant TER
+description: Mon Abo Etudiant TER permet d'avoir des tarifs réduits voire une totale gratuité sur les trajets en TER entre le lieu de résidence et le lieu d'études/de stage/d'apprentissage.
 conditions:
   - Avoir moins de 26 ans pour les non boursiers.
   - Effectuer un stage d'une durée supérieure ou égale à 4 semaines, lorsque
@@ -10,7 +10,6 @@ teleservice: https://aspqol.sphinxonline.net/surveyserver/s/CRCAmiens/PASS2021/s
 prefix: l’
 type: bool
 floorAt: 10
-entity: null
 computesLocally: true
 regions:
   - "32"

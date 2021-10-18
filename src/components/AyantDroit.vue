@@ -11,7 +11,7 @@
           {{ ayantDroit.label }}
         </span>
         <br />
-        {{ ayantDroit.montant }}
+        {{ ayantDroit.value }}
       </span>
       <span v-else-if="isBoolean(droit.type)">
         <i

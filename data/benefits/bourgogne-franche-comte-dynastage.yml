@@ -1,7 +1,7 @@
 label: "Dynastage"
 institution: region_bourgogne_franche_comte
 description: L’aide Dynastage est une aide financière versée aux
-  apprentis permettant d’effectuer des stages en entreprise dans le
+  apprentis ou aux étudiants qui permet d’effectuer des stages en entreprise dans le
   monde entier.
 conditions:
   - Être un apprenti inscrit dans un CFA.
@@ -16,3 +16,4 @@ regions:
   - "27"
 statuts:
   - apprenti
+  - etudiant

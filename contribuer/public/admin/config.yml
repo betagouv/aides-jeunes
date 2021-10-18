@@ -97,7 +97,7 @@ collections:
         widget: select
         options:
           - label: Montant
-            value: number
+            value: float
           - label: Eligibilité (Oui / Non)
             value: bool
       - label: Unité lorsque le type de résultat est un montant

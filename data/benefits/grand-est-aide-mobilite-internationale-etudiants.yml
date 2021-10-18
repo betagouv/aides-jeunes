@@ -10,6 +10,7 @@ conditions:
 link: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
 prefix: l’
 type: bool
+interestFlag: _interetEtudesEtranger
 computesLocally: true
 regions:
   - "44"

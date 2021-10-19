@@ -8,6 +8,7 @@ conditions:
     ou durant celle de l'année précédente.
   - Résidez dans le Pays de la Loire l'année de votre terminale.
 link: "https://www.paysdelaloire.fr/les-aides/bourse-regionale-au-merite"
+instructions: "https://www.paysdelaloire.fr/les-aides/bourse-regionale-au-merite"
 prefix: la
 type: bool
 floorAt: 10

@@ -6,7 +6,7 @@ var common = require("./common")
 var famillePropertiesGivenToIndividu = Object.keys(
   pickBy(common.requestedVariables, function (definition) {
     return (
-      (!definition.type || definition.type == "number") &&
+      (!definition.type || definition.type == "float") &&
       definition.entity == "familles"
     )
   })

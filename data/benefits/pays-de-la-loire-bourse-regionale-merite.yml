@@ -1,6 +1,7 @@
 label: Bourse régionale au mérite
 institution: region_pays_de_la_loire
-description: La région Pays de la Loire récompense les étudiants ayant reçu une mention "très
+description:
+  La région Pays de la Loire récompense les étudiants ayant reçu une mention "très
   bien" durant la dernière session du baccalauréat.
 conditions:
   - Avoir obtenu la mention « très bien » à la dernière session du baccalauréat

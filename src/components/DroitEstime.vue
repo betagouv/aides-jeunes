@@ -69,11 +69,8 @@ export default {
     },
   },
   methods: {
-    isEmpty: (array) => array.length === 0,
-    isNotEmpty: (array) => array.length !== 0,
     isBoolean: (type) => type === "bool",
     isNumber: (type) => type === "float",
-    isString: (type) => type === "string",
     isMixed: (type) => type === "mixed",
   },
 }

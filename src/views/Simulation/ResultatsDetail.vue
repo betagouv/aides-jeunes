@@ -71,7 +71,7 @@ export default {
         this.$matomo.trackEvent(
           "General",
           "showDetails",
-          `${droitId} [${i + 1}/${this.droits.length}]`
+          `${this.droits[i].label} [${i + 1}/${this.droits.length}]`
         )
     }
   },

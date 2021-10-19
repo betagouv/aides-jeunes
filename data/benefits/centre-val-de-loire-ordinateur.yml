@@ -10,7 +10,6 @@ conditions:
   - Ne pas avoir bénéficié de l'aide durant sa scolarité.
 link: https://www.centre-valdeloire.fr/le-guide-des-aides-de-la-region-centre-val-de-loire/aide-lacquisition-dun-ordinateur-portable-pour
 instructions: https://www.yeps.fr/my/dashboard
-teleservice: ""
 prefix: l'
 type: float
 floorAt: 10

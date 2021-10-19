@@ -1,15 +1,15 @@
-label: Aide au passage du permis de conduire B
+label: aide au passage du permis de conduire B
 institution: region_nouvelle_aquitaine
-description: Cette aide favorise l'égalité des chances d'accès à l'emploi en
-  proposant une aide au financement du permis de conduire B pour les jeunes les
+description: Cette aide favorise l'accès à l'emploi en
+  proposant une aide au financement du <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2828">permis de conduire B</a> pour les jeunes et les
   plus précaires qui s’engagent vers une insertion professionnelle.
 conditions:
   - Être diplômé de la filière professionnelle ou agricole.
   - Ou être en insertion professionnelle suivi par une mission locale.
   - Ou être scolarisé en Établissement Régional d’Enseignement Adapté (EREAS).
   - Ou être en contrat d’engagement de Service Civique.
-link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b?Jeunesse=Accompagnement%20scolaire____Apprentissage____%C3%89ducation%20et%20formation____Engagement%20et%20citoyennet%C3%A9____Enseignement%20sup%C3%A9rieur____Insertion%20professionnelle____Lyc%C3%A9es____Mobilit%C3%A9%20internationale____Orientation____Sanitaire%20et%20social&Type=Aides&page=0
-instructions: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b?Jeunesse=Accompagnement%20scolaire____Apprentissage____%C3%89ducation%20et%20formation____Engagement%20et%20citoyennet%C3%A9____Enseignement%20sup%C3%A9rieur____Insertion%20professionnelle____Lyc%C3%A9es____Mobilit%C3%A9%20internationale____Orientation____Sanitaire%20et%20social&Type=Aides&page=0
+link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b
+instructions: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b
 prefix: l’
 type: float
 floorAt: 10

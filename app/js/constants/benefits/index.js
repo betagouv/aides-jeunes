@@ -176,6 +176,8 @@ var droitsDescription = {
           labelFunction: function (b) {
             return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
           },
+          type: "float",
+          unit: "€",
           description:
             "Le revenu de solidarité active (RSA) assure aux personnes sans ressources un niveau minimum de revenu variable selon la composition du foyer. Le RSA, le RSA parent isolé et le RSA jeunes parents sont simulés. Financé par les conseils départementaux, son versement se fait à travers la Caf ou la MSA. Les services sociaux de votre département vous orienteront vers l’organisme à qui adresser votre demande.",
           conditions: [
@@ -488,6 +490,8 @@ var droitsDescription = {
         bourse_college: {
           periodicite: PERIODICITE_ANNUELLE,
           label: "bourse de collège",
+          unit: "€",
+          type: "float",
           description:
             "La bourse de collège est une aide destinée à favoriser la scolarité des collégiens. Elle est versée aux familles ayant de faibles ressources. Son montant dépend du nombre d’enfants à charge.",
           conditions: [
@@ -507,6 +511,8 @@ var droitsDescription = {
         bourse_lycee: {
           periodicite: PERIODICITE_ANNUELLE,
           label: "bourse de lycée",
+          unit: "€",
+          type: "float",
           description:
             "La bourse de lycée est accordée aux responsables d’un lycéen qui ont de faibles ressources. Si l’élève entre au lycée ou s’il n’a jamais touché de bourse de lycée, il pourra y prétendre selon les ressources et les charges de sa famille. Une nouvelle demande doit être effectuée en cas de redoublement ou réorientation.",
           conditions: [

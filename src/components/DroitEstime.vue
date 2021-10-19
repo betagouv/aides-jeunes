@@ -49,6 +49,7 @@ export default {
   },
   computed: {
     droitEstime: function () {
+      console.log(this.droit)
       return formatDroitEstime(this.droit)
     },
     showUnexpected: function () {
@@ -82,7 +83,7 @@ export default {
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,
     isBoolean: (val) => val === "bool",
-    isNumber: (val) => val === "number",
+    isNumber: (val) => val === "float",
     isString: (val) => typeof val === "string",
     getFractionSize: function (droit) {
       return droit.floorAt < 1 ? 2 : 0

@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import currency from "currency.js"
 import { formatDroitEstime } from "../../lib/benefits"
 
 export default {
@@ -69,15 +68,6 @@ export default {
       })
     },
   },
-  filters: {
-    currency: function (value, unit, frac) {
-      return currency(value, {
-        icon: ` ${unit}`,
-        pattern: "#!",
-        precision: frac,
-      }).format()
-    },
-  },
   methods: {
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,
@@ -85,9 +75,6 @@ export default {
     isNumber: (type) => type === "float",
     isString: (type) => type === "string",
     isMixed: (type) => type === "mixed",
-    getFractionSize: function (droit) {
-      return droit.floorAt < 1 ? 2 : 0
-    },
   },
 }
 </script>

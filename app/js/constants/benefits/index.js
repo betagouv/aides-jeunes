@@ -233,6 +233,8 @@ var droitsDescription = {
         aide_logement: {
           label: "aides au logement",
           periodicite: PERIODICITE_MENSUELLE,
+          unit: "€",
+          type: "float",
           description:
             "Les aides au logement regroupent trois aides différentes non cumulables : l’aide personnalisée au logement (Apl), l’allocation de logement familiale (Alf) et l’allocation de logement sociale (Als). Elles concernent les personnes ayant de faibles ressources, locataires ou remboursant le prêt de leur résidence principale. Elles sont versées par la Caf ou la MSA.",
           conditions: [
@@ -278,7 +280,6 @@ var droitsDescription = {
           },
           floorAt: 10,
           prefix: "les",
-          unit: "€",
         },
         ppa: {
           label: "prime d’activité",

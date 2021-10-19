@@ -46,7 +46,7 @@ describe("benefit descriptions", function () {
               })
             }
 
-            if (aide.type !== "bool") {
+            if (aide.type === "float") {
               describe("should have a periodicite", function () {
                 expect(Boolean(aide.periodicite)).toBe(true)
               })

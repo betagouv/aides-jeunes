@@ -39,7 +39,7 @@ export const SIMPLE_STEPS = {
       {
         label: capitalize(
           individu._role === "demandeur"
-            ? `Figurez-vous sur la dernière déclaration d'impôts de vos parents ?`
+            ? `Avez-vous fait votre propre déclaration d'impôts ?`
             : `${Individu.label(
                 individu,
                 "nom"

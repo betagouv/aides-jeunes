@@ -150,16 +150,16 @@ jobs:
             Xvfb :99
           background: true
       - run:
-          name: Test un scenario simple
+          name: Test un scénario simple
           command: 'npm run cypress -- --spec "cypress/integration/base.spec.js"'
       - run:
-          name: Test un scenario d'une personne en situation de handicap
+          name: Test un scénario d'une personne en situation de handicap
           command: 'npm run cypress -- --spec "cypress/integration/handicap.spec.js"'
       - run:
-          name: Test un scenario familial
+          name: Test un scénario familial
           command: 'npm run cypress -- --spec "cypress/integration/family.spec.js"'
       - run:
-          name: Test un scenario d'une personne étudiante
+          name: Test un scénario d'une personne étudiante
           command: 'npm run cypress -- --spec "cypress/integration/student.spec.js"'
       - store_artifacts:
           path: cypress/videos

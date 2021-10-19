@@ -13,7 +13,7 @@
         <br />
         {{ droitEstime.value }}
       </span>
-      <span v-else-if="isBoolean(droit.type)">
+      <span v-else-if="isBoolean(droit.type) || isMixed(droit.type)">
         <i
           :data-testid="`droit-montant-icon-${
             droitEstime.icon ? droitEstime.icon : 'fa-check-circle'
@@ -49,7 +49,6 @@ export default {
   },
   computed: {
     droitEstime: function () {
-      console.log(this.droit)
       return formatDroitEstime(this.droit)
     },
     showUnexpected: function () {
@@ -82,9 +81,10 @@ export default {
   methods: {
     isEmpty: (array) => array.length === 0,
     isNotEmpty: (array) => array.length !== 0,
-    isBoolean: (val) => val === "bool",
-    isNumber: (val) => val === "float",
-    isString: (val) => typeof val === "string",
+    isBoolean: (type) => type === "bool",
+    isNumber: (type) => type === "float",
+    isString: (type) => type === "string",
+    isMixed: (type) => type === "mixed",
     getFractionSize: function (droit) {
       return droit.floorAt < 1 ? 2 : 0
     },

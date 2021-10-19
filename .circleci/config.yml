@@ -152,12 +152,18 @@ jobs:
       - run:
           name: Test un scénario simple
           command: 'npm run cypress -- --spec "cypress/integration/base.spec.js"'
+      - store_artifacts:
+          path: cypress/videos
       - run:
           name: Test un scénario d'une personne en situation de handicap
           command: 'npm run cypress -- --spec "cypress/integration/handicap.spec.js"'
+      - store_artifacts:
+          path: cypress/videos
       - run:
           name: Test un scénario familial
           command: 'npm run cypress -- --spec "cypress/integration/family.spec.js"'
+      - store_artifacts:
+          path: cypress/videos
       - run:
           name: Test un scénario d'une personne étudiante
           command: 'npm run cypress -- --spec "cypress/integration/student.spec.js"'

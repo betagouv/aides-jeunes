@@ -111,8 +111,6 @@ collections:
             value: €
           - label: pourcentage
             value: "%"
-          - label: coupons
-            value: coupons
           - label: séances
             value: séances
       - label: Légende pour le résultat

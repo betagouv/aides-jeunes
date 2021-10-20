@@ -42,7 +42,7 @@
 import { formatDroitEstime } from "../../lib/benefits"
 
 export default {
-  name: "DroitEstimé",
+  name: "DroitEstime",
   props: {
     droit: Object,
   },

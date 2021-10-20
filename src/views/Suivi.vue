@@ -43,7 +43,7 @@
                   <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
                 </div>
                 <div class="aj-droit-montant">
-                  <DroitEstimé
+                  <DroitEstime
                     v-bind:droit="droit"
                     unexpected
                     v-if="
@@ -125,7 +125,7 @@ import moment from "moment"
 
 import Institution from "@/lib/Institution"
 import LoadingModal from "@/components/LoadingModal"
-import DroitEstimé from "../components/DroitEstime"
+import DroitEstime from "../components/DroitEstime"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -148,7 +148,7 @@ export default {
     }
   },
   components: {
-    DroitEstimé,
+    DroitEstime,
     LoadingModal,
   },
   computed: {

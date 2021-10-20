@@ -6,14 +6,16 @@
     itemprop="offers"
   >
     <span class="aj-aide-montant-label">
-      <span itemprop="price" v-if="isNumber(droit.type)" class="montant">
+      <span itemprop="price" v-if="isNumber(droitEstime.type)">
         <span class="font-normal font-base">
           {{ droitEstime.label }}
         </span>
         <br />
-        {{ droitEstime.value }}
+        <span>
+          {{ droitEstime.value }}
+        </span>
       </span>
-      <span v-else-if="isBoolean(droit.type) || isMixed(droit.type)">
+      <span v-else-if="isBoolean(droitEstime.type)">
         <i
           :data-testid="`droit-montant-icon-${
             droitEstime.icon ? droitEstime.icon : 'fa-check-circle'
@@ -52,9 +54,6 @@ export default {
     },
     showUnexpected: function () {
       return (
-        (this.droit.id === "ppa" &&
-          (this.$store.getters.isProprietaireAvecPretEnCours ||
-            this.$store.getters.isHebergeParticipeFrais)) ||
         (this.droit.isBaseRessourcesYearMinusTwo &&
           !this.$store.getters.ressourcesYearMinusTwoCaptured) ||
         this.droit.showUnexpectedAmount
@@ -71,7 +70,6 @@ export default {
   methods: {
     isBoolean: (type) => type === "bool",
     isNumber: (type) => type === "float",
-    isMixed: (type) => type === "mixed",
   },
 }
 </script>

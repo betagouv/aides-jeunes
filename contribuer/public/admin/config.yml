@@ -109,7 +109,7 @@ collections:
         options:
           - label: €
             value: €
-          - label: pourcentage
+          - label: "%"
             value: "%"
           - label: séances
             value: séances

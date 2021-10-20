@@ -46,6 +46,7 @@ var droitsDescription = {
       prestations: {
         css_participation_forfaitaire: {
           label: "complémentaire santé solidaire",
+          periodicite: PERIODICITE_MENSUELLE,
           description:
             "La Complémentaire Santé Solidaire (CSS) est une protection complémentaire santé (mutuelle). Elle remplace la Complémentaire Maladie Universelle Complémentaire (CMU-C) et l’Aide au paiement d’une Complémentaire Santé (ACS) à compter du 1ᵉʳ novembre 2019. Une fois attribuée, la CSS est accordée pour un an.",
           conditions: [
@@ -300,6 +301,17 @@ var droitsDescription = {
           },
           floorAt: 5,
           prefix: "la",
+          computeUnexpectedAmount(situation) {
+            let menage = situation.menage
+            let isProprietaire = ["primo_accedant", "proprietaire"].includes(
+              menage.statut_occupation_logement
+            )
+            return (
+              (isProprietaire && menage.loyer > 0) ||
+              (menage.statut_occupation_logement === "loge_gratuitement" &&
+                menage.participation_frais === true)
+            )
+          },
         },
         aah: {
           periodicite: PERIODICITE_MENSUELLE,
@@ -702,6 +714,7 @@ var droitsDescription = {
       prestations: {
         tisseo_transport_reduction: {
           label: "Réduction sur les titres de transports",
+          legend: "de réduction",
           unit: "%",
           type: "float",
           periodicite: PERIODICITE_PONCTUELLE,

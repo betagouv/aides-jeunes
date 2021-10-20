@@ -43,7 +43,9 @@ function individuBlockFactory(id) {
                 },
                 {
                   isActive: (subject) =>
-                    subject.scolarite == "enseignement_superieur",
+                    ["college", "lycee", "enseignement_superieur"].includes(
+                      subject.scolarite
+                    ),
                   steps: [r("statuts_etablissement_scolaire")],
                 },
               ],

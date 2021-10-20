@@ -4,7 +4,7 @@ const PERIODICITE_LEGEND_ENUM = {
   annuelle: "/ an"
 }
 
-export const benefitPreviewTemplate = createClass({
+export const DroitPreviewTemplate = createClass({
   render: function() {
     const entry = this.props.entry
 

@@ -3,26 +3,26 @@ var { generateBlocks } = require("./blocks")
 
 function processBlock(
   { journey, subject, situation, isActive, parameters },
-  b
+  block
 ) {
-  if (b instanceof Step) {
-    b.isActive = isActive
-    journey.push(b)
-  } else if (typeof b == "string") {
-    console.warn(`string step should no longer be used: ${b}`)
-    journey.push({ isActive, path: b })
+  if (block instanceof Step) {
+    block.isActive = isActive
+    journey.push(block)
+  } else if (typeof block == "string") {
+    console.warn(`string step should no longer be used: ${block}`)
+    journey.push({ isActive, path: block })
   } else {
-    if (!b.steps) {
-      throw Error("" + b + " (" + (b instanceof Array ? "array" : "?") + ")")
+    if (!block.steps) {
+      throw Error(`${block} (${block instanceof Array ? "array" : "?"})`)
     }
-    let blockSubject = b.subject
-      ? b.subject(subject, situation)
+    let blockSubject = block.subject
+      ? block.subject(subject, situation)
       : subject || situation
     const localActive =
       isActive &&
-      (!b.isActive ||
-        (blockSubject && b.isActive(blockSubject, situation, parameters)))
-    b.steps.forEach((s) =>
+      (!block.isActive ||
+        (blockSubject && block.isActive(blockSubject, situation, parameters)))
+    block.steps.forEach((step) =>
       processBlock(
         {
           journey,
@@ -31,7 +31,7 @@ function processBlock(
           parameters,
           isActive: localActive,
         },
-        s
+        step
       )
     )
   }

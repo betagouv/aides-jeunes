@@ -4,9 +4,13 @@
     itemscope
     itemtype="http://schema.org/Offer"
     itemprop="offers"
+    v-if="droit.type"
   >
     <span class="aj-aide-montant-label">
-      <span itemprop="price" v-if="isNumber(droitEstime.type)">
+      <span
+        itemprop="price"
+        v-if="isNumber(droitEstime.type) || isString(droitEstime.type)"
+      >
         <span class="font-normal font-base">
           {{ droitEstime.label }}
         </span>
@@ -70,6 +74,7 @@ export default {
   methods: {
     isBoolean: (type) => type === "bool",
     isNumber: (type) => type === "float",
+    isString: (type) => type === "string",
   },
 }
 </script>

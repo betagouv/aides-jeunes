@@ -13,7 +13,7 @@
       <h2 class="aj-question" itemprop="name">{{ capitalize(droit.label) }}</h2>
     </div>
     <div class="aj-droit-montant">
-      <DroitEstime v-bind:droit="droit" v-if="droit.type" />
+      <DroitEstime v-bind:droit="droit" />
     </div>
     <div class="aj-droit-content">
       <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>

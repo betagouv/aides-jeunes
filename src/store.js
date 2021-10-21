@@ -179,7 +179,7 @@ const store = new Vuex.Store({
       let menage = getters.situation.menage
       return (
         menage.statut_occupation_logement === "loge_gratuitement" &&
-        menage.participation_frais === true
+        menage.participation_frais
       )
     },
     /* This function returns

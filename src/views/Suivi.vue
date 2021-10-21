@@ -43,14 +43,7 @@
                   <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
                 </div>
                 <div class="aj-droit-montant">
-                  <DroitEstime
-                    v-bind:droit="droit"
-                    unexpected
-                    v-if="
-                      droit.montant &&
-                      (isString(droit.montant) || isNumber(droit.montant))
-                    "
-                  />
+                  <DroitEstime :droit="droit" />
                   <div v-if="droit.montant && isBoolean(droit.montant)">
                     <i
                       v-bind:class="`fa ${

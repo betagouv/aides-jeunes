@@ -309,7 +309,7 @@ var droitsDescription = {
             return (
               (isProprietaire && menage.loyer > 0) ||
               (menage.statut_occupation_logement === "loge_gratuitement" &&
-                menage.participation_frais === true)
+                menage.participation_frais)
             )
           },
         },

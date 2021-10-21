@@ -91,11 +91,9 @@ function generateSituation(answers, dates) {
       answers && answers.enfants
         ? answers.enfants.map((enfant, index) => {
             const countDiplay = index + 1
-            const _firstName =
-              "votre " +
-              countDiplay +
-              (countDiplay === 1 ? "ᵉʳ" : "ᵉ") +
-              " enfant"
+            const _firstName = `votre ${countDiplay}${
+              countDiplay === 1 ? "ᵉʳ" : "ᵉ"
+            } enfant`
 
             return {
               ...generateDefaultIndividu("enfant", `enfant_${enfant}`),

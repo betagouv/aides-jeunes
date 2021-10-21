@@ -282,11 +282,17 @@ export function parentsSansAutorite() {
 export function sansDomicileStable() {
   cy.get('input[name="logementType"').get('[value="sansDomicile"]').check()
   submit() // Logement
+  cy.get('input[name="_nombreMoisEntreeLogement"]').get('[value="old"]').check()
+  submit()
   cy.get('input[type="number"').type("94120")
   submit()
 }
 export function heberge() {
   cy.get('input[name="logementType"]').get('[value="heberge"]').check()
+  submit()
+  cy.get('input[name="_nombreMoisEntreeLogement"]')
+    .get('[value="future"]')
+    .check()
   submit()
 }
 export function hebergeParents() {
@@ -297,6 +303,10 @@ export function hebergeParents() {
 export function locataire() {
   cy.get('input[name="logementType"]').get('[value="locataire"]').check()
   cy.get("#nonmeuble").get('[value="nonmeuble"]').check()
+  submit()
+  cy.get('input[name="_nombreMoisEntreeLogement"]')
+    .get('[value="future"]')
+    .check()
   submit()
   // Coloc
   checkRadio(false)

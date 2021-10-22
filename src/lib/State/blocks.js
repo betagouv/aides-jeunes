@@ -49,12 +49,14 @@ function individuBlockFactory(id) {
               ],
             },
             {
-              isActive: (subject, situation) => {
+              isActive: (subject, situation, parameters) => {
                 const age = Individu.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
-                const jeune_actif = subject.activite === "salarie" && age <= 26
+                const jeune_actif =
+                  subject.activite === "salarie" &&
+                  age <= parameters["prestations.carte_des_metiers.age_maximal"]
                 return subject.activite === "etudiant" || jeune_actif
               },
               steps: [
@@ -91,10 +93,11 @@ function individuBlockFactory(id) {
         steps: [
           r("taux_incapacite"),
           {
-            isActive: (subject) =>
+            isActive: (subject, situation, parameters) =>
               !enfant &&
               0.5 <= subject.taux_incapacite &&
-              subject.taux_incapacite < 0.8,
+              subject.taux_incapacite <
+                parameters["prestations.minima_sociaux.aah.taux_incapacite"],
             steps: [r("aah_restriction_substantielle_durable_acces_emploi")],
           },
         ],

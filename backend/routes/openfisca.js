@@ -1,15 +1,11 @@
-var openfisca = require("../lib/openfisca")
+var { check, validationResult } = require("express-validator")
+var openfisca = require("../lib/openfisca/getter")
+var openfiscaController = require("../controllers/openfisca")
 var { forEach } = require("../../app/js/constants/benefits/back")
 
 let missingBenefits
 
 module.exports = function (api) {
-  api.route("/openfisca/parameters/:parameterId").get((req, res) => {
-    return openfisca.get(`/parameter/${req.params.parameterId}`, (payload) =>
-      res.send(payload)
-    )
-  })
-
   api.route("/openfisca/missingbenefits").get(async (req, res) => {
     if (missingBenefits) {
       res.json(missingBenefits)
@@ -28,4 +24,19 @@ module.exports = function (api) {
       missingBenefits = missingValues
     })
   })
+
+  api
+    .route("/openfisca/parameters/:date")
+    .get([check("date").isISO8601()], async (req, res) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        res.status(400).send("Invalid date")
+        return
+      }
+
+      const parameters = await openfiscaController.getParameters(
+        new Date(req.params.date)
+      )
+      res.json(parameters)
+    })
 }

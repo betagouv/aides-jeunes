@@ -1,4 +1,5 @@
 var forEach = require("lodash/forEach")
+const { getParameter } = require("../../../../lib/openfisca/parameters")
 
 var TAUX_CSG_CRDS = 0.029,
   ASSIETTE_COTIS = 0.9825,
@@ -8,8 +9,19 @@ function salaireNetToBrut(value) {
   return value / RATIO_NET_BRUT
 }
 
-function salaireNetToImposable(value) {
-  return value + (TAUX_CSG_CRDS * ASSIETTE_COTIS * value) / RATIO_NET_BRUT
+function salaireNetToImposable(value, period, individu) {
+  const result =
+    value + (TAUX_CSG_CRDS * ASSIETTE_COTIS * value) / RATIO_NET_BRUT
+  if (individu.apprenti) {
+    const date = new Date(period)
+    const hours = getParameter(
+      "marche_travail.salaire_minimum.nb_heure_travail_mensuel",
+      date
+    )
+    const rate = getParameter("marche_travail.salaire_minimum.smic_h_b", date)
+    return Math.max(0, result - hours * rate)
+  }
+  return result
 }
 
 var individuRessources = {
@@ -58,7 +70,7 @@ function computeRessources(mesAidesIndividu, openFiscaIndividu) {
 
       forEach(mesAidesIndividu[srcKey], function (value, period) {
         result[period] = result[period] || 0
-        result[period] += fn(value)
+        result[period] += fn(value, period, openFiscaIndividu)
       })
     })
 

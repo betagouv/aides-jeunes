@@ -420,6 +420,7 @@ router.beforeEach((to, from, next) => {
   const params = new URLSearchParams(document.location.search.substring(1))
   if (from.name === null) {
     store.commit("initialize")
+    store.dispatch("openFiscaParameters")
     store.dispatch("verifyBenefitVariables")
     if (
       to.matched.some((r) => r.name === "foyer" || r.name === "simulation") &&

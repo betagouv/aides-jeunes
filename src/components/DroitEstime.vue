@@ -45,7 +45,10 @@ export default {
   },
   computed: {
     droitEstime: function () {
-      return formatDroitEstime(this.droit)
+      return formatDroitEstime(
+        this.droit,
+        this.$store.state.openFiscaParameters
+      )
     },
     showUnexpected: function () {
       return (

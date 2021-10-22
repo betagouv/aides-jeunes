@@ -11,7 +11,7 @@ context("Full simulation", () => {
     steps.demandeur({
       enfant: false,
       handicap: {
-        taux_incapacite: 0.7,
+        taux_incapacite: 0.65,
       },
     })
     steps.enceinte("false")

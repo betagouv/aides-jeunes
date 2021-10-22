@@ -108,6 +108,7 @@ export default {
       this.next()
     },
     next: function () {
+      this.$store.dispatch("openFiscaParameters")
       this.$store.dispatch("verifyBenefitVariables")
       this.$push()
     },

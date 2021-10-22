@@ -1,4 +1,3 @@
-import axios from "axios"
 import { categoriesRnc, ressourceTypes } from "@/constants/resources"
 import filter from "lodash/filter"
 import keys from "lodash/keys"
@@ -172,17 +171,6 @@ function isRessourceOnMainScreen(ressourceOrType) {
   return type != "pensions_alimentaires_versees_individu"
 }
 
-function getParameterFromOpenfisca(parameterId) {
-  return axios
-    .get("/api/openfisca/parameters/" + parameterId)
-    .then(function (resp) {
-      let values = resp.data.values
-      let sortedByDates = Object.keys(values).sort()
-      let latestValue = values[sortedByDates.pop()]
-      return latestValue
-    })
-}
-
 const Ressource = {
   getPeriodsForCurrentYear,
   // Ne semble pas être utilisée
@@ -196,7 +184,6 @@ const Ressource = {
   getIndividuRessourceTypesByCategory,
   setIndividuRessourceTypes,
   unsetForCurrentYear,
-  getParameterFromOpenfisca,
 }
 
 export default Ressource

@@ -34,12 +34,3 @@ function sendToOpenfisca(endpoint, transform) {
 exports.calculate = sendToOpenfisca("calculate")
 exports.trace = sendToOpenfisca("trace")
 exports.sendToOpenfisca = sendToOpenfisca
-
-exports.get = function (item, callback) {
-  axios
-    .get(`${config.openfiscaURL}${item}`)
-    .then((response) => response.data)
-    .then(function (result) {
-      callback(result)
-    })
-}

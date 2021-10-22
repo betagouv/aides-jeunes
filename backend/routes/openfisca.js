@@ -13,6 +13,7 @@ module.exports = function (api) {
   api.route("/openfisca/missingbenefits").get(async (req, res) => {
     if (missingBenefits) {
       res.json(missingBenefits)
+      return
     }
 
     openfisca.get("/variables", (payload) => {

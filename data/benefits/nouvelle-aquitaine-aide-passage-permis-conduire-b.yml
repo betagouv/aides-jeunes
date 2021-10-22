@@ -14,6 +14,7 @@ prefix: l’
 type: float
 floorAt: 10
 montant: 1200
+unit: "€"
 computesLocally: true
 periodicite: ponctuelle
 legend: maximum

@@ -10,7 +10,7 @@ const aid_common_attributes = {
   entity: "menages",
   type: "bool",
   prefix: "une",
-  symbol: "fa-exclamation-triangle",
+  icon: "fa-exclamation-triangle",
   top: 6,
 }
 

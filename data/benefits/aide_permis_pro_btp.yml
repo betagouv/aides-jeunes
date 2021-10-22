@@ -10,6 +10,7 @@ link: https://www.probtp.com/part/apprenti/aide-permis.html
 instructions: https://www.probtp.com/part/apprenti/aide-permis.html
 prefix: l’
 type: float
+unit: "€"
 floorAt: 1
 entity: individus
 periodicite: ponctuelle

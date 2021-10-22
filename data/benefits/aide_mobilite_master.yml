@@ -7,6 +7,7 @@ link: https://www.service-public.fr/particuliers/vosdroits/F34343
 instructions: https://www.etudiant.gouv.fr/fr/aide-la-mobilite-en-master-1504
 prefix: l’
 type: float
+unit: "€"
 floorAt: 1
 periodicite: ponctuelle
 entity: individus

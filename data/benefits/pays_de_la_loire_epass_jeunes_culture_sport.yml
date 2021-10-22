@@ -8,6 +8,7 @@ link: https://www.epassjeunes-paysdelaloire.fr/#!
 instructions: https://www.epassjeunes-paysdelaloire.fr/#!
 prefix: l’
 type: float
+unit: "€"
 periodicite: ponctuelle
 floorAt: 10
 interestFlag: null

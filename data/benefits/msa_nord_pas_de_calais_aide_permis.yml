@@ -9,6 +9,7 @@ link: https://nord-pasdecalais.msa.fr/lfy/aide-au-permis
 form: https://nord-pasdecalais.msa.fr/lfy/documents/98870/58000036/Formulaire+Aide+au+permis
 prefix: l’
 type: float
+unit: "€"
 floorAt: 1
 entity: individus
 periodicite: ponctuelle

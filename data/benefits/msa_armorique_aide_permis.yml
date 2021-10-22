@@ -11,6 +11,7 @@ link: https://armorique.msa.fr/lfy/l-aide-au-permis-de-conduire
 form: https://armorique.msa.fr/lfy/documents/98925/100861102/Formulaire+PASS+permis+de+conduire.pdf
 prefix: l’
 type: float
+unit: "€"
 floorAt: 1
 entity: individus
 periodicite: ponctuelle

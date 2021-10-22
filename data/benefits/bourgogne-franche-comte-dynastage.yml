@@ -11,6 +11,7 @@ conditions:
 link: https://www.bourgognefranchecomte.fr/node/332
 type: float
 montant: 2280
+unit: "€"
 legend: "maximum"
 periodicite: autre
 interestFlag: _interetEtudesEtranger

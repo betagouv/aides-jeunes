@@ -11,6 +11,7 @@ link: https://www.lesruesdesvignes.fr/vie-pratique/demarches-administratives/aid
 instructions: https://www.lesruesdesvignes.fr/vie-pratique/demarches-administratives/aides-sociales
 prefix: l’
 type: float
+unit: "€"
 floorAt: 1
 entity: individus
 periodicite: ponctuelle

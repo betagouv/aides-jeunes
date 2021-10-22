@@ -5,6 +5,7 @@ link: https://www.pole-emploi.fr/candidat/mes-droits-aux-aides-et-allocati/alloc
 form: https://www.pole-emploi.fr/files/live/sites/PE/files/fichiers-en-telechargement/fichiers-en-telechargement---dem/Aide-jeune-diplome-1er%20versement.pdf
 prefix: l’
 type: float
+unit: "€"
 floorAt: 0.1
 entity: individus
 periodicite: mensuelle

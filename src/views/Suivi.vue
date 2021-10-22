@@ -42,23 +42,9 @@
                   />
                   <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
                 </div>
-                <div class="aj-droit-montant">
-                  <DroitMontant
-                    v-bind:droit="droit"
-                    unexpected
-                    v-if="
-                      droit.montant &&
-                      (isString(droit.montant) || isNumber(droit.montant))
-                    "
-                  />
-                  <div v-if="droit.montant && isBoolean(droit.montant)">
-                    <i
-                      v-bind:class="`fa ${
-                        droit.symbol ? droit.symbol : 'fa-check-circle'
-                      } fa-2x`"
-                    ></i>
-                  </div>
-                </div>
+
+                <DroitEstime :droit="droit" />
+
                 <div class="aj-droit-content">
                   <fieldset class="form__group">
                     <legend>
@@ -123,9 +109,9 @@
 import axios from "axios"
 import moment from "moment"
 
-import DroitMontant from "@/components/DroitMontant"
 import Institution from "@/lib/Institution"
 import LoadingModal from "@/components/LoadingModal"
+import DroitEstime from "../components/DroitEstime"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -148,7 +134,7 @@ export default {
     }
   },
   components: {
-    DroitMontant,
+    DroitEstime,
     LoadingModal,
   },
   computed: {

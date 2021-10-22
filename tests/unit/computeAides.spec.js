@@ -164,8 +164,8 @@ describe("computeAides", function () {
     })
   })
 
-  describe("computeAides of complex values", () => {
-    it("should extract complex boolean values", () => {
+  describe("computeAides of mixed values", () => {
+    it("should extract boolean values", () => {
       openfiscaResult.familles._.css_participation_forfaitaire = {
         "2014-11": 0,
       }
@@ -181,7 +181,7 @@ describe("computeAides", function () {
       expect(css.montant).toEqual(true)
     })
 
-    it("should extract complex number values", () => {
+    it("should extract number values", () => {
       openfiscaResult.familles._.cmu_c = {
         "2014-11": false,
       }

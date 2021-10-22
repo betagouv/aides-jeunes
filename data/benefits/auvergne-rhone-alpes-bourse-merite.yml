@@ -13,6 +13,7 @@ link: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?
 teleservice: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#BAM
 prefix: la
 type: float
+unit: "€"
 floorAt: 10
 computesLocally: true
 montant: 500

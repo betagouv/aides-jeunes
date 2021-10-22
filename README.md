@@ -111,6 +111,16 @@ We use [CircleCI](https://circleci.com/) as a continuous integration and deploym
 `build` : builds the project.
 `test_e2e`: runs the end-to-end tests.
 
+## Email
+
+We use the framework [MJML](https://mjml.io/) to design and integrate the templates. [Sendinblue](https://fr.sendinblue.com/) is our service to send emails.
+
+The development server for emails can be easily start with:
+`node mjml.js` or `npm run serve-mail`
+
+If you want to verify the email sending, the variable `SEND_IN_BLUE_PRIVATE_KEY="my_private_key""` should be configured in your `.env` file.
+You can create a free account(here)[https://app.sendinblue.com/account/register/profile] or request one on the mattermost channel.
+
 ## Linting and format
 
 We use ESLint as a linter and Prettier to format the codebase.

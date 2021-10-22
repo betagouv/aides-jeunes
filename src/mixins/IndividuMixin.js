@@ -23,7 +23,8 @@ export const createIndividuMixin = (props) => {
         return Individu.label(this.individu, type)
       },
       requiredValueMissing: function () {
-        const hasError = !this.optional && this.value === undefined
+        const hasError =
+          !this.optional && (this.value === undefined || this.value === "")
         this.$store.dispatch(
           "updateError",
           hasError && "Ce champ est obligatoire."

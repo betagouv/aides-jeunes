@@ -37,7 +37,7 @@
       />
     </div>
     <div class="aj-box normal-padding-bottom aj-results-details-feedback-box">
-      <Feedback :situationID="situation._id" />
+      <Feedback />
     </div>
   </div>
 </template>
@@ -77,7 +77,7 @@ export default {
   },
   computed: {
     situation: function () {
-      return this.$store.state.situation
+      return this.$store.getters.situation
     },
     droit: function () {
       const droitId = this.$route.params.droitId

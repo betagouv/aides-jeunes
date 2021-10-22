@@ -128,7 +128,7 @@ export default {
       }
       if (step.variable === undefined) {
         const match = Object.keys(COMPLEX_STEPS).find((key) =>
-          COMPLEX_STEPS[key].matcher(step)
+          COMPLEX_STEPS[key].matcher.bind(this)(step)
         )
         if (match) {
           return COMPLEX_STEPS[match].fn.bind(this)(step)
@@ -136,13 +136,21 @@ export default {
       }
 
       if (ENTITIES_PROPERTIES[step.entity]) {
-        const entity = ENTITIES_PROPERTIES[step.entity].loadEntity({
-          ...this,
-          params: step,
-        })
+        const answer = this.$store.getters.getAnswer(
+          step.id,
+          step.entity,
+          step.variable,
+          true
+        )
+        const entity =
+          ENTITIES_PROPERTIES[step.entity].loadEntity &&
+          ENTITIES_PROPERTIES[step.entity].loadEntity({
+            ...this,
+            params: step,
+          })
         return this.buildMutualizedQuestion({
           question: ENTITIES_PROPERTIES[step.entity].STEPS[step.variable],
-          value: entity[step.variable],
+          value: answer,
           component: { ...this, entity },
         })
       }

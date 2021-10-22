@@ -56,7 +56,7 @@ function round(amount, aide) {
   }
 }
 
-function computeAides(situation, openfiscaResponse, showPrivate) {
+function computeAides(situation, id, openfiscaResponse, showPrivate) {
   var period = moment(situation.dateDeValeur).format("YYYY-MM")
 
   computeFrontEndBenefits(this, situation, openfiscaResponse)
@@ -131,8 +131,8 @@ function computeAides(situation, openfiscaResponse, showPrivate) {
   Object.keys(result).forEach(function (group) {
     result[group] = sortBy(result[group], ["top", "label"])
   })
-  result._id = situation._id
 
+  result._id = id
   return result
 }
 

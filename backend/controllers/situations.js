@@ -6,6 +6,7 @@ var assign = require("lodash/assign")
 var openfisca = require("../lib/openfisca")
 var openfiscaTest = require("../lib/openfisca/test")
 var Situation = require("mongoose").model("Situation")
+var Answer = require("mongoose").model("Answer")
 
 exports.situation = function (req, res, next, situationId) {
   if (situationId && situationId._id) {
@@ -18,7 +19,11 @@ exports.situation = function (req, res, next, situationId) {
     if (!situation) return res.sendStatus(404)
 
     req.situation = situation
-    next()
+    Answer.findById(situationId, (err, answers) => {
+      if (err) return next(err)
+      req.answers = answers
+      next()
+    })
   })
 }
 
@@ -37,7 +42,7 @@ exports.validateAccess = function (req, res, next) {
 }
 
 exports.show = function (req, res) {
-  res.send(req.situation)
+  res.send(req.answers)
 }
 
 function clearCookies(req, res) {
@@ -60,22 +65,27 @@ function clearCookies(req, res) {
   }
 }
 
-exports.create = function (req, res, next) {
-  if (req.body._id)
+exports.createWithAnswers = function (req, res, next) {
+  if (req.body.situation._id)
     return res.status(403).send({
       error:
         "You can‘t provide _id when saving a situation. _id will be generated automatically.",
     })
 
   return Situation.create(
-    omit(req.body, "createdAt", "status", "token"),
+    omit(req.body.situation, "createdAt", "status", "token"),
     function (err, persistedSituation) {
       if (err) return next(err)
 
-      clearCookies(req, res)
-      req.situation = persistedSituation
-      exports.attachAccessCookie(req, res)
-      res.send(persistedSituation)
+      req.body.answers._id = persistedSituation._id
+      Answer.create(req.body.answers, (err) => {
+        if (err) return next(err)
+
+        clearCookies(req, res)
+        req.situation = persistedSituation
+        exports.attachAccessCookie(req, res)
+        res.send(persistedSituation)
+      })
     }
   )
 }
@@ -85,20 +95,20 @@ exports.openfiscaResponse = function (req, res, next) {
     if (err)
       return next(
         Object.assign((err.response && err.response.data) || err, {
-          _id: req.situation._id,
+          _id: req.situationId,
         })
       )
 
-    res.send(Object.assign(result, { _id: req.situation._id }))
+    res.send(Object.assign(result, { _id: req.situationId }))
   })
 }
 
 exports.openfiscaTrace = function (req, res, next) {
   return openfisca.trace(req.situation, function (err, result) {
     if (err)
-      return next(Object.assign(err.response.data, { _id: req.situation._id }))
+      return next(Object.assign(err.response.data, { _id: req.situationId }))
 
-    res.send(Object.assign(result, { _id: req.situation._id }))
+    res.send(Object.assign(result, { _id: req.situationId }))
   })
 }
 

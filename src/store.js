@@ -8,46 +8,12 @@ import moment from "moment"
 import values from "lodash/values"
 import some from "lodash/some"
 
-import findIndex from "lodash/findIndex"
-
 import { computeAides, datesGenerator } from "../backend/lib/mes-aides"
 import { categoriesRnc, patrimoineTypes } from "./constants/resources"
-import { generateAllSteps } from "./lib/State/generator"
+import { generateAllSteps, generateSituation } from "./lib/State/generator"
 import Institution from "./lib/Institution"
 import ABTestingService from "./plugins/ABTestingService"
 import EtablissementModule from "./modules/Etablissement"
-
-const INDIVIDU_DATE_FIELDS = [
-  "date_naissance",
-  "date_arret_de_travail",
-  "date_debut_chomage",
-  "plus_haut_diplome_date_obtention",
-]
-
-function adaptPersistedIndividu(individu) {
-  INDIVIDU_DATE_FIELDS.forEach(function (dateField) {
-    if (individu[dateField]) {
-      individu[dateField] = new Date(individu[dateField])
-    }
-  })
-}
-
-function adaptPersistedSituation(situation) {
-  if (situation.dateDeValeur) {
-    situation.dateDeValeur = new Date(situation.dateDeValeur)
-  }
-  if (situation.demandeur) {
-    adaptPersistedIndividu(situation.demandeur)
-  }
-  if (situation.enfants) {
-    situation.enfants.forEach(adaptPersistedIndividu)
-  }
-  if (situation.conjoint) {
-    adaptPersistedIndividu(situation.conjoint)
-  }
-
-  return situation
-}
 
 function defaultCalculs() {
   return {
@@ -67,25 +33,18 @@ function defaultStore() {
   const now = moment().format()
 
   return {
+    situationId: null,
+    answers: {
+      all: [],
+      current: [],
+      dateDeValeur: new Date(),
+      version: 3,
+    },
     message: {
       text: null,
       counter: null,
     },
     debug: false,
-    situation: {
-      _id: null,
-      external_id: null,
-      dateDeValeur: now,
-      enfants: null,
-      famille: {},
-      logement: {},
-      foyer_fiscal: {},
-      menage: {
-        aide_logement_date_pret_conventionne: "2018-12-31",
-      },
-      parents: {},
-      version: 3,
-    },
     error: false,
     access: {
       fetching: false,
@@ -109,35 +68,73 @@ function restoreLocal() {
     store = JSON.parse(window.sessionStorage.store)
   }
 
-  if (!store || !store.situation || !store.situation.dateDeValeur) {
+  if (!store || !store.answers || !store.answers.dateDeValeur) {
     store = defaultStore()
   }
 
   return {
-    situation: adaptPersistedSituation(store.situation),
+    situationId: store.situationId,
+    answers: store.answers,
     calculs: store.calculs || defaultCalculs(),
-    dates: datesGenerator(store.situation.dateDeValeur),
+    dates: datesGenerator(store.answers.dateDeValeur),
     ameliNoticationDone: store.ameliNoticationDone,
   }
+}
+
+const storeAnswer = (answers, newAnswer, clean) => {
+  const existingAnswerIndex = answers.findIndex(
+    (answer) =>
+      answer.id === newAnswer.id &&
+      answer.entityName === newAnswer.entityName &&
+      answer.fieldName === newAnswer.fieldName
+  )
+  let results
+  if (existingAnswerIndex === -1) {
+    results = [...answers, newAnswer]
+  } else {
+    const answer = answers[existingAnswerIndex]
+    answer.value = newAnswer.value
+    if (clean) {
+      if (newAnswer.id.startsWith("enfant_")) {
+        // If we are changing info about a children
+        // we want to keep the answer on others
+        results = answers
+          .slice(0, existingAnswerIndex + 1)
+          .concat(
+            answers.filter(
+              (answer) =>
+                answer.id.startsWith("enfant_") && answer.id !== newAnswer.id
+            )
+          )
+      } else {
+        results = answers.slice(0, existingAnswerIndex + 1)
+      }
+    } else {
+      results = [...answers]
+    }
+  }
+
+  return results
 }
 
 const store = new Vuex.Store({
   state: defaultStore(),
   getters: {
-    passSanityCheck: function (state) {
+    passSanityCheck: function (state, getters) {
       return (
-        state.situation.demandeur && state.situation.demandeur.date_naissance
+        getters.situation.demandeur &&
+        getters.situation.demandeur.date_naissance
       )
     },
     getDebug: function (state) {
       return state.debug
     },
-    peopleParentsFirst: function (state) {
+    peopleParentsFirst: function (state, getters) {
       return []
         .concat(
-          state.situation.demandeur,
-          state.situation.conjoint,
-          state.situation.enfants
+          getters.situation.demandeur,
+          getters.situation.conjoint,
+          getters.situation.enfants
         )
         .filter((individu) => individu)
     },
@@ -147,26 +144,8 @@ const store = new Vuex.Store({
         return items.length ? items[0] : null
       }
     },
-    getMenage: function (state) {
-      return state.situation.menage
-    },
-    getParents: function (state) {
-      return state.situation.parents
-    },
-    getFamille: function (state) {
-      return state.situation.famille
-    },
-    getFoyerFiscal: function (state) {
-      return state.situation.foyer_fiscal
-    },
-    getLogementStatut: function (state) {
-      return (
-        state.situation.menage &&
-        state.situation.menage.statut_occupation_logement
-      )
-    },
-    getAllSteps: function (state) {
-      return generateAllSteps(state.situation)
+    getAllSteps: function (state, getters) {
+      return generateAllSteps(getters.situation)
     },
     ressourcesYearMinusTwoCaptured: function (state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
@@ -189,15 +168,15 @@ const store = new Vuex.Store({
         false)
       })
     },
-    isProprietaireAvecPretEnCours: function (state) {
-      let menage = state.situation.menage
+    isProprietaireAvecPretEnCours: function (state, getters) {
+      let menage = getters.situation.menage
       let isProprietaire = ["primo_accedant", "proprietaire"].includes(
         menage.statut_occupation_logement
       )
       return isProprietaire && menage.loyer > 0
     },
-    isHebergeParticipeFrais: function (state) {
-      let menage = state.situation.menage
+    isHebergeParticipeFrais: function (state, getters) {
+      let menage = getters.situation.menage
       return (
         menage.statut_occupation_logement === "loge_gratuitement" &&
         menage.participation_frais === true
@@ -208,8 +187,8 @@ const store = new Vuex.Store({
      * - false if those ressources are all null else
      * - true
      */
-    hasPatrimoine: function (state) {
-      let demandeur = state.situation.demandeur
+    hasPatrimoine: function (state, getters) {
+      let demandeur = getters.situation.demandeur
       if (!demandeur) {
         return undefined
       }
@@ -227,7 +206,7 @@ const store = new Vuex.Store({
         return axios
           .get(
             `api/situations/${
-              situationId || state.situation._id
+              situationId || state.situationId
             }/${representation}`
           )
           .then((response) => response.data)
@@ -235,15 +214,48 @@ const store = new Vuex.Store({
     },
     hasResults: function (state) {
       return (
-        state.situation._id &&
+        state.situationId &&
         state.calculs.resultats._id &&
-        state.calculs.resultats._id === state.situation._id
+        state.calculs.resultats._id === state.situationId
       )
+    },
+    getAnswer: (state) => (id, entityName, fieldName, currentOnly) => {
+      const answer = (
+        currentOnly ? state.answers.current : state.answers.all
+      ).find(
+        (answer) =>
+          answer.id === id &&
+          answer.entityName === entityName &&
+          answer.fieldName === fieldName
+      )
+      return answer ? answer.value : undefined
+    },
+    situation: (state) => {
+      return generateSituation(state.answers, state.dates)
     },
   },
   mutations: {
+    answer: (state, answer) => {
+      state.answers = {
+        ...state.answers,
+        all: storeAnswer(state.answers.all, answer, false),
+        current: storeAnswer(state.answers.current, answer, true),
+      }
+    },
+    ressourcesFiscales: (state, ressourcesFiscales) => {
+      state.answers = {
+        ...state.answers,
+        ressourcesFiscales,
+      }
+    },
+    patrimoine: (state, patrimoine) => {
+      state.answers = {
+        ...state.answers,
+        patrimoine,
+      }
+    },
     clear: function (state) {
-      state.situation = {}
+      state.answers = { all: [], current: [], enfants: [] }
       state.access.forbidden = false
       state.access.fetching = false
     },
@@ -251,62 +263,79 @@ const store = new Vuex.Store({
       state.debug = debug
     },
     initialize: function (state) {
-      const { situation, dates, ameliNoticationDone, calculs } = restoreLocal()
-      state.situation = situation
-      state.calculs = calculs
-      state.dates = dates
-      state.ameliNoticationDone = ameliNoticationDone
-      state.saveSituationError = null
-    },
-    saveFamille: function (state, famille) {
-      state.situation = Object.assign({}, state.situation, { famille })
-    },
-    saveFoyerFiscal: function (state, foyer_fiscal) {
-      state.situation = Object.assign({}, state.situation, { foyer_fiscal })
-    },
-    saveMenage: function (state, menage) {
-      state.situation = Object.assign({}, state.situation, { menage })
-    },
-    saveParents: function (state, parents) {
-      state.situation = Object.assign({}, state.situation, { parents })
-    },
-    removeConjoint: function (state) {
-      const s = Object.assign({}, state.situation)
-      delete s.conjoint
-      state.situation = s
+      Object.assign(state, restoreLocal(), { saveSituationError: null })
     },
     removeEnfant: function (state, id) {
-      state.situation.enfants = state.situation.enfants.filter(
-        (e) => e.id !== id
-      )
-    },
-    saveIndividu: function (state, individu) {
-      if (individu.id === "demandeur") {
-        state.situation = Object.assign({}, state.situation, {
-          demandeur: individu,
-        })
-      } else if (individu.id === "conjoint") {
-        state.situation = Object.assign({}, state.situation, {
-          conjoint: individu,
-        })
-      } else {
-        const idx = findIndex(state.situation.enfants, { id: individu.id })
-        state.situation.enfants.splice(idx, 1, individu)
+      const enfantIndex = id.split("_")[1]
+      state.answers = {
+        ...state.answers,
+        enfants: state.answers.enfants.filter((i) => i != enfantIndex),
       }
     },
+    saveIndividu: function () {},
     saveError: function (state, error) {
       state.error = error
     },
-    addEnfant: function (state, enfant) {
-      if (state.situation.enfants) {
-        state.situation.enfants.push(enfant)
+    addEnfant: function (state) {
+      let enfantId
+      let enfants
+      if (state.answers.enfants && state.answers.enfants.length > 0) {
+        enfantId = state.answers.enfants[state.answers.enfants.length - 1] + 1
+        enfants = [...state.answers.enfants, enfantId]
       } else {
-        state.situation.enfants = [enfant]
+        enfantId = 0
+        enfants = [enfantId]
+      }
+      const answer = {
+        entityName: "individu",
+        id: `enfant_${enfantId}`,
+        fieldName: "_firstName",
+        value:
+          "votre " +
+          enfants.length +
+          (enfants.length === 1 ? "ᵉʳ" : "ᵉ") +
+          " enfant",
+      }
+
+      // When you add a children you need to remove all current answer after the child validation
+      const currentLastIndex = state.answers.current.findIndex(
+        (answer) =>
+          answer.entityName === "individu" &&
+          answer.id === "demandeur" &&
+          answer.fieldName === "nombre_enfants"
+      )
+
+      const currentAnswers =
+        currentLastIndex === -1
+          ? state.answers.current
+          : state.answers.current.splice(0, currentLastIndex)
+
+      state.answers = {
+        ...state.answers,
+        enfants,
+        all: storeAnswer(state.answers.all, answer, false),
+        current: storeAnswer(currentAnswers, answer, true),
       }
     },
-    zeroEnfant: function (state) {
-      if (!state.situation.enfants) {
-        state.situation.enfants = []
+    editEnfant: function (state, id) {
+      // When you edit a children you need to remove all current answer after the child validation
+      const currentLastIndex = state.answers.current.findIndex(
+        (answer) =>
+          answer.entityName === "individu" &&
+          answer.id === "demandeur" &&
+          answer.fieldName === "nombre_enfants"
+      )
+
+      const currentAnswers =
+        currentLastIndex === -1
+          ? state.answers.current
+          : state.answers.current.splice(0, currentLastIndex)
+
+      state.answers = {
+        ...state.answers,
+        current: currentAnswers.filter(
+          (answer) => answer.id !== `enfant_${id}`
+        ),
       }
     },
     setAmeliNoticationDone: function (state) {
@@ -315,10 +344,10 @@ const store = new Vuex.Store({
     fetching: function (state) {
       state.access.fetching = true
     },
-    reset: function (state, situation) {
+    reset: function (state, answers) {
       state.access.fetching = false
-      state.situation = adaptPersistedSituation(situation)
-      state.dates = datesGenerator(state.situation.dateDeValeur)
+      state.answers = answers
+      state.dates = datesGenerator(answers.dateDeValeur || new Date())
       state.ameliNoticationDone = false
       state.calculs.dirty = false
     },
@@ -327,11 +356,11 @@ const store = new Vuex.Store({
       state.access.forbidden = true
     },
     setId: function (state, id) {
-      state.situation._id = id
+      state.situationId = id
       state.calculs.dirty = false
     },
     setExternalId: function (state, id) {
-      state.situation.external_id = id
+      state.external_id = id
     },
     startComputation: function (state) {
       state.calculs.updating = true
@@ -382,6 +411,18 @@ const store = new Vuex.Store({
     },
   },
   actions: {
+    answer: ({ commit }, answer) => {
+      commit("answer", answer)
+      commit("setDirty")
+    },
+    ressourcesFiscales: ({ commit }, ressourcesFiscales) => {
+      commit("ressourcesFiscales", ressourcesFiscales)
+      commit("setDirty")
+    },
+    patrimoine: ({ commit }, patrimoine) => {
+      commit("patrimoine", patrimoine)
+      commit("setDirty")
+    },
     clear: function ({ commit }, external_id) {
       commit("clear")
       commit("initialize")
@@ -393,20 +434,16 @@ const store = new Vuex.Store({
     initialize: function ({ commit }) {
       commit("initialize")
     },
-    removeConjoint: function ({ commit }) {
-      commit("removeConjoint")
-      commit("setDirty")
-    },
     removeEnfant: function ({ commit }, id) {
       commit("removeEnfant", id)
       commit("setDirty")
     },
-    addEnfant: function ({ commit }, enfant) {
-      commit("addEnfant", enfant)
+    addEnfant: function ({ commit }) {
+      commit("addEnfant")
       commit("setDirty")
     },
-    zeroEnfant: function ({ commit }) {
-      commit("zeroEnfant")
+    editEnfant: function ({ commit }, id) {
+      commit("editEnfant", id)
       commit("setDirty")
     },
     updateError: function ({ commit }, error) {
@@ -416,37 +453,15 @@ const store = new Vuex.Store({
       commit("saveIndividu", individu)
       commit("setDirty")
     },
-    updateFamille: function ({ commit }, famille) {
-      commit("saveFamille", famille)
-      commit("setDirty")
-    },
-    updateFoyerFiscal: function ({ commit }, foyer_fiscal) {
-      commit("saveFoyerFiscal", foyer_fiscal)
-      commit("setDirty")
-    },
-    updateMenage: function ({ commit }, menage) {
-      commit("saveMenage", menage)
-      commit("setDirty")
-    },
-    updateParents: function ({ commit }, parents) {
-      commit("saveParents", parents)
-      commit("setDirty")
-    },
     save: function (store) {
-      const disabledSteps = store.getters.getAllSteps.filter((s) => !s.isActive)
-      disabledSteps.forEach((step) => {
-        step.clean(store, true)
-      })
-
-      let situation = { ...store.state.situation }
-      delete situation._id
-      if (store.state.situation._id) {
-        situation.modifiedFrom = store.state.situation._id
+      let situation = { ...store.getters.situation }
+      if (store.situationId) {
+        situation.modifiedFrom = store.state.situationId
       }
 
       situation.abtesting = ABTestingService.getEnvironment()
       return axios
-        .post("/api/situations/", situation)
+        .post("/api/situations", { answers: store.state.answers, situation })
         .then((result) => result.data)
         .then((payload) => payload._id)
         .then((id) => store.commit("setId", id))
@@ -457,23 +472,28 @@ const store = new Vuex.Store({
         .get(`/api/situations/${id}`)
         .then((result) => result.data)
         .then((payload) => state.commit("reset", payload))
-        .catch(() => state.commit("saveAccessFailure"))
+        .then(() => store.commit("setId", id))
+        .catch((e) => {
+          console.log(e)
+          state.commit("saveAccessFailure")
+        })
     },
     mockResults: function (state, benefit) {
       state.commit("setResults", Institution.mockResults(benefit))
     },
-    compute: function (state, showPrivate) {
-      state.commit("startComputation")
+    compute: function (store, showPrivate) {
+      store.commit("startComputation")
       return axios
         .get(
-          "api/situations/" + state.state.situation._id + "/openfisca-response"
+          "api/situations/" + store.state.situationId + "/openfisca-response"
         )
         .then(function (OpenfiscaResponse) {
           return OpenfiscaResponse.data
         })
         .then(function (openfiscaResponse) {
           return computeAides.bind(Institution)(
-            state.state.situation,
+            store.getters.situation,
+            store.state.situationId,
             openfiscaResponse,
             showPrivate
           )
@@ -499,8 +519,8 @@ const store = new Vuex.Store({
 
           return results
         })
-        .then((results) => state.commit("setResults", results))
-        .catch((error) => state.commit("saveComputationFailure", error))
+        .then((results) => store.commit("setResults", results))
+        .catch((error) => store.commit("saveComputationFailure", error))
     },
     redirection: function (state, next) {
       state.commit(
@@ -531,15 +551,34 @@ const store = new Vuex.Store({
 })
 export default store
 
-store.subscribe(({ type }, { ameliNoticationDone, situation, calculs }) => {
-  if (type === "initialize") {
-    return
+store.subscribe(
+  (
+    { type },
+    {
+      answers,
+      enfants,
+      ameliNoticationDone,
+      calculs,
+      dateDeValeur,
+      situationId,
+    }
+  ) => {
+    if (type === "initialize") {
+      return
+    }
+    window.sessionStorage.setItem(
+      "store",
+      JSON.stringify({
+        dateDeValeur,
+        situationId,
+        answers,
+        enfants,
+        ameliNoticationDone,
+        calculs,
+      })
+    )
   }
-  window.sessionStorage.setItem(
-    "store",
-    JSON.stringify({ ameliNoticationDone, situation, calculs })
-  )
-})
+)
 
 // Replicate strict mode
 store._vm.$watch(

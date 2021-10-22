@@ -329,26 +329,6 @@ const router = new Router({
         import(/* webpackChunkName: "demandeur" */ "./views/Foyer.vue"),
       children: [
         {
-          path: "pensions-alimentaires",
-          component: () =>
-            import(
-              /* webpackChunkName: "pensions-alimentaires" */ "./views/Foyer/PensionsAlimentaires.vue"
-            ),
-          meta: {
-            title: "Pensions alimentaires versées",
-          },
-        },
-        {
-          path: "extra-pole-emploi",
-          component: () =>
-            import(
-              /* webpackChunkName: "extra-pole-emploi" */ "./views/Foyer/PoleEmploi.vue"
-            ),
-          meta: {
-            title: "Question Estime Pôle Emploi",
-          },
-        },
-        {
           path: "recapitulatif",
           component: () =>
             import(

@@ -39,6 +39,19 @@
           >
           Les montants avancés sont arrondis à une dizaine d'euros près :
         </p>
+        <div class="notification warning" v-if="isOldSituation">
+          <div class="aj-results-intro">
+            <h3
+              >Attention, la simulation que vous voyez ne peut plus être
+              modifiée
+            </h3>
+            <p>
+              Si vous voulez apporter une modification à votre situation,
+              veuillez recommencer une simulation depuis la
+              <router-link to="home">page d'accueil</router-link>.
+            </p>
+          </div>
+        </div>
         <DroitsList v-bind:droits="droits"></DroitsList>
       </div>
       <div v-if="!isEmpty(droitsNonEligiblesShown)">
@@ -69,7 +82,7 @@
           v-if="!resultatStatus.updating && !isEmpty(droits)"
           v-bind:id="resultatsId"
         />
-        <Feedback :situationID="this.$store.state.situation._id" />
+        <Feedback />
       </div>
     </div>
   </div>
@@ -102,11 +115,16 @@ export default {
       return !array || array.length === 0
     },
   },
+  computed: {
+    isOldSituation() {
+      return !this.$store.state.answers
+    },
+  },
   mounted: function () {
     if (this.mock(this.$route.params.droitId)) {
       return
     } else if (this.$route.query && this.$route.query.situationId) {
-      if (this.$store.state.situation._id !== this.$route.query.situationId) {
+      if (this.$store.state.situationId !== this.$route.query.situationId) {
         this.$store
           .dispatch("fetch", this.$route.query.situationId)
           .then(() => this.$store.dispatch("compute"))

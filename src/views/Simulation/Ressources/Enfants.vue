@@ -16,7 +16,6 @@
 
 <script>
 import Actions from "@/components/Actions"
-import Ressource from "@/lib/Ressource"
 import YesNoQuestion from "@/components/YesNoQuestion"
 
 export default {
@@ -26,7 +25,7 @@ export default {
     Actions,
   },
   data: function () {
-    let enfants = this.$store.state.situation.enfants.map((e) =>
+    let enfants = this.$store.getters.situation.enfants.map((e) =>
       Object.assign({}, e)
     )
     return {
@@ -35,22 +34,14 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      this.enfants.forEach((enfant) => {
-        if (!enfant._hasRessources) {
-          let ressourceTypes = Ressource.getIndividuRessourceTypes(
-            enfant,
-            this.$store.state.situation
-          )
-          Object.keys(ressourceTypes).forEach(
-            (t) => (ressourceTypes[t] = false)
-          )
-          Ressource.setIndividuRessourceTypes(
-            enfant,
-            ressourceTypes,
-            this.$store.state.dates
-          )
-        }
-        this.$store.dispatch("updateIndividu", enfant)
+      this.$store.dispatch("answer", {
+        id: "enfants",
+        entityName: "individu",
+        fieldName: "_hasRessources",
+        value: this.enfants.map((enfant) => ({
+          id: enfant.id,
+          value: enfant._hasRessources,
+        })),
       })
       this.$push()
     },

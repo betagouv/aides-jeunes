@@ -4,7 +4,6 @@ const situation = {
   dateDeValeur: "2021-01",
   demandeur: { id: "demandeur" },
   famille: {},
-  foyer_fiscal: {},
   menage: {},
 }
 

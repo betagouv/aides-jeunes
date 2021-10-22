@@ -10,10 +10,10 @@ export default {
       return (benefit && benefit.montant) || 0
     },
     situation: function () {
-      return this.$store.state.situation
+      return this.$store.getters.situation
     },
     emailSubject: function () {
-      return `[${this.situation._id}] Montants inattendus`
+      return `[${this.situationId}] Montants inattendus`
     },
     emailBody: function () {
       return `
@@ -33,7 +33,7 @@ Bonne journée,
 
 ————
 ID : ${
-        this.situation._id
+        this.situationId
       } (à conserver impérativement pour traitement de votre demande)
 ————
 `

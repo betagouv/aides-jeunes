@@ -51,9 +51,15 @@ export default {
         this.$store.getters.getAllSteps
       )
     },
+    isOldSituation() {
+      return !this.$store.state.answers
+    },
   },
   methods: {
     disabledLink(chapter, index) {
+      if (this.isOldSituation) {
+        return true
+      }
       return index === 0
         ? false
         : !chapter.done && !this.chapters[index - 1].done

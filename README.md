@@ -111,6 +111,12 @@ We use [CircleCI](https://circleci.com/) as a continuous integration and deploym
 `build` : builds the project.
 `test_e2e`: runs the end-to-end tests.
 
+## Email
+We use the framework [MJML](https://mjml.io/) to design and send emails. 
+
+The mail server can be easily start with :
+`node mjml.js` or `npm run serve-mail`
+
 ## Linting and format
 
 We use ESLint as a linter and Prettier to format the codebase.

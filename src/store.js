@@ -533,10 +533,9 @@ const store = new Vuex.Store({
       next("/simulation")
     },
     openFiscaParameters: function (state) {
+      const date = new Date(state.getters.situation.dateDeValeur)
       return axios
-        .get(
-          `api/openfisca/parameters/${state.state.situation.dateDeValeur.toISOString()}`
-        )
+        .get(`api/openfisca/parameters/${date.toISOString()}`)
         .then((response) => state.commit("openFiscaParameters", response.data))
     },
     verifyBenefitVariables: function (state) {

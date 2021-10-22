@@ -5,6 +5,7 @@ link: https://www.actionlogement.fr/l-aide-mobili-jeune?utm_source=mes-aides-jeu
 teleservice: https://mobilijeune.actionlogement.fr
 prefix: "l'aide "
 type: float
+unit: "€"
 floorAt: 1
 entity: individus
 periodicite: mensuelle

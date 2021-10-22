@@ -11,6 +11,7 @@ link: https://portesdebretagne.msa.fr/lfy/aide-au-permis-de-conduire
 form: https://portesdebretagne.msa.fr/lfy/documents/98950/95688407/Formulaire+aide+permis+conduire.pdf
 prefix: l’
 type: float
+unit: "€"
 floorAt: 1
 entity: individus
 periodicite: ponctuelle

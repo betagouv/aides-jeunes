@@ -15,5 +15,6 @@ floorAt: 1
 entity: individus
 periodicite: ponctuelle
 type: float
+unit: "€"
 private: true
 interestFlag: _interetPermisDeConduire

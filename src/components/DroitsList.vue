@@ -24,32 +24,14 @@
             v-if="
               droit.montant &&
               isBoolean(droit.montant) &&
-              droit.symbol === 'fa-exclamation-triangle'
+              droit.icon === 'fa-exclamation-triangle'
             "
           >
             <img src="@/assets/images/warning.svg" /> Attention, cette aide vous
             est accessible sous certaines conditions supplémentaires.
           </div>
         </div>
-        <div class="aj-aide-montant">
-          <DroitMontant
-            v-bind:droit="droit"
-            v-if="
-              droit.montant &&
-              (isString(droit.montant) || isNumber(droit.montant))
-            "
-          ></DroitMontant>
-          <div v-if="droit.montant && isBoolean(droit.montant)">
-            <i
-              :data-testid="`droit-montant-icon-${
-                droit.symbol ? droit.symbol : 'fa-check-circle'
-              }`"
-              v-bind:class="`fa ${
-                droit.symbol ? droit.symbol : 'fa-check-circle'
-              } fa-2x`"
-            ></i>
-          </div>
-        </div>
+        <DroitEstime :droit="droit" />
         <div class="aj-aide-cta">
           <button class="button primary">Demander cette aide</button>
         </div>
@@ -96,8 +78,8 @@
 </template>
 
 <script>
-import DroitMontant from "./DroitMontant"
 import DroitMixin from "../mixins/DroitMixin"
+import DroitEstime from "./DroitEstime"
 
 export default {
   name: "DroitsList",
@@ -107,16 +89,15 @@ export default {
   },
   mixins: [DroitMixin],
   components: {
-    DroitMontant,
+    DroitEstime,
   },
   data: function () {
     return {}
   },
   computed: {
     list: function () {
-      let vm = this
-      return this.droits.filter(function (value) {
-        return !vm.filter || vm.filter.includes(value.id)
+      return this.droits.filter((value) => {
+        return !this.filter || this.filter.includes(value.id)
       })
     },
   },
@@ -126,6 +107,7 @@ export default {
         benefit.prefix && benefit.prefix.endsWith("’") ? "" : " "
       }${benefit.label} ?`
     },
+
     scrollTo: function (event, droit) {
       return this.$ScrollService.go(event, document.getElementById(droit.id))
     },

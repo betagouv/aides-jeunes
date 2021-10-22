@@ -34,6 +34,8 @@ var droitsDescription = {
           },
           floorAt: 10,
           prefix: "l’",
+          type: "float",
+          unit: "€",
         },
       },
     },
@@ -64,12 +66,14 @@ var droitsDescription = {
                   result.css_participation_forfaitaire[period]) ||
                   0
           },
+          type: "mixed",
           participation: true,
-          type: "complex",
         },
         asi: {
           label: "allocation supplémentaire d’invalidité",
           periodicite: PERIODICITE_MENSUELLE,
+          type: "float",
+          unit: "€",
           description:
             "L’allocation supplémentaire d’invalidité (Asi) est une prestation accordée à certaines personnes invalides. Elle s’adresse à celles et ceux qui ont de faibles ressources et n’ont pas atteint l’âge de départ à la retraite. Elle est versée tous les mois et s’ajoute, dans une certaine limite, aux revenus personnels.",
           link: "https://www.service-public.fr/particuliers/vosdroits/F16940",
@@ -95,6 +99,8 @@ var droitsDescription = {
         af: {
           label: "allocations familiales",
           periodicite: PERIODICITE_MENSUELLE,
+          type: "float",
+          unit: "€",
           description:
             "Les allocations familiales sont réservées aux personnes ayant au moins 2 enfants de moins de 20 ans à charge. Le montant des prestations dépend des ressources, du nombre d’enfants à charge et de leurs âges. Elles sont versées tous les mois. Dans les DOM, les allocations sont versées à partir du premier enfant.",
           conditions: [
@@ -112,6 +118,8 @@ var droitsDescription = {
         cf: {
           label: "complément familial",
           periodicite: PERIODICITE_MENSUELLE,
+          type: "float",
+          unit: "€",
           description:
             "Le complément familial s’ajoute aux allocations familiales à partir du troisième enfant à charge âgé de plus de 3 ans et de moins de 21 ans. Il est destiné aux familles ayant de faibles ressources. Dans les DOM, le complément familial concerne tous les enfants à charge âgés entre 3 et 5 ans.",
           link: "https://www.service-public.fr/particuliers/vosdroits/F13214",
@@ -126,6 +134,8 @@ var droitsDescription = {
         asf: {
           label: "allocation de soutien familial",
           periodicite: PERIODICITE_MENSUELLE,
+          type: "float",
+          unit: "€",
           description:
             "L’allocation de soutien familial (ASF) est destinée soit au parent qui élève seul un enfant non reconnu, privé de l’aide d’un parent ou dont l’autre parent est décédé, soit à la personne seule ou en couple qui recueille un enfant. L’ASF est versée par la Caf ou la MSA tous les mois.",
           conditions: [
@@ -143,6 +153,8 @@ var droitsDescription = {
         paje_base: {
           label: "prestation d’accueil du jeune enfant – Allocation de base",
           periodicite: PERIODICITE_MENSUELLE,
+          type: "float",
+          unit: "€",
           description:
             "L’allocation de base de la prestation d’accueil du jeune enfant (Paje) a pour objet d’aider à assurer les dépenses liées à l’entretien et l’éducation d’un enfant. Elle est destinée aux parents d’un enfant de moins de 3 ans ayant de faibles ressources. Elle est versée par la Caf ou la MSA.",
           conditions: [
@@ -164,6 +176,8 @@ var droitsDescription = {
           labelFunction: function (b) {
             return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
           },
+          type: "float",
+          unit: "€",
           description:
             "Le revenu de solidarité active (RSA) assure aux personnes sans ressources un niveau minimum de revenu variable selon la composition du foyer. Le RSA, le RSA parent isolé et le RSA jeunes parents sont simulés. Financé par les conseils départementaux, son versement se fait à travers la Caf ou la MSA. Les services sociaux de votre département vous orienteront vers l’organisme à qui adresser votre demande.",
           conditions: [
@@ -220,6 +234,8 @@ var droitsDescription = {
         aide_logement: {
           label: "aides au logement",
           periodicite: PERIODICITE_MENSUELLE,
+          unit: "€",
+          type: "float",
           description:
             "Les aides au logement regroupent trois aides différentes non cumulables : l’aide personnalisée au logement (Apl), l’allocation de logement familiale (Alf) et l’allocation de logement sociale (Als). Elles concernent les personnes ayant de faibles ressources, locataires ou remboursant le prêt de leur résidence principale. Elles sont versées par la Caf ou la MSA.",
           conditions: [
@@ -269,6 +285,8 @@ var droitsDescription = {
         ppa: {
           label: "prime d’activité",
           periodicite: PERIODICITE_MENSUELLE,
+          type: "float",
+          unit: "€",
           labelFunction: function (b) {
             return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
           },
@@ -283,10 +301,23 @@ var droitsDescription = {
           },
           floorAt: 5,
           prefix: "la",
+          computeUnexpectedAmount(situation) {
+            let menage = situation.menage
+            let isProprietaire = ["primo_accedant", "proprietaire"].includes(
+              menage.statut_occupation_logement
+            )
+            return (
+              (isProprietaire && menage.loyer > 0) ||
+              (menage.statut_occupation_logement === "loge_gratuitement" &&
+                menage.participation_frais)
+            )
+          },
         },
         aah: {
           periodicite: PERIODICITE_MENSUELLE,
           label: "allocation aux adultes handicapés",
+          type: "float",
+          unit: "€",
           description:
             "L’allocation aux adultes handicapés (AAH) est une aide financière qui permet d’assurer un revenu minimum. Cette aide est attribuée sous réserve de respecter 4 critères : le taux d’incapacité, l’âge, la nationalité et les ressources. L’AAH peut se cumuler soit avec le complément de ressources, soit avec la majoration pour la vie autonome ou, dans certains cas, l’aide à l’autonomie.",
           isBaseRessourcesYearMinusTwo: true,
@@ -302,6 +333,8 @@ var droitsDescription = {
           // Les équipes de la DSS ont implémenté une V0 de la MVA dans la variable caah
           periodicite: PERIODICITE_MENSUELLE,
           label: "majoration pour la vie autonome",
+          type: "float",
+          unit: "€",
           description:
             "La majoration pour la vie autonome (MVA) est une aide financière qui peut s’ajouter à l’allocation aux adultes handicapés (AAH). Elle permet de faire face aux dépenses liées à votre handicap (par exemple, adaptation de votre logement).",
           isBaseRessourcesYearMinusTwo: true,
@@ -319,6 +352,8 @@ var droitsDescription = {
           forms: {
             mdph: "https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15692.do",
           },
+          type: "float",
+          unit: "€",
           floorAt: 1,
           prefix: "l’",
         },
@@ -332,6 +367,8 @@ var droitsDescription = {
         ass: {
           label: "allocation de solidarité spécifique",
           periodicite: PERIODICITE_MENSUELLE,
+          type: "float",
+          unit: "€",
           description:
             "L’allocation de solidarité spécifique (ASS) est une aide financière attribuée aux personnes ayant épuisé leurs droits au chômage. Elle peut être versée à taux plein ou à taux réduit. En cas de reprise d’activité, elle peut être maintenue.",
           conditions: [
@@ -348,6 +385,8 @@ var droitsDescription = {
         agepi: {
           label: "aide à la garde d’enfants pour parent isolé",
           periodicite: PERIODICITE_MENSUELLE,
+          type: "float",
+          unit: "€",
           description:
             "L’aide à la garde d’enfants pour parent isolé (Agepi) est un dispositif de Pole Emploi pour les personnes qui reprennent un emploi.",
           link: "https://www.service-public.fr/particuliers/vosdroits/F1814",
@@ -363,6 +402,8 @@ var droitsDescription = {
         cheque_energie: {
           periodicite: PERIODICITE_ANNUELLE,
           label: "chèque Énergie",
+          type: "float",
+          unit: "€",
           description:
             "Le Chèque Énergie peut être utilisé pour toutes les dépenses d’énergie (électricité, gaz, fioul, bois, etc.) et les travaux de rénovation énergétique. Il est envoyé automatiquement chaque année en fonction de votre situation fiscale et de votre ménage.",
           conditions: [
@@ -390,6 +431,8 @@ var droitsDescription = {
         garantie_jeunes: {
           label: "garantie Jeunes",
           periodicite: PERIODICITE_MENSUELLE,
+          type: "float",
+          unit: "€",
           description:
             "La garantie jeunes permet d’accompagner vers l’emploi ou la formation des jeunes entre 16 et 25 ans en situation difficile. C’est un parcours d´un an en partenariat avec la mission locale qui peut être prolongé jusqu’à 6 mois.",
           conditions: [
@@ -433,6 +476,7 @@ var droitsDescription = {
             return `${b.label} avec un taux de ${b.montant}% an ${b.legend}`
           },
           unit: "%",
+          type: "float",
           description:
             "Le livret d’épargne populaire (LEP) est un placement réservé aux personnes disposant de revenus modestes. Il offre de nombreux avantages parmi lesquels un taux d’intérêt garanti supérieur aux autres livrets réglementés.",
           conditions: [
@@ -458,6 +502,8 @@ var droitsDescription = {
         bourse_college: {
           periodicite: PERIODICITE_ANNUELLE,
           label: "bourse de collège",
+          unit: "€",
+          type: "float",
           description:
             "La bourse de collège est une aide destinée à favoriser la scolarité des collégiens. Elle est versée aux familles ayant de faibles ressources. Son montant dépend du nombre d’enfants à charge.",
           conditions: [
@@ -477,6 +523,8 @@ var droitsDescription = {
         bourse_lycee: {
           periodicite: PERIODICITE_ANNUELLE,
           label: "bourse de lycée",
+          unit: "€",
+          type: "float",
           description:
             "La bourse de lycée est accordée aux responsables d’un lycéen qui ont de faibles ressources. Si l’élève entre au lycée ou s’il n’a jamais touché de bourse de lycée, il pourra y prétendre selon les ressources et les charges de sa famille. Une nouvelle demande doit être effectuée en cas de redoublement ou réorientation.",
           conditions: [
@@ -541,6 +589,7 @@ var droitsDescription = {
         rennes_metropole_transport: {
           periodicite: PERIODICITE_MENSUELLE,
           unit: "%",
+          type: "float",
           legend: "de l’abonnement STAR",
           label: "tarification solidaire transports",
           description:
@@ -564,6 +613,8 @@ var droitsDescription = {
         brest_metropole_transport: {
           legend: "au lieu de 38.50 € / mois",
           periodicite: "mensuelle",
+          unit: "€",
+          type: "float",
           label: "tarification solidaire transports",
           description:
             "Les familles aux ressources modestes bénéficient de forfaits mensuels à tarif réduit pour les transports : les forfaits Tempo, Tango et Rythmo. Tous les membres du foyer peuvent en bénéficier.",
@@ -603,6 +654,8 @@ var droitsDescription = {
           floorAt: 0.01,
           private: true,
           prefix: "le",
+          type: "float",
+          unit: "€",
         },
       },
     },
@@ -640,6 +693,7 @@ var droitsDescription = {
         nouvelle_aquitaine_carte_solidaire: {
           label: "carte Solidaire pour les transports",
           unit: "%",
+          type: "float",
           legend: "de réduction",
           periodicite: "ponctuelle",
           description:
@@ -660,7 +714,9 @@ var droitsDescription = {
       prestations: {
         tisseo_transport_reduction: {
           label: "Réduction sur les titres de transports",
+          legend: "de réduction",
           unit: "%",
+          type: "float",
           periodicite: PERIODICITE_PONCTUELLE,
           description:
             "Des réductions de 70%, 80% ou 100% (gratuité) sont mises en place sur le réseau Tisséo pour cetaiens personnes (jeunes, familles à faibles revenus, personnes bénéficiant de certaines prestations, etc.).",

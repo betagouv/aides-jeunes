@@ -10,6 +10,7 @@ conditions:
 link: https://www.iledefrance.fr/aide-aux-bacheliers-meritants
 prefix: l’
 type: float
+unit: €
 floorAt: 10
 computesLocally: true
 montant: 1000

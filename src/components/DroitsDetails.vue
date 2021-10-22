@@ -12,22 +12,9 @@
       />
       <h2 class="aj-question" itemprop="name">{{ capitalize(droit.label) }}</h2>
     </div>
-    <div class="aj-droit-montant">
-      <DroitMontant
-        v-bind:droit="droit"
-        unexpected
-        v-if="
-          droit.montant && (isString(droit.montant) || isNumber(droit.montant))
-        "
-      />
-      <div v-if="droit.montant && isBoolean(droit.montant)">
-        <i
-          v-bind:class="`fa ${
-            droit.symbol ? droit.symbol : 'fa-check-circle'
-          } fa-2x`"
-        ></i>
-      </div>
-    </div>
+
+    <DroitEstime v-bind:droit="droit" />
+
     <div class="aj-droit-content">
       <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
       <div class="aj-droit-content-heading">
@@ -111,15 +98,12 @@
             <p>
               L'application Mes Aides ne peut pas calculer le montant de cette
               prestation, car
-              <span
-                v-html="droit.uncomputability[droit.montant].reason.user"
-              ></span
-              >.
+              <span v-html="droit.uncomputability[droit.montant].reason.user" />
               <br />
               <strong
                 v-if="droit.uncomputability[droit.montant].solution"
                 v-html="droit.uncomputability[droit.montant].solution"
-              ></strong>
+              />
             </p>
           </div>
           <BenefitCta
@@ -166,7 +150,7 @@
 <script>
 import BenefitCta from "./BenefitCta"
 import BenefitCtaLink from "./BenefitCtaLink"
-import DroitMontant from "./DroitMontant"
+import DroitEstime from "./DroitEstime"
 import Situation from "../lib/Situation"
 import DroitMixin from "../mixins/DroitMixin"
 
@@ -180,7 +164,7 @@ export default {
   components: {
     BenefitCta,
     BenefitCtaLink,
-    DroitMontant,
+    DroitEstime,
   },
   mixins: [DroitMixin],
   data() {

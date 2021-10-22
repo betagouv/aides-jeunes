@@ -7,6 +7,7 @@ conditions:
 link: https://www.hautsdefrance.fr/permis-de-conduire-aide-2/
 teleservice: https://www.hautsdefrance.fr/testez-votre-eligibilite-aide-au-permis-de-conduire/
 type: float
+unit: "€"
 interestFlag: _interetPermisDeConduire
 entity: individus
 legend: "maximum"

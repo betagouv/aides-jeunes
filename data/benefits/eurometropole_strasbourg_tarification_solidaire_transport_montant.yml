@@ -5,6 +5,7 @@ link: https://www.strasbourg.eu/tarification-solidaire-transports-en-commun
 instructions: https://www.cts-strasbourg.eu/fr/Titres-de-transport/tarifs/tarification-solidaire/
 prefix: la
 type: float
+unit: "€"
 periodicite: mensuelle
 legend: / mois au lieu de 51.80 €
 entity: individus

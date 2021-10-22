@@ -17,11 +17,12 @@ html {
       align-items: center;
     }
 
-    .aj-aide-montant {
+    .aj-droit-estime {
       text-align: center;
       display: block;
 
-      .aj-aide-montant-label {
+      .aj-droit-estime-value,
+      .aj-droit-estime-legend {
         font-weight: bold;
         font-size: 1.4rem;
       }
@@ -53,7 +54,7 @@ html {
         margin-left: 2rem;
       }
 
-      .aj-aide-montant {
+      .aj-droit-estime {
         text-align: center;
         flex-basis: 200px;
         flex-grow: 0;
@@ -178,17 +179,11 @@ html {
         }
       }
 
-      .aj-droit-montant {
+      .aj-droit-estime {
         flex-basis: 200px;
         flex-grow: 0;
         flex-shrink: 0;
         text-align: right;
-
-        .aj-aide-montant {
-          text-align: right;
-          flex-direction: column;
-          display: flex;
-        }
       }
 
       .aj-droit-conditions {

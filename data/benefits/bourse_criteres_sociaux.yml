@@ -7,6 +7,7 @@ link: https://www.service-public.fr/particuliers/vosdroits/F12214
 teleservice: https://www.messervices.etudiant.gouv.fr
 prefix: une
 type: float
+unit: "€"
 floorAt: 0.1
 periodicite: mensuelle
 entity: individus

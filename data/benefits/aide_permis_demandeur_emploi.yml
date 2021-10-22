@@ -8,6 +8,7 @@ conditions:
 instructions: https://www.pole-emploi.fr/candidat/vos-recherches/les-aides-financieres/aide-a-lobtention-du-permis-de-c.html
 prefix: l’
 type: float
+unit: "€"
 floorAt: 1
 periodicite: ponctuelle
 legend: "maximum"

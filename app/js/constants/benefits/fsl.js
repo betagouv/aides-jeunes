@@ -20,7 +20,7 @@ module.exports = {
   entity: "menages",
   type: "bool",
   prefix: "une",
-  symbol: "fa-exclamation-triangle",
+  icon: "fa-exclamation-triangle",
   top: 6,
   link: "https://www.service-public.fr/particuliers/vosdroits/F1334",
   customization: Object.entries({

@@ -9,6 +9,7 @@ link: https://mps.msa.fr/lfy/famille/aide-permis-de-conduire
 form: https://mps.msa.fr/lfy/documents/98775/99816930/Imprim%C3%A9+2021+-+Demande+pour+aide+au+permis+de+conduire+maj+2021+05.pdf
 prefix: l’
 type: float
+unit: "€"
 floorAt: 1
 entity: individus
 periodicite: ponctuelle

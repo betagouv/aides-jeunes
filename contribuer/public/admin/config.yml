@@ -98,8 +98,26 @@ collections:
         options:
           - label: Montant
             value: float
-          - label: Éligibilité (Oui / Non)
-            value: "bool"
+          - label: Eligibilité (Oui / Non)
+            value: bool
+      - label: Unité lorsque le type de résultat est un montant
+        hint: Il s'agit de spécifier l'unité du montant.
+        name: unit
+        widget: select
+        default: €
+        required: false
+        options:
+          - label: €
+            value: €
+          - label: "%"
+            value: "%"
+          - label: séances
+            value: séances
+      - label: Légende pour le résultat
+        hint: "Il s'agit d'ajouter des informations complémentaires au résultat. Exemple: X% de réduction."
+        name: legend
+        widget: string
+        required: false
       - label: Niveau de fiabilité lorsque le résultat est un montant
         name: floorAt
         widget: select

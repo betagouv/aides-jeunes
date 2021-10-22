@@ -5,6 +5,7 @@ link: https://www.grandeecolenumerique.fr/espace-apprenants/se-renseigner-sur-le
 teleservice: https://dse.phm.education.gouv.fr/GEN/
 prefix: l’
 type: float
+unit: "€"
 floorAt: 0.1
 entity: individus
 periodicite: mensuelle

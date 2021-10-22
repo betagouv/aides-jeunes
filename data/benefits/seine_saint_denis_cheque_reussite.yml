@@ -10,5 +10,7 @@ link: https://seinesaintdenis.fr/enfance-education-jeunesse/colleges/article/un-
 teleservice: https://chequereussite.up-gestion.com/CD93/homepage
 prefix: le
 floorAt: 1
+type: float
+unit: "€"
 periodicite: ponctuelle
 legend: en bons d’achat

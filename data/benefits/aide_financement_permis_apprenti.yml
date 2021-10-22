@@ -5,6 +5,7 @@ link: https://travail-emploi.gouv.fr/formation-professionnelle/formation-en-alte
 instructions: https://travail-emploi.gouv.fr/formation-professionnelle/formation-en-alternance-10751/apprentissage/apprentis-aide-permis#Comment-obtenir-l-aide-au-financement-du-permis-de-conduire-B-nbsp
 prefix: l’
 type: float
+unit: "€"
 floorAt: 1
 periodicite: ponctuelle
 entity: individus

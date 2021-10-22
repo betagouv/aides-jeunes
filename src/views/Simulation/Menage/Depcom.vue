@@ -46,12 +46,11 @@ export default {
     EnSavoirPlus,
   },
   data: function () {
-    const menage = { ...this.$store.getters.getMenage } || {}
+    const answer = this.$store.getters.getAnswer("menage", "menage", "depcom")
     return {
-      menage: menage,
       retrievingCommunes: false,
-      codePostal: menage._codePostal,
-      nomCommune: menage._nomCommune,
+      codePostal: answer ? answer._codePostal : undefined,
+      nomCommune: answer ? answer._nomCommune : undefined,
     }
   },
   computed: {
@@ -76,10 +75,16 @@ export default {
         (c) => c.nom == this.nomCommune
       )
       if (communeMatches.length) {
-        this.menage.depcom = communeMatches[0].code
-        this.menage._codePostal = this.codePostal.toString()
-        this.menage._nomCommune = this.nomCommune
-        this.$store.dispatch("updateMenage", this.menage)
+        this.$store.dispatch("answer", {
+          id: "menage",
+          entityName: "menage",
+          fieldName: "depcom",
+          value: {
+            depcom: communeMatches[0].code,
+            _codePostal: this.codePostal.toString(),
+            _nomCommune: this.nomCommune,
+          },
+        })
       }
       this.$push()
     },

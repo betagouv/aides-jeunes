@@ -65,7 +65,7 @@ export default {
     }
   },
   mounted: function () {
-    const city = this.$store.state.situation.menage.depcom
+    const city = this.$store.getters.situation.menage.depcom
     let types = []
     Institution.forEachBenefit((benefit, benefitId, provider) => {
       if (

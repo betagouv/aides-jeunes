@@ -11,11 +11,7 @@
           {{ enfant._firstName }}
         </div>
         <div class="aj-child-actions">
-          <router-link
-            class="edit-link"
-            v-bind:to="`/simulation/individu/${enfant.id}/_firstName`"
-            >éditer</router-link
-          >
+          <a class="edit-link" v-on:click="editPAC(enfant.id)">éditer</a>
           <a class="delete-link" v-on:click="removePAC(enfant.id)">supprimer</a>
         </div>
       </div>
@@ -57,7 +53,6 @@
 
 <script>
 import Actions from "@/components/Actions"
-import Individu from "@/lib/Individu"
 import Nationality from "@/lib/Nationality"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import Scolarite from "@/lib/Scolarite"
@@ -70,13 +65,15 @@ export default {
   },
   computed: {
     enfants: function () {
-      return this.$store.state.situation.enfants || []
+      return this.$store.getters.situation.enfants || []
     },
   },
   filters: {
     birthDate: function (date) {
       if (date) {
-        return date.toLocaleDateString("FR-fr", {
+        return (
+          typeof date === "string" ? new Date(date) : date
+        ).toLocaleDateString("FR-fr", {
           day: "numeric",
           month: "numeric",
           year: "numeric",
@@ -88,28 +85,32 @@ export default {
     nationality: Nationality.getNationalityFromCountryCode,
     scolarite: function (value) {
       const s = Scolarite.types.find((s) => s.value === value)
-      if (s) return Scolarite.types.find((s) => s.value === value).label
-      else return "-"
+      return s ? Scolarite.types.find((s) => s.value === value).label : "-"
     },
   },
   methods: {
     addPAC: function () {
-      let { individu } = Individu.get(
-        this.$store.state.situation.enfants || [],
-        "enfant",
-        1,
-        this.$store.state.dates
-      )
-      this.$store.dispatch("addEnfant", individu)
-      this.$router.push(`/simulation/individu/${individu.id}/_firstName`)
+      const children = this.$store.state.answers.enfants || []
+      const lastId = children.length > 0 ? children[children.length - 1] : -1
+      this.$store.dispatch("addEnfant")
+      this.$router.push(`/simulation/individu/enfant_${lastId + 1}/_firstName`)
     },
     removePAC: function (id) {
       this.$store.dispatch("removeEnfant", id)
     },
+    editPAC: function (id) {
+      this.$store.dispatch("editEnfant")
+      this.$router.push(`/simulation/individu/${id}/_firstName`)
+    },
     onSubmit: function () {
-      if (!this.$store.state.situation.enfants) {
-        this.$store.dispatch("zeroEnfant")
-      }
+      this.$store.dispatch("answer", {
+        id: "demandeur",
+        entityName: "individu",
+        fieldName: "nombre_enfants",
+        value: this.$store.state.answers.enfants
+          ? this.$store.state.answers.enfants.length
+          : 0,
+      })
       this.$push()
     },
   },

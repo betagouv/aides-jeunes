@@ -18,35 +18,6 @@ const ENTITIES_PROPERTIES = {
   parents: require("@/lib/ParentsProperties").default,
 }
 
-const UPDATE_METHODS = {
-  individu: "updateIndividu",
-  famille: "updateFamille",
-  foyerFiscal: "updateFoyerFiscal",
-  menage: "updateMenage",
-  parents: "updateParents",
-}
-
-const INTERNAL_UPDATE_METHODS = {
-  individu: "saveIndividu",
-  famille: "saveFamille",
-  foyerFiscal: "saveFoyerFiscal",
-  menage: "saveMenage",
-  parents: "saveParents",
-}
-
-Step.prototype.clean = function ({ commit, dispatch, state }, storeInternal) {
-  const subject =
-    state.situation[this.entity] ||
-    state.situation[this.id] ||
-    state.situation.enfants.find((enfant) => enfant.id === this.id)
-  const result = { ...subject, [this.variable]: undefined }
-  const updateMethod = UPDATE_METHODS[this.entity]
-  const internalUpdateMethod = INTERNAL_UPDATE_METHODS[this.entity]
-  return storeInternal
-    ? commit(internalUpdateMethod, result)
-    : dispatch(updateMethod, result)
-}
-
 function ComplexStep({ route, variables, chapter }) {
   Step.call(this, { key: route, chapter: chapter })
   this.path = `/simulation/${route}`
@@ -62,5 +33,4 @@ module.exports = {
   ENTITIES_PROPERTIES,
   ComplexStep,
   Step,
-  UPDATE_METHODS,
 }

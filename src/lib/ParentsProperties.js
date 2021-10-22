@@ -1,10 +1,3 @@
-const loadEntity = (component) => {
-  const parents = {
-    ...(component.$store.getters.getParents || {}),
-  }
-  return parents
-}
-
 const STEPS = {
   _situation: {
     question: "Quelle est la situation de vos parents ?",
@@ -50,6 +43,5 @@ const STEPS = {
 }
 
 export default {
-  loadEntity,
   STEPS,
 }

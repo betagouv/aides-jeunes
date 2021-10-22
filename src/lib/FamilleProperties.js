@@ -1,10 +1,5 @@
 import { yearsAgo } from "@/lib/Utils"
 
-const loadEntity = (component) => {
-  const famille = { ...component.$store.state.situation.famille }
-  return famille
-}
-
 const STEPS = {
   bourse_criteres_sociaux_nombre_enfants_a_charge: {
     question:
@@ -27,7 +22,7 @@ const STEPS = {
     question: (component) => {
       return `Avez-vous habité Paris au moins 3 ans depuis ${yearsAgo(
         5,
-        component.$store.state.situation.dateDeValeur
+        component.$store.getters.situation.dateDeValeur
       )} ?`
     },
   },
@@ -46,6 +41,5 @@ const STEPS = {
 }
 
 export default {
-  loadEntity,
   STEPS,
 }

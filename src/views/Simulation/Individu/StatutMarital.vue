@@ -43,18 +43,5 @@ export default {
       situationsFamiliales: Individu.situationsFamiliales,
     }
   },
-  methods: {
-    onSubmit: function () {
-      this.individu[this.fieldName] = this.value
-      this.$store.dispatch("updateIndividu", this.individu)
-      this.$store.dispatch(
-        "updateIndividu",
-        Object.assign({}, this.$store.state.situation.demandeur, {
-          [this.fieldName]: this.value,
-        })
-      )
-      this.$push()
-    },
-  },
 }
 </script>

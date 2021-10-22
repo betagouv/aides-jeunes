@@ -59,15 +59,24 @@ export default {
         Ressource.isRessourceOnMainScreen(ressourceType) &&
         Ressource.isRessourceRelevant(
           ressourceType,
-          this.$store.state.situation,
+          this.$store.getters.situation,
           this.individu
         )
       )
     })
-    let selectedTypes = Ressource.getIndividuRessourceTypes(
-      this.individu,
-      this.$store.state.situation
+
+    const selectedRessources = this.$store.getters.getAnswer(
+      this.$route.params.id,
+      "individu",
+      "ressources"
     )
+
+    const selectedTypes = {}
+    types.forEach((type) => {
+      selectedTypes[type.id] =
+        selectedRessources && selectedRessources.includes(type.id)
+    })
+
     return {
       categories: ressourceCategories,
       typesByCategories: groupBy(types, (t) => t.category),
@@ -88,18 +97,20 @@ export default {
     individu: function () {
       this.selectedTypes = Ressource.getIndividuRessourceTypes(
         this.individu,
-        this.$store.state.situation
+        this.$store.getters.situation
       )
     },
   },
   methods: {
     onSubmit: function () {
-      Ressource.setIndividuRessourceTypes(
-        this.individu,
-        this.selectedTypes,
-        this.$store.state.dates
-      )
-      this.$store.dispatch("updateIndividu", this.individu)
+      this.$store.dispatch("answer", {
+        id: this.$route.params.id,
+        entityName: "individu",
+        fieldName: "ressources",
+        value: Object.keys(this.selectedTypes).filter(
+          (type) => this.selectedTypes[type]
+        ),
+      })
       this.$push()
     },
     sort: function (array) {

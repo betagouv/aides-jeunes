@@ -19,14 +19,5 @@ export default {
     Actions,
   },
   mixins: [createIndividuMixin("_firstName")],
-  methods: {
-    onSubmit: function () {
-      if (this.value.length) {
-        this.individu[this.fieldName] = this.value
-        this.$store.dispatch("updateIndividu", this.individu)
-      }
-      this.$push()
-    },
-  },
 }
 </script>

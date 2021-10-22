@@ -312,7 +312,7 @@ export default {
   name: "cgu",
   computed: {
     situation: function () {
-      return this.$store.state.situation
+      return this.$store.getters.situation
     },
     emailBody: function () {
       return `Bonjour,
@@ -320,8 +320,8 @@ export default {
 J'ai effectué une simulation sur Mes Aides le **JJ/MM/AAAA à HH:MM:SS**.
 
 ${
-  this.situation && this.situation._id
-    ? `La dernière simulation que j'ai effectuée porte l'identifiant **${this.situation._id}**.`
+  this.situation && this.situationId
+    ? `La dernière simulation que j'ai effectuée porte l'identifiant **${this.situationId}**.`
     : ""
 }
 Voici quelques éléments que j'ai renseigné sur celle-ci pour vous aider à l'identifier.

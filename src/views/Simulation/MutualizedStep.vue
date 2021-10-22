@@ -68,7 +68,7 @@ import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import InputNumber from "@/components/InputNumber"
 import InputDate from "@/components/InputDate"
-import { ENTITIES_PROPERTIES, UPDATE_METHODS } from "@/lib/State/steps"
+import { ENTITIES_PROPERTIES } from "@/lib/State/steps"
 
 export default {
   name: "MutualizedStep",
@@ -81,9 +81,19 @@ export default {
   },
   data() {
     const entityName = this.$route.path.split("/")[2]
-    const entity = ENTITIES_PROPERTIES[entityName].loadEntity(this)
+    const id = (this.params || this.$route.params).id
+    const value = this.$store.getters.getAnswer(
+      id,
+      entityName,
+      this.$route.params.fieldName
+    )
+    const entity =
+      ENTITIES_PROPERTIES[entityName].loadEntity &&
+      ENTITIES_PROPERTIES[entityName].loadEntity(this)
+
     return {
-      value: entity[this.$route.params.fieldName],
+      id,
+      value,
       entityName,
       entity,
     }
@@ -121,8 +131,12 @@ export default {
       if (!this.step.optional && this.requiredValueMissing()) {
         return
       }
-      this.entity[this.fieldName] = this.value
-      this.$store.dispatch(UPDATE_METHODS[this.entityName], this.entity)
+      this.$store.dispatch("answer", {
+        id: this.id,
+        entityName: this.entityName,
+        fieldName: this.fieldName,
+        value: this.value,
+      })
       this.$push()
     },
     requiredValueMissing() {

@@ -5,7 +5,6 @@ describe("openfisca dispatchIndividuals", function () {
   function buildSituation(props) {
     return {
       famille: {},
-      foyer_fiscal: {},
       menage: {},
       ...props,
     }

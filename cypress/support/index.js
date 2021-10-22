@@ -367,7 +367,7 @@ export function hasCSS(position) {
     '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
       position +
       ")",
-    { timeout: 6000 }
+    { timeout: 10000 }
   ).as(id + "-summary")
   cy.get("@" + id + "-summary")
     .find('[itemprop="name"]')
@@ -387,7 +387,7 @@ export function hasPrimeActivite(position) {
     '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
       position +
       ")",
-    { timeout: 6000 }
+    { timeout: 10000 }
   ).as(id + "-summary")
   cy.get("@" + id + "-summary")
     .find('[itemprop="name"]')
@@ -419,7 +419,7 @@ export function captureFiscalResources(position) {
     `.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(${
       position || 2
     })`,
-    { timeout: 6000 }
+    { timeout: 10000 }
   ).as(id + "-summary")
   cy.get("@" + id + "-summary")
     .find('[itemprop="name"]')
@@ -442,7 +442,7 @@ export function hasAAH() {
     '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
       position +
       ")",
-    { timeout: 6000 }
+    { timeout: 10000 }
   ).as(id + "-summary")
   cy.get("@" + id + "-summary")
     .find('[itemprop="name"]')
@@ -503,7 +503,7 @@ export function hasBourseCriteresSociaux(position) {
     '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
       position +
       ")",
-    { timeout: 6000 }
+    { timeout: 10000 }
   ).as(id + "-summary")
   cy.get("@" + id + "-summary")
     .find('[itemprop="name"]')
@@ -539,7 +539,7 @@ export function hasAideLogement(position) {
     '.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(' +
       position +
       ")",
-    { timeout: 6000 }
+    { timeout: 10000 }
   ).as(id + "-summary")
   cy.get("@" + id + "-summary")
     .find('[itemprop="name"]')

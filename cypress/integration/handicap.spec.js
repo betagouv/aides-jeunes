@@ -1,27 +1,34 @@
 /// <reference types="Cypress" />
-import * as steps from "../support"
+import profil from "../utils/profil"
+import navigate from "../utils/navigate"
+import foyer from "../utils/foyer"
+import logement from "../utils/logement"
+import revenu from "../utils/revenu"
+import projet from "../utils/projet"
+import results from "../utils/results"
 
 context("Full simulation", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:8080/init-ci")
+    navigate.init()
   })
 
   it("accepts a situation with handicap", () => {
-    steps.home()
-    steps.demandeur({
-      enfant: false,
-      handicap: {
-        taux_incapacite: 0.65,
-      },
-    })
-    steps.enceinte("false")
-    steps.zeroEnfants()
-    steps.celibataire()
-    steps.sansDomicileStable()
-    steps.salaireSeul()
-    // steps.sansPensionAlimentaireVersees()
-    steps.interestFlagExtra()
-    steps.waitForResults()
-    steps.hasAAH()
+    navigate.goHome()
+
+    profil.handicaped()
+
+    foyer.children(0)
+    foyer.enCouple(false)
+
+    logement.fillLogement("sansDomicile")
+    logement.fillCity("94120")
+
+    revenu.fillRevenuType(["salaire_net"])
+    revenu.fillConstantRevenu(1101.42)
+
+    projet.fillDriverLicense(false)
+
+    results.wait()
+    results.hasAAH(1)
   })
 })

@@ -137,7 +137,6 @@ export default {
               })
             }
           }
-          console.log(amounts)
           const months = Ressource.getPeriodsForCurrentYear(
             this.$store.state.dates,
             type

@@ -1,72 +1,68 @@
 /// <reference types="Cypress" />
-import * as steps from "../support"
-import { checkRadio, submit } from "../support"
+import navigate from "../utils/navigate"
+import profil from "../utils/profil"
+import foyer from "../utils/foyer"
+import logement from "../utils/logement"
+import revenu from "../utils/revenu"
+import projet from "../utils/projet"
+import results from "../utils/results"
 
 context("Full simulation", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:8080/init-ci")
+    navigate.init()
   })
 
   it("accepts a basic situation", () => {
-    steps.home()
-    steps.demandeur()
-    steps.enceinte("false")
-    steps.zeroEnfants()
-    steps.celibataire()
-    steps.sansDomicileStable()
-    steps.salaireSeul()
-    // steps.sansPensionAlimentaireVersees()
-    steps.interestFlagExtra()
+    navigate.goHome()
 
-    steps.waitForResults()
-    steps.hasPrimeActivite()
-    steps.captureFiscalResources()
+    profil.defaultIndivu()
+
+    foyer.children(0)
+    foyer.enCouple(false)
+
+    logement.fillLogement("sansDomicile")
+    logement.fillCity("94120")
+
+    revenu.fillRevenuType(["salaire_net"])
+    revenu.fillConstantRevenu(1101.42)
+
+    projet.fillDriverLicense(false)
+
+    results.wait()
+
+    results.hasPrimeActivite(1)
+    results.captureFiscalResources(2)
   })
 
   it("accept a student situation", () => {
-    steps.home()
-    steps.etudiant_public()
+    navigate.goHome()
 
-    // _continuite_etudes
-    checkRadio("true")
-    submit()
+    profil.etudiantPublic()
 
-    // regime_securite_sociale
-    checkRadio("regime_general")
-    submit()
+    foyer.children(0)
+    foyer.enCouple(false)
+    foyer.fillParentSituation("separes")
+    foyer.fillChildrenAtCharge(1)
+    foyer.fillChildrenInSuperieur(1)
 
-    steps.enceinte("false")
-    steps.zeroEnfants()
-    steps.celibataire()
-    steps.parentsSepares()
-    steps.unEnfantSuperieur()
-    steps.locataire()
+    logement.fillLogement("locataire", "nonmeuble")
+    logement.fillColoc(false)
+    logement.fillSingleRoom(false)
+    logement.fillFamilyLink(false)
+    logement.fillLoyer(600, 100)
+    logement.fillCity("94120")
+    logement.fillParentInFrance(false)
 
-    cy.get('input[type="number"').type("45200")
-    steps.submit()
+    revenu.fillRevenuType(["salaire_net"])
+    revenu.fillConstantRevenu(1101.42)
+    revenu.fillRevenuBrut(0)
 
-    // Parents habitent en france
-    steps.checkRadio(false)
-    steps.submit()
+    projet.fillDriverLicense(false)
+    projet.fillStudyOutside(true)
+    projet.fillScolarship(false)
+    projet.fillStudyAbroad(true, 2)
 
-    // Ressources
-
-    steps.salaireSeul()
-
-    cy.get('input[type="number"]').type("0")
-    steps.submit()
-    cy.get('input[type="number"]').type("1")
-    steps.submit()
-    steps.checkRadio("false")
-    steps.submit()
-    steps.checkRadio("true")
-    steps.submit()
-    steps.checkRadio("false")
-    steps.submit()
-    steps.checkRadio("true")
-    steps.submit()
-    cy.get('input[type="number"]').type("2")
-    steps.submit()
-    steps.hasAideLogement(3)
+    results.wait()
+    results.hasAideLogement(3)
   })
 })

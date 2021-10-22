@@ -1,49 +1,45 @@
 /// <reference types="Cypress" />
-import * as steps from "../support"
+
+import foyer from "../utils/foyer"
+import logement from "../utils/logement"
+import navigate from "../utils/navigate"
+import profil from "../utils/profil"
+import projet from "../utils/projet"
+import results from "../utils/results"
+import revenu from "../utils/revenu"
 
 context("Full simulation", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:8080/init-ci")
+    navigate.init()
   })
 
   it("accepts a family situation", () => {
-    steps.home()
-    steps.demandeur()
-    steps.enceinte("true")
-    steps.deuxEnfants()
-    steps.couple()
-    steps.conjoint()
-    steps.sansDomicileStable()
-    steps.salaireSeul()
+    navigate.goHome()
 
-    cy.get('button[type="submit"]').click()
+    profil.defaultIndivu()
 
-    cy.contains("fieldset", "Votre 1ᵉʳ enfant")
-      .find("input[value=true]")
-      .check()
-    cy.get('button[type="submit"]').click()
+    foyer.children(2)
+    foyer.enCouple(true)
+    profil.defaultConjoint()
 
-    cy.get("div").find('input[type="checkbox"]').first().check()
-    cy.get('button[type="submit"]').click()
+    logement.fillLogement("sansDomicile")
+    logement.fillCity("94120")
 
-    cy.get("div").as("salarySection")
-    cy.get("@salarySection")
-      .find('input[type="radio"][value="false"]')
-      .first()
-      .check()
-    cy.get("@salarySection").find('input[type="number"]').as("inputs")
-    cy.get("@inputs").its("length").should("equal", 13)
+    revenu.fillRevenuType(["salaire_net"])
+    revenu.fillConstantRevenu(1101.42)
 
-    cy.get("@inputs").eq(0).type(400)
-    cy.get("@inputs").eq(2).type("{selectall}0")
-    cy.get('button[type="submit"]').click()
+    revenu.fillRevenuType([])
+    revenu.fillChildrenRessources([true, false])
+    revenu.fillRevenuType(["salaire_net"])
+    revenu.fillInconstantRevenu([
+      { index: 0, value: 400 },
+      { index: 2, value: "{selectall}0" },
+    ])
 
-    // steps.sansPensionAlimentaireVersees()
-    steps.interestFlagExtra()
+    projet.fillDriverLicense(false)
 
-    steps.waitForResults()
-    steps.hasCSS(2)
-    steps.hasPrimeActivite(3)
-    // steps.hasLogementSocial()
+    results.wait()
+    results.hasCSS(2)
+    results.hasPrimeActivite(3)
   })
 })

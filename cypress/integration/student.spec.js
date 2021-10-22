@@ -1,55 +1,44 @@
 /// <reference types="Cypress" />
-import * as steps from "../support"
+import profil from "../utils/profil"
+import navigate from "../utils/navigate"
+import logement from "../utils/logement"
+import revenu from "../utils/revenu"
+import projet from "../utils/projet"
+import results from "../utils/results"
+import foyer from "../utils/foyer"
 
 context("Full simulation", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:8080/init-ci")
+    navigate.init()
   })
 
   it("accept a student situation", () => {
-    steps.home()
-    steps.etudiant_public()
+    navigate.goHome()
 
-    // _continuite_etude
-    steps.checkRadio("true")
-    steps.submit()
-    // regime_securite_sociale
-    steps.checkRadio("regime_general")
-    steps.submit()
+    profil.etudiantPublic()
 
-    steps.enceinte("false")
-    steps.zeroEnfants()
-    steps.celibataire()
-    steps.parentsSepares()
-    steps.unEnfantSuperieur()
-    steps.heberge()
-    steps.neParticipePasLogement()
-    steps.hebergeParents()
+    foyer.children(0)
+    foyer.enCouple(false)
+    foyer.fillParentSituation("separes")
+    foyer.fillChildrenAtCharge(1)
+    foyer.fillChildrenInSuperieur(1)
 
-    cy.get('input[type="number"').type("45200")
-    steps.submit()
-    // Ressources
-    steps.submit()
-    cy.get(".aj-tooltip")
-    cy.get(".aj-question")
-      .invoke("text")
-      .should("contain", "revenu brut global")
-    cy.get('input[type="number"]').type("17860.35")
-    steps.submit()
-    cy.get('input[type="number"]').type("1")
-    steps.submit()
-    steps.checkRadio("false")
-    steps.submit()
-    steps.checkRadio("true")
-    steps.submit()
-    steps.checkRadio("false")
-    steps.submit()
-    steps.checkRadio("true")
-    steps.submit()
-    cy.get('input[type="number"]').type("2")
-    steps.submit()
+    logement.fillLogement("heberge")
+    logement.fillParticipation(false)
+    logement.fillLiveWithParents(true)
+    logement.fillCity("45200")
 
-    steps.waitForResults()
-    steps.hasBourseCriteresSociaux(3)
+    revenu.fillRevenuType(["salaire_net"])
+    revenu.fillConstantRevenu(17860.35)
+    revenu.fillRevenuBrut(1)
+
+    projet.fillDriverLicense(false)
+    projet.fillStudyOutside(true)
+    projet.fillScolarship(false)
+    projet.fillStudyAbroad(true, 2)
+
+    results.wait()
+
+    results.hasBourseCriteresSociaux(3)
   })
 })

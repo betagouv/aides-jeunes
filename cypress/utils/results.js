@@ -12,10 +12,7 @@ const identifyHelp = (position, id, name) => {
     `.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(${position})`,
     { timeout: 10000 }
   ).as(`${id}-summary`)
-  getHelp(id)
-    .find('[itemprop="name"]')
-    .invoke("text")
-    .should("match", name)
+  getHelp(id).find('[itemprop="name"]').invoke("text").should("match", name)
 }
 
 const hasPrimeActivite = (position) => {
@@ -27,9 +24,7 @@ const hasPrimeActivite = (position) => {
     .find('[itemprop="offers"]')
     .invoke("text")
     .should("match", /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
-  getHelp(id)
-    .find(".aj-aide-cta")
-    .click()
+  getHelp(id).find(".aj-aide-cta").click()
 
   cy.get(".aj-droit-detail").as(id)
   cy.get("@" + id)
@@ -63,9 +58,7 @@ const hasAideLogement = (position) => {
     .find('[itemprop="offers"]')
     .invoke("text")
     .should("match", /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
-  getHelp(id)
-    .find(".aj-aide-cta")
-    .click()
+  getHelp(id).find(".aj-aide-cta").click()
 
   cy.get(".aj-droit-detail").as(id)
   cy.get("@" + id)
@@ -85,9 +78,7 @@ const hasCSS = (position) => {
   const name = /Complémentaire santé solidaire/
   const id = "css"
   identifyHelp(position, id, name)
-  getHelp(id).find(
-    '[data-testid="droit-montant-icon-fa-check-circle"]'
-  )
+  getHelp(id).find('[data-testid="droit-montant-icon-fa-check-circle"]')
 }
 
 const hasAAH = (position) => {
@@ -99,9 +90,7 @@ const hasAAH = (position) => {
     .find('[itemprop="offers"]')
     .invoke("text")
     .should("match", /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
-  getHelp(id)
-    .find(".aj-aide-cta")
-    .click()
+  getHelp(id).find(".aj-aide-cta").click()
 
   cy.get(".aj-droit-detail").as(id)
   cy.get("@" + id)
@@ -122,9 +111,7 @@ const hasBourseCriteresSociaux = (position) => {
     .find('[itemprop="offers"]')
     .invoke("text")
     .should("match", /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
-  getHelp(id)
-    .find(".aj-aide-cta")
-    .click()
+  getHelp(id).find(".aj-aide-cta").click()
 
   cy.get(".aj-droit-detail").as(id)
   cy.get("@" + id)

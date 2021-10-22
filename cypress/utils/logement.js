@@ -7,12 +7,12 @@ const fillLogement = (logement, type) => {
   }
 }
 
-const fillParticipation = participe => {
+const fillParticipation = (participe) => {
   fillRadio("participation_frais", participe)
 }
 
 const fillLiveWithParents = (situation) => {
-  fillRadio("habite_chez_parents", true)
+  fillRadio("habite_chez_parents", situation)
 }
 
 const fillCity = (department) => {

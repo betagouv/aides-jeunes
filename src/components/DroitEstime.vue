@@ -1,16 +1,7 @@
 <template>
-  <span
-    class="aj-aide-montant"
-    itemscope
-    itemtype="http://schema.org/Offer"
-    itemprop="offers"
-    v-if="droit.type"
-  >
+  <span class="aj-aide-montant" v-if="droit.type">
     <span class="aj-aide-montant-label">
-      <span
-        itemprop="price"
-        v-if="isNumber(droitEstime.type) || isString(droitEstime.type)"
-      >
+      <span v-if="isNumber(droitEstime.type) || isString(droitEstime.type)">
         <span class="font-normal font-base">
           {{ droitEstime.label }}
         </span>
@@ -62,13 +53,6 @@ export default {
           !this.$store.getters.ressourcesYearMinusTwoCaptured) ||
         this.droit.showUnexpectedAmount
       )
-    },
-
-    list: function () {
-      let vm = this
-      return this.droits.filter(this.droits, function (value) {
-        return !vm.filter || vm.filter.includes(value.id)
-      })
     },
   },
   methods: {

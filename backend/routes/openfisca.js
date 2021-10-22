@@ -1,5 +1,5 @@
 var { check, validationResult } = require("express-validator")
-var openfisca = require("../lib/openfisca")
+var openfisca = require("../lib/openfisca/getter")
 var openfiscaController = require("../controllers/openfisca")
 var { forEach } = require("../../app/js/constants/benefits/back")
 

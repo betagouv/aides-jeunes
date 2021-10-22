@@ -31,9 +31,7 @@
             est accessible sous certaines conditions supplémentaires.
           </div>
         </div>
-        <div class="aj-aide-montant">
-          <DroitEstime :droit="droit" />
-        </div>
+        <DroitEstime :droit="droit" />
         <div class="aj-aide-cta">
           <button class="button primary">Demander cette aide</button>
         </div>

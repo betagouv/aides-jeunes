@@ -374,7 +374,7 @@ export function hasCSS(position) {
     .invoke("text")
     .should("match", name)
   cy.get("@" + id + "-summary").find(
-    '[data-testid="droit-montant-icon-fa-check-circle"]'
+    '[data-testid="aj-droit-estime-icon-fa-check-circle"]'
   )
 }
 
@@ -509,7 +509,16 @@ export function hasBourseCriteresSociaux(position) {
     .find('[itemprop="name"]')
     .invoke("text")
     .should("match", name)
-    .should("match", /(\d+)[\S\n\r\s]+€[\S\n\r\s]+\/ mois/)
+
+  cy.get("@" + id + "-summary")
+    .find(".aj-droit-estime-value")
+    .invoke("text")
+    .should("match", /(\d+)[\S\n\r\s]+€/)
+
+  cy.get("@" + id + "-summary")
+    .find(".aj-droit-estime-legend")
+    .invoke("text")
+    .should("match", /\/ mois/)
 
   cy.get("@" + id + "-summary")
     .find(".aj-aide-cta")

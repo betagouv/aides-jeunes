@@ -98,9 +98,8 @@ export default {
   },
   computed: {
     list: function () {
-      let vm = this
-      return this.droits.filter(function (value) {
-        return !vm.filter || vm.filter.includes(value.id)
+      return this.droits.filter((value) => {
+        return !this.filter || this.filter.includes(value.id)
       })
     },
   },

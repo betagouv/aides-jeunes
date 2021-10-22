@@ -95,7 +95,7 @@ const storeAnswer = (answers, newAnswer, clean) => {
     const answer = answers[existingAnswerIndex]
     answer.value = newAnswer.value
     if (clean) {
-      if (newAnswer.id.startsWith("enfant_")) {
+      if (newAnswer.id && newAnswer.id.startsWith("enfant_")) {
         // If we are changing info about a children
         // we want to keep the answer on others
         results = answers

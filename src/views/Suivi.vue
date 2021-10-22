@@ -44,13 +44,6 @@
                 </div>
 
                 <DroitEstime :droit="droit" />
-                <div v-if="droit.montant && isBoolean(droit.montant)">
-                  <i
-                    v-bind:class="`fa ${
-                      droit.icon ? droit.icon : 'fa-check-circle'
-                    } fa-2x`"
-                  ></i>
-                </div>
 
                 <div class="aj-droit-content">
                   <fieldset class="form__group">

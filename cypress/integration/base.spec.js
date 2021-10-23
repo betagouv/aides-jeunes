@@ -63,6 +63,6 @@ context("Full simulation", () => {
     projet.fillStudyAbroad(true, 2)
 
     results.wait()
-    results.hasAideLogement(3)
+    results.hasHousingBenefit(3)
   })
 })

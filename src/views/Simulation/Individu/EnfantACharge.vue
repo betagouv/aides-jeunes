@@ -18,25 +18,25 @@
       <div class="aj-selections">
         <div class="aj-selection-wrapper">
           <input
-            id="false"
+            id="true"
             type="radio"
             name="enfant_a_charge"
             :value="!isDemandeur"
             v-model="value"
             autofocus
           />
-          <label for="false"> Oui </label>
+          <label for="true"> Oui </label>
         </div>
         <div class="aj-selection-wrapper">
           <input
-            id="true"
+            id="false"
             type="radio"
             name="enfant_a_charge"
             :value="isDemandeur"
             v-model="value"
             autofocus
           />
-          <label for="true"> Non </label>
+          <label for="false"> Non </label>
         </div>
       </div>
     </fieldset>

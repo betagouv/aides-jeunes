@@ -1,7 +1,6 @@
 const capitalize = require("lodash/capitalize")
 const fs = require("fs")
 const path = require("path")
-const isNumber = require("lodash/isNumber")
 const map = require("lodash/map")
 const assign = require("lodash/assign")
 
@@ -9,7 +8,6 @@ const mustache = require("consolidate").mustache
 const config = require("../../../config")
 const openfiscaController = require("../../openfisca/parameters")
 const { formatDroitEstime } = require("../../../../lib/benefits")
-const { getBenefitLegend } = require("../../../../lib/benefits")
 const { mjml } = require(".")
 
 function basicBenefitText(droit, parameters) {
@@ -101,8 +99,8 @@ async function render(followup) {
     populated.situation.dateDeValeur
   )
 
-  const situationsResults = await populated.situation.compute()
-  const droitsEligibles = situationsResults.droitsEligibles
+  const situationResults = await populated.situation.compute()
+  const droitsEligibles = situationResults.droitsEligibles
   followup.benefits = droitsEligibles.map((benefit) => ({
     id: benefit.id,
     amount: benefit.montant,

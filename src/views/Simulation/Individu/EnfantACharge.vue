@@ -1,22 +1,51 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <YesNoQuestion v-model="value">
-      {{
-        role === "demandeur"
-          ? `Avez-vous fait votre propre déclaration d'impôts`
-          : `${getLabel(
-              "nom"
-            )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu`
-            | capitalize
-      }}&nbsp;?
-    </YesNoQuestion>
+    <fieldset>
+      <legend>
+        <h2 class="aj-question">
+          <span
+            >{{
+              isDemandeur
+                ? `Avez-vous fait votre propre déclaration d'impôts`
+                : `${getLabel(
+                    "nom"
+                  )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu`
+                  | capitalize
+            }}&nbsp;?</span
+          >
+        </h2>
+      </legend>
+      <div class="aj-selections">
+        <div class="aj-selection-wrapper">
+          <input
+            id="true"
+            type="radio"
+            name="enfant_a_charge"
+            :value="!isDemandeur"
+            v-model="value"
+            autofocus
+          />
+          <label for="true"> Oui </label>
+        </div>
+        <div class="aj-selection-wrapper">
+          <input
+            id="false"
+            type="radio"
+            name="enfant_a_charge"
+            :value="isDemandeur"
+            v-model="value"
+            autofocus
+          />
+          <label for="false"> Non </label>
+        </div>
+      </div>
+    </fieldset>
     <Actions v-bind:onSubmit="onSubmit" />
   </form>
 </template>
 
 <script>
 import Actions from "@/components/Actions"
-import YesNoQuestion from "@/components/YesNoQuestion"
 import Individu from "@/lib/Individu"
 import { createIndividuMixin } from "@/mixins/IndividuMixin"
 
@@ -24,7 +53,6 @@ export default {
   name: "SimulationIndividuEnfantACharge",
   components: {
     Actions,
-    YesNoQuestion,
   },
   mixins: [createIndividuMixin("enfant_a_charge")],
   data: function () {
@@ -36,8 +64,11 @@ export default {
       id,
       this.$store.state.dates
     )
+    const isDemandeur = role === "demandeur"
+
     return {
       individu,
+      isDemandeur,
     }
   },
 }

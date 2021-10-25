@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import Institution from "../lib/Institution"
+import Institution from "@/lib/Institution"
 import reduce from "lodash/reduce"
 import size from "lodash/size"
 import filter from "lodash/filter"

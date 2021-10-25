@@ -1,8 +1,9 @@
 import Vue from "vue"
 import Router from "vue-router"
-import Home from "./views/Home.vue"
 import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
+
+import variation from "./variations"
 
 Vue.use(Router)
 
@@ -13,7 +14,7 @@ const router = new Router({
     {
       path: "/",
       name: "home",
-      component: Home,
+      component: variation.Home,
       beforeEnter: (to, from, next) => {
         let referrer = document.referrer
         if (
@@ -34,7 +35,7 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "simulation" */ "./views/Simulation.vue"),
       meta: {
-        headTitle: "Ma simulation sur le simulateur d'aides 1jeune1solution",
+        headTitle: "Ma simulation sur le simulateur d'aides " + variation.name,
       },
       children: [
         {
@@ -218,7 +219,8 @@ const router = new Router({
           path: "recapitulatif",
           meta: {
             headTitle:
-              "Récapitulatif de vos réponses sur le simulateur d'aides 1jeune1solution",
+              "Récapitulatif de vos réponses sur le simulateur d'aides " +
+              variation.name,
           },
           component: () =>
             import(
@@ -230,7 +232,8 @@ const router = new Router({
           path: "resultats",
           meta: {
             headTitle:
-              "Les résultats de ma simulation sur le simulateur d'aides 1jeune1solution",
+              "Les résultats de ma simulation sur le simulateur d'aides " +
+              variation.name,
           },
           component: () =>
             import(
@@ -246,7 +249,8 @@ const router = new Router({
             ),
           meta: {
             headTitle:
-              "Trouver de l'aide près de chez vous avec le simulateur d'aides 1jeune1solution",
+              "Trouver de l'aide près de chez vous avec le simulateur d'aides " +
+              variation.name,
           },
         },
         {
@@ -258,7 +262,8 @@ const router = new Router({
             ),
           meta: {
             headTitle:
-              "Trouver des lieux d'informations près de chez vous avec le simulateur d'aides 1jeune1solution",
+              "Trouver des lieux d'informations près de chez vous avec le simulateur d'aides " +
+              variation.name,
           },
         },
         {
@@ -341,31 +346,6 @@ const router = new Router({
       ],
     },
     {
-      path: "/accessibilite",
-      name: "accessibilite",
-      component: () =>
-        import(
-          /* webpackChunkName: "accessibilite" */ "./views/Accessibilite.vue"
-        ),
-    },
-    {
-      path: "/contact",
-      name: "contact",
-      component: () =>
-        import(/* webpackChunkName: "contact" */ "./views/Contact.vue"),
-    },
-    {
-      path: "/cgu",
-      name: "cgu",
-      component: () => import(/* webpackChunkName: "cgu" */ "./views/CGU.vue"),
-    },
-    {
-      path: "/confidentialite",
-      name: "confidentialite",
-      component: () =>
-        import(/* webpackChunkName: "cgu" */ "./views/Confidentialite.vue"),
-    },
-    {
       name: "lieux-details",
       path: "/lieux/:commune/:type",
       component: () =>
@@ -386,12 +366,6 @@ const router = new Router({
       },
     },
     {
-      path: "/stats",
-      name: "stats",
-      component: () =>
-        import(/* webpackChunkName: "stats" */ "./views/Stats.vue"),
-    },
-    {
       path: "/suivi",
       name: "suivi",
       component: () =>
@@ -405,6 +379,7 @@ const router = new Router({
         return "/"
       },
     },
+    ...variation.routes,
   ],
   scrollBehavior(to /*, from, savedPosition*/) {
     if (to.hash) {
@@ -470,7 +445,7 @@ router.beforeEach((to, from, next) => {
 })
 
 const DEFAULT_TITLE =
-  "Évaluez vos droits aux aides avec le simulateur de 1jeune1solution"
+  "Évaluez vos droits aux aides avec le simulateur de " + variation.name
 
 function getTitleMeta(route) {
   let meta

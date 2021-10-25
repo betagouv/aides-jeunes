@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Header1J1S from "@/components/Header1J1S"
+import Header1J1S from "./Header1J1S"
 import FooterJ1S from "./Footer1J1S"
 
 export default {

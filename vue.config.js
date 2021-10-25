@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
-const { animation, baseURL, matomo } = require("./backend/config")
+const { animation, baseURL, matomo, variation } = require("./backend/config")
 const configureAPI = require("./configure")
 const mock = require("./mock")
 const webpack = require("webpack")
@@ -14,6 +14,7 @@ forEach(() => {
 })
 process.env.VUE_APP_BENEFIT_COUNT = count
 process.env.VUE_APP_MATOMO_ID = matomo.id
+process.env.VUE_APP_VARIATION = variation
 process.env.VUE_APP_VALIDATION_DELAY = (animation && animation.delay) || 0
 process.env.VUE_APP_BASE_URL = baseURL
 process.env.VUE_APP_CONTEXT = process.env.CONTEXT

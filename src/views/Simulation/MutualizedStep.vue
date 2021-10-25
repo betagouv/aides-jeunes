@@ -12,17 +12,17 @@
         <div
           class="aj-selection-wrapper"
           v-for="(item, index) in items"
-          :key="item.value"
+          :key="`${item.value}`"
         >
           <input
-            :id="item.value"
+            :id="`${item.value}`"
             type="radio"
             :name="fieldName"
             :value="item.value"
             v-model="value"
             :autofocus="index === 0"
           />
-          <label :for="item.value">
+          <label :for="`${item.value}`">
             {{ item.label }}
           </label>
         </div>

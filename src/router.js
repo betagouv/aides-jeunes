@@ -428,7 +428,8 @@ router.beforeEach((to, from, next) => {
       ["resultats", "resultatsDetails", "resultatsLieuxGeneriques"].indexOf(
         to.name
       ) === -1 &&
-      !store.getters.passSanityCheck
+      !store.getters.passSanityCheck &&
+      to.query.debug === undefined
     ) {
       return store.dispatch("redirection", (route) => next(route))
     }

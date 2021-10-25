@@ -63,16 +63,13 @@ export default {
       this.restoreLatest()
     } else {
       const droitId = this.$route.params.droitId
-      const i = this.droits.findIndex(function (droit) {
+      const droit = this.droits.find(function (droit) {
         return droit.id === droitId
       })
 
-      this.$matomo &&
-        this.$matomo.trackEvent(
-          "General",
-          "showDetails",
-          `${this.droits[i].label} [${i + 1}/${this.droits.length}]`
-        )
+      droit &&
+        this.$matomo &&
+        this.$matomo.trackEvent("General", "showDetails", droit.label)
     }
   },
   computed: {

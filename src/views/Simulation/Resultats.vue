@@ -161,16 +161,8 @@ export default {
     this.stopSubscription = this.$store.subscribe(({ type }, { calculs }) => {
       switch (type) {
         case "setResults": {
-          let i = 1
-          const count = calculs.resultats.droitsEligibles.length
           calculs.resultats.droitsEligibles.forEach(function (d) {
-            vm.$matomo &&
-              vm.$matomo.trackEvent(
-                "General",
-                "show",
-                `${d.label} [${i}/${count}]`
-              )
-            i++
+            vm.$matomo && vm.$matomo.trackEvent("General", "show", d.label)
           })
           break
         }

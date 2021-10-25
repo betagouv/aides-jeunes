@@ -88,42 +88,6 @@ const STEPS = {
     },
   },
 
-  ass_precondition_remplie: {
-    question: (component) => {
-      const date_debut_chomage = component.entity.date_debut_chomage
-      return `${Individu.label(component.entity, "avoir")} travaillé
-      <abbr
-        title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés."
-        >au moins 5 ans</abbr
-      >
-      entre ${yearsAgo(10, date_debut_chomage)}
-      et ${yearsAgo(0, date_debut_chomage)} ?`
-    },
-  },
-
-  bourse_criteres_sociaux_base_ressources_parentale: {
-    question: (component) => {
-      return `Quel est le revenu brut global ${yearsAgo(
-        2,
-        component.$store.state.dates.today.id,
-        "YYYY"
-      )} figurant sur l’avis fiscal ${yearsAgo(
-        1,
-        component.$store.state.dates.today.id,
-        "YYYY"
-      )} de vos parents ?`
-    },
-    questionType: "number",
-    showMoreInfo: (component) => {
-      return component.$store.getters.situation.parents._situation === "separes"
-    },
-    unit: "€",
-  },
-
-  boursier: {
-    question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
-  },
-
   annee_etude: {
     question: "Dans quelle classe êtes-vous actuellement ?",
     questionType: "enum",
@@ -192,16 +156,40 @@ const STEPS = {
     },
   },
 
-  date_naissance: {
+  ass_precondition_remplie: {
     question: (component) => {
-      return component.entity._role === "demandeur"
-        ? `Quelle est votre date de naissance ?`
-        : `Quelle est la date de naissance ${Individu.label(
-            component.entity,
-            "préposition"
-          )}${Individu.label(component.entity, "nom")} ?`
+      const date_debut_chomage = component.entity.date_debut_chomage
+      return `${Individu.label(component.entity, "avoir")} travaillé
+      <abbr
+        title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés."
+        >au moins 5 ans</abbr
+      >
+      entre ${yearsAgo(10, date_debut_chomage)}
+      et ${yearsAgo(0, date_debut_chomage)} ?`
     },
-    questionType: "date",
+  },
+
+  bourse_criteres_sociaux_base_ressources_parentale: {
+    question: (component) => {
+      return `Quel est le revenu brut global ${yearsAgo(
+        2,
+        component.$store.state.dates.today.id,
+        "YYYY"
+      )} figurant sur l’avis fiscal ${yearsAgo(
+        1,
+        component.$store.state.dates.today.id,
+        "YYYY"
+      )} de vos parents ?`
+    },
+    questionType: "number",
+    showMoreInfo: (component) => {
+      return component.$store.getters.situation.parents._situation === "separes"
+    },
+    unit: "€",
+  },
+
+  boursier: {
+    question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
   },
 
   date_debut_chomage: {
@@ -210,6 +198,18 @@ const STEPS = {
         component.entity,
         "avoir"
       )} commencé à être au chômage ?`
+    },
+    questionType: "date",
+  },
+
+  date_naissance: {
+    question: (component) => {
+      return component.entity._role === "demandeur"
+        ? `Quelle est votre date de naissance ?`
+        : `Quelle est la date de naissance ${Individu.label(
+            component.entity,
+            "préposition"
+          )}${Individu.label(component.entity, "nom")} ?`
     },
     questionType: "date",
   },
@@ -364,6 +364,33 @@ const STEPS = {
     ],
   },
 
+  regime_securite_sociale: {
+    question: (component) => {
+      return component.entity.enfant_a_charge
+        ? "Quel est le régime de protection sociale de vos parents ?"
+        : "Quel est votre régime de protection sociale ?"
+    },
+    questionType: "enum",
+    items: [
+      {
+        value: "regime_general",
+        label: "Caisse d'allocations familiales (CAF)",
+      },
+      {
+        value: "regime_agricole",
+        label: "Mutualité sociale agricole (MSA)",
+      },
+      {
+        value: "autres_regimes",
+        label: "Autre",
+      },
+      {
+        value: "inconnu",
+        label: "Je ne sais pas",
+      },
+    ],
+  },
+
   rsa_jeune_condition_heures_travail_remplie: {
     question: (component) => {
       return `${Individu.label(component.entity, "avoir")} travaillé
@@ -385,6 +412,7 @@ const STEPS = {
     items: Scolarite.types,
     enSavoirPlus: true,
   },
+
   sortie_academie: {
     question: (component) => {
       return `${Individu.label(component.entity, "avoir")} prévu d'étudier
@@ -410,6 +438,7 @@ const STEPS = {
       l'an prochain ?`
     },
   },
+
   statuts_etablissement_scolaire: {
     question: "Dans quel type d'établissement étudiez-vous actuellement ?",
     questionType: "enum",
@@ -432,6 +461,7 @@ const STEPS = {
       },
     ],
   },
+
   taux_incapacite: {
     question: (component) => {
       const start =
@@ -547,33 +577,6 @@ const STEPS = {
         },
       ].filter((item) => item.isRelevant)
     },
-  },
-
-  regime_securite_sociale: {
-    question: (component) => {
-      return component.entity.enfant_a_charge
-        ? "Quel est le régime de protection sociale de vos parents ?"
-        : "Quel est votre régime de protection sociale ?"
-    },
-    questionType: "enum",
-    items: [
-      {
-        value: "regime_general",
-        label: "Caisse d'allocations familiales (CAF)",
-      },
-      {
-        value: "regime_agricole",
-        label: "Mutualité sociale agricole (MSA)",
-      },
-      {
-        value: "autres_regimes",
-        label: "Autre",
-      },
-      {
-        value: "inconnu",
-        label: "Je ne sais pas",
-      },
-    ],
   },
 }
 

@@ -1,7 +1,7 @@
 module.exports = {
   label: "carte transport scolaire liO",
   description:
-    "Dès la rentrée, les transports scolaires régionaux sont gratuits de la maternelle au lycée.",
+    "Dès la rentrée, les transports scolaires régionaux d'Occitanie sont gratuits pour les élèves de la maternelle au lycée.",
   entity: "individus",
   type: "bool",
   prefix: "La",

@@ -5,7 +5,7 @@
         <div class="aj-home-hero-content">
           <h1>
             <span class="hightlight"
-              >Évaluez vos droits à<br />plus de 20 aides
+              >Évaluez vos droits à<br />plus de 30 aides
             </span>
             <br />en moins de 5 minutes.
           </h1>

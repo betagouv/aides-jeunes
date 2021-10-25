@@ -55,14 +55,6 @@ const router = new Router({
             ),
           children: [
             {
-              name: "statut_marital",
-              path: "statut_marital",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/StatutMarital.vue"
-                ),
-            },
-            {
               name: "bourse_criteres_sociaux_echelon",
               path: "bourse_criteres_sociaux_echelon",
               component: () =>

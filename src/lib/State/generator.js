@@ -147,6 +147,13 @@ function generateSituation(answers, dates) {
               individu["enfant_a_charge"][dates.thisYear.id] = answer.value
               break
             }
+            case "statut_marital": {
+              const demandeur = getIndividu(situation, "demandeur")
+              // conjointe
+              individu["statut_marital"] = answer.value
+              demandeur["statut_marital"] = answer.value
+              break
+            }
             case "ressources": {
               answer.value.forEach((ressource) => {
                 Ressource.setDefaultValueForCurrentYear(

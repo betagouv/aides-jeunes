@@ -3,7 +3,6 @@ import {
   capitalize,
   displayCurrencyValue,
   displayDepcomValue,
-  displayEnumValue,
   displayYesNoValue,
 } from "@/lib/Utils"
 import Ressource from "@/lib/Ressource"
@@ -57,19 +56,6 @@ export const SIMPLE_STEPS = {
             : displayYesNoValue(
                 individu["enfant_a_charge"][this.$store.state.dates.thisYear.id]
               ),
-      },
-    ]
-  },
-
-  statut_marital(step) {
-    const individu = getIndividuByStep(step, this)
-    return [
-      {
-        label: "Quelle est votre relation avec votre conjoint ?",
-        value: displayEnumValue(
-          individu[step.variable],
-          Individu.situationsFamiliales
-        ),
       },
     ]
   },

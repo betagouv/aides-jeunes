@@ -121,6 +121,13 @@ The development server for emails can be easily start with:
 If you want to verify the email sending, the variable `SEND_IN_BLUE_PRIVATE_KEY="my_private_key""` should be configured in your `.env` file.
 You can create a free account(here)[https://app.sendinblue.com/account/register/profile] or request one on the mattermost channel.
 
+## Outil de contribution
+
+Dans le dossier contribuer se trouve un CMS Netlify permettant d'ajouter des aides sous format yaml.
+Pour faire tourner l'application en local, il suffit d'utiliser la commande `netlify dev` dans le dossier `/contribuer`.
+
+Pour accéder à l'outil, il sera nécessaire de se connecter. En local, l'URL suivante vous sera demandée afin de procéder à votre authentification : https://contribuer-aides-jeunes.netlify.app
+
 ## Linting and format
 
 We use ESLint as a linter and Prettier to format the codebase.
@@ -131,6 +138,15 @@ Eslint: https://eslint.org/
 Prettier: https://prettier.io/
 Eslint plugin Cypress: https://github.com/cypress-io/eslint-plugin-cypress
 Eslint plugin Vue : https://eslint.vuejs.org/user-guide/
+
+## Déboguer le simulateur
+
+Une option debug existe sur la plateforme aides-jeunes permettant de visualiser les aides disponibles :
+https://localhost:8080/simulation/resultats?debug
+
+L'option debug permet également de visualiser les étapes du simulateur pendant une simulation en ajoutant `?debug=parcours` comme ceci :
+https://localhost:8080/simulation/individu/demandeur/date_naissance?debug=parcours
+
 
 # Déploiement
 
@@ -160,6 +176,34 @@ ssh root@mes-aides.gouv.fr -i deploy
 
 Pour effectuer des modifications plus exotiques, il est nécessaire de se connecter en tant que `root`.
 
+# Statistiques
+
+## Matomo
+
+Les statistiques utilisateurs sont disponibles sur la plateforme Matomo : https://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=range&date=previous30#?idSite=165&period=year&date=2021-08-25&segment=&category=Dashboard_Dashboard&subcategory=1
+
+## Graphiques
+
+Les statistiques consolidées dans des graphes sont disponibles sur la plateforme mes-aides-analytics : https://betagouv.github.io/mes-aides-analytics/
+
+Vous trouverez le code code source de la plateforme sur le dépot github : https://github.com/betagouv/mes-aides-analytics
+
 # Vérifier les urls des aides
 
 `npm run test-benefits-urls`
+
+# Outils utiles
+
+## Outil de monitoring et tracking d'erreur
+
+Pour monitorer l'application aides-jeunes, nous utilisons Sentry : https://sentry.io/organizations/betagouv-f7/issues/?project=5709078
+
+## Tracer
+
+Tracer est un outil d'analyse d'une situation avec openfisca.
+Disponible ici : https://github.com/openfisca/tracer
+
+## Robo3t
+
+Outil pour visualiser la base de données en local et en production :
+https://robomongo.org/

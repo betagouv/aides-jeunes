@@ -123,12 +123,16 @@ You can create a free account(here)[https://app.sendinblue.com/account/register/
 
 ## Outil de contribution
 
-Dans le dossier contribuer se trouve un CMS Netlify permettant d'ajouter des aides sous format yaml.
-Pour faire tourner l'application en local, il suffit d'utiliser la commande `netlify dev` dans le dossier `/contribuer`.
+L'outil de contribution est une expérimentation permettant de modéliser des aides basées sur des critères simples, uniquement à partir d’un outil en ligne.
 
-Pour accéder à l'outil, il sera nécessaire de se connecter. En local, l'URL suivante vous sera demandée afin de procéder à votre authentification : https://contribuer-aides-jeunes.netlify.app
+Initialement prévu pour le contenu éditorial (les textes, les liens, etc.), NetlifyCMS nous permet de modéliser des critères d’éligibilité et d'ajouter des aides en format YAML.
+
+Pour faire tourner l'application en local, il suffit d'utiliser la commande `netlify dev` dans le dossier `/contribuer`. Plus d'informations sont disponibles sur la documentation : https://docs.netlify.com/cli/get-started/#netlify-dev
+
+Pour accéder à l'outil, il est nécessaire de se connecter. En local, l'URL suivante est nécessaire afin de procéder à votre authentification : https://contribuer-aides-jeunes.netlify.app
 
 ## Linting and format
+
 
 We use ESLint as a linter and Prettier to format the codebase.
 We also utilize some ESLint plugins, such as vue-eslint and eslint-plugin-cypress, to provide a support for tests and framework.
@@ -141,7 +145,7 @@ Eslint plugin Vue : https://eslint.vuejs.org/user-guide/
 
 ## Déboguer le simulateur
 
-Une option debug existe sur la plateforme aides-jeunes permettant de visualiser les aides disponibles :
+Il est possible de visualiser l'ensemble des aides disponibles dans le simulateur en ajoutant un paramètre optionnel dans l'URL des résultats de la simulation :
 https://localhost:8080/simulation/resultats?debug
 
 L'option debug permet également de visualiser les étapes du simulateur pendant une simulation en ajoutant `?debug=parcours` comme ceci :
@@ -200,7 +204,7 @@ Pour monitorer l'application aides-jeunes, nous utilisons Sentry : https://sentr
 
 ## Tracer
 
-Tracer est un outil d'analyse d'une situation avec openfisca.
+Tracer est un outil d'analyse des étapes de calculs Openfisca pour faciliter la résolution de bugs.
 Disponible ici : https://github.com/openfisca/tracer
 
 ## Robo3t

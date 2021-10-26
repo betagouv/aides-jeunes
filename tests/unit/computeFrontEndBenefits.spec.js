@@ -4,7 +4,7 @@ const {
   testEligibiliteGeographique,
   computeFrontEndBenefits,
 } = require("@/../backend/lib/mes-aides/computeFrontEndBenefits")
-import droitsDescription from "@/../app/js/constants/benefits/back"
+import droitsDescription from "@/../lib/data/js/benefits/back"
 
 describe("computeAides", function () {
   let commune

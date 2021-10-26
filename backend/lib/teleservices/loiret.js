@@ -1,14 +1,14 @@
-var sum = require("lodash/sum")
-var pickBy = require("lodash/pickBy")
-var includes = require("lodash/includes")
-var each = require("lodash/each")
-var values = require("lodash/values")
-var find = require("lodash/find")
+const sum = require("lodash/sum")
+const pickBy = require("lodash/pickBy")
+const includes = require("lodash/includes")
+const each = require("lodash/each")
+const values = require("lodash/values")
+const find = require("lodash/find")
 
-var moment = require("moment")
-var CurrencyFormatter = require("currencyformatter.js")
-var situationsFamiliales = require("../../../app/js/constants/situationsFamiliales.js")
-var getPeriods = require("../openfisca/mapping/common").getPeriods
+const moment = require("moment")
+const CurrencyFormatter = require("currencyformatter.js")
+const situationsFamiliales = require("../../../lib/helpers/SituationsFamiliales.js")
+const getPeriods = require("../openfisca/mapping/common").getPeriods
 
 function reduce(demandeur, dateDeValeur, field) {
   var resources = Array.isArray(field.resources)

@@ -1,7 +1,7 @@
 var moment = require("moment")
 var assign = require("lodash/assign")
 
-var { forEach } = require("../../../../app/js/constants/benefits/back")
+var { forEach } = require("../../../../lib/data/js/benefits/back")
 var { generator } = require("../../mes-aides/dates")
 
 exports.isIndividuValid = function (individu, situation) {

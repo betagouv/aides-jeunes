@@ -8,7 +8,7 @@ const isString = require("lodash/isString")
 const { formatDate } = require("../utils")
 const individuRessource = require("./ressources")
 const pastResourcesProxy = require("./pastResourcesProxy")
-const { estActif } = require("../../../../../lib/Activite")
+const { estActif } = require("../../../../../lib/helpers/Activite")
 
 const {
   computeDistanceCommunes,

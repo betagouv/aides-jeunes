@@ -1,5 +1,5 @@
 import { computeAides } from "@/../backend/lib/mes-aides"
-import droitsDescription from "@/../app/js/constants/benefits/back"
+import droitsDescription from "@/../lib/data/js/benefits/back"
 
 var compute = computeAides.bind(droitsDescription)
 

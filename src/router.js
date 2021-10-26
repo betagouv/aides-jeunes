@@ -259,7 +259,7 @@ const router = new Router({
           path: "resultat/inattendu/:id",
           component: () =>
             import(
-              /* webpackChunkName: "resultat-inattendu" */ "./views/Foyer/ResultatInattendu.vue"
+              /* webpackChunkName: "resultat-inattendu" */ "./views/Simulation/Foyer/ResultatInattendu.vue"
             ),
           meta: {
             title: "Resultats Attendus ",
@@ -270,7 +270,7 @@ const router = new Router({
           path: "ressources/fiscales",
           component: () =>
             import(
-              /* webpackChunkName: "ressources-fiscales" */ "./views/Foyer/Ressources/Fiscales.vue"
+              /* webpackChunkName: "ressources-fiscales" */ "./views/Simulation/Foyer/Ressources/Fiscales.vue"
             ),
           meta: {
             title: function () {
@@ -283,7 +283,7 @@ const router = new Router({
           path: "ressources/patrimoine",
           component: () =>
             import(
-              /* webpackChunkName: "ressources-patrimoine" */ "./views/Foyer/Ressources/Patrimoine.vue"
+              /* webpackChunkName: "ressources-patrimoine" */ "./views/Simulation/Foyer/Ressources/Patrimoine.vue"
             ),
           meta: {
             title: "Votre patrimoine",
@@ -316,7 +316,7 @@ const router = new Router({
           path: "recapitulatif",
           component: () =>
             import(
-              /* webpackChunkName: "recapitulatif" */ "./views/Foyer/Recapitulatif.vue"
+              /* webpackChunkName: "recapitulatif" */ "./views/Simulation/Foyer/Recapitulatif.vue"
             ),
           meta: {
             title: "Vos informations",

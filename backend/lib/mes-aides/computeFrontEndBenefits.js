@@ -69,7 +69,10 @@ function computeFrontEndBenefits(
       const eligibiliteStatuts =
         benefit.profils === undefined ||
         benefit.profils.some((profil) => {
-          return PROFILE_STATEGY[profil.type] && PROFILE_STATEGY[profil.type](situation)
+          return (
+            PROFILE_STATEGY[profil.type] &&
+            PROFILE_STATEGY[profil.type](situation)
+          )
         })
 
       const eligibiliteGeo = testEligibiliteGeographique(commune, benefit)

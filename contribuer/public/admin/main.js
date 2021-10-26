@@ -61,7 +61,7 @@ const DroitEstime = ({ droit }) => {
 }
 
 const CTA = ({ droit }) => {
-  if (!droit.teleservice && !droit.form && !droit.instructions && !droit.link)
+  if (!droit.teleservice && !droit.form)
     return <span></span>
 
   let callToActions = []

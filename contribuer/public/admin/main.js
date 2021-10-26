@@ -45,7 +45,8 @@ const DroitEstime = ({ droit }) => {
     case "float":
       const montant = droit.montant || 1
       const unit = droit.unit || "€"
-      const legend = droit.legend || LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite] || ""
+      const legend =
+        droit.legend || LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite] || ""
       droitEstime = (
         <span className="aj-droit-value">
           {montant + " " + unit + " " + legend}
@@ -79,11 +80,14 @@ const CTA = ({ droit }) => {
     },
   ]
 
-  return ctas.filter((cta) => cta.test).slice(0,2).map((cta, index) => (
-    <a href={cta.ctaLink} key={index} className="aj-droit-cta button cta">
-      {cta.ctaLabel}
-    </a>
-  ))
+  return ctas
+    .filter((cta) => cta.test)
+    .slice(0, 2)
+    .map((cta, index) => (
+      <a href={cta.ctaLink} key={index} className="aj-droit-cta button cta">
+        {cta.ctaLabel}
+      </a>
+    ))
 }
 
 const DroitPreviewTemplate = ({ entry }) => {

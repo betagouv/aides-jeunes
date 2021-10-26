@@ -45,11 +45,10 @@ const DroitEstime = ({ droit }) => {
     case "float":
       const montant = droit.montant || 1
       const unit = droit.unit || "€"
-      const legend = droit.legend || ""
-      const periodicite = PERIODICITE_LEGEND_ENUM[droit.periodicite] || ""
+      const legend = droit.legend || PERIODICITE_LEGEND_ENUM[droit.periodicite] || ""
       droitEstime = (
         <span className="aj-droit-value">
-          {montant + " " + unit + " " + legend + " " + periodicite}
+          {montant + " " + unit + " " + legend}
         </span>
       )
       break

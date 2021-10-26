@@ -4,72 +4,82 @@ const PERIODICITE_LEGEND_ENUM = {
   annuelle: "/ an"
 }
 
-export const DroitPreviewTemplate = createClass({
-  render: function() {
-    const entry = this.props.entry
+const Conditions = ({ conditions }) => {
+  if (!conditions || !conditions.length) return <div></div>
+  let conditionsList = conditions.map((condition, index) => {
+    return <li key={index}>{condition}</li>
+  })
+  return (
+    <div className="aj-content-conditions">
+      <p className="aj-content-conditions-title">Pour en bénéficier, vous devez également :</p>
+      <ul className="list-unstyled">
+        {conditionsList}
+      </ul>
+    </div>
+  )
+}
 
-    const name = entry.getIn(["data", "label"]) || ""
-    const description = entry.getIn(["data", "description"]) || undefined
-    const link = entry.getIn(["data", "link"]) || undefined
+const Description = ({ description }) => {
+  if (!description) return <p></p>
+  return <div className="aj-content-description">
+    <p className="aj-droit-description-text"> {description}</p>
+  </div>
+}
 
-    const montant = entry.getIn(["data", "montant"]) || 1
-    const typeMontant = entry.getIn(["data", "type"])
-    const unit = entry.getIn(["data", "unit"]) || "€"
-    const legend = entry.getIn(["data", "legend"]) || ""
-
-    const periodicite = PERIODICITE_LEGEND_ENUM[entry.getIn(["data", "periodicite"])] || ""
-
-    const conditions = entry.getIn(["data", "conditions"]) || []
-
-    const teleservice = entry.getIn(["data", "teleservice"]) || undefined
-
-    let components = {
-      conditions: (conditions) => {
-        if (!conditions) return
-        return h("div", { className: "aj-content-conditions" },
-          h("p", { className: "aj-content-conditions-title" }, "Pour en bénéficier, vous devez également :"),
-          h("ul", { className: "list-unstyled" }, conditions.map(condition => h("li", {}, condition)))
-        )
-      },
-      description: (description, link) => {
-        if (!description) return
-        return h("p", { className: "aj-droit-description-text" }, description)
-      },
-      droitEstime: (type, unit) => {
-        if (!type) return
-        let droitEstime
-        switch (type) {
-          case "bool":
-            droitEstime = h("span", { className: "aj-droit-eligible" }, "✅")
-            break
-          case "float":
-            droitEstime = h("span", { className: "aj-droit-value" },
-              montant + " " + unit + " " + legend + " " + periodicite
-            )
-            break
-        }
-        return droitEstime
-      },
-      teleservice: (link) => {
-        if (!link) return
-        return h("a", { href: link, className: "aj-droit-cta button cta" }, "Faire une demande en ligne")
-      }
-    }
-
-    return h("div", { className: "aj-main-container" },
-      h("div", { className: "aj-results-details" },
-        h("div", { className: "aj-droit-detail" },
-          h("div", { className: "aj-droit-identity" }, name),
-          h("div", { className: "aj-droit-montant" }, components.droitEstime(typeMontant, unit)),
-          h("div", { className: "aj-droit-content" },
-            h("div", { className: "aj-droit-content-description" },
-              h("div", { className: "aj-content-description" }, components.description(description, link)),
-              h("div", { className: "aj-droit-conditions" }, components.conditions(conditions)),
-              h("div", { className: "aj-droit-content-cta" }, components.teleservice(teleservice))
-            )
-          )
-        )
-      )
-    )
+const DroitEstime = (droit) => {
+  if (!droit.type) return <span></span>
+  let droitEstime
+  switch (droit.type) {
+    case "bool":
+      droitEstime = <span className="aj-droit-eligible">✅</span>
+      break
+    case "float":
+      let montant = droit.montant || 1
+      let unit = droit.unit || "€"
+      let legend = droit.legend || ""
+      let periodicite = PERIODICITE_LEGEND_ENUM[droit.periodicite] || ""
+      droitEstime = <span className="aj-droit-value">{montant + " " + unit + " " + legend + " " + periodicite}</span>
+      break
+    default:
+      droitEstime = <span></span>
+      break
   }
-})
+  return droitEstime
+}
+
+const Teleservice = ({ link }) => {
+  if (!link) return <span></span>
+  return <a href={link} className="aj-droit-cta button cta">Faire une demande en ligne</a>
+}
+
+const DroitPreviewTemplate = ({ entry }) => {
+  const droit = entry.get("data").toJS()
+
+  return (
+    <div className="aj-main-container">
+      <div className="aj-results-details">
+        <div className="aj-droit-detail">
+          <div className="aj-droit-identity">
+            {droit.label}
+          </div>
+          <div className="aj-droit-montant">
+            <DroitEstime droit={droit} />
+          </div>
+          <div className="aj-droit-content">
+            <div className="aj-droit-content-description">
+              <Description description={droit.description} />
+            </div>
+            <div className="aj-droit-conditions">
+              <Conditions conditions={droit.conditions} />
+            </div>
+            <div className="aj-droit-content-cta">
+              <Teleservice link={droit.link} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+CMS.registerPreviewTemplate("benefits", DroitPreviewTemplate)

@@ -9,10 +9,14 @@
   <body>
     <!-- Include the script that builds the page and powers Netlify CMS -->
     <script src="https://unpkg.com/netlify-cms@2.10.171/dist/netlify-cms.js"></script>
-    <script type="module">
-      import { DroitPreviewTemplate } from "./admin/main.js"
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./admin/main.js" type="text/babel"></script>
+
+    <script>
+      /*import { DroitPreviewTemplate } from "./admin/main.js"*/
       CMS.registerPreviewStyle("/css/style.css")
-      CMS.registerPreviewTemplate("benefits", DroitPreviewTemplate)
+      /*CMS.registerPreviewTemplate("benefits", DroitPreviewTemplate)*/
     </script>
   </body>
 </html>

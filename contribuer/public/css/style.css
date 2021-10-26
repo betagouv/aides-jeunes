@@ -84,6 +84,10 @@ body {
   border-radius: 10px;
 }
 
+.hide {
+  display: none;
+}
+
 .aj-content-conditions-title {
   font-size: 1rem;
   margin-top: 0;

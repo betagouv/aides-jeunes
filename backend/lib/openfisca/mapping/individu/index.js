@@ -70,7 +70,9 @@ const individuSchema = {
   boursier: {
     src: "boursier",
     fn: function (boursier, individu, situation) {
-      if (boursier !== undefined) return boursier
+      if (boursier !== undefined) {
+        return boursier
+      }
       return Boolean(individu.bourse_enseignement_sup)
     },
   },

@@ -25,11 +25,10 @@ const Description = ({ description, link }) => {
   ) : (
     <span></span>
   )
-  if (!description) return <p></p>
+  if (!description) return <p>{linkHTML}</p>
   return (
     <div className="aj-content-description">
       <p className="aj-droit-description-text">
-        {" "}
         {description} {linkHTML}
       </p>
     </div>

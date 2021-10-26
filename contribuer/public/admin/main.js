@@ -20,7 +20,7 @@ const Conditions = ({ conditions }) => {
 }
 
 const Description = ({ description, link }) => {
-  let linkHTML = link ? (
+  const linkHTML = link ? (
     <a href={link}>Plus d&apos;informations</a>
   ) : (
     <span></span>
@@ -43,10 +43,10 @@ const DroitEstime = ({ droit }) => {
       droitEstime = <span className="aj-droit-eligible">✅</span>
       break
     case "float":
-      let montant = droit.montant || 1
-      let unit = droit.unit || "€"
-      let legend = droit.legend || ""
-      let periodicite = PERIODICITE_LEGEND_ENUM[droit.periodicite] || ""
+      const montant = droit.montant || 1
+      const unit = droit.unit || "€"
+      const legend = droit.legend || ""
+      const periodicite = PERIODICITE_LEGEND_ENUM[droit.periodicite] || ""
       droitEstime = (
         <span className="aj-droit-value">
           {montant + " " + unit + " " + legend + " " + periodicite}

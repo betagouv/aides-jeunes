@@ -69,7 +69,7 @@ const individuSchema = {
   },
   boursier: {
     src: "boursier",
-    fn: function (boursier, individu, situation) {
+    fn: function (boursier, individu) {
       if (boursier !== undefined) {
         return boursier
       }

@@ -3,7 +3,6 @@ import {
   capitalize,
   displayCurrencyValue,
   displayDepcomValue,
-  displayYesNoValue,
 } from "@/lib/Utils"
 import Ressource from "@/lib/Ressource"
 import { ressourceCategories, ressourceTypes } from "@/constants/resources"
@@ -33,29 +32,6 @@ export const SIMPLE_STEPS = {
         value: answer
           ? displayDepcomValue(answer._codePostal, answer._nomCommune)
           : undefined,
-      },
-    ]
-  },
-
-  enfant_a_charge(step) {
-    const individu = getIndividuByStep(step, this)
-    return [
-      {
-        label: capitalize(
-          individu._role === "demandeur"
-            ? `Avez-vous fait votre propre déclaration d'impôts ?`
-            : `${Individu.label(
-                individu,
-                "nom"
-              )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu ?`
-        ),
-        value:
-          individu["enfant_a_charge"][this.$store.state.dates.thisYear.id] ===
-          undefined
-            ? undefined
-            : displayYesNoValue(
-                individu["enfant_a_charge"][this.$store.state.dates.thisYear.id]
-              ),
       },
     ]
   },

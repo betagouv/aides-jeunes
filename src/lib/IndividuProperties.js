@@ -1,5 +1,5 @@
 import Individu from "@/lib/Individu"
-import { isRelevant, yearsAgo } from "@/lib/Utils"
+import { capitalize, isRelevant, yearsAgo } from "@/lib/Utils"
 import Scolarite from "@/lib/Scolarite"
 
 const loadEntity = (component) => {
@@ -221,6 +221,30 @@ const STEPS = {
           ? "Êtes-vous"
           : "Votre conjointe est-elle"
       } enceinte ?`
+    },
+  },
+
+  enfant_a_charge: {
+    question: (component) => {
+      return component.entity._role === "demandeur"
+        ? "Avez-vous fait votre propre déclaration d'impôts ?"
+        : `${capitalize(
+            Individu.label(component.entity, "nom")
+          )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu ?`
+    },
+    questionType: "enum",
+    items: (component) => {
+      const isDemandeur = component.entity._role === "demandeur"
+      return [
+        {
+          value: !isDemandeur,
+          label: "Oui",
+        },
+        {
+          value: isDemandeur,
+          label: "Non",
+        },
+      ]
     },
   },
 

@@ -63,14 +63,6 @@ const router = new Router({
                 ),
             },
             {
-              name: "enfant_a_charge",
-              path: "enfant_a_charge",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Individu/EnfantACharge.vue"
-                ),
-            },
-            {
               name: "_firstName",
               path: "_firstName",
               component: () =>

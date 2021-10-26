@@ -1,4 +1,4 @@
-const PERIODICITE_LEGEND_ENUM = {
+const LEGENDE_PERIODICITE_AIDE_ENUM = {
   ponctuelle: "",
   mensuelle: "/ mois",
   annuelle: "/ an",
@@ -45,7 +45,7 @@ const DroitEstime = ({ droit }) => {
     case "float":
       const montant = droit.montant || 1
       const unit = droit.unit || "€"
-      const legend = droit.legend || PERIODICITE_LEGEND_ENUM[droit.periodicite] || ""
+      const legend = droit.legend || LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite] || ""
       droitEstime = (
         <span className="aj-droit-value">
           {montant + " " + unit + " " + legend}
@@ -61,22 +61,25 @@ const DroitEstime = ({ droit }) => {
 
 const CTA = ({ droit }) => {
   if (!droit.teleservice && !droit.form) return <span></span>
-
-  let callToActions = []
-  if (droit.teleservice) {
-    callToActions.push({
+  const ctas = [
+    {
+      test: Boolean(droit.teleservice),
       ctaLink: droit.teleservice,
       ctaLabel: "Faire une demande en ligne",
-    })
-  }
-  if (droit.form) {
-    callToActions.push({
+    },
+    {
+      test: Boolean(droit.form),
       ctaLink: droit.form,
       ctaLabel: "Accéder au formulaire papier",
-    })
-  }
+    },
+    {
+      test: Boolean(droit.instructions),
+      ctaLink: droit.instructions,
+      ctaLabel: "Lien vers des instructions à suivre",
+    },
+  ]
 
-  return callToActions.map((cta, index) => (
+  return ctas.filter((cta) => cta.test).slice(0,2).map((cta, index) => (
     <a href={cta.ctaLink} key={index} className="aj-droit-cta button cta">
       {cta.ctaLabel}
     </a>

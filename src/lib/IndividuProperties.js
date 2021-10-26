@@ -390,7 +390,9 @@ const STEPS = {
 
   regime_securite_sociale: {
     question: (component) => {
-      return component.entity.enfant_a_charge
+      return component.entity.enfant_a_charge[
+        component.$store.state.dates.thisYear.id
+      ]
         ? "Quel est le régime de protection sociale de vos parents ?"
         : "Quel est votre régime de protection sociale ?"
     },

@@ -127,9 +127,9 @@ L'outil de contribution est une expérimentation permettant de modéliser des ai
 
 Initialement prévu pour le contenu éditorial (les textes, les liens, etc.), NetlifyCMS nous permet de modéliser des critères d’éligibilité et d'ajouter des aides en format YAML.
 
-Pour faire tourner l'application en local, il suffit d'utiliser la commande `netlify dev` dans le dossier `/contribuer`. Plus d'informations sont disponibles sur la documentation : https://docs.netlify.com/cli/get-started/#netlify-dev
+Pour faire tourner l'application en local, il suffit d'utiliser la commande `netlify dev` dans le dossier `/contribuer`. Plus d'informations sont disponibles sur la documentation : https://docs.netlify.com/cli/get-started/#netlify-dev.
 
-Pour accéder à l'outil, il est nécessaire de se connecter. En local, l'URL suivante est nécessaire afin de procéder à votre authentification : https://contribuer-aides-jeunes.netlify.app
+Pour accéder à l'outil, il est nécessaire de se connecter. En local, l'URL suivante est nécessaire afin de procéder à votre authentification : https://contribuer-aides-jeunes.netlify.app.
 
 ## Linting and format
 
@@ -145,10 +145,10 @@ Eslint plugin Vue : https://eslint.vuejs.org/user-guide/
 ## Déboguer le simulateur
 
 Il est possible de visualiser l'ensemble des aides disponibles dans le simulateur en ajoutant un paramètre optionnel dans l'URL des résultats de la simulation :
-https://localhost:8080/simulation/resultats?debug
+https://localhost:8080/simulation/resultats?debug.
 
 L'option debug permet également de visualiser les étapes du simulateur pendant une simulation en ajoutant `?debug=parcours` comme ceci :
-https://localhost:8080/simulation/individu/demandeur/date_naissance?debug=parcours
+https://localhost:8080/simulation/individu/demandeur/date_naissance?debug=parcours.
 
 # Déploiement
 
@@ -182,13 +182,13 @@ Pour effectuer des modifications plus exotiques, il est nécessaire de se connec
 
 ## Matomo
 
-Les statistiques utilisateurs sont disponibles sur la plateforme Matomo : https://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=range&date=previous30#?idSite=165&period=year&date=2021-08-25&segment=&category=Dashboard_Dashboard&subcategory=1
+Les statistiques utilisateurs sont disponibles sur la plateforme Matomo : https://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=range&date=previous30#?idSite=165&period=year&date=2021-08-25&segment=&category=Dashboard_Dashboard&subcategory=1.
 
-## Graphiques
+## Statistiques d'impact et d'aide à l'amélioration du produit Aides Jeunes
 
-Les statistiques consolidées dans des graphes sont disponibles sur la plateforme mes-aides-analytics : https://betagouv.github.io/mes-aides-analytics/
+Les statistiques consolidées dans des graphes sont disponibles sur la plateforme mes-aides-analytics : https://betagouv.github.io/mes-aides-analytics/.
 
-Vous trouverez le code code source de la plateforme sur le dépot github : https://github.com/betagouv/mes-aides-analytics
+Vous trouverez le code code source de la plateforme sur le dépôt Github : https://github.com/betagouv/mes-aides-analytics.
 
 # Vérifier les urls des aides
 
@@ -198,12 +198,15 @@ Vous trouverez le code code source de la plateforme sur le dépot github : https
 
 ## Outil de monitoring et tracking d'erreur
 
-Pour monitorer l'application aides-jeunes, nous utilisons Sentry : https://sentry.io/organizations/betagouv-f7/issues/?project=5709078
+Pour monitorer l'application aides-jeunes, nous utilisons Sentry :
+
+- lien pour le backend : https://sentry.io/organizations/betagouv-f7/projects/aides-jeunes-node/?project=5709109 ;
+- lien pour le frontend : https://sentry.io/organizations/betagouv-f7/projects/aides-jeunes-front/?project=5709078.
 
 ## Tracer
 
 Tracer est un outil d'analyse des étapes de calculs Openfisca pour faciliter la résolution de bugs.
-Disponible ici : https://github.com/openfisca/tracer
+Disponible ici : https://github.com/openfisca/tracer.
 
 ## Robo3t
 

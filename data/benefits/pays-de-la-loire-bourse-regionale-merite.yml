@@ -15,5 +15,5 @@ floorAt: 10
 computesLocally: true
 regions:
   - "52"
-statuts:
-  - etudiant
+profils:
+  - type: etudiant

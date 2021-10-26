@@ -19,5 +19,5 @@ prefix: "l'aide"
 computesLocally: true
 regions:
   - "27"
-statuts:
-  - apprenti
+profils:
+  - type: apprenti

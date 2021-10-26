@@ -16,5 +16,5 @@ computesLocally: true
 regions:
   - "44"
 age_max: 29
-statuts:
-  - etudiant
+profils:
+  - type: etudiant

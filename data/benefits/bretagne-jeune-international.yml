@@ -14,5 +14,5 @@ interestFlag: _interetEtudesEtranger
 computesLocally: true
 regions:
   - "53"
-statuts:
-  - etudiant
+profils:
+  - type: etudiant

@@ -13,7 +13,7 @@ interestFlag: _interetEtudesEtranger
 computesLocally: true
 regions:
   - "28"
-statuts:
-  - etudiant
-  - apprenti
-  - professionnalisation
+profils:
+  - type: etudiant
+  - type: apprenti
+  - type: professionnalisation

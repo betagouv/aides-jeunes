@@ -133,7 +133,6 @@ Pour accéder à l'outil, il est nécessaire de se connecter. En local, l'URL su
 
 ## Linting and format
 
-
 We use ESLint as a linter and Prettier to format the codebase.
 We also utilize some ESLint plugins, such as vue-eslint and eslint-plugin-cypress, to provide a support for tests and framework.
 
@@ -150,7 +149,6 @@ https://localhost:8080/simulation/resultats?debug
 
 L'option debug permet également de visualiser les étapes du simulateur pendant une simulation en ajoutant `?debug=parcours` comme ceci :
 https://localhost:8080/simulation/individu/demandeur/date_naissance?debug=parcours
-
 
 # Déploiement
 

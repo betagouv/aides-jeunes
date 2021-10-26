@@ -462,6 +462,12 @@ const STEPS = {
     ],
   },
 
+  statut_marital: {
+    question: "Quelle est votre relation avec votre conjoint·e ?",
+    questionType: "enum",
+    items: Individu.situationsFamiliales,
+  },
+
   taux_incapacite: {
     question: (component) => {
       const start =

@@ -70,9 +70,9 @@ const individuSchema = {
   boursier: {
     src: "boursier",
     fn: function (boursier, individu, situation) {
-      if(boursier !== undefined) return boursier
+      if (boursier !== undefined) return boursier
       return Boolean(individu.bourse_enseignement_sup)
-    }
+    },
   },
   contrat_de_travail_debut: {
     src: "_nombreMoisDebutContratDeTravail",
@@ -136,7 +136,6 @@ const individuSchema = {
         : "regime_general"
     },
   },
-
 }
 
 function isNotValidValue(value) {

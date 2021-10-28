@@ -1,6 +1,6 @@
 var concat = require("lodash/concat")
 
-var ressources = require("../../src/constants/resources")
+var ressources = require("../../lib/constants/resources")
 
 var famille = {
   bourse_lycee: Boolean,

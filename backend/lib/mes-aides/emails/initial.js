@@ -90,16 +90,16 @@ function renderAsHtml(followup, benefits, parameters) {
     })
 }
 
-async function render(followup) {
-  var populated = followup.populated("situation")
-    ? await followup
-    : followup.populate("situation").execPopulate()
+function render(followup) {
+  var p = followup.populated("answers")
+    ? Promise.resolve(followup)
+    : followup.populate("answers").execPopulate()
 
   const parameters = await openfiscaController.getParameters(
     populated.situation.dateDeValeur
   )
 
-  const situationResults = await populated.situation.compute()
+  const situationResults = await populated.answers.compute()
   const droitsEligibles = situationResults.droitsEligibles
   followup.benefits = droitsEligibles.map((benefit) => ({
     id: benefit.id,

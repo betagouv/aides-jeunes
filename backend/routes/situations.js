@@ -7,7 +7,7 @@ var situations = require("../controllers/situations")
 var teleservices = require("../controllers/teleservices")
 
 module.exports = function (api) {
-  api.route("/situations").post(cookieParser(), situations.createWithAnswers)
+  api.route("/situations").post(cookieParser(), situations.create)
 
   var route = new express.Router({ mergeParams: true })
   route.use(cookieParser())

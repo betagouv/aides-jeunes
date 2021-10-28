@@ -1,6 +1,6 @@
 const Individu = require("@/lib/Individu")
 const { ACTIVITES_ACTIF } = require("../../../lib/Activite")
-const Ressource = require("@/lib/Ressource").default
+const Ressource = require("../../../lib/ressource")
 const { datesGenerator } = require("../../../backend/lib/mes-aides")
 const { Step, ComplexStep } = require("./steps")
 

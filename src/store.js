@@ -8,9 +8,11 @@ import moment from "moment"
 import values from "lodash/values"
 import some from "lodash/some"
 
+import { generateSituation } from "../lib/situations"
+
 import { computeAides, datesGenerator } from "../backend/lib/mes-aides"
-import { categoriesRnc, patrimoineTypes } from "./constants/resources"
-import { generateAllSteps, generateSituation } from "./lib/State/generator"
+import { categoriesRnc, patrimoineTypes } from "../lib/constants/resources"
+import { generateAllSteps } from "./lib/State/generator"
 import Institution from "./lib/Institution"
 import ABTestingService from "./plugins/ABTestingService"
 import EtablissementModule from "./modules/Etablissement"
@@ -232,7 +234,7 @@ const store = new Vuex.Store({
       return answer ? answer.value : undefined
     },
     situation: (state) => {
-      return generateSituation(state.answers, state.dates)
+      return generateSituation(state.answers)
     },
   },
   mutations: {
@@ -302,7 +304,7 @@ const store = new Vuex.Store({
       const currentLastIndex = state.answers.current.findIndex(
         (answer) =>
           answer.entityName === "individu" &&
-          answer.id === "demandeur" &&
+          answer.id === "nombre_enfants" &&
           answer.fieldName === "nombre_enfants"
       )
 
@@ -323,7 +325,7 @@ const store = new Vuex.Store({
       const currentLastIndex = state.answers.current.findIndex(
         (answer) =>
           answer.entityName === "individu" &&
-          answer.id === "demandeur" &&
+          answer.id === "nombre_enfants" &&
           answer.fieldName === "nombre_enfants"
       )
 
@@ -458,14 +460,14 @@ const store = new Vuex.Store({
       commit("setDirty")
     },
     save: function (store) {
-      let situation = { ...store.getters.situation }
+      let answers = { ...store.state.answers }
       if (store.situationId) {
-        situation.modifiedFrom = store.state.situationId
+        answers.modifiedFrom = store.state.situationId
       }
 
-      situation.abtesting = ABTestingService.getEnvironment()
+      answers.abtesting = ABTestingService.getEnvironment()
       return axios
-        .post("/api/situations", { answers: store.state.answers, situation })
+        .post("/api/situations", store.state.answers)
         .then((result) => result.data)
         .then((payload) => payload._id)
         .then((id) => store.commit("setId", id))

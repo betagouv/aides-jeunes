@@ -3,9 +3,9 @@ var filter = require("lodash/filter")
 var pick = require("lodash/pick")
 var assign = require("lodash/assign")
 
+var { generateSituation } = require("../../lib/situations")
 var openfisca = require("../lib/openfisca")
 var openfiscaTest = require("../lib/openfisca/test")
-var Situation = require("mongoose").model("Situation")
 var Answer = require("mongoose").model("Answer")
 
 exports.situation = function (req, res, next, situationId) {
@@ -14,30 +14,25 @@ exports.situation = function (req, res, next, situationId) {
     return next()
   }
 
-  Situation.findById(situationId, function (err, situation) {
+  Answer.findById(situationId, (err, answers) => {
     if (err) return next(err)
-    if (!situation) return res.sendStatus(404)
-
-    req.situation = situation
-    Answer.findById(situationId, (err, answers) => {
-      if (err) return next(err)
-      req.answers = answers
-      next()
-    })
+    req.answers = answers
+    req.situation = generateSituation(answers)
+    next()
   })
 }
 
 exports.attachAccessCookie = function (req, res) {
   const maxAge = 7 * 24 * 3600 * 1000
-  res.cookie(req.situation.cookieName, req.situation.token, {
+  res.cookie(req.answers.cookieName, req.answers.token, {
     maxAge,
     httpOnly: true,
   })
-  res.cookie("lastestSituation", req.situation._id.toString(), { maxAge })
+  res.cookie("lastestSituation", req.answers._id.toString(), { maxAge })
 }
 
 exports.validateAccess = function (req, res, next) {
-  if (req.situation.isAccessible(req.cookies)) return next()
+  if (req.answers.isAccessible(req.cookies)) return next()
   res.status(403).send({ error: "You do not have access to this situation." })
 }
 
@@ -50,7 +45,7 @@ function clearCookies(req, res) {
 
   var keys = Object.keys(req.cookies)
   var situationCookies = filter(keys, function (k) {
-    return k.startsWith(Situation.cookiePrefix)
+    return k.startsWith(Answer.cookiePrefix)
   })
   situationCookies.sort()
 
@@ -65,27 +60,22 @@ function clearCookies(req, res) {
   }
 }
 
-exports.createWithAnswers = function (req, res, next) {
-  if (req.body.situation._id)
+exports.create = function (req, res, next) {
+  if (req.body._id)
     return res.status(403).send({
       error:
         "You can‘t provide _id when saving a situation. _id will be generated automatically.",
     })
 
-  return Situation.create(
-    omit(req.body.situation, "createdAt", "status", "token"),
-    function (err, persistedSituation) {
+  return Answer.create(
+    omit(req.body, "createdAt", "status", "token"),
+    (err, persistedAnswers) => {
       if (err) return next(err)
 
-      req.body.answers._id = persistedSituation._id
-      Answer.create(req.body.answers, (err) => {
-        if (err) return next(err)
-
-        clearCookies(req, res)
-        req.situation = persistedSituation
-        exports.attachAccessCookie(req, res)
-        res.send(persistedSituation)
-      })
+      clearCookies(req, res)
+      req.answers = persistedAnswers
+      exports.attachAccessCookie(req, res)
+      res.send(persistedAnswers)
     }
   )
 }

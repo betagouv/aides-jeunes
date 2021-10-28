@@ -42,8 +42,11 @@
 import Actions from "@/components/Actions"
 import orderBy from "lodash/orderBy"
 import groupBy from "lodash/groupBy"
-import { ressourceCategories, ressourceTypes } from "@/constants/resources"
-import Ressource from "@/lib/Ressource"
+import {
+  ressourceCategories,
+  ressourceTypes,
+} from "../../../lib/constants/resources"
+import Ressource from "../../../lib/ressource"
 
 export default {
   name: "RessourceTypes",

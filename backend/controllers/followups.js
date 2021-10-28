@@ -5,7 +5,7 @@ var situation = require("./situations")
 
 exports.followup = function (req, res, next, id) {
   Followup.findById(id)
-    .populate("situation")
+    .populate("answers")
     .exec(function (err, followup) {
       if (err) return next(err)
       if (!followup || !followup.situation._id) return res.redirect("/")
@@ -16,7 +16,7 @@ exports.followup = function (req, res, next, id) {
 
 exports.resultRedirect = function (req, res) {
   situation.attachAccessCookie(req, res)
-  res.redirect(req.situation.returnPath)
+  res.redirect(req.answers.returnPath)
 }
 
 exports.persist = function (req, res) {
@@ -25,7 +25,7 @@ exports.persist = function (req, res) {
   }
 
   Followup.create({
-    situation: req.situation,
+    answers: req.answers,
     email: req.body.email,
     surveyOptin: req.body.surveyOptin,
   })

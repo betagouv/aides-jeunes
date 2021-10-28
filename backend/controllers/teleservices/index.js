@@ -103,12 +103,12 @@ function fail(res, msg) {
 exports.metadataResponseGenerator = function (teleservice) {
   return function (req, res) {
     var payload = {
-      id: req.situation._id,
+      id: req.answers._id,
       scope: teleservice.name,
       exp: Math.floor(Date.now() / 1000) + 60 * 60, // Expires after one hour
     }
 
-    var token = jwt.sign(payload, req.situation.token)
+    var token = jwt.sign(payload, req.answers.token)
 
     return res.json({
       fields: createClass(teleservice, req.situation).toInternal(),
@@ -182,7 +182,7 @@ exports.attachPayloadSituation = function (req, res, next) {
  * It requires a situation
  */
 exports.verifyRequest = function (req, res, next) {
-  jwt.verify(req.token, req.situation.token, function (err) {
+  jwt.verify(req.token, req.answers.token, function (err) {
     if (err) {
       return fail(res, err)
     }

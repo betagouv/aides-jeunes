@@ -4,8 +4,11 @@ import {
   displayCurrencyValue,
   displayDepcomValue,
 } from "@/lib/Utils"
-import Ressource from "@/lib/Ressource"
-import { ressourceCategories, ressourceTypes } from "@/constants/resources"
+import Ressource from "../../lib/ressource"
+import {
+  ressourceCategories,
+  ressourceTypes,
+} from "../../lib/constants/resources"
 import Logement from "@/lib/Logement"
 
 export const getIndividuByStep = (step, component) => {
@@ -54,7 +57,7 @@ export const COMPLEX_STEPS = {
   enfants: {
     matcher(step) {
       const answer = this.$store.getters.getAnswer(
-        "demandeur",
+        "nombre_enfants",
         "individu",
         "nombre_enfants",
         true

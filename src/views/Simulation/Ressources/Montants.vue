@@ -63,8 +63,8 @@ import RessourceProfessionLiberale from "@/components/Ressource/ProfessionLibera
 import RessourceMontants from "@/components/Ressource/Montants"
 
 import RessourceProcessor from "@/mixins/RessourceProcessor"
-import { ressourceTypes } from "@/constants/resources"
-import Ressource from "@/lib/Ressource"
+import { ressourceTypes } from "../../../../lib/constants/resources"
+import Ressource from "../../../../lib/ressource"
 import Individu from "@/lib/Individu"
 
 export default {
@@ -137,7 +137,7 @@ export default {
               })
             }
           }
-          console.log(amounts)
+
           const months = Ressource.getPeriodsForCurrentYear(
             this.$store.state.dates,
             type

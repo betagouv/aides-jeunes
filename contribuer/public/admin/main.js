@@ -61,7 +61,9 @@ const DroitEstime = ({ droit }) => {
 }
 
 const CTA = ({ droit }) => {
-  if (!droit.teleservice && !droit.form) return <span></span>
+  if (!droit.teleservice && !droit.form && !droit.instructions) {
+    return <span></span>
+  }
   const ctas = [
     {
       test: Boolean(droit.teleservice),

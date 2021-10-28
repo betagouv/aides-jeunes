@@ -16,3 +16,4 @@ regions:
   - "84"
 profils:
   - type: etudiant
+  - type: apprenti

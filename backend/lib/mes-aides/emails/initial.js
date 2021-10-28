@@ -90,13 +90,13 @@ function renderAsHtml(followup, benefits, parameters) {
     })
 }
 
-function render(followup) {
-  var p = followup.populated("answers")
+async function render(followup) {
+  var populated = await (followup.populated("answers")
     ? Promise.resolve(followup)
-    : followup.populate("answers").execPopulate()
+    : followup.populate("answers").execPopulate())
 
   const parameters = await openfiscaController.getParameters(
-    populated.situation.dateDeValeur
+    populated.answers.dateDeValeur
   )
 
   const situationResults = await populated.answers.compute()
@@ -113,7 +113,7 @@ function render(followup) {
     renderAsHtml(followup, droitsEligibles, parameters),
   ]).then(function (values) {
     return {
-      subject: `[${followup.situation._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
+      subject: `[${followup.answers._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
       text: values[0],
       html: values[1].html,
       attachments: values[1].attachments,

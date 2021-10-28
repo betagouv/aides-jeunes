@@ -8,13 +8,14 @@ var openfisca = require("../lib/openfisca")
 var openfiscaTest = require("../lib/openfisca/test")
 var Answer = require("mongoose").model("Answer")
 
-exports.situation = function (req, res, next, situationId) {
-  if (situationId && situationId._id) {
-    req.situation = situationId
+exports.situation = function (req, res, next, answersId) {
+  if (answersId && answersId._id) {
+    req.answers = answersId
+    req.situation = generateSituation(answersId)
     return next()
   }
 
-  Answer.findById(situationId, (err, answers) => {
+  Answer.findById(answersId, (err, answers) => {
     if (err) return next(err)
     req.answers = answers
     req.situation = generateSituation(answers)

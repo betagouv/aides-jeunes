@@ -57,8 +57,8 @@ function generateJourney(situation, parameters) {
   }
 }
 
-  const fullSteps = generateJourney(situation, parameters)
 function generateAllSteps(situation, parameters) {
+  const fullSteps = generateJourney(situation, parameters)
   fullSteps.pop()
   let lastChapter
   return fullSteps.map((s) => {

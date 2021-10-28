@@ -460,7 +460,7 @@ const store = new Vuex.Store({
       commit("setDirty")
     },
     save: function (store) {
-      let answers = { ...store.state.answers }
+      let answers = { ...store.state.answers, _id: undefined }
       if (store.situationId) {
         answers.modifiedFrom = store.state.situationId
       }

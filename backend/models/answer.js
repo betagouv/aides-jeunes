@@ -40,6 +40,10 @@ AnswerSchema.statics.cookiePrefix = "situation_"
 AnswerSchema.virtual("cookieName").get(function () {
   return `${AnswerSchema.statics.cookiePrefix}${this._id}`
 })
+AnswerSchema.virtual("returnPath").get(function () {
+  return "/simulation/resultats?situationId=" + this._id
+})
+
 AnswerSchema.methods.isAccessible = function (keychain) {
   return (
     ["demo", "investigation", "test"].includes(this.status) ||

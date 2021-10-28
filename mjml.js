@@ -43,7 +43,7 @@ app.route("/").get(function (req, res) {
 
 app.route("/mjml/:id/:type").get(function (req, res) {
   Followup.findOne({ _id: req.params.id })
-    .populate("situation")
+    .populate("answers")
     .exec(function (err, followup) {
       console.log("followup", { _id: req.params.id }, followup)
 

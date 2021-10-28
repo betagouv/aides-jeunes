@@ -66,7 +66,7 @@ function computeFrontEndBenefits(
         (benefit.age_min === undefined || age >= benefit.age_min) &&
         (benefit.age_max === undefined || age <= benefit.age_max)
 
-      const eligibiliteStatuts =
+      const eligibiliteProfils =
         benefit.profils === undefined ||
         benefit.profils.some((profil) => {
           return (
@@ -79,7 +79,7 @@ function computeFrontEndBenefits(
 
       const montant = benefit.montant
 
-      const eligibilite = eligibiliteStatuts && elegibiliteAge && eligibiliteGeo
+      const eligibilite = eligibiliteProfils && elegibiliteAge && eligibiliteGeo
 
       const result =
         benefit.type === "float" ? (eligibilite ? montant : 0) : eligibilite

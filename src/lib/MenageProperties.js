@@ -18,7 +18,22 @@ const STEPS = {
   },
 
   _nombreMoisEntreeLogement: {
-    question: "Êtes-vous locataire depuis moins de 3 mois ?",
+    question: "Prévoyez-vous d'emménager prochainement ?",
+    questionType: "enum",
+    items: (component) => {
+      return [
+        { value: 12, label: "Oui", active: true },
+        {
+          value: -2,
+          label: "Non, j'ai emmenagé il y a moins de 3 mois",
+          active:
+            component.$store.getters.situation.menage.statut_occupation_logement.startsWith(
+              "locataire"
+            ),
+        },
+        { value: -12, label: "Non", active: true },
+      ].filter((item) => item.active)
+    },
   },
 }
 

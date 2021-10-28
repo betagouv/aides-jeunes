@@ -176,7 +176,7 @@ var menage = {
   depcom: String,
   logement_chambre: Boolean,
   loyer: Number,
-  _nombreMoisEntreeLogement: Boolean,
+  _nombreMoisEntreeLogement: Number,
   _nomCommune: String,
   participation_frais: Boolean,
   statut_occupation_logement: {

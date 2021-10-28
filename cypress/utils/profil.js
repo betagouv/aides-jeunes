@@ -1,6 +1,6 @@
 import { fillRadio, submit } from "./form"
 
-const fillPrenom = (prenom) => {
+const fill_first_name = (prenom) => {
   cy.get("label").invoke("text").should("contain", "prénom")
   if (prenom) {
     cy.get("#date_naissance").type(prenom)
@@ -8,86 +8,86 @@ const fillPrenom = (prenom) => {
   submit()
 }
 
-const fillBirthDate = (birthDate) => {
+const fill_date_naissance = (birthDate) => {
   cy.url().should("include", "date_naissance")
   cy.get("#date_naissance").type(birthDate)
   submit()
 }
 
-const fillNationality = (nationality) => {
+const fill_nationalite = (nationality) => {
   fillRadio("nationalite", nationality)
 }
 
-const fillActivity = (activity) => {
+const fill_activite = (activity) => {
   fillRadio("activite", activity)
 }
 
-const fillStudentLevelType = (level) => {
+const fill_scolarite = (level) => {
   fillRadio("scolarite", level)
 }
 
-const fillStudentLevel = (level) => {
+const fill_annee_etude = (level) => {
   fillRadio("annee_etude", level)
 }
 
-const fillSchoolType = (type) => {
+const fill_statuts_etablissement_scolaire = (type) => {
   fillRadio("statuts_etablissement_scolaire", type)
 }
 
-const fillAlternant = (alternant) => {
+const fill_alternant = (alternant) => {
   fillRadio("alternant", alternant)
 }
 
-const fillContractDate = (numberOfMonth) => {
+const fill_nombreMoisDebutContratDeTravail = (numberOfMonth) => {
   fillRadio("_nombreMoisDebutContratDeTravail", numberOfMonth)
 }
 
-const fillIncapacityRate = (rate) => {
+const fill_taux_incapacite = (rate) => {
   fillRadio("taux_incapacite", rate)
 }
 
-const fillAAH = (aah) => {
+const fill_aah_restriction_substantielle_durable_acces_emploi = (aah) => {
   fillRadio("aah_restriction_substantielle_durable_acces_emploi", aah)
 }
 
 const fillHandicap = (handicap) => {
   fillRadio("handicap", handicap ? "true" : "false")
   if (handicap) {
-    fillIncapacityRate(handicap.taux_incapacite)
+    fill_taux_incapacite(handicap.taux_incapacite)
     if (
       !handicap.taux_incapacite ||
       (0.5 < handicap.taux_incapacite && handicap.taux_incapacite <= 0.8)
     ) {
-      fillAAH(handicap.aah)
+      fill_aah_restriction_substantielle_durable_acces_emploi(handicap.aah)
     }
   }
 }
 
-const fillDeclarationParent = (isOnParentDeclaration) => {
+const fill_enfant_a_charge = (isOnParentDeclaration) => {
   fillRadio("enfant_a_charge", isOnParentDeclaration)
 }
 
-const fillKeepStudying = (keepStudying) => {
+const fill_continuite_etudes = (keepStudying) => {
   fillRadio("_continuite_etudes", keepStudying)
 }
 
-const fillSecuriteSociale = (regime) => {
+const fill_regime_securite_sociale = (regime) => {
   fillRadio("regime_securite_sociale", regime)
 }
 
-const fillPregnant = (pregnant) => {
+const fill_enceinte = (pregnant) => {
   fillRadio("enceinte", pregnant)
 }
 
-const fillSharedCustory = (sharedCustody) => {
+const fill_garde_alternee = (sharedCustody) => {
   fillRadio("garde_alternee", sharedCustody)
 }
 
-const fillMaritalStatus = (maritalStatus) => {
+const fill_statut_marital = (maritalStatus) => {
   fillRadio("statut_marital", maritalStatus)
 }
 
-const fillConjointActivity = (activity) => {
+const fill_conjoint_activite = (activity) => {
   cy.get("legend").invoke("text").should("contain", "est-il/elle")
   cy.get("label").invoke("text").should("contain", "Salarié")
   cy.get('input[type="radio"]').check(activity)
@@ -95,55 +95,55 @@ const fillConjointActivity = (activity) => {
 }
 
 const defaultIndivu = () => {
-  fillBirthDate("12121980")
-  fillNationality("FR")
-  fillActivity("salarie")
-  fillContractDate(2)
+  fill_date_naissance("12121980")
+  fill_nationalite("FR")
+  fill_activite("salarie")
+  fill_nombreMoisDebutContratDeTravail(2)
   fillHandicap(false)
-  fillPregnant(false)
+  fill_enceinte(false)
 }
 
 const handicaped = () => {
-  fillBirthDate("12121980")
-  fillNationality("FR")
-  fillActivity("salarie")
-  fillContractDate(2)
+  fill_date_naissance("12121980")
+  fill_nationalite("FR")
+  fill_activite("salarie")
+  fill_nombreMoisDebutContratDeTravail(2)
   fillHandicap({ taux_incapacite: 0.65, aah: true })
-  fillPregnant(false)
+  fill_enceinte(false)
 }
 
 const etudiantPublic = () => {
-  fillBirthDate("12122000")
-  fillNationality("FR")
-  fillActivity("etudiant")
-  fillStudentLevelType("enseignement_superieur")
-  fillStudentLevel("master_1")
-  fillSchoolType("public")
-  fillAlternant(false)
+  fill_date_naissance("12122000")
+  fill_nationalite("FR")
+  fill_activite("etudiant")
+  fill_scolarite("enseignement_superieur")
+  fill_annee_etude("master_1")
+  fill_statuts_etablissement_scolaire("public")
+  fill_alternant(false)
   fillHandicap(false)
-  fillDeclarationParent(false)
-  fillKeepStudying(true)
-  fillSecuriteSociale("regime_general")
-  fillPregnant(false)
+  fill_enfant_a_charge(false)
+  fill_continuite_etudes(true)
+  fill_regime_securite_sociale("regime_general")
+  fill_enceinte(false)
 }
 
 const defaultChildren = () => {
-  fillPrenom()
-  fillBirthDate("12122000")
-  fillNationality("FR")
-  fillSharedCustory(true)
+  fill_first_name()
+  fill_date_naissance("12122000")
+  fill_nationalite("FR")
+  fill_garde_alternee(true)
   fillHandicap(false)
-  fillStudentLevelType("college")
-  fillDeclarationParent(false)
+  fill_scolarite("college")
+  fill_enfant_a_charge(false)
 }
 
 const defaultConjoint = () => {
-  fillBirthDate("12121980")
-  fillNationality("FR")
-  fillMaritalStatus("marie")
-  fillConjointActivity("salarie")
+  fill_date_naissance("12121980")
+  fill_nationalite("FR")
+  fill_statut_marital("marie")
+  fill_conjoint_activite("salarie")
   fillHandicap(false)
-  fillPregnant(false)
+  fill_enceinte(false)
 }
 
 export default {

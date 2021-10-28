@@ -18,15 +18,15 @@ context("Full simulation", () => {
     profil.handicaped()
 
     foyer.children(0)
-    foyer.enCouple(false)
+    foyer.fill_en_couple(false)
 
-    logement.fillLogement("sansDomicile")
-    logement.fillCity("94120")
+    logement.fill_logement("sansDomicile")
+    logement.fill_depcom("94120")
 
-    revenu.fillRevenuType(["salaire_net"])
+    revenu.fill_ressources_types(["salaire_net"])
     revenu.fillConstantRevenu(1101.42)
 
-    projet.fillDriverLicense(false)
+    projet.fill_interetPermisDeConduire(false)
 
     results.wait()
     results.hasAAH(1)

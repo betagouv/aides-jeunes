@@ -1,40 +1,40 @@
 import { submit, fillRadio } from "./form"
 
-const fillLogement = (logement, type) => {
+const fill_logement = (logement, type) => {
   fillRadio("logement", logement, type)
   if (type) {
     fillRadio("logement", type)
   }
 }
 
-const fillParticipation = (participe) => {
+const fill_participation_frais = (participe) => {
   fillRadio("participation_frais", participe)
 }
 
-const fillLiveWithParents = (situation) => {
+const fill_habite_chez_parents = (situation) => {
   fillRadio("habite_chez_parents", situation)
 }
 
-const fillCity = (department) => {
+const fill_depcom = (department) => {
   cy.url().should("includes", "depcom")
   cy.get("#cp").type(department)
   cy.wait("@communes")
   submit()
 }
 
-const fillColoc = (coloc) => {
+const fill_coloc = (coloc) => {
   fillRadio("coloc", coloc)
 }
 
-const fillSingleRoom = (singleRoom) => {
+const fill_logement_chambre = (singleRoom) => {
   fillRadio("logement_chambre", singleRoom)
 }
 
-const fillFamilyLink = (familyLink) => {
+const fill_proprietaire_proche_famille = (familyLink) => {
   fillRadio("proprietaire_proche_famille", familyLink)
 }
 
-const fillLoyer = (loyer, charges) => {
+const fill_loyer = (loyer, charges) => {
   cy.url().should("includes", "loyer")
   cy.get("#loyer").type(loyer)
   if (charges) {
@@ -43,18 +43,18 @@ const fillLoyer = (loyer, charges) => {
   submit()
 }
 
-const fillParentInFrance = (inFrance) => {
+const fill_en_france = (inFrance) => {
   fillRadio("_en_france", inFrance)
 }
 
 export default {
-  fillLogement,
-  fillCity,
-  fillColoc,
-  fillSingleRoom,
-  fillFamilyLink,
-  fillLoyer,
-  fillParentInFrance,
-  fillParticipation,
-  fillLiveWithParents,
+  fill_logement,
+  fill_depcom,
+  fill_coloc,
+  fill_logement_chambre,
+  fill_proprietaire_proche_famille,
+  fill_loyer,
+  fill_en_france,
+  fill_participation_frais,
+  fill_habite_chez_parents,
 }

@@ -19,24 +19,24 @@ context("Full simulation", () => {
     profil.defaultIndivu()
 
     foyer.children(2)
-    foyer.enCouple(true)
+    foyer.fill_en_couple(true)
     profil.defaultConjoint()
 
-    logement.fillLogement("sansDomicile")
-    logement.fillCity("94120")
+    logement.fill_logement("sansDomicile")
+    logement.fill_depcom("94120")
 
-    revenu.fillRevenuType(["salaire_net"])
+    revenu.fill_ressources_types(["salaire_net"])
     revenu.fillConstantRevenu(1101.42)
 
-    revenu.fillRevenuType([])
+    revenu.fill_ressources_types([])
     revenu.fillChildrenRessources([true, false])
-    revenu.fillRevenuType(["salaire_net"])
+    revenu.fill_ressources_types(["salaire_net"])
     revenu.fillInconstantRevenu([
       { index: 0, value: 400 },
       { index: 2, value: "{selectall}0" },
     ])
 
-    projet.fillDriverLicense(false)
+    projet.fill_interetPermisDeConduire(false)
 
     results.wait()
     results.hasCSS(2)

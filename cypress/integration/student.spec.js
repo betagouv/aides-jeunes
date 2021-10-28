@@ -18,24 +18,27 @@ context("Full simulation", () => {
     profil.etudiantPublic()
 
     foyer.children(0)
-    foyer.enCouple(false)
-    foyer.fillParentSituation("separes")
-    foyer.fillChildrenAtCharge(1)
-    foyer.fillChildrenInSuperieur(1)
+    foyer.fill_en_couple(false)
+    foyer.fill_situation("separes")
+    foyer.fill_bourse_criteres_sociaux_nombre_enfants_a_charge(1)
+    foyer.fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur(
+      1
+    )
 
-    logement.fillLogement("heberge")
-    logement.fillParticipation(false)
-    logement.fillLiveWithParents(true)
-    logement.fillCity("45200")
+    logement.fill_logement("heberge")
+    logement.fill_participation_frais(false)
+    logement.fill_habite_chez_parents(true)
+    logement.fill_depcom("45200")
 
-    revenu.fillRevenuType(["salaire_net"])
+    revenu.fill_ressources_types(["salaire_net"])
     revenu.fillConstantRevenu(17860.35)
     revenu.fillRevenuBrut(1)
 
-    projet.fillDriverLicense(false)
-    projet.fillStudyOutside(true)
-    projet.fillScolarship(false)
-    projet.fillStudyAbroad(true, 2)
+    projet.fill_interetPermisDeConduire(false)
+    projet.fill_sortie_region_academique(true)
+    projet.fill_boursier(false)
+    projet.fill_interetEtudesEtranger(true)
+    projet.fill_dureeMoisEtudesEtranger(2)
 
     results.wait()
 

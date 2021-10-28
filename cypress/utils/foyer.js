@@ -11,32 +11,35 @@ const children = (numberOfChildren) => {
   submit()
 }
 
-const enCouple = (enCouple) => {
+const fill_en_couple = (enCouple) => {
   fillRadio("en_couple", enCouple)
 }
 
-const fillParentSituation = (situation) => {
+const fill_situation = (situation) => {
   fillRadio("_situation", situation)
 }
 
-const fillChildrenAtCharge = (numberOfChildren) => {
+const fill_bourse_criteres_sociaux_nombre_enfants_a_charge = (
+  numberOfChildren
+) => {
   cy.get(".aj-question > span").invoke("text").should("contain", "la charge")
   cy.get('input[type="number"').type(numberOfChildren)
   submit()
 }
 
-const fillChildrenInSuperieur = (numberOfChildren) => {
-  cy.get(".aj-question > span")
-    .invoke("text")
-    .should("contain", "des études supérieures")
-  cy.get('input[type="number"').type(numberOfChildren)
-  submit()
-}
+const fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur =
+  (numberOfChildren) => {
+    cy.get(".aj-question > span")
+      .invoke("text")
+      .should("contain", "des études supérieures")
+    cy.get('input[type="number"').type(numberOfChildren)
+    submit()
+  }
 
 export default {
-  enCouple,
   children,
-  fillParentSituation,
-  fillChildrenAtCharge,
-  fillChildrenInSuperieur,
+  fill_en_couple,
+  fill_situation,
+  fill_bourse_criteres_sociaux_nombre_enfants_a_charge,
+  fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur,
 }

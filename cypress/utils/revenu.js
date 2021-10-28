@@ -1,6 +1,6 @@
 import { submit } from "./form"
 
-const fillRevenuType = (types = []) => {
+const fill_ressources_types = (types = []) => {
   cy.url().should("includes", "ressources/types")
   types.forEach((type) =>
     cy.get("form").find(`input[type="checkbox"][id="${type}"]`).check()
@@ -49,7 +49,7 @@ const fillChildrenRessources = (childrenRessource) => {
 }
 
 export default {
-  fillRevenuType,
+  fill_ressources_types,
   fillConstantRevenu,
   fillInconstantRevenu,
   fillRevenuBrut,

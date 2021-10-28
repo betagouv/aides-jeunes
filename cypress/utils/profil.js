@@ -38,7 +38,7 @@ const fill_alternant = (alternant) => {
   fillRadio("alternant", alternant)
 }
 
-const fill_nombreMoisDebutContratDeTravail = (numberOfMonth) => {
+const fill__nombreMoisDebutContratDeTravail = (numberOfMonth) => {
   fillRadio("_nombreMoisDebutContratDeTravail", numberOfMonth)
 }
 
@@ -67,7 +67,7 @@ const fill_enfant_a_charge = (isOnParentDeclaration) => {
   fillRadio("enfant_a_charge", isOnParentDeclaration)
 }
 
-const fill_continuite_etudes = (keepStudying) => {
+const fill__continuite_etudes = (keepStudying) => {
   fillRadio("_continuite_etudes", keepStudying)
 }
 
@@ -98,7 +98,7 @@ const defaultIndivu = () => {
   fill_date_naissance("12121980")
   fill_nationalite("FR")
   fill_activite("salarie")
-  fill_nombreMoisDebutContratDeTravail(2)
+  fill__nombreMoisDebutContratDeTravail(2)
   fillHandicap(false)
   fill_enceinte(false)
 }
@@ -107,12 +107,12 @@ const handicaped = () => {
   fill_date_naissance("12121980")
   fill_nationalite("FR")
   fill_activite("salarie")
-  fill_nombreMoisDebutContratDeTravail(2)
+  fill__nombreMoisDebutContratDeTravail(2)
   fillHandicap({ taux_incapacite: 0.65, aah: true })
   fill_enceinte(false)
 }
 
-const etudiantPublic = () => {
+const publicStudent = () => {
   fill_date_naissance("12122000")
   fill_nationalite("FR")
   fill_activite("etudiant")
@@ -122,7 +122,7 @@ const etudiantPublic = () => {
   fill_alternant(false)
   fillHandicap(false)
   fill_enfant_a_charge(false)
-  fill_continuite_etudes(true)
+  fill__continuite_etudes(true)
   fill_regime_securite_sociale("regime_general")
   fill_enceinte(false)
 }
@@ -149,7 +149,7 @@ const defaultConjoint = () => {
 export default {
   handicaped,
   defaultIndivu,
-  etudiantPublic,
+  publicStudent,
   defaultChildren,
   defaultConjoint,
 }

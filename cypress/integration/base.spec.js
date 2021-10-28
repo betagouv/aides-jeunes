@@ -26,7 +26,7 @@ context("Full simulation", () => {
     revenu.fill_ressources_types(["salaire_net"])
     revenu.fillConstantRevenu(1101.42)
 
-    projet.fill_interetPermisDeConduire(false)
+    projet.fill__interetPermisDeConduire(false)
 
     results.wait()
 
@@ -37,11 +37,11 @@ context("Full simulation", () => {
   it("accept a student situation", () => {
     navigate.goHome()
 
-    profil.etudiantPublic()
+    profil.publicStudent()
 
     foyer.children(0)
     foyer.fill_en_couple(false)
-    foyer.fill_situation("separes")
+    foyer.fill__situation("separes")
     foyer.fill_bourse_criteres_sociaux_nombre_enfants_a_charge(1)
     foyer.fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur(
       1
@@ -53,17 +53,17 @@ context("Full simulation", () => {
     logement.fill_proprietaire_proche_famille(false)
     logement.fill_loyer(600, 100)
     logement.fill_depcom("94120")
-    logement.fill_en_france(false)
+    logement.fill__en_france(false)
 
     revenu.fill_ressources_types(["salaire_net"])
     revenu.fillConstantRevenu(1101.42)
     revenu.fillRevenuBrut(0)
 
-    projet.fill_interetPermisDeConduire(false)
+    projet.fill__interetPermisDeConduire(false)
     projet.fill_sortie_region_academique(true)
     projet.fill_boursier(false)
-    projet.fill_interetEtudesEtranger(true)
-    projet.fill_dureeMoisEtudesEtranger(2)
+    projet.fill__interetEtudesEtranger(true)
+    projet.fill__dureeMoisEtudesEtranger(2)
 
     results.wait()
     results.hasHousingBenefit(3)

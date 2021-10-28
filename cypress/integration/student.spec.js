@@ -15,11 +15,11 @@ context("Full simulation", () => {
   it("accept a student situation", () => {
     navigate.goHome()
 
-    profil.etudiantPublic()
+    profil.publicStudent()
 
     foyer.children(0)
     foyer.fill_en_couple(false)
-    foyer.fill_situation("separes")
+    foyer.fill__situation("separes")
     foyer.fill_bourse_criteres_sociaux_nombre_enfants_a_charge(1)
     foyer.fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur(
       1
@@ -34,11 +34,11 @@ context("Full simulation", () => {
     revenu.fillConstantRevenu(17860.35)
     revenu.fillRevenuBrut(1)
 
-    projet.fill_interetPermisDeConduire(false)
+    projet.fill__interetPermisDeConduire(false)
     projet.fill_sortie_region_academique(true)
     projet.fill_boursier(false)
-    projet.fill_interetEtudesEtranger(true)
-    projet.fill_dureeMoisEtudesEtranger(2)
+    projet.fill__interetEtudesEtranger(true)
+    projet.fill__dureeMoisEtudesEtranger(2)
 
     results.wait()
 

@@ -36,7 +36,7 @@ context("Full simulation", () => {
       { index: 2, value: "{selectall}0" },
     ])
 
-    projet.fill_interetPermisDeConduire(false)
+    projet.fill__interetPermisDeConduire(false)
 
     results.wait()
     results.hasCSS(2)

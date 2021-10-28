@@ -1,6 +1,6 @@
 import { fillRadio, submit } from "./form"
 
-const fill_interetPermisDeConduire = (expect) => {
+const fill__interetPermisDeConduire = (expect) => {
   fillRadio("_interetPermisDeConduire", expect)
 }
 
@@ -12,20 +12,20 @@ const fill_boursier = (scolarship) => {
   fillRadio("boursier", scolarship)
 }
 
-const fill_interetEtudesEtranger = (abroad) => {
+const fill__interetEtudesEtranger = (abroad) => {
   fillRadio("_interetEtudesEtranger", abroad)
 }
 
-const fill_dureeMoisEtudesEtranger = (duration) => {
+const fill__dureeMoisEtudesEtranger = (duration) => {
   cy.url().should("includes", "_dureeMoisEtudesEtranger")
   cy.get("form").find('input[type="number"]').type(duration)
   submit()
 }
 
 export default {
-  fill_interetPermisDeConduire,
+  fill__interetPermisDeConduire,
   fill_sortie_region_academique,
   fill_boursier,
-  fill_interetEtudesEtranger,
-  fill_dureeMoisEtudesEtranger,
+  fill__interetEtudesEtranger,
+  fill__dureeMoisEtudesEtranger,
 }

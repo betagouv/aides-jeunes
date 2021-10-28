@@ -43,7 +43,7 @@ const fill_loyer = (loyer, charges) => {
   submit()
 }
 
-const fill_en_france = (inFrance) => {
+const fill__en_france = (inFrance) => {
   fillRadio("_en_france", inFrance)
 }
 
@@ -54,7 +54,7 @@ export default {
   fill_logement_chambre,
   fill_proprietaire_proche_famille,
   fill_loyer,
-  fill_en_france,
+  fill__en_france,
   fill_participation_frais,
   fill_habite_chez_parents,
 }

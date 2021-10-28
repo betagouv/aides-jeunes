@@ -15,7 +15,7 @@ const fill_en_couple = (enCouple) => {
   fillRadio("en_couple", enCouple)
 }
 
-const fill_situation = (situation) => {
+const fill__situation = (situation) => {
   fillRadio("_situation", situation)
 }
 
@@ -39,7 +39,7 @@ const fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_sup
 export default {
   children,
   fill_en_couple,
-  fill_situation,
+  fill__situation,
   fill_bourse_criteres_sociaux_nombre_enfants_a_charge,
   fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur,
 }

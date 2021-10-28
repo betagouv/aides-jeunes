@@ -59,6 +59,7 @@ function defaultStore() {
     inIframe: false,
     iframeOrigin: null,
     saveSituationError: null,
+    openFiscaParameters: {},
   }
 }
 

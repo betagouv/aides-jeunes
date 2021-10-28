@@ -10,7 +10,7 @@ const Conditions = ({ conditions }) => {
   }
 
   let conditionsList = conditions.map((condition, index) => {
-    return <li key={index}>{condition}</li>
+    return <li key={index} dangerouslySetInnerHTML={{ __html: condition }}></li>
   })
   return (
     <div className="aj-content-conditions">
@@ -36,7 +36,13 @@ const Description = ({ description, link }) => {
   return (
     <div className="aj-content-description">
       <p className="aj-droit-description-text">
-        {description} {linkHTML}
+        <span
+          dangerouslySetInnerHTML={{
+            __html: description,
+          }}
+        ></span>
+        &nbsp;
+        {linkHTML}
       </p>
     </div>
   )

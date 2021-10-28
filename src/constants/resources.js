@@ -1,6 +1,6 @@
 "use strict"
 const Individu = require("../lib/Individu")
-const datesGenerator = require("../../backend/lib/mes-aides/dates").generator
+const datesGenerator = require("../../lib/helpers/Dates").generator
 
 let ressourceCategories = [
   {

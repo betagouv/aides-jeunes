@@ -5,7 +5,10 @@ const LEGENDE_PERIODICITE_AIDE_ENUM = {
 }
 
 const Conditions = ({ conditions }) => {
-  if (!conditions || !conditions.length) return <div></div>
+  if (!conditions || !conditions.length) {
+    return <div></div>
+  }
+
   let conditionsList = conditions.map((condition, index) => {
     return <li key={index}>{condition}</li>
   })
@@ -25,7 +28,11 @@ const Description = ({ description, link }) => {
   ) : (
     <span></span>
   )
-  if (!description) return <p>{linkHTML}</p>
+
+  if (!description) {
+    return <p>{linkHTML}</p>
+  }
+
   return (
     <div className="aj-content-description">
       <p className="aj-droit-description-text">
@@ -36,7 +43,10 @@ const Description = ({ description, link }) => {
 }
 
 const DroitEstime = ({ droit }) => {
-  if (!droit.type) return <span></span>
+  if (!droit.type) {
+    return <span></span>
+  }
+
   let droitEstime
   switch (droit.type) {
     case "bool":
@@ -64,6 +74,7 @@ const CTA = ({ droit }) => {
   if (!droit.teleservice && !droit.form && !droit.instructions) {
     return <span></span>
   }
+
   const ctas = [
     {
       test: Boolean(droit.teleservice),

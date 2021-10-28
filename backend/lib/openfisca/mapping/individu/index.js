@@ -73,7 +73,8 @@ const individuSchema = {
       if (boursier !== undefined) {
         return boursier
       }
-      return Boolean(individu.bourse_enseignement_sup)
+
+      return Boolean(individu.bourse_enseignement_sup) || undefined
     },
   },
   contrat_de_travail_debut: {

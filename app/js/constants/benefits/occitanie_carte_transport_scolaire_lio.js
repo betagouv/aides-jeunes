@@ -5,7 +5,7 @@ module.exports = {
   entity: "individus",
   type: "bool",
   prefix: "La",
-  link: "https://lio.laregion.fr/-transport-scolaire-",
+  link: "https://lio.laregion.fr/transport-scolaire",
   customization: {
     D09: {
       link: "https://lio.laregion.fr/transports-ariege-scolaire",
@@ -36,29 +36,29 @@ module.exports = {
       teleservice:
         "https://www.herault-transport.fr/lignes-scolaires/inscriptions",
     },
-  },
-  D46: {
-    link: "https://lio.laregion.fr/transports-lot-scolaire",
-    teleservice: "https://mes-transports.laregion.fr/ut46/usager/",
-  },
-  D48: {
-    link: "https://lio.laregion.fr/transports-lozere-scolaire",
-    teleservice: "https://mes-transports.laregion.fr/ut48/usager/",
-  },
-  D65: {
-    link: "https://lio.laregion.fr/transport-hautespyrenees-scolaire",
-    teleservice: "https://mes-transports.laregion.fr/ut65/usager/",
-  },
-  D66: {
-    link: "https://lio.laregion.fr/transports-pyrenees-orientales-scolaire",
-    teleservice: "https://mes-transports.laregion.fr/ut66/usager/",
-  },
-  D81: {
-    link: "https://lio.laregion.fr/Transports-scolaires-dans-le-Tarn-Annee-scolaire-2020-2021-36821",
-    teleservice: "https://www.federteep.org/inscription",
-  },
-  D82: {
-    link: "https://lio.laregion.fr/transports-tarnetgaronne-scolaire",
-    teleservice: "https://mes-transports.laregion.fr/ut82/usager/",
+    D46: {
+      link: "https://lio.laregion.fr/transports-lot-scolaire",
+      teleservice: "https://mes-transports.laregion.fr/ut46/usager/",
+    },
+    D48: {
+      link: "https://lio.laregion.fr/transports-lozere-scolaire",
+      teleservice: "https://mes-transports.laregion.fr/ut48/usager/",
+    },
+    D65: {
+      link: "https://lio.laregion.fr/transport-hautespyrenees-scolaire",
+      teleservice: "https://mes-transports.laregion.fr/ut65/usager/",
+    },
+    D66: {
+      link: "https://lio.laregion.fr/transports-pyrenees-orientales-scolaire",
+      teleservice: "https://mes-transports.laregion.fr/ut66/usager/",
+    },
+    D81: {
+      link: "https://lio.laregion.fr/Transports-scolaires-dans-le-Tarn-Annee-scolaire-2020-2021-36821",
+      teleservice: "https://www.federteep.org/inscription",
+    },
+    D82: {
+      link: "https://lio.laregion.fr/transports-tarnetgaronne-scolaire",
+      teleservice: "https://mes-transports.laregion.fr/ut82/usager/",
+    },
   },
 }

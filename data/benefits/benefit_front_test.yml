@@ -16,11 +16,11 @@ departements:
   - "55"
 age_min: 16
 age_max: 25
-statuts:
-  - chomeur
-  - etudiant
-  - independant
-  - service_civique
+profils:
+  - type: chomeur
+  - type: etudiant
+  - type: independant
+  - type: service_civique
 computesLocally: true
 periodicite: mensuelle
 private: true

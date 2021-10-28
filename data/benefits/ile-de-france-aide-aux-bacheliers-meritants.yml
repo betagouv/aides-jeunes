@@ -17,5 +17,5 @@ montant: 1000
 periodicite: ponctuelle
 regions:
   - "11"
-statuts:
-  - etudiant
+profils:
+  - type: etudiant

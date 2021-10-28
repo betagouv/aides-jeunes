@@ -16,6 +16,6 @@ computesLocally: true
 regions:
   - "32"
   - "11"
-statuts:
-  - etudiant
-  - apprenti
+profils:
+  - type: etudiant
+  - type: apprenti

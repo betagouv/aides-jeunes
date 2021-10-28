@@ -63,9 +63,9 @@ import RessourceProfessionLiberale from "@/components/Ressource/ProfessionLibera
 import RessourceMontants from "@/components/Ressource/Montants"
 
 import RessourceProcessor from "@/mixins/RessourceProcessor"
-import { ressourceTypes } from "../../../../lib/helpers/Resources"
+import { ressourceTypes } from "@/../lib/helpers/Resources"
 import Ressource from "@/lib/Ressource"
-import Individu from "@/lib/Individu"
+import Individu from "@/../lib/helpers/Individu"
 
 export default {
   name: "ressources-montants",

@@ -29,7 +29,7 @@
 </template>
 <script>
 import Actions from "@/components/Actions"
-import Individu from "@/lib/Individu"
+import Individu from "@/../lib/helpers/Individu"
 import DepcomMixin from "@/mixins/DepcomMixin"
 
 export default {

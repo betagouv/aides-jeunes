@@ -202,7 +202,7 @@ import {
   fetchContributions,
   reduceContributions,
   getGithubPRFiles,
-} from "@/../backend/lib/mes-aides/contributions"
+} from "@/lib/Contributions"
 
 export default {
   name: "attendu",

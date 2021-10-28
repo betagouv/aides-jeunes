@@ -26,7 +26,7 @@ collections:
     create: true
     delete: false
     editor:
-      preview: false
+      preview: true
     slug: "{{label}}"
     extension: yml
     fields:

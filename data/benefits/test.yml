@@ -1,0 +1,18 @@
+label: test
+institution: departement_eure_et_loir
+description: aide test 2.0
+conditions:
+  - sadas
+link: test
+type: float
+unit: €
+legend: test
+floorAt: 10
+interestFlag: _interetPermisDeConduire
+computesLocally: true
+montant: 100
+periodicite: mensuelle
+regions:
+  - "84"
+profils:
+  - type: etudiant

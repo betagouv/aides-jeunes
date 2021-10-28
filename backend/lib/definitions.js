@@ -176,10 +176,7 @@ var menage = {
   depcom: String,
   logement_chambre: Boolean,
   loyer: Number,
-  _nombreMoisEntreeLogement: {
-    type: String,
-    enum: ["old", "recent", "future"],
-  },
+  _nombreMoisEntreeLogement: Number,
   _nomCommune: String,
   participation_frais: Boolean,
   statut_occupation_logement: {

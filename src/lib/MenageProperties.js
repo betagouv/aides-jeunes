@@ -22,16 +22,16 @@ const STEPS = {
     questionType: "enum",
     items: (component) => {
       return [
-        { value: "future", label: "Oui", active: true },
+        { value: 12, label: "Oui", active: true },
         {
-          value: "recent",
-          label: "Non, je l'ai fait il y a moins de 2 mois",
+          value: -2,
+          label: "Non, j'ai emmenagé il y a moins de 3 mois",
           active:
             component.$store.getters.situation.menage.statut_occupation_logement.startsWith(
               "locataire"
             ),
         },
-        { value: "old", label: "Non", active: true },
+        { value: -12, label: "Non", active: true },
       ].filter((item) => item.active)
     },
   },

@@ -1,4 +1,4 @@
-import { categoriesRnc, ressourceTypes } from "@/constants/resources"
+import { categoriesRnc, ressourceTypes } from "../../lib/helpers/Resources"
 import filter from "lodash/filter"
 import keys from "lodash/keys"
 import keyBy from "lodash/keyBy"

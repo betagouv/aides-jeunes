@@ -5,7 +5,10 @@ import {
   displayDepcomValue,
 } from "@/lib/Utils"
 import Ressource from "@/lib/Ressource"
-import { ressourceCategories, ressourceTypes } from "@/constants/resources"
+import {
+  ressourceCategories,
+  ressourceTypes,
+} from "../../lib/helpers/Resources"
 import Logement from "@/lib/Logement"
 
 export const getIndividuByStep = (step, component) => {

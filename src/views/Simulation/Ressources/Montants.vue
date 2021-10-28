@@ -63,7 +63,7 @@ import RessourceProfessionLiberale from "@/components/Ressource/ProfessionLibera
 import RessourceMontants from "@/components/Ressource/Montants"
 
 import RessourceProcessor from "@/mixins/RessourceProcessor"
-import { ressourceTypes } from "@/constants/resources"
+import { ressourceTypes } from "../../../../lib/helpers/Resources"
 import Ressource from "@/lib/Ressource"
 import Individu from "@/lib/Individu"
 

@@ -9,7 +9,7 @@ import values from "lodash/values"
 import some from "lodash/some"
 
 import { computeAides, datesGenerator } from "../lib/helpers/ComputeBenefits"
-import { categoriesRnc, patrimoineTypes } from "./constants/resources"
+import { categoriesRnc, patrimoineTypes } from "../lib/helpers/Resources"
 import { generateAllSteps, generateSituation } from "./lib/State/generator"
 import Institution from "./lib/Institution"
 import ABTestingService from "./plugins/ABTestingService"

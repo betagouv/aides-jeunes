@@ -244,8 +244,20 @@ collections:
             name: etudiant
             widget: object
             fields:
-              - name: flag
-                widget: hidden
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: []
+                widget: list
+                collapsed: false
+                types:
+                  - label: Boursier
+                    name: boursier
+                    widget: object
+                    fields:
+                      - label: Valeur
+                        name: value
+                        widget: boolean
           - label: Apprenti
             name: apprenti
             widget: object

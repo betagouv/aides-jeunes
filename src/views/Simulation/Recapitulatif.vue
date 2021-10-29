@@ -1,11 +1,5 @@
 <template>
   <div class="recapitulatif">
-    <BackButton
-      @click.native="goBack()"
-      class="recapitulatif-back-button"
-      size="small"
-      >Retour</BackButton
-    >
     <div>
       <template v-for="(chapter, chapterIndex) in chapters">
         <div class="chapter-block" :key="chapter.name">

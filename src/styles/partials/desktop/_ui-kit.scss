@@ -142,14 +142,23 @@ html {
       }
 
       .aj-category-title-wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 0px 32px 8px 32px;
         h1 {
           font-size: 2.75rem;
-          margin: 0 0 8px 32px;
+          margin: 0;
         }
       }
 
       .aj-category-title-wrapper-mobile {
         display: none;
+      }
+
+      .aj-category-title-wrapper-desktop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .aj-help-popup {

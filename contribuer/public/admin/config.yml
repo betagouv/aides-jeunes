@@ -35,11 +35,11 @@ fields:
     name: mention_baccalaureat
     widget: object
     fields:
-    - label: Valeurs
-      name: values
-      widget: select
-      multiple: true
-      options: *values_mention_baccalaureat
+      - label: Valeurs
+        name: values
+        widget: select
+        multiple: true
+        options: *values_mention_baccalaureat
 
 collections:
   - name: benefits

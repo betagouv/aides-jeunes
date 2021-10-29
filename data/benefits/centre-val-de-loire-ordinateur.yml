@@ -1,6 +1,3 @@
-statuts:
-  - lyceen
-unit: "%"
 label: aide à l'acquisition d'un ordinateur portable
 institution: region_centre_val_de_loire
 description: L'aide à l’acquisition d'un ordinateur portable permet aux lycéens
@@ -13,11 +10,14 @@ instructions: https://www.centre-valdeloire.fr/le-guide-des-aides-de-la-region-c
 teleservice: ""
 prefix: l'
 type: float
-floorAt: 10
-computesLocally: true
+unit: "%"
 montant: 50
 periodicite: ponctuelle
 legend: du prix d'achat
+floorAt: 10
+computesLocally: true
 regions:
   - "24"
 age_max: 26
+profils:
+  - type: lyceen

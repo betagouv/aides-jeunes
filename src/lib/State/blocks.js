@@ -43,7 +43,9 @@ function individuBlockFactory(id) {
                 },
                 {
                   isActive: (subject) =>
-                    subject.scolarite == "enseignement_superieur",
+                    ["college", "lycee", "enseignement_superieur"].includes(
+                      subject.scolarite
+                    ),
                   steps: [r("statuts_etablissement_scolaire")],
                 },
               ],
@@ -322,23 +324,20 @@ function housingBlock() {
       new Step({ entity: "logement", chapter: "logement" }),
       {
         isActive: (subject) =>
+          subject.statut_occupation_logement !== "proprietaire" &&
+          subject.statut_occupation_logement !== "primo_accedant",
+        steps: [
+          new Step({
+            entity: "menage",
+            variable: "_nombreMoisEntreeLogement",
+          }),
+        ],
+      },
+      {
+        isActive: (subject) =>
           !subject.statut_occupation_logement ||
           subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
-          {
-            isActive: (_, situation) => {
-              return (
-                situation.demandeur &&
-                situation.demandeur._nombreMoisDebutContratDeTravail <= 6
-              )
-            },
-            steps: [
-              new Step({
-                entity: "menage",
-                variable: "_nombreMoisEntreeLogement",
-              }),
-            ],
-          },
           new Step({ entity: "menage", variable: "coloc" }),
           new Step({ entity: "menage", variable: "logement_chambre" }),
           new Step({

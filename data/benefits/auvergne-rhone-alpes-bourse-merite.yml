@@ -20,6 +20,6 @@ montant: 500
 periodicite: ponctuelle
 regions:
   - "84"
-statuts:
-  - etudiant
-  - apprenti
+profils:
+  - type: etudiant
+  - type: apprenti

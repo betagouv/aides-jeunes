@@ -2,7 +2,7 @@ const moment = require("moment")
 const { generator } = require("./dates")
 const communes = require("@etalab/decoupage-administratif/data/communes.json")
 
-const STATUT_STATEGY = {
+const PROFILE_STATEGY = {
   apprenti: (situation) => {
     return situation.demandeur._contrat_alternant === "apprenti"
   },
@@ -66,17 +66,20 @@ function computeFrontEndBenefits(
         (benefit.age_min === undefined || age >= benefit.age_min) &&
         (benefit.age_max === undefined || age <= benefit.age_max)
 
-      const eligibiliteStatuts =
-        benefit.statuts === undefined ||
-        benefit.statuts.some((statut) => {
-          return STATUT_STATEGY[statut] && STATUT_STATEGY[statut](situation)
+      const eligibiliteProfils =
+        benefit.profils === undefined ||
+        benefit.profils.some((profil) => {
+          return (
+            PROFILE_STATEGY[profil.type] &&
+            PROFILE_STATEGY[profil.type](situation)
+          )
         })
 
       const eligibiliteGeo = testEligibiliteGeographique(commune, benefit)
 
       const montant = benefit.montant
 
-      const eligibilite = eligibiliteStatuts && elegibiliteAge && eligibiliteGeo
+      const eligibilite = eligibiliteProfils && elegibiliteAge && eligibiliteGeo
 
       const result =
         benefit.type === "float" ? (eligibilite ? montant : 0) : eligibilite

@@ -26,6 +26,7 @@ context("Full simulation", () => {
     )
 
     logement.fill_logement("heberge")
+    logement.fill__nombreMoisEntreeLogement(12)
     logement.fill_participation_frais(false)
     logement.fill_habite_chez_parents(true)
     logement.fill_depcom("45200")

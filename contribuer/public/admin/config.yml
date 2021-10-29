@@ -26,7 +26,7 @@ collections:
     create: true
     delete: false
     editor:
-      preview: false
+      preview: true
     slug: "{{label}}"
     extension: yml
     fields:
@@ -228,28 +228,60 @@ collections:
         widget: number
         required: false
         min: 0
-      - label: Statuts
-        name: statuts
-        multiple: true
-        widget: select
-        required: false
-        options:
+      - label: Profils d'éligibilité
+        label_singular: profil d'éligibilité
+        name: profils
+        widget: list
+        default: []
+        types:
           - label: Lycéen
-            value: lyceen
+            name: lyceen
+            widget: object
+            fields:
+              - name: flag
+                widget: hidden
           - label: Étudiant
-            value: etudiant
+            name: etudiant
+            widget: object
+            fields:
+              - name: flag
+                widget: hidden
           - label: Apprenti
-            value: apprenti
+            name: apprenti
+            widget: object
+            fields:
+              - name: flag
+                widget: hidden
           - label: En contrat de professionnalisation
-            value: professionnalisation
+            name: professionnalisation
+            widget: object
+            fields:
+              - name: flag
+                widget: hidden
           - label: En recherche d'emploi
-            value: chomeur
+            name: chomeur
+            widget: object
+            fields:
+              - name: flag
+                widget: hidden
           - label: Salarié
-            value: salarie
+            name: salarie
+            widget: object
+            fields:
+              - name: flag
+                widget: hidden
           - label: Travailleur indépendant
-            value: independant
+            name: independant
+            widget: object
+            fields:
+              - name: flag
+                widget: hidden
           - label: En service civique
-            value: service_civique
+            name: service_civique
+            widget: object
+            fields:
+              - name: flag
+                widget: hidden
   - name: institutions
     label: Institutions
     label_singular: institution

@@ -7,6 +7,10 @@ const fill_logement = (logement, type) => {
   }
 }
 
+const fill__nombreMoisEntreeLogement = (nombre) => {
+  fillRadio("_nombreMoisEntreeLogement", nombre)
+}
+
 const fill_participation_frais = (participe) => {
   fillRadio("participation_frais", participe)
 }
@@ -49,6 +53,7 @@ const fill__en_france = (inFrance) => {
 
 export default {
   fill_logement,
+  fill__nombreMoisEntreeLogement,
   fill_depcom,
   fill_coloc,
   fill_logement_chambre,

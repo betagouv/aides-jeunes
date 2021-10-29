@@ -21,6 +21,7 @@ context("Full simulation", () => {
     foyer.fill_en_couple(false)
 
     logement.fill_logement("sansDomicile")
+    logement.fill__nombreMoisEntreeLogement(-12)
     logement.fill_depcom("94120")
 
     revenu.fill_ressources_types(["salaire_net"])
@@ -48,6 +49,7 @@ context("Full simulation", () => {
     )
 
     logement.fill_logement("locataire", "nonmeuble")
+    logement.fill__nombreMoisEntreeLogement(12)
     logement.fill_coloc(false)
     logement.fill_logement_chambre(false)
     logement.fill_proprietaire_proche_famille(false)

@@ -1,6 +1,6 @@
 var mongoose = require("mongoose")
 var filter = require("lodash/filter")
-var benefits = require("../../lib/data/js/benefits/back")
+var benefits = require("../../data/js/benefits/back")
 var mesAides = require("../../lib/helpers/ComputeBenefits")
 var openfisca = require("../lib/openfisca")
 var utils = require("../lib/utils")

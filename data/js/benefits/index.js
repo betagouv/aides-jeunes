@@ -4,7 +4,7 @@ const {
   PERIODICITE_PONCTUELLE,
   PERIODICITE_MENSUELLE,
   PERIODICITE_ANNUELLE,
-} = require("../../../helpers/Benefits")
+} = require("../../../lib/helpers/Benefits")
 const moment = require("moment")
 
 var droitsDescription = {

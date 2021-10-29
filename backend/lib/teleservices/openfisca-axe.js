@@ -5,7 +5,7 @@ var request = Promise.promisify(
 )
 
 var { base, build, extractResults } = require("../openfisca/bulk")
-var droitsDescription = require("../../../lib/data/js/benefits")
+var droitsDescription = require("../../../data/js/benefits")
 
 function OpenFiscaAxe(situation) {
   this.situation = situation

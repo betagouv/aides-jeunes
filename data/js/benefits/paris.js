@@ -1,7 +1,7 @@
 const {
   PERIODICITE_MENSUELLE,
   PERIODICITE_ANNUELLE,
-} = require("../../../helpers/Benefits")
+} = require("../../../lib/helpers/Benefits")
 
 module.exports = {
   imgSrc: "logo_paris.png",

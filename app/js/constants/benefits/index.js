@@ -706,6 +706,16 @@ var droitsDescription = {
         },
       },
     },
+    occitanie_region: {
+      imgSrc: "logo_occitanie.png",
+      repository: "france-local",
+      label: "Région Occitanie",
+      interactionWithNationalPrestationsHandled: true,
+      prefix: "La",
+      prestations: {
+        occitanie_carte_transport_scolaire_lio: require("./occitanie_carte_transport_scolaire_lio"),
+      },
+    },
     toulouse_metropole: {
       imgSrc: "logo_toulouse_metropole.png",
       repository: "france-local",

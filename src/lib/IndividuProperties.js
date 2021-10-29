@@ -109,6 +109,16 @@ const STEPS = {
           only: "lycee",
         },
         {
+          label: "BTS",
+          value: "bts_1",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "CPGE",
+          value: "cpge_1",
+          only: "enseignement_superieur",
+        },
+        {
           label: "Licence - 1ère année",
           value: "licence_1",
           only: "enseignement_superieur",

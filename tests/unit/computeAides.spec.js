@@ -1,4 +1,4 @@
-import { computeAides } from "../../lib/helpers/ComputeBenefits"
+import { computeAides } from "@/../lib/ComputeBenefits"
 import droitsDescription from "@/../data/js/benefits/back"
 
 var compute = computeAides.bind(droitsDescription)

@@ -1,11 +1,11 @@
-import Individu from "@/../lib/helpers/Individu"
+import Individu from "../../lib/Individu"
 import {
   capitalize,
   displayCurrencyValue,
   displayDepcomValue,
 } from "@/lib/Utils"
 import Ressource from "@/lib/Ressource"
-import { ressourceCategories, ressourceTypes } from "@/../lib/helpers/Resources"
+import { ressourceCategories, ressourceTypes } from "@/../lib/Resources"
 import Logement from "@/lib/Logement"
 
 export const getIndividuByStep = (step, component) => {

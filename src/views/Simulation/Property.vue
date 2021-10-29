@@ -11,7 +11,7 @@
 
 <script>
 import Actions from "@/components/Actions"
-import Individu from "@/../lib/helpers/Individu"
+import Individu from "@/../lib/Individu"
 
 export default {
   name: "SimulationIndividuProperty",

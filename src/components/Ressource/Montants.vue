@@ -48,7 +48,7 @@
 <script>
 import MonthLabel from "@/components/MonthLabel"
 import YesNoQuestion from "@/components/YesNoQuestion"
-import Individu from "@/../lib/helpers/Individu"
+import Individu from "@/../lib/Individu"
 import InputNumber from "@/components/InputNumber"
 
 function getQuestionLabel(individu, ressource, debutAnneeGlissante) {

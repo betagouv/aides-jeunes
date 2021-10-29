@@ -3,7 +3,7 @@ const { buildOpenFiscaRequest } = require("@/../backend/lib/openfisca/mapping")
 const {
   testEligibiliteGeographique,
   computeFrontEndBenefits,
-} = require("../../lib/helpers/ComputeFrontEndBenefits")
+} = require("../../lib/ComputeFrontEndBenefits")
 import droitsDescription from "@/../data/js/benefits/back"
 
 describe("computeAides", function () {

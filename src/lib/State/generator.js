@@ -1,7 +1,7 @@
 var { Step } = require("./steps")
 var { generateBlocks } = require("./blocks")
 var Ressource = require("@/lib/Ressource").default
-var { ressourceTypes } = require("@/../lib/helpers/Resources")
+var { ressourceTypes } = require("@/../lib/Resources")
 
 function processBlock(
   { journey, subject, situation, isActive, parameters },

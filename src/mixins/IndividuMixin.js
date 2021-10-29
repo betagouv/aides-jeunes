@@ -1,4 +1,4 @@
-import Individu from "@/../lib/helpers/Individu"
+import Individu from "@/../lib/Individu"
 
 export const createIndividuMixin = (props) => {
   const { fieldName = props, optional = false } = props

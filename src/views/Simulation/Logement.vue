@@ -92,7 +92,7 @@
 <script>
 import Actions from "@/components/Actions"
 import Logement from "@/lib/Logement"
-import Individu from "@/../lib/helpers/Individu"
+import Individu from "@/../lib/Individu"
 
 export default {
   name: "SimulationLogement",

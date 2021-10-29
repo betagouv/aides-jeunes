@@ -46,14 +46,14 @@ export default {
   methods: {
     onSubmit: function () {
       this.$store.dispatch("answer", {
-        id: "menage",
+        undefined,
         entityName: "menage",
         fieldName: "loyer",
         value: this.loyerQuestion.selectedValue || 0,
       })
       if (this.captureCharges) {
         this.$store.dispatch("answer", {
-          id: "menage",
+          undefined,
           entityName: "menage",
           fieldName: "charges_locatives",
           value: this.chargesQuestion.selectedValue || 0,

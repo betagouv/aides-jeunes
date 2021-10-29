@@ -69,9 +69,9 @@ export default {
     })
 
     const selectedRessources = this.$store.getters.getAnswer(
-      this.$route.params.id,
       "individu",
-      "ressources"
+      "ressources",
+      this.$route.params.id
     )
 
     const selectedTypes = {}

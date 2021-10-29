@@ -319,7 +319,11 @@ function housingBlock() {
   return {
     subject: (situation) => situation.menage,
     steps: [
-      new Step({ entity: "logement", chapter: "logement" }),
+      new Step({
+        entity: "menage",
+        chapter: "logement",
+        variable: "statut_occupation_logement",
+      }),
       {
         isActive: (subject) =>
           subject.statut_occupation_logement !== "proprietaire" &&
@@ -428,12 +432,18 @@ function resourceBlocks(situation) {
         new ComplexStep({
           route: `individu/${individuId}/ressources/types`,
           chapter: "revenus",
+          entity: "individu",
+          variable: "ressources",
+          id: individuId,
         }),
       ].concat(
         Ressource.getIndividuRessourceCategories(individu, situation).map(
           (category) =>
             new ComplexStep({
               route: `individu/${individuId}/ressources/montants/${category}`,
+              entity: "individu",
+              variable: category,
+              id: individuId,
             })
         )
       ),
@@ -444,7 +454,13 @@ function resourceBlocks(situation) {
       individuResourceBlock("demandeur"),
       ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
       ...(situation.enfants && situation.enfants.length
-        ? [new Step({ entity: "enfants", variable: "ressources" })]
+        ? [
+            new Step({
+              entity: "individu",
+              variable: "_hasRessources",
+              id: "enfants",
+            }),
+          ]
         : []),
       {
         steps: situation.enfants

@@ -1,4 +1,6 @@
+const { generateSituation } = require("../../../lib/situations")
 var Chapters = require("../Chapters")
+const { generateAllSteps } = require("./generator")
 
 function chapters(currentPath, journey) {
   const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")
@@ -44,8 +46,35 @@ function next(current, journey) {
     .filter((step) => step.isActive)[0]
 }
 
+const nextUnansweredSteps = (state, getters) => {
+  const fullSituation = generateSituation(state.answers, true)
+  const fullSteps = generateAllSteps(fullSituation, state.openFiscaParameters)
+  return fullSteps.find((step) => {
+    if (!step.isActive || step.path === "/") {
+      return false
+    }
+    // dirty hack for loyer...
+    if (step.substeps && step.substeps.length > 0) {
+      return step.substeps.some(
+        (step) =>
+          getters.getAnswer(step.entity, step.variable, step.id) === undefined
+      )
+    }
+
+    // dirty hack for enfants...
+    if (step.path === "/simulation/enfants") {
+      return (
+        getters.getAnswer("enfants") === undefined && !state.answers.enfants
+      )
+    }
+
+    return getters.getAnswer(step.entity, step.variable, step.id) === undefined
+  })
+}
+
 module.exports = {
   next,
+  nextUnansweredSteps,
   chapters,
   current,
 }

@@ -1,16 +1,20 @@
-import { next, current, chapters } from "@/lib/State"
+import { nextUnansweredSteps, current, chapters } from "@/lib/State"
 import VueRouter from "vue-router"
 
 const StateService = {
   install(Vue) {
     Vue.prototype.$state = {
-      next,
+      nextUnansweredSteps,
       current,
       chapters,
     }
 
     Vue.prototype.$push = function () {
-      const nextStep = next(this.$route, this.$store.getters.getAllSteps)
+      const nextStep = nextUnansweredSteps(
+        this.$store.state,
+        this.$store.getters
+      )
+      this.$store.dispatch("updateCurrentAnswers", nextStep.path)
       this.$router.push(nextStep.path).catch((failure) => {
         if (
           VueRouter.isNavigationFailure(

@@ -46,7 +46,7 @@ export default {
     EnSavoirPlus,
   },
   data: function () {
-    const answer = this.$store.getters.getAnswer("menage", "menage", "depcom")
+    const answer = this.$store.getters.getAnswer("menage", "depcom")
     return {
       retrievingCommunes: false,
       codePostal: answer ? answer._codePostal : undefined,
@@ -76,7 +76,6 @@ export default {
       )
       if (communeMatches.length) {
         this.$store.dispatch("answer", {
-          id: "menage",
           entityName: "menage",
           fieldName: "depcom",
           value: {

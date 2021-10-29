@@ -119,9 +119,9 @@ export default {
       )
 
       const answers = this.$store.getters.getAnswer(
-        this.$route.params.id,
         "individu",
-        this.$route.params.category
+        this.$route.params.category,
+        this.$route.params.id
       )
 
       return ressourceTypes.reduce((result, type) => {

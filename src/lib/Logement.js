@@ -58,14 +58,10 @@ function captureCharges(logementStatut) {
 }
 
 function getLoyerData(getAnswer) {
-  const logementStatut = getAnswer(
-    "menage",
-    "menage",
-    "statut_occupation_logement"
-  )
-  const coloc = getAnswer("menage", "menage", "coloc")
-  const loyer = getAnswer("menage", "menage", "loyer")
-  const chargesLocatives = getAnswer("menage", "menage", "charges_locatives")
+  const logementStatut = getAnswer("menage", "statut_occupation_logement")
+  const coloc = getAnswer("menage", "coloc")
+  const loyer = getAnswer("menage", "loyer")
+  const chargesLocatives = getAnswer("menage", "charges_locatives")
 
   const isLocataire = !Logement.isOwner(logementStatut)
   const captureCharges = Logement.captureCharges(logementStatut)

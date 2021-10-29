@@ -38,6 +38,21 @@ const STEPS = {
   rsa_isolement_recent: {
     question: "Vivez-vous seul·e depuis plus de 18 mois ?",
   },
+
+  en_couple: {
+    question: "Vivez-vous seul·e ou en couple ?",
+    questionType: "enum",
+    items: [
+      {
+        label: "Je vis seul·e",
+        value: false,
+      },
+      {
+        label: "Je vis en couple",
+        value: true,
+      },
+    ],
+  },
 }
 
 export default {

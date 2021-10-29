@@ -102,7 +102,6 @@ export default {
   data: function () {
     const logementStatut = this.$store.getters.getAnswer(
       "menage",
-      "menage",
       "statut_occupation_logement"
     )
     const logementVariables =
@@ -212,7 +211,6 @@ export default {
         )
       } else {
         this.$store.dispatch("answer", {
-          id: "menage",
           entityName: "menage",
           fieldName: "statut_occupation_logement",
           value: Logement.getStatutOccupationLogement({

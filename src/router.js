@@ -79,6 +79,14 @@ const router = new Router({
                 ),
             },
             {
+              name: "_hasRessources",
+              path: "_hasRessources",
+              component: () =>
+                import(
+                  /* webpackChunkName: "individu" */ "./views/Simulation/Ressources/Enfants.vue"
+                ),
+            },
+            {
               name: "ressources/montants",
               path: "ressources/montants/:category",
               component: () =>
@@ -127,26 +135,12 @@ const router = new Router({
             ),
         },
         {
-          path: "enfants/ressources",
-          component: () =>
-            import(
-              /* webpackChunkName: "individu" */ "./views/Simulation/Ressources/Enfants.vue"
-            ),
-        },
-        {
           path: "famille",
           component: () =>
             import(
               /* webpackChunkName: "famille" */ "./views/Simulation/Famille.vue"
             ),
           children: [
-            {
-              path: "en_couple",
-              component: () =>
-                import(
-                  /* webpackChunkName: "famille" */ "./views/Simulation/Famille/EnCouple.vue"
-                ),
-            },
             {
               name: "FamilleStep",
               path: ":fieldName",
@@ -158,7 +152,7 @@ const router = new Router({
           ],
         },
         {
-          path: "logement",
+          path: "menage/statut_occupation_logement",
           component: () =>
             import(
               /* webpackChunkName: "logement" */ "./views/Simulation/Logement.vue"

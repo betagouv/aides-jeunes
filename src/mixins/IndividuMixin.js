@@ -8,7 +8,7 @@ export const createIndividuMixin = (props) => {
       const entityName = this.$route.path.split("/")[2]
       const id = this.$route.params.id
       const role = id.split("_")[0]
-      const value = this.$store.getters.getAnswer(id, entityName, fieldName)
+      const value = this.$store.getters.getAnswer(entityName, fieldName, id)
       return {
         error: false,
         fieldName,

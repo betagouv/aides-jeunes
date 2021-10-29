@@ -25,8 +25,8 @@ export const SIMPLE_STEPS = {
   depcom() {
     const answer = this.$store.getters.getAnswer(
       "menage",
-      "menage",
       "depcom",
+      undefined,
       true
     )
     return [
@@ -51,47 +51,45 @@ export const SIMPLE_STEPS = {
       },
     ]
   },
+
+  statut_occupation_logement() {
+    const answer = this.$store.getters.getAnswer(
+      "menage",
+      "statut_occupation_logement",
+      undefined,
+      true
+    )
+
+    return [
+      {
+        label: "Êtes-vous ?",
+        value: Logement.getStatutOccupationLabel(answer),
+      },
+    ]
+  },
 }
 
 export const COMPLEX_STEPS = {
   enfants: {
     matcher(step) {
       const answer = this.$store.getters.getAnswer(
-        "nombre_enfants",
-        "individu",
-        "nombre_enfants",
+        "enfants",
+        undefined,
+        undefined,
         true
       )
 
-      return answer && step.key.match(/\/simulation\/enfants$/)
+      return answer !== undefined && step.key.match(/\/simulation\/enfants$/)
     },
     fn() {
       const enfants = this.$store.getters.situation.enfants
-      let value = undefined
-      if (enfants) {
-        value = enfants.length ? `${enfants.length} enfant(s)` : `Aucun enfant`
-      }
       return [
         {
           label: "Mes enfants à charge",
-          value,
-        },
-      ]
-    },
-  },
-
-  logement: {
-    matcher(step) {
-      return step.key.match(/\/logement$/)
-    },
-    fn() {
-      const menage = this.$store.getters.situation.menage
-      return [
-        {
-          label: "Êtes-vous ?",
-          value: Logement.getStatutOccupationLabel(
-            menage.statut_occupation_logement
-          ),
+          value:
+            enfants && enfants.length
+              ? `${enfants.length} enfant(s)`
+              : `Aucun enfant`,
         },
       ]
     },

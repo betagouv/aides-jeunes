@@ -220,7 +220,7 @@ const store = new Vuex.Store({
         state.calculs.resultats._id === state.situationId
       )
     },
-    getAnswer: (state) => (id, entityName, fieldName, currentOnly) => {
+    getAnswer: (state) => (entityName, fieldName, id, currentOnly) => {
       const answer = (
         currentOnly ? state.answers.current : state.answers.all
       ).find(
@@ -242,6 +242,34 @@ const store = new Vuex.Store({
         all: storeAnswer(state.answers.all, answer, false),
         current: storeAnswer(state.answers.current, answer, true),
       }
+    },
+    updateCurrentAnswers: (state, newPath) => {
+      const fullSituation = generateSituation(state.answers, true)
+      const fullSteps = generateAllSteps(
+        fullSituation,
+        state.openFiscaParameters
+      )
+      const currentAnswers = []
+      let i = 0
+      let currentStep = fullSteps[0]
+      while (currentStep && currentStep.path !== newPath) {
+        if (currentStep.isActive && currentStep.path !== "/") {
+          const currentAnswer = state.answers.all.find((answer) => {
+            return (
+              answer.id === currentStep.id &&
+              answer.entityName === currentStep.entity &&
+              answer.fieldName === currentStep.variable
+            )
+          })
+
+          if (currentAnswer) {
+            currentAnswers.push(currentAnswer)
+          }
+        }
+        i = i + 1
+        currentStep = fullSteps[i]
+      }
+      state.answers.current = currentAnswers
     },
     ressourcesFiscales: (state, ressourcesFiscales) => {
       state.answers = {
@@ -266,16 +294,16 @@ const store = new Vuex.Store({
     initialize: function (state) {
       Object.assign(state, restoreLocal(), { saveSituationError: null })
     },
+    saveIndividu: function () {},
+    saveError: function (state, error) {
+      state.error = error
+    },
     removeEnfant: function (state, id) {
       const enfantIndex = id.split("_")[1]
       state.answers = {
         ...state.answers,
         enfants: state.answers.enfants.filter((i) => i != enfantIndex),
       }
-    },
-    saveIndividu: function () {},
-    saveError: function (state, error) {
-      state.error = error
     },
     addEnfant: function (state) {
       let enfantId
@@ -300,10 +328,7 @@ const store = new Vuex.Store({
 
       // When you add a children you need to remove all current answer after the child validation
       const currentLastIndex = state.answers.current.findIndex(
-        (answer) =>
-          answer.entityName === "individu" &&
-          answer.id === "nombre_enfants" &&
-          answer.fieldName === "nombre_enfants"
+        (answer) => answer.entityName === "enfants"
       )
 
       const currentAnswers =
@@ -321,10 +346,7 @@ const store = new Vuex.Store({
     editEnfant: function (state, id) {
       // When you edit a children you need to remove all current answer after the child validation
       const currentLastIndex = state.answers.current.findIndex(
-        (answer) =>
-          answer.entityName === "individu" &&
-          answer.id === "nombre_enfants" &&
-          answer.fieldName === "nombre_enfants"
+        (answer) => answer.entityName === "enfants"
       )
 
       const currentAnswers =
@@ -418,6 +440,9 @@ const store = new Vuex.Store({
     answer: ({ commit }, answer) => {
       commit("answer", answer)
       commit("setDirty")
+    },
+    updateCurrentAnswers: ({ commit }, newPath) => {
+      commit("updateCurrentAnswers", newPath)
     },
     ressourcesFiscales: ({ commit }, ressourcesFiscales) => {
       commit("ressourcesFiscales", ressourcesFiscales)

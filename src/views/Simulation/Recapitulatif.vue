@@ -126,6 +126,7 @@ export default {
       if (SIMPLE_STEPS[step.variable]) {
         return SIMPLE_STEPS[step.variable].bind(this)(step)
       }
+
       if (step.variable === undefined) {
         const match = Object.keys(COMPLEX_STEPS).find((key) =>
           COMPLEX_STEPS[key].matcher.bind(this)(step)
@@ -137,10 +138,9 @@ export default {
 
       if (ENTITIES_PROPERTIES[step.entity]) {
         const answer = this.$store.getters.getAnswer(
-          step.id,
           step.entity,
           step.variable,
-          true
+          step.id
         )
         const entity =
           ENTITIES_PROPERTIES[step.entity].loadEntity &&

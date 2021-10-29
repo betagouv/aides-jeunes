@@ -1,55 +1,48 @@
 /// <reference types="Cypress" />
-import * as steps from "../support"
+import profil from "../utils/profil"
+import navigate from "../utils/navigate"
+import logement from "../utils/logement"
+import revenu from "../utils/revenu"
+import projet from "../utils/projet"
+import results from "../utils/results"
+import foyer from "../utils/foyer"
 
 context("Full simulation", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:8080/init-ci")
+    navigate.init()
   })
 
   it("accept a student situation", () => {
-    steps.home()
-    steps.etudiant_public()
+    navigate.goHome()
 
-    // _continuite_etude
-    steps.checkRadio("true")
-    steps.submit()
-    // regime_securite_sociale
-    steps.checkRadio("regime_general")
-    steps.submit()
+    profil.publicStudent()
 
-    steps.enceinte("false")
-    steps.zeroEnfants()
-    steps.celibataire()
-    steps.parentsSepares()
-    steps.unEnfantSuperieur()
-    steps.heberge()
-    steps.neParticipePasLogement()
-    steps.hebergeParents()
+    foyer.children(0)
+    foyer.fill_en_couple(false)
+    foyer.fill__situation("separes")
+    foyer.fill_bourse_criteres_sociaux_nombre_enfants_a_charge(1)
+    foyer.fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur(
+      1
+    )
 
-    cy.get('input[type="number"').type("45200")
-    steps.submit()
-    // Ressources
-    steps.submit()
-    cy.get(".aj-tooltip")
-    cy.get(".aj-question")
-      .invoke("text")
-      .should("contain", "revenu brut global")
-    cy.get('input[type="number"]').type("17860.35")
-    steps.submit()
-    cy.get('input[type="number"]').type("1")
-    steps.submit()
-    steps.checkRadio("false")
-    steps.submit()
-    steps.checkRadio("true")
-    steps.submit()
-    steps.checkRadio("false")
-    steps.submit()
-    steps.checkRadio("true")
-    steps.submit()
-    cy.get('input[type="number"]').type("2")
-    steps.submit()
+    logement.fill_logement("heberge")
+    logement.fill__nombreMoisEntreeLogement(12)
+    logement.fill_participation_frais(false)
+    logement.fill_habite_chez_parents(true)
+    logement.fill_depcom("45200")
 
-    steps.waitForResults()
-    steps.hasBourseCriteresSociaux(3)
+    revenu.fill_ressources_types(["salaire_net"])
+    revenu.fillConstantRevenu(17860.35)
+    revenu.fillRevenuBrut(1)
+
+    projet.fill__interetPermisDeConduire(false)
+    projet.fill_sortie_region_academique(true)
+    projet.fill_boursier(false)
+    projet.fill__interetEtudesEtranger(true)
+    projet.fill__dureeMoisEtudesEtranger(2)
+
+    results.wait()
+
+    results.hasBourseCriteresSociaux(3)
   })
 })

@@ -51,6 +51,10 @@ var EXTENSION_VARIABLES = {
 }
 
 benefits.forEach((benefit, benefitId, institution) => {
+  if (benefit.computesLocally) {
+    return
+  }
+
   if (institution.repository) {
     const repository = "openfisca-" + institution.repository
     const entity = benefit.entity

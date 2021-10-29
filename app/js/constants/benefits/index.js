@@ -36,6 +36,7 @@ var droitsDescription = {
           prefix: "l’",
           type: "float",
           unit: "€",
+          entity: "familles",
         },
       },
     },
@@ -59,6 +60,7 @@ var droitsDescription = {
           forms: {},
           prefix: "la",
           extra: [{ id: "cmu_c", entity: "familles", type: "bool" }],
+          entity: "familles",
           compute: function (result, period) {
             return result.cmu_c && result.cmu_c[period]
               ? true
@@ -114,6 +116,7 @@ var droitsDescription = {
           },
           isBaseRessourcesYearMinusTwo: true,
           prefix: "les",
+          entity: "familles",
         },
         cf: {
           label: "complément familial",
@@ -130,6 +133,7 @@ var droitsDescription = {
           },
           isBaseRessourcesYearMinusTwo: true,
           prefix: "le",
+          entity: "familles",
         },
         asf: {
           label: "allocation de soutien familial",
@@ -149,6 +153,7 @@ var droitsDescription = {
           },
           floorAt: 10,
           prefix: "l’",
+          entity: "familles",
         },
         paje_base: {
           label: "prestation d’accueil du jeune enfant – Allocation de base",
@@ -169,6 +174,7 @@ var droitsDescription = {
           },
           isBaseRessourcesYearMinusTwo: true,
           prefix: "la",
+          entity: "familles",
         },
         rsa: {
           label: "revenu de solidarité active",
@@ -193,6 +199,7 @@ var droitsDescription = {
           },
           setToZeroRecently: true,
           isBaseRessourcesPatrimoine: true,
+          entity: "familles",
           uncomputability: {
             tns: {
               reason: {
@@ -249,6 +256,7 @@ var droitsDescription = {
             caf: "https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/",
             msa: "http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=98643",
           },
+          entity: "familles",
           computeUnexpectedAmount: (situation) => {
             // not ideal because we are not computing other incomes => but covers 90% of the cases
             const salary = situation.demandeur.salaire_net
@@ -301,6 +309,7 @@ var droitsDescription = {
           },
           floorAt: 5,
           prefix: "la",
+          entity: "familles",
           computeUnexpectedAmount(situation) {
             let menage = situation.menage
             let isProprietaire = ["primo_accedant", "proprietaire"].includes(
@@ -356,6 +365,7 @@ var droitsDescription = {
           unit: "€",
           floorAt: 1,
           prefix: "l’",
+          entity: "familles",
         },
       },
     },
@@ -392,6 +402,7 @@ var droitsDescription = {
           link: "https://www.service-public.fr/particuliers/vosdroits/F1814",
           floorAt: 1,
           prefix: "l’",
+          entity: "familles",
         },
       },
     },
@@ -520,6 +531,7 @@ var droitsDescription = {
           },
           isBaseRessourcesYearMinusTwo: true,
           prefix: "la",
+          entity: "familles",
         },
         bourse_lycee: {
           periodicite: PERIODICITE_ANNUELLE,
@@ -540,6 +552,7 @@ var droitsDescription = {
           },
           isBaseRessourcesYearMinusTwo: true,
           prefix: "la",
+          entity: "familles",
         },
       },
     },
@@ -564,6 +577,7 @@ var droitsDescription = {
           top: 10,
           prefix: "le",
           private: true,
+          entity: "familles",
         },
       },
     },
@@ -657,6 +671,7 @@ var droitsDescription = {
           prefix: "le",
           type: "float",
           unit: "€",
+          entity: "familles",
         },
       },
     },

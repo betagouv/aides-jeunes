@@ -64,6 +64,17 @@ describe("benefit descriptions", function () {
                 expect(Boolean(aide.periodicite)).toBe(true)
               })
             }
+
+            if (aide.computesLocally) {
+              describe("should not have an entity", function () {
+                expect(aide.entity).toBe(undefined)
+              })
+            } else {
+              describe("should have an entity", function () {
+                expect(typeof aide.entity).toBe("string")
+                expect(aide.entity.length).toBeGreaterThan(0)
+              })
+            }
           })
         })
       })

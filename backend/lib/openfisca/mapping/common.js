@@ -51,6 +51,10 @@ exports.getPeriods = function (dateDeValeur) {
 
 let requestedVariables = {}
 forEach((aide, aideId) => {
+  if (aide.computesLocally) {
+    return
+  }
+
   const item = aide.openfisca_eligibility_source || aideId
   requestedVariables[item] = requestedVariables[item] || assign({}, aide)
   if (aide.uncomputability) {
@@ -58,8 +62,6 @@ forEach((aide, aideId) => {
       type: "string",
     })
   }
-
-  if (aide.computesLocally) delete requestedVariables[item]
 
   if (aide.extra) {
     aide.extra.forEach(function (extra) {

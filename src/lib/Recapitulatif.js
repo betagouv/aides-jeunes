@@ -72,17 +72,13 @@ export const SIMPLE_STEPS = {
 export const COMPLEX_STEPS = {
   enfants: {
     matcher(step) {
-      const answer = this.$store.getters.getAnswer(
-        "enfants",
-        undefined,
-        undefined,
-        true
+      return (
+        this.$store.state.answers.enfants &&
+        step.key.match(/\/simulation\/enfants$/)
       )
-
-      return answer !== undefined && step.key.match(/\/simulation\/enfants$/)
     },
     fn() {
-      const enfants = this.$store.getters.situation.enfants
+      const enfants = this.$store.state.answers.enfants
       return [
         {
           label: "Mes enfants à charge",

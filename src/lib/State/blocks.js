@@ -4,7 +4,7 @@ const Ressource = require("../../../lib/ressource")
 const { datesGenerator } = require("../../../backend/lib/mes-aides")
 const { Step, ComplexStep } = require("./steps")
 
-function individuBlockFactory(id) {
+function individuBlockFactory(id, chapter) {
   const r = (variable, chapter) =>
     new Step({ entity: "individu", id, variable, chapter })
   const conjoint = id == "conjoint"
@@ -18,7 +18,7 @@ function individuBlockFactory(id) {
       {},
     steps: [
       ...(enfant ? [r("_firstName")] : []),
-      r("date_naissance", demandeur ? "profil" : undefined),
+      r("date_naissance", demandeur ? "profil" : chapter),
       r("nationalite"),
       ...(conjoint ? [r("statut_marital")] : []),
       ...(enfant ? [r("garde_alternee")] : []),
@@ -303,7 +303,7 @@ function kidBlock(situation) {
       ...(situation.enfants && situation.enfants.length
         ? situation.enfants.map((e) => {
             return {
-              steps: [individuBlockFactory(e.id)],
+              steps: [individuBlockFactory(e.id, "foyer")],
             }
           })
         : []),

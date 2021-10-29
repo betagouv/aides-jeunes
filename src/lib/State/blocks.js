@@ -300,17 +300,14 @@ function extraBlock() {
 function kidBlock(situation) {
   return {
     steps: [
-      new Step({ entity: "enfants", chapter: "foyer" }),
       ...(situation.enfants && situation.enfants.length
         ? situation.enfants.map((e) => {
             return {
-              steps: [
-                individuBlockFactory(e.id),
-                new Step({ entity: "enfants", key: `enfants#${e.id}` }),
-              ],
+              steps: [individuBlockFactory(e.id)],
             }
           })
         : []),
+      new Step({ entity: "enfants", chapter: "foyer" }),
     ],
   }
 }

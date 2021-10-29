@@ -106,7 +106,9 @@ const storeAnswer = (answers, newAnswer, clean) => {
           .concat(
             answers.filter(
               (answer) =>
-                answer.id.startsWith("enfant_") && answer.id !== newAnswer.id
+                answer.id &&
+                answer.id.startsWith("enfant_") &&
+                answer.id !== newAnswer.id
             )
           )
       } else {

@@ -43,7 +43,6 @@ export default {
       return this.$route.name !== "recapitulatif"
     },
     buttonLabel() {
-      console.log(this.$route.name)
       return this.$route.name === "resultats" ||
         this.$route.name === "resultatsDetails"
         ? "Modifier ma simulation"

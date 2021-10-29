@@ -61,13 +61,6 @@ const nextUnansweredSteps = (state, getters) => {
       )
     }
 
-    // dirty hack for enfants...
-    if (step.path === "/simulation/enfants") {
-      return (
-        getters.getAnswer("enfants") === undefined && !state.answers.enfants
-      )
-    }
-
     return getters.getAnswer(step.entity, step.variable, step.id) === undefined
   })
 }

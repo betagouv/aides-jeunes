@@ -17,6 +17,30 @@ publish_mode: editorial_workflow
 
 root: ../../..
 
+constants:
+  values_mention_baccalaureat: &values_mention_baccalaureat
+    - label: Mention assez bien
+      value: mention_assez_bien
+    - label: Mention bien
+      value: mention_bien
+    - label: Mention très bien
+      value: mention_tres_bien
+    - label: Mention très bien avec félicitations du jury
+      value: mention_tres_bien_felicitations_jury
+    - label: Autre
+      value: non_renseignee
+fields:
+  field_mention_baccalaureat: &field_mention_baccalaureat
+    label: Mention au bac
+    name: mention_baccalaureat
+    widget: object
+    fields:
+    - label: Valeurs
+      name: values
+      widget: select
+      multiple: true
+      options: *values_mention_baccalaureat
+
 collections:
   - name: benefits
     label: Aides
@@ -258,6 +282,7 @@ collections:
                       - label: Valeur
                         name: value
                         widget: boolean
+                  - *field_mention_baccalaureat
           - label: Apprenti
             name: apprenti
             widget: object

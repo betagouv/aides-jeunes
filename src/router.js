@@ -316,7 +316,7 @@ const router = new Router({
           path: "recapitulatif",
           component: () =>
             import(
-              /* webpackChunkName: "recapitulatif" */ "./views/Simulation/Foyer/Recapitulatif.vue"
+              /* webpackChunkName: "recapitulatif" */ "./views/Foyer/Recapitulatif.vue"
             ),
           meta: {
             title: "Vos informations",

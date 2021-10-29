@@ -59,9 +59,20 @@ describe("benefit descriptions", function () {
               expect(aide.type.length).toBeGreaterThan(0)
             })
 
+            if (aide.type === "bool") {
+              it("should not have a legend", function () {
+                expect(aide.legend).toBe(undefined)
+              })
+
+              it("should not have a montant", function () {
+                expect(aide.montant).toBe(undefined)
+              })
+            }
+
             if (aide.type === "float") {
               it("should have a periodicite", function () {
-                expect(Boolean(aide.periodicite)).toBe(true)
+                expect(typeof aide.periodicite).toBe("string")
+                expect(aide.periodicite.length).toBeGreaterThan(0)
               })
             }
 
@@ -69,6 +80,13 @@ describe("benefit descriptions", function () {
               it("should not have an entity", function () {
                 expect(aide.entity).toBe(undefined)
               })
+
+              if (aide.type === "float") {
+                it("should have a montant", function () {
+                  expect(typeof aide.montant).toBe("number")
+                  expect(aide.montant).toBeGreaterThan(0)
+                })
+              }
             } else {
               it("should have an entity", function () {
                 expect(typeof aide.entity).toBe("string")

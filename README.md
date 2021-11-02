@@ -27,7 +27,6 @@
   - [backend](https://sentry.io/organizations/betagouv-f7/projects/aides-jeunes-node/?project=5709109)
   - [frontend](https://sentry.io/organizations/betagouv-f7/projects/aides-jeunes-front/?project=5709078)
 
-
 # Front only install
 
 If you want to play with the UI, you can be set up very quickly:
@@ -87,7 +86,6 @@ Then, to start the OpenFisca server, simply run `source .venv/bin/activate` foll
 
 In order to start a single worker for OpenFisca, you can run `OPENFISCA_WORKERS=1 npm run openfisca`.
 
-
 OpenFisca dependencies are specified in [openfisca/requirements.txt](https://github.com/betagouv/aides-jeunes/blob/master/openfisca/requirements.txt), a basic [Python requirements file](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file). It is possible to refer to non-production commit hashs but is prefered to use _main-merged_ commits.
 
 ### Development mode
@@ -143,7 +141,6 @@ You can create a free account(here)[https://app.sendinblue.com/account/register/
 We use [ESLint](https://eslint.org/) as a linter and [Prettier](https://prettier.io/) to format the codebase.
 We also utilize some ESLint plugins, such as [vue-eslint](https://eslint.vuejs.org/user-guide/) and [eslint-plugin-cypress](https://github.com/cypress-io/eslint-plugin-cypress), to provide a support for tests and framework.
 
-
 # Continuous deployment
 
 SSHs keys were generated to [run scripts](http://man.openbsd.org/sshd#command=%22command%22) on the production server.
@@ -169,7 +166,6 @@ ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
 - Adding `debug=parcours` as a parameter, show a debug version of all the steps in the simulator, [locally](https://localhost:8080/simulation/individu/demandeur/date_naissance?debug=parcours) and [production](https://mes-aides.1jeune1solution.beta.gouv.fr/simulation/individu/demandeur/date_naissance?debug=parcours).
 
 - [OpenFisca tracer](https://openfisca.github.io/tracer/) can allow you to debug OpenFisca computations. ([source](https://github.com/openfisca/tracer))
-
 
 ## NetlifyCMS development
 

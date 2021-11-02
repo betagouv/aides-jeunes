@@ -1,0 +1,13 @@
+label: Paris Solidarité
+institution: paris
+description: >
+  Paris Solidarité est destinée aux personnes âgées de 65 ans ou plus et aux personnes en situation de handicap. L’aide peut être versée tous les mois à partir de 60 ans pour les personnes reconnus inaptes au travail. Elle a pour but de garantir aux foyers modestes un minimum de ressources. L’aide est accordée pour une durée maximale d’un an.
+conditions:
+  - Percevoir tous les avantages légaux auxquels vous pouvez prétendre.
+  - Ne pas avoir déjà bénéficié du dispositif sur une durée de deux ans.
+link: https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-solidarite
+form: https://cdn.paris.fr/paris/2019/07/24/44a441e89f01b513b678ecde6e088ce4.pdf
+type: float
+unit: "€"
+entity: familles
+periodicite: mensuelle

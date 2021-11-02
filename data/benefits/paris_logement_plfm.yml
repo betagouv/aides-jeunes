@@ -1,0 +1,13 @@
+label: Paris Logement Familles Monoparentales
+institution: paris
+description: >
+  L’allocation Paris Logement Famille Monoparentale est destinée aux parents seuls, ayant un ou plusieurs enfants à charge. Elle leur permet de mieux supporter leurs dépenses de logement. Elle est ouverte aux locataires, aux propriétaires et aux personnes accédant à la propriété. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.
+conditions:
+  - Avoir demandé le versement des aides logement auxquelles vous avez droit auprès de la CAF.
+  - Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.
+link: https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-logement-famille-monoparentale
+form: https://cdn.paris.fr/paris/2019/07/24/75686b9338b397db4b05069015762d8b.pdf
+type: float
+unit: "€"
+entity: familles
+periodicite: mensuelle

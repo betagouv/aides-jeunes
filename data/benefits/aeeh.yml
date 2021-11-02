@@ -1,0 +1,15 @@
+label: allocation d’éducation de l’enfant handicapé (AEEH)
+institution: caf
+description: >
+  L’allocation d’éducation de l’enfant handicapé (AEEH) est une prestation destinée à compenser les frais d’éducation et de soins apportés à un enfant en situation de handicap. Cette aide est versée à la personne qui en assume la charge.
+link: https://www.service-public.fr/particuliers/vosdroits/F14809
+instructions: https://www.service-public.fr/particuliers/vosdroits/F14809
+forms:
+  mdph: https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15692.do
+prefix: l'
+type: float
+unit: "€"
+floorAt: 1
+entity: familles
+periodicite: mensuelle
+msa: true

@@ -1,0 +1,18 @@
+label: allocation supplémentaire d’invalidité
+institution: assurance_maladie
+description:
+  L’allocation supplémentaire d’invalidité (Asi) est une prestation accordée à certaines personnes invalides. Elle s’adresse à celles et ceux qui ont de faibles ressources et n’ont pas atteint l’âge de départ à la retraite. Elle est versée tous les mois et s’ajoute, dans une certaine limite, aux revenus personnels.
+link: https://www.service-public.fr/particuliers/vosdroits/F16940
+form: http://www.ameli.fr/fileadmin/user_upload/formulaires/S4151.pdf
+forms:
+  general: http://www.ameli.fr/fileadmin/user_upload/formulaires/S4151.pdf
+  cnav: https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub-bootstrap/files/Guides%20et%20formulaires/demande-asi.pdf
+  msa: https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13435.do
+  rsi: https://www.rsi.fr/fileadmin/mediatheque/.Espace_telechargement/Formulaires/formulaire_allocation_supplementaire_invalidite.pdf
+floorAt: 10
+prefix: l’
+type: float
+unit: "€"
+entity: individus
+periodicite: mensuelle
+msa: true

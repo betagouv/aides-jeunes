@@ -1,0 +1,12 @@
+label: réduction sur les titres de transports
+institution: toulouse_metropole
+description: >
+  Des réductions de 70%, 80% ou 100% (gratuité) sont mises en place sur le réseau Tisséo pour cetaiens personnes (jeunes, familles à faibles revenus, personnes bénéficiant de certaines prestations, etc.).
+link: http://www.mon-tarif-tisseo.fr
+form: https://www.tisseo.fr/les-tarifs/e-agence
+prefix: une
+type: float
+unit: "%"
+legend: de réduction
+entity: individus
+periodicite: ponctuelle

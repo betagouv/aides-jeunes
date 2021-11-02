@@ -1,0 +1,18 @@
+label: allocation de soutien familial
+institution: caf
+description:
+  L’allocation de soutien familial (ASF) est destinée soit au parent qui élève seul un enfant non reconnu, privé de l’aide d’un parent ou dont l’autre parent est décédé, soit à la personne seule ou en couple qui recueille un enfant. L’ASF est versée par la Caf ou la MSA tous les mois.
+conditions:
+  - "Toucher une pension alimentaire d’un montant inférieur à celui de l’ASF ou ne pas toucher en intégralité une pension alimentaire attribuée par une décision de justice. À noter : la Caf ou la MSA peut vous aider à <a target=\"_blank\" rel=\"noopener\" title=\"Agence de recouvrement des impayés de pensions alimentaires (ARIPA)\"' href=\"https://www.pension-alimentaire.caf.fr/\">récupérer les sommes dues</a>."
+link: https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/solidarite-et-insertion/l-allocation-de-soutien-familial-asf-0
+form: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationdesoutienfamilial/!ut/p/a1/
+forms:
+  caf: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationdesoutienfamilial/!ut/p/a1/
+  msa: http://www.msa.fr/lfr/documents/11566/48472/Demande+d%27allocation+de+soutien+familial+%28ASF%29.pdf
+floorAt: 10
+prefix: l'
+type: float
+unit: "€"
+entity: familles
+periodicite: mensuelle
+msa: true

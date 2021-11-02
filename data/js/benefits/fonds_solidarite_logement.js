@@ -19,7 +19,6 @@ function fsl_generator({ prefix, label, code, resources }) {
     imgSrc: `logo_cd${code}.png`,
     ...provider_commun_attributes,
     label: `Département ${label}`,
-    interactionWithNationalPrestationsHandled: true,
     prefix: "de",
     prestations: {
       [`${prefix}_fonds_solidarite_logement_aide_maintien_eligibilite`]: {
@@ -40,7 +39,6 @@ function fsl_generator_metropole({ prefix, label, code, resources }) {
     imgSrc: `logo_${code}_metropole.png`,
     ...provider_commun_attributes,
     label,
-    interactionWithNationalPrestationsHandled: true,
     prefix,
     prestations: {
       [`${code}_metropole_fonds_solidarite_logement_aide_maintien_eligibilite`]:

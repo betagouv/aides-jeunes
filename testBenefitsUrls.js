@@ -1,5 +1,5 @@
 const axios = require("axios")
-const subject = require("./app/js/constants/benefits/back")
+const subject = require("./data/js/benefits/back")
 
 let links = []
 let done = 0

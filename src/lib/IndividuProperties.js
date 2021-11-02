@@ -1,4 +1,4 @@
-import Individu from "@/lib/Individu"
+import Individu from "@/../lib/Individu"
 import { capitalize, isRelevant, yearsAgo } from "@/lib/Utils"
 import Scolarite from "@/lib/Scolarite"
 

@@ -3,8 +3,8 @@ const { buildOpenFiscaRequest } = require("@/../backend/lib/openfisca/mapping")
 const {
   testEligibiliteGeographique,
   computeFrontEndBenefits,
-} = require("@/../backend/lib/mes-aides/computeFrontEndBenefits")
-import droitsDescription from "@/../app/js/constants/benefits/back"
+} = require("../../lib/ComputeFrontEndBenefits")
+import droitsDescription from "@/../data/js/benefits/back"
 
 describe("computeAides", function () {
   let commune

@@ -6,7 +6,7 @@ var moment = require("moment")
 
 var common = require("../common")
 var individuRessources = require("./ressources")
-var ressources = require("../../../../../src/constants/resources")
+var ressources = require("../../../../../lib/Resources")
 
 var ressourcesToDuplicate = concat(
   Object.keys(individuRessources.computedRessources),

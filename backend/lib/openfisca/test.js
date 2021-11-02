@@ -3,7 +3,7 @@ var mapping = require("./mapping")
 var forEach = require("lodash/forEach")
 var assign = require("lodash/assign")
 var pick = require("lodash/pick")
-var benefits = require("../../../app/js/constants/benefits/back")
+var benefits = require("../../../data/js/benefits/back")
 
 function toStringOf(obj) {
   return obj.toString()

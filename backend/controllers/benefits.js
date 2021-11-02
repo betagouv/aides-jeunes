@@ -1,4 +1,4 @@
-var { forEach } = require("../../app/js/constants/benefits/back")
+var { forEach } = require("../../data/js/benefits/back")
 
 var data = []
 forEach((b, id) => {

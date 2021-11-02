@@ -1,8 +1,8 @@
 var moment = require("moment")
 var assign = require("lodash/assign")
 
-var { forEach } = require("../../../../app/js/constants/benefits/back")
-var { generator } = require("../../mes-aides/dates")
+var { forEach } = require("../../../../data/js/benefits/back")
+var { generator } = require("../../../../lib/Dates")
 
 exports.isIndividuValid = function (individu, situation) {
   var age = moment(situation.dateDeValeur).diff(

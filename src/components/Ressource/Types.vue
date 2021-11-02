@@ -42,7 +42,7 @@
 import Actions from "@/components/Actions"
 import orderBy from "lodash/orderBy"
 import groupBy from "lodash/groupBy"
-import { ressourceCategories, ressourceTypes } from "../../../lib/Resources"
+import { ressourceCategories, ressourceTypes } from "@/../lib/Resources"
 import Ressource from "@/lib/Ressource"
 
 export default {

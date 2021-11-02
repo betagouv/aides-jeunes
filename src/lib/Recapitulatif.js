@@ -1,4 +1,4 @@
-import Individu from "../../lib/Individu"
+import Individu from "@/../lib/Individu"
 import {
   capitalize,
   displayCurrencyValue,

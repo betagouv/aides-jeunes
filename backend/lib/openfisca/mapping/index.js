@@ -12,7 +12,9 @@ const migrations = require("../../migrations")
 
 const propertyMove = require("./propertyMove")
 const last3MonthsDuplication = require("./last3MonthsDuplication")
-const { filterByInterestFlag } = require("../../../../lib/BenefitsInterestFlag")
+const {
+  filterByInterestFlag,
+} = require("../../../../lib/Benefits/FilterInterestFlag")
 
 function dispatchIndividuals(situation) {
   var individus = mapIndividus(situation)

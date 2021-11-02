@@ -12,37 +12,36 @@ backend:
 media_folder: public/img
 public_folder: img
 
-field_number: &field_number
-  widget: object
-  fields:
-  - label: Opérateur
-    name: op
-    widget: select
-    options: ["<"]
-  - label: Valeur
-    name: value
-    widget: number
-field_age: &field_age
-  <<: *field_number
-  label: Age
-  name: age
-field_boolean: &field_boolean
-  widget: object
-  fields:
-    - label: Valeur
-      name: value
-      widget: boolean
-field_boursier: &field_boursier
-  <<: *field_boolean
-  label: Boursier
-  name: boursier
-
 # local_backend: true
 publish_mode: editorial_workflow
 
 root: ../../..
 
 fields:
+  field_boolean: &field_boolean
+    widget: object
+    fields:
+      - label: Valeur
+        name: value
+        widget: boolean
+  field_number: &field_number
+    widget: object
+    fields:
+    - label: Opérateur
+      name: op
+      widget: select
+      options: ["<"]
+    - label: Valeur
+      name: value
+      widget: number
+  field_age: &field_age
+    <<: *field_number
+    label: Age
+    name: age
+  field_boursier: &field_boursier
+    <<: *field_boolean
+    label: Boursier
+    name: boursier
   field_mention_baccalaureat: &field_mention_baccalaureat
     label: Mention au bac
     name: mention_baccalaureat

@@ -12,6 +12,7 @@ const migrations = require("../../migrations")
 
 const propertyMove = require("./propertyMove")
 const last3MonthsDuplication = require("./last3MonthsDuplication")
+const { filterByInterestFlag } = require("../../../../lib/BenefitsInterestFlag")
 
 function dispatchIndividuals(situation) {
   var individus = mapIndividus(situation)
@@ -137,7 +138,7 @@ function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
   var prestationsWithInterest = pickBy(
     common.requestedVariables,
     function (definition) {
-      return !definition.interestFlag || demandeur[definition.interestFlag]
+      return filterByInterestFlag(definition, demandeur)
     }
   )
 

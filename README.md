@@ -1,6 +1,31 @@
-## Cette documentation est technique. Pour plus d'informations sur [Mes Aides](https://mes-aides.gouv.fr), regardez notre [wiki](https://github.com/sgmap/mes-aides-ui/wiki).
+## Cette documentation est technique. Pour plus d'informations sur le [simulateur d'aides pour les jeunes](https://mes-aides.1jeune1solution.beta.gouv.fr), regardez notre [wiki](https://betagouv/aides-jeunes/wiki).
 
-L'interface utilisateur (et le serveur principal) de [mes-aides](https://mes-aides.gouv.fr), un estimateur des prestations sociales françaises pour les particuliers. Il est basé sur simulateur socio-fiscal libre [Openfisca](https://www.openfisca.fr/).
+> L'interface utilisateur (et le serveur principal) du [simulateur d'aides et de prestations sociales pour les jeunes](https://mes-aides.1jeune1solution.beta.gouv.fr). Il est basé sur simulateur socio-fiscal libre [Openfisca](https://www.openfisca.fr/).
+
+# Setup
+
+## Stack
+
+- VueJS
+- NodeJS
+- MongoDB
+- OpenFisca (Python, numpy)
+- NetlifyCMS ([config](https://github.com/betagouv/aides-jeunes/blob/master/contribuer/public/admin/config.yml))
+  - [website](https://contribuer-aides-jeunes.netlify.app)
+- Fabric ([fabfile](https://github.com/betagouv/aides-jeunes-ops/blob/main/fabric.yml))
+
+## 3rd parties
+
+- CircleCI ([config](https://github.com/betagouv/aides-jeunes/blob/master/.circleci/config.yml#L197-L225))
+  - Continuous integration and deployment
+- Netlify
+  - Deloy previews
+- SendInBlue
+- Matomo ([stats.data.gouv.fr](https://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=range&date=previous30))
+  - [Dedicated site for usage data and impac][https://betagouv.github.io/mes-aides-analytics/] [source](https://github.com/betagouv/mes-aides-analytics)
+- Sentry
+  - [backend](https://sentry.io/organizations/betagouv-f7/projects/aides-jeunes-node/?project=5709109)
+  - [frontend](https://sentry.io/organizations/betagouv-f7/projects/aides-jeunes-front/?project=5709078)
 
 # Front only install
 
@@ -21,7 +46,7 @@ The application should be accessible at `localhost:8080`.
 
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb` and `node` 8.x are installed on your machine:
+Make sure `build-essential`, `mongodb` and `node` 12.x are installed on your machine:
 
 ```sh
 sudo apt-get install build-essential
@@ -30,7 +55,7 @@ sudo apt-get install mongodb
 
 ### For all platforms
 
-The runtime is Node 8.x for the web application, and Python 3 for Openfisca.
+The runtime is Node 12.x for the web application, and Python 3.7 for Openfisca.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 
@@ -41,7 +66,7 @@ You will need [`pip`](https://pip.pypa.io/) to install Openfisca.
 Run the following from the root of the project to install the dependencies
 
 ```sh
-npm install
+npm ci
 ```
 
 ## Openfisca
@@ -61,13 +86,15 @@ Then, to start the OpenFisca server, simply run `source .venv/bin/activate` foll
 
 In order to start a single worker for OpenFisca, you can run `OPENFISCA_WORKERS=1 npm run openfisca`.
 
+OpenFisca dependencies are specified in [openfisca/requirements.txt](https://github.com/betagouv/aides-jeunes/blob/master/openfisca/requirements.txt), a basic [Python requirements file](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file). It is possible to refer to non-production commit hashs but is prefered to use _main-merged_ commits.
+
 ### Development mode
 
 If you are working on `openfisca-france` and want to use your local version:
 
 ```
 cd (...)/openfisca-france
-pip install -e .
+pip install --editable .
 ```
 
 ## Usage
@@ -81,7 +108,7 @@ npm run db
 Then, in another shell (you will have to run `source .venv/bin/activate`), start the Openfisca server:
 
 ```sh
-npm run openfisca
+OPENFISCA_WORKERS=1 npm run openfisca
 ```
 
 Finally, in a third shell, start the server:
@@ -99,18 +126,6 @@ There are several levels of tests:
 
 You can safely use `npm test && npm run cypress` to drive your developments.
 
-## Continuous Integration
-
-We use [CircleCI](https://circleci.com/) as a continuous integration and deployment. The CI is currently configured with these jobs:
-
-`install_openfisca`: installs the server openfisca.
-`install`: installs the server and the client.
-`lint`: identifies and corrects the lint problems.
-`test_jest`: runs unit tests.
-`test_openfisca_test_generation` : validates the openfisca tests.
-`build` : builds the project.
-`test_e2e`: runs the end-to-end tests.
-
 ## Email
 
 We use the framework [MJML](https://mjml.io/) to design and integrate the templates. [Sendinblue](https://fr.sendinblue.com/) is our service to send emails.
@@ -118,48 +133,46 @@ We use the framework [MJML](https://mjml.io/) to design and integrate the templa
 The development server for emails can be easily start with:
 `node mjml.js` or `npm run serve-mail`
 
-If you want to verify the email sending, the variable `SEND_IN_BLUE_PRIVATE_KEY="my_private_key""` should be configured in your `.env` file.
+If you want to verify the email sending, the variable `SEND_IN_BLUE_PRIVATE_KEY=API_SECRET` should be configured in your `.env` file.
 You can create a free account(here)[https://app.sendinblue.com/account/register/profile] or request one on the mattermost channel.
 
 ## Linting and format
 
-We use ESLint as a linter and Prettier to format the codebase.
-We also utilize some ESLint plugins, such as vue-eslint and eslint-plugin-cypress, to provide a support for tests and framework.
+We use [ESLint](https://eslint.org/) as a linter and [Prettier](https://prettier.io/) to format the codebase.
+We also utilize some ESLint plugins, such as [vue-eslint](https://eslint.vuejs.org/user-guide/) and [eslint-plugin-cypress](https://github.com/cypress-io/eslint-plugin-cypress), to provide a support for tests and framework.
 
-More informations :
-Eslint: https://eslint.org/
-Prettier: https://prettier.io/
-Eslint plugin Cypress: https://github.com/cypress-io/eslint-plugin-cypress
-Eslint plugin Vue : https://eslint.vuejs.org/user-guide/
+# Continuous deployment
 
-# Déploiement
+SSHs keys were generated to [run scripts](http://man.openbsd.org/sshd#command=%22command%22) on the production server.
 
-## Préparation
-
-En plus de l'intégration continue, ce dépôt est configuré pour avoir du déploiement continu. À l'ajout de commits sur `mes-aides/simulateur#master` les tests sont relancés puis la production mise à jour.
-
-### OpenFisca
-
-Éditer le fichier `openfisca/requirements.txt` en y indiquant la version d'Openfisca que vous souhaitez utiliser.
-
-Ce fichier est au format [`requirements.txt`](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file) de `pip`. Généralement, vous le mettrez à jour pour faire pointer l'un des modules Openfisca vers une branche de développement en attendant la publication de ce module sur PyPI.
-
-## Déploiement
-
-Le serveur de production est rendu opérationnel avec [Puppet](https://puppet.com/). Les fichiers de configurations et de paramétrage sur disponibles dans [un dépôt séparé](https://github.com/mes-aides/ops/).
-
-### mes-aides
-
-Des clés SSHs ont été générées pour [lancer des scripts à distance](http://man.openbsd.org/sshd#command=%22command%22) sur le serveur de production.
-
-Sachant que le fichier `deploy` contient la clé privée associée au script de déploiement, ce dernier permet être lancé via la commande suivante :
+With the `deploy` key at hand, linked to the deploment script it is possible kick of a now deployment thanks to:
 
 ```sh
-ssh root@mes-aides.gouv.fr -i deploy
+ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr -i deploy
 ```
 
-Pour effectuer des modifications plus exotiques, il est nécessaire de se connecter en tant que `root`.
+For more, a normal/manual root connection is required.
 
-# Vérifier les urls des aides
+```sh
+ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
+```
 
-`npm run test-benefits-urls`
+# Other tools scripts & tips
+
+- `npm run test-benefits-urls` validate links to 3rd parties.
+
+- [Locally](http://localhost:8080/simulation/resultats?debug) or on [production](https://mes-aides.1jeune1solution.beta.gouv.fr/simulation/resultats?debug), it is possible to visualize all the available benefits of the simulator. It is done by adding `debug` as a parameter. It is also possible to set `debug=ppa,rsa` to choose which benefits are listed.
+
+- Adding `debug=parcours` as a parameter, show a debug version of all the steps in the simulator, [locally](https://localhost:8080/simulation/individu/demandeur/date_naissance?debug=parcours) and [production](https://mes-aides.1jeune1solution.beta.gouv.fr/simulation/individu/demandeur/date_naissance?debug=parcours).
+
+- [OpenFisca tracer](https://openfisca.github.io/tracer/) can allow you to debug OpenFisca computations. ([source](https://github.com/openfisca/tracer))
+
+## NetlifyCMS development
+
+It is possible to locally debug changes in NetlifyCMS configuration.
+
+- First, [contribuer/public/admin/config.yml#L15](https://github.com/betagouv/aides-jeunes/blob/master/contribuer/public/admin/config.yml#L15) must be uncommented;
+- `npx netlify-cms-proxy-server` should be ran from `.` and
+- `npm run dev` should be ran from `contribuer`.
+
+Changes made will be reflected locally instead of generating pull requests in production.

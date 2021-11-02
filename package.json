@@ -10,7 +10,6 @@
     "build:analyze": "npm run build -- --env.BUNDLEANALYZE",
     "build:dev": "webpack --mode=development",
     "build:netlify": "npm run build && cp netlify_redirects dist/_redirects",
-    "build_old": "NODE_ENV=production webpack --mode=production",
     "cypress": "cypress run",
     "cypress:open": "cypress open",
     "db": "mongod --dbpath db",

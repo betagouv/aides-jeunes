@@ -9,6 +9,10 @@ describe("benefit descriptions", function () {
       describe(providerName, function () {
         var provider = subject[level][providerName]
 
+        it("should have a correct id", function () {
+          expect(Boolean(providerName.match(/[a-z A-Z \-_]*/))).toBe(true)
+        })
+
         it("should have a label", function () {
           expect(typeof provider.label).toBe("string")
           expect(provider.label.length).toBeGreaterThan(1)
@@ -17,6 +21,10 @@ describe("benefit descriptions", function () {
         Object.keys(provider.prestations).forEach(function (aideName) {
           describe(aideName, function () {
             var aide = provider.prestations[aideName]
+
+            it("should have a correct id", function () {
+              expect(Boolean(aideName.match(/[a-z A-Z \-_]*/))).toBe(true)
+            })
 
             it("should have a label", function () {
               expect(typeof aide.label).toBe("string")
@@ -46,9 +54,43 @@ describe("benefit descriptions", function () {
               })
             }
 
-            if (aide.type !== "bool") {
-              describe("should have a periodicite", function () {
-                expect(Boolean(aide.periodicite)).toBe(true)
+            it("should have a type", function () {
+              expect(typeof aide.type).toBe("string")
+              expect(aide.type.length).toBeGreaterThan(0)
+            })
+
+            if (aide.type === "bool") {
+              it("should not have a legend", function () {
+                expect(aide.legend).toBe(undefined)
+              })
+
+              it("should not have a montant", function () {
+                expect(aide.montant).toBe(undefined)
+              })
+            }
+
+            if (aide.type === "float") {
+              it("should have a periodicite", function () {
+                expect(typeof aide.periodicite).toBe("string")
+                expect(aide.periodicite.length).toBeGreaterThan(0)
+              })
+            }
+
+            if (aide.computesLocally) {
+              it("should not have an entity", function () {
+                expect(aide.entity).toBe(undefined)
+              })
+
+              if (aide.type === "float") {
+                it("should have a montant", function () {
+                  expect(typeof aide.montant).toBe("number")
+                  expect(aide.montant).toBeGreaterThan(0)
+                })
+              }
+            } else {
+              it("should have an entity", function () {
+                expect(typeof aide.entity).toBe("string")
+                expect(aide.entity.length).toBeGreaterThan(0)
               })
             }
           })

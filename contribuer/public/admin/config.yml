@@ -22,7 +22,7 @@ collections:
     label: Aides
     label_singular: Aide
     identifier_field: label
-    folder: "data/yaml/benefits"
+    folder: "data/benefits"
     create: true
     delete: false
     editor:
@@ -286,7 +286,7 @@ collections:
     label: Institutions
     label_singular: institution
     identifier_field: name
-    folder: "data/yaml/institutions"
+    folder: "data/institutions"
     create: true
     delete: false
     editor:

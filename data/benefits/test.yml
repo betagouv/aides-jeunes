@@ -1,0 +1,18 @@
+label: test
+institution: etat
+description: jjjkjkjjkjkj
+type: float
+unit: €
+computesLocally: true
+montant: 2000
+periodicite: mensuelle
+profils:
+  - type: etudiant
+    conditions:
+      - type: boursier
+        value: true
+      - type: mention_baccalaureat
+        values:
+          - mention_bien
+          - mention_tres_bien
+          - mention_tres_bien_felicitations_jury

@@ -12,6 +12,31 @@ backend:
 media_folder: public/img
 public_folder: img
 
+field_number: &field_number
+  widget: object
+  fields:
+  - label: Opérateur
+    name: op
+    widget: select
+    options: ["<"]
+  - label: Valeur
+    name: value
+    widget: number
+field_age: &field_age
+  <<: *field_number
+  label: Age
+  name: age
+field_boolean: &field_boolean
+  widget: object
+  fields:
+    - label: Valeur
+      name: value
+      widget: boolean
+field_boursier: &field_boursier
+  <<: *field_boolean
+  label: Boursier
+  name: boursier
+
 # local_backend: true
 publish_mode: editorial_workflow
 
@@ -260,8 +285,14 @@ collections:
             name: lyceen
             widget: object
             fields:
-              - name: flag
-                widget: hidden
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: []
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
           - label: Étudiant
             name: etudiant
             widget: object
@@ -273,13 +304,8 @@ collections:
                 widget: list
                 collapsed: false
                 types:
-                  - label: Boursier
-                    name: boursier
-                    widget: object
-                    fields:
-                      - label: Valeur
-                        name: value
-                        widget: boolean
+                  - *field_age
+                  - *field_boursier
                   - *field_mention_baccalaureat
           - label: Apprenti
             name: apprenti

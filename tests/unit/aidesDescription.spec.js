@@ -25,7 +25,7 @@ describe("benefit descriptions", function () {
 
             it("should have a description", function () {
               expect(typeof aide.description).toBe("string")
-              const p = document.createElement('p')
+              const p = document.createElement("p")
               p.innerHTML = aide.description
               const innerText = p.textContent
               expect(innerText.length).toBeGreaterThanOrEqual(10)

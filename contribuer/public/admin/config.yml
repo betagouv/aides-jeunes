@@ -27,13 +27,13 @@ fields:
   field_number: &field_number
     widget: object
     fields:
-    - label: Opérateur
-      name: op
-      widget: select
-      options: ["<"]
-    - label: Valeur
-      name: value
-      widget: number
+      - label: Opérateur
+        name: op
+        widget: select
+        options: ["<"]
+      - label: Valeur
+        name: value
+        widget: number
   field_age: &field_age
     <<: *field_number
     label: Age

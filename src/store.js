@@ -8,7 +8,7 @@ import moment from "moment"
 import values from "lodash/values"
 import some from "lodash/some"
 
-import { computeAides, datesGenerator } from "../lib/ComputeBenefits"
+import { computeAides, datesGenerator } from "../lib/Benefits/Compute"
 import { categoriesRnc, patrimoineTypes } from "../lib/Resources"
 import { generateAllSteps, generateSituation } from "./lib/State/generator"
 import Institution from "./lib/Institution"

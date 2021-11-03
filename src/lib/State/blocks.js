@@ -1,7 +1,7 @@
 const Individu = require("@/../lib/Individu")
 const { ACTIVITES_ACTIF } = require("@/../lib/Activite")
 const Ressource = require("@/lib/Ressource").default
-const { datesGenerator } = require("@/../lib/ComputeBenefits")
+const { datesGenerator } = require("../../../lib/Benefits/Compute")
 const { Step, ComplexStep } = require("./steps")
 
 function individuBlockFactory(id) {

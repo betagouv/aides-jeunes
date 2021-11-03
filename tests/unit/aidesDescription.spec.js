@@ -25,12 +25,11 @@ describe("benefit descriptions", function () {
 
             it("should have a description", function () {
               expect(typeof aide.description).toBe("string")
-              const descriptionWithoutTags = this.aide.description.replace(
-                /<[^>]*>/g,
-                ""
-              )
-              expect(descriptionWithoutTags.length).toBeGreaterThanOrEqual(10)
-              expect(descriptionWithoutTags.length).toBeLessThanOrEqual(420)
+              const p = document.createElement('p')
+              p.innerHTML = aide.description
+              const innerText = p.textContent
+              expect(innerText.length).toBeGreaterThanOrEqual(10)
+              expect(innerText.length).toBeLessThanOrEqual(420)
             })
 
             it("should have a link", function () {

@@ -1,3 +1,5 @@
+import { getAnswer } from "../../lib/answers"
+
 function getStatutOccupationLogement(logement) {
   let statusOccupationMap = {
     proprietaireprimoaccedant: "primo_accedant",
@@ -57,10 +59,14 @@ function captureCharges(logementStatut) {
   )
 }
 
-function getLoyerData(getAnswer) {
-  const logementStatut = getAnswer("menage", "statut_occupation_logement")
-  const coloc = getAnswer("menage", "coloc")
-  const loyer = getAnswer("menage", "loyer") || {}
+function getLoyerData(answers) {
+  const logementStatut = getAnswer(
+    answers,
+    "menage",
+    "statut_occupation_logement"
+  )
+  const coloc = getAnswer(answers, "menage", "coloc")
+  const loyer = getAnswer(answers, "menage", "loyer") || {}
 
   const isLocataire = !Logement.isOwner(logementStatut)
   const captureCharges = Logement.captureCharges(logementStatut)

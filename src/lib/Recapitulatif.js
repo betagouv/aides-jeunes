@@ -10,6 +10,7 @@ import {
   ressourceTypes,
 } from "../../lib/constants/resources"
 import Logement from "@/lib/Logement"
+import { getStepAnswer } from "../../lib/answers"
 
 export const getIndividuByStep = (step, component) => {
   const role = step.id.split("_")[0]
@@ -23,12 +24,7 @@ export const getIndividuByStep = (step, component) => {
 
 export const SIMPLE_STEPS = {
   ressources(step) {
-    const answer = this.$store.getters.getAnswer(
-      step.entity,
-      step.variable,
-      step.id,
-      true
-    )
+    const answer = getStepAnswer(this.$store.state.answers.current, step)
     return [
       {
         label: "Vos types de revenus ?",
@@ -47,12 +43,13 @@ export const SIMPLE_STEPS = {
     ]
   },
   depcom() {
-    const answer = this.$store.getters.getAnswer(
+    const answer = getStepAnswer(
+      this.$store.state.answers.current,
       "menage",
       "depcom",
-      undefined,
-      true
+      undefined
     )
+
     return [
       {
         label: "Quel est votre code postal ?",
@@ -77,11 +74,11 @@ export const SIMPLE_STEPS = {
   },
 
   statut_occupation_logement() {
-    const answer = this.$store.getters.getAnswer(
+    const answer = getStepAnswer(
+      this.$store.state.answers.current,
       "menage",
       "statut_occupation_logement",
-      undefined,
-      true
+      undefined
     )
 
     return [
@@ -120,7 +117,7 @@ export const COMPLEX_STEPS = {
       return step.key.match(/\/loyer$/)
     },
     fn() {
-      const loyerData = Logement.getLoyerData(this.$store.getters.getAnswer)
+      const loyerData = Logement.getLoyerData(this.$store.answers.all)
       return [
         {
           label: loyerData.loyerQuestion.label,

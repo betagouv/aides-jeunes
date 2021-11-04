@@ -41,7 +41,7 @@ export default {
     Actions,
   },
   data: function () {
-    return Logement.getLoyerData(this.$store.getters.getAnswer)
+    return Logement.getLoyerData(this.$store.state.answers.all)
   },
   methods: {
     onSubmit: function () {

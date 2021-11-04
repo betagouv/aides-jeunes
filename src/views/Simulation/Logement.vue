@@ -93,6 +93,7 @@
 import Actions from "@/components/Actions"
 import Logement from "@/lib/Logement"
 import Individu from "@/lib/Individu"
+import { getAnswer } from "../../../lib/answers"
 
 export default {
   name: "SimulationLogement",
@@ -100,7 +101,8 @@ export default {
     Actions,
   },
   data: function () {
-    const logementStatut = this.$store.getters.getAnswer(
+    const logementStatut = getAnswer(
+      this.$store.state.answers.all,
       "menage",
       "statut_occupation_logement"
     )

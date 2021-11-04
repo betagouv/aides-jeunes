@@ -66,6 +66,7 @@ import {
 import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/Recapitulatif"
 import { ENTITIES_PROPERTIES } from "@/lib/State/steps"
 import BackButton from "@/components/Buttons/BackButton"
+import { getStepAnswer } from "../../../lib/answers"
 
 export default {
   name: "Recapitulatif",
@@ -129,11 +130,7 @@ export default {
       }
 
       if (ENTITIES_PROPERTIES[step.entity]) {
-        const answer = this.$store.getters.getAnswer(
-          step.entity,
-          step.variable,
-          step.id
-        )
+        const answer = getStepAnswer(this.$store.state.answers.all, step)
 
         const entity =
           ENTITIES_PROPERTIES[step.entity].loadEntity &&

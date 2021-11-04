@@ -1,3 +1,8 @@
+const {
+  getAnswer,
+  getStepAnswer,
+  isStepAnswered,
+} = require("../../../lib/answers")
 const { ressourceTypes } = require("../../../lib/constants/resources")
 var Chapters = require("../Chapters")
 
@@ -54,7 +59,8 @@ const nextUnansweredStep = (state, getters) => {
     if (step.key.match(/ressources\/montants\/(\w)*/)) {
       const keySplit = step.key.split("/")
       const categoryId = keySplit[keySplit.length - 1]
-      const declaredRessources = getters.getAnswer(
+      const declaredRessources = getAnswer(
+        state.answers.all,
         step.entity,
         "ressources",
         step.id
@@ -65,11 +71,7 @@ const nextUnansweredStep = (state, getters) => {
             (ressourceType) => ressourceType.id === ressourceId
           ).category === categoryId
       )
-      const declaredAmounts = getters.getAnswer(
-        step.entity,
-        step.variable,
-        step.id
-      )
+      const declaredAmounts = getStepAnswer(state.answers.all, step)
       return (
         !expectedDeclaredAmounts ||
         !declaredAmounts ||
@@ -87,7 +89,7 @@ const nextUnansweredStep = (state, getters) => {
       )
     }
 
-    return getters.getAnswer(step.entity, step.variable, step.id) === undefined
+    return !isStepAnswered(state.answers.all, step)
   })
 }
 

@@ -69,6 +69,7 @@ import EnSavoirPlus from "@/components/EnSavoirPlus"
 import InputNumber from "@/components/InputNumber"
 import InputDate from "@/components/InputDate"
 import { ENTITIES_PROPERTIES } from "@/lib/State/steps"
+import { getAnswer } from "../../../lib/answers"
 
 export default {
   name: "MutualizedStep",
@@ -82,7 +83,8 @@ export default {
   data() {
     const entityName = this.$route.path.split("/")[2]
     const id = (this.params || this.$route.params).id
-    const value = this.$store.getters.getAnswer(
+    const value = getAnswer(
+      this.$store.state.answers.all,
       entityName,
       this.$route.params.fieldName,
       id

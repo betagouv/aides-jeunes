@@ -16,6 +16,7 @@ import { generateAllSteps } from "./lib/State/generator"
 import Institution from "./lib/Institution"
 import ABTestingService from "./plugins/ABTestingService"
 import EtablissementModule from "./modules/Etablissement"
+import { isStepAnswered } from "../lib/answers"
 
 function defaultCalculs() {
   return {
@@ -161,15 +162,11 @@ const store = new Vuex.Store({
         // dirty hack for loyer...
         if (step.substeps && step.substeps.length > 0) {
           return step.substeps.some(
-            (step) =>
-              getters.getAnswer(step.entity, step.variable, step.id) !==
-              undefined
+            (step) => !isStepAnswered(state.answers.all, step)
           )
         }
 
-        return (
-          getters.getAnswer(step.entity, step.variable, step.id) !== undefined
-        )
+        return !isStepAnswered(state.answers.all, step)
       })
       return answeredSteps.length / allSteps.length
     },
@@ -242,17 +239,6 @@ const store = new Vuex.Store({
         state.calculs.resultats._id &&
         state.calculs.resultats._id === state.situationId
       )
-    },
-    getAnswer: (state) => (entityName, fieldName, id, currentOnly) => {
-      const answer = (
-        currentOnly ? state.answers.current : state.answers.all
-      ).find(
-        (answer) =>
-          answer.id === id &&
-          answer.entityName === entityName &&
-          answer.fieldName === fieldName
-      )
-      return answer ? answer.value : undefined
     },
     situation: (state) => {
       return generateSituation(state.answers, true)

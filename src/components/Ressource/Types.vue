@@ -46,6 +46,7 @@ import {
   ressourceCategories,
   ressourceTypes,
 } from "../../../lib/constants/resources"
+import { getAnswer } from "../../../lib/answers"
 import Ressource from "../../../lib/ressource"
 
 export default {
@@ -68,7 +69,8 @@ export default {
       )
     })
 
-    const selectedRessources = this.$store.getters.getAnswer(
+    const selectedRessources = getAnswer(
+      this.$store.state.answers.all,
       "individu",
       "ressources",
       this.$route.params.id

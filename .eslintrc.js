@@ -22,5 +22,6 @@ module.exports = {
   },
   rules: {
     "no-irregular-whitespace": 0,
+    "vue/multi-word-component-names": 1,
   },
 }

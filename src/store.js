@@ -151,17 +151,13 @@ const store = new Vuex.Store({
       return generateAllSteps(getters.situation, state.openFiscaParameters)
     },
     progress: function (state, getters) {
-      const fullSituation = generateSituation(state.answers, true)
-      const fullSteps = generateAllSteps(
-        fullSituation,
-        state.openFiscaParameters
-      ).filter(
+      const allSteps = getters.getAllSteps.filter(
         (step) =>
           step.path !== "/" &&
           step.path !== "/simulation/resultats" &&
           step.isActive
       )
-      const answeredSteps = fullSteps.filter((step) => {
+      const answeredSteps = allSteps.filter((step) => {
         // dirty hack for loyer...
         if (step.substeps && step.substeps.length > 0) {
           return step.substeps.some(
@@ -175,7 +171,7 @@ const store = new Vuex.Store({
           getters.getAnswer(step.entity, step.variable, step.id) !== undefined
         )
       })
-      return answeredSteps.length / fullSteps.length
+      return answeredSteps.length / allSteps.length
     },
     ressourcesYearMinusTwoCaptured: function (state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
@@ -259,7 +255,7 @@ const store = new Vuex.Store({
       return answer ? answer.value : undefined
     },
     situation: (state) => {
-      return generateSituation(state.answers)
+      return generateSituation(state.answers, true)
     },
   },
   mutations: {
@@ -275,15 +271,10 @@ const store = new Vuex.Store({
         ),
       }
     },
-    updateCurrentAnswers: (state, newPath) => {
-      const fullSituation = generateSituation(state.answers, true)
-      const fullSteps = generateAllSteps(
-        fullSituation,
-        state.openFiscaParameters
-      )
+    updateCurrentAnswers: (state, { newPath, steps }) => {
       const currentAnswers = []
       let i = 0
-      let currentStep = fullSteps[0]
+      let currentStep = steps[0]
       while (currentStep && currentStep.path !== newPath) {
         if (currentStep.isActive && currentStep.path !== "/") {
           const currentAnswer = state.answers.all.find((answer) => {
@@ -299,7 +290,7 @@ const store = new Vuex.Store({
           }
         }
         i = i + 1
-        currentStep = fullSteps[i]
+        currentStep = steps[i]
       }
       state.answers.current = currentAnswers
     },
@@ -478,8 +469,11 @@ const store = new Vuex.Store({
       commit("answer", answer)
       commit("setDirty")
     },
-    updateCurrentAnswers: ({ commit }, newPath) => {
-      commit("updateCurrentAnswers", newPath)
+    updateCurrentAnswers: ({ commit, getters }, newPath) => {
+      commit("updateCurrentAnswers", {
+        newPath,
+        steps: getters.getAllSteps,
+      })
     },
     ressourcesFiscales: ({ commit }, ressourcesFiscales) => {
       commit("ressourcesFiscales", ressourcesFiscales)

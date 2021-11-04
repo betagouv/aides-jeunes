@@ -1,7 +1,5 @@
-const { generateSituation } = require("../../../lib/situations")
 const { ressourceTypes } = require("../../../lib/constants/resources")
 var Chapters = require("../Chapters")
-const { generateAllSteps } = require("./generator")
 
 function chapters(currentPath, journey) {
   const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")
@@ -48,9 +46,7 @@ function next(current, journey) {
 }
 
 const nextUnansweredStep = (state, getters) => {
-  const fullSituation = generateSituation(state.answers, true)
-  const fullSteps = generateAllSteps(fullSituation, state.openFiscaParameters)
-  return fullSteps.find((step) => {
+  return getters.getAllSteps.find((step) => {
     if (!step.isActive || step.path === "/") {
       return false
     }

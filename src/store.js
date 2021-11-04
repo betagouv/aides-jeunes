@@ -208,9 +208,7 @@ const store = new Vuex.Store({
       return function (representation, situationId) {
         return axios
           .get(
-            `api/situations/${
-              situationId || state.situationId
-            }/${representation}`
+            `api/answers/${situationId || state.situationId}/${representation}`
           )
           .then((response) => response.data)
       }
@@ -467,7 +465,7 @@ const store = new Vuex.Store({
 
       answers.abtesting = ABTestingService.getEnvironment()
       return axios
-        .post("/api/situations", store.state.answers)
+        .post("/api/answers", store.state.answers)
         .then((result) => result.data)
         .then((payload) => payload._id)
         .then((id) => store.commit("setId", id))
@@ -475,7 +473,7 @@ const store = new Vuex.Store({
     fetch: function (state, id) {
       state.commit("fetching")
       return axios
-        .get(`/api/situations/${id}`)
+        .get(`/api/answers/${id}`)
         .then((result) => result.data)
         .then((payload) => state.commit("reset", payload))
         .then(() => store.commit("setId", id))
@@ -490,9 +488,7 @@ const store = new Vuex.Store({
     compute: function (store, showPrivate) {
       store.commit("startComputation")
       return axios
-        .get(
-          "api/situations/" + store.state.situationId + "/openfisca-response"
-        )
+        .get("api/answers/" + store.state.situationId + "/openfisca-response")
         .then(function (OpenfiscaResponse) {
           return OpenfiscaResponse.data
         })

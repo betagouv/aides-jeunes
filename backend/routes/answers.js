@@ -3,30 +3,30 @@ var cookieParser = require("cookie-parser")
 var cors = require("cors")
 
 var followups = require("../controllers/followups")
-var situations = require("../controllers/situations")
+var answers = require("../controllers/answers")
 var teleservices = require("../controllers/teleservices")
 
 module.exports = function (api) {
-  api.route("/situations").post(cookieParser(), situations.create)
+  api.route("/answers").post(cookieParser(), answers.create)
 
   var route = new express.Router({ mergeParams: true })
   route.use(cookieParser())
-  route.use(situations.validateAccess)
+  route.use(answers.validateAccess)
 
-  route.get("/", situations.show)
-  route.get("/openfisca-response", situations.openfiscaResponse)
-  route.get("/legacy-openfisca-request", situations.openfiscaRequestFromLegacy)
+  route.get("/", answers.show)
+  route.get("/openfisca-response", answers.openfiscaResponse)
+  route.get("/legacy-openfisca-request", answers.openfiscaRequestFromLegacy)
 
   // Enable CORS for openfisca-tracer
   route.options("/openfisca-request", cors())
   route.get(
     "/openfisca-request",
     cors({ origin: "*" }),
-    situations.openfiscaRequest
+    answers.openfiscaRequest
   )
 
-  route.post("/openfisca-test", situations.openfiscaTest)
-  route.get("/openfisca-trace", situations.openfiscaTrace)
+  route.post("/openfisca-test", answers.openfiscaTest)
+  route.get("/openfisca-trace", answers.openfiscaTrace)
 
   route.post("/followup", followups.persist)
 
@@ -37,20 +37,20 @@ module.exports = function (api) {
     )
   })
 
-  api.options("/situations/via/:signedPayload", cors())
+  api.options("/answers/via/:signedPayload", cors())
   api.get(
-    "/situations/via/:signedPayload",
+    "/answers/via/:signedPayload",
     cors({ origin: "*" }),
     teleservices.checkCredentials,
     teleservices.attachPayloadSituation,
     teleservices.verifyRequest,
     teleservices.exportRepresentation
   )
-  api.use("/situations/:situationId", route)
+  api.use("/answers/:situationId", route)
 
   /*
    ** Param injection
    */
-  api.param("situationId", situations.situation)
+  api.param("situationId", answers.answers)
   api.param("signedPayload", teleservices.decodePayload)
 }

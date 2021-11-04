@@ -1,5 +1,5 @@
 var auth = require("basic-auth")
-var situations = require("../situations")
+var situations = require("../answers")
 var jwt = require("jsonwebtoken")
 var moment = require("moment")
 var Mustache = require("mustache")

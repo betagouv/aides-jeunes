@@ -113,7 +113,7 @@ export default {
         return
       }
 
-      const uri = `api/situations/${this.id}/followup`
+      const uri = `api/answers/${this.id}/followup`
       const payload = {
         email: this.email,
         surveyOptin,

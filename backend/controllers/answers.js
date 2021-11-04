@@ -8,7 +8,7 @@ var openfisca = require("../lib/openfisca")
 var openfiscaTest = require("../lib/openfisca/test")
 var Answer = require("mongoose").model("Answer")
 
-exports.situation = function (req, res, next, answersId) {
+exports.answers = function (req, res, next, answersId) {
   if (answersId && answersId._id) {
     req.answers = answersId
     req.situation = generateSituation(answersId)

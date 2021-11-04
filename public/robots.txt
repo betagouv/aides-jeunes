@@ -9,7 +9,7 @@ Allow: /foyer/demandeur
 Allow: /communication/2020-04-08-fonds-solidarites-logement-75-aides
 Disallow: /foyer/*
 Disallow: /redirection
-Disallow: /situations/*
+Disallow: /answers/*
 Disallow: /tests
 Disallow: /tests/*
 Disallow: /validation

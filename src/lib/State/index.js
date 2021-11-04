@@ -73,10 +73,17 @@ const nextUnansweredStep = (state, getters) => {
       return (
         !expectedDeclaredAmounts ||
         !declaredAmounts ||
-        expectedDeclaredAmounts.length !== declaredAmounts.length ||
-        declaredAmounts.some((declaration) =>
-          Object.values(declaration.amounts).some((amount) => amount === null)
-        )
+        expectedDeclaredAmounts.some((expectedDeclaredAmounts) => {
+          const declaredAmount = declaredAmounts.find(
+            (declaredAmount) => declaredAmount.id === expectedDeclaredAmounts
+          )
+          return (
+            !declaredAmount ||
+            Object.values(declaredAmount.amounts).some(
+              (amount) => amount === null
+            )
+          )
+        })
       )
     }
 

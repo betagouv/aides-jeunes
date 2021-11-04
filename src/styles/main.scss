@@ -38,7 +38,6 @@ $screen-smaller-than-mobile: 399px;
 
 /* DESKTOP IMPORTS */
 @import "partials/desktop/ui-kit";
-@import "partials/desktop/sommaire";
 @import "partials/desktop/stats";
 @import "partials/desktop/buttons";
 @import "partials/desktop/inputs";
@@ -69,7 +68,6 @@ $screen-smaller-than-mobile: 399px;
   @import "partials/mobile/footer";
   @import "partials/mobile/home";
   @import "partials/mobile/resultats";
-  @import "partials/mobile/sommaire";
   @import "partials/mobile/recapitulatif";
 }
 

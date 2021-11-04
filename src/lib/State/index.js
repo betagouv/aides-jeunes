@@ -46,7 +46,7 @@ function next(current, journey) {
     .filter((step) => step.isActive)[0]
 }
 
-const nextUnansweredSteps = (state, getters) => {
+const nextUnansweredStep = (state, getters) => {
   const fullSituation = generateSituation(state.answers, true)
   const fullSteps = generateAllSteps(fullSituation, state.openFiscaParameters)
   return fullSteps.find((step) => {
@@ -67,7 +67,7 @@ const nextUnansweredSteps = (state, getters) => {
 
 module.exports = {
   next,
-  nextUnansweredSteps,
+  nextUnansweredStep,
   chapters,
   current,
 }

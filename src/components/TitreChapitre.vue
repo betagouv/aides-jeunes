@@ -1,28 +1,38 @@
 <template>
   <div class="aj-category-title-wrapper">
-    <h1>{{ title }}</h1>
-    <div class="aj-category-title-wrapper-mobile">
-      <MenuButton
-        @click.native="goToRecapitulatifPage"
-        v-show="showMenuButton"
-      ></MenuButton>
+    <div class="aj-category-title">
+      <h1>{{ title }}</h1>
+      <div class="aj-category-title-button-mobile">
+        <MenuButton
+          @click.native="goToRecapitulatifPage"
+          v-show="showMenuButton"
+        ></MenuButton>
+      </div>
+      <div
+        class="aj-category-title-button-desktop"
+        v-if="$store.getters.passSanityCheck"
+      >
+        <button
+          v-if="showMenuButton"
+          class="button outline"
+          v-on:click="goToRecapitulatifPage"
+          >{{
+            isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
+          }}</button
+        >
+        <BackButton
+          v-else
+          @click.native="goBack()"
+          class="recapitulatif-back-button"
+          >Retour</BackButton
+        >
+      </div>
     </div>
     <div
-      class="aj-category-title-wrapper-desktop"
-      v-if="$store.getters.passSanityCheck"
+      class="aj-complete-progress-bar"
+      v-if="showMenuButton && !isResultsPage"
     >
-      <button
-        v-if="showMenuButton"
-        class="button outline"
-        v-on:click="goToRecapitulatifPage"
-        >{{ buttonLabel }}</button
-      >
-      <BackButton
-        v-else
-        @click.native="goBack()"
-        class="recapitulatif-back-button"
-        >Retour</BackButton
-      >
+      <div :style="currentProgressStyle" />
     </div>
   </div>
 </template>
@@ -42,11 +52,16 @@ export default {
     showMenuButton() {
       return this.$route.name !== "recapitulatif"
     },
-    buttonLabel() {
-      return this.$route.name === "resultats" ||
+    isResultsPage() {
+      return (
+        this.$route.name === "resultats" ||
         this.$route.name === "resultatsDetails"
-        ? "Modifier ma simulation"
-        : "Récapitulatif"
+      )
+    },
+    currentProgressStyle() {
+      return {
+        width: `${this.$store.getters.progress * 100}%`,
+      }
     },
   },
   methods: {

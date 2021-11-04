@@ -141,21 +141,36 @@ html {
         }
       }
 
+      .aj-complete-progress-bar {
+        height: 16px;
+        margin: 8px auto 0px auto;
+        border-radius: 4px;
+        background-color: var(--light-grey);
+        div {
+          height: 100%;
+          border-radius: 4px;
+          background-color: var(--light-green);
+        }
+      }
+
       .aj-category-title-wrapper {
+        padding: 0px 32px 8px 32px;
+      }
+
+      .aj-category-title {
         display: flex;
         justify-content: space-between;
-        padding: 0px 32px 8px 32px;
         h1 {
           font-size: 2.75rem;
           margin: 0;
         }
       }
 
-      .aj-category-title-wrapper-mobile {
+      .aj-category-title-button-mobile {
         display: none;
       }
 
-      .aj-category-title-wrapper-desktop {
+      .aj-category-title-button-desktop {
         display: flex;
         align-items: center;
         justify-content: center;

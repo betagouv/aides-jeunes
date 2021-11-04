@@ -3,21 +3,28 @@ html {
     .aj-main-container {
       padding: 0 10px 10px 10px;
 
+      .aj-complete-progress-bar {
+        display: none;
+      }
+
       .aj-category-title-wrapper {
+        padding: 16px 0;
+      }
+
+      .aj-category-title {
         flex-direction: row-reverse;
         justify-content: center;
-        padding: 16px 0;
         h1 {
           font-size: 2em;
           line-height: 1.125em;
         }
       }
 
-      .aj-category-title-wrapper-desktop {
+      .aj-category-title-button-desktop {
         display: none;
       }
 
-      .aj-category-title-wrapper-mobile {
+      .aj-category-title-button-mobile {
         $menu-button-size: 40px;
 
         display: flex;

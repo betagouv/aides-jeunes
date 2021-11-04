@@ -1,16 +1,16 @@
-import { nextUnansweredSteps, current, chapters } from "@/lib/State"
+import { nextUnansweredStep, current, chapters } from "@/lib/State"
 import VueRouter from "vue-router"
 
 const StateService = {
   install(Vue) {
     Vue.prototype.$state = {
-      nextUnansweredSteps,
+      nextUnansweredStep,
       current,
       chapters,
     }
 
     Vue.prototype.$push = function () {
-      const nextStep = nextUnansweredSteps(
+      const nextStep = nextUnansweredStep(
         this.$store.state,
         this.$store.getters
       )

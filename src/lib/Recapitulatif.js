@@ -22,6 +22,30 @@ export const getIndividuByStep = (step, component) => {
 }
 
 export const SIMPLE_STEPS = {
+  ressources(step) {
+    const answer = this.$store.getters.getAnswer(
+      step.entity,
+      step.variable,
+      step.id,
+      true
+    )
+    return [
+      {
+        label: "Vos types de revenus ?",
+        value:
+          answer && answer.length > 0
+            ? answer
+                .map(
+                  (ressourceId) =>
+                    ressourceTypes.find(
+                      (ressource) => ressource.id === ressourceId
+                    ).label
+                )
+                .join(", ")
+            : "Aucuns",
+      },
+    ]
+  },
   depcom() {
     const answer = this.$store.getters.getAnswer(
       "menage",

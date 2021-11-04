@@ -1,4 +1,5 @@
 const { generateSituation } = require("../../../lib/situations")
+const { ressourceTypes } = require("../../../lib/constants/resources")
 var Chapters = require("../Chapters")
 const { generateAllSteps } = require("./generator")
 
@@ -58,6 +59,34 @@ const nextUnansweredStep = (state, getters) => {
       return step.substeps.some(
         (step) =>
           getters.getAnswer(step.entity, step.variable, step.id) === undefined
+      )
+    }
+    if (step.key.match(/ressources\/montants\/(\w)*/)) {
+      const keySplit = step.key.split("/")
+      const categoryId = keySplit[keySplit.length - 1]
+      const declaredRessources = getters.getAnswer(
+        step.entity,
+        "ressources",
+        step.id
+      )
+      const expectedDeclaredAmounts = declaredRessources.filter(
+        (ressourceId) =>
+          ressourceTypes.find(
+            (ressourceType) => ressourceType.id === ressourceId
+          ).category === categoryId
+      )
+      const declaredAmounts = getters.getAnswer(
+        step.entity,
+        step.variable,
+        step.id
+      )
+      return (
+        !expectedDeclaredAmounts ||
+        !declaredAmounts ||
+        expectedDeclaredAmounts.length !== declaredAmounts.length ||
+        declaredAmounts.some((declaration) =>
+          Object.values(declaration.amounts).some((amount) => amount === null)
+        )
       )
     }
 

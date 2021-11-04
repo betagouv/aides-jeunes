@@ -121,13 +121,11 @@ export default {
         return SIMPLE_STEPS[step.variable].bind(this)(step)
       }
 
-      if (step.variable === undefined) {
-        const match = Object.keys(COMPLEX_STEPS).find((key) =>
-          COMPLEX_STEPS[key].matcher.bind(this)(step)
-        )
-        if (match) {
-          return COMPLEX_STEPS[match].fn.bind(this)(step)
-        }
+      const match = Object.keys(COMPLEX_STEPS).find((key) =>
+        COMPLEX_STEPS[key].matcher.bind(this)(step)
+      )
+      if (match) {
+        return COMPLEX_STEPS[match].fn.bind(this)(step)
       }
 
       if (ENTITIES_PROPERTIES[step.entity]) {
@@ -136,6 +134,7 @@ export default {
           step.variable,
           step.id
         )
+
         const entity =
           ENTITIES_PROPERTIES[step.entity].loadEntity &&
           ENTITIES_PROPERTIES[step.entity].loadEntity({

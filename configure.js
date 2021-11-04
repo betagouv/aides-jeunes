@@ -5,7 +5,7 @@ var morgan = require("morgan")
 var utils = require("./backend/lib/utils")
 var Sentry = require("@sentry/node")
 
-module.exports = function (app) {
+module.exports = function (devServer) {
   Sentry.init({
     // Enable Sentry in production
     // https://docs.sentry.io/development/sdk-dev/overview/#usage-for-end-users
@@ -16,14 +16,14 @@ module.exports = function (app) {
   })
 
   // The request handler must be the first middleware on the app
-  app.use(Sentry.Handlers.requestHandler())
+  devServer.app.use(Sentry.Handlers.requestHandler())
 
   // Setup app
-  app.use("/api", require("./backend/api"))
+  devServer.app.use("/api", require("./backend/api"))
 
-  app.use("/followups", require("./backend/followups"))
+  devServer.app.use("/followups", require("./backend/followups"))
 
-  app.use(bodyParser.urlencoded({ limit: "1024kb" }))
+  devServer.app.use(bodyParser.urlencoded({ limit: "1024kb" }))
 
   // Route to download a PDF
   let puppeteerArgs = {}
@@ -35,9 +35,9 @@ module.exports = function (app) {
     }
   }
 
-  app.set("trust proxy", true)
+  devServer.app.set("trust proxy", true)
 
-  app.route("/foyer/resultat").post(function (req, res) {
+  devServer.app.route("/foyer/resultat").post(function (req, res) {
     var html = Buffer.from(req.body.base64, "base64").toString("utf-8")
 
     var pdfOptions = {
@@ -65,12 +65,12 @@ module.exports = function (app) {
   })
 
   // The error handler must be before any other error middleware and after all controllers
-  app.use(Sentry.Handlers.errorHandler())
+  devServer.app.use(Sentry.Handlers.errorHandler())
 
-  if (app.get("env") == "development") {
-    app.use(morgan("dev"))
-    app.use(require("errorhandler")())
+  if (devServer.app.get("env") == "development") {
+    devServer.app.use(morgan("dev"))
+    devServer.app.use(require("errorhandler")())
   } else {
-    app.use(morgan("combined"))
+    devServer.app.use(morgan("combined"))
   }
 }

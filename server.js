@@ -9,7 +9,7 @@ var port = process.env.PORT || 8080
 
 process.env.MES_AIDES_ROOT_URL =
   process.env.MES_AIDES_ROOT_URL || "http://localhost:" + port
-require("./configure")(app)
+require("./configure")({ app })
 
 app.use(express.static("dist"))
 app.route("/*").get(function (req, res) {

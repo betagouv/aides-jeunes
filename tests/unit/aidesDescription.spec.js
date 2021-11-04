@@ -33,8 +33,11 @@ describe("benefit descriptions", function () {
 
             it("should have a description", function () {
               expect(typeof aide.description).toBe("string")
-              expect(aide.description.length).toBeGreaterThanOrEqual(100)
-              expect(aide.description.length).toBeLessThanOrEqual(420)
+              const p = document.createElement("p")
+              p.innerHTML = aide.description
+              const innerText = p.textContent
+              expect(innerText.length).toBeGreaterThanOrEqual(10)
+              expect(innerText.length).toBeLessThanOrEqual(420)
             })
 
             it("should have a link", function () {

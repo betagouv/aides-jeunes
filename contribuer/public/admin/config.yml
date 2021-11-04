@@ -65,12 +65,8 @@ collections:
         allow_multiple: false
       - label: Courte description
         name: description
-        widget: text
-        pattern:
-          [
-            "^[^]{10,420}$",
-            "La description est trop courte (<10 caractères) ou trop longue (>120 caractères). En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
-          ]
+        widget: description
+        pattern: ["", ""]
       - label: Conditions non prises ne comptent par le simulateur
         label_singular: Condition non prise ne compte par le simulateur
         hint: |

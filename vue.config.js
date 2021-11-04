@@ -27,8 +27,9 @@ module.exports = {
     )
     config.plugins.push(
       new HtmlWebpackPlugin({
-        filename: "sitemap.xml",
+        filename: "[name]-map.xml",
         template: "public/sitemap.xml",
+        favicon: "public/img/favicon/favicon.ico",
         inject: false,
         templateParameters: { VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL },
       })
@@ -39,6 +40,11 @@ module.exports = {
     }
   },
   chainWebpack(config) {
+    config.module
+      .rule("file")
+      .test(/\.(ico(2)?)(\?[a-z0-9=&.]+)?$/)
+      .use("file-loader")
+      .loader("file-loader")
     config.module
       .rule("vue")
       .use("vue-loader")
@@ -52,9 +58,9 @@ module.exports = {
       }))
   },
   devServer: {
-    before: before,
-    overlay: {
-      errors: false,
+    onBeforeSetupMiddleware: before,
+    client: {
+      overlay: false,
     },
   },
 }

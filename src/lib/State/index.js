@@ -54,13 +54,7 @@ const nextUnansweredStep = (state, getters) => {
     if (!step.isActive || step.path === "/") {
       return false
     }
-    // dirty hack for loyer...
-    if (step.substeps && step.substeps.length > 0) {
-      return step.substeps.some(
-        (step) =>
-          getters.getAnswer(step.entity, step.variable, step.id) === undefined
-      )
-    }
+
     if (step.key.match(/ressources\/montants\/(\w)*/)) {
       const keySplit = step.key.split("/")
       const categoryId = keySplit[keySplit.length - 1]

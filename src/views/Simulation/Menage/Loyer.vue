@@ -46,19 +46,15 @@ export default {
   methods: {
     onSubmit: function () {
       this.$store.dispatch("answer", {
-        undefined,
         entityName: "menage",
         fieldName: "loyer",
-        value: this.loyerQuestion.selectedValue || 0,
+        value: {
+          loyer: this.loyerQuestion.selectedValue || 0,
+          charges_locatives: this.captureCharges
+            ? this.chargesQuestion.selectedValue || 0
+            : undefined,
+        },
       })
-      if (this.captureCharges) {
-        this.$store.dispatch("answer", {
-          undefined,
-          entityName: "menage",
-          fieldName: "charges_locatives",
-          value: this.chargesQuestion.selectedValue || 0,
-        })
-      }
       this.$push()
     },
   },

@@ -359,6 +359,8 @@ function housingBlock() {
         steps: [
           new ComplexStep({
             route: "menage/loyer",
+            entity: "menage",
+            variable: "loyer",
             variables: [
               { entity: "menage", variable: "loyer" },
               { entity: "menage", variable: "charges_locatives" },
